@@ -11,7 +11,7 @@ echo pretty_heading($page_title);
 
 <div class="row">
   <?php gallery_link('OpenGameArt.org',
-    'Art (3D, 2D, sounds) uploaded by various artsts on clear open-source licenses.
+    'Game art (3D, 2D, sounds) uploaded by various artsts on clear open-source licenses.
     <p><i>Hint:</i> Do you want to share an asset you made and tested specifically for CGE game? Upload it to <a href="https://opengameart.org/art-search-advanced?keys=&title=%5Bcge%5D">OpenGameArt.org with <code>[CGE]</code> in the name</a>.',
     'assets_opengameart.png',
     'https://opengameart.org/');
