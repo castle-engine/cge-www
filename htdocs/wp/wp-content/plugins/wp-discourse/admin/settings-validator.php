@@ -100,6 +100,7 @@ class SettingsValidator {
 		add_filter( 'wpdc_validate_add_featured_link', array( $this, 'validate_checkbox' ) );
 		add_filter( 'wpdc_validate_auto_track', array( $this, 'validate_checkbox' ) );
 		add_filter( 'wpdc_validate_allowed_post_types', array( $this, 'validate_allowed_post_types' ) );
+		add_filter( 'wpdc_validate_exclude_tags', array( $this, 'validate_exclude_tags' ) );
 		add_filter( 'wpdc_validate_publish_failure_notice', array( $this, 'validate_checkbox' ) );
 		add_filter( 'wpdc_validate_publish_failure_email', array( $this, 'validate_email' ) );
 		add_filter( 'wpdc_validate_hide_discourse_name_field', array( $this, 'validate_checkbox' ) );
@@ -290,6 +291,42 @@ class SettingsValidator {
 		}
 
 		return $output;
+	}
+
+	/**
+	 * Validates the 'exclude_tags' input.
+	 *
+	 * @param mixed $input The excluded tags.
+	 *
+	 * @return array
+	 */
+	public function validate_exclude_tags( $input ) {
+		$output = array();
+
+		if ( is_string( $input ) ) {
+			$input  = explode( ',', $input );
+		}
+
+		foreach ( $input as $tag_slug ) {
+			$tag_slug = trim( $tag_slug );
+
+			if ( '' == $tag_slug ) {
+				continue;
+			}
+
+			if ( term_exists( $tag_slug, 'post_tag' ) ) {
+				$output[] = sanitize_text_field( $tag_slug );
+			} else {
+				add_settings_error(
+					'discourse_exclude_tags',
+					'tag-does-not-exist',
+					"Exclude Posts By Tag: '$tag_slug' is not a valid tag.",
+					'warning'
+				);
+			}
+		}
+
+		return array_unique( $output );
 	}
 
 	/**
@@ -509,8 +546,8 @@ class SettingsValidator {
 				'discourse',
 				'sso_client_enabled',
 				__(
-					"You have the 'SSO Client' option enabled. Visit the 'SSO Client' settings tab
-			to disable it before enabling your site to function as the SSO provider.",
+					"You have the 'DiscourseConnect Client' option enabled. Visit the 'DiscourseConnect Client' settings tab
+			to disable it before enabling your site to function as the DiscourseConnect provider.",
 					'wp-discourse'
 				)
 			);
@@ -523,8 +560,8 @@ class SettingsValidator {
 				'discourse',
 				'sso_provider_no_secret',
 				__(
-					'Before enabling your site to function as the SSO provider,
-            you need to set the SSO Secret Key.',
+					'Before enabling your site to function as the DiscourseConnect provider,
+            you need to set the DiscourseConnect Secret Key.',
 					'wp-discourse'
 				)
 			);
@@ -553,8 +590,8 @@ class SettingsValidator {
 				'discourse',
 				'sso_provider_enabled',
 				__(
-					"You have the 'SSO Provider' option enabled. Click on the 'SSO Provider' settings tab
-			to disable it before enabling your site to function as an SSO client.",
+					"You have the 'DiscourseConnect Provider' option enabled. Click on the 'DiscourseConnect Provider' settings tab
+			to disable it before enabling your site to function as a DiscourseConnect client.",
 					'wp-discourse'
 				)
 			);
@@ -567,8 +604,8 @@ class SettingsValidator {
 				'discourse',
 				'sso_client_no_secret',
 				__(
-					'Before enabling your site to function as an SSO client,
-            you need to set the SSO Secret Key.',
+					'Before enabling your site to function as a DiscourseConnect client,
+            you need to set the DiscourseConnect Secret Key.',
 					'wp-discourse'
 				)
 			);
@@ -619,7 +656,7 @@ class SettingsValidator {
 	public function validate_sso_secret( $input ) {
 		$secret = trim( $input );
 		if ( strlen( $secret ) < 10 ) {
-			add_settings_error( 'discourse', 'sso_secret', __( 'The SSO secret key must be at least 10 characters long.', 'wp-discourse' ) );
+			add_settings_error( 'discourse', 'sso_secret', __( 'The DiscourseConnect secret key must be at least 10 characters long.', 'wp-discourse' ) );
 
 			return '';
 		}
