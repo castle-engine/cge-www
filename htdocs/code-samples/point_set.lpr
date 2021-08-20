@@ -1,4 +1,4 @@
-uses CastleVectors, CastleWindow, X3DNodes, CastleScene, CastleViewport;
+uses CastleVectors, CastleWindow, X3DNodes, X3DLoad, CastleScene, CastleViewport;
 
 var
   PointSet: TPointSetNode;
@@ -54,13 +54,12 @@ begin
     manually at the end, by "FreeAndNil(Root)".
   }
 
-  Save3D(Root, 'my_points.x3d');
+  SaveNode(Root, 'my_points.x3d');
 
   Scene := TCastleScene.Create(Application);
   Scene.Load(Root, true);
-  Scene.ProcessEvents := true;
   Scene.Spatial := [ssRendering, ssDynamicCollisions];
-  Scene.Attributes.PointSize := 10;
+  Scene.RenderOptions.PointSize := 10;
 
   Viewport.Items.Add(Scene);
   Viewport.Items.MainScene := Scene;

@@ -30,7 +30,6 @@ begin
   Scene.Setup2D;
   Scene.Load('castle-data:/dragon/dragon.json');
   Scene.Spatial := [ssRendering, ssDynamicCollisions];
-  Scene.ProcessEvents := true;
   Scene.PlayAnimation('flying', true);
 
   Viewport := TCastleViewport.Create(Application);

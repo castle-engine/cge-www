@@ -64,7 +64,6 @@ begin
 
   Scene := TCastleScene.Create(Application);
   Scene.Load(BuildScene, true);
-  Scene.ProcessEvents := true;
   Scene.PlayAnimation('MyAnimationName', true);
   Viewport.Items.Add(Scene);
   Viewport.Items.MainScene := Scene;

@@ -22,13 +22,11 @@ begin
   Scene1 := TCastleScene.Create(Application);
   Scene1.Load('castle-data:/monkey_z_up.x3d');
   Scene1.Spatial := [ssRendering, ssDynamicCollisions];
-  Scene1.ProcessEvents := true;
   Scene1.Translation := Vector3(1, 1, 0);
 
   Scene2 := TCastleScene.Create(Application);
   Scene2.Load('castle-data:/monkey_z_up.x3d');
   Scene2.Spatial := [ssRendering, ssDynamicCollisions];
-  Scene2.ProcessEvents := true;
   Scene2.Translation := Vector3(-1, -1, 0);
 
   Transform.Add(Scene1);

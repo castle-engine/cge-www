@@ -73,7 +73,6 @@ begin
   Scene := TCastleScene.Create(Application);
   Scene.Load(BuildRootNode('castle-data:/face.png'), true);
   Scene.Spatial := [ssRendering, ssDynamicCollisions];
-  Scene.ProcessEvents := true;
   Viewport.Items.Add(Scene);
   Viewport.Items.MainScene := Scene;
 

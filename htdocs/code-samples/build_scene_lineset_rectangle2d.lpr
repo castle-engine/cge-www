@@ -87,7 +87,6 @@ begin
   Scene := TCastleScene.Create(Application);
   Scene.Setup2D;
   Scene.Load(BuildScene, true);
-  Scene.ProcessEvents := true;
 
   Viewport.Items.Add(Scene);
 

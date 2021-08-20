@@ -47,7 +47,6 @@ begin
   Scene.Load(URL);
   Scene.Spatial := [ssRendering, ssDynamicCollisions];
   // Scene.Translation := Vector3(1, 2, 3); // set initial position
-  Scene.ProcessEvents := true;
 
   // Create TRigidBody
   RigidBody := TRigidBody.Create(Application);
