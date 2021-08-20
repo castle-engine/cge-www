@@ -30,14 +30,18 @@ It can include animated stuff, interactions,
 <?php echo a_href_page('Our scene graph based on X3D is really quite powerful', 'vrml_x3d'); ?>.
 
 <p>A sample 3D model may be found inside the engine examples,
-in <code>examples/3d_rendering_processing/data/car.x3d</code> file.
-My advice is to copy now the whole directory <code>data</code> from there into your
-own project directory (so you have files like <code>data/car.x3d</code>).
+in <code>examples/3d_rendering_processing/data/car.gltf</code> file.
+To follow this manual page easily,
+copy now the whole directory <code>examples/3d_rendering_processing/data</code>
+into your own project directory.
+So that you have files like <code>data/car.gltf</code>, <code>data/car.bin</code>,
+<code>data/textures/car_shell.png</code> inside your project.
 The name <code>data</code> for a directory name is special,
-content there can be loaded using the <a href="manual_data_directory.php">castle-data:/xxx URL</a>.
+content there can be loaded using the special URL like <code>castle-data:/car.gltf</code>
+(see <a href="manual_data_directory.php">detailed data directory docs</a>).
 
 <p>You can also download
-<?php echo a_href_page('our demo VRML/X3D models', 'demo_models'); ?>.
+<?php echo a_href_page('our demo models', 'demo_models'); ?>.
 And you can open all the models with
 <?php echo a_href_page('view3dscene', 'view3dscene'); ?>,
 to see how do they look like before loading them into your game.</p>
@@ -75,9 +79,8 @@ begin
   CastleControlBase1.Controls.InsertFront(Viewport);
 
   Scene := TCastleScene.Create(Application);
-  Scene.Load(\'castle-data:/car.x3d\');
+  Scene.Load(\'castle-data:/car.gltf\');
   Scene.Spatial := [ssRendering, ssDynamicCollisions];
-  Scene.ProcessEvents := true;
 
   Viewport.Items.Add(Scene);
   Viewport.Items.MainScene := Scene;
@@ -94,9 +97,13 @@ ssDynamicCollisions]</code> is the most flexible one (it allows to speed up
 the rendering by frustum culling, detect collisions between player and
 level, and it adapts to a dynamic level that may have some animated
 parts).
-<?php api_link('Scene.ProcessEvents', 'CastleSceneCore.TCastleSceneCore.html#ProcessEvents'); ?>
+<?php /*
+No longer show it, for simplicity. There's no need to call it.
+
+< ?php api_link('Scene.ProcessEvents', 'CastleSceneCore.TCastleSceneCore.html#ProcessEvents'); ? >
  activates animating VRML/X3D models (you
 can remove it if you know that your level is, and always will be, static).</p>
+*/ ?>
 
 <p>Then we create a <i>viewport</i>, which is a 2D rectangular area
 in a window that will show the world.
@@ -117,6 +124,18 @@ camera and navigation.
 <p>To control the initial camera view:
 
 <ol>
+  <li><p>If you set up the 3D world using the <a href="manual_editor.php">editor</a>,
+    which we advise:
+
+    <p><b>Set the initial camera by the <a href="manual_editor.php">editor</a></b>:
+    navigate in editor, and use the "hamburger" menu that appears when you select the viewport
+    to choose <i>"Camera Initial := Current"</i>.
+    Save the design.
+
+    <p>Leave <code>Viewport.AutoCamera</code> at (default) value <code>false</code>
+    (otherwise the auto-detection, done at the first render,
+    would override what you set).
+
   <li><p><b>Set the camera by code</b>:
     use the <?php api_link('Viewport.Camera.SetView',
     'CastleCameras.TCastleCamera.html#SetView'); ?> method.
@@ -127,13 +146,18 @@ camera and navigation.
 
 <?php echo pascal_highlight(
 'Viewport.Camera.SetView(
-  Vector3(-7.83,  6.15, -7.55),
-  Vector3( 0.47, -0.30,  0.82),
-  Vector3( 0.16,  0.95,  0.25)
+  Vector3(-11.34, 30.04, 96.07), // position
+  Vector3(0.10, -0.49, -0.87), // direction
+  Vector3(0.35, 0.83, -0.43), // up (current)
+  Vector3(0.00, 1.00, 0.00) // gravity up
 );'); ?>
 
-    <p>In this case, you want to leave <code>Viewport.AutoCamera</code>
-    as <code>false</code> (otherwise the auto-detection, done at the first render,
+    <p>How to generate such code?
+    Use <a href="view3dscene.php">view3dscene</a>. Open the model,
+    navigate, then use <i>Clipboard -&gt; Print Current Camera (Viewpoint) (Pascal)</i>.
+
+    <p>Again, leave <code>Viewport.AutoCamera</code> at (default) value <code>false</code>
+    (otherwise the auto-detection, done at the first render,
     would override what you set).
 
   <li><p><b>Alternatively initialize the camera defaults (including position / direction / up)
@@ -141,7 +165,7 @@ camera and navigation.
 
     <p>To make it work, set <code>Viewport.AutoCamera := true</code>.
 
-    <p>If a model file (set as <code>MainScene</code>, like <code>car.x3d</code> in the example above)
+    <p>If a model file (set as <code>MainScene</code>, like <code>car.gltf</code> in the example above)
     has a <code>Viewpoint</code>
     or <code>OrthoViewpoint</code> X3D node,
     then this node will determine the initial camera. You can generate such

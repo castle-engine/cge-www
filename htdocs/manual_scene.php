@@ -71,11 +71,11 @@ var
 begin
   T := CarScene.Translation;
   { Thanks to multiplying by SecondsPassed, it is a time-based operation,
-    and will always move 40 units / per second along the -Z axis. }
-  T := T + Vector3(0, 0, -40) * Container.Fps.SecondsPassed;
+    and will always move 40 units / per second along the +Z axis. }
+  T := T + Vector3(0, 0, 40) * Container.Fps.SecondsPassed;
   { Wrap the Z position, to move in a loop }
-  if T.Z < -70.0 then
-    T.Z := 50.0;
+  if T.Z > 70 then
+    T.Z := -50;
   CarScene.Translation := T;
 end;'); ?>
   </li>
@@ -192,7 +192,7 @@ and the memory usage.
 begin
   CarTransforms[I] := TCastleTransform.Create(Application);
   CarTransforms[I].Translation := Vector3(
-    -6 + Random(4) * 6, 0, RandomFloatRange(-70, 50));
+     (Random(4) - 2) * 6, 0, RandomFloatRange(-70, 50));
   CarTransforms[I].Add(CarScene);
   Viewport.Items.Add(CarTransforms[I]);
 end;'); ?>
@@ -211,11 +211,11 @@ end;'); ?>
   begin
     T := CarTransform.Translation;
     { Thanks to multiplying by SecondsPassed, it is a time-based operation,
-      and will always move 40 units / per second along the -Z axis. }
-    T := T + Vector3(0, 0, -40) * Container.Fps.SecondsPassed;
+      and will always move 40 units / per second along the +Z axis. }
+    T := T + Vector3(0, 0, 40) * Container.Fps.SecondsPassed;
     { Wrap the Z position, to move in a loop }
-    if T.Z < -70.0 then
-      T.Z := 50.0;
+    if T.Z > 70 then
+      T.Z := -50;
     CarTransform.Translation := T;
   end;
 
@@ -230,7 +230,7 @@ end;'); ?>
   </li>
 </ol>
 
-<p>Note that all 20 cars are in the same state (they display the same animation). This is the limitation of this technique. If you need the scenes to be in a different state, then you will need different <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> instances. You can efficiently create them e.g. using the <?php api_link('TCastleScene.Clone', 'CastleScene.TCastleScene.html#Clone'); ?> method. In general, it's best to leave this optimization (sharing the same scene multiple times) only for completely static scenes (where you don't turn on <code>ProcessEvents</code> and thus you don't animate them in any way).
+<p>Note that all 20 cars are in the same state (they display the same animation). This is the limitation of this technique. If you need the scenes to be in a different state, then you will need different <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> instances. You can efficiently create them e.g. using the <?php api_link('TCastleScene.Clone', 'CastleScene.TCastleScene.html#Clone'); ?> method. In general, reserve this optimization (sharing the same scene multiple times) only for completely static scenes (where you don't use <code>PlayAnimation</code> or <code>ProcessEvents</code> and thus you don't animate them in any way).
 
 <?php echo $toc->html_section(); ?>
 
@@ -331,7 +331,7 @@ end;'); ?>
   </li>
 </ol>
 
-<p>Note: in this case, it would probably be simpler to add these 2 walls (boxes) to the <code>road.x3d</code> file in Blender. Thus, you would not need to deal with them in code. But in general, this technique is extremely powerful to generate 3D scenes following any algorithm!
+<p>Note: in this case, it would probably be simpler to add these 2 walls (boxes) to the <code>road.gltf</code> file in Blender. Thus, you would not need to deal with them in code. But in general, this technique is extremely powerful to generate 3D scenes following any algorithm!
 
 <p>To construct a more flexible mesh than just <i>a box</i>, you can use a universal and powerful <code>IndexedFaceSet</code> node instead of a simple <code>Box</code>. For <code>IndexedFaceSet</code>, you explicitly specify the positions of the vertexes, and how they connect to form faces.
 

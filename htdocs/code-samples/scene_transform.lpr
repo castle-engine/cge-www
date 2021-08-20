@@ -15,14 +15,12 @@ begin
   Window.Controls.InsertFront(Viewport);
 
   CarScene := TCastleScene.Create(Application);
-  CarScene.Load('castle-data:/car.x3d');
+  CarScene.Load('castle-data:/car.gltf');
   CarScene.Spatial := [ssRendering, ssDynamicCollisions];
-  CarScene.ProcessEvents := true;
 
   RoadScene := TCastleScene.Create(Application);
-  RoadScene.Load('castle-data:/road.x3d');
+  RoadScene.Load('castle-data:/road.gltf');
   RoadScene.Spatial := [ssRendering, ssDynamicCollisions];
-  RoadScene.ProcessEvents := true;
 
   Viewport.Items.Add(CarScene);
   Viewport.Items.Add(RoadScene);
@@ -30,9 +28,10 @@ begin
 
   // nice camera to see the road
   Viewport.Camera.SetView(
-    Vector3(-43.30, 27.23, -80.74),
-    Vector3(  0.60, -0.36,   0.70),
-    Vector3(  0.18,  0.92,   0.32)
+    Vector3(-11.34, 30.04, 96.07), // position
+    Vector3(0.10, -0.49, -0.87), // direction
+    Vector3(0.35, 0.83, -0.43), // up (current)
+    Vector3(0.00, 1.00, 0.00) // gravity up
   );
 
   Application.Run;

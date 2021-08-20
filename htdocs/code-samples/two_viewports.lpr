@@ -3,6 +3,7 @@ uses SysUtils, CastleColors, CastleSceneCore, CastleScene, CastleFilesUtils,
   CastleCameras, CastleVectors;
 var
   Window: TCastleWindowBase;
+  Navigation: TCastleWalkNavigation;
   MainViewport: TCastleViewport;
   Scene: TCastleScene;
   AdditionalViewport: TCastleViewport;
@@ -17,7 +18,9 @@ begin
   Scene := TCastleScene.Create(Application);
   Scene.Load('castle-data:/level1.x3d');
   Scene.Spatial := [ssRendering, ssDynamicCollisions];
-  Scene.ProcessEvents := true;
+
+  Navigation := TCastleWalkNavigation.Create(Application);
+  Navigation.MoveSpeed := 10;
 
   MainViewport := TCastleViewport.Create(Application);
   MainViewport.AutoCamera := true;
@@ -27,8 +30,7 @@ begin
   MainViewport.Height := 748;
   MainViewport.Items.Add(Scene);
   MainViewport.Items.MainScene := Scene;
-  MainViewport.NavigationType := ntWalk;
-  MainViewport.WalkNavigation.MoveSpeed := 10;
+  MainViewport.Navigation := Navigation;
   Window.Controls.InsertFront(MainViewport);
 
   { otherwise, inputs are only passed
