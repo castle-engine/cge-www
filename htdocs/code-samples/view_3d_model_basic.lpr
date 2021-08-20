@@ -14,7 +14,7 @@ begin
   Window.Controls.InsertFront(Viewport);
 
   Scene := TCastleScene.Create(Application);
-  Scene.Load('car.x3d');
+  Scene.Load('castle-data:/car.x3d');
   Scene.Spatial := [ssRendering, ssDynamicCollisions];
   Scene.ProcessEvents := true;
 
