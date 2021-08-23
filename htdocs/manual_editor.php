@@ -192,6 +192,8 @@ It is possible to include your custom components within the <i>Castle Game Engin
 
 <p>See <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/advanced_editor">advanced_editor</a> as an example that defines and registers <code>TImageGrid</code> component in the <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/advanced_editor/gamecontrols.pas">GameControls</a> unit.
 
+<p>More <a href="https://github.com/castle-engine/castle-engine/wiki/Custom-Components">documentation about implementing custom components is here</a>.
+
 <?php
 manual_footer();
 ?>
