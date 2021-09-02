@@ -459,23 +459,28 @@ implementation
 
 initialization
   // Theme.LoadingBackgroundColor := Black; // adjust as needed
-  // Theme.LoadingTextColor := White; // adjust as needed
+  // Theme.LoadingColor := White; // adjust as needed
   Theme.ImagesPersistent[tiLoading].Image := My_Loading;
   Theme.ImagesPersistent[tiLoading].OwnsImage := false;
 end.'); ?>
-
-    <ul>
-      <li>
-        <p>The <code>LoadingBackgroundColor</code> is used to fill the screen underneath the "loading" image. The reason we do this is because the loading image is scaled, but only proportionally, to fit the screen, so it's necessary to first fill the eventual space where the loading image would not be drawn.
-
-        <p>So you usually want to adjust <code>LoadingBackgroundColor</code> &mdash; to match your <code>my_loading.png</code> background.
-
-      <li>
-        <p>The <code>LoadingTextColor</code> is a color applied to the loading image. The name is somewhat misleading, it changes (multiplies) the color of image <code>my_loading.png</code> &mdash; and whether this image contains text or not is up to you. By default this image contains text <i>"Loading..."</i>.
-
-        <p>Usually you don't need to adjust <code>LoadingTextColor</code> if you're already customizing the <code>Theme.ImagesPersistent[tiLoading]</code> image to your own.
-    </ul>
 </ol>
+
+Notes:
+
+<ul>
+  <li>
+    <p>The <code>Theme.LoadingBackgroundColor</code> determines the background underneath the "loading" image. You usually want to adjust <code>Theme.LoadingBackgroundColor</code> to match your <code>my_loading.png</code> background.
+
+  <li>
+    <p>The <code>Theme.LoadingColor</code> is a color applied to the loading image. It multiplies the color of image <code>my_loading.png</code>. Usually you don't need to adjust <code>Theme.LoadingColor</code> if you're already customizing the <code>Theme.ImagesPersistent[tiLoading]</code> image to your own.
+
+  <li>
+    <p>Note that by default loading image is displayed with UI scaling that adjusts to reference size 1600x900. You can customize
+    <a href="https://castle-engine.io/apidoc-unstable/html/CastleControls.TCastleTheme.html#LoadingUIScaling">Theme.LoadingUIScaling</a>,
+    <a href="https://castle-engine.io/apidoc-unstable/html/CastleControls.TCastleTheme.html#LoadingUIReferenceWidth">Theme.LoadingUIReferenceWidth</a>,
+    <a href="https://castle-engine.io/apidoc-unstable/html/CastleControls.TCastleTheme.html#LoadingUIReferenceHeight">Theme.LoadingUIReferenceHeight</a>
+    to tweak it.
+</ul>
 
 <?php echo $toc->html_section(); ?>
 
