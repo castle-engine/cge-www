@@ -83,7 +83,9 @@ cd castle-engine/tools/build-tool/
 
 <p>Then create the subdirectory <code>bin</code> under the main CGE directory (so you'll have <code>castle-engine/bin/</code>) and move there the resulting binary <code>castle-engine</code> (<code>castle-engine.exe</code> on Windows).
 
-<p>Alternatively you can put the <code>castle-engine</code> binary on environment variable <code>PATH</code>. On Unix, you can add something like <code>export PATH="$PATH:$HOME/castle-engine/tools/build-tool/"</code> to <code>~/.profile</code>. On Windows, you can <a href="https://www.computerhope.com/issues/ch000549.htm">follow instructions here</a>. If this step sounds complicated and unnecessary, just don't do it &mdash; putting the build tool into the <code>castle-engine/bin/</code> is also good.
+<p><i>Alternatively:</i> You can add the <code>castle-engine</code> binary location to the environment variable <code>PATH</code>. On Unix, you can add something like <code>export PATH="$PATH:$HOME/castle-engine/tools/build-tool/"</code> to <code>~/.profile</code>. On Windows, you can <a href="https://www.computerhope.com/issues/ch000549.htm">follow instructions here</a>. If this step sounds complicated and unnecessary, just don't do it &mdash; putting the build tool into the <code>castle-engine/bin/</code> is also good.
+
+<p><i>Alternatively:</i> You can move the <code>castle-engine</code> binary to any place that is already on <code>$PATH</code>, e.g. on Unix to system-wide <code>/usr/local/bin/</code>. You should then also define environment variable <code>CASTLE_ENGINE_PATH</code> pointing to the CGE sources. On Unix, instead of using <code>$CASTLE_ENGINE_PATH</code>, you can also put the engine in system-wide <code>/usr/src/castle-engine</code> or <code>/usr/local/src/castle-engine</code> (or make it a symlink, like <code>sudo ln -s $HOME/my/castle-engine /usr/local/src/castle-engine</code>).
 
 <?php echo $toc->html_section(); ?>
 
