@@ -48,57 +48,57 @@ private static $installed = array (
     ),
     'automattic/jetpack-a8c-mc-stats' => 
     array (
-      'pretty_version' => 'v1.4.4',
-      'version' => '1.4.4.0',
+      'pretty_version' => 'v1.4.5',
+      'version' => '1.4.5.0',
       'aliases' => 
       array (
       ),
-      'reference' => '59df714196e8ac4fd69a4ddedcb9dbeb12e7ecb5',
+      'reference' => '5307c1526b153520bad42d459dcf42074cf28f5c',
     ),
     'automattic/jetpack-abtest' => 
     array (
-      'pretty_version' => 'v1.9.9',
-      'version' => '1.9.9.0',
+      'pretty_version' => 'v1.9.10',
+      'version' => '1.9.10.0',
       'aliases' => 
       array (
       ),
-      'reference' => '426a5e252ccab742af8c58cdcf16c8367c16a3a3',
+      'reference' => '871c178a5bc23492b6a3d93e8bea328a7d300a27',
     ),
     'automattic/jetpack-assets' => 
     array (
-      'pretty_version' => 'v1.11.5',
-      'version' => '1.11.5.0',
+      'pretty_version' => 'v1.11.6',
+      'version' => '1.11.6.0',
       'aliases' => 
       array (
       ),
-      'reference' => '88f04c6eb63ee4ce801735c03f7db5cae05e79bc',
+      'reference' => '66772f66b59dbec3320d917a490ca2b4f10c86f9',
     ),
     'automattic/jetpack-autoloader' => 
     array (
-      'pretty_version' => 'v2.10.3',
-      'version' => '2.10.3.0',
+      'pretty_version' => 'v2.10.5',
+      'version' => '2.10.5.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'aab966d6f2c8fd6669d6f5b1378d8ced5fd665b4',
+      'reference' => 'ec66177eefa1126d5319f3135ff3a7185e21a0ba',
     ),
     'automattic/jetpack-backup' => 
     array (
-      'pretty_version' => 'v1.1.1',
-      'version' => '1.1.1.0',
+      'pretty_version' => 'v1.1.3',
+      'version' => '1.1.3.0',
       'aliases' => 
       array (
       ),
-      'reference' => '1ec002e2e621218ac27fb07faae0ce52727a6816',
+      'reference' => 'bb32f306d7ed6df80712850546481980d851c06c',
     ),
     'automattic/jetpack-blocks' => 
     array (
-      'pretty_version' => 'v1.4.1',
-      'version' => '1.4.1.0',
+      'pretty_version' => 'v1.4.2',
+      'version' => '1.4.2.0',
       'aliases' => 
       array (
       ),
-      'reference' => '2d8e214bb64856cc4e2413af2e3252c241c668ca',
+      'reference' => 'a041993be7435ca6e372c6f006086818180779fe',
     ),
     'automattic/jetpack-compat' => 
     array (
@@ -111,192 +111,192 @@ private static $installed = array (
     ),
     'automattic/jetpack-config' => 
     array (
-      'pretty_version' => 'v1.4.6',
-      'version' => '1.4.6.0',
+      'pretty_version' => 'v1.4.7',
+      'version' => '1.4.7.0',
       'aliases' => 
       array (
       ),
-      'reference' => '98f8080550901a8a29daf466ee75a4906c5f1ef0',
+      'reference' => '219ec1addd3f9e28f3ec3aa8b55d8a4e031bc955',
     ),
     'automattic/jetpack-connection' => 
     array (
-      'pretty_version' => 'v1.30.1',
-      'version' => '1.30.1.0',
+      'pretty_version' => 'v1.30.4',
+      'version' => '1.30.4.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'c73a279ff07bdd343c8129ca40f56a6eb2b9273c',
+      'reference' => '81e3762de3eb3478c6f29491b198141a10eee21f',
     ),
     'automattic/jetpack-connection-ui' => 
     array (
-      'pretty_version' => 'v1.3.0',
-      'version' => '1.3.0.0',
+      'pretty_version' => 'v1.4.0',
+      'version' => '1.4.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'a6ce83b175600073786753bf79a9cd6f793dc334',
+      'reference' => 'fcad49e5d89a40033303e3c2537070d19cc50e51',
     ),
     'automattic/jetpack-constants' => 
     array (
-      'pretty_version' => 'v1.6.5',
-      'version' => '1.6.5.0',
+      'pretty_version' => 'v1.6.6',
+      'version' => '1.6.6.0',
       'aliases' => 
       array (
       ),
-      'reference' => '1e02eebb828c6701f3bf97fa8404e9fc85d3fb63',
+      'reference' => 'f72c4292cd5a31ec1acb65e9f7656ba2378ef7cf',
     ),
     'automattic/jetpack-device-detection' => 
     array (
-      'pretty_version' => 'v1.4.2',
-      'version' => '1.4.2.0',
+      'pretty_version' => 'v1.4.3',
+      'version' => '1.4.3.0',
       'aliases' => 
       array (
       ),
-      'reference' => '6f7c0560cac114a99066a703cf66813e325e8630',
+      'reference' => 'b45210f06260f97cb351dd2dd1953ff7ee9f60b9',
     ),
     'automattic/jetpack-error' => 
     array (
-      'pretty_version' => 'v1.3.5',
-      'version' => '1.3.5.0',
+      'pretty_version' => 'v1.3.6',
+      'version' => '1.3.6.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'f81fa17c2afb559dd12c52dae8aedb44da6a4195',
+      'reference' => '9846f224dfb3c16d1897e460ea62df8529dc016c',
     ),
     'automattic/jetpack-heartbeat' => 
     array (
-      'pretty_version' => 'v1.3.8',
-      'version' => '1.3.8.0',
+      'pretty_version' => 'v1.3.10',
+      'version' => '1.3.10.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'ed630c4a9271d5ce2bba15eec4ff32c448330b67',
+      'reference' => 'caade9254cbde292b62b3959547a30a0d80b90da',
     ),
     'automattic/jetpack-identity-crisis' => 
     array (
-      'pretty_version' => 'v0.2.2',
-      'version' => '0.2.2.0',
+      'pretty_version' => 'v0.2.5',
+      'version' => '0.2.5.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'f9e76478f8df130238f0843fd53472fff0b7e76e',
+      'reference' => '87b3cc40730a4440dac49bcecfebe0eda2dc5911',
     ),
     'automattic/jetpack-jitm' => 
     array (
-      'pretty_version' => 'v1.16.2',
-      'version' => '1.16.2.0',
+      'pretty_version' => 'v2.0.0',
+      'version' => '2.0.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '3276a4cf55b739c8c42448fd33f16f26ab766aaa',
+      'reference' => 'fcca2c18962f5642db3b2e33dc6e4ba14a55234b',
     ),
     'automattic/jetpack-lazy-images' => 
     array (
-      'pretty_version' => 'v1.5.0',
-      'version' => '1.5.0.0',
+      'pretty_version' => 'v2.0.0',
+      'version' => '2.0.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '27d9a86239c61093557d9256bf9d46e589b384cc',
+      'reference' => '317421400c08d4fed1344fa246a083609dd6fdf0',
     ),
     'automattic/jetpack-licensing' => 
-    array (
-      'pretty_version' => 'v1.4.4',
-      'version' => '1.4.4.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '1355affaf0dabb72a55a75ed89159e567e458a20',
-    ),
-    'automattic/jetpack-logo' => 
-    array (
-      'pretty_version' => 'v1.5.5',
-      'version' => '1.5.5.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '4b4a24e30ac76beea19a4d75b451e2b7a287db4c',
-    ),
-    'automattic/jetpack-options' => 
-    array (
-      'pretty_version' => 'v1.13.0',
-      'version' => '1.13.0.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '2606ae27f9b4336ca1b34ee9ecd99ac658ef30fc',
-    ),
-    'automattic/jetpack-partner' => 
-    array (
-      'pretty_version' => 'v1.5.1',
-      'version' => '1.5.1.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => 'c5836805d2dd2367264408260d1f51a0a82a0203',
-    ),
-    'automattic/jetpack-password-checker' => 
-    array (
-      'pretty_version' => 'v0.1.2',
-      'version' => '0.1.2.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '408bf765942578276da69b10c2600564773dceee',
-    ),
-    'automattic/jetpack-redirect' => 
-    array (
-      'pretty_version' => 'v1.7.0',
-      'version' => '1.7.0.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '8320a82f8daee5127a2c3e19cb4e2566ba4c94bb',
-    ),
-    'automattic/jetpack-roles' => 
     array (
       'pretty_version' => 'v1.4.5',
       'version' => '1.4.5.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'd04bbd4e012516d280a610e3961edef5cf241722',
+      'reference' => '2f8b4b568212722df9398a72f61dea31b54c11a5',
+    ),
+    'automattic/jetpack-logo' => 
+    array (
+      'pretty_version' => 'v1.5.6',
+      'version' => '1.5.6.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '34010217e32cd209a7b7ec105f9b668aa6681c4e',
+    ),
+    'automattic/jetpack-options' => 
+    array (
+      'pretty_version' => 'v1.13.1',
+      'version' => '1.13.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'fd3d213bc4d7597ea2d5f24adbf111028db46496',
+    ),
+    'automattic/jetpack-partner' => 
+    array (
+      'pretty_version' => 'v1.5.2',
+      'version' => '1.5.2.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '96dccb4a2b842c87010e51949a34d14a1b18b93e',
+    ),
+    'automattic/jetpack-password-checker' => 
+    array (
+      'pretty_version' => 'v0.1.3',
+      'version' => '0.1.3.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '237443544c10f174fa73ba46d5eb2bb2e53e3aff',
+    ),
+    'automattic/jetpack-redirect' => 
+    array (
+      'pretty_version' => 'v1.7.1',
+      'version' => '1.7.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '1607360c2f8b4e14d97cb3a22aee8e1565d96f80',
+    ),
+    'automattic/jetpack-roles' => 
+    array (
+      'pretty_version' => 'v1.4.6',
+      'version' => '1.4.6.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '1b67fb3d17842d54ee6242fbd665417ce9b3d497',
     ),
     'automattic/jetpack-status' => 
     array (
-      'pretty_version' => 'v1.8.0',
-      'version' => '1.8.0.0',
+      'pretty_version' => 'v1.8.1',
+      'version' => '1.8.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => '9da88ee253d69e4948c76e4080435aca23c65dbb',
+      'reference' => 'f3f26d5effc09709e5b52290cc7e3dd2c5861b14',
     ),
     'automattic/jetpack-sync' => 
     array (
-      'pretty_version' => 'v1.24.2',
-      'version' => '1.24.2.0',
+      'pretty_version' => 'v1.26.1',
+      'version' => '1.26.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => '08ddb52e2118daa59541dadedb87a25febf12ef5',
+      'reference' => 'f60b01c93ac9408fd9121bb5bd8a1ba7a6b33dd4',
     ),
     'automattic/jetpack-terms-of-service' => 
     array (
-      'pretty_version' => 'v1.9.8',
-      'version' => '1.9.8.0',
+      'pretty_version' => 'v1.9.9',
+      'version' => '1.9.9.0',
       'aliases' => 
       array (
       ),
-      'reference' => '9ebb094dc1243b36c449ecb37a858511c9b41759',
+      'reference' => '96667ee94d2a1b47a3a054af0af909ba7d4b0707',
     ),
     'automattic/jetpack-tracking' => 
     array (
-      'pretty_version' => 'v1.13.7',
-      'version' => '1.13.7.0',
+      'pretty_version' => 'v1.13.9',
+      'version' => '1.13.9.0',
       'aliases' => 
       array (
       ),
-      'reference' => '8fd3b9aef38dd2dd9b072dfd9af5b9a3278b20b6',
+      'reference' => 'fe019c0cee900559e21d7a98d564177a373b1016',
     ),
     'nojimage/twitter-text-php' => 
     array (
