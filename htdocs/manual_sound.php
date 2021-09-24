@@ -4,177 +4,173 @@ manual_header('Sound');
 
 $toc = new TableOfContents(
   array(
+    new TocItem('The most important classes and their usage', 'classes'),
+    new TocItem('Examples', 'examples'),
+    new TocItem('Editor sound features', 'editor'),
     new TocItem('Playing sound from Pascal code', 'code'),
-    new TocItem('Using sounds repository (XML file)', 'xml'),
-    new TocItem('Playing sound from X3D', 'x3d'),
-    new TocItem('Controlling the sound afterward (TSound)', 'tsound'),
+    new TocItem('Using sounds collection (.castle-components file)', 'components_collection'),
+    new TocItem('Sound backends', 'backends'),
   )
 );
 ?>
 
 <?php echo $toc->html_toc(); ?>
-<?php echo $toc->html_section(); ?>
-
-<p>Load a sound file to <i>sound buffer</i> like this:</p>
-
-<?php echo pascal_highlight(
-'// add this to your uses clause:
-uses ..., CastleSoundEngine;
-
-// use this at initialization:
-var
-  Buffer: TSoundBuffer;
-
-procedure LoadSoundBuffers;
-begin
-  Buffer := SoundEngine.LoadBuffer(\'castle-data:/sample.wav\');
-end;'); ?>
-
-<p>At any point in your application, play this sound like this:
-
-<?php echo pascal_highlight(
-'SoundEngine.PlaySound(Buffer);'); ?>
-
-<p>See
-<?php api_link('SoundEngine.PlaySound', 'CastleSoundEngine.TSoundEngine.html#PlaySound'); ?>
- docs for the description of parameters.
 
 <?php echo $toc->html_section(); ?>
 
-<p>It is often comfortable to define a <i>repository</i> of sounds,
-which means that each sound file is assigned a simple name and configuration
-(e.g. priority, default volume), and all the sound files can be loaded easily.
-Do it by creating an XML file, for example named <code>sounds.xml</code>,
-looking like this:</p>
+<?php
+echo castle_thumbs(array(
+  array('filename' => 'sound_example_3d_game_sound.png', 'titlealt' => '3D game sound demo - TCastleSound'),
+  array('filename' => 'sound_example_3d_game_source.png', 'titlealt' => '3D game sound demo - TCastleSoundSource'),
+));
+?>
 
-<?php echo xml_full_highlight(
-'<?xml version="1.0"?>
-<sounds>
-  <sound name="sample" url="sample.wav" />
-  <!-- Actually, you can omit the url, by default it\'s the same
-       as sound name with .wav extension. -->
-</sounds>'); ?>
+<ul>
+  <li>
+    <p><a href="https://castle-engine.io/apidoc-unstable/html/CastleSoundEngine.TCastleSound.html">TCastleSound</a>: The most important class, you should use this always when you want to play any sound.
 
-<p>See
-<?php echo a_href_page('creating game sounds guide', 'creating_data_sound'); ?>
- for detailed specification about sound XML files.
-See <?php api_link('TRepoSoundEngine', 'CastleSoundEngine.TRepoSoundEngine.html'); ?> docs
- and <code>examples/fps_game/</code> for example.
-You have to initialize the sound repository by assigning to
- <?php api_link('SoundEngine.RepositoryURL', 'CastleSoundEngine.TRepoSoundEngine.html#RepositoryURL'); ?>, like this:</p>
+    <p>This is a non-visual component that represents a sound file with some playback parameters. The most important properties are:
 
-<?php echo pascal_highlight(
-'SoundEngine.RepositoryURL := \'castle-data:/sounds/index.xml\';'); ?>
+    <ul>
+      <li>
+        <p>
+          <a href="https://castle-engine.io/apidoc-unstable/html/CastleSoundEngine.TCastleSound.html#URL">URL</a> &mdash; undoubtedly the most important property, set this to actually load the sound file.
 
-<p>After this, you can refer to your sounds by name.
-You can play named sounds from Pascal code:</p>
+      <li>
+        <p>
+          <a href="https://castle-engine.io/apidoc-unstable/html/CastleSoundEngine.TCastleSound.html#Stream">Stream</a> &mdash; optionally use "streaming", which is an alternative loading method best suited for longer playing sounds (like music tracks).
 
-<?php echo pascal_highlight(
-'var
-  SoundType: TSoundType;
-begin
-  SoundType := SoundEngine.SoundFromName(\'sample\');
-  // play as 3D sound
-  SoundEngine.Sound3D(SoundType, Vector3(1, 2, 3), false { looping });
-  // play as non-3D sound
-  SoundEngine.Sound(SoundType, false { looping });
-end;'); ?>
+      <li>
+        <p>
+          <a href="https://castle-engine.io/apidoc-unstable/html/CastleSoundEngine.TCastleSound.html#Volume">Volume</a> &mdash; how loud the sound is. This is multiplied by volume at <code>TCastlePlayingSound.Volume</code> and <code>TCastleSoundSource.Volume</code> and by spatial calculations.
 
-<p>The
-<?php api_link('SoundEngine.Sound3D', 'CastleSoundEngine.TRepoSoundEngine.html#Sound3D'); ?>
- and
-<?php api_link('SoundEngine.Sound', 'CastleSoundEngine.TRepoSoundEngine.html#Sound'); ?>
- are a little easier to use than
-<?php api_link('SoundEngine.PlaySound', 'CastleSoundEngine.TSoundEngine.html#PlaySound'); ?>,
- they have fewer parameters. That is
-because the default sound properties (it's individual gain (volume), importance
-(priority), URL and other stuff) is already recorded in
-the sounds XML file.</p>
 
-<p>You can also refer to sound names from files like
-<code>resource.xml</code> (for creatures/items sounds)
-or <code>material_properties.xml</code>  (for footsteps)
-or <code>level.xml</code> (for level music).
-See <?php echo a_href_page('creating game data guide', 'creating_data_intro'); ?>
- for reference of these files.</p>
+      <li>
+        <p>
+          <a href="https://castle-engine.io/apidoc-unstable/html/CastleSoundEngine.TCastleSound.html#Pitch">Pitch</a> &mdash; sound playing speed. As with volume, the volume of <code>TCastleSound.Pitch</code> is multiplied by similar parameters controlled at <code>TCastlePlayingSound.Pitch</code> and <code>TCastleSoundSource.Pitch</code>.
+    </ul>
 
-<!--
-<p>You can also refer to your sound names from VRML/X3D AudioClip node,
-using the "sounds-repository" protocol:</p>
+    <p><code>TCastleSound</code> by itself doesn't manage playing the sound. You have to use <a href="https://castle-engine.io/apidoc-unstable/html/CastleSoundEngine.TSoundEngine.html#Play">SoundEngine.Play</a> to play the sound (the simplest way to play, for non-spatial sounds) or <a href="https://castle-engine.io/apidoc-unstable/html/CastleBehaviors.TCastleSoundSource.html">TCastleSoundSource</a> (for sounds that can be spatial; assign to <a href="https://castle-engine.io/apidoc-unstable/html/CastleBehaviors.TCastleSoundSource.html#Sound">TCastleSoundSource.Sound</a> for looping, use <a href="https://castle-engine.io/apidoc-unstable/html/CastleBehaviors.TCastleSoundSource.html#Play">TCastleSoundSource.Play</a> for non-looping).
 
-<pre>Sound {
-  source AudioClip { url "sounds-repository:sample" loop TRUE }
-}</pre>
--->
+  <li>
+    <p><a href="https://castle-engine.io/apidoc-unstable/html/CastleBehaviors.TCastleSoundSource.html">TCastleSoundSource</a>: A way to play spatial (3D) sounds.
 
-<?php /*
-We plan to deprecate level.xml. Also, it is mentioned above already.
+    <p>This is a behavior (see <a href="https://castle-engine.io/wp/2021/07/18/adding-behaviors-in-cge-editor-tcastlebillboard-tcastlesoundsource/">news post about behaviors</a>) that enhances any <a href="https://castle-engine.io/apidoc-unstable/html/CastleTransform.TCastleTransform.html">TCastleTransform</a> so that it emits (possibly spatial) sounds.
 
-< ?php echo $toc->html_section(); ? >
+    <p><code>TCastleSoundSource</code> refers to <code>TCastleSound</code> for an actual sound information. You can set <a href="https://castle-engine.io/apidoc-unstable/html/CastleBehaviors.TCastleSoundSource.html#Sound">TCastleSoundSource.Sound</a> (for looping). Or call <a href="https://castle-engine.io/apidoc-unstable/html/CastleBehaviors.TCastleSoundSource.html#Play">TCastleSoundSource.Play</a> (for non-looping).
 
-There is a special comfortable way to enable looping music on a level,
-if you use <code>level.xml</code> file with TLevel.Load. Simply add
-<code>music_sound="xxx"</code> attribute to the root element of your
-<code>level.xml</code> file, where <code>xxx</code> refers to a sound name
-defined in <code>data/sounds/index.xml</code>.
-*/ ?>
+  <li>
+    <p><a href="https://castle-engine.io/apidoc-unstable/html/CastleSoundEngine.TCastlePlayingSound.html">TCastlePlayingSound</a>: Optional, use if you need more control before and during the sound playback.
+</ul>
+
+<p>Both <code>TCastleSoundSource</code> and <code>TCastleSound</code> can be created, configured and linked in the <a href="https://castle-engine.io/manual_editor.php">CGE editor</a>, e.g. when designing your state. You can hear the 3D sounds in the editor. You can also create and control them from code, as all CGE components.
 
 <?php echo $toc->html_section(); ?>
 
-<p>Get a sample sound file and place it within your game data.
-You can find some sample files inside <code>examples/fps_game/data/sounds/</code>,
-or in <?php echo a_href_page('our demo models', 'demo_models'); ?>
- (subdirectory <code>sound/</code>),
-or on websites like <a href="http://opengameart.org/">OpenGameArt.org</a>.
-</p>
+<?php
+echo castle_thumbs(array(
+//  array('filename' => 'sound_example_player.png', 'titlealt' => 'Example audio player'),
+//  array('filename' => 'sound_example_doppler.png', 'titlealt' => 'Doppler demo'),
+  array('filename' => 'sound_example_play_sounds.png', 'titlealt' => 'Play sounds demo'),
+));
+?>
 
-<p>To add a looping sound to an X3D file in classic encoding
-(<code>xxx.x3dv</code> files) add this:</p>
+<ul>
+  <li>
+    <p>See all the examples in <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/audio">examples/audio</a> subdirectory.
 
-<pre>Sound {
-  source AudioClip { url "sample.wav" loop TRUE }
-}</pre>
+  <li>
+    <p>In particular open the <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/audio/game_3d_sound">examples/audio/game_3d_sound</a> demo. It's a simple example of how <code>TCastleSoundSource</code> and <code>TCastleSound</code> can be set up in the CGE editor.
 
-<p>Remember that URL <code>"sample.wav"</code> is specified relative to the location
-of your <code>xxx.x3dv</code> file. In the simplest case, just place both <code>xxx.x3dv</code>
-and <code>sample.wav</code> in the same directory, and you're fine.</p>
+  <li>
+    <p>See also <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/fixed_camera_game">examples/fixed_camera_game</a> as a demo how to design a collection of sounds. In particular:
+
+      <ul>
+        <li><code>examples/fixed_camera_game/data/sounds/all_sounds.castle-component</code> describes all sounds
+        <li><code>examples/fixed_camera_game/code/gamesound.pas</code> loads them
+      </ul>
+</ul>
 
 <?php echo $toc->html_section(); ?>
 
-<p>For more advanced uses, you can use the return value of
-<?php api_link('SoundEngine.PlaySound', 'CastleSoundEngine.TSoundEngine.html#PlaySound'); ?>,
-<?php api_link('SoundEngine.Sound3D', 'CastleSoundEngine.TRepoSoundEngine.html#Sound3D'); ?> or
-<?php api_link('SoundEngine.Sound', 'CastleSoundEngine.TRepoSoundEngine.html#Sound'); ?>.
-It's either <code>nil</code> (if no resources were available to
-play this sound, and it's priority doesn't allow overriding other
-sounds) or it's a
-<?php api_link('TSound', 'CastleSoundEngine.TSound.html'); ?>
- instance. If you have
- <?php api_link('TSound', 'CastleSoundEngine.TSound.html'); ?>
- instance, you can save it to a variable and use for various purposes.
- For example you can update sound parameters during the game,
- e.g. changing
- <?php api_link('TSound.Position', 'CastleSoundEngine.TSound.html#Position'); ?>,
- <?php api_link('TSound.Gain', 'CastleSoundEngine.TSound.html#Gain'); ?>
- and such.
- You can use it's <?php api_link('TSound.OnRelease', 'CastleSoundEngine.TSound.html#OnRelease'); ?>
- event to be notified when source stops
-playing. You can stop playing the sound
-by <?php api_link('TSound.Release', 'CastleSoundEngine.TSound.html#Release'); ?>.</p>
+<?php
+echo castle_thumbs(array(
+  array('filename' => 'sound_editor_options.png', 'titlealt' => 'Sound editor options'),
+));
+?>
 
-<?php /*
+<ul>
+  <li>
+    <p>Sound volume, and "auto-mute on play" are available in the editor settings.
 
-< ?php echo $toc->html_section(); ? >
-<h2></h2>
+  <li>
+    <p>Drag-and-drop sound files on the viewport to automatically create a spatial sound: <code>TCastleTransform</code>, <code>TCastleSoundSource</code>, <code>TCastleSound</code>.
+</ul>
 
-<p>Some engine components already define some sound names. To make them
-played, just use the appropriate names in your sounds XML file described above.
-They will be automatically found and played by engine components.
+<?php echo $toc->html_section(); ?>
 
-<p>See <i>"Common sounds"</i> section in
-<?php api_link('CastleSoundEngine', 'CastleSoundEngine.html'); ?>
- unit sources for a current list of predefined sound names.
-*/ ?>
+<p>Load a sound file as <a href="https://castle-engine.io/apidoc-unstable/html/CastleSoundEngine.TCastleSound.html">TCastleSound</a> like this:</p>
+
+<ol>
+  <li>
+    <p>Add <code>CastleSoundEngine</code> to your uses clause.
+
+  <li>
+    <p>Declare variable to hold it like <code>MySound: TSound;</code>
+
+  <li>
+    <p>Initialize the variable and load sound file, e.g. in <code>Application.OnInitialize</code>:
+
+<?php echo pascal_highlight(
+'MySound := TCastleSound.Create(Application);
+MySound.URL := \'castle-data:/my-sound.wav\';'); ?>
+
+  <li>
+    <p>Play the sound like this:
+
+<?php echo pascal_highlight(
+'SoundEngine.Play(MySound);'); ?>
+</ol>
+
+<p>See <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/audio/simplest_play_sound/simplest_play_sound.lpr">source code of examples/audio/simplest_play_sound/</a> for a working simplest possible example of this.
+
+<?php echo $toc->html_section(); ?>
+
+<?php
+echo castle_thumbs(array(
+  array('filename' => 'sound_collection.png', 'titlealt' => 'Sounds collection designed in editor'),
+));
+?>
+
+<p>It is often comfortable to define a <i>collection</i> of sounds, which means that each sound file is assigned a simple name and configuration (e.g. priority, default volume), and all the sound files can be loaded easily from any place in code (regardless of the current <code>TUIState</code>).
+
+<p>Do it by using a <code>TCastleComponent</code> as a design root and adding <code>TCastleSound</code> children. Save the resulting design to a file like <code>all_sounds.castle-component</code>.
+
+<p>See <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/fixed_camera_game">examples/fixed_camera_game</a> for an example of this approach. In particular:
+
+<ul>
+  <li><code>examples/fixed_camera_game/data/sounds/all_sounds.castle-component</code> describes all sounds
+  <li><code>examples/fixed_camera_game/code/gamesound.pas</code> loads them
+</ul>
+
+<?php echo $toc->html_section(); ?>
+
+<?php
+echo castle_thumbs(array(
+  array('filename' => 'sound_fmod.png', 'titlealt' => 'FMOD'),
+));
+?>
+
+<p>By default we use <em>OpenAL</em> to play sounds. It's a great full-featured open-source audio library, perfect match for our open-source game engine.
+
+<p>You can alternatively switch to use the <a href="https://github.com/castle-engine/castle-engine/wiki/FMOD">FMOD sound backend</a>. This is just an option. FMOD is proprietary (not open-source) and <a href="https://www.fmod.com/licensing">commercial (though free in some cases, for indie devs)</a>.
+
+<ul>
+  <li>
+    <p>Main advantage of FMOD in CGE for now is <a href="https://github.com/castle-engine/castle-engine/wiki/Nintendo-Switch">Nintendo Switch compatibility</a>.
+  <li>
+    <p>Big future advantage may be integration with the <a href="https://www.fmod.com/studio">FMOD Studio</a>. The goal of <i>FMOD Studio</i> is to make the work of <em>sound designer</em> easier. The sfx person can create sound effects in <i>FMOD Studio</i>, in a way that is agnostic to the game engine, and the code (like your game) simply sends <em>"events"</em> that may cause some sound effect (playing something, stopping something, fading in/out something...).
+</ul>
 
 <?php
 manual_footer();
