@@ -1,5 +1,8 @@
 == Changelog ==
 
+= v1.0.3 - 24/09/2021 =
+- Fixed: Secutiry issue
+
 = v1.0.2 - 16/06/2021 =
 - Added: Translation for roles and notices. ( https://github.com/WPChill/check-email/issues/10 )
 - Added: Headers of the emails in the view log tab. ( https://github.com/WPChill/check-email/issues/12 )

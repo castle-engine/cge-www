@@ -225,8 +225,13 @@ class Check_Email_Table_Manager implements Loadie {
 		}
 
 		// Ordering parameters.
-		$orderby = ! empty( $request['orderby'] ) ? esc_sql( $request['orderby'] ) : 'sent_date';
-		$order   = ! empty( $request['order'] ) ? esc_sql( $request['order'] ) : 'DESC';
+		$orderby = ! empty( $request['orderby'] ) ? sanitize_sql_orderby( $request['orderby'] ) : 'sent_date';
+		if ( isset( $request['order'] ) ) {
+			$order = in_array( strtoupper($request['order']), array( 'DESC', 'ASC' ) ) ? esc_sql( $request['order'] ) : 'DESC';
+		}else{
+			$order = 'DESC';
+		}
+		
 
 		if ( ! empty( $orderby ) & ! empty( $order ) ) {
 			$query_cond .= ' ORDER BY ' . $orderby . ' ' . $order;
