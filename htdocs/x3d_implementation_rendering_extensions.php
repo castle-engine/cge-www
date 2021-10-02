@@ -42,6 +42,16 @@ so e.g. <i>X3DComposedGeometryNode.NormalPerVertex</i> affects the interpretatio
 <p>When reading data from <a href="https://castle-engine.io/creating_data_model_formats.php#section_gltf">glTF</a>,
 we automatically import glTF information about tangent vectors into this node.
 
+<p>While not strictly necessary, it is advised to put tangent vectors in X3D file when doing bump mapping
+(using <i>Material.normalTexture</i>, <i>PhysicalMaterial.normalTexture</i> fields).
+This way the X3D browser knows the tangent vectors, with exactly the same values as were used
+when generating ("baking") the normalmap texture.
+This, in turn, allows 1. perfectly correct rendering, 2. faster loading and animating of X3D files with bump mapping
+&mdash; as the tangent vectors don't have to be calculated.
+
+<p>When the <code>Tangent</code> node is missing, but the relevant information is required
+(e.g. for bump mapping) X3D browsers should automatically calculate the tangent vectors.
+
 <?php echo $toc->html_section(); ?>
 
 <p>We add a new field to <code>X3DColorNode</code> (ancestor of <code>Color</code> and <code>ColorRGBA</code>
