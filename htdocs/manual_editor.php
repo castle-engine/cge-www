@@ -51,13 +51,13 @@ The build tool in turn calls a compiler (FPC) and some other tools
 
     <p>Saved as <code>xxx.castle-user-interface</code> files (somewhere in the <code>data/</code> subdirectory).
 
-    <p>They are typically loaded in your application by setting the <?php api_link('TUIState.DesignUrl', 'CastleUIState.TUIState.html#DesignUrl'); ?> (see almost any engine example or "New Project" template). Other approaches are possible too, e.g. you can load using <?php api_link('UserInterfaceLoad', 'CastleUIControls.html#UserInterfaceLoad'); ?>, <code>TSerializedComponent.UserInterfaceLoad</code> and more. See examples like <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/advanced_editor">advanced_editor</a>.
+    <p>They are typically loaded in your application by setting the <?php api_link('TUIState.DesignUrl', 'CastleUIState.TUIState.html#DesignUrl'); ?> (see almost any engine example or "New Project" template). Other approaches are possible too, e.g. you can load using <?php api_link('UserInterfaceLoad', 'CastleUIControls.html#UserInterfaceLoad'); ?>, <code>TSerializedComponent.UserInterfaceLoad</code> and more. See examples like <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/advanced_editor/advanced_loading_designs">advanced_editor/advanced_loading_designs</a>.
 
   <li><p>A hierachy of 3D / 2D scenes and transformations. Anything descending from <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?>.
 
     <p>Saved as <code>xxx.castle-transform</code> files (somewhere in the <code>data/</code> subdirectory).
 
-    <p>You can load it in your game using <?php api_link('TransformLoad', 'CastleTransform.html#TransformLoad'); ?> and insert into existing hierarchy of <code>TCastleViewport.Items</code>. You can also use <a href="https://castle-engine.io/apidoc-unstable/html/CastleTransformExtra.TCastleTransformDesign.html">TCastleTransformDesign</a> to use it in other designs (thus having a reusable composition of 3D/2D objects). See examples like <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/advanced_editor">advanced_editor</a>.
+    <p>You can load it in your game using <?php api_link('TransformLoad', 'CastleTransform.html#TransformLoad'); ?> and insert into existing hierarchy of <code>TCastleViewport.Items</code>. You can also use <a href="https://castle-engine.io/apidoc-unstable/html/CastleTransformExtra.TCastleTransformDesign.html">TCastleTransformDesign</a> to use it in other designs (thus having a reusable composition of 3D/2D objects). See examples like <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/advanced_editor/advanced_loading_designs">advanced_editor/advanced_loading_designs</a>.
 
   <li><p>A hierachy of non-visual classes (really anything descending from <a href="https://www.freepascal.org/docs-html/rtl/classes/tcomponent.html">TComponent</a> although we advise to descend from our extended <?php api_link('TCastleComponent', 'CastleClassUtils.TCastleComponent.html'); ?>).
 
@@ -190,7 +190,7 @@ It is possible to include your custom components within the <i>Castle Game Engin
     <p>You can confirm you are running an editor with custom components by looking at the window title, it should include <i>"(With Custom Components)"</i>.
 </ol>
 
-<p>See <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/advanced_editor">advanced_editor</a> as an example that defines and registers <code>TImageGrid</code> component in the <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/advanced_editor/gamecontrols.pas">GameControls</a> unit.
+<p>See <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/advanced_editor/custom_component">advanced_editor/custom_component</a> as an example that defines and registers <code>TImageGrid</code> component in the <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/advanced_editor/custom_component/code/gamecontrols.pas">GameControls</a> unit.
 
 <p>More <a href="https://github.com/castle-engine/castle-engine/wiki/Custom-Components">documentation about implementing custom components is here</a>.
 

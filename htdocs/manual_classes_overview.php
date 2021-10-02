@@ -89,7 +89,7 @@ It can be treated like a cheatsheet, concise description of engine architecture.
     (see almost any engine example and "New Project" template)
     or using
     <?php api_link('UserInterfaceLoad', 'CastleUIControls.html#UserInterfaceLoad'); ?>
-    (see engine example <code>examples/advanced_editor</code>).
+    (see engine example <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/advanced_editor/advanced_loading_designs">examples/advanced_editor/advanced_loading_designs</a>).
 
 
   <dt>Viewport: <?php api_link('TCastleViewport', 'CastleViewport.TCastleViewport.html'); ?></dt>
