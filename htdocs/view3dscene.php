@@ -691,6 +691,19 @@ tovrmlx3d   input.wrl               --encoding=xml &gt; output.x3d
 
     <p>This option is meaningful only when <code>--write</code> option is also used.</p>
   </dd>
+
+  <dt>--no-x3d-extensions</dt>
+  <dd><p>Do not use Castle Game Engine extensions to X3D.
+
+    <p>For example we will not use <code>Tangent</code>, <code>flipVertically</code>,
+    <code>gravityTransform</code> in the generated X3D when importing glTF.
+    This makes X3D output valid (but a little less functional)
+    and suitable for other X3D browsers.
+
+    <p>This option works at loading, and it is meaningful regardless
+    of whether you used <code>--write</code>.
+    Both <code>view3dscene</code> and <code>tovrmlx3d</code> have this option.
+  </dd>
 </dl>
 
 <p><code>tovrmlx3d</code> has analogous options for converting,

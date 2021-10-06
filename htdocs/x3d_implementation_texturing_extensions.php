@@ -682,7 +682,7 @@ contents than <code>foo.png</code> with <code>flipVertically=TRUE</code>".
 <p><b>Detailed discussion of why this field is necessary for interoperability with glTF:</b>
 
 <ul>
-  <li><p><a href="https://github.com/KhronosGroup/glTF/tree/master/specification/2.0#images">glTF 2.0 specification about "Images"</a> says explicitly (and illustrates it with an image) that the <i>texture coordinate (0,0) corresponds to the upper-left</i> image corner.
+  <li><p><a href="https://www.khronos.org/registry/glTF/specs/2.0/glTF-2.0.html#images">glTF 2.0 specification about "Images"</a> says explicitly (and illustrates it with an image) that the <i>texture coordinate (0,0) corresponds to the upper-left</i> image corner.
 
     <p>As far as I know (<a href="https://github.com/KhronosGroup/glTF/issues/1021">glTF issue #1021</a>,
     <a href="https://github.com/KhronosGroup/glTF/issues/674">glTF issue #674</a>,
