@@ -558,7 +558,7 @@ and per-scene bounding boxes and spheres. If you add <code>ssRendering</code>
 flag to the <code>Scene.Spatial</code>, this will be even faster thanks
 to using shapes octree.
 
-<p>Using the <a href="https://github.com/castle-engine/castle-engine/wiki/Occlusion-Query">occlusion query</i> is often a good idea
+<p>Using the <a href="https://github.com/castle-engine/castle-engine/wiki/Occlusion-Query">occlusion query</a> is often a good idea
 in large city or indoor levels,
 where walls or large buildings can obscure a significant part of your geometry.
 Activate it by simply turnnig on the flag
