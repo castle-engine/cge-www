@@ -418,9 +418,10 @@ also more GPU friendly)).</p>
     in a separate VBO to OpenGL, which isn't very efficient.
 
   <li><p>Do not make too few shapes. Each shape is passed as a whole
-    to OpenGL (splitting shape on the fly would cause unacceptable
-    slowdown), and shapes may be culled using frustum culling or
-    occlusion queries. By using only a few very large shapes, you make
+    to GPU (splitting shape on the fly would cause unacceptable
+    slowdown), and shapes may be culled using <i>frustum culling</i>
+    (active by default) or
+    <a href="https://github.com/castle-engine/castle-engine/wiki/Occlusion-Query">occlusion queries</a>. By using only a few very large shapes, you make
     this culling worthless.
 </ol>
 
@@ -557,14 +558,12 @@ and per-scene bounding boxes and spheres. If you add <code>ssRendering</code>
 flag to the <code>Scene.Spatial</code>, this will be even faster thanks
 to using shapes octree.
 
-<p>Using the <i>hardware occlusion query</i> is often a good idea
+<p>Using the <a href="https://github.com/castle-engine/castle-engine/wiki/Occlusion-Query">occlusion query</i> is often a good idea
 in large city or indoor levels,
 where walls or large buildings can obscure a significant part of your geometry.
 Activate it by simply turnnig on the flag
-<?php api_link('UseOcclusionQuery', 'CastleScene.TSceneRenderingAttributes.html#UseOcclusionQuery'); ?>,
-like <code>Scene.Attributes.UseOcclusionQuery := true</code>.
-Note that our simple implementation may sometimes show a lag of 1 frame
-when the object is not rendered, but it should be.
+<?php api_link('OcclusionQuery', 'CastleRenderOptions.TCastleRenderOptions.html#OcclusionQuery'); ?>,
+like <code>Scene.RenderOptions.OcclusionQuery := true</code>.
 
 <p>You can also cull objects based on their distance from the camera,
 see the <code>examples/3d_rendering_processing/fog_culling.lpr</code> for example.
