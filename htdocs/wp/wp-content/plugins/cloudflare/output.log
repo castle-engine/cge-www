@@ -5,11 +5,6 @@ https://docs.docker.com/engine/reference/commandline/login/#credentials-store
 
 Login Succeeded
 Pulling docker.pkg.github.com/cloudflare/cloudflare-wordpress/php-actions_composer_cloudflare-wordpress:php-7.4-build2
-WARNING: ⚠️ Failed to pull manifest by the resolved digest. This registry does not
-	appear to conform to the distribution registry specification; falling back to
-	pull by tag.  This fallback is DEPRECATED, and will be removed in a future
-	release.  Please contact admins of https://docker.pkg.github.com. ⚠️
-
 php-7.4-build2: Pulling from cloudflare/cloudflare-wordpress/php-actions_composer_cloudflare-wordpress
 801bfaa63ef2: Pulling fs layer
 30e209609427: Pulling fs layer
@@ -21,13 +16,13 @@ php-7.4-build2: Pulling from cloudflare/cloudflare-wordpress/php-actions_compose
 5571c1cd7f43: Pulling fs layer
 65564f077fec: Pulling fs layer
 4d1e94121e00: Pulling fs layer
-4612e05a72cf: Waiting
-9b2beae78beb: Waiting
 79c03e12047a: Waiting
+4612e05a72cf: Waiting
 51393fef6543: Waiting
 5571c1cd7f43: Waiting
 65564f077fec: Waiting
 4d1e94121e00: Waiting
+9b2beae78beb: Waiting
 320f26ee9b1c: Verifying Checksum
 320f26ee9b1c: Download complete
 30e209609427: Verifying Checksum
@@ -38,12 +33,12 @@ php-7.4-build2: Pulling from cloudflare/cloudflare-wordpress/php-actions_compose
 4612e05a72cf: Verifying Checksum
 4612e05a72cf: Download complete
 30e209609427: Pull complete
+320f26ee9b1c: Pull complete
 79c03e12047a: Verifying Checksum
 79c03e12047a: Download complete
-320f26ee9b1c: Pull complete
+4612e05a72cf: Pull complete
 9b2beae78beb: Verifying Checksum
 9b2beae78beb: Download complete
-4612e05a72cf: Pull complete
 9b2beae78beb: Pull complete
 79c03e12047a: Pull complete
 5571c1cd7f43: Verifying Checksum
@@ -58,7 +53,7 @@ php-7.4-build2: Pulling from cloudflare/cloudflare-wordpress/php-actions_compose
 5571c1cd7f43: Pull complete
 65564f077fec: Pull complete
 4d1e94121e00: Pull complete
-Digest: sha256:fe3e5fd68143f1f18e31c3809077c110c3be05484a88924a3088d3fcecde0289
+Digest: sha256:534c5504188676052b8faad7d8a1d2039b5eb397baa3a7229ff90c6f9b630519
 Status: Downloaded newer image for docker.pkg.github.com/cloudflare/cloudflare-wordpress/php-actions_composer_cloudflare-wordpress:php-7.4-build2
 docker.pkg.github.com/cloudflare/cloudflare-wordpress/php-actions_composer_cloudflare-wordpress:php-7.4-build2
 Docker tag: docker.pkg.github.com/cloudflare/cloudflare-wordpress/php-actions_composer_cloudflare-wordpress:php-7.4-build2
