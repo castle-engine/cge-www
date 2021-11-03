@@ -165,13 +165,13 @@ define('CGE_SNAPSHOTS_VERSION', '7.0-alpha.snapshot');
         <!-- iframe class="hidden-xs main-page-thumbnail" width="560" height="315" src="https://www.youtube.com/embed/o5q7guVkYVo" frameborder="0" allowfullscreen></iframe -->
 
         <img src="images/original_size/dragon_large.png"
-            alt="Dragon 2D game, designed in Spine and Castle Game Engine editor"
-            title="Dragon 2D game, designed in Spine and Castle Game Engine editor"
+            alt="2D animation, designed in Spine"
+            title="2D animation, designed in Spine"
             class="main-page-thumbnail hidden-xs" />
         <br>
         <img src="images/original_size/dragon_editor.png"
-            alt="Dragon 2D game, designed in Spine and Castle Game Engine editor"
-            title="Dragon 2D game, designed in Spine and Castle Game Engine editor"
+            alt="2D game, designed in Castle Game Engine editor"
+            title="2D game, designed in Castle Game Engine editor"
             style="padding: 1em"
             class="main-page-thumbnail hidden-xs" />
 
