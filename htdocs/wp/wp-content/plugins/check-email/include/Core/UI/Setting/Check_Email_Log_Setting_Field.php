@@ -12,5 +12,5 @@ class Check_Email_Log_Setting_Field {
 	public $id;
 	public $title;
 	public $callback;
-	public $args = array();
+	public $args = array(); 
 }

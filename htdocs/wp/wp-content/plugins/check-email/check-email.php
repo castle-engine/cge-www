@@ -3,7 +3,7 @@
 * Plugin Name: 				Check & Log Email
 * Description: 				Check & Log email allows you to test if your WordPress installation is sending emails correctly and logs every email.
 * Author: 					WPChill
-* Version: 					1.0.3
+* Version: 					1.0.4
 * Author URI: 				https://wpchill.com/
 * License: 					GPLv3 or later
 * License URI:         		http://www.gnu.org/licenses/gpl-3.0.html
@@ -41,7 +41,7 @@ if ( version_compare( PHP_VERSION, '5.6.0', '<' ) ) {
 			<p>
 				<?php
 				printf(
-					__( 'Check & Log Email requires at least PHP 5.6 to function properly. Please upgrade PHP.', 'check-email' )
+					esc_html__( 'Check & Log Email requires at least PHP 5.6 to function properly. Please upgrade PHP.', 'check-email' )
 				);
 				?>
 			</p>
@@ -94,7 +94,7 @@ function check_email_log( $plugin_file ) {
 
 	$check_email->add_loadie( new \CheckEmail\Core\Request\Check_Email_Nonce_Checker() );
 	$check_email->add_loadie( new \CheckEmail\Core\Request\Check_Email_Log_List_Action() );
-        
+
     $capability_giver = new \CheckEmail\Core\Check_Email_Admin_Capability_Giver();
 	$check_email->add_loadie( $capability_giver );
 	$capability_giver->add_cap_to_admin();

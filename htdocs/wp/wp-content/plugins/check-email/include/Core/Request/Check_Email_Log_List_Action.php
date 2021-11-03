@@ -14,14 +14,16 @@ class Check_Email_Log_List_Action implements Loadie {
 		add_action( 'check-email-log-list-delete', array( $this, 'delete_logs' ) );
 		add_action( 'check-email-log-list-delete-all', array( $this, 'delete_all_logs' ) );
 		add_action( 'check-email-log-list-manage-user-roles-changed', array( $this, 'update_capabilities_for_user_roles' ), 10, 2 );
+		add_action( 'admin_init', array( $this, 'deleted_logs_message' ) );
 	}
 
 	public function view_log_message() {
+
 		if ( ! current_user_can( 'manage_check_email' ) ) {
 			wp_die();
 		}
 
-		$id = absint( $_GET['log_id'] );
+		$id = isset( $_GET['log_id'] ) ? absint( $_GET['log_id'] ) : 0 ;
 
 		if ( $id <= 0 ) {
 			wp_die();
@@ -42,36 +44,33 @@ class Check_Email_Log_List_Action implements Loadie {
 				$active_tab = '1';
 			}
 
-			ob_start();
 			?>
 			<table style="width: 100%;">
 				<tr style="background: #eee;">
-					<td style="padding: 5px;"><?php _e( 'Sent at', 'check-email' ); ?>:</td>
+					<td style="padding: 5px;"><?php esc_html_e( 'Sent at', 'check-email' ); ?>:</td>
 					<td style="padding: 5px;"><?php echo esc_html( $log_item['sent_date'] ); ?></td>
 				</tr>
 				<tr style="background: #eee;">
-					<td style="padding: 5px;"><?php _e( 'To', 'check-email' ); ?>:</td>
+					<td style="padding: 5px;"><?php esc_html_e( 'To', 'check-email' ); ?>:</td>
 					<td style="padding: 5px;"><?php echo esc_html( $log_item['to_email'] ); ?></td>
 				</tr>
 				<tr style="background: #eee;">
-					<td style="padding: 5px;"><?php _e( 'Subject', 'check-email' ); ?>:</td>
+					<td style="padding: 5px;"><?php esc_html_e( 'Subject', 'check-email' ); ?>:</td>
 					<td style="padding: 5px;"><?php echo esc_html( $log_item['subject'] ); ?></td>
 				</tr>
-                                <tr style="background: #eee;">
-					<td style="padding: 5px;"><?php _e( 'Headers', 'check-email' ); ?>:</td>
+                <tr style="background: #eee;">
+					<td style="padding: 5px;"><?php esc_html_e( 'Headers', 'check-email' ); ?>:</td>
 					<td style="padding: 5px;"><?php echo esc_html( $log_item['headers'] ); ?></td>
 				</tr>
 
-				<?php
-                                    do_action( 'check_email_view_log_after_headers', $log_item );
-				?>
+				<?php do_action( 'check_email_view_log_after_headers', $log_item ); ?>
 
 			</table>
 
 			<div id="tabs">
 				<ul data-active-tab="<?php echo absint( $active_tab ); ?>">
-					<li><a href="#tabs-text"><?php _e( 'Raw Email Content', 'check-email' ); ?></a></li>
-					<li><a href="#tabs-preview"><?php _e( 'Preview Content as HTML', 'check-email' ); ?></a></li>
+					<li><a href="#tabs-text"><?php esc_html_e( 'Raw Email Content', 'check-email' ); ?></a></li>
+					<li><a href="#tabs-preview"><?php esc_html_e( 'Preview Content as HTML', 'check-email' ); ?></a></li>
 				</ul>
 
 				<div id="tabs-text">
@@ -84,11 +83,10 @@ class Check_Email_Log_List_Action implements Loadie {
 			</div>
 
 			<div id="view-message-footer">
-				<a href="#" class="button action" id="thickbox-footer-close"><?php _e( 'Close', 'check-email' ); ?></a>
+				<a href="#" class="button action" id="thickbox-footer-close"><?php esc_html_e( 'Close', 'check-email' ); ?></a>
 			</div>
 
 			<?php
-			echo ob_get_clean();
 		}
 
 		wp_die(); // this is required to return a proper result.
@@ -108,14 +106,26 @@ class Check_Email_Log_List_Action implements Loadie {
 		$id_list = implode( ',', $ids );
 
 		$logs_deleted = $this->get_table_manager()->delete_logs( $id_list );
-		$this->render_log_deleted_notice( $logs_deleted );
+		if( isset( $_REQUEST['_wp_http_referer'] ) ){
+			wp_redirect( wp_unslash( $_REQUEST['_wp_http_referer'] ) . '&deleted_logs=' . $logs_deleted ); exit;
+		}else{
+			// phpcs:ignore
+			wp_redirect( wp_unslash( $_SERVER['HTTP_REFERER'] ) . '&deleted_logs=' . $logs_deleted ); exit;
+		}
 	}
 
 	public function delete_all_logs() {
 		$logs_deleted = $this->get_table_manager()->delete_all_logs();
-		$this->render_log_deleted_notice( $logs_deleted );
+		if( isset($_REQUEST['_wp_http_referer'] ) ){
+			wp_redirect( wp_unslash( $_REQUEST['_wp_http_referer'] ) . '&deleted_logs=' . $logs_deleted ); exit;
+		}
 	}
 
+	public function deleted_logs_message(){
+		if( isset( $_GET['deleted_logs'] ) ){
+			$this->render_log_deleted_notice( intval( $_GET['deleted_logs'] ) );
+		}
+	}
 	public function update_capabilities_for_user_roles( $old_roles, $new_roles ) {
 		foreach ( $old_roles as $old_role ) {
 			$role = get_role( $old_role );
@@ -135,11 +145,11 @@ class Check_Email_Log_List_Action implements Loadie {
 	}
 
 	protected function render_log_deleted_notice( $logs_deleted ) {
-		$message = __( 'There was some problem in deleting the email logs', 'check-email' );
+		$message = esc_html__( 'There was some problem in deleting the email logs', 'check-email' );
 		$type    = 'error';
 
 		if ( absint( $logs_deleted ) > 0 ) {
-			$message = sprintf( _n( '1 email log deleted.', '%s email logs deleted', $logs_deleted, 'check-email' ), $logs_deleted );
+			$message = sprintf( esc_html( _n( '1 email log deleted.', '%s email logs deleted', $logs_deleted, 'check-email' )), $logs_deleted );
 			$type    = 'updated';
 		}
 

@@ -12,7 +12,7 @@ class Check_Email_Dashboard_Widget implements Loadie {
 	public function register() {
 		wp_add_dashboard_widget(
 			'check_email_dashboard_widget',
-			__( 'Check Email Summary', 'check-email' ),
+			esc_html__( 'Check Email Summary', 'check-email' ),
 			array( $this, 'render' )
 		);
 	}
@@ -26,7 +26,7 @@ class Check_Email_Dashboard_Widget implements Loadie {
 		?>
 
 		<p>
-			<?php _e( 'Total number of emails logged' , 'check-email' ); ?>: <strong><?php echo number_format( absint( $logs_count ), 0, ',', ',' ); ?></strong>
+			<?php esc_html_e( 'Total number of emails logged' , 'check-email' ); ?>: <strong><?php echo number_format( absint( $logs_count ), 0, ',', ',' ); ?></strong>
 		</p>
 
 		<?php
@@ -34,9 +34,9 @@ class Check_Email_Dashboard_Widget implements Loadie {
 		?>
 
 		<ul class="subsubsub" style="float: none">
-                        <li><?php printf( __( '<a href="%s">Status</a>', 'check-email' ), 'admin.php?page=check-email-status' ); ?> <span style="color: #ddd"> | </span></li>
-			<li><?php printf( __( '<a href="%s">Email Logs</a>', 'check-email' ), 'admin.php?page=check-email-logs' ); ?> <span style="color: #ddd"> | </span></li>
-			<li><?php printf( __( '<a href="%s">Settings</a>', 'check-email' ), 'admin.php?page=check-email-settings' ); ?> <span style="color: #ddd"> | </span></li>
+			<li><?php printf( esc_html__( '<a href="%s">Status</a>', 'check-email' ), 'admin.php?page=check-email-status' ); ?> <span style="color: #ddd"> | </span></li>
+			<li><?php printf( esc_html__( '<a href="%s">Email Logs</a>', 'check-email' ), 'admin.php?page=check-email-logs' ); ?> <span style="color: #ddd"> | </span></li>
+			<li><?php printf( esc_html__( '<a href="%s">Settings</a>', 'check-email' ), 'admin.php?page=check-email-settings' ); ?> <span style="color: #ddd"> | </span></li>
 		</ul>
 
 		<?php

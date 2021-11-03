@@ -21,48 +21,53 @@ class Check_Email_Logger implements Loadie {
 	 * Logs email to database.
 	 */
 	public function log_email( $original_mail_info ) {
-                $option = get_option( 'check-email-log-core' );
-                
-                if ( is_array( $option ) && array_key_exists( 'enable_logs', $option ) && 'true' === strtolower( $option['enable_logs'] ) ) {
-                    $original_mail_info = apply_filters( 'check_email_wp_mail_log', $original_mail_info );
+        $option = get_option( 'check-email-log-core' );
+        
+        if ( is_array( $option ) && array_key_exists( 'enable_logs', $option ) && 'true' === strtolower( $option['enable_logs'] ) ) {
+            $original_mail_info = apply_filters( 'check_email_wp_mail_log', $original_mail_info );
 
-                    $mail_info = wp_parse_args(
-                            $original_mail_info,
-                            array(
-                                    'to'          => '',
-                                    'subject'     => '',
-                                    'message'     => '',
-                                    'headers'     => '',
-                                    'attachments' => array(),
-                            )
-                    );
+            $mail_info = wp_parse_args(
+                    $original_mail_info,
+                    array(
+                            'to'          => '',
+                            'subject'     => '',
+                            'message'     => '',
+                            'headers'     => '',
+                            'attachments' => array(),
+                    )
+            );
 
-                    $log = array(
-                            'to_email'        => \CheckEmail\Util\wp_chill_check_email_stringify( $mail_info['to'] ),
-                            'subject'         => $mail_info['subject'],
-                            'message'         => $mail_info['message'],
-                            'headers'         => \CheckEmail\Util\wp_chill_check_email_stringify( $mail_info['headers'], "\n" ),
-                            'attachment_name' => \CheckEmail\Util\wp_chill_check_email_stringify( $mail_info['attachments'] ),
-                            'sent_date'       => current_time( 'mysql' ),
-                            'ip_address'      => $_SERVER['REMOTE_ADDR'],
-                            'result'          => 1,
-                    );
+            $ip = '';
+            if ( isset( $_SERVER['REMOTE_ADDR'] ) ) {
+            	$ip = sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) );
+            }
 
-                    if ( empty( $log['attachment_name'] ) ) {
-                            $log['attachments'] = 'false';
-                    } else {
-                            $log['attachments'] = 'true';
-                    }
+            $log = array(
+                'to_email'        => \CheckEmail\Util\wp_chill_check_email_stringify( $mail_info['to'] ),
+                'subject'         => esc_html($mail_info['subject']),
+                'message'         => wp_kses_post($mail_info['message']),
+                'headers'         => \CheckEmail\Util\wp_chill_check_email_stringify( $mail_info['headers'], "\n" ),
+                'attachment_name' => \CheckEmail\Util\wp_chill_check_email_stringify( $mail_info['attachments'] ),
+                'sent_date'       => current_time( 'mysql' ),
+                'ip_address'      => $ip,
+                'result'          => 1,
+            );
 
-                    $log = apply_filters( 'check_email_email_log_before_insert', $log, $original_mail_info );
+            if ( empty( $log['attachment_name'] ) ) {
+                    $log['attachments'] = 'false';
+            } else {
+                    $log['attachments'] = 'true';
+            }
 
-                    $check_email = wpchill_check_email();
-                    $check_email->table_manager->insert_log( $log );
+            $log = apply_filters( 'check_email_email_log_before_insert', $log, $original_mail_info );
 
-                    do_action( 'check_email_log_inserted' );
-                }
-                
-                return $original_mail_info;
+            $check_email = wpchill_check_email();
+            $check_email->table_manager->insert_log( $log );
+
+            do_action( 'check_email_log_inserted' );
+        }
+        
+        return $original_mail_info;
 	}
 
 	public function on_email_failed( $wp_error ) {

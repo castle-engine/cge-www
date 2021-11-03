@@ -20,28 +20,34 @@ class Check_Email_Nonce_Checker implements Loadie {
 		}
 
 		if ( isset( $_POST['check-email-action'] ) ) {
-			$action = sanitize_text_field( $_POST['check-email-action'] );
+			$action = sanitize_text_field( wp_unslash( $_POST['check-email-action'] ) );
 
+			// $action is sanitize on line 23
+			// phpcs:ignore
 			if ( ! isset( $_POST[ $action . '_nonce' ] ) ) {
 				return;
 			}
 
+			// $action is sanitize on line 23
+			// phpcs:ignore
 			if ( ! wp_verify_nonce( $_POST[ $action . '_nonce' ], $action ) ) {
 				return;
 			}
 		}
 
 		if ( isset( $_REQUEST['action'] ) || isset( $_REQUEST['action2'] ) ) {
-			$action = sanitize_text_field( $_REQUEST['action'] );
+			$action = sanitize_text_field( wp_unslash($_REQUEST['action']) );
 
 			if ( '-1' === $action ) {
 				if ( ! isset( $_REQUEST['action2'] ) ) {
 					return;
 				}
 
-				$action = sanitize_text_field( $_REQUEST['action2'] );
+				$action = sanitize_text_field( wp_unslash($_REQUEST['action2']) );
 			}
 
+			// $action is sanitize on line 39 or 46
+			// phpcs:ignore
 			if ( strpos( $action, 'check-email-log-list-' ) !== 0 ) {
 				return;
 			}
@@ -49,7 +55,8 @@ class Check_Email_Nonce_Checker implements Loadie {
 			if ( ! isset( $_REQUEST[ Check_Email_Log_List_Page::LOG_LIST_ACTION_NONCE_FIELD ] ) ) {
 				return;
 			}
-
+			
+			// phpcs:ignore
 			if ( ! wp_verify_nonce( $_REQUEST[ Check_Email_Log_List_Page::LOG_LIST_ACTION_NONCE_FIELD ], Check_Email_Log_List_Page::LOG_LIST_ACTION_NONCE ) ) {
 				return;
 			}

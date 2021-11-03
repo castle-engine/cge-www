@@ -56,8 +56,8 @@ class Check_Email_Settings_Page extends Check_Email_BasePage {
 
 		$this->page = add_submenu_page(
 			Check_Email_Status_Page::PAGE_SLUG,
-			__( 'Settings', 'check-email' ),
-			__( 'Settings', 'check-email' ),
+			esc_html__( 'Settings', 'check-email' ),
+			esc_html__( 'Settings', 'check-email' ),
 			'manage_options',
 			self::PAGE_SLUG,
 			array( $this, 'render_page' )
@@ -68,7 +68,7 @@ class Check_Email_Settings_Page extends Check_Email_BasePage {
 	public function render_page() {
 		?>
 		<div class="wrap">
-			<h1><?php _e( 'Email Log Settings', 'check-email' ); ?></h1>
+			<h1><?php esc_html_e( 'Email Log Settings', 'check-email' ); ?></h1>
 
 			<form method="post" action="options.php">
 				<?php
@@ -76,7 +76,7 @@ class Check_Email_Settings_Page extends Check_Email_BasePage {
 				settings_fields( self::PAGE_SLUG );
 				do_settings_sections( self::PAGE_SLUG );
 
-				submit_button( __( 'Save', 'check-email' ) );
+				submit_button( esc_html__( 'Save', 'check-email' ) );
 				?>
 			</form>
 

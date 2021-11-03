@@ -133,18 +133,19 @@ function wp_chill_check_email_get_column_label( $column_name ) {
 
 function wp_chill_check_email_get_column_label_map() {
 	$labels = array(
-		'id'          => __( 'ID', 'check-email' ),
-		'to_email'    => __( 'To', 'check-email' ),
-		'subject'     => __( 'Subject', 'check-email' ),
-		'message'     => __( 'Message', 'check-email' ),
-		'attachments' => __( 'Attachment', 'check-email' ),
-		'sent_date'   => __( 'Sent at', 'check-email' ),
-		'from'        => __( 'From', 'check-email' ),
-		'cc'          => __( 'CC', 'check-email' ),
-		'bcc'         => __( 'BCC', 'check-email' ),
-		'reply_to'    => __( 'Reply To', 'check-email' ),
-		'ip_address'  => __( 'IP Address', 'check-email' ),
-		'result'      => __( 'Sent Status', 'check-email' ),
+		'id'          => esc_html__( 'ID', 'check-email' ),
+		'to_email'    => esc_html__( 'To', 'check-email' ),
+		'from_email'  => esc_html__( 'From', 'check-email' ),
+		'subject'     => esc_html__( 'Subject', 'check-email' ),
+		'message'     => esc_html__( 'Message', 'check-email' ),
+		'attachments' => esc_html__( 'Attachment', 'check-email' ),
+		'sent_date'   => esc_html__( 'Sent at', 'check-email' ),
+		'from'        => esc_html__( 'From', 'check-email' ),
+		'cc'          => esc_html__( 'CC', 'check-email' ),
+		'bcc'         => esc_html__( 'BCC', 'check-email' ),
+		'reply_to'    => esc_html__( 'Reply To', 'check-email' ),
+		'ip_address'  => esc_html__( 'IP Address', 'check-email' ),
+		'result'      => esc_html__( 'Sent Status', 'check-email' ),
 	);
 
 	return apply_filters( 'check_email_db_column_labels', $labels );

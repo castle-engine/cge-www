@@ -10,7 +10,7 @@ if ( ! class_exists( 'WP_List_Table' ) ) {
  * Table to display Check Email Logs.
  */
 class Check_Email_Log_List_Table extends \WP_List_Table {
-    
+
 	protected $page;
 
 	public function __construct( $page, $args = array() ) {
@@ -31,17 +31,18 @@ class Check_Email_Log_List_Table extends \WP_List_Table {
 			'cb' => '<input type="checkbox" />',
 		);
 
-		foreach ( array( 'sent_date', 'result', 'to_email', 'subject' ) as $column ) {
+		foreach ( array( 'sent_date', 'result', 'to_email', 'from_email', 'subject' ) as $column ) {
 			$columns[ $column ] = Util\wp_chill_check_email_get_column_label( $column );
 		}
 
 		return apply_filters( 'check_email_manage_log_columns', $columns );
 	}
-        
+
 	protected function get_sortable_columns() {
 		$sortable_columns = array(
 			'sent_date' => array( 'sent_date', true ), // true means it's already sorted.
 			'to_email'  => array( 'to_email', false ),
+			'from_email'=> array( 'from_email', false ),
 			'subject'   => array( 'subject', false ),
 		);
 
@@ -55,7 +56,7 @@ class Check_Email_Log_List_Table extends \WP_List_Table {
 
 	protected function column_sent_date( $item ) {
 		$email_date = mysql2date(
-			sprintf( __( '%s @ %s', 'check-email' ), get_option( 'date_format', 'F j, Y' ), 'g:i:s a' ),
+			sprintf( esc_html__( '%s @ %s', 'check-email' ), get_option( 'date_format', 'F j, Y' ), 'g:i:s a' ),
 			$item->sent_date
 		);
 
@@ -73,13 +74,13 @@ class Check_Email_Log_List_Table extends \WP_List_Table {
 
 		$actions['view-content'] = sprintf( '<a href="%1$s" class="thickbox" title="%2$s">%3$s</a>',
 			esc_url( $content_ajax_url ),
-			__( 'Email Content', 'check-email' ),
-			__( 'View Content', 'check-email' )
+			esc_html__( 'Email Content', 'check-email' ),
+			esc_html__( 'View Content', 'check-email' )
 		);
 
 		$delete_url = add_query_arg(
 			array(
-				'page'                   => $_REQUEST['page'],
+				'page'                   => ( isset( $_REQUEST['page'] ) ) ? sanitize_text_field( wp_unslash($_REQUEST['page']) ) : '',
 				'action'                 => 'check-email-log-list-delete',
 				$this->_args['singular'] => $item->id,
 			)
@@ -88,7 +89,7 @@ class Check_Email_Log_List_Table extends \WP_List_Table {
 
 		$actions['delete'] = sprintf( '<a href="%s">%s</a>',
 			esc_url( $delete_url ),
-			__( 'Delete', 'check-email' )
+			esc_html__( 'Delete', 'check-email' )
 		);
 
 		$actions = apply_filters( 'check_email_row_actions', $actions, $item );
@@ -107,6 +108,27 @@ class Check_Email_Log_List_Table extends \WP_List_Table {
 		return $email;
 	}
 
+	protected function column_from_email( $item ) {
+		$from = '';
+		if (isset($item->headers) && !empty($item->headers)) {
+
+			if ( function_exists('imap_rfc822_parse_headers' ) ) {
+
+				$headers = imap_rfc822_parse_headers($item->headers);
+				if (isset($headers->fromaddress) && !empty($headers->fromaddress)) {
+					$from = $headers->fromaddress;
+				}
+			}
+			else {
+				$find_from = substr($item->headers, strpos($item->headers, 'From') + 5 );
+				echo esc_html( $find_from );
+
+			}
+		}
+		$email = apply_filters( 'check_email_log_list_column_from_email', esc_html( $from ) );
+		return $email;
+	}
+
 	protected function column_subject( $item ) {
 		return esc_html( $item->subject );
 	}
@@ -120,7 +142,7 @@ class Check_Email_Log_List_Table extends \WP_List_Table {
 	}
 
 	protected function column_result( $item ) {
-            
+
 		if ( is_null( $item->result ) ) {
 			return '';
 		}
@@ -144,8 +166,8 @@ class Check_Email_Log_List_Table extends \WP_List_Table {
 
 	protected function get_bulk_actions() {
 		$actions = array(
-			'check-email-log-list-delete'     => __( 'Delete', 'check-email' ),
-			'check-email-log-list-delete-all' => __( 'Delete All Logs', 'check-email' ),
+			'check-email-log-list-delete'     => esc_html__( 'Delete', 'check-email' ),
+			'check-email-log-list-delete-all' => esc_html__( 'Delete All Logs', 'check-email' ),
 		);
 		$actions = apply_filters( 'el_bulk_actions', $actions );
 
@@ -172,27 +194,27 @@ class Check_Email_Log_List_Table extends \WP_List_Table {
 	}
 
 	public function no_items() {
-		_e( 'Your email log is empty', 'check-email' );
+		esc_html_e( 'Your email log is empty', 'check-email' );
 	}
 
 	public function search_box( $text, $input_id ) {
 		$input_text_id  = $input_id . '-search-input';
 		$input_date_id  = $input_id . '-search-date-input';
-		$input_date_val = ( ! empty( $_REQUEST['d'] ) ) ? sanitize_text_field( $_REQUEST['d'] ) : '';
+		$input_date_val = ( ! empty( $_REQUEST['d'] ) ) ? sanitize_text_field( wp_unslash($_REQUEST['d']) ) : '';
 
 		if ( ! empty( $_REQUEST['orderby'] ) )
-			echo '<input type="hidden" name="orderby" value="' . esc_attr( $_REQUEST['orderby'] ) . '" />';
+			echo '<input type="hidden" name="orderby" value="' . esc_attr( sanitize_text_field( wp_unslash($_REQUEST['orderby']) ) ) . '" />';
 		if ( ! empty( $_REQUEST['order'] ) )
-			echo '<input type="hidden" name="order" value="' . esc_attr( $_REQUEST['order'] ) . '" />';
+			echo '<input type="hidden" name="order" value="' . esc_attr( sanitize_text_field( wp_unslash($_REQUEST['order']) ) ) . '" />';
 		if ( ! empty( $_REQUEST['post_mime_type'] ) )
-			echo '<input type="hidden" name="post_mime_type" value="' . esc_attr( $_REQUEST['post_mime_type'] ) . '" />';
+			echo '<input type="hidden" name="post_mime_type" value="' . esc_attr( sanitize_text_field( wp_unslash($_REQUEST['post_mime_type']) ) ) . '" />';
 		if ( ! empty( $_REQUEST['detached'] ) )
-			echo '<input type="hidden" name="detached" value="' . esc_attr( $_REQUEST['detached'] ) . '" />';
+			echo '<input type="hidden" name="detached" value="' . esc_attr( sanitize_text_field( wp_unslash($_REQUEST['detached']) ) ) . '" />';
 		?>
 		<p class="search-box">
-			<label class="screen-reader-text" for="<?php echo esc_attr( $input_id ); ?>"><?php echo $text; ?>:</label>
-			<input type="search" id="<?php echo esc_attr( $input_date_id ); ?>" name="d" value="<?php echo $input_date_val; ?>" placeholder="<?php _e( 'Search by date', 'check-email' ); ?>" />
-			<input type="search" id="<?php echo esc_attr( $input_text_id ); ?>" name="s" value="<?php _admin_search_query(); ?>" placeholder="<?php _e( 'Search by term', 'check-email' ); ?>" />
+			<label class="screen-reader-text" for="<?php echo esc_attr( $input_id ); ?>"><?php echo esc_html( $text ); ?>:</label>
+			<input type="search" id="<?php echo esc_attr( $input_date_id ); ?>" name="d" value="<?php echo esc_attr( $input_date_val ); ?>" placeholder="<?php esc_attr_e( 'Search by date', 'check-email' ); ?>" />
+			<input type="search" id="<?php echo esc_attr( $input_text_id ); ?>" name="s" value="<?php _admin_search_query(); ?>" placeholder="<?php esc_attr_e( 'Search by term', 'check-email' ); ?>" />
 			<?php submit_button( $text, '', '', false, array( 'id' => 'search-submit' ) ); ?>
 		</p>
 		<?php

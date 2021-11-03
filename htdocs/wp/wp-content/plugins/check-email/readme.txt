@@ -2,8 +2,8 @@
 Contributors: wpchill, silkalns, giucu91
 Tags: check, test, email, smtp, pop, send, delivery
 Requires at least: 5.0
-Tested up to: 5.7
-Stable tag: 1.0.3
+Tested up to: 5.8
+Stable tag: 1.0.4
 
 Check & Log email allows you to test if your WordPress installation is sending emails correctly by sending a test email to an address of your choice. Allows overriding of email headers and carbon copying to another address.
 
