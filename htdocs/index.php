@@ -169,11 +169,15 @@ define('CGE_SNAPSHOTS_VERSION', '7.0-alpha.snapshot');
             title="2D animation, designed in Spine"
             class="main-page-thumbnail hidden-xs" />
         <br>
+
+        <a href="images/original_size/dragon_editor.png"
+            title="2D game, designed in Castle Game Engine editor"
+            class="screenshot">
         <img src="images/original_size/dragon_editor.png"
             alt="2D game, designed in Castle Game Engine editor"
-            title="2D game, designed in Castle Game Engine editor"
-            style="padding: 1em"
+            style="padding: 1em; border: none"
             class="main-page-thumbnail hidden-xs" />
+        </a>
 
         <!-- <img src="images/original_size/rhan_shrine_5_everything.png" -->
         <!--     alt="Bump mapping and shadow maps from multiple light sources" -->
