@@ -27,7 +27,11 @@ echo pretty_heading($page_title);
   <?php donation_option_end(); ?>
 
   <?php donation_option_begin(); ?>
-    <p><a href="https://github.com/sponsors/michaliskambi">Support me by becoming a Sponsor on GitHub.</a>
+    <p><a href="https://github.com/sponsors/castle-engine">Support us by becoming Castle Game Engine Sponsor on GitHub.</a>
+  <?php donation_option_end(); ?>
+
+  <?php donation_option_begin(); ?>
+    <p><a href="https://opencollective.com/castle-engine">Support us through OpenCollective.</a>
   <?php donation_option_end(); ?>
 
   <?php donation_option_begin(); ?>
