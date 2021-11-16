@@ -16,8 +16,8 @@ $toc = new TableOfContents(
     new TocItem('FPC and Lazarus', 'fpc_lazarus'),
       new TocItem('If you use sparta_Docked package', 'sparta_docked', 1),
       new TocItem('If you use proprietary NVidia OpenGL on Linux', 'nvidia_linux', 1),
-      new TocItem('If you use FPC trunk', 'fpc_trunk', 1),
-    new TocItem('Delphi (coming soon)', 'delphi'),
+      new TocItem('If you use FPC development version (from GitLab)', 'fpc_unstable', 1),
+    new TocItem('Delphi', 'delphi'),
     new TocItem('Code Typhon', 'code_typhon'),
   )
 );
@@ -102,31 +102,61 @@ to hang on to FPC releases available in distros.
 
 <?php echo $toc->html_section(); ?>
 
-<p>We generally try to support using the latest version of FPC trunk to compile CGE.
+<p>We generally try to support using the latest (unstable) FPC development version to compile CGE.
 
-<p>Of course please note that FPC trunk is unstable, and it changes with every commit to FPC. We cannot test or guarantee that CGE works with an arbitray FPC trunk revision. But we welcome testing and PRs to make CGE work with latest FPC trunk.
+<p>You can get such FPC from <a href="https://gitlab.com/freepascal.org/fpc/source">GitLab (use <code>main</code> branch to get really latest and unstable version)</a> or <a href="https://github.com/castle-engine/castle-engine/wiki/fpcupdeluxe">FpcUpDeluxe</a>.
 
-<p>We even package FPC trunk in our <a href="https://github.com/castle-engine/castle-engine/wiki/Docker">Docker</a> as an option. Although by default you use latest stable FPC inside the Docker image, but you can activate FPC trunk using <code>source /usr/local/fpclazarus/bin/setup.sh trunk</code>. The <b>FPC trunk revision most tested is the one listed in <a href="https://github.com/castle-engine/castle-engine-cloud-builds-tools/blob/master/Dockerfile.no-cge#L149">the Docker build script</a></b>.
+<p>Of course please remember that this FPC version is unstable, and it changes with every commit to FPC. We cannot test or guarantee that CGE works with an arbitray FPC development revision. But we welcome testing such FPC. PRs to make CGE work with latest FPC trunk are also welcome (unless there's a temporary bug in FPC which should be rather reported to FPC devs).
+
+<p>We even package FPC trunk in our <a href="https://github.com/castle-engine/castle-engine/wiki/Docker">Docker</a> as an option. Although by default we use latest stable FPC inside the Docker image, but you can activate FPC unstable using <code>source /usr/local/fpclazarus/bin/setup.sh trunk</code>. The <b>FPC trunk revision most tested is the one listed in <a href="https://github.com/castle-engine/castle-engine-cloud-builds-tools/blob/master/Dockerfile.no-cge#L149">the Docker build script</a></b>.
 
 <p>On Aaarch64 (important on mobile platforms): Note that if you use FPC 3.3.1, we assume that it is at least from SVN revision 48104. See <a href="https://trello.com/c/5ydB4MuA/113-enable-again-aarch64-optimizations">Trello ticket about Aarch64 optimizations</a>. The optimizations are disabled on Aarch64 with FPC &lt; 3.3.1. With FPC &gt;= 3.3.1, we assume it is from at least SVN revision 48104, and has Aaarch64 optimizer bugs fixed.
 
 <?php echo $toc->html_section(); ?>
 
-<p>We do not work <i>yet</i> with Delphi. <b>But we're working on it!</b> Some base units are already compatible with Delphi, you can test it by opening in Delphi and running <code>examples/delphi/base_tests/base_tests.dpr</code> included in the engine.
+<p>The <a href="https://github.com/castle-engine/castle-engine/pull/350">Delphi port</a> is almost finished, we expect to merge it into CGE <code>master</code> branch in November 2021. Today, you can already get it:
 
-<p>We are an official <i>Embarcadero Technology Partner</i>. What this means, in simple terms, is that Michalis has full access to the latest Delphi version, with all the Delphi platforms (including Android and iOS), for free. For testing CGE compatibility.
+<ul>
+  <li><p>Binary version: follow the link from the <a href="index.php">main page</a>.
 
-<p>So, Delphi compatibility is happening. It just takes time. You can <a href="https://www.patreon.com/castleengine">support me</a> to make it happen quicker!
+  <li><p>Source code: get the code from PR, like this:
 
-<p>As for the Delphi version supported: Right now I focus the port on the latest Delphi, 10.2. But we should be able to support older Delphi versions as well. Any Delphi version that includes support for generics (as we use them heavily) should be OK, which in principle means that we can support Delphi >= 2009.
+<pre>
+git clone https://github.com/and3md/castle-engine
+cd castle-engine
+git checkout delphi_next
+</pre>
+</ul>
+
+<p>As for the Delphi versions supported:
+
+<ul>
+  <li><p>We test on 10.4 and 11.
+
+  <li><p>In principle, any Delphi version &gt;= 2009 (with generics support) should be OK. We welcome reports (of success or failure) if you use Delphi version between 2009 and 10.4, and tested CGE with it.
+</ul>
+
+<p>As for the platforms supported:
+
+<ul>
+  <li><p>The initial port supports Windows (both 32-bit and 64-bit) through <code>CastleWindow</code>, which is our standard way to create CGE window.
+
+  <li><p>This will be followed by <code>TCastleControl</code> version for FMX (and maybe even VCL too) so that you can drop CGE component on the form.
+
+  <li><p>This will be followed by other platforms: Linux, Android, iOS. There is basic Delphi+Linux support already, but we need to import cross-platform OpenGL units to make it actually work, and we'll likely need to add GTK, Glx, Xlib units.
+</ul>
+
+<p>We are an official <i>Embarcadero Technology Partner</i>. What this means, in simple terms, is that <i>Michalis</i> and <i>Andrzej</i> have full access to the latest Delphi version, with all the Delphi platforms (including Android and iOS), for free. For testing CGE compatibility.
+
+<p>If you like it, please show your support by <a href="https://www.patreon.com/castleengine">donating on Patreon</a>!
 
 <?php echo $toc->html_section(); ?>
 
-<p>You can also use <i>Code Typhon</i>, a fork of FPC/Lazarus.
+<p>We do not support using <i>Code Typhon</i> (a fork of FPC/Lazarus).
 
-<p>But I (Michalis) advice that you rather use original <a href="http://www.freepascal.org/">FPC</a> and <a href="http://www.lazarus-ide.org/">Lazarus</a>. I have much more trust in FPC and Lazarus developers doing great quality job, respecting copyrights of other projects (CodeTyphon did some murky things), and working in a transparent fashion (version control, cooperating with other projects).<!-- to make open-source Pascal grow.-->
+<p>I (Michalis) strongly advice that you should rather use original <a href="http://www.freepascal.org/">FPC</a> and <a href="http://www.lazarus-ide.org/">Lazarus</a>. I have much more trust in FPC and Lazarus developers doing great quality job, respecting copyrights of other projects (CodeTyphon did some murky things), and working in a transparent fashion (version control, cooperating with other projects).<!-- to make open-source Pascal grow.-->
 
-<p>Lazarus comes now with <a href="http://wiki.freepascal.org/Online_Package_Manager">Online Package Manager</a> and you can use <a href="https://github.com/castle-engine/castle-engine/wiki/fpcupdeluxe">fpcupdeluxe</a> to easily install cross-compilers &mdash; these cover some often-mentioned <i>Code Typhon</i> advantages.
+<p>Note that Lazarus comes now with <a href="http://wiki.freepascal.org/Online_Package_Manager">Online Package Manager</a> and you can use <a href="https://github.com/castle-engine/castle-engine/wiki/fpcupdeluxe">fpcupdeluxe</a> to easily install cross-compilers. If your reason for using <i>Code Typhon</i> was to get such features &mdash; then note that latest Lazarus already has them.
 
 <?php
   castle_footer();
