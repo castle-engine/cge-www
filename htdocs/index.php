@@ -121,6 +121,7 @@ define('CGE_SNAPSHOTS_VERSION', '7.0-alpha.snapshot');
                     <div class="download_platform"><a class="btn btn-primary btn-lg" href="<?php echo CGE_SNAPSHOTS_BASE; ?>castle-engine-<?php echo CGE_SNAPSHOTS_VERSION; ?>-linux-x86_64.zip"><img src="<?php echo CURRENT_URL; ?>/images/os_icons/linux64.png" alt="Linux (64 bit, x86_64)" width="64" height="64"><br> Linux<br>(64 bit, x86_64)</a></div>
                     <div class="download_platform"><a class="btn btn-primary btn-lg" href="<?php echo CGE_SNAPSHOTS_BASE; ?>castle-engine-<?php echo CGE_SNAPSHOTS_VERSION; ?>-linux-arm.zip"><img src="<?php echo CURRENT_URL; ?>/images/os_icons/raspberry_pi.png" alt="Raspberry Pi (Linux Arm)" width="64" height="64"><br> Raspberry Pi<br>(Linux Arm)</a></div>
                     <div class="download_platform"><a class="btn btn-primary btn-lg" href="https://github.com/castle-engine/castle-engine/"><img src="<?php echo CURRENT_URL; ?>/images/os_icons/github.png" alt="Source Code on GitHub" width="64" height="64"><br> Source Code<br>(GitHub)</a></div>
+                    <div class="download_platform"><a class="btn btn-primary btn-lg" href="<?php echo CURRENT_URL; ?>cge-delphi-beta.zip"><img src="<?php echo CURRENT_URL; ?>/images/os_icons/windows_delphi.png" alt="Beta: Windows version with Delphi support" width="145" height="64"><br>Windows + Delphi Support<br>(Beta)</a></div>
                 </div>
 
                 <?php /*
@@ -156,7 +157,7 @@ define('CGE_SNAPSHOTS_VERSION', '7.0-alpha.snapshot');
                     <?php /* Talking with Eugene and KB, it seems important to mention
                       that it's actively developed language,
                       and that we have native speed. */ ?>
-                    <li>Code in <a href="modern_pascal_introduction.html">modern Object Pascal</a>, an efficient OOP language with <a href="https://www.freepascal.org/">cross-platform open-source compiler (FPC)</a>, compiled to a native optimized code.
+                    <li>Code in <a href="modern_pascal_introduction.html">modern Object Pascal</a>, an efficient OOP language with <a href="https://www.freepascal.org/">FPC (cross-platform open-source compiler)</a> or <a href="https://www.embarcadero.com/products/Delphi">Delphi</a>, compiled to a native optimized code. Use any IDE, like <a href="https://www.lazarus-ide.org/">Lazarus</a>, Delphi, or <a href="https://code.visualstudio.com/">Visual Studio Code</a>.
                 </ul>
             </div>
         </div>
