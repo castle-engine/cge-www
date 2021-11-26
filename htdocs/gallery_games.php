@@ -10,6 +10,15 @@ echo pretty_heading($page_title);
 We love to see how you use CGE.</i>
 
 <div class="row">
+
+  <?php gallery_link('Foxy Misfortunes',
+    'Top-down shooter with a funny NSFW theme. Download it for Windows, Linux and Android. Source code is <a href="https://gitlab.com/EugeneLoza/foxy-misfortunes">available on GitLab</a>.
+
+    <p>By Eugene Loza.',
+    'foxy-misfortunes.png',
+    'https://decoherence.itch.io/foxy-misfortunes');
+  ?>
+
   <?php gallery_link('Platformer',
     'Platformer game demo. A completely playable game, sources available in CGE as <code>examples/platformer/</code>.
 
