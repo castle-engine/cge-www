@@ -86,8 +86,7 @@ implementations of this concept now:
   </li>
 </ol>
 
-<p>Finally, if you're interested in more information,
-<?php echo michalis_mailto('send me a mail'); ?>.
-And be sure to investigate the examples mentioned above!</p>
+<p>If you have any questions, please
+<a href="talk.php">ask on Castle Game Engine forum or Discord</a>.</p>
 
 <?php castle_footer(); ?>
