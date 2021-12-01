@@ -148,6 +148,11 @@ set_include_path(get_include_path() .
   PATH_SEPARATOR . $castle_php_relative_path . 'castle-engine-website-base/' .
   PATH_SEPARATOR . $castle_php_relative_path . 'geshi/');
 
+/* Michalis' email address. Using the constant makes it easier to change
+   the address everywhere at once, and saves me from accidentaly
+   making typos in my email. */
+define('MICHALIS_EMAIL', 'michalis@castle-engine.io');
+
 require_once 'castle-engine-website-base/kambi_common.php';
 require_once 'generated_versions.php';
 require_once 'castle_engine_externals.php';
