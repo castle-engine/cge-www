@@ -15,7 +15,7 @@ $toc = new TableOfContents(
   array(
     new TocItem('FPC and Lazarus', 'fpc_lazarus'),
       new TocItem('If you use sparta_Docked package', 'sparta_docked', 1),
-      new TocItem('If you use proprietary NVidia OpenGL on Linux', 'nvidia_linux', 1),
+      //new TocItem('If you use proprietary NVidia OpenGL on Linux', 'nvidia_linux', 1),
       new TocItem('If you use FPC development version (from GitLab)', 'fpc_unstable', 1),
     new TocItem('Delphi', 'delphi'),
     new TocItem('Code Typhon', 'code_typhon'),
@@ -28,50 +28,42 @@ $toc = new TableOfContents(
 
 <?php echo $toc->html_section(); ?>
 
-<p>You need the <a href="http://www.freepascal.org/">Free Pascal Compiler
-(FPC)</a> to use our engine.
-We always support and advice the latest <a href="http://www.freepascal.org/">stable
+<p>We support <a href="http://www.freepascal.org/">Free Pascal Compiler (FPC)</a>
+version &gt;= 3.2.0.
+
+<p>We always support and advice the latest <a href="http://www.freepascal.org/">stable
 release of FPC</a>.
 Usually, we also support a couple of older FPC releases.
 
-<!--
-<ul>
-  <li>The <b>latest stable (6.4) engine version supports FPC versions &gt;= 3.0.0</b>.
-  <li>The <b>next engine version (<a href="https://github.com/castle-engine/castle-engine">you can get it right now from GitHub</a>) supports FPC versions &gt;= 3.0.2</b>.
-</ul>
--->
-
-<p><b>The latest engine version (7.0-alpha-xxx) supports FPC versions &gt;= 3.0.2</b>.
+<p>We use some modern Pascal features (like generics) in CGE, so we occasionally
+bump the required FPC version. We check what is commonly available,
+e.g. <a href="https://packages.debian.org/stable/fpc">what is in the latest Debian stable (which is a baseline
+for many other Linux distros)</a>.
+Last time, on 2021-12-12, we bumped required version
+for <i>Castle Game Engine 7.0-alpha-snapshot</i> from <i>FPC &gt;= 3.0.2</i> to <i>FPC &gt;= 3.2.0</i>.
 
 <p>You may also find it comfortable
 to use <a href="http://lazarus.freepascal.org/">Lazarus</a>,
 which is an IDE (editor, debugger etc.) built around FPC
 with a visual classes library (LCL).
-Our engine components can be used together with Lazarus forms
-(although we also have an alternative window classes, independent from
-Lazarus LCL).
-<b>Currently, we don't have any special requirements on the Lazarus version.
-Just use Lazarus with a sufficiently up-to-date FPC version.</b></p>
+Our engine can be used together <a href="manual_lazarus_control.php">with Lazarus form (LCL)</a>
+though for most applications we recommend using <code>TCastleWindowsBase</code> independent from LCL.
+We don't have any special requirements on the Lazarus version.
+Just use Lazarus with a sufficiently up-to-date FPC version.</p>
 
+<!-- No longer active.
 <p>We also support using <a href="http://newpascal.org/">NewPascal</a>, a very nice fork of FPC+Lazarus with some new features.
+-->
 
 <p><i>Hint: If you want to install multiple versions of FPC/Lazarus</i> (stable, unstable, NewPascal), with cross-compilers, it is easily possible with <a href="https://github.com/castle-engine/castle-engine/wiki/fpcupdeluxe">fpcupdeluxe</a>.
 
 <?php echo $toc->html_section(); ?>
 
-<p>If you use FPC 3.0.x (not newer), and you use <code>sparta_Docked</code> package (or some other package that depends on <code>sparta_Generics</code> package), you will encounter errors when trying to install CGE packages. That's because CGE (only when compiled with FPC 3.0.x) includes our own copy of <code>Generics.Collections</code> and friends, and compiler is confused because it sees two possible versions of this unit.
+<p>Some FPC libraries, like <code>sparta_Docked</code> or <code>sparta_Generics</code>, may contain their own copy of <code>Generics.Collections</code> unit and friends.
 
-<p>Solution:
+<p>FPC &gt;= 3.2.0 doesn't need them (it contains the <code>Generics.Collections</code> and friends, with the same implementation from Maciej Izak). In case of CGE, we didn't need them even for FPC 3.0.x, and CGE included our own copy of <code>Generics.Collections</code>.
 
-<ol>
-  <li>Remove the directory <code>src/compatibility/generics.collections/</code> from your CGE source.
-  <li>Add <code>sparta_Generics</code> as a dependency of <code>castle_base</code> package.
-</ol>
-
-<p>This is a temporary problem. New FPC versions include <code>Generics.Collections</code> implementation as a standard unit, and thus everyone will just use it, and such problems will disappear :)
-
-<!--p>I also regularly test FPC from SVN,
-so it's usually painless to use even development FPC releases.</p-->
+<p>Solution: Remove <code>Generics.Collections</code> and related units from any <code>sparta_xxx</code> or other packages. FPC includes them already. Report to authors of these packages that is creates conflicts with FPC &gt;= 3.2.0 standard units.
 
 <!-- The policy for choosing FPC releases:
 1. Advice and support latest FPC release from freepascal.org.
@@ -90,7 +82,9 @@ I would make the point 1. more influencial, and make everything possible
 to hang on to FPC releases available in distros.
 -->
 
-<?php echo $toc->html_section(); ?>
+<?php /*
+
+< ?php echo $toc->html_section(); ? >
 
 <p>For Linux/x86_64 with NVidia proprietary OpenGL drivers, it is best to use FPC &gt;= 3.1.1, revision &gt;= 38400. We advise just current FPC stable 3.2.0.
 
@@ -100,11 +94,13 @@ to hang on to FPC releases available in distros.
 
 <p>There isn't a simple workaround for it in CGE. So if this bug affects you &mdash; simply use newer FPC version. At least revision 38400 (FPC 3.1.1), when this bug was fixed.
 
+*/ ?>
+
 <?php echo $toc->html_section(); ?>
 
 <p>We generally try to support using the latest (unstable) FPC development version to compile CGE.
 
-<p>You can get such FPC from <a href="https://gitlab.com/freepascal.org/fpc/source">GitLab (use <code>main</code> branch to get really latest and unstable version)</a> or <a href="https://github.com/castle-engine/castle-engine/wiki/fpcupdeluxe">FpcUpDeluxe</a>.
+<p>You can get such FPC directly from <a href="https://gitlab.com/freepascal.org/fpc/source">GitLab (use <code>main</code> branch to get really latest and unstable version)</a> or using <a href="https://github.com/castle-engine/castle-engine/wiki/fpcupdeluxe">FpcUpDeluxe</a>.
 
 <p>Of course please remember that this FPC version is unstable, and it changes with every commit to FPC. We cannot test or guarantee that CGE works with an arbitray FPC development revision. But we welcome testing such FPC. PRs to make CGE work with latest FPC trunk are also welcome (unless there's a temporary bug in FPC which should be rather reported to FPC devs).
 
@@ -114,19 +110,15 @@ to hang on to FPC releases available in distros.
 
 <?php echo $toc->html_section(); ?>
 
-<p>The <a href="https://github.com/castle-engine/castle-engine/pull/350">Delphi port</a> is almost finished, we expect to merge it into CGE <code>master</code> branch in November 2021. Today, you can already get it:
+<p>We support <a href="https://www.embarcadero.com/products/Delphi">Delphi</a>.
 
-<ul>
-  <li><p>Binary version: follow the link from the <a href="index.php">main page</a>.
+<p>Any Delphi tier, including free <a href="https://www.embarcadero.com/products/delphi/starter/free-download/">Delphi Community Edition</a>, is fine.
 
-  <li><p>Source code: get the code from PR, like this:
+<p>The support is available in the master branch of CGE, so you should just download the latest <a href="index.php">CGE release from the main page</a>. (You can also <a href="compiling_from_source.php">download sources</a> of course and compile the engine yourself &mdash; note that you will need FPC/Lazarus for this too.)
 
-<pre>
-git clone https://github.com/and3md/castle-engine
-cd castle-engine
-git checkout delphi_next
-</pre>
-</ul>
+<p>See the presentation:
+
+<p><iframe width="560" height="315" src="https://www.youtube.com/embed/6JfFxnZO4Jc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 <p>As for the Delphi versions supported:
 
