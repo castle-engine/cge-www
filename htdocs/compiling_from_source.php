@@ -157,13 +157,21 @@ cd castle-engine/tools/build-tool/
 
 <ul>
   <li>
-    <p>Open in Lazarus <code>view3dscene.lpi</code>, and use <i>"Compile"</i> from Lazarus.
+    <p>Use Lazarus.
+
+    <ol>
+      <li>
+        <p>First, Lazarus must be aware of the <code>castle_window</code> package. It is best to use <i>Register Lazarus Packages</i> button from the CGE editor, as described in the <a href="manual_install_run_first.php">Installation manual</a>. Or you could just open the <code>packages/castle_window.lpk</code> package in CGE sources, and <i>"Compile"</i> it from Lazarus.
+
+      <li>
+        <p>Then open in Lazarus <code>view3dscene.lpi</code>, and use <i>"Run -&gt; Compile"</i> menu item in Lazarus.
+    </ol>
 
   <li>
-    <p>Run <code>castle-editor</code>, open project in <code>view3dscene/CastleEngineManifest.xml</code>, and use <i>"Compile"</i> from CGE editor.
+    <p>Or run <code>castle-editor</code>. Open the project in <code>view3dscene/CastleEngineManifest.xml</code>, and use <i>"Compile"</i> from CGE editor.
 
   <li>
-    <p>Use in terminal (if you put the build tool on <code>$PATH</code>):
+    <p>Or use this in terminal (if you put the build tool on <code>$PATH</code>):
 
 <pre>
 cd view3dscene/
@@ -185,7 +193,15 @@ castle-engine compile
 
 <ul>
   <li>
-    <p>Open in Lazarus <code>castle-view-image.lpi</code>, and use <i>"Compile"</i> from Lazarus.
+    <p>Use Lazarus.
+
+    <ol>
+      <li>
+        <p>First, Lazarus must be aware of the <code>castle_window</code> package. It is best to use <i>Register Lazarus Packages</i> button from the CGE editor, as described in the <a href="manual_install_run_first.php">Installation manual</a>. Or you could just open the <code>packages/castle_window.lpk</code> package in CGE sources, and <i>"Compile"</i> it from Lazarus.
+
+      <li>
+        <p>Then open in Lazarus <code>castle-view-image.lpi</code>, and use <i>"Run -&gt; Compile"</i> menu item in Lazarus.
+    </ol>
 
   <li>
     <p>Run <code>castle-editor</code>, open project in <code>castle-view-image/CastleEngineManifest.xml</code>, and use <i>"Compile"</i> from CGE editor.
