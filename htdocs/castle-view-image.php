@@ -113,7 +113,7 @@ the power of image handling inside our <?php echo a_href_page(
 
   <li><b>IPL</b>: IPLab image format. Only 16 bits per pixel are supported (gray-scale).</li>
 
-  <li><p><b>TIFF</b>, <b>SGI</b>, <b>JP2</b>, <b>EXR</b>:
+  <li><p>Obsolete: <b>TIFF</b>, <b>SGI</b>, <b>JP2</b>, <b>EXR</b>:
     To load and save these images, you need to install
     the <a href="http://www.imagemagick.org/">ImageMagick</a>
     package, and make sure it's <code>convert</code> program is available on $PATH.
