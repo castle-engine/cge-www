@@ -12,7 +12,7 @@
 ALL_ORIGINAL:=$(wildcard original_size/*.png) $(wildcard original_size/*.jpg)
 ALL_THUMB:=$(subst original_size,thumb_size,$(ALL_ORIGINAL))
 ALL_THUMB_CONST_HEIGHT:=$(subst original_size,thumb_const_height_size,$(ALL_ORIGINAL))
-ALL_SMALL_THUMB_CONST_HEIGHT:=$(subst original_size,small_thumb_const_height_size,$(wildcard original_size/lazarus-install-*.png))
+ALL_SMALL_THUMB_CONST_HEIGHT:=$(subst original_size,small_thumb_const_height_size,$(wildcard original_size/lazarus-install-*.png original_size/alpha_bleeding*.png))
 ALL_TEASER:=$(subst original_size,teaser_size,$(ALL_ORIGINAL))
 
 # Only a small number of images need "gallery_size"
