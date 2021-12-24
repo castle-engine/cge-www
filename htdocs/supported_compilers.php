@@ -48,8 +48,10 @@ which is an IDE (editor, debugger etc.) built around FPC
 with a visual classes library (LCL).
 Our engine can be used together <a href="manual_lazarus_control.php">with Lazarus form (LCL)</a>
 though for most applications we recommend using <code>TCastleWindowsBase</code> independent from LCL.
-We don't have any special requirements on the Lazarus version.
-Just use Lazarus with a sufficiently up-to-date FPC version.</p>
+<ul>
+  <li>We don't <b>require</b> any special Lazarus version, just use Lazarus with a sufficiently up-to-date FPC version.
+  <li>We <b>advise</b> Lazarus &gt;= 2.2 in order to have <a href="https://gitlab.com/freepascal.org/lazarus/lazarus/-/issues/39338">this issue fixed, which allows more intuitive behavior when you double-click on a Pascal file in CGE editor to open Lazarus</a>.
+</ul>
 
 <!-- No longer active.
 <p>We also support using <a href="http://newpascal.org/">NewPascal</a>, a very nice fork of FPC+Lazarus with some new features.
