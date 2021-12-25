@@ -34,7 +34,6 @@ actually any shape consisting of line segments may be displayed by glplotter.</p
       new TocItem('Download', 'download'),
       new TocItem('Command-line parameters', 'command_line'),
       new TocItem('Graph file format', 'graph_file_format'),
-      new TocItem('Requirements', 'depends'),
       new TocItem('gen_function', 'gen_function'),
       new TocItem('Syntax of mathematical expressions', 'math_expr_syntax'),
     )
