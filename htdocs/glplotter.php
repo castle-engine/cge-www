@@ -29,9 +29,20 @@ Maybe your data is not even a function at all &mdash;
 actually any shape consisting of line segments may be displayed by glplotter.</p>
 
 <?php
+echo_standard_program_download(
+  'Stable Version ' . VERSION_GLPLOTTER, 'glplotter', VERSION_GLPLOTTER, true,
+  array(
+    'win-x86_64' => 'https://github.com/castle-engine/glplotter/releases/download/v' . VERSION_GLPLOTTER . '/glplotter-' . VERSION_GLPLOTTER . '-win64-x86_64.zip',
+    'linux-x86_64' => 'https://github.com/castle-engine/glplotter/releases/download/v' . VERSION_GLPLOTTER . '/glplotter-' . VERSION_GLPLOTTER . '-linux-x86_64.tar.gz',
+  )
+);
+?>
+
+<p>Documentation:</p>
+
+<?php
   $toc = new TableOfContents(
     array(
-      new TocItem('Download', 'download'),
       new TocItem('Command-line parameters', 'command_line'),
       new TocItem('Graph file format', 'graph_file_format'),
       new TocItem('gen_function', 'gen_function'),
@@ -41,15 +52,6 @@ actually any shape consisting of line segments may be displayed by glplotter.</p
 ?>
 
 <?php echo $toc->html_toc(); ?>
-
-<?php echo $toc->html_section(); ?>
-
-<?php echo_standard_program_download('glplotter', 'glplotter', VERSION_GLPLOTTER); ?>
-
-<p>No installation is required. Just download and unpack these archives wherever
-you want, and run the <code>glplotter</code> program inside.
-
-<p><?php echo SOURCES_OF_THIS_PROG_ARE_AVAIL; ?></p>
 
 <?php echo $toc->html_section(); ?>
 

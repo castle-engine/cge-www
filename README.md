@@ -60,6 +60,7 @@ scripts/ are various scripts, usually in bash, helpful to manage the website.
   https://github.com/castle-engine/castle-view-image/releases/new
   https://github.com/castle-engine/castle-engine/releases/new
   https://github.com/castle-engine/view3dscene/releases/new
+  https://github.com/castle-engine/glplotter/releases/new
 
 - Upload to releases on GitHub latest builds by Jenkins of the appropriate application/engine.
   The Jenkinsfile for each project has perfect commands to make a build of every application,
@@ -106,7 +107,7 @@ scripts/ are various scripts, usually in bash, helpful to manage the website.
   - update FPC/Lazarus requirements:
     https://castle-engine.io/supported_compilers.php
 
-- In case of CGE and view3dscene, upload them also to http://michaliskambi.itch.io/ :
+- In case of CGE and view3dscene, upload them also to http://castle-engine.itch.io/ :
   Run
 
   ```
