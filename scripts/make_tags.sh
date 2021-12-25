@@ -12,14 +12,14 @@ do_tag_custom ()
   VERSION_VARIABLE_NAME=`echo -n "$VERSION_VARIABLE_NAME" | tr a-z A-Z` # make $VERSION_VARIABLE_NAME upper-case
   # indirect reference in bash, http://tldp.org/LDP/abs/html/ivr.html
   eval VERSION=\$$VERSION_VARIABLE_NAME
-  cd "$CASTLE_ENGINE_PATH"../"$NAME"/
+  cd "${CASTLE_ENGINE_PATH}/../${NAME}"
   echo 'Last commit inside '`pwd`
   git log --pretty=oneline HEAD^..HEAD
 
-  # optional, remove tag beforehand (use this to fix tags):
+  # remove tag beforehand (uncomment this to fix tags):
   # ( https://git-scm.com/book/en/v2/Git-Basics-Tagging )
-  git tag -d v"$VERSION"
-  git push origin --delete v"$VERSION"
+  #git tag -d v"$VERSION"
+  #git push origin --delete v"$VERSION"
 
   # add a tag
   echo git tag -a v"$VERSION" -m "Tagging the $VERSION version of '$NAME'."
@@ -35,7 +35,7 @@ do_tag ()
 }
 
 # do_tag castle
-# do_tag glplotter
+do_tag glplotter
 #do_tag_custom castle-view-image castle_view_image
 # do_tag kambi_lines
 # do_tag lets_take_a_walk
