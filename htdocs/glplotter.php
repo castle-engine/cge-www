@@ -12,6 +12,10 @@ castle_header("glplotter", array(
 
 <?php
   echo castle_thumbs(array(
+  // new screens - unused, not pretty
+//    array('filename' => 'glplotter_1.png', 'titlealt' => 'Screenshot from &quot;glplotter&quot;'),
+//    array('filename' => 'glplotter_2.png', 'titlealt' => 'Screenshot from &quot;glplotter&quot;'),
+//    array('filename' => 'glplotter_3.png', 'titlealt' => 'Screenshot from &quot;glplotter&quot;'),
     array('filename' => 'glplotter_screen_demo_1.png', 'titlealt' => 'Screenshot from &quot;glplotter&quot;'),
     array('filename' => 'glplotter_screen_demo_2.png', 'titlealt' => 'Screenshot from &quot;glplotter&quot;'),
     array('filename' => 'glplotter_screen_demo_3.png', 'titlealt' => 'Screenshot from &quot;glplotter&quot;'),
