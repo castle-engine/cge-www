@@ -122,8 +122,8 @@ To read float expression from XML you can helpers from
 so you can write <code>MyDomElement.GetFloatExpression('value')</code>.
 
 <p>The syntax to calculate mathematical expressions is used throughout our engine,
-for example <?php echo a_href_page('glplotter and gen_function', 'glplotter_and_gen_function'); ?>
- use this syntax to define function expressions.</p>
+for example <?php echo a_href_page('glplotter', 'glplotter'); ?>
+ uses this syntax to define function expressions.</p>
 
 <?php echo $toc->html_section(); ?>
 
@@ -349,8 +349,8 @@ with integer</i> like in C. If you want to convert between boolean and integer,
 you have to convert explicitly by <code>bool(my_int)</code> or <code>int(my_bool)</code>,
 like in Pascal. The only exception is when using CastleScript solely for
 mathematical expressions (like in <?php echo a_href_page(
-'glplotter and gen_function',
-'glplotter_and_gen_function'); ?>, internally using <code>ParseFloatExpression</code>
+'glplotter',
+'glplotter'); ?>, internally using <code>ParseFloatExpression</code>
 function): in this case, result is always implicitly converted to float,
 like it would be embedded within <code>float(...)</code> call.
 </p>
@@ -759,7 +759,7 @@ hermite_tense_spline(x, true,
 </ul>
 
 <p><!--The parameters should be self-explanatory.--> Try these functions with
-latest <?php echo a_href_page('glplotter', 'glplotter_and_gen_function'); ?> to see
+latest <?php echo a_href_page('glplotter', 'glplotter'); ?> to see
 the curves shapes when rendered.
 For the detailed documentation, see the corresponding Pascal API
 documentation

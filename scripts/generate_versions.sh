@@ -65,7 +65,6 @@ version_call view3dscene
 version_call rayhunter
 version_explicit castle_view_image `castle-view-image --version`
 version_call glplotter
-version_call gen_function
 version_call mountains_of_fire
 version_explicit 'castle_game_engine' `castle-engine --version | sed -e "s/^castle-engine //" `
 

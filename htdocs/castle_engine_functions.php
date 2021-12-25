@@ -520,7 +520,7 @@ $castle_sitemap = array(
           'convert' => array('title' => 'Convert glTF, OBJ, STL, Collada, 3DS (and other 3D and 2D model formats) to X3D'),
           'convert-output' => array('title' => 'Conversion output'),
           'castle-view-image' => array('title' => 'castle-view-image'),
-          'glplotter_and_gen_function' => array('title' => 'glplotter and gen_function'),
+          'glplotter' => array('title' => 'glplotter'),
           'rayhunter' => array('title' => 'rayhunter',
             'sub' => array(
               'raytr_gallery' => array('title' => 'Small gallery of images rendered using rayhunter'),
