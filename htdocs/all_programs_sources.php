@@ -190,7 +190,7 @@ notes near some programs below.
   echo_src_archive('rayhunter', 'rayhunter', 'ancient'); // '4.0.1');
   echo_src_archive('malfunction', 'malfunction', 'ancient'); // '4.0.1');
   echo_src_archive('kambi_lines', 'kambi-lines', 'ancient'); // '4.0.1');
-  echo_src_archive('glplotter', 'glplotter', '7.0-alpha.snapshot'); // '4.0.1');
+  echo_src_archive('glplotter', 'glplotter', '7.0-alpha.1'); // '4.0.1'); // TODO: actually last glplotter was done with CGE snapshot, not tested with 7.0-alpha.1
 ?>
 </dl>
 
