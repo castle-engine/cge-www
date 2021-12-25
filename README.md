@@ -81,6 +81,8 @@ scripts/ are various scripts, usually in bash, helpful to manage the website.
   You can uncomment special lines in `scripts/make_tags.sh` to delete tags beforehand, to set new ones.
   But it would be best if Jenkins would build tags.
 
+  Exception: for glplotter, I just used pack.sh in glplotter code to build last release.
+
 - Publish releases
 
 - Update the URLs:
