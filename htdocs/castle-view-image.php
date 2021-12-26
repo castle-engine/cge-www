@@ -9,7 +9,6 @@ castle_header("castle-view-image", array(
 
 $toc = new TableOfContents(
   array(
-    new TocItem('Download', 'download'),
     new TocItem('Features', 'features'),
     new TocItem('Running', 'run'),
     new TocItem('Special keys', 'keys'),
@@ -29,10 +28,7 @@ echo castle_thumbs(array(
 <p><code>castle-view-image</code> is an image viewer, converter and even
 a very limited image editor.</p>
 
-<?php
-  echo $toc->html_toc();
-  echo $toc->html_section();
-?>
+<p><b>If you already have <a href="index.php">Castle Game Engine</a>, then just run use <code>castle-view-image</code> executable in CGE <code>bin</code> subdirectory. There's no need to download it separately.</b>
 
 <?php
 echo_standard_program_download(
@@ -44,8 +40,9 @@ echo_standard_program_download(
 );
 ?>
 
-<p><?php echo S_INSTALLATION_INSTRUCTIONS_SHORT; ?></p>
-<p><?php echo SOURCES_OF_THIS_PROG_ARE_AVAIL; ?></p>
+<p>Documentation:</p>
+
+<?php echo $toc->html_toc(); ?>
 
 <?php echo $toc->html_section(); ?>
 
