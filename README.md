@@ -15,6 +15,37 @@ scripts/ are various scripts, usually in bash, helpful to manage the website.
 * Rest of scripts/ can be run on a local version,
   cloned somewhere on your local computer.
 
+## Testing Locally
+
+* Install Apache (or any other web server that can handle PHP)
+* Install PHP
+* Install MySQL
+* For local testing, create empty Wordpress database
+
+    ```
+    CREATE DATABASE cgewp;
+    GRANT ALL PRIVILEGES ON cgewp.* TO 'cgewp'@'localhost' IDENTIFIED BY 'devpassword';
+    ```
+
+* Make htdocs/ here known to Apache.
+  There are may ways to do this, I advise to do this on Linux and use userdir module:
+  - enable Apache "userdir" module
+  - make sure it works, and that PHP inside works, by
+    - creating a file `/home/USERNAME/public_html/a.html` with contents `Test <b>bold</b>`. It should be visible on http://localhost/~USERNAME/a.html . If this works -> Apache + userdir works.
+    - creating a file `/home/USERNAME/public_html/a.php` with contents `<?php phpinfo(); ?>`. It should be visible on http://localhost/~USERNAME/a.php . If this works -> then PHP (in user directory) works too.
+  - allow `.htaccess` in cge-www, by adding something like this to Apache config:
+      ```
+      <Directory "/home/USERNAME/public_html">
+          AllowOverride All
+      </Directory>
+      ```
+  - Symlink cge-www:
+    ```
+    cd ~/public_html
+    ln -s ~/sources/castle-engine/cge-www/htdocs/ castle-engine/
+    ```
+  - in the end, http://localhost/~michalis/castle-engine/ should work.
+
 ## Release making (for CGE engine or application, like view3dscene)
 
 - Test as described in TESTS.txt
