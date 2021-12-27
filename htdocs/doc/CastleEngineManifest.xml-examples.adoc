@@ -7,25 +7,7 @@ The `CastleEngineManifest.xml` file is used by the link:pass:[Build Tool][Build 
 
 When you create a new project, you can generate a new manifest file by running `castle-engine create-manifest`. Or just manually create a new `CastleEngineManifest.xml` file, using the samples on this page. It's a trivial XML file, just edit it using your favorite text editor.
 
-* <<simplest-example,Simplest example>>
-* <<example-of-a-larger-manifest-file-portable-to-android-and-ios-too,Example of a larger manifest file (portable to Android and iOS too)>>
-* <<specify-the-main-game-units-for-a-cross-platform-game,Specify the main game units for a cross-platform game>>
-* <<editor-components,Editor components>>
-* <<complete-documented-example,Complete documented example>>
- ** <<basic-project-information,Basic project information>>
- ** <<data-directory,Data directory>>
- ** <<version,Version>>
- ** <<icons,Icons>>
- ** <<launch-images-for-now-only-for-ios,Launch images (for now only for iOS)>>
- ** <<android-information,Android information>>
- ** <<ios-information,iOS information>>
- ** <<file-type-associations-android-and-ios,File type associations (Android and iOS)>>
- ** <<dependencies,Dependencies>>
- ** <<packaging-exclude-and-include-files,Packaging (exclude and include files)>>
- ** <<compiler-options-and-paths,Compiler options and paths>>
- ** <<the-end,The end>>
-
-= Simplest example
+== Simplest example
 
 This is the simplest example manifest:
 
@@ -81,7 +63,7 @@ castle-engine run
 
 You can also package the project by `castle-engine package`, package source by `castle-engine package-source` and do everything else mentioned in the link:pass:[Build Tool][Build Tool] documentation! To learn how to write games, follow our https://castle-engine.io/manual_intro.php[Castle Game Engine manual].
 
-= Example of a larger manifest file (portable to Android and iOS too)
+== Example of a larger manifest file (portable to Android and iOS too)
 
 Sooner or later, you may want to add more information about your project. It is used when packaging your project in various formats. Note that everything has sensible default values anyway.
 
@@ -117,7 +99,7 @@ Below is a sample project manifest with more information:
 </project>
 ----
 
-= Specify the main game units for a cross-platform game
+== Specify the main game units for a cross-platform game
 
 To create a cross-platform game (that easily compiles to standalone, Android, iOS and other targets) you should use the `game_units` attribute in your manifest file. Like this:
 
@@ -154,7 +136,7 @@ The standalone program file can be customized to initialize a specific window si
  </compiler_options>
 ----
 
-= Editor components
+== Editor components
 
 Your game can define custom component classes useful with the _Castle Game Engine Editor_. These component classes heave to descend from `TCastleUserInterface` or `TCastleTransform`, and must be registered in the `initialization` section of some unit by calling `RegisterSerializableComponent(TMyButton, 'My Button');`.
 
@@ -162,11 +144,11 @@ You should list the units that contain these components in the `editor_units` at
 
 When you call the build tool with `castle-engine editor` command, it will automatically build and run a special version of the CGE editor with your `editor_units` included. This way you get special editor version that includes your project-specific components.
 
-= Complete documented example
+== Complete documented example
 
 This section documents the complete manifest file, with every possible attribute documented.
 
-== Basic project information
+=== Basic project information
 
 [,xml]
 ----
@@ -220,7 +202,7 @@ The `<project>` attributes:
  ** `fpc`
  ** `delphi`
 
-== Data directory
+=== Data directory
 
 By default, we expect a subdirectory named `data` inside the project directory. This is the only "special" directory name for _Castle Game Engine_ projects, it will be specially packaged, and https://castle-engine.io/manual_data_directory.php[your application can read from it on any platform using URL like 'castle-data:/xxx.png'].
 
@@ -233,7 +215,7 @@ If you don't have any data files in your project, you can say it explicitly to a
 ...
 ----
 
-== Version
+=== Version
 
 [,xml]
 ----
@@ -253,7 +235,7 @@ On the other hand, on some platforms (like link:pass:[Nintendo Switch][]) this n
 +
 We allow to override this number per-platform using `<override_version>` elements mentioned below. So the global `+<version.../>+` element is just the default version, which may be adjusted per-platform later.
 
-== Icons
+=== Icons
 
 [,xml]
 ----
@@ -270,7 +252,7 @@ You can provide an optional icon of your application, in various formats, by lis
 
 For now, Windows will use the .ico version, and Android and iOS will use any version readable by our engine (like .png or .jpg). We take care to use the best icon format in the best possible way, resizing it (with good quality algorithm) if necessary.
 
-== Launch images (for now only for iOS)
+=== Launch images (for now only for iOS)
 
 [,xml]
 ----
@@ -311,7 +293,7 @@ This approach requires you to provide just one launch image, that will be center
 +
 Notes for testing: iOS really aggressively caches these launch images. If you change the `launch_image.png`, but the application seems to stubbornly show the same old version (even after you're sure you installed the updated version!), then you may need to use an ugly workaround: uinstall the app _and_ reboot the iOS device before installing the app again. This will show new launch image. Note that doing only one of these things (only reboot, or only uninstall + reinstall) is not enough. See https://github.com/expo/expo/issues/1918 , https://github.com/facebook/react-native/issues/28389 .
 
-== Android information
+=== Android information
 
 [,xml]
 ----
@@ -341,7 +323,7 @@ The `<android>` element provides various extra Android-specific information.
 +
 Note that with FPC versions earlier than 3.0.2, you cannot increase `target_sdk_version` above 22. That's due to missing PIC support. See http://lists.freepascal.org/pipermail/fpc-devel/2015-September/035948.html and http://fpc-devel.freepascal.narkive.com/tMJHK2Hw/fpc-app-crash-with-has-text-relocations-android-6-0 . Compiling with -fPIC doesn't help, your app will crash then with `+java.lang.IllegalArgumentException: Unable to load native library:...+`
 
-== iOS information
+=== iOS information
 
 [,xml]
 ----
@@ -376,7 +358,7 @@ https://itunespartner.apple.com/en/apps/faq/Managing%20Your%20Apps_Export%20Comp
 
 * See the link:pass:[iOS Services][iOS Services] for information what can you use within the `<services>` element.
 
-== File type associations (Android and iOS)
+=== File type associations (Android and iOS)
 
 [,xml]
 ----
@@ -412,7 +394,7 @@ To make URL opening work on Android, you need to set `<android project_type="int
 
 To handle the actual URL to be opened, you have to implement `Window.OnDropFiles` event in your source code.
 
-== Dependencies
+=== Dependencies
 
 [,xml]
 ----
@@ -440,7 +422,7 @@ The `<dependencies>` element allows to explicitly declare dependencies on variou
 
 Note that it's often not necessary to specify these dependencies. The build tool automatically adds the dependencies when it detects a particular file format in your game `data`. For example, if you have a file `music.ogg`, we will automatically add the `OggVorbis` and `Sound` dependencies.
 
-== Packaging (exclude and include files)
+=== Packaging (exclude and include files)
 
 An example usage:
 
@@ -510,7 +492,7 @@ The order of including and excluding:
 
 The inclusion and exclusion compare _paths_ of _files_. The directories themselves are not considered for inclusion or exclusion. Empty directories (with no included files) are simply not packed.
 
-== Compiler options and paths
+=== Compiler options and paths
 
 [,xml]
 ----
@@ -559,7 +541,7 @@ The custom compilation options specified here are also placed in auto-generated 
 +
 _TODO: only supported with FPC for now._
 
-== The end
+=== The end
 
 [,xml]
 ----

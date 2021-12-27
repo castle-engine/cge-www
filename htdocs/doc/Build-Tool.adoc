@@ -5,24 +5,7 @@
 
 Together with the engine we include a tool "castle-engine" to help with building and packaging your programs for various platforms (standalone, mobile, web browser...).
 
-* <<quick-installation-instructions,Quick installation instructions>>
-* <<quick-usage-instructions,Quick usage instructions>>
-* <<creating-and-using-the-manifest-file-for-your-projects,Creating and using the manifest file for your projects>>
-* <<commands-supported-by-the-castle-engine-tool,Commands supported by the castle-engine tool>>
- ** <<create-manifest,create-manifest>>
- ** <<compile,compile>>
- ** <<package,package>>
- ** <<install,install>>
- ** <<run,run>>
- ** <<package-source,package-source>>
- ** <<clean,clean>>
- ** <<simple-compile,simple-compile>>
- ** <<auto-generate-textures,auto-generate-textures>>
- ** <<auto-generate-clean,auto-generate-clean>>
- ** <<generate-program,generate-program>>
- ** <<editor,editor>>
-
-= Quick installation instructions
+== Quick installation instructions
 
 . *Download* https://castle-engine.io/[Castle Game Engine]
 . *It is simplest to just download the binary release of Castle Game Engine*, then the build tool executable (called `castle-engine`) is already available in the `bin` subdirectory. There's nothing left to do -- it will be automatically used by the CGE editor, just open (or create new) any CGE project and build.
@@ -41,7 +24,6 @@ Together with the engine we include a tool "castle-engine" to help with building
  ** Add to the environment variable `$PATH` the directory where `fpc` executable is. You need to do this, to allow the _build tool_ to find FPC, which is necessary to compile applications.
  ** You may also add to `$PATH` the directory where `lazarus` and `lazbuild` are. This is only necessary for some operations (build editor with custom controls, see `castle-engine editor`, for now).
  ** You may also add to `$PATH` the directory where `castle-engine` is. This is just for your comfort, to be able to execute +++<tt>+++castle-engine+++</tt>+++ easily.
-
 +
 If you don't know how to set the environment variable, search the Internet (e.g. https://www.computerhope.com/issues/ch000549.htm[these are quick instructions how to do it on various Windows versions]).
 +
@@ -52,7 +34,7 @@ You can define an environment variable `$CASTLE_ENGINE_PATH` to indicate a direc
 
 // Make sure that the build tool "data" is installed correctly --- on Windows is should be alongside the castle-engine.exe file, on Unix is can be in system-wide location <tt>/usr/local/share/castle-engine</tt> or <tt>/usr/share/castle-engine</tt> .
 
-= Quick usage instructions
+== Quick usage instructions
 
 Open a terminal (command-line), and enter the directory containing +++<tt>+++CastleEngineManifest.xml+++</tt>+++ file. This is the main project directory.
 
@@ -72,7 +54,7 @@ By default we compile in release mode. Use option `--mode=debug` to compile a de
 
 That's it, you can now use our "build tool" to easily compile and package your games for various platforms:) Read on to learn about more useful commands of the build tool.
 
-= Creating and using the manifest file for your projects
+== Creating and using the manifest file for your projects
 
 Create a +++<tt>+++CastleEngineManifest.xml+++</tt>+++ file in your project's directory. See the link:pass:[CastleEngineManifest.xml examples][CastleEngineManifest.xml examples] wiki page for samples and documentation. You can create an trivial starting +++<tt>+++CastleEngineManifest.xml+++</tt>+++ file by executing +++<tt>+++castle-engine create-manifest+++</tt>+++. The *manifest file describes your project's name, source code*, what files to include in the package and such.
 
@@ -98,13 +80,13 @@ Main advantages of using the build tool:
 * It also takes care of resources (with icon, version information, manifest) on Windows.
 * It can also compile and package your game for desktop operating systems like Linux and Windows. This is comfortable, making sure that the same compilation options and the same packaging rules (what to include / what to exclude) are used when packaging your game for all targets.
 
-= Commands supported by the castle-engine tool
+== Commands supported by the castle-engine tool
 
-== create-manifest
+=== create-manifest
 
 Create link:pass:[CastleEngineManifest.xml examples][CastleEngineManifest.xml] file if it does not exist yet, guessing the project name based on directory name. You can use this +++<tt>+++CastleEngineManifest.xml+++</tt>+++ as a starting point.
 
-== compile
+=== compile
 
 Compile the project, with the syntax options and optimizations suggested for programs using our engine.
 
@@ -142,7 +124,7 @@ Compiling on Windows will also copy the necessary `.dll` files from the engine t
 
 NOTE: This is not the only possible way to compile programs using our engine (for example, you can also compile and run using Lazarus, which is OK for desktop applications).
 
-== package
+=== package
 
 Create an installable package with your application.
 
@@ -184,7 +166,7 @@ For the final release builds, it's more reliable to not use this option. This ma
 
 Another (independent) way to make packaging faster is to use `--update-only-code`. _For now this is meaningful only for iOS._  If specified, it means that the build tool can assume that _only the Pascal code have changed_ (so you did not change e.g. `data/` directory, or project settings in `CastleEngineManifest.xml`). We can then recompile the code (and update the relevant file in the project, like `libxxx.a`) without changing anything else. This means that the `package` command will finish much faster. It will also be more comfortable -- e.g. no need to close and reopen the project in Xcode, Visual Studio or whatever other software is used to handle the final project.
 
-== install
+=== install
 
 Install the application created by previous "package" call.
 
@@ -197,7 +179,7 @@ Pass also additional options reflecting the OS/architecture, mode and package na
 * Use `--mode=xxx` to specify debug or release package.
 * Use `--package-format`, `--package-name-no-version` to determine the package name.
 
-== run
+=== run
 
 Run the application.
 
@@ -230,7 +212,7 @@ This will run your application with command-line parameters `--fullscreen`. In y
 
 On Unix desktop platforms (like Linux, FreeBSD..), we can run your game through a "wrapper script". This is useful e.g. to set `LD_LIBRARY_PATH` before running the application. The build tool simply looks for `run.sh` or `<application_name>_run.sh` script in the project directory, and executes it if found (instead of executing the compiled binary directly).
 
-== package-source
+=== package-source
 
 Package source code, which means just to package whole project directory (cleaned up first).
 
@@ -238,17 +220,17 @@ It creates xxx-VERSION-src.tar.gz archive, with VERSION obtained following the <
 
 It accepts the `--package-format` and `--package-name-no-version` options, just like the `package` command. By default we just pack to zip (that is, `--package-format=zip` is equivalent to `--package-format=zip`).
 
-== clean
+=== clean
 
 Clean compilation and packaging temporary stuff. This does _not_ remove final packaging files.
 
-== simple-compile
+=== simple-compile
 
 Compile the Object Pascal file (unit/program/library) given as a parameter. This does not search for the Castle Game Engine project's manifest in the `CastleEngineManifest.xml` file. It merely calls "fpc" with proper command-line options for units/programs/libraries using our engine.
 
 Use this instead of "compile" only if there's some good reason you don't want to use `CastleEngineManifest.xml` to manage your project.
 
-== auto-generate-textures
+=== auto-generate-textures
 
 Create GPU-compressed versions of textures, and downscaled textures, for the textures mentioned in <auto_generated_textures> inside the file `data/material_properties.xml`. Such GPU-compressed and downscaled textures can then be automatically used in your application. See https://castle-engine.io/creating_data_material_properties.php for instructions how to use it and example `data/material_properties.xml`.
 
@@ -259,7 +241,7 @@ The information about created textures is stored in `data/CastleAutoGenerated.xm
 * ignore the `data/CastleAutoGenerated.xml` file and ignore all `auto_generated` directories.
 * or commit both the `data/CastleAutoGenerated.xml` file and all `auto_generated` directories.
 
-== auto-generate-clean
+=== auto-generate-clean
 
 Clear `auto_generated` subdirectories. They should contain only the output created by `castle-engine auto-generate-textures` target. In the future, it is possible that more things will be placed there (for example, modern GPUs allow mesh data compression).
 
@@ -267,7 +249,7 @@ Run without any arguments to only clean the _unused_ files in `auto_generated` s
 
 Run with `--all` argument to clean _all_ files from the `auto_generated` subdirectories. This is useful e.g. if you want to force regenerating them all by next `castle-engine auto-generate-textures` command.
 
-== generate-program
+=== generate-program
 
 Generates:
 
@@ -291,7 +273,7 @@ If the `standalone_source` is specified in link:pass:[CastleEngineManifest.xml e
 
 . `CastleAutoGenerated` unit in `castleautogenerated.pas` unit. It is used by the program file created above (`xxx_standalone.dpr`) and also by all program or library files created automatically by the build tool to build project on all platforms. It defines some project properties, to parse standard command-line properties, to initialize logging.
 
-== editor
+=== editor
 
 Run the _Castle Game Engine Editor_ within this project. The executed editor will include possible project-specific components.
 
