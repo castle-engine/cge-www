@@ -946,6 +946,40 @@ function castle_header($a_page_title, array $parameters = array())
   echo_castle_header_suffix($path);
 }
 
+/* Helper for _detect_page_path. Returns null if not found. */
+function _detect_page_path_core($page_name, $list)
+{
+  foreach ($list as $list_pagename => $list_pageinfo) {
+    if ($list_pagename == $page_name) {
+      return array($page_name);
+    }
+    if (isset($list_pageinfo['sub'])) {
+      $result = _detect_page_path_core($page_name, $list_pageinfo['sub']);
+      if ($result !== NULL) {
+        array_unshift($result, $list_pagename);
+        return $result;
+      }
+    }
+  }
+  return NULL;
+}
+
+/* Find given page name within $castle_sitemap,
+   return a path (list of strings) from root to the page.
+   If not found, pretends this page is part of root (this makes it easier to add new pages,
+   you don't need to put everything into sitemap).
+   Never returns an empty list. */
+function _detect_page_path($page_name)
+{
+  global $castle_sitemap;
+  $result = _detect_page_path_core($page_name, $castle_sitemap);
+  if ($result === NULL) {
+    return array($page_name);
+    //throw new ErrorException('Page named ' . $page_name . ' not found anywhere in the castle_sitemap');
+  }
+  return $result;
+}
+
 function echo_castle_header_suffix($path, $enable_sidebar = true)
 {
   global $castle_sidebar;

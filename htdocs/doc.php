@@ -18,56 +18,30 @@
 
 require_once 'castle_engine_functions.php';
 
-/* Helper for _detect_page_path. Returns null if not found. */
-function _detect_page_path_core($page_name, $list)
-{
-  foreach ($list as $list_pagename => $list_pageinfo) {
-    if ($list_pagename == 'wiki/' . $page_name) {
-      return array($page_name);
-    }
-    if (isset($list_pageinfo['sub'])) {
-      $result = _detect_page_path_core($page_name, $list_pageinfo['sub']);
-      if ($result !== NULL) {
-        array_unshift($result, $list_pagename);
-        return $result;
-      }
-    }
-  }
-  return NULL;
-}
-
-/* Find given page name within $castle_sitemap,
-   return a path (list of strings) from root to the page.
-   If not found, pretends this page is part of root (this makes it easier to add new pages,
-   you don't need to put everything into sitemap).
-   Never returns an empty list. */
-function _detect_page_path($page_name)
-{
-  global $castle_sitemap;
-  $result = _detect_page_path_core($page_name, $castle_sitemap);
-  if ($result === NULL) {
-    return array($page_name);
-    //throw new ErrorException('Page named ' . $page_name . ' not found anywhere in the castle_sitemap');
-  }
-  return $result;
-}
-
 /* main code ---------------------------------------------------------------------- */
 
-// validate GET 'page' parameter
+// interpret GET 'page' parameter
 if (empty($_GET['page'])) {
   die('No page set');
 }
 $title = $_GET['page'];
-if ($title !== 'CastleEngineManifest.xml_examples' && // exception, valid despite having dot in name
-   ( strpos($title, '/') !== FALSE ||
-     strpos($title, '.') !== FALSE
-   ) ) {
-  die('Title contains invalid characters: ' . htmlspecialchars($title));
+
+/* Originally, we validated this, and rejetected $title with slash (or dot, earlier):
+
+    if (strpos($title, '/') !== FALSE) {
+      die('Title contains invalid characters: ' . htmlspecialchars($title));
+    }
+
+  But now we allow page=/~michalis/castle-engine/Cloud_Builds_(Jenkins),
+  and it is equivalent to page=Cloud_Builds_(Jenkins).
+  This makes our rewrite rule in .htaccess OK. */
+$slash_pos = strrpos($title, '/');
+if ($slash_pos !== FALSE) {
+  $title = substr($title, $slash_pos + 1);
 }
 
 castle_header($title, array(
-  'path' => _detect_page_path($title)
+  'path' => _detect_page_path('wiki/' . $title)
 ));
 
 /* We treat space just like _ in filename,

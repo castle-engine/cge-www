@@ -45,6 +45,7 @@ scripts/ are various scripts, usually in bash, helpful to manage the website.
     ln -s ~/sources/castle-engine/cge-www/htdocs/ castle-engine/
     ```
   - in the end, http://localhost/~michalis/castle-engine/ should work.
+  - adjust RewriteBase in htdocs/.htaccess to make the rewrite rule work (to access e.g. http://localhost/~michalis/castle-engine/Build_Tool )
 
 ## Release making (for CGE engine or application, like view3dscene)
 

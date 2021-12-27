@@ -17,6 +17,16 @@ RewriteBase /
 RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
 RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
 
+# Rewrite to use doc.php=xxx for names not refering to any existing file (in particular, not refering to PHP files).
+# Based on Wordpress rewrite rule, see also https://httpd.apache.org/docs/current/mod/mod_rewrite.html
+RewriteEngine On
+RewriteBase /
+# If you access CGE website on localhost like http://localhost/~michalis/castle-engine/ , use this:
+#RewriteBase /~michalis/castle-engine/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . doc.php?page=%{REQUEST_URI} [L]
+
 # Redirect kambi-php-lib, to keep PasDoc-generated docs accessing this working
 # (in CGE release too, before we fixed https://github.com/castle-engine/castle-engine/issues/59 )
 Redirect "/kambi-php-lib/" "/castle-engine-website-base/"
