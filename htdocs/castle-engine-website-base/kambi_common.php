@@ -245,17 +245,17 @@ function page_url($page_name, $hash_link = '')
          or it's a directory name like 'wp/' */
       $add_extension = '';
     } else
-    if (!kambi_url_has_extension($result) && is_prefix('wiki/', $result))
+    if (!kambi_url_has_extension($result) && is_prefix('doc/', $result))
     {
-      /* In case of $page_name = 'wiki/xxx', not only don't add extension
+      /* In case of $page_name = 'doc/xxx', not only don't add extension
          (mod_rewrite will turn it into doc.php?xxx=yyy anyway),
-         but also remove the wiki/ prefix.
+         but also remove the doc/ prefix.
 
          The prefix only acts to distinguish this from regular links to PHP files,
          and it happens to match actual subdirectory name,
          so Emacs "find file at point" finds the file easily. */
       $add_extension = '';
-      $result = remove_prefix('wiki/', $result);
+      $result = remove_prefix('doc/', $result);
     } else
     {
       $add_extension = '.php';

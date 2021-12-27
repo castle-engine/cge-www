@@ -41,7 +41,7 @@ if ($slash_pos !== FALSE) {
 }
 
 castle_header($title, array(
-  'path' => _detect_page_path('wiki/' . $title)
+  'path' => _detect_page_path('doc/' . $title)
 ));
 
 /* We treat space just like _ in filename,
@@ -51,16 +51,37 @@ castle_header($title, array(
 $file_name = str_replace(' ', '-',
              str_replace('_', '-',
              $title));
-$file = 'wiki/' . $file_name . '.adoc';
 
-$command = 'asciidoctor --no-header-footer -o - ' . escapeshellarg($file);
+/* During development, PHP will actually run
+   asciidoctor to refresh HTML from ADOC when previewing.
+   On production, to make
+   - output more independent of server runtime environment
+   - faster
+   - secure (no point in regenerating ADOC->HTML each time someone views it)
+   just use static HTML.
+   Similar to Jekyll.
+*/
+$regenerate_ascii_doctor = CASTLE_ENVIRONMENT == 'development';
 
-echo '<div class="castle-document">';
-passthru($command, $exec_status);
-if ($exec_status != 0) {
-  die('Failed executing ' . htmlspecialchars($command));
+if ($regenerate_ascii_doctor) {
+  $file = 'doc/' . $file_name . '.adoc';
+
+  $command = 'asciidoctor --no-header-footer -o - ' . escapeshellarg($file);
+
+  echo '<div class="castle-document">';
+  passthru($command, $exec_status);
+  if ($exec_status != 0) {
+    die('Failed executing ' . htmlspecialchars($command));
+  }
+  echo '</div> <!-- class="castle-document" -->';
+} else {
+  // on production, assume ready .html are present in repo
+  $file = 'doc/' . $file_name . '.html';
+  echo '<div class="castle-document">';
+  /* TODO: this should include without interpreting PHP inside $file. */
+  require $file;
+  echo '</div> <!-- class="castle-document" -->';
 }
-echo '</div> <!-- class="castle-document" -->';
 
 /* // This is already in footer.
 
