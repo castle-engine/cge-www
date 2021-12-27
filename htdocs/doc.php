@@ -42,9 +42,7 @@ castle_header($title, array(
    because links from GitHub wiki worked like that too,
    e.g. linking to "Build Tool" was making link to "Build-Tool"
    (in CGE, we use underscores). */
-$file_name = str_replace(' ', '-',
-             str_replace('_', '-',
-             $title));
+$file_name = str_replace(' ', '_', $title);
 
 /* During development, PHP will actually run
    asciidoctor to refresh HTML from ADOC when previewing.

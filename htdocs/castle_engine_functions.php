@@ -371,7 +371,7 @@ $castle_sitemap = array(
             ),
           ),
           // 'engine_doc' => array('title' => 'Internals documentation'), // too outdated
-          'doc/Cloud_Builds_(Jenkins)' => array('title' => 'Jenkins: Automatic cloud builds for CGE projects'),
+          'doc/cloud_builds_jenkins' => array('title' => 'Jenkins: Automatic cloud builds for CGE projects'),
           'doc/Docker' => array('title' => 'Docker: Get CGE packaged with various tools (like cross-compilers, Android SDK, texture compression tools)'),
           'macosx_requirements' => array('title' => 'Dependencies on macOS'),
           'license' => array('title' => 'License'),

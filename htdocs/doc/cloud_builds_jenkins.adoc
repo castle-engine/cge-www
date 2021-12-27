@@ -1,26 +1,12 @@
 :doctype: book
+:toclevels: 4
 :sectnums:
 :source-highlighter: coderay
 :toc: left
 
 We maintain an official https://jenkins.castle-engine.io/[Cloud Builds (Jenkins)] server.
 
-Table of Contents:
-
-* <<features-overview,Features Overview>>
-* <<using-it,Using it>>
- ** <<configure-and-view-the-job-in-jenkins-web-view,Configure and view the job in Jenkins (web view)>>
- ** <<configure-what-commands-are-executed-to-do-the-job-jenkinsfile,Configure what commands are executed to do the job (Jenkinsfile)>>
-  *** <<specify-how-to-build-your-project,Specify how to build your project>>
-  *** <<choose-castle-game-engine-version-by-choosing-docker-image,Choose Castle Game Engine version (by choosing Docker image)>>
-  *** <<choose-fpc-and-lazarus-version,Choose FPC and Lazarus version>>
-  *** <<email-notifications,Email notifications>>
-  *** <<save-the-resulting-files-archive-artifacts,Save the resulting files (archive artifacts)>>
-  *** <<more-ideas-for-things-that-can-be-done,More ideas for things that can be done>>
-  *** <<jenkinsfile-examples,Jenkinsfile examples>>
-  *** <<jenkinsfile-documentation,Jenkinsfile documentation>>
-
-= Features Overview
+== Features Overview
 
 On the server, you can build _Castle Game Engine_ projects in an automated fashion.
 
@@ -41,9 +27,9 @@ What it does:
 * We can also automatically generate API docs of your code (using FpDoc or PasDoc), and upload them somewhere.
 * You can run https://github.com/castle-engine/castle-engine/wiki/Build-Tool#auto-generate-textures[auto-generate-textures command of the build tool]. All command-line utilities (used internally by the build tool, e.g. NVidia Texture Tools) are already installed for you.
 
-= Using it
+== Using it
 
-== Configure and view the job in Jenkins (web view)
+=== Configure and view the job in Jenkins (web view)
 
 Login to https://jenkins.castle-engine.io/ with your username/password.
 
@@ -64,9 +50,9 @@ On the Jenkins page, you can see the statistics about recent builds (how long th
 
 You can also see the logs for each build. If a build compilation failed, these logs will contain the information "why". The _logs are the first thing to consult_ if you want to know what happened (and what failed) during the build.
 
-== Configure what commands are executed to do the job (Jenkinsfile)
+=== Configure what commands are executed to do the job (Jenkinsfile)
 
-=== Specify how to build your project
+==== Specify how to build your project
 
 Place a file named `Jenkinsfile` (no extension, and case matters!) in the top-level of your repository. Inside, place this content:
 
@@ -116,7 +102,7 @@ pipeline {
 }
 ----
 
-=== Choose Castle Game Engine version (by choosing Docker image)
+==== Choose Castle Game Engine version (by choosing Docker image)
 
 The image declaration `kambi/castle-engine-cloud-builds-tools:cge-stable` refers to our https://hub.docker.com/r/kambi/castle-engine-cloud-builds-tools/[Docker image with Castle Game Engine and various tools (FPC, Lazarus, Android SDK and NDK, ...)]. It defines an environment in which your build will run. You really don't need to be concerned with the details like "what is Docker and how does it work", these are being handled by Jenkins, you only choose a Docker image from 3 possibilities:
 
@@ -126,7 +112,7 @@ The image declaration `kambi/castle-engine-cloud-builds-tools:cge-stable` refers
 
 NOTE: If you use the `castle-engine-cloud-builds-tools:cge-unstable` image, I can additionally configure the build to run always after _Castle Game Engine_ changed. (Internally, the build of `castle_game_engine_update_image` will cause a rebuild of your game.) This way after _every commit to Castle Game Engine_, your game will be also rebuild to use the latest engine.
 
-=== Choose FPC and Lazarus version
+==== Choose FPC and Lazarus version
 
 By default, building uses the latest stable FPC version (currently 3.2.0), as advised by CGE. To switch to another FPC/Lazarus version, add a command like `+source /usr/local/fpclazarus/bin/setup.sh 3.0.2 && ...+` or `+source /usr/local/fpclazarus/bin/setup.sh trunk && ...+` at the beginning of the shell command. Like this:
 
@@ -153,7 +139,7 @@ Note that some FPC versions do not support some targets.
 * FPC 3.0.2 doesn't support any Android CPU (32-bit ARM or 64-bit AArch64).
 * FPC 3.0.4 doesn't support Android/AArch64. It only supports 32-bit ARM for Android.
 
-=== Email notifications
+==== Email notifications
 
 You can be notified via email when the build fails (e.g. compilation failed) or when it becomes stable again. To do this, add to the `Jenkinsfile` a section `post` with this content:
 
@@ -181,7 +167,7 @@ pipeline {
 }
 ----
 
-=== Save the resulting files (archive artifacts)
+==== Save the resulting files (archive artifacts)
 
 You usually want to save the build files (artifacts) after a successful build. This allows to download them later using Jenkins web interface. To do this, add to the `Jenkinsfile` a section `post` with this content:
 
@@ -201,7 +187,7 @@ As you see, you just trivially list files (using wildcards like `*`) to consider
 
 If you want to archive artifacts, and have email notifications (see the previous section), just combine them both in a single `post` clause. So `post` clause will contain subclauses like `success`, `failure` and so on. As you can guess, many more possibilities are possible, you can do a _lot_ of things depending on whether a build fails, succeeds and so on.
 
-=== More ideas for things that can be done
+==== More ideas for things that can be done
 
 Many, many more possibilities are possible. Jenkins is incredible, IMHO.
 
@@ -245,14 +231,14 @@ castle-engine --os=linux --cpu=x86_64 $BUILD_TOOL_DEFINE package
 
 The Docker image contains a basic Debian stable installation. It's all executed in a secure Docker container, and will not affect other builds.  After each job execution, the environment is cleared, except the files changed/added inside your project directory.
 
-=== Jenkinsfile examples
+==== Jenkinsfile examples
 
 We use this approach with all the _Castle Game Engine_ applications. So you can find many `Jenkinsfile` examples in our repositories. See e.g.
 
 * https://github.com/castle-engine/wyrd-forest/blob/master/Jenkinsfile["Wyrd Forest" Jenkinsfile], https://github.com/castle-engine/darkest-before-dawn/blob/master/Jenkinsfile["Darkest Before The Dawn" Jenkinsfile] -- typical building of cross-platform application.
 * https://github.com/castle-engine/castle-engine/blob/master/Jenkinsfile["Castle Game Engine" Jenkinsfile] -- trivially run a number of tests.
 
-=== Jenkinsfile documentation
+==== Jenkinsfile documentation
 
 For more information about `Jenkinsfile`, and Jenkins with Pipeline plugin (which is what is happening here), see
 

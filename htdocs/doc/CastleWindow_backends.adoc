@@ -3,6 +3,8 @@
 :source-highlighter: coderay
 :toc: left
 
+== Introduction
+
 https://castle-engine.io/apidoc-unstable/html/CastleWindow.TCastleWindowBase.html[TCastleWindowBase] class represents a window suitable for _Castle Game Engine_ rendering.
 
 Most CGE applications use this class (although there is an alternative https://castle-engine.io/manual_lazarus_control.php[TCastleControlBase], but we advise `TCastleWindowBase` for most cases).
@@ -11,19 +13,9 @@ The `TCastleWindowBase` has a number of alternative _backends_, using different 
 
 Right now, we always use exactly one "backend", which is determined at the compile-time when you compile your application. In the future, we want to rework the CastleWindow infrastructure to enable you to use multiple backends, each backend in a separate unit, and (optionally) allow you to select the best backend at runtime.
 
-Available backends:
+== Available backends
 
-* <<winapi-backend-castle_window_winapi,WinAPI backend (CASTLE_WINDOW_WINAPI)>>
-* <<gtk-backend-castle_window_gtk_2,GTK backend (CASTLE_WINDOW_GTK_2)>>
-* <<xlib-x11-backend-castle_window_xlib,Xlib (X11) backend (CASTLE_WINDOW_XLIB)>>
-* <<lazarus-lcl-backend-castle_window_lcl,Lazarus LCL backend (CASTLE_WINDOW_LCL)>>
-* <<android-backend-castle_window_android,Android backend (CASTLE_WINDOW_ANDROID)>>
-* <<library-backend-castle_window_library,Library backend (CASTLE_WINDOW_LIBRARY)>>
-* <<obsolete-dispmanx-backend-castle_window_dispmanx,Obsolete: DispmanX backend (CASTLE_WINDOW_DISPMANX)>>
-* <<template-castle_window_template,Template (CASTLE_WINDOW_TEMPLATE)>>
-* <<making-new-backend,Making new backend>>
-
-= WinAPI backend (CASTLE_WINDOW_WINAPI)
+=== WinAPI backend (CASTLE_WINDOW_WINAPI)
 
 The default backend on Windows. Looks native and supports everything.
 
@@ -39,7 +31,7 @@ Advantages:
 * Dialog windows like `TCastleWindowBase.FileDialog` are implemented using standard Windows dialog boxes, so again they look nice and native.
 * Supports both OpenGL (by `wgl`) and OpenGLES (by `EGL`) contexts.
 
-= GTK backend (CASTLE_WINDOW_GTK_2)
+=== GTK backend (CASTLE_WINDOW_GTK_2)
 
 The default backend on most Unix systems, like Linux. Looks native and supports everything (except changing screen resolution, see below). Uses _GTK 2_. Initializes OpenGL(ES) context using Xlib + glX (for OpenGL) or EGL (for OpenGLES).
 
@@ -65,7 +57,7 @@ History: at some point this was using GtkGlExt, and was portable to any system u
 * This way our dependencies are simpler (not every system has GtkGlExt),
 * there was not practical usage of this backend outside of GTK+Xlib anyway.
 
-= Xlib (X11) backend (CASTLE_WINDOW_XLIB)
+=== Xlib (X11) backend (CASTLE_WINDOW_XLIB)
 
 A backend useful on most Unix systems, like Linux, that use X11.
 
@@ -81,7 +73,7 @@ Known problems:
 * Doesn't provide nicely-looking dialog boxes (`TCastleWindowBase.FileDialog`). The dialog boxes are implemented using simple modal boxes in `CastleMessages` instead, which works OK but doesn't look pretty.
 * Full-screen (`TCastleWindowBase.FullScreen`) is realized using an obsolete method ("override_redirect") that doesn't allow to switch applications with Alt+Tab from a fullscreen window.
 
-= Lazarus LCL backend (CASTLE_WINDOW_LCL)
+=== Lazarus LCL backend (CASTLE_WINDOW_LCL)
 
 Backend that uses Lazarus LCL to create a window. We use Lazarus TForm (with menu, dialogs and so on) and TOpenGLControl. This wraps Lazarus form and TOpenGLControl inside a `TCastleWindowBase` instance. In turn, Lazarus LCL may use various widgetsets, like GTK, Qt, WinAPI, Cocoa and others.
 
@@ -109,11 +101,11 @@ Known problems:
 * Message loop may stutter in case of a lot of mouse movement (may be visible in case of "mouse look" navigation).
 * Doesn't support OpenGLES, as underlying `TOpenGLControl` doesn't support it.
 
-= Android backend (CASTLE_WINDOW_ANDROID)
+=== Android backend (CASTLE_WINDOW_ANDROID)
 
 Backend using Android NDK cooperating with _Castle Game Engine_ Android activity code. Used when you compile for Android, which you should always do using our https://github.com/castle-engine/castle-engine/wiki/Build-Tool[build tool].
 
-= Library backend (CASTLE_WINDOW_LIBRARY)
+=== Library backend (CASTLE_WINDOW_LIBRARY)
 
 Use existing OpenGL(ES) context. This is useful when the engine is used as a library, and an external code initializes OpenGL(ES) context, merely informing CGE about it. Useful for various cases, e.g. to "drive" Castle Game Engine rendering from another programming language. See `examples/library/` for an example of wrapping CGE in a library.
 
@@ -121,7 +113,7 @@ Also, this is the only possible backend to use CGE on link:pass:[iOS][] or link:
 
 Supported platforms: All platforms. But note that using this backend requires additional "outside" code to manage our library. In case of link:pass:[iOS][] and link:pass:[Nintendo Switch][], this is automatically provided when building using our link:pass:[Build Tool][].
 
-= Obsolete: DispmanX backend (CASTLE_WINDOW_DISPMANX)
+=== Obsolete: DispmanX backend (CASTLE_WINDOW_DISPMANX)
 
 Use the Castle Game Engine on the Raspberry Pi under Linux (tested with Raspbian) without X or Wayland.
 
@@ -129,13 +121,13 @@ Obsolete: This is only available in a fork, and no longer maintained.
 
 See link:pass:[DispmanX backend][] for details.
 
-= Template (CASTLE_WINDOW_TEMPLATE)
+=== Template (CASTLE_WINDOW_TEMPLATE)
 
 A dummy backend that does nothing, but compiles. Can be used as a starting point when developing new CastleWindow backends.
 
 Supported platforms: All platforms.
 
-= Making new backend
+== Making new backend
 
 * Invent a symbol `CASTLE_WINDOW_FOO` for a new backend, document it in the "available backends list" above.
 * Create a file `castlewindow_foo.inc` with contents from  `castlewindow_backend_template.inc` and conditionally include it from `castlewindow_backend.inc`.

@@ -6,14 +6,6 @@ _Castle Game Engine_ defines a number of useful link:pass:[Android Services][] a
 
 This page documents how you can add new services for Android.
 
-Table of Contents:
-
-* <<be-sure-to-use-android-project_type-integrated-this-is-the-default-now,Be sure to use Android project_type "integrated" (this is the default now)>>
-* <<adding-new-service,Adding new service>>
-* <<java-code-of-a-service,Java code of a service>>
-* <<communicate-with-java,Communicate with Java>>
-* <<adding-a-service-with-dynamic-library-so,Adding a service with dynamic library (SO)>>
-
 === Be sure to use Android project_type "integrated" (this is the default now)
 
 All the Android services require that you have an `integrated` Android project type (default now), not `base`. With the `integrated` project type, our final Android project has it's own activity class (`MainActivity`, descendant of `NativeActivity`, in `tools/build-tool/data/android/integrated/app/src/main/java/net/sourceforge/castleengine/MainActivity.java`), and it has Java code that is "summed" by adding all the files from

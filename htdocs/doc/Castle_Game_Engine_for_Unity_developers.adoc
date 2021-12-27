@@ -4,27 +4,6 @@
 
 If you come with a knowledge of another game engine, like _Unity_, this page will try to explain how some concepts map to _Castle Game Engine_. If you have any questions, remember to ask on https://forum.castle-engine.io/[forum], https://castle-engine.io/talk.php[Discord chat or other places].
 
-Table of Contents:
-
-* <<what-is-the-equivalent-of-unity-gameobject,What is the equivalent of Unity GameObject?>>
-* <<how-to-design-a-level-composed-from-multiple-assets-creatures-etc,How to design a level composed from multiple assets, creatures etc.?>>
-* <<where-to-place-code-for-specific-actors-like-creatures-items-what-is-the-equivalent-of-adding-a-monobehaviour-to-a-gameobject-in-unity,Where to place code for specific actors (like creatures, items)? What is the equivalent of "adding a MonoBehaviour to a GameObject" in Unity?>>
-* <<what-is-the-equivalent-of-unity-assets-subdirectory,What is the equivalent of Unity Assets subdirectory?>>
-* <<what-model-formats-are-supported,What model formats are supported?>>
-* <<do-you-support-fbx-model-format,Do you support FBX model format?>>
-* <<why-does-editor-template-3d-fps-game-show-a-different-approach-than-examplesfps_game,Why does editor template "3D FPS Game" show a different approach than examples/fps_game?>>
-* <<should-i-use-tcastlewindowbase-or-tcastlecontrolbase,Should I use TCastleWindowBase or TCastleControlBase?>>
-* <<where-is-timetimescale,Where is Time.timeScale?>>
-* <<where-is-timedeltatime,Where is Time.deltaTime?>>
-* <<making-components-inactive,Making components inactive>>
-* <<user-interface-scaling,User interface scaling>>
-* <<unity-services,Unity Services>>
-* <<shaders,Shaders>>
-* <<viewports,Viewports>>
-* <<prefabs,Prefabs>>
-* <<playing-sounds,Playing sounds>>
-* <<what-is-the-difference-between-owner-and-parent-in-cge,What is the difference between `Owner` and `Parent` in CGE?>>
-
 == What is the equivalent of Unity `GameObject`?
 
 `GameObject` in Unity is (simplifying) something that exists in your world, and may be visible, and may have children that are affected by a transformation.

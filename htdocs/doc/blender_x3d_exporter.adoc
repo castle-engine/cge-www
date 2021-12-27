@@ -8,13 +8,6 @@ A collection of hints about using the Blender X3D exporter. They apply to the st
 
 *Obsolete: Many notes below are relevant only to the exporter state in Blender 2.7. With Blender 2.8, the exporter is unfortunately even more limited (for now), e.g. it doesn't support textures assigned in Blender 2.8, even the base texture. With Blender 2.8, we advise exporting to glTF instead. See https://castle-engine.io/creating_data_blender.php for Blender + Castle Game Engine instructions.*
 
-= Table of Contents
-
-* <<general-notes,General notes>>
-* <<materials,Materials>>
-* <<textures,Textures>>
-* <<extra-material-textures-normal-maps-specular-maps-with-commonsurfaceshader,Extra material textures (normal maps, specular maps) with CommonSurfaceShader>>
-
 == General notes
 
 * It *does not support animations*. To export animations from Blender that can work in https://castle-engine.io/[Castle Game Engine] and https://castle-engine.io/view3dscene.php[view3dscene], use our https://castle-engine.io/creating_data_blender.php[Blender castle-anim-frames exporter] instead. The Castle-anim-frames exporter internally exports to a series of X3D files, so the rest of this page still matters to you anyway:)

@@ -3,17 +3,9 @@
 :source-highlighter: coderay
 :toc: left
 
-There are 2 basic methods to draw 2D stuff in _Castle Game Engine_:
+== Two approaches to render 2D
 
-* <<simple-render-using-tdrawableimage,Simple: Render using TDrawableImage>>
-* <<full-featured-render-using-tcastlescene,Full-featured: Render using TCastleScene>>
-
-See also:
-
-* <<why-2-methods-to-render-stuff,Why 2 methods to render stuff?>>
-* <<can-these-methods-be-combined-to-render-using-tdrawableimage-within-tcastlescene,Can these methods be combined, to render using TDrawableImage within TCastleScene?>>
-
-= Simple: Render using TDrawableImage
+=== Simple: Render using TDrawableImage
 
 Use `TDrawableImage` as your main way to draw. In this approach, you create `TDrawableImage` instance for each image, and then draw it in overridden `TCastleUserInterface.Render` method. This is the same approach as we use for our user-interface rendering (various `TCastleUserInterface` instances). *The main advantage of this approach is simplicity: you just draw 2D images.*
 
@@ -36,7 +28,7 @@ To have the scaling automatically applied, you can use `TCastleImageControl` ins
 
 *Advice when to use*: This approach is very easy to start. You have relatively small API to learn. You just learn how to use `TDrawableImage`, and you draw inside your own `TMyControl.Render` however you like. *If all you really want is a flexible API to draw images -- this is it.*
 
-= Full-featured: Render using TCastleScene
+=== Full-featured: Render using TCastleScene
 
 Use `TCastleViewport`. Add `TCastleViewport` control to the window, and inside it draw things by creating `TCastleScene` instances.
 
@@ -72,7 +64,7 @@ You can also use UI scaling ( http://castle-engine.io/manual_2d_user_interface.p
 * This approach is also easy, if you mostly load 2D models from existing files (Spine JSON, X3D exported from Blender or sprite-sheet-to-x3d). But it is a little more work to construct your own X3D graph -- as there are simply a lot of X3D nodes that you can use. But it pays off in my experience, you really can do everything. Our http://cat-astrophe-games.com/[Cat-astrophe Games] games ("Dragon Squash", "Escape from the Universe", http://store.steampowered.com/app/746750/The_Unholy_Society/["The Unholy Society"]) are all implemented using this approach.
 * This approach allows engine to take care of animations, physics, and other cool stuff for you.
 
-= Why 2 methods to render stuff?
+== Why there are 2 approches to render 2D stuff?
 
 Because they are both useful :)
 
@@ -83,6 +75,6 @@ The _declarative_ approach is more powerful (the engine can do automatically a l
 
 The _imperative_ stuff is simpler to use, and enough for simple use-cases. I wondered about removing this approach, but it seems many people like it, and it _is_ enough for many use-cases.
 
-= Can these methods be combined, to render using TDrawableImage within TCastleScene?
+== Can these methods be combined, to render using TDrawableImage within TCastleScene?
 
 I plan to enable rendering using TDrawableImage into a TCastleScene one day. Then you could render user interface into TCastleScene, rotate this TCastleScene, and have easy user-interface in 3D. This is part of https://castle-engine.io/planned_features.php .

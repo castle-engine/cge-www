@@ -5,14 +5,6 @@
 :toc: left
 
 Some things that can go wrong with Android SDK / NDK:
-
-Table of Contents:
-
-* <<compilation-errors-trying-to-use-a-unit-which-was-compiled-with-a-different-fpu-mode,Compilation errors "Trying to use a unit which was compiled with a different FPU mode">>
-* <<libz-errors-exception-in-thread-png-cruncher-errors,libz errors, "exception in thread png-cruncher" errors>>
-* <<clang-errors,clang errors>>
-* <<could-not-find-toolsjar-error,"Could not find tools.jar" error>>
-* <<errors-when-executing-aidl-on-64-bit-x86_64-linux,Errors when executing aidl on 64-bit (x86_64) Linux>>
 * <<error-no-toolchains-found-in-the-ndk-toolchains-folder-for-abi-with-prefix-mipsel-linux-android,Error "No toolchains found in the NDK toolchains folder for ABI with prefix: mipsel-linux-android">>
 
 ////
@@ -24,7 +16,7 @@ Make sure that you installed the right versions of *SDK Platform* and *Android S
 The new versions of Gradle will auto-install the necessary platforms if needed, so this problem should not bother you so much.
 ////
 
-= Compilation errors "Trying to use a unit which was compiled with a different FPU mode"
+== Compilation errors "Trying to use a unit which was compiled with a different FPU mode"
 
 This indicates you compiled FPC standard units without `-CfVFPV3`. This would result in very slow execution on Android. Solutions:
 
@@ -33,11 +25,11 @@ This indicates you compiled FPC standard units without `-CfVFPV3`. This would re
 
 image::https://castle-engine.io/images/original_size/fpcupdeluxe-hard-floats.png[FpcUpDeluxe cross-compiler options]
 
-= libz errors, "exception in thread png-cruncher" errors
+== libz errors, "exception in thread png-cruncher" errors
 
 In case of errors about `libz.so.1` (resulting in later errors about _Exception in thread "png-cruncher..._) on Linux 64-bit, see here: http://stackoverflow.com/questions/29241640/error-unable-to-run-mksdcard-sdk-tool . Install additional libraries as needed.
 
-= clang errors
+== clang errors
 
 The Android NDK for 32-bit Windows has a known error in version r12b, see https://github.com/android-ndk/ndk/issues/139 . The clang binaries are for 64-bit architecture. It will prevent compiling the NDK samples (not related to CGE...). This should be fixed in next NDK release. An easy fix for now is to go to "ndk\toolchains\llvm\prebuilt\windows\bin" directory and:
 
@@ -46,11 +38,11 @@ The Android NDK for 32-bit Windows has a known error in version r12b, see https:
 * rename clang{pp}.exe \-> clang{pp}_64.exe (or just remove it)
 * copy clang.exe \-> clang{pp}.exe (yes, just copy to a new name, this is the same executable).
 
-= "Could not find tools.jar" error
+== "Could not find tools.jar" error
 
 The error _Could not find tools.jar_ usually means you did not set JAVA_HOME correctly (to point to JDK).
 
-= Errors when executing aidl on 64-bit (x86_64) Linux
+== Errors when executing aidl on 64-bit (x86_64) Linux
 
 If you get errors when executing `/usr/local/android/android-sdk-linux/build-tools/23.0.2/aidl` on 64-bit (x86_64) Linux:
 
@@ -62,7 +54,7 @@ apt-get install libc6-i386 lib32stdc++6 lib32z1
 
 (In general, old build-tools are distributed only for Linux 32-bit, and new build-tools are distributed only for Linux 64-bit. Google doesn't provide alternatives for both architectures here.) See https://stackoverflow.com/questions/24158727/android-sdk-aapt-error-libstdc-so-6-cannot-open-shared-object-file .
 
-= Error "No toolchains found in the NDK toolchains folder for ABI with prefix: mipsel-linux-android"
+== Error "No toolchains found in the NDK toolchains folder for ABI with prefix: mipsel-linux-android"
 
 This error occurs since Android NDK 18. They removed MIPS CPU support (which we never used), but old Gradle versions still expect to find the relevant folders.
 
