@@ -1,50 +1,18 @@
 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
-<ul class="sectlevel0">
-<li><a href="#_using_castle_game_engine_inside_a_docker_image">Using Castle Game Engine inside a Docker image</a></li>
-<li><a href="#_getting_the_docker_basic_docker_concepts_and_links">Getting the Docker, basic Docker concepts and links</a></li>
-<li><a href="#_using_the_docker_image">Using the Docker image</a></li>
-<li><a href="#_using_the_docker_image_to_compile_cge_applications">Using the Docker image to compile CGE applications</a></li>
-<li><a href="#_limitations">Limitations</a></li>
-<li><a href="#_updating_the_docker_image">Updating the Docker image</a></li>
-<li><a href="#_sources">Sources</a></li>
+<ul class="sectlevel1">
+<li><a href="#_using_castle_game_engine_inside_a_docker_image">1. Using Castle Game Engine inside a Docker image</a></li>
+<li><a href="#_getting_the_docker_basic_docker_concepts_and_links">2. Getting the Docker, basic Docker concepts and links</a></li>
+<li><a href="#_using_the_docker_image">3. Using the Docker image</a></li>
+<li><a href="#_using_the_docker_image_to_compile_cge_applications">4. Using the Docker image to compile CGE applications</a></li>
+<li><a href="#_limitations">5. Limitations</a></li>
+<li><a href="#_updating_the_docker_image">6. Updating the Docker image</a></li>
+<li><a href="#_sources">7. Sources</a></li>
 </ul>
 </div>
-<div id="preamble">
+<div class="sect1">
+<h2 id="_using_castle_game_engine_inside_a_docker_image">1. Using Castle Game Engine inside a Docker image</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>Table of Contents:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="#using-castle-game-engine-inside-a-docker-image">Using Castle Game Engine inside a Docker image</a></p>
-</li>
-<li>
-<p><a href="#getting-the-docker-basic-docker-concepts-and-links">Getting the Docker, basic Docker concepts and links</a></p>
-</li>
-<li>
-<p><a href="#using-the-docker-image">Using the Docker image</a></p>
-</li>
-<li>
-<p><a href="#using-the-docker-image-to-compile-cge-applications">Using the Docker image to compile CGE applications</a></p>
-</li>
-<li>
-<p><a href="#limitations">Limitations</a></p>
-</li>
-<li>
-<p><a href="#updating-the-docker-image">Updating the Docker image</a></p>
-</li>
-<li>
-<p><a href="#sources">Sources</a></p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<h1 id="_using_castle_game_engine_inside_a_docker_image" class="sect0">Using Castle Game Engine inside a Docker image</h1>
-<div class="openblock partintro">
-<div class="content">
 <div class="paragraph">
 <p>We have a <a href="https://www.docker.com/">Docker</a> image that contains <em>Castle Game Engine</em> along with various tools preconfigured. The image is available on <a href="https://hub.docker.com/r/kambi/castle-engine-cloud-builds-tools/">Docker hub, the image is called "kambi/castle-engine-cloud-builds-tools"</a>.</p>
 </div>
@@ -75,9 +43,9 @@
 </div>
 </div>
 </div>
-<h1 id="_getting_the_docker_basic_docker_concepts_and_links" class="sect0">Getting the Docker, basic Docker concepts and links</h1>
-<div class="openblock partintro">
-<div class="content">
+<div class="sect1">
+<h2 id="_getting_the_docker_basic_docker_concepts_and_links">2. Getting the Docker, basic Docker concepts and links</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Follow the <a href="https://www.docker.com/" class="bare">https://www.docker.com/</a> to install Docker. You will most likely want to follow the official docs about <a href="https://docs.docker.com/install/">Installing Docker Community Edition</a>.</p>
 </div>
@@ -115,9 +83,9 @@
 </div>
 </div>
 </div>
-<h1 id="_using_the_docker_image" class="sect0">Using the Docker image</h1>
-<div class="openblock partintro">
-<div class="content">
+<div class="sect1">
+<h2 id="_using_the_docker_image">3. Using the Docker image</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Commands below may serve as an example how to use our Docker image to easily create a Docker container <code>my-cge-container</code>, and use it quite like a virtual machine.</p>
 </div>
@@ -188,9 +156,9 @@ we recommend using <code>cge-unstable</code> (CGE 7.0-alpha.snapshot), not <code
 </div>
 </div>
 </div>
-<h1 id="_using_the_docker_image_to_compile_cge_applications" class="sect0">Using the Docker image to compile CGE applications</h1>
-<div class="openblock partintro">
-<div class="content">
+<div class="sect1">
+<h2 id="_using_the_docker_image_to_compile_cge_applications">4. Using the Docker image to compile CGE applications</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Inside the Docker container, just use the installed <code>castle-engine</code> build tool to compile your projects, like this:</p>
 </div>
@@ -231,9 +199,9 @@ castle-engine package</pre>
 </div>
 </div>
 </div>
-<h1 id="_limitations" class="sect0">Limitations</h1>
-<div class="openblock partintro">
-<div class="content">
+<div class="sect1">
+<h2 id="_limitations">5. Limitations</h2>
+<div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
@@ -273,9 +241,9 @@ You can also use <a href="https://testfairy.com/">TestFairy integration</a> to d
 </div>
 </div>
 </div>
-<h1 id="_updating_the_docker_image" class="sect0">Updating the Docker image</h1>
-<div class="openblock partintro">
-<div class="content">
+<div class="sect1">
+<h2 id="_updating_the_docker_image">6. Updating the Docker image</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Our <a href="https://hub.docker.com/r/kambi/castle-engine-cloud-builds-tools/">Docker image <code>kambi/castle-engine-cloud-builds-tools:cge-unstable</code></a> contains the very latest "unstable" engine version. It is updated automatically after every CGE commit. Our Jenkins runs many automated engine tests (making sure everything compiles, with various FPC versions and on various platforms), then rebuilds the <a href="https://github.com/castle-engine/castle-engine/releases/tag/snapshot">engine binary release</a> and then updates the <code>...:cge-unstable</code> Docker image.</p>
 </div>
@@ -317,9 +285,11 @@ Docker image just to have the Android tools, texture compression tools etc.</p>
 </div>
 </div>
 </div>
-<h1 id="_sources" class="sect0">Sources</h1>
-<div class="openblock partintro">
-<div class="content">
-The bash script, Dockerfiles, Jenkinksfiles etc. to generate these Docker images are open-source on <a href="https://github.com/castle-engine/castle-engine-cloud-builds-tools" class="bare">https://github.com/castle-engine/castle-engine-cloud-builds-tools</a> .
+<div class="sect1">
+<h2 id="_sources">7. Sources</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The bash script, Dockerfiles, Jenkinksfiles etc. to generate these Docker images are open-source on <a href="https://github.com/castle-engine/castle-engine-cloud-builds-tools" class="bare">https://github.com/castle-engine/castle-engine-cloud-builds-tools</a> .</p>
+</div>
 </div>
 </div>

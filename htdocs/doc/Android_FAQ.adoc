@@ -2,6 +2,7 @@
 :sectnums:
 :source-highlighter: coderay
 :toc: left
+:toclevels: 4
 
 Questions related to link:Android[Android] development.
 

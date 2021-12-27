@@ -1,3 +1,4 @@
+:doctype: book
 :sectnums:
 :source-highlighter: coderay
 :toc: left

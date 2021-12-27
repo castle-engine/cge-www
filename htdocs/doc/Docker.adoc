@@ -3,17 +3,7 @@
 :source-highlighter: coderay
 :toc: left
 
-Table of Contents:
-
-* <<using-castle-game-engine-inside-a-docker-image,Using Castle Game Engine inside a Docker image>>
-* <<getting-the-docker-basic-docker-concepts-and-links,Getting the Docker, basic Docker concepts and links>>
-* <<using-the-docker-image,Using the Docker image>>
-* <<using-the-docker-image-to-compile-cge-applications,Using the Docker image to compile CGE applications>>
-* <<limitations,Limitations>>
-* <<updating-the-docker-image,Updating the Docker image>>
-* <<sources,Sources>>
-
-= Using Castle Game Engine inside a Docker image
+== Using Castle Game Engine inside a Docker image
 
 We have a https://www.docker.com/[Docker] image that contains _Castle Game Engine_ along with various tools preconfigured. The image is available on https://hub.docker.com/r/kambi/castle-engine-cloud-builds-tools/[Docker hub, the image is called "kambi/castle-engine-cloud-builds-tools"].
 
@@ -27,7 +17,7 @@ Using the Docker image gives you a stable environment where we have:
 
 This Docker image is used by our https://github.com/castle-engine/castle-engine/wiki/Cloud-Builds-(Jenkins)[Cloud Builds (Jenkins)] . It can also be used on your local computer. Instead of downloading FPC, CGE, Android SDK and NDK etc., you only have to get the Docker image.
 
-= Getting the Docker, basic Docker concepts and links
+== Getting the Docker, basic Docker concepts and links
 
 Follow the https://www.docker.com/ to install Docker. You will most likely want to follow the official docs about https://docs.docker.com/install/[Installing Docker Community Edition].
 
@@ -44,7 +34,7 @@ There are two ways to use Docker container:
 * You can easily create and destroy temporary Docker containers, even to just execute a single command.
 * You can also just create and use one Docker container for a long time.
 
-= Using the Docker image
+== Using the Docker image
 
 Commands below may serve as an example how to use our Docker image to easily create a Docker container `my-cge-container`, and use it quite like a virtual machine.
 
@@ -83,7 +73,7 @@ Inside the container, you have a regular Linux command-line.
 * You can install whatever you need (`+apt-get install ...+` works), and just use it as a regular virtual machine.
 * Example above shows using `--volume` option for `docker run` to share your $HOME directory. You can also copy files between host/container using `docker cp` ( https://docs.docker.com/engine/reference/commandline/cp/ ).
 
-= Using the Docker image to compile CGE applications
+== Using the Docker image to compile CGE applications
 
 Inside the Docker container, just use the installed `castle-engine` build tool to compile your projects, like this:
 
@@ -113,7 +103,7 @@ The advantage is, again, that you don't need to install all the tools mentioned 
 
 You can also use command-line `fpc` or `lazbuild` to build Pascal applications. By default we use the latest stable FPC/Lazarus, but this can be switched by executing command like `source /usr/local/fpclazarus/bin/setup.sh trunk`.  This will make you use FPC 3.3.1 within this shell.
 
-= Limitations
+== Limitations
 
 * *No GUI*. Although https://www.lazarus-ide.org/[Lazarus] is installed inside the container, but it's primary use is to run `lazbuild` to compile Lazarus packages. The container doesn't have visual libraries (X) installed, and is not connected to your host display, so you cannot readily use GUI Lazarus for development. It is http://fabiorehm.com/blog/2014/09/11/running-gui-apps-with-docker/[possible to execute GUI application inside Docker], but it may be easier to just install Lazarus in a normal way, on your host system.
 * *No connection to host USB port to connect to your phone*. Using Android SDK to install and run APK on your phone will not work, as inside the Docker container we don't see your USB devices. So commands like this will not work within the container:
@@ -129,7 +119,7 @@ You can also copy the APK file to your phone, and install APK by selecting it on
 +
 You can also use https://testfairy.com/[TestFairy integration] to distribute the APK. This way we can get the logs remotely, using https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/android/integrated-services/test_fairy/README.md[Android test_fairy service] or https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/ios/services/test_fairy/README.md[iOS test_fairy service]. Note that this is a paid feature of TestFairy (although you get 14-day trial).
 
-= Updating the Docker image
+== Updating the Docker image
 
 Our https://hub.docker.com/r/kambi/castle-engine-cloud-builds-tools/[Docker image `kambi/castle-engine-cloud-builds-tools:cge-unstable`] contains the very latest "unstable" engine version. It is updated automatically after every CGE commit. Our Jenkins runs many automated engine tests (making sure everything compiles, with various FPC versions and on various platforms), then rebuilds the https://github.com/castle-engine/castle-engine/releases/tag/snapshot[engine binary release] and then updates the `+...:cge-unstable+` Docker image.
 
@@ -153,6 +143,6 @@ _Note 2:_ If you plan to update CGE often, but would still like to use Docker im
 This way, there is no need to update the Docker image often. The Docker image `+...:cge-none+` doesn't change often. So you can use this
 Docker image just to have the Android tools, texture compression tools etc.
 
-= Sources
+== Sources
 
 The bash script, Dockerfiles, Jenkinksfiles etc. to generate these Docker images are open-source on https://github.com/castle-engine/castle-engine-cloud-builds-tools .

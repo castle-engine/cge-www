@@ -3,24 +3,11 @@
 :source-highlighter: coderay
 :toc: left
 
-You can create games (and other applications) for Android using our Castle Game Engine.
+You can create games (and other applications) for Android using our Castle Game Engine. This page describes installation of all the necessary software.
 
-* <<overview-and-examples,Overview and examples>>
-* <<installing-android-tools,Installing Android tools>>
- ** <<install-java,Install Java>>
- ** <<install-android-sdk,Install Android SDK>>
- ** <<adjust-environment-after-installing-sdk,Adjust environment after installing SDK>>
- ** <<install-android-sdk-components,Install Android SDK components>>
- ** <<install-android-ndk,Install Android NDK>>
- ** <<adjust-environment-after-installing-ndk,Adjust environment after installing NDK>>
- ** <<test-android-sdk--ndk-independently-of-pascal-and-cge,Test Android SDK + NDK independently of Pascal and CGE>>
- ** <<fpc-for-android,FPC for Android>>
- ** <<add-paths-to-ndk-libraries-for-fpc-configuration,Add paths to NDK libraries for FPC configuration>>
- ** <<test-compiling-and-running-mobile-demo,Test compiling and running mobile demo>>
-* link:pass:[Android FAQ][]
-* link:pass:[Android SDK and NDK troubleshooting][]
+See also link:pass:[Android FAQ][], link:pass:[Android SDK and NDK troubleshooting][].
 
-= Overview and examples
+== Overview and examples
 
 The description how to create a cross-platform project, that can work on Android (and other platforms) is in the manual: https://castle-engine.io/manual_mobile.php . This page describes tools you need to install to make the building for Android work.
 
@@ -32,11 +19,11 @@ The engine sources include many examples, and many of them are cross-platform an
 
 Use the link:pass:[Build Tool][Build Tool] to easily compile these programs for Android (or other platforms -- they all can be compiled as standalone games too!). But first be sure to install the Android tools described below. They will be called by the link:pass:[Build Tool][Build Tool] under the hood.
 
-= Installing Android tools
+== Installing Android tools
 
 To be able to develop Android application, you need some tools from Google, and you need FPC that can compile code to an Android.
 
-== Install Java
+=== Install Java
 
 Java is required by the Android SDK. Install Java _JDK (Java Development Kit)_.
 
@@ -48,7 +35,7 @@ _For users who install full Android Studio_: You do not need to install Java sep
 * `C:/Program Files/Android/Android Studio/jre` on Windows
 * `<wherever-you-unpacked-android-studio-targz>/jre` on Linux
 
-== Install Android SDK
+=== Install Android SDK
 
 Download and install Android SDK from http://developer.android.com/sdk/index.html .
 
@@ -62,7 +49,7 @@ Location of the Android SDK is visible in the Android Studio _Settings \-> Andro
 +
 Make sure to unpack the tools under `cmdline-tools` subdirectory of the `$ANDROID_HOME`, and move everything under additional subdirectory `latest`, so you have a file like `$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager`.
 
-== Adjust environment after installing SDK
+=== Adjust environment after installing SDK
 
 * Set `$ANDROID_HOME` environment variable, to point to your Android SDK directory. This is recognized by both our build tool, and some Android tools.
 * Consider adding to `$PATH` the `<android-sdk>/platform-tools/` directory. In Castle Game Engine > 6.0.2, this is not necessary (engine doesn't need it), but still advised: it allows you to call `adb` on the command-line easily, which is often useful.
@@ -70,7 +57,7 @@ Make sure to unpack the tools under `cmdline-tools` subdirectory of the `$ANDROI
 
 If you don't know what an _"environment variable"_ is, google _"how to set environment variable in windows/linux/..."_ :) Remember to reopen the relevant application (e.g. close and reopen the terminal) to see the newly set environment variables.
 
-== Install Android SDK components
+=== Install Android SDK components
 
 Install some components of the Android _SDK Manager_:
 
@@ -115,11 +102,11 @@ Remember to use apostrophes as shown above.
 
 If you know what you're doing, you can actually use other versions of SDK components (other versions of _"SDK Platform"_ and _"Android SDK Build-tools"_). You will need to declare them on a per-project basis in `CastleEngineManifest.xml`, see link:pass:[Build Tool][Build Tool]. But it's probably easiest if you use their default versions at the beginning.
 
-== Install Android NDK
+=== Install Android NDK
 
 The Android NDK should already be installed under the `ndk-bundle` subdirectory of Android SDK, if you followed the above steps :) Both the _GUI version of the SDK Manager_ and the command-line `sdkmanager` install NDK, as described above.
 
-== Adjust environment after installing NDK
+=== Adjust environment after installing NDK
 
 * Set `$ANDROID_NDK_HOME` environment variable, to indicate the directory of NDK. It should be just inside the `<android-sdk>/ndk-bundle` directory. Our build tool can figure it out automatically (testing `$ANDROID_HOME/ndk-bundle`), but Google tools really need `$ANDROID_NDK_HOME`.
 * To `$PATH` add:
@@ -145,7 +132,7 @@ ${ANDROID_NDK_HOME}toolchains/x86_64-4.9/prebuilt/linux-x86_64/bin/:\
 export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64/"
 ----
 
-== Test Android SDK + NDK independently of Pascal and CGE
+=== Test Android SDK + NDK independently of Pascal and CGE
 
 _While this step is optional, it is often a good idea to try, especially when troubleshooting problems:_
 
@@ -188,7 +175,7 @@ For this, you can compile and install (on a real Android device, typically conne
 
 And then run the resulting application (it is called "GL2JNI") on your device. It should work equally well on a real Android device, or in the Android emulator.
 
-== FPC for Android
+=== FPC for Android
 
 You need a special version of FPC (Free Pascal Compiler, http://freepascal.org/): a cross-compiler to Android. This means that FPC can run on your normal OS/processor (Linux, Windows, macOS...) and can produce binaries for Android. "Android" more precisely means "_Android OS (based on Linux) + Android processor (32-bit `arm` or 64-bit `aarch64`, for emulators also `x64_64` is useful)_".
 
@@ -238,7 +225,7 @@ ln -s ../lib/fpc/3.3.1/ppc386     . # this is only relevant if your main FPC is 
 * See http://wiki.freepascal.org/Android for links to more info.
 * Remember to first download the last stable FPC compiler, to bootstrap the compilation.
 
-== Add paths to NDK libraries for FPC configuration
+=== Add paths to NDK libraries for FPC configuration
 
 Add paths to NDK dirs to your ~/.fpc.cfg (see http://www.freepascal.org/docs-html/user/usersu10.html if you're unsure where's your configuration file; you can create a new one using "fpcmkcfg" program). This way FPC will find the correct NDK tools to link your programs:
 
@@ -272,7 +259,7 @@ For 64-bit CPUs, these lines point to NDK platform version `21`, earliest versio
 
 If you use link:pass:[fpcupdeluxe][fpcupdeluxe], it is safest to remove/rename it's `<fpcupdeluxe>/cross/lib/arm-android/` and `<fpcupdeluxe>/cross/lib/arch64-android/`. This way we make sure to use NDK platform version `16` (32-bit) / `21` (64-bit).
 
-== Test compiling and running mobile demo
+=== Test compiling and running mobile demo
 
 You should have everything set up now. Let's try compiling and running our mobile demo application, in `examples/mobile/simple_3d_demo/` .
 

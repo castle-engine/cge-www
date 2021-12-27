@@ -1,19 +1,19 @@
 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
-<ul class="sectlevel0">
-<li><a href="#_overview_and_examples">Overview and examples</a></li>
-<li><a href="#_installing_android_tools">Installing Android tools</a>
 <ul class="sectlevel1">
-<li><a href="#_install_java">1. Install Java</a></li>
-<li><a href="#_install_android_sdk">2. Install Android SDK</a></li>
-<li><a href="#_adjust_environment_after_installing_sdk">3. Adjust environment after installing SDK</a></li>
-<li><a href="#_install_android_sdk_components">4. Install Android SDK components</a></li>
-<li><a href="#_install_android_ndk">5. Install Android NDK</a></li>
-<li><a href="#_adjust_environment_after_installing_ndk">6. Adjust environment after installing NDK</a></li>
-<li><a href="#_test_android_sdk_ndk_independently_of_pascal_and_cge">7. Test Android SDK + NDK independently of Pascal and CGE</a></li>
-<li><a href="#_fpc_for_android">8. FPC for Android</a></li>
-<li><a href="#_add_paths_to_ndk_libraries_for_fpc_configuration">9. Add paths to NDK libraries for FPC configuration</a></li>
-<li><a href="#_test_compiling_and_running_mobile_demo">10. Test compiling and running mobile demo</a></li>
+<li><a href="#_overview_and_examples">1. Overview and examples</a></li>
+<li><a href="#_installing_android_tools">2. Installing Android tools</a>
+<ul class="sectlevel2">
+<li><a href="#_install_java">2.1. Install Java</a></li>
+<li><a href="#_install_android_sdk">2.2. Install Android SDK</a></li>
+<li><a href="#_adjust_environment_after_installing_sdk">2.3. Adjust environment after installing SDK</a></li>
+<li><a href="#_install_android_sdk_components">2.4. Install Android SDK components</a></li>
+<li><a href="#_install_android_ndk">2.5. Install Android NDK</a></li>
+<li><a href="#_adjust_environment_after_installing_ndk">2.6. Adjust environment after installing NDK</a></li>
+<li><a href="#_test_android_sdk_ndk_independently_of_pascal_and_cge">2.7. Test Android SDK + NDK independently of Pascal and CGE</a></li>
+<li><a href="#_fpc_for_android">2.8. FPC for Android</a></li>
+<li><a href="#_add_paths_to_ndk_libraries_for_fpc_configuration">2.9. Add paths to NDK libraries for FPC configuration</a></li>
+<li><a href="#_test_compiling_and_running_mobile_demo">2.10. Test compiling and running mobile demo</a></li>
 </ul>
 </li>
 </ul>
@@ -21,63 +21,16 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can create games (and other applications) for Android using our Castle Game Engine.</p>
+<p>You can create games (and other applications) for Android using our Castle Game Engine. This page describes installation of all the necessary software.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="#overview-and-examples">Overview and examples</a></p>
-</li>
-<li>
-<p><a href="#installing-android-tools">Installing Android tools</a></p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="#install-java">Install Java</a></p>
-</li>
-<li>
-<p><a href="#install-android-sdk">Install Android SDK</a></p>
-</li>
-<li>
-<p><a href="#adjust-environment-after-installing-sdk">Adjust environment after installing SDK</a></p>
-</li>
-<li>
-<p><a href="#install-android-sdk-components">Install Android SDK components</a></p>
-</li>
-<li>
-<p><a href="#install-android-ndk">Install Android NDK</a></p>
-</li>
-<li>
-<p><a href="#adjust-environment-after-installing-ndk">Adjust environment after installing NDK</a></p>
-</li>
-<li>
-<p><a href="test-android-sdk&.html#8212;&#8203;ndk-independently-of-pascal-and-cge">Test Android SDK + NDK independently of Pascal and CGE</a></p>
-</li>
-<li>
-<p><a href="#fpc-for-android">FPC for Android</a></p>
-</li>
-<li>
-<p><a href="#add-paths-to-ndk-libraries-for-fpc-configuration">Add paths to NDK libraries for FPC configuration</a></p>
-</li>
-<li>
-<p><a href="#test-compiling-and-running-mobile-demo">Test compiling and running mobile demo</a></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><a href="Android FAQ" class="bare">Android FAQ</a></p>
-</li>
-<li>
-<p><a href="Android SDK and NDK troubleshooting" class="bare">Android SDK and NDK troubleshooting</a></p>
-</li>
-</ul>
+<div class="paragraph">
+<p>See also <a href="Android FAQ" class="bare">Android FAQ</a>, <a href="Android SDK and NDK troubleshooting" class="bare">Android SDK and NDK troubleshooting</a>.</p>
 </div>
 </div>
 </div>
-<h1 id="_overview_and_examples" class="sect0">Overview and examples</h1>
-<div class="openblock partintro">
-<div class="content">
+<div class="sect1">
+<h2 id="_overview_and_examples">1. Overview and examples</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>The description how to create a cross-platform project, that can work on Android (and other platforms) is in the manual: <a href="https://castle-engine.io/manual_mobile.php" class="bare">https://castle-engine.io/manual_mobile.php</a> . This page describes tools you need to install to make the building for Android work.</p>
 </div>
@@ -102,15 +55,14 @@
 </div>
 </div>
 </div>
-<h1 id="_installing_android_tools" class="sect0">Installing Android tools</h1>
-<div class="openblock partintro">
-<div class="content">
-To be able to develop Android application, you need some tools from Google, and you need FPC that can compile code to an Android.
-</div>
-</div>
 <div class="sect1">
-<h2 id="_install_java">1. Install Java</h2>
+<h2 id="_installing_android_tools">2. Installing Android tools</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>To be able to develop Android application, you need some tools from Google, and you need FPC that can compile code to an Android.</p>
+</div>
+<div class="sect2">
+<h3 id="_install_java">2.1. Install Java</h3>
 <div class="paragraph">
 <p>Java is required by the Android SDK. Install Java <em>JDK (Java Development Kit)</em>.</p>
 </div>
@@ -138,10 +90,8 @@ To be able to develop Android application, you need some tools from Google, and 
 </ul>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_install_android_sdk">2. Install Android SDK</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_install_android_sdk">2.2. Install Android SDK</h3>
 <div class="paragraph">
 <p>Download and install Android SDK from <a href="http://developer.android.com/sdk/index.html" class="bare">http://developer.android.com/sdk/index.html</a> .</p>
 </div>
@@ -165,10 +115,8 @@ To be able to develop Android application, you need some tools from Google, and 
 </ul>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_adjust_environment_after_installing_sdk">3. Adjust environment after installing SDK</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_adjust_environment_after_installing_sdk">2.3. Adjust environment after installing SDK</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -186,10 +134,8 @@ To be able to develop Android application, you need some tools from Google, and 
 <p>If you don&#8217;t know what an <em>"environment variable"</em> is, google <em>"how to set environment variable in windows/linux/&#8230;&#8203;"</em> :) Remember to reopen the relevant application (e.g. close and reopen the terminal) to see the newly set environment variables.</p>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_install_android_sdk_components">4. Install Android SDK components</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_install_android_sdk_components">2.4. Install Android SDK components</h3>
 <div class="paragraph">
 <p>Install some components of the Android <em>SDK Manager</em>:</p>
 </div>
@@ -273,18 +219,14 @@ To be able to develop Android application, you need some tools from Google, and 
 <p>If you know what you&#8217;re doing, you can actually use other versions of SDK components (other versions of <em>"SDK Platform"</em> and <em>"Android SDK Build-tools"</em>). You will need to declare them on a per-project basis in <code>CastleEngineManifest.xml</code>, see <a href="Build Tool">Build Tool</a>. But it&#8217;s probably easiest if you use their default versions at the beginning.</p>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_install_android_ndk">5. Install Android NDK</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_install_android_ndk">2.5. Install Android NDK</h3>
 <div class="paragraph">
 <p>The Android NDK should already be installed under the <code>ndk-bundle</code> subdirectory of Android SDK, if you followed the above steps :) Both the <em>GUI version of the SDK Manager</em> and the command-line <code>sdkmanager</code> install NDK, as described above.</p>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_adjust_environment_after_installing_ndk">6. Adjust environment after installing NDK</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_adjust_environment_after_installing_ndk">2.6. Adjust environment after installing NDK</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -333,10 +275,8 @@ export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64/"</pre>
 </div>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_test_android_sdk_ndk_independently_of_pascal_and_cge">7. Test Android SDK + NDK independently of Pascal and CGE</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_test_android_sdk_ndk_independently_of_pascal_and_cge">2.7. Test Android SDK + NDK independently of Pascal and CGE</h3>
 <div class="paragraph">
 <p><em>While this step is optional, it is often a good idea to try, especially when troubleshooting problems:</em></p>
 </div>
@@ -398,10 +338,8 @@ export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64/"</pre>
 <p>And then run the resulting application (it is called "GL2JNI") on your device. It should work equally well on a real Android device, or in the Android emulator.</p>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_fpc_for_android">8. FPC for Android</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_fpc_for_android">2.8. FPC for Android</h3>
 <div class="paragraph">
 <p>You need a special version of FPC (Free Pascal Compiler, <a href="http://freepascal.org/" class="bare">http://freepascal.org/</a>): a cross-compiler to Android. This means that FPC can run on your normal OS/processor (Linux, Windows, macOS&#8230;&#8203;) and can produce binaries for Android. "Android" more precisely means "<em>Android OS (based on Linux) + Android processor (32-bit <code>arm</code> or 64-bit <code>aarch64</code>, for emulators also <code>x64_64</code> is useful)</em>".</p>
 </div>
@@ -471,10 +409,8 @@ ln -s ../lib/fpc/3.3.1/ppc386     . # this is only relevant if your main FPC is 
 </ul>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_add_paths_to_ndk_libraries_for_fpc_configuration">9. Add paths to NDK libraries for FPC configuration</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_add_paths_to_ndk_libraries_for_fpc_configuration">2.9. Add paths to NDK libraries for FPC configuration</h3>
 <div class="paragraph">
 <p>Add paths to NDK dirs to your ~/.fpc.cfg (see <a href="http://www.freepascal.org/docs-html/user/usersu10.html" class="bare">http://www.freepascal.org/docs-html/user/usersu10.html</a> if you&#8217;re unsure where&#8217;s your configuration file; you can create a new one using "fpcmkcfg" program). This way FPC will find the correct NDK tools to link your programs:</p>
 </div>
@@ -514,10 +450,8 @@ ln -s ../lib/fpc/3.3.1/ppc386     . # this is only relevant if your main FPC is 
 <p>If you use <a href="fpcupdeluxe">fpcupdeluxe</a>, it is safest to remove/rename it&#8217;s <code>&lt;fpcupdeluxe&gt;/cross/lib/arm-android/</code> and <code>&lt;fpcupdeluxe&gt;/cross/lib/arch64-android/</code>. This way we make sure to use NDK platform version <code>16</code> (32-bit) / <code>21</code> (64-bit).</p>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_test_compiling_and_running_mobile_demo">10. Test compiling and running mobile demo</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_test_compiling_and_running_mobile_demo">2.10. Test compiling and running mobile demo</h3>
 <div class="paragraph">
 <p>You should have everything set up now. Let&#8217;s try compiling and running our mobile demo application, in <code>examples/mobile/simple_3d_demo/</code> .</p>
 </div>
@@ -576,6 +510,7 @@ ln -s ../lib/fpc/3.3.1/ppc386     . # this is only relevant if your main FPC is 
 </div>
 <div class="paragraph">
 <p>At this point, you have a ready apk file, which you can upload / install / run just like any other application, using any Android tool. You can also upload it to Google Play and release your game! Go for it!:)</p>
+</div>
 </div>
 </div>
 </div>
