@@ -1,0 +1,5 @@
+*"Castle Game Engine"* is a cool open-source 3D and 2D game engine, cross-platform (desktop, mobile, web), with support for many formats (in particular powerful VRML/X3D support) for modern ObjectPascal.
+
+See our main webpage on https://castle-engine.io/ .
+
+We welcome pull requests, comments, and contributions to this wiki!

@@ -1,0 +1,86 @@
+Table of Contents:
+* [Display images](#display-images)
+* [Parameters when loading image to TCastleScene](#parameters-when-loading-image-to-tcastlescene)
+* [Image types in CGE](#image-types-in-cge)
+
+# Display images
+
+There are a few ways to display an image using _Castle Game Engine_.
+
+1. When the image is part of a 2D user-interface, use [TCastleImageControl](https://castle-engine.io/apidoc-unstable/html/CastleControls.TCastleImageControl.html). Set the `TCastleImageControl.URL` to load the image.
+
+2. You can load the image to `TCastleScene`, using the `TCastleScene.Load` method (or by setting `TCastleScene.URL`). While traditionally `TCastleScene` is used for "heavier" 3D and 2D assets, it is perfectly suitable to also just use it to render a trivial rectangle with a simple image. See CGE manual about loading and using scenes: [loading, displaying a scene](https://castle-engine.io/manual_load_3d.php), [transform, animate etc. a scene](https://castle-engine.io/manual_scene.php). 
+
+    Under the hood, this method creates nodes to define a rectangle, and applies the image as a texture. The "manual" way of achieving the same is [presented in the example code here](https://castle-engine.io/x3d_implementation_geometry3d.php#section_example_pascal_rect).
+
+3. The last method is to load the image to `TDrawableImage`. This is the low-level approach, where you will need to manually handle drawing the image at the appropriate moment, following [manual about custom-drawing UI things in CGE](https://castle-engine.io/manual_2d_ui_custom_drawn.php).
+
+The approaches 1 and 2 can be used when designing the game in the [editor](https://castle-engine.io/manual_editor.php) and are more advised. 
+
+All approaches handle all the image formats supported by CGE, like PNG or JPG; see [castle-view-image](https://castle-engine.io/castle-view-image.php) docs for the full list.
+
+# Parameters when loading image to TCastleScene
+
+By default we display an entire image. Alternatively, when loading the image to `TCastleScene`, you can use a special syntax with URL anchors to specify a subset of the image. That is, instead of
+
+```
+my_image.png
+```
+
+you can load
+
+```
+my_image.png#left:100,bottom:100,width:256,height:256
+```
+
+This will cut the appropriate subset of the image. 
+
+These are the parameters:
+
+* `left` 	
+
+    Left coordinate of chosen rectangle (in image pixels)
+
+* `bottom` 	
+
+    Bottom coordinate of chosen rectangle (in image pixels)
+
+* `width` 	
+
+    Width of chosen rectangle (in image pixels)
+
+* `height` 	
+
+    Height of chosen rectangle (in image pixels)
+
+All the parameters are integers (we have not yet found a use-case to make them floats, but please tell us if you have such use-case).
+
+Note that if you specify area that is too large (outside of the actual image area), the excessive pixels will show the clamped image border (the image is simply rendered as a texture with repeat=FALSE).
+
+# Image types in CGE
+
+- [TEncodedImage](https://castle-engine.io/apidoc-unstable/html/CastleImages.TEncodedImage.html) is an image loaded to a regular memory (RAM) to operate on it by Pascal code (that is, on CPU). 
+
+    Important descendant of `TEncodedImage` is [TCastleImage](https://castle-engine.io/apidoc-unstable/html/CastleImages.TCastleImage.html) which is an image that is expressed in memory as directly-accessible array of pixels. It has more descendants for grayscale, RGB, RGBA, float-based images etc. If you want to edit image on CPU, this is what you will use. E.g. create [TRGBAlphaImage](https://castle-engine.io/apidoc-unstable/html/CastleImages.TRGBAlphaImage.html) and iterate over [TRGBAlphaImage.Pixels](https://castle-engine.io/apidoc-unstable/html/CastleImages.TRGBAlphaImage.html#Pixels). There are many methods to draw lines, shapes, text to the image.
+
+    Images are usually 2D, but we also support 3D, for 3D (volumetric) textures.
+
+- [TDrawableImage](https://castle-engine.io/apidoc-unstable/html/CastleGLImages.TDrawableImage.html) holds an image (loaded from `TEncodedImage`) on GPU. It can be actually rendered on the screen.
+
+     Also, you can edit this image by drawing to it on GPU, see [TDrawableImage.RenderToImageBegin](https://castle-engine.io/apidoc-unstable/html/CastleGLImages.TDrawableImage.html#RenderToImageBegin). Example is in [examples/images_videos/draw_images_on_gpu.lpr](https://github.com/castle-engine/castle-engine/blob/master/examples/images_videos/draw_images_on_gpu.lpr).
+
+- [TCastleImagePersistent](https://castle-engine.io/apidoc-unstable/html/CastleGLImages.TCastleImagePersistent.html) is a container around `TCastleImage` and `TDrawableImage`. It is using cache to load images. It is visually configurable in the CGE editor. 
+
+    It's like a `TPicture` in VCL -- it doesn't draw the image, but it has everything else to describe *how* to load and draw the image. It's used by `TCastleImageControl.Image`, `TCastleButtom.CustomBackgroundNormal`, `TCastleButtom.CustomBackgroundPressed` etc.
+
+- [TCastleImageControl](https://castle-engine.io/apidoc-unstable/html/CastleControls.TCastleImageControl.html) has a `TCastleImagePersistent` instance and is a trivial user-interface control to render image on the screen. It can be added and configured in the editor.
+
+- There are a few [X3D nodes](https://castle-engine.io/vrml_x3d.php) to express images. The most important are 
+
+    - [TImageTextureNode](https://castle-engine.io/apidoc-unstable/html/X3DNodes.TImageTextureNode.html) which is an image loaded from URL (set like `MyImageTexture.SetUrl(['castle-data:/my_image.png'])`)
+
+    -  [TPixelTextureNode](https://castle-engine.io/apidoc-unstable/html/X3DNodes.TPixelTextureNode.html) which is an image defined by `TCastleImage` (set like `MyPixelTexture.FdImage.Value := MyImage`, remember that `MyImage` becomes "owned" by `TPixelTextureNode`).
+
+    These nodes are used underneath when you load image into `TCastleScene`.
+
+TODO: Yes, there are too many :) In time, I hope to hide this complexity more.

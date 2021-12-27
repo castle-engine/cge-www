@@ -1,0 +1,150 @@
+:doctype: book
+:sectnums:
+:source-highlighter: coderay
+:toc: left
+
+This is Michalis presentation plan for https://www.web3d.org/webinar-x3d-browsers
+
+Links:
+
+* https://castle-engine.io/[Castle Game Engine]
+* https://castle-engine.io/view3dscene.php[view3dscene]
+* https://github.com/castle-engine/demo-models[demo models]
+
+= view3dscene
+
+* standalone
++
+show
+
+* mobile in prog
++
+show on screen
+
+* free and open source
+
+= underneath a game engine
+
+* editor with assets
++
+create empty with viewer
++
+run
++
+tweak design
++
+this is our sample, functional model viewer
+
+* preview uses same engine
++
+show car knight
+
+* double click shows v3dscene
+
+= features many graphic extensions
+
+* shaders, standard or effects
++
+show
++
+time to shader
++
+texture noise animated
++
+volumetric anim fog
++
+barna
+
+* shadow maps
++
+show trees final
+
+ move lights
++
+show shinto shrine - multiple lights
+
+ move lights
++
+castle with trees
+
+ shadow maps work with alpha on leaves
+
+* shadow volumes
++
+show stonehenge with chopper
+
+ move chopper
++
+show fountain
+
+ move stuff
+
+ move light first, last
+
+* mirrors, standard cube or extension planar
++
+show water simple x2
++
+cubemap in dynamic worls
+
+* screen effects
++
+coded in GLSL easily - show webpage
++
+show example in demo-models
++
+show example in escape?
+
+* PBR and normalmaps and unlit mat (x3d v4)
++
+normalmaps
++
+basic example in x3dv4 demos
++
+show lizardman demo
++
+show steep parallax
++
+show glTF demos - scene with outline, helmet damaged, helmet
++
+show unholy/escape about unlit
+
+* gamma correction
+
+= other features
+
+* animations panel, already seen
+* walk fly with collisions, already seen
++
+show level dungeon
+
+* seamlessly open/convert to x3d from gltf collada stl obj spine
++
+show gltf drone
++
+store some gltf to x3d, change color
+
+* work also in Inline, you can mix formats freely
++
+show blender/skinner_anim/ gltf
++
+show blender/skinner_anim/inline demo
++
+in view3dcene
++
+in editor
+
+* convert and screenshot in batch mode
++
+./view3dscene ../demo-models/vrml_2/castle_with_lights_and_camera.wrl --screenshot 0 a.png
+
+= many ways to roll your own browser
+
+* our example is model viewer
+* and to code using x3d as black box (compose scenes)
++
+show in editor
+
+* or code by building / changing x3d nodes
++
+show in webpage

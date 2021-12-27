@@ -1,0 +1,480 @@
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_advise_for_upgrading_upgrade_your_pipeline_from_x3d_to_gltf">1. Advise for upgrading: Upgrade your pipeline from X3D to glTF</a></li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This page documents Castle Game Engine 7.0 new features (since the last 6.4 release). It&#8217;s a work in progress&#8201;&#8212;&#8201;as we work on making CGE 7.0 ready for release.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://castle-engine.io/manual_editor.php">Castle Game Engine Editor application!</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Run it by simply executing "castle-editor" binary in the "bin/" subdirectory of our release zip.</p>
+</li>
+<li>
+<p>It comes with 4 templates for new projects: empty, 3D model viewer, 2D game, 3D FPS game. These showcase nicely editor possibilities and were designed as a good starting point for your applications.</p>
+</li>
+<li>
+<p>Editor allows to visually design TCastleUserInterface (like TCastleButton, TCastleLabel) and TCastleTransform (like TCastleScene) hierarchies.</p>
+</li>
+<li>
+<p>Editor also manages (creates, compiles) Castle Game Engine projects, using our <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a> underneath.</p>
+</li>
+<li>
+<p>Integrated with our tools (runs view3dscene, castle-view-image etc. when double-clicking), can preview data (models, images, sounds).</p>
+</li>
+<li>
+<p>Runs a configured FPC/Lazarus (in preferences).</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>glTF 2.0 full support and realistic rendering upgrades.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Including <em>Physically Based Rendering</em> materials, unlit materials and textures. This is supported in both glTF and X3D formats. The X3D nodes follow new X3D 4.0 standard.</p>
+</li>
+<li>
+<p>Animation of transformations and skin.</p>
+</li>
+<li>
+<p>Metadata support (e.g. from Blender custom properties), can also be used to set colliders.</p>
+</li>
+<li>
+<p>See <a href="https://castle-engine.io/creating_data_model_formats.php" class="bare">https://castle-engine.io/creating_data_model_formats.php</a> for details of glTF 2.0 support.</p>
+</li>
+<li>
+<p>See numerous news for details: <a href="https://castle-engine.io/wp/2020/04/25/huge-optimizations-of-gltf-animations-pool-of-scenes-for-fps-game-limited-pbr-specular-glossiness-support/">1</a>, <a href="https://castle-engine.io/wp/2020/04/19/lots-of-gltf-work-new-x3d-extensions-and-conversion-improvements/">2</a>, <a href="https://castle-engine.io/wp/2020/04/11/fun-with-sketchfab-plugin-in-blender-testing-gltf-performance/">3</a>,  <a href="https://castle-engine.io/wp/2020/04/11/testing-gltf-with-models-from-sketchfab-improved-per-vertex-rendering-from-gltf/">4</a>, <a href="https://castle-engine.io/wp/2020/04/01/gltf-skinned-animation-in-castle-game-engine/">5</a>, <a href="https://castle-engine.io/wp/2020/03/22/blender-exporters-upgrades-and-fixes-gltf-unlit-support-castle-anim-frames-improvements-loading-a-series-of-models-for-animation/">6</a>, <a href="https://castle-engine.io/wp/2020/06/11/reading-punctual-lights-from-gltf/">lights</a>.</p>
+</li>
+<li>
+<p>See <a href="https://castle-engine.io/wp/2020/03/07/physically-based-rendering-and-lots-of-other-lighting-materials-upgrades-in-castle-game-engine-and-x3d-4-0/">news specific about PBR (in glTF and X3D v4)</a></p>
+</li>
+<li>
+<p><a href="https://castle-engine.io/manual_gamma_correction.php">Gamma Correction and Tone Mapping</a>.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Nintendo Switch full support. See <a href="https://github.com/castle-engine/castle-engine/wiki/Nintendo-Switch" class="bare">https://github.com/castle-engine/castle-engine/wiki/Nintendo-Switch</a></p>
+</li>
+<li>
+<p>Much better API for viewports and cameras.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>To display <code>TCastleScene</code>/<code>TCastleTransform</code> hierarchy, use <code>TCastleViewport</code>, always. It is a normal user interface control, you can set it&#8217;s size/position as any other UI control.</p>
+</li>
+<li>
+<p>The concept of <em>camera</em> (where are you looking at) and <em>navigation</em> (whether we handle some keys/mouse to move the camera) was split. <code>TCastleViewport.Camera</code> is always created, and corresponds 1-to-1 to the parent viewport. <code>TCastleViewport.Navigation</code> is optional, you can explicitly create an instance of <code>TCastleExamineNavigation</code> or <code>TCastleWalkNavigation</code> and assign them there.</p>
+</li>
+<li>
+<p>Auto-detection of camera is by default off. This way you can reliably use <code>Viewport.Camera.SetView(...)</code> or <code>Viewport.Camera.Position := ...</code>, without worrying that some auto-detection will override them. Use <code>Viewport.AutoCamera := true</code> to explicitly request this auto-detection.</p>
+</li>
+<li>
+<p>Auto-detection of navigation is by default off. This way you can reliably set <code>Viewport.Navigation := ...</code> (or leave it <code>nil</code> deliberately) without worrying that some auto-detection will override it. Use <code>Viewport.AutoNavigation := true</code> to explicitly request this auto-detection.</p>
+</li>
+<li>
+<p>See <a href="https://castle-engine.io/wp/2019/12/29/last-refactor-before-cge-7-0-release-say-hello-to-tcastleviewport-and-tcastlewindowbase-say-goodbye-to-tcastlescenemanager-and-tcastlewindow/">news 1</a>, <a href="https://castle-engine.io/wp/2019/11/19/huge-camera-and-navigation-improvements-thank-you-patrons/">news 2</a>. See <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/3d_rendering_processing/view_3d_model_basic.lpr">view_3d_model_basic example</a>.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://castle-engine.io/wp/2020/06/29/third-person-navigation-with-avatar-component-in-castle-game-engine/">Third-Person Navigation (with Avatar) component</a></p>
+</li>
+<li>
+<p><a href="https://castle-engine.io/wp/2020/07/19/asynchronous-non-blocking-downloading-using-tcastledownload-class-and-other-http-communication-features/">New TCastleDownload class, to make asynchronous (non-blocking) downloading, or even to implement full-featured asynchronous communication with a REST server</a></p>
+</li>
+<li>
+<p>2D games:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Load sprite sheets and images to TCastleScene. See <a href="https://castle-engine.io/wp/2020/11/28/new-comfortable-way-of-using-sprite-sheets-and-images-in-viewports/">news</a>, <a href="Sprite sheets" class="bare">Sprite sheets</a>, <a href="Images" class="bare">Images</a>.</p>
+</li>
+<li>
+<p><a href="https://castle-engine.io/wp/2020/08/18/weighted-mesh-skinned-mesh-animation-in-spine/">Weighted mesh (skinned mesh animation) in Spine</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Big user interface classes improvements.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Easy functions to serialize / deserialize TCastleUserInterface and TCastleTransform hierarchies (see CastleComponentSerialize unit) as JSON files.</p>
+</li>
+<li>
+<p><a href="https://castle-engine.io/manual_castle_settings.php">CastleSettings.xml file support</a> to easily define scaling and default font.</p>
+</li>
+<li>
+<p>New controls: TCastleCheckbox, TCastleDesign, TCastleHorizontalGroup, TCastleVerticalGroup.</p>
+</li>
+<li>
+<p>Float positions / sizes for everything.</p>
+</li>
+<li>
+<p><em>All</em> existing controls significantly reworked and improved. So many improvements to our user interface hierarchy happened that it&#8217;s impossible to list it in short&#8201;&#8212;&#8201;see news
+<a href="https://castle-engine.io/wp/2019/02/17/new-user-interface-capabilities/">1</a>,
+<a href="https://castle-engine.io/wp/2018/11/26/november-engine-features-part-3-user-interface-classes-checkbox-refer-to-embedded-design/">2</a>,
+<a href="https://castle-engine.io/wp/2018/11/25/november-engine-features-part-2-tcastleuserinterface-borders-culling-clipping-events/">3</a>,
+<a href="https://castle-engine.io/wp/2018/11/24/november-engine-features-part-1-editor-anchors-9-slices-rulers-copy-paste-documentation/">4</a>,
+<a href="https://castle-engine.io/wp/2018/10/21/big-user-interface-and-editor-improvements/">5</a>,
+<a href="https://castle-engine.io/wp/2018/12/24/database-aware-demo-using-castle-game-engine-ui/">6</a>,
+<a href="https://castle-engine.io/wp/2018/04/22/engine-improvements-user-interface-horizontal-vertical-layout-groups-on-screen-keyboard-and-freetype-on-android-better-ui-scaling/">7</a>.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>castle-data:/</code> protocol (more advised than previous <code>ApplicationData</code> function). The &#8220;data&#8221; directory is documented <a href="https://castle-engine.io/manual_data_directory.php" class="bare">https://castle-engine.io/manual_data_directory.php</a> in a new manual page. It is also listed on a reworked manual page about networking, downloading and URLs <a href="https://castle-engine.io/manual_network.php" class="bare">https://castle-engine.io/manual_network.php</a>.</p>
+</li>
+<li>
+<p><code>TCastleTransformDesign</code> to refer to a designed <code>xxx.castle-transform</code> file, which can be used similar to Unity prefabs,</p>
+</li>
+<li>
+<p><code>TCastleBehavior</code> to enhance <code>TCastleTransform</code> functionality by behaviors like <code>TCastleBillboard</code> or <code>TCastleSoundSource</code>. See <code>examples/creature_behaviors/</code>. See also <a href="Castle Game Engine for Unity developers" class="bare">Castle Game Engine for Unity developers</a>.</p>
+</li>
+<li>
+<p>Optimizations and profiling features:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Built-in simple profiler (TCastleProfiler, use through the Profiler singleton). See <a href="https://castle-engine.io/wp/2018/08/25/headlight-built-in-simple-profiler-more/" class="bare">https://castle-engine.io/wp/2018/08/25/headlight-built-in-simple-profiler-more/</a></p>
+</li>
+<li>
+<p>Built-in frame profile (TCastleFrameProfiler)</p>
+</li>
+<li>
+<p>Integration with Nintendo profiler</p>
+</li>
+<li>
+<p>Large speedups, see news: <a href="https://castle-engine.io/wp/2019/10/13/numerous-optimizations-and-dynamic-batching/" class="bare">https://castle-engine.io/wp/2019/10/13/numerous-optimizations-and-dynamic-batching/</a> .</p>
+</li>
+<li>
+<p>Dynamic batching now available.</p>
+</li>
+<li>
+<p>Loading optimizations (see <a href="https://castle-engine.io/wp/2019/12/15/engine-improvements-gtkglext-no-longer-used-new-tcastleinspectorcontrol-loading-optimizations-twosidedmaterial-node/">here</a>).</p>
+</li>
+<li>
+<p>Everything described in the updated optimization docs on <a href="https://castle-engine.io/manual_optimization.php" class="bare">https://castle-engine.io/manual_optimization.php</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Rendering:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>New screen effects API, you can now make screen effects over any UI control (just place it as child of <a href="https://castle-engine.io/apidoc-unstable/html/CastleScreenEffects.TCastleScreenEffects.html" class="bare">https://castle-engine.io/apidoc-unstable/html/CastleScreenEffects.TCastleScreenEffects.html</a>), and they are much friendlier to use. See <a href="https://castle-engine.io/wp/2018/07/29/new-screen-effects-api-and-demo-text-node-optimizations-multi-texture-modes-fixes/" class="bare">https://castle-engine.io/wp/2018/07/29/new-screen-effects-api-and-demo-text-node-optimizations-multi-texture-modes-fixes/</a> . Also <a href="https://castle-engine.io/x3d_extensions_screen_effects.php">new GLSL screen-effects functions</a>. See also <a href="https://castle-engine.io/wp/2020/11/07/screen-space-reflections-effect-enhancements-to-glsl-api-for-effects/">news about screen-space reflections</a>.</p>
+</li>
+<li>
+<p>Easy mirrors on flat surfaces (see <a href="https://castle-engine.io/wp/2018/10/08/simple-water-using-castle-game-engine/" class="bare">https://castle-engine.io/wp/2018/10/08/simple-water-using-castle-game-engine/</a> )</p>
+</li>
+<li>
+<p>Aside from new <em>Physically-Based Rendering</em> (using <code>PhysicalMaterial</code> in X3D), also unlit rendering (using <code>UnlitMaterial</code> in X3D) and Phong lighting model (using <code>Material</code> in X3D) got serious improvements. <a href="https://github.com/michaliskambi/x3d-tests/wiki/Why-is-UnlitMaterial-useful">Explicit node for unlit rendering makes some cases more natural</a>. <a href="https://github.com/michaliskambi/x3d-tests/wiki/X3D-version-4:-New-features-of-materials,-lights-and-textures">Improvements to Material allow to configure everything using separate textures naturally (diffuseTexture, specularTexture, ambientTexture etc.), and we add natural slot for occlusion maps</a>.</p>
+</li>
+<li>
+<p>Shadow maps, clip planes available with OpenGLES renderer (this improves all platforms using OpenGLES by default: Android, iOS and Nintendo Switch).</p>
+</li>
+<li>
+<p><a href="https://castle-engine.io/wp/2019/08/11/astc-texture-compression-progress-of-engine-delphi-compatibility/">ASTC (Texture Compression) Support</a></p>
+</li>
+<li>
+<p><a href="https://castle-engine.io/wp/2020/10/09/attach-objects-to-animated-bones-like-weapon-in-characters-hand-by-exposetransforms/">Easily attaching an object to an animated bones, by ExposeTransforms</a></p>
+</li>
+<li>
+<p><a href="https://castle-engine.io/wp/2020/11/07/render-options-configurable-in-editor/">TCastleScene.RenderOptions, configurable by editor too</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Localization:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Two methods, with demos: <a href="https://castle-engine.io/manual_text.php" class="bare">https://castle-engine.io/manual_text.php</a></p>
+</li>
+<li>
+<p>CastleLocalizationGetText allows to easily translate UI design (created e.g. using CGE editor), including generating template for translators to translate UI design.</p>
+</li>
+<li>
+<p>See <a href="https://castle-engine.io/wp/2019/07/21/localization-improvements-and-a-japanese-version-of-escape-from-the-universe/" class="bare">https://castle-engine.io/wp/2019/07/21/localization-improvements-and-a-japanese-version-of-escape-from-the-universe/</a> and <a href="https://castle-engine.io/wp/2018/04/25/engine-improvements-localization/" class="bare">https://castle-engine.io/wp/2018/04/25/engine-improvements-localization/</a> .</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Animation features:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Animation blending (<a href="https://castle-engine.io/wp/2018/03/21/animation-blending/" class="bare">https://castle-engine.io/wp/2018/03/21/animation-blending/</a>)</p>
+</li>
+<li>
+<p>Many new features related to PlayAnimation. TPlayAnimationParameters allows to specify things like StopNotification callback, playing backward etc. (see <a href="https://castle-engine.io/wp/2018/04/21/engine-improvements-rejuvenated-playanimation-method-easily-play-animations-backward-with-blending-stop-notifications/" class="bare">https://castle-engine.io/wp/2018/04/21/engine-improvements-rejuvenated-playanimation-method-easily-play-animations-backward-with-blending-stop-notifications/</a> ). Additional methods like StopAnimation, ResetAnimationState.</p>
+</li>
+<li>
+<p>Ability to easily play simultaneous animations using TTimeSensorNode.Start/Stop.</p>
+</li>
+<li>
+<p>See <a href="https://castle-engine.io/wp/2019/06/22/many-animations-improvements-gltf-simultaneous-anims-view3dscene-panel-optimizations/" class="bare">https://castle-engine.io/wp/2019/06/22/many-animations-improvements-gltf-simultaneous-anims-view3dscene-panel-optimizations/</a></p>
+</li>
+<li>
+<p>Spine <a href="https://castle-engine.io/wp/2020/01/05/animating-by-mesh-deformation-in-spine-physics-spiral-of-death-avoidance-examples-and-manual-upgrades/">mesh deformation</a> animation</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Notable new examples:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>tiled/strategy_game_demo/ - Complete working strategy game, with maps designed using Tiled, working equally well with hexagonal/orthogonal/isometric maps (thanks to new Tiled API), user interface designed using Castle Game Engine Editor and TUIState. See also <a href="https://castle-engine.io/wp/2019/01/06/strategy-game-demo-using-cge-and-tiled/" class="bare">https://castle-engine.io/wp/2019/01/06/strategy-game-demo-using-cge-and-tiled/</a> , <a href="https://castle-engine.io/wp/2018/12/28/tiled-maps-improvements/" class="bare">https://castle-engine.io/wp/2018/12/28/tiled-maps-improvements/</a> .</p>
+</li>
+<li>
+<p>tiled/map_viewer/ - Simple viewer for Tiled maps. You can pan and zoom maps, and load any Tiled map.</p>
+</li>
+<li>
+<p>headlight_test/ - Shows new <code>Viewport.Items.UseHeadlight</code> property.</p>
+</li>
+<li>
+<p>audio/play_sounds/ - Test mixing sounds.</p>
+</li>
+<li>
+<p>localization/gettext/ - Localization example, translating resourcestrings and UI designed in CGE editor.</p>
+</li>
+<li>
+<p>screen_effects_demo/ - New screen effects API demo.</p>
+</li>
+<li>
+<p>3d_rendering_processing/anisotropic_filtering/ - Using anisotropic filtering.</p>
+</li>
+<li>
+<p>network/asynchronous_download/ - asynchronous, cross-platform downloading using TCastleDownload.</p>
+</li>
+<li>
+<p>network/remote_logging/ - remote logging, basis of communicating with REST server using TCastleDownload.</p>
+</li>
+<li>
+<p>third_person_camera/ - 3rd-person navigation (with avatar) demo.</p>
+</li>
+<li>
+<p><a href="https://github.com/castle-engine/castle-engine/tree/master/examples/animations/expose_transformations_to_animate_children">animations/expose_transformations_to_animate_children</a> - attach objects to animated bones, e.g. attach a weapon (switch at runtime between a sword, axe, nothing&#8230;&#8203;) to character&#8217;s hand.</p>
+</li>
+<li>
+<p><a href="https://github.com/castle-engine/castle-engine/tree/master/examples/advanced_editor">advanced_editor</a> - advanced usage of UI designs (<code>xxx.castle-user-interface</code>), transformation designs (<code>xxx.castle-transform</code>, like prefabs in Unity), and creating and registering custom editor components. See news: <a href="https://castle-engine.io/wp/2020/12/20/new-tcastletransformdesign-component-like-prefab-for-tcastletransform-example-advanced_editor-showing-advanced-usage-of-designs-and-custom-components/" class="bare">https://castle-engine.io/wp/2020/12/20/new-tcastletransformdesign-component-like-prefab-for-tcastletransform-example-advanced_editor-showing-advanced-usage-of-designs-and-custom-components/</a> .</p>
+</li>
+<li>
+<p><a href="https://github.com/castle-engine/castle-engine/tree/master/examples/3d_rendering_processing/collisions">collisions</a> - demo of using our collision routines.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Android improvements:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>--target=android to build both 32-bit and 64-bit binaries.</p>
+</li>
+<li>
+<p>New <a href="https://github.com/castle-engine/castle-engine/wiki/Android-Services">Android services</a>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>facebook,</p>
+</li>
+<li>
+<p>apps_flyer,</p>
+</li>
+<li>
+<p>freetype,</p>
+</li>
+<li>
+<p>download_urls</p>
+</li>
+<li>
+<p>read_external_storage</p>
+</li>
+<li>
+<p>write_external_storage</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Many upgrades to build infrastructure (new Gradle version etc.)</p>
+</li>
+<li>
+<p>AdMob upgraded, and supports TAdWatchStatus that reports <em>why</em> user did not watch the ad.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>iOS improvements:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/ios/services/vibrate/README.md">Vibrations</a>.</p>
+</li>
+<li>
+<p>GPU compressed textures support for square textures (Apple makes it harder to support non-square textures).</p>
+</li>
+<li>
+<p>Build tool has command-line options to create IPA file or even upload the build to TestFlight, see <a href="https://github.com/castle-engine/castle-engine/wiki/iOS">iOS building page</a>.</p>
+</li>
+<li>
+<p><a href="https://castle-engine.io/manual_text.php">FreeType is supported</a> so you can freely load fonts at runtime.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Other <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a> improvements:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://castle-engine.io/creating_data_auto_generated_textures.php">Packaging of textures specific to given platform</a></p>
+</li>
+<li>
+<p>Filtering of messages (better output, that avoids some unnecessary warnings from specializing generics containers, but at the same time leaves these warnings enabled for your code)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Physics improvements:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Collision detection (TRigidBody.GetCollidingTransforms, OnCollisionEnter, OnCollisionExit).</p>
+</li>
+<li>
+<p><a href="https://castle-engine.io/wp/2019/11/02/triggers-detecting-collisions-and-physics-settings/">Triggers and physics settings</a></p>
+</li>
+<li>
+<p>And more, see <a href="https://castle-engine.io/wp/2019/06/15/physics-collision-detection-and-new-properties/" class="bare">https://castle-engine.io/wp/2019/06/15/physics-collision-detection-and-new-properties/</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Sound improvements:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Split into multiple backends, and FMOD backend added, see <a href="https://github.com/castle-engine/castle-engine/wiki/FMOD" class="bare">https://github.com/castle-engine/castle-engine/wiki/FMOD</a> .</p>
+</li>
+<li>
+<p>More features for sounds XML files, like aliases and groups. See <a href="https://castle-engine.io/wp/2019/04/29/new-sound-features-alternative-backends-new-demo-aliases/" class="bare">https://castle-engine.io/wp/2019/04/29/new-sound-features-alternative-backends-new-demo-aliases/</a></p>
+</li>
+<li>
+<p>LoopingChannel, to easily play multiple sound tracks, ambience tracks etc.</p>
+</li>
+<li>
+<p><a href="https://castle-engine.io/wp/2019/08/18/streaming-sound-tracks-fmod-linking-improved/">Sound streaming</a>.</p>
+</li>
+<li>
+<p>New way to play sounds by <code>TCastleSound</code> and <code>TCastleSoundSource</code> (TODO: in progress to make it clickable in CGE editor)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Last but not least, stuff "around" CGE:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Docker image with docs: <a href="https://castle-engine.io/wp/2019/02/16/using-castle-game-engine-with-docker/" class="bare">https://castle-engine.io/wp/2019/02/16/using-castle-game-engine-with-docker/</a></p>
+</li>
+<li>
+<p>New forum <a href="https://forum.castle-engine.io/" class="bare">https://forum.castle-engine.io/</a></p>
+</li>
+<li>
+<p>License simplified. The engine is "LGPL with static linking exception" (i.e. you can use it in commercial applications) out-of-the-box. See <a href="https://castle-engine.io/wp/2018/05/30/nurbs-simplified-license-just-lgpl-out-of-the-box/" class="bare">https://castle-engine.io/wp/2018/05/30/nurbs-simplified-license-just-lgpl-out-of-the-box/</a> and <a href="https://github.com/castle-engine/castle-engine/blob/master/COPYING.md" class="bare">https://github.com/castle-engine/castle-engine/blob/master/COPYING.md</a> for details.</p>
+</li>
+<li>
+<p>API searching, switching between stable/unstable API docs.</p>
+</li>
+<li>
+<p><a href="https://castle-engine.io/wp/2020/09/27/new-patreon-rewards-and-goals-since-october-including-plans-for-training-videos-conferencegamejam-occulus-port/">New Patreon rewards and goals</a> including conferences, Occulus port and more :)</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="_advise_for_upgrading_upgrade_your_pipeline_from_x3d_to_gltf">1. Advise for upgrading: Upgrade your pipeline from X3D to glTF</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>While X3D is still our <em>scene graph format</em> (which means that everything you render is composed from X3D nodes in memory, which practically means: Pascal classes <code>TXxxNode</code>), our main <em>file format</em> is now glTF, not X3D (which means that we advise to export from Blender to glTF, not to X3D).</p>
+</div>
+<div class="paragraph">
+<p>The reason for that is practical. glTF is just better now, as a file format:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Although X3D offers a lot of features, but the existing Blender -&gt; X3D exporter is extremely poor. It doesn&#8217;t support many features (e.g. it cannot export animations, or even textures in the latest version).</p>
+</li>
+<li>
+<p>Moreover, the existing Blender -&gt; X3D exporter doesn&#8217;t support features which are CGE extensions or are only in X3D 4.0, like PBR or normalmaps. We had an extended CGE exporter (to X3D) for older Blender, but it was too much burden to maintain. We also had castle-anim-frames exporter, but castle-anim-frames is a poor solution compared to proper glTF skinned animation.</p>
+</li>
+<li>
+<p>Existing Blender -&gt; glTF is actively maintained (by Khronos together with Blender), and supports all the features we like. In particular PBR, all possible textures and normalmaps, unlit materials, animations by transformations, animations by skinning, by morphing, metadata (from Blender custom properties).</p>
+</li>
+<li>
+<p>glTF ecosystem is more active. By this I mean that great quality glTF models can be found e.g. on Sketchfab.</p>
+</li>
+<li>
+<p>glTF is much smarter about "binary data vs text data", which results in it being both simpler and more efficient. glTF uses a binary stream for data that should be uploaded to GPU (in particular everything per-vertex), and it uses JSON stream for other things. This makes glTF files much faster to load. In contrast, X3D text files encode 100% things in text (and thus are often huge and slow to load), unless one uses X3D binary encoding (which is not implemented in CGE, and probably will never be&#8201;&#8212;&#8201;as it is still poor compared to glTF, as it only speeds up parsing but data still needs to be repacked for GPU).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>So it seems reasonable to "just switch to glTF". I can now rely on Khronos to work on Blender -&gt; glTF exporter.</p>
+</div>
+<div class="paragraph">
+<p>We advise you to use glTF for all your future games, instead of X3D, now.</p>
+</div>
+<div class="paragraph">
+<p>You can, although you don&#8217;t have to, switch your existing games to use glTF too. Of course we continue to support X3D model format in 100%, so you don&#8217;t have to. Things to watch out for:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>In case of Blender, both the X3D exporter and glTF exporters convert (by default) "up" from +Z to +Y. However, they do it in a little different way. In effect, if you design a creature following Blender "front" convention, then it will look toward -Z direction after being exported to X3D, but in +Z direction after being exported to glTF. To be precise, X3D output is rotated 180 degrees around (0,1,0) compared to X3D output.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>For games using X3D exporter for creatures, call "TCastleTransform.DefaultOrientation := otUpYDirectionMinusZ". This was the default in CGE 6.4, but in CGE 7.0 the default is matching glTF convention, which is "TCastleTransform.DefaultOrientation := otUpYDirectionZ".</p>
+</li>
+<li>
+<p>If you switch your level models from X3D to glTF, remember to adjust any position you manually define (e.g. in code). Adjust it by rotating 180 degrees around (0,1,0). (For positions, you can just negate X and Z coordinates to achieve this.) E.g. camera or lights positions, if you ever define them in code.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>The glTF exporter will create materials using PBR (physically-based rendering). If you prefer to use Phong lighting model (because it is faster, or because it just looks better in your specific case) then you can define GltfForcePhongMaterials (global variable in CastleLoadGltf unit) before doing any loading. If you don&#8217;t -&gt; remember that materials will just look different, and you need to manually adjust them (automatic conversion is not possible, as there are just different equations underneath).</p>
+</li>
+</ul>
+</div>
+</div>
+</div>

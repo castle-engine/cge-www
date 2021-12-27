@@ -1,0 +1,130 @@
+:doctype: book
+:sectnums:
+:source-highlighter: coderay
+:toc: left
+
+_Castle Game Engine_ includes a _lot_ of units. They are divided into a couple of groups, which you can see as subdirectories in the engine `src` subdirectory: `3d`, `audio` and so on. The groups are shortly described below.
+
+One of the ways how we keep the engine architecture maintainable is to strictly limit the dependencies between unit groups. For example, the 3D or UI stuff depends on images, but the units in the `images` group cannot depend on units in the `3d` or `ui` groups. A strict dependency tree allows to easily debug some hard problems (when you want to strip the used units, to get to the "bottom of the problem").
+
+We list the dependencies below. *They can be automatically checked* (the tool for this can be found in `scripts/check_units_dependencies/` in https://github.com/castle-engine/cge-scripts ).
+
+*TODO*: Due to the need to support some deprecated methods, right now `CastleCameras` depends on `CastleSceneManager`, which breaks the dependencies outlined below, making `3d` and `game` inter-dependent. This is an exception, and otherwise we should still follow these dependencies, and this exception will be fixed in future releases.
+
+= Table of Contents
+
+* <<unit-groups,Unit groups>>
+ ** <<castle_base-package,castle_base package>>
+  *** <<base,base>>
+  *** <<files,files>>
+  *** <<audio,audio>>
+  *** <<images,images>>
+  *** <<fonts,fonts>>
+  *** <<ui,ui>>
+  *** <<services,services>>
+  *** <<3d,3d>>
+  *** <<castlescript,castlescript>>
+  *** <<x3d,x3d>>
+  *** <<game,game>>
+ ** <<castle_window-package,castle_window package>>
+  *** <<window,window>>
+ ** <<castle_components-package,castle_components package>>
+  *** <<components,components>>
+* <<opengl-units,OpenGL units>>
+
+= Unit groups
+
+== castle_base package
+
+=== base
+
+Basic utilities and classes. Stuff for dealing with vectors, colors, strings, Unicode, logging, rectangles...
+
+_Depends on_: nothing else.
+
+=== files
+
+Files and XML utilities. Also downloading from the network, and processing of URLs. See link:pass:[http://castle-engine.sourceforge.net/tutorial_network.php][tutorial about network and downloading].
+
+_Depends on_: everything above (that is, units in "base" group).
+
+=== audio
+
+Sound files loading, sound playback (including 3D sound) using OpenAL, processing of sound files. See link:pass:[http://castle-engine.sourceforge.net/tutorial_sound.php][tutorial about sound].
+
+_Depends on_: everything above (that is, units in "base" and "files" groups).
+
+=== images
+
+Images, textures, videos -- loading, saving, displaying, processing in many ways.
+
+_Depends on_: everything above except audio.
+
+=== fonts
+
+Loading font data from files using FreeType, rendering text, converting font data to be embeddable as Pascal units.
+
+_Depends on_: everything above except audio.
+
+=== ui
+
+2D user interface of the engine. TUIControl class with descendants, like buttons, panels, on-screen menus... Also keyboard, mouse and other input handling.
+
+_Depends on_: everything above.
+
+=== services
+
+Integration with environment (operating system). Opening a document, making a mobile payment, sending analytics data... Note that the unit `CastleMessaging`, important for Android services, is inside the `base` group, not here (since nearly everything else can use it, e.g. sound engine needs to use it).
+
+_Depends on_: everything above.
+
+=== 3d
+
+3D basic stuff (not yet related to X3D nodes). Includes basic T3D class, quaternions, axis-aligned bounding box types...
+
+_Depends on_: everything above.
+
+=== castlescript
+
+Parsing and executing expressions and programs in the  link:pass:[http://castle-engine.sourceforge.net/castle_script.php][CastleScript language].
+
+_Depends on_: everything above.
+
+=== x3d
+
+This is the core of our engine rendering and processing:
+
+* Scene, which means a graph of X3D nodes: rendering, reading, writing and processing (animating, collisions..). Reading many 2D and 3D formats to X3D scene graph.
+* Viewport to display 2D and 3D scenes.
+
+_Depends on_: everything above.
+
+=== game
+
+And high level units implementing game mechanics common for many games -- creatures, items, player, levels.
+
+_Depends on_: everything above.
+
+== castle_window package
+
+=== window
+
+TCastleWindow, easy window with an OpenGL context.
+
+_Depends on_: game, that is: everything above.
+
+== castle_components package
+
+=== components
+
+TCastleControl, a Lazarus component to render with our engine.
+
+_Depends on_: game. (This is an alternative to TCastleWindow, so it has the same dependencies. Units between `window` and `components` group cannot use each other.)
+
+= OpenGL units
+
+Most of the units groups have a subdirectory called `opengl`. The things that depend on OpenGL or OpenGLES (GL, GLU, GLExt, CastleGLES20 units -- that should be used _only_ by the CastleGL macro) must be placed inside this subdirectory. This guarantees that stuff outside the `opengl` subdirectory is independent from the rendering library.
+
+Some of the unit groups are exceptions to the above rule: they do not have the `opengl` subdirectory, and all their units can freely use OpenGL. This applies to units in `game`, `window` or `component` groups. They all depend on other units already using OpenGL.
+
+This order is maintained to be ready to implement another renderer in the Castle Game Engine some day. Maybe Direct 3D , maybe Vulkan, maybe Metal... it all depends on the contributions, and on the needs of community. Note that making a first alternative renderer will also require remaking some stuff to use more "pluggable" architecture. Probably at that point some units will become "untangled" from depending on OpenGL stuff, for example most units in `game` and `x3d` will need to be available regardless of the renderer. The internal architecture of `TCastleScene` will need to be changed to call a renderer, without depending on OpenGL units.

@@ -1,0 +1,237 @@
+:sectnums:
+:source-highlighter: coderay
+:toc: left
+
+This page documents some compatibility-breaking changes in _Castle Game Engine_ API version 6.5 (unstable) and 7.0 (upcoming stable release), compared to the last 6.4 release.
+
+Note that _we try to do most of our changes without breaking compatibility, merely marking old API as "deprecated"_. This way you can keep using old API, and compiler nicely warns about it (although we advise to eventually upgrade "deprecated" stuff too, as "deprecated" stuff may be removed after a couple of more releases). The page below only lists changes that _had to be done by removing/changing something previously available_, and you just have to upgrade your code along with upgrading to CGE 6.5 / 7.0.
+
+https://castle-engine.io/talk.php[If you are unsure how to upgrade something, or why something changed, please talk with us!]
+
+* `TUIControl.RenderStyle` is removed. It was a convoluted way to specify rendering order. Now, only the position of the control among the children (when you `InsertFront`, `InsertBack` etc.) determines the rendering order.
+* The default `TCastleLabel` color is now `Black`, not `White`. This compatibility break seemed unavoidable, unfortunately our UI controls were inconsistent -- most assumed a modern "black colors over white background scheme" (TCastleEdit, TCastleRectangleControl, TCastleCheckbox...), but TCastleLabel was by default white. So it e.g. was invisible over default TCastleRectangleControl.
++
+If you depended that the label is by default white, then now simply adjust your code to always set `MyLabel.Color := White` after creating `+MyLabel := TCastleLabel.Create(...)+`. Alternatively, temporarily, you can set `Theme.DefaultLabelWhite := true` at the initialization of your game. (But beware that `Theme.DefaultLabelWhite` is only a temporary compatibility crutch. It doesn't play nicely with designs created in CGE editor, since the (de)serialization will still assume that by default label has white color.)
+
+* The default `TCastleSceneManager.BackgroundColor` is now very dark gray `Vector4(0.1, 0.1, 0.1, 1)`, instead of pure black `Vector4(0, 0, 0, 1)`. This makes a better default, as pure black things (3D / 2D models, or user interface, like labels) are still visible over this background (as well as pure white things).
++
+If you'd like to restore the old default, just set `MySceneManager.BackgroundColor := Black` after creating any `TCastleSceneManager` instance. If you use `TCastleWindow` or `TCastleControl` or `TCastle2DControl`, they contain a default scene manager. You can trivially modify it's properties by e.g. `Window.SceneManager.BackgroundColor := Black`.
++
+Note that this doesn't matter if you use https://castle-engine.io/x3d_implementation_environmentaleffects.php[Background node to specify a background color (or skybox textures) in X3D]. It also doesn't matter if your scene manager is transparent (`TCastleSceneManager.Transparent` is `true`). In these cases, scene manager `BackgroundColor` doesn't matter.
+
+* _The user interface coordinates (all positions, sizes, as well as font sizes) are float-based now._ See https://castle-engine.io/wp/2018/10/21/big-user-interface-and-editor-improvements/[this post] for details. In some cases, you may need to adjust your code. For example if you do `SomeIntValue := MyOtherControl.Width div 2;`, now you will have to change it to `SomeFloatValue := MyOtherControl.Width / 2;`.
+* The interpretation of `FullSize=true` is now consistent across all `TCastleUserInterface` ancestors. It _always_ overrides the control to fill the parent.
++
+So `FullSize=true` works the same. Even for `TCastleButton`. Even for `TCastleImageControl` with `TCastleImageControl.Stretch=false` value.
++
+Also, changing `Left`/`Bottom` properties doesn't matter when you use `FullSize`. Previously, it was possible to use `FullSize` to have a rectangle with the same size as parent, but still move it using `Left`/`Bottom` properties. It is no longer possible: `FullSize` always means _fill the parent_, so the rendered area of the control covers the parent. You can use `WidthFraction := 1; HeightFraction := 1;` to set size equal to the parent, but control the position as you like.
+
+* `TCastleImageControl.ProportionalScaling` values `psFit` and `psEnclose` work a bit differently.
++
+Previously, they placed the scaled image in the middle of the rectangle determined by `Left`,`Bottom`,`Width`,`Height`. Now, auto-sizing changes size, but the content keeps at the same left-bottom corner. So the scaled image's left-bottom corner is always at the position indicated by `Left`,`Bottom` properties.
++
+To center image, just use `MyImageControl.Anchor(hpMiddle); MyImageControl.Anchor(vpMiddle);`.
++
+This is consistent with other UI controls.
+
+* Anchors are always _on_ now. The ability to turn them on / off in previous CGE versions was more confusing than helpful, and it was also useless.
++
+Previously you could deactivate anchor by setting `HasHorizontalAnchor` to `false` (in fact, it was `false` by default). Now, you should achieve the same effect by calling `Anchor(hpLeft);` (which is also the default state). This aligns left control border to left parent border with 0 delta, which has the same effect as "no anchor".
+
+* Some components are no longer registered on the component palette. To bring them back (e.g. to open LFM files that refer to these components), you can define `{$define CASTLE_REGISTER_ALL_COMPONENTS_IN_LAZARUS}` to the `src/castleconf.inc` file. See https://github.com/castle-engine/castle-engine/commit/5cb6fb2ea3a4159cf7d371b6abde42acc667a515[this commit log] for reasons.
+* `TCastleFont.Scale` was removed (as it was a trap, due to how it was implemented and specified, it was only working on some `TCastleFont` descendants). Use only `TCastleFont.Size`. For `TTextureFont` (which is the most commonly used font descendant) the `Scale` property is still present, so usually writing `Font.Scale := 0.5` continues to work, if `Font` is of class `TTextureFont`.
+* By default, fonts show a fallback glyph (like "?") if you try to render a missing character in the font. This is usually a good idea -- it allows the user to see that something is there (so e.g. "backspace" makes sense, otherwise you would "backspace" invisible characters sometimes), the developer knows that something is missing (the https://castle-engine.io/manual_log.php[log] will also contain warnings about missing characters). However, if you want to restore previous behavior (that silently ignores missing glyphs) set `TTextureFont.FontData.UseFallbackGlyph := false`.
+* `TGLImage.ClipLine` and `TCastleImageControl.ClipLine` are expressed in local (texture) image coordinates, in which image `(X, Y)` span from `(0, 0)` (bottom-left) to `(1, 1)` (top-right). Previously, they worked in the final screen coordinates. The new definition is much more useful, it allows to express common use-cases with a constant equation, e.g. reject left half of the image by `ClipLine = (1, 0, 0.5)`, regardless of the image size and position on the screen. It also plays nicely with UI scaling -- the previous definition was working in final device screen coordinates, and we avoid exposing them in UI API.
+* `TCastleButton.Image` and 4x `TCastleButton.CustomBackgroundXxx` properties change from TCastleImage to TCastleImagePersistent. Instead of assigning them like
++
+----
+  MyButton.CustomBackgroundNormal := LoadImage('castle-data:/my_image.png');
+  MyButton.OwnsCustomBackgroundNormal := true;
+----
++
+you should now use
++
+----
+  MyButton.CustomBackgroundNormal.URL := 'castle-data:/my_image.png';
+----
++
+Eventually, you can also do more elaborate version:
++
+----
+  MyButton.CustomBackgroundNormal.Image := LoadImage('castle-data:/my_image.png');
+  MyButton.CustomBackgroundNormal.OwnsImage := true; // actually this is no longer needed
+----
++
+The contained image is now owned by default, which makes the usual use-case simpler. So the behavior is like previous `TCastleButton.OwnsImage`, `TCastleButton.OwnsCustomBackgroundXxx` would be `true` by default. This change is the reason why we break compatibility -- although we could make an API that _seems_ backward-compatible (that is, _compiles OK_), but it would have bad consequences at runtime, with applications crashing, since the default of `OwnsXxx`  is now true (and you would free the same pointer two times, in some circumstances). We decided that it's better to break compatibility at compile-time.
++
+This change makes it possible to easily configure these images using CGE editor. But it also makes configuring these images through code easier.
++
+Moreover, there is an underlying cache (of both TEncodedImage and TDrawableImage) used. So you can set multiple images to the same URL, and don't worry about the resources duplication on GPU -- we will actually share all the resources underneath, across all `TCastleImagePersistent` with the same URL. (You can turn it off by `TCastleImagePersistent.Cache` is special circumstances, e.g. when loading image from URL but then editing it at runtime in some controls.)
++
+Also `TCastleButton.CustomBackgroundCorners` and `TCastleButton.ImageAlphaTest` are removed. They are replaced by new settings inside `TCastleImagePersistent` subcomponents, In particular you have `MyButton.CustomBackgroundXxx.ProtectedSides` and `MyButton.Image.Alpha`.
+
+* The callback `TAdClosedEvent` (used by `TAds.OnFullScreenAdClosed`) parameters changed.
+ ** Previously they were `(const Sender: TObject; const Watched: boolean)`.
+ ** Now they are `(const Sender: TObject; const WatchedStatus: TAdWatchStatus)`. The `WatchedStatus` enum provides more detailed information why the ad was not watched.
+ ** To upgrade your code easily, change the `Watched: boolean` -> `WatchedStatus: TAdWatchStatus` declaration and instead of `Watched` use `WatchedStatus = wsWatched`.
+* If you use https://castle-engine.io/creating_data_sound.php[sounds XML file with importance] note that the default value of `default_importance` is now `10` (not maximum 2147483647). So sounds that had `default_importance` not explicitly specified are now treated as _less_ important than e.g. `default_importance="player"`. To easily restore previous behavior, just add `default_importance="maximum"` for sounds without explicit `default_importance` attribute.
++
+Note that this doesn't matter if you use sounds XML file, but never specify `default_importance`. In this case, all sounds have the same importance, and it's numerical value doesn't matter.
++
+It also doesn't matter in practice if you never play more than 16 sounds simultaneously at once. The "importance" doesn't matter if you don't play too many sounds at once.
+
+* We disabled the default behavior of limiting gravity to only work within the level bounding box. It was non-obvious, and often a trap for newcomers ("why does gravity not work if I jump high?").
++
+An improved version of it (eliminating the above "why does gravity not work if I jump high?" problem) is now available through `PreventInfiniteFallingDown`, which is by default `false` (to be safe). So if you relied on this, consider using `Viewport.PreventInfiniteFallingDown := true`.
++
+You can also assign `SceneManager.OnMoveAllowed` event to do something like this:
++
+[,pascal]
+----
+  { Don't let objects/camera fall outside of the box because of gravity,
+    as then they would fall into infinity. }
+  if BecauseOfGravity then
+    Allowed := Items.BoundingBox.Contains(NewPosition);
+----
+
+* When creating resources from `CastleCreatures` and `CastleItems` units, pass `SceneManager.LevelProperties` as 1st argument, instead of `SceneManager.Items`.
+* Since https://github.com/castle-engine/castle-engine/commit/42307ed4d6063da87436a3b9e4d930d2f52e61c7[this commit]: `TShapeNode.Material` is now `TAbstractMaterialNode`, not a more specific `TMaterialNode`.
++
+This may affect you if you used construction like this:
++
+[,pascal]
+----
+  Shape.Material := TMaterialNode.Create; // this still works OK
+  Shape.Material.DiffuseColor := GreenRgb; // this will not compile anymore
+----
++
+Since `Shape.Material` is now `TAbstractMaterialNode`, and `TAbstractMaterialNode` doesn't have `DiffuseColor` property, this will not compile anymore.
++
+Instead use local variable `Mat: TMaterialNode` and do it like this:
++
+[,pascal]
+----
+  Mat := TMaterialNode.Create;
+  Mat.DiffuseColor := GreenRgb;
+  Shape.Material := Mat;
+----
++
+*Reason for breakage*: Other material descendants are possible in CGE 7.0:
+
+ ** `TUnlitMaterial`. Useful for unlit shapes, see https://github.com/michaliskambi/x3d-tests/wiki/X3D-version-4:-New-features-of-materials,-lights-and-textures[X3D 4.0 materials].
+ ** `TPhysicalMaterial`. Physically-based rendering, see https://github.com/michaliskambi/x3d-tests/wiki/X3D-version-4:-New-features-of-materials,-lights-and-textures[X3D 4.0 materials].
+ ** `TTwoSidedMaterialNode`. Acting just like one-sided material for now (`separateBackColor` is ignored, and the two-sidedness is actually determined by geometry `solid` field, following X3D spec).
+
+* `TCastleSceneManager.OnMoveAllowed` callback is removed. You can use `TCastleWalkNavigation.OnMoveAllowed` instead. Or set invisible colliders to limit the movement.
+* `TCastleViewport` by default has `FullSize`, `AutoCamera`, `AutoNavigation` set to `false`. Set them to `true` to have exact behavior from previous engine versions.
+* The management of levels and player in `CastleLevels`, `CastlePlayer` was upgraded in a few ways. In particular, you should now _never_ add `Player` instance manually to `Viewport.Items` (so do not call `Viewport.Items.Add(Player)` yourself). Also, always assign `TLevel.Player` _before_ calling  `TLevel.Load`.
+* `TCastleTransform.DefaultOrientation` changed from `otUpYDirectionMinusZ` to `otUpYDirectionZ`. Reason:
+ ** First of all, this matches the default orientation made by Blender exporter to glTF and Wavefront OBJ. This way, if you create a model in Blender following Blender's conventions of views (Front / Back, Left  / Right, Top / Bottom) and then load this in CGE, then `TCastleTransform.Direction` will behave in an intuitive manner out-of-the-box.
++
+I checked how it looks for formats exported from Blender (by default):
+
+  *** Exporting to obj, bvh, fbx, gltf: changes up from +Z (Blender) into +Y, and has `axis_forward='-Z'` (which matches our `otUpYDirectionZ`)
+  *** Exporting to x3d: changes up from +Z (Blender) into +Y, and has `axis_forward='Z'` (which matches our `otUpYDirectionMinusZ`)
+  *** Exporting to ply, stl: makes no change (Blender's +Z remains +Z after export)
+
++
+This can be checked by searching `orientation_helper` in Blender's scripts sources (done on 2.82):
++
+----
+io_scene_obj/__init__.py:52:        orientation_helper,
+io_scene_obj/__init__.py:58:@orientation_helper(axis_forward='-Z', axis_up='Y')
+io_scene_obj/__init__.py:328:@orientation_helper(axis_forward='-Z', axis_up='Y')
+io_mesh_ply/__init__.py:56:    orientation_helper
+io_mesh_ply/__init__.py:95:@orientation_helper(axis_forward='Y', axis_up='Z')
+io_scene_x3d/__init__.py:51:        orientation_helper,
+io_scene_x3d/__init__.py:57:@orientation_helper(axis_forward='Z', axis_up='Y')
+io_scene_x3d/__init__.py:165:@orientation_helper(axis_forward='Z', axis_up='Y')
+io_anim_bvh/__init__.py:53:    orientation_helper,
+io_anim_bvh/__init__.py:58:@orientation_helper(axis_forward='-Z', axis_up='Y')
+io_mesh_stl/__init__.py:67:    orientation_helper,
+io_mesh_stl/__init__.py:76:@orientation_helper(axis_forward='Y', axis_up='Z')
+io_mesh_stl/__init__.py:206:@orientation_helper(axis_forward='Y', axis_up='Z')
+io_scene_fbx/__init__.py:57:        orientation_helper,
+io_scene_fbx/__init__.py:63:@orientation_helper(axis_forward='-Z', axis_up='Y')
+io_scene_fbx/__init__.py:378:@orientation_helper(axis_forward='-Z', axis_up='Y')
+----
++
+So X3D is the only format where `otUpYDirectionMinusZ` made sense. And https://castle-engine.io/creating_data_blender.php[Blender X3D exporter isn't really useful right now] and we advise using glTF.
+
+ ** Looking at sample glTF characters from Khronos -- they confirm this convention. So it's not a Blender+glTF convention, it's a glTF convention. (Actually, convention of all other 3D formats too, looking at above.)
+ ** And exporting models like this makes more sense, so it's actually good that most formats follow it. It means that model front looks into +Z. So if you view it with the default camera (that has direction -Z) then you see model's front (e.g. face).
+* Some `CastleCameras` properties were still in degrees (while the majority of engine used radians for angles). They were changed to be in radians. You may need to update your constants/limits. This affects `MouseLookHorizontalSensitivity`, `MouseLookVerticalSensitivity`, `RotationHorizontalSpeed`, `RotationVerticalSpeed`.
+* `TPlayer.Navigation` is now `TCastleMouseLookNavigation` instance, not `TCastleWalkNavigation` instance. That's because `TPlayer.Navigation` is now a function, it can return either `TPlayer.WalkNavigation` (`TCastleWalkNavigation` instance) or `TPlayer.ThirdPersonNavigation` (`TCastleThirdPersonNavigation` instance).
++
+Bottom line: If you have code doing `Player.Navigation.Xxx` where `Xxx` is some `TCastleWalkNavigation` property, just change the code to use `Player.WalkNavigation.Xxx`.
+
+* `TCastleTransform.PointingDeviceActivate` has been removed, and replaced by 2 events `TCastleTransform.PointingDevicePress`, `TCastleTransform.PointingDeviceRelease`. They also get additional information as an argument `Pick: TRayCollisionNode` which allows you to e.g. instantly see what shape (what material etc.) was clicked, if your scene had detailed collisions (`Spatial` includes `ssDynamicCollisions`). Like this:
++
+[,pascal]
+----
+  function TMyScene.PointingDevicePress(
+    const Pick: TRayCollisionNode; const Distance: Single): Boolean;
+  begin
+    Result := inherited;
+    if Result then Exit;
+
+    WritelnLog('Pressed pointing device');
+    if (Pick.Triangle <> nil) and
+       (Pick.Triangle^.MaterialInfo <> nil) then
+      WritelnLog('Pressed on material ' + Pick.Triangle^.MaterialInfo.Node.X3DName);
+  end;
+----
+
+* The `RenderContext` singleton and related types has been moved to `CastleRenderContext` unit. Add it to your uses clause, if necessary.
+* Some enumerated types have been moved to `CastleRenderOptions`. Add it to your uses clause, if necessary.
+* Do not use `CastleRenderer` unit anymore. It contained a lot of internal things, which are now moved to `CastleInternalRenderer`. The only important feature there were rendering attributes, now in unit `CastleRenderOptions`. The `CastleRenderer` unit is now only a skeleton for backward-compatibility.
+* `NewGLUQuadric` and `CastleGluSphere` are removed. These were "thin" wrappers over libGLU quadric routines, and we no longer use libGLU. They have been marked "deprecated" since a long time, and they never worked on mobile.
++
+To render quadrics, use TCastleScene, with various 3D and 2D primitives https://castle-engine.io/x3d_implementation_geometry3d.php , https://castle-engine.io/x3d_implementation_geometry2d.php like TSphereNode, TDisk2DNode etc.
+
+* https://castle-engine.io/apidoc-unstable/html/CastleTransform.TCastleTransform.html#Press[TCastleTransform.Press], https://castle-engine.io/apidoc-unstable/html/CastleTransform.TCastleTransform.html#Release[TCastleTransform.Release] are now only called when https://castle-engine.io/apidoc-unstable/html/CastleTransform.TCastleTransform.html#ListenPressRelease[TCastleTransform.ListenPressRelease] is `true`.
++
+The need to process keys in TCastleTransform is very seldom (we only had 2 use-cases for it in the engine, one is in soon-to-be-deprecated `CastlePlayer`, the other was for https://castle-engine.io/x3d_implementation_keydevicesensor.php[X3D key sensors] which are not very useful to normal engine usage).
+
+* `TLevelLogic` is now `TCastleBehavior` descendant. Overriding `TLevelLogic.Create` and `TLevelLogic.Update` still has the same effect though, so you may not notice much difference. Note that `TLevelLogic` instance is not yet part of the world when `TLevelLogic.Create` happens (override `TLevelLogic.ParentChanged` to do something once it's part of level; we may introduce event like `WorldChanged` if necessary too).
+* The speed of movement in case of `TCastleExamineNavigation` with orthographic projection and standard dir/up (+Z/+Y) is now more natural. You can revert to previous behavior by setting `TCastleExamineNavigation.ExactMovement` to `false`.
+* `TCastleFont` is now `TCastleAbstractFont`, and `TTextureFont` is now `TCastleFont`. If you use `TCastleFont` class name explicitly, this affects you. Now:
+ ** `TCastleFont` is the (non-abstract) font class that allows to load font from file (ttf, otf)
+ ** `TCastleAbstractFont` is the abstract ancestor for all font classes (TCastleFont, TCastleBitmapFont, TCastleFontFamily etc.)
+* We used to support randomization in https://castle-engine.io/creating_data_sound.php[sounds XML file]:
++
+An alias could have more than one target, which means that actual sound will be randomly chosen from the available options
+each time you play this alias.
++
+----
+  <?xml version="1.0"?>
+  <sounds>
+    <alias name="random_test_sound">
+      <target name="test_sound_1" />
+      <target name="test_sound_2" />
+      <target name="test_sound_3" />
+    </alias>
+  </sounds>
+----
++
+This no longer works, and it will not work. As we move away from sounds XML file (in favor of settings sounds in file like `all_sounds.castle-component`) and keeping this functionality would require some hoops (`SoundFromName` would have to return something else than `TCastleSound`, making it cumbersone for more typical usage). That is, defining a "random" sound name (that, each time you play it, randomly chooses one actual sound from a list) in the sounds XML file no longer works. It will now randomize only once (at "SoundFromName" call, i.e. when you resolve String \-> TCastleSound), and later use this sound each time you play it.
++
+If you want to have such random sounds, now we advise you implement this on top of CGE. Just define a few TCastleSound instances, and choose a random one yourself, like
++
+[,pascal]
+----
+  function BulletSound: TCastleSound;
+  begin
+    case Random(3) of
+      0: Result := SoundBullet1;
+      1: Result := SoundBullet2;
+      2: Result := SoundBullet3;
+    end;
+  end;
+----
++
+A complete example how to realize this approach, in a way as-backward-compatible-as-possible, is on https://gist.github.com/michaliskambi/5f9e8df6021434a0dd47508a3cac1ec3 .
++
+Another possibility, temporary, to resolve it is to just use `SoundFromName` each time before playing such sound. So do not store the `SoundFromName` result for a longer time, instead play it like `SoundEngine.Sound(SoundFromName('xxx'))`.
+
+* `TCastleUserInterface.LocalToScreenPosition` was removed, as both the word "local" (was actually implemented as meaning "parent coordinate system", not local) and "screen" (was actually meaning "container") were confusing. Use `LocalToContainerPosition`, `Parent.LocalToContainerPosition`, `ContainerToLocalPosition`, `Parent.ContainerToLocalPosition` depending on needs.

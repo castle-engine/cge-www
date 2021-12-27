@@ -1,0 +1,130 @@
+:sectnums:
+:source-highlighter: coderay
+:toc: left
+
+You can implement and register your own components in https://castle-engine.io/manual_editor.php[Castle Game Engine Editor].
+
+Follow the guidelines documented in https://castle-engine.io/manual_editor.php#section_custom_components[Custom (project-specific) components in the visual designer], and check the example https://github.com/castle-engine/castle-engine/tree/master/examples/advanced_editor[examples/advanced_editor].
+
+This page provides additional information.
+
+== Basics
+
+Any `TComponent` descendant is fine to be registreed in CGE editor. The most common ancestors for custom components are:
+
+* https://castle-engine.io/apidoc-unstable/html/CastleUIControls.TCastleUserInterface.html[TCastleUserInterface],
+* https://castle-engine.io/apidoc-unstable/html/CastleTransform.TCastleTransform.html[TCastleTransform],
+* https://castle-engine.io/apidoc-unstable/html/CastleTransform.TCastleBehavior.html[TCastleBehavior],
+* https://castle-engine.io/apidoc-unstable/html/CastleClassUtils.TCastleComponent.html[TCastleComponent]
+
+Simply implement a Pascal descendant class of it.
+
+== Register
+
+In the initialization section of some (maybe the same edit where you defined the component) register it:
+
+[,pascal]
+----
+RegisterSerializableComponent(TMyComponent, 'My Component');
+----
+
+You can also register property editors. As they require using LCL units, register them only when unit is compiled with symbol `CASTLE_DESIGN_MODE`. Like this:
+
+[,pascal]
+----
+unit MyUnit;
+
+interface
+
+...
+
+implementation
+
+uses SysUtils,
+  CastleComponentSerialize,
+  { Use CastlePropEdits, and thus LCL and castle_components, only when part of the editor. }
+  {$ifdef CASTLE_DESIGN_MODE} , PropEdits, CastlePropEdits {$endif};
+
+...
+
+initialization
+  RegisterSerializableComponent(TMyComponent, 'My Component');
+  {$ifdef CASTLE_DESIGN_MODE}
+  RegisterPropertyEditor(TypeInfo(AnsiString), TMyComponent, 'URL', TImageURLPropertyEditor);
+  {$endif}
+end.
+----
+
+== Publishing properties
+
+The properties in the `published` section are known by the editor, and are written to file.
+
+So place in the `published` section properties of normal types (instance of some class, simple integer/float/string types).
+
+Note that you cannot publish a property of record type. This includes our `TVectorXxx` and `TCastleColorXxx` classes. To expose them for the editor, you need to wrap them in a class like `TCastleVector3Persistent` (that wraps `TVector3`). The engine core has a tool to auto-generate such code (`tools/internal/generate-persistent-vectors/`), for your own applications you can just do it manually by a code like this:
+
+[,pascal]
+----
+type
+  TMyComponent = class(TComponent)
+  strict private
+    FCenterPersistent: TCastleVector3Persistent;
+    function GetCenterForPersistent: TVector3;
+    procedure SetCenterForPersistent(const AValue: TVector3);
+  public
+    constructor Create(AOwner: TComponent); override;
+    destructor Destroy; override;
+    { Center of my component, by default (1, 2, 3). }
+    property Center: TVector3 read FCenter write FCenter;
+  published
+    { @link(Center) that can be visually edited in
+      Castle Game Engine Editor, Lazarus and Delphi.
+      Normal user code does not need to deal with this,
+      instead read or write @link(Center) directly.
+      @seealso Center }
+    property CenterPersistent: TCastleVector3Persistent read FCenterPersistent;
+  end;
+
+constructor TMyComponent.Create(AOwner: TComponent);
+begin
+  inherited;
+
+  FCenter := Vector3(1, 2, 3); // default value of Center
+
+  FCenterPersistent := TCastleVector3Persistent.Create;
+  FCenterPersistent.InternalGetValue := @GetCenterForPersistent;
+  FCenterPersistent.InternalSetValue := @SetCenterForPersistent;
+  FCenterPersistent.InternalDefaultValue := Center; // current value is default
+end;
+
+destructor TMyComponent.Destroy;
+begin
+  FreeAndNil(FCenterPersistent);
+  inherited;
+end;
+
+function TMyComponent.GetCenterForPersistent: TVector3;
+begin
+  Result := Center;
+end;
+
+procedure TMyComponent.SetCenterForPersistent(const AValue: TVector3);
+begin
+  Center := AValue;
+end;
+----
+
+For the best presentation, override `PropertySections`. You will usually place the newly added properties in the _Basic_ section, to make them easy to discover by the users. A sample implementation of `PropertySections` would be like this:
+
+[,pascal]
+----
+function TMyComponent.PropertySections(const PropertyName: String): TPropertySections;
+begin
+  case PropertyName of
+    'URL', 'Color', 'CenterPersistent': // list here new basic properties
+      Result := [psBasic];
+    else
+      Result := inherited PropertySections(PropertyName);
+  end;
+end;
+----

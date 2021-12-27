@@ -1,0 +1,166 @@
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_basics">1. Basics</a></li>
+<li><a href="#_register">2. Register</a></li>
+<li><a href="#_publishing_properties">3. Publishing properties</a></li>
+</ul>
+</div>
+<div class="paragraph">
+<p>You can implement and register your own components in <a href="https://castle-engine.io/manual_editor.php">Castle Game Engine Editor</a>.</p>
+</div>
+<div class="paragraph">
+<p>Follow the guidelines documented in <a href="https://castle-engine.io/manual_editor.php#section_custom_components">Custom (project-specific) components in the visual designer</a>, and check the example <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/advanced_editor">examples/advanced_editor</a>.</p>
+</div>
+<div class="paragraph">
+<p>This page provides additional information.</p>
+</div>
+<div class="sect1">
+<h2 id="_basics">1. Basics</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Any <code>TComponent</code> descendant is fine to be registreed in CGE editor. The most common ancestors for custom components are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://castle-engine.io/apidoc-unstable/html/CastleUIControls.TCastleUserInterface.html">TCastleUserInterface</a>,</p>
+</li>
+<li>
+<p><a href="https://castle-engine.io/apidoc-unstable/html/CastleTransform.TCastleTransform.html">TCastleTransform</a>,</p>
+</li>
+<li>
+<p><a href="https://castle-engine.io/apidoc-unstable/html/CastleTransform.TCastleBehavior.html">TCastleBehavior</a>,</p>
+</li>
+<li>
+<p><a href="https://castle-engine.io/apidoc-unstable/html/CastleClassUtils.TCastleComponent.html">TCastleComponent</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Simply implement a Pascal descendant class of it.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_register">2. Register</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In the initialization section of some (maybe the same edit where you defined the component) register it:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="pascal">RegisterSerializableComponent(TMyComponent, <span class="string"><span class="delimiter">'</span><span class="content">My Component</span><span class="delimiter">'</span></span>);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can also register property editors. As they require using LCL units, register them only when unit is compiled with symbol <code>CASTLE_DESIGN_MODE</code>. Like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="keyword">unit</span> MyUnit;
+
+<span class="keyword">interface</span>
+
+...
+
+implementation
+
+<span class="keyword">uses</span> SysUtils,
+  CastleComponentSerialize,
+  <span class="comment">{ Use CastlePropEdits, and thus LCL and castle_components, only when part of the editor. }</span>
+  <span class="preprocessor">{$ifdef CASTLE_DESIGN_MODE}</span> , PropEdits, CastlePropEdits <span class="preprocessor">{$endif}</span>;
+
+...
+
+initialization
+  RegisterSerializableComponent(TMyComponent, <span class="string"><span class="delimiter">'</span><span class="content">My Component</span><span class="delimiter">'</span></span>);
+  <span class="preprocessor">{$ifdef CASTLE_DESIGN_MODE}</span>
+  RegisterPropertyEditor(TypeInfo(AnsiString), TMyComponent, <span class="string"><span class="delimiter">'</span><span class="content">URL</span><span class="delimiter">'</span></span>, TImageURLPropertyEditor);
+  <span class="preprocessor">{$endif}</span>
+<span class="keyword">end</span>.</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_publishing_properties">3. Publishing properties</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The properties in the <code>published</code> section are known by the editor, and are written to file.</p>
+</div>
+<div class="paragraph">
+<p>So place in the <code>published</code> section properties of normal types (instance of some class, simple integer/float/string types).</p>
+</div>
+<div class="paragraph">
+<p>Note that you cannot publish a property of record type. This includes our <code>TVectorXxx</code> and <code>TCastleColorXxx</code> classes. To expose them for the editor, you need to wrap them in a class like <code>TCastleVector3Persistent</code> (that wraps <code>TVector3</code>). The engine core has a tool to auto-generate such code (<code>tools/internal/generate-persistent-vectors/</code>), for your own applications you can just do it manually by a code like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="keyword">type</span>
+  TMyComponent = <span class="keyword">class</span>(TComponent)
+  strict <span class="directive">private</span>
+    FCenterPersistent: TCastleVector3Persistent;
+    <span class="keyword">function</span> GetCenterForPersistent: TVector3;
+    <span class="keyword">procedure</span> SetCenterForPersistent(<span class="keyword">const</span> AValue: TVector3);
+  <span class="directive">public</span>
+    <span class="keyword">constructor</span> Create(AOwner: TComponent); <span class="directive">override</span>;
+    <span class="keyword">destructor</span> Destroy; <span class="directive">override</span>;
+    <span class="comment">{ Center of my component, by default (1, 2, 3). }</span>
+    <span class="keyword">property</span> Center: TVector3 <span class="directive">read</span> FCenter <span class="directive">write</span> FCenter;
+  <span class="directive">published</span>
+    <span class="comment">{ @link(Center) that can be visually edited in
+      Castle Game Engine Editor, Lazarus and Delphi.
+      Normal user code does not need to deal with this,
+      instead read or write @link(Center) directly.
+      @seealso Center }</span>
+    <span class="keyword">property</span> CenterPersistent: TCastleVector3Persistent <span class="directive">read</span> FCenterPersistent;
+  <span class="keyword">end</span>;
+
+<span class="keyword">constructor</span> TMyComponent.Create(AOwner: TComponent);
+<span class="keyword">begin</span>
+  <span class="keyword">inherited</span>;
+
+  FCenter := Vector3(<span class="integer">1</span>, <span class="integer">2</span>, <span class="integer">3</span>); <span class="comment">// default value of Center</span>
+
+  FCenterPersistent := TCastleVector3Persistent.Create;
+  FCenterPersistent.InternalGetValue := @GetCenterForPersistent;
+  FCenterPersistent.InternalSetValue := @SetCenterForPersistent;
+  FCenterPersistent.InternalDefaultValue := Center; <span class="comment">// current value is default</span>
+<span class="keyword">end</span>;
+
+<span class="keyword">destructor</span> TMyComponent.Destroy;
+<span class="keyword">begin</span>
+  FreeAndNil(FCenterPersistent);
+  <span class="keyword">inherited</span>;
+<span class="keyword">end</span>;
+
+<span class="keyword">function</span> TMyComponent.GetCenterForPersistent: TVector3;
+<span class="keyword">begin</span>
+  Result := Center;
+<span class="keyword">end</span>;
+
+<span class="keyword">procedure</span> TMyComponent.SetCenterForPersistent(<span class="keyword">const</span> AValue: TVector3);
+<span class="keyword">begin</span>
+  Center := AValue;
+<span class="keyword">end</span>;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For the best presentation, override <code>PropertySections</code>. You will usually place the newly added properties in the <em>Basic</em> section, to make them easy to discover by the users. A sample implementation of <code>PropertySections</code> would be like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="keyword">function</span> TMyComponent.PropertySections(<span class="keyword">const</span> PropertyName: <span class="keyword">String</span>): TPropertySections;
+<span class="keyword">begin</span>
+  <span class="keyword">case</span> PropertyName <span class="keyword">of</span>
+    <span class="string"><span class="delimiter">'</span><span class="content">URL</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">Color</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">CenterPersistent</span><span class="delimiter">'</span></span>: <span class="comment">// list here new basic properties</span>
+      Result := [psBasic];
+    <span class="keyword">else</span>
+      Result := <span class="keyword">inherited</span> PropertySections(PropertyName);
+  <span class="keyword">end</span>;
+<span class="keyword">end</span>;</code></pre>
+</div>
+</div>
+</div>
+</div>

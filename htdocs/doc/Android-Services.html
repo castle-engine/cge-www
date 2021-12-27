@@ -1,0 +1,651 @@
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_general_usage">1. General usage</a></li>
+<li><a href="#_android_project_types">2. Android project types</a></li>
+<li><a href="#_services">3. Services</a>
+<ul class="sectlevel2">
+<li><a href="#_apps_flyer">3.1. apps_flyer</a></li>
+<li><a href="#_chartboost">3.2. chartboost</a></li>
+<li><a href="#_facebook">3.3. facebook</a></li>
+<li><a href="#_freetype">3.4. freetype</a></li>
+<li><a href="#_game_analytics">3.5. game_analytics</a></li>
+<li><a href="#_giftiz">3.6. giftiz</a></li>
+<li><a href="#_google_analytics">3.7. google_analytics</a></li>
+<li><a href="#_google_in_app_purchases">3.8. google_in_app_purchases</a></li>
+<li><a href="#_google_play_games">3.9. google_play_games</a></li>
+<li><a href="#_google_play_services">3.10. google_play_services</a></li>
+<li><a href="#_helpshift">3.11. helpshift</a></li>
+<li><a href="#_heyzap">3.12. heyzap</a></li>
+<li><a href="#_sound">3.13. sound</a></li>
+<li><a href="#_startapp">3.14. startapp</a></li>
+<li><a href="#_ogg_vorbis">3.15. ogg_vorbis</a></li>
+<li><a href="#_photo_service">3.16. photo_service</a></li>
+<li><a href="#_vibrate">3.17. vibrate</a></li>
+</ul>
+</li>
+<li><a href="#_adding_new_services">4. Adding new services</a></li>
+</ul>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="http://castle-engine.sourceforge.net/images/original_size/android-components-icons.png"><span class="image"><img src="http://castle-engine.sourceforge.net/images/thumb_size/android-components-icons.png" alt="Android Services</a>"></span></p>
+</div>
+<div class="paragraph">
+<p>When you use our <a href="Build tool">build tool</a> to package your game for Android, you can easily add <em>services</em> to the project. They allow to comfortably access various Android services (from Google and other 3rd parties, like ad networks) from your Object Pascal game code using the <a href="http://castle-engine.sourceforge.net/engine.php">Castle Game Engine</a>.</p>
+</div>
+<div class="paragraph">
+<p><strong>Table of contents:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#general-usage">General usage</a></p>
+</li>
+<li>
+<p><a href="#android-project-types">Android project types</a></p>
+</li>
+<li>
+<p><a href="#services">Services</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/admob/README.md">admob</a></p>
+</li>
+<li>
+<p><a href="#apps_flyer">apps_flyer</a></p>
+</li>
+<li>
+<p><a href="#chartboost">chartboost</a></p>
+</li>
+<li>
+<p><a href="https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/client_server/README.md">client_server</a></p>
+</li>
+<li>
+<p><a href="https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/download_urls/README.md">download_urls</a></p>
+</li>
+<li>
+<p><a href="#facebook">facebook</a></p>
+</li>
+<li>
+<p><a href="#freetype">freetype</a></p>
+</li>
+<li>
+<p><a href="#game_analytics">game_analytics</a></p>
+</li>
+<li>
+<p><a href="#giftiz">giftiz</a></p>
+</li>
+<li>
+<p><a href="#google_analytics">google_analytics</a></p>
+</li>
+<li>
+<p><a href="#google_in_app_purchases">google_in_app_purchases</a></p>
+</li>
+<li>
+<p><a href="#google_play_games">google_play_games</a></p>
+</li>
+<li>
+<p><a href="#google_play_services">google_play_services</a></p>
+</li>
+<li>
+<p><a href="#helpshift">helpshift</a></p>
+</li>
+<li>
+<p><a href="#heyzap">heyzap</a></p>
+</li>
+<li>
+<p><a href="#sound">sound</a></p>
+</li>
+<li>
+<p><a href="#startapp">startapp</a></p>
+</li>
+<li>
+<p><a href="https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/tenjin/README.md">tenjin</a></p>
+</li>
+<li>
+<p><a href="https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/test_fairy/README.md">test_fairy</a></p>
+</li>
+<li>
+<p><a href="#ogg_vorbis">ogg_vorbis</a></p>
+</li>
+<li>
+<p><a href="#photo_service">photo_service</a></p>
+</li>
+<li>
+<p><a href="https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/android/integrated-services/png/README.md">png</a></p>
+</li>
+<li>
+<p><a href="https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/android/integrated-services/read_external_storage/README.md">read_external_storage</a></p>
+</li>
+<li>
+<p><a href="#vibrate">vibrate</a></p>
+</li>
+<li>
+<p><a href="https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/android/integrated-services/write_external_storage/README.md">write_external_storage</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="#adding-new-services">Adding new services</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_general_usage">1. General usage</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Android services are declared in <a href="CastleEngineManifest.xml examples">CastleEngineManifest.xml</a> like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;android&gt;</span>
+  <span class="tag">&lt;services&gt;</span>
+    <span class="tag">&lt;service</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">google_play_services</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+    <span class="tag">&lt;service</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">google_in_app_purchases</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+  <span class="tag">&lt;/services&gt;</span>
+<span class="tag">&lt;/android&gt;</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_android_project_types">2. Android project types</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Using the <code>&lt;android&gt;</code> element, you can request a project type:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>&lt;android project_type="base"&gt;</code>: No extra integration, the final project does not use any Java code at all. Rendering and inputs work 100%, since they don&#8217;t require anything extra. This may be enough for some games. However <em>no services can work</em>.</p>
+</li>
+<li>
+<p><code>&lt;android project_type="integrated"&gt;</code>: (<strong>This is the default in CGE &gt;= 6.5.</strong>) We include extra Java integration code that allows to use Android project services that communicate with Object Pascal code. This opens the door for the services mentioned below. It also allows to integrate with various native-code libraries (like FreeType and OpenAL).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Merely declaring the project type as "integrated" (even without any extra services) immediately gives you:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>Immersive mode</em> on newer Android devices. This is a "true" full-screen mode for games on Android, where the back/home buttons are usually hidden.</p>
+</li>
+<li>
+<p>You can open URLs in external applications using <a href="https://castle-engine.io/apidoc-unstable/html/CastleOpenDocument.html#OpenURL">OpenURL</a> from <a href="https://castle-engine.io/apidoc-unstable/html/CastleOpenDocument.html">CastleOpenDocument</a> unit. Hint: use special <code>market://</code> URL to send users to the <em>Google Play</em> store, e.g. to rate your application.</p>
+</li>
+<li>
+<p>You can share text and links with other applications. Use <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleOpenDocument.html#ShareText">ShareText</a> from the <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleOpenDocument.html">CastleOpenDocument</a> unit.</p>
+</li>
+<li>
+<p>You can send Android standard on-screen notification ("toast") using <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleOpenDocument.html#OnScreenNotification">OnScreenNotification</a> from the <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleOpenDocument.html">CastleOpenDocument</a> unit.</p>
+</li>
+<li>
+<p>Some services (like <code>sound</code> and <code>ogg_vorbis</code>) will be added automatically to your project if the sound files are detected in your game data. So merely declaring your project type as "integrated" makes sound work on Android.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_services">3. Services</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_apps_flyer">3.1. apps_flyer</h3>
+<div class="paragraph">
+<p>Integration with <a href="https://www.appsflyer.com/">AppsFlyer</a>.</p>
+</div>
+<div class="paragraph">
+<p>You need to declare in <code>CastleEngineManifest.xml</code> the "dev key" you have from AppsFlyer, like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;service</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">apps_flyer</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+  <span class="tag">&lt;parameter</span> <span class="attribute-name">key</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">dev_key</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">value</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">...</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+<span class="tag">&lt;/service&gt;</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_chartboost">3.2. chartboost</h3>
+<div class="paragraph">
+<p>Enable the <a href="http://chartboost.com/">Chartboost</a> ads. Use <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleAds.TAds.html">TAds</a> class from the <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleAds.html">CastleAds</a> unit to show and control the ads from your Pascal code, with <code>AdNetwork</code> set to <code>anChartboost</code>.</p>
+</div>
+<div class="paragraph">
+<p>Requires:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Using this service requires using also <code>google_play_services</code>.</p>
+</li>
+<li>
+<p>The core of this service is a closed-source library distributed by Chartboost. Download it from <a href="https://dashboard.chartboost.com/tools/sdk" class="bare">https://dashboard.chartboost.com/tools/sdk</a> , unpack to some temporary location, and copy the <code>lib/chartboost.jar</code> file from the SDK to the <code>castle_game_engine/tools/build-tool/data/android/integrated-services/chartboost/app/libs/</code> directory.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_facebook">3.3. facebook</h3>
+<div class="paragraph">
+<p>Integrates your application with <a href="https://developers.facebook.com/docs/android/">Facebook Core SDK</a>.</p>
+</div>
+<div class="paragraph">
+<p>This integration allows to use Facebook Analytics. Various events are logged automatically (like starting the application or making a purchase). You can also log custom events (only <em>"level achieved"</em> for now) by <code>TFacebook.LogAchievedLevel('level_name')</code> in Pascal (see <code>CastleFacebook</code> unit).</p>
+</div>
+<div class="paragraph">
+<p>You need to link the application to a Facebook application on <a href="http://developers.facebook.com/" class="bare">http://developers.facebook.com/</a> :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>In <code>CastleEngineManifest.xml</code>, you need to specify Facebook Application Id, like this:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml">  <span class="tag">&lt;service</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">facebook</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;parameter</span> <span class="attribute-name">key</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">app_id</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">value</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">11223344</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+  <span class="tag">&lt;/service&gt;</span></code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Fill the necessary information in the Facebook application settings. In particular:</p>
+<div class="paragraph">
+<p>You need to provide to Facebook a "key hash" derived from your application signing keys. See the <a href="https://developers.facebook.com/docs/app-events/getting-started-app-events-android" class="bare">https://developers.facebook.com/docs/app-events/getting-started-app-events-android</a> , section <em>"3. Add Your Development and Release Key Hashes"</em>.</p>
+</div>
+<div class="paragraph">
+<p>Do also steps mentioned there in <em>"4. Tell Us about Your Android Project"</em>.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_freetype">3.4. freetype</h3>
+<div class="paragraph">
+<p>Enable loading the <code>.ttf</code> font files on Android (and other font formats handled by the <a href="https://www.freetype.org/" class="bare">https://www.freetype.org/</a> library).</p>
+</div>
+<div class="paragraph">
+<p>You can e.g. pass a <code>.ttf</code> file URL to the <a href="https://castle-engine.io/apidoc/html/CastleFonts.TTextureFont.html#Load">TTextureFont.Load</a> method. See engine examples like <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/fonts/font_from_texture.lpr">examples/fonts/font_from_texture.lpr</a> to see how to use fonts in CGE.</p>
+</div>
+<div class="paragraph">
+<p><em>There is usually no need to include this service explicitly</em>, it is automatically added if your game has "dependency" on "FreeType". Such dependency is in turn automatically detected when the build tool notices a <code>.ttf</code> file inside your data, although it can also be explicitly requested by declaring <code>&lt;dependency name="FreeType" /&gt;</code> in <a href="CastleEngineManifest.xml examples">CastleEngineManifest.xml</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_game_analytics">3.5. game_analytics</h3>
+<div class="paragraph">
+<p>Enable the <a href="http://www.gameanalytics.com/">Game Analytics</a> analytics of your apps. Use the <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleAnalytics.TAnalytics.html">TAnalytics</a> class from the <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleAnalytics.html">CastleAnalytics</a> unit to initialize and send data to the analytics from your Pascal code. Also, all the purchases done using <code>google_in_app_purchases</code> service are automatically send to analytics, with correct price and currency.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Using this service requires using also using the <code>google_play_services</code> service.</p>
+</li>
+<li>
+<p>The core of this service is a closed-source library distributed by GameAnalytics. It will be automatically downloaded using the <em>Gradle</em> build system on the first build, so you don&#8217;t have to do anything.</p>
+</li>
+<li>
+<p>This service requires that you increase the <code>min_sdk_version</code> to 10 or higher in your <a href="CastleEngineManifest.xml examples">CastleEngineManifest.xml</a> file. The <code>min_sdk_version</code> is specified at the <code>&lt;android&gt;</code> element.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_giftiz">3.6. giftiz</h3>
+<div class="paragraph">
+<p>Enable the <a href="http://www.giftiz.com/">Giftiz</a> integration. Your app notifies Giftiz when the user finished a mission inside your game, and Giftiz gives users (real!) gifts. See <a href="http://www.giftiz.com/" class="bare">http://www.giftiz.com/</a> website for more information, and contact them to get the necessary SDK and partner id.</p>
+</div>
+<div class="paragraph">
+<p>Use <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleGiftiz.TGiftiz.html">TGiftiz</a> class from the <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleGiftiz.html">CastleGiftiz</a> unit to control the integration from your Pascal code. Send the "mission complete" message to Giftiz by calling <code>TGiftiz.MissionComplete;</code>. Display Giftiz button on top of your game UI using the <code>TGiftizButton</code> UI service.</p>
+</div>
+<div class="paragraph">
+<p>Requires:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The core of this service is a closed-source library distributed by Giftiz in their SDK.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Unpack the Giftiz SDK to a temporary directory.</p>
+</li>
+<li>
+<p>Copy the <code>GiftizSDKLibrary/libs</code> subdirectory to the <code>castle_game_engine/tools/build-tool/data/android/integrated-services/giftiz/app/libs</code>.</p>
+</li>
+<li>
+<p>Copy the <code>GiftizSDKLibrary/res</code> subdirectory to the <code>castle_game_engine/tools/build-tool/data/android/integrated-services/giftiz/app/src/main/res</code>. Double-check the path: the <code>res</code> goes inside the <code>app/src/main/</code>, while the <code>libs</code> are in higher-level <code>app</code> folder.</p>
+</li>
+<li>
+<p>Copy the button UI images: from <code>GiftizSDK_1.5.0/Customize/Border_white</code> copy the png files to your game&#8217;s <code>data/giftiz/</code> subdirectory. There&#8217;s an alternative set of images in <code>Border_no</code>, and some customization of these images is allowed (see Giftiz SDK for details). Our Pascal integration will automatically load and use these images to display Giftiz button.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>You need to specify Giftiz <em>partner id</em> for integration. Initially this is <code>TEST_PARTNER_KEY</code>, and if you&#8217;re accepted&#8201;&#8212;&#8201;Giftiz will send you your real partner id. You declare it in your <a href="CastleEngineManifest.xml examples">CastleEngineManifest.xml</a> file like this:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;android</span> <span class="attribute-name">project_type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">integrated</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+  <span class="tag">&lt;services&gt;</span>
+    <span class="tag">&lt;service</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">giftiz</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+      <span class="tag">&lt;parameter</span> <span class="attribute-name">key</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">partner_key</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">value</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">TEST_PARTNER_KEY</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+    <span class="tag">&lt;/service&gt;</span>
+  <span class="tag">&lt;/services&gt;</span>
+<span class="tag">&lt;/android&gt;</span></code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_google_analytics">3.7. google_analytics</h3>
+<div class="paragraph">
+<p>Enable the <a href="https://www.google.com/analytics/">Google Analytics</a> analytics of your apps. Use the <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleAnalytics.TAnalytics.html">TAnalytics</a> class from the <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleAnalytics.html">CastleAnalytics</a> unit to initialize and send data to the analytics from your Pascal code. Also, all the purchases done using <code>google_in_app_purchases</code> service are automatically send to analytics, with correct price and currency.</p>
+</div>
+<div class="paragraph">
+<p>Requires:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Using this service requires using also the <code>google_play_services</code> service.</p>
+</li>
+<li>
+<p>Recent <em>Google Analytics</em> require you to use a special <code>google-services.json</code> file in your project.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>On <a href="https://developers.google.com/analytics/devguides/collection/android/v4/">this page</a> click <em>"Get a
+Configuration File"</em></p>
+</li>
+<li>
+<p>On a form that appears, add <em>"Analytics"</em> service to your application, selecting proper <em>Google Analytics</em> account parameters.</p>
+</li>
+<li>
+<p>Download <code>google-services.json</code> from the form above.</p>
+</li>
+<li>
+<p>Place the contents of this <code>google-services.json</code> file inside the <a href="CastleEngineManifest.xml examples">CastleEngineManifest.xml</a> as the parameter of the <code>google_analytics</code>, like this:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;service</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">google_analytics</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+  <span class="tag">&lt;parameter</span> <span class="attribute-name">key</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">game_services_json</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+{
+  &quot;project_info&quot;:
+  ......
+  &quot;configuration_version&quot;: &quot;1&quot;
+}
+  <span class="tag">&lt;/parameter&gt;</span>
+<span class="tag">&lt;/service&gt;</span></code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+You need to create a new "property" in <em>Google Analytics</em> for tracking your mobile application, and obtain a "tracking ID" (like <code>UA-xxx</code>). However, since Google now advices using Firebase for tracking mobile applications, if you click on "Mobile" when creating a new Google Analytics property, it will suggest you to connect your application to Firebase. Instead, <em>create a "Website" property in "Google Analytics" to get a normal tracking ID, and then change the "view" to see mobile application data</em>. See:
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://stackoverflow.com/questions/44142353/creating-google-analytics-property-not-using-firebase" class="bare">https://stackoverflow.com/questions/44142353/creating-google-analytics-property-not-using-firebase</a></p>
+</li>
+<li>
+<p><a href="https://stackoverflow.com/questions/45853012/add-google-analytics-to-android-app-without-firebase" class="bare">https://stackoverflow.com/questions/45853012/add-google-analytics-to-android-app-without-firebase</a></p>
+</li>
+<li>
+<p><a href="https://stackoverflow.com/questions/44421865/is-firebase-now-mandatory-for-use-of-google-analytics-mobile-properties" class="bare">https://stackoverflow.com/questions/44421865/is-firebase-now-mandatory-for-use-of-google-analytics-mobile-properties</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_google_in_app_purchases">3.8. google_in_app_purchases</h3>
+<div class="paragraph">
+<p>This service enables the <em>In-App Purchases</em> through <em>Google Play</em>. This is the most popular way to purchase stuff on Android. Use <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleInAppPurchases.TInAppPurchases.html">TInAppPurchases</a> class from the <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleInAppPurchases.html">CastleInAppPurchases</a> unit to handle the purchases from your Pascal code.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_google_play_games">3.9. google_play_games</h3>
+<div class="paragraph">
+<p>Enable the <a href="https://developers.google.com/games/services/">Google Play Games Services</a>. Use the <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleGameService.TGameService.html">TGameService</a> class from the <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleGameService.html">CastleGameService</a> unit in Pascal to initialize and use it, for example to sign-in, <em>send scores and achievements, view achievements and leaderboards, load and save savegames in the cloud</em>.</p>
+</div>
+<div class="paragraph">
+<p>Requires:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Using this service requires using also <code>google_play_services</code></p>
+</li>
+<li>
+<p>You must create a project in <em>"Game Services"</em> section of the <em>"Google Developer Console"</em>. This will give you a special "app_id" for your project. In order for the integration to work, you need to specify this app_id in our <a href="CastleEngineManifest.xml examples">CastleEngineManifest.xml</a>, like this:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;android</span> <span class="attribute-name">project_type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">integrated</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+  <span class="tag">&lt;services&gt;</span>
+    <span class="tag">&lt;service</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">google_play_services</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+    <span class="tag">&lt;service</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">google_play_games</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+      <span class="tag">&lt;parameter</span> <span class="attribute-name">key</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">app_id</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">value</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">PASTE-APP-ID-HERE</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+    <span class="tag">&lt;/service&gt;</span>
+  <span class="tag">&lt;/services&gt;</span>
+<span class="tag">&lt;/android&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After this, you need to call from Pascal code <code>GameService.Initialize</code> to connect to <em>Google Play Games</em> when you want (usually, at the beginning of your game: from <code>TCastleApplication.OnInitialize</code>).</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_google_play_services">3.10. google_play_services</h3>
+<div class="paragraph">
+<p>This service includes the <a href="https://en.wikipedia.org/wiki/Google_Play_Services">Google Play Services</a> library into your Android projects. It doesn&#8217;t provide anything immediately useful, but it&#8217;s required by some other services, like <code>google_play_games</code>, <code>google_analytics</code>, <code>admob</code>, <code>heyzap</code>.</p>
+</div>
+<div class="paragraph">
+<p>The necessary files from Google will be automatically downloaded, along with all their dependencies, using the <em>Gradle</em> build system, at the first build. You only have to declare using the service by</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;service</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">google_play_services</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_helpshift">3.11. helpshift</h3>
+<div class="paragraph">
+<p>Enable the <a href="https://www.helpshift.com/">Helpshift</a>, a mobile-friendly support system (submitting issues, chat with support, FAQ). Use the trivial <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleHelpshift.THelpshift.html">THelpshift</a> class from the <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleHelpshift.html">CastleHelpshift</a> unit to show the Helpshift activities from your application.</p>
+</div>
+<div class="paragraph">
+<p>Requires:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Create an account on <a href="http://helpshift.com/" class="bare">http://helpshift.com/</a> , to get the necessary keys for your project. Use them when declaring the service parameters in <a href="CastleEngineManifest.xml examples">CastleEngineManifest.xml</a>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;service</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">helpshift</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+  <span class="tag">&lt;parameter</span> <span class="attribute-name">key</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">api_key</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">value</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">xxx</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+  <span class="tag">&lt;parameter</span> <span class="attribute-name">key</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">domain</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">value</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">xxx.helpshift.com</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+  <span class="tag">&lt;parameter</span> <span class="attribute-name">key</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">app_id</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">value</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">xxx_platform_xxx</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+<span class="tag">&lt;/service&gt;</span></code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>The Helpshift library is automatically downloaded at the first build using <em>Gradle</em>, so you don&#8217;t have to do anything yourself.</p>
+</li>
+<li>
+<p>Make sure you compile with Android SDK platform 23 or higher (already the default now) and have <code>min_sdk_version</code> &gt;= 14 in your <a href="CastleEngineManifest.xml examples">CastleEngineManifest.xml</a>. See the <a href="https://developers.helpshift.com/android/getting-started/" class="bare">https://developers.helpshift.com/android/getting-started/</a> . This page also says you need the <code>target_sdk_version</code> &gt;= 23, but I found that older versions work too.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_heyzap">3.12. heyzap</h3>
+<div class="paragraph">
+<p>Enable the <a href="https://www.heyzap.com/">Heyzap advertisements</a>. Use <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleAds.TAds.html">TAds</a> class from the <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleAds.html">CastleAds</a> unit to show and control the ads from your Pascal code, with <code>AdNetwork</code> set to <code>anHeyzap</code>.</p>
+</div>
+<div class="paragraph">
+<p>Requires:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The core of this service is a closed-source library distributed in Heyzap SDK.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Download the SDK from <a href="https://developers.heyzap.com/docs/android_sdk_setup_and_requirements" class="bare">https://developers.heyzap.com/docs/android_sdk_setup_and_requirements</a> (select in <em>Step 1</em> whether you want to use beta or not, and then in <em>Step 2. Download the SDK</em> click on SDK link).</p>
+</li>
+<li>
+<p>Unzip the SDK to a temporary location.</p>
+</li>
+<li>
+<p>Copy the jar file from SDK <code>android-sdk/heyzap-ads-sdk.jar</code> into <code>castle_game_engine/tools/build-tool/data/android/integrated-services/heyzap/app/libs/heyzap-ads-sdk.jar</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><em>Optional notes to use Heyzap mediation:</em> You can use Heyzap integration (SDK) to get ads from <em>many</em> ad networks&#8201;&#8212;&#8201;not only from Heyzap own network, but also from AdMob, Chartboost and many more. To do this, you will need to setup the integration in your Heyzap dashboard. Also you will need to follow the instructions on <a href="https://developers.heyzap.com/docs/android_sdk_setup_and_requirements" class="bare">https://developers.heyzap.com/docs/android_sdk_setup_and_requirements</a> to add additional networks SDKs. Select the additional networks on that page, and follow the instructions:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Usually, Heyzap docs will instruct you to download some additional SDK. Do as it says, and place the <code>.jar</code> and <code>.aar</code> files into the <code>..../integrated-services/heyzap/app/libs/</code> directory, alongside the Heyzap jar.</p>
+</li>
+<li>
+<p>For every <code>.aar</code> file that you have added, add appropriate &lt;dependency&gt; line to the <code>..../integrated-services/heyzap/app/build.gradle</code> file. Like this:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;dependency&gt;</span>compile(name:'AudienceNetwork', ext:'aar')<span class="tag">&lt;/dependency&gt;</span>
+<span class="tag">&lt;dependency&gt;</span>compile(name:'unity-ads', ext:'aar')<span class="tag">&lt;/dependency&gt;</span></code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Make the necessary modifications in the <code>..../integrated-services/heyzap/app/src/main/AndroidManifest.xml</code>. Make sure it contains only (and exactly!) the activities/permissions that Heyzap docs show you.</p>
+</li>
+<li>
+<p><em>Note for AdMob</em>: Using AdMob requires that you also use <code>"google_play_services"</code> service. And you should add to the <code>..../integrated-services/heyzap/app/build.gradle</code> file these lines:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;dependency&gt;</span>compile 'com.google.android.gms:play-services-ads:9.4.0'<span class="tag">&lt;/dependency&gt;</span>
+<span class="tag">&lt;dependency&gt;</span>compile 'com.google.android.gms:play-services-location:9.4.0'<span class="tag">&lt;/dependency&gt;</span></code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>NOTE: that some ads SDK may require increasing the <code>min_sdk_version</code> in your <a href="CastleEngineManifest.xml examples">CastleEngineManifest.xml</a>. You will get a clear error message when building APK in case this is necessary. Currently, <em>Facebook Ads (Facebook Audience Network)</em> requires min SDK &gt;= 11.</p>
+</li>
+<li>
+<p>NOTE: when you use Heyzap to integrate with some 3rd-party ad network (for example with Chartboost), then you <em>should not</em> add a service in <code>CastleEngineManifest.xml</code> to also directly interact with this network (in this example "chartboost"). That is: <em>include <strong>only</strong> the heyzap service in CastleEngineManifest.xml</em>. Otherwise the SDK underneath (like chartboost) will be initialized and handled by two code paths (one directly in our Java code, and one inside Heyzap jar), which can lead to various troubles.</p>
+</li>
+<li>
+<p>To test your integration, call <code>TAds.StartTestActivity(anHeyzap)</code> in your Pascal code. This will show a special activity where you can test whether the connection with your 3rd-party networks works OK. Optional, but highly suggested!</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_sound">3.13. sound</h3>
+<div class="paragraph">
+<p>Enable the sound service on Android. <em>There is no need to include this service explicitly</em>, it is automatically added if your game depends on a sound library. Which in turn may be done by declaring <code>&lt;dependency name="Sound" /&gt;</code> in <a href="CastleEngineManifest.xml examples">CastleEngineManifest.xml</a>, but usually it&#8217;s automatically detected when the build tool notices a sound file inside your data.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_startapp">3.14. startapp</h3>
+<div class="paragraph">
+<p>Enable the <a href="http://startapp.com/">StartApp</a> ads. Use <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleAds.TAds.html">TAds</a> class from the <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleAds.html">CastleAds</a> unit to show and control the ads from your Pascal code, with <code>AdNetwork</code> set to <code>anStartApp</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The core of this service is a closed-source library distributed by StartApp.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Download the SDK from <a href="http://s3.startapp.com.s3.amazonaws.com/Resource/SDK_TEMP/Android-InApp%20SDK-InApp-3.2.2.zip" class="bare">http://s3.startapp.com.s3.amazonaws.com/Resource/SDK_TEMP/Android-InApp%20SDK-InApp-3.2.2.zip</a> . The original page where this is linked is in your <a href="https://portal.startapp.com/">StartApp publisher panel</a> in the <em>Resource Center</em> section.</p>
+</li>
+<li>
+<p>Unzip the StartApp SDK to a temporary location.</p>
+</li>
+<li>
+<p>Copy the file <code>StartAppInApp-3.2.2.jar</code> from the SDK into <code>castle_game_engine/tools/build-tool/data/android/integrated-services/startapp/app/libs/</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ogg_vorbis">3.15. ogg_vorbis</h3>
+<div class="paragraph">
+<p>Enable the <em>OggVorbis</em> sound format on Android.</p>
+</div>
+<div class="paragraph">
+<p><em>There is no need to include this service explicitly</em>, it is automatically added if your game depends on "OggVorbis". Which in turn is automatically detected when the build tool notices an <code>.ogg</code> file inside your data, although it can also be explicitly requested by declaring <code>&lt;dependency name="OggVorbis" /&gt;</code> in <a href="CastleEngineManifest.xml examples">CastleEngineManifest.xml</a>.</p>
+</div>
+<div class="paragraph">
+<p>In effect, loading OggVorbis sound files in your Android games <em>just works</em>&#8201;&#8212;&#8201;you only need to make sure your Android <code>project_type</code> is set to <code>"integrated"</code>.</p>
+</div>
+<div class="paragraph">
+<p>We use very fast open-source OggVorbis implementation called <em>Tremolo</em>, see <a href="https://github.com/michaliskambi/tremolo-android" class="bare">https://github.com/michaliskambi/tremolo-android</a> . You can compile <em>Tremolo</em> in low-precision mode (<code>libtremolo-low-precision.so</code>) to get more efficiency (decoding will be faster, less CPU hungry), although then the quality is quite horrible in my tests.</p>
+</div>
+<div class="paragraph">
+<p>Note that on Android, the sound engine (with OpenAL underneath) has to be paused / resumed when user switches between applications. If you play some music, and you want resuming to start it again&#8201;&#8212;&#8201;you need to register you callback on <code>SoundEngine.OnOpenClose</code> to handle this situation. If you play music using <code>TMusicPlayer</code>, this is taken care of automatically.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_photo_service">3.16. photo_service</h3>
+<div class="paragraph">
+<p>Operations with native picture gallery.</p>
+</div>
+<div class="paragraph">
+<p>Use the Pascal class <code>TPhotoService</code> (use <code>CastlePhotoService</code> unit) to store your image into Pictures folder in the system gallery. Using this service automatically adds the <code>WRITE_EXTERNAL_STORAGE</code> permission.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_vibrate">3.17. vibrate</h3>
+<div class="paragraph">
+<p>Allows to vibrate the device. Use the <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleOpenDocument.html#Vibrate">Vibrate</a> procedure from <a href="http://castle-engine.sourceforge.net/apidoc/html/CastleOpenDocument.html">CastleOpenDocument</a> unit to cause vibration from Object Pascal code.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_adding_new_services">4. Adding new services</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This documentation has moved to <a href="Adding New Android Services" class="bare">Adding New Android Services</a>.</p>
+</div>
+</div>
+</div>

@@ -1,0 +1,344 @@
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel0">
+<li><a href="#_winapi_backend_castle_window_winapi">WinAPI backend (CASTLE_WINDOW_WINAPI)</a></li>
+<li><a href="#_gtk_backend_castle_window_gtk_2">GTK backend (CASTLE_WINDOW_GTK_2)</a></li>
+<li><a href="#_xlib_x11_backend_castle_window_xlib">Xlib (X11) backend (CASTLE_WINDOW_XLIB)</a></li>
+<li><a href="#_lazarus_lcl_backend_castle_window_lcl">Lazarus LCL backend (CASTLE_WINDOW_LCL)</a></li>
+<li><a href="#_android_backend_castle_window_android">Android backend (CASTLE_WINDOW_ANDROID)</a></li>
+<li><a href="#_library_backend_castle_window_library">Library backend (CASTLE_WINDOW_LIBRARY)</a></li>
+<li><a href="#_obsolete_dispmanx_backend_castle_window_dispmanx">Obsolete: DispmanX backend (CASTLE_WINDOW_DISPMANX)</a></li>
+<li><a href="#_template_castle_window_template">Template (CASTLE_WINDOW_TEMPLATE)</a></li>
+<li><a href="#_making_new_backend">Making new backend</a></li>
+</ul>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://castle-engine.io/apidoc-unstable/html/CastleWindow.TCastleWindowBase.html">TCastleWindowBase</a> class represents a window suitable for <em>Castle Game Engine</em> rendering.</p>
+</div>
+<div class="paragraph">
+<p>Most CGE applications use this class (although there is an alternative <a href="https://castle-engine.io/manual_lazarus_control.php">TCastleControlBase</a>, but we advise <code>TCastleWindowBase</code> for most cases).</p>
+</div>
+<div class="paragraph">
+<p>The <code>TCastleWindowBase</code> has a number of alternative <em>backends</em>, using different libraries underneath to manage the window and OpenGL(ES) context properties. By default, we use a backend that is considered "best" for the current operating system you&#8217;re compiling to, but you can override this choice by defining a symbol <code>CASTLE_WINDOW_xxx</code> at the compilation time. You can define this symbol in various places, e.g. <a href="https://github.com/castle-engine/castle-engine/wiki/CastleEngineManifest.xml-examples#compiler-options-and-paths">in CastleEngineManifest.xml file</a>.</p>
+</div>
+<div class="paragraph">
+<p>Right now, we always use exactly one "backend", which is determined at the compile-time when you compile your application. In the future, we want to rework the CastleWindow infrastructure to enable you to use multiple backends, each backend in a separate unit, and (optionally) allow you to select the best backend at runtime.</p>
+</div>
+<div class="paragraph">
+<p>Available backends:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#winapi-backend-castle_window_winapi">WinAPI backend (CASTLE_WINDOW_WINAPI)</a></p>
+</li>
+<li>
+<p><a href="#gtk-backend-castle_window_gtk_2">GTK backend (CASTLE_WINDOW_GTK_2)</a></p>
+</li>
+<li>
+<p><a href="#xlib-x11-backend-castle_window_xlib">Xlib (X11) backend (CASTLE_WINDOW_XLIB)</a></p>
+</li>
+<li>
+<p><a href="#lazarus-lcl-backend-castle_window_lcl">Lazarus LCL backend (CASTLE_WINDOW_LCL)</a></p>
+</li>
+<li>
+<p><a href="#android-backend-castle_window_android">Android backend (CASTLE_WINDOW_ANDROID)</a></p>
+</li>
+<li>
+<p><a href="#library-backend-castle_window_library">Library backend (CASTLE_WINDOW_LIBRARY)</a></p>
+</li>
+<li>
+<p><a href="#obsolete-dispmanx-backend-castle_window_dispmanx">Obsolete: DispmanX backend (CASTLE_WINDOW_DISPMANX)</a></p>
+</li>
+<li>
+<p><a href="#template-castle_window_template">Template (CASTLE_WINDOW_TEMPLATE)</a></p>
+</li>
+<li>
+<p><a href="#making-new-backend">Making new backend</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<h1 id="_winapi_backend_castle_window_winapi" class="sect0">WinAPI backend (CASTLE_WINDOW_WINAPI)</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>The default backend on Windows. Looks native and supports everything.</p>
+</div>
+<div class="paragraph">
+<p>Uses Windows API (WinAPI). By default it uses <code>wgl</code> to initialize OpenGL context. Can be also used (when symbol <code>OpenGLES</code> is defined) to initialize OpenGLES context using EGL. This way, you can test OpenGLES rendered on desktop Windows systems.</p>
+</div>
+<div class="paragraph">
+<p>Supported platforms:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Windows only.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Advantages:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>TCastleWindowBase.MainMenu</code> is implemented as actual Windows menu bar, so it looks good and native.</p>
+</li>
+<li>
+<p>Dialog windows like <code>TCastleWindowBase.FileDialog</code> are implemented using standard Windows dialog boxes, so again they look nice and native.</p>
+</li>
+<li>
+<p>Supports both OpenGL (by <code>wgl</code>) and OpenGLES (by <code>EGL</code>) contexts.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<h1 id="_gtk_backend_castle_window_gtk_2" class="sect0">GTK backend (CASTLE_WINDOW_GTK_2)</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>The default backend on most Unix systems, like Linux. Looks native and supports everything (except changing screen resolution, see below). Uses <em>GTK 2</em>. Initializes OpenGL(ES) context using Xlib + glX (for OpenGL) or EGL (for OpenGLES).</p>
+</div>
+<div class="paragraph">
+<p>At some point, this will be also available under <code>CASTLE_WINDOW_GTK</code> symbol. At some further point, we will add backend <code>CASTLE_WINDOW_GTK_3</code> and when it&#8217;s stable, <code>CASTLE_WINDOW_GTK</code> will be equivalent to <code>CASTLE_WINDOW_GTK_3</code>.</p>
+</div>
+<div class="paragraph">
+<p>Supported platforms:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Works on any OS where GTK + glX / EGL works. Currently tested under Linux, FreeBSD, macOS.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Advantages:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>TCastleWindowBase.MainMenu</code> is implemented using GTK menu bar.</p>
+</li>
+<li>
+<p>Dialog windows like <code>TCastleWindowBase.FileDialog</code> are implemented using GTK dialogs. So they look good and native.</p>
+</li>
+<li>
+<p>Supports both OpenGL (by <code>glX</code>) and OpenGLES (by <code>EGL</code>) contexts.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Known problems:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Tab</code> key cannot work as menu item shortcut (it&#8217;s always only for switching focus). This is an issue with GTK 2.</p>
+</li>
+<li>
+<p><code>Application.TryVideoChange</code> (to change screen resolution at runtime) is not finished, i.e. always returns false. See TODOs near <code>CASTLE_WINDOW_USE_XF86VMODE</code> definition.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>History: at some point this was using GtkGlExt, and was portable to any system using GTK (even to Windows). This has changed because:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>This way our dependencies are simpler (not every system has GtkGlExt),</p>
+</li>
+<li>
+<p>there was not practical usage of this backend outside of GTK+Xlib anyway.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<h1 id="_xlib_x11_backend_castle_window_xlib" class="sect0">Xlib (X11) backend (CASTLE_WINDOW_XLIB)</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>A backend useful on most Unix systems, like Linux, that use X11.</p>
+</div>
+<div class="paragraph">
+<p>Advantages compared to <code>CASTLE_WINDOW_GTK</code> (which supports similar platforms):</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Doesn&#8217;t depend on GTK (one less dependency of your application).</p>
+</li>
+<li>
+<p><code>Application.TryVideoChange</code> works.</p>
+</li>
+<li>
+<p>Supports both OpenGL (by <code>glX</code>) and OpenGLES (by <code>EGL</code>) contexts. By default it uses <code>glX</code> to initialize OpenGL context. But when symbol <code>OpenGLES</code> is defined, it uses EGL to initialize OpenGLES context. This way, you can test OpenGLES renderer on desktop Unix systems.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Known problems:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Doesn&#8217;t provide nicely-looking menu bar (<code>TCastleWindowBase.MainMenu</code>). Menu bar is not visible.</p>
+</li>
+<li>
+<p>Doesn&#8217;t provide nicely-looking dialog boxes (<code>TCastleWindowBase.FileDialog</code>). The dialog boxes are implemented using simple modal boxes in <code>CastleMessages</code> instead, which works OK but doesn&#8217;t look pretty.</p>
+</li>
+<li>
+<p>Full-screen (<code>TCastleWindowBase.FullScreen</code>) is realized using an obsolete method ("override_redirect") that doesn&#8217;t allow to switch applications with Alt+Tab from a fullscreen window.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<h1 id="_lazarus_lcl_backend_castle_window_lcl" class="sect0">Lazarus LCL backend (CASTLE_WINDOW_LCL)</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>Backend that uses Lazarus LCL to create a window. We use Lazarus TForm (with menu, dialogs and so on) and TOpenGLControl. This wraps Lazarus form and TOpenGLControl inside a <code>TCastleWindowBase</code> instance. In turn, Lazarus LCL may use various widgetsets, like GTK, Qt, WinAPI, Cocoa and others.</p>
+</div>
+<div class="paragraph">
+<p>To use this:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Define <code>CASTLE_WINDOW_LCL</code></p>
+</li>
+<li>
+<p>Add <code>castle_components</code> package to the requirements of the <code>castle_window</code> Lazarus package.</p>
+<div class="paragraph">
+<p>It will also automatically add <code>LazOpenGLContext</code> package as dependency, which is good. We need <code>castle_components</code> package for LCL helpers (like converting mouse/keys between LCL and CastleKeysMouse), and we need <code>LazOpenGLContext</code> package for TOpenGLControl.</p>
+</div>
+</li>
+<li>
+<p>Or you can use <code>alternative_castle_window_based_on_lcl.lpk</code> instead of <code>castle_window.lpk</code> in the project. This should take care of above 2 things.</p>
+</li>
+<li>
+<p>Usually you should compile programs using Lazarus then (IDE or <code>lazbuild</code>), to automatically have correct LCL paths used. If you use our <a href="Build Tool" class="bare">Build Tool</a> or <a href="https://castle-engine.io/manual_editor.php">CGE editor</a>, set <code>build_using_lazbuild="true"</code> in <a href="https://github.com/castle-engine/castle-engine/wiki/CastleEngineManifest.xml-examples">CastleEngineManifest.xml</a>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Supported platforms: everywhere where LCL runs. (But in practice this backend is only useful on macOS.)</p>
+</div>
+<div class="paragraph">
+<p>Advantages:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Can use any LCL backend, in particular it allows to use Cocoa on macOS. This is the only way for now to have <code>TCastleWindowBase</code> have a native look on macOS. See <a href="https://castle-engine.io/macosx_requirements.php">CGE on macOS notes</a>.</p>
+</li>
+<li>
+<p>Depends on LCL for all the things, like <code>TCastleWindowBase.MainMenu</code> or <code>TCastleWindowBase.FileDialog</code> or <code>TCastleWindowBase.FullScreen</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Known problems:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Various. Various small things don&#8217;t work perfectly using this backend, due to small problems/unfinished features in LCL. In practice, it isn&#8217;t really useful except on macOS, although it works on all platforms.</p>
+</li>
+<li>
+<p>Screen resizing (<code>Application.TryVideoChange</code>) is not implemented, as LCL doesn&#8217;t implement it.</p>
+</li>
+<li>
+<p>Message loop may stutter in case of a lot of mouse movement (may be visible in case of "mouse look" navigation).</p>
+</li>
+<li>
+<p>Doesn&#8217;t support OpenGLES, as underlying <code>TOpenGLControl</code> doesn&#8217;t support it.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<h1 id="_android_backend_castle_window_android" class="sect0">Android backend (CASTLE_WINDOW_ANDROID)</h1>
+<div class="openblock partintro">
+<div class="content">
+Backend using Android NDK cooperating with <em>Castle Game Engine</em> Android activity code. Used when you compile for Android, which you should always do using our <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a>.
+</div>
+</div>
+<h1 id="_library_backend_castle_window_library" class="sect0">Library backend (CASTLE_WINDOW_LIBRARY)</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>Use existing OpenGL(ES) context. This is useful when the engine is used as a library, and an external code initializes OpenGL(ES) context, merely informing CGE about it. Useful for various cases, e.g. to "drive" Castle Game Engine rendering from another programming language. See <code>examples/library/</code> for an example of wrapping CGE in a library.</p>
+</div>
+<div class="paragraph">
+<p>Also, this is the only possible backend to use CGE on <a href="iOS" class="bare">iOS</a> or <a href="Nintendo Switch" class="bare">Nintendo Switch</a> and it is automatically used there.</p>
+</div>
+<div class="paragraph">
+<p>Supported platforms: All platforms. But note that using this backend requires additional "outside" code to manage our library. In case of <a href="iOS" class="bare">iOS</a> and <a href="Nintendo Switch" class="bare">Nintendo Switch</a>, this is automatically provided when building using our <a href="Build Tool" class="bare">Build Tool</a>.</p>
+</div>
+</div>
+</div>
+<h1 id="_obsolete_dispmanx_backend_castle_window_dispmanx" class="sect0">Obsolete: DispmanX backend (CASTLE_WINDOW_DISPMANX)</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>Use the Castle Game Engine on the Raspberry Pi under Linux (tested with Raspbian) without X or Wayland.</p>
+</div>
+<div class="paragraph">
+<p>Obsolete: This is only available in a fork, and no longer maintained.</p>
+</div>
+<div class="paragraph">
+<p>See <a href="DispmanX backend" class="bare">DispmanX backend</a> for details.</p>
+</div>
+</div>
+</div>
+<h1 id="_template_castle_window_template" class="sect0">Template (CASTLE_WINDOW_TEMPLATE)</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>A dummy backend that does nothing, but compiles. Can be used as a starting point when developing new CastleWindow backends.</p>
+</div>
+<div class="paragraph">
+<p>Supported platforms: All platforms.</p>
+</div>
+</div>
+</div>
+<h1 id="_making_new_backend" class="sect0">Making new backend</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Invent a symbol <code>CASTLE_WINDOW_FOO</code> for a new backend, document it in the "available backends list" above.</p>
+</li>
+<li>
+<p>Create a file <code>castlewindow_foo.inc</code> with contents from  <code>castlewindow_backend_template.inc</code> and conditionally include it from <code>castlewindow_backend.inc</code>.</p>
+</li>
+<li>
+<p>Adjust defining <code>CASTLE_WINDOW_HAS_VIDEO_CHANGE</code> and <code>CASTLE_WINDOW_USE_PRIVATE_MODIFIERS_DOWN</code>  for your backend.</p>
+</li>
+<li>
+<p>Implement all methods in <code>castlewindow_foo.inc</code>.</p>
+</li>
+<li>
+<p>Call <code>TCastleWindowBase.DoXxx</code> functions at appropriate places from your backend. You can call all <code>DoUpdate</code> and <code>DoTimer</code> for all <code>Application.OpenWindows</code> using <code>Application.FOpenWindows.DoUpdate/Timer</code>.</p>
+</li>
+<li>
+<p>Call <code>TCastleApplication.DoApplicationUpdate</code> and <code>DoApplicationTimer</code> when appropriate.  Remember that you can always assume that the ONLY existing instance of <code>TCastleApplication</code> is <code>Application</code>.</p>
+</li>
+<li>
+<p>Remember that probably you will have to call <code>ReleaseAllKeysAndMouse</code> when user switches to another window or activates MainMenu.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>

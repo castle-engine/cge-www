@@ -1,0 +1,1 @@
+Moved to link:pass:[New Features in Castle Game Engine 7.0][]

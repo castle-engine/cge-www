@@ -1,0 +1,209 @@
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel0">
+<li><a href="#_table_of_contents">Table of Contents</a>
+<ul class="sectlevel1">
+<li><a href="#_general_notes">1. General notes</a></li>
+<li><a href="#_materials">2. Materials</a></li>
+<li><a href="#_textures">3. Textures</a></li>
+<li><a href="#_extra_material_textures_normal_maps_specular_maps_with_commonsurfaceshader">4. Extra material textures (normal maps, specular maps) with CommonSurfaceShader</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>A collection of hints about using the Blender X3D exporter. They apply to the standard X3D exporter distributed with <a href="http://blender.org/">Blender</a> and to our modified exporter version available from <a href="https://castle-engine.io/creating_data_blender.php" class="bare">https://castle-engine.io/creating_data_blender.php</a> .</p>
+</div>
+<div class="paragraph">
+<p><strong>Obsolete: Many notes below are relevant only to the exporter state in Blender 2.7. With Blender 2.8, the exporter is unfortunately even more limited (for now), e.g. it doesn&#8217;t support textures assigned in Blender 2.8, even the base texture. With Blender 2.8, we advise exporting to glTF instead. See <a href="https://castle-engine.io/creating_data_blender.php" class="bare">https://castle-engine.io/creating_data_blender.php</a> for Blender + Castle Game Engine instructions.</strong></p>
+</div>
+</div>
+</div>
+<h1 id="_table_of_contents" class="sect0">Table of Contents</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#general-notes">General notes</a></p>
+</li>
+<li>
+<p><a href="#materials">Materials</a></p>
+</li>
+<li>
+<p><a href="#textures">Textures</a></p>
+</li>
+<li>
+<p><a href="#extra-material-textures-normal-maps-specular-maps-with-commonsurfaceshader">Extra material textures (normal maps, specular maps) with CommonSurfaceShader</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_general_notes">1. General notes</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>It <strong>does not support animations</strong>. To export animations from Blender that can work in <a href="https://castle-engine.io/">Castle Game Engine</a> and <a href="https://castle-engine.io/view3dscene.php">view3dscene</a>, use our <a href="https://castle-engine.io/creating_data_blender.php">Blender castle-anim-frames exporter</a> instead. The Castle-anim-frames exporter internally exports to a series of X3D files, so the rest of this page still matters to you anyway:)</p>
+</li>
+<li>
+<p>Latest exporter <strong>honours the <tt>Backface culling</tt> setting in Blender</strong>. It makes the back faces invisible. If it&#8217;s not OK, try flipping the normals (<em>"Recalculate Normals"</em>, Ctrl + N, Ctrl + Shift + N), or turning the "backface culling" off. You can find the appropriate checkbox <em>"Backface Culling"</em> at the material settings once you change the Blender UI mode (at the header, default is <em>"Blender Render"</em>) to <em>"Blender Game"</em>.</p>
+</li>
+<li>
+<p><strong>Smoothing works</strong>. You can click <em>"Smooth"</em> or <em>"Flat"</em> on the whole mesh, you can use the "Auto Smooth" checkbox and <em>"Angle"</em> as well. <strong>But do not use the <tt>Triangulate</tt> option at export</strong> (it messes the smoothing, making the mesh always completely smoothed; yes, it&#8217;s a bug in X3D exporter, it should not use the <tt>IndexedTriangleSet</tt> or it should split the vertexes). Note that if you don&#8217;t export the explicit "Normals", you should make the ordering of your faces consistent (regardless if you use "backface culling" or not) by occasionally using the "Recalculate Normals" (Ctrl + N) feature.</p>
+</li>
+<li>
+<p><strong>"Vertex painting" is not supported</strong>.</p>
+</li>
+<li>
+<p><strong>Points and spot lights are exported OK. Directional light ("sun") is incorrect in official exporter version.</strong> Use our exporter version from <a href="https://castle-engine.io/creating_data_blender.php" class="bare">https://castle-engine.io/creating_data_blender.php</a> to have <tt>DirectionalLight</tt> working OK.</p>
+</li>
+<li>
+<p><strong>Camera is exported, but it&#8217;s gravity up vector will be messed up</strong>. It is exported is such way that the gravity up vector (which is also used as the main rotation axis in some camera modes) will be set to whatever is the camera&#8217;s current up vector (instead of being controlled independently from camera up). In view3dscene, use the <em>"Navigation -&gt; Set Up (and Gravity Up) to +Y"</em>.</p>
+</li>
+<li>
+<p><strong>Modifiers are exported OK</strong>. So you don&#8217;t need to <em>"Apply"</em> modifiers like <em>Mirror</em> or <em>Subdivision Surface</em> before exporting.</p>
+</li>
+<li>
+<p><strong>Other small improvements of our exporter version from <a href="https://castle-engine.io/creating_data_blender.php" class="bare">https://castle-engine.io/creating_data_blender.php</a></strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Exports <em>Clamp X / Y</em> texture settings. Useful when you don&#8217;t want your texture to "repeat".</p>
+</li>
+<li>
+<p>Exports "Shadeless" material (only emit color) in a way that activates an optimized "shadeless" rendering path in <em>Castle Game Engine</em>.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_materials">2. Materials</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>The exporter <strong>supports  multiple materials (and so, also textures) on the same mesh</strong>. Internally, such Blender objects will be split into multiple X3D Shapes (since X3D does not allow to use multiple materials on the same mesh, for speed). But this detail is usually not important for you.</p>
+</li>
+<li>
+<p><strong>Assign some material to your meshes, or they will be unlit</strong>. In Blender render, "no material" means that an object has a default grayish material. But in X3D, "no material" means that an object is <em>unlit</em> (not affected by the usual light calculation; "shadeless" in Blender terms). This is actually a useful optimization in X3D in some cases, since unlit geometry can be rendered much faster.</p>
+<div class="paragraph">
+<p>If you want your shape to be affected by lighting, just create a new material on your object, do not leave it without any materials.</p>
+</div>
+<div class="paragraph">
+<p>To easily assign a material to all the selected objects, use in Blender <em>Ctrl + L</em> and choose <em>Materials</em>.</p>
+</div>
+<div class="paragraph">
+<p>When creating a material, consider also changing the diffuse color to white, as the default is grayish (0.8,0.8,0.8). Consider also darkening the specular color, as the default Blender specular is very bright, which results in a plastic/polished/artificial look, which is often <em>not</em> what you want.</p>
+</div>
+</li>
+<li>
+<p>The <strong>material transparency (in resulting X3D file) is calculated as 1.0 - material alpha (in Blender model)</strong>. That is, for X3D exporter, the <em>"alpha"</em> means <em>"how much is this material opaque"</em>. <code>Alpha = 0</code> means that the material is fully transparent, <code>alpha = 1</code> means that it is opaque. It will be multiplied with the <em>texture alpha</em> when rendering with blending. This is probably what you expect&#8201;&#8212;&#8201;this is consistent with how X3D, and most 3D software treats the term "alpha".</p>
+<div class="paragraph">
+<p>However, note that the Blender&#8217;s treatment of the "alpha" (if you assign textures to your material) is more convoluted and a little counter-intuitive. In particular, <strong>if you set <code>alpha = 1</code>, you will not see the texture alpha channel correctly in the Blender 3D view ("Texture" mode), and there seems to be no solution for this</strong>. Just rest assured that the exported X3D will show the texture alpha correctly (which you can verify, by exporting and opening it e.g. with view3dscene).</p>
+</div>
+<div class="paragraph">
+<p>The Blender&#8217;s internal renderer, and the OpenGL rendering, seem to calculate the "opaqueness" by this equation: <code>opaqueness =  (1-texture_alpha) * material_alpha + texture_alpha * dvar</code>. (See also Michalis' Blender lecture on <a href="http://michalis.ii.uni.wroc.pl/~michalis/teaching/blender/" class="bare">http://michalis.ii.uni.wroc.pl/~michalis/teaching/blender/</a> ). So when <code>dvar = 1</code> (default) and <code>material_alpha = 1</code> (opaque), you have <code>opaqueness = 1</code>, so it&#8217;s always opaque, regardless of the <code>texture_alpha</code>. You need to set <code>material_alpha = 0</code> and <code>dvar = 1</code> to see the texture alpha channel in Blender&#8230;&#8203; Which is very counter-intuitive, and the Blender&#8217;s own X3D exporter has a different understanding how the "alpha" works.</p>
+</div>
+<div class="paragraph">
+<p>Using the <em>Face Textures</em> and <em>Face Textures Alpha</em> (without assigning textures to material) works OK, then the alpha treatment is intuitive and consistent with X3D.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_textures">3. Textures</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>To successfully <strong>export the UV textures</strong>, you should either select the <em>"Face Textures"</em> option at the material, or add the appropriate texture (with <em>Image or Movie</em> type, and with correct <em>UV</em> chosen) to the material. The second option is a little more work (you will need to create multiple materials if you use multiple textures on the same mesh), but it&#8217;s also better (different material settings for each texture allow additional tweaking, e.g. multiplying it with color).</p>
+</li>
+<li>
+<p>I advice to <strong>set <tt>Path Mode</tt> as <tt>Relative</tt></strong> at the export dialog. The default state <tt>Path Mode = AUTO</tt> means that Blender tries to guess whether a relative or an absolute filename is best, and also records a couple of alternatives as URLs. Instead I advice to always use (only) relative paths, as then</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>your models work on other people&#8217;s systems,</p>
+</li>
+<li>
+<p>your models don&#8217;t contain absolute paths specific to your system (which is often surprising, and causes unnecessary differences in the version control systems).</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_extra_material_textures_normal_maps_specular_maps_with_commonsurfaceshader">4. Extra material textures (normal maps, specular maps) with CommonSurfaceShader</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you check the <em>Use CommonSurfaceShader</em> checkbox at exporting (available only in <a href="https://castle-engine.io/creating_data_blender.php">our modified Blender exporter for now</a>), then the X3D file will contain a <a href="https://castle-engine.io/x3d_implementation_texturing_extensions.php#section_ext_common_surface_shader">CommonSurfaceShader</a> describing some advanced material properties. This enables to smoothly use normal maps, specular maps and more from <em>Blender</em> to <em>Castle Game Engine</em>.</p>
+</div>
+<div class="paragraph">
+<p>You should set up the textures in Blender <em>"texture slots"</em> to influence the appropriate shading parameters, and they will be automatically used by the exporter.</p>
+</div>
+<div class="paragraph">
+<p>The following checkboxes in the <em>"Influence"</em> section of the <em>"Texture"</em> tab (in the Blender <em>"Properties"</em> window) are recognized and exported as proper CommonSurfaceShader fields:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>Diffuse-&gt;Color</em> (RGB)</p>
+</li>
+<li>
+<p><em>Diffuse-&gt;Alpha</em> (uses alpha channel of the provided texture)</p>
+</li>
+<li>
+<p><em>Specular-&gt;Color</em> (RGB)</p>
+</li>
+<li>
+<p><em>Specular-&gt;Hardness</em> (X3D uses only the alpha channel of the provided texture)</p>
+</li>
+<li>
+<p><em>Shading-&gt;Ambient</em> (RGB)</p>
+</li>
+<li>
+<p><em>Geometry-&gt;Normal</em> (RGB, converted to normal vectors in tangent space)</p>
+</li>
+<li>
+<p><em>Geometry-&gt;Displace</em> (for now the texture itself is not used by CGE (it is assumed to be in the alpha channel of a <em>normal map</em> texture), but the <em>amount</em> of displacement is used)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Any combination of these parameters should work.</p>
+</div>
+<div class="paragraph">
+<p>Notes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>About diffuse</em>: The <em>Castle Game Engine</em> right now always uses the <em>"diffuse texture"</em> as a combined <em>"diffuse + alpha"</em> texture. So, for future compatibiilty, always select both <em>"Diffuse-&gt;Color"</em> and <em>"Diffuse-&gt;Alpha"</em> checkboxes in Blender. This is a limitation of CGE, <em>not</em> a limitation of CommonSurfaceShader, X3D, or this Blender exporter.</p>
+</li>
+<li>
+<p>The amount of <em>"Influence"</em> (controlled by the sliders for each of the checkbox in the <em>"Influence"</em> section) does not matter. It is always treated as equal to 1.0 by the <em>Castle Game Engine</em>. This is for performance reasons (implementing an adjustable <em>"Influence"</em> amount, like Blender renderer allows, would cost us rendering time). Instead, you can edit the appropriate texture, or adjust the appropriate material parameter. <em>The one exception to this rule is the displacement</em>: The amount of displacement matters, it sets the base <code>displacementFactor</code> and <code>normalTextureParallaxHeight</code> that affect how the displacement is interpreted.</p>
+</li>
+<li>
+<p>The <em>material parameters are multiplied by the texture values</em>. So changing the material parameters still makes sense. If it seems like your texture has no effect, make sure that the appropriate material parameter is not zero. E.g. a <em>specular map</em> (texture affecting the <em>specular color</em>) will have no effect if on the "Material" tab in Blender you set <em>specular color</em> as zero (black).</p>
+</li>
+<li>
+<p><em>About displacement</em>: The <em>Castle Game Engine</em> right now automatically detects and uses the <em>displacement</em> by looking at the alpha channel of your normalmap. Selecting the checkbox <em>"Geometry-&gt;Displace"</em> is only useful for now to set the <em>parallax height</em> for <em>parallax bump mapping</em>, it doesn&#8217;t matter what image is assigned there (for now).</p>
+</li>
+</ul>
+</div>
+</div>
+</div>

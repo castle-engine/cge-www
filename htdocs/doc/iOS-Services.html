@@ -1,0 +1,377 @@
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel0">
+<li><a href="#_how_to_use_ios_services_in_castle_game_engine_projects">How to use iOS services in Castle Game Engine projects</a></li>
+<li><a href="#_currently_supported_services">Currently supported services:</a>
+<ul class="sectlevel1">
+<li><a href="#_apple_game_center">1. apple_game_center</a></li>
+<li><a href="#_facebook">2. facebook</a></li>
+<li><a href="#_game_analytics">3. game_analytics</a></li>
+<li><a href="#_google_analytics">4. google_analytics</a></li>
+<li><a href="#_icloud_for_save_games">5. icloud_for_save_games</a></li>
+<li><a href="#_in_app_purchases">6. in_app_purchases</a></li>
+<li><a href="#_ogg_vorbis">7. ogg_vorbis</a></li>
+<li><a href="#_photo_service">8. photo_service</a></li>
+</ul>
+</li>
+<li><a href="#_common_notes_for_services_using_cocoapods">Common notes for services using CocoaPods</a></li>
+<li><a href="#_adding_new_services">Adding new services</a></li>
+</ul>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#how-to-use-ios-services-in-castle-game-engine-projects">How to use iOS services in Castle Game Engine projects</a></p>
+</li>
+<li>
+<p><a href="#currently-supported-services">Currently supported services:</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/ios/services/activity_recognition/README.md">activity_recognition</a></p>
+</li>
+<li>
+<p><a href="#apple_game_center">apple_game_center</a></p>
+</li>
+<li>
+<p><a href="#facebook">facebook</a></p>
+</li>
+<li>
+<p><a href="https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/ios/services/fmod/README.md">fmod</a></p>
+</li>
+<li>
+<p><a href="https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/ios/services/freetype/README.md">freetype</a></p>
+</li>
+<li>
+<p><a href="#game_analytics">game_analytics</a></p>
+</li>
+<li>
+<p><a href="#google_analytics">google_analytics</a></p>
+</li>
+<li>
+<p><a href="#icloud_for_save_games">icloud_for_save_games</a></p>
+</li>
+<li>
+<p><a href="#in_app_purchases">in_app_purchases</a></p>
+</li>
+<li>
+<p><a href="#ogg_vorbis">ogg_vorbis</a></p>
+</li>
+<li>
+<p><a href="#photo_service">photo_service</a></p>
+</li>
+<li>
+<p><a href="https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/ios/services/tenjin/README.md">tenjin</a></p>
+</li>
+<li>
+<p><a href="https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/ios/services/test_fairy/README.md">test_fairy</a></p>
+</li>
+<li>
+<p><a href="https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/ios/services/vibrate/README.md">vibrate</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="#common-notes-for-services-using-cocoapods">Common notes for services using CocoaPods</a></p>
+</li>
+<li>
+<p><a href="#adding-new-services">Adding new services</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<h1 id="_how_to_use_ios_services_in_castle_game_engine_projects" class="sect0">How to use iOS services in Castle Game Engine projects</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>Inside the <a href="CastleEngineManifest.xml examples">CastleEngineManifest.xml</a> you can declare which additional services you want to integrate with your iOS application. It looks like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span class="preprocessor">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+<span class="tag">&lt;project</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">castle_spine</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">game_units</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">Game</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+  <span class="tag">&lt;ios&gt;</span>
+    <span class="tag">&lt;services&gt;</span>
+      <span class="tag">&lt;service</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">apple_game_center</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+    <span class="tag">&lt;/services&gt;</span>
+  <span class="tag">&lt;/ios&gt;</span>
+<span class="tag">&lt;/project&gt;</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<h1 id="_currently_supported_services" class="sect0">Currently supported services:</h1>
+<div class="sect1">
+<h2 id="_apple_game_center">1. apple_game_center</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Integration with the <a href="https://developer.apple.com/game-center/">Apple Game Center</a>.</p>
+</div>
+<div class="paragraph">
+<p>To use this, you will need to configure your application integration with <em>Game Center</em> on the Apple websites:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Login to <a href="https://developer.apple.com/" class="bare">https://developer.apple.com/</a> and create your App ID (if not created already) using the <code>qualified_name</code> like <code>io.castleengine.castlespine</code>.</p>
+</li>
+<li>
+<p>Add <em>Game Center</em> feature to your App ID (see the screenshot below):</p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="https://castle-engine.sourceforge.io/images/original_size/app_id_gamekit.png"><img src="https://castle-engine.sourceforge.io/images/thumb_size/app_id_gamekit.png" alt="Add GameKit to App Id"></a>
+</div>
+</div>
+</li>
+<li>
+<p>Login to <a href="https://itunesconnect.apple.com/" class="bare">https://itunesconnect.apple.com/</a> and configure the achievements, leaderboars in the <em>Game Center</em> section of <em>iTunes Connect</em>. <a href="https://developer.apple.com/library/content/documentation/LanguagesUtilities/Conceptual/iTunesConnectGameCenter_Guide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40013726">See the Apple documentation for the details</a>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Then from your Pascal code, you can use <code>TGameService</code> class from the <code>CastleGameService</code> unit to send achievements and more using the <em>Apple Game Center</em>. See the <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/mobile/achievements">examples/mobile/achievements</a> example, in particular the code inside <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/mobile/achievements/code/gameachievements.pas">code/gameachievements.pas</a> and <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/mobile/achievements/code/gamestateplay.pas">code/gamestateplay.pas</a>.</p>
+</div>
+<div class="paragraph">
+<p><strong>Savegames in the cloud</strong> work too. Use simple methods <code>TGameService.SaveGameSave</code>, <code>TGameService.SaveGameLoad</code> from Pascal code. Notes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>User must be logged into the iCloud, and have <em>iCloud Drive</em> enabled, <a href="https://developer.apple.com/library/content/documentation/NetworkingInternet/Conceptual/GameKit_Guide/SavedGames/SavedGames.html">see Apple documentation</a>.</p>
+</li>
+<li>
+<p>You must enable iCloud for your App ID in your <a href="https://developer.apple.com/" class="bare">https://developer.apple.com/</a> account.</p>
+</li>
+<li>
+<p>You need to use an additional service <code>icloud_for_save_games</code>. In effect, in the application settings in Xcode, you should see that the <em>iCloud</em> is active, with <em>iCloud Documents</em> selected. Like on the screenshot below. (<em>You should not need to adjust them, the generated Xcode project should be already correct. The screenshot is only to allow you to make sure.</em>)</p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="https://castle-engine.sourceforge.io/images/original_size/xcode_icloud_settings.png"><img src="https://castle-engine.sourceforge.io/images/thumb_size/xcode_icloud_settings.png" alt="Xcode iCloud Settings for Apple Game Center with savegames"></a>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_facebook">2. facebook</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Integration with <a href="https://developers.facebook.com/docs/ios/">Facebook SDK for iOS</a>. Right now this integration:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Notifies Facebook when users run your application on iOS. This may be useful to see installation statistics inside <em>Facebook analytics</em>.</p>
+</li>
+<li>
+<p>The Facebook SDK may also log in-app purchases done by users, if you set appropriate option in the Facebook application config.</p>
+</li>
+<li>
+<p>In Pascal, right now you can only call <code>TFacebook.LoginButton</code> (use <code>CastleFacebook</code> unit) to show the Facebook login button. Users can click it to login/logout from the Facebook application. It does not serve much purpose now except checking that the integration actually works (e.g. you pointed to the correct Facebook app).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>When adding this to the <code>CastleEngineManifest.xml</code>, set also parameters describing application id and name for Facebook:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;service</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">facebook</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+  <span class="tag">&lt;parameter</span> <span class="attribute-name">key</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">app_id</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">value</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">11223344</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+  <span class="tag">&lt;parameter</span> <span class="attribute-name">key</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">app_title</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">value</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">My Application Name</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+<span class="tag">&lt;/service&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To use this:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>You will need to create a new application on Facebook: <a href="https://developers.facebook.com/apps" class="bare">https://developers.facebook.com/apps</a> or you can follow the link from <a href="https://developers.facebook.com/docs/ios/getting-started" class="bare">https://developers.facebook.com/docs/ios/getting-started</a> .</p>
+<div class="paragraph">
+<p>In Facebook application, configure at least the <em>Bundle ID</em>. It must match the <code>qualified_name</code> / <code>override_qualified_name</code> you set in <code>CastleEngineManifest.xml</code> for iOS. The <a href="https://developers.facebook.com/docs/ios/getting-started">getting started guide</a> also advices to turn on <em>Single Sign On</em>.</p>
+</div>
+<div class="paragraph">
+<p>In <code>CastleEngineManifest.xml</code>, set the <code>app_id</code> and <code>app_title</code> for the <code>facebook</code> service to match your Facebook application.</p>
+</div>
+</li>
+<li>
+<p><a href="#common-notes-for-services-using-cocoapods">We use CocoaPods to download the Facebook frameworks, so make sure you have CocoaPods installed</a></p>
+</li>
+<li>
+<p>Everything else mentioned on <a href="https://developers.facebook.com/docs/ios/getting-started">getting started guide</a> is done for you automatically&#8201;&#8212;&#8201;the project is out-of-the-box integrated with Facebook, using proper declarations in <code>Info.plist</code> and Objective-C code.</p>
+<div class="paragraph">
+<p>Note that compiling the Facebook SDK in latest Xcode will produce a large number of warnings (64, last time I checked&#8230;&#8203;). That&#8217;s a problem of Facebook SDK&#8201;&#8212;&#8201;we cannot help it. You can just ignore them (or submit them to Facebook devs).</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_game_analytics">3. game_analytics</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Integration with the <a href="https://gameanalytics.com/">Game Analytics</a>.</p>
+</div>
+<div class="paragraph">
+<p>From you game Pascal code, use <a href="https://castle-engine.sourceforge.io/apidoc/html/CastleAnalytics.TAnalytics.html">TAnalytics class in the CastleAnalytics unit</a>. Initialize them with <a href="https://castle-engine.sourceforge.io/apidoc/html/CastleAnalytics.TAnalytics.html#InitializeGameAnalytics">InitializeGameAnalytics method</a> and send events to the analytics service using various methods like <a href="https://castle-engine.sourceforge.io/apidoc/html/CastleAnalytics.TAnalytics.html#Event">Event</a>. <strong>Also, all the purchases done using <code>in_app_purchases</code> service are automatically send to analytics, with correct price and currency.</strong></p>
+</div>
+<div class="paragraph">
+<p>Note that you <em>can</em> have both <em>Game Analytics</em> and <em>Google Analytics</em> initialized at the same time. We will send all events to both of them.</p>
+</div>
+<div class="paragraph">
+<p><a href="#common-notes-for-services-using-cocoapods">This service uses CocoaPods, so make sure you have CocoaPods installed.</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_google_analytics">4. google_analytics</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Integration with the <a href="https://analytics.google.com/">Google Analytics</a>.</p>
+</div>
+<div class="paragraph">
+<p>From you game Pascal code, use <a href="https://castle-engine.sourceforge.io/apidoc/html/CastleAnalytics.TAnalytics.html">TAnalytics class in the CastleAnalytics unit</a>. Initialize them with <a href="https://castle-engine.sourceforge.io/apidoc/html/CastleAnalytics.TAnalytics.html#InitializeGoogleAnalytics">InitializeGoogleAnalytics method</a> and send events to the analytics service using various methods like <a href="https://castle-engine.sourceforge.io/apidoc/html/CastleAnalytics.TAnalytics.html#Event">Event</a>. <strong>Also, all the purchases done using <code>in_app_purchases</code> service are automatically send to analytics, with correct price and currency.</strong></p>
+</div>
+<div class="paragraph">
+<p>Note that you <em>can</em> have both <em>Game Analytics</em> and <em>Google Analytics</em> initialized at the same time. We will send all events to both of them.</p>
+</div>
+<div class="paragraph">
+<p><a href="#common-notes-for-services-using-cocoapods">This service uses CocoaPods, so make sure you have CocoaPods installed.</a></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+You need to create a new "property" in <em>Google Analytics</em> for tracking your mobile application, and obtain a "tracking ID" (like <code>UA-xxx</code>). However, since Google now advices using Firebase for tracking mobile applications, if you click on "Mobile" when creating a new Google Analytics property, it will suggest you to connect your application to Firebase. Instead, <em>create a "Website" property in "Google Analytics" to get a normal tracking ID, and then change the "view" to see mobile application data</em>. See:
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://stackoverflow.com/questions/44142353/creating-google-analytics-property-not-using-firebase" class="bare">https://stackoverflow.com/questions/44142353/creating-google-analytics-property-not-using-firebase</a></p>
+</li>
+<li>
+<p><a href="https://stackoverflow.com/questions/45853012/add-google-analytics-to-android-app-without-firebase" class="bare">https://stackoverflow.com/questions/45853012/add-google-analytics-to-android-app-without-firebase</a></p>
+</li>
+<li>
+<p><a href="https://stackoverflow.com/questions/44421865/is-firebase-now-mandatory-for-use-of-google-analytics-mobile-properties" class="bare">https://stackoverflow.com/questions/44421865/is-firebase-now-mandatory-for-use-of-google-analytics-mobile-properties</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_icloud_for_save_games">5. icloud_for_save_games</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This service enhances the <code>apple_game_center</code> service to be able to store savegames in the cloud. See the <code>apple_game_center</code> documentation above.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_in_app_purchases">6. in_app_purchases</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Allows to sell products within the iOS application, through the <em>Apple AppStore</em>.</p>
+</div>
+<div class="paragraph">
+<p>In your game, use the <a href="https://castle-engine.sourceforge.io/apidoc/html/CastleInAppPurchases.TInAppPurchases.html">TInAppPurchases class from the CastleInAppPurchases unit</a> to communicate with the AppStore, requesting information about the products, purchasing etc.</p>
+</div>
+<div class="paragraph">
+<p>You need (paid) Apple developer account to use this. And you will need to sign some legal forms to enable in-app purchases. See the <a href="https://developer.apple.com/in-app-purchase/">Apple documentation</a> for all the details. And you will need to configure the products that can be purchased on the <a href="https://itunesconnect.apple.com/">Apple iTunes Connect website</a>.</p>
+</div>
+<div class="paragraph">
+<p>Be sure to check that the capability <em>"In-App Purchase"</em> is also <em>Enabled</em> for given <em>App ID</em>, in your <em>Apple Developer Account</em>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ogg_vorbis">7. ogg_vorbis</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This integrates your project with Tremolo to allow loading and playing OggVorbis music on iOS.</p>
+</div>
+<div class="paragraph">
+<p><em>This service is automatically added to your project if it has a dependency on OggVorbis, which in turn is automatic if your game data includes some <code>.ogg</code> file.</em> So there&#8217;s seldom a need to request this service explicitly.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_photo_service">8. photo_service</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Integration with PhotoLibrary.</p>
+</div>
+<div class="paragraph">
+<p>Use the Pascal class <code>TPhotoService</code> (use <code>CastlePhotoService</code> unit) to store your image into the system Photos app.</p>
+</div>
+</div>
+</div>
+<h1 id="_common_notes_for_services_using_cocoapods" class="sect0">Common notes for services using CocoaPods</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>Some of the services use <a href="https://cocoapods.org/">CocoaPods</a> for installing 3rd-party dependencies easily (e.g. <em>Game Analytics</em> or <em>Google Analytics</em> or <em>Facebook SDK</em> libraries).</p>
+</div>
+<div class="paragraph">
+<p>In order to use such sevices:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>You need to have <a href="https://cocoapods.org/">CocoaPods</a> installed on your system. Just execute <code>sudo gem install cocoapods</code> in the terminal, it should make the <code>pod</code> command available on your <code>$PATH</code>.</p>
+<div class="paragraph">
+<p>The build tool will internally use <code>pod</code> to download and install service dependencies. This happens completely automatically. If you never used CocoaPods before, be aware that the 1st run may take a while (even a couple of minutes) as a large CocoaPods repository is downloaded.</p>
+</div>
+</li>
+<li>
+<p>You should no longer open the project using <code>my_project_name.xcodeproj</code> file. This will not work, as the <code>libPods...</code> library will not be built in this case. Instead, open and run in Xcode the <code>my_project_name.xcworkspace</code> file (it is in the same directory as <code>my_project_name.xcodeproj</code>). Using this will correctly build and run the project with dependencies.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<h1 id="_adding_new_services" class="sect0">Adding new services</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>Adding new iOS service is deliberately very consistent with creating new service for Android, which is documented on <a href="Adding New Android Services" class="bare">Adding New Android Services</a>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>In case of iOS you write code using Objective-C.</p>
+</li>
+<li>
+<p>Similarly to Android, we have a base class in Objective-C <code>ServiceAbstract</code> with methods you can override, that correspond to typical iOS application lifecycle.</p>
+</li>
+<li>
+<p>See existing service code <code>build-tool/data/ios/services</code> for examples.</p>
+</li>
+<li>
+<p>Same as on Android, you can use <code>CastleMessaging</code> to communicate with Pascal code asynchronously.</p>
+</li>
+<li>
+<p>On iOS, use static libraries <code>libxxx.a</code> (instead of dynamic <code>libxxx.so</code>).</p>
+</li>
+<li>
+<p>Note that <a href="https://cocoapods.org/">CocoaPods</a> has a lot of common libraries available. You can trivially use <code>Podfile</code> inside a service to reference any library from CocoaPods. See e.g. <a href="https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/ios/services/freetype">freetype service on iOS</a> for an example.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>

@@ -1,0 +1,47 @@
+# Using FpMake / FpPkg with Castle Game Engine
+
+You can compile and install _Castle Game Engine_ units using FPC `fpmake` / `fppkg`.
+
+Note that most users are probably more interested in [compiling using CGE editor or build tool, or using Lazarus](https://castle-engine.io/documentation.php). However, the compilation and installation using `fpmake` / `fppkg` is also fully supported. 
+
+# Using FpMake
+
+In short: use the `fpmake.pp` file in CGE top-level directory, and follow standard <a href="http://wiki.freepascal.org/FPMake">FpMake</a> and <a href="http://wiki.freepascal.org/fppkg">fppkg</a> docs.
+
+Using pure fpmake, this looks like this:
+
+```
+fpc fpmake.pp
+./fpmake --globalunitdir=xxx 
+./fpmake install --globalunitdir=xxx --prefix=xxx --baseinstalldir=xxx
+```
+Instead of doing `install` command, you could also manually modify your <code>fpc.cfg</code> file to add the necessary unit path, like <code>-FuXxx/castle_game_engine/units/x86_64-linux</code>.
+
+# Using FpPkg
+
+Simply doing
+
+```
+fppkg install
+```
+
+in the main CGE directory should work. 
+
+Note: if it fails with Access Violation (as it happens with `FPC 3.3.1-r41725` on Win64 now) then use the `fpmake` approach instead, see above.
+
+# Compiling your applications
+
+Since the CGE units are now compiled to a directory listed in `fpc.cfg` file, you can just compile your applications from the command-line by `fpc my_application.lpr`.
+
+# Compiling and running your applications with InstantFPC
+
+Once you installed CGE units this way, you can use [InstantFPC](http://wiki.freepascal.org/InstantFPC) without any additional configuration. That is, you can use CGE units inside program files processed by InstantFPC.
+
+InstantFPC allows to use Pascal programs like scripts. You do not explicitly invoke compilation. Instead you run the Pascal source code and (thanks to Unix shebang) it is automatically recompiled and run under the hood. The scripts developed this way work on Unix or Windows (with Cygwin). 
+
+See the [InstantFPC](http://wiki.freepascal.org/InstantFPC) for more information.
+
+Examples:
+
+* https://github.com/castle-engine/castle-engine/blob/master/examples/simple_command_line_utilities/instant_fpc_test_list_pascal_files - list Pascal files in the current directory, using `CastleFindFiles`
+* https://github.com/castle-engine/castle-engine/blob/master/examples/simple_command_line_utilities/instant_fpc_test_open_window - open a window, with text taken from the 1st command-line parameter, using `CastleWindow` and `TCastleLabel`.

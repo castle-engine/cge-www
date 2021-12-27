@@ -1,0 +1,30 @@
+:doctype: book
+:sectnums:
+:source-highlighter: coderay
+:toc: left
+
+_Castle Game Engine_ supports compiling games to the https://www.nintendo.com/switch/[Nintendo Switch] console.
+
+It is a modern, successful, indie-friendly console from Nintendo. Our friend company, _Cat-astrophe Games_, has already released games using CGE on Nintendo Switch (https://cat-astrophe-games.party/escape-universe/[Escape from the Universe] and https://unholy-society.com/[The Unholy Society]).
+
+It is a full integration, really 100% of the engine works on Nintendo Switch. From the developer point of view, you just write cross-platform Pascal code using CGE units, and then you can recompile the application using the Castle Game Engine link:pass:[build tool][] with the `--target=nintendo-switch` parameter.
+
+= Getting engine version for Nintendo Switch
+
+The integration code with Nintendo Switch is not public and not open-source. It cannot be, as we are covered by Nintendo NDA agreements and we cannot disclose the technological details about how Nintendo Switch works. To develop on Nintendo Switch, you have to:
+
+* Become a https://developer.nintendo.com/[Nintendo Developer] yourself, and sign the necessary NDA agreements between your company and Nintendo. You will most likely want to buy a developer version of the console, as well.
+* Contact me (Michalis Kamburelis) through the non-public Nintendo developer forum. I can then share with you the necessary code that adds Nintendo Switch integration on top of the open-source CGE core, through the Nintendo forum, so Nintendo can confirm it's legally OK with them. Of course you get this for free. The integration code cannot be open-source, but I still want to give it to everyone for free.
+
+= Technical details
+
+Note that we cannot share various technical details, due to Nintendo restrictions. The full documentation describing using CGE on Nintendo Switch is part of the closed-source CGE branch, that you get for free once you confirm that you are registered Nintendo Developer.
+
+Some public information:
+
+* We are using unmodified https://www.freepascal.org/[FPC].
+* All the units available on Android/Aarch64 platform are available on Nintendo Switch as well. We use a small trick to utilize FPC for Android/Aarch64 (compiler and standard library) to develop on Nintendo Switch, since FPC lacks Embedded/Aarch64 target.
+* You cannot access system-specific things using standard library. You have to use CGE. For example, you cannot open files using `TFileStream`, you must open files using CGE `Download` function. Even a large game can be easily recompiled for Nintendo Switch, but you need to use CGE API consistently for everything (reading files, measuring time etc.)
+* Other than that, everything just works. The whole CGE API works, and the FPC standard library works as well as long as you avoid system calls. E.g. you can use standard FPC units to process XML, JSON etc.
+
+If you have any questions, https://castle-engine.io/talk.php[please ask].

@@ -1,0 +1,108 @@
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel0">
+<li><a href="#_installing_and_testing_fpc_cross_compilers">Installing and testing FPC cross-compilers</a></li>
+<li><a href="#_compiling_and_testing_the_library">Compiling and testing the library</a></li>
+<li><a href="#_creating_your_own_ios_project_in_xcode">Creating your own iOS project in XCode</a></li>
+<li><a href="#_implementing_user_interaction">Implementing User Interaction</a></li>
+<li><a href="#_summary">Summary</a></li>
+</ul>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>For most games, using the <a href="Build Tool" class="bare">Build Tool</a> to compile and package your game for iOS is best. It allows you to code your game completely in Pascal, and even <a href="iOS Services">integrate with a number of services like Apple Game Center</a>. The build tool will take care of the rest&#8201;&#8212;&#8201;generating the necessary XCode project to actually release your app for iOS.</p>
+</div>
+<div class="paragraph">
+<p>However, there is another way to use the engine. You can compile the library defined in the <code>src/library</code> engine code to a static library (.a). Then you can add this library to your custom Xcode project.</p>
+</div>
+<div class="paragraph">
+<p><strong>This approach is useful if you want to use the engine as a VRML/X3D file viewer, and wrap it in a custom code and user-interface in XCode</strong>.</p>
+</div>
+<div class="paragraph">
+<p>An example application using this approach is located in <code>examples/library/ios_tester</code>.</p>
+</div>
+</div>
+</div>
+<h1 id="_installing_and_testing_fpc_cross_compilers" class="sect0">Installing and testing FPC cross-compilers</h1>
+<div class="openblock partintro">
+<div class="content">
+First, you need to install FPC with cross-compilers, just like described on the <a href="iOS" class="bare">iOS</a> page.
+</div>
+</div>
+<h1 id="_compiling_and_testing_the_library" class="sect0">Compiling and testing the library</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>Compile the engine library <code>cge_library.a</code> by:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>cd &lt;castle-engine&gt;/src/library/
+./compile-iOS.sh</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The script automatically compiles a static library that works with both a real device and the iPhoneSimulator.</p>
+</div>
+<div class="paragraph">
+<p>And now you can open an example XCode project in <code>castle_game_engine/examples/library/ios_tester/</code>, run it (<em>Command + R</em>), and see that it works in the simulator!</p>
+</div>
+<div class="paragraph">
+<p><em>Note: you can uncomment debug or release compile flags inside <code>compile-iOS.sh</code>.</em></p>
+</div>
+</div>
+</div>
+<h1 id="_creating_your_own_ios_project_in_xcode" class="sect0">Creating your own iOS project in XCode</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>Unlike Android version of your app, the engine relies on OpenGL ES context prepared by iOS SDK in Xcode. So for this, just create a new Xcode iOS project. The easiest way to work with OpenGL ES on iOS is to use GLKViewController and GLKView.</p>
+</div>
+<div class="paragraph">
+<p>Once correctly prepared (either from Storyboard or entirely from code), add compiled library (cge_library.a) and the header file (castleengine.h) to the project. In source code, just initialize the engine calling the appropriate functions, and connect <em>update</em> function of GLKViewController with CGE_Update() and <em>glkView:drawInRect:</em> to CGE_Render().</p>
+</div>
+<div class="paragraph">
+<p>Please refer to ios_tester project in castle_game_engine/examples/library.</p>
+</div>
+<div class="paragraph">
+<p>All resources needed by your app have to be added to the Xcode project as in any other iOS app. Xcode will automatically copy them to the compiled bundle.</p>
+</div>
+</div>
+</div>
+<h1 id="_implementing_user_interaction" class="sect0">Implementing User Interaction</h1>
+<div class="openblock partintro">
+<div class="content">
+To enable user interaction to the engine, there is only one possibility at the moment: simulate mouse events. Add tap, pan and/or pinch gesture recognizers to the GLKView, and pass the events to the engine. Please refer to the example ios_tester project again. As a downside of this approach, there is no multi-touch support possible. We plan to support and process multi-touch gestures automatically in the engine in the future.
+</div>
+</div>
+<h1 id="_summary" class="sect0">Summary</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>To describe the process when using the library interface:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Compile the library using castle_game_engine/src/library/compile-iOS.sh</p>
+</li>
+<li>
+<p>Add cge_library.a and castleengine.h to your Xcode project</p>
+</li>
+<li>
+<p>Prepare GLKViewController and init the OpenGL ES context</p>
+</li>
+<li>
+<p>Init the engine (CGE_Open, CGE_SetUserInterface, CGE_Resize, CGE_Close)</p>
+</li>
+<li>
+<p>Connect GLKViewController update and draw to CGE_Update and CGE_Render</p>
+</li>
+<li>
+<p>Process touch gestures</p>
+</li>
+</ol>
+</div>
+</div>
+</div>

@@ -1,0 +1,92 @@
+= Blending (Rendering Partially-Transparent Objects)
+:sectnums:
+:source-highlighter: coderay
+:toc: left
+
+== Introduction
+
+_Blending_ is the technique to render _partially transparent_ objects in real-time graphic APIs. _Partially transparent_ objects mean that the algorithm accounts for transparency values between `0.0` and `1.0`, e.g. `0.25` or `0.5`.
+
+While _Castle Game Engine_ tries to make it work "out of the box" correctly in usual cases, there are various edge-cases that require the developer and/or graphic artist to know how the algorithm works, and tweak something.
+
+== Terminology
+
+* _Transparency_ is a value in 0..1 range, where 0 means that object is opaque, and 1 means that object is completely transparent (invisible).
++
+The X3D material nodes have a `Transparency` property, https://castle-engine.io/apidoc-unstable/html/X3DNodes.TPhysicalMaterialNode.html#Transparency[TPhysicalMaterialNode.Transparency], https://castle-engine.io/apidoc-unstable/html/X3DNodes.TMaterialNode.html#Transparency[TMaterialNode.Transparency], https://castle-engine.io/apidoc-unstable/html/X3DNodes.TUnlitMaterialNode.html#Transparency[TUnlitMaterialNode.Transparency].
+
+* _Alpha_ is "opaqueness", it is defined simply as _"1.0 - transparency"_. So alpha = 0.0 is something "completely invisible", alpha = 1.0 is "something totally opaque".
++
+When you provide an RGBA color (`TCastleColor`, which is just equal to `TVector4`) then the last (4th) component is _alpha_.
++
+When you provide an RGBA texture, then it includes an alpha channel.
++
+When you provide a texture without alpha channel (like RGB or grayscale) then it is always treated like _alpha is 1.0 everywhere_, i.e. it is fully opaque.
+
+== How various algorithms for transparency work
+
+The engine can handle transparency at each `Shape` in 3 ways:
+
+* No handling of transparency, i.e. the object is *opaque*.
+* Handle transparency using *alpha-testing*, which means that at each pixel, we test the shape RGBA color (which is a result of mixing material color, per-vertex colors, and texture colors). If the shape color's alpha is > 0.5 then the pixel is rendered (as if the shape was opaque at this pixel). Otherwise the pixel is not rendered (as if the shape was completely invisible at this pixel).
++
+While _alpha-testing_ is a less capable algorithm than _blending_ (as alpha-testing cannot account for partial transparency), it also doesn't have various problems unavoidable with blending, and mentioned on this page. E.g. alpha-testing works without any problems with https://castle-engine.io/x3d_extensions_shadow_maps.php[shadow maps].
+
+* Finally, engine can handle transparency using *blending*. This means that all partially-transparent shapes are rendered _after_ all other shapes (that are opaque or use alpha-testing). Moreover,
+ ** The partially-transparent shapes are rendered with Z-testing but without Z-writing. This means that partially-transparent shapes that are behind opaque objects are correctly hidden, but partially-transparent shapes in front of all opaque objects are always considered visible (even if they are behind other transparent objects). This matches reality, as partially-transparent shapes never fully "obscure" stuff behind them, by definition.
+ ** When the partially-transparent pixel is rendered, it is mixed with the existing screen color using the "blending equation". By default is it `screen_color.rgb = incoming_color.rgb * incoming_color.a + screen_color.rgb * (1 - incoming_color.a)`. This equation can be configured using https://castle-engine.io/apidoc-unstable/html/CastleScene.TSceneRenderingAttributes.html#BlendingSourceFactor[Scene.Attributes.BlendingSourceFactor], https://castle-engine.io/apidoc-unstable/html/CastleScene.TSceneRenderingAttributes.html#BlendingDestinationFactor[Scene.Attributes.BlendingDestinationFactor] and can be overridden per-shape using https://castle-engine.io/x3d_extensions.php#section_ext_blending[Appearance.blendMode].
+ ** The partially-transparent shapes are rendered in back-to-front order (by default, when https://castle-engine.io/apidoc-unstable/html/CastleScene.TSceneRenderingAttributes.html#BlendingSort[Scene.Attributes.BlendingSort] is `bs3D` and it is not overridden by `TNavigationInfoNode.BlendingSort` in the loaded model). That is because the default blending equation (see above) assumes such order. Some other blending equations do not require sorting, and thus `Scene.Attributes.BlendingSort` may be `bsNone`, but they look less realistic.
+
++
+The "ordering shapes" stage means that each shape is treated as a whole. We sort shape using "distance to the middle of the 3D bounding box" in case of `BlendingSort = bs3D`. _The possible problem:_ in some cases, shapes may be concave and intertwined in various crazy ways in 3D. It is not possible to strictly say "X is in front of Y" in general for two shapes, because they may be sometimes in front, sometimes behind each other, at each pixel of the screen. So using _blending_ requires that partially-transparent shapes stay simple, preferably convex and not mixed with each other at the same distance from camera.
+
+////
+This is true, but imprecise:
+        2. This approach means that shape with alpha = 0.99 (partially-transparent) is very different than the shape with alpha = 1.0. Which is not intuitive, because even epsilon change in alpha has drastic change in how the shape is rendered.
+////
+
+== How does engine determine what algorithm to use
+
+Engine makes the decision about blending per-shape.
+
+By default (if https://castle-engine.io/apidoc-unstable/html/X3DNodes.TAppearanceNode.html#AlphaChannel[TAppearanceNode.AlphaChannel] is `acAuto`) the engine looks at material `transparency` field, and the texture's alpha channel. If `transparency` is > 0, or if the texture has non-trivial alpha channel (this is detected by analyzing alpha contents, see https://castle-engine.io/apidoc-unstable/html/CastleImages.TEncodedImage.html#AlphaChannel[TEncodedImage.AlphaChannel] description), then we use blending.
+
+Note that this auto-detection cannot be perfect in all cases. For example, the alpha channel detection at the image (https://castle-engine.io/apidoc-unstable/html/CastleImages.TEncodedImage.html#AlphaChannel[TEncodedImage.AlphaChannel]) is a heuristic, with some alpha tolerance. And what happens when multiple textures are used, with different alpha channel? Again, the engine assumes something reasonable, but it may not be what you want. Also, if you use GLSL shader code to set/modify alpha value, then the engine doesn't know about it (in general, engine never parses your GLSL code).
+
+You can explicitly override this auto-detection using https://castle-engine.io/apidoc-unstable/html/X3DNodes.TAppearanceNode.html#AlphaChannel[TAppearanceNode.AlphaChannel] field. This makes sense when engine  doesn't do what you expect.
+
+* It can be set by Pascal code.
+* Or, when using X3D model, you can use https://castle-engine.io/x3d_implementation_shape_extensions.php#section_ext_alpha_channel[Apperance.alphaChannel] documentation).
+* Or when using glTF. In glTF, it is always explicitly set, glTF format requires it. So the auto-detection is not used for glTF, the imported shapes always have `Appearance.alphaChannel <> acNone`. You can set the alpha treatment explicitly in https://castle-engine.io/creating_data_blender.php[Blender] material.
+
+== Sorting
+
+=== Within a single `TCastleScene`, the engine sorts the shapes automatically by default
+
+* As mentioned above, this is controlled by https://castle-engine.io/apidoc-unstable/html/CastleScene.TSceneRenderingAttributes.html#BlendingSort[Scene.Attributes.BlendingSort] which is `bs3D` by default, and can be overridden by https://castle-engine.io/x3d_implementation_navigation_extensions.php#section_ext_blending_sort[TNavigationInfoNode.BlendingSort] in the loaded model.
+* You can set `Scene.Attributes.BlendingSort` to `bs2D` for 2D models. This makes their sorting faster. When importing link:pass:[Spine][] models, they automatically have `NavigationInfo.blendingSort = "2D"` so they automatically use this sorting.
+* You can set `Scene.Attributes.BlendingSort` to `bsNone`. This makes rendering faster, but assumes that you will never have more than one partially-transparent shapes visible in front of an opaque shape, or that your blending equation makes the order irrelevant.
+
+You can also override sorting inside the X3D model. E.g. add this to force 2D sorting in X3D classic encoding:
+
+----
+NavigationInfo {
+  blendingSort "2D"
+}
+----
+
+To request correct blending sorting in 2D, you should set `MyScene.RenderOptions.BlendingSort := bs2D` (or call `MyScene.Setup2D` which is just a shortcut for it). Note that you actually don't need to do this when loading Spine (where we include proper `NavigationInfo` inside model) or for sprite sheets and images (where there is only 1 layer, so blending sorting doesn't matter). So actually you only need to care about this when you use "general (3D or 2D)" model format for 2D animation, e.g. you use glTF or X3D to define a 2D animation with layers.
+
+=== However, the engine does not sort the list of `TCastleScene` instances by default
+
+You need to do this explicitly, using https://castle-engine.io/apidoc-unstable/html/CastleTransform.TCastleTransform.html#SortBackToFront2D[TCastleTransform.SortBackToFront2D]  method. You should call this method always after you add a partially-transparent object, or move partially-transparent object or camera in such way that the order of rendering should change. In usual cases, you call this using `Viewport.Items.SortBackToFront2D`.
+
+In the future engine releases, we hope to remove the need to call `Viewport.Items.SortBackToFront2D`. Everything else mentioned on this page, all these complications -- are just unavoidable when using blending (you will find them in other game engines too), so they will likely stay forever.
+
+== 2D drawing of primitives and images
+
+If you draw using https://castle-engine.io/apidoc-unstable/html/CastleGLUtils.html#DrawPrimitive2D[DrawPrimitive2D], https://castle-engine.io/apidoc-unstable/html/CastleGLUtils.html#DrawRectangle[DrawRectangle] etc. -- they automatically use blending when provided color has alpha < 1. They take blending factors (that determine the "blending equation" mentioned above) as explicit arguments.
+
+If you draw using https://castle-engine.io/apidoc-unstable/html/CastleGLImages.TDrawableImage.html[TDrawableImage] then it automatically determines alpha treatment looking at image contents and the https://castle-engine.io/apidoc-unstable/html/CastleGLImages.TDrawableImage.html#Color[TDrawableImage.Color]. You can override alpha treatment by https://castle-engine.io/apidoc-unstable/html/CastleGLImages.TDrawableImage.html#Alpha[TDrawableImage.Alpha] property, there are also properties to determine blending equation: https://castle-engine.io/apidoc-unstable/html/CastleGLImages.TDrawableImage.html#BlendingSourceFactor[TDrawableImage.BlendingSourceFactor], https://castle-engine.io/apidoc-unstable/html/CastleGLImages.TDrawableImage.html#BlendingDestinationFactor[TDrawableImage.BlendingDestinationFactor].
+
+The above routines are used by user interface rendering, e.g. by `TCastleButton` or `TCastleImageControl` rendering, so they follow the same alpha treatment. The https://castle-engine.io/apidoc-unstable/html/CastleControls.TCastleImageControl.html#AlphaChannel[TCastleImageControl.AlphaChannel] allows to control blending in case of `TCastleImageControl`, underneath it uses `TDrawabbleImage` to render.

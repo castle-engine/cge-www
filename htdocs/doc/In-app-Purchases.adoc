@@ -1,0 +1,155 @@
+:doctype: book
+:sectnums:
+:source-highlighter: coderay
+:toc: left
+
+A step-by-step instruction how to implement _in-app purchases_ (for Android and iOS) using CGE https://castle-engine.io/apidoc-unstable/html/CastleInAppPurchases.html[CastleInAppPurchases] unit and https://castle-engine.io/apidoc-unstable/html/CastleInAppPurchases.TInAppPurchases.html[TInAppPurchases] class.
+
+= Set up purchases in the stores (GooglePlay, AppStore)
+
+You need to define the products you want sell in the
+
+* https://developer.android.com/distribute/console/index.html[Google Play Developer Console] (for Android),
+* https://appstoreconnect.apple.com/[App Store Connect] (for iOS).
+
+The internal names of products you define there will be then used with CGE API, like in methods https://castle-engine.io/apidoc-unstable/html/CastleInAppPurchases.TInAppPurchases.html#SetAvailableProducts[SetAvailableProducts] and https://castle-engine.io/apidoc-unstable/html/CastleInAppPurchases.TInAppPurchases.html#Product[Product].
+
+= Use services
+
+You need to add a "service" to include the necessary integration code  on Android and iOS.
+
+* For Android add the `google_in_app_purchases` service, see link:pass:[Android services][].
+* For iOS add the `in_app_purchases` service, see link:pass:[iOS services][].
+
+= Implement and use TGameInAppPurchases class
+
+. Make a descendant of `TInAppPurchases` class in your project, e.g. called `TGameInAppPurchases`:
++
+[,pascal]
+----
+ TGameInAppPurchases = class(TInAppPurchases)
+ protected
+   procedure RefreshedPrices; override;
+   procedure Owns(const AProduct: TInAppProduct); override;
+ public
+   constructor Create(AOwner: TComponent); override;
+ end;
+----
+
+. Create an instance of this class. Usually just in `TCastleApplication.OnInitialize`, like this:
++
+[,pascal]
+----
+ InAppPurchases := TGameInAppPurchases.Create(Application);
+----
+
+. Call https://castle-engine.io/apidoc-unstable/html/CastleInAppPurchases.TInAppPurchases.html#SetAvailableProducts[SetAvailableProducts].  Usually just from `TGameInAppPurchases.Create`.
++
+In the simplest case, the typical implementation of `TGameInAppPurchases` constructor may look like this:
++
+[,pascal]
+----
+ constructor TGameInAppPurchases.Create(AOwner: TComponent);
+ begin
+   inherited;
+   SetAvailableProducts(['xxx']);
+   // DebugMockupBuying := true; // for debugging, to fake purchases
+ end;
+----
+
+. NOTE: On iOS, the state of items currently owned is not automatically available.
++
+If you need to know whether user owns some non-consumable product, according to the AppStore, then you need to call https://castle-engine.io/apidoc-unstable/html/CastleInAppPurchases.TInAppPurchases.html#RefreshPurchases[RefreshPurchases] explicitly. Like
++
+[,pascal]
+----
+ InAppPurchases.RefreshPurchases;
+----
++
+In return, it will ask user to login to the AppStore, and if all is successful, it will set https://castle-engine.io/apidoc-unstable/html/CastleInAppPurchases.TInAppProduct.html#Owns[TInAppProduct.Owns] of all products and call https://castle-engine.io/apidoc-unstable/html/CastleInAppPurchases.TInAppPurchases.html#OnRefreshedPrices[OnRefreshedPrices].
++
+Strictly speaking, you don't need to call `RefreshPurchases` at all, during normal application usage. This way user will be asked to login only once user decides to make a purchase, not earlier. If you need to know whether user owns some non-consumable, just store the successful purchase in `UserConfig`, like `UserConfig.SetValue('owns_some_product', true);`, and do not depend on https://castle-engine.io/apidoc-unstable/html/CastleInAppPurchases.TInAppProduct.html#Owns[TInAppProduct.Owns] always reflecting the actual ownership.
++
+However, you should also provide an explicit _"Restore Purchases"_ button, in case user wants to restore purchases made on another device. To implement such button, call the `InAppPurchases.RefreshPurchases`.
+
+. It is usually comfortable to define shortcuts for your in-app purchases products, like this:
++
+[,pascal]
+----
+ function TGameInAppPurchases.Xxx: TInAppProduct;
+ begin
+   Result := Product('xxx');
+ end;
+----
++
+This way you can use `InAppPurchases.Xxx` instead of `InAppPurchases.Product('xxx')` later. This minimizes the chance of possible typos in the product name.
+
+. Override https://castle-engine.io/apidoc-unstable/html/CastleInAppPurchases.TInAppPurchases.html#RefreshedPrices[RefreshedPrices] virtual method, or wait for https://castle-engine.io/apidoc-unstable/html/CastleInAppPurchases.TInAppPurchases.html#OnRefreshedPrices[OnRefreshedPrices] event, to know the prices of your products (in user's local currency).
++
+Use these prices to update the UI of your game. Like this:
++
+[,pascal]
+----
+ procedure TGameInAppPurchases.RefreshedPrices;
+ begin
+   inherited;
+   if (StateBuyItems <> nil) and StateBuyItems.Active then
+     StateBuyItems.UpdatePrices;
+ end;
+
+ // and in GameStateBuyItems unit you implement actual UI refreshing:
+
+ procedure TStateBuyItems.UpdatePrices;
+ begin
+   MyLabel.Caption := 'Price of XXX: ' + InAppPurchases.Xxx.Price;
+ end;
+
+ // remember to also call UpdatePrices from TStateBuyItems.Start
+----
+
+. Buy products by calling https://castle-engine.io/apidoc-unstable/html/CastleInAppPurchases.TInAppPurchases.html#Purchase[Purchase], like `InAppPurchases.Purchase(InAppPurchases.Xxx)`.
+ ** For non-consumable items (that user buys once, for lifetime, e.g. _"act 2 of the game"_, _"no ads"_, _"badge in user profile"_) override the https://castle-engine.io/apidoc-unstable/html/CastleInAppPurchases.TInAppPurchases.html#Owns[Owns] to react to user buying this item. Like this:
++
+[,pascal]
+----
+  procedure TGameInAppPurchases.Owns(const AProduct: TInAppProduct);
+  begin
+    inherited;
+    if AProduct = Xxx then
+    begin
+      UserConfig.SetValue('owns_xxx', true);
+      UserConfig.Save;
+      // update whatever is necessary, e.g. give user some reward, update the UI etc.
+    end;
+  end;
+----
+
+ ** For consumable items (that user can buy multiple times, like _"add 100 gold coins"_), override the https://castle-engine.io/apidoc-unstable/html/CastleInAppPurchases.TInAppPurchases.html#Owns[Owns] to react to user buying this item by calling https://castle-engine.io/apidoc-unstable/html/CastleInAppPurchases.TInAppPurchases.html#Consume[Consume].  Then override https://castle-engine.io/apidoc-unstable/html/CastleInAppPurchases.TInAppPurchases.html#SuccessfullyConsumed[SuccessfullyConsumed] to react to this consumption:
++
+[,pascal]
+----
+ procedure TGameInAppPurchases.Owns(const AProduct: TInAppProduct);
+ begin
+   inherited;
+   if AProduct = Xxx then
+     Consume(Xxx);
+ end;
+
+ procedure TGameInAppPurchases.SuccessfullyConsumed(const AProduct: TInAppProduct);
+ begin
+   inherited;
+   Player.Gold := Player.Gold + 100;
+   UserConfig.SetValue('gold', Player.Gold); // save the new gold value
+   UserConfig.Save;
+ end;
+----
+
++
+Note that in both cases, we save the rewards from this purchase as soon as possible to `UserConfig`, and we save it to disk (so it is not lost if the application will be killed soon). This is especially important for saving rewards from consumable items, since, once you call `Consume`, you have only one chance to react to `TGameInAppPurchases.SuccessfullyConsumed`. Once `TGameInAppPurchases.SuccessfullyConsumed` has been called, the store assumes you have given user the necessary reward. User has all the rights to expect the reward, as (s)he paid real money for it. So be sure that the code recording these rewards is reliable.
+
+= Testing Notes
+
+* In case of AppStore, note that they will "approve" your in-app purchase product only when reviewing the first application version. But you can test in the sandbox even unapproved in-app purchases. See
+ ** https://developer.apple.com/support/app-store-connect/[App Store Connect docs]
+ ** https://help.apple.com/app-store-connect/#/dev8b997bee1[Create a sandbox tester account]
+ ** https://stackoverflow.com/questions/17846662/in-app-purchase-and-apple-review[related stackoverflow post]

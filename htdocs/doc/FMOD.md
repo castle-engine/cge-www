@@ -1,0 +1,89 @@
+Table of Contents
+=================
+
+* [Introduction](#introduction)
+* [Activating FMOD in CGE](#activating-fmod-in-cge)
+* [Getting FMOD library and copying it to your project](#getting-fmod-library-and-copying-it-to-your-project)
+  * [On Windows](#on-windows)
+  * [On Linux](#on-linux)
+  * [On Nintendo Switch](#on-nintendo-switch)
+  * [On iOS and Android](#on-ios-and-android)
+* [TODO](#todo)
+
+# Introduction
+
+*Castle Game Engine* can use various *backends* for our [sound (CastleSoundEngine unit)](https://castle-engine.io/manual_sound.php). By default we use [OpenAL](https://www.openal.org/) which works nicely, is open-source and cross-platform (works on desktop and mobile). However, you may choose to use another backend.
+
+One of the alternative backends is [FMOD](https://www.fmod.com/), using a commercial (closed-source) FMOD library. FMOD works nicely, and is even more cross-platform (in particular it supports also [Nintendo Switch](https://castle-engine.io/wp/2019/03/23/castle-game-engine-supports-nintendo-switch/)). It also supports more sound file formats out-of-the-box.
+
+Note that using FMOD is not free. See https://www.fmod.com/ for library downloads and pricing.
+
+# Activating FMOD in CGE
+
+Use `CastleFMODSoundBackend` unit, and call `UseFMODSoundBackend` procedure at any point. You usually want to call it early, before any sound was loaded or played, this way the default sound backend (OpenAL on desktop and mobile) will not even be initialized.
+
+The `UseFMODSoundBackend` will switch to FMOD backend only if the FMOD library (from https://www.fmod.com/) is found. See instructions below about hot to get and where to place FMOD library. If FMOD library is loaded dynamically, and it is not found, then a warning is produced (you can see it in [log](https://castle-engine.io/manual_log.php)) and `UseFMODSoundBackend` does nothing.
+
+# Getting FMOD library and copying it to your project
+
+To get FMOD libraries create an account on https://www.fmod.com/ , and download "FMOD Studio API". This should include "FMOD Studio API and FMOD Core API" (we actually use only "FMOD Core API" now).
+
+Below we give detailed instructions for some popular platforms. See [FMOD platform-specific documentation](https://www.fmod.com/resources/documentation-api?version=2.0&page=platforms.html) for more information.
+
+## On Windows
+
+_"FMOD Studio API"_ on Windows is an install package, and when you run it you get `C:\Program Files (x86)\FMOD SoundSystem\FMOD Studio API Windows` (if installed to the default directory). For Windows 64-bit just copy the DLL from `C:\Program Files (x86)\FMOD SoundSystem\FMOD Studio API Windows\api\core\lib\x64\fmod.dll` alongside the game exe.
+
+You have to distribute the FMOD library with your application. Currently, it is easiest to add this to your `CastleEngineManifest.xml` file:
+
+```xml
+  <package>
+    <include path="fmod.dll" />
+  </package>
+```
+
+## On Linux
+
+_"FMOD Studio API"_ on Linux is a tar.gz archive. Unpack it anywhere, and from `api\core\lib\x86_64` subdirectory (assuming you use Linux on x86_64 CPU) copy the 3 `libfmod.so*` files (one is actual library, 2 are just symlinks). We advise copying these 3 files to the `libraries/x86_64-linux/` subdirectory of your project.
+
+The FMOD library is loaded dynamically (that is, using `dlopen` / `dlsym` and friends on Unix). So it doesn't need to be present at compilation-time. 
+
+It of course needs to be present when you run the application, both on developer and user system. Create a shell (bash) script that sets `$LD_LIBRARY_PATH` to include your local fmod copy, and then executes the application. Like this:
+
+```bash
+#!/bin/bash
+set -e
+# Include current directory in LD_LIBRARY_PATH, to find fmod dynamic library
+export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:libraries/x86_64-linux/"
+./play_sounds "$@" # <- replace this with name of your application
+```
+
+Save this file e.g. under `run.sh` name, do `chmod +x run.sh`, and now you can execute it like `./run.sh`.
+
+You also have to distribute FMOD library, and `run.sh` with your application. Add this to your `CastleEngineManifest.xml` file:
+
+```xml
+  <package>
+    <include path="run.sh" />
+    <include path="libraries/x86_64-linux/" recursive="True" />
+  </package>
+```
+
+(If your `CastleEngineManifest.xml` already contained `<package>`, then merge their contents instead of adding new `<package>` element.)
+
+## On Nintendo Switch
+
+The details are in the Nintendo Switch README inside CGE version for Nintendo Switch.
+
+## On iOS and Android
+
+Both iOS and Android include a service called `fmod` to easily link with FMOD:
+
+* [iOS FMOD service](https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/ios/services/fmod/README.md)
+* [Android FMOD service](https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/android/integrated-services/fmod/README.md)
+
+# TODO
+
+* For now, we use "FMOD Core API", which means that we use FMOD as a general sound loading and playback library, which you can use with regular sound files (wav, OggVorbis and many other formats supported by FMOD). You cannot yet use FMOD Studio to design "sound events" that could be played by CGE.
+
+* We want to simplify the Windows/Linux instructions above. We will support `<service>` in `CastleEngineManifest.xml` for desktop platforms (right now the "services" are only for Android and iOS), allowing you to easily request _fmod service_ on Windows/Linux and point it to the FMOD installation. In general a desktop service will be able to specify OS/CPU specific libraries (`aaa.dll` on Windows, `libaaa.so` on Linux etc., in subdirectories named like `libraries/${CPU}-${OS}/`) and let the CGE build tool automatically do everything that is necessary to use them.

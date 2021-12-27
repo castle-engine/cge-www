@@ -1,0 +1,490 @@
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel0">
+<li><a href="#_what_android_devices_are_supported">What Android devices are supported</a></li>
+<li><a href="#_loading_and_packaging_game_data">Loading and packaging game data</a></li>
+<li><a href="#_saving_user_preferences_and_savegames">Saving user preferences and savegames</a></li>
+<li><a href="#_signing_a_release_apk">Signing a release apk</a></li>
+<li><a href="#_logging">Logging</a></li>
+<li><a href="#_is_it_possible_to_test_our_games_using_android_emulator_from_sdk">Is it possible to test our games using Android emulator from SDK?</a></li>
+<li><a href="#_testing_mobile_opengl_es_rendering_without_an_android">Testing mobile (OpenGL ES) rendering without an Android</a></li>
+<li><a href="#_debugging_running_application_on_an_android_device_using_ndk_gdb">Debugging running application (on an Android device) using ndk-gdb</a></li>
+<li><a href="#_getting_useful_backtrace_of_a_crash_on_an_android_device_using_ndk_stack">Getting useful backtrace of a crash (on an Android device) using ndk-stack</a></li>
+<li><a href="#_widestring_manager">WideString manager</a></li>
+<li><a href="#_notes_about_compiling_with_hard_floats_cfvfpv3">Notes about compiling with hard floats (-CfVFPV3)</a></li>
+<li><a href="#_how_to_speedup_gradle_building">How to speedup Gradle building</a></li>
+</ul>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Questions related to <a href="Android">Android</a> development.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#what-android-devices-are-supported">What Android devices are supported</a></p>
+</li>
+<li>
+<p><a href="#loading-and-packaging-game-data">Loading and packaging game data</a></p>
+</li>
+<li>
+<p><a href="#saving-user-preferences-and-savegames">Saving user preferences and savegames</a></p>
+</li>
+<li>
+<p><a href="#signing-a-release-apk">Signing a release apk</a></p>
+</li>
+<li>
+<p><a href="#logging">Logging</a></p>
+</li>
+<li>
+<p><a href="#is-it-possible-to-test-our-games-using-android-emulator-from-sdk">Is it possible to test our games using Android emulator from SDK?</a></p>
+</li>
+<li>
+<p><a href="#testing-mobile-opengl-es-rendering-without-an-android">Testing mobile (OpenGL ES) rendering without an Android</a></p>
+</li>
+<li>
+<p><a href="#debugging-running-application-on-an-android-device-using-ndk-gdb">Debugging running application (on an Android device) using ndk-gdb</a></p>
+</li>
+<li>
+<p><a href="#getting-useful-backtrace-of-a-crash-on-an-android-device-using-ndk-stack">Getting useful backtrace of a crash (on an Android device) using ndk-stack</a></p>
+</li>
+<li>
+<p><a href="#widestring-manager">WideString manager</a></p>
+</li>
+<li>
+<p><a href="notes-about-compiling-with-hard-floats&.html#8212;&#8203;cfvfpv3">Notes about compiling with hard floats (-CfVFPV3)</a></p>
+</li>
+<li>
+<p><a href="#how-to-speedup-gradle-building">How to speedup Gradle building</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<h1 id="_what_android_devices_are_supported" class="sect0">What Android devices are supported</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>Any Android &gt;= 4.1 (platform android-16). Reasons:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Android 2.0 (platform android-5) is necessary, to have <code>OpenGL ES 2.0</code>.</p>
+</li>
+<li>
+<p>Android 2.3 (platform android-9) is necessary, to <code>NativeActivity</code> and <code>EGL</code>.</p>
+</li>
+<li>
+<p>Android 4.1 (platform android-16) is necessary, because</p>
+<div class="ulist">
+<ul>
+<li>
+<p>New executables (with PIC) can run only on Android 4.1+ (according to <a href="http://wiki.freepascal.org/Android" class="bare">http://wiki.freepascal.org/Android</a> ).</p>
+</li>
+<li>
+<p>New Android NDK just supports only &gt;= 16.</p>
+</li>
+<li>
+<p>In theory, you could workaround it, by explicitly compiling Android library <em>without</em> PIC support, and sticking to an ancient version of Android NDK. But this would give you an application that, in turn, doesn&#8217;t work on newer phones (since platform 23, PIC support is required).</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<h1 id="_loading_and_packaging_game_data" class="sect0">Loading and packaging game data</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p><strong>Simple answer:</strong></p>
+</div>
+<div class="paragraph">
+<p>Follow <a href="https://castle-engine.io/manual_data_directory.php" class="bare">https://castle-engine.io/manual_data_directory.php</a> . This means:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>When developing a game, put all your game data under the "data/" subdirectory.</p>
+</li>
+<li>
+<p>Then load it using <code>castle-data:/xxx</code> URLs, for example use <code>LoadImage('castle-data:/gui/blabla.png')</code> to load an image stored under <code>data/gui/blabla.png</code>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The above approach makes your code 100% working on both Android and standalone platforms. Our <a href="Build tool">build tool</a> will automatically package the <code>data/</code> subdirectory correctly.</p>
+</div>
+<div class="paragraph">
+<p><strong>Longer explanation about what happens under the hood:</strong></p>
+</div>
+<div class="paragraph">
+<p>In an Android application, you <em>can</em> read files on a normal filesystem, just like on any other Unix. Like <code><a href="file:///sdcard/my_texture.png" class="bare">file:///sdcard/my_texture.png</a></code>. However, it&#8217;s not a proper way to distribute your game read-only data. The game data should be placed as the "assets" inside the apk file, and opened using special Android functions. We support it seamlessly in the Castle Game Engine:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Our build tool automatically packs files inside the <code>data/</code> subdirectory as Android "assets".</p>
+</li>
+<li>
+<p>Our file-reading routines (the <code>Download</code> function, and <a href="https://castle-engine.io/manual_network.php">everything opening files/URLs built on top of it</a>) support a special protocol <code>castle-android-assets:/</code> to access Android assets. So you can open URL like <code>castle-android-assets:/my_texture.png</code>.</p>
+</li>
+<li>
+<p>Finally, the <code>castle-data:/xxx</code> URL is resolved into <code>castle-android-assets:/xxx</code> on Android by default (assuming you didn&#8217;t set <code>ApplicationDataOverride</code>).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In effect, when you use the build tool and the <code>castle-data:/xxx</code> on Android, you seamlessly read data from your APK "assets".</p>
+</div>
+</div>
+</div>
+<h1 id="_saving_user_preferences_and_savegames" class="sect0">Saving user preferences and savegames</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>Simply use the global <code>UserConfig</code> (in CastleConfig unit) to load/save your settings. See <a href="https://castle-engine.io/manual_user_prefs.php" class="bare">https://castle-engine.io/manual_user_prefs.php</a> . The same mechanism works for saving preferences with standalone (desktop) applications.</p>
+</div>
+<div class="paragraph">
+<p>Just like with standalone code, you have to explicitly call <code>UserConfig.Load</code> and <code>UserConfig.Save</code> when necessary. You will usually call <code>UserConfig.Load</code> in your <code>Application.OnInitialize</code> handler, to load user preferences at the beginning of your application. You will usually call <code>UserConfig.Save</code> when user confirms the preferences change, or simply immediately&#8201;&#8212;&#8201;the exact moment depends on the game UI flow. Don&#8217;t wait too long before saving the user preferences&#8201;&#8212;&#8201;on Android, your application may be killed at any moment.</p>
+</div>
+</div>
+</div>
+<h1 id="_signing_a_release_apk" class="sect0">Signing a release apk</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>To create a "release" apk (one that you can distribute, e.g. through WWW or by uploading it to Google Play) you need to create your private key, and use it to sign your packages. See Android signing documentation <a href="http://developer.android.com/tools/publishing/app-signing.html" class="bare">http://developer.android.com/tools/publishing/app-signing.html</a> for description how to create and manage your key store.</p>
+</div>
+<div class="paragraph">
+<p>There is also a way to create a key store without using Android Studio and Play Store or interacting with Google altogether by using <a href="https://docs.oracle.com/en/java/javase/12/tools/keytool.html">Java keytool</a>. In a simple case it most likely will be enough to:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>keytool -genkey -v -keystore my_keystore_name.keystore -alias my_alias -keyalg RSA -keysize 2048 -validity 10000</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and filling in an interactive questionnaire to provide the passwords and fill in the certificate details. Be sure to save and keep the generated keystore file and passwords secure.</p>
+</div>
+<div class="paragraph">
+<p>Once you have your keys, you need to tell our <a href="Build tool">build tool</a> to use them. You do this by creating <tt>AndroidSigningProperties.txt</tt> file at the top of your project (along the <tt>CastleEngineManifest.xml</tt> file). Add there these lines:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>key.store=&lt;path-to-your-keystore&gt;
+key.alias=&lt;key-alias-in-your-keystore&gt;
+key.store.password=&lt;my-password&gt;
+key.alias.password=&lt;my-password&gt;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will allow you to create release apk files (our <a href="Build tool">build tool</a> will automatically use it when making a "package" in "release" mode).</p>
+</div>
+</div>
+</div>
+<h1 id="_logging" class="sect0">Logging</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Use our <code>CastleLog</code> unit (see <a href="https://castle-engine.io/manual_log.php" class="bare">https://castle-engine.io/manual_log.php</a> ).</p>
+</li>
+<li>
+<p>(The call to <code>InitializeLog</code> will be done automatically, from <code>CastleAutoGenerated</code> unit, so don&#8217;t worry about it.)</p>
+</li>
+<li>
+<p>Use <code>WritelnLog</code> or <code>WritelnWarning</code> from your code.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>On Android, these logs are send to the standard Android logging API ("logcat").</p>
+</div>
+<div class="paragraph">
+<p>It is most comfortable to observe them by running your APK using <code>castle-engine run --target=android</code>. It will automatically display the logs from your application.</p>
+</div>
+<div class="paragraph">
+<p>Alternatively, you can use any other Android tool, e.g. command-line <code>adb logcat</code>. It&#8217;s usually comfortable to filter by your program name, e.g. <code>adb logcat | grep androiddemo</code> (although, in case of mysterious crashes at startup, take a look at the full log, not filtered; some important startup info may not be marked with application name).</p>
+</div>
+</div>
+</div>
+<h1 id="_is_it_possible_to_test_our_games_using_android_emulator_from_sdk" class="sect0">Is it possible to test our games using Android emulator from SDK?</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>Yes!</p>
+</div>
+<div class="paragraph">
+<p>With latest versions of Android emulator it is possible to run OpenGL ES applications (see <a href="http://android-developers.blogspot.com/2012/04/faster-emulator-with-better-hardware.html" class="bare">http://android-developers.blogspot.com/2012/04/faster-emulator-with-better-hardware.html</a> , emulator can now handle apps using OpenGL ES 2.0 and hard floats).</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+you will need to check "<em>Use Host GPU</em>" in emulator options. Otherwise the app will stop and in the log (Android logcat) you will see a message "<em>Emulator without GPU emulation detected</em>.".  Also, make sure your device is created with sufficient space (on <em>Internal storage</em> or <em>SD Card</em>).
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+You <em>can</em> run emulator of the normal Android CPU (32-bit Arm or 64-bit Aarch64), running the "final" CGE application for the same CPU. But it is faster to use emulator/virtual machine of Android running 32-bit x86 or 64-bit x86_64 CPU and compile CGE applications for this CPU.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To do this, compile your application like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>castle-engine package --os=android --cpu=x86_64</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and transfer the resulting APK into the emulator/virtual machine. The Android SDK includes ready machines. You can also use virtual machines made from images on <a href="https://www.android-x86.org/" class="bare">https://www.android-x86.org/</a> .</p>
+</div>
+</div>
+</div>
+<h1 id="_testing_mobile_opengl_es_rendering_without_an_android" class="sect0">Testing mobile (OpenGL ES) rendering without an Android</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>You can compile a standalone program, for your normal OS, using OpenGLES instead of the traditional desktop OpenGL. This way you can test how your application looks like before actually compiling it for Android. The differences between desktop (OpenGL) and mobile (OpenGLES) are usually very small, due to the <a href="OpenGL ES, Android and iOS TODOs">small number of things not yet implemented on OpenGLES</a>.</p>
+</div>
+<div class="paragraph">
+<p>Just define <code>OpenGLES</code> symbol in <code>src/castleconf.inc</code> inside the engine sources. Or add <code>-dOpenGLES</code> to your <code>fpc.cfg</code> file, or to the <code>&lt;compiler_options&gt;</code> in your <a href="CastleEngineManifest.xml examples">CastleEngineManifest.xml</a>. Then recompile (the engine and your game).</p>
+</div>
+<div class="paragraph">
+<p>Be sure to also install an OpenGL ES library (with EGL). Unlike normal OpenGL, it is <strong>not</strong> something automatically installed on your OS.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>On Linux, you can install OpenGL ES + EGL by installing packages libgles2-mesa-dev and libegl1-mesa-dev (these are Debian names, other distros probably have something similar).</p>
+</li>
+<li>
+<p>On Windows, you can install:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://developer.arm.com/products/software-development-tools/graphics-development-tools/opengl-es-emulator">Mali OpenGL ES 2.0 Emulator by ARM</a>.</p>
+</li>
+<li>
+<p>Angle. <a href="https://github.com/Microsoft/angle/wiki">Official usage and download instructions are here</a>, but it may be easiest to just copy <code>libEGL.dll</code> and <code>libGLESv2.dll</code> from your <a href="https://www.google.com/chrome/browser/desktop/index.html">Google Chrome</a> installation, like <code>C:\Program Files (x86)\Google\Chrome\Application\64.0.3282.119</code>. Just copy these two DLL files to the directory of your game .exe.</p>
+<div class="paragraph">
+<p>Note that you will need to compile your application for the same architecture as <em>Google Chrome</em>, which is most probably 64-bit Windows, not 32-bit. So make sure to choose 64-bit Windows and CPU as target (e.g. in Lazarus project compilation options, or using CGE build tool like <code>castle-engine compile --os=win64 --cpu=x86_64</code>).</p>
+</div>
+</li>
+<li>
+<p>Also this post has useful links: <a href="http://www.g-truc.net/post-0457.html" class="bare">http://www.g-truc.net/post-0457.html</a> .</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<h1 id="_debugging_running_application_on_an_android_device_using_ndk_gdb" class="sect0">Debugging running application (on an Android device) using ndk-gdb</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>If you use our <a href="Build tool">build tool</a> for compilation, the debug apk is already prepared such that you can debug it with "ndk-gdb". You must run <code>ndk-gdb</code> within the output Android project, like this:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a debug Android package:</p>
+<div class="listingblock">
+<div class="content">
+<pre> castle-engine package --target=android --mode=debug</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Install the apk and run it using any way you like, for example by</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre> castle-engine install --target=android
+ castle-engine run --target=android</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Run ndk-gdb by</p>
+<div class="listingblock">
+<div class="content">
+<pre> cd &lt;my-project-directory&gt;/castle-engine-output/android/project/app/src/main/
+ ndk-gdb</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then debug, using ndk-gdb console just like a usual GDB.</p>
+</div>
+<div class="paragraph">
+<p>You can set breakpoints (and the tab key will auto-complete symbols, including Pascal symbols (uppercased)). Below is a sample ndk-gdb session. As you can see, breakpoints on Pascal symbols work (like internal fpc_raiseexception, or function WindowRender defined in game.pas). Line numbers, printing values of variables, and everything else works fine as well :)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre> (gdb) break fpc_raiseexception
+ Breakpoint 1 at 0xa1d29bdc
+ (gdb) break WINDOWRENDER
+ Breakpoint 2 at 0xa1d39e58: file game.pas, line 328.
+ (gdb) continue
+ Continuing.
+ [Switching to Thread 4909.4926]
+
+ Thread 10 "ine.androiddemo" hit Breakpoint 2, WINDOWRENDER (CONTAINER=0xb3992a60) at game.pas:328
+ 328	begin
+ (gdb) print YELLOW
+ $1 = {1, 1, 0, 1}
+ (gdb) delete breakpoints
+ Delete all breakpoints? (y or n) y
+ (gdb) continue
+ Continuing.</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>It is probably possible to use Lazarus to even have a graphical debugger. TODO: if you have working instructions how to use ndk-gdb with Lazarus, please improve this wiki page!</p>
+</div>
+<div class="paragraph">
+<p>Random hints:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Setting a breakpoint on <code>fpc_raiseexception</code> is very useful&#8201;&#8212;&#8201;this way you can catch all FPC exceptions.</p>
+</li>
+<li>
+<p>You can run <code>ndk-gdb --launch</code> to set up breakpoints before the application launches. When <code>ndk-gdb --launch</code> starts, you set up breakpoints in the GDB command-line, and when ready you execute <code>continue</code> in GDB.</p>
+</li>
+<li>
+<p>If you get an error around the <code>[ .. readlink /system/bin/ps ..]</code> failing, a workaround is to edit <code>&lt;ndk&gt;/python-packages/gdbrunner/<em>init</em>.py</code> and set <code>ps_script = "ps"</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<h1 id="_getting_useful_backtrace_of_a_crash_on_an_android_device_using_ndk_stack" class="sect0">Getting useful backtrace of a crash (on an Android device) using ndk-stack</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>Similar to the above instructions for <code>ndk-gdb</code>, you should compile your application in the <em>debug mode</em>, and enter the directory of resulting Android project:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a debug Android package:</p>
+<div class="listingblock">
+<div class="content">
+<pre> castle-engine package --target=android --mode=debug</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Install the apk and run it using any way you like, for example by</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre> castle-engine install --target=android
+ castle-engine run --target=android</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Run the live logs from your device, and filter them through <code>ndk-stack</code> like this:</p>
+<div class="listingblock">
+<div class="content">
+<pre> cd &lt;my-project-directory&gt;/castle-engine-output/android/project/app/src/main/
+ # if your applications runs using 32-bit Android CPU (Arm)
+ adb logcat | ndk-stack -sym ./obj/local/armeabi-v7a
+ # if your applications runs using 64-bit Android CPU (Aarch64)
+ adb logcat | ndk-stack -sym ./obj/local/arm64-v8a</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This assumes that the Android tools, including Android NDK tools, are available on your environment variable $PATH. See <a href="http://developer.android.com/ndk/guides/ndk-stack.html" class="bare">http://developer.android.com/ndk/guides/ndk-stack.html</a> for more information about the <code>ndk-stack</code>.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Now when the application crashes, you will see a nice backtrace, with a filename and line number indicating where the crash occured.</p>
+</div>
+</div>
+</div>
+<h1 id="_widestring_manager" class="sect0">WideString manager</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>In short, don&#8217;t worry about it: WideString manager is automatically handled for you. This means that strings with international characters <em>just work</em>.</p>
+</div>
+<div class="paragraph">
+<p>Note that WideString manager may not be installed when units "initialization" section is run. (This is a limitation of some Android versions.) But it will for sure be installed when Application.OnInitialize is called.</p>
+</div>
+<div class="paragraph">
+<p><strong>Background</strong>: Having a WideString manager is important if you use WideStrings (e.g. with standard FPC units to handle XML, like DOM) with non-ASCII characters (e.g. regional characters specific to some language). Our engine uses UTF-8 for displaying strings with TCastleFont, and VRML/X3D use UTF-8 encoding by default. So we need to be able to convert between WideStrings and AnsiStrings with UTF-8. This is what the "WideString manager" is for.</p>
+</div>
+<div class="paragraph">
+<p>Our engine includes and correctly initializes manager from CastleAndroidCWString, which is a slightly modified version of FPC CWString for Android (to initialize with delay, required by some Android versions).</p>
+</div>
+</div>
+</div>
+<h1 id="_notes_about_compiling_with_hard_floats_cfvfpv3" class="sect0">Notes about compiling with hard floats (-CfVFPV3)</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>The compiler flag <code>-CfVFPV3</code> is necessary to enable hardware floats, this way the engine works much faster. Our <a href="Build Tool">build tool</a> automatically uses it when compiling your project. You should also have FPC standard units compiled with this option (following our <a href="Android">Android</a> wiki page).</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+In theory it is possible to compile and use our engine without <code>-CfVFPV3</code> (in which case make sure you use FPC standard units also compiled without <code>-CfVFPV3</code>), things will work, but they will be <strong>much slower</strong>. E.g. in <a href="https://castle-engine.io/darkest_before_dawn.php">Darkest Before the Dawn</a> loading time drops from 6 (hard floats) to 36 (no hard floats) seconds, and frames per second during game drop from 40 (hard floats) to 10 (no hard floats).
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Note that <strong>every unit has to be compiled with -CfVFPV3</strong> (hard floats). It is especially important to remember it when compiling packages from Lazarus, since they also depend on standard Lazarus "fcllaz" package, which does not by default get compiled with -CfVFPV3.</p>
+</div>
+<div class="paragraph">
+<p>It&#8217;s then easiest to just add</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>#ifdef ANDROID
+-CfVFPV3
+#endif</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>to your fpc.cfg. This will automatically make everything compiled for Android (from Lazarus or from command-line) use -CfVFPV3. Otherwise, you will have to modify packages like "fcllaz" to add -CfVFPV3 to compilation options on Android.</p>
+</div>
+</div>
+</div>
+<h1 id="_how_to_speedup_gradle_building" class="sect0">How to speedup Gradle building</h1>
+<div class="openblock partintro">
+<div class="content">
+You can put <code>org.gradle.jvmargs=-Xmx2048M</code> in your <code>~/.gradle/gradle.properties</code>. (We don&#8217;t do it in every project, because it may unfortunately fail to work on some Windows machines, even when they have a lot of RAM&#8230;&#8203;)
+</div>
+</div>

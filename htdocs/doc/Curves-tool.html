@@ -1,0 +1,131 @@
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_creating_and_editing_curves">1. Creating and editing curves</a></li>
+<li><a href="#_using_curves_in_your_own_programs">2. Using curves in your own programs</a></li>
+</ul>
+</div>
+<div class="paragraph">
+<p>We have a simple tool to design curves (piecewise cubic Bezier curves). The created curves can be saved into a simple XML format and loaded into your own Castle Game Engine programs and used for any purpose (for example as a track along which something moves).</p>
+</div>
+<div class="paragraph">
+<p>Download:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Get <a href="https://castle-engine.io/">Castle Game Engine binary release</a>, the tool is readily available as <code>bin/castle-curves</code> .</p>
+</li>
+<li>
+<p>Or get <a href="https://github.com/castle-engine/castle-engine/">Castle Game Engine source code</a>, the tool is in <code>tools/castle-curves</code> subdirectory.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The main example how to use designed curves is inside the CGE, in <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/curves/use_designed_curve">examples/curves/use_designed_curve</a>.</p>
+</div>
+<div class="sect1">
+<h2 id="_creating_and_editing_curves">1. Creating and editing curves</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>For many commands and their key shortcuts, see the program&#8217;s menu. Use mouse to create and edit curve points:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Right mouse button click:</p>
+<div class="paragraph">
+<p><em>Add new</em> curve point. If some curve and point were selected, the new point is added to the selected curve <em>after the selected point</em>. Otherwise, a new new curve with one point is created. So if you want to start creating 2nd curve, just deselect all (key <em>N</em>) and press right mouse button.</p>
+</div>
+</li>
+<li>
+<p>Left mouse button click:</p>
+<div class="paragraph">
+<p><em>Select</em> control point (and it&#8217;s curve).</p>
+</div>
+</li>
+<li>
+<p>Dragging with left mouse button:</p>
+<div class="paragraph">
+<p><em>Move</em> selected point. Hold <em>Shift</em> key to move whole selected curve. The smallest drags are ignored at the begging, so we avoid accidental drags when selecting, don&#8217;t worry:)</p>
+</div>
+</li>
+<li>
+<p>Use keys + and - to smoothly zoom in/out. Use Home to reset zoom to zero.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+use a reference image (menu <em>Background&#8594;Load</em>) to fit your curve nicely to your use. By default we show a simple image with a helpful grid.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><em>Save</em> and <em>open</em> menu commands store curves list in a simple XML file. You can use it to load your designed curves into your Castle Game Engine programs, see below.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_using_curves_in_your_own_programs">2. Using curves in your own programs</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Load a list of curves from XML file using the <code>TCurveList.LoadFromFile</code> method.</p>
+</li>
+<li>
+<p>Or load the first curve from XML file using the simpler <code>TCurve.LoadFromFile</code> method.</p>
+</li>
+<li>
+<p>Query the curve using the <code>TCurve.Point(T)</code> method.</p>
+</li>
+<li>
+<p>Use T values in the range [0..1] to move along the curve. In general, you should look at the valid range for T in <code>TCurve.TBegin</code> and <code>TCurve.TEnd</code> properties, but in case of castle-curves tool&#8201;&#8212;&#8201;you know that <code>TBegin</code> is always 0 and <code>TEnd</code> is 1.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>See the example below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="keyword">uses</span> SysUtils, CastleVectors, CastleFilesUtils, CastleCurves;
+<span class="keyword">var</span>
+  FirstCurve: TCurve;
+  Curves: TCurveList;
+<span class="keyword">begin</span>
+  FirstCurve := TCurve.LoadFromFile(ApplicationData(<span class="string"><span class="delimiter">'</span><span class="content">my_curves.xml</span><span class="delimiter">'</span></span>));
+  <span class="keyword">try</span>
+    <span class="comment">// That's it, you loaded the 1st curve from XML file.</span>
+    <span class="comment">// Write some initial curve points.</span>
+    Writeln(FirstCurve.Point(<span class="float">0.0</span>).ToString);
+    Writeln(FirstCurve.Point(<span class="float">0.1</span>).ToString);
+  <span class="keyword">finally</span> FreeAndNil(FirstCurve) <span class="keyword">end</span>;
+
+  <span class="comment">{ in more complicated scenarios, my_curves.xml may keep many curves
+    inside. Load them like this: }</span>
+
+  Curves := TCurveList.Create(true <span class="comment">{ free objects }</span>);
+  <span class="keyword">try</span>
+    Curves.LoadFromFile(ApplicationData(<span class="string"><span class="delimiter">'</span><span class="content">my_curves.xml</span><span class="delimiter">'</span></span>));
+    <span class="keyword">if</span> Curves.Count = <span class="integer">0</span> <span class="keyword">then</span>
+      <span class="keyword">raise</span> Exception.Create(<span class="string"><span class="delimiter">'</span><span class="content">No curves defined in file</span><span class="delimiter">'</span></span>);
+    FirstCurve := Curves[<span class="integer">0</span>];
+    <span class="comment">// That's it, you have the 1st curve from XML file.</span>
+    <span class="comment">// Write some initial curve points.</span>
+    Writeln(FirstCurve.Point(<span class="float">0.0</span>).ToString);
+    Writeln(FirstCurve.Point(<span class="float">0.1</span>).ToString);
+    Writeln(FirstCurve.Point(<span class="float">0.2</span>).ToString);
+  <span class="keyword">finally</span> FreeAndNil(Curves) <span class="keyword">end</span>;
+<span class="keyword">end</span>.</code></pre>
+</div>
+</div>
+</div>
+</div>

@@ -1,0 +1,97 @@
+_Castle Game Engine_ defines a number of useful link:pass:[Android Services][] and link:pass:[iOS Services][] to integrate with various 3rd-party libraries, SDKs to provide additional functionality to your application.
+
+This page documents how you can add new services for Android.
+
+Table of Contents:
+* [Be sure to use Android project_type "integrated" (this is the default now)](#be-sure-to-use-android-project_type-integrated-this-is-the-default-now)
+* [Adding new service](#adding-new-service)
+* [Java code of a service](#java-code-of-a-service)
+* [Communicate with Java](#communicate-with-java)
+* [Adding a service with dynamic library (SO)](#adding-a-service-with-dynamic-library-so)
+
+### Be sure to use Android project_type "integrated" (this is the default now)
+
+All the Android services require that you have an `integrated` Android project type (default now), not `base`. With the `integrated` project type, our final Android project has it's own activity class (`MainActivity`, descendant of `NativeActivity`, in `tools/build-tool/data/android/integrated/app/src/main/java/net/sourceforge/castleengine/MainActivity.java`), and it has Java code that is "summed" by adding all the files from
+
+- `tools/build-tool/data/android/integrated`
+- and subdirectories of `tools/build-tool/data/android/integrated-services`
+
+The `base` project type (you can request it by `CastleEngineManifest.xml`) is *not* suitable to implement additional services.
+
+- This project type on Android (constructed from code in `tools/build-tool/data/android/base/` ) does not contain *any* Java code. It is possible thanks to using Android `NativeActivity` class. The activity type of our game can be simply declared as `NativeActivity` then, for Android build tools, and there's no need to create our own Java activity class, or to write any Java code at all. This possibility was explicitly documented at the `NativeActivity` docs from Google.
+
+- This allows our application to render, update, listen for touch events, in general use all the NDK functionality (including standard Unix library, e.g. to open files, and some Android-specific things like logging). For some simple games this is enough.
+
+- But any integrations that require Java libraries are impossible to implement in this case. The NDK libraries only provide some basic functionality, they absolutely *do not* cover the functionality offered by the Java API on Android.
+
+### Adding new service
+
+It's easy to add your own Android services, if you need to integrate with some Android library not covered by existing link:pass:[Android Services][]. Create your service inside the <code>castle_game_engine/tools/build-tool/data/android/integrated-services/xxx/</code> directory. The files there are copied to the final Android project, expanding macros inside. Most of the files are simply copied (but avoiding overwriting), but some files are merged in a special way:
+
+* <code>AndroidManifest.xml</code> of each service is merged with the main `AndroidManifest.xml` in a smart way, only adding the new permissions and new elements/attributes inside the <application>.
+* <code>build.gradle</code> files inside the services have a special XML syntax. See the example services like `helpshift`. They are merged into the final (non-XML) <code>build.gradle</code> file in a smart way.
+* Each service may also insert a snippet of Java code to the <code>MainActivity.java</code> file. This is typically used to initialize the service-specific Java class, like
+
+  ~~~~
+  services.add(new ServiceStartApp(this));
+  ~~~~
+
+When developing new services, it's useful to inspect the generated Android project in the <code>castle-engine-output/android/project</code>. This is created by the link:pass:[Build Tool][] by merging all the services with base project template. Look there after running `castle-engine package --target=android`.
+
+### Java code of a service
+
+The main code of a service is usually a class descending from the `ServiceAbstract` class. It has some methods that you can override, like `onCreate`, `onStart`, and so on --- they are called when the appropriate lifecycle event occurs on the `MainActivity`. The idea is that our `MainActivity` should be a relatively small class, that simply "passes on" the events to every service.
+
+### Communicate with Java
+
+To communicate with the services from the Object Pascal code, use the <code>CastleMessaging</code> unit. Our units like <code>CastleAds</code> or <code>CastleGameService</code> are simply thin "wrappers" using <code>CastleMessaging</code> unit under the hood --- see at their sources to know how it works, it is very straightfoward.
+
+This way you can write Java code and utilize any Android Java API, and communicate with Pascal.
+
+The `CastleMessaging` is a simple asynchronous communication mechanism between Pascal and Java, using it is easy (you have ready methods on both Pascal and Java side, and you don't need to deal with JNI). 
+
+- On the Pascal side, use `CastleMessaging` unit, with a singleton `Messaging` of class `TMessaging`. It has a simple `Send` method and allows to register `OnReceive` callbacks (like `Messaging.OnReceive.Add(@MessageReceived);`). Typically, you wrap sending and receiving messages in a nice Pascal API. Examples of it are in the CGE `src/services/` directory.
+
+- On the Java side, you create a class descending from `ServiceAbstract`. Such class can override `messageReceived` method to receive messages, and use `messageSend` to send messages. Examples of it are CGE services inside `tools/build-tool/data/android/integrated-services/XXX/src/net/sourceforge/castleengine/ServiceXXX.java` files.
+
+See e.g. Google Play Games handling:
+
+- the Pascal part is in `src/services/castlegameservices.pas` ,
+
+- the Java part is in `tools/build-tool/data/android/integrated-services/google_play_games/src/net/sourceforge/castleengine/ServiceGooglePlayGames.java` .
+
+The Java code of this particular service is no longer straightforward (it has a lot of functionality by now...), but it shows how to pass messages back and forth.
+
+For something simpler, see the "vibrate" service:
+
+- the Java side is in `build-tool/data/android/integrated-services/vibrate/` .
+
+- and the Pascal side is a trivial function `Vibrate` inside `src/services/castleopendocument.pas` .
+
+Note that `CastleMessaging` is not supposed to be an "API for all communication", but in practice it works very well in all existing services --- since it's natural for asynchronous processing (where many things are done in some thread, and/or wait for network or user input before returning any result).
+
+The exact messages are not documented anywhere, since they are the "internal" API between Pascal and Java code. You should just cross-reference the `castlegameservices.pas` and `ServiceGooglePlayGames.java` and see that what one sends -- the other receives:) When creating new service, you just invent your own messages, using any non-conflicting names.
+
+In the Java part, you use the full power of Java APIs on Android, that are necessary to access various Android stuff. On the Pascal side, you create a thin wrappers that merely send/receive messages. Final games should use the Pascal API, without being aware of any "messages" underneath, e.g. see how `castle-engine/examples/2d_dragon_spine_android_game/` uses the `TGameService` class.
+
+Note: The disadvantage of `CastleMessaging` approach is that the communication between Java and Pascal looks like an asynchronous network channel. That's OK in many cases (especially when the Java code indeed wraps some network operations), but it may be bad if you need to get something fast/synchronously. For such cases, using JNI to implement communication Java<->Pascal is necessary.
+
+### Adding a service with dynamic library (SO)
+
+A service can be to add a dynamic library (SO, file like `libxxx.so`) to your Android project. 
+
+This should be compiled for all Android architectures, so you actually need 2 versions: 
+
+- Arm 32-bit (called just `arm` by various tools) 
+- and Arm 64-bit (called `aarch64` by various tools).
+
+In theory, only one of them can suffice, but then your application will only support one Android architecture. You would then build the application like * `castle-engine --cpu=arm --os=android` (to make 32-bit-only application) 
+* or `castle-engine --cpu=aarch64 --os=android` (to make 64-bit-only application). 
+For now, we strongly advise that you provide both SO versions, and compile your APK for both architectures using simple `castle-engine --target=android`.
+
+Example services that includes SO files see:
+
+- [ogg_vorbis](https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/ogg_vorbis)
+- [freetype](https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/freetype)
+
+They contain just a few trivial files, and two SO files (for Arm 32-bit and 64-bit).

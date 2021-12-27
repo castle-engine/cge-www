@@ -1,0 +1,487 @@
+= Table of Contents
+:doctype: book
+:sectnums:
+:source-highlighter: coderay
+:toc: left
+
+* <<table-of-contents,Table of Contents>>
+* <<pascal-coding-conventions,Pascal Coding Conventions>>
+ ** <<indent-by-2-spaces,Indent by 2 spaces>>
+ ** <<do-not-use-tabs-or-trailing-whitespace,Do not use tabs or trailing whitespace>>
+ ** <<use-camelcase-for-everything,Use CamelCase for everything>>
+ ** <<true-and-false-are-lowercase-not-true-and-false,`true` and `false` are lowercase, not `True` and `False`>>
+ ** <<put-begin-on-a-new-line-indentation-of-begin-and-end-should-match,Put begin on a new line, indentation of `begin` and `end` should match>>
+ ** <<put-else-on-a-new-line-unless-its-right-after-end,Put else on a new line, unless it's right after `end`>>
+ ** <<do-not-use-with,Do not use with>>
+ ** <<order-of-the-uses-clause-standard-cge-application,Order of the uses clause: standard, CGE, application>>
+ ** <<use-strict-private-where-possible,Use strict private where possible>>
+ ** <<do-not-use-strict-protected,Do not use strict protected>>
+ ** <<write-abbreviations-using-camelcase,Write abbreviations using CamelCase>>
+ ** <<indenting-inside-classes,Indenting inside classes>>
+ ** <<file-extensions,File extensions>>
+ ** <<write-reentrant-routines,Write reentrant routines>>
+ ** <<some-naming-conventions,Some naming conventions>>
+ ** <<compilation-symbols,Compilation symbols>>
+ ** <<exceptions-messages,Exceptions' messages>>
+ ** <<prefer-to-make-callbacks-of-object,Prefer to make callbacks of object>>
+ ** <<order-of-methods,Order of methods>>
+ ** <<remember-that-strtofloat-and-friends-are-locale-dependent-almost-always-use-strtofloatdot-instead,Remember that StrToFloat and friends are locale-dependent. Almost always use StrToFloatDot instead.>>
+ ** <<do-not-use-longint--longword-use-int32uint32-int64uint64-integercardinal,Do not use LongInt / LongWord. Use Int32/UInt32, Int64/UInt64, Integer/Cardinal.>>
+ ** <<do-not-use-extended-use-singledouble,Do not use Extended. Use Single/Double>>
+ ** <<most-code-should-use-just-string-and-be-prepared-that-it-is-8-bit-on-fpc-and-16-bit-on-delphi-if-writing-to-stream-use-8-bit-ansistring,Most code should use just String, and be prepared that it is 8-bit on FPC and 16-bit on Delphi. If writing to stream, use 8-bit AnsiString.>>
+* <<other-languages,Other languages>>
+* <<guidelines-how-to-write-good-code,Guidelines (how to write good code)>>
+ ** <<declarative-api-classes-with-independent-properties-is-simple-to-use,Declarative API (classes with independent properties) is simple to use>>
+ ** <<optimize-smartly-profile-optimize-where-it-matters-and-not-where-it-doesnt-think-about-smarter-algorithms-and-moving-cpu-work-to-gpu-to-get-big-benefits,Optimize smartly: profile, optimize where it matters (and not where it doesn't), think about smarter algorithms and moving CPU work to GPU to get big benefits>>
+* <<submitting-your-code-contributions,Submitting your code contributions>>
+
+= Pascal Coding Conventions
+
+In general, we follow the standard Lazarus and Delphi coding conventions, used throughout most modern Object Pascal code.
+
+These are documented nicely on:
+
+* http://edn.embarcadero.com/article/10280[Object Pascal Style Guide]
+* https://web.archive.org/web/20170607183644/http://kodu.ut.ee/~jellen/delphi/cs.html[Delphi Language Coding Standards Document]
+
+Some particular conventions:
+
+== Indent by 2 spaces
+
+== Do not use tabs or trailing whitespace
+
+Do not leave "trailing whitespace" at the end of lines. In the long run, it causes unnecessary diffs when someone removes this whitespace.
+
+== Use `CamelCase` for everything
+
+* Including constants. So write `MyConstant` instead of e.g. `MY_CONSTANT`.
+* Including local variables. Even 1-letter variable names (so write `I` instead of `i`).
+* Including type names. Even the type names that are Pascal keywords (so write `String` / `Boolean` instead of `string` / `boolean`). Note: this rule was changed during CGE 6.5 development. So you will find a lot of code using lowercase `string` now in engine sources, but new code should use `String`.
+
+== `true` and `false` are lowercase, not `True` and `False`
+
+== Put `begin` on a new line, indentation of `begin` and `end` should match
+
+Do _not_ mimic C "K & R" style (https://en.wikipedia.org/wiki/Indent_style#K.26R) in Pascal:
+
+[,pascal]
+----
+// DON'T WRITE THIS:
+for I := 1 to 10 do begin
+  Writeln(I);
+end;
+----
+
+Instead, the "begin" should usually be indented the same as "end".
+
+[,pascal]
+----
+// THIS IS OK:
+for I := 1 to 10 do
+begin
+  Writeln(I);
+end;
+----
+
+To look simpler, it's OK to omit begin/end when they would surround only 1 statement:
+
+[,pascal]
+----
+// THIS IS EVEN BETTER:
+for I := 1 to 10 do
+  Writeln(I);
+----
+
+== Put `else` on a new line, unless it's right after `end`
+
+The "else" keyword is written on a new line, unless it's right after "end". So:
+
+[,pascal]
+----
+// THIS IS OK:
+if Foo then
+  Bar
+else
+  Xyz;
+
+// THIS IS ALSO OK:
+if Foo then
+begin
+  Bar
+end else
+begin
+  Xyz;
+end;
+
+// THIS IS ALSO OK:
+if Foo then
+begin
+  Bar
+end else
+  Xyz;
+
+// THIS IS ACCEPTABLE, BUT BETTER AVOID IT:
+if Foo then
+  Bar
+else
+begin
+  Xyz;
+end;
+
+// THIS IS NOT OK:
+if Foo then
+begin
+  Bar
+end
+else
+begin
+  Xyz;
+end;
+
+// THIS IS NOT OK, BUT IS USED IN A LOT OF CODE:
+// (Michalis was using this convention for a long time,
+// until it was pointed to him that it doesn't look optimal,
+// and Michalis agreed :)
+// Do not use this in new code, but don't be surprised if it still occurs somewhere.
+// Michalis will gradually get rid of it in CGE sources.)
+if Foo then
+  Bar else
+  Xyz;
+----
+
+== Do not use `with`
+
+Never use "with" keyword. Using "with" makes the code very difficult to read, as some of the symbols inside the "with A do begin .... end" clause  are bound to A, and some are not, and it's completely invisible to the human reader which symbols are which.
+
+And it's impossible to determine it, without intimately knowing the complete API of class/record A.
+
+E.g. what does this code do?
+
+[,pascal]
+----
+with A do
+begin
+  SourceX := X;
+  SourceY := Y;
+end;
+----
+
+Does it modify A contents, or does it modify outside variables,
+merely reading the A contents? You really don't know,
+until I show you the documentation of the class of A, and all it's ancestors.
+
+Compare with a clear:
+
+[,pascal]
+----
+SourceX := A.X;
+SourceY := A.Y;
+----
+
+or
+
+[,pascal]
+----
+A.SourceX := X;
+A.SourceY := Y;
+----
+
+The "with" also makes the code very fragile to any changes of A API. Every time you add a new field/property/method to A, then the code inside "with A do begin .... end" may change it's meaning. It may compile, but suddenly will do something completely different.
+
+Likewise, every time you remove a field/property/method from A, the code inside "with A do begin .... end" may compile, if you happen to have a variable outside of this block with a name matching the name inside A.
+
+== Order of the `uses` clause: standard, CGE, application
+
+The uses clause of our units and examples should follow the order
+
+* standard units (RTL, LCL, VCL...)
+* then our own (CastleXxx) units
+* then eventual game-specific units (GameXxx)
+
+Each part should start from a newline.
+
+[,pascal]
+----
+// THIS IS OK:
+uses SysUtils, Classes,
+  CastleUtils, CastleViewport,
+  GameStatePlay;
+----
+
+== Use `strict private` where possible
+
+Use `strict private` whenever you can, that is: use it for private stuff that is not accessed by other classes/routines in the same unit. Use simple `private` only for private stuff that _is_ accessed by other classes/routines in the same unit.
+
+This improves code readability in case of large units, that feature more than just a single class.
+
+== Do not use `strict protected`
+
+Using `strict protected` is not advised in CGE. The distinction between `strict protected` and `protected` is not very useful for readability (regardless if something is `strict protected` or just `protected`, you must think _something outside of this class accessed it_). Moreover, it is forced downward, on all descendants of this class (that must then differentiate between overriding in `strict protected` vs `protected`, which is uncomfortable because the decision whether to use `strict protected` or `protected` should be an internal (implementation) decision within the ancestor, not affecting the descendants).
+
+So, use just one `protected` section, do not bother splitting it into `strict protected` and `protected`.
+
+== Write abbreviations using CamelCase
+
+This means `Url`, `Http` etc. in Pascal identifiers. Because it looks much better in long identifiers, like `GetHttpResponse` is much more readable than `GetHTTPResponse`.
+
+Note that in the comments, when you talk about e.g. _"HTTP protocol does something"_, still use English conventions when talking about these general concepts (i.e. not Pascal identiiers). So write _"HTTP protocol does something"_ as shown, with HTTP uppercase.
+
+In case of `Url`, we have additional complication: in some places we use the term `URI` instead of `URL` and it is not entirely consistent. It is explained in https://castle-engine.io/manual_network.php#section_terminology , but was not consistently applied. So all future code should just use `Url`, and internally we knon that "most URLs actually accept URI".
+
+== Indenting inside classes
+
+[,pascal]
+----
+type
+  TMyClass = class
+  private
+    MyField: Integer;
+    procedure Foo;
+  public
+    MyPublicField: Integer;
+    procedure Bar;
+  end;
+----
+
+If you use the nested types / constants, indent the fields inside the `var` block as well. See the example below, notice that `MyField` is now indented more than in the example above. It's not perfect -- `MyField` indentation is now inconsistent with `MyPublicField`. But on the other hand, `MyField` indentation is consistent with `MyNestedConst` and `TMyNestedClass` and how you usually indent `var` block.
+
+[,pascal]
+----
+type
+  TMyClass = class
+  private
+    type
+      TMyNestedClass = class
+      end;
+    const
+      MyNestedConst = 123;
+    var
+      MyField: Integer;
+    procedure Foo;
+  public
+    MyPublicField: Integer;
+    procedure Bar;
+  end;
+----
+
+== File extensions
+
+* `*.pas` files are units,
+* `*.inc` are files to be included in other Pascal source files using $I (short for $Include).
+* `*.dpr` and `*.lpr` are main program files. We will soon rename all program files to *.dpr. While Lazarus accepts either .dpr or .lpr extension for the program file, Delphi tolerates only .dpr extension. So, like it or not, we have to adjust to Delphi, and just use .dpr.
+
+== Write reentrant routines
+
+All the engine functions are "reentrant", which means that they are safe
+to be called recursively, even through your own callbacks.
+E.g. the TFileProc callback passed to `FindFiles` can call `FindFiles` inside
+it's own implementation.
+
+== Some naming conventions
+
+* If some procedure modifies it's 1st parameter then I usually end it's name with "Var" ("to variable").
++
+Often you will be able to see the same operation coming in two flavors:
++
+----
+function DoSomething(const X: SOME-TYPE, ...): SOME-TYPE;
+procedure DoSomethingVar(var X: SOME-TYPE,...);
+----
++
+The 1st (functional-like) version is more flexible, but the 2nd version may be faster (especially if SOME-TYPE is large, or requires time-consuming initialization).
++
+See e.g. CastleVectors and CastleImages units.
++
+This rule doesn't apply when SOME-TYPE is some class instance. It's normal that a procedure may modify the given class instance contents, no need to signify this with a "Var" suffix.
+
+* The term "stride" refers to a distance in bytes between memory chunks, following OpenGL conventions.
++
+If somewhere I use parameters like `+V: ^SOME-TYPE+` and `Stride: Integer` then it means that these parameters define a table of SOME-TYPE values. Address of 1st item is V, address of i-th is (V + i * Stride).
++
+Stride may be negative. Stride may also be 0, then it means that `Stride = SizeOf(SOME-TYPE)`.
+
+== Compilation symbols
+
+We use standard FPC and Delphi compilation symbols: MSWINDOWS, UNIX, LINUX, CPUI386, CPUX86_64, FPC to differentiate between compiler versions, and some more.
+
+See castleconf.inc.
+
+We also use DEBUG symbol. The build tool when compiled in debug mode (--mode=debug) defines the `DEBUG` symbol, and adds some runtime checks, like https://github.com/michaliskambi/modern-pascal-introduction/wiki/What-are-range-and-overflow-checks-%28and-errors%29-in-Pascal[range checking and overflow checking]. You can use `{$ifdef DEBUG}` in your own code to add additional things. There's also the `RELEASE` symbol, but usually we don't check for it's existence -- if DEBUG then we're in debug mode, else we're in release mode.
+
+== Exceptions' messages
+
+* Do not start them with 'Error: ' or anything else that just says _"we have an error"_. This is redundant, since all exceptions signal some error.
+* Don't end the Message with '!' character. Do not cause panic :) The exception message must look normal when presented to end-user. If something should not occur (and signals a bug) then use `EInternalError` exception class to mark this.
+* Usually, `Message` should be a single sentence, and not end with the '.' character. But we do not follow this rule 100%, it's OK to break it for good reasons -- sometimes a multi-line sentence message is useful.
+* Message should not contain any line-breaks. Reason: this doesn't look good when displayed in some situations. Especially when one Message is embedded as part of the Message of other exception.
++
+We do not follow this rule 100%, it's OK to break it with good reasons. We know that some information really looks much cleaner when split into multiple lines (e.g. TMatrix4.ToString output is multi-line already).
+
+* Message should not contain any general program information like `ApplicationName`, `ExeName` etc. (The exception to this rule is when such information is really related to the error that happened, may help to explain this error etc.) In normal situation, the code that finally catched and outputs this exception should show such information.
+
+== Prefer to make callbacks `of object`
+
+ObjectPascal is a hybrid OOP language and it has global function pointers and method pointers. They are incompatible, since the method pointer is actually two pointers (the class instance, and the code address). When designing a function that takes a callback, you're faced with a problem: define "a pointer to a method" or "a pointer to a global function/procedure"?
+
+In the past, I often chose to use "a pointer to a global function/procedure". With a generic "Data: Pointer" parameter, to allow passing user data. This is easier to use when you don't have a class instance (and you don't want to create a dummy class just for this), and it's always allows to add overridden version with "of object" callback (passing object instance as the Data);
+
+Nowadays, I usually define "of object" callbacks, assuming that all non-trivial code is usually in some class, and the "of object" is more natural to be used in OOP.
+
+== Order of methods
+
+Place the implementation of constructors (`Create*`) first, then destructor (`Destroy`), and then the rest of methods. I do not have a precise rule about the ordering of the rest of methods -- I usually like to group related methods together.
+
+== Remember that StrToFloat and friends are locale-dependent. Almost always use StrToFloatDot instead.
+
+Standard `StrToFloat` in FPC and Delphi converts floats to/from Strings using locale-dependent `DecimalSeparator` value. On some systems (e.g. on Polish Windows) it is equal to comma (`,`), not a dot (`.`). This is usually not what you want: when you read/write files, or command-line arguments, you usually want to have "dot" as the only decimal separator, so that your application works regardless of user's system locale.
+
+So instead use `StrToFloatDot`. As a bonus, it is also marginally faster.
+
+Same advise applies for related functions:
+
+* Use `StrToFloatDefDot` instead of `StrToFloatDef`
+* Use `TryStrToFloatDot` instead of `TryStrToFloat`
+* Use `FormatDot` instead of `Format`
+* Use `FloatToStrDot` instead of `FloatToStr`
+
+== Do not use LongInt / LongWord. Use Int32/UInt32, Int64/UInt64, Integer/Cardinal.
+
+Embarcadero decided to make things weird: https://docwiki.embarcadero.com/RADStudio/Sydney/en/Simple_Types_(Delphi) . The `LongInt` / `LongWord` are
+
+* 32-bit on _32-bit platforms, and on 64-bit Windows_.
+* They are 64-bit on _64-bit OSes that are not Windows (like Linux, Android, iOS)_.
+
+This is
+
+* Completely weird (why did you make it inconsistent across platforms???).
+* And contrary to older Pascal documentation statements, that suggested that `LongInt` / `LongWord` have 32-bit always. It was the `Integer` / `Cardinal` that were supposed to be (maybe) system-dependent! (though they remain in practice 32-bit always, in both FPC and Delphi.)
+* Incompatible with FPC.
+
+So just don't use these types in CGE code.
+
+* Use `Int32` / `UInt32` when you want to have integers of guaranteed 32-bit size. The names are consistent with `Int64` / `UInt64`.
+* Use `Int64` / `UInt64` when you want to have integers of guaranteed 64-bit size. The `QWord` (FPC name for `UInt64`) is also good.
+* Use `Integer` / `Cardinal` when you don't care much about the bit size. In practice they are always 32-bit on all platforms (with both FPC / Lazarus), although long time ago they were supposed to be platform-dependent.
+* Use `TListSize` for counts and capacities of lists. (It is signed, to not cause overflows with frequent constructions like `+for I := 0 to List.Count - 1 do...+`)
+* Use `PtrInt` / `PtrUInt` when you want to have integers of guaranteed pointer-size.
+
+== Do not use Extended. Use Single/Double
+
+Traditionally, `Extended` used to be a 10-byte floating-point type available in old Pascal compilers. But it is not that useful anymore, in modern FPC and Delphi.
+
+The size and precision of `Extended` depends now on the platform and compiler:
+
+* FPC: Extended=Double for most of non-i386 architectures. One known exception to the above is Linux on x86-64, that allows to use normal Extended. Use `EXTENDED_EQUALS_DOUBLE` to check for it.
+* Delphi: See https://docwiki.embarcadero.com/RADStudio/Sydney/en/Simple_Types_(Delphi) . Similar to FPC, `Extended` is just `Double` (8 bytes) on most platforms except Win32.
++
+Moreover, Delphi defines `Extended` to be a new 16-byte floating-point type on some platforms:
+
+ ** 64-bit Intel Linux
+ ** 32-bit Intel macOS
+ ** 32-bit Intel iOS Simulator
+
+TBH, the end result makes `Extended` not very useful at all, at least for general cross-platform (and cross-compiler) code, due to this uncertainty. And GPUs don't support anything above `Double` anyway.
+
+== Most code should use just String, and be prepared that it is 8-bit on FPC and 16-bit on Delphi. If writing to stream, use 8-bit AnsiString.
+
+On FPC, we follow the same approach to `String` as in Lazarus: `String` is an alias to `AnsiString`, and it should always contain UTF-8 data. We use necessary compiler switches to make `String = AnsiString`, and the `CastleUtils` has necessary initialization to make sure that strings can just carry UTF-8 on all platforms.
+
+See FPC docs:
+
+* https://wiki.freepascal.org/FPC_Unicode_support
+* https://wiki.freepascal.org/Unicode_Support_in_Lazarus
+* https://wiki.freepascal.org/Character_and_string_types
+
+On Delphi, we follow the standard approach of modern Delphi: `String` is an alias to `UnicodeString`, and it contains UTF-16 encoded data.
+
+See Delphi docs:
+
+* https://docwiki.embarcadero.com/Libraries/Sydney/en/System.UnicodeString
+* https://docwiki.embarcadero.com/RADStudio/Sydney/en/Unicode_in_RAD_Studio
+* https://docwiki.embarcadero.com/RADStudio/Sydney/en/String_Types_(Delphi)
+
+Correspondingly, `Char` is 8-bit with FPC, and 16-bit with Delphi. And `PChar` points to 8-bit characters on FPC, 16-bit on Delphi.
+
+With both compilers, you can explicitly use `AnsiString` to request 8-bit string. And `AnsiChar` for 8-bit character, `PAnsiChar` to have a pointer to them.
+
+What to do?
+
+* In most CGE code, just use `String` and `Char` and most of the time is just does what you want. You can often ignore the fact that FPC will do this using 8-bit chars and Delphi will do this using 16-bit chars.
+* Exceptions:
+ ** When we read/write to streams, like using various `CastleClassUtils` routines, we use 8-bit strings. Since UTF-8 is the file format that most software expects, it is a superset of ASCII (that is: simplest text files) etc. So `CastleClassUtils` routines dealing with streams + strings just declare `AnsiString` as input/output type.
++
+There are exceptions marked with `DefaultString` in the name, right now only `MemoryStreamLoadFromDefaultString`. This routine writes 8-bit on FPC, and 16-bit on Delphi.
+
+ ** When interacting with external libraries, you will most often use `PAnsiChar` (not `PChar`) as most of them expect 8-bit UTF-8 (or just ASCII) text.
+
+= Other languages
+
+* Indent by 4 spaces in Java and Objective-C.
+* Never use tabs. (Unless they are inherent to the language, like `Makefile`).
+* Follow the standard coding conventions for that language.
+
+= Guidelines (how to write good code)
+
+== Declarative API (classes with independent properties) is simple to use
+
+In general _prefer declarative_ API (properties) over imperative (methods, esp. with complicated usage scenarios).
+
+The classes that expose the "solution" as a set of properties are simple to use. Exposing a "solution" as a set of methods (that must be called in some specific order for the desired effect) is usually not as simple. Of course this is just a general guideline, I'm sure you know lots of exceptions to this rule! CGE itself is a big OOP library with lots of classes with lots of properties and lots of methods. If something is naturally an "action" (_"draw it now!"_) then it should be a method (`Render`). But if something is a "state" (_"use this color when drawing"_) then it is a property (`property Color: TCastleColor; property Text: String;` works better than `procedure Draw(const Color: TCastleColor; const AText: String)`).
+
+Properties should work independently. Property value should not be "automatically" set by setting another unrelated property (e.g. setting `TCastleUserInterface.HeightFraction` does not set also `TCastleUserInterface.Height`) or by doing something (e.g. adding a control does not  set its `TCastleUserInterface.Height`; it represents "the desired height", and programmer should instead read `EffectiveHeight` to know the resulting height). Of course there are exceptions to the latter -- some methods naturally set some properties, but then it should be clear that given method does this, e.g. `TCastleViewport.Setup2D` sets `Viewport.Camera.ProjectionType`.
+
+You want getting/setting properties to work naturally, regardless of the order in which it happens (this is nice for the programmer using the API, and necessary for reliable deserialization).
+
+Properties should generally work like you would expect a variable works. E.g. reading a property right after setting it should result in the same value. Setting property multiple times to the same value should have no effect. See the Pascal guidelines on https://castle-engine.io/modern_pascal_introduction.html#_properties : _...it's a good convention to design properties to behave more-or-less like fields:..._.
+
+Classes with independent properties are simple to use -- both from CGE editor (that exposes any published properties of `TComponent` descendants), and from code (code that sets a few properties is obvious to follow).
+
+== Optimize smartly: profile, optimize where it matters (and not where it doesn't), think about smarter algorithms and moving CPU work to GPU to get big benefits
+
+If you want to suggest some optimization (of speed, of memory usage) to the engine, especially if it:
+
+* makes a significant code complication to the existing code,
+* or it adds a significant amount of new code (which is also a code complication)
+
+... then always first do some tests/thinking whether it's really worth it.
+
+There are many situations where optimizing is not a good idea, because it will not change the "bottleneck" code (which means that the speed / memory use of something else is so large (in comparison) that it completely "masks" the thing that you optimize, making it irrelevant). In such cases, optimization is actually harmful, because the code quality goes down -- the optimized code is _usually_ longer and/or more convoluted.
+
+(Exception: in the rare cases when the optimized code is also shorter and cleaner, you have a full green light to do it _just because the code quality is better_.)
+
+Bottom line:
+
+* We want to have less code.
+* We want to have simpler code.
+* Do not optimize just because you have an idea how to make some line of code faster. This thinking often leads to performing many tiny optimizations (and thus reducing code quality) that have no noticeable effect on the execution speed or memory use of real applications. First test/think whether it's worthwhile to optimize this piece of code.
+
+As you can see, I put more emphasis on thinking about code quality than optimization. That is because I see some of us often making the mistake of not caring about code quality enough, and instead rushing to make an optimization (that lowers code quality for little-to-no gain to the final applications).
+
+Of course, this does not mean we don't want to optimize. It just means that we require justification for each optimization, the optimization must have a noticeable effect on some real-world use-case. We want the code to be fast and use little memory -- there are various ways to achieve this, often using smart algorithms on CPU, and/or thinking about how the CPU cache is used, and/or delivering data in better chunks to GPU. Low-level optimization of some local routine is not always the most effective approach.
+
+There is also a dreaded "death by 1000 cuts" that we want to avoid, which is sometimes caused by missing a number of small optimizations that _would_ have a noticeable effect overall. E.g. that's why we use "Single" throughout the engine code, not Double or Extended. (except some special code where we have testcases that "Single" precision is not enough). Using "Double" everywhere would have a noticeable negative effect on the speed (yes, I tested it long time ago). But e.g. paranoidally avoiding calling `Sqrt` in the engine... proved to be usually a useless optimization, causing various bugs and not achieving any speed gain.
+
+So, there _are_ cases to be made for some low-level optimizations. But don't fall into the trap of implementing lots of useless low-level optimizations blindly.
+
+= Submitting your code contributions
+
+It's best to use https://github.com/castle-engine/castle-engine/pulls[GitHub's pull requests].
+
+. Fork the https://github.com/castle-engine/castle-engine/ . This is done by clicking on the appropriate button on GitHub.
+. Clone your fork (i.e. download it to your local computer).
+. Optional: Create a new branch in your fork, just for this specific feature, e.g. doing `git checkout -b my-new-feature`. This allows to separate your work on various CGE features.
+. Work on your feature, committing and pushing as usual, to your branch in your fork.
+. When ready, submit a pull request using https://github.com/castle-engine/castle-engine/pulls
+
+See GitHub documentation (and other sites) for information about pull requests:
+
+* https://yangsu.github.io/pull-request-tutorial/
+* https://help.github.com/articles/about-pull-requests/
+
+Advantages of pull requests:
+
+* They allow you to comfortably work on your pull request, committing and pushing and showing your changes to anyone. There is no need to ask for any permission to do this. (But, if you want, you can of course let us know about your work, see https://castle-engine.io/talk.php . We may be able to advise on a best way to add something to CGE.)
+* They allow us to use "code review" features of GitHub. This is a comfortable way to comment on your changes.
+* They allow everyone to submit, review and merge the changes relatively easily. And all operations can be done using the command-line or web interface, so it's comfortable / easy / flexible for everyone.
+
+If for some reason you really cannot follow this workflow, it is OK to simply send a traditional ".patch" file, done by "git diff" or "svn diff" (you can access https://github.com/castle-engine/castle-engine/ as a GIT or SVN repository.) You can attach it to https://github.com/castle-engine/castle-engine/issues[a new issue].

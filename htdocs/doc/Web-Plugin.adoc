@@ -1,0 +1,58 @@
+:doctype: book
+:sectnums:
+:source-highlighter: coderay
+:toc: left
+
+*DEPRECATED.* As the NPAPI support is removed from all the major browsers (Google Chrome, Firefox...), so this is no longer a viable technology. The support will be removed from CGE at some point in early 2021. The future for CGE in web browser lies in pas2js, see link:pass:[https://castle-engine.io/wp/2020/07/20/pas2js-with-generics-rocks-and-makes-castle-game-engine-for-webgl-possible/][this CGE news post], and we will go for it in 2021. An alternative venue may also appear if FPC will support WebAssembly (directly or by LLVM).
+
+You can create web browser plugin (NPAPI) to run your game inside a web browser. Besides making your game visually a part of the web page, it also allows to integrate with the webpage environment -- for example, your game can communicate with Facebook, when being run inside a Facebook game canvas.
+
+If you'd like to try the web plugin (NPAPI) support in our engine anyway, go ahead:
+
+* <<test-it-now,Test it NOW>>
+* <<supported-browsers,Supported browsers>>
+* <<faq,FAQ>>
+ ** <<what-about-webgl,What about WebGL?>>
+ ** <<do-we-install-a-single-plugin-handling-all-games-developed-using-cge-or-is-every-game-a-separate-plugin,Do we install a single plugin, handling all games developed using CGE, or is every game a separate plugin?>>
+
+= Test it NOW
+
+. *Get the latest engine* (binary from https://castle-engine.io/ or sources from https://github.com/castle-engine/castle-engine/ )
+. Enter the castle_game_engine/examples/plugin/cge_3d_viewer/ directory.
+. *Compile the plugin* with "castle-engine compile --plugin" command. Add "--mode=debug" if you want:) This creates a DLL (Windows) or SO (Linux) file with plugin code. You don't need to install any special tools to build a plugin, a standard FPC installation is cool!
+  (In case of compilation problems in CastleWindow, just "make clean" inside castle_game_engine/ directory to force recomplation of CastleWindow for the plugin. The need for this will disappear soon.)
+. *Install the plugin* (useful command to continously compile + test) by "castle-engine install --plugin". On Windows, this installs by adding appropriate registry keys. On Linux, the plugin is installed by simply copying it to $HOME/.mozilla/plugins/ .
+  You can now *confirm that it's installed OK* by looking at "about:config" (Firefox) or chrome://plugnis (Google Chrome). On Google Chrome, remember to turn on NPAPI flag (see the instructions at the bottom of https://support.google.com/chrome/answer/6213033?hl=en ).
+. Finally, see the plugin in action! Simply *open the file ...examples/plugin/cge_3d_viewer/index.html* in your browser.
+
+= Supported browsers
+
+The plugin works on Windows and Linux (and other Unix systems using X11). Supported browsers are Firefox and Google Chrome. For Google Chrome, you now need to enable _the NPAPI flag_ (see the bottom of see the instructions at the bottom of https://support.google.com/chrome/answer/6213033?hl=en).
+
+The plugin should work in any browser supporting NPAPI plugins. As for the operating systems, it can be made to work on any system supported by our engine -- in particular it can be adjusted to macOS (you just need to implement CastleWindow backend for Cocoa, see http://castle-engine.sourceforge.net/macosx_requirements.php).
+
+As the NPAPI technology goes away, we don't plan to work on it more at this point.
+
+= FAQ
+
+== What about WebGL?
+
+"WebGL" means compiling code to JavaScript (asm.js) or using WebAssembly (which is similar to JavaScript in functionality, but is a binary set of  instructions, doesn't need to be parsed) and then using WebGL (OpenGL(ES)-like API for JavaScript) for rendering.
+
+This is the future of having CGE running in a web browser.
+
+* One option is using pas2js, and we already experimented with it and it should be cool already: https://castle-engine.io/wp/2020/07/20/pas2js-with-generics-rocks-and-makes-castle-game-engine-for-webgl-possible/
+* Another option is to wait for FPC to support WebAssembly output. Or support LLVM output at level that it can be used with Emscripten to compile our code to asm.js.
+
+Finishing the job on our (engine) side should be easy. WebGL API is like OpenGL ES, and we already have it implemented perfectly:)  We want to explore this after CGE 7.0 release.
+
+== Do we install a single plugin, handling all games developed using CGE, or is every game a separate plugin?
+
+Depends on the game.
+
+. *If your game is a VRML/X3D world (with possible scripting)*, then users need only to install a "view3dscene plugin" to run it  on a web. view3dscene is our VRML/X3D browser (and a viewer for many other 3D and 2D formats). See http://castle-engine.sourceforge.net/view3dscene.php . This plugin will be able to run any VRML/X3D world.
+. But *if your game has logic implemented in Object Pascal*, then your game is a new plugin that must be installed by the user.
+
+Unlike Flash (or Unity WebPlayer or Java Applets), we don't have a sandbox to run Object Pascal. So if you write Object Pascal code, it's compiled to a new plugin, and users need to install it. In theory, we could create a "Castle Game Engne plugin" that can dynamically link with your game code (thus creating a CGE plugin architecture within an NPAPI plugin:), but that would be very bad from a security point of view.
+
+I hope that it will not be a huge problem. I'm looking at Unity here, where "Unity WebPlayer" is not something universal, and yet people install it to play games. So hopefully plugins using CGE will be able to live too:)

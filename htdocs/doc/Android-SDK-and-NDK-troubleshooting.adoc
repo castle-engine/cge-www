@@ -1,0 +1,79 @@
+:doctype: book
+:pp: {plus}{plus}
+:sectnums:
+:source-highlighter: coderay
+:toc: left
+
+Some things that can go wrong with Android SDK / NDK:
+
+Table of Contents:
+
+* <<compilation-errors-trying-to-use-a-unit-which-was-compiled-with-a-different-fpu-mode,Compilation errors "Trying to use a unit which was compiled with a different FPU mode">>
+* <<libz-errors-exception-in-thread-png-cruncher-errors,libz errors, "exception in thread png-cruncher" errors>>
+* <<clang-errors,clang errors>>
+* <<could-not-find-toolsjar-error,"Could not find tools.jar" error>>
+* <<errors-when-executing-aidl-on-64-bit-x86_64-linux,Errors when executing aidl on 64-bit (x86_64) Linux>>
+* <<error-no-toolchains-found-in-the-ndk-toolchains-folder-for-abi-with-prefix-mipsel-linux-android,Error "No toolchains found in the NDK toolchains folder for ABI with prefix: mipsel-linux-android">>
+
+////
+No longer important, Gradle download them.
+# Make sure you have the right SDK platform installed
+
+Make sure that you installed the right versions of *SDK Platform* and *Android SDK Build-tools*. You need them both, and both must have the exact required versions (not earlier, not later).
+
+The new versions of Gradle will auto-install the necessary platforms if needed, so this problem should not bother you so much.
+////
+
+= Compilation errors "Trying to use a unit which was compiled with a different FPU mode"
+
+This indicates you compiled FPC standard units without `-CfVFPV3`. This would result in very slow execution on Android. Solutions:
+
+* If you compile FPC cross-compiler yourself, following link:pass:[Android][], remember to add `CROSSOPT="-CfVFPV3"` .
+* If you compile FPC cross-compiler by link:pass:[fpcupdeluxe][], go to the "Setup+" options and for Android/Arm add `-CfVFPV3` option.
+
+image::https://castle-engine.io/images/original_size/fpcupdeluxe-hard-floats.png[FpcUpDeluxe cross-compiler options]
+
+= libz errors, "exception in thread png-cruncher" errors
+
+In case of errors about `libz.so.1` (resulting in later errors about _Exception in thread "png-cruncher..._) on Linux 64-bit, see here: http://stackoverflow.com/questions/29241640/error-unable-to-run-mksdcard-sdk-tool . Install additional libraries as needed.
+
+= clang errors
+
+The Android NDK for 32-bit Windows has a known error in version r12b, see https://github.com/android-ndk/ndk/issues/139 . The clang binaries are for 64-bit architecture. It will prevent compiling the NDK samples (not related to CGE...). This should be fixed in next NDK release. An easy fix for now is to go to "ndk\toolchains\llvm\prebuilt\windows\bin" directory and:
+
+* rename clang.exe \-> clang_64.exe (or just remove it)
+* rename clang_32.exe \-> clang.exe
+* rename clang{pp}.exe \-> clang{pp}_64.exe (or just remove it)
+* copy clang.exe \-> clang{pp}.exe (yes, just copy to a new name, this is the same executable).
+
+= "Could not find tools.jar" error
+
+The error _Could not find tools.jar_ usually means you did not set JAVA_HOME correctly (to point to JDK).
+
+= Errors when executing aidl on 64-bit (x86_64) Linux
+
+If you get errors when executing `/usr/local/android/android-sdk-linux/build-tools/23.0.2/aidl` on 64-bit (x86_64) Linux:
+
+That is because Google distributes them as compiled for a 32-bit (i386) Linux system. Install some additional libraries to make them work. On Debian:
+
+----
+apt-get install libc6-i386 lib32stdc++6 lib32z1
+----
+
+(In general, old build-tools are distributed only for Linux 32-bit, and new build-tools are distributed only for Linux 64-bit. Google doesn't provide alternatives for both architectures here.) See https://stackoverflow.com/questions/24158727/android-sdk-aapt-error-libstdc-so-6-cannot-open-shared-object-file .
+
+= Error "No toolchains found in the NDK toolchains folder for ABI with prefix: mipsel-linux-android"
+
+This error occurs since Android NDK 18. They removed MIPS CPU support (which we never used), but old Gradle versions still expect to find the relevant folders.
+
+A workaround is to create the necessary folders manually (it's OK to leave them empty), by running:
+
+----
+mkdir -p $ANDROID_NDK_HOME/toolchains/mipsel-linux-android-4.9/prebuilt/linux-x86_64
+mkdir -p $ANDROID_NDK_HOME/toolchains/mips64el-linux-android-4.9/prebuilt/linux-x86_64
+----
+
+This problem should no longer be present (we upgraded Gradle in CGE). See also
+
+* https://github.com/castle-engine/castle-engine/issues/105
+* https://github.com/google/filament/issues/15

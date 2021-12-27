@@ -1,0 +1,19 @@
+<div class="paragraph">
+<p>In the <a href="https://castle-engine.io/wp/2018/01/21/castle-game-engine-6-4-release-physics-ios-services-shader-pipeline-upgrade-big-api-improvements-vectors-transform-and-more/">Castle Game Engine 6.4 release</a>, we have made a number of significant API changes. I tried hard to keep things backward-compatible, and usually you can just recompile your code (and maybe upgrade things pointed as <em>deprecated</em> by the compiler). But it was not possible in all cases, so there&#8217;s a chance that you will need to adjust your existing code to compile with Castle Game Engine 6.4. The details:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>All the generic containers in the engine now use the <code>Generics.Collections</code> unit. It is mostly compatible with the FGL unit, but some small differences may affect you. See the chapter about <code>Generics.Collections</code> in <em>Modern Pascal Introduction</em> book to learn how to use Generics.Collections: <a href="https://castle-engine.io/modern_pascal_introduction.html#generic-containers-section" class="bare">https://castle-engine.io/modern_pascal_introduction.html#generic-containers-section</a></p>
+</li>
+<li>
+<p>The vector, matrix, colors and triangles API was significantly changed. This post describes the changes and cases that may need fixing: <a href="https://castle-engine.io/wp/2017/07/23/new-modern-api-for-vectors-and-matrices/" class="bare">https://castle-engine.io/wp/2017/07/23/new-modern-api-for-vectors-and-matrices/</a></p>
+</li>
+<li>
+<p>Some API was moved from <code>CastleClassUtils</code> to <code>CastleDownload</code>, and <code>FileToString</code> and <code>StringToFile</code> were moved to <code>CastleFilesUtils</code>. If needed, add <code>CastleDownload</code> and/or <code>CastleFilesUtils</code> to your <code>uses</code> clause.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If you have any questions about how to upgrade, or why something was changed&#8201;&#8212;&#8201;<a href="https://castle-engine.io/talk.php">talk with us</a> on Discord or forum.</p>
+</div>

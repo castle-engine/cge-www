@@ -1,0 +1,187 @@
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel0">
+<li><a href="#_introduction">Introduction</a></li>
+<li><a href="#_activating_fmod_in_cge">Activating FMOD in CGE</a></li>
+<li><a href="#_getting_fmod_library_and_copying_it_to_your_project">Getting FMOD library and copying it to your project</a>
+<ul class="sectlevel1">
+<li><a href="#_on_windows">1. On Windows</a></li>
+<li><a href="#_on_linux">2. On Linux</a></li>
+<li><a href="#_on_nintendo_switch">3. On Nintendo Switch</a></li>
+<li><a href="#_on_ios_and_android">4. On iOS and Android</a></li>
+</ul>
+</li>
+<li><a href="#_todo">TODO</a></li>
+</ul>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#introduction">Introduction</a></p>
+</li>
+<li>
+<p><a href="#activating-fmod-in-cge">Activating FMOD in CGE</a></p>
+</li>
+<li>
+<p><a href="#getting-fmod-library-and-copying-it-to-your-project">Getting FMOD library and copying it to your project</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#on-windows">On Windows</a></p>
+</li>
+<li>
+<p><a href="#on-linux">On Linux</a></p>
+</li>
+<li>
+<p><a href="#on-nintendo-switch">On Nintendo Switch</a></p>
+</li>
+<li>
+<p><a href="#on-ios-and-android">On iOS and Android</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="#todo">TODO</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<h1 id="_introduction" class="sect0">Introduction</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p><em>Castle Game Engine</em> can use various <em>backends</em> for our <a href="https://castle-engine.io/manual_sound.php">sound (CastleSoundEngine unit)</a>. By default we use <a href="https://www.openal.org/">OpenAL</a> which works nicely, is open-source and cross-platform (works on desktop and mobile). However, you may choose to use another backend.</p>
+</div>
+<div class="paragraph">
+<p>One of the alternative backends is <a href="https://www.fmod.com/">FMOD</a>, using a commercial (closed-source) FMOD library. FMOD works nicely, and is even more cross-platform (in particular it supports also <a href="https://castle-engine.io/wp/2019/03/23/castle-game-engine-supports-nintendo-switch/">Nintendo Switch</a>). It also supports more sound file formats out-of-the-box.</p>
+</div>
+<div class="paragraph">
+<p>Note that using FMOD is not free. See <a href="https://www.fmod.com/" class="bare">https://www.fmod.com/</a> for library downloads and pricing.</p>
+</div>
+</div>
+</div>
+<h1 id="_activating_fmod_in_cge" class="sect0">Activating FMOD in CGE</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>Use <code>CastleFMODSoundBackend</code> unit, and call <code>UseFMODSoundBackend</code> procedure at any point. You usually want to call it early, before any sound was loaded or played, this way the default sound backend (OpenAL on desktop and mobile) will not even be initialized.</p>
+</div>
+<div class="paragraph">
+<p>The <code>UseFMODSoundBackend</code> will switch to FMOD backend only if the FMOD library (from <a href="https://www.fmod.com/" class="bare">https://www.fmod.com/</a>) is found. See instructions below about hot to get and where to place FMOD library. If FMOD library is loaded dynamically, and it is not found, then a warning is produced (you can see it in <a href="https://castle-engine.io/manual_log.php">log</a>) and <code>UseFMODSoundBackend</code> does nothing.</p>
+</div>
+</div>
+</div>
+<h1 id="_getting_fmod_library_and_copying_it_to_your_project" class="sect0">Getting FMOD library and copying it to your project</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>To get FMOD libraries create an account on <a href="https://www.fmod.com/" class="bare">https://www.fmod.com/</a> , and download "FMOD Studio API". This should include "FMOD Studio API and FMOD Core API" (we actually use only "FMOD Core API" now).</p>
+</div>
+<div class="paragraph">
+<p>Below we give detailed instructions for some popular platforms. See <a href="https://www.fmod.com/resources/documentation-api?version=2.0&amp;page=platforms.html">FMOD platform-specific documentation</a> for more information.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_on_windows">1. On Windows</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>"FMOD Studio API"</em> on Windows is an install package, and when you run it you get <code>C:\Program Files (x86)\FMOD SoundSystem\FMOD Studio API Windows</code> (if installed to the default directory). For Windows 64-bit just copy the DLL from <code>C:\Program Files (x86)\FMOD SoundSystem\FMOD Studio API Windows\api\core\lib\x64\fmod.dll</code> alongside the game exe.</p>
+</div>
+<div class="paragraph">
+<p>You have to distribute the FMOD library with your application. Currently, it is easiest to add this to your <code>CastleEngineManifest.xml</code> file:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml">  <span class="tag">&lt;package&gt;</span>
+    <span class="tag">&lt;include</span> <span class="attribute-name">path</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">fmod.dll</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+  <span class="tag">&lt;/package&gt;</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_on_linux">2. On Linux</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>"FMOD Studio API"</em> on Linux is a tar.gz archive. Unpack it anywhere, and from <code>api\core\lib\x86_64</code> subdirectory (assuming you use Linux on x86_64 CPU) copy the 3 <code>libfmod.so*</code> files (one is actual library, 2 are just symlinks). We advise copying these 3 files to the <code>libraries/x86_64-linux/</code> subdirectory of your project.</p>
+</div>
+<div class="paragraph">
+<p>The FMOD library is loaded dynamically (that is, using <code>dlopen</code> / <code>dlsym</code> and friends on Unix). So it doesn&#8217;t need to be present at compilation-time.</p>
+</div>
+<div class="paragraph">
+<p>It of course needs to be present when you run the application, both on developer and user system. Create a shell (bash) script that sets <code>$LD_LIBRARY_PATH</code> to include your local fmod copy, and then executes the application. Like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">#!/bin/bash
+set -e
+# Include current directory in LD_LIBRARY_PATH, to find fmod dynamic library
+export LD_LIBRARY_PATH=&quot;${LD_LIBRARY_PATH}:libraries/x86_64-linux/&quot;
+./play_sounds &quot;$@&quot; # &lt;- replace this with name of your application</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Save this file e.g. under <code>run.sh</code> name, do <code>chmod +x run.sh</code>, and now you can execute it like <code>./run.sh</code>.</p>
+</div>
+<div class="paragraph">
+<p>You also have to distribute FMOD library, and <code>run.sh</code> with your application. Add this to your <code>CastleEngineManifest.xml</code> file:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml">  <span class="tag">&lt;package&gt;</span>
+    <span class="tag">&lt;include</span> <span class="attribute-name">path</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">run.sh</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+    <span class="tag">&lt;include</span> <span class="attribute-name">path</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">libraries/x86_64-linux/</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">recursive</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">True</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+  <span class="tag">&lt;/package&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>(If your <code>CastleEngineManifest.xml</code> already contained <code>&lt;package&gt;</code>, then merge their contents instead of adding new <code>&lt;package&gt;</code> element.)</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_on_nintendo_switch">3. On Nintendo Switch</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The details are in the Nintendo Switch README inside CGE version for Nintendo Switch.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_on_ios_and_android">4. On iOS and Android</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Both iOS and Android include a service called <code>fmod</code> to easily link with FMOD:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/ios/services/fmod/README.md">iOS FMOD service</a></p>
+</li>
+<li>
+<p><a href="https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/android/integrated-services/fmod/README.md">Android FMOD service</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<h1 id="_todo" class="sect0">TODO</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>For now, we use "FMOD Core API", which means that we use FMOD as a general sound loading and playback library, which you can use with regular sound files (wav, OggVorbis and many other formats supported by FMOD). You cannot yet use FMOD Studio to design "sound events" that could be played by CGE.</p>
+</li>
+<li>
+<p>We want to simplify the Windows/Linux instructions above. We will support <code>&lt;service&gt;</code> in <code>CastleEngineManifest.xml</code> for desktop platforms (right now the "services" are only for Android and iOS), allowing you to easily request <em>fmod service</em> on Windows/Linux and point it to the FMOD installation. In general a desktop service will be able to specify OS/CPU specific libraries (<code>aaa.dll</code> on Windows, <code>libaaa.so</code> on Linux etc., in subdirectories named like <code>libraries/${CPU}-${OS}/</code>) and let the CGE build tool automatically do everything that is necessary to use them.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>

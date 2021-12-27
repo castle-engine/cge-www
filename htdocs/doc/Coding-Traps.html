@@ -1,0 +1,47 @@
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_changing_only_a_temporary_record_value">1. Changing only a temporary record value</a></li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="_changing_only_a_temporary_record_value">1. Changing only a temporary record value</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Using</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Scene.Translation.Z := Scene.Translation.Z + 0.1;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>is unfortunately a mistake, and compiler doesn&#8217;t warn about it. As <code>Scene.Translation</code> is an advanced record (<code>TVector3</code>), using <code>Scene.Translation</code> may return just a temporary copy of it (just as if you would call a method <code>Scene.GetTranslation</code>). So then you change the <code>Z</code> parameter of this temporary copy, and the effect gets ignored.</p>
+</div>
+<div class="paragraph">
+<p>The solution is to only modify the record fields (like <code>Z</code> of a <code>TVector3</code>) when you know that it is a simple field, or variable in your code. To apply this solution above, you should make a temporary variable and change it:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>var
+  V: TVector3;
+begin
+  V := Scene.Translation;
+  V.Z := V.Z + 0.1;
+  Scene.Translation := V;
+end;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can also rework it to assign whole vector, like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Scene.Translation := Scene.Translation + Vector3(0, 0, 0.1);</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The problem is inherent to using properties with records. (If you&#8217;re curious, C# has this problem too with its <code>struct</code>s, in Unity too.) But we cannot easily avoid doing it in CGE&#8201;&#8212;&#8201;we need records (for things like vectors, records are both more efficient and more comfortable than classes) and we need properties of them (because setters often have to do some useful things).</p>
+</div>
+</div>
+</div>

@@ -1,0 +1,102 @@
+:doctype: book
+:sectnums:
+:source-highlighter: coderay
+:toc: left
+
+_Sprite sheet_ is a technique for rendering animations:
+
+* Each animation is a sequence of still images (aka "frames")
+* All the frames are packed into one big image (aka "texture atlas")
+
+It is a standard 2D animation technique for pixel-art games.
+
+Note that it is not the only way to make 2D animations. In _Castle Game Engine_ you can also create smooth 2D animations, using bones or even bones+skinning, by creating 2D animations in link:pass:[Spine][] or even https://castle-engine.io/creating_data_blender.php[Blender] or many other typically-3D authoring software. Creating sprite sheets has a different workflow and achieves a different result. For sprite sheet, you need to create a large set of still frames, which is sometimes easier / sometimes harder than creating an animation in Spine/Blender. Ultimately it results in an animation where you control every pixel of every frame.
+
+Table of Contents:
+
+* <<using-sprites,Using sprites>>
+* <<url-parameters-for-starling-and-cocos2d-formats,URL Parameters (for Starling and Cocos2d formats)>>
+* <<notes-for-pixel-art-games,Notes for pixel-art games>>
+* <<deprecated-approach,Deprecated approach>>
+
+= Using sprites
+
+The most advised way to use sprite sheets is to express them in a file:
+
+* In the _Castle Game Engine format_ (`.castle-sprite-sheet` extension).
+* In the _Starling sprite sheet format_ (traditionally with `.xml` extension, in CGE we require you rename them to `.starling-xml`).
+* or in the _Cocos2D sprite sheet format_ (traditionally with `.plist` extension, in CGE we advise (but do not require yet) to use `.cocos2d-plist`).
+
+We feature a dedicated _Sprite Sheet Editor_ as part of https://castle-engine.io/manual_editor.php[our CGE editor]. Just right-click within the _"Files"_ browser at the bottom and use _New Sprite Sheet_ command, or double-click on an existing `.castle-sprite-sheet` file.
+
+Our `.castle-sprite-sheet` is an extended version of the Starling XML format, adding features like FPS value that is saved inside `.castle-sprite-sheet` file, and can vary for each animation.
+
+You can create sprite sheet animations in a number of ways:
+
+* compose animations from a series of images,
+* import a ready image atlas,
+* import a ready sprite sheet in Starling XML format.
+
+The sprite sheet file (regardless of the format):
+
+. points to a texture atlas (which can be any 2D image that _Castle Game Engine_ can read, like PNG or JPG; see https://castle-engine.io/castle-view-image.php[castle-view-image] docs for the full list)
+. and describes frames within the file, and how they compose the final animation.
+
+Once you have it, simply load it to https://castle-engine.io/apidoc-unstable/html/CastleScene.TCastleScene.html[TCastleScene], using the `TCastleScene.Load` method (or by setting `TCastleScene.URL`), play animation by `TCastleScene.PlayAnimation` (or setting `TCastleScene.AutoAnimation` and `TCastleScene.AutoAnimationLoop`) and generally use all the `TCastleScene` API. See CGE manual about loading and playing scenes and animations: https://castle-engine.io/manual_load_3d.php[loading, displaying a scene], https://castle-engine.io/manual_scene.php[transform, animate etc. a scene].
+
+This also allows you to load sprite sheets within the https://castle-engine.io/manual_editor.php[editor]. Simply create a `TCastleScene` inside `TCastleViewport` and assign it's `URL`, `AutoAnimation` etc.
+
+= URL Parameters (for Starling and Cocos2d formats)
+
+When you load a sprite sheet, you can use a special URL syntax to indicate additional parameters. Instead of loading just `my_sprite_sheet.starling-xml` you can use URLs like this:
+
+----
+my_sprite_sheet.starling-xml#fps:10
+----
+
+or
+
+----
+my_sprite_sheet.starling-xml#fps:10,anim-naming:strict-underscore
+----
+
+The available parameters now are:
+
+* `fps:<float>` (only for the _Starling_ and _Cocos2d_ formats)
++
+Frames per second, determine the default animation speed. Note that you can later adjust the time at runtime using https://castle-engine.io/apidoc-unstable/html/CastleSceneCore.TCastleSceneCore.html#TimePlayingSpeed[TimePlayingSpeed], just like with any `TCastleScene`.
++
+By default we use 8 frames per second (see https://castle-engine.io/apidoc-unstable/html/CastleTextureImages.html#DefaultSpriteSheetFramesPerSecond[DefaultSpriteSheetFramesPerSecond]).
++
+Note that this feature is not available for `.castle-sprite-sheet` files, as there the FPS is stored in the file (and can even be different for each animation). So there's no point in specifying FPS by an URL.
++
+Note that, regardless of the sprite sheet format, you can always scale time by adjusting `MyScene.TimePLayingSpeed`.
+
+* `anim-naming:strict-underscore|trailing-number` (only for the _Starling_ format)
++
+Frames in Starling file can be named freely, and it is up to the loader to determine what constitutes an animation. Two values are possible:
+
+ ** `strict-underscore`: The default behavior, strict according to the Starling format specification. To recognize subsequent frames of the animation, the animation name and frame number must be separated by an underscore, like this: `walk_01`, `walk_02`.
++
+Without the underscore they will be treated as separate animations. So e.g. frames `tree1`, `tree2` would result in 2 animations, each with a single frame. This sometimes make sense, and indeed it is used, when someone wants to employ sprite sheet as a simple way to access a texture atlas with still images.
+
+ ** `trailing-number`: The consecutive animation frames do not need any character between animation name and the frame number. So e.g. `walk1` and `walk2` will work (resulting in animation name `walk`) just like `walk_1` and `walk_2` (underscore is optional, but still stripped, so it also results in animation name `walk`).
+
+Parameters are passed using an anchor separated by a comma, with a colon between the value and the next option name.
+
+= Notes for pixel-art games
+
+By default, textures have filtering applied, to make them look smooth when scaled.
+
+If you want to have a pixel-art look, you can disable it easily, by
+
+----
+Scene.RenderOptions.MinificationFilter := minNearest;
+Scene.RenderOptions.MagnificationFilter := magNearest;
+----
+
+= Deprecated approach
+
+You can also use `TSprite` class in CGE to load a sprite, in which case you will have to draw it explicitly. See link:pass:[2D Games][].
+
+We do not advise this approach and it is deprecated now. Using sprite sheets inside `TCastleScene` is much more powerful, and also it allows to have simpler CGE API (since you just use `TCastleScene` for all animations, sprite sheet or not).

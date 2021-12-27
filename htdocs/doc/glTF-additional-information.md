@@ -1,0 +1,80 @@
+[Castle Game Engine](https://castle-engine.io/) features a powerful support for the glTF 2.0 model format.
+
+See the [Supported model formats -> glTF](https://castle-engine.io/creating_data_model_formats.php#section_gltf) for the most important information about glTF and what features are supported in CGE.
+
+This page collects some miscellaneous information.
+
+Table of Contents:
+
+* [Attaching objects to bones](#attaching-objects-to-bones)
+* [Collisions when your glTF mesh uses skinned animation](#collisions-when-your-gltf-mesh-uses-skinned-animation)
+* [Switching to Phong lighting model (for performance or just different look)](#switching-to-phong-lighting-model-for-performance-or-just-different-look)
+* [Gamma Correction](#gamma-correction)
+
+# Attaching objects to bones
+
+This is available using `TCastleScene.ExposeTransforms`. You can "expose" a bone transformation as `TCastleTransform` child and attach there a scene. See https://castle-engine.io/wp/2020/10/09/attach-objects-to-animated-bones-like-weapon-in-characters-hand-by-exposetransforms/ .
+
+# Collisions when your glTF mesh uses skinned animation
+
+For speed, the shapes animated using _skinned animation_ in glTF uses bounding box for collisions. That's because the triangles would change every frame and updating the octree would have a significant cost for FPS.
+
+If you need to have better collision detection:
+
+1. You can use X3D file that uses `Inline` to include 2 glTF files. One of them would be your animated model, but not collidable. The other would be a static model, invisible, used only for collisions.
+
+    This means that your model keeps working fast (as opposed to solution 2 below). And the collisions are resolved with respect to precise triangles. However, the triangles remain static, unaffected by animation.
+
+    To do this you would create a file like `mycreature.x3dv` with content:
+
+    ```
+    #X3D V3.2 utf8
+    PROFILE Interchange
+
+    Collision {
+      proxy Inline { url "mycreature-collidable-invisible-notanimated.gltf" }
+      children Inline { url "mycreature-animated-visible-notcollidable.gltf" }
+    }
+    ```
+
+    And then in game, you open `castle-data:/mycreature.x3dv` instead of opening any glTF file directly. Playing all animations on `mycreature.x3dv` should work exactly as in `mycreature-animated-visible-notcollidable.gltf`, it exposes the same animations.
+
+2. If you desperately need precise collisions, and the collision structure has to be updated at runtime, and you can tolerate some performance loss (it may be acceptable for smaller models) then you can find TShapeNode occurrences in the model, and change the TShapeNode.Collision from `scBox` to `scDefault`.
+
+    Like this:
+
+    ```pascal
+    procedure TMyState.Load;
+    var
+      Model: TX3DRootNode;
+    begin
+      Model := LoadNode('castle-data:/example.gltf');
+      Model.EnumarateNodes(TShapeNode, @HandleNode, false);
+      Scene.Load(Model, true);
+    end;
+
+    procedure TMyState.HandleNode(Node: TX3DNode);
+    begin
+      (Node as TShapeNode).Collision := scDefault;
+    end;
+    ```
+
+# Switching to Phong lighting model (for performance or just different look)
+
+glTF models use `PhysicalMaterial` or `UnlitMaterial` for their materials. 
+
+The `PhysicalMaterial` node performs _physically-based rendering_ which is very pretty but also comes with some performance cost. It also requires Phong shading (not faster Gouraud shading) to make sense.
+
+If you need maximum speed, you can set global [GltfForcePhongMaterials](https://castle-engine.io/apidoc-unstable/html/CastleLoadGltf.html#GltfForcePhongMaterials) to `true`. This automatically converts (during load) all `PhysicalMaterial` nodes into `Material` nodes (using Phong lighting model, and Gouraud shading by default). Note that it will change the look of your models significantly. So if you want to go this way, you should probably prepare your models from the start testing it.
+
+Of course, remember that you can also use unlit materials in glTF. These always have the best performance :) [Blender](https://castle-engine.io/creating_data_blender.php) can export glTF unlit materials.
+
+# Gamma Correction
+
+The `PhysicalMaterial`, used by most glTF models, has [Gamma Correction](https://castle-engine.io/apidoc-unstable/html/CastleRendererBaseTypes.html#GammaCorrection) turned on by default.
+
+- If you need maximum speed, consider disabling gamma correction, by `GammaCorrection := gcNone`.
+
+- If you need maximum glTF compatibility, consider enabling gamma correction for all materials (`PhysicalMaterial`, `UnlitMaterial`, `Material`), by `GammaCorrection := gcAlways`.
+
+Note that enabling or disabling gamma correction will change the look of your game. So you should make a decision about it early on -- and test your models look with the desired setting.

@@ -1,0 +1,959 @@
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel0">
+<li><a href="#_pascal_coding_conventions">Pascal Coding Conventions</a>
+<ul class="sectlevel1">
+<li><a href="#_indent_by_2_spaces">1. Indent by 2 spaces</a></li>
+<li><a href="#_do_not_use_tabs_or_trailing_whitespace">2. Do not use tabs or trailing whitespace</a></li>
+<li><a href="#_use_camelcase_for_everything">3. Use <code>CamelCase</code> for everything</a></li>
+<li><a href="#_true_and_false_are_lowercase_not_true_and_false">4. <code>true</code> and <code>false</code> are lowercase, not <code>True</code> and <code>False</code></a></li>
+<li><a href="#_put_begin_on_a_new_line_indentation_of_begin_and_end_should_match">5. Put <code>begin</code> on a new line, indentation of <code>begin</code> and <code>end</code> should match</a></li>
+<li><a href="#_put_else_on_a_new_line_unless_its_right_after_end">6. Put <code>else</code> on a new line, unless it&#8217;s right after <code>end</code></a></li>
+<li><a href="#_do_not_use_with">7. Do not use <code>with</code></a></li>
+<li><a href="#_order_of_the_uses_clause_standard_cge_application">8. Order of the <code>uses</code> clause: standard, CGE, application</a></li>
+<li><a href="#_use_strict_private_where_possible">9. Use <code>strict private</code> where possible</a></li>
+<li><a href="#_do_not_use_strict_protected">10. Do not use <code>strict protected</code></a></li>
+<li><a href="#_write_abbreviations_using_camelcase">11. Write abbreviations using CamelCase</a></li>
+<li><a href="#_indenting_inside_classes">12. Indenting inside classes</a></li>
+<li><a href="#_file_extensions">13. File extensions</a></li>
+<li><a href="#_write_reentrant_routines">14. Write reentrant routines</a></li>
+<li><a href="#_some_naming_conventions">15. Some naming conventions</a></li>
+<li><a href="#_compilation_symbols">16. Compilation symbols</a></li>
+<li><a href="#_exceptions_messages">17. Exceptions' messages</a></li>
+<li><a href="#_prefer_to_make_callbacks_of_object">18. Prefer to make callbacks <code>of object</code></a></li>
+<li><a href="#_order_of_methods">19. Order of methods</a></li>
+<li><a href="#_remember_that_strtofloat_and_friends_are_locale_dependent_almost_always_use_strtofloatdot_instead">20. Remember that StrToFloat and friends are locale-dependent. Almost always use StrToFloatDot instead.</a></li>
+<li><a href="#_do_not_use_longint_longword_use_int32uint32_int64uint64_integercardinal">21. Do not use LongInt / LongWord. Use Int32/UInt32, Int64/UInt64, Integer/Cardinal.</a></li>
+<li><a href="#_do_not_use_extended_use_singledouble">22. Do not use Extended. Use Single/Double</a></li>
+<li><a href="#_most_code_should_use_just_string_and_be_prepared_that_it_is_8_bit_on_fpc_and_16_bit_on_delphi_if_writing_to_stream_use_8_bit_ansistring">23. Most code should use just String, and be prepared that it is 8-bit on FPC and 16-bit on Delphi. If writing to stream, use 8-bit AnsiString.</a></li>
+</ul>
+</li>
+<li><a href="#_other_languages">Other languages</a></li>
+<li><a href="#_guidelines_how_to_write_good_code">Guidelines (how to write good code)</a>
+<ul class="sectlevel1">
+<li><a href="#_declarative_api_classes_with_independent_properties_is_simple_to_use">24. Declarative API (classes with independent properties) is simple to use</a></li>
+<li><a href="#_optimize_smartly_profile_optimize_where_it_matters_and_not_where_it_doesnt_think_about_smarter_algorithms_and_moving_cpu_work_to_gpu_to_get_big_benefits">25. Optimize smartly: profile, optimize where it matters (and not where it doesn&#8217;t), think about smarter algorithms and moving CPU work to GPU to get big benefits</a></li>
+</ul>
+</li>
+<li><a href="#_submitting_your_code_contributions">Submitting your code contributions</a></li>
+</ul>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#table-of-contents">Table of Contents</a></p>
+</li>
+<li>
+<p><a href="#pascal-coding-conventions">Pascal Coding Conventions</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#indent-by-2-spaces">Indent by 2 spaces</a></p>
+</li>
+<li>
+<p><a href="#do-not-use-tabs-or-trailing-whitespace">Do not use tabs or trailing whitespace</a></p>
+</li>
+<li>
+<p><a href="#use-camelcase-for-everything">Use CamelCase for everything</a></p>
+</li>
+<li>
+<p><a href="#true-and-false-are-lowercase-not-true-and-false"><code>true</code> and <code>false</code> are lowercase, not <code>True</code> and <code>False</code></a></p>
+</li>
+<li>
+<p><a href="#put-begin-on-a-new-line-indentation-of-begin-and-end-should-match">Put begin on a new line, indentation of <code>begin</code> and <code>end</code> should match</a></p>
+</li>
+<li>
+<p><a href="#put-else-on-a-new-line-unless-its-right-after-end">Put else on a new line, unless it&#8217;s right after <code>end</code></a></p>
+</li>
+<li>
+<p><a href="#do-not-use-with">Do not use with</a></p>
+</li>
+<li>
+<p><a href="#order-of-the-uses-clause-standard-cge-application">Order of the uses clause: standard, CGE, application</a></p>
+</li>
+<li>
+<p><a href="#use-strict-private-where-possible">Use strict private where possible</a></p>
+</li>
+<li>
+<p><a href="#do-not-use-strict-protected">Do not use strict protected</a></p>
+</li>
+<li>
+<p><a href="#write-abbreviations-using-camelcase">Write abbreviations using CamelCase</a></p>
+</li>
+<li>
+<p><a href="#indenting-inside-classes">Indenting inside classes</a></p>
+</li>
+<li>
+<p><a href="#file-extensions">File extensions</a></p>
+</li>
+<li>
+<p><a href="#write-reentrant-routines">Write reentrant routines</a></p>
+</li>
+<li>
+<p><a href="#some-naming-conventions">Some naming conventions</a></p>
+</li>
+<li>
+<p><a href="#compilation-symbols">Compilation symbols</a></p>
+</li>
+<li>
+<p><a href="#exceptions-messages">Exceptions' messages</a></p>
+</li>
+<li>
+<p><a href="#prefer-to-make-callbacks-of-object">Prefer to make callbacks of object</a></p>
+</li>
+<li>
+<p><a href="#order-of-methods">Order of methods</a></p>
+</li>
+<li>
+<p><a href="#remember-that-strtofloat-and-friends-are-locale-dependent-almost-always-use-strtofloatdot-instead">Remember that StrToFloat and friends are locale-dependent. Almost always use StrToFloatDot instead.</a></p>
+</li>
+<li>
+<p><a href="do-not-use-longint&.html#8212;&#8203;longword-use-int32uint32-int64uint64-integercardinal">Do not use LongInt / LongWord. Use Int32/UInt32, Int64/UInt64, Integer/Cardinal.</a></p>
+</li>
+<li>
+<p><a href="#do-not-use-extended-use-singledouble">Do not use Extended. Use Single/Double</a></p>
+</li>
+<li>
+<p><a href="#most-code-should-use-just-string-and-be-prepared-that-it-is-8-bit-on-fpc-and-16-bit-on-delphi-if-writing-to-stream-use-8-bit-ansistring">Most code should use just String, and be prepared that it is 8-bit on FPC and 16-bit on Delphi. If writing to stream, use 8-bit AnsiString.</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="#other-languages">Other languages</a></p>
+</li>
+<li>
+<p><a href="#guidelines-how-to-write-good-code">Guidelines (how to write good code)</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#declarative-api-classes-with-independent-properties-is-simple-to-use">Declarative API (classes with independent properties) is simple to use</a></p>
+</li>
+<li>
+<p><a href="#optimize-smartly-profile-optimize-where-it-matters-and-not-where-it-doesnt-think-about-smarter-algorithms-and-moving-cpu-work-to-gpu-to-get-big-benefits">Optimize smartly: profile, optimize where it matters (and not where it doesn&#8217;t), think about smarter algorithms and moving CPU work to GPU to get big benefits</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="#submitting-your-code-contributions">Submitting your code contributions</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<h1 id="_pascal_coding_conventions" class="sect0">Pascal Coding Conventions</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>In general, we follow the standard Lazarus and Delphi coding conventions, used throughout most modern Object Pascal code.</p>
+</div>
+<div class="paragraph">
+<p>These are documented nicely on:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://edn.embarcadero.com/article/10280">Object Pascal Style Guide</a></p>
+</li>
+<li>
+<p><a href="https://web.archive.org/web/20170607183644/http://kodu.ut.ee/~jellen/delphi/cs.html">Delphi Language Coding Standards Document</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Some particular conventions:</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_indent_by_2_spaces">1. Indent by 2 spaces</h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_do_not_use_tabs_or_trailing_whitespace">2. Do not use tabs or trailing whitespace</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Do not leave "trailing whitespace" at the end of lines. In the long run, it causes unnecessary diffs when someone removes this whitespace.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_use_camelcase_for_everything">3. Use <code>CamelCase</code> for everything</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Including constants. So write <code>MyConstant</code> instead of e.g. <code>MY_CONSTANT</code>.</p>
+</li>
+<li>
+<p>Including local variables. Even 1-letter variable names (so write <code>I</code> instead of <code>i</code>).</p>
+</li>
+<li>
+<p>Including type names. Even the type names that are Pascal keywords (so write <code>String</code> / <code>Boolean</code> instead of <code>string</code> / <code>boolean</code>). Note: this rule was changed during CGE 6.5 development. So you will find a lot of code using lowercase <code>string</code> now in engine sources, but new code should use <code>String</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_true_and_false_are_lowercase_not_true_and_false">4. <code>true</code> and <code>false</code> are lowercase, not <code>True</code> and <code>False</code></h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_put_begin_on_a_new_line_indentation_of_begin_and_end_should_match">5. Put <code>begin</code> on a new line, indentation of <code>begin</code> and <code>end</code> should match</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Do <em>not</em> mimic C "K &amp; R" style (<a href="https://en.wikipedia.org/wiki/Indent_style#K.26R" class="bare">https://en.wikipedia.org/wiki/Indent_style#K.26R</a>) in Pascal:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="comment">// DON'T WRITE THIS:</span>
+<span class="keyword">for</span> I := <span class="integer">1</span> <span class="keyword">to</span> <span class="integer">10</span> <span class="keyword">do</span> <span class="keyword">begin</span>
+  Writeln(I);
+<span class="keyword">end</span>;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Instead, the "begin" should usually be indented the same as "end".</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="comment">// THIS IS OK:</span>
+<span class="keyword">for</span> I := <span class="integer">1</span> <span class="keyword">to</span> <span class="integer">10</span> <span class="keyword">do</span>
+<span class="keyword">begin</span>
+  Writeln(I);
+<span class="keyword">end</span>;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To look simpler, it&#8217;s OK to omit begin/end when they would surround only 1 statement:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="comment">// THIS IS EVEN BETTER:</span>
+<span class="keyword">for</span> I := <span class="integer">1</span> <span class="keyword">to</span> <span class="integer">10</span> <span class="keyword">do</span>
+  Writeln(I);</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_put_else_on_a_new_line_unless_its_right_after_end">6. Put <code>else</code> on a new line, unless it&#8217;s right after <code>end</code></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The "else" keyword is written on a new line, unless it&#8217;s right after "end". So:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="comment">// THIS IS OK:</span>
+<span class="keyword">if</span> Foo <span class="keyword">then</span>
+  Bar
+<span class="keyword">else</span>
+  Xyz;
+
+<span class="comment">// THIS IS ALSO OK:</span>
+<span class="keyword">if</span> Foo <span class="keyword">then</span>
+<span class="keyword">begin</span>
+  Bar
+<span class="keyword">end</span> <span class="keyword">else</span>
+<span class="keyword">begin</span>
+  Xyz;
+<span class="keyword">end</span>;
+
+<span class="comment">// THIS IS ALSO OK:</span>
+<span class="keyword">if</span> Foo <span class="keyword">then</span>
+<span class="keyword">begin</span>
+  Bar
+<span class="keyword">end</span> <span class="keyword">else</span>
+  Xyz;
+
+<span class="comment">// THIS IS ACCEPTABLE, BUT BETTER AVOID IT:</span>
+<span class="keyword">if</span> Foo <span class="keyword">then</span>
+  Bar
+<span class="keyword">else</span>
+<span class="keyword">begin</span>
+  Xyz;
+<span class="keyword">end</span>;
+
+<span class="comment">// THIS IS NOT OK:</span>
+<span class="keyword">if</span> Foo <span class="keyword">then</span>
+<span class="keyword">begin</span>
+  Bar
+<span class="keyword">end</span>
+<span class="keyword">else</span>
+<span class="keyword">begin</span>
+  Xyz;
+<span class="keyword">end</span>;
+
+<span class="comment">// THIS IS NOT OK, BUT IS USED IN A LOT OF CODE:</span>
+<span class="comment">// (Michalis was using this convention for a long time,</span>
+<span class="comment">// until it was pointed to him that it doesn't look optimal,</span>
+<span class="comment">// and Michalis agreed :)</span>
+<span class="comment">// Do not use this in new code, but don't be surprised if it still occurs somewhere.</span>
+<span class="comment">// Michalis will gradually get rid of it in CGE sources.)</span>
+<span class="keyword">if</span> Foo <span class="keyword">then</span>
+  Bar <span class="keyword">else</span>
+  Xyz;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_do_not_use_with">7. Do not use <code>with</code></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Never use "with" keyword. Using "with" makes the code very difficult to read, as some of the symbols inside the "with A do begin &#8230;&#8203;. end" clause  are bound to A, and some are not, and it&#8217;s completely invisible to the human reader which symbols are which.</p>
+</div>
+<div class="paragraph">
+<p>And it&#8217;s impossible to determine it, without intimately knowing the complete API of class/record A.</p>
+</div>
+<div class="paragraph">
+<p>E.g. what does this code do?</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="keyword">with</span> A <span class="keyword">do</span>
+<span class="keyword">begin</span>
+  SourceX := X;
+  SourceY := Y;
+<span class="keyword">end</span>;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Does it modify A contents, or does it modify outside variables,
+merely reading the A contents? You really don&#8217;t know,
+until I show you the documentation of the class of A, and all it&#8217;s ancestors.</p>
+</div>
+<div class="paragraph">
+<p>Compare with a clear:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="pascal">SourceX := A.X;
+SourceY := A.Y;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>or</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="pascal">A.SourceX := X;
+A.SourceY := Y;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The "with" also makes the code very fragile to any changes of A API. Every time you add a new field/property/method to A, then the code inside "with A do begin &#8230;&#8203;. end" may change it&#8217;s meaning. It may compile, but suddenly will do something completely different.</p>
+</div>
+<div class="paragraph">
+<p>Likewise, every time you remove a field/property/method from A, the code inside "with A do begin &#8230;&#8203;. end" may compile, if you happen to have a variable outside of this block with a name matching the name inside A.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_order_of_the_uses_clause_standard_cge_application">8. Order of the <code>uses</code> clause: standard, CGE, application</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The uses clause of our units and examples should follow the order</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>standard units (RTL, LCL, VCL&#8230;&#8203;)</p>
+</li>
+<li>
+<p>then our own (CastleXxx) units</p>
+</li>
+<li>
+<p>then eventual game-specific units (GameXxx)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Each part should start from a newline.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="comment">// THIS IS OK:</span>
+<span class="keyword">uses</span> SysUtils, Classes,
+  CastleUtils, CastleViewport,
+  GameStatePlay;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_use_strict_private_where_possible">9. Use <code>strict private</code> where possible</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Use <code>strict private</code> whenever you can, that is: use it for private stuff that is not accessed by other classes/routines in the same unit. Use simple <code>private</code> only for private stuff that <em>is</em> accessed by other classes/routines in the same unit.</p>
+</div>
+<div class="paragraph">
+<p>This improves code readability in case of large units, that feature more than just a single class.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_do_not_use_strict_protected">10. Do not use <code>strict protected</code></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Using <code>strict protected</code> is not advised in CGE. The distinction between <code>strict protected</code> and <code>protected</code> is not very useful for readability (regardless if something is <code>strict protected</code> or just <code>protected</code>, you must think <em>something outside of this class accessed it</em>). Moreover, it is forced downward, on all descendants of this class (that must then differentiate between overriding in <code>strict protected</code> vs <code>protected</code>, which is uncomfortable because the decision whether to use <code>strict protected</code> or <code>protected</code> should be an internal (implementation) decision within the ancestor, not affecting the descendants).</p>
+</div>
+<div class="paragraph">
+<p>So, use just one <code>protected</code> section, do not bother splitting it into <code>strict protected</code> and <code>protected</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_write_abbreviations_using_camelcase">11. Write abbreviations using CamelCase</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This means <code>Url</code>, <code>Http</code> etc. in Pascal identifiers. Because it looks much better in long identifiers, like <code>GetHttpResponse</code> is much more readable than <code>GetHTTPResponse</code>.</p>
+</div>
+<div class="paragraph">
+<p>Note that in the comments, when you talk about e.g. <em>"HTTP protocol does something"</em>, still use English conventions when talking about these general concepts (i.e. not Pascal identiiers). So write <em>"HTTP protocol does something"</em> as shown, with HTTP uppercase.</p>
+</div>
+<div class="paragraph">
+<p>In case of <code>Url</code>, we have additional complication: in some places we use the term <code>URI</code> instead of <code>URL</code> and it is not entirely consistent. It is explained in <a href="https://castle-engine.io/manual_network.php#section_terminology" class="bare">https://castle-engine.io/manual_network.php#section_terminology</a> , but was not consistently applied. So all future code should just use <code>Url</code>, and internally we knon that "most URLs actually accept URI".</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_indenting_inside_classes">12. Indenting inside classes</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="keyword">type</span>
+  TMyClass = <span class="keyword">class</span>
+  <span class="directive">private</span>
+    MyField: Integer;
+    <span class="keyword">procedure</span> Foo;
+  <span class="directive">public</span>
+    MyPublicField: Integer;
+    <span class="keyword">procedure</span> Bar;
+  <span class="keyword">end</span>;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you use the nested types / constants, indent the fields inside the <code>var</code> block as well. See the example below, notice that <code>MyField</code> is now indented more than in the example above. It&#8217;s not perfect&#8201;&#8212;&#8201;<code>MyField</code> indentation is now inconsistent with <code>MyPublicField</code>. But on the other hand, <code>MyField</code> indentation is consistent with <code>MyNestedConst</code> and <code>TMyNestedClass</code> and how you usually indent <code>var</code> block.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="keyword">type</span>
+  TMyClass = <span class="keyword">class</span>
+  <span class="directive">private</span>
+    <span class="keyword">type</span>
+      TMyNestedClass = <span class="keyword">class</span>
+      <span class="keyword">end</span>;
+    <span class="keyword">const</span>
+      MyNestedConst = <span class="integer">123</span>;
+    <span class="keyword">var</span>
+      MyField: Integer;
+    <span class="keyword">procedure</span> Foo;
+  <span class="directive">public</span>
+    MyPublicField: Integer;
+    <span class="keyword">procedure</span> Bar;
+  <span class="keyword">end</span>;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_file_extensions">13. File extensions</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><code>*.pas</code> files are units,</p>
+</li>
+<li>
+<p><code>*.inc</code> are files to be included in other Pascal source files using $I (short for $Include).</p>
+</li>
+<li>
+<p><code><strong>.dpr</code> and <code></strong>.lpr</code> are main program files. We will soon rename all program files to *.dpr. While Lazarus accepts either .dpr or .lpr extension for the program file, Delphi tolerates only .dpr extension. So, like it or not, we have to adjust to Delphi, and just use .dpr.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_write_reentrant_routines">14. Write reentrant routines</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>All the engine functions are "reentrant", which means that they are safe
+to be called recursively, even through your own callbacks.
+E.g. the TFileProc callback passed to <code>FindFiles</code> can call <code>FindFiles</code> inside
+it&#8217;s own implementation.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_some_naming_conventions">15. Some naming conventions</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>If some procedure modifies it&#8217;s 1st parameter then I usually end it&#8217;s name with "Var" ("to variable").</p>
+<div class="paragraph">
+<p>Often you will be able to see the same operation coming in two flavors:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>function DoSomething(const X: SOME-TYPE, ...): SOME-TYPE;
+procedure DoSomethingVar(var X: SOME-TYPE,...);</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The 1st (functional-like) version is more flexible, but the 2nd version may be faster (especially if SOME-TYPE is large, or requires time-consuming initialization).</p>
+</div>
+<div class="paragraph">
+<p>See e.g. CastleVectors and CastleImages units.</p>
+</div>
+<div class="paragraph">
+<p>This rule doesn&#8217;t apply when SOME-TYPE is some class instance. It&#8217;s normal that a procedure may modify the given class instance contents, no need to signify this with a "Var" suffix.</p>
+</div>
+</li>
+<li>
+<p>The term "stride" refers to a distance in bytes between memory chunks, following OpenGL conventions.</p>
+<div class="paragraph">
+<p>If somewhere I use parameters like <code>V: ^SOME-TYPE</code> and <code>Stride: Integer</code> then it means that these parameters define a table of SOME-TYPE values. Address of 1st item is V, address of i-th is (V + i * Stride).</p>
+</div>
+<div class="paragraph">
+<p>Stride may be negative. Stride may also be 0, then it means that <code>Stride = SizeOf(SOME-TYPE)</code>.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_compilation_symbols">16. Compilation symbols</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We use standard FPC and Delphi compilation symbols: MSWINDOWS, UNIX, LINUX, CPUI386, CPUX86_64, FPC to differentiate between compiler versions, and some more.</p>
+</div>
+<div class="paragraph">
+<p>See castleconf.inc.</p>
+</div>
+<div class="paragraph">
+<p>We also use DEBUG symbol. The build tool when compiled in debug mode (--mode=debug) defines the <code>DEBUG</code> symbol, and adds some runtime checks, like <a href="https://github.com/michaliskambi/modern-pascal-introduction/wiki/What-are-range-and-overflow-checks-%28and-errors%29-in-Pascal">range checking and overflow checking</a>. You can use <code>{$ifdef DEBUG}</code> in your own code to add additional things. There&#8217;s also the <code>RELEASE</code> symbol, but usually we don&#8217;t check for it&#8217;s existence&#8201;&#8212;&#8201;if DEBUG then we&#8217;re in debug mode, else we&#8217;re in release mode.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_exceptions_messages">17. Exceptions' messages</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Do not start them with 'Error: ' or anything else that just says <em>"we have an error"</em>. This is redundant, since all exceptions signal some error.</p>
+</li>
+<li>
+<p>Don&#8217;t end the Message with '!' character. Do not cause panic :) The exception message must look normal when presented to end-user. If something should not occur (and signals a bug) then use <code>EInternalError</code> exception class to mark this.</p>
+</li>
+<li>
+<p>Usually, <code>Message</code> should be a single sentence, and not end with the '.' character. But we do not follow this rule 100%, it&#8217;s OK to break it for good reasons&#8201;&#8212;&#8201;sometimes a multi-line sentence message is useful.</p>
+</li>
+<li>
+<p>Message should not contain any line-breaks. Reason: this doesn&#8217;t look good when displayed in some situations. Especially when one Message is embedded as part of the Message of other exception.</p>
+<div class="paragraph">
+<p>We do not follow this rule 100%, it&#8217;s OK to break it with good reasons. We know that some information really looks much cleaner when split into multiple lines (e.g. TMatrix4.ToString output is multi-line already).</p>
+</div>
+</li>
+<li>
+<p>Message should not contain any general program information like <code>ApplicationName</code>, <code>ExeName</code> etc. (The exception to this rule is when such information is really related to the error that happened, may help to explain this error etc.) In normal situation, the code that finally catched and outputs this exception should show such information.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prefer_to_make_callbacks_of_object">18. Prefer to make callbacks <code>of object</code></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>ObjectPascal is a hybrid OOP language and it has global function pointers and method pointers. They are incompatible, since the method pointer is actually two pointers (the class instance, and the code address). When designing a function that takes a callback, you&#8217;re faced with a problem: define "a pointer to a method" or "a pointer to a global function/procedure"?</p>
+</div>
+<div class="paragraph">
+<p>In the past, I often chose to use "a pointer to a global function/procedure". With a generic "Data: Pointer" parameter, to allow passing user data. This is easier to use when you don&#8217;t have a class instance (and you don&#8217;t want to create a dummy class just for this), and it&#8217;s always allows to add overridden version with "of object" callback (passing object instance as the Data);</p>
+</div>
+<div class="paragraph">
+<p>Nowadays, I usually define "of object" callbacks, assuming that all non-trivial code is usually in some class, and the "of object" is more natural to be used in OOP.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_order_of_methods">19. Order of methods</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Place the implementation of constructors (<code>Create*</code>) first, then destructor (<code>Destroy</code>), and then the rest of methods. I do not have a precise rule about the ordering of the rest of methods&#8201;&#8212;&#8201;I usually like to group related methods together.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_remember_that_strtofloat_and_friends_are_locale_dependent_almost_always_use_strtofloatdot_instead">20. Remember that StrToFloat and friends are locale-dependent. Almost always use StrToFloatDot instead.</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Standard <code>StrToFloat</code> in FPC and Delphi converts floats to/from Strings using locale-dependent <code>DecimalSeparator</code> value. On some systems (e.g. on Polish Windows) it is equal to comma (<code>,</code>), not a dot (<code>.</code>). This is usually not what you want: when you read/write files, or command-line arguments, you usually want to have "dot" as the only decimal separator, so that your application works regardless of user&#8217;s system locale.</p>
+</div>
+<div class="paragraph">
+<p>So instead use <code>StrToFloatDot</code>. As a bonus, it is also marginally faster.</p>
+</div>
+<div class="paragraph">
+<p>Same advise applies for related functions:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Use <code>StrToFloatDefDot</code> instead of <code>StrToFloatDef</code></p>
+</li>
+<li>
+<p>Use <code>TryStrToFloatDot</code> instead of <code>TryStrToFloat</code></p>
+</li>
+<li>
+<p>Use <code>FormatDot</code> instead of <code>Format</code></p>
+</li>
+<li>
+<p>Use <code>FloatToStrDot</code> instead of <code>FloatToStr</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_do_not_use_longint_longword_use_int32uint32_int64uint64_integercardinal">21. Do not use LongInt / LongWord. Use Int32/UInt32, Int64/UInt64, Integer/Cardinal.</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Embarcadero decided to make things weird: <a href="https://docwiki.embarcadero.com/RADStudio/Sydney/en/Simple_Types_(Delphi" class="bare">https://docwiki.embarcadero.com/RADStudio/Sydney/en/Simple_Types_(Delphi</a>) . The <code>LongInt</code> / <code>LongWord</code> are</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>32-bit on <em>32-bit platforms, and on 64-bit Windows</em>.</p>
+</li>
+<li>
+<p>They are 64-bit on <em>64-bit OSes that are not Windows (like Linux, Android, iOS)</em>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This is</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Completely weird (why did you make it inconsistent across platforms???).</p>
+</li>
+<li>
+<p>And contrary to older Pascal documentation statements, that suggested that <code>LongInt</code> / <code>LongWord</code> have 32-bit always. It was the <code>Integer</code> / <code>Cardinal</code> that were supposed to be (maybe) system-dependent! (though they remain in practice 32-bit always, in both FPC and Delphi.)</p>
+</li>
+<li>
+<p>Incompatible with FPC.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>So just don&#8217;t use these types in CGE code.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Use <code>Int32</code> / <code>UInt32</code> when you want to have integers of guaranteed 32-bit size. The names are consistent with <code>Int64</code> / <code>UInt64</code>.</p>
+</li>
+<li>
+<p>Use <code>Int64</code> / <code>UInt64</code> when you want to have integers of guaranteed 64-bit size. The <code>QWord</code> (FPC name for <code>UInt64</code>) is also good.</p>
+</li>
+<li>
+<p>Use <code>Integer</code> / <code>Cardinal</code> when you don&#8217;t care much about the bit size. In practice they are always 32-bit on all platforms (with both FPC / Lazarus), although long time ago they were supposed to be platform-dependent.</p>
+</li>
+<li>
+<p>Use <code>TListSize</code> for counts and capacities of lists. (It is signed, to not cause overflows with frequent constructions like <code>for I := 0 to List.Count - 1 do...</code>)</p>
+</li>
+<li>
+<p>Use <code>PtrInt</code> / <code>PtrUInt</code> when you want to have integers of guaranteed pointer-size.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_do_not_use_extended_use_singledouble">22. Do not use Extended. Use Single/Double</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Traditionally, <code>Extended</code> used to be a 10-byte floating-point type available in old Pascal compilers. But it is not that useful anymore, in modern FPC and Delphi.</p>
+</div>
+<div class="paragraph">
+<p>The size and precision of <code>Extended</code> depends now on the platform and compiler:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>FPC: Extended=Double for most of non-i386 architectures. One known exception to the above is Linux on x86-64, that allows to use normal Extended. Use <code>EXTENDED_EQUALS_DOUBLE</code> to check for it.</p>
+</li>
+<li>
+<p>Delphi: See <a href="https://docwiki.embarcadero.com/RADStudio/Sydney/en/Simple_Types_(Delphi" class="bare">https://docwiki.embarcadero.com/RADStudio/Sydney/en/Simple_Types_(Delphi</a>) . Similar to FPC, <code>Extended</code> is just <code>Double</code> (8 bytes) on most platforms except Win32.</p>
+<div class="paragraph">
+<p>Moreover, Delphi defines <code>Extended</code> to be a new 16-byte floating-point type on some platforms:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>64-bit Intel Linux</p>
+</li>
+<li>
+<p>32-bit Intel macOS</p>
+</li>
+<li>
+<p>32-bit Intel iOS Simulator</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>TBH, the end result makes <code>Extended</code> not very useful at all, at least for general cross-platform (and cross-compiler) code, due to this uncertainty. And GPUs don&#8217;t support anything above <code>Double</code> anyway.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_most_code_should_use_just_string_and_be_prepared_that_it_is_8_bit_on_fpc_and_16_bit_on_delphi_if_writing_to_stream_use_8_bit_ansistring">23. Most code should use just String, and be prepared that it is 8-bit on FPC and 16-bit on Delphi. If writing to stream, use 8-bit AnsiString.</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>On FPC, we follow the same approach to <code>String</code> as in Lazarus: <code>String</code> is an alias to <code>AnsiString</code>, and it should always contain UTF-8 data. We use necessary compiler switches to make <code>String = AnsiString</code>, and the <code>CastleUtils</code> has necessary initialization to make sure that strings can just carry UTF-8 on all platforms.</p>
+</div>
+<div class="paragraph">
+<p>See FPC docs:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://wiki.freepascal.org/FPC_Unicode_support" class="bare">https://wiki.freepascal.org/FPC_Unicode_support</a></p>
+</li>
+<li>
+<p><a href="https://wiki.freepascal.org/Unicode_Support_in_Lazarus" class="bare">https://wiki.freepascal.org/Unicode_Support_in_Lazarus</a></p>
+</li>
+<li>
+<p><a href="https://wiki.freepascal.org/Character_and_string_types" class="bare">https://wiki.freepascal.org/Character_and_string_types</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>On Delphi, we follow the standard approach of modern Delphi: <code>String</code> is an alias to <code>UnicodeString</code>, and it contains UTF-16 encoded data.</p>
+</div>
+<div class="paragraph">
+<p>See Delphi docs:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docwiki.embarcadero.com/Libraries/Sydney/en/System.UnicodeString" class="bare">https://docwiki.embarcadero.com/Libraries/Sydney/en/System.UnicodeString</a></p>
+</li>
+<li>
+<p><a href="https://docwiki.embarcadero.com/RADStudio/Sydney/en/Unicode_in_RAD_Studio" class="bare">https://docwiki.embarcadero.com/RADStudio/Sydney/en/Unicode_in_RAD_Studio</a></p>
+</li>
+<li>
+<p><a href="https://docwiki.embarcadero.com/RADStudio/Sydney/en/String_Types_(Delphi" class="bare">https://docwiki.embarcadero.com/RADStudio/Sydney/en/String_Types_(Delphi</a>)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Correspondingly, <code>Char</code> is 8-bit with FPC, and 16-bit with Delphi. And <code>PChar</code> points to 8-bit characters on FPC, 16-bit on Delphi.</p>
+</div>
+<div class="paragraph">
+<p>With both compilers, you can explicitly use <code>AnsiString</code> to request 8-bit string. And <code>AnsiChar</code> for 8-bit character, <code>PAnsiChar</code> to have a pointer to them.</p>
+</div>
+<div class="paragraph">
+<p>What to do?</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>In most CGE code, just use <code>String</code> and <code>Char</code> and most of the time is just does what you want. You can often ignore the fact that FPC will do this using 8-bit chars and Delphi will do this using 16-bit chars.</p>
+</li>
+<li>
+<p>Exceptions:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>When we read/write to streams, like using various <code>CastleClassUtils</code> routines, we use 8-bit strings. Since UTF-8 is the file format that most software expects, it is a superset of ASCII (that is: simplest text files) etc. So <code>CastleClassUtils</code> routines dealing with streams + strings just declare <code>AnsiString</code> as input/output type.</p>
+<div class="paragraph">
+<p>There are exceptions marked with <code>DefaultString</code> in the name, right now only <code>MemoryStreamLoadFromDefaultString</code>. This routine writes 8-bit on FPC, and 16-bit on Delphi.</p>
+</div>
+</li>
+<li>
+<p>When interacting with external libraries, you will most often use <code>PAnsiChar</code> (not <code>PChar</code>) as most of them expect 8-bit UTF-8 (or just ASCII) text.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<h1 id="_other_languages" class="sect0">Other languages</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Indent by 4 spaces in Java and Objective-C.</p>
+</li>
+<li>
+<p>Never use tabs. (Unless they are inherent to the language, like <code>Makefile</code>).</p>
+</li>
+<li>
+<p>Follow the standard coding conventions for that language.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<h1 id="_guidelines_how_to_write_good_code" class="sect0">Guidelines (how to write good code)</h1>
+<div class="sect1">
+<h2 id="_declarative_api_classes_with_independent_properties_is_simple_to_use">24. Declarative API (classes with independent properties) is simple to use</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In general <em>prefer declarative</em> API (properties) over imperative (methods, esp. with complicated usage scenarios).</p>
+</div>
+<div class="paragraph">
+<p>The classes that expose the "solution" as a set of properties are simple to use. Exposing a "solution" as a set of methods (that must be called in some specific order for the desired effect) is usually not as simple. Of course this is just a general guideline, I&#8217;m sure you know lots of exceptions to this rule! CGE itself is a big OOP library with lots of classes with lots of properties and lots of methods. If something is naturally an "action" (<em>"draw it now!"</em>) then it should be a method (<code>Render</code>). But if something is a "state" (<em>"use this color when drawing"</em>) then it is a property (<code>property Color: TCastleColor; property Text: String;</code> works better than <code>procedure Draw(const Color: TCastleColor; const AText: String)</code>).</p>
+</div>
+<div class="paragraph">
+<p>Properties should work independently. Property value should not be "automatically" set by setting another unrelated property (e.g. setting <code>TCastleUserInterface.HeightFraction</code> does not set also <code>TCastleUserInterface.Height</code>) or by doing something (e.g. adding a control does not  set its <code>TCastleUserInterface.Height</code>; it represents "the desired height", and programmer should instead read <code>EffectiveHeight</code> to know the resulting height). Of course there are exceptions to the latter&#8201;&#8212;&#8201;some methods naturally set some properties, but then it should be clear that given method does this, e.g. <code>TCastleViewport.Setup2D</code> sets <code>Viewport.Camera.ProjectionType</code>.</p>
+</div>
+<div class="paragraph">
+<p>You want getting/setting properties to work naturally, regardless of the order in which it happens (this is nice for the programmer using the API, and necessary for reliable deserialization).</p>
+</div>
+<div class="paragraph">
+<p>Properties should generally work like you would expect a variable works. E.g. reading a property right after setting it should result in the same value. Setting property multiple times to the same value should have no effect. See the Pascal guidelines on <a href="https://castle-engine.io/modern_pascal_introduction.html#" class="bare">https://castle-engine.io/modern_pascal_introduction.html#</a><em>properties : _&#8230;&#8203;it&#8217;s a good convention to design properties to behave more-or-less like fields:&#8230;&#8203;</em>.</p>
+</div>
+<div class="paragraph">
+<p>Classes with independent properties are simple to use&#8201;&#8212;&#8201;both from CGE editor (that exposes any published properties of <code>TComponent</code> descendants), and from code (code that sets a few properties is obvious to follow).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_optimize_smartly_profile_optimize_where_it_matters_and_not_where_it_doesnt_think_about_smarter_algorithms_and_moving_cpu_work_to_gpu_to_get_big_benefits">25. Optimize smartly: profile, optimize where it matters (and not where it doesn&#8217;t), think about smarter algorithms and moving CPU work to GPU to get big benefits</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you want to suggest some optimization (of speed, of memory usage) to the engine, especially if it:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>makes a significant code complication to the existing code,</p>
+</li>
+<li>
+<p>or it adds a significant amount of new code (which is also a code complication)</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>then always first do some tests/thinking whether it&#8217;s really worth it.</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>There are many situations where optimizing is not a good idea, because it will not change the "bottleneck" code (which means that the speed / memory use of something else is so large (in comparison) that it completely "masks" the thing that you optimize, making it irrelevant). In such cases, optimization is actually harmful, because the code quality goes down&#8201;&#8212;&#8201;the optimized code is <em>usually</em> longer and/or more convoluted.</p>
+</div>
+<div class="paragraph">
+<p>(Exception: in the rare cases when the optimized code is also shorter and cleaner, you have a full green light to do it <em>just because the code quality is better</em>.)</p>
+</div>
+<div class="paragraph">
+<p>Bottom line:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>We want to have less code.</p>
+</li>
+<li>
+<p>We want to have simpler code.</p>
+</li>
+<li>
+<p>Do not optimize just because you have an idea how to make some line of code faster. This thinking often leads to performing many tiny optimizations (and thus reducing code quality) that have no noticeable effect on the execution speed or memory use of real applications. First test/think whether it&#8217;s worthwhile to optimize this piece of code.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>As you can see, I put more emphasis on thinking about code quality than optimization. That is because I see some of us often making the mistake of not caring about code quality enough, and instead rushing to make an optimization (that lowers code quality for little-to-no gain to the final applications).</p>
+</div>
+<div class="paragraph">
+<p>Of course, this does not mean we don&#8217;t want to optimize. It just means that we require justification for each optimization, the optimization must have a noticeable effect on some real-world use-case. We want the code to be fast and use little memory&#8201;&#8212;&#8201;there are various ways to achieve this, often using smart algorithms on CPU, and/or thinking about how the CPU cache is used, and/or delivering data in better chunks to GPU. Low-level optimization of some local routine is not always the most effective approach.</p>
+</div>
+<div class="paragraph">
+<p>There is also a dreaded "death by 1000 cuts" that we want to avoid, which is sometimes caused by missing a number of small optimizations that <em>would</em> have a noticeable effect overall. E.g. that&#8217;s why we use "Single" throughout the engine code, not Double or Extended. (except some special code where we have testcases that "Single" precision is not enough). Using "Double" everywhere would have a noticeable negative effect on the speed (yes, I tested it long time ago). But e.g. paranoidally avoiding calling <code>Sqrt</code> in the engine&#8230;&#8203; proved to be usually a useless optimization, causing various bugs and not achieving any speed gain.</p>
+</div>
+<div class="paragraph">
+<p>So, there <em>are</em> cases to be made for some low-level optimizations. But don&#8217;t fall into the trap of implementing lots of useless low-level optimizations blindly.</p>
+</div>
+</div>
+</div>
+<h1 id="_submitting_your_code_contributions" class="sect0">Submitting your code contributions</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>It&#8217;s best to use <a href="https://github.com/castle-engine/castle-engine/pulls">GitHub&#8217;s pull requests</a>.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Fork the <a href="https://github.com/castle-engine/castle-engine/" class="bare">https://github.com/castle-engine/castle-engine/</a> . This is done by clicking on the appropriate button on GitHub.</p>
+</li>
+<li>
+<p>Clone your fork (i.e. download it to your local computer).</p>
+</li>
+<li>
+<p>Optional: Create a new branch in your fork, just for this specific feature, e.g. doing <code>git checkout -b my-new-feature</code>. This allows to separate your work on various CGE features.</p>
+</li>
+<li>
+<p>Work on your feature, committing and pushing as usual, to your branch in your fork.</p>
+</li>
+<li>
+<p>When ready, submit a pull request using <a href="https://github.com/castle-engine/castle-engine/pulls" class="bare">https://github.com/castle-engine/castle-engine/pulls</a></p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>See GitHub documentation (and other sites) for information about pull requests:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://yangsu.github.io/pull-request-tutorial/" class="bare">https://yangsu.github.io/pull-request-tutorial/</a></p>
+</li>
+<li>
+<p><a href="https://help.github.com/articles/about-pull-requests/" class="bare">https://help.github.com/articles/about-pull-requests/</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Advantages of pull requests:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>They allow you to comfortably work on your pull request, committing and pushing and showing your changes to anyone. There is no need to ask for any permission to do this. (But, if you want, you can of course let us know about your work, see <a href="https://castle-engine.io/talk.php" class="bare">https://castle-engine.io/talk.php</a> . We may be able to advise on a best way to add something to CGE.)</p>
+</li>
+<li>
+<p>They allow us to use "code review" features of GitHub. This is a comfortable way to comment on your changes.</p>
+</li>
+<li>
+<p>They allow everyone to submit, review and merge the changes relatively easily. And all operations can be done using the command-line or web interface, so it&#8217;s comfortable / easy / flexible for everyone.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If for some reason you really cannot follow this workflow, it is OK to simply send a traditional ".patch" file, done by "git diff" or "svn diff" (you can access <a href="https://github.com/castle-engine/castle-engine/" class="bare">https://github.com/castle-engine/castle-engine/</a> as a GIT or SVN repository.) You can attach it to <a href="https://github.com/castle-engine/castle-engine/issues">a new issue</a>.</p>
+</div>
+</div>
+</div>

@@ -1,0 +1,382 @@
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel0">
+<li><a href="#_features">Features</a></li>
+<li><a href="#_usage_instructions">Usage instructions</a></li>
+<li><a href="#_running_fpc_lazarus">Running FPC / Lazarus</a></li>
+<li><a href="#_putting_fpc_on_path">Putting FPC on $PATH</a></li>
+<li><a href="#_installing_castle_game_engine_using_fpcupdeluxe">Installing Castle Game Engine using fpcupdeluxe</a></li>
+<li><a href="#_cross_compilation_to_android">Cross-compilation to Android</a></li>
+<li><a href="#_more_information_about_fpcupdeluxe">More information about fpcupdeluxe</a></li>
+</ul>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>fpcupdeluxe</em> is a powerful GUI program that installs <a href="http://freepascal.org/">FPC</a> and <a href="https://www.lazarus-ide.org/">Lazarus</a>.</p>
+</div>
+<div class="paragraph">
+<p><a href="https://castle-engine.sourceforge.io/wp/wp-content/uploads/2017/04/fpcupdeluxe_cge.png"><span class="image"><img src="https://castle-engine.sourceforge.io/wp/wp-content/uploads/2017/04/fpcupdeluxe_cge-200x118.png" alt="fpcupdeluxe GUI</a>"></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#features">Features</a></p>
+</li>
+<li>
+<p><a href="#usage-instructions">Usage instructions</a></p>
+</li>
+<li>
+<p><a href="running-fpc&.html#8212;&#8203;lazarus">Running FPC / Lazarus</a></p>
+</li>
+<li>
+<p><a href="#putting-fpc-on-path">Putting FPC on $PATH</a></p>
+</li>
+<li>
+<p><a href="#installing-castle-game-engine-using-fpcupdeluxe">Installing Castle Game Engine using fpcupdeluxe</a></p>
+</li>
+<li>
+<p><a href="#cross-compilation-to-android">Cross-compilation to Android</a></p>
+</li>
+<li>
+<p><a href="#more-information-about-fpcupdeluxe">More information about fpcupdeluxe</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<h1 id="_features" class="sect0">Features</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><em>fpcupdeluxe</em> easily installs various versions of FPC (stable, trunk) and Lazarus.</p>
+</li>
+<li>
+<p>With cross-compilers (e.g. to compile from desktop to <a href="Android">Android</a> or <a href="iOS">iOS</a>).</p>
+</li>
+<li>
+<p>With various 3rd-party open-source libraries.</p>
+</li>
+<li>
+<p>The installed FPC/Lazarus environment is separated. This means that you can have several environments (e.g. one for FPC trunk, one for FPC stable).</p>
+</li>
+<li>
+<p>Underneath, most of the stuff is usually downloaded from sources (SVN or GIT) and compiled on your system, but it&#8217;s completely automated. You just point to what you want, click "install", and enjoy a working FPC/Lazarus installation after a short time:)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Note that the <em>fpcupdeluxe</em> (and related <em>fpcup</em>) is not connected to the <em>Castle Game Engine</em> project. You can install FPC/Lazarus in any way you like for the <em>Castle Game Engine</em> to work. But fpcupdeluxe is really a great way to manage your FPC/Lazarus installation if you&#8217;re an "advanced" user of FPC/Lazarus (you play around with various versions or cross-compilers), so give it a try:)</p>
+</div>
+</div>
+</div>
+<h1 id="_usage_instructions" class="sect0">Usage instructions</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Download from <a href="https://github.com/LongDirtyAnimAlf/fpcupdeluxe/releases/latest" class="bare">https://github.com/LongDirtyAnimAlf/fpcupdeluxe/releases/latest</a> .</p>
+</li>
+<li>
+<p>Run.</p>
+</li>
+<li>
+<p>Select "Default" FPC version, "Default" Lazarus version.</p>
+</li>
+<li>
+<p>Press big button "Install/update FPC+Laz" in bottom-left.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Watch the installation movie (on Linux) on <a href="https://www.youtube.com/watch?v=Snf0xgdREOQ" class="bare">https://www.youtube.com/watch?v=Snf0xgdREOQ</a> .</p>
+</div>
+<div class="paragraph">
+<p>That&#8217;s it!</p>
+</div>
+</div>
+</div>
+<h1 id="_running_fpc_lazarus" class="sect0">Running FPC / Lazarus</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>After installation with default paths:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>To run Lazarus, use the shortcut <em>Lazarus_fpcupdeluxe</em> created on your desktop.</p>
+<div class="paragraph">
+<p>Or the <code>Lazarus_fpcupdeluxe</code> shell script (it&#8217;s placed in <code>$HOME</code> by default, you can just move it anywhere, or even delete it).</p>
+</div>
+</li>
+<li>
+<p>Your FPC is inside:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$HOME/fpcupdeluxe/fpc/</code> on Unix.</p>
+</li>
+<li>
+<p><code>C:\fpcupdeluxe\fpc\</code> on Windows.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>To run command-line FPC:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Run <code>$HOME/fpcupdeluxe/fpc/bin/&lt;os-cpu&gt;/fpc.sh</code> on Unix. (Note <code>fpc.sh</code>, not just <code>fpc</code>).</p>
+</li>
+<li>
+<p>Run <code>C:\fpcupdeluxe\fpc\bin\&lt;os-cpu&gt;\fpc.exe</code> on Windows.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Your FPC configuration (for various purposes, some day you may want to edit/add something there) is inside:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$HOME/fpcupdeluxe/fpc/bin/&lt;os-cpu&gt;/fpc.cfg</code> on Unix.</p>
+</li>
+<li>
+<p><code>C:\fpcupdeluxe\fpc\bin\&lt;os-cpu&gt;\fpc.cfg</code> on Windows.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<h1 id="_putting_fpc_on_path" class="sect0">Putting FPC on $PATH</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>If you compile through our <a href="https://castle-engine.io/manual_editor.php">Castle Game Engine editor</a> then you should configure the FPC and Lazarus locations in editor <em>Preferences</em> window. You can ignore the rest of this section then :) There is no need to mess with <code>$PATH</code>. And it will make switching between different FPC/Lazarus versions easier.</p>
+</div>
+<div class="paragraph">
+<p>If you use the <a href="Build-Tool">Castle Game Engine build tool</a> from the command-line, we need the <code>fpc</code> to be available on <code>$PATH</code> to run the FPC compiler. Follow one of the approaches described below.</p>
+</div>
+<div class="paragraph">
+<p>To use command-line FPC:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>On Windows, it&#8217;s inside <code>C:\fpcupdeluxe\fpc\bin\&lt;os-cpu&gt;\fpc.exe</code> . Where <code>&lt;os-cpu&gt;</code> is e.g. <code>i386-win32</code> for 32-bit compiler (often used even on 64-bit Windows).</p>
+<div class="paragraph">
+<p>If you want to have this FPC present on your <code>$PATH</code>, just add <code>C:\fpcupdeluxe\fpc\bin\&lt;os-cpu&gt;\</code> to your <code>$PATH</code>.  (Google <em>"how to modify path in windows"</em> if you don&#8217;t know what is "<code class="code">$PATH</code>".)</p>
+</div>
+</li>
+<li>
+<p>On Unix, to run the compiler from the command-line, use the script <code>$HOME/fpcupdeluxe/fpc/bin/xxx/fpc.sh</code> .</p>
+<div class="paragraph">
+<p>If you want to have the <code>fpc</code> present on your <code>$PATH</code>, you can symlink this, e.g.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>  sudo cd /usr/local/bin/
+  sudo ln -s $HOME/fpcupdeluxe/fpc/bin/&lt;os-cpu&gt;/fpc.sh fpc</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can also do it more manually:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Add the directory with all FPC binaries on $PATH:</p>
+<div class="listingblock">
+<div class="content">
+<pre>  export PATH=$PATH:$HOME/fpcupdeluxe/fpc/bin/&lt;os-cpu&gt;/</pre>
+</div>
+</div>
+</li>
+<li>
+<p>To make "fpc" execute OK, create a <code>$HOME/.fpc.cfg</code>, containing:</p>
+<div class="listingblock">
+<div class="content">
+<pre>  #INCLUDE &lt;full-home-path&gt;/fpcupdeluxe/fpc/bin/&lt;os-cpu&gt;/fpc.cfg</pre>
+</div>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+If you use this approach, make sure that the specified path <code>&lt;full-home-path&gt;/fpcupdeluxe/fpc/bin/&lt;os-cpu&gt;/fpc.cfg</code> always exists. Otherwise <code>fpc</code> will not find it&#8217;s configuration file, and will not know the location of it&#8217;s standard units (<code>System</code>, <code>SysUtils</code>&#8230;&#8203;). In this case not only <code>fpc</code> will not work, even  the "bootstrapping" (installing new FPC versions using fpcupdeluxe, during which FPC is compiled with FPC) may not work.
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<h1 id="_installing_castle_game_engine_using_fpcupdeluxe" class="sect0">Installing Castle Game Engine using fpcupdeluxe</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p><em>fpcupdeluxe</em> can also install various 3rd party libraries, including CGE.</p>
+</div>
+<div class="paragraph">
+<p>It takes <a href="https://github.com/castle-engine/castle-engine/">CGE sources from GitHub</a> (which means <em>unstable</em> engine version), and installs the CGE packages in Lazarus. This allows to use CGE packages (and, through them, <code>CastleXxx</code> units) in your own programs immediately.</p>
+</div>
+<div class="paragraph">
+<p>The engine code is inside <code>&lt;fpcupdeluxe&gt;/ccr/castle_game_engine/</code> . In particular, the numerous engine examples are inside the <code>examples/</code> subdirectory there. The tools are in the <code>tools/</code> subdirectory.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>To use the engine from FPC command-line, you need to setup things yourself. E.g. compile our <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a> from the sources you have in <code>&lt;fpcupdeluxe&gt;/ccr/castle_game_engine/tools/build-tool/</code>. You can set <code>$CASTLE_ENGINE_PATH</code> environment variable to <code>&lt;fpcupdeluxe&gt;/ccr/castle_game_engine/</code> .</p>
+</li>
+<li>
+<p>The API documentation is not present in the <code>doc/reference/</code> , because we don&#8217;t keep the generated docs inside the repository. That&#8217;s usually not a problem, as you can <a href="https://castle-engine.sourceforge.io/apidoc-unstable/html/">browse the Castle Game Engine API docs online</a>. You can also get <a href="https://github.com/pasdoc/pasdoc/wiki">pasdoc</a> and generate them yourself by <code>make html</code> in <code>doc/pasdoc</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<h1 id="_cross_compilation_to_android" class="sect0">Cross-compilation to Android</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p><em>fpcupdeluxe</em> can setup a cross-compiler for you, to compile to a different OS/CPU than the one you&#8217;re currently using.</p>
+</div>
+<div class="paragraph">
+<p><em>fpcupdeluxe</em> is actually a GUI based on fpcup. So, various documentation for fpcup applies also to fpcupdeluxe. In particular, see the <a href="http://wiki.lazarus.freepascal.org/fpcup" class="bare">http://wiki.lazarus.freepascal.org/fpcup</a> documentation for a list of cross-compilers possible, and how to set them up. Not every combination is trivial, but fpcup/fpcupdeluxe really helps you as much as possible to set it up, and it can download the necessary utilities and libraries in many cases automatically.</p>
+</div>
+<div class="paragraph">
+<p>To create a cross-compiler for Android, suitable for Castle Game Engine:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>First, follow <a href="https://github.com/castle-engine/castle-engine/wiki/Android" class="bare">https://github.com/castle-engine/castle-engine/wiki/Android</a> to install Android SDK, NDK and test them.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>For 32-bit Android CPU (32-bit version of ARM, called just <code>arm</code>):</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In fpcupdeluxe, in the "Cross" tab, select CPU as <code>arm</code>, OS as <code>android</code>.</p>
+</li>
+<li>
+<p>Click <em>"Install compiler"</em> in the main window.</p>
+<div class="paragraph">
+<p>fpcupdeluxe will download the Android "cross binutils" and Android libraries on the first run. They will be in <code>&lt;fpcupdeluxe&gt;/cross/bin/arm-android</code> and <code>&lt;fpcupdeluxe&gt;/cross/lib/arm-android</code> directories.</p>
+</div>
+</li>
+<li>
+<p><em>(This step is completely optional&#8201;&#8212;&#8201;as the "cross binutils" and libraries automatically downloaded by FpcUpDeluxe are also good.)</em> You can adjust the Android "cross binutils" and Android libraries, to use the latest from Android NDK.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>You can copy them from your Android NDK:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>From <code>&lt;android-sdk&gt;/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/&lt;os-cpu&gt;/bin</code> copy all the executables to <code>&lt;fpcupdeluxe&gt;/cross/bin/arm-android</code>.</p>
+</li>
+<li>
+<p>From <code>&lt;android-sdk&gt;/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/arm-linux-androideabi/16/</code> copy all the files to <code>&lt;fpcupdeluxe&gt;/cross/lib/arm-android</code>. We choose <code>16</code> as this is the mininal Android platform we use by default. See <code>min_sdk_version</code> default value in <a href="https://github.com/castle-engine/castle-engine/wiki/CastleEngineManifest.xml-examples">CastleEngineManifest.xml</a>.</p>
+</li>
+<li>
+<p><a href="http://wiki.lazarus.freepascal.org/fpcup#Android_ARM_crosscompiler">This process is also described in fpcup docs</a>.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Alternatively, you can rename <code>&lt;fpcupdeluxe&gt;/cross/bin/arm-android</code> and <code>&lt;fpcupdeluxe&gt;/cross/lib/arm-android</code> to something like <code>&lt;fpcupdeluxe&gt;/cross/bin/arm-android-unused</code> and <code>&lt;fpcupdeluxe&gt;/cross/lib/arm-android-unused</code>. Then add to your $PATH the path to the necessary Android NDK tools, and manually add to your fpc.cfg the paths (<code>-Fl...</code>) to the Android libraries from <code>android-16</code> platform. This is described in our <a href="Android" class="bare">Android</a> docs.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Now you can use <code>castle-engine package --os=android --cpu=arm</code> in your projects. Or just use <code>castle-engine package --target=android</code> to build for both Android architectures.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>That&#8217;s it. It&#8217;s almost too easy (again, much respect to the fpcup and fpcupdeluxe!). It works with FPC trunk as well as stable FPC (tested on 3.0.4, 3.2.0, 3.2.2).</p>
+</div>
+<div class="paragraph">
+<p><strong>For 64-bit Android CPU (a 64-bit version of ARM, called <code>aarch64</code>):</strong></p>
+</div>
+<div class="paragraph">
+<p>The workflow is analogous:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In fpcupdeluxe, in the "Cross" tab, select CPU as <code>aarch64</code>, OS as <code>android</code>, and click <em>"Install compiler"</em>.</p>
+</li>
+<li>
+<p><em>(This step is completely optional&#8201;&#8212;&#8201;as the "cross binutils" and libraries automatically downloaded by FpcUpDeluxe are also good.)</em></p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Override the fpcupdeluxe files:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>From <code>&lt;android-sdk&gt;/ndk-bundle/toolchains/aarch64-linux-android-4.9/prebuilt/&lt;os-cpu&gt;/bin</code> copy all the executables to <code>&lt;fpcupdeluxe&gt;/cross/bin/aarch64-android</code>.</p>
+</li>
+<li>
+<p>Edit shell scripts <code>aarch64-linux-android-gcc</code> and <code>aarch64-linux-android-g++</code>. They use relative path in <code>dirname $0</code>, you want to replace it with the absolute path.</p>
+</li>
+<li>
+<p>From <code>&lt;android-sdk&gt;/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android/21/</code> copy all the files to <code>&lt;fpcupdeluxe&gt;/cross/lib/aarch64-android</code>.  We choose <code>21</code> as the earliest platform that features 64-bit support.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Alternatively, rename the directories <code>&lt;fpcupdeluxe&gt;/cross/bin/aarch64-android</code> and <code>&lt;fpcupdeluxe&gt;/cross/lib/aarch64-android</code> to add to their names suffix like <code>-unused</code>. And follow <a href="Android" class="bare">Android</a> docs to put the latest Android NDK on $PATH, and manually add the paths to NDK libraries (from <code>android-21</code>) as <code>-Fl...</code> to fpc.cfg.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Now you can use <code>castle-engine package --os=android --cpu=aarch64</code> in your projects. Or just use <code>castle-engine package --target=android</code> to build for both Android architectures.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Note that you need to use FPC &gt;= 3.2.0 for this. FPC 3.0.x doesn&#8217;t support building for Android/Aarch64.</p>
+</div>
+</div>
+</div>
+<h1 id="_more_information_about_fpcupdeluxe" class="sect0">More information about fpcupdeluxe</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://wiki.lazarus.freepascal.org/fpcupdeluxe" class="bare">http://wiki.lazarus.freepascal.org/fpcupdeluxe</a></p>
+</li>
+<li>
+<p><a href="https://github.com/LongDirtyAnimAlf/fpcupdeluxe" class="bare">https://github.com/LongDirtyAnimAlf/fpcupdeluxe</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>

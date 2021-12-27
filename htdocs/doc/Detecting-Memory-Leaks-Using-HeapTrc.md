@@ -1,0 +1,92 @@
+Table of Contents:
+* [Intro](#intro)
+* [Using HeapTrc in Castle Game Engine](#using-heaptrc-in-castle-game-engine)
+* [Interpreting the results](#interpreting-the-results)
+* [Caveat: Ignore output when Halt occurred](#caveat-ignore-output-when-halt-occurred)
+* [Caveat: Windows GUI output is bothersome](#caveat-windows-gui-output-is-bothersome)
+* [Advanced: Routing HeapTrc output to a file](#advanced-routing-heaptrc-output-to-a-file)
+
+## Intro
+
+"Memory leak" means that you allocated a memory for something, but didn't deallocate it.
+
+For example you created an instance of a class by `MyInstance := TObject.Create` but then forgot to call `FreAndNil(MyInstance)`. See [the chapter about freeing classes in Pascal](https://castle-engine.io/modern_pascal_introduction.html#_freeing_classes). While Pascal offers various helpers to make it easy to deal with (e.g. `TComponent` can own other `TComponent` instances, freeing them automatically) but in general Pascal remains a language where you have to manually free all your allocated memory.
+
+While not all memory leaks result in severe consequences, they usually indicate unsafe code organization and may be result of more extensive bugs. Therefore it is highly recommended to keep the code clean of memory leaks. This is where a very useful Free Pascal unit [HeapTrc](https://www.freepascal.org/docs-html/rtl/heaptrc/index.html) can help by enabling developers to debug run-time memory allocation and deallocation.
+
+## Using HeapTrc in Castle Game Engine
+
+Using HeapTrc with _Castle Game Engine_ is the same as with any other FPC application:
+
+* Use compiler switches `-gl -gh` or (combined into one option) `-glh`. 
+* `-gh` means that `HeapTrc` is used, `-gl` means that line information is visible (very useful to see *where* was the memory leak, i.e. which allocation was not followed by deallocation).
+* Note: *do not* include HeapTrc in the `uses` section explicitly. The `-gh` will automatically use the `HeapTrc` unit correctly.
+
+There are various ways to pass these options to FPC:
+
+* If you use the [build tool](https://github.com/castle-engine/castle-engine/wiki/Build-Tool), you can call it like `castle-engine --compiler-option=-glh compile` to compile. 
+* Alternatively, you can add them to [compiler options in CastleEngineManifest.xml](https://github.com/castle-engine/castle-engine/wiki/CastleEngineManifest.xml-examples#compiler-options-and-paths). 
+* Alternatively, you can use them for *all* your programs by adding to [fpc.cfg](https://www.freepascal.org/docs-html/user/usersu10.html) file. You can add them only to the `DEBUG` builds (done by `castle-engine --mode-debug compile`) like this:
+
+    ```
+    #IFDEF DEBUG
+    -gh
+    -gl
+    #ENDIF
+    ```
+
+* If you compile using Lazarus: Note that `HeapTrc` is enabled by default in Lazarus _Debug_ mode, which can be created and set in Project Options. 
+
+By default, `HeapTrc` will monitor all memory allocation and deallocation events during the program execution and will provide a thorough report after the execution stops in a regular way or due to an exception, unless the application process was killed by OS.
+
+## Interpreting the results
+
+In effect, at the program's exit, you will get a useful report about the allocated and not freed memory blocks (i.e. _memory leaks_). Each leak will have a stack trace to the allocation call. This allows to easily detect and fix memory leaks.
+
+If everything is OK, the output looks like this:
+
+```
+Heap dump by heaptrc unit
+12161 memory blocks allocated : 2290438/2327696
+12161 memory blocks freed     : 2290438/2327696
+0 unfreed memory blocks : 0
+True heap size : 1212416
+True free heap : 1212416
+```
+
+But when you have a memory leak, it tells you about it, and tells you where the relevant memory was allocated, like this:
+
+```
+Heap dump by heaptrc unit
+4150 memory blocks allocated : 1114698/1119344
+4099 memory blocks freed     : 1105240/1109808
+51 unfreed memory blocks : 9458
+True heap size : 851968
+True free heap : 834400
+Should be : 835904
+Call trace for block $00007F9B14E42980 size 44
+  $0000000000402A83 line 162 of xxx.lpr
+  ...
+````
+
+## Caveat: Ignore output when `Halt` occurred
+
+When you exit with `Halt`, ou will always have some memory leaks, that's unavoidable right now. You should ignore the "_Heap dump by heaptrc unit_" output in this case. 
+
+Same thing applies when your program crashes with an unhandled exception.
+
+## Caveat: Windows GUI output is bothersome
+
+The behavior in case of memory leaks on Windows GUI application is unfriendly. Memory leaks are displayed using a series of Windows modal message boxes, and you have to click through them, or kill the application.
+
+It's better to switch application to `CONSOLE`` for debugging, and run it from command-line, to observe HeapTrc output.
+
+Or use the advise below to redirect the output to file.
+
+## Advanced: Routing HeapTrc output to a file
+
+By default, `HeapTrc` output is dumped into standard output (on *Nix systems and on console Windows applications). However, for Windows GUI applications, the `HeapTrc` output is shown as a series of modal popup windows and can be very tedious to work with in case the output is extensive.
+
+This behavior can be changed by explicitly requesting to dump `HeapTrc` output to a file by using [SetHeapTraceOutput](https://www.freepascal.org/docs-html/rtl/heaptrc/setheaptraceoutput.html) procedure. E.g. add `SetHeapTraceOutput(URLToFilenameSafe(ApplicationConfig('heaptrc.log')));` in main project source file.
+
+Note, that as this way the `HeapTrc` would not be shown explicitly after the program exits, the developer has to remember to analyze this file manually to check if there are any memory leaks.

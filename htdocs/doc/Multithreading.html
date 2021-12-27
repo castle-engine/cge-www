@@ -1,0 +1,73 @@
+<div class="paragraph">
+<p>Right now <strong>all access to Castle Game Engine API must happen from the same thread</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Many other libraries, including Lazarus LCL, or Unity, have the same limitation, so we consider this limitation acceptable for now.</p>
+</div>
+<div class="paragraph">
+<p>Important use-case:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The usual use-case for multi-threading in games is to have perfectly smooth rendering (of loading screen, or even of the interactive game) while at the same time loading some resources to GPU. This isn&#8217;t possible now using Castle Game Engine. Things like "loading screen" must be done in discrete steps now (see e.g. <code>StateLoading</code> in <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/user_interface/zombie_fighter">examples/user_interface/zombie_fighter</a>), and it is unavoidable that the process will just have to wait for some steps to finish, so your loading screen will not have 60 FPS.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Future:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Asynchronous loading will be possible some day.</p>
+</li>
+<li>
+<p>This requires renderer capable of multi-threading, like Vulkan.</p>
+</li>
+<li>
+<p>We prefer exposing asynchronous calls instead of just "allowing to use CGE from multiple threads". So you will still be required to call all CGE from main thread, however we will expose methods like <code>TCastleScene.PrepareResourcesAsynchronously</code> that call some callback in main thread when the loading finished. This is a more limited approach, but also easier to implement (greater flexibility for the implementation, because we know that only specific things are done in the background&#8201;&#8212;&#8201;not that potentially everything is in different thread). It is also in practice better for some users&#8201;&#8212;&#8201;using threads is <em>hard</em> to do 100% correctly (without making any mistakes in data access, that result in very-rare-but-possible-and-painful-to-debug crashes).</p>
+<div class="paragraph">
+<p>Also <code>TCastleScene.LoadAsync(..., OnFinish: TNotifyEvent)</code>. As with <code>TCastleDownload</code>, it would internally use threads or not&#8201;&#8212;&#8201;this fact would be hidden from users.  This approach gives simple API, allows engine to do it internally in various ways, and doesn&#8217;t force users to deal with dangers of multi-threading (similar to Unity async loading).</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Notes about parallelism already possible/done in CGE:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Some parallelism is already happening, by rendering done in parallel (which is hidden from us by OpenGL), audio playing in parallel (which is hidden from us by OpenAL), some physics processing done in parallel (which is hidden from us by Kraft), and downloading in the background (which is hidden from us by <code>TCastleDownload</code>). This approach, while more limited, allows to keep the engine simple and efficient, without worrying in every API call "what if some other thread is doing something with my data in parallel".</p>
+</li>
+<li>
+<p>You can also of course use threads (e.g. through Pascal&#8217;s <code>TThread</code>, <code>threadvar</code> and other constructs) to do your own work, e.g. calculating something or loading files from disk to a stream. FPC standard library is thread-safe, in the sense that you can use e.g. one <code>TFileStream</code> in one thread, another <code>TFileStream</code> in another thread, without any need to synchronize (but remember they must be different <code>TFileStream</code> instances). Just make sure to synchronize (i.e. call from the main thread) the place where you pass these <code>TFileStream</code> contents to CGE.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Future challenges:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>All OpenGL(ES) commands must be done from the same thread anyway. This is a limitation of OpenGL(ES).</p>
+<div class="paragraph">
+<p>So to e.g. load textures <em>to GPU</em> while doing a smooth rendering from another thread, we would need to implement another renderer some day. E.g. Vulkan allows to use multi-threading ( <a href="https://www.khronos.org/registry/vulkan/specs/1.0/html/vkspec.html#fundamentals-threadingbehavior" class="bare">https://www.khronos.org/registry/vulkan/specs/1.0/html/vkspec.html#fundamentals-threadingbehavior</a> , <a href="https://developer.nvidia.com/sites/default/files/akamai/gameworks/blog/munich/mschott_vulkan_multi_threading.pdf" class="bare">https://developer.nvidia.com/sites/default/files/akamai/gameworks/blog/munich/mschott_vulkan_multi_threading.pdf</a> , <a href="https://www.reddit.com/r/vulkan/comments/52aodq/multithreading_in_vulkan_where_should_i_start/" class="bare">https://www.reddit.com/r/vulkan/comments/52aodq/multithreading_in_vulkan_where_should_i_start/</a> ). Although the burden of protecting multi-thread access in Vulkan lies in the hands of user, so it&#8217;s not something trivial to take advantage of anyway, but at least it becomes possible.</p>
+</div>
+</li>
+<li>
+<p>Right now, some engine code uses global caches (for texture/audio data, for X3D prototypes, and much more). If we decide to make some of them thread-safe, they will have to be reworked (so, more complicated code and possibly a little slower) or be separate per thread (so, less caching -&gt; less gains).</p>
+</li>
+<li>
+<p>The CGE will probably never be thread-safe in the sense that "you can access <em>anything</em> from multiple threads simultaneously". This would require a lot of safeguards and code complications, more than we can realistically maintain. Again, software larger than CGE (like LCL or Unity) also didn&#8217;t dare to do this.</p>
+<div class="paragraph">
+<p>Maybe we can make (but even this is far future) some clear separation, e.g. being able to use classes like <code>TCastleScene</code>, <code>TDrawableImage</code> from separate threads, but only if you use different instances of them.</p>
+</div>
+<div class="paragraph">
+<p>Although I&#8217;m leaning more toward only having specific operations asynchronous, like <code>PrepareResourcesAsynchronously</code>, thus "hiding" threads in simple (but more limited, but also easier to implement) API. Thus, it is possible that access to CGE will remain limited to "only a single thread" forever, but we will expose APIs to do asynchronous loading of specific stuff like images or scenes.</p>
+</div>
+</li>
+</ul>
+</div>
