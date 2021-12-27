@@ -272,8 +272,8 @@ $castle_sitemap = array(
           'manual_cross_platform' => array('title' => 'Cross-platform (desktop, mobile, consoles...) games',
             'sub' => array(
               'manual_data_directory' => array('title' => 'Data directory'),
-              'manual_build_tool' => array('title' => 'Build Tool (wiki)', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/Build-Tool'),
-              'manual_castleenginemanifest_examples' => array('title' => 'CastleEngineManifest.xml (wiki)', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/CastleEngineManifest.xml-examples'),
+              'Build Tool' => array('title' => 'Build Tool (wiki)', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/Build-Tool'),
+              'CastleEngineManifest.xml examples' => array('title' => 'CastleEngineManifest.xml (wiki)', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/CastleEngineManifest.xml-examples'),
               'manual_android' => array('title' => 'Android (wiki)', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/Android'),
               //'manual_android_faq' => array('title' => 'Android FAQ (wiki)', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/Android-FAQ'),
               'manual_android_services' => array('title' => 'Android Services (like Google Play Games and In-App Purchases) (wiki)', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/Android-Project-Services-Integrated-with-Castle-Game-Engine'),
@@ -847,6 +847,7 @@ function echo_header_bonus ()
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter">
 
 <link type="text/css" rel="stylesheet" media="all" href="<?php echo page_requisite('castle-engine-website-base/castle-engine.css?version=' . CASTLE_ENGINE_CSS_VERSION); ?>">
+<link type="text/css" rel="stylesheet" media="all" href="<?php echo page_requisite('castle-engine-website-base/castle-asciidoctor.css?version=' . CASTLE_ENGINE_CSS_VERSION); ?>">
 
 <?php if (defined('CASTLE_ENGINE_CUSTOM_CSS')) { ?>
   <link type="text/css" rel="stylesheet" media="all" href="<?php echo page_requisite(CASTLE_ENGINE_CUSTOM_CSS); ?>">
