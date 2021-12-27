@@ -760,8 +760,11 @@ function _castle_breadcrumbs($path)
     {
       $path_item = $path[$path_item_num];
 
-      if (!isset($path_itemsub[$path_item]))
-        throw new ErrorException('No page named ' . $path_item . ' at current level of castle_sitemap');
+      if (!isset($path_itemsub[$path_item])) {
+        //throw new ErrorException('No page named ' . $path_item . ' at current level of castle_sitemap');
+        // return no breadcrumbs for pages outsite of castle_sitemap
+        return '';
+      }
 
       $path_itemtitle = $path_itemsub[$path_item]['title'];
       if (isset($path_itemsub[$path_item]['sub']))
@@ -788,7 +791,9 @@ function _castle_find_in_sitemap($path)
 
   foreach ($path as $path_item) {
     if (!isset($path_itemsub[$path_item])) {
-      throw new ErrorException('No page named ' . $path_item . ' at current level of castle_sitemap');
+      //throw new ErrorException('No page named ' . $path_item . ' at current level of castle_sitemap');
+      // behave as if the page is at top-level, for pages outsite of castle_sitemap
+      return NULL;
     }
     $result = $path_itemsub[$path_item];
 
@@ -941,38 +946,6 @@ function castle_header($a_page_title, array $parameters = array())
   echo_castle_header_suffix($path);
 }
 
-/* Helper for _detect_page_path. Returns null if not found. */
-function _detect_page_path_core($page_name, $list)
-{
-  foreach ($list as $list_pagename => $list_pageinfo) {
-    if ($list_pagename == $page_name) {
-      return array($page_name);
-    }
-    if (isset($list_pageinfo['sub'])) {
-      $result = _detect_page_path_core($page_name, $list_pageinfo['sub']);
-      if ($result !== NULL) {
-        array_unshift($result, $list_pagename);
-        return $result;
-      }
-    }
-  }
-  return NULL;
-}
-
-/* Find given page name within $castle_sitemap,
-   return a path (list of strings) from root to the page.
-   Throws error if not possible.
-   Never returns an empty list. */
-function _detect_page_path($page_name)
-{
-  global $castle_sitemap;
-  $result = _detect_page_path_core($page_name, $castle_sitemap);
-  if ($result === NULL) {
-    throw new ErrorException('Page named ' . $page_name . ' not found anywhere in the castle_sitemap');
-  }
-  return $result;
-}
-
 function echo_castle_header_suffix($path, $enable_sidebar = true)
 {
   global $castle_sidebar;
@@ -1011,8 +984,13 @@ function echo_castle_header_suffix($path, $enable_sidebar = true)
       {
         $sidebarroot_page = $path[$sidebarroot_num];
 
-        if (!isset($sidebarroot_sub[$sidebarroot_page]))
-          throw new ErrorException('No page named ' . $sidebarroot_page . ' at current level of castle_sitemap');
+        if (!isset($sidebarroot_sub[$sidebarroot_page])) {
+          // return no sidebar for pages outsite of castle_sitemap
+          $sidebarroot_page = NULL;
+          $sidebarroot_info = NULL;
+          break;
+          //throw new ErrorException('No page named ' . $sidebarroot_page . ' at current level of castle_sitemap');
+        }
 
         $sidebarroot_info = $sidebarroot_sub[$sidebarroot_page];
         $sidebarroot_sidebar =
