@@ -14,8 +14,6 @@
    - Maybe call this offline?
      Since updating wiki will require a manual "git pull ..." to get it anyway
      (and Jenkins could automate both "git pull ..." and running generation process afterwards).
-   - looks somewhat ugly, as wall of text,
-     looks better in GitHub wiki - why?
 */
 
 require_once 'castle_engine_functions.php';
@@ -48,8 +46,11 @@ if ($exec_status != 0) {
 }
 echo '</div> <!-- class="castle-document" -->';
 
+/* // This is already in footer.
+
 echo '<hr>
-<p>You can edit this page <a href="https://github.com/castle-engine/castle-engine/wiki/' . htmlspecialchars($file_name) . '">through GitHub wiki</a></p>';
+<p>You can improve this documentation by contributing to <a href="https://github.com/castle-engine/cge-www">Castle Game Engine WWW (cge-www) repository</a>.</p>';
+*/
 
 castle_footer();
 ?>

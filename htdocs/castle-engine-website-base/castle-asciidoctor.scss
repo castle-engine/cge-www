@@ -15,6 +15,10 @@
 
 .castle-document {
 
+/* All non-Coderay style commented out now,
+   we don't need it in the end.
+   This way we have clean CSS, and we don't spend time essentially countering AsciiDoctor default CSS.
+
 a:active,a:hover{outline:0}
 h1{font-size:2em;margin:.67em 0}
 b,strong{font-weight:bold}
@@ -436,6 +440,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 #footer{background:none}
 #footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
+
+*/
 
 /* Stylesheet for CodeRay to match GitHub theme | MIT License | http://foundation.zurb.com */
 pre.CodeRay{background:#f7f7f8}
