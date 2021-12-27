@@ -1,49 +1,25 @@
 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
-<ul class="sectlevel0">
-<li><a href="#_compilation_errors_trying_to_use_a_unit_which_was_compiled_with_a_different_fpu_mode">Compilation errors "Trying to use a unit which was compiled with a different FPU mode"</a></li>
-<li><a href="#_libz_errors_exception_in_thread_png_cruncher_errors">libz errors, "exception in thread png-cruncher" errors</a></li>
-<li><a href="#_clang_errors">clang errors</a></li>
-<li><a href="#_could_not_find_tools_jar_error">"Could not find tools.jar" error</a></li>
-<li><a href="#_errors_when_executing_aidl_on_64_bit_x86_64_linux">Errors when executing aidl on 64-bit (x86_64) Linux</a></li>
-<li><a href="#_error_no_toolchains_found_in_the_ndk_toolchains_folder_for_abi_with_prefix_mipsel_linux_android">Error "No toolchains found in the NDK toolchains folder for ABI with prefix: mipsel-linux-android"</a></li>
+<ul class="sectlevel1">
+<li><a href="#_compilation_errors_trying_to_use_a_unit_which_was_compiled_with_a_different_fpu_mode">1. Compilation errors "Trying to use a unit which was compiled with a different FPU mode"</a></li>
+<li><a href="#_libz_errors_exception_in_thread_png_cruncher_errors">2. libz errors, "exception in thread png-cruncher" errors</a></li>
+<li><a href="#_clang_errors">3. clang errors</a></li>
+<li><a href="#_could_not_find_tools_jar_error">4. "Could not find tools.jar" error</a></li>
+<li><a href="#_errors_when_executing_aidl_on_64_bit_x86_64_linux">5. Errors when executing aidl on 64-bit (x86_64) Linux</a></li>
+<li><a href="#_error_no_toolchains_found_in_the_ndk_toolchains_folder_for_abi_with_prefix_mipsel_linux_android">6. Error "No toolchains found in the NDK toolchains folder for ABI with prefix: mipsel-linux-android"</a></li>
 </ul>
 </div>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Some things that can go wrong with Android SDK / NDK:</p>
-</div>
-<div class="paragraph">
-<p>Table of Contents:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="#compilation-errors-trying-to-use-a-unit-which-was-compiled-with-a-different-fpu-mode">Compilation errors "Trying to use a unit which was compiled with a different FPU mode"</a></p>
-</li>
-<li>
-<p><a href="#libz-errors-exception-in-thread-png-cruncher-errors">libz errors, "exception in thread png-cruncher" errors</a></p>
-</li>
-<li>
-<p><a href="#clang-errors">clang errors</a></p>
-</li>
-<li>
-<p><a href="#could-not-find-toolsjar-error">"Could not find tools.jar" error</a></p>
-</li>
-<li>
-<p><a href="#errors-when-executing-aidl-on-64-bit-x86_64-linux">Errors when executing aidl on 64-bit (x86_64) Linux</a></p>
-</li>
-<li>
-<p><a href="#error-no-toolchains-found-in-the-ndk-toolchains-folder-for-abi-with-prefix-mipsel-linux-android">Error "No toolchains found in the NDK toolchains folder for ABI with prefix: mipsel-linux-android"</a></p>
-</li>
-</ul>
+<p>Some things that can go wrong with Android SDK / NDK:
+* <a href="#error-no-toolchains-found-in-the-ndk-toolchains-folder-for-abi-with-prefix-mipsel-linux-android">Error "No toolchains found in the NDK toolchains folder for ABI with prefix: mipsel-linux-android"</a></p>
 </div>
 </div>
 </div>
-<h1 id="_compilation_errors_trying_to_use_a_unit_which_was_compiled_with_a_different_fpu_mode" class="sect0">Compilation errors "Trying to use a unit which was compiled with a different FPU mode"</h1>
-<div class="openblock partintro">
-<div class="content">
+<div class="sect1">
+<h2 id="_compilation_errors_trying_to_use_a_unit_which_was_compiled_with_a_different_fpu_mode">1. Compilation errors "Trying to use a unit which was compiled with a different FPU mode"</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>This indicates you compiled FPC standard units without <code>-CfVFPV3</code>. This would result in very slow execution on Android. Solutions:</p>
 </div>
@@ -64,15 +40,17 @@
 </div>
 </div>
 </div>
-<h1 id="_libz_errors_exception_in_thread_png_cruncher_errors" class="sect0">libz errors, "exception in thread png-cruncher" errors</h1>
-<div class="openblock partintro">
-<div class="content">
-In case of errors about <code>libz.so.1</code> (resulting in later errors about <em>Exception in thread "png-cruncher&#8230;&#8203;</em>) on Linux 64-bit, see here: <a href="http://stackoverflow.com/questions/29241640/error-unable-to-run-mksdcard-sdk-tool" class="bare">http://stackoverflow.com/questions/29241640/error-unable-to-run-mksdcard-sdk-tool</a> . Install additional libraries as needed.
+<div class="sect1">
+<h2 id="_libz_errors_exception_in_thread_png_cruncher_errors">2. libz errors, "exception in thread png-cruncher" errors</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In case of errors about <code>libz.so.1</code> (resulting in later errors about <em>Exception in thread "png-cruncher&#8230;&#8203;</em>) on Linux 64-bit, see here: <a href="http://stackoverflow.com/questions/29241640/error-unable-to-run-mksdcard-sdk-tool" class="bare">http://stackoverflow.com/questions/29241640/error-unable-to-run-mksdcard-sdk-tool</a> . Install additional libraries as needed.</p>
 </div>
 </div>
-<h1 id="_clang_errors" class="sect0">clang errors</h1>
-<div class="openblock partintro">
-<div class="content">
+</div>
+<div class="sect1">
+<h2 id="_clang_errors">3. clang errors</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>The Android NDK for 32-bit Windows has a known error in version r12b, see <a href="https://github.com/android-ndk/ndk/issues/139" class="bare">https://github.com/android-ndk/ndk/issues/139</a> . The clang binaries are for 64-bit architecture. It will prevent compiling the NDK samples (not related to CGE&#8230;&#8203;). This should be fixed in next NDK release. An easy fix for now is to go to "ndk\toolchains\llvm\prebuilt\windows\bin" directory and:</p>
 </div>
@@ -94,15 +72,17 @@ In case of errors about <code>libz.so.1</code> (resulting in later errors about 
 </div>
 </div>
 </div>
-<h1 id="_could_not_find_tools_jar_error" class="sect0">"Could not find tools.jar" error</h1>
-<div class="openblock partintro">
-<div class="content">
-The error <em>Could not find tools.jar</em> usually means you did not set JAVA_HOME correctly (to point to JDK).
+<div class="sect1">
+<h2 id="_could_not_find_tools_jar_error">4. "Could not find tools.jar" error</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The error <em>Could not find tools.jar</em> usually means you did not set JAVA_HOME correctly (to point to JDK).</p>
 </div>
 </div>
-<h1 id="_errors_when_executing_aidl_on_64_bit_x86_64_linux" class="sect0">Errors when executing aidl on 64-bit (x86_64) Linux</h1>
-<div class="openblock partintro">
-<div class="content">
+</div>
+<div class="sect1">
+<h2 id="_errors_when_executing_aidl_on_64_bit_x86_64_linux">5. Errors when executing aidl on 64-bit (x86_64) Linux</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>If you get errors when executing <code>/usr/local/android/android-sdk-linux/build-tools/23.0.2/aidl</code> on 64-bit (x86_64) Linux:</p>
 </div>
@@ -119,9 +99,9 @@ The error <em>Could not find tools.jar</em> usually means you did not set JAVA_H
 </div>
 </div>
 </div>
-<h1 id="_error_no_toolchains_found_in_the_ndk_toolchains_folder_for_abi_with_prefix_mipsel_linux_android" class="sect0">Error "No toolchains found in the NDK toolchains folder for ABI with prefix: mipsel-linux-android"</h1>
-<div class="openblock partintro">
-<div class="content">
+<div class="sect1">
+<h2 id="_error_no_toolchains_found_in_the_ndk_toolchains_folder_for_abi_with_prefix_mipsel_linux_android">6. Error "No toolchains found in the NDK toolchains folder for ABI with prefix: mipsel-linux-android"</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>This error occurs since Android NDK 18. They removed MIPS CPU support (which we never used), but old Gradle versions still expect to find the relevant folders.</p>
 </div>

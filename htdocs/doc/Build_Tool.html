@@ -1,23 +1,23 @@
 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
-<ul class="sectlevel0">
-<li><a href="#_quick_installation_instructions">Quick installation instructions</a></li>
-<li><a href="#_quick_usage_instructions">Quick usage instructions</a></li>
-<li><a href="#_creating_and_using_the_manifest_file_for_your_projects">Creating and using the manifest file for your projects</a></li>
-<li><a href="#_commands_supported_by_the_castle_engine_tool">Commands supported by the castle-engine tool</a>
 <ul class="sectlevel1">
-<li><a href="#_create_manifest">1. create-manifest</a></li>
-<li><a href="#_compile">2. compile</a></li>
-<li><a href="#_package">3. package</a></li>
-<li><a href="#_install">4. install</a></li>
-<li><a href="#_run">5. run</a></li>
-<li><a href="#_package_source">6. package-source</a></li>
-<li><a href="#_clean">7. clean</a></li>
-<li><a href="#_simple_compile">8. simple-compile</a></li>
-<li><a href="#_auto_generate_textures">9. auto-generate-textures</a></li>
-<li><a href="#_auto_generate_clean">10. auto-generate-clean</a></li>
-<li><a href="#_generate_program">11. generate-program</a></li>
-<li><a href="#_editor">12. editor</a></li>
+<li><a href="#_quick_installation_instructions">1. Quick installation instructions</a></li>
+<li><a href="#_quick_usage_instructions">2. Quick usage instructions</a></li>
+<li><a href="#_creating_and_using_the_manifest_file_for_your_projects">3. Creating and using the manifest file for your projects</a></li>
+<li><a href="#_commands_supported_by_the_castle_engine_tool">4. Commands supported by the castle-engine tool</a>
+<ul class="sectlevel2">
+<li><a href="#_create_manifest">4.1. create-manifest</a></li>
+<li><a href="#_compile">4.2. compile</a></li>
+<li><a href="#_package">4.3. package</a></li>
+<li><a href="#_install">4.4. install</a></li>
+<li><a href="#_run">4.5. run</a></li>
+<li><a href="#_package_source">4.6. package-source</a></li>
+<li><a href="#_clean">4.7. clean</a></li>
+<li><a href="#_simple_compile">4.8. simple-compile</a></li>
+<li><a href="#_auto_generate_textures">4.9. auto-generate-textures</a></li>
+<li><a href="#_auto_generate_clean">4.10. auto-generate-clean</a></li>
+<li><a href="#_generate_program">4.11. generate-program</a></li>
+<li><a href="#_editor">4.12. editor</a></li>
 </ul>
 </li>
 </ul>
@@ -27,67 +27,11 @@
 <div class="paragraph">
 <p>Together with the engine we include a tool "castle-engine" to help with building and packaging your programs for various platforms (standalone, mobile, web browser&#8230;&#8203;).</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="#quick-installation-instructions">Quick installation instructions</a></p>
-</li>
-<li>
-<p><a href="#quick-usage-instructions">Quick usage instructions</a></p>
-</li>
-<li>
-<p><a href="#creating-and-using-the-manifest-file-for-your-projects">Creating and using the manifest file for your projects</a></p>
-</li>
-<li>
-<p><a href="#commands-supported-by-the-castle-engine-tool">Commands supported by the castle-engine tool</a></p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="#create-manifest">create-manifest</a></p>
-</li>
-<li>
-<p><a href="#compile">compile</a></p>
-</li>
-<li>
-<p><a href="#package">package</a></p>
-</li>
-<li>
-<p><a href="#install">install</a></p>
-</li>
-<li>
-<p><a href="#run">run</a></p>
-</li>
-<li>
-<p><a href="#package-source">package-source</a></p>
-</li>
-<li>
-<p><a href="#clean">clean</a></p>
-</li>
-<li>
-<p><a href="#simple-compile">simple-compile</a></p>
-</li>
-<li>
-<p><a href="#auto-generate-textures">auto-generate-textures</a></p>
-</li>
-<li>
-<p><a href="#auto-generate-clean">auto-generate-clean</a></p>
-</li>
-<li>
-<p><a href="#generate-program">generate-program</a></p>
-</li>
-<li>
-<p><a href="#editor">editor</a></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
 </div>
 </div>
-</div>
-<h1 id="_quick_installation_instructions" class="sect0">Quick installation instructions</h1>
-<div class="openblock partintro">
-<div class="content">
+<div class="sect1">
+<h2 id="_quick_installation_instructions">1. Quick installation instructions</h2>
+<div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -137,15 +81,14 @@
 </li>
 <li>
 <p>You may also add to <code>$PATH</code> the directory where <code>castle-engine</code> is. This is just for your comfort, to be able to execute <tt>castle-engine</tt> easily.</p>
-</li>
-</ul>
-</div>
 <div class="paragraph">
 <p>If you don&#8217;t know how to set the environment variable, search the Internet (e.g. <a href="https://www.computerhope.com/issues/ch000549.htm">these are quick instructions how to do it on various Windows versions</a>).</p>
 </div>
 <div class="paragraph">
-<p>+
-Note that if you use <a href="https://castle-engine.io/manual_editor.php">Castle Game Engine Editor</a> to compile your projects, then you don&#8217;t need to adjust any environment variables. So if this sounds hard for you, just use the visual <a href="https://castle-engine.io/manual_editor.php">Castle Game Engine Editor</a> instead of the command-line build tool.</p>
+<p>Note that if you use <a href="https://castle-engine.io/manual_editor.php">Castle Game Engine Editor</a> to compile your projects, then you don&#8217;t need to adjust any environment variables. So if this sounds hard for you, just use the visual <a href="https://castle-engine.io/manual_editor.php">Castle Game Engine Editor</a> instead of the command-line build tool.</p>
+</div>
+</li>
+</ul>
 </div>
 </li>
 <li>
@@ -158,9 +101,9 @@ Note that if you use <a href="https://castle-engine.io/manual_editor.php">Castle
 </div>
 </div>
 </div>
-<h1 id="_quick_usage_instructions" class="sect0">Quick usage instructions</h1>
-<div class="openblock partintro">
-<div class="content">
+<div class="sect1">
+<h2 id="_quick_usage_instructions">2. Quick usage instructions</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Open a terminal (command-line), and enter the directory containing <tt>CastleEngineManifest.xml</tt> file. This is the main project directory.</p>
 </div>
@@ -188,9 +131,9 @@ Note that if you use <a href="https://castle-engine.io/manual_editor.php">Castle
 </div>
 </div>
 </div>
-<h1 id="_creating_and_using_the_manifest_file_for_your_projects" class="sect0">Creating and using the manifest file for your projects</h1>
-<div class="openblock partintro">
-<div class="content">
+<div class="sect1">
+<h2 id="_creating_and_using_the_manifest_file_for_your_projects">3. Creating and using the manifest file for your projects</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Create a <tt>CastleEngineManifest.xml</tt> file in your project&#8217;s directory. See the <a href="CastleEngineManifest.xml examples">CastleEngineManifest.xml examples</a> wiki page for samples and documentation. You can create an trivial starting <tt>CastleEngineManifest.xml</tt> file by executing <tt>castle-engine create-manifest</tt>. The <strong>manifest file describes your project&#8217;s name, source code</strong>, what files to include in the package and such.</p>
 </div>
@@ -240,18 +183,17 @@ Note that if you use <a href="https://castle-engine.io/manual_editor.php">Castle
 </div>
 </div>
 </div>
-<h1 id="_commands_supported_by_the_castle_engine_tool" class="sect0">Commands supported by the castle-engine tool</h1>
 <div class="sect1">
-<h2 id="_create_manifest">1. create-manifest</h2>
+<h2 id="_commands_supported_by_the_castle_engine_tool">4. Commands supported by the castle-engine tool</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_create_manifest">4.1. create-manifest</h3>
 <div class="paragraph">
 <p>Create <a href="CastleEngineManifest.xml examples">CastleEngineManifest.xml</a> file if it does not exist yet, guessing the project name based on directory name. You can use this <tt>CastleEngineManifest.xml</tt> as a starting point.</p>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_compile">2. compile</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_compile">4.2. compile</h3>
 <div class="paragraph">
 <p>Compile the project, with the syntax options and optimizations suggested for programs using our engine.</p>
 </div>
@@ -337,10 +279,8 @@ This is not the only possible way to compile programs using our engine (for exam
 </table>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_package">3. package</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_package">4.3. package</h3>
 <div class="paragraph">
 <p>Create an installable package with your application.</p>
 </div>
@@ -443,10 +383,8 @@ This is not the only possible way to compile programs using our engine (for exam
 <p>Another (independent) way to make packaging faster is to use <code>--update-only-code</code>. <em>For now this is meaningful only for iOS.</em>  If specified, it means that the build tool can assume that <em>only the Pascal code have changed</em> (so you did not change e.g. <code>data/</code> directory, or project settings in <code>CastleEngineManifest.xml</code>). We can then recompile the code (and update the relevant file in the project, like <code>libxxx.a</code>) without changing anything else. This means that the <code>package</code> command will finish much faster. It will also be more comfortable&#8201;&#8212;&#8201;e.g. no need to close and reopen the project in Xcode, Visual Studio or whatever other software is used to handle the final project.</p>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_install">4. install</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_install">4.4. install</h3>
 <div class="paragraph">
 <p>Install the application created by previous "package" call.</p>
 </div>
@@ -477,10 +415,8 @@ This is not the only possible way to compile programs using our engine (for exam
 </ul>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_run">5. run</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_run">4.5. run</h3>
 <div class="paragraph">
 <p>Run the application.</p>
 </div>
@@ -524,10 +460,8 @@ castle-engine run</pre>
 <p>On Unix desktop platforms (like Linux, FreeBSD..), we can run your game through a "wrapper script". This is useful e.g. to set <code>LD_LIBRARY_PATH</code> before running the application. The build tool simply looks for <code>run.sh</code> or <code>&lt;application_name&gt;_run.sh</code> script in the project directory, and executes it if found (instead of executing the compiled binary directly).</p>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_package_source">6. package-source</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_package_source">4.6. package-source</h3>
 <div class="paragraph">
 <p>Package source code, which means just to package whole project directory (cleaned up first).</p>
 </div>
@@ -538,18 +472,14 @@ castle-engine run</pre>
 <p>It accepts the <code>--package-format</code> and <code>--package-name-no-version</code> options, just like the <code>package</code> command. By default we just pack to zip (that is, <code>--package-format=zip</code> is equivalent to <code>--package-format=zip</code>).</p>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_clean">7. clean</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_clean">4.7. clean</h3>
 <div class="paragraph">
 <p>Clean compilation and packaging temporary stuff. This does <em>not</em> remove final packaging files.</p>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_simple_compile">8. simple-compile</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_simple_compile">4.8. simple-compile</h3>
 <div class="paragraph">
 <p>Compile the Object Pascal file (unit/program/library) given as a parameter. This does not search for the Castle Game Engine project&#8217;s manifest in the <code>CastleEngineManifest.xml</code> file. It merely calls "fpc" with proper command-line options for units/programs/libraries using our engine.</p>
 </div>
@@ -557,10 +487,8 @@ castle-engine run</pre>
 <p>Use this instead of "compile" only if there&#8217;s some good reason you don&#8217;t want to use <code>CastleEngineManifest.xml</code> to manage your project.</p>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_auto_generate_textures">9. auto-generate-textures</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_auto_generate_textures">4.9. auto-generate-textures</h3>
 <div class="paragraph">
 <p>Create GPU-compressed versions of textures, and downscaled textures, for the textures mentioned in &lt;auto_generated_textures&gt; inside the file <code>data/material_properties.xml</code>. Such GPU-compressed and downscaled textures can then be automatically used in your application. See <a href="https://castle-engine.io/creating_data_material_properties.php" class="bare">https://castle-engine.io/creating_data_material_properties.php</a> for instructions how to use it and example <code>data/material_properties.xml</code>.</p>
 </div>
@@ -581,10 +509,8 @@ castle-engine run</pre>
 </ul>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_auto_generate_clean">10. auto-generate-clean</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_auto_generate_clean">4.10. auto-generate-clean</h3>
 <div class="paragraph">
 <p>Clear <code>auto_generated</code> subdirectories. They should contain only the output created by <code>castle-engine auto-generate-textures</code> target. In the future, it is possible that more things will be placed there (for example, modern GPUs allow mesh data compression).</p>
 </div>
@@ -595,10 +521,8 @@ castle-engine run</pre>
 <p>Run with <code>--all</code> argument to clean <em>all</em> files from the <code>auto_generated</code> subdirectories. This is useful e.g. if you want to force regenerating them all by next <code>castle-engine auto-generate-textures</code> command.</p>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_generate_program">11. generate-program</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_generate_program">4.11. generate-program</h3>
 <div class="paragraph">
 <p>Generates:</p>
 </div>
@@ -637,10 +561,8 @@ castle-engine run</pre>
 </ol>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_editor">12. editor</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_editor">4.12. editor</h3>
 <div class="paragraph">
 <p>Run the <em>Castle Game Engine Editor</em> within this project. The executed editor will include possible project-specific components.</p>
 </div>
@@ -656,6 +578,7 @@ castle-engine run</pre>
 </div>
 </li>
 </ul>
+</div>
 </div>
 </div>
 </div>

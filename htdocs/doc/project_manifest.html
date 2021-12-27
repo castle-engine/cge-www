@@ -1,24 +1,24 @@
 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
-<ul class="sectlevel0">
-<li><a href="#_simplest_example">Simplest example</a></li>
-<li><a href="#_example_of_a_larger_manifest_file_portable_to_android_and_ios_too">Example of a larger manifest file (portable to Android and iOS too)</a></li>
-<li><a href="#_specify_the_main_game_units_for_a_cross_platform_game">Specify the main game units for a cross-platform game</a></li>
-<li><a href="#_editor_components">Editor components</a></li>
-<li><a href="#_complete_documented_example">Complete documented example</a>
 <ul class="sectlevel1">
-<li><a href="#_basic_project_information">1. Basic project information</a></li>
-<li><a href="#_data_directory">2. Data directory</a></li>
-<li><a href="#_version">3. Version</a></li>
-<li><a href="#_icons">4. Icons</a></li>
-<li><a href="#_launch_images_for_now_only_for_ios">5. Launch images (for now only for iOS)</a></li>
-<li><a href="#_android_information">6. Android information</a></li>
-<li><a href="#_ios_information">7. iOS information</a></li>
-<li><a href="#_file_type_associations_android_and_ios">8. File type associations (Android and iOS)</a></li>
-<li><a href="#_dependencies">9. Dependencies</a></li>
-<li><a href="#_packaging_exclude_and_include_files">10. Packaging (exclude and include files)</a></li>
-<li><a href="#_compiler_options_and_paths">11. Compiler options and paths</a></li>
-<li><a href="#_the_end">12. The end</a></li>
+<li><a href="#_simplest_example">1. Simplest example</a></li>
+<li><a href="#_example_of_a_larger_manifest_file_portable_to_android_and_ios_too">2. Example of a larger manifest file (portable to Android and iOS too)</a></li>
+<li><a href="#_specify_the_main_game_units_for_a_cross_platform_game">3. Specify the main game units for a cross-platform game</a></li>
+<li><a href="#_editor_components">4. Editor components</a></li>
+<li><a href="#_complete_documented_example">5. Complete documented example</a>
+<ul class="sectlevel2">
+<li><a href="#_basic_project_information">5.1. Basic project information</a></li>
+<li><a href="#_data_directory">5.2. Data directory</a></li>
+<li><a href="#_version">5.3. Version</a></li>
+<li><a href="#_icons">5.4. Icons</a></li>
+<li><a href="#_launch_images_for_now_only_for_ios">5.5. Launch images (for now only for iOS)</a></li>
+<li><a href="#_android_information">5.6. Android information</a></li>
+<li><a href="#_ios_information">5.7. iOS information</a></li>
+<li><a href="#_file_type_associations_android_and_ios">5.8. File type associations (Android and iOS)</a></li>
+<li><a href="#_dependencies">5.9. Dependencies</a></li>
+<li><a href="#_packaging_exclude_and_include_files">5.10. Packaging (exclude and include files)</a></li>
+<li><a href="#_compiler_options_and_paths">5.11. Compiler options and paths</a></li>
+<li><a href="#_the_end">5.12. The end</a></li>
 </ul>
 </li>
 </ul>
@@ -31,70 +31,11 @@
 <div class="paragraph">
 <p>When you create a new project, you can generate a new manifest file by running <code>castle-engine create-manifest</code>. Or just manually create a new <code>CastleEngineManifest.xml</code> file, using the samples on this page. It&#8217;s a trivial XML file, just edit it using your favorite text editor.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="#simplest-example">Simplest example</a></p>
-</li>
-<li>
-<p><a href="#example-of-a-larger-manifest-file-portable-to-android-and-ios-too">Example of a larger manifest file (portable to Android and iOS too)</a></p>
-</li>
-<li>
-<p><a href="#specify-the-main-game-units-for-a-cross-platform-game">Specify the main game units for a cross-platform game</a></p>
-</li>
-<li>
-<p><a href="#editor-components">Editor components</a></p>
-</li>
-<li>
-<p><a href="#complete-documented-example">Complete documented example</a></p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="#basic-project-information">Basic project information</a></p>
-</li>
-<li>
-<p><a href="#data-directory">Data directory</a></p>
-</li>
-<li>
-<p><a href="#version">Version</a></p>
-</li>
-<li>
-<p><a href="#icons">Icons</a></p>
-</li>
-<li>
-<p><a href="#launch-images-for-now-only-for-ios">Launch images (for now only for iOS)</a></p>
-</li>
-<li>
-<p><a href="#android-information">Android information</a></p>
-</li>
-<li>
-<p><a href="#ios-information">iOS information</a></p>
-</li>
-<li>
-<p><a href="#file-type-associations-android-and-ios">File type associations (Android and iOS)</a></p>
-</li>
-<li>
-<p><a href="#dependencies">Dependencies</a></p>
-</li>
-<li>
-<p><a href="#packaging-exclude-and-include-files">Packaging (exclude and include files)</a></p>
-</li>
-<li>
-<p><a href="#compiler-options-and-paths">Compiler options and paths</a></p>
-</li>
-<li>
-<p><a href="#the-end">The end</a></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
 </div>
 </div>
-</div>
-<h1 id="_simplest_example" class="sect0">Simplest example</h1>
-<div class="openblock partintro">
-<div class="content">
+<div class="sect1">
+<h2 id="_simplest_example">1. Simplest example</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>This is the simplest example manifest:</p>
 </div>
@@ -169,9 +110,9 @@
 </div>
 </div>
 </div>
-<h1 id="_example_of_a_larger_manifest_file_portable_to_android_and_ios_too" class="sect0">Example of a larger manifest file (portable to Android and iOS too)</h1>
-<div class="openblock partintro">
-<div class="content">
+<div class="sect1">
+<h2 id="_example_of_a_larger_manifest_file_portable_to_android_and_ios_too">2. Example of a larger manifest file (portable to Android and iOS too)</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Sooner or later, you may want to add more information about your project. It is used when packaging your project in various formats. Note that everything has sensible default values anyway.</p>
 </div>
@@ -224,9 +165,9 @@
 </div>
 </div>
 </div>
-<h1 id="_specify_the_main_game_units_for_a_cross_platform_game" class="sect0">Specify the main game units for a cross-platform game</h1>
-<div class="openblock partintro">
-<div class="content">
+<div class="sect1">
+<h2 id="_specify_the_main_game_units_for_a_cross_platform_game">3. Specify the main game units for a cross-platform game</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>To create a cross-platform game (that easily compiles to standalone, Android, iOS and other targets) you should use the <code>game_units</code> attribute in your manifest file. Like this:</p>
 </div>
@@ -279,9 +220,9 @@
 </div>
 </div>
 </div>
-<h1 id="_editor_components" class="sect0">Editor components</h1>
-<div class="openblock partintro">
-<div class="content">
+<div class="sect1">
+<h2 id="_editor_components">4. Editor components</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Your game can define custom component classes useful with the <em>Castle Game Engine Editor</em>. These component classes heave to descend from <code>TCastleUserInterface</code> or <code>TCastleTransform</code>, and must be registered in the <code>initialization</code> section of some unit by calling <code>RegisterSerializableComponent(TMyButton, 'My Button');</code>.</p>
 </div>
@@ -293,15 +234,14 @@
 </div>
 </div>
 </div>
-<h1 id="_complete_documented_example" class="sect0">Complete documented example</h1>
-<div class="openblock partintro">
-<div class="content">
-This section documents the complete manifest file, with every possible attribute documented.
-</div>
-</div>
 <div class="sect1">
-<h2 id="_basic_project_information">1. Basic project information</h2>
+<h2 id="_complete_documented_example">5. Complete documented example</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>This section documents the complete manifest file, with every possible attribute documented.</p>
+</div>
+<div class="sect2">
+<h3 id="_basic_project_information">5.1. Basic project information</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="xml"><span class="preprocessor">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
@@ -419,10 +359,8 @@ A convention is to derive this from the website address of your project. For exa
 </ul>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_data_directory">2. Data directory</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_data_directory">5.2. Data directory</h3>
 <div class="paragraph">
 <p>By default, we expect a subdirectory named <code>data</code> inside the project directory. This is the only "special" directory name for <em>Castle Game Engine</em> projects, it will be specially packaged, and <a href="https://castle-engine.io/manual_data_directory.php">your application can read from it on any platform using URL like 'castle-data:/xxx.png'</a>.</p>
 </div>
@@ -437,10 +375,8 @@ A convention is to derive this from the website address of your project. For exa
 </div>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_version">3. Version</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_version">5.3. Version</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="xml">...
@@ -471,10 +407,8 @@ A convention is to derive this from the website address of your project. For exa
 </ul>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_icons">4. Icons</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_icons">5.4. Icons</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="xml">...
@@ -493,10 +427,8 @@ A convention is to derive this from the website address of your project. For exa
 <p>For now, Windows will use the .ico version, and Android and iOS will use any version readable by our engine (like .png or .jpg). We take care to use the best icon format in the best possible way, resizing it (with good quality algorithm) if necessary.</p>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_launch_images_for_now_only_for_ios">5. Launch images (for now only for iOS)</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_launch_images_for_now_only_for_ios">5.5. Launch images (for now only for iOS)</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="xml">...
@@ -558,10 +490,8 @@ A convention is to derive this from the website address of your project. For exa
 </ul>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_android_information">6. Android information</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_android_information">5.6. Android information</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="xml">...
@@ -604,10 +534,8 @@ A convention is to derive this from the website address of your project. For exa
 </ul>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_ios_information">7. iOS information</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_ios_information">5.7. iOS information</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="xml">...
@@ -664,10 +592,8 @@ A convention is to derive this from the website address of your project. For exa
 </ul>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_file_type_associations_android_and_ios">8. File type associations (Android and iOS)</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_file_type_associations_android_and_ios">5.8. File type associations (Android and iOS)</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="xml">...
@@ -724,10 +650,8 @@ A convention is to derive this from the website address of your project. For exa
 <p>To handle the actual URL to be opened, you have to implement <code>Window.OnDropFiles</code> event in your source code.</p>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_dependencies">9. Dependencies</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_dependencies">5.9. Dependencies</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="xml">...
@@ -758,10 +682,8 @@ A convention is to derive this from the website address of your project. For exa
 <p>Note that it&#8217;s often not necessary to specify these dependencies. The build tool automatically adds the dependencies when it detects a particular file format in your game <code>data</code>. For example, if you have a file <code>music.ogg</code>, we will automatically add the <code>OggVorbis</code> and <code>Sound</code> dependencies.</p>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_packaging_exclude_and_include_files">10. Packaging (exclude and include files)</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_packaging_exclude_and_include_files">5.10. Packaging (exclude and include files)</h3>
 <div class="paragraph">
 <p>An example usage:</p>
 </div>
@@ -875,10 +797,8 @@ A convention is to derive this from the website address of your project. For exa
 <p>The inclusion and exclusion compare <em>paths</em> of <em>files</em>. The directories themselves are not considered for inclusion or exclusion. Empty directories (with no included files) are simply not packed.</p>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_compiler_options_and_paths">11. Compiler options and paths</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_compiler_options_and_paths">5.11. Compiler options and paths</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="xml">...
@@ -942,10 +862,8 @@ A convention is to derive this from the website address of your project. For exa
 </ul>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_the_end">12. The end</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_the_end">5.12. The end</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="xml">...
@@ -954,6 +872,7 @@ A convention is to derive this from the website address of your project. For exa
 </div>
 <div class="paragraph">
 <p>End of the manifest file.</p>
+</div>
 </div>
 </div>
 </div>

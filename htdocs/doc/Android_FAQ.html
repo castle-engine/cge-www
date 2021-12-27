@@ -1,18 +1,18 @@
 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
-<ul class="sectlevel0">
-<li><a href="#_what_android_devices_are_supported">What Android devices are supported</a></li>
-<li><a href="#_loading_and_packaging_game_data">Loading and packaging game data</a></li>
-<li><a href="#_saving_user_preferences_and_savegames">Saving user preferences and savegames</a></li>
-<li><a href="#_signing_a_release_apk">Signing a release apk</a></li>
-<li><a href="#_logging">Logging</a></li>
-<li><a href="#_is_it_possible_to_test_our_games_using_android_emulator_from_sdk">Is it possible to test our games using Android emulator from SDK?</a></li>
-<li><a href="#_testing_mobile_opengl_es_rendering_without_an_android">Testing mobile (OpenGL ES) rendering without an Android</a></li>
-<li><a href="#_debugging_running_application_on_an_android_device_using_ndk_gdb">Debugging running application (on an Android device) using ndk-gdb</a></li>
-<li><a href="#_getting_useful_backtrace_of_a_crash_on_an_android_device_using_ndk_stack">Getting useful backtrace of a crash (on an Android device) using ndk-stack</a></li>
-<li><a href="#_widestring_manager">WideString manager</a></li>
-<li><a href="#_notes_about_compiling_with_hard_floats_cfvfpv3">Notes about compiling with hard floats (-CfVFPV3)</a></li>
-<li><a href="#_how_to_speedup_gradle_building">How to speedup Gradle building</a></li>
+<ul class="sectlevel1">
+<li><a href="#_what_android_devices_are_supported">1. What Android devices are supported</a></li>
+<li><a href="#_loading_and_packaging_game_data">2. Loading and packaging game data</a></li>
+<li><a href="#_saving_user_preferences_and_savegames">3. Saving user preferences and savegames</a></li>
+<li><a href="#_signing_a_release_apk">4. Signing a release apk</a></li>
+<li><a href="#_logging">5. Logging</a></li>
+<li><a href="#_is_it_possible_to_test_our_games_using_android_emulator_from_sdk">6. Is it possible to test our games using Android emulator from SDK?</a></li>
+<li><a href="#_testing_mobile_opengl_es_rendering_without_an_android">7. Testing mobile (OpenGL ES) rendering without an Android</a></li>
+<li><a href="#_debugging_running_application_on_an_android_device_using_ndk_gdb">8. Debugging running application (on an Android device) using ndk-gdb</a></li>
+<li><a href="#_getting_useful_backtrace_of_a_crash_on_an_android_device_using_ndk_stack">9. Getting useful backtrace of a crash (on an Android device) using ndk-stack</a></li>
+<li><a href="#_widestring_manager">10. WideString manager</a></li>
+<li><a href="#_notes_about_compiling_with_hard_floats_cfvfpv3">11. Notes about compiling with hard floats (-CfVFPV3)</a></li>
+<li><a href="#_how_to_speedup_gradle_building">12. How to speedup Gradle building</a></li>
 </ul>
 </div>
 <div id="preamble">
@@ -20,51 +20,11 @@
 <div class="paragraph">
 <p>Questions related to <a href="Android">Android</a> development.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="#what-android-devices-are-supported">What Android devices are supported</a></p>
-</li>
-<li>
-<p><a href="#loading-and-packaging-game-data">Loading and packaging game data</a></p>
-</li>
-<li>
-<p><a href="#saving-user-preferences-and-savegames">Saving user preferences and savegames</a></p>
-</li>
-<li>
-<p><a href="#signing-a-release-apk">Signing a release apk</a></p>
-</li>
-<li>
-<p><a href="#logging">Logging</a></p>
-</li>
-<li>
-<p><a href="#is-it-possible-to-test-our-games-using-android-emulator-from-sdk">Is it possible to test our games using Android emulator from SDK?</a></p>
-</li>
-<li>
-<p><a href="#testing-mobile-opengl-es-rendering-without-an-android">Testing mobile (OpenGL ES) rendering without an Android</a></p>
-</li>
-<li>
-<p><a href="#debugging-running-application-on-an-android-device-using-ndk-gdb">Debugging running application (on an Android device) using ndk-gdb</a></p>
-</li>
-<li>
-<p><a href="#getting-useful-backtrace-of-a-crash-on-an-android-device-using-ndk-stack">Getting useful backtrace of a crash (on an Android device) using ndk-stack</a></p>
-</li>
-<li>
-<p><a href="#widestring-manager">WideString manager</a></p>
-</li>
-<li>
-<p><a href="notes-about-compiling-with-hard-floats&.html#8212;&#8203;cfvfpv3">Notes about compiling with hard floats (-CfVFPV3)</a></p>
-</li>
-<li>
-<p><a href="#how-to-speedup-gradle-building">How to speedup Gradle building</a></p>
-</li>
-</ul>
 </div>
 </div>
-</div>
-<h1 id="_what_android_devices_are_supported" class="sect0">What Android devices are supported</h1>
-<div class="openblock partintro">
-<div class="content">
+<div class="sect1">
+<h2 id="_what_android_devices_are_supported">1. What Android devices are supported</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Any Android &gt;= 4.1 (platform android-16). Reasons:</p>
 </div>
@@ -96,9 +56,9 @@
 </div>
 </div>
 </div>
-<h1 id="_loading_and_packaging_game_data" class="sect0">Loading and packaging game data</h1>
-<div class="openblock partintro">
-<div class="content">
+<div class="sect1">
+<h2 id="_loading_and_packaging_game_data">2. Loading and packaging game data</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p><strong>Simple answer:</strong></p>
 </div>
@@ -142,9 +102,9 @@
 </div>
 </div>
 </div>
-<h1 id="_saving_user_preferences_and_savegames" class="sect0">Saving user preferences and savegames</h1>
-<div class="openblock partintro">
-<div class="content">
+<div class="sect1">
+<h2 id="_saving_user_preferences_and_savegames">3. Saving user preferences and savegames</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Simply use the global <code>UserConfig</code> (in CastleConfig unit) to load/save your settings. See <a href="https://castle-engine.io/manual_user_prefs.php" class="bare">https://castle-engine.io/manual_user_prefs.php</a> . The same mechanism works for saving preferences with standalone (desktop) applications.</p>
 </div>
@@ -153,9 +113,9 @@
 </div>
 </div>
 </div>
-<h1 id="_signing_a_release_apk" class="sect0">Signing a release apk</h1>
-<div class="openblock partintro">
-<div class="content">
+<div class="sect1">
+<h2 id="_signing_a_release_apk">4. Signing a release apk</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>To create a "release" apk (one that you can distribute, e.g. through WWW or by uploading it to Google Play) you need to create your private key, and use it to sign your packages. See Android signing documentation <a href="http://developer.android.com/tools/publishing/app-signing.html" class="bare">http://developer.android.com/tools/publishing/app-signing.html</a> for description how to create and manage your key store.</p>
 </div>
@@ -186,9 +146,9 @@ key.alias.password=&lt;my-password&gt;</pre>
 </div>
 </div>
 </div>
-<h1 id="_logging" class="sect0">Logging</h1>
-<div class="openblock partintro">
-<div class="content">
+<div class="sect1">
+<h2 id="_logging">5. Logging</h2>
+<div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
@@ -213,9 +173,9 @@ key.alias.password=&lt;my-password&gt;</pre>
 </div>
 </div>
 </div>
-<h1 id="_is_it_possible_to_test_our_games_using_android_emulator_from_sdk" class="sect0">Is it possible to test our games using Android emulator from SDK?</h1>
-<div class="openblock partintro">
-<div class="content">
+<div class="sect1">
+<h2 id="_is_it_possible_to_test_our_games_using_android_emulator_from_sdk">6. Is it possible to test our games using Android emulator from SDK?</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Yes!</p>
 </div>
@@ -259,9 +219,9 @@ You <em>can</em> run emulator of the normal Android CPU (32-bit Arm or 64-bit Aa
 </div>
 </div>
 </div>
-<h1 id="_testing_mobile_opengl_es_rendering_without_an_android" class="sect0">Testing mobile (OpenGL ES) rendering without an Android</h1>
-<div class="openblock partintro">
-<div class="content">
+<div class="sect1">
+<h2 id="_testing_mobile_opengl_es_rendering_without_an_android">7. Testing mobile (OpenGL ES) rendering without an Android</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>You can compile a standalone program, for your normal OS, using OpenGLES instead of the traditional desktop OpenGL. This way you can test how your application looks like before actually compiling it for Android. The differences between desktop (OpenGL) and mobile (OpenGLES) are usually very small, due to the <a href="OpenGL ES, Android and iOS TODOs">small number of things not yet implemented on OpenGLES</a>.</p>
 </div>
@@ -299,9 +259,9 @@ You <em>can</em> run emulator of the normal Android CPU (32-bit Arm or 64-bit Aa
 </div>
 </div>
 </div>
-<h1 id="_debugging_running_application_on_an_android_device_using_ndk_gdb" class="sect0">Debugging running application (on an Android device) using ndk-gdb</h1>
-<div class="openblock partintro">
-<div class="content">
+<div class="sect1">
+<h2 id="_debugging_running_application_on_an_android_device_using_ndk_gdb">8. Debugging running application (on an Android device) using ndk-gdb</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>If you use our <a href="Build tool">build tool</a> for compilation, the debug apk is already prepared such that you can debug it with "ndk-gdb". You must run <code>ndk-gdb</code> within the output Android project, like this:</p>
 </div>
@@ -382,9 +342,9 @@ You <em>can</em> run emulator of the normal Android CPU (32-bit Arm or 64-bit Aa
 </div>
 </div>
 </div>
-<h1 id="_getting_useful_backtrace_of_a_crash_on_an_android_device_using_ndk_stack" class="sect0">Getting useful backtrace of a crash (on an Android device) using ndk-stack</h1>
-<div class="openblock partintro">
-<div class="content">
+<div class="sect1">
+<h2 id="_getting_useful_backtrace_of_a_crash_on_an_android_device_using_ndk_stack">9. Getting useful backtrace of a crash (on an Android device) using ndk-stack</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Similar to the above instructions for <code>ndk-gdb</code>, you should compile your application in the <em>debug mode</em>, and enter the directory of resulting Android project:</p>
 </div>
@@ -429,9 +389,9 @@ You <em>can</em> run emulator of the normal Android CPU (32-bit Arm or 64-bit Aa
 </div>
 </div>
 </div>
-<h1 id="_widestring_manager" class="sect0">WideString manager</h1>
-<div class="openblock partintro">
-<div class="content">
+<div class="sect1">
+<h2 id="_widestring_manager">10. WideString manager</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>In short, don&#8217;t worry about it: WideString manager is automatically handled for you. This means that strings with international characters <em>just work</em>.</p>
 </div>
@@ -446,9 +406,9 @@ You <em>can</em> run emulator of the normal Android CPU (32-bit Arm or 64-bit Aa
 </div>
 </div>
 </div>
-<h1 id="_notes_about_compiling_with_hard_floats_cfvfpv3" class="sect0">Notes about compiling with hard floats (-CfVFPV3)</h1>
-<div class="openblock partintro">
-<div class="content">
+<div class="sect1">
+<h2 id="_notes_about_compiling_with_hard_floats_cfvfpv3">11. Notes about compiling with hard floats (-CfVFPV3)</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>The compiler flag <code>-CfVFPV3</code> is necessary to enable hardware floats, this way the engine works much faster. Our <a href="Build Tool">build tool</a> automatically uses it when compiling your project. You should also have FPC standard units compiled with this option (following our <a href="Android">Android</a> wiki page).</p>
 </div>
@@ -482,9 +442,11 @@ In theory it is possible to compile and use our engine without <code>-CfVFPV3</c
 </div>
 </div>
 </div>
-<h1 id="_how_to_speedup_gradle_building" class="sect0">How to speedup Gradle building</h1>
-<div class="openblock partintro">
-<div class="content">
-You can put <code>org.gradle.jvmargs=-Xmx2048M</code> in your <code>~/.gradle/gradle.properties</code>. (We don&#8217;t do it in every project, because it may unfortunately fail to work on some Windows machines, even when they have a lot of RAM&#8230;&#8203;)
+<div class="sect1">
+<h2 id="_how_to_speedup_gradle_building">12. How to speedup Gradle building</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can put <code>org.gradle.jvmargs=-Xmx2048M</code> in your <code>~/.gradle/gradle.properties</code>. (We don&#8217;t do it in every project, because it may unfortunately fail to work on some Windows machines, even when they have a lot of RAM&#8230;&#8203;)</p>
+</div>
 </div>
 </div>

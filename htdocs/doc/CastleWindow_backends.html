@@ -1,18 +1,24 @@
 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
-<ul class="sectlevel0">
-<li><a href="#_winapi_backend_castle_window_winapi">WinAPI backend (CASTLE_WINDOW_WINAPI)</a></li>
-<li><a href="#_gtk_backend_castle_window_gtk_2">GTK backend (CASTLE_WINDOW_GTK_2)</a></li>
-<li><a href="#_xlib_x11_backend_castle_window_xlib">Xlib (X11) backend (CASTLE_WINDOW_XLIB)</a></li>
-<li><a href="#_lazarus_lcl_backend_castle_window_lcl">Lazarus LCL backend (CASTLE_WINDOW_LCL)</a></li>
-<li><a href="#_android_backend_castle_window_android">Android backend (CASTLE_WINDOW_ANDROID)</a></li>
-<li><a href="#_library_backend_castle_window_library">Library backend (CASTLE_WINDOW_LIBRARY)</a></li>
-<li><a href="#_obsolete_dispmanx_backend_castle_window_dispmanx">Obsolete: DispmanX backend (CASTLE_WINDOW_DISPMANX)</a></li>
-<li><a href="#_template_castle_window_template">Template (CASTLE_WINDOW_TEMPLATE)</a></li>
-<li><a href="#_making_new_backend">Making new backend</a></li>
+<ul class="sectlevel1">
+<li><a href="#_introduction">1. Introduction</a></li>
+<li><a href="#_available_backends">2. Available backends</a>
+<ul class="sectlevel2">
+<li><a href="#_winapi_backend_castle_window_winapi">2.1. WinAPI backend (CASTLE_WINDOW_WINAPI)</a></li>
+<li><a href="#_gtk_backend_castle_window_gtk_2">2.2. GTK backend (CASTLE_WINDOW_GTK_2)</a></li>
+<li><a href="#_xlib_x11_backend_castle_window_xlib">2.3. Xlib (X11) backend (CASTLE_WINDOW_XLIB)</a></li>
+<li><a href="#_lazarus_lcl_backend_castle_window_lcl">2.4. Lazarus LCL backend (CASTLE_WINDOW_LCL)</a></li>
+<li><a href="#_android_backend_castle_window_android">2.5. Android backend (CASTLE_WINDOW_ANDROID)</a></li>
+<li><a href="#_library_backend_castle_window_library">2.6. Library backend (CASTLE_WINDOW_LIBRARY)</a></li>
+<li><a href="#_obsolete_dispmanx_backend_castle_window_dispmanx">2.7. Obsolete: DispmanX backend (CASTLE_WINDOW_DISPMANX)</a></li>
+<li><a href="#_template_castle_window_template">2.8. Template (CASTLE_WINDOW_TEMPLATE)</a></li>
+</ul>
+</li>
+<li><a href="#_making_new_backend">3. Making new backend</a></li>
 </ul>
 </div>
-<div id="preamble">
+<div class="sect1">
+<h2 id="_introduction">1. Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><a href="https://castle-engine.io/apidoc-unstable/html/CastleWindow.TCastleWindowBase.html">TCastleWindowBase</a> class represents a window suitable for <em>Castle Game Engine</em> rendering.</p>
@@ -26,45 +32,13 @@
 <div class="paragraph">
 <p>Right now, we always use exactly one "backend", which is determined at the compile-time when you compile your application. In the future, we want to rework the CastleWindow infrastructure to enable you to use multiple backends, each backend in a separate unit, and (optionally) allow you to select the best backend at runtime.</p>
 </div>
-<div class="paragraph">
-<p>Available backends:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="#winapi-backend-castle_window_winapi">WinAPI backend (CASTLE_WINDOW_WINAPI)</a></p>
-</li>
-<li>
-<p><a href="#gtk-backend-castle_window_gtk_2">GTK backend (CASTLE_WINDOW_GTK_2)</a></p>
-</li>
-<li>
-<p><a href="#xlib-x11-backend-castle_window_xlib">Xlib (X11) backend (CASTLE_WINDOW_XLIB)</a></p>
-</li>
-<li>
-<p><a href="#lazarus-lcl-backend-castle_window_lcl">Lazarus LCL backend (CASTLE_WINDOW_LCL)</a></p>
-</li>
-<li>
-<p><a href="#android-backend-castle_window_android">Android backend (CASTLE_WINDOW_ANDROID)</a></p>
-</li>
-<li>
-<p><a href="#library-backend-castle_window_library">Library backend (CASTLE_WINDOW_LIBRARY)</a></p>
-</li>
-<li>
-<p><a href="#obsolete-dispmanx-backend-castle_window_dispmanx">Obsolete: DispmanX backend (CASTLE_WINDOW_DISPMANX)</a></p>
-</li>
-<li>
-<p><a href="#template-castle_window_template">Template (CASTLE_WINDOW_TEMPLATE)</a></p>
-</li>
-<li>
-<p><a href="#making-new-backend">Making new backend</a></p>
-</li>
-</ul>
 </div>
 </div>
-</div>
-<h1 id="_winapi_backend_castle_window_winapi" class="sect0">WinAPI backend (CASTLE_WINDOW_WINAPI)</h1>
-<div class="openblock partintro">
-<div class="content">
+<div class="sect1">
+<h2 id="_available_backends">2. Available backends</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_winapi_backend_castle_window_winapi">2.1. WinAPI backend (CASTLE_WINDOW_WINAPI)</h3>
 <div class="paragraph">
 <p>The default backend on Windows. Looks native and supports everything.</p>
 </div>
@@ -98,10 +72,8 @@
 </ul>
 </div>
 </div>
-</div>
-<h1 id="_gtk_backend_castle_window_gtk_2" class="sect0">GTK backend (CASTLE_WINDOW_GTK_2)</h1>
-<div class="openblock partintro">
-<div class="content">
+<div class="sect2">
+<h3 id="_gtk_backend_castle_window_gtk_2">2.2. GTK backend (CASTLE_WINDOW_GTK_2)</h3>
 <div class="paragraph">
 <p>The default backend on most Unix systems, like Linux. Looks native and supports everything (except changing screen resolution, see below). Uses <em>GTK 2</em>. Initializes OpenGL(ES) context using Xlib + glX (for OpenGL) or EGL (for OpenGLES).</p>
 </div>
@@ -161,10 +133,8 @@
 </ul>
 </div>
 </div>
-</div>
-<h1 id="_xlib_x11_backend_castle_window_xlib" class="sect0">Xlib (X11) backend (CASTLE_WINDOW_XLIB)</h1>
-<div class="openblock partintro">
-<div class="content">
+<div class="sect2">
+<h3 id="_xlib_x11_backend_castle_window_xlib">2.3. Xlib (X11) backend (CASTLE_WINDOW_XLIB)</h3>
 <div class="paragraph">
 <p>A backend useful on most Unix systems, like Linux, that use X11.</p>
 </div>
@@ -201,10 +171,8 @@
 </ul>
 </div>
 </div>
-</div>
-<h1 id="_lazarus_lcl_backend_castle_window_lcl" class="sect0">Lazarus LCL backend (CASTLE_WINDOW_LCL)</h1>
-<div class="openblock partintro">
-<div class="content">
+<div class="sect2">
+<h3 id="_lazarus_lcl_backend_castle_window_lcl">2.4. Lazarus LCL backend (CASTLE_WINDOW_LCL)</h3>
 <div class="paragraph">
 <p>Backend that uses Lazarus LCL to create a window. We use Lazarus TForm (with menu, dialogs and so on) and TOpenGLControl. This wraps Lazarus form and TOpenGLControl inside a <code>TCastleWindowBase</code> instance. In turn, Lazarus LCL may use various widgetsets, like GTK, Qt, WinAPI, Cocoa and others.</p>
 </div>
@@ -266,16 +234,14 @@
 </ul>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_android_backend_castle_window_android">2.5. Android backend (CASTLE_WINDOW_ANDROID)</h3>
+<div class="paragraph">
+<p>Backend using Android NDK cooperating with <em>Castle Game Engine</em> Android activity code. Used when you compile for Android, which you should always do using our <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a>.</p>
 </div>
-<h1 id="_android_backend_castle_window_android" class="sect0">Android backend (CASTLE_WINDOW_ANDROID)</h1>
-<div class="openblock partintro">
-<div class="content">
-Backend using Android NDK cooperating with <em>Castle Game Engine</em> Android activity code. Used when you compile for Android, which you should always do using our <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a>.
 </div>
-</div>
-<h1 id="_library_backend_castle_window_library" class="sect0">Library backend (CASTLE_WINDOW_LIBRARY)</h1>
-<div class="openblock partintro">
-<div class="content">
+<div class="sect2">
+<h3 id="_library_backend_castle_window_library">2.6. Library backend (CASTLE_WINDOW_LIBRARY)</h3>
 <div class="paragraph">
 <p>Use existing OpenGL(ES) context. This is useful when the engine is used as a library, and an external code initializes OpenGL(ES) context, merely informing CGE about it. Useful for various cases, e.g. to "drive" Castle Game Engine rendering from another programming language. See <code>examples/library/</code> for an example of wrapping CGE in a library.</p>
 </div>
@@ -286,10 +252,8 @@ Backend using Android NDK cooperating with <em>Castle Game Engine</em> Android a
 <p>Supported platforms: All platforms. But note that using this backend requires additional "outside" code to manage our library. In case of <a href="iOS" class="bare">iOS</a> and <a href="Nintendo Switch" class="bare">Nintendo Switch</a>, this is automatically provided when building using our <a href="Build Tool" class="bare">Build Tool</a>.</p>
 </div>
 </div>
-</div>
-<h1 id="_obsolete_dispmanx_backend_castle_window_dispmanx" class="sect0">Obsolete: DispmanX backend (CASTLE_WINDOW_DISPMANX)</h1>
-<div class="openblock partintro">
-<div class="content">
+<div class="sect2">
+<h3 id="_obsolete_dispmanx_backend_castle_window_dispmanx">2.7. Obsolete: DispmanX backend (CASTLE_WINDOW_DISPMANX)</h3>
 <div class="paragraph">
 <p>Use the Castle Game Engine on the Raspberry Pi under Linux (tested with Raspbian) without X or Wayland.</p>
 </div>
@@ -300,10 +264,8 @@ Backend using Android NDK cooperating with <em>Castle Game Engine</em> Android a
 <p>See <a href="DispmanX backend" class="bare">DispmanX backend</a> for details.</p>
 </div>
 </div>
-</div>
-<h1 id="_template_castle_window_template" class="sect0">Template (CASTLE_WINDOW_TEMPLATE)</h1>
-<div class="openblock partintro">
-<div class="content">
+<div class="sect2">
+<h3 id="_template_castle_window_template">2.8. Template (CASTLE_WINDOW_TEMPLATE)</h3>
 <div class="paragraph">
 <p>A dummy backend that does nothing, but compiles. Can be used as a starting point when developing new CastleWindow backends.</p>
 </div>
@@ -312,9 +274,10 @@ Backend using Android NDK cooperating with <em>Castle Game Engine</em> Android a
 </div>
 </div>
 </div>
-<h1 id="_making_new_backend" class="sect0">Making new backend</h1>
-<div class="openblock partintro">
-<div class="content">
+</div>
+<div class="sect1">
+<h2 id="_making_new_backend">3. Making new backend</h2>
+<div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>

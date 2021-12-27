@@ -1,45 +1,21 @@
 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
-<ul class="sectlevel0">
-<li><a href="#_simple_render_using_tdrawableimage">Simple: Render using TDrawableImage</a></li>
-<li><a href="#_full_featured_render_using_tcastlescene">Full-featured: Render using TCastleScene</a></li>
-<li><a href="#_why_2_methods_to_render_stuff">Why 2 methods to render stuff?</a></li>
-<li><a href="#_can_these_methods_be_combined_to_render_using_tdrawableimage_within_tcastlescene">Can these methods be combined, to render using TDrawableImage within TCastleScene?</a></li>
+<ul class="sectlevel1">
+<li><a href="#_two_approaches_to_render_2d">1. Two approaches to render 2D</a>
+<ul class="sectlevel2">
+<li><a href="#_simple_render_using_tdrawableimage">1.1. Simple: Render using TDrawableImage</a></li>
+<li><a href="#_full_featured_render_using_tcastlescene">1.2. Full-featured: Render using TCastleScene</a></li>
+</ul>
+</li>
+<li><a href="#_why_there_are_2_approches_to_render_2d_stuff">2. Why there are 2 approches to render 2D stuff?</a></li>
+<li><a href="#_can_these_methods_be_combined_to_render_using_tdrawableimage_within_tcastlescene">3. Can these methods be combined, to render using TDrawableImage within TCastleScene?</a></li>
 </ul>
 </div>
-<div id="preamble">
+<div class="sect1">
+<h2 id="_two_approaches_to_render_2d">1. Two approaches to render 2D</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>There are 2 basic methods to draw 2D stuff in <em>Castle Game Engine</em>:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="#simple-render-using-tdrawableimage">Simple: Render using TDrawableImage</a></p>
-</li>
-<li>
-<p><a href="#full-featured-render-using-tcastlescene">Full-featured: Render using TCastleScene</a></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>See also:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="#why-2-methods-to-render-stuff">Why 2 methods to render stuff?</a></p>
-</li>
-<li>
-<p><a href="#can-these-methods-be-combined-to-render-using-tdrawableimage-within-tcastlescene">Can these methods be combined, to render using TDrawableImage within TCastleScene?</a></p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<h1 id="_simple_render_using_tdrawableimage" class="sect0">Simple: Render using TDrawableImage</h1>
-<div class="openblock partintro">
-<div class="content">
+<div class="sect2">
+<h3 id="_simple_render_using_tdrawableimage">1.1. Simple: Render using TDrawableImage</h3>
 <div class="paragraph">
 <p>Use <code>TDrawableImage</code> as your main way to draw. In this approach, you create <code>TDrawableImage</code> instance for each image, and then draw it in overridden <code>TCastleUserInterface.Render</code> method. This is the same approach as we use for our user-interface rendering (various <code>TCastleUserInterface</code> instances). <strong>The main advantage of this approach is simplicity: you just draw 2D images.</strong></p>
 </div>
@@ -94,10 +70,8 @@
 <p><strong>Advice when to use</strong>: This approach is very easy to start. You have relatively small API to learn. You just learn how to use <code>TDrawableImage</code>, and you draw inside your own <code>TMyControl.Render</code> however you like. <strong>If all you really want is a flexible API to draw images&#8201;&#8212;&#8201;this is it.</strong></p>
 </div>
 </div>
-</div>
-<h1 id="_full_featured_render_using_tcastlescene" class="sect0">Full-featured: Render using TCastleScene</h1>
-<div class="openblock partintro">
-<div class="content">
+<div class="sect2">
+<h3 id="_full_featured_render_using_tcastlescene">1.2. Full-featured: Render using TCastleScene</h3>
 <div class="paragraph">
 <p>Use <code>TCastleViewport</code>. Add <code>TCastleViewport</code> control to the window, and inside it draw things by creating <code>TCastleScene</code> instances.</p>
 </div>
@@ -184,9 +158,10 @@
 </div>
 </div>
 </div>
-<h1 id="_why_2_methods_to_render_stuff" class="sect0">Why 2 methods to render stuff?</h1>
-<div class="openblock partintro">
-<div class="content">
+</div>
+<div class="sect1">
+<h2 id="_why_there_are_2_approches_to_render_2d_stuff">2. Why there are 2 approches to render 2D stuff?</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Because they are both useful :)</p>
 </div>
@@ -208,9 +183,11 @@
 </div>
 </div>
 </div>
-<h1 id="_can_these_methods_be_combined_to_render_using_tdrawableimage_within_tcastlescene" class="sect0">Can these methods be combined, to render using TDrawableImage within TCastleScene?</h1>
-<div class="openblock partintro">
-<div class="content">
-I plan to enable rendering using TDrawableImage into a TCastleScene one day. Then you could render user interface into TCastleScene, rotate this TCastleScene, and have easy user-interface in 3D. This is part of <a href="https://castle-engine.io/planned_features.php" class="bare">https://castle-engine.io/planned_features.php</a> .
+<div class="sect1">
+<h2 id="_can_these_methods_be_combined_to_render_using_tdrawableimage_within_tcastlescene">3. Can these methods be combined, to render using TDrawableImage within TCastleScene?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>I plan to enable rendering using TDrawableImage into a TCastleScene one day. Then you could render user interface into TCastleScene, rotate this TCastleScene, and have easy user-interface in 3D. This is part of <a href="https://castle-engine.io/planned_features.php" class="bare">https://castle-engine.io/planned_features.php</a> .</p>
+</div>
 </div>
 </div>

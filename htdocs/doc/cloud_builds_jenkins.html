@@ -1,20 +1,20 @@
 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
-<ul class="sectlevel0">
-<li><a href="#_features_overview">Features Overview</a></li>
-<li><a href="#_using_it">Using it</a>
 <ul class="sectlevel1">
-<li><a href="#_configure_and_view_the_job_in_jenkins_web_view">1. Configure and view the job in Jenkins (web view)</a></li>
-<li><a href="#_configure_what_commands_are_executed_to_do_the_job_jenkinsfile">2. Configure what commands are executed to do the job (Jenkinsfile)</a>
+<li><a href="#_features_overview">1. Features Overview</a></li>
+<li><a href="#_using_it">2. Using it</a>
 <ul class="sectlevel2">
-<li><a href="#_specify_how_to_build_your_project">2.1. Specify how to build your project</a></li>
-<li><a href="#_choose_castle_game_engine_version_by_choosing_docker_image">2.2. Choose Castle Game Engine version (by choosing Docker image)</a></li>
-<li><a href="#_choose_fpc_and_lazarus_version">2.3. Choose FPC and Lazarus version</a></li>
-<li><a href="#_email_notifications">2.4. Email notifications</a></li>
-<li><a href="#_save_the_resulting_files_archive_artifacts">2.5. Save the resulting files (archive artifacts)</a></li>
-<li><a href="#_more_ideas_for_things_that_can_be_done">2.6. More ideas for things that can be done</a></li>
-<li><a href="#_jenkinsfile_examples">2.7. Jenkinsfile examples</a></li>
-<li><a href="#_jenkinsfile_documentation">2.8. Jenkinsfile documentation</a></li>
+<li><a href="#_configure_and_view_the_job_in_jenkins_web_view">2.1. Configure and view the job in Jenkins (web view)</a></li>
+<li><a href="#_configure_what_commands_are_executed_to_do_the_job_jenkinsfile">2.2. Configure what commands are executed to do the job (Jenkinsfile)</a>
+<ul class="sectlevel3">
+<li><a href="#_specify_how_to_build_your_project">2.2.1. Specify how to build your project</a></li>
+<li><a href="#_choose_castle_game_engine_version_by_choosing_docker_image">2.2.2. Choose Castle Game Engine version (by choosing Docker image)</a></li>
+<li><a href="#_choose_fpc_and_lazarus_version">2.2.3. Choose FPC and Lazarus version</a></li>
+<li><a href="#_email_notifications">2.2.4. Email notifications</a></li>
+<li><a href="#_save_the_resulting_files_archive_artifacts">2.2.5. Save the resulting files (archive artifacts)</a></li>
+<li><a href="#_more_ideas_for_things_that_can_be_done">2.2.6. More ideas for things that can be done</a></li>
+<li><a href="#_jenkinsfile_examples">2.2.7. Jenkinsfile examples</a></li>
+<li><a href="#_jenkinsfile_documentation">2.2.8. Jenkinsfile documentation</a></li>
 </ul>
 </li>
 </ul>
@@ -26,62 +26,11 @@
 <div class="paragraph">
 <p>We maintain an official <a href="https://jenkins.castle-engine.io/">Cloud Builds (Jenkins)</a> server.</p>
 </div>
-<div class="paragraph">
-<p>Table of Contents:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="#features-overview">Features Overview</a></p>
-</li>
-<li>
-<p><a href="#using-it">Using it</a></p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="#configure-and-view-the-job-in-jenkins-web-view">Configure and view the job in Jenkins (web view)</a></p>
-</li>
-<li>
-<p><a href="#configure-what-commands-are-executed-to-do-the-job-jenkinsfile">Configure what commands are executed to do the job (Jenkinsfile)</a></p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="#specify-how-to-build-your-project">Specify how to build your project</a></p>
-</li>
-<li>
-<p><a href="#choose-castle-game-engine-version-by-choosing-docker-image">Choose Castle Game Engine version (by choosing Docker image)</a></p>
-</li>
-<li>
-<p><a href="#choose-fpc-and-lazarus-version">Choose FPC and Lazarus version</a></p>
-</li>
-<li>
-<p><a href="#email-notifications">Email notifications</a></p>
-</li>
-<li>
-<p><a href="#save-the-resulting-files-archive-artifacts">Save the resulting files (archive artifacts)</a></p>
-</li>
-<li>
-<p><a href="#more-ideas-for-things-that-can-be-done">More ideas for things that can be done</a></p>
-</li>
-<li>
-<p><a href="#jenkinsfile-examples">Jenkinsfile examples</a></p>
-</li>
-<li>
-<p><a href="#jenkinsfile-documentation">Jenkinsfile documentation</a></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
 </div>
 </div>
-</div>
-<h1 id="_features_overview" class="sect0">Features Overview</h1>
-<div class="openblock partintro">
-<div class="content">
+<div class="sect1">
+<h2 id="_features_overview">1. Features Overview</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>On the server, you can build <em>Castle Game Engine</em> projects in an automated fashion.</p>
 </div>
@@ -127,10 +76,11 @@
 </div>
 </div>
 </div>
-<h1 id="_using_it" class="sect0">Using it</h1>
 <div class="sect1">
-<h2 id="_configure_and_view_the_job_in_jenkins_web_view">1. Configure and view the job in Jenkins (web view)</h2>
+<h2 id="_using_it">2. Using it</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_configure_and_view_the_job_in_jenkins_web_view">2.1. Configure and view the job in Jenkins (web view)</h3>
 <div class="paragraph">
 <p>Login to <a href="https://jenkins.castle-engine.io/" class="bare">https://jenkins.castle-engine.io/</a> with your username/password.</p>
 </div>
@@ -175,12 +125,10 @@ If your repository is private (not publicly accessible), you will need to input 
 <p>You can also see the logs for each build. If a build compilation failed, these logs will contain the information "why". The <em>logs are the first thing to consult</em> if you want to know what happened (and what failed) during the build.</p>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_configure_what_commands_are_executed_to_do_the_job_jenkinsfile">2. Configure what commands are executed to do the job (Jenkinsfile)</h2>
-<div class="sectionbody">
 <div class="sect2">
-<h3 id="_specify_how_to_build_your_project">2.1. Specify how to build your project</h3>
+<h3 id="_configure_what_commands_are_executed_to_do_the_job_jenkinsfile">2.2. Configure what commands are executed to do the job (Jenkinsfile)</h3>
+<div class="sect3">
+<h4 id="_specify_how_to_build_your_project">2.2.1. Specify how to build your project</h4>
 <div class="paragraph">
 <p>Place a file named <code>Jenkinsfile</code> (no extension, and case matters!) in the top-level of your repository. Inside, place this content:</p>
 </div>
@@ -236,8 +184,8 @@ If your repository is private (not publicly accessible), you will need to input 
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_choose_castle_game_engine_version_by_choosing_docker_image">2.2. Choose Castle Game Engine version (by choosing Docker image)</h3>
+<div class="sect3">
+<h4 id="_choose_castle_game_engine_version_by_choosing_docker_image">2.2.2. Choose Castle Game Engine version (by choosing Docker image)</h4>
 <div class="paragraph">
 <p>The image declaration <code>kambi/castle-engine-cloud-builds-tools:cge-stable</code> refers to our <a href="https://hub.docker.com/r/kambi/castle-engine-cloud-builds-tools/">Docker image with Castle Game Engine and various tools (FPC, Lazarus, Android SDK and NDK, &#8230;&#8203;)</a>. It defines an environment in which your build will run. You really don&#8217;t need to be concerned with the details like "what is Docker and how does it work", these are being handled by Jenkins, you only choose a Docker image from 3 possibilities:</p>
 </div>
@@ -267,8 +215,8 @@ If you use the <code>castle-engine-cloud-builds-tools:cge-unstable</code> image,
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_choose_fpc_and_lazarus_version">2.3. Choose FPC and Lazarus version</h3>
+<div class="sect3">
+<h4 id="_choose_fpc_and_lazarus_version">2.2.3. Choose FPC and Lazarus version</h4>
 <div class="paragraph">
 <p>By default, building uses the latest stable FPC version (currently 3.2.0), as advised by CGE. To switch to another FPC/Lazarus version, add a command like <code>source /usr/local/fpclazarus/bin/setup.sh 3.0.2 &amp;&amp; ...</code> or <code>source /usr/local/fpclazarus/bin/setup.sh trunk &amp;&amp; ...</code> at the beginning of the shell command. Like this:</p>
 </div>
@@ -306,8 +254,8 @@ If you use the <code>castle-engine-cloud-builds-tools:cge-unstable</code> image,
 </ul>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_email_notifications">2.4. Email notifications</h3>
+<div class="sect3">
+<h4 id="_email_notifications">2.2.4. Email notifications</h4>
 <div class="paragraph">
 <p>You can be notified via email when the build fails (e.g. compilation failed) or when it becomes stable again. To do this, add to the <code>Jenkinsfile</code> a section <code>post</code> with this content:</p>
 </div>
@@ -337,8 +285,8 @@ If you use the <code>castle-engine-cloud-builds-tools:cge-unstable</code> image,
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_save_the_resulting_files_archive_artifacts">2.5. Save the resulting files (archive artifacts)</h3>
+<div class="sect3">
+<h4 id="_save_the_resulting_files_archive_artifacts">2.2.5. Save the resulting files (archive artifacts)</h4>
 <div class="paragraph">
 <p>You usually want to save the build files (artifacts) after a successful build. This allows to download them later using Jenkins web interface. To do this, add to the <code>Jenkinsfile</code> a section <code>post</code> with this content:</p>
 </div>
@@ -362,8 +310,8 @@ If you use the <code>castle-engine-cloud-builds-tools:cge-unstable</code> image,
 <p>If you want to archive artifacts, and have email notifications (see the previous section), just combine them both in a single <code>post</code> clause. So <code>post</code> clause will contain subclauses like <code>success</code>, <code>failure</code> and so on. As you can guess, many more possibilities are possible, you can do a <em>lot</em> of things depending on whether a build fails, succeeds and so on.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_more_ideas_for_things_that_can_be_done">2.6. More ideas for things that can be done</h3>
+<div class="sect3">
+<h4 id="_more_ideas_for_things_that_can_be_done">2.2.6. More ideas for things that can be done</h4>
 <div class="paragraph">
 <p>Many, many more possibilities are possible. Jenkins is incredible, IMHO.</p>
 </div>
@@ -426,8 +374,8 @@ castle-engine --os=linux --cpu=x86_64 $BUILD_TOOL_DEFINE package</pre>
 <p>The Docker image contains a basic Debian stable installation. It&#8217;s all executed in a secure Docker container, and will not affect other builds.  After each job execution, the environment is cleared, except the files changed/added inside your project directory.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_jenkinsfile_examples">2.7. Jenkinsfile examples</h3>
+<div class="sect3">
+<h4 id="_jenkinsfile_examples">2.2.7. Jenkinsfile examples</h4>
 <div class="paragraph">
 <p>We use this approach with all the <em>Castle Game Engine</em> applications. So you can find many <code>Jenkinsfile</code> examples in our repositories. See e.g.</p>
 </div>
@@ -442,8 +390,8 @@ castle-engine --os=linux --cpu=x86_64 $BUILD_TOOL_DEFINE package</pre>
 </ul>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_jenkinsfile_documentation">2.8. Jenkinsfile documentation</h3>
+<div class="sect3">
+<h4 id="_jenkinsfile_documentation">2.2.8. Jenkinsfile documentation</h4>
 <div class="paragraph">
 <p>For more information about <code>Jenkinsfile</code>, and Jenkins with Pipeline plugin (which is what is happening here), see</p>
 </div>
@@ -459,6 +407,7 @@ castle-engine --os=linux --cpu=x86_64 $BUILD_TOOL_DEFINE package</pre>
 <p><a href="https://jenkins.io/doc/pipeline/steps/">All possible "steps" (think: "commands you can use") in the Jenkinsfile</a>.</p>
 </li>
 </ul>
+</div>
 </div>
 </div>
 </div>
