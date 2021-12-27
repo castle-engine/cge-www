@@ -1,19 +1,13 @@
 <?php
-/* Just experimenting embedding GitHub wiki contents inside our static webpage template.
+/*Render documentation from AsciiDoctor (in doc/ subdirectory)
+  as a native part of CGE website.
 
-   Preparation:
-   - Just get cge-www with submodules:
-     git submodule update --remote --rebase
-   - Test:
-     http://127.0.0.1/~michalis/castle-engine/doc.php?page=Castle_Game_Engine_for_Unity_developers
-     http://127.0.0.1/~michalis/castle-engine/doc.php?page=Cloud_Builds_(Jenkins)
-     http://127.0.0.1/~michalis/castle-engine/doc.php?page=Build_Tool
-     http://127.0.0.1/~michalis/castle-engine/doc.php?page=CastleEngineManifest.xml_examples
+  "Doc" stands for "Castle Game Engine Documents using AsciiDoctor".
+  "Doc" may be shortcut for "document" or "AsciiDoctor" :)
 
-   TODO:
-   - Maybe call this offline?
-     Since updating wiki will require a manual "git pull ..." to get it anyway
-     (and Jenkins could automate both "git pull ..." and running generation process afterwards).
+  During development, we assume you have asciidoctor and coderay installed,
+  we will regenerate HTMLs automatically when previewing.
+  On production, we assume HTMLs are already there (use "cd doc/ && make" to make them).
 */
 
 require_once 'castle_engine_functions.php';
