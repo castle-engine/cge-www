@@ -209,6 +209,20 @@ function is_suffix($suffix, $str)
   return (substr($str, strlen($str) - strlen($suffix)) == $suffix);
 }
 
+function is_prefix($prefix, $str)
+{
+  return (substr($str, 0, strlen($prefix)) == $prefix);
+}
+
+function remove_prefix($prefix, $str)
+{
+  if (is_prefix($prefix, $str)) {
+    return substr($str, strlen($prefix));
+  } else {
+    return $str;
+  }
+}
+
 /* Returns URL of desired page.
    Add to $page_name (string) the URL (prefix), extension if needed (suffix),
    and $hash_link (suffix after #).
@@ -225,12 +239,25 @@ function page_url($page_name, $hash_link = '')
   $result = $page_name;
 
   if (!kambi_url_absolute($result)) {
-    /* Do not add extension if one already is there,
-       or it's a directory name like 'wp/'
-    */
-    if (kambi_url_has_extension($result) || is_suffix('/', $result)) {
+    if (kambi_url_has_extension($result) || is_suffix('/', $result))
+    {
+      /* Do not add extension if one already is there,
+         or it's a directory name like 'wp/' */
       $add_extension = '';
-    } else {
+    } else
+    if (!kambi_url_has_extension($result) && is_prefix('wiki/', $result))
+    {
+      /* In case of $page_name = 'wiki/xxx', not only don't add extension
+         (mod_rewrite will turn it into doc.php?xxx=yyy anyway),
+         but also remove the wiki/ prefix.
+
+         The prefix only acts to distinguish this from regular links to PHP files,
+         and it happens to match actual subdirectory name,
+         so Emacs "find file at point" finds the file easily. */
+      $add_extension = '';
+      $result = remove_prefix('wiki/', $result);
+    } else
+    {
       $add_extension = '.php';
     }
 

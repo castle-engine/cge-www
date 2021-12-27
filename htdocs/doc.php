@@ -22,7 +22,7 @@ require_once 'castle_engine_functions.php';
 function _detect_page_path_core($page_name, $list)
 {
   foreach ($list as $list_pagename => $list_pageinfo) {
-    if ($list_pagename == $page_name) {
+    if ($list_pagename == 'wiki/' . $page_name) {
       return array($page_name);
     }
     if (isset($list_pageinfo['sub'])) {
@@ -70,6 +70,10 @@ castle_header($title, array(
   'path' => _detect_page_path($title)
 ));
 
+/* We treat space just like _ in filename,
+   because links from GitHub wiki worked like that too,
+   e.g. linking to "Build Tool" was making link to "Build-Tool"
+   (in CGE, we use underscores). */
 $file_name = str_replace(' ', '-',
              str_replace('_', '-',
              $title));

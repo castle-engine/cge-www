@@ -249,7 +249,7 @@ $castle_sitemap = array(
       'creating_data_intro' => array('title' => 'Creating Game Data'),
       'reference' => array('title' => 'API Reference', 'url' => reference_link()),
       'modern_pascal_introduction' => array('title' => 'Modern Object Pascal Introduction', 'url' => 'https://castle-engine.io/modern_pascal_introduction.html'),
-      'Castle Game Engine for Unity developers' => array('title' => 'CGE for Unity Developers', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/Castle-Game-Engine-for-Unity-developers'),
+      'wiki/Castle_Game_Engine_for_Unity_developers' => array('title' => 'CGE for Unity Developers'),
       'compiling_from_source' => array('title' => 'Compiling from source'),
       'documentation_more' => array('title' => 'More...'),
     ),
@@ -272,7 +272,7 @@ $castle_sitemap = array(
           'manual_cross_platform' => array('title' => 'Cross-platform (desktop, mobile, consoles...) games',
             'sub' => array(
               'manual_data_directory' => array('title' => 'Data directory'),
-              'Build Tool' => array('title' => 'Build Tool (wiki)', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/Build-Tool'),
+              'wiki/Build_Tool' => array('title' => 'Build Tool'),
               'CastleEngineManifest.xml examples' => array('title' => 'CastleEngineManifest.xml (wiki)', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/CastleEngineManifest.xml-examples'),
               'manual_android' => array('title' => 'Android (wiki)', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/Android'),
               //'manual_android_faq' => array('title' => 'Android FAQ (wiki)', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/Android-FAQ'),
@@ -360,7 +360,7 @@ $castle_sitemap = array(
       ),
       'reference' => array('title' => 'API Reference', 'url' => reference_link()),
       'modern_pascal_introduction' => array('title' => 'Modern Object Pascal Introduction', 'url' => 'https://castle-engine.io/modern_pascal_introduction.html'),
-      'Castle Game Engine for Unity developers' => array('title' => 'CGE for Unity Developers', 'url' => 'https://github.com/castle-engine/castle-engine/wiki/Castle-Game-Engine-for-Unity-developers'),
+      'wiki/Castle_Game_Engine_for_Unity_developers' => array('title' => 'CGE for Unity Developers'),
       'compiling_from_source' => array('title' => 'Compiling from source'),
       'documentation_more' => array('title' => 'More...',
         'sub' => array(
