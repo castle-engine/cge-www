@@ -19,3 +19,8 @@ These pages are rendered using ../doc.php . Access them just like
 
 After doing changes, be sure to "make" (to refresh HTMLs for development,
 also it allows to see AsciiDoctor errors).
+
+Naming convention:
+- all lowercase
+- with underscore (not space, not -) inside
+- avoid special chars like ( ) , in filenames, even when actually allowed
