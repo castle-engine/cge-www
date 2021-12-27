@@ -9,7 +9,7 @@ Note that, except issues listed below, *everything else that works on desktops (
 
 *Contributions to fix/implement missing features below are very welcome!* We tried to give below a detailed overview of what is needed for a particular feature, to make it easier to jump in and help :)
 
-= OpenGLES renderer
+== OpenGLES renderer
 
 . (_Easy_) *Shadow volumes*. Initializing stencil buffer is not a problem on OpenGLES. We need to
  .. fix https://github.com/castle-engine/castle-engine/blob/master/src/x3d/opengl/castleshapeinternalrendershadowvolumes.pas[castleshapeinternalrendershadowvolumes.pas] to use VBOs and shaders (right now it uses old fixed-function for rendering). It should be changed to use VBOs and `simplest.vs` / `simplest.fs` shaders, I advice looking at https://github.com/castle-engine/castle-engine/blob/master/src/x3d/opengl/castlesceneinternalocclusion.pas[castlesceneinternalocclusion.pas] that does this correctly now.
@@ -28,7 +28,7 @@ This is started now, by having `Shape.shading = "WIREFRAME"` option, see https:/
  ** And then we can implement Attribute.WireframeEffect on OpenGLES correctly,
  ** and allow to set Wireframe on specific viewports (so that some viewports may view wireframe, independent of others) on OpenGLES.
 
-= Other missing features on Android / iOS
+== Other missing features on Android / iOS
 
 * On-screen keyboard on iOS is not available yet. On Android it's partially working since CGE 6.5 (we can show the keyboard, but we don't process keys yet).
 * TGLImage.GetContents is not available on OpenGLES, as it doesn't support glGetTexImage. Fixing it is a matter of implementing alternative way that draws texture to FBO and grabs using SaveScreenGL (using glReadPixels internally).
