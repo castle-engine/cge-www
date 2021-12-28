@@ -1653,3 +1653,22 @@ function gallery_link_noimage($title, $subtitle, $page_name)
 }
 
 define('META_DESCRIPTION', 'Free open-source 3D and 2D game engine. Supports a lot of 2D and 3D data formats, including glTF, X3D, VRML, Collada, Spine. Cross-platform, for desktops (Windows, Linux, macOS...), mobile (Android, iOS), console (Nintendo Switch). Many beatiful 3D features (physically based rendering, shadows, mirrors, gamma correction) available. Using modern Object Pascal.');
+
+/* Show 404 (page not found) error page.
+   Show $message (will be sanitized for HTML, should be a whole sentence -- end with dot).
+   Automatically sets HTTP response, and dies (breaks script execution).
+*/
+function castle_fail_404($message)
+{
+  http_response_code(404);
+
+  castle_header('Page not found');
+  echo '<div class="alert alert-danger message_404" role="alert"><p>' . htmlspecialchars($message) . '
+
+    <p><a href="index.php">Go to <b>Castle Game Engine</b> main page.</a>
+
+    <p><a href="talk.php">Looking for something but cannot find the answer? Ask on our forum or chat!</a>
+  </div>';
+  castle_footer();
+  die();
+}

@@ -259,6 +259,16 @@ article.post .entry-content ul.list-no-margin {
   margin-bottom: 0 !important;
 }
 
+.message_404 {
+  font-size: large;
+  text-align: center;
+}
+
+.message_404 p {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
 /* main page stuff ----------------------------------------------------------- */
 
 .centered-wrapper {

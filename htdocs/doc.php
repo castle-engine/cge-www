@@ -49,7 +49,12 @@ $page_basename = 'doc/' . $page_name;
 $adoc_file = 'doc/' . $page_name . '.adoc';
 
 /* Read title, from AsciiDoctor first line */
-$adoc_first_line = fgets(fopen($adoc_file, 'r'));
+$adoc_file_handle = @fopen($adoc_file, 'r');
+if ($adoc_file_handle === FALSE) {
+  castle_fail_404('Cannot open page: ' . $_GET['page'] . '.');
+}
+$adoc_first_line = fgets($adoc_file_handle);
+fclose($adoc_file_handle);
 if (is_prefix('# ', $adoc_first_line)) {
   $title = remove_prefix('# ', $adoc_first_line);
 } else {
