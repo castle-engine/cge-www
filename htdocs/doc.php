@@ -34,9 +34,13 @@ if ($slash_pos !== FALSE) {
   $title = substr($title, $slash_pos + 1);
 }
 
-castle_header($title, array(
-  'path' => _detect_page_path('doc/' . $title)
-));
+/* set $page_basename (disables autodetection done in kambi_bootstrap,
+   which would set it always to 'doc' from 'doc.php').
+   This makes current page properly detected by sitemap, breadcrumbs etc. */
+global $page_basename;
+$page_basename = 'doc/' . $title;
+
+castle_header($title);
 
 /* We treat space just like _ in filename,
    because links from GitHub wiki worked like that too,
