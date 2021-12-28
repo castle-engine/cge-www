@@ -1,14 +1,16 @@
 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
-<ul class="sectlevel0">
-<li><a href="#_how_it_works">How it works</a></li>
-<li><a href="#_why_and_when_does_this_make_the_rendering_faster">Why (and when) does this make the rendering faster</a></li>
-<li><a href="#_what_it_means_for_your_scenes_and_shapes">What it means for your scenes and shapes?</a></li>
-<li><a href="#_problems">Problems</a></li>
-<li><a href="#_alternative_coherent_hierarchical_culling">Alternative: Coherent Hierarchical Culling</a></li>
+<ul class="sectlevel1">
+<li><a href="#_introduction">1. Introduction</a></li>
+<li><a href="#_how_it_works">2. How it works</a></li>
+<li><a href="#_why_and_when_does_this_make_the_rendering_faster">3. Why (and when) does this make the rendering faster</a></li>
+<li><a href="#_what_it_means_for_your_scenes_and_shapes">4. What it means for your scenes and shapes?</a></li>
+<li><a href="#_problems">5. Problems</a></li>
+<li><a href="#_alternative_coherent_hierarchical_culling">6. Alternative: Coherent Hierarchical Culling</a></li>
 </ul>
 </div>
-<div id="preamble">
+<div class="sect1">
+<h2 id="_introduction">1. Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><em>Castle Game Engine</em> can utilize <strong>GPU occlusion query</strong> to avoid rendering things that are completely obscured by other things.</p>
@@ -24,9 +26,9 @@
 </div>
 </div>
 </div>
-<h1 id="_how_it_works" class="sect0">How it works</h1>
-<div class="openblock partintro">
-<div class="content">
+<div class="sect1">
+<h2 id="_how_it_works">2. How it works</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>For every shape within <code>TCastleScene</code> (where you set <code>MyScene.RenderOptions.OcclusionQuery</code> = <code>true</code>) we look at whether the shape was detected as "visible" by occlusion query in the <em>previous frame</em> (if it was not tested, e.g. because this is the 1st render, we assume it is visible).</p>
 </div>
@@ -48,9 +50,9 @@
 </div>
 </div>
 </div>
-<h1 id="_why_and_when_does_this_make_the_rendering_faster" class="sect0">Why (and when) does this make the rendering faster</h1>
-<div class="openblock partintro">
-<div class="content">
+<div class="sect1">
+<h2 id="_why_and_when_does_this_make_the_rendering_faster">3. Why (and when) does this make the rendering faster</h2>
+<div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
@@ -66,9 +68,9 @@
 </div>
 </div>
 </div>
-<h1 id="_what_it_means_for_your_scenes_and_shapes" class="sect0">What it means for your scenes and shapes?</h1>
-<div class="openblock partintro">
-<div class="content">
+<div class="sect1">
+<h2 id="_what_it_means_for_your_scenes_and_shapes">4. What it means for your scenes and shapes?</h2>
+<div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
@@ -120,9 +122,9 @@
 </div>
 </div>
 </div>
-<h1 id="_problems" class="sect0">Problems</h1>
-<div class="openblock partintro">
-<div class="content">
+<div class="sect1">
+<h2 id="_problems">5. Problems</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>The biggest problem:</p>
 </div>
@@ -177,9 +179,11 @@
 </div>
 </div>
 </div>
-<h1 id="_alternative_coherent_hierarchical_culling" class="sect0">Alternative: Coherent Hierarchical Culling</h1>
-<div class="openblock partintro">
-<div class="content">
-The page above described the currently advised approach, done by <code>MyScene.RenderOptions.OcclusionQuery</code>. We have an alternative approach implementing <em>"Coherent Hierarchical Culling"</em> activated by <code>MyScene.RenderOptions.HierarchicalOcclusionQuery</code>. But, sadly, at least for now, we cannot advise this alternative. While the <em>"Coherent Hierarchical Culling"</em>  avoids the 1-frame-lag when object is shown, but the algorithm gets slower (and quite more complicated), making it impractical to use&#8201;&#8212;&#8201;at least in the current implementation, based on our tests.
+<div class="sect1">
+<h2 id="_alternative_coherent_hierarchical_culling">6. Alternative: Coherent Hierarchical Culling</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The page above described the currently advised approach, done by <code>MyScene.RenderOptions.OcclusionQuery</code>. We have an alternative approach implementing <em>"Coherent Hierarchical Culling"</em> activated by <code>MyScene.RenderOptions.HierarchicalOcclusionQuery</code>. But, sadly, at least for now, we cannot advise this alternative. While the <em>"Coherent Hierarchical Culling"</em>  avoids the 1-frame-lag when object is shown, but the algorithm gets slower (and quite more complicated), making it impractical to use&#8201;&#8212;&#8201;at least in the current implementation, based on our tests.</p>
+</div>
 </div>
 </div>

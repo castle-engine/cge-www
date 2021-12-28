@@ -1,95 +1,37 @@
 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
-<ul class="sectlevel0">
-<li><a href="#_supported_ios_devices">Supported iOS Devices</a></li>
-<li><a href="#_overview_and_examples">Overview and Examples</a></li>
-<li><a href="#_building_the_app">Building the App</a>
 <ul class="sectlevel1">
-<li><a href="#_get_macos_and_xcode">1. Get macOS and Xcode</a></li>
-<li><a href="#_install_fpc_for_macos">2. Install FPC for macOS</a></li>
-<li><a href="#_installing_fpc_cross_compilers_for_iphone_and_iphonesimulator">3. Installing FPC cross-compilers for iPhone and iPhoneSimulator</a></li>
-<li><a href="#_testing_fpc_cross_compilers">4. Testing FPC cross-compilers</a></li>
-<li><a href="#_iphone_simulator_is_not_an_iphone_emulator">5. iPhone Simulator is not an iPhone emulator</a></li>
-<li><a href="#_using_the_build_tool">6. Using the build tool</a></li>
-<li><a href="#_archive_deploy_on_ios">7. Archive (deploy on iOS)</a></li>
-<li><a href="#_upload_to_testflight_and_appstore">8. Upload to TestFlight and AppStore</a></li>
+<li><a href="#_supported_ios_devices">1. Supported iOS Devices</a></li>
+<li><a href="#_overview_and_examples">2. Overview and Examples</a></li>
+<li><a href="#_building_the_app">3. Building the App</a>
+<ul class="sectlevel2">
+<li><a href="#_get_macos_and_xcode">3.1. Get macOS and Xcode</a></li>
+<li><a href="#_install_fpc_for_macos">3.2. Install FPC for macOS</a></li>
+<li><a href="#_installing_fpc_cross_compilers_for_iphone_and_iphonesimulator">3.3. Installing FPC cross-compilers for iPhone and iPhoneSimulator</a></li>
+<li><a href="#_testing_fpc_cross_compilers">3.4. Testing FPC cross-compilers</a></li>
+<li><a href="#_iphone_simulator_is_not_an_iphone_emulator">3.5. iPhone Simulator is not an iPhone emulator</a></li>
+<li><a href="#_using_the_build_tool">3.6. Using the build tool</a></li>
+<li><a href="#_archive_deploy_on_ios">3.7. Archive (deploy on iOS)</a></li>
+<li><a href="#_upload_to_testflight_and_appstore">3.8. Upload to TestFlight and AppStore</a></li>
 </ul>
 </li>
-<li><a href="#_debugging_the_pascal_code_without_ios">Debugging the Pascal Code without iOS</a></li>
-<li><a href="#_known_problems">Known problems</a></li>
-<li><a href="#_more_information_about_fpc_and_ios">More information about FPC and iOS</a></li>
-<li><a href="#_alternative_using_fpc_trunk_unstable">Alternative: Using FPC trunk (unstable)</a></li>
+<li><a href="#_debugging_the_pascal_code_without_ios">4. Debugging the Pascal Code without iOS</a></li>
+<li><a href="#_known_problems">5. Known problems</a></li>
+<li><a href="#_more_information_about_fpc_and_ios">6. More information about FPC and iOS</a></li>
+<li><a href="#_alternative_using_fpc_trunk_unstable">7. Alternative: Using FPC trunk (unstable)</a></li>
 </ul>
 </div>
-<div id="preamble">
+<div class="sect1">
+<h2 id="_supported_ios_devices">1. Supported iOS Devices</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Table of Contents:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="#supported-ios-devices">Supported iOS Devices</a></p>
-</li>
-<li>
-<p><a href="#overview-and-examples">Overview and Examples</a></p>
-</li>
-<li>
-<p><a href="#building-the-app">Building the App</a></p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="#get-macos-and-xcode">Get macOS and Xcode</a></p>
-</li>
-<li>
-<p><a href="#install-fpc-for-macos">Install FPC for macOS</a></p>
-</li>
-<li>
-<p><a href="#installing-fpc-cross-compilers-for-iphone-and-iphonesimulator">Installing FPC cross-compilers for iPhone and iPhoneSimulator</a></p>
-</li>
-<li>
-<p><a href="#testing-fpc-cross-compilers">Testing FPC cross-compilers</a></p>
-</li>
-<li>
-<p><a href="#iphone-simulator-is-not-an-iphone-emulator">iPhone Simulator is not an iPhone emulator</a></p>
-</li>
-<li>
-<p><a href="#using-the-build-tool">Using the build tool</a></p>
-</li>
-<li>
-<p><a href="#archive-deploy-on-ios">Archive (deploy on iOS)</a></p>
-</li>
-<li>
-<p><a href="#upload-to-testflight-and-appstore">Upload to TestFlight and AppStore</a></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><a href="#debugging-the-pascal-code-without-ios">Debugging the Pascal Code without iOS</a></p>
-</li>
-<li>
-<p><a href="#known-problems">Known problems</a></p>
-</li>
-<li>
-<p><a href="#more-information-about-fpc-and-ios">More information about FPC and iOS</a></p>
-</li>
-<li>
-<p><a href="#alternative-using-fpc-trunk-unstable">Alternative: Using FPC trunk (unstable)</a></p>
-</li>
-</ul>
+<p>The engine should work with all devices running iOS 4.2 or newer. It was successfully tested with iOS 5.1, 7, 10, 11, 13, 14. The engine runs flawlessly on iPhone Simulator as well.</p>
 </div>
 </div>
 </div>
-<h1 id="_supported_ios_devices" class="sect0">Supported iOS Devices</h1>
-<div class="openblock partintro">
-<div class="content">
-The engine should work with all devices running iOS 4.2 or newer. It was successfully tested with iOS 5.1, 7, 10, 11, 13, 14. The engine runs flawlessly on iPhone Simulator as well.
-</div>
-</div>
-<h1 id="_overview_and_examples" class="sect0">Overview and Examples</h1>
-<div class="openblock partintro">
-<div class="content">
+<div class="sect1">
+<h2 id="_overview_and_examples">2. Overview and Examples</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>There are two ways to use the engine on iOS:</p>
 </div>
@@ -114,10 +56,11 @@ The engine should work with all devices running iOS 4.2 or newer. It was success
 </div>
 </div>
 </div>
-<h1 id="_building_the_app" class="sect0">Building the App</h1>
 <div class="sect1">
-<h2 id="_get_macos_and_xcode">1. Get macOS and Xcode</h2>
+<h2 id="_building_the_app">3. Building the App</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_get_macos_and_xcode">3.1. Get macOS and Xcode</h3>
 <div class="paragraph">
 <p>You will need any Mac computer with Xcode installed (available in Mac App Store, free).</p>
 </div>
@@ -137,10 +80,8 @@ If you browse the documentation on <a href="http://wiki.freepascal.org/iPhone/iP
 <p>Install also <a href="iOS_Services#common-notes-for-services-using-cocoapods">CocoaPods</a> by <code>sudo gem install cocoapods</code> in the terminal.</p>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_install_fpc_for_macos">2. Install FPC for macOS</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_install_fpc_for_macos">3.2. Install FPC for macOS</h3>
 <div class="paragraph">
 <p>You will need to install this before installing the cross-compiler.</p>
 </div>
@@ -167,10 +108,8 @@ If you browse the documentation on <a href="http://wiki.freepascal.org/iPhone/iP
 <p>See <a href="https://castle-engine.sourceforge.io/macosx_requirements.php" class="bare">https://castle-engine.sourceforge.io/macosx_requirements.php</a> for more information about developing desktop applications for macOS using Castle Game Engine.</p>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_installing_fpc_cross_compilers_for_iphone_and_iphonesimulator">3. Installing FPC cross-compilers for iPhone and iPhoneSimulator</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_installing_fpc_cross_compilers_for_iphone_and_iphonesimulator">3.3. Installing FPC cross-compilers for iPhone and iPhoneSimulator</h3>
 <div class="paragraph">
 <p>You will need to have FPC cross-compilers able to create these OS/CPU combinations:</p>
 </div>
@@ -240,10 +179,8 @@ If you browse the documentation on <a href="http://wiki.freepascal.org/iPhone/iP
 <p>With FPC 3.2.0, the problems are gone.</p>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_testing_fpc_cross_compilers">4. Testing FPC cross-compilers</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_testing_fpc_cross_compilers">3.4. Testing FPC cross-compilers</h3>
 <div class="paragraph">
 <p>Before attempting the compilation of a full program, we advise testing that your <code>fpc</code> is installed OK and supports the necessary platforms.</p>
 </div>
@@ -327,10 +264,8 @@ fpc -Paarch64 -Tdarwin    -WP7.0                   -XR${DEVICE_SDK} test_compila
 </ul>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_iphone_simulator_is_not_an_iphone_emulator">5. iPhone Simulator is not an iPhone emulator</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_iphone_simulator_is_not_an_iphone_emulator">3.5. iPhone Simulator is not an iPhone emulator</h3>
 <div class="paragraph">
 <p>The <em>iPhone Simulator</em> is <em>not</em> an emulator of a real iPhone device, i.e. it does not emulate the processor (like ARM) inside the iPhone. Rather, it&#8217;s a modified version of the normal (desktop) macOS system, running on a normal (i386 or x86_64) CPU.</p>
 </div>
@@ -344,10 +279,8 @@ fpc -Paarch64 -Tdarwin    -WP7.0                   -XR${DEVICE_SDK} test_compila
 <p>This is in contrast to the Android emulator.</p>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_using_the_build_tool">6. Using the build tool</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_using_the_build_tool">3.6. Using the build tool</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -403,10 +336,8 @@ fpc -Paarch64 -Tdarwin    -WP7.0                   -XR${DEVICE_SDK} test_compila
 </ol>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_archive_deploy_on_ios">7. Archive (deploy on iOS)</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_archive_deploy_on_ios">3.7. Archive (deploy on iOS)</h3>
 <div class="paragraph">
 <p>You can perform further automatic packaging using the command-line CGE <a href="Build Tool" class="bare">Build Tool</a>. Call this:</p>
 </div>
@@ -470,10 +401,8 @@ fpc -Paarch64 -Tdarwin    -WP7.0                   -XR${DEVICE_SDK} test_compila
 </ol>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_upload_to_testflight_and_appstore">8. Upload to TestFlight and AppStore</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_upload_to_testflight_and_appstore">3.8. Upload to TestFlight and AppStore</h3>
 <div class="paragraph">
 <p>To upload the application to the AppStore:</p>
 </div>
@@ -492,15 +421,18 @@ fpc -Paarch64 -Tdarwin    -WP7.0                   -XR${DEVICE_SDK} test_compila
 </div>
 </div>
 </div>
-<h1 id="_debugging_the_pascal_code_without_ios" class="sect0">Debugging the Pascal Code without iOS</h1>
-<div class="openblock partintro">
-<div class="content">
-Same instructions as for <a href="https://github.com/castle-engine/castle-engine/wiki/Android-FAQ#testing-mobile-opengl-es-rendering-without-an-android">Testing mobile (OpenGL ES) rendering without an Android</a> apply here too, as the Pascal code is platform independent.
+</div>
+<div class="sect1">
+<h2 id="_debugging_the_pascal_code_without_ios">4. Debugging the Pascal Code without iOS</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Same instructions as for <a href="https://github.com/castle-engine/castle-engine/wiki/Android-FAQ#testing-mobile-opengl-es-rendering-without-an-android">Testing mobile (OpenGL ES) rendering without an Android</a> apply here too, as the Pascal code is platform independent.</p>
 </div>
 </div>
-<h1 id="_known_problems" class="sect0">Known problems</h1>
-<div class="openblock partintro">
-<div class="content">
+</div>
+<div class="sect1">
+<h2 id="_known_problems">5. Known problems</h2>
+<div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
@@ -556,9 +488,9 @@ Same instructions as for <a href="https://github.com/castle-engine/castle-engine
 </div>
 </div>
 </div>
-<h1 id="_more_information_about_fpc_and_ios" class="sect0">More information about FPC and iOS</h1>
-<div class="openblock partintro">
-<div class="content">
+<div class="sect1">
+<h2 id="_more_information_about_fpc_and_ios">6. More information about FPC and iOS</h2>
+<div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
@@ -574,9 +506,9 @@ Same instructions as for <a href="https://github.com/castle-engine/castle-engine
 </div>
 </div>
 </div>
-<h1 id="_alternative_using_fpc_trunk_unstable" class="sect0">Alternative: Using FPC trunk (unstable)</h1>
-<div class="openblock partintro">
-<div class="content">
+<div class="sect1">
+<h2 id="_alternative_using_fpc_trunk_unstable">7. Alternative: Using FPC trunk (unstable)</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Instead of using the stable FPC, you can try using the latest FPC trunk version (3.3.1 now). You need to install 4 cross-compilers, for all 4 platforms that are included in the <em>"iOS target"</em>:</p>
 </div>

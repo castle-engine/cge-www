@@ -1,19 +1,19 @@
 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
-<ul class="sectlevel0">
-<li><a href="#_intro">Intro</a></li>
-<li><a href="#_how_to_use_spine_animations_in_your_own_games">How to use Spine animations in your own games</a>
 <ul class="sectlevel1">
-<li><a href="#_overview_of_spine_and_2d_usage_in_the_engine">1. Overview of Spine and 2D usage in the engine</a></li>
+<li><a href="#_intro">1. Intro</a></li>
+<li><a href="#_how_to_use_spine_animations_in_your_own_games">2. How to use Spine animations in your own games</a>
+<ul class="sectlevel2">
+<li><a href="#_overview_of_spine_and_2d_usage_in_the_engine">2.1. Overview of Spine and 2D usage in the engine</a></li>
 </ul>
 </li>
-<li><a href="#_creating_spine_models">Creating Spine models</a></li>
-<li><a href="#_spine_features_support">Spine features support</a>
-<ul class="sectlevel1">
-<li><a href="#_skins">2. Skins</a></li>
-<li><a href="#_atlases">3. Atlases</a></li>
-<li><a href="#_other_features">4. Other features</a></li>
-<li><a href="#_missing_contributions_are_welcome">5. Missing (contributions are welcome!)</a></li>
+<li><a href="#_creating_spine_models">3. Creating Spine models</a></li>
+<li><a href="#_spine_features_support">4. Spine features support</a>
+<ul class="sectlevel2">
+<li><a href="#_skins">4.1. Skins</a></li>
+<li><a href="#_atlases">4.2. Atlases</a></li>
+<li><a href="#_other_features">4.3. Other features</a></li>
+<li><a href="#_missing_contributions_are_welcome">4.4. Missing (contributions are welcome!)</a></li>
 </ul>
 </li>
 </ul>
@@ -23,50 +23,11 @@
 <div class="paragraph">
 <p>Castle Game Engine <a href="https://castle-engine.io/" class="bare">https://castle-engine.io/</a> has an advanced support for Spine <a href="http://esotericsoftware.com/" class="bare">http://esotericsoftware.com/</a> 2D animations.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="#intro">Intro</a></p>
-</li>
-<li>
-<p><a href="#how-to-use-spine-animations-in-your-own-games">How to use Spine animations in your own games</a></p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="#overview-of-spine-and-2d-usage-in-the-engine">Overview of Spine and 2D usage in the engine</a></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><a href="#creating-spine-models">Creating Spine models</a></p>
-</li>
-<li>
-<p><a href="#spine-features-support">Spine features support</a></p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="#skins">Skins</a></p>
-</li>
-<li>
-<p><a href="#atlases">Atlases</a></p>
-</li>
-<li>
-<p><a href="#other-features">Other features</a></p>
-</li>
-<li>
-<p><a href="#missing-contributions-are-welcome">Missing (contributions are welcome!)</a></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
 </div>
 </div>
-</div>
-<h1 id="_intro" class="sect0">Intro</h1>
-<div class="openblock partintro">
-<div class="content">
+<div class="sect1">
+<h2 id="_intro">1. Intro</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Spine is a great software to design 2D animations for games, using modern techniques (bones, skins, meshes etc.). Animations done this way are lightweight: their loading and rendering is very efficient, even on mobile devices like Android or iOS. But they are also very flexible:</p>
 </div>
@@ -112,10 +73,11 @@
 </div>
 </div>
 </div>
-<h1 id="_how_to_use_spine_animations_in_your_own_games" class="sect0">How to use Spine animations in your own games</h1>
 <div class="sect1">
-<h2 id="_overview_of_spine_and_2d_usage_in_the_engine">1. Overview of Spine and 2D usage in the engine</h2>
+<h2 id="_how_to_use_spine_animations_in_your_own_games">2. How to use Spine animations in your own games</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_overview_of_spine_and_2d_usage_in_the_engine">2.1. Overview of Spine and 2D usage in the engine</h3>
 <div class="paragraph">
 <p>See our <a href="https://castle-engine.io/documentation.php">engine documentation</a> for an overview how to use the engine.</p>
 </div>
@@ -127,9 +89,10 @@
 </div>
 </div>
 </div>
-<h1 id="_creating_spine_models" class="sect0">Creating Spine models</h1>
-<div class="openblock partintro">
-<div class="content">
+</div>
+<div class="sect1">
+<h2 id="_creating_spine_models">3. Creating Spine models</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Basically, just create Spine models/animations as usual, and export them to JSON. Often it is comfortable to test your animations first in <a href="https://castle-engine.io/view3dscene.php">view3dscene</a> before trying them out in your game.</p>
 </div>
@@ -151,10 +114,11 @@
 </div>
 </div>
 </div>
-<h1 id="_spine_features_support" class="sect0">Spine features support</h1>
 <div class="sect1">
-<h2 id="_skins">2. Skins</h2>
+<h2 id="_spine_features_support">4. Spine features support</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_skins">4.1. Skins</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -172,10 +136,8 @@
 </ul>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_atlases">3. Atlases</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_atlases">4.2. Atlases</h3>
 <div class="paragraph">
 <p>We fully support all Spine texture atlas options.</p>
 </div>
@@ -194,10 +156,8 @@ To specify both skin, and atlas name, separate them by a comma, like this: <tt>m
 </ul>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_other_features">4. Other features</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_other_features">4.3. Other features</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -239,10 +199,8 @@ To specify both skin, and atlas name, separate them by a comma, like this: <tt>m
 </ul>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_missing_contributions_are_welcome">5. Missing (contributions are welcome!)</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_missing_contributions_are_welcome">4.4. Missing (contributions are welcome!)</h3>
 <div class="paragraph">
 <p>Some more exotic Spine animation features are not implemented (yet!). If you would like to see support for them <a href="https://github.com/castle-engine/castle-engine/issues">please submit an issue</a> or ask on <a href="https://sourceforge.net/p/castle-engine/discussion/">Castle Game Engine forum</a>. Or submit a pull request :). Many of the features below are a matter of adding some reading and conversion to X3DLoadInternalSpine unit.</p>
 </div>
@@ -271,6 +229,7 @@ To specify both skin, and atlas name, separate them by a comma, like this: <tt>m
 <div class="paragraph">
 <p><span class="image"><a class="image" href="http://www.youtube.com/watch?v=liNwT96HUqI"><img src="http://img.youtube.com/vi/liNwT96HUqI/0.jpg" alt="Spine 2D animations rendered using Castle Game Engine (view3dscene)"></a></span>
 <span class="image"><a class="image" href="http://www.youtube.com/watch?v=7JZhrJ4N2Pg"><img src="http://img.youtube.com/vi/7JZhrJ4N2Pg/0.jpg" alt="New Spine features in Castle Game Engine" width="including slot timeline attachments"></a></span></p>
+</div>
 </div>
 </div>
 </div>

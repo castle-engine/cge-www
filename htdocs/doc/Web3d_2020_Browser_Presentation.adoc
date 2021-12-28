@@ -9,7 +9,7 @@ Links:
 * https://castle-engine.io/view3dscene.php[view3dscene]
 * https://github.com/castle-engine/demo-models[demo models]
 
-= view3dscene
+== view3dscene
 
 * standalone
 +
@@ -21,7 +21,7 @@ show on screen
 
 * free and open source
 
-= underneath a game engine
+== underneath a game engine
 
 * editor with assets
 +
@@ -39,7 +39,7 @@ show car knight
 
 * double click shows v3dscene
 
-= features many graphic extensions
+== features many graphic extensions
 
 * shaders, standard or effects
 +
@@ -109,7 +109,7 @@ show unholy/escape about unlit
 
 * gamma correction
 
-= other features
+== other features
 
 * animations panel, already seen
 * walk fly with collisions, already seen
@@ -136,7 +136,7 @@ in editor
 +
 ./view3dscene ../demo-models/vrml_2/castle_with_lights_and_camera.wrl --screenshot 0 a.png
 
-= many ways to roll your own browser
+== many ways to roll your own browser
 
 * our example is model viewer
 * and to code using x3d as black box (compose scenes)

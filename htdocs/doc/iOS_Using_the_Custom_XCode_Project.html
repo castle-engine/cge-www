@@ -1,38 +1,42 @@
 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
-<ul class="sectlevel0">
-<li><a href="#_installing_and_testing_fpc_cross_compilers">Installing and testing FPC cross-compilers</a></li>
-<li><a href="#_compiling_and_testing_the_library">Compiling and testing the library</a></li>
-<li><a href="#_creating_your_own_ios_project_in_xcode">Creating your own iOS project in XCode</a></li>
-<li><a href="#_implementing_user_interaction">Implementing User Interaction</a></li>
-<li><a href="#_summary">Summary</a></li>
+<ul class="sectlevel1">
+<li><a href="#_when_to_use_this_approach">1. When to use this approach</a></li>
+<li><a href="#_installing_and_testing_fpc_cross_compilers">2. Installing and testing FPC cross-compilers</a></li>
+<li><a href="#_compiling_and_testing_the_library">3. Compiling and testing the library</a></li>
+<li><a href="#_creating_your_own_ios_project_in_xcode">4. Creating your own iOS project in XCode</a></li>
+<li><a href="#_implementing_user_interaction">5. Implementing User Interaction</a></li>
+<li><a href="#_summary">6. Summary</a></li>
 </ul>
 </div>
-<div id="preamble">
+<div class="sect1">
+<h2 id="_when_to_use_this_approach">1. When to use this approach</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>For most games, using the <a href="Build Tool" class="bare">Build Tool</a> to compile and package your game for iOS is best. It allows you to code your game completely in Pascal, and even <a href="iOS Services">integrate with a number of services like Apple Game Center</a>. The build tool will take care of the rest&#8201;&#8212;&#8201;generating the necessary XCode project to actually release your app for iOS.</p>
+<p><strong>Deprecated: The approach described on this page is deprected. The latest CGE has a better approach to create cross-platform games, including iOS. It is described on <a href="manual_cross_platform.php">Cross-platform apps</a> page. Generally it just works out-of-the-box with all CGE projects. It uses the <a href="Build Tool" class="bare">Build Tool</a> to compile and package your game for iOS. You can even <a href="iOS Services">integrate with a number of services like Apple Game Center</a>, and the build tool will take care of everything (generating the necessary XCode project to actually release your app for iOS).</strong></p>
 </div>
 <div class="paragraph">
-<p>However, there is another way to use the engine. You can compile the library defined in the <code>src/library</code> engine code to a static library (.a). Then you can add this library to your custom Xcode project.</p>
+<p>There is an alternative way to use the engine on iOS. You can compile the library defined in the <code>src/library</code> engine code to a static library (.a). Then you can add this library to your custom Xcode project.</p>
 </div>
 <div class="paragraph">
-<p><strong>This approach is useful if you want to use the engine as a VRML/X3D file viewer, and wrap it in a custom code and user-interface in XCode</strong>.</p>
+<p>This approach is useful if you want to use the engine as a VRML/X3D file viewer, and wrap it in a custom code and user-interface in XCode.</p>
 </div>
 <div class="paragraph">
 <p>An example application using this approach is located in <code>examples/library/ios_tester</code>.</p>
 </div>
 </div>
 </div>
-<h1 id="_installing_and_testing_fpc_cross_compilers" class="sect0">Installing and testing FPC cross-compilers</h1>
-<div class="openblock partintro">
-<div class="content">
-First, you need to install FPC with cross-compilers, just like described on the <a href="iOS" class="bare">iOS</a> page.
+<div class="sect1">
+<h2 id="_installing_and_testing_fpc_cross_compilers">2. Installing and testing FPC cross-compilers</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>First, you need to install FPC with cross-compilers, just like described on the <a href="iOS" class="bare">iOS</a> page.</p>
 </div>
 </div>
-<h1 id="_compiling_and_testing_the_library" class="sect0">Compiling and testing the library</h1>
-<div class="openblock partintro">
-<div class="content">
+</div>
+<div class="sect1">
+<h2 id="_compiling_and_testing_the_library">3. Compiling and testing the library</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Compile the engine library <code>cge_library.a</code> by:</p>
 </div>
@@ -53,9 +57,9 @@ First, you need to install FPC with cross-compilers, just like described on the 
 </div>
 </div>
 </div>
-<h1 id="_creating_your_own_ios_project_in_xcode" class="sect0">Creating your own iOS project in XCode</h1>
-<div class="openblock partintro">
-<div class="content">
+<div class="sect1">
+<h2 id="_creating_your_own_ios_project_in_xcode">4. Creating your own iOS project in XCode</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Unlike Android version of your app, the engine relies on OpenGL ES context prepared by iOS SDK in Xcode. So for this, just create a new Xcode iOS project. The easiest way to work with OpenGL ES on iOS is to use GLKViewController and GLKView.</p>
 </div>
@@ -70,15 +74,17 @@ First, you need to install FPC with cross-compilers, just like described on the 
 </div>
 </div>
 </div>
-<h1 id="_implementing_user_interaction" class="sect0">Implementing User Interaction</h1>
-<div class="openblock partintro">
-<div class="content">
-To enable user interaction to the engine, there is only one possibility at the moment: simulate mouse events. Add tap, pan and/or pinch gesture recognizers to the GLKView, and pass the events to the engine. Please refer to the example ios_tester project again. As a downside of this approach, there is no multi-touch support possible. We plan to support and process multi-touch gestures automatically in the engine in the future.
+<div class="sect1">
+<h2 id="_implementing_user_interaction">5. Implementing User Interaction</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To enable user interaction to the engine, there is only one possibility at the moment: simulate mouse events. Add tap, pan and/or pinch gesture recognizers to the GLKView, and pass the events to the engine. Please refer to the example ios_tester project again. As a downside of this approach, there is no multi-touch support possible. We plan to support and process multi-touch gestures automatically in the engine in the future.</p>
 </div>
 </div>
-<h1 id="_summary" class="sect0">Summary</h1>
-<div class="openblock partintro">
-<div class="content">
+</div>
+<div class="sect1">
+<h2 id="_summary">6. Summary</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>To describe the process when using the library interface:</p>
 </div>
