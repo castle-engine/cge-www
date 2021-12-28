@@ -1,0 +1,5 @@
+:doctype: book
+:sectnums:
+:source-highlighter: coderay
+:toc: left
+:toclevels: 4

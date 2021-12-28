@@ -1,22 +1,21 @@
-= When to use this approach
-:doctype: book
-:sectnums:
-:source-highlighter: coderay
-:toc: left
+# iOS Using the Custom XCode Project
+include::common.adoc[]
 
-For most games, using the link:pass:[Build Tool][] to compile and package your game for iOS is best. It allows you to code your game completely in Pascal, and even link:pass:[iOS Services][integrate with a number of services like Apple Game Center]. The build tool will take care of the rest -- generating the necessary XCode project to actually release your app for iOS.
+== When to use this approach
 
-However, there is another way to use the engine. You can compile the library defined in the `src/library` engine code to a static library (.a). Then you can add this library to your custom Xcode project.
+**Deprecated: The approach described on this page is deprected. The latest CGE has a better approach to create cross-platform games, including iOS. It is described on link:manual_cross_platform.php[Cross-platform apps] page. Generally it just works out-of-the-box with all CGE projects. It uses the link:pass:[Build Tool][] to compile and package your game for iOS. You can even link:pass:[iOS Services][integrate with a number of services like Apple Game Center], and the build tool will take care of everything (generating the necessary XCode project to actually release your app for iOS).**
 
-*This approach is useful if you want to use the engine as a VRML/X3D file viewer, and wrap it in a custom code and user-interface in XCode*.
+There is an alternative way to use the engine on iOS. You can compile the library defined in the `src/library` engine code to a static library (.a). Then you can add this library to your custom Xcode project.
+
+This approach is useful if you want to use the engine as a VRML/X3D file viewer, and wrap it in a custom code and user-interface in XCode.
 
 An example application using this approach is located in `examples/library/ios_tester`.
 
-= Installing and testing FPC cross-compilers
+== Installing and testing FPC cross-compilers
 
 First, you need to install FPC with cross-compilers, just like described on the link:pass:[iOS][] page.
 
-= Compiling and testing the library
+== Compiling and testing the library
 
 Compile the engine library `cge_library.a` by:
 
@@ -31,7 +30,7 @@ And now you can open an example XCode project in `castle_game_engine/examples/li
 
 _Note: you can uncomment debug or release compile flags inside `compile-iOS.sh`._
 
-= Creating your own iOS project in XCode
+== Creating your own iOS project in XCode
 
 Unlike Android version of your app, the engine relies on OpenGL ES context prepared by iOS SDK in Xcode. So for this, just create a new Xcode iOS project. The easiest way to work with OpenGL ES on iOS is to use GLKViewController and GLKView.
 
@@ -41,11 +40,11 @@ Please refer to ios_tester project in castle_game_engine/examples/library.
 
 All resources needed by your app have to be added to the Xcode project as in any other iOS app. Xcode will automatically copy them to the compiled bundle.
 
-= Implementing User Interaction
+== Implementing User Interaction
 
 To enable user interaction to the engine, there is only one possibility at the moment: simulate mouse events. Add tap, pan and/or pinch gesture recognizers to the GLKView, and pass the events to the engine. Please refer to the example ios_tester project again. As a downside of this approach, there is no multi-touch support possible. We plan to support and process multi-touch gestures automatically in the engine in the future.
 
-= Summary
+== Summary
 
 To describe the process when using the library interface:
 

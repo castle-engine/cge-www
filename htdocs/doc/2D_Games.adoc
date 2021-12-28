@@ -1,7 +1,5 @@
-:doctype: book
-:sectnums:
-:source-highlighter: coderay
-:toc: left
+# 2D Games
+include::common.adoc[]
 
 == Two approaches to render 2D
 

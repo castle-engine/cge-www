@@ -1,7 +1,5 @@
-:doctype: book
-:sectnums:
-:source-highlighter: coderay
-:toc: left
+# Docker
+include::common.adoc[]
 
 == Using Castle Game Engine inside a Docker image
 

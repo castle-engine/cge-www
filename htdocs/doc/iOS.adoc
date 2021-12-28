@@ -1,31 +1,11 @@
-:doctype: book
-:sectnums:
-:source-highlighter: coderay
-:toc: left
+# iOS
+include::common.adoc[]
 
-Table of Contents:
-
-* <<supported-ios-devices,Supported iOS Devices>>
-* <<overview-and-examples,Overview and Examples>>
-* <<building-the-app,Building the App>>
- ** <<get-macos-and-xcode,Get macOS and Xcode>>
- ** <<install-fpc-for-macos,Install FPC for macOS>>
- ** <<installing-fpc-cross-compilers-for-iphone-and-iphonesimulator,Installing FPC cross-compilers for iPhone and iPhoneSimulator>>
- ** <<testing-fpc-cross-compilers,Testing FPC cross-compilers>>
- ** <<iphone-simulator-is-not-an-iphone-emulator,iPhone Simulator is not an iPhone emulator>>
- ** <<using-the-build-tool,Using the build tool>>
- ** <<archive-deploy-on-ios,Archive (deploy on iOS)>>
- ** <<upload-to-testflight-and-appstore,Upload to TestFlight and AppStore>>
-* <<debugging-the-pascal-code-without-ios,Debugging the Pascal Code without iOS>>
-* <<known-problems,Known problems>>
-* <<more-information-about-fpc-and-ios,More information about FPC and iOS>>
-* <<alternative-using-fpc-trunk-unstable,Alternative: Using FPC trunk (unstable)>>
-
-= Supported iOS Devices
+== Supported iOS Devices
 
 The engine should work with all devices running iOS 4.2 or newer. It was successfully tested with iOS 5.1, 7, 10, 11, 13, 14. The engine runs flawlessly on iPhone Simulator as well.
 
-= Overview and Examples
+== Overview and Examples
 
 There are two ways to use the engine on iOS:
 
@@ -39,9 +19,9 @@ The library API is defined in the `src/library` directory of the engine. An exam
 +
 This approach is documented in more details on link:pass:[iOS Using the Custom Xcode Project][] page.
 
-= Building the App
+== Building the App
 
-== Get macOS and Xcode
+=== Get macOS and Xcode
 
 You will need any Mac computer with Xcode installed (available in Mac App Store, free).
 // While parts of the process can be done on any platform, but ultimately building and running requires Apple proprietary tools (Xcode and friends), which are available only on macOS.
@@ -50,7 +30,7 @@ NOTE: If you browse the documentation on http://wiki.freepascal.org/iPhone/iPod_
 
 Install also link:iOS_Services#common-notes-for-services-using-cocoapods[CocoaPods] by `sudo gem install cocoapods` in the terminal.
 
-== Install FPC for macOS
+=== Install FPC for macOS
 
 You will need to install this before installing the cross-compiler.
 
@@ -64,7 +44,7 @@ Alternative approach to the installation is to use link:pass:[fpcupdeluxe][fpcup
 
 See https://castle-engine.sourceforge.io/macosx_requirements.php for more information about developing desktop applications for macOS using Castle Game Engine.
 
-== Installing FPC cross-compilers for iPhone and iPhoneSimulator
+=== Installing FPC cross-compilers for iPhone and iPhoneSimulator
 
 You will need to have FPC cross-compilers able to create these OS/CPU combinations:
 
@@ -104,7 +84,7 @@ It's easiest to get them from the FPC:
 
 With FPC 3.2.0, the problems are gone.
 
-== Testing FPC cross-compilers
+=== Testing FPC cross-compilers
 
 Before attempting the compilation of a full program, we advise testing that your `fpc` is installed OK and supports the necessary platforms.
 
@@ -151,7 +131,7 @@ The reasons behind some of these compiler options:
 * Actually we use later `-WP7.0`, corresponding to what CGE uses now.
 * The additional parameters (the -XRxxx, and -Cfvfpv3 -Cparmv7) come from the `Getting Started - iOS.rtf` file from the FPC for iOS package.
 
-== iPhone Simulator is not an iPhone emulator
+=== iPhone Simulator is not an iPhone emulator
 
 The _iPhone Simulator_ is _not_ an emulator of a real iPhone device, i.e. it does not emulate the processor (like ARM) inside the iPhone. Rather, it's a modified version of the normal (desktop) macOS system, running on a normal (i386 or x86_64) CPU.
 
@@ -161,7 +141,7 @@ This should help you understand why we did some things above, e.g. why do we hav
 
 This is in contrast to the Android emulator.
 
-== Using the build tool
+=== Using the build tool
 
 . Make sure the link:pass:[build tool][build tool] is available on $PATH, so you can call `castle-engine` in the terminal.
 . Run in terminal:
@@ -197,7 +177,7 @@ Open the file with `.xcworkspace` extension in that directory. For now, all iOS 
 +
 image::https://castle-engine.sourceforge.io/images/thumb_size/xcode_select_team.png[Selecting a team in Xcode,link=https://castle-engine.sourceforge.io/images/original_size/xcode_select_team.png]
 
-== Archive (deploy on iOS)
+=== Archive (deploy on iOS)
 
 You can perform further automatic packaging using the command-line CGE link:pass:[Build Tool][]. Call this:
 
@@ -233,7 +213,7 @@ to unlock the keychain before building.
 
 . And now `+castle-engine package --target=iOS --package-format=ios-archive-...+` will work smoothly.
 
-== Upload to TestFlight and AppStore
+=== Upload to TestFlight and AppStore
 
 To upload the application to the AppStore:
 
@@ -241,11 +221,11 @@ To upload the application to the AppStore:
 * Package project for iOS (any `--package-format=`, including default `--package-format=ios-xcode-project`, is OK).
 * Open resulting project in `castle-engine-output/ios/` in Xcode. Switch target to _"Any device"_, press _"Archive"_. In the resulting window (once archive is done) press _"Distribute"_ selecting the option to upload to the store.
 
-= Debugging the Pascal Code without iOS
+== Debugging the Pascal Code without iOS
 
 Same instructions as for link:pass:[https://github.com/castle-engine/castle-engine/wiki/Android-FAQ#testing-mobile-opengl-es-rendering-without-an-android][Testing mobile (OpenGL ES) rendering without an Android] apply here too, as the Pascal code is platform independent.
 
-= Known problems
+== Known problems
 
 * When compiling with FPC 3.2.2, there are a lot of warnings
 +
@@ -272,14 +252,14 @@ It seems to be implemented like _"report that touch ends, or is cancelled, when 
 +
 There's no reliable solution, it seems to be just the way iOS behaves. Trying various, even crazy, things (like not calling `super` in `touchXxx` events, or `touchesCancelled`) in `OpenGLController.m` code doesn't help. Your application simply must be ready for this iOS weirdness -- the CGE `Release` event may happen too early, or too soon, in case user presses the screen quickly, or presses and holds without moving.
 
-= More information about FPC and iOS
+== More information about FPC and iOS
 
 * http://wiki.freepascal.org/iPhone/iPod_development
 * http://wiki.lazarus.freepascal.org/Portal:iOS
 * Building FPC and cross-compiling: http://www.stack.nl/~marcov/buildfaq/
 // Old: http://www.ragnemalm.se/lightweight/iphone-install/iphone-installation.html
 
-= Alternative: Using FPC trunk (unstable)
+== Alternative: Using FPC trunk (unstable)
 
 Instead of using the stable FPC, you can try using the latest FPC trunk version (3.3.1 now). You need to install 4 cross-compilers, for all 4 platforms that are included in the _"iOS target"_:
 

@@ -1,8 +1,5 @@
-= Table of Contents
-:doctype: book
-:sectnums:
-:source-highlighter: coderay
-:toc: left
+# iOS Services
+include::common.adoc[]
 
 * <<how-to-use-ios-services-in-castle-game-engine-projects,How to use iOS services in Castle Game Engine projects>>
 * <<currently-supported-services,Currently supported services:>>

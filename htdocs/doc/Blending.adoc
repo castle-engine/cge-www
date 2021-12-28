@@ -1,7 +1,5 @@
-= Blending (Rendering Partially-Transparent Objects)
-:sectnums:
-:source-highlighter: coderay
-:toc: left
+# Blending (Rendering Partially-Transparent Objects)
+include::common.adoc[]
 
 == Introduction
 

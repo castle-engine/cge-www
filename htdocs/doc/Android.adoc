@@ -1,7 +1,5 @@
-:doctype: book
-:sectnums:
-:source-highlighter: coderay
-:toc: left
+# Android
+include::common.adoc[]
 
 You can create games (and other applications) for Android using our Castle Game Engine. This page describes installation of all the necessary software.
 

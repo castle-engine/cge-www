@@ -1,7 +1,5 @@
-:doctype: book
-:sectnums:
-:source-highlighter: coderay
-:toc: left
+# Web Plugin
+include::common.adoc[]
 
 *DEPRECATED.* As the NPAPI support is removed from all the major browsers (Google Chrome, Firefox...), so this is no longer a viable technology. The support will be removed from CGE at some point in early 2021. The future for CGE in web browser lies in pas2js, see link:pass:[https://castle-engine.io/wp/2020/07/20/pas2js-with-generics-rocks-and-makes-castle-game-engine-for-webgl-possible/][this CGE news post], and we will go for it in 2021. An alternative venue may also appear if FPC will support WebAssembly (directly or by LLVM).
 

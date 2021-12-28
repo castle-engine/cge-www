@@ -1,8 +1,5 @@
-= Using FpMake / FpPkg with Castle Game Engine
-:doctype: book
-:sectnums:
-:source-highlighter: coderay
-:toc: left
+# FpMake and FpPkg
+include::common.adoc[]
 
 You can compile and install _Castle Game Engine_ units using FPC `fpmake` / `fppkg`.
 

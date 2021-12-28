@@ -1,7 +1,5 @@
-:doctype: book
-:sectnums:
-:source-highlighter: coderay
-:toc: left
+# Adding New Android Services
+include::common.adoc[]
 
 _Castle Game Engine_ defines a number of useful link:pass:[Android Services][] and link:pass:[iOS Services][] to integrate with various 3rd-party libraries, SDKs to provide additional functionality to your application.
 

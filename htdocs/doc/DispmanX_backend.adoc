@@ -1,6 +1,5 @@
-:sectnums:
-:source-highlighter: coderay
-:toc: left
+# DispmanX Backend
+include::common.adoc[]
 
 *Obsolete: unfortunately, this backend was not merged, and it is not maintained anymore. It is recommended to use regular Linux backends (like X or GTK) on Raspberry Pi instead.*
 

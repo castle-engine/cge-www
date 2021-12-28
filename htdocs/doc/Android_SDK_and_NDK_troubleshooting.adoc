@@ -1,11 +1,5 @@
-:doctype: book
-:pp: {plus}{plus}
-:sectnums:
-:source-highlighter: coderay
-:toc: left
-
-Some things that can go wrong with Android SDK / NDK:
-* <<error-no-toolchains-found-in-the-ndk-toolchains-folder-for-abi-with-prefix-mipsel-linux-android,Error "No toolchains found in the NDK toolchains folder for ABI with prefix: mipsel-linux-android">>
+# Android SDK And NDK Troubleshooting
+include::common.adoc[]
 
 ////
 No longer important, Gradle download them.

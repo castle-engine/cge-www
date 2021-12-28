@@ -1,7 +1,5 @@
-:doctype: book
-:sectnums:
-:source-highlighter: coderay
-:toc: left
+# Mobile (Android, iOS) TODOs
+include::common.adoc[]
 
 Here we list the features not (yet!) implemented in https://castle-engine.sourceforge.io/[Castle Game Engine] for OpenGLES (which is used by default on Android and iOS, although can be tested on other platforms too), but already implemented for OpenGL (used by default on desktops).
 

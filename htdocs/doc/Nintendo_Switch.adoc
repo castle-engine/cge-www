@@ -1,7 +1,5 @@
-:doctype: book
-:sectnums:
-:source-highlighter: coderay
-:toc: left
+# Nintendo Switch
+include::common.adoc[]
 
 _Castle Game Engine_ supports compiling games to the https://www.nintendo.com/switch/[Nintendo Switch] console.
 
@@ -9,14 +7,14 @@ It is a modern, successful, indie-friendly console from Nintendo. Our friend com
 
 It is a full integration, really 100% of the engine works on Nintendo Switch. From the developer point of view, you just write cross-platform Pascal code using CGE units, and then you can recompile the application using the Castle Game Engine link:pass:[build tool][] with the `--target=nintendo-switch` parameter.
 
-= Getting engine version for Nintendo Switch
+== Getting engine version for Nintendo Switch
 
 The integration code with Nintendo Switch is not public and not open-source. It cannot be, as we are covered by Nintendo NDA agreements and we cannot disclose the technological details about how Nintendo Switch works. To develop on Nintendo Switch, you have to:
 
 * Become a https://developer.nintendo.com/[Nintendo Developer] yourself, and sign the necessary NDA agreements between your company and Nintendo. You will most likely want to buy a developer version of the console, as well.
 * Contact me (Michalis Kamburelis) through the non-public Nintendo developer forum. I can then share with you the necessary code that adds Nintendo Switch integration on top of the open-source CGE core, through the Nintendo forum, so Nintendo can confirm it's legally OK with them. Of course you get this for free. The integration code cannot be open-source, but I still want to give it to everyone for free.
 
-= Technical details
+== Technical details
 
 Note that we cannot share various technical details, due to Nintendo restrictions. The full documentation describing using CGE on Nintendo Switch is part of the closed-source CGE branch, that you get for free once you confirm that you are registered Nintendo Developer.
 

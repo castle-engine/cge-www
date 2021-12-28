@@ -1,8 +1,5 @@
-= Exporting from Blender to X3D
-:doctype: book
-:sectnums:
-:source-highlighter: coderay
-:toc: left
+# Exporting from Blender to X3D
+include::common.adoc[]
 
 A collection of hints about using the Blender X3D exporter. They apply to the standard X3D exporter distributed with http://blender.org/[Blender] and to our modified exporter version available from https://castle-engine.io/creating_data_blender.php .
 

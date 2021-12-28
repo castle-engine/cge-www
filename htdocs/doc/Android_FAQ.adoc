@@ -1,8 +1,5 @@
-:doctype: book
-:sectnums:
-:source-highlighter: coderay
-:toc: left
-:toclevels: 4
+# Android FAQ
+include::common.adoc[]
 
 Questions related to link:Android[Android] development.
 

@@ -1,6 +1,5 @@
-:sectnums:
-:source-highlighter: coderay
-:toc: left
+# Upgrading to Castle Game Engine 7.0
+include::common.adoc[]
 
 This page documents some compatibility-breaking changes in _Castle Game Engine_ API version 6.5 (unstable) and 7.0 (upcoming stable release), compared to the last 6.4 release.
 

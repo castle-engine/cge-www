@@ -1,8 +1,5 @@
-:doctype: book
-:toclevels: 4
-:sectnums:
-:source-highlighter: coderay
-:toc: left
+# Coding Conventions
+include::common.adoc[]
 
 == Pascal Coding Conventions
 

@@ -1,6 +1,5 @@
-:sectnums:
-:source-highlighter: coderay
-:toc: left
+# New Features in Castle Game Engine 7.0
+include::common.adoc[]
 
 This page documents Castle Game Engine 7.0 new features (since the last 6.4 release). It's a work in progress -- as we work on making CGE 7.0 ready for release.
 

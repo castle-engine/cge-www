@@ -1,7 +1,5 @@
-:doctype: book
-:sectnums:
-:source-highlighter: coderay
-:toc: left
+# Web3D 2020 Browser Presentation
+include::common.adoc[]
 
 This is Michalis presentation plan for https://www.web3d.org/webinar-x3d-browsers
 

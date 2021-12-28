@@ -1,7 +1,5 @@
-= Android Project Services Integrated with Castle Game Engine
-:sectnums:
-:source-highlighter: coderay
-:toc: left
+# Android Services
+include::common.adoc[]
 
 http://castle-engine.sourceforge.net/images/original_size/android-components-icons.png[image:http://castle-engine.sourceforge.net/images/thumb_size/android-components-icons.png[Android Services\]]
 

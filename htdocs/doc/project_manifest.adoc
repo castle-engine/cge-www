@@ -1,7 +1,5 @@
-:doctype: book
-:sectnums:
-:source-highlighter: coderay
-:toc: left
+# CastleEngineManifest.xml - Syntax and Examples
+include::common.adoc[]
 
 The `CastleEngineManifest.xml` file is used by the link:pass:[Build Tool][Build Tool] to know how to build and package your games (or any other projects using the _Castle Game Engine_). It should be present at the top-level directory of your project.
 

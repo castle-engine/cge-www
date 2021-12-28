@@ -1,6 +1,5 @@
-:sectnums:
-:source-highlighter: coderay
-:toc: left
+# How To Make Rendering Prettier
+include::common.adoc[]
 
 This page is the opposite of the manual page https://castle-engine.io/manual_optimization.php[How to optimize your games] :)
 

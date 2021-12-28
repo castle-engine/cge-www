@@ -1,21 +1,9 @@
-:doctype: book
-:sectnums:
-:source-highlighter: coderay
-:toc: left
+# Spine - 2D Animations
+include::common.adoc[]
 
 Castle Game Engine https://castle-engine.io/ has an advanced support for Spine http://esotericsoftware.com/ 2D animations.
 
-* <<intro,Intro>>
-* <<how-to-use-spine-animations-in-your-own-games,How to use Spine animations in your own games>>
- ** <<overview-of-spine-and-2d-usage-in-the-engine,Overview of Spine and 2D usage in the engine>>
-* <<creating-spine-models,Creating Spine models>>
-* <<spine-features-support,Spine features support>>
- ** <<skins,Skins>>
- ** <<atlases,Atlases>>
- ** <<other-features,Other features>>
- ** <<missing-contributions-are-welcome,Missing (contributions are welcome!)>>
-
-= Intro
+== Intro
 
 Spine is a great software to design 2D animations for games, using modern techniques (bones, skins, meshes etc.). Animations done this way are lightweight: their loading and rendering is very efficient, even on mobile devices like Android or iOS. But they are also very flexible:
 
@@ -34,9 +22,9 @@ You can also add Spine animations using the https://castle-engine.io/manual_edit
 
 image::http://img.youtube.com/vi/AuI4zgmT-YQ/0.jpg[Dragon Spine - Castle Game Engine demo,link=http://www.youtube.com/watch?v=AuI4zgmT-YQ]
 
-= How to use Spine animations in your own games
+== How to use Spine animations in your own games
 
-== Overview of Spine and 2D usage in the engine
+=== Overview of Spine and 2D usage in the engine
 
 See our https://castle-engine.io/documentation.php[engine documentation] for an overview how to use the engine.
 
@@ -44,7 +32,7 @@ When you run our https://castle-engine.io/manual_editor.php[editor], create a _"
 
 To play a Spine animation, use `TCastleScene.PlayAnimation` method. Use `TCastleScene.Animations` to list named animations. These are called "named animations" in our engine, and you can actually use them with any 3D model, not only Spine. See https://castle-engine.io/manual_scene.php[the manual about playing animations].
 
-= Creating Spine models
+== Creating Spine models
 
 Basically, just create Spine models/animations as usual, and export them to JSON. Often it is comfortable to test your animations first in https://castle-engine.io/view3dscene.php[view3dscene] before trying them out in your game.
 
@@ -55,16 +43,16 @@ It is advised (although not required) to create an atlas when you export to JSON
 * Make sure to select "Bleed" at atlas creation options (it is necessary to avoid visible seams during rendering).
 * It is simpler to use "Atlas Per Skeleton", although we also support "Single Atlas For All Skeletons". The latter is more efficient when multiple skeletons share the images, but requires loading by a special URL like +++<tt>+++my_animation.json#atlas:my_atlas_name+++</tt>+++ (see below).
 
-= Spine features support
+== Spine features support
 
-== Skins
+=== Skins
 
 * You can choose a skin at loading, by loading a filename like +++<tt>+++my_animation.json#skin:my_skin_name+++</tt>+++ instead of +++<tt>+++my_animation.json+++</tt>+++.
 * By default we use the first (non-default) skin.
 * If you don't know the list of possible skins: you can see them in Spine, or in our https://castle-engine.io/manual_log.php[log].
 * For backward compatibility, instead of +++<tt>+++my_animation.json#skin:my_skin_name+++</tt>+++ we also support +++<tt>+++my_animation.json#my_skin_name+++</tt>+++. But the latter form is deprecated.
 
-== Atlases
+=== Atlases
 
 We fully support all Spine texture atlas options.
 
@@ -73,7 +61,7 @@ We fully support all Spine texture atlas options.
   To specify both skin, and atlas name, separate them by a comma, like this: +++<tt>+++my_animation.json#skin:my_skin_name,atlas:my_atlas_name+++</tt>+++ .
 * You can also work without the atlas (we expect images then to be inside +++<tt>+++images/+++<attachment-name>+++.png</tt>).+++</attachment-name>++++++</tt>+++
 
-== Other features
+=== Other features
 
 * Support for all Spine versions, JSONs exported by Spine 3.x and 4.x are tested.
 * Of course, complete rendering of skeleton with attachments, and complete playback of normal bone animations (hierarchy of translations, rotations, scaling). All animations are imported from Spine, and can be selected by `+TCastleSceneCore.PlayAnimation(...)+` method.
@@ -88,7 +76,7 @@ We fully support all Spine texture atlas options.
 * Our implementation of Spine converts the Spine project under the hood into an X3D node graph. This means that Spine animation is a full 3D model, and uses stuff like X3D interpolators for animation. This also means that you can use all existing X3D rendering/processing tools to extend the Spine animation (for example, you can use sensors, texture settings, screen effects, you can cast shadows!, you can use shaders etc.).
 * Note that you could also create an X3D file with your 2D world, where you insert multiple Spine animations with X3D +++<tt>+++Inline+++</tt>+++ node. This allows to combine multiple 2D and 3D models already at data level.
 
-== Missing (contributions are welcome!)
+=== Missing (contributions are welcome!)
 
 Some more exotic Spine animation features are not implemented (yet!). If you would like to see support for them https://github.com/castle-engine/castle-engine/issues[please submit an issue] or ask on https://sourceforge.net/p/castle-engine/discussion/[Castle Game Engine forum]. Or submit a pull request :). Many of the features below are a matter of adding some reading and conversion to X3DLoadInternalSpine unit.
 

@@ -1,15 +1,5 @@
-= How to "profile" (analyze time and memory usage) your Castle Game Engine applications
-:sectnums:
-:source-highlighter: coderay
-:toc: left
-
-Table of Contents:
-
-* <<intro,Intro>>
-* <<compiling,Compiling>>
-* <<analyze-speed,Analyze speed>>
-* <<analyze-memory-usage,Analyze memory usage>>
-* <<alternative-profiling-methods-without-valgrind,Alternative profiling methods, without Valgrind>>
+# How to "profile" (analyze time and memory usage) your Castle Game Engine applications
+include::common.adoc[]
 
 == Intro
 

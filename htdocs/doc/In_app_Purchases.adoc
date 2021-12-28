@@ -1,7 +1,5 @@
-:doctype: book
-:sectnums:
-:source-highlighter: coderay
-:toc: left
+# In-app Purchases
+include::common.adoc[]
 
 A step-by-step instruction how to implement _in-app purchases_ (for Android and iOS) using CGE https://castle-engine.io/apidoc-unstable/html/CastleInAppPurchases.html[CastleInAppPurchases] unit and https://castle-engine.io/apidoc-unstable/html/CastleInAppPurchases.TInAppPurchases.html[TInAppPurchases] class.
 

@@ -1,8 +1,7 @@
-= Introduction
-:doctype: book
-:sectnums:
-:source-highlighter: coderay
-:toc: left
+# Occlusion Query
+include::common.adoc[]
+
+== Introduction
 
 _Castle Game Engine_ can utilize *GPU occlusion query* to avoid rendering things that are completely obscured by other things.
 
@@ -12,7 +11,7 @@ It is really trivial to use it: just set on `TCastleScene` the https://castle-en
 
 Be sure to measure FPS (see https://castle-engine.io/manual_optimization.php ) to see how effective it is.
 
-= How it works
+== How it works
 
 For every shape within `TCastleScene` (where you set `MyScene.RenderOptions.OcclusionQuery` = `true`) we look at whether the shape was detected as "visible" by occlusion query in the _previous frame_ (if it was not tested, e.g. because this is the 1st render, we assume it is visible).
 
@@ -23,14 +22,14 @@ In both cases (rendering actual shape, rendering bounding box) we surround the r
 
 Note that this algorithm happens after the _frustum culling_ has eliminated shapes that are definitely not visible because they are not within the _viewing frustum_. That is, _frustum culling_ (that we do both per-scene and per-shape, by default) works as it did, and it remains a very useful algorithm -- eliminating things earlier, with less hassle. The _occlusion query_ optimization only helps to eliminate shapes that _are_ within the frustum, but are obscured by something else.
 
-= Why (and when) does this make the rendering faster
+== Why (and when) does this make the rendering faster
 
 * The only overhead we add is making the "occlusion query" (updating the visibility flag), which is done using hardware-accelerated `ARB_occlusion_query`.
 * On the plus side, the gain is that often we can render merely the bounding box (instead of the actual shape). This is a big gain, if you have lots of "heavy" shapes, that are typically obscured.
 
 This often results in a performance gain.
 
-= What it means for your scenes and shapes?
+== What it means for your scenes and shapes?
 
 * Visibility of each shape is considered separately. So the "granularity" of how you split your scene into shapes matters.
 * The detection "what is obscured" takes into account other (rendered earlier) scenes. As the detection is done by GPU, everything that was in the Z-buffer is taken into account.
@@ -66,7 +65,7 @@ end;
 * As the visibility information is associated with shapes, this algorithm doesn't work correctly when you instantiate the scene many times. While in general we allow to https://castle-engine.io/manual_scene.php#section_many_instances[use the same instance of TCastleScene or TCastleTransform multiple times within one viewport], but the occlusion query has to be turned off on such scene.
 * The algorithm should handle OK shapes that are partially transparent (using blending). Such shapes do not obscure other things, but they can be obscured by other (opaque) shapes -- this works correctly with the algorithm.
 
-= Problems
+== Problems
 
 The biggest problem:
 
@@ -88,6 +87,6 @@ Minor problems:
  ** Dynamic batching merges many shapes into one. This means that, at the very least, it would make the occlusion query less effective -- only the "large" (merged) shapes are tested.
  ** The implementation would need to be extended, to propagate visibility test results from the merged shape \-> into original shapes. This makes complicated code, for a small gain.
 
-= Alternative: Coherent Hierarchical Culling
+== Alternative: Coherent Hierarchical Culling
 
 The page above described the currently advised approach, done by `MyScene.RenderOptions.OcclusionQuery`. We have an alternative approach implementing _"Coherent Hierarchical Culling"_ activated by `MyScene.RenderOptions.HierarchicalOcclusionQuery`. But, sadly, at least for now, we cannot advise this alternative. While the _"Coherent Hierarchical Culling"_  avoids the 1-frame-lag when object is shown, but the algorithm gets slower (and quite more complicated), making it impractical to use -- at least in the current implementation, based on our tests.

@@ -1,7 +1,5 @@
-:doctype: book
-:sectnums:
-:source-highlighter: coderay
-:toc: left
+# Addtional Information On glTF
+include::common.adoc[]
 
 https://castle-engine.io/[Castle Game Engine] features a powerful support for the glTF 2.0 model format.
 

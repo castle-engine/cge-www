@@ -1,6 +1,5 @@
-:sectnums:
-:source-highlighter: coderay
-:toc: left
+# Detecting Memory Leaks Using HeapTrc
+include::common.adoc[]
 
 Table of Contents:
 

@@ -1,7 +1,5 @@
-:doctype: book
-:sectnums:
-:source-highlighter: coderay
-:toc: left
+# FMOD
+include::common.adoc[]
 
 == Introduction
 

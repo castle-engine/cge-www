@@ -1,7 +1,5 @@
-:doctype: book
-:sectnums:
-:source-highlighter: coderay
-:toc: left
+# Build Tool
+include::common.adoc[]
 
 Together with the engine we include a tool "castle-engine" to help with building and packaging your programs for various platforms (standalone, mobile, web browser...).
 

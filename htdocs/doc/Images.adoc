@@ -1,15 +1,7 @@
-:doctype: book
-:sectnums:
-:source-highlighter: coderay
-:toc: left
+# Images
+include::common.adoc[]
 
-Table of Contents:
-
-* <<display-images,Display images>>
-* <<parameters-when-loading-image-to-tcastlescene,Parameters when loading image to TCastleScene>>
-* <<image-types-in-cge,Image types in CGE>>
-
-= Display images
+== Display images
 
 There are a few ways to display an image using _Castle Game Engine_.
 
@@ -24,7 +16,7 @@ The approaches 1 and 2 can be used when designing the game in the https://castle
 
 All approaches handle all the image formats supported by CGE, like PNG or JPG; see https://castle-engine.io/castle-view-image.php[castle-view-image] docs for the full list.
 
-= Parameters when loading image to TCastleScene
+== Parameters when loading image to TCastleScene
 
 By default we display an entire image. Alternatively, when loading the image to `TCastleScene`, you can use a special syntax with URL anchors to specify a subset of the image. That is, instead of
 
@@ -62,7 +54,7 @@ All the parameters are integers (we have not yet found a use-case to make them f
 
 Note that if you specify area that is too large (outside of the actual image area), the excessive pixels will show the clamped image border (the image is simply rendered as a texture with repeat=FALSE).
 
-= Image types in CGE
+== Image types in CGE
 
 * https://castle-engine.io/apidoc-unstable/html/CastleImages.TEncodedImage.html[TEncodedImage] is an image loaded to a regular memory (RAM) to operate on it by Pascal code (that is, on CPU).
 +
@@ -86,4 +78,4 @@ It's like a `TPicture` in VCL -- it doesn't draw the image, but it has everythin
 +
 These nodes are used underneath when you load image into `TCastleScene`.
 
-TODO: Yes, there are too many :) In time, I hope to hide this complexity more.
+TODO: There are too many classes above. In time, we hope to hide this complexity more, some of these classes ahould become internal (or not necessary at all).

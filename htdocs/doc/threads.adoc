@@ -1,6 +1,5 @@
-:sectnums:
-:source-highlighter: coderay
-:toc: left
+# Threads usage
+include::common.adoc[]
 
 Right now *all access to Castle Game Engine API must happen from the same thread*.
 

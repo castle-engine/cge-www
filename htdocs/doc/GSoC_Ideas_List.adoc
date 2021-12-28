@@ -1,6 +1,5 @@
-:sectnums:
-:source-highlighter: coderay
-:toc: left
+# Google Summer of Code - Ideas
+include::common.adoc[]
 
 Ideas for students that wish to contribute to https://castle-engine.io/[Castle Game Engine] within the https://summerofcode.withgoogle.com/[Google Summer of Code]:
 

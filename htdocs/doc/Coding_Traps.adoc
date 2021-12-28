@@ -1,6 +1,5 @@
-:sectnums:
-:source-highlighter: coderay
-:toc: left
+# Coding Traps
+include::common.adoc[]
 
 == Changing only a temporary record value
 

@@ -1,7 +1,5 @@
-:doctype: book
-:sectnums:
-:source-highlighter: coderay
-:toc: left
+# iOS and Android on macOS
+include::common.adoc[]
 
 You can read how the set the environment for deploying to link:pass:[Android][], and for deploying to link:pass:[iOS][] devices on separate pages. This page describes the process when you want to use a single Mac computer to do both.
 

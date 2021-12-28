@@ -1,7 +1,5 @@
-:doctype: book
-:sectnums:
-:source-highlighter: coderay
-:toc: left
+# CastleWindow Backends
+include::common.adoc[]
 
 == Introduction
 
