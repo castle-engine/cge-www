@@ -1,6 +1,6 @@
 <?php
 
-/* Copyright 2001-2017 Michalis Kamburelis.
+/* Copyright 2001-2021 Michalis Kamburelis.
 
    This file is part of "Kambi PHP library".
 
@@ -17,6 +17,15 @@
    You should have received a copy of the GNU General Public License
    along with "Kambi PHP library"; if not, write to the Free Software
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
+*/
+
+/* Set of PHP utilities.
+
+   Merely including this file doesn't define any global variables, constants,
+   or emit any output. The idea is that you can use
+     require_once 'funcs.php';
+   as early as you need any of these functions, without any worry about
+   inclusion order.
 */
 
 define("KILO", 1024);
@@ -207,4 +216,22 @@ function echo_rand_css()
   a:hover { color: <?php echo $link_hover_color; ?>; }
 <?php
 }
-?>
+
+function is_suffix($suffix, $str)
+{
+  return (substr($str, strlen($str) - strlen($suffix)) == $suffix);
+}
+
+function is_prefix($prefix, $str)
+{
+  return (substr($str, 0, strlen($prefix)) == $prefix);
+}
+
+function remove_prefix($prefix, $str)
+{
+  if (is_prefix($prefix, $str)) {
+    return substr($str, strlen($prefix));
+  } else {
+    return $str;
+  }
+}

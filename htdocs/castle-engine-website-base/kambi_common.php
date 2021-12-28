@@ -204,25 +204,6 @@ function page_requisite($page_name, $hash_link = '')
   return $result;
 }
 
-function is_suffix($suffix, $str)
-{
-  return (substr($str, strlen($str) - strlen($suffix)) == $suffix);
-}
-
-function is_prefix($prefix, $str)
-{
-  return (substr($str, 0, strlen($prefix)) == $prefix);
-}
-
-function remove_prefix($prefix, $str)
-{
-  if (is_prefix($prefix, $str)) {
-    return substr($str, strlen($prefix));
-  } else {
-    return $str;
-  }
-}
-
 /* Returns URL of desired page.
    Add to $page_name (string) the URL (prefix), extension if needed (suffix),
    and $hash_link (suffix after #).

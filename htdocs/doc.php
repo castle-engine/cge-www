@@ -18,35 +18,51 @@ require_once 'castle_engine_functions.php';
 if (empty($_GET['page'])) {
   die('No page set');
 }
-$title = $_GET['page'];
+$page_name = $_GET['page'];
 
-/* Originally, we validated this, and rejetected $title with slash (or dot, earlier):
+/* Originally, we validated this, and rejetected $page_name with slash (or dot, earlier):
 
-    if (strpos($title, '/') !== FALSE) {
-      die('Title contains invalid characters: ' . htmlspecialchars($title));
+    if (strpos($page_name, '/') !== FALSE) {
+      die('Title contains invalid characters: ' . htmlspecialchars($page_name));
     }
 
   But now we allow page=/~michalis/castle-engine/Cloud_Builds_(Jenkins),
   and it is equivalent to page=Cloud_Builds_(Jenkins).
   This makes our rewrite rule in .htaccess OK. */
-$slash_pos = strrpos($title, '/');
+$slash_pos = strrpos($page_name, '/');
 if ($slash_pos !== FALSE) {
-  $title = substr($title, $slash_pos + 1);
+  $page_name = substr($page_name, $slash_pos + 1);
 }
-
-/* set $page_basename (disables autodetection done in kambi_bootstrap,
-   which would set it always to 'doc' from 'doc.php').
-   This makes current page properly detected by sitemap, breadcrumbs etc. */
-global $page_basename;
-$page_basename = 'doc/' . $title;
-
-castle_header($title);
 
 /* We treat space just like _ in filename,
    because links from GitHub wiki worked like that too,
    e.g. linking to "Build Tool" was making link to "Build-Tool"
    (in CGE, we use underscores). */
-$file_name = str_replace(' ', '_', $title);
+$page_name = str_replace(' ', '_', $page_name);
+
+/* set $page_basename (disables autodetection done in kambi_bootstrap,
+   which would set it always to 'doc' from 'doc.php').
+   This makes current page properly detected by sitemap, breadcrumbs etc. */
+global $page_basename;
+$page_basename = 'doc/' . $page_name;
+
+$adoc_file = 'doc/' . $page_name . '.adoc';
+
+/* Read title, from AsciiDoctor first line */
+$adoc_first_line = fgets(fopen($adoc_file, 'r'));
+if (is_prefix('# ', $adoc_first_line)) {
+  $title = remove_prefix('# ', $adoc_first_line);
+} else {
+  $title = $page_name; // use internal page name as a fallback title
+}
+
+castle_header($title);
+
+/* AsciiDoctor output has <h2> and more, AsciiDoctor actually requires it for book type,
+   as AsciiDoctor itself reserves <h1> for book title.
+   So we are consistent with AsciiDoctor by using <h1>,
+   and also this makes section nesting perfect in our HTML docs. */
+echo '<h1>' . htmlspecialchars($title) . '</h1>';
 
 /* During development, PHP will actually run
    asciidoctor to refresh HTML from ADOC when previewing.
@@ -60,9 +76,7 @@ $file_name = str_replace(' ', '_', $title);
 $regenerate_ascii_doctor = CASTLE_ENVIRONMENT == 'development';
 
 if ($regenerate_ascii_doctor) {
-  $file = 'doc/' . $file_name . '.adoc';
-
-  $command = 'asciidoctor --no-header-footer -o - ' . escapeshellarg($file);
+  $command = 'asciidoctor --no-header-footer -o - ' . escapeshellarg($adoc_file);
 
   echo '<div class="castle-document">';
   passthru($command, $exec_status);
@@ -72,10 +86,10 @@ if ($regenerate_ascii_doctor) {
   echo '</div> <!-- class="castle-document" -->';
 } else {
   // on production, assume ready .html are present in repo
-  $file = 'doc/' . $file_name . '.html';
+  $html_file = 'doc/' . $page_name . '.html';
   echo '<div class="castle-document">';
-  /* TODO: this should include without interpreting PHP inside $file. */
-  require $file;
+  /* TODO: this should include without interpreting PHP inside $html_file. */
+  require $html_file;
   echo '</div> <!-- class="castle-document" -->';
 }
 
