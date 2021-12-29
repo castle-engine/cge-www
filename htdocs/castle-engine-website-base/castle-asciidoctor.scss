@@ -37,6 +37,13 @@
 
 /* Admonition style */
 .admonitionblock {
+    /* margin is esp. useful in case you have one note after another, to separate them.
+       See e.g. docker page.
+       Larger margin is also good to separate from normal text afterwards.
+       See e.f. ios page, "Install also CocoaPods..." after note.
+    */
+    margin-top: 1em;
+    margin-bottom: 1em;
     td {
         padding: 1em;
     }
