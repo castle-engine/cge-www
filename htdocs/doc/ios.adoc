@@ -42,7 +42,7 @@ The FPC compiler needs the "Xcode command-line developer tools" installed. In sh
 
 Alternative approach to the installation is to use link:pass:[fpcupdeluxe][fpcupdeluxe]. This works now great with latest stable FPC 3.2.2. You can install the regular FPC/Lazarus, and then the necessary cross-compilers (iOS/arm, iOS/aarch64, i-sim/x86_64).
 
-See https://castle-engine.sourceforge.io/macosx_requirements.php for more information about developing desktop applications for macOS using Castle Game Engine.
+See https://castle-engine.io/macosx_requirements.php for more information about developing desktop applications for macOS using Castle Game Engine.
 
 === Installing FPC cross-compilers for iPhone and iPhoneSimulator
 
@@ -175,7 +175,7 @@ Open the file with `.xcworkspace` extension in that directory. For now, all iOS 
 +
 *Tip: Running on a real, physical device:* It works out of the box! You only need to set the _Development Team_ in Xcode, or set `<ios team="xxx" />` attribute in link:pass:[CastleEngineManifest.xml examples][CastleEngineManifest.xml].
 +
-image::https://castle-engine.sourceforge.io/images/thumb_size/xcode_select_team.png[Selecting a team in Xcode,link=https://castle-engine.sourceforge.io/images/original_size/xcode_select_team.png]
+image::https://castle-engine.io/images/thumb_size/xcode_select_team.png[Selecting a team in Xcode,link=https://castle-engine.io/images/original_size/xcode_select_team.png]
 
 === Archive (deploy on iOS)
 

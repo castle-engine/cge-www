@@ -3,9 +3,9 @@ include::common.adoc[]
 
 == Introduction
 
-Here we list the features not (yet!) implemented in https://castle-engine.sourceforge.io/[Castle Game Engine] for OpenGLES (which is used by default on Android and iOS, although can be tested on other platforms too), but already implemented for OpenGL (used by default on desktops).
+Here we list the features not (yet!) implemented in https://castle-engine.io/[Castle Game Engine] for OpenGLES (which is used by default on Android and iOS, although can be tested on other platforms too), but already implemented for OpenGL (used by default on desktops).
 
-Note that, except issues listed below, *everything else that works on desktops (Linux, Windows, MacOSX) should also work flawlessly on OpenGLES (Android, iOS)*! See https://castle-engine.sourceforge.io/features.php[the engine features] :)
+Note that, except issues listed below, *everything else that works on desktops (Linux, Windows, MacOSX) should also work flawlessly on OpenGLES (Android, iOS)*! See https://castle-engine.io/features.php[the engine features] :)
 
 *Contributions to fix/implement missing features below are very welcome!* We tried to give below a detailed overview of what is needed for a particular feature, to make it easier to jump in and help :)
 
@@ -21,7 +21,7 @@ In progress now: https://github.com/castle-engine/castle-engine/pull/312
 . (_Very easy_) *Occlusion query*. The implementation in https://github.com/castle-engine/castle-engine/blob/master/src/x3d/opengl/castlesceneinternalocclusion.pas[castlesceneinternalocclusion.pas] is mostly valid for OpenGLES already: it uses VBOs and shaders for rendering. However, it needs fixing to use triangles instead of quads (OpenGLES does not support GL_QUAD primitive). Also, we should use https://www.khronos.org/registry/OpenGL/extensions/EXT/EXT_occlusion_query_boolean.txt[EXT_occlusion_query_boolean] that has a chance to exist on OpenGLES.
 . (_Medium_) *Wireframe rendering*. Since `glPolygonMode` is not available at all on OpenGLES, we need to be able to generate wireframe geometry arrays on CPU, adding a "wireframe" option to `CastleArraysGenerator` that will generate a different (line) primitive for TGeometryArrays. Then the renderer can use such TGeometryArrays for OpenGLES.
 +
-This is started now, by having `Shape.shading = "WIREFRAME"` option, see https://castle-engine.sourceforge.io/x3d_implementation_shape_extensions.php#section_ext_shading[Shape.shading field]. We need to
+This is started now, by having `Shape.shading = "WIREFRAME"` option, see https://castle-engine.io/x3d_implementation_shape_extensions.php#section_ext_shading[Shape.shading field]. We need to
 
  ** make it available for _all_ geometry shapes
  ** make this feature more flexible, so that the renderer can switch between wireframe/non-wireframe rendering without any cost.

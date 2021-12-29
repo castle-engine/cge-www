@@ -5,7 +5,7 @@ include::common.adoc[]
 
 _fpcupdeluxe_ is a powerful GUI program that installs http://freepascal.org/[FPC] and https://www.lazarus-ide.org/[Lazarus].
 
-image:https://castle-engine.sourceforge.io/wp/wp-content/uploads/2017/04/fpcupdeluxe_cge-200x118.png[float="right",role="screenshot",link=https://castle-engine.sourceforge.io/wp/wp-content/uploads/2017/04/fpcupdeluxe_cge.png]
+image:https://castle-engine.io/wp/wp-content/uploads/2017/04/fpcupdeluxe_cge-200x118.png[float="right",role="screenshot",link=https://castle-engine.io/wp/wp-content/uploads/2017/04/fpcupdeluxe_cge.png]
 
 == Features
 
@@ -97,7 +97,7 @@ It takes https://github.com/castle-engine/castle-engine/[CGE sources from GitHub
 The engine code is inside `<fpcupdeluxe>/ccr/castle_game_engine/` . In particular, the numerous engine examples are inside the `examples/` subdirectory there. The tools are in the `tools/` subdirectory.
 
 * To use the engine from FPC command-line, you need to setup things yourself. E.g. compile our link:pass:[https://github.com/castle-engine/castle-engine/wiki/Build-Tool][build tool] from the sources you have in `<fpcupdeluxe>/ccr/castle_game_engine/tools/build-tool/`. You can set `$CASTLE_ENGINE_PATH` environment variable to `<fpcupdeluxe>/ccr/castle_game_engine/` .
-* The API documentation is not present in the `doc/reference/` , because we don't keep the generated docs inside the repository. That's usually not a problem, as you can https://castle-engine.sourceforge.io/apidoc-unstable/html/[browse the Castle Game Engine API docs online]. You can also get link:pass:[https://github.com/pasdoc/pasdoc/wiki][pasdoc] and generate them yourself by `make html` in `doc/pasdoc`.
+* The API documentation is not present in the `doc/reference/` , because we don't keep the generated docs inside the repository. That's usually not a problem, as you can https://castle-engine.io/apidoc-unstable/html/[browse the Castle Game Engine API docs online]. You can also get link:pass:[https://github.com/pasdoc/pasdoc/wiki][pasdoc] and generate them yourself by `make html` in `doc/pasdoc`.
 
 == Cross-compilation to Android
 
