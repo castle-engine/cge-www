@@ -1,17 +1,19 @@
 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
-<ul class="sectlevel0">
-<li><a href="#_test_it_now">Test it NOW</a></li>
-<li><a href="#_supported_browsers">Supported browsers</a></li>
-<li><a href="#_faq">FAQ</a>
 <ul class="sectlevel1">
-<li><a href="#_what_about_webgl">1. What about WebGL?</a></li>
-<li><a href="#_do_we_install_a_single_plugin_handling_all_games_developed_using_cge_or_is_every_game_a_separate_plugin">2. Do we install a single plugin, handling all games developed using CGE, or is every game a separate plugin?</a></li>
+<li><a href="#_introduction">1. Introduction</a></li>
+<li><a href="#_test_it_now">2. Test it NOW</a></li>
+<li><a href="#_supported_browsers">3. Supported browsers</a></li>
+<li><a href="#_faq">4. FAQ</a>
+<ul class="sectlevel2">
+<li><a href="#_what_about_webgl">4.1. What about WebGL?</a></li>
+<li><a href="#_do_we_install_a_single_plugin_handling_all_games_developed_using_cge_or_is_every_game_a_separate_plugin">4.2. Do we install a single plugin, handling all games developed using CGE, or is every game a separate plugin?</a></li>
 </ul>
 </li>
 </ul>
 </div>
-<div id="preamble">
+<div class="sect1">
+<h2 id="_introduction">1. Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><strong>DEPRECATED.</strong> As the NPAPI support is removed from all the major browsers (Google Chrome, Firefox&#8230;&#8203;), so this is no longer a viable technology. The support will be removed from CGE at some point in early 2021. The future for CGE in web browser lies in pas2js, see <a href="https://castle-engine.io/wp/2020/07/20/pas2js-with-generics-rocks-and-makes-castle-game-engine-for-webgl-possible/">this CGE news post</a>, and we will go for it in 2021. An alternative venue may also appear if FPC will support WebAssembly (directly or by LLVM).</p>
@@ -22,34 +24,11 @@
 <div class="paragraph">
 <p>If you&#8217;d like to try the web plugin (NPAPI) support in our engine anyway, go ahead:</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="#test-it-now">Test it NOW</a></p>
-</li>
-<li>
-<p><a href="#supported-browsers">Supported browsers</a></p>
-</li>
-<li>
-<p><a href="#faq">FAQ</a></p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="#what-about-webgl">What about WebGL?</a></p>
-</li>
-<li>
-<p><a href="#do-we-install-a-single-plugin-handling-all-games-developed-using-cge-or-is-every-game-a-separate-plugin">Do we install a single plugin, handling all games developed using CGE, or is every game a separate plugin?</a></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
 </div>
 </div>
-</div>
-<h1 id="_test_it_now" class="sect0">Test it NOW</h1>
-<div class="openblock partintro">
-<div class="content">
+<div class="sect1">
+<h2 id="_test_it_now">2. Test it NOW</h2>
+<div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -73,9 +52,9 @@ You can now <strong>confirm that it&#8217;s installed OK</strong> by looking at 
 </div>
 </div>
 </div>
-<h1 id="_supported_browsers" class="sect0">Supported browsers</h1>
-<div class="openblock partintro">
-<div class="content">
+<div class="sect1">
+<h2 id="_supported_browsers">3. Supported browsers</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>The plugin works on Windows and Linux (and other Unix systems using X11). Supported browsers are Firefox and Google Chrome. For Google Chrome, you now need to enable <em>the NPAPI flag</em> (see the bottom of see the instructions at the bottom of <a href="https://support.google.com/chrome/answer/6213033?hl=en" class="bare">https://support.google.com/chrome/answer/6213033?hl=en</a>).</p>
 </div>
@@ -87,10 +66,11 @@ You can now <strong>confirm that it&#8217;s installed OK</strong> by looking at 
 </div>
 </div>
 </div>
-<h1 id="_faq" class="sect0">FAQ</h1>
 <div class="sect1">
-<h2 id="_what_about_webgl">1. What about WebGL?</h2>
+<h2 id="_faq">4. FAQ</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_what_about_webgl">4.1. What about WebGL?</h3>
 <div class="paragraph">
 <p>"WebGL" means compiling code to JavaScript (asm.js) or using WebAssembly (which is similar to JavaScript in functionality, but is a binary set of  instructions, doesn&#8217;t need to be parsed) and then using WebGL (OpenGL(ES)-like API for JavaScript) for rendering.</p>
 </div>
@@ -111,10 +91,8 @@ You can now <strong>confirm that it&#8217;s installed OK</strong> by looking at 
 <p>Finishing the job on our (engine) side should be easy. WebGL API is like OpenGL ES, and we already have it implemented perfectly:)  We want to explore this after CGE 7.0 release.</p>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_do_we_install_a_single_plugin_handling_all_games_developed_using_cge_or_is_every_game_a_separate_plugin">2. Do we install a single plugin, handling all games developed using CGE, or is every game a separate plugin?</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_do_we_install_a_single_plugin_handling_all_games_developed_using_cge_or_is_every_game_a_separate_plugin">4.2. Do we install a single plugin, handling all games developed using CGE, or is every game a separate plugin?</h3>
 <div class="paragraph">
 <p>Depends on the game.</p>
 </div>
@@ -133,6 +111,7 @@ You can now <strong>confirm that it&#8217;s installed OK</strong> by looking at 
 </div>
 <div class="paragraph">
 <p>I hope that it will not be a huge problem. I&#8217;m looking at Unity here, where "Unity WebPlayer" is not something universal, and yet people install it to play games. So hopefully plugins using CGE will be able to live too:)</p>
+</div>
 </div>
 </div>
 </div>
