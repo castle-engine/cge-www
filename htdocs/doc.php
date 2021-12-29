@@ -90,8 +90,8 @@ if ($regenerate_ascii_doctor) {
   }
   echo '</div> <!-- class="castle-document" -->';
 } else {
-  // on production, assume ready .html are present in repo
-  $html_file = 'doc/' . $page_name . '.html';
+  // on production, assume ready .html are present in doc/output/
+  $html_file = 'doc/output/' . $page_name . '.html';
   echo '<div class="castle-document">';
   /* TODO: this should include without interpreting PHP inside $html_file. */
   require $html_file;
