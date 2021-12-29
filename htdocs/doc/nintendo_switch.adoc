@@ -1,6 +1,8 @@
 # Nintendo Switch
 include::common.adoc[]
 
+== Introduction
+
 _Castle Game Engine_ supports compiling games to the https://www.nintendo.com/switch/[Nintendo Switch] console.
 
 It is a modern, successful, indie-friendly console from Nintendo. Our friend company, _Cat-astrophe Games_, has already released games using CGE on Nintendo Switch (https://cat-astrophe-games.party/escape-universe/[Escape from the Universe] and https://unholy-society.com/[The Unholy Society]).

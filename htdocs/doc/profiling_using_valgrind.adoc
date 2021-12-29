@@ -1,7 +1,7 @@
 # How to "profile" (analyze time and memory usage) your Castle Game Engine applications
 include::common.adoc[]
 
-== Intro
+== Introduction
 
 This document describes how to use http://valgrind.org/[Valgrind] to profile your https://castle-engine.io/[Castle Game Engine] applications.
 

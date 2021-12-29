@@ -1,6 +1,8 @@
 # Custom Components
 include::common.adoc[]
 
+== Introduction
+
 You can implement and register your own components in https://castle-engine.io/manual_editor.php[Castle Game Engine Editor].
 
 Follow the guidelines documented in https://castle-engine.io/manual_editor.php#section_custom_components[Custom (project-specific) components in the visual designer], and check the example https://github.com/castle-engine/castle-engine/tree/master/examples/advanced_editor[examples/advanced_editor].

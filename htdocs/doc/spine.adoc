@@ -1,9 +1,9 @@
 # Spine - 2D Animations
 include::common.adoc[]
 
-Castle Game Engine https://castle-engine.io/ has an advanced support for Spine http://esotericsoftware.com/ 2D animations.
+== Introduction
 
-== Intro
+Castle Game Engine https://castle-engine.io/ has an advanced support for Spine http://esotericsoftware.com/ 2D animations.
 
 Spine is a great software to design 2D animations for games, using modern techniques (bones, skins, meshes etc.). Animations done this way are lightweight: their loading and rendering is very efficient, even on mobile devices like Android or iOS. But they are also very flexible:
 

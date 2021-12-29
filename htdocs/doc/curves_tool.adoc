@@ -1,6 +1,8 @@
 # Curves Tool
 include::common.adoc[]
 
+== Introduction
+
 We have a simple tool to design curves (piecewise cubic Bezier curves). The created curves can be saved into a simple XML format and loaded into your own Castle Game Engine programs and used for any purpose (for example as a track along which something moves).
 
 Download:

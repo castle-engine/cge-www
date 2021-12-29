@@ -1,6 +1,8 @@
 # Cloud Builds (Jenkins)
 include::common.adoc[]
 
+== Introduction
+
 We maintain an official https://jenkins.castle-engine.io/[Cloud Builds (Jenkins)] server for _Castle Game Engine_ projects. Right now it is used internally by CGE devs, though we want to make it available for everyone (and free for all CGE open-source projects) in the future.
 
 == Features Overview

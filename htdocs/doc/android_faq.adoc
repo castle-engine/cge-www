@@ -1,6 +1,8 @@
 # Android FAQ
 include::common.adoc[]
 
+== Introduction
+
 Questions related to link:Android[Android] development.
 
 == What Android devices are supported

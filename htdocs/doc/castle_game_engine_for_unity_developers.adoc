@@ -1,6 +1,8 @@
 # Castle Game Engine For Unity Developers
 include::common.adoc[]
 
+== Introduction
+
 If you come with a knowledge of another game engine, like _Unity_, this page will try to explain how some concepts map to _Castle Game Engine_. If you have any questions, remember to ask on https://forum.castle-engine.io/[forum], https://castle-engine.io/talk.php[Discord chat or other places].
 
 == What is the equivalent of Unity `GameObject`?

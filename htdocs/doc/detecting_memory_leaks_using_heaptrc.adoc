@@ -1,7 +1,7 @@
 # Detecting Memory Leaks Using HeapTrc
 include::common.adoc[]
 
-== Intro
+== Introduction
 
 "Memory leak" means that you allocated a memory for something, but didn't deallocate it.
 

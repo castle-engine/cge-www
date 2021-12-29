@@ -1,6 +1,8 @@
 # Units Map
 include::common.adoc[]
 
+== Introduction
+
 _Castle Game Engine_ includes a _lot_ of units. They are divided into a couple of groups, which you can see as subdirectories in the engine `src` subdirectory: `3d`, `audio` and so on. The groups are shortly described below.
 
 One of the ways how we keep the engine architecture maintainable is to strictly limit the dependencies between unit groups. For example, the 3D or UI stuff depends on images, but the units in the `images` group cannot depend on units in the `3d` or `ui` groups. A strict dependency tree allows to easily debug some hard problems (when you want to strip the used units, to get to the "bottom of the problem").

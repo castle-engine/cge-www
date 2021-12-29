@@ -1,6 +1,8 @@
 # CastleEngineManifest.xml - Syntax and Examples
 include::common.adoc[]
 
+== Introduction
+
 The `CastleEngineManifest.xml` file is used by the link:pass:[Build Tool][Build Tool] to know how to build and package your games (or any other projects using the _Castle Game Engine_). It should be present at the top-level directory of your project.
 
 When you create a new project, you can generate a new manifest file by running `castle-engine create-manifest`. Or just manually create a new `CastleEngineManifest.xml` file, using the samples on this page. It's a trivial XML file, just edit it using your favorite text editor.
