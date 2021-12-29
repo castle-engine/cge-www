@@ -6,7 +6,8 @@ all: $(ALL_HTML)
 
 .PHONY: clean
 clean:
-	rm -f $(ALL_HTML)
+#	rm -f $(ALL_HTML)
+	rm -Rf output/
 
 output/%.html: %.adoc
 	asciidoctor --no-header-footer -o "$@" "$<"
