@@ -98,11 +98,8 @@ if ($regenerate_ascii_doctor) {
   echo '</div> <!-- class="castle-document" -->';
 }
 
-/* // This is already in footer.
-
 echo '<hr>
-<p>You can improve this documentation by contributing to <a href="https://github.com/castle-engine/cge-www">Castle Game Engine WWW (cge-www) repository</a>.</p>';
-*/
+<p class="docs_improve_hint">To improve this documentation just edit the <a href="https://github.com/castle-engine/cge-www/blob/master/htdocs/' . $adoc_file . '">source of this page in AsciiDoctor (simple wiki-like syntax)</a> and create a pull request to <a href="https://github.com/castle-engine/cge-www">Castle Game Engine WWW (cge-www) repository</a>.</p>';
 
 castle_footer();
 ?>

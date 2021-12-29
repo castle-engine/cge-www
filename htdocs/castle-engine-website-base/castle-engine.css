@@ -269,6 +269,10 @@ article.post .entry-content ul.list-no-margin {
   margin-bottom: 2em;
 }
 
+.docs_improve_hint {
+  font-style: italic;
+}
+
 /* main page stuff ----------------------------------------------------------- */
 
 .centered-wrapper {
