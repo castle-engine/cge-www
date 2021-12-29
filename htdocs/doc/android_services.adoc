@@ -3,9 +3,9 @@ include::common.adoc[]
 
 == Introduction
 
-image:https://castle-engine.io/images/thumb_size/android-components-icons.png[float="right",link=http://castle-engine.sourceforge.net/images/original_size/android-components-icons.png,role="screenshot"]
+image:https://castle-engine.io/images/thumb_size/android-components-icons.png[float="right",link=https://castle-engine.io/images/original_size/android-components-icons.png,role="screenshot"]
 
-When you use our link:pass:[Build tool][build tool] to package your game for Android, you can easily add _services_ to the project. They allow to comfortably access various Android services (from Google and other 3rd parties, like ad networks) from your Object Pascal game code using the http://castle-engine.sourceforge.net/engine.php[Castle Game Engine].
+When you use our link:pass:[Build tool][build tool] to package your game for Android, you can easily add _services_ to the project. They allow to comfortably access various Android services (from Google and other 3rd parties, like ad networks) from your Object Pascal game code using the https://castle-engine.io/engine.php[Castle Game Engine].
 
 The Android services are declared in link:pass:[CastleEngineManifest.xml examples][CastleEngineManifest.xml] like this:
 
@@ -58,6 +58,6 @@ Merely declaring the project type as "integrated" (even without any extra servic
 
 * _Immersive mode_ on newer Android devices. This is a "true" full-screen mode for games on Android, where the back/home buttons are usually hidden.
 * You can open URLs in external applications using https://castle-engine.io/apidoc-unstable/html/CastleOpenDocument.html#OpenURL[OpenURL] from https://castle-engine.io/apidoc-unstable/html/CastleOpenDocument.html[CastleOpenDocument] unit. Hint: use special `market://` URL to send users to the _Google Play_ store, e.g. to rate your application.
-* You can share text and links with other applications. Use http://castle-engine.sourceforge.net/apidoc/html/CastleOpenDocument.html#ShareText[ShareText] from the http://castle-engine.sourceforge.net/apidoc/html/CastleOpenDocument.html[CastleOpenDocument] unit.
-* You can send Android standard on-screen notification ("toast") using http://castle-engine.sourceforge.net/apidoc/html/CastleOpenDocument.html#OnScreenNotification[OnScreenNotification] from the http://castle-engine.sourceforge.net/apidoc/html/CastleOpenDocument.html[CastleOpenDocument] unit.
+* You can share text and links with other applications. Use https://castle-engine.io/apidoc/html/CastleOpenDocument.html#ShareText[ShareText] from the https://castle-engine.io/apidoc/html/CastleOpenDocument.html[CastleOpenDocument] unit.
+* You can send Android standard on-screen notification ("toast") using https://castle-engine.io/apidoc/html/CastleOpenDocument.html#OnScreenNotification[OnScreenNotification] from the https://castle-engine.io/apidoc/html/CastleOpenDocument.html[CastleOpenDocument] unit.
 * Some services (like `sound` and `ogg_vorbis`) will be added automatically to your project if the sound files are detected in your game data. So merely declaring your project type as "integrated" makes sound work on Android.

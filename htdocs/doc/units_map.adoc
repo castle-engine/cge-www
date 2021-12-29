@@ -23,13 +23,13 @@ _Depends on_: nothing else.
 
 ==== files
 
-Files and XML utilities. Also downloading from the network, and processing of URLs. See link:pass:[http://castle-engine.sourceforge.net/tutorial_network.php][tutorial about network and downloading].
+Files and XML utilities. Also downloading from the network, and processing of URLs. See link:pass:[https://castle-engine.io/tutorial_network.php][tutorial about network and downloading].
 
 _Depends on_: everything above (that is, units in "base" group).
 
 ==== audio
 
-Sound files loading, sound playback (including 3D sound) using OpenAL, processing of sound files. See link:pass:[http://castle-engine.sourceforge.net/tutorial_sound.php][tutorial about sound].
+Sound files loading, sound playback (including 3D sound) using OpenAL, processing of sound files. See link:pass:[https://castle-engine.io/tutorial_sound.php][tutorial about sound].
 
 _Depends on_: everything above (that is, units in "base" and "files" groups).
 
@@ -65,7 +65,7 @@ _Depends on_: everything above.
 
 ==== castlescript
 
-Parsing and executing expressions and programs in the  link:pass:[http://castle-engine.sourceforge.net/castle_script.php][CastleScript language].
+Parsing and executing expressions and programs in the  link:pass:[https://castle-engine.io/castle_script.php][CastleScript language].
 
 _Depends on_: everything above.
 

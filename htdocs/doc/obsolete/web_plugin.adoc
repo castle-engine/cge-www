@@ -23,7 +23,7 @@ If you'd like to try the web plugin (NPAPI) support in our engine anyway, go ahe
 
 The plugin works on Windows and Linux (and other Unix systems using X11). Supported browsers are Firefox and Google Chrome. For Google Chrome, you now need to enable _the NPAPI flag_ (see the bottom of see the instructions at the bottom of https://support.google.com/chrome/answer/6213033?hl=en).
 
-The plugin should work in any browser supporting NPAPI plugins. As for the operating systems, it can be made to work on any system supported by our engine -- in particular it can be adjusted to macOS (you just need to implement CastleWindow backend for Cocoa, see http://castle-engine.sourceforge.net/macosx_requirements.php).
+The plugin should work in any browser supporting NPAPI plugins. As for the operating systems, it can be made to work on any system supported by our engine -- in particular it can be adjusted to macOS (you just need to implement CastleWindow backend for Cocoa, see https://castle-engine.io/macosx_requirements.php).
 
 As the NPAPI technology goes away, we don't plan to work on it more at this point.
 
@@ -44,7 +44,7 @@ Finishing the job on our (engine) side should be easy. WebGL API is like OpenGL 
 
 Depends on the game.
 
-. *If your game is a VRML/X3D world (with possible scripting)*, then users need only to install a "view3dscene plugin" to run it  on a web. view3dscene is our VRML/X3D browser (and a viewer for many other 3D and 2D formats). See http://castle-engine.sourceforge.net/view3dscene.php . This plugin will be able to run any VRML/X3D world.
+. *If your game is a VRML/X3D world (with possible scripting)*, then users need only to install a "view3dscene plugin" to run it  on a web. view3dscene is our VRML/X3D browser (and a viewer for many other 3D and 2D formats). See https://castle-engine.io/view3dscene.php . This plugin will be able to run any VRML/X3D world.
 . But *if your game has logic implemented in Object Pascal*, then your game is a new plugin that must be installed by the user.
 
 Unlike Flash (or Unity WebPlayer or Java Applets), we don't have a sandbox to run Object Pascal. So if you write Object Pascal code, it's compiled to a new plugin, and users need to install it. In theory, we could create a "Castle Game Engne plugin" that can dynamically link with your game code (thus creating a CGE plugin architecture within an NPAPI plugin:), but that would be very bad from a security point of view.
