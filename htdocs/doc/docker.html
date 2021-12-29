@@ -265,10 +265,8 @@ You can also use <a href="https://testfairy.com/">TestFairy integration</a> to d
 <div class="title">Note</div>
 </td>
 <td class="content">
-Your previous images and containers will continue to exist, unmodified. The previous image is no longer tagged <code>kambi/castle-engine-cloud-builds-tools:cge-unstable</code>, but it is still there, on your disk. If you don&#8217;t want this, you can e.g. remove the unneeded containers and images. A simple way to remove everything is:
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>Your previous images and containers will continue to exist, unmodified. The previous image is no longer tagged <code>kambi/castle-engine-cloud-builds-tools:cge-unstable</code>, but it is still there, on your disk. If you don&#8217;t want this, you can e.g. remove the unneeded containers and images. A simple way to remove everything is:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -276,12 +274,27 @@ Your previous images and containers will continue to exist, unmodified. The prev
 docker images -q | xargs docker rmi # remove all images</pre>
 </div>
 </div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
 <div class="paragraph">
-<p><em>Note 2:</em> If you plan to update CGE often, but would still like to use Docker image (e.g. to easily get working environment to build Android APK), then another approach is to use the Docker image <code>...:cge-none</code>. This requires a bit more to set up: you should get your own <a href="https://github.com/castle-engine/castle-engine/">copy of CGE source code from GitHub</a>, keep it and update outside of Docker (using <code>git pull</code>), recompile <a href="Build Tool" class="bare">Build Tool</a> manually after updating, and manually define <code>CASTLE_ENGINE_PATH</code> inside Docker to point to your CGE copy.</p>
+<p>If you plan to update CGE often, but would still like to use Docker image (e.g. to easily get working environment to build Android APK), then another approach is to use the Docker image <code>...:cge-none</code>. This requires a bit more to set up: you should get your own <a href="https://github.com/castle-engine/castle-engine/">copy of CGE source code from GitHub</a>, keep it and update outside of Docker (using <code>git pull</code>), recompile <a href="Build Tool" class="bare">Build Tool</a> manually after updating, and manually define <code>CASTLE_ENGINE_PATH</code> inside Docker to point to your CGE copy.</p>
 </div>
 <div class="paragraph">
 <p>This way, there is no need to update the Docker image often. The Docker image <code>...:cge-none</code> doesn&#8217;t change often. So you can use this
 Docker image just to have the Android tools, texture compression tools etc.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>

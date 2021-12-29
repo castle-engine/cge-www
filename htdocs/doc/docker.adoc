@@ -129,17 +129,23 @@ docker pull kambi/castle-engine-cloud-builds-tools:cge-unstable
 
 After this, create a new container that starts from `kambi/castle-engine-cloud-builds-tools:cge-unstable` image, following the text above on this page.
 
-NOTE: Your previous images and containers will continue to exist, unmodified. The previous image is no longer tagged `kambi/castle-engine-cloud-builds-tools:cge-unstable`, but it is still there, on your disk. If you don't want this, you can e.g. remove the unneeded containers and images. A simple way to remove everything is:
+[NOTE]
+====
+Your previous images and containers will continue to exist, unmodified. The previous image is no longer tagged `kambi/castle-engine-cloud-builds-tools:cge-unstable`, but it is still there, on your disk. If you don't want this, you can e.g. remove the unneeded containers and images. A simple way to remove everything is:
 
 ----
 docker ps -aq | xargs docker rm # remove all containers
 docker images -q | xargs docker rmi # remove all images
 ----
+====
 
-_Note 2:_ If you plan to update CGE often, but would still like to use Docker image (e.g. to easily get working environment to build Android APK), then another approach is to use the Docker image `+...:cge-none+`. This requires a bit more to set up: you should get your own https://github.com/castle-engine/castle-engine/[copy of CGE source code from GitHub], keep it and update outside of Docker (using `git pull`), recompile link:pass:[Build Tool][] manually after updating, and manually define `CASTLE_ENGINE_PATH` inside Docker to point to your CGE copy.
+[NOTE]
+====
+If you plan to update CGE often, but would still like to use Docker image (e.g. to easily get working environment to build Android APK), then another approach is to use the Docker image `+...:cge-none+`. This requires a bit more to set up: you should get your own https://github.com/castle-engine/castle-engine/[copy of CGE source code from GitHub], keep it and update outside of Docker (using `git pull`), recompile link:pass:[Build Tool][] manually after updating, and manually define `CASTLE_ENGINE_PATH` inside Docker to point to your CGE copy.
 
 This way, there is no need to update the Docker image often. The Docker image `+...:cge-none+` doesn't change often. So you can use this
 Docker image just to have the Android tools, texture compression tools etc.
+====
 
 == Sources
 

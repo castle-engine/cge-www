@@ -57,7 +57,7 @@ In the simplest case, the typical implementation of `TGameInAppPurchases` constr
  end;
 ----
 
-. NOTE: On iOS, the state of items currently owned is not automatically available.
+. On iOS, the state of items currently owned is not automatically available.
 +
 If you need to know whether user owns some non-consumable product, according to the AppStore, then you need to call https://castle-engine.io/apidoc-unstable/html/CastleInAppPurchases.TInAppPurchases.html#RefreshPurchases[RefreshPurchases] explicitly. Like
 +

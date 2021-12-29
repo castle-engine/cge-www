@@ -84,7 +84,9 @@ With latest versions of Android emulator it is possible to run OpenGL ES applica
 
 NOTE: you will need to check "_Use Host GPU_" in emulator options. Otherwise the app will stop and in the log (Android logcat) you will see a message "_Emulator without GPU emulation detected_.".  Also, make sure your device is created with sufficient space (on _Internal storage_ or _SD Card_).
 
-NOTE: You _can_ run emulator of the normal Android CPU (32-bit Arm or 64-bit Aarch64), running the "final" CGE application for the same CPU. But it is faster to use emulator/virtual machine of Android running 32-bit x86 or 64-bit x86_64 CPU and compile CGE applications for this CPU.
+[NOTE]
+====
+You _can_ run emulator of the normal Android CPU (32-bit Arm or 64-bit Aarch64), running the "final" CGE application for the same CPU. But it is faster to use emulator/virtual machine of Android running 32-bit x86 or 64-bit x86_64 CPU and compile CGE applications for this CPU.
 
 To do this, compile your application like this:
 
@@ -93,6 +95,7 @@ castle-engine package --os=android --cpu=x86_64
 ----
 
 and transfer the resulting APK into the emulator/virtual machine. The Android SDK includes ready machines. You can also use virtual machines made from images on https://www.android-x86.org/ .
+====
 
 == Testing mobile (OpenGL ES) rendering without an Android
 
