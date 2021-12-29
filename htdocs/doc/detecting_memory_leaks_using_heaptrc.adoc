@@ -1,15 +1,6 @@
 # Detecting Memory Leaks Using HeapTrc
 include::common.adoc[]
 
-Table of Contents:
-
-* <<intro,Intro>>
-* <<using-heaptrc-in-castle-game-engine,Using HeapTrc in Castle Game Engine>>
-* <<interpreting-the-results,Interpreting the results>>
-* <<caveat-ignore-output-when-halt-occurred,Caveat: Ignore output when Halt occurred>>
-* <<caveat-windows-gui-output-is-bothersome,Caveat: Windows GUI output is bothersome>>
-* <<advanced-routing-heaptrc-output-to-a-file,Advanced: Routing HeapTrc output to a file>>
-
 == Intro
 
 "Memory leak" means that you allocated a memory for something, but didn't deallocate it.
