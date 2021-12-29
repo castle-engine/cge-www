@@ -71,6 +71,22 @@
     border-color: #faebcc;
 }
 
+/* Float style from AsciiDoctor, makes in particular floating images OK. */
+.left{float:left!important}
+.right{float:right!important}
+
+/* Images style from AsciiDoctor. */
+.imageblock.left{margin:.25em .625em 1.25em 0}
+.imageblock.right{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none;display:inline-block}
+a.image object{pointer-events:none}
+
 /* All non-Coderay style commented out now,
    we don't need it in the end.
    This way we have clean CSS, and we don't spend time essentially countering AsciiDoctor default CSS.

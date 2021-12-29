@@ -516,6 +516,8 @@ function common_footer($js_using_jquery = '')
 <script src="<?php echo page_requisite('castle-engine-website-base/colorbox/jquery.colorbox-min.js'); ?>" type="text/javascript"></script>
 <script type="text/javascript">
   jQuery('a.screenshot').colorbox({opacity: 0.9, rel:'screenshot', maxWidth:'90%', maxHeight:'90%'});
+  // For AsciiDoctor images with role=screnshot
+  jQuery('.screenshot a').colorbox({opacity: 0.9, rel:'screenshot', maxWidth:'90%', maxHeight:'90%'});
 </script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="<?php echo page_requisite('castle-engine-website-base/bootstrap/js/bootstrap.min.js'); ?>"></script>
