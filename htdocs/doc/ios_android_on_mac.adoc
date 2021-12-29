@@ -1,6 +1,8 @@
 # iOS and Android on macOS
 include::common.adoc[]
 
+== Introduction
+
 You can read how the set the environment for deploying to link:pass:[Android][], and for deploying to link:pass:[iOS][] devices on separate pages. This page describes the process when you want to use a single Mac computer to do both.
 
 *Note: This document was not updated since FPC 3.0.4. Some steps may be easier now with later FPC, and definitely things are easier with link:pass:[fpcupdeluxe][]. We hope that this information is useful, but you should not follow it literally.*
@@ -9,7 +11,7 @@ The main problem comes from the current state of the stable FPC release, when th
 
 We hope this process will simplify a lot after FPC releases a new stable version (3.1.1?). You can also use link:pass:[fpcupdeluxe][] that does everything for you.
 
-= Compile Android cross compiler
+== Compile Android cross compiler
 
 Cross compiler is not distributed as an official package, so you need to compile it yourself. And you need FPC 3.0.0 for this (i.e. not 3.0.4) together with FPC sources for version 3.0.4.
 
@@ -35,7 +37,7 @@ cd /usr/local/share/fpcsrc
 sudo make clean crossall crossinstall OS_TARGET=android CPU_TARGET=arm CROSSOPT="-Cfvfpv3" INSTALL_PREFIX=$HOME/fpc_android
 ----
 
-= Install FPC 3.0.4
+== Install FPC 3.0.4
 
 . Download and install https://sourceforge.net/projects/freepascal/files/Mac%20OS%20X/3.0.4/[FPC 3.0.4 for macOS]
 `fpc-3.0.4.intel-macosx.dmg`
@@ -44,7 +46,7 @@ sudo make clean crossall crossinstall OS_TARGET=android CPU_TARGET=arm CROSSOPT=
 
 You can also install https://sourceforge.net/projects/lazarus/files/Lazarus%20Mac%20OS%20X%20i386/Lazarus%201.8.0/[Lazarus] at this moment.
 
-= Put compilers together
+== Put compilers together
 
 Right now, you can compile to iOS without problems, we just need to "install" our compiled Android cross compiler.
 
@@ -96,7 +98,7 @@ To verify, you can run:
 
 Another solution would be to unlink ppcarm from version 3.0.5 and link it to our Android compiler, but I decided not to touch the official distribution.
 
-= Add Android NDK paths to fpc.cfg
+== Add Android NDK paths to fpc.cfg
 
 The last configuration step is to add the path to Android NDK libraries to your fpc.cfg. The default location of this file on macOS is `/etc/fpc.cfg`. I recommend to edit it and insert following lines, for example under the section with Xcode libraries _(-Fl/Applications/Xcode.app/...)_:
 
@@ -111,7 +113,7 @@ The last configuration step is to add the path to Android NDK libraries to your 
 #endif
 ----
 
-= Running the Build Tool
+== Running the Build Tool
 
 As we have this confusion about `ppcarm` version, we have to tell the link:pass:[Build Tool][] we need to use FPC version 3.0.4 when compiling to Android. Use the `--compiler-option` command line parameter. So, for example, the command line can be:
 

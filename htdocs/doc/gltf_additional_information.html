@@ -1,13 +1,15 @@
 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
-<ul class="sectlevel0">
-<li><a href="#_attaching_objects_to_bones">Attaching objects to bones</a></li>
-<li><a href="#_collisions_when_your_gltf_mesh_uses_skinned_animation">Collisions when your glTF mesh uses skinned animation</a></li>
-<li><a href="#_switching_to_phong_lighting_model_for_performance_or_just_different_look">Switching to Phong lighting model (for performance or just different look)</a></li>
-<li><a href="#_gamma_correction">Gamma Correction</a></li>
+<ul class="sectlevel1">
+<li><a href="#_introduction">1. Introduction</a></li>
+<li><a href="#_attaching_objects_to_bones">2. Attaching objects to bones</a></li>
+<li><a href="#_collisions_when_your_gltf_mesh_uses_skinned_animation">3. Collisions when your glTF mesh uses skinned animation</a></li>
+<li><a href="#_switching_to_phong_lighting_model_for_performance_or_just_different_look">4. Switching to Phong lighting model (for performance or just different look)</a></li>
+<li><a href="#_gamma_correction">5. Gamma Correction</a></li>
 </ul>
 </div>
-<div id="preamble">
+<div class="sect1">
+<h2 id="_introduction">1. Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><a href="https://castle-engine.io/">Castle Game Engine</a> features a powerful support for the glTF 2.0 model format.</p>
@@ -18,36 +20,19 @@
 <div class="paragraph">
 <p>This page collects some miscellaneous information.</p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_attaching_objects_to_bones">2. Attaching objects to bones</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>Table of Contents:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="#attaching-objects-to-bones">Attaching objects to bones</a></p>
-</li>
-<li>
-<p><a href="#collisions-when-your-gltf-mesh-uses-skinned-animation">Collisions when your glTF mesh uses skinned animation</a></p>
-</li>
-<li>
-<p><a href="#switching-to-phong-lighting-model-for-performance-or-just-different-look">Switching to Phong lighting model (for performance or just different look)</a></p>
-</li>
-<li>
-<p><a href="#gamma-correction">Gamma Correction</a></p>
-</li>
-</ul>
+<p>This is available using <code>TCastleScene.ExposeTransforms</code>. You can "expose" a bone transformation as <code>TCastleTransform</code> child and attach there a scene. See <a href="https://castle-engine.io/wp/2020/10/09/attach-objects-to-animated-bones-like-weapon-in-characters-hand-by-exposetransforms/" class="bare">https://castle-engine.io/wp/2020/10/09/attach-objects-to-animated-bones-like-weapon-in-characters-hand-by-exposetransforms/</a> .</p>
 </div>
 </div>
 </div>
-<h1 id="_attaching_objects_to_bones" class="sect0">Attaching objects to bones</h1>
-<div class="openblock partintro">
-<div class="content">
-This is available using <code>TCastleScene.ExposeTransforms</code>. You can "expose" a bone transformation as <code>TCastleTransform</code> child and attach there a scene. See <a href="https://castle-engine.io/wp/2020/10/09/attach-objects-to-animated-bones-like-weapon-in-characters-hand-by-exposetransforms/" class="bare">https://castle-engine.io/wp/2020/10/09/attach-objects-to-animated-bones-like-weapon-in-characters-hand-by-exposetransforms/</a> .
-</div>
-</div>
-<h1 id="_collisions_when_your_gltf_mesh_uses_skinned_animation" class="sect0">Collisions when your glTF mesh uses skinned animation</h1>
-<div class="openblock partintro">
-<div class="content">
+<div class="sect1">
+<h2 id="_collisions_when_your_gltf_mesh_uses_skinned_animation">3. Collisions when your glTF mesh uses skinned animation</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>For speed, the shapes animated using <em>skinned animation</em> in glTF uses bounding box for collisions. That&#8217;s because the triangles would change every frame and updating the octree would have a significant cost for FPS.</p>
 </div>
@@ -106,9 +91,9 @@ This is available using <code>TCastleScene.ExposeTransforms</code>. You can "exp
 </div>
 </div>
 </div>
-<h1 id="_switching_to_phong_lighting_model_for_performance_or_just_different_look" class="sect0">Switching to Phong lighting model (for performance or just different look)</h1>
-<div class="openblock partintro">
-<div class="content">
+<div class="sect1">
+<h2 id="_switching_to_phong_lighting_model_for_performance_or_just_different_look">4. Switching to Phong lighting model (for performance or just different look)</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>glTF models use <code>PhysicalMaterial</code> or <code>UnlitMaterial</code> for their materials.</p>
 </div>
@@ -123,9 +108,9 @@ This is available using <code>TCastleScene.ExposeTransforms</code>. You can "exp
 </div>
 </div>
 </div>
-<h1 id="_gamma_correction" class="sect0">Gamma Correction</h1>
-<div class="openblock partintro">
-<div class="content">
+<div class="sect1">
+<h2 id="_gamma_correction">5. Gamma Correction</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>The <code>PhysicalMaterial</code>, used by most glTF models, has <a href="https://castle-engine.io/apidoc-unstable/html/CastleRendererBaseTypes.html#GammaCorrection">Gamma Correction</a> turned on by default.</p>
 </div>

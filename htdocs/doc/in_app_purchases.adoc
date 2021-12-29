@@ -1,9 +1,11 @@
 # In-app Purchases
 include::common.adoc[]
 
-A step-by-step instruction how to implement _in-app purchases_ (for Android and iOS) using CGE https://castle-engine.io/apidoc-unstable/html/CastleInAppPurchases.html[CastleInAppPurchases] unit and https://castle-engine.io/apidoc-unstable/html/CastleInAppPurchases.TInAppPurchases.html[TInAppPurchases] class.
+== Introduction
 
-= Set up purchases in the stores (GooglePlay, AppStore)
+This is a step-by-step instruction how to implement _in-app purchases_ (for Android and iOS) using CGE https://castle-engine.io/apidoc-unstable/html/CastleInAppPurchases.html[CastleInAppPurchases] unit and https://castle-engine.io/apidoc-unstable/html/CastleInAppPurchases.TInAppPurchases.html[TInAppPurchases] class.
+
+== Set up purchases in the stores (GooglePlay, AppStore)
 
 You need to define the products you want sell in the
 
@@ -12,14 +14,14 @@ You need to define the products you want sell in the
 
 The internal names of products you define there will be then used with CGE API, like in methods https://castle-engine.io/apidoc-unstable/html/CastleInAppPurchases.TInAppPurchases.html#SetAvailableProducts[SetAvailableProducts] and https://castle-engine.io/apidoc-unstable/html/CastleInAppPurchases.TInAppPurchases.html#Product[Product].
 
-= Use services
+== Use services
 
 You need to add a "service" to include the necessary integration code  on Android and iOS.
 
 * For Android add the `google_in_app_purchases` service, see link:pass:[Android services][].
 * For iOS add the `in_app_purchases` service, see link:pass:[iOS services][].
 
-= Implement and use TGameInAppPurchases class
+== Implement and use TGameInAppPurchases class
 
 . Make a descendant of `TInAppPurchases` class in your project, e.g. called `TGameInAppPurchases`:
 +
@@ -145,7 +147,7 @@ Use these prices to update the UI of your game. Like this:
 +
 Note that in both cases, we save the rewards from this purchase as soon as possible to `UserConfig`, and we save it to disk (so it is not lost if the application will be killed soon). This is especially important for saving rewards from consumable items, since, once you call `Consume`, you have only one chance to react to `TGameInAppPurchases.SuccessfullyConsumed`. Once `TGameInAppPurchases.SuccessfullyConsumed` has been called, the store assumes you have given user the necessary reward. User has all the rights to expect the reward, as (s)he paid real money for it. So be sure that the code recording these rewards is reliable.
 
-= Testing Notes
+== Testing Notes
 
 * In case of AppStore, note that they will "approve" your in-app purchase product only when reviewing the first application version. But you can test in the sandbox even unapproved in-app purchases. See
  ** https://developer.apple.com/support/app-store-connect/[App Store Connect docs]

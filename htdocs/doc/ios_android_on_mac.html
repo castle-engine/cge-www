@@ -1,14 +1,16 @@
 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
-<ul class="sectlevel0">
-<li><a href="#_compile_android_cross_compiler">Compile Android cross compiler</a></li>
-<li><a href="#_install_fpc_3_0_4">Install FPC 3.0.4</a></li>
-<li><a href="#_put_compilers_together">Put compilers together</a></li>
-<li><a href="#_add_android_ndk_paths_to_fpc_cfg">Add Android NDK paths to fpc.cfg</a></li>
-<li><a href="#_running_the_build_tool">Running the Build Tool</a></li>
+<ul class="sectlevel1">
+<li><a href="#_introduction">1. Introduction</a></li>
+<li><a href="#_compile_android_cross_compiler">2. Compile Android cross compiler</a></li>
+<li><a href="#_install_fpc_3_0_4">3. Install FPC 3.0.4</a></li>
+<li><a href="#_put_compilers_together">4. Put compilers together</a></li>
+<li><a href="#_add_android_ndk_paths_to_fpc_cfg">5. Add Android NDK paths to fpc.cfg</a></li>
+<li><a href="#_running_the_build_tool">6. Running the Build Tool</a></li>
 </ul>
 </div>
-<div id="preamble">
+<div class="sect1">
+<h2 id="_introduction">1. Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>You can read how the set the environment for deploying to <a href="Android" class="bare">Android</a>, and for deploying to <a href="iOS" class="bare">iOS</a> devices on separate pages. This page describes the process when you want to use a single Mac computer to do both.</p>
@@ -24,9 +26,9 @@
 </div>
 </div>
 </div>
-<h1 id="_compile_android_cross_compiler" class="sect0">Compile Android cross compiler</h1>
-<div class="openblock partintro">
-<div class="content">
+<div class="sect1">
+<h2 id="_compile_android_cross_compiler">2. Compile Android cross compiler</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Cross compiler is not distributed as an official package, so you need to compile it yourself. And you need FPC 3.0.0 for this (i.e. not 3.0.4) together with FPC sources for version 3.0.4.</p>
 </div>
@@ -67,9 +69,9 @@ sudo make clean crossall crossinstall OS_TARGET=android CPU_TARGET=arm CROSSOPT=
 </div>
 </div>
 </div>
-<h1 id="_install_fpc_3_0_4" class="sect0">Install FPC 3.0.4</h1>
-<div class="openblock partintro">
-<div class="content">
+<div class="sect1">
+<h2 id="_install_fpc_3_0_4">3. Install FPC 3.0.4</h2>
+<div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -87,9 +89,9 @@ sudo make clean crossall crossinstall OS_TARGET=android CPU_TARGET=arm CROSSOPT=
 </div>
 </div>
 </div>
-<h1 id="_put_compilers_together" class="sect0">Put compilers together</h1>
-<div class="openblock partintro">
-<div class="content">
+<div class="sect1">
+<h2 id="_put_compilers_together">4. Put compilers together</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Right now, you can compile to iOS without problems, we just need to "install" our compiled Android cross compiler.</p>
 </div>
@@ -163,9 +165,9 @@ lrwxr-xr-x  1 root  (...) /usr/local/bin/ppcx64-3.0.5 -&gt; ../lib/fpc/3.0.5/ppc
 </div>
 </div>
 </div>
-<h1 id="_add_android_ndk_paths_to_fpc_cfg" class="sect0">Add Android NDK paths to fpc.cfg</h1>
-<div class="openblock partintro">
-<div class="content">
+<div class="sect1">
+<h2 id="_add_android_ndk_paths_to_fpc_cfg">5. Add Android NDK paths to fpc.cfg</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>The last configuration step is to add the path to Android NDK libraries to your fpc.cfg. The default location of this file on macOS is <code>/etc/fpc.cfg</code>. I recommend to edit it and insert following lines, for example under the section with Xcode libraries <em>(-Fl/Applications/Xcode.app/&#8230;&#8203;)</em>:</p>
 </div>
@@ -183,9 +185,9 @@ lrwxr-xr-x  1 root  (...) /usr/local/bin/ppcx64-3.0.5 -&gt; ../lib/fpc/3.0.5/ppc
 </div>
 </div>
 </div>
-<h1 id="_running_the_build_tool" class="sect0">Running the Build Tool</h1>
-<div class="openblock partintro">
-<div class="content">
+<div class="sect1">
+<h2 id="_running_the_build_tool">6. Running the Build Tool</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>As we have this confusion about <code>ppcarm</code> version, we have to tell the <a href="Build Tool" class="bare">Build Tool</a> we need to use FPC version 3.0.4 when compiling to Android. Use the <code>--compiler-option</code> command line parameter. So, for example, the command line can be:</p>
 </div>

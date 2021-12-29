@@ -5,15 +5,7 @@ _fpcupdeluxe_ is a powerful GUI program that installs http://freepascal.org/[FPC
 
 https://castle-engine.sourceforge.io/wp/wp-content/uploads/2017/04/fpcupdeluxe_cge.png[image:https://castle-engine.sourceforge.io/wp/wp-content/uploads/2017/04/fpcupdeluxe_cge-200x118.png[fpcupdeluxe GUI\]]
 
-* <<features,Features>>
-* <<usage-instructions,Usage instructions>>
-* <<running-fpc--lazarus,Running FPC / Lazarus>>
-* <<putting-fpc-on-path,Putting FPC on $PATH>>
-* <<installing-castle-game-engine-using-fpcupdeluxe,Installing Castle Game Engine using fpcupdeluxe>>
-* <<cross-compilation-to-android,Cross-compilation to Android>>
-* <<more-information-about-fpcupdeluxe,More information about fpcupdeluxe>>
-
-= Features
+== Features
 
 * _fpcupdeluxe_ easily installs various versions of FPC (stable, trunk) and Lazarus.
 * With cross-compilers (e.g. to compile from desktop to link:pass:[Android][Android] or link:pass:[iOS][iOS]).
@@ -23,7 +15,7 @@ https://castle-engine.sourceforge.io/wp/wp-content/uploads/2017/04/fpcupdeluxe_c
 
 Note that the _fpcupdeluxe_ (and related _fpcup_) is not connected to the _Castle Game Engine_ project. You can install FPC/Lazarus in any way you like for the _Castle Game Engine_ to work. But fpcupdeluxe is really a great way to manage your FPC/Lazarus installation if you're an "advanced" user of FPC/Lazarus (you play around with various versions or cross-compilers), so give it a try:)
 
-= Usage instructions
+== Usage instructions
 
 * Download from https://github.com/LongDirtyAnimAlf/fpcupdeluxe/releases/latest .
 * Run.
@@ -39,7 +31,7 @@ Commented out, as fpcupdeluxe includes SVN / GIT on Windows, and devs on Linux p
 
 That's it!
 
-= Running FPC / Lazarus
+== Running FPC / Lazarus
 
 After installation with default paths:
 
@@ -57,7 +49,7 @@ Or the `Lazarus_fpcupdeluxe` shell script (it's placed in `$HOME` by default, yo
  ** `$HOME/fpcupdeluxe/fpc/bin/<os-cpu>/fpc.cfg` on Unix.
  ** `C:\fpcupdeluxe\fpc\bin\<os-cpu>\fpc.cfg` on Windows.
 
-= Putting FPC on $PATH
+== Putting FPC on $PATH
 
 If you compile through our https://castle-engine.io/manual_editor.php[Castle Game Engine editor] then you should configure the FPC and Lazarus locations in editor _Preferences_ window. You can ignore the rest of this section then :) There is no need to mess with `$PATH`. And it will make switching between different FPC/Lazarus versions easier.
 
@@ -94,7 +86,7 @@ You can also do it more manually:
 +
 WARNING: If you use this approach, make sure that the specified path `<full-home-path>/fpcupdeluxe/fpc/bin/<os-cpu>/fpc.cfg` always exists. Otherwise `fpc` will not find it's configuration file, and will not know the location of it's standard units (`System`, `SysUtils`...). In this case not only `fpc` will not work, even  the "bootstrapping" (installing new FPC versions using fpcupdeluxe, during which FPC is compiled with FPC) may not work.
 
-= Installing Castle Game Engine using fpcupdeluxe
+== Installing Castle Game Engine using fpcupdeluxe
 
 _fpcupdeluxe_ can also install various 3rd party libraries, including CGE.
 
@@ -105,7 +97,7 @@ The engine code is inside `<fpcupdeluxe>/ccr/castle_game_engine/` . In particula
 * To use the engine from FPC command-line, you need to setup things yourself. E.g. compile our link:pass:[https://github.com/castle-engine/castle-engine/wiki/Build-Tool][build tool] from the sources you have in `<fpcupdeluxe>/ccr/castle_game_engine/tools/build-tool/`. You can set `$CASTLE_ENGINE_PATH` environment variable to `<fpcupdeluxe>/ccr/castle_game_engine/` .
 * The API documentation is not present in the `doc/reference/` , because we don't keep the generated docs inside the repository. That's usually not a problem, as you can https://castle-engine.sourceforge.io/apidoc-unstable/html/[browse the Castle Game Engine API docs online]. You can also get link:pass:[https://github.com/pasdoc/pasdoc/wiki][pasdoc] and generate them yourself by `make html` in `doc/pasdoc`.
 
-= Cross-compilation to Android
+== Cross-compilation to Android
 
 _fpcupdeluxe_ can setup a cross-compiler for you, to compile to a different OS/CPU than the one you're currently using.
 
@@ -147,7 +139,7 @@ The workflow is analogous:
 
 Note that you need to use FPC >= 3.2.0 for this. FPC 3.0.x doesn't support building for Android/Aarch64.
 
-= More information about fpcupdeluxe
+== More information about fpcupdeluxe
 
 * http://wiki.lazarus.freepascal.org/fpcupdeluxe
 * https://github.com/LongDirtyAnimAlf/fpcupdeluxe

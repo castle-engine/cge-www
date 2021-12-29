@@ -1,11 +1,13 @@
 # FpMake and FpPkg
 include::common.adoc[]
 
+== Introduction
+
 You can compile and install _Castle Game Engine_ units using FPC `fpmake` / `fppkg`.
 
 Note that most users are probably more interested in https://castle-engine.io/documentation.php[compiling using CGE editor or build tool, or using Lazarus]. However, the compilation and installation using `fpmake` / `fppkg` is also fully supported.
 
-= Using FpMake
+== Using FpMake
 
 In short: use the `fpmake.pp` file in CGE top-level directory, and follow standard http://wiki.freepascal.org/FPMake[FpMake] and http://wiki.freepascal.org/fppkg[fppkg] docs.
 
@@ -19,7 +21,7 @@ fpc fpmake.pp
 
 Instead of doing `install` command, you could also manually modify your `fpc.cfg` file to add the necessary unit path, like `-FuXxx/castle_game_engine/units/x86_64-linux`.
 
-= Using FpPkg
+== Using FpPkg
 
 Simply doing
 
@@ -31,11 +33,11 @@ in the main CGE directory should work.
 
 NOTE: if it fails with Access Violation (as it happens with `FPC 3.3.1-r41725` on Win64 now) then use the `fpmake` approach instead, see above.
 
-= Compiling your applications
+== Compiling your applications
 
 Since the CGE units are now compiled to a directory listed in `fpc.cfg` file, you can just compile your applications from the command-line by `fpc my_application.lpr`.
 
-= Compiling and running your applications with InstantFPC
+== Compiling and running your applications with InstantFPC
 
 Once you installed CGE units this way, you can use http://wiki.freepascal.org/InstantFPC[InstantFPC] without any additional configuration. That is, you can use CGE units inside program files processed by InstantFPC.
 

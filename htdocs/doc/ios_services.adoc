@@ -20,7 +20,7 @@ include::common.adoc[]
 * <<common-notes-for-services-using-cocoapods,Common notes for services using CocoaPods>>
 * <<adding-new-services,Adding new services>>
 
-= How to use iOS services in Castle Game Engine projects
+== How to use iOS services in Castle Game Engine projects
 
 Inside the link:pass:[CastleEngineManifest.xml examples][CastleEngineManifest.xml] you can declare which additional services you want to integrate with your iOS application. It looks like this:
 
@@ -36,9 +36,9 @@ Inside the link:pass:[CastleEngineManifest.xml examples][CastleEngineManifest.xm
 </project>
 ----
 
-= Currently supported services:
+== Currently supported services:
 
-== apple_game_center
+=== apple_game_center
 
 Integration with the https://developer.apple.com/game-center/[Apple Game Center].
 
@@ -61,7 +61,7 @@ Then from your Pascal code, you can use `TGameService` class from the `CastleGam
 +
 image::https://castle-engine.sourceforge.io/images/thumb_size/xcode_icloud_settings.png[Xcode iCloud Settings for Apple Game Center with savegames,link=https://castle-engine.sourceforge.io/images/original_size/xcode_icloud_settings.png]
 
-== facebook
+=== facebook
 
 Integration with https://developers.facebook.com/docs/ios/[Facebook SDK for iOS]. Right now this integration:
 
@@ -92,7 +92,7 @@ In `CastleEngineManifest.xml`, set the `app_id` and `app_title` for the `faceboo
 +
 Note that compiling the Facebook SDK in latest Xcode will produce a large number of warnings (64, last time I checked...). That's a problem of Facebook SDK -- we cannot help it. You can just ignore them (or submit them to Facebook devs).
 
-== game_analytics
+=== game_analytics
 
 Integration with the https://gameanalytics.com/[Game Analytics].
 
@@ -102,7 +102,7 @@ Note that you _can_ have both _Game Analytics_ and _Google Analytics_ initialize
 
 <<common-notes-for-services-using-cocoapods,This service uses CocoaPods, so make sure you have CocoaPods installed.>>
 
-== google_analytics
+=== google_analytics
 
 Integration with the https://analytics.google.com/[Google Analytics].
 
@@ -112,17 +112,20 @@ Note that you _can_ have both _Game Analytics_ and _Google Analytics_ initialize
 
 <<common-notes-for-services-using-cocoapods,This service uses CocoaPods, so make sure you have CocoaPods installed.>>
 
-NOTE: You need to create a new "property" in _Google Analytics_ for tracking your mobile application, and obtain a "tracking ID" (like `UA-xxx`). However, since Google now advices using Firebase for tracking mobile applications, if you click on "Mobile" when creating a new Google Analytics property, it will suggest you to connect your application to Firebase. Instead, _create a "Website" property in "Google Analytics" to get a normal tracking ID, and then change the "view" to see mobile application data_. See:
+[NOTE]
+====
+You need to create a new "property" in _Google Analytics_ for tracking your mobile application, and obtain a "tracking ID" (like `UA-xxx`). However, since Google now advices using Firebase for tracking mobile applications, if you click on "Mobile" when creating a new Google Analytics property, it will suggest you to connect your application to Firebase. Instead, _create a "Website" property in "Google Analytics" to get a normal tracking ID, and then change the "view" to see mobile application data_. See:
 
 * https://stackoverflow.com/questions/44142353/creating-google-analytics-property-not-using-firebase
 * https://stackoverflow.com/questions/45853012/add-google-analytics-to-android-app-without-firebase
 * https://stackoverflow.com/questions/44421865/is-firebase-now-mandatory-for-use-of-google-analytics-mobile-properties
+====
 
-== icloud_for_save_games
+=== icloud_for_save_games
 
 This service enhances the `apple_game_center` service to be able to store savegames in the cloud. See the `apple_game_center` documentation above.
 
-== in_app_purchases
+=== in_app_purchases
 
 Allows to sell products within the iOS application, through the _Apple AppStore_.
 
@@ -132,19 +135,19 @@ You need (paid) Apple developer account to use this. And you will need to sign s
 
 Be sure to check that the capability _"In-App Purchase"_ is also _Enabled_ for given _App ID_, in your _Apple Developer Account_.
 
-== ogg_vorbis
+=== ogg_vorbis
 
 This integrates your project with Tremolo to allow loading and playing OggVorbis music on iOS.
 
 _This service is automatically added to your project if it has a dependency on OggVorbis, which in turn is automatic if your game data includes some `.ogg` file._ So there's seldom a need to request this service explicitly.
 
-== photo_service
+=== photo_service
 
 Integration with PhotoLibrary.
 
 Use the Pascal class `TPhotoService` (use `CastlePhotoService` unit) to store your image into the system Photos app.
 
-= Common notes for services using CocoaPods
+== Common notes for services using CocoaPods
 
 Some of the services use https://cocoapods.org/[CocoaPods] for installing 3rd-party dependencies easily (e.g. _Game Analytics_ or _Google Analytics_ or _Facebook SDK_ libraries).
 
@@ -156,7 +159,7 @@ The build tool will internally use `pod` to download and install service depende
 
 . You should no longer open the project using `my_project_name.xcodeproj` file. This will not work, as the `+libPods...+` library will not be built in this case. Instead, open and run in Xcode the `my_project_name.xcworkspace` file (it is in the same directory as `my_project_name.xcodeproj`). Using this will correctly build and run the project with dependencies.
 
-= Adding new services
+== Adding new services
 
 Adding new iOS service is deliberately very consistent with creating new service for Android, which is documented on link:pass:[Adding New Android Services][].
 

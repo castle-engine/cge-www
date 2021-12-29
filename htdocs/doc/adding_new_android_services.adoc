@@ -1,11 +1,13 @@
 # Adding New Android Services
 include::common.adoc[]
 
+== Introduction
+
 _Castle Game Engine_ defines a number of useful link:pass:[Android Services][] and link:pass:[iOS Services][] to integrate with various 3rd-party libraries, SDKs to provide additional functionality to your application.
 
 This page documents how you can add new services for Android.
 
-=== Be sure to use Android project_type "integrated" (this is the default now)
+== Be sure to use Android project_type "integrated" (this is the default now)
 
 All the Android services require that you have an `integrated` Android project type (default now), not `base`. With the `integrated` project type, our final Android project has it's own activity class (`MainActivity`, descendant of `NativeActivity`, in `tools/build-tool/data/android/integrated/app/src/main/java/net/sourceforge/castleengine/MainActivity.java`), and it has Java code that is "summed" by adding all the files from
 
@@ -18,7 +20,7 @@ The `base` project type (you can request it by `CastleEngineManifest.xml`) is _n
 * This allows our application to render, update, listen for touch events, in general use all the NDK functionality (including standard Unix library, e.g. to open files, and some Android-specific things like logging). For some simple games this is enough.
 * But any integrations that require Java libraries are impossible to implement in this case. The NDK libraries only provide some basic functionality, they absolutely _do not_ cover the functionality offered by the Java API on Android.
 
-=== Adding new service
+== Adding new service
 
 It's easy to add your own Android services, if you need to integrate with some Android library not covered by existing link:pass:[Android Services][]. Create your service inside the `castle_game_engine/tools/build-tool/data/android/integrated-services/xxx/` directory. The files there are copied to the final Android project, expanding macros inside. Most of the files are simply copied (but avoiding overwriting), but some files are merged in a special way:
 
@@ -32,11 +34,11 @@ services.add(new ServiceStartApp(this));
 
 When developing new services, it's useful to inspect the generated Android project in the `castle-engine-output/android/project`. This is created by the link:pass:[Build Tool][] by merging all the services with base project template. Look there after running `castle-engine package --target=android`.
 
-=== Java code of a service
+== Java code of a service
 
 The main code of a service is usually a class descending from the `ServiceAbstract` class. It has some methods that you can override, like `onCreate`, `onStart`, and so on -- they are called when the appropriate lifecycle event occurs on the `MainActivity`. The idea is that our `MainActivity` should be a relatively small class, that simply "passes on" the events to every service.
 
-=== Communicate with Java
+== Communicate with Java
 
 To communicate with the services from the Object Pascal code, use the `CastleMessaging` unit. Our units like `CastleAds` or `CastleGameService` are simply thin "wrappers" using `CastleMessaging` unit under the hood -- see at their sources to know how it works, it is very straightfoward.
 
@@ -67,7 +69,7 @@ In the Java part, you use the full power of Java APIs on Android, that are neces
 
 NOTE: The disadvantage of `CastleMessaging` approach is that the communication between Java and Pascal looks like an asynchronous network channel. That's OK in many cases (especially when the Java code indeed wraps some network operations), but it may be bad if you need to get something fast/synchronously. For such cases, using JNI to implement communication Java\<->Pascal is necessary.
 
-=== Adding a service with dynamic library (SO)
+== Adding a service with dynamic library (SO)
 
 A service can be to add a dynamic library (SO, file like `libxxx.so`) to your Android project.
 

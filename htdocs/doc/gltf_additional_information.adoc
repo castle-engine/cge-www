@@ -1,5 +1,7 @@
-# Addtional Information On glTF
+# Addtional Information about glTF
 include::common.adoc[]
+
+== Introduction
 
 https://castle-engine.io/[Castle Game Engine] features a powerful support for the glTF 2.0 model format.
 
@@ -7,18 +9,11 @@ See the https://castle-engine.io/creating_data_model_formats.php#section_gltf[Su
 
 This page collects some miscellaneous information.
 
-Table of Contents:
-
-* <<attaching-objects-to-bones,Attaching objects to bones>>
-* <<collisions-when-your-gltf-mesh-uses-skinned-animation,Collisions when your glTF mesh uses skinned animation>>
-* <<switching-to-phong-lighting-model-for-performance-or-just-different-look,Switching to Phong lighting model (for performance or just different look)>>
-* <<gamma-correction,Gamma Correction>>
-
-= Attaching objects to bones
+== Attaching objects to bones
 
 This is available using `TCastleScene.ExposeTransforms`. You can "expose" a bone transformation as `TCastleTransform` child and attach there a scene. See https://castle-engine.io/wp/2020/10/09/attach-objects-to-animated-bones-like-weapon-in-characters-hand-by-exposetransforms/ .
 
-= Collisions when your glTF mesh uses skinned animation
+== Collisions when your glTF mesh uses skinned animation
 
 For speed, the shapes animated using _skinned animation_ in glTF uses bounding box for collisions. That's because the triangles would change every frame and updating the octree would have a significant cost for FPS.
 
@@ -63,7 +58,7 @@ Like this:
  end;
 ----
 
-= Switching to Phong lighting model (for performance or just different look)
+== Switching to Phong lighting model (for performance or just different look)
 
 glTF models use `PhysicalMaterial` or `UnlitMaterial` for their materials.
 
@@ -73,7 +68,7 @@ If you need maximum speed, you can set global https://castle-engine.io/apidoc-un
 
 Of course, remember that you can also use unlit materials in glTF. These always have the best performance :) https://castle-engine.io/creating_data_blender.php[Blender] can export glTF unlit materials.
 
-= Gamma Correction
+== Gamma Correction
 
 The `PhysicalMaterial`, used by most glTF models, has https://castle-engine.io/apidoc-unstable/html/CastleRendererBaseTypes.html#GammaCorrection[Gamma Correction] turned on by default.
 

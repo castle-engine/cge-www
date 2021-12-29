@@ -1,14 +1,16 @@
 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
-<ul class="sectlevel2">
-<li><a href="#_be_sure_to_use_android_project_type_integrated_this_is_the_default_now">1. Be sure to use Android project_type "integrated" (this is the default now)</a></li>
-<li><a href="#_adding_new_service">2. Adding new service</a></li>
-<li><a href="#_java_code_of_a_service">3. Java code of a service</a></li>
-<li><a href="#_communicate_with_java">4. Communicate with Java</a></li>
-<li><a href="#_adding_a_service_with_dynamic_library_so">5. Adding a service with dynamic library (SO)</a></li>
+<ul class="sectlevel1">
+<li><a href="#_introduction">1. Introduction</a></li>
+<li><a href="#_be_sure_to_use_android_project_type_integrated_this_is_the_default_now">2. Be sure to use Android project_type "integrated" (this is the default now)</a></li>
+<li><a href="#_adding_new_service">3. Adding new service</a></li>
+<li><a href="#_java_code_of_a_service">4. Java code of a service</a></li>
+<li><a href="#_communicate_with_java">5. Communicate with Java</a></li>
+<li><a href="#_adding_a_service_with_dynamic_library_so">6. Adding a service with dynamic library (SO)</a></li>
 </ul>
 </div>
-<div id="preamble">
+<div class="sect1">
+<h2 id="_introduction">1. Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><em>Castle Game Engine</em> defines a number of useful <a href="Android Services" class="bare">Android Services</a> and <a href="iOS Services" class="bare">iOS Services</a> to integrate with various 3rd-party libraries, SDKs to provide additional functionality to your application.</p>
@@ -18,8 +20,9 @@
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_be_sure_to_use_android_project_type_integrated_this_is_the_default_now">1. Be sure to use Android project_type "integrated" (this is the default now)</h3>
+<div class="sect1">
+<h2 id="_be_sure_to_use_android_project_type_integrated_this_is_the_default_now">2. Be sure to use Android project_type "integrated" (this is the default now)</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>All the Android services require that you have an <code>integrated</code> Android project type (default now), not <code>base</code>. With the <code>integrated</code> project type, our final Android project has it&#8217;s own activity class (<code>MainActivity</code>, descendant of <code>NativeActivity</code>, in <code>tools/build-tool/data/android/integrated/app/src/main/java/net/sourceforge/castleengine/MainActivity.java</code>), and it has Java code that is "summed" by adding all the files from</p>
 </div>
@@ -50,8 +53,10 @@
 </ul>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_adding_new_service">2. Adding new service</h3>
+</div>
+<div class="sect1">
+<h2 id="_adding_new_service">3. Adding new service</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>It&#8217;s easy to add your own Android services, if you need to integrate with some Android library not covered by existing <a href="Android Services" class="bare">Android Services</a>. Create your service inside the <code>castle_game_engine/tools/build-tool/data/android/integrated-services/xxx/</code> directory. The files there are copied to the final Android project, expanding macros inside. Most of the files are simply copied (but avoiding overwriting), but some files are merged in a special way:</p>
 </div>
@@ -77,14 +82,18 @@
 <p>When developing new services, it&#8217;s useful to inspect the generated Android project in the <code>castle-engine-output/android/project</code>. This is created by the <a href="Build Tool" class="bare">Build Tool</a> by merging all the services with base project template. Look there after running <code>castle-engine package --target=android</code>.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_java_code_of_a_service">3. Java code of a service</h3>
+</div>
+<div class="sect1">
+<h2 id="_java_code_of_a_service">4. Java code of a service</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>The main code of a service is usually a class descending from the <code>ServiceAbstract</code> class. It has some methods that you can override, like <code>onCreate</code>, <code>onStart</code>, and so on&#8201;&#8212;&#8201;they are called when the appropriate lifecycle event occurs on the <code>MainActivity</code>. The idea is that our <code>MainActivity</code> should be a relatively small class, that simply "passes on" the events to every service.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_communicate_with_java">4. Communicate with Java</h3>
+</div>
+<div class="sect1">
+<h2 id="_communicate_with_java">5. Communicate with Java</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>To communicate with the services from the Object Pascal code, use the <code>CastleMessaging</code> unit. Our units like <code>CastleAds</code> or <code>CastleGameService</code> are simply thin "wrappers" using <code>CastleMessaging</code> unit under the hood&#8201;&#8212;&#8201;see at their sources to know how it works, it is very straightfoward.</p>
 </div>
@@ -155,8 +164,10 @@ The disadvantage of <code>CastleMessaging</code> approach is that the communicat
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_adding_a_service_with_dynamic_library_so">5. Adding a service with dynamic library (SO)</h3>
+</div>
+<div class="sect1">
+<h2 id="_adding_a_service_with_dynamic_library_so">6. Adding a service with dynamic library (SO)</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>A service can be to add a dynamic library (SO, file like <code>libxxx.so</code>) to your Android project.</p>
 </div>
@@ -199,5 +210,6 @@ For now, we strongly advise that you provide both SO versions, and compile your 
 </div>
 <div class="paragraph">
 <p>They contain just a few trivial files, and two SO files (for Arm 32-bit and 64-bit).</p>
+</div>
 </div>
 </div>

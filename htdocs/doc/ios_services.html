@@ -1,21 +1,21 @@
 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
-<ul class="sectlevel0">
-<li><a href="#_how_to_use_ios_services_in_castle_game_engine_projects">How to use iOS services in Castle Game Engine projects</a></li>
-<li><a href="#_currently_supported_services">Currently supported services:</a>
 <ul class="sectlevel1">
-<li><a href="#_apple_game_center">1. apple_game_center</a></li>
-<li><a href="#_facebook">2. facebook</a></li>
-<li><a href="#_game_analytics">3. game_analytics</a></li>
-<li><a href="#_google_analytics">4. google_analytics</a></li>
-<li><a href="#_icloud_for_save_games">5. icloud_for_save_games</a></li>
-<li><a href="#_in_app_purchases">6. in_app_purchases</a></li>
-<li><a href="#_ogg_vorbis">7. ogg_vorbis</a></li>
-<li><a href="#_photo_service">8. photo_service</a></li>
+<li><a href="#_how_to_use_ios_services_in_castle_game_engine_projects">1. How to use iOS services in Castle Game Engine projects</a></li>
+<li><a href="#_currently_supported_services">2. Currently supported services:</a>
+<ul class="sectlevel2">
+<li><a href="#_apple_game_center">2.1. apple_game_center</a></li>
+<li><a href="#_facebook">2.2. facebook</a></li>
+<li><a href="#_game_analytics">2.3. game_analytics</a></li>
+<li><a href="#_google_analytics">2.4. google_analytics</a></li>
+<li><a href="#_icloud_for_save_games">2.5. icloud_for_save_games</a></li>
+<li><a href="#_in_app_purchases">2.6. in_app_purchases</a></li>
+<li><a href="#_ogg_vorbis">2.7. ogg_vorbis</a></li>
+<li><a href="#_photo_service">2.8. photo_service</a></li>
 </ul>
 </li>
-<li><a href="#_common_notes_for_services_using_cocoapods">Common notes for services using CocoaPods</a></li>
-<li><a href="#_adding_new_services">Adding new services</a></li>
+<li><a href="#_common_notes_for_services_using_cocoapods">3. Common notes for services using CocoaPods</a></li>
+<li><a href="#_adding_new_services">4. Adding new services</a></li>
 </ul>
 </div>
 <div id="preamble">
@@ -84,9 +84,9 @@
 </div>
 </div>
 </div>
-<h1 id="_how_to_use_ios_services_in_castle_game_engine_projects" class="sect0">How to use iOS services in Castle Game Engine projects</h1>
-<div class="openblock partintro">
-<div class="content">
+<div class="sect1">
+<h2 id="_how_to_use_ios_services_in_castle_game_engine_projects">1. How to use iOS services in Castle Game Engine projects</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Inside the <a href="CastleEngineManifest.xml examples">CastleEngineManifest.xml</a> you can declare which additional services you want to integrate with your iOS application. It looks like this:</p>
 </div>
@@ -104,10 +104,11 @@
 </div>
 </div>
 </div>
-<h1 id="_currently_supported_services" class="sect0">Currently supported services:</h1>
 <div class="sect1">
-<h2 id="_apple_game_center">1. apple_game_center</h2>
+<h2 id="_currently_supported_services">2. Currently supported services:</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_apple_game_center">2.1. apple_game_center</h3>
 <div class="paragraph">
 <p>Integration with the <a href="https://developer.apple.com/game-center/">Apple Game Center</a>.</p>
 </div>
@@ -157,10 +158,8 @@
 </ul>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_facebook">2. facebook</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_facebook">2.2. facebook</h3>
 <div class="paragraph">
 <p>Integration with <a href="https://developers.facebook.com/docs/ios/">Facebook SDK for iOS</a>. Right now this integration:</p>
 </div>
@@ -214,10 +213,8 @@
 </ul>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_game_analytics">3. game_analytics</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_game_analytics">2.3. game_analytics</h3>
 <div class="paragraph">
 <p>Integration with the <a href="https://gameanalytics.com/">Game Analytics</a>.</p>
 </div>
@@ -231,10 +228,8 @@
 <p><a href="#common-notes-for-services-using-cocoapods">This service uses CocoaPods, so make sure you have CocoaPods installed.</a></p>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_google_analytics">4. google_analytics</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_google_analytics">2.4. google_analytics</h3>
 <div class="paragraph">
 <p>Integration with the <a href="https://analytics.google.com/">Google Analytics</a>.</p>
 </div>
@@ -254,10 +249,8 @@
 <div class="title">Note</div>
 </td>
 <td class="content">
-You need to create a new "property" in <em>Google Analytics</em> for tracking your mobile application, and obtain a "tracking ID" (like <code>UA-xxx</code>). However, since Google now advices using Firebase for tracking mobile applications, if you click on "Mobile" when creating a new Google Analytics property, it will suggest you to connect your application to Firebase. Instead, <em>create a "Website" property in "Google Analytics" to get a normal tracking ID, and then change the "view" to see mobile application data</em>. See:
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>You need to create a new "property" in <em>Google Analytics</em> for tracking your mobile application, and obtain a "tracking ID" (like <code>UA-xxx</code>). However, since Google now advices using Firebase for tracking mobile applications, if you click on "Mobile" when creating a new Google Analytics property, it will suggest you to connect your application to Firebase. Instead, <em>create a "Website" property in "Google Analytics" to get a normal tracking ID, and then change the "view" to see mobile application data</em>. See:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -272,19 +265,19 @@ You need to create a new "property" in <em>Google Analytics</em> for tracking yo
 </li>
 </ul>
 </div>
+</td>
+</tr>
+</table>
 </div>
 </div>
-<div class="sect1">
-<h2 id="_icloud_for_save_games">5. icloud_for_save_games</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_icloud_for_save_games">2.5. icloud_for_save_games</h3>
 <div class="paragraph">
 <p>This service enhances the <code>apple_game_center</code> service to be able to store savegames in the cloud. See the <code>apple_game_center</code> documentation above.</p>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_in_app_purchases">6. in_app_purchases</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_in_app_purchases">2.6. in_app_purchases</h3>
 <div class="paragraph">
 <p>Allows to sell products within the iOS application, through the <em>Apple AppStore</em>.</p>
 </div>
@@ -298,10 +291,8 @@ You need to create a new "property" in <em>Google Analytics</em> for tracking yo
 <p>Be sure to check that the capability <em>"In-App Purchase"</em> is also <em>Enabled</em> for given <em>App ID</em>, in your <em>Apple Developer Account</em>.</p>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_ogg_vorbis">7. ogg_vorbis</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_ogg_vorbis">2.7. ogg_vorbis</h3>
 <div class="paragraph">
 <p>This integrates your project with Tremolo to allow loading and playing OggVorbis music on iOS.</p>
 </div>
@@ -309,10 +300,8 @@ You need to create a new "property" in <em>Google Analytics</em> for tracking yo
 <p><em>This service is automatically added to your project if it has a dependency on OggVorbis, which in turn is automatic if your game data includes some <code>.ogg</code> file.</em> So there&#8217;s seldom a need to request this service explicitly.</p>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_photo_service">8. photo_service</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_photo_service">2.8. photo_service</h3>
 <div class="paragraph">
 <p>Integration with PhotoLibrary.</p>
 </div>
@@ -321,9 +310,10 @@ You need to create a new "property" in <em>Google Analytics</em> for tracking yo
 </div>
 </div>
 </div>
-<h1 id="_common_notes_for_services_using_cocoapods" class="sect0">Common notes for services using CocoaPods</h1>
-<div class="openblock partintro">
-<div class="content">
+</div>
+<div class="sect1">
+<h2 id="_common_notes_for_services_using_cocoapods">3. Common notes for services using CocoaPods</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Some of the services use <a href="https://cocoapods.org/">CocoaPods</a> for installing 3rd-party dependencies easily (e.g. <em>Game Analytics</em> or <em>Google Analytics</em> or <em>Facebook SDK</em> libraries).</p>
 </div>
@@ -345,9 +335,9 @@ You need to create a new "property" in <em>Google Analytics</em> for tracking yo
 </div>
 </div>
 </div>
-<h1 id="_adding_new_services" class="sect0">Adding new services</h1>
-<div class="openblock partintro">
-<div class="content">
+<div class="sect1">
+<h2 id="_adding_new_services">4. Adding new services</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Adding new iOS service is deliberately very consistent with creating new service for Android, which is documented on <a href="Adding New Android Services" class="bare">Adding New Android Services</a>.</p>
 </div>

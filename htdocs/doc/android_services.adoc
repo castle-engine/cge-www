@@ -35,7 +35,6 @@ When you use our link:pass:[Build tool][build tool] to package your game for And
  ** https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/android/integrated-services/read_external_storage/README.md[read_external_storage]
  ** <<vibrate,vibrate>>
  ** https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/android/integrated-services/write_external_storage/README.md[write_external_storage]
-* <<adding-new-services,Adding new services>>
 
 == General usage
 
@@ -182,11 +181,14 @@ Configuration File"_
 </service>
 ----
 
-NOTE: You need to create a new "property" in _Google Analytics_ for tracking your mobile application, and obtain a "tracking ID" (like `UA-xxx`). However, since Google now advices using Firebase for tracking mobile applications, if you click on "Mobile" when creating a new Google Analytics property, it will suggest you to connect your application to Firebase. Instead, _create a "Website" property in "Google Analytics" to get a normal tracking ID, and then change the "view" to see mobile application data_. See:
+[NOTE]
+====
+You need to create a new "property" in _Google Analytics_ for tracking your mobile application, and obtain a "tracking ID" (like `UA-xxx`). However, since Google now advices using Firebase for tracking mobile applications, if you click on "Mobile" when creating a new Google Analytics property, it will suggest you to connect your application to Firebase. Instead, _create a "Website" property in "Google Analytics" to get a normal tracking ID, and then change the "view" to see mobile application data_. See:
 
 * https://stackoverflow.com/questions/44142353/creating-google-analytics-property-not-using-firebase
 * https://stackoverflow.com/questions/45853012/add-google-analytics-to-android-app-without-firebase
 * https://stackoverflow.com/questions/44421865/is-firebase-now-mandatory-for-use-of-google-analytics-mobile-properties
+====
 
 === google_in_app_purchases
 
@@ -315,7 +317,3 @@ Use the Pascal class `TPhotoService` (use `CastlePhotoService` unit) to store yo
 === vibrate
 
 Allows to vibrate the device. Use the http://castle-engine.sourceforge.net/apidoc/html/CastleOpenDocument.html#Vibrate[Vibrate] procedure from http://castle-engine.sourceforge.net/apidoc/html/CastleOpenDocument.html[CastleOpenDocument] unit to cause vibration from Object Pascal code.
-
-== Adding new services
-
-This documentation has moved to link:pass:[Adding New Android Services][].
