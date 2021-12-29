@@ -19,32 +19,33 @@ The Android services are declared in link:pass:[CastleEngineManifest.xml example
 </android>
 ----
 
-== List of Available Services
-** https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/admob/README.md[admob]
-** <<apps_flyer,apps_flyer>>
-** <<chartboost,chartboost>>
-** https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/client_server/README.md[client_server]
-** https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/download_urls/README.md[download_urls]
-** <<facebook,facebook>>
-** <<freetype,freetype>>
-** <<game_analytics,game_analytics>>
-** <<giftiz,giftiz>>
-** <<google_analytics,google_analytics>>
-** <<google_in_app_purchases,google_in_app_purchases>>
-** <<google_play_games,google_play_games>>
-** <<google_play_services,google_play_services>>
-** <<helpshift,helpshift>>
-** <<heyzap,heyzap>>
-** <<sound,sound>>
-** <<startapp,startapp>>
-** https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/tenjin/README.md[tenjin]
-** https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/test_fairy/README.md[test_fairy]
-** <<ogg_vorbis,ogg_vorbis>>
-** <<photo_service,photo_service>>
-** https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/android/integrated-services/png/README.md[png]
-** https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/android/integrated-services/read_external_storage/README.md[read_external_storage]
-** <<vibrate,vibrate>>
-** https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/android/integrated-services/write_external_storage/README.md[write_external_storage]
+== List of Services
+
+* https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/admob/README.adoc[admob]
+* https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/apps_flyer/README.adoc[apps_flyer]
+* https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/chartboost/README.adoc[chartboost]
+* https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/client_server/README.adoc[client_server]
+* https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/download_urls/README.adoc[download_urls]
+* https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/facebook/README.adoc[facebook]
+* https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/freetype/README.adoc[freetype]
+* https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/game_analytics/README.adoc[game_analytics]
+* https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/giftiz/README.adoc[giftiz]
+* https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/google_analytics/README.adoc[google_analytics]
+* https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/google_in_app_purchases/README.adoc[google_in_app_purchases]
+* https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/google_play_games/README.adoc[google_play_games]
+* https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/google_play_services/README.adoc[google_play_services]
+* https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/helpshift/README.adoc[helpshift]
+* https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/heyzap/README.adoc[heyzap]
+* https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/sound/README.adoc[sound]
+* https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/startapp/README.adoc[startapp]
+* https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/tenjin/README.adoc[tenjin]
+* https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/test_fairy/README.adoc[test_fairy]
+* https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/ogg_vorbis/README.adoc[ogg_vorbis]
+* https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/photo_service/README.adoc[photo_service]
+* https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/android/integrated-services/png/README.adoc[png]
+* https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/android/integrated-services/read_external_storage/README.adoc[read_external_storage]
+* https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/android/integrated-services/vibrate/README.adoc[vibrate]
+* https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/android/integrated-services/write_external_storage/README.adoc[write_external_storage]
 
 == Note on Android project types
 
