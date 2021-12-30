@@ -55,7 +55,7 @@ keytool -genkey -v -keystore my_keystore_name.keystore -alias my_alias -keyalg R
 
 and filling in an interactive questionnaire to provide the passwords and fill in the certificate details. Be sure to save and keep the generated keystore file and passwords secure.
 
-Once you have your keys, you need to tell our link:build_tool[build tool] to use them. You do this by creating +++<tt>+++AndroidSigningProperties.txt+++</tt>+++ file at the top of your project (along the +++<tt>+++CastleEngineManifest.xml+++</tt>+++ file). Add there these lines:
+Once you have your keys, you need to tell our link:build_tool[build tool] to use them. You do this by creating `AndroidSigningProperties.txt` file at the top of your project (along the `CastleEngineManifest.xml` file). Add there these lines:
 
 ----
 key.store=<path-to-your-keystore>
