@@ -3,6 +3,14 @@ require_once 'castle_engine_functions.php';
 manual_header('Overview');
 ?>
 
+<p><b>Units described here are deprecated.
+Most of their features can be achieved easily
+(and with more flexibility) by using <a href="manual_scene.php">TCastleScene directly</a>.
+See <a href="planned_features.php">our plans</a> for detailed reasoning.
+The most prominent reason to keep using these units now is that <code>CastleCreatures</code>
+gives you <i>"ready creatures AI (artificial intelligence)"</i>,
+but we work on exposing this feature in a better way (as <code>TCastleBehavior</code> descendant class).</b>
+
 <p>Units described in this section of the manual are optional,
 and independent from the rest of the engine.
 They implement a <i>common logic typical to 3D games</i>.
@@ -42,16 +50,8 @@ of the <i>3D first-person shooter games</i>, described below.
   <li><p>And utilities for the above units:
     <?php api_link('CastleResources', 'CastleResources.html'); ?>,
     <?php api_link('CastleGameNotifications', 'CastleGameNotifications.html'); ?>,
-    <?php api_link('CastleDebugTransform', 'CastleDebugTransform.html'); ?>,
+    <?php api_link('CastleDebugTransform', 'CastleDebugTransform.html'); ?>.
 </ul>
-
-<p>TODO: In the future these units will be deprecated,
-as <a href="planned_features.php">described in our future plans</a>.
-Reason: Most of these features can be achieved easily
-(and with more flexibility) by using <a href="manual_scene.php">TCastleScene directly</a>.
-The most prominent reason to keep using these units now is that <code>CastleCreatures</code>
-gives you <i>"ready creatures AI (artificial intelligence)"</i>.
-Otherwise, consider using <code>TCastleScene</code> directly.
 
 <?php
 manual_footer();

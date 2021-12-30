@@ -280,9 +280,10 @@ $castle_sitemap = array(
             'sub' => array(
               'doc/android' => array('title' => 'Android'),
               'doc/android_faq' => array('title' => 'Android FAQ'),
-              'doc/android_services' => array('title' => 'Android Services (like Google Play Games and In-App Purchases)'),
+              'doc/android_services' => array('title' => 'Android Services (Google Play Games and many more...)'),
               'doc/ios' => array('title' => 'iOS'),
-              'doc/ios_services' => array('title' => 'iOS Services (like Apple Game Center and In-App Purchases)'),
+              'doc/ios_services' => array('title' => 'iOS Services (Apple Game Center and many more...)'),
+              'doc/in_app_purchases' => array('title' => 'In-App Purchases (Android, iOS)'),
               'doc/nintendo_switch' => array('title' => 'Nintendo Switch'),
             ),
           ),
@@ -305,7 +306,7 @@ $castle_sitemap = array(
               'doc/how_to_render_2d' => array('title' => 'How to render 2D images/sprites'),
             )
           ),
-          'manual_high_level_3d_classes' => array('title' => 'Utilities for typical 3D games',
+          'manual_high_level_3d_classes' => array('title' => 'Deprecated: Utilities for typical 3D games',
             'sub' => array(
               'manual_3d_utlities_overview' => array('title' => 'Overview'),
               'manual_game_level' => array('title' => 'Loading game level'),
@@ -345,6 +346,9 @@ $castle_sitemap = array(
               'doc/blending' => array('title' => 'Blending'),
               'manual_alpha_bleeding' => array('title' => 'Alpha Bleeding'),
               'doc/castlewindow_backends' => array('title' => 'CastleWindow Backends'),
+              'doc/occlusion_query' => array('title' => 'Occlusion Query'),
+              'doc/threads' => array('title' => 'Threads'),
+              // TODO: link to 'doc/units_map', once it is up-to-date again
             )
           ),
         ),
