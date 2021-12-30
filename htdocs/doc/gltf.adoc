@@ -1,4 +1,4 @@
-# Addtional Information about glTF
+# glTF (model format)
 include::common.adoc[]
 
 == Introduction

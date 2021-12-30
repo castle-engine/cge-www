@@ -249,7 +249,7 @@ $castle_sitemap = array(
       'creating_data_intro' => array('title' => 'Creating Game Data'),
       'reference' => array('title' => 'API Reference', 'url' => reference_link()),
       'modern_pascal_introduction' => array('title' => 'Modern Object Pascal Introduction', 'url' => 'https://castle-engine.io/modern_pascal_introduction.html'),
-      'doc/Castle_Game_Engine_for_Unity_developers' => array('title' => 'CGE for Unity Developers'),
+      'doc/castle_game_engine_for_unity_developers' => array('title' => 'CGE for Unity Developers'),
       'compiling_from_source' => array('title' => 'Compiling from source'),
       'documentation_more' => array('title' => 'More...'),
     ),
@@ -272,13 +272,13 @@ $castle_sitemap = array(
           'manual_cross_platform' => array('title' => 'Cross-platform (desktop, mobile, consoles...) games',
             'sub' => array(
               'manual_data_directory' => array('title' => 'Data directory'),
-              'doc/Build_Tool' => array('title' => 'Build Tool'),
-              'doc/CastleEngineManifest.xml_examples' => array('title' => 'CastleEngineManifest.xml'),
-              'doc/Android' => array('title' => 'Android'),
-              'doc/Android_FAQ' => array('title' => 'Android FAQ'),
-              'doc/Android_Services' => array('title' => 'Android Services (like Google Play Games and In-App Purchases)'),
-              'doc/iOS' => array('title' => 'iOS'),
-              'doc/iOS_Services' => array('title' => 'iOS Services (like Apple Game Center and In-App Purchases)'),
+              'doc/build_tool' => array('title' => 'Build Tool'),
+              'doc/project_manifest' => array('title' => 'CastleEngineManifest.xml'),
+              'doc/android' => array('title' => 'Android'),
+              'doc/android_faq' => array('title' => 'Android FAQ'),
+              'doc/android_services' => array('title' => 'Android Services (like Google Play Games and In-App Purchases)'),
+              'doc/ios' => array('title' => 'iOS'),
+              'doc/ios_services' => array('title' => 'iOS Services (like Apple Game Center and In-App Purchases)'),
             ),
           ),
           'manual_user_interface_and_2d_drawing' => array('title' => 'User interface and 2D drawing',
@@ -294,9 +294,9 @@ $castle_sitemap = array(
           ),
           'manual_2d_games' => array('title' => '2D games',
             'sub' => array(
-              'doc/Sprite_sheets' => array('title' => 'Sprite sheets'),
-              'doc/Images' => array('title' => 'Images'),
-              'doc/2D_Games' => array('title' => 'Two approaches for rendering 2D Games'),
+              'doc/sprite_sheets' => array('title' => 'Sprite sheets'),
+              'doc/using_images' => array('title' => 'Images'),
+              'doc/how_to_render_2d' => array('title' => 'How to render 2D images/sprites'),
             )
           ),
           'manual_high_level_3d_classes' => array('title' => 'Utilities for typical 3D games',
@@ -319,8 +319,8 @@ $castle_sitemap = array(
           'manual_key_mouse' => array('title' => 'Key/mouse shortcuts'),
           'manual_optimization' => array('title' => 'Optimization and profiling',
             'sub' => array(
-              'doc/Profiling_Using_Valgrind' => array('title' => 'Profiling Using Valgrind'),
-              'doc/How_To_Make_Rendering_Prettier' => array('title' => 'How To Make Rendering Prettier'),
+              'doc/profiling_using_valgrind' => array('title' => 'Profiling Using Valgrind'),
+              'doc/how_to_make_rendering_prettier' => array('title' => 'How To Make Rendering Prettier'),
             )
           ),
           'manual_classes_overview' => array('title' => 'Classes overview (cheatsheet)'),
@@ -344,7 +344,7 @@ $castle_sitemap = array(
               'creating_data_blender' => array('title' => 'Blender'),
               'creating_data_3dsmax' => array('title' => '3ds Max'),
               'creating_data_maya' => array('title' => 'Maya'),
-              'doc/Spine' => array('title' => 'Spine'),
+              'doc/spine' => array('title' => 'Spine'),
               'creating_data_dragon_bones' => array('title' => 'Dragon Bones'),
             )
           ),
@@ -359,7 +359,7 @@ $castle_sitemap = array(
       ),
       'reference' => array('title' => 'API Reference', 'url' => reference_link()),
       'modern_pascal_introduction' => array('title' => 'Modern Object Pascal Introduction', 'url' => 'https://castle-engine.io/modern_pascal_introduction.html'),
-      'doc/Castle_Game_Engine_for_Unity_developers' => array('title' => 'CGE for Unity Developers'),
+      'doc/castle_game_engine_for_unity_developers' => array('title' => 'CGE for Unity Developers'),
       'compiling_from_source' => array('title' => 'Compiling from source'),
       'documentation_more' => array('title' => 'More...',
         'sub' => array(
@@ -372,7 +372,7 @@ $castle_sitemap = array(
           ),
           // 'engine_doc' => array('title' => 'Internals documentation'), // too outdated
           'doc/cloud_builds_jenkins' => array('title' => 'Jenkins: Automatic cloud builds for CGE projects'),
-          'doc/Docker' => array('title' => 'Docker: Get CGE packaged with various tools (like cross-compilers, Android SDK, texture compression tools)'),
+          'doc/docker' => array('title' => 'Docker: Get CGE packaged with various tools (like cross-compilers, Android SDK, texture compression tools)'),
           'macosx_requirements' => array('title' => 'Dependencies on macOS'),
           'license' => array('title' => 'License'),
         )

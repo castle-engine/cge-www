@@ -1,7 +1,43 @@
-# 2D Games
+# How to render 2D images/sprites
 include::common.adoc[]
 
-== Two approaches to render 2D
+== How to render 2D images/sprites
+
+=== Full-featured: Render using TCastleScene
+
+Use `TCastleViewport`. Add `TCastleViewport` control to the window, and inside it draw things by creating `TCastleScene` instances.
+
+You should call `TCastleViewport.Setup2D` on the viewport to easily make it suitable for 2D games, and call `TCastleScene.Setup2D` to easily make it suitable for 2D games. When using https://castle-engine.io/manual_editor.php[CGE editor], it already has in the menu components _"Viewport (Configured For 2D)"_ and _"Scene (Optimal Blending for 2D Models)"_.
+
+* Manual:
+ ** https://castle-engine.io/manual_load_3d.php introduces the `TCastleScene`.
+ ** The `TCastleScene` is incredibly versatile. You can load game models from files. E.g. Spine animations, Blender models etc. You can play animations. Everything described on http://castle-engine.io/manual_scene.php works.
+ ** Using `TCastleViewport` for 2D animation is shown e.g. in http://castle-engine.io/manual_2d_user_interface.php .
+ ** https://castle-engine.io/manual_physics.php shows how to use physics with it.
+* The engine template "2D game" and `physics/physics_2d_game_sopwith/` show this approach.
+* The important API reference links: https://castle-engine.io/apidoc-unstable/html/CastleScene.TCastleScene.html[TCastleScene], https://castle-engine.io/apidoc-unstable/html/CastleSceneCore.TCastleSceneCore.html[TCastleSceneCore], https://castle-engine.io/apidoc-unstable/html/CastleViewport.TCastleViewport.html[TCastleViewport].
+* To construct your own scene (not loaded from external file), you need to create a graph of X3D nodes. Various examples showing it are around the engine, the simpler is http://castle-engine.io/x3d_implementation_geometry2d.php . It instantiates a `TRectangle2DNode`. One could instead instantiate also `TIndexedFaceSetNode` which represents a free mesh, with custom texture coordinates and anything else you may need.
+* To render sprites you can link:pass:[Sprite sheets][load sprite sheets from Starling/Cocos2d formats to TCastleScene]. You can play it's animation just like any other scene (use `Scene.PlayAnimation` method, test with view3dscene panel "Animations").
++
+If you want to do it manually, you can also construct your own `TIndexedFaceSetNode` instances and change texture coordinates.
+
+* To render pixel-art, set texture filtering to "nearest". It's easiest to do this by setting `Scene.Attributes.MagnificationFilter := magNearest`. Alternatively, you could control this on a particular shape using `TTexturePropertiesNode`, links on http://castle-engine.io/x3d_implementation_texturing.php .
+* You can also link:pass:[using_images][load image as a TCastleScene].
+* To have fixed resolution (regardless of the actual window size in pixels), set `TCastleViewport.Camera.Orthographic.Width` and/or `TCastleViewport.Camera.Orthographic.Height`. By default they are both zero (which means they follow window size), but if you set them then you explicitly specify the size. Set exactly one of them to non-zero to make the other one automatically adjusted to follow aspect ratio.
++
+See the "2D game" game template for example.
++
+You can also use UI scaling ( http://castle-engine.io/manual_2d_user_interface.php#section_scaling ) to just make `TCastleViewport` have the same width or height, regardless of the actual window size. All the scaling is completely hidden from you, inside `TCastleViewport` you just work in your preferred coordinates.
+
+* You can use physics in this approach (see example `physics/physics_2d_game_sopwith/`).
+* You can mix 2D and 3D freely. The `TCastleViewport.Camera` defines projection settings and controls camera. The orthographic camera, `TCastleViewport.Camera.Orthoraphic`, is usually what you want for 2D games. Note that you can insert a `TCastleScene` with 3D content to `TCastleViewport`.
+* To use custom shader, use X3D shader nodes. Demo in `examples/3d_rendering_processing/display_box_custom_shaders.lpr`. You can use `ComposedShader` node and friends (that _override_ standard engine shaders, see https://castle-engine.io/x3d_implementation_shaders.php ) or `Effect` node and friends (that _extend_ standard engine shaders, see https://castle-engine.io/compositing_shaders.php ). Various demos as X3D scenes are inside https://github.com/castle-engine/demo-models[our demo models], see in particular https://github.com/castle-engine/demo-models/tree/master/shaders[shaders] and https://github.com/castle-engine/demo-models/tree/master/compositing_shaders[compositing_shaders] subdirectories.
+
+*Advice when to use*:
+
+* This approach is extremely versatile, so *this is the approach I advice if you plan to draw something more than images*.
+* This approach is also easy, if you mostly load 2D models from existing files (Spine JSON, X3D exported from Blender or sprite-sheet-to-x3d). But it is a little more work to construct your own X3D graph -- as there are simply a lot of X3D nodes that you can use. But it pays off in my experience, you really can do everything. Our http://cat-astrophe-games.com/[Cat-astrophe Games] games ("Dragon Squash", "Escape from the Universe", http://store.steampowered.com/app/746750/The_Unholy_Society/["The Unholy Society"]) are all implemented using this approach.
+* This approach allows engine to take care of animations, physics, and other cool stuff for you.
 
 === Simple: Render using TDrawableImage
 
@@ -26,43 +62,7 @@ To have the scaling automatically applied, you can use `TCastleImageControl` ins
 
 *Advice when to use*: This approach is very easy to start. You have relatively small API to learn. You just learn how to use `TDrawableImage`, and you draw inside your own `TMyControl.Render` however you like. *If all you really want is a flexible API to draw images -- this is it.*
 
-=== Full-featured: Render using TCastleScene
-
-Use `TCastleViewport`. Add `TCastleViewport` control to the window, and inside it draw things by creating `TCastleScene` instances.
-
-You should call `TCastleViewport.Setup2D` on the viewport to easily make it suitable for 2D games, and call `TCastleScene.Setup2D` to easily make it suitable for 2D games. When using https://castle-engine.io/manual_editor.php[CGE editor], it already has in the menu components _"Viewport (Configured For 2D)"_ and _"Scene (Optimal Blending for 2D Models)"_.
-
-* Manual:
- ** https://castle-engine.io/manual_load_3d.php introduces the `TCastleScene`.
- ** The `TCastleScene` is incredibly versatile. You can load game models from files. E.g. Spine animations, Blender models etc. You can play animations. Everything described on http://castle-engine.io/manual_scene.php works.
- ** Using `TCastleViewport` for 2D animation is shown e.g. in http://castle-engine.io/manual_2d_user_interface.php .
- ** https://castle-engine.io/manual_physics.php shows how to use physics with it.
-* The engine examples `2d_dragon_spine_game` and `physics/physics_2d_game_sopwith/` show this approach.
-* The important API reference links: https://castle-engine.io/apidoc-unstable/html/CastleScene.TCastleScene.html[TCastleScene], https://castle-engine.io/apidoc-unstable/html/CastleSceneCore.TCastleSceneCore.html[TCastleSceneCore], https://castle-engine.io/apidoc-unstable/html/CastleViewport.TCastleViewport.html[TCastleViewport].
-* To construct your own scene (not loaded from external file), you need to create a graph of X3D nodes. Various examples showing it are around the engine, the simpler is http://castle-engine.io/x3d_implementation_geometry2d.php . It instantiates a `TRectangle2DNode`. One could instead instantiate also `TIndexedFaceSetNode` which represents a free mesh, with custom texture coordinates and anything else you may need.
-* To render sprites you can link:pass:[Sprite sheets][load sprite sheets from Starling/Cocos2d formats to TCastleScene]. You can play it's animation just like any other scene (use `Scene.PlayAnimation` method, test with view3dscene panel "Animations").
-+
-If you want to do it manually, you can also construct your own `TIndexedFaceSetNode` instances and change texture coordinates.
-
-* To render pixel-art, set texture filtering to "nearest". It's easiest to do this by setting `Scene.Attributes.MagnificationFilter := magNearest`. Alternatively, you could control this on a particular shape using `TTexturePropertiesNode`, links on http://castle-engine.io/x3d_implementation_texturing.php .
-* You can also link:pass:[Images][load image as a TCastleScene].
-* To have fixed resolution (regardless of the actual window size in pixels), set `TCastleViewport.Camera.Orthographic.Width` and/or `TCastleViewport.Camera.Orthographic.Height`. By default they are both zero (which means they follow window size), but if you set them then you explicitly specify the size. Set exactly one of them to non-zero to make the other one automatically adjusted to follow aspect ratio.
-+
-See the `2d_dragon_spine_game` example.
-+
-You can also use UI scaling ( http://castle-engine.io/manual_2d_user_interface.php#section_scaling ) to just make `TCastleViewport` have the same width or height, regardless of the actual window size. All the scaling is completely hidden from you, inside `TCastleViewport` you just work in your preferred coordinates.
-
-* You can use physics in this approach (see example `physics/physics_2d_game_sopwith/`).
-* You can mix 2D and 3D freely. The `TCastleViewport.Camera` defines projection settings and controls camera. The orthographic camera, `TCastleViewport.Camera.Orthoraphic`, is usually what you want for 2D games. Note that you can insert a `TCastleScene` with 3D content to `TCastleViewport`.
-* To use custom shader, use X3D shader nodes. Demo in `examples/3d_rendering_processing/display_box_custom_shaders.lpr`. You can use `ComposedShader` node and friends (that _override_ standard engine shaders, see https://castle-engine.io/x3d_implementation_shaders.php ) or `Effect` node and friends (that _extend_ standard engine shaders, see https://castle-engine.io/compositing_shaders.php ). Various demos as X3D scenes are inside https://github.com/castle-engine/demo-models[our demo models], see in particular https://github.com/castle-engine/demo-models/tree/master/shaders[shaders] and https://github.com/castle-engine/demo-models/tree/master/compositing_shaders[compositing_shaders] subdirectories.
-
-*Advice when to use*:
-
-* This approach is extremely versatile, so *this is the approach I advice if you plan to draw something more than images*.
-* This approach is also easy, if you mostly load 2D models from existing files (Spine JSON, X3D exported from Blender or sprite-sheet-to-x3d). But it is a little more work to construct your own X3D graph -- as there are simply a lot of X3D nodes that you can use. But it pays off in my experience, you really can do everything. Our http://cat-astrophe-games.com/[Cat-astrophe Games] games ("Dragon Squash", "Escape from the Universe", http://store.steampowered.com/app/746750/The_Unholy_Society/["The Unholy Society"]) are all implemented using this approach.
-* This approach allows engine to take care of animations, physics, and other cool stuff for you.
-
-== Why there are 2 approches to render 2D stuff?
+== Why there are 2 approches to render 2D images/sprites
 
 Because they are both useful :)
 
