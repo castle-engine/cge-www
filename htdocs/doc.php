@@ -63,11 +63,16 @@ if (is_prefix('# ', $adoc_first_line)) {
 
 castle_header($title);
 
-/* AsciiDoctor output has <h2> and more, AsciiDoctor actually requires it for book type,
-   as AsciiDoctor itself reserves <h1> for book title.
-   So we are consistent with AsciiDoctor by using <h1>,
-   and also this makes section nesting perfect in our HTML docs. */
-echo '<h1>' . htmlspecialchars($title) . '</h1>';
+global $castle_current_book;
+if ($castle_current_book == NULL) { // in case of book, pretty_heading is already done by castle_header
+  /* pretty_heading outputs <h1>.
+
+     AsciiDoctor output has <h2> and more, AsciiDoctor actually requires it for book type,
+     as AsciiDoctor itself reserves <h1> for book title.
+     So we are consistent with AsciiDoctor by using <h1>,
+     and also this makes section nesting perfect in our HTML docs. */
+  echo pretty_heading($title);
+}
 
 /* During development, PHP will actually run
    asciidoctor to refresh HTML from ADOC when previewing.

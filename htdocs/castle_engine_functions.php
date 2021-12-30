@@ -574,11 +574,12 @@ $castle_sitemap = array(
 function _castle_bootstrap()
 {
   kambi_bootstrap();
-  global $castle_sitemap;
-  castle_sitemap_book_correct('manual',
-    $castle_sitemap['documentation']['sub']['manual_intro']['sub']);
-  castle_sitemap_book_correct('creating_data',
-    $castle_sitemap['documentation']['sub']['creating_data_intro']['sub']);
+
+  // call castle_book_calculate_pages for all books
+  global $castle_books;
+  foreach ($castle_books as $book_name => $book_info) {
+    castle_book_calculate_pages($book_name);
+  }
 }
 
 /* Call this immediately, to modify $castle_sitemap even before calling
@@ -942,9 +943,24 @@ if (empty($castle_wordpress) && CASTLE_ENVIRONMENT != 'offline') {
      name of image to be used as Facebook share image (og:image);
      relative to in images/original_size/ , unless it's an absolute URL,
      with a protocol like http[s] etc.)
+   - 'subheading_text' (string,
+     will be shown in page content, within pretty_heading.
+     Only relevant when page is part of some book.)
 */
 function castle_header($a_page_title, array $parameters = array())
 {
+  // calculate global $castle_current_book
+  global $castle_current_book;
+  global $castle_books;
+  global $page_basename;
+  $castle_current_book = detect_current_book($page_basename);
+
+  // change title, in case we're part of book
+  $a_page_title_without_book = $a_page_title;
+  if ($castle_current_book != NULL) {
+    $a_page_title = $a_page_title . ' | ' . $castle_books[$castle_current_book]['title'];
+  }
+
   /* call common_header with proper params */
   $common_header_parameters = array();
   if (isset($parameters['meta_description'])) {
@@ -966,6 +982,13 @@ function castle_header($a_page_title, array $parameters = array())
     $path = $parameters['path'];
   }
   echo_castle_header_suffix($path);
+
+  // output extra header HTML, in case we're part of book
+  if ($castle_current_book != NULL) {
+    echo book_bar($castle_current_book);
+    $subheading_text = isset($parameters['subheading_text']) ? $parameters['subheading_text'] : '';
+    echo pretty_heading($a_page_title_without_book, NULL, $subheading_text);
+  }
 }
 
 /* Helper for _detect_page_path. Returns null if not found. */
@@ -1133,6 +1156,12 @@ function echo_castle_header_suffix($path, $enable_sidebar = true)
 
 function castle_footer()
 {
+  // output extra footer HTML, in case we're part of book
+  global $castle_current_book, $castle_books;
+  if ($castle_current_book != NULL) {
+    echo book_bar($castle_current_book);
+  }
+
   /* This should be done after jQuery JS loaded.
      But, actually it's not needed, it seems.
   ? >

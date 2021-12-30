@@ -14,16 +14,32 @@ $castle_books = array(
   ),
 );
 
+/* Fill $pages list with flat book pages information,
+   based on traversing (recursively) everything in $book_list (subset of sitemap). */
+function enumerate_book_pages(&$pages, &$previous_basename, $book_list)
+{
+  foreach ($book_list as $new_basename => $new_info)
+  {
+    $pages[$new_basename] = $new_info;
+    $pages[$new_basename]['previous'] = $previous_basename;
+    if ($previous_basename != NULL) { // make a link in reverse direction
+      $pages[$previous_basename]['next'] = $new_basename;
+    }
+    // initialize next to NULL; if this is not the last page, it will be updated later
+    $pages[$new_basename]['next'] = NULL;
+    $previous_basename = $new_basename;
+
+    if (isset($new_info['sub'])) {
+      enumerate_book_pages($pages, $previous_basename, $new_info['sub']);
+    }
+  }
+}
+
 /*
-  Update information about book chapters.
-  This does two things:
+  Calculate information about book pages.
+  This fills $castle_books[$book_name]['pages'].
 
-  - Updates $sitemap_book_sub (which should be a subarray of
-    global $castle_sitemap) to add chapter numbers to book pages.
-
-  - Fills $castle_books[$book_name]['chapters'].
-
-    It will be a flat (with chapters and subchapters on a single level)
+    It will be a flat (with chapters, subchapters etc. on a single level)
     array with book pages, with every item key=>value just like
     in $castle_sitemap, with additional fields:
     - number: HTML-safe string with number of this chapter/subchapter.
@@ -33,60 +49,23 @@ $castle_books = array(
   global $castle_sitemap and $castle_books before calling any book_header
   or rendering any sidebar.
 */
-function castle_sitemap_book_correct($book_name, &$sitemap_book_sub)
+function castle_book_calculate_pages($book_name)
 {
-  global $castle_books;
+  global $castle_books, $castle_sitemap;
 
-  $castle_books[$book_name]['chapters'] = array();
-  $chapter_number = 1;
-  $previous_basename = NULL;
-  foreach ($sitemap_book_sub as $chapter_basename => &$chapter)
-  {
-    $castle_books[$book_name]['chapters'][$chapter_basename] = $chapter +
-      array('number' => $chapter_number . '. ',
-            'previous' => $previous_basename,
-            'next' => NULL);
-    $chapter['title'] =
-      // Do not show chapter numbers now.
-      //$castle_books[$book_name]['chapters'][$chapter_basename]['number'] .
-      $chapter['title'];
-    // If the chapter is an external URL link (like creating_data_spine),
-    // omit it from next/previous navigation.
-    if (empty($chapter['url'])) {
-      $previous_basename = $chapter_basename;
-    }
+  $book_info = $castle_books[$book_name];
 
-    if (isset($chapter['sub']))
-    {
-      $subchapter_number = 1;
-      foreach ($chapter['sub'] as
-        $subchapter_basename => &$subchapter)
-      {
-        $castle_books[$book_name]['chapters'][$subchapter_basename] = $subchapter +
-          array('number' => $chapter_number . '.' . $subchapter_number . '. ',
-                'previous' => $previous_basename,
-                'next' => NULL);
-        $subchapter['title'] =
-          // Do not show chapter numbers now.
-          //$castle_books[$book_name]['chapters'][$subchapter_basename]['number'] .
-          $subchapter['title'];
-        // If the chapter is an external URL link (like creating_data_spine),
-        // omit it from next/previous navigation.
-        if (empty($subchapter['url'])) {
-          $previous_basename = $subchapter_basename;
-        }
-
-        $subchapter_number++;
-      }
-    }
-
-    $chapter_number++;
+  // calculate $book_list, subset of $castle_sitemap for this book
+  $book_list = $castle_sitemap;
+  foreach ($book_info['path'] as $book_path_component) {
+    $book_list = $book_list[$book_path_component]['sub'];
   }
 
-  /* iterate over $castle_books[$book_name]['chapters'] to calculate 'next' links */
-  foreach ($castle_books[$book_name]['chapters'] as $page_basename => &$page)
-    if ($page['previous'] !== NULL)
-      $castle_books[$book_name]['chapters'][$page['previous']]['next'] = $page_basename;
+  $pages = array();
+  $previous_basename = NULL;
+  enumerate_book_pages($pages, $previous_basename, $book_list);
+
+  $castle_books[$book_name]['pages'] = $pages;
 }
 
 function book_bar($book_name)
@@ -94,14 +73,14 @@ function book_bar($book_name)
   global $castle_books;
   global $page_basename;
 
-  if (array_key_exists($page_basename, $castle_books[$book_name]['chapters'])) {
-    $this_info = $castle_books[$book_name]['chapters'][$page_basename];
+  if (array_key_exists($page_basename, $castle_books[$book_name]['pages'])) {
+    $this_info = $castle_books[$book_name]['pages'][$page_basename];
   } else {
     /* This happens when the current page is the ToC page of the book,
        not part of the book. */
     /* Get the first chapter of the book,
        http://stackoverflow.com/questions/1921421/get-the-first-element-of-an-array */
-    $first_chapter = array_keys(array_slice($castle_books[$book_name]['chapters'], 0, 1));
+    $first_chapter = array_keys(array_slice($castle_books[$book_name]['pages'], 0, 1));
     $this_info = array(
       'number' => NULL,
       'previous' => NULL,
@@ -113,7 +92,7 @@ function book_bar($book_name)
     <div class="book-previous">';
   if ($this_info['previous'] !== NULL)
   {
-    $previous_info = $castle_books[$book_name]['chapters'][$this_info['previous']];
+    $previous_info = $castle_books[$book_name]['pages'][$this_info['previous']];
     $result .= a_href_page('Previous: ' .
       // Do not show chapter numbers now.
       //$previous_info['number'] .
@@ -125,7 +104,7 @@ function book_bar($book_name)
 
   if ($this_info['next'] !== NULL)
   {
-    $next_info = $castle_books[$book_name]['chapters'][$this_info['next']];
+    $next_info = $castle_books[$book_name]['pages'][$this_info['next']];
     $result .= a_href_page('Next: ' .
       // Do not show chapter numbers now.
       //$next_info['number'] .
@@ -141,73 +120,29 @@ function book_bar($book_name)
   return $result;
 }
 
-/* Echo a header.
-
-   $parameters allowed fields:
-   - 'social_share_image'
-   - 'subheading_text' */
-function book_header($book_name, $a_page_title, array $parameters = array())
+/* Returns book name (key of $castle_books, like 'manual')
+   or NULL (if not part of any book).
+   Searches for $page_name inside global $castle_sitemap, using global $castle_books info.
+*/
+function detect_current_book($page_name)
 {
-  global $castle_books;
-  global $page_basename;
+  global $castle_sitemap, $castle_books;
 
-  // Do not show chapter numbers now.
-  // if (array_key_exists($page_basename, $castle_books[$book_name]['chapters'])) {
-  //   $number = $castle_books[$book_name]['chapters'][$page_basename]['number'];
-  // } else {
-  //   /* This happens when the current page is the ToC page of the book,
-  //      not part of the book. */
-  //   $number = '';
-  // }
-  // $a_page_title = $number . $a_page_title;
+  foreach ($castle_books as $book_name => $book_info) {
+    // early exit in case current page is the top (start) page of the book
+    if ($page_name == end($book_info['path'])) {
+      return $book_name;
+    }
 
-  /* call castle_header with proper params */
-  $castle_header_parameters = array(
-    'path' => $castle_books[$book_name]['path']
-  );
-  if (isset($parameters['social_share_image'])) {
-    $castle_header_parameters['social_share_image'] = $parameters['social_share_image'];
+    // calculate $book_list, subset of $castle_sitemap for this book
+    $book_list = $castle_sitemap;
+    foreach ($book_info['path'] as $book_path_component) {
+      $book_list = $book_list[$book_path_component]['sub'];
+    }
+
+    if (_detect_page_path_core($page_name, $book_list) !== NULL) {
+      return $book_name;
+    }
   }
-  castle_header($a_page_title . ' | ' . $castle_books[$book_name]['title'],
-    $castle_header_parameters);
-
-  echo book_bar($book_name);
-  $subheading_text = isset($parameters['subheading_text']) ? $parameters['subheading_text'] : '';
-  echo pretty_heading($a_page_title, NULL, $subheading_text);
-}
-
-function book_footer($book_name)
-{
-  echo book_bar($book_name);
-  castle_footer();
-}
-
-/* Echo a header.
-
-   $parameters allowed fields same as for book_header:
-   - 'social_share_image'
-   - 'subheading_text' */
-function manual_header($a_page_title, array $parameters = array())
-{
-  book_header('manual', $a_page_title, $parameters);
-}
-
-function manual_footer()
-{
-  book_footer('manual');
-}
-
-/* Echo a header.
-
-   $parameters allowed fields same as for book_header:
-   - 'social_share_image'
-   - 'subheading_text' */
-function creating_data_header($a_page_title, array $parameters = array())
-{
-  book_header('creating_data', $a_page_title, $parameters);
-}
-
-function creating_data_footer()
-{
-  book_footer('creating_data');
+  return NULL;
 }
