@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-creating_data_header('Exporting from Dragon Bones', array(
+castle_header('Exporting from Dragon Bones', array(
   'social_share_image' => 'export-dragon-bones-3.png',
 ));
 ?>
@@ -20,5 +20,5 @@ echo castle_thumbs(array(
 ?>
 
 <?php
-creating_data_footer();
+castle_footer();
 ?>

@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-manual_header('Recording movies');
+castle_header('Recording movies');
 ?>
 
 <p>Our engine does not include a ready API
@@ -61,5 +61,5 @@ This is a float, in seconds. E.g. <code>FrameTime := 1/25</code> will
 result in 25 frames per second.
 
 <?php
-manual_footer();
+castle_footer();
 ?>

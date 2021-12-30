@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-manual_header('Optimization and profiling');
+castle_header('Optimization and profiling');
 
 $toc = new TableOfContents(
   array(
@@ -713,5 +713,5 @@ valgrind's massif with FPC code (see section <i>"Profiling"</i> above
 on this page about valgrind).
 
 <?php
-manual_footer();
+castle_footer();
 ?>

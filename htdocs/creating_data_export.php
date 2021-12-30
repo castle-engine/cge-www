@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-creating_data_header('Exporting 3D and 2D models');
+castle_header('Exporting 3D and 2D models');
 ?>
 
 <p>Our engine supports a number of standardized formats for 3D and 2D assets, most notably
@@ -66,5 +66,5 @@ constantly improving. We want to use these tools, not reinvent them.
 </ul>
 
 <?php
-creating_data_footer();
+castle_footer();
 ?>

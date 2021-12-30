@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-manual_header('User interface, standard controls, viewports', array(
+castle_header('User interface, standard controls, viewports', array(
   'social_share_image' => 'zombie_fighter_0.png',
 ));
 
@@ -730,5 +730,5 @@ click the zombie sprite in the <code>TStatePlay</code>, it then shows our
 </div>
 
 <?php
-manual_footer();
+castle_footer();
 ?>

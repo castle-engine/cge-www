@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-creating_data_header('Levels');
+castle_header('Levels');
 
 $toc = new TableOfContents(
   array(
@@ -193,5 +193,5 @@ These are 3D shapes with special names that will be recognized by the engine:
 </ol>
 
 <?php
-creating_data_footer();
+castle_footer();
 ?>

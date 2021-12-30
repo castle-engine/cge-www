@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-creating_data_header('Resources (creatures and items)');
+castle_header('Resources (creatures and items)');
 
 $toc = new TableOfContents(
   array(
@@ -312,5 +312,5 @@ state (and moment) of the animation.
 -->
 
 <?php
-creating_data_footer();
+castle_footer();
 ?>

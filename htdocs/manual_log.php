@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-manual_header('Logging');
+castle_header('Logging');
 ?>
 
 <h2>Usage</h2>
@@ -89,5 +89,5 @@ whatever works for you.
 </ul>
 
 <?php
-manual_footer();
+castle_footer();
 ?>

@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-manual_header('Data directory');
+castle_header('Data directory');
 ?>
 
 <p>The <code>data</code> subdirectory of your <i>Castle Game Engine</i>
@@ -81,5 +81,5 @@ files are owned by the current user) but on some platforms it may be read-only
 (e.g. in case of Android, it resides in a special area which cannot be modified by code).
 
 <?php
-manual_footer();
+castle_footer();
 ?>

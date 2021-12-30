@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-manual_header('How to handle the focus of TCastleControlBase');
+castle_header('How to handle the focus of TCastleControlBase');
 ?>
 
 <p>These notes are interesting to you only if you use
@@ -66,5 +66,5 @@ applications).
 </ol>
 
 <?php
-manual_footer();
+castle_footer();
 ?>

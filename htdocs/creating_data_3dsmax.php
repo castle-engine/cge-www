@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-creating_data_header('Exporting from 3ds Max', array(
+castle_header('Exporting from 3ds Max', array(
   'social_share_image' => 'export-3dsmax2.png',
 ));
 
@@ -139,5 +139,5 @@ echo castle_thumbs(array(
 <!-- TODO: add level placeholders type="3dsmax"? -->
 
 <?php
-creating_data_footer();
+castle_footer();
 ?>

@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-manual_header('Using creatures and items');
+castle_header('Using creatures and items');
 ?>
 
 <p>You can use the existing creature and item classes in
@@ -145,5 +145,5 @@ end;
 </dl>
 
 <?php
-manual_footer();
+castle_footer();
 ?>

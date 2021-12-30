@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-manual_header('Cross-platform (desktop, mobile, consoles...) projects');
+castle_header('Cross-platform (desktop, mobile, consoles...) projects');
 
 $toc = new TableOfContents(
   array(
@@ -235,5 +235,5 @@ in the corners.
 </ul>
 
 <?php
-manual_footer();
+castle_footer();
 ?>

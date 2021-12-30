@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-manual_header('Key / mouse shortcuts');
+castle_header('Key / mouse shortcuts');
 ?>
 
 <p>We have some global key/mouse shortcuts:
@@ -69,5 +69,5 @@ and saves/loads them to config file, is in
 <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/3d_rendering_processing/custom_input_shortcuts_saved_to_config.lpr">examples/3d_rendering_processing/custom_input_shortcuts_saved_to_config.lpr</a>.
 
 <?php
-  manual_footer();
+  castle_footer();
 ?>

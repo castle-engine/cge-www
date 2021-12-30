@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-creating_data_header('Supported model formats');
+castle_header('Supported model formats');
 
 $toc = new TableOfContents(
   array(
@@ -215,5 +215,5 @@ We support both ASCII and binary formats.</p>
 Very basic support for this very old 3D format.
 
 <?php
-creating_data_footer();
+castle_footer();
 ?>

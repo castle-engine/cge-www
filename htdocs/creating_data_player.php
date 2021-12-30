@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-creating_data_header('Player configuration');
+castle_header('Player configuration');
 ?>
 
 <p>You can load an XML file configuring various player properties.
@@ -53,5 +53,5 @@ with links to documentation for every attribute.
 </player>'); ?>
 
 <?php
-creating_data_footer();
+castle_footer();
 ?>

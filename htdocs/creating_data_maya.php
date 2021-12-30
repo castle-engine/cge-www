@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-creating_data_header('Exporting from Maya', array(
+castle_header('Exporting from Maya', array(
   'social_share_image' => 'export-maya-hextraction1.png',
 ));
 
@@ -126,5 +126,5 @@ You can download <code>rawkee-1.1.0-windows-maya2008.exe</code> installer from t
 -->
 
 <?php
-creating_data_footer();
+castle_footer();
 ?>

@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-manual_header('On-screen menu');
+castle_header('On-screen menu');
 
 echo castle_thumbs(array(
   array('filename' => 'on_screen_menu_castle_screen_0.png', 'titlealt' => 'On-screen menu in &quot;The Castle&quot; - main menu'),
@@ -107,5 +107,5 @@ regardless of mouse position).
 <code>TCastleImageControl</code> underneath, instead of a 3D scene.
 
 <?php
-manual_footer();
+castle_footer();
 ?>

@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-creating_data_header('Auto-generated compressed and scaled textures');
+castle_header('Auto-generated compressed and scaled textures');
 
 $toc = new TableOfContents(
   array(
@@ -359,5 +359,5 @@ is interpreted analogous to <?php api_link('TextureLoadingScale', 'CastleMateria
 </ul>
 
 <?php
-creating_data_footer();
+castle_footer();
 ?>

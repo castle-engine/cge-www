@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-manual_header('Transform, animate, duplicate, build a scene', array(
+castle_header('Transform, animate, duplicate, build a scene', array(
   'social_share_image' => 'cars_demo_2.png',
 ));
 
@@ -411,5 +411,5 @@ like <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> or
 <p>The <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?> can deal with 3D as well as 2D objects, as 2D in our engine is just a special case of 3D. Just use <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?> to transform your 2D scenes, it works perfectly.</p>
 
 <?php
-manual_footer();
+castle_footer();
 ?>

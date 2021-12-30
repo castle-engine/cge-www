@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-creating_data_header('Sound');
+castle_header('Sound');
 
 $toc = new TableOfContents(
   array(
@@ -228,5 +228,5 @@ Both alias names, and target names, are automatically qualified by the group nam
 </ul>
 
 <?php
-creating_data_footer();
+castle_footer();
 ?>

@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-manual_header('Persistent data (user preferences, savegames)');
+castle_header('Persistent data (user preferences, savegames)');
 
 $toc = new TableOfContents(
   array(
@@ -121,5 +121,5 @@ feature. To use this feature:
 </ol>
 
 <?php
-manual_footer();
+castle_footer();
 ?>

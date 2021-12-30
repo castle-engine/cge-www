@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-manual_header('Customize look by CastleSettings.xml');
+castle_header('Customize look by CastleSettings.xml');
 
 $toc = new TableOfContents(
   array(
@@ -299,5 +299,5 @@ will be instant.
 
 
 <?php
-manual_footer();
+castle_footer();
 ?>

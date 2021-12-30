@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-creating_data_header('Creating Game Data', array(
+castle_header('Creating Game Data', array(
   'subheading_text' => 'for games using Castle Game Engine'
 ));
 ?>
@@ -16,5 +16,5 @@ that are read by our engine.
 <?php echo _castle_sidebar_menu($castle_sitemap['documentation']['sub']['creating_data_intro']['sub']); ?>
 
 <?php
-creating_data_footer();
+castle_footer();
 ?>

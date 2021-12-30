@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-manual_header('Extending creatures and items classes');
+castle_header('Extending creatures and items classes');
 ?>
 
 <p>You can derive descendants of <?php api_link('CastleCreatures', 'CastleCreatures.html'); ?> and
@@ -256,5 +256,5 @@ for I := 1 to 100 do
 </ol>
 
 <?php
-manual_footer();
+castle_footer();
 ?>

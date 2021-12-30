@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-manual_header('Player');
+castle_header('Player');
 ?>
 
 <p>You can create an instance of <?php api_link('TPlayer', 'CastlePlayer.TPlayer.html'); ?>
@@ -106,5 +106,5 @@ To allow this you can load player configuration by
  for a sample and documentation how player configuration file looks like.</p>
 
 <?php
-manual_footer();
+castle_footer();
 ?>

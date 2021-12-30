@@ -3,7 +3,7 @@
 //define('CASTLE_GITHUB_NAME', 'cge-blender');
 
 require_once 'castle_engine_functions.php';
-creating_data_header('Exporting from Blender', array(
+castle_header('Exporting from Blender', array(
   'social_share_image' => 'blender_castle_anim_frames_export.png',
 ));
 
@@ -238,5 +238,5 @@ and adds some fixes and also <b>support for <a href="x3d_implementation_texturin
 </ol>
 
 <?php
-creating_data_footer();
+castle_footer();
 ?>

@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-manual_header('Custom drawn 2D controls: player HUD');
+castle_header('Custom drawn 2D controls: player HUD');
 
 $toc = new TableOfContents(
   array(
@@ -345,5 +345,5 @@ for an example implementation that shows
 more impressive player's life indicator and inventory and other things on the screen.
 
 <?php
-manual_footer();
+castle_footer();
 ?>

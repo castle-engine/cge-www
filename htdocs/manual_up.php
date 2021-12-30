@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-manual_header('Which way is up?');
+castle_header('Which way is up?');
 
 $toc = new TableOfContents(
   array(
@@ -257,5 +257,5 @@ See our
 <a href="https://github.com/castle-engine/castle-engine/wiki/Upgrading-to-Castle-Game-Engine-7.0">Upgrading to Castle Game Engine 7.0</a> notes.
 
 <?php
-manual_footer();
+castle_footer();
 ?>

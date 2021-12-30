@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-manual_header('Network, downloading and using URLs');
+castle_header('Network, downloading and using URLs');
 
 $toc = new TableOfContents(
   array(
@@ -467,5 +467,5 @@ lazbuild Indy10/indylaz.lpk
 <p>Mote that you can also make <a href="https://en.wikipedia.org/wiki/Hotseat_(multiplayer_mode)">hot seat</a> and <a href="https://en.wikipedia.org/wiki/Split_screen_(video_games)">split screen</a> games, in which case multiple people just play on the same computer. We fully support multiple joysticks connected to a single desktop application, and connecting / disconnecting them at runtime, which allows to handle input from multiple people in one game.
 
 <?php
-manual_footer();
+castle_footer();
 ?>

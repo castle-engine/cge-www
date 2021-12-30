@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-manual_header('Engine control to put on Lazarus form');
+castle_header('Engine control to put on Lazarus form');
 
 echo castle_thumbs(array(
   array('filename' => 'lazarus_control.png', 'titlealt' => 'TCastleControlBase designed in Lazarus'),
@@ -74,5 +74,5 @@ together with <i>Castle Game Engine</i>. To use this:
 <p>See the engine examples in <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/lazarus">examples/lazarus/</a> subdirectory for various demos of this approach.
 
 <?php
-manual_footer();
+castle_footer();
 ?>

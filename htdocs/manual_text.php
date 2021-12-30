@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-manual_header('Text and fonts');
+castle_header('Text and fonts');
 
 $toc = new TableOfContents(
   array(
@@ -345,5 +345,5 @@ and to add your own translation formats (see
 </ul>
 
 <?php
-manual_footer();
+castle_footer();
 ?>

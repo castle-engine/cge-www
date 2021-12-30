@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-manual_header('Editor');
+castle_header('Editor');
 
 $toc = new TableOfContents(
   array(
@@ -195,5 +195,5 @@ It is possible to include your custom components within the <i>Castle Game Engin
 <p>More <a href="https://github.com/castle-engine/castle-engine/wiki/Custom-Components">documentation about implementing custom components is here</a>.
 
 <?php
-manual_footer();
+castle_footer();
 ?>

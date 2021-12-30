@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-manual_header('Designing user interface and handling events (press, update) within the state', array(
+castle_header('Designing user interface and handling events (press, update) within the state', array(
   'social_share_image' => 'basic_state_events_screen.png',
 ));
 
@@ -560,5 +560,5 @@ position, in the coordinates of <code>ImagePlayer</code> parent, because that's 
 <p>Strategy game demo in <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/tiled/strategy_game_demo">examples/tiled/strategy_game_demo</a> and "zombie fighter" demo in <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/user_interface/zombie_fighter">examples/user_interface/zombie_fighter</a> also feature multiple states.
 
 <?php
-manual_footer();
+castle_footer();
 ?>

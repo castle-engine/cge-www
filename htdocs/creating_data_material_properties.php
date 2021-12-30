@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-creating_data_header('Material properties configuration');
+castle_header('Material properties configuration');
 
 $toc = new TableOfContents(
   array(
@@ -79,5 +79,5 @@ with links to documentation for every attribute.</p>
 </properties>'); ?>
 
 <?php
-creating_data_footer();
+castle_footer();
 ?>

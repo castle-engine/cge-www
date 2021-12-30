@@ -1,7 +1,7 @@
 <?php
 require_once 'castle_engine_functions.php';
 // define('CASTLE_GITHUB_NAME', 'castle-engine'); // too ugly, we have links to GitHub from main page
-manual_header('Installation and building your first application');
+castle_header('Installation and building your first application');
 
 /*
 echo '<img src="images/castle_game_engine_icon.png"
@@ -83,5 +83,5 @@ $toc = new TableOfContents(
 </ol>
 
 <?php
-manual_footer();
+castle_footer();
 ?>

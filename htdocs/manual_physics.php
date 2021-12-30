@@ -3,7 +3,7 @@ require_once 'castle_engine_functions.php';
 
 api_links_to_unstable();
 
-manual_header('Physics');
+castle_header('Physics');
 ?>
 
 <p><a href="index.php">Castle Game Engine</a> is integrated with <a href="https://github.com/BeRo1985/kraft">Kraft Physics Engine</a> made by <i>Benjamin 'BeRo' Rosseaux</i>. Read on to learn how to add rigid-body physics to your own games.
@@ -114,5 +114,5 @@ end;'); ?>
 </ul>
 
 <?php
-manual_footer();
+castle_footer();
 ?>

@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-manual_header('Alpha Bleeding');
+castle_header('Alpha Bleeding');
 ?>
 
 <p><b>"Alpha Blending"</b> means that you use partial transparency when rendering your image. It means that the alpha channel of your image contains any values within the range 0..1 (not just only 0 or 1). Alpha equal 0 means <i>"completely transparent"</i>, alpha equal 1 means <i>"complately opaque"</i>, values in-between mean <i>"partially transparent"</i>. For example alpha value 0.25 means that when rendering, we should take 1/4 from the image color, and mix it with 3/4 of the current screen color at this place.
@@ -128,5 +128,5 @@ This is good for pixel-art games usually (where you actually want to see "big pi
 <p>See <a href="https://trello.com/c/iMBQjtBu/194-tdrawableimage-blending-bug">this Trello ticket</a> for a similar description, that also contains sample application with invalid image to play with.
 
 <?php
-manual_footer();
+castle_footer();
 ?>

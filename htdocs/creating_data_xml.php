@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-creating_data_header('XML files describing game data', array(
+castle_header('XML files describing game data', array(
   'subheading_text' => '(level.xml, resource.xml and others)'
 ));
 ?>
@@ -74,5 +74,5 @@ data in our engine.
 </ol>
 
 <?php
-creating_data_footer();
+castle_footer();
 ?>

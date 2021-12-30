@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-manual_header('Castle Game Engine Manual');
+castle_header('Castle Game Engine Manual');
 ?>
 
 <!-- <p>This manual shows all the major parts of the -->
@@ -33,5 +33,5 @@ classes and concepts of our engine.</p>
 <?php echo _castle_sidebar_menu($castle_sitemap['documentation']['sub']['manual_intro']['sub']); ?>
 
 <?php
-  manual_footer();
+  castle_footer();
 ?>

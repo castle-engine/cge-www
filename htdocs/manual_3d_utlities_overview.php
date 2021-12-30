@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-manual_header('Overview');
+castle_header('Overview');
 ?>
 
 <p><b>Units described here are deprecated.
@@ -54,5 +54,5 @@ of the <i>3D first-person shooter games</i>, described below.
 </ul>
 
 <?php
-manual_footer();
+castle_footer();
 ?>

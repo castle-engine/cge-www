@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-manual_header('Classes overview (cheatsheet)');
+castle_header('Classes overview (cheatsheet)');
 
 $toc = new TableOfContents(
   array(
@@ -396,5 +396,5 @@ More about them later, some of them should be instantiated in a special way:
 </dl>
 
 <?php
-manual_footer();
+castle_footer();
 ?>

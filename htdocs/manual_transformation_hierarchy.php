@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-manual_header('Transformation hierarchy');
+castle_header('Transformation hierarchy');
 ?>
 
 <p>When organizing your world, you often want to arrange your 3D objects
@@ -153,5 +153,5 @@ in a hierarchy. We have two transformation hierarchies in our engine:</p>
 </ol>
 
 <?php
-manual_footer();
+castle_footer();
 ?>

@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-manual_header('Gamma Correction');
+castle_header('Gamma Correction');
 
 $toc = new TableOfContents(
   array(
@@ -146,5 +146,5 @@ The <?php api_link('ToneMapping', 'CastleRendererBaseTypes.html#ToneMapping'); ?
 But you can trivially define your own color processing using <a href="https://castle-engine.io/compositing_shaders.php">our compositing shaders</a>, by using <a href="https://castle-engine.io/compositing_shaders_doc/html/section.fragment_plugs.html">PLUG_fog_apply</a> to process your colors using GLSL code. See <a href="https://github.com/castle-engine/demo-models/blob/master/compositing_shaders/tone_mapping.x3dv">tone_mapping.x3dv</a> (you may want to download it with complete <a href="demo_models.php">demo models</a>) for demo. You can also use <a href="https://castle-engine.io/x3d_extensions_screen_effects.php">screen effects</a> to apply post-processing in screen space.
 
 <?php
-manual_footer();
+castle_footer();
 ?>

@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-manual_header('Notifications');
+castle_header('Notifications');
 ?>
 
 <p>You can show on-screen notifications by
@@ -33,5 +33,5 @@ example).
 -->
 
 <?php
-manual_footer();
+castle_footer();
 ?>

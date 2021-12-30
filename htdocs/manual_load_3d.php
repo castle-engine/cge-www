@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-manual_header('Loading, displaying a scene (simple loading of 3D models)');
+castle_header('Loading, displaying a scene (simple loading of 3D models)');
 
 $toc = new TableOfContents(
   array(
@@ -295,5 +295,5 @@ not requiring a single line of Object Pascal code.</p>
  allows to test your models before loading them to your games.
 
 <?php
-manual_footer();
+castle_footer();
 ?>

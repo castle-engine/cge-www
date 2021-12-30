@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-manual_header('Screenshots');
+castle_header('Screenshots');
 ?>
 
 <p>Making a screenshot is very easy:
@@ -36,5 +36,5 @@ Still, we use the excellent FPC FpImage library to load/save some
 image formats underneath.
 
 <?php
-manual_footer();
+castle_footer();
 ?>
