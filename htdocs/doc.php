@@ -34,11 +34,26 @@ if ($slash_pos !== FALSE) {
   $page_name = substr($page_name, $slash_pos + 1);
 }
 
-/* We treat space just like _ in filename,
+/* Redirect in case of links with spaces or non-lowercase,
+   which we accept only temporarily.
+
+   We treat space just like _ in filename,
    because links from GitHub wiki worked like that too,
    e.g. linking to "Build Tool" was making link to "Build-Tool"
-   (in CGE, we use underscores). */
-$page_name = str_replace(' ', '_', $page_name);
+   (in CGE, we use underscores).
+
+   Note: we make redirect, not just replace $page_name.
+   This way search engines will not see duplicate content on 2 seemingly
+   different URLs.
+*/
+/*
+if (strpos($page_name, ' ') !== FALSE ||
+    $page_name !== strtolower($page_name)) {
+  $fixed_page_name = strtolower(str_replace(' ', '_', $page_name));
+  header('Location: ' . $fixed_page_name);
+  exit;
+}
+*/
 
 /* set $page_basename (disables autodetection done in kambi_bootstrap,
    which would set it always to 'doc' from 'doc.php').
