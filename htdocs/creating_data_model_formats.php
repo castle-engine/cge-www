@@ -35,40 +35,11 @@ You can also <a href="view3dscene.php">open them in view3dscene</a>.
 
 <?php echo $toc->html_section(); ?>
 
-<p>An efficient, modern format, developed by Khronos. Resources:
+<p>An efficient, modern format for animated 3D and 2D models.
 
-<ul>
-  <li><p>glTF 2.0 <a href="https://www.khronos.org/gltf">overview</a>, <a href="https://github.com/KhronosGroup/glTF">specification and extensions</a>,
-  <li><p>glTF 2.0 sample models <a href="https://github.com/KhronosGroup/glTF-Sample-Models">from Khronos</a>, <a href="https://sketchfab.com/features/gltf">Sketchfab</a> (open them easily with our <a href="view3dscene.php">view3dscene</a>),
-  <li><p><a href="https://www.blender.org/">Blender</a> includes a full-featured glTF exporter. See <a href="https://docs.blender.org/manual/en/dev/addons/import_export/scene_gltf2.html">Blender manual about glTF exporter</a> and <a href="creating_data_blender.php">our manual about exporting to Blender</a>.
-  <li><p><a href="https://github.com/KhronosGroup/glTF-Generator-Registry/blob/master/dist/REGISTRY.md">Many authoring tools and converters to glTF are listed here</a>.
+<p>We advise using it in CGE as much as you can. It is supported by a lot of tools. We focus on supporting this format perfectly, with all the features and efficiency.
 
-<?php /* Now we support skinning, which means below problem can be workarounded using skin.
-
-    <p>Note that (unfortunatately) it seems not possible to export a single animation like "walk" that animates transformations of multiple Blender objects. That's a consequence of how the "actions" in Blender work ("action" is a set of animation curves, and using the same action for multiple objects forces them to share the animation curves &mdash; which may not be what you want). You can workaround it by <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/animations/simultaneous_animations_one_scene">running muliple animations simultaneously from CGE</a>, but this is less comfortable than calling <code>Scene.PlayAnimation('walk')</code>.
-    */ ?>
-</ul>
-
-<p>Supported features of glTF models in our engine:
-
-<ul>
-  <li><p>Meshes (polygons, lines), transformation hierarchy.
-  <li><p>Materials (with physically-based or unlit shading, internally implemented using <a href="https://github.com/michaliskambi/x3d-tests/wiki/X3D-version-4:-New-features-of-materials,-lights-and-textures">new X3D 4.0 material nodes explicitly designed for straightforward glTF compatibility</a>), alpha mode, double-sidedness, per-vertex colors.
-  <li><p>Texturing (for base color, normal maps, emissive, material-roughness).
-  <li><p>Animating transformations (position, rotation, scale) and using skin ("armature" in Blender). They can be played using <a href="manual_scene.php#section_play_animation">standard CGE <code>PlayAnimation</code> method</a> (or <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/animations/simultaneous_animations_one_scene">other means, e.g. to play multiple animations from one model simultaneously</a>).
-  <li><p>Cameras (perspective and orthogonal). Camera transformations can be animated too.
-  <li><p>Punctual lights (point, spot, directional lights).
-  <li><p>Both <code>.glb</code> and <code>.gltf</code> extensions are supported. Textures can be provided in separate files or embedded inside the GLTF stream.
-  <li><p>It is integrated in our engine as X3D nodes graph. This means that you can include a glTF model inside larger X3D file using the <code>Inline</code> node, you can modify the glTF scene graph at runtime (e.g. modify material color, show/hide something etc.) and you can serialize the scene graph to an X3D file.
-  <li><p>Collisions automatically work (as with all other scene formats), you only have to initialize <?php api_link('Scene.Spatial', 'CastleSceneCore.TCastleSceneCore.html#Spatial'); ?> (see the <a href="https://castle-engine.io/manual_load_3d.php">manual</a>). By default, static meshes have precise collisions (treating them like a set of triangles), while skinned-animated meshes collide as simple bounding boxes (so they don't cause a slowdown when animating). This can be even customized per-shape by adjusting <?php api_link('Shape.collision', 'X3DNodes.TAbstractShapeNode.html#Collision'); ?> property.
-  <li><p>We apply <a href="manual_gamma_correction.php">gamma correction</a> automatically on PBR materials. You can request to apply it on all materials (including unlit) to follow glTF spec in 100% easily.
-  <li><p>We read glTF "extras" data that can be defined by your authoring tool, for example in Blender this is defined by <i>"Custom properties"</i>. This allows to pass any custom information from Blender to the engine, for use in your own applications, or to influence the import &mdash; see <a href="creating_data_blender.php#section_custom_properties">Custom properties in Blender</a>.
-  <li><p>We use <a href="https://github.com/BeRo1985/pasgltf/">PasGLTF</a>, a great open-source library for reading glTF by <a href="https://www.patreon.com/bero">Benjamin "Bero" Rosseaux</a>.
-</ul>
-
-<p>TODO: Main missing feature is morph targets.
-
-<p><a href="https://github.com/castle-engine/castle-engine/wiki/glTF-additional-information">Additional information about glTF support</a> is here.
+<p><a href="gltf">Details about glTF support in Castle Game Engine</a>.
 
 <?php echo $toc->html_section(); ?>
 

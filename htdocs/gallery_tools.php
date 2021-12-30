@@ -32,7 +32,7 @@ We love to see how you use CGE.</i>
   <?php gallery_link("Curves Tool",
     "Design a 2D curve, save it as XML, and use it in your own programs, e.g. to move something (camera, another object) along a smooth designed trajectory.",
     'castle_curves.png',
-    "https://github.com/castle-engine/castle-engine/wiki/Curves-tool"); ?>
+    "doc/curves_tool"); ?>
 
   <?php gallery_link('glplotter',
     'Plotting graphs of mathematical functions.',

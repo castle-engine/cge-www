@@ -269,22 +269,28 @@ $castle_sitemap = array(
           'manual_state_events' => array('title' => 'Designing user interface and handling events (press, update) within the state'),
           'manual_load_3d' => array('title' => 'Loading, displaying a scene'),
           'manual_scene' => array('title' => 'Transform, animate, duplicate, build a scene'),
-          'manual_cross_platform' => array('title' => 'Cross-platform (desktop, mobile, consoles...) games',
+          'manual_cross_platform' => array('title' => 'Cross-platform (desktop, mobile, consoles...) projects',
             'sub' => array(
               'manual_data_directory' => array('title' => 'Data directory'),
               'doc/build_tool' => array('title' => 'Build Tool'),
               'doc/project_manifest' => array('title' => 'CastleEngineManifest.xml'),
+            ),
+          ),
+          'manual_platforms' => array('title' => 'Platforms details',
+            'sub' => array(
               'doc/android' => array('title' => 'Android'),
               'doc/android_faq' => array('title' => 'Android FAQ'),
               'doc/android_services' => array('title' => 'Android Services (like Google Play Games and In-App Purchases)'),
               'doc/ios' => array('title' => 'iOS'),
               'doc/ios_services' => array('title' => 'iOS Services (like Apple Game Center and In-App Purchases)'),
+              'doc/nintendo_switch' => array('title' => 'Nintendo Switch'),
             ),
           ),
           'manual_user_interface_and_2d_drawing' => array('title' => 'User interface and 2D drawing',
             'sub' => array(
               'manual_2d_user_interface' => array('title' => 'User interface, standard controls, viewports'),
               'manual_editor' => array('title' => 'Editor'),
+              'doc/custom_components' => array('title' => 'Custom Components in Editor'),
               'manual_castle_settings' => array('title' => 'Customize look by CastleSettings.xml'),
               'manual_2d_ui_custom_drawn' => array('title' => 'Custom drawn 2D controls: player HUD'),
               'manual_text' => array('title' => 'Text and fonts'),
@@ -310,7 +316,11 @@ $castle_sitemap = array(
             ),
           ),
           'manual_physics' => array('title' => 'Physics'),
-          'manual_sound' => array('title' => 'Sound'),
+          'manual_sound' => array('title' => 'Sound',
+            'sub' => array(
+              'doc/fmod' => array('title' => 'FMOD'),
+            ),
+          ),
           'manual_screenshots' => array('title' => 'Screenshots'),
           'manual_network' => array('title' => 'Network, downloading and using URLs'),
           'manual_recording_movies' => array('title' => 'Recording movies'),
@@ -320,6 +330,7 @@ $castle_sitemap = array(
           'manual_optimization' => array('title' => 'Optimization and profiling',
             'sub' => array(
               'doc/profiling_using_valgrind' => array('title' => 'Profiling Using Valgrind'),
+              'doc/detecting_memory_leaks_using_heaptrc' => array('title' => 'Detecting Memory Leaks Using HeapTrc'),
               'doc/how_to_make_rendering_prettier' => array('title' => 'How To Make Rendering Prettier'),
             )
           ),
@@ -331,7 +342,9 @@ $castle_sitemap = array(
               'manual_transformation_hierarchy' => array('title' => 'Transformation hierarchy'),
               'manual_lazarus_control' => array('title' => 'Engine control to put on Lazarus form'),
               'manual_lazarus_focus' => array('title' => 'How to handle the focus of TCastleControlBase'),
+              'doc/blending' => array('title' => 'Blending'),
               'manual_alpha_bleeding' => array('title' => 'Alpha Bleeding'),
+              'doc/castlewindow_backends' => array('title' => 'CastleWindow Backends'),
             )
           ),
         ),
@@ -340,7 +353,11 @@ $castle_sitemap = array(
         'sub' => array(
           'creating_data_export' => array('title' => 'Exporting 3D and 2D models',
             'sub' => array(
-              'creating_data_model_formats' => array('title' => 'Supported model formats'),
+              'creating_data_model_formats' => array('title' => 'Supported model formats',
+                'sub' => array(
+                  'doc/gltf' => array('title' => 'glTF'),
+                ),
+              ),
               'creating_data_blender' => array('title' => 'Blender'),
               'creating_data_3dsmax' => array('title' => '3ds Max'),
               'creating_data_maya' => array('title' => 'Maya'),
@@ -370,11 +387,15 @@ $castle_sitemap = array(
               'donate_other' => array('title' => 'Donate')
             ),
           ),
+          'doc/coding_conventions' => array('title' => 'Coding Conventions'),
+          'doc/coding_traps' => array('title' => 'Coding Traps'),
           // 'engine_doc' => array('title' => 'Internals documentation'), // too outdated
           'doc/cloud_builds_jenkins' => array('title' => 'Jenkins: Automatic cloud builds for CGE projects'),
           'doc/docker' => array('title' => 'Docker: Get CGE packaged with various tools (like cross-compilers, Android SDK, texture compression tools)'),
           'macosx_requirements' => array('title' => 'Dependencies on macOS'),
           'license' => array('title' => 'License'),
+          'doc/fpcupdeluxe' => array('title' => 'fpcupdeluxe'),
+          'doc/fpmake' => array('title' => 'FpMake and FpPkg'),
         )
       ),
     ),

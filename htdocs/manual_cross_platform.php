@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-manual_header('Cross-platform (desktop, mobile, consoles...) games');
+manual_header('Cross-platform (desktop, mobile, consoles...) projects');
 
 $toc = new TableOfContents(
   array(
@@ -19,8 +19,7 @@ echo castle_thumbs(array(
 
 <p><i>Castle Game Engine</i> supports many platforms:
 desktop (Windows, Linux, Mac OS X, FreeBSD, Raspberry Pi...),
-mobile (Android, iOS),
-<a href="https://github.com/castle-engine/castle-engine/wiki/Nintendo-Switch">Nintendo Switch</a>.
+mobile (<a href="android">Android</a>, <a href="ios">iOS</a>), <a href="nintendo_switch">Nintendo Switch</a>.
 The engine hides as much as possible differences between these platforms,
 exposing a nice cross-platform API.
 
