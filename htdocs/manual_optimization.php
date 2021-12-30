@@ -30,7 +30,7 @@ $toc = new TableOfContents(
       new TocItem('User interface and 2D drawing', 'ui', 1),
     new TocItem('Profile (measure speed and memory usage)', 'profiling'),
       new TocItem('Use simple TCastleProfiler to measure specific tasks', 'profiler', 1),
-      new TocItem('Use TCastleFrameProfiler to measure short tasks in each frame', 'frame_profiler', 1),
+      new TocItem('Use TCastleFrameProfiler (just press F8!) to measure what consumes your time', 'frame_profiler', 1),
       new TocItem('Use Valgrind, incredibly powerful profiler on Linux', 'valgrind', 1),
       new TocItem('Use profiler on Nintendo Switch', 'nintendo_profiler', 1),
       new TocItem('Use any other profiler for FPC', 'other_fpc_profilers', 1),
@@ -644,6 +644,10 @@ Hints to make it faster:
 <p>We have <?php api_link('TCastleProfiler', 'CastleTimeUtils.TCastleProfiler.html'); ?> to easily profile the speed of operations. The engine automatically uses it to log loading time of various assets. You can track the time spend in other operations (specific to your game) there too.
 
 <?php echo $toc->html_section(); ?>
+
+<p>You can activate inspector by F8 to view the "frame profiler" easily:
+
+<p><iframe width="560" height="315" src="https://www.youtube.com/embed/5jBdPdj75yk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 <p>We have <?php api_link('TCastleFrameProfiler', 'CastleTimeUtils.TCastleFrameProfiler.html'); ?> to profile the time spend in a particular frame (from one <code>OnUpdate</code> start to another). Use this to track short tasks that occur within a frame. The engine automatically tracks there some operations (just enable <code>FrameProfiler.Enabled := true</code> and look in the <a href="manual_log.php">log</a> for results), you can also track other operations (specific to your game). An example output looks like this:
 
