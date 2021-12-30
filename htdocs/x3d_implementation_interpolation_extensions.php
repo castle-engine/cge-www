@@ -134,7 +134,7 @@ but these ones use <i>cubic Bezier curves</i>.
 </ol>
 
 <p>These nodes are particularly useful when converting
-<a href="https://github.com/castle-engine/castle-engine/wiki/Spine">Spine</a>
+<a href="https://castle-engine.io/spine">Spine</a>
 animations with <i>curve</i> interpolation to X3D.
 That is because Spine uses cubic Bezier curves for interpolation too,
 with controls points defined in a similar way.

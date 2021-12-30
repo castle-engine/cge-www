@@ -217,7 +217,7 @@ animation length from the TimeSensor.cycleInterval, and we'll simulate
 sending appropriate time and fraction_changed from this TimeSensor to
 activate the desired moment of the desired animation.
 
-<p>If your model is a <a href="https://github.com/castle-engine/castle-engine/wiki/Spine">Spine</a>
+<p>If your model is a <a href="https://castle-engine.io/spine">Spine</a>
 2D animation file, then our loader will
 automatically convert them to X3D TimeSensors when reading,
 and things will work perfectly our of the box.

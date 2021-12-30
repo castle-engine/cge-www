@@ -102,7 +102,7 @@ It can be treated like a cheatsheet, concise description of engine architecture.
     <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> is the only way
     to display 3D objects using CGE,
     it is also advised way to display 2D game assets (see
-    <a href="https://github.com/castle-engine/castle-engine/wiki/2D-Games">about 2D games here</a>).
+    <a href="https://castle-engine.io/how_to_render_2d">about 2D games here</a>).
 
     <p><?php api_link('TCastleViewport.Camera', 'CastleViewport.TCastleViewport.html#Camera'); ?> refers to exactly one instance of <?php api_link('TCastleCamera', 'CastleCameras.TCastleCamera.html'); ?>.
 

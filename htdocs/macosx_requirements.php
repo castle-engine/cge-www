@@ -472,7 +472,7 @@ and  that you package however you like.</p>
 
   <li><p><b>When distributing the application to the end users</b>, you should manually copy the “data” subdirectory inside the bunde (to <code>MyApplication.App/Contents/Resources/data</code>).
     <ul>
-      <li><p>In case of compiling and packaging using our <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a> we could do it automatically at some point (although it’s not implemented for now)
+      <li><p>In case of compiling and packaging using our <a href="https://castle-engine.io/build_tool">build tool</a> we could do it automatically at some point (although it’s not implemented for now)
       <li><p>In case of using Lazarus to create the bundle &mdash; you will have to do it manually always.
       <li><p>I recommend writing a simple shell script to create the bundle. Copy the data like this:
 

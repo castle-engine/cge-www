@@ -13,7 +13,7 @@ Using the Docker image gives you a stable environment where we have:
 * https://castle-engine.io/creating_data_auto_generated_textures.php[Texture compression tools useful with CGE] from NVidia and PowerVR
 * https://github.com/pasdoc/pasdoc/wiki[PasDoc]
 
-This Docker image is used by our https://github.com/castle-engine/castle-engine/wiki/Cloud-Builds-(Jenkins)[Cloud Builds (Jenkins)] . It can also be used on your local computer. Instead of downloading FPC, CGE, Android SDK and NDK etc., you only have to get the Docker image.
+This Docker image is used by our link:cloud_builds_jenkins[Cloud Builds (Jenkins)] . It can also be used on your local computer. Instead of downloading FPC, CGE, Android SDK and NDK etc., you only have to get the Docker image.
 
 == Getting the Docker, basic Docker concepts and links
 
@@ -81,7 +81,7 @@ castle-engine compile
 castle-engine package
 ----
 
-Your project directory needs to have a https://github.com/castle-engine/castle-engine/wiki/CastleEngineManifest.xml-examples[CastleEngineManifest.xml] file inside. Or you can compile any Pascal source with `castle-engine simple-compile someunit.pas`. There are many other commands available, see the https://github.com/castle-engine/castle-engine/wiki/Build-Tool[build tool documentation].
+Your project directory needs to have a https://castle-engine.io/project_manifest[CastleEngineManifest.xml] file inside. Or you can compile any Pascal source with `castle-engine simple-compile someunit.pas`. There are many other commands available, see the https://castle-engine.io/build_tool[build tool documentation].
 
 You can easily create an Android application (APK file) with:
 
@@ -89,7 +89,7 @@ You can easily create an Android application (APK file) with:
 castle-engine package --target=android
 ----
 
-This way you don't need to install all the things mentioned at https://github.com/castle-engine/castle-engine/wiki/Android -- they are already available inside the Docker container. You get an APK, which you can copy to your Android device (phone, tablet) in any way, and then install and run it -- like any other application in APK form.
+This way you don't need to install all the things mentioned at https://castle-engine.io/android -- they are already available inside the Docker container. You get an APK, which you can copy to your Android device (phone, tablet) in any way, and then install and run it -- like any other application in APK form.
 
 If you want to https://castle-engine.io/creating_data_auto_generated_textures.php[generate compressed textures], you can run in Docker container
 

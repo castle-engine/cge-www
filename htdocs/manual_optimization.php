@@ -265,7 +265,7 @@ try to "bake" such lighting effects to regular textures (use e.g. Blender
 <?php echo $toc->html_section(); ?>
 
 <p>Our <a href="manual_editor.php">editor</a>,
-<a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a>
+<a href="https://castle-engine.io/build_tool">build tool</a>
 as well as <a href="https://www.lazarus-ide.org/">Lazarus</a>
 support the concept of "build modes".
 
@@ -275,7 +275,7 @@ support the concept of "build modes".
     that adds a lot of run-time checks to your code. This allows to get
     a clear and nice error when you e.g. access an invalid array index.
     If you use our
-    <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a>,
+    <a href="https://castle-engine.io/build_tool">build tool</a>,
     just pass the <code>--mode=debug</code> command-line parameter to it.
 
     <p>Our vectors are also like arrays, so doing stuff like <code>MyVector[2] := 123.0;</code>
@@ -327,7 +327,7 @@ It avoids useless drawing of the other side of the faces.
   <li>Use texture atlases
     (try to reuse the whole X3D <code>Appearance</code> across many X3D shapes, if possible).
     This avoids texture switching when rendering, so the scene renders faster.
-    When exporting from <a href="https://github.com/castle-engine/castle-engine/wiki/Spine">Spine</a>,
+    When exporting from <a href="https://castle-engine.io/spine">Spine</a>,
     be sure to use atlases.
   <li>Use spite sheets (<code>TSprite</code> class) instead of separate images
     (like <code>TGLVideo2D</code> class). This again avoids
@@ -364,7 +364,7 @@ but in some special cases may be avoided:
     (see <?php api_link('TCastleSceneCore.AnimateSkipTicks',
     'CastleSceneCore.TCastleSceneCore.html#AnimateSkipTicks'); ?>).
 
-  <li><p>For some games, turning globally <code>OptimizeExtensiveTransformations := true</code> improves the speed. This works best when you animate multiple <code>Transform</code> nodes within every X3D scene, and some of these animated <code>Transform</code> nodes are children of other animated <code>Transform</code> nodes. A typical example is a skeleton animation, for example from <a href="https://github.com/castle-engine/castle-engine/wiki/Spine">Spine</a>, with non-trivial bone hierarchy, and with multiple bones changing position and rotation every frame.
+  <li><p>For some games, turning globally <code>OptimizeExtensiveTransformations := true</code> improves the speed. This works best when you animate multiple <code>Transform</code> nodes within every X3D scene, and some of these animated <code>Transform</code> nodes are children of other animated <code>Transform</code> nodes. A typical example is a skeleton animation, for example from <a href="https://castle-engine.io/spine">Spine</a>, with non-trivial bone hierarchy, and with multiple bones changing position and rotation every frame.
 
     <p>In a similar scenario, activating <?php api_link('InternalFastTransformUpdate', 'CastleSceneCore.html#InternalFastTransformUpdate'); ?> may be also beneficial. We plan to make this optimization automatic in the future.
 
@@ -421,7 +421,7 @@ also more GPU friendly)).</p>
     to GPU (splitting shape on the fly would cause unacceptable
     slowdown), and shapes may be culled using <i>frustum culling</i>
     (active by default) or
-    <a href="https://github.com/castle-engine/castle-engine/wiki/Occlusion-Query">occlusion queries</a>. By using only a few very large shapes, you make
+    <a href="https://castle-engine.io/occlusion_query">occlusion queries</a>. By using only a few very large shapes, you make
     this culling worthless.
 </ol>
 
@@ -446,7 +446,7 @@ reducing the number of <i>draw calls</i>.
 of rendered shapes.
 
 <p>It is particularly useful e.g. to optimize
-<a href="https://github.com/castle-engine/castle-engine/wiki/Spine">Spine</a> rendering,
+<a href="https://castle-engine.io/spine">Spine</a> rendering,
 as 2D animated models are often composed from a number of trivial textured quads that
 are transformed each frame. Dynamic batching can drastically reduce the number of
 draw calls in this case.
@@ -558,7 +558,7 @@ and per-scene bounding boxes and spheres. If you add <code>ssRendering</code>
 flag to the <code>Scene.Spatial</code>, this will be even faster thanks
 to using shapes octree.
 
-<p>Using the <a href="https://github.com/castle-engine/castle-engine/wiki/Occlusion-Query">occlusion query</a> is often a good idea
+<p>Using the <a href="https://castle-engine.io/occlusion_query">occlusion query</a> is often a good idea
 in large city or indoor levels,
 where walls or large buildings can obscure a significant part of your geometry.
 Activate it by simply turnnig on the flag
@@ -623,13 +623,13 @@ Hints to make it faster:
 
 <ul>
   <li>On Linux, FreeBSD, Mac OS X and other desktop Unix systems it's usually installed system-wide, so you don't need to worry.
-  <li>On Windows, make sure to distribute Libpng alongside your exe. Our <a href="https://github.com/castle-engine/castle-engine/wiki/Build%20Tool">build tool</a> takes care of this for you: it will copy appropriate DLL files when you do <code>castle-engine compile ...</code> or <code>castle-engine package ...</code>.
+  <li>On Windows, make sure to distribute Libpng alongside your exe. Our <a href="https://castle-engine.io/build_tool">build tool</a> takes care of this for you: it will copy appropriate DLL files when you do <code>castle-engine compile ...</code> or <code>castle-engine package ...</code>.
   <!--  For testing, you can copy the appropriate DLLs to your game directory yourself, or copy them somewhere on $PATH. At the bottom of the <a href="documentation.php">getting started</a> page we documented from where you can take these DLLs.
   <li>On Android and iOS, we will still use internal FpImage for now. (Modify <code>castleconf.inc</code> if you want to change it.)
   -->
 </ul>
 
-<p><i>In Castle Game Engine 6.4 and older</i>: To use external <i>libpng</i> library, define <code>-dCASTLE_PNG_DYNAMIC</code> when compiling the engine. E.g. define it inside <a href="https://github.com/castle-engine/castle-engine/wiki/CastleEngineManifest.xml-examples">CastleEngineManifest.xml as &lt;custom_options&gt;</a> and use our <a href="https://github.com/castle-engine/castle-engine/wiki/Build%20Tool">build tool</a> to compile your game.
+<p><i>In Castle Game Engine 6.4 and older</i>: To use external <i>libpng</i> library, define <code>-dCASTLE_PNG_DYNAMIC</code> when compiling the engine. E.g. define it inside <a href="https://castle-engine.io/project_manifest">CastleEngineManifest.xml as &lt;custom_options&gt;</a> and use our <a href="https://castle-engine.io/build_tool">build tool</a> to compile your game.
 
 <?php echo $toc->html_section(); ?>
 
@@ -679,14 +679,14 @@ Frame time: 0.02 secs (we should have 51.22 FPS based on this):
 <?php echo $toc->html_section(); ?>
 
 <p>You can compile your
-application with the <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a>
+application with the <a href="https://castle-engine.io/build_tool">build tool</a>
 using <code>--mode=valgrind</code> to get an executable ready to be tested
 with the magnificent <a href="http://valgrind.org/">Valgrind</a> tool.
-<a href="https://github.com/castle-engine/castle-engine/wiki/Profiling-Using-Valgrind">Read instructions how to use Valgrind with Castle Game Engine applications</a>.
+<a href="https://castle-engine.io/profiling_using_valgrind">Read instructions how to use Valgrind with Castle Game Engine applications</a>.
 
 <?php echo $toc->html_section(); ?>
 
-<p>On <a href="https://github.com/castle-engine/castle-engine/wiki/Nintendo-Switch">Nintendo Switch</a>, another profiler is available. More information is available in the Nintendo Switch-specific documentation of CGE (only for registered developers on Nintendo).
+<p>On <a href="https://castle-engine.io/nintendo_switch">Nintendo Switch</a>, another profiler is available. More information is available in the Nintendo Switch-specific documentation of CGE (only for registered developers on Nintendo).
 
 <?php echo $toc->html_section(); ?>
 
@@ -698,7 +698,7 @@ wiki about profiling</a>.
 
 <?php echo $toc->html_section(); ?>
 
-<p><a href="https://github.com/castle-engine/castle-engine/wiki/Detecting-Memory-Leaks-Using-HeapTrc">We heavily advise to detect memory leaks automatically using HeapTrc. The details how to do it are here.</a>
+<p><a href="https://castle-engine.io/detecting_memory_leaks_using_heaptrc">We heavily advise to detect memory leaks automatically using HeapTrc. The details how to do it are here.</a>
 
 <?php echo $toc->html_section(); ?>
 

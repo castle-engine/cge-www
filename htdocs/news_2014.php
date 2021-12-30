@@ -36,8 +36,8 @@ array_push($news,
 <p><b>New features of the engine and view3dscene:</b></p>
 
 <ol>
-  <li>Extensive support for <a href="https://github.com/castle-engine/castle-engine/wiki/Spine">Spine</a> 2D models and animations. <a href="http://esotericsoftware.com/">Spine</a> is a great program to design 2D skeletal (but not only) animations for games. It can be used to design animated characters, backgrounds, GUIs... Our engine and view3dscene can now effortlessly load and play Spine JSON format.
-  <li>New <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool of Castle Game Engine</a>, able to easily compile and package programs developed using our engine. Especially useful for Android, where it hides a lot of complications related to creating Android apk from your code.
+  <li>Extensive support for <a href="https://castle-engine.io/spine">Spine</a> 2D models and animations. <a href="http://esotericsoftware.com/">Spine</a> is a great program to design 2D skeletal (but not only) animations for games. It can be used to design animated characters, backgrounds, GUIs... Our engine and view3dscene can now effortlessly load and play Spine JSON format.
+  <li>New <a href="https://castle-engine.io/build_tool">build tool of Castle Game Engine</a>, able to easily compile and package programs developed using our engine. Especially useful for Android, where it hides a lot of complications related to creating Android apk from your code.
   <li><a href="https://castle-engine.io/x3d_implementation_text.php">X3D Text node</a> gets a new implementation, very fast, portable to OpenGLES (Android/iOS), and easy to use (shares tools and classes with 2D text rendering). You can also control <a href="https://castle-engine.io/x3d_implementation_text_extensions.php#section_ext_fontstyle_blending">whether it uses alpha blending or alpha test</a>.
   <li>Text can now handle international text (in UTF-8). <code>texturefont2pascal</code> can read font with extra international characters.
   <li>Many improvements for 2D games. Besides Spine support, there\'s also a comfortable <a href="https://castle-engine.io/apidoc/html/Castle2DSceneManager.T2DSceneManager.html">T2DSceneManager</a> and <a href="https://castle-engine.io/apidoc/html/Castle2DSceneManager.T2DScene.html">T2DScene</a>. See <code>castle_game_engine/examples/2d_spine_game/</code> for example of use.
@@ -134,13 +134,13 @@ array_push($news,
 
     <p>Using OpenGLES 2.0 and NativeActivity underneath. Works on any Android &gt;= 2.3 with OpenGL ES 2.0. Most of the normal 2D and 3D rendering features are working under Android, including fun stuff like shader effects, screen effects (with depth, like SSAO), multi-texturing, cubemaps, fog... The integration with Android is very comfortable &mdash; although the code is compiled in a library (controlled by the main activity) you still have normal message loop (so you can use modal functions like from <a href="https://castle-engine.io/apidoc/html/CastleMessages.html">CastleMessages</a> unit). Logging is also integrated with Android logging. Reading from Android assets (files packed inside Android apk) is immediately available, just use URL like <code>assets:/my_texture.png</code>. Multi-touch is fully supported.</p>
 
-    <p>More information about using the Android port on the <a href="https://github.com/castle-engine/castle-engine/wiki/Android">Android development</a> wiki page.</p>
+    <p>More information about using the Android port on the <a href="https://castle-engine.io/android">Android development</a> wiki page.</p>
 
   <li><p><b>iOS (iPhone, iPad) support</b></p>
 
     <p>Like on Android, rendering is done using OpenGLES 2.0, and most of the normal rendering features just work :) The engine is wrapped in a library controlled by the main iOS application.</p>
 
-    <p>More information about using the iOS port is on <a href="https://github.com/castle-engine/castle-engine/wiki/iOS">iOS development</a> wiki page.</p>
+    <p>More information about using the iOS port is on <a href="https://castle-engine.io/ios">iOS development</a> wiki page.</p>
 
   <li><p><b>Comfortable API for 2D rendering</b></p>
 

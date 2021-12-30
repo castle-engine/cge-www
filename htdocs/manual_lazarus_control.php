@@ -33,7 +33,7 @@ We generally advise this approach, as:
   <li>
     <p>Our <?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?>
     works on all CGE platforms (desktop, mobile - Android and iOS,
-    consoles - <a href="https://github.com/castle-engine/castle-engine/wiki/Nintendo-Switch">Nintendo Switch</a>).
+    consoles - <a href="https://castle-engine.io/nintendo_switch">Nintendo Switch</a>).
 </ul>
 
 <p>On the other hand, using the <?php api_link('TCastleControlBase', 'CastleControl.TCastleControlBase.html'); ?>

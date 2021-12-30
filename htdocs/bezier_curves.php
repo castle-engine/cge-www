@@ -1,1 +1,1 @@
-<?php header('Location: https://github.com/castle-engine/castle-engine/wiki/Curves-tool'); ?>
+<?php header('Location: https://castle-engine.io/curves_tool'); ?>

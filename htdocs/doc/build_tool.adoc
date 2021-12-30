@@ -139,7 +139,7 @@ By default output file contains a version number (if `CastleEngineManifest.xml` 
 
 You can use `--mode=xxx` option when packaging, just like when compiling. Use `--mode=debug` or `--mode=release` for a specific compilation mode. By default, it is "release". You can use `--mode=debug` to package a debug release, which may be useful to distribute to users interested in beta-testing.
 
-In some cases, the `--mode` also affects the packaging wrapper. For example, on Android, a _debug apk_ is generated. Also, only a _debug apk_ may use a debug signing key (our build tool will automatically fallback from _release apk_ to _debug apk_ if you did not provide a https://github.com/castle-engine/castle-engine/wiki/Android-FAQ#signing-a-release-apk[release key in AndroidSigningProperties.txt]).
+In some cases, the `--mode` also affects the packaging wrapper. For example, on Android, a _debug apk_ is generated. Also, only a _debug apk_ may use a debug signing key (our build tool will automatically fallback from _release apk_ to _debug apk_ if you did not provide a https://castle-engine.io/android-FAQ#signing-a-release-apk[release key in AndroidSigningProperties.txt]).
 
 To make sure that we recompile everything in the current mode (e.g. a _release mode_), this does `clean`, and then `compile`, and only then actually packages the result. You can change this behavior:
 

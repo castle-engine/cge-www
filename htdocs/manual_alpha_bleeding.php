@@ -5,7 +5,7 @@ castle_header('Alpha Bleeding');
 
 <p><b>"Alpha Blending"</b> means that you use partial transparency when rendering your image. It means that the alpha channel of your image contains any values within the range 0..1 (not just only 0 or 1). Alpha equal 0 means <i>"completely transparent"</i>, alpha equal 1 means <i>"complately opaque"</i>, values in-between mean <i>"partially transparent"</i>. For example alpha value 0.25 means that when rendering, we should take 1/4 from the image color, and mix it with 3/4 of the current screen color at this place.
 
-<p><i>Alpha Blending</i> makes sense both for user-interface (like images you place in <?php api_link('TCastleImageControl', 'CastleControls.TCastleImageControl.html'); ?>), 2D games, 3D games (e.g. textures on your 3D models, that you load to <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>). More info about <a href="https://github.com/castle-engine/castle-engine/wiki/Blending">alpha blending in CGE is here</a>.
+<p><i>Alpha Blending</i> makes sense both for user-interface (like images you place in <?php api_link('TCastleImageControl', 'CastleControls.TCastleImageControl.html'); ?>), 2D games, 3D games (e.g. textures on your 3D models, that you load to <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>). More info about <a href="https://castle-engine.io/blending">alpha blending in CGE is here</a>.
 
 <p>Now, <b>"Alpha Bleeding"</b> is an operation you sometimes need to perform on your images to make <i>alpha blending</i> work as you expect. Why?
 
@@ -71,7 +71,7 @@ echo castle_thumbs(array(
 
 <ol>
   <li>
-    <p>E.g. if you use <a href="https://github.com/castle-engine/castle-engine/wiki/Spine">Spine</a> to export texture atlases, it has a ready <i>"Alpha Bleed"</i> option at export.
+    <p>E.g. if you use <a href="https://castle-engine.io/spine">Spine</a> to export texture atlases, it has a ready <i>"Alpha Bleed"</i> option at export.
 
   <li>
     <p>Or use our <a href="castle-view-image.php">castle-view-image</a>:

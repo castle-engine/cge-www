@@ -163,11 +163,11 @@ echo castle_thumbs(array(
 
 <p>By default we use <em>OpenAL</em> to play sounds. It's a great full-featured open-source audio library, perfect match for our open-source game engine.
 
-<p>You can alternatively switch to use the <a href="https://github.com/castle-engine/castle-engine/wiki/FMOD">FMOD sound backend</a>. This is just an option. FMOD is proprietary (not open-source) and <a href="https://www.fmod.com/licensing">commercial (though free in some cases, for indie devs)</a>.
+<p>You can alternatively switch to use the <a href="https://castle-engine.io/fmod">FMOD sound backend</a>. This is just an option. FMOD is proprietary (not open-source) and <a href="https://www.fmod.com/licensing">commercial (though free in some cases, for indie devs)</a>.
 
 <ul>
   <li>
-    <p>Main advantage of FMOD in CGE for now is <a href="https://github.com/castle-engine/castle-engine/wiki/Nintendo-Switch">Nintendo Switch compatibility</a>.
+    <p>Main advantage of FMOD in CGE for now is <a href="https://castle-engine.io/nintendo_switch">Nintendo Switch compatibility</a>.
   <li>
     <p>Big future advantage may be integration with the <a href="https://www.fmod.com/studio">FMOD Studio</a>. The goal of <i>FMOD Studio</i> is to make the work of <em>sound designer</em> easier. The sfx person can create sound effects in <i>FMOD Studio</i>, in a way that is agnostic to the game engine, and the code (like your game) simply sends <em>"events"</em> that may cause some sound effect (playing something, stopping something, fading in/out something...).
 </ul>

@@ -66,13 +66,13 @@ instance (it may be a descendant of this class, of course).
 <p>This <code>GameInitialize</code> unit can be included by the main program or library
 (the <code>.lpr</code> file for Lazarus, <code>.dpr</code> file for Delphi).
 
-<p>The <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a>
+<p>The <a href="https://castle-engine.io/build_tool">build tool</a>
 will automatically generate a main program code using this unit
 and will mention it in the
-<a href="https://github.com/castle-engine/castle-engine/wiki/CastleEngineManifest.xml-examples">CastleEngineManifest.xml</a>.
+<a href="https://castle-engine.io/project_manifest">CastleEngineManifest.xml</a>.
 
 You can also manually create a
-<a href="https://github.com/castle-engine/castle-engine/wiki/CastleEngineManifest.xml-examples">CastleEngineManifest.xml</a> file to compile your project using the <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a>. It can be as simple as this:
+<a href="https://castle-engine.io/project_manifest">CastleEngineManifest.xml</a> file to compile your project using the <a href="https://castle-engine.io/build_tool">build tool</a>. It can be as simple as this:
 
 <?php echo xml_full_highlight(
 '<?xml version="1.0" encoding="utf-8"?>
@@ -84,13 +84,13 @@ You can also manually create a
 <pre>castle-engine compile
 castle-engine run</pre>
 
-<p>If you have installed <a href="https://github.com/castle-engine/castle-engine/wiki/Android">Android SDK, NDK and FPC cross-compiler for Android</a> then you can also build and run for Android:
+<p>If you have installed <a href="https://castle-engine.io/android">Android SDK, NDK and FPC cross-compiler for Android</a> then you can also build and run for Android:
 
 <pre>castle-engine package --target=android
 castle-engine install --target=android
 castle-engine run --target=android</pre>
 
-<p>If you have installed <a href="https://github.com/castle-engine/castle-engine/wiki/iOS">FPC cross-compiler for iOS</a> then you can also build for iOS:
+<p>If you have installed <a href="https://castle-engine.io/ios">FPC cross-compiler for iOS</a> then you can also build for iOS:
 
 <pre>castle-engine package --target=iOS
 # Now open in XCode the project inside
@@ -156,22 +156,22 @@ Just open the created LPI file.
 some special tools. Everything is explained on these platform-specific pages:
 
 <ul>
-  <li><a href="https://github.com/castle-engine/castle-engine/wiki/Android">Developing for Android</a>
-  <li><a href="https://github.com/castle-engine/castle-engine/wiki/iOS">Developing for iOS (iPhone, iPad)</a>
+  <li><a href="https://castle-engine.io/android">Developing for Android</a>
+  <li><a href="https://castle-engine.io/ios">Developing for iOS (iPhone, iPad)</a>
 </ul>
 
 <p>Compiling and packaging cross-platform games is greatly
-simplified if you use our <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a>.
+simplified if you use our <a href="https://castle-engine.io/build_tool">build tool</a>.
 For Android and iOS, our build tool nicely hides from you
 a lot of complexity with creating a platform-specific application.
 <ul>
   <li>For Android, you get a ready working <code>xxx.apk</code> file.
-  <li>For iOS, you get a ready project that can be installed using XCode. Or, with some additional options, you can get an IPA file or upload the application straight to the AppStore (see <a href="https://github.com/castle-engine/castle-engine/wiki/iOS">the docs</a>).
+  <li>For iOS, you get a ready project that can be installed using XCode. Or, with some additional options, you can get an IPA file or upload the application straight to the AppStore (see <a href="https://castle-engine.io/ios">the docs</a>).
 </ul>
 
 <!--p>Rendering on mobile platforms uses OpenGLES. Our OpenGLES renderer
 can handle almost everything the same as a desktop OpenGL renderer,
-but <a href="https://github.com/castle-engine/castle-engine/wiki/OpenGL-ES,-Android-and-iOS-TODOs">there
+but <a href="https://castle-engine.io/mobile_todos">there
 are some things not implemented yet in the OpenGLES version</a>.
 -->
 

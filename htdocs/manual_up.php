@@ -254,7 +254,7 @@ in an intuitive way, you can adjust <?php api_link('TCastleTransform.Orientation
 <p>By default they match Blender's glTF exporter, in CGE 6.5 and newer.
 In the earlier engine versions they matched the Blender's X3D exporter.
 See our
-<a href="https://github.com/castle-engine/castle-engine/wiki/Upgrading-to-Castle-Game-Engine-7.0">Upgrading to Castle Game Engine 7.0</a> notes.
+<a href="https://castle-engine.io/upgrading_to_castle_game_engine_7.0">Upgrading to Castle Game Engine 7.0</a> notes.
 
 <?php
 castle_footer();

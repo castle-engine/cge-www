@@ -146,7 +146,7 @@ define('CGE_SNAPSHOTS_VERSION', '7.0-alpha.snapshot');
                 <ul>
                     <li>Use <b>any 3D or 2D software</b> to create your models in various formats: <a href="creating_data_model_formats.php">glTF, X3D, VRML<!--?php echo a_href_page('VRML / X3D', 'vrml_x3d'); ?-->, Spine JSON, Collada...</a>
                     <li>Develop <b>cross-platform</b> applications, for desktop (<b>Windows, Linux, macOS, FreeBSD...</b>), mobile (<b>Android, iOS</b>), consoles (<b>Nintendo Switch</b>) and other devices (<b>Raspberry Pi</b>).
-                    <li><a href="https://castle-engine.io/manual_editor.php"><b>Visual editor</b></a> to design games UI and to build applications, powerful <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">command-line <b>build tool</b></a> under the hood.
+                    <li><a href="https://castle-engine.io/manual_editor.php"><b>Visual editor</b></a> to design games UI and to build applications, powerful <a href="https://castle-engine.io/build_tool">command-line <b>build tool</b></a> under the hood.
                     <li>Optimized rendering with a lot of graphic effects (<b>physically-based rendering, shadows, mirrors, bump mapping, shader effects, gamma correction</b>...).
                     <li><b>Build and edit</b> the <a href="vrml_x3d.php">scene graph (X3D)</a> <b>at runtime</b>.
                       <!--Load and save images and X3D graph as needed.-->

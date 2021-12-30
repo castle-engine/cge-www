@@ -8,7 +8,7 @@ body {
 
 /* Makes reading much easier, like on
    https://docs.asciidoctor.org/asciidoc/latest/macros/audio-and-video/
-   https://github.com/castle-engine/castle-engine/wiki/Build-Tool */
+   https://castle-engine.io/build_tool */
 p {
   margin-bottom: 16px;
 }

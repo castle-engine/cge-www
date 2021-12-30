@@ -35,7 +35,7 @@ $toc = new TableOfContents(
 
 <ul>
   <li>Use <b>any 3D or 2D software</b> to create your models in any format: glTF, X3D, VRML<!--?php echo a_href_page('VRML / X3D', 'vrml_x3d'); ?-->, Collada, OBJ, MD3,
-    <!--a href="https://github.com/castle-engine/castle-engine/wiki/Spine"-->Spine...
+    <!--a href="https://castle-engine.io/spine"-->Spine...
   <li>Develop <b>cross-platform</b> applications, for desktop (<b>Windows, Linux, macOS, FreeBSD...</b>), mobile (<b>Android, iOS</b>), consoles (<b>Nintendo Switch</b>) and other devices (<b>Raspberry Pi</b>).
   <li><b>Visual editor</b> to design games UI and to build applications, powerful command-line <b>build tool</b> under the hood.
   <li>Optimized rendering with a lot of graphic effects (<b>physically based rendering, shadows, mirrors, bump mapping, shader effects, gamma correction</b>...).
@@ -87,7 +87,7 @@ See a few videos from our <a href="https://www.youtube.com/c/CastleGameEngineX3d
   <li><p>You can use <b>various 3D and 2D authoring software</b> to design your models.
     <a href="creating_data_blender.php">Blender</a>, <a href="creating_data_3dsmax.php">3ds Max</a>,
     <a href="creating_data_maya.php">Maya</a>,
-    <a href="https://github.com/castle-engine/castle-engine/wiki/Spine">Spine</a>...
+    <a href="https://castle-engine.io/spine">Spine</a>...
     That is thanks to our support for many model formats,
     and focusing on open model formats.
 
@@ -169,9 +169,9 @@ See a few videos from our <a href="https://www.youtube.com/c/CastleGameEngineX3d
   <li><p>You can compile and package your games for various platforms:
     <ul>
       <li><b>Any modern desktop operating system</b> (Linux, Windows, macOS, FreeBSD, more...), with any CPU supported by FPC (like i386, x86_64, ARM, Aarch64...).
-      <li><b>Mobile platforms</b> (<a href="https://github.com/castle-engine/castle-engine/wiki/Android">Android</a>, <a href="https://github.com/castle-engine/castle-engine/wiki/iOS">iOS</a>),
-      <li><a href="https://github.com/castle-engine/castle-engine/wiki/Nintendo-Switch"><b>Nintendo Switch</b></a>.
-      <li><b>Web browser plugin</b> (Linux, Windows, <a href="https://github.com/castle-engine/castle-engine/wiki/Web-Plugin">for browsers supporting NPAPI</a>). This is deprecated now, we're looking closely at WebAssembly target in FPC or pas2js to enable us compilation to modern web.
+      <li><b>Mobile platforms</b> (<a href="https://castle-engine.io/android">Android</a>, <a href="https://castle-engine.io/ios">iOS</a>),
+      <li><a href="https://castle-engine.io/nintendo_switch"><b>Nintendo Switch</b></a>.
+      <li><b>Deprecated: Web browser plugin</b> (Linux, Windows, <a href="https://github.com/castle-engine/cge-www/blob/master/htdocs/doc/obsolete/web_plugin.adoc">for browsers supporting NPAPI</a>). This is deprecated now, we're looking closely at WebAssembly target in FPC or pas2js to enable us compilation to modern web.
     </ul>
 
     <?php
@@ -183,11 +183,11 @@ See a few videos from our <a href="https://www.youtube.com/c/CastleGameEngineX3d
 
   <li><p>It's easy to <?php echo a_href_page('compile the same game to many platforms', 'manual_cross_platform'); ?>.
 
-  <li><p>We have a <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a> to make it easy to compile and package your games. Creating complete, ready-to-be-released Android and iOS applications is trivial. We can automatically generate an Android APK, iOS XCode project or IPA file and more.
+  <li><p>We have a <a href="https://castle-engine.io/build_tool">build tool</a> to make it easy to compile and package your games. Creating complete, ready-to-be-released Android and iOS applications is trivial. We can automatically generate an Android APK, iOS XCode project or IPA file and more.
 
-  <li><p>Trivial to use <b>integration with many services on Android</b>: games (achievements, leaderboards), in-app purchases, ads, sound, vibrations, and much more. See <a href="https://github.com/castle-engine/castle-engine/wiki/Android-Project-Services-Integrated-with-Castle-Game-Engine">Android Project Services</a> documentation.
+  <li><p>Trivial to use <b>integration with many services on Android</b>: games (achievements, leaderboards), in-app purchases, ads, sound, vibrations, and much more. See <a href="https://castle-engine.io/android-Project-Services-Integrated-with-Castle-Game-Engine">Android Project Services</a> documentation.
 
-  <li><p>Trivial to use <b><a href="https://github.com/castle-engine/castle-engine/wiki/iOS-Services">integration with many services on iOS</a></b>, like Apple Game Center, in-app purchases, Facebook SDK, Google Analytics and Game Analytics.
+  <li><p>Trivial to use <b><a href="https://castle-engine.io/ios-Services">integration with many services on iOS</a></b>, like Apple Game Center, in-app purchases, Facebook SDK, Google Analytics and Game Analytics.
 
     <?php
     echo castle_thumbs(array(
@@ -291,7 +291,7 @@ See a few videos from our <a href="https://www.youtube.com/c/CastleGameEngineX3d
         compression formats, like S3TC, ATITC, PVRTC, ETC).<br>
         <b>The compressed and/or downscaled texture versions may be automatically generated and used</b>,
         you simply declare them in <a href="creating_data_material_properties.php">the material_properties.xml file</a>
-        and use <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">our build tool</a> to regenerate all texures at building.
+        and use <a href="https://castle-engine.io/build_tool">our build tool</a> to regenerate all texures at building.
         <!-- ?php api_link('Alternatively, you can replace image URLs at runtime,
           to switch uncompressed texture files with compressed depending on GPU',
           'CastleImages.html#LoadImagePreprocess'); ?-->
@@ -336,7 +336,7 @@ See a few videos from our <a href="https://www.youtube.com/c/CastleGameEngineX3d
     </ul>
     <p><?php echo a_href_page('Engine manual', 'manual_resources_extending'); ?> contains detailed information about this.
 
-  <li><p><b>3D and 2D</b>. Not everything is about 3D. Our API is perfect <b>for 2D games too, with flexible (and pixel-perfect) rendering of 2D images, movies, text</b> and everything you can compose from them (like GUI controls). We also support <a href="https://github.com/castle-engine/castle-engine/wiki/Spine">Spine</a> which is very cool for creating 2D animations.
+  <li><p><b>3D and 2D</b>. Not everything is about 3D. Our API is perfect <b>for 2D games too, with flexible (and pixel-perfect) rendering of 2D images, movies, text</b> and everything you can compose from them (like GUI controls). We also support <a href="https://castle-engine.io/spine">Spine</a> which is very cool for creating 2D animations.
 
   <li><p><b>Rigid body physics</b>. We are integrated with a powerful <i>Kraft Physics Engine</i> and you can <a href="manual_physics.php">easily use dynamic physics in your games</a>.
 
@@ -376,7 +376,7 @@ See a few videos from our <a href="https://www.youtube.com/c/CastleGameEngineX3d
     can define sound sources themselves.
 
     <p>By default it uses full-featured and open-source <?php echo a_href_page('OpenAL', 'openal'); ?>.
-    You can also use <a href="https://github.com/castle-engine/castle-engine/wiki/FMOD">FMOD backend</a>.
+    You can also use <a href="https://castle-engine.io/fmod">FMOD backend</a>.
   </li>
 
   <li><p><?php echo a_href_page('view3dscene', 'view3dscene'); ?> tool to view

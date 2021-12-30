@@ -219,7 +219,7 @@ type (this is used throughout CGE to express axis-aligned bounding boxes).
     especially in case the shape is dynamic
     (e.g. changes each frame by skinned animation or morphing).
     This is automatically used by glTF meshes affected by skinned animation,
-    although you can <a href="https://github.com/castle-engine/castle-engine/wiki/glTF-additional-information#collisions-when-your-gltf-mesh-uses-skinned-animation">turn it off</a>.
+    although you can <a href="gltf#_collisions_when_your_gltf_mesh_uses_skinned_animation">turn it off</a>.
 
   <li><p><code>"NONE"</code> means that shape does not collide.
 </ul>
@@ -243,7 +243,7 @@ Why is this extension still useful?
     <p>So it's more comfortable in both cases.
 
   <li>
-    <p>It can be easily toggled to <code>"DEFAULT"</code> (in Pascal: <code>scDefault</code>) if needed by the author (e.g. if performance drop is acceptable and you want recalculate spatial structure during glTF skinned animation), as described <a href="https://github.com/castle-engine/castle-engine/wiki/glTF-additional-information#collisions-when-your-gltf-mesh-uses-skinned-animation">here</a>.
+    <p>It can be easily toggled to <code>"DEFAULT"</code> (in Pascal: <code>scDefault</code>) if needed by the author (e.g. if performance drop is acceptable and you want recalculate spatial structure during glTF skinned animation), as described <a href="gltf">here</a>.
 
   <li>
     <p><code>"DEFAULT"</code> meaning may change in the future when activated some global like <code>NewPhysics</code>, as we move to using physics engine for all collision detection, and will not automatically construct mesh colliders for everything.

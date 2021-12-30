@@ -34,7 +34,7 @@ $toc = new TableOfContents(
     ?>
 
     <p><b>Advanced:</b> You can install FPC and Lazarus in other ways.
-    <a href="https://github.com/castle-engine/castle-engine/wiki/fpcupdeluxe">You can install using FpcUpDeluxe</a>.
+    <a href="https://castle-engine.io/fpcupdeluxe">You can install using FpcUpDeluxe</a>.
     You can also install <a href="https://www.freepascal.org/">only FPC</a> and use
     any Pascal code editor you like, like <a href="https://code.visualstudio.com/">VS Code</a>
     or <a href="https://atom.io/">Atom</a>.
@@ -79,7 +79,7 @@ $toc = new TableOfContents(
 
   <li><p>That's it! The world is your oyster now :)
 
-    <p>Open and try numerous example projects from the engine <code>examples</code> subdirectory. Open them in the editor by <i>Open Project</i> and point at the example's <a href="https://github.com/castle-engine/castle-engine/wiki/CastleEngineManifest.xml-examples">CastleEngineManifest.xml</a> file. Projects can also be compiled using <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">Castle Game Engine command-line build tool</a>.
+    <p>Open and try numerous example projects from the engine <code>examples</code> subdirectory. Open them in the editor by <i>Open Project</i> and point at the example's <a href="https://castle-engine.io/project_manifest">CastleEngineManifest.xml</a> file. Projects can also be compiled using <a href="https://castle-engine.io/build_tool">Castle Game Engine command-line build tool</a>.
 </ol>
 
 <?php

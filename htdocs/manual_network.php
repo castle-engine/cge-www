@@ -132,11 +132,11 @@ We advise using <?php api_link('TCastleDownload', 'CastleDownload.html#TCastleDo
     installed on user's system already.
     On Windows, use the appropriate DLL.
 
-    <p>Our <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a>
+    <p>Our <a href="https://castle-engine.io/build_tool">build tool</a>
     (used also if you use <a href="manual_editor.php">our editor</a>)
     takes care of it for you.
     Simply add <code>&lt;dependency name="Https" /&gt;</code> in your
-    <a href="https://github.com/castle-engine/castle-engine/wiki/CastleEngineManifest.xml-examples">CastleEngineManifest.xml</a>.
+    <a href="https://castle-engine.io/project_manifest">CastleEngineManifest.xml</a>.
 </ol>
 
 <p>Internally, we use
@@ -323,7 +323,7 @@ see in particular <a href="https://github.com/castle-engine/demo-models/blob/mas
 
 <p>Used to access data files in an Android application.
 "Asset" files live inside your application's .apk file, together with your compiled game.
-The <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a>
+The <a href="https://castle-engine.io/build_tool">build tool</a>
 will copy the <code>data</code> directory of your game to Android assets.
 For example, file that was in <code>data/my_texture.png</code> in your source code
 can be accessed (from the Android app) using the URL <code>assets:/my_texture.png</code>.
@@ -430,7 +430,7 @@ see <?php echo a_href_page('X3D extensions introduction', 'x3d_extensions'); ?>.
 <ul>
   <li><p>You can install Indy through the <a href="https://wiki.freepascal.org/Online_Package_Manager">Online Package Manager</a>. The OPM is a great way to install Lazarus packages in general, go ahead and try it :)
 
-  <li><p>You can install "indy" module using <a href="https://github.com/castle-engine/castle-engine/wiki/fpcupdeluxe">fpcupdeluxe</a>. You can install your own FPC and Lazarus using fpcupdeluxe, and add an "indy" module to it.
+  <li><p>You can install "indy" module using <a href="https://castle-engine.io/fpcupdeluxe">fpcupdeluxe</a>. You can install your own FPC and Lazarus using fpcupdeluxe, and add an "indy" module to it.
 
   <li><p>Alternatively, you can download Indy from <a href="http://packages.lazarus-ide.org/">packages.lazarus-ide.org (same packages that OPM uses)</a> . Search for "indy" there, download and unpack the zip, open the package <code>indylaz.lpk</code> inside Lazarus and compile it. Here's a command-line version:
 

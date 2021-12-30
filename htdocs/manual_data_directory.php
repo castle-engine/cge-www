@@ -24,7 +24,7 @@ on Android, thanks to an internal information stored in the data on Android).
 
 <ol>
   <li><p>This directory is automatically correctly packaged by the
-    <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">CGE build tool</a>
+    <a href="https://castle-engine.io/build_tool">CGE build tool</a>
     and editor.
     E.g. it will be correctly added to the Android <code>apk</code> file,
     iOS or Nintendo Switch application.

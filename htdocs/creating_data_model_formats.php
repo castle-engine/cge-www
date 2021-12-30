@@ -49,7 +49,7 @@ for 2D game skeletal animations.
 to this format.
 </p>
 
-<p><a href="https://github.com/castle-engine/castle-engine/wiki/Spine">We have a big support for Spine JSON features</a>,
+<p><a href="https://castle-engine.io/spine">We have a big support for Spine JSON features</a>,
 and our friendly game studio <a href="http://cat-astrophe-games.com/">Cat-astrophe Games</a>
 is using Spine for all 2D games.
 
@@ -115,13 +115,13 @@ especially the level file
   <li><p><i>Cocos2d format</i> (traditionally with <code>.plist</code> extension, in CGE we advise (but do not require yet) to use <code>.cocos2d-plist</code>).
 </ol>
 
-<p>See the <a href="https://github.com/castle-engine/castle-engine/wiki/Sprite-sheets">sprite sheets documentation</a>.
+<p>See the <a href="https://castle-engine.io/sprite_sheets">sprite sheets documentation</a>.
 
 <?php echo $toc->html_section(); ?>
 
 <?php echo $toc->html_section(); ?>
 
-<p>You can load image as a scene too. That is, you can load a simple PNG file using <code>TCastleScene.Load</code> method. It will create a rectangle (which you can use as 3D or 2D object) using this image as a texture, with size adjusted to the image size. See the <a href="https://github.com/castle-engine/castle-engine/wiki/Images">image loading documentation</a>.
+<p>You can load image as a scene too. That is, you can load a simple PNG file using <code>TCastleScene.Load</code> method. It will create a rectangle (which you can use as 3D or 2D object) using this image as a texture, with size adjusted to the image size. See the <a href="https://castle-engine.io/using_images">image loading documentation</a>.
 
 <?php echo $toc->html_section(); ?>
 

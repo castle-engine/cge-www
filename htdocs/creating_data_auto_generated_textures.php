@@ -17,7 +17,7 @@ $toc = new TableOfContents(
 <?php echo $toc->html_section(); ?>
 
 <p>Using the <a href="creating_data_material_properties.php">material_properties.xml file</a>
-and <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">the castle-engine build tool</a>
+and <a href="https://castle-engine.io/build_tool">the castle-engine build tool</a>
 you can automatically generate and use different versions of your textures.
 The generated texture versions may be compressed (using GPU texture compression
 formats, like S3TC on desktops, PVRTC and others on mobile) and/or
@@ -49,7 +49,7 @@ MaterialProperties.URL := \'castle-data:/material_properties.xml\';'); ?>
     so it's usually simplest to just call it always before running your game,
     during development.
 
-    <p>This requires that you have <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">the build tool</a>
+    <p>This requires that you have <a href="https://castle-engine.io/build_tool">the build tool</a>
     available on your $PATH. To make the GPU texture compression work,
     you also need to install some <a href="#section_texture_compression">required external programs</a>.
 
@@ -165,7 +165,7 @@ Texture compression format names are <?php api_link('the same as TTextureCompres
 
 <?php echo $toc->html_section(); ?>
 
-<p>The <code>&lt;format&gt;</code> element can optionally specify that the textures compressed to this format are only suitable for a particular platform. In effect, the textures will not be distributed on other platforms, i.e. <code>castle-engine package --target=xxx</code> (see <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">the build tool documentation</a>) will automatically exclude the unused textures on target platform. The code will also know that these compression formats are never packaged (so it will not try to use them, even if at runtime GPU happens to support them).</p>
+<p>The <code>&lt;format&gt;</code> element can optionally specify that the textures compressed to this format are only suitable for a particular platform. In effect, the textures will not be distributed on other platforms, i.e. <code>castle-engine package --target=xxx</code> (see <a href="https://castle-engine.io/build_tool">the build tool documentation</a>) will automatically exclude the unused textures on target platform. The code will also know that these compression formats are never packaged (so it will not try to use them, even if at runtime GPU happens to support them).</p>
 
 <p>This is useful as some combinations of compression + target are seldom possible. E.g. most mobile devices<!-- (except some rare Android devices)--> do not support the DXTx compression.
 
@@ -241,7 +241,7 @@ and at runtime we will automatically load a suitable GPU-compressed alternative 
 <ol>
   <li><p>Running <code>castle-engine auto-generate-textures</code> will generate
     the GPU-compressed (and optionally scaled down) counterparts.
-    See <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">the castle-engine build tool documentation</a>.
+    See <a href="https://castle-engine.io/build_tool">the castle-engine build tool documentation</a>.
     They will be generated inside the <code>auto_generated</code> subdirectories
     of your data files, and additionally a file
     <code>castle_engine_auto_generated.xml</code> will appear,
@@ -312,7 +312,7 @@ but not OK for GUI images.
 Use the &lt;include&gt; / &lt;exclude&gt; elements to select only the sensible
 subset of your data textures.
 Include / exclude work just like
-<a href="https://github.com/castle-engine/castle-engine/wiki/CastleEngineManifest.xml-examples">including / excluding data to package inside the <code>CastleEngineManifest.xml</code></a>.
+<a href="https://castle-engine.io/project_manifest">including / excluding data to package inside the <code>CastleEngineManifest.xml</code></a>.
 We first include matching files, then exclude matching.
 
 <?php echo $toc->html_section(); ?>

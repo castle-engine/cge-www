@@ -94,7 +94,7 @@ You should place your game data in the `data` subdirectory of the project. See h
 
 Everything inside your `data` subdirectory is loadable at runtime. In this sense, it is actually similar to `Assets/Resources/` subdirectory of Unity, if you care about details.
 
-Things that are not your game data (like your source code) should _not_ be placed in the `data` subdirectory. The source code should live outside of data. Only the compiler must be able to find it (you can specify your sources locations using standard Lazarus _Project Options_ and/or (for building cross-platform projects) using https://github.com/castle-engine/castle-engine/wiki/CastleEngineManifest.xml-examples[`<compiler_options>` in CastleEngineManifest.xml]). By convention, most CGE examples place Pascal source code in the `code` subdirectory (or in top-level project directory), but this is really only a convention.
+Things that are not your game data (like your source code) should _not_ be placed in the `data` subdirectory. The source code should live outside of data. Only the compiler must be able to find it (you can specify your sources locations using standard Lazarus _Project Options_ and/or (for building cross-platform projects) using https://castle-engine.io/project_manifest[`<compiler_options>` in CastleEngineManifest.xml]). By convention, most CGE examples place Pascal source code in the `code` subdirectory (or in top-level project directory), but this is really only a convention.
 
 The layout of a larger CGE project may be like this:
 
@@ -182,7 +182,7 @@ The scaling is configured using https://castle-engine.io/manual_castle_settings.
 
 == Unity Services
 
-Mobile services like ads, analytics, in-app purchases and more are available as https://github.com/castle-engine/castle-engine/wiki/Android-Services[Android services] or https://github.com/castle-engine/castle-engine/wiki/iOS-Services[iOS services]. You declare them in https://github.com/castle-engine/castle-engine/wiki/CastleEngineManifest.xml-examples[CastleEngineManifest.xml] and then build the project using our https://github.com/castle-engine/castle-engine/wiki/Build-Tool[build tool]. These allow to integrate your code with various 3rd-party services (from Google, Apple and others) or use mobile APIs that require special permissions (like vibrations).
+Mobile services like ads, analytics, in-app purchases and more are available as https://castle-engine.io/android-Services[Android services] or https://castle-engine.io/ios-Services[iOS services]. You declare them in https://castle-engine.io/project_manifest[CastleEngineManifest.xml] and then build the project using our https://castle-engine.io/build_tool[build tool]. These allow to integrate your code with various 3rd-party services (from Google, Apple and others) or use mobile APIs that require special permissions (like vibrations).
 
 The _"service"_ means _"a part of the project, in binary or source code, added during the build stage"_.
 

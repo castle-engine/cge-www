@@ -193,5 +193,5 @@ make android
 # Test fpmake and InstantFPC
 
 Install CGE units following
-https://github.com/castle-engine/castle-engine/wiki/FpMake
+https://castle-engine.io/fpmake
 Run the 2 InstantFPC examples.

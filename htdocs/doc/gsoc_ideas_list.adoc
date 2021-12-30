@@ -30,7 +30,7 @@ What exactly to do? Go ahead and run wild. We encourage you to use this opportun
 
 . *Castle Game Engine Features*.
 +
-We have a number of features listed on https://castle-engine.io/planned_features.php[planned features]. See also https://github.com/castle-engine/castle-engine/wiki/OpenGL-ES,-Android-and-iOS-TODOs[mobile (OpenGLES) TODOs]. I list below various ideas, some of them require some experience with other APIs (like OpenGL or Vulkan).
+We have a number of features listed on https://castle-engine.io/planned_features.php[planned features]. See also https://castle-engine.io/mobile_todos[mobile (OpenGLES) TODOs]. I list below various ideas, some of them require some experience with other APIs (like OpenGL or Vulkan).
 
  ** (EASY) Distance field fonts (see https://castle-engine.io/planned_features.php[planned features] for some details).
  ** (EASY - if you have experience with macs) CastleWindow backend using Cocoa under macOS

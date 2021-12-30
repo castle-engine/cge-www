@@ -248,7 +248,7 @@ or get a notification when animation stops.
     And you can animate <code>Transform.rotation</code> with
     <?php echo x3d_node_link('OrientationInterpolator'); ?>.
 
-    <p>This is also how we animate <a href="https://github.com/castle-engine/castle-engine/wiki/Spine">Spine models (2D skeletons)</a>. You can check this by loading a Spine model, e.g. <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/2d_dragon_spine_game/data/dragon">dragon.json from here</a>, into view3dscene, and saving it as X3D.
+    <p>This is also how we animate <a href="https://castle-engine.io/spine">Spine models (2D skeletons)</a>. You can check this by loading a Spine model, e.g. <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/2d_dragon_spine_game/data/dragon">dragon.json from here</a>, into view3dscene, and saving it as X3D.
 
     <p>Optimization hint: if your models have a deep hierarchy of transformations, and a lot of these transformations simultaneously change, it's often beneficial to set global <code>OptimizeExtensiveTransformations</code> to <code>true</code>. See the <a href="manual_optimization.php">manual about optimization</a>. This is only temporary, of course &mdash; in the future we hope to make this optimization automatic. But for now, it sometimes helps (a lot), but sometimes can also cause a slowdown, so it's optional and should be enabled only after testing.
 

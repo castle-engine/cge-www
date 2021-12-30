@@ -94,7 +94,7 @@ end;'); ?>
 <p>Once you load a scene, you can play a "named animation" within it,
 using the <?php api_link('PlayAnimation', 'CastleSceneCore.TCastleSceneCore.html#PlayAnimation'); ?> method. Open the model with <?php echo a_href_page('view3dscene', 'view3dscene'); ?> and look at the <i>Animation -&gt; Named Animations</i> submenu to see what animations are available. We read animations from a variety of 2D and 3D formats (<?php echo a_href_page('X3D, VRML', 'vrml_x3d'); ?>,
 <?php echo a_href_page('castle-anim-frames', 'castle_animation_frames'); ?>,
-<a href="https://github.com/castle-engine/castle-engine/wiki/Spine">Spine</a>, MD3).
+<a href="https://castle-engine.io/spine">Spine</a>, MD3).
 
 <?php
 echo castle_thumbs(array(

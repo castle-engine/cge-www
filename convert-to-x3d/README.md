@@ -30,7 +30,7 @@ This directory contains utilities for our online tool
 Install Docker (see
 https://www.docker.com/ ,
 https://docs.docker.com/install/ ,
-https://github.com/castle-engine/castle-engine/wiki/Docker ).
+https://castle-engine.io/docker ).
 
 Configure some server directories and users:
 

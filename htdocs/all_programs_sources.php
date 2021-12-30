@@ -42,10 +42,10 @@ downloaded below.</p>
       </li>
 
       <li><p>Or you can <b>use our
-        <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a>
+        <a href="https://castle-engine.io/build_tool">build tool</a>
         to compile.</b></p>
         <ol>
-          <li>Install the <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a>
+          <li>Install the <a href="https://castle-engine.io/build_tool">build tool</a>
             (along with <a href="http://freepascal.org/">Free Pascal Compiler</a>).
           <li>Then compile the game by running the <code>castle-engine compile</code> command
             inside it's directory. <code>castle-engine</code> will find

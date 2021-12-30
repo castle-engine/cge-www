@@ -1,4 +1,4 @@
-<p>Another option is to <a href="https://github.com/castle-engine/castle-engine/wiki/FpMake">build and install the engine using FpMake</a>.
+<p>Another option is to <a href="https://castle-engine.io/fpmake">build and install the engine using FpMake</a>.
 
 ------------------------------------------------------------------------------
     //new TocItem('Alternatives', 'bare_fpc'),
@@ -17,9 +17,9 @@ you have a couple of options:
 
 <ol>
   <li><p>We advice using our
-    <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a>
+    <a href="https://castle-engine.io/build_tool">build tool</a>
     to compile and package your games. The build tool reads the project
-    configuration from the <a href="https://github.com/castle-engine/castle-engine/wiki/CastleEngineManifest.xml-examples">CastleEngineManifest.xml</a> file.
+    configuration from the <a href="https://castle-engine.io/project_manifest">CastleEngineManifest.xml</a> file.
     It provides a lot of cool options, e.g. it can easily
     package your Android or iOS game, or prepare compressed versions of your textures.
     Try it out on the command-line:
@@ -129,7 +129,7 @@ initializing the window using the
 
 ------------------------------------------------------------------------------
 
-<!--p>The editor executes under the hood our <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a> which in turn executes under the hood FPC (and some other tools, depending on the platform).-->
+<!--p>The editor executes under the hood our <a href="https://castle-engine.io/build_tool">build tool</a> which in turn executes under the hood FPC (and some other tools, depending on the platform).-->
 
 ------------------------------------------------------------------------------
 

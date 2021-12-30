@@ -31,13 +31,13 @@ and run <code>castle-editor</code> executable in the <code>bin</code> subdirecto
 You can compile, run and package the project using the <i>Run</i> menu.
 
 <p>A <i>Castle Game Engine</i> project is a directory
-containing the <a href="https://github.com/castle-engine/castle-engine/wiki/CastleEngineManifest.xml-examples">CastleEngineManifest.xml</a>
+containing the <a href="https://castle-engine.io/project_manifest">CastleEngineManifest.xml</a>
 file. Most often it also contains a subdirectory <code>data/</code>
 that is accessed from code using the
 <a href="manual_data_directory.php">castle-data:/xxx</a> URLs.
 Everything else is up to you, organize your source code and data however you like.
 
-<p>Note that compiling and packaging a project <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">can also be done using the command-line CGE build tool</a>.
+<p>Note that compiling and packaging a project <a href="https://castle-engine.io/build_tool">can also be done using the command-line CGE build tool</a>.
 Actually, the editor just calls the build tool under the hood.
 The build tool in turn calls a compiler (FPC) and some other tools
 (e.g. Android-specific packaging tools).
@@ -129,9 +129,9 @@ TODO: use Delphi automatically, if installed
 <ul>
   <li><p>Note that the <code>data/</code> subdirectory is somewhat special. It is automatically detected, it is automatically packaged (e.g. in Android apk), and it can always be accessed by <a href="https://castle-engine.io/manual_data_directory.php">castle-data:/xxx URL</a>. You will place there 3D models, 2D images, designs (<code>xxx.castle-user-interface</code>, <code>xxx.castle-transform</code>, <code>xxx.castle-component</code> files) and everything else you load in the game.
 
-    <p>It is somewhat equivalent to Unity <code>Assets/</code> subdirectory. See <a href="https://github.com/castle-engine/castle-engine/wiki/Castle-Game-Engine-for-Unity-developers">Castle Game Engine for Unity developers</a> for more pointers, if you come with knowledge about Unity.
+    <p>It is somewhat equivalent to Unity <code>Assets/</code> subdirectory. See <a href="https://castle-engine.io/castle_game_engine_for_unity_developers">Castle Game Engine for Unity developers</a> for more pointers, if you come with knowledge about Unity.
 
-  <li><p>Note that your Pascal source code should be outside the <code>data/</code> subdirectory. Your source code can be anywhere within the project, we don't have any strict requirement here, although we recommend <code>code/</code> subdirectory and the compiler is set to search it by default. Remember to list any new code subdirectory in <code>&lt;search_paths&gt;</code> in <a href="https://github.com/castle-engine/castle-engine/wiki/CastleEngineManifest.xml-examples">CastleEngineManifest.xml</a> file (for now, just edit this file in any text editor; in the future CGE editor can allow to edit it through a GUI dialog).
+  <li><p>Note that your Pascal source code should be outside the <code>data/</code> subdirectory. Your source code can be anywhere within the project, we don't have any strict requirement here, although we recommend <code>code/</code> subdirectory and the compiler is set to search it by default. Remember to list any new code subdirectory in <code>&lt;search_paths&gt;</code> in <a href="https://castle-engine.io/project_manifest">CastleEngineManifest.xml</a> file (for now, just edit this file in any text editor; in the future CGE editor can allow to edit it through a GUI dialog).
 
     <!--
     If you really want, you can of course place source code in the `data/` subdirectory, but it usually doesn't make sense. Unless you really want to distribute to end-users your source code this way (but there are better ways to distribute source code, e.g. use _"Package Source"_).
@@ -171,7 +171,7 @@ It is possible to include your custom components within the <i>Castle Game Engin
 
     <p>The <code>RegisterSerializableComponen</code> is in the <code>CastleComponentSerialize</code> unit, so make sure it is in the uses clause.
 
-  <li><p>Inside your <a href="https://github.com/castle-engine/castle-engine/wiki/CastleEngineManifest.xml-examples">CastleEngineManifest.xml</a>, set the attribute <code>editor_units</code> to list all the units that call the <code>RegisterSerializableComponent</code>. It is a comma-separated list, like <code>editor_units="MyButtonUnit, MyMenuUnit"</code>.
+  <li><p>Inside your <a href="https://castle-engine.io/project_manifest">CastleEngineManifest.xml</a>, set the attribute <code>editor_units</code> to list all the units that call the <code>RegisterSerializableComponent</code>. It is a comma-separated list, like <code>editor_units="MyButtonUnit, MyMenuUnit"</code>.
 
   <li><p>Make sure:
 
@@ -183,7 +183,7 @@ It is possible to include your custom components within the <i>Castle Game Engin
 
   <li><p>Use menu item <i>"Project -> Restart Editor (With Custom Components)"</i> in the editor (once you open a project).
 
-    <p>Alternatively, use the command-line <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a> command: <code>castle-engine editor</code>.
+    <p>Alternatively, use the command-line <a href="https://castle-engine.io/build_tool">build tool</a> command: <code>castle-engine editor</code>.
 
     <p>Both ways will rebuild and run a customized version of the editor that includes your custom components.
 
@@ -192,7 +192,7 @@ It is possible to include your custom components within the <i>Castle Game Engin
 
 <p>See <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/advanced_editor/custom_component">advanced_editor/custom_component</a> as an example that defines and registers <code>TImageGrid</code> component in the <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/advanced_editor/custom_component/code/gamecontrols.pas">GameControls</a> unit.
 
-<p>More <a href="https://github.com/castle-engine/castle-engine/wiki/Custom-Components">documentation about implementing custom components is here</a>.
+<p>More <a href="https://castle-engine.io/custom_components">documentation about implementing custom components is here</a>.
 
 <?php
 castle_footer();

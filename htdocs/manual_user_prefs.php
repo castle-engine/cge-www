@@ -86,7 +86,7 @@ the savegames using the <a href="https://developers.google.com/games/services/co
 feature. To use this feature:
 
 <ol>
-  <li><p>Turn on the <a href="https://github.com/castle-engine/castle-engine/wiki/Android-Project-Components-Integrated-with-Castle-Game-Engine#google_play_games">Google Play Games integration</a>
+  <li><p>Turn on the <a href="https://castle-engine.io/android-Project-Components-Integrated-with-Castle-Game-Engine#google_play_games">Google Play Games integration</a>
     for your project.
 
   <li><p>Create and initialize the

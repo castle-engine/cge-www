@@ -57,7 +57,7 @@ though for most applications we recommend using <code>TCastleWindowsBase</code> 
 <p>We also support using <a href="http://newpascal.org/">NewPascal</a>, a very nice fork of FPC+Lazarus with some new features.
 -->
 
-<p><i>Hint: If you want to install multiple versions of FPC/Lazarus</i> (stable, unstable, NewPascal), with cross-compilers, it is easily possible with <a href="https://github.com/castle-engine/castle-engine/wiki/fpcupdeluxe">fpcupdeluxe</a>.
+<p><i>Hint: If you want to install multiple versions of FPC/Lazarus</i> (stable, unstable, NewPascal), with cross-compilers, it is easily possible with <a href="https://castle-engine.io/fpcupdeluxe">fpcupdeluxe</a>.
 
 <?php echo $toc->html_section(); ?>
 
@@ -102,11 +102,11 @@ to hang on to FPC releases available in distros.
 
 <p>We generally try to support using the latest (unstable) FPC development version to compile CGE.
 
-<p>You can get such FPC directly from <a href="https://gitlab.com/freepascal.org/fpc/source">GitLab (use <code>main</code> branch to get really latest and unstable version)</a> or using <a href="https://github.com/castle-engine/castle-engine/wiki/fpcupdeluxe">FpcUpDeluxe</a>.
+<p>You can get such FPC directly from <a href="https://gitlab.com/freepascal.org/fpc/source">GitLab (use <code>main</code> branch to get really latest and unstable version)</a> or using <a href="https://castle-engine.io/fpcupdeluxe">FpcUpDeluxe</a>.
 
 <p>Of course please remember that this FPC version is unstable, and it changes with every commit to FPC. We cannot test or guarantee that CGE works with an arbitray FPC development revision. But we welcome testing such FPC. PRs to make CGE work with latest FPC trunk are also welcome (unless there's a temporary bug in FPC which should be rather reported to FPC devs).
 
-<p>We even package FPC trunk in our <a href="https://github.com/castle-engine/castle-engine/wiki/Docker">Docker</a> as an option. Although by default we use latest stable FPC inside the Docker image, but you can activate FPC unstable using <code>source /usr/local/fpclazarus/bin/setup.sh trunk</code>. The <b>FPC trunk revision most tested is the one listed in <a href="https://github.com/castle-engine/castle-engine-cloud-builds-tools/blob/master/Dockerfile.no-cge#L149">the Docker build script</a></b>.
+<p>We even package FPC trunk in our <a href="https://castle-engine.io/docker">Docker</a> as an option. Although by default we use latest stable FPC inside the Docker image, but you can activate FPC unstable using <code>source /usr/local/fpclazarus/bin/setup.sh trunk</code>. The <b>FPC trunk revision most tested is the one listed in <a href="https://github.com/castle-engine/castle-engine-cloud-builds-tools/blob/master/Dockerfile.no-cge#L149">the Docker build script</a></b>.
 
 <p>On Aaarch64 (important on mobile platforms): Note that if you use FPC 3.3.1, we assume that it is at least from SVN revision 48104. See <a href="https://trello.com/c/5ydB4MuA/113-enable-again-aarch64-optimizations">Trello ticket about Aarch64 optimizations</a>. The optimizations are disabled on Aarch64 with FPC &lt; 3.3.1. With FPC &gt;= 3.3.1, we assume it is from at least SVN revision 48104, and has Aaarch64 optimizer bugs fixed.
 
@@ -150,7 +150,7 @@ to hang on to FPC releases available in distros.
 
 <p>I (Michalis) strongly advice that you should rather use original <a href="http://www.freepascal.org/">FPC</a> and <a href="http://www.lazarus-ide.org/">Lazarus</a>. I have much more trust in FPC and Lazarus developers doing great quality job, respecting copyrights of other projects (CodeTyphon did some murky things), and working in a transparent fashion (version control, cooperating with other projects).<!-- to make open-source Pascal grow.-->
 
-<p>Note that Lazarus comes now with <a href="http://wiki.freepascal.org/Online_Package_Manager">Online Package Manager</a>. And you can use <a href="https://github.com/castle-engine/castle-engine/wiki/fpcupdeluxe">fpcupdeluxe</a> to easily install cross-compilers. I mention these, in case your reason for using <i>Code Typhon</i> was to get such features.
+<p>Note that Lazarus comes now with <a href="http://wiki.freepascal.org/Online_Package_Manager">Online Package Manager</a>. And you can use <a href="https://castle-engine.io/fpcupdeluxe">fpcupdeluxe</a> to easily install cross-compilers. I mention these, in case your reason for using <i>Code Typhon</i> was to get such features.
 
 <?php
   castle_footer();

@@ -20,11 +20,11 @@ What it does:
 * We automatically rebuild and package your game when you make a commit to SVN or GIT repository. You also get a web access to trigger the build _now_.
 * We have a ready FPC/Lazarus build environment for Windows 32-bit, Windows 64-bit, Linux 64-bit (x86_64) and  Android. The FPC versions can be chosen for each build, any version supported by CGE (like 3.0.2, 3.0.4, 3.2.0, fresh 3.3.1) is supported. So you can check whether your software compiles with all FPC versions that matter to you.
 * The builds can use https://castle-engine.io/[Castle Game Engine latest stable release], or https://github.com/castle-engine/castle-engine/[Castle Game Engine bleeding-edge version from GitHub]. In the latter case, each commit to CGE will also cause a rebuild of your project, so you always stay current.
-* The builds can be done using CGE https://github.com/castle-engine/castle-engine/wiki/Build-Tool[build tool]. You can also use custom shell scripts, if you know your way around Unix shell scripting. In any case, I will help you set everything up, so don't fear!:)
+* The builds can be done using CGE https://castle-engine.io/build_tool[build tool]. You can also use custom shell scripts, if you know your way around Unix shell scripting. In any case, I will help you set everything up, so don't fear!:)
 * You can browse the build history of your projects, see which commits failed/succeeded to compile, download the packages from each build (latest build, or a historic one), see compilation logs and more. You can also get automatic email notification when a build fails.
 * We can also automatically run tests of your game (e.g. you can use FpcUnit testing framework, built in FPC).
 * We can also automatically generate API docs of your code (using FpDoc or PasDoc), and upload them somewhere.
-* You can run https://github.com/castle-engine/castle-engine/wiki/Build-Tool#auto-generate-textures[auto-generate-textures command of the build tool]. All command-line utilities (used internally by the build tool, e.g. NVidia Texture Tools) are already installed for you.
+* You can run https://castle-engine.io/build_tool#auto-generate-textures[auto-generate-textures command of the build tool]. All command-line utilities (used internally by the build tool, e.g. NVidia Texture Tools) are already installed for you.
 
 == Using it
 
@@ -45,7 +45,7 @@ TODO screenshot
 
 NOTE: If your repository is private (not publicly accessible), you will need to input your credentials (username/password to login to SVN/GIT). I advice creating a read-only account for your repository (e.g. called `jenkins`) for this purpose. For best security, _do not_ use your regular read-write account to get the repository contents inside Jenkins. I do my best to keep this Jenkins installation secure (and we are using this server for various http://cat-astrophe-games.com/[private projects at Cat-astrophe Games], so we really trust it with content that must be secure), but you should follow the rule _"reveal as little as possible"_ anyway.
 
-On the Jenkins page, you can see the statistics about recent builds (how long they took, whether they succeeded) and you can download _artifacts_ of your project. The _"artifacts"_ are just files that you consider the "output" from the build process. In case of CGE games, it is usually a couple of archives like `my_game-0.1.0-linux-x86_64.tar.gz`, `my_game-0.1.0-win32-i386.zip`, `my_game-0.1.0-win64-x86_64.zip`, produced by the https://github.com/castle-engine/castle-engine/wiki/Build-Tool#package[build tool `package` command].
+On the Jenkins page, you can see the statistics about recent builds (how long they took, whether they succeeded) and you can download _artifacts_ of your project. The _"artifacts"_ are just files that you consider the "output" from the build process. In case of CGE games, it is usually a couple of archives like `my_game-0.1.0-linux-x86_64.tar.gz`, `my_game-0.1.0-win32-i386.zip`, `my_game-0.1.0-win64-x86_64.zip`, produced by the https://castle-engine.io/build_tool#package[build tool `package` command].
 
 You can also see the logs for each build. If a build compilation failed, these logs will contain the information "why". The _logs are the first thing to consult_ if you want to know what happened (and what failed) during the build.
 

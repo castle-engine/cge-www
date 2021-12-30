@@ -45,7 +45,7 @@ $toc = new TableOfContents(
   <li>It is easiest to install <a href="https://www.lazarus-ide.org/">Lazarus bundled with FPC</a>.
   <!-- Too confusing, and cannot build editor this way -->
   <!--li>Alternatively, you can also use <a href="https://www.freepascal.org/">only FPC</a> (omit then the variants below that use Lazarus). On many Linux distributions this is as simple as <code>apt install fpc</code>.-->
-  <li>You can also <a href="https://github.com/castle-engine/castle-engine/wiki/fpcupdeluxe">get both Lazarus and FPC from fpcupdeluxe</a>.
+  <li>You can also <a href="https://castle-engine.io/fpcupdeluxe">get both Lazarus and FPC from fpcupdeluxe</a>.
 </ul>
 
 <p>We list the <a href="https://castle-engine.io/supported_compilers.php">supported FPC and Lazarus versions here</a>. We always support the latest stable release as well as a few older versions.
@@ -62,7 +62,7 @@ $toc = new TableOfContents(
 
 <?php echo $toc->html_section(); ?>
 
-<p>Compile the command-line <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">build tool</a>.
+<p>Compile the command-line <a href="https://castle-engine.io/build_tool">build tool</a>.
 
 <ul>
   <li>

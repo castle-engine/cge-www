@@ -1,6 +1,6 @@
 /* -*- mode: groovy -*-
   Updating Docker image for https://castle-engine.io/convert.php using Jenkins.
-  See https://github.com/castle-engine/castle-engine/wiki/Cloud-Builds-(Jenkins) for syntax of this file.
+  See https://castle-engine.io/cloud_builds_jenkins for syntax of this file.
 */
 
 pipeline {

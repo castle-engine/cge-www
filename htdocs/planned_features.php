@@ -11,7 +11,7 @@ echo pretty_heading($page_title);
 <p>If you would like to see some feature implemented sooner,
 please <a href="<?php echo PATREON_URL; ?>">support the engine development on Patreon!</a>
 
-<p>Incoming features in the next release (7.0) <a href="https://github.com/castle-engine/castle-engine/wiki/New-Features-in-Castle-Game-Engine-7.0">are documented here</a>.
+<p>Incoming features in the next release (7.0) <a href="https://castle-engine.io/new_features_in_castle_game_engine_7.0">are documented here</a>.
 
 <?php /*
 <h2>Incoming in the next release (6.8)</h2>
@@ -74,7 +74,7 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
     <ul>
       <li><p>The suggested approach is to extend the existing "examples/delphi/base_tests/base_tests.dpr" to use more and more CGE units, fixing any Delphi compatibility that occurs (e.g. XML units, JSON units etc.).
 
-      <li><p>The order of adding units can folow <a href="https://github.com/castle-engine/castle-engine/wiki/Units-Map">the map of dependencies</a>. So first we make sure all/most from "base" compiles, then "files", then "images", then "fonts"...
+      <li><p>The order of adding units can folow <a href="https://castle-engine.io/units_map">the map of dependencies</a>. So first we make sure all/most from "base" compiles, then "files", then "images", then "fonts"...
 
       <li><p>Once we get to CastleUIControls unit compiling, we can implement TCastleControl on VCL and/or FMX, and actually display something.
     </ul>
@@ -110,7 +110,7 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
 
   <li><p><b>Continuous integration (Jenkins) for free for all open-source projects.</b>
 
-    <p>We have a <a href="https://github.com/castle-engine/castle-engine/wiki/Cloud-Builds-(Jenkins)">Jenkins + Docker infrastructure</a> to compile and test CGE, and CGE-based applications. I want to finish some stuff there and make it publicly accessible, and free for open-source projects.
+    <p>We have a <a href="https://castle-engine.io/cloud_builds_jenkins">Jenkins + Docker infrastructure</a> to compile and test CGE, and CGE-based applications. I want to finish some stuff there and make it publicly accessible, and free for open-source projects.
 
   <li><p><b>Terrain designer</b>
 
@@ -143,7 +143,7 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
     not only with our engine.
 
     <p>See also our page about <a href="creating_data_blender.php">creating data in Blender</a>
-    and <a href="https://github.com/castle-engine/castle-engine/wiki/Blender">hints
+    and <a href="https://github.com/castle-engine/cge-www/blob/master/htdocs/doc/obsolete/blender_x3d_exporter.adoc">hints
     about exporting from Blender to X3D</a>.
 */ ?>
 
@@ -222,7 +222,7 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
   <li>
     <p><b>Make 100% rendering features available on OpenGLES too.</b>
 
-    <p><a href="https://github.com/castle-engine/castle-engine/wiki/OpenGL-ES,-Android-and-iOS-TODOs">We have some small TODOs to make OpenGLES (mobile) renderer as capable as OpenGL (desktop).</a>
+    <p><a href="https://castle-engine.io/mobile_todos">We have some small TODOs to make OpenGLES (mobile) renderer as capable as OpenGL (desktop).</a>
 
   <li>
     <p><b>Use Cocoa under macOS</b></p>
@@ -311,7 +311,7 @@ please <a href="<?php echo PATREON_URL; ?>">support the engine development on Pa
 
   <li><p><b>Bridge TGLImage with TCastleScene, enable drawing UI into TCastleScene, to have UI rotated in 3D with perspective.</b>
 
-    <p><a href="https://github.com/castle-engine/castle-engine/wiki/2D-Games">See also here.</a>
+    <p><a href="https://castle-engine.io/how_to_render_2d">See also here.</a>
 </ul>
 
 <?php castle_footer(); ?>

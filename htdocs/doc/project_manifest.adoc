@@ -120,7 +120,7 @@ The `initialization` section of one of your units must create an instance of the
 +
 *This is an important attribute to use when making a game portable to both standalone and mobile*. It allows you to avoid writing _any_ Android or iOS specific code. And you don't need to maintain the main program / library files. (These are the files typically with `.lpr` extension for FPC / Lazarus or `.dpr` for Delphi.)
 
-* NOTE: In order to use http://www.lazarus-ide.org/[Lazarus] or https://www.embarcadero.com/products/Delphi[Delphi] to develop and debug your application, it is often useful anyway to create the main program file for the standalone platform. You can even create and maintain it automatically using `castle-engine generate-program` command, see https://github.com/castle-engine/castle-engine/wiki/Build-Tool#generate-program[the documentation].
+* NOTE: In order to use http://www.lazarus-ide.org/[Lazarus] or https://www.embarcadero.com/products/Delphi[Delphi] to develop and debug your application, it is often useful anyway to create the main program file for the standalone platform. You can even create and maintain it automatically using `castle-engine generate-program` command, see https://castle-engine.io/build_tool#generate-program[the documentation].
 +
 In this case you should specify the generated `my_cool_game.lpr` file in the `standalone_source` attribute. The other platforms (Android, iOS) can still use an auto-generated library file.
 +

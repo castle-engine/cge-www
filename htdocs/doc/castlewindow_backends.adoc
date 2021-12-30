@@ -7,7 +7,7 @@ https://castle-engine.io/apidoc-unstable/html/CastleWindow.TCastleWindowBase.htm
 
 Most CGE applications use this class (although there is an alternative https://castle-engine.io/manual_lazarus_control.php[TCastleControlBase], but we advise `TCastleWindowBase` for most cases).
 
-The `TCastleWindowBase` has a number of alternative _backends_, using different libraries underneath to manage the window and OpenGL(ES) context properties. By default, we use a backend that is considered "best" for the current operating system you're compiling to, but you can override this choice by defining a symbol `CASTLE_WINDOW_xxx` at the compilation time. You can define this symbol in various places, e.g. https://github.com/castle-engine/castle-engine/wiki/CastleEngineManifest.xml-examples#compiler-options-and-paths[in CastleEngineManifest.xml file].
+The `TCastleWindowBase` has a number of alternative _backends_, using different libraries underneath to manage the window and OpenGL(ES) context properties. By default, we use a backend that is considered "best" for the current operating system you're compiling to, but you can override this choice by defining a symbol `CASTLE_WINDOW_xxx` at the compilation time. You can define this symbol in various places, e.g. https://castle-engine.io/project_manifest#compiler-options-and-paths[in CastleEngineManifest.xml file].
 
 Right now, we always use exactly one "backend", which is determined at the compile-time when you compile your application. In the future, we want to rework the CastleWindow infrastructure to enable you to use multiple backends, each backend in a separate unit, and (optionally) allow you to select the best backend at runtime.
 
@@ -83,7 +83,7 @@ To use this:
 It will also automatically add `LazOpenGLContext` package as dependency, which is good. We need `castle_components` package for LCL helpers (like converting mouse/keys between LCL and CastleKeysMouse), and we need `LazOpenGLContext` package for TOpenGLControl.
 
 * Or you can use `alternative_castle_window_based_on_lcl.lpk` instead of `castle_window.lpk` in the project. This should take care of above 2 things.
-* Usually you should compile programs using Lazarus then (IDE or `lazbuild`), to automatically have correct LCL paths used. If you use our link:build_tool[build tool] or https://castle-engine.io/manual_editor.php[CGE editor], set `build_using_lazbuild="true"` in https://github.com/castle-engine/castle-engine/wiki/CastleEngineManifest.xml-examples[CastleEngineManifest.xml].
+* Usually you should compile programs using Lazarus then (IDE or `lazbuild`), to automatically have correct LCL paths used. If you use our link:build_tool[build tool] or https://castle-engine.io/manual_editor.php[CGE editor], set `build_using_lazbuild="true"` in https://castle-engine.io/project_manifest[CastleEngineManifest.xml].
 
 Supported platforms: everywhere where LCL runs. (But in practice this backend is only useful on macOS.)
 
@@ -101,7 +101,7 @@ Known problems:
 
 === Android backend (CASTLE_WINDOW_ANDROID)
 
-Backend using Android NDK cooperating with _Castle Game Engine_ Android activity code. Used when you compile for Android, which you should always do using our https://github.com/castle-engine/castle-engine/wiki/Build-Tool[build tool].
+Backend using Android NDK cooperating with _Castle Game Engine_ Android activity code. Used when you compile for Android, which you should always do using our https://castle-engine.io/build_tool[build tool].
 
 === Library backend (CASTLE_WINDOW_LIBRARY)
 

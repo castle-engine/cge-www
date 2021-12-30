@@ -9,7 +9,7 @@ This page documents Castle Game Engine 7.0 new features (since the last 6.4 rele
  ** Run it by simply executing "castle-editor" binary in the "bin/" subdirectory of our release zip.
  ** It comes with 4 templates for new projects: empty, 3D model viewer, 2D game, 3D FPS game. These showcase nicely editor possibilities and were designed as a good starting point for your applications.
  ** Editor allows to visually design TCastleUserInterface (like TCastleButton, TCastleLabel) and TCastleTransform (like TCastleScene) hierarchies.
- ** Editor also manages (creates, compiles) Castle Game Engine projects, using our https://github.com/castle-engine/castle-engine/wiki/Build-Tool[build tool] underneath.
+ ** Editor also manages (creates, compiles) Castle Game Engine projects, using our https://castle-engine.io/build_tool[build tool] underneath.
  ** Integrated with our tools (runs view3dscene, castle-view-image etc. when double-clicking), can preview data (models, images, sounds).
  ** Runs a configured FPC/Lazarus (in preferences).
 * glTF 2.0 full support and realistic rendering upgrades.
@@ -20,7 +20,7 @@ This page documents Castle Game Engine 7.0 new features (since the last 6.4 rele
  ** See numerous news for details: https://castle-engine.io/wp/2020/04/25/huge-optimizations-of-gltf-animations-pool-of-scenes-for-fps-game-limited-pbr-specular-glossiness-support/[1], https://castle-engine.io/wp/2020/04/19/lots-of-gltf-work-new-x3d-extensions-and-conversion-improvements/[2], https://castle-engine.io/wp/2020/04/11/fun-with-sketchfab-plugin-in-blender-testing-gltf-performance/[3],  https://castle-engine.io/wp/2020/04/11/testing-gltf-with-models-from-sketchfab-improved-per-vertex-rendering-from-gltf/[4], https://castle-engine.io/wp/2020/04/01/gltf-skinned-animation-in-castle-game-engine/[5], https://castle-engine.io/wp/2020/03/22/blender-exporters-upgrades-and-fixes-gltf-unlit-support-castle-anim-frames-improvements-loading-a-series-of-models-for-animation/[6], https://castle-engine.io/wp/2020/06/11/reading-punctual-lights-from-gltf/[lights].
  ** See https://castle-engine.io/wp/2020/03/07/physically-based-rendering-and-lots-of-other-lighting-materials-upgrades-in-castle-game-engine-and-x3d-4-0/[news specific about PBR (in glTF and X3D v4)]
  ** https://castle-engine.io/manual_gamma_correction.php[Gamma Correction and Tone Mapping].
-* Nintendo Switch full support. See https://github.com/castle-engine/castle-engine/wiki/Nintendo-Switch
+* Nintendo Switch full support. See https://castle-engine.io/nintendo_switch
 * Much better API for viewports and cameras.
  ** To display `TCastleScene`/`TCastleTransform` hierarchy, use `TCastleViewport`, always. It is a normal user interface control, you can set it's size/position as any other UI control.
  ** The concept of _camera_ (where are you looking at) and _navigation_ (whether we handle some keys/mouse to move the camera) was split. `TCastleViewport.Camera` is always created, and corresponds 1-to-1 to the parent viewport. `TCastleViewport.Navigation` is optional, you can explicitly create an instance of `TCastleExamineNavigation` or `TCastleWalkNavigation` and assign them there.
@@ -90,7 +90,7 @@ https://castle-engine.io/wp/2018/04/22/engine-improvements-user-interface-horizo
  ** https://github.com/castle-engine/castle-engine/tree/master/examples/3d_rendering_processing/collisions[collisions] - demo of using our collision routines.
 * Android improvements:
  ** --target=android to build both 32-bit and 64-bit binaries.
- ** New https://github.com/castle-engine/castle-engine/wiki/Android-Services[Android services]:
+ ** New https://castle-engine.io/android-Services[Android services]:
   *** facebook,
   *** apps_flyer,
   *** freetype,
@@ -102,9 +102,9 @@ https://castle-engine.io/wp/2018/04/22/engine-improvements-user-interface-horizo
 * iOS improvements:
  ** https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/ios/services/vibrate/README.md[Vibrations].
  ** GPU compressed textures support for square textures (Apple makes it harder to support non-square textures).
- ** Build tool has command-line options to create IPA file or even upload the build to TestFlight, see https://github.com/castle-engine/castle-engine/wiki/iOS[iOS building page].
+ ** Build tool has command-line options to create IPA file or even upload the build to TestFlight, see https://castle-engine.io/ios[iOS building page].
  ** https://castle-engine.io/manual_text.php[FreeType is supported] so you can freely load fonts at runtime.
-* Other https://github.com/castle-engine/castle-engine/wiki/Build-Tool[build tool] improvements:
+* Other https://castle-engine.io/build_tool[build tool] improvements:
  ** https://castle-engine.io/creating_data_auto_generated_textures.php[Packaging of textures specific to given platform]
  ** Filtering of messages (better output, that avoids some unnecessary warnings from specializing generics containers, but at the same time leaves these warnings enabled for your code)
 * Physics improvements:
@@ -112,7 +112,7 @@ https://castle-engine.io/wp/2018/04/22/engine-improvements-user-interface-horizo
  ** https://castle-engine.io/wp/2019/11/02/triggers-detecting-collisions-and-physics-settings/[Triggers and physics settings]
  ** And more, see https://castle-engine.io/wp/2019/06/15/physics-collision-detection-and-new-properties/
 * Sound improvements:
- ** Split into multiple backends, and FMOD backend added, see https://github.com/castle-engine/castle-engine/wiki/FMOD .
+ ** Split into multiple backends, and FMOD backend added, see https://castle-engine.io/fmod .
  ** More features for sounds XML files, like aliases and groups. See https://castle-engine.io/wp/2019/04/29/new-sound-features-alternative-backends-new-demo-aliases/
  ** LoopingChannel, to easily play multiple sound tracks, ambience tracks etc.
  ** https://castle-engine.io/wp/2019/08/18/streaming-sound-tracks-fmod-linking-improved/[Sound streaming].

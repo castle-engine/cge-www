@@ -107,7 +107,7 @@ _fpcupdeluxe_ is actually a GUI based on fpcup. So, various documentation for fp
 
 To create a cross-compiler for Android, suitable for Castle Game Engine:
 
-* First, follow https://github.com/castle-engine/castle-engine/wiki/Android to install Android SDK, NDK and test them.
+* First, follow https://castle-engine.io/android to install Android SDK, NDK and test them.
 
 *For 32-bit Android CPU (32-bit version of ARM, called just `arm`):*
 

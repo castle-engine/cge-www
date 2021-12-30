@@ -28,7 +28,7 @@ whatever works for you.
   <li><p>When running from <a href="manual_editor.php">CGE editor</a>, the log is displayed
     in the bottom editor panel.
 
-  <li><p>When running using <a href="https://github.com/castle-engine/castle-engine/wiki/Build-Tool">CGE
+  <li><p>When running using <a href="https://castle-engine.io/build_tool">CGE
     build tool <code>castle-engine run</code> command</a>, the log is displayed
     as the standard output.
 
