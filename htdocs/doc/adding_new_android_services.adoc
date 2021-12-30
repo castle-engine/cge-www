@@ -3,7 +3,7 @@ include::common.adoc[]
 
 == Introduction
 
-_Castle Game Engine_ defines a number of useful link:pass:[Android Services][] and link:pass:[iOS Services][] to integrate with various 3rd-party libraries, SDKs to provide additional functionality to your application.
+_Castle Game Engine_ defines a number of useful link:android_services[Android services] and link:ios_services[iOS services] to integrate with various 3rd-party libraries, SDKs to provide additional functionality to your application.
 
 This page documents how you can add new services for Android.
 
@@ -22,7 +22,7 @@ The `base` project type (you can request it by `CastleEngineManifest.xml`) is _n
 
 == Adding new service
 
-It's easy to add your own Android services, if you need to integrate with some Android library not covered by existing link:pass:[Android Services][]. Create your service inside the `castle_game_engine/tools/build-tool/data/android/integrated-services/xxx/` directory. The files there are copied to the final Android project, expanding macros inside. Most of the files are simply copied (but avoiding overwriting), but some files are merged in a special way:
+It's easy to add your own Android services, if you need to integrate with some Android library not covered by existing link:android_services[Android services]. Create your service inside the `castle_game_engine/tools/build-tool/data/android/integrated-services/xxx/` directory. The files there are copied to the final Android project, expanding macros inside. Most of the files are simply copied (but avoiding overwriting), but some files are merged in a special way:
 
 * `AndroidManifest.xml` of each service is merged with the main `AndroidManifest.xml` in a smart way, only adding the new permissions and new elements/attributes inside the +++<application>+++.+++</application>+++
 * `build.gradle` files inside the services have a special XML syntax. See the example services like `helpshift`. They are merged into the final (non-XML) `build.gradle` file in a smart way.
@@ -32,7 +32,7 @@ It's easy to add your own Android services, if you need to integrate with some A
 services.add(new ServiceStartApp(this));
 ----
 
-When developing new services, it's useful to inspect the generated Android project in the `castle-engine-output/android/project`. This is created by the link:pass:[Build Tool][] by merging all the services with base project template. Look there after running `castle-engine package --target=android`.
+When developing new services, it's useful to inspect the generated Android project in the `castle-engine-output/android/project`. This is created by the link:build_tool[build tool] by merging all the services with base project template. Look there after running `castle-engine package --target=android`.
 
 == Java code of a service
 

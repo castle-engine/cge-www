@@ -3,7 +3,7 @@ include::common.adoc[]
 
 == How to use iOS services
 
-Inside the link:https://castle-engine.io/project_manifest[CastleEngineManifest.xml] you can declare which additional services you want to integrate with your iOS application. It looks like this:
+Inside the link:project_manifest[CastleEngineManifest.xml] you can declare which additional services you want to integrate with your iOS application. It looks like this:
 
 [,xml]
 ----
@@ -48,7 +48,7 @@ The build tool will internally use `pod` to download and install service depende
 
 == Adding new services
 
-Adding new iOS service is deliberately very consistent with creating new service for Android, which is documented on link:pass:[Adding New Android Services][].
+Adding new iOS service is deliberately very consistent with creating new service for Android, which is documented on link:adding_new_android_services[Adding New Android Services].
 
 * In case of iOS you write code using Objective-C.
 * Similarly to Android, we have a base class in Objective-C `ServiceAbstract` with methods you can override, that correspond to typical iOS application lifecycle.

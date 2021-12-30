@@ -46,7 +46,7 @@ docker run --name my-cge-container --volume="${HOME}":/home/sharedhome/ -it kamb
 
 You can play around in the resulting shell, end by Ctrl + D (or `exit` and Enter).
 
-NOTE: we recommend using `cge-unstable` (CGE 7.0-alpha.snapshot), not `cge-stable` (6.4) right now. We work intensively on making this the new stable, see link:pass:[New Features in Castle Game Engine 7.0][].
+NOTE: we recommend using `cge-unstable` (CGE 7.0-alpha.snapshot), not `cge-stable` (6.4) right now. We work intensively on making this the new stable, see link:new_features_in_castle_game_engine_7.0[New Features in Castle Game Engine 7.0].
 
 Next time, enter this container like this:
 
@@ -111,7 +111,7 @@ You can also use command-line `fpc` or `lazbuild` to build Pascal applications. 
  ** `castle-engine run --target=android`
 
 +
-If you need these commands to work, you need to link:pass:[Android][install Android SDK/NDK on your regular host system] and work without the Docker.
+ If you need these commands to work, you need to link:android[install Android SDK/NDK on your regular host system] and work without the Docker.
 +
 You can also copy the APK file to your phone, and install APK by selecting it on your phone. This works, but you will not see the logs of the running application, which are quite valuable when debugging.
 +
@@ -141,7 +141,7 @@ docker images -q | xargs docker rmi # remove all images
 
 [NOTE]
 ====
-If you plan to update CGE often, but would still like to use Docker image (e.g. to easily get working environment to build Android APK), then another approach is to use the Docker image `+...:cge-none+`. This requires a bit more to set up: you should get your own https://github.com/castle-engine/castle-engine/[copy of CGE source code from GitHub], keep it and update outside of Docker (using `git pull`), recompile link:pass:[Build Tool][] manually after updating, and manually define `CASTLE_ENGINE_PATH` inside Docker to point to your CGE copy.
+If you plan to update CGE often, but would still like to use Docker image (e.g. to easily get working environment to build Android APK), then another approach is to use the Docker image `+...:cge-none+`. This requires a bit more to set up: you should get your own https://github.com/castle-engine/castle-engine/[copy of CGE source code from GitHub], keep it and update outside of Docker (using `git pull`), recompile link:build_tool[build tool] manually after updating, and manually define `CASTLE_ENGINE_PATH` inside Docker to point to your CGE copy.
 
 This way, there is no need to update the Docker image often. The Docker image `+...:cge-none+` doesn't change often. So you can use this
 Docker image just to have the Android tools, texture compression tools etc.

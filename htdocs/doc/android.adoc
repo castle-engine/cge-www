@@ -5,7 +5,7 @@ include::common.adoc[]
 
 You can create games (and other applications) for Android using _Castle Game Engine_. This page describes installation of all the necessary software.
 
-See also link:pass:[Android FAQ][], link:pass:[Android SDK and NDK troubleshooting][].
+See also link:android_faq[Android FAQ], link:android_sdk_and_ndk_troubleshooting[Android SDK and NDK troubleshooting].
 
 Examples: Almost all our examples, and all new projects created by CGE editor _"New Project"_ from one of the templates, are automatically https://castle-engine.io/manual_cross_platform.php[cross-platform] and can be compiled for Android. In particular:
 
@@ -14,7 +14,7 @@ Examples: Almost all our examples, and all new projects created by CGE editor _"
 * `examples/mobile/achievements/` - shows 2D animation and Google Play Games integration on Android,
 * https://castle-engine.io/darkest_before_dawn.php - a complete 3D game, with full source code, for Android and standalone, using our engine.
 
-Use the link:pass:[Build Tool][Build Tool] to easily compile these programs for Android (or other platforms -- they all can be compiled as standalone games too!). But first be sure to install the Android tools described below. They will be called by the link:pass:[Build Tool][Build Tool] under the hood.
+Use the link:build_tool[Build Tool] to easily compile these programs for Android (or other platforms -- they all can be compiled as standalone games too!). But first be sure to install the Android tools described below. They will be called by the link:build_tool[Build Tool] under the hood.
 
 == Installing Android tools
 
@@ -97,7 +97,7 @@ image::https://castle-engine.io/images/thumb_size/sdk_manager_4.png[Android SDK 
 +
 Remember to use apostrophes as shown above.
 
-If you know what you're doing, you can actually use other versions of SDK components (other versions of _"SDK Platform"_ and _"Android SDK Build-tools"_). You will need to declare them on a per-project basis in `CastleEngineManifest.xml`, see link:pass:[Build Tool][Build Tool]. But it's probably easiest if you use their default versions at the beginning.
+If you know what you're doing, you can actually use other versions of SDK components (other versions of _"SDK Platform"_ and _"Android SDK Build-tools"_). You will need to declare them on a per-project basis in `CastleEngineManifest.xml`, see link:build_tool[Build Tool]. But it's probably easiest if you use their default versions at the beginning.
 
 === Install Android NDK
 
@@ -136,7 +136,7 @@ _While this step is optional, it is often a good idea to try, especially when tr
 Test compiling (and deploying to your actual Android device) some example code from the Android NDK.
 
 * This allows to make sure that you configured everything correctly, before you start playing with combining Object Pascal code + Android. This allows to detect problems in your setup (or in the latest Android SDK/NDK -- these things happen) that are not related to FPC or CGE.
-* If you run into trouble, consult link:pass:[Android SDK and NDK troubleshooting][].
+* If you run into trouble, consult link:android_sdk_and_ndk_troubleshooting[Android SDK and NDK troubleshooting].
 
 For this, you can compile and install (on a real Android device, typically connected through USB) the "hello-gl2" demo from Android NDK.
 
@@ -250,7 +250,7 @@ Add paths to NDK dirs to your ~/.fpc.cfg (see http://www.freepascal.org/docs-htm
 
 Also, double check that your FPC config does not contain any weird -XP option. FPC can correctly determine it at runtime, and having it set in config file does more harm than good -- unless you know what it does and why you use it.
 
-Note that the lines above point to NDK platform version `16` (for 32-bit CPUs). Yes, use exactly this version. This is the NDK platform version, and it should correspond to the `min_sdk_version` in link:pass:[CastleEngineManifest.xml-examples][CastleEngineManifest.xml]. It is a _different_ number than the `compile_sdk_version` (and the SDK platform version you installed).
+Note that the lines above point to NDK platform version `16` (for 32-bit CPUs). Yes, use exactly this version. This is the NDK platform version, and it should correspond to the `min_sdk_version` in link:project_manifest[CastleEngineManifest.xml]. It is a _different_ number than the `compile_sdk_version` (and the SDK platform version you installed).
 
 For 64-bit CPUs, these lines point to NDK platform version `21`, earliest version with 64-bit CPU support.
 
@@ -261,13 +261,13 @@ If you use link:pass:[fpcupdeluxe][fpcupdeluxe], it is safest to remove/rename i
 You should have everything set up now. Let's try compiling and running our mobile demo application, in `examples/mobile/simple_3d_demo/` .
 
 . First compile and run a normal standalone version, in simple_3d_demo_standalone.lpr . Just compile and run it as usual, using Lazarus or "simple_3d_demo_standalone_compile.sh" script (which simply executes FPC from command-line with proper options).
-. Then compile a standalone version using our link:pass:[Build Tool][Build Tool], by calling
+. Then compile a standalone version using our link:build_tool[Build Tool], by calling
 +
 ----
  castle-engine compile
 ----
 
-. Now compile the Android application using our link:pass:[Build Tool][Build Tool], by caling
+. Now compile the Android application using our link:build_tool[Build Tool], by caling
 +
 ----
  castle-engine compile --target=android

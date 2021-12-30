@@ -62,7 +62,7 @@ You can explicitly override this auto-detection using https://castle-engine.io/a
 === Within a single `TCastleScene`, the engine sorts the shapes automatically by default
 
 * As mentioned above, this is controlled by https://castle-engine.io/apidoc-unstable/html/CastleScene.TSceneRenderingAttributes.html#BlendingSort[Scene.Attributes.BlendingSort] which is `bs3D` by default, and can be overridden by https://castle-engine.io/x3d_implementation_navigation_extensions.php#section_ext_blending_sort[TNavigationInfoNode.BlendingSort] in the loaded model.
-* You can set `Scene.Attributes.BlendingSort` to `bs2D` for 2D models. This makes their sorting faster. When importing link:pass:[Spine][] models, they automatically have `NavigationInfo.blendingSort = "2D"` so they automatically use this sorting.
+* You can set `Scene.Attributes.BlendingSort` to `bs2D` for 2D models. This makes their sorting faster. When importing link:spine[Spine] models, they automatically have `NavigationInfo.blendingSort = "2D"` so they automatically use this sorting.
 * You can set `Scene.Attributes.BlendingSort` to `bsNone`. This makes rendering faster, but assumes that you will never have more than one partially-transparent shapes visible in front of an opaque shape, or that your blending equation makes the order irrelevant.
 
 You can also override sorting inside the X3D model. E.g. add this to force 2D sorting in X3D classic encoding:

@@ -12,14 +12,14 @@ Note that this document is just a summary. For the full description, read the do
 
 == Compiling
 
-If you use our link:pass:[Build Tool][], just recompile your project like this:
+If you use our link:build_tool[build tool], just recompile your project like this:
 
 ----
 castle-engine clean
 castle-engine compile --mode=valgrind
 ----
 
-Otherwise (if you don't use our link:pass:[Build Tool][]), you have to do it more manually. Configure your compilation options to
+Otherwise (if you don't use our link:build_tool[build tool]), you have to do it more manually. Configure your compilation options to
 
 * Make sure to use these options:
  ** You MUST use -gv option, this adds stuff necessary for valgrind.
@@ -100,7 +100,7 @@ For example:
 * You can measure the speed of your routines using https://castle-engine.io/apidoc/html/CastleTimeUtils.html#ProcessTimer[ProcessTimer] from `CastleTimeUtils` units. There's an example code under that link.
 * You can measure the memory usage of your textures using https://castle-engine.io/apidoc/html/CastleGLImages.html#TextureMemoryProfiler[TextureMemoryProfiler]. It measures the memory usage on GPU, so it's actually something very different than what `massif` measures, and it makes sense independently if you use `massif` or not.
 * On Windows: There is a http://www.codersnotes.com/sleepy/[Very Sleepy] profiler (can also save profiles in the same format as Valgrind).
-* On link:pass:[Nintendo Switch][]: There is a special profiler (see Nintendo Switch closed docs for details).
+* On link:nintendo_switch[Nintendo Switch]: There is a special profiler (see Nintendo Switch closed docs for details).
 * On Linux: Aside from Valgrind, there's also http://www.gnu.org/software/binutils/manual/gprof-2.9.1/html_mono/gprof.html[gprof]. But its text output is much harder to follow than Valgrind output with kcachegrind visualization.
 * See the https://castle-engine.io/manual_optimization.php[manual about optimization] for more ideas.
 

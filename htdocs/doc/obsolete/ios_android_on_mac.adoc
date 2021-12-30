@@ -3,7 +3,7 @@ include::common.adoc[]
 
 == Introduction
 
-You can read how the set the environment for deploying to link:pass:[Android][], and for deploying to link:pass:[iOS][] devices on separate pages. This page describes the process when you want to use a single Mac computer to do both.
+You can read how the set the environment for deploying to link:android[Android], and for deploying to link:ios[iOS] devices on separate pages. This page describes the process when you want to use a single Mac computer to do both.
 
 *Note: This document was not updated since FPC 3.0.4. Some steps may be easier now with later FPC, and definitely things are easier with link:pass:[fpcupdeluxe][]. We hope that this information is useful, but you should not follow it literally.*
 
@@ -19,9 +19,9 @@ Cross compiler is not distributed as an official package, so you need to compile
 `fpc-3.0.0.intel-macosx.dmg`
 . Download and install https://sourceforge.net/projects/lazarus/files/Lazarus%20Mac%20OS%20X%20i386/Lazarus%201.8.0/[FPC 3.0.4 sources]
 `fpc-src-3.0.4-macosx.dmg`. You have to do this step when you want to run Lazarus on your computer anyway, so I recommend to download the sources from the official Lazarus distribution.
-. Install Android Studio with _"Android 6.0 (Marshmallow) - API 23"_, _"Android SDK Build-tools"_ version 23.0.2 and NDK as described on our link:pass:[Android][] page.
+. Install Android Studio with _"Android 6.0 (Marshmallow) - API 23"_, _"Android SDK Build-tools"_ version 23.0.2 and NDK as described on our link:android[Android] page.
 
-Before compiling the cross compiler, you need to add Android binutils to your $PATH. If you also plan to use our link:pass:[Build Tool][], your `~/.bash_profile` should look like:
+Before compiling the cross compiler, you need to add Android binutils to your $PATH. If you also plan to use our link:build_tool[build tool], your `~/.bash_profile` should look like:
 
 ----
 export PATH="$HOME/MyProjects/castle-engine/tools/build-tool:$HOME/Library/Android/sdk/platform-tools:$HOME/Library/Android/sdk/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64/bin:$PATH"
@@ -115,7 +115,7 @@ The last configuration step is to add the path to Android NDK libraries to your 
 
 == Running the Build Tool
 
-As we have this confusion about `ppcarm` version, we have to tell the link:pass:[Build Tool][] we need to use FPC version 3.0.4 when compiling to Android. Use the `--compiler-option` command line parameter. So, for example, the command line can be:
+As we have this confusion about `ppcarm` version, we have to tell the link:build_tool[build tool] we need to use FPC version 3.0.4 when compiling to Android. Use the `--compiler-option` command line parameter. So, for example, the command line can be:
 
 ----
 # Android

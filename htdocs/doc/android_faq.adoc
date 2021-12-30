@@ -3,7 +3,7 @@ include::common.adoc[]
 
 == Introduction
 
-Questions related to link:Android[Android] development.
+Questions related to link:android[Android] development.
 
 == What Android devices are supported
 
@@ -25,7 +25,7 @@ Follow https://castle-engine.io/manual_data_directory.php . This means:
 . When developing a game, put all your game data under the "data/" subdirectory.
 . Then load it using `castle-data:/xxx` URLs, for example use `LoadImage('castle-data:/gui/blabla.png')` to load an image stored under `data/gui/blabla.png`.
 
-The above approach makes your code 100% working on both Android and standalone platforms. Our link:pass:[Build tool][build tool] will automatically package the `data/` subdirectory correctly.
+The above approach makes your code 100% working on both Android and standalone platforms. Our link:build_tool[build tool] will automatically package the `data/` subdirectory correctly.
 
 *Longer explanation about what happens under the hood:*
 
@@ -55,7 +55,7 @@ keytool -genkey -v -keystore my_keystore_name.keystore -alias my_alias -keyalg R
 
 and filling in an interactive questionnaire to provide the passwords and fill in the certificate details. Be sure to save and keep the generated keystore file and passwords secure.
 
-Once you have your keys, you need to tell our link:pass:[Build tool][build tool] to use them. You do this by creating +++<tt>+++AndroidSigningProperties.txt+++</tt>+++ file at the top of your project (along the +++<tt>+++CastleEngineManifest.xml+++</tt>+++ file). Add there these lines:
+Once you have your keys, you need to tell our link:build_tool[build tool] to use them. You do this by creating +++<tt>+++AndroidSigningProperties.txt+++</tt>+++ file at the top of your project (along the +++<tt>+++CastleEngineManifest.xml+++</tt>+++ file). Add there these lines:
 
 ----
 key.store=<path-to-your-keystore>
@@ -64,7 +64,7 @@ key.store.password=<my-password>
 key.alias.password=<my-password>
 ----
 
-This will allow you to create release apk files (our link:pass:[Build tool][build tool] will automatically use it when making a "package" in "release" mode).
+This will allow you to create release apk files (our link:build_tool[build tool] will automatically use it when making a "package" in "release" mode).
 
 == Logging
 
@@ -101,9 +101,9 @@ and transfer the resulting APK into the emulator/virtual machine. The Android SD
 
 == Testing mobile (OpenGL ES) rendering without an Android
 
-You can compile a standalone program, for your normal OS, using OpenGLES instead of the traditional desktop OpenGL. This way you can test how your application looks like before actually compiling it for Android. The differences between desktop (OpenGL) and mobile (OpenGLES) are usually very small, due to the link:pass:[OpenGL ES, Android and iOS TODOs][small number of things not yet implemented on OpenGLES].
+You can compile a standalone program, for your normal OS, using OpenGLES instead of the traditional desktop OpenGL. This way you can test how your application looks like before actually compiling it for Android. The differences between desktop (OpenGL) and mobile (OpenGLES) are usually very small, due to the link:mobile_todos[small number of things not yet implemented on OpenGLES].
 
-Just define `OpenGLES` symbol in `src/castleconf.inc` inside the engine sources. Or add `-dOpenGLES` to your `fpc.cfg` file, or to the `<compiler_options>` in your link:pass:[CastleEngineManifest.xml examples][CastleEngineManifest.xml]. Then recompile (the engine and your game).
+Just define `OpenGLES` symbol in `src/castleconf.inc` inside the engine sources. Or add `-dOpenGLES` to your `fpc.cfg` file, or to the `<compiler_options>` in your link:project_manifest[CastleEngineManifest.xml]. Then recompile (the engine and your game).
 
 Be sure to also install an OpenGL ES library (with EGL). Unlike normal OpenGL, it is *not* something automatically installed on your OS.
 
@@ -118,7 +118,7 @@ Note that you will need to compile your application for the same architecture as
 
 == Debugging running application (on an Android device) using ndk-gdb
 
-If you use our link:pass:[Build tool][build tool] for compilation, the debug apk is already prepared such that you can debug it with "ndk-gdb". You must run `ndk-gdb` within the output Android project, like this:
+If you use our link:build_tool[build tool] for compilation, the debug apk is already prepared such that you can debug it with "ndk-gdb". You must run `ndk-gdb` within the output Android project, like this:
 
 . Create a debug Android package:
 +
@@ -214,7 +214,7 @@ Our engine includes and correctly initializes manager from CastleAndroidCWString
 
 == Notes about compiling with hard floats (-CfVFPV3)
 
-The compiler flag `-CfVFPV3` is necessary to enable hardware floats, this way the engine works much faster. Our link:pass:[Build Tool][build tool] automatically uses it when compiling your project. You should also have FPC standard units compiled with this option (following our link:Android[Android] wiki page).
+The compiler flag `-CfVFPV3` is necessary to enable hardware floats, this way the engine works much faster. Our link:build_tool[build tool] automatically uses it when compiling your project. You should also have FPC standard units compiled with this option (following our link:android[Android] wiki page).
 
 NOTE: In theory it is possible to compile and use our engine without `-CfVFPV3` (in which case make sure you use FPC standard units also compiled without `-CfVFPV3`), things will work, but they will be *much slower*. E.g. in https://castle-engine.io/darkest_before_dawn.php[Darkest Before the Dawn] loading time drops from 6 (hard floats) to 36 (no hard floats) seconds, and frames per second during game drop from 40 (hard floats) to 10 (no hard floats).
 

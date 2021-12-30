@@ -3,7 +3,7 @@ include::common.adoc[]
 
 == Introduction
 
-The `CastleEngineManifest.xml` file is used by the link:pass:[Build Tool][Build Tool] to know how to build and package your games (or any other projects using the _Castle Game Engine_). It should be present at the top-level directory of your project.
+The `CastleEngineManifest.xml` file is used by the link:build_tool[Build Tool] to know how to build and package your games (or any other projects using the _Castle Game Engine_). It should be present at the top-level directory of your project.
 
 When you create a new project, you can generate a new manifest file by running `castle-engine create-manifest`. Or just manually create a new `CastleEngineManifest.xml` file, using the samples on this page. It's a trivial XML file, just edit it using your favorite text editor.
 
@@ -61,7 +61,7 @@ Then you can run it by simply executing the file `my-cool-game.exe` on Windows o
 castle-engine run
 ----
 
-You can also package the project by `castle-engine package`, package source by `castle-engine package-source` and do everything else mentioned in the link:pass:[Build Tool][Build Tool] documentation! To learn how to write games, follow our https://castle-engine.io/manual_intro.php[Castle Game Engine manual].
+You can also package the project by `castle-engine package`, package source by `castle-engine package-source` and do everything else mentioned in the link:build_tool[Build Tool] documentation! To learn how to write games, follow our https://castle-engine.io/manual_intro.php[Castle Game Engine manual].
 
 == Example of a larger manifest file (portable to Android and iOS too)
 
@@ -73,7 +73,7 @@ Example information that can be expressed in the manifest file:
 * version number (on some platforms, the version numbers are not only displayed; they are also used to signal possible upgrades to user; in particular, on Android platform, the version numeric "code" should always be increasing),
 * author,
 * screen orientation (for mobile devices; by default, all orientations are OK, and they can change at runtime),
-* additional Android and iOS services (to integrate 3rd party services into your game, like _Google Play Games_ or _Apple Game Center_; see link:pass:[Android Project Services Integrated with Castle Game Engine][Android Project Services Integrated with Castle Game Engine] and link:pass:[iOS Services][iOS Services] for more information).
+* additional Android and iOS services (to integrate 3rd party services into your game, like _Google Play Games_ or _Apple Game Center_; see link:android_services[Android Services] and link:ios_services[iOS Services] for more information).
 
 Below is a sample project manifest with more information:
 
@@ -231,7 +231,7 @@ The `<version>` element declares program version. It is used when packaging for 
 +
 Note that some platforms (notably Google Play) require that this version number starts from 1 (never 0).
 +
-On the other hand, on some platforms (like link:pass:[Nintendo Switch][]) this number sometimes must be 0.
+On the other hand, on some platforms (like link:nintendo_switch[Nintendo Switch]) this number sometimes must be 0.
 +
 We allow to override this number per-platform using `<override_version>` elements mentioned below. So the global `+<version.../>+` element is just the default version, which may be adjusted per-platform later.
 
@@ -316,10 +316,10 @@ Notes for testing: iOS really aggressively caches these launch images. If you ch
 
 The `<android>` element provides various extra Android-specific information.
 
-* See link:pass:[Android-Project-Services-Integrated-with-Castle-Game-Engine][Android services] for a description of `project_type`, and what _services_ are available inside the `<services>` element.
+* See link:android_services[Android services] for a description of `project_type`, and what _services_ are available inside the `<services>` element.
 * `compile_sdk_version`: The Android SDK _platform version_ used to compile the project. You must have this version installed in the Android SDK. For example, if this is 27 (the current default), then you must install the _"SDK Platform"_ and _"Google APIs"_ components of the _"Android 6.0 (API 27)"_ section in your Android SDK. Note that this does _not_ determine the minimum (or maximum) Android version your application supports. It is optional, the default value is shown above.
-* `min_sdk_version`: The minimum supported Android version. It is a hard limit on where the application is installable, it also limits for which devices it appears in the Google Play store. See the link:pass:[Android-FAQ#what-android-devices-are-supported][Android FAQ: What Android devices are supported?] for a reason behind the current value.
-* `target_sdk_version`: Which Android version of Android Java APIs you can use. Don't worry about it, unless you use a specific link:pass:[Android-Project-Services-Integrated-with-Castle-Game-Engine][Android service] that requires increasing this version.
+* `min_sdk_version`: The minimum supported Android version. It is a hard limit on where the application is installable, it also limits for which devices it appears in the Google Play store. See the link:android_faq#_what_android_devices_are_supported[Android FAQ: What Android devices are supported?] for a reason behind the current value.
+* `target_sdk_version`: Which Android version of Android Java APIs you can use. Don't worry about it, unless you use a specific link:android_services[Android service] that requires increasing this version.
 +
 Note that with FPC versions earlier than 3.0.2, you cannot increase `target_sdk_version` above 22. That's due to missing PIC support. See http://lists.freepascal.org/pipermail/fpc-devel/2015-September/035948.html and http://fpc-devel.freepascal.narkive.com/tMJHK2Hw/fpc-app-crash-with-has-text-relocations-android-6-0 . Compiling with -fPIC doesn't help, your app will crash then with `+java.lang.IllegalArgumentException: Unable to load native library:...+`
 
@@ -356,7 +356,7 @@ By default this is `true`, which is consistent with the default of the Apple _iT
 +
 https://itunespartner.apple.com/en/apps/faq/Managing%20Your%20Apps_Export%20Compliance[Please read the Apple documentation on this issue]. Setting this to `false` is equivalent to using `<key>ITSAppUsesNonExemptEncryption</key><false/>` in the `xxx-Info.plist` file in your XCode project.
 
-* See the link:pass:[iOS Services][iOS Services] for information what can you use within the `<services>` element.
+* See the link:ios_services[iOS Services] for information what can you use within the `<services>` element.
 
 === File type associations (Android and iOS)
 
@@ -535,7 +535,7 @@ You can also change FPC "syntax mode" by using option `-Mdelphi`. The default FP
 +
 Note that custom option may also be `@my-custom-config.cfg` in which case FPC reads `my-custom-config.cfg` file, and you can put more options inside (using features like `#IFDEF MSWINDOWS` for platform-specific options).
 +
-The custom compilation options specified here are also placed in auto-generated Lazarus lpi and lpk files. This is used by `castle-engine generate-program` and `castle-engine editor` commands of the link:pass:[Build Tool][Build Tool]. The point is that _your source code is always compiled with these compilation options_.
+The custom compilation options specified here are also placed in auto-generated Lazarus lpi and lpk files. This is used by `castle-engine generate-program` and `castle-engine editor` commands of the link:build_tool[Build Tool]. The point is that _your source code is always compiled with these compilation options_.
 
 * `<library_paths>` define paths where the linked may found `xxx.o` files. This is typically used to statically link with Pascal units code compiled from other languages. It corresponds to the FPC `-Fl` command-line option.
 +

@@ -20,6 +20,10 @@ scripts/ are various scripts, usually in bash, helpful to manage the website.
 * Install Apache (or any other web server that can handle PHP)
 * Install PHP
 * Install MySQL
+* To regenerate AsciiDoctor automatically, install AsciiDoctor and CodeRay.
+
+    On Debian-like systems, just do `apt install asciidoctor coderay`.
+
 * For local testing, create empty Wordpress database
 
     ```

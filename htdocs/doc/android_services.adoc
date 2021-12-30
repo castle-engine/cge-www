@@ -5,9 +5,9 @@ include::common.adoc[]
 
 image:https://castle-engine.io/images/thumb_size/android-components-icons.png[float="right",link=https://castle-engine.io/images/original_size/android-components-icons.png,role="screenshot"]
 
-When you use our link:pass:[Build tool][build tool] to package your game for Android, you can easily add _services_ to the project. They allow to comfortably access various Android services (from Google and other 3rd parties, like ad networks) from your Object Pascal game code using the https://castle-engine.io/engine.php[Castle Game Engine].
+When you use our link:build_tool[build tool] to package your game for Android, you can easily add _services_ to the project. They allow to comfortably access various Android services (from Google and other 3rd parties, like ad networks) from your Object Pascal game code using the https://castle-engine.io/engine.php[Castle Game Engine].
 
-The Android services are declared in link:pass:[CastleEngineManifest.xml examples][CastleEngineManifest.xml] like this:
+The Android services are declared in link:project_manifest[CastleEngineManifest.xml] like this:
 
 [,xml]
 ----

@@ -10,7 +10,7 @@ _Sprite sheet_ is a technique for rendering animations:
 
 It is a standard 2D animation technique for pixel-art games.
 
-Note that it is not the only way to make 2D animations. In _Castle Game Engine_ you can also create smooth 2D animations, using bones or even bones+skinning, by creating 2D animations in link:pass:[Spine][] or even https://castle-engine.io/creating_data_blender.php[Blender] or many other typically-3D authoring software. Creating sprite sheets has a different workflow and achieves a different result. For sprite sheet, you need to create a large set of still frames, which is sometimes easier / sometimes harder than creating an animation in Spine/Blender. Ultimately it results in an animation where you control every pixel of every frame.
+Note that it is not the only way to make 2D animations. In _Castle Game Engine_ you can also create smooth 2D animations, using bones or even bones+skinning, by creating 2D animations in link:spine[Spine] or even https://castle-engine.io/creating_data_blender.php[Blender] or many other typically-3D authoring software. Creating sprite sheets has a different workflow and achieves a different result. For sprite sheet, you need to create a large set of still frames, which is sometimes easier / sometimes harder than creating an animation in Spine/Blender. Ultimately it results in an animation where you control every pixel of every frame.
 
 video::Eol0qzKP1Zw[youtube,width=800,height=450]
 
@@ -92,6 +92,6 @@ Scene.RenderOptions.MagnificationFilter := magNearest;
 
 == Deprecated approach
 
-You can also use `TSprite` class in CGE to load a sprite, in which case you will have to draw it explicitly. See link:pass:[2D Games][].
+You can also use `TSprite` class in CGE to load a sprite, in which case you will have to draw it explicitly. See link:how_to_render_2d[How to render 2D images/sprites].
 
 We do not advise this approach and it is deprecated now. Using sprite sheets inside `TCastleScene` is much more powerful, and also it allows to have simpler CGE API (since you just use `TCastleScene` for all animations, sprite sheet or not).

@@ -83,7 +83,7 @@ To use this:
 It will also automatically add `LazOpenGLContext` package as dependency, which is good. We need `castle_components` package for LCL helpers (like converting mouse/keys between LCL and CastleKeysMouse), and we need `LazOpenGLContext` package for TOpenGLControl.
 
 * Or you can use `alternative_castle_window_based_on_lcl.lpk` instead of `castle_window.lpk` in the project. This should take care of above 2 things.
-* Usually you should compile programs using Lazarus then (IDE or `lazbuild`), to automatically have correct LCL paths used. If you use our link:pass:[Build Tool][] or https://castle-engine.io/manual_editor.php[CGE editor], set `build_using_lazbuild="true"` in https://github.com/castle-engine/castle-engine/wiki/CastleEngineManifest.xml-examples[CastleEngineManifest.xml].
+* Usually you should compile programs using Lazarus then (IDE or `lazbuild`), to automatically have correct LCL paths used. If you use our link:build_tool[build tool] or https://castle-engine.io/manual_editor.php[CGE editor], set `build_using_lazbuild="true"` in https://github.com/castle-engine/castle-engine/wiki/CastleEngineManifest.xml-examples[CastleEngineManifest.xml].
 
 Supported platforms: everywhere where LCL runs. (But in practice this backend is only useful on macOS.)
 
@@ -107,10 +107,11 @@ Backend using Android NDK cooperating with _Castle Game Engine_ Android activity
 
 Use existing OpenGL(ES) context. This is useful when the engine is used as a library, and an external code initializes OpenGL(ES) context, merely informing CGE about it. Useful for various cases, e.g. to "drive" Castle Game Engine rendering from another programming language. See `examples/library/` for an example of wrapping CGE in a library.
 
-Also, this is the only possible backend to use CGE on link:pass:[iOS][] or link:pass:[Nintendo Switch][] and it is automatically used there.
+Also, this is the only possible backend to use CGE on link:ios[iOS] or link:nintendo_switch[Nintendo Switch] and it is automatically used there.
 
-Supported platforms: All platforms. But note that using this backend requires additional "outside" code to manage our library. In case of link:pass:[iOS][] and link:pass:[Nintendo Switch][], this is automatically provided when building using our link:pass:[Build Tool][].
+Supported platforms: All platforms. But note that using this backend requires additional "outside" code to manage our library. In case of link:ios[iOS] and link:nintendo_switch[Nintendo Switch], this is automatically provided when building using our link:build_tool[build tool].
 
+////
 === Obsolete: DispmanX backend (CASTLE_WINDOW_DISPMANX)
 
 Use the Castle Game Engine on the Raspberry Pi under Linux (tested with Raspbian) without X or Wayland.
@@ -118,6 +119,7 @@ Use the Castle Game Engine on the Raspberry Pi under Linux (tested with Raspbian
 Obsolete: This is only available in a fork, and no longer maintained.
 
 See link:pass:[DispmanX backend][] for details.
+////
 
 === Template (CASTLE_WINDOW_TEMPLATE)
 

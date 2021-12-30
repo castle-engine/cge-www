@@ -30,7 +30,7 @@ This page documents Castle Game Engine 7.0 new features (since the last 6.4 rele
 * https://castle-engine.io/wp/2020/06/29/third-person-navigation-with-avatar-component-in-castle-game-engine/[Third-Person Navigation (with Avatar) component]
 * https://castle-engine.io/wp/2020/07/19/asynchronous-non-blocking-downloading-using-tcastledownload-class-and-other-http-communication-features/[New TCastleDownload class, to make asynchronous (non-blocking) downloading, or even to implement full-featured asynchronous communication with a REST server]
 * 2D games:
- ** Load sprite sheets and images to TCastleScene. See https://castle-engine.io/wp/2020/11/28/new-comfortable-way-of-using-sprite-sheets-and-images-in-viewports/[news], link:pass:[Sprite sheets][], link:pass:[Images][].
+ ** Load sprite sheets and images to TCastleScene. See https://castle-engine.io/wp/2020/11/28/new-comfortable-way-of-using-sprite-sheets-and-images-in-viewports/[news], link:sprite_sheets[Sprite Sheets], link:using_images[Images].
  ** https://castle-engine.io/wp/2020/08/18/weighted-mesh-skinned-mesh-animation-in-spine/[Weighted mesh (skinned mesh animation) in Spine]
 * Big user interface classes improvements.
  ** Easy functions to serialize / deserialize TCastleUserInterface and TCastleTransform hierarchies (see CastleComponentSerialize unit) as JSON files.
@@ -47,7 +47,7 @@ https://castle-engine.io/wp/2018/12/24/database-aware-demo-using-castle-game-eng
 https://castle-engine.io/wp/2018/04/22/engine-improvements-user-interface-horizontal-vertical-layout-groups-on-screen-keyboard-and-freetype-on-android-better-ui-scaling/[7].
 * `castle-data:/` protocol (more advised than previous `ApplicationData` function). The "`data`" directory is documented https://castle-engine.io/manual_data_directory.php in a new manual page. It is also listed on a reworked manual page about networking, downloading and URLs https://castle-engine.io/manual_network.php.
 * `TCastleTransformDesign` to refer to a designed `xxx.castle-transform` file, which can be used similar to Unity prefabs,
-* `TCastleBehavior` to enhance `TCastleTransform` functionality by behaviors like `TCastleBillboard` or `TCastleSoundSource`. See `examples/creature_behaviors/`. See also link:pass:[Castle Game Engine for Unity developers][].
+* `TCastleBehavior` to enhance `TCastleTransform` functionality by behaviors like `TCastleBillboard` or `TCastleSoundSource`. See `examples/creature_behaviors/`. See also link:castle_game_engine_for_unity_developers[Castle Game Engine for Unity developers].
 * Optimizations and profiling features:
  ** Built-in simple profiler (TCastleProfiler, use through the Profiler singleton). See https://castle-engine.io/wp/2018/08/25/headlight-built-in-simple-profiler-more/
  ** Built-in frame profile (TCastleFrameProfiler)

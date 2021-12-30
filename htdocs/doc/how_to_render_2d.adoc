@@ -17,12 +17,13 @@ You should call `TCastleViewport.Setup2D` on the viewport to easily make it suit
 * The engine template "2D game" and `physics/physics_2d_game_sopwith/` show this approach.
 * The important API reference links: https://castle-engine.io/apidoc-unstable/html/CastleScene.TCastleScene.html[TCastleScene], https://castle-engine.io/apidoc-unstable/html/CastleSceneCore.TCastleSceneCore.html[TCastleSceneCore], https://castle-engine.io/apidoc-unstable/html/CastleViewport.TCastleViewport.html[TCastleViewport].
 * To construct your own scene (not loaded from external file), you need to create a graph of X3D nodes. Various examples showing it are around the engine, the simpler is http://castle-engine.io/x3d_implementation_geometry2d.php . It instantiates a `TRectangle2DNode`. One could instead instantiate also `TIndexedFaceSetNode` which represents a free mesh, with custom texture coordinates and anything else you may need.
-* To render sprites you can link:pass:[Sprite sheets][load sprite sheets from Starling/Cocos2d formats to TCastleScene]. You can play it's animation just like any other scene (use `Scene.PlayAnimation` method, test with view3dscene panel "Animations").
+* To render sprites you can link:sprite_sheets[load sprite sheets from Starling/Cocos2d
+ formats to TCastleScene]. You can play it's animation just like any other scene (use `Scene.PlayAnimation` method, test with view3dscene panel "Animations").
 +
 If you want to do it manually, you can also construct your own `TIndexedFaceSetNode` instances and change texture coordinates.
 
 * To render pixel-art, set texture filtering to "nearest". It's easiest to do this by setting `Scene.Attributes.MagnificationFilter := magNearest`. Alternatively, you could control this on a particular shape using `TTexturePropertiesNode`, links on http://castle-engine.io/x3d_implementation_texturing.php .
-* You can also link:pass:[using_images][load image as a TCastleScene].
+* You can also link:using_images[load image as a TCastleScene].
 * To have fixed resolution (regardless of the actual window size in pixels), set `TCastleViewport.Camera.Orthographic.Width` and/or `TCastleViewport.Camera.Orthographic.Height`. By default they are both zero (which means they follow window size), but if you set them then you explicitly specify the size. Set exactly one of them to non-zero to make the other one automatically adjusted to follow aspect ratio.
 +
 See the "2D game" game template for example.

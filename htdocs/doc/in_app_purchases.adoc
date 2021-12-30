@@ -18,8 +18,8 @@ The internal names of products you define there will be then used with CGE API, 
 
 You need to add a "service" to include the necessary integration code  on Android and iOS.
 
-* For Android add the `google_in_app_purchases` service, see link:pass:[Android services][].
-* For iOS add the `in_app_purchases` service, see link:pass:[iOS services][].
+* For Android add the `google_in_app_purchases` service, see link:android_services[Android services].
+* For iOS add the `in_app_purchases` service, see link:ios_services[iOS services].
 
 == Implement and use TGameInAppPurchases class
 

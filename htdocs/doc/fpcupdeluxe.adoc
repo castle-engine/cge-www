@@ -10,7 +10,7 @@ image:https://castle-engine.io/wp/wp-content/uploads/2017/04/fpcupdeluxe_cge-200
 == Features
 
 * _fpcupdeluxe_ easily installs various versions of FPC (stable, trunk) and Lazarus.
-* With cross-compilers (e.g. to compile from desktop to link:pass:[Android][Android] or link:pass:[iOS][iOS]).
+* With cross-compilers (e.g. to compile from desktop to link:android[Android] or link:ios[iOS]).
 * With various 3rd-party open-source libraries.
 * The installed FPC/Lazarus environment is separated. This means that you can have several environments (e.g. one for FPC trunk, one for FPC stable).
 * Underneath, most of the stuff is usually downloaded from sources (SVN or GIT) and compiled on your system, but it's completely automated. You just point to what you want, click "install", and enjoy a working FPC/Lazarus installation after a short time:)
@@ -55,7 +55,7 @@ Or the `Lazarus_fpcupdeluxe` shell script (it's placed in `$HOME` by default, yo
 
 If you compile through our https://castle-engine.io/manual_editor.php[Castle Game Engine editor] then you should configure the FPC and Lazarus locations in editor _Preferences_ window. You can ignore the rest of this section then :) There is no need to mess with `$PATH`. And it will make switching between different FPC/Lazarus versions easier.
 
-If you use the link:pass:[Build-Tool][Castle Game Engine build tool] from the command-line, we need the `fpc` to be available on `$PATH` to run the FPC compiler. Follow one of the approaches described below.
+If you use the link:build_tool[Castle Game Engine build tool] from the command-line, we need the `fpc` to be available on `$PATH` to run the FPC compiler. Follow one of the approaches described below.
 
 To use command-line FPC:
 
@@ -96,8 +96,8 @@ It takes https://github.com/castle-engine/castle-engine/[CGE sources from GitHub
 
 The engine code is inside `<fpcupdeluxe>/ccr/castle_game_engine/` . In particular, the numerous engine examples are inside the `examples/` subdirectory there. The tools are in the `tools/` subdirectory.
 
-* To use the engine from FPC command-line, you need to setup things yourself. E.g. compile our link:pass:[https://github.com/castle-engine/castle-engine/wiki/Build-Tool][build tool] from the sources you have in `<fpcupdeluxe>/ccr/castle_game_engine/tools/build-tool/`. You can set `$CASTLE_ENGINE_PATH` environment variable to `<fpcupdeluxe>/ccr/castle_game_engine/` .
-* The API documentation is not present in the `doc/reference/` , because we don't keep the generated docs inside the repository. That's usually not a problem, as you can https://castle-engine.io/apidoc-unstable/html/[browse the Castle Game Engine API docs online]. You can also get link:pass:[https://github.com/pasdoc/pasdoc/wiki][pasdoc] and generate them yourself by `make html` in `doc/pasdoc`.
+* To use the engine from FPC command-line, you need to sertup things yourself. E.g. compile our link:build_tool[build tool] from the sources you have in `<fpcupdeluxe>/ccr/castle_game_engine/tools/build-tool/`. You can set `$CASTLE_ENGINE_PATH` environment variable to `<fpcupdeluxe>/ccr/castle_game_engine/` .
+* The API documentation is not present in the `doc/reference/` , because we don't keep the generated docs inside the repository. That's usually not a problem, as you can https://castle-engine.io/apidoc-unstable/html/[browse the Castle Game Engine API docs online]. You can also get link:https://pasdoc.github.io/[pasdoc] and generate them yourself by `make html` in `doc/pasdoc`.
 
 == Cross-compilation to Android
 
@@ -119,9 +119,9 @@ fpcupdeluxe will download the Android "cross binutils" and Android libraries on 
 . _(This step is completely optional -- as the "cross binutils" and libraries automatically downloaded by FpcUpDeluxe are also good.)_ You can adjust the Android "cross binutils" and Android libraries, to use the latest from Android NDK.
  .. You can copy them from your Android NDK:
   *** From `<android-sdk>/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/<os-cpu>/bin` copy all the executables to `<fpcupdeluxe>/cross/bin/arm-android`.
-  *** From `<android-sdk>/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/arm-linux-androideabi/16/` copy all the files to `<fpcupdeluxe>/cross/lib/arm-android`. We choose `16` as this is the mininal Android platform we use by default. See `min_sdk_version` default value in link:pass:[https://github.com/castle-engine/castle-engine/wiki/CastleEngineManifest.xml-examples][CastleEngineManifest.xml].
+  *** From `<android-sdk>/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/arm-linux-androideabi/16/` copy all the files to `<fpcupdeluxe>/cross/lib/arm-android`. We choose `16` as this is the mininal Android platform we use by default. See `min_sdk_version` default value in link:project_manifest[CastleEngineManifest.xml].
   *** http://wiki.lazarus.freepascal.org/fpcup#Android_ARM_crosscompiler[This process is also described in fpcup docs].
- .. Alternatively, you can rename `<fpcupdeluxe>/cross/bin/arm-android` and `<fpcupdeluxe>/cross/lib/arm-android` to something like `<fpcupdeluxe>/cross/bin/arm-android-unused` and `<fpcupdeluxe>/cross/lib/arm-android-unused`. Then add to your $PATH the path to the necessary Android NDK tools, and manually add to your fpc.cfg the paths (`+-Fl...+`) to the Android libraries from `android-16` platform. This is described in our link:pass:[Android][] docs.
+ .. Alternatively, you can rename `<fpcupdeluxe>/cross/bin/arm-android` and `<fpcupdeluxe>/cross/lib/arm-android` to something like `<fpcupdeluxe>/cross/bin/arm-android-unused` and `<fpcupdeluxe>/cross/lib/arm-android-unused`. Then add to your $PATH the path to the necessary Android NDK tools, and manually add to your fpc.cfg the paths (`+-Fl...+`) to the Android libraries from `android-16` platform. This is described in our link:android[Android] docs.
 . Now you can use `castle-engine package --os=android --cpu=arm` in your projects. Or just use `castle-engine package --target=android` to build for both Android architectures.
 
 That's it. It's almost too easy (again, much respect to the fpcup and fpcupdeluxe!). It works with FPC trunk as well as stable FPC (tested on 3.0.4, 3.2.0, 3.2.2).
@@ -136,7 +136,7 @@ The workflow is analogous:
   *** From `<android-sdk>/ndk-bundle/toolchains/aarch64-linux-android-4.9/prebuilt/<os-cpu>/bin` copy all the executables to `<fpcupdeluxe>/cross/bin/aarch64-android`.
   *** Edit shell scripts `aarch64-linux-android-gcc` and `pass:c[aarch64-linux-android-g++]`. They use relative path in `dirname $0`, you want to replace it with the absolute path.
   *** From `<android-sdk>/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android/21/` copy all the files to `<fpcupdeluxe>/cross/lib/aarch64-android`.  We choose `21` as the earliest platform that features 64-bit support.
- .. Alternatively, rename the directories `<fpcupdeluxe>/cross/bin/aarch64-android` and `<fpcupdeluxe>/cross/lib/aarch64-android` to add to their names suffix like `-unused`. And follow link:pass:[Android][] docs to put the latest Android NDK on $PATH, and manually add the paths to NDK libraries (from `android-21`) as `+-Fl...+` to fpc.cfg.
+ .. Alternatively, rename the directories `<fpcupdeluxe>/cross/bin/aarch64-android` and `<fpcupdeluxe>/cross/lib/aarch64-android` to add to their names suffix like `-unused`. And follow link:android[Android] docs to put the latest Android NDK on $PATH, and manually add the paths to NDK libraries (from `android-21`) as `+-Fl...+` to fpc.cfg.
 . Now you can use `castle-engine package --os=android --cpu=aarch64` in your projects. Or just use `castle-engine package --target=android` to build for both Android architectures.
 
 Note that you need to use FPC >= 3.2.0 for this. FPC 3.0.x doesn't support building for Android/Aarch64.

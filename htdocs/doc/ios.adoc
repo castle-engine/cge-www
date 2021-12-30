@@ -1,23 +1,15 @@
 # iOS
 include::common.adoc[]
 
+== Introduction
+
+The advised way to build is to use the link:build_tool[build tool] to compile and package your game for iOS. Doing it is a matter of preparing link:project_manifest[CastleEngineManifest.xml] for your project (with `game_units` or `ios_source` defined), and then running `castle-engine package --target=ios`. This gives you a ready project that you can open, run and publish from Xcode.
+
+Almost all engine examples, and all templates for _"New Project"_ created by CGE editor, follow this approach. So you can just recompile them for iOS.
+
 == Supported iOS Devices
 
 The engine should work with all devices running iOS 4.2 or newer. It was successfully tested with iOS 5.1, 7, 10, 11, 13, 14. The engine runs flawlessly on iPhone Simulator as well.
-
-== Overview and Examples
-
-There are two ways to use the engine on iOS:
-
-. The advised (and easier) way is to use the link:pass:[build tool][] to compile and package your game for iOS. Doing it is a matter of preparing link:pass:[CastleEngineManifest.xml examples][CastleEngineManifest.xml] for your project (with `game_units` or `ios_source` defined), and then running `castle-engine package --target=ios`. This gives you a ready project that you can open, run and publish from Xcode. *This is the advised approach if you develop games using Object Pascal*.
-+
-Various engine examples demonstrate this approach. Try e.g. `examples/2d_dragon_spine_game/` or `examples/2d_standard_ui/zombie_fighter/` .
-
-. An alternative way is to use the engine as a library that exposes a simple functionality of a VRML/X3D viewer. You can use this in your own custom Xcode projects. *This approach is useful if you want to use the engine as a VRML/X3D file viewer, and wrap it in a custom user-interface in Xcode*.
-+
-The library API is defined in the `src/library` directory of the engine. An example application using this approach is located in `examples/library/ios_tester`.
-+
-This approach is documented in more details on link:pass:[iOS Using the Custom Xcode Project][] page.
 
 == Building the App
 
@@ -28,7 +20,7 @@ You will need any Mac computer with Xcode installed (available in Mac App Store,
 
 NOTE: If you browse the documentation on http://wiki.freepascal.org/iPhone/iPod_development , it will talk about Xcode templates and proprietary iOS SDK headers. For the sake of developing games using Castle Game Engine, this can be ignored -- we don't need these headers or templates (since our entire GUI is drawn using GLES through Castle Game Engine).
 
-Install also link:iOS_Services#common-notes-for-services-using-cocoapods[CocoaPods] by `sudo gem install cocoapods` in the terminal.
+Install also link:ios_services[CocoaPods] by `sudo gem install cocoapods` in the terminal.
 
 === Install FPC for macOS
 
@@ -143,7 +135,7 @@ This is in contrast to the Android emulator.
 
 === Using the build tool
 
-. Make sure the link:pass:[build tool][build tool] is available on $PATH, so you can call `castle-engine` in the terminal.
+. Make sure the link:build_tool[build tool] is available on $PATH, so you can call `castle-engine` in the terminal.
 . Run in terminal:
 +
 ----
@@ -173,13 +165,13 @@ Open the file with `.xcworkspace` extension in that directory. For now, all iOS 
 
 . Run the project from Xcode (_Command + R_), to see your game working in an _iPhone simulator_.
 +
-*Tip: Running on a real, physical device:* It works out of the box! You only need to set the _Development Team_ in Xcode, or set `<ios team="xxx" />` attribute in link:pass:[CastleEngineManifest.xml examples][CastleEngineManifest.xml].
+*Tip: Running on a real, physical device:* It works out of the box! You only need to set the _Development Team_ in Xcode, or set `<ios team="xxx" />` attribute in link:project_manifest[CastleEngineManifest.xml].
 +
 image::https://castle-engine.io/images/thumb_size/xcode_select_team.png[Selecting a team in Xcode,link=https://castle-engine.io/images/original_size/xcode_select_team.png]
 
 === Archive (deploy on iOS)
 
-You can perform further automatic packaging using the command-line CGE link:pass:[Build Tool][]. Call this:
+You can perform further automatic packaging using the command-line CGE link:build_tool[build tool]. Call this:
 
 ----
 castle-engine package --target=iOS --package-format=ios-archive-ad-hoc
@@ -195,7 +187,7 @@ Other options are available:
 Note that these options automatically sign the application. To make it work,
 
 . Register as a (paid) Apple Developer,
-. Place your "team ID" in the iOS section of the link:pass:[CastleEngineManifest.xml-examples][CastleEngineManifest.xml],
+. Place your "team ID" in the iOS section of the link:project_manifest[CastleEngineManifest.xml],
 . Release from Xcode _once_ manually. Xcode will ask you to configure your team, store the team password in your keychain etc. Once it works, next time you can do it all automatically.
 . If you do it through SSH (not in an interactive GUI session) you need to call
 +
@@ -223,7 +215,7 @@ To upload the application to the AppStore:
 
 == Debugging the Pascal Code without iOS
 
-Same instructions as for link:pass:[https://github.com/castle-engine/castle-engine/wiki/Android-FAQ#testing-mobile-opengl-es-rendering-without-an-android][Testing mobile (OpenGL ES) rendering without an Android] apply here too, as the Pascal code is platform independent.
+Same instructions as for link:android_faq#_testing_mobile_opengl_es_rendering_without_an_android[Testing mobile (OpenGL ES) rendering without an Android] apply here too, as the Pascal code is platform independent.
 
 == Known problems
 

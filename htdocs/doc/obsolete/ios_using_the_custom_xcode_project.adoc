@@ -3,7 +3,7 @@ include::common.adoc[]
 
 == When to use this approach
 
-**Deprecated: The approach described on this page is deprected. The latest CGE has a better approach to create cross-platform games, including iOS. It is described on link:manual_cross_platform.php[Cross-platform apps] page. Generally it just works out-of-the-box with all CGE projects. It uses the link:pass:[Build Tool][] to compile and package your game for iOS. You can even link:pass:[iOS Services][integrate with a number of services like Apple Game Center], and the build tool will take care of everything (generating the necessary XCode project to actually release your app for iOS).**
+**Deprecated: The approach described on this page is deprected. The latest CGE has a better approach to create cross-platform games, including iOS. It is described on link:manual_cross_platform.php[Cross-platform apps] page. Generally it just works out-of-the-box with all CGE projects. It uses the link:build_tool[build tool] to compile and package your game for iOS. You can even link:ios_services[integrate with a number of services like Apple Game Center], and the build tool will take care of everything (generating the necessary XCode project to actually release your app for iOS).**
 
 There is an alternative way to use the engine on iOS. You can compile the library defined in the `src/library` engine code to a static library (.a). Then you can add this library to your custom Xcode project.
 
@@ -13,7 +13,7 @@ An example application using this approach is located in `examples/library/ios_t
 
 == Installing and testing FPC cross-compilers
 
-First, you need to install FPC with cross-compilers, just like described on the link:pass:[iOS][] page.
+First, you need to install FPC with cross-compilers, just like described on the link:ios[iOS] page.
 
 == Compiling and testing the library
 
