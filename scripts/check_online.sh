@@ -30,3 +30,5 @@ check_url_success http://www.castle-engine.io/manual_up.php
 check_url_success https://www.castle-engine.io/manual_up.php
 check_url_success http://castle-engine.io/manual_up.php
 check_url_success https://castle-engine.io/manual_up.php
+check_url_success https://castle-engine.io/build_tool
+check_url_success https://castle-engine.io/Build%20Tool
