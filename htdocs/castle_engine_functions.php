@@ -574,12 +574,6 @@ $castle_sitemap = array(
 function _castle_bootstrap()
 {
   kambi_bootstrap();
-
-  // call castle_book_calculate_pages for all books
-  global $castle_books;
-  foreach ($castle_books as $book_name => $book_info) {
-    castle_book_calculate_pages($book_name);
-  }
 }
 
 /* Call this immediately, to modify $castle_sitemap even before calling
@@ -955,9 +949,14 @@ function castle_header($a_page_title, array $parameters = array())
   global $page_basename;
   $castle_current_book = detect_current_book($page_basename);
 
+  // call castle_book_calculate_pages to determine previous/next links for current book
+  if ($castle_current_book !== NULL) {
+    castle_book_calculate_pages($castle_current_book);
+  }
+
   // change title, in case we're part of book
   $a_page_title_without_book = $a_page_title;
-  if ($castle_current_book != NULL) {
+  if ($castle_current_book !== NULL) {
     $a_page_title = $a_page_title . ' | ' . $castle_books[$castle_current_book]['title'];
   }
 
