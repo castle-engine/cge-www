@@ -1,6 +1,6 @@
 ## Release making (for CGE engine or application, like view3dscene)
 
-- Test as described in RELEASE_MAKING_TESTS.txt
+- Test as described in RELEASE_MAKING_TESTS.md
 
 - Bump versions:
 
