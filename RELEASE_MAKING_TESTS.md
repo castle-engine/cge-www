@@ -113,7 +113,7 @@ $ find -iname *.so
 ./tools/build-tool/data/android/integrated-components/sound/app/src/main/jni/armeabi-v7a/libopenal.so
 ```
 
-### Android
+## Android
 
 ```
 make strip-precompiled-libraries
