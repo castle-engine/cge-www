@@ -24,14 +24,14 @@ Simply implement a Pascal descendant class of it.
 
 In the initialization section of some (maybe the same edit where you defined the component) register it:
 
-[,pascal]
+[source,pascal]
 ----
 RegisterSerializableComponent(TMyComponent, 'My Component');
 ----
 
 You can also register property editors. As they require using LCL units, register them only when unit is compiled with symbol `CASTLE_DESIGN_MODE`. Like this:
 
-[,pascal]
+[source,pascal]
 ----
 unit MyUnit;
 
@@ -64,7 +64,7 @@ So place in the `published` section properties of normal types (instance of some
 
 Note that you cannot publish a property of record type. This includes our `TVectorXxx` and `TCastleColorXxx` classes. To expose them for the editor, you need to wrap them in a class like `TCastleVector3Persistent` (that wraps `TVector3`). The engine core has a tool to auto-generate such code (`tools/internal/generate-persistent-vectors/`), for your own applications you can just do it manually by a code like this:
 
-[,pascal]
+[source,pascal]
 ----
 type
   TMyComponent = class(TComponent)
@@ -117,7 +117,7 @@ end;
 
 For the best presentation, override `PropertySections`. You will usually place the newly added properties in the _Basic_ section, to make them easy to discover by the users. A sample implementation of `PropertySections` would be like this:
 
-[,pascal]
+[source,pascal]
 ----
 function TMyComponent.PropertySections(const PropertyName: String): TPropertySections;
 begin

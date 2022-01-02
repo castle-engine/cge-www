@@ -25,7 +25,7 @@ You need to add a "service" to include the necessary integration code  on Androi
 
 . Make a descendant of `TInAppPurchases` class in your project, e.g. called `TGameInAppPurchases`:
 +
-[,pascal]
+[source,pascal]
 ----
  TGameInAppPurchases = class(TInAppPurchases)
  protected
@@ -38,7 +38,7 @@ You need to add a "service" to include the necessary integration code  on Androi
 
 . Create an instance of this class. Usually just in `TCastleApplication.OnInitialize`, like this:
 +
-[,pascal]
+[source,pascal]
 ----
  InAppPurchases := TGameInAppPurchases.Create(Application);
 ----
@@ -47,7 +47,7 @@ You need to add a "service" to include the necessary integration code  on Androi
 +
 In the simplest case, the typical implementation of `TGameInAppPurchases` constructor may look like this:
 +
-[,pascal]
+[source,pascal]
 ----
  constructor TGameInAppPurchases.Create(AOwner: TComponent);
  begin
@@ -61,7 +61,7 @@ In the simplest case, the typical implementation of `TGameInAppPurchases` constr
 +
 If you need to know whether user owns some non-consumable product, according to the AppStore, then you need to call https://castle-engine.io/apidoc-unstable/html/CastleInAppPurchases.TInAppPurchases.html#RefreshPurchases[RefreshPurchases] explicitly. Like
 +
-[,pascal]
+[source,pascal]
 ----
  InAppPurchases.RefreshPurchases;
 ----
@@ -74,7 +74,7 @@ However, you should also provide an explicit _"Restore Purchases"_ button, in ca
 
 . It is usually comfortable to define shortcuts for your in-app purchases products, like this:
 +
-[,pascal]
+[source,pascal]
 ----
  function TGameInAppPurchases.Xxx: TInAppProduct;
  begin
@@ -88,7 +88,7 @@ This way you can use `InAppPurchases.Xxx` instead of `InAppPurchases.Product('xx
 +
 Use these prices to update the UI of your game. Like this:
 +
-[,pascal]
+[source,pascal]
 ----
  procedure TGameInAppPurchases.RefreshedPrices;
  begin
@@ -110,7 +110,7 @@ Use these prices to update the UI of your game. Like this:
 . Buy products by calling https://castle-engine.io/apidoc-unstable/html/CastleInAppPurchases.TInAppPurchases.html#Purchase[Purchase], like `InAppPurchases.Purchase(InAppPurchases.Xxx)`.
  ** For non-consumable items (that user buys once, for lifetime, e.g. _"act 2 of the game"_, _"no ads"_, _"badge in user profile"_) override the https://castle-engine.io/apidoc-unstable/html/CastleInAppPurchases.TInAppPurchases.html#Owns[Owns] to react to user buying this item. Like this:
 +
-[,pascal]
+[source,pascal]
 ----
   procedure TGameInAppPurchases.Owns(const AProduct: TInAppProduct);
   begin
@@ -126,7 +126,7 @@ Use these prices to update the UI of your game. Like this:
 
  ** For consumable items (that user can buy multiple times, like _"add 100 gold coins"_), override the https://castle-engine.io/apidoc-unstable/html/CastleInAppPurchases.TInAppPurchases.html#Owns[Owns] to react to user buying this item by calling https://castle-engine.io/apidoc-unstable/html/CastleInAppPurchases.TInAppPurchases.html#Consume[Consume].  Then override https://castle-engine.io/apidoc-unstable/html/CastleInAppPurchases.TInAppPurchases.html#SuccessfullyConsumed[SuccessfullyConsumed] to react to this consumption:
 +
-[,pascal]
+[source,pascal]
 ----
  procedure TGameInAppPurchases.Owns(const AProduct: TInAppProduct);
  begin

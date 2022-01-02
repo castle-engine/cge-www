@@ -13,7 +13,7 @@ For game objects (not user-interface), the closest equivalent of `GameObject` in
 
 Our manual documents `TCastleScene` and `TCastleTransform` features: https://castle-engine.io/manual_load_3d.php , https://castle-engine.io/manual_scene.php . Basically you can do stuff like
 
-[,pascal]
+[source,pascal]
 ----
 MyScene.Url := 'castle-data:/my_model.gltf';
 MyScene.Translation := Vector3(1, 2, 3);
@@ -46,7 +46,7 @@ There are multiple ways how you can control CGE stuff:
 
 . The equivalent of `MonoBehaviour` is `TCastleBehavior` class. So you can *define a class descending from `TCastleBehavior`, and add an instance of it to `TCastleTransform`*. Like
 +
-[,pascal]
+[source,pascal]
 ----
   type
     TMyBehaviorClass = class(TCastleBehavior)
@@ -57,7 +57,7 @@ There are multiple ways how you can control CGE stuff:
 +
 Then add such behavior instance from code:
 +
-[,pascal]
+[source,pascal]
 ----
   var
     MyBehavior: TMyBehaviorClass;

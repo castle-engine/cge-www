@@ -36,7 +36,7 @@ This often results in a performance gain.
 +
 For best results, you may want to sort (maybe not every frame, but once in a while) your scenes in the order "from front to back" (this is the inverse order than done by `TCastleTransform.SortBackToFront`). That's because you want to render the "things that may obscure other things" earlier. An example how to do this:
 
-[,pascal]
+[source,pascal]
 ----
 var
   { Has to be global, since TObjectList.Sort

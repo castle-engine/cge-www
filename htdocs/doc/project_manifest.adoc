@@ -11,7 +11,7 @@ When you create a new project, you can generate a new manifest file by running `
 
 This is the simplest example manifest:
 
-[,xml]
+[source,xml]
 ----
 <?xml version="1.0" encoding="utf-8"?>
 <project name="my-cool-game" standalone_source="my_cool_game.lpr">
@@ -31,7 +31,7 @@ To be on the safe side, the build tool requires that the project name is limited
 
 For example, place these contents in the `my_cool_game.lpr` file:
 
-[,pascal]
+[source,pascal]
 ----
 uses SysUtils, CastleWindow;
 
@@ -77,7 +77,7 @@ Example information that can be expressed in the manifest file:
 
 Below is a sample project manifest with more information:
 
-[,xml]
+[source,xml]
 ----
 <?xml version="1.0" encoding="utf-8"?>
 <project name="my-cool-game"
@@ -103,7 +103,7 @@ Below is a sample project manifest with more information:
 
 To create a cross-platform game (that easily compiles to standalone, Android, iOS and other targets) you should use the `game_units` attribute in your manifest file. Like this:
 
-[,xml]
+[source,xml]
 ----
 <?xml version="1.0" encoding="utf-8"?>
 <project name="my-cool-game" game_units="MainCoolGameUnit">
@@ -150,7 +150,7 @@ This section documents the complete manifest file, with every possible attribute
 
 === Basic project information
 
-[,xml]
+[source,xml]
 ----
 <?xml version="1.0" encoding="utf-8"?>
 <project name="my_game"
@@ -208,7 +208,7 @@ By default, we expect a subdirectory named `data` inside the project directory. 
 
 If you don't have any data files in your project, you can say it explicitly to avoid some warnings from the build tool:
 
-[,xml]
+[source,xml]
 ----
 ...
   <data exists="false" />
@@ -217,7 +217,7 @@ If you don't have any data files in your project, you can say it explicitly to a
 
 === Version
 
-[,xml]
+[source,xml]
 ----
 ...
   <version value="1.0.0" code="1" />
@@ -237,7 +237,7 @@ We allow to override this number per-platform using `<override_version>` element
 
 === Icons
 
-[,xml]
+[source,xml]
 ----
 ...
   <icons>
@@ -254,7 +254,7 @@ For now, Windows will use the .ico version, and Android and iOS will use any ver
 
 === Launch images (for now only for iOS)
 
-[,xml]
+[source,xml]
 ----
 ...
   <launch_images>
@@ -295,7 +295,7 @@ Notes for testing: iOS really aggressively caches these launch images. If you ch
 
 === Android information
 
-[,xml]
+[source,xml]
 ----
 ...
   <android
@@ -325,7 +325,7 @@ Note that with FPC versions earlier than 3.0.2, you cannot increase `target_sdk_
 
 === iOS information
 
-[,xml]
+[source,xml]
 ----
 ...
   <ios
@@ -360,7 +360,7 @@ https://itunespartner.apple.com/en/apps/faq/Managing%20Your%20Apps_Export%20Comp
 
 === File type associations (Android and iOS)
 
-[,xml]
+[source,xml]
 ----
 ...
   <associate_document_types>
@@ -396,7 +396,7 @@ To handle the actual URL to be opened, you have to implement `Window.OnDropFiles
 
 === Dependencies
 
-[,xml]
+[source,xml]
 ----
 ...
   <dependencies>
@@ -426,7 +426,7 @@ Note that it's often not necessary to specify these dependencies. The build tool
 
 An example usage:
 
-[,xml]
+[source,xml]
 ----
 ...
   <package>
@@ -443,7 +443,7 @@ The `<package>` element allows to fine-tune what files to include in the _packag
 
 By default, the build tool includes the `data/` subdirectory, the executable file and (on Windows) necessary DLLs. And it excludes some files known to be useful only for development, like `*.xcf` (GIMP), `*.blend*` (Blender), `*~` (backup files from various applications). To be precise, the defaults are like this:
 
-[,xml]
+[source,xml]
 ----
 ...
   <package>
@@ -494,7 +494,7 @@ The inclusion and exclusion compare _paths_ of _files_. The directories themselv
 
 === Compiler options and paths
 
-[,xml]
+[source,xml]
 ----
 ...
   <compiler_options>
@@ -543,7 +543,7 @@ _TODO: only supported with FPC for now._
 
 === The end
 
-[,xml]
+[source,xml]
 ----
 ...
 </project>

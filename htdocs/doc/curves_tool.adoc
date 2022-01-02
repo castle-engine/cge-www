@@ -43,7 +43,7 @@ _Save_ and _open_ menu commands store curves list in a simple XML file. You can 
 
 See the example below:
 
-[,pascal]
+[source,pascal]
 ----
 uses SysUtils, CastleVectors, CastleFilesUtils, CastleCurves;
 var

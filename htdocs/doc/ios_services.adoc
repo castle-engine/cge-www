@@ -5,7 +5,7 @@ include::common.adoc[]
 
 Inside the link:project_manifest[CastleEngineManifest.xml] you can declare which additional services you want to integrate with your iOS application. It looks like this:
 
-[,xml]
+[source,xml]
 ----
 <?xml version="1.0" encoding="utf-8"?>
 <project name="castle_spine" game_units="GameInitialize">

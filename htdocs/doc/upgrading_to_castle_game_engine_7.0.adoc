@@ -85,7 +85,7 @@ An improved version of it (eliminating the above "why does gravity not work if I
 +
 You can also assign `SceneManager.OnMoveAllowed` event to do something like this:
 +
-[,pascal]
+[source,pascal]
 ----
   { Don't let objects/camera fall outside of the box because of gravity,
     as then they would fall into infinity. }
@@ -98,7 +98,7 @@ You can also assign `SceneManager.OnMoveAllowed` event to do something like this
 +
 This may affect you if you used construction like this:
 +
-[,pascal]
+[source,pascal]
 ----
   Shape.Material := TMaterialNode.Create; // this still works OK
   Shape.Material.DiffuseColor := GreenRgb; // this will not compile anymore
@@ -108,7 +108,7 @@ Since `Shape.Material` is now `TAbstractMaterialNode`, and `TAbstractMaterialNod
 +
 Instead use local variable `Mat: TMaterialNode` and do it like this:
 +
-[,pascal]
+[source,pascal]
 ----
   Mat := TMaterialNode.Create;
   Mat.DiffuseColor := GreenRgb;
@@ -166,7 +166,7 @@ Bottom line: If you have code doing `Player.Navigation.Xxx` where `Xxx` is some 
 
 * `TCastleTransform.PointingDeviceActivate` has been removed, and replaced by 2 events `TCastleTransform.PointingDevicePress`, `TCastleTransform.PointingDeviceRelease`. They also get additional information as an argument `Pick: TRayCollisionNode` which allows you to e.g. instantly see what shape (what material etc.) was clicked, if your scene had detailed collisions (`Spatial` includes `ssDynamicCollisions`). Like this:
 +
-[,pascal]
+[source,pascal]
 ----
   function TMyScene.PointingDevicePress(
     const Pick: TRayCollisionNode; const Distance: Single): Boolean;
@@ -217,7 +217,7 @@ This no longer works, and it will not work. As we move away from sounds XML file
 +
 If you want to have such random sounds, now we advise you implement this on top of CGE. Just define a few TCastleSound instances, and choose a random one yourself, like
 +
-[,pascal]
+[source,pascal]
 ----
   function BulletSound: TCastleSound;
   begin

@@ -27,7 +27,7 @@ _"FMOD Studio API"_ on Windows is an install package, and when you run it you ge
 
 You have to distribute the FMOD library with your application. Currently, it is easiest to add this to your `CastleEngineManifest.xml` file:
 
-[,xml]
+[source,xml]
 ----
   <package>
     <include path="fmod.dll" />
@@ -42,7 +42,7 @@ The FMOD library is loaded dynamically (that is, using `dlopen` / `dlsym` and fr
 
 It of course needs to be present when you run the application, both on developer and user system. Create a shell (bash) script that sets `$LD_LIBRARY_PATH` to include your local fmod copy, and then executes the application. Like this:
 
-[,bash]
+[source,bash]
 ----
 #!/bin/bash
 set -e
@@ -55,7 +55,7 @@ Save this file e.g. under `run.sh` name, do `chmod +x run.sh`, and now you can e
 
 You also have to distribute FMOD library, and `run.sh` with your application. Add this to your `CastleEngineManifest.xml` file:
 
-[,xml]
+[source,xml]
 ----
   <package>
     <include path="run.sh" />

@@ -30,7 +30,7 @@ Do not leave "trailing whitespace" at the end of lines. In the long run, it caus
 
 Do _not_ mimic C "K & R" style (https://en.wikipedia.org/wiki/Indent_style#K.26R) in Pascal:
 
-[,pascal]
+[source,pascal]
 ----
 // DON'T WRITE THIS:
 for I := 1 to 10 do begin
@@ -40,7 +40,7 @@ end;
 
 Instead, the "begin" should usually be indented the same as "end".
 
-[,pascal]
+[source,pascal]
 ----
 // THIS IS OK:
 for I := 1 to 10 do
@@ -51,7 +51,7 @@ end;
 
 To look simpler, it's OK to omit begin/end when they would surround only 1 statement:
 
-[,pascal]
+[source,pascal]
 ----
 // THIS IS EVEN BETTER:
 for I := 1 to 10 do
@@ -62,7 +62,7 @@ for I := 1 to 10 do
 
 The "else" keyword is written on a new line, unless it's right after "end". So:
 
-[,pascal]
+[source,pascal]
 ----
 // THIS IS OK:
 if Foo then
@@ -123,7 +123,7 @@ And it's impossible to determine it, without intimately knowing the complete API
 
 E.g. what does this code do?
 
-[,pascal]
+[source,pascal]
 ----
 with A do
 begin
@@ -138,7 +138,7 @@ until I show you the documentation of the class of A, and all it's ancestors.
 
 Compare with a clear:
 
-[,pascal]
+[source,pascal]
 ----
 SourceX := A.X;
 SourceY := A.Y;
@@ -146,7 +146,7 @@ SourceY := A.Y;
 
 or
 
-[,pascal]
+[source,pascal]
 ----
 A.SourceX := X;
 A.SourceY := Y;
@@ -166,7 +166,7 @@ The uses clause of our units and examples should follow the order
 
 Each part should start from a newline.
 
-[,pascal]
+[source,pascal]
 ----
 // THIS IS OK:
 uses SysUtils, Classes,
@@ -196,7 +196,7 @@ In case of `Url`, we have additional complication: in some places we use the ter
 
 === Indenting inside classes
 
-[,pascal]
+[source,pascal]
 ----
 type
   TMyClass = class
@@ -211,7 +211,7 @@ type
 
 If you use the nested types / constants, indent the fields inside the `var` block as well. See the example below, notice that `MyField` is now indented more than in the example above. It's not perfect -- `MyField` indentation is now inconsistent with `MyPublicField`. But on the other hand, `MyField` indentation is consistent with `MyNestedConst` and `TMyNestedClass` and how you usually indent `var` block.
 
-[,pascal]
+[source,pascal]
 ----
 type
   TMyClass = class

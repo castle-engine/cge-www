@@ -9,7 +9,7 @@ When you use our link:build_tool[build tool] to package your game for Android, y
 
 The Android services are declared in link:project_manifest[CastleEngineManifest.xml] like this:
 
-[,xml]
+[source,xml]
 ----
 <android>
   <services>

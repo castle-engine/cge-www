@@ -77,7 +77,7 @@ And then in game, you open `castle-data:/mycreature.x3dv` instead of opening any
 +
 Like this:
 +
-[,pascal]
+[source,pascal]
 ----
  procedure TMyState.Load;
  var
