@@ -65,7 +65,7 @@ function twentyseventeen_time_link()
  *
  * See https://codex.wordpress.org/Plugin_API/Filter_Reference/post_gallery
  */
-function cge_gallery_shortcode($output = '', $attr, $instance)
+function cge_gallery_shortcode($output, $attr, $instance)
 {
     $post = get_post();
 
@@ -136,6 +136,10 @@ add_filter( 'post_gallery', 'cge_gallery_shortcode', 10, 3 );
  *
  * So simple, inspired by
  * http://wpsnacks.com/wordpress-code-snippets/how-to-create-a-shortcode-to-display-the-wordpress-site-url/
+ *
+ * OBSOLETE.
+ * You can just write https://castle-engine.io/ explicitly. Using this shortcode
+ * was tiresome, and without much gain. cge-www-preview isn't maintained any longer.
  */
 function cge_shortcode()
 {
@@ -143,6 +147,11 @@ function cge_shortcode()
 }
 add_shortcode('cge','cge_shortcode');
 
+/* Base API reference URL, like https://castle-engine.io/apidoc-unstable/html/ on production.
+ *
+ * OBSOLETE.
+ * Use cgeRef to link to API reference, it is easier and shorter.
+ */
 function cgeapi_shortcode()
 {
   global $castle_apidoc_url;
