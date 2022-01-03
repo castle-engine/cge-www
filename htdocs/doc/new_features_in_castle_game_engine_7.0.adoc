@@ -100,7 +100,7 @@ https://castle-engine.io/wp/2018/04/22/engine-improvements-user-interface-horizo
  ** Many upgrades to build infrastructure (new Gradle version etc.)
  ** AdMob upgraded, and supports TAdWatchStatus that reports _why_ user did not watch the ad.
 * iOS improvements:
- ** https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/ios/services/vibrate/README.md[Vibrations].
+ ** https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/ios/services/vibrate/README.adoc[Vibrations].
  ** GPU compressed textures support for square textures (Apple makes it harder to support non-square textures).
  ** Build tool has command-line options to create IPA file or even upload the build to TestFlight, see https://castle-engine.io/ios[iOS building page].
  ** https://castle-engine.io/manual_text.php[FreeType is supported] so you can freely load fonts at runtime.

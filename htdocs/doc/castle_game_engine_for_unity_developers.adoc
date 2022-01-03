@@ -70,7 +70,7 @@ Then add such behavior instance from code:
 +
 See our template _"3D FPS Game"_ (create it by running our editor, choose _"New Project"_ and then choose _"3D FPS Game"_ as a starting point) that shows exactly this approach. It defines a trivial `TEnemy` class that defines the logic of an enemy, and is a `TCastleBehavior` descendant. It controls the enemy movement. It also allows to check (e.g. when shooting ray) "did I hit an enemy" by checking `SomeTransform.FindBehavior(TEnemy) <> nil`.
 +
-While the above examples show attaching a behavior using code, you could also add `TEnemy` in editor, if you https://github.com/castle-engine/castle-engine/blob/master/tools/castle-editor/README.md#include-custom-project-specific-components-in-the-visual-designer[register it with the editor]. This requires to restart editor within the project with menu option _"Project \-> Restart Editor (With Custom Components)"_ first -- although admittedly it's a bit cumbersome, so for your game-specific behaviors in simple cases you may find it more straightforward we to just add them by code.
+While the above examples show attaching a behavior using code, you could also add `TEnemy` in editor. See link:manual_editor.php[editor] and link:custom_components[custom components] docs for information how to register `TEnemy` class in editor. This requires to restart editor within the project with menu option _"Project \-> Restart Editor (With Custom Components)"_. It is an extra step, but it makes sense for complicated behaviors, which can be configured in the editor easier.
 +
 The engine comes with a few standard behaviors too (like https://castle-engine.io/apidoc-unstable/html/CastleBehaviors.TCastleBillboard.html[TCastleBillboard], https://castle-engine.io/apidoc-unstable/html/CastleBehaviors.TCastleSoundSource.html[TCastleSoundSource]) and these are comfortable to add and configure from the editor.
 
@@ -80,7 +80,7 @@ So you could *define a class like `TMyCreature`* that descends from `TCastleTran
 +
 This is a classic OOP approach. This is like _Unreal Engine_ that allows you to define your own actor classes that override the base class.
 +
-You can even https://github.com/castle-engine/castle-engine/blob/master/tools/castle-editor/README.md#include-custom-project-specific-components-in-the-visual-designer[register your custom classes to be available in the editor, to add/configure them visually].
+You can even link:custom_components[register your custom classes to be available in the editor, to add/configure them visually].
 
 . You can also *assign events, like `OnPress`*. Most UI controls expose obvious events, like `TCastleButton.OnClick`. You are free to handle these events at one central place (like an LCL `TForm` descendant (only if you use `TCastleControlBase`), or CGE `TUIState` descendant) or decentralized (e.g. create a different instance of your own class to handle events of each different creature, different item).
 +

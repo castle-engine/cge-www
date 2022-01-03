@@ -3,11 +3,11 @@ include::common.adoc[]
 
 cgeimg::float[view3dscene_outlines.png|glTF model from Sketchfab]
 
-This page is the opposite of the manual page manual_optimization.php[How to optimize your games] :)
+This page is the opposite of the manual page link:manual_optimization.php[How to optimize your games] :)
 
 * Use *Physical-Based Rendering (PBR)*.
 +
-The easiest way to use PBR is by using link:gltf[glTF] format for your assets. glTF by default uses PBR materials. You can design and export glTF with PBR e.g. using creating_data_blender.php[Blender].
+The easiest way to use PBR is by using link:gltf[glTF] format for your assets. glTF by default uses PBR materials. You can design and export glTF with PBR e.g. using link:creating_data_blender.php[Blender].
 +
 You can also read about link:https://github.com/michaliskambi/x3d-tests/wiki/Include-PBR-%28PhysicalMaterial-and-related-concepts%29-in-the-official-X3D-specification[PBR in X3D]. In short: Michalis has designed PBR in X3D 4 to match glTF PBR exactly.
 
