@@ -18,7 +18,9 @@ Some particular conventions:
 
 Do not leave "trailing whitespace" at the end of lines. In the long run, it causes unnecessary diffs when someone removes this whitespace.
 
-=== Use `CamelCase` for everything
+=== Use `PascalCase` for everything
+
+`PascalCase` means that the first character of each word is capatalized.
 
 * Including constants. So write `MyConstant` instead of e.g. `MY_CONSTANT`.
 * Including local variables. Even 1-letter variable names (so write `I` instead of `i`).
@@ -186,13 +188,20 @@ Using `strict protected` is not advised in CGE. The distinction between `strict 
 
 So, use just one `protected` section, do not bother splitting it into `strict protected` and `protected`.
 
-=== Write abbreviations using CamelCase
+=== Write abbreviations using PascalCase
 
-This means `Url`, `Http` etc. in Pascal identifiers. Because it looks much better in long identifiers, like `GetHttpResponse` is much more readable than `GetHTTPResponse`.
+This means to use `Url`, `Http` etc. in Pascal identifiers. Because it looks much better in long identifiers, e.g. `GetHttpResponse` is much more readable than `GetHTTPResponse`.
 
-Note that in the comments, when you talk about e.g. _"HTTP protocol does something"_, still use English conventions when talking about these general concepts (i.e. not Pascal identiiers). So write _"HTTP protocol does something"_ as shown, with HTTP uppercase.
+Note that in the comments, you should still use English convention of writing the _whole_ abbreviation uppercase (not only the first letter). So e.g. documentation for `GetHttpResponse` would be `Returns a response received over HTTP`.
 
-In case of `Url`, we have additional complication: in some places we use the term `URI` instead of `URL` and it is not entirely consistent. It is explained in https://castle-engine.io/manual_network.php#section_terminology , but was not consistently applied. So all future code should just use `Url`, and internally we knon that "most URLs actually accept URI".
+[NOTE]
+====
+In the special case of `Url`, we have an additional complication:
+
+In some places we use the term `URI` instead of `URL`. The difference is explained in https://castle-engine.io/manual_network.php#section_terminology[terminology section of the networking manual] (`URI` is a more general concept than `URL`) but admittedly in some places we used the term `URL` where we should have used `URI` or vice-versa. X3D standard also mixes them a bit, in efffect cgeref:TInlineNode.SetUrl[] actually accepts various URIs (including https://en.wikipedia.org/wiki/Data_URI_scheme[data URI scheme]).
+
+To make things simple, all future code should just use `Url`, and documentation clearly states that _"most URLs actually accept broader URI, e.g. https://en.wikipedia.org/wiki/Data_URI_scheme[data URI scheme]"_.
+====
 
 === Indenting inside classes
 

@@ -115,7 +115,7 @@ You can also use command-line `fpc` or `lazbuild` to build Pascal applications. 
 +
 You can also copy the APK file to your phone, and install APK by selecting it on your phone. This works, but you will not see the logs of the running application, which are quite valuable when debugging.
 +
-You can also use https://testfairy.com/[TestFairy integration] to distribute the APK. This way we can get the logs remotely, using https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/android/integrated-services/test_fairy/README.md[Android test_fairy service] or https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/ios/services/test_fairy/README.md[iOS test_fairy service]. Note that this is a paid feature of TestFairy (although you get 14-day trial).
+You can also use https://testfairy.com/[TestFairy integration] to distribute the APK. This way we can get the logs remotely, using https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/android/integrated-services/test_fairy/README.adoc[Android test_fairy service] or https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/ios/services/test_fairy/README.adoc[iOS test_fairy service]. Note that this is a paid feature of TestFairy (although you get 14-day trial).
 
 == Updating the Docker image
 

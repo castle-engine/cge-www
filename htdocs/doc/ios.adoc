@@ -177,7 +177,7 @@ You can perform further automatic packaging using the command-line CGE link:buil
 castle-engine package --target=iOS --package-format=ios-archive-ad-hoc
 ----
 
-This generates an IPA file which you can distribute to your testers e.g. using https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/ios/services/test_fairy/README.md[TestFairy]. The resulting IPA file will be inside the `castle-engine-output/ios/build/` subdirectory. It is somewhat similar to Android APK, although distributing IPA to testers is more cumbersome (their devices need to be registered in your Apple developer account, and Xcode must know them at build-time to sign IPA for them).
+This generates an IPA file which you can distribute to your testers e.g. using https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/ios/services/test_fairy/README.adoc[TestFairy]. The resulting IPA file will be inside the `castle-engine-output/ios/build/` subdirectory. It is somewhat similar to Android APK, although distributing IPA to testers is more cumbersome (their devices need to be registered in your Apple developer account, and Xcode must know them at build-time to sign IPA for them).
 
 Other options are available:
 
