@@ -20,6 +20,43 @@ We use a few ways to edit the content:
     - run `asciidoctor xxx.adoc`
     - or (complicated but full) follow the "Testing Locally" instructions below.
 
+    We support additional shortcuts within AsciiDoctor:
+
+    - Paste link to API docs for TCastleScene, with optional customized text.
+      The TCastleScene is automatically found in global identifiers in latest
+      CGE API docs.
+
+      ```
+      cgeref:TCastleScene[]
+      cgeref:TCastleScene[link text for TCastleScene]
+      ``
+
+    - Paste gallery of images, using CGE style. Can be floating (on the right)
+      or (default) within page content.
+      We expect to find referenced images (aaa.png,bbb.png in examples below) in
+      htdocs/images/original_size/ .
+      You should regenerate all thumbnails using `cd htdocs/images/ && make`,
+      though at development they will also be regenerated as-needed by PHP.
+
+      ```
+      cgeimg::block[aaa.png|Description of AAA,bbb.png|Description of BBB]
+      cgeimg::float[aaa.png|Description of AAA,bbb.png|Description of BBB]
+
+      // This example has image filenames that actually exist, so go ahead and try pasting it some .adoc
+      cgeimg::block[dragon_0_wire.png|Dragon,gamma_nogamma_helmet.png|Gamma Correction]
+      cgeimg::float[dragon_0_wire.png|Dragon,gamma_nogamma_helmet.png|Gamma Correction]
+      ```
+
+    - Note: AsciiDoctor macros above are not really implemented as AsciiDoctor macros in Ruby,
+      following
+      https://docs.asciidoctor.org/asciidoctor/latest/extensions/inline-macro-processor/
+      https://docs.asciidoctor.org/asciidoctorj/latest/extensions/block-macro-processor/
+      https://docs.asciidoctor.org/asciidoctor/latest/extensions/block-macro-processor/
+
+      Instead they are implemented using PHP, as replacements on top of the AsciiDoctor processing.
+      Why? Because we needed to implement them in PHP too,
+      as our pages need these functions in PHP too.
+
 - PHP for static pages:
 
     Same as above, you can fork this repository, edit php file in `htdocs/`,

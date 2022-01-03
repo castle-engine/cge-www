@@ -98,10 +98,15 @@ if ($regenerate_ascii_doctor) {
   $command = 'asciidoctor --no-header-footer -o - ' . escapeshellarg($adoc_file);
 
   echo '<div class="castle-document">';
-  passthru($command, $exec_status);
-  if ($exec_status != 0) {
-    die('Failed executing ' . htmlspecialchars($command));
+  //passthru($command, $exec_status);
+  if (exec($command, $adoc_contents_lines, $exec_status) === FALSE) {
+    die('Failed (exec error) executing ' . htmlspecialchars($command));
   }
+  if ($exec_status != 0) {
+    die('Failed (non-zero status) executing ' . htmlspecialchars($command));
+  }
+  $adoc_contents = implode("\n", $adoc_contents_lines);
+  echo castle_replace_asciidoctor_macros($adoc_contents);
   echo '</div> <!-- class="castle-document" -->';
 } else {
   // on production, assume ready .html are present in doc/output/

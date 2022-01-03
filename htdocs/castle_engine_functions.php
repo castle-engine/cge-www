@@ -1725,3 +1725,59 @@ function castle_fail_404($message)
   castle_footer();
   die();
 }
+
+/* Replace AsciiDoctor macros like cgeref, cgeimg, documented in ../README.md. */
+function castle_replace_asciidoctor_macros($contents)
+{
+  // require large apidoc_map_latest.php only when necessary
+  global $pasdoc;
+  require_once 'apidoc_map_latest.php';
+
+  $contents = preg_replace_callback('/cgeref:([A-Za-z0-9_.]+)\[([^]]*)\]/',
+    function ($matches) {
+      global $castle_apidoc_url, $pasdoc;
+      $identifier = $matches[1];
+      $title = $matches[2];
+      if ($title == '') {
+        $title = $identifier;
+      }
+      return '<a href="' . $castle_apidoc_url . $pasdoc[$identifier]['html_filename'] . '">' .
+        htmlspecialchars($title) . '</a>';
+    },
+    $contents);
+
+  $contents = preg_replace_callback('/cgeimg::([A-Za-z0-9_.]+)\[([^]]*)\]/',
+    function ($matches) {
+      // calculate $columns, $align (args for castle_thumbs) from 1st match
+      $placement = $matches[1];
+      if ($placement == 'block') {
+        $columns = 'auto';
+        $align = 'left';
+      } else
+      if ($placement == 'float') {
+        $columns = 1;
+        $align = 'right';
+      } else {
+        throw new ErrorException('Invalid cgeimg placement: ' . $placement);
+      }
+
+      // calculate $images (arg for castle_thumbs) from 2nd match
+      $images_strings = explode(',', $matches[2]);
+      $images = array();
+      foreach ($images_strings as $image_str) {
+        $image_str_split = explode('|', $image_str);
+        if (count($image_str_split) != 2) {
+          throw new ErrorException('Expected 2 items in image string split by |: ' . $image_str);
+        }
+        $images[] = array(
+          'filename' => $image_str_split[0],
+          'titlealt' => $image_str_split[1],
+        );
+      }
+
+      return castle_thumbs($images, $columns, $align);
+    },
+    $contents);
+
+  return $contents;
+}
