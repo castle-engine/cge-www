@@ -1,6 +1,8 @@
 # glTF (model format)
 include::common.adoc[]
 
+cgeimg::float[view3dscene_outlines.png|glTF model from Sketchfab,view3dscene_mousey.png|glTF model,view3dscene_steampunk_gltf.png|glTF model from Sketchfab]
+
 == Introduction
 
 glTF is an efficient, modern format for animated 3D and 2D models. Developed by Khronos.

@@ -1,6 +1,8 @@
 # Android
 include::common.adoc[]
 
+cgeimg::float[android12glued.png|Android applications using Castle Game Engine]
+
 == Introduction
 
 You can create games (and other applications) for Android using _Castle Game Engine_. This page describes installation of all the necessary software.

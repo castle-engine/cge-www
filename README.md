@@ -45,6 +45,12 @@ We use a few ways to edit the content:
       // This example has image filenames that actually exist, so go ahead and try pasting it some .adoc
       cgeimg::block[dragon_0_wire.png|Dragon,gamma_nogamma_helmet.png|Gamma Correction]
       cgeimg::float[dragon_0_wire.png|Dragon,gamma_nogamma_helmet.png|Gamma Correction]
+
+      // Additional whitespace and newlines are allowed for cgeimg, so you can write it like this too
+      cgeimg::block[
+        dragon_0_wire.png|Dragon,
+        gamma_nogamma_helmet.png|Gamma Correction
+      ]
       ```
 
     - Note: AsciiDoctor macros above are not really implemented as AsciiDoctor macros in Ruby,

@@ -1,6 +1,20 @@
 # Spine - 2D Animations
 include::common.adoc[]
 
+cgeimg::float[
+  dragon_old_spine.png|Another Dragon in Spine,
+  dragon_editor.png|Another Dragon from Spine rendered using Castle Game Engine in editor,
+  view3dscene_spine_ffd_animation.png|Spine Free-Form Deformation,
+  view3dscene_spine_roseanne.png|"The Unholy Society" character in Spine
+]
+
+////
+  venice_named_animation.png|Venice character by Cat-atrophe Games in Spine,
+  dragon_spine.png|Dragon in Spine,
+  dragon_0.png|Dragon from Spine rendered using Castle Game Engine,
+  dragon_0_wire2.png|Dragon from Spine rendered using Castle Game Engine with special effects,
+////
+
 == Introduction
 
 Castle Game Engine https://castle-engine.io/ has an advanced support for Spine http://esotericsoftware.com/ 2D animations.
@@ -20,7 +34,7 @@ You can also add Spine animations using the https://castle-engine.io/manual_edit
 . Just open a project exported from Spine (as a JSON file) using https://castle-engine.io/view3dscene.php[view3dscene] _File\->Open_ .
 . To run a named animation, use _Animations_ panel in view3dscene.
 
-image::http://img.youtube.com/vi/AuI4zgmT-YQ/0.jpg[Dragon Spine - Castle Game Engine demo,link=http://www.youtube.com/watch?v=AuI4zgmT-YQ]
+video::AuI4zgmT-YQ[youtube,width=800,height=450]
 
 == How to use Spine animations in your own games
 
@@ -87,5 +101,5 @@ Some more exotic Spine animation features are not implemented (yet!). If you wou
 * Animating vertexes of skinned meshes to deform them by the bones. Should be easy, as it is already started -- skinned meshes are correctly calculated in setup pose. It remains to calculate them for all frames of related bones, and for frames where FFD changes, and use CoordinateInterpolator.
 * IK (Inverse Kinematics). Difficulty unknown, this is a new Spine feature.
 
-image:http://img.youtube.com/vi/liNwT96HUqI/0.jpg[ Spine 2D animations rendered using Castle Game Engine (view3dscene),link=http://www.youtube.com/watch?v=liNwT96HUqI]
-image:http://img.youtube.com/vi/7JZhrJ4N2Pg/0.jpg[New Spine features in Castle Game Engine, including slot timeline attachments,link=http://www.youtube.com/watch?v=7JZhrJ4N2Pg]
+video::liNwT96HUqI[youtube,width=800,height=450]
+video::7JZhrJ4N2Pg[youtube,width=800,height=450]

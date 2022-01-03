@@ -1770,8 +1770,8 @@ function castle_replace_asciidoctor_macros($contents)
           throw new ErrorException('Expected 2 items in image string split by |: ' . $image_str);
         }
         $images[] = array(
-          'filename' => $image_str_split[0],
-          'titlealt' => $image_str_split[1],
+          'filename' => trim($image_str_split[0]),
+          'titlealt' => trim($image_str_split[1]),
         );
       }
 
