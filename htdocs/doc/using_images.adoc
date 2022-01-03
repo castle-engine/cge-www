@@ -1,6 +1,11 @@
 # Images
 include::common.adoc[]
 
+cgeimg::float[
+  state_events_new_image.png|Creating new TCastleImageControl in editor,
+  state_events_image_resize.png|Setting up TCastleImageControl in editor
+]
+
 == Display images
 
 There are a few ways to display an image using _Castle Game Engine_.

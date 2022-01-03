@@ -1,6 +1,8 @@
 # How to render 2D images/sprites
 include::common.adoc[]
 
+cgeimg::float[platformer.png|Platformer]
+
 == How to render 2D images/sprites
 
 === Full-featured: Render using TCastleScene

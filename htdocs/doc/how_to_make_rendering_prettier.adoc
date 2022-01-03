@@ -1,6 +1,8 @@
 # How To Make Rendering Prettier
 include::common.adoc[]
 
+cgeimg::float[view3dscene_outlines.png|glTF model from Sketchfab]
+
 This page is the opposite of the manual page manual_optimization.php[How to optimize your games] :)
 
 * Use *Physical-Based Rendering (PBR)*.

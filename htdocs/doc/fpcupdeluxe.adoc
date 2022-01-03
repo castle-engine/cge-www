@@ -5,7 +5,7 @@ include::common.adoc[]
 
 _fpcupdeluxe_ is a powerful GUI program that installs http://freepascal.org/[FPC] and https://www.lazarus-ide.org/[Lazarus].
 
-image:https://castle-engine.io/wp/wp-content/uploads/2017/04/fpcupdeluxe_cge-200x118.png[float="right",role="screenshot",link=https://castle-engine.io/wp/wp-content/uploads/2017/04/fpcupdeluxe_cge.png]
+cgeimg::block[fpcupdeluxe.png|fpcupdeluxe]
 
 == Features
 

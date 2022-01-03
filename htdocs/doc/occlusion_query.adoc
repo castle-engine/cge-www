@@ -5,7 +5,9 @@ include::common.adoc[]
 
 _Castle Game Engine_ can utilize *GPU occlusion query* to avoid rendering things that are completely obscured by other things.
 
-A typical scenario is when you move in a city with tall buildings, and camera is at a ground level. E.g. a game when you walk in a city, ride a car/tank/whatever in a city. In a typical view in such game, your viewing _frustum_ includes many 3D things -- but most of them are actually obscured by the building in front of you. See the https://castle-engine.io/old_news.php?id=2009-05-05[really old news] when this was implemented for a https://castle-engine.io/images/original_size/oq_demo.png[screenshot].
+A typical scenario is when you move in a city with tall buildings, and camera is at a ground level. E.g. a game when you walk in a city, ride a car/tank/whatever in a city. In a typical view in such game, your viewing _frustum_ includes many 3D things -- but most of them are actually obscured by the building in front of you.
+
+cgeimg::block[oq_demo.png|Occlusion Query effect]
 
 It is really trivial to use it: just set on `TCastleScene` the https://castle-engine.io/apidoc-unstable/html/CastleRenderOptions.TCastleRenderOptions.html#OcclusionQuery[MyScene.RenderOptions.OcclusionQuery] to `true`. You can do this at runtime (and change at any moment), you can also set it in the CGE editor.
 
@@ -83,7 +85,7 @@ Neither of the proposed properties above are implemented for now. You're welcome
 Minor problems:
 
 * Sometimes object state flips between "visible" and "not visible", making uneven frame render times. This happens when the proper shape is obscured, but its bounding box is not obscured. The issue can in general be ignored -- user doesn't see any "flipping".
-* The algorithm, in its current form, is incompatible with doing https://castle-engine.io/apidoc-unstable/html/CastleScene.html#DynamicBatching[DynamicBatching]. so we just disable _dynamic batching_ optimization on scenes where the occlusion query is active. Why?
+* The algorithm, in its current form, is incompatible with doing https://castle-engine.io/apidoc-unstable/html/CastleScene.html#DynamicBatching[DynamicBatching], so we just disable _dynamic batching_ optimization on scenes where the occlusion query is active. Why?
  ** Dynamic batching merges many shapes into one. This means that, at the very least, it would make the occlusion query less effective -- only the "large" (merged) shapes are tested.
  ** The implementation would need to be extended, to propagate visibility test results from the merged shape \-> into original shapes. This makes complicated code, for a small gain.
 
