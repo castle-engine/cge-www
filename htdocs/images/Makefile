@@ -1,6 +1,4 @@
-# Makefile for automatically making images
-# in thumb_size/ and other subdirectories
-# from images in original_size/ and others.
+# Makefile for automatically making thumbnail images.
 #
 # Official targets:
 #   all (default target)
@@ -8,56 +6,13 @@
 #   info (echoes some info, nothing is really done)
 
 # ALL_ORIGINAL is a space-separated list of original images.
-# ALL_THUMB is a space-separated list of target thumb-sized images.
 ALL_ORIGINAL:=$(wildcard original_size/*.png) $(wildcard original_size/*.jpg)
+
+# other ALL_XXX are a space-separated list of target images.
 ALL_THUMB:=$(subst original_size,thumb_size,$(ALL_ORIGINAL))
 ALL_THUMB_CONST_HEIGHT:=$(subst original_size,thumb_const_height_size,$(ALL_ORIGINAL))
 ALL_TEASER:=$(subst original_size,teaser_size,$(ALL_ORIGINAL))
-
-# Only a small number of images need "gallery_size"
-# so list here explicitly which images are wanted.
-ALL_GALLERY:=gallery_size/view3dscene_2.0.0_screen_demo.png \
-  gallery_size/castle_screen_demo_1.png \
-  gallery_size/lets_take_a_walk_screen_demo.png \
-  gallery_size/malfunction_screen_demo.png \
-  gallery_size/kambi_lines_screen_demo.png \
-  gallery_size/castle-view-image_dds.png \
-  gallery_size/glplotter_screen_demo_1.png \
-  gallery_size/rayhunter_graz_demo.png \
-  gallery_size/darkest_before_dawn_2.png \
-  gallery_size/mountains_of_fire_screen_1.png \
-  gallery_size/hydra_battles_screen_best.png \
-  gallery_size/dragon_squash_screen_1.png \
-  gallery_size/castle_spine_screen_3.png \
-  gallery_size/castle_curves.png \
-  gallery_size/escape_universe.png \
-  gallery_size/fire_madness.png \
-  gallery_size/castle_sunset.png \
-  gallery_size/mazer.jpg \
-  gallery_size/unholy_society_in_game.jpg \
-  gallery_size/wyrd_forest_screen_0-2.png \
-  gallery_size/connect4.png \
-  gallery_size/little_things_screen_7.png \
-  gallery_size/cge_2d_particles.png \
-  gallery_size/swappy_jigsaw.png \
-  gallery_size/database_aware.png \
-  gallery_size/bricks_color_pick.jpg \
-  gallery_size/bumpcars.jpg \
-  gallery_size/convert-to-x3d.png \
-  gallery_size/view3dscene_outlines.png \
-  gallery_size/cge_3d_particles_edit_fire.png \
-  gallery_size/kryftolike.png \
-  gallery_size/assets_kenney.png \
-  gallery_size/assets_opengameart.png \
-  gallery_size/assets_sketchfab.png \
-  gallery_size/assets_quaternius.png \
-  gallery_size/platformer.png \
-  gallery_size/assets_blendswap.png \
-  gallery_size/cge_3d_particles_editor.png \
-  gallery_size/cge_2d_water.png \
-  gallery_size/cge_effekseer.png \
-  gallery_size/dragon_editor.png \
-  gallery_size/foxy-misfortunes.png
+ALL_GALLERY:=$(subst original_size,gallery_size,$(ALL_ORIGINAL))
 
 ALL_OS_ICONS_ORIGINAL_SIZE:=$(wildcard os_icons_original_size/*.png)
 ALL_OS_ICONS:=$(subst _original_size,,$(ALL_OS_ICONS_ORIGINAL_SIZE))
