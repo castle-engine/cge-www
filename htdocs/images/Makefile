@@ -24,7 +24,6 @@ ALL_TARGETS := $(ALL_TEASER) \
   $(ALL_THUMB_CONST_HEIGHT) \
   $(ALL_GALLERY) \
   $(ALL_OS_ICONS) \
-  $(ALL_MAIN_LINK) \
   castle_game_engine_icon.png
 
 # On Cygwin, change it to /usr/bin/convert
