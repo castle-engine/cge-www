@@ -159,6 +159,48 @@ function cgeapi_shortcode()
 }
 add_shortcode('cgeapi','cgeapi_shortcode');
 
+/* Make HTML link to API reference.
+ * See cge-www/README.md for docs fof cgeref,
+ * we use this in AsciiDoctor, PHP and Wordpress shortcode consistently.
+ */
+function cgeref_shortcode($atts)
+{
+  return cgeRef($atts['id'], @$atts['title']);
+}
+add_shortcode('cgeref','cgeref_shortcode');
+
+/* Make HTML images block.
+ * See cge-www/README.md for docs fof cgeimg,
+ * we use this in AsciiDoctor, PHP and Wordpress shortcode consistently.
+ */
+function cgeimg_shortcode($atts)
+{
+  if (in_array('block', $atts)) {
+    $placement = 'block';
+  } else
+  if (in_array('float', $atts)) {
+    $placement = 'float';
+  } else {
+    throw new ErrorException('Invalid cgeimg placement: ' . $placement);
+  }
+
+  $images_strings = explode(',', $atts['images']);
+  $images = array();
+  foreach ($images_strings as $image_str) {
+    $image_str_split = explode('|', $image_str);
+    if (count($image_str_split) != 2) {
+      throw new ErrorException('Expected 2 items in image string split by |: ' . $image_str);
+    }
+    $images[] = array(
+      'filename' => trim($image_str_split[0]),
+      'titlealt' => trim($image_str_split[1]),
+    );
+  }
+
+  return cgeImg($placement, $images);
+}
+add_shortcode('cgeimg','cgeimg_shortcode');
+
 /**
  * Replaces 'Continue reading' link from Twenty Seventeen with our own,
  * ending with special arrow character.
