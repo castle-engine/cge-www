@@ -1447,7 +1447,6 @@ function castle_thumbs($images, $columns=1, $align='right', $thumb_size = NULL)
         }
         echo htmlspecialchars(implode("\n", $output_lines)) . "\n";
         if ($exec_status != 0) {
-          // TODO: It seems "make" process is sometimes broken and this often happens?
           echo 'WARNING: Failed (non-zero status: ' . $exec_status . ') executing: ' . htmlspecialchars($command);
         }
         echo '</pre>';

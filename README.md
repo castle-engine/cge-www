@@ -53,9 +53,12 @@ We use a few ways to edit the content:
       ```
 
       We expect to find referenced images (aaa.png,bbb.png in examples below) in
-      htdocs/images/original_size/ .
+      `htdocs/images/original_size/` .
       You should regenerate all thumbnails using `cd htdocs/images/ && make`,
       though at development they will also be regenerated as-needed by PHP.
+      To allow the PHP to do this, install ImageMagick (`convert` must be on $PATH),
+      GNU `make`, and make sure PHP has permissions to write within proper images/ subdirs:
+      `cd htdocs/images/ && chmod a+rwX thumb_size/ thumb_const_height_size/ teaser_size/ gallery_size/`.
       The idea is that (at development) you
 
         - Just drop new images to `htdocs/images/original_size/` (hint: make it a bookmark in your file manager)
