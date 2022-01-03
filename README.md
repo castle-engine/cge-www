@@ -36,10 +36,6 @@ We use a few ways to edit the content:
 
     - Paste gallery of images, using CGE style. Can be floating (on the right)
       or (default) within page content.
-      We expect to find referenced images (aaa.png,bbb.png in examples below) in
-      htdocs/images/original_size/ .
-      You should regenerate all thumbnails using `cd htdocs/images/ && make`,
-      though at development they will also be regenerated as-needed by PHP.
 
       ```
       cgeimg::block[aaa.png|Description of AAA,bbb.png|Description of BBB]
@@ -55,6 +51,18 @@ We use a few ways to edit the content:
         gamma_nogamma_helmet.png|Gamma Correction
       ]
       ```
+
+      We expect to find referenced images (aaa.png,bbb.png in examples below) in
+      htdocs/images/original_size/ .
+      You should regenerate all thumbnails using `cd htdocs/images/ && make`,
+      though at development they will also be regenerated as-needed by PHP.
+      The idea is that (at development) you
+
+        - Just drop new images to `htdocs/images/original_size/` (hint: make it a bookmark in your file manager)
+
+        - Add `cgeimg` to .adoc source code to view them
+
+        - Refresh the local page like http://localhost/~michalis/castle-engine/curves_tool , which will (in development) automatically regenerate AsciiDoctor -> HTML, and will generate thumbnails if missing. (hint: set up a key shortcut in your text editor to refresh the www browser view of this page)
 
     - Note: AsciiDoctor macros above are not really implemented as AsciiDoctor macros in Ruby,
       following

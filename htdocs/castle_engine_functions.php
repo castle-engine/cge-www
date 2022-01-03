@@ -1431,6 +1431,28 @@ function castle_thumbs($images, $columns=1, $align='right', $thumb_size = NULL)
       $result .= $image['html'];
     } else
     {
+      $regenerate_thumbnails = CASTLE_ENVIRONMENT == 'development';
+
+      if ($regenerate_thumbnails &&
+          array_key_exists('filename', $image) &&
+          (!file_exists('images/' . $thumb_size . '/' . $image['filename'])))
+      {
+        /* Regenerate thumbnails.
+           Output raport at any place within current doc -- this is only at development,
+           doesn't have to look good, just be informative. */
+        echo "<pre>\nThumbnail does not exist, regenerating thumbnails:\n";
+        $command = 'cd images/ && make';
+        if (exec($command, $output_lines, $exec_status) === FALSE) {
+          die('Failed (exec error) executing ' . htmlspecialchars($command));
+        }
+        echo htmlspecialchars(implode("\n", $output_lines)) . "\n";
+        if ($exec_status != 0) {
+          // TODO: It seems "make" process is sometimes broken and this often happens?
+          echo 'WARNING: Failed (non-zero status: ' . $exec_status . ') executing: ' . htmlspecialchars($command);
+        }
+        echo '</pre>';
+      }
+
       $url_full = isset($image['url_full']) ? $image['url_full'] :
         page_url('images/original_size/' . $image['filename']);
       $url_thumb = isset($image['url_thumb']) ? $image['url_thumb'] :
