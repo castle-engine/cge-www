@@ -85,7 +85,7 @@ Neither of the proposed properties above are implemented for now. You're welcome
 Minor problems:
 
 * Sometimes object state flips between "visible" and "not visible", making uneven frame render times. This happens when the proper shape is obscured, but its bounding box is not obscured. The issue can in general be ignored -- user doesn't see any "flipping".
-* The algorithm, in its current form, is incompatible with doing https://castle-engine.io/apidoc-unstable/html/CastleScene.html#DynamicBatching[DynamicBatching], so we just disable _dynamic batching_ optimization on scenes where the occlusion query is active. Why?
+* The algorithm, in its current form, is incompatible with doing cgeref:DynamicBatching[], so we just disable _dynamic batching_ optimization on scenes where the occlusion query is active. Why?
  ** Dynamic batching merges many shapes into one. This means that, at the very least, it would make the occlusion query less effective -- only the "large" (merged) shapes are tested.
  ** The implementation would need to be extended, to propagate visibility test results from the merged shape \-> into original shapes. This makes complicated code, for a small gain.
 

@@ -83,7 +83,7 @@ In the future engine releases, we hope to remove the need to call `Viewport.Item
 
 == 2D drawing of primitives and images
 
-If you draw using https://castle-engine.io/apidoc-unstable/html/CastleGLUtils.html#DrawPrimitive2D[DrawPrimitive2D], https://castle-engine.io/apidoc-unstable/html/CastleGLUtils.html#DrawRectangle[DrawRectangle] etc. -- they automatically use blending when provided color has alpha < 1. They take blending factors (that determine the "blending equation" mentioned above) as explicit arguments.
+If you draw using cgeref:DrawPrimitive2D[], cgeref:DrawRectangle[] etc. -- they automatically use blending when provided color has alpha < 1. They take blending factors (that determine the "blending equation" mentioned above) as explicit arguments.
 
 If you draw using https://castle-engine.io/apidoc-unstable/html/CastleGLImages.TDrawableImage.html[TDrawableImage] then it automatically determines alpha treatment looking at image contents and the https://castle-engine.io/apidoc-unstable/html/CastleGLImages.TDrawableImage.html#Color[TDrawableImage.Color]. You can override alpha treatment by https://castle-engine.io/apidoc-unstable/html/CastleGLImages.TDrawableImage.html#Alpha[TDrawableImage.Alpha] property, there are also properties to determine blending equation: https://castle-engine.io/apidoc-unstable/html/CastleGLImages.TDrawableImage.html#BlendingSourceFactor[TDrawableImage.BlendingSourceFactor], https://castle-engine.io/apidoc-unstable/html/CastleGLImages.TDrawableImage.html#BlendingDestinationFactor[TDrawableImage.BlendingDestinationFactor].
 

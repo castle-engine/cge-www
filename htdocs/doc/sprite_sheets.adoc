@@ -61,7 +61,7 @@ The available parameters now are:
 +
 Frames per second, determine the default animation speed. Note that you can later adjust the time at runtime using https://castle-engine.io/apidoc-unstable/html/CastleSceneCore.TCastleSceneCore.html#TimePlayingSpeed[TimePlayingSpeed], just like with any `TCastleScene`.
 +
-By default we use 8 frames per second (see https://castle-engine.io/apidoc-unstable/html/CastleTextureImages.html#DefaultSpriteSheetFramesPerSecond[DefaultSpriteSheetFramesPerSecond]).
+By default we use 8 frames per second (see cgeref:DefaultSpriteSheetFramesPerSecond[]).
 +
 Note that this feature is not available for `.castle-sprite-sheet` files, as there the FPS is stored in the file (and can even be different for each animation). So there's no point in specifying FPS by an URL.
 +

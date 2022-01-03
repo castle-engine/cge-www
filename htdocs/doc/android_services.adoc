@@ -57,7 +57,7 @@ Using the `<android>` element, you can request a project type:
 Merely declaring the project type as "integrated" (even without any extra services) immediately gives you:
 
 * _Immersive mode_ on newer Android devices. This is a "true" full-screen mode for games on Android, where the back/home buttons are usually hidden.
-* You can open URLs in external applications using https://castle-engine.io/apidoc-unstable/html/CastleOpenDocument.html#OpenURL[OpenURL] from https://castle-engine.io/apidoc-unstable/html/CastleOpenDocument.html[CastleOpenDocument] unit. Hint: use special `market://` URL to send users to the _Google Play_ store, e.g. to rate your application.
+* You can open URLs in external applications using cgeref:OpenURL[] from cgeref:CastleOpenDocument[] unit. Hint: use special `market://` URL to send users to the _Google Play_ store, e.g. to rate your application.
 * You can share text and links with other applications. Use https://castle-engine.io/apidoc/html/CastleOpenDocument.html#ShareText[ShareText] from the https://castle-engine.io/apidoc/html/CastleOpenDocument.html[CastleOpenDocument] unit.
 * You can send Android standard on-screen notification ("toast") using https://castle-engine.io/apidoc/html/CastleOpenDocument.html#OnScreenNotification[OnScreenNotification] from the https://castle-engine.io/apidoc/html/CastleOpenDocument.html[CastleOpenDocument] unit.
 * Some services (like `sound` and `ogg_vorbis`) will be added automatically to your project if the sound files are detected in your game data. So merely declaring your project type as "integrated" makes sound work on Android.

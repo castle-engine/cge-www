@@ -106,7 +106,7 @@ glTF models use `PhysicalMaterial` or `UnlitMaterial` for their materials.
 
 The `PhysicalMaterial` node performs _physically-based rendering_ which is very pretty but also comes with some performance cost. It also requires Phong shading (not faster Gouraud shading) to make sense.
 
-If you need maximum speed, you can set global https://castle-engine.io/apidoc-unstable/html/CastleLoadGltf.html#GltfForcePhongMaterials[GltfForcePhongMaterials] to `true`. This automatically converts (during load) all `PhysicalMaterial` nodes into `Material` nodes (using Phong lighting model, and Gouraud shading by default). Note that it will change the look of your models significantly. So if you want to go this way, you should probably prepare your models from the start testing it.
+If you need maximum speed, you can set global cgeref:GltfForcePhongMaterials[] to `true`. This automatically converts (during load) all `PhysicalMaterial` nodes into `Material` nodes (using Phong lighting model, and Gouraud shading by default). Note that it will change the look of your models significantly. So if you want to go this way, you should probably prepare your models from the start testing it.
 
 Of course, remember that you can also use unlit materials in glTF. These always have the best performance :) https://castle-engine.io/creating_data_blender.php[Blender] can export glTF unlit materials.
 
