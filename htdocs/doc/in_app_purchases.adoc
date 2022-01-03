@@ -3,7 +3,7 @@ include::common.adoc[]
 
 == Introduction
 
-This is a step-by-step instruction how to implement _in-app purchases_ (for Android and iOS) using CGE https://castle-engine.io/apidoc-unstable/html/CastleInAppPurchases.html[CastleInAppPurchases] unit and https://castle-engine.io/apidoc-unstable/html/CastleInAppPurchases.TInAppPurchases.html[TInAppPurchases] class.
+This is a step-by-step instruction how to implement _in-app purchases_ (for Android and iOS) using CGE cgeref:CastleInAppPurchases[] unit and https://castle-engine.io/apidoc-unstable/html/CastleInAppPurchases.TInAppPurchases.html[TInAppPurchases] class.
 
 == Set up purchases in the stores (GooglePlay, AppStore)
 

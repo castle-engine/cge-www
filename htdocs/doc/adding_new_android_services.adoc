@@ -40,13 +40,18 @@ The main code of a service is usually a class descending from the `ServiceAbstra
 
 == Communicate with Java
 
-To communicate with the services from the Object Pascal code, use the `CastleMessaging` unit. Our units like `CastleAds` or `CastleGameService` are simply thin "wrappers" using `CastleMessaging` unit under the hood -- see at their sources to know how it works, it is very straightfoward.
+To communicate with the services from the Object Pascal code, use the cgeref:CastleMessaging[] unit. Our units like cgeref:CastleAds[] or cgeref:CastleGameService[] are simply thin "wrappers" using cgeref:CastleMessaging[] unit under the hood -- see at their sources to know how it works, it is very straightfoward.
 
 This way you can write Java code and utilize any Android Java API, and communicate with Pascal.
 
-The `CastleMessaging` is a simple asynchronous communication mechanism between Pascal and Java, using it is easy (you have ready methods on both Pascal and Java side, and you don't need to deal with JNI).
+The cgeref:CastleMessaging[] is a simple asynchronous communication mechanism between Pascal and Java, using it is easy (you have ready methods on both Pascal and Java side, and you don't need to deal with JNI).
 
-* On the Pascal side, use `CastleMessaging` unit, with a singleton `Messaging` of class `TMessaging`. It has a simple `Send` method and allows to register `OnReceive` callbacks (like `Messaging.OnReceive.Add(@MessageReceived);`). Typically, you wrap sending and receiving messages in a nice Pascal API. Examples of it are in the CGE `src/services/` directory.
+* On the Pascal side, use cgeref:CastleMessaging[] unit, that exposes a singleton cgeref:Messaging[].
+** Use cgeref:TMessaging.Send[Messaging.Send({{{'message-1','some-parameter'}}})] to send something.
+** Register your callback like cgeref:TMessaging.OnReceive[Messaging.OnReceive.Add(@MessageReceived)] to receive something.
+
++
+Typically, you wrap sending and receiving messages in a nice Pascal API. Examples of it are in the CGE `src/services/` directory.
 * On the Java side, you create a class descending from `ServiceAbstract`. Such class can override `messageReceived` method to receive messages, and use `messageSend` to send messages. Examples of it are CGE services inside `tools/build-tool/data/android/integrated-services/XXX/src/net/sourceforge/castleengine/ServiceXXX.java` files.
 
 See e.g. Google Play Games handling:
@@ -59,7 +64,7 @@ The Java code of this particular service is no longer straightforward (it has a 
 For something simpler, see the "vibrate" service:
 
 * the Java side is in `build-tool/data/android/integrated-services/vibrate/` .
-* and the Pascal side is a trivial function `Vibrate` inside `src/services/castleopendocument.pas` .
+* and the Pascal side is a trivial function cgeref:Vibrate[].
 
 Note that `CastleMessaging` is not supposed to be an "API for all communication", but in practice it works very well in all existing services -- since it's natural for asynchronous processing (where many things are done in some thread, and/or wait for network or user input before returning any result).
 
@@ -67,7 +72,7 @@ The exact messages are not documented anywhere, since they are the "internal" AP
 
 In the Java part, you use the full power of Java APIs on Android, that are necessary to access various Android stuff. On the Pascal side, you create a thin wrappers that merely send/receive messages. Final games should use the Pascal API, without being aware of any "messages" underneath, e.g. see how `castle-engine/examples/2d_dragon_spine_android_game/` uses the `TGameService` class.
 
-NOTE: The disadvantage of `CastleMessaging` approach is that the communication between Java and Pascal looks like an asynchronous network channel. That's OK in many cases (especially when the Java code indeed wraps some network operations), but it may be bad if you need to get something fast/synchronously. For such cases, using JNI to implement communication Java\<->Pascal is necessary.
+NOTE: The disadvantage of `CastleMessaging` approach is that the communication between Java and Pascal looks like an asynchronous network channel. That's OK in many cases (especially when the Java code indeed wraps some network operations), but it may be bad if you need to get something fast/synchronously. For such cases, using JNI to implement (possibly bidirectional) communication between Java and Pascal is necessary.
 
 == Adding a service with dynamic library (SO)
 

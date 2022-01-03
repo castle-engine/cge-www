@@ -1726,6 +1726,26 @@ function castle_fail_404($message)
   die();
 }
 
+/* Return HTML link to given Pascal identifier.
+   $title equal to NULL or '' means to use identifier as the title.
+   This is documented (as AsciiDoctor macro) in ../README.md.
+*/
+function cgeRef($identifier, $title = NULL)
+{
+  global $castle_apidoc_url, $pasdoc;
+  if (empty($title)) {
+    $title = $identifier;
+  } else {
+    /* As an optimization, we don't do this when $title comes from $identifier,
+       when we know that Pascal identifier doesn't have {{{ or }}}. */
+    $title = str_replace('{{{', '[',
+             str_replace('}}}', ']',
+             $title));
+  }
+  return '<a href="' . $castle_apidoc_url . $pasdoc[$identifier]['html_filename'] . '">' .
+    htmlspecialchars($title) . '</a>';
+}
+
 /* Replace AsciiDoctor macros like cgeref, cgeimg, documented in ../README.md. */
 function castle_replace_asciidoctor_macros($contents)
 {
@@ -1735,14 +1755,9 @@ function castle_replace_asciidoctor_macros($contents)
 
   $contents = preg_replace_callback('/cgeref:([A-Za-z0-9_.]+)\[([^]]*)\]/',
     function ($matches) {
-      global $castle_apidoc_url, $pasdoc;
       $identifier = $matches[1];
       $title = $matches[2];
-      if ($title == '') {
-        $title = $identifier;
-      }
-      return '<a href="' . $castle_apidoc_url . $pasdoc[$identifier]['html_filename'] . '">' .
-        htmlspecialchars($title) . '</a>';
+      return cgeRef($identifier, $title);
     },
     $contents);
 

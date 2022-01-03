@@ -31,6 +31,13 @@ We use a few ways to edit the content:
       cgeref:TCastleScene[link text for TCastleScene]
       ``
 
+      If you want to write `[` or `]` inside the link title,
+      write '{{{` or `}}}` instead. They will be replaced with `[` or `]` . Like
+
+      ```
+      cgeref:TMessaging.Send[Messaging.Send({{{'message-1','some-parameter'}}})]
+      ```
+
     - Paste gallery of images, using CGE style. Can be floating (on the right)
       or (default) within page content.
       We expect to find referenced images (aaa.png,bbb.png in examples below) in
