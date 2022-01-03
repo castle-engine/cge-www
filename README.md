@@ -4,123 +4,130 @@
 
 We use a few ways to edit the content:
 
-- AsciiDoctor for static pages:
+### AsciiDoctor for static pages
 
-    Fork this repository (cge-www) and edit the `*.adoc` pages in `htdocs/doc/`
-    subdirectory. Then create a pull request.
+E.g. https://castle-engine.io/gltf
 
-    See https://asciidoctor.org/ for an overview of the AsciiDoctor language.
-    To preview what you do, you can
+Fork this repository (cge-www) and edit the `*.adoc` pages in `htdocs/doc/`
+subdirectory. Then create a pull request.
 
-    - look at GitHub preview of your file
-    - run `asciidoctor xxx.adoc`
-    - or (complicated but full) follow the "Testing Locally" instructions below.
+See https://asciidoctor.org/ for an overview of the AsciiDoctor language.
+To preview what you do, you can
 
-    We support additional shortcuts within AsciiDoctor:
+- look at GitHub preview of your file
+- run `asciidoctor xxx.adoc`
+- or (complicated but full) follow the "Testing Locally" instructions below.
 
-    - Paste link to API docs for TCastleScene, with optional customized text.
-      The TCastleScene is automatically found in global identifiers in latest
-      CGE API docs.
+We support additional shortcuts within AsciiDoctor:
 
-      ```
-      cgeref:TCastleScene[]
-      cgeref:TCastleScene[link text for TCastleScene]
-      ``
+- Paste link to API docs for TCastleScene, with optional customized text.
+  The TCastleScene is automatically found in global identifiers in latest
+  CGE API docs.
 
-      If you want to write `[` or `]` inside the link title,
-      write '{{{` or `}}}` instead. They will be replaced with `[` or `]` . Like
+  ```
+  cgeref:TCastleScene[]
+  cgeref:TCastleScene[link text for TCastleScene]
+  ```
 
-      ```
-      cgeref:TMessaging.Send[Messaging.Send({{{'message-1','some-parameter'}}})]
-      ```
+  If you want to write `[` or `]` inside the link title,
+  write '{{{` or `}}}` instead. They will be replaced with `[` or `]` . Like
 
-    - Paste gallery of images, using CGE style. Can be floating (on the right)
-      or (default) within page content.
+  ```
+  cgeref:TMessaging.Send[Messaging.Send({{{'message-1','some-parameter'}}})]
+  ```
 
-      ```
-      cgeimg::block[aaa.png|Description of AAA,bbb.png|Description of BBB]
-      cgeimg::float[aaa.png|Description of AAA,bbb.png|Description of BBB]
+- Paste gallery of images, using CGE style. Can be floating (on the right)
+  or (default) within page content.
 
-      // This example has image filenames that actually exist, so go ahead and try pasting it some .adoc
-      cgeimg::block[dragon_0_wire.png|Dragon,gamma_nogamma_helmet.png|Gamma Correction]
-      cgeimg::float[dragon_0_wire.png|Dragon,gamma_nogamma_helmet.png|Gamma Correction]
+  ```
+  cgeimg::block[aaa.png|Description of AAA,bbb.png|Description of BBB]
+  cgeimg::float[aaa.png|Description of AAA,bbb.png|Description of BBB]
 
-      // Additional whitespace and newlines are allowed for cgeimg, so you can write it like this too
-      cgeimg::block[
-        dragon_0_wire.png|Dragon,
-        gamma_nogamma_helmet.png|Gamma Correction
-      ]
-      ```
+  // This example has image filenames that actually exist, so go ahead and try pasting it some .adoc
+  cgeimg::block[dragon_0_wire.png|Dragon,gamma_nogamma_helmet.png|Gamma Correction]
+  cgeimg::float[dragon_0_wire.png|Dragon,gamma_nogamma_helmet.png|Gamma Correction]
 
-      We expect to find referenced images (aaa.png,bbb.png in examples below) in
-      `htdocs/images/original_size/` .
-      You should regenerate all thumbnails using `cd htdocs/images/ && make`,
-      though at development they will also be regenerated as-needed by PHP.
-      To allow the PHP to do this, install ImageMagick (`convert` must be on $PATH),
-      GNU `make`, and make sure PHP has permissions to write within proper images/ subdirs:
-      `cd htdocs/images/ && chmod a+rwX thumb_size/ thumb_const_height_size/ teaser_size/ gallery_size/`.
-      The idea is that (at development) you
+  // Additional whitespace and newlines are allowed for cgeimg, so you can write it like this too
+  cgeimg::block[
+    dragon_0_wire.png|Dragon,
+    gamma_nogamma_helmet.png|Gamma Correction
+  ]
+  ```
 
-        - Just drop new images to `htdocs/images/original_size/` (hint: make it a bookmark in your file manager)
+  We expect to find referenced images (aaa.png,bbb.png in examples below) in
+  `htdocs/images/original_size/` .
+  You should regenerate all thumbnails using `cd htdocs/images/ && make`,
+  though at development they will also be regenerated as-needed by PHP.
+  To allow the PHP to do this, install ImageMagick (`convert` must be on $PATH),
+  GNU `make`, and make sure PHP has permissions to write within proper images/ subdirs:
+  `cd htdocs/images/ && chmod a+rwX thumb_size/ thumb_const_height_size/ teaser_size/ gallery_size/`.
+  The idea is that (at development) you
 
-        - Add `cgeimg` to .adoc source code to view them
+    - Just drop new images to `htdocs/images/original_size/` (hint: make it a bookmark in your file manager)
 
-        - Refresh the local page like http://localhost/~michalis/castle-engine/curves_tool , which will (in development) automatically regenerate AsciiDoctor -> HTML, and will generate thumbnails if missing. (hint: set up a key shortcut in your text editor to refresh the www browser view of this page)
+    - Add `cgeimg` to .adoc source code to view them
 
-    - Note: AsciiDoctor macros above are not really implemented as AsciiDoctor macros in Ruby,
-      following
-      https://docs.asciidoctor.org/asciidoctor/latest/extensions/inline-macro-processor/
-      https://docs.asciidoctor.org/asciidoctorj/latest/extensions/block-macro-processor/
-      https://docs.asciidoctor.org/asciidoctor/latest/extensions/block-macro-processor/
+    - Refresh the local page like http://localhost/~michalis/castle-engine/curves_tool , which will (in development) automatically regenerate AsciiDoctor -> HTML, and will generate thumbnails if missing. (hint: set up a key shortcut in your text editor to refresh the www browser view of this page)
 
-      Instead they are implemented using PHP, as replacements on top of the AsciiDoctor processing.
-      Why? Because we needed to implement them in PHP too,
-      as our pages need these functions in PHP too.
+- Note: AsciiDoctor macros above are not really implemented as AsciiDoctor macros in Ruby,
+  following
 
-- PHP for static pages:
+    - https://docs.asciidoctor.org/asciidoctor/latest/extensions/inline-macro-processor/
+    - https://docs.asciidoctor.org/asciidoctorj/latest/extensions/block-macro-processor/
+    - https://docs.asciidoctor.org/asciidoctor/latest/extensions/block-macro-processor/
 
-    Same as above, you can fork this repository, edit php file in `htdocs/`,
-    and create a pull request.
+  Instead they are implemented using PHP, as replacements on top of the AsciiDoctor processing.
+  Why? Because we needed to implement them in PHP too,
+  as our pages need these functions in PHP too.
 
-    To test your modifications, you can follow the "Testing Locally" instructions below.
-    If these instructions look too complicated, just ignore them for simple modifications
-    --- the PHP files are mostly using trivial HTML with small PHP additions
-    (like PHP castle_header, api_link functions) so if you understand basic HTML,
-    you can probably figure out what is going on.
+### PHP for static pages
 
-    Most important PHP functions are:
+E.g. https://castle-engine.io/ , https://castle-engine.io/manual_state_events.php
 
-    - castle_header, castle_footer to start every CGE webpage
+Same as above, you can fork this repository, edit php file in `htdocs/`,
+and create a pull request.
 
-    - cgeRef, cgeImg -- consistent with above-described AsciiDoctor macros.
+To test your modifications, you can follow the "Testing Locally" instructions below.
+If these instructions look too complicated, just ignore them for simple modifications
+--- the PHP files are mostly using trivial HTML with small PHP additions
+(like PHP castle_header, api_link functions) so if you understand basic HTML,
+you can probably figure out what is going on.
 
-    ```
-    <?php
-    echo cgeImg('float', array(
-      array('filename' => 'state_events_screen.png', 'titlealt' => 'Plane flying on the mountain background - game'),
-      array('filename' => 'state_events_biplane_4_resized.png', 'titlealt' => 'Plane flying on the mountain background - design'),
-    ));
-    ?>
+Most important PHP functions are:
 
-    Something descends from <?php echo cgeRef('TUIState'); ?> and manages something.
-    ```
+- castle_header, castle_footer to start every CGE webpage
 
-- Wordpress for news: https://castle-engine.io/wp/ .
+- cgeRef, cgeImg -- consistent with above-described AsciiDoctor macros.
 
-    Michalis Kamburelis (michalis@castle-engine.io) will give you an account.
+```
+<?php
+echo cgeImg('float', array(
+  array('filename' => 'state_events_screen.png', 'titlealt' => 'Plane flying on the mountain background - game'),
+  array('filename' => 'state_events_biplane_4_resized.png', 'titlealt' => 'Plane flying on the mountain background - design'),
+));
+?>
 
-    Most important Wordppress shortcodes are:
+Something descends from <?php echo cgeRef('TUIState'); ?> and manages something.
+```
 
-    - [gallery...] - modified Wordpress gallery to use castle_thumbs (quite like cgeImg) to display Wordpress images
+### Wordpress for news
 
-    - cgeref, cgeimg -- consistent with above-described AsciiDoctor macros.
+E.g. https://castle-engine.io/wp/
 
-    ```
-    [cgeimg block images="dragon_0_wire.png|Dragon,gamma_nogamma_helmet.png|Gamma Correction"]
+Permissions: contact Michalis Kamburelis (michalis@castle-engine.io) to get an account.
 
-    [cgeref id=TCastleScene]
-    [cgeref id=TCastleScene title="link text for TCastleScene"]
-    ```
+Most important Wordppress shortcodes are:
+
+- [gallery...] - modified Wordpress gallery to use castle_thumbs (quite like cgeImg) to display Wordpress images
+
+- cgeref, cgeimg -- consistent with above-described AsciiDoctor macros.
+
+```
+[cgeimg block images="dragon_0_wire.png|Dragon,gamma_nogamma_helmet.png|Gamma Correction"]
+
+[cgeref id=TCastleScene]
+[cgeref id=TCastleScene title="link text for TCastleScene"]
+```
 
 ## Layout of files
 
