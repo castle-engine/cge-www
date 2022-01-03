@@ -19,17 +19,17 @@ $toc = new TableOfContents(
   )
 );
 
-echo castle_thumbs(array(
+echo cgeImg('float', array(
   array('filename' => 'state_events_screen.png', 'titlealt' => 'Plane flying on the mountain background - game'),
   array('filename' => 'state_events_biplane_4_resized.png', 'titlealt' => 'Plane flying on the mountain background - design'),
- ));
+));
 ?>
 
 <?php echo $toc->html_toc(); ?>
 
 <?php echo $toc->html_section(); ?>
 
-<p><i>State</i> in <i>Castle Game Engine</i> is a class that descends from <a href="https://castle-engine.io/apidoc-unstable/html/CastleUIState.TUIState.html">TUIState</a> and manages <i>what you display on the screen and how you react to basic events (user input, updates)</i>.
+<p><i>State</i> in <i>Castle Game Engine</i> is a class that descends from <?php echo cgeRef('TUIState'); ?> and manages <i>what you display on the screen and how you react to basic events (user input, updates)</i>.
 
 <p>While it is not required to put everything in some <i>state</i>, we highly advise to organize your application into a number of states. They usually divide your application code into a number of smaller pieces in a natural way. If you have used Lazarus LCL or Delphi VCL for visual designing previosly, you will recognize that our <code>TUIState</code> is a similar concept to <code>TForm</code> from LCL and VCL.
 
@@ -42,9 +42,9 @@ echo castle_thumbs(array(
 <p>Start by creating a new project using the "Empty" template.
 
 <?php
-echo castle_thumbs(array(
+echo cgeImg('block', array(
   array('filename' => 'state_events_new_project.png', 'titlealt' => 'Castle Game Engine Editor New Project - State Events'),
-), 'auto', 'left');
+));
 ?>
 
 <p>When you create a new project, we create initial states for you. The <i>"Empty"</i> template creates a single state, by default called just <i>"Main"</i>. It is
@@ -67,11 +67,11 @@ echo castle_thumbs(array(
     <p>After copying the file, you can see it inside the editor. If you select it, editor will show a preview in the bottom-right corner.
 
     <?php
-    echo castle_thumbs(array(
+    echo cgeImg('block', array(
       array('filename' => 'state_events_mountains_background.png', 'titlealt' => 'Mountains background'),
       array('filename' => 'state_events_open_containing.png', 'titlealt' => 'Open Containing Folder'),
       array('filename' => 'state_events_editor_mountains_background.png', 'titlealt' => 'Mountains background loaded in Castle Game Engine editor')
-    ), 'auto', 'left');
+    ));
     ?>
 
     <p>If you want to experiment with graphics at this point, go ahead. The sample image we propose here is actually constructed from multiple layers in GIMP. If you know your way around, you can create a variation of this image easily. We also have alternative "industrial" background ready. See the <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/user_interface/state_events/data">examples/user_interface/state_events/data</a> directory.
@@ -80,18 +80,18 @@ echo castle_thumbs(array(
     <p>Double-click on the <code>gamestatemain.castle-user-interface</code> file in the <code>data</code> subdirectory in the editor. It will open the user interface design, where we'll add new controls.
 
     <?php
-    echo castle_thumbs(array(
+    echo cgeImg('block', array(
       array('filename' => 'state_events_empty_state.png', 'titlealt' => 'Empty user interface design'),
-    ), 'auto', 'left');
+    ));
     ?>
 
   <li>
     <p>Right-click on the <code>Group1</code> (the "root" component of your design) to select it and show a context menu. Then choose <i>Add User Interface -&gt; Image (TCastleImageControl)</i> from the context menu that appears.
 
     <?php
-    echo castle_thumbs(array(
+    echo cgeImg('block', array(
       array('filename' => 'state_events_new_image.png', 'titlealt' => 'New Image (TCastleImageControl)'),
-    ), 'auto', 'left');
+    ));
     ?>
 
   <li>
@@ -100,10 +100,10 @@ echo castle_thumbs(array(
     <p>Note that once you confirm, the <code>URL</code> will change to something like <code>castle-data:/mountains_background.png</code>. The design saves the file location <a href="https://castle-engine.io/manual_data_directory.php">relative to a special "data" directory</a>. In a typical game, you will want to reference all your data files like this. The special <code>data</code> directory will be always properly packaged and available in your application.
 
     <?php
-    echo castle_thumbs(array(
+    echo cgeImg('block', array(
       array('filename' => 'state_events_image_url1.png', 'titlealt' => 'Set Image URL'),
       array('filename' => 'state_events_image_url2.png', 'titlealt' => 'Set Image URL'),
-    ), 'auto', 'left');
+    ));
     ?>
 
   <li>
@@ -114,10 +114,10 @@ echo castle_thumbs(array(
     <p>We advise to set useful <i>names</i> for all new components, to easier recognize the components when designing. The <code>Name</code> can also be later used to find this component from code (you will see an example of it later).
 
     <?php
-    echo castle_thumbs(array(
+    echo cgeImg('block', array(
       array('filename' => 'state_events_name1.png', 'titlealt' => 'Editing Name property'),
       array('filename' => 'state_events_name2.png', 'titlealt' => 'Editing Name property in the hierarchy'),
-    ), 'auto', 'left');
+    ));
     ?>
 
   <li>
@@ -130,9 +130,9 @@ echo castle_thumbs(array(
     <p><i>Test</i> that you can move and resize the image freely now (by dragging using the left mouse button), test making the image larger. We will adjust the position and size more precisely in the next step, for now just test that you could play with it manually. Note that you could set <code>ProportionalScale</code> to <code>psEnclose</code> to always keep aspect ratio of the original image.
 
     <?php
-    echo castle_thumbs(array(
+    echo cgeImg('block', array(
       array('filename' => 'state_events_image_resize.png', 'titlealt' => 'Resize the image'),
-    ), 'auto', 'left');
+    ));
     ?>
 
   <li>
@@ -143,9 +143,9 @@ echo castle_thumbs(array(
     <p><i>Alternative:</i> We can get <i>exactly</i> the same behavior by setting <code>WidthFraction</code> to <code>1.0</code>, <code>HeightFraction</code> to <code>1.0</code>, and <code>ProportionalScale</code> to <code>psFit</code>. This will also make the image keep nicely within the window, and automatically follows whatever reference window size is used by the UI scaling.
 
     <?php
-    echo castle_thumbs(array(
+    echo cgeImg('block', array(
       array('filename' => 'state_events_mountains_resize.png', 'titlealt' => 'Set the image Width and Height'),
-    ), 'auto', 'left');
+    ));
     ?>
 
   <li>
@@ -160,12 +160,12 @@ echo castle_thumbs(array(
     <p>When done, resize the game window (by dragging the "splitters", i.e. bars between the game window and hierarchy (on the left) or inspector (on the right)). Notice how image always stays within the window, with the image center in the window center.
 
     <?php
-    echo castle_thumbs(array(
+    echo cgeImg('block', array(
       array('filename' => 'state_events_anchor1.png', 'titlealt' => 'Adjust background anchor'),
       array('filename' => 'state_events_anchor2.png', 'titlealt' => 'Adjust background anchor - Move to anchor'),
       array('filename' => 'state_events_resized1.png', 'titlealt' => 'Testing background anchor by resizing window'),
       array('filename' => 'state_events_resized2.png', 'titlealt' => 'Testing background anchor by resizing window'),
-    ), 'auto', 'left');
+    ));
     ?>
 
   <li>
@@ -174,9 +174,9 @@ echo castle_thumbs(array(
     <p>To do this, set <code>SmoothScaling</code> property of the image to <code>false</code>.
 
     <?php
-    echo castle_thumbs(array(
+    echo cgeImg('block', array(
       array('filename' => 'state_events_smooth_scaling.png', 'titlealt' => 'Changing image SmoothScaling'),
-    ), 'auto', 'left');
+    ));
     ?>
 
   <li>
@@ -185,9 +185,9 @@ echo castle_thumbs(array(
     <p>This matters when game window aspect ratio is close to 1600x900, the yellow text <i>"FPS: xxx"</i> should then be displayed <i>in front</i>, not hidden <i>behind</i> the background image. The code will update this label to display <i>frames per second</i> when you run the game. This is a basic metric of the performance of your game.
 
     <?php
-    echo castle_thumbs(array(
+    echo cgeImg('block', array(
       array('filename' => 'state_events_label_front.png', 'titlealt' => 'Moved the LabelFps to the front'),
-    ), 'auto', 'left');
+    ));
     ?>
 </ol>
 
@@ -198,10 +198,10 @@ echo castle_thumbs(array(
     <p>Download the player (plane) image from <a href="https://raw.githubusercontent.com/castle-engine/castle-engine/master/examples/user_interface/state_events/data/biplane.png">biplane.png</a>. Just as before, add it to your project's <code>data</code> subdirectory.
 
     <?php
-    echo castle_thumbs(array(
+    echo cgeImg('block', array(
       array('filename' => 'state_events_biplane.png', 'titlealt' => 'Plane image'),
       array('filename' => 'state_events_biplane_1.png', 'titlealt' => 'Plane image loaded in Castle Game Engine editor'),
-    ), 'auto', 'left');
+    ));
     ?>
 
   <li>
@@ -212,10 +212,10 @@ echo castle_thumbs(array(
     <p>This relationship means that <code>ImagePlayer</code> position is relative to parent <code>ImageBackground</code> position. So the player image will keep at the same place of the background, regardless of how do you position/resize the background.
 
     <?php
-    echo castle_thumbs(array(
+    echo cgeImg('block', array(
       array('filename' => 'state_events_biplane_add_child.png', 'titlealt' => 'Add TCastleImageControl as a child of ImageBackground'),
       array('filename' => 'state_events_biplane_add_child_2.png', 'titlealt' => 'Added TCastleImageControl as a child of ImageBackground'),
-    ), 'auto', 'left');
+    ));
     ?>
 
   <li>
@@ -237,11 +237,11 @@ echo castle_thumbs(array(
     </ul>
 
     <?php
-    echo castle_thumbs(array(
+    echo cgeImg('block', array(
       array('filename' => 'state_events_biplane_2_added.png', 'titlealt' => 'Adding plane image'),
       array('filename' => 'state_events_biplane_3_set_url.png', 'titlealt' => 'Setting the plane image URL'),
       array('filename' => 'state_events_biplane_4_resized.png', 'titlealt' => 'Resizing the plane image'),
-    ), 'auto', 'left');
+    ));
     ?>
 
 <?php /* // we do not want this, we want ground to be level 0, for Update demo later
@@ -249,9 +249,9 @@ echo castle_thumbs(array(
     <p>To behave nicer when the game window is resized, set the anchor of the new player image to be center too. Click on the middle button in the 3x3 grid. Do not click on the <i>"Move to the anchor"</i>, there's no need. When you resize the game window now, the plane will keep at the same position relative to the background.
 
     < ?php
-    echo castle_thumbs(array(
+    echo cgeImg('block', array(
       array('filename' => 'state_events_biplane_anchor.png', 'titlealt' => 'Setting anchor of the plane image'),
-    ), 'auto', 'left');
+    ));
     ? >
 */ ?>
 

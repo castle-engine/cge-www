@@ -4,10 +4,6 @@
 
 We use a few ways to edit the content:
 
-- Wordpress for news: https://castle-engine.io/wp/ .
-
-    Michalis Kamburelis (michalis@castle-engine.io) will give you an account.
-
 - AsciiDoctor for static pages:
 
     Fork this repository (cge-www) and edit the `*.adoc` pages in `htdocs/doc/`
@@ -80,6 +76,40 @@ We use a few ways to edit the content:
     --- the PHP files are mostly using trivial HTML with small PHP additions
     (like PHP castle_header, api_link functions) so if you understand basic HTML,
     you can probably figure out what is going on.
+
+    Most important PHP functions are:
+
+    - castle_header, castle_footer to start every CGE webpage
+
+    - cgeRef, cgeImg -- consistent with above-described AsciiDoctor macros.
+
+    ```
+    <?php
+    echo cgeImg('float', array(
+      array('filename' => 'state_events_screen.png', 'titlealt' => 'Plane flying on the mountain background - game'),
+      array('filename' => 'state_events_biplane_4_resized.png', 'titlealt' => 'Plane flying on the mountain background - design'),
+    ));
+    ?>
+
+    Something descends from <?php echo cgeRef('TUIState'); ?> and manages something.
+    ```
+
+- Wordpress for news: https://castle-engine.io/wp/ .
+
+    Michalis Kamburelis (michalis@castle-engine.io) will give you an account.
+
+    Most important Wordppress shortcodes are:
+
+    - [gallery...] - modified Wordpress gallery to use castle_thumbs (quite like cgeImg) to display Wordpress images
+
+    - cgeref, cgeimg -- consistent with above-described AsciiDoctor macros.
+
+    ```
+    [cgeimg block images="dragon_0_wire.png|Dragon,gamma_nogamma_helmet.png|Gamma Correction"]
+
+    [cgeref id=TCastleScene]
+    [cgeref id=TCastleScene title="link text for TCastleScene"]
+    ```
 
 ## Layout of files
 

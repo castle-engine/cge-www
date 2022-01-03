@@ -1733,6 +1733,10 @@ function castle_fail_404($message)
 function cgeRef($identifier, $title = NULL)
 {
   global $castle_apidoc_url, $pasdoc;
+
+  // require large apidoc_map_latest.php only when necessary
+  require_once 'apidoc_map_latest.php';
+
   if (empty($title)) {
     $title = $identifier;
   } else {
@@ -1746,13 +1750,31 @@ function cgeRef($identifier, $title = NULL)
     htmlspecialchars($title) . '</a>';
 }
 
+/* Return HTML to display images (as a block inside regular content, or as a floating block
+   on the side).
+   This is just a thin wrapper over castle_thumbs now.
+   This is documented (as AsciiDoctor macro) in ../README.md.
+*/
+function cgeImg($placement, $images)
+{
+  // calculate $columns, $align (args for castle_thumbs) from 1st match
+  if ($placement == 'block') {
+    $columns = 'auto';
+    $align = 'left';
+  } else
+  if ($placement == 'float') {
+    $columns = 1;
+    $align = 'right';
+  } else {
+    throw new ErrorException('Invalid cgeimg placement: ' . $placement);
+  }
+
+  return castle_thumbs($images, $columns, $align);
+}
+
 /* Replace AsciiDoctor macros like cgeref, cgeimg, documented in ../README.md. */
 function castle_replace_asciidoctor_macros($contents)
 {
-  // require large apidoc_map_latest.php only when necessary
-  global $pasdoc;
-  require_once 'apidoc_map_latest.php';
-
   $contents = preg_replace_callback('/cgeref:([A-Za-z0-9_.]+)\[([^]]*)\]/',
     function ($matches) {
       $identifier = $matches[1];
@@ -1763,20 +1785,9 @@ function castle_replace_asciidoctor_macros($contents)
 
   $contents = preg_replace_callback('/cgeimg::([A-Za-z0-9_.]+)\[([^]]*)\]/',
     function ($matches) {
-      // calculate $columns, $align (args for castle_thumbs) from 1st match
       $placement = $matches[1];
-      if ($placement == 'block') {
-        $columns = 'auto';
-        $align = 'left';
-      } else
-      if ($placement == 'float') {
-        $columns = 1;
-        $align = 'right';
-      } else {
-        throw new ErrorException('Invalid cgeimg placement: ' . $placement);
-      }
 
-      // calculate $images (arg for castle_thumbs) from 2nd match
+      // calculate $images from 2nd match
       $images_strings = explode(',', $matches[2]);
       $images = array();
       foreach ($images_strings as $image_str) {
@@ -1790,7 +1801,7 @@ function castle_replace_asciidoctor_macros($contents)
         );
       }
 
-      return castle_thumbs($images, $columns, $align);
+      return cgeImg($placement, $images);
     },
     $contents);
 
