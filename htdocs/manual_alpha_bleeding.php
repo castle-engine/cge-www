@@ -30,7 +30,7 @@ castle_header('Alpha Bleeding');
 <?php
 echo castle_thumbs(array(
   array('filename' => 'alpha_bleeding_1_bug_in_editor.png', 'titlealt' => 'Bug caused by lack of Alpha Bleeding visible in CGE editor'),
-), 'auto', 'left', 'small_thumb_const_height_size');
+), 'auto', 'left');
 ?>
 
 <p>In the above example, one image is rendered in front of another. The front image has, however, <i>black transparent pixels</i> (RGBA = (0, 0, 0, 0)) very near the <i>opaque light yellow pixels</i> (RGB = light yellow, A = 1). And in effect they get averaged into <i>dark yellow</i> (<i>black</i> is averaged with <i>light yellow</i>). Which results in a dark smudge on the forehead of the character. Here are the actual images, the back and (incorrect) front:
@@ -39,7 +39,7 @@ echo castle_thumbs(array(
 echo castle_thumbs(array(
   array('filename' => 'alpha_bleeding_back.png', 'titlealt' => 'Alpha Bleeding example - back image'),
   array('filename' => 'alpha_bleeding_front.png', 'titlealt' => 'Alpha Bleeding example - front image (incorrect)'),
-), 'auto', 'left', 'small_thumb_const_height_size');
+), 'auto', 'left');
 ?>
 
 <p>Here's an analysis (investigating colors in GIMP) of the colors:
@@ -50,7 +50,7 @@ echo castle_thumbs(array(
   array('filename' => 'alpha_bleeding_3_gimp.png', 'titlealt' => 'Investigating Alpha Bleeding in GIMP 2'),
   array('filename' => 'alpha_bleeding_4_gimp.png', 'titlealt' => 'Investigating Alpha Bleeding in GIMP 3'),
   array('filename' => 'alpha_bleeding_5_gimp.png', 'titlealt' => 'Investigating Alpha Bleeding in GIMP 4'),
-), 'auto', 'left', 'small_thumb_const_height_size');
+), 'auto', 'left');
 ?>
 
 <p>Where the <i>opaque light yellow</i> changes into <i>transparent</i>, you have
@@ -93,7 +93,7 @@ echo castle_thumbs(array(
       array('filename' => 'alpha_bleeding_8_cge_viewer.png', 'titlealt' => 'Fixing Alpha Bleeding in castle-view-image: before'),
       array('filename' => 'alpha_bleeding_6_cge_viewer.png', 'titlealt' => 'Fixing Alpha Bleeding in castle-view-image'),
       array('filename' => 'alpha_bleeding_7_cge_viewer.png', 'titlealt' => 'Fixing Alpha Bleeding in castle-view-image: after'),
-    ), 'auto', 'left', 'small_thumb_const_height_size');
+    ), 'auto', 'left');
     ?>
 
   <li>
@@ -107,7 +107,7 @@ echo castle_thumbs(array(
 <?php
 echo castle_thumbs(array(
   array('filename' => 'alpha_bleeding_front_fixed.png', 'titlealt' => 'Alpha Bleeding example - front image (fixed)'),
-), 'auto', 'left', 'small_thumb_const_height_size');
+), 'auto', 'left');
 ?>
 
 <p>Here's the result of mixing the 2 images, now correct, in the CGE editor.
@@ -115,7 +115,7 @@ echo castle_thumbs(array(
 <?php
 echo castle_thumbs(array(
   array('filename' => 'alpha_bleeding_9_editor_fixed.png', 'titlealt' => 'Fixed problem, visible in CGE editor'),
-), 'auto', 'left', 'small_thumb_const_height_size');
+), 'auto', 'left');
 ?>
 
 <p>There's an alternative to this: you can also use filtering that <i>doesn't</i> average pixel colors. Just

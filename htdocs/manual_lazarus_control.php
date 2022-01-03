@@ -55,7 +55,7 @@ together with <i>Castle Game Engine</i>. To use this:
       array('filename' => 'lazarus-install-31.png', 'titlealt' => 'castle_components: Choose the file'),
       array('filename' => 'lazarus-install-32.png', 'titlealt' => 'castle_components: Install'),
       array('filename' => 'lazarus-install-33.png', 'titlealt' => 'castle_components: Confirm Lazarus rebuild'),
-    ), 'auto', 'left', 'small_thumb_const_height_size');
+    ), 'auto', 'left');
     ?>
 
     <p>Once <code>castle_components.lpk</code> is successfully installed,

@@ -162,7 +162,7 @@ some engine <i>packages</i>.
       array('filename' => 'lazarus-install-01.png', 'titlealt' => 'castle_base: Open Package File'),
       array('filename' => 'lazarus-install-02.png', 'titlealt' => 'castle_base: Choose the file'),
       array('filename' => 'lazarus-install-03.png', 'titlealt' => 'castle_base: Compile'),
-    ), 'auto', 'left', 'small_thumb_const_height_size');
+    ), 'auto', 'left');
     ?>
 
   <li><p>Similarly, open and <b>compile the package <code>castle_window.lpk</code></b>.
@@ -173,7 +173,7 @@ some engine <i>packages</i>.
     echo castle_thumbs(array(
       array('filename' => 'lazarus-install-21.png', 'titlealt' => 'castle_window: Choose the file'),
       array('filename' => 'lazarus-install-22.png', 'titlealt' => 'castle_window: Compile'),
-    ), 'auto', 'left', 'small_thumb_const_height_size');
+    ), 'auto', 'left');
     ?>
 
   <li><p>Finally, open and <b>install the package <code>castle_components.lpk</code></b>.
@@ -188,7 +188,7 @@ some engine <i>packages</i>.
       array('filename' => 'lazarus-install-31.png', 'titlealt' => 'castle_components: Choose the file'),
       array('filename' => 'lazarus-install-32.png', 'titlealt' => 'castle_components: Install'),
       array('filename' => 'lazarus-install-33.png', 'titlealt' => 'castle_components: Confirm Lazarus rebuild'),
-    ), 'auto', 'left', 'small_thumb_const_height_size');
+    ), 'auto', 'left');
     ?>
 </ol>
 
@@ -213,5 +213,5 @@ echo castle_thumbs(array(
   array('filename' => 'lazarus-install-42.png', 'titlealt' => 'fps_game: Choose the file'),
   array('filename' => 'lazarus-install-43.png', 'titlealt' => 'fps_game: Run'),
   array('filename' => 'lazarus-install-44.png', 'titlealt' => 'fps_game: Running!'),
-), 'auto', 'left', 'small_thumb_const_height_size');
+), 'auto', 'left');
 ?>
