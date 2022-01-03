@@ -1807,3 +1807,11 @@ function castle_replace_asciidoctor_macros($contents)
 
   return $contents;
 }
+
+/* Replace in file AsciiDoctor macros like cgeref, cgeimg (documented in ../README.md). */
+function castle_replace_asciidoctor_macros_file($file_name)
+{
+  $contents = file_get_contents($file_name);
+  $contents = castle_replace_asciidoctor_macros($contents);
+  file_put_contents($file_name, $contents);
+}

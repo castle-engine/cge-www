@@ -11,6 +11,7 @@ clean:
 
 output/%.html: %.adoc
 	asciidoctor --no-header-footer -o "$@" "$<"
+	cd .. && php -r 'require_once "castle_engine_functions.php"; castle_replace_asciidoctor_macros_file("doc/$@");'
 
 .PHONY: test
 test:
