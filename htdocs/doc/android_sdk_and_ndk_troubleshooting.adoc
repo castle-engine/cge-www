@@ -17,7 +17,7 @@ This indicates you compiled FPC standard units without `-CfVFPV3`. This would re
 * If you compile FPC cross-compiler yourself, following link:android[Android], remember to add `CROSSOPT="-CfVFPV3"` .
 * If you compile FPC cross-compiler by link:pass:[fpcupdeluxe][], go to the "Setup+" options and for Android/Arm add `-CfVFPV3` option.
 
-image::https://castle-engine.io/images/original_size/fpcupdeluxe-hard-floats.png[FpcUpDeluxe cross-compiler options]
+cgeimg::block[fpcupdeluxe-hard-floats.png|FpcUpDeluxe cross-compiler options]
 
 == libz errors, "exception in thread png-cruncher" errors
 

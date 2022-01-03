@@ -167,7 +167,7 @@ Open the file with `.xcworkspace` extension in that directory. For now, all iOS 
 +
 *Tip: Running on a real, physical device:* It works out of the box! You only need to set the _Development Team_ in Xcode, or set `<ios team="xxx" />` attribute in link:project_manifest[CastleEngineManifest.xml].
 +
-image::https://castle-engine.io/images/thumb_size/xcode_select_team.png[Selecting a team in Xcode,link=https://castle-engine.io/images/original_size/xcode_select_team.png]
+cgeimg::block[xcode_select_team.png|Selecting a team in Xcode]
 
 === Archive (deploy on iOS)
 

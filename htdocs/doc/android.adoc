@@ -63,25 +63,25 @@ Install some components of the Android _SDK Manager_:
 * The GUI version of the _SDK Manager_ is part of the _Android Studio_.
  ** Run _Android Studio_. If you see a wizard prompting you to create a new project -- you can cancel it. Then choose _Configure -> SDK Manager_.
 +
-image::https://castle-engine.io/images/thumb_size/sdk_manager_1.png[Android SDK Manager 1,link=https://castle-engine.io/images/original_size/sdk_manager_1.png]
+cgeimg::block[sdk_manager_1.png|Android SDK Manager 1]
 
  ** Make sure that it knows the correct path to the Android SDK. You may need to _Edit_ the SDK location if you installed (or want to install) to a non-standard path.
  ** On the _"SDK Platforms"_ tab (1st tab) select _"Android 10.0 (Q) - API 29"_ (be sure to use this exact version). Check _"Show Package Details"_ at the bottom to see more, make sure that inside the _"Android 10.0 (Q) - API 29"_ section the _"Android SDK Platform 29"_ and _"Google APIs"_ subcomponents are selected.
 +
 TODO: Screenshots below show older situation, for API 23. In new CGE 6.5, just use API 29 instead.
 +
-image::https://castle-engine.io/images/thumb_size/sdk_manager_2.png[Android SDK Manager 2,link=https://castle-engine.io/images/original_size/sdk_manager_2.png]
+cgeimg::block[sdk_manager_2.png|Android SDK Manager 2]
 
  ** On the _"SDK Tools"_ tab (2nd tab), select the _"Android SDK Build-tools"_ version 29.0.3 (actually any 29.0.x should be OK). Check _"Show Package Details"_ at the bottom to be able to select the exact _"Android SDK Build-tools"_ version. Be sure to install _this exact version_ (not earlier, not later). You can install other versions too, they don't conflict, but you must install this exact version too.
 +
 TODO: Screenshots below show older situation, for API 23. In new CGE 6.5, just use API 29 instead.
 +
-image::https://castle-engine.io/images/thumb_size/sdk_manager_3.png[Android SDK Manager 3,link=https://castle-engine.io/images/original_size/sdk_manager_3.png]
+cgeimg::block[sdk_manager_3.png|Android SDK Manager 3]
 
  ** Also on the _"SDK Tools"_ tab (2nd tab), select "NDK".
  ** Also on the _"SDK Tools"_ tab (2nd tab), from the section _"Support Repository"_ (usually at the bottom of the list), make sure _"Android Support Repository"_ and _"Google Repository"_ are selected.
 +
-image::https://castle-engine.io/images/thumb_size/sdk_manager_4.png[Android SDK Manager 4,link=https://castle-engine.io/images/original_size/sdk_manager_4.png]
+cgeimg::block[sdk_manager_4.png|Android SDK Manager 4]
 
  ** Click _OK_, choose _Accept_ at the license question.
 * If you prefer to *use the command-line*, you can alternatively download only _Android SDK command-line tools_. Set `$ANDROID_HOME` environment variable, and then execute
