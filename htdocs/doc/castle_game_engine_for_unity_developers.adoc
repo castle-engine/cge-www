@@ -11,7 +11,7 @@ If you come with a knowledge of another game engine, like _Unity_, this page wil
 
 For game objects (not user-interface), the closest equivalent of `GameObject` in _Castle Game Engine_ is the https://castle-engine.io/apidoc-unstable/html/CastleTransform.TCastleTransform.html[TCastleTransform] class. Instances of `TCastleTransform` can be arranged in a hierarchy, where each element transforms (moves, rotates, scales) the children. The most important class of CGE is the `TCastleScene`, which is a descendant of `TCastleTransform` that can actually render/animate/collide a model. Simply set `TCastleScene.Url` to load your model (like a glTF file) there.
 
-Our manual documents `TCastleScene` and `TCastleTransform` features: https://castle-engine.io/manual_load_3d.php , https://castle-engine.io/manual_scene.php . Basically you can do stuff like
+Our manual documents cgeref:TCastleScene[] and cgeref:TCastleTransform[] features: https://castle-engine.io/manual_load_3d.php , https://castle-engine.io/manual_scene.php . Basically you can do stuff like
 
 [source,pascal]
 ----
