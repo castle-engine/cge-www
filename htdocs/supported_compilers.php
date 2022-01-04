@@ -65,7 +65,7 @@ though for most applications we recommend using <code>TCastleWindowsBase</code> 
 
 <p>FPC &gt;= 3.2.0 doesn't need them (it contains the <code>Generics.Collections</code> and friends, with the same implementation from Maciej Izak). In case of CGE, we didn't need them even for FPC 3.0.x, and CGE included our own copy of <code>Generics.Collections</code>.
 
-<p>Solution: Remove <code>Generics.Collections</code> and related units from any <code>sparta_xxx</code> or other packages. FPC includes them already. Report to authors of these packages that is creates conflicts with FPC &gt;= 3.2.0 standard units.
+<p>Solution: Remove <code>Generics.Collections</code> and related units from any <code>sparta_xxx</code> or other packages. FPC includes them already. Report to authors of these packages that these units create conflicts with FPC &gt;= 3.2.0 standard units.
 
 <!-- The policy for choosing FPC releases:
 1. Advice and support latest FPC release from freepascal.org.
@@ -102,11 +102,19 @@ to hang on to FPC releases available in distros.
 
 <p>We generally try to support using the latest (unstable) FPC development version to compile CGE.
 
-<p>You can get such FPC directly from <a href="https://gitlab.com/freepascal.org/fpc/source">GitLab (use <code>main</code> branch to get really latest and unstable version)</a> or using <a href="https://castle-engine.io/fpcupdeluxe">FpcUpDeluxe</a>.
+<p>You can get such FPC
+
+<ul>
+  <li>
+    <p>Directly from <a href="https://gitlab.com/freepascal.org/fpc/source">GitLab (use <code>main</code> branch to get really latest and unstable version)</a>
+  <li>
+    <p>or using <a href="https://castle-engine.io/fpcupdeluxe">FpcUpDeluxe</a>
+  <li>
+    <p>or using our <a href="docker">Docker image</a>. Although by default we use latest stable FPC inside our Docker image, but you can activate FPC unstable using <code>source /usr/local/fpclazarus/bin/setup.sh trunk</code> inside the container. The <b>FPC trunk revision most tested is the one listed in <a href="https://github.com/castle-engine/castle-engine-cloud-builds-tools/blob/master/Dockerfile.no-cge#L149">the Docker build script</a></b>.
+    <!-- (see instructions <a href="cloud_builds_jenkins">at Jenkins docs</a> how to change FPC version from stable to unstable). -->
+</ul>
 
 <p>Of course please remember that this FPC version is unstable, and it changes with every commit to FPC. We cannot test or guarantee that CGE works with an arbitray FPC development revision. But we welcome testing such FPC. PRs to make CGE work with latest FPC trunk are also welcome (unless there's a temporary bug in FPC which should be rather reported to FPC devs).
-
-<p>We even package FPC trunk in our <a href="https://castle-engine.io/docker">Docker</a> as an option. Although by default we use latest stable FPC inside the Docker image, but you can activate FPC unstable using <code>source /usr/local/fpclazarus/bin/setup.sh trunk</code>. The <b>FPC trunk revision most tested is the one listed in <a href="https://github.com/castle-engine/castle-engine-cloud-builds-tools/blob/master/Dockerfile.no-cge#L149">the Docker build script</a></b>.
 
 <p>On Aaarch64 (important on mobile platforms): Note that if you use FPC 3.3.1, we assume that it is at least from SVN revision 48104. See <a href="https://trello.com/c/5ydB4MuA/113-enable-again-aarch64-optimizations">Trello ticket about Aarch64 optimizations</a>. The optimizations are disabled on Aarch64 with FPC &lt; 3.3.1. With FPC &gt;= 3.3.1, we assume it is from at least SVN revision 48104, and has Aaarch64 optimizer bugs fixed.
 
