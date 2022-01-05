@@ -15,6 +15,11 @@ pipeline {
         sh 'cd htdocs/code-samples/ && make'
       }
     }
+    stage('Test AsciiDoctor') {
+      steps {
+        sh 'cd htdocs/doc/ && make test'
+      }
+    }
   }
   post {
     regression {
