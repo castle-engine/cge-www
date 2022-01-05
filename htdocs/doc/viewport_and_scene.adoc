@@ -1,4 +1,4 @@
-# Viewport, scene, camera, navigation
+# Viewport with scenes, camera and navigation
 include::common.adoc[]
 
 ## Introduction
