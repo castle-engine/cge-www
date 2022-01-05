@@ -1805,6 +1805,13 @@ function castle_replace_asciidoctor_macros($contents)
     },
     $contents);
 
+  // raise error on the common misspelling of cgeref macro, with double colon
+  $contents = preg_replace_callback('/cgeref::([A-Za-z0-9_.]+)\[([^]]*)\]/',
+    function ($matches) {
+      throw new ErrorException('Error: cgeref with double colon: ' . $matches[0]);
+    },
+    $contents);
+
   $contents = preg_replace_callback('/cgeimg::([A-Za-z0-9_.]+)\[([^]]*)\]/',
     function ($matches) {
       $placement = $matches[1];
