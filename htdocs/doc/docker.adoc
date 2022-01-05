@@ -46,7 +46,7 @@ docker run --name my-cge-container --volume="${HOME}":/home/sharedhome/ -it kamb
 
 You can play around in the resulting shell, end by Ctrl + D (or `exit` and Enter).
 
-NOTE: we recommend using `cge-unstable` (CGE 7.0-alpha.snapshot), not `cge-stable` (6.4) right now. We work intensively on making this the new stable, see link:new_features_in_castle_game_engine_7.0[New Features in Castle Game Engine 7.0].
+NOTE: We recommend using container with `cge-unstable` (CGE version `7.0-alpha.snapshot`), not `cge-stable` (CGE version `7.0-alpha.1`) in most cases. As the engine grows fast lately -- for most users using latest CGE snapshot is better (and it is, in practice, very stable -- we test it a lot).
 
 Next time, enter this container like this:
 
