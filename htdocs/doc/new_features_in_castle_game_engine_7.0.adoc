@@ -11,7 +11,11 @@ This page documents Castle Game Engine 7.0 new features (since the last 6.4 rele
  ** Editor allows to visually design TCastleUserInterface (like TCastleButton, TCastleLabel) and TCastleTransform (like TCastleScene) hierarchies.
  ** Editor also manages (creates, compiles) Castle Game Engine projects, using our https://castle-engine.io/build_tool[build tool] underneath.
  ** Integrated with our tools (runs view3dscene, castle-view-image etc. when double-clicking), can preview data (models, images, sounds).
- ** Runs a configured FPC/Lazarus (in preferences).
+ ** Runs a configured compiler: FPC or Delphi.
+ ** Runs a configured Pascal code editor when double-clicking on Pascal files: Lazarus, Delphi, Visual Studio Code, custom (Emacs...).
+ ** https://castle-engine.io/wp/2021/07/11/font-classes-upgraded-and-available-in-cge-editor/[Fonts], https://castle-engine.io/manual_sound.php[sounds], and other non-visual components can be designed in the editor too.
+ ** https://castle-engine.io/wp/2021/05/22/easy-text-in-3d-and-primitives-box-sphere-plane-cone-cylinder-components-also-upcoming-editor-plans-for-new-components/[Primitives like box, sphere, 3D text in editor] are available, esp. useful for easily designing.
+
 * glTF 2.0 full support and realistic rendering upgrades.
  ** Including _Physically Based Rendering_ materials, unlit materials and textures. This is supported in both glTF and X3D formats. The X3D nodes follow new X3D 4.0 standard.
  ** Animation of transformations and skin.
@@ -27,11 +31,14 @@ This page documents Castle Game Engine 7.0 new features (since the last 6.4 rele
  ** Auto-detection of camera is by default off. This way you can reliably use `+Viewport.Camera.SetView(...)+` or `+Viewport.Camera.Position := ...+`, without worrying that some auto-detection will override them. Use `Viewport.AutoCamera := true` to explicitly request this auto-detection.
  ** Auto-detection of navigation is by default off. This way you can reliably set `+Viewport.Navigation := ...+` (or leave it `nil` deliberately) without worrying that some auto-detection will override it. Use `Viewport.AutoNavigation := true` to explicitly request this auto-detection.
  ** See https://castle-engine.io/wp/2019/12/29/last-refactor-before-cge-7-0-release-say-hello-to-tcastleviewport-and-tcastlewindowbase-say-goodbye-to-tcastlescenemanager-and-tcastlewindow/[news 1], https://castle-engine.io/wp/2019/11/19/huge-camera-and-navigation-improvements-thank-you-patrons/[news 2]. See https://github.com/castle-engine/castle-engine/blob/master/examples/3d_rendering_processing/view_3d_model_basic.lpr[view_3d_model_basic example].
+ ** cgeref:TUIState[] is used extensively, in almost all examples, naturally splits code into different states. Has new https://castle-engine.io/wp/2021/05/01/introducing-tuistate-designurl-designpreload-designedcomponent/[simpler API to load design], https://castle-engine.io/manual_state_events.php[docs], https://castle-engine.io/wp/2021/04/03/better-code-navigation-new-units-states-creation-new-ways-to-open-source-code-for-editing-better-integration-with-lazarus-project/[creating new state in editor].
 * https://castle-engine.io/wp/2020/06/29/third-person-navigation-with-avatar-component-in-castle-game-engine/[Third-Person Navigation (with Avatar) component]
 * https://castle-engine.io/wp/2020/07/19/asynchronous-non-blocking-downloading-using-tcastledownload-class-and-other-http-communication-features/[New TCastleDownload class, to make asynchronous (non-blocking) downloading, or even to implement full-featured asynchronous communication with a REST server]
 * 2D games:
  ** Load sprite sheets and images to TCastleScene. See https://castle-engine.io/wp/2020/11/28/new-comfortable-way-of-using-sprite-sheets-and-images-in-viewports/[news], link:sprite_sheets[Sprite Sheets], link:using_images[Images].
+ ** Sprite sheet editor inside CGE editor. See https://castle-engine.io/sprite_sheets , https://youtu.be/Eol0qzKP1Zw .
  ** https://castle-engine.io/wp/2020/08/18/weighted-mesh-skinned-mesh-animation-in-spine/[Weighted mesh (skinned mesh animation) in Spine]
+ ** https://castle-engine.io/wp/2021/12/18/integration-with-vampyre-imaging-library-new-example-image_display-to-test-image-loading-speed-and-format-support/[Integration with Vampyre Imaging Library]
 * Big user interface classes improvements.
  ** Easy functions to serialize / deserialize TCastleUserInterface and TCastleTransform hierarchies (see CastleComponentSerialize unit) as JSON files.
  ** https://castle-engine.io/manual_castle_settings.php[CastleSettings.xml file support] to easily define scaling and default font.
@@ -48,7 +55,11 @@ https://castle-engine.io/wp/2018/04/22/engine-improvements-user-interface-horizo
 * `castle-data:/` protocol (more advised than previous `ApplicationData` function). The "`data`" directory is documented https://castle-engine.io/manual_data_directory.php in a new manual page. It is also listed on a reworked manual page about networking, downloading and URLs https://castle-engine.io/manual_network.php.
 * `TCastleTransformDesign` to refer to a designed `xxx.castle-transform` file, which can be used similar to Unity prefabs,
 * `TCastleBehavior` to enhance `TCastleTransform` functionality by behaviors like `TCastleBillboard` or `TCastleSoundSource`. See `examples/creature_behaviors/`. See also link:castle_game_engine_for_unity_developers[Castle Game Engine for Unity developers].
+
+* https://castle-engine.io/wp/2021/11/19/presentation-about-castle-game-engine-from-delphicon-2021/[Delphi port]
+
 * Optimizations and profiling features:
+ ** https://castle-engine.io/wp/2021/12/03/inspect-your-game-hierarchy-and-logs-at-runtime-just-press-f12/[Inspector available under F8 in any debug game]
  ** Built-in simple profiler (TCastleProfiler, use through the Profiler singleton). See https://castle-engine.io/wp/2018/08/25/headlight-built-in-simple-profiler-more/
  ** Built-in frame profile (TCastleFrameProfiler)
  ** Integration with Nintendo profiler
@@ -75,6 +86,10 @@ https://castle-engine.io/wp/2018/04/22/engine-improvements-user-interface-horizo
  ** See https://castle-engine.io/wp/2019/06/22/many-animations-improvements-gltf-simultaneous-anims-view3dscene-panel-optimizations/
  ** Spine https://castle-engine.io/wp/2020/01/05/animating-by-mesh-deformation-in-spine-physics-spiral-of-death-avoidance-examples-and-manual-upgrades/[mesh deformation] animation
 * Notable new examples:
+ ** https://github.com/castle-engine/castle-engine/tree/master/examples/[platformer] - complete platformer game, also https://castle-engine.itch.io/platformer[released on itch.io]
+ ** https://github.com/castle-engine/castle-engine/tree/master/examples/images_videos/image_display[image_display] - demo of image formats reading capabilities and speed
+ ** https://github.com/castle-engine/castle-engine/tree/master/examples/curves/use_designed_curve[use_designed_curve] - demo of following along a curve
+ ** https://github.com/castle-engine/castle-engine/tree/master/examples/3d_rendering_processing/shader_override[shader_override] - overriding shaders with your own
  ** tiled/strategy_game_demo/ - Complete working strategy game, with maps designed using Tiled, working equally well with hexagonal/orthogonal/isometric maps (thanks to new Tiled API), user interface designed using Castle Game Engine Editor and TUIState. See also https://castle-engine.io/wp/2019/01/06/strategy-game-demo-using-cge-and-tiled/ , https://castle-engine.io/wp/2018/12/28/tiled-maps-improvements/ .
  ** tiled/map_viewer/ - Simple viewer for Tiled maps. You can pan and zoom maps, and load any Tiled map.
  ** headlight_test/ - Shows new `Viewport.Items.UseHeadlight` property.
