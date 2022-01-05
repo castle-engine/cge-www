@@ -63,7 +63,7 @@ We support additional macros within AsciiDoctor:
 
     - GNU `make`,
 
-    - and make sure PHP has permissions to write within proper images/ subdirs: `cd htdocs/images/ && chmod a+rwX thumb_size/ thumb_const_height_size/ teaser_size/ gallery_size/`.
+    - and make sure PHP has permissions to write within proper images/ subdirs: `cd htdocs/images/ && chmod -R a+rwX thumb_size/ thumb_const_height_size/ teaser_size/ gallery_size/`.
 
   The idea is that (at development) you
 
