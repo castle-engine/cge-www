@@ -22,16 +22,18 @@ RewriteRule . doc.php?page=%{REQUEST_URI} [L]
 
 # redirects ------------------------------------------------------------------
 
-# Redirect latest.zip to latest.zip.php (interpreted by PHP to redirect
-# further, to a known latest version).
-# See https://httpd.apache.org/docs/current/mod/mod_alias.html#redirect
-Redirect "/latest.zip" "/latest.zip.php"
-
-# old things, redirect to closest new things
+# Old things, redirect to closest new things
 Redirect "/miscella/win32_dlls.zip" "https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/external_libraries"
 Redirect "/miscella/forest.tar.gz" "https://github.com/castle-engine/demo-models/tree/master/lights_materials/vrml_1/forest-fog"
 Redirect "/abbreviated_x3d_specs_for_users.chm" "https://castle-engine.io/vrml_x3d.php"
 Redirect "/kambiscript_language.chm" "https://castle-engine.io/castle_script.php"
+Redirect "/manual_install_run_first.php" "/install"
+Redirect "/tutorial_install.php" "/install"
+
+# Redirect latest.zip to latest.zip.php (interpreted by PHP to redirect
+# further, to a known latest version).
+# See https://httpd.apache.org/docs/current/mod/mod_alias.html#redirect
+Redirect "/latest.zip" "/latest.zip.php"
 
 # Redirect kambi-php-lib, to keep PasDoc-generated docs accessing this working
 # (in CGE release too, before we fixed https://github.com/castle-engine/castle-engine/issues/59 )
