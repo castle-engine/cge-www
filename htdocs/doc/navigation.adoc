@@ -13,6 +13,7 @@ You have complete freedom how do you handle the input in your games. You can
 
 See the link:viewport_3d[Tutorial: Designing a 3D world] and link:viewport_3d[Tutorial: Designing a 2D world] to see the typical workflow how do you manipulate the navigation using the editor.
 
+////
 TODO: AsciiDoctor:
 
 <p>To can also control the <i>navigation</i> ("how does the camera change based on input"):
@@ -82,3 +83,4 @@ TODO: AsciiDoctor:
     It's usually better to avoid these methods in more complex applications.
 -->
 </ol>
+////

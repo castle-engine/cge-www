@@ -1,6 +1,7 @@
 # Tutorial: Designing a 2D world
 include::common.adoc[]
 
+////
 ### Designing a 2D world using viewport and scenes
 
   Create a viewport, using "(Configured for 2D)", or use "Viewport -> Setup 2D" on any viewport. This is just a shortcut to
@@ -34,3 +35,4 @@ include::common.adoc[]
   DEMO
 
   BROWSE KENNEY 3D STUFF
+////

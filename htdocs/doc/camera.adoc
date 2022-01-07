@@ -14,6 +14,7 @@ Camera also defines _projection_:
 
 See the link:viewport_3d[Tutorial: Designing a 3D world] and link:viewport_3d[Tutorial: Designing a 2D world] to see the typical workflow how do you manipulate the camera using the editor.
 
+////
 TODO: AsciiDoctor:
 
 <p>To control the initial camera view:
@@ -73,3 +74,4 @@ TODO: AsciiDoctor:
     or you didn't even set <code>MainScene</code>)
     then the camera will be auto-detected to look at the world bounding box.
 </ol>
+////

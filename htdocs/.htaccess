@@ -29,6 +29,8 @@ Redirect "/abbreviated_x3d_specs_for_users.chm" "https://castle-engine.io/vrml_x
 Redirect "/kambiscript_language.chm" "https://castle-engine.io/castle_script.php"
 Redirect "/manual_install_run_first.php" "/install"
 Redirect "/tutorial_install.php" "/install"
+Redirect "/manual_load_3d.php" "/viewport_and_scenes"
+Redirect "/manual_scene.php" "/viewport_and_scenes"
 
 # Redirect latest.zip to latest.zip.php (interpreted by PHP to redirect
 # further, to a known latest version).

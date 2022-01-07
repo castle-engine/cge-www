@@ -278,8 +278,6 @@ $castle_sitemap = array(
               'doc/multiple_viewports_to_display_one_world' => array('title' => 'Multiple viewports to display one world'),
             ),
           ),
-          'manual_load_3d' => array('title' => 'Loading, displaying a scene'),
-          'manual_scene' => array('title' => 'Transform, animate, duplicate, build a scene'),
           'manual_cross_platform' => array('title' => 'Cross-platform (desktop, mobile, consoles...) projects',
             'sub' => array(
               'manual_data_directory' => array('title' => 'Data directory'),
