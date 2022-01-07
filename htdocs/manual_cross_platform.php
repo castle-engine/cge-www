@@ -4,8 +4,9 @@ castle_header('Cross-platform (desktop, mobile, consoles...) projects');
 
 $toc = new TableOfContents(
   array(
-    new TocItem('Initializing a cross-platform game', 'initialize'),
-    new TocItem('Optionally create a standalone program file', 'program'),
+    new TocItem('Introduction', 'introduction'),
+    new TocItem('Standard GameInitialize unit', 'initialize_unit'),
+    new TocItem('Optional standalone program file', 'program'),
     new TocItem('Compiling and debugging on mobile platforms', 'compiling_debuggng'),
     new TocItem('Differences in input handling between mobile (touch) and desktop (mouse) platforms', 'input'),
     new TocItem('Things to avoid in cross-platform games', 'avoid'),
@@ -17,37 +18,76 @@ echo castle_thumbs(array(
 ));
 ?>
 
-<p><i>Castle Game Engine</i> supports many platforms:
-desktop (Windows, Linux, Mac OS X, FreeBSD, Raspberry Pi...),
-mobile (<a href="android">Android</a>, <a href="ios">iOS</a>), <a href="nintendo_switch">Nintendo Switch</a>.
-The engine hides as much as possible differences between these platforms,
-exposing a nice cross-platform API.
-
-<!--
-Still, there are some
-facts you have to know when developing a game for a mobile platform
-(or developing a game both for mobile and standalone platforms).
--->
-<!--
-Now that you've seen how to create a simple game, with level and player,
-it seems a good moment to talk about them.
--->
-
 <?php echo $toc->html_toc(); ?>
 
 <?php echo $toc->html_section(); ?>
 
-<p>To create a game that works on all platforms, create a new project using
-the <a href="manual_editor.php">CGE editor</a>.
-You can choose any  <i>"New Project"</i> template (choose "Empty" to have a simplest
-starting point).
+<p><i>Castle Game Engine</i> supports many platforms:
 
-<p>This creates a number of files, in particular a unit <code>GameInitialize</code> (in file
-<code>code/gameinitialize.pas</code>) that performs game initialization in a cross-platform way.
+<ul>
+  <li><p>desktop (Windows, Linux, Mac OS X, FreeBSD, Raspberry Pi...),
+  <li><p>mobile (<a href="android">Android</a>, <a href="ios">iOS</a>),
+  <li><p><a href="nintendo_switch">Nintendo Switch</a>.
+</ul>
 
-<p>This is a short implementation of a <b>cross-platform "Hello world!" application</b>:</p>
+<p>The engine hides as much as possible differences between these platforms,
+exposing a nice cross-platform API.
 
-<?php echo pascal_highlight_file('code-samples/gameinitialize.pas'); ?>
+<?php echo $toc->html_section(); ?>
+
+<p>New projects created using the <a href="manual_editor.php">CGE editor</a>
+are automatically cross-platform. All the  <i>"New Project"</i> templates (including <i>"Empty"</i>,
+the simplest) follow the same approach.
+
+<p>The starting point of every cross-platform project is a unit that initializes <code>Application.MainWindow</code>.
+By default, this unit is called <code>GameInitialize</code> and it is present in your project
+in <code>code/gameinitialize.pas</code>.
+This unit looks like this:
+
+<?php echo pascal_highlight('{ Game initialization and logic. }
+unit GameInitialize;
+
+interface
+
+implementation
+
+uses SysUtils,
+  CastleWindow, CastleLog, CastleUIState
+  GameStateMain;
+
+var
+  Window: TCastleWindowBase;
+
+{ One-time initialization of resources. }
+procedure ApplicationInitialize;
+begin
+  { Adjust container settings for a scalable UI (adjusts to any window size in a smart way). }
+  Window.Container.LoadSettings(\'castle-data:/CastleSettings.xml\');
+
+  { Create TStateMain that will handle "main" state of the game.
+    Larger games may use multiple states,
+    e.g. TStateMainMenu ("main menu state"),
+    TStatePlay ("playing the game state"),
+    TStateCredits ("showing the credits state") etc. }
+  State := TStateMain.Create(Application);
+  TUIState.Current := StateMain;
+end;
+
+initialization
+  { Initialize Application.OnInitialize. }
+  Application.OnInitialize := @ApplicationInitialize;
+
+  { Create and assign Application.MainWindow. }
+  Window := TCastleWindowBase.Create(Application);
+  Window.ParseParameters; // allows to control window size / fullscreen on the command-line
+  Application.MainWindow := Window;
+
+  { You should not need to do *anything* more in the unit "initialization" section.
+    Most of your game initialization should happen inside ApplicationInitialize.
+    In particular, it is not allowed to read files before ApplicationInitialize
+    is called (in case of non-desktop platforms, some necessary things
+    may not be prepared yet). }
+end.'); ?>
 
 <p>The <code>initialization</code> section at the bottom of the <code>GameInitialize</code>
 unit should only assign a callback to <?php api_link('Application.OnInitialize', 'CastleWindow.TCastleApplication.html#OnInitialize'); ?>,
@@ -63,89 +103,52 @@ It should be a <?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBa
 instance (it may be a descendant of this class, of course).
 -->
 
-<p>This <code>GameInitialize</code> unit can be included by the main program or library
-(the <code>.lpr</code> file for Lazarus, <code>.dpr</code> file for Delphi).
-
-<p>The <a href="https://castle-engine.io/build_tool">build tool</a>
-will automatically generate a main program code using this unit
-and will mention it in the
-<a href="https://castle-engine.io/project_manifest">CastleEngineManifest.xml</a>.
-
-You can also manually create a
-<a href="https://castle-engine.io/project_manifest">CastleEngineManifest.xml</a> file to compile your project using the <a href="https://castle-engine.io/build_tool">build tool</a>. It can be as simple as this:
-
-<?php echo xml_full_highlight(
-'<?xml version="1.0" encoding="utf-8"?>
-<project name="my-cool-game" game_units="GameInitialize">
-</project>'); ?>
-
-<p>Compile and run it on your desktop using this on the command-line:
-
-<pre>castle-engine compile
-castle-engine run</pre>
-
-<p>If you have installed <a href="https://castle-engine.io/android">Android SDK, NDK and FPC cross-compiler for Android</a> then you can also build and run for Android:
-
-<pre>castle-engine package --target=android
-castle-engine install --target=android
-castle-engine run --target=android</pre>
-
-<p>If you have installed <a href="https://castle-engine.io/ios">FPC cross-compiler for iOS</a> then you can also build for iOS:
-
-<pre>castle-engine package --target=iOS
-# Now open in XCode the project inside
-# castle-engine-output/ios/xcode_project/
-# to compile and run on device or simulator.</pre>
+<p>This <code>GameInitialize</code> unit can be included by the main program / library file.
+But usually you should not maintain yourself this main program / library file.
+The <a href="https://castle-engine.io/build_tool">build tool</a>
+will automatically generate the main program / library using the <code>GameInitialize</code> unit,
+as necessary for compilation on a particular platform.
 
 <?php echo $toc->html_section(); ?>
 
-<p>This is <b>not necessary</b>, but optionally,
-to be able to run and debug the project from Lazarus,
-you can create a desktop program file like <code>my_fantastic_game_standalone.lpr</code>
-to run your game from Lazarus.
+<p>Optionally, to be able to run and debug the project from Lazarus or Delphi,
+we need a program file like <code>xxx_standalone.dpr</code>.
 
-<p>It may be as simple as this:
-
-<?php echo pascal_highlight(
-'{$mode objfpc}{$H+}
-{$apptype GUI}
-program my_fantastic_game_standalone;
-uses CastleWindow, GameInitialize;
-begin
-  Application.MainWindow.OpenAndRun;
-end.'); ?>
-
-<p>You can even generate a simple program skeleton (<code>lpr</code> and <code>lpi</code> files)
-using
+<p>You should not create or maintain such file manually.
+Instead, it should be automatically generated for new projects.
+You can also always regenerate it using editor menu <i>"Code -&gt; Regenerate Project (overwrites LPI, DPR, DPROJ, CastleAutoGenerated)"</i>
+or using command-line:
 
 <pre>castle-engine generate-program</pre>
 
-<p>You should not customize the desktop <code>xxx_standalone.lpr</code>
-file! While it will work in the short run, it would prevent from regenerating this file by calling
-<code>castle-engine generate-program</code> again. It's better to leave it auto-generated,
-and place your necessary initialization (even things like commmand-like parsing)
+<p>You should not customize the generated <code>xxx_standalone.dpr</code>
+file. While such customizations would work in the short term,
+they would prevent from regenerating this file. It's better to leave it auto-generated,
+and place your necessary initialization (even things like command-like parsing)
 in your units, like <code>gameinitialize.pas</code>.
 
 <p>To make our build tool use your customized program file (instead of the auto-generated
 one), be sure to set <code>standalone_source</code> in the <code>CastleEngineManifest.xml</code>.
+It is already set OK in new projects created using our editor.
+
+<!--
 
 <p>Note that <b>you can edit and run the desktop version using <i>Lazarus</i></b>,
 to benefit from Lazarus editor, code tools, integrated debugger...
 Using our build tool does not prevent using Lazarus at all!
 Just open the created LPI file.
 
-<!--
 <ul>
   <li>If you did not create the <code>lpi</code> file using
     <code>castle-engine generate-program</code>, you can create it manually:
     Simply create in Lazarus a new project using the <i>New -&gt; Project -&gt; Simple Program</i>
-    option. Or (if you already have the <code>xxx.lpr</code> file) create
+    option. Or (if you already have the <code>xxx.dpr</code> file) create
     the project using <i>Project -&gt; New Project From File...</i>.
   <li>Add to the project requirements packages <code>castle_base</code> and <code>castle_window</code>
     (from <i>Project -&gt; Project Inspector</i>, you want to <i>Add</i> a <i>New Requirement</i>).
   <li>Save the project as <code>my_fantastic_game_standalone.lpi</code>.
   <li>...and develop and run as usual.
-  <li>Edit the main <code>my_fantastic_game_standalone.lpr</code>
+  <li>Edit the main <code>my_fantastic_game_standalone.dpr</code>
     file using the <i>Project -&gt; View Project Source</i> option in Lazarus.
 </ul>
 -->
@@ -156,24 +159,26 @@ Just open the created LPI file.
 some special tools. Everything is explained on these platform-specific pages:
 
 <ul>
-  <li><a href="https://castle-engine.io/android">Developing for Android</a>
-  <li><a href="https://castle-engine.io/ios">Developing for iOS (iPhone, iPad)</a>
-</ul>
+  <li><p><a href="https://castle-engine.io/android">Developing for Android</a>.
 
-<p>Compiling and packaging cross-platform games is greatly
-simplified if you use our <a href="https://castle-engine.io/build_tool">build tool</a>.
-For Android and iOS, our build tool nicely hides from you
-a lot of complexity with creating a platform-specific application.
-<ul>
-  <li>For Android, you get a ready working <code>xxx.apk</code> file.
-  <li>For iOS, you get a ready project that can be installed using XCode. Or, with some additional options, you can get an IPA file or upload the application straight to the AppStore (see <a href="https://castle-engine.io/ios">the docs</a>).
-</ul>
+    <p>Once you have installed <a href="https://castle-engine.io/android">Android SDK, NDK and FPC cross-compiler for Android</a> then you can build and run for Android:
 
-<!--p>Rendering on mobile platforms uses OpenGLES. Our OpenGLES renderer
-can handle almost everything the same as a desktop OpenGL renderer,
-but <a href="https://castle-engine.io/mobile_todos">there
-are some things not implemented yet in the OpenGLES version</a>.
--->
+    <pre>castle-engine package --target=android # creates APK
+castle-engine install --target=android # installs on Android device connected through USB
+castle-engine run --target=android # runs on Android device</pre>
+
+    <p>You can also create AAB file for Android, to upload to Google Play.
+    See the <a href="build_tool">build tool</a> docs.
+
+  <li><p><a href="https://castle-engine.io/ios">Developing for iOS (iPhone, iPad)</a>.
+
+    <p>If you have installed <a href="https://castle-engine.io/ios">FPC cross-compiler for iOS</a> then you can also build for iOS:
+
+    <pre>castle-engine package --target=iOS # creates an Xcode project to run on device or simulator</pre>
+
+    <p>You can also create IPA file for iOS.
+    See the <a href="build_tool">build tool</a> and <a href="https://castle-engine.io/ios">iOS</a> docs.
+</ul>
 
 <?php echo $toc->html_section(); ?>
 
@@ -207,7 +212,7 @@ in the corners.
 
     <p>These methods should never be explicitly called on non-desktop platforms.
     Even on the desktop platforms, they should only be called from the main program file
-    (<code>xxx_standalone.lpr</code>), which may be auto-generated by the build tool.
+    (<code>xxx_standalone.dpr</code>), which may be auto-generated by the build tool.
 
   <li><p>Do not call <code>Application.Terminate</code> on platforms
     where users don't expect it. Use
@@ -228,7 +233,7 @@ in the corners.
 
     <p>Note that the engine still supports, and will always support,
     multiple-window programs.
-    See e.g.<code>castle_game_engine/examples/window/multi_window.lpr</code> example.
+    See e.g.<code>castle_game_engine/examples/window/multi_window.dpr</code> example.
     However, it only works on normal desktop systems.
     It is not possible to do portably (to seamlessly work on mobile and console systems)
     since other platforms don't have a concept of "window" that works like on desktops.
