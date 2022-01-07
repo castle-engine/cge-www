@@ -1,0 +1,44 @@
+# Viewport with scenes, camera, navigation: overview
+include::common.adoc[]
+
+cgeimg::float[viewport_3d_nice_view.png|Viewport with 3D design]
+
+## Introduction
+
+### Viewport and scenes
+
+The most important _Castle Game Engine_ class to display 3D and 2D assets is cgeref:TCastleScene[]. You simply set the cgeref:TCastleSceneCore.URL[TCastleScene.URL] property to load an asset, like link:glTF[gltf] or link:sprite_sheets[sprite sheet] file.
+
+You have to insert instances of scenes into cgeref:TCastleViewport[] to make them actually visible. cgeref:TCastleViewport[] represents a 2D viewport on a screen, within this viewport your world (3D or 2D) is displayed. Viewport is a _user interface_ control, which means that it descends from cgeref:TCastleUserInterface[] and it shares the same feature we've seen in the link:manual_state_events.php[previous chapter about states and UI].
+
+The scenes can be transformed (moved, rotated, scaled) within the viewport. You can arrange them in transformation groups using cgeref:TCastleTransform[]. cgeref:TCastleTransform[] is an ancestor of cgeref:TCastleScene[] that doesn't display anything by itself, but it transforms all the children.
+
+### Camera
+
+_Camera_ determines what part of the world (3D or 2D) is visible in the viewport. Ready camera instance is available as cgeref:TCastleViewport.Camera[] property. You can configure camera easily by changing its properties e.g. cgeref:TCastleCamera.Position[MyViewport.Camera.Position := Vector3(1, 2, 3)].
+
+### Navigation
+
+_Navigation_ is our term to describe a class handling user input to move the camera. Our engine provides some ready navigation classes, for example cgeref:TCastleWalkNavigation[] implementing a typical navigation in FPS games. But you don't have to use our ready navigation classes, you can easily just move the camera with your own code.
+
+## Using the viewport in Castle Game Engine editor
+
+Now that you know the basic terminology and classes, let's see how to actually use them.
+
+Next chapters will start by describing how to use them in our _visual editor_, and later we'll show examples how to use them from Pascal. Remember that everything you do inside the editor can be done by Pascal code too. In particular, all the classes and their properties that you use within the editor are really the same classes you use from Pascal code. So whatever you can change from editor -- you can also later change during the game, from code. And all the class instances that you create within the editor (like cgeref:TCastleScene[]) -- can also be created (or destroyed) in any order during the game execution.
+
+### Viewport.Items, TCastleTransform descendants
+
+cgeref:TCastleViewport[] has a property cgeref:TCastleViewport.Items[] that holds everything that the viewport displays.
+
+You can add there any classes descending from cgeref:TCastleTransform[]. This includes:
+
+- Just the cgeref:TCastleTransform[] instance. While it doesn't display anything, but it transforms (move, rotates, scales) the children.
+
+- cgeref:TCastleScene[] instance. As said above, this is your important class to display 3D and 2D assets. It can render, animate, perform collisions etc.
+
+- cgeref:TCastleText[] instance allows to display a text, possibly transformed in 3D. The font is also configurable, using cgeref:TCastleText.CustomFont[]. In many ways, the cgeref:TCastleText[] an analogy to cgeref:TCastleLabel[]. Use cgeref:TCastleLabel[] for user interface, use cgeref:TCastleText[] when the text is conceptually part of the game world, may be in 3D, and is attached to some place in your game world.
+
+- cgeref:TCastlePlane[], cgeref:TCastleBox[], cgeref:TCastleSphere[], cgeref:TCastleCylinder[], cgeref:TCastleCone[] are easy 3D "primitives" that you can use to design your world. All of them have a configurable size, material, texture and other basics. While you could create such simple objects in any 3D authoring software (and use them through cgeref:TCastleScene[] as well), our primitives are often very useful for quickly prototyping your game world.
+
+TODO: add subchapters for everything else in current manual, in particular how to use scenes from code.

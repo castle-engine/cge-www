@@ -1,0 +1,36 @@
+# Tutorial: Designing a 2D world
+include::common.adoc[]
+
+### Designing a 2D world using viewport and scenes
+
+  Create a viewport, using "(Configured for 2D)", or use "Viewport -> Setup 2D" on any viewport. This is just a shortcut to
+
+  - set camera orthographic projection (in orthographic projection, the distance to the object doesn't change it's size; in constrast, in the default perspective projection, the objects further away are smaller)
+
+  - xxx (see Setup2D docs)
+
+  - Note that you don't really need to use this, to display 2D things. You can as well change Camera.ProjectionType and adjust other parameters yourself. It will always work equally well. We don't really have any notion in CGE "this is a 2D viewport" or "this is a 3D viewport", we don't have such property, because we don't need it. Deep down, both 2D and 3D are the same things, just with a different world set up, and a different camera being used.
+
+  Add scene.
+  We could use Camera -> View All...
+    but instead we will move things.
+  Add some navigation, position camera, save navigatio by "Initial := Current".
+  Run.
+
+  Inside the viewport, you can show a certain "field of view" of the world. By default, for orthographic projection, the viewport size (after UI scaling) just determines this. So e.g. you can set TCastleViewport Width to 1600, Height to 900, and inside you will see the world that spans 1600 x 900. You configure this by Viewport.Camera.Orthographic.Width/Height. E.g. you can set width to 9 (the height will adjust automatically) and then a TCastleScene that is 9 units tall will fill the viewport height exactly.
+
+  DEMO
+
+  By default, in orthographic projection, the camera position determines what is visible at the left-bottom viewport corner. So when camera position is (0,0) the left-bottom viewport corner will show the things at position (0,0) in your world. Sometimes this is what you want, sometimes this is not comfortable. E.g. if you add a TCastleScene with an image or a sprite sheet, by default their pivot is in the middle of the asset. So you will only see a part of your asset loaded, in the left-bottom viewport corner.
+
+  1. One solution is just move it, by adjusting Translation. To make the image of size 600x300 visible fully, you would move it by 300x150.
+
+  DEMO
+
+  2. Another solution is to move the camera. You can adjust Viewport.Camera.Position. But how much you need to move it, depends on your current viewport size and aspect ratio.
+
+  3. The simplest way, that doesn't require you to "hardcode" anywhere the image size, is to set Viewport.Camera.Orthographic.Origin to (0.5,0.5). This means that the *middle* of the viewport will show the things at the (0,0) translation in your world, when the camera position is also (0,0). Effectvely, it moves your camera automatically such that things placed at the (0,0) position in the world are exactly in the middle of the viewport, regardless of the viewport size.
+
+  DEMO
+
+  BROWSE KENNEY 3D STUFF

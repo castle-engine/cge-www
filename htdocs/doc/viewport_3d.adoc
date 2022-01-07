@@ -1,0 +1,112 @@
+# Tutorial: Designing a 3D world
+include::common.adoc[]
+
+## Introduction
+
+In this chaper we show how you can design 3D world using _Castle Game Engine_ editor. We assume you have already read the link:viewport_and_scene[overview of the viewport and scenes].
+
+## Create empty project, add a viewport
+
+. Run _Castle Game Engine editor_, create a new project using the _Empty_ template.
++
+cgeimg::block[viewport_3d_editor_project.png|Create new project]
+
+. Open the `data/gamestatemain.castle-user-interface` design using the _Files_ panel at the bottom of the editor. Enter `data` subdirectory and double-click on `gamestatemain.castle-user-interface`.
++
+cgeimg::block[viewport_3d_design.png|Open the design]
+
+. Add a cgeref:TCastleViewport[]. Resize it as you like, or just set cgeref:TCastleUserInterface.FullSize[FullSize] to `true` to have it will the entire window.
++
+You also want to move it in the hierarchy, such that it is _underneath_ the `LabelFps` component. This way you will see FPS counter over the viewport.
++
+cgeimg::block[viewport_3d_add_viewport.png|Add viewport]
+
+## Add a scene showing the 3D car, adjust camera, lights and navigation
+
+. Add a cgeref:TCastleScene[] to cgeref:TCastleViewport.Items[]. It is easiest to do by right-clicking on the `Items` in the editor hierarchy (panel on the left side), and choosing _Add Transform -> Scene (TCastleScene)_ from the menu that appears.
++
+cgeimg::block[viewport_3d_add_scene.png|Add scene,viewport_3d_scene_added.png|After adding a scene]
+
+. Now you need some 3D assets to actually play with.
++
+We advise at this point that you take the sample 3D asset of a car and road we have in our examples. Open in your file manager the `examples/3d_rendering_processing/cars_demo/data` subdirectory of your _Castle Game Engine_ sources. Select there the files:
++
+--
+** `car.bin`
+** `car.gltf`
+** `road.bin`
+** `road.gltf`
+** Whole `textures/` subdirectory.
+** Optionally, select also `car.blend` and `road.blend`.  _Castle Game Engine_ doesn't read `.blend` files, but you can modify them in link:creating_data_blender.php[Blender] and export to glTF, to play with what you can do in 3D.
+--
++
+cgeimg::block[viewport_3d_select_data.png|Files to copy]
++
+Copy these files into your new project, into the `data` subdirectory. It is easiest to open it by right-clicking on `data` in CGE editor, and choosing _Open In File Manager_ from the context menu that appears.
++
+If you already have some 3D assets (see link:creating_data_model_formats.php[3D assets formats we support]) you can of course use at this point already.
+
+. Try the _preview_ feature of the editor at this point. Just select (click once) the `car.gltf` file. If you copied everything correctly (including `car.bin` and `textures/`), it will display the 3D car model in a preview window that appears in the bottom-right corner.
++
+cgeimg::block[viewport_3d_preview.png|Preview]
+
+. Set your `Scene1.URL` property to the `car.gltf` model in your data. To do this, select `Scene1` in the _hierarchy_ (left panel of the editor), then look for `URL` in the _object inspector_ (right panel of the editor), and click on the small button with 3 dots `...` in the edit field next to the `URL`. This will open a normal dialog window, where you should select the `car.gltf` in your project's data.
++
+Once you accepted this, note that the `Scene1.URL` changed the `castle-data:/car.gltf`. In general, this is an URL of the file. It uses a special `castle-data` protocol to indicate that the file is in the project's special link:manual_data_directory.php[data directory].
++
+Note that instead of clicking on the button with 3 dots, you could have also pasted the URL `castle-data:/car.gltf` in the edit field. It's a simple text field, you can edit it like any other text field if you need to, and it will reload the loaded model. You can set the `URL` to empty always to unload the model.
++
+cgeimg::block[viewport_3d_added_car.png|Added car]
+
+. While the car loaded, your camera likely doesn't show anything pretty. That is because the default camera view doesn't look at the car in a nice way.
++
+The default camera stands at the `0 0 0` position, and looks in the -Z direction. You can check it out looking at `Viewport1.Camera.InitialPosition` and `Viewport1.Camera.InitialDirection` values in the object inspector (you will probably need to _expand_ the `Viewport1.Camera` properties). And the car is a model positioned over the `0 0 0` point. So the camera looks underneath the car.
++
+cgeimg::block[viewport_3d_camera_bad.png|Initial camera position and direction]
++
+Fix it now using the _Camera Current := View All_ command from the _"hamburger"_ menu of the viewport on top. This menu is available whenever you have selected a cgeref:TCastleViewport[] or any transformation within the viewport.
++
+cgeimg::block[viewport_3d_viewport_menu.png|Menu with camera commands]
++
+Next use the menu _Camera Initial (stored in the design file) := Current_ command, so that the game would also start with the new view. You can look at `Viewport1.Camera.InitialPosition` and `Viewport1.Camera.InitialDirection` values again, to see that at least the position have changed.
++
+cgeimg::block[viewport_3d_camera_better.png|Better camera position]
+
+. That is a better view (at least the whole car is visible) but the car is still completely black. That is because we don't have any lights in the viewport yet. Solve it by turning on the simple _"headlight"_ (light that shines from the camera). To do this, set `Viewport1.Items.UseHeadlight` value to `hlOn`.
++
+In larger applications, you will probably add more lights, designed at specific positions in the 3D world. To do this, right now you have to design the lights in a 3D authoring application (like link:creating_data_blender.php[Blender]) and export them to glTF. Set the scene with lights as `Items.MainScene` to make the lights shine on everything. In a very near future (beginning of 2022), we want to add lights editing directly to the editor, so it will be easier. For now, for this demo, the _"headlight"_ may be enough.
++
+cgeimg::block[viewport_3d_headlight.png|After turning on the headlight]
+
+. While the car is now visible, the default camera view (set by the _Camera Current := View All_ command) isn't very interesting. to improve it, you shoud use some _navigation_ within the editor, and set more interesting camera. To do this, use _Change Navigation -> Examine (TCastleExamineNavigation)_ from the viewport hamburger menu. It will add an instance of `TCastleExamineNavigation` to your design, and automatically make it active for this viewport.
++
+cgeimg::block[viewport_3d_change_navigation.png|Change Navigation]
++
+Now switch to the editor mode _"Use components as a normal user"_ to use the examine navigation, just as normal user of your application would be able to use `TCastleExamineNavigation`.
++
+cgeimg::block[viewport_3d_change_mode.png|Change Mode]
++
+--
+Now you can:
+
+** Drag with left mouse button to rotate.
+** Use mouse scroll to zoom in/out. Or drag with right mouse button. Or drag with left mouse button with the `Ctrl` key pressed.
+** Drag with the middle mouse button to move. Or drag with left mouse button with the `Shift` key pressed.
+--
++
+Use these features to set some nice view that shows the entire car.
++
+cgeimg::block[viewport_3d_nice_view.png|Nice view]
++
+Once you're done use the _Camera Initial (stored in the design file) := Current_ command again, to store the new view (camera position, direction, up) to be used as starting camera view during the game.
+
+. Decide if (and how) should the user be able to navigate during the game.
+** If you want, you can just leave the `TCastleExamineNavigation` instance (called `ExamineNavigation1` in your hierarchy) existing in your design, then the user will be able to change camera just like you did.
+** Or you can change the navigation to something else, using the _Change Navigation -> ..._ menu commands.
+** In particular, you can set the navigation to _None_ to disallow user from making any changes to the camera. This is reasonable, if you want to have a constant camera view, or implement the navigation yourself (for example moving/rotating the camera by your own code in `TStatePlay.Update`).
+
+## Run the game
+
+Run the game at this point! Just press F9 in the editor.
+
+cgeimg::block[viewport_3d_run.png|Game running]

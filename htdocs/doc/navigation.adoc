@@ -1,0 +1,16 @@
+# Navigation
+include::common.adoc[]
+
+_Navigation_ is an instance of cgeref:TCastleNavigation[] that can optionally be assigned to cgeref:TCastleViewport.Navigation[]. As cgeref:TCastleNavigation[] class is abstract, you actually have to use some descendant of it, like cgeref:TCastleWalkNavigation[], cgeref:TCastleExamineNavigation[], cgeref:TCastle2DNavigation[], cgeref:TCastleThirdPersonNavigation[].
+
+You have complete freedom how do you handle the input in your games. You can
+
+* use one of our ready navigation classes
+
+* or implement your own descendant of cgeref:TCastleNavigation[]
+
+* or leave cgeref:TCastleViewport.Navigation[] as `nil` and handle the navigation elsewhere. For example, move the camera in response to user input in your `TStatePlay.Update`.
+
+See the link:viewport_3d[Tutorial: Designing a 3D world] and link:viewport_3d[Tutorial: Designing a 2D world] to see the typical workflow how do you manipulate the navigation using the editor.
+
+TODO: here navigation description from manual_load_3d.php

@@ -1,0 +1,17 @@
+# Camera
+include::common.adoc[]
+
+Camera determines what do you see in the viewport. It defines 3 vectors:
+
+. cgeref:TCastleCamera.Position[] - observer position.
+. cgeref:TCastleCamera.Direction[] - direction in which you look.
+. cgeref:TCastleCamera.Up[] - together with _direction_, the _up_ vector determines the camera _orientation_.
+
+Camera also defines _projection_:
+
+* cgeref:TCastleCamera.ProjectionType[] - determines _perspective_ or _orthographic_ projection.
+* cgeref:TCastleCamera.Perspective[], cgeref:TCastleCamera.Orthographic[] - these subcomponents allow to configure projection details.
+
+See the link:viewport_3d[Tutorial: Designing a 3D world] and link:viewport_3d[Tutorial: Designing a 2D world] to see the typical workflow how do you manipulate the camera using the editor.
+
+TODO: here camera description from manual_load_3d.php
