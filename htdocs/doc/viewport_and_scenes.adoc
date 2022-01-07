@@ -40,5 +40,3 @@ You can add there any classes descending from cgeref:TCastleTransform[]. This in
 - cgeref:TCastleText[] instance allows to display a text, possibly transformed in 3D. The font is also configurable, using cgeref:TCastleText.CustomFont[]. In many ways, the cgeref:TCastleText[] an analogy to cgeref:TCastleLabel[]. Use cgeref:TCastleLabel[] for user interface, use cgeref:TCastleText[] when the text is conceptually part of the game world, may be in 3D, and is attached to some place in your game world.
 
 - cgeref:TCastlePlane[], cgeref:TCastleBox[], cgeref:TCastleSphere[], cgeref:TCastleCylinder[], cgeref:TCastleCone[] are easy 3D "primitives" that you can use to design your world. All of them have a configurable size, material, texture and other basics. While you could create such simple objects in any 3D authoring software (and use them through cgeref:TCastleScene[] as well), our primitives are often very useful for quickly prototyping your game world.
-
-TODO: add subchapters for everything else in current manual, in particular how to use scenes from code.

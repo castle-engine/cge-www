@@ -275,6 +275,7 @@ $castle_sitemap = array(
               'doc/camera' => array('title' => 'Camera'),
               'doc/navigation' => array('title' => 'Navigation'),
               'doc/viewport_and_scenes_from_code' => array('title' => 'Writing code to modify scenes and transformations'),
+              'doc/multiple_viewports_to_display_one_world' => array('title' => 'Multiple viewports to display one world'),
             ),
           ),
           'manual_load_3d' => array('title' => 'Loading, displaying a scene'),

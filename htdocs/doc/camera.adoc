@@ -14,4 +14,62 @@ Camera also defines _projection_:
 
 See the link:viewport_3d[Tutorial: Designing a 3D world] and link:viewport_3d[Tutorial: Designing a 2D world] to see the typical workflow how do you manipulate the camera using the editor.
 
-TODO: here camera description from manual_load_3d.php
+TODO: AsciiDoctor:
+
+<p>To control the initial camera view:
+
+<ol>
+  <li><p>If you set up the 3D world using the <a href="manual_editor.php">editor</a>,
+    which we advise:
+
+    <p><b>Set the initial camera by the <a href="manual_editor.php">editor</a></b>:
+    navigate in editor, and use the "hamburger" menu that appears when you select the viewport
+    to choose <i>"Camera Initial := Current"</i>.
+    Save the design.
+
+    <p>Leave <code>Viewport.AutoCamera</code> at (default) value <code>false</code>
+    (otherwise the auto-detection, done at the first render,
+    would override what you set).
+
+  <li><p><b>Set the camera by code</b>:
+    use the <?php api_link('Viewport.Camera.SetView',
+    'CastleCameras.TCastleCamera.html#SetView'); ?> method.
+    This takes three vectors &mdash; position, look direction and look up vector.
+    Simply add the <?php api_link('CastleVectors',
+    'CastleVectors.html'); ?> unit to your uses clause,
+    and call this:
+
+<?php echo pascal_highlight(
+'Viewport.Camera.SetView(
+  Vector3(-11.34, 30.04, 96.07), // position
+  Vector3(0.10, -0.49, -0.87), // direction
+  Vector3(0.35, 0.83, -0.43), // up (current)
+  Vector3(0.00, 1.00, 0.00) // gravity up
+);'); ?>
+
+    <p>How to generate such code?
+    Use <a href="view3dscene.php">view3dscene</a>. Open the model,
+    navigate, then use <i>Clipboard -&gt; Print Current Camera (Viewpoint) (Pascal)</i>.
+
+    <p>Again, leave <code>Viewport.AutoCamera</code> at (default) value <code>false</code>
+    (otherwise the auto-detection, done at the first render,
+    would override what you set).
+
+  <li><p><b>Alternatively initialize the camera defaults (including position / direction / up)
+    based on the model size / nodes.</b>
+
+    <p>To make it work, set <code>Viewport.AutoCamera := true</code>.
+
+    <p>If a model file (set as <code>MainScene</code>, like <code>car.gltf</code> in the example above)
+    has a <code>Viewpoint</code>
+    or <code>OrthoViewpoint</code> X3D node,
+    then this node will determine the initial camera. You can generate such
+    <code>Viewpoint</code> using the
+    <?php echo a_href_page('view3dscene', 'view3dscene'); ?> feature
+    <i>"Console -&gt; Print Current Camera (Viewpoint)"</i>,
+    or by setting the camera in Blender before exporting this X3D file.
+
+    <p>Otherwise (if there is no <code>Viewpoint</code> node,
+    or you didn't even set <code>MainScene</code>)
+    then the camera will be auto-detected to look at the world bounding box.
+</ol>

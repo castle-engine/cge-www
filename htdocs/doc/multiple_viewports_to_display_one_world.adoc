@@ -1,0 +1,39 @@
+# Multiple viewports to display one world
+include::common.adoc[]
+
+cgeimg::float[
+  multiple_viewports.png|Multiple Viewports example,
+  view3dscene_viewports.png|view3dscene with 4 viewports
+]
+
+## Introduction
+
+It is possible to have multiple viewports visible at the same time.
+As cgeref:TCastleViewport[] is a regular user interface control, you can add as many viewports
+as you like on a particular `TUIState`. And you can configure the size and position of each viewport.
+
+These viewports may even display the same world (but from different cameras).
+This feature is very useful for split-screen games.
+Or if you want to show additional
+view of the world (e.g. from the camera attached to a missile, or from camera observing the world from the top).
+
+## Usage
+
+To use this feature, just set the `Items` property of one viewport to `Items` from another viewport.
+Like
+
+[source,pascal]
+----
+Viewport1.Items := Viewport2.Items;
+----
+
+Note that you cannot (yet) do this from the CGE editor. In the editor you can set multiple viewports,
+and their cameras, but you cannot yet make them _share_ the same items.
+
+## Examples
+
+* link:https://github.com/castle-engine/castle-engine/tree/master/examples/user_interface/zombie_fighter[zombie_fighter] example. The viewport setup there is described in the link:manual_2d_user_interface.php[chapter about user interface].
+
+* link:https://github.com/castle-engine/castle-engine/tree/master/examples/3d_rendering_processing/multiple_viewports[multiple_viewports] example. Shows a window split into 4 viewports, all showing the same scene, but with a bit different effects.
+
+* link:https://github.com/castle-engine/castle-engine/tree/master/examples/fps_game[fps_game] example. Shows using additional viewport for an _"overview"_ camera looking at map from the top.

@@ -13,4 +13,72 @@ You have complete freedom how do you handle the input in your games. You can
 
 See the link:viewport_3d[Tutorial: Designing a 3D world] and link:viewport_3d[Tutorial: Designing a 2D world] to see the typical workflow how do you manipulate the navigation using the editor.
 
-TODO: here navigation description from manual_load_3d.php
+TODO: AsciiDoctor:
+
+<p>To can also control the <i>navigation</i> ("how does the camera change based on input"):
+
+<ol>
+  <li><p>You can assign a specific TCastleNavigation descendant to
+    <?php api_link('Viewport.Navigation',
+    'CastleViewport.TCastleViewport.html#Navigation'); ?>.
+
+  <li><p>You can auto-detect the suitable navigation method.
+    To do this, leave
+    <?php api_link('Viewport.Navigation',
+    'CastleViewport.TCastleViewport.html#Navigation'); ?> as <code>nil</code>,
+    and set <code>Viewport.AutoNavigation := true</code>.
+    Then the navigation instance will be automatically created before rendering.
+
+  <li><p>You can use
+    <?php api_link('Viewport.WalkNavigation',
+    'CastleViewport.TCastleViewport.html#WalkNavigation'); ?>,
+     <?php api_link('Viewport.ExamineNavigation',
+    'CastleViewport.TCastleViewport.html#ExamineNavigation'); ?>
+    to request given navigation class and assign it to
+    <?php api_link('Viewport.Navigation',
+    'CastleViewport.TCastleViewport.html#Navigation'); ?>.
+
+  <li><p>You can change the navigation type by setting
+    <?php api_link('Viewport.NavigationType',
+    'CastleViewport.TCastleViewport.html#NavigationType'); ?>.
+
+  <li><p>To control the camera only from your code
+    (by calling <code>Viewport.Camera.SetView(...)</code>),
+    just leave <code>AutoNavigation</code> as <code>false</code>,
+    and leave <code>Navigation</code> as <code>nil</code>. By default,
+    the engine does not automatically
+    interpret any keys/mouse to handle the navigation.
+
+    <!--p>You can also set <code>Navigation</code>,
+    and change the <?php api_link('Viewport.Navigation.Input',
+    'CastleCameras.TCastleNavigation.html#Input'); ?> to disable some default navigation
+    key and mouse operations.
+    -->
+
+  <li><p>You can also control the initial navigation type using the <code>NavigationInfo</code>
+    X3D node. It determines e.g. whether we are in EXAMINE, WALK, FLY, NONE or other modes.
+
+    <p>Note that, in order for the "bindable" nodes (like <code>Viewpoint</code>,
+    <code>OrthoViewpoint</code>, <code>NavigationInfo</code>) to work,
+    they must be within a scene set as
+    <?php api_link('Viewport.Items.MainScene', 'CastleScene.TCastleRootTransform.html#MainScene'); ?>.
+    The first <code>Viewpoint</code> or <code>OrthoViewpoint</code>
+    is automatically used, just like the first <code>NavigationInfo</code> node.
+    You can always call explicitly <code>Viewpoint.EventSet_Bind.Send(true)</code>
+    to activate (jump to) a specific Viewpoint node.
+
+    <p>The camera and navigation settings (position, direction, up, navigation type, avatar height
+    and many others) set in X3D file (by nodes like <code>Viewpoint</code>,
+    or <code>OrthoViewpoint</code>,
+    <code>NavigationInfo</code>) serve as defaults when we create a camera instance.
+    You can override them all by code, as documented above.
+
+<!-- deprecated already
+  <li><p>Warning: The simple methods <code>TCastleWindow.Load</code>
+    or <code>TCastleControl.Load</code> forcefully reset (free and recreate)
+    the camera.
+    These methods are mostly designed for the case when your 3D world
+    is actually only one 3D scene (e.g. when you make a 3D model viewer).
+    It's usually better to avoid these methods in more complex applications.
+-->
+</ol>
