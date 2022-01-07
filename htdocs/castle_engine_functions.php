@@ -268,7 +268,7 @@ $castle_sitemap = array(
           'doc/install' => array('title' => 'Install'),
           'doc/build_first' => array('title' => 'Build your first application'),
           'manual_state_events' => array('title' => 'Designing user interface and handling events (press, update) within the state'),
-          'doc/viewport_and_scenes' => array('title' => 'Viewport with scenes, camera, navigation: overview',
+          'doc/viewport_and_scenes' => array('title' => 'Viewport with scenes, camera, navigation',
             'sub' => array(
               'doc/viewport_3d' => array('title' => 'Tutorial: Designing a 3D world'),
               'doc/viewport_2d' => array('title' => 'Tutorial: Designing a 2D world'),
