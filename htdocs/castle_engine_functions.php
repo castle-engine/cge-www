@@ -1778,8 +1778,8 @@ function cgeRef($identifier, $title = NULL)
              str_replace('}}}', ']',
              $title));
   }
-  return '<a href="' . $castle_apidoc_url . $pasdoc[$identifier]['html_filename'] . '">' .
-    htmlspecialchars($title) . '</a>';
+  return '<code><a href="' . $castle_apidoc_url . $pasdoc[$identifier]['html_filename'] . '">' .
+    htmlspecialchars($title) . '</a></code>';
 }
 
 /* Return HTML to display images (as a block inside regular content, or as a floating block
