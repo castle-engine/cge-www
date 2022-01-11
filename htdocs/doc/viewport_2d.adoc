@@ -1,38 +1,95 @@
-# Tutorial: Designing a 2D world
+# Designing a 2D world
 include::common.adoc[]
 
+cgeimg::float[platformer.png|Platformer game]
+
+## Introduction
+
+In this chaper we show how you can design 2D world using _Castle Game Engine_ editor. We assume you have already read the link:viewport_and_scene[overview of the viewport and scenes].
+
+## TODO: This page is a work in progress
+
+We plan to write here a detailed tutorial, similar to link:viewport_3d[Tutorial: Designing a 3D world], but designed specifically for 2D games (using static images for a background, using sprite sheets for hero and some enemies). But it is not ready yet.
+
+For now, we advise to follow link:viewport_3d[Tutorial: Designing a 3D world], and then read this page about important things that are different for 2D games.
+
+## Examples
+
+Consult the engine examples, like https://github.com/castle-engine/castle-engine/tree/master/examples/platformer[examples/platformer], for a fully-working game following this approach.
+
+## Create a viewport for 2D
+
+For 2D games, you will usually create a viewport using _"Viewport (Configured for 2D)"_ menu item in the editor. Or you can convert any existing viewport to follow standard 2D setup using the _"Camera Setup (Initial and Current) for 2D View and Projection"_ command (from the "hamburger" menu with viewport commands). This is a shortcut to:
+
+- Set camera _orthographic_ projection (in orthographic projection, the distance to the object doesn't change it's perceived size; in constrast, in the default perspective projection, the objects further away are smaller).
+
+- Set the initial and current camera such that X axis is to the right, Y is up, Z is "depth" (camera looks along the -Z direction).
+
+- See cgeref:TCastleViewport.Setup2D[] for more details.
+
+[NOTE]
+====
+You don't really *have to* to use such setup to display 2D things (although it is very common setup for most 2D games).
+
+You may as well change cgeref:TCastleCamera.ProjectionType[Viewport.Camera.ProjectionType] manually and adjust any other camera parameters as you want. We don't really have any definite notion in CGE _"this is a 2D viewport"_ or _"this is a 3D viewport"_. We don't have such property, because we don't need it. Both 2D and 3D are actually the same things, just with a different world set up, and a different camera being used.
+====
+
 ////
-### Designing a 2D world using viewport and scenes
-
-  Create a viewport, using "(Configured for 2D)", or use "Viewport -> Setup 2D" on any viewport. This is just a shortcut to
-
-  - set camera orthographic projection (in orthographic projection, the distance to the object doesn't change it's size; in constrast, in the default perspective projection, the objects further away are smaller)
-
-  - xxx (see Setup2D docs)
-
-  - Note that you don't really need to use this, to display 2D things. You can as well change Camera.ProjectionType and adjust other parameters yourself. It will always work equally well. We don't really have any notion in CGE "this is a 2D viewport" or "this is a 3D viewport", we don't have such property, because we don't need it. Deep down, both 2D and 3D are the same things, just with a different world set up, and a different camera being used.
-
+TODO: tutorial
   Add scene.
   We could use Camera -> View All...
     but instead we will move things.
   Add some navigation, position camera, save navigatio by "Initial := Current".
   Run.
-
-  Inside the viewport, you can show a certain "field of view" of the world. By default, for orthographic projection, the viewport size (after UI scaling) just determines this. So e.g. you can set TCastleViewport Width to 1600, Height to 900, and inside you will see the world that spans 1600 x 900. You configure this by Viewport.Camera.Orthographic.Width/Height. E.g. you can set width to 9 (the height will adjust automatically) and then a TCastleScene that is 9 units tall will fill the viewport height exactly.
-
-  DEMO
-
-  By default, in orthographic projection, the camera position determines what is visible at the left-bottom viewport corner. So when camera position is (0,0) the left-bottom viewport corner will show the things at position (0,0) in your world. Sometimes this is what you want, sometimes this is not comfortable. E.g. if you add a TCastleScene with an image or a sprite sheet, by default their pivot is in the middle of the asset. So you will only see a part of your asset loaded, in the left-bottom viewport corner.
-
-  1. One solution is just move it, by adjusting Translation. To make the image of size 600x300 visible fully, you would move it by 300x150.
-
-  DEMO
-
-  2. Another solution is to move the camera. You can adjust Viewport.Camera.Position. But how much you need to move it, depends on your current viewport size and aspect ratio.
-
-  3. The simplest way, that doesn't require you to "hardcode" anywhere the image size, is to set Viewport.Camera.Orthographic.Origin to (0.5,0.5). This means that the *middle* of the viewport will show the things at the (0,0) translation in your world, when the camera position is also (0,0). Effectvely, it moves your camera automatically such that things placed at the (0,0) position in the world are exactly in the middle of the viewport, regardless of the viewport size.
-
-  DEMO
-
-  BROWSE KENNEY 3D STUFF
 ////
+
+## Orthographic projection field of view
+
+Inside the viewport, you can show a certain "field of view" of the world. By default, for orthographic projection, the viewport size (after UI scaling) just determines this. But you can also set this field of view explicitly, so the visible area remains the same, regardless of your viewport size.
+
+To do this, set `Viewport.Camera.Width` to a constant value, like 1600. You can also set `Viewport.Camera.Height`, but you don't have to -- the other viewport size (left as 0) will be calculated automatically based on current viewport control aspect ratio.
+
+////
+TODO: tutorial
+  DEMO
+////
+
+## Orthographic camera position
+
+By default, in orthographic projection, the camera position determines what is visible at the _left-bottom viewport corner_. So when camera position is (0,0) the left-bottom viewport corner will show the things at position (0,0) in your world. Sometimes this is what you want, sometimes this is not comfortable.
+
+To make the camera position determine what is visible in the _middle_ of the viewport, set `Viewport.Camera.Orthographic.Origin` to (0.5,0.5).
+
+What does this solve? Imagine you add a TCastleScene with an image or a sprite sheet, by default their pivot is in the middle of the asset. So you will only see a part of your asset loaded, in the left-bottom viewport corner.
+
+To make the new asset visible in the middle of screen:
+
+. One solution is just move the scene, by adjusting `Translation`. To make the image of size 600x300 visible fully, you would move it by 300x150.
+// TODO: DEMO
+. Another solution is to move the camera. You can adjust `Viewport.Camera.Position`. But how much you need to move it, depends on your current viewport size and aspect ratio.
+// TODO: DEMO
+. The best way, that doesn't require you to "hardcode" anywhere the image size, is to set `Viewport.Camera.Orthographic.Origin` to (0.5,0.5). This means that the *middle* of the viewport will show the things at the (0,0) translation in your world, when the camera position is also (0,0). Effectvely, it moves your camera automatically such that things placed at the (0,0) position in the world are exactly in the middle of the viewport, regardless of the viewport size.
+
+// TODO: DEMO
+
+## Navigation
+
+There is a special 2D navigation mode available, that you can use at design-time and/or allow user to use it during the game. This makes it easy to move a 2D scene, without accidentally making a rotation that would reveal it is 3D.
+
+## 2D assets
+
+Simply add cgeref:TCastleScene[] instances to your 2D world, just like you would in 3D.
+
+You can use any link:creating_data_model_formats.php[supported model format].
+
+* You can use link:sprite_sheets[sprite sheets].
+* You can use link:using_images[images].
+* You can use link:spine[Spine] with smooth skeletal 2D animations.
+* It is perfectly reasonable to use link:gltf[glTF], and even link:creating_data_blender.php[Blender], to do 2D art as well.
+* Primtives like cgeref:TCastleText[] and cgeref:TCastlePlane[] (make sure to set axis to 2, meaning _"Z"_)  are also useful in 2D.
+
+## Blending
+
+The editor contains a special menu item to add _Scene (Optimal Blending for 2D Models)_. This just adds a regular cgeref:TCastleScene[] and sets on it `RenderOptions.BlendingSort` to `bs2D`, to make blending always correct. This matters in case of 2D models with multiple layers, like typical link:spine[Spine] or link:gltf[glTF] 2D assets.
+
+See link:blending[blending] for more details about blending, and see link:manual_alpha_bleeding.php[alpha bleeding] for details about how to prepare your images to behave correctly with blending.
