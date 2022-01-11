@@ -5,6 +5,10 @@ include::common.adoc[]
 
 In this chaper we show how you can design 3D world using _Castle Game Engine_ editor. We assume you have already read the link:viewport_and_scene[overview of the viewport and scenes].
 
+## Complete tutorial code
+
+The complete result of this tutorial is in the _Castle Game Engine_. Just open the project https://github.com/castle-engine/castle-engine/tree/master/examples/3d_rendering_processing/viewport_3d_tutorial[examples/3d_rendering_processing/viewport_3d_tutorial] in the editor. If at any point you get lost, just look there.
+
 ## Create empty project, add a viewport
 
 . Run _Castle Game Engine editor_, create a new project using the _Empty_ template.
@@ -101,8 +105,8 @@ cgeimg::block[viewport_3d_nice_view.png|Nice view]
 Once you're done use the _Camera Initial (stored in the design file) := Current_ command again, to store the new view (camera position, direction, up) to be used as starting camera view during the game.
 
 . Decide if (and how) should the user be able to navigate during the game.
-** If you want, you can just leave the `TCastleExamineNavigation` instance (called `ExamineNavigation1` in your hierarchy) existing in your design, then the user will be able to change camera just like you did.
-** Or you can change the navigation to something else, using the _Change Navigation -> ..._ menu commands.
+** For now, we recommend you leave the `TCastleExamineNavigation` instance (called `ExamineNavigation1` in your hierarchy) existing in your design, then the user will be able to change camera just like you did.
+** But you can change the navigation to something else, using the _Change Navigation -> ..._ menu commands.
 ** In particular, you can set the navigation to _None_ to disallow user from making any changes to the camera. This is reasonable, if you want to have a constant camera view, or implement the navigation yourself (for example moving/rotating the camera by your own code in `TStatePlay.Update`).
 
 ## Run the game
@@ -110,3 +114,160 @@ Once you're done use the _Camera Initial (stored in the design file) := Current_
 Run the game at this point! Just press F9 in the editor.
 
 cgeimg::block[viewport_3d_run.png|Game running]
+
+## Play animation
+
+There is a simple animation called `wheels_turning` defined in the `car.gltf` model. Let's configure the scene to automatically play it.
+
+To do this, just edit the cgeref:TCastleSceneCore.AutoAnimation[AutoAnimation] property. You can choose one of the existing animations using the combo box there. Leave the cgeref:TCastleSceneCore.AutoAnimationLoop[AutoAnimationLoop] property at default value of `true` to make the animation looping.
+
+cgeimg::block[viewport_3d_animation.png|Playing animation]
+
+NOTE: During the game, you can switch the animation to a different one. You can do this by setting the cgeref:TCastleSceneCore.AutoAnimation[AutoAnimation] and cgeref:TCastleSceneCore.AutoAnimationLoop[AutoAnimationLoop] from code, but usually it is more comfortable to use the cgeref:TCastleSceneCore.PlayAnimation[PlayAnimation] method. Chapter link:viewport_and_scenes_from_code[Writing code to modify scenes and transformations] shows how to do this.
+
+## Add a road and more cars
+
+Your viewport may contain many scenes. This is how you can design 3D game levels using the _Castle Game Engine editor_ -- just add various cgeref:TCastleTransform[] (including cgeref:TCastleScene[]) instances to the viewport, and arrange them (move, rotate, scale) as needed.
+
+. Add another scene to the viewport (right-click on the `Items` property of the viewport).
++
+Call it `SceneRoad` (edit the `Name` property in object inspector, or press F2 in the hierarchy to edit the name).
++
+Set its `URL` to point to the `castle-data:/road.gltf` model.
++
+cgeimg::block[
+  viewport_3d_add_road.png|Add another scene,
+  viewport_3d_road_name.png|Edit scene name,
+  viewport_3d_road_url.png|Set road URL
+]
+
+. Edit the car scene name too, to make it more obvious in the hierarchy. Right now it is called `Scene1`, we recommend to edit it to `SceneCar` now.
+
+. Add more cars. While you could add new cgeref:TCastleScene[] instances, by repeating the process above, it is easier to use _"Duplicate"_ command available when you righ-click on the `SceneCar`. (Key shortcut to do this is _Ctrl+Shift+D_.)
++
+New car scenes, named like `SceneCar1`, `SceneCar2`..., will appear at the same position as the original car. Use the _"Move/Select Transform_" tool to show a _"gizmo"_, to move each car to a unique position. Click and drag on one of the arrows to move the car.
++
+You can observe that moving the car using gizmo also updates it's `Translation` property in the _Layout_ tab. You can also move the car by just editing the numbers there, to manually input X, Y, Z movement values.
++
+Remember that you can adjust the camera to see more 3D space, to keep all the cars in view. Use the _Camera Initial (stored in the design file) := Current_ command to set the best initial camera.
++
+cgeimg::block[
+  viewport_3d_duplicate.png|Duplicate scenes,
+  viewport_3d_car_move.png|Move scenes,
+  viewport_3d_translation_vector.png|View and edit the Translation values as numbers
+]
+
+## Run the game again
+
+Run the game again at this point, to test that you can view the road and animated cars. Just press F9 in the editor.
+
+cgeimg::block[viewport_3d_game_2.png|Game running with many cars and road]
+
+## Walk around the level
+
+Now that we have constructed a simple 3D world, composed of multiple scenes (cars and road), it would be nice to walk around in this world using typical FPS (first-person shooter) controls.
+
+. We recommend first to duplicate the `SceneRoad` a few times, to have a large floor area to walk on.
++
+cgeimg::block[viewport_3d_floor.png|Multiple road scenes to create a large floor]
+
+. Switch navigation mode to _Walk_. It will remove the `ExamineNavigation1` instance from your design, and add `WalkNavigation1`.
++
+cgeimg::block[viewport_3d_navigation_mode_walk.png|Switch to walk navigation]
+
+. Change the cgeref:TCastleWalkNavigation.MoveSpeed[] property of your `WalkNavigation1` to move faster (both at design-time, and for user during the game). We recommend to set it to 10 now, which means you will move with speed of 10 units (meters) per second. This is not realistic (people are not that fast), but it allows for comfortable testing. Players in games often move unrealistically fast.
++
+cgeimg::block[viewport_3d_move_speed.png|Adjust walk navigation MoveSpeed]
+
+. Switch to _"Use components as a normal user."_ mode using the toolbar, if you're not in this mode already.
+
+. Temporarily turn off cgeref:TCastleWalkNavigation.Gravity[] property. While gravity doesn't work anyway at design-time (so your camera will not "fall down" at design time), but turning off `Gravity` is still useful for now to make the _C_ (move down) and _Space_ (move up) keys work more naturally.
+
+. Move around the level now, using the "walk" navigation keys.
++
+--
+- Use _A W S D_ keys for typical 3D game movement (forward, backward, strafe).
+- Use _C_ key to move down.
+- Use _Space_ key to move up.
+- Drag with left mouse button to move and rotate.
+- Use mouse scroll to raise your head / bow down.
+--
++
+Using these keys, place the camera at some nice position above the floor, such that it looks at cars.
++
+cgeimg::block[viewport_3d_walk_camera.png|Initial camera for walking]
+
+. Change the cgeref:TCastleWalkNavigation.Gravity[] back to `true`, to make gravity work in game.
+
+. Use _Camera Initial (stored in the design file) := Current_ again, to store the current camera as a starting view view for the game.
+
+. If your camera is a little tilted to the side, we recommend to reset the initial camera `InitialUp` to be a straight (0,1,0) vector. This makes movement for user most natural. Select the `Viewport1` in the hierarchy, then expand the `Camera` in the object inspector on the right, and paste `0 1 0` as the value for `InitialUp`.
++
+Use _Camera Current := Initial (stored in the design file)_ to set the `InitialUp` as the current camera up, to immediately preview the newly set camera.
++
+cgeimg::block[viewport_3d_camera_up_reset.png|Reset camera up]
+
+. Increase the cgeref:TCastleWalkNavigation.PreferredHeight[] of the `WalkNavigation1` component. The default value is 1.6, which means that player's height is 1.6 meters when standing -- this corresponds to a normal (not very tall) human. For games, reasonable (but still somewhat realistic) values could be considered between 1.6 and 2.0 (players in games are often tall).
++
+For this demo, for now, we recommend you set this value to a big number: 4.0. This is not realistic at all (humans are rarely 4 meters tall :) ), but it will allow to test walking quickly, and will allow you to "walk over" cars. It also matches the unrealistic
++
+cgeimg::block[viewport_3d_preferred_height.png|Adjust PreferredHeight]
+
+## Run the game - final test!
+
+Run the game again with F9. Walk, using the same keys, or mouse dragging, as before. Use mouse scroll to raise / bow your head.
+
+As gravity is active now, the _C_ key does _crouch_ and _Space_ key does _jump_.
+
+Walk over the cars and jump over them to test collisions and gravity.
+
+cgeimg::block[viewport_3d_game_running_walk.png|Game running with walking]
+
+## Further things
+
+### More precise collisions
+
+The collisions work correctly in this simple demo, as both the road and cars have simple shapes that can be approximated using axis-aligned boxes. In general, your levels will probably have more complicated shapes. To make any shape work nicely with default navigation collisions, set the `Spatial` property of your scenes to include the `ssDynamicCollisions` flag. We recommend to include also the `ssRendering` flag to optimize the display of scenes with multiple shapes.
+
+Do this for all your scenes, both cars and roads. Note that you can select multiple scenes in the hierarchy with _Ctrl_ and then edit the `Spatial` property of all selected scenes at one.
+
+cgeimg::block[viewport_3d_spatial_all_scenes.png|Edit Spatial of all scenes]
+
+### Lighting
+
+Because of the way headlight works (it is a simple directional light), and the fact that we don't have any additional lights on the level -- the road is completely dark when looking straight. You need to bow your head (use mouse scroll) to have a bit brighter road.
+
+This should be fixed by adding additional lights to the level.
+
+Right now: You can add lights in Blender to the road asset.
+
+. Copy `road.blend` to `road_with_lights.blend`.
+. Add lights in Blender to `road_with_lights.blend`.
+. Export it to `road_with_lights.gltf` (be sure to select to include _"Lights"_ at glTF export dialog).
+. Change one road piece, like the initial `SceneRoad`, to load from `road_with_lights.gltf` (instead of `road.gltf`).
+. Set `SceneRoad` as `Items.MainScene` to make the lights shine on all the other scenes -- cars and other road pieces.
+
+Future engine versions of _Castle Game Engine_ will enable to just add lights using the editor.
+
+cgeimg::block[
+  viewport_3d_lights_blender.png|Adding lights in Blender,
+  viewport_3d_export_lights.png|Exporting lights from Blender,
+  viewport_3d_main_scene.png|Setting new road as MainScene,
+  viewport_3d_brighter.png|Brighter world with more lights
+]
+
+### "Mouse look" navigation
+
+The walk navigation will be more natural if you use _mouse look_. It will allow to move the mouse to rotate around.
+
+This has to be activated using code now. Chapter link:viewport_and_scenes_from_code[Writing code to modify scenes and transformations] shows information how to edit the game code. We don't want to get ahead of ourselves... But actually it is quite easy. Just edit the `code/gamestatemain.pas` file, and
+
+. Add `CastleCameras` unit to the `uses` clause in the `interface`.
+. Declare `WalkNavigation1: TCastleWalkNavigation;` inside the `private` section of the `TStateMain`, under the comment _{ Components designed using CGE editor, loaded from gamestatemain.castle-user-interface. }_.
+. In `TStateMain.Start` implementation, add this code:
+
+[source,pascal]
+----
+WalkNavigation1 := DesignedComponent('WalkNavigation1') as TCastleWalkNavigation;
+WalkNavigation1.MouseLook := true;
+----
