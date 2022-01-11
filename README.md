@@ -173,6 +173,8 @@ Most important Wordppress shortcodes are:
         ```
         <Directory "/home/USERNAME/public_html">
             AllowOverride All
+            # Makes .htaccess assume that website is under /~michalis/castle-engine/
+            Define MichalisLocalTest
         </Directory>
         ```
 

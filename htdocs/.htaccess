@@ -10,12 +10,15 @@ RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
 
 # Rewrite to use doc.php=xxx for names not refering to any existing file (in particular, not refering to PHP files).
 # Based on Wordpress rewrite rule, see also https://httpd.apache.org/docs/current/mod/mod_rewrite.html
-#
-# If you access CGE website like http://localhost/~michalis/castle-engine/ (useful for Michalis development)
-# RewriteBase /~michalis/castle-engine/
-# If you access CGE website like https://castle-engine.io/ (useful for production), use this:
-RewriteBase /
-#
+<IfDefine MichalisLocalTest>
+  # If you access CGE website like http://localhost/~michalis/castle-engine/ (useful for Michalis development)
+  RewriteBase /~michalis/castle-engine/
+</IfDefine>
+<IfDefine !MichalisLocalTest>
+  # If you access CGE website like https://castle-engine.io/ (useful for production), use this:
+  RewriteBase /
+</IfDefine>
+
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . doc.php?page=%{REQUEST_URI} [L]
