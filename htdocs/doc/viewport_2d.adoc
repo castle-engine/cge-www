@@ -19,19 +19,26 @@ Consult the engine examples, like https://github.com/castle-engine/castle-engine
 
 ## Create a viewport for 2D
 
-For 2D games, you will usually create a viewport using _"Viewport (Configured for 2D)"_ menu item in the editor. Or you can convert any existing viewport to follow standard 2D setup using the _"Camera Setup (Initial and Current) for 2D View and Projection"_ command (from the "hamburger" menu with viewport commands). This is a shortcut to:
+For 2D games, you usually create a viewport in the editor by right-clicking in the hierarchy, and using _"Add User Interface -> Viewport (Configured for 2D) (TCastleViewport)"_ menu item.
 
-- Set camera _orthographic_ projection (in orthographic projection, the distance to the object doesn't change it's perceived size; in constrast, in the default perspective projection, the objects further away are smaller).
+Equivalently, you can also just add a "regular" viewport (with most defaults for 3D) using the menu item _"Add User Interface -> Viewport (TCastleViewport)"_ and then use the _"Camera Setup (Initial and Current) for 2D View and Projection"_ command (from the "hamburger" menu with viewport commands).
+//The _"Viewport (Configured for 2D) (TCastleViewport)"_ is really just a handy shortcut for this.
 
-- Set the initial and current camera such that X axis is to the right, Y is up, Z is "depth" (camera looks along the -Z direction).
+The _"Camera Setup (Initial and Current) for 2D View and Projection"_ command:
 
-- See cgeref:TCastleViewport.Setup2D[] for more details.
+- Sets projection to _orthographic_. In an orthographic projection, the distance to the object doesn't change its perceived size (constrast this with the default _perspective_ projection, in which the objects further away are smaller).
+
+- Sets the initial and current camera such that X axis goes to the right, Y goes up, and Z is "depth" (camera looks along the -Z direction).
+
+- See the cgeref:TCastleViewport.Setup2D[] method reference for details.
 
 [NOTE]
 ====
-You don't really *have to* to use such setup to display 2D things (although it is very common setup for most 2D games).
+You don't really *have to* to use any particular setup to display 2D things. The changes done by cgeref:TCastleViewport.Setup2D[] reflect the typical "setup of 2D games", but they are absolutely not the only way to make a game that could be considered "2D game".
 
 You may as well change cgeref:TCastleCamera.ProjectionType[Viewport.Camera.ProjectionType] manually and adjust any other camera parameters as you want. We don't really have any definite notion in CGE _"this is a 2D viewport"_ or _"this is a 3D viewport"_. We don't have such property, because we don't need it. Both 2D and 3D are actually the same things, just with a different world set up, and a different camera being used.
+
+This also means that you can implement a game that switches between showing the same world in 3D or 2D. Just switch the projection and camera view whenever you want during the game.
 ====
 
 ////
@@ -45,36 +52,40 @@ TODO: tutorial
 
 ## Orthographic projection field of view
 
-Inside the viewport, you can show a certain "field of view" of the world. By default, for orthographic projection, the viewport size (after UI scaling) just determines this. But you can also set this field of view explicitly, so the visible area remains the same, regardless of your viewport size.
+Inside the viewport, we have a _"field of view"_, which is a fancy way of saying _"we determine how much of the world we see at a given moment"_.
 
-To do this, set `Viewport.Camera.Width` to a constant value, like 1600. You can also set `Viewport.Camera.Height`, but you don't have to -- the other viewport size (left as 0) will be calculated automatically based on current viewport control aspect ratio.
+By default, for orthographic projection, the viewport size (after UI scaling) determines this field of view. E.g. if the viewport width and height (after UI scaling) are 1000 x 1000, then a cgeref:TCastleScene[] with size 1000 x 1000 will fit precisely within such viewport.
+
+You can also set the desired _field of view_ explicitly. This is usually a good idea -- this way the visible area remains the same, regardless of your viewport size, and even regardless of whether you use UI scaling (and with what _reference size_ UI scaling works). To do this, just set cgeref:TCastleOrthographic.Width[Viewport.Camera.Orthographic.Width] to a constant value, like 1600. You can also set cgeref:TCastleOrthographic.Height[Viewport.Camera.Orthographic.Height], but you don't have to -- the other viewport size (left as 0) will be calculated automatically based on current viewport control aspect ratio.
 
 ////
 TODO: tutorial
   DEMO
 ////
 
-## Orthographic camera position
+## Orthographic camera position origin
 
 By default, in orthographic projection, the camera position determines what is visible at the _left-bottom viewport corner_. So when camera position is (0,0) the left-bottom viewport corner will show the things at position (0,0) in your world. Sometimes this is what you want, sometimes this is not comfortable.
 
-To make the camera position determine what is visible in the _middle_ of the viewport, set `Viewport.Camera.Orthographic.Origin` to (0.5,0.5).
+To make the camera position determine what is visible in the _middle_ of the viewport, set cgeref:TCastleOrthographic.Origin[Viewport.Camera.Orthographic.Origin] to (0.5,0.5). In effect, when camera position is (0,0), the _middle_ of the viewport will show the things at position (0,0) in your world. This is more comfortable if you place your assets around the (0,0) point.
 
-What does this solve? Imagine you add a TCastleScene with an image or a sprite sheet, by default their pivot is in the middle of the asset. So you will only see a part of your asset loaded, in the left-bottom viewport corner.
+As an example, imagine you add a `TCastleScene` with an image or a sprite sheet. By default their pivot is in the middle of the asset. So if cgeref:TCastleOrthographic.Origin[Viewport.Camera.Orthographic.Origin] is (0,0) you will see only a part of your asset loaded, in the left-bottom viewport corner.
 
-To make the new asset visible in the middle of screen:
+To make the new asset visible:
 
-. One solution is just move the scene, by adjusting `Translation`. To make the image of size 600x300 visible fully, you would move it by 300x150.
+. You can move the scene, by adjusting scene `Translation`. To make the image of size 600x300 visible fully, you would move it by 300x150. It would be visible fully, but still in the viewport left-bottom corner. To move it to the middle of the screen, you should instead move it by `(Viewport.Camera.Orthographic.EffectiveWidth / 2, Viewport.Camera.Orthographic.EffectiveHeight / 2)`.
 // TODO: DEMO
-. Another solution is to move the camera. You can adjust `Viewport.Camera.Position`. But how much you need to move it, depends on your current viewport size and aspect ratio.
+. Another solution is to move the camera. You can adjust `Viewport.Camera.Position`. If you move the camera by `(-Viewport.Camera.Orthographic.EffectiveWidth / 2, -Viewport.Camera.Orthographic.EffectiveHeight / 2)` then the asset will be in the middle of the viewport.
 // TODO: DEMO
-. The best way, that doesn't require you to "hardcode" anywhere the image size, is to set `Viewport.Camera.Orthographic.Origin` to (0.5,0.5). This means that the *middle* of the viewport will show the things at the (0,0) translation in your world, when the camera position is also (0,0). Effectvely, it moves your camera automatically such that things placed at the (0,0) position in the world are exactly in the middle of the viewport, regardless of the viewport size.
+. The best and reliable way is to set `Viewport.Camera.Orthographic.Origin` to (0.5,0.5). This means that the *middle* of the viewport will show the things at the (0,0) translation in your world, when the camera position is also (0,0). Effectvely, it moves your camera automatically such that things placed at the (0,0) position in the world are exactly in the middle of the viewport, regardless of the viewport size.
 
 // TODO: DEMO
 
 ## Navigation
 
 There is a special 2D navigation mode available, that you can use at design-time and/or allow user to use it during the game. This makes it easy to move a 2D scene, without accidentally making a rotation that would reveal it is 3D.
+
+Many 2D games have a custom navigation, and thus leave the `Viewport.Navigation` as default `nil`.
 
 ## 2D assets
 
@@ -85,11 +96,11 @@ You can use any link:creating_data_model_formats.php[supported model format].
 * You can use link:sprite_sheets[sprite sheets].
 * You can use link:using_images[images].
 * You can use link:spine[Spine] with smooth skeletal 2D animations.
-* It is perfectly reasonable to use link:gltf[glTF], and even link:creating_data_blender.php[Blender], to do 2D art as well.
-* Primtives like cgeref:TCastleText[] and cgeref:TCastlePlane[] (make sure to set axis to 2, meaning _"Z"_)  are also useful in 2D.
+* It is perfectly reasonable to use link:gltf[glTF] (e.g. exported from link:creating_data_blender.php[Blender]) to do 2D art as well.
+* Primitives like cgeref:TCastleText[] and cgeref:TCastlePlane[] (make sure to set axis to 2, meaning _"Z"_)  are also useful in 2D.
 
 ## Blending
 
-The editor contains a special menu item to add _Scene (Optimal Blending for 2D Models)_. This just adds a regular cgeref:TCastleScene[] and sets on it `RenderOptions.BlendingSort` to `bs2D`, to make blending always correct. This matters in case of 2D models with multiple layers, like typical link:spine[Spine] or link:gltf[glTF] 2D assets.
+The editor contains a menu item _Add Transform -> Scene (Optimal Blending for 2D Models) (TCastleScene)_. This just adds a regular cgeref:TCastleScene[] and sets on it cgeref:TCastleRenderOptions.BlendingSort[RenderOptions.BlendingSort] to cgeref:bs2D[], to make blending always correct. This matters in case of 2D models with multiple layers, like typical link:spine[Spine] or link:gltf[glTF] 2D assets.
 
 See link:blending[blending] for more details about blending, and see link:manual_alpha_bleeding.php[alpha bleeding] for details about how to prepare your images to behave correctly with blending.
