@@ -6,7 +6,7 @@ interface
 implementation
 
 uses SysUtils,
-  CastleWindow, CastleLog, CastleUIState
+  CastleWindow, CastleLog, CastleUIState,
   GameStateMain;
 
 var
@@ -23,7 +23,7 @@ begin
     e.g. TStateMainMenu ("main menu state"),
     TStatePlay ("playing the game state"),
     TStateCredits ("showing the credits state") etc. }
-  State := TStateMain.Create(Application);
+  StateMain := TStateMain.Create(Application);
   TUIState.Current := StateMain;
 end;
 
