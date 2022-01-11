@@ -7,11 +7,16 @@ cgeimg::float[platformer.png|Platformer game]
 
 In this chaper we show how you can design 2D world using _Castle Game Engine_ editor. We assume you have already read the link:viewport_and_scene[overview of the viewport and scenes].
 
-## TODO: This page is a work in progress
+[WARNING]
+====
+This page is a work in progress.
 
-We plan to write here a detailed tutorial, similar to link:viewport_3d[Tutorial: Designing a 3D world], but designed specifically for 2D games (using static images for a background, using sprite sheets for hero and some enemies). But it is not ready yet.
+We plan to write here a detailed tutorial, similar to link:viewport_3d[Tutorial: Designing a 3D world], but designed specifically for 2D games (using static images for a background, using sprite sheets for hero and some enemies).
+
+But it is not ready yet.
 
 For now, we advise to follow link:viewport_3d[Tutorial: Designing a 3D world], and then read this page about important things that are different for 2D games.
+====
 
 ## Examples
 
