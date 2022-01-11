@@ -41,12 +41,37 @@ We love to see how you use CGE.</i>
   ?>
 
   <?php gallery_link("cge-2d-particle-emitter",
-    '2D particle system using "71 Squared" format (.pex files). Particles are calculated on CPU or with GPU acceleration (transform feedback).
+    '2D particle system using "71 Squared" format (.pex files). Particles are calculated on CPU or with GPU acceleration (transform feedback). See also <a href="https://forum.castle-engine.io/t/cge-2d-particle-emitter-now-supports-gpu-based-particle/">forum thread</a>.
      <p>This is <i>deprecated</i> now in favor of <a href="https://github.com/Kagamma/cge-3d-particle-emitter">cge-3d-particle-emitter</a>.
-     <p>See also <a href="https://forum.castle-engine.io/t/cge-2d-particle-emitter-now-supports-gpu-based-particle/">forum thread</a>.
      <p>By <i>Trung Le (Kagamma)</i>.',
     'cge_2d_particles.png',
     'https://github.com/Kagamma/cge-2d-particle-emitter');
+  ?>
+
+  <?php gallery_link('UI Shaker',
+    'A child of <code>TCastleUserInterface</code> that shakes all its children when asked to.
+     <p>By <i>Eugene Loza</i>.',
+    'ui-shaker.gif',
+    'https://gitlab.com/EugeneLoza/ui-shaker');
+  ?>
+
+  <?php gallery_link('Typing Label',
+    'A label (child of <code>TCastleLabel</code>) that supports <i>"typing effect"</i> on the text (text apppears gradually, one letter at a time). Allows skipping and restarting typing. Supports HTML rich text.
+     <p>By <i>Eugene Loza</i>.',
+    'typing-label.gif',
+    'https://gitlab.com/EugeneLoza/typing-label');
+  ?>
+
+  <?php gallery_link('Shifted Image Control',
+    '<code>TCastleShiftedImageControl</code> that can render cropped images with a shift. Also comes with two utilities:
+<ol>
+  <li>ShiftedConvert - crops transparent parts of the image and converts it into a shifted image, that is rendered by <code>TCastleShiftedImageControl</code>.
+  <li>AlphaBleeder - slower but more "beautiful" version of ' . cgeRef('TCastleImage.AlphaBleed') . '
+</ol>
+<p>This may come in handy when rendering multiple images that should be aligned properly to each other but have large unused transparent areas (e.g. different exported layers from InkScape). Should boost RAM/VRAM usage and performance a bit.
+     <p>By <i>Eugene Loza</i>.',
+    'shifted_image.png',
+    'https://gitlab.com/EugeneLoza/shifted-image-control');
   ?>
 
   <?php gallery_link("Database aware CGE UI",

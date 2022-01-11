@@ -12,7 +12,8 @@ ALL_ORIGINAL:=$(wildcard original_size/*.png) $(wildcard original_size/*.jpg)
 ALL_THUMB:=$(subst original_size,thumb_size,$(ALL_ORIGINAL))
 ALL_THUMB_CONST_HEIGHT:=$(subst original_size,thumb_const_height_size,$(ALL_ORIGINAL))
 ALL_TEASER:=$(subst original_size,teaser_size,$(ALL_ORIGINAL))
-ALL_GALLERY:=$(subst original_size,gallery_size,$(ALL_ORIGINAL))
+ALL_GALLERY:=$(subst original_size,gallery_size,$(ALL_ORIGINAL)) \
+  gallery_size/ui-shaker.gif gallery_size/typing-label.gif
 
 ALL_OS_ICONS_ORIGINAL_SIZE:=$(wildcard os_icons_original_size/*.png)
 ALL_OS_ICONS:=$(subst _original_size,,$(ALL_OS_ICONS_ORIGINAL_SIZE))
@@ -82,6 +83,18 @@ castle_game_engine_icon.png: ../../../castle-engine/doc/pasdoc/logo/castle_game_
 
 os_icons/%.png: os_icons_original_size/%.png
 	$(CONVERT) $< -geometry 64x64 $@
+
+# gifs -----------------------------------------------------------------------
+
+# 1082 × 598
+# 300 x 598*300/1082=166
+gallery_size/typing-label.gif: original_size/typing-label.mp4
+	ffmpeg -y -i $< -vf scale=300:166 $@
+
+# 1096 × 616
+# 300 x 616*300/1096=167
+gallery_size/ui-shaker.gif: original_size/ui-shaker.mp4
+	ffmpeg -y -i $< -vf scale=300:167 $@
 
 # others ---------------------------------------------------------------------
 
