@@ -1,6 +1,15 @@
 # Writing code to modify scenes and transformations
 include::common.adoc[]
 
+## Introduction
+
+In this chaper we show how you can do typical operations on viewports and scenes using Pascal code. We assume you have already read the link:viewport_and_scene[overview of the viewport and scenes] and link:viewport_3d[Tutorial: Designing a 3D world] (that shows how to set up basic things using the editor).
+
+## Complete tutorial code
+
+The complete result of this tutorial is in the _Castle Game Engine_. Just open the project https://github.com/castle-engine/castle-engine/tree/master/examples/3d_rendering_processing/cars_demo[examples/3d_rendering_processing/cars_demo]. If at any point you get lost, just look there.
+
+
 ////
 TODO
 
