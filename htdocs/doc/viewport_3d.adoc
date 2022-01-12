@@ -227,7 +227,7 @@ cgeimg::block[viewport_3d_game_running_walk.png|Game running with walking]
 
 ### More precise collisions
 
-The collisions work correctly in this simple demo, as both the road and cars have simple shapes that can be approximated using axis-aligned boxes. In general, your levels will probably have more complicated shapes. To make any shape work nicely with default navigation collisions, set the `Spatial` property of your scenes to include the `ssDynamicCollisions` flag. We recommend to include also the `ssRendering` flag to optimize the display of scenes with multiple shapes.
+The collisions work correctly in this simple demo, as both the road and cars have simple shapes that can be approximated using boxes. In general, your levels will probably have more complicated shapes. To make any shape work nicely with default navigation collisions, set the `Spatial` property of your scenes to include the `ssDynamicCollisions` flag. We recommend to include also the `ssRendering` flag to optimize the display of scenes with multiple shapes.
 
 Do this for all your scenes, both cars and roads. Note that you can select multiple scenes in the hierarchy with _Ctrl_ and then edit the `Spatial` property of all selected scenes at one.
 
