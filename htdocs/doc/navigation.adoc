@@ -1,7 +1,7 @@
 # Navigation
 include::common.adoc[]
 
-## Introduction
+//## Introduction
 
 _Navigation_ handles user input (key presses, mouse movement, touches on mobile devices, ...) to move the camera.
 
@@ -25,6 +25,9 @@ You have complete freedom how do you handle the input in your games. You can
 
 See the link:viewport_3d[Tutorial: Designing a 3D world] and link:viewport_2d[Tutorial: Designing a 2D world] to see the typical workflow how do you manipulate the navigation using the editor.
 
+////
+// Commented out: AutoNavigation is not advised anymore.
+
 ## Auto-detecting the current navigation
 
 By default, the navigation type is not auto-detected. This means that you can set cgeref:TCastleViewport.Navigation[] to whatever feels good for your game. Or leave cgeref:TCastleViewport.Navigation[] equal to `nil` (default) to not have any navigation.
@@ -36,4 +39,5 @@ A more automatic approach is also available. You can set cgeref:TCastleViewport.
 - cgeref:TCastleNavigation.MoveSpeed[],
 - cgeref:TCastleNavigation.ClimbHeight[].
 
-We don't advise using cgeref:TCastleViewport.AutoNavigation[] right now, unless you work with X3D models that have sensible `NavigationInfo` nodes values. In most cases, it is simpler to leave cgeref:TCastleViewport.AutoNavigation[] as `false`, and adjust the navigation properties in the editor.
+We don't advise using cgeref:TCastleViewport.AutoNavigation[], unless you work with X3D models that have useful `NavigationInfo` values. In most cases, it is simpler to leave cgeref:TCastleViewport.AutoNavigation[] as `false`, and adjust the navigation properties in the editor.
+////
