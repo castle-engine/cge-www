@@ -1,86 +1,39 @@
 # Navigation
 include::common.adoc[]
 
-_Navigation_ is an instance of cgeref:TCastleNavigation[] that can optionally be assigned to cgeref:TCastleViewport.Navigation[]. As cgeref:TCastleNavigation[] class is abstract, you actually have to use some descendant of it, like cgeref:TCastleWalkNavigation[], cgeref:TCastleExamineNavigation[], cgeref:TCastle2DNavigation[], cgeref:TCastleThirdPersonNavigation[].
+## Introduction
+
+_Navigation_ handles user input (key presses, mouse movement, touches on mobile devices, ...) to move the camera.
+
+You can assing any instance of cgeref:TCastleNavigation[] class to cgeref:TCastleViewport.Navigation[]. As cgeref:TCastleNavigation[] class is abstract, you actually have to use some descendant of it, like:
+
+- cgeref:TCastleWalkNavigation[] - typical first-person 3D navigation. Depending on the cgeref:TCastleWalkNavigation.Gravity[] value, it feels more like _walking_ (when `Gravity` is `true`) or _flying_ (when `Gravity` is `false`).
+
+- cgeref:TCastleExamineNavigation[] - inspect the 3D model, moving and rotating it to easily look at every side.
+
+- cgeref:TCastle2DNavigation[] - specialized navigation for 2D. Makes it easy to move a 2D world, without accidentally making a rotation that would reveal it is 3D.
+
+- cgeref:TCastleThirdPersonNavigation[] - 3rd-person navigation in which an avatar of the player is shown. This navigation requires an animater avatar to use, see https://github.com/castle-engine/castle-engine/tree/master/examples/third_person_camera[examples/third_person_camera] how to set it up.
 
 You have complete freedom how do you handle the input in your games. You can
 
-* use one of our ready navigation classes
+* use one of our ready navigation classes listed above,
 
-* or implement your own descendant of cgeref:TCastleNavigation[]
+* or implement a new descendant of cgeref:TCastleNavigation[],
 
 * or leave cgeref:TCastleViewport.Navigation[] as `nil` and handle the navigation elsewhere. For example, move the camera in response to user input in your `TStatePlay.Update`.
 
-See the link:viewport_3d[Tutorial: Designing a 3D world] and link:viewport_3d[Tutorial: Designing a 2D world] to see the typical workflow how do you manipulate the navigation using the editor.
+See the link:viewport_3d[Tutorial: Designing a 3D world] and link:viewport_2d[Tutorial: Designing a 2D world] to see the typical workflow how do you manipulate the navigation using the editor.
 
-////
-TODO: AsciiDoctor:
+## Auto-detecting the current navigation
 
-<p>To can also control the <i>navigation</i> ("how does the camera change based on input"):
+By default, the navigation type is not auto-detected. This means that you can set cgeref:TCastleViewport.Navigation[] to whatever feels good for your game. Or leave cgeref:TCastleViewport.Navigation[] equal to `nil` (default) to not have any navigation.
 
-<ol>
-  <li><p>You can assign a specific TCastleNavigation descendant to
-    <?php api_link('Viewport.Navigation',
-    'CastleViewport.TCastleViewport.html#Navigation'); ?>.
+A more automatic approach is also available. You can set cgeref:TCastleViewport.AutoNavigation[] to let the engine auto-detect the most suitable navigation method for you, and set it as cgeref:TCastleViewport.Navigation[]. The suitable navigation instance will be automatically created and assigned. If the model set as cgeref:TCastleRootTransform.MainScene[Viewport.Items.MainScene] includes some X3D `NavigationInfo` node then it will dictate the navigation. The X3D `NavigationInfo` will also set some navigation parameters, like
 
-  <li><p>You can auto-detect the suitable navigation method.
-    To do this, leave
-    <?php api_link('Viewport.Navigation',
-    'CastleViewport.TCastleViewport.html#Navigation'); ?> as <code>nil</code>,
-    and set <code>Viewport.AutoNavigation := true</code>.
-    Then the navigation instance will be automatically created before rendering.
+- cgeref:TCastleNavigation.PreferredHeight[],
+- cgeref:TCastleNavigation.Radius[],
+- cgeref:TCastleNavigation.MoveSpeed[],
+- cgeref:TCastleNavigation.ClimbHeight[].
 
-  <li><p>You can use
-    <?php api_link('Viewport.WalkNavigation',
-    'CastleViewport.TCastleViewport.html#WalkNavigation'); ?>,
-     <?php api_link('Viewport.ExamineNavigation',
-    'CastleViewport.TCastleViewport.html#ExamineNavigation'); ?>
-    to request given navigation class and assign it to
-    <?php api_link('Viewport.Navigation',
-    'CastleViewport.TCastleViewport.html#Navigation'); ?>.
-
-  <li><p>You can change the navigation type by setting
-    <?php api_link('Viewport.NavigationType',
-    'CastleViewport.TCastleViewport.html#NavigationType'); ?>.
-
-  <li><p>To control the camera only from your code
-    (by calling <code>Viewport.Camera.SetView(...)</code>),
-    just leave <code>AutoNavigation</code> as <code>false</code>,
-    and leave <code>Navigation</code> as <code>nil</code>. By default,
-    the engine does not automatically
-    interpret any keys/mouse to handle the navigation.
-
-    <!--p>You can also set <code>Navigation</code>,
-    and change the <?php api_link('Viewport.Navigation.Input',
-    'CastleCameras.TCastleNavigation.html#Input'); ?> to disable some default navigation
-    key and mouse operations.
-    -->
-
-  <li><p>You can also control the initial navigation type using the <code>NavigationInfo</code>
-    X3D node. It determines e.g. whether we are in EXAMINE, WALK, FLY, NONE or other modes.
-
-    <p>Note that, in order for the "bindable" nodes (like <code>Viewpoint</code>,
-    <code>OrthoViewpoint</code>, <code>NavigationInfo</code>) to work,
-    they must be within a scene set as
-    <?php api_link('Viewport.Items.MainScene', 'CastleScene.TCastleRootTransform.html#MainScene'); ?>.
-    The first <code>Viewpoint</code> or <code>OrthoViewpoint</code>
-    is automatically used, just like the first <code>NavigationInfo</code> node.
-    You can always call explicitly <code>Viewpoint.EventSet_Bind.Send(true)</code>
-    to activate (jump to) a specific Viewpoint node.
-
-    <p>The camera and navigation settings (position, direction, up, navigation type, avatar height
-    and many others) set in X3D file (by nodes like <code>Viewpoint</code>,
-    or <code>OrthoViewpoint</code>,
-    <code>NavigationInfo</code>) serve as defaults when we create a camera instance.
-    You can override them all by code, as documented above.
-
-<!-- deprecated already
-  <li><p>Warning: The simple methods <code>TCastleWindow.Load</code>
-    or <code>TCastleControl.Load</code> forcefully reset (free and recreate)
-    the camera.
-    These methods are mostly designed for the case when your 3D world
-    is actually only one 3D scene (e.g. when you make a 3D model viewer).
-    It's usually better to avoid these methods in more complex applications.
--->
-</ol>
-////
+We don't advise using cgeref:TCastleViewport.AutoNavigation[] right now, unless you work with X3D models that have sensible `NavigationInfo` nodes values. In most cases, it is simpler to leave cgeref:TCastleViewport.AutoNavigation[] as `false`, and adjust the navigation properties in the editor.

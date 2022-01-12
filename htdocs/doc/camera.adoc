@@ -3,7 +3,7 @@ include::common.adoc[]
 
 ## Introduction
 
-Camera determines what do you see in the viewport.
+_Camera_ determines what do you see in the viewport.
 
 It defines 3 vectors:
 
@@ -17,7 +17,6 @@ Camera also defines _projection_:
 * cgeref:TCastleCamera.Perspective[], cgeref:TCastleCamera.Orthographic[] - these subcomponents allow to configure projection details.
 
 See the link:viewport_3d[Tutorial: Designing a 3D world] and link:viewport_3d[Tutorial: Designing a 2D world] to see the typical workflow how do you manipulate the camera using the editor.
-
 
 ## The initial camera
 
