@@ -53,6 +53,16 @@ We support additional macros within AsciiDoctor:
   ]
   ```
 
+  Note: you can use backslash to write an ordinary comma within the image description.
+
+  ```
+  cgeimg::block[aaa.png|A very\, very\, very long description]
+
+  cgeimg::block[aaa.png|Can be used to escape bar too\| <- like this]
+
+  cgeimg::block[aaa.png|Double your backslashes to be safe, \\ <- this outputs a backslash]
+  ```
+
   We expect to find referenced images (aaa.png,bbb.png in examples below) in
   `htdocs/images/original_size/`.
   You can regenerate all thumbnails using `cd htdocs/images/ && make`,

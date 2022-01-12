@@ -3,150 +3,258 @@ include::common.adoc[]
 
 ## Introduction
 
-In this chaper we show how you can do typical operations on viewports and scenes using Pascal code. We assume you have already read the link:viewport_and_scene[overview of the viewport and scenes] and link:viewport_3d[Tutorial: Designing a 3D world] (that shows how to set up basic things using the editor).
+In this chaper we'll show how to do some useful operations on viewports and scenes using Pascal code. We assume you have already read the link:viewport_and_scenes[overview of the viewport and scenes] and link:viewport_3d[Tutorial: Designing a 3D world] (that shows how to set up things using the editor).
 
-## Complete tutorial code
+By editing Pascal code you can do much more than what is possible by just designing in the _Castle Game Engine editor_.
 
-The complete result of this tutorial is in the _Castle Game Engine_. Just open the project https://github.com/castle-engine/castle-engine/tree/master/examples/3d_rendering_processing/cars_demo[examples/3d_rendering_processing/cars_demo]. If at any point you get lost, just look there.
+- All the classes that you can create using the _Castle Game Engine editor_ can be also created using code. Creating these classes from code allows to do it at any moment in the application. For example you can spawn a new cgeref:TCastleScene[] when user presses a key.
++
+We call these classes _components_, as they descend from standard Pascal `TComponent` class.
 
+- Likewise, it is possible to adjust all of the classes properties, whenever you want. For example, you can update the cgeref:TCastleTransform.Translation[Translation] to move some object.
+
+- Moreover, there are many engine features that are only available using Pascal code, as exposing them in the editor is not easy (though we work on making more and more features available in the editor).
+
+## Example code
+
+cgeimg::float[cars_demo_3.png|Cars\, surrounded by a wall build in code]
+
+The complete result of this tutorial is in the _Castle Game Engine_. Just open the project https://github.com/castle-engine/castle-engine/tree/master/examples/3d_rendering_processing/cars_demo[examples/3d_rendering_processing/cars_demo] and consult it as necessary.
+
+## Where to edit code
+
+In simple applications, most of the code modifications will be done in the Pascal file that defines your _state_.
+
+If you started from the _"Empty"_ template, this state is called _Main_ by default, and the Pascal unit is `code/gamestatemain.pas`.
+
+If you started from the _"3D FPS game"_ or _"2D game"_ templates, then you have 2 states created by default. The actual game is in state called _Play_, and the Pascal unit is `code/gamestateplay.pas`.
+
+You can just double-click on that Pascal file in _Castle Game Engine editor_. It will open your _code editor_, like _Lazarus_ or _Delphi_ or _Visual Studio Code_ (see link:install[installation] for instructions how to configure this).
+
+The Pascal unit defines a class called like `TStateMain` that descends from cgeref:TUIState[]. It overrides some virtual cgeref:TUIState[] methods, and these are the usual places where you will want to add your own code:
+
+- `TStateMain.Start` overrides cgeref:TUIState.Start[]. It is run once when we enter the state. It is a good place to initialize something.
+
+- `TStateMain.Update` overrides cgeref:TUIState.Update[]. It is run very often, multiple times per second. It is a good place to do something you have to do constantly. Use this for example to
++
+[role="compact"]
+--
+- move some object,
+- check whether player is in some state,
+- check whether user is pressing some key to _keep doing something, as long as user holds the key down_.
+--
+
+- `TStateMain.Press` overrides cgeref:TUIState.Press[]. It is run when user presses a key or a mouse button.
+
+See link:manual_state_events.php[Designing user interface and handling events] chapter that also talks about the state code.
 
 ////
-TODO
+### Example: Creating TCastleViewport
 
-echo castle_thumbs(array(
-  array('filename' => 'cars_demo_0.png', 'titlealt' => 'Car 3D model'),
-));
+If you even want to create a cgeref:TCastleViewport[] instance:
 
-<p>We will now load a 3D model from file using the <code>TCastleScene</code> class,
-and display it.</p>
-
-<ol>
-  <li><p><b>If you use
-    <?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?></b>:
-    To load a 3D model, change your program code to this:</p>
-
-    <?php echo pascal_highlight_file('code-samples/view_3d_model_basic.lpr'); ?>
-
-  <li><p><b>If you use Lazarus form with
-    <?php api_link('TCastleControlBase', 'CastleControl.TCastleControlBase.html'); ?>:</b>
-    To load a 3D model, double click to create an event <code>OnCreate</code>
-    on your <code>TForm1</code> class, and put there the following code:</p>
-
-<?php echo pascal_highlight(
-'// also add to your uses clauses these units: CastleSceneCore, CastleScene, CastleViewport;
-
-procedure TForm1.FormCreate(Sender: TObject);
+[source,pascal]
+----
+procedure CreateViewport;
 var
   Viewport: TCastleViewport;
-  Scene: TCastleScene;
 begin
-  Viewport := TCastleViewport.Create(Application);
-  Viewport.FullSize := true;
-  Viewport.AutoCamera := true; // instead of this, you could do "Viewport.Camera.SetView(...)"
-  Viewport.AutoNavigation := true; // instead of this, you could do "Viewport.Navigation := ..."
-  CastleControlBase1.Controls.InsertFront(Viewport);
+  Viewport := TCastleViewport.Create(FreeAtStop);
+  Viewport.Width := 400;
+  Viewport.Height := 400;
+  Viewport.AutoCamera := true;
+  InsertFront(Viewport);
+end;
+----
 
-  Scene := TCastleScene.Create(Application);
-  Scene.Load(\'castle-data:/car.gltf\');
-  Scene.Spatial := [ssRendering, ssDynamicCollisions];
+You can place such code e.g. inside overridden cgeref:TUIState.Start[] method. The `InsertFront` method will call the cgeref:TCastleUserInterface.InsertFront[] method, which inserts the `Viewport` as the front-most control in the state. Using cgeref:TUIState.FreeAtStop[] as the owner means that the `Viewport` will be automatically freed when state stops.
 
-  Viewport.Items.Add(Scene);
-  Viewport.Items.MainScene := Scene;
-end;'); ?>
-</ol>
+Remember to add the necessary units to your `uses` clause to have the appropriate identifiers defined. If you follow the reference links, like this one: cgeref:TCastleViewport[], then you will see in which unit is each identifier defined. cgeref:TCastleViewport[] class is part of the cgeref:CastleViewport[] unit.
+////
 
-<p>At the beginning we create a new instance of
-<?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>, and load
-it's contents from a file.
-<?php api_link('Scene.Spatial', 'CastleSceneCore.TCastleSceneCore.html#Spatial'); ?>
- determines what spatial
-structures (octrees for now) are created, the value <code>[ssRendering,
-ssDynamicCollisions]</code> is the most flexible one (it allows to speed up
-the rendering by frustum culling, detect collisions between player and
-level, and it adapts to a dynamic level that may have some animated
-parts).
-<?php /*
-No longer show it, for simplicity. There's no need to call it.
+## Creating initial project
 
-< ?php api_link('Scene.ProcessEvents', 'CastleSceneCore.TCastleSceneCore.html#ProcessEvents'); ? >
- activates animating VRML/X3D models (you
-can remove it if you know that your level is, and always will be, static).</p>
-*/ ?>
+If you want to try all the examples on this page yourself, we recommend that you create a simple test project now. Follow a subset of the link:viewport_3d[Tutorial: Designing a 3D world] instructions to:
 
-<p>Then we create a <i>viewport</i>, which is a 2D rectangular area
-in a window that will show the world.
+- Create a new project using the _"Empty"_ template.
 
-<p>The model is added to the viewport. The model is also set as the
-<?php api_link('MainScene', 'CastleScene.TCastleRootTransform.html#MainScene'); ?>,
-this means that some central settings
-(like initial camera position, initial headlight status and such) can
-be obtained from this scene.</p>
+- Add an instance of cgeref:TCastleViewport[] on the design. Call it `MainViewport`.
 
-$toc = new TableOfContents(
-  array(
-    new TocItem('Transform', 'transform'),
-    new TocItem('Play animation', 'play_animation'),
-    new TocItem('Control the existence of an object', 'control_the_existence'),
-    new TocItem('Many instances of the same 3D object', 'many_instances'),
-    new TocItem('Building and editing the scene', 'building_and_editing'),
-    new TocItem('Further reading', 'further_reading'),
-    new TocItem('Viewports: advanced notes', 'viewport_notes', 1),
-    new TocItem('Adding behaviors, creating descendants, implementing AI', 'descendants', 1),
-    new TocItem('It all applies to 2D too!', '2d', 1),
-  )
-);
+- Add the sample 3D models of the car and road: copy them from CGE `examples/3d_rendering_processing/cars_demo/data` into your project.
 
-echo castle_thumbs(array(
-  array('filename' => 'cars_demo_0.png', 'titlealt' => 'Car 3D model'),
-  array('filename' => 'cars_demo_1.png', 'titlealt' => 'Car on a road'),
-  array('filename' => 'cars_demo_2.png', 'titlealt' => 'More cars!'),
-  array('filename' => 'cars_demo_3.png', 'titlealt' => 'Cars, surrounded by a wall build in code'),
-));
-?>
+- Add an instance of cgeref:TCastleScene[] on the design. Call it `RoadScene`, and load there `castle-data:/road.gltf`.
 
-<p>In the last chapter, we created a <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> instance.
-This is a very powerful class in our engine, it represents any non-trivial 3D or 2D object.
-You often load it's contents from the file using the <?php api_link('Load', 'CastleSceneCore.TCastleSceneCore.html#Load'); ?> method.
-To actually make it visible (and animated, and sometimes even interactive), you need to also add it to the <?php api_link('Viewport.Items', 'CastleViewport.TCastleViewport.html#Items'); ?>.</p>
+## Refer to the designed components
 
-<p>In this chapter, we will extend a little the code from the previous chapter, to add more functionality around the scene.
+Often, your code will need to refer to some components that you have added in the editor. The component `Name` is used to uniquely get an instance of this component from code. In this example, we want to access `MainViewport` and `RoadScene` in Pascal. To do this:
 
-<p><b>A complete program using the code shown here is in the engine examples</b>, in the <code>examples/3d_rendering_and_processing/cars_demo.lpr</code>. If you get lost or are unsure where to place some code snippet, just look there:)
+. Declare their corresponding fields. We recommend to do this in the `private` section of `TStateMain` class, near the comment _{ Components designed using CGE editor, loaded from gamestatemain.castle-user-interface. }_. There should be `LabelFps` already defined (it is part of the _"Empty"_ template), you will add 2 new lines below it:
++
+[source,pascal]
+----
+RoadScene: TCastleScene;
+MainViewport: TCastleViewport;
+----
++
+The end result is that `TStateMain` class starts like this:
++
+[source,pascal]
+----
+type
+  { Main state, where most of the application logic takes place. }
+  TStateMain = class(TUIState)
+  private
+    { Components designed using CGE editor, loaded from gamestatemain.castle-user-interface. }
+    LabelFps: TCastleLabel;
+    RoadScene: TCastleScene;
+    MainViewport: TCastleViewport;
+----
 
-<?php echo $toc->html_toc(); ?>
+. Remember to add the necessary units to your `uses` clause to have the appropriate identifiers defined. If you follow the reference links, like this one: cgeref:TCastleScene[], then you will see in which unit is each identifier defined. cgeref:TCastleScene[] class is part of the cgeref:CastleScene[] unit. cgeref:TCastleViewport[] is part of the cgeref:CastleViewport[] unit.
 
-<?php echo $toc->html_section(); ?>
+. Find the implementation of `TStateMain.Start`. You need to initialize the fields, to actually refer to the components that were loaded from the design. Below the existing lines:
++
+[source,pascal]
+----
+{ Find components, by name, that we need to access from code }
+LabelFps := DesignedComponent('LabelFps') as TCastleLabel;
+----
++
+...add 2 more lines:
++
+[source,pascal]
+----
+RoadScene := DesignedComponent('RoadScene') as TCastleScene;
+MainViewport := DesignedComponent('MainViewport') as TCastleViewport;
+----
 
-<p>You can group and transform (move, rotate, scale) scenes using the <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?> class. Actually, the <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> is itself a descendant of <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?>, so it can be transformed and can have children. Let's change the program from previous chapter to make the car (one 3D object) move along a road (another 3D object).</p>
+That's it. Now anywhere in your state code you can access `RoadScene` or `MainViewport`.
 
-<ol>
-  <li><p>At the place where you declared <code>Scene: TCastleScene;</code> in the previous chapter, change it to <code>CarScene: TCastleScene;</code>, and add a second scene <code>RoadScene: TCastleScene;</code>.</p></li>
+*Compile and run the application now.* Use menu item _"Run -> Compile And Run (F9)"_ from the _Castle Game Engine editor_.
 
-  <li><p>Create both scenes, placing both <code>CarScene</code> and <code>RoadScene;</code> as children of <code>Viewport.Items</code>.
+If you are familiar with _Lazarus_ or _Delphi_ or other IDE, you can also compile and run from there. Use _"Code -> Open Project in Code Editor"_ to open your code editor. In _Lazarus_ or _Delphi_ you can again press F9 to compile and run (possibly inside a debugger).
 
-    <p>The complete code doing this, using <?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?>, looks like this:
+//We advise to check often whether your code compiles and runs correctly.
 
-    <?php echo pascal_highlight_file('code-samples/scene_transform.lpr'); ?>
+## Change the existence of a scene
 
-    <p>If, instead of <?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?>, you use <?php api_link('TCastleControlBase', 'CastleControl.TCastleControlBase.html'); ?>, you should be able to adjust this code easily. Move the scenes setup to <code>TForm1.FormCreate</code>, and declare variables as private fields of <code>TForm1</code>. Consult the previous chapter as needed.
+Now that we have a reference to `RoadScene`, let's make a simple modification: let's make to road disappear when user presses the key `R` on the keyboard. And appear again, when user presses `R` again.
 
-    <p>Note that we set <code>Viewport.Items.MainScene</code> as <code>RoadScene</code>. It doesn't really matter in this demo (and we could also leave <code>MainScene</code> unassigned). The <code>MainScene</code> determines some central things for the world (default camera, navigation mode, background / sky, fog settings). So you set <code>MainScene</code> to whichever 3D model determines these things for your world.</p>
-  </li>
+To do this, we will react to pressing the `R` key and toggle the cgeref:TCastleTransform.Exists[Exists] property of `RoadScene`.
 
-  <li><p>To make the car actually moving, we should now update the <?php api_link('TCastleTransform.Translation', 'CastleTransform.TCastleTransform.html#Translation'); ?> property. For example, we can update it in the <?php api_link('Window.OnUpdate', 'CastleWindow.TCastleWindowBase.html#OnUpdate'); ?> callback (if you use Lazarus, there's an analogous event <?php api_link('TCastleControlBase.OnUpdate', 'CastleControl.TCastleControlBase.html#OnUpdate'); ?>).</p>
+. Find the `TStateMain.Press` implementation.
 
-    <p>Before opening the window, assign:</p>
+. In the implementation, add these lines:
++
+[source,pascal]
+----
+if Event.IsKey(keyR) then
+begin
+  RoadScene.Exists := not RoadScene.Exists;
+  Exit(true);
+end;
+----
 
-<?php echo pascal_highlight(
-'Window.OnUpdate := @WindowUpdate;'); ?>
+. Add the `CastleKeysMouse` unit to the `uses` clause.
 
-    <p>At the beginning of your program (but <i>after the definition of the <code>CarScene</code> global variable</i>), define the <code>WindowUpdate</code> procedure:</p>
+Testing `Event.IsKey(keyR)` is the way to test whether user pressed a key that generates letter `R`.
 
-<?php echo pascal_highlight(
-'procedure WindowUpdate(Container: TUIContainer);
+When user pressed `R`, we toggle the Boolean value of `RoadScene.Exists`. So it will change to `false` if it is `true` right now, or change to `true` if it is `false` right now.
+
+We return using the `Exit(true)` call to tell the parent user interface control that "pressing this key has been handled". This doesn't really matter in case of this simple application, as nothing else is interested in handling the input. But it matters for more complicated setups, when multiple controls may be interested in handling the same key.
+
+*Compile and test the code. The road should appear / disappear as you press R on the keyboard now.*
+
+[NOTE]
+====
+Another way to show and hide the scene would be to toggle the cgeref:TCastleTransform.Visible[] property. Setting this to `false` makes scene invisible, but it still exists in the world. In particular it still collides.
+
+You can also make a scene non-collidable but still visible. Use cgeref:TCastleTransform.Collides[] property for this. This is a useful trick to make non-collidable walls in 3D games, behind which you can hide secrets.
+====
+
+[NOTE]
+====
+All these properties (cgeref:TCastleTransform.Exists[], cgeref:TCastleTransform.Visible[], cgeref:TCastleTransform.Collides[]) can also be adjusted in the editor. Here, we adjust the `Exists` in code, because we want to react to user pressing a key.
+====
+
+[NOTE]
+====
+Yet another way to make the scene non-existing would be to remove it from `Viewport.Items`.
+
+- Doing `Viewport.Items.Remove(RoadScene)` has a similar effect as `RoadScene.Exists := false`
+- Doing `Viewport.Items.Add(RoadScene)` has a similar effect as `RoadScene.Exists := true`
+====
+
+## Creating TCastleScene
+
+You can create cgeref:TCastleScene[] instances using code. You can add the created scene to a viewport and adjust it's properties like cgeref:TCastleTransform.Translation[Translation].
+
+. Declare a new field `CarScene: TCastleScene` in the `private` section of `TStateMain`.
+
+. In the `TStateMain.Start` add code to initialize it, load car model, and add to the viewport:
++
+[source,pascal]
+----
+CarScene := TCastleScene.Create(FreeAtStop);
+CarScene.Load('castle-data:/car.gltf');
+CarScene.Spatial := [ssRendering, ssDynamicCollisions];
+MainViewport.Items.Add(CarScene);
+----
+
+Doing this in `TStateMain.Start` isn't yet very useful. We could have added the car scene using the editor too. But it will be useful later.
+
+## Playing animation
+
+cgeimg::float[
+  animations_car.png|Car animations,
+  view3dscene_mousey.png|Mousey animations
+]
+
+To play an animation, call the cgeref:TCastleSceneCore.PlayAnimation[PlayAnimation] method from code.
+
+Just add this to the `TStateMain.Start` to play `wheels_turning` animation once the model is loaded:
+
+[source,pascal]
+----
+CarScene.PlayAnimation('wheels_turning', true);
+----
+
+[NOTE]
+====
+You can test what animations are available on your model e.g. by opening it with link:view3dscene.php[view3dscene] (activate the panel _Animations_ to test animations).
+====
+
+cgeref:TCastleSceneCore.PlayAnimation[PlayAnimation] is very powerful. In addition to choosing an animation (by name) and whether it should loop, it has an overloaded version that takes cgeref:TPlayAnimationParameters[] instance and allows to:
+
+- play animation with blending (cross-fading with previous animation) (see cgeref:TPlayAnimationParameters.TransitionDuration[]; note that you can also adjust cgeref:TCastleSceneCore.DefaultAnimationTransition[DefaultAnimationTransition] to do cross-fading by default),
+
+- play animation backwards (see cgeref:TPlayAnimationParameters.Forward[]),
+
+- play animation from the middle (not from start) (see cgeref:TPlayAnimationParameters.InitialTime[]),
+
+- receive a stop notification, when animation stops (see cgeref:TPlayAnimationParameters.StopNotification[]),
+
+See the example https://github.com/castle-engine/castle-engine/tree/master/examples/animations/play_animation[examples/animations/play_animation] in engine sources for a demo of `PlayAnimation` capabilities.
+
+[NOTE]
+====
+Code can also set the cgeref:TCastleSceneCore.AutoAnimation[AutoAnimation] and cgeref:TCastleSceneCore.AutoAnimationLoop[AutoAnimationLoop] properties to change the animation. But using cgeref:TCastleSceneCore.PlayAnimation[PlayAnimation] is usually more comfortable.
+====
+
+## Moving scene in each update
+
+To make the car moving, we can update its position in `TUIState.Update`. Change it into this:
+
+[source,pascal]
+----
+procedure TStateMain.Update(const SecondsPassed: Single; var HandleInput: Boolean);
 var
   T: TVector3;
 begin
+  inherited;
+  { This virtual method is executed every frame.}
+  LabelFps.Caption := 'FPS: ' + Container.Fps.ToString;
+
   T := CarScene.Translation;
   { Thanks to multiplying by SecondsPassed, it is a time-based operation,
     and will always move 40 units / per second along the +Z axis. }
@@ -155,133 +263,58 @@ begin
   if T.Z > 70 then
     T.Z := -50;
   CarScene.Translation := T;
-end;'); ?>
-  </li>
-</ol>
+end;
+----
 
-<p>That's it, you have a moving object in your world, and the movement in 100% controlled by your code!
+## Advanced Topics
 
-<!--p>Note: An alternative way to transform scenes is the <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?> class. It has the same effect, but the transformation parameters are specified a little differently &mdash; instead of a normal rotation, you specify a <i>direction</i> and <i>up vector</i>, and imagine that you transform something that has a <i>"front"</i> and <i>"up"</i> idea (like a player avatar or a creature).-->
+### Multiple instances of the same scene
 
-<p>You can create any complex tree this way, using the
- <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?>
- to build any transformation hierarchy that is comfortable.
+cgeimg::float[
+  cars_demo_2.png|Many car instances
+]
 
-<?php echo $toc->html_section(); ?>
+It's allowed to add the same instance of the cgeref:TCastleScene[] many times to your viewport items. This allows to reuse it's data, which is great for both performance and the memory usage.
 
-<p>Once you load a scene, you can play a "named animation" within it,
-using the <?php api_link('PlayAnimation', 'CastleSceneCore.TCastleSceneCore.html#PlayAnimation'); ?> method. Open the model with <?php echo a_href_page('view3dscene', 'view3dscene'); ?> and look at the <i>Animation -&gt; Named Animations</i> submenu to see what animations are available. We read animations from a variety of 2D and 3D formats (<?php echo a_href_page('X3D, VRML', 'vrml_x3d'); ?>,
-<?php echo a_href_page('castle-anim-frames', 'castle_animation_frames'); ?>,
-<a href="https://castle-engine.io/spine">Spine</a>, MD3).
+For example, let's make 20 cars moving along the road. You will need 20 instances of cgeref:TCastleTransform[], but only a single instance of the cgeref:TCastleScene[].
 
-<?php
-echo castle_thumbs(array(
-  array('filename' => 'cars_named_animations.png', 'titlealt' => 'Car animation in view3dscene'),
-  array('filename' => 'dragon_old_view3dscene.png', 'titlealt' => 'Dragon animations in view3dscene'),
-), 'auto', 'left');
-?>
+. Declare in the `private` section of `TStateMain` an array of transformations:
++
+[source,pascal]
+----
+CarTransforms: array [1..20] of TCastleTransform;
+----
 
-<p>To play the animation called <code>wheels_turning</code> on our sample car model,
-do this sometime after loading the <code>CarScene</code>:
-
-<?php echo pascal_highlight(
-'CarScene.PlayAnimation(\'wheels_turning\', true);'); ?>
-
-<p>You should see now that the wheels of the car are turning. <i>Tip:</i> If you can't easily see the wheels, remember that you can move around in the scene using mouse dragging and mouse wheel. See <?php echo a_href_page('view3dscene', 'view3dscene'); ?> documentation of the <i>"Examine"</i> camera mode. Of course you can configure or disable the default camera navigation in your games (see <a href="manual_load_3d.php#section_camera">previous manual chapter for camera description</a>).
-
-<p>There are many other useful methods related to  "named animations". See the
-<?php api_link('HasAnimation', 'CastleSceneCore.TCastleSceneCore.html#HasAnimation'); ?>,
-<?php api_link('ForceAnimationPose', 'CastleSceneCore.TCastleSceneCore.html#ForceAnimationPose'); ?> and
-<?php api_link('AnimationDuration', 'CastleSceneCore.TCastleSceneCore.html#AnimationDuration'); ?> methods.
-And if these are not enough, note that the animation is just an X3D <code>TimeSensor</code> node.
-You can access the underlying node using the <?php api_link('AnimationTimeSensor', 'CastleSceneCore.TCastleSceneCore.html#AnimationTimeSensor'); ?> method, and use or even edit this animation as you wish.
-
-<p>See the <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/animations/play_animation">play_animation example in engine sources</a> for a demo of <code>PlayAnimation</code> capabilities.
-
-<?php echo $toc->html_section(); ?>
-
-<p>Any object descending from <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?>, including
-<?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> and
-<?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?>, has properties
-<?php api_link('Exists', 'CastleTransform.TCastleTransform.html#Exists'); ?>,
-<?php api_link('Visible', 'CastleTransform.TCastleTransform.html#Visible'); ?>,
-<?php api_link('Collides', 'CastleTransform.TCastleTransform.html#Collides'); ?> and
-<?php api_link('Pickable', 'CastleTransform.TCastleTransform.html#Pickable'); ?>. Setting <?php api_link('Exists', 'CastleTransform.TCastleTransform.html#Exists'); ?> to <code>false</code> makes the object behave like it would not be present in the <?php api_link('Viewport.Items', 'CastleViewport.TCastleViewport.html#Items'); ?> tree at all &mdash; it's not visible, it's not collidable.
-
-<p>For example, you can toggle the visibility of the car when user presses the <code>'c'</code> key, like this:
-
-<ol>
-  <li><p>Add unit <?php api_link('CastleKeysMouse', 'CastleKeysMouse.html'); ?> to your uses clause.</p></li>
-
-  <li><p>Before opening the window, assign:</p>
-
-<?php echo pascal_highlight(
-'Window.OnPress := @WindowPress;'); ?>
-
-  <li><p>At the beginning of your program (but <i>after the definition of the <code>CarScene</code> global variable</i>), define the <code>WindowPress</code> procedure:</p>
-
-<?php echo pascal_highlight(
-'procedure WindowPress(Container: TUIContainer; const Event: TInputPressRelease);
-begin
-  if Event.IsKey(\'c\') then
-    CarScene.Exists := not CarScene.Exists;
-end;'); ?>
-  </li>
-</ol>
-
-<p><b>Advanced hints:</b></p>
-
-<ul>
-  <li><p>In some cases, instead of changing the <?php api_link('Exists', 'CastleTransform.TCastleTransform.html#Exists'); ?> property, it may be easier to override the <?php api_link('GetExists', 'CastleTransform.TCastleTransform.html#GetExists'); ?> function. This is actually used by the engine to determine whether object "exists". By default it simply returns the <code>Exists</code> property value, but you can change it to decide existence using any algorithm you need. E.g. maybe the object doesn't exist when it's too far from the player, maybe the object "blinks" for half a second in and out.... By changing the return value of <code>GetExists</code>, you can make the object change it's state every frame, at absolutely zero cost.</p></li>
-
-  <li><p>Note that simply changing the <?php api_link('Viewport.Items', 'CastleViewport.TCastleViewport.html#Items'); ?> contents has also almost-zero cost. So you can dynamically add and remove objects there during the game, it will be lighting fast.</p>
-
-  <li><p>The one thing you should <i>not</i> do during the game, if you hope to have a good performance: <i>do not load from 3D model files</i> during the game (e.g. do not call <?php api_link('TCastleSceneCore.Load(URL, ...)', 'CastleSceneCore.TCastleSceneCore.html#Load'); ?> method).</p>
-
-    <p>If you want to add scenes dynamically during the game, it's better to load a <i>pool</i> of scenes at the initialization (and prepare them for rendering using the <?php api_link('TCastleScene.PrepareResources', 'CastleScene.TCastleScene.html#PrepareResources'); ?> method). Then add/remove such already-prepared scenes during the game. You can efficiently initialize many scenes from the same 3D model using the <?php api_link('TCastleScene.Clone', 'CastleScene.TCastleScene.html#Clone'); ?> method, or load an X3D graph once using the <?php api_link('LoadNode', 'X3DLoad.html#LoadNode'); ?> function and then use repeatedly the <?php api_link('TCastleSceneCore.Load(TX3DRootNode, ...)', 'CastleSceneCore.TCastleSceneCore.html#Load'); ?> overloaded version.</p>
-
-    <p>See <?php echo a_href_page('the manual chapter about optimization for more hints', 'manual_optimization'); ?>.
-  </li>
-</ul>
-
-<?php echo $toc->html_section(); ?>
-
-<?php
-echo castle_thumbs(array(
-  array('filename' => 'cars_demo_2.png', 'titlealt' => 'Many car instances'),
-));
-?>
-
-<p>It's allowed to add the same instance of the
-<?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>
- many times to your viewport items hierarchy.
-This allows to reuse it's data completely, which is great for both performance
-and the memory usage.
-
-<p>For example, let's make 20 cars moving along the road! You will need 20 instances of <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?>, but only a single instance of the <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>. The modifications to the code are straightforward, just add <code>CarTransforms</code> that is an array of <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?>:
-
-<ol>
-  <li><p>Declare it like <code>CarTransforms: array [1..20] of TCastleTransform;</code>.</p>
-
-  <li><p>Initialize it like this:</p>
-
-<?php echo pascal_highlight(
-'for I := Low(CarTransforms) to High(CarTransforms) do
+. Initialize it in `TStateMain.Start` like this:
++
+[source,pascal]
+----
+for I := Low(CarTransforms) to High(CarTransforms) do
 begin
   CarTransforms[I] := TCastleTransform.Create(Application);
   CarTransforms[I].Translation := Vector3(
      (Random(4) - 2) * 6, 0, RandomFloatRange(-70, 50));
   CarTransforms[I].Add(CarScene);
   Viewport.Items.Add(CarTransforms[I]);
-end;'); ?>
+end;
+----
++
+Above we added a randomization of the initial car position. The cgeref:RandomFloatRange[] function is in the cgeref:CastleUtils[]  unit. There's really nothing magic about the randomization parameters, I just adjusted them experimentally to look right.
 
-    <p>We added a randomization of the initial car position. The <?php api_link('RandomFloatRange', 'CastleUtils.html#RandomFloatRange'); ?> function is in the <?php api_link('CastleUtils', 'CastleUtils.html'); ?> unit. There's really nothing magic about the randomization parameters, I just adjusted them experimentally to look right:)</p>
-  </li>
+. Remove the line
++
+[source,pascal]
+----
+MainViewport.Items.Add(CarScene);
+----
++
+All our cars will be now controlled using the `CarTransforms` array. The `CarScene` is used 20 times as a child of `CarTransforms[...]` items.
 
-  <li><p>In every <code>WindowUpdate</code> move all the cars, like this:</p>
-
-<?php echo pascal_highlight(
-'procedure WindowUpdate(Container: TUIContainer);
+. Finally, make all our cars moving. Change the `TStateMain.Update` to do the same thing as previously, but now in a loop, for every instance of `CarTransforms` list.
++
+[source,pascal]
+----
+procedure TStateMain.Update(const SecondsPassed: Single; var HandleInput: Boolean);
 
   procedure UpdateCarTransform(const CarTransform: TCastleTransform);
   var
@@ -300,39 +333,32 @@ end;'); ?>
 var
   I: Integer;
 begin
+  inherited;
+  { This virtual method is executed every frame.}
+  LabelFps.Caption := 'FPS: ' + Container.Fps.ToString;
+
   for I := Low(CarTransforms) to High(CarTransforms) do
     UpdateCarTransform(CarTransforms[I]);
-end;'); ?>
+end;
+----
 
-    <p>As you can see, this code is very similar to what we had before. We just do it in a loop, for each <code>CarTransforms[I]</code>, instead of transforming the <code>CarScene</code>.</p>
-  </li>
-</ol>
+Note that all 20 cars are in the same state (they display the same animation). This is the limitation of this technique. If you need the scenes to be in a different state, then you will need different cgeref:TCastleScene[] instances. You can efficiently create them e.g. using the cgeref:TCastleScene.Clone[] method. In practice, it is simplest to reserve this optimization (sharing the same scene multiple times) only for completely static scenes (where you don't use `PlayAnimation`).
 
-<p>Note that all 20 cars are in the same state (they display the same animation). This is the limitation of this technique. If you need the scenes to be in a different state, then you will need different <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> instances. You can efficiently create them e.g. using the <?php api_link('TCastleScene.Clone', 'CastleScene.TCastleScene.html#Clone'); ?> method. In general, reserve this optimization (sharing the same scene multiple times) only for completely static scenes (where you don't use <code>PlayAnimation</code> or <code>ProcessEvents</code> and thus you don't animate them in any way).
+### Building and editing the scene
 
-<?php echo $toc->html_section(); ?>
+cgeimg::float[cars_demo_3.png|Cars\, surrounded by a wall build in code]
 
-<?php
-echo castle_thumbs(array(
-  array('filename' => 'cars_demo_3.png', 'titlealt' => 'Cars, surrounded by a wall build in code'),
-));
-?>
+Up to now, we have treated cgeref:TCastleScene[] as a _black box_ that you can load from file and then change using only high-level methods like `PlayAnimation`. But you have much more flexibility.
 
-<p>Up to now, we have treated <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> as a kind of <i>"black box"</i>, that can be loaded from file and then changed using only high-level methods like <code>PlayAnimation</code>. But you have much more flexibility.</p>
+The scene property cgeref:TCastleSceneCore.RootNode[RootNode] holds a _cene graph_ of your scene. In simple cases, you can ignore it, as it is automatically created when loading the model from file, and automatically changed by animations (much like the DOM tree of an HTML document changes during the webpage lifetime). For more advanced uses, this _scene graph_ can be modified at runtime. This means that you can process the 3D models in any way you like, as often as you like, and you can even build a complete renderable 3D object by code --- without the need to load it from an external file. You can also build complicated 3D objects from simple ones.
 
-<p> The <?php api_link('TCastleSceneCore', 'CastleSceneCore.TCastleSceneCore.html'); ?> has a property <?php api_link('RootNode', 'CastleSceneCore.TCastleSceneCore.html#RootNode'); ?> that holds a <i>scene graph</i> of your scene. In simple cases, you can ignore it, it is automatically created when loading the model from file, and automatically changed by animations (much like the DOM tree of an HTML document changes during the page lifetime). For more advanced uses, you should know that this whole <i>scene graph</i> can be modified at runtime. This means that you can process the 3D models in any way you like, as often as you like, and you can even build a complete renderable 3D object by code &mdash; without the need to load it from an external file. You can also build complicated 3D objects from simple ones.</p>
+Our scene graph is composed from link:vrml_x3d.php[X3D nodes] organized in a tree.
 
-<p>Our scene graph is composed from <?php echo a_href_page('X3D nodes', 'vrml_x3d'); ?> organized into a tree. X3D is a standard for 3D graphics &mdash; basically, the guys designing <a href="http://www.web3d.org/documents/specifications/19775-1/V3.3/Part01/Architecture.html">X3D specification</a> have proposed a set of 3D nodes, with sensible operations, and they documented it in great detail. Our engine implements very large part of the X3D specification, we also add some extensions for cool graphic effects like shadows, shader effects and bump mapping.
-
-<p>Here's an example of building a scene with two simple boxes. It shows nice transparent walls around our road. It uses the <code>RoadScene.BoundingBox</code> value to adjust wall sizes and positions to the road 3D model.
-
-<ol>
-  <li><p>Add units <?php api_link('X3DNodes', 'X3DNodes.html'); ?> and <?php api_link('CastleBoxes', 'CastleBoxes.html'); ?>  to your uses clause.</p></li>
-
-  <li><p>Define a function that builds a scene from X3D nodes:</p>
-
-<?php echo pascal_highlight(
-'function CreateBoxesScene: TCastleScene;
+. This is an example of building a scene with two simple boxes. It shows nice transparent walls around our road. It uses the `RoadScene.BoundingBox` value to adjust wall sizes and positions to the road 3D model. Add this to `TUIState.Start`:
++
+[source,pascal]
+----
+function CreateBoxesScene: TCastleScene;
 const
   WallHeight = 5;
 var
@@ -348,7 +374,7 @@ begin
     of the road 3D model. }
   RoadBox := RoadScene.BoundingBox;
   if RoadBox.IsEmpty then
-    raise Exception.Create(\'Invalid road 3D model: empty bounding box\');
+    raise Exception.Create('Invalid road 3D model: empty bounding box');
 
   Material := TMaterialNode.Create;
   { Yellow (we could have also used YellowRGB constant from CastleColors unit) }
@@ -358,27 +384,27 @@ begin
   Appearance := TAppearanceNode.Create;
   Appearance.Material := Material;
 
-  Box1 := TBoxNode.Create(\'box_1_geometry\');
+  Box1 := TBoxNode.Create('box_1_geometry');
   Box1.Size := Vector3(0.5, WallHeight, RoadBox.Size.Z);
 
-  Shape1 := TShapeNode.Create(\'box_1_shape\');
+  Shape1 := TShapeNode.Create('box_1_shape');
   Shape1.Appearance := Appearance;
   Shape1.Geometry := Box1;
 
-  Transform1 := TTransformNode.Create(\'box_1_transform\');
+  Transform1 := TTransformNode.Create('box_1_transform');
   Transform1.Translation := Vector3(RoadBox.Min.X, WallHeight / 2, RoadBox.Center.Z);
   Transform1.AddChildren(Shape1);
 
-  Box2 := TBoxNode.Create(\'box_2_geometry\');
+  Box2 := TBoxNode.Create('box_2_geometry');
   Box2.Size := Vector3(0.5, WallHeight, RoadBox.Size.Z);
 
-  Shape2 := TShapeNode.Create(\'box_2_shape\');
+  Shape2 := TShapeNode.Create('box_2_shape');
   { Reuse the same Appearance node for another shape.
     This is perfectly allowed (the X3D is actually a graph, not a tree). }
   Shape2.Appearance := Appearance;
   Shape2.Geometry := Box2;
 
-  Transform2 := TTransformNode.Create(\'box_2_transform\');
+  Transform2 := TTransformNode.Create('box_2_transform');
   Transform2.Translation := Vector3(RoadBox.Max.X, WallHeight / 2, RoadBox.Center.Z);
   Transform2.AddChildren(Shape2);
 
@@ -388,67 +414,43 @@ begin
 
   Result := TCastleScene.Create(Application);
   Result.Load(RootNode, true);
-end;'); ?>
+end;
+----
 
-    <p>Note that to transform X3D nodes we use the <?php api_link('TTransformNode', 'X3DNodes.TTransformNode.html'); ?> class. We have essentially two transformation trees in our engine:</p>
+. You will need to add cgeref:X3DNodes[] and CastleBoxes[] units to the uses clause.
 
-    <ol>
-      <li>The "outer" tree is rooted in <?php api_link('Viewport.Items', 'CastleViewport.TCastleViewport.html#Items'); ?>, and shows scenes <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> transformed by <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?> and friends.</li>
+. Add the created scene to the viewport:
++
+[source,pascal]
+----
+MainViewport.Items.Add(CreateBoxesScene);
+----
 
-      <li>The "inner" tree is inside every scene. It is rooted in <?php api_link('TCastleSceneCore.RootNode', 'CastleSceneCore.TCastleSceneCore.html#RootNode'); ?>, and shows shapes <?php api_link('TShapeNode', 'X3DNodes.TShapeNode.html'); ?>, and is transformed by <?php api_link('TTransformNode', 'X3DNodes.TTransformNode.html'); ?>.</li>
-    </ol>
+[NOTE]
+====
+Admittedly, in this case, it would be simpler to add these 2 walls to the <code>road.gltf</code> model in Blender. But in general, this technique is extremely powerful to generate 3D scenes following any algorithm!
+====
 
-    <p>This is explained in detail in the <?php echo a_href_page('chapter about the transformation hierarchy', 'manual_transformation_hierarchy'); ?>.</p>
-  </li>
+To construct a more flexible mesh than just _a box_, you can use a universal and powerful `IndexedFaceSet` node. This node represents what is often called a _mesh_: set of polygons, with possible per-vertex attributes like texture coordinates.
 
-  <li><p>Add the created scene to the viewport:</p>
-
-<?php echo pascal_highlight(
-'Viewport.Items.Add(CreateBoxesScene);'); ?>
-
-  </li>
-</ol>
-
-<p>Note: in this case, it would probably be simpler to add these 2 walls (boxes) to the <code>road.gltf</code> file in Blender. Thus, you would not need to deal with them in code. But in general, this technique is extremely powerful to generate 3D scenes following any algorithm!
-
-<p>To construct a more flexible mesh than just <i>a box</i>, you can use a universal and powerful <code>IndexedFaceSet</code> node instead of a simple <code>Box</code>. For <code>IndexedFaceSet</code>, you explicitly specify the positions of the vertexes, and how they connect to form faces.
+////
+Examples are quite complicated?
 
 <p>See the examples:</p>
 <ul>
   <li><a href="https://github.com/castle-engine/castle-engine/blob/master/examples/3d_rendering_processing/build_3d_object_by_code.lpr">3d_rendering_processing/build_3d_object_by_code.lpr</a> (rather simple example)</li>
   <li><a href="https://github.com/castle-engine/castle-engine/blob/master/examples/3d_rendering_processing/build_3d_tunnel.lpr">3d_rendering_processing/build_3d_tunnel.lpr</a> (a cool example generating a tunnel mesh).</li>
 </ul>
+////
 
-<?php echo $toc->html_section(); ?>
-
-<?php echo $toc->html_section(); ?>
-
-<ul>
-  <li>
-    <p>You can use many viewport instances. Just create your own <?php api_link('TCastleViewport', 'CastleViewport.TCastleViewport.html'); ?> instance.</p>
-
-    <p>The viewports may show the same, or completely different, scenes.
+////
+TODO: mention this somewhere?
 
     <p>The viewports may be used as <i>layers</i> if you set <code>ViewportXxx.Transparent := true</code> and place them on top of each other, using <?php api_link('InsertFront', 'CastleUIControls.TCastleUserInterface.html#InsertFront'); ?> in the proper order. This way you can explicitly render some objects on top of other objects, regardless of their positions in a 3D world.</p>
   </li>
+////
 
-  <li><p>You can show the same world from different cameras. For this, use additional <?php api_link('TCastleViewport', 'CastleViewport.TCastleViewport.html'); ?> instances and copy the <code>Viewport.Items</code> value.
-
-    <p>For examples of this, see:
-    <ul>
-      <li>The <a href="manual_2d_user_interface.php">chapter about user interface</a> shows how to set additional viewport.</li>
-      <li>Engine example <code>examples/3d_rendering_processing/multiple_viewports.lpr</code></li>
-      <li>Engine example <code>examples/fps_game/fps_game.lpr</code></li>
-    </ul>
-  </li>
-</ul>
-
-<?php echo $toc->html_section(); ?>
-
-The advised way to customize cgeref:TCastleTransform[] behavior is to define a cgref:TCastleBehavior[]
-descendant, and add it to parent transform using cgeref:TCastleTransform.AddBehavior[].
-The sample enemy AI in the _"New Project -> 3D FPS Game"_ template does it this way.
-
+////
 <p>You can also create descendants to customize the classes mentioned in this chapter.
 These descendants can override methods e.g. to collide or perform AI
 (move itself in the world).
@@ -476,17 +478,8 @@ like <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> or
     that shows an animated creature.
   </li>
 </ol>
-
-<?php echo $toc->html_section(); ?>
-
-<p>Basically, you don't need to learn anything new for 2D games.
-
-<ol>
-  <li><p>You can load 2D models (from X3D, VRML, Spine or any other format) into <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>. Call <?php api_link('TCastleScene.Setup2D', 'CastleScene.TCastleScene.html#Setup2D'); ?> method to make some scene properties perfect for rendering 2D scenes.
-
-  <li><p>Display these scenes using <?php api_link('TCastleViewport', 'CastleViewport.TCastleViewport.html'); ?>. Call <?php api_link('TCastleViewport.Setup2D', 'CastleViewport.TCastleViewport.html#Setup2D'); ?> method to set camera properties (projection, position, orientation) to what is usually desired for rendering 2D worlds.
-</ol>
-
-<p>The <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?> can deal with 3D as well as 2D objects, as 2D in our engine is just a special case of 3D. Just use <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?> to transform your 2D scenes, it works perfectly.</p>
-
 ////
+
+## Behaviors
+
+The advised way to customize cgeref:TCastleTransform[] behavior is to define a cgeref:TCastleBehavior[] descendant, and add it to parent transform using cgeref:TCastleTransform.AddBehavior[]. The sample enemy AI in the _"New Project -> 3D FPS Game"_ template does it this way.

@@ -1826,17 +1826,35 @@ function castle_replace_asciidoctor_macros($contents)
     function ($matches) {
       $placement = $matches[1];
 
-      // calculate $images from 2nd match
-      $images_strings = explode(',', $matches[2]);
+      $images_str = $matches[2];
+
+      /* We use a simple hack to handle \, and \| in macro contents.
+         We replace them to CGE-XXX now, and later (after all exploding) we'll replace them back.
+         This is not a reliable solution to quoting with backslashes -- e.g. you can easily
+         break it by writing actually CGE-XXX in the macro text.
+         But it is simple, and works for our cases. */
+      $images_str = str_replace('\\,', 'CGE-COMMA',
+                    str_replace('\\|', 'CGE-BAR',
+                    str_replace('\\\\', 'CGE-BACKSLASH',
+                    $images_str)));
+
+      // Calculate $images from 2nd match.
+      $images_strings = explode(',', $images_str);
       $images = array();
       foreach ($images_strings as $image_str) {
         $image_str_split = explode('|', $image_str);
         if (count($image_str_split) != 2) {
           throw new ErrorException('Expected 2 items in image string split by |: ' . $image_str);
         }
+        $img_filename = trim($image_str_split[0]);
+        $img_titlealt = trim($image_str_split[1]);
+        $img_titlealt = str_replace('CGE-COMMA', ',',
+                        str_replace('CGE-BAR', '|',
+                        str_replace('CGE-BACKSLASH', '\\',
+                        $img_titlealt)));
         $images[] = array(
-          'filename' => trim($image_str_split[0]),
-          'titlealt' => trim($image_str_split[1]),
+          'filename' => $img_filename,
+          'titlealt' => $img_titlealt,
         );
       }
 
