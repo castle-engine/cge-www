@@ -1,0 +1,30 @@
+# OpenAL
+include::common.adoc[]
+
+## Introduction
+
+link:http://openal.org/[OpenAL] is an open-source cross-platform library to play 3D sound. It is the default sound backend used by _Castle Game Engine_ to play all the sounds.
+
+If you want to learn how to play sounds using _Castle Game Engine_, see the link:manual_sound.php[manual about sound]. This pages only lists some OpenAL-specific information.
+
+## Installing OpenAL
+
+Windows:: OpenAL libraries (DLL files) are automatically places alongside the compiled application by our link:build_tool[build tool]. You don't need to do anything, just compile and run your application using link:manual_editor.php[Castle Game Engine editor] or link:build_tool[build tool].
+
+Linux:: Install a package like `libopenal1`. There is no need to install the package `libopenal1-dev` present on some Linux distributions (it contains C headers and symlinks that we don't need).
+
+FreeBSD:: Install by `pkg_add -r openal`.
+
+macOS:: You have OpenAL already installed, it is provided by Apple.
+
+## Command-line options that control the sound outupt
+
+`--no-sound`:: Don't output any sound (even if OpenAL is available on this system).
+
+`--audio-device DEVICE-NAME`:: Use given `DEVICE-NAME` for sound output.
++
+To list the available OpenAL devices use the `--help` command-line option.
+The `--audio-device` description will show a list of devices detected.
++
+Particular applications may also expose this choice using a nice GUI, e.g. link:castle.php[The Castle] has a simple menu to choose the device.
+In link:view3dscene.php[view3dscene] you can choose it using _"File -&gt; Preferences -&gt; Sound Device"_ menu item.

@@ -300,6 +300,7 @@ $castle_sitemap = array(
           'manual_physics' => array('title' => 'Physics'),
           'manual_sound' => array('title' => 'Sound',
             'sub' => array(
+              'doc/openal' => array('title' => 'OpenAL'),
               'doc/fmod' => array('title' => 'FMOD'),
             ),
           ),
