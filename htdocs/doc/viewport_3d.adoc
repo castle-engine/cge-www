@@ -225,14 +225,6 @@ cgeimg::block[viewport_3d_game_running_walk.png|Game running with walking]
 
 ## Further things
 
-### More precise collisions
-
-The collisions work correctly in this simple demo, as both the road and cars have simple shapes that can be approximated using boxes. In general, your levels will probably have more complicated shapes. To make any shape work nicely with default navigation collisions, set the `Spatial` property of your scenes to include the `ssDynamicCollisions` flag. We recommend to include also the `ssRendering` flag to optimize the display of scenes with multiple shapes.
-
-Do this for all your scenes, both cars and roads. Note that you can select multiple scenes in the hierarchy with _Ctrl_ and then edit the `Spatial` property of all selected scenes at one.
-
-cgeimg::block[viewport_3d_spatial_all_scenes.png|Edit Spatial of all scenes]
-
 ### Lighting
 
 Because of the way headlight works (it is a simple directional light), and the fact that we don't have any additional lights on the level -- the road is completely dark when looking straight. You need to bow your head (use mouse scroll) to have a bit brighter road.
@@ -258,16 +250,40 @@ cgeimg::block[
 
 ### "Mouse look" navigation
 
-The walk navigation will be more natural if you use _mouse look_. It will allow to move the mouse to rotate around.
+The walk navigation is easiest if you use _mouse look_. It will allow to move the mouse to rotate around.
 
-This has to be activated using code now. Chapter link:viewport_and_scenes_from_code[Writing code to modify scenes and transformations] shows information how to edit the game code. We don't want to get ahead of ourselves... But actually it is quite easy. Just edit the `code/gamestatemain.pas` file, and
+#### Turn on by default
+
+You can activate this by just setting `WalkNavigation1.MouseLook` property to `true`. Setting this property doesn't change the navigation in the editor, but once you run the game the _mouse look_ will work. The game will grab your mouse, and you will rotate by moving the mouse.
+
+Note that, as we grabbed the mouse but didn't provide any way to "escape" from it, you cannot easily close the game window by clicking on the usual "close" button on the window frame. Just press Alt+F4 on most systems to close it.
+
+#### Allow to turn on/off using code
+
+Instead of having the _mouse look_ just active by default, we can make it active e.g. only once you click the _right mouse button_. Clicking the button again could deactivate it.
+
+Such behavior has to be implemented using the code. Chapter link:viewport_and_scenes_from_code[Writing code to modify scenes and transformations] describes how to edit the game code. We don't want to get ahead of ourselves... But actually it is quite easy. Just edit the `code/gamestatemain.pas` file, and
 
 . Add `CastleCameras` unit to the `uses` clause in the `interface`.
 . Declare `WalkNavigation1: TCastleWalkNavigation;` inside the `private` section of the `TStateMain`, under the comment _{ Components designed using CGE editor, loaded from gamestatemain.castle-user-interface. }_.
 . In `TStateMain.Start` implementation, add this code:
-
++
 [source,pascal]
 ----
 WalkNavigation1 := DesignedComponent('WalkNavigation1') as TCastleWalkNavigation;
-WalkNavigation1.MouseLook := true;
 ----
+. In `TStateMain.Press` implementation, add this code:
++
+[source,pascal]
+----
+if Event.IsMouseButton(buttonRight) then
+  WalkNavigation1.MouseLook := not WalkNavigation1.MouseLook;
+----
+
+### More precise collisions
+
+The collisions work correctly in this simple demo, as both the road and cars have simple shapes that can be approximated using boxes. In general, your levels will probably have more complicated shapes. To make any shape work nicely with default navigation collisions, set the `Spatial` property of your scenes to include the `ssDynamicCollisions` flag. We recommend to include also the `ssRendering` flag to optimize the display of scenes with multiple shapes.
+
+Do this for all your scenes, both cars and roads. Note that you can select multiple scenes in the hierarchy with _Ctrl_ and then edit the `Spatial` property of all selected scenes at one.
+
+cgeimg::block[viewport_3d_spatial_all_scenes.png|Edit Spatial of all scenes]
