@@ -11,7 +11,7 @@ If you want to learn how to play sounds using _Castle Game Engine_, see the link
 
 Windows:: OpenAL libraries (DLL files) are automatically places alongside the compiled application by our link:build_tool[build tool]. You don't need to do anything, just compile and run your application using link:manual_editor.php[Castle Game Engine editor] or link:build_tool[build tool].
 
-Linux:: Install a package like `libopenal1`. There is no need to install the package `libopenal1-dev` present on some Linux distributions (it contains C headers and symlinks that we don't need).
+Linux:: Install a package like `libopenal1`. There is no need to install the package `libopenal-dev` present on some Linux distributions (it contains C headers and symlinks that we don't need).
 
 FreeBSD:: Install by `pkg_add -r openal`.
 
