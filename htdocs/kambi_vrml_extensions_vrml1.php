@@ -1,1 +1,0 @@
-<?php header('Location: x3d_extensions_vrml1.php'); ?>

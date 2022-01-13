@@ -1,1 +1,0 @@
-<?php header('Location: https://github.com/castle-engine/castle-engine/blob/master/COPYING.md'); ?>
