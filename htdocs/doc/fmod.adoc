@@ -3,9 +3,9 @@ include::common.adoc[]
 
 == Introduction
 
-_Castle Game Engine_ can use various _backends_ for our https://castle-engine.io/manual_sound.php[sound (CastleSoundEngine unit)]. By default we use https://www.openal.org/[OpenAL] which works nicely, is open-source and cross-platform (works on desktop and mobile). However, you may choose to use another backend.
+_Castle Game Engine_ can use various _backends_ for our https://castle-engine.io/manual_sound.php[sound (CastleSoundEngine unit)]. By default we use link:openal[OpenAL] which works nicely, is open-source and cross-platform (works on desktop and mobile). However, you may choose to use another backend.
 
-One of the alternative backends is https://www.fmod.com/[FMOD], using a commercial (closed-source) FMOD library. FMOD works nicely, and is even more cross-platform (in particular it supports also https://castle-engine.io/wp/2019/03/23/castle-game-engine-supports-nintendo-switch/[Nintendo Switch]). It also supports more sound file formats out-of-the-box.
+One of the alternative backends is https://www.fmod.com/[FMOD], using a commercial (closed-source) FMOD library. FMOD works nicely, and is even more cross-platform (in particular it supports also link:nintendo_switch[Nintendo Switch]). It also supports more sound file formats out-of-the-box.
 
 Note that using FMOD is not free. See https://www.fmod.com/ for library downloads and pricing.
 
