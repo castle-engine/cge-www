@@ -266,9 +266,7 @@ begin
 end;
 ----
 
-## Advanced Topics
-
-### Multiple instances of the same scene (using code)
+## Multiple instances of the same scene
 
 cgeimg::float[
   cars_demo_2.png|Many car instances
@@ -346,7 +344,76 @@ end;
 
 Note that all 20 cars are in the same state (they display the same animation). This is the limitation of this technique. If you need the scenes to be in a different state, then you will need different cgeref:TCastleScene[] instances. You can efficiently create them e.g. using the cgeref:TCastleScene.Clone[] method. In practice, it is simplest to reserve this optimization (sharing the same scene multiple times) only for completely static scenes (where you don't use `PlayAnimation`).
 
-### Building a mesh using code
+## Behaviors
+
+_Behaviors_ allow to customize the cgeref:TCastleTransform[] behavior.
+
+While you can also create cgeref:TCastleTransform[] descendants (and override e.g. `Update` method), or operate on cgeref:TCastleTransform[] instances from the state (e.g. from `TStateMain.Update`), using behaviors often results in most flexible code:
+
+. The logic of the particular action is nicely separated in a behavior class,
+. The behavior can be freely added/removed at runtime.
+
+To use behaviors, you define a new cgeref:TCastleBehavior[] descendant, and add it to parent transform using cgeref:TCastleTransform.AddBehavior[].
+
+One example is in the _"New Project -> 3D FPS Game"_ template. See how the simple enemy AI is implemented there, in https://github.com/castle-engine/castle-engine/blob/master/tools/castle-editor/data/project_templates/3d_fps_game/files/code/gameenemy.pas[GameEnemy unit].
+
+Let's modify our cars demo to use behaviors to move each car.
+
+. Define and implement class `TCarBehavior` that descends from `TCastleBehavior`, and moves a car. Place this code in your project (you can create a new unit, or add it to the implementation of `GameStateMain` unit):
++
+[source,pascal]
+----
+type
+  TCarBehavior = class(TCastleBehavior)
+  public
+    procedure Update(const SecondsPassed: Single; var RemoveMe: TRemoveType); override;
+  end;
+
+procedure TCarBehavior.Update(const SecondsPassed: Single; var RemoveMe: TRemoveType);
+var
+  T: TVector3;
+begin
+  T := Parent.Translation;
+  { Thanks to multiplying by SecondsPassed, it is a time-based operation,
+    and will always move 40 units / per second along the +Z axis. }
+  T := T + Vector3(0, 0, 40) * SecondsPassed;
+  { Wrap the Z position, to move in a loop }
+  if T.Z > 70 then
+    T.Z := -50;
+  Parent.Translation := T;
+end;
+----
+
+. Create an instance of `TCarBehavior` (owned by `FreeAtStop`) and insert it into each `CarTransforms[I]` instance. To do this, extend the loop in `TStateMain.Start` that creates `CarTransforms[I]` instances from previous section. After this line:
++
+[source,pascal]
+----
+CarTransforms[I].Add(CarScene);
+----
+add a new line:
++
+[source,pascal]
+----
+CarTransforms[I].AddBehavior(TCarBehavior.Create(FreeAtStop));
+----
++
+NOTE: The order doesn't really matter much, and you can rearrange most of the code we describe. In general, you can add children and behaviors in any order.
+
+. Remove whole movement logic from `TStateMain.Update`. We don't need it anymore, as new behavior class will move the car. So make `TStateMain.Update` as simple as it was at the beginning:
++
+[source,pascal]
+----
+procedure TStateMain.Update(const SecondsPassed: Single; var HandleInput: Boolean);
+begin
+  inherited;
+  { This virtual method is executed every frame.}
+  LabelFps.Caption := 'FPS: ' + Container.Fps.ToString;
+end;
+----
+
+Test and run. Play around with adding behaviors to only some of the cars (i.e. only cars with `I < 10`) to feel the flexibility of this.
+
+## Building a mesh using code
 
 cgeimg::float[cars_demo_additional_mesh.png|Cars\, with additional mesh build in code]
 
@@ -503,7 +570,3 @@ like <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> or
   </li>
 </ol>
 ////
-
-## Behaviors
-
-The advised way to customize cgeref:TCastleTransform[] behavior is to define a cgeref:TCastleBehavior[] descendant, and add it to parent transform using cgeref:TCastleTransform.AddBehavior[]. The sample enemy AI in the _"New Project -> 3D FPS Game"_ template does it this way.
