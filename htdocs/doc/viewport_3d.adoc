@@ -287,3 +287,21 @@ The collisions work correctly in this simple demo, as both the road and cars hav
 Do this for all your scenes, both cars and roads. Note that you can select multiple scenes in the hierarchy with _Ctrl_ and then edit the `Spatial` property of all selected scenes at one.
 
 cgeimg::block[viewport_3d_spatial_all_scenes.png|Edit Spatial of all scenes]
+
+### Multiple instances of the same scene (using TCastleTransformReference)
+
+It is possible to optimize the usage of resources, when you want to instantiate the same resource multiple times, and each instance has the same state (which means that it is static, or plays the same animation).
+
+. Remove the car copies you made with _"Duplicate"_ command earlier. You'll add copies in a different way. Leave only one car, `SceneCar`.
+. To make things more intuitive in the following points, remove any translation you may had on `SceneCar`. You can do this using _"Reset Transform"_ in the _"Layout"_ tab of the object inspector. You could also just type `0 0 0` into the `SceneCar.Translation` value.
++
+NOTE: If you need to translate even this one car, then add an intermediate transformation like `TransformCar`. Add this to `Viewport.Items`, and drag `SceneCar` to be a child of `TransformCar`. Then you can change translation of `TransformCar` to move your 1st car.
++
+NOTE: You can also just disregard this advise, and leave non-zero translation on `SceneCar`. It works, but it means that each reference also has a shift -- you'll see what we mean by this next. It may be non-intuitive at the beginning.
+. Add a `TCastleTransformReference` to the `Viewport.Items`.
+.. Set it's `Reference` property to point to the `SceneCar`.
+.. And move it wherever you like.
+.. Change it's name to be something better than default `TransformReference1`. We propose to change it to `SceneCarReference1`.
+. Duplicate the `SceneCarReference1` as many times as you want to, and translate each instance differently.
+
+*Done.* Now you can have lots of cars -- yet they all share the same data, by referencing (in memory) the same `SceneCar` instances. This is great to conserve resources and speed when you need *a lot* of instances of something. E.g. this would be great for trees on a big outdoors level.

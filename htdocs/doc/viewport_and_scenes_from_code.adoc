@@ -243,7 +243,7 @@ Code can also set the cgeref:TCastleSceneCore.AutoAnimation[AutoAnimation] and c
 
 ## Moving scene in each update
 
-To make the car moving, we can update its position in `TUIState.Update`. Change it into this:
+To make the car moving, we can update its position in `TStateMain.Update`. Change it into this:
 
 [source,pascal]
 ----
@@ -268,13 +268,15 @@ end;
 
 ## Advanced Topics
 
-### Multiple instances of the same scene
+### Multiple instances of the same scene (using code)
 
 cgeimg::float[
   cars_demo_2.png|Many car instances
 ]
 
 It's allowed to add the same instance of the cgeref:TCastleScene[] many times to your viewport items. This allows to reuse it's data, which is great for both performance and the memory usage.
+
+NOTE: It is possible to achieve the optimization described in this section also using `TCastleTransformReference` class. Such approach is also possible to do in the editor, without writing any code. See the link:viewport_3d[Tutorial: Designing a 3D world] for details.
 
 For example, let's make 20 cars moving along the road. You will need 20 instances of cgeref:TCastleTransform[], but only a single instance of the cgeref:TCastleScene[].
 
@@ -344,94 +346,116 @@ end;
 
 Note that all 20 cars are in the same state (they display the same animation). This is the limitation of this technique. If you need the scenes to be in a different state, then you will need different cgeref:TCastleScene[] instances. You can efficiently create them e.g. using the cgeref:TCastleScene.Clone[] method. In practice, it is simplest to reserve this optimization (sharing the same scene multiple times) only for completely static scenes (where you don't use `PlayAnimation`).
 
-### Building and editing the scene
+### Building a mesh using code
 
-cgeimg::float[cars_demo_3.png|Cars\, surrounded by a wall build in code]
+cgeimg::float[cars_demo_additional_mesh.png|Cars\, with additional mesh build in code]
 
-Up to now, we have treated cgeref:TCastleScene[] as a _black box_ that you can load from file and then change using only high-level methods like `PlayAnimation`. But you have much more flexibility.
+//Up to now, we have treated cgeref:TCastleScene[] as a _black box_ that you can load from file. But you have much more flexibility.
 
-The scene property cgeref:TCastleSceneCore.RootNode[RootNode] holds a _cene graph_ of your scene. In simple cases, you can ignore it, as it is automatically created when loading the model from file, and automatically changed by animations (much like the DOM tree of an HTML document changes during the webpage lifetime). For more advanced uses, this _scene graph_ can be modified at runtime. This means that you can process the 3D models in any way you like, as often as you like, and you can even build a complete renderable 3D object by code --- without the need to load it from an external file. You can also build complicated 3D objects from simple ones.
+The scene property cgeref:TCastleSceneCore.RootNode[RootNode] holds a _scene graph_ of your scene. It is automatically created when you load the model from file, and automatically modified by animations. You can also modify it by code, during the game. This means that you can freely modify the 3D models as often as you like (at initialization, as a reaction to key press, every frame...) and you can even build from scratch new 3D objects.
 
-Our scene graph is composed from link:vrml_x3d.php[X3D nodes] organized in a tree.
+Below we show a sample code building a scene with a _mesh_. Building mesh like this is a bit pointless (because it would be easier to just define such mesh in Blender `road.blend` and export it to `road.gltf`) but it should give you lots of ideas how to extend it, to make procedurally-generated world. For example, you could take a curve defined using https://castle-engine.io/curves_tool[Curves tool] and build a road for cars using this curve as a guide.
 
-. This is an example of building a scene with two simple boxes. It shows nice transparent walls around our road. It uses the `RoadScene.BoundingBox` value to adjust wall sizes and positions to the road 3D model. Add this to `TUIState.Start`:
-+
+Our scene graph is composed from link:vrml_x3d.php[X3D nodes] organized in a tree. A number of classes used below, named like `TXxxNode`, correspond to various X3D nodes. The nodes we use below are:
+
+- cgeref:TIndexedFaceSetNode[] defines a mesh (set of polygons)
+- cgeref:TCoordinateNode[] provides 3D vertex positions for `TIndexedFaceSet`
+- cgeref:TTextureCoordinateNode[] provides 2D texture coordinates for `TIndexedFaceSet`
+- cgeref:TImageTextureNode[] defines a texture loaded from an image file
+- cgeref:TPhysicalMaterialNode[] defines material (using _Physically-Based Rendering_ shader)
+- cgeref:TAppearanceNode[] acts just as a container for `TPhysicalMaterialNode`
+- cgeref:TShapeNode[] connects geometry (`TIndexedFaceSet`) with its appearance (`TAppearanceNode`)
+- cgeref:TTransformNode[] transforms children
+- cgeref:TX3DRootNode[] acts as final container node, that can be loaded to `TCastleScene`
+
+This is a function using these nodes to create `TCastleScene` with a mesh:
+
 [source,pascal]
 ----
-function CreateBoxesScene: TCastleScene;
-const
-  WallHeight = 5;
+function CreateAdditionalMesh: TCastleScene;
 var
-  RoadBox: TBox3D;
-  RootNode: TX3DRootNode;
+  Coord: TCoordinateNode;
+  TexCoord: TTextureCoordinateNode;
+  IndexedFaceSet: TIndexedFaceSetNode;
+  BaseTexture: TImageTextureNode;
+  Material: TPhysicalMaterialNode;
   Appearance: TAppearanceNode;
-  Material: TMaterialNode;
-  Shape1, Shape2: TShapeNode;
-  Box1, Box2: TBoxNode;
-  Transform1, Transform2: TTransformNode;
+  Shape: TShapeNode;
+  Transform: TTransformNode;
+  RootNode: TX3DRootNode;
 begin
-  { The created geometry will automatically adjust to the bounding box
-    of the road 3D model. }
-  RoadBox := RoadScene.BoundingBox;
-  if RoadBox.IsEmpty then
-    raise Exception.Create('Invalid road 3D model: empty bounding box');
+  Coord := TCoordinateNode.Create;
+  Coord.SetPoint([
+    Vector3(-15.205387, -66.775894, -0.092525),
+    Vector3(9.317978, -66.775894, -0.092525),
+    Vector3(-15.205387, -68.674622, -0.092525),
+    Vector3(9.317978, -68.674622, -0.092525),
+    Vector3(9.317978, -78.330063, 3.456294),
+    Vector3(-15.205387, -78.330063, 3.456294),
+    Vector3(9.317978, -80.814240, 7.241702),
+    Vector3(-15.205387, -80.814240, 7.241702)
+  ]);
 
-  Material := TMaterialNode.Create;
-  { Yellow (we could have also used YellowRGB constant from CastleColors unit) }
-  Material.DiffuseColor := Vector3(1, 1, 0);
-  Material.Transparency := 0.75;
+  TexCoord := TTextureCoordinateNode.Create;
+  TexCoord.SetPoint([
+    Vector2(0.0001, 0.9964),
+    Vector2(1.0000, 0.9964),
+    Vector2(1.0000, 0.8541),
+    Vector2(0.0001, 0.8541),
+    Vector2(0.0001, 0.7118),
+    Vector2(1.0000, 0.7118),
+    Vector2(1.0000, 0.5695),
+    Vector2(0.0001, 0.5695),
+    Vector2(0.0001, 0.5695),
+    Vector2(1.0000, 0.5695),
+    Vector2(1.0000, 0.4272),
+    Vector2(0.0001, 0.4272)
+  ]);
+
+  IndexedFaceSet := TIndexedFaceSetNode.Create;
+  IndexedFaceSet.Coord := Coord;
+  IndexedFaceSet.TexCoord := TexCoord;
+  IndexedFaceSet.SetTexCoordIndex([0, 1, 2, 3, -1, 4, 5, 6, 7, -1, 8, 9, 10, 11, -1]);
+  IndexedFaceSet.SetCoordIndex([0, 1, 3, 2, -1, 2, 3, 4, 5, -1, 5, 4, 6, 7, -1]);
+  IndexedFaceSet.Solid := false; // make it visible from both sides
+
+  BaseTexture := TImageTextureNode.Create;
+  BaseTexture.SetUrl(['castle-data:/textures/tunnel_road.jpg']);
+
+  Material := TPhysicalMaterialNode.Create;
+  Material.BaseTexture := BaseTexture;
+  Material.BaseColor := Vector3(1, 1, 0); // yellow
 
   Appearance := TAppearanceNode.Create;
   Appearance.Material := Material;
 
-  Box1 := TBoxNode.Create('box_1_geometry');
-  Box1.Size := Vector3(0.5, WallHeight, RoadBox.Size.Z);
+  Shape := TShapeNode.Create;
+  Shape.Geometry := IndexedFaceSet;
+  Shape.Appearance := Appearance;
 
-  Shape1 := TShapeNode.Create('box_1_shape');
-  Shape1.Appearance := Appearance;
-  Shape1.Geometry := Box1;
-
-  Transform1 := TTransformNode.Create('box_1_transform');
-  Transform1.Translation := Vector3(RoadBox.Min.X, WallHeight / 2, RoadBox.Center.Z);
-  Transform1.AddChildren(Shape1);
-
-  Box2 := TBoxNode.Create('box_2_geometry');
-  Box2.Size := Vector3(0.5, WallHeight, RoadBox.Size.Z);
-
-  Shape2 := TShapeNode.Create('box_2_shape');
-  { Reuse the same Appearance node for another shape.
-    This is perfectly allowed (the X3D is actually a graph, not a tree). }
-  Shape2.Appearance := Appearance;
-  Shape2.Geometry := Box2;
-
-  Transform2 := TTransformNode.Create('box_2_transform');
-  Transform2.Translation := Vector3(RoadBox.Max.X, WallHeight / 2, RoadBox.Center.Z);
-  Transform2.AddChildren(Shape2);
+  Transform := TTransformNode.Create;
+  Transform.Translation := Vector3(0, 0, 0);
+  Transform.Rotation := Vector4(1, 0, 0, -Pi / 2);
+  Transform.AddChildren(Shape);
 
   RootNode := TX3DRootNode.Create;
-  RootNode.AddChildren(Transform1);
-  RootNode.AddChildren(Transform2);
+  RootNode.AddChildren(Transform);
 
-  Result := TCastleScene.Create(Application);
+  Result := TCastleScene.Create(FreeAtStop);
   Result.Load(RootNode, true);
 end;
 ----
 
-. You will need to add cgeref:X3DNodes[] and CastleBoxes[] units to the uses clause.
+Test it like this:
 
-. Add the created scene to the viewport:
+. Add cgeref:X3DNodes[] and cgeref:CastleBoxes[] units to the uses clause.
+. Add the `CreateAdditionalMesh` function as a nested routine to `TStateMain.Start`.
+. Call the `CreateAdditionalMesh` function and add the new scene to the viewport, by adding to `TStateMain.Start` this:
 +
 [source,pascal]
 ----
 MainViewport.Items.Add(CreateBoxesScene);
 ----
-
-[NOTE]
-====
-Admittedly, in this case, it would be simpler to add these 2 walls to the `road.gltf` model in Blender. But in general, this technique is extremely powerful to generate 3D scenes following any algorithm!
-====
-
-To construct a more flexible mesh than just _a box_, you can use a universal and powerful `IndexedFaceSet` node. This node represents what is often called a _mesh_: set of polygons, with possible per-vertex attributes like texture coordinates.
 
 ////
 Examples are quite complicated?
