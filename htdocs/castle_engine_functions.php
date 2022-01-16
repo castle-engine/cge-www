@@ -239,10 +239,6 @@ $castle_sitemap = array(
     */
   ),
 
-  'features' => array('title' => 'Features'),
-
-  'videos' => array('title' => 'Videos', 'url' => 'https://www.youtube.com/c/CastleGameEngineX3d/'),
-
   'documentation' => array('title' => 'Documentation',
     'dropdown' => array(
       'manual_intro' => array('title' => 'Manual'),
@@ -415,6 +411,8 @@ $castle_sitemap = array(
     ),
   ),
 
+  'videos' => array('title' => 'Videos', 'url' => 'https://www.youtube.com/c/CastleGameEngineX3d/'),
+
   'vrml_x3d' => array('title' => 'Scene Graph (X3D)',
     'sidebar' => true,
     'sub' => array(
@@ -514,7 +512,7 @@ $castle_sitemap = array(
 
   'view3dscene'            => array('hint' => 'VRML / X3D browser, and a viewer for other 3D model formats', 'title' => 'view3dscene'),
 
-  'talk' => array('hint' => 'Ask for help, report bugs, discuss features', 'title' => 'Talk with us',
+  'talk' => array('hint' => 'Ask for help, report bugs, discuss features', 'title' => 'Forum, Discord, more',
     'sub' => array(
       'privacy_policy' => array('title' => 'Privacy Policy'),
     ),
@@ -522,6 +520,8 @@ $castle_sitemap = array(
 
   // Do not show, for now we focus on Patreon funding.
   // 'donate' => array('title' => 'Donate'),
+
+  'features' => array('title' => 'Features'),
 
   'gallery' => array('title' => 'Gallery',
     'dropdown' => array(
