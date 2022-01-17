@@ -3,6 +3,10 @@ set -eu
 
 # Test compilation of various CGE CastleWindow backends.
 
+TEST_PROJECT=examples/3d_rendering_processing/view_3d_model_advanced/
+TEST_LPI="${TEST_PROJECT}"view_3d_model_advanced.lpi
+TEST_LPR="${TEST_PROJECT}"view_3d_model_advanced_standalone.lpr
+
 # Run the command in parameters, reporting it to console too.
 do_run ()
 {
@@ -25,14 +29,14 @@ do_test_one_backend_lcl ()
   LAZBUILD_OPTIONS="--os=$1 --cpu=$2 --primary-config-path=${WORKSPACE}/.michalis-lazarus-in-workspace/${FPCLAZARUS_REAL_VERSION}"
   lazbuild $LAZBUILD_OPTIONS packages/alternative_castle_window_based_on_lcl.lpk
 
-  # Depend on alternative_castle_window_based_on_lcl from view_3d_model_advanced.lpi
+  # Depend on alternative_castle_window_based_on_lcl from TEST_LPI
   sed -e 's|<PackageName Value="castle_window"/>|<PackageName Value="alternative_castle_window_based_on_lcl"/>|' \
-    --in-place examples/3d_rendering_processing/view_3d_model_advanced.lpi
-  do_run lazbuild $LAZBUILD_OPTIONS examples/3d_rendering_processing/view_3d_model_advanced.lpi
+    --in-place "${TEST_LPI}"
+  do_run lazbuild $LAZBUILD_OPTIONS "${TEST_LPI}"
 
   # Restore original view_3d_model_advanced.lpi
   sed -e 's|<PackageName Value="alternative_castle_window_based_on_lcl"/>|<PackageName Value="castle_window"/>|' \
-    --in-place examples/3d_rendering_processing/view_3d_model_advanced.lpi
+    --in-place "${TEST_LPI}"
 }
 
 # Test a single backend.
@@ -48,9 +52,9 @@ do_test_one_backend ()
     FPC_OPTIONS="-T$1 -P$2"
 
     make clean
-    do_run fpc -dDEBUG   $FPC_OPTIONS @castle-fpc.cfg examples/3d_rendering_processing/view_3d_model_advanced.lpr -d$3
+    do_run fpc -dDEBUG   $FPC_OPTIONS @castle-fpc.cfg "${TEST_LPR}" -d$3
     make clean
-    do_run fpc -dRELEASE $FPC_OPTIONS @castle-fpc.cfg examples/3d_rendering_processing/view_3d_model_advanced.lpr -d$3
+    do_run fpc -dRELEASE $FPC_OPTIONS @castle-fpc.cfg "${TEST_LPR}" -d$3
   fi
 }
 
