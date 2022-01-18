@@ -1,7 +1,7 @@
 <?php /* -*- mode: kambi-php -*- */
 
 /*
-   Copyright 2001-2020 Michalis Kamburelis.
+   Copyright 2001-2022 Michalis Kamburelis.
 
    This file is part of "Castle Game Engine Website".
 
@@ -304,7 +304,7 @@ $castle_sitemap = array(
           'manual_screenshots' => array('title' => 'Screenshots'),
           'manual_network' => array('title' => 'Network, downloading and using URLs'),
           'manual_recording_movies' => array('title' => 'Recording movies'),
-          'manual_log' => array('title' => 'Logging'),
+          'doc/log' => array('title' => 'Logging'),
           'manual_key_mouse' => array('title' => 'Key/mouse shortcuts'),
           'manual_cross_platform' => array('title' => 'Cross-platform (desktop, mobile, consoles...) projects',
             'sub' => array(
