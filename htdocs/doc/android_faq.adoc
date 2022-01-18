@@ -43,17 +43,48 @@ Simply use the global `UserConfig` (in CastleConfig unit) to load/save your sett
 
 Just like with standalone code, you have to explicitly call `UserConfig.Load` and `UserConfig.Save` when necessary. You will usually call `UserConfig.Load` in your `Application.OnInitialize` handler, to load user preferences at the beginning of your application. You will usually call `UserConfig.Save` when user confirms the preferences change, or simply immediately -- the exact moment depends on the game UI flow. Don't wait too long before saving the user preferences -- on Android, your application may be killed at any moment.
 
-== Signing a release apk
+== Creating AAB (Android App Bundle)
 
-To create a "release" apk (one that you can distribute, e.g. through WWW or by uploading it to Google Play) you need to create your private key, and use it to sign your packages. See Android signing documentation http://developer.android.com/tools/publishing/app-signing.html for description how to create and manage your key store.
+Traditionally, Android applications are distributed as _APK (Android Package)_ files. This package format remains the default in CGE, as it can be easily installed on any Android device (so it is convenient for development purposes). Also, it is the required distribution format on most stores _except the Google Play_. For example you can upload APK to https://itch.io/[itch.io] (see our https://castle-engine.itch.io/platformer[platformer for Android on itch.io]).
 
-There is also a way to create a key store without using Android Studio and Play Store or interacting with Google altogether by using https://docs.oracle.com/en/java/javase/12/tools/keytool.html[Java keytool]. In a simple case it most likely will be enough to:
+However, _Google Play_ requires the new applications to be uploaded using a new _AAB (Android App Bundle)_ format, not an APK. To generate the AAB file, just add the `--package-format=android-app-bundle` to the link:build_tool[build tool] command-line, like this:
+
+```
+castle-engine package --target=android --package-format=android-app-bundle
+```
+
+_Android App Bundle (AAB)_ is a collection of prebuilt resources targeted for different user devices (such as Android version, CPU architecture, Screen resolution). _Play Store_ then automatically generates an APK based on user configuration. Note that it also means that AAB package cannot be directly installed on a mobile device/emulator and therefore for debugging and internal testing APK is still a necessary format.
+
+The default remains to create APK. You can also request APK format explicitly using
+
+```
+castle-engine package --target=android --package-format=android-apk
+```
+
+or
+
+```
+castle-engine package --target=android --package-format=default
+```
+
+== Signing a release APK / AAB
+
+To create a "release" APK / AAB (one that you can distribute, e.g. through WWW or by uploading it to Google Play) you need to create your private key, and use it to sign your packages.
+
+See https://developer.android.com/studio/publish/app-signing[Android signing documentation from Google] for description how to create and manage your key store.
+
+NOTE: For new applications uploaded to _Google Play_ store, you can (actually, you have to) let the Google Play handle the final signing for you. This is even required in case of AAB, because _Google Play_ needs to internally unpack your AAB and create APK from it. But you still need to sign the file you upload (whether APK or AAB) using the _upload key_, so the procedure described on this page still applies.
+
+[NOTE]
+====
+There is also a way to create a key store without using _Android Studio_ or _Play Store_ or interacting with Google, if you don't want to follow https://developer.android.com/studio/publish/app-signing[Google instructions]. You can do it using https://docs.oracle.com/en/java/javase/12/tools/keytool.html[Java keytool]. Call this on the command-line:
 
 ----
 keytool -genkey -v -keystore my_keystore_name.keystore -alias my_alias -keyalg RSA -keysize 2048 -validity 10000
 ----
 
-and filling in an interactive questionnaire to provide the passwords and fill in the certificate details. Be sure to save and keep the generated keystore file and passwords secure.
+and fill an interactive questionnaire to provide the passwords and certificate details. Be sure to save the generated keystore file and passwords secure.
+====
 
 Once you have your keys, you need to tell our link:build_tool[build tool] to use them. You do this by creating `AndroidSigningProperties.txt` file at the top of your project (along the `CastleEngineManifest.xml` file). Add there these lines:
 
@@ -64,7 +95,7 @@ key.store.password=<my-password>
 key.alias.password=<my-password>
 ----
 
-This will allow you to create release apk files (our link:build_tool[build tool] will automatically use it when making a "package" in "release" mode).
+This will allow you to create release APK / AAB files (our link:build_tool[build tool] will automatically use it when making a "package" in "release" mode).
 
 == Logging
 
