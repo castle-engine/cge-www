@@ -61,12 +61,13 @@ function castle_detect_environment()
   }
 
   /* Preview version is not maintained anymore.
-     Realistically, it wasn't much useful. */
+     Realistically, it wasn't much useful.
   if (isset($_SERVER['SERVER_NAME']) &&
       ($_SERVER['SERVER_NAME'] == 'michalis.ii.uni.wroc.pl')) {
     define('CASTLE_ENVIRONMENT', 'preview');
     return;
   }
+  */
 
   define('CASTLE_ENVIRONMENT', 'production');
 }
@@ -89,9 +90,9 @@ switch (CASTLE_ENVIRONMENT) {
   case 'development':
     define('CURRENT_URL', 'http://localhost:8777/');
     break;
-  case 'preview':
-    define('CURRENT_URL', 'https://michalis.ii.uni.wroc.pl/cge-www-preview/');
-    break;
+  // case 'preview':
+  //   define('CURRENT_URL', 'https://michalis.ii.uni.wroc.pl/cge-www-preview/');
+  //   break;
   case 'production':
     define('CURRENT_URL', 'https://castle-engine.io/');
     break;
@@ -1144,9 +1145,11 @@ function echo_castle_header_suffix($path, $enable_sidebar = true)
     ' . $github_ribbon . '
   </nav>';
 
+  /* preview version is not maintained anymore
   if (CASTLE_ENVIRONMENT == 'preview') {
     $rendered .= '<div class="alert alert-warning preview-warning" role="alert"><strong>This is a preview!</strong> This is not the official <i>Castle Game Engine</i> website (<a href="' . CASTLE_FINAL_URL . '">official website is here</a>). This is only a preview for developers, to see the next website before the release, and to see the documentation for the unstable engine version (from <a href="https://github.com/castle-engine/castle-engine">GitHub master</a>).</div>';
   }
+  */
 
   // make sure to start container-fluid for bootstrap container
   if (empty($castle_sidebar)) {
