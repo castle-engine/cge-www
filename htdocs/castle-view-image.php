@@ -64,43 +64,69 @@ the power of image handling inside our <?php echo a_href_page(
 <p>Many image formats are supported:
 
 <ul>
-  <li><b>PNG</b>: Portable Network Graphic. Excellent open format for images,
-    offering good lossless image compression
-    and full alpha channel.
+  <li>
+    <p><b>PNG</b>: Portable Network Graphic. Excellent open format for images,
+    offering good lossless image compression,
+    full alpha channel if you need it,
+    supported by almost every other image software in the world.
+
+    <p>Loaded using <a href="http://www.libpng.org/">LibPNG</a>, with a fallback
+    (in case LibPNG is missing) on Pascal loaders in
+    <a href="http://wiki.freepascal.org/fcl-image">FPC fcl-image</a>
+    or <a href="https://castle-engine.io/wp/2021/12/18/integration-with-vampyre-imaging-library-new-example-image_display-to-test-image-loading-speed-and-format-support/">Vampyre Imaging Library</a>.
   </li>
 
-  <li><b>JPEG, GIF, TGA, XPM, PSD, PCX, PNM (PBM, PGM, PPM)</b>:
-    are loaded using the excellent <a href="http://wiki.freepascal.org/fcl-image">FPC
-    fcl-image</a> library.
-    This gives us full support for these formats, without any extra
-    libraries necessary (fcl-image is compiled inside our programs).
+  <li>
+    <p><b>JPEG, GIF, TGA, XPM, PSD, PCX, PNM, PBM, PGM, PPM</b>.
+
+    <p>Loaded using <a href="http://wiki.freepascal.org/fcl-image">FPC fcl-image</a> library
+    or <a href="https://castle-engine.io/wp/2021/12/18/integration-with-vampyre-imaging-library-new-example-image_display-to-test-image-loading-speed-and-format-support/">Vampyre Imaging Library</a>
+    (depending on your compiler and configuration).
+
+    <p><i>Note:</i> We do not recommend using PSD images in CGE data. While it works, PSD is still an internal file format that is really implemented perfectly only by Photoshop. It's like XCF in GIMP, like BLEND in Blender, like MAX in 3ds Max... Applications are not really supposed to be able to read these formats, they are complicated and not well documented (if one would strive to handle 100% of their features). Our PSD readers support some common features, they for sure don't support 100% of PSD features.
+
+    <p>You of course can use Photoshop, and save your files as PSD for development. But then export them to PNG for CGE to read. That's a normal workflow, for usage of PSD anywhere (not only in CGE). PSD is not a final format, it is a development format, like a source code -&gt; you want to export it to something else to use it (PNG is usually the best choice, full-featured and lossless).
+
+    <p><i>Note:</i> For most of the above formats, PNG is a better alternative. E.g. PNG will result in smaller file size (without losing any features) compared to PNM, PBM, PGM, PPM, XCF. PNG will be loaded much much faster than XCF (text-only format that is very slow to load). PNG is more widely supported and has proper specification, unlike PCX.
   </li>
 
-  <li><b>DDS</b>: <a href="https://en.wikipedia.org/wiki/DirectDraw_Surface">Direct
-    Draw Surface</a>. This image format may be used for advanced
-    texturing, as it can store textures compressed for GPUs,
-    possibly with mipmaps, cube maps, volume textures.
-    With <code>castle-view-image</code> you can view all subimages
+  <li>
+    <p><b>KTX</b>: <a href="https://www.khronos.org/opengles/sdk/tools/KTX/file_format_spec/">Khronos
+    Texture format</a>.
+
+    <p>Excellent image format to utilize various graphic features,
+    like GPU compression (images stay compressed in GPU memory),
+    explicit mipmaps, cube maps, volume (3D) textures.
+
+    <?php echo a_href_page_hashlink(
+    'Details about using KTX format for textures in our engine are here.',
+    'x3d_implementation_texturing', 'section_ktx'); ?>
+
+    <p>With <code>castle-view-image</code> you can view all subimages
     within one DDS file, see menu items
-    <i>Images-&gt;Next/Previous subimage in DDS</i>. Saving to DDS images
-    is also supported. <?php echo a_href_page_hashlink(
+    <i>Images-&gt;Next/Previous Subimage in composite (DDS, KTX)</i>.
+  </li>
+
+  <li>
+    <p><b>DDS</b>: <a href="https://en.wikipedia.org/wiki/DirectDraw_Surface">Direct
+    Draw Surface</a>. Similar to KTX.
+    Saving to DDS images is also supported. <?php echo a_href_page_hashlink(
     'Details about using DDS format for textures in our engine are here.',
     'x3d_implementation_texturing', 'section_dds'); ?>
   </li>
 
-  <li><b>KTX</b>: <a href="https://www.khronos.org/opengles/sdk/tools/KTX/file_format_spec/">Khronos
-    Texture format</a>. An alternative to DDS. <?php echo a_href_page_hashlink(
-    'Details about using KTX format for textures in our engine are here.',
-    'x3d_implementation_texturing', 'section_ktx'); ?>
-  </li>
-
-  <li><b>RGBE</b>: simple HDR (high dynamic range) format.
+  <li>
+    <p><b>RGBE</b>: Simple HDR (high dynamic range) format.
     The format name is an acronym for <i>Red + Green + Blue + Exponent</i>,
     it was developed by by Greg Ward, described in "<i>Graphic Gems II</i>",
     used e.g. in <a href="http://floyd.lbl.gov/radiance/">Radiance</a>.
+
+    <p>It makes sense to use this if you need data in floating-point format,
+    e.g. to load it to <?php echo cgeRef('TRGBFloatImage'); ?>.
   </li>
 
-  <li><b>BMP</b>: Windows Bitmap. Native support.</li>
+  <li>
+    <p><b>BMP</b>: Windows Bitmap. Native support. Only for non-compressed (RLE compressed are not handled).</li>
 
   <!--li><b>PPM</b>: Portable Pixel Map. Simple uncompressed image format,
     supported by practically all graphic programs. Native support.
@@ -108,15 +134,21 @@ the power of image handling inside our <?php echo a_href_page(
     and doesn't really matter for user.)
   -->
 
-  <li><b>IPL</b>: IPLab image format. Only 16 bits per pixel are supported (gray-scale).</li>
+  <li>
+    <p><b>TIFF</b>, <b>JP2</b>:
+    Supported using
+    <a href="https://castle-engine.io/wp/2021/12/18/integration-with-vampyre-imaging-library-new-example-image_display-to-test-image-loading-speed-and-format-support/">Vampyre Imaging Library</a>.
 
-  <li><p>Obsolete: <b>TIFF</b>, <b>SGI</b>, <b>JP2</b>, <b>EXR</b>:
-    To load and save these images, you need to install
-    the <a href="http://www.imagemagick.org/">ImageMagick</a>
-    package, and make sure it's <code>convert</code> program is available on $PATH.
-    Then our engine will recognize these image formats,
-    and seamlessly load/save them (by running <code>convert</code> "under the hood").
+    <p>Note: JP2 support is not available on all platforms.
+    Quoting <i>Vampyre</i> comments: <i>JPEG2000 only for 32bit Windows/Linux/OSX and for 64bit Unix with FPC</i>.
+    See the <a href="https://github.com/castle-engine/castle-engine/blob/master/src/vampyre_imaginglib/src/Extensions/ImagingJpeg2000.pas#L19">exact rule in source code</a> that sets allowed platforms.
   </li>
+
+  <li>
+    <p><b>IPL</b>: IPLab image format. Only 16 bits per pixel are supported (gray-scale).
+    <i>Deprecated:</i> Due to the fact that it has probably 0 usage nowadays.
+    Let me know <a href="talk.php">on forum or Discord</a> if you use this image format
+    and want to keep using it.
 </ul>
 
 <?php echo $toc->html_section(); ?>
