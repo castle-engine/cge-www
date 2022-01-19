@@ -20,6 +20,25 @@ RewriteBase /
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
+
+# Never redirect PHP files. In principle, it should not be needed -- if the name
+# is existing PHP file, then above rules should reject it anyway.
+# But what if it's PHP that should be redirected? Then both rewrite and redirect would proces it, making
+#   https://castle-engine.io/engine.php
+# ->
+#   https://castle-engine.io/index.php?page=/engine.php
+# instead of
+#   https://castle-engine.io/index.php
+# While it works, the "index.php?page=/engine.php" looks weird and indeed `page` parameter there doesn't make sense.
+#
+# TODO: This is not a best solution.
+# The solution should not be PHP-specific.
+# E.g.
+#   Redirect "/abbreviated_x3d_specs_for_users.chm" "/vrml_x3d.php"
+# or future redirects from AsciiDoctor -> AsciiDoctor will suffer from the same problem.
+# What we really want: if one of Redirect rules match, then RewriteRule should not be done.
+RewriteCond %{REQUEST_FILENAME} !.php$
+
 RewriteRule . doc.php?page=%{REQUEST_URI} [L]
 
 # redirects ------------------------------------------------------------------
