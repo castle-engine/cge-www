@@ -83,7 +83,7 @@ the power of image handling inside our <?php echo a_href_page(
     or <a href="https://castle-engine.io/wp/2021/12/18/integration-with-vampyre-imaging-library-new-example-image_display-to-test-image-loading-speed-and-format-support/">Vampyre Imaging Library</a>
     (depending on your compiler and configuration).
 
-    <p><i>Note:</i> We do not recommend using PSD images in CGE data. While it works, PSD is still an internal file format that is really implemented perfectly only by Photoshop. It's like XCF in GIMP, like BLEND in Blender, like MAX in 3ds Max... Applications are not really supposed to be able to read these formats, they are complicated and not well documented (if one would strive to handle 100% of their features). Our PSD readers support some common features, they for sure don't support 100% of PSD features.
+    <p><i>Note:</i> We do not recommend using PSD images in CGE data. While it works, PSD is still an internal file format that is really implemented perfectly only by Photoshop. It's like XCF in GIMP, like BLEND in Blender, like MAX in 3ds Max... Applications are not really supposed to be able to read these formats, they are complicated (if one would strive to handle 100% of their features). Our PSD readers support some common features, they for sure don't support 100% of PSD features.
 
     <p>You of course can use Photoshop, and save your files as PSD for development. But then export them to PNG for CGE to read. That's a normal workflow, for usage of PSD anywhere (not only in CGE). PSD is not a final format, it is a development format, like a source code -&gt; you want to export it to something else to use it (PNG is usually the best choice, full-featured and lossless).
 
