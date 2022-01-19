@@ -81,7 +81,7 @@ We support additional macros within AsciiDoctor:
 
     - Add `cgeimg` to .adoc source code to view them
 
-    - Refresh the local page like http://localhost/~michalis/castle-engine/curves_tool , which will (in development) automatically regenerate AsciiDoctor -> HTML, and will generate thumbnails if missing. (hint: set up a key shortcut in your text editor to refresh the www browser view of this page)
+    - Refresh the local page like http://localhost:8777/curves_tool , which will (in development) automatically regenerate AsciiDoctor -> HTML, and will generate thumbnails if missing. (hint: set up a key shortcut in your text editor to refresh the www browser view of this page)
 
 - Note: AsciiDoctor macros above are not really implemented as AsciiDoctor macros in Ruby,
   following
@@ -160,52 +160,29 @@ Most important Wordppress shortcodes are:
 
 * Install PHP
 
-* Make htdocs/ referenced from Apache.
+* Make htdocs/ referenced from Apache. There are may ways to do this. I advise to do this on Linux and make the website root accessible under URL like http://localhost:8777/ (which would open `htdocs/index.php` file in this repo).
 
-    There are may ways to do this. I advise to do this on Linux and use userdir module, such that the website is accessible under URL like http://localhost/~michalis/castle-engine/xxx.php (which would open `htdocs/xxx.php` file in this repo).
+    Note: There's nothing special about the 8777 port. It just seems unused by most other software (looking at https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers ), so it is likely non-conflicting with anything else on your system.
 
-    - Enable Apache "userdir" module.
+    Create new site, following `apache-sample.conf` example. You can copy and adjust it to `/etc/apache2/sites-available/cge-www.conf` .
 
-        On Debian-based systems, just doing `sudo a2enmod userdir && sudo service apache2 restart` is enough.
+    Enable it:
 
-        On Arch Linux, follow https://wiki.archlinux.org/title/Apache_HTTP_Server .
+        - On Debian-based systems, do `sudo a2enside cge-www && sudo service apache2 restart`.
 
-    - Make sure it works, and that PHP inside works, by
+        - On Arch Linux, follow https://wiki.archlinux.org/title/Apache_HTTP_Server .
 
-        - creating a file `/home/USERNAME/public_html/a.html` with contents `Test <b>bold</b>`. It should be visible on http://localhost/~USERNAME/a.html . If this works -> Apache + userdir works.
+    In the end, http://localhost:8777/manual_intro.php should work. Note that the main page, http://localhost:8777/ , depends on a working Wordpress installation (including database) -- see below, it will not work as easily.
 
-        - creating a file `/home/USERNAME/public_html/a.php` with contents `<?php phpinfo(); ?>`. It should be visible on http://localhost/~USERNAME/a.php . If this works -> then PHP (in user directory) works too.
+    Note: It is also possible to set this up in non-root, you could even use Apache "userdir" to place it e.g in `http://localhost/~michalis/castle-engine/` . We used to even advise this here, but we don't advise it anymore, as it's a bit more work (need to make sure PHP works in userdir) and needs adjusting .htaccess to make rewrites/redirects work.
 
-            Note: On some systems, it may be necessary to edit userdir module configuation (and restart Apache), to enable PHP in user directories. That is why we advise 2 tests above. If HTML works, but PHP fails -> this applies to you.
+* To enable testing of AsciiDoctor pages, like http://localhost:8777/build_tool :
 
-    - Allow `.htaccess` in cge-www, by adding something like this to Apache config:
-
-        ```
-        <Directory "/home/USERNAME/public_html">
-            AllowOverride All
-            # Makes .htaccess assume that website is under /~michalis/castle-engine/
-            Define MichalisLocalTest
-        </Directory>
-        ```
-
-    - Symlink cge-www:
-
-        ```
-        cd ~/public_html
-        ln -s ~/sources/castle-engine/cge-www/htdocs/ castle-engine/
-        ```
-
-    - In the end, http://localhost/~michalis/castle-engine/manual_intro.php should work. Note that the main page, http://localhost/~michalis/castle-engine/ , depends on a working Wordpress installation (including database) -- see below.
-
-* To enable testing of AsciiDoctor pages, like http://localhost/~michalis/castle-engine/build_tool :
-
-    - Adjust RewriteBase in htdocs/.htaccess to make the rewrite rule work:
-
-    - AsciiDoctor and CodeRay.
+    - Install AsciiDoctor and CodeRay.
 
         On Debian-like systems, just do `apt install asciidoctor coderay`.
 
-* To enable viewing the main page and other pages depending on Wordpress (http://localhost/~michalis/castle-engine/, http://localhost/~michalis/castle-engine/wp/):
+* To enable viewing the main page and other pages depending on Wordpress (http://localhost:8777/, http://localhost:8777/wp/):
 
     * Install MySQL
 

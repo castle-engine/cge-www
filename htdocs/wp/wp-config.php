@@ -52,7 +52,7 @@ if ((isset($_SERVER['SERVER_NAME'])) &&
     define('WP_DEBUG', true);
 
     // See https://codex.wordpress.org/Changing_The_Site_URL
-    define('WP_HOME','http://127.0.0.1/~michalis/castle-engine/wp');
+    define('WP_HOME','http://localhost:8777/wp');
     define('WP_SITEURL', WP_HOME);
 } else {
     define('WP_DEBUG', false);

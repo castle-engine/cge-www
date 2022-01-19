@@ -19,9 +19,9 @@
 }
 
 /* Separator between posts on:
-  - search results http://127.0.0.1/~michalis/castle-engine/wp/?s=release
-  - monthly posts list http://127.0.0.1/~michalis/castle-engine/wp/2017/02/
-  - all posts list http://127.0.0.1/~michalis/castle-engine/wp/page/2/
+  - search results http://localhost:8777/wp/?s=release
+  - monthly posts list http://localhost:8777/wp/2017/02/
+  - all posts list http://localhost:8777/wp/page/2/
 */
 .blog .site-main > article,
 .archive .site-main > article,

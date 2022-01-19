@@ -610,7 +610,7 @@ SourceForge.
   <div class="old_news_item"><span class="old_news_date">July 12, 2006:</span>
     <ul>
       <li>New program is available:
-        <a href="http://michalis.ii.uni.wroc.pl/~michalis/grammar_compression.php">grammar_compression</a>
+        <a href="https://michalis.xyz/grammar_compression.php">grammar_compression</a>
         &mdash; implementation of Sequitur and Sequential compression algorithms
         in ObjectPascal.
 
@@ -897,7 +897,7 @@ SourceForge.
         small fixes.
 
       <li><p>Oh, and I put here my
-        <a href="http://michalis.ii.uni.wroc.pl/~michalis/michalis-gpg-public-key.asc">public GPG key</a>.
+        <a href="https://michalis.xyz/michalis-gpg-public-key.asc">public GPG key</a>.
     </ul>
     </div>
 
@@ -1236,7 +1236,7 @@ SourceForge.
 
       <li>' . news_a_href_page('glplotter', 'glplotter_and_gen_function') . ' updated to
         version 1.1.2: small bugfix: plots with "_" in names
-      <li><a href="http://michalis.ii.uni.wroc.pl/~michalis/mandaty.php">mandaty</a> page added.
+      <li><a href="https://michalis.xyz/mandaty.php">mandaty</a> page added.
     </ul>
 
     <!-- glViewImage sources only updated to 1.1.2, small fixes to sources -->
@@ -1385,7 +1385,7 @@ SourceForge.
 
       <li>All www pages marked in footer as licensed on GNU GPL,
         added page explaining
-        <a href="http://michalis.ii.uni.wroc.pl/~michalis/why_not_gfdl.php">why
+        <a href="https://michalis.xyz/why_not_gfdl.php">why
         I do not use GNU FDL</a>.
 
       <li>F5 is now the standard key shortcut for save screen

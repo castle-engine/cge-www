@@ -20,7 +20,7 @@ $toc = new TableOfContents(
 
 <?php echo $toc->html_section(); ?>
 
-<p><a href="http://michalis.ii.uni.wroc.pl/~michalis/">Michalis Kamburelis</a>
+<p><a href="https://michalis.xyz/">Michalis Kamburelis</a>
 did the whole programming and most of the 3D modelling.
 
 <p><i>Szymon Stoma and Kaśka Zaremba</i> designed and modelled the scenario

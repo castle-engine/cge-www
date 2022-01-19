@@ -87,7 +87,7 @@ switch (CASTLE_ENVIRONMENT) {
     define('CURRENT_URL', '');
     break;
   case 'development':
-    define('CURRENT_URL', 'http://localhost/~michalis/castle-engine/');
+    define('CURRENT_URL', 'http://localhost:8777/');
     break;
   case 'preview':
     define('CURRENT_URL', 'https://michalis.ii.uni.wroc.pl/cge-www-preview/');
@@ -1195,7 +1195,7 @@ function echo_footer ()
   ?>
 
   <div class="panel-footer">
-    <p><span class="page_copyright">Copyright <a href="http://michalis.ii.uni.wroc.pl/~michalis/">Michalis Kamburelis</a> and <a href="https://github.com/castle-engine/castle-engine/graphs/contributors">Castle Game Engine Contributors</a>.
+    <p><span class="page_copyright">Copyright <a href="https://michalis.xyz/">Michalis Kamburelis</a> and <a href="https://github.com/castle-engine/castle-engine/graphs/contributors">Castle Game Engine Contributors</a>.
 
     <p>This <a href="https://github.com/castle-engine/cge-www">webpage is also open-source and we welcome pull requests to improve it</a>.
 

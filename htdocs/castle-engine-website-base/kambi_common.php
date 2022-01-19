@@ -1,7 +1,7 @@
 <?php /* -*- mode: kambi-php -*-
   (This page should be edited in php mode, mmm mode is too slow). */
 
-/* Copyright 2001-2018 Michalis Kamburelis.
+/* Copyright 2001-2022 Michalis Kamburelis.
 
    This file is part of "Kambi PHP library".
 
@@ -23,7 +23,7 @@
 
    A common functions library, shared by both
    https://castle-engine.io/ and
-   http://michalis.ii.uni.wroc.pl/~michalis/
+   https://michalis.xyz/
    websites.
 
    Before including this file, you should define:

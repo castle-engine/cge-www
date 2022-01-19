@@ -206,8 +206,8 @@ add_shortcode('cgeimg','cgeimg_shortcode');
  * ending with special arrow character.
  *
  * Test it on:
- * - search: http://127.0.0.1/~michalis/castle-engine/wp/?s=release
- * - RSS feed: http://127.0.0.1/~michalis/castle-engine/wp/feed/
+ * - search: http://localhost:8777/wp/?s=release
+ * - RSS feed: http://localhost:8777/wp/feed/
  */
 function cge_excerpt_more( $link ) {
     if ( is_admin() ) {

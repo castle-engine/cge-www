@@ -26,8 +26,11 @@ $page_name = $_GET['page'];
       die('Title contains invalid characters: ' . htmlspecialchars($page_name));
     }
 
-  But now we allow page=/~michalis/castle-engine/Cloud_Builds_(Jenkins),
-  and it is equivalent to page=Cloud_Builds_(Jenkins).
+  But now we allow
+    page=/cloud_builds_jenkins
+  or even
+    page=/~michalis/castle-engine/cloud_builds_jenkins
+  and it is equivalent to page=cloud_builds_jenkins.
   This makes our rewrite rule in .htaccess OK. */
 $slash_pos = strrpos($page_name, '/');
 if ($slash_pos !== FALSE) {

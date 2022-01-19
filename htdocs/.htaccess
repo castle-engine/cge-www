@@ -10,14 +10,13 @@ RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
 
 # Rewrite to use doc.php=xxx for names not refering to any existing file (in particular, not refering to PHP files).
 # Based on Wordpress rewrite rule, see also https://httpd.apache.org/docs/current/mod/mod_rewrite.html
-<IfDefine MichalisLocalTest>
-  # If you access CGE website like http://localhost/~michalis/castle-engine/ (useful for Michalis development)
-  RewriteBase /~michalis/castle-engine/
-</IfDefine>
-<IfDefine !MichalisLocalTest>
-  # If you access CGE website like https://castle-engine.io/ (useful for production), use this:
-  RewriteBase /
-</IfDefine>
+#
+# This assumes that CGE website is in the root, like https://castle-engine.io/ or http://localhost:8777/ .
+# If you place CGE website in non-root, e,g, in http://localhost/~michalis/castle-engine/ ,
+# you will have to adjust it, like
+#   RewriteBase /~michalis/castle-engine/
+#
+RewriteBase /
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
@@ -25,7 +24,11 @@ RewriteRule . doc.php?page=%{REQUEST_URI} [L]
 
 # redirects ------------------------------------------------------------------
 
-# Old things, redirect to closest new things. Sorted list.
+# These redirects assume that CGE website is in web server root,
+# like https://castle-engine.io/ or http://localhost:8777/ .
+
+# Old things, redirect to closest new things.
+# Sorted list.
 Redirect "/abbreviated_x3d_specs_for_users.chm" "/vrml_x3d.php"
 Redirect "/b.php" "https://github.com/castle-engine/cge-www/blob/master/htdocs/doc/obsolete/web3d_2020_browser_presentation.adoc"
 Redirect "/bezier_curves.php" "/curves_tool"
