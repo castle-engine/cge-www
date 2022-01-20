@@ -70,21 +70,21 @@ Remember to close and reopen all the applications after setting the environment 
 
 === Accept Android SDK license
 
-On the command-line:
-
+Windows:: Open the terminal (press _Windows key_, type `cmd` and press _Enter_) and type commands like this:
++
 ----
-# On Windows
-# (note: it may fail in Cygwin terminal;
-# better do this is regular Windows terminal invoked by super + "cmd").
 cd c:/android-sdk/cmdline-tools/latest/bin/
 sdkmanager.bat --licenses
+----
 
-# On Linux
+Unix (Linux etc.):: Open the terminal and type commands like this:
++
+----
 cd ~/android-sdk/cmdline-tools/latest/bin/
 ./sdkmanager --licenses
 ----
 
-And answer "Y" to all the questions. After carefully reading all the licenses listed, of course.
+You need to answer _"yes"_ (key `y`) to all the license questions to let the build process automatically download the necessary Android SDK components.
 
 === Install FPC for Android (using fpcupdeluxe)
 
