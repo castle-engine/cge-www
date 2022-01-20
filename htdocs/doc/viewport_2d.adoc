@@ -39,7 +39,7 @@ The _"Camera Setup (Initial and Current) for 2D View and Projection"_ command:
 
 [NOTE]
 ====
-You don't really *have to* to use any particular setup to display 2D things. The changes done by cgeref:TCastleViewport.Setup2D[] reflect the typical "setup of 2D games", but they are absolutely not the only way to make a game that could be considered "2D game".
+You don't really *have to* use any particular setup to display 2D things. The changes done by cgeref:TCastleViewport.Setup2D[] reflect the typical "setup of 2D games", but they are absolutely not the only way to make a game that could be considered "2D game".
 
 You may as well change cgeref:TCastleCamera.ProjectionType[Viewport.Camera.ProjectionType] manually and adjust any other camera parameters as you want. We don't really have any definite notion in CGE _"this is a 2D viewport"_ or _"this is a 3D viewport"_. We don't have such property, because we don't need it. Both 2D and 3D are actually the same things, just with a different world set up, and a different camera being used.
 
