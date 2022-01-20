@@ -85,7 +85,9 @@ We fully support all Spine texture atlas options.
 * Bezier curves for animating parameters.﻿
 * Support for "mesh" attachment.
 * Partial support for "skinnedmesh" attachment. The skinnedmesh in setup pose is affected by bones correctly, and during animation it moves as a whole (is affected by parent bone transformation). Missing is the ability to recalculate vertexes affected by bones during animation (that is, to deform skinnedmesh during animation).
-* Spine "paths" are fully supported. Internally they are converted to `NurbsCurve` X3D nodes, fully supported by the engine -- you can render them, or query them for any purpose. They are invisible by default (`Shape.render` = false), since that is the intention of Spine paths, but you can make them visible easily if needed. From view3dscene, use _"Edit\->Reveal All Hidden Shapes"_ to show them.
+* Spine "paths" are supported, to use as custom paths for any purpose in the game. Internally they are converted to `NurbsCurve` X3D nodes, fully supported by the engine -- you can render them, or query them for any purpose. They are invisible by default (`Shape.render` = false), since that is the intention of Spine paths, but you can make them visible easily if needed. From view3dscene, use _"Edit\->Reveal All Hidden Shapes"_ to show them.
+* Animating vertexes of meshes using FFD. See the https://github.com/castle-engine/demo-models/tree/master/spine/free_form_deformation[spine/free_form_deformation] demos in https://github.com/castle-engine/demo-models[demo-models].
+* Animating vertexes of skinned meshes to deform them by the bones. See the https://castle-engine.io/wp/2020/08/18/weighted-mesh-skinned-mesh-animation-in-spine/[Weighted mesh (skinned mesh animation)] news and https://github.com/castle-engine/demo-models/tree/master/spine/weighted_mesh[spine/weighted_mesh] demos in https://github.com/castle-engine/demo-models[demo-models].
 * https://castle-engine.io/wp/2018/03/21/animation-blending/[Cross-fading between animations (Spine and otherwise) is supported since Castle Game Engine 6.5]
 * Our implementation of Spine converts the Spine project under the hood into an X3D node graph. This means that Spine animation is a full 3D model, and uses stuff like X3D interpolators for animation. This also means that you can use all existing X3D rendering/processing tools to extend the Spine animation (for example, you can use sensors, texture settings, screen effects, you can cast shadows!, you can use shaders etc.).
 * Note that you could also create an X3D file with your 2D world, where you insert multiple Spine animations with X3D `Inline` node. This allows to combine multiple 2D and 3D models already at data level.
@@ -97,9 +99,8 @@ Some more exotic Spine animation features are not implemented (yet!). If you wou
 * Attachment type "regionsequence" (should be easy, but needs test models; in principle, this should be exactly how you can use things like "xxx@counter(4).png" in X3D MovieTexture with our engine, see https://castle-engine.io/x3d_extensions.php#section_ext_movie_from_image_sequence ).
 * Attachment type "boundingbox" (easy to do, convert to X3D TransformSensor; will need special code to actually use it for something).
 * Events and Event Timeline (easy to do; note that events don't do anything by themselves, they just allow animator to "name" some events on the timeline; we would convert them to some sensor that can be watched (using X3D ROUTE) by user code).
-* Animating vertexes of meshes using FFD. Should be easy, this is just CoordinateInterpolator in X3D.
-* Animating vertexes of skinned meshes to deform them by the bones. Should be easy, as it is already started -- skinned meshes are correctly calculated in setup pose. It remains to calculate them for all frames of related bones, and for frames where FFD changes, and use CoordinateInterpolator.
 * IK (Inverse Kinematics). Difficulty unknown, this is a new Spine feature.
+* We do not support paths for _"path constraints"_ or animations.
 
 video::liNwT96HUqI[youtube,width=800,height=450]
 video::7JZhrJ4N2Pg[youtube,width=800,height=450]
