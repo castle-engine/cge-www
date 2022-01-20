@@ -1,0 +1,223 @@
+=== Unnecessary Android SDK extra steps:
+
+NOTE: This is not necessary, and it complicates things and normal users don't need it.
+
+* Consider adding to `$PATH` the `<android-sdk>/platform-tools/` directory. In Castle Game Engine > 6.0.2, this is not necessary (engine doesn't need it), but still advised: it allows you to call `adb` on the command-line easily, which is often useful.
+
+NOTE: This is not necessary anymore.
+
+* Set `$JAVA_HOME` environment variable, to point to your newly installed _Java Development Kit (JDK)_. This is required by the Android build tools.
+
+=== Install Android SDK components
+
+NOTE: This is not necessary now, Gradle will download appropriate components.
+
+Install some components of the Android _SDK Manager_:
+
+* The GUI version of the _SDK Manager_ is part of the _Android Studio_.
+ ** Run _Android Studio_. If you see a wizard prompting you to create a new project -- you can cancel it. Then choose _Configure -> SDK Manager_.
++
+cgeimg::block[sdk_manager_1.png|Android SDK Manager 1]
+
+ ** Make sure that it knows the correct path to the Android SDK. You may need to _Edit_ the SDK location if you installed (or want to install) to a non-standard path.
+ ** On the _"SDK Platforms"_ tab (1st tab) select _"Android 10.0 (Q) - API 29"_ (be sure to use this exact version). Check _"Show Package Details"_ at the bottom to see more, make sure that inside the _"Android 10.0 (Q) - API 29"_ section the _"Android SDK Platform 29"_ and _"Google APIs"_ subcomponents are selected.
++
+TODO: Screenshots below show older situation, for API 23. In new CGE 6.5, just use API 29 instead.
++
+cgeimg::block[sdk_manager_2.png|Android SDK Manager 2]
+
+ ** On the _"SDK Tools"_ tab (2nd tab), select the _"Android SDK Build-tools"_ version 29.0.3 (actually any 29.0.x should be OK). Check _"Show Package Details"_ at the bottom to be able to select the exact _"Android SDK Build-tools"_ version. Be sure to install _this exact version_ (not earlier, not later). You can install other versions too, they don't conflict, but you must install this exact version too.
++
+TODO: Screenshots below show older situation, for API 23. In new CGE 6.5, just use API 29 instead.
++
+cgeimg::block[sdk_manager_3.png|Android SDK Manager 3]
+
+ ** Also on the _"SDK Tools"_ tab (2nd tab), select "NDK".
+ ** Also on the _"SDK Tools"_ tab (2nd tab), from the section _"Support Repository"_ (usually at the bottom of the list), make sure _"Android Support Repository"_ and _"Google Repository"_ are selected.
++
+cgeimg::block[sdk_manager_4.png|Android SDK Manager 4]
+
+ ** Click _OK_, choose _Accept_ at the license question.
+* If you prefer to *use the command-line*, you can alternatively download only _Android SDK command-line tools_. Set `$ANDROID_HOME` environment variable, and then execute
++
+----
+  cd $ANDROID_HOME
+  ./cmdline-tools/latest/bin/sdkmanager --install \
+    'platform-tools' \
+    'platforms;android-29' \
+    'extras;google;google_play_services' \
+    'build-tools;29.0.3' \
+    'extras;android;m2repository' \
+    'ndk-bundle'
+----
++
+Remember to use apostrophes as shown above.
+
+If you know what you're doing, you can actually use other versions of SDK components (other versions of _"SDK Platform"_ and _"Android SDK Build-tools"_). You will need to declare them on a per-project basis in `CastleEngineManifest.xml`, see link:build_tool[Build Tool]. But it's probably easiest if you use their default versions at the beginning.
+
+=== Install Android NDK
+
+NOTE: This is not necessary. NDK will be downloaded along with rest of SDK components.
+
+The Android NDK should already be installed under the `ndk-bundle` subdirectory of Android SDK, if you followed the above steps :) Both the _GUI version of the SDK Manager_ and the command-line `sdkmanager` install NDK, as described above.
+
+=== Adjust environment after installing NDK
+
+NOTE: This is not necessary. NDK doesn't need any extra vars. If you install compiler using fpcupdeluxe, it doesn't need any extra vars.
+
+* Set `$ANDROID_NDK_HOME` environment variable, to indicate the directory of NDK. It should be just inside the `<android-sdk>/ndk-bundle` directory. Our build tool can figure it out automatically (testing `$ANDROID_HOME/ndk-bundle`), but Google tools really need `$ANDROID_NDK_HOME`.
+* To `$PATH` add:
+ ** The NDK subdirectory containing Android/Arm binutils (like `arm-linux-androideabi-as`, `arm-linux-androideabi-ld`) suitable for your source platform. For example `<android-sdk>/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64/bin` . Where "[.code]``arm-linux-androideabi-4.9``" is the Android platform version, just choose latest "[.code]``arm-linux-androideabi-XXX``". And the "[.code]``prebuilt/linux-x86_64``" corresponds to the real OS where you are now (you probably have only one subdirectory inside "[.code]``prebuilt/``" anyway, the one for which you downloaded NDK). Use "[.code]``linux-x86_64``" if you work on Linux 64-bit, adjust for other systems as necessary.
+ ** The NDK subdirectory containing Android/Aarch64 binutils. Similar to above, e.g. `+${ANDROID_NDK_HOME}toolchains/aarch64-linux-android-4.9/prebuilt/linux-x86_64/bin/+`.
+ ** (Optional, mostly useful if you want to use x86_64 emulators/virtual machines.) The NDK subdirectory containing Android/x86_64 binutils. Similar to above, e.g. `+${ANDROID_NDK_HOME}toolchains/x86_64-4.9/prebuilt/linux-x86_64/bin/+`.
+ ** (Optional, as above.) The NDK subdirectory containing Android/x86 binutils. Similar to above, e.g. `+${ANDROID_NDK_HOME}toolchains/x86-4.9/prebuilt/linux-x86_64/bin/+`.
+ ** Also consider adding to `$PATH` the main NDK directory (with `ndk-build` and `ndk-gdb` tools inside). In Castle Game Engine > 6.0.2, this is not necessary (the engine build tool doesn't need it), but it may be comfortable for you anyway (if you plan to use command-line `ndk-gdb`).
+
+For example, when compiling Android application from Linux/x86_64, the environment variables as below make sense:
+
+----
+export CASTLE_ENGINE_PATH="${HOME}"/castle-engine/
+export ANDROID_HOME="${HOME}/android-sdk/"
+export ANDROID_NDK_HOME="${ANDROID_HOME}/ndk-bundle/"
+export PATH="${PATH}:\
+${ANDROID_HOME}platform-tools/:\
+${ANDROID_NDK_HOME}:\
+${ANDROID_NDK_HOME}toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64/bin/:\
+${ANDROID_NDK_HOME}toolchains/aarch64-linux-android-4.9/prebuilt/linux-x86_64/bin/"
+${ANDROID_NDK_HOME}toolchains/x86-4.9/prebuilt/linux-x86_64/bin/:\
+${ANDROID_NDK_HOME}toolchains/x86_64-4.9/prebuilt/linux-x86_64/bin/:\
+export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64/"
+----
+
+=== Test Android SDK + NDK independently of Pascal and CGE
+
+NOTE: Removed this optional step as it complicated instructions.
+
+_While this step is optional, it is often a good idea to try, especially when troubleshooting problems:_
+
+Test compiling (and deploying to your actual Android device) some example code from the Android NDK.
+
+* This allows to make sure that you configured everything correctly, before you start playing with combining Object Pascal code + Android. This allows to detect problems in your setup (or in the latest Android SDK/NDK -- these things happen) that are not related to FPC or CGE.
+* If you run into trouble, consult link:android_sdk_and_ndk_troubleshooting[Android SDK and NDK troubleshooting].
+
+For this, you can compile and install (on a real Android device, typically connected through USB) the "hello-gl2" demo from Android NDK.
+
+* Download it from GitHub, like this:
++
+----
+  git clone https://github.com/googlesamples/android-ndk android-ndk-samples
+----
+
+* Compile the example code by this command-line:
++
+----
+  cd android-ndk-samples/hello-gl2/
+
+  # On Windows platforms, type this command:
+  gradlew.bat assembleDebug
+
+  # On Mac OS and Linux platforms, type these commands:
+  chmod +x gradlew
+  ./gradlew assembleDebug
+
+  # See https://developer.android.com/studio/build/building-cmdline.html .
+  # The first run will take a long time, as gradle downloads it's components.
+  # This should create a file app/build/outputs/apk/app-debug.apk
+
+  # Check that your device is connected, enable "USB debugging" and authorize it if needed
+  adb devices
+  # Install the application (use -r to reinstall)
+  adb install app/build/outputs/apk/app-debug.apk
+  # Or install using gradle:
+  ./gradlew installDebug
+----
+
+And then run the resulting application (it is called "GL2JNI") on your device. It should work equally well on a real Android device, or in the Android emulator.
+
+=== FPC for Android
+
+NOTE: This is a complicated instruction. Better just use fpcupdeluxe.
+
+You need a special version of FPC (Free Pascal Compiler, http://freepascal.org/): a cross-compiler to Android. This means that FPC can run on your normal OS/processor (Linux, Windows, macOS...) and can produce binaries for Android. "Android" more precisely means "_Android OS (based on Linux) + Android processor (32-bit `arm` or 64-bit `aarch64`, for emulators also `x64_64` is useful)_".
+
+You need to use *FPC >= 3.0.2* for Android compilation. _Reasons_: The _PIC support_ for Android libraries is not implemented in earlier FPC versions, and it's required when using Android SDK >= 23, see http://wiki.freepascal.org/Android . We recommend using latest stable, FPC 3.2.2.
+
+*The easiest way to get a cross-compiler for Android is to use link:pass:[fpcupdeluxe][fpcupdeluxe]. I advise it, instead of the manual process described below. Use link:pass:[fpcupdeluxe][fpcupdeluxe] to get latest FPC for Android.*
+
+As an alternative, below we describe how to manually compile latest FPC 3.3.1 for Android:
+
+* Make sure you have installed the latest stable FPC version (3.2.2 at the time of this writing), it is required to compile (bootstrap) new FPC version.
+* Get and compile FPC from GitLab.
+
+Here'a an example how to do it from the command-line.
+
+----
+git clone https://gitlab.com/freepascal.org/fpc/source fpcsrc
+cd fpcsrc/
+
+# Of course adjust INSTALL_PREFIX below.
+# -CfVFPV3 is necessary for hard floats, this way the engine works much faster.
+make clean crossall crossinstall OS_TARGET=android CPU_TARGET=arm CROSSOPT="-CfVFPV3" INSTALL_PREFIX=$HOME/installed/fpc/android
+make clean crossall crossinstall OS_TARGET=android CPU_TARGET=aarch64 INSTALL_PREFIX=$HOME/installed/fpc/android
+
+# 2 commands below are optional,
+# as x86 Android versions are practically useful in Android emulators/virtual machines and not required otherwise.
+make clean crossall crossinstall OS_TARGET=android CPU_TARGET=x86 INSTALL_PREFIX=$HOME/installed/fpc/android
+make clean crossall crossinstall OS_TARGET=android CPU_TARGET=x86_64 INSTALL_PREFIX=$HOME/installed/fpc/android
+
+# It is also advised to compile and install a "normal" FPC binaries and units,
+# not cross-compiling,
+# for compiling to your normal OS with the same FPC version.
+make clean all install INSTALL_PREFIX=$HOME/installed/fpc/android
+
+# On Unix (not on Windows), this is also useful for comfort:
+cd $HOME/installed/fpc/android/bin
+ln -s ../lib/fpc/3.3.1/ppcrossarm .
+ln -s ../lib/fpc/3.3.1/ppcrossa64 .
+ln -s ../lib/fpc/3.3.1/ppcrossx64 . # this is only relevant if your main FPC is 32-bit
+ln -s ../lib/fpc/3.3.1/ppc386     . # this is only relevant if your main FPC is 32-bit
+
+# On Windows, it is useful to copy some helper binaries from the last stable FPC release.
+# These include:
+# - windres
+# - gcc, cpp
+----
+
+* See http://wiki.freepascal.org/Android for links to more info.
+* Remember to first download the last stable FPC compiler, to bootstrap the compilation.
+
+=== Add paths to NDK libraries for FPC configuration
+
+NOTE: this is not necessary if you just use fpcupdeluxe.
+
+Add paths to NDK dirs to your ~/.fpc.cfg (see http://www.freepascal.org/docs-html/user/usersu10.html if you're unsure where's your configuration file; you can create a new one using "fpcmkcfg" program). This way FPC will find the correct NDK tools to link your programs:
+
+----
+#ifdef ANDROID
+
+  # 32-bit Android CPUs
+  #ifdef CPUARM
+  -Fl<android-sdk>/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/arm-linux-androideabi/16/
+  #endif
+  #ifdef CPU386
+  -Fl<android-sdk>/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/i686-linux-android/16/
+  #endif
+
+  # 64-bit Android CPUs
+  #ifdef CPUAARCH64
+  -Fl<android-sdk>/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android/21/
+  #endif
+  #ifdef CPUX86_64
+  -Fl<android-sdk>/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/x86_64-linux-android/21/
+  #endif
+
+#endif
+----
+
+Also, double check that your FPC config does not contain any weird -XP option. FPC can correctly determine it at runtime, and having it set in config file does more harm than good -- unless you know what it does and why you use it.
+
+Note that the lines above point to NDK platform version `16` (for 32-bit CPUs). Yes, use exactly this version. This is the NDK platform version, and it should correspond to the `min_sdk_version` in link:project_manifest[CastleEngineManifest.xml]. It is a _different_ number than the `compile_sdk_version` (and the SDK platform version you installed).
+
+For 64-bit CPUs, these lines point to NDK platform version `21`, earliest version with 64-bit CPU support.
+
+If you use link:pass:[fpcupdeluxe][fpcupdeluxe], it is safest to remove/rename it's `<fpcupdeluxe>/cross/lib/arm-android/` and `<fpcupdeluxe>/cross/lib/arch64-android/`. This way we make sure to use NDK platform version `16` (32-bit) / `21` (64-bit).
