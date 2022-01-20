@@ -1,6 +1,16 @@
 # Android SDK And NDK Troubleshooting
 include::common.adoc[]
 
+== Windows: Building for Android fails, because it cannot delete .jar file from previous compilation
+
+Sometimes, the intermediate jar file is locked by _some_ process, and all the attempts to build for Android, or to _Clean_ the project from CGE editor, will fail with message like this:
+
+```
+Cannot delete file "....\castle-engine-output\android\project\app\build\intermediates\project_dex_archive\debug\out\2d864914410e990332c5a81a0dad4c5ee5c1075c0122b7be66757876af632106_0.jar"
+```
+
+Workaround: Delete the `castle-engine-output` subdirectory using Windows file manager. Searching the Internet confirms https://stackoverflow.com/questions/46917477/android-studio-cant-delete-files-when-compiling[this problem happens] and is not related to CGE.
+
 ////
 No longer important, Gradle download them.
 # Make sure you have the right SDK platform installed
