@@ -18,6 +18,8 @@ $toc = new TableOfContents(
       //new TocItem('If you use proprietary NVidia OpenGL on Linux', 'nvidia_linux', 1),
       new TocItem('If you use FPC development version (from GitLab)', 'fpc_unstable', 1),
     new TocItem('Delphi', 'delphi'),
+      new TocItem('Platforms supported with Delphi', 'platforms', 1),
+      new TocItem('Delphi versions', 'versions', 1),
     new TocItem('Code Typhon', 'code_typhon'),
   )
 );
@@ -130,27 +132,37 @@ to hang on to FPC releases available in distros.
 
 <p><iframe width="560" height="315" src="https://www.youtube.com/embed/6JfFxnZO4Jc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-<p>As for the Delphi versions supported:
+<p>We are an official <i>Embarcadero Technology Partner</i>. What this means, in simple terms, is that <i>Michalis</i> and <i>Andrzej</i> have full access to the latest Delphi version, with all the Delphi platforms (including Android and iOS), for free. For testing CGE compatibility.
+
+<p>If you like Delphi compatibility, and want to see more platforms, please show your support by <a href="https://www.patreon.com/castleengine">subscribing on Patreon</a>!
+
+<?php echo $toc->html_section(); ?>
+
+<ul>
+  <li><p>Right now we support only Windows (both 32-bit and 64-bit). Through <?php echo cgeRef('TCastleWindowBase'); ?>, which is our standard way to create CGE window.
+
+  <li><p>We will soon implement <?php echo cgeRef('TCastleControlBase'); ?> version for FMX (and maybe even VCL too) so that you can drop CGE rendering on the FMX/VCL form.
+
+  <li><p>This will be followed by other platforms: Linux, Android, iOS. There is basic Delphi+Linux support already, but we need to import cross-platform OpenGL units to make it actually work, and we'll likely need to add GTK, Glx, Xlib units.
+</ul>
+
+<?php echo $toc->html_section(); ?>
 
 <ul>
   <li><p>We test on 10.4 and 11.
 
   <li><p>In principle, any Delphi version &gt;= 2009 (with generics support) should be OK. We welcome reports (of success or failure) if you use Delphi version between 2009 and 10.4, and tested CGE with it.
+
+  <li><p>We will not support Delphi versions older than 10.4 <i>for mobile (Android and iOS)</i>.
+
+    <p>Reason: The older Delphi versions have crazy compatibility-breaking change to <code>String</code> handling on mobile: strings are 0-based (but only on mobile!, on desktop they remained 1-based) and <i>Embarcadero/Idera</i> recommended way forward was to use <code>TStringHelper</code>, with all operations 0-based, and maybe treat strings as immutable. See <a href="https://docwiki.embarcadero.com/RADStudio/XE7/en/Migrating_Delphi_Code_to_Mobile_from_Desktop#Use_0-Based_Strings">Delphi XE7: Migrating Delphi Code to Mobile from Desktop: Use 0-Based Strings</a>.
+
+    <p>This would mean completely rewriting all our <code>String</code> handling code in the engine. And it would be quite risky task &mdash; as the global <code>String</code> routines remained available for mobile, but they were nearly useless for cross-platform code, as they would use 1-based on desktop and 0-based on mobile, thus causing hard-to-find bugs, as the same code would <i>compile</i> everywhere, but would work <i>differently</i> between desktop and mobile.
+
+    <p>We're happy that Embarcadero backed off from this weird decision in later Delphi versions. See <a href="https://docwiki.embarcadero.com/RADStudio/Sydney/en/Zero-based_strings_(Delphi)">Delphi 10.4 (Sydney): Zero-based strings (Delphi)</a>. In particular it says <i>In general terms, string indexing is now uniform across platforms and uses 1-based index model.</i> and <i>Default <code>{$ZEROBASEDSTRINGS OFF}</code> for Delphi desktop and mobile compilers.</i>.
+
+      <!--li>See also <a href="https://stackoverflow.com/questions/66682412/in-sydney-does-string-still-zero-based-in-mobile">StackOverflow: In Sydney does string still zero based in mobile?</a-->
 </ul>
-
-<p>As for the platforms supported:
-
-<ul>
-  <li><p>The initial port supports Windows (both 32-bit and 64-bit) through <code>CastleWindow</code>, which is our standard way to create CGE window.
-
-  <li><p>This will be followed by <code>TCastleControl</code> version for FMX (and maybe even VCL too) so that you can drop CGE component on the form.
-
-  <li><p>This will be followed by other platforms: Linux, Android, iOS. There is basic Delphi+Linux support already, but we need to import cross-platform OpenGL units to make it actually work, and we'll likely need to add GTK, Glx, Xlib units.
-</ul>
-
-<p>We are an official <i>Embarcadero Technology Partner</i>. What this means, in simple terms, is that <i>Michalis</i> and <i>Andrzej</i> have full access to the latest Delphi version, with all the Delphi platforms (including Android and iOS), for free. For testing CGE compatibility.
-
-<p>If you like it, please show your support by <a href="https://www.patreon.com/castleengine">donating on Patreon</a>!
 
 <?php echo $toc->html_section(); ?>
 
