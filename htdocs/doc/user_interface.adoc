@@ -33,19 +33,19 @@ cgeref:TCastleUserInterface[] is a base UI class. It is an ancestor of all other
 
 cgeimg::block[ui_empty_rectangle.png|Empty rectangles]
 
-### Color Rectangles (TCastleRectangleControl)
+### Color Rectangles
 
 cgeref:TCastleRectangleControl[] is a rectangle filled with simple RGBA color. Its most important property is cgeref:TCastleRectangleControl.Color[].
 
 cgeimg::block[ui_color_rectangle.png|Color rectangles]
 
-### Label (TCastleLabel)
+### Label
 
 cgeref:TCastleLabel[] is the simplest way to display text in our engine. Its most important property is cgeref:TCastleLabel.Caption[] (or, if you want access the multi-line string list, cgeref:TCastleLabel.Text[]).
 
 cgeimg::block[ui_label.png|Labels]
 
-### Button (TCastleButton)
+### Button
 
 cgeref:TCastleButton[] is a clickable UI element. The look can be incredibly customized to match the style of your game. Its most important properties are cgeref:TCastleButton.Caption[] and (assign here your event, in code) cgeref:TCastleButton.OnClick[].
 
