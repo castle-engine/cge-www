@@ -29,6 +29,55 @@ See the https://github.com/castle-engine/castle-engine/tree/master/examples/comp
 
 ### Empty Rectangle (base TCastleUserInterface)
 
+cgeref:TCastleUserInterface[] is a base UI class. It is an ancestor of all other UI classes, and as such implements common features like anchors and borders. It can be used directly too -- will serve as a good parent, to organize a number of children controls or surround them with a visual frame.
+
+cgeimg::block[ui_empty_rectangle.png|Empty rectangles]
+
+### Color Rectangles (TCastleRectangleControl)
+
+cgeref:TCastleRectangleControl[] is a rectangle filled with simple RGBA color. Its most important property is cgeref:TCastleRectangleControl.Color[].
+
+cgeimg::block[ui_color_rectangle.png|Color rectangles]
+
+### Label (TCastleLabel)
+
+cgeref:TCastleLabel[] is the simplest way to display text in our engine. Its most important property is cgeref:TCastleLabel.Caption[] (or, if you want access the multi-line string list, cgeref:TCastleLabel.Text[]).
+
+cgeimg::block[ui_label.png|Labels]
+
+### Button (TCastleButton)
+
+cgeref:TCastleButton[] is a clickable UI element. The look can be incredibly customized to match the style of your game. Its most important properties are cgeref:TCastleButton.Caption[] and (assign here your event, in code) cgeref:TCastleButton.OnClick[].
+
+cgeimg::block[ui_button_1.png|Buttons,ui_button_2.png|Buttons]
+
+### Image
+
+cgeref:TCastleImageControl[] displays an image. It can be scaled, preserving the aspect ratio or ignoring the aspect ratio, if needed. Its most important property is cgeref:TCastleImageControl.URL[].
+
+### Checkbox
+
+cgeref:TCastleCheckbox[] allows user to check/uncheck a checkbox, to make a Boolean choice. Its most important properties are cgeref:TCastleCheckbox.Caption[] and (assign here your event, in code) cgeref:TCastleCheckbox.Checked[].
+
+### Edit (text, integer, float)
+
+cgeref:TCastleEdit[] allows to edit a single-line text. Its most important property is cgeref:TCastleEdit.Text[].
+
+It has simple descendants cgeref:TCastleIntegerEdit[] and cgeref:TCastleFloatEdit[] to edit numbers. Their most important properties are, respectively, cgeref:TCastleIntegerEdit.Value[] and cgeref:TCastleFloatEdit.Value[].
+
+### Group (horizontal, vertical)
+
+cgeref:TCastleHorizontalGroup[] and cgeref:TCastleVerticalGroup[] automatically layout their controls in a horizontal and vertical fashion.
+
+### Scroll view
+
+cgeref:TCastleScrollView[] allows to scroll a large (tall) area with a vertical scrollbar. Its most important property is cgeref:TCastleScrollView.ScrollArea[], this is where you should add children that should scroll.
+
+### Shape
+
+cgeref:TCastleShape[] displays since shapes, like circles.
+
+
 ////
 TODO
 
