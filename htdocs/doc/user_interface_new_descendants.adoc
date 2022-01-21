@@ -1,0 +1,107 @@
+<?php echo $toc->html_section(); ?>
+
+<?php
+echo castle_thumbs(array(
+  array('filename' => 'zombie_fighter_0.png', 'titlealt' => 'Dialog box composed from simple UI elements'),
+));
+?>
+
+<p>When you make a non-trivial composition of UI controls, it's a good
+idea to wrap them in a parent UI control class.
+
+<p>For this, you can derive a
+new descendant of your top-most UI class. The top-most UI class can be
+
+<ol>
+  <li>something specific, like the <?php api_link('TCastleRectangleControl', 'CastleControls.TCastleRectangleControl.html'); ?> if your whole UI
+    is inside a simple rectangle,
+  <li>or it can be our universal <i>"UI control with position and size"</i>:
+    <?php api_link('TCastleUserInterface', 'CastleUIControls.TCastleUserInterface.html'); ?>.
+</ol>
+
+<p>In the constructor of your new class, you
+initialize and add all the child controls. You can even register
+private methods to handle the events of private controls inside,
+e.g. you can internally handle button clicks inside your new class.
+
+<p>This way you get a new class, like <code>TZombieDialog</code>, that is a
+full-featured UI control. It hides the complexity of the UI inside,
+and it exposes only as much as necessary to the outside world. It has
+a fully functional <code>Update</code> method to react to time passing, it can
+handle inputs and so on.
+
+<p>The new UI control can be inserted directly to the
+<code>Window.Controls</code>, or it can be used as a child of other UI controls, to
+create even more complex stuff. It can be aligned within parent using
+the normal <?php api_link('Anchor', 'CastleUIControls.TCastleUserInterface.html#Anchor'); ?> methods.
+
+<p>Example below implements the <code>TZombieDialog</code> class, which is a reworked
+version of the previous UI example, that now wraps the dialog UI inside
+a neat reusable class.
+
+<?php echo pascal_highlight('uses SysUtils, Classes, CastleControls, CastleUtils, CastleFilesUtils,
+  CastleColors, CastleUIControls;
+
+type
+  TZombieDialog = class(TCastleRectangleControl)
+  private
+    InsideRect: TCastleRectangleControl;
+    Image: TCastleImageControl;
+    LabelStats: TCastleLabel;
+    ButtonRun, ButtonFight: TCastleButton;
+  public
+    constructor Create(AOwner: TComponent); override;
+  end;
+
+constructor TZombieDialog.Create(AOwner: TComponent);
+begin
+  inherited;
+
+  Width := 400;
+  Height := 500;
+  Color := HexToColor(\'5f3939\');
+
+  InsideRect := TCastleRectangleControl.Create(Self);
+  InsideRect.Width := EffectiveWidth - 10;
+  InsideRect.Height := EffectiveHeight - 10;
+  InsideRect.Color := Silver;
+  InsideRect.Anchor(hpMiddle);
+  InsideRect.Anchor(vpMiddle);
+  InsertFront(InsideRect);
+
+  Image := TCastleImageControl.Create(Self);
+  // ... see previous example for the rest of Image initialization
+  InsideRect.InsertFront(Image);
+
+  LabelStats := TCastleLabel.Create(Self);
+  // ... see previous example for the rest of LabelStats initialization
+  InsideRect.InsertFront(LabelStats);
+
+  ButtonRun := TCastleButton.Create(Self);
+  // ... see previous example for the rest of ButtonRun initialization
+  InsideRect.InsertFront(ButtonRun);
+
+  ButtonFight := TCastleButton.Create(Self);
+  // ... see previous example for the rest of ButtonFight initialization
+  InsideRect.InsertFront(ButtonFight);
+end;
+
+var
+  SimpleBackground: TCastleSimpleBackground;
+  Dialog: TZombieDialog;
+
+procedure ApplicationInitialize;
+begin
+  Window.Container.UIReferenceWidth := 1024;
+  Window.Container.UIReferenceHeight := 768;
+  Window.Container.UIScaling := usEncloseReferenceSize;
+
+  SimpleBackground := TCastleSimpleBackground.Create(Application);
+  SimpleBackground.Color := Black;
+  Window.Controls.InsertFront(SimpleBackground);
+
+  Dialog := TZombieDialog.Create(Application);
+  Dialog.Anchor(hpMiddle);
+  Dialog.Anchor(vpMiddle);
+  Window.Controls.InsertFront(Dialog);
+end;'); ?>

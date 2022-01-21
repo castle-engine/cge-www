@@ -277,7 +277,7 @@ $castle_sitemap = array(
           ),
           'manual_user_interface_and_2d_drawing' => array('title' => 'User interface and 2D drawing',
             'sub' => array(
-              'manual_2d_user_interface' => array('title' => 'User interface, standard controls, viewports'),
+              'doc/user_interface' => array('title' => 'User interface, standard controls'),
               'manual_editor' => array('title' => 'Editor'),
               'doc/custom_components' => array('title' => 'Custom Components in Editor'),
               'manual_castle_settings' => array('title' => 'Customize look by CastleSettings.xml'),

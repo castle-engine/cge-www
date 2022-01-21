@@ -1,3 +1,37 @@
+# User Interface
+include::common.adoc[]
+
+## Introduction
+
+_Castle Game Engine_ features a number of user interface (2D) controls. You can build a complete user interface in the _CGE editor_, you can also build and modify the whole UI using our Pascal API. Our UI controls have parents, anchoring, UI scaling. If you set the anchors right, our UI will _"just work"_ at various screen resolutions, aspect ratios and platforms, and can seamlessly adjust to any desktop or mobile screen.
+
+As an example, take a look at this design that is used for our inspector (see the https://www.youtube.com/watch?v=5jBdPdj75yk[Inspector invoked by F8] movie). Coupled with the right code, this design implements a non-trivial UI with toggable panels, scrollable list box, minimal scrollable object inspector, custom-drawn profiler and more.
+
+cgeimg::block[inspector_design.png|Inspector UI,inspector_running.png|Inspector visible at runtime]
+
+## Usage
+
+The basic usage of UI controls inside the _CGE editor_ is explained in the chapter link:manual_state_events.php[Designing user interface and handling events (press, update) within the state]. It shows how to use cgeref:TCastleImageControl[] -- but the workflow shown there applies to all other UI controls too. It comes down to:
+
+- Using _"Add User Interface"_ menu item in the _CGE editor_ to choose a component. It will be added to the state. It's usually most comfortable to use _"Add User Interface"_ by right-clicking on the parent component in the editor hierarchy.
+
+- After adding, you want to adjust basic component properties, like `Name`, position and size.
+
+- To access the component from code, you add to your state `Start` method a line like `MyLabel := DesignedComponent('MyLabel') as TCastleLabel` and at any other place you can modify this component, like `MyLabel.Caption := 'something'`.
+
+## Available user interface controls
+
+In general, all the descendants of cgeref:TCastleUserInterface[] defined in the engine are UI controls. This page lists the most important ones.
+
+See the https://github.com/castle-engine/castle-engine/tree/master/examples/component_gallery[component_gallery] demo for a showcase of our most important components. You can run that example and explore its UI designs in _CGE editor_.
+
+## Available user interface controls
+
+### Empty Rectangle (base TCastleUserInterface)
+
+////
+TODO
+
 <?php
 require_once 'castle_engine_functions.php';
 castle_header('User interface, standard controls, viewports', array(
@@ -16,7 +50,6 @@ $toc = new TableOfContents(
     new TocItem('Taking control of the viewport', 'viewport'),
     new TocItem('Insert animation (in a viewport) into a button', 'button_with_viewport', 1),
     new TocItem('Wrapping it up (in a custom TCastleUserInterface descendant)', 'wrapping'),
-    new TocItem('User-interface state (TUIState)', 'ui_state'),
   )
 );
 ?>
@@ -486,48 +519,6 @@ Notes:
 
 <?php
 echo castle_thumbs(array(
-  array('filename' => 'multiple_viewports_dynamic_world.png', 'titlealt' => 'Multiple viewports, interactive scene, shadow volumes and cube-map reflections'),
-  array('filename' => 'view3dscene_viewports.png', 'titlealt' => 'Multiple viewports with a DOOM level in view3dscene'),
-), 'auto', 'left');
-?>
-
-<p>You should use
- <?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?> or
- <?php api_link('TCastleControlBase', 'CastleControl.TCastleControlBase.html'); ?>
- to create an area where <i>Castle Game Engine</i> can render.
- And you should create an instance of
- <?php api_link('TCastleViewport', 'CastleViewport.TCastleViewport.html'); ?>
- and add it to the <code>Controls</code> list
- (<code>TCastleWindowBase.Controls</code> or
- <code>TCastleControlBase.Controls</code>).
-
-<p>It is allowed to have multiple
- <?php api_link('TCastleViewport', 'CastleViewport.TCastleViewport.html'); ?>
- instances in your game, even visible at the same time.
- They can even show the same world (but from different cameras)
- if they share the same <code>Viewport.Items</code> value.
-
-<p>The example below creates one viewport, showing the world from the player perspective,
-and then adds another viewport that observes the same world from another perspective.
-
-<p>Note that, since the viewport is a 2D control,
-you can place it as child of other UI controls.
-The example below demonstrates this technique, inserting
- <?php api_link('TCastleViewport', 'CastleViewport.TCastleViewport.html'); ?>
- inside a <?php api_link('TCastleRectangleControl', 'CastleControls.TCastleRectangleControl.html'); ?>.
-
-<?php
-echo castle_thumbs(array(
-  array('filename' => 'two_viewports.png', 'titlealt' => 'Two viewports'),
-), 'auto', 'left');
-?>
-
-<?php echo pascal_highlight_file('code-samples/two_viewports.lpr'); ?>
-
-<?php echo $toc->html_section(); ?>
-
-<?php
-echo castle_thumbs(array(
   array('filename' => 'button_with_2d_scene_manager.png', 'titlealt' => '2D animated scene inside a button'),
 ));
 ?>
@@ -542,193 +533,4 @@ insert it to <?php api_link('TCastleViewport', 'CastleViewport.TCastleViewport.h
  with any crazy animation inside:)
 
 <?php echo pascal_highlight_file('code-samples/button_with_viewport.lpr'); ?>
-
-<?php echo $toc->html_section(); ?>
-
-<?php
-echo castle_thumbs(array(
-  array('filename' => 'zombie_fighter_0.png', 'titlealt' => 'Dialog box composed from simple UI elements'),
-));
-?>
-
-<p>When you make a non-trivial composition of UI controls, it's a good
-idea to wrap them in a parent UI control class.
-
-<p>For this, you can derive a
-new descendant of your top-most UI class. The top-most UI class can be
-
-<ol>
-  <li>something specific, like the <?php api_link('TCastleRectangleControl', 'CastleControls.TCastleRectangleControl.html'); ?> if your whole UI
-    is inside a simple rectangle,
-  <li>or it can be our universal <i>"UI control with position and size"</i>:
-    <?php api_link('TCastleUserInterface', 'CastleUIControls.TCastleUserInterface.html'); ?>.
-</ol>
-
-<p>In the constructor of your new class, you
-initialize and add all the child controls. You can even register
-private methods to handle the events of private controls inside,
-e.g. you can internally handle button clicks inside your new class.
-
-<p>This way you get a new class, like <code>TZombieDialog</code>, that is a
-full-featured UI control. It hides the complexity of the UI inside,
-and it exposes only as much as necessary to the outside world. It has
-a fully functional <code>Update</code> method to react to time passing, it can
-handle inputs and so on.
-
-<p>The new UI control can be inserted directly to the
-<code>Window.Controls</code>, or it can be used as a child of other UI controls, to
-create even more complex stuff. It can be aligned within parent using
-the normal <?php api_link('Anchor', 'CastleUIControls.TCastleUserInterface.html#Anchor'); ?> methods.
-
-<p>Example below implements the <code>TZombieDialog</code> class, which is a reworked
-version of the previous UI example, that now wraps the dialog UI inside
-a neat reusable class.
-
-<?php echo pascal_highlight('uses SysUtils, Classes, CastleControls, CastleUtils, CastleFilesUtils,
-  CastleColors, CastleUIControls;
-
-type
-  TZombieDialog = class(TCastleRectangleControl)
-  private
-    InsideRect: TCastleRectangleControl;
-    Image: TCastleImageControl;
-    LabelStats: TCastleLabel;
-    ButtonRun, ButtonFight: TCastleButton;
-  public
-    constructor Create(AOwner: TComponent); override;
-  end;
-
-constructor TZombieDialog.Create(AOwner: TComponent);
-begin
-  inherited;
-
-  Width := 400;
-  Height := 500;
-  Color := HexToColor(\'5f3939\');
-
-  InsideRect := TCastleRectangleControl.Create(Self);
-  InsideRect.Width := EffectiveWidth - 10;
-  InsideRect.Height := EffectiveHeight - 10;
-  InsideRect.Color := Silver;
-  InsideRect.Anchor(hpMiddle);
-  InsideRect.Anchor(vpMiddle);
-  InsertFront(InsideRect);
-
-  Image := TCastleImageControl.Create(Self);
-  // ... see previous example for the rest of Image initialization
-  InsideRect.InsertFront(Image);
-
-  LabelStats := TCastleLabel.Create(Self);
-  // ... see previous example for the rest of LabelStats initialization
-  InsideRect.InsertFront(LabelStats);
-
-  ButtonRun := TCastleButton.Create(Self);
-  // ... see previous example for the rest of ButtonRun initialization
-  InsideRect.InsertFront(ButtonRun);
-
-  ButtonFight := TCastleButton.Create(Self);
-  // ... see previous example for the rest of ButtonFight initialization
-  InsideRect.InsertFront(ButtonFight);
-end;
-
-var
-  SimpleBackground: TCastleSimpleBackground;
-  Dialog: TZombieDialog;
-
-procedure ApplicationInitialize;
-begin
-  Window.Container.UIReferenceWidth := 1024;
-  Window.Container.UIReferenceHeight := 768;
-  Window.Container.UIScaling := usEncloseReferenceSize;
-
-  SimpleBackground := TCastleSimpleBackground.Create(Application);
-  SimpleBackground.Color := Black;
-  Window.Controls.InsertFront(SimpleBackground);
-
-  Dialog := TZombieDialog.Create(Application);
-  Dialog.Anchor(hpMiddle);
-  Dialog.Anchor(vpMiddle);
-  Window.Controls.InsertFront(Dialog);
-end;'); ?>
-
-<?php echo $toc->html_section(); ?>
-
-<?php
-echo castle_thumbs(array(
-  array('filename' => 'zombie_fighter_1.png', 'titlealt' => 'Multiple viewports and basic game UI'),
-  array('filename' => 'zombie_fighter_2.png', 'titlealt' => 'UI dialog, in a state over the game UI'),
-));
-?>
-
-<p>To go one step further, consider organizing larger
-games into <i>"states"</i>. The idea is that the game is always within some
-state, and the state is also reflected by some user-interface. We have
-a ready class <?php api_link('TIUState', 'CastleUIState.TUIState.html'); ?>
- in our engine that helps you take care of that.
-
-<p>In the typical usecase, you create many descendants of the class
-<?php api_link('TIUState', 'CastleUIState.TUIState.html'); ?>. Each descendant represents a different state,
-like <code>TStateMainMenu</code>,
-<code>TStatePlay</code>, <code>TStatePause</code> and so on. Usually you create a
-single instance for each of these classes, at the beginning of your
-game (e.g. in <?php api_link('Application.OnInitialize', 'CastleWindow.TCastleApplication.html#OnInitialize'); ?> handler).
-
-<p>Each such class contains the user-interface appropriate in the
-given state. As <?php api_link('TIUState', 'CastleUIState.TUIState.html'); ?>
- is itself a special <?php api_link('TCastleUserInterface', 'CastleUIControls.TCastleUserInterface.html'); ?>
- descendant, it
-can act as a parent (always filling the whole window) for other UI
-controls. You can add children controls:
-
-<ul>
-  <li><p>In the state constructor.</p></li>
-
-  <li><p>Or you can add them in every <?php api_link('Start', 'CastleUIState.TUIState.html#Start'); ?>
-    call, overriding it. In this case, you
-    should remove the controls in the <?php api_link('Stop', 'CastleUIState.TUIState.html#Stop'); ?> method.
-    Or you can set the controls' owner
-    to a special <?php api_link('FreeAtStop', 'CastleUIState.TUIState.html#FreeAtStop'); ?> component,
-    to make them freed and removed automatically at the next
-    <?php api_link('Stop', 'CastleUIState.TUIState.html#Stop'); ?> call.</p></li>
-
-  <li><p>For advanced uses, if you will use the state stack, you can
-    also add / remove children in the
-    <?php api_link('Resume', 'CastleUIState.TUIState.html#Resume'); ?> and
-    <?php api_link('Pause', 'CastleUIState.TUIState.html#Pause'); ?> calls.</p></li>
-</ul>
-
-<p>During the game you use <?php api_link('TIUState', 'CastleUIState.TUIState.html'); ?>
- class methods and properties to change the
-current state. Most importantly, you can simply change to a new state
-by setting "<?php api_link('TUIState.Current', 'CastleUIState.TUIState.html#Current'); ?> := NewState;". This will call
-<?php api_link('Stop', 'CastleUIState.TUIState.html#Stop'); ?> on the
-old state, and <?php api_link('Start', 'CastleUIState.TUIState.html#Start'); ?>
- on the new state (these are methods that you can override to do something useful).
-
-<p>For advanced uses, you can also have a <i>"state stack"</i>. This is
-perfectly useful when one user-interface is displayed on top of
-another, for example when the <code>TStatePause</code> shows a dimmed state of the
-game underneath. Be sure to actually pause the game underneath; you
-can make a "dimmed" look by adding a fullscreen
-<?php api_link('TCastleRectangleControl', 'CastleControls.TCastleRectangleControl.html'); ?>
- with a transparent color (that has alpha between 0 and 1,
-like 0.5). If you don't want the underlying state to also receive the
-inputs, be sure to set <?php api_link('InterceptInput', 'CastleUIState.TUIState.html#InterceptInput'); ?> on the top state
-(<code>TStatePause</code> in this example).
-
-<p>To actually change the state using the "stack" mechanism, use the
-<?php api_link('TUIState.Push', 'CastleUIState.TUIState.html#Push'); ?> and
-<?php api_link('TUIState.Pop', 'CastleUIState.TUIState.html#Pop'); ?> methods.
-
-<p>The example game <code>zombie_fighter</code> shows a simple implementation of <code>TStateMainMenu</code>,
-<code>TStatePlay</code>, <code>TStateAskDialog</code>. The <code>TStateAskDialog</code> is activated when you
-click the zombie sprite in the <code>TStatePlay</code>, it then shows our
-<code>TZombieDialog</code> created above.
-
-<div class="download jumbotron">
-    <a class="btn btn-primary btn-lg" href="https://github.com/castle-engine/castle-engine/tree/master/examples/user_interface/zombie_fighter">Explore the "zombie_fighter" example on GitHub</a>
-</div>
-
-<?php
-castle_footer();
-?>
+////
