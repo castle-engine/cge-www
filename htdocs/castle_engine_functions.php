@@ -275,16 +275,18 @@ $castle_sitemap = array(
               'doc/multiple_viewports_to_display_one_world' => array('title' => 'Multiple viewports to display one world'),
             ),
           ),
-          'manual_user_interface_and_2d_drawing' => array('title' => 'User interface and 2D drawing',
+          'doc/user_interface' => array('title' => 'User interface',
             'sub' => array(
-              'doc/user_interface' => array('title' => 'User interface, standard controls'),
-              'manual_editor' => array('title' => 'Editor'),
-              'doc/custom_components' => array('title' => 'Custom Components in Editor'),
               'manual_castle_settings' => array('title' => 'Customize look by CastleSettings.xml'),
               'manual_2d_ui_custom_drawn' => array('title' => 'Custom drawn 2D controls: player HUD'),
               'manual_text' => array('title' => 'Text and fonts'),
               'manual_on_screen_menu' => array('title' => 'On-screen menu'),
               'manual_notifications' => array('title' => 'Notifications'),
+            )
+          ),
+          'manual_editor' => array('title' => 'Editor',
+            'sub' => array(
+              'doc/custom_components' => array('title' => 'Custom Components in Editor'),
             )
           ),
           'manual_2d_games' => array('title' => '2D games',
