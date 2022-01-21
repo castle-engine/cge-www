@@ -11,7 +11,7 @@ If you come with a knowledge of another game engine, like _Unity_, this page wil
 
 For game objects (not user-interface), the closest equivalent of `GameObject` in _Castle Game Engine_ is the https://castle-engine.io/apidoc-unstable/html/CastleTransform.TCastleTransform.html[TCastleTransform] class. Instances of `TCastleTransform` can be arranged in a hierarchy, where each element transforms (moves, rotates, scales) the children. The most important class of CGE is the `TCastleScene`, which is a descendant of `TCastleTransform` that can actually render/animate/collide a model. Simply set `TCastleScene.Url` to load your model (like a glTF file) there.
 
-Our manual documents cgeref:TCastleScene[] and cgeref:TCastleTransform[] features: https://castle-engine.io/manual_load_3d.php , https://castle-engine.io/manual_scene.php . Basically you can do stuff like
+Our manual documents cgeref:TCastleScene[] and cgeref:TCastleTransform[] features in chapter link:viewport_and_scenes[Viewport with scenes, camera, navigation]. Basically you can do stuff like
 
 [source,pascal]
 ----
@@ -28,7 +28,7 @@ For objects that are user-interface elements, the most important base class is `
 * layouts: `TCastleVerticalGroup`, `TCastleHorizontalGroup`,
 * and finally a critical UI component `TCastleViewport` which is a "gateway" to actually render a hierarchy of `TCastleTransform`.
 
-See https://castle-engine.io/manual_2d_user_interface.php about 2D user interface.
+See link:user_interface[user interface] documentation.
 
 == How to design a level composed from multiple assets, creatures etc.?
 
@@ -36,7 +36,7 @@ In the simplest case, for each 3D model, you create a `TCastleScene` instance. Y
 
 To group (and transform as a group) a number of `TCastleScene` instances you can use additional `TCastleTransform` instances. The `TCastleScene` is also a `TCastleTransform` descendant, so it can have children too.
 
-Follow the template _"3D FPS Game"_ (create it by running our editor, choose _"New Project"_ and then choose _"3D FPS Game"_ as a starting point). In the resulting project, open the design `data/state_play.castle-user-interface` in the editor, to actually see what I mean (in this and previous answer).
+Follow the template _"3D FPS Game"_ (create it by running our editor, choose _"New Project"_ and then choose _"3D FPS Game"_ as a starting point). In the resulting project, open the design `data/gamestateplay.castle-user-interface` in the editor, to actually see what I mean (in this and previous answer).
 
 Our goal with https://castle-engine.io/manual_editor.php[CGE editor] is to provide an experience similar to Unity and other game engine editors. So you can drop 3D models on your design, and drag them to design a level. Yes, it's a work in progress -- but we'll get there, believe me :) Look how many https://castle-engine.io/features.php[big features we managed to make already] :)
 
@@ -168,21 +168,19 @@ In you override the `TCastleUserInterface.Update` (including `TUIState.Update`) 
 
 == Making components inactive
 
-Both `TCastleTransform` and `TCastleUserInterface` have a Boolean https://castle-engine.io/apidoc-unstable/html/CastleTransform.TCastleTransform.html#Exists[Exists] property, by default `true`. Simply set it to `false` to make everything behave as if this component was _not_ part of the hierarchy. Non-existing components are not visible, do not collide, do not handle any input, do not cause any events etc. So Unity `GameObject.SetActive(xxx)` translates to CGE `TCastleTransform.Exists := xxx`.
+Both `TCastleTransform` and `TCastleUserInterface` have a Boolean `Exists` property: cgeref:TCastleTransform.Exists[], cgeref:TCastleUserInterface.Exists[]. By default this is `true`. Simply set it to `false` to make everything behave as if this component was _not_ part of the hierarchy. Non-existing components are not visible, do not collide, do not handle any input, do not cause any events etc. So Unity `GameObject.SetActive(xxx)` translates to CGE `MyTransform.Exists := xxx`.
 
-You can also override their https://castle-engine.io/apidoc-unstable/html/CastleTransform.TCastleTransform.html#GetExists[GetExists] methods. This is quite powerful sometimes, instead of imperatively _setting_ the `Exists` property, you can _define a rule_ in `GetExists` that determines object's existence. It is evaluated every frame. By default the `GetExists` method just returns the `Exists` property value.
-
-You can also control the `Collides` and `Pickable` and `Visible` properties of `TCastleTransform`. These are useful to make something e.g. visible but non-collidable, or collidable but invisible. Note that when `Exists` is `false`, it "overrides" them, and non-existing object never collides and is never visible.
+You can also control the cgeref:TCastleTransform.Collides[], cgeref:TCastleTransform.Pickable[] and cgeref:TCastleTransform.Visible[] properties of cgeref:TCastleTransform[]. These are useful to make something e.g. visible but non-collidable, or collidable but invisible. Note that when `Exists` is `false`, it "overrides" them, and non-existing object never collides and is never visible.
 
 == User interface scaling
 
-We have UI scaling, to adjust to any screen size smartly, and it works similar to Unity 5 canvas scaling. It allows to design assuming a specific window size, and as long as you set sensible anchors, the design will look reasonable at various screen resolutions (even with different aspect ratio). It merely scales the coordinates -- the actual rendering is done for the final resolution, so it looks "sharp" always.
+We have UI scaling, to adjust to any screen size smartly, and it works similar to Unity canvas scaling. It allows to design assuming a specific window size, and as long as you set sensible anchors, the design will look reasonable at various screen resolutions (even with different aspect ratio). It merely scales the coordinates -- the actual rendering is done for the final resolution, so it looks "sharp" always.
 
 The scaling is configured using https://castle-engine.io/manual_castle_settings.php[CastleSettings.xml] file. The default CGE editor "New Project" templates set UI scaling to adjust with a reference window size of 1600x900. See also https://castle-engine.io/manual_user_interface_and_2d_drawing.php[manual about user interface].
 
 == Unity Services
 
-Mobile services like ads, analytics, in-app purchases and more are available as https://castle-engine.io/android-Services[Android services] or https://castle-engine.io/ios-Services[iOS services]. You declare them in https://castle-engine.io/project_manifest[CastleEngineManifest.xml] and then build the project using our https://castle-engine.io/build_tool[build tool]. These allow to integrate your code with various 3rd-party services (from Google, Apple and others) or use mobile APIs that require special permissions (like vibrations).
+Mobile services like ads, analytics, in-app purchases and more are available as link:android_services[Android services] or link:ios_services[iOS services]. You declare them in https://castle-engine.io/project_manifest[CastleEngineManifest.xml] and then build the project using our https://castle-engine.io/build_tool[build tool]. These allow to integrate your code with various 3rd-party services (from Google, Apple and others) or use mobile APIs that require special permissions (like vibrations).
 
 The _"service"_ means _"a part of the project, in binary or source code, added during the build stage"_.
 
@@ -217,7 +215,7 @@ In CGE, it is a bit different. Viewport (`TCastleViewport`) is a 2D control, and
 * Within a viewport (`TCastleViewport`) instance, you place your 3D world (in `Viewport.Items`).
 * A viewport is always connected with exactly one camera in `Viewport.Camera`. This camera determines projection settings and position, rotation of the viewer.
 
-The above describes the typical design as seen in editor templates. To see it in action, create a _"New Project"_ in the editor, using the template like _"3D FPS Game"_, and open the design `data/state_play.castle-user-interface` in the editor.
+The above describes the typical design as seen in editor templates. To see it in action, create a _"New Project"_ in the editor, using the template like _"3D FPS Game"_, and open the design `data/gamestateplay.castle-user-interface` in the editor.
 
 In short, in Unity "viewport" and "camera" and "UI" are just things inside your 3D world. In CGE, "viewport" (and the corresponding "camera") contains your 3D world, and "viewport" is part of your UI.
 

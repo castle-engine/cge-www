@@ -161,7 +161,7 @@ Another way to speedup the process is to rebuild _only code_. Add the `--update-
 
 . Run _Xcode_ and open the resulting project in `<castle-engine>/examples/2d_dragon_spine_game/castle-engine-output/ios/xcode_project/`.
 +
-Open the file with `.xcworkspace` extension in that directory. For now, all iOS projects use https://castle-engine.io/ios-Services#common-notes-for-services-using-cocoapods[CocoaPods] and so you need to open them through the `.xcworkspace` file, not just `.xcodeproj`.
+Open the file with `.xcworkspace` extension in that directory. For now, all iOS projects use link:ios_services#_services_using_cocoapods[CocoaPods] and so you need to open them through the `.xcworkspace` file, not just `.xcodeproj`.
 
 . Run the project from Xcode (_Command + R_), to see your game working in an _iPhone simulator_.
 +
