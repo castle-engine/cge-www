@@ -75,11 +75,11 @@ cgeref:TCastleScrollView[] allows to scroll a large (tall) area with a vertical 
 
 cgeref:TCastleShape[] displays since shapes, like circles.
 
-//TCastleDesign?
+//TODO:TCastleDesign?
 
-//TCastleTiledMapControl?
+//TODO:TCastleTiledMapControl?
 
-//TCastleTimer?
+//TODO:TCastleTimer?
 
 ////
 TODO
