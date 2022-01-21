@@ -277,11 +277,8 @@ $castle_sitemap = array(
           ),
           'doc/user_interface' => array('title' => 'User interface',
             'sub' => array(
-              'manual_castle_settings' => array('title' => 'Customize look by CastleSettings.xml'),
               'manual_2d_ui_custom_drawn' => array('title' => 'Custom drawn 2D controls: player HUD'),
               'manual_text' => array('title' => 'Text and fonts'),
-              'manual_on_screen_menu' => array('title' => 'On-screen menu'),
-              'manual_notifications' => array('title' => 'Notifications'),
             )
           ),
           'manual_editor' => array('title' => 'Editor',
@@ -306,14 +303,13 @@ $castle_sitemap = array(
           'manual_user_prefs' => array('title' => 'Persistent data (user preferences, savegames)'),
           'manual_screenshots' => array('title' => 'Screenshots'),
           'manual_network' => array('title' => 'Network, downloading and using URLs'),
-          'manual_recording_movies' => array('title' => 'Recording movies'),
           'doc/log' => array('title' => 'Logging'),
-          'manual_key_mouse' => array('title' => 'Key/mouse shortcuts'),
           'manual_cross_platform' => array('title' => 'Cross-platform (desktop, mobile, consoles...) projects',
             'sub' => array(
               'manual_data_directory' => array('title' => 'Data directory'),
-              'doc/build_tool' => array('title' => 'Build Tool'),
               'doc/project_manifest' => array('title' => 'CastleEngineManifest.xml'),
+              'manual_castle_settings' => array('title' => 'Customize UI scaling, font, warmup cache by CastleSettings.xml'),
+              'doc/build_tool' => array('title' => 'Build Tool'),
             ),
           ),
           'manual_platforms' => array('title' => 'Platforms details',
@@ -334,7 +330,6 @@ $castle_sitemap = array(
               'doc/how_to_make_rendering_prettier' => array('title' => 'How To Make Rendering Prettier'),
             )
           ),
-          'manual_classes_overview' => array('title' => 'Classes overview (cheatsheet)'),
           'manual_gamma_correction' => array('title' => 'Gamma Correction'),
           'manual_miscellaneous' => array('title' => 'Miscellaneous knowledge',
             'sub' => array(
