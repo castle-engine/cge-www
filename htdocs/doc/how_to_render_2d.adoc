@@ -5,6 +5,8 @@ cgeimg::float[platformer.png|Platformer]
 
 == How to render 2D images/sprites
 
+WARNING: This page compares 2 possible approaches to 2D rendering in CGE. This page is really *not* a good introduction into "making 2D games in CGE". For such introduction, instead follow the manual from the beginning, in particular link:viewport_and_scenes[learn about viewports, scenes] and link:viewport_2d[how to use them for 2D].
+
 === Full-featured: Render using TCastleScene
 
 Use `TCastleViewport`. Add `TCastleViewport` control to the window, and inside it draw things by creating `TCastleScene` instances.
