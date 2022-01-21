@@ -162,17 +162,19 @@ Most important Wordppress shortcodes are:
 
 * Make htdocs/ referenced from Apache. There are may ways to do this. I advise to do this on Linux and make the website root accessible under URL like http://localhost:8777/ (which would open `htdocs/index.php` file in this repo).
 
-    Note: There's nothing special about the 8777 port. It just seems unused by most other software (looking at https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers ), so it is likely non-conflicting with anything else on your system.
+    - Listen on port 8777. Edit `/etc/apache2/ports.conf` and add `Listen 127.0.0.1:8777`.
 
-    Create new site, following `apache-sample.conf` example. You can copy and adjust it to `/etc/apache2/sites-available/cge-www.conf` .
+        Note: There's nothing special about the 8777 port. It just seems unused by most other software (looking at https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers ), so it is likely non-conflicting with anything else on your system.
 
-    Enable it:
+    - Create new site, following `apache-sample.conf` example. You can copy and adjust it to `/etc/apache2/sites-available/cge-www.conf` . Or even symlink it, if you use the same path as me: `cd /etc/apache2/sites-available && sudo ln -s ~/sources/castle-engine/cge-www/apache-sample.conf cge-www.conf`.
 
-        - On Debian-based systems, do `sudo a2enside cge-www && sudo service apache2 restart`.
+    - Enable it:
+
+        - On Debian-based systems, do `sudo a2ensite cge-www && sudo service apache2 restart`.
 
         - On Arch Linux, follow https://wiki.archlinux.org/title/Apache_HTTP_Server .
 
-    In the end, http://localhost:8777/manual_intro.php should work. Note that the main page, http://localhost:8777/ , depends on a working Wordpress installation (including database) -- see below, it will not work as easily.
+    In the end, http://localhost:8777/manual_intro.php should work. Note that the main page, http://localhost:8777/ , depends on a working Wordpress installation (including database) -- see below, it may require additional work to see it.
 
     Note: It is also possible to set this up in non-root, you could even use Apache "userdir" to place it e.g in `http://localhost/~michalis/castle-engine/` . We used to even advise this here, but we don't advise it anymore, as it's a bit more work (need to make sure PHP works in userdir) and needs adjusting .htaccess to make rewrites/redirects work.
 
