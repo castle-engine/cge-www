@@ -323,24 +323,27 @@ $castle_sitemap = array(
               'doc/nintendo_switch' => array('title' => 'Nintendo Switch'),
             ),
           ),
-          'manual_optimization' => array('title' => 'Optimization and profiling',
+          'manual_optimization' => array('title' => 'Optimization',
             'sub' => array(
+              'doc/occlusion_query' => array('title' => 'Occlusion Query'),
               'doc/profiling_using_valgrind' => array('title' => 'Profiling Using Valgrind'),
               'doc/detecting_memory_leaks_using_heaptrc' => array('title' => 'Detecting Memory Leaks Using HeapTrc'),
-              'doc/how_to_make_rendering_prettier' => array('title' => 'How To Make Rendering Prettier'),
             )
           ),
-          'manual_gamma_correction' => array('title' => 'Gamma Correction'),
+          'doc/how_to_make_rendering_prettier' => array('title' => 'Making rendering prettier',
+            'sub' => array(
+              'manual_gamma_correction' => array('title' => 'Gamma Correction'),
+              'doc/blending' => array('title' => 'Blending'),
+              'manual_alpha_bleeding' => array('title' => 'Alpha Bleeding'),
+            )
+          ),
           'manual_miscellaneous' => array('title' => 'Miscellaneous knowledge',
             'sub' => array(
               'manual_up' => array('title' => 'Which way is up?'),
               'manual_transformation_hierarchy' => array('title' => 'Transformation hierarchy'),
               'manual_lazarus_control' => array('title' => 'Engine control to put on Lazarus form'),
               'manual_lazarus_focus' => array('title' => 'How to handle the focus of TCastleControlBase'),
-              'doc/blending' => array('title' => 'Blending'),
-              'manual_alpha_bleeding' => array('title' => 'Alpha Bleeding'),
               'doc/castlewindow_backends' => array('title' => 'CastleWindow Backends'),
-              'doc/occlusion_query' => array('title' => 'Occlusion Query'),
               'doc/threads' => array('title' => 'Threads'),
               // TODO: link to 'doc/units_map', once it is up-to-date again
             )
@@ -373,13 +376,16 @@ $castle_sitemap = array(
               'creating_data_dragon_bones' => array('title' => 'Dragon Bones'),
             )
           ),
-          'creating_data_xml' => array('title' => 'XML files describing game data (level.xml, resource.xml and others)'),
-          'creating_data_levels' => array('title' => 'Levels'),
-          'creating_data_resources' => array('title' => 'Resources (creatures and items)'),
-          'creating_data_player' => array('title' => 'Player configuration'),
           'creating_data_material_properties' => array('title' => 'Material properties configuration'),
           'creating_data_auto_generated_textures' => array('title' => 'Auto-generated compressed and scaled textures'),
-          'creating_data_sound' => array('title' => 'Sound'),
+          'creating_data_xml' => array('title' => 'Deprecated: XML files describing game data for typical 3D games',
+            'sub' => array(
+              'creating_data_levels' => array('title' => 'Levels'),
+              'creating_data_resources' => array('title' => 'Resources (creatures and items)'),
+              'creating_data_player' => array('title' => 'Player configuration'),
+            )
+          ),
+          'creating_data_sound' => array('title' => 'Deprecated: Sounds XML description'),
         )
       ),
       'reference' => array('title' => 'API Reference', 'url' => reference_link()),
