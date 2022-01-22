@@ -19,7 +19,14 @@ For a fully open-source cross-platform environment _we recommend FPC and Lazarus
 
 ### FPC and Lazarus
 
-. Go to the link:https://www.lazarus-ide.org/[Lazarus website] and download the latest release. It contains both _Lazarus_ (IDE) and _FPC_ (compiler) in one easy download.
+. Install FPC and Lazarus.
+// {empty}
++
+--
+Windows:: Download and run a simple installer from the link:https://www.lazarus-ide.org/[Lazarus website] that will install both _Lazarus_ (IDE) and _FPC_ (compiler).
+Linux:: You should install https://www.freepascal.org/[FPC] first. It is usually easiest to install a package called `fpc` using your package manager. Then download and install link:https://www.lazarus-ide.org/[Lazarus package] for Linux.
+macOS:: You can download packages for both FPC (download file like `fpc-3.2.2.intelarm64-macosx.dmg`) and Lazarus (file like `Lazarus-2.2.0-0-x86_64-macosx.pkg`) from link:https://www.lazarus-ide.org/[the downloads on Lazarus website].
+--
 +
 cgeimg::block[lazarus_website.png|Lazarus website]
 +
