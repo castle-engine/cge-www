@@ -55,7 +55,7 @@ echo castle_thumbs(array(
   <li>
     <p><a href="https://castle-engine.io/apidoc-unstable/html/CastleBehaviors.TCastleSoundSource.html">TCastleSoundSource</a>: A way to play spatial (3D) sounds.
 
-    <p>This is a behavior (see <a href="https://castle-engine.io/wp/2021/07/18/adding-behaviors-in-cge-editor-tcastlebillboard-tcastlesoundsource/">news post about behaviors</a>) that enhances any <a href="https://castle-engine.io/apidoc-unstable/html/CastleTransform.TCastleTransform.html">TCastleTransform</a> so that it emits (possibly spatial) sounds.
+    <p>This is a behavior (see <a href="https://castle-engine.io/viewport_and_scenes_from_code#_behaviors">documentation about behaviors</a>) that enhances any <a href="https://castle-engine.io/apidoc-unstable/html/CastleTransform.TCastleTransform.html">TCastleTransform</a> so that it emits (possibly spatial) sounds.
 
     <p><code>TCastleSoundSource</code> refers to <code>TCastleSound</code> for an actual sound information. You can set <a href="https://castle-engine.io/apidoc-unstable/html/CastleBehaviors.TCastleSoundSource.html#Sound">TCastleSoundSource.Sound</a> (for looping). Or call <a href="https://castle-engine.io/apidoc-unstable/html/CastleBehaviors.TCastleSoundSource.html#Play">TCastleSoundSource.Play</a> (for non-looping).
 
