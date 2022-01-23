@@ -67,7 +67,7 @@ To have the scaling automatically applied, you can use `TCastleImageControl` ins
 
 *Advice when to use*: This approach is very easy to start. You have relatively small API to learn. You just learn how to use `TDrawableImage`, and you draw inside your own `TMyControl.Render` however you like. *If all you really want is a flexible API to draw images -- this is it.*
 
-== Why there are 2 approches to render 2D images/sprites
+== Why there are 2 approaches to render 2D images/sprites
 
 Because they are both useful :)
 
