@@ -337,12 +337,11 @@ $castle_sitemap = array(
               'manual_alpha_bleeding' => array('title' => 'Alpha Bleeding'),
             )
           ),
-          'manual_miscellaneous' => array('title' => 'Miscellaneous knowledge',
+          'doc/control_on_form' => array('title' => 'Use engine inside Lazarus form using TCastleControl'),
+          'manual_miscellaneous' => array('title' => 'Miscellaneous',
             'sub' => array(
               'manual_up' => array('title' => 'Which way is up?'),
               'manual_transformation_hierarchy' => array('title' => 'Transformation hierarchy'),
-              'manual_lazarus_control' => array('title' => 'Engine control to put on Lazarus form'),
-              'manual_lazarus_focus' => array('title' => 'How to handle the focus of TCastleControlBase'),
               'doc/castlewindow_backends' => array('title' => 'CastleWindow Backends'),
               'doc/threads' => array('title' => 'Threads'),
               // TODO: link to 'doc/units_map', once it is up-to-date again

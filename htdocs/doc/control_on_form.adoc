@@ -1,0 +1,156 @@
+# Use engine inside Lazarus form using TCastleControl
+include::common.adoc[]
+
+## Introduction
+
+cgeref:TCastleControlBase[] is a component you can drop on a Lazarus (LCL) form. It allows to do all CGE rendering and processing as part of a form, and cgeref:TCastleControlBase[] can be surrounded on your form by any other components.
+
+cgeimg::block[
+  lazarus_control.png|TCastleControlBase designed in Lazarus,
+  lazarus_control_run.png|3D model viewer using TCastleControlBase
+]
+
+NOTE: This feature is right now available only for Lazarus (LCL) users. We plan to add it for Delphi, maybe both VCL and FMX, soon.
+
+## Comparison between TCastleWindowBase and TCastleControlBase
+
+Most of this manual describes the process of using the engine with the cgeref:TCastleWindowBase[] instead of cgeref:TCastleControlBase[].  All new projects created from editor templates use cgeref:TCastleWindowBase[]. We generally advise cgeref:TCastleWindowBase[], as:
+
+- cgeref:TCastleWindowBase[] works on all CGE platforms (desktop, mobile - link:android[Android], link:ios[iOS], consoles - link:nintendo_switch[Nintendo Switch], upcoming _web target_). It allows us to have true cross-platform projects, that can be recompiled to any supported platform out-of-the-box.
+
+- cgeref:TCastleWindowBase[] allows us to handle events and message loop on the CGE side, and make it efficient. For example, it makes _mouse look_ work perfectly smooth.
+
+On the other hand, using the cgeref:TCastleControlBase[] has one big benefit: as you place the control inside a form, you can surround it with all the standard LCL GUI controls. So you can use numerous LCL GUI controls, with native look on all desktop systems, together with _Castle Game Engine_.
+
+We are committed to supporting both approaches (cgeref:TCastleControlBase[] and cgeref:TCastleWindowBase[]) in the foreseeable future.
+
+### It is not allowed to use both `TCastleWindowBase` and `TCastleControlBase` in a single application
+
+You have to make a choice:
+
+- Use cgeref:TCastleWindowBase[]. Use the cgeref:Application[] singleton from cgeref:CastleWindow[] unit to manage these windows.
+
+- Use cgeref:TCastleControlBase[]. Use the LCL forms, along with LCL `Application` singleton in the `Forms` unit, to manage your application.
+
+You cannot mix these approaches, as neither LCL (in which our cgeref:TCastleControlBase[] works) nor cgeref:TCastleWindowBase[] are prepared to handle the situation that they only handle *some* application forms, and other library handles the other forms.
+
+That is also why we have separate packages
+
+-  `castle_window.lpk` (with cgeref:TCastleWindowBase[]) and
+
+- `castle_components.lpk` (with cgeref:TCastleControlBase[]; a better name would be `castle_lcl.lpk`).
+
+You should not use both of these packages at the same time.
+
+Note that, if you use cgeref:TCastleControlBase[], it is OK to have multiple cgeref:TCastleControlBase[] instances visible at the same time. Similarly, if you use cgeref:TCastleWindowBase[], you can have several cgeref:TCastleWindowBase[] instances visible at the same time (but only on desktop platforms), see https://github.com/castle-engine/castle-engine/tree/master/examples/window/multi_window[examples/window/multi_window].
+
+## Using TCastleControlBase
+
+. Install in Lazarus the package `castle_components.lpk`. In the package dialog, use the option to _"Install"_ (under the _"Use"_ button).
++
+Note: Installing the `castle_components` package will also automatically install the package `castle_base`, as a dependency. That's good.
++
+--
+cgeimg::block[
+  lazarus-install-31.png|castle_components: Choose the file,
+  lazarus-install-32.png|castle_components: Install,
+  lazarus-install-33.png|castle_components: Confirm Lazarus rebuild
+]
+--
++
+Once `castle_components.lpk` is successfully installed, Lazarus restarts, and you should see the _"Castle"_ tab with our components.
+
+. Create a normal new LCL project (using Lazarus _"New Project"_ menu item). Choose _"Application"_.
+
+. Pick `TCastleControlBase` from the component palette (tab _"Castle"_) and drop it on a regular Lazarus form.
+
+. Done. Press "Run" :)
+
+See the engine examples in link:https://github.com/castle-engine/castle-engine/tree/master/examples/lazarus[examples/lazarus/] subdirectory for various demos of this approach.
+
+## Opening in CGE editor
+
+You can place a simple link:project_manifest[CastleEngineManifest.xml] within your project, like this:
+
+[source,xml]
+----
+<?xml version="1.0" encoding="utf-8"?>
+<project name="my_project"
+  lazarus_project="my_project.lpi"
+  build_using_lazbuild="true"
+>
+</project>
+----
+
+This way you can open this project in the CGE editor, and compile/run it. The line `build_using_lazbuild="true"` means that CGE editor and CGE link:build_tool[build tool] will invoke `lazbuild` under the hood.
+
+## Initializing the resources
+
+Essentially, you can initialize your game resources at any time. Even before any cgeref:TCastleControlBase[] exists. For example in the `OnCreate` event of a main form.
+
+Initializing resources inside the cgeref:TCastleControlBase.OnOpen[] is also a good choice, in typical cases. Since OpenGL context is available at this point, the engine will be able to initialize also GPU resources for things you instantiate at this point.
+
+But note that cgeref:TCastleControlBase.OnOpen[] runs each time a form with cgeref:TCastleControlBase[] is opened. Depending on your LCL application organization, if you allow to open this form many times -- then cgeref:TCastleControlBase.OnOpen[] will happen many times. In this case, to execute something really *once*, just folow the usual LCL approaches (e.g. initialize from a main form, or even from the main program).
+
+## Loading user interface and state
+
+You can load a design (file `xxx.castle-user-interface`) and you can use cgeref:TUIState[] within the cgeref:TCastleControlBase[], just as with cgeref:TCastleWindowBase[]. You can add new _state_ using CGE editor, or just define a new unit like this:
+
+[source,pascal]
+----
+unit GameStateMain;
+
+interface
+
+uses CastleUIState;
+
+type
+  TStateMain = class(TUIState)
+  private
+    { Components designed using CGE editor, loaded from gamestatemain.castle-user-interface. }
+    // ...
+  public
+    constructor Create(AOwner: TComponent); override;
+    procedure Start; override;
+  end;
+
+var
+  StateMain: TStateMain;
+
+implementation
+
+constructor TStateMain.Create(AOwner: TComponent);
+begin
+  inherited;
+  DesignUrl := 'castle-data:/gamestatemain.castle-user-interface';
+end;
+
+procedure TStateMain.Start;
+begin
+  inherited;
+end;
+
+end.
+----
+
+That's enough to load `gamestatemain.castle-user-interface` design from your `data` subdirectory.
+
+To initialize this state in your application, you can use this code in cgeref:TCastleControlBase.OnOpen[] :
+
+[source,pascal]
+----
+TCastleControlBase.MainControl := MyCastleControl;
+
+StateMain := TStateMain.Create(Application);
+TUIState.Current := StateMain;
+----
+
+NOTE: We have an improvement to this approach coming, in branch https://github.com/castle-engine/castle-engine/tree/uistate-to-view[uistate-to-view]. Setting the singleton `TCastleControlBase.MainControl` will not be necessary soon. The example how it will work is in https://github.com/castle-engine/castle-engine/tree/uistate-to-view/examples/lazarus/model_3d_with_2d_controls[examples/lazarus/model_3d_with_2d_controls] in that branch. It is not yet merged to `master` branch.
+
+## Focus (receiving key input)
+
+Like every LCL control, our cgeref:TCastleControlBase[] receives the keys only when it has _focus_. The control _does not_ capture all the keys pressed over the form (this would be bad, as other controls, maybe even other cgeref:TCastleControlBase[] on the same form, may want to handle them). To make sure that controlling the camera by keys (like AWSD or arrows) works, make sure that your control has a focus.
+
+You can call `MyCastleControl.SetFocus;` at any time to explicitly make the `MyCastleControl` focused. You can assign this to some menu item, or key shortcut handled by form, to allow user to easily switch focus to the cgeref:TCastleControlBase[] instance.
+
+Alternative approach is to make cgeref:TCastleControlBase[] the only control on the form that can receive focus. This makes things simple, cgeref:TCastleControlBase[] will always have focus. But it means limiting yourself what you use on a form. E.g. all buttons should be `TSpeedButton` (unfocusable button in LCL).

@@ -155,6 +155,8 @@ Redirect "/vrml_implementation_texturing.php" "/x3d_implementation_texturing.php
 Redirect "/vrml_implementation_texturing3d.php" "/x3d_implementation_texturing3d.php"
 Redirect "/vrml_implementation_time.php" "/x3d_implementation_time.php"
 Redirect "/vrml_time_origin_considered_uncomfortable.php" "/x3d_time_origin_considered_uncomfortable.php"
+Redirect "/manual_lazarus_control.php" "/control_on_form"
+Redirect "/manual_lazarus_focus.php" "/control_on_form"
 
 # Redirect latest.zip to latest.zip.php (interpreted by PHP to redirect
 # further, to a known latest version).
