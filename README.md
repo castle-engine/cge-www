@@ -140,7 +140,7 @@ Most important Wordppress shortcodes are:
 
 ## Layout of files
 
-* `htodcs/` is exactly what goes into https://castle-engine.io/
+* `htdocs/` is exactly what goes into https://castle-engine.io/
 
     * `htdocs/doc/` are documents in AsciiDoctor. Subset of https://castle-engine.io/ is generated from AsciiDoctor.
 
