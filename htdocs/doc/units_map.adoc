@@ -3,13 +3,13 @@ include::common.adoc[]
 
 == Introduction
 
-_Castle Game Engine_ includes a _lot_ of units. They are divided into a couple of groups, which you can see as subdirectories in the engine `src` subdirectory: `3d`, `audio` and so on. The groups are shortly described below.
+_Castle Game Engine_ includes a _lot_ of units. They are divided into a couple of groups, which you can see as subdirectories in the engine `src` subdirectory: `transform`, `audio` and so on. The groups are shortly described below.
 
-One of the ways how we keep the engine architecture maintainable is to strictly limit the dependencies between unit groups. For example, the 3D or UI stuff depends on images, but the units in the `images` group cannot depend on units in the `3d` or `ui` groups. A strict dependency tree allows to easily debug some hard problems (when you want to strip the used units, to get to the "bottom of the problem").
+One of the ways how we keep the engine architecture maintainable is to strictly limit the dependencies between unit groups. For example, the transformation and UI stuff depends on images, but the units in the `images` group cannot depend on units in the `transform` or `ui` groups. A strict dependency tree allows to easily debug some hard problems (when you want to strip the used units, to get to the "bottom of the problem").
 
 We list the dependencies below. *They can be automatically checked* (the tool for this can be found in `scripts/check_units_dependencies/` in https://github.com/castle-engine/cge-scripts ).
 
-*TODO*: Due to the need to support some deprecated methods, right now `CastleCameras` depends on `CastleSceneManager`, which breaks the dependencies outlined below, making `3d` and `game` inter-dependent. This is an exception, and otherwise we should still follow these dependencies, and this exception will be fixed in future releases.
+*TODO*: Due to the need to support some deprecated methods, right now `CastleCameras` depends on `CastleViewport`, which breaks the dependencies outlined below, making `transform` and `x3d` inter-dependent. This is an exception, and otherwise we should still follow these dependencies, and this exception will be fixed in future releases.
 
 == Unit groups
 
@@ -35,7 +35,7 @@ _Depends on_: everything above (that is, units in "base" and "files" groups).
 
 ==== images
 
-Images, textures, videos -- loading, saving, displaying, processing in many ways.
+cgeref:TCastleImage[] and friends in cgeref:CastleImages[]. Images, textures, videos -- loading, saving, displaying, processing in many ways.
 
 _Depends on_: everything above except audio.
 
@@ -47,7 +47,7 @@ _Depends on_: everything above except audio.
 
 ==== ui
 
-2D user interface of the engine. TUIControl class with descendants, like buttons, panels, on-screen menus... Also keyboard, mouse and other input handling.
+cgeref:TCastleUserInterface[] - 2D user interface of the engine. TUIControl class with descendants, like buttons, panels, on-screen menus... Also keyboard, mouse and other input handling.
 
 _Depends on_: everything above.
 
@@ -57,9 +57,9 @@ Integration with environment (operating system). Opening a document, making a mo
 
 _Depends on_: everything above.
 
-==== 3d
+==== transform
 
-3D basic stuff (not yet related to X3D nodes). Includes basic T3D class, quaternions, axis-aligned bounding box types...
+Basic transformation stuff, in particular cgeref:TCastleTransform[], cgeref:TCastleCamera[]. Also quaternions, axis-aligned bounding box types.
 
 _Depends on_: everything above.
 
@@ -73,14 +73,8 @@ _Depends on_: everything above.
 
 This is the core of our engine rendering and processing:
 
-* Scene, which means a graph of X3D nodes: rendering, reading, writing and processing (animating, collisions..). Reading many 2D and 3D formats to X3D scene graph.
-* Viewport to display 2D and 3D scenes.
-
-_Depends on_: everything above.
-
-==== game
-
-And high level units implementing game mechanics common for many games -- creatures, items, player, levels.
+* cgeref:TCastleScene[], which means a graph of X3D nodes: rendering, reading, writing and processing (animating, collisions..). Reading many 2D and 3D formats to X3D scene graph.
+* cgeref:TCastleViewport[] to display 2D and 3D scenes.
 
 _Depends on_: everything above.
 
@@ -88,22 +82,22 @@ _Depends on_: everything above.
 
 ==== window
 
-TCastleWindow, easy window with an OpenGL context.
+cgeref:TCastleWindow[], window with an OpenGL context.
 
-_Depends on_: game, that is: everything above.
+_Depends on_: `x3d`, that is: everything above.
 
 === castle_components package
 
 ==== components
 
-TCastleControl, a Lazarus component to render with our engine.
+cgeref:TCastleControl[], a Lazarus component to render with our engine.
 
-_Depends on_: game. (This is an alternative to TCastleWindow, so it has the same dependencies. Units between `window` and `components` group cannot use each other.)
+_Depends on_: `x3d`. (This is an alternative to TCastleWindow, so it has the same dependencies. Units between `window` and `components` group cannot use each other.)
 
-== OpenGL units
+== OpenGL(ES) units
 
-Most of the units groups have a subdirectory called `opengl`. The things that depend on OpenGL or OpenGLES (GL, GLU, GLExt, CastleGLES20 units -- that should be used _only_ by the CastleGL macro) must be placed inside this subdirectory. This guarantees that stuff outside the `opengl` subdirectory is independent from the rendering library.
+Most of the units groups have a subdirectory called `opengl`. The things that depend on OpenGL or OpenGLES must be placed inside this subdirectory. This guarantees that stuff outside the `opengl` subdirectory is independent from the rendering library.
 
-Some of the unit groups are exceptions to the above rule: they do not have the `opengl` subdirectory, and all their units can freely use OpenGL. This applies to units in `game`, `window` or `component` groups. They all depend on other units already using OpenGL.
+Some of the unit groups are exceptions to the above rule: they do not have the `opengl` subdirectory, and all their units can freely use OpenGL. This applies to units in `window` or `component` groups. They all depend on other units already using OpenGL.
 
-This order is maintained to be ready to implement another renderer in the Castle Game Engine some day. Maybe Direct 3D , maybe Vulkan, maybe Metal... it all depends on the contributions, and on the needs of community. Note that making a first alternative renderer will also require remaking some stuff to use more "pluggable" architecture. Probably at that point some units will become "untangled" from depending on OpenGL stuff, for example most units in `game` and `x3d` will need to be available regardless of the renderer. The internal architecture of `TCastleScene` will need to be changed to call a renderer, without depending on OpenGL units.
+This order is maintained to be ready to implement another renderer in the Castle Game Engine some day. Maybe Vulkan. Note that making a first alternative renderer will also require remaking some stuff to use more "pluggable" architecture. At that point some units will become "untangled" from depending on OpenGL stuff, for example most units in `transform` and `x3d` will need to be available regardless of the renderer. The internal architecture of `TCastleScene` will need to be changed to call a renderer, without depending on OpenGL units.
