@@ -7,7 +7,7 @@ In this chaper we show how you can design 3D world using _Castle Game Engine_ ed
 
 ## Complete tutorial code
 
-The complete result of this tutorial is in the _Castle Game Engine_. Just open the project https://github.com/castle-engine/castle-engine/tree/master/examples/3d_rendering_processing/viewport_3d_tutorial[examples/3d_rendering_processing/viewport_3d_tutorial] in the editor. If at any point you get lost, just look there.
+The complete result of this tutorial is in the _Castle Game Engine_. Just open the project https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/viewport_3d_tutorial[examples/viewport_and_scenes/viewport_3d_tutorial] in the editor. If at any point you get lost, just look there.
 
 ## Create empty project, add a viewport
 
@@ -33,7 +33,7 @@ cgeimg::block[viewport_3d_add_scene.png|Add scene,viewport_3d_scene_added.png|Af
 
 . Now you need some 3D assets to actually play with.
 +
-We advise at this point that you take the sample 3D asset of a car and road we have in our examples. Open in your file manager the `examples/3d_rendering_processing/cars_demo/data` subdirectory of your _Castle Game Engine_ sources. Select there the files:
+We advise at this point that you take the sample 3D asset of a car and road we have in our examples. Open in your file manager the https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/cars_demo/data[examples/viewport_and_scenes/cars_demo/data] subdirectory of your _Castle Game Engine_ sources. Select there the files:
 +
 --
 ** `car.bin`

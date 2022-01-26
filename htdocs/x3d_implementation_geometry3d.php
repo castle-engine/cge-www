@@ -87,8 +87,8 @@ The scene also uses orthographic projection, thanks to <code>OrthoViewpoint</cod
 node.
 
 <p>(See also other examples:
-<a href="https://github.com/castle-engine/castle-engine/blob/master/examples/3d_rendering_processing/build_3d_object_by_code.lpr">build_3d_object_by_code.lpr</a>,
-<a href="https://github.com/castle-engine/castle-engine/blob/master/examples/3d_rendering_processing/build_3d_tunnel.lpr">build_3d_tunnel.lpr</a>).
+<a href="https://github.com/castle-engine/castle-engine/blob/master/examples/viewport_and_scenes/build_3d_object_by_code">examples/viewport_and_scenes/build_3d_object_by_code</a>,
+<a href="https://github.com/castle-engine/castle-engine/blob/master/examples/viewport_and_scenes/build_3d_object_by_code_2_tunnel">examples/viewport_and_scenes/build_3d_object_by_code_2_tunnel</a>).
 
 <?php echo pascal_highlight_file('code-samples/orthographic_cube_sheared_test.lpr'); ?>
 

@@ -3,7 +3,7 @@ set -eu
 
 # Test compilation of various CGE CastleWindow backends.
 
-TEST_PROJECT=examples/3d_rendering_processing/view_3d_model_advanced/
+TEST_PROJECT=examples/viewport_and_scenes/view_3d_model_advanced/
 TEST_LPI="${TEST_PROJECT}"view_3d_model_advanced.lpi
 TEST_LPR="${TEST_PROJECT}"view_3d_model_advanced_standalone.lpr
 

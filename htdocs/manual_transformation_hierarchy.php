@@ -90,7 +90,7 @@ in a hierarchy. We have two transformation hierarchies in our engine:</p>
     But you're not limited to this approach, as you can split and merge
     X3D graphs freely.
     See an example code
-    <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/3d_rendering_processing/combine_multiple_x3d_into_one.lpr">examples/3d_rendering_processing/combine_multiple_x3d_into_one.lpr</a>
+    <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/viewport_and_scenes/combine_multiple_x3d_into_one_scene">examples/viewport_and_scenes/combine_multiple_x3d_into_one_scene</a>
     for how to load multiple 3D model files into a single X3D graph
     (single <code>TX3DRootNode</code>).
 
@@ -121,7 +121,7 @@ in a hierarchy. We have two transformation hierarchies in our engine:</p>
 
     <p>A natural question is
     <b>should you combine multiple loaded models into one TCastleScene</b>
-    (like <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/3d_rendering_processing/combine_multiple_x3d_into_one.lpr">combine_multiple_x3d_into_one.lpr</a>
+    (like <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/viewport_and_scenes/combine_multiple_x3d_into_one_scene">examples/viewport_and_scenes/combine_multiple_x3d_into_one_scene</a>
     example does)?
 
     <ul>

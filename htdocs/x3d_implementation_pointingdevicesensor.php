@@ -32,7 +32,7 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
 
     <p>Catch click events on 3D objects. The main functionality is that it sends <code>touchTime</code>
       event when the user "clicked" the geometry that is sibling to the sensor.
-      See <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/3d_rendering_processing/listen_on_x3d_events/">examples/3d_rendering_processing/listen_on_x3d_events/</a>
+      See <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/viewport_and_scenes/listen_on_x3d_events/">examples/viewport_and_scenes/listen_on_x3d_events/</a>
       for a demo how to handle it in Pascal.
 
     <p>Full support, including:</p>

@@ -177,7 +177,7 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
 
     <p>See here for example Pascal code that creates <code>TextureProperties</code> nodes
     and requests anisotropic filtering for specific textures:
-    <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/3d_rendering_processing/anisotropic_filtering/anisotropic_filtering.lpr">examples/3d_rendering_processing/anisotropic_filtering/anisotropic_filtering.lpr</a>.
+    <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/viewport_and_scenes/anisotropic_filtering/">examples/viewport_and_scenes/anisotropic_filtering/</a>.
 
     <p><i>Note</i>: We don't support the <code>TextureProperties.textureCompression</code> field yet.
     If you're looking for a way to use GPU compressed textures,

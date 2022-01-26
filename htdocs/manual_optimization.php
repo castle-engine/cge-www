@@ -566,7 +566,7 @@ Activate it by simply turnnig on the flag
 like <code>Scene.RenderOptions.OcclusionQuery := true</code>.
 
 <p>You can also cull objects based on their distance from the camera,
-see the <code>examples/3d_rendering_processing/fog_culling.lpr</code> for example.
+see the <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/fog_and_distance_culling">examples/viewport_and_scenes/fog_and_distance_culling</a> for example.
 This is a natural optimization when you have a heavy fog.
 
 <?php echo $toc->html_section(); ?>

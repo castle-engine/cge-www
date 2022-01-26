@@ -387,8 +387,8 @@ end;
   Scene.RegisterCompiledScript(\'touch_handler\', @MyObject.TouchHandler);'); ?>
 
     <p>For working example code in Pascal and VRML/X3D of this, see
-    <code>castle_game_engine/examples/3d_rendering_processing/call_pascal_code_from_3d_model_script.lpr</code>
-    in <?php echo a_href_page('engine sources', 'index'); ?>.
+    <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/viewport_and_scenes/deprecated_x3d_call_pascal_code/">examples/viewport_and_scenes/deprecated_x3d_call_pascal_code</a>
+    in CGE sources.
 
 <?php echo $toc->html_section(); ?>
 

@@ -219,7 +219,7 @@ castle_thumbs(array(
 
   <li><p>Shadow map generation improved: for shadow maps, we render model with shaders turned <i>off</i>. This is consistent with <i>Variance Shadow Maps</i> (that requires using custom shader, so user shaders are also ignored at shadow map capture). It avoids problems with shaders writing to <code>gl_FragDepth</code> and accidentally breaking shadow map content. Thanks to Victor Amat for pointing this out!</p></li>
 
-  <li><p>The quest to cleanup and improve our examples continues. A lot of them are simplified now (using new <code>TCastleWindow</code> that automatically provides a scene manager instance). Some previous examples were merged and extended into the new <code>3d_rendering_processing/view_3d_model_advanced</code> example.</p></li>
+  <li><p>The quest to cleanup and improve our examples continues. A lot of them are simplified now (using new <code>TCastleWindow</code> that automatically provides a scene manager instance). Some previous examples were merged and extended into the new <code>viewport_and_scenes/view_3d_model_advanced</code> example.</p></li>
 
   <li><p>As announced, rename of our engine (<i>"Kambi VRML game engine"</i> -&gt; <i>"Castle Game Engine"</i>) will also bring renames to a lot of identifiers. Since we\'re breaking compatibility anyway, I took some time to really think about new proper names for various stuff (previous names were invented somewhat organically, often without consistency, often following the <i>implementation</i> approach instead of following the typical usage).</p>
 

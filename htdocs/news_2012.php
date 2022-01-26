@@ -683,7 +683,7 @@ In somewhat random order:</p>
     <code>T3DTransform</code> class is available, to comfortably transform 3D scenes
     (translate, rotate around specified center, scale around specified center
     with specified scaleOrientation). The demo how to use it is inside
-    <code>castle_game_engine/examples/3d_rendering_processing/scene_manager_demos.lpr</code> in SVN,
+    <code>castle_game_engine/examples/viewport_and_scenes/scene_manager_demos.lpr</code> in SVN,
     and also in new "The Castle" sources.
 
   <li><p>Various work on simplifying <a href="https://castle-engine.io/castle.php">"The Castle"</a> sources, and merging

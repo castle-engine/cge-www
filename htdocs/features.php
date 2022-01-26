@@ -295,7 +295,7 @@ See a few videos from our <a href="https://www.youtube.com/c/CastleGameEngineX3d
         <!-- ?php api_link('Alternatively, you can replace image URLs at runtime,
           to switch uncompressed texture files with compressed depending on GPU',
           'CastleImages.html#LoadImagePreprocess'); ?-->
-      <li><b>anisotropic filtering</b> (just use <a href="<?php echo x3d_spec_latest_url('texturing', 'TextureProperties'); ?>">TextureProperties.anisotropicDegree</a>, demo in <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/3d_rendering_processing/anisotropic_filtering">examples/3d_rendering_processing/anisotropic_filtering/</a>),
+      <li><b>anisotropic filtering</b> (just use <a href="<?php echo x3d_spec_latest_url('texturing', 'TextureProperties'); ?>">TextureProperties.anisotropicDegree</a>, demo in <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/anisotropic_filtering">examples/viewport_and_scenes/anisotropic_filtering/</a>),
       <li><?php api_link('GPU texture memory profiler', 'CastleGLImages.html#TextureMemoryProfiler'); ?>,
         extremely valuable to optimize your texture memory usage (important
         on mobile platforms).
