@@ -7,7 +7,7 @@ _Castle Game Engine_ includes a _lot_ of units. They are divided into a couple o
 
 One of the ways how we keep the engine architecture maintainable is to strictly limit the dependencies between unit groups. For example, the transformation and UI stuff depends on images, but the units in the `images` group cannot depend on units in the `transform` or `ui` groups. A strict dependency tree allows to easily debug some hard problems (when you want to strip the used units, to get to the "bottom of the problem").
 
-We list the dependencies below. *They can be automatically checked* (the tool for this can be found in `scripts/check_units_dependencies/` in https://github.com/castle-engine/cge-scripts ).
+We list the dependencies below. *They can be automatically checked* (the tool for this can be found in `tools/internal/check_units_dependencies/` in CGE GitHub repo).
 
 *TODO*: Due to the need to support some deprecated methods, right now `CastleCameras` depends on `CastleViewport`, which breaks the dependencies outlined below, making `transform` and `x3d` inter-dependent. This is an exception, and otherwise we should still follow these dependencies, and this exception will be fixed in future releases.
 
