@@ -194,7 +194,7 @@ You can of course replace or enhance the shaders used by our engine.
 
 We have https://castle-engine.io/compositing_shaders.php[compositing shaders] which is like Unity3d "surface shaders" but on steroids :)  I'm quite proud of this, it really allows to easily write a piece of shader code and add it to some shapes, and (compared to Unity3d "surface shaders") it has some cool new features, like the ability to combine many effects (so you can write one shader effect, maybe add another shader effect), or changing shading of lights or textures or making proceduraly generated (on GPU) textures.
 
-See https://github.com/castle-engine/castle-engine/tree/master/examples/3d_rendering_processing/shader_effects[examples/3d_rendering_processing/shader_effects] for simple demo in Pascal that attaches an effect, coded in GLSL, to a scene loaded from glTF. The shader uniform variable can be set at runtime from Pascal of course, and thus you can configure the shader at runtime with zero cost.
+See https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/shader_effects[examples/viewport_and_scenes/shader_effects] for simple demo in Pascal that attaches an effect, coded in GLSL, to a scene loaded from glTF. The shader uniform variable can be set at runtime from Pascal of course, and thus you can configure the shader at runtime with zero cost.
 
 See https://github.com/castle-engine/demo-models, subdirectory https://github.com/castle-engine/demo-models/tree/master/compositing_shaders[compositing_shaders] for demos of `Effect` nodes in pure X3D (you can load them all from CGE; it's just that these demos create `Effect` node by X3D code, not by Pascal code).
 
@@ -221,7 +221,7 @@ In short, in Unity "viewport" and "camera" and "UI" are just things inside your 
 
 In effect,
 
-* In CGE the "viewport" can be positioned/sized just like any other 2D control. See `examples/3d_rendering_processing/multiple_viewports.lpr` for an example that shows 4 viewports.
+* In CGE the "viewport" can be positioned/sized just like any other 2D control. See https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/multiple_viewports[examples/viewport_and_scenes/multiple_viewports] for an example that shows 4 viewports.
 * The Z-order (what is in front/behind) of the viewport in CGE is straightforward, it works just like all other 2D controls. You can easily place other 2D controls in front or behind a viewport (the latter is useful if the viewport has `Transparent` background).
 * In CGE each "viewport" may show a completely different, unrelated, 3D world. The viewports can also share the world (show the same world from different cameras), simply set them the same `Viewport.Items` value.
 

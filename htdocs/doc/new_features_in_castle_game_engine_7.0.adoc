@@ -30,7 +30,7 @@ This page documents Castle Game Engine 7.0 new features (since the last 6.4 rele
  ** The concept of _camera_ (where are you looking at) and _navigation_ (whether we handle some keys/mouse to move the camera) was split. `TCastleViewport.Camera` is always created, and corresponds 1-to-1 to the parent viewport. `TCastleViewport.Navigation` is optional, you can explicitly create an instance of `TCastleExamineNavigation` or `TCastleWalkNavigation` and assign them there.
  ** Auto-detection of camera is by default off. This way you can reliably use `+Viewport.Camera.SetView(...)+` or `+Viewport.Camera.Position := ...+`, without worrying that some auto-detection will override them. Use `Viewport.AutoCamera := true` to explicitly request this auto-detection.
  ** Auto-detection of navigation is by default off. This way you can reliably set `+Viewport.Navigation := ...+` (or leave it `nil` deliberately) without worrying that some auto-detection will override it. Use `Viewport.AutoNavigation := true` to explicitly request this auto-detection.
- ** See https://castle-engine.io/wp/2019/12/29/last-refactor-before-cge-7-0-release-say-hello-to-tcastleviewport-and-tcastlewindowbase-say-goodbye-to-tcastlescenemanager-and-tcastlewindow/[news 1], https://castle-engine.io/wp/2019/11/19/huge-camera-and-navigation-improvements-thank-you-patrons/[news 2]. See https://github.com/castle-engine/castle-engine/tree/master/examples/3d_rendering_processing/view_3d_model_basic[view_3d_model_basic example].
+ ** See https://castle-engine.io/wp/2019/12/29/last-refactor-before-cge-7-0-release-say-hello-to-tcastleviewport-and-tcastlewindowbase-say-goodbye-to-tcastlescenemanager-and-tcastlewindow/[news 1], https://castle-engine.io/wp/2019/11/19/huge-camera-and-navigation-improvements-thank-you-patrons/[news 2]. See https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/view_3d_model_basic[view_3d_model_basic example].
  ** cgeref:TUIState[] is used extensively, in almost all examples, naturally splits code into different states. Has new https://castle-engine.io/wp/2021/05/01/introducing-tuistate-designurl-designpreload-designedcomponent/[simpler API to load design], https://castle-engine.io/manual_state_events.php[docs], https://castle-engine.io/wp/2021/04/03/better-code-navigation-new-units-states-creation-new-ways-to-open-source-code-for-editing-better-integration-with-lazarus-project/[creating new state in editor].
 * https://castle-engine.io/wp/2020/06/29/third-person-navigation-with-avatar-component-in-castle-game-engine/[Third-Person Navigation (with Avatar) component]
 * https://castle-engine.io/wp/2020/07/19/asynchronous-non-blocking-downloading-using-tcastledownload-class-and-other-http-communication-features/[New TCastleDownload class, to make asynchronous (non-blocking) downloading, or even to implement full-featured asynchronous communication with a REST server]
@@ -89,20 +89,20 @@ https://castle-engine.io/wp/2018/04/22/engine-improvements-user-interface-horizo
  ** https://github.com/castle-engine/castle-engine/tree/master/examples/[platformer] - complete platformer game, also https://castle-engine.itch.io/platformer[released on itch.io]
  ** https://github.com/castle-engine/castle-engine/tree/master/examples/images_videos/image_display[image_display] - demo of image formats reading capabilities and speed
  ** https://github.com/castle-engine/castle-engine/tree/master/examples/curves/use_designed_curve[use_designed_curve] - demo of following along a curve
- ** https://github.com/castle-engine/castle-engine/tree/master/examples/3d_rendering_processing/shader_override[shader_override] - overriding shaders with your own
+ ** https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/shader_override[shader_override] - overriding shaders with your own
  ** tiled/strategy_game_demo/ - Complete working strategy game, with maps designed using Tiled, working equally well with hexagonal/orthogonal/isometric maps (thanks to new Tiled API), user interface designed using Castle Game Engine Editor and TUIState. See also https://castle-engine.io/wp/2019/01/06/strategy-game-demo-using-cge-and-tiled/ , https://castle-engine.io/wp/2018/12/28/tiled-maps-improvements/ .
  ** tiled/map_viewer/ - Simple viewer for Tiled maps. You can pan and zoom maps, and load any Tiled map.
  ** headlight_test/ - Shows new `Viewport.Items.UseHeadlight` property.
  ** audio/play_sounds/ - Test mixing sounds.
  ** localization/gettext/ - Localization example, translating resourcestrings and UI designed in CGE editor.
  ** screen_effects_demo/ - New screen effects API demo.
- ** 3d_rendering_processing/anisotropic_filtering/ - Using anisotropic filtering.
+ ** viewport_and_scenes/anisotropic_filtering/ - Using anisotropic filtering.
  ** network/asynchronous_download/ - asynchronous, cross-platform downloading using TCastleDownload.
  ** network/remote_logging/ - remote logging, basis of communicating with REST server using TCastleDownload.
  ** third_person_camera/ - 3rd-person navigation (with avatar) demo.
  ** https://github.com/castle-engine/castle-engine/tree/master/examples/animations/expose_transformations_to_animate_children[animations/expose_transformations_to_animate_children] - attach objects to animated bones, e.g. attach a weapon (switch at runtime between a sword, axe, nothing...) to character's hand.
  ** https://github.com/castle-engine/castle-engine/tree/master/examples/advanced_editor[advanced_editor] - advanced usage of UI designs (`xxx.castle-user-interface`), transformation designs (`xxx.castle-transform`, like prefabs in Unity), and creating and registering custom editor components. See news: https://castle-engine.io/wp/2020/12/20/new-tcastletransformdesign-component-like-prefab-for-tcastletransform-example-advanced_editor-showing-advanced-usage-of-designs-and-custom-components/ .
- ** https://github.com/castle-engine/castle-engine/tree/master/examples/3d_rendering_processing/collisions[collisions] - demo of using our collision routines.
+ ** https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/collisions[collisions] - demo of using our collision routines.
 * Android improvements:
  ** --target=android to build both 32-bit and 64-bit binaries.
  ** New https://castle-engine.io/android-Services[Android services]:

@@ -19,7 +19,7 @@ We call these classes _components_, as they descend from standard Pascal `TCompo
 
 cgeimg::float[cars_demo_3.png|Cars\, surrounded by a wall build in code]
 
-The complete result of this tutorial is in the _Castle Game Engine_. Just open the project https://github.com/castle-engine/castle-engine/tree/master/examples/3d_rendering_processing/cars_demo[examples/3d_rendering_processing/cars_demo] and consult it as necessary.
+The complete result of this tutorial is in the _Castle Game Engine_. Just open the project https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/cars_demo[examples/viewport_and_scenes/cars_demo] and consult it as necessary.
 
 ## Where to edit code
 
@@ -80,7 +80,7 @@ If you want to try all the examples on this page yourself, we recommend that you
 
 - Add an instance of cgeref:TCastleViewport[] on the design. Call it `MainViewport`.
 
-- Add the sample 3D models of the car and road: copy them from CGE `examples/3d_rendering_processing/cars_demo/data` into your project.
+- Add the sample 3D models of the car and road: copy them from CGE `examples/viewport_and_scenes/cars_demo/data` into your project.
 
 - Add an instance of cgeref:TCastleScene[] on the design. Call it `RoadScene`, and load there `castle-data:/road.gltf`.
 
@@ -529,8 +529,8 @@ Examples are quite complicated?
 
 <p>See the examples:</p>
 <ul>
-  <li>link:https://github.com/castle-engine/castle-engine/blob/master/examples/3d_rendering_processing/build_3d_object_by_code.lpr[3d_rendering_processing/build_3d_object_by_code.lpr] (rather simple example)</li>
-  <li>link:https://github.com/castle-engine/castle-engine/blob/master/examples/3d_rendering_processing/build_3d_tunnel.lpr[3d_rendering_processing/build_3d_tunnel.lpr] (a cool example generating a tunnel mesh).</li>
+  <li>link:https://github.com/castle-engine/castle-engine/blob/master/examples/viewport_and_scenes/build_3d_object_by_code[viewport_and_scenes/build_3d_object_by_code] (rather simple example)</li>
+  <li>link:https://github.com/castle-engine/castle-engine/blob/master/examples/viewport_and_scenes/build_3d_object_by_code_2_tunnel[viewport_and_scenes/build_3d_object_by_code_2_tunnel] (a cool example generating a tunnel mesh).</li>
 </ul>
 ////
 

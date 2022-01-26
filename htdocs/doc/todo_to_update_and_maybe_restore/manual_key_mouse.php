@@ -66,7 +66,7 @@ input) and <code>TInputShortcut.IsPressed(IUIContainer)</code> (to detect holdin
 <p>An example application that creates a set of custom
 <?php api_link('TInputShortcut', 'CastleInputs.TInputShortcut.html'); ?> instances,
 and saves/loads them to config file, is in
-<a href="https://github.com/castle-engine/castle-engine/blob/master/examples/3d_rendering_processing/custom_input_shortcuts_saved_to_config.lpr">examples/3d_rendering_processing/custom_input_shortcuts_saved_to_config.lpr</a>.
+<a href="https://github.com/castle-engine/castle-engine/blob/master/examples/viewport_and_scenes/custom_input_shortcuts_saved_to_config">examples/viewport_and_scenes/custom_input_shortcuts_saved_to_config</a>.
 
 <?php
   castle_footer();

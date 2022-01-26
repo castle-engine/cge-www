@@ -36,7 +36,21 @@ You can also use UI scaling ( http://castle-engine.io/manual_2d_user_interface.p
 
 * You can use physics in this approach (see example `physics/physics_2d_game_sopwith/`).
 * You can mix 2D and 3D freely. The `TCastleViewport.Camera` defines projection settings and controls camera. The orthographic camera, `TCastleViewport.Camera.Orthoraphic`, is usually what you want for 2D games. Note that you can insert a `TCastleScene` with 3D content to `TCastleViewport`.
-* To use custom shader, use X3D shader nodes. Demo in `examples/3d_rendering_processing/display_box_custom_shaders.lpr`. You can use `ComposedShader` node and friends (that _override_ standard engine shaders, see https://castle-engine.io/x3d_implementation_shaders.php ) or `Effect` node and friends (that _extend_ standard engine shaders, see https://castle-engine.io/compositing_shaders.php ). Various demos as X3D scenes are inside https://github.com/castle-engine/demo-models[our demo models], see in particular https://github.com/castle-engine/demo-models/tree/master/shaders[shaders] and https://github.com/castle-engine/demo-models/tree/master/compositing_shaders[compositing_shaders] subdirectories.
+* To use custom shaders, use X3D shader nodes.
++
+--
+- You can _override_ standard engine shaders using `ComposedShader` and `ShaderPart` nodes. See https://castle-engine.io/x3d_implementation_shaders.php about these X3D nodes.
++
+To do this in Pascal (setup the nodes in Pascal), see demo on https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/shader_override[examples/viewport_and_scenes/shader_override] .
++
+To do this in X3D (editing X3D file), see https://github.com/castle-engine/demo-models[our demo models], in particular https://github.com/castle-engine/demo-models/tree/master/shaders[shaders] subdirectory.
+
+- You can _add shader effects_ (to extend existing rendering) using `Effect` and `EffectPart` nodes. See https://castle-engine.io/compositing_shaders.php for documentation of these nodes.
++
+To do this in Pascal (setup the nodes in Pascal), see demo on https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/shader_effects[examples/viewport_and_scenes/shader_effects] .
++
+To do this in X3D (editing X3D file), see https://github.com/castle-engine/demo-models[our demo models], in particular https://github.com/castle-engine/demo-models/tree/master/compositing_shaders[compositing_shaders] subdirectory.
+--
 
 *Advice when to use*:
 

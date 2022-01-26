@@ -34,6 +34,6 @@ and their cameras, but you cannot yet make them _share_ the same items.
 
 * link:https://github.com/castle-engine/castle-engine/tree/master/examples/user_interface/zombie_fighter[zombie_fighter] example. The viewport setup there is described in the link:manual_2d_user_interface.php[chapter about user interface].
 
-* link:https://github.com/castle-engine/castle-engine/tree/master/examples/3d_rendering_processing/multiple_viewports[multiple_viewports] example. Shows a window split into 4 viewports, all showing the same scene, but with a bit different effects.
+* link:https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/multiple_viewports[multiple_viewports] example. Shows a window split into 4 viewports, all showing the same scene, but with a bit different effects.
 
 * link:https://github.com/castle-engine/castle-engine/tree/master/examples/fps_game[fps_game] example. Shows using additional viewport for an _"overview"_ camera looking at map from the top.
