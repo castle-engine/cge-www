@@ -244,6 +244,8 @@ See https://castle-engine.io/manual_sound.php[manual chapter about sound] for in
 == What is the difference between `Owner` and `Parent` in CGE?
 
 * `Owner` comes from from the standard `TComponent`. See https://castle-engine.io/modern_pascal_introduction.html#_manual_and_automatic_freeing . It manages memory (owner will free the owned instance, when the owner is freed before the owned).
-* `Parent` is a visual parent. CGE  UI has `TCastleUserInterface.Parent`. CGE transformatons have `TCastleTransform.UniqueParent` (a more complicated name to signal that sometimes, `TCastleTransform` has multiple parents, see https://castle-engine.io/manual_scene.php#section_many_instances ).
+* `Parent` is a visual parent. CGE UI has cgeref:TCastleUserInterface.Parent[]. CGE transformatons have cgeref:TCastleTransform.Parent[].
 
-So `Parent` and `Owner` are separate concepts, declared in different classes. They may be set to the same object instance, if it is suitable in the particular situation, but these 2 things just perform 2 separate functions. In CGE editor, owner of everything in the design is always one central `DesignOwner` component. When you load the design yourself, you provide the `Owner` instance explicitly (as a parameter to `UserInterfaceLoad`, `TransformLoad`, `ComponentLoad`) and then you specify parent yourself but adding the design to the hierarchy (e.g. `MyStart.InsertFront(MyRootUi)`).
+So `Parent` and `Owner` are separate concepts, even declared in different classes.
+
+Sometimes both `Parent` and `Owner` may be set to the same instance, if it is suitable in the particular situation, but in general these 2 things just perform 2 separate functions. For example, in CGE editor, owner of everything in the design is always one central `DesignOwner` component. When you load the design yourself, you provide the `Owner` instance explicitly (as a parameter to `UserInterfaceLoad`, `TransformLoad`, `ComponentLoad`) and then you specify parent yourself but adding the design to the hierarchy (e.g. `MyParentUi.InsertFront(MyLoadedUi)`).
