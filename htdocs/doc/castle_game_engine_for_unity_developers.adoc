@@ -38,7 +38,7 @@ To group (and transform as a group) a number of `TCastleScene` instances you can
 
 Follow the template _"3D FPS Game"_ (create it by running our editor, choose _"New Project"_ and then choose _"3D FPS Game"_ as a starting point). In the resulting project, open the design `data/gamestateplay.castle-user-interface` in the editor, to actually see what I mean (in this and previous answer).
 
-Our goal with https://castle-engine.io/manual_editor.php[CGE editor] is to provide an experience similar to Unity and other game engine editors. So you can drop 3D models on your design, and drag them to design a level. Yes, it's a work in progress -- but we'll get there, believe me :) Look how many https://castle-engine.io/features.php[big features we managed to make already] :)
+Our goal with https://castle-engine.io/manual_editor.php[CGE editor] is to provide an experience similar to Unity and other game engine editors. So you can drop 3D models on your design, and drag them to design a level.
 
 == Where to place code for specific actors (like creatures, items)? What is the equivalent of "adding a MonoBehaviour to a GameObject" in Unity?
 
