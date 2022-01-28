@@ -33,7 +33,7 @@ cgeimg::block[transform_text.png|Text in 3D using TCastleText]
 +
 cgeimg::block[transform_primitives.png|Primitives in 3D]
 
-- cgeref:TCastleImageTransform[] instance allows to display static 2D image inside a viewport. This is suitable for simple static 2D games backgrounds, that can move along with player or camera. The image has a configurable pivot and can be repeated and resized in an easy way.
+- cgeref:TCastleImageTransform[] instance allows to display an image inside a viewport. This is great for simple static 2D game backgrounds, that should move along with player or camera. The image has a configurable pivot, it can be repeated and resized in an easy way.
 +
 cgeimg::block[transform_image.png|Image in a viewport]
 
