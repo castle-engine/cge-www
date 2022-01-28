@@ -22,10 +22,20 @@ You can add there any classes descending from cgeref:TCastleTransform[]. This in
 - Just the cgeref:TCastleTransform[] instance. While it doesn't display anything, but it transforms (move, rotates, scales) the children.
 
 - cgeref:TCastleScene[] instance. As said above, this is your important class to display 3D and 2D assets. It can render, animate, perform collisions etc.
++
+cgeimg::block[transform_scene.png|Text in 3D using TCastleText]
 
 - cgeref:TCastleText[] instance allows to display a text, possibly transformed in 3D. The font is also configurable, using cgeref:TCastleText.CustomFont[]. In many ways, the cgeref:TCastleText[] an analogy to cgeref:TCastleLabel[]. Use cgeref:TCastleLabel[] for user interface, use cgeref:TCastleText[] when the text is conceptually part of the game world, may be in 3D, and is attached to some place in your game world.
++
+cgeimg::block[transform_text.png|Text in 3D using TCastleText]
 
 - cgeref:TCastlePlane[], cgeref:TCastleBox[], cgeref:TCastleSphere[], cgeref:TCastleCylinder[], cgeref:TCastleCone[] are easy 3D "primitives" that you can use to design your world. All of them have a configurable size, material, texture and other basics. While you could create such simple objects in any 3D authoring software (and use them through cgeref:TCastleScene[] as well), our primitives are often very useful for quickly prototyping your game world.
++
+cgeimg::block[transform_primitives.png|Primitives in 3D]
+
+- cgeref:TCastleImageTransform[] instance allows to display static 2D image inside a viewport. This is suitable for simple static 2D games backgrounds, that can move along with player or camera. The image has a configurable pivot and can be repeated and resized in an easy way.
++
+cgeimg::block[transform_image.png|Image in a viewport]
 
 ## Camera
 
