@@ -31,7 +31,7 @@ cgeimg::block[transform_text.png|Text in 3D using TCastleText]
 
 - cgeref:TCastlePlane[], cgeref:TCastleBox[], cgeref:TCastleSphere[], cgeref:TCastleCylinder[], cgeref:TCastleCone[] are easy 3D "primitives" that you can use to design your world. All of them have a configurable size, material, texture and other basics. While you could create such simple objects in any 3D authoring software (and use them through cgeref:TCastleScene[] as well), our primitives are often very useful for quickly prototyping your game world.
 +
-cgeimg::block[transform_primitives.png|Primitives in 3D]
+cgeimg::block[transform_primitives_example.png|Primitives in 3D]
 
 - cgeref:TCastleImageTransform[] instance allows to display an image inside a viewport. This is great for simple static 2D game backgrounds, that should move along with player or camera. The image has a configurable pivot, it can be repeated and resized in an easy way.
 +
