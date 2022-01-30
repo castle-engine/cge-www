@@ -43,19 +43,23 @@ cgeref:TCastleLabel[] is the simplest way to display text in our engine. Its mos
 
 cgeimg::block[ui_label.png|Labels]
 
+### Image
+
+cgeref:TCastleImageControl[] displays an image. It can be scaled, preserving the aspect ratio or ignoring the aspect ratio, if needed. Its most important property is cgeref:TCastleImageControl.URL[].
+
+cgeimg::block[ui_image.png|Images]
+
 ### Button
 
 cgeref:TCastleButton[] is a clickable UI element. The look can be incredibly customized to match the style of your game. Its most important properties are cgeref:TCastleButton.Caption[] and (assign here your event, in code) cgeref:TCastleButton.OnClick[].
 
 cgeimg::block[ui_button_1.png|Buttons,ui_button_2.png|Buttons]
 
-### Image
-
-cgeref:TCastleImageControl[] displays an image. It can be scaled, preserving the aspect ratio or ignoring the aspect ratio, if needed. Its most important property is cgeref:TCastleImageControl.URL[].
-
 ### Checkbox
 
 cgeref:TCastleCheckbox[] allows user to check/uncheck a checkbox, to make a Boolean choice. Its most important properties are cgeref:TCastleCheckbox.Caption[] and (assign here your event, in code) cgeref:TCastleCheckbox.Checked[].
+
+cgeimg::block[ui_checkbox.png|Checkboxes]
 
 ### Edit (text, integer, float)
 
@@ -63,17 +67,25 @@ cgeref:TCastleEdit[] allows to edit a single-line text. Its most important prope
 
 It has simple descendants cgeref:TCastleIntegerEdit[] and cgeref:TCastleFloatEdit[] to edit numbers. Their most important properties are, respectively, cgeref:TCastleIntegerEdit.Value[] and cgeref:TCastleFloatEdit.Value[].
 
+cgeimg::block[ui_edit.png|Edit fields]
+
 ### Group (horizontal, vertical)
 
 cgeref:TCastleHorizontalGroup[] and cgeref:TCastleVerticalGroup[] automatically layout their controls in a horizontal and vertical fashion.
+
+cgeimg::block[ui_group.png|Groups]
 
 ### Scroll view
 
 cgeref:TCastleScrollView[] allows to scroll a large (tall) area with a vertical scrollbar. Its most important property is cgeref:TCastleScrollView.ScrollArea[], this is where you should add children that should scroll.
 
+cgeimg::block[ui_scroll_view.png|Scroll View]
+
 ### Shape
 
-cgeref:TCastleShape[] displays since shapes, like circles.
+cgeref:TCastleShape[] displays since shapes, like circles and triangles.
+
+cgeimg::block[ui_shape.png|Shape]
 
 //TODO:TCastleDesign?
 
