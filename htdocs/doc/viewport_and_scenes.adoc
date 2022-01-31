@@ -23,7 +23,7 @@ You can add there any classes descending from cgeref:TCastleTransform[]. This in
 
 - cgeref:TCastleScene[] instance. As said above, this is your important class to display 3D and 2D assets. It can render, animate, perform collisions etc.
 +
-cgeimg::block[transform_scene.png|Text in 3D using TCastleText]
+cgeimg::block[transform_scene.png|TCastleScene allows to place and animate 3D objects in the viewport]
 
 - cgeref:TCastleText[] instance allows to display a text, possibly transformed in 3D. The font is also configurable, using cgeref:TCastleText.CustomFont[]. In many ways, the cgeref:TCastleText[] an analogy to cgeref:TCastleLabel[]. Use cgeref:TCastleLabel[] for user interface, use cgeref:TCastleText[] when the text is conceptually part of the game world, may be in 3D, and is attached to some place in your game world.
 +
