@@ -47,7 +47,6 @@ Instead assign vectors like this:
 
 [source,pascal]
 ----
-// DO NOT USE THIS
 Scene.Translation := Vector3(1, 2, 3);
 ----
 
