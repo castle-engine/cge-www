@@ -1,18 +1,21 @@
 # Coding Traps
 include::common.adoc[]
 
-== Changing only a temporary record value
+== Changing a temporary record value
 
-Using
+This code is unfortunately a mistake (and compiler doesn't warn about it):
 
+[source,pascal]
 ----
-Scene.Translation.Z := Scene.Translation.Z + 0.1;
+// DO NOT USE THIS
+MyScene.Translation.Z := MyScene.Translation.Z + 0.1;
 ----
 
-is unfortunately a mistake, and compiler doesn't warn about it. As `Scene.Translation` is an advanced record (`TVector3`), using `Scene.Translation` may return just a temporary copy of it (just as if you would call a method `Scene.GetTranslation`). So then you change the `Z` parameter of this temporary copy, and the effect gets ignored.
+As `Scene.Translation` is an advanced record (`TVector3`), using `Scene.Translation` may return just a temporary copy of it (just as if you would call a method `Scene.GetTranslation`). So then you change the `Z` parameter of this temporary copy, and the effect gets ignored.
 
 The solution is to only modify the record fields (like `Z` of a `TVector3`) when you know that it is a simple field, or variable in your code. To apply this solution above, you should make a temporary variable and change it:
 
+[source,pascal]
 ----
 var
   V: TVector3;
@@ -25,8 +28,27 @@ end;
 
 You can also rework it to assign whole vector, like this:
 
+[source,pascal]
 ----
 Scene.Translation := Scene.Translation + Vector3(0, 0, 0.1);
 ----
 
-The problem is inherent to using properties with records. (If you're curious, C# has this problem too with its ``struct``s, in Unity too.) But we cannot easily avoid doing it in CGE -- we need records (for things like vectors, records are both more efficient and more comfortable than classes) and we need properties of them (because setters often have to do some useful things).
+Similar situation happens when using any methods that change the record. For example this is a mistake too:
+
+[source,pascal]
+----
+// DO NOT USE THIS
+Scene.Translation.Init(1, 2, 3);
+----
+
+While it may work now, it may stop working in the future -- if `Scene.Translation` will be a property using a "getter" function, then this code could set a temporary value, which will have no effect on the underlying translation vector.
+
+Instead assign vectors like this:
+
+[source,pascal]
+----
+// DO NOT USE THIS
+Scene.Translation := Vector3(1, 2, 3);
+----
+
+**We cannot fix it in CGE (without sacrificing something else that is important).** The problem is inherent to using properties with records. C# has this problem too with its ``struct``s, in Unity too, although C# compilers are better at emitting relevant warnings about it. We cannot easily avoid doing it in CGE -- we need records (for things like vectors, records are both more efficient and more comfortable to pass around than classes) and we need properties of them (because setters often have to do some useful things).
