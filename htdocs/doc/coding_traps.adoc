@@ -8,7 +8,7 @@ This code is unfortunately a mistake (and compiler doesn't warn about it):
 [source,pascal]
 ----
 // DO NOT USE THIS
-MyScene.Translation.Z := MyScene.Translation.Z + 0.1;
+Scene.Translation.Z := Scene.Translation.Z + 0.1;
 ----
 
 As `Scene.Translation` is an advanced record (`TVector3`), using `Scene.Translation` may return just a temporary copy of it (just as if you would call a method `Scene.GetTranslation`). So then you change the `Z` parameter of this temporary copy, and the effect gets ignored.
