@@ -1,7 +1,7 @@
 uses CastleWindow, CastleConfig, CastleApplicationProperties, CastleControls,
   CastleColors;
 var
-  Window: TCastleWindowBase;
+  Window: TCastleWindow;
   LabelForParameter: TCastleLabel;
   MyParameter: string;
 begin
@@ -10,7 +10,7 @@ begin
   ApplicationProperties.ApplicationName := 'my_game_name';
 
   { open Window }
-  Window := TCastleWindowBase.Create(Application);
+  Window := TCastleWindow.Create(Application);
   Window.Container.BackgroundColor := White;
   Window.Open;
 

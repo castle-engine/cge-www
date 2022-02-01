@@ -268,9 +268,9 @@ deprecated then.</i></p>
 <?php echo $toc->html_section(); ?>
 
 <p>In order for shadow volumes to work, you need to set
-<?php api_link('TCastleWindowBase.StencilBits', 'CastleWindow.TCastleWindowBase.html#StencilBits'); ?>
+<?php api_link('TCastleWindow.StencilBits', 'CastleWindow.TCastleWindow.html#StencilBits'); ?>
  or
-<?php api_link('TCastleControlBase.StencilBits', 'CastleControl.TCastleControlBase.html#StencilBits'); ?>
+<?php api_link('TCastleControl.StencilBits', 'CastleControl.TCastleControl.html#StencilBits'); ?>
  to something non-zero.
 The number of bits should be large enough to track all the possible objects that may cast a shadow at a given pixel.
 In practice, in most reasonable cases, using 8 bits (256 possible objects) is enough. Like this:

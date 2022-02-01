@@ -54,7 +54,7 @@ $toc = new TableOfContents(
   <li><p>You can use <a href="http://www.lazarus.freepascal.org/">Lazarus</a> forms,
     and LCL (<i>Lazarus Component Library</i>).
     To use the engine, simply drop a
-    <?php api_link('TCastleControlBase', 'CastleControl.TCastleControlBase.html'); ?>
+    <?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?>
     component on a Lazarus form.
 
     <p>This, in practice, means that your applications will use <i>Cocoa</i> (ev. deprecated <i>Carbon</i>).
@@ -62,17 +62,17 @@ $toc = new TableOfContents(
     So, your programs don't require anything extra to distribute.
 
   <li><p>Alternatively, you can create your windows using our own
-    <?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?>
-    class. Our <?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?>
+    <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?>
+    class. Our <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?>
     can use various <i>backends</i> under the hood:
 
     <ul>
       <li><p>The <b>default backend on macOS is <code>CASTLE_WINDOW_XLIB</code></b>.
         It's easiest to setup,
         although it does not look pretty, and does not show a menu bar
-        (<?php api_link('TCastleWindowBase.MainMenu', 'CastleWindow.TCastleWindowBase.html#MainMenu'); ?>).
+        (<?php api_link('TCastleWindow.MainMenu', 'CastleWindow.TCastleWindow.html#MainMenu'); ?>).
         <!-- or native dialog boxes -->
-        <!-- (< ?php api_link('TCastleWindowBase.FileDialog', 'CastleWindow.TCastleWindowBase.html#FileDialog'); ? >) -->
+        <!-- (< ?php api_link('TCastleWindow.FileDialog', 'CastleWindow.TCastleWindow.html#FileDialog'); ? >) -->
 
         <p>It requires installing <a href="https://www.xquartz.org/">XQuartz</a>.
         (On older macOS versions, install instead
@@ -162,12 +162,12 @@ sudo chmod a+rX /usr/X11/ /usr/X11R6/
         branch.</p></li-->
 
       <li><p>Alternatively, <b>you can switch the backend of
-        <?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?>
+        <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?>
         to <code>CASTLE_WINDOW_LCL</code></b>.
         This uses Lazarus under the hood, and this way we will use <i>Cocoa</i>
         (ev. deprecated <i>Carbon</i>)
         instead.
-        This means that <?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?>
+        This means that <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?>
         will actually use Lazarus <code>TForm</code> and <code>TOpenGLControl</code>
         internally.
 
@@ -236,7 +236,7 @@ So you just have to use <i>Cocoa</i> on new macOS.
     The former (Update issues when using mouse look or
     dragging with mouse) is somewhat workarounded on our side now
     (to not "stutter" when using mouse look), but the problem is still
-    noticeable (mouse look under other TCastleWindowBase backends is much smoother).
+    noticeable (mouse look under other TCastleWindow backends is much smoother).
 </ul>
 
 <?php echo $toc->html_section(); ?>

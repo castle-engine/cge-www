@@ -37,8 +37,8 @@ It can be treated like a cheatsheet, concise description of engine architecture.
 
 <dl>
   <dt>Container:
-    <?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?>,
-    <?php api_link('TCastleControlBase', 'CastleControl.TCastleControlBase.html'); ?>
+    <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?>,
+    <?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?>
     classes</dt>
 
   <dd>
@@ -47,15 +47,15 @@ It can be treated like a cheatsheet, concise description of engine architecture.
     The "container" has an OpenGL rendering context,
     and handles user input in a cross-platform way.
     A usual application creates exactly one instance of
-    <?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?>
+    <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?>
     or
-    <?php api_link('TCastleControlBase', 'CastleControl.TCastleControlBase.html'); ?>,
+    <?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?>,
     and uses this instance for the entire game.
 
     <p><i>How to use</i>: You can explicitly create an instance of this class.
 
     <p>In case of
-    <?php api_link('TCastleControlBase', 'CastleControl.TCastleControlBase.html'); ?>,
+    <?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?>,
     you can also drag-and-drop it on a Lazarus form using Lazarus form designer.
 
     <!--

@@ -6,7 +6,7 @@ castle_header("Standard command-line options for OpenGL programs");
 <h2>Standard command-line options (for programs with a graphical interface)</h2>
 
 <p>Most of the programs using <?php echo a_href_page('Castle Game Engine',
-'index'); ?> accept the command-line options listed below. <small>(Developers: <?php api_link('use this in your own programs', 'CastleWindow.TCastleWindowCustom.html#ParseParameters'); ?>).</small>
+'index'); ?> accept the command-line options listed below. <small>(Developers: <?php api_link('use this in your own programs', 'CastleWindow.TCastleWindow.html#ParseParameters'); ?>).</small>
 
 <dl class="command_line_options_list">
   <dt>--fullscreen</dt>

@@ -1,7 +1,7 @@
 uses CastleWindow, CastleUIControls, CastleControls, CastleColors;
 
 var
-  Window: TCastleWindowBase;
+  Window: TCastleWindow;
   MyRect: TCastleRectangleControl;
   HideRectButton: TCastleButton;
 
@@ -17,7 +17,7 @@ begin
 end;
 
 begin
-  Window := TCastleWindowBase.Create(Application);
+  Window := TCastleWindow.Create(Application);
   Window.Open;
 
   HideRectButton := TCastleButton.Create(Application);

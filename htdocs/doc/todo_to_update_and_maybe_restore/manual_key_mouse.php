@@ -56,9 +56,9 @@ See the chapter <?php echo a_href_page('User preferences',
 Then can be global (added to
 InputsAll, saved to config file and such) or local. See <code>CastleInputs</code>
 unit API docs. You can easily handle them by overriding
-<code>TCastleUserInterface.Press</code> or <code>TCastleControlBase.EventPress</code> or
-<code>TCastleWindowBase.EventPress</code> methods, or assigning <code>TCastleControlBase.OnPress</code>
-or <code>TCastleWindowBase.OnPress</code> callbacks. You will find then useful methods
+<code>TCastleUserInterface.Press</code> or <code>TCastleControl.EventPress</code> or
+<code>TCastleWindow.EventPress</code> methods, or assigning <code>TCastleControl.OnPress</code>
+or <code>TCastleWindow.OnPress</code> callbacks. You will find then useful methods
 <code>TInputShortcut.IsEvent(TInputPressRelease)</code> (to detect press/release of
 input) and <code>TInputShortcut.IsPressed(IUIContainer)</code> (to detect holding
 (keeping pressed) of input).

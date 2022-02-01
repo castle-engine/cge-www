@@ -49,8 +49,8 @@ probably start to wonder about the speed and memory usage.</p>
 
 <p>The main tool to measure your game speed is the <i>Frames Per Second (FPS)</i>
 value. Use the
- <?php api_link('TCastleControlBase.Fps', 'CastleControl.TCastleControlBase.html#Fps'); ?> or
- <?php api_link('TCastleWindowBase.Fps', 'CastleWindow.TCastleWindowBase.html#Fps'); ?>
+ <?php api_link('TCastleControl.Fps', 'CastleControl.TCastleControlBase.html#Fps'); ?> or
+ <?php api_link('TCastleWindow.Fps', 'CastleWindow.TCastleWindow.html#Fps'); ?>
  to get an instance of
  <?php api_link('TFramesPerSecond', 'CastleTimeUtils.TFramesPerSecond.html'); ?>.
  It contains two useful numbers (and some extra information):
@@ -66,8 +66,8 @@ value. Use the
 <!--
 <p>Eventually, display directly the <code>Window.Fps.RealFps</code> value.
 In this case, it is easiest to have
- <?php api_link('TCastleControlBase.AutoRedisplay', 'CastleControl.TCastleControlBase.html#AutoRedisplay'); ?> or
- <?php api_link('TCastleWindowBase.AutoRedisplay', 'CastleWindow.TCastleWindowBase.html#AutoRedisplay'); ?> set
+ <?php api_link('TCastleControl.AutoRedisplay', 'CastleControl.TCastleControl.html#AutoRedisplay'); ?> or
+ <?php api_link('TCastleWindow.AutoRedisplay', 'CastleWindow.TCastleWindow.html#AutoRedisplay'); ?> set
  to <code>true</code>, otherwise the meaning of <code>RealFps</code>
  may not actually indicate the potential speed of your application.
  It is <code>true</code> by default, so you're already set.

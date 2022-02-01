@@ -2,13 +2,13 @@ uses SysUtils, CastleVectors, CastleCameras,
   CastleColors, CastleSceneCore, CastleScene, CastleFilesUtils, CastleViewport,
   CastleUIControls, CastleWindow, CastleControls;
 var
-  Window: TCastleWindowBase;
+  Window: TCastleWindow;
   Button: TCastleButton;
   MyLabel: TCastleLabel;
   Viewport: TCastleViewport;
   Scene: TCastleScene;
 begin
-  Window := TCastleWindowBase.Create(Application);
+  Window := TCastleWindow.Create(Application);
   Window.Open;
 
   Button := TCastleButton.Create(Application);

@@ -82,7 +82,7 @@ This is a classic OOP approach. This is like _Unreal Engine_ that allows you to 
 +
 You can even link:custom_components[register your custom classes to be available in the editor, to add/configure them visually].
 
-. You can also *assign events, like `OnPress`*. Most UI controls expose obvious events, like `TCastleButton.OnClick`. You are free to handle these events at one central place (like an LCL `TForm` descendant (only if you use `TCastleControlBase`), or CGE `TUIState` descendant) or decentralized (e.g. create a different instance of your own class to handle events of each different creature, different item).
+. You can also *assign events, like `OnPress`*. Most UI controls expose obvious events, like `TCastleButton.OnClick`. You are free to handle these events at one central place (like an LCL `TForm` descendant (only if you use `TCastleControl`), or CGE `TUIState` descendant) or decentralized (e.g. create a different instance of your own class to handle events of each different creature, different item).
 +
 The approach to use events is similar to using UI in Lazarus LCL or Delphi VCL.
 
@@ -141,16 +141,16 @@ What to do right now:
 * If you want to have flexibility, I would advice following _"3D FPS Game"_ template idea, and create your own creature AI. This is the better approach long-term, and it is the approach which we will focus on (extending it in the future).
 * Only if you want to have something close to what `examples/fps_game` presents, i.e. a typical first-person shooter, then follow `examples/fps_game` approach.
 
-== Should I use TCastleWindowBase or TCastleControlBase?
+== Should I use TCastleWindow or TCastleControl?
 
-A short summary of the answer: Use TCastleWindowBase. If all you want is a cross-platform game, where everything is rendered using Castle Game Engine. If you come here and want to "just make a game using CGE", use `TCastleWindowBase`.
+A short summary of the answer: Use TCastleWindow. If all you want is a cross-platform game, where everything is rendered using Castle Game Engine. If you come here and want to "just make a game using CGE", use `TCastleWindow`.
 
 Details: The difference is outlined on https://castle-engine.io/manual_lazarus_control.php :
 
-* TCastleControlBase means that engine rendering is inside Lazarus form. That is, TCastleControlBase is a regular Lazarus control that can be placed on a larger form. You can use Lazarus designer to place LCL controls, and you can use CGE editor to design CGE controls (within TCastleControlBase).
-* TCastleWindowBase means that engine rendering is a separate window, and we're not using LCL. You can use CGE editor to design controls. So you lose access to LCL controls, but in exchange you get perfect cross-platform code (Android, iOS, Switch only with with TCastleWindowBase).
+* TCastleControl means that engine rendering is inside Lazarus form. That is, TCastleControl is a regular Lazarus control that can be placed on a larger form. You can use Lazarus designer to place LCL controls, and you can use CGE editor to design CGE controls (within TCastleControl).
+* TCastleWindow means that engine rendering is a separate window, and we're not using LCL. You can use CGE editor to design controls. So you lose access to LCL controls, but in exchange you get perfect cross-platform code (Android, iOS, Switch only with with TCastleWindow).
 
-In both cases, you can use Lazarus as an IDE -- to write code, debug etc. In both cases, you can use CGE editor to design CGE controls (that go inside TCastleControlBase or TCastleWindowBase).
+In both cases, you can use Lazarus as an IDE -- to write code, debug etc. In both cases, you can use CGE editor to design CGE controls (that go inside TCastleControl or TCastleWindow).
 
 == Where is `Time.timeScale`?
 

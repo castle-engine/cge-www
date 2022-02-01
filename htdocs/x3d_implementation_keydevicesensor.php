@@ -29,8 +29,8 @@
   <li><p>Instead, override <code>TUIState.Press</code> method to listen to keys
     (see any <i>"New Project"</i> template created by the editor for an example).
     You can also react to
-    <?php api_link('TCastleWindowCustom.OnPress', 'CastleWindow.TCastleWindowCustom.html#OnPress'); ?> or
-    <?php api_link('TCastleControlCustom.OnPress', 'CastleControl.TCastleControlCustom.html#OnPress'); ?> or override
+    <?php api_link('TCastleWindow.OnPress', 'CastleWindow.TCastleWindow.html#OnPress'); ?> or
+    <?php api_link('TCastleControl.OnPress', 'CastleControl.TCastleControl.html#OnPress'); ?> or override
     <?php api_link('Press method', 'CastleUIControls.TInputListener.html#Press'); ?>.
     See <a href="manual_state_events.php">the manual describing handling events</a>.
 

@@ -1,9 +1,9 @@
 uses CastleWindow, CastleGameNotifications, CastleColors, CastleUIControls;
 
 var
-  Window: TCastleWindowBase;
+  Window: TCastleWindow;
 begin
-  Window := TCastleWindowBase.Create(Application);
+  Window := TCastleWindow.Create(Application);
   Window.Open;
 
   Notifications.TextAlignment := hpMiddle;

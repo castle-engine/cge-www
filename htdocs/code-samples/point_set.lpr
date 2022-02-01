@@ -5,11 +5,11 @@ var
   PointCoordinates: TCoordinateNode;
   PointShape: TShapeNode;
   Root: TX3DRootNode;
-  Window: TCastleWindowBase;
+  Window: TCastleWindow;
   Scene: TCastleScene;
   Viewport: TCastleViewport;
 begin
-  Window := TCastleWindowBase.Create(Application);
+  Window := TCastleWindow.Create(Application);
   Window.Open;
 
   Viewport := TCastleViewport.Create(Application);

@@ -45,8 +45,8 @@ like current life.</p>
 <ol>
   <li><p>You can just place the appropriate drawing code in
     <code>OnRender</code> event
-    (see <?php api_link('TCastleWindowBase.OnRender', 'CastleWindow.TCastleWindowBase.html#OnRender'); ?>,
-    <?php api_link('TCastleControlBase.OnRender', 'CastleControl.TCastleControlBase.html#OnRender'); ?>).
+    (see <?php api_link('TCastleWindow.OnRender', 'CastleWindow.TCastleWindow.html#OnRender'); ?>,
+    <?php api_link('TCastleControl.OnRender', 'CastleControl.TCastleControl.html#OnRender'); ?>).
     This is simple to use, and works OK for simple applications.
   </li>
 
@@ -281,10 +281,10 @@ else
  or (as a rectangle) as
  <?php api_link('ContainerRect', 'CastleUIControls.TInputListener.html#ContainerRect'); ?>.
  The container size is also available as container properties, like
- <?php api_link('TCastleWindow.Width', 'CastleWindow.TCastleWindowBase.html#Width'); ?> x
- <?php api_link('TCastleWindow.Height', 'CastleWindow.TCastleWindowBase.html#Height'); ?>
+ <?php api_link('TCastleWindow.Width', 'CastleWindow.TCastleWindow.html#Width'); ?> x
+ <?php api_link('TCastleWindow.Height', 'CastleWindow.TCastleWindow.html#Height'); ?>
  or (as a rectangle)
- <?php api_link('TCastleWindow.Rect', 'CastleWindow.TCastleWindowBase.html#Rect'); ?>.
+ <?php api_link('TCastleWindow.Rect', 'CastleWindow.TCastleWindow.html#Rect'); ?>.
 
 <?php echo $toc->html_section(); ?>
 

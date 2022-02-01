@@ -353,13 +353,13 @@ docs for more information about assets and project layout</a>.
 <?php echo $toc->html_section(); ?>
 
 <p>If you use
-<?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?>,
+<?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?>,
 it gives you a ready
-<?php api_link('TCastleWindowBase.FileDialog', 'CastleWindow.TCastleWindowBase.html#FileDialog'); ?>
+<?php api_link('TCastleWindow.FileDialog', 'CastleWindow.TCastleWindow.html#FileDialog'); ?>
  that takes and returns URLs.
 
 <p>If you use Lazarus with
-<?php api_link('TCastleControlBase', 'CastleControl.TCastleControlBase.html'); ?>,
+<?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?>,
 we advise to use our dialog components:
 <?php api_link('TCastleOpenDialog', 'CastleDialogs.TCastleOpenDialog.html'); ?>,
 <?php api_link('TCastleSaveDialog', 'CastleDialogs.TCastleSaveDialog.html'); ?>,

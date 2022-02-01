@@ -3,11 +3,11 @@ include::common.adoc[]
 
 == Introduction
 
-https://castle-engine.io/apidoc-unstable/html/CastleWindow.TCastleWindowBase.html[TCastleWindowBase] class represents a window suitable for _Castle Game Engine_ rendering.
+https://castle-engine.io/apidoc-unstable/html/CastleWindow.TCastleWindow.html[TCastleWindow] class represents a window suitable for _Castle Game Engine_ rendering.
 
-Most CGE applications use this class (although there is an alternative https://castle-engine.io/manual_lazarus_control.php[TCastleControlBase], but we advise `TCastleWindowBase` for most cases).
+Most CGE applications use this class (although there is an alternative https://castle-engine.io/manual_lazarus_control.php[TCastleControl], but we advise `TCastleWindow` for most cases).
 
-The `TCastleWindowBase` has a number of alternative _backends_, using different libraries underneath to manage the window and OpenGL(ES) context properties. By default, we use a backend that is considered "best" for the current operating system you're compiling to, but you can override this choice by defining a symbol `CASTLE_WINDOW_xxx` at the compilation time. You can define this symbol in various places, e.g. https://castle-engine.io/project_manifest#compiler-options-and-paths[in CastleEngineManifest.xml file].
+The `TCastleWindow` has a number of alternative _backends_, using different libraries underneath to manage the window and OpenGL(ES) context properties. By default, we use a backend that is considered "best" for the current operating system you're compiling to, but you can override this choice by defining a symbol `CASTLE_WINDOW_xxx` at the compilation time. You can define this symbol in various places, e.g. https://castle-engine.io/project_manifest#compiler-options-and-paths[in CastleEngineManifest.xml file].
 
 Right now, we always use exactly one "backend", which is determined at the compile-time when you compile your application. In the future, we want to rework the CastleWindow infrastructure to enable you to use multiple backends, each backend in a separate unit, and (optionally) allow you to select the best backend at runtime.
 
@@ -25,8 +25,8 @@ Supported platforms:
 
 Advantages:
 
-* `TCastleWindowBase.MainMenu` is implemented as actual Windows menu bar, so it looks good and native.
-* Dialog windows like `TCastleWindowBase.FileDialog` are implemented using standard Windows dialog boxes, so again they look nice and native.
+* `TCastleWindow.MainMenu` is implemented as actual Windows menu bar, so it looks good and native.
+* Dialog windows like `TCastleWindow.FileDialog` are implemented using standard Windows dialog boxes, so again they look nice and native.
 * Supports both OpenGL (by `wgl`) and OpenGLES (by `EGL`) contexts.
 
 === GTK backend (CASTLE_WINDOW_GTK_2)
@@ -41,8 +41,8 @@ Supported platforms:
 
 Advantages:
 
-* `TCastleWindowBase.MainMenu` is implemented using GTK menu bar.
-* Dialog windows like `TCastleWindowBase.FileDialog` are implemented using GTK dialogs. So they look good and native.
+* `TCastleWindow.MainMenu` is implemented using GTK menu bar.
+* Dialog windows like `TCastleWindow.FileDialog` are implemented using GTK dialogs. So they look good and native.
 * Supports both OpenGL (by `glX`) and OpenGLES (by `EGL`) contexts.
 
 Known problems:
@@ -67,13 +67,13 @@ Advantages compared to `CASTLE_WINDOW_GTK` (which supports similar platforms):
 
 Known problems:
 
-* Doesn't provide nicely-looking menu bar (`TCastleWindowBase.MainMenu`). Menu bar is not visible.
-* Doesn't provide nicely-looking dialog boxes (`TCastleWindowBase.FileDialog`). The dialog boxes are implemented using simple modal boxes in `CastleMessages` instead, which works OK but doesn't look pretty.
-* Full-screen (`TCastleWindowBase.FullScreen`) is realized using an obsolete method ("override_redirect") that doesn't allow to switch applications with Alt+Tab from a fullscreen window.
+* Doesn't provide nicely-looking menu bar (`TCastleWindow.MainMenu`). Menu bar is not visible.
+* Doesn't provide nicely-looking dialog boxes (`TCastleWindow.FileDialog`). The dialog boxes are implemented using simple modal boxes in `CastleMessages` instead, which works OK but doesn't look pretty.
+* Full-screen (`TCastleWindow.FullScreen`) is realized using an obsolete method ("override_redirect") that doesn't allow to switch applications with Alt+Tab from a fullscreen window.
 
 === Lazarus LCL backend (CASTLE_WINDOW_LCL)
 
-Backend that uses Lazarus LCL to create a window. We use Lazarus TForm (with menu, dialogs and so on) and TOpenGLControl. This wraps Lazarus form and TOpenGLControl inside a `TCastleWindowBase` instance. In turn, Lazarus LCL may use various widgetsets, like GTK, Qt, WinAPI, Cocoa and others.
+Backend that uses Lazarus LCL to create a window. We use Lazarus TForm (with menu, dialogs and so on) and TOpenGLControl. This wraps Lazarus form and TOpenGLControl inside a `TCastleWindow` instance. In turn, Lazarus LCL may use various widgetsets, like GTK, Qt, WinAPI, Cocoa and others.
 
 To use this:
 
@@ -89,8 +89,8 @@ Supported platforms: everywhere where LCL runs. (But in practice this backend is
 
 Advantages:
 
-* Can use any LCL backend, in particular it allows to use Cocoa on macOS. This is the only way for now to have `TCastleWindowBase` have a native look on macOS. See https://castle-engine.io/macosx_requirements.php[CGE on macOS notes].
-* Depends on LCL for all the things, like `TCastleWindowBase.MainMenu` or `TCastleWindowBase.FileDialog` or `TCastleWindowBase.FullScreen`.
+* Can use any LCL backend, in particular it allows to use Cocoa on macOS. This is the only way for now to have `TCastleWindow` have a native look on macOS. See https://castle-engine.io/macosx_requirements.php[CGE on macOS notes].
+* Depends on LCL for all the things, like `TCastleWindow.MainMenu` or `TCastleWindow.FileDialog` or `TCastleWindow.FullScreen`.
 
 Known problems:
 
@@ -133,6 +133,6 @@ Supported platforms: All platforms.
 * Create a file `castlewindow_foo.inc` with contents from  `castlewindow_backend_template.inc` and conditionally include it from `castlewindow_backend.inc`.
 * Adjust defining `CASTLE_WINDOW_HAS_VIDEO_CHANGE` and `CASTLE_WINDOW_USE_PRIVATE_MODIFIERS_DOWN`  for your backend.
 * Implement all methods in `castlewindow_foo.inc`.
-* Call `TCastleWindowBase.DoXxx` functions at appropriate places from your backend. You can call all `DoUpdate` and `DoTimer` for all `Application.OpenWindows` using `Application.FOpenWindows.DoUpdate/Timer`.
+* Call `TCastleWindow.DoXxx` functions at appropriate places from your backend. You can call all `DoUpdate` and `DoTimer` for all `Application.OpenWindows` using `Application.FOpenWindows.DoUpdate/Timer`.
 * Call `TCastleApplication.DoApplicationUpdate` and `DoApplicationTimer` when appropriate.  Remember that you can always assume that the ONLY existing instance of `TCastleApplication` is `Application`.
 * Remember that probably you will have to call `ReleaseAllKeysAndMouse` when user switches to another window or activates MainMenu.

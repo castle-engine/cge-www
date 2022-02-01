@@ -9,11 +9,11 @@ that will be able to display rendered content. There are two ways of doing this:
 <ol>
   <li>
     <p>Use our own window class
-    <?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?>.
+    <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?>.
 
     <p>The <i>"New Project"</i> templates used by our <a href="manual_editor.php">CGE editor</a>
     set this up by default.
-    You use <?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?>
+    You use <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?>
     if you just follow the (advised) code organization created by <a href="manual_editor.php">CGE editor</a>.
 
     <p>So <b>you don't need to do anything to make this happen.
@@ -26,9 +26,9 @@ that will be able to display rendered content. There are two ways of doing this:
 
 uses CastleWindow;
 var
-  Window: TCastleWindowBase;
+  Window: TCastleWindow;
 begin
-  Window := TCastleWindowBase.Create(Application);
+  Window := TCastleWindow.Create(Application);
   Window.OpenAndRun;
 end.'); ?>
 

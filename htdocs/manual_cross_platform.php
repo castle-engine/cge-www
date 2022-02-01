@@ -56,7 +56,7 @@ At that point you know that your program is ready to load and prepare resources.
 <!--
 <p>The initialization <b>must assign the <?php api_link('Applcation.MainWindow', 'CastleWindow.TCastleApplication.html#MainWindow'); ?></b> instance,
 that will be used by platform-specific program/library code.
-It should be a <?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?> class
+It should be a <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?> class
 instance (it may be a descendant of this class, of course).
 -->
 
@@ -183,7 +183,7 @@ in the corners.
     <p>Also, the <code>Application.Terminate</code> may not be implemented
     on some platforms where <code>ShowUserInterfaceToQuit</code> is <code>false</code>.
 
-  <li><p>Do not create more than one <code>TCastleWindowBase</code> instance.
+  <li><p>Do not create more than one <code>TCastleWindow</code> instance.
     If you want your game to be truly portable to <b>any</b> device &mdash;
     you have to limit yourself to using only one window.
     For normal games that's probably natural anyway.

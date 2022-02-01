@@ -122,8 +122,8 @@ $toc = new TableOfContents(
 The look and behavior of everything is very customizable,
 as you often want a special-looking UI in your games.
 Our user-interface is rendered inside a container like
-<?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?> or
-<?php api_link('TCastleControlBase', 'CastleControl.TCastleControlBase.html'); ?>,
+<?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?> or
+<?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?>,
 and of course works without any modifications on all the platforms
 we support &mdash; desktop, mobile...
 
@@ -155,10 +155,10 @@ the <?php api_link('TCastleUserInterface', 'CastleUIControls.TCastleUserInterfac
 They can render, they can handle inputs, they can perform any time-dependent task, and much more.
 
 <p>All of the currently used controls are added to the list of
-<?php api_link('TCastleWindowBase.Controls', 'CastleWindow.TCastleWindowBase.html#Controls'); ?>
- (if you use <?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?>) or
-<?php api_link('TCastleControlBase.Controls', 'CastleControl.TCastleControlBase.html#Controls'); ?>
- (if you use Lazarus forms with <?php api_link('TCastleControlBase', 'CastleControl.TCastleControlBase.html'); ?>).
+<?php api_link('TCastleWindow.Controls', 'CastleWindow.TCastleWindow.html#Controls'); ?>
+ (if you use <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?>) or
+<?php api_link('TCastleControl.Controls', 'CastleControl.TCastleControl.html#Controls'); ?>
+ (if you use Lazarus forms with <?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?>).
 The controls on this list are ordered from the back to front. But usually you don't need to remember that,
 as you add them using the aptly-named methods
 <?php api_link('InsertFront', 'CastleUIControls.TChildrenControls.html#InsertFront'); ?> or
@@ -170,11 +170,11 @@ The <?php api_link('TCastleUserInterface', 'CastleUIControls.TCastleUserInterfac
 and moved along with parent.
 
 <p>Note that you can also render and handle inputs using the
-<?php api_link('TCastleWindowBase', 'CastleWindow.TCastleWindowBase.html'); ?> or
-<?php api_link('TCastleControlBase', 'CastleControl.TCastleControlBase.html'); ?> callbacks,
-like <?php api_link('Window.OnRender', 'CastleWindow.TCastleWindowBase.html#OnRender'); ?>,
-<?php api_link('Window.OnPress', 'CastleWindow.TCastleWindowBase.html#OnPress'); ?> and
-<?php api_link('Window.OnUpdate', 'CastleWindow.TCastleWindowBase.html#OnUpdate'); ?>.
+<?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?> or
+<?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?> callbacks,
+like <?php api_link('Window.OnRender', 'CastleWindow.TCastleWindow.html#OnRender'); ?>,
+<?php api_link('Window.OnPress', 'CastleWindow.TCastleWindow.html#OnPress'); ?> and
+<?php api_link('Window.OnUpdate', 'CastleWindow.TCastleWindow.html#OnUpdate'); ?>.
 But usually most of your rendering and input handling should be done inside some
 <?php api_link('TCastleUserInterface', 'CastleUIControls.TCastleUserInterface.html'); ?>
  descendant, most importantly inside
@@ -211,8 +211,8 @@ often used controls are:
 <?php echo $toc->html_section(); ?>
 
 <p>You simply create an instance of any class you like, and add it as a children
-of <?php api_link('Window.Controls', 'CastleWindow.TCastleWindowBase.html#Controls'); ?>,
- <?php api_link('CastleControl.Controls', 'CastleControl.TCastleControlBase.html#Controls'); ?>
+of <?php api_link('Window.Controls', 'CastleWindow.TCastleWindow.html#Controls'); ?>,
+ <?php api_link('CastleControl.Controls', 'CastleControl.TCastleControl.html#Controls'); ?>
  or another (parent) <?php api_link('TCastleUserInterface', 'CastleUIControls.TCastleUserInterface.html'); ?>.
  Note that <?php api_link('TCastleUserInterface', 'CastleUIControls.TCastleUserInterface.html'); ?> is a descendant
  of the standard <code>TComponent</code> property, so you can use the standard "ownership"
@@ -255,8 +255,8 @@ The children are always drawn on top of their parent.
     <?php api_link('Press', 'CastleUIControls.TInputListener.html#Press'); ?> method will return <code>false</code>)
     then the event is passed to the parent. If no UI control processes a press event,
     it is passed to the
-    <?php api_link('TCastleWindowBase.OnPress', 'CastleWindow.TCastleWindowBase.html#OnPress'); ?> or
-    <?php api_link('TCastleControlBase.OnPress', 'CastleControl.TCastleControlBase.html#OnPress'); ?>.
+    <?php api_link('TCastleWindow.OnPress', 'CastleWindow.TCastleWindow.html#OnPress'); ?> or
+    <?php api_link('TCastleControl.OnPress', 'CastleControl.TCastleControl.html#OnPress'); ?>.
 
     <p>Note that the <b>input events are only send to the controls under the pointer</b>
     (mouse or touch position). Although this is configurable using
@@ -295,7 +295,7 @@ The children are always drawn on top of their parent.
     When the parent control is resized (e.g. when user resizes the window),
     children are automatically repositioned correctly.
     This usually avoids the need to react to window size changes in callbacks like
-     <?php api_link('Window.OnResize', 'CastleWindow.TCastleWindowBase.html#OnResize'); ?>
+     <?php api_link('Window.OnResize', 'CastleWindow.TCastleWindow.html#OnResize'); ?>
      or <?php api_link('TCastleUserInterface.Resize', 'CastleUIControls.TInputListener.html#Resize'); ?> implementations.</p>
   </li>
 

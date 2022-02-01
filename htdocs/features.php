@@ -318,7 +318,7 @@ See a few videos from our <a href="https://www.youtube.com/c/CastleGameEngineX3d
     properties.
 
   <li><p><b>Anti-aliasing</b> (by OpenGL multi-sampling),
-    see <?php api_link('AntiAliasing', 'CastleWindow.TCastleWindowBase.html#AntiAliasing'); ?>
+    see <?php api_link('AntiAliasing', 'CastleWindow.TCastleWindow.html#AntiAliasing'); ?>
     property.
     </li>
 
@@ -439,8 +439,8 @@ See a few videos from our <a href="https://www.youtube.com/c/CastleGameEngineX3d
     ), 'auto', 'left');
     ?>
 
-  <li><p>We have ready window classes (<code>TCastleWindowBase</code>)
-    and Lazarus components (<code>TCastleControlBase</code>) to make simple
+  <li><p>We have ready window classes (<code>TCastleWindow</code>)
+    and Lazarus components (<code>TCastleControl</code>) to make simple
     3D model browser, on a Lazarus form or independent from Lazarus LCL.
     The engine is integrated with Lazarus &mdash;
     we have various <b>Lazarus components</b>.</li>

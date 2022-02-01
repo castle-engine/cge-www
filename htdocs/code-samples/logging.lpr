@@ -2,7 +2,7 @@
 
 uses CastleLog, CastleWindow, CastleColors, CastleControls;
 var
-  Window: TCastleWindowBase;
+  Window: TCastleWindow;
   Lab: TCastleLabel;
 begin
   InitializeLog;
@@ -12,7 +12,7 @@ begin
   WritelnWarning('My Warning');
 
   // display the LogOutput value in a window
-  Window := TCastleWindowBase.Create(Application);
+  Window := TCastleWindow.Create(Application);
 
   Lab := TCastleLabel.Create(Application);
   Lab.Caption := 'Logging to ' + LogOutput;

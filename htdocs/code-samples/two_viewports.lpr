@@ -2,14 +2,14 @@ uses SysUtils, CastleColors, CastleSceneCore, CastleScene, CastleFilesUtils,
   CastleWindow, CastleViewport, CastleControls, CastleUIControls,
   CastleCameras, CastleVectors;
 var
-  Window: TCastleWindowBase;
+  Window: TCastleWindow;
   Navigation: TCastleWalkNavigation;
   MainViewport: TCastleViewport;
   Scene: TCastleScene;
   AdditionalViewport: TCastleViewport;
   AdditionalViewportContainer: TCastleRectangleControl;
 begin
-  Window := TCastleWindowBase.Create(Application);
+  Window := TCastleWindow.Create(Application);
   Window.Container.UIReferenceWidth := 1024;
   Window.Container.UIReferenceHeight := 768;
   Window.Container.UIScaling := usEncloseReferenceSize;

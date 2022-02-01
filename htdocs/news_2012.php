@@ -107,7 +107,7 @@ Input_UseLifePotion.Assign(K_L, K_None, #0, false, mbLeft);
         <p>Then use it in <code>TCastleWindow.OnPress</code> or <code>TCastleControl.OnPress</code> callback, or in an overridden <code>TInputListener.Press</code> method (<code>TInputListener</code> is an ancestor for many things, like <code>TCamera</code>, <code>TUIControl</code>, <code>TCastleSceneManager</code>) like</p>
 
 <pre>
-procedure Press(Window: TCastleWindowBase; const Event: TInputPressRelease);
+procedure Press(Window: TCastleWindow; const Event: TInputPressRelease);
 begin
   if Input.IsEvent(Event) then ...
 end;
@@ -118,7 +118,7 @@ end;
         <p>You can of course still hardcode the particular keys/mouse buttons etc., if you want. It\'s still simple as the <code>TInputPressRelease</code> is a pretty trivial structure, it has <code>EventType</code> field, and even helpers like <code>IsKey</code>. So you can do</p>
 
 <pre>
-procedure Press(Window: TCastleWindowBase; const Event: TInputPressRelease);
+procedure Press(Window: TCastleWindow; const Event: TInputPressRelease);
 begin
   if Input.IsKey(CharEscape) then ...
 
@@ -268,8 +268,8 @@ The engine draft tutorial, see DRAFT.engine_tutorial.txt, is also being extended
   <li>Our "thunder" effect (blinking light and some sound), used previously in "cages" level of castle1 and lets_take_a_walk, is now remade as pure X3D prototype. This means it\'s simpler, more configurable, and doesn\'t use a single line of ObjectPascal code :) See it\'s implementation here: <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle/data/levels/cages/thunder.x3dv">thunder.x3dv</a>, examples how it\'s used are at the bottom of <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/examples/3d_sound_game/data/levels/base/base.x3dv">base.wrl</a> and <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle/data/levels/cages/cages_final.x3dv">cages_final.x3dv</a>.</li>
   <li><code>examples/3d_sound_game/lets_take_a_walk</code> uses <code>CastleLevel</code>, as a first demo (besides the castle1 game).</li>
   <li>New <a href="https://castle-engine.io/view3dscene.php">view3dscene</a> menu item <i>"Remove placeholder nodes from "Castle Game Engine" levels"</i>, a general way to remove some specially-named nodes (see <a href="https://castle-engine.io/creating_data_levels.php">castle development doc</a> for reference of most of them, see sources for all). Removed previous castle-process-3d-model.lpr, it was uncomfortable and didn\'t really prove useful.</li>
-  <li>Implement TCastleWindowBase.RedBits, GreenBits, BlueBits, in addition to making ColorBits cross-platform and sensible (reads/writes RGB properties). glinformation gets --red-bits etc. options.</li>
-  <li>Comfortable TCastleWindowBase.AntiAliasing property, instead of previous GLAntiAliasing unit. You can now simply use TCastleWindowBase.AntiAliasing instead of TCastleWindowBase.MultiSampling for a little higher-level approach for MSAA.</li>
+  <li>Implement TCastleWindow.RedBits, GreenBits, BlueBits, in addition to making ColorBits cross-platform and sensible (reads/writes RGB properties). glinformation gets --red-bits etc. options.</li>
+  <li>Comfortable TCastleWindow.AntiAliasing property, instead of previous GLAntiAliasing unit. You can now simply use TCastleWindow.AntiAliasing instead of TCastleWindow.MultiSampling for a little higher-level approach for MSAA.</li>
 </ol>
 
 <p>Oh, and since I just don\'t have any interesting screenshots for this news item (mostly code changes, interesting for developers...), the side of this news post contains just some best movies from the previous news in this year, possible thanks to Jan Adamec (RoomArranger, 3D mouse, SSAO) and Victor Amat (water with caustics). Thanks again!</p>

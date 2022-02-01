@@ -1,7 +1,7 @@
 uses CastleWindow, CastleUIControls, CastleOnScreenMenu;
 
 var
-  Window: TCastleWindowBase;
+  Window: TCastleWindow;
   OnScreenMenu1: TCastleOnScreenMenu;
 
 type
@@ -21,7 +21,7 @@ begin
 end;
 
 begin
-  Window := TCastleWindowBase.Create(Application);
+  Window := TCastleWindow.Create(Application);
   Window.Open;
 
   OnScreenMenu1 := TCastleOnScreenMenu.Create(Application);

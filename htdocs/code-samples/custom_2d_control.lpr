@@ -9,7 +9,7 @@ type
   end;
 
 var
-  Window: TCastleWindowBase;
+  Window: TCastleWindow;
   PlayerInformation: TPlayerInformation;
 
 type
@@ -30,7 +30,7 @@ end;
 var
   PlayerHud: TPlayerHud;
 begin
-  Window := TCastleWindowBase.Create(Application);
+  Window := TCastleWindow.Create(Application);
   Window.Open;
 
   PlayerInformation := TPlayerInformation.Create(Application);

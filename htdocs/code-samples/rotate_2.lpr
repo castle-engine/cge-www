@@ -1,12 +1,12 @@
 uses CastleWindow, CastleSceneCore, CastleScene, CastleVectors, CastleFilesUtils,
   CastleViewport, CastleTransform;
 var
-  Window: TCastleWindowBase;
+  Window: TCastleWindow;
   Viewport: TCastleViewport;
   Scene1, Scene2: TCastleScene;
   Transform: TCastleTransform;
 begin
-  Window := TCastleWindowBase.Create(Application);
+  Window := TCastleWindow.Create(Application);
   Window.Open;
 
   Viewport := TCastleViewport.Create(Application);

@@ -1,11 +1,11 @@
 uses CastleWindow, CastleUIControls, CastleControls, CastleColors;
 
 var
-  Window: TCastleWindowBase;
+  Window: TCastleWindow;
   MyLabel: TCastleLabel;
   MyButton: TCastleButton;
 begin
-  Window := TCastleWindowBase.Create(Application);
+  Window := TCastleWindow.Create(Application);
   Window.Open;
 
   MyButton := TCastleButton.Create(Application);

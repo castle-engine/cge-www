@@ -96,7 +96,7 @@ cd castle-engine/tools/build-tool/
 
 <ol>
   <li>
-    <p>Install in Lazarus <code>castle_components.lpk</code> package following <a href="https://castle-engine.io/manual_lazarus_control.php">the documentation how to get TCastleControlBase working</a>. As editor uses <code>TCastleControlBase</code>, this is a necessary step when building editor yourself.
+    <p>Install in Lazarus <code>castle_components.lpk</code> package following <a href="https://castle-engine.io/manual_lazarus_control.php">the documentation how to get TCastleControl working</a>. As editor uses <code>TCastleControl</code>, this is a necessary step when building editor yourself.
 
   <li>
     <p>Open in Lazarus <code>castle-engine/tools/castle-editor/castle-editor.lpi</code> and use <i>"Compile"</i> command (in the <i>"Run"</i> menu).

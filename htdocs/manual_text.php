@@ -54,10 +54,10 @@ So you can simply draw text like this:
 
 <p>You should place such drawing code inside a render method,
 for example inside the
- <?php api_link('OnRender event of TCastleWindowBase',
- 'CastleWindow.TCastleWindowBase.html#OnRender'); ?> or
- <?php api_link('OnRender event of TCastleControlBase',
- 'CastleControl.TCastleControlBase.html#OnRender'); ?> or
+ <?php api_link('OnRender event of TCastleWindow',
+ 'CastleWindow.TCastleWindow.html#OnRender'); ?> or
+ <?php api_link('OnRender event of TCastleControl',
+ 'CastleControl.TCastleControl.html#OnRender'); ?> or
 inside the overridden <?php api_link('TCastleUserInterface.Render',
   'CastleUIControls.TCastleUserInterface.html#Render'); ?> implementation.
 See <?php echo a_href_page('the manual about 2D drawing',
