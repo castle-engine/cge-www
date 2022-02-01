@@ -83,9 +83,12 @@ This should be compiled for all Android architectures, so you actually need 2 ve
 * Arm 32-bit (called just `arm` by various tools)
 * and Arm 64-bit (called `aarch64` by various tools).
 
-In theory, only one of them can suffice, but then your application will only support one Android architecture. You would then build the application like * `castle-engine --cpu=arm --os=android` (to make 32-bit-only application)
+In theory, only one of them can suffice, but then your application will only support one Android architecture. You would then build the application like
+
+* `castle-engine --cpu=arm --os=android` (to make 32-bit-only application)
 
 * or `castle-engine --cpu=aarch64 --os=android` (to make 64-bit-only application).
+
 For now, we strongly advise that you provide both SO versions, and compile your APK for both architectures using simple `castle-engine --target=android`.
 
 Example services that includes SO files see:

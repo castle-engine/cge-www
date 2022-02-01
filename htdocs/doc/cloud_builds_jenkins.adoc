@@ -64,7 +64,7 @@ pipeline {
         sh 'castle-engine package --os=linux --cpu=x86_64'
         sh 'castle-engine package --os=win32 --cpu=i386'
         sh 'castle-engine package --os=win64 --cpu=x86_64'
-        sh 'castle-engine package --os=android --cpu=arm'
+        sh 'castle-engine package --target=android'
       }
     }
   }
@@ -94,7 +94,7 @@ pipeline {
     }
     stage('Build Mobile') {
       steps {
-        sh 'castle-engine package --os=android --cpu=arm --verbose'
+        sh 'castle-engine package --target=android --verbose'
       }
     }
   }
@@ -124,7 +124,7 @@ pipeline {
         sh 'source /usr/local/fpclazarus/bin/setup.sh trunk && castle-engine package --os=linux --cpu=x86_64'
         sh 'source /usr/local/fpclazarus/bin/setup.sh trunk && castle-engine package --os=win32 --cpu=i386'
         sh 'source /usr/local/fpclazarus/bin/setup.sh trunk && castle-engine package --os=win64 --cpu=x86_64'
-        sh 'source /usr/local/fpclazarus/bin/setup.sh trunk && castle-engine package --os=android --cpu=arm'
+        sh 'source /usr/local/fpclazarus/bin/setup.sh trunk && castle-engine package --target=android'
       }
     }
   }
