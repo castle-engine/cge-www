@@ -6,12 +6,13 @@ castle_header('X3D MultiTexturing problems', array(
 
 $toc = new TableOfContents(
   array(
+    new TocItem('Future: where do we go with MultiTexture in X3D > 4.0', 'future'),
     new TocItem('Tests', 'tests'),
     new TocItem('Details about browsers tested', 'tests_details', 1),
     new TocItem('Problems and proposed solutions', 'problems_solutions'),
     new TocItem('Proposed improved MultiTexture.mode specification', 'proposed_mode'),
     new TocItem('Proposed MultiTexture.source extension', 'proposed_source'),
-    new TocItem('Related single-texturing problem: RGB texture color by default modulates material color', 'default_texture_mode'),
+    new TocItem('(FIXED IN X3D 4) Related single-texturing problem: RGB texture color by default modulates material color', 'default_texture_mode'),
   ));
 
 $tests_url = 'https://raw.githubusercontent.com/castle-engine/demo-models/master/multi_texturing/';
@@ -19,18 +20,20 @@ $tests_url = 'https://raw.githubusercontent.com/castle-engine/demo-models/master
 
 <?php echo pretty_heading('X3D MultiTexturing problems and proposed solutions'); ?>
 
-<p>The X3D specification has, unfortunately,
-numerous problems related to it's multi-texturing nodes
-(<code>MultiTexture</code>,
-<code>MultiTextureCoordinate</code>,
-<code>MultiTextureTransform</code>).
-We have documented these problems below, along with the tests on various
+<p>The X3D specification has unfortunately
+some problems related to it's multi-texturing nodes,
+mostly <code>MultiTexture</code> node.
+I have documented these problems below, along with the tests on various
 X3D browsers, and with the proposed solutions.
-
-<p><a href="https://github.com/michaliskambi/x3d-tests/wiki/Deprecate-some-unused-and-badly-specified-MultiTexturing-specification-pieces">See my wiki page "Deprecate some unused and badly specified MultiTexturing specification pieces"</a> about future multi-texturing changes I would like to see in X3D.
 
 <p>Contents:
 <?php echo $toc->html_toc(); ?>
+
+<?php echo $toc->html_section(); ?>
+
+<p><a href="https://github.com/michaliskambi/x3d-tests/wiki/Deprecate-some-unused-and-badly-specified-MultiTexturing-specification-pieces">See my wiki page "Deprecate some unused and badly specified MultiTexturing specification pieces"</a> about future multi-texturing changes I would like to see in X3D.
+
+<p>In short &mdash; I think we should just deprecate (a subset of) <code>MultiTexture</code> node. It does not have much practical usage, it does not have much testcases, there seems to be little desire in Web3D community to fix it &mdash; likely because not many people use it. Deprecating/removing some pieces of X3D spec around <code>MultiTexture</code> node seems like the most efficient thing to do.
 
 <?php echo $toc->html_section(); ?>
 
@@ -329,6 +332,11 @@ without any answer so far.)
     when used for both RGB and alpha or when used for only RGB
     or only alpha.
 
+    <p><b>Relevant section of latest X3D specification:</b>
+    <a href="<?php echo x3d_spec_latest_url('texturing', 'MultiTexture'); ?>">MultiTexture</a>.
+
+    <p><b>Status: not fixed</b>.
+
   <li><p>In <i>Table 18.3 - Multitexture modes</i>, "REPLACE" mode
     is specified as "Arg2", which makes no sense. Arg2 comes
     by default from previous unit (or material color),
@@ -355,6 +363,11 @@ without any answer so far.)
     (and would clarify that Octaga "reversed order"
     is incorrect &mdash; everyone else does it correctly).
 
+    <p><b>Relevant section of latest X3D specification:</b>
+    <a href="<?php echo x3d_spec_latest_url('texturing', 'MultiTexture'); ?>">MultiTexture</a>.
+
+    <p><b>Status: not fixed</b>.
+
   <li><p>The meaning of <code>ADDSIGNED</code> and <code>ADDSIGNED2X</code> modes is not clear.
     Spec doesn't give the exact equation, and from the wording description
     it's not clear whether the -0.5 bias is applied to the sum
@@ -374,6 +387,12 @@ without any answer so far.)
     as "-0.5 bias is added to the sum",
     this follows OpenGL <code>GL_ADD_SIGNED</code> constant, so I guess this
     was the intention of the spec.
+
+    <p><b>Relevant section of latest X3D specification:</b>
+    <a href="<?php echo x3d_spec_latest_url('texturing', 'MultiTexture'); ?>">MultiTexture</a>.
+
+    <p><b>Status: not fixed</b>.
+    <a href="https://github.com/michaliskambi/x3d-tests/wiki/Deprecate-some-unused-and-badly-specified-MultiTexturing-specification-pieces">My current opinion: fix this by just deprecating ADDSIGNED, ADDSIGNED2X in X3D &gt; 4</a>.
 
   <li><p>Some modes say explicitly what happens with
     alpha channel, but some do not. This is especially troublesome
@@ -400,6 +419,11 @@ without any answer so far.)
     (<i>Precise and corrected MultiTexture.mode specification</i>)
     makes it clear how to use each mode for only RGB, or only alpha, or both.
 
+    <p><b>Relevant section of latest X3D specification:</b>
+    <a href="<?php echo x3d_spec_latest_url('texturing', 'MultiTexture'); ?>">MultiTexture</a>.
+
+    <p><b>Status: not fixed</b>.
+
   <li><p>It's not specified what channels are inverted by
     the <code>function="COMPLEMENT"</code> value. Well, obviously RGB are inverted,
     but is alpha channel inverted too?
@@ -414,20 +438,54 @@ without any answer so far.)
     This seems more suitable for usual cases, and follows the majority
     of implementations.
 
-  <li><p>(FIXED IN X3D 4.0) The paragraphs for <code>MultiTextureTransform</code>
+    <p><b>Relevant section of latest X3D specification:</b>
+    <a href="<?php echo x3d_spec_latest_url('texturing', 'MultiTexture'); ?>">MultiTexture</a>.
+
+    <p><b>Status: not fixed</b>.
+    <a href="https://github.com/michaliskambi/x3d-tests/wiki/Deprecate-some-unused-and-badly-specified-MultiTexturing-specification-pieces">My current opinion: fix this by just deprecating function="COMPLEMENT" in X3D &gt; 4</a>.
+
+  <li><p>The paragraphs for <code>MultiTextureTransform</code>
     (<i>texture coordinates for channel 0 are replicated...</i>)
     and <code>MultiTextureCoordinate</code>
     (<i>identity matrices are assumed...</i>) should be swapped in
     the spec.
 
+    <p><b>Relevant section of latest X3D specification:</b>
+    <a href="<?php echo x3d_spec_latest_url('texturing', 'MultiTextureTransform'); ?>">MultiTextureTransform</a>.
+
+    <p><b>Status: fixed in X3D 4.0</b>.
+
   <li><p><code>MODULATEINVCOLOR_ADDALPHA</code> refers
     to non-existing mode
     <code>MODULATECOLOR_ADDALPHA</code> (that doesn't invert the color).
 
-  <li><p><i>(Deleted. This point contained notes about
-    <code>source="DIFFUSE"</code> and <code>source="SPECULAR"</code>,
-    but actually spec isn't at fault here. I was at fault,
-    reading the spec incorrectly.)</i>
+    <p><b>Relevant section of latest X3D specification:</b>
+    <a href="<?php echo x3d_spec_latest_url('texturing', 'MultiTexture'); ?>">MultiTexture</a>.
+
+    <p><b>Status: not fixed</b>.
+
+  <li><p>Specification has 2 <code>source</code> values that refer to Phong lighting model ("DIFFUSE", "SPECULAR") and Gouraud shading:
+
+<pre>
+"DIFFUSE"  | The texture argument is the diffuse color interpolated from vertex components during Gouraud shading.
+"SPECULAR" | The texture argument is the specular color interpolated from vertex components during Gouraud shading.
+</pre>
+
+    <p>But
+
+    <ol>
+      <li>
+        <p>Browsers don't have to do Gouraud shading (Most browsers now allow both Phong and Gouraud shading).
+
+      <li>
+        <p>In X3D 4 we have new lighting models (physical, unlit) that don't even have diffuse/specular factors.
+    </ol>
+
+    <p><b>Relevant section of latest X3D specification:</b>
+    <a href="<?php echo x3d_spec_latest_url('texturing', 'MultiTexture'); ?>">MultiTexture</a>.
+
+    <p><b>Status: not fixed</b>.
+    <a href="https://github.com/michaliskambi/x3d-tests/wiki/Deprecate-some-unused-and-badly-specified-MultiTexturing-specification-pieces">My current opinion: fix this by just deprecating source="DIFFUSE/SPECULAR" in X3D &gt; 4</a>.
 
 <?php /*
   I deleted this section, and keep it in comments only to remind myself
@@ -484,66 +542,11 @@ without any answer so far.)
         2. according to X3D lighting spec, the texture color calculation
         should happen before the shading.
 
-      <li><p>Moreover, speaking about diffuse or specular colors
-        at this point doesn't really make much sense.
-        According to
-        lighting equations from X3D spec <i>"17.2.2.4 Lighting equations"</i>,
-        the texture color only changes (replaces or modulates) the material diffuse
-        color, which is then used inside lighting equations.
-
-        <p>This means that <code>source="SPECULAR"</code> doesn't make much
-        practical sense. Why use the specular color inside diffuse factor
-        calculation?
-
-        <p>It would be best to remove <code>source="DIFFUSE"</code>
-        and <code>source="SPECULAR"</code> and add <code>source="MATERIAL"</code>,
-        with the meaning <i>This is the Material diffuse color
-        (eventually replaced with the <code>Color</code> or <code>ColorRGBA</code>
-        node). The result of multi-texturing is the calculated diffuse color
-        used as <code>I<sub>rgb</sub></code> and <code>A</code> parameters inside
-        lighting equations. This color is then used for subsequent
-        lighting calculations (is multiplied by diffuse factor,
-        summed with specular, multiplied by light color and summed for all lights,
-        and so on)."</i>
-      </li>
-
-      <li><p>In all of this, there is also a recurring problem
-        of X3D lighting specification.
-
-        <p>The implementations that use Gouraud shading (for example,
-        OpenGL fixed-function implementations) do not really
-        implement the X3D lighting equations.
-        It's not possible, really.
-        Textures have to be mixed <b>after</b> lighting calculation
-        in case of Gouraud shading.
-        Which means that we have to calculate non-textured source color,
-        with lighting (with all diffuse and specular and all lights already summed),
-        and only then it can be used for textures.
-
-        <p>This is actually a problem of X3D lighting specification,
-        for which we have no simple solution (it would require changing
-        the lighting equations). Anyway, it makes the
-        <code>source="MATERIAL"</code> sound more sensible than
-        <code>source="DIFFUSE"</code> and <code>source="SPECULAR"</code>:
-        in cases of these implementations, the source <i>must</i> already
-        include both diffuse and specular.
-
-      <li><p><i>Our current implementation</i>: Currently our implementation
-        always mixes the textures <b>after</b> lighting calculation.
-        Just like described above for Gouraud shading.
-        We do it also in case of Phong shading for now (for consistency),
-        although the Phong shading may be fixed one day.
-
-        <p>We treat both <code>source="DIFFUSE"</code>
-        and <code>source="SPECULAR"</code> as equal, and actually they just
-        mean "the result of lighting equations (for non-textured appearance)".
-    </ol>
-  </li>
-
+    ... rest of old notes removed, not relevant.
 */
 ?>
 
-  <li><p>(FIXED IN X3D 4.0) The default mode is always modulate, for both RGB and grayscale textures.
+  <li><p>The default mode is always modulate, for both RGB and grayscale textures.
     This is inconsistent with single-texturing (using normal
     <code>ImageTexture</code> instead of <code>MultiImageTexture</code>),
     when the default mode is to <i>modulate</i> for grayscale textures,
@@ -562,9 +565,11 @@ without any answer so far.)
     modulates material color</a> for a more detailed description of this problem.
     Existing browsers already disagree on this. Changing the spec to say
     <i>"we always modulate by default"</i> would greatly simplify the situation.
+
+    <p><b>Status: fixed in X3D 4.0</b>.
   </li>
 
-  <li><p>(FIXED IN X3D 4.0) It would be useful to clarify what happens with grayscale texture
+  <li><p>It would be useful to clarify what happens with grayscale texture
     images and images without alpha channel. Following the GPU behaviors
     (and common sense), we propose to add such statement to X3D specification:
 
@@ -575,6 +580,8 @@ without any answer so far.)
       <li><i>Texture without an alpha channel is equivalent to a texture with
         alpha channel filled with value 1.0 (completely opaque).</i>
     </ol>
+
+    <p><b>Status: fixed in X3D 4.0</b>.
 </ol>
 
 <?php echo $toc->html_section(); ?>
