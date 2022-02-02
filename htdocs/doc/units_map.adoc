@@ -3,13 +3,17 @@ include::common.adoc[]
 
 == Introduction
 
-_Castle Game Engine_ includes a _lot_ of units. They are divided into a couple of groups, which you can see as subdirectories in the engine `src` subdirectory: `transform`, `audio` and so on. The groups are shortly described below.
+_Castle Game Engine_ includes a lot of units. They are divided into groups, which correspond to the subdirectories in the engine `src` subdirectory: `transform`, `audio` and so on. The groups are shortly described below.
 
-One of the ways how we keep the engine architecture maintainable is to strictly limit the dependencies between unit groups. For example, the transformation and UI stuff depends on images, but the units in the `images` group cannot depend on units in the `transform` or `ui` groups. A strict dependency tree allows to easily debug some hard problems (when you want to strip the used units, to get to the "bottom of the problem").
+## Dependencies
 
-We list the dependencies below. *They can be automatically checked* (the tool for this can be found in `tools/internal/check_units_dependencies/` in CGE GitHub repo).
+One of the ways how we keep the engine maintainable is to limit the dependencies between unit groups. For example, the transformation and UI stuff depends on images, but the units in the `images` group cannot depend on units in the `transform` or `ui` groups. A simple dependency tree allows to easily debug some hard problems (when you want to strip the used units, to get to the "bottom of the problem").
 
-*TODO*: Due to the need to support some deprecated methods, right now `CastleCameras` depends on `CastleViewport`, which breaks the dependencies outlined below, making `transform` and `scene` inter-dependent. This is an exception, and otherwise we should still follow these dependencies, and this exception will be fixed in future releases.
+The allowed dependencies are listed below. In short, the list of subdirectories goes from "lower level" to "higher level" in the sections below.
+
+*These dependencies are automatically checked* (by https://github.com/castle-engine/castle-engine/tree/master/tools/internal/check_units_dependencies[tools/internal/check_units_dependencies], executed by Jenkins after every push).
+
+NOTE: Temporarily, some units are allowed exception to break from this rule. Right now 3 units have such exception, i.e. they actually break dependencies outlined below. See https://github.com/castle-engine/castle-engine/blob/master/tools/internal/check_units_dependencies/check_one_unit_dependencies.lpr#L91[AllowedExceptions list in check_units_dependencies]. This is a TODO -- we *will* fix those. It's also a practical decision -- while we want to watch over these dependencies, in practice breakage (in some cases) has no bad consequences.
 
 == Unit groups
 

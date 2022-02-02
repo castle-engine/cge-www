@@ -402,6 +402,7 @@ $castle_sitemap = array(
           ),
           'doc/coding_conventions' => array('title' => 'Coding Conventions'),
           'doc/coding_traps' => array('title' => 'Coding Traps'),
+          'doc/units_map' => array('title' => 'Units Map'),
           // 'engine_doc' => array('title' => 'Internals documentation'), // too outdated
           'doc/cloud_builds_jenkins' => array('title' => 'Jenkins: Automatic cloud builds for CGE projects'),
           'doc/docker' => array('title' => 'Docker: Get CGE packaged with various tools (like cross-compilers, Android SDK, texture compression tools)'),
