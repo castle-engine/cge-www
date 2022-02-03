@@ -37,10 +37,7 @@ X3D browsers, and with the proposed solutions.
 
 <?php echo $toc->html_section(); ?>
 
-<p>X3D multi-texturing tests are available <a href="https://github.com/castle-engine/demo-models/tree/master/multi_texturing">inside the Castle Game Engine "Demo Models" repository</a>.
-You can also <a href="https://sourceforge.net/projects/castle-engine/files/demo_models/multi_texturing_tests.zip/download">download zip with all multi-texturing test files</a>.
-For ease of browsing / downloading, everything there is self-contained,
-i.e. these test files do not refer to any files outside.
+<p>X3D multi-texturing tests are available <a href="https://github.com/castle-engine/demo-models/tree/master/multi_texturing">inside the Castle Game Engine "Demo Models" repository</a>. It's easiest to just download whole <a href="https://github.com/castle-engine/demo-models">demo-models</a> repo to your disk, and then explore <code>multi_texturing</code> subdirectory. All tests are in X3D classic and XML encodings (equivalent), and with reference screenshots.
 
 <p>All tests are also listed below, roughly in the order basic -&gt; advanced.
 Click on the image to view reference rendering
