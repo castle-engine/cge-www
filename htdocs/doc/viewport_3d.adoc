@@ -298,7 +298,7 @@ It is possible to optimize the usage of resources, when you want to instantiate 
 NOTE: If you need to translate even this one car, then add an intermediate transformation like `TransformCar`. Add this to `Viewport.Items`, and drag `SceneCar` to be a child of `TransformCar`. Then you can change translation of `TransformCar` to move your 1st car.
 +
 NOTE: You can also just disregard this advise, and leave non-zero translation on `SceneCar`. It works, but it means that each reference also has a shift -- you'll see what we mean by this next. It may be non-intuitive at the beginning.
-. Add a `TCastleTransformReference` to the `Viewport.Items`.
+. Add a cgeref:TCastleTransformReference[] to the `Viewport.Items`.
 .. Set it's `Reference` property to point to the `SceneCar`.
 .. And move it wherever you like.
 .. Change it's name to be something better than default `TransformReference1`. We propose to change it to `SceneCarReference1`.
