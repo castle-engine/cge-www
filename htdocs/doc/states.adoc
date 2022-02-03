@@ -1,0 +1,193 @@
+# Advanced: Multiple States
+include::common.adoc[]
+
+## Introduction
+
+In larger applications you will likely use many states.
+
+You can add new state to your application using the menu item _Code -> New Unit -> Unit With State..._ in CGE editor. It just creates a new Pascal unit that defines a new `TUIState` descendant and loads a new user interface design.
+
+cgeimg::block[
+  zombie_fighter_1.png|Multiple viewports and basic game UI,
+  zombie_fighter_2.png|UI dialog\, in a state over the game UI
+]
+
+## Changing state
+
+At runtime, you can change from one state into another using:
+
+. You can set cgeref:TUIState.Current[TUIState.Current := StateXxx] to make the new state the _one and only_ currently active state.
++
+This is the most common way to change state. For example use this to change from _main menu_, to _loading_, to _main game_, to _game over_ states.
++
+Usually the implementation of one state has code to change it into another state. For example, this is how `StateMainMenu` can react to user pressing _Enter_ to switch to `StatePlay`:
++
+[source,pascal]
+----
+function TStateMainMenu.Press(const Event: TInputPressRelease): Boolean;
+begin
+  Result := inherited;
+
+  if Event.IsKey(keyEnter) then
+  begin
+    TUIState.Current := StatePlay;
+    Exit(ExclusiveEvents);
+  end;
+end;
+----
+
+. You can alternatively use cgeref:TUIState.Push[] to _push_ new state on top of the stack, making it the front-most state (but not necessarily the only state active right now). Such state will usually _pop_ itself from the stack, using cgeref:TUIState.Pop[], although you can also set cgeref:TUIState.Current[] to just change whole stack into a single new state.
++
+Using a state stack makes sense when you want to display one state on top of another. For example, you may want to push _options_ state to make options UI visible on top of the game. The game can even be still animated underneath (it is up to you to pause the game in such case of necessary, e.g. by cgeref:TCastleAbstractRootTransform.Paused[Viewport.Items.Paused]).
++
+For example, this is how `StatePlay` could display `StateOptions` on top:
++
+[source,pascal]
+----
+function TStatePlay.Press(const Event: TInputPressRelease): Boolean;
+begin
+  Result := inherited;
+  if Result then Exit; // allow the ancestor to handle keys
+
+  if Event.IsKey(keyEscape) and
+     (TUIState.CurrentTop = StatePlay) then
+  begin
+    TUIState.Push(StatePause);
+    Exit(true);
+  end;
+end;
+----
++
+The `StateOptions` should in turn pop itself from the stack:
++
+[source,pascal]
+----
+function TStateOptions.Press(const Event: TInputPressRelease): Boolean;
+begin
+  Result := inherited;
+  if Result then Exit; // allow the ancestor to handle keys
+
+  if Event.IsKey(keyEscape) then
+  begin
+    // parameter StatePause is optional here, just allows to make additional check
+    TUIState.Pop(StatePause);
+    Exit(true);
+  end;
+end;
+----
+
+## Creating new states
+
+While in theory you can create instances of the cgeref:TUIState[] at any point, in practice it is usually most comfortable to create all of them at the beginning of the application, in cgeref:TCastleApplication.OnInitialize[Application.OnInitialize] handler.
+
+If you use the _Code -> New Unit -> Unit With State..._ editor menu item, it will automatically edit your cgeref:TCastleApplication.OnInitialize[Application.OnInitialize] handler in (by default) `gameinitialize.pas` unit to create the new state. So it will look like this:
+
+[source,pascal]
+----
+{ One-time initialization of resources. }
+procedure ApplicationInitialize;
+begin
+  ...
+
+  { Create game states and set initial state }
+  StatePlay := TStatePlay.Create(Application);
+  StateMainMenu := TStateMainMenu.Create(Application);
+
+  TUIState.Current := StateMenu;
+end;
+----
+
+Each state loads the _user interface_ appropriate for the given state. The advised way to do this is to set cgeref:TUIState.DesignUrl[] in the overridden state constructor, like this:
+
+[source,pascal]
+----
+constructor TStateMain.Create(AOwner: TComponent);
+begin
+  inherited;
+  DesignUrl := 'castle-data:/gamestatemain.castle-user-interface';
+end;
+----
+
+If you use the _Code -> New Unit -> Unit With State..._ editor menu item, the above code is also automatically created for you.
+
+## Reacting to state start, stop, pause, remove
+
+You can override a number of state methods to react to the state becoming _active_ (when it is started) and _resumed_ (when it is started _and_ it is the top of state stack).
+
+* cgeref:TUIState.Start[] is executed when the state starts. This is your typical place to initialize things for this state.
++
+To create a component that lives only until the state stops, you can assign a special owner cgeref:TUIState.FreeAtStop[] to this component. This is essentially equivalent to just using owner `nil` and manually freeing the component in cgeref:TUIState.Stop[].
+
+* cgeref:TUIState.Start[] is executed when the state stops.
+
+* cgeref:TUIState.Resume[] is executed when the state is started, and moreover it becomes the _top_ state on the stack.
+
+* cgeref:TUIState.Pause[] is executed when the state is started, but it is no longer the _top_ state on the stack.
++
+Note that the state is not automatically _paused_ for the user in any way, i.e. a _paused state_ can still animate anything, process inputs and generally act like a normal state. It is your responsibility to pause any animations you want in the cgeref:TUIState.Pause[] method, if you want it.
+// the state to have some particular look (e.g. be visible but frozen) when it is active (started) but no longer on top of the state stack.
++
+The paused state will also continue to receive user input (mouse and key) that was not processed by the states higher on the stack. The higher state should return `true` from their input methods, like cgeref:TCastleUserInterface.Press[Press], to mark the input as handled. You can also set cgeref:TUIState.InterceptInput[] to `true` on a higher state to make it pretend that it handles *all* inputs, thus the inputs will not reach states lower on the stack.
+
+////
+The cgeref:TUIState[]
+ is a special cgeref:TCastleUserInterface[]
+ descendant. As such, you can add there more UI children in a number of ways, and you can actually add/remove them
+ at any moment. For example
+
+<ul>
+  <li>Or you can add children in every cgeref:TUIState.Start[]
+    call, overriding it. In this case, you
+    should remove the controls in the cgeref:TUIState.Stop[] method.
+    Or you can set the controls' owner
+    to a special cgeref:TUIState.FreeAtStop[] component,
+    to make them freed and removed automatically at the next
+    cgeref:TUIState.Stop[] call.</li>
+
+  <li>For advanced uses, if you will use the state stack, you can
+    also add / remove children in the
+    cgeref:TUIState.Resume[] and
+    cgeref:TUIState.Pause[] calls.</li>
+</ul>
+////
+
+## Examples
+
+Explore the _"3D FPS game"_ and _"2D game"_ templates, by creating 2 new projects from these templates. Each of these templates creates 2 states, _"MainMenu"_ and _"Play"_. They follow the same pattern:
+
+. Class `TStateMainMenu`, unit `code/statemainmenu.pas`, instance `StateMainMenu`, design `data/statemainmenu.castle-user-interface`.
+
+. Class `TStatePlay`, unit `code/stateplay.pas`, instance `StatePlay`, design `data/stateplay.castle-user-interface`.
+
+Many examples in the engine show even more complicates states setup:
+
+- Platformer demo in link:https://github.com/castle-engine/castle-engine/tree/master/examples/platformer[examples/platformer/] has states for:
++
+--
+[role="compact"]
+- main menu,
+- options (with volume configuration),
+- pause,
+- credits,
+- game over,
+- and of course the actual game.
+--
+
+- Strategy game link:https://github.com/castle-engine/castle-engine/tree/master/examples/tiled/strategy_game_demo[examples/tiled/strategy_game_demo] has multiple states, including:
++
+--
+[role="compact"]
+- main menu,
+- game,
+- "win" states.
+--
+
+- "Zombie fighter" demo link:https://github.com/castle-engine/castle-engine/tree/master/examples/user_interface/zombie_fighter[examples/user_interface/zombie_fighter] has multiple states, including:
++
+--
+[role="compact"]
+- main menu,
+- loading (that displays progress),
+- actual game,
+- modal dialog box.
+--

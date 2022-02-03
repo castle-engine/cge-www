@@ -14,8 +14,6 @@ $toc = new TableOfContents(
     new TocItem('Move the player in the Update method'),
     new TocItem('React to a key press'),
     new TocItem('React to a mouse click or touch'),
-    new TocItem('Using multiple states'),
-    new TocItem('Examples'),
   )
 );
 
@@ -525,39 +523,6 @@ the resulting position to set <code>ImagePlayer.AnchorDelta</code>. The <code>Im
 is just another way to access <code>ImageBackground</code> in this case. We want to calculate new player
 position, in the coordinates of <code>ImagePlayer</code> parent, because that's what
 <code>ImagePlayer.AnchorDelta</code> expects.
-
-<?php echo $toc->html_section(); ?>
-
-<p>You can add new states to your application using the menu item <i>Code -&gt; New Unit -&gt; Unit With State...</i>. It is equivalent to just creating a new Pascal unit that defines a new <code>TUIState</code> descendant and loads a new user interface design.
-
-<p>At runtime, you can change from one state into another using <a href="https://castle-engine.io/apidoc-unstable/html/CastleUIState.TUIState.html#Current">TUIState.Current := StateXxx</a> or <a href="https://castle-engine.io/apidoc-unstable/html/CastleUIState.TUIState.html#Push">TUIState.Push</a> / <a href="https://castle-engine.io/apidoc-unstable/html/CastleUIState.TUIState.html#Pop">TUIState.Pop</a> class methods.
-
-<?php echo $toc->html_section(); ?>
-
-<p>Explore the <i>"3D FPS game"</i> and <i>"2D game"</i> templates, by creating 2 new projects from these templates. Each of these templates creates 2 states, <i>"MainMenu"</i> and <i>"Play"</i>. They follow the same pattern as above:
-
-<ul>
-  <li>
-    <p>Class <code>TStateMainMenu</code>, unit <code>code/statemainmenu.pas</code>, instance <code>StateMainMenu</code>, design <code>data/statemainmenu.castle-user-interface</code>.
-
-  <li>
-    <p>Class <code>TStatePlay</code>, unit <code>code/stateplay.pas</code>, instance <code>StatePlay</code>, design <code>data/stateplay.castle-user-interface</code>.
-</ul>
-
-<p>We have multiple examples showing more complicates states:
-
-<p>Platformer demo in <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/platformer">examples/platformer/</a> has states for:
-
-<ul>
-  <li>main menu,
-  <li>options (with volume configuration),
-  <li>pause,
-  <li>credits,
-  <li>game over,
-  <li>and of course the actual game.
-</ul>
-
-<p>Strategy game demo in <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/tiled/strategy_game_demo">examples/tiled/strategy_game_demo</a> and "zombie fighter" demo in <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/user_interface/zombie_fighter">examples/user_interface/zombie_fighter</a> also feature multiple states.
 
 <?php
 castle_footer();
