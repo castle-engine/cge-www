@@ -7,37 +7,53 @@ cgeimg::float[viewport_3d_nice_view.png|Viewport with 3D design]
 
 ### Overview
 
-The most important _Castle Game Engine_ class to display 3D and 2D assets is cgeref:TCastleScene[]. You simply set the cgeref:TCastleSceneCore.URL[TCastleScene.URL] property to load an asset, like link:glTF[gltf] or link:sprite_sheets[sprite sheet] file.
+The most important _Castle Game Engine_ class to display 3D and 2D models is cgeref:TCastleScene[]. You simply set the cgeref:TCastleSceneCore.URL[TCastleScene.URL] property to load a model, like link:glTF[gltf] or link:sprite_sheets[sprite sheet] file.
 
 You have to insert instances of scenes into a viewport (more precisely, cgeref:TCastleViewport.Items[] tree) to make them actually visible. cgeref:TCastleViewport[] represents a 2D viewport on a screen, within this viewport your world (3D or 2D) is displayed. Viewport is a _user interface_ control, which means that it descends from cgeref:TCastleUserInterface[] and it shares the same feature we've seen in the link:manual_state_events.php[previous chapter about states and UI].
 
 The scenes can be transformed (moved, rotated, scaled) within the viewport. You can arrange them in transformation groups using cgeref:TCastleTransform[]. cgeref:TCastleTransform[] is an ancestor of cgeref:TCastleScene[] that doesn't display anything by itself, but it transforms all the children.
 
-### Viewport.Items, TCastleTransform descendants
+### TCastleTransform descendants
 
 cgeref:TCastleViewport[] has a property cgeref:TCastleViewport.Items[] that holds everything that the viewport displays.
 
-You can add there any classes descending from cgeref:TCastleTransform[]. This includes:
+You can add there any classes descending from cgeref:TCastleTransform[]. We list the most important classes and their properties below.
 
 #### Transform (TCastleTransform)
 
-Use the base cgeref:TCastleTransform[] class to transform (move, rotate, scale) and group the children.
+Use the base cgeref:TCastleTransform[] class to transform and group the children.
+
+The most important properties are cgeref:TCastleTransform.Translation[Translation], cgeref:TCastleTransform.Rotation[Rotation], cgeref:TCastleTransform.Scale[Scale]. Operate on children using methods like cgeref:TCastleTransform.Add[Add], cgeref:TCastleTransform.Remove[Remove].
 
 #### Scene (TCastleScene)
 
-cgeref:TCastleScene[] is the most important class to display 3D and 2D assets. It can render, animate, perform collisions etc.
+cgeref:TCastleScene[] is the most important class to display 3D and 2D models.
+
+It can render, animate, perform collisions etc. Set cgeref:TCastleSceneCore.URL[URL] to load the model. Run animation using cgeref:TCastleSceneCore.PlayAnimation[PlayAnimation]. cgeref:TCastleScene[] descends from cgeref:TCastleTransform[]. So you can also use cgeref:TCastleTransform.Translation[Translation], cgeref:TCastleTransform.Rotation[Rotation], cgeref:TCastleTransform.Scale[Scale] to transform it. Scene can even have children. Use cgeref:TCastleSceneCore.ExposeTransforms[ExposeTransforms] to attach children to animated bones in glTF skeleton.
 
 cgeimg::block[transform_scene.png|TCastleScene allows to place and animate 3D objects in the viewport]
 
 #### Text (TCastleText)
 
-cgeref:TCastleText[] allows to display a text, possibly transformed in 3D. The font is also configurable, using cgeref:TCastleText.CustomFont[]. In many ways, the cgeref:TCastleText[] an analogy to cgeref:TCastleLabel[]. Use cgeref:TCastleLabel[] for user interface, use cgeref:TCastleText[] when the text is conceptually part of the game world, may be in 3D, and is attached to some place in your game world.
+cgeref:TCastleText[] allows to display a text, possibly transformed in 3D.
+
+Its most important property is cgeref:TCastleText.Caption[] (or, if you want access the multi-line string list, cgeref:TCastleText.Text[]). The font is configurable using cgeref:TCastleText.CustomFont[].
+//In many ways, the cgeref:TCastleText[] is an analogy to cgeref:TCastleLabel[]. Use cgeref:TCastleLabel[] for user interface,
 
 cgeimg::block[transform_text.png|Text in 3D using TCastleText]
 
+[NOTE]
+====
+Use cgeref:TCastleText[] when the text is part of the game world (it moves when the camera moves) and when the text may be in 3D.
+
+For user interface text, outside of viewport, use cgeref:TCastleLabel[] instead. cgeref:TCastleLabel[] and cgeref:TCastleText[] are similar in many ways, they share some properties like `Caption` and `CustomFont`.
+====
+
 #### Primitives (TCastlePlane, TCastleBox, TCastleSphere, TCastleCylinder, TCastleCone)
 
-cgeref:TCastlePlane[], cgeref:TCastleBox[], cgeref:TCastleSphere[], cgeref:TCastleCylinder[], cgeref:TCastleCone[] are easy 3D "primitives" that you can use to design your world. All of them have a configurable size, material, texture and other basics. While you could create such simple objects in any 3D authoring software (and use them through cgeref:TCastleScene[] as well), our primitives are often very useful for quickly prototyping your game world.
+cgeref:TCastlePlane[], cgeref:TCastleBox[], cgeref:TCastleSphere[], cgeref:TCastleCylinder[], cgeref:TCastleCone[] are easy 3D primitives that you can use to design your world.
+
+All of them have a configurable size, cgeref:TCastleAbstractPrimitive.Material[Material] (set to `pmPhong` or `pmUnlit` to easily make it brighter), cgeref:TCastleAbstractPrimitive.Color[Color], cgeref:TCastleAbstractPrimitive.Texture[Texture] and other basics. While you could create such simple objects in any 3D authoring software (and use them through cgeref:TCastleScene[] as well), our primitives are often very useful for quickly prototyping your game world.
 
 cgeimg::block[transform_primitives_example.png|Primitives in 3D]
 
@@ -45,11 +61,15 @@ cgeimg::block[transform_primitives_example.png|Primitives in 3D]
 
 cgeref:TCastleImageTransform[] allows to display an image inside a viewport. This is great for simple static 2D game backgrounds, that should move along with player or camera. The image has a configurable pivot, it can be repeated and resized in an easy way.
 
+Set cgeref:TCastleImageTransform.Url[Url] to load the image. Optionally adjust cgeref:TCastleImageTransform.RepeatImage[RepeatImage], cgeref:TCastleImageTransform.Size[Size], cgeref:TCastleImageTransform.Pivot[Pivot] as you see fit.
+
 cgeimg::block[transform_image.png|Image in a viewport]
 
 #### Reference (TCastleTransformReference)
 
 cgeref:TCastleTransformReference[] makes a reference to another cgeref:TCastleTransform[] (e.g. a single scene, or a group of scenes) to instantiate it again within the same viewport. This is an efficient way to create *a lot* of instances of the same object. At the end of link:viewport_3d[Tutorial: Designing a 3D world] we have a quick section describing how to use it.
+
+Set cgeref:TCastleTransformReference.Reference[] to indicate which transformation is referenced by this instance.
 
 cgeimg::block[cars_demo_2.png|Many car instances]
 
