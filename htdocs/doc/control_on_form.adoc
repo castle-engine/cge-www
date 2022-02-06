@@ -44,7 +44,7 @@ You should not use both of these packages at the same time.
 
 Note that, if you use cgeref:TCastleControl[], it is OK to have multiple cgeref:TCastleControl[] instances visible at the same time. Similarly, if you use cgeref:TCastleWindow[], you can have several cgeref:TCastleWindow[] instances visible at the same time (but only on desktop platforms), see https://github.com/castle-engine/castle-engine/tree/master/examples/window/multi_window[examples/window/multi_window].
 
-## Using TCastleControl
+## Making TCastleControl available on Lazarus component palette
 
 . Install in Lazarus the package `castle_components.lpk`. In the package dialog, use the option to _"Install"_ (under the _"Use"_ button).
 +
@@ -68,7 +68,7 @@ Once `castle_components.lpk` is successfully installed, Lazarus restarts, and yo
 
 See the engine examples in link:https://github.com/castle-engine/castle-engine/tree/master/examples/lazarus[examples/lazarus/] subdirectory for various demos of this approach.
 
-## Opening in CGE editor
+## Opening LCL project in CGE editor
 
 You can place a simple link:project_manifest[CastleEngineManifest.xml] within your project, like this:
 
@@ -94,7 +94,11 @@ But note that cgeref:TCastleControl.OnOpen[] runs each time a form with cgeref:T
 
 ## Loading user interface and state
 
-You can load a design (file `xxx.castle-user-interface`) and you can use cgeref:TUIState[] within the cgeref:TCastleControl[], just as with cgeref:TCastleWindow[]. You can add new _state_ using CGE editor, or just define a new unit like this:
+In the simple case, you can load a design (file `xxx.castle-user-interface`) using cgeref:TCastleControl.DesignUrl[], and access loaded components using cgeref:TCastleControl.DesignedComponent[].
+
+cgeimg::block[control_lcl_design_loaded.png|Using TCastleControl.DesignUrl to load design in TCastleControl\, visible at Lazarus design-time]
+
+In more involved cases, you should use multiple link:states[] within your control. In this case, use cgeref:TUIState[] within the cgeref:TCastleControl[], and load a design (file `xxx.castle-user-interface`) inside the state using cgeref:TUIState.DesignUrl[]. This is analogous to our recommended workflow with cgeref:TCastleWindow[]. You can add new _state_ using CGE editor, or just define a new unit like this:
 
 [source,pascal]
 ----
