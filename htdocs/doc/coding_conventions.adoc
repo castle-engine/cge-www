@@ -117,6 +117,36 @@ if Foo then
   Xyz;
 ----
 
+=== Put `if` on a new line, even if it's right after `end`
+
+[source,pascal]
+----
+// THIS IS OK:
+if Foo then
+  Bar
+else
+if SomethingElse then
+  Xyz;
+
+// THIS IS ALSO OK:
+if Foo then
+begin
+  Bar
+end else
+if SomethingElse then
+begin
+  Xyz;
+end;
+
+// THIS IS ALSO OK:
+if Foo then
+begin
+  Bar
+end else
+if SomethingElse then
+  Xyz;
+----
+
 === Do not use `with`
 
 Never use "with" keyword. Using "with" makes the code very difficult to read, as some of the symbols inside the "with A do begin .... end" clause  are bound to A, and some are not, and it's completely invisible to the human reader which symbols are which.
