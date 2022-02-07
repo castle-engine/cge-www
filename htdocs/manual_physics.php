@@ -93,24 +93,26 @@ end;'); ?>
 
 <h2>Future plans (TODOs)</h2>
 
-<p>Current physics engine integration is just a start. Michalis wants to dedicate a whole <i>Castle Game Engine</i> release in the future toward extending the physics. The plans are:
+<p>Current physics engine integration is just a start. The plans are:
 
 <ul>
-  <li><p>A shape within the TCastleScene should be able to act like a rigid body, independent of the rest of the scene. Ideally, this should be <a href="creating_data_blender.php">configurable in Blender, and exported nicely to X3D</a>. <a href="http://www.web3d.org/documents/specifications/19775-1/V3.3/Part01/components/rigid_physics.html">The X3D specification has a rigid-body component</a> to describe such things.
+  <li><p>Expose physics to be available in editor, by making <code>TCastleRigidBody</code> and <code>TCastleCollider</code> be descendants from <code>TCastleBehavior</code>. <i>As of 2022-02-07, Andrzej Kilijański is working on it</i>, so it will happen soon :)
 
-  <li><p>Currently we also have an older, simpler, internal physics/collision engine in CGE, that takes care of some tasks: the collisions of player and creatures (from CastleCreatures), a simple gravity for them, and custom collision methods for you (like RayCollision, SphereCollision etc. in CastleTransform unit). The new physics engine can probably replace them all, and there should be a flag to make it possible, and eventually it should even become the default, and the old collision implementation should be simply removed.
+  <li><p>Expose Kraft layers.
 
-  <li><p>The current implementation doesn't expose any API for joints. Again, they could be designed in Blender and exported to X3D.
+  <li><p>Enable to "run" physics in the editor, by saving the state + observing the effect of physics.
 
-  <li><p>In the past, I planned integration with other physics engines, through a layer providing a common API. However, right now, I'm extremely satisfied with <a href="https://github.com/BeRo1985/kraft">Kraft</a>. As far as rigid body simulation goes, I think that Kraft may be <i>the</i> physics engine for us, and we may not need anything else... But just in case, here are other options I considered:
+  <li><p>Currently we also have an older, simpler, internal physics/collision engine in CGE, that takes care of some tasks: the collisions of player and creatures (from CastleCreatures), a simple gravity for them, and custom collision methods for you (like RayCollision, SphereCollision etc. in CastleTransform unit). The new physics engine should eventually replace them all, and there should be a flag to make it possible, and eventually it should even become the default, and the old collision implementation should be simply removed.
 
-    <ul>
-      <li><p><a href="http://bulletphysics.org/">Bullet</a>. Very full-featured, e.g. there's soft body, not only rigid body.
+  <li><p>The current implementation doesn't expose any API for joints.
 
-        <p>Full integration with Bullet will require proper translation of Bullet API to C and then to Pascal (as Bullet is in C++, it's not readily usable from anything other than C++). There is a C header for Bullet, see <a href="https://code.google.com/archive/p/bullet/issues/43">this old Google Code issue</a> and <a href="https://github.com/bulletphysics/bullet3/issues/130">this GitHub issue</a>, but it's rather minimalistic (only rigid body), although it may be a good start.
+  <li><p>Maybe: A shape within the TCastleScene should be able to act like a rigid body, independent of the rest of the scene. Ideally, this should be <a href="creating_data_blender.php">configurable in Blender, and exported nicely to X3D or glTF</a>. <a href="http://www.web3d.org/documents/specifications/19775-1/V3.3/Part01/components/rigid_physics.html">The X3D specification has a rigid-body component</a> to describe such things.
 
-      <li><p><a href="http://www.ode.org/">ODE</a>. A popular physics engine with simple C API. <a href="http://www.bvbcode.com/cn/pwd19hez-1586203">Old Pascal header here</a>. I don't see any advantages ODE has over Kraft, for now.
-    </ul>
+  <li><p>Integration with other physics engines, through a layer providing a common API.
+
+     <p>Our best candidate for proving an (alternative) physics engine is <a href="http://bulletphysics.org/">Bullet</a>. Very full-featured, e.g. there's soft body, not only rigid body.
+
+     <p>Full integration with Bullet will require proper translation of Bullet API to C and then to Pascal (as Bullet is in C++, it's not readily usable from anything other than C++). There is a C header for Bullet, see <a href="https://code.google.com/archive/p/bullet/issues/43">this old Google Code issue</a> and <a href="https://github.com/bulletphysics/bullet3/issues/130">this GitHub issue</a>, but it's rather minimalistic (only rigid body), although it may be a good start.
 </ul>
 
 <?php
