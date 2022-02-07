@@ -68,7 +68,7 @@ begin
   Viewport.Items.Add(Scene);
 end;'); ?>
 
-<p>See <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/physics/physics_3d_demo/">physics_3d_demo</a>, in particular the <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/physics/physics_3d_demo/gameinitialize.pas">physics_3d_demo/gameinitialize.pas</a> source code, for a complete working example.
+<p>See <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/physics/physics_3d_demo/">physics_3d_demo</a>, in particular the <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/physics/physics_3d_demo/code/gameinitialize.pas">physics_3d_demo/code/gameinitialize.pas</a> source code, for a complete working example.
 
 <p>Notes:
 
@@ -89,7 +89,7 @@ end;'); ?>
   <li>Constrain rotations and movement of dynamic rigid bodies to 2D by calling <?php api_link('TRigidBody.Setup2D', 'CastleTransform.TRigidBody.html#Setup2D'); ?>.
 </ul>
 
-<p>The example how to do this is in <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/physics/physics_2d_game_sopwith">physics_2d_game_sopwith</a> (see in particular the <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/physics/physics_2d_game_sopwith/gameinitialize.pas">physics_2d_game_sopwith/gameinitialize.pas</a> source code).
+<p>The example how to do this is in <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/physics/physics_2d_game_sopwith">physics_2d_game_sopwith</a> (see in particular the <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/physics/physics_2d_game_sopwith/code/gameinitialize.pas">physics_2d_game_sopwith/gameinitialize.pas</a> source code).
 
 <h2>Future plans (TODOs)</h2>
 
