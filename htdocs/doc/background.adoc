@@ -1,0 +1,28 @@
+# Background (skybox, sky and ground)
+include::common.adoc[]
+
+Use cgeref:TCastleBackground[] to define a nice background for 3D games. Just add it to the design by _"Add Non-Visual Component -> Background"_ (under any parent) and then set cgeref:TCastleViewport.Background[].
+
+cgeimg::block[
+  background_1.png|TCastleBackground skybox,
+  background_2.png|TCastleBackground default gradients,
+  background_3.png|TCastleBackground skybox
+]
+
+. You can provide up to 6 textures that define 6 sides of a _skybox_. See https://en.wikipedia.org/wiki/Cube_mapping#Skyboxes[wikipedia about skyboxes]. Set 6 URLs like cgeref:TCastleBackground.TexturePositiveX[] for this (our naming follows e.g. X3D and http://www.humus.name/index.php?page=Textures[Emil Persson’s conventions].
++
+How to make such skyboxes?
++
+--
+- Sample cubemaps can be found e.g. on https://opengameart.org/art-search?keys=skybox:[OpenGameArt] or http://www.humus.name/index.php?page=Textures[Emil Persson’s large cubemap collection].
+
+- You can render them in https://planetside.co.uk/[Terragen]. We even have https://github.com/castle-engine/cge-scripts/tree/master/terragen[helper scripts for rendering skyboxes with Terragen].
+
+- You can render them in https://www.blender.org/[Blender]. We even have https://castle-engine.io/creating_data_blender.php#section_render_skybox[sample script to render skybox in Blender].
+--
+
+. You can also define a sky gradient using cgeref:TCastleBackground.SkyTopColor[], cgeref:TCastleBackground.SkyEquatorColor[], ground gradient using cgeref:TCastleBackground.GroundBottomColor[], cgeref:TCastleBackground.GroundEquatorColor[], and additional gradient to smooth transition between the sky and ground using cgeref:TCastleBackground.SmoothEquator[].
++
+The sky and ground gradients are visible if you don’t provide the 6 textures for a skybox, or if some of them use alpha for transparency.
+
+NOTE: If you only want to define a background as a simple color, then leave cgeref:TCastleViewport.Background[] empty and set cgeref:TCastleViewport.BackgroundColor[] instead.
