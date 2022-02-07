@@ -142,6 +142,8 @@ the power of image handling inside our <?php echo a_href_page(
     <p>Note: JP2 support is not available on all platforms.
     Quoting <i>Vampyre</i> comments: <i>JPEG2000 only for 32bit Windows/Linux/OSX and for 64bit Unix with FPC</i>.
     See the <a href="https://github.com/castle-engine/castle-engine/blob/master/src/vampyre_imaginglib/src/Extensions/ImagingJpeg2000.pas#L19">exact rule in source code</a> that sets allowed platforms.
+
+    <p>Same for TIFF. As it was causing trouble on mobile (not possible to use on Arm, would require distributing extra libs for Aarch64) we decided to disable it by default, for now. You can use <code>ImagingTiff</code> unit (add it to uses clause anywhere in your source code) and define <code>CASTLE_ENABLE_TIFF</code> to use it.
   </li>
 
   <li>
