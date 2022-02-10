@@ -33,6 +33,15 @@ You can also rework it to assign whole vector, like this:
 Scene.Translation := Scene.Translation + Vector3(0, 0, 0.1);
 ----
 
+Another possible solution is to use cgeref:TCastleTransform.TranslationPersistent[]. Most CGE vector properties in components have a counterpart `XxxPersistent` that allows to serialize and display vectors in editor, and it also has properties to get/set vector components that avoid the trap outlined here. So this is valid:
+
+[source,pascal]
+----
+Scene.TranslationPersistent.Z := Scene.TranslationPersistent.Z + 0.1;
+----
+
+We don't advise using `TranslationPersistent` though -- because it means you have an additional way of dealing with vectors, using cgeref:TCastleVector3Persistent[]. It is simpler to use cgeref:TVector3[] for vectors everywhere.
+
 Similar situation happens when using any methods that change the record. For example this is a mistake too:
 
 [source,pascal]
