@@ -3,15 +3,17 @@ include::common.adoc[]
 
 == Changing a temporary record value
 
-This code is unfortunately a mistake (and compiler doesn't warn about it):
+This code is a mistake:
 
 [source,pascal]
 ----
-// DO NOT USE THIS
+// DO NOT USE THIS, IT WILL NOT COMPILE
 Scene.Translation.Z := Scene.Translation.Z + 0.1;
 ----
 
 As `Scene.Translation` is an advanced record (`TVector3`), using `Scene.Translation` may return just a temporary copy of it (just as if you would call a method `Scene.GetTranslation`). So then you change the `Z` parameter of this temporary copy, and the effect gets ignored.
+
+WARNING: In engine versions before 2022-02-10 (_7.0-alpha1_, and _7.0-alpha-snapshot_ before that date), the above code would even compile, despite being wrong. We have improved vector definition on the engine side to prevent the compilation of the incorrect code.
 
 The solution is to only modify the record fields (like `Z` of a `TVector3`) when you know that it is a simple field, or variable in your code. To apply this solution above, you should make a temporary variable and change it:
 
@@ -46,7 +48,7 @@ Similar situation happens when using any methods that change the record. For exa
 
 [source,pascal]
 ----
-// DO NOT USE THIS
+// DO NOT USE THIS, IT IS DEPRECATED
 Scene.Translation.Init(1, 2, 3);
 ----
 
@@ -59,4 +61,4 @@ Instead assign vectors like this:
 Scene.Translation := Vector3(1, 2, 3);
 ----
 
-**We cannot fix it in CGE (without sacrificing something else that is important).** The problem is inherent to using properties with records. C# has this problem too with its ``struct``s, in Unity too, although C# compilers are better at emitting relevant warnings about it. We cannot easily avoid doing it in CGE -- we need records (for things like vectors, records are both more efficient and more comfortable to pass around than classes) and we need properties of them (because setters often have to do some useful things).
+The problem is inherent to using properties with records. C# has this problem too with its ``struct``s, in Unity too. We cannot easily avoid doing it in CGE -- we need records (for things like vectors, records are both more efficient and more comfortable to pass around than classes) and we need properties of them (because setters often have to do some useful things).
