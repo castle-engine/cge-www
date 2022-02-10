@@ -11,7 +11,7 @@ This code is a mistake:
 Scene.Translation.Z := Scene.Translation.Z + 0.1;
 ----
 
-As `Scene.Translation` is an advanced record (`TVector3`), using `Scene.Translation` may return just a temporary copy of it (just as if you would call a method `Scene.GetTranslation`). So then you change the `Z` parameter of this temporary copy, and the effect gets ignored.
+As `Scene.Translation` is an advanced record (`TVector3`), using `Scene.Translation` may return just a temporary copy of it (just as if you would call a method `Scene.GetTranslation`). So the code would change the `Z` value only in a temporary copy of the record value, which is pointless -- and therefore the compiler doesn't allow such assignment.
 
 WARNING: In engine versions before 2022-02-10 (_7.0-alpha1_, and _7.0-alpha-snapshot_ before that date), the above code would even compile, despite being wrong. We have improved vector definition on the engine side to prevent the compilation of the incorrect code.
 
