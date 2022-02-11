@@ -573,9 +573,9 @@ Notes:
 
   <li>
     <p>Note that by default loading image is displayed with UI scaling that adjusts to reference size 1600x900. You can customize
-    <a href="https://castle-engine.io/apidoc-unstable/html/CastleControls.TCastleTheme.html#LoadingUIScaling">Theme.LoadingUIScaling</a>,
-    <a href="https://castle-engine.io/apidoc-unstable/html/CastleControls.TCastleTheme.html#LoadingUIReferenceWidth">Theme.LoadingUIReferenceWidth</a>,
-    <a href="https://castle-engine.io/apidoc-unstable/html/CastleControls.TCastleTheme.html#LoadingUIReferenceHeight">Theme.LoadingUIReferenceHeight</a>
+    <a href="https://castle-engine.io/apidoc-unstable/html/CastleUIControls.TCastleTheme.html#LoadingUIScaling">Theme.LoadingUIScaling</a>,
+    <a href="https://castle-engine.io/apidoc-unstable/html/CastleUIControls.TCastleTheme.html#LoadingUIReferenceWidth">Theme.LoadingUIReferenceWidth</a>,
+    <a href="https://castle-engine.io/apidoc-unstable/html/CastleUIControls.TCastleTheme.html#LoadingUIReferenceHeight">Theme.LoadingUIReferenceHeight</a>
     to tweak it.
 </ul>
 
