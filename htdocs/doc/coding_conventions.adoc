@@ -468,6 +468,95 @@ There is also a dreaded "death by 1000 cuts" that we want to avoid, which is som
 
 So, there _are_ cases to be made for some low-level optimizations. But don't fall into the trap of implementing lots of useless low-level optimizations blindly.
 
+=== Fix warnings (let the compiler help you write reliable code)
+
+We want the compilation of the engine, and all examples, to pass without any warnings. On all supported platforms and with all supported compilers.
+
+We consider compiler warnings as _generally useful_, i.e. we don't want to hide them, we want to obey them. A warning is a TODO -- you need to deal with this, maybe by improving the code to be more reliable.
+
+Sometimes the warning isn't really valid, but you _still should deal with it_. It is acceptable, in justified cases, to selectively turn off the warning, like this:
+
+[source,pascal]
+----
+{$warnings off} // knowingly calling deprecated method in another deprecated method
+X := Foo;
+{$warnings on}
+----
+
+We still consider this a "win": while you will occasionally have to deal with useless warnings from the compiler, but on the other hand you will pay attention to compiler warnings and the compiler will help you detect real problems in code. The warnings reported by the compiler are often about "edge-cases", situations that don't happen often (or maybe even you think they will never happen), but sometimes the compiler is right: that special situation *can* happen, and it is better to have reliable answer for it then let code do something undefined.
+
+=== Backward compatibility is important; having a consistent (easy to learn) API and useful features is even more important
+
+Ideally, we add new features to the engine by just "naturally" extending the existing API. By _"naturally"_ I mean that the new concept (class, method, property, whatever)
+
+- uses similar terminology as existing API concepts (e.g. word _"scene"_ in CGE context refers to cgeref:TCastleScene[], not something else),
+
+- uses similar conventions (e.g. _"Y goes up, even in 2D"_),
+
+- uses existing CGE constructs (e.g. for vectors, use CGE vectors from cgeref:CastleVectors[], like cgeref:TVector3[]).
+
+The engine API should be _consistent (with itself)_.
+
+Example: If you ever need 4x3 matrix, make it consistent with existing `TMatrix4`. Do not declare it like this:
+
+[source,pascal]
+----
+// DON'T DO THIS, THIS MATRIX TYPE IS INCONSISTENT WITH CGE
+TNewMatrix4x3 = class
+  MyData: array [1..4*3] of Float;
+end;
+----
+
+Can you spot all the inconsistent things in this `TNewMatrix4x3` declaration above? That would make using `TNewMatrix4x3` weird alongside the existing `TMatrix4`? This would be much better:
+
+[source,pascal]
+----
+TMatrix4x3 = record
+public
+  const
+    ColsCount = 4;
+    RowsCount = 3;
+  var
+    Data: array [0..ColsCount - 1, 0.. RowsCount - 1] of Single;
+
+  // See TMatrix4 declaration for more things to put here:
+  // - overload operators,
+  // - define Rows, Colums, Transpose, Zero, Identity
+end;
+----
+
+But sometimes adding new things without breaking new things, in such way that the end API is consistent, is not possible. We didn't predict everything when designing CGE API :) In this case, we have to change our API, to incorporate the new feature, such that the resulting engine API feels consistent. We don't want features to reinvent some concepts, e.g. because some detail in the existing concept was not perfectly suitable. We want to adjust existing concepts to be better.
+
+In this case, when the API of existing concept must change, try hard to keep the old API still available. Use `deprecated` Pascal directive, use it with a string parameter that explains shortly the advised alternative, like
+
+[source,pascal]
+----
+procedure Foo; deprecated 'use Bar';
+----
+
+It works nicely, will display a visible warning to users that they use the deprecated feature, but at the same time `Foo` will continue to function normally.
+
+There are however rare cases when providing backward compatibility is not possible. Or maybe it would be posisble, but would be a lot of work on engine development side (to make it / maintain it), or the existence of "compatibility crutch" would be too confusing to new users. In this case, after considering all the options, I say it is **acceptable to break backward compatibility**. You're doing it for the greater good. The engine must have room to evolve, to be better and better, we must have a way to change old/bad/unoptimal API design into new API design. This is the only way to keep our API consistent and keep adding new features. We don't want to have an engine that, in 10 years, can still compile all applications existing today -- but in exchange, new features (e.g. VR) are added to it in a weird way, making them hard/confusing to use.
+
+Think about how the engine will look in a few years. Think about the perception of new people that learn the engine. If the engine has now 100 users, think that it will have 10x (1000) users in a year. We don't want the new 900 people to suffer from bad design decisions we make today, and suffer because we could not fix these decisions out of fear of backward compatibility.
+
+[NOTE]
+====
+I am not trying to say that this reasoning applies equally to all the software. Though I think that _it does_ apply to most of the software, actually.
+
+_You need to plan to be perfect in the future, you cannot be stuck in bad design decisions_. And (no matter how smart you are) you have inevitably made some bad design decisions (which was not evident when you started, maybe even it was impossible to predict as you didn't knew all your features, but may become evident as you move along and explore possibilities of this thing you make).
+
+But I certainly recognize that there are cases when it's easier or harder to break backward compatibiilty. E.g.
+
+- designing a file format, like X3D or glTF,
+
+- designing API of a library that is dynamically linked, and distributed independently of the using applications, like OpenGL. You need to keep ABI compatibility then, which is even stronger than API. Not just language level breakage is not possible, also e.g. calling convention cannot change.
+
+In such cases, it is insanely difficult to break compatibility, because your users (in the wild) do not have automatic mechanisms that would force them to upgrade. Instead, their files / applications would suddently stop to work.
+
+However, CGE is a library that is statically linked into your project. In the worst case, if we really break compatibility -- your game will not compile after you upgrade CGE. But we don't make it crashing for users. Developer will see that it will not compile, and will have to fix it.
+====
+
 == Submitting your code contributions
 
 It's best to use https://github.com/castle-engine/castle-engine/pulls[GitHub's pull requests].
