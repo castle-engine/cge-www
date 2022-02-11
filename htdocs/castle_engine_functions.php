@@ -283,6 +283,7 @@ $castle_sitemap = array(
             'sub' => array(
               'manual_2d_ui_custom_drawn' => array('title' => 'Custom drawn 2D controls: player HUD'),
               'manual_text' => array('title' => 'Text and fonts'),
+              'doc/loading_image' => array('title' => 'Customize loading image'),
             )
           ),
           'manual_editor' => array('title' => 'Editor',

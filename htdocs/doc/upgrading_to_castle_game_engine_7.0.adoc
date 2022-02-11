@@ -234,3 +234,5 @@ A complete example how to realize this approach, in a way as-backward-compatible
 Another possibility, temporary, to resolve it is to just use `SoundFromName` each time before playing such sound. So do not store the `SoundFromName` result for a longer time, instead play it like `SoundEngine.Sound(SoundFromName('xxx'))`.
 
 * `TCastleUserInterface.LocalToScreenPosition` was removed, as both the word "local" (was actually implemented as meaning "parent coordinate system", not local) and "screen" (was actually meaning "container") were confusing. Use `LocalToContainerPosition`, `Parent.LocalToContainerPosition`, `ContainerToLocalPosition`, `Parent.ContainerToLocalPosition` depending on needs.
+
+* We made some changes to vectors. `X`, `Y`, `Z`, `W` are now fields, and setting them is the only non-deprecated way to modify the vector "in place". See https://castle-engine.io/wp/2022/02/11/vectors-changes-to-avoid-a-trap-with-modifying-a-temporary-value/ .

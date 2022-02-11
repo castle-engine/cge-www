@@ -1,0 +1,48 @@
+# Loading image
+include::common.adoc[]
+
+You can customize the initial _"Loading"_ image (visible when you open the application) by changing the `Theme.ImagesPersistent[tiLoading]` image.
+
+cgeimg::block[orcs_and_volcanoes_loading.png|Looading from "Orcs and Volcanoes"]
+
+This should be done in the `initialization` section of some unit (more specifically, it should happen before window is opened). As such, you cannot load image from disk at this moment (as on Android, you cannot read from disk from `initialization` sections of units). So you want to process this image first with `image-to-pascal` tool, to make an embedded image in a Pascal unit.
+
+In summary, this is what you should do:
+
+. Run `image2pascal GameEmbeddedImages my_loading.png` (it will generate `gameembeddedimages.pas` unit).
+
+. Add a new unit that initializes `Theme.ImagesPersistent[tiLoading]` in the `initialization`:
++
+[source,pascal]
+----
+unit GameAdjustLoadingScreen;
+
+interface
+
+uses CastleColors, CastleControls, GameEmbeddedImages;
+
+implementation
+
+initialization
+  // Theme.LoadingBackgroundColor := Black; // adjust as needed
+  // Theme.LoadingColor := White; // adjust as needed
+  Theme.ImagesPersistent[tiLoading].Image := My_Loading;
+  Theme.ImagesPersistent[tiLoading].OwnsImage := false;
+end.
+----
+
+. Use the `GameAdjustLoadingScreen` anywhere, e.g. from `GameInitialize` unit.
+
+Notes:
+
+* The `Theme.LoadingBackgroundColor` determines the background underneath the "loading" image. You usually want to adjust `Theme.LoadingBackgroundColor` to match your `my_loading.png` background.
+
+* The `Theme.LoadingColor` is a color applied to the loading image. It multiplies the color of image `my_loading.png`. Usually you don't need to adjust `Theme.LoadingColor` if you're already customizing the `Theme.ImagesPersistent[tiLoading]` image to your own.
+
+* By default loading image is displayed with UI scaling that adjusts to reference size 1600x900. You can customize these properties to tweak it:
++
+--
+- cgeref:TCastleTheme.LoadingUIScaling[Theme.LoadingUIScaling],
+- cgeref:TCastleTheme.LoadingUIReferenceWidth[Theme.LoadingUIReferenceWidth],
+- cgeref:TCastleTheme.LoadingUIReferenceHeight[Theme.LoadingUIReferenceHeight].
+--
