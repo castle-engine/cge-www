@@ -1,5 +1,5 @@
 uses CastleWindow, CastleSceneCore, CastleScene, CastleVectors, CastleFilesUtils,
-  CastleViewport;
+  CastleViewport, CastleCameras;
 var
   Window: TCastleWindow;
   Viewport: TCastleViewport;
@@ -11,7 +11,7 @@ begin
   Viewport := TCastleViewport.Create(Application);
   Viewport.FullSize := true;
   Viewport.AutoCamera := true;
-  Viewport.AutoNavigation := true;
+  Viewport.Navigation := TCastleExamineNavigation.Create(Application);
   Window.Controls.InsertFront(Viewport);
 
   Scene := TCastleScene.Create(Application);

@@ -2,13 +2,13 @@
   of a special mesh (that looks a bit like a box, but with back side shifted). }
 
 uses SysUtils,
-  CastleWindow, CastleScene, CastleViewport,
+  CastleWindow, CastleScene, CastleViewport, CastleCameras,
   CastleColors, CastleVectors, CastleFilesUtils, X3DNodes, CastleTransform;
 
 procedure AddTexturedShearedCube(
   const RootNode: TX3DRootNode; const Translation: TVector3);
 const
-  BackFaceShift: TVector2 = (Data: (0.5, 0.5));
+  BackFaceShift: TVector2 = (X: 0.5; Y: 0.5);
 var
   Faces: TIndexedFaceSetNode;
   Shape: TShapeNode;
@@ -132,7 +132,7 @@ begin
     Vector3(0, 1, 0)
   );
   // let user rotate the scene by default Examine mode
-  Viewport.AutoNavigation := true;
+  Viewport.Navigation := TCastleExamineNavigation.Create(Application);
 
   Application.Run;
 end.

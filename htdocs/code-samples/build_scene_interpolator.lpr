@@ -1,5 +1,5 @@
 {
-  Copyright 2018 Michalis Kamburelis.
+  Copyright 2018-2022 Michalis Kamburelis.
   No warranty.
   This example is under a permissive Apache 2.0 license,
   https://www.apache.org/licenses/LICENSE-2.0 .
@@ -13,7 +13,7 @@
   See https://castle-engine.io/x3d_implementation_interpolation.php
   for description what the nodes used here (like TimeSensor) do. }
 
-uses CastleWindow, CastleViewport, X3DNodes,
+uses CastleWindow, CastleViewport, X3DNodes, CastleCameras,
   CastleColors, CastleVectors, CastleScene;
 
 function BuildScene: TX3DRootNode;
@@ -59,7 +59,7 @@ begin
 
   Viewport := TCastleViewport.Create(Application);
   Viewport.FullSize := true;
-  Viewport.AutoNavigation := true;
+  Viewport.Navigation := TCastleExamineNavigation.Create(Application);
   Window.Controls.InsertFront(Viewport);
 
   Scene := TCastleScene.Create(Application);

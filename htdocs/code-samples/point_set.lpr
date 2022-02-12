@@ -1,4 +1,5 @@
-uses CastleVectors, CastleWindow, X3DNodes, X3DLoad, CastleScene, CastleViewport;
+uses CastleVectors, CastleWindow, X3DNodes, X3DLoad, CastleScene, CastleViewport,
+  CastleCameras;
 
 var
   PointSet: TPointSetNode;
@@ -15,7 +16,7 @@ begin
   Viewport := TCastleViewport.Create(Application);
   Viewport.FullSize := true;
   Viewport.AutoCamera := true;
-  Viewport.AutoNavigation := true;
+  Viewport.Navigation := TCastleExamineNavigation.Create(Application);
   Window.Controls.InsertFront(Viewport);
 
   PointCoordinates := TCoordinateNode.Create;

@@ -1,11 +1,13 @@
-uses CastleWindow, CastleGameNotifications, CastleColors, CastleUIControls;
+uses CastleWindow, CastleNotifications, CastleColors, CastleUIControls;
 
 var
   Window: TCastleWindow;
+  Notifications: TCastleNotifications;
 begin
   Window := TCastleWindow.Create(Application);
   Window.Open;
 
+  Notifications := TCastleNotifications.Create(Application);
   Notifications.TextAlignment := hpMiddle;
   Notifications.Anchor(hpMiddle);
   Notifications.Anchor(vpBottom, 10);

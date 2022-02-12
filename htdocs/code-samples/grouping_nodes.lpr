@@ -1,7 +1,7 @@
 { Demo of Group, Transform, Switch nodes. }
 
 uses SysUtils,
-  CastleWindow, CastleScene, CastleViewport,
+  CastleWindow, CastleScene, CastleViewport, CastleCameras,
   CastleColors, CastleVectors, CastleFilesUtils, X3DNodes, CastleKeysMouse;
 
 var
@@ -115,7 +115,7 @@ begin
   Viewport := TCastleViewport.Create(Application);
   Viewport.FullSize := true;
   Viewport.AutoCamera := true;
-  Viewport.AutoNavigation := true;
+  Viewport.Navigation := TCastleExamineNavigation.Create(Application);
   Window.Controls.InsertFront(Viewport);
 
   Scene := TCastleScene.Create(Application);
