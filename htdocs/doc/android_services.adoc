@@ -29,7 +29,6 @@ The Android services are declared in link:project_manifest[CastleEngineManifest.
 * https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/facebook/README.adoc[facebook]
 * https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/freetype/README.adoc[freetype]
 * https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/game_analytics/README.adoc[game_analytics]
-* https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/giftiz/README.adoc[giftiz]
 * https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/google_analytics/README.adoc[google_analytics]
 * https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/google_in_app_purchases/README.adoc[google_in_app_purchases]
 * https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/google_play_games/README.adoc[google_play_games]
