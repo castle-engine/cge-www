@@ -132,7 +132,6 @@ I checked how it looks for formats exported from Blender (by default):
   *** Exporting to obj, bvh, fbx, gltf: changes up from +Z (Blender) into +Y, and has `axis_forward='-Z'` (which matches our `otUpYDirectionZ`)
   *** Exporting to x3d: changes up from +Z (Blender) into +Y, and has `axis_forward='Z'` (which matches our `otUpYDirectionMinusZ`)
   *** Exporting to ply, stl: makes no change (Blender's +Z remains +Z after export)
-
 +
 This can be checked by searching `orientation_helper` in Blender's scripts sources (done on 2.82):
 +
@@ -168,17 +167,17 @@ Bottom line: If you have code doing `Player.Navigation.Xxx` where `Xxx` is some 
 +
 [source,pascal]
 ----
-  function TMyScene.PointingDevicePress(
-    const Pick: TRayCollisionNode; const Distance: Single): Boolean;
-  begin
-    Result := inherited;
-    if Result then Exit;
+function TMyScene.PointingDevicePress(
+  const Pick: TRayCollisionNode; const Distance: Single): Boolean;
+begin
+  Result := inherited;
+  if Result then Exit;
 
-    WritelnLog('Pressed pointing device');
-    if (Pick.Triangle <> nil) and
-       (Pick.Triangle^.MaterialInfo <> nil) then
-      WritelnLog('Pressed on material ' + Pick.Triangle^.MaterialInfo.Node.X3DName);
-  end;
+  WritelnLog('Pressed pointing device');
+  if (Pick.Triangle <> nil) and
+     (Pick.Triangle^.MaterialInfo <> nil) then
+    WritelnLog('Pressed on material ' + Pick.Triangle^.MaterialInfo.Node.X3DName);
+end;
 ----
 
 * The `RenderContext` singleton and related types has been moved to `CastleRenderContext` unit. Add it to your uses clause, if necessary.
@@ -236,3 +235,17 @@ Another possibility, temporary, to resolve it is to just use `SoundFromName` eac
 * `TCastleUserInterface.LocalToScreenPosition` was removed, as both the word "local" (was actually implemented as meaning "parent coordinate system", not local) and "screen" (was actually meaning "container") were confusing. Use `LocalToContainerPosition`, `Parent.LocalToContainerPosition`, `ContainerToLocalPosition`, `Parent.ContainerToLocalPosition` depending on needs.
 
 * We made some changes to vectors. `X`, `Y`, `Z`, `W` are now fields, and setting them is the only non-deprecated way to modify the vector "in place". See https://castle-engine.io/wp/2022/02/11/vectors-changes-to-avoid-a-trap-with-modifying-a-temporary-value/ .
+
+* We had to remove some hacky ways to make things non-existing:
++
+--
+- `TCastleTransform.Enable/Disable`
+- `TCastleTransform.GetExists`, `TCastleUserInterface.GetExists` as virtual methods (they are now deprecated properties that just return `Exists`)
+- `OnCreatureExists`, `OnItemOnWorldExists`
+--
++
+To new solution is to just assign `TCastleTransform.Exists` property to change existence. If you want to easily disable/enable a bunch of items, put them under a common group (like `TCastleTransform`) and disable/enable the group.
++
+This change allows to track on engine side when the existence changes reliably. In particular it allowed to implement `ExistsInRoot` with a straightforward implementation.
+
+* `T3DResource` is now a descendant of `TComponent`, and inherits a virtual constructor `constructor Create(AOwner: TComponent);`. If you were overriding old constructor constructor `Create(const AName: string);`, you need to change the parameter. Outside code sets `Name` later, after construction.
