@@ -1,9 +1,13 @@
-# Advanced: Multiple States
+# Managing States
 include::common.adoc[]
 
 ## Introduction
 
-In larger applications you will likely use many states.
+State is a class descending from cgeref:TUIState[]. It determines what is currently displayed, and is the primary place where you can react to events (handle user input, passage of time, clicks on buttons and more).
+
+In a larger application you will likely have more than one state.
+//States are a useful way to split your application.
+If you want to display something "completely different" (like a game, or main menu, or a "game over screen") then it's most natural to do this by switching to a different state.
 
 You can add new state to your application using the menu item _Code -> New Unit -> Unit With State..._ in CGE editor. It just creates a new Pascal unit that defines a new `TUIState` descendant and loads a new user interface design.
 
@@ -18,7 +22,7 @@ At runtime, you can change from one state into another using:
 
 . You can set cgeref:TUIState.Current[TUIState.Current := StateXxx] to make the new state the _one and only_ currently active state.
 +
-This is the most common way to change state. For example use this to change from _main menu_, to _loading_, to _main game_, to _game over_ states.
+This is the simplest way to change current state. For example use this to change from _main menu_, to _loading_, to _playing game_, to _game over_ states.
 +
 Usually the implementation of one state has code to change it into another state. For example, this is how `StateMainMenu` can react to user pressing _Enter_ to switch to `StatePlay`:
 +
@@ -38,9 +42,9 @@ end;
 
 . You can alternatively use cgeref:TUIState.Push[] to _push_ new state on top of the stack, making it the front-most state (but not necessarily the only state active right now). Such state will usually _pop_ itself from the stack, using cgeref:TUIState.Pop[], although you can also set cgeref:TUIState.Current[] to just change whole stack into a single new state.
 +
-Using a state stack makes sense when you want to display one state on top of another. For example, you may want to push _options_ state to make options UI visible on top of the game. The game can even be still animated underneath (it is up to you to pause the game in such case of necessary, e.g. by cgeref:TCastleAbstractRootTransform.Paused[Viewport.Items.Paused]).
+Using a state stack makes sense when you want to display one state on top of another. For example, you may want to push _options_ state to make options UI visible on top of the game. The game can even be still animated underneath (it is up to you to pause the game if you want, e.g. by changing cgeref:TCastleAbstractRootTransform.Paused[Viewport.Items.Paused]).
 +
-For example, this is how `StatePlay` could display `StateOptions` on top:
+For example, this is how `StatePlay` could display `StateOptions` on top, when user presses _Escape_:
 +
 [source,pascal]
 ----
@@ -58,7 +62,7 @@ begin
 end;
 ----
 +
-The `StateOptions` should in turn pop itself from the stack:
+The `StateOptions` can in turn pop itself from the stack when user presses _Escape_ again:
 +
 [source,pascal]
 ----
@@ -118,7 +122,7 @@ You can override a number of state methods to react to the state becoming _activ
 +
 To create a component that lives only until the state stops, you can assign a special owner cgeref:TUIState.FreeAtStop[] to this component. This is essentially equivalent to just using owner `nil` and manually freeing the component in cgeref:TUIState.Stop[].
 
-* cgeref:TUIState.Start[] is executed when the state stops.
+* cgeref:TUIState.Stop[] is executed when the state stops.
 
 * cgeref:TUIState.Resume[] is executed when the state is started, and moreover it becomes the _top_ state on the stack.
 
