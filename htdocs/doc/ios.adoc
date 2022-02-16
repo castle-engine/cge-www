@@ -248,7 +248,7 @@ There's no reliable solution, it seems to be just the way iOS behaves. Trying va
 
 * http://wiki.freepascal.org/iPhone/iPod_development
 * http://wiki.lazarus.freepascal.org/Portal:iOS
-* Building FPC and cross-compiling: http://www.stack.nl/~marcov/buildfaq/
+* Building FPC and cross-compiling: see http://www.stack.nl/\~marcov/buildfaq.pdf[Build FAQ (PDF)], https://wiki.lazarus.freepascal.org/buildfaq[Build FAQ (Wiki)].
 // Old: http://www.ragnemalm.se/lightweight/iphone-install/iphone-installation.html
 
 == Alternative: Using FPC trunk (unstable)
