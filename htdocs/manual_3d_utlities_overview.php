@@ -3,23 +3,35 @@ require_once 'castle_engine_functions.php';
 castle_header('Overview');
 ?>
 
-<p><b>Units described here are deprecated.
-Most of their features can be achieved easily
-(and with more flexibility) by using <a href="manual_scene.php">TCastleScene directly</a>.
-See <a href="planned_features.php">our plans</a> for detailed reasoning.
-The most prominent reason to keep using these units now is that <code>CastleCreatures</code>
-gives you <i>"ready creatures AI (artificial intelligence)"</i>,
-but we work on exposing this feature in a better way (as <code>TCastleBehavior</code> descendant class).</b>
+<p><b>Units described here are deprecated.</b>
 
-<p>Units described in this section of the manual are optional,
-and independent from the rest of the engine.
-They implement a <i>common logic typical to 3D games</i>.
+<ul>
+  <li>
+    <p>Most of their features can be achieved easily
+     (and with much more flexibility) by using <a href="viewport_and_scenes">viewport and scenes</a> directly.
+     See <a href="planned_features.php">our plans</a> for detailed reasoning.
 
-<p>The units described here are in the CGE source code subdirectory <a href="https://github.com/castle-engine/castle-engine/tree/master/src/game">src/game/</a>,
-they are clearly separated from the rest of CGE code.
-Using these units is <i>optional</i>. You can implement a perfect 3D game
-without them (you only need to use <a href="manual_scene.php">scenes</a>,
-and the viewport already gives you flexible camera and navigation features)
+  <li>
+    <p>In particular, using <a href="viewport_and_scenes">viewport and scenes</a> directly
+    allows to design your levels using our <a href="manual_editor.php">visual editor</a>,
+    and benefit from all the features we have (composing level from a number of scenes and primitives,
+    assigning skybox)
+    and will have (placing lights, editing materials) in the CGE editor.
+
+  <li>
+    <p>The most prominent reason to keep still using these units is that <code>CastleCreatures</code>
+    gives you <i>"ready creatures AI (artificial intelligence)"</i>.
+    We don't have an equivalent of if <i>yet</i> in non-deprecated units... but we work on it.
+    We will expose flexible creature AI as <code>TCastleBehavior</code> descendant class
+    called <code>TCastleMoveAttack</code>.</b>
+</ul>
+
+<p>Units described in this section
+implement a <i>common logic typical to 3D games</i>.
+
+<p>Using these units is <i>optional</i>. You can implement a perfect 3D game
+without them (just use <a href="viewport_and_scenes">viewport and scenes</a>,
+the viewport already gives you flexible camera and navigation features)
 and have full flexibility of a general 3D engine.
 Using these units makes sense if your game concepts fit within typical concepts
 of the <i>3D first-person shooter games</i>, described below.
@@ -49,8 +61,7 @@ of the <i>3D first-person shooter games</i>, described below.
 
   <li><p>And utilities for the above units:
     <?php api_link('CastleResources', 'CastleResources.html'); ?>,
-    <?php api_link('CastleGameNotifications', 'CastleGameNotifications.html'); ?>,
-    <?php api_link('CastleDebugTransform', 'CastleDebugTransform.html'); ?>.
+    <?php api_link('CastleGameNotifications', 'CastleGameNotifications.html'); ?>.
 </ul>
 
 <?php

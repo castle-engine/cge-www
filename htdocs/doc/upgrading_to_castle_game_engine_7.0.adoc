@@ -249,3 +249,7 @@ To new solution is to just assign `TCastleTransform.Exists` property to change e
 This change allows to track on engine side when the existence changes reliably. In particular it allowed to implement `ExistsInRoot` with a straightforward implementation.
 
 * `T3DResource` is now a descendant of `TComponent`, and inherits a virtual constructor `constructor Create(AOwner: TComponent);`. If you were overriding old constructor constructor `Create(const AName: string);`, you need to change the parameter. Outside code sets `Name` later, after construction.
+
+* `CastleRenderingCamera` unit and `RenderingCamera` singleton no longer exist. Access rendering camera only during rendering, using `RenderParams.RenderingCamera` (`RenderParams` is a parameter passed to `TCastleTransform.LocalRender`). Outside of rendering, you only have usual camera in `MyViewport.Camera` (accessible in `TCastleTransform` as `World.MainCamera`).
+
+* If you use `CastleLevels` and friends, note that all creatures are now under `Level.CreaturesRoot` group (not directly in `Viewport.Items`; instead, the `Level.CreaturesRoot` is in `Viewport.Items`). Similarly all items are in `Level.ItemsRoot`. This matters if you iterated manually over `Viewport.Items` searching for some creature/item.
