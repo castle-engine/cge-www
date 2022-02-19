@@ -14,7 +14,7 @@ See https://asciidoctor.org/ for an overview of the AsciiDoctor language. To pre
 
 - look at GitHub preview of your file
 - or run `asciidoctor xxx.adoc`
-- or (complicated but full-blows) follow the _"Testing Locally"_ instructions below to set up your own local copy of CGE website.
+- or (more complicated but presents complete preview) follow the _"Testing Locally"_ instructions below to set up your own local copy of CGE website.
 
 We support additional macros within AsciiDoctor:
 
