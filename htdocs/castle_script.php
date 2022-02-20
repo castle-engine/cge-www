@@ -985,7 +985,7 @@ will be more than happy to add them :)
            "-" Factor |
            "(" Expression ")" |
            FunctionName [ "(" Expression [{"," Expression}] ")" ]
-  FactorOperator = "^" | "*" | "/" | "%"
+  FactorOperator = "^" | "*" | "/" | "%" | "div"
 
   # In other words, all multiplicative operators have the same priority
   # and are left-associative.
@@ -994,12 +994,14 @@ will be more than happy to add them :)
   #     This works for non-integer Y, but in this case Y has to be &gt;= 0.
   # "%" operator is for modulo (remainder of division).
   #     X % Y = X - Floor(X/Y) * Y
-  # "/" does division. Like in C, when both operands are integers,
-  #     this performs an integer division (that is, it's the floor of
-  #     actual division result, corresponding to Pascal's "div" operator).
-  #     When either operand is float then this is normal float division
-  #     (more precisely, if only one operand is float, the other will be
-  #     promoted to float then; and then float division will be done.)
+  # "/" does float division. Like in Pascal (and unlike C),
+  #     result is always float, even when both operands are integers
+  #     (they will be just converted to floats).
+  #     E.g. "1 / 2" and "1.0 / 2.0" are equivalent and both yield "0.5".
+  # "div" does integer division, returns integer,
+  #     and requires both operants to be integer (cannot be floats).
+  #     E.g. "1 div 2" is "0".
+  #     This is like in Pascal.
 
   Term = Factor [{FactorOperator Factor}]
   TermOperator = "+" | "-"
