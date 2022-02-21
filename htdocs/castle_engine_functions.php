@@ -1115,6 +1115,14 @@ function echo_castle_header_suffix($path, $enable_sidebar = true)
     $github_ribbon = '';
   }
 
+  $patreon_json = file_get_contents(__DIR__ . '/../patreon/patreon.json');
+  if ($patreon_json === false) {
+    $patreon_desc = 'Patreon goal data not available';
+  } else {
+    $patreon = json_decode($patreon_json);
+    $patreon_desc = $patreon->completed_percentage . '% of $' . $patreon->amount_cents/100;
+  }
+
   $rendered = '
   <nav class="navbar navbar-default">
     <div class="container-fluid">
@@ -1129,7 +1137,7 @@ function echo_castle_header_suffix($path, $enable_sidebar = true)
       -->
 
       <ul class="nav nav-tabs navbar-right">
-        <li><a href="' . PATREON_URL . '" class="navbar-link">Support the engine on<br><img class="patreon-logo" src="' . page_requisite('images/patreonlogoorange_45px.png') . '" alt="Patreon" /></a></li>
+        <li><a href="' . PATREON_URL . '" class="navbar-link" title="' . htmlspecialchars($patreon_desc) . '">Support the engine on<br><img class="patreon-logo" src="' . page_requisite('images/patreonlogoorange_45px.png') . '" alt="Patreon" /></a></li>
       </ul>
 
       <!--button type="button" class="btn btn-default navbar-btn navbar-right" style="margin-right: 0px;"><a href="' . PATREON_URL . '" class="navbar-link">Support us on<br><img style="height: 40px" src="' . page_requisite('images/patreonlogoorange.png') . '" alt="Patreon" /></a></button-->
