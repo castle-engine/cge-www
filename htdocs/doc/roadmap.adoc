@@ -7,11 +7,17 @@ Don't see the feature you need? link:talk.php[Tell us on the forum or Discord].
 
 If you would like to see some feature implemented sooner, please link:https://www.patreon.com/castleengine[support the engine development on Patreon!]
 
-## More visual editor
+## VR and AR
+
+VR: link:wp/2022/01/16/oculus-quest-2-developer-mode-for-castle-game-engine-enabled/[Michalis has access to Oculus Quest since the beginning of 2022]. Port most likely using link:https://www.khronos.org/OpenXR/[OpenXR] (to include the widest possible range of devices using a single cross-platform API).
+
+AR: most likely using Android / iOS built-in frameworks, as these make AR widely available on modern phones.
+
+## (IN PROGRESS) More visual editor
 
 Extend our link:manual_editor.php[editor] with features mentioned on link:wp/2022/01/01/summary-of-2021-plans-for-2022/[2022 plans]:
 
-- Lights editing (in progress).
+- Lights editing (IN PROGRESS by _Michalis Kamburelis_).
 - Materials editing.
 - Better camera and navigation in editor.
 
@@ -27,9 +33,37 @@ Some modifications to CGE may be required here (CastleGeometryArrays will have t
 
 We should also perform skinning fully on GPU, avoiding `CoordinateInterpolator` done on CPU.
 
-## More physics
+## (IN PROGRESS) More physics
 
-More integration with physics engine. The details are listed in the link:manual_physics.php[manual about physics].
+More physics engine integration:
+
+- Physics behaviors in editor (IN PROGRESS by _Andrzej Kilijański_).
+- Auto-size for colliders
+- Visualize colliders in editor
+- Layers
+- Joints
+
+The details are listed in the link:manual_physics.php[manual about physics].
+
+## (IN PROGRESS) WebGL (HTML5) support
+
+Using FPC + WebAssembly, new target announced at the end of 2021.
+
+Some parts may also be done using pas2js. Done most likely just "wrapper", and the majority can be done using WebAssembly.
+
+_This is already in-progress by _Trung Le (Kagamma)_._
+
+## (IN PROGRESS) Particle systems
+
+With a designer. Example usage: blood, snow, rain, fire, smoke... 2D, 3D.
+
+_This is already in-progress by _Trung Le (Kagamma)_. Use link:https://github.com/Kagamma/cge-3d-particle-emitter[cge-3d-particle-emitter] or link:https://github.com/Kagamma/cge-effekseer[Effekseer Integration]. See link:additional_components.php[CGE components]._
+
+## Steam integration, and engine available as Steam app
+
+Official Steam integration in CGE, see https://trello.com/c/RNDjQhqe/71-steam-headers . We already used it for The Unholy Society, we want to either “just publish that approach” or propose a new, improved (without an intermediate “wrapper” library) approach.
+
+We should also upload CGE as app to Steam.
 
 ## Release mobile view3dscene (as Android and iOS application)
 
@@ -57,12 +91,6 @@ _What we have now:_ The engine includes a unit `CastleTerrain` to generate terra
 
 _What we need:_ Visual, interactive editor for the `ElevationGrid` (the thing you get from `TTerrain.Node` call). To make hills, valleys in a comfortable way. And comfortably plant there stuff (rocks, grass, trees...).
 
-## VR and AR
-
-VR: link:wp/2022/01/16/oculus-quest-2-developer-mode-for-castle-game-engine-enabled/[Michalis has access to Oculus Quest since the beginning of 2022]. Port most likely using link:https://www.khronos.org/OpenXR/[OpenXR] (to include the widest possible range of devices using a single cross-platform API).
-
-AR: most likely using Android / iOS built-in frameworks, as these make AR widely available on modern phones.
-
 ## Ready components to replicate data over the Internet
 
 Allowing to trivially get multi-playter functionality in your games.
@@ -80,20 +108,6 @@ This would make the whole TCastleViewport.Items a single graph of X3D nodes, all
 ## Distance field fonts
 
 See link:https://github.com/libgdx/libgdx/wiki/Distance-field-fonts[about Distance field fonts]. See code from link:https://github.com/neurolabusc/OpenGLCoreTutorials[Chris Rorden] showing how to do it in Lazarus.
-
-## (IN PROGRESS) WebGL (HTML5) support
-
-Using FPC + WebAssembly, new target announced at the end of 2021.
-
-Some parts may also be done using pas2js. Done most likely just "wrapper", and the majority can be done using WebAssembly.
-
-_This is already in-progress by _Trung Le (Kagamma)_._
-
-## (IN PROGRESS) Particle systems
-
-With a designer. Example usage: blood, snow, rain, fire, smoke... 2D, 3D.
-
-_This is already in-progress by _Trung Le (Kagamma)_. Use link:https://github.com/Kagamma/cge-3d-particle-emitter[cge-3d-particle-emitter] or link:https://github.com/Kagamma/cge-effekseer[Effekseer Integration]. See link:additional_components.php[CGE components]._
 
 ## Networking demo using RNL
 
@@ -113,7 +127,7 @@ In the future, everything should be possible without assigning `TCastleViewport.
 
 Currently, the engine requires you to assign scene to `TCastleViewport.MainScene` to achieve some features. For example:
 
-- To have some X3D lights shining on _all_ scenes, these lights should be in `Viewport.Items.MainScene`. IN PROGRESS: this is being address by `TCastleScene.CastGlobalLights` in new link:https://github.com/castle-engine/castle-engine/tree/light-components[light-components branch]
+- To have some X3D lights shining on _all_ scenes, these lights should be in `Viewport.Items.MainScene`. IN PROGRESS: this is being address by `TCastleScene.CastGlobalLights` in new link:https://github.com/castle-engine/castle-engine/tree/light-components[light-components branch] by _Michalis Kamburelis_.
 
 - `Fog` X3D node, this node needs to be inside `Viewport.Items.MainScene`. This will be address by `TCastleFog` similar to existing `TCastleBackground`
 
@@ -148,3 +162,7 @@ But it is something I think about for the future, and it may explain some of my 
 ## Bridge TDrawableImage with TCastleScene, enable drawing UI into TCastleScene, to have UI rotated in 3D with perspective.
 
 link:how_to_render_2d[See also here.]
+
+## USD – Universal Scene Description support
+
+Explore possibility to support https://graphics.pixar.com/usd/release/index.html[USD – Universal Scene Description] format as a first-class citizen, alongside glTF and X3D, in CGE.

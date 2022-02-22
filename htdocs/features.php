@@ -28,6 +28,15 @@ $toc = new TableOfContents(
 
 <?php echo pretty_heading('Castle Game Engine Features'); ?>
 
+<div class="download jumbotron">
+<a class="btn btn-primary btn-lg" href="roadmap">Roadmap</a>
+
+<div style="margin-top: 1em;">Want more features? See our
+<a href="roadmap">roadmap</a> and <a href="https://www.patreon.com/castleengine">support us on Patreon</a> to make it happen!
+<span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+</div>
+</div>
+
 <p>Contents:
 <?php echo $toc->html_toc(); ?>
 
