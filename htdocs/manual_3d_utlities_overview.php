@@ -9,7 +9,7 @@ castle_header('Overview');
   <li>
     <p>Most of their features can be achieved easily
      (and with much more flexibility) by using <a href="viewport_and_scenes">viewport and scenes</a> directly.
-     See <a href="planned_features.php">our plans</a> for detailed reasoning.
+     See <a href="roadmap">our plans</a> for detailed reasoning.
 
   <li>
     <p>In particular, using <a href="viewport_and_scenes">viewport and scenes</a> directly

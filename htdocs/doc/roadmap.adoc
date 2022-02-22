@@ -1,0 +1,150 @@
+# Roadmap
+include::common.adoc[]
+
+## Introduction
+
+Don't see the feature you need? link:talk.php[Tell us on the forum or Discord].
+
+If you would like to see some feature implemented sooner, please link:https://www.patreon.com/castleengine[support the engine development on Patreon!]
+
+## More visual editor
+
+Extend our link:manual_editor.php[editor] with features mentioned on link:wp/2022/01/01/summary-of-2021-plans-for-2022/[2022 plans]:
+
+- Lights editing (in progress).
+- Materials editing.
+- Better camera and navigation in editor.
+
+## More Delphi
+
+See link:supported_compilers.php[about existing Delphi compatibility]. We plan to support more platforms with Delphi: Linux, Android, iOS... We also plan to implement link:control_on_form[TCastleControl] on VCL and FMX forms.
+
+## Load and animate glTF more efficiently
+
+We should read meshes in a way that keeps binary layout of data in glTF, so that it is ultra-fast to load, and it is loaded almost straight from glTF to GPU.
+
+Some modifications to CGE may be required here (CastleGeometryArrays will have to be made more flexible for this). New X3D nodes should be introduced, like `BufferGeometry` (same as X3DOM?).
+
+We should also perform skinning fully on GPU, avoiding `CoordinateInterpolator` done on CPU.
+
+## More physics
+
+More integration with physics engine. The details are listed in the link:manual_physics.php[manual about physics].
+
+## Release mobile view3dscene (as Android and iOS application)
+
+link:https://github.com/castle-engine/view3dscene-mobile[This is almost done, thanks to Jan Adamec.] We need to release it :)
+
+Associated with glTF, X3D and other formats that the view3dscene (and _Castle Game Engine_) handles. Available in the App Store / Google Play Store. For free or for 1 USD (not sure yet; but definitely without ads, I really dislike ads).
+
+## Continuous integration (Jenkins) for free for all open-source projects
+
+We have a link:cloud_builds_jenkins[Jenkins + Docker infrastructure] to compile and test CGE, and CGE-based applications. I want to finish some stuff there and make it publicly accessible, and free for open-source projects.
+
+## Terrain designer
+
+Easily design a height map (X3D cgeref:TElevationGridNode[] node, with trees, rocks, grass). Saved and loaded as an X3D file.
+
+Implementing this feature will most likely be split into a couple of small releases:
+
+- Edit the heights.
+- Edit the grass and trees and rocks.
+- Efficiently render huge amounts of grass and trees and rocks.
+
+Implement nice shaders to show it, like link:https://www.getlazarus.org/videos/bareterrain/#learning_resources[this BareGame example].
+
+_What we have now:_ The engine includes a unit `CastleTerrain` to generate terrains in various ways (most notably, from smoothed random noise). We have `examples/terrain/` demo to play around with it. We have the link:https://github.com/castle-engine/wyrd-forest["Wyrd Forest"] game that also uses `CastleTerrain`, and also includes a simple editor of terrain settings.
+
+_What we need:_ Visual, interactive editor for the `ElevationGrid` (the thing you get from `TTerrain.Node` call). To make hills, valleys in a comfortable way. And comfortably plant there stuff (rocks, grass, trees...).
+
+## VR and AR
+
+VR: link:wp/2022/01/16/oculus-quest-2-developer-mode-for-castle-game-engine-enabled/[Michalis has access to Oculus Quest since the beginning of 2022]. Port most likely using link:https://www.khronos.org/OpenXR/[OpenXR] (to include the widest possible range of devices using a single cross-platform API).
+
+AR: most likely using Android / iOS built-in frameworks, as these make AR widely available on modern phones.
+
+## Ready components to replicate data over the Internet
+
+Allowing to trivially get multi-playter functionality in your games.
+
+## Vulkan renderer
+
+Vulkan renderer.
+
+We have a simple example code that shows how you can start a new renderer: see link:https://github.com/castle-engine/castle-engine/blob/master/examples/research_special_rendering_methods/new_renderer_skeleton/[examples/research_special_rendering_methods/new_renderer_skeleton/].
+
+## Make TCastleScene, TCastleTranform and friends to be special X3D nodes
+
+This would make the whole TCastleViewport.Items a single graph of X3D nodes, allowing for more sharing in code. The TCastleTranform would be just like TTransformNode, but a little diferently optimized (but it would become toggable at runtime).
+
+## Distance field fonts
+
+See link:https://github.com/libgdx/libgdx/wiki/Distance-field-fonts[about Distance field fonts]. See code from link:https://github.com/neurolabusc/OpenGLCoreTutorials[Chris Rorden] showing how to do it in Lazarus.
+
+## (IN PROGRESS) WebGL (HTML5) support
+
+Using FPC + WebAssembly, new target announced at the end of 2021.
+
+Some parts may also be done using pas2js. Done most likely just "wrapper", and the majority can be done using WebAssembly.
+
+_This is already in-progress by _Trung Le (Kagamma)_._
+
+## (IN PROGRESS) Particle systems
+
+With a designer. Example usage: blood, snow, rain, fire, smoke... 2D, 3D.
+
+_This is already in-progress by _Trung Le (Kagamma)_. Use link:https://github.com/Kagamma/cge-3d-particle-emitter[cge-3d-particle-emitter] or link:https://github.com/Kagamma/cge-effekseer[Effekseer Integration]. See link:additional_components.php[CGE components]._
+
+## Networking demo using RNL
+
+Make a demo showing how to use Castle Game Engine together with link:https://github.com/BeRo1985/rnl[RNL - a real-time network library, in Pascal, very suitable for games, by Benjamin Rosseaux].
+
+## Make 100% rendering features available on OpenGLES too
+
+link:mobile_todos[We have some small TODOs to make OpenGLES (mobile) renderer as capable as OpenGL (desktop).]
+
+## Use Cocoa under macOS directly
+
+See link:macos[macOS].
+
+## (IN PROGRESS) API improvement: Make `TCastleViewport.MainScene` not necessary
+
+In the future, everything should be possible without assigning `TCastleViewport.MainScene`, and eventually `TCastleViewport.MainScene` property should be deprecated, later it should be ignored, and later it should be removed.
+
+Currently, the engine requires you to assign scene to `TCastleViewport.MainScene` to achieve some features. For example:
+
+- To have some X3D lights shining on _all_ scenes, these lights should be in `Viewport.Items.MainScene`. IN PROGRESS: this is being address by `TCastleScene.CastGlobalLights` in new link:https://github.com/castle-engine/castle-engine/tree/light-components[light-components branch]
+
+- `Fog` X3D node, this node needs to be inside `Viewport.Items.MainScene`. This will be address by `TCastleFog` similar to existing `TCastleBackground`
+
+All these features should have a different solution, that doesn't require marking any scene as "main".
+
+## fps_game should be redesigned using editor, CreatureCreatures / CastleResources / CastleLevels / CastleItems / CastlePlayer should be replaced with a better API
+
+These 5 units (CreatureCreatures / CastleResources / CastleLevels / CastleItems / CastlePlayer) expose a high-level API, that sits on top on existing classes (like TCastleScene and TCastleTransform). But I am not 100% happy with their API. Reasons:
+
+- The API is too specialized at some points (3D games with creatures / items pickable),
+
+- It is confusing how it maps to API underneath (e.g. TPlayer somewhat controls the TCastleNavigation).
+
+Gradually I will want to express their features in different ways, in ways that are more closely and obviously connected with TCastleScene / TCastleViewport / TCastleNavigation. Basically, I'm very happy with current API of TCastleScene and TCastleTransform, and I want to make it more obvious how it is related to creatures/placeholders and other concepts introduced in CastleLevels and CastleCreatures and CastkeResources. Currently they use TCastleScene and TCastleTransform inside, but the relationship is non-obvious.
+
+It's not going to happen any time soon, but it will happen gradually, over the course of next 1 or more years. That is, some of the features of the 5 units mentioned above will become available in other ways too (more flexible, and more obviously connected to TCastleScene).
+
+I know this sounds vague, because I have not yet clarified these plans in my head:) These 5 units *are* useful, they provide various features on top of TCastleScene. I'm not going to just "ditch" them or even deprecate them, before I made a better API that also has these features. For example:
+
+- New TCastleScene.Load should be able to take a callback (or some class instance) to easily perform the "placeholders" functionality of `TLevel.Load` in a flexible manner (user can decide what to replace with what).
+
+- There will be TCastleSceneView that provides part of the functionality of T3DResource (multiple TCastleSceneView share a single TCastleScene but can show different animation frame of it), but without some often-unnecessary "baggage" from T3DResource (like refcounting of T3DResource, and it's special Prepare/Release methods).
+
+- It should be possible to add an A.I. (like TWalkAttackLogic) to any TCastleTransform instance.
+
+I know I want to go in this direction. Based on the questions (including on Discord) I see that the API of these 5 units is not clear to people. It wraps TCastleScene / TCastleViewport / TCastleNavigation, but in ways that are not obvious, and that is something I want to improve.
+
+Again, bear in mind that it will not happen any time soon :) You can safely and happily use these units, probably for a few years to come.
+
+But it is something I think about for the future, and it may explain some of my decisions. E.g. that is why I don't plan special integration of TCastleCreature with castle-editor. Instead I want to enable you to add future TWalkAttackLogic to any TCastleTransform one day. And thus we will have "easy creatures" in CGE but with more flexible API.
+
+## Bridge TDrawableImage with TCastleScene, enable drawing UI into TCastleScene, to have UI rotated in 3D with perspective.
+
+link:how_to_render_2d[See also here.]

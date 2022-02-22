@@ -79,7 +79,7 @@ $toc = new TableOfContents(
     -->
 
     <p>If you're looking for a feature to implement,
-    <a href="planned_features.php">take a look at our planned features</a>.
+    <a href="roadmap">take a look at our roadmap</a>.
 
   <li><p><a href="<?php echo WIKI_URL; ?>">Contribute
     to our wiki</a> useful tips or tutorials about using our engine.

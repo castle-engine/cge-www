@@ -326,6 +326,7 @@ $castle_sitemap = array(
               'doc/ios_services' => array('title' => 'iOS Services (Apple Game Center and many more...)'),
               'doc/in_app_purchases' => array('title' => 'In-App Purchases (Android, iOS)'),
               'doc/nintendo_switch' => array('title' => 'Nintendo Switch'),
+              'doc/macos' => array('title' => 'macOS'),
             ),
           ),
           'manual_optimization' => array('title' => 'Optimization',
@@ -400,7 +401,7 @@ $castle_sitemap = array(
       'documentation_more' => array('title' => 'More...',
         'sub' => array(
           'supported_compilers' => array('title' => 'Supported compilers and IDEs'),
-          'planned_features' => array('title' => 'Planned features'),
+          'doc/roadmap' => array('title' => 'Roadmap'),
           'helping' => array('title' => 'Helping in engine development',
             'sub' => array(
               'donate_other' => array('title' => 'Donate')
@@ -412,7 +413,6 @@ $castle_sitemap = array(
           // 'engine_doc' => array('title' => 'Internals documentation'), // too outdated
           'doc/cloud_builds_jenkins' => array('title' => 'Jenkins: Automatic cloud builds for CGE projects'),
           'doc/docker' => array('title' => 'Docker: Get CGE packaged with various tools (like cross-compilers, Android SDK, texture compression tools)'),
-          'macosx_requirements' => array('title' => 'Dependencies on macOS'),
           'license' => array('title' => 'License'),
           'doc/fpcupdeluxe' => array('title' => 'fpcupdeluxe'),
           'doc/fpmake' => array('title' => 'FpMake and FpPkg'),
@@ -1568,8 +1568,7 @@ define('DEPENDS_UNIX_CASTLE_WINDOW_GTK_2',
   /* I also use some GTK >= 2.8 features, but since Mac OS X fink stable
      includes only GTK 2.6, we work Ok with GTK 2.6 too. */
 define('DEPENDS_MACOSX',
-  'Mac OS X users should look at the ' .
-  a_href_page('list of dependencies on Mac OS X', 'macosx_requirements') );
+  a_href_page('macOS users see here', 'doc/macos') );
 
 function depends_par($depends_array)
 {

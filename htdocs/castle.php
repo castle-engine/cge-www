@@ -123,7 +123,7 @@ the list of changes since last release.</p>
 
     <p>The game requires X11 server, libpng and (if you want to hear
     sound) OpenAL with vorbisfile. See <?php echo a_href_page(
-    'Mac OS X dependencies', 'macosx_requirements'); ?> for simple
+    'macOS dependencies', 'doc/macos'); ?> for simple
     instructions how to get them.</p>
 
     <p>Installing actual game: extract the downloaded archive anywhere.

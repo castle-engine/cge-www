@@ -110,7 +110,7 @@ you can open them all with <code>view3dscene</code>.</p>
 <ul>
   <li><i>For Linux:</i> If you want to hear 3D sound in X3D worlds, install also <?php echo a_href_page('OpenAL', 'openal'); ?> and <a href="http://xiph.org/vorbis/">OggVorbis (VorbisFile and dependencies)</a> libraries.
   <li><i>For Windows:</i> All useful libraries are already included in the archive, so you don't have to do anything.
-  <li><?php echo a_href_page('Mac OS X requirements are listed here', 'macosx_requirements'); ?>.
+  <li><?php echo a_href_page('macOS requirements are listed here', 'doc/macos'); ?>.
 </ul>
 
 <!--p>If you want to try the unstable bleeding-edge version, you can download the binary from the <a href="<?php echo SNAPSHOTS_BASE; ?>">view3dscene snapshots</a> page.-->

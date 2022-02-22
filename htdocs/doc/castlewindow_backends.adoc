@@ -89,7 +89,7 @@ Supported platforms: everywhere where LCL runs. (But in practice this backend is
 
 Advantages:
 
-* Can use any LCL backend, in particular it allows to use Cocoa on macOS. This is the only way for now to have `TCastleWindow` have a native look on macOS. See https://castle-engine.io/macosx_requirements.php[CGE on macOS notes].
+* Can use any LCL backend, in particular it allows to use Cocoa on macOS. This is the only way for now to have `TCastleWindow` have a native look on macOS. See link:macos[macOS].
 * Depends on LCL for all the things, like `TCastleWindow.MainMenu` or `TCastleWindow.FileDialog` or `TCastleWindow.FullScreen`.
 
 Known problems:

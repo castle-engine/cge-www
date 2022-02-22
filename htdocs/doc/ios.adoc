@@ -34,7 +34,7 @@ The FPC compiler needs the "Xcode command-line developer tools" installed. In sh
 
 Alternative approach to the installation is to use link:pass:[fpcupdeluxe][fpcupdeluxe]. This works now great with latest stable FPC 3.2.2. You can install the regular FPC/Lazarus, and then the necessary cross-compilers (iOS/arm, iOS/aarch64, i-sim/x86_64).
 
-See https://castle-engine.io/macosx_requirements.php for more information about developing desktop applications for macOS using Castle Game Engine.
+See link:macos[macOS] for more information about developing desktop applications for macOS using Castle Game Engine.
 
 === Installing FPC cross-compilers for iPhone and iPhoneSimulator
 

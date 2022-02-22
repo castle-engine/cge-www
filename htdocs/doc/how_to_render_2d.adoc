@@ -94,4 +94,4 @@ The _imperative_ stuff is simpler to use, and enough for simple use-cases. I won
 
 == Can these methods be combined, to render using TDrawableImage within TCastleScene?
 
-I plan to enable rendering using TDrawableImage into a TCastleScene one day. Then you could render user interface into TCastleScene, rotate this TCastleScene, and have easy user-interface in 3D. This is part of https://castle-engine.io/planned_features.php .
+I plan to enable rendering using TDrawableImage into a TCastleScene one day. Then you could render user interface into TCastleScene, rotate this TCastleScene, and have easy user-interface in 3D. This is part of link:roadmap[] .

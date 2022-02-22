@@ -1,0 +1,161 @@
+# macOS
+include::common.adoc[]
+
+## Installation of FPC and Lazarus
+
+Just install link:http://www.lazarus.freepascal.org/[Lazarus for macOS from the official Lazarus webpage] (FPC is also included in Lazarus download).
+
+NOTE: Alternatively you can also install FPC / Lazarus using your favourite package manager: link:https://brew.sh/[Homebrew], link:https://www.macports.org/[MacPorts], link:http://www.finkproject.org/[Fink].
+
+The FPC compiler needs the _XCode command-line developer tools_ installed. To do this, open terminal (_/Applications/Utilities/Terminal_) and execute `xcode-select --install`.
+
+The latest macOS doesn't include gdb (a debugger, user underneath by Lazarus) by default. Lazarus will warn you about this on the 1st run. You can install GDB e.g. using link:https://brew.sh/[HomeBrew], just execute `brew install gdb`.
+
+More information:
+
+- link:https://wiki.freepascal.org/Mac_Installation_FAQ[FPC Mac Installation FAQ]
+- link:https://wiki.freepascal.org/Installing_Lazarus_on_MacOS_X[Installing Lazarus on MacOS X]
+- link:http://wiki.lazarus.freepascal.org/GDB_on_OS_X_Mavericks_or_newer_and_Xcode_5_or_newer[GDB on OS X].
+
+## Using TCastleWindow
+
+### TCastleWindow with X (Xlib backend)
+
+Xlib is for now the *default backend on macOS*. While it does not look pretty, and does not show a menu bar, but it's easiest to use right now.
+
+To use it, install link:https://www.xquartz.org/[XQuartz] and recommend your users to do it too. Our programs will appear as part of "_X11 server_" on your desktop.
+
+To compile, you also need to add this line to your `fpc.cfg` file:
+
+----
+-k-L/usr/X11/lib/
+----
+
+////
+# Old version:
+# -Fl/usr/X11/lib/
+# Should work equally well as far as I know, but it doesn't, for FPC 3.0.4/3.0.5
+////
+
+[WARNING]
+====
+If you get an error (when running our applications) that _glX extension not found_: Check do you have a `/usr/X11R6` symlink (e.g. by running `ls /usr/X11R6` in the terminal). Some versions of XQuartz seem to not install it (link:http://bugs.freepascal.org/view.php?id=31651[see here]).   You can fix it on your system by:
+
+----
+sudo ln -s /usr/X11 /usr/X11R6
+----
+
+Alternative fix (link:https://lists.apple.com/archives/x11-users/2015/Oct/msg00012.html[see here]):
+
+----
+sudo /usr/libexec/x11-select /opt/X11
+sudo chmod a+rX /usr/X11/ /usr/X11R6/
+----
+====
+
+////
+### TCastleWindow with GTK backend
+
+You can switch the backend to GTK 2. Do this by adding this line to your `fpc.cfg` file (<?php echo FPC_CFG_DOCS; ?>):
+
+```-dCASTLE_WINDOW_GTK_2```
+
+This looks better (the program will still be part
+of the "_X11 server_", but it will have a nice menu bar and dialog
+windows using GTK).
+
+In addition to *X11* (see above), your
+application will use *GTK* libraries.
+Install them using
+link:https://www.macports.org/[MacPorts],
+link:https://brew.sh/[Homebrew] or
+link:http://www.finkproject.org/[Fink].
+Yes, all three options are tested and OK. Look for packages called `gtk2`.
+////
+
+### TCastleWindow with Cocoa (using LCL backend)
+
+Using Cocoa means that your application will look pretty and native.
+
+To do this:
+
+- open your project in Lazarus
+- change in Project Inspector `castle_window.lpk` to `alternative_castle_window_based_on_lcl.lpk`
+- compile from Lazarus (in this approach, you cannot compile using CGE build tool or editor).
+
+Internally, this means that cgeref:TCastleWindow[] is using LCL backend, and LCL in turn is using Cocoa.
+
+**TODO:**
+
+We plan to improve this situation, because
+
+1. The above approach means that we rely on LCL event loop. E.g. mouse look may "stutter".
+
+2. The above approach means that you cannot build from CGE build tool or editor, as they don't link LCL.
+
+The plan is to implement `CastleWindow` backend based directly on Cocoa (without using LCL in the middle).
+
+Can you help us with this?
+
+- It's a matter of creating and implementing a file `castle_game_engine/src/window/castlewindow_cocoa.inc`, based on `castle_game_engine/src/window/castlewindow_backend_template.inc`.
+
+- Or send Michalis a simple and clear example of FPC program using Cocoa that 1. creates and shows a window, 2. with menu bar 3. and with OpenGL context area covering the window.
+
+## Using TCastleControl
+
+Using link:control_on_form[TCastleControl] on macOS is completely standard. Just drop `TCastleControl` on LCL form.
+
+cgeref:TCastleWindow[] is our most advised way to create a window where _Castle Game Engine_ can work.
+
+## Other libraries
+
+OpenAL (sound):: (For macOS older than Tiger, that is <= 10.3). OpenAL may be downloaded from Creative, see download links from link:http://connect.creativelabs.com/openal/Downloads/Forms/AllItems.aspx[openal.org downloads].
++
+In macOS > Tiger, OpenAL comes already preinstalled.
++
+Even without OpenAL installed, all our programs will still work fine,  you just will not get any sound.
+
+VorbisFile (reading OggVorbis):: It may be installed using link:https://www.macports.org/[MacPorts], link:https://brew.sh/[Homebrew] or link:http://www.finkproject.org/[Fink].
+
+LibPng:: If you want to use _LibPng library_ in your programs, to read PNG faster, you can install it using link:https://www.macports.org/[MacPorts], link:https://brew.sh/[Homebrew] or  link:http://www.finkproject.org/[Fink].
++
+Note that *this is not necessary*. If we don't find LibPng, we will fallback to reading PNG using _Vampyre Imaging Library_, which works too.
+
+FreeType (reading font files):: It is available in package managers like link:https://brew.sh/[Homebrew]. As a fallback we will also try to use FreeType version installed by your X11, in `/usr/X11/lib/` .
+
+## Creating macOS applications
+
+- _Make "macOS bundle"_. It's basically a directory pretending to be an application.
++
+You can use Lazarus to create macOS bundle. Or you can use our link:https://github.com/castle-engine/cge-scripts/blob/master/create_macosx_bundle.sh[create_macosx_bundle.sh script]. The example usage is inside view3dscene and castle-view-image sources.
+
+- Optionally, _add libraries (like libpng and vorbisfile) to the bundle_. If you link to them dynamically (e.g. using our `TDynLib.Load`), you should load them from a path relative to `BundlePath`, like `BundlePath + 'Contents/MacOS/libpng.dylib'`.
++
+See link:http://wiki.freepascal.org/OS_X_Programming_Tips#Mac_OS_X_Libraries[macOS Libraries on FPC wiki] for general instructions how to include library inside a bundle.
+
+- Pack the bundle into a `.dmg` file. See link:http://el-tramo.be/guides/fancy-dmg/[Building Fancy DMG Images on macOS] for nice description how to make the directories inside dmg look pretty, so you can visually suggest user to drag your application in the _Applications_ folder.
++
+Alternatively, you can pack the bundle into a _regular zip file_. link:https://daringfireball.net/2009/09/how_should_mac_apps_be_distributed[There are convincing arguments that using ZIP is actually more user-friendly than DMG] (users can just double-click to unpack, and they have the application; they don't need to understand how "disk image" works). See also link:https://stackoverflow.com/questions/3954506/dmg-or-zip-file-for-distribution-to-macs[here] for discussion. And making zip is definitely simpler.
++
+Alternative method of distribution macOS applications is the  link:http://wiki.freepascal.org/Deploying_Your_Application#Using_PackageMaker_on_Mac_OS_X[package manager (.pkg)]. For normal applications (like games) the simpler `.dmg` or `.zip` are a better choice.
+
+### Packaging data with macOS applications
+
+Behavior of the link:manual_data_directory.php[data directory] (`castle-data:` protocol) on macOS:
+
+- On macOS, if you run the application through the "application bundle", then we expect the data to be found inside `MyApplication.app/Contents/Resources/data` subdirectory. This way user can move around `MyApplication.app` to move, install and uninstall the application.
+
+- If the `MyApplication.app/Contents/Resources/data` subdirectory is not found, we will use the `data` subdirectory that is sibling to `MyApplication.app`. This feature is intended to be used only *during development*. This way things work "out of the box" if you run through Lazarus, with checkbox _“Use Application Bundle for running and debugging”_.
+
+- *When distributing the application to the end users*, you should manually copy the “data” subdirectory inside the bunde (to `MyApplication.App/Contents/Resources/data`).
++
+In case of compiling and packaging using our link:build_tool[build tool] we could do it automatically at some point (although it's not implemented for now).
++
+In case of using Lazarus to create the bundle -- you will have to do it manually always.
++
+I recommend writing a simple shell script to create the bundle. Copy the data like this:
++
+----
+rm -Rf MyApplication.app/Contents/Resources/data
+cp -R data/ MyApplication.app/Contents/Resources
+----

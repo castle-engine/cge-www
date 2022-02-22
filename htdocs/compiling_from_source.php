@@ -148,7 +148,7 @@ cd castle-engine/tools/build-tool/
 
 <?php echo $toc->html_section(); ?>
 
-<?php echo a_href_page('macOS requirements are listed here', 'macosx_requirements'); ?>. We know this is somewhat complicated &mdash; we want to make this more straightforward for mac users in the future.
+<?php echo a_href_page('macOS requirements are listed here', 'doc/macos'); ?>.
 
 <?php echo $toc->html_section(); ?>
 
