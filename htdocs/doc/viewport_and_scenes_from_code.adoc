@@ -3,7 +3,7 @@ include::common.adoc[]
 
 ## Introduction
 
-In this chaper we'll show how to do some useful operations on viewports and scenes using Pascal code. We assume you have already read the link:viewport_and_scenes[overview of the viewport and scenes] and link:viewport_3d[Tutorial: Designing a 3D world] (that shows how to set up things using the editor).
+In this chapter we'll show how to do some useful operations on viewports and scenes using Pascal code. We assume you have already read the link:viewport_and_scenes[overview of the viewport and scenes] and link:viewport_3d[Tutorial: Designing a 3D world] (that shows how to set up things using the editor).
 
 By editing Pascal code you can do much more than what is possible by just designing in the _Castle Game Engine editor_.
 

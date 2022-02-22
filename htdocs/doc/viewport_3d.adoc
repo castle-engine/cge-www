@@ -3,7 +3,7 @@ include::common.adoc[]
 
 ## Introduction
 
-In this chaper we show how you can design 3D world using _Castle Game Engine_ editor. We assume you have already read the link:viewport_and_scenes[overview of the viewport and scenes].
+In this chapter we show how you can design 3D world using _Castle Game Engine_ editor. We assume you have already read the link:viewport_and_scenes[overview of the viewport and scenes].
 
 ## Complete tutorial code
 
