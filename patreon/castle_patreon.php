@@ -53,8 +53,8 @@ function castle_patreon_nearest_goal()
   // It should define $cge_patreon_access_token = '...';
   include 'castle_patreon_config.php';
 
-  if (!$cge_patreon_access_token) {
-    die('Patreon access token not defined');
+  if (!isset($cge_patreon_access_token)) {
+    throw new Exception('Patreon access token not defined');
     /*
     return array(
       'amount_cents' => 0,
@@ -90,7 +90,7 @@ function castle_patreon_nearest_goal()
     $goal_id = $goal_link['id'];
     $goal_details = _castle_patreon_find_included_resource($campaign_details, $goal_id);
     if ($goal_details === NULL) {
-      die('Goal details for ' . htmlspecialchars($goal_id) . ' not found');
+      throw new Exception('Goal details for ' . $goal_id . ' not found');
     }
     $goals[] = $goal_details['attributes'];
   }
