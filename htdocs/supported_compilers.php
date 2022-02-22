@@ -44,6 +44,11 @@ for many other Linux distros)</a>.
 Last time, on 2021-12-12, we bumped required version
 for <i>Castle Game Engine 7.0-alpha-snapshot</i> from <i>FPC &gt;= 3.0.2</i> to <i>FPC &gt;= 3.2.0</i>.
 
+<p>For Aarch64 (64-bit Arm), as found on Android, iOS, macOS: While we support any FPC &gt;= 3.2.0,
+we strongly advise FPC &gt;= 3.2.2. That is because certain optimizations have been broken
+in older FPC versions. Our build tool disables optimizations in released builds when it detects
+Aarch64 and older FPC.
+
 <p>You may also find it comfortable
 to use <a href="http://lazarus.freepascal.org/">Lazarus</a>,
 which is an IDE (editor, debugger etc.) built around FPC
