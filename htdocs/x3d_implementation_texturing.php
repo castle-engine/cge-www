@@ -113,29 +113,17 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
     in particular in
     <a href="https://github.com/castle-engine/demo-models/tree/master/multi_texturing">multi_texturing subdirectory</a>.
 
-    <p>We support for all the fields from X3D specification (unless mentioned below).
+    <p>We implement various modes (in <code>MultiTexture.mode</code>), sources
+    (<code>MultiTexture.source</code>) and functions (in <code>MultiTexture.function</code>).
+    As an extension, we also allow separate mode and sources for RGB and alpha, as documented in
+    <a href="https://castle-engine.io/x3d_multi_texturing.php#section_proposed_mode">Proposed improved MultiTexture.mode specification</a>.
 
-    <!--p>Note that using <code>MultiTexture.function</code>
-    forces shader pipeline for given shape (so it will not work on really
-    old GPUs).
-    There is no way to reasonably do this using OpenGL fixed-function pipeline,
-    as corresponding OpenGL settings
-    (GL_OPERANDx) operate <i>before</i> normal texture unit calculations
-    are done, while X3D spec requires <code>function</code> to act afterwards.
-
-    (commented out, not important anymore)
-    -->
-
-    <p>We implement most modes (in <code>MultiTexture.mode</code>), except (<i>TODO</i>):
+    <p><i>TODO:</i> Modes not implemented yet:
     <code>MODULATEALPHA_ADDCOLOR</code>,
     <code>MODULATEINVALPHA_ADDCOLOR</code>,
     <code>MODULATEINVCOLOR_ADDALPHA</code>.</p>
 
-    <p><i>TODO</i>: <code>MultiTexture.source</code> values <code>"DIFFUSE"</code> and <code>"SPECULAR"</code> are treated the same.
-    <ul>
-      <li>If <?php api_link('SeparateDiffuseTexture', 'CastleRenderer.TRenderingAttributes.html#SeparateDiffuseTexture'); ?> is false (which is the default), the textures process the final color obtained from lighting calculation (so it's affected by all the material and lights colors for ambient, diffuse and specular).
-      <li>If <?php api_link('SeparateDiffuseTexture', 'CastleRenderer.TRenderingAttributes.html#SeparateDiffuseTexture'); ?> is true, the textures process the diffuse color.
-    </ul>
+    <p><code>MultiTexture.source</code> values <code>"DIFFUSE"</code> and <code>"SPECULAR"</code> are treated the same. They don't make much sense in the context of PBR material parameters anyway.
 
     <p>Note that the multi-texturing specification of X3D has unfortunately some issues. <a href="x3d_multi_texturing.php">Clarifications and our extensions are documented here</a>.
 
