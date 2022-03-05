@@ -596,6 +596,18 @@ class Jetpack {
 		$new_current_modules  = array_diff( array_merge( $current_modules, $new_active_modules ), $new_inactive_modules );
 		$reindexed_modules    = array_values( $new_current_modules );
 		$success              = Jetpack_Options::update_option( 'active_modules', array_unique( $reindexed_modules ) );
+		// Let's take `pre_update_option_jetpack_active_modules` filter into account
+		// and actually decide for which modules we need to fire hooks by comparing
+		// the 'active_modules' option before and after the update.
+		$current_modules_post_update = Jetpack_Options::get_option( 'active_modules', array() );
+
+		$new_inactive_modules = array_diff( $current_modules, $current_modules_post_update );
+		$new_inactive_modules = array_unique( $new_inactive_modules );
+		$new_inactive_modules = array_values( $new_inactive_modules );
+
+		$new_active_modules = array_diff( $current_modules_post_update, $current_modules );
+		$new_active_modules = array_unique( $new_active_modules );
+		$new_active_modules = array_values( $new_active_modules );
 
 		foreach ( $new_active_modules as $module ) {
 			/**
@@ -1888,7 +1900,7 @@ class Jetpack {
 				continue;
 			}
 
-			if ( ! include_once self::get_module_path( $module ) ) {
+			if ( ! include_once self::get_module_path( $module ) ) { // phpcs:ignore WordPressVIPMinimum.Files.IncludingFile.NotAbsolutePath
 				unset( $modules[ $index ] );
 				self::update_active_modules( array_values( $modules ) );
 				continue;
@@ -3022,9 +3034,8 @@ class Jetpack {
 
 		self::catch_errors( true );
 		ob_start();
-		require self::get_module_path( $module );
-		/** This action is documented in class.jetpack.php */
-		do_action( 'jetpack_activate_module', $module );
+		require self::get_module_path( $module ); // phpcs:ignore WordPressVIPMinimum.Files.IncludingFile.NotAbsolutePath
+
 		$active[] = $module;
 		self::update_active_modules( $active );
 
@@ -4140,7 +4151,7 @@ p {
 
 			// Add objects to be passed to the initial state of the app.
 			// Use wp_add_inline_script instead of wp_localize_script, see https://core.trac.wordpress.org/ticket/25280.
-			wp_add_inline_script( 'jetpack-plugins-page-js', 'var Initial_State=JSON.parse(decodeURIComponent("' . rawurlencode( wp_json_encode( Jetpack_Redux_State_Helper::get_initial_state() ) ) . '"));', 'before' );
+			wp_add_inline_script( 'jetpack-plugins-page-js', 'var Initial_State=JSON.parse(decodeURIComponent("' . rawurlencode( wp_json_encode( Jetpack_Redux_State_Helper::get_minimal_state() ) ) . '"));', 'before' );
 
 			add_action( 'admin_footer', array( $this, 'jetpack_plugin_portal_containers' ) );
 		}
@@ -7239,7 +7250,7 @@ endif;
 	/**
 	 * Register product descriptions for partner coupon usage.
 	 *
-	 * @since $$next_version$$
+	 * @since 10.4.0
 	 *
 	 * @param array $products An array of registered products.
 	 *
