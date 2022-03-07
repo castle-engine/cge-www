@@ -70,6 +70,9 @@ function castle_patreon_nearest_goal()
   $api_client = new Patreon\API($cge_patreon_access_token);
 
   $campaigns_list = $api_client->fetch_campaigns();
+  if (!isset($campaigns_list['data'][0]['id'])) {
+    throw new Exception('Patreon campaigns unexpected answer: ' . print_r($campaigns_list, true));
+  }
   $campaign_id = $campaigns_list['data'][0]['id'];
 
   //$campaign_details = $api_client->fetch_campaign_details($campaign_id);
@@ -83,6 +86,10 @@ function castle_patreon_nearest_goal()
   */
   $campaign_details = $api_client->get_data("campaigns/{$campaign_id}?include=benefits,creator,goals,tiers&fields%5Bgoal%5D=amount_cents,completed_percentage,created_at,description,reached_at,title");
   //print_r($campaign_details);
+
+  if (!isset($campaign_details['data']['relationships']['goals']['data'])) {
+    throw new Exception('Patreon details campaigns unexpected answer: ' . print_r($campaign_details, true));
+  }
 
   // calculate $goals, containing details for each CGE goal on Patreon
   $goals = array();
