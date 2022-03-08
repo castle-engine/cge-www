@@ -227,19 +227,25 @@ cgeimg::block[viewport_3d_game_running_walk.png|Game running with walking]
 
 ### Lighting
 
-Because of the way headlight works (it is a simple directional light), and the fact that we don't have any additional lights on the level -- the road is completely dark when looking straight. You need to bow your head (use mouse scroll) to have a bit brighter road.
+Because of how the headlight works (it is a simple directional light by default), and the fact that we don't have any additional lights on the level -- the road is completely dark when looking straight ahead. You need to bow your head (use mouse scroll) to have a bit brighter road.
 
 This should be fixed by adding additional lights to the level.
 
-Right now: You can add lights in Blender to the road asset.
+*Advised solution:* Add light(s) to the scene using the _Castle Game Engine_ editor. Simply add them to the viewport (right-click on the `Items` property of the viewport). Then move/rotate them as needed. The following light sources are available:
+
+- cgeref:TCastlePointLight[] - omnidirectional light that shines with a certain cgeref:TCastlePointLight.Color[Color], cgeref:TCastlePointLight.Intensity[Intensity] and cgeref:TCastlePointLight.Radius[Radius]. The rotation of this light doesn't matter, only the position influences the actual effect.
+
+- cgeref:TCastleDirectionalLight[] - light that shines along a certain direction, with certain cgeref:TCastleDirectionalLight.Color[Color] and cgeref:TCastleDirectionalLight.Intensity[Intensity]. It approximates a light source that is very very far away, like a real-world sun. The position of this light source doesn't matter, only the rotation influences the actual effect.
+
+- cgeref:TCastleSpotLight[] - light that shines from a given position, in a given direction, within a cone. The cone angle is configurable (by cgeref:TCastleSpotLight.CutOffAngle[CutOffAngle] and cgeref:TCastleSpotLight.BeamWidth[BeamWidth]), as well as cgeref:TCastleSpotLight.Color[Color], cgeref:TCastleSpotLight.Intensity[Intensity] and cgeref:TCastleSpotLight.Radius[Radius].
+
+*Alternative solution:* You can also add lights in Blender to the road asset.
 
 . Copy `road.blend` to `road_with_lights.blend`.
 . Add lights in Blender to `road_with_lights.blend`.
 . Export it to `road_with_lights.gltf` (be sure to select to include _"Lights"_ at glTF export dialog).
 . Change one road piece, like the initial `SceneRoad`, to load from `road_with_lights.gltf` (instead of `road.gltf`).
 . Set `SceneRoad` as `Items.MainScene` to make the lights shine on all the other scenes -- cars and other road pieces.
-
-Future engine versions of _Castle Game Engine_ will enable to just add lights using the editor.
 
 cgeimg::block[
   viewport_3d_lights_blender.png|Adding lights in Blender,
