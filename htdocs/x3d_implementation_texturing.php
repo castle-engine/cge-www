@@ -188,13 +188,13 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
         and always will be a more efficient solution anyway.
       </dd>
 
-      <dt>boundaryModeS/T/U overrides texture repeatS/T/U</dt>
+      <dt>boundaryModeS/T/R overrides texture repeatS/T/R</dt>
       <dd><p>Be aware that using <code>TextureProperties</code> means that texture
-        <code>repeatS/T/U</code> is ignored. E.g. <code>ImageTexture.repeatS</code> is ignored,
+        <code>repeatS/T/R</code> is ignored. E.g. <code>ImageTexture.repeatS</code> is ignored,
         instead we'll use <code>TextureProperties.boundaryModeS</code> to determine whether
         texture repeats or not in S coordinate.
 
-        <p>You should instead adjust <code>boundaryModeS/T/U</code> (by default <code>"REPEAT"</code>
+        <p>You should instead adjust <code>boundaryModeS/T/R</code> (by default <code>"REPEAT"</code>
         regardless of the texture type, 2D or 3D) and you get more options now:
         <code>"CLAMP_TO_EDGE"</code>, <code>"REPEAT"</code> and <code>"MIRRORED_REPEAT"</code>.
 
