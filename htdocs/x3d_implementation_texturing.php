@@ -159,18 +159,58 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
 
   <li><p><?php echo x3d_node_link('TextureProperties'); ?>
 
-    <p>Adjust various texture calculation properties. Right now it allows to modify the filtering options,
-    by fields <code>minificationFilter</code>, <code>magnificationFilter</code> and
-    <code>anisotropicDegree</code>.
+    <p>Adjust various texture filtering/wrapping properties. Supported fields now are:
 
-    <p>See here for example Pascal code that creates <code>TextureProperties</code> nodes
-    and requests anisotropic filtering for specific textures:
-    <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/viewport_and_scenes/anisotropic_filtering/">examples/viewport_and_scenes/anisotropic_filtering/</a>.
+    <ul>
+      <li><code>minificationFilter</code>, <code>magnificationFilter</code>,
+      <li><code>anisotropicDegree</code>,
+      <li><code>boundaryModeS</code>, <code>boundaryModeT</code>, <code>boundaryModeR</code>.
+    </ul>
 
-    <p><i>Note</i>: We don't support the <code>TextureProperties.textureCompression</code> field yet.
-    If you're looking for a way to use GPU compressed textures,
-    <a href="#section_dds">simply place the GPU compressed texture data in DDS or KTX files</a>.
-    This is, and always will be, a more efficient solution anyway.
+    <p>Some details about supported and unsupported fields:
+
+    <dl>
+      <dt>anisotropicDegree (fully supported)</dt>
+      <dd><p>See
+        <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/viewport_and_scenes/anisotropic_filtering/">examples/viewport_and_scenes/anisotropic_filtering/</a>
+        for example Pascal code that creates <code>TextureProperties</code> nodes
+        and requests anisotropic filtering for specific textures.
+        We plan to enable adjusting this in CGE editor at some point too.
+      </dd>
+
+      <dt>textureCompression (we do not support compressing texture data at runtime)</dt>
+      <dd><p>We don't plan to support the this field now.
+
+       <p>Reason:
+        If you're looking for a way to use GPU compressed textures,
+        <a href="#section_dds">simply place the GPU compressed texture data in DDS or KTX files</a>.
+        Using GPU compressed textures in DDS and KTX is fully supported,
+        and always will be a more efficient solution anyway.
+      </dd>
+
+      <dt>clamp to border (unsupported)</dt>
+      <dd><p>We don't plan to support the <i>"clamp to border"</i> wrapping modes
+        for <code>boundaryModeXxx</code> fields. For the same reason, we don't plan to support
+        related <code>borderColor</code> and <code>borderWidth</code> fields, that only make sense
+        for <i>"clamp to border"</i> mode.
+        The idea of "clamping to border" is from OpenGL but it does not have much actual usage
+        and it was removed/rejected from various other modern APIs:
+
+        <ul>
+          <li>It is not present in OpenGLES 3 (see <a href="https://www.khronos.org/registry/OpenGL-Refpages/es3.0/html/glTexParameter.xhtml">OpenGLES 3 glTexParameter</a>).
+          <li>Though it remains supported in OpenGL 4 (see <a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glTexParameter.xhtml">OpenGL 4 glTexParameter</a>).
+          <li>glTF doesn't support it (see <a href="https://www.khronos.org/registry/glTF/specs/2.0/glTF-2.0.html">gltF spec - it only has "Repeat", "Mirrored Repeat", "Clamp to edge"</a>).
+        </ul>
+
+        <p>For this reason, <code>"CLAMP"</code>, <code>"CLAMP_TO_EDGE"</code>,
+        <code>"CLAMP_TO_BOUNDARY"</code> are all equivalent and work like
+        <code>"CLAMP_TO_EDGE"</code>.
+      </dd>
+
+      <dt>meaning of <code>"DEFAULT"</code> minification / magnification filters</dt>
+      <dd>
+
+    <!-- Fixed in X3D 4.
 
     <p>Note <b>a common mistake when using the <code>TextureProperties</code> node:
     texture filtering gets ugly</b>. This is a common mistake,
@@ -196,12 +236,21 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
   minificationFilter="DEFAULT" /&gt;
 </pre>
 
-    <p>The <code>"DEFAULT"</code> above means to use the browser-specific texture
-    filtering modes, for us this means to use values in
-    <?php api_link('Scene.Attributes.MinificationFilter', 'CastleRenderer.TRenderingAttributes.html#MinificationFilter'); ?>,
-    <?php api_link('Scene.Attributes.MagnificationFilter', 'CastleRenderer.TRenderingAttributes.html#MagnificationFilter'); ?>
-    which by default are nice
-    (<code>minLinearMipmapLinear</code>, <code>magLinear</code>).
+    -->
+
+    <p>The default value of
+    <code>magnificationFilter</code> and
+    <code>minificationFilter</code> is <code>"DEFAULT"</code>.
+    Which means to use the texture filtering mode specified by
+    <?php api_link('Scene.RenderOptions.MinificationFilter', 'CastleRenderOptions.TCastleRenderOptions.html#MinificationFilter'); ?>,
+    <?php api_link('Scene.RenderOptions.MagnificationFilter', 'CastleRenderOptions.TCastleRenderOptions.html#MagnificationFilter'); ?>
+    (by default nice <code>minLinearMipmapLinear</code>, <code>magLinear</code>),
+    matching behavior when <code>TextureProperties</code> was not specified.
+
+    <p>So this behavior is most natural.
+
+    <p>(It was a bit more tricky in older CGE versions &lt;= 7.0-alpha1, before 2022-03-09.)
+  </dd>
 </ul>
 
 <?php echo $toc->html_section(); ?>
