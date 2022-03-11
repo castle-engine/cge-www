@@ -189,14 +189,23 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
       </dd>
 
       <dt>boundaryModeS/T/R overrides texture repeatS/T/R</dt>
-      <dd><p>Be aware that using <code>TextureProperties</code> means that texture
-        <code>repeatS/T/R</code> is ignored. E.g. <code>ImageTexture.repeatS</code> is ignored,
+      <dd><p>Be aware that using <code>TextureProperties</code> means that texture fields
+        <code>repeatS/T/R</code> is ignored.
+
+        <p>E.g. <code>ImageTexture.repeatS</code> is ignored,
         instead we'll use <code>TextureProperties.boundaryModeS</code> to determine whether
         texture repeats or not in S coordinate.
 
-        <p>You should instead adjust <code>boundaryModeS/T/R</code> (by default <code>"REPEAT"</code>
-        regardless of the texture type, 2D or 3D) and you get more options now:
+        <p>You should instead adjust <code>boundaryModeS/T/R</code>, which is by default <code>"REPEAT"</code>
+        (regardless of the texture type, 2D or 3D). You get more options for it now:
         <code>"CLAMP_TO_EDGE"</code>, <code>"REPEAT"</code> and <code>"MIRRORED_REPEAT"</code>.
+
+        <p>This is a particular trap for 3D texture nodes, like <code>ImageTexture3D</code>,
+        that have by default <code>repeatS/T/R</code> = <code>FALSE</code> (unlike 2D textures like <code>ImageTexture</code>
+        that have by default <code>repeatS/T</code> = <code>TRUE</code>).
+        So merely adding a <code>TextureProperties</code> node to 3D texture,
+        with everything left as default, changes the default (for 3D textures) "clamp" mode into "repeat".
+        Adjust the <code>boundaryModeS/T/R</code> to <code>"CLAMP_TO_EDGE"</code> to restore "clamp" mode.
 
       <dt>clamp to border (unsupported)</dt>
       <dd><p>We don't plan to support the <i>"clamp to border"</i> wrapping modes
