@@ -564,6 +564,8 @@ Creation of Debian packages requires providing additional metadata. These values
 * `categories` (default "Game") inside `free_desktop` tag. This value determines category of this app for Free Desktop and is used to provide more information about the app. See https://www.freedesktop.org/wiki/Specifications/menu-spec/ for more info.
 * `comment` inside `free_desktop` tag. A short human-readable description of the application. See https://specifications.freedesktop.org/desktop-entry-spec/desktop-entry-spec-latest.html for more info.
 
+Note, that it's also a good idea to provide an icon in XPM format, which is used to display icons for installed Debian applications. If it's not available, Build Tool will try to convert a PNG icon into XPM format using Image Magick if it's installed.
+
 === The end
 
 [source,xml]
