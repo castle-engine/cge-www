@@ -541,6 +541,29 @@ The custom compilation options specified here are also placed in auto-generated 
 +
 _TODO: only supported with FPC for now._
 
+=== Debian and Free Desktop metadata
+
+[source,xml]
+----
+...
+  <debian
+    control_section="games"
+    menu_section="Games/Adventure"
+  />
+  <free_desktop
+    categories="Game;RolePlaying;"
+    comment="Short description of the game."
+  />
+...
+----
+
+Creation of Debian packages requires providing additional metadata. These values are only used by `--package-format=deb` for now.
+
+* `control_section` (default "games") inside `debian` tag. This value informs which kind of application this package installs. See https://www.debian.org/doc/debian-policy/ch-archive.html#s-subsections for details.
+* `menu_section` (default "Games") inside `debian` tag. This value is used to create a menu icon in appropriate menu section. See https://www.debian.org/doc/packaging-manuals/menu.html/ch3.html#s3.5 and "man menufile" on Debian for more information.
+* `categories` (default "Game") inside `free_desktop` tag. This value determines category of this app for Free Desktop and is used to provide more information about the app. See https://www.freedesktop.org/wiki/Specifications/menu-spec/ for more info.
+* `comment` inside `free_desktop` tag. A short human-readable description of the application. See https://specifications.freedesktop.org/desktop-entry-spec/desktop-entry-spec-latest.html for more info.
+
 === The end
 
 [source,xml]
