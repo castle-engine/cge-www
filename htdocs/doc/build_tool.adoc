@@ -125,6 +125,7 @@ What exactly is produced by this command depends on the target platform and the 
  ** For iOS (when `--target=ios`), we create an Xcode project, that you can run and publish using Xcode.
 * `--package-format=zip`: Pack files into a zip file.
 * `--package-format=tar.gz`: Pack files into a tar.gz file.
+* `--package-format=deb`: Pack files into a Debian Package (deb).
 * `--package-format=directory`: Put files into a directory. This is useful if you plan to further process this directory, e.g. pack it with your own scripts.
 * Additional Android-only options:
  ** `--package-format=android-apk`: Create an APK file. This is right now the equivalent to `--package-format=default` and it is just the default behavior when target/OS is Android. It's the standard way to build applications for Android. It also allows you to manually install the app on your Android device.
