@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Check & Log Email 1.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/check-email\n"
-"POT-Creation-Date: 2021-05-28 09:18:41+00:00\n"
+"POT-Creation-Date: 2021-07-07 09:28:35+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -313,49 +313,49 @@ msgstr ""
 msgid "Administrator always has access and cannot be disabled."
 msgstr ""
 
-#: include/Core/UI/Setting/Check_Email_Core_Setting.php:100
+#: include/Core/UI/Setting/Check_Email_Core_Setting.php:99
 msgid "Check this box if you would like to log your emails."
 msgstr ""
 
-#: include/Core/UI/Setting/Check_Email_Core_Setting.php:116
+#: include/Core/UI/Setting/Check_Email_Core_Setting.php:115
 msgid ""
 "Check this box if you would like to completely remove all of its data when "
 "the plugin is deleted."
 msgstr ""
 
-#: include/Core/UI/Setting/Check_Email_Core_Setting.php:157
+#: include/Core/UI/Setting/Check_Email_Core_Setting.php:156
 msgid "Check this box if you would like to enable dashboard widget."
 msgstr ""
 
-#: include/Core/UI/Setting/Check_Email_Core_Setting.php:188
+#: include/Core/UI/Setting/Check_Email_Core_Setting.php:199
 msgid "Notify %1$s if there are more than %2$s logs."
 msgstr ""
 
-#: include/Core/UI/Setting/Check_Email_Core_Setting.php:196
+#: include/Core/UI/Setting/Check_Email_Core_Setting.php:208
 msgid "%1$s There are %2$s email logs currently logged in the database."
 msgstr ""
 
-#: include/Core/UI/Setting/Check_Email_Core_Setting.php:197
+#: include/Core/UI/Setting/Check_Email_Core_Setting.php:209
 msgid "Note"
 msgstr ""
 
-#: include/Core/UI/Setting/Check_Email_Core_Setting.php:205
+#: include/Core/UI/Setting/Check_Email_Core_Setting.php:219
 msgid ""
 "Last notification email was sent on %1$s. Click %2$s button to reset "
 "sending the notification."
 msgstr ""
 
-#: include/Core/UI/Setting/Check_Email_Core_Setting.php:318
+#: include/Core/UI/Setting/Check_Email_Core_Setting.php:333
 msgid "Check & Log Email: Your log threshold of %s has been met"
 msgstr ""
 
-#: include/Core/UI/Setting/Check_Email_Core_Setting.php:344
+#: include/Core/UI/Setting/Check_Email_Core_Setting.php:360
 msgid ""
 "Currently there are %1$s logged, which is more than the threshold. You can "
 "delete some logs or increase the threshold."
 msgstr ""
 
-#: include/Core/UI/Setting/Check_Email_Core_Setting.php:345
+#: include/Core/UI/Setting/Check_Email_Core_Setting.php:361
 msgid " email log"
 msgid_plural " email logs"
 msgstr[0] ""
@@ -377,27 +377,27 @@ msgid "View Content"
 msgstr ""
 
 #: include/Core/UI/list_table/Check_Email_Log_List_Table.php:92
-#: include/Core/UI/list_table/Check_Email_Log_List_Table.php:160
+#: include/Core/UI/list_table/Check_Email_Log_List_Table.php:169
 #: include/class-check-email-log-list-table.php:77
 #: include/class-check-email-log-list-table.php:107
 msgid "Delete"
 msgstr ""
 
-#: include/Core/UI/list_table/Check_Email_Log_List_Table.php:161
+#: include/Core/UI/list_table/Check_Email_Log_List_Table.php:170
 #: include/class-check-email-log-list-table.php:108
 msgid "Delete All Logs"
 msgstr ""
 
-#: include/Core/UI/list_table/Check_Email_Log_List_Table.php:188
+#: include/Core/UI/list_table/Check_Email_Log_List_Table.php:197
 #: include/class-check-email-log-list-table.php:206
 msgid "Your email log is empty"
 msgstr ""
 
-#: include/Core/UI/list_table/Check_Email_Log_List_Table.php:207
+#: include/Core/UI/list_table/Check_Email_Log_List_Table.php:216
 msgid "Search by date"
 msgstr ""
 
-#: include/Core/UI/list_table/Check_Email_Log_List_Table.php:208
+#: include/Core/UI/list_table/Check_Email_Log_List_Table.php:217
 msgid "Search by term"
 msgstr ""
 

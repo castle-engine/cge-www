@@ -37,3 +37,17 @@
     border: 1px solid #CCC; 
     padding: 10px 15px; 
 }
+
+.tab-content.ce_tab_general .check_email_enable_logs,
+.tab-content.ce_tab_general .check_email_enable_dashboard_widget,
+.tab-content.ce_tab_general .check_email_db_size_notification {
+    display: none;
+}
+
+.tab-content.ce_tab_logging .check_email_allowed_user_roles,
+.tab-content.ce_tab_logging .check_email_remove_on_uninstall,
+.tab-content.ce_tab_logging .check_email_override_emails_from,
+.tab-content.ce_tab_logging .check_email_email_from_name,
+.tab-content.ce_tab_logging .check_email_email_from_email  {
+    display: none;
+}

@@ -1,5 +1,11 @@
 == Changelog ==
 
+= v1.0.5 - 10/03/2022 =
+- Fixed: Replaced deprecated jQuery code ( https://github.com/WPChill/check-email/issues/32 )
+- Fixed: HTML code was being shown in dashboard widget ( https://github.com/WPChill/check-email/issues/33 )
+- Added: Tabs and grouped settings by tabs ( https://github.com/WPChill/check-email/issues/37 )
+- Added: Quick install WP SMTP plugin from settings ( https://github.com/WPChill/check-email/issues/37 )
+
 = v1.0.4 - 28/10/2021 =
 - Fixed: URL got too long when bulk deleting email logs. (https://github.com/WPChill/check-email/issues/30)
 - Fixed: Sanitization and Escaping
@@ -9,6 +15,8 @@
 
 = v1.0.2 - 16/06/2021 =
 - Added: From column in Email Logs. ( https://github.com/WPChill/check-email/issues/24 )
+
+= v1.0.2 - 16/06/2021 =
 - Added: Translation for roles and notices. ( https://github.com/WPChill/check-email/issues/10 )
 - Added: Headers of the emails in the view log tab. ( https://github.com/WPChill/check-email/issues/12 )
 - Fixed: Admin subpages link bug. ( https://github.com/WPChill/check-email/issues/9 )
@@ -22,13 +30,13 @@
 * Fixed admin menu capabilities.
 * Rezolved incompatibility with Wp Mail Logging.
 
-= 1.0.0 = 
+= 1.0.0 =
 * Added Email Logs for all the emails sent through Wordpress.
 
 = 0.6.1 =
 Added feedback form. Improved CSS backend.
 
-= 0.6.0 = 
+= 0.6.0 =
 Fixed loopback error.
 
 = 0.5.7 =
@@ -70,7 +78,7 @@ Fixed version number
 = 0.1.2 =
 Fixed bug in Plugin Register caused by latest version of WordPress
 
-= 0.1.1 = 
+= 0.1.1 =
 Fixed typo in plugin name
 
 = 0.1 =

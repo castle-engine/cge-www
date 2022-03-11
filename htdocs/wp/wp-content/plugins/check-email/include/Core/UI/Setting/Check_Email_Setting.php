@@ -73,7 +73,7 @@ abstract class Check_Email_Setting {
 			$field           = new Check_Email_Log_Setting_Field();
 			$field->id       = $field_id;
 			$field->title    = $label;
-			$field->args     = array( 'id' => $field_id );
+			$field->args     = array( 'id' => $field_id, 'class' => 'check_email_'.$field_id );
 			$field->callback = array( $this, 'render_' . $field_id . '_settings' );
 
 			$fields[] = $field;
