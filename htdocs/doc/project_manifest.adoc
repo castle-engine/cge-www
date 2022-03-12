@@ -248,9 +248,16 @@ We allow to override this number per-platform using `<override_version>` element
 ...
 ----
 
-You can provide an optional icon of your application, in various formats, by listing them inside `<icons>` element. Each platform will use the most suitable icon format and size.
+You can provide an optional icon of your application, in various formats, by listing them inside `<icons>` element.
 
-For now, Windows will use the .ico version, and Android and iOS will use any version readable by our engine (like .png or .jpg). We take care to use the best icon format in the best possible way, resizing it (with good quality algorithm) if necessary.
+Each platform (or package format) will use the most suitable icon format and size. In particular:
+
+* For Windows application we use the `.ico` version.
+
+* Android and iOS use any version readable by our engine (like `.png` or `.jpg`). We take care to use the best icon format in the best possible way, resizing it (with good quality algorithm) if necessary.
+
+* For Debian package, it's recommended that you provide an icon version in the `.xpm` format if you generate a Debian package. If an icon in `.xpm` format is not available, link:build_tool[Build Tool] will try to convert a `.png` icon into `.xpm` format using Image Magick if it's installed.
+
 
 === Launch images (for now only for iOS)
 
@@ -557,14 +564,37 @@ _TODO: only supported with FPC for now._
 ...
 ----
 
-Creation of Debian packages requires providing additional metadata. These values are only used by `--package-format=deb` for now.
+You can generate a Debian package of your application using:
 
-* `control_section` (default "games") inside `debian` tag. This value informs which kind of application this package installs. See https://www.debian.org/doc/debian-policy/ch-archive.html#s-subsections for details.
-* `menu_section` (default "Games") inside `debian` tag. This value is used to create a menu icon in appropriate menu section. See https://www.debian.org/doc/packaging-manuals/menu.html/ch3.html#s3.5 and "man menufile" on Debian for more information.
-* `categories` (default "Game") inside `free_desktop` tag. This value determines category of this app for Free Desktop and is used to provide more information about the app. See https://www.freedesktop.org/wiki/Specifications/menu-spec/ for more info.
-* `comment` inside `free_desktop` tag. A short human-readable description of the application. See https://specifications.freedesktop.org/desktop-entry-spec/desktop-entry-spec-latest.html for more info.
+- _Castle Game Engine Editor_ menu option _Run -> Package Format -> Debian Package (DEB)_ and then _Run -> Package_.
 
-Note, that it's also a good idea to provide an icon in XPM format, which is used to display icons for installed Debian applications. If it's not available, Build Tool will try to convert a PNG icon into XPM format using Image Magick if it's installed.
+- Or using command-line link:build_tool[Build Tool] like `castle-engine package --package-format=deb`.
+
+Creation of a Debian package uses additional information in the manifest documented below.
+
+* Debian-specific information inside the `<debian>` element:
++
+--
+* `control_section` (default value: `games`): section of the package for Debian (in Debian's `CONTROL` file).
++
+See https://www.debian.org/doc/debian-policy/ch-archive.html#s-subsections[Debian policy: Sections] for a list of possible values. These sections are visible e.g. in _Synaptic_.
+
+* `menu_section` (default `Games`): section in a Debian-specific menu system.
++
+See https://www.debian.org/doc/packaging-manuals/menu.html/ch3.html#s3.5[Debian Menu System: The section field] and `man menufile` (on Debian) for more information. If you want to see this menu e.g. on GNOME, see https://wiki.debian.org/GnomeMenus[Debian wiki: GNOME menus].
+--
+
+* _Free Destop_ information inside the `<free_desktop>` element. These values determine the `xxx.desktop` file contents, that describes the application to most Unix graphic environments, like GNOME, KDE, MATE etc. They follow various https://www.freedesktop.org/[FreeDestop] specifications, and may be used by other packaging methods (not just Debian) in the future.
++
+--
+* `categories` (default `Game`): category of this application (determines where is it visible on various graphic environments menus).
++
+See https://specifications.freedesktop.org/menu-spec/latest/apa.html[FreeDesktop Menu Specification: Registered Categories] for allowed values.
+
+* `comment`: Short human-readable description of the application. This is used in `xxx.desktop` file, and is used as the Debian package description too.
++
+Following https://specifications.freedesktop.org/desktop-entry-spec/desktop-entry-spec-latest.html[Desktop Entry Specification], this is the tooltip for the application. The value should not be redundant with the application name.
+--
 
 === The end
 
