@@ -144,9 +144,11 @@ In some cases, the `--mode` also affects the packaging wrapper. For example, on 
 
 To make sure that we recompile everything in the current mode (e.g. a _release mode_), this does `clean`, and then `compile`, and only then actually packages the result. You can change this behavior:
 
-* Use `--fast` to avoid cleaning at the beginning. In effect, we will recompile only what changed. This is usually much faster, and suitable for the development, if you call the `package` command often (e.g. because you're testing on an actual Android or iOS device). This is especially useful on iOS, when the full compilation takes a while (since it must compile for 4 platforms).
+* Use `--fast` to make the compilation step faster -- we will recompile only what changed.
 +
-For the final release builds, it's more reliable to not use this option. This makes sure that we recompile 100% of your code in proper (e.g. release) mode, with proper options and such.
+By default, without `--fast`, the `package` command first cleans all the compilation results, and then builds from scratch (engine and your code). This is safest (makes sure that everything is rebuild with latest compilation options) but slow, and usually not necessary (Pascal compilers are generally excellent at detecting what needs to be recompiled, FPC even handles changes to include files reliably). For the final release builds, we advise to not use this option.
++
+Using `--fast` is suitable during the development, if you call the `package` command often.
 
 * Use `--assume-compiled` to say that you already compiled the application in proper mode before calling the `package` action. We will not do `clean` and `compile` in this case at all. This is obviously much faster, but you need to make sure to call `compile` beforehand yourself.
 
