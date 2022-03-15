@@ -19,8 +19,8 @@ Using HeapTrc with _Castle Game Engine_ is the same as with any other FPC applic
 
 There are various ways to pass these options to FPC:
 
-* If you use the https://castle-engine.io/build_tool[build tool], you can call it like `castle-engine --compiler-option=-glh compile` to compile.
-* Alternatively, you can add them to https://castle-engine.io/project_manifest#compiler-options-and-paths[compiler options in CastleEngineManifest.xml].
+* If you use the link:build_tool[build tool], you can call it like `castle-engine --compiler-option=-glh compile` to compile.
+* Alternatively, you can just specify `detect_memory_leaks="true"` in link:project_manifest#_compiler_options_and_paths[compiler options in CastleEngineManifest.xml].
 * Alternatively, you can use them for _all_ your programs by adding to https://www.freepascal.org/docs-html/user/usersu10.html[fpc.cfg] file. You can add them only to the `DEBUG` builds (done by `castle-engine --mode-debug compile`) like this:
 +
 ----
