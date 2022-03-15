@@ -4,10 +4,9 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitb4c5e3a2bd2c2924c4d2474a7b9c8add
+class ComposerStaticInit1bab5afe90fc39ae8176aa9a68e3c9d5
 {
     public static $files = array (
-        'ad155f8f1cf0d418fe49e248db8c661b' => __DIR__ . '/..' . '/react/promise/src/functions_include.php',
         '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
         'e69f7f6ee287b969198c3c9d6777bd38' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/bootstrap.php',
         'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
@@ -20,19 +19,9 @@ class ComposerStaticInitb4c5e3a2bd2c2924c4d2474a7b9c8add
             'Symfony\\Polyfill\\Intl\\Normalizer\\' => 33,
             'Symfony\\Polyfill\\Intl\\Idn\\' => 26,
         ),
-        'R' => 
-        array (
-            'React\\Promise\\' => 14,
-        ),
         'P' => 
         array (
             'Psr\\Log\\' => 8,
-        ),
-        'G' => 
-        array (
-            'GuzzleHttp\\Stream\\' => 18,
-            'GuzzleHttp\\Ring\\' => 16,
-            'GuzzleHttp\\' => 11,
         ),
         'C' => 
         array (
@@ -53,25 +42,9 @@ class ComposerStaticInitb4c5e3a2bd2c2924c4d2474a7b9c8add
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-intl-idn',
         ),
-        'React\\Promise\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/react/promise/src',
-        ),
         'Psr\\Log\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
-        ),
-        'GuzzleHttp\\Stream\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/guzzlehttp/streams/src',
-        ),
-        'GuzzleHttp\\Ring\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/guzzlehttp/ringphp/src',
-        ),
-        'GuzzleHttp\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
         ),
         'CF\\' => 
         array (
@@ -96,10 +69,10 @@ class ComposerStaticInitb4c5e3a2bd2c2924c4d2474a7b9c8add
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitb4c5e3a2bd2c2924c4d2474a7b9c8add::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitb4c5e3a2bd2c2924c4d2474a7b9c8add::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitb4c5e3a2bd2c2924c4d2474a7b9c8add::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInitb4c5e3a2bd2c2924c4d2474a7b9c8add::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit1bab5afe90fc39ae8176aa9a68e3c9d5::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit1bab5afe90fc39ae8176aa9a68e3c9d5::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit1bab5afe90fc39ae8176aa9a68e3c9d5::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit1bab5afe90fc39ae8176aa9a68e3c9d5::$classMap;
 
         }, null, ClassLoader::class);
     }
