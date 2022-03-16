@@ -336,7 +336,7 @@ Nowadays, I usually define "of object" callbacks, assuming that all non-trivial 
 
 Place the implementation of constructors (`Create*`) first, then destructor (`Destroy`), and then the rest of methods. I do not have a precise rule about the ordering of the rest of methods -- I usually like to group related methods together.
 
-=== Remember that StrToFloat and friends are locale-dependent. Almost always use StrToFloatDot instead.
+=== Remember that `StrToFloat` and friends are locale-dependent. Almost always use `StrToFloatDot` instead.
 
 Standard `StrToFloat` in FPC and Delphi converts floats to/from Strings using locale-dependent `DecimalSeparator` value. On some systems (e.g. on Polish Windows) it is equal to comma (`,`), not a dot (`.`). This is usually not what you want: when you read/write files, or command-line arguments, you usually want to have "dot" as the only decimal separator, so that your application works regardless of user's system locale.
 
@@ -349,9 +349,9 @@ Same advise applies for related functions:
 * Use `FormatDot` instead of `Format`
 * Use `FloatToStrDot` instead of `FloatToStr`
 
-=== Do not use LongInt / LongWord. Use Int32/UInt32, Int64/UInt64, Integer/Cardinal.
+=== Do not use `LongInt` / `LongWord`. Use `Int32` / `UInt32`, `Int64` / `UInt64`, `Integer` / `Cardinal`.
 
-Embarcadero decided to make things weird: https://docwiki.embarcadero.com/RADStudio/Sydney/en/Simple_Types_(Delphi) . The `LongInt` / `LongWord` are
+Embarcadero decided to make things weird: https://docwiki.embarcadero.com/RADStudio/Sydney/en/Simple_Types_(Delphi)[]. The `LongInt` / `LongWord` are
 
 * 32-bit on _32-bit platforms, and on 64-bit Windows_.
 * They are 64-bit on _64-bit OSes that are not Windows (like Linux, Android, iOS)_.
@@ -370,7 +370,7 @@ So just don't use these types in CGE code.
 * Use `TListSize` for counts and capacities of lists. (It is signed, to not cause overflows with frequent constructions like `+for I := 0 to List.Count - 1 do...+`)
 * Use `PtrInt` / `PtrUInt` when you want to have integers of guaranteed pointer-size.
 
-=== Do not use Extended. Use Single/Double
+=== Do not use `Extended`. Use `Single` / `Double`.
 
 Traditionally, `Extended` used to be a 10-byte floating-point type available in old Pascal compilers. But it is not that useful anymore, in modern FPC and Delphi.
 
@@ -387,7 +387,7 @@ Moreover, Delphi defines `Extended` to be a new 16-byte floating-point type on s
 
 TBH, the end result makes `Extended` not very useful at all, at least for general cross-platform (and cross-compiler) code, due to this uncertainty. And GPUs don't support anything above `Double` anyway.
 
-=== Most code should use just String, and be prepared that it is 8-bit on FPC and 16-bit on Delphi. If writing to stream, use 8-bit AnsiString.
+=== Most code should use just `String`, and be prepared that it is 8-bit on FPC and 16-bit on Delphi. Only if writing to stream, explicitly use 8-bit `AnsiString` (in usual case, when you write UTF-8).
 
 On FPC, we follow the same approach to `String` as in Lazarus: `String` is an alias to `AnsiString`, and it should always contain UTF-8 data. We use necessary compiler switches to make `String = AnsiString`, and the `CastleUtils` has necessary initialization to make sure that strings can just carry UTF-8 on all platforms.
 
