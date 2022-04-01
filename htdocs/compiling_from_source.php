@@ -236,6 +236,10 @@ castle-engine compile
 
   <li>
     <p>Follow the above steps to recompile at least the <i>build tool</i> and <i>editor</i>.
+
+    <p>If you're on Unix (like Linux), or use Cygwin under Windows, then you can just execute <code>make</code>.
+    It recompiles all the tools, all Lazarus packages, and the editor,
+    and places the binaries in <code>bin/</code>.
 </ol>
 
 <?php
