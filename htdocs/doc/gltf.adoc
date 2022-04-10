@@ -118,3 +118,96 @@ The `PhysicalMaterial`, used by most glTF models, has https://castle-engine.io/a
 * If you need maximum glTF compatibility, consider enabling gamma correction for all materials (`PhysicalMaterial`, `UnlitMaterial`, `Material`), by `GammaCorrection := gcAlways`.
 
 Note that enabling or disabling gamma correction will change the look of your game. So you should make a decision about it early on -- and test your models look with the desired setting.
+
+== Interoperability with X3D
+
+Under the hood, glTF models are loaded as a graph of https://castle-engine.io/vrml_x3d.php[X3D nodes]. This allows to use all X3D nodes functionality with glTF models.
+
+For an introduction to X3D, Physically-Based Rendering (PBR) and glTF see this presentation:
+
+video::iQ0s1V37tAw[youtube,width=800,height=450]
+
+### Process glTF models (e.g. change material color) using Pascal
+
+You can process (modify after loading, e.g. to remove/change some nodes) loaded glTF models using CGE https://castle-engine.io/vrml_x3d.php[API to handle X3D nodes].
+
+For example _glTF material_ corresponds to the X3D node cgeref:TAppearanceNode[] (that in turn has cgeref:TPhysicalMaterialNode[] as a child). To modify color of an object loaded from glTF, you can find the cgeref:TAppearanceNode[] within the scene, get the cgeref:TPhysicalMaterialNode[] child, and modify the properties like cgeref:TPhysicalMaterialNode.BaseColor[] as you wish. Like this:
+
+[source,pascal]
+----
+var
+  Appearance: TAppearanceNode;
+  Material: TPhysicalMaterialNode;
+begin
+  { We assume that model has "MyMaterialName" material in Blender and glTF. }
+  Appearance := MyScene.Node('MyMaterialName') as TAppearanceNode;
+  { We assume that material type is PBR, so we can cast to TPhysicalMaterialNode. }
+  Material := Appearance.Material as TPhysicalMaterialNode;
+  { Set color to yellow. }
+  Material.BaseColor := Vector3(1, 1, 0);
+end;
+----
+
+See https://github.com/michaliskambi/x3d-tests/wiki/Converting-glTF-to-X3D for details how glTF concepts map to X3D.
+
+=== Use `Inline` to import glTF model in an X3D file
+
+You can use `Inline` X3D node to include glTF model (or part of it) inside a larger X3D model, as many times as you want. This is as simple as just writing
+
+```
+Inline {
+  url "some_model.gltf"
+}
+```
+
+inside X3D file (with classic X3D encoding).
+
+Moreover, you can use use X3D `IMPORT` mechanism to access particular parts (like materials or animations or objects) of the glTF model. This way you can control glTF animations from X3D, or reuse glTF materials/objects etc. in X3D.
+
+=== Use `Inline` and `IMPORT` to access glTF animations in an X3D file
+
+For example of this technique see https://github.com/castle-engine/demo-models/tree/master/blender/skinned_animation , in particular file https://github.com/castle-engine/demo-models/blob/master/blender/skinned_animation/skinned_anim_run_animations_from_x3d.x3dv[skinned_anim_run_animations_from_x3d.x3dv] there. The X3D file has this code:
+
+```
+DEF InlinedAnimations Inline {
+  url "skinned_anim.glb"
+}
+IMPORT InlinedAnimations.jump AS jump
+IMPORT InlinedAnimations.walk AS walk
+```
+
+and then it can start  animations `jump`, `walk`. They are just `TimeSensor` nodes in X3D. We can `ROUTE` events to them.
+
+=== Use `Inline` and `IMPORT` to access glTF materials, meshes, transforms in an X3D file
+
+Demo of this technique is in https://github.com/michaliskambi/x3d-tests/tree/master/gltf/avocado_and_exports . Open the models there with https://castle-engine.io/view3dscene.php[view3dscene] or just load them into `TCastleScene` instance in CGE editor.
+
+It looks like this:
+
+```
+InlinedAvocado Inline {
+  url "glTF/Avocado.gltf"
+}
+IMPORT InlinedAvocado.CastleEncoded_2256_Avocado_d AS AvocadoAppearance
+
+Shape {
+  appearance USE AvocadoAppearance
+  geometry IndexedFaceSet { ... }
+}
+```
+
+You can also hide the inlined glTF model (if you *only* want to extract subset of it). To do this, place `Inline` in X3D inside `Switch` (`Switch` by default hides the model; you could make it visible by switching `Switch.whichChoice`). Like this:
+
+```
+Switch {
+  children DEF InlinedAvocado Inline {
+    url "glTF/Avocado.gltf"
+  }
+}
+IMPORT InlinedAvocado.CastleEncoded_2256_Avocado_d AS AvocadoAppearance
+
+Shape {
+  appearance USE AvocadoAppearance
+  geometry IndexedFaceSet { ... }
+}
+```
