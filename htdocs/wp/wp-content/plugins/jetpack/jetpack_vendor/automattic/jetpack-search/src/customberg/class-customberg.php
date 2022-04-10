@@ -8,33 +8,27 @@
 namespace Automattic\Jetpack\Search;
 
 use Automattic\Jetpack\Assets;
+use Automattic\Jetpack\Connection\Manager as Connection_Manager;
 use Automattic\Jetpack\Status;
 use Automattic\Jetpack\Tracking;
-use Jetpack;
-use Jetpack_Plan;
 
 /**
  * Responsible for adding a search customization interface to wp-admin.
  *
- * Note that this has been temporarily renamed Customberg2 in order to avoid namespace conflicts
- * with the existing Customberg class that may temporarily co-exist on WPCOM.
- *
- * TODO: Rename back to "Customberg" following WPCOM release.
- *
  * @package Automattic\Jetpack\Search
  */
-class Customberg2 {
+class Customberg {
 	/**
 	 * The singleton instance of this class.
 	 *
-	 * @var Customberg2
+	 * @var Customberg
 	 */
 	protected static $instance;
 
 	/**
 	 * Get the singleton instance of the class.
 	 *
-	 * @return Customberg2
+	 * @return Customberg
 	 */
 	public static function instance() {
 		if ( ! isset( self::$instance ) ) {
@@ -98,7 +92,7 @@ class Customberg2 {
 	 * Loads assets for the customization experience.
 	 */
 	public function load_assets() {
-			$this->load_assets_with_parameters( constant( 'JETPACK_SEARCH_PKG__DIR' ) );
+			$this->load_assets_with_parameters( Package::get_installed_path() );
 	}
 
 	/**
@@ -139,10 +133,13 @@ class Customberg2 {
 	 */
 	protected function should_add_page() {
 		$is_offline_mode = ( new Status() )->is_offline_mode();
+		$is_connected    = ( new Connection_Manager( Package::SLUG ) )->is_connected();
+		$supports_search = ( new Plan() )->supports_instant_search();
+
 		return (
 			! $is_offline_mode && // Must be online.
-			Jetpack::is_connection_ready() && // Must be connected.
-			method_exists( 'Jetpack_Plan', 'supports' ) && Jetpack_Plan::supports( 'search' ) // Must have plan supporting Jetpack (Instant) Search.
+			$is_connected && // Must be connected.
+			$supports_search // Must have plan supporting Jetpack (Instant) Search.
 		);
 	}
 }
