@@ -26,3 +26,7 @@ How to make such skyboxes?
 The sky and ground gradients are visible if you don’t provide the 6 textures for a skybox, or if some of them use alpha for transparency.
 
 NOTE: If you only want to define a background as a simple color, then leave cgeref:TCastleViewport.Background[] empty and set cgeref:TCastleViewport.BackgroundColor[] instead.
+
+Watch the presentation how to use `TCastleBackground`:
+
+video::WDkJ86-zfzw[youtube,width=800,height=450]

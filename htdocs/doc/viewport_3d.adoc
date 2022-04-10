@@ -239,6 +239,10 @@ This should be fixed by adding additional lights to the level.
 
 - cgeref:TCastleSpotLight[] - light that shines from a given position, in a given direction, within a cone. The cone angle is configurable (by cgeref:TCastleSpotLight.CutOffAngle[CutOffAngle] and cgeref:TCastleSpotLight.BeamWidth[BeamWidth]), as well as cgeref:TCastleSpotLight.Color[Color], cgeref:TCastleSpotLight.Intensity[Intensity] and cgeref:TCastleSpotLight.Radius[Radius].
 
+Watch the presentation how to use light components:
+
+video::3MkPmOtCDHE[youtube,width=800,height=450]
+
 *Alternative solution:* You can also add lights in Blender to the road asset.
 
 . Copy `road.blend` to `road_with_lights.blend`.
