@@ -121,7 +121,11 @@ especially the level file
 
 <?php echo $toc->html_section(); ?>
 
-<p>You can load image as a scene too. That is, you can load a simple PNG file using <code>TCastleScene.Load</code> method. It will create a rectangle (which you can use as 3D or 2D object) using this image as a texture, with size adjusted to the image size. See the <a href="https://castle-engine.io/using_images">image loading documentation</a>.
+<p>You can load image as a scene too. That is, you can load a simple PNG, JPG etc. file using <code>TCastleScene.Load</code> method. It will create a rectangle (which you can use as 3D or 2D object) using this image as a texture, with size adjusted to the image size.
+
+<p>Or, even better, use a dedicated <?php echo cgeRef('TCastleImageTransform'); ?> that is a <a href="viewport_and_scenes">transformation dedicated to loading the image</a>, it has helpful properties to easily adjust image size, repeat, pivot etc.
+
+<p>See also <a href="https://castle-engine.io/using_images">image loading documentation</a>.
 
 <?php echo $toc->html_section(); ?>
 

@@ -43,7 +43,7 @@ It's like a `TPicture` in VCL -- it doesn't draw the image, but it has everythin
 +
 These nodes are used underneath when you load image into cgeref:TCastleScene[] or cgeref:TCastleImageTransform[]. We do not advise using these nodes directly,
 
-TODO: There are too many classes above. In time, we hope to hide this complexity more, some of these classes ahould become internal (or not necessary at all).
+TODO: There are too many classes above. In time, we hope to hide this complexity more, some of these classes should become internal (or not necessary at all).
 
 ## Deprecated: load image directly in TCastleScene
 
