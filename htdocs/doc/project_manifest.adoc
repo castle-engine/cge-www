@@ -537,7 +537,7 @@ True, but we don' guarantee it now:
 
 * `<defines>` list the symbols defined during the compilation. These are symbols you can check in Pascal code using e.g. `{$ifdef MY_CUSTOM_SYMBOL}`.
 +
-NOTE: It is possible to also define symbols using custom option like `-dMY_CUSTOM_SYMBOL`. Both FPC and DCC support this command-line option. But we recommend `<defines>`, as more future-proof.
+NOTE: It is possible to also define symbols using custom option like `-dMY_CUSTOM_SYMBOL`. Both FPC and DCC support this command-line option. But we recommend `<defines>`. The defines specified this way can be put into LPI and DPROJ when doing `castle-engine generate-program`.
 
 * `<custom_options>` are custom compiler options, passed directly to the compiler (FPC or Delphi DCC).
 +
