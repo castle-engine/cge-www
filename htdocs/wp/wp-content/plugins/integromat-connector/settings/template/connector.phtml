@@ -1,0 +1,37 @@
+<h1><?php echo esc_html(get_admin_page_title()); ?></h1>
+
+<div id="imt-content-panel" class="imapie_settings_container">
+    <section>
+        <h3>API Key</h3>
+        <input type="text" id="iwc-api-key-value" readonly="readonly" value="<?php echo $apiToken ?>" class="w-300">
+        <p class="comment">
+            Use this token when creating a new connection in the Wordpress app on <a href="https://www.integromat.com/" target="_blank">Integromat.com</a>.
+        </p>
+    </section>
+    <section>
+        <h3>Logs</h3>
+        <input type="checkbox" name="iwc-logging-enabled" id="iwc-logging-enabled" value="1" <?php if (get_option('iwc-logging-enabled') == 'true') { ?>checked<?php } ?>>
+        <label for="iwc-logging-enabled">Logging enabled</label>
+        <?php if (\Integromat\Logger::fileExists()): ?>
+            <p>
+                <a href="?page=integromat&iwcdlogf" target="_blank">Download log file</a>
+	            <br>
+	            <span class="iwc-comment">
+		            Although we try to remove them, there could still be some potentially sensitive information (like authentication tokens or passwords) contained in the file.<br>
+	                Please check the section between  =SERVER INFO START=  and  =SERVER INFO END= delimiters (located at the start of the file)
+		            and possibly remove the sensitive data (or whole section) before sending this file to someone else.
+	            </span>
+            </p>
+        <?php endif; ?>
+    </section>
+    <section class="save general">
+		<?php submit_button('Save Settings'); ?>
+    </section>
+</div>
+<script>
+	$(document).ready(function () {
+        $('#iwc-api-key-value').on('click', function () {
+            $(this).select();
+        })
+    })
+</script>
