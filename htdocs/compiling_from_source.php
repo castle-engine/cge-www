@@ -33,7 +33,7 @@ $toc = new TableOfContents(
 
 <p>Before compiling it yourself, make sure you really need to do this. After all, you can <a href="https://castle-engine.io/">downlad the binary release of the engine</a> that <i>also contains the complete source code</i> (it just also contains ready binaries for a particular platform). And the current binary releases (<code>7.0-alpha.snapshot</code>) contain the very latest features and fixes, quite like source code &mdash; as they are automatically rebuild after every commit.<!--, after automatic tests confirm that the engine works with various compiler versions and OSes. --> Oh, and if you're looking for win32 version, it is <a href="https://github.com/castle-engine/castle-engine/releases/tag/snapshot">available on GitHub snapshot download page</a> (we don't link it on the main CGE page because we advise win64).
 
-<p>That being said, there are of course valid reasons to compile engine yourself. E.g. if you want to contribute (create <i>pull requests</i>). Or if you want to test on desktop systems for which we don't provide ready binaries yet (like FreeBSD). Also, updating from source code is faster, as you'll only update from GIT what has changed.
+<p>That being said, there are of course valid reasons to compile engine yourself. E.g. if you want to contribute (create <i>pull requests</i>). Or if you want to test on desktop systems for which we don't regularly provide binaries (like <a href="https://castle-engine.io/wp/2022/04/08/freebsd-build/">FreeBSD</a> or <a href="https://castle-engine.io/macos">macOS</a>). Also, updating from source code is faster, as you'll only update from GIT what has changed.
 
 <p>So, read on :)
 
