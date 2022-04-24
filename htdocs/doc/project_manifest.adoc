@@ -509,8 +509,11 @@ The inclusion and exclusion compare _paths_ of _files_. The directories themselv
       <path value="code/subdirectory/"/>
       <path value="code/another_subdirectory/"/>
     </search_paths>
+    <defines>
+      <define>MY_CUSTOM_SYMBOL</define>
+    </defines>
     <custom_options>
-      <option>-dMY_CUSTOM_SYMBOL</option>
+      <option>-Mdelphi</option>
     </custom_options>
     <library_paths>
       <path value="static_libraries/"/>
@@ -532,23 +535,23 @@ True, but we don' guarantee it now:
     Note that the directory of the main program/library file is automatically searched for units/include files. This means that, if you specify `standalone_source`, then on standalone platform we will automatically search for units/include files in the same directory as the main program, even if it is not listed on .
 ////
 
-* `detect_memory_leaks` attribute activates link:detecting_memory_leaks_using_heaptrc[memory leak detection using HeapTrc]. It is only supported by FPC right now.
+* `<defines>` list the symbols defined during the compilation. These are symbols you can check in Pascal code using e.g. `{$ifdef MY_CUSTOM_SYMBOL}`.
++
+NOTE: It is possible to also define symbols using custom option like `-dMY_CUSTOM_SYMBOL`. Both FPC and DCC support this command-line option. But we recommend `<defines>`, as more future-proof.
 
 * `<custom_options>` are custom compiler options, passed directly to the compiler (FPC or Delphi DCC).
 +
-_TODO: only supported with FPC for now._
-+
-For example `-dMY_CUSTOM_SYMBOL` means that the symbol `MY_CUSTOM_SYMBOL` will be defined (and can be queried in your code using `{$ifdef MY_CUSTOM_SYMBOL}` ). You can use this also to define some symbols recognized by the engine, e.g. `-dCASTLE_PNG_DYNAMIC` instructs the engine to use dynamic library to load PNG images (which may be much faster, see https://github.com/castle-engine/castle-engine/blob/master/src/common_includes/castleconf.inc[castleconf.inc comments] ).
-+
-You can also change FPC "syntax mode" by using option `-Mdelphi`. The default FPC mode is "ObjFpc", which is not exactly compatible with Delphi, but has some advantages over Delphi.
+For example `-Mdelphi` means that FPC will compile the code in Delphi-compatibility mode (this only changes some syntax, e.g. `@` not necessary when assigning a method to an event). The default FPC mode is "ObjFpc", which is not perfectly compatible with Delphi, but has some advantages over Delphi.
 +
 Note that custom option may also be `@my-custom-config.cfg` in which case FPC reads `my-custom-config.cfg` file, and you can put more options inside (using features like `#IFDEF MSWINDOWS` for platform-specific options).
 +
 The custom compilation options specified here are also placed in auto-generated Lazarus lpi and lpk files. This is used by `castle-engine generate-program` and `castle-engine editor` commands of the link:build_tool[Build Tool]. The point is that _your source code is always compiled with these compilation options_.
 
+Subset of `<compiler_options>` supported only by FPC (for now):
+
 * `<library_paths>` define paths where the linked may found `xxx.o` files. This is typically used to statically link with Pascal units code compiled from other languages. It corresponds to the FPC `-Fl` command-line option.
-+
-_TODO: only supported with FPC for now._
+
+* `detect_memory_leaks` attribute activates link:detecting_memory_leaks_using_heaptrc[memory leak detection using HeapTrc].
 
 === Debian and Free Desktop metadata
 
