@@ -4,4 +4,4 @@
 
 require_once __DIR__ . '/composer/autoload_real.php';
 
-return ComposerAutoloaderInit959bcbb6a94a41bb92a90d5d095538b7::getLoader();
+return ComposerAutoloaderInit6b4c222723b6c5a25a29c3f8338d7ed4::getLoader();

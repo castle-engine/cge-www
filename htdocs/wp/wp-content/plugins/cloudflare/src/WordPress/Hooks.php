@@ -137,7 +137,7 @@ class Hooks
         }
     }
 
-    public function purgeCacheByRelevantURLs($postId)
+    public function purgeCacheByRelevantURLs($postIds)
     {
         if ($this->isPluginSpecificCacheEnabled() || $this->isAutomaticPlatformOptimizationEnabled()) {
             $wpDomainList = $this->integrationAPI->getDomainList();
@@ -145,26 +145,47 @@ class Hooks
                 return;
             }
             $wpDomain = $wpDomainList[0];
-
-            // Do not purge for autosaves or updates to post revisions.
-            if (wp_is_post_autosave($postId) || wp_is_post_revision($postId)) {
-                return;
-            }
-
-            $postType = get_post_type_object(get_post_type($postId));
-            if (!$postType->public || !$postType->publicly_queryable) {
-                return;
-            }
-
-            $savedPost = get_post($postId);
-            if (!is_a($savedPost, 'WP_Post')) {
-                return;
-            }
-
-            $urls = $this->getPostRelatedLinks($postId);
-            $urls = apply_filters('cloudflare_purge_by_url', $urls, $postId);
-
             $zoneTag = $this->api->getZoneTag($wpDomain);
+            if (!isset($zoneTag)) {
+                return;
+            }
+
+            $postIds = (array) $postIds;
+            $urls = [];
+            foreach ($postIds as $postId) {
+                // Do not purge for autosaves or updates to post revisions.
+                if (wp_is_post_autosave($postId) || wp_is_post_revision($postId)) {
+                    continue;
+                }
+
+                $postType = get_post_type_object(get_post_type($postId));
+                if (!is_post_type_viewable($postType)) {
+                    continue;
+                }
+
+                $savedPost = get_post($postId);
+                if (!is_a($savedPost, 'WP_Post')) {
+                    continue;
+                }
+
+                $relatedUrls = apply_filters('cloudflare_purge_by_url', $this->getPostRelatedLinks($postId), $postId);
+                $urls = array_merge($urls, $relatedUrls);
+            }
+
+            // Don't attempt to purge anything outside of the provided zone.
+            foreach ($urls as $key => $url) {
+                if (!Utils::strEndsWith(parse_url($url, PHP_URL_HOST), $wpDomain)) {
+                    unset($urls[$key]);
+                }
+            }
+
+            if (empty($urls)) {
+                return;
+            }
+
+            // Filter by unique urls
+            $urls = array_values(array_filter(array_unique($urls)));
+
             $activePageRules = $this->api->getPageRules($zoneTag, "active");
 
             // Fetch the page rules and should we not have any hints of cache
@@ -175,20 +196,13 @@ class Hooks
                 $urls = array_filter($urls, array($this, "pathHasCachableFileExtension"));
             }
 
-            // Don't attempt to purge anything outside of the provided zone.
-            foreach ($urls as $key => $url) {
-                if (!Utils::strEndsWith(parse_url($url, PHP_URL_HOST), $wpDomain)) {
-                    unset($urls[$key]);
-                }
-            }
-
-            $hasAlwaysUseHTTPSOverrideDisabled = $this->pageRuleContains($activePageRules, "always_use_https", "off");
-            if ($this->zoneSettingAlwaysUseHTTPSEnabled($zoneTag) && !$hasAlwaysUseHTTPSOverrideDisabled) {
-                $this->logger->debug("always_use_https is enabled without page rule overrides present, removing HTTP based URLs");
+            if ($this->zoneSettingAlwaysUseHTTPSEnabled($zoneTag)) {
+                $this->logger->debug("zone level always_use_https is enabled, removing HTTP based URLs");
                 $urls = array_filter($urls, array($this, "urlIsHTTPS"));
             }
 
-            if (isset($zoneTag) && !empty($urls)) {
+            if (!empty($urls)) {
+                do_action('cloudflare_purged_urls', $urls, $postIds);
                 $chunks = array_chunk($urls, 30);
 
                 foreach ($chunks as $chunk) {
@@ -322,9 +336,12 @@ class Hooks
             }
             $listofurls = array_merge(
                 $listofurls,
-                array_unique(array_filter($attachmentUrls))
+                $attachmentUrls
             );
         }
+
+        // Clean array and get unique values
+        $listofurls = array_values(array_filter(array_unique($listofurls)));
 
         // Purge https and http URLs
         if (function_exists('force_ssl_admin') && force_ssl_admin()) {
@@ -332,9 +349,6 @@ class Hooks
         } elseif (!is_ssl() && function_exists('force_ssl_content') && force_ssl_content()) {
             $listofurls = array_merge($listofurls, str_replace('http://', 'https://', $listofurls));
         }
-
-        // Clean array if row empty
-        $listofurls = array_filter($listofurls);
 
         return $listofurls;
     }
@@ -467,6 +481,17 @@ class Hooks
 
         foreach ($pagerules as $pagerule) {
             foreach ($pagerule["actions"] as $action) {
+                // always_use_https can only be toggled on for a URL but doesn't
+                // have a value so we merely check the presence of the key
+                // instead.
+                if ($action["id"] == "always_use_https" && $key == "always_use_https") {
+                    return true;
+                }
+
+                if (!array_key_exists("value", $action)) {
+                    continue;
+                }
+
                 if ($action["id"] == $key && $action["value"] == $value) {
                     return true;
                 }

@@ -101,7 +101,7 @@ class Check_Email_Settings_Page extends Check_Email_BasePage {
     */
 	public function render_page() {
 
-			$tab = isset( $_GET['tab']) ? $_GET['tab'] : 'general';
+			$tab = isset( $_GET['tab']) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : 'general';
 			
 		?>
 		<div class="wrap">
@@ -113,7 +113,7 @@ class Check_Email_Settings_Page extends Check_Email_BasePage {
 				<a href="https://docs.google.com/forms/d/e/1FAIpQLSdhHrYons-oMg_9oEDVvx8VTvzdeCQpT4PnG6KLCjYPiyQfXg/viewform" target="_blank" class="nav-tab"><span class="dashicons dashicons-external"></span><?php esc_html_e( 'Suggest a feature', 'check-email' ); ?></a>
 			</nav>
 			
-			<div class="tab-content ce_tab_<?php echo $tab; ?>">
+			<div class="tab-content ce_tab_<?php echo esc_attr( $tab ); ?>">
 
 			<?php if( 'general' == $tab ): ?>
 				<h2><?php esc_html_e( 'Core Check Email Log Settings', 'check-email' ); ?></h2>
@@ -154,7 +154,7 @@ class Check_Email_Settings_Page extends Check_Email_BasePage {
 							?>
 							<td>
 								<div class="install_plugin_wrap">
-									<button id="install_wp_smtp" class="button"  data-slug="wp-smtp" data-action="<?php echo ( 'install' == $smtp_status ? 'install' : 'activate' ); ?>" data-activation_url="<?php echo $activate_url; ?>"><?php echo sprintf( esc_html__( '%s SMTP', 'check-email' ),  ( 'install' == $smtp_status ? 'Install' : 'Activate' ) ); ?></button>
+									<button id="install_wp_smtp" class="button"  data-slug="wp-smtp" data-action="<?php echo ( 'install' == $smtp_status ? 'install' : 'activate' ); ?>" data-activation_url="<?php echo esc_url( $activate_url ); ?>"><?php echo sprintf( esc_html__( '%s SMTP', 'check-email' ),  ( 'install' == $smtp_status ? 'Install' : 'Activate' ) ); ?></button>
 									<div id="install_wp_smtp_info"> <p><?php echo sprintf( esc_html__( 'Click to %s WP SMTP', 'check-email' ), ( 'install' == $smtp_status ? 'install' : 'activate' ) ) ; ?> </p></div>
 								</div>
 								
