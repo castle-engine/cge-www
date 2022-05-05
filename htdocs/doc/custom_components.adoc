@@ -3,66 +3,210 @@ include::common.adoc[]
 
 == Introduction
 
-You can implement and register your own components in https://castle-engine.io/manual_editor.php[Castle Game Engine Editor].
+You can enhance the functionality of _Castle Game Engine_ by implementing new classes. These classes can descend from anything you want, in particular from existing engine classes.
 
-Follow the guidelines documented in https://castle-engine.io/manual_editor.php#section_custom_components[Custom (project-specific) components in the visual designer], and check the example https://github.com/castle-engine/castle-engine/tree/master/examples/advanced_editor[examples/advanced_editor].
+Moreover, any class that descends from `TComponent` can be _registered_ such that it is available within https://castle-engine.io/manual_editor.php[Castle Game Engine Editor] and you can visually create and modify instances of this class. This is a powerful mechanism to invent pretty much anything you want (generally useful or tailored to your specific project) and use it just like a regular engine class.
 
-This page provides additional information.
+== Base classes
 
-== Basics
+All custom components have to descend from https://www.freepascal.org/docs-html/rtl/classes/tcomponent.html[TComponent], a standard class in Pascal. Usually, you want to descend from something more specific than a general `TComponent`:
 
-Any `TComponent` descendant is fine to be registreed in CGE editor. The most common ancestors for custom components are:
+* Descend from cgeref:TCastleUserInterface[] to define new user interface controls.
+* Descend from cgeref:TCastleTransform[] to define new things you can put in your 3D and 2D game world.
+* Descend from cgeref:TCastleBehavior[] to define new things that enhance the behavior of `TCastleTransform`.
+* Descend from cgeref:TCastleComponent[] otherwise.
 
-* https://castle-engine.io/apidoc-unstable/html/CastleUIControls.TCastleUserInterface.html[TCastleUserInterface],
-* https://castle-engine.io/apidoc-unstable/html/CastleTransform.TCastleTransform.html[TCastleTransform],
-* https://castle-engine.io/apidoc-unstable/html/CastleTransform.TCastleBehavior.html[TCastleBehavior],
-* https://castle-engine.io/apidoc-unstable/html/CastleClassUtils.TCastleComponent.html[TCastleComponent]
+== Example of custom component and its registration
 
-Simply implement a Pascal descendant class of it.
+Once you define your custom component class, register it. To do this, add to the `initialization` section of some unit (usually, the same unit where you define the component class) a call to cgeref:RegisterSerializableComponent[].
 
-== Register
-
-In the initialization section of some (maybe the same edit where you defined the component) register it:
+An example:
 
 [source,pascal]
 ----
-RegisterSerializableComponent(TMyComponent, 'My Component');
-----
-
-You can also register property editors. As they require using LCL units, register them only when unit is compiled with symbol `CASTLE_DESIGN_MODE`. Like this:
-
-[source,pascal]
-----
-unit MyUnit;
+unit MyButtonUnit;
 
 interface
 
-...
+uses CastleControls;
+
+type
+  TMyButton = class(TCastleButton)
+  end;
 
 implementation
 
-uses SysUtils,
-  CastleComponentSerialize,
-  { Use CastlePropEdits, and thus LCL and castle_components, only when part of the editor. }
-  {$ifdef CASTLE_DESIGN_MODE} , PropEdits, CastlePropEdits {$endif};
-
-...
+uses CastleComponentSerialize;
 
 initialization
-  RegisterSerializableComponent(TMyComponent, 'My Component');
-  {$ifdef CASTLE_DESIGN_MODE}
-  RegisterPropertyEditor(TypeInfo(AnsiString), TMyComponent, 'URL', TImageURLPropertyEditor);
-  {$endif}
+  RegisterSerializableComponent(TMyButton, 'My Button');
 end.
 ----
 
+See https://github.com/castle-engine/castle-engine/tree/master/examples/advanced_editor/custom_component[advanced_editor/custom_component] for a larger, complete example that defines and registers `TImageGrid` component in the https://github.com/castle-engine/castle-engine/blob/master/examples/advanced_editor/custom_component/code/gamecontrols.pas[GameControls] unit.
+
+== Running editor with custom components
+
+Inside your link:project_manifest[CastleEngineManifest.xml] file, set the attribute `editor_units` to list all the units that call the `RegisterSerializableComponent`. It is a comma-separated list, like `editor_units="MyButtonUnit, MyMenuUnit"`.
+
+Then just open the project and the editor will automatically ask whether to build a custom editor, with custom components included. You can also explicitly rebuild the editor using the menu item _"Project -> Restart Editor (With Custom Components)"_ in the editor. Make sure that the _Lazarus_ location is correct in the editor _"Preferences"_ window.
+
+The custom component will be automatically available in the proper editor menu to add a new component. For example, if your component descends from the cgeref:TCastleUserInterface[], then it will appear in the menu _Edit -> Add User Interface_ and when you right-click any existing UI item and choose _Add User Interface_ submenu.
+
 == Publishing properties
 
-The properties in the `published` section are known by the editor, and are written to file.
+The properties in the `published` section of your class are displayed by the editor in the _Object Inspector_ (sidebar on the right) and are automatically read and written (_serialized_ and _deserialized_) to _design files_.
 
-So place in the `published` section properties of normal types (instance of some class, simple integer/float/string types).
+So you can just place in the `published` section properties of simple types (like `Integer`, `Single` (float), `String`) and they will work. Like this:
 
-Note that you cannot publish a property of record type. This includes our `TVectorXxx` and `TCastleColorXxx` classes. To expose them for the editor, you need to wrap them in a class like `TCastleVector3Persistent` (that wraps `TVector3`). The engine core has a tool to auto-generate such code (`tools/internal/generate-persistent-vectors/`), for your own applications you can just do it manually by a code like this:
+[source,pascal]
+----
+type
+  TMyButton = class(TCastleButton)
+  private
+    FMyInformation: String;
+  published
+    property MyInformation: String read FMyInformation write FMyInformation;
+  end;
+----
+
+=== Publishing class properties
+
+You can also place in the `published` section a property that references another class. There are two common cases:
+
+==== Subcomponents
+
+The instance a _subcomponent_ should be always created by the class that contains it, and the class that contains it should be the owner. The serialization/deserialization will take care of storing the properties of a subcomponent, and can assume that the instance of the subcomponent is always available. To indicate this case, use `SetSubComponent(true)` and make the property read-only. Like this:
+
+[source,pascal]
+----
+unit MyButtonUnit;
+
+interface
+
+uses Classes,
+  CastleControls;
+
+type
+  TMyButton = class(TCastleButton)
+  private
+    FMySubComponent: TCastleImageControl;
+  public
+    constructor Create(AOwner: TComponent); override;
+    property MySubComponent: TCastleImageControl read FMySubComponent;
+  end;
+
+implementation
+
+uses CastleComponentSerialize;
+
+constructor TMyButton.Create(AOwner: TComponent);
+begin
+  inherited;
+  FMySubComponent := TCastleImageControl.Create(Self);
+  FMySubComponent.SetSubComponent(true);
+  InsertFront(FMySubComponent);
+end;
+
+initialization
+  RegisterSerializableComponent(TMyButton, 'My Button');
+end.
+----
+
+==== Editable reference to another instance
+
+A reference to any other class that can be assigned. Another common situation is if you want to expose a property that references another class, and allow to assign any instance (or `nil`) to this class. Like this:
+
+[source,pascal]
+----
+unit MyButtonUnit;
+
+interface
+
+uses CastleControls;
+
+type
+  TMyButton = class(TCastleButton)
+  private
+    FMyLinkedImage: TCastleImageControl;
+  public
+    property MyLinkedImage: TCastleImageControl read FMyLinkedImage write FMyLinkedImage;
+  end;
+
+implementation
+
+uses CastleComponentSerialize;
+
+initialization
+  RegisterSerializableComponent(TMyButton, 'My Button');
+end.
+----
+
+WARNING: The example above will compile and basically work, but it has an important problem. Read on for how to solve it.
+
+The instance assigned to such property (`MyLinkedImage` in the above example) can be freed at any moment (at design-time or at run-time). Your component _must_ be prepared to handle this.
+
+The standard Pascal mechanism for this is to watch when the referenced component is freed using the `FreeNotification` mechanism. See the https://castle-engine.io/modern_pascal_introduction.html#\_free_notification[Free notification] description in our __"Modern Object Pascal Introduction for Programmers"__ book.
+
+In _Castle Game Engine_ we encourage to use cgeref:TFreeNotificationObserver[] for such purpose, which is generally simpler than using `FreeNotification` mechanism. This is the corrected example code using it:
+
+[source,pascal]
+----
+unit MyButtonUnit;
+
+interface
+
+uses Classes,
+  CastleClassUtils, CastleControls;
+
+type
+  TMyButton = class(TCastleButton)
+  private
+    FMyLinkedImageObserver: TFreeNotificationObserver;
+    FMyLinkedImage: TCastleImageControl;
+    procedure SetMyLinkedImage(const Value: TCastleImageControl);
+    procedure MyLinkedImageFreeNotification(const Sender: TFreeNotificationObserver);
+  public
+    constructor Create(AOwner: TComponent); override;
+    property MyLinkedImage: TCastleImageControl read FMyLinkedImage write FMyLinkedImage;
+  end;
+
+implementation
+
+uses CastleComponentSerialize;
+
+constructor TMyButton.Create(AOwner: TComponent);
+begin
+  inherited;
+  FMyLinkedImageObserver := TFreeNotificationObserver.Create(Self);
+  FMyLinkedImageObserver.OnFreeNotification := {$ifdef FPC}@{$endif} MyLinkedImageFreeNotification;
+end;
+
+procedure TMyButton.SetMyLinkedImage(const Value: TCastleImageControl);
+begin
+  if FMyLinkedImage <> Value then
+  begin
+    FMyLinkedImage := Value;
+    FMyLinkedImageObserver.Observed := Value;
+  end;
+end;
+
+procedure TMyButton.MyLinkedImageFreeNotification(const Sender: TFreeNotificationObserver);
+begin
+  // set property to nil when the referenced component is freed
+  MyLinkedImage := nil;
+end;
+
+initialization
+  RegisterSerializableComponent(TMyButton, 'My Button');
+end.
+----
+
+=== Publishing vectors and colors
+
+For now, in FPC you cannot publish a property of record type. This affects our `TVectorXxx` and `TCastleColorXxx` records.
+
+To expose them for the editor, you need to wrap them in a class like `TCastleVector3Persistent` (that wraps `TVector3`). To do this, add a code like this:
 
 [source,pascal]
 ----
@@ -93,8 +237,8 @@ begin
   FCenter := Vector3(1, 2, 3); // default value of Center
 
   FCenterPersistent := TCastleVector3Persistent.Create;
-  FCenterPersistent.InternalGetValue := @GetCenterForPersistent;
-  FCenterPersistent.InternalSetValue := @SetCenterForPersistent;
+  FCenterPersistent.InternalGetValue := {$ifdef FPC}@{$endif} GetCenterForPersistent;
+  FCenterPersistent.InternalSetValue := {$ifdef FPC}@{$endif} SetCenterForPersistent;
   FCenterPersistent.InternalDefaultValue := Center; // current value is default
 end;
 
@@ -115,6 +259,8 @@ begin
 end;
 ----
 
+=== Property sections
+
 For the best presentation, override `PropertySections`. You will usually place the newly added properties in the _Basic_ section, to make them easy to discover by the users. A sample implementation of `PropertySections` would be like this:
 
 [source,pascal]
@@ -128,4 +274,45 @@ begin
       Result := inherited PropertySections(PropertyName);
   end;
 end;
+----
+
+== Transient instances: avoid displaying and serializing internal classes
+
+In general, your custom component can freely create other classes for internal purposes, and generally do anything it wants with them.
+
+But note that if you add new children of `TCastleUserInterface`, or new children of `TCastleTransform`, or new behaviors of `TCastleTransform`, then these new children will be (by default) visible to the user (in CGE editor) and editable (user will be able to modify their properties, or even free their instances). Sometimes this is undesirable, when you want to create something _internal_ (but it still has to be a child of `TCastleUserInterface`, `TCastleTransform` etc.).
+
+The solution to this is to call cgeref:TCastleComponent.SetTransient[] on an internal instance. "Transient" is a Pascal term for components that are internal, that should not be accessible at design-time, and should not be serialized/deserialized.
+
+== Property editors
+
+You can also register property editors. These are classes that descend from existing Pascal classes in `PropEdits` unit (see https://gitlab.com/freepascal.org/lazarus/lazarus/-/blob/main/components/ideintf/propedits.pp[Lazarus PropEdits unit code]) and can customize how the user can edit given property.
+
+Creating _property editors_ for CGE follows the same rules as defining property editors for _Lazarus_ and _Delphi_. See e.g. https://wiki.freepascal.org/How_To_Write_Lazarus_Component[Lazarus documentation about creating custom components]. You can also take a look at CGE https://github.com/castle-engine/castle-engine/blob/master/src/lcl/castlepropedits.pas[CastlePropEdits unit] for an inspiration what can be done.
+
+As the registration of property editors requires using LCL units, register them only when unit is compiled with symbol `CASTLE_DESIGN_MODE`. Like this:
+
+[source,pascal]
+----
+unit MyUnit;
+
+interface
+
+...
+
+implementation
+
+uses SysUtils,
+  CastleComponentSerialize,
+  { Use CastlePropEdits, and thus LCL and castle_components, only when part of the editor. }
+  {$ifdef CASTLE_DESIGN_MODE} , PropEdits, CastlePropEdits {$endif};
+
+...
+
+initialization
+  RegisterSerializableComponent(TMyComponent, 'My Component');
+  {$ifdef CASTLE_DESIGN_MODE}
+  RegisterPropertyEditor(TypeInfo(AnsiString), TMyComponent, 'URL', TImageURLPropertyEditor);
+  {$endif}
+end.
 ----

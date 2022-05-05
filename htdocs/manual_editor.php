@@ -9,7 +9,7 @@ $toc = new TableOfContents(
     new TocItem('Design user interfaces and 3D/2D transformation hierarchies', 'design'),
     new TocItem('Edit source code', 'source_code'),
     new TocItem('File browser', 'file_browser'),
-    new TocItem('Custom (project-specific) components in the visual designer', 'custom_components'),
+    new TocItem('Custom components in the editor', 'custom_components'),
   )
 );
 ?>
@@ -156,43 +156,7 @@ TODO: use Delphi automatically, if installed
 
 <?php echo $toc->html_section(); ?>
 
-<p>Projects may define custom components (any descendant of <a href="https://www.freepascal.org/docs-html/rtl/classes/tcomponent.html">TComponent</a>; usual classes to derive your components from include
- <?php api_link('TCastleUserInterface', 'CastleUIControls.TCastleUserInterface.html'); ?>,
- <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?>,
- <?php api_link('TCastleBehavior', 'CastleTransform.TCastleBehavior.html'); ?>,
- <?php api_link('TCastleComponent', 'CastleClassUtils.TCastleComponent.html'); ?>).
-It is possible to include your custom components within the <i>Castle Game Engine Editor</i>, so that they can be added and configured at design-time, just like standard CGE components. To do this:
-
-<ol>
-  <li><p>In the <code>initialization</code> section of some unit (it is usually the same unit where you define your custom component), register it by calling something like this:
-
-<?php echo pascal_highlight(
-'RegisterSerializableComponent(TMyButton, \'My Button\');'); ?>
-
-    <p>The <code>RegisterSerializableComponen</code> is in the <code>CastleComponentSerialize</code> unit, so make sure it is in the uses clause.
-
-  <li><p>Inside your <a href="https://castle-engine.io/project_manifest">CastleEngineManifest.xml</a>, set the attribute <code>editor_units</code> to list all the units that call the <code>RegisterSerializableComponent</code>. It is a comma-separated list, like <code>editor_units="MyButtonUnit, MyMenuUnit"</code>.
-
-  <li><p>Make sure:
-
-    <ol>
-      <li><p><i>Lazarus location</i> is correctly set in the editor <i>"Preferences"</i> window. Alternatively you could adjust <code>$PATH</code> (make sure we can find <code>lazbuild</code> from Lazarus).
-
-      <li><p>Make sure the CGE location is correctly set. It should be detected automatically if you use the engine package (but you can always customize it using the environment variable <code>$CASTLE_ENGINE_PATH</code>).
-    </ol>
-
-  <li><p>Use menu item <i>"Project -> Restart Editor (With Custom Components)"</i> in the editor (once you open a project).
-
-    <p>Alternatively, use the command-line <a href="https://castle-engine.io/build_tool">build tool</a> command: <code>castle-engine editor</code>.
-
-    <p>Both ways will rebuild and run a customized version of the editor that includes your custom components.
-
-    <p>You can confirm you are running an editor with custom components by looking at the window title, it should include <i>"(With Custom Components)"</i>.
-</ol>
-
-<p>See <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/advanced_editor/custom_component">advanced_editor/custom_component</a> as an example that defines and registers <code>TImageGrid</code> component in the <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/advanced_editor/custom_component/code/gamecontrols.pas">GameControls</a> unit.
-
-<p>More <a href="https://castle-engine.io/custom_components">documentation about implementing custom components is here</a>.
+<p>You can register your own components to use them within CGE editor. This is a powerful mechanism to define e.g. your own user interface elements. See the <a href="doc/custom_components">documentation about custom components</a>.
 
 <?php
 castle_footer();
