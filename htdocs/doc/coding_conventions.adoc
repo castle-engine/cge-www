@@ -485,7 +485,7 @@ X := Foo;
 
 We still consider this a "win": while you will occasionally have to deal with useless warnings from the compiler, but on the other hand you will pay attention to compiler warnings and the compiler will help you detect real problems in code. The warnings reported by the compiler are often about "edge-cases", situations that don't happen often (or maybe even you think they will never happen), but sometimes the compiler is right: that special situation *can* happen, and it is better to have reliable answer for it then let code do something undefined.
 
-=== Backward compatibility is important; having a consistent (easy to learn) API and useful features is even more important
+=== Be consistent in API design
 
 Ideally, we add new features to the engine by just "naturally" extending the existing API. By _"naturally"_ I mean that the new concept (class, method, property, whatever)
 
@@ -525,7 +525,9 @@ public
 end;
 ----
 
-But sometimes adding new things without breaking new things, in such way that the end API is consistent, is not possible. We didn't predict everything when designing CGE API :) In this case, we have to change our API, to incorporate the new feature, such that the resulting engine API feels consistent. We don't want features to reinvent some concepts, e.g. because some detail in the existing concept was not perfectly suitable. We want to adjust existing concepts to be better.
+=== Backward compatibility is important; having a consistent (easy to learn) API and useful features is even more important
+
+Sometimes adding new things without breaking old things, in such way that the end API is consistent, is not possible. We didn't predict everything when designing CGE API :) In this case, we have to change our API, to incorporate the new feature, such that the resulting engine API feels consistent. We don't want features to reinvent some concepts, e.g. because some detail in the existing concept was not perfectly suitable. We want to adjust existing concepts to be better.
 
 In this case, when the API of existing concept must change, try hard to keep the old API still available. Use `deprecated` Pascal directive, use it with a string parameter that explains shortly the advised alternative, like
 
@@ -536,9 +538,13 @@ procedure Foo; deprecated 'use Bar';
 
 It works nicely, will display a visible warning to users that they use the deprecated feature, but at the same time `Foo` will continue to function normally.
 
-There are however rare cases when providing backward compatibility is not possible. Or maybe it would be posisble, but would be a lot of work on engine development side (to make it / maintain it), or the existence of "compatibility crutch" would be too confusing to new users. In this case, after considering all the options, I say it is **acceptable to break backward compatibility**. You're doing it for the greater good. The engine must have room to evolve, to be better and better, we must have a way to change old/bad/unoptimal API design into new API design. This is the only way to keep our API consistent and keep adding new features. We don't want to have an engine that, in 10 years, can still compile all applications existing today -- but in exchange, new features (e.g. VR) are added to it in a weird way, making them hard/confusing to use.
+But there are rare cases when providing backward compatibility is not possible. Or maybe it would be posisble, but would be a lot of work on engine development side (to make it / maintain it), or the existence of "compatibility crutch" would be too confusing to new users. In this case, after considering all the options, I say it is **acceptable to break backward compatibility**. You're doing it for the greater good. The engine must have room to evolve, to be better and better, we must have a way to change old/bad/unoptimal API design into new API design. This is the only way to keep our API consistent and keep adding new features. IOW:
 
-Think about how the engine will look in a few years. Think about the perception of new people that learn the engine. If the engine has now 100 users, think that it will have 10x (1000) users in a year. We don't want the new 900 people to suffer from bad design decisions we make today, and suffer because we could not fix these decisions out of fear of backward compatibility.
+- We don't want an engine that, in 10 years, has a poor API (because new features (e.g. VR) are added to it in a weird way) and is hard to pick up by new people.
+
+- In exchange, we can accept the fact that, over the years, you will sometimes have to adjust your code to keep it compiling with the latest engine version.
+
+Think about how the engine will look in a few years. Think about the perception of new people that learn the engine. If the engine has now 100 users, think that it will have 10x (1000) users in a year. We don't want the new 900 people to suffer from bad design decisions we make today, and suffer because we could not fix these decisions out of fear of breaking backward compatibility.
 
 [NOTE]
 ====
