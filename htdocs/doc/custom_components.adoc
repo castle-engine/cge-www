@@ -276,15 +276,7 @@ begin
 end;
 ----
 
-== Transient instances: avoid displaying and serializing internal classes
-
-In general, your custom component can freely create other classes for internal purposes, and generally do anything it wants with them.
-
-But note that if you add new children of `TCastleUserInterface`, or new children of `TCastleTransform`, or new behaviors of `TCastleTransform`, then these new children will be (by default) visible to the user (in CGE editor) and editable (user will be able to modify their properties, or even free their instances). Sometimes this is undesirable, when you want to create something _internal_ (but it still has to be a child of `TCastleUserInterface`, `TCastleTransform` etc.).
-
-The solution to this is to call cgeref:TCastleComponent.SetTransient[] on an internal instance. "Transient" is a Pascal term for components that are internal, that should not be accessible at design-time, and should not be serialized/deserialized.
-
-== Property editors
+=== Property editors
 
 You can also register property editors. These are classes that descend from existing Pascal classes in `PropEdits` unit (see https://gitlab.com/freepascal.org/lazarus/lazarus/-/blob/main/components/ideintf/propedits.pp[Lazarus PropEdits unit code]) and can customize how the user can edit given property.
 
@@ -315,4 +307,125 @@ initialization
   RegisterPropertyEditor(TypeInfo(AnsiString), TMyComponent, 'URL', TImageURLPropertyEditor);
   {$endif}
 end.
+----
+
+== Transient instances: avoid displaying and serializing internal classes
+
+In general, your custom component can freely create other classes for internal purposes, and generally do anything it wants with them.
+
+But note that if you add new children of `TCastleUserInterface`, or new children of `TCastleTransform`, or new behaviors of `TCastleTransform`, then these new children will be (by default) visible to the user (in CGE editor) and editable (user will be able to modify their properties, or even free their instances). Sometimes this is undesirable, when you want to create something _internal_ (but it still has to be a child of `TCastleUserInterface`, `TCastleTransform` etc.).
+
+The solution to this is to call cgeref:TCastleComponent.SetTransient[] on an internal instance. "Transient" is a Pascal term for components that are internal, that should not be accessible at design-time, and should not be serialized/deserialized.
+
+== (De)Serializing other values (not just published properties)
+
+WARNING: This section describes new feature on https://github.com/castle-engine/castle-engine/tree/new-cameras[new-cameras branch], not yet merged with CGE master branch.
+
+Sometimes you want to read/write to the design file a value that should not be a published property. Maybe it is a private field, that you don't want to show user in the _Object Inspector_, maybe it should be just a temporary local variable. To achieve this, override in your class cgeref:TCastleComponent.CustomSerialization[], and within the overridden implementation call cgeref:TSerializationProcess[] methods, like
+
+- cgeref:TSerializationProcess.ReadWriteInteger[]
+- cgeref:TSerializationProcess.ReadWriteSingle[]
+- cgeref:TSerializationProcess.ReadWriteBoolean[]
+- cgeref:TSerializationProcess.ReadWriteString[]
+- cgeref:TSerializationProcess.ReadWriteSubComponent[]
+- cgeref:TSerializationProcessVectorsHelper.ReadWriteVector[] (this is a helper method -- if you use the `CastleVectors` unit, you can use it as if it was a method of `TSerializationProcess` class)
+- cgeref:TSerializationProcessColorsHelper.ReadWriteColor[] (this is a helper method -- if you use the `CastleColors` unit, you can use it as if it was a method of `TSerializationProcess` class)
+- cgeref:TSerializationProcess.ReadWriteList[]
+
+There are 2 use-cases:
+
+1. A private piece of information, like design-time only information.
++
+For example, viewport serializes the current settings of camera and navigation at design-time. We don't want to show these internal camera/navigation properties in _Object Inspector_, because at run-time, the design-time settings are ignored (so they are not an API we expose for engine users). Still, we want to preserve them in the design file, so that when you open the design file -- the camera and navigation are just as they were previously.
++
+Usage example looks like this:
++
+[source,pascal]
+----
+type
+  TMyComponent = class(TComponent)
+  strict private
+    const
+      DefaultMyPrivateVector: TVector4 = (X: 1; Y: 1; Z: 1; W: 1);
+      DefaultMyPrivateString = 'Something something';
+    var
+      FMyPrivateVector: TVector4;
+      FMyPrivateString: String;
+  public
+    constructor Create(AOwner: TComponent); override;
+    procedure CustomSerialization(const SerializationProcess: TSerializationProcess); override;
+  end;
+
+constructor TMyComponent.Create(AOwner: TComponent);
+begin
+  inherited;
+  { Later ReadWriteVector assumes that constructor sets DefaultMyPrivateVector }
+  FMyPrivateVector := DefaultMyPrivateVector;
+  FMyPrivateString := DefaultMyPrivateString;
+end;
+
+procedure TMyComponent.CustomSerialization(const SerializationProcess: TSerializationProcess);
+begin
+  inherited;
+  SerializationProcess.ReadWriteVector('MyPrivateVector', FMyPrivateVector,
+    DefaultMyPrivateVector, true);
+  SerializationProcess.ReadWriteString('MyPrivateString', FMyPrivateString,
+    FMyPrivateString <> DefaultMyPrivateVector);
+end;
+----
+
+2. Reading a piece of information from design file for backward compatibility, to immediately convert it to something else.
++
+For example, this is useful to read from design-file an old property, that has been removed from the API, but you still want to support reading the old design files.
++
+If you can reliably convert the old information into new information, then you can even pass `IsStored` parameter to `ReadWriteXxx` as `false`, as you don't need to store the deprecated information back into file.
++
+Usage example looks like this:
++
+[source,pascal]
+----
+type
+  TMyComponent = class(TComponent)
+  strict private
+  public
+    { Note: For simplicity sake, the My4DVector and MyString are just public,
+      not published, in this example code. But you could make them published,
+      following instructions from earlier sections. }
+    My4DVector: TVector4;
+    MyString: String;
+    procedure CustomSerialization(const SerializationProcess: TSerializationProcess); override;
+  end;
+
+procedure TMyComponent.CustomSerialization(const SerializationProcess: TSerializationProcess);
+const
+  DefaultMyOldVector: TVector3 = (X: 0; Y: 0; Z: 0);
+  DefaultMyOldInteger = 123;
+var
+  MyOldVector: TVector3;
+begin
+  inherited;
+
+  { For example sake, let's assume that in the past, you published
+    MyOldVector: TVector3 value.
+    But now you want to expose My4DVector: TVector4,
+    and when reading old designs -- convert MyOldVector -> My4DVector somehow. }
+
+  MyOldVector := DefaultMyOldVector;
+  SerializationProcess.ReadWriteVector('MyOldVector', MyOldVector,
+    DefaultMyOldVector, false);
+
+  if not TVector3.PerfectlyEquals(MyOldVector, DefaultMyOldVector) then
+    My4DVector := Vector4(MyOldVector, 1.0);
+
+  { For example sake, let's assume that in the past, you published
+    MyOldInteger: Integer value.
+    But now you want to expose MyString: String
+    and when reading old designs -- convert MyOldInteger -> MyString somehow. }
+
+  MyOldInteger := DefaultMyOldInteger;
+  SerializationProcess.ReadWriteString('MyOldInteger', MyOldInteger, false);
+
+  if MyOldInteger <> DefaultMyOldInteger then
+    MyString := IntToStr(MyOldInteger);
+end;
 ----
