@@ -85,16 +85,16 @@ It will also automatically add `LazOpenGLContext` package as dependency, which i
 * Or you can use `alternative_castle_window_based_on_lcl.lpk` instead of `castle_window.lpk` in the project. This should take care of above 2 things.
 * Usually you should compile programs using Lazarus then (IDE or `lazbuild`), to automatically have correct LCL paths used. If you use our link:build_tool[build tool] or https://castle-engine.io/manual_editor.php[CGE editor], set `build_using_lazbuild="true"` in https://castle-engine.io/project_manifest[CastleEngineManifest.xml].
 
-Supported platforms: everywhere where LCL runs. (But in practice this backend is only useful on macOS.)
+Supported platforms: everywhere where LCL runs.
 
 Advantages:
 
-* Can use any LCL backend, in particular it allows to use Cocoa on macOS. This is the only way for now to have `TCastleWindow` have a native look on macOS. See link:macos[macOS].
+* Can use any LCL backend, so in principle allows to use `TCastleWindow` everywhere where LCL works.
 * Depends on LCL for all the things, like `TCastleWindow.MainMenu` or `TCastleWindow.FileDialog` or `TCastleWindow.FullScreen`.
 
 Known problems:
 
-* Various. Various small things don't work perfectly using this backend, due to small problems/unfinished features in LCL. In practice, it isn't really useful except on macOS, although it works on all platforms.
+* Various small things don't work perfectly using this backend, due to small problems/unfinished features in LCL. In practice we don't advise this backend anymore -- for all supported platform, we have a better specialized backend.
 * Screen resizing (`Application.TryVideoChange`) is not implemented, as LCL doesn't implement it.
 * Message loop may stutter in case of a lot of mouse movement (may be visible in case of "mouse look" navigation).
 * Doesn't support OpenGLES, as underlying `TOpenGLControl` doesn't support it.
@@ -110,6 +110,28 @@ Use existing OpenGL(ES) context. This is useful when the engine is used as a lib
 Also, this is the only possible backend to use CGE on link:ios[iOS] or link:nintendo_switch[Nintendo Switch] and it is automatically used there.
 
 Supported platforms: All platforms. But note that using this backend requires additional "outside" code to manage our library. In case of link:ios[iOS] and link:nintendo_switch[Nintendo Switch], this is automatically provided when building using our link:build_tool[build tool].
+
+=== Cocoa backend (CASTLE_WINDOW_COCOA)
+
+Backend using https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaFundamentals/WhatIsCocoa/WhatIsCocoa.html[Cocoa] with https://developer.apple.com/documentation/appkit?language=objc[AppKit] library, coded using https://www.freepascal.org/docs-html/current/ref/refse71.html#x132-15600011.1[Objective-Pascal].
+//_ (a dialect of Pascal, implemented in FPC, as an analogy to _Objective-C_ -- making some unique OOP features/misfeatures from _Objective-C_ available in Pascal).
+This is the technology to create native applications on macOS.
+
+This backend is only available for macOS, and also is the advised backend there. It gives a native look for macOS applications, and covers all standard `TCastleWindow` features:
+
+- Opening and closing multiple windows with OpenGL context.
+- Key and mouse handling, including mouse wheel events.
+- cgeref:TCastleWindow.MainMenu[], realized as native macOS menu, with submenus, key shortcuts, checked, enabled menu items.
+- cgeref:TCastleWindow.FileDialog[], native dialog to open/save files.
+- cgeref:TCastleWindow.ColorDialog[], native dialog to pick a color.
+- cgeref:TCastleWindow.MessageOK[], cgeref:TCastleWindow.MessageYesNo[] - native alerts to notify about something or ask a question.
+- Opening associated files on macOS, see link:project_manifest#_associated_file_types[CastleEngineManifest.xml - Associated file types], is also supported with some necessary code in this backend.
+
+Known problems:
+
+- TODO: Fullscreen is not correct. The menu bar and macOS dock remain visible, covering parts of the fullscreen window. We have a code in place to deal with it... unsuccessfully, so far.
+- TODO: Hiding mouse cursor doesn't work. Again we have a code to hide/unhide cursor, but it doesn't work properly for unknown (yet!) reason.
+- When building, a few messages like `warning: section "\__datacoal_nt" is deprecated: .section __DATA, __datacoal_nt, coalesced` are displayed. https://wiki.lazarus.freepascal.org/Mac_Installation_FAQ#Lazarus_reports_success.2C_but_there_are_errors.21[Compiling LCL app on macOS shows these warnings too]. There is no solution for now, but the warnings can be safely ignored.
 
 ////
 === Obsolete: DispmanX backend (CASTLE_WINDOW_DISPMANX)

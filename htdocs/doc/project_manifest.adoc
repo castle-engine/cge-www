@@ -365,18 +365,20 @@ https://itunespartner.apple.com/en/apps/faq/Managing%20Your%20Apps_Export%20Comp
 
 * See the link:ios_services[iOS Services] for information what can you use within the `<services>` element.
 
-=== File type associations (Android and iOS)
+=== Associated file types
 
 [source,xml]
 ----
 ...
   <associate_document_types>
-    <document_type name="VRML Scene" icon="">
-      <file_extension extension="wrl" mime="model/vrml" />
-      <file_extension extension="wrz" mime="model/vrml" />
+    <document_type caption="VRML Scene" name="vrml">
+      <extension>wrl</extension>
+      <extension>wrz</extension>
+      <mime>model/vrml</mime>
     </document_type>
-    <document_type name="ZIP Archive">
-      <file_extension extension="zip" mime="application/zip" ios_type_identifier="com.pkware.zip-archive" />
+    <document_type caption="ZIP Archive" name="zip" icon="zip_icon">
+      <extension>zip</extension>
+      <mime>application/zip</mime>
     </document_type>
     ...
   </associate_document_types>
@@ -384,22 +386,21 @@ https://itunespartner.apple.com/en/apps/faq/Managing%20Your%20Apps_Export%20Comp
 ...
 ----
 
-The `<associate_document_types>` element allows to tell the operating system to associate the given document types to your application. Each document type can specify several file extensions.
+The `<associate_document_types>` element _associates_ some file types with your application. The intention is that when user tries to open a file of given type (e.g. by double-clicking it in the file manager), then this application should open, if it is installed. A document type can be identified by one or more file extensions, and it must correspond to one of more MIME types.
+
+*This feature is implemented now only for Android, iOS, macOS.*
 
 The `<document_type>` element defines the document type to associate.
 
-* `name`: string visible to the user on iOS when user taps the file with this type.
-* `icon`: icon file shown next to the `name`. When none supplied, the application icon will be used.
+* `caption`: short caption, nice to display for users (you can use spaces etc.), describing this document type.
+* `name`: internal unique identifier for this document type. It must be unique within this application. Use only alphanumeric characters.
+* `icon`: (optional) icon file shown for this document type. When none supplied, the application icon will be used.
+* `<extension>EXT</extension>`: multiple file extensions that match this document type can be given.
+* `<mime>MIME</mime>`: multiple MIME types that match this document type can be given.
 
-The `<file_extension>` element specifies the actual file extension to match.
+NOTE: TODO: We should expose `apple_uniform_type_identifier`, to communicate this document type is already defined at system level, and we merely register the fact that we can open it. See https://developer.apple.com/library/content/documentation/Miscellaneous/Reference/UTIRef/Articles/System-DeclaredUniformTypeIdentifiers.html#//apple_ref/doc/uid/TP40009259-SW1[Apple documentation].
 
-* `extension`: file extension string without leading dot.
-* `mime`: mime type used on iOS.
-* `ios_type_identifier`: In case you are associating the well known document type on iOS, you have to set this attribute to one of the system-declared uniform type identifiers, see https://developer.apple.com/library/content/documentation/Miscellaneous/Reference/UTIRef/Articles/System-DeclaredUniformTypeIdentifiers.html#//apple_ref/doc/uid/TP40009259-SW1[Apple documentation]
-
-To make URL opening work on Android, you need to set `<android project_type="integrated">` in the manifest, see <<android-information,Android information>>.
-
-To handle the actual URL to be opened, you have to implement `Window.OnDropFiles` event in your source code.
+NOTE: To handle the URL to be opened, you have to implement `Window.OnDropFiles` event in your source code.
 
 === Dependencies
 

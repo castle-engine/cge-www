@@ -1,0 +1,63 @@
+### TCastleWindow with Cocoa (using LCL backend)
+
+Using Cocoa means that your application will look pretty and native.
+
+To do this:
+
+- open your project in Lazarus
+- change in Project Inspector `castle_window.lpk` to `alternative_castle_window_based_on_lcl.lpk`
+- compile from Lazarus (in this approach, you cannot compile using CGE build tool or editor).
+
+Internally, this means that cgeref:TCastleWindow[] is using LCL backend, and LCL in turn is using Cocoa.
+
+### TCastleWindow with X (Xlib backend)
+
+Xlib was the default backend on macOS before 2022-05. It does not look pretty, and does not show a menu bar.
+
+To use it, install link:https://www.xquartz.org/[XQuartz] and recommend your users to do it too. Our programs will appear as part of "_X11 server_" on your desktop.
+
+To compile, you also need to add this line to your `fpc.cfg` file:
+
+----
+-k-L/usr/X11/lib/
+----
+
+////
+# Old version:
+# -Fl/usr/X11/lib/
+# Should work equally well as far as I know, but it doesn't, for FPC 3.0.4/3.0.5
+////
+
+[WARNING]
+====
+If you get an error (when running our applications) that _glX extension not found_: Check do you have a `/usr/X11R6` symlink (e.g. by running `ls /usr/X11R6` in the terminal). Some versions of XQuartz seem to not install it (link:http://bugs.freepascal.org/view.php?id=31651[see here]).   You can fix it on your system by:
+
+----
+sudo ln -s /usr/X11 /usr/X11R6
+----
+
+Alternative fix (link:https://lists.apple.com/archives/x11-users/2015/Oct/msg00012.html[see here]):
+
+----
+sudo /usr/libexec/x11-select /opt/X11
+sudo chmod a+rX /usr/X11/ /usr/X11R6/
+----
+====
+
+### TCastleWindow with GTK backend
+
+You can switch the backend to GTK 2. Do this by adding this line to your `fpc.cfg` file (<?php echo FPC_CFG_DOCS; ?>):
+
+```-dCASTLE_WINDOW_GTK_2```
+
+This looks better (the program will still be part
+of the "_X11 server_", but it will have a nice menu bar and dialog
+windows using GTK).
+
+In addition to *X11* (see above), your
+application will use *GTK* libraries.
+Install them using
+link:https://www.macports.org/[MacPorts],
+link:https://brew.sh/[Homebrew] or
+link:http://www.finkproject.org/[Fink].
+Yes, all three options are tested and OK. Look for packages called `gtk2`.
