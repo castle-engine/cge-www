@@ -60,9 +60,11 @@ _When running the application during development_ we create a temporary applicat
 
 _When packaging the application_ we also create an application bundle, this time by really copying the files/dirs into proper places. This gives you `MyApplication.app` that is ready to be distributed to users. This applies when packaging from CGE editor, or when using `castle-engine package` from the command-line. You can also request the AppBundle format explicitly, using proper CGE editor menu item, or on command-line `castle-engine package --package-format=mac-app-bundle`.
 
-Behavior of the link:manual_data_directory.php[data directory] (`castle-data:` protocol) on macOS:
+NOTE: You can disable using _application bundle_ by setting `mac_app_bundle="false"` in the link:project_manifest[CastleEngineManifest.xml]. Disabling it makes sense for command-line (not GUI) applications.
 
-- If you run the application through the "application bundle", then we expect the data to be found inside `MyApplication.app/Contents/Resources/data` subdirectory. This way user can move around `MyApplication.app` to move, install and uninstall the application.
+Behavior of the link:manual_data_directory.php[data directory] (`castle-data:` protocol) on macOS, if the application detects it is being run through the "application bundle":
+
+- We expect the data to be found inside `MyApplication.app/Contents/Resources/data` subdirectory. This way user can move around `MyApplication.app` to move, install and uninstall the application.
 +
 When creating application bundle, we (CGE editor and CGE build tool) make sure to make project data actually present there, so things should _Just Work_ and you don't need to do anything.
 

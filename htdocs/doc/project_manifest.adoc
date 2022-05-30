@@ -170,6 +170,7 @@ This section documents the complete manifest file, with every possible attribute
   delphi_project="my_game.dproj"
   build_using_lazbuild="false"
   compiler="autodetect"
+  mac_app_bundle="true"
 >
 ...
 ----
@@ -201,6 +202,7 @@ The `<project>` attributes:
  ** `autodetect` (default) - use FPC or Delphi, whichever first is found
  ** `fpc`
  ** `delphi`
+* `mac_app_bundle`: On macOS, should we run and package the project using the Apple _App Bundle_. By default this is `true` and it should stay `true` for GUI applications. For command-line applications, that don't need an App Bundle, you can turn this `false`.
 
 === Data directory
 
