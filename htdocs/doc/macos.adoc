@@ -3,11 +3,22 @@ include::common.adoc[]
 
 ## Installation of FPC and Lazarus
 
-Just install link:http://www.lazarus.freepascal.org/[Lazarus for macOS from the official Lazarus webpage] (FPC is also included in Lazarus download).
+To build applications using the engine, you must install _Free Pascal Compiler (FPC)_. Most likely you also want to install _Lazarus_, a Pascal IDE.
 
-NOTE: Alternatively you can also install FPC / Lazarus using your favourite package manager: link:https://brew.sh/[Homebrew], link:https://www.macports.org/[MacPorts], link:http://www.finkproject.org/[Fink].
+* Follow download links from link:http://www.lazarus.freepascal.org/[the official Lazarus webpage] to download Lazarus and FPC for macOS. You should download and install all 3 dmg files (Lazarus, FPC, FPC sources).
 
-The FPC compiler needs the _XCode command-line developer tools_ installed. To do this, open terminal (_/Applications/Utilities/Terminal_) and execute `xcode-select --install`.
+* *Alternatively (if you use a package manager like Homebrew)*: You can also install FPC and Lazarus using your favourite package manager like
++
+[role="compact"]
+--
+* link:https://brew.sh/[Homebrew] - see https://formulae.brew.sh/formula/fpc[FPC in Homebrew], https://formulae.brew.sh/cask/lazarus[Lazarus in Homebrew],
+* link:https://www.macports.org/[MacPorts],
+* link:http://www.finkproject.org/[Fink].
+--
+
+* *Alternatively (advanced)*: You can also install FPC and Lazarus using https://castle-engine.io/fpcupdeluxe[fpcupdeluxe]. While the UI may be a bit overwhelming, in the end you just hit big button _"Install FPC + Lazarus"_ and it reliably installs the specified FPC + Lazarus version. And it allows to easily add cross-compilers.
+
+NOTE: The FPC compiler needs the _XCode command-line developer tools_ installed. To do this, open terminal (_/Applications/Utilities/Terminal_) and execute `xcode-select --install`.
 
 ////
 The latest macOS doesn't include gdb (a debugger, user underneath by Lazarus) by default. Lazarus will warn you about this on the 1st run. You can install GDB e.g. using link:https://brew.sh/[HomeBrew], just execute `brew install gdb`.
