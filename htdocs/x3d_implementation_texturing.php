@@ -366,7 +366,7 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?> (look inside <co
 
     <p>More uncompressed formats can be trivially added, just submit a bugreport with a sample KTX file.
 
-  <li><p><b>Texture arrays</b>. Programmers: iterate over <?php api_link('TCompositeImage.Images', 'CastleCompositeImage.TCompositeImage.html#Images'); ?> to access all the items of the array.
+  <li><p><b>Texture arrays, mipmaps</b>. Programmers: iterate over <?php api_link('TCompositeImage.Images', 'CastleCompositeImage.TCompositeImage.html#Images'); ?> to access all mipmaps, and for each mipmap: the items of the array.
 
   <li><p><b>Configurable orientation</b>. KTX data may be specified in <i>top-to-bottom</i> or <i>bottom-to-top</i> order. For 3D images, the slices can additionally be in <i>front-to-back</i> or <i>back-to-front</i> order. This is specified by a special <code>KTXorientation</code> field inside the KTX file (see the KTX specification for details) and we support it fully.
 
@@ -380,14 +380,7 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?> (look inside <co
     </ul>
 </ul>
 
-<p>We don't support (yet):
-
-<ul>
-  <li>mipmaps,
-  <li>cubemaps.
-</ul>
-
-<p>Both of these features are quite trivial to implement now, so please ask if you need them :)
+<p>TODO: We don't support (yet) cubemaps in KTX. Report if you need it, it's easy to add.
 
 <?php
   x3d_status_footer();
