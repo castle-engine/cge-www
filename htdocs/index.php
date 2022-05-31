@@ -111,11 +111,20 @@ define('CGE_SNAPSHOTS_VERSION', '7.0-alpha.snapshot');
                 modern Object Pascal</a>
                 and open standards like glTF and X3D</a>
                 -->
+
+<div class="jumbotron alert alert-info">
+    <p><a href="https://castle-engine.io/wp/2022/05/27/save-the-date-next-weekend-2nd-open-meeting-for-cge-users-and-developers/" role="button">Join us this Saturday (4th June) at our online meeting on Discord.</a></p>
+</div>
+
             </div>
         </div>
 
         <div class="centered-download-wrapper">
             <div class="download jumbotron main-cge-download">
+                <div class="download-hints">
+                    <p>Download the engine for your system:
+                </div>
+
                 <div class="download_platforms_list">
                     <div class="download_platform"><a class="btn btn-primary btn-lg" href="<?php echo CGE_SNAPSHOTS_BASE; ?>castle-engine-<?php echo CGE_SNAPSHOTS_VERSION; ?>-win64-x86_64.zip"><img src="<?php echo CURRENT_URL; ?>/images/os_icons/win.png" alt="Windows (64-bit, x86_64)" width="64" height="64"><br> Windows<br>(x86_64)</a></div>
                     <div class="download_platform"><a class="btn btn-primary btn-lg" href="<?php echo CGE_SNAPSHOTS_BASE; ?>castle-engine-<?php echo CGE_SNAPSHOTS_VERSION; ?>-linux-x86_64.zip"><img src="<?php echo CURRENT_URL; ?>/images/os_icons/linux.png" alt="Linux (64 bit, x86_64)" width="64" height="64"><br> Linux<br>(x86_64)</a></div>
