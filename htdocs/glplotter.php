@@ -34,7 +34,7 @@ actually any shape consisting of line segments may be displayed by glplotter.</p
 
 <?php
 echo_standard_program_download(
-  'Stable Version ' . VERSION_GLPLOTTER, 'glplotter', VERSION_GLPLOTTER, true,
+  'Stable Version ' . VERSION_GLPLOTTER, 'glplotter', VERSION_GLPLOTTER,
   array(
     'win-x86_64' => 'https://github.com/castle-engine/glplotter/releases/download/v' . VERSION_GLPLOTTER . '/glplotter-' . VERSION_GLPLOTTER . '-win64-x86_64.zip',
     'linux-x86_64' => 'https://github.com/castle-engine/glplotter/releases/download/v' . VERSION_GLPLOTTER . '/glplotter-' . VERSION_GLPLOTTER . '-linux-x86_64.tar.gz',

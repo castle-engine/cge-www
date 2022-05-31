@@ -1287,7 +1287,7 @@ function download_donate_footer()
    Leave NULL (default) to use the default set of OS/architectures hardcoded
    inside, and SourceForge download links. */
 function echo_standard_program_download(
-  $prog_nice_name, $prog_archive_basename, $prog_version, $macosx_dmg = false,
+  $prog_nice_name, $prog_archive_basename, $prog_version,
   $os_arch_urls = NULL, $extra_bottom_html = '')
 {
   global $this_page_name, $os_arch_caption, $os_arch_extension;
@@ -1305,19 +1305,19 @@ function echo_standard_program_download(
 
   if ($os_arch_urls === NULL) {
     $os_arch_urls = array(
-      'win-i386' => NULL,
-      'linux-i386' => NULL,
+      'win-i386'     => NULL,
+      'linux-i386'   => NULL,
       'linux-x86_64' => NULL,
-      'macosx-i386' => NULL,
+      'macos-x86_64' => NULL,
     );
   }
 
   $os_arch_caption = array(
     'win-i386'     => ' Windows<br/>(all versions, 32 or 64-bit)',
     'win-x86_64'   => ' Windows<br/>(64-bit)',
-    'linux-i386'   => ' Linux<br/>(32 bit)',
-    'linux-x86_64' => ' Linux<br/>(64 bit, x86_64)',
-    'macosx-i386'  => ' Mac OS X<br/>(all versions, 32 or 64-bit)',
+    'linux-i386'   => ' Linux<br/>(32-bit, i386)',
+    'linux-x86_64' => ' Linux<br/>(64-bit, x86_64)',
+    'macos-x86_64' => ' macOS<br/>(64-bit, x86_64)',
   );
 
   $os_arch_extension = array(
@@ -1325,15 +1325,15 @@ function echo_standard_program_download(
     'win-x86_64'   => '.zip',
     'linux-i386'   => '.tar.gz',
     'linux-x86_64' => '.tar.gz',
-    'macosx-i386'  => $macosx_dmg ? '.dmg' : '.tar.gz',
+    'macos-x86_64' => '.zip',
   );
 
   $os_arch_icon = array(
     'win-i386'     => 'win',
     'win-x86_64'   => 'win',
     'linux-i386'   => 'linux32',
-    'linux-x86_64' => 'linux64',
-    'macosx-i386'  => 'macosx'
+    'linux-x86_64' => 'linux', // do not use 'linux64', as 64-bit is now obvious standard
+    'macos-x86_64' => 'macos'
   );
 
   echo '<div class="download jumbotron">';

@@ -9,3 +9,6 @@ By Google - File:Android robot.svg, https://android.com, CC BY 3.0, https://comm
 Raspberry Pi from
 https://www.raspberrypi.org/trademark-rules/
 https://www.raspberrypi.org/files/Raspberry_Pi_Logo.zip
+
+FreeBSD logo from
+https://freebsdfoundation.org/about-us/about-the-foundation/project/

@@ -32,7 +32,7 @@ a very limited image editor.</p>
 
 <?php
 echo_standard_program_download(
-  'castle-view-image', 'castle-view-image', VERSION_CASTLE_VIEW_IMAGE, true,
+  'castle-view-image', 'castle-view-image', VERSION_CASTLE_VIEW_IMAGE,
   array(
     'win-x86_64' => 'https://github.com/castle-engine/castle-view-image/releases/download/v' . VERSION_CASTLE_VIEW_IMAGE . '/castle-view-image-' . VERSION_CASTLE_VIEW_IMAGE . '-win64-x86_64.zip',
     'linux-x86_64' => 'https://github.com/castle-engine/castle-view-image/releases/download/v' . VERSION_CASTLE_VIEW_IMAGE . '/castle-view-image-' . VERSION_CASTLE_VIEW_IMAGE . '-linux-x86_64.tar.gz',

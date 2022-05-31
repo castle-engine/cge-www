@@ -59,12 +59,12 @@ define('SNAPSHOTS_VERSION', '4.1.0');
 
 <?php
 echo_standard_program_download(
-  'Stable Version ' . VERSION_VIEW3DSCENE, 'view3dscene', VERSION_VIEW3DSCENE, true,
+  'Stable Version ' . VERSION_VIEW3DSCENE, 'view3dscene', VERSION_VIEW3DSCENE,
   array(
     'win-x86_64' => 'https://github.com/castle-engine/view3dscene/releases/download/v' . VERSION_VIEW3DSCENE . '/view3dscene-' . VERSION_VIEW3DSCENE . '-win64-x86_64.zip',
     // 'linux-i386' => 'https://github.com/castle-engine/view3dscene/files/1756756/view3dscene-3.18.0-linux-i386.tar.gz',
     'linux-x86_64' => 'https://github.com/castle-engine/view3dscene/releases/download/v' . VERSION_VIEW3DSCENE . '/view3dscene-' . VERSION_VIEW3DSCENE . '-linux-x86_64.tar.gz',
-    // 'macosx-i386' => 'https://github.com/castle-engine/view3dscene/files/1756873/view3dscene-3.18.0-macosx.dmg.zip',
+    // 'macosx-x86_64' => TODO
   )
 );
 ?>
