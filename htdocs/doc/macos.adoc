@@ -1,6 +1,11 @@
 # macOS
 include::common.adoc[]
 
+cgeimg::block[
+  mac_editor_1.png|CGE editor on macOS,
+  mac_view3dscene_2.png|view3dscene on macOS
+]
+
 ## Installation of FPC and Lazarus
 
 To build applications using the engine, you must install _Free Pascal Compiler (FPC)_. Most likely you also want to install _Lazarus_, a Pascal IDE.
