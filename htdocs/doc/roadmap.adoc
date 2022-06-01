@@ -117,7 +117,15 @@ Make a demo showing how to use Castle Game Engine together with link:https://git
 
 link:mobile_todos[We have some small TODOs to make OpenGLES (mobile) renderer as capable as OpenGL (desktop).]
 
-## Use Cocoa under macOS directly
+## macOS: Package engine as one big application bundle
+
+This will:
+
+- be simpler to users, as the engine will be "one single application" for macOS users.
+
+- avoid troubles resulting from Apple translocation. It right now prevents the CGE editor from detecting CGE path.
+
+- avoid current duplication of `castle-editor/data` in distributed package, thus making it smaller by ~60 MB.
 
 See link:macos[macOS].
 
