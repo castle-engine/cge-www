@@ -129,6 +129,14 @@ This will:
 
 See link:macos[macOS].
 
+## macOS: Have signed app bundle for the editor
+
+This will allow to run CGE editor on macOS by just double-clicking it, out-of-the-box.
+
+See link:macos[macOS].
+
+We should also enable developers to easily sign their own applications packaged with CGE build tool.
+
 ## (IN PROGRESS) API improvement: Make `TCastleViewport.MainScene` not necessary
 
 In the future, everything should be possible without assigning `TCastleViewport.MainScene`, and eventually `TCastleViewport.MainScene` property should be deprecated, later it should be ignored, and later it should be removed.
