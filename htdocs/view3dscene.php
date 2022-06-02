@@ -49,24 +49,26 @@ define('SNAPSHOTS_VERSION', '4.1.0');
 <p><b>If you already have <a href="index.php">Castle Game Engine</a>, then just run use <code>view3dscene</code> executable in CGE <code>bin</code> subdirectory. There's no need to download it separately.</b>
 
 <div class="download jumbotron">
-  <div class="download_title">Download Unstable (Snapshot) Version <?php echo SNAPSHOTS_VERSION; ?>:</div>
+  <div class="download_title">Download (Snapshot) Version <?php echo SNAPSHOTS_VERSION; ?>:</div>
   <div class="download_platforms_list">
-    <div class="download_platform"><a class="btn btn-primary btn-lg" href="<?php echo SNAPSHOTS_BASE; ?>view3dscene-<?php echo SNAPSHOTS_VERSION; ?>-win64-x86_64.zip"><img src="<?php echo CURRENT_URL; ?>/images/os_icons/win.png" alt=" Windows (64-bit)" width="64" height="64"><br> Windows<br>(64-bit)</a></div>
-    <div class="download_platform"><a class="btn btn-primary btn-lg" href="<?php echo SNAPSHOTS_BASE; ?>view3dscene-<?php echo SNAPSHOTS_VERSION; ?>-linux-x86_64.tar.gz"><img src="<?php echo CURRENT_URL; ?>/images/os_icons/linux64.png" alt=" Linux (64 bit, x86_64)" width="64" height="64"><br> Linux<br>(64 bit, x86_64)</a></div>
+    <div class="download_platform"><a class="btn btn-primary btn-lg" href="<?php echo SNAPSHOTS_BASE; ?>view3dscene-<?php echo SNAPSHOTS_VERSION; ?>-win64-x86_64.zip"><img src="<?php echo CURRENT_URL; ?>/images/os_icons/win.png" alt="Windows (64-bit)" width="64" height="64"><br> Windows<br>(x86_64)</a></div>
+    <div class="download_platform"><a class="btn btn-primary btn-lg" href="<?php echo SNAPSHOTS_BASE; ?>view3dscene-<?php echo SNAPSHOTS_VERSION; ?>-linux-x86_64.tar.gz"><img src="<?php echo CURRENT_URL; ?>/images/os_icons/linux.png" alt="Linux (64 bit, x86_64)" width="64" height="64"><br> Linux<br>(x86_64)</a></div>
+    <div class="download_platform"><a class="btn btn-primary btn-lg" href="<?php echo SNAPSHOTS_BASE; ?>view3dscene-<?php echo SNAPSHOTS_VERSION; ?>-linux-arm.tar.gz"><img src="<?php echo CURRENT_URL; ?>/images/os_icons/raspberry_pi.png" alt="Raspberry Pi (Linux Arm)" width="64" height="64"><br> Raspberry Pi<br>(Linux Arm)</a></div>
+    <div class="download_platform"><a class="btn btn-primary btn-lg" href="<?php echo SNAPSHOTS_BASE; ?>view3dscene-<?php echo SNAPSHOTS_VERSION; ?>-darwin-x86_64.zip"><img src="<?php echo CURRENT_URL; ?>/images/os_icons/macos.png" alt="macOS (x86_64)" width="64" height="64"><br> macOS<br>(x86_64)</a></div>
   </div>
   <a class="btn btn-success btn-lg btn-patreon" href="https://patreon.com/castleengine"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Support on Patreon</a>
 </div>
 
 <?php
+/*
 echo_standard_program_download(
   'Stable Version ' . VERSION_VIEW3DSCENE, 'view3dscene', VERSION_VIEW3DSCENE,
   array(
     'win-x86_64' => 'https://github.com/castle-engine/view3dscene/releases/download/v' . VERSION_VIEW3DSCENE . '/view3dscene-' . VERSION_VIEW3DSCENE . '-win64-x86_64.zip',
-    // 'linux-i386' => 'https://github.com/castle-engine/view3dscene/files/1756756/view3dscene-3.18.0-linux-i386.tar.gz',
     'linux-x86_64' => 'https://github.com/castle-engine/view3dscene/releases/download/v' . VERSION_VIEW3DSCENE . '/view3dscene-' . VERSION_VIEW3DSCENE . '-linux-x86_64.tar.gz',
-    // 'macosx-x86_64' => TODO
   )
 );
+*/
 ?>
 
 <p><b><a href="demo_models.php">Download also our collection of demo models</a> to test view3dscene!</b></p>
