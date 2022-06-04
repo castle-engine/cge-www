@@ -111,11 +111,6 @@ define('CGE_SNAPSHOTS_VERSION', '7.0-alpha.snapshot');
                 modern Object Pascal</a>
                 and open standards like glTF and X3D</a>
                 -->
-
-<div class="jumbotron alert alert-info">
-    <p><a href="https://castle-engine.io/wp/2022/05/27/save-the-date-next-weekend-2nd-open-meeting-for-cge-users-and-developers/" role="button">Join us this Saturday (4th June) at our online meeting on Discord.</a></p>
-</div>
-
             </div>
         </div>
 
@@ -190,6 +185,19 @@ define('CGE_SNAPSHOTS_VERSION', '7.0-alpha.snapshot');
             style="padding: 1em; border: none"
             class="main-page-thumbnail hidden-xs" />
         </a>
+
+        <div class="jumbotron alert alert-info">
+            <p><a href="https://discord.gg/GYgKs6f7?event=982744972476432384" role="button">
+              Register for 3rd Open Meeting for CGE Users and Developers:<br>
+              <span style="text-decoration: underline;">September 17th (2022)</span>
+              </a>
+            </p>
+
+            <?php echo cgeImg('block', array(
+              array('filename' => 'meet_2_michalis.png', 'titlealt' => 'Michalis on 2nd Open Meeting'),
+            ));
+            ?>
+        </div>
 
         <!-- <img src="images/original_size/rhan_shrine_5_everything.png" -->
         <!--     alt="Bump mapping and shadow maps from multiple light sources" -->
