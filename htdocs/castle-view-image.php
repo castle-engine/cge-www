@@ -28,7 +28,7 @@ echo castle_thumbs(array(
 <p><code>castle-view-image</code> is an image viewer, converter and even
 a very limited image editor.</p>
 
-<p><b>If you already have <a href="index.php">Castle Game Engine</a>, then just run use <code>castle-view-image</code> executable in CGE <code>bin</code> subdirectory. There's no need to download it separately.</b>
+<p><b>If you already have <a href="index.php">Castle Game Engine</a>, then just run <code>castle-view-image</code> executable in CGE <code>bin</code> subdirectory. There's no need to download it separately.</b>
 
 <?php
 echo_standard_program_download(

@@ -116,7 +116,7 @@ right after another.
 
 <?php echo $toc->html_section(); ?>
 
-<p><?php echo SOURCES_OF_THIS_PROG_ARE_AVAIL; ?>
+<p><?php echo castle_sources_notice(); ?>
 
 <p>Concept is closely based on original DOS "Color lines" game
 by Olga Demin (programming), Igor Ivkin and Gennady Denisov (graphics).

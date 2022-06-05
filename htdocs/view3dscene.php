@@ -46,7 +46,7 @@ define('SNAPSHOTS_VERSION', '4.1.0');
 
 <p>Explore the virtual world with collisions, gravity, animations, sensors, shadows, mirrors, shaders and more. <!--use embedded ray-tracer, --> You can also convert all models to X3D.</p>
 
-<p><b>If you already have <a href="index.php">Castle Game Engine</a>, then just run use <code>view3dscene</code> executable in CGE <code>bin</code> subdirectory. There's no need to download it separately.</b>
+<p><b>If you already have <a href="index.php">Castle Game Engine</a>, then just run <code>view3dscene</code> executable in CGE <code>bin</code> subdirectory. There's no need to download it separately.</b>
 
 <div class="download jumbotron">
   <div class="download_title">Download (Snapshot) Version <?php echo SNAPSHOTS_VERSION; ?>:</div>
@@ -101,18 +101,17 @@ you want, and run the <code>view3dscene</code> program inside.
 Included is also the <code>tovrmlx3d</code> program,
 useful for <a href="#section_converting">converting 3D models to X3D in batch (command-line) mode</a>.</p>
 
-<p><?php echo SOURCES_OF_THIS_PROG_ARE_AVAIL; ?></p>
+<p><?php echo castle_sources_notice(); ?>
 
 <p><i>Demo scenes</i>: our
 <?php echo a_href_page("demo models", "demo_models"); ?>
  contains a lot of interesting models,
 you can open them all with <code>view3dscene</code>.</p>
 
-<p>Requirements:
+<p>PLatform-specific notes:
 <ul>
-  <li><i>For Linux:</i> If you want to hear 3D sound in X3D worlds, install also <?php echo a_href_page('OpenAL', 'openal'); ?> and <a href="http://xiph.org/vorbis/">OggVorbis (VorbisFile and dependencies)</a> libraries.
-  <li><i>For Windows:</i> All useful libraries are already included in the archive, so you don't have to do anything.
-  <li><?php echo a_href_page('macOS requirements are listed here', 'doc/macos'); ?>.
+  <li><i>Linux:</i> If you want to hear 3D sound in X3D worlds, install also <?php echo a_href_page('OpenAL', 'openal'); ?> and <a href="http://xiph.org/vorbis/">OggVorbis (VorbisFile and dependencies)</a> libraries using your Linux distribution package manager.
+  <li><i>macOS:</i> As our application is not signed (for now), for the first time you have to run it by clicking with <i>right mouse button</i>, choosing <i>"Open"</i> from the context menu, and then accepting to run an unsigned application. Next time you can run as usual, by just double-clicking on the application. <?php echo a_href_page('More information about macOS support is here.', 'doc/macos'); ?>.
 </ul>
 
 <!--p>If you want to try the unstable bleeding-edge version, you can download the binary from the <a href="<?php echo SNAPSHOTS_BASE; ?>">view3dscene snapshots</a> page.-->
@@ -185,7 +184,8 @@ flawlessly :) So give it a try!
     <code>Examine</code> (easily rotate and move the whole model),
     <code>Walk</code> (walk like in FPS games,
     with collision detection, gravity and related features available),
-    <code>Fly</code> (similar to <code>Walk</code> but without gravity).
+    <code>Fly</code> (similar to <code>Walk</code> but without gravity),
+    <code>2D</code>.
 
   <li><p>All model formats can be converted to X3D.
 

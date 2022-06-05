@@ -1529,12 +1529,6 @@ function default_program_thumbnail($prog_name)
   ));
 }
 
-/* Constants and things that need a_href_page* */
-
-define('SOURCES_OF_THIS_PROG_ARE_AVAIL',
-  'This is free/open-source software. Developers can ' .
-  a_href_page('download sources of this program', 'all_programs_sources') . '.');
-
 /* DEPENDS_ consts and funcs */
 
 define('DEPENDS', 'Requirements');
@@ -1891,4 +1885,16 @@ function castle_replace_asciidoctor_macros_file($file_name)
   $contents = file_get_contents($file_name);
   $contents = castle_replace_asciidoctor_macros($contents);
   file_put_contents($file_name, $contents);
+}
+
+/* Return HTML text about sources of this application.
+   Will use CASTLE_GITHUB_NAME if defined. */
+function castle_sources_notice()
+{
+  $result = 'This is free/open-source software. Developers can ' .
+    a_href_page('download sources of this program', 'all_programs_sources') . '.';
+  if (defined('CASTLE_GITHUB_NAME')) {
+    $result .= ' Or just <a href="https://github.com/castle-engine/' . CASTLE_GITHUB_NAME . '">get the code from GitHub</a>.';
+  }
+  return $result;
 }

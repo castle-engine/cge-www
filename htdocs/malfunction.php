@@ -40,7 +40,7 @@ or something like that. The truth is that
 Run the game binary (<code>./malfunction</code> on Unix,
 <code>malfunction.exe</code> on Windows).</p>
 
-<p><?php echo SOURCES_OF_THIS_PROG_ARE_AVAIL; ?>
+<p><?php echo castle_sources_notice(); ?>
 
 <p>When you run the game, first thing to do is
 read the "<i>short game instructions</i>".
