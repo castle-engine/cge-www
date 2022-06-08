@@ -10,6 +10,7 @@ $toc = new TableOfContents(array(
   new TocItem('Intro', 'intro'),
   new TocItem('Examples', 'examples'),
   new TocItem('Documentation', 'docs'),
+  new TocItem('Conference paper and slides (a bit outdated)', 'old_docs'),
 ));
 
 echo castle_thumbs(array(
@@ -71,22 +72,29 @@ implementations of this concept now:
 <?php echo $toc->html_section(); ?>
 
 <ol>
-  <li><a href="https://castle-engine.io/compositing_shaders_doc/html/">"Compositing Shaders in X3D" documentation, HTML version</a>. This is my Ph.D. thesis, enjoy :)
-    <br>(Note that the Ph.D. thesis was not yet formally "defended". Mostly due to my lack of time to finalize it...)
-  </li>
-  <li><a href="https://castle-engine.io/compositing_shaders_doc/compositing_shaders_doc.pdf">"Compositing Shaders in X3D" documentation, PDF version</a>. Exactly the same content as above HTML version, just in PDF &mdash; probably much better for printing.</li>
-  <li><?php echo current_www_a_href_size('Slides from my presentation (on TPCG11) about the compositing shaders', 'compositing_shaders_slides.pdf'); ?>.</li>
-  <li><?php echo current_www_a_href_size('Slides in Polish from my presentation (on seminar on ii.uni.wroc.pl)', 'compositing_shaders_sem_dokt_polish.pdf'); ?>. These slides have roughly the same content as above TPCG11 slides, but in Polish.</li>
-  <li>My paper about this idea was also accepted to the <a href="http://www.eguk.org.uk/TPCG11/">Theory and Practice of Computer Graphics 2011 conference</a>. I don't have permission to redistribute it here publicly, but basically it's a shortcut of my Ph.D. thesis. Anyway, you can buy it from <a href="http://diglib.eg.org/EG/DL/LocalChapterEvents/TPCG/TPCG11">EG digital library (along with other papers from TPCG11 proceedings)</a>.</li>
-  <li>You can also get the sources of above documents from the <a href="https://github.com/castle-engine/cge-documentation/">GitHub repository on https://github.com/castle-engine/cge-documentation/</a>.
-    <ul>
-      <li>The Ph.D. thesis sources (in DocBook) is inside <code>compositing_shaders_doc/</code> subdirectory.</li>
-      <li>Slides and conference paper (in TeX) are alongside, in the <code>compositing_shaders/</code> subdirectory.</li>
-    </ul>
-  </li>
+  <li><a href="https://castle-engine.io/compositing_shaders_doc/html/">"Compositing Shaders in X3D" documentation, HTML version</a>.</li>
+  <li><a href="https://castle-engine.io/compositing_shaders_doc/compositing_shaders_doc.pdf">"Compositing Shaders in X3D" documentation, PDF version</a>.
+    <!--
+    Exactly the same content as above HTML version, just in PDF &mdash; probably much better for printing.</li>
+    -->
+  <li>Source of this documentation is in <a href="https://github.com/castle-engine/cge-documentation/tree/master/compositing_shaders_doc">cge-documentation, compositing_shaders_doc subdirectory</a>.
 </ol>
 
 <p>If you have any questions, please
 <a href="talk.php">ask on Castle Game Engine forum or Discord</a>.</p>
+
+<?php echo $toc->html_section(); ?>
+
+<p>The original description of this idea was Michalis Kamburelis' Ph.D. thesis. (Although never formally defended, due to lack of time.)
+
+<p>I was also presenting it on <a href="http://www.eguk.org.uk/TPCG11/">Theory and Practice of Computer Graphics 2011 conference</a> and at <a href="https://ii.uni.wroc.pl/">seminar at Institure of Computer Science, Wrocław</a>.
+
+<p>So I have some additional content about this idea, that may be useful -- but be careful, as it was not updated in the last years. While the idea and syntax remained unchanged, some advised PLUG names have changed.
+
+<ol>
+  <li><?php echo current_www_a_href_size('Slides from my presentation (TPCG11 conference) about compositing shaders', 'compositing_shaders_slides.pdf'); ?>.</li>
+  <li><?php echo current_www_a_href_size('Paper (TPCG11 conference) about compositing shaders', 'miscella/compositing_shaders.pdf'); ?>.</li>
+  <li><?php echo current_www_a_href_size('Slides in Polish from my presentation (on seminar on ii.uni.wroc.pl)', 'compositing_shaders_sem_dokt_polish.pdf'); ?>. These slides have roughly the same content as above TPCG11 slides, but in Polish.</li>
+</ol>
 
 <?php castle_footer(); ?>
