@@ -1116,7 +1116,11 @@ function echo_castle_header_suffix($path, $enable_sidebar = true)
   }
 
   $patreon_json = file_get_contents(__DIR__ . '/../patreon/patreon.json');
-  if ($patreon_json === false) {
+  /* Check _castle_disable_externals() to avoid adding Patreon data
+     to static HTML pieces in castle-engine/doc/pasdoc/html-parts/ .
+     These static HTML pieces then go to PasDoc output,
+     compositing_shaders_doc, vrml_engine_internals. */
+  if (_castle_disable_externals() || $patreon_json === false) {
     $patreon_desc = 'Patreon goal data not available';
   } else {
     $patreon = json_decode($patreon_json);
