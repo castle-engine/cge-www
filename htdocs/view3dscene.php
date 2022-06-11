@@ -20,7 +20,15 @@ function section($make_hr = true)
 echo pretty_heading("view3dscene", VERSION_VIEW3DSCENE);
 
 echo castle_thumbs(array(
-  array('filename' => 'view3dscene_outlines.png', 'titlealt' => 'Scene with outlines from glTF'),
+  /* The scene is by Luis Fernandez, downloaded from Sketchfab -
+     https://sketchfab.com/3d-models/ftm-0970f30574d047b1976ba0aa6f2ef855 .
+
+     Find more of his work on
+     https://sketchfab.com/luyssport ,
+     https://www.artstation.com/artwork/8zYgE ,
+     https://www.artstation.com/artwork/oB5qz .
+  */
+  array('filename' => 'view3dscene_outlines.png', 'titlealt' => 'Scene with outlines from glTF (by Luis Fernandez, https://sketchfab.com/3d-models/ftm-0970f30574d047b1976ba0aa6f2ef855)'),
   array('filename' => 'view3dscene_mousey.png', 'titlealt' => 'glTF scene with Mixamo animations'),
   array('filename' => 'view3dscene_steampunk_gltf.png', 'titlealt' => 'Steampunk glTF scene'),
   array('filename' => 'view3dscene_spine_ffd_animation.png', 'titlealt' => 'Spine Free-Form Deformation animated'),
