@@ -79,7 +79,7 @@ To run a GUI application on macOS we use _macOS application bundles_. The _appli
 
 _When running the application during development_ we create a temporary application bundle, using symlinks to actual files (so it will be created lighting fast, even if you have large game data, as we will not copy data -- only symlink to it). This applies to running application from CGE editor, or when using `castle-engine run` on the command-line.
 
-_When packaging the application_ we also create an application bundle, this time by really copying the files/dirs into proper places. This gives you `MyApplication.app` that is ready to be distributed to users. This applies when packaging from CGE editor, or when using `castle-engine package` from the command-line. You can also request the AppBundle format explicitly, using proper CGE editor menu item, or on command-line `castle-engine package --package-format=mac-app-bundle`.
+_When packaging the application_ we also create an application bundle, this time by really copying the files/dirs into proper places. This gives you `MyApplication.app` that is ready to be distributed to users. This applies when packaging from CGE editor, or when using `castle-engine package` from the command-line. You can also request the application bundle format explicitly, using CGE editor menu item _"Run -> Package -> macOS App Bundle (APP) zip"_, or on command-line `castle-engine package --package-format=mac-app-bundle-zip`.
 
 NOTE: You can disable using _application bundle_ by setting `mac_app_bundle="false"` in the link:project_manifest[CastleEngineManifest.xml]. Disabling it makes sense for command-line (not GUI) applications.
 
@@ -91,14 +91,18 @@ When creating application bundle, we (CGE editor and CGE build tool) make sure t
 
 - If the `MyApplication.app/Contents/Resources/data` subdirectory is not found, we will use the `data` subdirectory that is sibling to `MyApplication.app`. This feature is intended to be used only *during development with Lazarus*. This way things work "out of the box" if you run through Lazarus, with checkbox _“Use Application Bundle for running and debugging”_ in Lazarus project options.
 
-## Other macOS packaging notes
+## macOS packaging to zip and dmg
+
+- By default we put the application bundle in a zip file. If you only want the bundle (`MyApplication.app` directory), use the menu item _"Run -> Package -> macOS App Bundle (APP)"_, or on command-line `castle-engine package --package-format=mac-app-bundle`.
+
+- Alternative often used distribution method on macOS is a `.dmg` file. It's just a _disk image_ that can contain anything, like `MyApplication.app`. See link:http://el-tramo.be/guides/fancy-dmg/[Building Fancy DMG Images on macOS] for nice description how to make the directories inside dmg look pretty, so you can visually suggest user to drag your application in the _Applications_ folder.
++
+link:https://daringfireball.net/2009/09/how_should_mac_apps_be_distributed[There are convincing arguments that using ZIP is actually more user-friendly than DMG] (users can just double-click to unpack, and they have the application; they don't need to understand how "disk image" works). See also link:https://stackoverflow.com/questions/3954506/dmg-or-zip-file-for-distribution-to-macs[here] for discussion. And making zip is definitely simpler. So that's why we do ZIP, not DMG, by default now.
+////
++
+Alternative method of distribution macOS applications is the  link:http://wiki.freepascal.org/Deploying_Your_Application#Using_PackageMaker_on_Mac_OS_X[package manager (.pkg)]. For normal applications (like games) the simpler `.dmg` or `.zip` are a better choice.
+////
 
 - If you need, you can add additional dynamic libraries to the bundle. If you link to them dynamically (e.g. using our `TDynLib.Load`), you should load them from a path relative to `BundlePath`, like `BundlePath + 'Contents/MacOS/libpng.dylib'`.
 +
 See link:http://wiki.freepascal.org/OS_X_Programming_Tips#Mac_OS_X_Libraries[macOS Libraries on FPC wiki] for general instructions how to include library inside a bundle.
-
-- You can pack the bundle into a `.dmg` file. See link:http://el-tramo.be/guides/fancy-dmg/[Building Fancy DMG Images on macOS] for nice description how to make the directories inside dmg look pretty, so you can visually suggest user to drag your application in the _Applications_ folder.
-+
-Alternatively, you can pack the bundle into a _regular zip file_. link:https://daringfireball.net/2009/09/how_should_mac_apps_be_distributed[There are convincing arguments that using ZIP is actually more user-friendly than DMG] (users can just double-click to unpack, and they have the application; they don't need to understand how "disk image" works). See also link:https://stackoverflow.com/questions/3954506/dmg-or-zip-file-for-distribution-to-macs[here] for discussion. And making zip is definitely simpler.
-+
-Alternative method of distribution macOS applications is the  link:http://wiki.freepascal.org/Deploying_Your_Application#Using_PackageMaker_on_Mac_OS_X[package manager (.pkg)]. For normal applications (like games) the simpler `.dmg` or `.zip` are a better choice.
