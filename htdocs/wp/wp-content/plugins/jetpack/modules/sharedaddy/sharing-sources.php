@@ -934,7 +934,11 @@ class Share_Email extends Sharing_Source {
 
 		if ( $is_ajax ) {
 			wp_send_json_success();
-		}
+		} else {
+            // Michalis: prevent 500 errors from URLs like
+            // https://castle-engine.io/wp/2022/05/27/save-the-date-next-weekend-2nd-open-meeting-for-cge-users-and-developers/?share=email&nb=1
+            return;
+        }
 
 		wp_die();
 	}
