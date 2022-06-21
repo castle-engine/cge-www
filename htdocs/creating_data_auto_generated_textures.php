@@ -19,9 +19,15 @@ $toc = new TableOfContents(
 <p>Using the <a href="creating_data_material_properties.php">material_properties.xml file</a>
 and <a href="https://castle-engine.io/build_tool">the castle-engine build tool</a>
 you can automatically generate and use different versions of your textures.
-The generated texture versions may be compressed (using GPU texture compression
-formats, like S3TC on desktops, PVRTC and others on mobile) and/or
-scaled down.
+The generated texture versions may be:
+
+<ul>
+  <li>compressed for the GPU using algorithms like
+    <a href="https://en.wikipedia.org/wiki/Adaptive_scalable_texture_compression">ASTC</a>
+    or <a href="https://en.wikipedia.org/wiki/S3_Texture_Compression">S3TC (DXTn)</a>,
+  <li>scaled down,
+  <li>have mipmaps auto-generated.
+</ul>
 
 <p>This is a great way to make your game use less texture memory,
 which often has a significant impact on the performance.
@@ -73,22 +79,21 @@ Texture compression format names are <?php api_link('the same as TTextureCompres
 '<?xml version="1.0"?>
 
 <properties>
-  <!-- You can also use <property> elements
-       as documented in the previous chapter:
-  <property texture_base_name="grass_texture" footsteps_sound="grass_footsteps">
-  </property>
-  -->
-
   <!-- Automatically compressed and downscaled texture rules are defined below. -->
   <auto_generated_textures>
     <compress>
-      <!-- Automatically compressed texture formats.
-        Two most common RGBA compressions for mobiles are shown below. -->
-      <format name="Pvrtc1_4bpp_RGBA"/>
-      <format name="ATITC_RGBA_InterpolatedAlpha"/>
+      <!--
+        Automatically compressed texture formats.
+        You don\'t need to specify any compressed formats,
+        if you only want to downscale images
+        or generate mipmaps for them, without using GPU compression.
+      -->
+      <format name="DXT5"/>
+      <format name="ASTC_8x8_RGBA"/>
     </compress>
 
-    <!-- Automatically downscaled texture versions.
+    <!--
+      Automatically downscaled texture versions.
       - Scale value="1" means that no downscaling is done.
       - Scale value="2" says to generate downscaled
         versions (of uncompressed, and all compressed formats)
@@ -102,25 +107,61 @@ Texture compression format names are <?php api_link('the same as TTextureCompres
       <scale value="3" />
     </scales>
 
-    <!-- Rules that determine which textures are automatically
-         compressed and downscaled, by including / excluding appropriate paths. -->
+    <!--
+      Whether to make mipmaps, and if yes -- how many.
 
+      level = 0 (default) or 1:
+
+      Indicates that we should not make mipmaps,
+      which means there is only 1 image, the base image.
+
+      level > 1:
+
+      We will create mipmaps, as many as specified.
+      Notes:
+
+      - It\'s OK to specify larger value than necessary,
+        so e.g. if you just want to create all possible mipmaps,
+        you can specify a large level like level="20".
+        This is enough to produce all mipmaps for images
+        when both width and height are <= 2^20 (= 1024 * 1024 = 1048576).
+        So probably all practical images.
+
+      - Note that you can specify arbitrarily large value,
+        but some tools have limitations.
+        When using AMD Compressonator, the max value is capped at 20.
+        Some tools (nvcompress) do not provide a precise control over
+        mipmap level (we will display a warning about it).
+
+      - Additional mipmaps will be stored in the same KTX or DDS file
+        and used automatically.
+    -->
+    <mipmaps level="20" />
+
+    <!--
+      Include / exclude paths for which the textures are automatically
+      generated.
+    -->
     <include path="spells/*" recursive="True" />
     <include path="castles/*" recursive="True" />
     <exclude path="*.jpg" />
     <exclude path="spells/gui/*" />
   </auto_generated_textures>
 
-  <!-- You can use as many <auto_generated_textures> elements as you like,
-       to specify different properties (compression, downscaling) for different
-       texture groups.
+  <!--
+    You can use as many <auto_generated_textures> elements as you like,
+    to specify different properties (compression, downscaling) for different
+    texture groups.
 
-       Just make sure that no image falls into more than one <auto_generated_textures>
-       group (use include/exclude to make the groups disjoint).
-       You will get a warning in case it happens. -->
+    Just make sure that no image falls into more than one <auto_generated_textures>
+    group (use include/exclude to make the groups disjoint).
+    You will get a warning in case it happens.
+  -->
 
-  <!-- These textures will be downscaled (to be 2x smaller).
-       You can use TextureLoadingScale in CGE to load downscaled textures. -->
+  <!--
+    Example: Textures below will be downscaled (to be 2x smaller).
+    You can use TextureLoadingScale in CGE to load downscaled textures.
+  -->
   <auto_generated_textures>
     <scales>
       <scale value="2" />
@@ -128,10 +169,12 @@ Texture compression format names are <?php api_link('the same as TTextureCompres
     <include path="endings/*" recursive="True" />
   </auto_generated_textures>
 
-  <!-- This is an example that instructs to convert all textures within "gui/"
-       subdirectory to the DDS format (which may load faster than other
-       formats on some platforms).
-       They will not be GPU-compressed, they will not be downscaled. -->
+  <!--
+    Example: convert all textures within "gui/"
+    subdirectory to the DDS format (which may load faster than other
+    formats on some platforms).
+    They will not be GPU-compressed, they will not be downscaled.
+  -->
   <auto_generated_textures>
     <!--
       If specified, it sets the preferred output image format.
@@ -161,6 +204,15 @@ Texture compression format names are <?php api_link('the same as TTextureCompres
 
     <include path="gui/*" recursive="True" />
   </auto_generated_textures>
+
+  <!--
+    Note:
+    You can still also use <property> elements
+    as documented in the previous chapter:
+
+  <property texture_base_name="grass_texture" footsteps_sound="grass_footsteps">
+  </property>
+  -->
 </properties>'); ?>
 
 <?php echo $toc->html_section(); ?>
@@ -257,12 +309,7 @@ and at runtime we will automatically load a suitable GPU-compressed alternative 
 
       <li><p><a href="https://developer.arm.com/tools-and-software/graphics-and-gaming/graphics-development-tools/mali-texture-compression-tool"><code>astcenc</code>, part of Mali Texture Compression Tool</a>. It is called by <code>PVRTexToolCLI</code> to encode textures to ASTC. <a href="https://github.com/ARM-software/astc-encoder">See also it's source code</a>.
 
-      <li><p><a href="https://gpuopen.com/gaming-product/compressonator/"><code>CompressonatorCLI</code> from AMD Compressonator</a>. Cross-platform (Windows, Linux...), free and open source. <a href="https://github.com/GPUOpen-Tools/Compressonator">Source code is on GitHub</a>, <a href="https://github.com/GPUOpen-Tools/Compressonator/releases">binary releases can be downloaded from here</a>.
-
-        <p>This is a successor of the old (great, but Windows-only and closed-source)
-        <i>ATI Compressonator</i> and later <i>AMD Compress</i>.
-        In particular, it is capable of compression to AMD GPU compression
-        formats <code>ATITC*</code>, that are common on Android devices.
+      <li><p><a href="https://gpuopen.com/compressonator/"><code>compressonatorcli</code> from AMD Compressonator</a>. Cross-platform (Windows, Linux...), free and open source. <a href="https://github.com/GPUOpen-Tools/Compressonator">Source code is on GitHub</a>, <a href="https://github.com/GPUOpen-Tools/Compressonator/releases">binary releases can be downloaded from here</a>.
     </ul>
 
     <p>The location of these tools is searched using your <code>PATH</code>
@@ -276,10 +323,10 @@ and at runtime we will automatically load a suitable GPU-compressed alternative 
     <p>The <i>build tool</i> automatically calls an appropriate
     compression tool with the appropriate options.
     Some formats require specific tools (e.g. ATI compression formats
-    require <code>CompressonatorCLI</code>),
-    other formats can be produced using a 1st available tool
+    require <code>compressonatorcli</code>),
+    other formats can be produced using various tools
     (e.g. DXT* compression formats can be done either using <code>nvcompress</code>
-    or <code>CompressonatorCLI</code>).
+    or <code>compressonatorcli</code>).
 
     <p>For macOS, getting some of these tools is not easy.
     <a href="https://github.com/floooh/oryol/tree/master/tools">Here you can find precompiled versions
