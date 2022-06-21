@@ -158,6 +158,8 @@ Most important Wordppress shortcodes are:
 
 * Install Apache (or any other web server that can handle PHP)
 
+    - Enable `mod_rewrite`. On Debian-based systems, do `sudo a2enmod rewrite && sudo service apache2 restart`.
+
 * Install PHP
 
 * Make htdocs/ referenced from Apache. There are may ways to do this. I advise to do this on Linux and make the website root accessible under URL like http://localhost:8777/ (which would open `htdocs/index.php` file in this repo).
