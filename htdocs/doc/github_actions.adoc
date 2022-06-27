@@ -1,0 +1,49 @@
+# GitHub Actions
+include::common.adoc[]
+
+== Introduction
+
+cgeimg::float[github_actions.png|GitHub Actions]
+
+You can use https://docs.github.com/en/actions[GitHub Actions] to have automatic builds for your projects, done by GitHub, after every commit.
+
+== Usage
+
+1. Download this file: https://raw.githubusercontent.com/castle-engine/castle-game/master/.github/workflows/build.yml[build.yml] and place it at `.github/workflows/build.yml` path in your project. That is, create a subdirectory `.github`, then subdirectory `workflows`, then put the `build.yml` file inside.
++
+See the sample project link:https://github.com/castle-engine/castle-game/[castle-game] using it.
+
+2. Then commit, push and just watch the GitHub _"Actions"_ tab as it picks up the commit and automatically rebuilds the project for:
++
+--
+* Windows (x86_64)
+* Linux (x86_64)
+* Android (APK contains both 32-bit and 64-bit ARM code)
+* macOS (x86_64)
+--
++
+Ready files are available in the _"Artifacts"_ section. Download them, unpack -- this is a ready binary release of your game, for 4 systems above. You don't need to build yourself, you can just upload these files as _"release"_ on GitHub or anywhere else.
+
+== Under the hood
+
+The actions execute on GitHub-hosted servers, completely free for open-source projects. They rely on link:docker[Castle Game Engine Docker image] and use the latest CGE "snapshot" revision and latest stable FPC (3.2.2) now. The build is done by executing CGE link:build_tool[build tool] with proper options. You don't really need to understand it all -- our `build.yml` just does it for you.
+
+You can customize the way it works in a myriad of ways. See https://docs.github.com/en/actions[GitHub Actions] docs.
+
+== Taking it further: Make a release
+
+The builds described above (actions' artifacts) will disappear after some time (link:https://docs.github.com/en/actions/using-workflows/storing-workflow-data-as-artifacts[90 days by default]). Also, users need to be signed-in to GitHub to be able to download them. So this is not a complete final solution, yet.
+
+If you want to distribute the builds to users, you should upload them e.g. as _"release"_ on GitHub or anywhere else.
+
+You can automate this too, using https://cli.github.com/manual/gh[GitHub CLI]. It is available both in link:docker[CGE Docker images] and in GitHub-hosted servers themselves. You would use it like this to replace files in `snapshot` release:
+
+----
+gh release --repo MY-ORGANIZATION/MY-PROJECT upload snapshot --clobber \
+  *-win64-x86_64.zip \
+  *-linux-x86_64.tar.gz \
+  *-darwin-x86_64.zip \
+  *.apk
+----
+
+Be sure to define environment variable `GITHUB_TOKEN` to make it work. See https://docs.github.com/en/actions[GitHub Actions] docs.

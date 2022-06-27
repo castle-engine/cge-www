@@ -345,6 +345,13 @@ $castle_sitemap = array(
             )
           ),
           'doc/control_on_form' => array('title' => 'Use engine inside Lazarus form using TCastleControl'),
+          'manual_automatic_builds' => array('title' => 'Automatic Builds (Continuous Integration and Delivery)',
+            'sub' => array(
+              'doc/github_actions' => array('title' => 'GitHub Actions (automatic builds if your project lives on GitHub)'),
+              'doc/docker' => array('title' => 'Docker (easily get CGE, compilers, texture compression tools)'),
+              'doc/cloud_builds_jenkins' => array('title' => 'Jenkins (automatic cloud builds for CGE projects)'),
+            )
+          ),
           'manual_miscellaneous' => array('title' => 'Miscellaneous',
             'sub' => array(
               'manual_up' => array('title' => 'Which way is up?'),
@@ -411,8 +418,6 @@ $castle_sitemap = array(
           'doc/coding_traps' => array('title' => 'Coding Traps'),
           'doc/units_map' => array('title' => 'Units Map'),
           // 'engine_doc' => array('title' => 'Internals documentation'), // too outdated
-          'doc/cloud_builds_jenkins' => array('title' => 'Jenkins: Automatic cloud builds for CGE projects'),
-          'doc/docker' => array('title' => 'Docker: Get CGE packaged with various tools (like cross-compilers, Android SDK, texture compression tools)'),
           'license' => array('title' => 'License'),
           'doc/fpcupdeluxe' => array('title' => 'fpcupdeluxe'),
           'doc/fpmake' => array('title' => 'FpMake and FpPkg'),
