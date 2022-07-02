@@ -314,7 +314,7 @@ flawlessly :) So give it a try!
   <tr><td>Increase / decrease moving speed <!-- (has effect on keys
         Up / Down, Insert / Delete, Comma / Period) --></td> <td>+ / -</td></tr>
   <tr><td>Increase / decrease avatar height (preferred camera height above the ground)</td>
-      <td>Ctrl + Insert / Delete</td></tr>
+      <td>Insert / Delete</td></tr>
   <tr><td>Rotate <i>slower</i> (useful to precisely set the camera)</td>
   <!-- when you want to set up camera
        very precisely, e.g. to use this camera setting to render a scene
