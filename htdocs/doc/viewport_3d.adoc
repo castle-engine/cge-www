@@ -19,15 +19,28 @@ cgeimg::block[viewport_3d_editor_project.png|Create new project]
 +
 cgeimg::block[viewport_3d_design.png|Open the design]
 
-. Add a cgeref:TCastleViewport[]. Resize it as you like, or just set cgeref:TCastleUserInterface.FullSize[FullSize] to `true` to have it will the entire window.
+. Add a cgeref:TCastleViewport[] by right-clicking on `Group1` (the root component in the hierarchy) and choosing _"Add User Interface -> Viewport (3D)"_.
 +
-You also want to move it in the hierarchy, such that it is _underneath_ the `LabelFps` component. This way you will see FPS counter over the viewport.
+The new viewport includes by default:
++
+--
+- a camera, that determines what is visible (initially) for the user,
+- a light source, so that things are not completely black,
+- a 3D plane,
+- a background (by default just some gradient to simulate ground and sky, and see where the horizon is).
+--
++
+Delete now the 3D plane (`Plane1`). The rest of components will be useful for us.
++
+Note that viewport has by default cgeref:TCastleUserInterface.FullSize[FullSize] set to `true` and so it fills the entire design area. If you want, you can set `FullSize` to `false` and resize the viewport however you want.
++
+You want to move the new viewport in the hierarchy, such that it is _underneath_ the `LabelFps` component. This way you will see FPS counter over the viewport.
 +
 cgeimg::block[viewport_3d_add_viewport.png|Add viewport]
 
 ## Add a scene showing the 3D car, adjust camera, lights and navigation
 
-. Add a cgeref:TCastleScene[] to cgeref:TCastleViewport.Items[]. It is easiest to do by right-clicking on the `Items` in the editor hierarchy (panel on the left side), and choosing _Add Transform -> Scene (TCastleScene)_ from the menu that appears.
+. Add a cgeref:TCastleScene[] to cgeref:TCastleViewport.Items[]. It is easiest to do by right-clicking on the `Items` in the editor hierarchy (panel on the left side), and choosing _"Add Transform -> Scene (TCastleScene)"_ from the menu that appears.
 +
 cgeimg::block[viewport_3d_add_scene.png|Add scene,viewport_3d_scene_added.png|After adding a scene]
 
@@ -46,7 +59,7 @@ We advise at this point that you take the sample 3D asset of a car and road we h
 +
 cgeimg::block[viewport_3d_select_data.png|Files to copy]
 +
-Copy these files into your new project, into the `data` subdirectory. It is easiest to open it by right-clicking on `data` in CGE editor, and choosing _Open In File Manager_ from the context menu that appears.
+Copy these files into your new project, into the `data` subdirectory. It is easiest to open it by right-clicking on `data` in CGE editor, and choosing _"Open In File Manager"_ from the context menu that appears.
 +
 If you already have some 3D assets (see link:creating_data_model_formats.php[3D assets formats we support]) you can of course use at this point already.
 
@@ -62,52 +75,22 @@ Note that instead of clicking on the button with 3 dots, you could have also pas
 +
 cgeimg::block[viewport_3d_added_car.png|Added car]
 
-. While the car loaded, your camera likely doesn't show anything pretty. That is because the default camera view doesn't look at the car in a nice way.
-+
-The default camera stands at the `0 0 0` position, and looks in the -Z direction. You can check it out looking at `Viewport1.Camera.InitialPosition` and `Viewport1.Camera.InitialDirection` values in the object inspector (you will probably need to _expand_ the `Viewport1.Camera` properties). And the car is a model positioned over the `0 0 0` point. So the camera looks underneath the car.
+. Select the `Camera1` to see a preview of what is visible from the point of view of this camera. This is what the user will see right after running the application.
 +
 cgeimg::block[viewport_3d_camera_bad.png|Initial camera position and direction]
 +
-Fix it now using the _Camera Current := View All_ command from the _"hamburger"_ menu of the viewport on top. This menu is available whenever you have selected a cgeref:TCastleViewport[] or any transformation within the viewport.
+You can adjust the camera in 2 ways:
 +
-cgeimg::block[viewport_3d_viewport_menu.png|Menu with camera commands]
-+
-Next use the menu _Camera Initial (stored in the design file) := Current_ command, so that the game would also start with the new view. You can look at `Viewport1.Camera.InitialPosition` and `Viewport1.Camera.InitialDirection` values again, to see that at least the position have changed.
+--
+1. Fly around in the design by holding _right mouse button_ and pressing AWSD (move forward, backward, strafe) and QE (move up, down) keys. Change the speed using mouse wheel. Once you have a view that satisfies you, use the menu item _"Viewport -> Align Camera To View"_ (key _Ctrl + 0_) to align camera to the view.
+2. Or use the _"Move Transform"_, _"Rotate Transform"_ tools to move / rotate the camera. Observe the preview (you can "pin" it using the appropriate button) to see the results.
+--
 +
 cgeimg::block[viewport_3d_camera_better.png|Better camera position]
 
-. That is a better view (at least the whole car is visible) but the car is still completely black. That is because we don't have any lights in the viewport yet. Solve it by turning on the simple _"headlight"_ (light that shines from the camera). To do this, set `Viewport1.Items.UseHeadlight` value to `hlOn`.
+. Allow user to navigate during the game. For start, we recommend using the `TCastleExamineNavigation`. Right click on the `Viewport1` and choose _"Add User Interface -> Navigation/Examine"_. This will add `ExamineNavigation1` component to your hierarchy.
 +
-In larger applications, you will probably add more lights, designed at specific positions in the 3D world. To do this, right now you have to design the lights in a 3D authoring application (like link:creating_data_blender.php[Blender]) and export them to glTF. Set the scene with lights as `Items.MainScene` to make the lights shine on everything. In a very near future (beginning of 2022), we want to add lights editing directly to the editor, so it will be easier. For now, for this demo, the _"headlight"_ may be enough.
-+
-cgeimg::block[viewport_3d_headlight.png|After turning on the headlight]
-
-. While the car is now visible, the default camera view (set by the _Camera Current := View All_ command) isn't very interesting. to improve it, you shoud use some _navigation_ within the editor, and set more interesting camera. To do this, use _Change Navigation -> Examine (TCastleExamineNavigation)_ from the viewport hamburger menu. It will add an instance of `TCastleExamineNavigation` to your design, and automatically make it active for this viewport.
-+
-cgeimg::block[viewport_3d_change_navigation.png|Change Navigation]
-+
-Now switch to the editor mode _"Use components as a normal user"_ to use the examine navigation, just as normal user of your application would be able to use `TCastleExamineNavigation`.
-+
-cgeimg::block[viewport_3d_change_mode.png|Change Mode]
-+
---
-Now you can:
-
-** Drag with left mouse button to rotate.
-** Use mouse scroll to zoom in/out. Or drag with right mouse button. Or drag with left mouse button with the `Ctrl` key pressed.
-** Drag with the middle mouse button to move. Or drag with left mouse button with the `Shift` key pressed.
---
-+
-Use these features to set some nice view that shows the entire car.
-+
-cgeimg::block[viewport_3d_nice_view.png|Nice view]
-+
-Once you're done use the _Camera Initial (stored in the design file) := Current_ command again, to store the new view (camera position, direction, up) to be used as starting camera view during the game.
-
-. Decide if (and how) should the user be able to navigate during the game.
-** For now, we recommend you leave the `TCastleExamineNavigation` instance (called `ExamineNavigation1` in your hierarchy) existing in your design, then the user will be able to change camera just like you did.
-** But you can change the navigation to something else, using the _Change Navigation -> ..._ menu commands.
-** In particular, you can set the navigation to _None_ to disallow user from making any changes to the camera. This is reasonable, if you want to have a constant camera view, or implement the navigation yourself (for example moving/rotating the camera by your own code in `TStatePlay.Update`).
+NOTE: Other navigation methods are available, like `TCastleWalkNavigation` to walk or fly. You can also just control the camera completely through your own code, not relying on any built-in `TCastleNavigation` descendant. For example, you can process the keyboard input in your state to move/rotate the camera.
 
 ## Run the game
 
@@ -143,18 +126,15 @@ cgeimg::block[
 
 . Edit the car scene name too, to make it more obvious in the hierarchy. Right now it is called `Scene1`, we recommend to edit it to `SceneCar` now.
 
-. Add more cars. While you could add new cgeref:TCastleScene[] instances, by repeating the process above, it is easier to use _"Duplicate"_ command available when you righ-click on the `SceneCar`. (Key shortcut to do this is _Ctrl+Shift+D_.)
+. Add more cars. While you could add new cgeref:TCastleScene[] instances, by repeating the process above, it is easier to use _"Duplicate"_ command (key shortcut _Ctrl + D_) available when you righ-click on the `SceneCar`.
 +
-New car scenes, named like `SceneCar1`, `SceneCar2`..., will appear at the same position as the original car. Use the _"Move/Select Transform_" tool to show a _"gizmo"_, to move each car to a unique position. Click and drag on one of the arrows to move the car.
+New car scenes, named like `SceneCar1`, `SceneCar2`..., will appear at the same position as the original car. Use the _"Move Transform_" tool to show a _"gizmo"_, to move each car to a unique position. Click and drag on one of the arrows to move the car.
 +
 You can observe that moving the car using gizmo also updates it's `Translation` property in the _Layout_ tab. You can also move the car by just editing the numbers there, to manually input X, Y, Z movement values.
 +
-Remember that you can adjust the camera to see more 3D space, to keep all the cars in view. Use the _Camera Initial (stored in the design file) := Current_ command to set the best initial camera.
-+
 cgeimg::block[
   viewport_3d_duplicate.png|Duplicate scenes,
-  viewport_3d_car_move.png|Move scenes,
-  viewport_3d_translation_vector.png|View and edit the Translation values as numbers
+  viewport_3d_car_move.png|Move scenes
 ]
 
 ## Run the game again
@@ -171,41 +151,11 @@ Now that we have constructed a simple 3D world, composed of multiple scenes (car
 +
 cgeimg::block[viewport_3d_floor.png|Multiple road scenes to create a large floor]
 
-. Switch navigation mode to _Walk_. It will remove the `ExamineNavigation1` instance from your design, and add `WalkNavigation1`.
-+
-cgeimg::block[viewport_3d_navigation_mode_walk.png|Switch to walk navigation]
+. Switch navigation mode to _walk_. To do this, select `ExamineNavigation1` component and delete it (just press _Delete_ key), then add to `Viewport1` new navigation by right-clicking and choosing _"Add User Interface -> Navigation/Walk"_. This will add `WalkNavigation1`.
 
-. Change the cgeref:TCastleWalkNavigation.MoveSpeed[] property of your `WalkNavigation1` to move faster (both at design-time, and for user during the game). We recommend to set it to 10 now, which means you will move with speed of 10 units (meters) per second. This is not realistic (people are not that fast), but it allows for comfortable testing. Players in games often move unrealistically fast.
+. Change the cgeref:TCastleWalkNavigation.MoveSpeed[] property of your `WalkNavigation1` to move faster. We recommend to set it to 10 now, which means you will move with speed of 10 units (meters) per second. This is not realistic (people are not that fast), but it allows for comfortable testing. Players in games often move unrealistically fast.
 +
 cgeimg::block[viewport_3d_move_speed.png|Adjust walk navigation MoveSpeed]
-
-. Switch to _"Use components as a normal user."_ mode using the toolbar, if you're not in this mode already.
-
-. Temporarily turn off cgeref:TCastleWalkNavigation.Gravity[] property. While gravity doesn't work anyway at design-time (so your camera will not "fall down" at design time), but turning off `Gravity` is still useful for now to make the _C_ (move down) and _Space_ (move up) keys work more naturally.
-
-. Move around the level now, using the "walk" navigation keys.
-+
---
-- Use _A W S D_ keys for typical 3D game movement (forward, backward, strafe).
-- Use _C_ key to move down.
-- Use _Space_ key to move up.
-- Drag with left mouse button to move and rotate.
-- Use mouse scroll to raise your head / bow down.
---
-+
-Using these keys, place the camera at some nice position above the floor, such that it looks at cars.
-+
-cgeimg::block[viewport_3d_walk_camera.png|Initial camera for walking]
-
-. Change the cgeref:TCastleWalkNavigation.Gravity[] back to `true`, to make gravity work in game.
-
-. Use _Camera Initial (stored in the design file) := Current_ again, to store the current camera as a starting view view for the game.
-
-. If your camera is a little tilted to the side, we recommend to reset the initial camera `InitialUp` to be a straight (0,1,0) vector. This makes movement for user most natural. Select the `Viewport1` in the hierarchy, then expand the `Camera` in the object inspector on the right, and paste `0 1 0` as the value for `InitialUp`.
-+
-Use _Camera Current := Initial (stored in the design file)_ to set the `InitialUp` as the current camera up, to immediately preview the newly set camera.
-+
-cgeimg::block[viewport_3d_camera_up_reset.png|Reset camera up]
 
 . Increase the cgeref:TCastleWalkNavigation.PreferredHeight[] of the `WalkNavigation1` component. The default value is 1.6, which means that player's height is 1.6 meters when standing -- this corresponds to a normal (not very tall) human. For games, reasonable (but still somewhat realistic) values could be considered between 1.6 and 2.0 (players in games are often tall).
 +
@@ -215,9 +165,13 @@ cgeimg::block[viewport_3d_preferred_height.png|Adjust PreferredHeight]
 
 ## Run the game - final test!
 
-Run the game again with F9. Walk, using the same keys, or mouse dragging, as before. Use mouse scroll to raise / bow your head.
+Run the game again with F9. Walk using:
 
-As gravity is active now, the _C_ key does _crouch_ and _Space_ key does _jump_.
+- _A W S D_ keys to _move (forward, backward, strafe)_.
+- _C_ key to _crouch_.
+- _Space_ key to _jump_.
+- _Drag_ with left mouse button to _move and rotate_.
+- Use _mouse scroll wheel_ to raise your head / bow down.
 
 Walk over the cars and jump over them to test collisions and gravity.
 
@@ -227,11 +181,9 @@ cgeimg::block[viewport_3d_game_running_walk.png|Game running with walking]
 
 ### Lighting
 
-Because of how the headlight works (it is a simple directional light by default), and the fact that we don't have any additional lights on the level -- the road is completely dark when looking straight ahead. You need to bow your head (use mouse scroll) to have a bit brighter road.
+You can add, modify, delete lights on the level.
 
-This should be fixed by adding additional lights to the level.
-
-*Advised solution:* Add light(s) to the scene using the _Castle Game Engine_ editor. Simply add them to the viewport (right-click on the `Items` property of the viewport). Then move/rotate them as needed. The following light sources are available:
+To add a new light in _Castle Game Engine_ editor simply click on the `Items` property of the viewport and choose a new _Add Transform -> Light...__. Then move/rotate the light as needed. The following light sources are available:
 
 - cgeref:TCastlePointLight[] - omnidirectional light that shines with a certain cgeref:TCastlePointLight.Color[Color], cgeref:TCastlePointLight.Intensity[Intensity] and cgeref:TCastlePointLight.Radius[Radius]. The rotation of this light doesn't matter, only the position influences the actual effect.
 
@@ -239,10 +191,13 @@ This should be fixed by adding additional lights to the level.
 
 - cgeref:TCastleSpotLight[] - light that shines from a given position, in a given direction, within a cone. The cone angle is configurable (by cgeref:TCastleSpotLight.CutOffAngle[CutOffAngle] and cgeref:TCastleSpotLight.BeamWidth[BeamWidth]), as well as cgeref:TCastleSpotLight.Color[Color], cgeref:TCastleSpotLight.Intensity[Intensity] and cgeref:TCastleSpotLight.Radius[Radius].
 
+You can also place a light as a child of the camera. This is an easy way to make a headlight. Simply add a cgeref:TCastleDirectionalLight[] instance as `Camera` child to have a headlight, i.e. light shining in the direction you are currently looking.
+
 Watch the presentation how to use light components:
 
 video::3MkPmOtCDHE[youtube,width=800,height=450]
 
+////
 *Alternative solution:* You can also add lights in Blender to the road asset.
 
 . Copy `road.blend` to `road_with_lights.blend`.
@@ -257,6 +212,7 @@ cgeimg::block[
   viewport_3d_main_scene.png|Setting new road as MainScene,
   viewport_3d_brighter.png|Brighter world with more lights
 ]
+////
 
 ### "Mouse look" navigation
 
