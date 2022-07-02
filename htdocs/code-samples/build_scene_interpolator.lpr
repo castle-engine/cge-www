@@ -59,7 +59,7 @@ begin
 
   Viewport := TCastleViewport.Create(Application);
   Viewport.FullSize := true;
-  Viewport.Navigation := TCastleExamineNavigation.Create(Application);
+  Viewport.InsertFront(TCastleExamineNavigation.Create(Application));
   Window.Controls.InsertFront(Viewport);
 
   Scene := TCastleScene.Create(Application);
@@ -69,7 +69,7 @@ begin
   Viewport.Items.MainScene := Scene;
 
   // move camera, to better see the animation
-  Viewport.Camera.Position := Vector3(0, 0, 30);
+  Viewport.Camera.Translation := Vector3(0, 0, 30);
 
   Application.Run;
 end.

@@ -54,7 +54,7 @@ end;
 
 procedure SortTransformChildrenFrontToBack(const Items: TCastleTransform);
 begin
-  SortCameraPosition := Viewport.Camera.Position;
+  SortCameraPosition := Viewport.Camera.Translation;
   Items.Sort(@CompareFrontToBack3D);
 end;
 

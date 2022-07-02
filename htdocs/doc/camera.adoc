@@ -3,13 +3,13 @@ include::common.adoc[]
 
 ## Introduction
 
-_Camera_ determines what do you see in the viewport.
+_Camera_ determines what do you see in the viewport. Camera is a cgeref:TCastleTransform[] descendant, and as such it defines:
 
-It defines 3 vectors:
+. cgeref:TCastleTransform.Translation[] - observer position.
+. cgeref:TCastleTransform.Direction[] - direction in which you look.
+. cgeref:TCastleTransform.Up[] - together with _direction_, the _up_ vector determines the camera _orientation_.
 
-. cgeref:TCastleCamera.Position[] - observer position.
-. cgeref:TCastleCamera.Direction[] - direction in which you look.
-. cgeref:TCastleCamera.Up[] - together with _direction_, the _up_ vector determines the camera _orientation_.
+A common way to set all camera vectors is to use cgeref:TCastleTransform.SetView[].
 
 Camera also defines _projection_:
 
@@ -22,9 +22,9 @@ See the link:viewport_3d[Tutorial: Designing a 3D world] and link:viewport_3d[Tu
 
 There are various ways to set the initial camera:
 
-- If you design your world using the _Castle Game Engine editor_, we recommend to set the initial camera following the link:viewport_3d[Tutorial: Designing a 3D world]. This means that you navigate to set the best camera, and then use _"Camera Current := Initial (stored in the design file)"_ command.
+- If you design your world using the _Castle Game Engine editor_, we recommend to set the initial camera following the link:viewport_3d[Tutorial: Designing a 3D world]. This means that you just move / rotate the camera as any other cgeref:TCastleTransform[].
 
-- Another approach is to just set the camera vectors by code during your state start. Call cgeref:TCastleCamera.SetView[Viewport.Camera.SetView] like this:
+- Another approach is to just set the camera vectors by code during your state start. Call cgeref:TCastleTransform.SetView[Viewport.Camera.SetView] like this:
 +
 [source,pascal]
 ----
@@ -53,3 +53,20 @@ Models in In X3D can also define a default camera, using X3D `Viewpoint` or `Ort
 
 - Otherwise (if there is no `Viewpoint` node,or you didn't even set `MainScene`) then the camera will be auto-detected to look at the world bounding box.
 --
+
+## Camera can have children, and be a child of other objects
+
+Since camera is a cgeref:TCastleTransform[] descendant:
+
+* Camera can be a child of another cgeref:TCastleTransform[].
+** For example you can attach a camera to some object (like a car or character) to move camera along with that object.
+** You can combine this with cgeref:TCastleSceneCore.ExposeTransforms[ExposeTransforms] to attach a camera to an animated bone of your character.
+* Camera can have other cgeref:TCastleTransform[] as children.
+** For example you can attach a weapon carried by a player in FPS game as a child of camera.
+** You can make a headlight by simply placing a light (like cgeref:TCastleDirectionalLight[]) as camera child. See https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/headlight[examples/viewport_and_scenes/headlight] demo.
+
+When the camera is a child of other objects, you have to be careful when controlling camera translation / rotation from code.
+
+- Use cgeref:TCastleTransform.GetView[], cgeref:TCastleTransform.SetView[] to get / set camera vectors in the local coordinate system.
+
+- Use cgeref:TCastleTransform.GetWorldView[], cgeref:TCastleTransform.SetWorldView[] to get / set camera vectors in the world coordinate system.

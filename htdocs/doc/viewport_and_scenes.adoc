@@ -75,7 +75,7 @@ cgeimg::block[cars_demo_2.png|Many car instances]
 
 ## Camera
 
-link:camera[Camera] determines what part of the world (3D or 2D) is visible in the viewport. Ready camera instance is available as cgeref:TCastleViewport.Camera[] property. You can configure camera easily by changing its properties e.g. cgeref:TCastleCamera.Position[MyViewport.Camera.Position := Vector3(1, 2, 3)].
+link:camera[Camera] determines what part of the world (3D or 2D) is visible in the viewport. Ready camera instance is available as cgeref:TCastleViewport.Camera[] property. You can configure camera easily by changing its properties e.g. cgeref:TCastleTransform.Translation[MyViewport.Camera.Translation := Vector3(1, 2, 3)].
 
 ## Navigation
 
