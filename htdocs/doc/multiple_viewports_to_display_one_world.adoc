@@ -37,3 +37,7 @@ and their cameras, but you cannot yet make them _share_ the same items.
 * link:https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/multiple_viewports[multiple_viewports] example. Shows a window split into 4 viewports, all showing the same scene, but with a bit different effects.
 
 * link:https://github.com/castle-engine/castle-engine/tree/master/examples/fps_game[fps_game] example. Shows using additional viewport for an _"overview"_ camera looking at map from the top.
+
+## Cameras
+
+When sharing `Items` across multiple viewports: All the cameras (from all the viewports) should also be added to the same `Items` (cgeref:TCastleRootTransform[]). You always want to keep the connection that _"the camera used by viewport, set in `Viewport.Camera`, is also part of the `Viewport.Items` "_.

@@ -3,9 +3,11 @@ include::common.adoc[]
 
 //## Introduction
 
-_Navigation_ handles user input (key presses, mouse movement, touches on mobile devices, ...) to move the camera.
+_Navigation_ handles user input (key presses, mouse movement, touches on mobile devices, ...) to control the camera.
 
-You can assing any instance of cgeref:TCastleNavigation[] class to cgeref:TCastleViewport.Navigation[]. As cgeref:TCastleNavigation[] class is abstract, you actually have to use some descendant of it, like:
+To use a navigation, just create and add the navigation component as a child of cgeref:TCastleViewport[]. You can control the `Exists` property of the navigation to enable / disable it.
+
+As cgeref:TCastleNavigation[] class is abstract, you actually have to use some descendant of it, like:
 
 - cgeref:TCastleWalkNavigation[] - typical first-person 3D navigation. Depending on the cgeref:TCastleWalkNavigation.Gravity[] value, it feels more like _walking_ (when `Gravity` is `true`) or _flying_ (when `Gravity` is `false`).
 

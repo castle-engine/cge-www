@@ -153,8 +153,14 @@ NOTE: We have an improvement to this approach coming, in branch https://github.c
 
 ## Focus (receiving key input)
 
+NOTE: This section is important if your cgeref:TCastleControl[] is placed on a form together with other LCL controls that may receive _focus_ (that is, key input), like buttons (`TButton`) or edit boxes (`TEdit`).
+
 Like every LCL control, our cgeref:TCastleControl[] receives the keys only when it has _focus_. The control _does not_ capture all the keys pressed over the form (this would be bad, as other controls, maybe even other cgeref:TCastleControl[] on the same form, may want to handle them). To make sure that controlling the camera by keys (like AWSD or arrows) works, make sure that your control has a focus.
 
-You can call `MyCastleControl.SetFocus;` at any time to explicitly make the `MyCastleControl` focused. You can assign this to some menu item, or key shortcut handled by form, to allow user to easily switch focus to the cgeref:TCastleControl[] instance.
+- You can call `MyCastleControl.SetFocus;` at any time to explicitly make the `MyCastleControl` focused. You can assign this to some menu item, or key shortcut handled by form, to allow user to easily switch focus to the cgeref:TCastleControl[] instance.
 
+- You can also use cgeref:TCastleControl.AutoFocus[] to make the control automatically focused when user presses mouse over it.
+
+////
 Alternative approach is to make cgeref:TCastleControl[] the only control on the form that can receive focus. This makes things simple, cgeref:TCastleControl[] will always have focus. But it means limiting yourself what you use on a form. E.g. all buttons should be `TSpeedButton` (unfocusable button in LCL).
+////
