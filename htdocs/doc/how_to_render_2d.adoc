@@ -11,7 +11,7 @@ WARNING: This page compares 2 possible approaches to 2D rendering in CGE. This p
 
 Use `TCastleViewport`. Add `TCastleViewport` control to the window, and inside it draw things by creating `TCastleScene` instances.
 
-You should call `TCastleViewport.Setup2D` on the viewport to easily make it suitable for 2D games, and call `TCastleScene.Setup2D` to easily make it suitable for 2D games. When using https://castle-engine.io/manual_editor.php[CGE editor], it already has in the menu components _"Viewport (Configured For 2D)"_ and _"Scene (Optimal Blending for 2D Models)"_.
+You should call `TCastleViewport.Setup2D` on the viewport to easily make it suitable for 2D games, and call `TCastleScene.Setup2D` to easily make it suitable for 2D games. When using https://castle-engine.io/manual_editor.php[CGE editor], it already has in the menu components _"Viewport (2D)"_ and _"Scene (Optimal Blending for 2D Models)"_.
 
 * Manual:
  ** https://castle-engine.io/manual_load_3d.php introduces the `TCastleScene`.

@@ -24,73 +24,63 @@ Consult the engine examples, like https://github.com/castle-engine/castle-engine
 
 ## Create a viewport for 2D
 
-For 2D games, you usually create a viewport in the editor by right-clicking in the hierarchy, and using _"Add User Interface -> Viewport (Configured for 2D) (TCastleViewport)"_ menu item.
+Create a viewport in the editor by right-clicking in the hierarchy and using _"Add User Interface -> Viewport (2D)"_ menu item.
 
-Equivalently, you can also just add a "regular" viewport (with most defaults for 3D) using the menu item _"Add User Interface -> Viewport (TCastleViewport)"_ and then use the _"Camera Setup (Initial and Current) for 2D View and Projection"_ command (from the "hamburger" menu with viewport commands).
-//The _"Viewport (Configured for 2D) (TCastleViewport)"_ is really just a handy shortcut for this.
+This creates a viewport with 2D navigation, 2D orthographic camera, and adds a default white plane in the middle. By default in 2D:
 
-The _"Camera Setup (Initial and Current) for 2D View and Projection"_ command:
+- X axis goes to the right,
 
-- Sets projection to _orthographic_. In an orthographic projection, the distance to the object doesn't change its perceived size (constrast this with the default _perspective_ projection, in which the objects further away are smaller).
+- Y goes up,
 
-- Sets the initial and current camera such that X axis goes to the right, Y goes up, and Z is "depth" (camera looks along the -Z direction).
+- Z axis is "depth". Camera looks in the -Z direction. Larger Z means that object is closer to the camera (_in front_ of other objects), smaller Z means that it is further from the camera (_behind_ other objects). Is it OK to use negative Z values.
++
+NOTE: For 2D objects will blending, you may (for now) need to sort the hierarchy after setting their Z, using _"Viewport -> Sort Items For Correct 2D Blending"_.
 
-- See the cgeref:TCastleViewport.Setup2D[] method reference for details.
+## Navigation in 2D
 
-[NOTE]
-====
-You don't really *have to* use any particular setup to display 2D things. The changes done by cgeref:TCastleViewport.Setup2D[] reflect the typical "setup of 2D games", but they are absolutely not the only way to make a game that could be considered "2D game".
+In a viewport created using the _"Add User Interface -> Viewport (2D)"_ menu item we use, by default, a special _2D_ navigation method.
 
-You may as well change cgeref:TCastleCamera.ProjectionType[Viewport.Camera.ProjectionType] manually and adjust any other camera parameters as you want. We don't really have any definite notion in CGE _"this is a 2D viewport"_ or _"this is a 3D viewport"_. We don't have such property, because we don't need it. Both 2D and 3D are actually the same things, just with a different world set up, and a different camera being used.
+- Drag with right mouse button to pan the view,
 
-This also means that you can implement a game that switches between showing the same world in 3D or 2D. Just switch the projection and camera view whenever you want during the game.
-====
+- Use mouse scroll wheel to zoom in / out.
 
-////
-TODO: tutorial
-  Add scene.
-  We could use Camera -> View All...
-    but instead we will move things.
-  Add some navigation, position camera, save navigatio by "Initial := Current".
-  Run.
-////
+This makes it easy to move a 2D scene, without accidentally making a rotation that would reveal it is 3D.
 
-## Orthographic projection field of view
+NOTE: If you want to allow user to easily pan/zoom the view, add the cgeref:TCastle2DNavigation[] component as a child of the cgeref:TCastleViewport[].
 
-Inside the viewport, we have a _"field of view"_, which is a fancy way of saying _"we determine how much of the world we see at a given moment"_.
+NOTE: You *can* still use a different navigation, like 3D _Fly_ navigation. Use the _"Viewport"_ menu item commands to toggle between different navigation methods.
 
-By default, for orthographic projection, the viewport size (after UI scaling) determines this field of view. E.g. if the viewport width and height (after UI scaling) are 1000 x 1000, then a cgeref:TCastleScene[] with size 1000 x 1000 will fit precisely within such viewport.
+## Orthographic projection
 
-You can also set the desired _field of view_ explicitly. This is usually a good idea -- this way the visible area remains the same, regardless of your viewport size, and even regardless of whether you use UI scaling (and with what _reference size_ UI scaling works). To do this, just set cgeref:TCastleOrthographic.Width[Viewport.Camera.Orthographic.Width] to a constant value, like 1600. You can also set cgeref:TCastleOrthographic.Height[Viewport.Camera.Orthographic.Height], but you don't have to -- the other viewport size (left as 0) will be calculated automatically based on current viewport control aspect ratio.
+A viewport created using the _"Add User Interface -> Viewport (2D)"_ menu item will use an _orthographic_ projection by default.
 
-////
-TODO: tutorial
-  DEMO
-////
+In such projection, the distance to the object doesn't change its perceived size. Constrast this with the _perspective_ projection, default in 3D, in which the objects further away are perceived as smaller.
 
-## Orthographic camera position origin
+You can always change the camera projection manually using the cgeref:TCastleCamera.ProjectionType[] property. This sets the projection used at runtime (when you run the game). You can also change the projection used at design-time (in the editor) using the _"Viewport -> Toggle Perspective / Orthogonal"_ menu item.
 
-By default, in orthographic projection, the camera position determines what is visible at the _left-bottom viewport corner_. So when camera position is (0,0) the left-bottom viewport corner will show the things at position (0,0) in your world. Sometimes this is what you want, sometimes this is not comfortable.
+## Field of view in orthographic projection
 
-To make the camera position determine what is visible in the _middle_ of the viewport, set cgeref:TCastleOrthographic.Origin[Viewport.Camera.Orthographic.Origin] to (0.5,0.5). In effect, when camera position is (0,0), the _middle_ of the viewport will show the things at position (0,0) in your world. This is more comfortable if you place your assets around the (0,0) point.
+_"Field of view"_ is a term meaning _"how much of the world do you see at a given moment"_. The concept makes sense for both orthographic and perspective projections, but it is set using different properties in each case. For orthographic projection, this is determined by cgeref:TCastleOrthographic.Width[Viewport.Camera.Orthographic.Width] and cgeref:TCastleOrthographic.Height[Viewport.Camera.Orthographic.Height].
 
-As an example, imagine you add a `TCastleScene` with an image or a sprite sheet. By default their pivot is in the middle of the asset. So if cgeref:TCastleOrthographic.Origin[Viewport.Camera.Orthographic.Origin] is (0,0) you will see only a part of your asset loaded, in the left-bottom viewport corner.
+A viewport created using the _"Add User Interface -> Viewport (2D)"_ menu item has, by default,
 
-To make the new asset visible:
+- cgeref:TCastleOrthographic.Height[Viewport.Camera.Orthographic.Height] = `1000` and
 
-. You can move the scene, by adjusting scene `Translation`. To make the image of size 600x300 visible fully, you would move it by 300x150. It would be visible fully, but still in the viewport left-bottom corner. To move it to the middle of the screen, you should instead move it by `(Viewport.Camera.Orthographic.EffectiveWidth / 2, Viewport.Camera.Orthographic.EffectiveHeight / 2)`.
-// TODO: DEMO
-. Another solution is to move the camera. You can adjust `Viewport.Camera.Translation`. If you move the camera by `(-Viewport.Camera.Orthographic.EffectiveWidth / 2, -Viewport.Camera.Orthographic.EffectiveHeight / 2)` then the asset will be in the middle of the viewport.
-// TODO: DEMO
-. The best and reliable way is to set `Viewport.Camera.Orthographic.Origin` to (0.5,0.5). This means that the *middle* of the viewport will show the things at the (0,0) translation in your world, when the camera position is also (0,0). Effectvely, it moves your camera automatically such that things placed at the (0,0) position in the world are exactly in the middle of the viewport, regardless of the viewport size.
+- cgeref:TCastleOrthographic.Width[Viewport.Camera.Orthographic.Width] = `0`.
 
-// TODO: DEMO
+This means that, regardless of the window size, and even regardless of the _simulated_ (for UI scaling) window size, in your viewport you will always see exactly an object that has height (Y) equal to 1000. For example, if you add a cgeref:TCastleScene[], cgeref:TCastleImageTransform[] or cgeref:TCastlePlane[] with height (Y) equal to 1000, then their height will match perfectly the vertical field of view of the viewport. The horizontal field of view follows the aspect ratio of the viewport control.
 
-## Navigation
+There are other ways to control the field of view, see the cgeref:TCastleOrthographic.Width[Viewport.Camera.Orthographic.Width] and cgeref:TCastleOrthographic.Height[Viewport.Camera.Orthographic.Height] docs.
 
-There is a special 2D navigation mode available, that you can use at design-time and/or allow user to use it during the game. This makes it easy to move a 2D scene, without accidentally making a rotation that would reveal it is 3D.
+For example: You can set cgeref:TCastleOrthographic.Width[Viewport.Camera.Orthographic.Width] and cgeref:TCastleOrthographic.Height[Viewport.Camera.Orthographic.Height] to both be zero. In this case, the viewport control size (after UI scaling) determines this field of view. With the default UI scaling to 1600 x 900, this likely means that you will see an area 1600 x 900 in your viewport (it may be a bit taller or wider, if user resizes the window).
 
-Many 2D games have a custom navigation, and thus leave the `Viewport.Navigation` as default `nil`.
+## Origin in orthographic projection
+
+A viewport created using the _"Add User Interface -> Viewport (2D)"_ menu item has, by default, cgeref:TCastleOrthographic.Origin[Viewport.Camera.Orthographic.Origin] set as `(0.5,0.5)`. This means that the camera position determines what is visible in the _middle_ of the viewport. In effect, when `Camera.Translation` is `(0, 0, 0)`, the _middle_ of the viewport will show the things at position `(0, 0, 0)` in your world. This is most comfortable if you place your assets around the `(0, 0, 0)` point.
+
+As an example, you can add a `TCastleScene` with an image or a sprite sheet. By default their pivot is in the middle of the asset. So if cgeref:TCastleOrthographic.Origin[Viewport.Camera.Orthographic.Origin] is `(0.5,0.5)` you will see them in the middle of the viewport.
+
+You can change cgeref:TCastleOrthographic.Origin[Viewport.Camera.Orthographic.Origin] to whatever makes sense for your game. For example, cgeref:TCastleOrthographic.Origin[Viewport.Camera.Orthographic.Origin] equal to `(0, 0)` means that the camera position determines what is visible at the _left-bottom viewport corner_. So when camera position is `(0, 0, 0)` the left-bottom viewport corner will show the things at position `(0, 0, 0)` in your world.
 
 ## 2D assets
 
@@ -109,3 +99,33 @@ You can use any link:creating_data_model_formats.php[supported model format].
 The editor contains a menu item _Add Transform -> Scene (Optimal Blending for 2D Models) (TCastleScene)_. This just adds a regular cgeref:TCastleScene[] and sets on it cgeref:TCastleRenderOptions.BlendingSort[RenderOptions.BlendingSort] to cgeref:bs2D[], to make blending always correct. This matters in case of 2D models with multiple layers, like typical link:spine[Spine] or link:gltf[glTF] 2D assets.
 
 See link:blending[blending] for more details about blending, and see link:manual_alpha_bleeding.php[alpha bleeding] for details about how to prepare your images to behave correctly with blending.
+
+## Advanced: Turning any viewport (like 3D) into 2D
+
+There is really no strict distinction between 3D and 2D viewports in _Castle Game Engine_. In both cases you have `TCastleViewport`, just some sensible defaults are different. In _"Viewport (2D)"_ the camera projection is _orthographic_ and design-time navigation method is 2D.
+
+You can always turn a "regular" viewport (with defaults for 3D) into 2D.
+
+- Use the _"Viewport -> 2D Camera And Projection At Runtime"_. See the cgeref:TCastleViewport.Setup2D[] method reference for details what it does. You can also manually change cgeref:TCastleCamera.ProjectionType[Viewport.Camera.ProjectionType] and adjust other cgeref:TCastleCamera.Orthographic[Viewport.Camera.Orthographic] properties.
+- Use the _"Viewport -> Toggle Perspective / Orthogonal"_ to change design-time camera to _orthographic_
+- Use the _"Viewport -> Front"_  and then zoom out with mouse wheel to view a useful piece of 2D world
+- Use the _"Viewport -> 2D"_ to activate 2D-specific navigation
+
+You can also just place 2D (flat) items in a 3D viewport. It is really your choice
+
+- whether you use flat or not objects,
+
+- whether you use orthographic or perspective projection,
+
+- what design-time navigation you use (2D, Fly...) etc.
+
+And all these choices are in fact independent of each other. You can mix 2D and 3D stuff freely in CGE.
+
+////
+TODO: tutorial
+  Add scene.
+  We could use Camera -> View All...
+    but instead we will move things.
+  Add some navigation, position camera, save navigatio by "Initial := Current".
+  Run.
+////
