@@ -87,7 +87,7 @@ with more links, and analysis what other standards/engines do, is here.</a>
 
     <p><code>UnlitMaterial</code> is the new X3Dv4 node.
     It can also be used by glTF models that use <a href="https://github.com/KhronosGroup/glTF/tree/master/extensions/2.0/Khronos/KHR_materials_unlit">KHR_materials_unlit</a>
-    material type (e.g. <a href="https://castle-engine.io/creating_data_blender.php">Blender</a>
+    material type (e.g. <a href="https://castle-engine.io/blender">Blender</a>
     can export such materials in glTF).
 </ul>
 

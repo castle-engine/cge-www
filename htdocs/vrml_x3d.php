@@ -32,8 +32,8 @@ $toc = new TableOfContents(
 <p>X3D (and it's older version, VRML) is a file format for 3D models.
 Various 3D modeling applications can export to it,
 for example <a href="http://www.blender.org/">Blender</a> includes
-an X3D exporter (see also <?php echo
-a_href_page('our Blender exporting notes', 'creating_data_blender'); ?>).
+an X3D exporter (see also <a href="blender">our Blender exporting notes</a> -- although
+now we advise using more feature-rich glTF exporter).
 
 <p>To try it out, just create some X3D models
 (or download them from the Internet, or grab our

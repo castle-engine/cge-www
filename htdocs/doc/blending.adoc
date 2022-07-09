@@ -55,7 +55,7 @@ You can explicitly override this auto-detection using https://castle-engine.io/a
 
 * It can be set by Pascal code.
 * Or, when using X3D model, you can use https://castle-engine.io/x3d_implementation_shape_extensions.php#section_ext_alpha_channel[Apperance.alphaChannel] documentation).
-* Or when using glTF. In glTF, it is always explicitly set, glTF format requires it. So the auto-detection is not used for glTF, the imported shapes always have `Appearance.alphaChannel <> acNone`. You can set the alpha treatment explicitly in https://castle-engine.io/creating_data_blender.php[Blender] material.
+* Or when using glTF. In glTF, it is always explicitly set, glTF format requires it. So the auto-detection is not used for glTF, the imported shapes always have `Appearance.alphaChannel <> acNone`. You can set the alpha treatment explicitly in link:blender[Blender] material.
 
 == Sorting
 

@@ -154,7 +154,7 @@ io_scene_fbx/__init__.py:63:@orientation_helper(axis_forward='-Z', axis_up='Y')
 io_scene_fbx/__init__.py:378:@orientation_helper(axis_forward='-Z', axis_up='Y')
 ----
 +
-So X3D is the only format where `otUpYDirectionMinusZ` made sense. And https://castle-engine.io/creating_data_blender.php[Blender X3D exporter isn't really useful right now] and we advise using glTF.
+So X3D is the only format where `otUpYDirectionMinusZ` made sense. And link:blender[Blender][Blender X3D exporter isn't really useful right now] and we advise using glTF.
 
  ** Looking at sample glTF characters from Khronos -- they confirm this convention. So it's not a Blender+glTF convention, it's a glTF convention. (Actually, convention of all other 3D formats too, looking at above.)
  ** And exporting models like this makes more sense, so it's actually good that most formats follow it. It means that model front looks into +Z. So if you view it with the default camera (that has direction -Z) then you see model's front (e.g. face).

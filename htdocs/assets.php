@@ -30,7 +30,7 @@ echo pretty_heading($page_title);
   ?>
 
   <?php gallery_link('Blend Swap',
-    '3D models in <a href="https://www.blender.org/">Blender</a> (which you can <a href="creating_data_blender.php">export to glTF easily</a>). Uploaded by various artists. All on <i>Creative Commons</i> licenses.',
+    '3D models in <a href="https://www.blender.org/">Blender</a> (which you can <a href="blender">export to glTF easily</a>). Uploaded by various artists. All on <i>Creative Commons</i> licenses.',
     'assets_blendswap.png',
     'https://blendswap.com/');
   ?>

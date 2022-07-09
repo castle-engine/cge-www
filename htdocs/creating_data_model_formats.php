@@ -11,7 +11,6 @@ $toc = new TableOfContents(
       new TocItem('Sprite sheets', 'sprite_sheets', 1),
     new TocItem('Other formats you can use', 'other'),
       new TocItem('Simple images', 'images', 1),
-      new TocItem('Castle Animation Frames (castle-anim-frames) format', 'castle_anim_frames', 1),
       new TocItem('Animation through a series of static models', 'animation_counter', 1),
       new TocItem('Collada', 'collada', 1),
       new TocItem('OpenInventor', 'open_inventor', 1),
@@ -20,6 +19,7 @@ $toc = new TableOfContents(
       new TocItem('Wavefront OBJ', 'wavefront_obj', 1),
       new TocItem('STL', 'stl', 1),
       new TocItem('Videoscape GEO', '', 1),
+      new TocItem('Deprecated: Castle Animation Frames (castle-anim-frames) format', 'castle_anim_frames', 1),
   )
 );
 ?>
@@ -128,18 +128,6 @@ especially the level file
 
 <?php echo $toc->html_section(); ?>
 
-<p><?php echo a_href_page('Castle Animation Frames
-  (castle-anim-frames) format', 'castle_animation_frames'); ?></b>,
- formerly known as <code>kanim</code>.
-
-<p>This is a simple format for animations, used
-to <a href="creating_data_blender.php">export animated models from Blender</a>.
-It supports animating of <i>everything</i> in Blender (transformations, skin,
-shape keys, materials, particles, physics...), although it is somewhat
-memory-hungry.
-
-<?php echo $toc->html_section(); ?>
-
 <p><b>Animation through a series of static models like <code>xxx000.obj</code>,
 <code>xxx001.obj</code>, <code>xxx002.obj</code>...</b>.
 
@@ -216,6 +204,20 @@ We support both ASCII and binary formats.</p>
 <p><b><a href="http://paulbourke.net/dataformats/geo/">Videoscape GEO</a></b>
 (<code>.geo</code> extension).
 Very basic support for this very old 3D format.
+
+<?php echo $toc->html_section(); ?>
+
+<p><?php echo a_href_page('Castle Animation Frames
+  (castle-anim-frames) format', 'castle_animation_frames'); ?></b>,
+ formerly known as <code>kanim</code>.
+
+<p>This is a simple format for animations, which we used in the past
+to <a href="blender">export animated models from Blender</a>.
+It supported animating of <i>everything</i> in Blender (transformations, skin,
+shape keys, materials, particles, physics...), although it is somewhat
+memory-hungry.
+
+<p>We advise now using glTF for all your animation needs.
 
 <?php
 castle_footer();

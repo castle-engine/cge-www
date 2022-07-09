@@ -1,20 +1,20 @@
 # Exporting from Blender to X3D
 include::common.adoc[]
 
-A collection of hints about using the Blender X3D exporter. They apply to the standard X3D exporter distributed with http://blender.org/[Blender] and to our modified exporter version available from https://castle-engine.io/creating_data_blender.php .
+A collection of hints about using the Blender X3D exporter. They apply to the standard X3D exporter distributed with http://blender.org/[Blender] and to our modified exporter version available from link:blender[Blender] .
 
-*Obsolete: Many notes below are relevant only to the exporter state in Blender 2.7. With Blender 2.8, the exporter is unfortunately even more limited (for now), e.g. it doesn't support textures assigned in Blender 2.8, even the base texture. With Blender 2.8, we advise exporting to glTF instead. See https://castle-engine.io/creating_data_blender.php for Blender + Castle Game Engine instructions.*
+*Obsolete: Many notes below are relevant only to the exporter state in Blender 2.7. With Blender 2.8, the exporter is unfortunately even more limited (for now), e.g. it doesn't support textures assigned in Blender 2.8, even the base texture. With Blender 2.8, we advise exporting to glTF instead. See link:blender[Blender] for Blender + Castle Game Engine instructions.*
 
 == General notes
 
-* It *does not support animations*. To export animations from Blender that can work in https://castle-engine.io/[Castle Game Engine] and https://castle-engine.io/view3dscene.php[view3dscene], use our https://castle-engine.io/creating_data_blender.php[Blender castle-anim-frames exporter] instead. The Castle-anim-frames exporter internally exports to a series of X3D files, so the rest of this page still matters to you anyway:)
+* It *does not support animations*. To export animations from Blender that can work in https://castle-engine.io/[Castle Game Engine] and https://castle-engine.io/view3dscene.php[view3dscene], use our link:blender[Blender][Blender castle-anim-frames exporter] instead. The Castle-anim-frames exporter internally exports to a series of X3D files, so the rest of this page still matters to you anyway:)
 * Latest exporter *honours the `Backface culling` setting in Blender*. It makes the back faces invisible. If it's not OK, try flipping the normals (_"Recalculate Normals"_, Ctrl + N, Ctrl + Shift + N), or turning the "backface culling" off. You can find the appropriate checkbox _"Backface Culling"_ at the material settings once you change the Blender UI mode (at the header, default is _"Blender Render"_) to _"Blender Game"_.
 * *Smoothing works*. You can click _"Smooth"_ or _"Flat"_ on the whole mesh, you can use the "Auto Smooth" checkbox and _"Angle"_ as well. *But do not use the `Triangulate` option at export* (it messes the smoothing, making the mesh always completely smoothed; yes, it's a bug in X3D exporter, it should not use the `IndexedTriangleSet` or it should split the vertexes). Note that if you don't export the explicit "Normals", you should make the ordering of your faces consistent (regardless if you use "backface culling" or not) by occasionally using the "Recalculate Normals" (Ctrl + N) feature.
 * *"Vertex painting" is not supported*.
-* *Points and spot lights are exported OK. Directional light ("sun") is incorrect in official exporter version.* Use our exporter version from https://castle-engine.io/creating_data_blender.php to have `DirectionalLight` working OK.
+* *Points and spot lights are exported OK. Directional light ("sun") is incorrect in official exporter version.* Use our exporter version from link:blender[Blender] to have `DirectionalLight` working OK.
 * *Camera is exported, but it's gravity up vector will be messed up*. It is exported is such way that the gravity up vector (which is also used as the main rotation axis in some camera modes) will be set to whatever is the camera's current up vector (instead of being controlled independently from camera up). In view3dscene, use the _"Navigation \-> Set Up (and Gravity Up) to +Y"_.
 * *Modifiers are exported OK*. So you don't need to _"Apply"_ modifiers like _Mirror_ or _Subdivision Surface_ before exporting.
-* *Other small improvements of our exporter version from https://castle-engine.io/creating_data_blender.php*:
+* *Other small improvements of our exporter version from link:blender[Blender]*:
  ** Exports _Clamp X / Y_ texture settings. Useful when you don't want your texture to "repeat".
  ** Exports "Shadeless" material (only emit color) in a way that activates an optimized "shadeless" rendering path in _Castle Game Engine_.
 
@@ -48,7 +48,7 @@ Using the _Face Textures_ and _Face Textures Alpha_ (without assigning textures 
 
 == Extra material textures (normal maps, specular maps) with CommonSurfaceShader
 
-If you check the _Use CommonSurfaceShader_ checkbox at exporting (available only in https://castle-engine.io/creating_data_blender.php[our modified Blender exporter for now]), then the X3D file will contain a https://castle-engine.io/x3d_implementation_texturing_extensions.php#section_ext_common_surface_shader[CommonSurfaceShader] describing some advanced material properties. This enables to smoothly use normal maps, specular maps and more from _Blender_ to _Castle Game Engine_.
+If you check the _Use CommonSurfaceShader_ checkbox at exporting (available only in link:blender[Blender][our modified Blender exporter for now]), then the X3D file will contain a https://castle-engine.io/x3d_implementation_texturing_extensions.php#section_ext_common_surface_shader[CommonSurfaceShader] describing some advanced material properties. This enables to smoothly use normal maps, specular maps and more from _Blender_ to _Castle Game Engine_.
 
 You should set up the textures in Blender _"texture slots"_ to influence the appropriate shading parameters, and they will be automatically used by the exporter.
 

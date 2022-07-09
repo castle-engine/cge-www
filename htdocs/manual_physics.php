@@ -106,7 +106,7 @@ end;'); ?>
 
   <li><p>The current implementation doesn't expose any API for joints.
 
-  <li><p>Maybe: A shape within the TCastleScene should be able to act like a rigid body, independent of the rest of the scene. Ideally, this should be <a href="creating_data_blender.php">configurable in Blender, and exported nicely to X3D or glTF</a>. <a href="http://www.web3d.org/documents/specifications/19775-1/V3.3/Part01/components/rigid_physics.html">The X3D specification has a rigid-body component</a> to describe such things.
+  <li><p>Maybe: A shape within the TCastleScene should be able to act like a rigid body, independent of the rest of the scene. Ideally, this should be <a href="blender">configurable in Blender, and exported nicely to glTF or X3D</a>. <a href="http://www.web3d.org/documents/specifications/19775-1/V3.3/Part01/components/rigid_physics.html">The X3D specification has a rigid-body component</a> to describe such things.
 
   <li><p>Integration with other physics engines, through a layer providing a common API.
 

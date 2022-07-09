@@ -47,7 +47,7 @@ The way this auto-detection works:
 --
 - If the scene set as cgeref:TCastleRootTransform.MainScene[Viewport.Items.MainScene] defines a default camera, then use it.
 +
-For example link:gltf[glTF] format allows to define a default camera. link:creating_data_blender.php[Blender] can export such glTF models.
+For example link:gltf[glTF] format allows to define a default camera. link:blender[Blender] can export such glTF models.
 +
 Models in In X3D can also define a default camera, using X3D `Viewpoint` or `OrthoViewpoint` nodes. If you write X3D files by hand, you can even generate such nodes using the _"Console -> Print Current Camera (Viewpoint)"_ menu item in link:view3dscene.php[view3dscene].
 

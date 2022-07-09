@@ -50,7 +50,7 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
     <?php api_link('TCastleCamera', 'CastleCameras.TCastleCamera.html'); ?>
     instance.
     See <a href="camera">manual about controlling the camera</a>.
-    Still, this X3D node is useful to set initial camera through e.g. <a href="creating_data_blender.php">Blender</a>
+    Still, this X3D node is useful to set initial camera through e.g. <a href="blender">Blender</a>
     (you can export to glTF or X3D and importing them will set initial camera properly).
 
     <p><?php echo a_href_page("view3dscene", "view3dscene") ?>

@@ -66,7 +66,7 @@ We advise at this point that you take the sample 3D asset of a car and road we h
 ** `road.bin`
 ** `road.gltf`
 ** Whole `textures/` subdirectory.
-** Optionally, select also `car.blend` and `road.blend`.  _Castle Game Engine_ doesn't read `.blend` files, but you can modify them in link:creating_data_blender.php[Blender] and export to glTF, to play with what you can do in 3D.
+** Optionally, select also `car.blend` and `road.blend`.  _Castle Game Engine_ doesn't read `.blend` files, but you can modify them in link:blender[Blender] and export to glTF, to play with what you can do in 3D.
 --
 +
 cgeimg::block[viewport_3d_select_data.png|Files to copy]

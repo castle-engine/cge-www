@@ -18,7 +18,8 @@ How to make such skyboxes?
 
 - You can render them in https://planetside.co.uk/[Terragen]. We even have https://github.com/castle-engine/cge-scripts/tree/master/terragen[helper scripts for rendering skyboxes with Terragen].
 
-- You can render them in https://www.blender.org/[Blender]. We even have https://castle-engine.io/creating_data_blender.php#section_render_skybox[sample script to render skybox in Blender].
+- You can render them in https://www.blender.org/[Blender].
+//We even have link:blender#section_render_skybox[sample script to render skybox in Blender].
 --
 
 . You can also define a sky gradient using cgeref:TCastleBackground.SkyTopColor[], cgeref:TCastleBackground.SkyEquatorColor[], ground gradient using cgeref:TCastleBackground.GroundBottomColor[], cgeref:TCastleBackground.GroundEquatorColor[], and additional gradient to smooth transition between the sky and ground using cgeref:TCastleBackground.SmoothEquator[].

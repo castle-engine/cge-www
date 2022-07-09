@@ -36,7 +36,7 @@ constantly improving. We want to use these tools, not reinvent them.
 <?php /* echo castle_toc_from_sitemap(); */ ?>
 
 <ul>
-  <li><a href="creating_data_blender.php">Blender</a></li>
+  <li><a href="blender">Blender</a></li>
   <li><a href="creating_data_3dsmax.php">3ds Max</a></li>
   <li><a href="creating_data_maya.php">Maya</a></li>
   <li><a href="https://castle-engine.io/spine">Spine (wiki)</a></li>

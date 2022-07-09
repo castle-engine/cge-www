@@ -91,7 +91,7 @@ You can use any link:creating_data_model_formats.php[supported model format].
 * You can use link:sprite_sheets[sprite sheets].
 * You can use link:using_images[images].
 * You can use link:spine[Spine] with smooth skeletal 2D animations.
-* It is perfectly reasonable to use link:gltf[glTF] (e.g. exported from link:creating_data_blender.php[Blender]) to do 2D art as well.
+* It is perfectly reasonable to use link:gltf[glTF] (e.g. exported from link:blender[Blender]) to do 2D art as well.
 * Primitives like cgeref:TCastleText[] and cgeref:TCastlePlane[] (make sure to set axis to 2, meaning _"Z"_)  are also useful in 2D.
 
 ## Blending
