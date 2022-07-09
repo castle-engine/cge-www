@@ -21,6 +21,8 @@ cgeimg::block[viewport_3d_design.png|Open the design]
 
 . Add a cgeref:TCastleViewport[] by right-clicking on `Group1` (the root component in the hierarchy) and choosing _"Add User Interface -> Viewport (3D)"_.
 +
+cgeimg::block[viewport_3d_add_viewport_1.png|Add viewport]
++
 The new viewport includes by default:
 +
 --
@@ -36,7 +38,7 @@ Note that viewport has by default cgeref:TCastleUserInterface.FullSize[FullSize]
 +
 You want to move the new viewport in the hierarchy, such that it is _underneath_ the `LabelFps` component. This way you will see FPS counter over the viewport.
 +
-cgeimg::block[viewport_3d_add_viewport.png|Add viewport]
+cgeimg::block[viewport_3d_add_viewport.png|Added viewport - without Plane1 and with fixed LabelFps order]
 
 ## Add a scene showing the 3D car, adjust camera, lights and navigation
 
@@ -91,6 +93,10 @@ cgeimg::block[viewport_3d_camera_better.png|Better camera position]
 . Allow user to navigate during the game. For start, we recommend using the `TCastleExamineNavigation`. Right click on the `Viewport1` and choose _"Add User Interface -> Navigation/Examine"_. This will add `ExamineNavigation1` component to your hierarchy.
 +
 NOTE: Other navigation methods are available, like `TCastleWalkNavigation` to walk or fly. You can also just control the camera completely through your own code, not relying on any built-in `TCastleNavigation` descendant. For example, you can process the keyboard input in your state to move/rotate the camera.
+
+. Move the light a bit higher. Switch to _"Move Transform"_ tool, select the light, and drag it up.
++
+cgeimg::block[viewport_3d_light_higher.png|Light moved up]
 
 ## Run the game
 
