@@ -1,0 +1,7 @@
+== Rendering Skyboxes and Static Cube Environment Maps
+
+You can render a set of six images that can be used as a skybox (`Background` in X3D, see link:x3d_implementation_environmentaleffects.php[documentation of the _Environmental effects component_]) or a cube map texture (`ComposedCubeMapTexture` in X3D, see link:x3d_implementation_cubemaptexturing.php[documentation of the _Cube map environmental texturing component_]). We have a small Python script for Blender that renders the images to the appropriate names following the X3D conventions (front, back, top,....), and a simple X3D test scenes that allow to test that the resulting images indeed work as a skybox or a cubemap texture (e.g. you can open them in view3dscene).
+
+<div class="download jumbotron">
+    <a class="btn btn-primary btn-lg" href="https://github.com/castle-engine/cge-blender/tree/master/render_skybox"><span class="glyphicon glyphicon-download" aria-hidden="true"></span><br>Download render_skybox.py script, and test files</a>
+</div>

@@ -5,6 +5,16 @@ include::common.adoc[]
 
 In this chapter we show how you can design 3D world using _Castle Game Engine_ editor. We assume you have already read the link:viewport_and_scenes[overview of the viewport and scenes].
 
+You will learn:
+
+[role="compact"]
+- How to create a project,
+- design 3D contents in a viewport,
+- add scenes to display and animate glTF models,
+- control camera at design-time (in editor) and run-time (determines what the user sees),
+- control navigation at design-time (in editor) and run-time (determines how the user can move in your 3D world),
+- manipulate lights.
+
 ## Complete tutorial code
 
 The complete result of this tutorial is in the _Castle Game Engine_. Just open the project https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/viewport_3d_tutorial[examples/viewport_and_scenes/viewport_3d_tutorial] in the editor. If at any point you get lost, just look there.

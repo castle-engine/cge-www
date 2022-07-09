@@ -371,7 +371,7 @@ $castle_sitemap = array(
                   'doc/gltf' => array('title' => 'glTF'),
                 ),
               ),
-              'creating_data_blender' => array('title' => 'Blender'),
+              'doc/blender' => array('title' => 'Blender'),
               'creating_data_3dsmax' => array('title' => '3ds Max'),
               'creating_data_maya' => array('title' => 'Maya'),
               'doc/spine' => array('title' => 'Spine'),

@@ -43,7 +43,7 @@
 
 <p>The node can be considered a <i>"material on steroids"</i>, replacing the material and texture information provided in the standard <code>Appearance.texture</code> and <code>Appearance.material</code> fields. It is not a <i>normal "shader" node</i>, as it does not allow you to write an explicit shader code (for this, see <a href="x3d_implementation_shaders.php">programmable shaders nodes</a> or our <a href="compositing_shaders.php">compositing shaders extension</a>). <!-- And it is used regardless if the actual implementation uses shaders (e.g. it is also used in old fixed-function GPU pipeline on ancient GPUs). --> But it is placed on the <code>Appearance.shaders</code> list, as an alternative to other shader nodes, and it does determine <i>shading</i>.
 
-<p><b>The tests of this feature are inside <a href="https://github.com/castle-engine/demo-models/tree/master/common_surface_shader">demo models bump_mapping/common_surface_shader</a>. </b> It has some manually crafted files, and also X3D exported from Blender using <a href="creating_data_blender.php">our Blender exporter that can handle CommonSurfaceShader</a>.
+<p><b>The tests of this feature are inside <a href="https://github.com/castle-engine/demo-models/tree/master/common_surface_shader">demo models bump_mapping/common_surface_shader</a>. </b> It has some manually crafted files, and also X3D exported from Blender using our <a href="blender">Blender -> X3D</a> exporter that can handle CommonSurfaceShader (no longer maintained, use glTF now).
 
 <p>Most of the shading parameters are specified using five fields:
 <ul>

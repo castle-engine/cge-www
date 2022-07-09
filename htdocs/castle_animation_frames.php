@@ -23,6 +23,12 @@ echo castle_thumbs(array(
 ));
 ?>
 
+<div class="alert alert-warning preview-warning" role="alert">
+Using <code>*.castle-anim-frames</code> is deprecated right now.
+Instead use <a href="gltf">glTF</a> for all your animations needs,
+it has already excellent support in 3D modeling software like <a href="blender">Blender</a>.
+</div>
+
 <p>Contents:
 <?php echo $toc->html_toc(); ?>
 
@@ -36,7 +42,7 @@ represent <i>"Castle Game Engine's Animation Frames"</i>.</p>
     <a class="btn btn-primary btn-lg" href="https://raw.githubusercontent.com/castle-engine/cge-blender/master/export_castle_anim_frames.py"><span class="glyphicon glyphicon-download" aria-hidden="true"></span><br>Download castle-anim-frames Blender exporter</a>
 </div>
 
-<p>More information about <a href="creating_data_blender.php">exporting animations from Blender is available here</a>.</p>
+<p>More information about <a href="blender">exporting animations from Blender is available here</a>.</p>
 
 <p><a href="http://wdune.ourproject.org/">White Dune</a>
 also can generate <code>*.kanim</code> files

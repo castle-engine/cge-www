@@ -113,44 +113,6 @@ $toc = new TableOfContents(
     <p>Bugs are best reported in the <a href="https://github.com/castle-engine/view3dscene/issues">issues tracker</a>.
 </ul>
 
-<?php /*
-
-<?php echo $toc->html_section(); ?>
-
-<p>If you make free software / open-source game, you have probably already chosen
-<a href="http://www.blender.org/">Blender</a> as your main 3D modeller.
-We can <a href="creating_data_blender.php">export from Blender to X3D or castle-anim-frames
-(which is internally a sequence of X3D models)</a>.
-It would be great to improve Blender -&gt; X3D exporter:
-
-<ul>
-  <li><p>Support animations. <a href="creating_data_blender.php">Right now we support animations using castle-anim-frames</a>, but a direct support inside X3D exporter would be more efficient.
-
-    <p>At least exporting animation
-    of transformations (translation, rotation, scale of objects) would
-    already be very useful.
-    Exporting mesh deformation
-    (from shape keys, or derived from bone animation) would be great.
-    Exporting skinned mesh animation (as mesh deformation, or using X3D H-Anim nodes)
-    would be great.
-
-  <li><p>Configuring collisions (using X3D <code>Collision</code> node). <a href="manual_optimization.php">As explained in the manual about "optimization"</a>, it's often useful to configure what collides and how.
-
-  <li><p>Export 3D sound sources from Blender.</p>
-</ul>
-
-<p>We have <?php echo a_href_page('our own fork of the Blender X3D exporter',
-'creating_data_blender'); ?>, which can be used to distribute our improvements
-to CGE users. But preferably, changes should be submitted and applied to
-the <a href="http://www.blender.org/">Blender</a> sources as well.
-
-<!--
-Only stuff really specific to our engine (cooperation between Blender
-and some specific features of our engine) should be left inside our
-custom exporter.--></p>
-
-*/ ?>
-
 <?php echo $toc->html_section(); ?>
 
 <p>Package <?php echo a_href_page('Castle Game Engine', 'index'); ?>

@@ -9,7 +9,7 @@
     We would like to fix it!:) This will be useful for everyone using Blender and X3D,
     not only with our engine.
 
-    <p>See also our page about <a href="creating_data_blender.php">creating data in Blender</a>
+    <p>See also our page about <a href="blender">creating data in Blender</a>
     and <a href="https://github.com/castle-engine/cge-www/blob/master/htdocs/doc/obsolete/blender_x3d_exporter.adoc">hints
     about exporting from Blender to X3D</a>.
 */ ?>

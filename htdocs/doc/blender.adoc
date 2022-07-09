@@ -1,0 +1,100 @@
+# Blender
+include::common.adoc[]
+
+// TODO: social_share_image: blender_castle_anim_frames_export.png
+
+cgeimg::float[
+  blender_castle_anim_frames_install.png|Installation of castle-anim-frames Export Script in Blender,
+  blender_castle_anim_frames_export.png|Options of Exporting to castle-anim-frames,
+  lizardman_animations.png|Lizardman Animations Exported from Blender
+]
+
+== Introduction
+
+http://www.blender.org/[Blender] is a magnificent free open-source modeling software.
+
+You can use Blender to create 3D and 2D models, with animations, and export them to glTF.
+
+== Exporting to glTF
+
+Exporting from Blender to link:gltf[glTF 2.0] is the best way to use _Blender_ with _Castle Game Engine_.
+
+* Export using the _File -> Export -> glTF 2.0_ menu item in Blender.
+
+* Load the resulting file (in `.glb` or `.gltf` formats) to cgeref:TCastleScene[]. See manual about link:viewport_and_scenes[viewports and scenes].
+
+* You can also open the glTF file with link:view3dscene.php[view3dscene].
+
+=== Important links
+
+* link:https://docs.blender.org/manual/en/dev/addons/import_export/scene_gltf2.html[Blender documentation of the glTF exporter] documents how to setup your models in Blender to export correctly to glTF.
+
+// Too much info?
+//* The exporter is link:https://github.com/KhronosGroup/glTF-Blender-IO[developed by Khronos on GitHub].
+
+* link:creating_data_model_formats.php#section_gltf[Details about Castle Game Engine support for glTF]. We support most glTF features, including physical materials and skinned animation.
+
+=== Advised glTF export settings
+
+* You usually want to check _"Geometry -> Apply Modifiers"_ in the export dialog.
+* _"Remember Export Settings"_ is also usually useful.
+* For typical games (where you distribute the game data with your application) we recommend exporting to _"glTF Separate (.gltf + .bin + textures)"_ variant. This allows to share textures between various models and keeps importing fast. You can edit the _"Textures"_ directory in the export dialog, to make the glTF file just point to your existing texture directory.
+
+== Advanced topics
+
+=== Stashing animations
+
+You may want to _Stash_ animations to have them reliably exported, as is briefly mentioned by link:https://docs.blender.org/manual/en/dev/addons/import_export/scene_gltf2.html[exporter docs]. That is:
+
+* go to _"Animation"_ view (or turn any Blender window into _"Dope Sheet"_)
+* select _Armature_ (e.g. by left-clicking in 3D view)
+* change _"Dope Sheet"_ mode to _"Action Editor"_
+* select each animation (aka "action" in Blender) you want (repeat this for all animations you want to export)
+* click _"Stash"_
+
+cgeimg::block[blender_stashing_animations.png|Stashing animations in Blender]
+
+=== Custom properties
+
+cgeimg::float[blender_castle_collision_prop.png|Setting CastleCollision property in Blender]
+
+Blender can export _Custom properties_ from various objects to glTF, and our engine reads them. You can access them by cgeref:TAbstractNode.MetadataString[MetadataString] and similar properties on X3D nodes. Demos:
+
+* See link:https://github.com/castle-engine/demo-models[our demo-models], subdirectories `blender/custom_properties/` and `blender/custom_properties_2/`, for sample models.
+
+* See https://github.com/castle-engine/castle-engine/blob/master/examples/short_api_samples/metadata/metadata_use.dpr[examples/short_api_samples/metadata/metadata_use.dpr] for sample Pascal code getting/setting metadata from Pascal.
+
+Usage of custom properties:
+
+* Custom properties on Blender materials are imported as metadata on X3D material nodes, like cgeref:TPhysicalMaterialNode[].
++
+For example access them like:
++
+[source,pascal]
+----
+MyString := MyMaterial.MetadataString['material_property_name'];
+----
+
+* Custom properties on Blender cameras are imported as metadata on X3D viewpoint nodes, like cgeref:TViewpointNode[].
+
+* Custom properties on Blender meshes are imported as metadata on the _immediate parent `Group` of each X3D `Shape` node_. Note that many X3D shapes may be part of one Blender mesh.
++
+For example, if you have a cgeref:TShapeNode[] instance, you can look at parent group by cgeref:TX3DNode.ParentFieldsNode[] property. To read metadata from the corresponding Blender mesh do this:
++
+[source,pascal]
+----
+if MyShape.ParentFieldsCount = 1 then
+  MyString := MyShape.ParentFieldsNode[0].MetadataString['mesh_property_name']
+else
+  WritelnWarning('Shape not created by glTF importer');
+----
+
+* Custom properties on Blender objects are imported as metadata on the _immediate parent `Transform` of each X3D `Group` representing Blender mesh_. Note that one Blender mesh may be part of multiple Blender objects.
+
+=== Controlling if the shape is collidable in Castle Game Engine
+
+We recognize a special property `CastleCollision` at Blender mesh. It sets link:x3d_implementation_shape_extensions.php#section_ext_shape_collision[X3DShapeNode.collision] field in X3D (cgeref:TAbstractShapeNode.Collision[] in Pascal API). It accepts the following values:
+
+* `none` &mdash; non-collidable mesh.
+* `box` &mdash; mesh collides as a simple axis-aligned box (auto-calculated from bounding box of the shape, unless link:x3d_implementation_shape_extensions.php#section_ext_shape_bbox[Shape.Bbox] is explicitly specified).
+* `default` &mdash; mesh collides as a precise set of triangles.

@@ -1,0 +1,13 @@
+== Export to X3D
+
+link:https://www.blender.org/[Blender] includes exporter for X3D out-of-the-box.
+
+Unfortunately, it doesn't support animations.
+And since Blender 2.8 it is even more limited,
+it doesn't support any textures either.
+
+There are also bugs.
+Be sure to use the latest Blender versions (2.82 or later), and consider appplying these
+fixes yourself:
+link:https://developer.blender.org/D7183[fix applying modifiers],
+link:https://developer.blender.org/D7186[fix backface culling export].

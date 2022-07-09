@@ -10,7 +10,7 @@ $toc = new TableOfContents(
     new TocItem('Summary', 'summary'),
     new TocItem('Videos', 'demo'),
     new TocItem('Many 3D and 2D formats supported (glTF, X3D, Collada, Spine...)', 'data'),
-    new TocItem('Portable (standalone, mobile, console, web browser plugin)', 'portable'),
+    new TocItem('Portable (standalone, mobile, console)', 'portable'),
     new TocItem('Graphic features and effects (physically based rendering, shadows, mirrors, bump mapping...)', 'graphic'),
     new TocItem('Viewport and comfortable API', 'api'),
     new TocItem('And much more!', 'more'),
@@ -94,7 +94,7 @@ See a few videos from our <a href="https://www.youtube.com/c/CastleGameEngineX3d
     ?>
 
   <li><p>You can use <b>various 3D and 2D authoring software</b> to design your models.
-    <a href="creating_data_blender.php">Blender</a>, <a href="creating_data_3dsmax.php">3ds Max</a>,
+    <a href="blender">Blender</a>, <a href="creating_data_3dsmax.php">3ds Max</a>,
     <a href="creating_data_maya.php">Maya</a>,
     <a href="https://castle-engine.io/spine">Spine</a>...
     That is thanks to our support for many model formats,
@@ -180,7 +180,7 @@ See a few videos from our <a href="https://www.youtube.com/c/CastleGameEngineX3d
       <li><b>Any modern desktop operating system</b> (Linux, Windows, macOS, FreeBSD, more...), with any CPU supported by FPC (like i386, x86_64, ARM, Aarch64...).
       <li><b>Mobile platforms</b> (<a href="https://castle-engine.io/android">Android</a>, <a href="https://castle-engine.io/ios">iOS</a>),
       <li><a href="https://castle-engine.io/nintendo_switch"><b>Nintendo Switch</b></a>.
-      <li><b>Deprecated: Web browser plugin</b> (Linux, Windows, <a href="https://github.com/castle-engine/cge-www/blob/master/htdocs/doc/obsolete/web_plugin.adoc">for browsers supporting NPAPI</a>). This is deprecated now, we're looking closely at WebAssembly target in FPC or pas2js to enable us compilation to modern web.
+      <li><b>Coming soon: WebGL</b> We're looking closely at WebAssembly target in FPC or pas2js to enable compilation to modern web.
     </ul>
 
     <?php
@@ -247,14 +247,26 @@ See a few videos from our <a href="https://www.youtube.com/c/CastleGameEngineX3d
     See <?php echo a_href_page_hashlink('shadow volumes documentation', 'x3d_extensions',
     'section_ext_shadows'); ?>.
 
-  <li><p><b><?php echo a_href_page_hashlink('Bump mapping (normal maps), specular maps, shininess maps and more',
-    'x3d_implementation_texturing_extensions', 'section_ext_common_surface_shader'); ?></b>
-    are avaiable.
-    Our <a href="creating_data_blender.php">custom Blender X3D exporter</a>
-    can automatically generate the necessary information.
+  <li><p><b>Bump mapping (normal maps)</b> is available, in both physical (PBR) and classic (Phong)
+    lighting models.
     Various <i>bump mapping algorithms</i>
     are implemented: from the classic bump mapping (take normal from the texture),
     up to the <i>steep parallax bump mapping with self-shadowing</i>.
+
+    <p>To use bump mapping just define a normal map in the glTF or X3D file.
+    See e.g. <a href="blender">exporting models from Blender</a> for documentation.
+
+  <li><p><b>All materials parameters can be adjusted by textures</b>.
+    This applies to (in Phong lighting model) ambient, diffuse, specular, shininess,
+    and to (in PBR lighting model) base, metallic and roughness.
+    We also support occlusion maps.
+
+    <p>
+    See the
+    <a href="<?php echo x3d_spec_latest_url('shape', 'Material'); ?>">X3D <code>Material</code> node</a>,
+    <a href="<?php echo x3d_spec_latest_url('shape', 'PhysicalMaterial'); ?>">X3D <code>PhysicalMaterial</code> node</a>.
+    Michalis (author of CGE) worked on X3D 4 to make these material types
+    full-featured and also consistent with glTF capabilities, so we have the best of all worlds.
 
   <li><p><b>Shaders</b>:
     <ul>
