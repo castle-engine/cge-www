@@ -1068,7 +1068,7 @@ function _castle_patreon_box()
       <div style="color: #ffffff; padding-left: 1em; padding-right: 1em;">
         <span style="vertical-align: middle;">Support&nbsp;us&nbsp;on</span>&nbsp;<img src="'. page_requisite('images/patreon-brand/wordmark/small/Digital-Patreon-Wordmark_White.png') . '"
           alt="Patreon Wordmark"
-          style="max-width: 5em; display: inline-block; vertical-align: middle;"
+          style="width: 80px; height: 16px;  display: inline-block; vertical-align: middle;"
         >
       </div>';
 
