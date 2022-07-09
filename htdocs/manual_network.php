@@ -14,7 +14,8 @@ $toc = new TableOfContents(
     new TocItem('Dialog windows that support URLs', 'dialogs'),
     new TocItem('Notes about terminology: URI vs URL', 'terminology'),
     new TocItem('Multi-player options', 'multi_player'),
-      new TocItem('Using Indy', 'indy', 1),
+      new TocItem('Indy (CGE example using TCP streams)', 'indy', 1),
+      new TocItem('RNL (CGE example of real-time online shooter)', 'rnl', 1),
       new TocItem('Other options', 'other', 1),
   )
 );
@@ -445,11 +446,23 @@ lazbuild Indy10/indylaz.lpk
 
 <?php echo $toc->html_section(); ?>
 
+<p><a href="https://github.com/BeRo1985/rnl">RNL (Realtime Network Library)</a> is an open-source, reliable UDP network library, for FPC and Delphi, cross-platform, developed by <a href="https://www.patreon.com/bero">Benjamin Rosseaux</a> . If you want to make real-time communication over a network (e.g. an FPS game like Quake) this is a good start.
+
+<p>In fact, we have already made it :) <a href="https://github.com/castle-engine/not-quake">Not Quake</a> is an example of online first-person shooter, developed using <i>Castle Game Engine</i> and RNL. You can
+<ul>
+  <li>
+    <p><a href="https://github.com/castle-engine/not-quake">Get source code and binary releases of client and server from GitHub</a>
+  <li>
+    <p><a href="https://cat-astrophe-games.itch.io/not-quake">Get binary releases of client from Itch.io</a>
+  <li>
+    <p><a href="https://castle-engine.io/wp/2022/06/24/not-quake-an-example-of-real-time-multi-player-shooter-a-bit-like-quake-using-castle-game-engine-and-rnl/">Read the news post</a>
+</ul>
+
+<?php echo $toc->html_section(); ?>
+
 <p>There are various other networing solutions for Pascal &mdash; and you can use any of them together with <i>Castle Game Engine</i>. Links:
 
 <ul>
-  <li><p><a href="https://github.com/BeRo1985/rnl">RNL (Realtime Network Library)</a> by <i>Benjamin Rosseaux</i> is an open-source, reliable UDP network library, for both Delphi and FPC, cross-platform. If you want to make real-time communication (e.g. an FPS game like Quake) this may be a good start.
-
   <li><p>Aforementioned <a href="https://www.indyproject.org/">Indy</a> is a big library providing a lot of networking options. You can use it directly in many ways. See the <a href="http://ww2.indyproject.org/docsite/html/frames.html">online documentation</a>.
 
   <li><p><a href="http://ararat.cz/synapse/doku.php">Synapse</a> is a cross-platform networking library. See also <a href="https://wiki.freepascal.org/Synapse">FPC wiki about Synapse</a>.
