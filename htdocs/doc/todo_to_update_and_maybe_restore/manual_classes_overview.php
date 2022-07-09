@@ -77,7 +77,7 @@ It can be treated like a cheatsheet, concise description of engine architecture.
       <li><?php api_link('TCastleViewport', 'CastleViewport.TCastleViewport.html'); ?>
       <li>... and many other usual user-interface components. See e.g.
         <?php api_link('CastleControls', 'CastleControls.html'); ?> unit.
-        See the <a href="manual_2d_user_interface.php">manual chapter about user interface</a>.
+        See the <a href="user_interface">manual chapter about user interface</a>.
     </ul>
 
     <p><i>How to use</i>: Just create instances of these classes.

@@ -33,7 +33,7 @@ the menu-item, and can be any UI control
 So you can really insert any convoluted things inside the on-screen menu:)
 
 <p>You create and insert the on-screen menu instance
- <a href="manual_2d_user_interface.php">just like all other UI controls</a>.
+ <a href="user_interface">just like all other UI controls</a>.
  <!--When using Lazarus forms, you can also drop the <code>TCastleOnScreenMenu</code> on the form.-->
 
 <p>Once created, you should add menu items using the
@@ -71,7 +71,7 @@ you usually want to pause the game when the on-screen
 menu is displayed. You can do this easily by
 <?php api_link('Items.Paused', 'CastleTransform.TCastleAbstractRootTransform.html#Paused'); ?> property.
 
-Use the <a href="manual_2d_user_interface.php#section_ui_state">TUIState</a>
+Use the <a href="states">TUIState</a>
 to create a state like <code>TStateOptions</code> that will contain
 the "options" user-interface (e.g. using <code>TCastleOnScreenMenu</code>),
 and underneath pause the game by setting <code>Viewport.Items.Paused := true</code>.

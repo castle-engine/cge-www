@@ -24,7 +24,7 @@ on Android, thanks to an internal information stored in the data on Android).
 
 <ol>
   <li><p>This directory is automatically correctly packaged by the
-    <a href="https://castle-engine.io/build_tool">CGE build tool</a>
+    <a href="build_tool">CGE build tool</a>
     and editor.
     E.g. it will be correctly added to the Android <code>apk</code> file,
     iOS or Nintendo Switch application.
@@ -51,19 +51,19 @@ This way the build tool will automatically package your game correctly.
 <ul>
   <li><p>Game 3D and 2D models,
     loaded e.g. by
-    <?php echo pascal_highlight('MyCastleSceneInstance.Load(\'castle-data:/my_model.x3d\')'); ?>
+    <?php echo pascal_highlight('MyScene.Load(\'castle-data:/my_model.x3d\')'); ?>
 
-    <p>See <a href="https://castle-engine.io/manual_load_3d.php">loading 3D models</a>.
+    <p>See <a href="viewport_and_scenes">loading 3D and 2D models in viewports</a>.
 
   <li><p>2D images, loaded e.g. by
-    <?php echo pascal_highlight('MyImage := TDrawableImage.Create(\'castle-data:/my_image.png\')'); ?>
+    <?php echo pascal_highlight('MyImageControl.Url := \'castle-data:/my_image.png\''); ?>
 
-    <p>See <a href="https://castle-engine.io/manual_2d_ui_custom_drawn.php">loading images</a>.
+    <p>See <a href="manual_state_events.php">displaying images</a>.
 
   <li><p>Sounds, loaded e.g. by
     <?php echo pascal_highlight('MySoundBuffer := SoundEngine.LoadBuffer(\'castle-data:/my_sound.wav\')'); ?>
 
-    <p>See <a href="https://castle-engine.io/manual_sound.php">loading sounds</a>.
+    <p>See <a href="manual_sound.php">loading sounds</a>.
 
   <li><p>... and really anything else you plan to load during the game.
     Your custom files can be loaded using
@@ -71,7 +71,7 @@ This way the build tool will automatically package your game correctly.
     or
     <?php echo pascal_highlight('MyTextReader := TTextReader.Create(\'castle-data:/my_text_file.txt\')'); ?>
 
-    <p>See <a href="https://castle-engine.io/manual_network.php">loading from URLs</a>
+    <p>See <a href="manual_network.php">loading from URLs</a>
     and the <?php api_link('CastleDownload', 'CastleDownload.html'); ?> unit.
 </ul>
 

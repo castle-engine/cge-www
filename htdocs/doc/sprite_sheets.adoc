@@ -37,7 +37,7 @@ The sprite sheet file (regardless of the format):
 . points to a texture atlas (which can be any 2D image that _Castle Game Engine_ can read, like PNG or JPG; see https://castle-engine.io/castle-view-image.php[castle-view-image] docs for the full list)
 . and describes frames within the file, and how they compose the final animation.
 
-Once you have it, simply load it to https://castle-engine.io/apidoc-unstable/html/CastleScene.TCastleScene.html[TCastleScene], using the `TCastleScene.Load` method (or by setting `TCastleScene.URL`), play animation by `TCastleScene.PlayAnimation` (or setting `TCastleScene.AutoAnimation` and `TCastleScene.AutoAnimationLoop`) and generally use all the `TCastleScene` API. See CGE manual about loading and playing scenes and animations: https://castle-engine.io/manual_load_3d.php[loading, displaying a scene], https://castle-engine.io/manual_scene.php[transform, animate etc. a scene].
+Once you have it, simply load it to cgeref:TCastleScene[], using the `TCastleScene.Load` method (or by setting `TCastleScene.URL`), play animation by `TCastleScene.PlayAnimation` (or setting `TCastleScene.AutoAnimation` and `TCastleScene.AutoAnimationLoop`) and generally use all the `TCastleScene` API. See CGE manual about link:viewport_and_scenes[viewports, displaying, transforming, animating scenes].
 
 This also allows you to load sprite sheets within the https://castle-engine.io/manual_editor.php[editor]. Simply create a `TCastleScene` inside `TCastleViewport` and assign it's `URL`, `AutoAnimation` etc.
 

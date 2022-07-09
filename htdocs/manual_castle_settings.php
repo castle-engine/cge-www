@@ -50,9 +50,10 @@ the CGE editor GUI. For now just edit it directly, in any text editor (like Laza
 <?php echo $toc->html_section(); ?>
 
 <p>Loading the <code>CastleSettings.xml</code> sets properties
-related to user interface scaling: <?php api_link('Container.UIScaling', 'CastleUIControls.TUIContainer.html#UIScaling'); ?>,
-<?php api_link('Container.UIReferenceWidth', 'CastleUIControls.TUIContainer.html#UIReferenceWidth'); ?>,
-<?php api_link('Container.UIReferenceHeight', 'CastleUIControls.TUIContainer.html#UIReferenceHeight'); ?>.
+related to user interface scaling:
+<?php echo cgeRef('TCastleContainer.UIScaling', 'Container.UIScaling'); ?>,
+<?php echo cgeRef('TCastleContainer.UIReferenceWidth', 'Container.UIReferenceWidth'); ?>,
+<?php echo cgeRef('TCastleContainer.UIReferenceHeight', 'Container.UIReferenceHeight'); ?>.
 
 <?php echo xml_full_highlight(
 '<ui_scaling
@@ -62,13 +63,12 @@ related to user interface scaling: <?php api_link('Container.UIScaling', 'Castle
 />'); ?>
 
 <p>These settings control <i>user interface scaling</i>.
-See the <?php api_link('UIScaling', 'CastleUIControls.TUIContainer.html#UIScaling'); ?>
- documentation and <a href="manual_2d_user_interface.php">manual page about 2D user interface</a>
-for an explanation how it works. In short, it means that you can "think" that an application
+See the <?php echo cgeRef('TCastleContainer.UIScaling'); ?>.
+UI scaling means that you can often <i>assume</i> that an application
 is designed for a specified window size (like 1600x900).
 You set the positions and sizes (in code, in editor) relative to this desired window size.
 When the application runs, the UI controls are scaled to adjust to the actual window size.
-The scaling is "smart", which means that a different aspect ratio is not a problem
+The scaling is <i>smart</i>, which means that a different aspect ratio is not a problem
 (as long as you set proper anchors).
 The scaling only transforms the UI coordinates &mdash; the controls are actually rendered
 at the final size. So the scaling doesn't reduce quality in any way.

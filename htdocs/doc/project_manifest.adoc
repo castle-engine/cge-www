@@ -279,7 +279,7 @@ Each platform (or package format) will use the most suitable icon format and siz
 ...
 ----
 
-iOS shows a _launch image_ when the application starts. Launch image is shown very early, before any CGE code can run and render anything. So it is displayed even before https://castle-engine.io/manual_2d_user_interface.php#section_loading_image[CGE loading image] shows. The point of the launch image is to communicate to the user that the application is, well, launching.
+iOS shows a _launch image_ when the application starts. Launch image is shown very early, before any CGE code can run and render anything. So it is displayed even before link:loading_image[CGE loading image] shows. The point of the launch image is to communicate to the user that the application is, well, launching.
 
 To enable you to customize this, we will use the images defined as `<launch_images>`.
 

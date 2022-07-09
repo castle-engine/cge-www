@@ -9,14 +9,14 @@ WARNING: This page compares 2 possible approaches to 2D rendering in CGE. This p
 
 === Full-featured: Render using TCastleScene
 
-Use `TCastleViewport`. Add `TCastleViewport` control to the window, and inside it draw things by creating `TCastleScene` instances.
+Use cgeref:TCastleViewport[]. Add cgeref:TCastleViewport[] control to the window, and inside it draw things by creating cgeref:TCastleScene[] instances.
 
 You should call `TCastleViewport.Setup2D` on the viewport to easily make it suitable for 2D games, and call `TCastleScene.Setup2D` to easily make it suitable for 2D games. When using https://castle-engine.io/manual_editor.php[CGE editor], it already has in the menu components _"Viewport (2D)"_ and _"Scene (Optimal Blending for 2D Models)"_.
 
 * Manual:
- ** https://castle-engine.io/manual_load_3d.php introduces the `TCastleScene`.
- ** The `TCastleScene` is incredibly versatile. You can load game models from files. E.g. Spine animations, Blender models etc. You can play animations. Everything described on http://castle-engine.io/manual_scene.php works.
- ** Using `TCastleViewport` for 2D animation is shown e.g. in http://castle-engine.io/manual_2d_user_interface.php .
+ ** link:viewport_and_scenes[Viewport with scenes, camera, navigation] introduces the cgeref:TCastleScene[].
+ ** The cgeref:TCastleScene[] is incredibly versatile. You can load game models from files. E.g. Spine animations, Blender models etc. You can play animations. Everything described on http://castle-engine.io/manual_scene.php works.
+ ** Using cgeref:TCastleViewport[] for 2D is documented on link:viewport_2d[Viewport 2D].
  ** https://castle-engine.io/manual_physics.php shows how to use physics with it.
 * The engine template "2D game" and `physics/physics_2d_game_sopwith/` show this approach.
 * The important API reference links: https://castle-engine.io/apidoc-unstable/html/CastleScene.TCastleScene.html[TCastleScene], https://castle-engine.io/apidoc-unstable/html/CastleSceneCore.TCastleSceneCore.html[TCastleSceneCore], https://castle-engine.io/apidoc-unstable/html/CastleViewport.TCastleViewport.html[TCastleViewport].
@@ -32,10 +32,10 @@ If you want to do it manually, you can also construct your own `TIndexedFaceSetN
 +
 See the "2D game" game template for example.
 +
-You can also use UI scaling ( http://castle-engine.io/manual_2d_user_interface.php#section_scaling ) to just make `TCastleViewport` have the same width or height, regardless of the actual window size. All the scaling is completely hidden from you, inside `TCastleViewport` you just work in your preferred coordinates.
+You can also use link:manual_castle_settings.php#section_ui_scaling[UI scaling] to just make cgeref:TCastleViewport[] have the same width or height, regardless of the actual window size. All the scaling is completely hidden from you, inside cgeref:TCastleViewport[] you just work in your preferred coordinates.
 
 * You can use physics in this approach (see example `physics/physics_2d_game_sopwith/`).
-* You can mix 2D and 3D freely. The `TCastleViewport.Camera` defines projection settings and controls camera. The orthographic camera, `TCastleViewport.Camera.Orthoraphic`, is usually what you want for 2D games. Note that you can insert a `TCastleScene` with 3D content to `TCastleViewport`.
+* You can mix 2D and 3D freely. The `TCastleViewport.Camera` defines projection settings and controls camera. The orthographic camera, `TCastleViewport.Camera.Orthoraphic`, is usually what you want for 2D games. Note that you can insert a cgeref:TCastleScene[] with 3D content to cgeref:TCastleViewport[].
 * To use custom shaders, use X3D shader nodes.
 +
 --
@@ -62,18 +62,18 @@ To do this in X3D (editing X3D file), see https://github.com/castle-engine/demo-
 
 Use `TDrawableImage` as your main way to draw. In this approach, you create `TDrawableImage` instance for each image, and then draw it in overridden `TCastleUserInterface.Render` method. This is the same approach as we use for our user-interface rendering (various `TCastleUserInterface` instances). *The main advantage of this approach is simplicity: you just draw 2D images.*
 
-A similar approach is to draw your game using multiple `TCastleImageControl` instances. `TCastleImageControl` is a simple user-interface control that draws images, using `TDrawableImage` under the hood, exposing mostly the same features.
+A similar approach is to draw your game using multiple cgeref:TCastleImageControl[] instances. `TCastleImageControl` is a simple user-interface control that draws images, using `TDrawableImage` under the hood, exposing mostly the same features.
 
 * Manual:
- ** https://castle-engine.io/manual_state_events.php contains some very basic demo of image drawing.
- ** http://castle-engine.io/manual_2d_user_interface.php talks about our user-interface.
- ** http://castle-engine.io/manual_2d_ui_custom_drawn.php shows the "core" of this approach: new `TCastleUserInterface` descendant with your own `Render` implementation, in which we call `TDrawableImage.Draw`.
+ ** link:manual_state_events.php[Designing user interface and handling events (press, update) within the state] documents basic image display using cgeref:TCastleImageControl[].
+ ** link:user_interface[User Interface].
+ ** link:manual_2d_ui_custom_drawn.php[Custom drawn 2D controls] shows the "core" of this approach: new `TCastleUserInterface` descendant with your own `Render` implementation, in which we call `TDrawableImage.Draw`.
 * API reference: https://castle-engine.io/apidoc-unstable/html/CastleGLImages.TDrawableImage.html[TDrawableImage].
 * You can render sprites using the appropriate `TDrawableImage.Draw` overload (where you specify which part of the source image to render). Or use ready class `TSprite` (it uses `TDrawableImage` underneath).
 * To render pixel-art, set `TDrawableImage.SmoothScaling` to `false`.
 * Numerous engine demos use `TDrawableImage`. Example `isometric_game` draws simple map using it.
 * Besides `TDrawableImage` and `TSprite`, there are also simple drawing helpers like `DrawRectangle`.
-* To have fixed resolution (regardless of the actual window size in pixels), use UI scaling ( http://castle-engine.io/manual_2d_user_interface.php#section_scaling ). However, while it scales correctly all the existing `TCastleUserInterface` instances, you will need to put some additional work to make UI scaling affect your custom `TCastleUserInterface` descendant. This is documented at the bottom of http://castle-engine.io/manual_2d_ui_custom_drawn.php[] -- basically, look at your `ScreenRect` and scale all coordinates by `UIScale` before passing them to `TDrawableImage`. So the scaling is _not_ hidden from you in this case -- you get the information you need, but you need to put some code to make it happen correctly.
+* To have fixed resolution (regardless of the actual window size in pixels), use link:manual_castle_settings.php#section_ui_scaling[UI scaling]. However, while it scales correctly all the existing `TCastleUserInterface` instances, you will need to put some additional work to make UI scaling affect your custom `TCastleUserInterface` descendant. This is documented at the bottom of http://castle-engine.io/manual_2d_ui_custom_drawn.php[] -- basically, look at your `ScreenRect` and scale all coordinates by `UIScale` before passing them to `TDrawableImage`. So the scaling is _not_ hidden from you in this case -- you get the information you need, but you need to put some code to make it happen correctly.
 +
 To have the scaling automatically applied, you can use `TCastleImageControl` instead of directly drawing with `TDrawableImage`. `TCastleImageControl` is an UI control that wraps `TDrawableImage` underneath, and allows to control the image like a normal UI control: with anchors, automatically applied scaling and so on.
 

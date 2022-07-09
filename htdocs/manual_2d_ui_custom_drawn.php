@@ -31,7 +31,7 @@ echo castle_thumbs(array(
 
 <?php echo $toc->html_section(); ?>
 
-<p>While you can <a href="manual_2d_user_interface.php">compose
+<p>While you can <a href="user_interface">compose
 user interface from existing UI controls</a>,
 sometimes it's more flexible to create a control that renders what you want
 using lower-level utilities for 2D drawing.

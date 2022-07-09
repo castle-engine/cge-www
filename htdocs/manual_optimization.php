@@ -80,7 +80,7 @@ In this case, it is easiest to have
 <ul>
   <li><p>If you use <code>TCastleWindow</code>, you can trivially turn on <code>TCastleWindow.FpsShowOnCaption</code>.
 
-  <li><p>You can display FPS using <code>TCastleLabel</code>. See the <a href="manual_2d_user_interface.php">manual page about using our user-interface classes</a>. Just update the <code>TCastleLabel.Caption</code> in every <code>OnUpdate</code> event to show the current FPS value. An an example, create a new project using <a href="manual_editor.php">CGE editor</a> &mdash; all new project templates include an FPS counter.
+  <li><p>You can display FPS using <code>TCastleLabel</code>. See the <a href="user_interface">manual page about using our user-interface classes</a>. Just update the <code>TCastleLabel.Caption</code> in every <code>OnUpdate</code> event to show the current FPS value. An an example, create a new project using <a href="manual_editor.php">CGE editor</a> &mdash; all new project templates include an FPS counter.
 
     <p>Or you can display FPS using <code>TCastleFont.Print</code> in every <code>Render</code> event. See the <?php echo a_href_page('manual about custom drawing', 'manual_2d_ui_custom_drawn'); ?>. As an example, <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/physics/physics_3d_demo/gameinitialize.pas">see how examples/physics/physics_3d_demo/gameinitialize.pas shows the FPS</a> (search for <code>Container.Fps.ToString</code> there).
 

@@ -49,7 +49,7 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
     using the <code>Viewport.Camera</code> property that keeps a
     <?php api_link('TCastleCamera', 'CastleCameras.TCastleCamera.html'); ?>
     instance.
-    See <a href="manual_load_3d.php#section_camera">manual about displaying scene and controlling the camera</a>.
+    See <a href="camera">manual about controlling the camera</a>.
     Still, this X3D node is useful to set initial camera through e.g. <a href="creating_data_blender.php">Blender</a>
     (you can export to glTF or X3D and importing them will set initial camera properly).
 
@@ -87,15 +87,9 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
 
     <p>Controls the navigation behavior (mode of movement, gravity, etc.) and the headlight.
 
-    <p>Note: In <i>Castle Game Engine</i> you can also control the navigation by Pascal code,
-    using the <code>Viewport.Navigation</code> property where you can assign an instance
-    of some <?php api_link('TCastleNavigation', 'CastleCameras.TCastleNavigation.html'); ?>
-    descendant.
-    See <a href="manual_load_3d.php#section_camera">manual about displaying scene and controlling
-    the camera and navigation</a>.
-    And you can control the headlight using the
-    <a href="https://castle-engine.io/apidoc-unstable/html/CastleScene.TCastleRootTransform.html#UseHeadlight">Viewport.Items.UseHeadlight</a>
-    property.
+    <p>Note: In <i>Castle Game Engine</i> you can also control the navigation by Pascal code.
+    See <a href="navigation">manual about navigation</a>.
+    And you can control the headlight by just adding lights as camera children.
     Still, this node is useful to define defaults.
 
     <p>Details about supported fields:

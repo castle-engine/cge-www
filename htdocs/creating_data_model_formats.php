@@ -25,8 +25,7 @@ $toc = new TableOfContents(
 ?>
 
 <p>The following 3D and 2D model formats are supported by <i>Castle Game Engine</i>.
-They can be loaded e.g. <a href="manual_load_3d.php">using
-the TCastleScene.Load</a> method.
+You can load and display them <a href="viewport_and_scenes">using <code>TCastleScene</code> in a viewport</a>.
 You can also <a href="view3dscene.php">open them in view3dscene</a>.
 
 <?php echo $toc->html_toc(); ?>
