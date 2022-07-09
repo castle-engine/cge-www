@@ -72,7 +72,7 @@ They show (from the ground up) the creation of a simple 3D FPS game and 2D game.
 
   <li><p>By default we use fcl-image <b>built-in handling of PNG</b> format. This removes the need to use/distribute extra libraries for handling PNG on any platform.
 
-  <li><p>On <b>Windows GUI applications, we will log to the <code>xxx.log</code> file by default</b>, instead of trying to log to unavailable stderr. <a href="https://castle-engine.io/tutorial_log.php">See the updated tutorial link about logging for details.</a>
+  <li><p>On <b>Windows GUI applications, we will log to the <code>xxx.log</code> file by default</b>, instead of trying to log to unavailable stderr. <a href="https://castle-engine.io/log">See the updated tutorial link about logging for details.</a>
 
   <li><p>' . api_link('TCastle2DControl', 'CastleControl.TCastle2DControl.html', false) . ' component for easily creating 2D games. Already contains a ready T2DSceneManager.
 
@@ -137,9 +137,9 @@ OnUpdate: TNotifyEvent
 
     <p>Some previously published stuff on <code>TCastleControl</code> is deprecated now and will be removed in next release (sorry, we have to break compatibility &mdash; this old stuff really doesn\'t make much sense, all new code should use new events). Also, the deprecated <code>OnPaint</code> was fixed &mdash; just in case you\'re using it (but please switch to using <code>OnRender</code> soon!).
 
-  <li><p>The beginning of the <a href="https://castle-engine.io/tutorial_intro.php">tutorial</a> was much streamlined. We fixed some wording, removed a lot of useless info, and made the beginning of the tutorial really smooth. Now, you really quickly get to the <i>"I made a 3D game!"</i> stage :)
+  <li><p>The beginning of the <a href="https://castle-engine.io/manual_intro.php">tutorial</a> was much streamlined. We fixed some wording, removed a lot of useless info, and made the beginning of the tutorial really smooth. Now, you really quickly get to the <i>"I made a 3D game!"</i> stage :)
 
-    <p>Also, the tutorial chapter <a href="https://castle-engine.io/tutorial_castle_scene_transform.php">"Adding a simple moving object" was added</a>.
+    <p>Also, the tutorial chapter <a href="https://castle-engine.io/viewport_and_scenes">"Adding a simple moving object" was added</a>.
 
   <li>Also, as you probably see, the website got a total facelift, using HTML5 and Bootstrap style. Various pages and menus were rearranged to be more helpful. I hope you enjoy the new website &mdash; please leave a note in the comments :)
 

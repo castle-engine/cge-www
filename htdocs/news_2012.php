@@ -152,8 +152,8 @@ castle_thumbs(array(
 
 <ol>
   <li><p>Many improvements to
-    <a href="https://castle-engine.io/tutorial_intro.php">engine tutorial</a>,
-    <a href="https://castle-engine.io/tutorial_classes_overview.php">classes diagram</a> and
+    <a href="https://castle-engine.io/manual_intro.php">engine tutorial</a>,
+    <a href="https://castle-engine.io/apidoc-unstable/html/ClassHierarchy.html">classes diagram</a> and
     <a href="https://castle-engine.io/creating_data_intro.php">level.xml and resource.xml files documentation</a>.
     It\'s still a lot of raw, unformatted text, but the content pretty much covers now everything I want, and it describes the latest engine workings in SVN.</p>
 

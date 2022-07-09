@@ -45,7 +45,7 @@ castle_thumbs(array(
       <li><code>TCastleTheme</code> is now a configurable collection of images (with nice defaults).
     </ul>
 
-    <p><a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/docs/tutorial_player_2d_controls.html">Tutorial about 2D controls (SVN version)</a>
+    <p><a href="https://castle-engine.io/manual_2d_ui_custom_drawn.php">Tutorial about 2D controls</a>
     contains various examples about new <code>TGLImage</code> and <code>Theme.Draw</code> usage.
 
     <p><b>Dialog boxes (<code>CastleMessages</code> unit) improved</b>:
@@ -114,7 +114,7 @@ castle_thumbs(array(
 <ol>
   <li><b>Mac OS X native look and easy installation</b>. Our Mac OS X programs now have a native look, with typical Mac OS X theme and menu and dialogs. They are nicely packaged in a dmg file, with a Mac OS X "bundle" inside that you can drag to your Applications folder.<br/>
     This concerns both <a href="' . CURRENT_URL . 'view3dscene.php">view3dscene</a> and <a href="' . CURRENT_URL . 'glviewimage.php">glViewImage</a> (our handy image viewer, supporting some uncommon formats like DDS).
-  <li><b>Network (http) support.</b> We can download everything from the Internet, everything is correctly treated as URL, we also use MIME-types more. For developers <a href="' . CURRENT_URL . 'tutorial_network.php">new chapter of our tutorial describing network support is available</a>.
+  <li><b>Network (http) support.</b> We can download everything from the Internet, everything is correctly treated as URL, we also use MIME-types more. For developers <a href="' . CURRENT_URL . 'manual_network.php">new chapter of our tutorial describing network support is available</a>.
   <li><b>More complete data URI support</b>. Absolutely everything can now use data URI to embed data inside a single VRML/X3D file. There is a demo <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/x3d/data_uri.x3dv">data_uri.x3dv</a> showing how you can use data URI to embed all kinds of things inside X3D file: textures, sounds, other 3D models (to Inline or Anchor to them), scripts etc.<br/>
     Engine examples contain a simple tool <code>examples/tools/to_data_uri.lpr</code> that can generate data URI from any file.
   <li><b>Clipboard</b> (Ctrl+C, Ctrl+V, Ctrl+X in message boxes, especially handy to copy/paste URLs). For developers: use <a href="' . CURRENT_URL . 'apidoc/html/CastleWindow.TCastleClipboard.html#AsText">Clipboard.AsText</a> property.
@@ -195,7 +195,7 @@ castle_thumbs(array(
 
   <li><p>Thanks to <i>Abou Al Montacir</i> we will have packages with <a href="' . CURRENT_URL . 'engine.php">Castle Game Engine</a> and <a href="' . CURRENT_URL . 'view3dscene.php">view3dscene</a> in <a href="http://www.debian.org/">Debian</a>! Most of this software was developed by Michalis using Debian, so having my software in the Debian repository would feel really great for me :) <a href="https://sourceforge.net/p/castle-engine/discussion/general/thread/377c403d/">See here for our forum thread</a>, and here is the Debian bug marking ITP (Intent To Package) for engine: <a href="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=706408">#706408</a> and for view3dscene: <a href="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=707932">#707932</a>.
 
-  <li><p>For developers, <a href="' . CURRENT_URL . 'tutorial_network.php">new chapter of our tutorial describing network support is available</a>.
+  <li><p>For developers, <a href="' . CURRENT_URL . 'manual_network.php">new chapter of our tutorial describing network support is available</a>.
 
   <li><p>Engine examples contain a simple tool <code>examples/tools/to_data_uri.lpr</code> that can generate data URI (to embed your texture, audio, model, etc. inside a VRML/X3D model, or a webpage, or other documents) from any file. It gets the file and guesses MIME type using our existing CastleDownload unit, so it supports local files as well as http links, and MIME type is retrieved from server or guessed based on file extension.
 
@@ -319,7 +319,7 @@ castle_thumbs(array(
 
     ' . (!HTML_VALIDATION ? '<iframe width="640" height="480" src="http://www.youtube.com/embed/S0bA3mJ8lZc" frameborder="0" allowfullscreen></iframe>' : '') . '
 
-    <p>The engine is very flexible, you can derive new classes and override a lot of methods to customize behavior of everything in ObjectPascal. You can define new level logic, new creatures, new items, and finally you can also use basic 3D classes to easily create any 3D entities suitable for your game. You can also easily create your own viewports, scene managers, 2D controls, use 3D sound and much more. Everything is explained in the <a href="' . CURRENT_URL . 'tutorial_intro.php">new tutorial</a>.</p>
+    <p>The engine is very flexible, you can derive new classes and override a lot of methods to customize behavior of everything in ObjectPascal. You can define new level logic, new creatures, new items, and finally you can also use basic 3D classes to easily create any 3D entities suitable for your game. You can also easily create your own viewports, scene managers, 2D controls, use 3D sound and much more. Everything is explained in the <a href="' . CURRENT_URL . 'manual_intro.php">new tutorial</a>.</p>
     <!--  Of course, you can also define animations and even use scripting inside VRML/X3D files, but for a non-trivial game -->
 
     <!--
@@ -330,7 +330,7 @@ castle_thumbs(array(
   <li><p>We have <b>a lot of new documentation</b> to show you how to use the engine:</p>
 
     <ul>
-      <li><a href="' . CURRENT_URL . 'tutorial_intro.php">Tutorial</a> - introduces most concepts of the engine, with example code snippets.</li>
+      <li><a href="' . CURRENT_URL . 'manual_intro.php">Tutorial</a> - introduces most concepts of the engine, with example code snippets.</li>
       <li><a href="' . CURRENT_URL . 'tutorial_classes_overview.php">Classes overview (cheatsheet)</a> - a quick ride through most important engine classes and ideas.</li>
       <li><a href="' . CURRENT_URL . 'creating_data_intro.php">Guide to creating game data</a> - how to create your 3D models using any 3D modeling software (like open-source <a href="http://www.blender.org/">Blender</a>), and how to write various configuration files like <code>resource.xml</code> and <code>level.xml</code>.</li>
       <li><a href="' . CURRENT_URL . 'apidoc/html/index.html">As always, there is also a complete API reference.</a></li>
