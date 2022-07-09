@@ -73,7 +73,9 @@ if (is_prefix('# ', $adoc_first_line)) {
   $title = $page_name; // use internal page name as a fallback title
 }
 
-castle_header($title);
+castle_header($title, array(
+  'canonical_url' => CASTLE_PROD_URL . $page_name
+));
 
 global $castle_current_book;
 if ($castle_current_book == NULL) { // in case of book, pretty_heading is already done by castle_header

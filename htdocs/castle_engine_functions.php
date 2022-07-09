@@ -915,7 +915,9 @@ var _bftn_options = {
 /* echo flattr_header(); - Flattr not used now */
 
 /* Don't use facebook_header on other pages, as it makes all links
-   from FB (and G+?) lead to main page --- I actually don't want this. */
+   from FB (and G+?) lead to main page.
+   Maybe in the future facebook_header should be improved, to use current title, url, meta etc.
+   instead of talking about main page. */
 global $main_page;
 if ($main_page) echo facebook_header();
 
@@ -978,6 +980,12 @@ function castle_header($a_page_title, array $parameters = array())
   $common_header_parameters = array();
   if (isset($parameters['meta_description'])) {
     $common_header_parameters['meta_description'] = $parameters['meta_description'];
+  }
+  if (isset($parameters['meta_keywords'])) {
+    $common_header_parameters['meta_keywords'] = $parameters['meta_keywords'];
+  }
+  if (isset($parameters['canonical_url'])) {
+    $common_header_parameters['canonical_url'] = $parameters['canonical_url'];
   }
   if (!empty($parameters['social_share_image'])) {
     if (kambi_url_absolute($parameters['social_share_image'])) {
@@ -1749,7 +1757,7 @@ function gallery_link_noimage($title, $subtitle, $page_name)
   echo $s;
 }
 
-define('META_DESCRIPTION', 'Free open-source 3D and 2D game engine. Supports a lot of 2D and 3D data formats, including glTF, X3D, VRML, Collada, Spine. Cross-platform, for desktops (Windows, Linux, macOS...), mobile (Android, iOS), console (Nintendo Switch). Many beatiful 3D features (physically based rendering, shadows, mirrors, gamma correction) available. Using modern Object Pascal.');
+define('META_DESCRIPTION', 'Free open-source 3D and 2D game engine. Cross-platform, for desktops (Windows, Linux, macOS, FreeBSD...), mobile (Android, iOS), console (Nintendo Switch). Powerful visual editor. Powerful API for devs. Supports a lot of model formats, like glTF, X3D and Spine. Many rendering features (physically based rendering, shadows, mirrors, gamma correction). Fast code compilation and execution using modern Pascal.');
 
 /* Show 404 (page not found) error page.
    Show $message (will be sanitized for HTML, should be a whole sentence -- end with dot).

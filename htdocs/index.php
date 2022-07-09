@@ -87,7 +87,10 @@ if (!HTML_VALIDATION && (
 }
 
 castle_header('Download', array(
-  'meta_description' => META_DESCRIPTION
+  'meta_description' => META_DESCRIPTION,
+  /* Not useful for Google anymore, but maybe other search engines use them. */
+  'meta_keywords' => 'game engine, glTF, X3D, Spine, Pascal, cross platform, editor, Nintendo Switch, Linux, Windows, macOS, Android, iOS, PBR, shadows, shaders',
+  'canonical_url' => CASTLE_PROD_URL
 ));
 
 define('CGE_SNAPSHOTS_BASE', 'https://github.com/castle-engine/castle-engine/releases/download/snapshot/');

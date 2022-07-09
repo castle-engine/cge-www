@@ -86,7 +86,7 @@ function facebook_header()
     <meta property="og:title" content="Castle Game Engine" />
     <meta property="og:type" content="game" />
     <meta property="og:image" content="https://castle-engine.io/images/castle_game_engine_icon.png" />
-    <meta property="og:url" content="https://castle-engine.io/" />
+    <meta property="og:url" content="' . htmlspecialchars(CASTLE_PROD_URL) . '" />
     <meta property="og:description" content="' . htmlspecialchars(META_DESCRIPTION) . '" />
   ';
 }

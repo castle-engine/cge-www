@@ -404,12 +404,16 @@ if ($castle_wordpress) {
 <meta name="Author" content="Michalis Kamburelis">
 
 <?php
+  if (!empty($parameters['canonical_url'])) {
+    echo '<link rel="canonical" href="' . htmlspecialchars($parameters['canonical_url']) . '">' . "\n";
+  }
+
   if (!empty($parameters['meta_keywords'])) {
-    echo '<meta name="Keywords" content="' . $parameters['meta_keywords'] . '">' . "\n";
+    echo '<meta name="Keywords" content="' . htmlspecialchars($parameters['meta_keywords']) . '">' . "\n";
   }
 
   if (!empty($parameters['meta_description'])) {
-    echo '<meta name="Description" content="' . $parameters['meta_description'] . '">' . "\n";
+    echo '<meta name="Description" content="' . htmlspecialchars($parameters['meta_description']) . '">' . "\n";
   }
 
   if (! ($main_page || CASTLE_ENVIRONMENT == 'offline'))
