@@ -376,7 +376,7 @@ but in some special cases may be avoided:
     <p>TODO: The API for "baking" should use TNodeInterpolator, not deprecated <code>TCastlePrecalculatedAnimation</code>.
   -->
 
-  <li><p>Watch out what you're changing in the X3D nodes. Most changes, in particular the ones that can be achieved by sending X3D events (these changes are kind of "suggested by the X3D standard" to be optimized) are fast. But some changes are very slow, cause rebuilding of scene structures, e.g. reorganizing X3D node hierarchy. So avoid doing it during game. To detect this, set <code>LogSceneChanges := true</code> and watch log (see <a href="manual_log.php">manual chapter "Logging"</a>) for lines saying <i>"ChangedAll"</i> - these are costly rebuilds, avoid them during the game!
+  <li><p>Watch out what you're changing in the X3D nodes. Most changes, in particular the ones that can be achieved by sending X3D events (these changes are kind of "suggested by the X3D standard" to be optimized) are fast. But some changes are very slow, cause rebuilding of scene structures, e.g. reorganizing X3D node hierarchy. So avoid doing it during game. To detect this, set <code>LogSceneChanges := true</code> and watch log (see <a href="log">manual chapter "Logging"</a>) for lines saying <i>"ChangedAll"</i> - these are costly rebuilds, avoid them during the game!
 </ul>
 
 <?php echo $toc->html_section(); ?>
@@ -649,7 +649,7 @@ Hints to make it faster:
 
 <p><iframe width="560" height="315" src="https://www.youtube.com/embed/5jBdPdj75yk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-<p>We have <?php api_link('TCastleFrameProfiler', 'CastleTimeUtils.TCastleFrameProfiler.html'); ?> to profile the time spend in a particular frame (from one <code>OnUpdate</code> start to another). Use this to track short tasks that occur within a frame. The engine automatically tracks there some operations (just enable <code>FrameProfiler.Enabled := true</code> and look in the <a href="manual_log.php">log</a> for results), you can also track other operations (specific to your game). An example output looks like this:
+<p>We have <?php api_link('TCastleFrameProfiler', 'CastleTimeUtils.TCastleFrameProfiler.html'); ?> to profile the time spend in a particular frame (from one <code>OnUpdate</code> start to another). Use this to track short tasks that occur within a frame. The engine automatically tracks there some operations (just enable <code>FrameProfiler.Enabled := true</code> and look in the <a href="log">log</a> for results), you can also track other operations (specific to your game). An example output looks like this:
 
 <pre>
 -------------------- FrameProfiler begin

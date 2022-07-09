@@ -926,7 +926,7 @@ WWWInline { name "my_compressed_vrml_file.wrl.gz" }
     and "%d" is just next free number. This way logger output file
     is predictable, and should never overwrite your data.
 
-    <p>If the <code>logFile</code> is empty, the output goes to the <a href="manual_log.php">default Castle Game Engine log file for this application</a>.
+    <p>If the <code>logFile</code> is empty, the output goes to the <a href="log">default Castle Game Engine log file for this application</a>.
 
     <p>These security measures were added by my implementation &mdash;
     InstantReality spec simply says that <code>logFile</code> is the name of the file,

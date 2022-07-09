@@ -171,7 +171,7 @@ Pass also additional options reflecting the OS/architecture, mode and package na
 
 Run the application.
 
-The log of the application (whatever you write using https://castle-engine.io/manual_log.php[WritelnLog, WritelnWarning]) will be the output of this command. On some platforms, you can also use regular `Writeln`, but to be cross-platform better stick to CGE `WritelnLog` / `WritelnWarning`, they will work in all cases (Android, iOS, Windows GUI applications etc.).
+The log of the application (whatever you write using link:log[WritelnLog, WritelnWarning]) will be the output of this command. On some platforms, you can also use regular `Writeln`, but to be cross-platform better stick to CGE `WritelnLog` / `WritelnWarning`, they will work in all cases (Android, iOS, Windows GUI applications etc.).
 
 As usual, use `--os`, `--cpu` or `--target` options to specify target operating system/processor. By default, we run the normal (exe) application on the current platform.
 

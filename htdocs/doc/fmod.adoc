@@ -13,7 +13,7 @@ Note that using FMOD is not free. See https://www.fmod.com/ for library download
 
 Use cgeref:CastleFMODSoundBackend[] unit, and call cgeref:UseFMODSoundBackend[] procedure at any point. You usually want to call it early, before any sound was loaded or played, this way the default sound backend (OpenAL on desktop and mobile) will not even be initialized.
 
-The cgeref:UseFMODSoundBackend[] will switch to FMOD backend only if the FMOD library (from https://www.fmod.com/) is found. See instructions below about hot to get and where to place FMOD library. If FMOD library is loaded dynamically, and it is not found, then a warning is produced (you can see it in link:manual_log.php[log]) and `UseFMODSoundBackend` does nothing.
+The cgeref:UseFMODSoundBackend[] will switch to FMOD backend only if the FMOD library (from https://www.fmod.com/) is found. See instructions below about hot to get and where to place FMOD library. If FMOD library is loaded dynamically, and it is not found, then a warning is produced (you can see it in link:log[log]) and `UseFMODSoundBackend` does nothing.
 
 == Getting FMOD library and copying it to your project
 

@@ -63,7 +63,7 @@ It is advised (although not required) to create an atlas when you export to JSON
 
 * You can choose a skin at loading, by loading a filename like `my_animation.json#skin:my_skin_name` instead of `my_animation.json`.
 * By default we use the first (non-default) skin.
-* If you don't know the list of possible skins: you can see them in Spine, or in our https://castle-engine.io/manual_log.php[log].
+* If you don't know the list of possible skins: you can see them in Spine, or in our link:log[log].
 * For backward compatibility, instead of `my_animation.json#skin:my_skin_name` we also support `my_animation.json#my_skin_name`. But the latter form is deprecated.
 
 === Atlases

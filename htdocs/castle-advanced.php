@@ -94,7 +94,7 @@ probably stop any other programs that play some music.
 <?php echo $toc->html_section(); ?>
 
 Look at log output.
-<a href="manual_log.php">Here we describe where log output is.</a>
+<a href="log">Here we describe where log output is.</a>
 When sending bug reports, it may be useful to attach generated log
 to your report &mdash; it will show some things about your
 OpenGL, OpenAL, and what happened during the game.

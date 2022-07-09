@@ -636,7 +636,7 @@ display it as in-game notification.
 As a developer, you can configure how this is handled,
 see <code>OnScriptMessage</code> in <code>CastleScript</code> unit.
 By default, it results in <code>CastleLog.WritelnLog</code>, see
-the <a href="manual_log.php">manual about logging</a>.</p>
+the <a href="log">manual about logging</a>.</p>
 
 <p>Most array functions can also treat the string as an array of characters.
 We do not have a special type for a "character" &mdash; we just use a string with length 1.

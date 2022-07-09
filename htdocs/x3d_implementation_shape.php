@@ -97,7 +97,7 @@ $toc = new TableOfContents(
         <ol>
           <li><p><code>glLineStipple</code> is not supported (so X3D <code>linetype</code> field will unfortunately do nothing).
 
-          <li><p>Line width is limited. You can see the maxium line width in the <a href="manual_log.php">log</a> (printed by <a href="https://castle-engine.io/apidoc-unstable/html/CastleGLUtils.html#GLInformationString">GLInformationString</a>), as <i>"Max line width"</i>. Unfortunately, on many Android devices it's just 1. Which means that <code>glLineWidth</code> is supported, but actually completely ignored by the device.
+          <li><p>Line width is limited. You can see the maxium line width in the <a href="log">log</a> (printed by <a href="https://castle-engine.io/apidoc-unstable/html/CastleGLUtils.html#GLInformationString">GLInformationString</a>), as <i>"Max line width"</i>. Unfortunately, on many Android devices it's just 1. Which means that <code>glLineWidth</code> is supported, but actually completely ignored by the device.
         </ol>
 
         <p>If you need 100% reliable line width or patterns on Android/iOS, you may need to render them differently, using filled rectangles (e.g. using <code>IndexedFaceSet</code> or <code>Rectangle2D</code> nodes). To simulate line patterns, use small repeatable textures with transparent pixels (you can set texture filtering to <code>"NONE"</code> using <code>TextureProperties</code> node to avoid smoothing the alpha channel).
