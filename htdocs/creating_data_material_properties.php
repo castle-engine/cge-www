@@ -18,12 +18,17 @@ This is useful to configure behavior that is naturally dependent on
 a given material or texture. Right now this allows to define things like:
 
 <ul>
-  <li>footsteps,</li>
-  <li>toxic ground (hurts player),</li>
-  <li>bump mapping,</li>
-  <li>texture GPU-compressed alternatives, and downscaled alternatives
+  <li><i>(Deprecated)</i> footsteps,</li>
+  <li><i>(Deprecated)</i> toxic ground (hurts player),</li>
+  <li><i>(Deprecated)</i> bump mapping,</li>
+  <li>Auto-generated textures (GPU-compressed, downscaled)
     (this is documented in <a href="creating_data_auto_generated_textures.php">chapter about auto-generated textures</a>).</li>
 </ul>
+
+<div class="alert alert-warning preview-warning" role="alert">
+As you see above, the only non-deprecated functionality of material properties
+is to define auto-generated textures.
+</div>
 
 <p>See <?php api_link('TMaterialProperties', 'CastleMaterialProperties.TMaterialProperties.html'); ?> docs.
 
