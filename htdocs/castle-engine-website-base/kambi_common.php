@@ -45,7 +45,7 @@
 
      This makes sure that CASTLE_ENVIRONMENT is honored,
      in particular that CASTLE_ENVIRONMENT == 'offline' is honored
-     (links should be to remote CASTLE_FINAL_URL/xxx.php).
+     (links should be to remote CASTLE_PROD_URL/xxx.php).
 
      The only allowed usage of <a href ...> is for internal links within
      the same page, like <a href="#internal_link">xxx</a>
@@ -159,17 +159,17 @@ function pretty_heading($heading_text, $version_number = NULL, $subheading_text 
 }
 
 /* When CASTLE_ENVIRONMENT != 'offline' then this is exactly a_href_size.
-   Otherwise prefixes $f_name with full URL our page (CASTLE_FINAL_URL)
+   Otherwise prefixes $f_name with full URL our page (CASTLE_PROD_URL)
    and doesn't give size.
 
    Innymi slowy, $f_name powinien byc sciezka wzgledna do pliku.
    Wtedy ta funkcja wygeneruje a_href_size lub,
-   w przypadku offline, sensowny odpowiednik z linkiem CASTLE_FINAL_URL.
+   w przypadku offline, sensowny odpowiednik z linkiem CASTLE_PROD_URL.
 */
 function current_www_a_href_size($link_title, $f_name)
 {
   if (CASTLE_ENVIRONMENT == 'offline') {
-    $final_f_name = CASTLE_FINAL_URL . $f_name;
+    $final_f_name = CASTLE_PROD_URL . $f_name;
     $f_size = '';
   } else {
     $final_f_name = $f_name;
@@ -209,7 +209,7 @@ function page_requisite($page_name, $hash_link = '')
    and $hash_link (suffix after #).
 
    It makes the CASTLE_ENVIRONMENT == 'offline' honored OK:
-   - when CASTLE_ENVIRONMENT != 'offline', adds CASTLE_FINAL_URL
+   - when CASTLE_ENVIRONMENT != 'offline', adds CASTLE_PROD_URL
    - when CASTLE_ENVIRONMENT == 'offline', adds CURRENT_URL
 
    If the URL is absolute, we do not add URL prefix
@@ -248,7 +248,7 @@ function page_url($page_name, $hash_link = '')
         throw new ErrorException('When CASTLE_ENVIRONMENT==offline, CURRENT_URL is expected to be empty by page_url');
       }
       // $remote_url is empty now, since CURRENT_URL == ''
-      $remote_url = CASTLE_FINAL_URL;
+      $remote_url = CASTLE_PROD_URL;
     }
 
     $result = $remote_url . $result . $add_extension;
@@ -297,7 +297,7 @@ function a_href_page_hashlink($link_title, $page_name, $hash_link)
      of this page (the thing after CURRENT_URL).
      Like "view3dscene.php".
      The idea is that glueing CURRENT_URL . $this_page_name,
-     or CASTLE_FINAL_URL . $this_page_name,
+     or CASTLE_PROD_URL . $this_page_name,
      always gives you a real URL to the current page.
 
      Is is always calculated and set by this function.

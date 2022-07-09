@@ -186,7 +186,7 @@ function youtube_subscribe()
 //       var disqus_shortname = 'castle-engine'; // required: replace example with your forum shortname
 //       var disqus_identifier = '" . htmlspecialchars($page_basename) . "';
 //       var disqus_title = '" . htmlspecialchars($page_title) . "';
-//       var disqus_url = '" . CASTLE_FINAL_URL . $this_page_name . "';
+//       var disqus_url = '" . CASTLE_PROD_URL . $this_page_name . "';
 //       (function() {
 //           var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
 //           dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';

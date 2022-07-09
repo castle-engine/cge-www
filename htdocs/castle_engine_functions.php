@@ -24,13 +24,16 @@
 
 /* PHP functions common for castle-engine WWW pages. */
 
+/* The production (not development, offline) website URL. */
+define('CASTLE_PROD_URL', 'https://castle-engine.io/');
+
 /* Calculate CASTLE_ENVIRONMENT constant. */
 function castle_detect_environment()
 {
   /* CASTLE_ENVIRONMENT equal "offline"
      means that we will set CURRENT_URL to '' and do not connect
      to the outside world for resources (scripts, images, including analytics).
-     All the links lead to remote (to CASTLE_FINAL_URL/xxx.php),
+     All the links lead to remote (to CASTLE_PROD_URL/xxx.php),
      this is realized by kambi_common.php .
 
      Useful to generate documentation working offline
@@ -60,15 +63,6 @@ function castle_detect_environment()
     return;
   }
 
-  /* Preview version is not maintained anymore.
-     Realistically, it wasn't much useful.
-  if (isset($_SERVER['SERVER_NAME']) &&
-      ($_SERVER['SERVER_NAME'] == 'michalis.ii.uni.wroc.pl')) {
-    define('CASTLE_ENVIRONMENT', 'preview');
-    return;
-  }
-  */
-
   define('CASTLE_ENVIRONMENT', 'production');
 }
 
@@ -90,18 +84,13 @@ switch (CASTLE_ENVIRONMENT) {
   case 'development':
     define('CURRENT_URL', 'http://localhost:8777/');
     break;
-  // case 'preview':
-  //   define('CURRENT_URL', 'https://michalis.ii.uni.wroc.pl/cge-www-preview/');
-  //   break;
   case 'production':
-    define('CURRENT_URL', 'https://castle-engine.io/');
+    define('CURRENT_URL', CASTLE_PROD_URL);
     break;
   default:
     throw new ErrorException('Unrecognized CASTLE_ENVIRONMENT value: ' . CASTLE_ENVIRONMENT);
 }
 
-/* The final (not testing, offline, or preview) website URL. */
-define('CASTLE_FINAL_URL', 'https://castle-engine.io/');
 define('KAMBI_NO_HOME_LINK', true);
 
 // other constants
@@ -1173,7 +1162,7 @@ function echo_castle_header_suffix($path, $enable_sidebar = true)
 
   /* preview version is not maintained anymore
   if (CASTLE_ENVIRONMENT == 'preview') {
-    $rendered .= '<div class="alert alert-warning preview-warning" role="alert"><strong>This is a preview!</strong> This is not the official <i>Castle Game Engine</i> website (<a href="' . CASTLE_FINAL_URL . '">official website is here</a>). This is only a preview for developers, to see the next website before the release, and to see the documentation for the unstable engine version (from <a href="https://github.com/castle-engine/castle-engine">GitHub master</a>).</div>';
+    $rendered .= '<div class="alert alert-warning preview-warning" role="alert"><strong>This is a preview!</strong> This is not the official <i>Castle Game Engine</i> website (<a href="' . CASTLE_PROD_URL . '">official website is here</a>). This is only a preview for developers, to see the next website before the release, and to see the documentation for the unstable engine version (from <a href="https://github.com/castle-engine/castle-engine">GitHub master</a>).</div>';
   }
   */
 
