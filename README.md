@@ -194,7 +194,8 @@ Most important Wordppress shortcodes are:
 
         ```
         CREATE DATABASE cgewp;
-        GRANT ALL PRIVILEGES ON cgewp.* TO 'cgewp'@'localhost' IDENTIFIED BY 'devpassword';
+        CREATE USER 'cgewp'@'localhost' IDENTIFIED BY 'devpassword';
+        GRANT ALL PRIVILEGES ON cgewp.* TO 'cgewp'@'localhost';
         ```
 
     * Install PHP mysql extension.
