@@ -1046,6 +1046,46 @@ function _detect_page_path($page_name)
   return $result;
 }
 
+function _castle_patreon_box()
+{
+  $patreon_json = file_get_contents(__DIR__ . '/../patreon/patreon.json');
+  /* Check _castle_disable_externals() to avoid adding Patreon data
+     to static HTML pieces in castle-engine/doc/pasdoc/html-parts/ .
+     These static HTML pieces then go to PasDoc output,
+     compositing_shaders_doc, vrml_engine_internals. */
+  if (_castle_disable_externals() || $patreon_json === false) {
+    $patreon_desc = 'Data Not Available';
+    $patreon_percent = 0;
+  } else {
+    $patreon = json_decode($patreon_json);
+    $patreon_desc = $patreon->completed_percentage . '%&nbsp;of&nbsp;$' . $patreon->amount_cents/100;
+    $patreon_percent = $patreon->completed_percentage;
+  }
+
+  return '
+    <a href="' . PATREON_URL . '" class="navbar-link" title="Patreon goal data not available"
+      style="display: inline-block; background-color: #FF424D; border-radius: 0; text-align: center;">
+      <!--img src="images/patreon-brand/logo/png-512/Digital-Patreon-Logo_Black.png"
+        alt="Patreon Logo"
+        style="display: inline-block; width: 2em; height: 2em; vertical-align: middle;"
+      /
+      -->
+      <div style="color: #ffffff; padding-left: 1em; padding-right: 1em;">
+        <span style="vertical-align: middle;">Support&nbsp;us&nbsp;on</span>&nbsp;<img src="images/patreon-brand/wordmark/small/Digital-Patreon-Wordmark_White.png"
+          alt="Patreon Wordmark"
+          style="max-width: 5em; display: inline-block; vertical-align: middle;"
+        >
+      </div>
+      <div style="width: 100%; height: 2em; background-color: #141518; position: relative;">
+        <div style="position: absolute; width: ' . $patreon_percent . '%; height: 2em; background-color: #ffffff; border: 2px none;">&nbsp;</div>
+        <div style="position: absolute; color: #FF424D; width: 100%; height:100%; display: table; ">
+          <span style="display: table-cell; text-align: center; vertical-align: middle;">' . $patreon_desc . '</span>
+        </div>
+      </div>
+    </a>
+  ';
+}
+
 function echo_castle_header_suffix($path, $enable_sidebar = true)
 {
   global $castle_sidebar;
@@ -1117,18 +1157,6 @@ function echo_castle_header_suffix($path, $enable_sidebar = true)
     $github_ribbon = '';
   }
 
-  $patreon_json = file_get_contents(__DIR__ . '/../patreon/patreon.json');
-  /* Check _castle_disable_externals() to avoid adding Patreon data
-     to static HTML pieces in castle-engine/doc/pasdoc/html-parts/ .
-     These static HTML pieces then go to PasDoc output,
-     compositing_shaders_doc, vrml_engine_internals. */
-  if (_castle_disable_externals() || $patreon_json === false) {
-    $patreon_desc = 'Patreon goal data not available';
-  } else {
-    $patreon = json_decode($patreon_json);
-    $patreon_desc = $patreon->completed_percentage . '% of $' . $patreon->amount_cents/100;
-  }
-
   $rendered = '
   <nav class="navbar navbar-default">
     <div class="container-fluid">
@@ -1143,7 +1171,7 @@ function echo_castle_header_suffix($path, $enable_sidebar = true)
       -->
 
       <ul class="nav nav-tabs navbar-right">
-        <li><a href="' . PATREON_URL . '" class="navbar-link" title="' . htmlspecialchars($patreon_desc) . '">Support the engine on<br><img class="patreon-logo" src="' . page_requisite('images/patreonlogoorange_45px.png') . '" alt="Patreon" /></a></li>
+        <li>' . _castle_patreon_box() . '</li>
       </ul>
 
       <!--button type="button" class="btn btn-default navbar-btn navbar-right" style="margin-right: 0px;"><a href="' . PATREON_URL . '" class="navbar-link">Support us on<br><img style="height: 40px" src="' . page_requisite('images/patreonlogoorange.png') . '" alt="Patreon" /></a></button-->
