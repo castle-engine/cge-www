@@ -27,12 +27,15 @@ You should call `TCastleViewport.Setup2D` on the viewport to easily make it suit
 If you want to do it manually, you can also construct your own `TIndexedFaceSetNode` instances and change texture coordinates.
 
 * To render pixel-art, set texture filtering to "nearest". It's easiest to do this by setting `Scene.Attributes.MagnificationFilter := magNearest`. Alternatively, you could control this on a particular shape using `TTexturePropertiesNode`, links on http://castle-engine.io/x3d_implementation_texturing.php .
-* You can also link:using_images[load image as a TCastleScene].
-* To have fixed resolution (regardless of the actual window size in pixels), set `TCastleViewport.Camera.Orthographic.Width` and/or `TCastleViewport.Camera.Orthographic.Height`. By default they are both zero (which means they follow window size), but if you set them then you explicitly specify the size. Set exactly one of them to non-zero to make the other one automatically adjusted to follow aspect ratio.
+* You can load image as cgeref:TCastleImageTransform[] (more advised) or cgeref:TCastleScene[]. See link:using_images[using images].
+* To have reliable field of view (regardless of the window size in pixels, regardless of UI scaling, regardless of viewport size), set cgeref:TCastleOrthographic.Width[Camera.Orthographic.Width] or cgeref:TCastleOrthographic.Height[Camera.Orthographic.Height] to non-zero. We advise this, this is usually most natural to control viewport field of view reliably. If you create a 2D viewport in editor, we actually initialize cgeref:TCastleOrthographic.Width[Camera.Orthographic.Width] to `1000` now.
 +
-See the "2D game" game template for example.
+If both cgeref:TCastleOrthographic.Width[Camera.Orthographic.Width] and cgeref:TCastleOrthographic.Height[Camera.Orthographic.Height] are zero then viewport field of view follows window size (adjusted by UI scaling). This is not advised. It means you will have to take more care to display proper content in all cases, in all allowed viewport sizes, window sizes etc.
 +
-You can also use link:manual_castle_settings.php#section_ui_scaling[UI scaling] to just make cgeref:TCastleViewport[] have the same width or height, regardless of the actual window size. All the scaling is completely hidden from you, inside cgeref:TCastleViewport[] you just work in your preferred coordinates.
+See the _"2D game"_ new project template for example.
+//+
+// This is true burt confusing in light of above.
+//You can also use link:manual_castle_settings.php#section_ui_scaling[UI scaling] to just make cgeref:TCastleViewport[] have the same width or height, regardless of the actual window size. All the scaling is completely hidden from you, inside cgeref:TCastleViewport[] you just work in your preferred coordinates.
 
 * You can use physics in this approach (see example `physics/physics_2d_game_sopwith/`).
 * You can mix 2D and 3D freely. The `TCastleViewport.Camera` defines projection settings and controls camera. The orthographic camera, `TCastleViewport.Camera.Orthoraphic`, is usually what you want for 2D games. Note that you can insert a cgeref:TCastleScene[] with 3D content to cgeref:TCastleViewport[].
