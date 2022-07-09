@@ -18,7 +18,7 @@ $toc = new TableOfContents(
 
 <p><i>Castle Game Engine Editor</i> is the most important visual tool of our engine.
 It allows to create, edit and build applications with CGE.
-Get it by <a href="index.php">downlading latest Castle Game Engine release</a>
+Get it by <a href="/">downlading latest Castle Game Engine release</a>
 and run <code>castle-editor</code> executable in the <code>bin</code> subdirectory.
 
 <?php echo $toc->html_section(); ?>
