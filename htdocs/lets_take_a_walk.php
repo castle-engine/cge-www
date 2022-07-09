@@ -61,7 +61,7 @@ appropriate DLLs are already is the archive.
 ?>
 
 <div class="download jumbotron">
-    <a class="btn btn-primary btn-lg" href="index.php"><span class="glyphicon glyphicon-download" aria-hidden="true"></span><br>The game is now available as an example of engine usage in <code>examples/3d_sound_game</code> in Castle Game Engine sources</a>
+    <a class="btn btn-primary btn-lg" href="/"><span class="glyphicon glyphicon-download" aria-hidden="true"></span><br>The game is now available as an example of engine usage in <code>examples/3d_sound_game</code> in Castle Game Engine sources</a>
 </div>
 
 <p>Press F1 in the game to get help.

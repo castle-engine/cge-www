@@ -131,7 +131,7 @@ to hang on to FPC releases available in distros.
 
 <p>Any Delphi tier, including free <a href="https://www.embarcadero.com/products/delphi/starter/free-download/">Delphi Community Edition</a>, is fine.
 
-<p>The support is available in the master branch of CGE, so you should just download the latest <a href="index.php">CGE release from the main page</a>. (You can also <a href="compiling_from_source.php">download sources</a> of course and compile the engine yourself &mdash; note that you will need FPC/Lazarus for this too.)
+<p>The support is available in the master branch of CGE, so you should just download the latest <a href="/">CGE release from the main page</a>. (You can also <a href="compiling_from_source.php">download sources</a> of course and compile the engine yourself &mdash; note that you will need FPC/Lazarus for this too.)
 
 <p>See the presentation:
 

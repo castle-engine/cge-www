@@ -144,7 +144,7 @@ Try it now!
 
 <p>See the <code>README.txt</code> for compilation instructions.
 For a standalone compilation all you need is the
-<a href="index.php">Castle Game Engine</a>
+<a href="/">Castle Game Engine</a>
 and <a href="http://www.freepascal.org/">FPC</a>.
 
 <?php echo $toc->html_section(); ?>

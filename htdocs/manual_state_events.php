@@ -35,7 +35,7 @@ echo cgeImg('float', array(
 
 <?php echo $toc->html_section(); ?>
 
-<p>We assume you have already <a href="index.php">downloaded Castle Game Engine</a> and <a href="manual_intro.php">installed it</a>.
+<p>We assume you have already <a href="/">downloaded Castle Game Engine</a> and <a href="install">installed it</a>.
 
 <p>Start by creating a new project using the "Empty" template.
 

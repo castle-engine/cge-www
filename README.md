@@ -178,7 +178,7 @@ Most important Wordppress shortcodes are:
 
     In the end, http://localhost:8777/manual_intro.php should work. Note that the main page, http://localhost:8777/ , depends on a working Wordpress installation (including database) -- see below, it may require additional work to see it.
 
-    Note: It is also possible to set this up in non-root, you could even use Apache "userdir" to place it e.g in `http://localhost/~michalis/castle-engine/` . We used to even advise this here, but we don't advise it anymore, as it's a bit more work (need to make sure PHP works in userdir) and needs adjusting .htaccess to make rewrites/redirects work.
+    Note: It is also possible to set this up in non-root, you could even use Apache "userdir" to place it e.g in `http://localhost/~michalis/castle-engine/` . We used to even advise this here, but we don't advise it anymore, as it's a bit more work (need to make sure PHP works in userdir) and needs adjusting .htaccess to make rewrites/redirects work and `/` to link to main page (which we use now from both PHP and AsciiDoctor) will not work.
 
 * To enable testing of AsciiDoctor pages, like http://localhost:8777/build_tool :
 

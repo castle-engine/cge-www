@@ -38,7 +38,7 @@ More information:
 
 ## Installation of Castle Game Engine
 
-Just download the official binary release from link:index.php[Castle Game Engine main page]. The editor and various tools are inside the `bin/` subdirectory. Just double-click the `castle-editor` application to run it.
+Just download the official binary release from link:/[Castle Game Engine main page]. The editor and various tools are inside the `bin/` subdirectory. Just double-click the `castle-editor` application to run it.
 
 WARNING: Editor (`castle-editor`) and other GUI tools (`view3dscene`, `castle-view-image`) are _unsigned_ applications for macOS right now. Double-clicking them for the first time will result in an error along the lines _"developer cannot be verified"_. You have to right-click on them, choose _"Open"_ from the context menu, and then you will be able to confirm that you want to open an unsigned application.
 

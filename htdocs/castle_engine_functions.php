@@ -1773,7 +1773,7 @@ function castle_fail_404($message)
   castle_header('Page not found');
   echo '<div class="alert alert-danger message_404" role="alert"><p>' . htmlspecialchars($message) . '
 
-    <p><a href="index.php">Go to <b>Castle Game Engine</b> main page.</a>
+    <p><a href="/">Go to <b>Castle Game Engine</b> main page.</a>
 
     <p><a href="talk.php">Looking for something but cannot find the answer? Ask on our forum or chat!</a>
   </div>';

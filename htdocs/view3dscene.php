@@ -54,7 +54,7 @@ define('SNAPSHOTS_VERSION', '4.1.0');
 
 <p>Explore the virtual world with collisions, gravity, animations, sensors, shadows, mirrors, shaders and more. <!--use embedded ray-tracer, --> You can also convert all models to X3D.</p>
 
-<p><b>If you already have <a href="index.php">Castle Game Engine</a>, then just run <code>view3dscene</code> executable in CGE <code>bin</code> subdirectory. There's no need to download it separately.</b>
+<p><b>If you already have <a href="/">Castle Game Engine</a>, then just run <code>view3dscene</code> executable in CGE <code>bin</code> subdirectory. There's no need to download it separately.</b>
 
 <div class="download jumbotron">
   <div class="download_title">Download (Snapshot) Version <?php echo SNAPSHOTS_VERSION; ?>:</div>

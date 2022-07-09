@@ -3,7 +3,7 @@ include::common.adoc[]
 
 ## Castle Game Engine Installation
 
-. Download the latest link:index.php[Castle Game Engine]. Unpack the engine ZIP wherever you like.
+. Download the latest link:/[Castle Game Engine]. Unpack the engine ZIP wherever you like.
 
 . Run the _Castle Game Engine_ editor: open the unpacked `castle_game_engine` directory, open the subdirectory `bin` inside and run the `castle-editor` executable.
 
