@@ -1065,13 +1065,8 @@ function _castle_patreon_box()
   return '
     <a href="' . PATREON_URL . '" class="navbar-link" title="Patreon goal data not available"
       style="display: inline-block; background-color: #FF424D; border-radius: 0; text-align: center;">
-      <!--img src="images/patreon-brand/logo/png-512/Digital-Patreon-Logo_Black.png"
-        alt="Patreon Logo"
-        style="display: inline-block; width: 2em; height: 2em; vertical-align: middle;"
-      /
-      -->
       <div style="color: #ffffff; padding-left: 1em; padding-right: 1em;">
-        <span style="vertical-align: middle;">Support&nbsp;us&nbsp;on</span>&nbsp;<img src="images/patreon-brand/wordmark/small/Digital-Patreon-Wordmark_White.png"
+        <span style="vertical-align: middle;">Support&nbsp;us&nbsp;on</span>&nbsp;<img src="'. page_requisite('images/patreon-brand/wordmark/small/Digital-Patreon-Wordmark_White.png') . '"
           alt="Patreon Wordmark"
           style="max-width: 5em; display: inline-block; vertical-align: middle;"
         >
