@@ -147,6 +147,7 @@ require_once 'castle-engine-website-base/kambi_common.php';
 require_once 'generated_versions.php';
 require_once 'castle_engine_externals.php';
 require_once 'castle_engine_books.php';
+require_once 'castle_image_sizes.php';
 require_once 'geshi.php';
 
 define('CASTLE_GENERATE_OFFLINE',
@@ -1049,6 +1050,18 @@ function _detect_page_path($page_name)
   return $result;
 }
 
+/* Return HTML with width="xxx" height="yyy" of the image, if known. */
+function _castle_image_sizes($relative_filename)
+{
+  global $castle_image_sizes;
+  if (array_key_exists($relative_filename, $castle_image_sizes)) {
+    $img_sizes = $castle_image_sizes[$relative_filename];
+    return ' width="' . $img_sizes['width'] . '" height="' . $img_sizes['height'] . '" ';
+  } else {
+    return '';
+  }
+}
+
 function _castle_patreon_box()
 {
   $patreon_json = file_get_contents(__DIR__ . '/../patreon/patreon.json');
@@ -1069,9 +1082,12 @@ function _castle_patreon_box()
     <a href="' . PATREON_URL . '" class="navbar-link" title="Patreon goal data not available"
       style="display: inline-block; background-color: #FF424D; border-radius: 0; text-align: center;">
       <div style="color: #ffffff; padding-left: 1em; padding-right: 1em;">
-        <span style="vertical-align: middle;">Support&nbsp;us&nbsp;on</span>&nbsp;<img src="'. page_requisite('images/patreon-brand/wordmark/small/Digital-Patreon-Wordmark_White.png') . '"
+        <span style="vertical-align: middle;">Support&nbsp;us&nbsp;on</span>&nbsp;<img src="' .
+          page_requisite('images/patreon-brand/wordmark/small/Digital-Patreon-Wordmark_White.png') .
+          '" ' .
+          _castle_image_sizes('images/patreon-brand/wordmark/small/Digital-Patreon-Wordmark_White.png') . '
           alt="Patreon Wordmark"
-          style="width: 80px; height: 16px;  display: inline-block; vertical-align: middle;"
+          style="display: inline-block; vertical-align: middle;"
         >
       </div>';
 
@@ -1183,7 +1199,9 @@ function echo_castle_header_suffix($path, $enable_sidebar = true)
 
       <div class="navbar-header">
         <a class="navbar-brand" href="'.en_page_url(MAIN_PAGE_BASENAME).'">
-          <img alt="" src="' . page_requisite('images/header_icon.png') . '">
+          <img alt="Castle Game Engine Logo" src="' .
+            page_requisite('images/header_icon.png') . '" ' .
+            _castle_image_sizes('images/header_icon.png') . '>
         </a>
         <a class="navbar-brand" href="'.en_page_url(MAIN_PAGE_BASENAME).'">
           Castle Game Engine
@@ -1519,16 +1537,31 @@ function castle_thumbs($images, $columns=1, $align='right', $thumb_size = NULL)
         echo '</pre>';
       }
 
-      $url_full = isset($image['url_full']) ? $image['url_full'] :
-        page_url('images/original_size/' . $image['filename']);
-      $url_thumb = isset($image['url_thumb']) ? $image['url_thumb'] :
-        page_requisite('images/' . $thumb_size . '/' . $image['filename']);
+
+
+      if (isset($image['url_full'])) {
+        $url_full = $image['url_full'];
+      } else {
+        $relative_filename_full  = 'images/original_size/' . $image['filename'];
+        $url_full = page_url($relative_filename_full);
+      }
+
+      if (isset($image['url_thumb'])) {
+        $url_thumb = $image['url_thumb'];
+        $size_thumb = '';
+      } else {
+        $relative_filename_thumb = 'images/' . $thumb_size . '/' . $image['filename'];
+        $url_thumb =  page_requisite($relative_filename_thumb);
+        $size_thumb = _castle_image_sizes($relative_filename_thumb);
+      }
+
       $result .= '
           <a href="' . $url_full . '"
              class="screenshot"
              title="' . $image['titlealt'] . '"><img
             style="float: right"
             src="' . $url_thumb . '"
+            ' . $size_thumb . '
             alt="' . $image['titlealt'] . '"
           /></a>';
     }
