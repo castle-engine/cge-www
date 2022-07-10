@@ -147,7 +147,6 @@ require_once 'castle-engine-website-base/kambi_common.php';
 require_once 'generated_versions.php';
 require_once 'castle_engine_externals.php';
 require_once 'castle_engine_books.php';
-require_once 'castle_image_sizes.php';
 require_once 'geshi.php';
 
 define('CASTLE_GENERATE_OFFLINE',
@@ -1045,6 +1044,12 @@ function _detect_page_path($page_name)
 function _castle_image_sizes($relative_filename)
 {
   global $castle_image_sizes;
+
+  /* Load castle_image_sizes.php only when necessary.
+     This way, on production server, when rendering AsciiDoc,
+     we never actually load castle_image_sizes.php. */
+  require_once 'castle_image_sizes.php';
+
   if (array_key_exists($relative_filename, $castle_image_sizes)) {
     $img_sizes = $castle_image_sizes[$relative_filename];
     return ' width="' . $img_sizes['width'] . '" height="' . $img_sizes['height'] . '" ';
@@ -1076,7 +1081,9 @@ function _castle_patreon_box()
         <span style="vertical-align: middle;">Support&nbsp;us&nbsp;on</span>&nbsp;<img src="' .
           page_requisite('images/patreon-brand/wordmark/small/Digital-Patreon-Wordmark_White.png') .
           '" ' .
-          _castle_image_sizes('images/patreon-brand/wordmark/small/Digital-Patreon-Wordmark_White.png') . '
+          // _castle_image_sizes('images/patreon-brand/wordmark/small/Digital-Patreon-Wordmark_White.png')
+          ' width="80" height="16" ' // hardcode here, to avoid even loading castle_image_sizes.php in some cases
+          . '
           alt="Patreon Wordmark"
           style="display: inline-block; vertical-align: middle;"
         >
@@ -1192,7 +1199,9 @@ function echo_castle_header_suffix($path, $enable_sidebar = true)
         <a class="navbar-brand" href="'.en_page_url(MAIN_PAGE_BASENAME).'">
           <img alt="Castle Game Engine Logo" src="' .
             page_requisite('images/header_icon.png') . '" ' .
-            _castle_image_sizes('images/header_icon.png') . '>
+            // _castle_image_sizes('images/header_icon.png')
+            ' width="32" height="32" ' // hardcode here, to avoid even loading castle_image_sizes.php in some cases
+            . '>
         </a>
         <a class="navbar-brand" href="'.en_page_url(MAIN_PAGE_BASENAME).'">
           Castle Game Engine
