@@ -1,3 +1,4 @@
+# -*- mode: conf-unix -*-
 # rewrites -------------------------------------------------------------------
 
 RewriteEngine On
@@ -53,11 +54,12 @@ Redirect "/b.php" "https://github.com/castle-engine/cge-www/blob/master/htdocs/d
 Redirect "/bezier_curves.php" "/curves_tool"
 Redirect "/blender.php" "/blender"
 Redirect "/blender_stuff.php" "/blender"
-Redirect "/creating_data_blender.php" "/blender"
 Redirect "/changes_log.php" "/news.php"
 Redirect "/changes_log_feed.php" "http://gplusrss.com/rss/feed/c3dd3cd5ec6725d92b8b5b0633b2daa852f29730ecc6b"
 Redirect "/creating_data_3d.php" "/creating_data_export.php"
+Redirect "/creating_data_blender.php" "/blender"
 Redirect "/documentation.php" "/manual_install_run_first.php"
+Redirect "/documentation_more.php" "/"
 Redirect "/engine.php" "/index.php"
 Redirect "/fpc_and_lazarus.php" "/supported_compilers.php"
 Redirect "/gen_funkcja.pl.php" "/glplotter.php"
@@ -78,15 +80,18 @@ Redirect "/kambiscript_language.chm" "/castle_script.php"
 Redirect "/kanim_format.php" "/castle_animation_frames.php"
 Redirect "/license.php" "https://github.com/castle-engine/castle-engine/blob/master/COPYING.md"
 Redirect "/macosx_requirements.php" "/macos"
+Redirect "/manual_2d_user_interface.php" "/user_interface"
+Redirect "/manual_classes_overview.php" "/apidoc-unstable/html/ClassHierarchy.html"
 Redirect "/manual_install_run_first.php" "/install"
+Redirect "/manual_lazarus_control.php" "/control_on_form"
+Redirect "/manual_lazarus_focus.php" "/control_on_form"
 Redirect "/manual_load_3d.php" "/viewport_and_scenes"
+Redirect "/manual_log.php" "/log"
 Redirect "/manual_mobile.php" "/manual_cross_platform.php"
 Redirect "/manual_quick_2d_game.php" "/manual_state_events.php"
 Redirect "/manual_scene.php" "/viewport_and_scenes"
-Redirect "/manual_window.php" "/manual_install_run_first.php"
-Redirect "/manual_log.php" "/log"
-Redirect "/manual_2d_user_interface.php" "/user_interface"
 Redirect "/manual_user_interface_and_2d_drawing.php" "/user_interface"
+Redirect "/manual_window.php" "/manual_install_run_first.php"
 Redirect "/miscella/forest.tar.gz" "https://github.com/castle-engine/demo-models/tree/master/lights_materials/vrml_1/forest-fog"
 Redirect "/miscella/win32_dlls.zip" "https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/external_libraries"
 Redirect "/openal.php" "/openal"
@@ -99,7 +104,6 @@ Redirect "/tutorial_2d_ui_custom_drawn.php" "/manual_2d_ui_custom_drawn.php"
 Redirect "/tutorial_2d_user_interface.php" "/manual_2d_user_interface.php"
 Redirect "/tutorial_castle_scene_transform.php" "/manual_scene.php"
 Redirect "/tutorial_classes_overview.php" "/apidoc-unstable/html/ClassHierarchy.html"
-Redirect "/manual_classes_overview.php" "/apidoc-unstable/html/ClassHierarchy.html"
 Redirect "/tutorial_game_level.php" "/manual_game_level.php"
 Redirect "/tutorial_high_level_3d_classes.php" "/manual_high_level_3d_classes.php"
 Redirect "/tutorial_install.php" "/install"
@@ -160,9 +164,16 @@ Redirect "/vrml_implementation_texturing.php" "/x3d_implementation_texturing.php
 Redirect "/vrml_implementation_texturing3d.php" "/x3d_implementation_texturing3d.php"
 Redirect "/vrml_implementation_time.php" "/x3d_implementation_time.php"
 Redirect "/vrml_time_origin_considered_uncomfortable.php" "/x3d_time_origin_considered_uncomfortable.php"
-Redirect "/manual_lazarus_control.php" "/control_on_form"
-Redirect "/manual_lazarus_focus.php" "/control_on_form"
-Redirect "/documentation_more.php" "/"
+
+# This link is used at least by http://planetdev.freegamedev.net/ .
+#
+# Though we could notify them to change link to Wordpress, see
+# http://forum.freegamedev.net/viewtopic.php?f=24&t=7209
+# http://forum.freegamedev.net/viewtopic.php?f=24&t=24
+# Actually, we could submit a pull request:
+# https://github.com/FreeGameDev/planet-config
+# https://github.com/FreeGameDev/planet-config/blob/master/fgdplanet-dev-feeds.ini
+Redirect "/news_feed.php" "/wp/feed/"
 
 # Redirect latest.zip to latest.zip.php (interpreted by PHP to redirect
 # further, to a known latest version).

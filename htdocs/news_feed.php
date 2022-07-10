@@ -1,16 +1,5 @@
 <?php
 
-/* This link is used by http://planetdev.freegamedev.net/ , so keep it working.
-
-   We could notify them to change link to Wordpress, see
-   http://forum.freegamedev.net/viewtopic.php?f=24&t=7209
-   http://forum.freegamedev.net/viewtopic.php?f=24&t=24
-   Actually, we could submit a pull request:
-   https://github.com/FreeGameDev/planet-config
-   https://github.com/FreeGameDev/planet-config/blob/master/fgdplanet-dev-feeds.ini
-
-   But it's more future-proof for us to just change this page to redirect
-   wherever necessary. */
 
 require_once 'castle_engine_functions.php';
 header('Location: ' . CURRENT_URL . 'wp/feed/');
