@@ -879,8 +879,11 @@ function echo_header_bonus ()
   title="Castle Game Engine - News Feed"
   href="<?php echo page_url('news_feed'); ?>">
 
-<!-- Add Inter font, https://developers.google.com/fonts/docs/getting_started -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter">
+<!--
+  Add Inter font, https://developers.google.com/fonts/docs/getting_started .
+  Add &display=swap to render text ASAP, see https://web.dev/font-display/?utm_source=lighthouse&utm_medium=lr
+-->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter&display=swap">
 
 <link type="text/css" rel="stylesheet" media="all" href="<?php echo page_requisite('castle-engine-website-base/castle-engine.css?version=' . CASTLE_ENGINE_CSS_VERSION); ?>">
 <link type="text/css" rel="stylesheet" media="all" href="<?php echo page_requisite('castle-engine-website-base/castle-asciidoctor.css?version=' . CASTLE_ENGINE_CSS_VERSION); ?>">
