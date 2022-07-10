@@ -244,8 +244,11 @@ function cge_continue_suffix()
    Force size 600x300 (regardless of original aspect ratio),
    if necessary the image will be cropped using the top part.
    Hint: force regeneration by
-   https://wordpress.org/plugins/regenerate-thumbnails/ */
-add_image_size('news-teaser', 600, 300, array('center', 'top'));
+   https://wordpress.org/plugins/regenerate-thumbnails/
+
+   Note: 600x300 is safer, as on mobile news images are quite wide
+   on main page. But on desktop, 300x150 is already more than necessary. */
+add_image_size('news-teaser', 300, 150, array('center', 'top'));
 
 // Always send mail from wordpress@castle-engine.io
 // See https://www.wpbeginner.com/plugins/how-to-change-sender-name-in-outgoing-wordpress-email/
