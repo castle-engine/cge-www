@@ -238,7 +238,6 @@ $castle_sitemap = array(
       'modern_pascal_introduction' => array('title' => 'Modern Object Pascal Introduction', 'url' => 'https://castle-engine.io/modern_pascal_introduction.html'),
       'doc/castle_game_engine_for_unity_developers' => array('title' => 'CGE for Unity Developers'),
       'compiling_from_source' => array('title' => 'Compiling from source'),
-      'documentation_more' => array('title' => 'More...'),
     ),
     'sidebar' => true,
     'sub' => array(
@@ -348,7 +347,18 @@ $castle_sitemap = array(
               'manual_transformation_hierarchy' => array('title' => 'Transformation hierarchy'),
               'doc/castlewindow_backends' => array('title' => 'CastleWindow Backends'),
               'doc/threads' => array('title' => 'Threads'),
-              // TODO: link to 'doc/units_map', once it is up-to-date again
+              'compiling_from_source' => array('title' => 'Compiling from source'),
+              'supported_compilers' => array('title' => 'Supported compilers and IDEs'),
+              'doc/roadmap' => array('title' => 'Roadmap'),
+              'helping' => array('title' => 'Helping in engine development'),
+              'donate_other' => array('title' => 'Donate'),
+              'doc/coding_conventions' => array('title' => 'Coding Conventions'),
+              'doc/coding_traps' => array('title' => 'Coding Traps'),
+              'doc/units_map' => array('title' => 'Units Map'),
+              // 'engine_doc' => array('title' => 'Internals documentation'), // too outdated
+              'license' => array('title' => 'License'),
+              'doc/fpcupdeluxe' => array('title' => 'fpcupdeluxe'),
+              'doc/fpmake' => array('title' => 'FpMake and FpPkg'),
             )
           ),
           'manual_high_level_3d_classes' => array('title' => 'Deprecated: Utilities for typical 3D games',
@@ -394,25 +404,6 @@ $castle_sitemap = array(
       'reference' => array('title' => 'API Reference', 'url' => reference_link()),
       'modern_pascal_introduction' => array('title' => 'Modern Object Pascal Introduction', 'url' => 'https://castle-engine.io/modern_pascal_introduction.html'),
       'doc/castle_game_engine_for_unity_developers' => array('title' => 'CGE for Unity Developers'),
-      'compiling_from_source' => array('title' => 'Compiling from source'),
-      'documentation_more' => array('title' => 'More...',
-        'sub' => array(
-          'supported_compilers' => array('title' => 'Supported compilers and IDEs'),
-          'doc/roadmap' => array('title' => 'Roadmap'),
-          'helping' => array('title' => 'Helping in engine development',
-            'sub' => array(
-              'donate_other' => array('title' => 'Donate')
-            ),
-          ),
-          'doc/coding_conventions' => array('title' => 'Coding Conventions'),
-          'doc/coding_traps' => array('title' => 'Coding Traps'),
-          'doc/units_map' => array('title' => 'Units Map'),
-          // 'engine_doc' => array('title' => 'Internals documentation'), // too outdated
-          'license' => array('title' => 'License'),
-          'doc/fpcupdeluxe' => array('title' => 'fpcupdeluxe'),
-          'doc/fpmake' => array('title' => 'FpMake and FpPkg'),
-        )
-      ),
     ),
   ),
 

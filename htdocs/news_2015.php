@@ -35,7 +35,7 @@ array_push($news,
 
 <p>Be sure to also check out
 <a href="https://castle-engine.io/miscella/cge_tutorial_slides.pdf">the slides</a>
-and <a href="https://github.com/michaliskambi/cge-tutorial">examples (data and code)</a>
+and <a href="https://github.com/castle-engine/deprecated-cge-tutorial">examples (data and code)</a>
 from a tutorial about our engine given during the recent <i>Web3D&nbsp;2015 conference</i>.
 They show (from the ground up) the creation of a simple 3D FPS game and 2D game.
 

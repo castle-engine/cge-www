@@ -1,9 +1,7 @@
 <?php
 require_once 'castle_engine_functions.php';
 
-castle_header('Donate', array(
-  'path' => array('documentation', 'documentation_more', 'helping', 'donate_other')
-));
+castle_header('Donate');
 
 function donation_option_begin()
 {
@@ -14,8 +12,6 @@ function donation_option_end()
 {
   echo '</div>';
 }
-
-echo pretty_heading($page_title);
 ?>
 
 <p>I'm Michalis Kamburelis, and I'm developing this engine with a dream to create a great and <b>free and open-source</b> game engine. Whatever option to donate you choose &mdash; <b>thank you</b>!

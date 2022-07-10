@@ -1,9 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-castle_header('Helping in the engine development', array(
-  'path' => array('documentation')
-));
-echo pretty_heading($page_title);
+castle_header('Helping in the engine development');
 ?>
 
 <!--p>We have a ton of TODOs if you're interested in helping the engine development!

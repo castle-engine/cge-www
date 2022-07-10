@@ -23,8 +23,6 @@ $toc = new TableOfContents(
 );
 ?>
 
-<?php echo pretty_heading($page_title, NULL); ?>
-
 <?php echo $toc->html_toc(); ?>
 
 <?php echo $toc->html_section(); ?>
