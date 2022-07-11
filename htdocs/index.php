@@ -99,16 +99,20 @@ define('CGE_SNAPSHOTS_VERSION', '7.0-alpha.snapshot');
         <img src="images/original_size/dragon_large.png"
             alt="2D animation, designed in Spine"
             title="2D animation, designed in Spine"
-            class="main-page-thumbnail hidden-xs" />
+            class="main-page-thumbnail hidden-xs"
+            <?php echo _castle_image_sizes('images/original_size/dragon_large.png'); ?>
+        />
         <br>
 
         <a href="images/original_size/dragon_editor.png"
             title="2D game, designed in Castle Game Engine editor"
             class="screenshot">
-        <img src="images/original_size/dragon_editor.png"
-            alt="2D game, designed in Castle Game Engine editor"
-            style="padding: 1em; border: none"
-            class="main-page-thumbnail hidden-xs" />
+            <img src="images/original_size/dragon_editor.png"
+                alt="2D game, designed in Castle Game Engine editor"
+                style="padding: 1em; border: none"
+                class="main-page-thumbnail hidden-xs"
+                <?php echo _castle_image_sizes('images/original_size/dragon_editor.png'); ?>
+            />
         </a>
 
         <div class="jumbotron alert alert-info">

@@ -231,6 +231,9 @@ a.screenshot:hover img { border: 2pt solid #888; }
 
 .main-page-thumbnail {
     width: 100%;
+    /* This way image height is also adjusted, to follow image aspect ratio.
+       And we can still specify img intrinsic size in <img> element. */
+    height: auto;
     margin-bottom: 1rem;
 }
 
