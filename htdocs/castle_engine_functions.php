@@ -1075,11 +1075,11 @@ function _castle_patreon_box()
   }
 
   $result = '
-    <a href="' . PATREON_URL . '" class="navbar-link" title="Patreon goal data not available"
+    <a href="' . PATREON_URL . '" class="navbar-link"
       style="display: inline-block; background-color: #FF424D; border-radius: 0; text-align: center;">
       <div style="color: #ffffff; padding-left: 1em; padding-right: 1em;">
         <span style="vertical-align: middle;">Support&nbsp;us&nbsp;on</span>&nbsp;<img src="' .
-          page_requisite('images/patreon-brand/wordmark/small/Digital-Patreon-Wordmark_White.png') .
+          page_requisite('images/patreon-brand/Digital-Patreon-Wordmark_White.png') .
           '" ' .
           // _castle_image_sizes('images/patreon-brand/wordmark/small/Digital-Patreon-Wordmark_White.png')
           ' width="80" height="16" ' // hardcode here, to avoid even loading castle_image_sizes.php in some cases
