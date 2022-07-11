@@ -1455,6 +1455,9 @@ function echo_standard_program_download(
      If missing, we will derive it from 'filename'.
    - url_thumb: URL to the thumb-size image file.
      If missing, we will derive it from 'filename'.
+   - sizes_thumb: if available and non-empty, use this for <img> sizes attribute.
+     Otherwise, we'll try to deduce it using _castle_image_sizes, but it is impossible
+     if url_thumb is also set.
    - titlealt - text used for both title and alt.
    - html - if set, the rest (except colspan) is ignored,
      and we simply put this html into cell content.
@@ -1557,6 +1560,14 @@ function castle_thumbs($images, $columns=1, $align='right', $thumb_size = NULL)
         $relative_filename_thumb = 'images/' . $thumb_size . '/' . $image['filename'];
         $url_thumb =  page_requisite($relative_filename_thumb);
         $size_thumb = _castle_image_sizes($relative_filename_thumb);
+      }
+
+      /* If sizes_thumb is set (and not FALSE), it overrides $size_thumb
+         (whether it was empty or determined by _castle_image_sizes).
+         This allows to output in HTML image sizes for images in Wordpress gallery
+         (and having these sizes is good for optimizing CLS). */
+      if (!empty($image['sizes_thumb'])) {
+        $size_thumb = ' sizes="' . htmlspecialchars($image['sizes_thumb']) . '" ';
       }
 
       $result .= '

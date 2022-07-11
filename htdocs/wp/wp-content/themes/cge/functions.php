@@ -118,6 +118,7 @@ function cge_gallery_shortcode($output, $attr, $instance)
         $images[] = array(
             'url_full' => esc_url(wp_get_attachment_url($id)),
             'url_thumb' => esc_url(wp_get_attachment_thumb_url($id)),
+            'sizes_thumb' => wp_get_attachment_image_sizes($id, 'thumbnail'),
             'titlealt' => esc_attr($attachment->post_title),
         );
     }
