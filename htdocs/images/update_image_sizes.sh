@@ -23,6 +23,7 @@ TEMP_FILE_LIST=/tmp/update_image_sizes-$$.txt
 find images/ '(' \
   -iname '*.png' -or \
   -iname '*.jpg' -or \
+  -iname '*.webp' -or \
   -iname '*.gif' ')' \
   -print | sort > "${TEMP_FILE_LIST}"
 

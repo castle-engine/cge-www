@@ -96,22 +96,22 @@ define('CGE_SNAPSHOTS_VERSION', '7.0-alpha.snapshot');
     <div class="col-sm-4">
         <!-- iframe class="hidden-xs main-page-thumbnail" width="560" height="315" src="https://www.youtube.com/embed/o5q7guVkYVo" frameborder="0" allowfullscreen></iframe -->
 
-        <img src="images/original_size/dragon_large.png"
+        <img src="images/main_page_sidebar/dragon_large.webp"
             alt="2D animation, designed in Spine"
             title="2D animation, designed in Spine"
             class="main-page-thumbnail hidden-xs"
-            <?php echo _castle_image_sizes('images/original_size/dragon_large.png'); ?>
+            <?php echo _castle_image_sizes('images/main_page_sidebar/dragon_large.webp'); ?>
         />
         <br>
 
         <a href="images/original_size/dragon_editor.png"
             title="2D game, designed in Castle Game Engine editor"
             class="screenshot">
-            <img src="images/original_size/dragon_editor.png"
+            <img src="images/main_page_sidebar/dragon_editor.webp"
                 alt="2D game, designed in Castle Game Engine editor"
                 style="padding: 1em; border: none"
                 class="main-page-thumbnail hidden-xs"
-                <?php echo _castle_image_sizes('images/original_size/dragon_editor.png'); ?>
+                <?php echo _castle_image_sizes('images/main_page_sidebar/dragon_editor.webp'); ?>
             />
         </a>
 
