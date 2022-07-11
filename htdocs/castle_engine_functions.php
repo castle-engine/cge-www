@@ -1567,7 +1567,7 @@ function castle_thumbs($images, $columns=1, $align='right', $thumb_size = NULL)
          This allows to output in HTML image sizes for images in Wordpress gallery
          (and having these sizes is good for optimizing CLS). */
       if (!empty($image['sizes_thumb'])) {
-        $size_thumb = $image['sizes_thumb']);
+        $size_thumb = $image['sizes_thumb'];
       }
 
       $result .= '
