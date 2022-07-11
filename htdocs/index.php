@@ -5,8 +5,10 @@ require_once 'castle_engine_functions.php';
 
 global $main_page;
 $main_page = true;
+global $site_title;
+$site_title = NULL; // set to NULL, to disable appending to <title>; main page has special title that already includes CGE
 
-castle_header('Download', array(
+castle_header('Castle Game Engine - Free open-source cross-platform 3D 2D game engine with editor and powerful Pascal API', array(
   'meta_description' => META_DESCRIPTION,
   /* Not useful for Google anymore, but maybe other search engines use them. */
   'meta_keywords' => 'game engine, glTF, X3D, Spine, Pascal, cross platform, editor, Nintendo Switch, Linux, Windows, macOS, Android, iOS, PBR, shadows, shaders',
@@ -24,7 +26,7 @@ define('CGE_SNAPSHOTS_VERSION', '7.0-alpha.snapshot');
         <div class="centered-wrapper">
             <div class="centered">
                 <h1 class="main-title">Castle Game Engine</h1>
-                <p class="main-subtitle">Cross-platform (desktop, mobile, console) 3D and 2D game engine supporting many asset formats (glTF, X3D, Spine...) and using modern Object Pascal</p>
+                <p class="main-subtitle">Cross-platform (desktop, mobile, console) 3D and 2D game engine. Powerful visual editor. Support for glTF, X3D, Spine and more. Fast clean code using modern Pascal. Free and open-source.</p>
                 <!--
                 The tagline could be linked, but some of these links could them "hijack" user's attention.
                 Links will be later.
