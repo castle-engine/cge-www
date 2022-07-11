@@ -8,7 +8,9 @@ IFS=$'\n\t'
 # Uses http://redsymbol.net/articles/unofficial-bash-strict-mode/ .
 # ----------------------------------------------------------------------------
 
-export OUTPUT_IMAGE_SIZES=castle_image_sizes.php
+# First output to temp file, at the end we will move it to final path --
+# to avoid time when PHP is broken on server, during update_image_sizes.sh .
+export OUTPUT_IMAGE_SIZES=/tmp/castle_image_sizes-$$.php
 
 cd ../
 
@@ -33,3 +35,5 @@ done
 rm -f "${TEMP_FILE_LIST}"
 
 echo ');' >> $OUTPUT_IMAGE_SIZES
+
+mv -f $OUTPUT_IMAGE_SIZES castle_image_sizes.php
