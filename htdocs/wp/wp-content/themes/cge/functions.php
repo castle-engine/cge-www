@@ -115,10 +115,14 @@ function cge_gallery_shortcode($output, $attr, $instance)
 
     $images = array();
     foreach ($attachments as $id => $attachment) {
+        $thumb_img = wp_get_attachment_image_src($id, 'thumbnail');
         $images[] = array(
             'url_full' => esc_url(wp_get_attachment_url($id)),
-            'url_thumb' => esc_url(wp_get_attachment_thumb_url($id)),
-            'sizes_thumb' => wp_get_attachment_image_sizes($id, 'thumbnail'),
+            'url_thumb' => esc_url($thumb_img[0] /* wp_get_attachment_thumb_url($id) */),
+            // Note:
+            //   wp_get_attachment_image_sizes($id, 'thumbnail')
+            // does not contain intrinsic image sizes.
+            'sizes_thumb' => ' width="' . absint($thumb_img[1]) . '" height="' . absint($thumb_img[2]) . '" ',
             'titlealt' => esc_attr($attachment->post_title),
         );
     }
