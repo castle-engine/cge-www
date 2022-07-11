@@ -148,7 +148,11 @@ define('CGE_SNAPSHOTS_VERSION', '7.0-alpha.snapshot');
 
 <hr>
 
-<img src="images/MacStadium-developerlogo.png" alt="MacStadium developer logo" style="width: 100px; float: left; margin: 1em;" />
+<img src="images/MacStadium-developerlogo.png"
+     alt="MacStadium developer logo"
+     style="width: 100px; height: auto; float: left; margin: 1em;"
+     <?php echo _castle_image_sizes('images/MacStadium-developerlogo.png'); ?>
+ />
 <p>We're a happy member of <a href="https://www.macstadium.com/opensource">MacStadium Open Source Developer Program</a>.<br>
 They provide us access to a remote Mac machine, we use it to develop our <a href="macos">macOS</a> and <a href="ios">iOS</a> targets.
 
