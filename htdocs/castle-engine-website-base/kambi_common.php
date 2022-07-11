@@ -404,15 +404,18 @@ if ($castle_wordpress) {
 <meta name="Author" content="Michalis Kamburelis">
 
 <?php
-  if (!empty($parameters['canonical_url'])) {
-    echo '<link rel="canonical" href="' . htmlspecialchars($parameters['canonical_url']) . '">' . "\n";
+  if (array_key_exists('canonical_url', $parameters)) {
+    // $parameters['canonical_url'] defined, but empty (NULL or FALSE) means to not write canonical for this page
+    if (!empty($parameters['canonical_url'])) {
+      echo '<link rel="canonical" href="' . htmlspecialchars($parameters['canonical_url']) . '">' . "\n";
+    }
   }
 
-  if (!empty($parameters['meta_keywords'])) {
+  if (array_key_exists('meta_keywords', $parameters)) {
     echo '<meta name="Keywords" content="' . htmlspecialchars($parameters['meta_keywords']) . '">' . "\n";
   }
 
-  if (!empty($parameters['meta_description'])) {
+  if (array_key_exists('meta_description', $parameters)) {
     echo '<meta name="Description" content="' . htmlspecialchars($parameters['meta_description']) . '">' . "\n";
   }
 

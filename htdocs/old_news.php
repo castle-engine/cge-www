@@ -32,7 +32,9 @@ if (isset($_GET['id']) || isset($_GET['item']))
 $page_basename = 'old_news.php?id=' . $item['id'];
 
 $castle_header_parameters = array(
-  'path' =>  array('news', $page_basename)
+  'path' =>  array('news', $page_basename),
+  // canonical URL will point to the current news post
+  'canonical_url' => CASTLE_PROD_URL . $page_basename
 );
 /* use the first news image as social_share_image, if possible */
 if (isset($item['images'][0]['filename'])) {

@@ -972,16 +972,20 @@ function castle_header($a_page_title, array $parameters = array())
 
   /* call common_header with proper params */
   $common_header_parameters = array();
-  if (isset($parameters['meta_description'])) {
+  if (array_key_exists('meta_description', $parameters)) {
     $common_header_parameters['meta_description'] = $parameters['meta_description'];
   }
-  if (isset($parameters['meta_keywords'])) {
+  if (array_key_exists('meta_keywords', $parameters)) {
     $common_header_parameters['meta_keywords'] = $parameters['meta_keywords'];
   }
-  if (isset($parameters['canonical_url'])) {
+  if (array_key_exists('canonical_url', $parameters)) {
     $common_header_parameters['canonical_url'] = $parameters['canonical_url'];
+  } else {
+    // Autocalcualate canonical_url based on $this_page_name, if none provided.
+    global $this_page_name;
+    $common_header_parameters['canonical_url'] = CASTLE_PROD_URL . $this_page_name;
   }
-  if (!empty($parameters['social_share_image'])) {
+  if (array_key_exists('social_share_image', $parameters)) {
     if (kambi_url_absolute($parameters['social_share_image'])) {
       $social_share_image_url = $parameters['social_share_image'];
     } else {
@@ -1831,7 +1835,9 @@ function castle_fail_404($message)
 {
   http_response_code(404);
 
-  castle_header('Page not found');
+  castle_header('Page not found', array(
+    'canonical_url' => NULL // do not write canonical for 404 pages
+  ));
   echo '<div class="alert alert-danger message_404" role="alert"><p>' . htmlspecialchars($message) . '
 
     <p><a href="/">Go to <b>Castle Game Engine</b> main page.</a>
