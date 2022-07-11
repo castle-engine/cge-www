@@ -14,6 +14,12 @@ if (!HTML_VALIDATION && (
    || CASTLE_ENVIRONMENT == 'development'
   ))
 {
+    /* Wordpress knowingly uses some PHP deprecated stuff.
+       And our castle_engine_functions.php by default warns about E_ALL in development. */
+    if (CASTLE_ENVIRONMENT != 'production') {
+        error_reporting(E_ALL & !E_DEPRECATED);
+    }
+
     /* Load Wordpress PHP now
        (in global namespace, just like wp-blog-header.php does) */
     if (!isset($wp_did_header)) {
