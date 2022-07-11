@@ -1455,7 +1455,7 @@ function echo_standard_program_download(
      If missing, we will derive it from 'filename'.
    - url_thumb: URL to the thumb-size image file.
      If missing, we will derive it from 'filename'.
-   - sizes_thumb: if available and non-empty, use this for <img> sizes attribute.
+   - sizes_thumb: if available and non-empty, use this for <img> intrinsic width and height.
      Otherwise, we'll try to deduce it using _castle_image_sizes, but it is impossible
      if url_thumb is also set.
    - titlealt - text used for both title and alt.
@@ -1567,7 +1567,7 @@ function castle_thumbs($images, $columns=1, $align='right', $thumb_size = NULL)
          This allows to output in HTML image sizes for images in Wordpress gallery
          (and having these sizes is good for optimizing CLS). */
       if (!empty($image['sizes_thumb'])) {
-        $size_thumb = ' sizes="' . htmlspecialchars($image['sizes_thumb']) . '" ';
+        $size_thumb = $image['sizes_thumb']);
       }
 
       $result .= '
