@@ -923,8 +923,16 @@ class Akismet_Admin {
 		Akismet::fix_scheduled_recheck();
 
 		if ( wp_next_scheduled('akismet_schedule_cron_recheck') > time() && self::are_any_comments_waiting_to_be_checked() ) {
-			$link_text = apply_filters( 'akismet_spam_check_warning_link_text', sprintf( __( 'Please check your <a href="%s">Akismet configuration</a> and contact your web host if problems persist.', 'akismet'), esc_url( self::get_page_url() ) ) );
-			Akismet::view( 'notice', array( 'type' => 'spam-check', 'link_text' => $link_text ) );
+			/*
+			 * The 'akismet_display_cron_disabled_notice' filter can be used to control whether the WP-Cron disabled notice is displayed.
+			 */
+			if ( defined( 'DISABLE_WP_CRON' ) && DISABLE_WP_CRON && apply_filters( 'akismet_display_cron_disabled_notice', true ) ) {
+				Akismet::view( 'notice', array( 'type' => 'spam-check-cron-disabled' ) );
+			} else {
+				/* translators: The Akismet configuration page URL. */
+				$link_text = apply_filters( 'akismet_spam_check_warning_link_text', sprintf( __( 'Please check your <a href="%s">Akismet configuration</a> and contact your web host if problems persist.', 'akismet' ), esc_url( self::get_page_url() ) ) );
+				Akismet::view( 'notice', array( 'type' => 'spam-check', 'link_text' => $link_text ) );
+			}
 		}
 	}
 
@@ -1077,6 +1085,7 @@ class Akismet_Admin {
 		$notices[] = array( 'type' => 'limit-reached', 'level' => 'yellow' );
 		$notices[] = array( 'type' => 'limit-reached', 'level' => 'red' );
 		$notices[] = array( 'type' => 'usage-limit', 'api_calls' => '15000', 'usage_limit' => '10000', 'upgrade_plan' => 'Enterprise', 'upgrade_url' => 'https://akismet.com/account/' );
+		$notices[] = array( 'type' => 'spam-check-cron-disabled' );
 		*/
 		
 		Akismet::log( compact( 'stat_totals', 'akismet_user' ) );
