@@ -624,7 +624,7 @@ function _castle_sidebar_menu($sub, $nested = FALSE)
      Testcase: ttps://castle-engine.io/creating_data_intro.php. */
   $classes = $nested ? 'list-no-margin' : '';
 
-  $result = '<ul class="' . $classes . '">';
+  $result = '<ol class="' . $classes . '">';
   foreach($sub as $page => $pageinfo)
   {
     if (isset($pageinfo['hidden_in_toc']) && $pageinfo['hidden_in_toc']) {
@@ -636,7 +636,7 @@ function _castle_sidebar_menu($sub, $nested = FALSE)
       $result .= _castle_sidebar_menu($pageinfo['sub'], TRUE);
     $result .= '</li>';
   }
-  $result .= '</ul>';
+  $result .= '</ol>';
   return $result;
 }
 
