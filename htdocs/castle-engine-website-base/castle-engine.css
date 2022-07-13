@@ -295,7 +295,8 @@ article.post .entry-content ul.list-no-margin {
 }
 
 /* Make long words, like MultiGeneratedTextureCoordinate or MovieTexture.flipVertically,
-   broken -- good for mobile usability. */
+   broken -- good for mobile usability.
+   See https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Text/Wrapping_Text */
 h2 {
   /* word-break: break-all; */
   overflow-wrap: break-word;
