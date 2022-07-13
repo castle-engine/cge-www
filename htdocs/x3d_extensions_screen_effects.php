@@ -2,9 +2,7 @@
 require_once 'castle_engine_functions.php';
 require_once 'x3d_extensions_functions.php';
 
-castle_header('Screen Effects', array(
-  'path' => array('vrml_x3d', 'x3d_larger_extensions', 'x3d_extensions_screen_effects')
-));
+castle_header('Screen Effects');
 
 $toc = new TableOfContents(array(
   new TocItem('Intro', 'intro'),

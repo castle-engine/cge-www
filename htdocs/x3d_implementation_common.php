@@ -8,7 +8,7 @@ require_once 'castle_engine_functions.php';
 function vrmlx3d_header($a_page_title)
 {
   castle_header($a_page_title, array(
-    'path' => array('vrml_x3d')
+    'path' => array('documentation', 'vrml_x3d')
   ));
 }
 
@@ -19,9 +19,7 @@ function vrmlx3d_footer()
 
 function x3d_status_header($x3d_component_name, $component_name_for_url, $component_intro)
 {
-  castle_header($x3d_component_name .' component', array(
-    'path' => array('vrml_x3d', 'x3d_implementation_status')
-  ));
+  castle_header($x3d_component_name .' component');
 
   echo pretty_heading($x3d_component_name . ' component');
 
@@ -42,8 +40,7 @@ function x3d_extensions_header($x3d_component_name, $base_component_page,
   $base_component_page = 'x3d_implementation_' . $base_component_page;
 
   $header_parameters = array(
-    'meta_description' => 'Castle Game Engine (and view3dscene) extensions to the ' . $x3d_component_name .' X3D component',
-    'path' => array('vrml_x3d', 'x3d_implementation_status', $base_component_page)
+    'meta_description' => 'Castle Game Engine (and view3dscene) extensions to the ' . $x3d_component_name .' X3D component'
   );
   if ($social_share_image != '') {
     $header_parameters['social_share_image'] = $social_share_image;

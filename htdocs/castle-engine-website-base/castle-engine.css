@@ -437,30 +437,6 @@ table.specification td {
   /* white-space:nowrap; */
 }
 
-table.x3dtests {
-  border-collapse: collapse;
-}
-table.x3dtests td {
-  border: thin solid #888;
-  padding:8px;
-}
-table.x3dtests td.x3dtests-links {
-  padding:0px;
-  /* white-space: nowrap; */
-}
-table.x3dtests td.x3dtests-links ul {
-  padding: 0 0 0 1em;
-  margin: 0;
-  font-size: smaller;
-}
-table.x3dtests tr.x3dtests-results td {
-  font-size: smaller;
-  padding: 0.1em;
-}
-table.x3dtests .x3dtests-screens {
-  width: 210px;
-}
-
 div.sidebar_title {
   font-size: medium; font-weight: bold;
   margin-bottom: 0.1em;

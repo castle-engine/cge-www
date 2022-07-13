@@ -1455,7 +1455,7 @@ function echo_standard_program_download(
      Must exist within original_size/ of our images, and be generated
      to our other sizes (like thumb_size and thumb_const_height_size).
      You can omit this,
-     if you instead provide ready URLs in filename_full and filename_thumbnail.
+     if you instead provide ready URLs in url_full and url_thumb.
    - url_full: URL to the full-size image file.
      If missing, we will derive it from 'filename'.
    - url_thumb: URL to the thumb-size image file.

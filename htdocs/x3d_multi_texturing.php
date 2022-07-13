@@ -1,14 +1,27 @@
 <?php
 require_once 'castle_engine_functions.php';
-castle_header('X3D MultiTexturing problems', array(
-  'path' => array('vrml_x3d', 'x3d_implementation_status')
-));
+castle_header('X3D MultiTexturing problems');
 
+global $toc;
 $toc = new TableOfContents(
   array(
     new TocItem('Future: where do we go with MultiTexture in X3D > 4.0', 'future'),
-    new TocItem('Tests', 'tests'),
-    new TocItem('Details about browsers tested', 'tests_details', 1),
+    new TocItem('Tests results', 'tests'),
+      new TocItem('modes_and_sources', NULL, 1),
+      new TocItem('modes_blend', NULL, 1),
+      new TocItem('modes_modulate_add_order', NULL, 1),
+      new TocItem('primitives', NULL, 1),
+      new TocItem('functions', NULL, 1),
+      new TocItem('transform_and_coordinates_faces', NULL, 1),
+      new TocItem('transform_and_coordinates_quads', NULL, 1),
+      new TocItem('image_with_movie_multi_texture', NULL, 1),
+      new TocItem('material_color_mixed_with_texture_color', NULL, 1),
+      new TocItem('subtract_and_force_alpha', NULL, 1),
+      new TocItem('subtract_rgb_various_sources', NULL, 1),
+    new TocItem('About tests', 'about_tests'),
+      new TocItem('License', NULL, 1),
+      new TocItem('How these files were created', NULL, 1),
+      new TocItem('Details about browsers tested', 'tests_details', 1),
     new TocItem('Problems and proposed solutions', 'problems_solutions'),
     new TocItem('Proposed improved MultiTexture.mode specification', 'proposed_mode'),
     new TocItem('Proposed MultiTexture.source extension', 'proposed_source'),
@@ -47,33 +60,30 @@ fixes). Download X3D in classic or XML version and open with X3D browser of your
 choice. Files in <i>X3D classic (VRML) encoding</i> contain many comments,
 read them to know what the test is about!
 
-<table class="x3dtests">
 <?php
 $test_number = 1;
 function tests_row($name, $description, $test_results)
 {
-  global $tests_url;
-  global $test_number;
-  echo "<tr>
-    <td class=\"x3dtests-screens\">
-      <a href=\"${tests_url}${name}_screen.png\"
-         class=\"screenshot\"
-         title=\"${name}\">
-        <img src=\"${tests_url}${name}_screen_thumb.png\" alt=\"${name}\"
-             style=\"width: 200px; height: 160px;\" />
-      </a>
-    </td>
-    <td class=\"x3dtests-links\">
-      <ul>
-        <li><a href=\"${tests_url}${name}.x3dv\">X3D (classic) with comments inside</a>
-        <li><a href=\"${tests_url}${name}.x3d\">X3D (XML)</a>
-      </ul>
-    </td>
-    <td><i>${test_number}. ${name}:</i><br/><br/>${description}</td>
-  </tr>
-  <tr class=\"x3dtests-results\">
-    <td colspan=\"3\">
-      <div class=\"x3dtests-results-header\">Test results:</div>";
+  global $tests_url, $test_number, $toc;
+
+  echo $toc->html_section();
+
+  echo cgeImg('block', array(
+    array(
+      'url_full' => "${tests_url}${name}_screen.png",
+      'url_thumb' => "${tests_url}${name}_screen_thumb.png",
+      'titlealt' => "${name}"
+    ),
+  ));
+
+  echo "<p>${description}</p>
+
+  <ul>
+    <li><a href=\"${tests_url}${name}.x3dv\">X3D (classic) with comments inside</a>
+    <li><a href=\"${tests_url}${name}.x3d\">X3D (XML)</a>
+  </ul>
+
+  <p>Test results:";
 
   if (isset($test_results['special'])) {
     echo '<p style="padding: 0.25em">' . $test_results['special'] . '</p>';
@@ -94,9 +104,6 @@ function tests_row($name, $description, $test_results)
     echo "</ul>";
   }
 
-  echo "
-    </td>
-  </tr>";
   $test_number++;
 }
 tests_row('modes_and_sources',
@@ -209,14 +216,19 @@ tests_row('subtract_rgb_various_sources',
     'special' => 'Testing this is not fair. See previous test for more comments.',
   ));
 ?>
-</table>
 
-<p><i>License:</i> For the widest possible use, consider these files
+<?php echo $toc->html_section(); ?>
+
+<?php echo $toc->html_section(); ?>
+
+<p>For the widest possible use, consider these files
 public domain, you're welcome to copy them to other examples
 repositories etc. Yes, the sample textures/movies inside are in public
 domain too (see <code>data/AUTHORS.txt</code> inside for details).
 
-<p><i>How these files were created:</i> All the X3D test files were written
+<?php echo $toc->html_section(); ?>
+
+<p>All the X3D test files were written
 manually in X3D classic encoding. XML encoding versions were automatically
 generated from classic encoding by <code>tovrmlx3d</code> (a tool
 distributed with <?php echo a_href_page("view3dscene", "view3dscene") ?>).
