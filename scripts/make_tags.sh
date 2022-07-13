@@ -38,7 +38,6 @@ do_tag ()
 do_tag glplotter
 #do_tag_custom castle-view-image castle_view_image
 # do_tag kambi_lines
-# do_tag lets_take_a_walk
 # do_tag rayhunter
 #do_tag view3dscene
 # do_tag malfunction

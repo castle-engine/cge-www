@@ -118,9 +118,9 @@ We love to see how you use CGE.</i>
     'castle'); ?>
 
   <?php gallery_link('lets_take_a_walk',
-    "Small 3D toy, demonstrating rendering integrated with 3D sound using Castle Game Engine. The source code is now available in <a href=\"https://github.com/castle-engine/castle-engine/tree/master/examples/3d_sound_game\">examples/3d_sound_game/</a> in engine sources.",
+    "Small 3D toy, demonstrating rendering integrated with 3D sound using Castle Game Engine. The source code is now available in <a href=\"https://github.com/castle-engine/castle-engine/tree/master/examples/audio/game_3d_sound\">examples/audio/game_3d_sound/</a> in engine sources.",
     'lets_take_a_walk_screen_demo.png',
-    'lets_take_a_walk'); ?>
+    'https://github.com/castle-engine/castle-engine/tree/master/examples/audio/game_3d_sound'); ?>
 
   <?php gallery_link('malfunction',
     'Small 3D space-shooter. One of the first games made using (an ancient version of) Castle Game Engine, with VRML models.',

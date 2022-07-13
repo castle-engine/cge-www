@@ -542,7 +542,6 @@ $castle_sitemap = array(
               'castle-credits'     => array('title' => 'Credits'),
             ),
           ),
-          'lets_take_a_walk' => array('title' => 'lets_take_a_walk'),
           'malfunction' => array('title' => 'malfunction'),
           'kambi_lines' => array('title' => 'kambi_lines'),
         ),
