@@ -229,7 +229,12 @@ a.screenshot:hover img { border: 2pt solid #888; }
 }
 */
 
-.main-subtitle { color: #444; }
+.main-subtitle {
+  font-size: medium;
+  color: #444;
+  line-height: 1.5; /* default line-height from <body>, to make this look like <p> */
+  margin-top: 0;
+}
 
 .main-page-thumbnail {
     width: 100%;

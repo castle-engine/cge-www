@@ -19,23 +19,31 @@ define('CGE_SNAPSHOTS_BASE', 'https://github.com/castle-engine/castle-engine/rel
 define('CGE_SNAPSHOTS_VERSION', '7.0-alpha.snapshot');
 ?>
 
-<!-- Free open-source game engine for <a href="http://www.freepascal.org/">FreePascal and Lazarus</a>. Excellent support for many 3D and 2D data formats, portable (desktops, Android, iOS...), many advanced graphic effects, comfortable API.</p -->
-
 <div class="row">
     <div class="col-sm-8">
         <div class="centered-wrapper">
             <div class="centered">
                 <h1 class="main-title">Castle Game Engine</h1>
-                <p class="main-subtitle">Cross-platform (desktop, mobile, console) 3D and 2D game engine. Powerful visual editor. Support for glTF, X3D, Spine and more. Fast clean code using modern Pascal. Free and open-source.</p>
-                <!--
-                The tagline could be linked, but some of these links could them "hijack" user's attention.
-                Links will be later.
 
-                <a href="https://github.com/castle-engine/castle-engine/blob/master/COPYING.md">Open-source</a>
-                cross-platform 3D / 2D game engine using
-                modern Object Pascal</a>
-                and open standards like glTF and X3D</a>
-                -->
+                <?php
+                /* Tagline / slogan - super-important quick description of engine.
+
+                - Put our tagline in h2, maybe better for SEO.
+
+                - The tagline could has linked, but some of these links could them "hijack" user's attention.
+                  Links will be later.
+
+                  Another old version:
+
+                  <a href="https://github.com/castle-engine/castle-engine/blob/master/COPYING.md">Open-source</a>
+                  cross-platform 3D / 2D game engine using
+                  modern Object Pascal</a>
+                  and open standards like glTF and X3D</a>
+
+                - Another old version:
+                  Free open-source game engine for <a href="http://www.freepascal.org/">FreePascal and Lazarus</a>. Excellent support for many 3D and 2D data formats, portable (desktops, Android, iOS...), many advanced graphic effects, comfortable API.
+                */ ?>
+                <h2 class="main-subtitle">Cross-platform (desktop, mobile, console) 3D and 2D game engine. Powerful visual editor. Support for glTF, X3D, Spine and more. Fast clean code using modern Pascal. Free and open-source.</h2>
             </div>
         </div>
 
@@ -128,19 +136,21 @@ define('CGE_SNAPSHOTS_VERSION', '7.0-alpha.snapshot');
             ?>
         </div>
 
-        <!-- <img src="images/original_size/rhan_shrine_5_everything.png" -->
-        <!--     alt="Bump mapping and shadow maps from multiple light sources" -->
-        <!--     title="Bump mapping and shadow maps from multiple light sources" -->
-        <!--     class="main-page-thumbnail" -->
-        <!--     style="margin-bottom: 0.5em" /> -->
-        <!-- <img src="images/original_size/barna29_nice_shadows.png" -->
-        <!--     alt="Real-time water with caustics, reflections, shadows" -->
-        <!--     title="Real-time water with caustics, reflections, shadows" -->
-        <!--     class="main-page-thumbnail" /> -->
-        <!-- <img src="images/original_size/castle_spine_screen_9.png" -->
-        <!--     alt="Dragon 2D animation designed in Spine" -->
-        <!--     title="Dragon 2D animation designed in Spine" -->
-        <!--     class="main-page-thumbnail" /> -->
+        <?php /*
+        <img src="images/original_size/rhan_shrine_5_everything.png"
+            alt="Bump mapping and shadow maps from multiple light sources"
+            title="Bump mapping and shadow maps from multiple light sources"
+            class="main-page-thumbnail"
+            style="margin-bottom: 0.5em" />
+        <img src="images/original_size/barna29_nice_shadows.png"
+            alt="Real-time water with caustics, reflections, shadows"
+            title="Real-time water with caustics, reflections, shadows"
+            class="main-page-thumbnail" />
+        <img src="images/original_size/castle_spine_screen_9.png"
+            alt="Dragon 2D animation designed in Spine"
+            title="Dragon 2D animation designed in Spine"
+            class="main-page-thumbnail" />
+        */ ?>
     </div>
 </div>
 
