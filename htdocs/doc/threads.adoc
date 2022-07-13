@@ -26,7 +26,13 @@ Future challenges:
 
 * All OpenGL(ES) commands must be done from the same thread anyway. This is a limitation of OpenGL(ES).
 +
-So to e.g. load textures _to GPU_ while doing a smooth rendering from another thread, we would need to implement another renderer some day. E.g. Vulkan allows to use multi-threading ( https://www.khronos.org/registry/vulkan/specs/1.0/html/vkspec.html#fundamentals-threadingbehavior , https://developer.nvidia.com/sites/default/files/akamai/gameworks/blog/munich/mschott_vulkan_multi_threading.pdf , https://www.reddit.com/r/vulkan/comments/52aodq/multithreading_in_vulkan_where_should_i_start/ ). Although the burden of protecting multi-thread access in Vulkan lies in the hands of user, so it's not something trivial to take advantage of anyway, but at least it becomes possible.
+So to e.g. load textures _to GPU_ while doing a smooth rendering from another thread, we would need to implement another renderer some day. E.g. Vulkan allows to use multi-threading. Although the burden of protecting multi-thread access in Vulkan lies in the hands of user, so it's not something trivial to take advantage of anyway, but at least it becomes possible. See:
++
+--
+* https://www.khronos.org/registry/vulkan/specs/1.0/html/vkspec.html#fundamentals-threadingbehavior[Vulkan spec about threading]
+* https://developer.nvidia.com/sites/default/files/akamai/gameworks/blog/munich/mschott_vulkan_multi_threading.pdf[NVidia notes bout Vulkan threading]
+* https://www.reddit.com/r/vulkan/comments/52aodq/multithreading_in_vulkan_where_should_i_start/[useful thread on Reddit]
+--
 
 * Right now, some engine code uses global caches (for texture/audio data, for X3D prototypes, and much more). If we decide to make some of them thread-safe, they will have to be reworked (so, more complicated code and possibly a little slower) or be separate per thread (so, less caching \-> less gains).
 * The CGE will probably never be thread-safe in the sense that "you can access _anything_ from multiple threads simultaneously". This would require a lot of safeguards and code complications, more than we can realistically maintain. Again, software larger than CGE (like LCL or Unity) also didn't dare to do this.
