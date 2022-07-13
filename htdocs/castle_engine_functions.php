@@ -505,7 +505,7 @@ $castle_sitemap = array(
     ),
   ),
 
-  'view3dscene'            => array('hint' => 'VRML / X3D browser, and a viewer for other 3D model formats', 'title' => 'view3dscene'),
+  'view3dscene'  => array('hint' => 'Viewer for glTF, X3D, Collada, sprite sheets and other model formats', 'title' => 'Viewer for glTF, X3D and more'),
 
   'talk' => array('hint' => 'Ask for help, report bugs, discuss features', 'title' => 'Forum, Discord, more',
     'sub' => array(
@@ -1638,16 +1638,8 @@ define('SUGGESTS_OPENAL_VORBISFILE',
   libraries are strongly suggested if you want to hear sound
   (under Windows appropriate DLL files are already included
   in program\'s archive, so you don\'t have to do anything)');
-define('DEPENDS_UNIX_CASTLE_WINDOW_GTK_1',
-  'Under Unices (Linux, FreeBSD, Mac OS X):
-  <a href="http://www.gtk.org/">GTK+</a> 1.x and gtkglarea');
 define('DEPENDS_UNIX_CASTLE_WINDOW_GTK_2',
-  'Under Unix (Linux, FreeBSD, Mac OS X):
-  <a href="http://www.gtk.org/">GTK+</a> >= 2.6');
-  /* I also use some GTK >= 2.8 features, but since Mac OS X fink stable
-     includes only GTK 2.6, we work Ok with GTK 2.6 too. */
-define('DEPENDS_MACOSX',
-  a_href_page('macOS users see here', 'doc/macos') );
+  'Under Linux and FreeBSD: <a href="http://www.gtk.org/">GTK+</a> 2');
 
 function depends_par($depends_array)
 {

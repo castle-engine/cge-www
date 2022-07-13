@@ -135,8 +135,7 @@ of "KDE Lines" graphics.
 <?php /* Too small:
   echo depends_par(array(
     DEPENDS_OPENGL,
-    DEPENDS_LIBPNG_AND_ZLIB,
-    DEPENDS_MACOSX)); */ ?>
+    DEPENDS_LIBPNG_AND_ZLIB)); */ ?>
 
 <?php
   castle_footer();

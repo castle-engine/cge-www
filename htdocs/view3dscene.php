@@ -2,7 +2,7 @@
 define('CASTLE_GITHUB_NAME', 'view3dscene');
 
 require_once 'castle_engine_functions.php';
-castle_header("view3dscene", array(
+castle_header("view3dscene: Viewer for glTF, X3D, sprite sheets and other model formats", array(
   'social_share_image' => 'view3dscene_outlines.png',
   'meta_description' => 'View3dscene is a browser for 3D and 2D models in many formats: glTF, X3D, VRML, sprite sheets (in CGE, Starling, Cocos2d formats), Collada, Spine JSON, 3DS, MD3, Wavefront OBJ... It supports viewing the scene in the "Examine" mode and walking in the virtual world with features such as collision detection and gravity. Many advanced 3D graphic effects are available, like mirrors (flat and through cube environment mapping), shadows (shadow maps and shadow volumes), GLSL shaders and more. The program can also convert files from other formats to X3D and pretty-print X3D files. Free software. For Linux, macOS and Windows.'
 ));
@@ -96,7 +96,6 @@ echo_standard_program_download(
         new TocItem('Other options', 'other_options', 1),
         new TocItem('Deprecated options', 'deprecated_options', 1),
       new TocItem(DEPENDS, 'depends'),
-        new TocItem('How to see the console on Mac OS X', 'console', 1),
     )
   );
   echo $toc->html_toc();
@@ -907,8 +906,7 @@ is only useful for converting). More precisely:
   DEPENDS_OPENGL,
   DEPENDS_LIBPNG_AND_ZLIB,
   DEPENDS_UNIX_CASTLE_WINDOW_GTK_2,
-  SUGGESTS_OPENAL_VORBISFILE,
-  DEPENDS_MACOSX)); ?>
+  SUGGESTS_OPENAL_VORBISFILE)); ?>
 
 <p>To play movies (in VRML/X3D <code>MovieTexture</code> nodes) and
 to record movies (by <code>--screenshot-range</code> option)
@@ -927,26 +925,6 @@ and make sure it's available on $PATH.
     <a href="http://www.finkproject.org/">Fink</a>.
     <!-- (<a href="http://pdb.finkproject.org/pdb/package.php/ffmpeg">in stable currently, although source-only</a>),-->
 </ul>
-
-<p>Also <code>convert</code> program from
-<a href="http://www.imagemagick.org/">ImageMagick</a>
-package must be available on $PATH for some miscellaneous image formats to work.
-See <?php echo a_href_page("castle-view-image documentation", "castle-view-image"); ?>
- for a list of image formats handled.
-
-<?php echo $toc->html_section(); ?>
-
-<p>view3dscene uses a standard OS console
-for some stuff (e.g. for <i>Console -&gt; Print Current Camera...</i>). You will not see this
-console if you run the program using the bundle (by double-clicking on the app
-in Finder, or in dock...).
-
-<p>To see the console output, run view3dscene from terminal:
-
-<pre>
-cd directory-where-you-installed-view3dscene/
-./view3dscene.app/Contents/MacOS/view3dscene
-</pre>
 
 <?php
   castle_footer();

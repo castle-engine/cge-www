@@ -78,8 +78,7 @@ looks best in 640x480 or 800x600 resolution.
   echo '<p>' . DEPENDS . ':';
   echo depends_ul(array(
     DEPENDS_OPENGL,
-    DEPENDS_LIBPNG_AND_ZLIB,
-    DEPENDS_MACOSX));
+    DEPENDS_LIBPNG_AND_ZLIB));
 */
 ?>
 

@@ -57,8 +57,7 @@ and Monte Carlo path tracing.
 
 <?php /* Too small:
   echo depends_par(array(
-    DEPENDS_LIBPNG_AND_ZLIB,
-    DEPENDS_MACOSX)); */ ?>
+    DEPENDS_LIBPNG_AND_ZLIB)); */ ?>
 
 <?php echo $toc->html_section(); ?>
 

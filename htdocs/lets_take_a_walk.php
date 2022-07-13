@@ -91,8 +91,7 @@ engine sources, in <code>castle_game_engine/examples/3d_sound_game/</code>.</p>
 <?php echo depends_ul( array(
   DEPENDS_OPENGL,
   DEPENDS_LIBPNG_AND_ZLIB,
-  SUGGESTS_OPENAL,
-  DEPENDS_MACOSX) ); ?>
+  SUGGESTS_OPENAL) ); ?>
 
 <?php echo $toc->html_section(); ?>
 

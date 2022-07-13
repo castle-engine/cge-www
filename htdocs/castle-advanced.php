@@ -53,8 +53,7 @@ memory-eater) you can
 <?php echo depends_ul(array(
   DEPENDS_OPENGL,
   DEPENDS_LIBPNG_AND_ZLIB,
-  SUGGESTS_OPENAL_VORBISFILE,
-  DEPENDS_MACOSX)); ?>
+  SUGGESTS_OPENAL_VORBISFILE)); ?>
 
 <?php echo $toc->html_section(); ?>
 
