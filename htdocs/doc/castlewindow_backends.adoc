@@ -3,7 +3,7 @@ include::common.adoc[]
 
 == Introduction
 
-https://castle-engine.io/apidoc-unstable/html/CastleWindow.TCastleWindow.html[TCastleWindow] class represents a window suitable for _Castle Game Engine_ rendering.
+cgeref:TCastleWindow[] class represents a window suitable for _Castle Game Engine_ rendering.
 
 Most CGE applications use this class (although there is an alternative https://castle-engine.io/manual_lazarus_control.php[TCastleControl], but we advise `TCastleWindow` for most cases).
 

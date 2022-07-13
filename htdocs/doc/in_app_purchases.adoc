@@ -3,7 +3,7 @@ include::common.adoc[]
 
 == Introduction
 
-This is a step-by-step instruction how to implement _in-app purchases_ (for Android and iOS) using CGE cgeref:CastleInAppPurchases[] unit and https://castle-engine.io/apidoc-unstable/html/CastleInAppPurchases.TInAppPurchases.html[TInAppPurchases] class.
+This is a step-by-step instruction how to implement _in-app purchases_ (for Android and iOS) using CGE cgeref:CastleInAppPurchases[] unit and cgeref:TInAppPurchases[] class.
 
 == Set up purchases in the stores (GooglePlay, AppStore)
 
@@ -12,7 +12,7 @@ You need to define the products you want sell in the
 * https://developer.android.com/distribute/console/index.html[Google Play Developer Console] (for Android),
 * https://appstoreconnect.apple.com/[App Store Connect] (for iOS).
 
-The internal names of products you define there will be then used with CGE API, like in methods https://castle-engine.io/apidoc-unstable/html/CastleInAppPurchases.TInAppPurchases.html#SetAvailableProducts[SetAvailableProducts] and https://castle-engine.io/apidoc-unstable/html/CastleInAppPurchases.TInAppPurchases.html#Product[Product].
+The internal names of products you define there will be then used with CGE API, like in methods cgeref:TInAppPurchases.SetAvailableProducts[] and cgeref:TInAppPurchases.Product[].
 
 == Use services
 
@@ -43,7 +43,7 @@ You need to add a "service" to include the necessary integration code  on Androi
  InAppPurchases := TGameInAppPurchases.Create(Application);
 ----
 
-. Call https://castle-engine.io/apidoc-unstable/html/CastleInAppPurchases.TInAppPurchases.html#SetAvailableProducts[SetAvailableProducts].  Usually just from `TGameInAppPurchases.Create`.
+. Call cgeref:TInAppPurchases.SetAvailableProducts[].  Usually just from `TGameInAppPurchases.Create`.
 +
 In the simplest case, the typical implementation of `TGameInAppPurchases` constructor may look like this:
 +
@@ -59,16 +59,16 @@ In the simplest case, the typical implementation of `TGameInAppPurchases` constr
 
 . On iOS, the state of items currently owned is not automatically available.
 +
-If you need to know whether user owns some non-consumable product, according to the AppStore, then you need to call https://castle-engine.io/apidoc-unstable/html/CastleInAppPurchases.TInAppPurchases.html#RefreshPurchases[RefreshPurchases] explicitly. Like
+If you need to know whether user owns some non-consumable product, according to the AppStore, then you need to call cgeref:TInAppPurchases.RefreshPurchases[] explicitly. Like
 +
 [source,pascal]
 ----
  InAppPurchases.RefreshPurchases;
 ----
 +
-In return, it will ask user to login to the AppStore, and if all is successful, it will set https://castle-engine.io/apidoc-unstable/html/CastleInAppPurchases.TInAppProduct.html#Owns[TInAppProduct.Owns] of all products and call https://castle-engine.io/apidoc-unstable/html/CastleInAppPurchases.TInAppPurchases.html#OnRefreshedPrices[OnRefreshedPrices].
+In return, it will ask user to login to the AppStore, and if all is successful, it will set cgeref:TInAppProduct.Owns[] of all products and call cgeref:TInAppPurchases.OnRefreshedPrices[].
 +
-Strictly speaking, you don't need to call `RefreshPurchases` at all, during normal application usage. This way user will be asked to login only once user decides to make a purchase, not earlier. If you need to know whether user owns some non-consumable, just store the successful purchase in `UserConfig`, like `UserConfig.SetValue('owns_some_product', true);`, and do not depend on https://castle-engine.io/apidoc-unstable/html/CastleInAppPurchases.TInAppProduct.html#Owns[TInAppProduct.Owns] always reflecting the actual ownership.
+Strictly speaking, you don't need to call `RefreshPurchases` at all, during normal application usage. This way user will be asked to login only once user decides to make a purchase, not earlier. If you need to know whether user owns some non-consumable, just store the successful purchase in `UserConfig`, like `UserConfig.SetValue('owns_some_product', true);`, and do not depend on cgeref:TInAppProduct.Owns[] always reflecting the actual ownership.
 +
 However, you should also provide an explicit _"Restore Purchases"_ button, in case user wants to restore purchases made on another device. To implement such button, call the `InAppPurchases.RefreshPurchases`.
 
@@ -84,7 +84,7 @@ However, you should also provide an explicit _"Restore Purchases"_ button, in ca
 +
 This way you can use `InAppPurchases.Xxx` instead of `InAppPurchases.Product('xxx')` later. This minimizes the chance of possible typos in the product name.
 
-. Override https://castle-engine.io/apidoc-unstable/html/CastleInAppPurchases.TInAppPurchases.html#RefreshedPrices[RefreshedPrices] virtual method, or wait for https://castle-engine.io/apidoc-unstable/html/CastleInAppPurchases.TInAppPurchases.html#OnRefreshedPrices[OnRefreshedPrices] event, to know the prices of your products (in user's local currency).
+. Override cgeref:TInAppPurchases.RefreshedPrices[] virtual method, or wait for cgeref:TInAppPurchases.OnRefreshedPrices[] event, to know the prices of your products (in user's local currency).
 +
 Use these prices to update the UI of your game. Like this:
 +
@@ -107,8 +107,8 @@ Use these prices to update the UI of your game. Like this:
  // remember to also call UpdatePrices from TStateBuyItems.Start
 ----
 
-. Buy products by calling https://castle-engine.io/apidoc-unstable/html/CastleInAppPurchases.TInAppPurchases.html#Purchase[Purchase], like `InAppPurchases.Purchase(InAppPurchases.Xxx)`.
- ** For non-consumable items (that user buys once, for lifetime, e.g. _"act 2 of the game"_, _"no ads"_, _"badge in user profile"_) override the https://castle-engine.io/apidoc-unstable/html/CastleInAppPurchases.TInAppPurchases.html#Owns[Owns] to react to user buying this item. Like this:
+. Buy products by calling cgeref:TInAppPurchases.Purchase[], like `InAppPurchases.Purchase(InAppPurchases.Xxx)`.
+ ** For non-consumable items (that user buys once, for lifetime, e.g. _"act 2 of the game"_, _"no ads"_, _"badge in user profile"_) override the cgeref:TInAppPurchases.Owns[] to react to user buying this item. Like this:
 +
 [source,pascal]
 ----
@@ -124,7 +124,7 @@ Use these prices to update the UI of your game. Like this:
   end;
 ----
 
- ** For consumable items (that user can buy multiple times, like _"add 100 gold coins"_), override the https://castle-engine.io/apidoc-unstable/html/CastleInAppPurchases.TInAppPurchases.html#Owns[Owns] to react to user buying this item by calling https://castle-engine.io/apidoc-unstable/html/CastleInAppPurchases.TInAppPurchases.html#Consume[Consume].  Then override https://castle-engine.io/apidoc-unstable/html/CastleInAppPurchases.TInAppPurchases.html#SuccessfullyConsumed[SuccessfullyConsumed] to react to this consumption:
+ ** For consumable items (that user can buy multiple times, like _"add 100 gold coins"_), override the cgeref:TInAppPurchases.Owns[] to react to user buying this item by calling cgeref:TInAppPurchases.Consume[].  Then override cgeref:TInAppPurchases.SuccessfullyConsumed[] react to this consumption:
 +
 [source,pascal]
 ----

@@ -19,14 +19,13 @@ You should call `TCastleViewport.Setup2D` on the viewport to easily make it suit
  ** Using cgeref:TCastleViewport[] for 2D is documented on link:viewport_2d[Viewport 2D].
  ** https://castle-engine.io/manual_physics.php shows how to use physics with it.
 * The engine template "2D game" and `physics/physics_2d_game_sopwith/` show this approach.
-* The important API reference links: https://castle-engine.io/apidoc-unstable/html/CastleScene.TCastleScene.html[TCastleScene], https://castle-engine.io/apidoc-unstable/html/CastleSceneCore.TCastleSceneCore.html[TCastleSceneCore], https://castle-engine.io/apidoc-unstable/html/CastleViewport.TCastleViewport.html[TCastleViewport].
+* The important API reference links: cgeref:TCastleScene[], cgeref:TCastleSceneCore[], cgeref:TCastleViewport[].
 * To construct your own scene (not loaded from external file), you need to create a graph of X3D nodes. Various examples showing it are around the engine, the simpler is http://castle-engine.io/x3d_implementation_geometry2d.php . It instantiates a `TRectangle2DNode`. One could instead instantiate also `TIndexedFaceSetNode` which represents a free mesh, with custom texture coordinates and anything else you may need.
-* To render sprites you can link:sprite_sheets[load sprite sheets from Starling/Cocos2d
- formats to TCastleScene]. You can play it's animation just like any other scene (use `Scene.PlayAnimation` method, test with view3dscene panel "Animations").
+* To render sprites you can link:sprite_sheets[load sprite sheets from Castle Game Engine, Starling or Cocos2d formats to TCastleScene]. You can play it's animation just like any other scene (use `Scene.PlayAnimation` method, test with view3dscene panel "Animations").
 +
 If you want to do it manually, you can also construct your own `TIndexedFaceSetNode` instances and change texture coordinates.
 
-* To render pixel-art, set texture filtering to "nearest". It's easiest to do this by setting `Scene.Attributes.MagnificationFilter := magNearest`. Alternatively, you could control this on a particular shape using `TTexturePropertiesNode`, links on http://castle-engine.io/x3d_implementation_texturing.php .
+* To render pixel-art, set texture filtering to "nearest". It's easiest to do this by setting `Scene.RenderOptions.MagnificationFilter := magNearest`. Alternatively, you could control this on a particular shape using `TTexturePropertiesNode`, links on http://castle-engine.io/x3d_implementation_texturing.php .
 * You can load image as cgeref:TCastleImageTransform[] (more advised) or cgeref:TCastleScene[]. See link:using_images[using images].
 * To have reliable field of view (regardless of the window size in pixels, regardless of UI scaling, regardless of viewport size), set cgeref:TCastleOrthographic.Width[Camera.Orthographic.Width] or cgeref:TCastleOrthographic.Height[Camera.Orthographic.Height] to non-zero. We advise this, this is usually most natural to control viewport field of view reliably. If you create a 2D viewport in editor, we actually initialize cgeref:TCastleOrthographic.Width[Camera.Orthographic.Width] to `1000` now.
 +
@@ -71,7 +70,7 @@ A similar approach is to draw your game using multiple cgeref:TCastleImageContro
  ** link:manual_state_events.php[Designing user interface and handling events (press, update) within the state] documents basic image display using cgeref:TCastleImageControl[].
  ** link:user_interface[User Interface].
  ** link:manual_2d_ui_custom_drawn.php[Custom drawn 2D controls] shows the "core" of this approach: new `TCastleUserInterface` descendant with your own `Render` implementation, in which we call `TDrawableImage.Draw`.
-* API reference: https://castle-engine.io/apidoc-unstable/html/CastleGLImages.TDrawableImage.html[TDrawableImage].
+* API reference: cgeref:TDrawableImage[].
 * You can render sprites using the appropriate `TDrawableImage.Draw` overload (where you specify which part of the source image to render). Or use ready class `TSprite` (it uses `TDrawableImage` underneath).
 * To render pixel-art, set `TDrawableImage.SmoothScaling` to `false`.
 * Numerous engine demos use `TDrawableImage`. Example `isometric_game` draws simple map using it.

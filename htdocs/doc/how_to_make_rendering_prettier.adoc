@@ -18,9 +18,13 @@ Internally we do bump mapping by `Material.normalTexture` or `PhysicalMaterial.n
 * Use *other textures* (occlusion texture, emission texture, specular and shininess texture (Phong), metallic/roughness texture (PBR)) to provide interesting features varying over the surface.
 +
 See  `Material` (Phong) or `PhysicalMaterial` (PBR) in https://github.com/michaliskambi/x3d-tests/wiki/X3D-version-4:-New-features-of-materials,-lights-and-textures[X3D 4] for various optional texture slots to affect various additional material parameters.
-* If you still use (older, simpler, faster) Phong lighting model, then at least set the _shading_ to Phong (not _Gouraud_). You can http://castle-engine.io/x3d_implementation_shape_extensions.php#section_ext_shading[set shading per-shape], but usually it's easier to just set `Scene.Attributes.PhongShading := true` for the whole scene (TCastleScene instance).
+////
+* _(Phong shading is now default in CGE, no need to do anything.)_
++
+If you still use (older, simpler, faster) Phong lighting model, then at least set the _shading_ to Phong (not _Gouraud_). You can http://castle-engine.io/x3d_implementation_shape_extensions.php#section_ext_shading[set shading per-shape], but usually it's easier to just set `Scene.RenderOptions.PhongShading := true` for the whole scene (TCastleScene instance).
 +
 Note that Phong shading is activated automatically (for a particular shape) when you use PBR, bump mapping or shadow maps or some other engine effect. So you may not need to actually request it explicitly.
+////
 
 * Use link:x3d_extensions_screen_effects.php[screen effects (post-processing)].
 * Use effects like link:x3d_extensions_mirror_plane.php[mirrors] and link:x3d_extensions_shadow_maps.php[shadows].
@@ -29,5 +33,4 @@ Note that Phong shading is activated automatically (for a particular shape) when
 +
 This makes calculations more correct with respect to reality. This should be turned "on" from the begging of working on your graphic assets -- as it necessarily affects to colors of everything.
 
-* Try and use one of the https://castle-engine.io/apidoc-unstable/html/CastleRenderOptions.html#ToneMapping[tone mapping] options if you feel they improve your colors.
-* You can increase the number of allowed lights per shape using `Scene.Attributes.MaxLightsPerShape`. https://castle-engine.io/view3dscene.php[view3dscene] has a menu item to experiment with it (_"View \-> Max Lights Per Shape..."_). A test model is in https://github.com/castle-engine/demo-models/tree/master/gltf/multiple_animated_lights[demo-models: gltf/multiple_animated_lights].
+* Try and use one of the cgeref:ToneMapping[tone mapping] options if you feel they improve your colors.

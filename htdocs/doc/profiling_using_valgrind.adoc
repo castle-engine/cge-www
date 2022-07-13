@@ -88,7 +88,7 @@ Browse it, and the main "memory eater" should be visible.
 
 * Note that a memory may be allocated in some other library, e.g. inside OpenGL.
 +
-This often happens because you use a lot of texture memory. Use https://castle-engine.io/apidoc/html/CastleGLImages.html#TextureMemoryProfiler[TextureMemoryProfiler] to analyze your texture memory usage. Use https://castle-engine.io/manual_optimization.php#section_textures[various optimization hints related to textures] to decrease texture memory usage.
+This often happens because you use a lot of texture memory. Use cgeref:TextureMemoryProfiler[] to analyze your texture memory usage. Use https://castle-engine.io/manual_optimization.php#section_textures[various optimization hints related to textures] to decrease texture memory usage.
 
 == Alternative profiling methods, without Valgrind
 
@@ -96,9 +96,9 @@ Valgrind is really powerful, and I advice getting familiar with it. But if it se
 
 For example:
 
-* You can measure the speed of operations using https://castle-engine.io/apidoc-unstable/html/CastleTimeUtils.TCastleProfiler.html[TCastleProfiler] (since CGE 6.5). It's automatically used for various CGE loading operations (all you need to do is enable it, and show somewhere the report). It's trivial to use it also for your own routines. The gathered times are grouped in a tree structure, so you can see what contributed to what.
-* You can measure the speed of your routines using https://castle-engine.io/apidoc/html/CastleTimeUtils.html#ProcessTimer[ProcessTimer] from `CastleTimeUtils` units. There's an example code under that link.
-* You can measure the memory usage of your textures using https://castle-engine.io/apidoc/html/CastleGLImages.html#TextureMemoryProfiler[TextureMemoryProfiler]. It measures the memory usage on GPU, so it's actually something very different than what `massif` measures, and it makes sense independently if you use `massif` or not.
+* You can measure the speed of operations using cgeref:TCastleProfiler[]. It's automatically used for various CGE loading operations (all you need to do is enable it, and show somewhere the report). It's trivial to use it also for your own routines. The gathered times are grouped in a tree structure, so you can see what contributed to what.
+* You can measure the speed of your routines using cgeref:ProcessTimer[] or cgeref:Timer[].
+* You can measure the memory usage of your textures using cgeref:TextureMemoryProfiler[]. It measures the memory usage on GPU, so it's actually something very different than what `massif` measures, and it makes sense independently if you use `massif` or not.
 * On Windows: There is a http://www.codersnotes.com/sleepy/[Very Sleepy] profiler (can also save profiles in the same format as Valgrind).
 * On link:nintendo_switch[Nintendo Switch]: There is a special profiler (see Nintendo Switch closed docs for details).
 * On Linux: Aside from Valgrind, there's also http://www.gnu.org/software/binutils/manual/gprof-2.9.1/html_mono/gprof.html[gprof]. But its text output is much harder to follow than Valgrind output with kcachegrind visualization.

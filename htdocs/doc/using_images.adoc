@@ -22,23 +22,23 @@ All approaches handle all the image formats supported by CGE, like PNG or JPG; s
 
 * cgeref:TCastleImageControl[] is a descendant of cgeref:TCastleUserInterface[] and allows to use the image as part of the UI. It refers to cgeref:TCastleImagePersistent[] to load image contents using cache. It is a trivial user-interface control to render image on the screen. It can be added and configured in the editor.
 * cgeref:TCastleImageTransform[] is a descendant of cgeref:TCastleTransform[] and allows to place the image in the cgeref:TCastleViewport[], modify image size, repeat it many times etc. It is also useful from the editor.
-* https://castle-engine.io/apidoc-unstable/html/CastleImages.TEncodedImage.html[TEncodedImage] is an image loaded to a regular memory (RAM) to operate on it by Pascal code (that is, on CPU).
+* cgeref:TEncodedImage[] is an image loaded to a regular memory (RAM) to operate on it by Pascal code (that is, on CPU).
 +
-Important descendant of `TEncodedImage` is https://castle-engine.io/apidoc-unstable/html/CastleImages.TCastleImage.html[TCastleImage] which is an image that is expressed in memory as directly-accessible array of pixels. It has more descendants for grayscale, RGB, RGBA, float-based images etc. If you want to edit image on CPU, this is what you will use. E.g. create https://castle-engine.io/apidoc-unstable/html/CastleImages.TRGBAlphaImage.html[TRGBAlphaImage] and iterate over https://castle-engine.io/apidoc-unstable/html/CastleImages.TRGBAlphaImage.html#Pixels[TRGBAlphaImage.Pixels]. There are many methods to draw lines, shapes, text to the image.
+Important descendant of `TEncodedImage` is cgeref:TCastleImage[] which is an image that is expressed in memory as directly-accessible array of pixels. It has more descendants for grayscale, RGB, RGBA, float-based images etc. If you want to edit image on CPU, this is what you will use. E.g. create cgeref:TRGBAlphaImage[] and iterate over cgeref:TRGBAlphaImage.Pixels[]. There are many methods to draw lines, shapes, text to the image.
 +
 Images are usually 2D, but we also support 3D, for 3D (volumetric) textures.
 
-* https://castle-engine.io/apidoc-unstable/html/CastleGLImages.TDrawableImage.html[TDrawableImage] holds an image (loaded from `TEncodedImage`) on GPU. It can be actually rendered on the screen.
+* cgeref:TDrawableImage[] holds an image (loaded from `TEncodedImage`) on GPU. It can be actually rendered on the screen.
 +
-Also, you can edit this image by drawing to it on GPU, see https://castle-engine.io/apidoc-unstable/html/CastleGLImages.TDrawableImage.html#RenderToImageBegin[TDrawableImage.RenderToImageBegin]. Example is in https://github.com/castle-engine/castle-engine/blob/master/examples/images_videos/draw_images_on_gpu.lpr[examples/images_videos/draw_images_on_gpu.lpr].
+Also, you can edit this image by drawing to it on GPU, see cgeref:TDrawableImage.RenderToImageBegin[]. Example is in https://github.com/castle-engine/castle-engine/blob/master/examples/images_videos/draw_images_on_gpu.lpr[examples/images_videos/draw_images_on_gpu.lpr].
 
-* https://castle-engine.io/apidoc-unstable/html/CastleGLImages.TCastleImagePersistent.html[TCastleImagePersistent] is a container around `TCastleImage` and `TDrawableImage`. It is using cache to load images. It is visually configurable in the CGE editor.
+* cgeref:TCastleImagePersistent[] is a container around `TCastleImage` and `TDrawableImage`. It is using cache to load images. It is visually configurable in the CGE editor.
 +
 It's like a `TPicture` in VCL -- it doesn't draw the image, but it has everything else to describe _how_ to load and draw the image. It's used by `TCastleImageControl.Image`, `TCastleButtom.CustomBackgroundNormal`, `TCastleButtom.CustomBackgroundPressed` etc.
 
 * There are a few https://castle-engine.io/vrml_x3d.php[X3D nodes] to express images. The most important are
- ** https://castle-engine.io/apidoc-unstable/html/X3DNodes.TImageTextureNode.html[TImageTextureNode] which is an image loaded from URL (set like `MyImageTexture.SetUrl(['castle-data:/my_image.png'])`)
- ** https://castle-engine.io/apidoc-unstable/html/X3DNodes.TPixelTextureNode.html[TPixelTextureNode] which is an image defined by `TCastleImage` (set like `MyPixelTexture.FdImage.Value := MyImage`, remember that `MyImage` becomes "owned" by `TPixelTextureNode`).
+ ** cgeref:TImageTextureNode[] which is an image loaded from URL (set like `MyImageTexture.SetUrl(['castle-data:/my_image.png'])`)
+ ** cgeref:TPixelTextureNode[] which is an image defined by `TCastleImage` (set like `MyPixelTexture.FdImage.Value := MyImage`, remember that `MyImage` becomes "owned" by `TPixelTextureNode`).
 
 +
 These nodes are used underneath when you load image into cgeref:TCastleScene[] or cgeref:TCastleImageTransform[]. We do not advise using these nodes directly,

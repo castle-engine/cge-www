@@ -9,7 +9,7 @@ If you come with a knowledge of another game engine, like _Unity_, this page wil
 
 `GameObject` in Unity is (simplifying) something that exists in your world, and may be visible, and may have children that are affected by a transformation.
 
-For game objects (not user-interface), the closest equivalent of `GameObject` in _Castle Game Engine_ is the https://castle-engine.io/apidoc-unstable/html/CastleTransform.TCastleTransform.html[TCastleTransform] class. Instances of `TCastleTransform` can be arranged in a hierarchy, where each element transforms (moves, rotates, scales) the children. The most important class of CGE is the `TCastleScene`, which is a descendant of `TCastleTransform` that can actually render/animate/collide a model. Simply set `TCastleScene.Url` to load your model (like a glTF file) there.
+For game objects (not user-interface), the closest equivalent of `GameObject` in _Castle Game Engine_ is the cgeref:TCastleTransform[] class. Instances of `TCastleTransform` can be arranged in a hierarchy, where each element transforms (moves, rotates, scales) the children. The most important class of CGE is the `TCastleScene`, which is a descendant of `TCastleTransform` that can actually render/animate/collide a model. Simply set `TCastleScene.Url` to load your model (like a glTF file) there.
 
 Our manual documents cgeref:TCastleScene[] and cgeref:TCastleTransform[] features in chapter link:viewport_and_scenes[Viewport with scenes, camera, navigation]. Basically you can do stuff like
 
@@ -72,7 +72,7 @@ See our template _"3D FPS Game"_ (create it by running our editor, choose _"New 
 +
 While the above examples show attaching a behavior using code, you could also add `TEnemy` in editor. See link:manual_editor.php[editor] and link:custom_components[custom components] docs for information how to register `TEnemy` class in editor. This requires to restart editor within the project with menu option _"Project \-> Restart Editor (With Custom Components)"_. It is an extra step, but it makes sense for complicated behaviors, which can be configured in the editor easier.
 +
-The engine comes with a few standard behaviors too (like https://castle-engine.io/apidoc-unstable/html/CastleBehaviors.TCastleBillboard.html[TCastleBillboard], https://castle-engine.io/apidoc-unstable/html/CastleBehaviors.TCastleSoundSource.html[TCastleSoundSource]) and these are comfortable to add and configure from the editor.
+The engine comes with a few standard behaviors too (like cgeref:TCastleBillboard[], cgeref:TCastleSoundSource[]) and these are comfortable to add and configure from the editor.
 
 . Another way to control things in CGE is to *create class descendants from existing classes*. In CGE you can create descendants from almost all classes (including important `TCastleTransform` and `TCastleUserInterface`), and override virtual methods there. E.g. you can override `TCastleTransform.Update` to perform something every frame.
 +
@@ -235,9 +235,9 @@ The equivalent of prefabs for Unity UI elements is a UI design file, `xxx.castle
 
 == Playing sounds
 
-The equivalent of Unity https://docs.unity3d.com/Manual/class-AudioSource.html[AudioSource] is our https://castle-engine.io/apidoc-unstable/html/CastleBehaviors.TCastleSoundSource.html[TCastleSoundSource]. It is a behavior, you attach it to a parent `TCastleTransform` and it can play spatialized sound. Note that for non-spatial sounds, you can also just call https://castle-engine.io/apidoc-unstable/html/CastleSoundEngine.TSoundEngine.html#Play[SoundEngine.Play], this is simpler and there's no need for a `TCastleSoundSource` instances.
+The equivalent of Unity https://docs.unity3d.com/Manual/class-AudioSource.html[AudioSource] is our cgeref:TCastleSoundSource[]. It is a behavior, you attach it to a parent `TCastleTransform` and it can play spatialized sound. Note that for non-spatial sounds, you can also just call cgeref:TSoundEngine.Play[], this is simpler and there's no need for a `TCastleSoundSource` instances.
 
-The equivalent of Unity https://docs.unity3d.com/Manual/class-AudioClip.html[AudioClip] is our https://castle-engine.io/apidoc-unstable/html/CastleSoundEngine.TCastleSound.html[TCastleSound].
+The equivalent of Unity https://docs.unity3d.com/Manual/class-AudioClip.html[AudioClip] is our cgeref:TCastleSound[].
 
 See https://castle-engine.io/manual_sound.php[manual chapter about sound] for information how to use sound in CGE.
 

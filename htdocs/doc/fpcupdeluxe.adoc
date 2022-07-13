@@ -100,7 +100,7 @@ There are some disadvantages to this:
 
 * The engine tools, in particular link:build_tool[build tool] and link:manual_editor.php[editor] are not compiled for you. You have to compile them yourself, following link:compiling_from_source.php[compiling from sources] documentation. *We don't recommend attempting this to new CGE users, it is easier to link:/[just download CGE binary release from our page].*
 
-* The API documentation is not present in the `doc/reference/` . That's probably not a problem, as you can https://castle-engine.io/apidoc-unstable/html/[browse the Castle Game Engine API docs online]. You can also get link:https://pasdoc.github.io/[pasdoc] and generate them yourself by `make html` in `doc/pasdoc`.
+* The API documentation is not present in the `doc/reference/` . That's probably not a problem, as you can https://castle-engine.io/apidoc/html/[browse the Castle Game Engine API docs online]. You can also get link:https://pasdoc.github.io/[pasdoc] and generate them yourself by `make html` in `doc/pasdoc`.
 
 == Cross-compilation to Android
 

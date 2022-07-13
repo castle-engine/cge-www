@@ -187,7 +187,7 @@ end;
 +
 To render quadrics, use TCastleScene, with various 3D and 2D primitives https://castle-engine.io/x3d_implementation_geometry3d.php , https://castle-engine.io/x3d_implementation_geometry2d.php like TSphereNode, TDisk2DNode etc.
 
-* https://castle-engine.io/apidoc-unstable/html/CastleTransform.TCastleTransform.html#Press[TCastleTransform.Press], https://castle-engine.io/apidoc-unstable/html/CastleTransform.TCastleTransform.html#Release[TCastleTransform.Release] are now only called when https://castle-engine.io/apidoc-unstable/html/CastleTransform.TCastleTransform.html#ListenPressRelease[TCastleTransform.ListenPressRelease] is `true`.
+* cgeref:TCastleTransform.Press[], cgeref:TCastleTransform.Release[] are now only called when cgeref:TCastleTransform.ListenPressRelease[] is `true`.
 +
 The need to process keys in TCastleTransform is very seldom (we only had 2 use-cases for it in the engine, one is in soon-to-be-deprecated `CastlePlayer`, the other was for https://castle-engine.io/x3d_implementation_keydevicesensor.php[X3D key sensors] which are not very useful to normal engine usage).
 
@@ -253,3 +253,5 @@ This change allows to track on engine side when the existence changes reliably. 
 * `CastleRenderingCamera` unit and `RenderingCamera` singleton no longer exist. Access rendering camera only during rendering, using `RenderParams.RenderingCamera` (`RenderParams` is a parameter passed to `TCastleTransform.LocalRender`). Outside of rendering, you only have usual camera in `MyViewport.Camera` (accessible in `TCastleTransform` as `World.MainCamera`).
 
 * If you use `CastleLevels` and friends, note that all creatures are now under `Level.CreaturesRoot` group (not directly in `Viewport.Items`; instead, the `Level.CreaturesRoot` is in `Viewport.Items`). Similarly all items are in `Level.ItemsRoot`. This matters if you iterated manually over `Viewport.Items` searching for some creature/item.
+
+* We had to break some compatibility when introducing new cameras and navigation. See https://castle-engine.io/wp/2022/07/09/huge-update-to-cameras-navigation-viewports-in-2d-and-3d/ and https://castle-engine.io/wp/2022/05/06/camera-and-navigation-rework-almost-finished-todo-this-news-announcement-is-too-long-we-have-too-much-new-stuff-to-announce/ .

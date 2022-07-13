@@ -331,12 +331,7 @@ See a few videos from our <a href="https://www.youtube.com/c/CastleGameEngineX3d
     ), 'auto', 'left');
     ?>
 
-  <li><p>Speeding up rendering by <b>hardware occlusion query</b>,
-    a <a href="http://http.developer.nvidia.com/GPUGems/gpugems_ch29.html">simple approach</a> and
-    more involved <a href="http://http.developer.nvidia.com/GPUGems2/gpugems2_chapter06.html">Coherent Hierarchical Culling</a>.
-    See <?php api_link('UseOcclusionQuery', 'CastleScene.TSceneRenderingAttributes.html#UseOcclusionQuery'); ?>,
-    <?php api_link('UseHierarchicalOcclusionQuery', 'CastleScene.TSceneRenderingAttributes.html#UseHierarchicalOcclusionQuery'); ?>
-    properties.
+  <li><p>Speeding up rendering by <a href="occlusion_query">hardware occlusion query</a>.
 
   <li><p><b>Anti-aliasing</b> (by OpenGL multi-sampling),
     see <?php api_link('AntiAliasing', 'CastleWindow.TCastleWindow.html#AntiAliasing'); ?>

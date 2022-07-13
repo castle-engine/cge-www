@@ -93,8 +93,8 @@ light to shine (contribute to a color) on a given shape:
 
 <p>Note that, while your whole scene can have an unlimited number of lights,
 the number of lights that affect a particular shape is limited.
-It is limited to 8 by default, but you can change this limit by setting
-<a href="https://castle-engine.io/apidoc-unstable/html/CastleRenderOptions.TCastleRenderOptions.html#MaxLightsPerShape">Scene.Attributes.MaxLightsPerShape</a>.
+It is limited to 64 by default, but you can change this limit by setting
+<a href="https://castle-engine.io/apidoc-unstable/html/CastleRenderOptions.TCastleRenderOptions.html#MaxLightsPerShape">Scene.RenderOptions.MaxLightsPerShape</a>.
 You can also experiment with it in <a href="view3dscene.php">view3dscene</a>,
 which has a menu item <i>"View -&gt; Max Lights Per Shape..."</i>.
 Test e.g. on this demo model:
@@ -102,16 +102,17 @@ Test e.g. on this demo model:
 
 <?php echo $toc->html_section(); ?>
 
-<p>We render shapes using Gouraud shading (per-vertex lighting calculation)
-unless we detect that the shape requires Phong shading.
+<p>We now render all shapes using prettier <i>Phong shading</i> (per-pixel lighting calculation) by default.
+
+<p>You can manually request faster <i>Gouraud shading</i> (per-vertex lighting calculation).
+Even then, specific cases may cause using Phong shading.
 In particular <code>PhysicalMaterial</code> causes Phong shading,
 so imported glTF models use Phong shading by default.
 <a href="x3d_implementation_shape_extensions.php#section_ext_shading">See the Shape.shading field
 for a description of shading approaches, and how it is determined.</a>
 
-<p>Using the <i>"View -&gt; Phong Shading on Everything"</i> option in view3dscene
-forces everything to be rendered using Phong shading (per-pixel lighting).
-This is sometimes a significant boost to quality.</p>
+<p>In general we recommend prettier <i>Phong shading</i>.
+It is a significant boost to quality:</p>
 
 <ul>
   <li><p>Per-pixel lighting means that local lighting effects,
@@ -140,9 +141,9 @@ This is sometimes a significant boost to quality.</p>
     </p></li>
 </ul>
 
-<p>You can also <?php echo a_href_page_hashlink('switch to Phong shading for particular shapes', 'x3d_extensions', 'section_ext_shading'); ?>.
+<p>You can also <?php echo a_href_page_hashlink('switch shading for particular shapes', 'x3d_extensions', 'section_ext_shading'); ?>.
 
-<p>Pascal Developers: you can switch to Phong for the whole scene by <code>Scene.RenderOptions.PhongShading := true</code> or only for a particular shape using <code>Shape.Shading := shPhong</code>.
+<p>Pascal Developers: you can switch shading for the whole scene by <code>Scene.RenderOptions.PhongShading := true / false</code> or only for a particular shape using <code>Shape.Shading := shPhong / shGouraud</code>.
 
 <?php echo $toc->html_section(); ?>
 

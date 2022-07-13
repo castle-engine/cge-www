@@ -607,10 +607,10 @@ Shape {
       since the shadow map affects the rendering in a special way
       (it "masks" the particular light source contribution).
 
-      <p>Shadow map does not mix the fragment color like other textures
-      (that scale the complete resulting color,
-      <?php api_link('or only diffuse term if SeparateDiffuseTexture is used', 'CastleRenderer.TRenderingAttributes.html#SeparateDiffuseTexture'); ?>,
-      or base color <a href="https://github.com/michaliskambi/x3d-tests/wiki/Include-PhysicalMaterial-and-PhysicalEnvironmentLight-in-the-official-X3D-specification">when we implement PBR</a>).
+      <p>Shadow map does not mix the fragment color like <code>Appearance.texture</code> should
+      (that scales the <code>Material.diffuseColor</code>,
+      <code>PhysicalMaterial.baseColor</code> or
+      <code>UnlitMaterial.emissiveColor</code>).
 
     <li><p>Placing the shadow map here doesn't work with <a href="https://castle-engine.io/x3d_implementation_texturing_extensions.php#section_ext_common_surface_shader">CommonSurfaceShader</a>, as it has it's own textures. <code>CommonSurfaceShader.diffuseTexture</code> hides the <code>Appearance.texture</code>.
   </ul>

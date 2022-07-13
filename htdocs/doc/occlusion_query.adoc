@@ -9,7 +9,7 @@ A typical scenario is when you move in a city with tall buildings, and camera is
 
 cgeimg::block[oq_demo.png|Occlusion Query effect]
 
-It is really trivial to use it: just set on `TCastleScene` the https://castle-engine.io/apidoc-unstable/html/CastleRenderOptions.TCastleRenderOptions.html#OcclusionQuery[MyScene.RenderOptions.OcclusionQuery] to `true`. You can do this at runtime (and change at any moment), you can also set it in the CGE editor.
+It is really trivial to use it: just set on `TCastleScene` the cgeref:TCastleRenderOptions.OcclusionQuery[MyScene.RenderOptions.OcclusionQuery] to `true`. You can do this at runtime (and change at any moment), you can also set it in the CGE editor.
 
 Be sure to measure FPS (see https://castle-engine.io/manual_optimization.php ) to see how effective it is.
 

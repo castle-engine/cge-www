@@ -44,7 +44,7 @@ Note that (unfortunatately) it seems not possible to export a single animation l
 - Punctual lights (point, spot, directional lights).
 - Both `.glb` and `.gltf` extensions are supported. Textures can be provided in separate files or embedded inside the GLTF stream.
 - It is integrated in our engine as X3D nodes graph. This means that you can include a glTF model inside larger X3D file using the `Inline` node, you can modify the glTF scene graph at runtime (e.g. modify material color, show/hide something etc.) and you can serialize the scene graph to an X3D file.
-- Collisions automatically work (as with all other scene formats), you only have to initialize https://castle-engine.io/apidoc-unstable/html/CastleSceneCore.TCastleSceneCore.html#Spatial[Scene.Spatial] (see the link:viewport_3d#_more_precise_collisions[manual]). By default, static meshes have precise collisions (treating them like a set of triangles), while skinned-animated meshes collide as simple bounding boxes (so they don't cause a slowdown when animating). This can be even customized per-shape by adjusting https://castle-engine.io/apidoc-unstable/html/X3DNodes.TAbstractShapeNode.html#Collision[Shape.collision] property.
+- Collisions automatically work (as with all other scene formats), you only have to initialize cgeref:TCastleSceneCore.Spatial[Scene.Spatial] (see the link:viewport_3d#_more_precise_collisions[manual]). By default, static meshes have precise collisions (treating them like a set of triangles), while skinned-animated meshes collide as simple bounding boxes (so they don't cause a slowdown when animating). This can be even customized per-shape by adjusting cgeref:TAbstractShapeNode.Collision[Shape.collision] property.
 - We apply link:manual_gamma_correction.php[gamma correction] automatically on PBR materials. You can request to apply it on all materials (including unlit) to follow glTF spec in 100% easily.
 - We read glTF "extras" data that can be defined by your authoring tool, for example in Blender this is defined by _"Custom properties"_. This allows to pass any custom information from Blender to the engine, for use in your own applications, or to influence the import &mdash; see link:blender#section_custom_properties[Custom properties in Blender].
 - We use https://github.com/BeRo1985/pasgltf/[PasGLTF], a great open-source library for reading glTF by https://www.patreon.com/bero[Benjamin "Bero" Rosseaux].
@@ -112,7 +112,7 @@ Of course, remember that you can also use unlit materials in glTF. These always 
 
 == Gamma Correction
 
-The `PhysicalMaterial`, used by most glTF models, has https://castle-engine.io/apidoc-unstable/html/CastleRendererBaseTypes.html#GammaCorrection[Gamma Correction] turned on by default.
+The `PhysicalMaterial`, used by most glTF models, has cgeref:GammaCorrection[] turned on by default.
 
 * If you need maximum speed, consider disabling gamma correction, by `GammaCorrection := gcNone`.
 * If you need maximum glTF compatibility, consider enabling gamma correction for all materials (`PhysicalMaterial`, `UnlitMaterial`, `Material`), by `GammaCorrection := gcAlways`.

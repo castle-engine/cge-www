@@ -114,7 +114,7 @@ The above example is a complete `CastleEngineManifest.xml` file, that allows to 
 
 * You can specify multiple unit names, separated by commas, like `game_units="OneUnit, TheOtherUnit"`. All the listed units will be automatically compiled into the game. But typically it is enough to specify a single _main unit_, and this unit can pull the other units by using them by a `uses SomeOtherUnit;` declaration in the Pascal source code.
 +
-The `initialization` section of one of your units must create an instance of the class https://castle-engine.io/apidoc-unstable/html/CastleWindow.TCastleWindow.html[TCastleWindow], and you must set it as https://castle-engine.io/apidoc-unstable/html/CastleWindow.TCastleApplication.html#MainWindow[Application.MainWindow]. Any example code, in particular all new projects created by the https://castle-engine.io/manual_editor.php[CGE editor], have a code doing this in `GameInitialize` unit.
+The `initialization` section of one of your units must create an instance of the class cgeref:TCastleWindow[], and you must set it as cgeref:TCastleApplication.MainWindow[Application.MainWindow]. Any example code, in particular all new projects created by the https://castle-engine.io/manual_editor.php[CGE editor], have a code doing this in `GameInitialize` unit.
 
 * The main program (or library) file, suitable for each platform, will be created automatically before every compilation, if you don't set appropriate `xxx_source` attribute for your platform. So if you don't set `android_source` / `ios_source` / `standalone_source` / `plugin_source`, but request compilation to a given platform, we will automatically generate a program (or library) file as necessary.
 +

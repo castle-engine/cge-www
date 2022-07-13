@@ -106,7 +106,8 @@ Shape {
     <p>Using <code>PointSet</code> is the fastest and easiest way to render points.
     See <a href="https://github.com/castle-engine/demo-models/blob/master/x3d/points_colorrgba.x3dv">an example X3D file</a>. You can write the points in an X3D file or define the nodes using Pascal code, as always, see <a href="x3d_implementation_geometry2d.php">an example how to build X3D graph in Pascal</a>.
 
-    <p>To control the size of the point, set <code>TCastleScene.Attributes.PointSize</code>.
+    <p>To control the size of the point,
+    set <?php echo cgeRef('TCastleRenderOptions.PointSize', 'Scene.RenderOptions.PointSize'); ?></code>.
 
     <p>This uses OpenGL(ES) rendering of points. So:
     <ul>

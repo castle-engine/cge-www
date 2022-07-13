@@ -7,7 +7,7 @@
   $toc = new TableOfContents(
     array(
       new TocItem('Toggle shape rendering (<code>Shape.render</code>)', 'ext_shape_render'),
-      new TocItem('Specify shading, e.g. to force Phong shading or wireframe for a shape (<code>Shape.shading</code>)', 'ext_shading'),
+      new TocItem('Specify shading (e.g. Gouraud, Phong or wireframe) for a shape (<code>Shape.shading</code>)', 'ext_shading'),
       new TocItem('Specify alpha channel treatment (field <code>alphaMode</code> for <code>Appearance</code>)', 'ext_alpha_channel'),
       new TocItem('Set shape bounding box (<code>Shape.bboxCenter</code>, <code>Shape.bboxSize</code>)', 'ext_shape_bbox'),
       new TocItem('Specify shape collision mode (<code>Shape.collision</code>)', 'ext_shape_collision'),
@@ -71,44 +71,21 @@ Although toggling Switch node is also ultra-fast.
 <ul>
   <li><p><code>DEFAULT</code>: use the default shading.
 
-    <p>The default is to use <i>Gouraud shading</i>, for now,
-    for shapes using <code>Material</code> node.
+    <p>The default is to use <i>Phong shading</i> in the latest version of CGE.
 
     <p>In <?php echo a_href_page("view3dscene", "view3dscene") ?>
     you control this using the <i>"View -&gt; Phong Shading on Everything"</i> checkbox.
     In your own games you control this using the
-    <code>Scene.Attributes.PhongShading</code> property in Pascal code.
-
-    <p>Note that Phong shading is also automatically used, on a particular shape,
-    if this shape uses a graphic effect that requires such shading for internal reasons.
-    For example,
-
-    <ul>
-      <li><p>using two-sided lighting (<code>solid="FALSE"</code>),
-
-      <li><p>or using <a href="x3d_extensions_shadow_maps.php">shadow maps</a>
-
-      <li><p>or using <i>bump mapping</i> (<code>Material.normalTexture</code>).
-
-      <li><p>Using <i>PBR (Physically-Based Rendering)</i> through <code>PhysicalMaterial</code>
-        also automatically forces Phong shading.
-
-        <p>This also means that glTF models (as they use <code>PhysicalMaterial</code>
-        by default) by default use Phong shading. You can
-        change this by using
-        <a href="https://castle-engine.io/apidoc-unstable/html/CastleLoadGltf.html#GltfForcePhongMaterials">GltfForcePhongMaterials</a> which forces <i>Phong lighting model</i>
-        for glTF meshes, which means that by default they have <i>Gouraud shading</i>.
-        (Do not confuse <i>Phong lighting model</i> with
-        <i>Phong shading</i>. They are unrelated, that is: choosing <i>shading</i>
-        is somewhat independent from choosing <i>lighting model</i>.)
-    </ul>
+    <code>Scene.RenderOptions.PhongShading</code> property in Pascal code.
   </li>
 
   <li><p><code>GOURAUD</code>: fast per-vertex lighting calculation.
 
-    <p>Explicitly specifying the <code>"GOURAUD"</code> indicates that this shape wants to use Gouraud shading, even if the default scene shading is Phong. Note that some features (like bump mapping and shadow maps) will override this and require Phong shading anyway, since it's impossible to realize them with Gouraud shading.
+    <p>Specifying the <code>"GOURAUD"</code> indicates that this shape wants to use Gouraud shading, regardless if the default scene shading is Phong or Gouraud.
 
-    <p>Note that the <code>"GOURAUD"</code> shading performs only one-sided lighting in the shader pipeline. This means that only one face side receives lighting. By default (when <code>ccw="TRUE"</code>) this is the side oriented in a counter-clockwise fashion, but you can switch this by setting the <code>ccw="FALSE"</code>. The other face will be always black (or invisible, if the backface-culling if used, by <code>solid="TRUE"</code>, which is actually default).
+    <p>Note that some features (like two-sided lighting, bump mapping, shadow maps, PBR) will override this and require Phong shading anyway, since it's impossible to realize them with Gouraud shading.
+
+    <p>Note that the <code>"GOURAUD"</code> shading can performs only one-sided lighting in the shader pipeline. So it is only allowed if the backface-culling is also used, by <code>solid="TRUE"</code>. Otherwise two-sided lighting forces usage of Phong shading.
 
   <li><p><code>PHONG</code>: pretty per-pixel lighting calculation.
     This also means always using shader pipeline to render this shape.
