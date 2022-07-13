@@ -294,6 +294,13 @@ article.post .entry-content ul.list-no-margin {
   font-style: italic;
 }
 
+/* Make long words, like MultiGeneratedTextureCoordinate or MovieTexture.flipVertically,
+   broken -- good for mobile usability. */
+h2 {
+  /* word-break: break-all; */
+  overflow-wrap: break-word;
+}
+
 /* main page stuff ----------------------------------------------------------- */
 
 .centered-wrapper {
