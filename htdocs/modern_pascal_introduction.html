@@ -526,9 +526,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 .CodeRay .head .head{color:#f4f}
 </style>
 <style>.patreon-link {
-  display: block;
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-  color: #777;
   font-size: 14px;
   line-height: 35px;
   padding-bottom: 10px;
@@ -539,11 +537,13 @@ table.CodeRay td.code{padding:0 0 0 .75em}
   text-align: left;
   float: right;
 }
+/*
 a.patreon-link:hover,
 a.patreon-link:focus {
   color: black;
   background: #EEE;
 }
+*/
 </style></head>
 <body class="article toc2 toc-left">
 <div id="header">
@@ -551,7 +551,11 @@ a.patreon-link:focus {
 <div class="details">
 <span id="author" class="author">Michalis Kamburelis</span><br>
 </div>
-<a href="https://patreon.com/castleengine" class="patreon-link">Support the author on<br><img class="patreon-logo" src="patreon-link.png" alt="Patreon"></a>
+<a href="https://patreon.com/castleengine" class="navbar-link patreon-link" style="display: inline-block; background-color: #FF424D; border-radius: 0; text-align: center;">
+  <div style="color: #ffffff; padding-left: 1em; padding-right: 1em;">
+    <span style="vertical-align: middle;">Support&nbsp;us&nbsp;on</span>&nbsp;<img src="patreon-wordmark.png" alt="Patreon Wordmark" style="display: inline-block; vertical-align: middle;" width="80" height="16">
+  </div>
+</a>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
@@ -5441,7 +5445,7 @@ you create <em>COM interfaces</em>. This can be stated explicitly by saying <cod
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-05-06 23:40:22 +0200
+Last updated 2022-05-10 19:37:56 +0200
 </div>
 </div>
 <!-- Google analytics -->
