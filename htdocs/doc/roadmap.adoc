@@ -13,13 +13,11 @@ VR: link:wp/2022/01/16/oculus-quest-2-developer-mode-for-castle-game-engine-enab
 
 AR: most likely using Android / iOS built-in frameworks, as these make AR widely available on modern phones.
 
-## (IN PROGRESS) More visual editor
+## (IN PROGRESS - MOSTLY DONE) More visual editor
 
-Extend our link:manual_editor.php[editor] with features mentioned on link:wp/2022/01/01/summary-of-2021-plans-for-2022/[2022 plans]:
+Extend our link:manual_editor.php[editor] with features mentioned on link:wp/2022/01/01/summary-of-2021-plans-for-2022/[2022 plans]. Remaining:
 
-- Lights editing (IN PROGRESS by _Michalis Kamburelis_).
 - Materials editing.
-- Better camera and navigation in editor.
 
 ## More Delphi
 
@@ -33,15 +31,15 @@ Some modifications to CGE may be required here (CastleGeometryArrays will have t
 
 We should also perform skinning fully on GPU, avoiding `CoordinateInterpolator` done on CPU.
 
-## (IN PROGRESS) More physics
+## (IN PROGRESS - MOSTLY DONE) More physics
 
 More physics engine integration:
 
-- Physics behaviors in editor (IN PROGRESS by _Andrzej Kilijański_).
-- Auto-size for colliders
+- Physics behaviors in editor (ALMOST DONE - PR IN REVIEW - by _Andrzej Kilijański_).
+- Auto-size for colliders (ALMOST DONE - PR IN REVIEW - by _Andrzej Kilijański_).
 - Visualize colliders in editor
 - Layers
-- Joints
+- Joints (IN PROGRESS - by _Andrzej Kilijański_).
 
 The details are listed in the link:manual_physics.php[manual about physics].
 
@@ -51,13 +49,13 @@ Using FPC + WebAssembly, new target announced at the end of 2021.
 
 Some parts may also be done using pas2js. Done most likely just "wrapper", and the majority can be done using WebAssembly.
 
-_This is already in-progress by _Trung Le (Kagamma)_._
+_This is already in-progress by Trung Le (Kagamma)._
 
 ## (IN PROGRESS) Particle systems
 
 With a designer. Example usage: blood, snow, rain, fire, smoke... 2D, 3D.
 
-_This is already in-progress by _Trung Le (Kagamma)_. Use link:https://github.com/Kagamma/cge-3d-particle-emitter[cge-3d-particle-emitter] or link:https://github.com/Kagamma/cge-effekseer[Effekseer Integration]. See link:additional_components.php[CGE components]._
+_This is already in-progress by Trung Le (Kagamma). Use link:https://github.com/Kagamma/cge-3d-particle-emitter[cge-3d-particle-emitter] or link:https://github.com/Kagamma/cge-effekseer[Effekseer Integration]. See link:additional_components.php[CGE components]._
 
 ## Steam integration, and engine available as Steam app
 
@@ -70,10 +68,6 @@ We should also upload CGE as app to Steam.
 link:https://github.com/castle-engine/view3dscene-mobile[This is almost done, thanks to Jan Adamec.] We need to release it :)
 
 Associated with glTF, X3D and other formats that the view3dscene (and _Castle Game Engine_) handles. Available in the App Store / Google Play Store. For free or for 1 USD (not sure yet; but definitely without ads, I really dislike ads).
-
-## Continuous integration (Jenkins) for free for all open-source projects
-
-We have a link:cloud_builds_jenkins[Jenkins + Docker infrastructure] to compile and test CGE, and CGE-based applications. I want to finish some stuff there and make it publicly accessible, and free for open-source projects.
 
 ## Terrain designer
 
@@ -109,10 +103,6 @@ This would make the whole TCastleViewport.Items a single graph of X3D nodes, all
 
 See link:https://github.com/libgdx/libgdx/wiki/Distance-field-fonts[about Distance field fonts]. See code from link:https://github.com/neurolabusc/OpenGLCoreTutorials[Chris Rorden] showing how to do it in Lazarus.
 
-## Networking demo using RNL
-
-Make a demo showing how to use Castle Game Engine together with link:https://github.com/BeRo1985/rnl[RNL - a real-time network library, in Pascal, very suitable for games, by Benjamin Rosseaux].
-
 ## Make 100% rendering features available on OpenGLES too
 
 link:mobile_todos[We have some small TODOs to make OpenGLES (mobile) renderer as capable as OpenGL (desktop).]
@@ -136,18 +126,6 @@ This will allow to run CGE editor on macOS by just double-clicking it, out-of-th
 See link:macos[macOS].
 
 We should also enable developers to easily sign their own applications packaged with CGE build tool.
-
-## (IN PROGRESS) API improvement: Make `TCastleViewport.MainScene` not necessary
-
-In the future, everything should be possible without assigning `TCastleViewport.MainScene`, and eventually `TCastleViewport.MainScene` property should be deprecated, later it should be ignored, and later it should be removed.
-
-Currently, the engine requires you to assign scene to `TCastleViewport.MainScene` to achieve some features. For example:
-
-- To have some X3D lights shining on _all_ scenes, these lights should be in `Viewport.Items.MainScene`. IN PROGRESS: this is being address by `TCastleScene.CastGlobalLights` in new link:https://github.com/castle-engine/castle-engine/tree/light-components[light-components branch] by _Michalis Kamburelis_.
-
-- `Fog` X3D node, this node needs to be inside `Viewport.Items.MainScene`. This will be address by `TCastleFog` similar to existing `TCastleBackground`
-
-All these features should have a different solution, that doesn't require marking any scene as "main".
 
 ## fps_game should be redesigned using editor, CreatureCreatures / CastleResources / CastleLevels / CastleItems / CastlePlayer should be replaced with a better API
 
