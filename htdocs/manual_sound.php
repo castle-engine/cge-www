@@ -27,40 +27,40 @@ echo castle_thumbs(array(
 
 <ul>
   <li>
-    <p><a href="https://castle-engine.io/apidoc-unstable/html/CastleSoundEngine.TCastleSound.html">TCastleSound</a>: The most important class, you should use this always when you want to play any sound.
+    <p><?php echo cgeRef('TCastleSound', 'TCastleSound'); ?>: The most important class, you should use this always when you want to play any sound.
 
     <p>This is a non-visual component that represents a sound file with some playback parameters. The most important properties are:
 
     <ul>
       <li>
         <p>
-          <a href="https://castle-engine.io/apidoc-unstable/html/CastleSoundEngine.TCastleSound.html#URL">URL</a> &mdash; undoubtedly the most important property, set this to actually load the sound file.
+          <?php echo cgeRef('TCastleSound.URL', 'URL'); ?> &mdash; undoubtedly the most important property, set this to actually load the sound file.
 
       <li>
         <p>
-          <a href="https://castle-engine.io/apidoc-unstable/html/CastleSoundEngine.TCastleSound.html#Stream">Stream</a> &mdash; optionally use "streaming", which is an alternative loading method best suited for longer playing sounds (like music tracks).
+          <?php echo cgeRef('TCastleSound.Stream', 'Stream'); ?> &mdash; optionally use "streaming", which is an alternative loading method best suited for longer playing sounds (like music tracks).
 
       <li>
         <p>
-          <a href="https://castle-engine.io/apidoc-unstable/html/CastleSoundEngine.TCastleSound.html#Volume">Volume</a> &mdash; how loud the sound is. This is multiplied by volume at <code>TCastlePlayingSound.Volume</code> and <code>TCastleSoundSource.Volume</code> and by spatial calculations.
+          <?php echo cgeRef('TCastleSound.Volume', 'Volume'); ?> &mdash; how loud the sound is. This is multiplied by volume at <code>TCastlePlayingSound.Volume</code> and <code>TCastleSoundSource.Volume</code> and by spatial calculations.
 
 
       <li>
         <p>
-          <a href="https://castle-engine.io/apidoc-unstable/html/CastleSoundEngine.TCastleSound.html#Pitch">Pitch</a> &mdash; sound playing speed. As with volume, the volume of <code>TCastleSound.Pitch</code> is multiplied by similar parameters controlled at <code>TCastlePlayingSound.Pitch</code> and <code>TCastleSoundSource.Pitch</code>.
+          <?php echo cgeRef('TCastleSound.Pitch', 'Pitch'); ?> &mdash; sound playing speed. As with volume, the volume of <code>TCastleSound.Pitch</code> is multiplied by similar parameters controlled at <code>TCastlePlayingSound.Pitch</code> and <code>TCastleSoundSource.Pitch</code>.
     </ul>
 
-    <p><code>TCastleSound</code> by itself doesn't manage playing the sound. You have to use <a href="https://castle-engine.io/apidoc-unstable/html/CastleSoundEngine.TSoundEngine.html#Play">SoundEngine.Play</a> to play the sound (the simplest way to play, for non-spatial sounds) or <a href="https://castle-engine.io/apidoc-unstable/html/CastleBehaviors.TCastleSoundSource.html">TCastleSoundSource</a> (for sounds that can be spatial; assign to <a href="https://castle-engine.io/apidoc-unstable/html/CastleBehaviors.TCastleSoundSource.html#Sound">TCastleSoundSource.Sound</a> for looping, use <a href="https://castle-engine.io/apidoc-unstable/html/CastleBehaviors.TCastleSoundSource.html#Play">TCastleSoundSource.Play</a> for non-looping).
+    <p><code>TCastleSound</code> by itself doesn't manage playing the sound. You have to use <?php echo cgeRef('TSoundEngine.Play', 'SoundEngine.Play'); ?> to play the sound (the simplest way to play, for non-spatial sounds) or <?php echo cgeRef('TCastleSoundSource', 'TCastleSoundSource'); ?> (for sounds that can be spatial; assign to <?php echo cgeRef('TCastleSoundSource.Sound', 'TCastleSoundSource.Sound'); ?> for looping, use <?php echo cgeRef('TCastleSoundSource.Play', 'TCastleSoundSource.Play'); ?> for non-looping).
 
   <li>
-    <p><a href="https://castle-engine.io/apidoc-unstable/html/CastleBehaviors.TCastleSoundSource.html">TCastleSoundSource</a>: A way to play spatial (3D) sounds.
+    <p><?php echo cgeRef('TCastleSoundSource', 'TCastleSoundSource'); ?>: A way to play spatial (3D) sounds.
 
-    <p>This is a behavior (see <a href="https://castle-engine.io/viewport_and_scenes_from_code#_behaviors">documentation about behaviors</a>) that enhances any <a href="https://castle-engine.io/apidoc-unstable/html/CastleTransform.TCastleTransform.html">TCastleTransform</a> so that it emits (possibly spatial) sounds.
+    <p>This is a behavior (see <a href="https://castle-engine.io/viewport_and_scenes_from_code#_behaviors">documentation about behaviors</a>) that enhances any <?php echo cgeRef('TCastleTransform', 'TCastleTransform'); ?> so that it emits (possibly spatial) sounds.
 
-    <p><code>TCastleSoundSource</code> refers to <code>TCastleSound</code> for an actual sound information. You can set <a href="https://castle-engine.io/apidoc-unstable/html/CastleBehaviors.TCastleSoundSource.html#Sound">TCastleSoundSource.Sound</a> (for looping). Or call <a href="https://castle-engine.io/apidoc-unstable/html/CastleBehaviors.TCastleSoundSource.html#Play">TCastleSoundSource.Play</a> (for non-looping).
+    <p><code>TCastleSoundSource</code> refers to <code>TCastleSound</code> for an actual sound information. You can set <?php echo cgeRef('TCastleSoundSource.Sound', 'TCastleSoundSource.Sound'); ?> (for looping). Or call <?php echo cgeRef('TCastleSoundSource.Play', 'TCastleSoundSource.Play'); ?> (for non-looping).
 
   <li>
-    <p><a href="https://castle-engine.io/apidoc-unstable/html/CastleSoundEngine.TCastlePlayingSound.html">TCastlePlayingSound</a>: Optional, use if you need more control before and during the sound playback.
+    <p><?php echo cgeRef('TCastlePlayingSound', 'TCastlePlayingSound'); ?>: Optional, use if you need more control before and during the sound playback.
 </ul>
 
 <p>Both <code>TCastleSoundSource</code> and <code>TCastleSound</code> can be created, configured and linked in the <a href="https://castle-engine.io/manual_editor.php">CGE editor</a>, e.g. when designing your state. You can hear the 3D sounds in the editor. You can also create and control them from code, as all CGE components.
@@ -109,7 +109,7 @@ echo castle_thumbs(array(
 
 <?php echo $toc->html_section(); ?>
 
-<p>Load a sound file as <a href="https://castle-engine.io/apidoc-unstable/html/CastleSoundEngine.TCastleSound.html">TCastleSound</a> like this:</p>
+<p>Load a sound file as <?php echo cgeRef('TCastleSound', 'TCastleSound'); ?> like this:</p>
 
 <ol>
   <li>

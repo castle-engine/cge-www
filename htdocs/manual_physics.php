@@ -1,8 +1,5 @@
 <?php
 require_once 'castle_engine_functions.php';
-
-api_links_to_unstable();
-
 castle_header('Physics');
 ?>
 
@@ -15,23 +12,23 @@ castle_header('Physics');
 
 <h2>Usage</h2>
 
-<p>You can turn any <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?> instance into a <i>rigid body</i>, which means that it will be affected by gravity and collisions with other rigid bodies. <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>, which you use to render 3D objects, is a descendant of <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?>, so this implies that <code>TCastleScene</code> can be a <i>rigid body</i> too. Or you can use <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?> as a container for other transformations and scenes inside, and thus a group of objects can be treated as a single rigid body.
+<p>You can turn any <?php echo cgeRef('TCastleTransform'); ?> instance into a <i>rigid body</i>, which means that it will be affected by gravity and collisions with other rigid bodies. <?php echo cgeRef('TCastleScene'); ?>, which you use to render 3D objects, is a descendant of <?php echo cgeRef('TCastleTransform'); ?>, so this implies that <code>TCastleScene</code> can be a <i>rigid body</i> too. Or you can use <?php echo cgeRef('TCastleTransform'); ?> as a container for other transformations and scenes inside, and thus a group of objects can be treated as a single rigid body.
 
 <p>To make a rigid body you need to:
 
 <ol>
   <li><p>Create a
-    <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>
+    <?php echo cgeRef('TCastleScene'); ?>
     (see also <a href="manual_scene.php">the manual chapter about transforming scene</a>).
-  <li><p>Create and configure an instance of <?php api_link('TRigidBody', 'CastleTransform.TRigidBody.html'); ?>.
-  <li><p>Create and configure an instance of some <?php api_link('TCollider', 'CastleTransform.TCollider.html'); ?> descendant,
+  <li><p>Create and configure an instance of <?php echo cgeRef('TRigidBody'); ?>.
+  <li><p>Create and configure an instance of some <?php echo cgeRef('TCollider'); ?> descendant,
     like
-    <?php api_link('TPlaneCollider', 'CastleTransform.TPlaneCollider.html'); ?>,
-    <?php api_link('TBoxCollider', 'CastleTransform.TBoxCollider.html'); ?>,
-    <?php api_link('TSphereCollider', 'CastleTransform.TSphereCollider.html'); ?>,
-    <?php api_link('TMeshCollider', 'CastleSceneCore.TMeshCollider.html'); ?>.
-    It will be connected to the parent rigid body at construction (the <?php api_link('TRigidBody.Collider', 'CastleTransform.TRigidBody.html#Collider'); ?> property will be automatically set when creating the collider).
-  <li><p>Link to your rigid body from the <?php api_link('TCastleTransform.RigidBody', 'CastleTransform.TCastleTransform.html#RigidBody'); ?> property.
+    <?php echo cgeRef('TPlaneCollider'); ?>,
+    <?php echo cgeRef('TBoxCollider'); ?>,
+    <?php echo cgeRef('TSphereCollider'); ?>,
+    <?php echo cgeRef('TMeshCollider'); ?>.
+    It will be connected to the parent rigid body at construction (the <?php echo cgeRef('TRigidBody.Collider'); ?> property will be automatically set when creating the collider).
+  <li><p>Link to your rigid body from the <?php echo cgeRef('TCastleTransform.RigidBody'); ?> property.
 </ol>
 
 <p>This is a sample code:</p>
@@ -73,10 +70,10 @@ end;'); ?>
 <p>Notes:
 
 <ul>
-  <li><p>Right now the instruction to assign <?php api_link('TCastleTransform.RigidBody', 'CastleTransform.TCastleTransform.html#RigidBody'); ?> should be at the very end, when you configured all the rigid body and collider parameters. Right now, this is when the rigid body is actually created on the physics engine side. <i>Right now</i> changing the properties of rigid body or collider later has no effect (if you need it, the temporary workaround is to set <code>TCastleTransform.RigidBody</code> to <code>nil</code> and then again to your <code>TRigidBody</code> instance).
+  <li><p>Right now the instruction to assign <?php echo cgeRef('TCastleTransform.RigidBody'); ?> should be at the very end, when you configured all the rigid body and collider parameters. Right now, this is when the rigid body is actually created on the physics engine side. <i>Right now</i> changing the properties of rigid body or collider later has no effect (if you need it, the temporary workaround is to set <code>TCastleTransform.RigidBody</code> to <code>nil</code> and then again to your <code>TRigidBody</code> instance).
 
-  <li><p>The collider shape is not synchronized with the scene shape in any way. This also applies to the <?php api_link('TMeshCollider', 'CastleSceneCore.TMeshCollider.html'); ?> that has a
-  <?php api_link('Scene property', 'CastleSceneCore.TMeshCollider.html#Scene'); ?>: the mesh is created <i>once</i> from the scene geometry, it is not synchronized with scene changes later. (If you need it, the workaround is the same as above: set <code>TCastleTransform.RigidBody</code> to <code>nil</code> and then again to your <code>TRigidBody</code> instance. But creating a mesh collider is a costly operation, so think twice before doing this during the game!)
+  <li><p>The collider shape is not synchronized with the scene shape in any way. This also applies to the <?php echo cgeRef('TMeshCollider'); ?> that has a
+  <?php echo cgeRef('TMeshCollider.Scene'); ?>: the mesh is created <i>once</i> from the scene geometry, it is not synchronized with scene changes later. (If you need it, the workaround is the same as above: set <code>TCastleTransform.RigidBody</code> to <code>nil</code> and then again to your <code>TRigidBody</code> instance. But creating a mesh collider is a costly operation, so think twice before doing this during the game!)
 </ul>
 
 <h2>2D games</h2>
@@ -86,7 +83,7 @@ end;'); ?>
 <ul>
   <li>Simply position everything around Z = 0 (or any other Z = constant plane).
   <li>When creating colliders, make sure that they have some non-zero size in Z axis too. Even though the Z axis is not visible in 2D games, but the colliders need to have some volume in all 3 axes.
-  <li>Constrain rotations and movement of dynamic rigid bodies to 2D by calling <?php api_link('TRigidBody.Setup2D', 'CastleTransform.TRigidBody.html#Setup2D'); ?>.
+  <li>Constrain rotations and movement of dynamic rigid bodies to 2D by calling <?php echo cgeRef('TRigidBody.Setup2D'); ?>.
 </ul>
 
 <p>The example how to do this is in <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/physics/physics_2d_game_sopwith">physics_2d_game_sopwith</a> (see in particular the <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/physics/physics_2d_game_sopwith/code/gameinitialize.pas">physics_2d_game_sopwith/code/gameinitialize.pas</a> source code).

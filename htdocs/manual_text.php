@@ -18,35 +18,35 @@ $toc = new TableOfContents(
 <?php echo $toc->html_section(); ?>
 
 <p>The most comfortable way to show text is to use
- <?php api_link('TCastleLabel', 'CastleControls.TCastleLabel.html'); ?>.
+ <?php echo cgeRef('TCastleLabel'); ?>.
  You can customize it's font using
- <?php api_link('CustomFont', 'CastleControls.TCastleUserInterfaceFont.html#CustomFont'); ?>
+ <?php echo cgeRef('TCastleUserInterfaceFont.CustomFont'); ?>
  and
- <?php api_link('FontSize', 'CastleControls.TCastleUserInterfaceFont.html#SmallFont'); ?>
+ <?php echo cgeRef('TCastleUserInterfaceFont.FontSize'); ?>
  properties.
 
 <p>Many UI controls (see for example unit
- <?php api_link('CastleControls', 'CastleControls.html'); ?>)
+ <?php echo cgeRef('CastleControls'); ?>)
  descend from
- <?php api_link('TCastleUserInterfaceFont', 'CastleControls.TCastleUserInterfaceFont.html'); ?>,
+ <?php echo cgeRef('TCastleUserInterfaceFont'); ?>,
  and thus can render text and have their font customized, for example
- <?php api_link('TCastleButton', 'CastleControls.TCastleButton.html'); ?>.
+ <?php echo cgeRef('TCastleButton'); ?>.
 
-<p>You can add and configure UI controls (like <?php api_link('TCastleLabel', 'CastleControls.TCastleLabel.html'); ?>,
- <?php api_link('TCastleButton', 'CastleControls.TCastleButton.html'); ?>
+<p>You can add and configure UI controls (like <?php echo cgeRef('TCastleLabel'); ?>,
+ <?php echo cgeRef('TCastleButton'); ?>
  and many more)
  by code, or using <a href="manual_editor.php">the CGE editor</a>.
 
 <?php echo $toc->html_section(); ?>
 
 <p>Instead of using
-<?php api_link('TCastleLabel', 'CastleControls.TCastleLabel.html'); ?>,
+<?php echo cgeRef('TCastleLabel'); ?>,
 you can explicitly draw the text.
 For this you need an instance of the
-<?php api_link('TCastleFont', 'CastleFonts.TCastleFont.html'); ?> class.
+<?php echo cgeRef('TCastleAbstractFont'); ?> class.
 To make it easy, one global instance of this class is already created for you:
-<?php api_link('UIFont', 'CastleControls.html#UIFont'); ?>
- (part of <?php api_link('CastleControls', 'CastleControls.html'); ?> unit).
+<?php echo cgeRef('UIFont'); ?>
+ (part of <?php echo cgeRef('CastleControls'); ?> unit).
 So you can simply draw text like this:
 
 <?php echo pascal_highlight(
@@ -54,61 +54,56 @@ So you can simply draw text like this:
 
 <p>You should place such drawing code inside a render method,
 for example inside the
- <?php api_link('OnRender event of TCastleWindow',
- 'CastleWindow.TCastleWindow.html#OnRender'); ?> or
- <?php api_link('OnRender event of TCastleControl',
- 'CastleControl.TCastleControl.html#OnRender'); ?> or
-inside the overridden <?php api_link('TCastleUserInterface.Render',
-  'CastleUIControls.TCastleUserInterface.html#Render'); ?> implementation.
-See <?php echo a_href_page('the manual about 2D drawing',
-  'manual_2d_ui_custom_drawn'); ?> for a general info about 2D rendering.
+ <?php echo cgeRef('TCastleWindow.OnRender'); ?> or
+ <?php echo cgeRef('TCastleControl.OnRender'); ?> or
+inside the overridden <?php echo cgeRef('TCastleUserInterface.Render'); ?> implementation.
+See <?php echo a_href_page('the manual about 2D drawing', 'manual_2d_ui_custom_drawn'); ?> for a general info about 2D rendering.
 
-
-<p><?php api_link('TCastleFont', 'CastleFonts.TCastleFont.html'); ?> class
+<p><?php echo cgeRef('TCastleAbstractFont'); ?> class
 has a lot of methods and properties.
 <ul>
   <li>You can simply print the text
-    (<?php api_link('Print', 'CastleFonts.TCastleFont.html#Print'); ?>).
+    (<?php echo cgeRef('TCastleAbstractFont.Print'); ?>).
   <li>You can change the font size
-    (<?php api_link('Size', 'CastleFonts.TCastleFont.html#Size'); ?>).
+    (<?php echo cgeRef('TCastleAbstractFont.Size'); ?>).
   <li>You can add an outline around it
-    (<?php api_link('Outline', 'CastleFonts.TCastleFont.html#Outline'); ?>,
-    <?php api_link('OutlineColor', 'CastleFonts.TCastleFont.html#OutlineColor'); ?>).
+    (<?php echo cgeRef('TCastleAbstractFont.Outline'); ?>,
+    <?php echo cgeRef('TCastleAbstractFont.OutlineColor'); ?>).
   <li>You can measure the text
-    (<?php api_link('TextWidth', 'CastleFonts.TCastleFont.html#TextWidth'); ?>,
-    <?php api_link('TextHeight', 'CastleFonts.TCastleFont.html#TextHeight'); ?>,
-    <?php api_link('TextSize', 'CastleFonts.TCastleFont.html#TextSize'); ?>,
-    <?php api_link('RowHeight', 'CastleFonts.TCastleFont.html#RowHeight'); ?>...).
+    (<?php echo cgeRef('TCastleAbstractFont.TextWidth'); ?>,
+    <?php echo cgeRef('TCastleAbstractFont.TextHeight'); ?>,
+    <?php echo cgeRef('TCastleAbstractFont.TextSize'); ?>,
+    <?php echo cgeRef('TCastleAbstractFont.RowHeight'); ?>...).
   <li>You can print a multi-line text, with optional line wrapping
-    (<?php api_link('PrintRect', 'CastleFonts.TCastleFont.html#PrintRect'); ?>,
-    <?php api_link('PrintRectMultiline', 'CastleFonts.TCastleFont.html#PrintRectMultiline'); ?>,
-    <?php api_link('PrintStrings', 'CastleFonts.TCastleFont.html#PrintStrings'); ?>,
-    <?php api_link('PrintBrokenString', 'CastleFonts.TCastleFont.html#PrintBrokenString'); ?>
+    (<?php echo cgeRef('TCastleAbstractFont.PrintRect'); ?>,
+    <?php echo cgeRef('TCastleAbstractFont.PrintRectMultiline'); ?>,
+    <?php echo cgeRef('TCastleAbstractFont.PrintStrings'); ?>,
+    <?php echo cgeRef('TCastleAbstractFont.PrintBrokenString'); ?>
     and other methods).
 </ul>
 
 <?php echo $toc->html_section(); ?>
 
-<p><?php api_link('TCastleFont', 'CastleFonts.TCastleFont.html'); ?> is actually
+<p><?php echo cgeRef('TCastleAbstractFont'); ?> is
 an abstract class representing some font that can be drawn.
 To create a new font, you create an instance of a non-abstract class,
-most often the <?php api_link('TTextureFont', 'CastleFonts.TTextureFont.html'); ?>
+most often the <?php echo cgeRef('TCastleFont'); ?>
  class &mdash; it draws font glyphs from a texture,
  and can be loaded from a font file (TTF, OTF).
 There are other possible font implementations, for example
-<?php api_link('TSimpleTextureFont', 'CastleFonts.TSimpleTextureFont.html'); ?>
+<?php echo cgeRef('TCastleBitmapFont'); ?>
  allows to use a font drawn on an image (so you can make colorful letters,
 with fancy custom outline and such).
 
 <p>See <code>castle_game_engine/examples/fonts/font_from_texture.lpr</code>
 for a simple example of creating fonts.
 In the basic version, you simply use
-<?php api_link('TTextureFont.Load', 'CastleFonts.TTextureFont.html#Load'); ?>
+<?php echo cgeRef('TCastleFont.Load'); ?>
  to load a font from a file (TTF, OTF or any other font format supported by the
 FreeType2 library). So you construct and load a font like this:
 
 <?php echo pascal_highlight(
-'MyNewFont := TTextureFont.Create(Application { any TComponent to act as owner });
+'MyNewFont := TCastleFont.Create(Application { any TComponent to act as owner });
 MyNewFont.Load(\'castle-data:/MyFontFile.ttf\', 20, true);'); ?>
 
 <p>Remember to install the FreeType2 library for this to work. On Windows,
@@ -129,8 +124,8 @@ or define a <code>default_font</code> inside the
 This way CGE editor will also use the new font.)
 
 <p>Instead of loading the font data from a file, you can also provide
-a <?php api_link('TTextureFontData', 'CastleTextureFontData.TTextureFontData.html'); ?>
- instance to the <?php api_link('TTextureFont', 'CastleFonts.TTextureFont.html'); ?>
+a <?php echo cgeRef('TTextureFontData'); ?>
+ instance to the <?php echo cgeRef('TCastleFont'); ?>
  constructor. This allows to create the font data at runtime
  or <b>to use the font data embedded in a Pascal source code</b>.
 You can use the <code>texture-font-to-pascal</code> program (compile it from
@@ -150,15 +145,15 @@ texture-font-to-pascal --size 20 MyFontFile.ttf
 <p>You can use this unit in your program, and create a font instance like this:
 
 <?php echo pascal_highlight(
-'MyNewFont := TTextureFont.Create(Application { any TComponent to act as owner });
+'MyNewFont := TCastleFont.Create(Application { any TComponent to act as owner });
 MyNewFont.Load(TextureFont_MyFontFile_20);'); ?>
 
 <p>The advantages of embedding a font inside a Pascal unit are:
 
 <ul>
-  <li>You don't need to distribute the FreeType2 library.
-    This is especially useful when developing for Android or iOS or web plugin,
-    when linking with an additional library can be troublesome.
+  <li>You don't need to distribute the FreeType2 library. (Although this shouldn't be a big problem,
+    CGE can package FreeType2 with your project for all platforms automatically.)
+
   <li>Font is loaded slightly faster, since it's already processed to
     a suitable texture data.
 </ul>
@@ -185,26 +180,21 @@ the international characters to be encoded using UTF-8.
 To draw the international characters (anything beyond basic English ASCII set)
 you also need to create a font with these characters.
 
-<p>When constructing <?php api_link('TTextureFont', 'CastleFonts.TTextureFont.html'); ?>,
-you need to use the overloaded constructor with parameter
-<code>ACharacters (TUnicodeCharList)</code>. Provide there a list
+<p>To <?php echo cgeRef('TCastleFont'); ?>
+ provide a list
 of the characters (including all the possible international characters)
 that you want to display. Like this:
 
 <?php echo pascal_highlight(
-'uses ..., CastleFonts, CastleStringUtils, CastleUnicode;
+'uses ..., CastleFonts, CastleStringUtils;
 
 function CreateMyFont: TCastleFont;
-var
-  Characters: TUnicodeCharList;
 begin
-  Characters := TUnicodeCharList.Create;
-  try
-    Characters.Add(SimpleAsciiCharacters);
-    { below is a string containing all my international chars, in UTF-8 }
-    Characters.Add(\'你好世界ΓειασουκόσμεЗдравствуймир\');
-    Result := TTextureFont.Create(\'castle-data:/MyFontFile.ttf\', 20, true, Characters);
-  finally FreeAndNil(Characters) end;
+  Result := TCastleFont.Create(nil);
+  { below is a string containing all my international chars, in UTF-8 }
+  Result.LoadCharacters := SimpleAsciiCharacters + \'你好世界ΓειασουκόσμεЗдравствуймир\';
+  Result.OptimalSize := 20;
+  Result.Url := \'castle-data:/MyFontFile.ttf\';
 end;'); ?>
 
 <p>Make sure to provide the sample characters encoded in UTF-8.
@@ -229,13 +219,9 @@ out of the box; on modern Windows it should also work).
 
 <?php echo $toc->html_section(); ?>
 
-<?php
-api_links_to_unstable();
-?>
+<p>You can use the <?php echo cgeRef('CastleLocalizationGetText'); ?> for a localization approach based on GetText.
 
-<p>You can use the <?php api_link('CastleLocalizationGetText', 'CastleLocalizationGetText.html'); ?> for a localization approach based on GetText.
-
-<p>You use standard GetText formats for translating (PO, MO) and utilizing GetText tools like <a href="https://poedit.net/">PoEdit</a>. You can automatically translate strings in Pascal code, declared as <code>resourcestring</code> (use <?php api_link('CastleTranslateResourceStrings', 'CastleLocalizationGetText.html#CastleTranslateResourceStrings'); ?>). You can automatically translate user interface (use <?php api_link('TranslateAllDesigns', 'CastleLocalizationGetText.html#TranslateAllDesigns'); ?>). You can generate starting file to translate user interface (use <?php api_link('GenerateGetTextPo', 'CastleLocalizationGetText.html#GenerateGetTextPo'); ?>).
+<p>You use standard GetText formats for translating (PO, MO) and utilizing GetText tools like <a href="https://poedit.net/">PoEdit</a>. You can automatically translate strings in Pascal code, declared as <code>resourcestring</code> (use <?php echo cgeRef('CastleTranslateResourceStrings'); ?>). You can automatically translate user interface (use <?php echo cgeRef('TranslateAllDesigns'); ?>). You can generate starting file to translate user interface (use <?php echo cgeRef('GenerateGetTextPo'); ?>).
 
 <p>A typical workflow for translating an application looks like this:
 
@@ -287,7 +273,7 @@ api_links_to_unstable();
     of your application.
 
   <li><p>In game, determine user preferred language, e.g. using
-    <?php api_link('CastleSystemLanguage', 'CastleSystemLanguage.html'); ?>.
+    <?php echo cgeRef('CastleSystemLanguage'); ?>.
 
     <p>Then translate things by loading appropriate MO file.
 
@@ -305,8 +291,8 @@ api_links_to_unstable();
 <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/localization/gettext">example application using CastleLocalizationGetText (examples/localization/gettext/)</a>.
 
 <p>You can tweak this workflow to your needs by using various other routines from
-<?php api_link('CastleLocalizationGetText', 'CastleLocalizationGetText.html'); ?>
- unit and overriding <?php api_link('TCastleComponent.TranslateProperties', 'CastleClassUtils.TCastleComponent.html#TranslateProperties'); ?>.
+<?php echo cgeRef('CastleLocalizationGetText'); ?>
+ unit and overriding <?php echo cgeRef('TCastleComponent.TranslateProperties'); ?>.
 You can use more POT / PO files for your own needs.
 You can translate strings explicitly at any moment, using
 <a href="https://www.freepascal.org/docs-html/fcl/gettext/tmofile.translate.html">TMOFile.Translate('my_id')</a>.
@@ -318,7 +304,7 @@ You can translate strings explicitly at any moment, using
 <p>You can use our own localization approach from the
 <a href="https://github.com/castle-engine/castle-engine/blob/master/src/deprecated_units/castlelocalization.pas">CastleLocalization</a>
 <?php /* api_link('CastleLocalization', 'CastleLocalization.html'); */ ?>
- unit. It can read from a number of translation formats (XML, JSON, CSV, GetText MO). It can translate user-interface controls, like <?php api_link('TCastleLabel', 'CastleControls.TCastleLabel.html'); ?>. The demo is inside <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/localization/custom">examples/localization/custom/</a>.
+ unit. It can read from a number of translation formats (XML, JSON, CSV, GetText MO). It can translate user-interface controls, like <?php echo cgeRef('TCastleLabel'); ?>. The demo is inside <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/localization/custom">examples/localization/custom/</a>.
 
 <p>For advanced users, the system allows to aid in localizing your custom classes too (see
 <?php /* api_link('OnUpdateLocalization', 'CastleLocalization.TCastleLocalization.html#OnUpdateLocalization'); */ ?>
@@ -327,7 +313,7 @@ and to add your own translation formats (see
 <?php /* api_link('FileLoader', 'CastleLocalization.TCastleLocalization.html#FileLoader'); */ ?>
 <code>FileLoader</code>).
 
-<p>As with GetText approach, you can use a cross-platform <?php api_link('CastleSystemLanguage', 'CastleSystemLanguage.html'); ?> unit that tells you the preferred user language. You can also translate strings "explicitly" using the
+<p>As with GetText approach, you can use a cross-platform <?php echo cgeRef('CastleSystemLanguage'); ?> unit that tells you the preferred user language. You can also translate strings "explicitly" using the
 <?php /* api_link('Localization.Items[\'my_id\']', 'CastleLocalization.TCastleLocalization.html#Items'); */ ?>
  <code>Localization.Items['my_id']</code>
  in CastleLocalization.
@@ -335,13 +321,13 @@ and to add your own translation formats (see
 <p><i>Thousand thanks go to Benedikt Magnus for developing this approach!</i>
 
 <p>It is deprecated, as it has (for now) less features than the GetText approach.
-<?php api_link('CastleLocalizationGetText', 'CastleLocalizationGetText.html'); ?> offers these additional features:
+<?php echo cgeRef('CastleLocalizationGetText'); ?> offers these additional features:
 
 <ul>
   <li>Translating <code>resourcestrings</code> (so the constant strings in code are "magically" translated),
-  <li><?php api_link('GenerateGetTextPo', 'CastleLocalizationGetText.html#GenerateGetTextPo'); ?> (generating translation template),
-  <li><?php api_link('TranslateAllDesigns', 'CastleLocalizationGetText.html#TranslateAllDesigns'); ?> (automatic translation of all deserialized components),
-  <li>uses <?php api_link('TCastleComponent.TranslateProperties', 'CastleClassUtils.TCastleComponent.html#TranslateProperties'); ?> (mutiple translatable properties on a component are possible).
+  <li><?php echo cgeRef('GenerateGetTextPo'); ?> (generating translation template),
+  <li><?php echo cgeRef('TranslateAllDesigns'); ?> (automatic translation of all deserialized components),
+  <li>uses <?php echo cgeRef('TCastleComponent.TranslateProperties'); ?> (mutiple translatable properties on a component are possible).
 </ul>
 
 <?php

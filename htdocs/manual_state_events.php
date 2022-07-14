@@ -368,7 +368,7 @@ end;'); ?>
     We modify the <code>Y</code> to make the plane fall down, and use <code>Max</code> (from standard <code>Math</code> unit)
     to prevent it from falling too much (below the game window).
 
-    <p>We get and set the <a href="https://castle-engine.io/apidoc-unstable/html/CastleUIControls.TCastleUserInterface.html#AnchorDelta">ImagePlayer.AnchorDelta</a>
+    <p>We get and set the <?php echo cgeRef('TCastleUserInterface.AnchorDelta', 'ImagePlayer.AnchorDelta'); ?>
     which changes the image position. The anchors are relative to the parent
     (<code>ImageBackground</code>) and, since the image is anchored by default to the left-bottom of the parent,
     the anchor value (0,0) means that the left-bottom corner of <code>ImagePlayer</code> matches
@@ -455,7 +455,7 @@ end;'); ?>
     <p>The <code>Event.IsKey(keySpace)</code> checks whether this is a press of the <code>space</code>
     key.
 
-    <p>As a demo, we modify the <a href="https://castle-engine.io/apidoc-unstable/html/CastleControls.TCastleImageControl.html#Color">ImagePlayer.Color</a>,
+    <p>As a demo, we modify the <?php echo cgeRef('TCastleImageControl.Color', 'ImagePlayer.Color'); ?>,
     which is an RGBA value multiplied by the original image color.
     This allows to easily "tint" the image, e.g. setting it to <code>Vector4(0.5, 0.5, 1, 1)</code>
     means that <i>red</i> and <i>green</i> color components are darker (multiplied by 0.5)
@@ -483,14 +483,14 @@ If the key causes an effect that is somehow applied more and more over time  &md
 
 <p>The mouse press is also handled in the <code>Press</code> method. In general,
 <code>Press</code> method receives key press, or a mouse press, or a mouse wheel use
-(see the documentation of <a href="https://castle-engine.io/apidoc-unstable/html/CastleKeysMouse.TInputPressRelease.html">TInputPressRelease</a>).
+(see the documentation of <?php echo cgeRef('TInputPressRelease', 'TInputPressRelease'); ?>).
 
 <p>Everywhere in the engine, the mouse events also work on touch devices, when they correspond to
 the movement / touches of the fingers. When you use a touch device, then we only report <i>left</i> mouse button clicks
-(<a href="https://castle-engine.io/apidoc-unstable/html/CastleKeysMouse.TInputPressRelease.html#MouseButton">TInputPressRelease.MouseButton</a>
-will be <code>buttonLeft</code>).
-When you use use the actual mouse on the desktop, then we only report touches by the 1st finger (<a href="https://castle-engine.io/apidoc-unstable/html/CastleKeysMouse.TInputPressRelease.html#FingerIndex">TInputPressRelease.FingerIndex</a>
-will be <code>0</code>). The example code below checks for <code>if Event.IsMouseButton(buttonLeft) then</code>
+(<?php echo cgeRef('TInputPressRelease.MouseButton', 'TInputPressRelease.MouseButton'); ?>
+ will be <code>buttonLeft</code>).
+When you use use the actual mouse on the desktop, then we only report touches by the 1st finger (<?php echo cgeRef('TInputPressRelease.FingerIndex', 'TInputPressRelease.FingerIndex'); ?>
+ will be <code>0</code>). The example code below checks for <code>if Event.IsMouseButton(buttonLeft) then</code>
 and thus it will work on both desktop (detecting mouse click) and mobile (detecting touch).
 
 <p>Extend the <code>TStateMain.Press</code> method implementation into this:
@@ -517,8 +517,8 @@ end;'); ?>
 
 <p>The <code>Event.Position</code> contains the mouse/touch position. It is expressed in the <i>container</i>
 coordinates, which means it is not affected by UI scaling or the UI hierarchy and anchors.
-It's easiest to convert it to a position relative to some UI control using the <a href="https://castle-engine.io/apidoc-unstable/html/CastleUIControls.TCastleUserInterface.html#ContainerToLocalPosition">ContainerToLocalPosition</a>
-method. In this case, we use <code>ImagePlayer.Parent.ContainerToLocalPosition</code>, to use
+It's easiest to convert it to a position relative to some UI control using the <?php echo cgeRef('TCastleUserInterface.ContainerToLocalPosition', 'ContainerToLocalPosition'); ?>
+ method. In this case, we use <code>ImagePlayer.Parent.ContainerToLocalPosition</code>, to use
 the resulting position to set <code>ImagePlayer.AnchorDelta</code>. The <code>ImagePlayer.Parent</code>
 is just another way to access <code>ImageBackground</code> in this case. We want to calculate new player
 position, in the coordinates of <code>ImagePlayer</code> parent, because that's what

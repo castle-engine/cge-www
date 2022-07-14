@@ -387,7 +387,7 @@ If you can, use instead
 
 <ul>
   <li><p>Phong lighting model (through X3D <code>Material</code> node;
-    for glTF, set <a href="https://castle-engine.io/apidoc-unstable/html/CastleLoadGltf.html#GltfForcePhongMaterials">GltfForcePhongMaterials</a>).
+    for glTF, set <?php echo cgeRef('GltfForcePhongMaterials', 'GltfForcePhongMaterials'); ?>).
 
   <li><p>Moreover, use Gouraud shading, if you can. This is actually the default for Phong lighting,
     unless you request bump mapping, shadow maps or other fancy stuff.

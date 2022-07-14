@@ -108,18 +108,18 @@ Instead of hardcoding things like this:
 </game_configuration>'); ?>
 
 <p>The Pascal API is quite simple, see the
-<a href="https://castle-engine.io/apidoc-unstable/html/CastleScriptParser.html">CastleScriptParser</a> unit.
+<?php echo cgeRef('CastleScriptParser', 'CastleScriptParser'); ?> unit.
 Use trivial
-<a href="https://castle-engine.io/apidoc-unstable/html/CastleScriptParser.html#ParseConstantFloatExpression">ParseConstantFloatExpression</a>
-as a replacement for <code>StrToFloat</code> to calculate expressions using constants and all our functions and operators.
+<?php echo cgeRef('ParseConstantFloatExpression', 'ParseConstantFloatExpression'); ?>
+ as a replacement for <code>StrToFloat</code> to calculate expressions using constants and all our functions and operators.
 Use
-<a href="https://castle-engine.io/apidoc-unstable/html/CastleScriptParser.html#ParseFloatExpression">ParseFloatExpression</a>
-to calculate an expresion with possible CastleScript variables.
+<?php echo cgeRef('ParseFloatExpression', 'ParseFloatExpression'); ?>
+ to calculate an expresion with possible CastleScript variables.
 You can calculate other types, e.g. strings by
-<a href="https://castle-engine.io/apidoc-unstable/html/CastleScriptParser.html#ParseStringExpression">ParseStringExpression</a>.
-To read float expression from XML you can helpers from
-<a href="https://castle-engine.io/apidoc-unstable/html/CastleScriptXML.html">CastleScriptXML</a> unit,
-so you can write <code>MyDomElement.GetFloatExpression('value')</code>.
+<?php echo cgeRef('ParseStringExpression', 'ParseStringExpression'); ?>.
+ To read float expression from XML you can helpers from
+<?php echo cgeRef('CastleScriptXML', 'CastleScriptXML'); ?> unit,
+ so you can write <code>MyDomElement.GetFloatExpression('value')</code>.
 
 <p>The syntax to calculate mathematical expressions is used throughout our engine,
 for example <?php echo a_href_page('glplotter', 'glplotter'); ?>

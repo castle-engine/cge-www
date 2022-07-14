@@ -68,7 +68,7 @@ UNIT length km 1000
 
     <p>Note that we have a more comfortable API to get and set X3D metadata in Pascal.
     See <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/short_api_samples/metadata/">examples/short_api_samples/metadata/</a>
-    and <a href="https://castle-engine.io/apidoc-unstable/html/X3DNodes.TAbstractNode.html#MetadataString">TAbstractNode.MetadataString</a>
+    and <?php echo cgeRef('TAbstractNode.MetadataString', 'TAbstractNode.MetadataString'); ?>
     and friends.
   </li>
 

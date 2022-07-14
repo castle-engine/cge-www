@@ -152,7 +152,7 @@ function cge_shortcode()
 }
 add_shortcode('cge','cge_shortcode');
 
-/* Base API reference URL, like https://castle-engine.io/apidoc-unstable/html/ on production.
+/* Base API reference URL, like https://castle-engine.io/apidoc/html/ on production.
  *
  * OBSOLETE.
  * Use cgeRef to link to API reference, it is easier and shorter.

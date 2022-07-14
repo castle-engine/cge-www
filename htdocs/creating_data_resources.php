@@ -225,7 +225,7 @@ So you can just use Spine animation names.
 -->
 
 <!--p>TODO: While not required, together with this we also recommend using
-<a href="https://castle-engine.io/apidoc-unstable/html/CastleResources.T3DResource.html#Pool">pool</a>
+ T3DResource.Pool
 property. This usually yields much more natural
 -->
 

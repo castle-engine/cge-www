@@ -47,23 +47,23 @@ The build tool in turn calls a compiler (FPC) and some other tools
 <p>You can visually design:
 
 <ol>
-  <li><p>A hierarchy of user-interface controls. Anything descending from <?php api_link('TCastleUserInterface', 'CastleUIControls.TCastleUserInterface.html'); ?>, like a button, label, or a powerful viewport (that contains a hierarchy of 3D / 2D scenes and transformations inside).
+  <li><p>A hierarchy of user-interface controls. Anything descending from <?php echo cgeRef('TCastleUserInterface'); ?>, like a button, label, or a powerful viewport (that contains a hierarchy of 3D / 2D scenes and transformations inside).
 
     <p>Saved as <code>xxx.castle-user-interface</code> files (somewhere in the <code>data/</code> subdirectory).
 
-    <p>They are typically loaded in your application by setting the <?php api_link('TUIState.DesignUrl', 'CastleUIState.TUIState.html#DesignUrl'); ?> (see almost any engine example or "New Project" template). Other approaches are possible too, e.g. you can load using <?php api_link('UserInterfaceLoad', 'CastleUIControls.html#UserInterfaceLoad'); ?>, <code>TSerializedComponent.UserInterfaceLoad</code> and more. See examples like <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/advanced_editor/advanced_loading_designs">advanced_editor/advanced_loading_designs</a>.
+    <p>They are typically loaded in your application by setting the <?php echo cgeRef('TUIState.DesignUrl'); ?> (see almost any engine example or "New Project" template). Other approaches are possible too, e.g. you can load using <?php echo cgeRef('UserInterfaceLoad'); ?>, <code>TSerializedComponent.UserInterfaceLoad</code> and more. See examples like <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/advanced_editor/advanced_loading_designs">advanced_editor/advanced_loading_designs</a>.
 
-  <li><p>A hierachy of 3D / 2D scenes and transformations. Anything descending from <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?>.
+  <li><p>A hierachy of 3D / 2D scenes and transformations. Anything descending from <?php echo cgeRef('TCastleTransform'); ?>.
 
     <p>Saved as <code>xxx.castle-transform</code> files (somewhere in the <code>data/</code> subdirectory).
 
-    <p>You can load it in your game using <?php api_link('TransformLoad', 'CastleTransform.html#TransformLoad'); ?> and insert into existing hierarchy of <code>TCastleViewport.Items</code>. You can also use <a href="https://castle-engine.io/apidoc-unstable/html/CastleTransformExtra.TCastleTransformDesign.html">TCastleTransformDesign</a> to use it in other designs (thus having a reusable composition of 3D/2D objects). See examples like <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/advanced_editor/advanced_loading_designs">advanced_editor/advanced_loading_designs</a>.
+    <p>You can load it in your game using <?php echo cgeRef('TransformLoad'); ?> and insert into existing hierarchy of <code>TCastleViewport.Items</code>. You can also use <?php echo cgeRef('TCastleTransformDesign', 'TCastleTransformDesign'); ?> to use it in other designs (thus having a reusable composition of 3D/2D objects). See examples like <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/advanced_editor/advanced_loading_designs">advanced_editor/advanced_loading_designs</a>.
 
-  <li><p>A hierachy of non-visual classes (really anything descending from <a href="https://www.freepascal.org/docs-html/rtl/classes/tcomponent.html">TComponent</a> although we advise to descend from our extended <?php api_link('TCastleComponent', 'CastleClassUtils.TCastleComponent.html'); ?>).
+  <li><p>A hierachy of non-visual classes (really anything descending from <a href="https://www.freepascal.org/docs-html/rtl/classes/tcomponent.html">TComponent</a> although we advise to descend from our extended <?php echo cgeRef('TCastleComponent'); ?>).
 
     <p>Saved as <code>xxx.castle-component</code> files (somewhere in the <code>data/</code> subdirectory).
 
-    <p>You can load it in your game using <?php api_link('ComponentLoad', 'CastleComponentSerialize.html#ComponentLoad'); ?>. Do whatever you want with the resulting components. You can find the named components in your design using the <a href="https://castle-engine.io/apidoc-unstable/html/CastleComponentSerialize.TComponentHelper.html#FindRequiredComponent">FindRequiredComponent</a> method, like this:
+    <p>You can load it in your game using <?php echo cgeRef('ComponentLoad'); ?>. Do whatever you want with the resulting components. You can find the named components in your design using the <?php echo cgeRef('TComponentHelper.FindRequiredComponent', 'FindRequiredComponent'); ?> method, like this:
 
 <?php echo pascal_highlight(
 'var

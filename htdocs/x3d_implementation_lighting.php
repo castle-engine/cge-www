@@ -94,8 +94,8 @@ light to shine (contribute to a color) on a given shape:
 <p>Note that, while your whole scene can have an unlimited number of lights,
 the number of lights that affect a particular shape is limited.
 It is limited to 64 by default, but you can change this limit by setting
-<a href="https://castle-engine.io/apidoc-unstable/html/CastleRenderOptions.TCastleRenderOptions.html#MaxLightsPerShape">Scene.RenderOptions.MaxLightsPerShape</a>.
-You can also experiment with it in <a href="view3dscene.php">view3dscene</a>,
+<?php echo cgeRef('TCastleRenderOptions.MaxLightsPerShape', 'Scene.RenderOptions.MaxLightsPerShape'); ?>.
+ You can also experiment with it in <a href="view3dscene.php">view3dscene</a>,
 which has a menu item <i>"View -&gt; Max Lights Per Shape..."</i>.
 Test e.g. on this demo model:
 <a href="https://github.com/castle-engine/demo-models/tree/master/gltf/multiple_animated_lights">gltf/multiple_animated_lights</a>.

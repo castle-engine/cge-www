@@ -108,8 +108,9 @@ See a few videos from our <a href="https://www.youtube.com/c/CastleGameEngineX3d
       <li><a href="manual_scene.php">API to play animations is really trivial, just call <code>PlayAnimation</code>.</a>
       <li>You can play <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/animations/simultaneous_animations_one_scene">multiple animations simultaneously</a>.
       <li>Animation blending (cross-fading) is trivially supported
-        (set <a href="https://castle-engine.io/apidoc-unstable/html/CastleSceneCore.TPlayAnimationParameters.html#TransitionDuration">TPlayAnimationParameters.TransitionDuration</a>
-        or <a href="https://castle-engine.io/wp/2020/06/19/easy-property-to-make-animation-blending/">DefaultAnimationTransition</a>).
+        (set <?php echo cgeRef('TPlayAnimationParameters.TransitionDuration', 'TPlayAnimationParameters.TransitionDuration'); ?>
+        or <?php echo cgeRef('TCastleSceneCore.DefaultAnimationTransition'); ?>,
+        see <a href="https://castle-engine.io/wp/2020/06/19/easy-property-to-make-animation-blending/">DefaultAnimationTransition</a>).
     </ul>
 
     <?php /*

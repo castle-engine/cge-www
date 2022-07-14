@@ -172,9 +172,9 @@ When this box is not empty, it determines the shape bounding box, which means th
 the engine doesn't have to recalculate it every frame when the shape changes.
 
 <p>Note: In Pascal, you should access this by a single property
-<a href="https://castle-engine.io/apidoc-unstable/html/X3DNodes.TAbstractShapeNode.html#BBox">TAbstractShapeNode.BBox</a>,
-using the <a href="https://castle-engine.io/apidoc-unstable/html/CastleBoxes.TBox3D.html">TBox3D</a>
-type (this is used throughout CGE to express axis-aligned bounding boxes).
+<?php echo cgeRef('TAbstractShapeNode.BBox', 'TAbstractShapeNode.BBox'); ?>,
+ using the <?php echo cgeRef('TBox3D', 'TBox3D'); ?>
+ type (this is used throughout CGE to express axis-aligned bounding boxes).
 
 <?php echo $toc->html_section(); ?>
 
@@ -202,7 +202,7 @@ type (this is used throughout CGE to express axis-aligned bounding boxes).
 </ul>
 
 <p>In Pascal, the equivalent is to set
-<a href="https://castle-engine.io/apidoc-unstable/html/X3DNodes.TAbstractShapeNode.html#Collision">TAbstractShapeNode.Collision</a>, like <code>MyShapeNode.Collision := scBox;</code>.
+<?php echo cgeRef('TAbstractShapeNode.Collision', 'TAbstractShapeNode.Collision'); ?>, like <code>MyShapeNode.Collision := scBox;</code>.
 
 <p>Note that X3D has an alternative method of providing a different (usually simpler) shape for collision
 purposes: <code>Collision</code> node with <code>enabled</code> and <code>proxy</code> fields.
