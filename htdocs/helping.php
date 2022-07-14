@@ -68,6 +68,8 @@ $toc = new TableOfContents(
     then create a pull request by clicking on GitHub),
     and for me to apply.
 
+    <p>See <a href="coding_conventions">Coding conventions</a> for useful tips on contributing code.
+
     <!--
     <p>If you prefer to do things the traditional way,
     you can also just create a patch file (versus recent GIT or SVN state)
@@ -78,8 +80,7 @@ $toc = new TableOfContents(
     <p>If you're looking for a feature to implement,
     <a href="roadmap">take a look at our roadmap</a>.
 
-  <li><p><a href="<?php echo WIKI_URL; ?>">Contribute
-    to our wiki</a> useful tips or tutorials about using our engine.
+  <li><p><a href="https://github.com/castle-engine/cge-www/">Contribute to our documentation</a>.
 </ul>
 
 <?php echo $toc->html_section(); ?>
@@ -93,14 +94,6 @@ $toc = new TableOfContents(
     Michalis loves to see how his work is useful for others :)
 
   <li><p>Contribute models to our <?php echo a_href_page('demo models', 'demo_models'); ?>.
-
-  <li><p>Look into improving our documentation.
-    Our <?php echo a_href_page('scene graph (X3D) documentation', 'vrml_x3d'); ?>
-    is large, and wants to be larger. Contributions describing
-    how something works, or how to do something practical, are welcome.
-
-    <p><a href="<?php echo WIKI_URL; ?>">You can
-    add your contributions directly to our wiki</a>.
 
   <li><p>Test the <a href="view3dscene.php">view3dscene snapshots</a>. These are build automatically after every commit to GitHub.
     You can test them and catch eventual bugs
