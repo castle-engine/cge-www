@@ -165,6 +165,7 @@ Redirect "/vrml_implementation_texturing.php" "/x3d_implementation_texturing.php
 Redirect "/vrml_implementation_texturing3d.php" "/x3d_implementation_texturing3d.php"
 Redirect "/vrml_implementation_time.php" "/x3d_implementation_time.php"
 Redirect "/vrml_time_origin_considered_uncomfortable.php" "/x3d_time_origin_considered_uncomfortable.php"
+Redirect "/apidoc-unstable/" "/apidoc/"
 
 # This link is used at least by http://planetdev.freegamedev.net/ .
 #
