@@ -28,6 +28,14 @@ if (!HTML_VALIDATION && (
         $wp_did_header = true;
         // Load the WordPress library.
         require_once('wp-load.php');
+        /* Set $wp_styles.
+           Avoids warning from wp/wp-includes/script-loader.php that $wp_styles is NULL at page end,
+           WP accesses it from wp_maybe_inline_styles()
+        */
+        global $wp_styles;
+        if (empty($wp_styles)) {
+          $wp_styles = wp_styles();
+        }
         chdir('..');
     }
 
