@@ -48,11 +48,16 @@ code, kbd, pre, samp {
     margin-right: auto;
 }
 
-.media-responsive,
 /* all images, movies responsive */
-img, iframe {
+.media-responsive, img, iframe {
   max-width: 100%;
-  height: auto; /* scale to max-width preserving proportions, even if intrinsic image sizes (width/height on <img>) are given */
+}
+/* scale to max-width preserving proportions, even if intrinsic image sizes (width/height on <img>) are given.
+   Note: *Do not* do this for iframe, it would break the height for some reason.
+   Testcase: https://castle-engine.io/sprite_sheets , with height:auto it would have very small height.
+*/
+.media-responsive, img {
+  height: auto;
 }
 
 
