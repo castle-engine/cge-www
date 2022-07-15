@@ -1,19 +1,19 @@
 # Blender
 include::common.adoc[]
 
-// TODO: social_share_image: blender_castle_anim_frames_export.png
-
-cgeimg::float[
-  blender_castle_anim_frames_install.png|Installation of castle-anim-frames Export Script in Blender,
-  blender_castle_anim_frames_export.png|Options of Exporting to castle-anim-frames,
-  lizardman_animations.png|Lizardman Animations Exported from Blender
-]
+// TODO: social_share_image: blender_castle_1.png
 
 == Introduction
 
 http://www.blender.org/[Blender] is a magnificent free open-source modeling software.
 
 You can use Blender to create 3D and 2D models, with animations, and export them to glTF.
+
+cgeimg::block[
+  blender_castle_1.png|Level design in Blender,
+  blender_castle_2_export.png|Exporting from Blender to glTF,
+  blender_castle_3_in_editor.png|Loaded level\, designed in Blender\, in Castle Game Engine
+]
 
 == Exporting to glTF
 
