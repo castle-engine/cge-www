@@ -1,5 +1,7 @@
 # Castle Game Engine For Unity Developers
 include::common.adoc[]
+:description: Overview of Castle Game Engine for developers coming from Unity.
+:cge-social-share-image: viewport_3d_nice_view.png
 
 == Introduction
 

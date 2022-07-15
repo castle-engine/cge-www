@@ -1,5 +1,7 @@
 # Tutorial: Designing a 3D world
 include::common.adoc[]
+:description: Learn how to design 3D world in Castle Game Engine editor using 3D viewport and scenes.
+:cge-social-share-image: viewport_3d_car_move.png
 
 ## Introduction
 

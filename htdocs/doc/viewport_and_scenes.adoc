@@ -1,5 +1,7 @@
 # Viewport with scenes, camera, navigation
 include::common.adoc[]
+:description: Viewport allows to display 3D and 2D models in Castle Game Engine, use a camera and optionally allow user to navigate.
+:cge-social-share-image: viewport_3d_nice_view.png
 
 cgeimg::float[viewport_3d_nice_view.png|Viewport with 3D design]
 

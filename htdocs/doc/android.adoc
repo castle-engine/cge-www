@@ -1,5 +1,7 @@
 # Android
 include::common.adoc[]
+:description: Installation of Android tools to build Android games with Castle Game Engine.
+:cge-social-share-image: android12glued.png
 
 cgeimg::float[android12glued.png|Android applications using Castle Game Engine]
 
