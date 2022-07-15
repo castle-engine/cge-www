@@ -406,19 +406,7 @@ if ($castle_wordpress) {
     echo '<meta property="og:image" content="' . htmlspecialchars($parameters['social_share_image']) . '">' . "\n";
   }
 
-  if (! ($main_page || CASTLE_ENVIRONMENT == 'offline'))
-  {
-    switch ($page_lang)
-    {
-      case LANG_PL: $main_page_title = 'Strona główna'; break;
-      case LANG_EN: $main_page_title = 'Main page'; break;
-    }
-    $page_url = page_url(MAIN_PAGE_BASENAME, '');
-    echo "<link rel=\"Start\"
-                href=\"$page_url\"
-                type=\"text/html\"
-                title=\"$main_page_title\">\n";
-  }
+  echo '<link rel="Start" href="/" type="text/html" title="Castle Game Engine">' . "\n";
 
   $extra_body_classes = array();
   if (defined('CASTLE_GITHUB_NAME')) {
