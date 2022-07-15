@@ -91,8 +91,6 @@ switch (CASTLE_ENVIRONMENT) {
     throw new ErrorException('Unrecognized CASTLE_ENVIRONMENT value: ' . CASTLE_ENVIRONMENT);
 }
 
-define('KAMBI_NO_HOME_LINK', true);
-
 // other constants
 define('SF_UNIX_NAME', 'castle-engine'); // used only by download links.
 // unused: define('MAILING_LIST_URL',    'https://lists.sourceforge.net/lists/listinfo/castle-engine-main');
@@ -771,8 +769,7 @@ function _castle_breadcrumbs($path)
   {
     global $castle_sitemap;
 
-    $result = '<div class="header_breadcrumbs">' .
-      a_href_page('Home', MAIN_PAGE_BASENAME);
+    $result = '<div class="header_breadcrumbs"><a href="/">Home</a>';
 
     $path_item_num = 0;
     $path_item = '';
@@ -1199,14 +1196,14 @@ function echo_castle_header_suffix($path, $enable_sidebar = true)
       <!--p class="navbar-text navbar-right"><a href="' . PATREON_URL . '" class="navbar-link">Support us on<br><img style="height:50px" src="' . page_requisite('images/patreonlogoorange.png') . '" alt="Patreon" /></a></p-->
 
       <div class="navbar-header">
-        <a class="navbar-brand" href="'.en_page_url(MAIN_PAGE_BASENAME).'">
+        <a class="navbar-brand" href="/">
           <img alt="Castle Game Engine Logo" src="' .
             page_requisite('images/header_icon.png') . '" ' .
             // _castle_image_sizes('images/header_icon.png')
             ' width="32" height="32" ' // hardcode here, to avoid even loading castle_image_sizes.php in some cases
             . '>
         </a>
-        <a class="navbar-brand" href="'.en_page_url(MAIN_PAGE_BASENAME).'">
+        <a class="navbar-brand" href="/">
           Castle Game Engine
         </a>
       </div>

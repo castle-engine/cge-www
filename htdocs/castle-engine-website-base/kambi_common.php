@@ -31,10 +31,6 @@
    - CURRENT_URL (URL to main directory of these very web pages,
      must end with "/")
 
-   - You may define KAMBI_NO_HOME_LINK (value is ignored,
-     for now always define to true) to suppress automatic
-     writing of main page link in common_header and common_footer.
-
    Some rules to follow when editing these pages:
 
    - Instead of <a href ...> always use
@@ -121,9 +117,6 @@ define('MAIN_PAGE_BASENAME', 'index');
    This is always sanitized when displaying as HTML (so you cannot use here HTML tags).
 */
 $page_title = '';
-
-/* Internal, used only in common_header/footer() */
-$s_quick_links = '';
 
 /* Poniższe zmienne są zainicjowane na domyślne wartości z chwilą włączenia
    tego pliku. Jeśli chcesz zmienić
@@ -362,7 +355,7 @@ function kambi_bootstrap()
 */
 function common_header($a_page_title, array $parameters = array())
 {
-  global $page_title, $s_quick_links, $main_page, $this_page_name,
+  global $page_title, $main_page, $this_page_name,
     $page_basename, $site_title, $castle_wordpress;
 
   $page_title = $a_page_title;
@@ -370,22 +363,6 @@ function common_header($a_page_title, array $parameters = array())
   $page_lang = isset($parameters['lang']) ? $parameters['lang'] : LANG_EN;
 
   kambi_bootstrap();
-
-  /* calculate $s_quick_links */
-  $s_quick_links = '';
-
-  if (CASTLE_ENVIRONMENT != 'offline')
-  {
-    switch ($page_lang)
-    {
-      case LANG_PL: $SBackToMain = 'powrót do strony głównej'; break;
-      case LANG_EN: $SBackToMain = 'back to main page'; break;
-    }
-    $s_quick_links = str_append_part($s_quick_links, ' | ', a_href_page(
-      $SBackToMain, MAIN_PAGE_BASENAME));
-  }
-
-  if ($s_quick_links != '') $s_quick_links = '[' . $s_quick_links . ']';
 
 ?>
 <!DOCTYPE html>
@@ -507,27 +484,16 @@ if ($castle_wordpress) {
 } ?>>
 
 <?php
-  if ( (!defined('KAMBI_NO_HOME_LINK')) &&
-       (!$main_page) &&
-       ($s_quick_links != '') ) { ?>
-    <p class="text-right"><small> <?php echo $s_quick_links; ?> </small></p>
-<?php };
 }
 
 /* footer ============================================================ */
 
 function common_footer($js_using_jquery = '')
 {
-  global $s_quick_links, $main_page, $castle_wordpress;
+  global $main_page, $castle_wordpress;
 ?>
 
 <?php
-  if ( (!defined('KAMBI_NO_HOME_LINK')) &&
-      (!$main_page) &&
-      ($s_quick_links != '') ) { ?>
-    <div class="quick_links_bottom_line"> <?php echo $s_quick_links; ?> </div>
-<?php };
-
   echo_footer();
 
   if ($castle_wordpress) {
