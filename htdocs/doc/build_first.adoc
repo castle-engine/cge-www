@@ -1,5 +1,7 @@
 # Build your first application
 include::common.adoc[]
+:description: Building your first Castle Game Engine project.
+:cge-social-share-image: cge_editor_new_project.png
 
 . Create a new project in the _Castle Game Engine Editor_.
 

@@ -1,5 +1,7 @@
 # Install
 include::common.adoc[]
+:description: Castle Game Engine Installation.
+:cge-social-share-image: cge_editor_new_project.png
 
 ## Castle Game Engine Installation
 

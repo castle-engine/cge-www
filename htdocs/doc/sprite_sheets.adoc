@@ -1,5 +1,7 @@
 # Sprite Sheets
 include::common.adoc[]
+:description: Using sprite sheets for 2D animations. Each animation is a sequence of images from an atlas. Design sprite sheets in Castle Game Engine format or load ready Starling and Cocos2D sprite sheets.
+:cge-social-share-image: sprite_sheet_editor.png
 
 == Introduction
 
@@ -7,6 +9,8 @@ _Sprite sheet_ is a technique for rendering animations:
 
 * Each animation is a sequence of still images (aka "frames")
 * All the frames are packed into one big image (aka "texture atlas")
+
+cgeimg::block[sprite_sheet_editor.png|Sprite Sheet Editor]
 
 It is a standard 2D animation technique for pixel-art games.
 

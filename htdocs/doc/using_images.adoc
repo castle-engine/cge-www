@@ -1,5 +1,7 @@
 # Images
 include::common.adoc[]
+:description: How to display images using Castle Game Engine: TCastleImageControl and TCastleImageTransform.
+:cge-social-share-image: state_events_image_resize.png
 
 cgeimg::float[
   state_events_new_image.png|Creating new TCastleImageControl in editor,

@@ -1,6 +1,10 @@
 <?php
 require_once 'castle_engine_functions.php';
-castle_header('Convert glTF, OBJ, STL, Collada, 3DS (and other 3D and 2D model formats) to X3D');
+castle_header('Convert glTF, OBJ, STL, Collada, 3DS (and other 3D and 2D model formats) to X3D', array(
+  'social_share_image' => 'view3dscene_gltf_helmet.png',
+  'meta_description' => 'Online and free converter from many 3D model formats, like glTF, to X3D.',
+  'meta_keywords' => 'convert, glTF, OBJ, 3DS, X3D',
+));
 
 /* TODO:
 

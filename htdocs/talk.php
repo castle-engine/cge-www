@@ -1,7 +1,10 @@
 <?php
 require_once 'castle_engine_functions.php';
 
-castle_header('Talk with us');
+castle_header('Discord, forum, GitHub and Patreon', array(
+  'meta_description' => 'Get support for Castle Game Engine through our Discord, forum, GitHub and Patreon.',
+  'meta_keywords' => 'support, discord, forum, github',
+));
 ?>
 
 <div class="fixed-width-content">
