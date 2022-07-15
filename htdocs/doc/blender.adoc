@@ -1,7 +1,7 @@
 # Blender
 include::common.adoc[]
-
-// TODO: social_share_image: blender_castle_1.png
+:description: Export from Blender to glTF to use your models with Castle Game Engine.
+:cge-social-share-image: blender_castle_1.png
 
 == Introduction
 
