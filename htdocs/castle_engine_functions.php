@@ -908,13 +908,6 @@ var _bftn_options = {
 <?php
 /* echo flattr_header(); - Flattr not used now */
 
-/* Don't use facebook_header on other pages, as it makes all links
-   from FB (and G+?) lead to main page.
-   Maybe in the future facebook_header should be improved, to use current title, url, meta etc.
-   instead of talking about main page. */
-global $main_page;
-if ($main_page) echo facebook_header();
-
 /* Add icons, using same HTML code as Wordpress */
 global $castle_wordpress;
 if (empty($castle_wordpress)) {
@@ -998,8 +991,7 @@ function castle_header($a_page_title, array $parameters = array())
     } else {
       $social_share_image_url = page_url('images/original_size/' . $parameters['social_share_image']);
     }
-    $common_header_parameters['bonus_head_html'] =
-      '<meta property="og:image" content="' . $social_share_image_url . '"/>';
+    $common_header_parameters['social_share_image'] = $social_share_image_url;
   }
   common_header($a_page_title, $common_header_parameters);
 
@@ -1828,8 +1820,6 @@ function gallery_link_noimage($title, $subtitle, $page_name)
     '</li>';
   echo $s;
 }
-
-define('META_DESCRIPTION', 'Free open-source 3D and 2D game engine. Cross-platform, for desktops (Windows, Linux, macOS, FreeBSD...), mobile (Android, iOS), console (Nintendo Switch). Powerful visual editor. Powerful API for devs. Supports a lot of model formats, like glTF, X3D and Spine. Many rendering features (physically based rendering, shadows, mirrors, gamma correction). Fast code compilation and execution using modern Pascal.');
 
 /* Show 404 (page not found) error page.
    Show $message (will be sanitized for HTML, should be a whole sentence -- end with dot).

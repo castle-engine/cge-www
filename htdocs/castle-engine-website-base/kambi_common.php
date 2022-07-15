@@ -349,13 +349,16 @@ function kambi_bootstrap()
    $a_page_title sets global $page_title.
 
    $parameters fields:
-   - 'lang' (use HTML language code,
-     like 'en' or 'pl'; default 'en'; can use LANG_XX constants)
-   - 'meta_description' (short page description, for <meta name="description" ...>,
-     shown e.g. by search engines)
-   - 'meta_keywords' (extra page keywords, separated by commas,
-     for <meta name="keywords" ...>)
-   - 'bonus_head_html' (extra HTML content to put inside <head>)
+   - 'lang'
+     (use HTML language code, like 'en' or 'pl'; default 'en'; can use LANG_XX constants)
+   - 'meta_description'
+     (short page description, for <meta name="description" ...>, shown e.g. by search engines)
+   - 'meta_keywords'
+     (extra page keywords, separated by commas, for <meta name="keywords" ...>)
+   - 'canonical_url'
+     (absolute URL to use as canonical, to uniquely identify this page)
+   - 'social_share_image'
+     (absolute URL to an image representing this page, used when sharing on social media, Discord etc.)
 */
 function common_header($a_page_title, array $parameters = array())
 {
@@ -397,7 +400,7 @@ if ($castle_wordpress) {
 ?>>
 
 <head>
-<!-- meta suggested by bootstrap, but generally sensible -->
+
 <meta charset="<?php if ($castle_wordpress) bloginfo('charset'); else echo 'utf-8'; ?>">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -408,6 +411,8 @@ if ($castle_wordpress) {
     // $parameters['canonical_url'] defined, but empty (NULL or FALSE) means to not write canonical for this page
     if (!empty($parameters['canonical_url'])) {
       echo '<link rel="canonical" href="' . htmlspecialchars($parameters['canonical_url']) . '">' . "\n";
+      /* It seems og:url is just a duplicate way to specify canonical URL, see https://ogp.me/ */
+      echo '<meta property="og:url" content="' . htmlspecialchars($parameters['canonical_url']) . '">' . "\n";
     }
   }
 
@@ -417,6 +422,11 @@ if ($castle_wordpress) {
 
   if (array_key_exists('meta_description', $parameters)) {
     echo '<meta name="Description" content="' . htmlspecialchars($parameters['meta_description']) . '">' . "\n";
+    echo '<meta property="og:description" content="' . htmlspecialchars($parameters['meta_description']) . '">' . "\n";
+  }
+
+  if (array_key_exists('social_share_image', $parameters)) {
+    echo '<meta property="og:image" content="' . htmlspecialchars($parameters['social_share_image']) . '">' . "\n";
   }
 
   if (! ($main_page || CASTLE_ENVIRONMENT == 'offline'))
@@ -442,18 +452,27 @@ if ($castle_wordpress) {
     echo '<link rel="profile" href="http://gmpg.org/xfn/11">'; // as twentyseventeen does
     wp_head();
   }
-?>
 
-<?php if (!$castle_wordpress) { ?>
+  if (!$castle_wordpress) {
+    $full_title = $page_title;
+    if (!empty($site_title)) {
+      $full_title .= ' | ' . htmlspecialchars($site_title);
+    }
 
-  <title><?php
-  echo htmlspecialchars($page_title);
-  if (!empty($site_title)) {
-    echo ' | ' . htmlspecialchars($site_title);
+    ?>
+    <title><?php echo htmlspecialchars($full_title); ?></title>
+
+    <?php /* See https://moz.com/blog/meta-data-templates-123 */ ?>
+    <meta property="fb:admins" content="100000327755900" >
+
+    <meta property="og:title" content="<?php echo htmlspecialchars($full_title); ?>" >
+
+    <?php /* See https://ogp.me/#type_website */ ?>
+    <meta property="og:type" content="website" >
+
+    <?php
   }
-  ?></title>
-
-<?php } ?>
+?>
 
 <!-- Bootstrap -->
 <link href="<?php echo page_requisite('castle-engine-website-base/bootstrap/css/bootstrap.min.css'); ?>" rel="stylesheet">

@@ -5,11 +5,6 @@ define('CASTLE_GITHUB_NAME', 'mountains-of-fire');
 require_once 'castle_engine_functions.php';
 castle_header("Mountains Of Fire");
 
-/* echo '<div style="float: right; width: 400px;">'; */
-/* echo facebook_button(); */
-/* echo flattr_button(); */
-/* echo '</div>'; */
-
 echo pretty_heading('Mountains Of Fire', VERSION_MOUNTAINS_OF_FIRE);
 echo castle_thumbs(array(
   array('filename' => 'mountains_of_fire_screen_0.png', 'titlealt' => 'Mountains Of Fire - game screen 1'),
@@ -59,16 +54,6 @@ Try it now!
   </tr></tbody></table>
 
   <?php echo download_donate_footer(); ?>
-</div>
-
-<div style="margin-top: 2em;">
-<div class="bottom-widget" style="display: inline-block; vertical-align: top; padding: 0em; margin: 0em 1em 0em 1em;">
-<?php echo facebook_button(); ?>
-</div>
-
-<!-- <div class="bottom-widget" style="display: inline-block; vertical-align: top; padding: 0em; margin: 0em 0em 0em 1em;"> -->
-<?php /* echo flattr_button(false); */ ?>
-<!-- </div> -->
 </div>
 
 <?php echo $toc->html_section(); ?>

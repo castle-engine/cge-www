@@ -73,50 +73,6 @@ function echo_google_analytics_tracking()
 <?php
 }
 
-/* Facebook ------------------------------------------------------------------
-
-   See http://developers.facebook.com/docs/reference/plugins/like/
-*/
-
-function facebook_header()
-{
-  if (HTML_VALIDATION) return '';
-  return '
-    <meta property="fb:admins" content="100000327755900" />
-    <meta property="og:title" content="Castle Game Engine" />
-    <meta property="og:type" content="game" />
-    <meta property="og:image" content="https://castle-engine.io/images/castle_game_engine_icon.png" />
-    <meta property="og:url" content="' . htmlspecialchars(CASTLE_PROD_URL) . '" />
-    <meta property="og:description" content="' . htmlspecialchars(META_DESCRIPTION) . '" />
-  ';
-}
-
-function facebook_button()
-{
-  if (_castle_disable_externals()) return '';
-
-  /* Facebook docs say to put this somewhere at the beginning of <body>,
-     but that's actually bad for us, facebook may be slow...
-     And also we don't use facebook_button() on many pages.
-     So put this header at facebook_button(), when it is called for 1st time.
-     We assume you do echo this on a single page more than once. */
-
-  $header = '
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, \'script\', \'facebook-jssdk\'));</script>
-';
-
-  return $header .
-//    '<div class="fb-like" data-href="https://castle-engine.io/" data-layout="box_count" data-action="like" data-show-faces="true" data-share="true"></div>';
-      '<div class="fb-like-box" data-href="https://www.facebook.com/castleengine" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="true" data-show-border="true"></div>';
-}
-
 /* Paypal -------------------------------------------------------------------- */
 
 function paypal_button($with_logos = true)

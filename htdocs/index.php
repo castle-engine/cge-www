@@ -9,10 +9,11 @@ global $site_title;
 $site_title = NULL; // set to NULL, to disable appending to <title>; main page has special title that already includes CGE
 
 castle_header('Castle Game Engine - Free open-source cross-platform 3D 2D game engine with editor and powerful Pascal API', array(
-  'meta_description' => META_DESCRIPTION,
+  'meta_description' => 'Free open-source 3D and 2D game engine. Cross-platform, for desktops (Windows, Linux, macOS, FreeBSD...), mobile (Android, iOS), console (Nintendo Switch). Powerful visual editor. Powerful API for devs. Supports a lot of model formats, like glTF, X3D and Spine. Many rendering features (physically based rendering, shadows, mirrors, gamma correction). Fast code compilation and execution using modern Pascal.',
   /* Not useful for Google anymore, but maybe other search engines use them. */
   'meta_keywords' => 'game engine, glTF, X3D, Spine, Pascal, cross platform, editor, Nintendo Switch, Linux, Windows, macOS, Android, iOS, PBR, shadows, shaders',
-  'canonical_url' => CASTLE_PROD_URL
+  'canonical_url' => CASTLE_PROD_URL,
+  'social_share_image' => CASTLE_PROD_URL . 'images/castle_game_engine_icon.png',
 ));
 
 define('CGE_SNAPSHOTS_BASE', 'https://github.com/castle-engine/castle-engine/releases/download/snapshot/');
