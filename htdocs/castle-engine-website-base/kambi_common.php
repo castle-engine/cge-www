@@ -427,10 +427,10 @@ if ($castle_wordpress) {
     ?>
     <title><?php echo htmlspecialchars($full_title); ?></title>
 
+    <meta property="og:title" content="<?php echo htmlspecialchars($full_title); ?>" >
+
     <?php /* See https://moz.com/blog/meta-data-templates-123 */ ?>
     <meta property="fb:admins" content="100000327755900" >
-
-    <meta property="og:title" content="<?php echo htmlspecialchars($full_title); ?>" >
 
     <?php /* See https://ogp.me/#type_website */ ?>
     <meta property="og:type" content="website" >
