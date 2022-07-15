@@ -915,22 +915,29 @@ var _bftn_options = {
 global $main_page;
 if ($main_page) echo facebook_header();
 
+/* Add icons, using same HTML code as Wordpress */
 global $castle_wordpress;
-if (empty($castle_wordpress) && CASTLE_ENVIRONMENT != 'offline') {
-/* Add icons, using same HTML code as Wordpress.
-   We do not do this in CASTLE_ENVIRONMENT == offline
-   just because I did not adjust
-   castle-engine/doc/pasdoc/html-parts/Makefile
-   to copy these icon files.
-   And I would prefer to store them in a directory outside wp/ then...
+if (empty($castle_wordpress)) {
+    ?>
+    <link rel="icon" href="<?php echo page_requisite('images/castle_game_engine_icon_fit_in_square.png'); ?>" sizes="256x256" />
+    <link rel="apple-touch-icon-precomposed" href="<?php echo page_requisite('images/castle_game_engine_icon_fit_in_square.png'); ?>" />
+    <meta name="msapplication-TileImage" content="<?php echo page_requisite('images/castle_game_engine_icon_fit_in_square.png'); ?>" />
+    <?php
+}
+
+/* Add icon, following Google structured data recommendation.
+   https://developers.google.com/search/docs/advanced/structured-data/logo
 */
 ?>
-<link rel="icon" href="<?php echo page_requisite('wp/wp-content/uploads/2018/03/cropped-DefaultIconSquare-32x32.png'); ?>" sizes="32x32" />
-<link rel="icon" href="<?php echo page_requisite('wp/wp-content/uploads/2018/03/cropped-DefaultIconSquare-192x192.png'); ?>" sizes="192x192" />
-<link rel="apple-touch-icon-precomposed" href="<?php echo page_requisite('wp/wp-content/uploads/2018/03/cropped-DefaultIconSquare-180x180.png'); ?>" />
-<meta name="msapplication-TileImage" content="<?php echo page_requisite('wp/wp-content/uploads/2018/03/cropped-DefaultIconSquare-270x270.png'); ?>" />
-<?php
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "url": "<?php echo CASTLE_PROD_URL; ?>",
+  "logo": "<?php echo CASTLE_PROD_URL; ?>images/castle_game_engine_icon.png"
 }
+</script>
+<?php
 }
 
 /* Echo a header.
