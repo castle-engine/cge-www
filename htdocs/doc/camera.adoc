@@ -1,6 +1,10 @@
 # Camera
 include::common.adoc[]
 
+cgeimg::float[
+  weapon_camera_child.png|Camera preview\, with weapon as camera child
+]
+
 ## Introduction
 
 _Camera_ determines what do you see in the viewport. Camera is a cgeref:TCastleTransform[] descendant, and as such it defines:
@@ -62,7 +66,7 @@ Since camera is a cgeref:TCastleTransform[] descendant:
 ** For example you can attach a camera to some object (like a car or character) to move camera along with that object.
 ** You can combine this with cgeref:TCastleSceneCore.ExposeTransforms[ExposeTransforms] to attach a camera to an animated bone of your character.
 * Camera can have other cgeref:TCastleTransform[] as children.
-** For example you can attach a weapon carried by a player in FPS game as a child of camera.
+** For example you can attach a weapon carried by a player in FPS game as a child of camera. See https://github.com/castle-engine/castle-engine/tree/master/examples/fps_game[examples/fps_game] demo.
 ** You can make a headlight by simply placing a light (like cgeref:TCastleDirectionalLight[]) as camera child. See https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/headlight[examples/viewport_and_scenes/headlight] demo.
 
 When the camera is a child of other objects, you have to be careful when controlling camera translation / rotation from code.
