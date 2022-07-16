@@ -75,12 +75,19 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
         <p>Suggestions and reports how does this work in other VRML/X3D browsers
         are welcome.
 
-      <li><p>Support for <code>jump</code> and <code>retainUserOffsets</code> is probably easy, but someone
-        has to actually understand the X3D specification about them,
-        and explain how they are related to each other (and to
-        <code>NavigationInfo.transitionType</code>).
-        Suggestions and testcases and reports how do they work in other
-        VRML/X3D browsers are welcome.
+      <li><p>As for animating viewpoints (and also possible <code>jump</code>, <code>retainUserOffsets</code> implementation):
+
+        <p>We do not support right now the notion of preserving user offsets
+        from navigation. Tracking them in the past required to have a special
+        treatment of camera transformation (<i>initial</i> vs <i>current</i>),
+        but it was too complicated too keep (as we wanted to make
+        <code>TCastleCamera</code> descend from <code>TCastleTransform</code>)
+        and it didn't seem useful for authors in reality. (Of course please report
+        if it is useful for you!)
+
+        <p>When you animate the viewpoint (either by animating viewpoint position/orientation
+        or by animating viewpoint transformation) right now we just change
+        the current camera to match the viewpoint. User offsets are not retained.
     </ul>
 
   <li><p><?php echo x3d_node_link('NavigationInfo'); ?></p>
