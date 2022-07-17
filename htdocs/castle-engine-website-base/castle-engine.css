@@ -341,6 +341,7 @@ h2, code {
 div.main-cge-download {
   padding-left: 2em !important;
   padding-right: 2em !important;
+  max-width: 100%; /* otherwise it could want to be wider than viewport on mobile *.
 }
 
 /* news on main page --------------------------------------------------------- */
