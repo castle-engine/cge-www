@@ -302,7 +302,7 @@ article.post .entry-content ul.list-no-margin {
 /* Make long words, like MultiGeneratedTextureCoordinate or MovieTexture.flipVertically,
    broken -- good for mobile usability.
    See https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Text/Wrapping_Text */
-h2 {
+h2, code {
   /* word-break: break-all; */
   overflow-wrap: break-word;
 }
@@ -840,7 +840,8 @@ div.download .download_platform {
   margin-right: auto;
   margin-left: auto;
   display: block;
-  width: 80%;
+  /* Use min-width not width, as on narrow mobile it may want to be a big larger */
+  min-width: 80%;
 }
 
 .centered-download-wrapper .btn-primary .download-button-hint {
