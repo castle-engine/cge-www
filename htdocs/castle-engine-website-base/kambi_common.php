@@ -408,11 +408,12 @@ if ($castle_wordpress) {
 
   /* Necessary for Wordpress published date to be recognized, at least by
      - ahrefs ( https://help.ahrefs.com/en/articles/1984816-how-is-the-published-date-on-content-explorer-determined )
-     - linkedin (test with https://www.linkedin.com/post-inspector/ )
+     - linkedin (test with https://www.linkedin.com/post-inspector/ ,
+       see https://stackoverflow.com/questions/58511410/creating-meta-tags-for-linkedin-publish-date-not-found )
      For some reason, datetime we put in twentyseventeen_time_link is not recognized.
   */
   if (array_key_exists('publish_date', $parameters)) {
-    echo '<meta name="publish_date" content="' . htmlspecialchars($parameters['publish_date']) . '">' . "\n";
+    echo '<meta name="publish_date" property="og:publish_date" content="' . htmlspecialchars($parameters['publish_date']) . '">' . "\n";
   }
 
   echo '<link rel="Start" href="/" type="text/html" title="Castle Game Engine">' . "\n";
