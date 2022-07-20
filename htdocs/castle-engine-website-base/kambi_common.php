@@ -406,6 +406,15 @@ if ($castle_wordpress) {
     echo '<meta property="og:image" content="' . htmlspecialchars($parameters['social_share_image']) . '">' . "\n";
   }
 
+  /* Necessary for Wordpress published date to be recognized, at least by
+     - ahrefs ( https://help.ahrefs.com/en/articles/1984816-how-is-the-published-date-on-content-explorer-determined )
+     - linkedin (test with https://www.linkedin.com/post-inspector/ )
+     For some reason, datetime we put in twentyseventeen_time_link is not recognized.
+  */
+  if (array_key_exists('publish_date', $parameters)) {
+    echo '<meta name="publish_date" content="' . htmlspecialchars($parameters['publish_date']) . '">' . "\n";
+  }
+
   echo '<link rel="Start" href="/" type="text/html" title="Castle Game Engine">' . "\n";
 
   $extra_body_classes = array();

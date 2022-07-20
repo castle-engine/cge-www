@@ -990,6 +990,9 @@ function castle_header($a_page_title, array $parameters = array())
     }
     $common_header_parameters['social_share_image'] = $social_share_image_url;
   }
+  if (array_key_exists('publish_date', $parameters)) {
+    $common_header_parameters['publish_date'] = $parameters['publish_date'];
+  }
   common_header($a_page_title, $common_header_parameters);
 
   $path = array();
