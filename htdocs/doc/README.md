@@ -1,9 +1,10 @@
 Castle Game Engine documentation using AsciiDoctor.
+
 Going forward, we want to maintain all CGE docs like this -- AsciiDoctor is really comfortable.
+See our annoucement and Michalis thoughts about ways to write documentation on
+https://castle-engine.io/wp/2021/12/31/many-documentation-upgrades-using-asciidoctor-as-our-primary-way-to-write-documentation-michalis-thoughts-and-plans-about-our-documentation/ .
 
-Right now, most of these pages come from GitHub wiki, but remade to AsciiDoctor.
-
-These pages are rendered using ../doc.php . Access them just like
+These pages are rendered using ../doc.php . Users access them just like
 
   https://castle-engine.io/build_tool
 
@@ -13,12 +14,12 @@ These pages are rendered using ../doc.php . Access them just like
 
 -> in effect, this shows
 
-  doc/build_tool.html (on production)
+  `doc/build_tool.html` (on production, already processed to HTML)
 
-  doc/build_tool.adoc | processed by asciidoctor (on development)
+  `doc/build_tool.adoc` (on development, this processed by AsciiDoctor to HTML each time you access the `doc.php?page=xxx`)
 
-After doing changes, be sure to "make" (to refresh HTMLs for development,
-also it allows to see AsciiDoctor errors).
+On production, after doing any changes, we make sure to execute `make`
+(to refresh HTMLs, also it allows to see AsciiDoctor errors).
 
 Naming convention:
 - all lowercase
