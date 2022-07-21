@@ -14,9 +14,9 @@ These pages are rendered using ../doc.php . Users access them just like
 
 -> in effect, this shows
 
-  `doc/build_tool.html` (on production, already processed to HTML)
+- `doc/build_tool.html` (on production, the files here are already pre-processed to HTML, so the PHP script just returns ready HTML content - this is fast!)
 
-  `doc/build_tool.adoc` (on development, this processed by AsciiDoctor to HTML each time you access the `doc.php?page=xxx`)
+- `doc/build_tool.adoc` (on development, the files here are processed by AsciiDoctor to HTML *every time* you access the `doc.php?page=xxx` - this is comfortable, when you write and preview the page)
 
 On production, after doing any changes, we make sure to execute `make`
 (to refresh HTMLs, also it allows to see AsciiDoctor errors).
