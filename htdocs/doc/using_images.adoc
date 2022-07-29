@@ -12,13 +12,59 @@ cgeimg::float[
 
 There are a few ways to display an image using _Castle Game Engine_.
 
-. When the image is part of a 2D user-interface, use cgeref:TCastleImageControl[]. Set the cgeref:TCastleImageControl.URL[] to load the image.
-. When the image is part of the viewport, use cgeref:TCastleImageTransform[]. Set the cgeref:TCastleImageTransform.Url[] to load the image.
-. The last method is to load the image to cgeref:TDrawableImage[]. This is the low-level approach, where you will need to manually handle drawing the image at the appropriate moment, following https://castle-engine.io/manual_2d_ui_custom_drawn.php[manual about custom-drawing UI things in CGE].
+1. When the image is part of a 2D user-interface, use cgeref:TCastleImageControl[]. Set the cgeref:TCastleImageControl.URL[] to load the image.
++
+You can create such image components using Pascal code or using the CGE visual editor.
++
+Manual chapter link:manual_state_events.php[Designing user interface] describes using images in UI.
+
+2. When the image is part of the viewport, use cgeref:TCastleImageTransform[]. Set the cgeref:TCastleImageTransform.Url[] to load the image.
++
+Such images are part of the _viewport_. See link:viewport_and_scenes[manual about viewport]. The advantages of this approach are:
++
+--
+- you have a camera (to control what user sees) in a vewport.
+- you can trivially have a working navigation, in 3D or 2D, too.
+- you can combine the image with other cgeref:TCastleTransform[] components. In particular you can add cgeref:TCastleScene[] with animations (sprite sheets), you can transform images in 3D too, you can display everything freely behind or in front of images.
+- such images can have physics colliders and rigid bodies.
+--
+
+3. The last method is to load the image to cgeref:TDrawableImage[]. This is the low-level approach, where you will need to manually handle drawing the image at the appropriate moment, following https://castle-engine.io/manual_2d_ui_custom_drawn.php[manual about custom-drawing UI things in CGE].
++
+The basic code example is:
++
+[source,pascal]
+----
+procedure TMyState.Create(AOwner: TComponent);
+begin
+  inherited;
+  SomeImage := TDrawableImage.Create('castle-data:/image.png');
+end;
+...
+procedure TMyState.Render;
+begin
+  inherited;
+  SomeImage.Draw(XOnScreen, YOnScreen, WidthOnScreen, HeightOnScreen);
+end;
+----
 
 The approaches 1 and 2 can be used when designing the game in the https://castle-engine.io/manual_editor.php[editor] and are more advised.
 
+Approach 3 may be easier to use in some cases (if you already think in terms _"I want to have code that draws images"_). Also cgeref:TDrawableImage.Draw[] allows to draw with batching, which allows to reliably achieve great speed when drawing large maps.
+
+NOTE: TODO: In the future batching should also work across cgeref:TCastleImageTransform[], if you activate boolean cgeref:DynamicBatching[]. But right now, dynamic batching will not optimize multiple cgeref:TCastleImageTransform[] instances.
+
 All approaches handle all the image formats supported by CGE, like PNG or JPG; see https://castle-engine.io/castle-view-image.php[castle-view-image] docs for the full list.
+
+== For 2D maps: Tiled is an alternative
+
+If you want to draw 2D maps, an alternative is to design them in https://www.mapeditor.org/[Tiled]. You can then:
+
+1. load ready map in cgeref:TCastleTiledMapControl[]. See 2 examples in https://github.com/castle-engine/castle-engine/tree/master/examples/tiled[examples/tiled/]. It's a UI element.
+
+2. load ready map in cgeref:TCastleScene[].
+
+For now cgeref:TCastleTiledMapControl[] supports a few more Tiled options.
 
 == Internal: Image types in CGE
 

@@ -15,6 +15,12 @@ You have to insert instances of scenes into a viewport (more precisely, cgeref:T
 
 The scenes can be transformed (moved, rotated, scaled) within the viewport. You can arrange them in transformation groups using cgeref:TCastleTransform[]. cgeref:TCastleTransform[] is an ancestor of cgeref:TCastleScene[] that doesn't display anything by itself, but it transforms all the children.
 
+### Video
+
+If you like to learn by watching, this is good introduction to viewport capabilities in 3D and 2D:
+
+video::gwnKMnAGUcg[youtube,width=800,height=450]
+
 ### TCastleTransform descendants
 
 cgeref:TCastleViewport[] has a property cgeref:TCastleViewport.Items[] that holds everything that the viewport displays.
