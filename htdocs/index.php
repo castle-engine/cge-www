@@ -75,13 +75,17 @@ define('CGE_SNAPSHOTS_VERSION', '7.0-alpha.snapshot');
 
                 <div class="download-hints">
                     <p>Next: <a href="manual_install_run_first.php">Install the engine and build your first application</a>.
+                    <p>If you want to learn by watching: <a href="https://www.youtube.com/watch?v=rPU-IFltcuM">watch a tutorial to the engine</a>.
                 </div>
 
                 <?php echo download_donate_footer(); ?>
             </div>
         </div>
 
+        <h2>Features:</h2>
+
         <div class="centered-wrapper">
+
             <div class="centered">
                 <ul>
                     <li>Use <b>any 3D or 2D software</b> to create your models in various formats: <a href="creating_data_model_formats.php">glTF, X3D, VRML<!--?php echo a_href_page('VRML / X3D', 'vrml_x3d'); ?-->, Spine JSON, Collada...</a>
