@@ -178,7 +178,7 @@ You can also control the cgeref:TCastleTransform.Collides[], cgeref:TCastleTrans
 
 We have UI scaling, to adjust to any screen size smartly, and it works similar to Unity canvas scaling. It allows to design assuming a specific window size, and as long as you set sensible anchors, the design will look reasonable at various screen resolutions (even with different aspect ratio). It merely scales the coordinates -- the actual rendering is done for the final resolution, so it looks "sharp" always.
 
-The scaling is configured using https://castle-engine.io/manual_castle_settings.php[CastleSettings.xml] file. The default CGE editor "New Project" templates set UI scaling to adjust with a reference window size of 1600x900. See also https://castle-engine.io/manual_user_interface_and_2d_drawing.php[manual about user interface].
+The scaling is configured using https://castle-engine.io/manual_castle_settings.php[CastleSettings.xml] file. The default CGE editor "New Project" templates set UI scaling to adjust with a reference window size of 1600x900.
 
 == Unity Services
 
