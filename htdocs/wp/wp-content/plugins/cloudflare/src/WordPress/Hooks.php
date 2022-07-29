@@ -174,7 +174,12 @@ class Hooks
 
             // Don't attempt to purge anything outside of the provided zone.
             foreach ($urls as $key => $url) {
-                if (!Utils::strEndsWith(parse_url($url, PHP_URL_HOST), $wpDomain)) {
+                $url_to_test = $url;
+                if (is_array($url) && !!$url['url']) {
+                    $url_to_test = $url['url'];
+                }
+
+                if (!Utils::strEndsWith(parse_url($url_to_test, PHP_URL_HOST), $wpDomain)) {
                     unset($urls[$key]);
                 }
             }
@@ -429,7 +434,8 @@ class Hooks
         }
 
         // add header unconditionally so we can detect plugin is activated
-        if (!is_user_logged_in()) {
+        $cache = apply_filters('cloudflare_use_cache', !is_user_logged_in());
+        if ($cache) {
             header('cf-edge-cache: cache,platform=wordpress');
         } else {
             header('cf-edge-cache: no-cache');
@@ -513,7 +519,7 @@ class Hooks
     private function zoneSettingAlwaysUseHTTPSEnabled($zoneTag)
     {
         $settings = $this->api->getZoneSetting($zoneTag, "always_use_https");
-        return $settings["value"] == "on";
+        return !empty($settings["value"]) && $settings["value"] == "on";
     }
 
 
