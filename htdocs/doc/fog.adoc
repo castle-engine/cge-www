@@ -1,0 +1,28 @@
+# Fog
+include::common.adoc[]
+:description: Apply fog in Castle Game Engine.
+:cge-social-share-image: fog_4_with_background.png
+
+_Fog_ can be added and configured using the cgeref:TCastleFog[] component. The component is available in CGE editor, so you add and configure your fog even without writing any code.
+
+The usage is simple:
+
+1. Add a fog component anywhere to the design using _"Add Non-Visual Component -> Fog (TCastleFog)"_ in editor.
++
+cgeimg::block[fog_1_add.png|Adding fog component]
+
+2. Sset the fog as active for given viewport by adjusting the cgeref:TCastleViewport.Fog[] property.
++
+cgeimg::block[fog_2_set_on_viewport.png|Making fog component active on viewport]
+
+3. Adjust the fog parameters, like cgeref:TCastleFog.Color[] and cgeref:TCastleFog.VisibilityRange[].
++
+cgeimg::block[fog_3_adjust.png|Adjust fog parameters]
+
+4. Optionally, also adjust the background color to match the fog color. The fog looks most natural in this case.
++
+For example adjust the cgeref:TCastleViewport.BackgroundColor[] and leave cgeref:TCastleViewport.Background[] empty (`nil`) for a simple background color.
++
+See link:background[more about backgrounds].
+
+NOTE: The fog is aplied in the final (sRGB) color space, this allows to match fog color perfectly to background color or UI easily. This means that link:color_space[Linear color space (gamma correction)] doesn't affect fog application.

@@ -325,6 +325,7 @@ $castle_sitemap = array(
               'doc/blending' => array('title' => 'Blending'),
               'manual_alpha_bleeding' => array('title' => 'Alpha Bleeding'),
               'doc/background' => array('title' => 'Background (skybox, sky and ground)'),
+              'doc/fog' => array('title' => 'Fog'),
             )
           ),
           'doc/control_on_form' => array('title' => 'Use engine inside Lazarus form using TCastleControl'),
