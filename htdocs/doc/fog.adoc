@@ -11,7 +11,7 @@ The usage is simple:
 +
 cgeimg::block[fog_1_add.png|Adding fog component]
 
-2. Sset the fog as active for given viewport by adjusting the cgeref:TCastleViewport.Fog[] property.
+2. Set the fog as active for given viewport by adjusting the cgeref:TCastleViewport.Fog[] property.
 +
 cgeimg::block[fog_2_set_on_viewport.png|Making fog component active on viewport]
 
@@ -24,5 +24,7 @@ cgeimg::block[fog_3_adjust.png|Adjust fog parameters]
 For example adjust the cgeref:TCastleViewport.BackgroundColor[] and leave cgeref:TCastleViewport.Background[] empty (`nil`) for a simple background color.
 +
 See link:background[more about backgrounds].
++
+cgeimg::block[fog_4_with_background.png|Fog and background colors matching]
 
 NOTE: The fog is aplied in the final (sRGB) color space, this allows to match fog color perfectly to background color or UI easily. This means that link:color_space[Linear color space (gamma correction)] doesn't affect fog application.
