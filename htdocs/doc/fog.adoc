@@ -23,7 +23,7 @@ cgeimg::block[fog_3_adjust.png|Adjust fog parameters]
 +
 For example adjust the cgeref:TCastleViewport.BackgroundColor[] and leave cgeref:TCastleViewport.Background[] empty (`nil`) for a simple background color.
 +
-See link:background[more about backgrounds].
+Or can make background horizon color, or background skybox, visually match the fog. See link:background[more about backgrounds].
 +
 cgeimg::block[fog_4_with_background.png|Fog and background colors matching]
 
