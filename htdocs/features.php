@@ -339,8 +339,8 @@ See a few videos from our <a href="https://www.youtube.com/c/CastleGameEngineX3d
     property.
     </li>
 
-  <li><p><b><a href="manual_gamma_correction.php">Gamma Correction and Tone Mapping</a></b> are available.
-    For <i>Physically Based Rendering</i> materials, <i>gamma correction</i> is applied by default.
+  <li><p><b>Control <a href="color_space">Color Space (Gamma Correction)</a></b> between linear and sRGB.
+    For <i>Physically Based Rendering</i> materials, <i>linear color space (gamma correction)</i> is used by default.
 </ul>
 
 <?php echo $toc->html_section(); ?>
@@ -355,7 +355,7 @@ See a few videos from our <a href="https://www.youtube.com/c/CastleGameEngineX3d
 
   <li><p><b>3D and 2D</b>. Not everything is about 3D. Our API is perfect <b>for 2D games too, with flexible (and pixel-perfect) rendering of 2D images, movies, text</b> and everything you can compose from them (like GUI controls). We also support <a href="https://castle-engine.io/spine">Spine</a> which is very cool for creating 2D animations.
 
-  <li><p><b>Rigid body physics</b>. We are integrated with a powerful <i>Kraft Physics Engine</i> and you can <a href="manual_physics.php">easily use dynamic physics in your games</a>.
+  <li><p><b>Rigid body physics</b>. We are integrated with a powerful <i>Kraft Physics Engine</i> and you can <a href="physics">easily use dynamic physics in your games</a>.
 
     <div class="thumbnails">
       <iframe width="300" height="168" src="https://www.youtube.com/embed/8k9zX6dPQEU" frameborder="0" allowfullscreen></iframe>

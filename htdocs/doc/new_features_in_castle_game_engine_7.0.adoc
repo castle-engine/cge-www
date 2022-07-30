@@ -23,7 +23,7 @@ This page documents Castle Game Engine 7.0 new features (since the last 6.4 rele
  ** See https://castle-engine.io/creating_data_model_formats.php for details of glTF 2.0 support.
  ** See numerous news for details: https://castle-engine.io/wp/2020/04/25/huge-optimizations-of-gltf-animations-pool-of-scenes-for-fps-game-limited-pbr-specular-glossiness-support/[1], https://castle-engine.io/wp/2020/04/19/lots-of-gltf-work-new-x3d-extensions-and-conversion-improvements/[2], https://castle-engine.io/wp/2020/04/11/fun-with-sketchfab-plugin-in-blender-testing-gltf-performance/[3],  https://castle-engine.io/wp/2020/04/11/testing-gltf-with-models-from-sketchfab-improved-per-vertex-rendering-from-gltf/[4], https://castle-engine.io/wp/2020/04/01/gltf-skinned-animation-in-castle-game-engine/[5], https://castle-engine.io/wp/2020/03/22/blender-exporters-upgrades-and-fixes-gltf-unlit-support-castle-anim-frames-improvements-loading-a-series-of-models-for-animation/[6], https://castle-engine.io/wp/2020/06/11/reading-punctual-lights-from-gltf/[lights].
  ** See https://castle-engine.io/wp/2020/03/07/physically-based-rendering-and-lots-of-other-lighting-materials-upgrades-in-castle-game-engine-and-x3d-4-0/[news specific about PBR (in glTF and X3D v4)]
- ** https://castle-engine.io/manual_gamma_correction.php[Gamma Correction and Tone Mapping].
+ ** link:color_space[Color Space (Gamma Correction)].
 * Nintendo Switch full support. See https://castle-engine.io/nintendo_switch
 * Much better API for viewports and cameras.
  ** To display `TCastleScene`/`TCastleTransform` hierarchy, use `TCastleViewport`, always. It is a normal user interface control, you can set it's size/position as any other UI control.

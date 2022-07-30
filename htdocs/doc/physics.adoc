@@ -1,0 +1,119 @@
+# Physics
+include::common.adoc[]
+:description: Using physics to handle collisions between rigid bodies.
+:cge-social-share-image: blender_castle_1.png
+
+== Introduction
+
+Physics allows you to define _rigid bodies_ that can collide with each other (following the designated _collider_ geometry). These collisions (by default) automatically result in proper response, i.e. objects "bounce off" each other when they collide.
+
+_Castle Game Engine_ is integrated with https://github.com/BeRo1985/kraft[Kraft Physics Engine] made by _Benjamin 'BeRo' Rosseaux_. Read on to learn how to add rigid-body physics to your own games.
+
+== Demo Videos
+
+video::8k9zX6dPQEU[youtube,width=800,height=450]
+
+video::hIuEGnRm-yM[youtube,width=800,height=450]
+
+== Usage
+
+You can turn any cgeref:TCastleTransform[] instance into a _rigid body_, which means that it will be affected by gravity and collisions with other rigid bodies. cgeref:TCastleScene[], which you use to render 3D objects, is a descendant of cgeref:TCastleTransform[], so this implies that `TCastleScene` can be a _rigid body_ too. Or you can use cgeref:TCastleTransform[] as a container for other transformations and scenes inside, and thus a group of objects can be treated as a single rigid body.
+
+To make a rigid body you need to:
+
+1. Create cgeref:TCastleScene[] (see also link:viewport_and_scenes[viewport and scenes documentation]).
+
+2. Create and configure an instance of cgeref:TRigidBody[].
+
+3. Create and configure an instance of some cgeref:TCollider[] descendant, like
++
+--
+- cgeref:TPlaneCollider[],
+- cgeref:TBoxCollider[],
+- cgeref:TSphereCollider[],
+- cgeref:TMeshCollider[].
+--
++
+The collider will be connected to the parent rigid body at construction (the cgeref:TRigidBody.Collider[] property will be automatically set when creating the collider).
+
+4. Link to your rigid body from the cgeref:TCastleTransform.RigidBody[] property.
+
+This is a sample code:
+
+[source,pascal]
+----
+var
+  Scene: TCastleScene;
+  RigidBody: TRigidBody;
+  Collider: TBoxCollider;
+begin
+  // Create TCastleScene
+  Scene := TCastleScene.Create(Application);
+  Scene.Load(URL);
+  Scene.Spatial := [ssRendering, ssDynamicCollisions];
+  // Scene.Translation := Vector3(1, 2, 3); // set initial position
+
+  // Create TRigidBody
+  RigidBody := TRigidBody.Create(Application);
+  // RigidBody.Dynamic := ?; // boolean, default true
+  // RigidBody.Gravity := ?; // boolean, default true
+  // RigidBody.InitialLinearVelocity := Vector3(10, 0, 0);
+
+  // Create TCollider (a TBoxCollider, to be more precise, in this case).
+  // Note that TBoxCollider assumes that box is centered around (0,0,0) for now
+  Collider := TBoxCollider.Create(RigidBody);
+  Collider.Size := Scene.BoundingBox.Size;
+  // Collider.Restitution := 0.3;
+  // Collider.Density := 100.0;
+
+  // Connect rigid body
+  Scene.RigidBody := RigidBody;
+
+  // Add Scene to the Viewport, to make it visible
+  Viewport.Items.Add(Scene);
+end;
+----
+
+See https://github.com/castle-engine/castle-engine/blob/master/examples/physics/physics_3d_demo/[physics_3d_demo], in particular the https://github.com/castle-engine/castle-engine/blob/master/examples/physics/physics_3d_demo/code/gameinitialize.pas[physics_3d_demo/code/gameinitialize.pas] source code, for a complete working example.
+
+Notes:
+
+- Right now the instruction to assign cgeref:TCastleTransform.RigidBody[] should be at the very end, when you configured all the rigid body and collider parameters. Right now, this is when the rigid body is actually created on the physics engine side. _Right now_ changing the properties of rigid body or collider later has no effect (if you need it, the temporary workaround is to set `TCastleTransform.RigidBody` to `nil` and then again to your `TRigidBody` instance).
+
+- The collider shape is not synchronized with the scene shape in any way. This also applies to the cgeref:TMeshCollider[] that has a cgeref:TMeshCollider.Scene[]: the mesh is created _once_ from the scene geometry, it is not synchronized with scene changes later. (If you need it, the workaround is the same as above: set `TCastleTransform.RigidBody` to `nil` and then again to your `TRigidBody` instance. But creating a mesh collider is a costly operation, so think twice before doing this during the game!)
+
+== Physics in 2D games
+
+Although internally Castle Game Engine and Kraft work in 3D, the physics can work just fine for 2D games too.
+
+- Simply position everything around Z = 0 (or any other Z = constant plane).
+
+- When creating colliders, make sure that they have some non-zero size in Z axis too. Even though the Z axis is not visible in 2D games, but the colliders need to have some volume in all 3 axes.
+
+- Constrain rotations and movement of dynamic rigid bodies to 2D by calling cgeref:TRigidBody.Setup2D[].
+
+The example how to do this is in https://github.com/castle-engine/castle-engine/tree/master/examples/physics/physics_2d_game_sopwith[physics_2d_game_sopwith] (see in particular the https://github.com/castle-engine/castle-engine/tree/master/examples/physics/physics_2d_game_sopwith/code/gameinitialize.pas[physics_2d_game_sopwith/code/gameinitialize.pas] source code).
+
+== Future plans (TODOs)
+
+Current physics engine integration is just a start. The plans are:
+
+- Expose physics to be available in editor, by making `TCastleRigidBody` and `TCastleCollider` be descendants from `TCastleBehavior`. _As of 2022-02-07, Andrzej Kilijański is working on it_, so it will happen soon :)
+
+- Expose Kraft layers.
+
+- Enable to "run" physics in the editor, by saving the state + observing the effect of physics.
+
+- Currently we also have an older, simpler, internal physics/collision engine in CGE, that takes care of some tasks: the collisions of player and creatures (from CastleCreatures), a simple gravity for them, and custom collision methods for you (like RayCollision, SphereCollision etc. in CastleTransform unit). The new physics engine should eventually replace them all, and there should be a flag to make it possible, and eventually it should even become the default, and the old collision implementation should be simply removed.
+
+- The current implementation doesn't expose any API for joints.
+
+- Maybe: A shape within the TCastleScene should be able to act like a rigid body, independent of the rest of the scene. Ideally, this should be link:blender[configurable in Blender, and exported nicely to glTF or X3D]. link:http://www.web3d.org/documents/specifications/19775-1/V3.3/Part01/components/rigid_physics.html[The X3D specification has a rigid-body component] to describe such things.
++
+Our current preferred plan to this is resign from X3D and Blender integration for this, instead depend that you will assign rigid bodies and colliders in CGE editor (or by Pascal code). If we can just synchronize changes from bones exposed by `ExposeTransforms` back to the original model, this will allow you to attach physics to particular parts (any transformation) of the model.
+
+- Integration with other physics engines, through a layer providing a common API.
++
+Our best candidate for proving an (alternative) physics engine is link:http://bulletphysics.org/[Bullet]. Very full-featured, e.g. there's soft body, not only rigid body.
++
+Full integration with Bullet will require proper translation of Bullet API to C and then to Pascal (as Bullet is in C++, it's not readily usable from anything other than C++). There is a C header for Bullet, see https://code.google.com/archive/p/bullet/issues/43[this old Google Code issue] and https://github.com/bulletphysics/bullet3/issues/130[this GitHub issue], but it's rather minimalistic (only rigid body), although it may be a good start.

@@ -377,7 +377,7 @@ end;'); ?>
 
 <p>Run the application now to see that the plane falls down.
 Note that this is a rather naive approach to implement gravity
-&mdash; for a realistic gravity you should rather use <a href="manual_physics.php">physics engine</a>.
+&mdash; for a realistic gravity you should rather use <a href="physics">physics engine</a>.
 But it is enough for this demo, and it shows you how to do <i>anything</i>
 that needs to be done (or tested) <i>"all the time when the game is running"</i>.
 

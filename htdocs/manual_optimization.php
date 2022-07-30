@@ -474,7 +474,7 @@ draw calls in this case.
 <ul>
   <li><p>It makes code simpler. You trivially load each model by <code>TCastleScene.Load</code>. You don't need to deal or understand anything about X3D nodes.
   <li><p>It allows to <a href="https://castle-engine.io/manual_scene.php">run animations</a> in the most intuitive way: on each model, you can call <code>TCastleScene.PlayAnimation</code>.
-  <li><p>The <a href="manual_physics.php">physics engine</a> right now treats an entrie TCastleScene as a single rigid body. You cannot combine two scenes, if you want them to be independent rigid bodies for the physics engine.
+  <li><p>The <a href="physics">physics engine</a> right now treats an entrie TCastleTransform (like TCastleScene) as a single rigid body. You cannot combine two scenes, if you want them to be independent rigid bodies for the physics engine.
 </ul>
 
 <p>Various things discussed here are <a href="roadmap">planned to be improved in the engine</a>, to avoid leaving you with such difficult decision. On one side, we plan to merge the <code>TCastleTransform</code> and <code>TTransformNode</code> hierarchies, making the gain from merging scenes irrelevant. On the other hand, we plan to allow physics to treat specific shapes as rigid bodies, making it possible to apply physics on smaller units than "entire TCastleScene".

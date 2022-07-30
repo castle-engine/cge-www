@@ -29,7 +29,7 @@ Note that Phong shading is activated automatically (for a particular shape) when
 * Use link:x3d_extensions_screen_effects.php[screen effects (post-processing)].
 * Use effects like link:x3d_extensions_mirror_plane.php[mirrors] and link:x3d_extensions_shadow_maps.php[shadows].
 * Use animation blending when appropriate. To do this, set `TCastleScene.DefaultAnimationTransition` to non-zero on your scene, or use `PlayAnimation` with `TPlayAnimationParameters.TransitionDuration` set as non-zero.
-* Use link:manual_gamma_correction.php[gamma correction]. It is automatically used with  `PhysicalMaterial`, so it is automatically used with glTF models using PBR. You can set `GammaCorrection := gcAlways` to just use it always (also with Phong lighting or unlit materials).
+* Use link:color_space[linear color space]. It is automatically used with  `PhysicalMaterial`, so it is automatically used with glTF models using PBR. You can set `ColorSpace := csLinear` to just use it always (also with Phong lighting or unlit materials).
 +
 This makes calculations more correct with respect to reality. This should be turned "on" from the begging of working on your graphic assets -- as it necessarily affects to colors of everything.
 

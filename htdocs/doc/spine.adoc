@@ -44,7 +44,13 @@ See our https://castle-engine.io/documentation.php[engine documentation] for an 
 
 When you run our https://castle-engine.io/manual_editor.php[editor], create a _"New Project"_ and use template _"2D Game"_. This shows a viewport with mutliple Spine scenes. A Spine scene is just a `TCastleScene` instance and you add it to `TCastleViewport` to make it visible, animated etc.
 
-To play a Spine animation, use `TCastleScene.PlayAnimation` method. Use `TCastleScene.Animations` to list named animations. These are called "named animations" in our engine, and you can actually use them with any 3D model, not only Spine. See https://castle-engine.io/manual_scene.php[the manual about playing animations].
+To play a Spine animation,
+
+* In editor or from code set cgeref:TCastleSceneCore.AutoAnimation[TCastleScene.AutoAnimation].
+
+* Or from code call cgeref:TCastleSceneCore.PlayAnimation[TCastleScene.PlayAnimation] method. Use cgeref:TCastleSceneCore.Animations[TCastleScene.Animations] to list available animations.
+
+See link:viewport_and_scenes[viewport and scenes] for more information about using viewports and scenes -- there's nothing special about scene using Spine model.
 
 == Creating Spine models
 

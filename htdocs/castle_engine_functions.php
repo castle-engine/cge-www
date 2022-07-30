@@ -281,7 +281,7 @@ $castle_sitemap = array(
               'doc/how_to_render_2d' => array('title' => 'How to render 2D images/sprites'),
             )
           ),
-          'manual_physics' => array('title' => 'Physics'),
+          'doc/physics' => array('title' => 'Physics'),
           'manual_sound' => array('title' => 'Sound',
             'sub' => array(
               'doc/openal' => array('title' => 'OpenAL'),
@@ -321,7 +321,7 @@ $castle_sitemap = array(
           ),
           'doc/how_to_make_rendering_prettier' => array('title' => 'Making rendering prettier',
             'sub' => array(
-              'manual_gamma_correction' => array('title' => 'Gamma Correction'),
+              'doc/color_space' => array('title' => 'Color Space (Gamma Correction)'),
               'doc/blending' => array('title' => 'Blending'),
               'manual_alpha_bleeding' => array('title' => 'Alpha Bleeding'),
               'doc/background' => array('title' => 'Background (skybox, sky and ground)'),

@@ -41,7 +41,7 @@ More physics engine integration:
 - Layers
 - Joints (IN PROGRESS - by _Andrzej Kilijański_).
 
-The details are listed in the link:manual_physics.php[manual about physics].
+The details are listed in the link:physics[manual about physics].
 
 ## (IN PROGRESS) WebGL (HTML5) support
 

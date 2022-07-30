@@ -1,0 +1,97 @@
+# Color Space (Gamma Correction)
+include::common.adoc[]
+:description: Controlling color space (linear, sRGB) and gamma correction in Castle Game Engine.
+:cge-social-share-image: gamma_gammatone_nogamma.png
+
+== What is Linear Color Space and Gamma Correction
+
+cgeimg::float[
+  gamma_gammatone_nogamma.png|Helmet: Gamma Correct / Gamma Correct + Tone Mapping / No Gamma or Tone Mapping,
+  gamma_nogamma_helmet.png|Damaged Helmet: Gamma Corrected / Not Corrected,
+  gamma_nogamma_specular.png|Specular Highlight: Gamma Corrected / Not Corrected,
+  gamma_nogamma_teapot.png|Teapot: Gamma Corrected / Not Corrected
+]
+
+_Linear Color Space (Gamma Correction)_ in 3D graphics means that the lighting is calculated in more correct way.
+
+The images you prepare on your computer, and photos you take with your camera, have colors automatically adjusted to look good on a typical monitor. Using these colors directly for the lighting calculation (e.g. as diffuse or base colors) is not entirely correct.
+
+_Linear Color Space (Gamma Correction)_ means that the graphic engine (like _Castle Game Engine_) does this:
+
+1. Adjusts the values from the color images (like textures you provide to X3D cgeref:TPhysicalMaterialNode.BaseTexture[], cgeref:TMaterialNode.DiffuseTexture[], cgeref:TAbstractOneSidedMaterialNode.EmissiveTexture[]) into more correct values, before using them in any calculations.
+
+2. Calculates the lighting using the correct color values.
+
+3. At the end, applies a correction back to the final pixel color, to make it look good on your monitor.
+
+https://github.com/michaliskambi/x3d-tests/wiki/Gamma-correction-in-X3D-and-glTF[More details how does this work, with more links, and analysis what other standards/engines do, is here.]
+
+More description of gamma correction and linear color space:
+
+- https://blog.molecular-matters.com/2011/11/21/gamma-correct-rendering/[Gamma-correct rendering]
+- https://www.vfxwizard.com/tutorials/gamma-correction-for-linear-workflow.html[Gamma Correction for a linear workflow]
+- https://gamedevelopment.tutsplus.com/articles/gamma-correction-and-why-it-matters\--gamedev-14466[Gamma Correction and Why It Matters]
+
+== Using Gamma Correction in CGE
+
+In _Castle Game Engine_ you control this using a simple global variable cgeref:ColorSpace[].
+
+- By default it is `csLinearWhenPhysicalMaterial` which means that we calculate in linear color space (do gamma correction) for materials using PBR (Physically Based Rendering) equations. This includes standard materials defined in glTF models, and materials defined in X3D 4.0 using explicit `PhysicalMaterial` node. So we assume that you prepare PBR materials and their textures for a _linear workflow (color space calculation)_.
+
+- You can change it to `csSRGB` to never do gamma correction (calculate in sRGB space).
+
+- You can change it to `csLinear` to always do gamma correction (calculate in linear space).
+
+Another way of explaining it is by looking at the material node (used by each X3D `Shape`):
+
+- `PhysicalMaterial`: Linear color space (gamma correction) is used if `ColorSpace` equals `csLinearWhenPhysicalMaterial` or `csLinear`.
++
+This material type is the standard glTF material type. You can also use it explicitly by `PhysicalMaterial` X3Dv4 node.
+
+- `Material` and `UnlitMaterial`: Linear color space (gamma correction) is used if `ColorSpace` equals `csLinear`.
++
+`Material` is the standard X3D 3.x material type, practically used by all existing X3D exporters right now.
++
+`UnlitMaterial` is the new X3Dv4 node. It can also be used by glTF models that use https://github.com/KhronosGroup/glTF/tree/master/extensions/2.0/Khronos/KHR_materials_unlit[KHR_materials_unlit] material type (e.g. link:blender[Blender] can export such materials in glTF).
+
+What you should do?
+
+- In most cases, the default does what you expect.
++
+If you use glTF models with PBR, then gammma correction is used.
++
+Otherwise gamma correction is not used. So unlit materials (e.g. with cartoon rendering) have no gamma correction. Older models with Phong lighting have no gamma correction.
+
+- If you want _linear color space (gamma correction)_ always then turn `ColorSpace := csLinear`. Make sure you prepare your assets (textures) accordingly. This is also 100% compatible with glTF (that dictates one should use gamma correction always, for both PBR and unlit materials).
+
+- If you want maximum speed, set `ColorSpace := csSRGB`.
++
+If you want maximum speed, you may also consider using Phong lighting (maybe even with Gouraud shading) instead of PBR. IOW, using `Material` instead of `PhysicalMaterial` X3D nodes. And of course use `UnlitMaterial` for unrealistic rendering. But these decisions are independent of the gamma correction, that in principle  makes sense with any lighting model (even unlit).
+
+NOTE: Color space (and gamma correction) only affects things rendered using `TCastleScene` in `TCastleViewport`. It is not applied to other things. In particular user-interface elements (like `TCastleButton` or `TCastleImageControl`) or low-level 2D APIs (like `TDrawableImage`) ignore the `ColorSpace` setting.
+
+== Why does this matter also for unlit materials (that don't calculate lighting)?
+
+If you use _linear color space_ calculation, then the cgeref:TAbstractOneSidedMaterialNode.EmissiveColor[TUnlitMaterialNode.EmissiveColor] is assumed to be provided also in _linear color space_.
+
+But the texture colors, read from the cgeref:TAbstractOneSidedMaterialNode.EmissiveTexture[TUnlitMaterialNode.EmissiveTexture], are assumed to be provided in sRGB color space.
+
+NOTE: This is consistent with treatment of all other colors and color textures. Like cgeref:TPhysicalMaterialNode.BaseColor[] and cgeref:TPhysicalMaterialNode.BaseTexture[]. Actually they all have an emissive part, defined at cgeref:TAbstractOneSidedMaterialNode.EmissiveColor[] and cgeref:TAbstractOneSidedMaterialNode.EmissiveTexture[].
+
+When the _linear color space_ calculation is *not used* for unlit materials, then the calculation is like this:
+
+```
+texture_color = texture2D(Material.emissiveTexture)
+screen_color = UnlitMaterial.emissiveColor * texture_color
+final_screen_color = screen_color
+```
+
+But when the _linear color space_ calculation *is used* for unlit materials, the calculation is like this:
+
+```
+texture_color = pow(texture2D(Material.emissiveTexture), 2.2) // convert texture sRGB -> linear
+screen_color = UnlitMaterial.emissiveColor * texture_color
+final_screen_color = pow(screen_color, 1 / 2.2) // convert linear -> sRGB for screen
+```
+
+As you can see, the `UnlitMaterial.emissiveColor` is not processed by `pow` at input -- it is assumed to be already in linear color space. So when the `UnlitMaterial.emissiveColor` is not white `(1, 1, 1)`, then the resulting screen color RGB is not exactly equal to `UnlitMaterial.emissiveColor` (or `UnlitMaterial.emissiveColor` multiplied by `UnlitMaterial.emissiveTexture`, if texture was provided).
