@@ -7,10 +7,13 @@ Rules when writing this:
 - Avoid linking to news, that often become outdated over time. Prefer linking to manual with high-level overview. Eventually link to API docs.
 - We do not mention explicitly "numerous examples" as a features, instead link to particular examples when sensible.
 
-TODO:
-add https://castle-engine.io/features.php
-add alpha2 TODO features
-add screenshots
+Sources:
+- https://castle-engine.io/new_features_in_castle_game_engine_7.0
+- https://castle-engine.io/wp/2021/02/06/castle-game-engine-7-0-alpha-1-release-view3dscene-4-0-0-release/
+- TODO: https://castle-engine.io/features.php
+- TODO: alpha2 TODO features
+
+- TODO: screenshots
 ////
 
 _Castle Game Engine_ features:
