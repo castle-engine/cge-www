@@ -503,7 +503,7 @@ $castle_sitemap = array(
     ),
   ),
 
-  'videos' => array('title' => 'Videos', 'url' => 'https://www.youtube.com/c/CastleGameEngineX3d/'),
+  'videos' => array('title' => 'Videos', 'url' => 'https://www.youtube.com/c/CastleGameEngine'),
 
   'view3dscene'  => array('hint' => 'Viewer for glTF, X3D, Collada, sprite sheets and other model formats', 'title' => 'Viewer for glTF, X3D...'),
 

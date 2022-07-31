@@ -60,7 +60,7 @@ $toc = new TableOfContents(
 
 <?php echo $toc->html_section(); ?>
 
-See a few videos from our <a href="https://www.youtube.com/c/CastleGameEngineX3d/">YouTube channel</a>:
+See a few videos from our <a href="https://www.youtube.com/c/CastleGameEngine">YouTube channel</a>:
 
 <p><iframe width="560" height="315" src="https://www.youtube.com/embed/o5q7guVkYVo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
