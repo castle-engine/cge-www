@@ -4,163 +4,91 @@ castle_header('Text and fonts');
 
 $toc = new TableOfContents(
   array(
-    new TocItem('Show text using a label UI control (TCastleLabel)', 'label'),
-    new TocItem('Explicitly draw text (TCastleFont)', 'font'),
-    new TocItem('Create a new font', 'create'),
+    new TocItem('Show text using a label in user interface: TCastleLabel', 'label'),
+    new TocItem('Show (potentially 3D) text in a viewport: TCastleText', 'text_in_viewport'),
+    new TocItem('Customizing font', 'custom_font'),
+    new TocItem('Change default font', 'default_font'),
     new TocItem('International characters', 'international'),
     new TocItem('Localization (translation) using CastleLocalizationGetText', 'localization_gettext'),
-    new TocItem('Localization (translation) using CastleLocalization (deprecated)', 'localization_custom'),
+    new TocItem('Deprecated', 'deprecated'),
+    new TocItem('Explicitly drawing text', 'draw_font', 1),
+    new TocItem('Embed font data in compiled application using texture-font-to-pascal', 'embed_font', 1),
+    new TocItem('Localization (translation) using CastleLocalization', 'localization_custom', 1),
   )
 );
 ?>
 
 <?php echo $toc->html_toc(); ?>
-<?php echo $toc->html_section(); ?>
 
-<p>The most comfortable way to show text is to use
- <?php echo cgeRef('TCastleLabel'); ?>.
- You can customize it's font using
- <?php echo cgeRef('TCastleUserInterfaceFont.CustomFont'); ?>
- and
- <?php echo cgeRef('TCastleUserInterfaceFont.FontSize'); ?>
- properties.
-
-<p>Many UI controls (see for example unit
- <?php echo cgeRef('CastleControls'); ?>)
- descend from
- <?php echo cgeRef('TCastleUserInterfaceFont'); ?>,
- and thus can render text and have their font customized, for example
- <?php echo cgeRef('TCastleButton'); ?>.
-
-<p>You can add and configure UI controls (like <?php echo cgeRef('TCastleLabel'); ?>,
- <?php echo cgeRef('TCastleButton'); ?>
- and many more)
- by code, or using <a href="manual_editor.php">the CGE editor</a>.
+<?php
+echo cgeImg('block', array(
+  array('filename' => 'fonts_editor.png', 'titlealt' => 'Various fonts in CGE editor'),
+  array('filename' => 'fonts_runtime.png', 'titlealt' => 'Various fonts'),
+));
+?>
 
 <?php echo $toc->html_section(); ?>
 
-<p>Instead of using
-<?php echo cgeRef('TCastleLabel'); ?>,
-you can explicitly draw the text.
-For this you need an instance of the
-<?php echo cgeRef('TCastleAbstractFont'); ?> class.
-To make it easy, one global instance of this class is already created for you:
-<?php echo cgeRef('UIFont'); ?>
- (part of <?php echo cgeRef('CastleControls'); ?> unit).
-So you can simply draw text like this:
+<p>The most comfortable way to show text is to use <?php echo cgeRef('TCastleLabel'); ?>. You can customize it's font using <?php echo cgeRef('TCastleUserInterfaceFont.CustomFont'); ?> and <?php echo cgeRef('TCastleUserInterfaceFont.FontSize'); ?> properties.
 
-<?php echo pascal_highlight(
-'UIFont.Print(10, 10, Yellow, \'Some text to print\');'); ?>
+<p>Many UI controls (see for example unit <?php echo cgeRef('CastleControls'); ?>) descend from <?php echo cgeRef('TCastleUserInterfaceFont'); ?>, and thus can render text and have their font customized, for example <?php echo cgeRef('TCastleButton'); ?>.
 
-<p>You should place such drawing code inside a render method,
-for example inside the
- <?php echo cgeRef('TCastleWindow.OnRender'); ?> or
- <?php echo cgeRef('TCastleControl.OnRender'); ?> or
-inside the overridden <?php echo cgeRef('TCastleUserInterface.Render'); ?> implementation.
-See <?php echo a_href_page('the manual about 2D drawing', 'manual_2d_ui_custom_drawn'); ?> for a general info about 2D rendering.
-
-<p><?php echo cgeRef('TCastleAbstractFont'); ?> class
-has a lot of methods and properties.
-<ul>
-  <li>You can simply print the text
-    (<?php echo cgeRef('TCastleAbstractFont.Print'); ?>).
-  <li>You can change the font size
-    (<?php echo cgeRef('TCastleAbstractFont.Size'); ?>).
-  <li>You can add an outline around it
-    (<?php echo cgeRef('TCastleAbstractFont.Outline'); ?>,
-    <?php echo cgeRef('TCastleAbstractFont.OutlineColor'); ?>).
-  <li>You can measure the text
-    (<?php echo cgeRef('TCastleAbstractFont.TextWidth'); ?>,
-    <?php echo cgeRef('TCastleAbstractFont.TextHeight'); ?>,
-    <?php echo cgeRef('TCastleAbstractFont.TextSize'); ?>,
-    <?php echo cgeRef('TCastleAbstractFont.RowHeight'); ?>...).
-  <li>You can print a multi-line text, with optional line wrapping
-    (<?php echo cgeRef('TCastleAbstractFont.PrintRect'); ?>,
-    <?php echo cgeRef('TCastleAbstractFont.PrintRectMultiline'); ?>,
-    <?php echo cgeRef('TCastleAbstractFont.PrintStrings'); ?>,
-    <?php echo cgeRef('TCastleAbstractFont.PrintBrokenString'); ?>
-    and other methods).
-</ul>
+<p>You can add and configure UI controls (like <?php echo cgeRef('TCastleLabel'); ?>, <?php echo cgeRef('TCastleButton'); ?> and many more) by code, or using <a href="manual_editor.php">the CGE editor</a>.
 
 <?php echo $toc->html_section(); ?>
 
-<p><?php echo cgeRef('TCastleAbstractFont'); ?> is
-an abstract class representing some font that can be drawn.
-To create a new font, you create an instance of a non-abstract class,
-most often the <?php echo cgeRef('TCastleFont'); ?>
- class &mdash; it draws font glyphs from a texture,
- and can be loaded from a font file (TTF, OTF).
-There are other possible font implementations, for example
-<?php echo cgeRef('TCastleBitmapFont'); ?>
- allows to use a font drawn on an image (so you can make colorful letters,
-with fancy custom outline and such).
+<p>Another way to render text is to use <?php echo cgeRef('TCastleText'); ?>. You can place such component in a <a href="viewport_and_scenes">viewport</a> and it can be transformed just like any other 3D object.
 
-<p>See <code>castle_game_engine/examples/fonts/font_from_texture.lpr</code>
-for a simple example of creating fonts.
-In the basic version, you simply use
-<?php echo cgeRef('TCastleFont.Load'); ?>
- to load a font from a file (TTF, OTF or any other font format supported by the
-FreeType2 library). So you construct and load a font like this:
+<p>This is a great way to display text in 3D and/or attach the text to some 3D or 2D game object, e.g. as a debug text over some character.
 
-<?php echo pascal_highlight(
-'MyNewFont := TCastleFont.Create(Application { any TComponent to act as owner });
-MyNewFont.Load(\'castle-data:/MyFontFile.ttf\', 20, true);'); ?>
+<p>The properties of <?php echo cgeRef('TCastleText'); ?> and <?php echo cgeRef('TCastleLabel'); ?> are deliberately very similar. They also use the same font classes underneath.
 
-<p>Remember to install the FreeType2 library for this to work. On Windows,
-place appropriate FreeType2 DLL alongside the exe, you can get the DLL
-from <code>castle_game_engine/tools/build-tool/data/external_libraries/</code> directory
-of the engine.
+<?php echo $toc->html_section(); ?>
 
-<p>You can assign the new font as the global <code>UIFont</code>,
-so it will be by default used by all standard UI controls:
+<p>You can add and configure fonts. To customize font in the <a href="https://castle-engine.io/manual_editor.php">CGE editor</a>:
 
-<?php echo pascal_highlight(
-'UIFont := MyNewFont;'); ?>
+<ol>
+  <li>
+    <p>Use the "Design -&gt; Add Non-Visual Component" menu item, or the context menu (when you right-click in the hierarchy on the left). Font is added as <i>"Non-Visual Component"</i> to whatever parent you selected.
 
-<p>(Instead of assigning to the <code>UIFont</code>,
-you can assign to <code>Container.DefaultFont</code>
-or define a <code>default_font</code> inside the
-<a href="manual_castle_settings.php">CastleSettings.xml</a> file.
-This way CGE editor will also use the new font.)
+     <p>The parent that keeps reference to the font node can be anything -- <code>TCastleComponent</code>, <code>TCastleTransform</code>, <code>TCastleUserInterace</code> etc. It is similar to VCL/LCL non-visual components: it doesn't really matter where you drop them on the form.
 
-<p>Instead of loading the font data from a file, you can also provide
-a <?php echo cgeRef('TTextureFontData'); ?>
- instance to the <?php echo cgeRef('TCastleFont'); ?>
- constructor. This allows to create the font data at runtime
- or <b>to use the font data embedded in a Pascal source code</b>.
-You can use the <code>texture-font-to-pascal</code> program (compile it from
-<code>castle_game_engine/tools/texture-font-to-pascal/texture-font-to-pascal.lpr</code>)
-to convert a font file into a Pascal unit:
+  <li>
+    <p>Then assign this font to <?php echo cgeRef('TCastleUserInterfaceFont.CustomFont', 'TCastleLabel.CustomFont'); ?>. Or any other UI control descending from <?php echo cgeRef('TCastleUserInterfaceFont', 'TCastleUserInterfaceFont'); ?>, like <?php echo cgeRef('TCastleButton', 'TCastleButton'); ?> or <?php echo cgeRef('TCastleEdit', 'TCastleEdit'); ?>.
 
-<pre>
-texture-font-to-pascal --size 20 MyFontFile.ttf
-</pre>
+    <p>You can also assign font to <?php echo cgeRef('TCastleText.CustomFont', 'TCastleText.CustomFont'); ?> to customize font used by the (potentially 3D) <?php echo cgeRef('TCastleText'); ?> in the viewport.
+</ol>
 
-<p>In response, it will create a unit called
-<code>CastleTextureFont_MyFontFile_20</code> with a public function:
-
-<?php echo pascal_highlight(
-'function TextureFont_MyFontFile_20: TTextureFontData;'); ?>
-
-<p>You can use this unit in your program, and create a font instance like this:
-
-<?php echo pascal_highlight(
-'MyNewFont := TCastleFont.Create(Application { any TComponent to act as owner });
-MyNewFont.Load(TextureFont_MyFontFile_20);'); ?>
-
-<p>The advantages of embedding a font inside a Pascal unit are:
+<p>Our most important font classes:
 
 <ul>
-  <li>You don't need to distribute the FreeType2 library. (Although this shouldn't be a big problem,
-    CGE can package FreeType2 with your project for all platforms automatically.)
-
-  <li>Font is loaded slightly faster, since it's already processed to
-    a suitable texture data.
+  <li><p><?php echo cgeRef('TCastleAbstractFont', 'TCastleAbstractFont'); ?>
+  <li><p><?php echo cgeRef('TCastleFont', 'TCastleFont'); ?> - the most often used font class, loads font from TTF, OTF and other file formats.
+    <p>Most important properties:
+    <ul>
+      <li><p><?php echo cgeRef('TCastleFont.URL', 'URL'); ?> (font file URL, e.g. TTF or OTF),
+      <li><p><?php echo cgeRef('TCastleFont.OptimalSize', 'OptimalSize'); ?>,
+      <li><p><?php echo cgeRef('TCastleFont.AntiAliased', 'AntiAliased'); ?>,
+      <li><p><?php echo cgeRef('TCastleFont.LoadCharacters', 'LoadCharacters'); ?>,
+      <li><p><?php echo cgeRef('TCastleFont.LoadBasicCharacters', 'LoadBasicCharacters'); ?> to control the loaded font.
+    </ul>
+  <li><p><?php echo cgeRef('TCastleBitmapFont', 'TCastleBitmapFont'); ?> - define letters using an image.
+    <p>Most important properties:
+    <ul>
+      <li><p><?php echo cgeRef('TCastleBitmapFont.ImageUrl', 'ImageUrl'); ?>,
+      <li><p><?php echo cgeRef('TCastleBitmapFont.ImageColumns', 'ImageColumns'); ?>,
+      <li><p><?php echo cgeRef('TCastleBitmapFont.ImageRows', 'ImageRows'); ?>,
+      <li><p><?php echo cgeRef('TCastleBitmapFont.ImageMargin', 'ImageMargin'); ?>,
+      <li><p><?php echo cgeRef('TCastleBitmapFont.DisplayMargin', 'DisplayMargin'); ?>.
+    </ul>
+  <li><p><?php echo cgeRef('TCastleFontFamily', 'TCastleFontFamily'); ?> - a collection of other fonts to provide bold/italic variants, useful with rich text in <?php echo cgeRef('TCastleLabel.Html'); ?>.
 </ul>
 
-<p>The disadvantages are of course that you cannot simply change the font file anymore,
-you need to rerun the <code>texture-font-to-pascal</code> command
-and recompile your program to see the new font.
+<p>See examples, e.g. <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/fonts/text_tests">examples/fonts/text_tests</a> for demos of it.
+
+<?php echo $toc->html_section(); ?>
+
+<p>You can define a <code>default_font</code> inside the <a href="manual_castle_settings.php">CastleSettings.xml</a> file to change the default font. This way CGE editor will also use the new font as default.
 
 <?php echo $toc->html_section(); ?>
 
@@ -301,6 +229,86 @@ You can translate strings explicitly at any moment, using
 
 <?php echo $toc->html_section(); ?>
 
+<?php echo $toc->html_section(); ?>
+
+<p><b>NOTE: While this functionality is still available, we advise to rather render all text using  <?php echo cgeRef('TCastleLabel'); ?> (in UI) or <?php echo cgeRef('TCastleText'); ?> (in viewport, maybe in 3D).</b>
+
+<p>Instead of using <?php echo cgeRef('TCastleLabel'); ?>, you can explicitly draw the text. For this you need an instance of the <?php echo cgeRef('TCastleAbstractFont'); ?> class. To make it easy, one global instance of this class is already created for you: <?php echo cgeRef('UIFont'); ?> (part of <?php echo cgeRef('CastleControls'); ?> unit). So you can simply draw text like this:
+
+<?php echo pascal_highlight(
+'UIFont.Print(10, 10, Yellow, \'Some text to print\');'); ?>
+
+<p>You should place such drawing code inside a render method, for example inside the  <?php echo cgeRef('TCastleWindow.OnRender'); ?> or  <?php echo cgeRef('TCastleControl.OnRender'); ?> or inside the overridden <?php echo cgeRef('TCastleUserInterface.Render'); ?> implementation. See <?php echo a_href_page('the manual about 2D drawing', 'manual_2d_ui_custom_drawn'); ?> for a general info about 2D rendering.
+
+<p><?php echo cgeRef('TCastleAbstractFont'); ?> class has a lot of methods and properties.
+<ul>
+  <li>You can simply print the text
+    (<?php echo cgeRef('TCastleAbstractFont.Print'); ?>).
+  <li>You can change the font size
+    (<?php echo cgeRef('TCastleAbstractFont.Size'); ?>).
+  <li>You can add an outline around it
+    (<?php echo cgeRef('TCastleAbstractFont.Outline'); ?>,
+    <?php echo cgeRef('TCastleAbstractFont.OutlineColor'); ?>).
+  <li>You can measure the text
+    (<?php echo cgeRef('TCastleAbstractFont.TextWidth'); ?>,
+    <?php echo cgeRef('TCastleAbstractFont.TextHeight'); ?>,
+    <?php echo cgeRef('TCastleAbstractFont.TextSize'); ?>,
+    <?php echo cgeRef('TCastleAbstractFont.RowHeight'); ?>...).
+  <li>You can print a multi-line text, with optional line wrapping
+    (<?php echo cgeRef('TCastleAbstractFont.PrintRect'); ?>,
+    <?php echo cgeRef('TCastleAbstractFont.PrintRectMultiline'); ?>,
+    <?php echo cgeRef('TCastleAbstractFont.PrintStrings'); ?>,
+    <?php echo cgeRef('TCastleAbstractFont.PrintBrokenString'); ?>
+    and other methods).
+</ul>
+
+<?php echo $toc->html_section(); ?>
+
+<p><b>NOTE: While this functionality is still available, we advise to rather load fonts from TTF / OTF. It is more flexible.</b>
+
+<p>Instead of loading the font data from a file, you can also provide
+a <?php echo cgeRef('TTextureFontData'); ?>
+ instance to the <?php echo cgeRef('TCastleFont'); ?>
+ constructor. This allows to create the font data at runtime
+ or <b>to use the font data embedded in a Pascal source code</b>.
+You can use the <code>texture-font-to-pascal</code> program (compile it from
+<code>castle_game_engine/tools/texture-font-to-pascal/texture-font-to-pascal.lpr</code>)
+to convert a font file into a Pascal unit:
+
+<pre>
+texture-font-to-pascal --size 20 MyFontFile.ttf
+</pre>
+
+<p>In response, it will create a unit called
+<code>CastleTextureFont_MyFontFile_20</code> with a public function:
+
+<?php echo pascal_highlight(
+'function TextureFont_MyFontFile_20: TTextureFontData;'); ?>
+
+<p>You can use this unit in your program, and create a font instance like this:
+
+<?php echo pascal_highlight(
+'MyNewFont := TCastleFont.Create(Application { any TComponent to act as owner });
+MyNewFont.Load(TextureFont_MyFontFile_20);'); ?>
+
+<p>The advantages of embedding a font inside a Pascal unit are:
+
+<ul>
+  <li>You don't need to distribute the FreeType2 library. (Although this shouldn't be a big problem,
+    CGE can package FreeType2 with your project for all platforms automatically.)
+
+  <li>Font is loaded slightly faster, since it's already processed to
+    a suitable texture data.
+</ul>
+
+<p>The disadvantages are of course that you cannot simply change the font file anymore,
+you need to rerun the <code>texture-font-to-pascal</code> command
+and recompile your program to see the new font.
+
+<?php echo $toc->html_section(); ?>
+
+<p><b>NOTE: This localization approach is deprecated, as it has less features than the GetText approach</b>.
+
 <p>You can use our own localization approach from the
 <a href="https://github.com/castle-engine/castle-engine/blob/master/src/deprecated_units/castlelocalization.pas">CastleLocalization</a>
 <?php /* api_link('CastleLocalization', 'CastleLocalization.html'); */ ?>
@@ -320,8 +328,8 @@ and to add your own translation formats (see
 
 <p><i>Thousand thanks go to Benedikt Magnus for developing this approach!</i>
 
-<p>It is deprecated, as it has (for now) less features than the GetText approach.
-<?php echo cgeRef('CastleLocalizationGetText'); ?> offers these additional features:
+<p>This localization approach is deprecated.
+<?php echo cgeRef('CastleLocalizationGetText'); ?> offers more features:
 
 <ul>
   <li>Translating <code>resourcestrings</code> (so the constant strings in code are "magically" translated),
