@@ -1,0 +1,188 @@
+# Features
+include::common.adoc[]
+
+////
+Rules when writing this:
+- Try to fit things into categories, avoid desire to create category like "Other" or "Miscellaneaous" to stuff remaining things.
+- Avoid linking to news, that often become outdated over time. Prefer linking to manual with high-level overview. Eventually link to API docs.
+- We do not mention explicitly "numerous examples" as a features, instead link to particular examples when sensible.
+
+TODO:
+add https://castle-engine.io/features.php
+add alpha2 TODO features
+add screenshots
+////
+
+_Castle Game Engine_ features:
+
+== Cross-platform
+
+Truly cross-platform, you can work on (almost) any platform and compile to any platform.
+
+* Desktop (Linux, Windows, macOS, FreeBSD)
+* Mobile (link:android[Android], link:ios[iOS]) with numerous link:android_services[Android services] and link:ios_services[iOS services] to integrate with platform-specific features.
+* Console (link:nintendo_switch[Nintendo Switch])
+* Planned: https://castle-engine.io/wp/2022/01/16/oculus-quest-2-developer-mode-for-castle-game-engine-enabled/[Oculus (VR)], WebGL (using FPC WebAssembly), XBox (yes, we have hardware for Oculus and XBox development).
+
+== Editor
+
+link:manual_editor.php[Editor] to visually design your game 3D and 2D world and user interface around it.
+
+* With templates for new projects -- empty, 3D, 2D. They showcase nicely engine possibilities and were designed as a good starting point for your applications.
+* Allows to easily build the project for all platforms.
+* With file browser, with preview for data (3D models, images, sound files).
+* With easy way to execute code editor (Lazarus, Visual Studio Code or anything else you like) to edit your code.
+* Designs are (de)serialized to JSON. Any component can be (de)serialized, along with it published properties.
+* Designs can refer to each other using cgeref:TCastleTransformDesign[] or cgeref:TCastleDesign[], to use them like _prefabs_ from other engines. See https://github.com/castle-engine/castle-engine/tree/master/examples/advanced_editor/advanced_loading_designs[examples/advanced_editor/advanced_loading_designs].
+* You can define link:custom_components[custom project-specific components available in the editor].
+
+== Viewport with scenes, camera, navigation
+
+link:viewport_and_scenes[Viewport with scenes, camera, navigation] allows to define 3D and 2D worlds.
+
+* Flexible hierarchy of transformations and scenes that you can design in the editor or control from Pascal code using a powerful OOP API.
+* Powerful cgeref:TCastleScene[] to load and render link:creating_data_model_formats.php[a lot of model formats, like glTF, X3D, sprite sheets].
+* Other visible objects like cgeref:TCastleBox[], cgeref:TCastleSphere[], cgeref:TCastleText[], cgeref:TCastleImageTransform[]. Great also for quick prototyping 3D and 2D worlds.
+* Flexible link:camera[camera] support, with multiple camera possible, attaching children to camera and placing camera as child of other objects, like bones.
+* Easy link:navigation[navigation] components if you want to allow user to navigate in 3D or 2D worlds in a standard fashion. These include typical 2D and 3D navigation methods (like cgeref:TCastleWalkNavigation[], cgeref:TCastleExamineNavigation[], cgeref:TCastle2DNavigation[]) as well as 3rd-person navigation with avatar (cgeref:TCastleThirdPersonNavigation[]).
+* Each transformation can be enhanced with behaviors (descendants of cgeref:TCastleBehavior[]), like cgeref:TCastleBillboard[], cgeref:TCastleSoundSource[]. It is easy and encouraged to create behaviors required for your specific game, see link:viewport_and_scenes_from_code#_behaviors[Behaviors in the manual].
+* If you link:castle_game_engine_for_unity_developers[come from Unity, we have a whole document that describes how the concepts you know map to CGE].
+
+=== glTF support
+
+Support for standard model format from Khronos link:gltf[glTF].
+
+* Great integration with link:blender[Blender] that can export to glTF.
+* Lots of glTF models on the Internet, e.g. on https://sketchfab.com/features/gltf[Sketchfab].
+* Skinned animation.
+* _Physically Based Rendering_.
+* Metadata support (which can come e.g. from link:blender[Blender] custom properties).
+
+=== X3D support
+
+Support for standard model format from Web3D link:vrml_x3d.php[X3D and VRML].
+
+* Support for X3D 4.0 with_Physically Based Rendering_ and lots of possibilities for shapes, textures, animations etc.
+* Internally the cgeref:TCastleScene[] is a set of X3D nodes.
+* You can build and process scene graph from X3D nodes.
+
+=== Sprite sheets
+
+Support for link:sprite_sheets[sprite sheets].
+
+* In Castle Game Engine, Starling and Cocos2D formats.
+* Own _sprite sheet editor_ to visually create sprite sheets from texture atlases.
+* See the https://github.com/castle-engine/castle-engine/tree/master/examples/[platformer] example - complete platformer game using sprite sheets. Also https://castle-engine.itch.io/platformer[released on itch.io].
+
+=== Spine support
+
+Support for link:spine[Spine] with skeletal 2D animations.
+
+=== Graphic features
+
+We feature multiple graphic features:
+
+* link:compositing_shaders.php[Compositing shaders] to define shader effects that enhance existing engine rendering. See https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/shader_effects[examples/viewport_and_scenes/shader_effects] example.
+* Animation blending/cross-fading (cgeref:TCastleSceneCore.DefaultAnimationTransition[], cgeref:TPlayAnimationParameters.TransitionDuration[]).
+* link:x3d_extensions_mirror_plane.php[Easy mirrors on flat surfaces].
+* link:x3d_implementation_cubemaptexturing.php[Easy mirrors on curved surfaces (using generated cubemaps)].
+* _Physically-Based Rendering_ used by default for glTF and X3D 4.0 models using cgeref:TPhysicalMaterialNode[].
+* Alternative _unlit_ shading also available, with glTF and X3D 4.0 models using cgeref:TUnlitMaterialNode[].
+* Alternative "classic" Phong shading is also available using cgeref:TMaterialNode[] or cgeref:GltfForcePhongMaterials[].
+* link:x3d_extensions_shadow_maps.php[Shadow maps].
+* link:x3d_extensions_shadow_volumes.php[Shadow volumes].
+* Screen effects (post-processing) API to define post-processing effects using shaders. See link:x3d_extensions_screen_effects.php[screen effects specification], you can add screen effects over any UI control: just place it as child of cgeref:TCastleScreenEffects[]. See https://github.com/castle-engine/castle-engine/tree/master/examples/screen_effects_demo/[examples/screen_effects_demo/].
+* link:color_space[Color Space (Gamma Correction)].
+* Easily design link:background[background (with sky/ground gradients, skybox)], link:fog[fog].
+
+== Images
+
+Easily display link:using_images[display images] as user interface or in a viewport.
+
+* Numerous image formats supported thanks to integration with https://imaginglib.sourceforge.io/[Vampyre Imaging Library].
+* Custom code for advanced formats like KTX and DDS.
+* link:creating_data_auto_generated_textures.php[Automatic texture compression and downscaling].
+
+== User interface
+
+* link:user_interface[User interface] library providing cross-platform UI controls that work on all platforms, like buttons, labels, images.
+* Your game is organized into link:states[states]. Each state can have a design (created in editor) and an associated unit where you can link:manual_state_events.php[handle various events, like a key press].
+* Their look can be adjusted to match the style of your game.
+* Automatic UI scaling to adjust to any screen resolution and aspect ratio with anchors.
+* link:manual_text.php[Rendering text in user interface and in 3D, with customizable fonts].
+* Localization (including automatically translating user interface and `resourcestring`s).
+
+== Build tool and continuous integration
+
+link:build_tool[Build tool] to manage your project from the command-line or in batch mode (good for continuous integration).
+
+* link:docker[Docker image] with CGE and prerequisites (FPC, Android build tools, texture processing tools) to easily deploy CGE applications e.g. from Jenkins or GitHub actions.
+* Ready instructions to use link:github_actions[GitHub Actions] with your project.
+
+== Native and fast code using modern Pascal
+
+The engine, as well as your games, are written using link:modern_pascal_introduction.html[modern Object Pascal].
+
+* We support https://www.freepascal.org/[FPC] and https://www.embarcadero.com/products/delphi/[Delphi] compilers, see link:supported_compilers.php[Supported compilers and IDEs].
+* Pascal as a programming language is
++
+--
+* elegant (type-safe, OOP, generics),
+* full-featured (big existing codebases can be used, e.g. Pascal and C, C++ libraries to connect your games with database, AI, networking),
+* native (compiled to native code that runs fast out-of-the-box).
+--
+* The same programming language that is used to make the engine is used for your applications -- this results in simplicity (it's easy to contribute) and speed.
+* Fast execution. It's a language that compiles to fast native code, while staying elegant and type-safe.
+* Fast compilation.
+* Native debugging. It's just a native application using native debugger. Debugging is integral part of the https://www.lazarus-ide.org/[Lazarus IDE].
+
+== Networking
+
+The engine uses URLs, allows to download contents of URLs, and can be integrated with various networking libraries.
+
+* All paths are expressed as URLs with some special CGE protocols, see link:manual_network.php[nerworking].
+* Application data can be always accessed using link:manual_data_directory.php[URLs like `castle-data:/xxx`].
+* You can download URLs asynchronously using cgeref:TCastleDownload[].
+* Integration with link:manual_network.php#section_indy[Indy].
+* An example integration with link:manual_network.php#section_rnl[RNL] is in our https://github.com/castle-engine/not-quake[not-quake] demo.
+
+== Optimization and profiling
+
+We have extensive link:manual_optimization.php[optimization documentation] and a number of features to help you make your game faster.
+
+* Inspector available under F8 in any debug game shows FPS profile.
+* Built-in simple profiler cgeref:TCastleProfiler[].
+* Built-in frame profiler cgeref:TCastleFrameProfiler[].
+* cgeref:DynamicBatching[] is available to batch multiple shapes, to conserve draw calls.
+
+== Sound
+
+You can play link:manual_sound.php[sound], spatial (in 3D) or not.
+
+* Supports for various sound backends: link:openal[OpenAL] or link:fmod[FMOD], on multipe platforms.
+* Sound streaming is done, for efficient playback of music tracks.
+* WAV and OggVorbis file formats are supported with all sound backends.
+
+== Physics
+
+You can use link:manual_physics.php[physics].
+
+* Define rigid bodies and colliders on your objects.
+* Allow gravity and collisions to automatically have an effect.
+* Register events on collisions or triggers.
+* We use https://github.com/BeRo1985/kraft/[Kraft Physics Engine] under the hood.
+
+== Tiled integration
+
+You can design game maps using https://www.mapeditor.org/[Tiled].
+
+* Tiled maps (TMX files) can be loaded into cgeref:TCastleTiledMapControl[] for 2D display.
+* Or they can be loaded (work in progress) into cgeref:TCastleScene[] for 3D display and easy integration with other scenes on top of it, like sprite sheets for units on the map.
+* See https://github.com/castle-engine/castle-engine/tree/master/examples/tiled/strategy_game_demo/[examples/tiled/strategy_game_demo] for a complete strategy game in CGE using Tiled maps.
+
+== Free open-source software
+
+The engine is licensed on _"LGPL with static linking exception"_ license, similar to FPC and Lazarus standard libraries.
+
+* In short it means that you *can* create commercial closed-source applications with it without any issues.
+* See https://github.com/castle-engine/castle-engine/blob/master/COPYING.md for details.
