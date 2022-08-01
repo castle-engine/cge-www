@@ -1,0 +1,40 @@
+# Alternative ways to download and install
+include::common.adoc[]
+
+While you can link:/[just download the latest engine from our webpage], we also support some alternative installation methods:
+
+== Itch.io
+
+Head over to https://castle-engine.itch.io/castle-game-engine[Castle Game Engine on itch.io] to download the engine from Itch.io.
+
+For extra comfort, use https://itch.io/app[itch.io app]. It's very nice and allows to download + install the engine, or later update, with really 1 click.
+
+NOTE: This installs the latest _released_ engine version, like `7.0-alpha2`. Not a snapshot.
+
+== Arch Linux User Repository
+
+link:https://archlinux.org/[Arch Linux] users can install Castle Game Engine from link:https://wiki.archlinux.org/title/Arch_User_Repository[AUR (Arch User Repository)].
+
+The package is available on link:https://aur.archlinux.org/packages/castle-engine-git/[https://aur.archlinux.org/packages/castle-engine-git/] . Follow the standard AUR installation process:
+
+
+* Do it manually following link:https://wiki.archlinux.org/title/Arch_User_Repository[AUR] docs, like
++
+```
+wget https://aur.archlinux.org/cgit/aur.git/snapshot/castle-engine-git.tar.gz
+tar xzvf castle-engine-git.tar.gz
+cd castle-engine-git/
+makepkg -sri
+```
+
+* Or use a helper like link:https://aur.archlinux.org/packages/paru/[paru]. Once you have it working, just use `paru -S castle-engine-git`.
+
+NOTE: This installs the latest engine version from https://github.com/castle-engine/castle-engine/[GitHub repository]. Bleeding edge! (But in practice, often stable to be used even for production work.)
+
+////
+== Debian / Ubuntu packages
+
+Castle Game Engine is available in Debian and Ubuntu throught the official packages, albeit in slightly outdated versions.
+
+https://packages.debian.org/search?suite=sid&searchon=names&keywords=castle-game-engine
+////
