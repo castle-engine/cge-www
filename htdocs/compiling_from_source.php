@@ -164,7 +164,7 @@ cd castle-engine/tools/build-tool/
 
     <ol>
       <li>
-        <p>First, Lazarus must be aware of the <code>castle_window</code> package. It is best to use <i>Register Lazarus Packages</i> button from the CGE editor, as described in the <a href="manual_install_run_first.php">Installation manual</a>. Or you could just open the <code>packages/castle_window.lpk</code> package in CGE sources, and <i>"Compile"</i> it from Lazarus.
+        <p>First, Lazarus must be aware of the <code>castle_window</code> package. It is best to use <i>Register Lazarus Packages</i> button from the CGE editor, as described in the <a href="install">Installation manual</a>. Or you could just open the <code>packages/castle_window.lpk</code> package in CGE sources, and <i>"Compile"</i> it from Lazarus.
 
       <li>
         <p>Then open in Lazarus <code>view3dscene.lpi</code>, and use <i>"Run -&gt; Compile"</i> menu item in Lazarus.
@@ -200,7 +200,7 @@ castle-engine compile
 
     <ol>
       <li>
-        <p>First, Lazarus must be aware of the <code>castle_window</code> package. It is best to use <i>Register Lazarus Packages</i> button from the CGE editor, as described in the <a href="manual_install_run_first.php">Installation manual</a>. Or you could just open the <code>packages/castle_window.lpk</code> package in CGE sources, and <i>"Compile"</i> it from Lazarus.
+        <p>First, Lazarus must be aware of the <code>castle_window</code> package. It is best to use <i>Register Lazarus Packages</i> button from the CGE editor, as described in the <a href="install">Installation manual</a>. Or you could just open the <code>packages/castle_window.lpk</code> package in CGE sources, and <i>"Compile"</i> it from Lazarus.
 
       <li>
         <p>Then open in Lazarus <code>castle-view-image.lpi</code>, and use <i>"Run -&gt; Compile"</i> menu item in Lazarus.
@@ -222,7 +222,7 @@ castle-engine compile
 
 <?php echo $toc->html_section(); ?>
 
-<p>You now have a complete working CGE installation, with the command-line build tool and GUI editor. Follow the <a href="https://castle-engine.io/manual_install_run_first.php">manual</a> to set it up and use as a normal user :)
+<p>You now have a complete working CGE installation, with the command-line build tool and GUI editor. Follow the <a href="install">manual</a> to set it up and use as a normal user :)
 
 <?php echo $toc->html_section(); ?>
 

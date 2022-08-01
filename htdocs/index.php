@@ -74,7 +74,7 @@ define('CGE_SNAPSHOTS_VERSION', '7.0-alpha.snapshot');
                   */ ?>
 
                 <div class="download-hints">
-                    <p>Next: <a href="manual_install_run_first.php">Install the engine and build your first application</a>.
+                    <p>Next: <a href="install">Install the engine and build your first application</a>.
                     <p>If you want to learn by watching: <a href="https://www.youtube.com/watch?v=rPU-IFltcuM">watch a tutorial to the engine</a>.
                 </div>
 
