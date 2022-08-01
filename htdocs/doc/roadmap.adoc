@@ -11,6 +11,8 @@ If you would like to see some feature implemented sooner, please link:https://ww
 
 VR: link:wp/2022/01/16/oculus-quest-2-developer-mode-for-castle-game-engine-enabled/[Michalis has access to Oculus Quest since the beginning of 2022]. Port most likely using link:https://www.khronos.org/OpenXR/[OpenXR] (to include the widest possible range of devices using a single cross-platform API).
 
+cgeimg::block[oculus.png|Oculus Quest 2: Developer Mode for Castle Game Engine enabled!]
+
 AR: most likely using Android / iOS built-in frameworks, as these make AR widely available on modern phones.
 
 ## (IN PROGRESS - MOSTLY DONE) More visual editor
