@@ -1,5 +1,7 @@
 # Nintendo Switch
 include::common.adoc[]
+:description: Nintendo Switch support in Castle Game Engine.
+:cge-social-share-image: escape_universe_switch.png
 
 == Introduction
 
