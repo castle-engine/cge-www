@@ -400,10 +400,18 @@ if ($castle_wordpress) {
   if (array_key_exists('meta_description', $parameters)) {
     echo '<meta name="Description" content="' . htmlspecialchars($parameters['meta_description']) . '">' . "\n";
     echo '<meta property="og:description" content="' . htmlspecialchars($parameters['meta_description']) . '">' . "\n";
+    echo '<meta name="twitter:description" content="' . htmlspecialchars($parameters['meta_description']) . '">' . "\n";
   }
 
   if (array_key_exists('social_share_image', $parameters)) {
     echo '<meta property="og:image" content="' . htmlspecialchars($parameters['social_share_image']) . '">' . "\n";
+    /* See
+       https://moz.com/blog/meta-data-templates-123
+       https://www.metatags.org/all-meta-tags-overview/the-important-meta-tags/social-media-metatags/
+       https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/abouts-cards
+       https://cards-dev.twitter.com/validator
+    */
+    echo '<meta name="twitter:image" content="' . htmlspecialchars($parameters['social_share_image']) . '">' . "\n";
   }
 
   /* Necessary for Wordpress published date to be recognized, at least by
@@ -438,9 +446,14 @@ if ($castle_wordpress) {
     <title><?php echo htmlspecialchars($full_title); ?></title>
 
     <meta property="og:title" content="<?php echo htmlspecialchars($full_title); ?>" >
+    <meta name="twitter:title" content="<?php echo htmlspecialchars($full_title); ?>" >
 
     <?php /* See https://moz.com/blog/meta-data-templates-123 */ ?>
     <meta property="fb:admins" content="100000327755900" >
+
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="<?php echo TWITTER_HANDLE; ?>">
 
     <?php /* See https://ogp.me/#type_website */ ?>
     <meta property="og:type" content="website" >

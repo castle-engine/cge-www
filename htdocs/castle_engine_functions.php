@@ -103,6 +103,8 @@ define('CGE_LATEST_DOWNLOAD', 'https://github.com/castle-engine/castle-engine/ar
 // bump this each time you change castle-engine.css, to work with CloudFlare caching (or you can purge CloudFlare cache manually)
 define('CASTLE_ENGINE_CSS_VERSION', 31);
 
+define('TWITTER_HANDLE', 'castleengine'); // https://twitter.com/castleengine/
+
 // unused: define('CGE_LATEST_UNSTABLE_DOWNLOAD', 'https://github.com/castle-engine/castle-engine/releases/tag/snapshot');
 
 function reference_link()
