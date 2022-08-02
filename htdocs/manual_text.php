@@ -147,6 +147,12 @@ out of the box; on modern Windows it should also work).
 
 <?php echo $toc->html_section(); ?>
 
+<?php
+echo cgeImg('block', array(
+  array('filename' => 'escape_universe_japanese.jpg', 'titlealt' => 'Escape from the Universe (Switch) - Japanese edition'),
+));
+?>
+
 <p>You can use the <?php echo cgeRef('CastleLocalizationGetText'); ?> for a localization approach based on GetText.
 
 <p>You use standard GetText formats for translating (PO, MO) and utilizing GetText tools like <a href="https://poedit.net/">PoEdit</a>. You can automatically translate strings in Pascal code, declared as <code>resourcestring</code> (use <?php echo cgeRef('CastleTranslateResourceStrings'); ?>). You can automatically translate user interface (use <?php echo cgeRef('TranslateAllDesigns'); ?>). You can generate starting file to translate user interface (use <?php echo cgeRef('GenerateGetTextPo'); ?>).

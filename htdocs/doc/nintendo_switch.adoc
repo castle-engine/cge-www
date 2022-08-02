@@ -9,6 +9,22 @@ It is a modern, successful, indie-friendly console from Nintendo. Our friend com
 
 It is a full integration, really 100% of the engine works on Nintendo Switch. From the developer point of view, you just write cross-platform Pascal code using CGE units, and then you can recompile the application using the Castle Game Engine link:build_tool[build tool] with the `--target=nintendo-switch` parameter.
 
+== Example games
+
+We have released games on Nintendo store:
+
+* https://www.nintendo.com/store/products/the-unholy-society-switch/[The Unholy Society]
++
+cgeimg::block[unholy_society_in_game.jpg|The Unholy Society]
+
+* https://www.nintendo.com/store/products/escape-from-the-universe-switch/[Escape from the Universe]
++
+cgeimg::block[escape_universe_switch.png|Escape from the Universe (Switch)]
+
+* https://store-jp.nintendo.com/list/software/70010000028874.html[Escape from the Universe - Japanese edition]
++
+cgeimg::block[escape_universe_japanese.jpg|Escape from the Universe (Switch) - Japanese edition]
+
 == Getting engine version for Nintendo Switch
 
 The integration code with Nintendo Switch is not public and not open-source. It cannot be, as we are covered by Nintendo NDA agreements and we cannot disclose the technological details about how Nintendo Switch works. To develop on Nintendo Switch, you have to:
