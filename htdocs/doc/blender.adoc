@@ -40,6 +40,10 @@ Exporting from Blender to link:gltf[glTF 2.0] is the best way to use _Blender_ w
 * _"Remember Export Settings"_ is also usually useful.
 * For typical games (where you distribute the game data with your application) we recommend exporting to _"glTF Separate (.gltf + .bin + textures)"_ variant. This allows to share textures between various models and keeps importing fast. You can edit the _"Textures"_ directory in the export dialog, to make the glTF file just point to your existing texture directory.
 
+=== Exporting normalmaps from Blender to glTF (and Castle Game Engine)
+
+video::3dA8IT8C_Js[youtube,width=800,height=450]
+
 == Advanced topics
 
 === Stashing animations
