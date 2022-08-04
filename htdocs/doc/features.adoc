@@ -97,6 +97,7 @@ We feature multiple graphic features:
 * Screen effects (post-processing) API to define post-processing effects using shaders. See link:x3d_extensions_screen_effects.php[screen effects specification], you can add screen effects over any UI control: just place it as child of cgeref:TCastleScreenEffects[]. See https://github.com/castle-engine/castle-engine/tree/master/examples/screen_effects_demo/[examples/screen_effects_demo/].
 * link:color_space[Color Space (Gamma Correction)].
 * Easily design link:background[background (with sky/ground gradients, skybox)], link:fog[fog].
+* Multi-sampling (full-screen anti-aliasing), just set cgeref:TCastleWindow.AntiAliasing[].
 
 == Images
 
@@ -117,8 +118,10 @@ Easily display link:using_images[display images] as user interface or in a viewp
 
 == Build tool and continuous integration
 
-link:build_tool[Build tool] to manage your project from the command-line or in batch mode (good for continuous integration).
+link:build_tool[Build tool] to manage your project from the command-line or in batch mode (good for continuous integration). The build tool, just like editor, reads project information from link:project_manifest[CastleEngineManifest.xml] file.
 
+* Build tool can build, package, run your application and link:creating_data_auto_generated_textures.php[autogenerate compressed textures] (and more).
+* You can build for any supported target platform. You may need to install cross-compiler (e.g. using link:fpcupdeluxe[]), some platforms may also require additional tools (see their docs like link:android[Android]).
 * link:docker[Docker image] with CGE and prerequisites (FPC, Android build tools, texture processing tools) to easily deploy CGE applications e.g. from Jenkins or GitHub actions.
 * Ready instructions to use link:github_actions[GitHub Actions] with your project.
 
