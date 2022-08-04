@@ -319,8 +319,6 @@ The solution to this is to call cgeref:TCastleComponent.SetTransient[] on an int
 
 == (De)Serializing other values (not just published properties)
 
-WARNING: This section describes new feature on https://github.com/castle-engine/castle-engine/tree/new-cameras[new-cameras branch], not yet merged with CGE master branch.
-
 Sometimes you want to read/write to the design file a value that should not be a published property. Maybe it is a private field, that you don't want to show user in the _Object Inspector_, maybe it should be just a temporary local variable. To achieve this, override in your class cgeref:TCastleComponent.CustomSerialization[], and within the overridden implementation call cgeref:TSerializationProcess[] methods, like
 
 - cgeref:TSerializationProcess.ReadWriteInteger[]
