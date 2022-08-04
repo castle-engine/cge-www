@@ -10,10 +10,12 @@ Rules when writing this:
 Sources:
 - https://castle-engine.io/new_features_in_castle_game_engine_7.0
 - https://castle-engine.io/wp/2021/02/06/castle-game-engine-7-0-alpha-1-release-view3dscene-4-0-0-release/
-- TODO: https://castle-engine.io/features.php
-- TODO: alpha2 TODO features
+- TODO: combine with https://castle-engine.io/features.php
 
 - TODO: screenshots
+
+* TODO: where to mention it best?
+  If you link:castle_game_engine_for_unity_developers[come from Unity, we have a whole document that describes how the concepts you know map to CGE].
 ////
 
 _Castle Game Engine_ features:
@@ -22,7 +24,7 @@ _Castle Game Engine_ features:
 
 Truly cross-platform, you can work on (almost) any platform and compile to any platform.
 
-* Desktop (Linux, Windows, macOS, FreeBSD)
+* Desktop (Linux, Windows, link:macos[macOS], FreeBSD). Just link:install[] the engine, compiler (like FPC) and run the application.
 * Mobile (link:android[Android], link:ios[iOS]) with numerous link:android_services[Android services] and link:ios_services[iOS services] to integrate with platform-specific features.
 * Console (link:nintendo_switch[Nintendo Switch])
 * Planned: https://castle-engine.io/wp/2022/01/16/oculus-quest-2-developer-mode-for-castle-game-engine-enabled/[Oculus (VR)], WebGL (using FPC WebAssembly), XBox (yes, we have hardware for Oculus and XBox development).
@@ -49,7 +51,8 @@ link:viewport_and_scenes[Viewport with scenes, camera, navigation] allows to def
 * Flexible link:camera[camera] support, with multiple camera possible, attaching children to camera and placing camera as child of other objects, like bones.
 * Easy link:navigation[navigation] components if you want to allow user to navigate in 3D or 2D worlds in a standard fashion. These include typical 2D and 3D navigation methods (like cgeref:TCastleWalkNavigation[], cgeref:TCastleExamineNavigation[], cgeref:TCastle2DNavigation[]) as well as 3rd-person navigation with avatar (cgeref:TCastleThirdPersonNavigation[]).
 * Each transformation can be enhanced with behaviors (descendants of cgeref:TCastleBehavior[]), like cgeref:TCastleBillboard[], cgeref:TCastleSoundSource[]. It is easy and encouraged to create behaviors required for your specific game, see link:viewport_and_scenes_from_code#_behaviors[Behaviors in the manual].
-* If you link:castle_game_engine_for_unity_developers[come from Unity, we have a whole document that describes how the concepts you know map to CGE].
+* cgeref:TCastleTransformReference[] to link:viewport_3d#_multiple_instances_of_the_same_scene_using_tcastletransformreference[efficiently reference the same transformation multiple times]. Great e.g. to instantiate thousands of trees.
+* Lights using components cgeref:TCastlePointLight[], cgeref:TCastleDirectionalLight[], cgeref:TCastleSpotLight[]. See link:viewport_3d#_lighting[lighting in manual].
 
 === glTF support
 
@@ -104,7 +107,7 @@ We feature multiple graphic features:
 Easily display link:using_images[display images] as user interface or in a viewport.
 
 * Numerous image formats supported thanks to integration with https://imaginglib.sourceforge.io/[Vampyre Imaging Library].
-* Custom code for advanced formats like KTX and DDS.
+* Full support for KTX and DDS that enable GPU texture compression, cubemaps and more.
 * link:creating_data_auto_generated_textures.php[Automatic texture compression and downscaling].
 
 == User interface
@@ -114,7 +117,7 @@ Easily display link:using_images[display images] as user interface or in a viewp
 * Their look can be adjusted to match the style of your game.
 * Automatic UI scaling to adjust to any screen resolution and aspect ratio with anchors.
 * link:manual_text.php[Rendering text in user interface and in 3D, with customizable fonts].
-* Localization (including automatically translating user interface and `resourcestring`s).
+* Localization (including automatically translating user interface and ``resourcestring``s).
 
 == Build tool and continuous integration
 
@@ -168,6 +171,7 @@ You can play link:manual_sound.php[sound], spatial (in 3D) or not.
 * Supports for various sound backends: link:openal[OpenAL] or link:fmod[FMOD], on multipe platforms.
 * Sound streaming is done, for efficient playback of music tracks.
 * WAV and OggVorbis file formats are supported with all sound backends.
+* Sound components cgeref:TCastleSound[] and cgeref:TCastleSoundSource[] can be designed and tested also in editor.
 
 == Physics
 
