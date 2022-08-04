@@ -323,11 +323,12 @@ $castle_sitemap = array(
           ),
           'doc/how_to_make_rendering_prettier' => array('title' => 'Making rendering prettier',
             'sub' => array(
-              'doc/color_space' => array('title' => 'Color Space (Gamma Correction)'),
-              'doc/blending' => array('title' => 'Blending'),
-              'manual_alpha_bleeding' => array('title' => 'Alpha Bleeding'),
+              'doc/bump_mapping' => array('title' => 'Bump Mapping (Normal Maps)'),
               'doc/background' => array('title' => 'Background (skybox, sky and ground)'),
               'doc/fog' => array('title' => 'Fog'),
+              'doc/blending' => array('title' => 'Blending'),
+              'doc/color_space' => array('title' => 'Color Space (Gamma Correction)'),
+              'manual_alpha_bleeding' => array('title' => 'Alpha Bleeding'),
             )
           ),
           'doc/control_on_form' => array('title' => 'Use engine inside Lazarus form using TCastleControl'),

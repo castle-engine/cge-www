@@ -1,0 +1,75 @@
+# Bump Mapping (Normal Maps)
+include::common.adoc[]
+:description: Bump mapping (using normal maps) in Castle Game Engine.
+:cge-social-share-image: bump_demo_leaf.png
+
+== Introduction
+
+_Bump mapping_ means that you provide a special texture called _normal map_ that describes a small features on the surface (like scratches, bumps etc.). The _normal map_ texture is used when calculating lighting. In effect you have a real-time realistic surface that looks _a bit rough_, just like most real objects are.
+
+cgeimg::block[
+  bump_demo_leaf_nobump.png|Leaf (without bump mapping),
+  bump_demo_leaf.png|Leaf (with bump mapping)
+]
+
+cgeimg::block[
+  parallax_demo_lion_noparallax.png|Lion texture (without parallax mapping),
+  parallax_demo_lion.png|Lion texture (with parallax mapping)
+]
+
+== Basic usage
+
+Simply export your model to the link:gltf[glTF] or link:vrml_x3d.php[X3D] format making sure that they indicate the _normal map_ usage correctly. Both glTF and X3D (since X3D 4.0) allow to define the normal map and we support it fully.
+
+To toggle on/off bump mapping (and optionally control the specific algorithm) you can use the cgeref:TCastleRenderOptions.BumpMapping[Scene.RenderOptions.BumpMapping] property.
+
+* `bmNone` means that bump mapping is _off_.
+
+* `bmBasic` (default) means to use the _basic_ bump mapping algoritm: normal vectors at each pixel are adjusted, acoording to the _normal map_ information, and the resulting normal vectors are used to calculate lighting as usual.
++
+Note that this is ignored (behaves like `bmNone`) if the _normal map_ is not provided for a particular material.
+
+* Optionally you can activate one of the "parallax" options, like `bmSteepParallaxShadowing`, to use a more expensive but also prettier algorithms for bump mapping. See section below link:#_provide_a_height_map_and_use_parallax_bump_mapping_algorithms[Provide a height map and use parallax bump mapping algorithms].
+
+=== Exporting normalmaps from Blender to glTF (and Castle Game Engine)
+
+If you use link:blender[Blender] then, once you setup your normalmap in Blender, it will be automatically exported correctly to glTF (and correctly used by _Castle Game Engine_).
+
+The video below demonstrates the process of using normal maps in Blender and also _baking_ (to create normalmaps in Blender).
+
+video::3dA8IT8C_Js[youtube,width=800,height=450]
+
+== Creating normal maps
+
+NOTE: This section is largely not specific to _Castle Game Engine_.
+
+The typical approach to create _normal maps_ for 3D models is:
+
+* Create both low-poly (with polygon count that can be rendered by real-time game engine) and high-poly version of your 3D model.
+* _Bake_ the details from the high-poly version to a _normal map texture_.
+
+The idea is that rendering a low-poly version, with normalmaps, can achieve a similar effect as rendering the high-poly model.
+
+There a number of 3D software that can do this. The https://www.youtube.com/watch?v=3dA8IT8C_Js[movie above] shows how can do it completely in link:blender[Blender].
+
+Alternative: You can sometimes use 2D image processing to get a reasonable-looking _normal map_ from your _base (diffuse) color texture_. You can do this e.g. using
+
+* http://code.google.com/p/gimp-normalmap/[GIMP normalmap plugin]
+
+* Command-line https://github.com/realh/normalmap[normalmap] utility.
+
+This approach is not perfect -- you're essentially guessing the normal map from something (theoretically) unrelated. I.e. the color texture intensities do not necessarily determine sensible 3D details that should be described by the normal map. That said, in practice, it is often useful (and makes better effect than flat look without any normal maps).
+
+NOTE: In http://code.google.com/p/gimp-normalmap/[GIMP normalmap plugin] check _"invert y"_ when generating normal maps, we want the Y (as interpreted by normals) coordinate to grow up, just like texture T coordinate.
+
+NOTE: The _nornal map_ textures are usually blueish, this is expected. The typical normal vector is `(0, 0, 1)` in tangent space which corresponds to the `(0.5, 0.5, 1)` (light blue) RGB color.
+
+== Provide a height map and use parallax bump mapping algorithms
+
+You can optionally provide a height map in the alpha channel of the _normal map_.
+
+For example you can do this by selecting _"Alpha Channel: Height"_ in the http://code.google.com/p/gimp-normalmap/[GIMP normal map plugin] configuration.
+
+Thanks to this height map, you can activate a family of _"parallax bump mapping"_ algorithms by setting cgeref:TCastleRenderOptions.BumpMapping[Scene.RenderOptions.BumpMapping] to a value like `bmSteepParallaxShadowing`. See the cgeref:TBumpMapping[] documentation for possible values and their meaning.
+
+Moreover, when using parallax bump mapping, you may want to adjust the cgeref:TCastleRenderOptions.BumpMappingParallaxHeight[Scene.RenderOptions.BumpMappingParallaxHeight] that scales the heights provided in texture alpha channel.

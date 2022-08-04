@@ -245,7 +245,7 @@ CommonSurfaceShader {
 
 <?php echo $toc->html_section(); ?>
 
-<p><b>The approach below to specify normal maps is deprecated in our engine now. Instead, use <a href="<?php echo x3d_spec_latest_url('shape', 'Material', 'draft'); ?>"><code>Material</code> node from X3D 4.0</a>, that <a href="https://github.com/michaliskambi/x3d-tests/wiki/X3D-version-4:-New-features-of-materials,-lights-and-textures">has normal maps.</a> Place height map in the alpha channel of the normal map.</b>
+<p><b>The approach described below to specify normal maps is DEPRECATED. Instead follow <a href="bump_mapping">bump mapping documentation</a>. Provide normalmap using glTF or proper field in X3D 4.0 material.</b>
 
 <p>We add to the <code>Appearance</code> node new fields useful for bump mapping:
 

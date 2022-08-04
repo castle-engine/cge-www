@@ -26,8 +26,15 @@ Truly cross-platform, you can work on (almost) any platform and compile to any p
 
 * Desktop (Linux, Windows, link:macos[macOS], FreeBSD). Just link:install[] the engine, compiler (like FPC) and run the application.
 * Mobile (link:android[Android], link:ios[iOS]) with numerous link:android_services[Android services] and link:ios_services[iOS services] to integrate with platform-specific features.
-* Console (link:nintendo_switch[Nintendo Switch])
-* Planned: https://castle-engine.io/wp/2022/01/16/oculus-quest-2-developer-mode-for-castle-game-engine-enabled/[Oculus (VR)], WebGL (using FPC WebAssembly), XBox (yes, we have hardware for Oculus and XBox development).
+* Console (link:nintendo_switch[Nintendo Switch]).
+* Raspberry Pi (it's just desktop Linux on Arm CPU).
+* More planned:
++
+--
+* https://castle-engine.io/wp/2022/01/16/oculus-quest-2-developer-mode-for-castle-game-engine-enabled/[Oculus (VR)] (we have the hardware to test)
+* WebGL (FPC can compile to WebAssembly)
+* XBox (we have the hardware to test).
+--
 
 == Editor
 
