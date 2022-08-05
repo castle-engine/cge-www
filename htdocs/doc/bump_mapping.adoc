@@ -41,7 +41,10 @@ video::3dA8IT8C_Js[youtube,width=800,height=450]
 
 == Creating normal maps
 
+////
+True but confusing and largely unnecessary note:)
 NOTE: This section is largely not specific to _Castle Game Engine_.
+////
 
 The typical approach to create _normal maps_ for 3D models is:
 
