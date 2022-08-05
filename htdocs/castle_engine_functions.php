@@ -230,7 +230,7 @@ $castle_sitemap = array(
       'manual_intro' => array('title' => 'Manual'),
       'creating_data_intro' => array('title' => 'Creating Game Data'),
       'reference' => array('title' => 'API Reference', 'url' => reference_link()),
-      'modern_pascal_introduction' => array('title' => 'Modern Object Pascal Introduction', 'url' => 'https://castle-engine.io/modern_pascal_introduction.html'),
+      'doc/modern_pascal' => array('title' => 'Modern Object Pascal Introduction'),
       'doc/castle_game_engine_for_unity_developers' => array('title' => 'CGE for Unity Developers'),
       'compiling_from_source' => array('title' => 'Compiling from source'),
       'vrml_x3d' => array('title' => 'Scene Graph (X3D)'),
@@ -403,7 +403,7 @@ $castle_sitemap = array(
         )
       ),
       'reference' => array('title' => 'API Reference', 'url' => reference_link()),
-      'modern_pascal_introduction' => array('title' => 'Modern Object Pascal Introduction', 'url' => 'https://castle-engine.io/modern_pascal_introduction.html'),
+      'doc/modern_pascal' => array('title' => 'Modern Object Pascal Introduction'),
       'doc/castle_game_engine_for_unity_developers' => array('title' => 'CGE for Unity Developers'),
 
       'vrml_x3d' => array('title' => 'Scene Graph (X3D)',
