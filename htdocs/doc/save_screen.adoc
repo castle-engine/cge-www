@@ -1,0 +1,79 @@
+# Save screen (screenshot)
+include::common.adoc[]
+:description: Saving a screen to image (screenshot) in Castle Game Engine applications.
+
+== Save a screenshot to the default location
+
+The easiest way to save a screenshot is to call cgeref:TCastleContainer.SaveScreenToDefaultFile[] method. It takes a screenshot and saves it to a reasonable filename under a reasonable directory (following the current system conventions). It returns the URL indicating where was the screenshot saved. The used URL is also send to link:manual_log.php[engine log].
+
+Use it from anywhere, e.g. link:manual_state_events.php[from the `Press` method of your state] like this:
+
+[source,pascal]
+----
+function TStateMain.Press(const Event: TInputPressRelease): Boolean;
+begin
+  Result := inherited;
+  if Result then Exit;
+
+  if Event.IsKey(keyF5) then
+  begin
+    Container.SaveScreenToDefaultFile; // ignore the SaveScreenToDefaultFile result
+    Exit(true); // Key press was handled
+  end;
+end;
+----
+
+== Save a screenshot to the indicated URL
+
+To get more involved, you can use the cgeref:TCastleContainer.SaveScreen[] method.
+
+The overloaded version `procedure TCastleContainer.SaveScreen(const URL: string);` takes a screenshot and saves it to the indicated file/URL.
+
+NOTE: The cgeref:TCastleContainer.SaveScreenToDefaultFile[] that we mentioned earlier is really just a shortcut to get the preferred screenshot directory on current system using cgeref:SaveScreenPath[], invent a nice screenshot filename using `ApplicationName` and finally save it using cgeref:TCastleContainer.SaveScreen[].
+
+== Save a screenshot to TRGBImage and process it before saving, e.g. to draw on a screenshot
+
+The overloaded version `function TCastleContainer.SaveScreen: TRGBImage;` offers even more possibility. It does not save to any file, instead it creates a new cgeref:TRGBImage[] class instance with the current screen contents.
+
+You can then process the resulting image to do anything you want, including to save it anywhere you like.
+
+Remember to free the cgeref:TRGBImage[] instance at some point.
+
+This example code grabs a screenshot and draws a yellow crosshair on it before saving:
+
+[source,pascal]
+----
+// Note: Add to "uses" clause some necessary units:
+// CastleImages, CastleColors, CastleLog, CastleFilesUtils
+
+function TStateMain.Press(const Event: TInputPressRelease): Boolean;
+var
+  Image: TRGBImage;
+  XMiddle, YMiddle: Integer;
+  SaveUrl: String;
+begin
+  Result := inherited;
+  if Result then Exit;
+
+  if Event.IsKey(keyF5) then
+  begin
+    Image := Container.SaveScreen;
+    try
+      if (Image.Width > 10) and (Image.Height > 10) then
+      begin
+        XMiddle := Image.Width div 2;
+        YMiddle := Image.Height div 2;
+        Image.HorizontalLine(XMiddle - 4, XMiddle + 4, YMiddle, Yellow);
+        Image.VerticalLine(XMiddle, YMiddle - 4, YMiddle + 4, Yellow);
+      end;
+      SaveUrl := ApplicationConfig('screenshot_with_crosshair.png');
+      SaveImage(Image, SaveUrl);
+      WritelnLog('Saved to ' + SaveUrl);
+    finally
+      FreeAndNil(Image);
+    end;
+
+    Exit(true); // Key press was handled
+  end;
+end;
+----

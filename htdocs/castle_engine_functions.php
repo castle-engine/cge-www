@@ -291,7 +291,7 @@ $castle_sitemap = array(
             ),
           ),
           'manual_user_prefs' => array('title' => 'Persistent data (user preferences, savegames)'),
-          'manual_screenshots' => array('title' => 'Screenshots'),
+          'doc/save_screen' => array('title' => 'Save screen (screenshot)'),
           'manual_network' => array('title' => 'Network, downloading and using URLs'),
           'doc/log' => array('title' => 'Logging'),
           'manual_cross_platform' => array('title' => 'Cross-platform (desktop, mobile, consoles...) projects',
