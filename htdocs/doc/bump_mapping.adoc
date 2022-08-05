@@ -8,14 +8,22 @@ include::common.adoc[]
 _Bump mapping_ means that you provide a special texture called _normal map_ that describes a small features on the surface (like scratches, bumps etc.). The _normal map_ texture is used when calculating lighting. In effect you have a real-time realistic surface that looks _a bit rough_, just like most real objects are.
 
 cgeimg::block[
+  editor_bump_mapping_none.png|Box in editor (without bump mapping),
+  editor_bump_mapping_parallax.png|Box in editor (with parallax bump mapping)
+]
+
+cgeimg::block[
   bump_demo_leaf_nobump.png|Leaf (without bump mapping),
   bump_demo_leaf.png|Leaf (with bump mapping)
 ]
 
-cgeimg::block[
-  parallax_demo_lion_noparallax.png|Lion texture (without parallax mapping),
-  parallax_demo_lion.png|Lion texture (with parallax mapping)
-]
+// old screens
+//cge img::block[
+//  parallax_demo_lion_noparallax.png|Lion texture (without parallax mapping),
+//  parallax_demo_lion.png|Lion texture (with parallax mapping)
+//]
+
+NOTE: The simplest demo to test bump mapping in _Castle Game Engine_ is https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/bump_mapping[examples/viewport_and_scenes/bump_mapping]. Though many other demos use bump mapping too.
 
 == Basic usage
 
