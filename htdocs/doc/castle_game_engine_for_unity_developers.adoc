@@ -245,7 +245,7 @@ See https://castle-engine.io/manual_sound.php[manual chapter about sound] for in
 
 == What is the difference between `Owner` and `Parent` in CGE?
 
-* `Owner` comes from from the standard `TComponent`. See https://castle-engine.io/modern_pascal_introduction.html#_manual_and_automatic_freeing . It manages memory (owner will free the owned instance, when the owner is freed before the owned).
+* `Owner` comes from from the standard `TComponent`. See link:modern_pascal#_manual_and_automatic_freeing[Manual and automatic freeing (Pascal introduction)]. It manages memory (owner will free the owned instance, when the owner is freed before the owned).
 * `Parent` is a visual parent. CGE UI has cgeref:TCastleUserInterface.Parent[]. CGE transformatons have cgeref:TCastleTransform.Parent[].
 
 So `Parent` and `Owner` are separate concepts, even declared in different classes.

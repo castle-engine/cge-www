@@ -238,7 +238,7 @@ $castle_sitemap = array(
     'sidebar' => true,
     'sub' => array(
       /* 'pascal_intro' => array('title' => 'Quick Modern Object Pascal for Programmers', */
-      /*   'url' => 'https://castle-engine.io/modern_pascal_introduction.html', */
+      /*   'url' => 'https://castle-engine.io/modern_pascal', */
       /*   'sub' => array('pascal_intro_pdf' =>  array( */
       /*       'title' => 'PDF version', */
       /*       'url' => 'https://castle-engine.io/modern_pascal_introduction.pdf', */

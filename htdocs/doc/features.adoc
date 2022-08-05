@@ -138,7 +138,7 @@ link:build_tool[Build tool] to manage your project from the command-line or in b
 
 == Native and fast code using modern Pascal
 
-The engine, as well as your games, are written using link:modern_pascal_introduction.html[modern Object Pascal].
+The engine, as well as your games, are written using link:modern_pascal[modern Object Pascal].
 
 * We support https://www.freepascal.org/[FPC] and https://www.embarcadero.com/products/delphi/[Delphi] compilers, see link:supported_compilers.php[Supported compilers and IDEs].
 * Pascal as a programming language is

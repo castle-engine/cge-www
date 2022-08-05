@@ -101,7 +101,7 @@ define('CGE_SNAPSHOTS_VERSION', '7.0-alpha.snapshot');
                     <?php /* Talking with Eugene and KB, it seems important to mention
                       that it's actively developed language,
                       and that we have native speed. */ ?>
-                    <li>Code in <a href="modern_pascal_introduction.html">modern Object Pascal</a>, an efficient OOP language with <a href="https://www.freepascal.org/">FPC (cross-platform open-source compiler)</a> or <a href="https://www.embarcadero.com/products/Delphi">Delphi</a>, compiled to a native optimized code. Use any IDE, like <a href="https://www.lazarus-ide.org/">Lazarus</a>, Delphi, or <a href="https://code.visualstudio.com/">Visual Studio Code</a>.
+                    <li>Code in <a href="modern_pascal">modern Object Pascal</a>, an efficient OOP language with <a href="https://www.freepascal.org/">FPC (cross-platform open-source compiler)</a> or <a href="https://www.embarcadero.com/products/Delphi">Delphi</a>, compiled to a native optimized code. Use any IDE, like <a href="https://www.lazarus-ide.org/">Lazarus</a>, Delphi, or <a href="https://code.visualstudio.com/">Visual Studio Code</a>.
                 </ul>
             </div>
         </div>

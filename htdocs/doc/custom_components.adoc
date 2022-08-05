@@ -146,7 +146,7 @@ WARNING: The example above will compile and basically work, but it has an import
 
 The instance assigned to such property (`MyLinkedImage` in the above example) can be freed at any moment (at design-time or at run-time). Your component _must_ be prepared to handle this.
 
-The standard Pascal mechanism for this is to watch when the referenced component is freed using the `FreeNotification` mechanism. See the https://castle-engine.io/modern_pascal_introduction.html#\_free_notification[Free notification] description in our __"Modern Object Pascal Introduction for Programmers"__ book.
+The standard Pascal mechanism for this is to watch when the referenced component is freed using the `FreeNotification` mechanism. See the link:modern_pascal#_free_notification[Free notification] description in our __"Modern Object Pascal Introduction for Programmers"__ book.
 
 In _Castle Game Engine_ we encourage to use cgeref:TFreeNotificationObserver[] for such purpose, which is generally simpler than using `FreeNotification` mechanism. This is the corrected example code using it:
 

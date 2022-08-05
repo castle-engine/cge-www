@@ -3,7 +3,7 @@ include::common.adoc[]
 
 In the https://castle-engine.io/wp/2018/01/21/castle-game-engine-6-4-release-physics-ios-services-shader-pipeline-upgrade-big-api-improvements-vectors-transform-and-more/[Castle Game Engine 6.4 release], we have made a number of significant API changes. I tried hard to keep things backward-compatible, and usually you can just recompile your code (and maybe upgrade things pointed as _deprecated_ by the compiler). But it was not possible in all cases, so there's a chance that you will need to adjust your existing code to compile with Castle Game Engine 6.4. The details:
 
-* All the generic containers in the engine now use the `Generics.Collections` unit. It is mostly compatible with the FGL unit, but some small differences may affect you. See the chapter about `Generics.Collections` in _Modern Pascal Introduction_ book to learn how to use Generics.Collections: https://castle-engine.io/modern_pascal_introduction.html#generic-containers-section
+* All the generic containers in the engine now use the `Generics.Collections` unit. It is mostly compatible with the FGL unit, but some small differences may affect you. See the chapter about `Generics.Collections` in _Modern Pascal Introduction_ book to learn how to use Generics.Collections: link:modern_pascal#generic-containers-section[]
 * The vector, matrix, colors and triangles API was significantly changed. This post describes the changes and cases that may need fixing: https://castle-engine.io/wp/2017/07/23/new-modern-api-for-vectors-and-matrices/
 * Some API was moved from `CastleClassUtils` to `CastleDownload`, and `FileToString` and `StringToFile` were moved to `CastleFilesUtils`. If needed, add `CastleDownload` and/or `CastleFilesUtils` to your `uses` clause.
 

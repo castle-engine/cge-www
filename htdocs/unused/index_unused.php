@@ -10,7 +10,7 @@
                     and <?php echo a_href_page('manual', 'manual_intro'); ?> to learn the engine.
 
                     <?php /* <a href="< ?php echo reference_link(); ? >">reference</a>, */ ?>
-                    <?php /* <a href="https://castle-engine.io/modern_pascal_introduction.html">modern Pascal introduction</a> */ ?>
+                    <?php /* <a href="modern_pascal">modern Pascal introduction</a> */ ?>
 
                     <?php /* You can also download <?php echo a_href_page('view3dscene', 'view3dscene'); ?>, our model viewer.</p>
                     */ ?>

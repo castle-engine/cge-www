@@ -437,7 +437,7 @@ Properties should work independently. Property value should not be "automaticall
 
 You want getting/setting properties to work naturally, regardless of the order in which it happens (this is nice for the programmer using the API, and necessary for reliable deserialization).
 
-Properties should generally work like you would expect a variable works. E.g. reading a property right after setting it should result in the same value. Setting property multiple times to the same value should have no effect. See the Pascal guidelines on https://castle-engine.io/modern_pascal_introduction.html#_properties : _...it's a good convention to design properties to behave more-or-less like fields:..._.
+Properties should generally work like you would expect a variable works. E.g. reading a property right after setting it should result in the same value. Setting property multiple times to the same value should have no effect. See the Pascal guidelines on link:modern_pascal#_properties[Properties (modern Pascal introduction)] : __...it's a good convention to design properties to behave more-or-less like fields:...__.
 
 Classes with independent properties are simple to use -- both from CGE editor (that exposes any published properties of `TComponent` descendants), and from code (code that sets a few properties is obvious to follow).
 

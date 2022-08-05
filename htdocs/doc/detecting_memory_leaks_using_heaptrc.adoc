@@ -5,7 +5,7 @@ include::common.adoc[]
 
 "Memory leak" means that you allocated a memory for something, but didn't deallocate it.
 
-For example you created an instance of a class by `MyInstance := TObject.Create` but then forgot to call `FreAndNil(MyInstance)`. See https://castle-engine.io/modern_pascal_introduction.html#_freeing_classes[the chapter about freeing classes in Pascal]. While Pascal offers various helpers to make it easy to deal with (e.g. `TComponent` can own other `TComponent` instances, freeing them automatically) but in general Pascal remains a language where you have to manually free all your allocated memory.
+For example you created an instance of a class by `MyInstance := TObject.Create` but then forgot to call `FreAndNil(MyInstance)`. See link:modern_pascal#_freeing_classes[freeing classes (modern Pascal introduction)]. While Pascal offers various helpers to make it easy to deal with (e.g. `TComponent` can own other `TComponent` instances, freeing them automatically) but in general Pascal remains a language where you have to manually free all your allocated memory.
 
 While not all memory leaks result in severe consequences, they usually indicate unsafe code organization and may be result of more extensive bugs. Therefore it is highly recommended to keep the code clean of memory leaks. This is where a very useful Free Pascal unit https://www.freepascal.org/docs-html/rtl/heaptrc/index.html[HeapTrc] can help by enabling developers to debug run-time memory allocation and deallocation.
 

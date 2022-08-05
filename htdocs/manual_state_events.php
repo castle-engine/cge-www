@@ -263,7 +263,7 @@ echo cgeImg('block', array(
 
 <p>Now we will write some Pascal code. You can use any Pascal editor you like &mdash; by default we use Lazarus, but you can configure it in the editor <i>Preferences</i>.
 
-<p>Look at our <a href="https://castle-engine.io/modern_pascal_introduction.html">Modern Object Pascal Introduction for Programmers</a> to learn more about Pascal, the programming language we use.
+<p>Look at our <a href="modern_pascal">Modern Object Pascal Introduction for Programmers</a> to learn more about Pascal, the programming language we use.
 
 <p>To access (from code) the components you have designed, you need to manually declare and initialize their fields. We will manually add and initialize field <code>ImagePlayer</code>, as we want to modify its properties by Pascal code. This process will be automated in the future.
 
