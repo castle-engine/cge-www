@@ -96,6 +96,7 @@ Support for link:spine[Spine] with skeletal 2D animations.
 We feature multiple graphic features:
 
 * link:compositing_shaders.php[Compositing shaders] to define shader effects that enhance existing engine rendering. See https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/shader_effects[examples/viewport_and_scenes/shader_effects] example.
+* link:bump_mapping[Bump mapping (normal maps)] using basic, parallax, steep parallax with self-shadowing algorithms.
 * Animation blending/cross-fading (cgeref:TCastleSceneCore.DefaultAnimationTransition[], cgeref:TPlayAnimationParameters.TransitionDuration[]).
 * link:x3d_extensions_mirror_plane.php[Easy mirrors on flat surfaces].
 * link:x3d_implementation_cubemaptexturing.php[Easy mirrors on curved surfaces (using generated cubemaps)].
