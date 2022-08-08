@@ -10,15 +10,71 @@ Rules when writing this:
 Sources:
 - https://castle-engine.io/new_features_in_castle_game_engine_7.0
 - https://castle-engine.io/wp/2021/02/06/castle-game-engine-7-0-alpha-1-release-view3dscene-4-0-0-release/
-- TODO: combine with https://castle-engine.io/features.php
 
 - TODO: screenshots
+
+some screens with Blender, Spine, then rendered in CGE
+
+      array('filename' => 'view3dscene_viewports.png', 'titlealt' => 'Multiple viewports with a DOOM level in view3dscene'),
+
+      array('filename' => 'rhan_shrine_5_everything.png', 'titlealt' => 'Bump mapping and shadow maps from multiple light sources'),
+      array('filename' => 'lights_editor_shadow_maps.png', 'titlealt' => 'Lights editor on a scene with shadow maps'),
+      array('filename' => 'sunny_street_tree_hard.png', 'titlealt' => 'Close up shadows on the tree. Notice that leaves (modeled by alpha-test texture) also cast correct shadows.'),
+
+      array('filename' => 'barna29_nice_shadows.png', 'titlealt' => 'Real-time water with caustics, reflections, shadows'),
+      array('filename' => 'volumetric_animated_fog_all.png', 'titlealt' => 'Volumetric fog'),
+
+      array('filename' => 'rendered_texture_with_background.png', 'titlealt' => 'RenderedTexture'),
+
+      array('filename' => 'terrain1.png', 'titlealt' => 'Terrain 1'), // TODO update to latest UI
+      array('filename' => 'rift_2.png', 'titlealt' => 'Fixed-camera game'),
+      array('filename' => 'mountains_of_fire_screen_1.png', 'titlealt' => 'Mountains Of Fire - split-screen coop game'),
+
+      array('filename' => 'little_things_screen_7.png', 'titlealt' => '&quot;Little Things&quot; game with screen effects'),
+      array('filename' => 'chinchilla_diffuse_prt.png', 'titlealt' => 'Precomputed Radiance Transfer'),
 
 * TODO: where to mention it best?
   If you link:castle_game_engine_for_unity_developers[come from Unity, we have a whole document that describes how the concepts you know map to CGE].
 ////
 
+
+
 _Castle Game Engine_ features:
+
+== Summary
+
+* *Cross-platform (desktop, mobile, console).* Target any platform, work on various desktop platforms. WebGL and Oculus (VR) are coming too.
+* *Lots of ways to define data*: 3D models, 2D animations, sprite sheets. Great integration with authoring tools like Blender or shops like Sketchfab thanks to using open standards like glTF and X3D.
+* *Visual editor* to design 3D and 2D games and scalable user interface with anchors.
+* *Native clean OOP programming language* with modern Object Pascal. Fast builds, fast execution out-of-the-box.
+* *Tooling friendly for continuous integration*. Build tool, Jenkins, GitHub actions.
+
+////
+mentioned above:
+
+  <li>Use <b>any 3D or 2D software</b> to create your models in any format: glTF, X3D, VRML<!--?php echo a_href_page('VRML / X3D', 'vrml_x3d'); ?-->, Collada, OBJ, MD3,
+    <!--a href="https://castle-engine.io/spine"-->Spine...
+  <li>Develop <b>cross-platform</b> applications, for desktop (<b>Windows, Linux, macOS, FreeBSD...</b>), mobile (<b>Android, iOS</b>), consoles (<b>Nintendo Switch</b>) and other devices (<b>Raspberry Pi</b>).
+  <li><b>Visual editor</b> to design games UI and to build applications, powerful command-line <b>build tool</b> under the hood.
+  <li>Create <b>cross-platform user-interface with anchors and automatic scaling</b>.
+
+not mentioned above again, TODO readd?
+  <li>Optimized rendering with a lot of graphic effects (<b>physically based rendering, shadows, mirrors, bump mapping, shader effects, gamma correction</b>...).
+
+  TODO: we mention this below. To make it rock, we need
+  - material editing in CGE editor, to express there mirrors, shader effects easily
+  - post-processing components in CGE editor
+  - shadow maps cross-scene and easily used from editor
+
+  <li><b>Build and edit</b> the scene graph (X3D) <b>at runtime</b>.
+    <!--Load and save images and X3D graph as needed.-->
+    Create 3D processing, visualization tools and CAD applications.
+  <li>Extensible system for game objects, with <b>physics, creatures with AI and navmesh</b>, and more.
+
+  TODO: to make it rock, we need fps_game upgrade to express creatures AI using behaviors
+
+  <li>Access numerous <b>services, like in-app purchases and game services</b> on mobile devices.
+////
 
 == Cross-platform
 
@@ -28,13 +84,14 @@ Truly cross-platform, you can work on (almost) any platform and compile to any p
 * Mobile (link:android[Android], link:ios[iOS]) with numerous link:android_services[Android services] and link:ios_services[iOS services] to integrate with platform-specific features.
 * Console (link:nintendo_switch[Nintendo Switch]).
 * Raspberry Pi (it's just desktop Linux on Arm CPU).
-* More planned:
+* Coming soon (link:roadmap[]):
 +
 --
 * https://castle-engine.io/wp/2022/01/16/oculus-quest-2-developer-mode-for-castle-game-engine-enabled/[Oculus (VR)] (we have the hardware to test)
 * WebGL (FPC can compile to WebAssembly)
 * XBox (we have the hardware to test).
 --
+* The engine code is portable and in principle "just works" on any operating system and CPU supported by FPC or Delphi.
 
 == Editor
 
@@ -60,6 +117,7 @@ link:viewport_and_scenes[Viewport with scenes, camera, navigation] allows to def
 * Each transformation can be enhanced with behaviors (descendants of cgeref:TCastleBehavior[]), like cgeref:TCastleBillboard[], cgeref:TCastleSoundSource[]. It is easy and encouraged to create behaviors required for your specific game, see link:viewport_and_scenes_from_code#_behaviors[Behaviors in the manual].
 * cgeref:TCastleTransformReference[] to link:viewport_3d#_multiple_instances_of_the_same_scene_using_tcastletransformreference[efficiently reference the same transformation multiple times]. Great e.g. to instantiate thousands of trees.
 * Lights using components cgeref:TCastlePointLight[], cgeref:TCastleDirectionalLight[], cgeref:TCastleSpotLight[]. See link:viewport_3d#_lighting[lighting in manual].
+* Our cgeref:TCastleViewport[] is a 2D user interface control that you can naturally use multiple times, to observe the same or different 3D / 2D worlds from different cameras at the same time.
 
 === glTF support
 
@@ -75,9 +133,11 @@ Support for standard model format from Khronos link:gltf[glTF].
 
 Support for standard model format from Web3D link:vrml_x3d.php[X3D and VRML].
 
-* Support for X3D 4.0 with_Physically Based Rendering_ and lots of possibilities for shapes, textures, animations etc.
-* Internally the cgeref:TCastleScene[] is a set of X3D nodes.
-* You can build and process scene graph from X3D nodes.
+* Support for X3D 4.0 with _Physically Based Rendering_ and lots of possibilities for shapes, textures, animations etc.
+* The cgeref:TCastleScene[] is a set of X3D nodes. We implement link:vrml_x3d.php[extended set of X3D nodes].
+* You can build and process scene graph of X3D nodes. Procedural generation of models, any pre/post-processing of models is possible.
+* We can save the X3D graph back to file in X3D format, see cgeref:TCastleSceneCore.Save[], cgeref:SaveNode[].
+* You can write model conversion utilities. Our link:view3dscene.php[view3dscene] allows to convert various models to X3D.
 
 === Sprite sheets
 
@@ -95,7 +155,7 @@ Support for link:spine[Spine] with skeletal 2D animations.
 
 We feature multiple graphic features:
 
-* link:compositing_shaders.php[Compositing shaders] to define shader effects that enhance existing engine rendering. See https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/shader_effects[examples/viewport_and_scenes/shader_effects] example.
+* link:compositing_shaders.php[Compositing shaders] to define shader effects that enhance existing engine rendering. See https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/shader_effects[examples/viewport_and_scenes/shader_effects] example. You can write own effects easily using _OpenGL Shading Language_.
 * link:bump_mapping[Bump mapping (normal maps)] using basic, parallax, steep parallax with self-shadowing algorithms.
 * Animation blending/cross-fading (cgeref:TCastleSceneCore.DefaultAnimationTransition[], cgeref:TPlayAnimationParameters.TransitionDuration[]).
 * link:x3d_extensions_mirror_plane.php[Easy mirrors on flat surfaces].
@@ -103,29 +163,35 @@ We feature multiple graphic features:
 * _Physically-Based Rendering_ used by default for glTF and X3D 4.0 models using cgeref:TPhysicalMaterialNode[].
 * Alternative _unlit_ shading also available, with glTF and X3D 4.0 models using cgeref:TUnlitMaterialNode[].
 * Alternative "classic" Phong shading is also available using cgeref:TMaterialNode[] or cgeref:GltfForcePhongMaterials[].
-* link:x3d_extensions_shadow_maps.php[Shadow maps].
-* link:x3d_extensions_shadow_volumes.php[Shadow volumes].
+* link:x3d_extensions_shadow_maps.php[Shadow maps] (with auto-detection of limits, correct shadows from multiple light sources).
+* link:x3d_extensions_shadow_volumes.php[Shadow volumes] (with z-fail / z-pass automatic detection, silhouette detection).
 * Screen effects (post-processing) API to define post-processing effects using shaders. See link:x3d_extensions_screen_effects.php[screen effects specification], you can add screen effects over any UI control: just place it as child of cgeref:TCastleScreenEffects[]. See https://github.com/castle-engine/castle-engine/tree/master/examples/screen_effects_demo/[examples/screen_effects_demo/].
 * link:color_space[Color Space (Gamma Correction)].
 * Easily design link:background[background (with sky/ground gradients, skybox)], link:fog[fog].
 * Multi-sampling (full-screen anti-aliasing), just set cgeref:TCastleWindow.AntiAliasing[].
+* link:occlusion_query[Occlusion Query] can greatly speed-up rendering in certain cases.
 
 == Images
 
 Easily display link:using_images[display images] as user interface or in a viewport.
 
-* Numerous image formats supported thanks to integration with https://imaginglib.sourceforge.io/[Vampyre Imaging Library].
+* Numerous image formats (like PNG, JPG, RGBE) supported thanks to the integration with https://imaginglib.sourceforge.io/[Vampyre Imaging Library].
 * Full support for KTX and DDS that enable GPU texture compression, cubemaps and more.
 * link:creating_data_auto_generated_textures.php[Automatic texture compression and downscaling].
 
 == User interface
 
 * link:user_interface[User interface] library providing cross-platform UI controls that work on all platforms, like buttons, labels, images.
-* Your game is organized into link:states[states]. Each state can have a design (created in editor) and an associated unit where you can link:manual_state_events.php[handle various events, like a key press].
 * Their look can be adjusted to match the style of your game.
+* Your game is organized into link:states[states]. Each state can have a design (created in editor) and an associated unit where you can link:manual_state_events.php[handle various events, like a key press].
 * Automatic UI scaling to adjust to any screen resolution and aspect ratio with anchors.
+
+=== Text and fonts
+
 * link:manual_text.php[Rendering text in user interface and in 3D, with customizable fonts].
+* Fonts can be loaded from common formats (like TTF or OTF, cgeref:TCastleFont[]) or images (cgeref:TCastleBitmapFont[]).
 * Localization (including automatically translating user interface and ``resourcestring``s).
+* UTF-8 support for all strings through the engine API, in particular to render text.
 
 == Build tool and continuous integration
 
@@ -133,6 +199,7 @@ link:build_tool[Build tool] to manage your project from the command-line or in b
 
 * Build tool can build, package, run your application and link:creating_data_auto_generated_textures.php[autogenerate compressed textures] (and more).
 * You can build for any supported target platform. You may need to install cross-compiler (e.g. using link:fpcupdeluxe[]), some platforms may also require additional tools (see their docs like link:android[Android]).
+* We can build ready applications, like APK / AAB for Android, IPA for iOS.
 * link:docker[Docker image] with CGE and prerequisites (FPC, Android build tools, texture processing tools) to easily deploy CGE applications e.g. from Jenkins or GitHub actions.
 * Ready instructions to use link:github_actions[GitHub Actions] with your project.
 
@@ -170,6 +237,7 @@ We have extensive link:manual_optimization.php[optimization documentation] and a
 * Inspector available under F8 in any debug game shows FPS profile.
 * Built-in simple profiler cgeref:TCastleProfiler[].
 * Built-in frame profiler cgeref:TCastleFrameProfiler[].
+* Built-in texture memory profiler cgeref:TextureMemoryProfiler[].
 * cgeref:DynamicBatching[] is available to batch multiple shapes, to conserve draw calls.
 
 == Sound
@@ -180,6 +248,7 @@ You can play link:manual_sound.php[sound], spatial (in 3D) or not.
 * Sound streaming is done, for efficient playback of music tracks.
 * WAV and OggVorbis file formats are supported with all sound backends.
 * Sound components cgeref:TCastleSound[] and cgeref:TCastleSoundSource[] can be designed and tested also in editor.
+* Automatic sound source management based on priorities.
 
 == Physics
 
@@ -189,6 +258,8 @@ You can use link:manual_physics.php[physics].
 * Allow gravity and collisions to automatically have an effect.
 * Register events on collisions or triggers.
 * We use https://github.com/BeRo1985/kraft/[Kraft Physics Engine] under the hood.
+* Coming soon (link:roadmap[]): designing colliders, rigid bodies and joints using code or by CGE editor. See https://www.youtube.com/watch?v=mNgBttV5DuA[teaser movie], https://github.com/castle-engine/castle-engine/pull/394[1st PR].
+* You can perform easily collision queries to determine... whatever you need. Just set cgeref:TCastleSceneCore.Spatial[] to at least `[ssDynamicCollisions]` to make collision queries treat your scene as more than just a bounding box. Then use routines like cgeref:TCastleAbstractRootTransform.WorldRayCast[Viewport.Items.WorldRayCast] or cgeref:TCastleAbstractRootTransform.WorldBoxCollision[Viewport.Items.WorldBoxCollision] to query whether something collides. Note that this, as of now, does not use the _"proper"_ physics engine (like _Kraft_ or planned _Bullet_), instead it uses custom octree implementation, but this will change in the future.
 
 == Tiled integration
 
