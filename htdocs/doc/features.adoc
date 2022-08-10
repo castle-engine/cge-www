@@ -10,36 +10,36 @@ Rules when writing this:
 Sources:
 - https://castle-engine.io/new_features_in_castle_game_engine_7.0
 - https://castle-engine.io/wp/2021/02/06/castle-game-engine-7-0-alpha-1-release-view3dscene-4-0-0-release/
+- original https://castle-engine.io/features.php
 
 - TODO: screenshots
 
-some screens with Blender, Spine, then rendered in CGE
+  TODO: terrain1.png update to latest ui
 
-      array('filename' => 'view3dscene_viewports.png', 'titlealt' => 'Multiple viewports with a DOOM level in view3dscene'),
-
-      array('filename' => 'rhan_shrine_5_everything.png', 'titlealt' => 'Bump mapping and shadow maps from multiple light sources'),
-      array('filename' => 'lights_editor_shadow_maps.png', 'titlealt' => 'Lights editor on a scene with shadow maps'),
-      array('filename' => 'sunny_street_tree_hard.png', 'titlealt' => 'Close up shadows on the tree. Notice that leaves (modeled by alpha-test texture) also cast correct shadows.'),
-
-      array('filename' => 'barna29_nice_shadows.png', 'titlealt' => 'Real-time water with caustics, reflections, shadows'),
-      array('filename' => 'volumetric_animated_fog_all.png', 'titlealt' => 'Volumetric fog'),
-
-      array('filename' => 'rendered_texture_with_background.png', 'titlealt' => 'RenderedTexture'),
-
-      array('filename' => 'terrain1.png', 'titlealt' => 'Terrain 1'), // TODO update to latest UI
-      array('filename' => 'rift_2.png', 'titlealt' => 'Fixed-camera game'),
-      array('filename' => 'mountains_of_fire_screen_1.png', 'titlealt' => 'Mountains Of Fire - split-screen coop game'),
-
-      array('filename' => 'little_things_screen_7.png', 'titlealt' => '&quot;Little Things&quot; game with screen effects'),
-      array('filename' => 'chinchilla_diffuse_prt.png', 'titlealt' => 'Precomputed Radiance Transfer'),
+  TODO some screens with Blender, Spine, then rendered in CGE
 
 * TODO: where to mention it best?
   If you link:castle_game_engine_for_unity_developers[come from Unity, we have a whole document that describes how the concepts you know map to CGE].
 ////
 
+NOTE: Not enough? Want more features? :) See our link:roadmap[] and https://www.patreon.com/castleengine[support us on Patreon] to make it happen!
 
+== Screenshots
 
-_Castle Game Engine_ features:
+cgeimg::block[
+  view3dscene_viewports.png|Multiple viewports with a DOOM level in view3dscene,
+  rhan_shrine_5_everything.png|Bump mapping and shadow maps from multiple light sources,
+  lights_editor_shadow_maps.png|Lights editor on a scene with shadow maps,
+  sunny_street_tree_hard.png|Close up shadows on the tree. Notice that leaves (modeled by alpha-test texture) also cast correct shadows.,
+  barna29_nice_shadows.png|Real-time water with caustics\, reflections\, shadows,
+  volumetric_animated_fog_all.png|Volumetric fog,
+  rendered_texture_with_background.png|RenderedTexture,
+  terrain1.png|Terrain 1,
+  rift_2.png|Fixed-camera game,
+  mountains_of_fire_screen_1.png|Mountains Of Fire - split-screen coop game,
+  little_things_screen_7.png|&quot;Little Things&quot; game with screen effects,
+  chinchilla_diffuse_prt.png|Precomputed Radiance Transfer
+]
 
 == Summary
 
@@ -50,15 +50,8 @@ _Castle Game Engine_ features:
 * *Tooling friendly for continuous integration*. Build tool, Jenkins, GitHub actions.
 
 ////
-mentioned above:
+TODO readd?
 
-  <li>Use <b>any 3D or 2D software</b> to create your models in any format: glTF, X3D, VRML<!--?php echo a_href_page('VRML / X3D', 'vrml_x3d'); ?-->, Collada, OBJ, MD3,
-    <!--a href="https://castle-engine.io/spine"-->Spine...
-  <li>Develop <b>cross-platform</b> applications, for desktop (<b>Windows, Linux, macOS, FreeBSD...</b>), mobile (<b>Android, iOS</b>), consoles (<b>Nintendo Switch</b>) and other devices (<b>Raspberry Pi</b>).
-  <li><b>Visual editor</b> to design games UI and to build applications, powerful command-line <b>build tool</b> under the hood.
-  <li>Create <b>cross-platform user-interface with anchors and automatic scaling</b>.
-
-not mentioned above again, TODO readd?
   <li>Optimized rendering with a lot of graphic effects (<b>physically based rendering, shadows, mirrors, bump mapping, shader effects, gamma correction</b>...).
 
   TODO: we mention this below. To make it rock, we need
@@ -66,14 +59,9 @@ not mentioned above again, TODO readd?
   - post-processing components in CGE editor
   - shadow maps cross-scene and easily used from editor
 
-  <li><b>Build and edit</b> the scene graph (X3D) <b>at runtime</b>.
-    <!--Load and save images and X3D graph as needed.-->
-    Create 3D processing, visualization tools and CAD applications.
   <li>Extensible system for game objects, with <b>physics, creatures with AI and navmesh</b>, and more.
 
   TODO: to make it rock, we need fps_game upgrade to express creatures AI using behaviors
-
-  <li>Access numerous <b>services, like in-app purchases and game services</b> on mobile devices.
 ////
 
 == Cross-platform
