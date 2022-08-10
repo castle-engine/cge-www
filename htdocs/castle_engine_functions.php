@@ -519,7 +519,7 @@ $castle_sitemap = array(
   // Do not show, for now we focus on Patreon funding.
   // 'donate' => array('title' => 'Donate'),
 
-  'features' => array('title' => 'Features'),
+  'doc/features' => array('title' => 'Features'),
 
   'gallery' => array('title' => 'Gallery',
     'dropdown' => array(

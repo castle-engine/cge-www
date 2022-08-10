@@ -112,7 +112,7 @@ $toc = new TableOfContents(
 <ul>
   <li><p>view3dscene is a versatile and stable viewer for <a href="creating_data_model_formats.php">many model formats</a>.
 
-  <li><p>Castle Game Engine <a href="features.php">features are listed here</a>.
+  <li><p>Castle Game Engine <a href="features">features are listed here</a>.
 
   <li><p>Desktop integration files (SVG icons, .desktop files etc.)
     are already included in our archives.

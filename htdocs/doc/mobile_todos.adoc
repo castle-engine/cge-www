@@ -5,7 +5,7 @@ include::common.adoc[]
 
 Here we list the features not (yet!) implemented in https://castle-engine.io/[Castle Game Engine] for OpenGLES (which is used by default on Android and iOS, although can be tested on other platforms too), but already implemented for OpenGL (used by default on desktops).
 
-Note that, except issues listed below, *everything else that works on desktops (Linux, Windows, MacOSX) should also work flawlessly on OpenGLES (Android, iOS)*! See https://castle-engine.io/features.php[the engine features] :)
+Note that, except issues listed below, *everything else that works on desktops (Linux, Windows, MacOSX) should also work flawlessly on OpenGLES (Android, iOS)*! See link:features[the engine features].
 
 *Contributions to fix/implement missing features below are very welcome!* We tried to give below a detailed overview of what is needed for a particular feature, to make it easier to jump in and help :)
 
