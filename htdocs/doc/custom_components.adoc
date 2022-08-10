@@ -168,7 +168,7 @@ type
     procedure MyLinkedImageFreeNotification(const Sender: TFreeNotificationObserver);
   public
     constructor Create(AOwner: TComponent); override;
-    property MyLinkedImage: TCastleImageControl read FMyLinkedImage write FMyLinkedImage;
+    property MyLinkedImage: TCastleImageControl read FMyLinkedImage write SetMyLinkedImage;
   end;
 
 implementation
