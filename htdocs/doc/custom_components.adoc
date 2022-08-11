@@ -267,14 +267,14 @@ For the best presentation, override `PropertySections`. You will usually place t
 ----
 function TMyComponent.PropertySections(const PropertyName: String): TPropertySections;
 begin
-  case PropertyName of
-    'URL', 'Color', 'CenterPersistent': // list here new basic properties
-      Result := [psBasic];
-    else
-      Result := inherited PropertySections(PropertyName);
-  end;
+  if ArrayContainsString(PropertyName, ['URL', 'Color', 'CenterPersistent']) then // list here new basic properties
+    Result := [psBasic]
+  else
+    Result := inherited PropertySections(PropertyName);
 end;
 ----
+
+NOTE: If your component only needs to work with FPC (and not Delphi) then you can also use `case` with a `String` value to implement this method nicely.
 
 === Property editors
 
