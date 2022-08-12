@@ -113,30 +113,36 @@ NOTE: This is not the only possible way to compile programs using our engine (fo
 
 Create an installable package with your application.
 
-Alternatively, on some platforms (iOS), this instead creates _"something as close to the installable package as possible"_, which in case of iOS means that it creates an _Xcode project_.
+Use `--cpu`, `--os` or `--target` options to specify target operating system/processor. By default, we package for current standalone platform.
 
-Use `--cpu`, `--os` or `--target` options to specify target operating system/processor (by default, we package for current standalone platform). When target is `iOS` you can also use `--ios-simulator` option to include iOS simulator support (see link:ios[iOS]). Use `--compiler` to override compiler for building, just as for `compile` command.
+Use `--compiler` to override compiler for building, just as for `compile` command.
 
 What exactly is produced by this command depends on the target platform and the `--package-format` option used.
 
 * `--package-format=default` (used also when no `+--package-format=...+` was specified):
- ** For the standalone platforms, we package to a simple zip / tar.gz archive containing the executable, libraries and data. For Windows, we create zip, otherwise tar.gz.
+ ** For the standalone platforms, we package to a simple `zip` / `tar.gz` archive containing the executable, libraries and data. For Windows, we create `zip`, otherwise `tar.gz`.
  ** For the Android (when `--target=android` or `--os=android --cpu=arm/aarch64`), we create a complete apk with your application, ready to be installed and uploaded to Google Play!
  ** For iOS (when `--target=ios`), we create an Xcode project, that you can run and publish using Xcode.
 * `--package-format=zip`: Pack files into a zip file.
 * `--package-format=tar.gz`: Pack files into a tar.gz file.
 * `--package-format=deb`: Pack files into a Debian Package (deb).
 * `--package-format=directory`: Put files into a directory. This is useful if you plan to further process this directory, e.g. pack it with your own scripts.
-* Additional Android-only options:
+* Android formats:
  ** `--package-format=android-apk`: Create an APK file. This is right now the equivalent to `--package-format=default` and it is just the default behavior when target/OS is Android. It's the standard way to build applications for Android. It also allows you to manually install the app on your Android device.
  ** `--package-format=android-app-bundle`: Create an https://developer.android.com/platform/technology/app-bundle[Android App Bundle (AAB)]. This is a new format recommended for submitting a release to Google Play Store. Android App Bundle may contain multiple precompiled versions of the app and assets, and Google Play Store internally generates an installable APK for every specific user depending on user device configuration (such as Android version or screen resolution). AAB format is strictly required to upload a project larger than 100Mb to Play Store.
-* Additional iOS-only options:
- ** `--package-format=ios-xcode-project`: Create the Xcode project. This is the default package method for iOS.
+* iOS formats:
+ ** `--package-format=ios-xcode-project`: Create the Xcode project. This is the default package method for iOS. You can open the resulting project in Xcode and build/deploy the application for iOS device or AppStore.
  ** `--package-format=ios-archive-ad-hoc`: Archive and export using the _ad-hoc_ method, which results in an IPA file of the application. To install on designated devices, upload to https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/ios/services/test_fairy/README.adoc[TestFairy] etc.
  ** `--package-format=ios-archive-development`: Archive and export using the _development_ method. See the Xcode documentation (and try these options from Xcode interactively) for details.
  ** `--package-format=ios-archive-app-store`: Archive and export for the TestFlight and the AppStore. See the Xcode documentation (and try these options from Xcode interactively) for details. Note that this does not upload to the TestFlight / AppStore (although we'd like to extend this someday to do it).
+* macOS formats:
+ ** `--package-format=mac-app-bundle-zip`: Application bundle on macOS, packed into `zip`. Default format for link:macos[macOS].
+ ** `--package-format=mac-app-bundle`: Application bundle on macOS, not packed (so it is just a directory like `MyApplication.app`).
+* link:nintendo_switch[Nintendo Switch] format: `--package-format=nintendo-switch`.
 
-By default output file contains a version number (if `CastleEngineManifest.xml` contained the version). Sometimes this is not comfortable, use `--package-name-no-version` to avoid it.
+When target is `iOS` you can also use `--ios-simulator` option to include iOS simulator support (see link:ios[iOS]).
+
+By default output filename contains a version number. Sometimes this is not comfortable, use `--package-name-no-version` to avoid it.
 
 You can use `--mode=xxx` option when packaging, just like when compiling. Use `--mode=debug` or `--mode=release` for a specific compilation mode. By default, it is "release". You can use `--mode=debug` to package a debug release, which may be useful to distribute to users interested in beta-testing.
 
