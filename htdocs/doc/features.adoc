@@ -14,8 +14,6 @@ Sources:
 
 - TODO: screenshots
 
-  TODO: terrain1.png update to latest ui
-
   TODO some screens with Blender, Spine, then rendered in CGE
 
 * TODO: where to mention it best?
@@ -34,7 +32,6 @@ cgeimg::block[
   barna29_nice_shadows.png|Real-time water with caustics\, reflections\, shadows,
   volumetric_animated_fog_all.png|Volumetric fog,
   rendered_texture_with_background.png|RenderedTexture,
-  terrain1.png|Terrain 1,
   rift_2.png|Fixed-camera game,
   mountains_of_fire_screen_1.png|Mountains Of Fire - split-screen coop game,
   little_things_screen_7.png|&quot;Little Things&quot; game with screen effects,
@@ -105,6 +102,15 @@ link:viewport_and_scenes[Viewport with scenes, camera, navigation] allows to def
 * Each transformation can be enhanced with behaviors (descendants of cgeref:TCastleBehavior[]), like cgeref:TCastleBillboard[], cgeref:TCastleSoundSource[]. It is easy and encouraged to create behaviors required for your specific game, see link:viewport_and_scenes_from_code#_behaviors[Behaviors in the manual].
 * cgeref:TCastleTransformReference[] to link:viewport_3d#_multiple_instances_of_the_same_scene_using_tcastletransformreference[efficiently reference the same transformation multiple times]. Great e.g. to instantiate thousands of trees.
 * Lights using components cgeref:TCastlePointLight[], cgeref:TCastleDirectionalLight[], cgeref:TCastleSpotLight[]. See link:viewport_3d#_lighting[lighting in manual].
+* Components to visualize terrains (cgeref:TCastleTerrain[]), and generate terrain data from smooth noise (cgeref:TCastleTerrainNoise[]) or image (cgeref:TCastleTerrainImage[]) or a combination of them (cgeref:TCastleTerrainCombine[]). See the https://github.com/castle-engine/castle-engine/tree/master/examples/terrain[examples/terrain].
++
+cgeimg::block[
+  terrain_component_1.png|Terrain with water and trees,
+  terrain_component_2_size.png|Terrain larger with fog,
+  terrain_component_image.png|Terrain with data from image,
+  terrain_component_water.png|Water reflecting terrain,
+  terrain_component_wireframe.png|Wireframe terrain with water rectangle
+]
 * Our cgeref:TCastleViewport[] is a 2D user interface control that you can naturally use multiple times, to observe the same or different 3D / 2D worlds from different cameras at the same time.
 
 === glTF support
@@ -147,6 +153,11 @@ We feature multiple graphic features:
 * link:bump_mapping[Bump mapping (normal maps)] using basic, parallax, steep parallax with self-shadowing algorithms.
 * Animation blending/cross-fading (cgeref:TCastleSceneCore.DefaultAnimationTransition[], cgeref:TPlayAnimationParameters.TransitionDuration[]).
 * link:x3d_extensions_mirror_plane.php[Easy mirrors on flat surfaces].
++
+cgeimg::block[
+  terrain_component_water.png|Water reflecting terrain,
+  terrain_component_wireframe.png|Wireframe terrain with water rectangle
+]
 * link:x3d_implementation_cubemaptexturing.php[Easy mirrors on curved surfaces (using generated cubemaps)].
 * _Physically-Based Rendering_ used by default for glTF and X3D 4.0 models using cgeref:TPhysicalMaterialNode[].
 * Alternative _unlit_ shading also available, with glTF and X3D 4.0 models using cgeref:TUnlitMaterialNode[].
