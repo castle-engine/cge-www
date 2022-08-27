@@ -14,7 +14,7 @@ $toc = new TableOfContents(array(
 ));
 
 echo castle_thumbs(array(
-  array('filename' => 'screen_effect_blood_in_the_eyes_1.png', 'titlealt' => 'Screen effect &quot;blood in the eyes&quot;: modulate with reddish watery texture'),
+  array('filename' => 'screen_effect_blood_in_the_eyes_1.png', 'titlealt' => 'Screen effect "blood in the eyes": modulate with reddish watery texture'),
   array('filename' => 'screen_effect_trees.png', 'titlealt' => 'Another screen effect example'),
   array('filename' => 'screen_effects_demo3.png', 'titlealt' => 'Demo of three ScreenEffects defined in VRML/X3D, see screen_effects.x3dv'),
   array('filename' => 'screen_effect_headlight_and_gamma.png', 'titlealt' => 'Screen effect: headlight, gamma brightness (on DOOM E1M1 level remade for our Castle)'),
@@ -22,7 +22,7 @@ echo castle_thumbs(array(
   array('filename' => 'screen_effect_grayscale_negative.png', 'titlealt' => 'Screen effect: grayscale, negative (on Tremulous ATCS level)'),
   // array('filename' => 'screen_effect_castle_hall_0.png', 'titlealt' => 'Castle Hall screen: no effects'),
   array('filename' => 'screen_effect_castle_hall_1.png', 'titlealt' => 'Castle Hall screen: edge detection effect, with some gamma and negative'),
-  array('filename' => 'screen_effect_blood_in_the_eyes.png', 'titlealt' => 'Screen effect &quot;blood in the eyes&quot;, older version'),
+  array('filename' => 'screen_effect_blood_in_the_eyes.png', 'titlealt' => 'Screen effect "blood in the eyes", older version'),
 ));
 
 echo pretty_heading($page_title);

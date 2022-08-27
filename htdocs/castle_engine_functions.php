@@ -1462,6 +1462,7 @@ function echo_standard_program_download(
      Otherwise, we'll try to deduce it using _castle_image_sizes, but it is impossible
      if url_thumb is also set.
    - titlealt - text used for both title and alt.
+     Will be sanitized for HTML, so don't use e.g. &quot;, just write " to display double quot character.
    - html - if set, the rest (except colspan) is ignored,
      and we simply put this html into cell content.
    - colspan (int) - colspan of table cell. It's your responsibility to make it
@@ -1576,11 +1577,11 @@ function castle_thumbs($images, $columns=1, $align='right', $thumb_size = NULL)
       $result .= '
           <a href="' . $url_full . '"
              class="screenshot"
-             title="' . $image['titlealt'] . '"><img
+             title="' . htmlspecialchars($image['titlealt']) . '"><img
             style="float: right"
             src="' . $url_thumb . '"
             ' . $size_thumb . '
-            alt="' . $image['titlealt'] . '"
+            alt="' . htmlspecialchars($image['titlealt']) . '"
           /></a>';
     }
 
@@ -1613,7 +1614,7 @@ function castle_thumbs($images, $columns=1, $align='right', $thumb_size = NULL)
 function default_program_thumbnail($prog_name)
 {
   return castle_thumbs(array(
-    array('filename' => $prog_name . '_screen_demo.png', 'titlealt' => 'Image from &quot;' . $prog_name . '&quot;'),
+    array('filename' => $prog_name . '_screen_demo.png', 'titlealt' => 'Image from "' . $prog_name . '"'),
   ));
 }
 

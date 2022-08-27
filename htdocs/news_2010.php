@@ -80,7 +80,7 @@ Of course at the next engine release, the new one will replace the old one :)</p
           'short_description' => '',
           'description' =>
 castle_thumbs(array(
-  array('filename' => 'screen_effect_blood_in_the_eyes_1.png', 'titlealt' => 'Screen effect &quot;blood in the eyes&quot;: modulate with reddish watery texture'),
+  array('filename' => 'screen_effect_blood_in_the_eyes_1.png', 'titlealt' => 'Screen effect "blood in the eyes": modulate with reddish watery texture'),
   array('filename' => 'screen_effect_trees.png', 'titlealt' => 'Another screen effect example'),
   array('filename' => 'screen_effects_demo3.png', 'titlealt' => 'Demo of three ScreenEffects defined in VRML/X3D, see screen_effects.x3dv'),
   array('filename' => 'screen_effect_headlight_and_gamma.png', 'titlealt' => 'Screen effect: headlight, gamma brightness (on DOOM E1M1 level remade for our Castle)'),

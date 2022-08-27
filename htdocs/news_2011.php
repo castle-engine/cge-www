@@ -12,13 +12,13 @@ array_push($news,
 castle_thumbs(array(
   array('filename' => 'collada_seymour.png', 'titlealt' => 'Collada Seymour model (from collada.org/owl)'),
   array('filename' => 'collada_lunar_vehicle_tris.png', 'titlealt' => 'Collada Lunar Vehicle (from collada.org/owl)'),
-  array('filename' => 'castle_sunset.png', 'titlealt' => '&quot;view3dscene&quot; rendering tower with sunset sky'),
+  array('filename' => 'castle_sunset.png', 'titlealt' => 'view3dscene rendering tower with sunset sky'),
   array('filename' => 'humanoid_transparent_bg.png', 'titlealt' => 'Humanoid model, captured with transparent background, replaced in GIMP with some texture and gradient'),
   array('filename' => 'geometry_shader_fun_smoothing.png', 'titlealt' => 'Geometry shader performing a fun variant of smoothing/exploding a shape'),
   array('filename' => 'cellular_texturing_0.png',  'titlealt' => 'Cellular procedural texture, using our ShaderTexture extension'),
-  array('filename' => 'rift_1.png', 'titlealt' => 'Example Fixed Camera Game &quot;Rift&quot; - game menu'),
-  array('filename' => 'rift_2.png', 'titlealt' => 'Example Fixed Camera Game &quot;Rift&quot; - inside game 1'),
-  array('filename' => 'sandbox_0.png', 'titlealt' => 'Example Isometric Game &quot;Sandbox&quot; - 1'),
+  array('filename' => 'rift_1.png', 'titlealt' => 'Example Fixed Camera Game "Rift" - game menu'),
+  array('filename' => 'rift_2.png', 'titlealt' => 'Example Fixed Camera Game "Rift" - inside game 1'),
+  array('filename' => 'sandbox_0.png', 'titlealt' => 'Example Isometric Game "Sandbox" - 1'),
   array('filename' => 'www_main_page_2011_12_before.png', 'titlealt' => 'Front page before 2011-12-30'),
   array('filename' => 'www_main_page_2011_12_after.png', 'titlealt' => 'Front page after 2011-12-30'),
 )) .
@@ -120,12 +120,12 @@ castle_thumbs(array(
           'guid' => '2011-12-23-fixed-view-examples-shadow-maps-improvements-hsv',
           'description' =>
 castle_thumbs(array(
-  array('filename' => 'rift_0.png', 'titlealt' => 'Example Fixed Camera Game &quot;Rift&quot; - intro'),
-  array('filename' => 'rift_1.png', 'titlealt' => 'Example Fixed Camera Game &quot;Rift&quot; - game menu'),
-  array('filename' => 'rift_2.png', 'titlealt' => 'Example Fixed Camera Game &quot;Rift&quot; - inside game 1'),
-  array('filename' => 'rift_3.png', 'titlealt' => 'Example Fixed Camera Game &quot;Rift&quot; - inside game 2'),
-  array('filename' => 'sandbox_0.png', 'titlealt' => 'Example Isometric Game &quot;Sandbox&quot; - 1'),
-  array('filename' => 'sandbox_1.png', 'titlealt' => 'Example Isometric Game &quot;Sandbox&quot; - 2'),
+  array('filename' => 'rift_0.png', 'titlealt' => 'Example Fixed Camera Game "Rift" - intro'),
+  array('filename' => 'rift_1.png', 'titlealt' => 'Example Fixed Camera Game "Rift" - game menu'),
+  array('filename' => 'rift_2.png', 'titlealt' => 'Example Fixed Camera Game "Rift" - inside game 1'),
+  array('filename' => 'rift_3.png', 'titlealt' => 'Example Fixed Camera Game "Rift" - inside game 2'),
+  array('filename' => 'sandbox_0.png', 'titlealt' => 'Example Isometric Game "Sandbox" - 1'),
+  array('filename' => 'sandbox_1.png', 'titlealt' => 'Example Isometric Game "Sandbox" - 2'),
 )) .
 '<p>Hi everyone, here\'s a summary of improvements done to the engine in last month.</p>
 
@@ -212,7 +212,7 @@ castle_thumbs(array(
           'guid' => '2011-10-13-rename',
           'description' =>
 castle_thumbs(array(
-  array('filename' => 'view_3d_model_advanced.png', 'titlealt' => '&quot;view_3d_model_advanced&quot; example from engine sources'),
+  array('filename' => 'view_3d_model_advanced.png', 'titlealt' => '"view_3d_model_advanced" example from engine sources'),
 )) .
 '<ol>
   <li><p><code>--viewpoint</code> command-line option was implemented for <a href="https://castle-engine.io/view3dscene.php">view3dscene</a>. This allows to choose a different viewpoint as the default (initial) one, especially useful in combination with <code>--screenshot</code> option. As <a href="https://sourceforge.net/apps/phpbb/vrmlengine/viewtopic.php?f=3&amp;t=195">requested on forum</a>.</p></li>
@@ -250,7 +250,7 @@ castle_thumbs(array(
           'guid' => '2011-9-23-rename',
           'description' =>
 castle_thumbs(array(
-  array('filename' => 'castle_sunset.png', 'titlealt' => '&quot;view3dscene&quot; rendering tower with sunset sky'),
+  array('filename' => 'castle_sunset.png', 'titlealt' => 'view3dscene rendering tower with sunset sky'),
 )) .
 '<p>Hi everyone,</p>
 
@@ -297,7 +297,7 @@ svn switch --relocate https://vrmlengine.svn.sourceforge.net/svnroot/vrmlengine/
           'short_description' => '',
           'description' =>
 castle_thumbs(array(
-  array('filename' => 'castle_sunset.png', 'titlealt' => '&quot;view3dscene&quot; rendering tower with sunset sky'),
+  array('filename' => 'castle_sunset.png', 'titlealt' => 'view3dscene rendering tower with sunset sky'),
   array('filename' => 'humanoid_transparent_bg.png', 'titlealt' => 'Humanoid model, captured with transparent background, replaced in GIMP with some texture and gradient'),
   array('filename' => 'collada_text.png', 'titlealt' => 'Collada 3D text logo (from collada.org/owl)'),
 )) .
@@ -449,8 +449,8 @@ castle_thumbs(array(
           'short_description' => '',
           'description' =>
 castle_thumbs(array(
-  array('filename' => 'castle_sunset.png', 'titlealt' => '&quot;view3dscene&quot; new demo screen - tower with sunset sky'),
-  array('filename' => 'view3dscene_tooltip_and_smoke.png', 'titlealt' => '&quot;view3dscene&quot; new demo screen - Examine navigation tooltip, and some fog by texture layers'),
+  array('filename' => 'castle_sunset.png', 'titlealt' => 'view3dscene new demo screen - tower with sunset sky'),
+  array('filename' => 'view3dscene_tooltip_and_smoke.png', 'titlealt' => 'view3dscene new demo screen - Examine navigation tooltip, and some fog by texture layers'),
   array('filename' => 'xmlportals_to_x3d_barricade_0.png', 'titlealt' => 'Testing model for xmlportals_to_x3d'),
   array('filename' => 'xmlportals_to_x3d_barricade_2.png', 'titlealt' => 'Portals visualized by xmlportals_to_x3d'),
 )) .
@@ -500,7 +500,7 @@ castle_thumbs(array(
   /* compositing shaders */
   array('filename' => 'volumetric_animated_fog_all.png', 'titlealt' => 'Volumetric fog'),
   array('filename' => 'fancy_light_spot_shape.png', 'titlealt' => 'Textured spot light with shadow'),
-  array('filename' => 'castle_overburn.png', 'titlealt' => 'Castle &quot;overburn&quot; simple effect.'),
+  array('filename' => 'castle_overburn.png', 'titlealt' => 'Castle "overburn" simple effect.'),
   /* converters */
   array('filename' => 'horse_bump_from_3ds.png', 'titlealt' => 'Horse model from 3DS file with bump map'),
   /* demo_models shadows */
@@ -599,10 +599,10 @@ castle_thumbs(array(
   array('filename' => 'shadows_chopper_and_house.png', 'titlealt' => 'Shadow volumes from chopper over a house scenery. Chopper can be moved, rotated, scaled by mouse.'),
   array('filename' => 'fountain_shadows_0.png', 'titlealt' => 'Fountain level model, with shadow volumes.'),
   array('filename' => 'fountain_shadows_1.png', 'titlealt' => 'The same fountain level model, with shadow volumes. After some interactive fun with moving/rotating stuff around :)'),
-  array('filename' => 'hunters_mark_mainmenu.jpg', 'titlealt' => '&quot;Hunter\'s Mark&quot; - main menu'),
-  array('filename' => 'hunters_mark_ingame.jpg', 'titlealt' => '&quot;Hunter\'s Mark&quot; - in game'),
-  array('filename' => 'hunters_mark_ingamemenu.jpg', 'titlealt' => '&quot;Hunter\'s Mark&quot; - menu in game'),
-  array('filename' => 'hunters_mark_credits.jpg', 'titlealt' => '&quot;Hunter\'s Mark&quot; - credits'),
+  array('filename' => 'hunters_mark_mainmenu.jpg', 'titlealt' => '"Hunter\'s Mark" - main menu'),
+  array('filename' => 'hunters_mark_ingame.jpg', 'titlealt' => '"Hunter\'s Mark" - in game'),
+  array('filename' => 'hunters_mark_ingamemenu.jpg', 'titlealt' => '"Hunter\'s Mark" - menu in game'),
+  array('filename' => 'hunters_mark_credits.jpg', 'titlealt' => '"Hunter\'s Mark" - credits'),
 ), 2) .
 '<p>Work on next <a href="https://castle-engine.io/view3dscene.php">view3dscene</a> and <a href="https://castle-engine.io/kambi_vrml_game_engine.php">engine</a> release continues. I hope to release the next versions before the end of this month (it\'s already much delayed according to my plans, sorry :). Some highlights from this month\'s work:</p>
 
@@ -714,7 +714,7 @@ castle_thumbs(array(
           'short_description' => '',
           'description' =>
 castle_thumbs(array(
-  array('filename' => 'castle_overburn.png', 'titlealt' => 'Castle &quot;overburn&quot; simple effect.'),
+  array('filename' => 'castle_overburn.png', 'titlealt' => 'Castle "overburn" simple effect.'),
   array('filename' => 'rhan_shrine_solid_wireframe.png', 'titlealt' => 'Solid wireframe rendering.')
 )) .
 '<p>The work on finishing new shader renderer continues :) Bottom of this post contains more details.</p>
@@ -845,7 +845,7 @@ castle_thumbs(array(
           'short_description' => '',
           'description' =>
 castle_thumbs(array(
-  array('filename' => 'glsl_flutter.png', 'titlealt' => 'GLSL demo &quot;flutter&quot; (from FreeWRL examples)'),
+  array('filename' => 'glsl_flutter.png', 'titlealt' => 'GLSL demo "flutter" (from FreeWRL examples)'),
   array('filename' => 'upwind_turbine.png', 'titlealt' => 'Wind turbine simulations, from SSB Wind Systems, with 4 viewports'),
   array('filename' => 'atcs_viewports_frustum.png', 'titlealt' => 'Tremulous ATCS in VRML, with 2 viewports and frustum visualized in right viewport'),
 ), 1) .
@@ -898,7 +898,7 @@ castle_thumbs(array(
           'short_description' => '',
           'description' =>
 castle_thumbs(array(
-  array('filename' => 'glsl_flutter.png', 'titlealt' => 'GLSL demo &quot;flutter&quot; (from FreeWRL examples)'),
+  array('filename' => 'glsl_flutter.png', 'titlealt' => 'GLSL demo "flutter" (from FreeWRL examples)'),
   array('filename' => 'venus_spheremap.png', 'titlealt' => 'Venus model with environment sphere mapping (model referenced from FreeWRL examples)'),
 ), 1) .
 '<p>I have committed to SVN a large rework of our renderer. Everything is now rendered through <i>locked interleaved vertex arrays</i>. And I mean <i>everything</i>, really every feature of VRML/X3D shapes &mdash; all colors, normals, texture coords etc. are loaded through vertex arrays. This opens wide the door for much more optimized, modern renderer using exclusively VBOs for nearest release. It will also eventually allow OpenGL ES version for modern mobile phones. (But shhhhh, this is all not ready yet.)</p>

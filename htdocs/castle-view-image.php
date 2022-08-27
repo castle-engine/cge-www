@@ -20,8 +20,8 @@ $toc = new TableOfContents(
 
 echo pretty_heading("castle-view-image", VERSION_CASTLE_VIEW_IMAGE);
 echo castle_thumbs(array(
-  array('filename' => 'castle-view-image_welcome.png', 'titlealt' => 'Screenshot from &quot;castle-view-image&quot;'),
-  array('filename' => 'castle-view-image_dds.png', 'titlealt' => 'Screenshot from &quot;castle-view-image&quot;'),
+  array('filename' => 'castle-view-image_welcome.png', 'titlealt' => 'Screenshot from "castle-view-image"'),
+  array('filename' => 'castle-view-image_dds.png', 'titlealt' => 'Screenshot from "castle-view-image"'),
 ));
 ?>
 

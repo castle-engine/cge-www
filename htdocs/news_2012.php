@@ -146,7 +146,7 @@ castle_thumbs(array(
   array('filename' => 'alien_invasion_castle_screen_2.png', 'titlealt' => 'Getting shot with a fireball.'),
   array('filename' => 'alien_invasion_castle_screen_3.png', 'titlealt' => 'Blackout (well, redout) after getting shot with a fireball.'),
   array('filename' => 'castle_screen_items_gravity.png', 'titlealt' => 'Dropping items, testing gravity on items.'),
-  array('filename' => 'castle_screen_debug_alt_target.png', 'titlealt' => 'The blue crosses show the &quot;random position&quot; that creatures use when they cannot seem to reach the target (player) directly.'),
+  array('filename' => 'castle_screen_debug_alt_target.png', 'titlealt' => 'The blue crosses show the "random position" that creatures use when they cannot seem to reach the target (player) directly.'),
 )) .
 '<p>Work on the new <a href="https://castle-engine.io/engine.php">Castle Game Engine</a> 4.0.0 version continues :) Many improvements for the programmers that want to develop their own games using our engine:</p>
 

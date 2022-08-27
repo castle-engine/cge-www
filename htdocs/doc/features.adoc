@@ -34,7 +34,7 @@ cgeimg::block[
   rendered_texture_with_background.png|RenderedTexture,
   rift_2.png|Fixed-camera game,
   mountains_of_fire_screen_1.png|Mountains Of Fire - split-screen coop game,
-  little_things_screen_7.png|&quot;Little Things&quot; game with screen effects,
+  little_things_screen_7.png|"Little Things" game with screen effects,
   chinchilla_diffuse_prt.png|Precomputed Radiance Transfer
 ]
 
@@ -67,6 +67,9 @@ Truly cross-platform, you can work on (almost) any platform and compile to any p
 
 * Desktop (Linux, Windows, link:macos[macOS], FreeBSD). Just link:install[] the engine, compiler (like FPC) and run the application.
 * Mobile (link:android[Android], link:ios[iOS]) with numerous link:android_services[Android services] and link:ios_services[iOS services] to integrate with platform-specific features.
++
+cgeimg::block[android_little_things.png|"Little Things" demo on Android]
+
 * Console (link:nintendo_switch[Nintendo Switch]).
 * Raspberry Pi (it's just desktop Linux on Arm CPU).
 * Coming soon (link:roadmap[]):

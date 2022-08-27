@@ -8,7 +8,7 @@
 
   echo castle_thumbs(array(
     array('filename' => 'glsl_teapot_demo.png', 'titlealt' => 'Teapot X3D model rendered with toon shading in GLSL'),
-    array('filename' => 'glsl_flutter.png', 'titlealt' => 'GLSL demo &quot;flutter&quot; (from FreeWRL examples)'),
+    array('filename' => 'glsl_flutter.png', 'titlealt' => 'GLSL demo "flutter" (from FreeWRL examples)'),
     array('html' =>
       '<div class="thumbs_cell_with_text_or_movie">This movie shows GLSL shaders by our engine.'
       . (!HTML_VALIDATION ?

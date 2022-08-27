@@ -291,7 +291,7 @@ is released and some other programs here get minor updates.</p>
 
   <li>
 " . castle_thumbs(array(
-  array('filename' => 'view3dscene_thumbnailer_demo.png', 'titlealt' => '&quot;view3dscene&quot; as nautilus thumbnailer'),
+  array('filename' => 'view3dscene_thumbnailer_demo.png', 'titlealt' => 'view3dscene as nautilus thumbnailer'),
 ))
 . "
     <p><a href=\"http://www.gnome.org/\">GNOME</a> users will be happy to
@@ -427,7 +427,7 @@ web3d.org examples</a>.</p>"),
         programs that capture OpenGL output).</p>
 
 ' . castle_thumbs(array(
-  array('filename' => 'view3dscene_thumbnailer_demo.png', 'titlealt' => '&quot;view3dscene&quot; as nautilus thumbnailer'),
+  array('filename' => 'view3dscene_thumbnailer_demo.png', 'titlealt' => 'view3dscene as nautilus thumbnailer'),
 ))
 . '
         <p><a href="http://www.gnome.org/">GNOME</a> users will be happy to

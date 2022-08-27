@@ -108,7 +108,7 @@ They show (from the ground up) the creation of a simple 3D FPS game and 2D game.
           'short_description' => '',
           'guid' => '2015-01-11',
           'images' => array(
-            array('filename' => 'android_emulator.png', 'titlealt' => '&quot;Dragon Spine&quot; running in an Android emulator'),
+            array('filename' => 'android_emulator.png', 'titlealt' => '"Dragon Spine" running in an Android emulator'),
           ),
           'description' =>
 '<p>Castle Game Engine version 5.1.2 was just released! This release brings a couple of fixes and improvements to the engine.</p>

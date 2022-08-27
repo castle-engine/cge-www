@@ -23,7 +23,7 @@ $toc = new TableOfContents(
 echo castle_thumbs(array(
   array('filename' => 'ui_custom_drawn.png', 'titlealt' => 'Player HUD we are going to create'),
   array('filename' => 'fps_game_screen_15.png', 'titlealt' => 'fps_game demo player HUD showing inventory'),
-  array('filename' => 'castle_items_tower_screen_0.png', 'titlealt' => '&quot;The Castle&quot; inventory'),
+  array('filename' => 'castle_items_tower_screen_0.png', 'titlealt' => '"The Castle" inventory'),
 ));
 ?>
 

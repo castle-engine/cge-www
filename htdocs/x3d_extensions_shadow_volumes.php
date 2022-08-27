@@ -28,7 +28,7 @@ $toc = new TableOfContents(array(
     array('filename' => 'fountain_shadows_1.png', 'titlealt' => 'The same fountain level model, with shadow volumes. After some interactive fun with moving/rotating stuff around :)'),
     // array('filename' => "shadows_dynamic_2.png", 'titlealt' => 'Dynamic shadows demo'),
     array('filename' => "castle_screen_3.png", 'titlealt' =>  'Werewolves with shadows'),
-    array('filename' => "castle_shadows_fountain.png", 'titlealt' =>  'Castle &quot;fountain&quot; level with shadows'),
+    array('filename' => "castle_shadows_fountain.png", 'titlealt' =>  'Castle "fountain" level with shadows'),
   ));
 ?>
 
