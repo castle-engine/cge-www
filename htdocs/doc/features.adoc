@@ -350,7 +350,7 @@ cgeimg::block[
 +
 cgeimg::block[cge_3d_particles_editor.png|Particles editor]
 
-* https://github.com/Kagamma/cge-effekseer[Effekseer Integration]: Integration with <a href="https://effekseer.github.io/en/">Effekseer</a>, a full-featured open-source particle effect creation tool. By _Trung Le (Kagamma)_.
+* https://github.com/Kagamma/cge-effekseer[Effekseer Integration]: Integration with https://effekseer.github.io/en/[Effekseer], a full-featured open-source particle effect creation tool. Also by _Trung Le (Kagamma)_.
 +
 cgeimg::block[cge_effekseer.png|Effekseer Integration]
 
