@@ -1933,7 +1933,7 @@ function castle_replace_asciidoctor_macros($contents)
       foreach ($images_strings as $image_str) {
         $image_str_split = explode('|', $image_str);
         if (count($image_str_split) != 2) {
-          throw new ErrorException('Expected 2 items in image string split by |: ' . $image_str);
+          throw new ErrorException('Expected 2 items in image string split by |: ' . $image_str . ', part of larger content ' . $images_str);
         }
         $img_filename = trim($image_str_split[0]);
         $img_titlealt = trim($image_str_split[1]);
