@@ -6,7 +6,7 @@
 #   info (echoes some info, nothing is really done)
 
 # ALL_ORIGINAL is a space-separated list of original images.
-ALL_ORIGINAL:=$(wildcard original_size/*.png) $(wildcard original_size/*.jpg)
+ALL_ORIGINAL:=$(wildcard original_size/*.png) $(wildcard original_size/*.jpg) $(wildcard original_size/*.webp)
 
 # other ALL_XXX are a space-separated list of target images.
 ALL_THUMB:=$(subst original_size,thumb_size,$(ALL_ORIGINAL))

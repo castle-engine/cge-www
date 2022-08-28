@@ -1,5 +1,7 @@
 # Features
 include::common.adoc[]
+:description: Castle Game Engine features, with screenshots and links.
+:cge-social-share-image: terrain_component_1.png
 
 ////
 Rules when writing this:
@@ -12,9 +14,7 @@ Sources:
 - https://castle-engine.io/wp/2021/02/06/castle-game-engine-7-0-alpha-1-release-view3dscene-4-0-0-release/
 - original https://castle-engine.io/features.php
 
-- TODO: screenshots
-
-  TODO some screens with Blender, Spine, then rendered in CGE
+- TODO some screens with Blender then rendered in CGE
 
 * TODO: where to mention it best?
   If you link:castle_game_engine_for_unity_developers[come from Unity, we have a whole document that describes how the concepts you know map to CGE].
@@ -23,20 +23,6 @@ Sources:
 NOTE: Not enough? Want more features? :) See our link:roadmap[] and https://www.patreon.com/castleengine[support us on Patreon] to make it happen!
 
 == Screenshots
-
-cgeimg::block[
-  view3dscene_viewports.png|Multiple viewports with a DOOM level in view3dscene,
-  rhan_shrine_5_everything.png|Bump mapping and shadow maps from multiple light sources,
-  lights_editor_shadow_maps.png|Lights editor on a scene with shadow maps,
-  sunny_street_tree_hard.png|Close up shadows on the tree. Notice that leaves (modeled by alpha-test texture) also cast correct shadows.,
-  barna29_nice_shadows.png|Real-time water with caustics\, reflections\, shadows,
-  volumetric_animated_fog_all.png|Volumetric fog,
-  rendered_texture_with_background.png|RenderedTexture,
-  rift_2.png|Fixed-camera game,
-  mountains_of_fire_screen_1.png|Mountains Of Fire - split-screen coop game,
-  little_things_screen_7.png|"Little Things" game with screen effects,
-  chinchilla_diffuse_prt.png|Precomputed Radiance Transfer
-]
 
 == Summary
 
@@ -66,12 +52,27 @@ TODO readd?
 Truly cross-platform, you can work on (almost) any platform and compile to any platform.
 
 * Desktop (Linux, Windows, link:macos[macOS], FreeBSD). Just link:install[] the engine, compiler (like FPC) and run the application.
++
+cgeimg::block[2d_demo_editor.png|2D game in editor,2d_demo_game.png|2D game running]
+
 * Mobile (link:android[Android], link:ios[iOS]) with numerous link:android_services[Android services] and link:ios_services[iOS services] to integrate with platform-specific features.
 +
-cgeimg::block[android_little_things.png|"Little Things" demo on Android]
+cgeimg::block[
+  iphone_dragon_squash.jpg|"Dragon Squash" on iOS (iPhone),
+  iphone_escape.jpg|"Escape from the Universe" on iOS (iPhone)
+]
+// iphone_dragon.jpg|Dragon demo on iOS (iPhone),
+//, android_little_things.png|"Little Things" demo on Android
 
 * Console (link:nintendo_switch[Nintendo Switch]).
++
+//cgeimg::block[nintendo_switch_1.jpg|"Escape from the Universe" on Nintendo Switch,nintendo_switch_2_editor.webp|"Escape from the Universe" - editor,nintendo_switch_3.jpg|"Escape from the Universe" on Nintendo Switch]
+cgeimg::block[nintendo_switch_3.jpg|"Escape from the Universe" on Nintendo Switch]
+
 * Raspberry Pi (it's just desktop Linux on Arm CPU).
++
+cgeimg::block[raspberry_pi_1.webp|Raspberry Pi,unholy_raspberry_1.webp|"The Unholy Society" on Raspberry Pi]
+
 * Coming soon (link:roadmap[]):
 +
 --
@@ -86,9 +87,18 @@ cgeimg::block[android_little_things.png|"Little Things" demo on Android]
 link:manual_editor.php[Editor] to visually design your game 3D and 2D world and user interface around it.
 
 * With templates for new projects -- empty, 3D, 2D. They showcase nicely engine possibilities and were designed as a good starting point for your applications.
++
+cgeimg::block[editor_new_project.png|New project templates in CGE editor]
+
 * Allows to easily build the project for all platforms.
++
+cgeimg::block[editor_platforms.png|Choose target platform,editor_formats.png|Choose package format]
+
 * With file browser, with preview for data (3D models, images, sound files).
 * With easy way to execute code editor (Lazarus, Visual Studio Code or anything else you like) to edit your code.
++
+cgeimg::block[code_editor_lazarus.png|Lazarus to edit Pascal code,code_editor_vscode.png|Visual Studio Code to edit Pascal code]
+
 * Designs are (de)serialized to JSON. Any component can be (de)serialized, along with it published properties.
 * Designs can refer to each other using cgeref:TCastleTransformDesign[] or cgeref:TCastleDesign[], to use them like _prefabs_ from other engines. See https://github.com/castle-engine/castle-engine/tree/master/examples/advanced_editor/advanced_loading_designs[examples/advanced_editor/advanced_loading_designs].
 * You can define link:custom_components[custom project-specific components available in the editor].
@@ -98,6 +108,9 @@ link:manual_editor.php[Editor] to visually design your game 3D and 2D world and 
 link:viewport_and_scenes[Viewport with scenes, camera, navigation] allows to define 3D and 2D worlds.
 
 * Flexible hierarchy of transformations and scenes that you can design in the editor or control from Pascal code using a powerful OOP API.
++
+cgeimg::block[viewport_3d_nice_view.png|Viewport with 3D design]
+
 * Powerful cgeref:TCastleScene[] to load and render link:creating_data_model_formats.php[a lot of model formats, like glTF, X3D, sprite sheets].
 * Other visible objects like cgeref:TCastleBox[], cgeref:TCastleSphere[], cgeref:TCastleText[], cgeref:TCastleImageTransform[]. Great also for quick prototyping 3D and 2D worlds.
 * Flexible link:camera[camera] support, with multiple camera possible, attaching children to camera and placing camera as child of other objects, like bones.
@@ -105,6 +118,9 @@ link:viewport_and_scenes[Viewport with scenes, camera, navigation] allows to def
 * Each transformation can be enhanced with behaviors (descendants of cgeref:TCastleBehavior[]), like cgeref:TCastleBillboard[], cgeref:TCastleSoundSource[]. It is easy and encouraged to create behaviors required for your specific game, see link:viewport_and_scenes_from_code#_behaviors[Behaviors in the manual].
 * cgeref:TCastleTransformReference[] to link:viewport_3d#_multiple_instances_of_the_same_scene_using_tcastletransformreference[efficiently reference the same transformation multiple times]. Great e.g. to instantiate thousands of trees.
 * Lights using components cgeref:TCastlePointLight[], cgeref:TCastleDirectionalLight[], cgeref:TCastleSpotLight[]. See link:viewport_3d#_lighting[lighting in manual].
++
+cgeimg::block[editor_lights.png|Lights in Castle Game Engine editor]
+
 * Components to visualize terrains (cgeref:TCastleTerrain[]), and generate terrain data from smooth noise (cgeref:TCastleTerrainNoise[]) or image (cgeref:TCastleTerrainImage[]) or a combination of them (cgeref:TCastleTerrainCombine[]). See the https://github.com/castle-engine/castle-engine/tree/master/examples/terrain[examples/terrain].
 +
 cgeimg::block[
@@ -115,10 +131,26 @@ cgeimg::block[
   terrain_component_wireframe.png|Wireframe terrain with water rectangle
 ]
 * Our cgeref:TCastleViewport[] is a 2D user interface control that you can naturally use multiple times, to observe the same or different 3D / 2D worlds from different cameras at the same time.
++
+cgeimg::block[
+  mountains_of_fire_screen_1.png|Mountains Of Fire - split-screen coop game,
+  view3dscene_viewports.png|Multiple viewports with a DOOM level in view3dscene
+]
 
 === glTF support
 
 Support for standard model format from Khronos link:gltf[glTF].
+
+cgeimg::block[
+  view3dscene_gltf_helmet.png|Helmet glTF sample,
+  view3dscene_outlines.png|Village scene with outlines from Sketchfab\, https://sketchfab.com/3d-models/ftm-0970f30574d047b1976ba0aa6f2ef855 by Luis Fernandez\, https://sketchfab.com/luyssport,
+  sketchfab_invincible.png|Invincible - Mark Grayson (3D model rendered using Castle Game Engine)\, https://sketchfab.com/3d-models/invincible-mark-grayson-698c1106da924ab1a26392247e697f79 \, by ASideOfChidori,
+  sketchfab_cars.png|Cars 3D models from Sketchfab\, https://sketchfab.com/3d-models/pony-cartoon-885d9f60b3a9429bb4077cfac5653cf9 Pony Cartoon by Slava Z.\, https://sketchfab.com/3d-models/free-1975-porsche-911-930-turbo-8568d9d14a994b9cae59499f0dbed21e 1975 Porsche 911 (930) Turbo by Karol Miklas
+]
+
+//  sketchfab_camera.png|Camera model from Sketchfab\, https://sketchfab.com/3d-models/steampunk-camera-a2210a0ba6834141af3bf83ee1e03f07 \, by Lumoize
+//   sketchfab_cthulhu.png|Cthulhu model from Sketchfab\, 4.5 million triangles\, https://sketchfab.com/3d-models/cthulhu-6d05f0957cfc4a3bba2aaa01d58acbd9 \, by TooManyDemons
+
 
 * Great integration with link:blender[Blender] that can export to glTF.
 * Lots of glTF models on the Internet, e.g. on https://sketchfab.com/features/gltf[Sketchfab].
@@ -142,18 +174,42 @@ Support for link:sprite_sheets[sprite sheets].
 
 * In Castle Game Engine, Starling and Cocos2D formats.
 * Own _sprite sheet editor_ to visually create sprite sheets from texture atlases.
++
+cgeimg::block[sprite_sheet_editor.png|Sprite Sheet Editor]
+
 * See the https://github.com/castle-engine/castle-engine/tree/master/examples/[platformer] example - complete platformer game using sprite sheets. Also https://castle-engine.itch.io/platformer[released on itch.io].
++
+cgeimg::block[platformer.png|Platformer demo]
 
 === Spine support
 
 Support for link:spine[Spine] with skeletal 2D animations.
+
+cgeimg::block[
+  dragon_spine.png|Dragon in Spine,
+  dragon_0.png|Same dragon rendered by Castle Game Engine
+]
 
 === Graphic features
 
 We feature multiple graphic features:
 
 * link:compositing_shaders.php[Compositing shaders] to define shader effects that enhance existing engine rendering. See https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/shader_effects[examples/viewport_and_scenes/shader_effects] example. You can write own effects easily using _OpenGL Shading Language_.
++
+cgeimg::block[
+  volumetric_animated_fog_all.png|Volumetric fog,
+  barna29_nice_shadows.png|Real-time water with caustics\, reflections\, shadows
+]
+
 * link:bump_mapping[Bump mapping (normal maps)] using basic, parallax, steep parallax with self-shadowing algorithms.
++
+cgeimg::block[
+  editor_bump_mapping_none.png|Box in editor (without bump mapping),
+  editor_bump_mapping_parallax.png|Box in editor (with parallax bump mapping),
+  bump_demo_leaf_nobump.png|Leaf (without bump mapping),
+  bump_demo_leaf.png|Leaf (with bump mapping)
+]
+
 * Animation blending/cross-fading (cgeref:TCastleSceneCore.DefaultAnimationTransition[], cgeref:TPlayAnimationParameters.TransitionDuration[]).
 * link:x3d_extensions_mirror_plane.php[Easy mirrors on flat surfaces].
 +
@@ -166,12 +222,30 @@ cgeimg::block[
 * Alternative _unlit_ shading also available, with glTF and X3D 4.0 models using cgeref:TUnlitMaterialNode[].
 * Alternative "classic" Phong shading is also available using cgeref:TMaterialNode[] or cgeref:GltfForcePhongMaterials[].
 * link:x3d_extensions_shadow_maps.php[Shadow maps] (with auto-detection of limits, correct shadows from multiple light sources).
++
+cgeimg::block[
+  rhan_shrine_5_everything.png|Bump mapping and shadow maps from multiple light sources,
+  lights_editor_shadow_maps.png|Lights editor on a scene with shadow maps,
+  sunny_street_tree_hard.png|Close up shadows on the tree. Notice that leaves (modeled by alpha-test texture) also cast correct shadows.
+]
+
 * link:x3d_extensions_shadow_volumes.php[Shadow volumes] (with z-fail / z-pass automatic detection, silhouette detection).
++
+cgeimg::block[rift_2.png|Fixed-camera game]
+
 * Screen effects (post-processing) API to define post-processing effects using shaders. See link:x3d_extensions_screen_effects.php[screen effects specification], you can add screen effects over any UI control: just place it as child of cgeref:TCastleScreenEffects[]. See https://github.com/castle-engine/castle-engine/tree/master/examples/screen_effects_demo/[examples/screen_effects_demo/].
++
+cgeimg::block[little_things_screen_7.png|"Little Things" game with screen effects]
+
 * link:color_space[Color Space (Gamma Correction)].
 * Easily design link:background[background (with sky/ground gradients, skybox)], link:fog[fog].
 * Multi-sampling (full-screen anti-aliasing), just set cgeref:TCastleWindow.AntiAliasing[].
 * link:occlusion_query[Occlusion Query] can greatly speed-up rendering in certain cases.
+
+cgeimg::block[
+  rendered_texture_with_background.png|RenderedTexture,
+  chinchilla_diffuse_prt.png|Precomputed Radiance Transfer
+]
 
 == Images
 
@@ -226,6 +300,13 @@ The engine, as well as your games, are written using link:modern_pascal[modern O
 
 The engine uses URLs, allows to download contents of URLs, and can be integrated with various networking libraries.
 
+cgeimg::block[
+  not_quake_1.png|"Not Quake" demo - real-time network game,
+  not_quake_2.png|"Not Quake" demo - real-time network game,
+  not_quake_3.png|"Not Quake" demo - real-time network game,
+  not_quake_4.png|"Not Quake" demo - real-time network game
+]
+
 * All paths are expressed as URLs with some special CGE protocols, see link:manual_network.php[nerworking].
 * Application data can be always accessed using link:manual_data_directory.php[URLs like `castle-data:/xxx`].
 * You can download URLs asynchronously using cgeref:TCastleDownload[].
@@ -246,6 +327,10 @@ We have extensive link:manual_optimization.php[optimization documentation] and a
 
 You can play link:manual_sound.php[sound], spatial (in 3D) or not.
 
+cgeimg::block[
+  sound_example_3d_game_source.png|3D game sound demo - TCastleSoundSource
+]
+
 * Supports for various sound backends: link:openal[OpenAL] or link:fmod[FMOD], on multipe platforms.
 * Sound streaming is done, for efficient playback of music tracks.
 * WAV and OggVorbis file formats are supported with all sound backends.
@@ -255,6 +340,12 @@ You can play link:manual_sound.php[sound], spatial (in 3D) or not.
 == Physics
 
 You can use link:manual_physics.php[physics].
+
+cgeimg::block[
+  physics_1.png|Bunch of physics rigid bodies,
+  physics_mesh.png|Physics with mesh collider,
+  physics_2d.png|Physics 2D
+]
 
 * Define rigid bodies and colliders on your objects.
 * Allow gravity and collisions to automatically have an effect.
@@ -267,9 +358,36 @@ You can use link:manual_physics.php[physics].
 
 You can design game maps using https://www.mapeditor.org/[Tiled].
 
+cgeimg::block[
+  tiled_3.png|Tiled isometric map,
+  tiled_strategy_hex.png|Tiled hexagonal map in "Strategy Game" demo,
+  tiled_strategy_iso.png|Tiled isometric map in "Strategy Game" demo,
+  tiled_strategy_ortho.png|Tiled orthogonal map in "Strategy Game" demo
+]
+
 * Tiled maps (TMX files) can be loaded into cgeref:TCastleTiledMapControl[] for 2D display.
 * Or they can be loaded (work in progress) into cgeref:TCastleScene[] for 3D display and easy integration with other scenes on top of it, like sprite sheets for units on the map.
 * See https://github.com/castle-engine/castle-engine/tree/master/examples/tiled/strategy_game_demo/[examples/tiled/strategy_game_demo] for a complete strategy game in CGE using Tiled maps.
+
+== Particles
+
+Particle systems are not *yet* part of the core _Castle Game Engine_ units. However you can use additional open-source components that add this capability to the engine:
+
+cgeimg::block[
+  particles_2.webp|Particles,
+  particles_3.webp|Particles,
+  particles_4.webp|Particles
+]
+//  particles_1.webp|Particles,
+//   particles_5.webp|Particles
+
+* https://github.com/Kagamma/cge-3d-particle-emitter[Particle Emitter]: Particle system for 3D and 2D that supports editing right inside CGE editor. Particles are calculated with GPU acceleration (transform feedback). By _Trung Le (Kagamma)_.
++
+cgeimg::block[cge_3d_particles_editor.png|Particles editor]
+
+* https://github.com/Kagamma/cge-effekseer[Effekseer Integration]: Integration with <a href="https://effekseer.github.io/en/">Effekseer</a>, a full-featured open-source particle effect creation tool. By _Trung Le (Kagamma)_.
++
+cgeimg::block[cge_effekseer.png|Effekseer Integration]
 
 == Free open-source software
 

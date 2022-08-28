@@ -1,13 +1,19 @@
 # Physics
 include::common.adoc[]
 :description: Using physics to handle collisions between rigid bodies.
-:cge-social-share-image: blender_castle_1.png
+:cge-social-share-image: physics_1.png
 
 == Introduction
 
 Physics allows you to define _rigid bodies_ that can collide with each other (following the designated _collider_ geometry). These collisions (by default) automatically result in proper response, i.e. objects "bounce off" each other when they collide.
 
 _Castle Game Engine_ is integrated with https://github.com/BeRo1985/kraft[Kraft Physics Engine] made by _Benjamin 'BeRo' Rosseaux_. Read on to learn how to add rigid-body physics to your own games.
+
+cgeimg::block[
+  physics_1.png|Bunch of physics rigid bodies,
+  physics_mesh.png|Physics with mesh collider,
+  physics_2d.png|Physics 2D
+]
 
 == Demo Videos
 
