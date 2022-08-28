@@ -22,8 +22,6 @@ Sources:
 
 NOTE: Not enough? Want more features? :) See our link:roadmap[] and https://www.patreon.com/castleengine[support us on Patreon] to make it happen!
 
-== Screenshots
-
 == Summary
 
 * *Cross-platform (desktop, mobile, console).* Target any platform, work on various desktop platforms. WebGL and Oculus (VR) are coming too.
