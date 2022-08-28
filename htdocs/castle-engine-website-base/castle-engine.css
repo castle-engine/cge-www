@@ -360,7 +360,7 @@ div.main-cge-download {
         padding-bottom: 1em;
     }
 }
-.news-row-wrapper .row-title {
+.main-page-header {
     border-top: thin solid #dcdcdc;
     margin-bottom: 1em;
     padding-left: 15px;
@@ -368,7 +368,7 @@ div.main-cge-download {
     font-size: larger;
     font-weight: bold;
 }
-.news-row-wrapper .row-title,
+.main-page-header,
 .news-row-wrapper .row {
     width: 1200px;
     max-width: 100%;
@@ -936,4 +936,15 @@ div.download .download_platform {
 .talk-button > p > img {
   width: 100px;
   height: 100px;
+}
+
+/* features list ------------------------------------------------------------- */
+
+.feature-title {
+  margin-top: 2em;
+  font-weight: bold;
+  text-align: center;
+}
+.feature-description {
+  font-size: smaller;
 }

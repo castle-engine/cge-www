@@ -18,32 +18,26 @@ Sources:
 
 * TODO: where to mention it best?
   If you link:castle_game_engine_for_unity_developers[come from Unity, we have a whole document that describes how the concepts you know map to CGE].
+
+* TODO readd feature?
+
+  <li>Extensible system for game objects, with <b>physics, creatures with AI and navmesh</b>, and more.
+
+  TODO: to make it rock, we need fps_game upgrade to express creatures AI using behaviors
+
+* TODO readd feature?
+
+                    <li><b>Build and edit</b> the <a href="vrml_x3d.php">scene graph (X3D)</a> <b>at runtime</b>.
+                      <!--Load and save images and X3D graph as needed.-->
+                      Create 3D processing, visualization tools and CAD applications.
+
 ////
 
 NOTE: Not enough? Want more features? :) See our link:roadmap[] and https://www.patreon.com/castleengine[support us on Patreon] to make it happen!
 
 == Summary
 
-* *Cross-platform (desktop, mobile, console).* Target any platform, work on various desktop platforms. WebGL and Oculus (VR) are coming too.
-* *Lots of ways to define data*: 3D models, 2D animations, sprite sheets. Great integration with authoring tools like Blender or shops like Sketchfab thanks to using open standards like glTF and X3D.
-* *Visual editor* to design 3D and 2D games and scalable user interface with anchors.
-* *Native clean OOP programming language* with modern Object Pascal. Fast builds, fast execution out-of-the-box.
-* *Tooling friendly for continuous integration*. Build tool, Jenkins, GitHub actions.
-
-////
-TODO readd?
-
-  <li>Optimized rendering with a lot of graphic effects (<b>physically based rendering, shadows, mirrors, bump mapping, shader effects, gamma correction</b>...).
-
-  TODO: we mention this below. To make it rock, we need
-  - material editing in CGE editor, to express there mirrors, shader effects easily
-  - post-processing components in CGE editor
-  - shadow maps cross-scene and easily used from editor
-
-  <li>Extensible system for game objects, with <b>physics, creatures with AI and navmesh</b>, and more.
-
-  TODO: to make it rock, we need fps_game upgrade to express creatures AI using behaviors
-////
+cge::features-summary[]
 
 == Cross-platform
 
@@ -64,8 +58,8 @@ cgeimg::block[
 
 * Console (link:nintendo_switch[Nintendo Switch]).
 +
-//cgeimg::block[nintendo_switch_1.jpg|"Escape from the Universe" on Nintendo Switch,nintendo_switch_2_editor.webp|"Escape from the Universe" - editor,nintendo_switch_3.jpg|"Escape from the Universe" on Nintendo Switch]
 cgeimg::block[nintendo_switch_3.jpg|"Escape from the Universe" on Nintendo Switch]
+//cgeimg::block[nintendo_switch_1.jpg|"Escape from the Universe" on Nintendo Switch,nintendo_switch_2_editor.webp|"Escape from the Universe" - editor,nintendo_switch_3.jpg|"Escape from the Universe" on Nintendo Switch]
 
 * Raspberry Pi (it's just desktop Linux on Arm CPU).
 +
@@ -267,33 +261,6 @@ Easily display link:using_images[display images] as user interface or in a viewp
 * Localization (including automatically translating user interface and ``resourcestring``s).
 * UTF-8 support for all strings through the engine API, in particular to render text.
 
-== Build tool and continuous integration
-
-link:build_tool[Build tool] to manage your project from the command-line or in batch mode (good for continuous integration). The build tool, just like editor, reads project information from link:project_manifest[CastleEngineManifest.xml] file.
-
-* Build tool can build, package, run your application and link:creating_data_auto_generated_textures.php[autogenerate compressed textures] (and more).
-* You can build for any supported target platform. You may need to install cross-compiler (e.g. using link:fpcupdeluxe[]), some platforms may also require additional tools (see their docs like link:android[Android]).
-* We can build ready applications, like APK / AAB for Android, IPA for iOS.
-* link:docker[Docker image] with CGE and prerequisites (FPC, Android build tools, texture processing tools) to easily deploy CGE applications e.g. from Jenkins or GitHub actions.
-* Ready instructions to use link:github_actions[GitHub Actions] with your project.
-
-== Native and fast code using modern Pascal
-
-The engine, as well as your games, are written using link:modern_pascal[modern Object Pascal].
-
-* We support https://www.freepascal.org/[FPC] and https://www.embarcadero.com/products/delphi/[Delphi] compilers, see link:supported_compilers.php[Supported compilers and IDEs].
-* Pascal as a programming language is
-+
---
-* elegant (type-safe, OOP, generics),
-* full-featured (big existing codebases can be used, e.g. Pascal and C, C++ libraries to connect your games with database, AI, networking),
-* native (compiled to native code that runs fast out-of-the-box).
---
-* The same programming language that is used to make the engine is used for your applications -- this results in simplicity (it's easy to contribute) and speed.
-* Fast execution. It's a language that compiles to fast native code, while staying elegant and type-safe.
-* Fast compilation.
-* Native debugging. It's just a native application using native debugger. Debugging is integral part of the https://www.lazarus-ide.org/[Lazarus IDE].
-
 == Networking
 
 The engine uses URLs, allows to download contents of URLs, and can be integrated with various networking libraries.
@@ -386,6 +353,37 @@ cgeimg::block[cge_3d_particles_editor.png|Particles editor]
 * https://github.com/Kagamma/cge-effekseer[Effekseer Integration]: Integration with <a href="https://effekseer.github.io/en/">Effekseer</a>, a full-featured open-source particle effect creation tool. By _Trung Le (Kagamma)_.
 +
 cgeimg::block[cge_effekseer.png|Effekseer Integration]
+
+== Native and fast code using modern Pascal
+
+The engine, as well as your games, are written using link:modern_pascal[modern Object Pascal].
+
+cgeimg::block[combined_fpc_delphi.png|FPC\, Delphi\, Visual Studio Code]
+
+* We support https://www.freepascal.org/[FPC] and https://www.embarcadero.com/products/delphi/[Delphi] compilers, see link:supported_compilers.php[Supported compilers and IDEs].
+* Pascal as a programming language is
++
+--
+* elegant (type-safe, OOP, generics),
+* full-featured (big existing codebases can be used, e.g. Pascal and C, C++ libraries to connect your games with database, AI, networking),
+* native (compiled to native code that runs fast out-of-the-box).
+--
+* The same programming language that is used to make the engine is used for your applications -- this results in simplicity (it's easy to contribute) and speed.
+* Fast execution. It's a language that compiles to fast native code, while staying elegant and type-safe.
+* Fast compilation.
+* Native debugging. It's just a native application using native debugger. Debugging is integral part of the https://www.lazarus-ide.org/[Lazarus IDE].
+
+== Build tool and continuous integration
+
+link:build_tool[Build tool] to manage your project from the command-line or in batch mode (good for continuous integration). The build tool, just like editor, reads project information from link:project_manifest[CastleEngineManifest.xml] file.
+
+* Build tool can build, package, run your application and link:creating_data_auto_generated_textures.php[autogenerate compressed textures] (and more).
+* You can build for any supported target platform. You may need to install cross-compiler (e.g. using link:fpcupdeluxe[]), some platforms may also require additional tools (see their docs like link:android[Android]).
+* We can build ready applications, like APK / AAB for Android, IPA for iOS.
+* link:docker[Docker image] with CGE and prerequisites (FPC, Android build tools, texture processing tools) to easily deploy CGE applications e.g. from Jenkins or GitHub actions.
+* Ready instructions to use link:github_actions[GitHub Actions] with your project.
+
+cgeimg::block[combined_osi_ci_logos.png|Open source\, integration with Jenkins\, integration with GitHub Actions]
 
 == Free open-source software
 

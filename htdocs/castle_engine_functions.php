@@ -101,7 +101,7 @@ define('PATREON_URL',         'https://patreon.com/castleengine');
 define('CGE_LATEST_DOWNLOAD', 'https://github.com/castle-engine/castle-engine/archive/snapshot.zip');
 
 // bump this each time you change castle-engine.css, to work with CloudFlare caching (or you can purge CloudFlare cache manually)
-define('CASTLE_ENGINE_CSS_VERSION', 31);
+define('CASTLE_ENGINE_CSS_VERSION', 32);
 
 define('TWITTER_HANDLE', 'castleengine'); // https://twitter.com/castleengine/
 
@@ -1896,6 +1896,12 @@ function cgeImg($placement, $images)
 /* Replace AsciiDoctor macros like cgeref, cgeimg, documented in ../README.md. */
 function castle_replace_asciidoctor_macros($contents)
 {
+  $contents = preg_replace_callback('/cge::features-summary\[\]/',
+    function ($matches) {
+      return cge_features_summary('center');
+    },
+    $contents);
+
   $contents = preg_replace_callback('/cgeref:([A-Za-z0-9_.]+)\[([^]]*)\]/',
     function ($matches) {
       $identifier = $matches[1];
@@ -1970,6 +1976,107 @@ function castle_sources_notice()
     a_href_page('download sources of this program', 'all_programs_sources') . '.';
   if (defined('CASTLE_GITHUB_NAME')) {
     $result .= ' Or just <a href="https://github.com/castle-engine/' . CASTLE_GITHUB_NAME . '">get the code from GitHub</a>.';
+  }
+  return $result;
+}
+
+function cge_features_summary($align)
+{
+  $features = array(
+    array(
+      'link' => 'features#_editor',
+      'title' => 'Visual editor',
+      'description' => 'Design 3D and 2D games and  user interfaces (with automatic scaling, anchors). Build and deploy the same project for multiple platforms. Integrate with various IDEs (Lazarus, Delphi, Visual Studio Code...).',
+      'image' => '2d_demo_editor.png',
+      'image_titlealt' => '2D game in editor',
+    ),
+    array(
+      'link' => 'features#_viewport_with_scenes_camera_navigation',
+      'title' => 'Components',
+      'description' => 'A lot of components to design viewport contents (3D and 2D world, using scenes, cameras, navigation, primitives, lights...) and user inteface (buttons, images, labels...).',
+      // 'image' => 'viewport_3d_nice_view.png',
+      // 'image_titlealt' => 'Viewport with 3D design',
+      'image' => 'terrain_component_1.png',
+      'image_titlealt' => 'Terrain with water and trees',
+    ),
+    array(
+      'link' => 'features#_gltf_support',
+      'title' => 'Lots of ways to define data',
+      'description' => 'Use 3D models, 2D animations, sprite sheets. Great integration with authoring tools like <a href="blender">Blender</a> or shops like Sketchfab thanks to using open standards like glTF and X3D.',
+      'image' => 'view3dscene_outlines.png',
+      'image_titlealt' => 'Village scene with outlines in glTF from Sketchfab ( https://sketchfab.com/3d-models/ftm-0970f30574d047b1976ba0aa6f2ef855 by Luis Fernandez )',
+    ),
+    array(
+      'link' => 'features#_graphic_features',
+      'title' => 'Graphic effects',
+      'description' => 'Composable shader effects, shadows, mirrors, physically based rendering, bump mapping, gamma correction...',
+      'image' => 'barna29_nice_shadows.png',
+      'image_titlealt' => 'Real-time water with caustics, reflections, shadows',
+    ),
+    array(
+      'link' => 'features#_cross_platform',
+      'title' => 'Cross-platform',
+      'description' => 'Target any platform (desktop: Windows, Linux, macOS, FreeBSD, Raspberry Pi, mobile: Android, iOS, console: Nintendo Switch). Work on any desktop platform. WebGL and Oculus (VR) are coming as targets soon.',
+      'image' => 'nintendo_switch_3.jpg',
+      'image_titlealt' => '"Escape from the Universe" on Nintendo Switch',
+    ),
+    array(
+      'link' => 'features#_native_and_fast_code_using_modern_pascal',
+      'title' => 'Clean and fast code',
+      'description' => 'Native clean object-oriented programming language with <a href="modern_pascal">modern Object Pascal</a>. Fast builds, fast execution out-of-the-box.',
+      'image' => 'combined_fpc_delphi.png',
+      'image_titlealt' => 'FPC and Delphi',
+    ),
+    array(
+      'link' => 'features#_build_tool_and_continuous_integration',
+      'title' => 'Open source and friendly to continuous integration',
+      'description' => 'Tooling friendly for continuous integration. Command-line build tool, Jenkins, GitHub actions. Engine completely open-source, <a href="license.php">can be used to make any applications, including proprietary</a>.',
+      'image' => 'combined_osi_ci_logos.png',
+      'image_titlealt' => 'Open-source and integrated with GitHub',
+    ),
+  );
+
+  $result = '';
+  $odd = true;
+  foreach ($features as $feature) {
+    $col1 = '
+      <div class="col-sm-5">
+        <div class="feature-title"><a href="' . htmlspecialchars($feature['link']) . '">' . htmlspecialchars($feature['title']) .  '</a></div>
+        <div class="feature-description">' . $feature['description'] .  '</div>
+      </div>';
+    /*
+        <a href="images/original_size/' . htmlspecialchars($feature['image']) . '"
+           class="screenshot"
+    */
+    $col2 = '
+      <div class="col-sm-5">
+        <a href="' . htmlspecialchars($feature['link']) . '"
+           title="' . htmlspecialchars($feature['image_titlealt']) . '">
+          <img
+             alt="' . htmlspecialchars($feature['image_titlealt']) . '"
+             src="images/original_size/' . htmlspecialchars($feature['image']) . '"
+          />
+        </a>
+      </div>';
+    $pad_cols = '
+      <div class="col-sm-1">
+      </div>';
+
+    if ($align == 'left') {
+      $pad_left = '';
+      $pad_right = $pad_cols . $pad_cols;
+    } else {
+      $pad_left = $pad_cols;
+      $pad_right = $pad_cols;
+    }
+
+    if ($odd) {
+      $result .= '<div class="row feature-row-odd">'  . $pad_left . $col1 . $col2 . $pad_right . '</div>';
+    } else {
+      $result .= '<div class="row feature-row-even">' . $pad_left . $col2 . $col1 . $pad_right . '</div>';
+    }
+
+    $odd = !$odd;
   }
   return $result;
 }
