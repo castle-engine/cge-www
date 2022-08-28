@@ -1993,7 +1993,7 @@ function cge_features_summary($align)
     array(
       'link' => 'features#_viewport_with_scenes_camera_navigation',
       'title' => 'Components',
-      'description' => 'A lot of components to design viewport contents (3D and 2D world, using scenes, cameras, navigation, primitives, lights...) and user inteface (buttons, images, labels...).',
+      'description' => 'A lot of components to design <a href="viewport_and_scenes">viewport</a> contents (3D and 2D world, using scenes, cameras, navigation, primitives, lights...) and <a href="user_interface">user inteface</a> (buttons, images, labels...).',
       // 'image' => 'viewport_3d_nice_view.png',
       // 'image_titlealt' => 'Viewport with 3D design',
       'image' => 'terrain_component_1.png',
@@ -2030,7 +2030,7 @@ function cge_features_summary($align)
     array(
       'link' => 'features#_build_tool_and_continuous_integration',
       'title' => 'Open source and friendly to continuous integration',
-      'description' => 'Tooling friendly for continuous integration. Command-line build tool, Jenkins, GitHub actions. Engine completely open-source, <a href="license.php">can be used to make any applications, including proprietary</a>.',
+      'description' => 'Tooling friendly to continuous integration. Command-line build tool, Jenkins, <a href="github_actions">GitHub actions</a>. Engine is completely open-source and <a href="license.php">can be used to make any (including proprietary) applications</a>.',
       'image' => 'combined_osi_ci_logos.png',
       'image_titlealt' => 'Open-source and integrated with GitHub',
     ),
