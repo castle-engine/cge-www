@@ -1984,14 +1984,14 @@ function cge_features_summary($align)
 {
   $features = array(
     array(
-      'link' => 'features#_editor',
+      'link' => 'features#_visual_editor',
       'title' => 'Visual editor',
       'description' => 'Design 3D and 2D games and  user interfaces (with automatic scaling, anchors). Build and deploy the same project for multiple platforms. Integrate with various IDEs (Lazarus, Delphi, Visual Studio Code...).',
       'image' => '2d_demo_editor.png',
       'image_titlealt' => '2D game in editor',
     ),
     array(
-      'link' => 'features#_viewport_with_scenes_camera_navigation',
+      'link' => 'features#_viewport_with_scenes_camera_navigation_and_other_components',
       'title' => 'Components',
       'description' => 'A lot of components to design <a href="viewport_and_scenes">viewport</a> contents (3D and 2D world, using scenes, cameras, navigation, primitives, lights...) and <a href="user_interface">user inteface</a> (buttons, images, labels...).',
       // 'image' => 'viewport_3d_nice_view.png',
@@ -2000,14 +2000,14 @@ function cge_features_summary($align)
       'image_titlealt' => 'Terrain with water and trees',
     ),
     array(
-      'link' => 'features#_gltf_support',
+      'link' => 'features#_data_formats',
       'title' => 'Lots of ways to define data',
       'description' => 'Use 3D models, 2D animations, sprite sheets. Great integration with authoring tools like <a href="blender">Blender</a> or shops like Sketchfab thanks to using open standards like glTF and X3D.',
       'image' => 'view3dscene_outlines.png',
       'image_titlealt' => 'Village scene with outlines in glTF from Sketchfab ( https://sketchfab.com/3d-models/ftm-0970f30574d047b1976ba0aa6f2ef855 by Luis Fernandez )',
     ),
     array(
-      'link' => 'features#_graphic_features',
+      'link' => 'features#_graphic_effects',
       'title' => 'Graphic effects',
       'description' => 'Composable shader effects, shadows, mirrors, physically based rendering, bump mapping, gamma correction...',
       'image' => 'barna29_nice_shadows.png',
