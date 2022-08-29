@@ -948,3 +948,7 @@ div.download .download_platform {
 .feature-description {
   font-size: smaller;
 }
+.feature-image {
+  width: 100%;
+  height: auto;
+}

@@ -14,6 +14,10 @@ ALL_THUMB_CONST_HEIGHT:=$(subst original_size,thumb_const_height_size,$(ALL_ORIG
 ALL_TEASER:=$(subst original_size,teaser_size,$(ALL_ORIGINAL))
 ALL_GALLERY:=$(subst original_size,gallery_size,$(ALL_ORIGINAL)) \
   gallery_size/ui-shaker.gif gallery_size/typing-label.gif
+ALL_FEATURE:=\
+  $(patsubst %.png,%.webp,\
+    $(patsubst %.jpg,%.webp,\
+      $(subst original_size,feature_size,$(ALL_ORIGINAL))))
 
 ALL_OS_ICONS_ORIGINAL_SIZE:=$(wildcard os_icons_original_size/*.png)
 ALL_OS_ICONS:=$(subst _original_size,,$(ALL_OS_ICONS_ORIGINAL_SIZE))
@@ -25,6 +29,7 @@ ALL_TARGETS := $(ALL_TEASER) \
   $(ALL_THUMB_CONST_HEIGHT) \
   $(ALL_GALLERY) \
   $(ALL_OS_ICONS) \
+  $(ALL_FEATURE) \
   castle_game_engine_icon.png
 
 # On Cygwin, change it to /usr/bin/convert
@@ -67,6 +72,16 @@ gallery_size/glplotter%.png: original_size/glplotter%.png
 
 gallery_size/%: original_size/%
 	$(CONVERT) $< -geometry 300x300 $@
+
+# ----------------------------------------------------------------------------
+# making feature_size
+
+feature_size/%: original_size/%
+	$(CONVERT) $< -geometry 600x600 $@
+feature_size/%.webp: original_size/%.png
+	$(CONVERT) $< -geometry 600x600 $@
+feature_size/%.webp: original_size/%.jpg
+	$(CONVERT) $< -geometry 600x600 $@
 
 # ----------------------------------------------------------------------------
 # making main_link_size

@@ -2048,13 +2048,16 @@ function cge_features_summary($align)
         <a href="images/original_size/' . htmlspecialchars($feature['image']) . '"
            class="screenshot"
     */
+    $image_relative_filename = 'images/feature_size/' . pathinfo($feature['image'],  PATHINFO_FILENAME) . '.webp';
     $col2 = '
       <div class="col-sm-5">
         <a href="' . htmlspecialchars($feature['link']) . '"
            title="' . htmlspecialchars($feature['image_titlealt']) . '">
           <img
+             class="feature-image"
              alt="' . htmlspecialchars($feature['image_titlealt']) . '"
-             src="images/original_size/' . htmlspecialchars($feature['image']) . '"
+             src="' . htmlspecialchars($image_relative_filename) . '"
+             ' . _castle_image_sizes($image_relative_filename) . '
           />
         </a>
       </div>';
