@@ -74,7 +74,7 @@ cgeimg::block[raspberry_pi_1.webp|Raspberry Pi,unholy_raspberry_1.webp|"The Unho
 --
 * The engine code is portable and in principle "just works" on any operating system and CPU supported by FPC or Delphi.
 
-== Editor
+== Visual editor
 
 link:manual_editor.php[Editor] to visually design your game 3D and 2D world and user interface around it.
 
@@ -95,7 +95,7 @@ cgeimg::block[code_editor_lazarus.png|Lazarus to edit Pascal code,code_editor_vs
 * Designs can refer to each other using cgeref:TCastleTransformDesign[] or cgeref:TCastleDesign[], to use them like _prefabs_ from other engines. See https://github.com/castle-engine/castle-engine/tree/master/examples/advanced_editor/advanced_loading_designs[examples/advanced_editor/advanced_loading_designs].
 * You can define link:custom_components[custom project-specific components available in the editor].
 
-== Viewport with scenes, camera, navigation
+== Viewport with scenes, camera, navigation and other components
 
 link:viewport_and_scenes[Viewport with scenes, camera, navigation] allows to define 3D and 2D worlds.
 
@@ -129,9 +129,13 @@ cgeimg::block[
   view3dscene_viewports.png|Multiple viewports with a DOOM level in view3dscene
 ]
 
-=== glTF support
+== Data formats
 
-Support for standard model format from Khronos link:gltf[glTF].
+You can link:creating_data_model_formats.php[use various formats to define 3D and 2D data].
+
+=== glTF
+
+We support standard model format from Khronos: link:gltf[glTF].
 
 cgeimg::block[
   view3dscene_gltf_helmet.png|Helmet glTF sample,
@@ -150,9 +154,9 @@ cgeimg::block[
 * _Physically Based Rendering_.
 * Metadata support (which can come e.g. from link:blender[Blender] custom properties).
 
-=== X3D support
+=== X3D
 
-Support for standard model format from Web3D link:vrml_x3d.php[X3D and VRML].
+We support standard model format from Web3D: link:vrml_x3d.php[X3D and VRML].
 
 * Support for X3D 4.0 with _Physically Based Rendering_ and lots of possibilities for shapes, textures, animations etc.
 * The cgeref:TCastleScene[] is a set of X3D nodes. We implement link:vrml_x3d.php[extended set of X3D nodes].
@@ -162,9 +166,9 @@ Support for standard model format from Web3D link:vrml_x3d.php[X3D and VRML].
 
 === Sprite sheets
 
-Support for link:sprite_sheets[sprite sheets].
+We support link:sprite_sheets[sprite sheets].
 
-* In Castle Game Engine, Starling and Cocos2D formats.
+* In _Castle Game Engine_ (`.castle-sprite-sheet`), Starling and Cocos2D formats.
 * Own _sprite sheet editor_ to visually create sprite sheets from texture atlases.
 +
 cgeimg::block[sprite_sheet_editor.png|Sprite Sheet Editor]
@@ -173,18 +177,23 @@ cgeimg::block[sprite_sheet_editor.png|Sprite Sheet Editor]
 +
 cgeimg::block[platformer.png|Platformer demo]
 
-=== Spine support
+=== Spine
 
-Support for link:spine[Spine] with skeletal 2D animations.
+We support link:spine[Spine] skeletal 2D animations.
 
 cgeimg::block[
   dragon_spine.png|Dragon in Spine,
   dragon_0.png|Same dragon rendered by Castle Game Engine
 ]
 
-=== Graphic features
+* We have own Spine importer in _Castle Game Engine_ that reads Spine JSON (not relying on any official _Spine runtime_).
+* Spine animations and rendering features are converted to standard engine animation nodes (same nodes as used by glTF and X3D) so they play consistently within the engine, with animation cross-fading etc.
+* Spine skins are suported.
+* Loading Spine JSON files from various Spine versions, up to and including Spine 4, is supported.
+* Spine texture atlases with all advanced options (e.g. stripping whitespace, rotating) are suported.
+* Alternative: https://github.com/Kagamma/spine-runtimes/[Spine runtime for Castle Game Engine] is an alternative approach to load and render Spine models. It supports some additional features by "offloading" some work to the Spine C runtime.
 
-We feature multiple graphic features:
+== Graphic effects
 
 * link:compositing_shaders.php[Compositing shaders] to define shader effects that enhance existing engine rendering. See https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/shader_effects[examples/viewport_and_scenes/shader_effects] example. You can write own effects easily using _OpenGL Shading Language_.
 +
@@ -247,7 +256,7 @@ Easily display link:using_images[display images] as user interface or in a viewp
 * Full support for KTX and DDS that enable GPU texture compression, cubemaps and more.
 * link:creating_data_auto_generated_textures.php[Automatic texture compression and downscaling].
 
-== User interface
+== User interface components
 
 * link:user_interface[User interface] library providing cross-platform UI controls that work on all platforms, like buttons, labels, images.
 * Their look can be adjusted to match the style of your game.
