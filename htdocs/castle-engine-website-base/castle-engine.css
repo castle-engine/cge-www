@@ -952,3 +952,51 @@ div.download .download_platform {
   width: 100%;
   height: auto;
 }
+
+/* Mobile view: single column */
+@media only screen and (max-width : 767px) {
+  .feature-row {
+    border-width: thin;
+    border-style: solid;
+    border-radius: 4px;
+    border-color: #dcdcdc;
+    -webkit-box-shadow: 0px 1px 2px 1px rgba(0,0,0,0.1);
+    -moz-box-shadow: 0px 1px 2px 1px rgba(0,0,0,0.1);
+    box-shadow: 0px 1px 2px 1px rgba(0,0,0,0.1);
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+  }
+  .feature-description {
+    padding-bottom: 1em;
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+}
+
+/* Desktop view: two columns */
+@media only screen and (min-width : 768px) {
+  .feature-row {
+    clear: both;
+    margin-left: 8.33333333%; /* like .col-sm-1 in bootstrap */
+    width: 82%; /* like 2x .col-sm-5 in bootstrap */
+  }
+  .feature-column-image,
+  .feature-column-text {
+    position: relative;
+    padding-right: 15px;
+    padding-left: 15px;
+    width: 50%;
+  }
+  .feature-row-odd .feature-column-text {
+    float: left;
+  }
+  .feature-row-odd .feature-column-image {
+    float: right;
+  }
+  .feature-row-even .feature-column-text {
+    float: right;
+  }
+  .feature-row-even .feature-column-image {
+    float: left;
+  }
+}

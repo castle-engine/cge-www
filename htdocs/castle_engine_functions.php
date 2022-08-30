@@ -2039,18 +2039,10 @@ function cge_features_summary($align)
   $result = '';
   $odd = true;
   foreach ($features as $feature) {
-    $col1 = '
-      <div class="col-sm-5">
-        <div class="feature-title"><a href="' . htmlspecialchars($feature['link']) . '">' . htmlspecialchars($feature['title']) .  '</a></div>
-        <div class="feature-description">' . $feature['description'] .  '</div>
-      </div>';
-    /*
-        <a href="images/original_size/' . htmlspecialchars($feature['image']) . '"
-           class="screenshot"
-    */
     $image_relative_filename = 'images/feature_size/' . pathinfo($feature['image'],  PATHINFO_FILENAME) . '.webp';
-    $col2 = '
-      <div class="col-sm-5">
+    $row_odd = $odd ? 'odd' : 'even';
+    $result .= '<div class="feature-row feature-row-' . $row_odd . '">
+      <div class="feature-column-image">
         <a href="' . htmlspecialchars($feature['link']) . '"
            title="' . htmlspecialchars($feature['image_titlealt']) . '">
           <img
@@ -2060,26 +2052,24 @@ function cge_features_summary($align)
              ' . _castle_image_sizes($image_relative_filename) . '
           />
         </a>
-      </div>';
-    $pad_cols = '
-      <div class="col-sm-1">
-      </div>';
-
-    if ($align == 'left') {
-      $pad_left = '';
-      $pad_right = $pad_cols . $pad_cols;
-    } else {
-      $pad_left = $pad_cols;
-      $pad_right = $pad_cols;
-    }
-
-    if ($odd) {
-      $result .= '<div class="row feature-row-odd">'  . $pad_left . $col1 . $col2 . $pad_right . '</div>';
-    } else {
-      $result .= '<div class="row feature-row-even">' . $pad_left . $col2 . $col1 . $pad_right . '</div>';
-    }
-
+      </div>
+      <div class="feature-column-text">
+        <div class="feature-title"><a href="' . htmlspecialchars($feature['link']) . '">' . htmlspecialchars($feature['title']) .  '</a></div>
+        <div class="feature-description">' . $feature['description'] .  '</div>
+      </div>
+    </div>';
     $odd = !$odd;
   }
+
+  /* This clearfix could be realized alternatively by
+
+  .feature-row::after {
+    clear: both !important;
+  }
+
+  in CSS, but for unknown reason it fails.
+  */
+  $result .= '<div class="clearfix" />';
+
   return $result;
 }
