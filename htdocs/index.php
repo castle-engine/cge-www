@@ -137,7 +137,7 @@ define('CGE_SNAPSHOTS_VERSION', '7.0-alpha.snapshot');
     </div>
 </div>
 
-<h1 class="main-page-header">Comfortable visual designer and powerful code:</h1>
+<h1 class="main-page-header">Comfortable visual designer and powerful code</h1>
 
 <?php echo cge_features_summary('center'); ?>
 

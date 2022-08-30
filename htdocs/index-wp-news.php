@@ -69,7 +69,7 @@ if (!HTML_VALIDATION && (
         ));
 
         echo '<div class="news-row-wrapper">';
-            echo '<h1 class="main-page-header">Latest news:</h1>';
+            echo '<h1 class="main-page-header">Latest news</h1>';
             echo '<div class="row">';
 
             //global $post;

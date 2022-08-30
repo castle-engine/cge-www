@@ -361,14 +361,15 @@ div.main-cge-download {
     }
 }
 .main-page-header {
+    clear: both;
     border-top: thin solid #dcdcdc;
-    margin-bottom: 1em;
+    margin-bottom: 2em;
     padding-left: 15px;
     padding-top: 0.5em;
     font-size: larger;
     font-weight: bold;
+    text-align: center;
 }
-.main-page-header,
 .news-row-wrapper .row {
     width: 1200px;
     max-width: 100%;
@@ -977,12 +978,16 @@ div.download .download_platform {
 @media only screen and (min-width : 768px) {
   .feature-row {
     clear: both;
-    margin-left: 8.33333333%; /* like .col-sm-1 in bootstrap */
-    width: 82%; /* like 2x .col-sm-5 in bootstrap */
+
+    /* margin-left: 8.33333333%; */ /* like .col-sm-1 in bootstrap */
+    /* width: 82%; */ /* like 2x .col-sm-5 in bootstrap */
+    /*
+    background: #DDD;
+    display: table-row;
+    */
   }
   .feature-column-image,
   .feature-column-text {
-    position: relative;
     width: 50%;
   }
   .feature-column-text {
