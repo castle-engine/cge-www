@@ -944,9 +944,9 @@ div.download .download_platform {
   margin-top: 2em;
   font-weight: bold;
   text-align: center;
+  font-size: larger;
 }
 .feature-description {
-  font-size: smaller;
 }
 .feature-image {
   width: 100%;
@@ -983,9 +983,12 @@ div.download .download_platform {
   .feature-column-image,
   .feature-column-text {
     position: relative;
-    padding-right: 15px;
-    padding-left: 15px;
     width: 50%;
+  }
+  .feature-column-text {
+    padding-right: 2em;
+    padding-left: 2em;
+    text-align: center;
   }
   .feature-row-odd .feature-column-text {
     float: left;
