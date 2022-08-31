@@ -14,7 +14,7 @@
     array(
       new TocItem('Demos', 'demos'),
       new TocItem('X3D support', 'x3d_support'),
-      new TocItem('VRML 2.0 (97) support', 'vrml2_support'),
+      new TocItem('Differences from NURBS nodes defined in VRML 97 Amendment 1', 'vrml2_support'),
       new TocItem('Control points are in homogeneous coordinates', 'homogeneous_coordinates'),
     ));
 ?>
@@ -44,9 +44,9 @@ ignoring <code>trimmingContour</code>.</p>
 
 <?php echo $toc->html_section(); ?>
 
-<p>Also basic VRML 97 NURBS nodes (defined in <a href="http://www.web3d.org/documents/specifications/14772-1/V2.1/index.html"><i>VRML 97 Amendment 1</i> specification</a>) are handled: <code>NurbsSurface</code>, <code>NurbsCurve</code>, <code>NurbsPositionInterpolator</code>.</p>
+<p>Since 2022-09-01, we no longer support NURBS specifics defined in old <a href="http://www.web3d.org/documents/specifications/14772-1/V2.1/index.html"><i>VRML 97 Amendment 1</i> specification</a>. Instead you should use standard X3D NURBS nodes (even inside older VRML 2.0 / 97).
 
-<p>VRML 97 versions are similar, but not 100% the same as their X3D counterparts.</p>
+<p>Note that <i>VRML 97 Amendment 1</i> NURBS nodes are similar, but not 100% the same as their X3D counterparts. You should adjust the NURBS usage in your VRML files to X3D standard (or, even better, just upgrade your whole models to latest X3D standard). Differences:</p>
 
 <ul>
   <li><p>Only X3D surfaces have <code>xClosed</code> fields. We treat TRUE value there as "possibly closed", that is &mdash; if field indicates closed, we still check if limiting points match (X3D spec suggests we should do this, as far as I understand). This means X3D models may be loaded faster &mdash; if xClosed = FALSE, we do not even check if limiting points match.</p></li>

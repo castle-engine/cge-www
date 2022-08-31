@@ -623,10 +623,6 @@ formats to X3D or VRML.
     There are some different keywords between VRML 2 and X3D,
     <!--(and only X3D has XML encoding),-->
     but generally X3D is simply a superset of everything that VRML 2 has.
-    The only slightly more involved conversion is done for NURBS nodes
-    (<code>NurbsCurve</code>, <code>NurbsSurface</code> in VRML 2,
-    <code>NurbsPatchSurface</code> in X3D, <code>NurbsPositionInterpolator</code>)
-    as <a href="https://castle-engine.io/x3d_implementation_nurbs.php#section_vrml2_support">these nodes are not compatible between VRML 2 and X3D</a>.
 </ul>
 
 <p>You can also change the X3D encoding (from classic to XML or the other way

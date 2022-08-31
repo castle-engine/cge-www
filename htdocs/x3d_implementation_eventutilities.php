@@ -43,9 +43,6 @@ Don Brutzman!</p>
 <?php echo x3d_node_link('BooleanSequencer'); ?>,<br>
 <?php echo x3d_node_link('IntegerSequencer'); ?>.
 
-<p>You may also want to look at related <?php echo a_href_page_hashlink(
-'<code>Toggler</code> node extension', 'x3d_extensions', 'section_ext_toggler'); ?>.</p>
-
 <?php
   x3d_status_footer();
 ?>
