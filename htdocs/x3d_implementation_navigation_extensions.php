@@ -11,7 +11,6 @@
       new TocItem('Control head bobbing (<code>KambiNavigationInfo.headBobbing*</code> fields)', 'ext_head_bobbing'),
       new TocItem('Customize headlight (<code>KambiNavigationInfo.headlightNode</code>)', 'ext_headlight'),
       new TocItem('Specify blending sort (<code>NavigationInfo.blendingSort</code>)', 'ext_blending_sort'),
-      new TocItem('Specify octree properties (node <code>KambiOctreeProperties</code>, various fields <code>octreeXxx</code>)', 'ext_octree_properties'),
       new TocItem('DEPRECATED: Force VRML time origin to be 0.0 at load time (<code>KambiNavigationInfo.timeOriginAtLoad</code>)', 'ext_time_origin_at_load'),
       new TocItem('DEPRECATED: Fields <code>direction</code> and <code>up</code> and <code>gravityUp</code> for <code>PerspectiveCamera</code>, <code>OrthographicCamera</code> and <code>Viewpoint</code> nodes', 'ext_cameras_alt_orient'),
     ));
@@ -255,23 +254,6 @@ will be used for headlight.
  -->
 </ul>
 
-<p><i>History</i>: We used to configure headlight by different,
-specialized node. This is still parsed but ignored in new versions:
-
-<?php
-  echo node_begin('KambiHeadLight : X3DChildNode');
-  $node_format_fd_name_pad = 20;
-  echo
-  node_field('SFFloat', '[in,out]', 'ambientIntensity', '0', '[0.0, 1.0]') .
-  node_field('SFVec3f', '[in,out]', 'attenuation'     , '1 0 0', '[0, infinity)') .
-  node_field('SFColor', '[in,out]', 'color'           , '1 1 1', '[0, 1]') .
-  node_field('SFFloat', '[in,out]', 'intensity'       , '1', '[0, 1]') .
-  node_field('SFBool', '[in,out]', 'spot'            , 'FALSE') .
-  node_field('SFFloat', '[in,out]', 'spotDropOffRate' , 0) .
-  node_field('SFFloat', '[in,out]', 'spotCutOffAngle' , '&pi;/4') .
-  node_end();
-?>
-
 <?php echo $toc->html_section(); ?>
 
 <?php
@@ -288,120 +270,11 @@ See <?php api_link('TBlendingSort', 'CastleScene.html#TBlendingSort'); ?>.
 
 <?php echo $toc->html_section(); ?>
 
-<?php
-echo castle_thumbs(array(
-  array('filename' => "octree_hello_world_shadow.png", 'titlealt' => 'Octree visualization'),
-));
-?>
-
-<p>Like most 3D engines, <i>Castle Game Engine</i> uses a smart
-tree structure to handle collision detection in arbitrary 3D worlds.
-The structure used in our engine is the <i>octree</i>, with a couple
-of special twists to handle dynamic scenes. See
-<a href="<?php echo page_url('vrml_engine_doc/output/xsl/html/chapter.octree.html'); ?>">documentation
-chapter "octrees" for more explanation</a>.</p>
-
-<p>There are some limits that determine how fast the octree is constructed,
-how much memory does it use,
-and how fast can it answer collision queries. While our programs have
-sensible and tested defaults hard-coded, it may be useful (or just
-interesting for programmers) to test other limits &mdash; this is
-what this extension is for.</p>
-
-<p><i>In all honesty, I (Michalis) do not
-expect this extension to be commonly used... It allows you to
-tweak an important, but internal, part of the engine. For most normal people,
-this extension will probably look like an uncomprehensible black magic.
-And that's Ok, as the internal defaults used in our engine really
-suit (almost?) all practical uses.</i></p>
-
-<p>If the above paragraph didn't scare you, and you want to know more
-about octrees in our engine: besides
-<a href="<?php echo page_url('vrml_engine_doc/output/xsl/html/chapter.octree.html'); ?>">documentation
-chapter "octrees"</a> you can
-also take a look at the (source code and docs) of the
-<?php api_link('TCastleSceneCore.Spatial', 'CastleSceneCore.TCastleSceneCore.html#Spatial'); ?> property.
-
-<p>A new node:
-
-<?php echo node_begin("KambiOctreeProperties : X3DNode");
-  $node_format_fd_type_pad = 5;
-  $node_format_fd_name_pad = 20;
-  $node_format_fd_def_pad = 6;
-
-  echo
-  node_field('SFInt32', '[]', "maxDepth", "-1", "must be &gt;= -1") .
-  node_field('SFInt32', '[]', "leafCapacity", "-1", "must be &gt;= -1") .
-  node_end();
-?>
-
-<p>Limit <code>-1</code> means to use the default value hard-coded in the program.
-Other values force the generation of octree with given limit.
-For educational purposes, you can make an experiment and try
-maxDepth = 0: this forces a one-leaf tree, effectively
-making octree searching work like a normal linear searching.
-You should see a dramatic loss of game speed on non-trivial models then.</p>
-
-<p>To affect the scene octrees you can place <code>KambiOctreeProperties</code>
-node inside <code>KambiNavigationInfo</code> node. For per-shape
-octrees, we add new fields to <code>Shape</code> node:</p>
-
-<?php echo node_begin("KambiNavigationInfo : NavigationInfo");
-  $node_format_fd_type_pad = 5;
-  $node_format_fd_name_pad = 25;
-  $node_format_fd_def_pad = 6;
-
-  echo
-  node_dots('all KambiNavigationInfo fields so far') .
-  node_field('SFNode', '[]', "octreeRendering", "NULL", "only KambiOctreeProperties node") .
-  node_field('SFNode', '[]', "octreeDynamicCollisions", "NULL", "only KambiOctreeProperties node") .
-  node_field('SFNode', '[]', "octreeVisibleTriangles", "NULL", "only KambiOctreeProperties node") .
-  node_field('SFNode', '[]', "octreeStaticCollisions", "NULL", "only KambiOctreeProperties node") .
-  node_end();
-?>
-
-<?php echo node_begin("X3DShapeNode (e.g. Shape)");
-  $node_format_fd_type_pad = 5;
-  $node_format_fd_name_pad = 25;
-  $node_format_fd_def_pad = 6;
-
-  echo
-  node_dots('all normal X3DShapeNode fields') .
-  node_field('SFNode', '[]', "octreeTriangles", "NULL", "only KambiOctreeProperties node") .
-  node_end();
-?>
-
-<p>See the API documentation for classes <code>TCastleSceneCore</code> and <code>TShape</code>
-for precise description about what each octree is.
-In normal simulation of dynamic 3D scenes,
-we use only <code>octreeRendering</code>, <code>octreeDynamicCollisions</code> and
-<code>Shape.octreeTriangles</code> octrees. Ray-tracers usually use
-<code>octreeVisibleTriangles</code>.</p>
-
-<p>We will use scene octree properties from the first bound
-<code>NavigationInfo</code> node (see VRML/X3D specifications
-about the rules for bindable nodes). If this node is not
-<code>KambiNavigationInfo</code>, or appropriate <code>octreeXxx</code> field
-is <code>NULL</code>, or appropriate field within <code>KambiOctreeProperties</code>
-is <code>-1</code>, then the default hard-coded limit will be used.
-
-<p>Currently, it's not perfectly specified what happens to octree limits
-when you bind other <code>[Kambi]NavigationInfo</code> nodes during the game.
-With current implementation, this <i>will</i> cause the limits to change,
-but they will be actually applied only when the octree will be rebuild
-&mdash; which may happen never, or only at some radical rebuild of
-VRML graph by other events. So if you have multiple
-<code>[Kambi]NavigationInfo</code> nodes in your world, I advice to
-specify in all of them exactly the same <code>octreeXxx</code> fields values.
-
-<?php echo $toc->html_section(); ?>
-
 <p>By default, VRML/X3D time origin is at <i>00:00:00 GMT January 1, 1970</i>
 and <code>SFTime</code> reflects real-world time (taken from your OS).
-<?php echo a_href_page('This is somewhat broken idea in my opinion',
-'x3d_time_origin_considered_uncomfortable'); ?>, unsuitable
-for normal single-user games. So you can change this by using
-<code>KambiNavigationInfo</code> node:
+<?php echo a_href_page('This is uncomfortable for single-user games (albeit I admit it is great for multi-user worlds)',
+'x3d_time_origin_considered_uncomfortable'); ?>.
+You can change this by using <code>KambiNavigationInfo</code> node:
 
 <?php
   echo node_begin('KambiNavigationInfo : NavigationInfo');

@@ -35,7 +35,6 @@ $toc = new TableOfContents(array(
   new TocItem('Mirror material (field <code>mirror</code> for <code>Material</code> node)', 'ext_material_mirror', 1),
   new TocItem('Customize headlight (<code>KambiNavigationInfo.headlightNode</code>)', 'ext_headlight', 1),
   new TocItem('Fields describing physical properties (Phong\'s BRDF) for <code>Material</code> node', 'ext_material_phong_brdf_fields', 1),
-  new TocItem('Specify octree properties (node <code>KambiOctreeProperties</code>, various fields <code>octreeXxx</code>)', 'ext_octree_properties', 1),
   new TocItem('Interpolate sets of colors (node <code>ColorSetInterpolator</code>)', 'ext_color_set_interpolator', 1),
 
   new TocItem('Extensions compatible with <i>InstantPlayer</i> from <i>InstantReality</i>', 'ext_avalon', 1),
@@ -77,7 +76,7 @@ $toc = new TableOfContents(array(
 
     <p><?php echo a_href_page('Our VRML/X3D demo models', 'demo_models'); ?> uses the <code>EXTERNPROTO</code> mechanism whenever possible, so that even demos of our extensions (mostly inside <code>castle_extensions/</code> subdirectories) should be partially handled by other VRML / X3D browsers.</p>
 
-    <p>Our extensions are identified by URN like "<code>urn:castle-engine.io:node:KambiOctreeProperties</code>". For compatibility, also deprecated "<code>urn:vrmlengine.sourceforge.net:node:KambiOctreeProperties</code>" is recognized.</p>
+    <p>Our extensions are identified by URN like "<code>urn:castle-engine.io:node:ShaderTexture</code>". For compatibility, also deprecated "<code>urn:vrmlengine.sourceforge.net:node:ShaderTexture</code>" is recognized.</p>
   </li>
 
   <li><p><a href="http://wdune.ourproject.org/">White dune</a> parses and allows to visually design nodes with our extensions.</p></li>
@@ -778,11 +777,6 @@ WWWInline { name "my_compressed_vrml_file.wrl.gz" }
     <p>These fields are used only by <i>path tracer</i> in
     <?php echo a_href_page("rayhunter", "rayhunter") ?> and
     <?php echo a_href_page("view3dscene", "view3dscene") ?>.
-
-<?php echo $toc->html_section(); ?>
-
-<p><?php echo a_href_page('<code>KambiOctreeProperties</code> docs are at the
-"Navigation component - extensions" page', 'x3d_implementation_navigation_extensions'); ?>.</p>
 
 <?php echo $toc->html_section(); ?>
 

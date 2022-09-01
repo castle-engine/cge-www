@@ -74,18 +74,6 @@ PROTO KambiTriangulation [
   Group { } # expand to nothing, just ignore this node if you can't handle it natively
 }
 
-PROTO KambiHeadLight [
-  inputOutput SFFloat     ambientIntensity      0           # [0.0, 1.0]
-  inputOutput SFVec3f     attenuation           1 0 0       # [0, infinity)
-  inputOutput SFColor     color                 1 1 1       # [0, 1]
-  inputOutput SFFloat     intensity             1           # [0, 1]
-  inputOutput SFBool      spot                  FALSE
-  inputOutput SFFloat     spotDropOffRate       0
-  inputOutput SFFloat     spotCutOffAngle       0.785398
-] {
-  Group { } # expand to nothing, just ignore this node if you can't handle it natively
-}
-
 PROTO KambiInline [
   # VRML 97 standard
   inputOutput      MFString  url           []
@@ -192,20 +180,6 @@ PROTO KambiNavigationInfo [
     bindTime              IS  bindTime
     isBound               IS  isBound
     transitionComplete    IS  transitionComplete
-  }
-}
-
-PROTO KambiOctreeProperties [
-  # Standard X3D for all X3DNode
-  inputOutput SFNode metadata NULL
-
-  # Actual extension fields added by Kambi
-  initializeOnly  SFInt32  maxDepth       -1
-  initializeOnly  SFInt32  leafCapacity   -1
-] {
-  # expand to nothing, just ignore this node if you can't handle it natively
-  Group {
-    metadata IS metadata
   }
 }
 
