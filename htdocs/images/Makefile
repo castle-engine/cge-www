@@ -76,12 +76,14 @@ gallery_size/%: original_size/%
 # ----------------------------------------------------------------------------
 # making feature_size
 
+FEATURE_SIZE=750x750
+
 feature_size/%: original_size/%
-	$(CONVERT) $< -geometry 600x600 $@
+	$(CONVERT) $< -geometry $(FEATURE_SIZE) $@
 feature_size/%.webp: original_size/%.png
-	$(CONVERT) $< -geometry 600x600 $@
+	$(CONVERT) $< -geometry $(FEATURE_SIZE) $@
 feature_size/%.webp: original_size/%.jpg
-	$(CONVERT) $< -geometry 600x600 $@
+	$(CONVERT) $< -geometry $(FEATURE_SIZE) $@
 
 # ----------------------------------------------------------------------------
 # making main_link_size
