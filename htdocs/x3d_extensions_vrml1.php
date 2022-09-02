@@ -45,24 +45,12 @@ $toc = new TableOfContents(array(
 
 <?php echo $toc->html_section(); ?>
 
-    <p>All lights have <code>ambientIntensity</code> field,
-    also defined exactly like in VRML 97. However, when reading VRML 1.0
-    files, we treat default value of <code>ambientIntensity</code>
-    as -1 (while VRML 97 specification gives 0). And when rendering,
-    we treat lights with <code>ambientIntensity &lt; 0</code> specially:
-    we treat them like <code>ambientIntensity</code> = <code>intensity</code>.
-    This way:
-    <ol>
-      <li>in VRML 1.0 when you specified <code>ambientIntensity</code>
-        value, or in VRML 97: <code>ambientIntensity</code> is treated
-        following VRML 97 specification. So rendered
-        light ambient color is <code>color</code> * <code>ambientIntensity</code>.
-      <li>in VRML 1.0 when you didn't specify <code>ambientIntensity</code>:
-        calculations are compatible with standard VRML 1.0 behavior
-        (although it was not really stated clearly in VRML 1.0 spec...).
-        So rendered light ambient color is
-        <code>color</code> * <code>intensity</code>.
-    </ol>
+    <p>All lights have <code>ambientIntensity</code> field, defined exactly like in X3D.
+
+    <p><i>Historic notes:</i> Before 2022-09-02 we had complicated handling of
+    <code>ambientIntensity</code> in VRML 1.0,
+    to allow <code>ambientIntensity</code> equal -1 in VRML 1.0 (meaning it is equal to <code>intensity</code>).
+    This is simplified now. <code>ambientIntensity</code> in VRML 1.0 behaves just like in X3D.
 
 <?php echo $toc->html_section(); ?>
 
