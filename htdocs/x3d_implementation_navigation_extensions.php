@@ -8,10 +8,10 @@
     array(
       new TocItem('Output events to generate camera matrix (<code>Viewpoint.camera*Matrix</code> events)', 'ext_viewpoint_camera_matrix'),
       new TocItem('Force vertical field of view (<code>Viewpoint.fieldOfViewForceVertical</code>)', 'ext_viewpoint_force_vertical_fov'),
-      new TocItem('Control head bobbing (<code>KambiNavigationInfo.headBobbing*</code> fields)', 'ext_head_bobbing'),
-      new TocItem('Customize headlight (<code>KambiNavigationInfo.headlightNode</code>)', 'ext_headlight'),
+      new TocItem('Control head bobbing (<code>NavigationInfo.headBobbing*</code> fields)', 'ext_head_bobbing'),
+      new TocItem('Customize headlight (<code>NavigationInfo.headlightNode</code>)', 'ext_headlight'),
       new TocItem('Specify blending sort (<code>NavigationInfo.blendingSort</code>)', 'ext_blending_sort'),
-      new TocItem('DEPRECATED: Force VRML time origin to be 0.0 at load time (<code>KambiNavigationInfo.timeOriginAtLoad</code>)', 'ext_time_origin_at_load'),
+      new TocItem('DEPRECATED: Force VRML time origin to be 0.0 at load time (<code>NavigationInfo.timeOriginAtLoad</code>)', 'ext_time_origin_at_load'),
       new TocItem('DEPRECATED: Fields <code>direction</code> and <code>up</code> and <code>gravityUp</code> for <code>PerspectiveCamera</code>, <code>OrthographicCamera</code> and <code>Viewpoint</code> nodes', 'ext_cameras_alt_orient'),
     ));
 ?>
@@ -117,14 +117,13 @@ This is common in FPS games.</p>
 
 <p>Using the extensions below you can tune (or even turn off)
 the head bobbing behavior. For this we add new fields to the
-<code>KambiNavigationInfo</code> node (introduced in the previous section,
-can be simply used instead of the standard <code>NavigationInfo</code>).</p>
+<code>NavigationInfo</code> node.</p>
 
 <?php
-  echo node_begin('KambiNavigationInfo : NavigationInfo');
+  echo node_begin('NavigationInfo');
   $node_format_fd_name_pad = 22;
   echo
-  node_dots('all normal NavigationInfo fields, and KambiNavigationInfo fields documented previously') .
+  node_dots('') .
   node_field('SFFloat', '[in,out]', 'headBobbing', '0.02') .
   node_field('SFFloat', '[in,out]', 'headBobbingTime', '0.5') .
   node_end();
@@ -160,17 +159,15 @@ echo castle_thumbs(array(
 ?>
 
 <p>You can configure the appearance of headlight by the <code>headlightNode</code>
-field of <code>KambiNavigationInfo</code> node.
-<code>KambiNavigationInfo</code> is just a replacement of standard
-<code>NavigationInfo</code>, adding some extensions specific to our engine.
+field of <code>NavigationInfo</code> node.
 
-<?php echo node_begin("KambiNavigationInfo : NavigationInfo");
+<?php echo node_begin("NavigationInfo");
   $node_format_fd_type_pad = 5;
   $node_format_fd_name_pad = 25;
   $node_format_fd_def_pad = 6;
 
   echo
-  node_dots('all KambiNavigationInfo fields so far') .
+  node_dots('') .
   node_field('SFNode', '[in,out]', "headlightNode", "NULL", "[X3DLightNode]") .
   node_end();
 ?>
@@ -274,13 +271,13 @@ See <?php api_link('TBlendingSort', 'CastleScene.html#TBlendingSort'); ?>.
 and <code>SFTime</code> reflects real-world time (taken from your OS).
 <?php echo a_href_page('This is uncomfortable for single-user games (albeit I admit it is great for multi-user worlds)',
 'x3d_time_origin_considered_uncomfortable'); ?>.
-You can change this by using <code>KambiNavigationInfo</code> node:
+You can change this by using <code>NavigationInfo</code> node:
 
 <?php
-  echo node_begin('KambiNavigationInfo : NavigationInfo');
+  echo node_begin('NavigationInfo');
   $node_format_fd_name_pad = 18;
   echo
-  node_dots('all normal NavigationInfo fields') .
+  node_dots('') .
   node_field('SFBool', '[]', 'timeOriginAtLoad', 'FALSE') .
   node_end();
 ?>

@@ -556,7 +556,7 @@ castle_thumbs(array(
   <li><p><b>Other new features and fixes</b>:</p>
     <ul>
       <li>X3D light source "global" field is correctly supported now.</li>
-      <li>You have much more options for customizing the headlight, by new <a href="https://castle-engine.io/x3d_extensions.php#section_ext_headlight">KambiNavigationInfo.headlightNode</a> extension. You can put any X3D light (directional, spot, point) there, and it will work.</li>
+      <li>You have much more options for customizing the headlight, by new <a href="https://castle-engine.io/x3d_extensions.php#section_ext_headlight">NavigationInfo.headlightNode</a> extension. You can put any X3D light (directional, spot, point) there, and it will work.</li>
       <li><a href="https://castle-engine.io/x3d_implementation_interpolation.php#section_vector_interpolator"><code>VectorInterpolator</code> extension</a> implemented to animate MFFloat sets, for example to animate <code>ElevationGrid.set_height</code>. <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/demo_models/animation_simple_interpolation_and_time/vector_interpolator.x3dv">Simple demo</a>.</li>
       <li><a href="https://castle-engine.io/x3d_implementation_interpolation.php#section_color_set_interpolator"><code>ColorSetInterpolator</code> extension</a> to animate MFColor (set of colors) fields.</li>
       <li><code>LineProperties</code> node implemented (<a href="https://castle-engine.io/x3d_implementation_shape.php">see Shape component support</a>).</li>
@@ -609,7 +609,7 @@ castle_thumbs(array(
 <ul>
   <li><p>All the lights, including headlight, are now correctly passed to the shader pipeline renderer. This means that using spot light as a headlight looks good now if you use <i>View-&gt;Shader-&gt;Enable For Everything</i>, the spot is calculated nicely.</p></li>
 
-  <li><p>You have much more options for customizing the headlight, by new <a href="https://castle-engine.io/x3d_extensions.php#section_ext_headlight">KambiNavigationInfo.headlightNode</a> extension. You can put any X3D light (directional, spot, point) there, and it will work.</p>
+  <li><p>You have much more options for customizing the headlight, by new <a href="https://castle-engine.io/x3d_extensions.php#section_ext_headlight">NavigationInfo.headlightNode</a> extension. You can put any X3D light (directional, spot, point) there, and it will work.</p>
 
     <p>Old <code>KambiHeadLight</code> node is deprecated and ignored now. It was exposing headlight in a way that was a little alien to other VRML/X3D lights, and is no longer comfortable to implement.</p></li>
 

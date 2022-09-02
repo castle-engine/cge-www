@@ -22,8 +22,8 @@ $toc = new TableOfContents(array(
   new TocItem('Override alpha channel detection (field <code>alphaChannel</code> for <code>ImageTexture</code>, <code>MovieTexture</code> and other textures)', 'ext_alpha_channel_detection', 1),
   new TocItem('Movies for <code>MovieTexture</code> can be loaded from images sequence', 'ext_movie_from_image_sequence', 1),
   new TocItem('Automatic processing of inlined content (node <code>KambiInline</code>)', 'ext_kambi_inline', 1),
-  new TocItem('DEPRECATED: Force VRML time origin to be 0.0 at load time (<code>KambiNavigationInfo.timeOriginAtLoad</code>)', 'ext_time_origin_at_load', 1),
-  new TocItem('Control head bobbing (<code>KambiNavigationInfo.headBobbing*</code> fields)', 'ext_head_bobbing', 1),
+  new TocItem('DEPRECATED: Force VRML time origin to be 0.0 at load time (<code>NavigationInfo.timeOriginAtLoad</code>)', 'ext_time_origin_at_load', 1),
+  new TocItem('Control head bobbing (<code>NavigationInfo.headBobbing*</code> fields)', 'ext_head_bobbing', 1),
   new TocItem('Executing compiled-in code on Script events (<code>compiled:</code> Script protocol)', 'ext_script_compiled', 1),
   new TocItem('CastleScript (<code>castlescript:</code> Script protocol)', 'ext_castlescript', 1),
   new TocItem('DEPRECATED: Precalculated radiance transfer (<code>radianceTransfer</code> in all <code>X3DComposedGeometryNode</code> nodes)', 'ext_radiance_transfer', 1),
@@ -33,7 +33,7 @@ $toc = new TableOfContents(array(
   new TocItem('VRML files may be compressed by gzip', 'ext_gzip', 1),
   new TocItem('DEPRECATED: Fields <code>direction</code> and <code>up</code> and <code>gravityUp</code> for <code>PerspectiveCamera</code>, <code>OrthographicCamera</code> and <code>Viewpoint</code> nodes', 'ext_cameras_alt_orient', 1),
   new TocItem('Mirror material (field <code>mirror</code> for <code>Material</code> node)', 'ext_material_mirror', 1),
-  new TocItem('Customize headlight (<code>KambiNavigationInfo.headlightNode</code>)', 'ext_headlight', 1),
+  new TocItem('Customize headlight (<code>NavigationInfo.headlightNode</code>)', 'ext_headlight', 1),
   new TocItem('Fields describing physical properties (Phong\'s BRDF) for <code>Material</code> node', 'ext_material_phong_brdf_fields', 1),
   new TocItem('Interpolate sets of colors (node <code>ColorSetInterpolator</code>)', 'ext_color_set_interpolator', 1),
 
@@ -818,8 +818,8 @@ WWWInline { name "my_compressed_vrml_file.wrl.gz" }
     <?php echo node_begin("BlendMode");
 
       echo
-      node_field('SFString', '[in,out]', "srcFactor", "&quot;src_alpha&quot;", "[none, zero, one, dst_color, src_color, one_minus_dst_color, one_minus_src_color, src_alpha, one_minus_src_alpha, dst_alpha, one_minus_dst_alpha, src_alpha_saturate, constant_color, one_minus_constant_color, constant_alpha, one_minus_constant_alpha]") .
-      node_field('SFString', '[in,out]', "destFactor", "&quot;one_minus_src_alpha&quot;", "[none, zero, one, dst_color, src_color, one_minus_dst_color, one_minus_src_color, src_alpha, one_minus_src_alpha, dst_alpha, one_minus_dst_alpha, src_alpha_saturate, constant_color, one_minus_constant_color, constant_alpha, one_minus_constant_alpha]") .
+      node_field('SFString', '[in,out]', "srcFactor", "&quot;src_alpha&quot;", "[zero, one, dst_color, src_color, one_minus_dst_color, one_minus_src_color, src_alpha, one_minus_src_alpha, dst_alpha, one_minus_dst_alpha, src_alpha_saturate, constant_color, one_minus_constant_color, constant_alpha, one_minus_constant_alpha]") .
+      node_field('SFString', '[in,out]', "destFactor", "&quot;one_minus_src_alpha&quot;", "[zero, one, dst_color, src_color, one_minus_dst_color, one_minus_src_color, src_alpha, one_minus_src_alpha, dst_alpha, one_minus_dst_alpha, src_alpha_saturate, constant_color, one_minus_constant_color, constant_alpha, one_minus_constant_alpha]") .
       node_field('SFColor', '[in,out]', "color", "1 1 1", "") .
       node_field('SFFloat', '[in,out]', "colorTransparency", "0", "") .
       node_end();

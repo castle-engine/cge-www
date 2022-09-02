@@ -11,7 +11,7 @@ idea of time origin ("January 1, 1970") in VRML / X3D is uncomfortable</b>.
 <i>Castle Game Engine</i> complies with VRML/X3D standard in this regard anyway,
 although you can change it
 by using <?php echo a_href_page_hashlink(
-  'our extension <code>KambiNavigationInfo.timeOriginAtLoad</code>',
+  'our extension <code>NavigationInfo.timeOriginAtLoad</code>',
   'x3d_extensions',
   'section_ext_time_origin_at_load'); ?>.</p>
 
@@ -87,7 +87,7 @@ ROUTE MyTimeSensor.elapsedTime TO ... # this starts from zero and grows'); ?>
 
     <p>That's why view3dscene allows VRML/X3D author to
     <?php echo a_href_page_hashlink(
-    'change VRML/X3D time origin by <code>KambiNavigationInfo.timeOriginAtLoad</code>',
+    'change VRML/X3D time origin by <code>NavigationInfo.timeOriginAtLoad</code>',
     'x3d_extensions',
     'section_ext_time_origin_at_load'); ?>.
     This allows you to use <code>startTime = 0</code> predictably.
@@ -97,7 +97,7 @@ ROUTE MyTimeSensor.elapsedTime TO ... # this starts from zero and grows'); ?>
     <p>It allows to simply write:
 
     <?php echo vrmlx3d_highlight(
-'KambiNavigationInfo { timeOriginAtLoad TRUE }
+'NavigationInfo { timeOriginAtLoad TRUE }
 DEF MyTimeSensor TimeSensor { loop TRUE }
 ROUTE MyTimeSensor.time TO ... # this starts from zero and grows'); ?>
 
@@ -142,7 +142,7 @@ and events processing". (For multi-player games over the network,
 real-world time or some other server time may be more appropriate indeed.)
 Actually this is exactly done
 when <?php echo a_href_page_hashlink(
-  'our extension <code>KambiNavigationInfo.timeOriginAtLoad = TRUE</code>',
+  'our extension <code>NavigationInfo.timeOriginAtLoad = TRUE</code>',
   'x3d_extensions',
   'section_ext_time_origin_at_load'); ?>.
  This also means that time-dependent node with all fields set as default

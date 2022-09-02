@@ -46,7 +46,7 @@ It is supported, see the details below.
 follows the X3D standard. So "time = 0" means "January 1, 1970".
 But it can be changed
 by <?php echo a_href_page_hashlink(
-'our extension <code>KambiNavigationInfo.timeOriginAtLoad</code>',
+'our extension <code>NavigationInfo.timeOriginAtLoad</code>',
 'x3d_extensions',
 'section_ext_time_origin_at_load'); ?>.</p>
 

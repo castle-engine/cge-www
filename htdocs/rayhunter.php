@@ -481,10 +481,6 @@ and Monte Carlo path tracing.
     By default
     <code>--octree-max-depth</code>=< ?php echo RAYHUNTER_DEF_OCTREE_MAX_DEPTH; ? > and
     <code>--octree-leaf-capacity</code>=< ?php echo RAYHUNTER_DEF_OCTREE_LEAF_CAPACITY; ? >.
-    You can also specify octree propeties inside VRML/X3D file:
-    use <code>KambiNavigationInfo.octreeVisibleTriangles</code>
-    (see <?php echo a_href_page_hashlink('octree properties extension',
-    'x3d_extensions', 'section_ext_octree_properties'); ?>).
 
     <!-- Niniejsze drzewo ósemkowe nie zawsze będzie absolutnie optymalne,
     ale zazwyczaj będzie naprawdę dobre i nie będzie zajmowało zbyt dużo
@@ -509,10 +505,10 @@ and Monte Carlo path tracing.
     in some cases (e.g. <code>SpotLight</code> focus is specified using a different
     way and <code>ambientIntensity</code> is not available in standard VRML 1.0).
 
-    <p>We handle all VRML light nodes &mdash; <code>DirectionalLight</code>,
+    <p>We handle all X3D light nodes &mdash; <code>DirectionalLight</code>,
     <code>SpotLight</code> and <code>PointLight</code>. Also the headlight
     is used, configurable by <code>NavigationInfo.headlight</code>
-    and <?php echo a_href_page_hashlink('KambiNavigationInfo.headlightNode',
+    and <?php echo a_href_page_hashlink('NavigationInfo.headlightNode',
     'x3d_extensions', 'section_ext_headlight'); ?>.
 
     <p>For <code>&lt;recursion-depth&gt;</code> equal zero we use only
