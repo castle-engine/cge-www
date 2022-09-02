@@ -967,6 +967,9 @@ div.download .download_platform {
     margin-top: 1.5em;
     margin-bottom: 1.5em;
   }
+  .feature-title {
+    margin-top: 0.5em;
+  }
   .feature-description {
     padding-bottom: 1em;
     padding-left: 1em;
@@ -976,6 +979,9 @@ div.download .download_platform {
 
 /* Desktop view: two columns */
 @media only screen and (min-width : 768px) {
+  .feature-title {
+    margin-top: 2em;
+  }
   .feature-row {
     clear: both;
 
