@@ -212,6 +212,8 @@ $castle_sitemap = array(
        since it may be time-consuming (requires reading large $news table). */
   ),
 
+  'doc/features' => array('title' => 'Features'),
+
   'news' => array('title' => 'News',
     'url' => page_url('wp/'),
     /* The 'news' menu is a parent menu for
@@ -518,8 +520,6 @@ $castle_sitemap = array(
 
   // Do not show, for now we focus on Patreon funding.
   // 'donate' => array('title' => 'Donate'),
-
-  'doc/features' => array('title' => 'Features'),
 
   'gallery' => array('title' => 'Gallery',
     'dropdown' => array(
