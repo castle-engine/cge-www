@@ -818,15 +818,15 @@ WWWInline { name "my_compressed_vrml_file.wrl.gz" }
     <?php echo node_begin("BlendMode");
 
       echo
-      node_field('SFString', '[in,out]', "srcFactor", "&quot;src_alpha&quot;", "[zero, one, dst_color, src_color, one_minus_dst_color, one_minus_src_color, src_alpha, one_minus_src_alpha, dst_alpha, one_minus_dst_alpha, src_alpha_saturate, constant_color, one_minus_constant_color, constant_alpha, one_minus_constant_alpha]") .
-      node_field('SFString', '[in,out]', "destFactor", "&quot;one_minus_src_alpha&quot;", "[zero, one, dst_color, src_color, one_minus_dst_color, one_minus_src_color, src_alpha, one_minus_src_alpha, dst_alpha, one_minus_dst_alpha, src_alpha_saturate, constant_color, one_minus_constant_color, constant_alpha, one_minus_constant_alpha]") .
+      node_field('SFString', '[in,out]', "srcFactor", "&quot;src_alpha&quot;", "[ZERO, ONE, DST_COLOR, SRC_COLOR, ONE_MINUS_DST_COLOR, ONE_MINUS_SRC_COLOR, SRC_ALPHA, ONE_MINUS_SRC_ALPHA, DST_ALPHA, ONE_MINUS_DST_ALPHA, SRC_ALPHA_SATURATE, CONSTANT_COLOR, ONE_MINUS_CONSTANT_COLOR, CONSTANT_ALPHA, ONE_MINUS_CONSTANT_ALPHA]") .
+      node_field('SFString', '[in,out]', "destFactor", "&quot;one_minus_src_alpha&quot;", "[ZERO, ONE, DST_COLOR, SRC_COLOR, ONE_MINUS_DST_COLOR, ONE_MINUS_SRC_COLOR, SRC_ALPHA, ONE_MINUS_SRC_ALPHA, DST_ALPHA, ONE_MINUS_DST_ALPHA, SRC_ALPHA_SATURATE, CONSTANT_COLOR, ONE_MINUS_CONSTANT_COLOR, CONSTANT_ALPHA, ONE_MINUS_CONSTANT_ALPHA]") .
       node_field('SFColor', '[in,out]', "color", "1 1 1", "") .
       node_field('SFFloat', '[in,out]', "colorTransparency", "0", "") .
       node_end();
     ?>
 
     <p>An example in classic VRML/X3D encoding of
-    using this to achieve non-standard destFactor="one"
+    using this to achieve non-standard destFactor="ONE"
     (this sometimes makes scene too bright, but it does not require sorting
     of transparent objects):
 
@@ -836,8 +836,8 @@ WWWInline { name "my_compressed_vrml_file.wrl.gz" }
       transparency 0.5
     }
     blendMode BlendMode {
-      srcFactor "src_alpha" # this srcFactor is the default actually
-      destFactor "one"
+      srcFactor "SRC_ALPHA" # this srcFactor is the default actually
+      destFactor "ONE"
     }
   }
 </pre>
