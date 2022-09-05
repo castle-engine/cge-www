@@ -2003,7 +2003,7 @@ function cge_features_summary($align)
       'link' => 'features#_data_formats',
       'title' => 'Lots of ways to define data',
       'description' => 'Use 3D models, 2D animations, sprite sheets. Great integration with authoring tools like <a href="blender">Blender</a> or shops like Sketchfab thanks to using open standards like glTF and X3D.',
-      'image' => 'view3dscene_outlines.png',
+      'image' => 'gltf_village_outlines.png',
       'image_titlealt' => 'Village scene with outlines in glTF from Sketchfab ( https://sketchfab.com/3d-models/ftm-0970f30574d047b1976ba0aa6f2ef855 by Luis Fernandez )',
     ),
     array(

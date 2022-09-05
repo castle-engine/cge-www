@@ -138,8 +138,8 @@ You can link:creating_data_model_formats.php[use various formats to define 3D an
 We support standard model format from Khronos: link:gltf[glTF].
 
 cgeimg::block[
-  view3dscene_gltf_helmet.png|Helmet glTF sample,
-  view3dscene_outlines.png|Village scene with outlines from Sketchfab\, https://sketchfab.com/3d-models/ftm-0970f30574d047b1976ba0aa6f2ef855 by Luis Fernandez\, https://sketchfab.com/luyssport,
+  gltf_village_outlines.png|Village scene with outlines from Sketchfab\, https://sketchfab.com/3d-models/ftm-0970f30574d047b1976ba0aa6f2ef855 by Luis Fernandez\, https://sketchfab.com/luyssport,
+  gltf_helmet.png|Helmet from glTF (sample from Khronos),
   sketchfab_invincible.png|Invincible - Mark Grayson (3D model rendered using Castle Game Engine)\, https://sketchfab.com/3d-models/invincible-mark-grayson-698c1106da924ab1a26392247e697f79 \, by ASideOfChidori,
   sketchfab_cars.png|Cars 3D models from Sketchfab\, https://sketchfab.com/3d-models/pony-cartoon-885d9f60b3a9429bb4077cfac5653cf9 Pony Cartoon by Slava Z.\, https://sketchfab.com/3d-models/free-1975-porsche-911-930-turbo-8568d9d14a994b9cae59499f0dbed21e 1975 Porsche 911 (930) Turbo by Karol Miklas
 ]
@@ -257,6 +257,10 @@ Easily display link:using_images[display images] as user interface or in a viewp
 * link:creating_data_auto_generated_textures.php[Automatic texture compression and downscaling].
 
 == User interface components
+
+cgeimg::block[inspector_design.png|Inspector UI,ui_image.png|Images]
+
+// inspector_running.png|Inspector visible at runtime - removed, could be mistaken for editor
 
 * link:user_interface[User interface] library providing cross-platform UI controls that work on all platforms, like buttons, labels, images.
 * Their look can be adjusted to match the style of your game.
