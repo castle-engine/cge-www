@@ -1234,10 +1234,7 @@ function echo_castle_header_suffix($path, $enable_sidebar = true)
 
   if ($main_page) {
     $rendered .= '
-      <div class="banner-container">
-        <!--h1 class="main-title" style="position: absolute; left: 1em; top: 1em;">Castle Game Engine</h1-->
-        <img src="images/combined_cge_logo_game_2.png" style="width:100%" />
-      </div>';
+      <img class="banner" src="images/combined_cge_logo_game.png" />';
   }
 
   // make sure to start container-fluid for bootstrap container

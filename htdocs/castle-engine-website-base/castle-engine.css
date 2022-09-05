@@ -262,6 +262,11 @@ a.screenshot:hover img { border: 2pt solid #888; }
     line-height: 2em; /* override height to be smaller */
 }
 
+img.banner {
+    width: 100%;
+    margin-bottom: 1em;
+}
+
 .donate-photo {
     float: right;
     width: 300px;

@@ -17,7 +17,7 @@ castle_header('Castle Game Engine - Free open-source cross-platform 3D 2D game e
 ));
 ?>
 
-<h1 class="main-title">Castle Game Engine</h1>
+<!--h1 class="main-title">Castle Game Engine</h1-->
 
 <?php
 /* Tagline / slogan - super-important quick description of engine.
