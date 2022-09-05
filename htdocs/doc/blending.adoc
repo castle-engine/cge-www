@@ -51,7 +51,7 @@ By default (if cgeref:TAppearanceNode.AlphaChannel[] is `acAuto`) the engine loo
 
 Note that this auto-detection cannot be perfect in all cases. For example, the alpha channel detection at the image (cgeref:TEncodedImage.AlphaChannel[]) is a heuristic, with some alpha tolerance. And what happens when multiple textures are used, with different alpha channel? Again, the engine assumes something reasonable, but it may not be what you want. Also, if you use GLSL shader code to set/modify alpha value, then the engine doesn't know about it (in general, engine never parses your GLSL code).
 
-You can explicitly override this auto-detection using cgeref:TAppearanceNode.AlphaChannel[][] field. This makes sense when engine  doesn't do what you expect.
+You can explicitly override this auto-detection using cgeref:TAppearanceNode.AlphaChannel[] field. This makes sense when engine  doesn't do what you expect.
 
 * It can be set by Pascal code.
 * Or, when using X3D model, you can use https://castle-engine.io/x3d_implementation_shape_extensions.php#section_ext_alpha_channel[Apperance.alphaChannel] documentation).
