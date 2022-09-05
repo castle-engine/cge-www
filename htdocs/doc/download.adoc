@@ -1,9 +1,15 @@
-# Alternative ways to download and install
+# Download
 include::common.adoc[]
 
-While you can link:/[just download the latest engine from our webpage], we also support some alternative installation methods:
+== Download the engine for your system
 
-== Itch.io
+cge::download-engine[]
+
+NOTE: To build applications using the engine you also need to install a compiler. We recommend installing https://www.lazarus-ide.org/[Lazarus with FPC]. More information in the link:install[manual].
+
+== Alternative installation options
+
+=== Itch.io
 
 Head over to https://castle-engine.itch.io/castle-game-engine[Castle Game Engine on itch.io] to download the engine from Itch.io.
 
@@ -11,7 +17,7 @@ For extra comfort, use https://itch.io/app[itch.io app]. It's very nice and allo
 
 NOTE: This installs the latest _released_ engine version, like `7.0-alpha2`. Not a snapshot.
 
-== Arch Linux User Repository
+=== Arch Linux User Repository
 
 link:https://archlinux.org/[Arch Linux] users can install Castle Game Engine from link:https://wiki.archlinux.org/title/Arch_User_Repository[AUR (Arch User Repository)].
 
@@ -34,7 +40,7 @@ NOTE: This installs the latest engine version from https://github.com/castle-eng
 ////
 == Debian / Ubuntu packages
 
-Castle Game Engine is available in Debian and Ubuntu throught the official packages, albeit in slightly outdated versions.
+Castle Game Engine is available in Debian and Ubuntu through the official packages, albeit in slightly outdated versions.
 
 https://packages.debian.org/search?suite=sid&searchon=names&keywords=castle-game-engine
 ////

@@ -118,10 +118,8 @@ define('MAIN_PAGE_BASENAME', 'index');
 */
 $page_title = '';
 
-/* Poniższe zmienne są zainicjowane na domyślne wartości z chwilą włączenia
-   tego pliku. Jeśli chcesz zmienić
-   ich wartości to musisz to zrobić ręcznie przed wywołaniem jakiejkolwiek
-   innej funkcji z tego pliku (także common_header). */
+/* Default value of this variable.
+   Just override it after including this file. */
 $main_page = false;
 
 /* You can set this global variable before calling common_header.
@@ -355,8 +353,7 @@ function kambi_bootstrap()
 */
 function common_header($a_page_title, array $parameters = array())
 {
-  global $page_title, $main_page, $this_page_name,
-    $page_basename, $site_title, $castle_wordpress;
+  global $page_title, $this_page_name, $page_basename, $site_title, $castle_wordpress;
 
   $page_title = $a_page_title;
 
@@ -501,7 +498,7 @@ if ($castle_wordpress) {
 
 function common_footer($js_using_jquery = '')
 {
-  global $main_page, $castle_wordpress;
+  global $castle_wordpress;
 ?>
 
 <?php

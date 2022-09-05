@@ -101,7 +101,7 @@ define('PATREON_URL',         'https://patreon.com/castleengine');
 define('CGE_LATEST_DOWNLOAD', 'https://github.com/castle-engine/castle-engine/archive/snapshot.zip');
 
 // bump this each time you change castle-engine.css, to work with CloudFlare caching (or you can purge CloudFlare cache manually)
-define('CASTLE_ENGINE_CSS_VERSION', 35);
+define('CASTLE_ENGINE_CSS_VERSION', 36);
 
 define('TWITTER_HANDLE', 'castleengine'); // https://twitter.com/castleengine/
 
@@ -1181,8 +1181,10 @@ function echo_castle_header_suffix($path, $enable_sidebar = true)
     $github_ribbon = '';
   }
 
+  global $main_page;
+
   $rendered = '
-  <nav class="navbar navbar-default">
+  <nav class="navbar navbar-default ' . ($main_page?'navbar-main-page':'') . '">
     <div class="container-fluid">
       <!-- Uncomment this for toggable navbar -->
       <!--
@@ -1229,6 +1231,14 @@ function echo_castle_header_suffix($path, $enable_sidebar = true)
     $rendered .= '<div class="alert alert-warning preview-warning" role="alert"><strong>This is a preview!</strong> This is not the official <i>Castle Game Engine</i> website (<a href="' . CASTLE_PROD_URL . '">official website is here</a>). This is only a preview for developers, to see the next website before the release, and to see the documentation for the unstable engine version (from <a href="https://github.com/castle-engine/castle-engine">GitHub master</a>).</div>';
   }
   */
+
+  if ($main_page) {
+    $rendered .= '
+      <div class="banner-container">
+        <!--h1 class="main-title" style="position: absolute; left: 1em; top: 1em;">Castle Game Engine</h1-->
+        <img src="images/combined_cge_logo_game_2.png" style="width:100%" />
+      </div>';
+  }
 
   // make sure to start container-fluid for bootstrap container
   if (empty($castle_sidebar)) {
@@ -1898,7 +1908,13 @@ function castle_replace_asciidoctor_macros($contents)
 {
   $contents = preg_replace_callback('/cge::features-summary\[\]/',
     function ($matches) {
-      return cge_features_summary('center');
+      return cge_features_summary();
+    },
+    $contents);
+
+  $contents = preg_replace_callback('/cge::download-engine\[\]/',
+    function ($matches) {
+      return cge_download_engine();
     },
     $contents);
 
@@ -1980,7 +1996,7 @@ function castle_sources_notice()
   return $result;
 }
 
-function cge_features_summary($align)
+function cge_features_summary()
 {
   $features = array(
     array(
@@ -2054,7 +2070,7 @@ function cge_features_summary($align)
         </a>
       </div>
       <div class="feature-column-text">
-        <div class="feature-title"><a href="' . htmlspecialchars($feature['link']) . '">' . htmlspecialchars($feature['title']) .  '</a></div>
+        <h3 class="feature-title"><a href="' . htmlspecialchars($feature['link']) . '">' . htmlspecialchars($feature['title']) .  '</a></h3>
         <div class="feature-description">' . $feature['description'] .  '</div>
       </div>
     </div>';
@@ -2072,4 +2088,23 @@ function cge_features_summary($align)
   $result .= '<div class="clearfix" />';
 
   return $result;
+}
+
+function cge_download_engine()
+{
+  $snapshots_base = 'https://github.com/castle-engine/castle-engine/releases/download/snapshot/';
+  $snapshots_version = '7.0-alpha.snapshot';
+  return '
+    <div class="centered-download-wrapper">
+        <div class="download jumbotron main-cge-download">
+            <div class="download_platforms_list">
+                <div class="download_platform"><a class="btn btn-primary btn-lg" href="' . $snapshots_base . 'castle-engine-' . $snapshots_version . '-win64-x86_64.zip"><img src="' . CURRENT_URL . '/images/os_icons/win.png" alt="Windows (64-bit, x86_64)" width="64" height="64"><br> Windows<br>(x86_64)</a></div>
+                <div class="download_platform"><a class="btn btn-primary btn-lg" href="' . $snapshots_base . 'castle-engine-' . $snapshots_version . '-linux-x86_64.zip"><img src="' . CURRENT_URL . '/images/os_icons/linux.png" alt="Linux (64 bit, x86_64)" width="64" height="64"><br> Linux<br>(x86_64)</a></div>
+                <div class="download_platform"><a class="btn btn-primary btn-lg" href="' . $snapshots_base . 'castle-engine-' . $snapshots_version . '-linux-arm.zip"><img src="' . CURRENT_URL . '/images/os_icons/raspberry_pi.png" alt="Raspberry Pi (Linux Arm)" width="64" height="64"><br> Raspberry Pi<br>(Linux Arm)</a></div>
+                <div class="download_platform"><a class="btn btn-primary btn-lg" href="' . $snapshots_base . 'castle-engine-' .  $snapshots_version . '-darwin-x86_64.zip"><img src="' . CURRENT_URL . '/images/os_icons/macos.png" alt="macOS (Intel-based macs, 64-bit, x86_64)" width="64" height="64"><br> macOS<br>(x86_64)</a></div>
+                <div class="download_platform"><a class="btn btn-primary btn-lg" href="https://castle-engine.io/compiling_from_source.php"><img src="' . CURRENT_URL . '/images/os_icons/freebsd.png" alt="FreeBSD (Sources)" width="64" height="64"><br> FreeBSD<br>(Use the Source Luke)</a></div>
+                <div class="download_platform"><a class="btn btn-primary btn-lg" href="https://github.com/castle-engine/castle-engine/"><img src="' . CURRENT_URL . '/images/os_icons/github.png" alt="Source Code on GitHub" width="64" height="64"><br> Source Code<br>(GitHub)</a></div>
+            </div>
+        </div>
+    </div>';
 }
