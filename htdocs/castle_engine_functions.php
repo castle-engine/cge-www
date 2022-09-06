@@ -1233,12 +1233,17 @@ function echo_castle_header_suffix($path, $enable_sidebar = true)
   */
 
   if ($main_page) {
-    $rendered .= '
-      <div class="banner-container">
-        <img src="images/combined_cge_logo_game.png" alt="Castle Game Engine logo and editor" />
-        <img src="images/combined_cge_logo_game_2.png" alt="Castle Game Engine logo and Escape from the Universe game" />
-      </div>
-    ';
+    $banner_images = array(
+      array('src' => 'combined_cge_logo_game.png', 'alt' => 'Castle Game Engine logo and editor'),
+      array('src' => 'combined_cge_logo_game_2.png', 'alt' => 'Castle Game Engine logo and Escape from the Universe game'),
+    );
+    $rendered .= '<div class="banner-container">';
+    foreach ($banner_images as $banner_image) {
+      $rendered .= '<img src="images/' . $banner_image['src'] . '" alt="' .
+        $banner_image['alt'] . '" ' .
+        _castle_image_sizes('images/' . $banner_image['src']) . ' />';
+    }
+    $rendered .= '</div>';
   }
 
   // make sure to start container-fluid for bootstrap container
