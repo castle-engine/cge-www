@@ -3,6 +3,8 @@ global $castle_image_sizes;
 $castle_image_sizes = array(
 'images/castle_game_engine_icon_fit_in_square.png' => array('width' => 256, 'height' => 256),
 'images/castle_game_engine_icon.png' => array('width' => 256, 'height' => 256),
+'images/combined_cge_logo_game_2.png' => array('width' => 1500, 'height' => 563),
+'images/combined_cge_logo_game.png' => array('width' => 1500, 'height' => 563),
 'images/discourse_icon.png' => array('width' => 471, 'height' => 480),
 'images/doom_face.png' => array('width' => 48, 'height' => 58),
 'images/feature_size/2d_demo_editor.webp' => array('width' => 750, 'height' => 426),
