@@ -467,6 +467,10 @@ if ($castle_wordpress) {
 <!-- Colorbox -->
 <link href="<?php echo page_requisite('castle-engine-website-base/colorbox/example3/colorbox.css'); ?>" type="text/css" rel="stylesheet">
 
+<!-- slick carousel https://github.com/kenwheeler/slick/ -->
+<link rel="stylesheet" type="text/css" href="<?php echo page_requisite('castle-engine-website-base/node_modules/slick-carousel/slick/slick.css'); ?>"/>
+<link rel="stylesheet" type="text/css" href="<?php echo page_requisite('castle-engine-website-base/node_modules/slick-carousel/slick/slick-theme.css'); ?>"/>
+
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -511,9 +515,9 @@ function common_footer($js_using_jquery = '')
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins).
      Used also by colorbox. -->
-<script src="<?php echo page_requisite('castle-engine-website-base/js/jquery.min.js'); ?>" type="text/javascript"></script>
+<script src="<?php echo page_requisite('castle-engine-website-base/node_modules/jquery/dist/jquery.min.js'); ?>" type="text/javascript"></script>
 <!-- Include colorbox after jQuery is known -->
-<script src="<?php echo page_requisite('castle-engine-website-base/colorbox/jquery.colorbox-min.js'); ?>" type="text/javascript"></script>
+<script src="<?php echo page_requisite('castle-engine-website-base/node_modules/jquery-colorbox/jquery.colorbox-min.js'); ?>" type="text/javascript"></script>
 <script type="text/javascript">
   jQuery('a.screenshot').colorbox({opacity: 0.9, rel:'screenshot', maxWidth:'90%', maxHeight:'90%'});
   // For AsciiDoctor images with role=screnshot
@@ -521,6 +525,20 @@ function common_footer($js_using_jquery = '')
 </script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="<?php echo page_requisite('castle-engine-website-base/bootstrap/js/bootstrap.min.js'); ?>"></script>
+
+<!-- slick carousel https://github.com/kenwheeler/slick/ -->
+<script type="text/javascript" src="<?php echo page_requisite('castle-engine-website-base/node_modules/slick-carousel/slick/slick.min.js'); ?>"></script>
+<script type="text/javascript">
+jQuery(".banner-container").slick({
+  arrows: false,
+  dots: true,
+  autoplay: true,
+  fade: true,
+  pauseOnFocus: false,
+  pauseOnHover: false
+//  autoplaySpeed: 2000
+});
+</script>
 
 <?php
 if ($js_using_jquery) {
