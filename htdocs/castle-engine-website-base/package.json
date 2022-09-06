@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "bootstrap": "^3.4.1",
     "jquery-colorbox": "^1.6.4",
     "slick-carousel": "^1.8.1"
   }

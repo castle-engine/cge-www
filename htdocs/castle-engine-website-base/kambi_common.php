@@ -460,12 +460,12 @@ if ($castle_wordpress) {
 ?>
 
 <!-- Bootstrap -->
-<link href="<?php echo page_requisite('castle-engine-website-base/bootstrap/css/bootstrap.min.css'); ?>" rel="stylesheet">
+<link href="<?php echo page_requisite('castle-engine-website-base/node_modules/bootstrap/dist/css/bootstrap.min.css'); ?>" rel="stylesheet">
 <!-- Bootstrap theme -->
-<link href="<?php echo page_requisite('castle-engine-website-base/bootstrap/css/bootstrap-theme.min.css'); ?>" rel="stylesheet">
+<link href="<?php echo page_requisite('castle-engine-website-base/node_modules/bootstrap/dist/css/bootstrap-theme.min.css'); ?>" rel="stylesheet">
 
 <!-- Colorbox -->
-<link href="<?php echo page_requisite('castle-engine-website-base/colorbox/example3/colorbox.css'); ?>" type="text/css" rel="stylesheet">
+<link href="<?php echo page_requisite('castle-engine-website-base/node_modules/jquery-colorbox/example3/colorbox.css'); ?>" type="text/css" rel="stylesheet">
 
 <!-- slick carousel https://github.com/kenwheeler/slick/ -->
 <link rel="stylesheet" type="text/css" href="<?php echo page_requisite('castle-engine-website-base/node_modules/slick-carousel/slick/slick.css'); ?>"/>
@@ -524,7 +524,7 @@ function common_footer($js_using_jquery = '')
   jQuery('.screenshot a').colorbox({opacity: 0.9, rel:'screenshot', maxWidth:'90%', maxHeight:'90%'});
 </script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="<?php echo page_requisite('castle-engine-website-base/bootstrap/js/bootstrap.min.js'); ?>"></script>
+<script src="<?php echo page_requisite('castle-engine-website-base/node_modules/bootstrap/dist/js/bootstrap.min.js'); ?>"></script>
 
 <!-- slick carousel https://github.com/kenwheeler/slick/ -->
 <script type="text/javascript" src="<?php echo page_requisite('castle-engine-website-base/node_modules/slick-carousel/slick/slick.min.js'); ?>"></script>
