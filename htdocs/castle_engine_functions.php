@@ -1237,13 +1237,16 @@ function echo_castle_header_suffix($path, $enable_sidebar = true)
       array('src' => 'combined_cge_logo_game.png', 'alt' => 'Castle Game Engine logo and editor'),
       array('src' => 'combined_cge_logo_game_2.png', 'alt' => 'Castle Game Engine logo and Escape from the Universe game'),
     );
-    $rendered .= '<div class="banner-container">';
+    $rendered .= '<div class="banner-container">' . "\n";
+    $style = ''; // first image is not hidden
     foreach ($banner_images as $banner_image) {
       $rendered .= '<img src="images/' . $banner_image['src'] . '" alt="' .
         $banner_image['alt'] . '" ' .
-        _castle_image_sizes('images/' . $banner_image['src']) . ' />';
+        _castle_image_sizes('images/' . $banner_image['src']) . ' ' .
+        $style . ' />' . "\n";
+      $style = 'style="display: none"'; // subsequent images are hidden initially, this makes better look when loading
     }
-    $rendered .= '</div>';
+    $rendered .= '</div>' . "\n";
   }
 
   // make sure to start container-fluid for bootstrap container

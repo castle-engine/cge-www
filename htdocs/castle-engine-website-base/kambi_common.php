@@ -529,6 +529,7 @@ function common_footer($js_using_jquery = '')
 <!-- slick carousel https://github.com/kenwheeler/slick/ -->
 <script type="text/javascript" src="<?php echo page_requisite('castle-engine-website-base/node_modules/slick-carousel/slick/slick.min.js'); ?>"></script>
 <script type="text/javascript">
+$(".banner-container img").css("display", "block");
 jQuery(".banner-container").slick({
   arrows: false,
   dots: true,
