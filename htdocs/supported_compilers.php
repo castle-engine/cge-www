@@ -115,7 +115,7 @@ to hang on to FPC releases available in distros.
     <p>or using <a href="https://castle-engine.io/fpcupdeluxe">FpcUpDeluxe</a>
   <li>
     <p>or using our <a href="docker">Docker image</a>. Although by default we use latest stable FPC inside our Docker image, but you can activate FPC unstable using <code>source /usr/local/fpclazarus/bin/setup.sh trunk</code> inside the container. The <b>FPC trunk revision most tested is the one listed in <a href="https://github.com/castle-engine/castle-engine-cloud-builds-tools/blob/master/Dockerfile.no-cge#L149">the Docker build script</a></b>.
-    <!-- (see instructions <a href="cloud_builds_jenkins">at Jenkins docs</a> how to change FPC version from stable to unstable). -->
+    <!-- (see instructions <a href="jenkins">at Jenkins docs</a> how to change FPC version from stable to unstable). -->
 </ul>
 
 <p>Of course please remember that this FPC version is unstable, and it changes with every commit to FPC. We cannot test or guarantee that CGE works with an arbitray FPC development revision. But we welcome testing such FPC. PRs to make CGE work with latest FPC trunk are also welcome (unless there's a temporary bug in FPC which should be rather reported to FPC devs).

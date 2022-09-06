@@ -54,6 +54,7 @@ Redirect "/b.php" "https://github.com/castle-engine/cge-www/blob/master/htdocs/d
 Redirect "/bezier_curves.php" "/curves_tool"
 Redirect "/blender.php" "/blender"
 Redirect "/blender_stuff.php" "/blender"
+Redirect "/cloud_builds_jenkins" "/jenkins"
 Redirect "/changes_log.php" "/news.php"
 Redirect "/changes_log_feed.php" "http://gplusrss.com/rss/feed/c3dd3cd5ec6725d92b8b5b0633b2daa852f29730ecc6b"
 Redirect "/creating_data_3d.php" "/creating_data_export.php"

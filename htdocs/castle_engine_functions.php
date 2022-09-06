@@ -338,7 +338,7 @@ $castle_sitemap = array(
             'sub' => array(
               'doc/github_actions' => array('title' => 'GitHub Actions (automatic builds if your project lives on GitHub)'),
               'doc/docker' => array('title' => 'Docker (easily get CGE, compilers, texture compression tools)'),
-              'doc/cloud_builds_jenkins' => array('title' => 'Jenkins (automatic cloud builds for CGE projects)'),
+              'doc/jenkins' => array('title' => 'Jenkins (automatic builds of CGE projects)'),
             )
           ),
           'manual_miscellaneous' => array('title' => 'Miscellaneous',

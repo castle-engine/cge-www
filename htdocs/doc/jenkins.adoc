@@ -1,0 +1,195 @@
+# Jenkins
+include::common.adoc[]
+
+== Introduction
+
+https://www.jenkins.io/[Jenkins] is an open-source automation server, that can be used to automatically test and build any application, including applications written using _Castle Game Engine_.
+
+== Jenkins features, from the perspective of game developers using CGE
+
+There are lots of possibilities how you can use Jenkins in your projects:
+
+* Automatically build and package your application when you make a commit.
+
+* Publish the builds in any way you want. You can connect Jenkins to upload the builds to _Steam_, _Google Play_ etc.
+
+* Browse the build history of your project, see which commits failed/succeeded, download the packages from each build, see compilation logs and more. You can also get automatic email notification when a build fails.
+
+* Run automated tests of your application (e.g. you can use `FpcUnit` testing framework, built in FPC).
+
+* Automatically generate API docs of your code (e.g. using https://www.freepascal.org/docs-html/current/fpdoc/fpdoc.html[FpDoc] or https://pasdoc.github.io/[PasDoc]).
+
+* Use Docker images. In particular you can use link:docker[Castle Game Engine Docker image] to have a ready FPC + Lazarus build environment to build for multiple systems (Linux, Windows, Android) using CGE build tool and FPC. The FPC version can be switched, so you can check whether your software compiles with all FPC versions that matter to you.
+
+* The builds can be done using CGE https://castle-engine.io/build_tool[build tool]. As a simple tool operated from the command-line, it nicely works as part of Jenkins job execution.
+
+== Setting up Jenkins
+
+=== Installation
+
+You can install https://www.jenkins.io/[Jenkins] on your own host.
+
+You can buy your own machine e.g. on https://www.vultr.com/?ref=7133327[Vultr] or any other hosting service that provides you with a Linux machine with full `root` access over `ssh`. Some hosting services may even offer ready hosts with _Jenkins_ preinstalled.
+
+NOTE: If you buy Vultr host through this https://www.vultr.com/?ref=7133327[referral link] we will get a small commission which we'll treat as a CGE donation. Thank you!
+
+We recommend that you install at least these plugins in Jenkins:
+
+* https://plugins.jenkins.io/workflow-aggregator/[Pipeline]. This allows to define jobs using `Jenkinsfile` files in your repository, which is IMHO the most comfortable and flexible way to control Jenkins. This plugin will be suggested during the Jenkins installation.
+
+* https://plugins.jenkins.io/docker-workflow/[Docker Pipeline]. This allows to use _Docker_ within Jenkins Pipeline jobs, in particular to use link:docker[Castle Game Engine Docker image] that gives you a great environment to build CGE applications.
+
+=== Create a project
+
+You can make Jennkins observe a particular repository (using GIT, SVN or other version control). We recommend setting Jenkins to scan all the branches in the indicated repository for `Jenkinsfile` files, and execute the builds for all branches where `Jenkinsfile` is present. To do this, just create _"Multibranch Pipeline"_.
+
+Or, you can go one step further, and observe whole _GitHub organization_, with all projects within. To do this, create _"Organization Folder"_.
+
+cgeimg::block[jenkins_project_types.png|Jenkins project types]
+
+There is not much to configure within the project initially. Just point Jenkins to the correct version control (GIT, SVN...) URL and provide any necessary credentials. Jenkins will scan the branches within the repository for `Jenkinsfile` and execute them. (Don't worry if you didn't commit `Jenkinsfile` yet; you can commit it later and Jenkins will detect it.)
+
+=== Basic Jenkinsfile
+
+`Jenkinsfile` is a file that you should commit to your repository and it will configrue the build job.
+
+Below is a basic `Jenkinsfile` that
+
+* uses link:docker[Castle Game Engine Docker image],
+* uses CGE link:build_tool[build tool] within the Docker image,
+* builds and packages for Windows and Linux using a series of `castle-engine package ...` commands,
+* archives (saves for later download) the results, i.e. the `xxx.zip`, `xxx.tar.gz` produced builds,
+* makes email notification in case things go wrong.
+
+Go ahead, adjust it and commit it as `Jenkinsfile` to the top level directory of your repository.
+
+NOTE: In case of SVN, `Jenkinsfile` should be right within the `trunk/`, or `branches/xxx/` subdirectories of the repository. IOW, each branch can have a (potentially different) `Jenkinsfile`.
+
+Sample `Jenkinsfile`:
+
+[source,groovy]
+----
+/* -*- mode: groovy -*-
+  Configure how to run the job in Jenkins.
+  See https://castle-engine.io/jenkins .
+*/
+
+pipeline {
+  agent {
+    docker {
+      image 'kambi/castle-engine-cloud-builds-tools:cge-unstable'
+    }
+  }
+  stages {
+    stage('Build Desktop') {
+      steps {
+        sh 'castle-engine auto-generate-textures'
+        sh 'castle-engine package --os=win64 --cpu=x86_64 --verbose'
+        sh 'castle-engine package --os=win32 --cpu=i386 --verbose'
+        sh 'castle-engine package --os=linux --cpu=x86_64 --verbose'
+      }
+    }
+  }
+  post {
+    success {
+      archiveArtifacts artifacts: 'my_game*.tar.gz,my_game*.zip,my_game*.apk'
+    }
+    regression {
+      mail to: 'me@example.org',
+        subject: "[jenkins] Build started failing: ${currentBuild.fullDisplayName}",
+        body: "See the build details on ${env.BUILD_URL}"
+    }
+    failure {
+      mail to: 'me@example.org',
+        subject: "[jenkins] Build failed: ${currentBuild.fullDisplayName}",
+        body: "See the build details on ${env.BUILD_URL}"
+    }
+    fixed {
+      mail to: 'me@example.org',
+        subject: "[jenkins] Build is again successfull: ${currentBuild.fullDisplayName}",
+        body: "See the build details on ${env.BUILD_URL}"
+    }
+  }
+}
+----
+
+=== Jenkinsfile examples
+
+You can find many `Jenkinsfile` examples in our repositories:
+
+* https://github.com/castle-engine/castle-game/blob/master/Jenkinsfile[Jenkinsfile in castle-game].
+* https://github.com/castle-engine/wyrd-forest/blob/master/Jenkinsfile["Wyrd Forest" Jenkinsfile].
+* https://github.com/castle-engine/castle-engine/blob/master/Jenkinsfile["Castle Game Engine" Jenkinsfile] -- trivially run a number of tests.
+
+=== Download and test the artifacts
+
+Once the build is done, on the Jenkins page you can see the statistics about recent builds (how long they took, whether they succeeded) and you can download _artifacts_ of your project. The _"artifacts"_ are just files that you consider the "output" from the build process. In case of CGE games, it is usually a couple of archives like `my_game-0.1.0-linux-x86_64.tar.gz`, `my_game-0.1.0-win32-i386.zip`, `my_game-0.1.0-win64-x86_64.zip`, produced by the https://castle-engine.io/build_tool#package[build tool `package` command].
+
+You can also see the logs for each build. If a build compilation failed, these logs will contain the information "why". The _logs are the first thing to consult_ if you want to know what happened (and what failed) during the build.
+
+=== Building release APK for Android, providing credentials to Android keystore
+
+If you have a keystore to build release APK versions, you can use it with Jenkins. (See link:android_faq[Android FAQ: Signing a release APK / AAB] how to create such keystore.)
+
+We recommend storing the keystore and the passwords to access it using Jenkins _credentials_ (this is a way to store secrets (needed to access something) in Jenkins).
+
+The add a Jenkins stage like this to build a release APK:
+
+[source,groovy]
+----
+stage('Build Mobile') {
+  steps {
+    withCredentials([
+      file(credentialsId: 'android-my-keystore', variable: 'android_my_keystore'),
+      string(credentialsId: 'android-my-keystore-alias', variable: 'android_my_keystore_alias'),
+      string(credentialsId: 'android-my-keystore-alias-password', variable: 'android_my_keystore_alias_password'),
+      string(credentialsId: 'android-my-keystore-store-password', variable: 'android_my_keystore_store_password')
+    ]) {
+      sh '''
+      echo "key.store=${android_my_keystore}" > AndroidSigningProperties.txt
+      echo "key.alias=${android_my_keystore_alias}" >> AndroidSigningProperties.txt
+      echo "key.store.password=${android_my_keystore_store_password}" >> AndroidSigningProperties.txt
+      echo "key.alias.password=${android_my_keystore_alias_password}" >> AndroidSigningProperties.txt
+      '''
+      sh 'castle-engine package --target=android --verbose'
+    }
+  }
+}
+----
+
+=== Customize FPC and Lazarus version used
+
+By default, building uses the latest stable FPC version (currently 3.2.2), as advised by CGE. To switch to another FPC/Lazarus version, add a command like `+source /usr/local/fpclazarus/bin/setup.sh 3.2.0 && ...+` or `+source /usr/local/fpclazarus/bin/setup.sh trunk && ...+` at the beginning of the shell command. Like this:
+
+[source,groovy]
+----
+pipeline {
+  agent { docker { image 'castle-engine-cloud-builds-tools:cge-stable' } }
+  stages {
+    stage('Build') {
+      steps {
+        sh 'source /usr/local/fpclazarus/bin/setup.sh trunk && castle-engine package --os=linux --cpu=x86_64'
+        sh 'source /usr/local/fpclazarus/bin/setup.sh trunk && castle-engine package --os=win32 --cpu=i386'
+        sh 'source /usr/local/fpclazarus/bin/setup.sh trunk && castle-engine package --os=win64 --cpu=x86_64'
+        sh 'source /usr/local/fpclazarus/bin/setup.sh trunk && castle-engine package --target=android'
+      }
+    }
+  }
+}
+----
+
+As you can see, each build can use a different FPC version, if you want to.
+
+=== Jenkinsfile documentation
+
+For more information about `Jenkinsfile`, and Jenkins with Pipeline plugin (which is what is happening here), see
+
+* https://jenkins.io/doc/pipeline/tour/hello-world/[Jenkins Pipeline documentation].
+* https://jenkins.io/doc/book/pipeline/syntax/[Jenkinsfile syntax]. We advise using the "declarative" syntax of `Jenkinsfile`, as it's just simpler. All the examples on this page use it.
+* https://jenkins.io/doc/pipeline/steps/[All possible "steps" (think: "commands you can use") in the Jenkinsfile].
+
+== Castle Game Engine Jenkins server
+
+We maintain a https://jenkins.castle-engine.io/[Jenkins for Castle Game Engine] server. It is used for _Castle Game Engine_ development, running a lot of CGE tests and builds on various slaves (Linux, Windows, macOS, Raspberry Pi). Michalis grants access to it. If you are a regular CGE contributor and you would like such access, link:mailto:michalis@castle-engine.io[send an email to Michalis Kamburelis].
+
+NOTE: In the past we considered even making this server public. That is, make it available to anyone who makes open-source applications using CGE (for free) or even closed-source (if you are on a specific Patreon tier). But this idea was abandoned -- as 100% securely isolating multiple projects managed by a single Jenkins master is not easy, and maintaining multiple isolated Jenkins master machines is just too costly for us to provide such service.

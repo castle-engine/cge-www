@@ -13,7 +13,7 @@ Using the Docker image gives you a stable environment where we have:
 * https://castle-engine.io/creating_data_auto_generated_textures.php[Texture compression tools useful with CGE] from NVidia and PowerVR
 * https://github.com/pasdoc/pasdoc/wiki[PasDoc]
 
-This Docker image is used by our link:cloud_builds_jenkins[Cloud Builds (Jenkins)] . It can also be used on your local computer. Instead of downloading FPC, CGE, Android SDK and NDK etc., you only have to get the Docker image.
+This Docker image can be used by continuous integration systems like link:jenkins[Jenkins] and link:github_actions[GitHub Actions]. It can also be used on your local computer. Instead of downloading FPC, CGE, Android SDK and NDK etc., you only have to get the Docker image.
 
 == Getting the Docker, basic Docker concepts and links
 
@@ -146,6 +146,17 @@ If you plan to update CGE often, but would still like to use Docker image (e.g. 
 This way, there is no need to update the Docker image often. The Docker image `+...:cge-none+` doesn't change often. So you can use this
 Docker image just to have the Android tools, texture compression tools etc.
 ====
+
+////
+Already implied by above descriptions
+=== Docker image versions
+
+You can use 1 of 3 possible Docker images we provide:
+
+* `kambi/castle-engine-cloud-builds-tools:cge-stable` - stable CGE version.
+* `kambi/castle-engine-cloud-builds-tools:cge-unstable` - unstable CGE version (latest code from GitHub that passed automatic tests).
+* `kambi/castle-engine-cloud-builds-tools:cge-none` - no CGE inside the container (this is useful for jobs that don't need CGE, or that test CGE itself).
+////
 
 == Sources
 

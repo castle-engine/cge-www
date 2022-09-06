@@ -27,10 +27,10 @@ $page_name = $_GET['page'];
     }
 
   But now we allow
-    page=/cloud_builds_jenkins
+    page=/jenkins
   or even
-    page=/~michalis/castle-engine/cloud_builds_jenkins
-  and it is equivalent to page=cloud_builds_jenkins.
+    page=/~michalis/castle-engine/jenkins
+  and it is equivalent to page=jenkins.
   This makes our rewrite rule in .htaccess OK. */
 $slash_pos = strrpos($page_name, '/');
 if ($slash_pos !== FALSE) {
