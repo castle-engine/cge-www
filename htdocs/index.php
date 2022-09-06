@@ -13,7 +13,7 @@ castle_header('Castle Game Engine - Free open-source cross-platform 3D 2D game e
   /* Not useful for Google anymore, but maybe other search engines use them. */
   'meta_keywords' => 'game engine, glTF, X3D, Spine, Pascal, cross platform, editor, Nintendo Switch, Linux, Windows, macOS, Android, iOS, PBR, shadows, shaders',
   'canonical_url' => CASTLE_PROD_URL,
-  'social_share_image' => CASTLE_PROD_URL . 'images/castle_game_engine_icon.png',
+  'social_share_image' => CASTLE_PROD_URL . 'images/combined_cge_logo_game.png',
 ));
 ?>
 
