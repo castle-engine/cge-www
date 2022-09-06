@@ -1,7 +1,7 @@
 === Jetpack - WP Security, Backup, Speed, & Growth ===
 Contributors: automattic, adamkheckler, adrianmoldovanwp, aduth, akirk, allendav, alternatekev, andy, annamcphee, annezazu, apeatling, arcangelini, azaozz, batmoo, barry, beaulebens, biskobe, blobaugh, bjorsch, brbrr, cainm, cena, cfinke, chaselivingston, chellycat, clickysteve, csonnek, danielbachhuber, davoraltman, daniloercoli, delawski, designsimply, dllh, drawmyface, dsmart, dzver, ebinnion, egregor, eliorivero, enej, eoigal, erania-pinnera, ethitter, fgiannar, gcorne, georgestephanis, gibrown, goldsounds, hew, hugobaeta, hypertextranch, iammattthomas, iandunn, jblz, jasmussen, jeffgolenski, jeherve, jenhooks, jenia, jessefriedman, jgs, jkudish, jmdodd, joanrho, johnjamesjacoby, jshreve, kbrownkd, keoshi, koke, kraftbj, lancewillett, leogermani, lschuyler, macmanx, martinremy, matt, matveb, mattwiebe, maverick3x6, mcsf, mdawaffe, mdbitz, MichaelArestad, migueluy, mikeyarce, mkaz, nancythanki, nickmomrik, obenland, oskosk, pento, professor44, rachelsquirrel, rdcoll, ryancowles, richardmuscat, richardmtl, robertbpugh, roccotripaldi, samhotchkiss, samiff, scarstocea, scottsweb, sdixon194, sdquirk, sermitr, simison, stephdau, tmoorewp, tyxla, Viper007Bond, westi, yoavf, zinigor
 Tags: Security, backup, Woo, malware, scan, spam, CDN, search, social
-Stable tag: 11.2
+Stable tag: 11.3
 Requires at least: 5.9
 Requires PHP: 5.6
 Tested up to: 6.0
@@ -242,42 +242,49 @@ Jetpack Backup can do a full website migration to a new host, migrate theme file
 4. Promote your newest posts, pages, and products across your social media channels.
 
 == Changelog ==
-### 11.2 - 2022-08-02
+### 11.3 - 2022-09-06
 #### Enhancements
-- Blocks: enable Jetpack block collection for the native editor block inserter (on self hosted Jetpack sites).
-- Connection: make sure pre-existing settings are respected on plugin activation.
-- Form Block: add a lock to the contact form submit button.
-- Native block inserter: only display blocks under a Jetpack heading if the host app is WordPress.
-- Podcast Player: add new actions to make it possible for users to set up code that runs for podcast fetches.
-- VideoPress Block (beta): mutiple UI enhancements including error messaging, markup, layout and behavior. Currently a JETPACK_BETA_BLOCKS feature.
-
+- Dashboard: add new card to highlight options available to WordPress agencies.
+- General: enable the Post List package in Jetpack to display extra information alongside each post in wp-admin dashboard Posts screen.
+- Google Analytics: add support for the DNT sent by the browser.
+- GSuite blocks (beta): add blocks for Google document embeds. Currently a JETPACK_BETA_BLOCKS feature.
+- Payments block: add a new `useWidth` hook to control the width settings of a block.
+- Payments block: add new container block to support using multiple inline Payment Button blocks.
+- Payments block: ensure the plan name field will update according to the other options selected, unless it's already been modified.
+- Payments Block: include 'earn' patterns in the block UI.
+- Payments block: use Block API v2 to simplify the overall markup.
+- VideoPress Block (beta): add support to pause/resume upload.
+- VideoPress block (beta): add support to pause/resume video upload.
 
 #### Improved compatibility
-- Admin UI: add h1 page headings for better screen reader navigation.
-- Custom Post Types: change Nova functions to public to re-allow hooking.
+- Backup: add disclaimer text and link to the backup product card that links to an FAQ on the Pricing page.
+- Jetpack: register VideoPress block from its editor.js file.
+- Jetpack: register VideoPress Video block from Jetpack plugin.
+- Notifications: do not attempt to display the Notifications panel when 3rd-party cookies are disabled in the browser.
+- Podcast Player: add support for podcast player to have per-feed cache timeouts.
+- Podcast Player block: set default RSS feed cache timeout for podcasts to 1 hour.
+- Publicize: replace Publicize with Jetpack Social.
+- SEO Tools: avoid conflicts with SEOPress and SEOKEY plugins.
+- VideoPress: minify videopress-token-bridge.
+- VideoPress: rely on videopress package for XMLRPC initialization.
+- VideoPress Block (beta): move VideoPress REST endpoint to package.
 
 #### Bug fixes
-- Admin menu: display the translations for the plan name.
-- Comments: avoid PHP Notice when using Jetpack's Comment form feature when your site is no longer properly connected to WordPress.com.
-- Connection: fix Jetpack redirect after registration.
-- Form Block: prevent error notice when processing submission from 404 page.
-- Form block: fix Checkbox Group option color.
-- Form block: preserve line breaks in form submissions.
-- Gathering Twitter Threads: ensure that only contributors can access the endpoint to unroll threads.
-- Masterbar: ensure that the WordPress.com Add Ons menu item doesn't display on Jetpack-connected sites.
-- Masterbar: fix All Posts dashboard redirect issue when switching between classic and default editor views.
-- Product Descriptions: fix search price on Search Product Description by accounting for sale coupons and ensuring the correct JP Search tier is shown.
-- Related Posts: avoid PHP warnings when visiting AMP post views.
-- Sharing: ensure that sharing buttons are not displayed for excerpts.
-- Sharing: hide button information in Blog Posts block in editor.
-- Slideshow Block: override container display to prevent a gap between slideshow and contents.
-- Slideshow Block: support wide and full alignment options.
-- Stats: allow custom user role stats settings to be properly recognized and saved.
-- Stats: fix dashboard widget form name to allow form choices to be saved.
-- Subscribe block: fix support for allowed HTML tags in submit button.
-- Subscriptions: format the number of subscribers displayed in the block editor's controls.
-- VideoPress: avoid PHP notices when inserting videos that miss some metadata.
-- VideoPress: fix bug when getting the video preview of the VideoPress block.
+- Calendly block: update the embed options link.
+- Carousel: ensure carousel still opens when clicking on a gallery image that has a figcaption with a link inside.
+- Carousel: ensure that clicks on rounded images in galleries will load a custom URL when it is specified.
+- Carousel: improve the logic for adding carousel data so we can handle reusable blocks correctly.
+- Carousel: remove errant '<' character being displayed.
+- Carousel: resolve a PHP warning when non-attachments are processed.
+- Dashboard: avoid displaying a blank dashboard page for editors when the site owner has an unused license.
+- Dashboard Widget: do not show the stats configuration links when the feature is inactive.
+- Subscriptions Block: fix input and submit button coupling for Safari when split style is selected.
+- Subscriptions Block: fix subscriber count display when padding dimension is added.
+- Subscriptions Block: remove inline styles from subscription notification.
+- Tiled Gallery: ensure the link to the original image URL is used when linking to media files.
+- VideoPress: fix a js error when closing a non-VideoPress video modal in the Media Library.
+- VideoPress: remove inclusion of modules/videopress/utility-functions.php from Jetpack shortcodes module to prevent errors.
+- WordPress.com REST API: add missing site owner id to single site REST API response.
 
 --------
 
