@@ -76,8 +76,8 @@ cd castle-engine/tools/build-tool/
       <ol>
         <li>Open in Lazarus the following packages from CGE repository, for each press <i>"Compile"</i> button in the package window.
           <ol>
-            <li><code>src/vampyre_imaginglib/src/Packages/VampyreImaginePackage.lpk</code>
-            <li><code>src/vampyre_imaginglib/src/Packages/VampyreImaginePackageExt.lpk</code>
+            <li><code>src/vampyre_imaginglib/src/Packages/VampyreImagingPackage.lpk</code>
+            <li><code>src/vampyre_imaginglib/src/Packages/VampyreImagingPackageExt.lpk</code>
             <li><code>packages/castle_base.lpk</code>
           </ol>
         <li>Then open in Lazarus the project <code>castle-engine/tools/build-tool/castle-engine.lpi</code> and use <i>"Compile"</i> command (in the <i>"Run"</i> menu).
