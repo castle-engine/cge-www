@@ -336,9 +336,10 @@ $castle_sitemap = array(
           'doc/control_on_form' => array('title' => 'Use engine inside Lazarus form using TCastleControl'),
           'manual_automatic_builds' => array('title' => 'Automatic Builds (Continuous Integration and Delivery)',
             'sub' => array(
-              'doc/github_actions' => array('title' => 'GitHub Actions (automatic builds if your project lives on GitHub)'),
+              'doc/github_actions' => array('title' => 'GitHub Actions (automatic builds for GitHub projects)'),
+              'doc/gitlab_ci' => array('title' => 'GitLab CI/CD (automatic builds for GitLab projects)'),
               'doc/docker' => array('title' => 'Docker (easily get CGE, compilers, texture compression tools)'),
-              'doc/jenkins' => array('title' => 'Jenkins (automatic builds of CGE projects)'),
+              'doc/jenkins' => array('title' => 'Jenkins (automatic builds by your Jenkins server)'),
             )
           ),
           'manual_miscellaneous' => array('title' => 'Miscellaneous',

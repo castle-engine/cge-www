@@ -1,0 +1,26 @@
+# GitLab CI/CD
+include::common.adoc[]
+
+== Introduction
+
+You can use https://docs.gitlab.com/ee/ci/[GitLab CI/CD] to automatically build your project, if you commit it to https://gitlab.com/[GitLab]. You can use the provided for free https://docs.gitlab.com/ee/ci/runners/runners_scope.html#shared-runners[GitLab shared runners] or set up your own runner.
+
+== Example project
+
+We host https://gitlab.com/castle-engine/test-gitlab-ci/[test-gitlab-ci project on GitLab] specifically for the purpose of demonstrating this feature. You can open https://gitlab.com/castle-engine/test-gitlab-ci/-/pipelines[CI/CD -> Pipelines] to see the jobs it executed, their status, download their artifacts etc.
+
+NOTE: You don't need to be logged into GitLab for this.
+
+== Usage
+
+1. Download this file: https://gitlab.com/castle-engine/test-gitlab-ci/-/raw/master/.gitlab-ci.yml[.gitlab-ci.yml] and place it in the top-level directory of your repository.
++
+NOTE: The `.gitlab-ci.yml` filename starts with a dot, this means it is a hidden file (by convention) on Unix.
+
+2. Commit and push it, and watch the _"CI/CD"_ subsection of your project get populated with _"Pipelines"_ and _"Jobs"_. You can download the artifacts for each job.
+
+== Using the Docker image from GitLab CI/CD
+
+The `.gitlab-ci.yml` linked above *does not* rely on our link:docker[Castle Game Engine Docker image] because the disk space on https://docs.gitlab.com/ee/ci/runners/runners_scope.html#shared-runners[GitLab shared runners] seems too small to unpack it. We instead download FPC and build CGE at each run.
+
+But if you use your own runners, disk space may not be a problem. If you want you can change the YAML file to use Docker images (to have more power and build easily e.g. also for Android). Simply uncomment the section in that file marked as `# Commented out version using Docker image`.
