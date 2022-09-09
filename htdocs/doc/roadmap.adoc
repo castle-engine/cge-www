@@ -159,6 +159,14 @@ But it is something I think about for the future, and it may explain some of my 
 
 link:how_to_render_2d[See also here.]
 
+## MDL and/or MaterialX integration
+
+- MDL, https://developer.nvidia.com/rendering-technologies/mdl-sdk
+
+- MaterialX, https://materialx.org/
+
+We can make 3D modeling of realistically-looking stuff much easier by reusing libraries of realistic materials.
+
 ## USD – Universal Scene Description support
 
 Explore possibility to support https://graphics.pixar.com/usd/release/index.html[USD – Universal Scene Description] format as a first-class citizen, alongside glTF and X3D, in CGE.
