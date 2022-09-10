@@ -318,9 +318,9 @@ It avoids useless drawing of the other side of the faces.
 
 <ul>
   <li>Use texture compression (makes GPU memory usage more efficient).
-    You can do it very easily by <?php echo a_href_page('using <i>material properties</i> and auto-compressing the textures using our build tool', 'creating_data_material_properties'); ?>.
+    You can do it <?php echo a_href_page('using <i>material properties</i> and auto-compressing the textures using our build tool', 'creating_data_auto_generated_textures'); ?>.
   <li>Scale down textures on low-end devices (desktops and mobiles).
-    You can do it at loading, by <?php echo a_href_page('using <i>material properties</i> and auto-downscaling the textures using our build tool', 'creating_data_material_properties'); ?>,
+    You can do it at loading <?php echo a_href_page('using <i>material properties</i> and auto-downscaling the textures using our build tool', 'creating_data_auto_generated_textures'); ?>,
     see <?php api_link('TextureLoadingScale', 'CastleMaterialProperties.html#TextureLoadingScale'); ?>.
     Or you can do it at runtime, by <?php api_link('GLTextureScale', 'CastleGLImages.html#GLTextureScale'); ?>.
     Both of these approaches have their strengths, and can be combined.

@@ -44,7 +44,7 @@ Special file/directory names:
 +
 We filter out some common development files like `*.xcf` and `*.blend*` from the data. See also <include> and <exclude> directives (in link:project_manifest[CastleEngineManifest.xml]) to add/remove specific files from the package. These allow to add/remove files both inside and outside of data.
 
-* The `data/material_properties.xml` file, if found, is assumed to be used for https://castle-engine.io/creating_data_material_properties.php[material properties configuration]. The subcommand `castle-engine auto-generate-textures` will use it to know which textures should be compressed and downscaled. At runtime, load this file to MaterialProperties.URL to actually use the compressed and downscaled versions.
+* The `data/material_properties.xml` file, if found, is assumed to be used for https://castle-engine.io/creating_data_auto_generated_textures.php[material properties configuration]. The subcommand `castle-engine auto-generate-textures` will use it to know which textures should be compressed and downscaled. At runtime, load this file to MaterialProperties.URL to actually use the compressed and downscaled versions.
 
 ////
 
@@ -226,7 +226,7 @@ Use this instead of "compile" only if there's some good reason you don't want to
 
 === auto-generate-textures
 
-Create GPU-compressed versions of textures, and downscaled textures, for the textures mentioned in <auto_generated_textures> inside the file `data/material_properties.xml`. Such GPU-compressed and downscaled textures can then be automatically used in your application. See https://castle-engine.io/creating_data_material_properties.php for instructions how to use it and example `data/material_properties.xml`.
+Create GPU-compressed versions of textures, and downscaled textures, for the textures mentioned in `<auto_generated_textures>` inside the file `data/material_properties.xml`. Such GPU-compressed and downscaled textures can then be automatically used in your application. See https://castle-engine.io/creating_data_auto_generated_textures.php[instructions how to use it and example `data/material_properties.xml`].
 
 If the output textures are already created, they are updated only if the output timestamp is earlier than input. This usually allows to automatically do only the necessary work, similar to how Makefiles operate. To force recreating all textures, just call `castle-engine auto-generate-clean --all` first.
 

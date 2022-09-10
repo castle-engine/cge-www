@@ -16,10 +16,12 @@ $toc = new TableOfContents(
 <?php echo $toc->html_toc(); ?>
 <?php echo $toc->html_section(); ?>
 
-<p>Using the <a href="creating_data_material_properties.php">material_properties.xml file</a>
-and <a href="https://castle-engine.io/build_tool">the castle-engine build tool</a>
-you can automatically generate and use different versions of your textures.
-The generated texture versions may be:
+<p>You can create a <code>material_properties.xml</code> file
+and use it to automatically generate different versions of your textures.
+At runtime, the same <code>material_properties.xml</code> file will cause the engine
+to load compressed (or downscaled) textures instead of the original ones.
+
+<p>The generated texture versions may be:
 
 <ul>
   <li>compressed for the GPU using algorithms like
@@ -33,7 +35,7 @@ The generated texture versions may be:
 which often has a significant impact on the performance.
 
 <ol>
-  <li><p>Prepare the <code>material_properties.xml</code> file as <a href="#section_example">shown below</a>.
+  <li><p>Prepare the <code>material_properties.xml</code> file as <a href="#section_example">shown below</a>. Place it in the <code>data</code> subdirectory of your project.
 
   <li><p>In code, load it, using:
 
@@ -43,21 +45,21 @@ which often has a significant impact on the performance.
 ...
 MaterialProperties.URL := \'castle-data:/material_properties.xml\';'); ?>
 
-    <p>As mentioned in the <a href="creating_data_material_properties.php">chapter introducing material_properties.xml</a>,
-    it's best to do it as early as possible, for example
-    at the beginning of <code>Application.OnInitialize</code> (if you
+    <p>You should do this early, to affect all texture loading.
+    For example at the beginning of <code>Application.OnInitialize</code> (if you
     use <code>CastleWindow</code>) or <code>TForm.OnCreate</code>
     (if you use <code>CastleControl</code> in Lazarus).
 
   <li><p>After changing your game data,
-    always call <code>castle-engine auto-generate-textures</code> .
+    always use the <i>Run -&gt; Auto-Generate Textures</i>
+    menu item in CGE editor,
+    or invoke the build tool on the command-line like this: <code>castle-engine auto-generate-textures</code>.
     It automatically rebuilds only the necessary textures,
     so it's usually simplest to just call it always before running your game,
     during development.
 
-    <p>This requires that you have <a href="https://castle-engine.io/build_tool">the build tool</a>
-    available on your $PATH. To make the GPU texture compression work,
-    you also need to install some <a href="#section_texture_compression">required external programs</a>.
+    <p>To make the GPU texture compression work,
+    you may need to also install some <a href="#section_texture_compression">required external programs</a>.
 
   <li><p>That's it. Auto-generated GPU compressed textures will be automatically
     used by the engine, instead of the original ones.
@@ -204,15 +206,6 @@ Texture compression format names are <?php api_link('the same as TTextureCompres
 
     <include path="gui/*" recursive="True" />
   </auto_generated_textures>
-
-  <!--
-    Note:
-    You can still also use <property> elements
-    as documented in the previous chapter:
-
-  <property texture_base_name="grass_texture" footsteps_sound="grass_footsteps">
-  </property>
-  -->
 </properties>'); ?>
 
 <?php echo $toc->html_section(); ?>
