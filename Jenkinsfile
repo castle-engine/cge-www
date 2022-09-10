@@ -12,12 +12,19 @@ pipeline {
   stages {
     stage('Code Samples') {
       steps {
-        sh 'cd htdocs/code-samples/ && make'
+        dir ('htdocs/code-samples/') {
+          sh 'make'
+        }
       }
     }
     stage('Test AsciiDoctor') {
       steps {
-        sh 'cd htdocs/doc/ && make test'
+        dir ('htdocs/images/') {
+          sh './update_image_sizes.sh'
+        }
+        dir ('htdocs/doc/') {
+          sh 'make test'
+        }
       }
     }
   }
