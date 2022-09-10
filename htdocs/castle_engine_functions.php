@@ -2056,9 +2056,9 @@ function cge_features_summary()
     array(
       'link' => 'features#_build_tool_and_continuous_integration',
       'title' => 'Open source and friendly to continuous integration',
-      'description' => 'Tooling friendly to continuous integration. Command-line build tool, Jenkins, <a href="github_actions">GitHub actions</a>. Engine is completely open-source and <a href="license.php">can be used to make any (including proprietary) applications</a>.',
+      'description' => 'Tooling friendly to continuous integration. <a href="build_tool">Command-line build tool</a> and <a href="docker">Docker</a> image. Ready files and documetation how to use with <a href="github_actions">GitHub Actions</a>, <a href="gitlab_ci">GitLab CI</a>, <a href="jenkins">Jenkins</a>. Engine is completely open-source and <a href="license.php">can be used to make any (including proprietary) applications</a>.',
       'image' => 'combined_osi_ci_logos.png',
-      'image_titlealt' => 'Open-source and integrated with GitHub',
+      'image_titlealt' => 'Open-source, integrated with GitHub, GitLab, Jenkins',
     ),
   );
 

@@ -393,11 +393,16 @@ link:build_tool[Build tool] to manage your project from the command-line or in b
 * Build tool can build, package, run your application and link:creating_data_auto_generated_textures.php[autogenerate compressed textures] (and more).
 * You can build for any supported target platform. You may need to install cross-compiler (e.g. using link:fpcupdeluxe[]), some platforms may also require additional tools (see their docs like link:android[Android]).
 * We can build ready applications, like APK / AAB for Android, IPA for iOS.
-* link:docker[Docker image] with CGE and prerequisites (FPC, Android build tools, texture processing tools) to easily deploy CGE applications e.g. from Jenkins or GitHub actions.
-* Ready instructions to use
-** link:github_actions[GitHub Actions] to automatically build CGE projects.
-** link:gitlab_ci[GitLab CI] to automatically build CGE projects.
-** link:github_actions[Jenkins] to automatically build CGE projects.
+* link:docker[Docker image] with CGE and prerequisites (FPC, Android build tools, texture processing tools) to easily build CGE applications.
+* Ready instructions to automatically build CGE projects using:
++
+--
+* link:github_actions[GitHub Actions]
+* link:gitlab_ci[GitLab CI]
+* link:github_actions[Jenkins]
+--
++
+Enjoy modern _continuous integration_, for free, however you host your code!
 
 cgeimg::block[combined_osi_ci_logos.png|Open source\, integration with Jenkins\, integration with GitHub Actions]
 

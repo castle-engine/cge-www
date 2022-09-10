@@ -3,6 +3,8 @@ include::common.adoc[]
 
 == Introduction
 
+cgeimg::float[gitlab_ci.png|GitLab CI]
+
 You can use https://docs.gitlab.com/ee/ci/[GitLab CI/CD] to automatically build your project, if you commit it to https://gitlab.com/[GitLab]. You can use the provided for free https://docs.gitlab.com/ee/ci/runners/runners_scope.html#shared-runners[GitLab shared runners] or set up your own runner.
 
 == Example project
