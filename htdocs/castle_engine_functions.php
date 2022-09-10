@@ -101,7 +101,7 @@ define('PATREON_URL',         'https://patreon.com/castleengine');
 define('CGE_LATEST_DOWNLOAD', 'https://github.com/castle-engine/castle-engine/archive/snapshot.zip');
 
 // bump this each time you change castle-engine.css, to work with CloudFlare caching (or you can purge CloudFlare cache manually)
-define('CASTLE_ENGINE_CSS_VERSION', 36);
+define('CASTLE_ENGINE_CSS_VERSION', 37);
 
 define('TWITTER_HANDLE', 'castleengine'); // https://twitter.com/castleengine/
 
@@ -207,11 +207,7 @@ $site_title = 'Castle Game Engine';
 */
 global $castle_sitemap;
 $castle_sitemap = array(
-  MAIN_PAGE_BASENAME       => array('title' => 'Download',
-    /* 'sub' and 'sidebar' of this will be calculated by news.php page,
-       since it may be time-consuming (requires reading large $news table). */
-  ),
-
+  'doc/download' => array('title' => 'Download'),
   'doc/features' => array('title' => 'Features'),
 
   'news' => array('title' => 'News',
@@ -1191,7 +1187,7 @@ function echo_castle_header_suffix($path, $enable_sidebar = true)
 
   $rendered = '
   <nav class="navbar navbar-default ' . ($main_page?'navbar-main-page':'') . '">
-    <div class="container-fluid">
+    <div class="container-fluid container-nav">
       <!-- Uncomment this for toggable navbar -->
       <!--
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar-collapse-1" aria-expanded="false">
@@ -1210,15 +1206,13 @@ function echo_castle_header_suffix($path, $enable_sidebar = true)
 
       <!--p class="navbar-text navbar-right"><a href="' . PATREON_URL . '" class="navbar-link">Support us on<br><img style="height:50px" src="' . page_requisite('images/patreonlogoorange.png') . '" alt="Patreon" /></a></p-->
 
-      <div class="navbar-header">
-        <a class="navbar-brand" href="/">
+      <div class="navbar-header navbar-brand">
+        <a href="/">
           <img alt="Castle Game Engine Logo" src="' .
             page_requisite('images/header_icon.png') . '" ' .
             // _castle_image_sizes('images/header_icon.png')
             ' width="32" height="32" ' // hardcode here, to avoid even loading castle_image_sizes.php in some cases
             . '>
-        </a>
-        <a class="navbar-brand" href="/">
           Castle Game Engine
         </a>
       </div>
