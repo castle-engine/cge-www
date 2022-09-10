@@ -1056,9 +1056,14 @@ function _castle_image_sizes($relative_filename)
   /* Load castle_image_sizes.php only when necessary.
      This way, on production server, when rendering AsciiDoc,
      we never actually load castle_image_sizes.php. */
-  require_once 'castle_image_sizes.php';
+  if (CASTLE_ENVIRONMENT == 'production') {
+    require_once 'castle_image_sizes.php';
+  } else {
+    // the existence of castle_image_sizes is optional on non-production
+    @include_once 'castle_image_sizes.php';
+  }
 
-  if (array_key_exists($relative_filename, $castle_image_sizes)) {
+  if (isset($castle_image_sizes) && array_key_exists($relative_filename, $castle_image_sizes)) {
     $img_sizes = $castle_image_sizes[$relative_filename];
     return ' width="' . $img_sizes['width'] . '" height="' . $img_sizes['height'] . '" ';
   } else {

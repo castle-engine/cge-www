@@ -16,4 +16,6 @@ htdocs/wp/wp-content/uploads/
 htdocs/wp/jetpack-temp/
 htdocs/castle_engine_config.php
 htdocs/cge-delphi-beta.zip
+# auto-updated at deploying
+htdocs/castle_image_sizes.php
 blaise-pascal-article/
