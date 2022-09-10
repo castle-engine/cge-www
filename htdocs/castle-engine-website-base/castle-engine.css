@@ -607,7 +607,7 @@ span.news_title.only_anchor {
 }
 .navbar-brand a {
   display: block;
-  padding: 10px 10px 5px 10px;
+  padding: 5px 10px;
   color: #5e5e5e !important;
 }
 .navbar-brand a img {
