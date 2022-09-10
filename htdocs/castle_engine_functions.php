@@ -573,6 +573,7 @@ $castle_sitemap = array(
       'versioning' => array('title' => 'Versioning scheme of programs', 'hidden_in_toc' => true),
     ),
   ),
+  'doc/credits' => array('title' => '<span class="glyphicon glyphicon-heart" aria-hidden="true"></span>')
 );
 
 function _castle_bootstrap()
