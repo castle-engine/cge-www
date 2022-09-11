@@ -39,7 +39,7 @@ bump the required FPC version. We check what is commonly available,
 e.g. <a href="https://packages.debian.org/stable/fpc">what is in the latest Debian stable (which is a baseline
 for many other Linux distros)</a>.
 Last time, on 2021-12-12, we bumped required version
-for <i>Castle Game Engine 7.0-alpha-snapshot</i> from <i>FPC &gt;= 3.0.2</i> to <i>FPC &gt;= 3.2.0</i>.
+for <i>Castle Game Engine 7.0-alpha.snapshot</i> from <i>FPC &gt;= 3.0.2</i> to <i>FPC &gt;= 3.2.0</i>.
 
 <p>For Aarch64 (64-bit Arm), as found on Android, iOS, macOS: While we support any FPC &gt;= 3.2.0,
 we strongly advise FPC &gt;= 3.2.2. That is because certain optimizations have been broken

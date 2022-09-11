@@ -23,8 +23,10 @@ do_tag_custom ()
 
   # add a tag
   echo git tag -a v"$VERSION" -m "Tagging the $VERSION version of '$NAME'."
-       git tag -a v"$VERSION" -m "Tagging the $VERSION version of '$NAME'."
-  git push origin v"$VERSION" # push this one tag to remote
+
+  # uncomment to *really* do this
+  #     git tag -a v"$VERSION" -m "Tagging the $VERSION version of '$NAME'."
+  #git push origin v"$VERSION" # push this one tag to remote
 
   echo
 }
@@ -35,11 +37,11 @@ do_tag ()
 }
 
 # do_tag castle
-do_tag glplotter
-#do_tag_custom castle-view-image castle_view_image
+# do_tag glplotter
+# do_tag_custom castle-view-image castle_view_image
 # do_tag kambi_lines
 # do_tag rayhunter
-#do_tag view3dscene
+do_tag view3dscene
 # do_tag malfunction
-#do_tag_custom castle-engine castle_game_engine
+do_tag_custom castle-engine castle_game_engine
 # do_tag_custom demo-models demo_models
