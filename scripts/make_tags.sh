@@ -3,6 +3,9 @@ set -eu
 
 . ../pack/generated_versions.sh
 
+DRY_RUN=true
+#DRY_RUN=false # uncomment to really create tags
+
 do_tag_custom ()
 {
   local NAME="$1"
@@ -24,9 +27,12 @@ do_tag_custom ()
   # add a tag
   echo git tag -a v"$VERSION" -m "Tagging the $VERSION version of '$NAME'."
 
-  # uncomment to *really* do this
-  #     git tag -a v"$VERSION" -m "Tagging the $VERSION version of '$NAME'."
-  #git push origin v"$VERSION" # push this one tag to remote
+  if [ "${DRY_RUN}" = 'true' ]; then
+    echo 'Set DRY_RUN=false to really create the tag and push it'
+  else
+         git tag -a v"$VERSION" -m "Tagging the $VERSION version of '$NAME'."
+    git push origin v"$VERSION" # push this one tag to remote
+  fi
 
   echo
 }
