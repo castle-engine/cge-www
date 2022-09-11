@@ -17,8 +17,9 @@ Test are there no files with accidental executable attribute
 
 ```
 cd ../castle-engine/
+make clean BUILD_TOOL=castle-engine # use build tool on $PATH
 find . '(' -type d -name .git -prune -false ')' -or \
-       '(' -type f '(' -iname '*.sh' -or -iname '*~' -or -iname 'gradlew' ')' ')' -or \
+       '(' -type f '(' -iname '*.sh' -or -iname '*~' -or -iname 'gradlew' -or -iname 'instant_fpc_*' -or -iname 'astcenc-*' -or -iname 'lazbuild_retry' ')' ')' -or \
        '(' -executable -type f -print ')'
 ```
 
@@ -80,24 +81,25 @@ For each:
 
 ## Test fpmake
 
-Remember to define `FPCDIR` first, like export FPCDIR=/home/michalis/installed/fpc/current/lib/fpc/3.0.2/
+Remember to define `FPCDIR` first, like
 
-See
+```
+export FPCDIR=/home/michalis/installed/fpclazarus/current/fpc/lib/fpc/3.2.2/
+```
+
+Then run
 
 ```
 make test-fpmake
 ./fpmake --globalunitdir="${FPCDIR}" install
 # The CGE installed units should now be known to FPC, no need for any -Fu or @castle-fpc.cfg
-fpc -Mobjfpc examples/fps_game/fps_game.lpr
+ls -Flah /home/michalis/installed/fpclazarus/current/fpc/lib/fpc/3.2.2/units/x86_64-linux/castle-game-engine
+fpc -Mobjfpc -Fuexamples/fps_game/code/ examples/fps_game/fps_game.dpr
 ```
 
 Install CGE units following https://castle-engine.io/fpmake
 
 Run the 2 InstantFPC examples.
-
-# Test dependencies
-
-Run `../cge-scripts/check_units_dependencies`
 
 ## Make sure released zip/tar.gz don't contain any unwanted binary files.
 
@@ -118,7 +120,7 @@ $ find -iname *.so
 ```
 make strip-precompiled-libraries
 cd examples/mobile/achievements/
-make android
+castle-engine --target=android --mode=debug package
 
 # Should use system-wide Gradle, should show a message like
 #   Local Gradle wrapper ("gradlew") not found, so we will call the Gradle on $PATH.
