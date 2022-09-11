@@ -17,21 +17,22 @@ NOTE: Please write to Michalis (michalis@castle-engine.io) if you want to change
 ## Contributors
 
 [role="compact"]
-* Andrzej Kilijański
-* Arioch
-* Benedikt Magnus
-* Eugene Loza
-* Friedrich Westermann
-* Hotari
-* Jan Adamec
-* Matthias J. Molski
-* Paul Gevers
-* Sven Barth
-* Tomasz Wojtyś
-* Trung Le
+* https://github.com/andreasplesch[Andreas Plesch]
+* https://github.com/and3md[Andrzej Kilijański]
+* https://github.com/the-Arioch[Arioch]
+* https://github.com/BenediktMagnus[Benedikt Magnus]
+* https://github.com/eugeneloza[Eugene Loza]
+* https://github.com/ProHolz[Friedrich Westermann]
+* https://github.com/HotariTobu[Hotari]
+* https://github.com/janadamec1[Jan Adamec]
+* https://github.com/Free-Pascal-meets-SDL-Website[Matthias J. Molski]
+* https://github.com/paulgevers[Paul Gevers]
+* https://github.com/pascaldragon[Sven Barth]
+* https://github.com/tsr8[Tomasz Wojtyś]
+* https://github.com/Kagamma[Trung Le]
 * Victor Amat
 
-See also https://github.com/castle-engine/castle-engine/graphs/contributors[contributors to GitHub CGE repository].
+See also https://github.com/castle-engine/castle-engine/graphs/contributors[contributors to GitHub CGE repository] and related repositories.
 
 ## Active Donors
 
