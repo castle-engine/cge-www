@@ -47,7 +47,6 @@ Everyone who subscribes to support CGE with at least 10 USD / month (anywhere --
 * Douglas Chamberlin
 * Erick Ritmeester
 * Erik Johnson
-* Gary Chike
 * Highball
 * Jack Taylor
 * Jeff Davis
