@@ -20,6 +20,8 @@ NOTE: You don't need to be logged into GitLab for this.
 NOTE: The `.gitlab-ci.yml` filename starts with a dot, this means it is a hidden file (by convention) on Unix.
 
 2. Commit and push it, and watch the _"CI/CD"_ subsection of your project get populated with _"Pipelines"_ and _"Jobs"_. You can download the artifacts for each job.
++
+By default, these are builds for Linux and Windows.
 
 == Using the Docker image from GitLab CI/CD
 
