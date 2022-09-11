@@ -14,38 +14,63 @@ cgeimg::block[sprite_sheet_editor.png|Sprite Sheet Editor]
 
 It is a standard 2D animation technique for pixel-art games.
 
-Note that it is not the only way to make 2D animations. In _Castle Game Engine_ you can also create smooth 2D animations, using bones or even bones+skinning, by creating 2D animations in link:spine[Spine] or even link:blender[Blender][Blender] or many other typically-3D authoring software. Creating sprite sheets has a different workflow and achieves a different result. For sprite sheet, you need to create a large set of still frames, which is sometimes easier / sometimes harder than creating an animation in Spine/Blender. Ultimately it results in an animation where you control every pixel of every frame.
+Note that it is not the only way to make 2D animations. In _Castle Game Engine_ you can also create smooth 2D animations, using bones or even bones+skinning, by creating 2D animations in link:spine[Spine] or even link:blender[Blender] or many other typically-3D authoring software. Creating sprite sheets has a different workflow and achieves a different result. For sprite sheet, you need to create a large set of still frames, which is sometimes easier / sometimes harder than creating an animation in Spine/Blender. Ultimately it results in an animation where you control every pixel of every frame.
+
+== Video Tutorial
 
 video::Eol0qzKP1Zw[youtube,width=800,height=450]
 
+== Example projects
+
+* Platformer demo in link:https://github.com/castle-engine/castle-engine/tree/master/examples/platformer[examples/platformer/] is a complete platformer demo using this technique.
+* The template _"2D Game"_ that you can use to create a new project using the CGE editor contains some sprite sheet animations.
+* Simple demo is also in https://github.com/castle-engine/castle-engine/tree/master/examples/sprite_sheets/sprite_sheets_demo/[examples/sprite_sheets/sprite_sheets_demo].
+
 == Using sprites
 
-The most advised way to use sprite sheets is to express them in a file:
+The most advised way to use sprite sheets is to create and edit them using our dedicated editor.
 
-* In the _Castle Game Engine format_ (`.castle-sprite-sheet` extension).
-* In the _Starling sprite sheet format_ (traditionally with `.xml` extension, in CGE we require you rename them to `.starling-xml`).
-* or in the _Cocos2D sprite sheet format_ (traditionally with `.plist` extension, in CGE we advise (but do not require yet) to use `.cocos2d-plist`).
-
-We feature a dedicated _Sprite Sheet Editor_ as part of https://castle-engine.io/manual_editor.php[our CGE editor]. Just right-click within the _"Files"_ browser at the bottom and use _New Sprite Sheet_ command, or double-click on an existing `.castle-sprite-sheet` file.
-
-Our `.castle-sprite-sheet` is an extended version of the Starling XML format, adding features like FPS value that is saved inside `.castle-sprite-sheet` file, and can vary for each animation.
+Our _Sprite Sheet Editor_ as part of https://castle-engine.io/manual_editor.php[our CGE editor]. Just right-click within the _"Files"_ browser at the bottom and use _New Sprite Sheet_ command, or double-click on an existing `.castle-sprite-sheet` file.
 
 You can create sprite sheet animations in a number of ways:
 
-* compose animations from a series of images,
-* import a ready image atlas,
-* import a ready sprite sheet in Starling XML format.
+* start from an existing `.castle-sprite-sheet` file,
+* or add animation from a series of images,
+* or import a ready image atlas,
+* or import a sprite sheet in _Starling XML_ format.
 
-The sprite sheet file (regardless of the format):
+Each animation has its own speed (number of frames per second). You can freely create, modify and rename animations, and move images (frames) between them.
+
+The editor saves sprite sheets in our _Castle Game Engine format_ (`.castle-sprite-sheet` extension).
+
+The sprite sheet file:
 
 . points to a texture atlas (which can be any 2D image that _Castle Game Engine_ can read, like PNG or JPG; see https://castle-engine.io/castle-view-image.php[castle-view-image] docs for the full list)
 . and describes frames within the file, and how they compose the final animation.
 
-Once you have it, simply load it to cgeref:TCastleScene[], using the `TCastleScene.Load` method (or by setting `TCastleScene.URL`), play animation by `TCastleScene.PlayAnimation` (or setting `TCastleScene.AutoAnimation` and `TCastleScene.AutoAnimationLoop`) and generally use all the `TCastleScene` API. See CGE manual about link:viewport_and_scenes[viewports, displaying, transforming, animating scenes].
+To add the sprite sheet to a cgeref:TCastleViewport[] (see link:viewport_and_scenes.adoc[viewports and scenes documentation]) create a cgeref:TCastleScene[] inside cgeref:TCastleViewport[] and assign scene `URL`, `AutoAnimation` etc. All standard methods to load and play animations work. You can do this by code (at run-time) or in the CGE editor (at design-time).
 
-This also allows you to load sprite sheets within the https://castle-engine.io/manual_editor.php[editor]. Simply create a `TCastleScene` inside `TCastleViewport` and assign it's `URL`, `AutoAnimation` etc.
+== Notes for pixel-art games
 
-== URL Parameters (for Starling and Cocos2d formats)
+By default, textures have filtering applied, to make them look smooth when scaled.
+
+If you want to have a pixel-art look, you can disable it easily, by
+
+----
+Scene.RenderOptions.MinificationFilter := minNearest;
+Scene.RenderOptions.MagnificationFilter := magNearest;
+----
+
+== Alternative: Reading Starling and Cocos2d sprite sheet files
+
+In addition to our _Castle Game Engine format_ (`.castle-sprite-sheet` extension), we can also read sprite sheet in these formats:
+
+* _Starling sprite sheet format_ (traditionally with `.xml` extension, in CGE we require you rename them to `.starling-xml`).
+* _Cocos2D sprite sheet format_ (traditionally with `.plist` extension, in CGE we advise (but do not require yet) to use `.cocos2d-plist`).
+
+NOTE: Our `.castle-sprite-sheet` format is just an extended version of the Starling XML format, adding features like FPS value that is saved inside `.castle-sprite-sheet` file, and can vary for each animation.
+
+=== URL Parameters (for Starling and Cocos2d formats)
 
 When you load a sprite sheet, you can use a special URL syntax to indicate additional parameters. Instead of loading just `my_sprite_sheet.starling-xml` you can use URLs like this:
 
@@ -83,18 +108,7 @@ Without the underscore they will be treated as separate animations. So e.g. fram
 
 Parameters are passed using an anchor separated by a comma, with a colon between the value and the next option name.
 
-== Notes for pixel-art games
-
-By default, textures have filtering applied, to make them look smooth when scaled.
-
-If you want to have a pixel-art look, you can disable it easily, by
-
-----
-Scene.RenderOptions.MinificationFilter := minNearest;
-Scene.RenderOptions.MagnificationFilter := magNearest;
-----
-
-== Deprecated approach
+== Deprecated: TSprite class
 
 You can also use `TSprite` class in CGE to load a sprite, in which case you will have to draw it explicitly. See link:how_to_render_2d[How to render 2D images/sprites].
 
