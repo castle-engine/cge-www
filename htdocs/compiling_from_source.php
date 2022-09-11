@@ -67,8 +67,16 @@ $toc = new TableOfContents(
     <p>If you're on Unix (like Linux) and familiar with command-line, then it is simplest to do this in the terminal:
 
 <pre>
-cd castle-engine/tools/build-tool/
+cd castle-engine/tools/build-tool/ # first enter the build tool directory
 ./castle-engine_compile.sh
+</pre>
+
+  <li>
+    <p>If you're on Windows and familiar with PowerShell command-line, then it is simplest to do this in PowerShell:
+
+<pre>
+cd castle-engine/tools/build-tool/ # first enter the build tool directory
+./castle-engine_compile.ps1
 </pre>
 
   <li>
