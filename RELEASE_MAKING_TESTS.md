@@ -126,3 +126,18 @@ castle-engine --target=android --mode=debug package
 #   Local Gradle wrapper ("gradlew") not found, so we will call the Gradle on $PATH.
 #   Make sure you have installed Gradle (e.g. from the Debian "gradle" package), in a version compatible with the Android Gradle plugin (see https://developer.android.com/studio/releases/gradle-plugin.html#updating-gradle ).
 ```
+
+## Interactive tests
+
+Download for important platforms (esp. Windows that Michalis doesn't use regularly but is often used by users).
+
+- Unpack
+- Run editor
+- Use Preferences -> Register Lazarus Packages (important, advised in manual)
+- Create all templates
+  - open designs inside
+  - compile F9 with FPC
+  - compile F9 with Delphi at least one example
+  - click and double-click on some glTF, to make sure preview and view3dscene appear ok
+- Build + run some examples
+- Open doc/reference/index.html

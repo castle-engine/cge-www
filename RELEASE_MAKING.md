@@ -53,6 +53,8 @@
 
   ssh jenkins.castle-engine.io
     sudo -u jenkins-cge-uploader -i
+      # if cge-update-github-snapshot missing:
+      git clone git@gitlab.com:castle-engine/cge-update-github-snapshot.git
       cd cge-update-github-snapshot/
       # adjust ./cge-update-github-releases
       ./cge-update-github-releases
@@ -70,6 +72,19 @@
 
 - Update the URLs:
   - view3dscene links in htdocs/view3dscene.php (see lower about "how to update www content")
+    if you want to update snapshots, update
+    SNAPSHOTS_BASE
+    SNAPSHOTS_VERSION
+
+  - CGE links in `cge_download_engine()` in htdocs/castle_engine_functions.php , update
+    $snapshots_base
+    $snapshots_version
+
+    Grep
+    7.0-alpha.snapshot
+    7.0-alpha-snapshot
+    7.0-alpha1
+    to make sure everything is updated.
 
   After:
   - Download and compare are the files the same.
@@ -113,6 +128,8 @@
     - engine: version to `x.<odd>.0` or `alpha.snapshot`
 
     - view3dscene: version to `x.<odd>.0`
+
+- update CGE version in Docker cge-stable
 
 ## Website updating
 
