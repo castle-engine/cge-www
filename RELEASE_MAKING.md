@@ -13,18 +13,18 @@
     - For the engine, update version numbers in these files:
 
         - make sure to update to "X.<even>" for release
-        - all ../../castle-engine/packages/*.lpk
-        - ../../castle-engine/src/base/castleversion.inc
-        - ../../castle-engine/tools/build-tool/CastleEngineManifest.xml
-        - ../../castle-engine/tools/castle-editor/macos/create_bundle.sh
+        - all ../castle-engine/packages/*.lpk
+        - ../castle-engine/src/base/castleversion.inc
+        - ../castle-engine/tools/build-tool/CastleEngineManifest.xml
           (and recompile castle-engine tool:
-               cd ~/sources/castle-engine/castle-engine/tools/build-tool
+               cd ../castle-engine/tools/build-tool
                ./castle-engine_compile.sh
                mv -f castle-engine ~/bin/
                castle-engine -v # check
           ).
-        - doc/pasdoc/html-parts/body-end.php
-          (and run "make" in doc/pasdoc/html-parts/ to refresh API docs extra HTML).
+        - ../castle-engine/doc/pasdoc/html-parts/body-end.php
+          (and run "make clean && make" in doc/pasdoc/html-parts/ to refresh API docs extra HTML).
+        - check: grep "7.0-alpha"
 
 - Call scripts/generate_versions.sh script.
 

@@ -4,8 +4,8 @@ The following tests/tasks should be done before release,
 to make sure that everything is in top-quality-shape before release.
 
 As much as possible, we run automated tests after every commit,
-using `Jenkinsfile*` instructions in our repositories and our Jenkins,
-see https://castle-engine.io/cloud_builds_jenkins .
+using both Jenkins and GitHub Actions,
+see https://castle-engine.io/jenkins and https://castle-engine.io/github_actions .
 So the first step is just to
 
 **Make sure our Jenkins shows OK status for every CGE project.**
