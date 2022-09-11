@@ -11,7 +11,7 @@ You can use https://docs.gitlab.com/ee/ci/[GitLab CI/CD] to automatically build 
 
 We host https://gitlab.com/castle-engine/test-gitlab-ci/[test-gitlab-ci project on GitLab] specifically for the purpose of demonstrating this feature. You can open https://gitlab.com/castle-engine/test-gitlab-ci/-/pipelines[CI/CD -> Pipelines] to see the jobs it executed, their status, download their artifacts etc.
 
-NOTE: You don't need to be logged into GitLab see the build results.
+NOTE: You don't need to be logged into GitLab to see the build results.
 
 == Usage
 
