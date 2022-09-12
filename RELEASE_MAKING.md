@@ -155,7 +155,7 @@
   - write a new devlog there (copy-paste from GitHub release notes)
 
   Once `butler status castle-engine/castle-game-engine` is good,
-  - test downloading it from https://castle-engine.itch.io/castle-engine (using itch.io app)
+  - test downloading it from https://castle-engine.itch.io/castle-game-engine (using itch.io app)
   - write a new devlog there (copy-paste from GitHub release notes)
 
 - In case of CGE and view3dscene, upload them also to https://sourceforge.net/projects/castle-engine/ files:
@@ -290,9 +290,9 @@
 
   https://www.indiedb.com/engines/castle-game-engine
 
-  https://michaliskambi.itch.io/castle-game-engine
+  https://castle-engine.itch.io/castle-game-engine
 
-  https://michaliskambi.itch.io/view3dscene
+  https://castle-engine.itch.io/view3dscene
 
 - http://www.web3d.org/news/submit/
   ... but it's pretty much ignored, giving up on this.
