@@ -399,7 +399,7 @@ link:build_tool[Build tool] to manage your project from the command-line or in b
 --
 * link:github_actions[GitHub Actions]
 * link:gitlab_ci[GitLab CI]
-* link:github_actions[Jenkins]
+* link:jenkins[Jenkins]
 --
 +
 Enjoy modern _continuous integration_, for free, however you host your code!
