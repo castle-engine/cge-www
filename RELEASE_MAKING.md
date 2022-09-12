@@ -39,11 +39,13 @@
 - Tag releases using scripts/make_tags.sh script.
   Leave uncommented only the lines for newly released programs, and run it.
 
-- Make new releases (save as draft now) from existing tags, like
+- Make new releases from existing tags on GitHub, like
+
   https://github.com/castle-engine/castle-view-image/releases/new
   https://github.com/castle-engine/castle-engine/releases/new
   https://github.com/castle-engine/view3dscene/releases/new
-  https://github.com/castle-engine/glplotter/releases/new
+
+  Save new release as a draft now, if you want to later upload the builds automatically.
 
 - Upload to releases on GitHub latest builds by Jenkins of the appropriate application/engine.
   The Jenkinsfile for each project has perfect commands to make a build of every application,
@@ -56,6 +58,11 @@
       # if cge-update-github-snapshot missing:
       git clone git@gitlab.com:castle-engine/cge-update-github-snapshot.git
       cd cge-update-github-snapshot/
+
+      # if cge-update-github-snapshot present:
+      cd cge-update-github-snapshot/
+      mr up
+
       # adjust ./cge-update-github-releases
       ./cge-update-github-releases
 
@@ -68,13 +75,15 @@
 
   Exception: for glplotter, I just used pack.sh in glplotter code to build last release.
 
-- Publish releases
+- Publish releases on GitHub
 
 - Update the URLs:
   - view3dscene links in htdocs/view3dscene.php (see lower about "how to update www content")
     if you want to update snapshots, update
     SNAPSHOTS_BASE
     SNAPSHOTS_VERSION
+    if you want to update stable version, make sure the new links are OK
+    (VERSION_VIEW3DSCENE should already be OK)
 
   - CGE links in `cge_download_engine()` in htdocs/castle_engine_functions.php , update
     $snapshots_base

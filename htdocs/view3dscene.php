@@ -46,9 +46,6 @@ echo castle_thumbs(array(
 //  array('filename' => 'lucy_joints_visualization.png', 'titlealt' => 'Lucy with our joints visualization'),
 //    array('filename' => 'upwind_turbine.png', 'titlealt' => 'Wind turbine simulations, from SSB Wind Systems, with 4 viewports'),
 ));
-
-define('SNAPSHOTS_BASE', 'https://jenkins.castle-engine.io/public/builds/view3dscene/');
-define('SNAPSHOTS_VERSION', '4.1.0');
 ?>
 
 <p><b>view3dscene</b> is a viewer for many 3D model formats: glTF, X3D, VRML, Collada, 3DS, MD3, Wavefront OBJ, STL and (2D) Spine JSON and sprite sheets (in CGE, Cocos2d, Starling XML formats).</p>
@@ -57,27 +54,30 @@ define('SNAPSHOTS_VERSION', '4.1.0');
 
 <p><b>If you already have <a href="/">Castle Game Engine</a>, then just run <code>view3dscene</code> executable in CGE <code>bin</code> subdirectory. There's no need to download it separately.</b>
 
-<div class="download jumbotron">
-  <div class="download_title">Download (Snapshot) Version <?php echo SNAPSHOTS_VERSION; ?>:</div>
-  <div class="download_platforms_list">
-    <div class="download_platform"><a class="btn btn-primary btn-lg" href="<?php echo SNAPSHOTS_BASE; ?>view3dscene-<?php echo SNAPSHOTS_VERSION; ?>-win64-x86_64.zip"><img src="<?php echo CURRENT_URL; ?>/images/os_icons/win.png" alt="Windows (64-bit)" width="64" height="64"><br> Windows<br>(x86_64)</a></div>
-    <div class="download_platform"><a class="btn btn-primary btn-lg" href="<?php echo SNAPSHOTS_BASE; ?>view3dscene-<?php echo SNAPSHOTS_VERSION; ?>-linux-x86_64.tar.gz"><img src="<?php echo CURRENT_URL; ?>/images/os_icons/linux.png" alt="Linux (64 bit, x86_64)" width="64" height="64"><br> Linux<br>(x86_64)</a></div>
-    <div class="download_platform"><a class="btn btn-primary btn-lg" href="<?php echo SNAPSHOTS_BASE; ?>view3dscene-<?php echo SNAPSHOTS_VERSION; ?>-linux-arm.tar.gz"><img src="<?php echo CURRENT_URL; ?>/images/os_icons/raspberry_pi.png" alt="Raspberry Pi (Linux Arm)" width="64" height="64"><br> Raspberry Pi<br>(Linux Arm)</a></div>
-    <div class="download_platform"><a class="btn btn-primary btn-lg" href="<?php echo SNAPSHOTS_BASE; ?>view3dscene-<?php echo SNAPSHOTS_VERSION; ?>-darwin-x86_64.zip"><img src="<?php echo CURRENT_URL; ?>/images/os_icons/macos.png" alt="macOS (x86_64)" width="64" height="64"><br> macOS<br>(x86_64)</a></div>
-  </div>
-  <a class="btn btn-success btn-lg btn-patreon" href="https://patreon.com/castleengine"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Support on Patreon</a>
-</div>
-
 <?php
-/*
-echo_standard_program_download(
-  'Stable Version ' . VERSION_VIEW3DSCENE, 'view3dscene', VERSION_VIEW3DSCENE,
-  array(
-    'win-x86_64' => 'https://github.com/castle-engine/view3dscene/releases/download/v' . VERSION_VIEW3DSCENE . '/view3dscene-' . VERSION_VIEW3DSCENE . '-win64-x86_64.zip',
-    'linux-x86_64' => 'https://github.com/castle-engine/view3dscene/releases/download/v' . VERSION_VIEW3DSCENE . '/view3dscene-' . VERSION_VIEW3DSCENE . '-linux-x86_64.tar.gz',
-  )
-);
-*/
+define('SNAPSHOTS_BASE', 'https://jenkins.castle-engine.io/public/builds/view3dscene/');
+define('SNAPSHOTS_VERSION', '4.3.0');
+define('DOWNLOAD_PREFIX_SNAPSHOT', SNAPSHOTS_BASE . 'view3dscene-' . SNAPSHOTS_VERSION);
+define('DOWNLOAD_PREFIX_STABLE', 'https://github.com/castle-engine/view3dscene/releases/download/v' . VERSION_VIEW3DSCENE . '/view3dscene-' . VERSION_VIEW3DSCENE);
+
+function download_box($caption, $download_prefix)
+{
+  return '
+    <div class="download jumbotron">
+      <div class="download_title">' . $caption . ':</div>
+      <div class="download_platforms_list">
+        <div class="download_platform"><a class="btn btn-primary btn-lg" href="' . $download_prefix .    '-win64-x86_64.zip"><img src="' . CURRENT_URL . '/images/os_icons/win.png"          alt="Windows (64-bit)"         width="64" height="64"><br> Windows<br>(x86_64)</a></div>
+        <div class="download_platform"><a class="btn btn-primary btn-lg" href="' . $download_prefix . '-linux-x86_64.tar.gz"><img src="' . CURRENT_URL . '/images/os_icons/linux.png"        alt="Linux (64 bit, x86_64)"   width="64" height="64"><br> Linux<br>(x86_64)</a></div>
+        <div class="download_platform"><a class="btn btn-primary btn-lg" href="' . $download_prefix .    '-linux-arm.tar.gz"><img src="' . CURRENT_URL . '/images/os_icons/raspberry_pi.png" alt="Raspberry Pi (Linux Arm)" width="64" height="64"><br> Raspberry Pi<br>(Linux Arm)</a></div>
+        <div class="download_platform"><a class="btn btn-primary btn-lg" href="' . $download_prefix .   '-darwin-x86_64.zip"><img src="' . CURRENT_URL . '/images/os_icons/macos.png"        alt="macOS (x86_64)"           width="64" height="64"><br> macOS<br>(x86_64)</a></div>
+      </div>
+      <a class="btn btn-success btn-lg btn-patreon" href="' . PATREON_URL . '"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Support on Patreon</a>
+    </div>
+    ';
+}
+
+echo download_box('Download Stable Version ' . VERSION_VIEW3DSCENE, DOWNLOAD_PREFIX_STABLE);
+//echo download_box('Download (Snapshot) Version ' . SNAPSHOTS_VERSION, DOWNLOAD_PREFIX_SNAPSHOT);
 ?>
 
 <p><b><a href="demo_models.php">Download also our collection of demo models</a> to test view3dscene!</b></p>
@@ -121,8 +121,6 @@ you can open them all with <code>view3dscene</code>.</p>
   <li><i>Linux:</i> If you want to hear 3D sound in X3D worlds, install also <?php echo a_href_page('OpenAL', 'openal'); ?> and <a href="http://xiph.org/vorbis/">OggVorbis (VorbisFile and dependencies)</a> libraries using your Linux distribution package manager.
   <li><i>macOS:</i> As our application is not signed (for now), for the first time you have to run it by clicking with <i>right mouse button</i>, choosing <i>"Open"</i> from the context menu, and then accepting to run an unsigned application. Next time you can run as usual, by just double-clicking on the application. <?php echo a_href_page('More information about macOS support is here.', 'doc/macos'); ?>.
 </ul>
-
-<!--p>If you want to try the unstable bleeding-edge version, you can download the binary from the <a href="<?php echo SNAPSHOTS_BASE; ?>">view3dscene snapshots</a> page.-->
 
 <?php /*
 
