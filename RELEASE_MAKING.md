@@ -89,11 +89,19 @@
     if you want to update stable version, make sure the new links are OK
     (VERSION_VIEW3DSCENE should already be OK)
 
-  - CGE links in `cge_download_engine()` in htdocs/castle_engine_functions.php , update
-    $snapshots_base
-    $snapshots_version
+  - CGE links in `cge_download_engine()` in htdocs/castle_engine_functions.php ,
+    update version/tag there.
 
-    Grep
+    Note:
+    To force regenerate https://castle-engine.io/download , on CGE SSH:
+
+    ```
+    cd ~/cge-www/htdocs/doc
+    rm -f output/download.html
+    make
+    ```
+
+  - Grep to make sure all things changed
     7.0-alpha.snapshot
     7.0-alpha-snapshot # mistake
     7.0-alpha.1
