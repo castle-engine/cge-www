@@ -41,22 +41,12 @@ Everyone who subscribes to support CGE with at least 10 USD / month (anywhere --
 [role="compact"]
 * Adrian Marius Popa
 * Alar Orion
-* Andrzej Kilijański
 * Basti Schindla
 * Cristopher
-* Douglas Chamberlin
-* Erick Ritmeester
 * Erik Johnson
 * Highball
 * Jack Taylor
 * Jeff Davis
-* Job van der Zwan
-* Martin Dráb
 * Martin Heggestad
-* Open UAS
-* Peter
-* Roland Kossow
-* Thierry Coq
-* Tim Smith
 
 *Thank you!*
