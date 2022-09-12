@@ -16,12 +16,16 @@
         - all ../castle-engine/packages/*.lpk
         - ../castle-engine/src/base/castleversion.inc
         - ../castle-engine/tools/build-tool/CastleEngineManifest.xml
-          (and recompile castle-engine tool:
-               cd ../castle-engine/tools/build-tool
-               ./castle-engine_compile.sh
-               mv -f castle-engine ~/bin/
-               castle-engine -v # check
-          ).
+
+           and recompile castle-engine tool:
+
+           ```
+           cd ../castle-engine/tools/build-tool
+           ./castle-engine_compile.sh
+           mv -f castle-engine ~/bin/
+           castle-engine -v # check
+           ```
+
         - ../castle-engine/doc/pasdoc/html-parts/body-end.php
           (and run "make clean && make" in doc/pasdoc/html-parts/ to refresh API docs extra HTML).
         - check: grep "7.0-alpha"
@@ -91,8 +95,9 @@
 
     Grep
     7.0-alpha.snapshot
-    7.0-alpha-snapshot
-    7.0-alpha1
+    7.0-alpha-snapshot # mistake
+    7.0-alpha.1
+    7.0-alpha1 # mistake
     to make sure everything is updated.
 
   After:
@@ -104,24 +109,46 @@
   https://daringfireball.net/2009/09/how_should_mac_apps_be_distributed
 
 - if you released new castle_game_engine version:
-  - update ../castle-engine/doc/pasdoc/html-parts/body-end.php with new versions,
-  - update apidoc by
-    cd ../castle-engine/doc/pasdoc/html-parts/
-    make clean default
-    cd ../
-    make clean upload
+  - make sure new apidoc is already uploaded.
+
+      Alt: you can upload it manually
+
+      ```
+      cd ../castle-engine/doc/pasdoc/
+      make clean upload
+      ```
+
   - update $engine_ver in htdocs/all_programs_sources.php, to reflect
     with what engine ver each sources were tested.
-  - update engine version linked on htdocs/index.php
-  - update FPC/Lazarus requirements:
+  - update FPC/Lazarus requirements if needed:
     https://castle-engine.io/supported_compilers.php
+
+  - update CGE version of Docker `cge-stable` by
+    - ssh jenkins-linux-slave.castle-engine.io
+      as michalis
+        update in castle-engine-cloud-build-tools/ all versions to point to 7.0-alpha.2
+        ./build-local.sh
 
 - In case of CGE and view3dscene, upload them also to http://castle-engine.itch.io/ :
   Run
 
   ```
+  # This is to make sure you have itch.io butler installed and authenticated.
+  # Follow https://itch.io/docs/butler/installing.html if not yet,
+  # you can actually install it using itch.io GUI app: https://itch.io/app ,
+  # just "chmod +x ..." the butler binary and add it to $PATH.
+  butler status castle-engine/castle-game-engine
+
   pack/upload_itch_io.sh
   ```
+
+  Once `butler status castle-engine/view3dscene` is good,
+  - test downloading it from https://castle-engine.itch.io/view3dscene (using itch.io app)
+  - write a new devlog there (copy-paste from GitHub release notes)
+
+  Once `butler status castle-engine/castle-game-engine` is good,
+  - test downloading it from https://castle-engine.itch.io/castle-engine (using itch.io app)
+  - write a new devlog there (copy-paste from GitHub release notes)
 
 - In case of CGE and view3dscene, upload them also to https://sourceforge.net/projects/castle-engine/ files:
   Run
@@ -132,38 +159,53 @@
 
   Mark on SourceForge default download for Linux/Windows as latest CGE.
 
+  Login to
+  https://sourceforge.net/projects/castle-engine/
+
+  Check this contains new files:
+  https://sourceforge.net/projects/castle-engine/files/view3dscene/
+  https://sourceforge.net/projects/castle-engine/files/castle_game_engine/
+
+  Mark new CGE files as default for Linux/Windows.
+  After a moment, Ctrl+R and "Looking for the latest version?" will show new version.
+
 - bump versions afterwards for snapshots:
 
     - engine: version to `x.<odd>.0` or `alpha.snapshot`
 
+      (redo again the section above about bumping version,
+      also recheck "bump version" commit that we touched the same files)
+
     - view3dscene: version to `x.<odd>.0`
 
-- update CGE version in Docker cge-stable
+      also in htdocs/view3dscene.php now bump SNAPSHOTS_VERSION
 
 ## Website updating
 
-- Good practice after large changes is to check
-  linkchecker.sh and
-  validate_html.sh
+- Note: after large website changes it is a good idea to check
+    linkchecker.sh
+    validate_html.sh
 
-- if you change some content managed inside GIT:
-  - commit and push your changes, of course
-  - git pull --rebase on castle-engine.io (ssh-ceup)
+- if you change some content managed inside GIT (cge-www):
+  - commit and push your changes to cge-www
+  - ssh-cge-sync (to update on castle-engine.io)
 
-- if you change some content outside GitHub cge-www repository:
-  (These are some files that are automatically generated and it would
-  be a waste to keep them inside a version control repository... so they have to
-  be copied in a normal way.) :
-  - reference (API docs) and vrml_engine_doc can be automatically uploaded by
-    "make upload" in the appropriate sources dir.
-  - make sure that "other" users don't have uncessesary permissions:
-    call secure_permissions.sh on server
-  - Old (no longer regularly checked):
-    - run mk_sums_md5.sh locally. This calculates md5 sums on your local
-      files.
-    - on remote server, run check_sums_md5.sh. This will check md5 sums
-      uploaded in previous step, thus checking that all files
-      were uploaded correctly.
+- make sure apidoc in https://castle-engine.io/apidoc/html/
+  looks OK. It is now automatically updated by a Jenkins job,
+  though if you want you can upload it manually by
+
+    cd ~/sources/castle-engine/castle-engine/doc/pasdoc
+    make upload
+
+  You can also update https://castle-engine.io/engine_doc.php (HTML, PDF) by
+
+    cd ~/sources/castle-engine/cge-documentation/vrml_engine_internals
+    make upload
+
+  You can also update https://castle-engine.io/compositing_shaders.php (HTML, PDF) by
+
+    cd ~/sources/castle-engine/cge-documentation/compositing_shaders_doc
+    make upload
 
 ## Announcing release
 

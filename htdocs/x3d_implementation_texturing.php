@@ -268,7 +268,7 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
 
     <p>So this behavior is most natural.
 
-    <p>(It was a bit more tricky in older CGE versions &lt;= 7.0-alpha1, before 2022-03-09.)
+    <p>(It was a bit more tricky in older CGE versions &lt;= 7.0-alpha.1, before 2022-03-09.)
   </dd>
 </ul>
 

@@ -184,7 +184,7 @@ notes near some programs below.
       $github_name, $engine_ver);
   }
 
-  echo_src_archive('view3dscene', 'view3dscene', '7.0-alpha.1');
+  echo_src_archive('view3dscene', 'view3dscene', '7.0-alpha.2');
   echo_src_archive('castle-view-image', 'castle-view-image', '7.0-alpha.1');
   echo_src_archive('castle', 'castle-game', 'ancient'); // '4.1.1');
   echo_src_archive('rayhunter', 'rayhunter', 'ancient'); // '4.0.1');
