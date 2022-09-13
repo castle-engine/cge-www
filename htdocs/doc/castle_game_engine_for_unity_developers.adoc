@@ -101,17 +101,17 @@ Things that are not your game data (like your source code) should _not_ be place
 The layout of a larger CGE project may be like this:
 
 ----
-my_project/
-  CastleEngineManifest.xml     <- the project root; manifest XML file is used by CGE build tool and CGE editor
+my_project/                    <- the project root
+  CastleEngineManifest.xml     <- this manifest file is used by both CGE build tool and CGE editor
   data/                        <- game data lives here; up to you how to organize this
     CastleSettings.xml         <- defines UI scaling, default font
     example_image.png
     example_model.gltf
-    state_main_menu.castle-user-interface
+    gamestatemainmenu.castle-user-interface
     ...
   code/                        <- Pascal game code lives here; up to you how to organize this
     gameinitialize.pas
-    gamestatemainmenu.pas
+    gamestatemainmenu.pas      <- Pascal unit corresponding (by convention) to gamestatemainmenu.castle-user-interface
     ...
   ...                          <- any other subdirectories and files? Up to you. Consider docs/ and README.md.
 ----
@@ -132,16 +132,29 @@ If you have existing models in FBX format you can https://github.com/facebookinc
 
 *TODO: We work on removing the inconsistency documented below, by introducing new, editor-friendly API for creature behaviors.*
 
-The `examples/fps_game` example shows how to use our https://castle-engine.io/manual_3d_utlities_overview.php[Utilities for typical 3D games] that are included in `CastleCreatures`, `CastleItems` and friend units. It is an older example, not using CGE editor.
+The `examples/fps_game` example shows how to use our https://castle-engine.io/manual_3d_utlities_overview.php[(Deprecated) Utilities for typical 3D games] that are included in `CastleCreatures`, `CastleItems` and friend units. It is an older example, not using CGE editor to design the level.
 
-On one hand, the `examples/fps_game` approach gives you more things "out of the box" now. E.g. using this approach, you can trivially get a creature that knows how to travel in 3D space, how to approach an enemy to have a good position to shoot a missile or do a close-range attack. On the other hand, `examples/fps_game` approach doesn't map nicely to CGE editor, and is not absolulety flexible (although it may be quite enough for a typical first-person shooter, and there are many ways to customize it -- see subpages of https://castle-engine.io/manual_high_level_3d_classes.php , and see TMedKitResource and TMedKit classes in `fps_game`).
+NOTE: The work to upgrade this example, to use editor to design the level and non-deprecated functionality, has started. You can define `UPCOMING_FPS_GAME_REDESIGN` in `examples/fps_game/code/gameinitialize.pas` to test it. You can double-click on `data/gamestatemain.castle-user-interface` in editor to see the 3D level designed in editor.
 
-So `examples/fps_game` and our template "3D FPS Game" present indeed a *different* approach to creating an FPS game. We know about it, and it is a TODO, of course we want to remove this discrepancy. The plan to do this is mentioned at the bottom of https://castle-engine.io/manual_3d_utlities_overview.php and link:roadmap[] . Basically our API from CastleCreatures will be adjusted to easily create a "ready" TEnemy with more intelligence out of the box. IOW, we will make the approach from template _"3D FPS Game"_ more powerful, it will be trivial to create your own `TEnemy` that has advanced intelligence.
+////
+On one hand, the `examples/fps_game` approach gives you more things "out of the box" now. E.g. using this approach, you can trivially get a creature that knows how to travel in 3D space, how to approach an enemy to have a good position to shoot a missile or do a close-range attack. On the other hand,
+////
+
+Current `examples/fps_game` approach doesn't map nicely to CGE editor, and is not as flexible as we want it to be (although it may be enough for a typical first-person shooter, and there are many ways to customize it -- see subpages of https://castle-engine.io/manual_high_level_3d_classes.php , and see TMedKitResource and TMedKit classes in `fps_game`).
+
+Our template _"3D FPS Game"_, on the other hand, presents a modern way to design 3D levels and enemies. You can design things in editor, you can use behaviors (`TCastleBehavior`) to attach logic to transformations. We advise you to follow this approach, but admittedly it lacks some functionality *for now* (we don't *yet* have a ready behavior that out-of-the-box makes a creature walk/attack behavior).
+
+Fixing this is an important piece of our link:roadmap[] for 2022.
+
+////
+So `examples/fps_game` and our template _"3D FPS Game"_ present a *different* approach to creating an FPS game. We know about it, and it is a TODO, of course we want to remove this discrepancy. The plan to do this is mentioned at the bottom of https://castle-engine.io/manual_3d_utlities_overview.php and link:roadmap[] . Basically our API from `CastleCreatures` will be adjusted to easily create a "ready" `TEnemy` with more intelligence out of the box. IOW, we will make the approach from template _"3D FPS Game"_ more powerful, it will be trivial to create your own `TEnemy` that has advanced intelligence.
 
 What to do right now:
 
 * If you want to have flexibility, I would advice following _"3D FPS Game"_ template idea, and create your own creature AI. This is the better approach long-term, and it is the approach which we will focus on (extending it in the future).
+
 * Only if you want to have something close to what `examples/fps_game` presents, i.e. a typical first-person shooter, then follow `examples/fps_game` approach.
+////
 
 == Should I use TCastleWindow or TCastleControl?
 
@@ -150,7 +163,7 @@ A short summary of the answer: Use TCastleWindow. If all you want is a cross-pla
 Details: The difference is outlined on https://castle-engine.io/manual_lazarus_control.php :
 
 * TCastleControl means that engine rendering is inside Lazarus form. That is, TCastleControl is a regular Lazarus control that can be placed on a larger form. You can use Lazarus designer to place LCL controls, and you can use CGE editor to design CGE controls (within TCastleControl).
-* TCastleWindow means that engine rendering is a separate window, and we're not using LCL. You can use CGE editor to design controls. So you lose access to LCL controls, but in exchange you get perfect cross-platform code (Android, iOS, Switch only with with TCastleWindow).
+* TCastleWindow means that engine rendering is a separate window, and we're not using LCL. You can use CGE editor to design controls. So you lose access to LCL controls, but in exchange you get perfect cross-platform code (Android, iOS, Switch work only with TCastleWindow).
 
 In both cases, you can use Lazarus as an IDE -- to write code, debug etc. In both cases, you can use CGE editor to design CGE controls (that go inside TCastleControl or TCastleWindow).
 
