@@ -10,7 +10,6 @@ pipeline {
     }
   }
   stages {
-    /*
     stage('Code Samples') {
       steps {
         dir ('htdocs/code-samples/') {
@@ -18,7 +17,6 @@ pipeline {
         }
       }
     }
-    */
     stage('Test AsciiDoctor') {
       steps {
         dir ('htdocs/images/') {
