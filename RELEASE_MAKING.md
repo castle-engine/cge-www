@@ -266,12 +266,17 @@
 
 - Post to community on FB:
 
-  https://www.facebook.com/groups/LazarusFPCDevForum/
+  https://www.facebook.com/groups/lazide
+  https://www.facebook.com/groups/freepascallazarusdelphi
   https://www.facebook.com/groups/DelphiDevelopers/
-  https://www.facebook.com/groups/170041353008050/
+  https://www.facebook.com/groups/170041353008050 - Pascal Game Development
+  https://www.facebook.com/groups/2326037874 - Pascal programming language
+  https://www.facebook.com/groups/137012246341854 - Delphi developer
 
   (Note that you cannot post as Castle Game Engine to community on FB,
   just post as Michalis.)
+
+  Sample post: https://www.facebook.com/groups/lazide/posts/3320318151558389/
 
 - really large new features may cause updates of project description.
   Change project_description.txt text, and see there for a list of places
@@ -307,3 +312,10 @@
 
 - Submit devlog on itch.io ( https://michaliskambi.itch.io/ )
   about Castle Game Engine and view3dscene releases.
+
+- https://en.delphipraxis.net/forum/13-delphi-third-party/
+  Sample: https://en.delphipraxis.net/topic/7480-castle-game-engine-70-alpha2-release/
+
+  and browse links on
+  https://blogs.embarcadero.com/community/
+  for other places where it may be good to post.

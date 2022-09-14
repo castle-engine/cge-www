@@ -12,15 +12,10 @@ So the first step is just to
 
 ## Cleanup repository
 
-Test are there no files with accidental executable attribute
-(may happen if commiting from FAT filesystems on Unix):
+Test are there no files with accidental executable attribute:
 
 ```
-cd ../castle-engine/
-make clean BUILD_TOOL=castle-engine # use build tool on $PATH
-find . '(' -type d -name .git -prune -false ')' -or \
-       '(' -type f '(' -iname '*.sh' -or -iname '*~' -or -iname 'gradlew' -or -iname 'instant_fpc_*' -or -iname 'astcenc-*' -or -iname 'lazbuild_retry' ')' ')' -or \
-       '(' -executable -type f -print ')'
+./tools/internal/check_no_accidental_executable
 ```
 
 Search and remove not needed empty dirs.
