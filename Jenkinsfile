@@ -10,6 +10,7 @@ pipeline {
     }
   }
   stages {
+    /*
     stage('Code Samples') {
       steps {
         dir ('htdocs/code-samples/') {
@@ -17,7 +18,7 @@ pipeline {
         }
       }
     }
-    /* // TODO: temporary out, until we update Docker image on slave
+    */
     stage('Test AsciiDoctor') {
       steps {
         dir ('htdocs/images/') {
@@ -28,7 +29,6 @@ pipeline {
         }
       }
     }
-    /*
   }
   post {
     regression {
