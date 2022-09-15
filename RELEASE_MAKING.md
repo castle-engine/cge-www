@@ -30,6 +30,10 @@
           (and run "make clean && make" in doc/pasdoc/html-parts/ to refresh API docs extra HTML).
         - check: grep "7.0-alpha"
 
+        - Change ../castle-engine/tools/internal/pack_release/github_update_release.txt
+          to empty.
+          Optional: hack Jenkinsfile to not do "Build Examples" as it takes some time.
+
 - Call scripts/generate_versions.sh script.
 
   - Before, you should recompile program for the current (source) OS.
@@ -49,35 +53,44 @@
   https://github.com/castle-engine/castle-engine/releases/new
   https://github.com/castle-engine/view3dscene/releases/new
 
-  Save new release as a draft now, if you want to later upload the builds automatically.
+  Save new release as merely a draft now.
 
-- Upload to releases on GitHub latest builds by Jenkins of the appropriate application/engine.
-  The Jenkinsfile for each project has perfect commands to make a build of every application,
-  using advised FPC version etc. So we just upload these builds as releases.
+- Uploading new release:
 
-  Do it automatically:
+  - For castle-engine:
+    Change ../castle-engine/tools/internal/pack_release/github_update_release.txt
+    to proper release, like 7.0-alpha.2.
+    Commit, push, wait for Jenkins.
 
-  ssh jenkins.castle-engine.io
-    sudo -u jenkins-cge-uploader -i
-      # if cge-update-github-snapshot missing:
-      git clone git@gitlab.com:castle-engine/cge-update-github-snapshot.git
-      cd cge-update-github-snapshot/
+  - For pasdoc, view3dscene and most other projects under castle-engine org:
+    Do it semi-automatically using scripts in cge-github-update-release:
 
-      # if cge-update-github-snapshot present:
-      cd cge-update-github-snapshot/
-      mr up
+    ssh jenkins.castle-engine.io
+      sudo -u jenkins-cge-uploader -i
+        # if cge-github-update-release missing:
+        git clone git@gitlab.com:castle-engine/cge-github-update-release.git
+        cd cge-github-update-release/
 
-      # adjust ./cge-update-github-releases
-      ./cge-update-github-releases
+        # if cge-github-update-release present:
+        cd cge-github-update-release/
+        mr up
 
-  TODO: This process is not perfect, since we upload the builds from latest (master)
-  as the "last tagged" project version.
-  In case there were some commits since make_tags.sh, the binary builds will be a bit newer.
-  Not a big problem in practice, just manually watch it.
-  You can uncomment special lines in `scripts/make_tags.sh` to delete tags beforehand, to set new ones.
-  But it would be best if Jenkins would build tags.
+        # For castle-engine tools: adjust ./generic-update-github-releases
+        ./generic-update-github-releases
+        # For pasdoc:
+        ./pasdoc-update-github-releases
 
-  Exception: for glplotter, I just used pack.sh in glplotter code to build last release.
+    Note: This workflow is not perfect, since we upload the builds from latest (master)
+    as the "last tagged" project version.
+    In case there were some commits since make_tags.sh, the binary builds will be a bit newer.
+    This is not a problem in practice, just be aware of it.
+    Eventually, you can set tag again and force-push it (this is what cge-github-update-release
+    also does to keep "snapshot" a moving tag).
+
+  - Everything else:
+    Manually upload to releases on GitHub latest builds by Jenkins of the appropriate application/engine.
+    The Jenkinsfile for each project has perfect commands to make a build of every application,
+    using advised FPC version etc. So we just upload these builds as releases.
 
 - Publish releases on GitHub
 
@@ -109,12 +122,8 @@
     to make sure everything is updated.
 
   After:
-  - Download and compare are the files the same.
-
-  TODO: uploading dmg on GitHub is not possible.
-  The current solution for view3dscene was to zip the dmg, which is non-standard.
-  Should we just use zip instead of dmg?
-  https://daringfireball.net/2009/09/how_should_mac_apps_be_distributed
+  - Download.
+    If you manually uploaded: also compare are the downloaded files the same.
 
 - if you released new castle_game_engine version:
   - make sure new apidoc is already uploaded.
@@ -177,12 +186,17 @@
   Mark new CGE files as default for Linux/Windows.
   After a moment, Ctrl+R and "Looking for the latest version?" will show new version.
 
-- bump versions afterwards for snapshots:
+- bump versions/code afterwards, to again make nice snapshots:
 
     - engine: version to `x.<odd>.0` or `alpha.snapshot`
 
       (redo again the section above about bumping version,
       also recheck "bump version" commit that we touched the same files)
+
+      Also revert ../castle-engine/tools/internal/pack_release/github_update_release.txt
+      to snapshot.
+
+      Also revert Jenkinsfile to do full "Build Examples" (in case you hacked it for release).
 
     - view3dscene: version to `x.<odd>.0`
 
