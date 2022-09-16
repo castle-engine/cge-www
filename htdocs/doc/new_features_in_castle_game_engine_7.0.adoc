@@ -1,9 +1,86 @@
 # New Features in Castle Game Engine 7.0
 include::common.adoc[]
+:cge-social-share-image: terrain_component_1.png
 
-== New Features
+cgeimg::float[
+  2d_demo_editor.png|Visual editor,
+  gltf_village_outlines.png|Village scene with outlines in glTF from Sketchfab ( https://sketchfab.com/3d-models/ftm-0970f30574d047b1976ba0aa6f2ef855 by Luis Fernandez ),
+  terrain_component_1.png|Terrain with water and trees,
+  tiled_3.png|Tiled isometric map,
+  tiled_strategy_hex.png|Tiled hexagonal map in "Strategy Game" demo,
+  escape_universe_japanese.jpg|Escape from the Universe (Switch) - Japanese edition,
+  unholy_society_in_game.jpg|The Unholy Society,
+  combined_fpc_delphi.png|Open-source\, integrated with GitHub\, GitLab\, Jenkins
+]
 
-This page documents Castle Game Engine 7.0 new features (since the last 6.4 release). It's a work in progress -- as we work on making CGE 7.0 ready for release.
+This page documents _Castle Game Engine_ 7.0 new features. It's a work in progress -- as we work on making CGE 7.0 ready for release.
+
+== Plans
+
+We plan to release version _7.0_ (stable) at the end of this year, 2022 (with an unofficial but hard deadline for 7.0 release at _Christmas 2022_ :) ).
+
+Maybe there will be another _alpha_ or _beta_ release in 2022 before the full 7.0.
+
+See https://castle-engine.io/wp/2022/01/01/summary-of-2021-plans-for-2022/[our plans for 2022] for details what we plan. And https://castle-engine.io/roadmap[our roadmap] for more long-term goals (not just in 7.0). Immediate future plans after _7.0-alpha.2_ release are:
+
+- Integrate physics with joints from _Andrzej Kilijański_, see link:https://github.com/castle-engine/castle-engine/pull/394[PR] and link:https://www.youtube.com/watch?v=mNgBttV5DuA[teaser movie].
+
+- Optimize memory usage of X3D nodes. We've done the 1st stage: all nodes have auto-generated code to create all fields. So now we can revolutionize it.
+
+== Features released so far
+
+=== Released in 7.0-alpha.2
+
+* https://castle-engine.io/sprite_sheets[Sprite Sheet editor]
+* https://castle-engine.io/viewport_and_scenes[Many new components in the viewport - primitives, text, image, reference]
+* https://castle-engine.io/manual_text.php[Font components]
+* https://castle-engine.io/manual_sound.php[Sound components, ability to design spatial sounds in editor]
+* https://castle-engine.io/viewport_3d#_lighting[Lights components]
+* https://castle-engine.io/background[Background (gradient, skybox)]
+* https://castle-engine.io/fog[Fog]
+* New https://castle-engine.io/camera[camera] and https://castle-engine.io/navigation[navigation] handling - much more natural, camera is a transformation and can have children and be a child of something else
+* https://castle-engine.io/wp/2022/08/21/new-components-to-generate-terrains-along-with-a-demo-including-water-and-planting-trees/[Components to visualize terrains]
+* Tested and documented how to use engine with https://castle-engine.io/github_actions[GitHub Actions], https://castle-engine.io/gitlab_ci[GitLab CI], https://castle-engine.io/jenkins[Jenkins]
+* https://castle-engine.io/project_manifest#_debian_and_free_desktop_metadata[Build Debian packages for your project]
+* Delphi support!
+* Numerous smaller editor improvements, like double-clicking to open Pascal files at proper file and proper line
+* https://castle-engine.io/gltf[glTF improvements: step interpolation, cameras fix, normal scale handling, ability to pick a subset of glTF]
+* Inspect your game hierarchy and logs at runtime — just press F8
+* Integration with https://imaginglib.sourceforge.io/[Vampyre Imaging Library]
+* https://castle-engine.io/android[Android building improvements]
+* macOS improvements: Cocoa backend in TCastleWindow and more
+* https://castle-engine.io/install[A lot of documentation upgrades]
+
+See https://castle-engine.io/wp/2022/09/12/castle-game-engine-7-0-alpha-2-release-many-new-components-lights-primitives-fonts-sound-new-cameras-terrains-sprite-sheet-editor-delphi/[full 7.0-alpha.2 release announcement for details].
+
+=== Released in 7.0-alpha.1
+
+- link:manual_editor.php[CGE editor]
+- link:creating_data_model_formats.php#section_gltf[glTF 2.0 full support and realistic rendering upgrades]
+- link:https://github.com/castle-engine/castle-engine/wiki/Nintendo-Switch[Nintendo Switch]
+- link:manual_load_3d.php#section_camera[Better API for viewports and cameras in `TCastleViewport`]
+- link:wp/2020/06/29/third-person-navigation-with-avatar-component-in-castle-game-engine/[Third-person navigation (with avatar)]
+- link:wp/2020/07/19/asynchronous-non-blocking-downloading-using-tcastledownload-class-and-other-http-communication-features/[TCastleDownload class, to make asynchronous (non-blocking) downloading]
+- link:https://github.com/castle-engine/castle-engine/wiki/Sprite-sheets[Load sprite sheets and images to TCastleScene]
+- link:wp/2018/11/26/november-engine-features-part-3-user-interface-classes-checkbox-refer-to-embedded-design/[Big user interface classes improvements]
+- link:apidoc-unstable/html/CastleComponentSerialize.html[Easy serialization of components as JSON]
+- link:manual_castle_settings.php[CastleSettings.xml file support]
+- link:manual_data_directory.php[`castle-data:/` protocol]
+- link:https://github.com/castle-engine/castle-engine/wiki/Castle-Game-Engine-for-Unity-developers[`TCastleBehavior` to enhance `TCastleTransform` functionality like `TCastleBillboard` or `TCastleSoundSource`]
+- link:manual_optimization.php[Many optimizations and profiling features]
+- link:wp/2018/07/29/new-screen-effects-api-and-demo-text-node-optimizations-multi-texture-modes-fixes/[New screen effects API]
+- link:x3d_extensions_mirror_plane.php[Easy mirrors on flat surfaces]
+- link:manual_text.php#section_localization_gettext[Localization]
+- link:wp/2018/04/21/engine-improvements-rejuvenated-playanimation-method-easily-play-animations-backward-with-blending-stop-notifications/[Animation blending improvements]
+- Many new notable examples
+- Android support for Arm64, link:https://github.com/castle-engine/castle-engine/wiki/Android-Services[many new services], upgrades to build infrastructure
+- iOS link:https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/ios/services/vibrate/README.md[vibrations], GPU compression, link:https://github.com/castle-engine/castle-engine/wiki/iOS#archive-deploy-on-ios[IPA building], link:https://github.com/castle-engine/castle-engine/wiki/iOS-Services[new services]
+- Physics link:wp/2019/06/15/physics-collision-detection-and-new-properties/[detecting collisions], link:wp/2019/11/02/triggers-detecting-collisions-and-physics-settings/[settings and triggers]
+- Sound backends, link:https://github.com/castle-engine/castle-engine/wiki/FMOD[FMOD backend], LoopingChannel, link:wp/2019/08/18/streaming-sound-tracks-fmod-linking-improved/[sound streaming]
+
+See https://castle-engine.io/wp/2021/02/06/castle-game-engine-7-0-alpha-1-release-view3dscene-4-0-0-release/[full 7.0-alpha.1 release announcement for details].
+
+=== Released in 7.0-alpha.1: Expanded version
 
 * https://castle-engine.io/manual_editor.php[Castle Game Engine Editor application!]
  ** Run it by simply executing "castle-editor" binary in the "bin/" subdirectory of our release zip.

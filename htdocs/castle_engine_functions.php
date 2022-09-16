@@ -2011,7 +2011,7 @@ function cge_features_summary()
     array(
       'link' => 'features#_visual_editor',
       'title' => 'Visual editor',
-      'description' => 'Design 3D and 2D games and  user interfaces (with automatic scaling, anchors). Build and deploy the same project for multiple platforms. Integrate with various IDEs (Lazarus, Delphi, Visual Studio Code...).',
+      'description' => 'Design 3D and 2D games and user interfaces (with automatic scaling, anchors). Build and deploy the same project for multiple platforms. Integrate with various IDEs (Lazarus, Delphi, Visual Studio Code...).',
       'image' => '2d_demo_editor.png',
       'image_titlealt' => '2D game in editor',
     ),
