@@ -1,57 +1,46 @@
-$ = jQuery;
-$(document).ready(function () {
+(function ($) {
+    "use strict";
+    $(document).ready(function () {
 
-    $imapieTabs = $("#imapie_tabs").tabs();
-
-    $('#imapie_tabs #submit').click(function (e) {
-        $('.imapie_settings_container').addClass('wait');
-
-        $.when(
-            $.post('options.php', $('#impaie_form_post').serialize()),
-            $.post('options.php', $('#impaie_form_user').serialize()),
-            $.post('options.php', $('#impaie_form_comment').serialize()),
-            $.post('options.php', $('#impaie_form_term').serialize())
-        ).done(function (a1, a2, a3, a4) {
-            $('.imapie_settings_container').removeClass('wait');
+        $('#iwc-api-key-value').on('click', function() {
+            $(this).select();
         });
 
-        return false;
-        e.preventDefault()
-    })
+        // to display tabs
+        $("#imapie_tabs").tabs();
 
+        // to show waiting animation of the curson when saving
+        $('#imapie_tabs #submit').click(function (e) {
+            $('.imapie_settings_container').addClass('wait');
+            $.when(
+                $.post('options.php', $('#impaie_form_post').serialize()),
+                $.post('options.php', $('#impaie_form_user').serialize()),
+                $.post('options.php', $('#impaie_form_comment').serialize()),
+                $.post('options.php', $('#impaie_form_term').serialize())
+            ).done(function (a1, a2, a3, a4) {
+                $('.imapie_settings_container').removeClass('wait');
+            });
 
-    $('.uncheck_all').click(function (e) {
-        uncheckAllStatus = $(this).attr('data-status');
+            return false;
+        });
 
-        if (uncheckAllStatus == 0) {
-            $(this).attr('data-status', 1);
-        } else {
-            $(this).attr('data-status', 0);
-        }
+        $('.uncheck_all').click(function (e) {
+            let uncheckAllStatus = $(this).attr('data-status');
 
-        $(this).closest('form').find('input[type="checkbox"]').each(function () {
             if (uncheckAllStatus == 0) {
-                $(this).prop('checked', true);
+                $(this).attr('data-status', 1);
             } else {
-                $(this).prop('checked', false);
+                $(this).attr('data-status', 0);
             }
-        })
-        return false;
-        e.preventDefault()
-    })
 
-    $('#imt-content-panel .general input#submit').click(function () {
-        let settings = {
-            'iwc-logging-enabled': $(' #iwc-logging-enabled').is(':checked')
-        }
-        $('.imapie_settings_container').addClass('wait');
-        $.when(
-            $.post('?iwcsets', settings)
-        ).done(function (a1, a2, a3, a4) {
-            $('.imapie_settings_container').removeClass('wait');
+            $(this).closest('form').find('input[type="checkbox"]').each(function () {
+                if (uncheckAllStatus == 0) {
+                    $(this).prop('checked', true);
+                } else {
+                    $(this).prop('checked', false);
+                }
+            });
+            return false;
         });
-
-    })
-
-})
-
+    });
+})(jQuery);
