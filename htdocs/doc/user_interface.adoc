@@ -49,6 +49,8 @@ cgeref:TCastleImageControl[] displays an image. It can be scaled, preserving the
 
 cgeimg::block[ui_image.png|Images]
 
+NOTE: Drag-and-drop image from the _"Files"_ panel (at the bottom) over a UI design to create a cgeref:TCastleImageControl[] component easily.
+
 ### Button
 
 cgeref:TCastleButton[] is a clickable UI element. The look can be incredibly customized to match the style of your game. Its most important properties are cgeref:TCastleButton.Caption[] and (assign here your event, in code) cgeref:TCastleButton.OnClick[].
@@ -87,7 +89,13 @@ cgeref:TCastleShape[] displays since shapes, like circles and triangles.
 
 cgeimg::block[ui_shape.png|Shape]
 
-//TODO:TCastleDesign?
+### Design (refer to another UI design)
+
+cgeref:TCastleDesign[] inserts a UI design from another `xxx.castle-user-interface` file. This allows to reuse the same UI design multiple times. Editing the original `xxx.castle-user-interface` will update all instances where this design is used.
+
+cgeimg::block[ui_design.png|Design (refer to another UI design)]
+
+NOTE: Drag-and-drop `xxx.castle-user-interface` from the _"Files"_ panel (at the bottom) over a UI design to create a cgeref:TCastleDesign[] component easily.
 
 //TODO:TCastleTiledMapControl?
 
