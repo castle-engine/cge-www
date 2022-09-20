@@ -29,6 +29,17 @@ Download for important platforms (esp. Windows, that Michalis doesn't use regula
 - Build + run some examples
 - Open doc/reference/index.html
 
+## Test: custom editor building
+
+```
+cd ~/sources/castle-engine/castle-engine/tools/build-tool/data
+./custom_editor_template_rebuild.sh
+git status # should show no modification
+```
+
+Open in CGE editor `examples/advanced_editor/custom_component`, allow to rebuild custom editor,
+make sure custom editor defines project-specific component.
+
 ## Test: Repository doesn't contain anything unwanted
 
 Test are there no files with accidental executable attribute:
