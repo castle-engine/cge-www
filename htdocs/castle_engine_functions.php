@@ -1921,9 +1921,9 @@ function castle_replace_asciidoctor_macros($contents)
     },
     $contents);
 
-  $contents = preg_replace_callback('/cge::download-engine\[\]/',
+  $contents = preg_replace_callback('/cge::download-engine\[([^],]*),([^],]*)\]/',
     function ($matches) {
-      return cge_download_engine();
+      return cge_download_engine($matches[1], $matches[2]);
     },
     $contents);
 
@@ -2099,15 +2099,23 @@ function cge_features_summary()
   return $result;
 }
 
-function cge_download_engine()
-{
-  // Download snapshot:
-  // $version = '7.0-alpha.snapshot';
-  // $tag = 'snapshot';
-  // Download stable:
-  $version = '7.0-alpha.2';
-  $tag = 'v' . $version;
+/* Refer to CGE download on GitHub.
 
+   $version - part of CGE zip filename with version.
+
+   $tag - GitHub release (aka GIT tag).
+
+   E.g.:
+   // Download snapshot:
+   $version = '7.0-alpha.snapshot';
+   $tag = 'snapshot';
+
+   // Download stable:
+   $version = '7.0-alpha.2';
+   $tag = 'v' . $version;
+*/
+function cge_download_engine($version, $tag)
+{
   $download_prefix = 'https://github.com/castle-engine/castle-engine/releases/download/' . $tag . '/' . 'castle-engine-' . $version;
 
   return '

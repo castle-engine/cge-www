@@ -102,11 +102,11 @@
     if you want to update stable version, make sure the new links are OK
     (VERSION_VIEW3DSCENE should already be OK)
 
-  - CGE links in `cge_download_engine()` in htdocs/castle_engine_functions.php ,
+  - CGE links in `cge::download-engine[....]` in htdocs/doc/download.adoc ,
     update version/tag there.
 
-    Note:
-    To force regenerate https://castle-engine.io/download , on CGE SSH:
+    Note: If you change something outside of ADOC,
+    to force regenerate https://castle-engine.io/download , on CGE SSH:
 
     ```
     cd ~/cge-www/htdocs/doc

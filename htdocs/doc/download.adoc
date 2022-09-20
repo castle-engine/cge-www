@@ -3,7 +3,7 @@ include::common.adoc[]
 
 == Download the engine for your system
 
-cge::download-engine[]
+cge::download-engine[7.0-alpha.snapshot,snapshot]
 
 NOTE: To build applications using the engine you also need to install a compiler. We recommend installing https://www.lazarus-ide.org/[Lazarus with FPC]. More information in the link:install[manual].
 
