@@ -1,5 +1,7 @@
 # Custom Components
 include::common.adoc[]
+:description: Define custom components in your project and make them available in CGE editor to visually design them.
+:cge-social-share-image: custom_component_reload_url.png
 
 == Introduction
 
@@ -427,3 +429,73 @@ begin
     MyString := IntToStr(MyOldInteger);
 end;
 ----
+
+== Add "verbs" to the context menu for given component
+
+cgeimg::block[custom_component_reload_url.png|Custom component with "Reload URL" verb]
+
+You can define a _component editor_ with custom _"verbs"_ to add special operations available on the given component.
+
+To do this, define a class descending from `TComponentEditor` and override a few methods dealing with _"verbs"_.
+
+[source,pascal]
+----
+type
+  { Editor for TMyComponent. }
+  TMyComponentEditor = class(TComponentEditor)
+  public
+    function GetVerbCount: Integer; override;
+    function GetVerb(Index: Integer): string; override;
+    procedure ExecuteVerb(Index: Integer); override;
+  end;
+
+function TMyComponentEditor.GetVerbCount: Integer;
+begin
+  Result := (inherited GetVerbCount) + 1;
+end;
+
+function TMyComponentEditor.GetVerb(Index: Integer): string;
+var
+  InheritedCount: Integer;
+begin
+  InheritedCount := inherited GetVerbCount;
+  if Index < InheritedCount then
+    Result := inherited GetVerb(Index)
+  else
+  if Index = InheritedCount then
+  begin
+    Result := 'TODO';
+  end else
+    Result := '';
+end;
+
+procedure TMyComponentEditor.ExecuteVerb(Index: Integer);
+var
+  InheritedCount: Integer;
+begin
+  InheritedCount := inherited GetVerbCount;
+  if Index < InheritedCount then
+    inherited ExecuteVerb(Index)
+  else
+  if Index = InheritedCount then
+  begin
+    // TODO
+    // GetDesigner.Modified; // call this to mark design as modified and add "Undo" step
+  end else
+    WritelnWarning('TMyComponentEditor.ExecuteVerb invalid verb index: %d', [Index]);
+end;
+----
+
+Next, register this class:
+
+[source,pascal]
+----
+initialization
+  RegisterSerializableComponent(TMyComponent, 'My Component');
+  {$ifdef CASTLE_DESIGN_MODE}
+  RegisterComponentEditor(TMyComponent, TMyComponentEditor);
+  {$endif}
+end.
+----
+
+See https://github.com/castle-engine/castle-engine/tree/master/examples/advanced_editor/custom_component[advanced_editor/custom_component] for a larger, complete example that defines and registers `TImageGrid` component with a component editor to perform _"Reload URL"_.
