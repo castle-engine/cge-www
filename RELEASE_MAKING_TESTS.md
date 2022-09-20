@@ -74,17 +74,15 @@ For each:
     view3dscene --debug-enable-fixed-function
     ```
 
-## Test fpmake
+## Test fpmake and InstantFPC
 
-Remember to define `FPCDIR` first, like
+Install CGE units following https://castle-engine.io/fpmake , test them.
+Test also InstantFPC.
 
 ```
+# Remember to define `FPCDIR` first, like this:
 export FPCDIR=/home/michalis/installed/fpclazarus/current/fpc/lib/fpc/3.2.2/
-```
 
-Then run
-
-```
 make test-fpmake
 ./fpmake --globalunitdir="${FPCDIR}" install
 # The CGE installed units should now be known to FPC, no need for any -Fu or @castle-fpc.cfg
@@ -92,9 +90,13 @@ ls -Flah /home/michalis/installed/fpclazarus/current/fpc/lib/fpc/3.2.2/units/x86
 fpc -Mobjfpc -Fuexamples/fps_game/code/ examples/fps_game/fps_game.dpr
 ```
 
-Install CGE units following https://castle-engine.io/fpmake
+Run the InstantFPC examples in examples/instantfpc/ .
 
-Run the 2 InstantFPC examples.
+Cleanup:
+
+```
+rm -Rf /home/michalis/installed/fpclazarus/current/fpc/lib/fpc/3.2.2/units/x86_64-linux/castle-game-engine
+```
 
 ## Make sure released zip/tar.gz don't contain any unwanted binary files.
 
