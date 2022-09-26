@@ -104,22 +104,65 @@ The example how to do this is in https://github.com/castle-engine/castle-engine/
 
 Current physics engine integration is just a start. The plans are:
 
-- Expose physics to be available in editor, by making `TCastleRigidBody` and `TCastleCollider` be descendants from `TCastleBehavior`. _As of 2022-02-07, Andrzej Kilijański is working on it_, so it will happen soon :)
+- (https://github.com/castle-engine/castle-engine/pull/394/[PR in review]). Expose physics to be available in editor, by making `TCastleRigidBody` and `TCastleCollider` be descendants from `TCastleBehavior`.
 
 - Expose Kraft layers.
 
-- Enable to "run" physics in the editor, by saving the state + observing the effect of physics.
+- (https://github.com/castle-engine/castle-engine/pull/394/[PR in review]). Enable to "run" physics in the editor, by saving the state + observing the effect of physics.
 
-- Currently we also have an older, simpler, internal physics/collision engine in CGE, that takes care of some tasks: the collisions of player and creatures (from CastleCreatures), a simple gravity for them, and custom collision methods for you (like RayCollision, SphereCollision etc. in CastleTransform unit). The new physics engine should eventually replace them all, and there should be a flag to make it possible, and eventually it should even become the default, and the old collision implementation should be simply removed.
+- _(See section below about "Old system")_ Currently we also have an older, simpler, internal physics/collision engine in CGE, that takes care of some tasks: the collisions of player and creatures (from CastleCreatures), a simple gravity for them, and custom collision methods for you (like RayCollision, SphereCollision etc. in CastleTransform unit). The new physics engine should eventually replace them all, and there should be a flag to make it possible, and eventually it should even become the default, and the old collision implementation should be simply removed.
 
-- The current implementation doesn't expose any API for joints.
+- (https://github.com/castle-engine/castle-engine/tree/physics_j[In progress, branch `physics_j`]). The current implementation doesn't expose any API for joints.
 
-- Maybe: A shape within the TCastleScene should be able to act like a rigid body, independent of the rest of the scene. Ideally, this should be link:blender[configurable in Blender, and exported nicely to glTF or X3D]. link:http://www.web3d.org/documents/specifications/19775-1/V3.3/Part01/components/rigid_physics.html[The X3D specification has a rigid-body component] to describe such things.
+- A shape within the `TCastleScene` should be able to act like a rigid body, independent of the rest of the scene. Our current preferred plan to this is to depend that you will assign rigid bodies and colliders in CGE editor (or by Pascal code) to `TCastleTransform` created by the `ExposeTransforms` feature. And we can just synchronize changes from bones exposed by `ExposeTransforms` back to the original model.
 +
-Our current preferred plan to this is resign from X3D and Blender integration for this, instead depend that you will assign rigid bodies and colliders in CGE editor (or by Pascal code). If we can just synchronize changes from bones exposed by `ExposeTransforms` back to the original model, this will allow you to attach physics to particular parts (any transformation) of the model.
+This will allow you to attach physics to particular parts (any transformation) of the model.
++
+We are close to realizing this goal, except that `ExposeTransforms` do not (yet) synchronize _back_ their changes to the parent model.
 
 - Integration with other physics engines, through a layer providing a common API.
 +
 Our best candidate for proving an (alternative) physics engine is link:http://bulletphysics.org/[Bullet]. Very full-featured, e.g. there's soft body, not only rigid body.
 +
 Full integration with Bullet will require proper translation of Bullet API to C and then to Pascal (as Bullet is in C++, it's not readily usable from anything other than C++). There is a C header for Bullet, see https://code.google.com/archive/p/bullet/issues/43[this old Google Code issue] and https://github.com/bulletphysics/bullet3/issues/130[this GitHub issue], but it's rather minimalistic (only rigid body), although it may be a good start.
+
+## Old system for collisions and gravity
+
+In parallel to resolving collisions using physics engine (that honors the `TCastleRigidBody` and `TCastleXxxCollider` behaviors), for some purposes _Castle Game Engine_ can also use an older _"simple physics"_ implementation.
+
+This _"simple physics"_ implementation is fully implemented in CGE, without using Kraft or any other "full-blown" physics engine. Instead it:
+
+- Can resolve collisions using octrees, constructed for each cgeref:TCastleScene[] or each shape of such scene.
+
+- Can perform simple (non-realistic) gravity.
+
+The long-term goal is to completely remove this _"simple physics"_ implementation in CGE. All it's functions can be, or will be, possible to achieve using _"real physics engine"_ (like Kraft). But for the time being, some functions are still realized using this _"simple physics"_. The relevant properties are:
+
+- cgeref:TCastleSceneCore.Spatial[]. This is typically either:
++
+--
+- `[]` (empty set, default) which indicates that scene collides as it's bounding box.
+- `[ssRendering,ssDynamicCollisions]` which indicates that we build and update a collision structure (octree) reflecting precisely the triangles in your mesh. So the mesh collides precisely.
+--
+
+- cgeref:TCastleTransform.Collides[]. By default this is `true`. When it is `false`, the transfomation object (and all its children) does not collide at all.
++
+This affects all collision routines *except* `RayCollision` and `RayCast` that look at cgeref:TCastleTransform.Pickable[].
+
+- cgeref:TCastleTransform.Pickable[]. By default this is `true`. When it is `false`, the transfomation object (and all its children) does not affect the results of ray collision (`RayCollision` and `RayCast`).
+
+- Note: when both cgeref:TCastleTransform.Collides[] and cgeref:TCastleTransform.Pickable[] are `false`, then cgeref:TCastleSceneCore.Spatial[] doesn't matter. In such case, the object will not collide ever (neither as bounding box, nor as a precise mesh).
+
+- cgeref:TCastleTransform.Gravity[]. When `true`, the relevant object falls down according to (non-realistic) gravity. It will honor (be stopped by) other objects that have `Collides` = `true`.
+
+- cgeref:TCastleWalkNavigation.Gravity[]. When `true`, the player avatar falls down according to (non-realistic) gravity. It will honor (be stopped by) other objects that have `Collides` = `true`.
+
+- Various collision queries like `World.RayCast`, `WorldBoxCollision` etc. rely on this collision detection.
+
+In the long-term, all these properties/methods will be
+
+* deprecated (and later removed)
+
+* or they will switch to using physics. They will honor whatever colliders you configure using the `TCastleRigidBody` and `TCastleXxxCollider` behaviors, and nothing more. And they will honor physics layers (coming soon).
+
+So all collisions and all gravity should be done using physics engine.
