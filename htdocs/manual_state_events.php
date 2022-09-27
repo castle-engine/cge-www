@@ -369,10 +369,11 @@ end;'); ?>
     to prevent it from falling too much (below the game window).
 
     <p>We get and set the <?php echo cgeRef('TCastleUserInterface.Translation', 'ImagePlayer.Translation'); ?>
-    which changes the image position. The anchors are relative to the parent
-    (<code>ImageBackground</code>) and, since the image is anchored by default to the left-bottom of the parent,
-    the anchor value (0,0) means that the left-bottom corner of <code>ImagePlayer</code> matches
-    the left-bottom corner of <code>ImageBackground</code>. This is what we want.
+    which changes the image position. The translation is relative
+    to the current anchor,
+    which by default is in the left-bottom corner of the parent.
+    So translation (0,0) means that the left-bottom corner of <code>ImagePlayer</code> matches
+    the left-bottom corner of parent <code>ImageBackground</code>. This is what we want.
 </ol>
 
 <p>Run the application now to see that the plane falls down.
