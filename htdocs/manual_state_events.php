@@ -353,9 +353,9 @@ begin
   LabelFps.Caption := \'FPS: \' + Container.Fps.ToString;
 
   { update player position to fall down }
-  PlayerPosition := ImagePlayer.AnchorDelta;
+  PlayerPosition := ImagePlayer.Translation;
   PlayerPosition.Y := Max(PlayerPosition.Y - SecondsPassed * 400, 0);
-  ImagePlayer.AnchorDelta := PlayerPosition;
+  ImagePlayer.Translation := PlayerPosition;
 end;'); ?>
 
     <p>We use the <code>SecondsPassed</code> parameter to know how much time has passed
@@ -368,7 +368,7 @@ end;'); ?>
     We modify the <code>Y</code> to make the plane fall down, and use <code>Max</code> (from standard <code>Math</code> unit)
     to prevent it from falling too much (below the game window).
 
-    <p>We get and set the <?php echo cgeRef('TCastleUserInterface.AnchorDelta', 'ImagePlayer.AnchorDelta'); ?>
+    <p>We get and set the <?php echo cgeRef('TCastleUserInterface.Translation', 'ImagePlayer.Translation'); ?>
     which changes the image position. The anchors are relative to the parent
     (<code>ImageBackground</code>) and, since the image is anchored by default to the left-bottom of the parent,
     the anchor value (0,0) means that the left-bottom corner of <code>ImagePlayer</code> matches
@@ -401,7 +401,7 @@ begin
   inherited;
   LabelFps.Caption := \'FPS: \' + Container.Fps.ToString;
 
-  PlayerPosition := ImagePlayer.AnchorDelta;
+  PlayerPosition := ImagePlayer.Translation;
 
   // NEW CODE WE ADD:
   if Container.Pressed[keyArrowLeft] then
@@ -415,15 +415,15 @@ begin
 
   { update player position to fall down }
   PlayerPosition.Y := Max(PlayerPosition.Y - SecondsPassed * 400, 0);
-  ImagePlayer.AnchorDelta := PlayerPosition;
+  ImagePlayer.Translation := PlayerPosition;
 end;'); ?>
 
     <p>The new code looks whether user has pressed one of the arrow keys
     by <code>if Container.Pressed[keyArrowXxx] then</code>.
     If yes, we modify the <code>PlayerPosition</code> variable accordingly.
 
-    <p>Note that we could also modify directly <code>ImagePlayer.AnchorDelta</code>,
-    like <code>ImagePlayer.AnchorDelta := ImagePlayer.AnchorDelta + Vector2(...);</code> .
+    <p>Note that we could also modify directly <code>ImagePlayer.Translation</code>,
+    like <code>ImagePlayer.Translation := ImagePlayer.Translation + Vector2(...);</code> .
     This would also work perfectly. But since we already had a variable <code>PlayerPosition</code>,
     it seemed even better to use it, as it has a self-explanatory name.
 
@@ -510,7 +510,7 @@ begin
   // NEW CODE:
   if Event.IsMouseButton(buttonLeft) then
   begin
-    ImagePlayer.AnchorDelta := ImagePlayer.Parent.ContainerToLocalPosition(Event.Position);
+    ImagePlayer.Translation := ImagePlayer.Parent.ContainerToLocalPosition(Event.Position);
     Exit(true); // event was handled
   end;
 end;'); ?>
@@ -519,10 +519,10 @@ end;'); ?>
 coordinates, which means it is not affected by UI scaling or the UI hierarchy and anchors.
 It's easiest to convert it to a position relative to some UI control using the <?php echo cgeRef('TCastleUserInterface.ContainerToLocalPosition', 'ContainerToLocalPosition'); ?>
  method. In this case, we use <code>ImagePlayer.Parent.ContainerToLocalPosition</code>, to use
-the resulting position to set <code>ImagePlayer.AnchorDelta</code>. The <code>ImagePlayer.Parent</code>
+the resulting position to set <code>ImagePlayer.Translation</code>. The <code>ImagePlayer.Parent</code>
 is just another way to access <code>ImageBackground</code> in this case. We want to calculate new player
 position, in the coordinates of <code>ImagePlayer</code> parent, because that's what
-<code>ImagePlayer.AnchorDelta</code> expects.
+<code>ImagePlayer.Translation</code> expects.
 
 <?php
 castle_footer();
