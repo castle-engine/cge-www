@@ -1,0 +1,50 @@
+# Components to reuse a design in other designs: TCastleDesign and TCastleTransformDesign
+include::common.adoc[]
+:description: Use TCastleDesign and TCastleTransformDesign to reuse a composition of components, similar to Unity prefabs.
+:cge-social-share-image: reuse_designs_transform.png
+
+== Introduction
+
+Components cgeref:TCastleDesign[] and cgeref:TCastleTransformDesign[] allow you to instantiate (reuse) in one design file a component designed in another design file. This is similar to how Unity prefabs are used.
+
+cgeimg::block[
+  reuse_designs_transform.png|TCastleTransformDesign to instantiate a composition with car+lights multiple times,
+  reuse_designs_ui.png|TCastleUserInterface to instantiate a composition with button+image+label multiple times,
+  reuse_designs_viewport.png|TCastleUserInterface to instantiate a composition with viewport+other designs multiple times
+]
+
+== Video
+
+If you like to learn by watching, we have a nice video about using these components:
+
+TODO
+
+== Overview
+
+The general idea is simple:
+
+- You can reuse a composition of components, that you have designed in CGE editor, multiple times.
+
+- You can reuse a UI (cgeref:TCastleUserInterface[]). Reuse by cgeref:TCastleDesign[].
+
+- You can reuse a transform (cgeref:TCastleTransform[] - 3D or 2D stuff that can be placed in a link:viewport_and_scenes[viewport]). Reuse by cgeref:TCastleTransformDesign[].
+
+Any design file (`.castle-user-interface` or `.castle-transform`) can be loaded (instantiated) by cgeref:TCastleDesign[] and cgeref:TCastleTransformDesign[]). To create such design file, with any component as a root, you can use:
+
+- Menu item _"Design -> New Xxx (Custom Root) -> Xxx"_
+
+- Or save any component to file using _"Save Selected..."_ command (right-click on the component in hierarchy).
+
+Then you can reuse it:
+
+- by manually adding cgeref:TCastleDesign[] or cgeref:TCastleTransformDesign[] to new designs. Set their `URL` property to the design that contains the component to be reused.
+
+- Or just drag-and-drop a `.castle-user-interface` or `.castle-transform` file on your design.
+
+See the context menu (right-click) of the cgeref:TCastleDesign[] or cgeref:TCastleTransformDesign[] for some helpful commands:
+
+- _"Edit (Copy Here) Referenced Design"_ (detach from the referenced design file)
+
+- _"Revert To Referenced Design"_ (use after _"Edit (Copy Here) Referenced Design"_; this removes all the children and reverts back to the original design file)
+
+- _"Open Referenced Design"_ (an easy way to open design in the `URL` of this cgeref:TCastleDesign[] or cgeref:TCastleTransformDesign[] component).

@@ -272,6 +272,7 @@ $castle_sitemap = array(
           'manual_editor' => array('title' => 'Editor',
             'sub' => array(
               'doc/custom_components' => array('title' => 'Custom Components in Editor'),
+              'doc/reuse_design' => array('title' => 'Components to reuse a design in other designs: TCastleDesign and TCastleTransformDesign'),
             )
           ),
           'manual_2d_games' => array('title' => '2D games',
