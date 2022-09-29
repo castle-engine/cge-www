@@ -33,6 +33,5 @@ What exactly to do? Go ahead and run wild. We encourage you to use this opportun
 We have a number of features listed on link:roadmap[]. See also https://castle-engine.io/mobile_todos[mobile (OpenGLES) TODOs]. I list below various ideas, some of them require some experience with other APIs (like OpenGL or Vulkan).
 
  ** (EASY) Distance field fonts (see link:roadmap[] for some details).
- ** (EASY - if you have experience with macs) CastleWindow backend using Cocoa under macOS
  ** (MIDDLE) Terrain designer within CGE editor (see link:roadmap[] for some details, but the general idea is to match basic terrain editing tools from e.g. Unity).
  ** (HARD) Start Vulkan renderer. Using PasVulkan for bindings, most likely. See starter project on https://github.com/castle-engine/castle-engine/blob/master/examples/research_special_rendering_methods/new_renderer_skeleton/new_renderer_skeleton.lpr , just modify this to make calls to Vulkan.
