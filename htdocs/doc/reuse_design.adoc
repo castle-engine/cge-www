@@ -8,8 +8,8 @@ include::common.adoc[]
 Components cgeref:TCastleDesign[] and cgeref:TCastleTransformDesign[] allow you to instantiate (reuse) in one design file a component designed in another design file. This is similar to how Unity prefabs are used.
 
 cgeimg::block[
-  reuse_designs_transform.png|TCastleTransformDesign to instantiate a composition with car+lights multiple times,
-  reuse_designs_ui.png|TCastleUserInterface to instantiate a composition with button+image+label multiple times,
+  reuse_designs_transform.png|TCastleTransformDesign to instantiate a composition with car+lights multiple times (car model by Slava Z. from https://sketchfab.com/3d-models/pony-cartoon-885d9f60b3a9429bb4077cfac5653cf9 ),
+  reuse_designs_ui.png|TCastleUserInterface to instantiate a composition with button+image+label multiple times (custom images by Ironthunder from https://opengameart.org/content/markeus-b-ui-buttons ),
   reuse_designs_viewport.png|TCastleUserInterface to instantiate a composition with viewport+other designs multiple times
 ]
 
