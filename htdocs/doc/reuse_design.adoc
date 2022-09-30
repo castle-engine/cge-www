@@ -17,7 +17,7 @@ cgeimg::block[
 
 If you like to learn by watching, we have a nice video about using these components:
 
-TODO
+video::peiWjieZpbM[youtube,width=800,height=450]
 
 == Overview
 
