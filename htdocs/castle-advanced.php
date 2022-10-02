@@ -76,9 +76,7 @@ castle --geometry 800x600
 <?php echo $toc->html_section(); ?>
 
 <p>OpenAL is used to play sounds. See
-<?php echo a_href_page(
-  'my instructions about installing OpenAL and command-line
-  options common for my programs using OpenAL', 'openal'); ?>.
+<a href="openal#_command_line_options_that_control_the_sound_outupt">instructions about installing OpenAL and command-line options common for my programs using OpenAL</a>.
 
 <p>For best effect, be sure to try all available devices in "Sound options" &mdash;
 the default device doesn't always sound the best.

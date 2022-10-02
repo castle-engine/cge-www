@@ -95,18 +95,8 @@ the list of changes since last release.</p>
   <li>
     <p><b>Linux, FreeBSD:</b></p>
 
-    <p>To hear game sounds you should first
-    <?php echo a_href_page_hashlink('install OpenAL', 'openal',
-    'section_install'); ?> and vorbisfile library.
-    If installing the older OpenAL <i>Sample Implementation from Loki</i>
-    be sure to install also <code>libvorbis-dev</code> package
-    (i.e. with developers symlinks) too (otherwise SI reports that
-    vorbis extension is present, but will fail to use it).
-    This problem is not present with newer OpenAL-Soft,
-    as it doesn't have vorbis extension and we will use our own
-    handling then.
-    <i>If you don't want to hear sounds, you don't have to install
-    OpenAL.</i></p>
+    <p>To hear game sounds you should
+    install <a href="openal#_installing_openal">OpenAL</a> and <a href="http://xiph.org/vorbis/">VorbisFile</a> libraries using your Linux distribution package manager.
 
     <p>Installing actual game: extract the downloaded archive anywhere.
     Run the game by running the binary, like <code>./castle</code>.</p>
@@ -119,7 +109,7 @@ the list of changes since last release.</p>
     or <code>/usr/share/castle/</code>.</p>
 
   <li>
-    <p><b>Mac OS X:</b></p>
+    <p><b>macOS:</b></p>
 
     <p>The game requires X11 server, libpng and (if you want to hear
     sound) OpenAL with vorbisfile. See <?php echo a_href_page(
@@ -156,7 +146,7 @@ the list of changes since last release.</p>
 You may also want to delete configuration file:</p>
 
 <table class="thin_borders">
-  <tr><td>Unix (Linux, FreeBSD, Mac OS X)<td><code>$HOME/.config/castle/castle.conf</code>
+  <tr><td>Unix (Linux, FreeBSD, macOS)<td><code>$HOME/.config/castle/castle.conf</code>
   <tr><td>Windows >= NT / 2000 / XP <td><code>Documents and
     Settings\&lt;UserName&gt;\Application Data\castle.conf</code>
   <tr><td>Windows 95 / 98 / ME <td><code>&lt;program's directory&gt;\castle.conf</code>

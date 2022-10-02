@@ -114,7 +114,7 @@ Try it now!
   <li><p><a href="opengl_options.php">Usual window size and fullscreen options</a>.
     By default we start in fullscreen.
 
-  <li><p><a href="openal.php#section_options">Usual sound options</a>.
+  <li><p><a href="openal#_command_line_options_that_control_the_sound_outupt">Usual sound options</a>.
     For example <code>--no-sound</code>.
 
   <li><p><code>--debug-log</code>, <code>--debug-speed</code>

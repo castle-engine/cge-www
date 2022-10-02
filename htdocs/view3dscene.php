@@ -118,7 +118,7 @@ you can open them all with <code>view3dscene</code>.</p>
 
 <p>PLatform-specific notes:
 <ul>
-  <li><i>Linux:</i> If you want to hear 3D sound in X3D worlds, install also <?php echo a_href_page('OpenAL', 'openal'); ?> and <a href="http://xiph.org/vorbis/">OggVorbis (VorbisFile and dependencies)</a> libraries using your Linux distribution package manager.
+  <li><i>Linux:</i> If you want to hear 3D sound in X3D worlds, install also <a href="openal#_installing_openal">OpenAL</a> and <a href="http://xiph.org/vorbis/">VorbisFile</a> libraries using your Linux distribution package manager.
   <li><i>macOS:</i> As our application is not signed (for now), for the first time you have to run it by clicking with <i>right mouse button</i>, choosing <i>"Open"</i> from the context menu, and then accepting to run an unsigned application. Next time you can run as usual, by just double-clicking on the application. <?php echo a_href_page('More information about macOS support is here.', 'doc/macos'); ?>.
 </ul>
 
@@ -768,10 +768,10 @@ is only useful for converting). More precisely:
   </dd>
 </dl>
 
-<p>As usual all
-<?php echo a_href_page("standard options understood by OpenGL programs", "opengl_options") ?>,
-<?php echo a_href_page('standard options understood by OpenAL (3D sound) programs','openal'); ?>,
-<?php echo a_href_page('standard options understood by all my programs','common_options'); ?>
+<p>As usual all standard options understood by
+<a href="opengl_options.php">OpenGL programs</a>,
+<a href="openal#_command_line_options_that_control_the_sound_outupt">OpenAL (3D sound) programs</a>,
+<a href="common_options.php">all programs</a>
  are also allowed. Run with command-line <code>--help</code> to get full list.
 
 <?php section(false); ?>

@@ -569,7 +569,6 @@ $castle_sitemap = array(
          but honestly they are old and we don't know where to link them from. */
       'common_options' => array('title' => 'Standard command-line options', 'hidden_in_toc' => true),
       'opengl_options' => array('title' => 'Standard command-line options for OpenGL programs', 'hidden_in_toc' => true),
-      'openal' => array('title' => 'OpenAL (3D sound)', 'hidden_in_toc' => true),
       'versioning' => array('title' => 'Versioning scheme of programs', 'hidden_in_toc' => true),
     ),
   ),
@@ -1652,14 +1651,11 @@ define('DEPENDS_LIBPNG_AND_ZLIB',
    (under Windows appropriate DLL files are already included
    in program\'s archive, so you don\'t have to do anything)');
 define('SUGGESTS_OPENAL',
-  a_href_page_hashlink('OpenAL', 'openal_notes', 'section_install') .
-  ' is strongly suggested if you want to hear sound
+  '<a href="' . CASTLE_PROD_URL . 'openal#_installing_openal">OpenAL</a> is used to play sound
   (under Windows appropriate DLL files are already included
   in program\'s archive, so you don\'t have to do anything)');
 define('SUGGESTS_OPENAL_VORBISFILE',
-  a_href_page_hashlink('OpenAL', 'openal_notes', 'section_install') .
-  ' and <a href="http://xiph.org/vorbis/">OggVorbis (VorbisFile and dependencies)</a>
-  libraries are strongly suggested if you want to hear sound
+  '<a href="' . CASTLE_PROD_URL . 'openal#_installing_openal">OpenAL</a> and <a href="http://xiph.org/vorbis/">VorbisFile</a> libraries are used to play sound and load OggVorbis sounds
   (under Windows appropriate DLL files are already included
   in program\'s archive, so you don\'t have to do anything)');
 define('DEPENDS_UNIX_CASTLE_WINDOW_GTK_2',
