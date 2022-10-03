@@ -56,7 +56,7 @@ begin
   // Create TCastleScene
   Scene := TCastleScene.Create(Application);
   Scene.Load(URL);
-  Scene.Spatial := [ssRendering, ssDynamicCollisions];
+  Scene.PreciseCollisions := true;
   // Scene.Translation := Vector3(1, 2, 3); // set initial position
 
   // Create TRigidBody
@@ -138,12 +138,16 @@ This _"simple physics"_ implementation is fully implemented in CGE, without usin
 
 The long-term goal is to completely remove this _"simple physics"_ implementation in CGE. All it's functions can be, or will be, possible to achieve using _"real physics engine"_ (like Kraft). But for the time being, some functions are still realized using this _"simple physics"_. The relevant properties are:
 
-- cgeref:TCastleSceneCore.Spatial[]. This is typically either:
+- cgeref:TCastleSceneCore.PreciseCollisions[]:
 +
 --
-- `[]` (empty set, default) which indicates that scene collides as it's bounding box.
-- `[ssRendering,ssDynamicCollisions]` which indicates that we build and update a collision structure (octree) reflecting precisely the triangles in your mesh. So the mesh collides precisely.
+- `false` indicates that scene collides as its bounding box.
+- `true` indicates that we build and update a collision structure (octree) reflecting precisely the triangles in the scene. So the scene collides as a precise set of triangles.
 --
++
+This value matters also at design-time (in CGE editor). For larger scenes (like levels), it is necessary to set cgeref:TCastleSceneCore.PreciseCollisions[] to `true`, otherwise picking smaller scenes (like creatures inside a level) will be impossible, because the big level scene will collide as a big box that includes everything.
++
+Underneath, these is a deprecated property cgeref:TCastleSceneCore.Spatial[] with a bit more options. But we advise to only use cgeref:TCastleSceneCore.PreciseCollisions[] to toggle between the 2 above useful values.
 
 - cgeref:TCastleTransform.Collides[]. By default this is `true`. When it is `false`, the transfomation object (and all its children) does not collide at all.
 +
