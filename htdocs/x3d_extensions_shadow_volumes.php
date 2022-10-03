@@ -11,7 +11,7 @@ $toc = new TableOfContents(array(
     new TocItem('Make 3D models of shadow casters geometry to be 2-manifold', 'requirements', 1),
     new TocItem('Advanced: Control shadow volumes using X3D fields <code>shadowVolumes</code> and <code>shadowVolumesMain</code>', 'ext_shadows_light', 1),
     new TocItem('Advanced: Control stencil buffer', 'stencil', 1),
-  new TocItem('Optionally specify shadow casters (<code>Appearance.shadowCaster</code>)', 'shadow_caster'),
+  new TocItem('Adjust what casts shadows', 'shadow_caster'),
 ));
 ?>
 
@@ -300,7 +300,9 @@ you would do this in your <code>gameinitialize.pas</code> <code>initialization</
 
 <?php echo $toc->html_section(); ?>
 
-<p>Everything by default is a shadow caster (as long as it's 2-manifold). To stop some objects from casting shadows, set their <code>Appearance.shadowCaster</code> field to <code>false</code>. <a href="x3d_extensions_shadow_maps.php#section_shadow_caster">See <code>Appearance.shadowCaster</code> documentation</a>.
+<p>Everything by default is a shadow caster (as long as it's 2-manifold). To stop some objects from casting shadows, set <?php echo cgeRef('TCastleTransform.CastShadows'); ?> to <code>false</code>.
+
+<p>If you edit X3D nodes, you can even control it for each particular shape. Set the <code>Appearance.shadowCaster</code> field to <code>false</code>. <a href="x3d_extensions_shadow_maps.php#section_shadow_caster">See <code>Appearance.shadowCaster</code> documentation</a>.
 
 <?php
   castle_footer();
