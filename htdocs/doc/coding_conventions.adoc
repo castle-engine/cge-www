@@ -588,14 +588,16 @@ If for some reason you really cannot follow this workflow, it is OK to simply se
 
 == Examples
 
-If you create a new example using editor "New Project" template, you should edit it:
+Examples in CGE subdirectory `examples` should follow the `snake_case` naming (for their subdirectories and for the project name).
+
+If you create a new example using editor _"New Project"_ template, you should edit it:
+
+- Edit the `README.md` to describe the purpose of this example.
+
+- Edit the `qualified_name` of the example to be like `qualified_name="io.castleengine.my.great.project"`.
 
 - Insert the standard engine copyright at the top of Pascal files, like `code/gameinitialize.pas` and `code/gamestatemain.pas`.
 
 - Remove the `.gitignore` from the example subdirectory.
 
 - Edit the top-level CGE `.gitignore` to ignore Unix binary of this executable. All other things should be already ignored by existing masks in that `.gitignore`.
-
-- Edit the `README.md` to describe the purpose of this example.
-
-- Edit the `qualified_name` of the example to be like `qualified_name="io.castleengine.my.great.project"`.
