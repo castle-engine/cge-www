@@ -585,3 +585,17 @@ Advantages of pull requests:
 * They allow everyone to submit, review and merge the changes relatively easily. And all operations can be done using the command-line or web interface, so it's comfortable / easy / flexible for everyone.
 
 If for some reason you really cannot follow this workflow, it is OK to simply send a traditional ".patch" file, done by "git diff" or "svn diff" (you can access https://github.com/castle-engine/castle-engine/ as a GIT or SVN repository.) You can attach it to https://github.com/castle-engine/castle-engine/issues[a new issue].
+
+== Examples
+
+If you create a new example using editor "New Project" template, you should edit it:
+
+- Insert the standard engine copyright at the top of Pascal files, like `code/gameinitialize.pas` and `code/gamestatemain.pas`.
+
+- Remove the `.gitignore` from the example subdirectory.
+
+- Edit the top-level CGE `.gitignore` to ignore Unix binary of this executable. All other things should be already ignored by existing masks in that `.gitignore`.
+
+- Edit the `README.md` to describe the purpose of this example.
+
+- Edit the `qualified_name` of the example to be like `qualified_name="io.castleengine.my.great.project"`.
