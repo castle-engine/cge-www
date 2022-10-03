@@ -9,8 +9,8 @@ $toc = new TableOfContents(array(
   new TocItem('Features', 'features'),
   new TocItem('Usage', 'usage'),
     new TocItem('Make 3D models of shadow casters geometry to be 2-manifold', 'requirements', 1),
-    new TocItem('Specify what lights cast shadows for shadow volumes (fields <code>shadowVolumes</code> and <code>shadowVolumesMain</code> for light nodes)', 'ext_shadows_light', 1),
-    new TocItem('Request stencil buffer', 'stencil', 1),
+    new TocItem('Advanced: Control shadow volumes using X3D fields <code>shadowVolumes</code> and <code>shadowVolumesMain</code>', 'ext_shadows_light', 1),
+    new TocItem('Advanced: Control stencil buffer', 'stencil', 1),
   new TocItem('Optionally specify shadow casters (<code>Appearance.shadowCaster</code>)', 'shadow_caster'),
 ));
 ?>
@@ -35,11 +35,15 @@ $toc = new TableOfContents(array(
 <p><i>Shadow volumes</i> are another method of rendering dynamic
 shadows in our engine.
 
+<p>To test it in <i>Castle Game Engine</i> editor,
+just set the light's <?php echo cgeRef('TCastlePunctualLight.Shadows', 'Shadows'); ?> property to <code>true</code>.
+Right now this one click activates shadow volumes, described in this chapter!
+
 <p><b>Demo 3D models that use dynamic shadow volumes</b> are
 inside our <?php echo a_href_page('demo models',
 'demo_models'); ?>, see subdirectory <code>shadow_volumes/</code>.
 Open them with <?php echo a_href_page('view3dscene', 'view3dscene'); ?>
- and play around!
+ and play around.
 
 <?php echo $toc->html_section(); ?>
 
@@ -49,7 +53,11 @@ with <i>shadow maps</i>):</p>
 <ul>
   <li><p>Shadow volumes produce <b>hard shadows</b>. That's both an advantage (they are as sharp as your geometry, no problems with texture resolution like in shadow maps) and disadvantage (when simulating large area lights, hard shadows may look unrealistic).</p></li>
 
-  <li><p><b>Shadow volumes are much easier to activate...</b> To see the shadows, just choose one light in the scene (probably the brightest one) and set it's fields <code>shadowVolumes</code> and <code>shadowVolumesMain</code> both to <code>TRUE</code>. <b>That's it.</b> Compared to shadow maps, you don't need to tweak anything to deal with shadow maps resolution, bias etc.</p>
+  <li><p><b>Shadow volumes are much easier to activate...</b> To see the shadows, just choose one light in the scene (probably the brightest one) and set <?php echo cgeRef('TCastlePunctualLight.Shadows', 'Shadows'); ?> to <code>true</code>.
+
+    <p>(If you use X3D nodes, set fields <code>shadowVolumes</code> and <code>shadowVolumesMain</code> both to <code>TRUE</code>.)
+
+    <p><b>That's it.</b> Compared to shadow maps, you don't need to tweak anything to deal with shadow maps resolution, bias etc.</p>
   </li>
 
   <li><p><b>... but shadow volumes require the shadow casters to be 2-manifold.</b> So you need to be more careful when modeling. Shadow volumes usually don't work if you try to activate them on a random 3D scene. <!-- &mdash; you will often need to fix scenes to be 2-manifold. --> More about this below.</p></li>
@@ -73,7 +81,7 @@ neighbor faces, so the whole shape is a closed volume.
 Also, faces must be oriented consistently (e.g. CCW outside).
 This requirement is often quite naturally satisfied for natural
 objects. Note that the consistent ordering allows you to use backface culling
-(<code>solid=TRUE</code> in VRML/X3D), which
+(<code>solid=TRUE</code> in X3D), which
 is a good thing on it's own.</p>
 
 <?php /*
@@ -160,7 +168,7 @@ to be 2-manifold. This has advantages and disadvantages:
 be 2-manifold</i> and separately <i>all transparent shapes must
 be 2-manifold</i>. For example, it's Ok to have some transparent
 box cast shadows over the model. But it's not Ok to have a shadow casting
-box composed from two separate VRML/X3D shapes: one shape defining
+box composed from two separate X3D shapes: one shape defining
 one box face as transparent, the other shape defining
 the rest of box faces as opaque.
 -->
@@ -172,7 +180,12 @@ light/dark caps must always be drawn, even in Z-pass approach.)-->
 
 <?php echo $toc->html_section(); ?>
 
-<p>To all VRML/X3D light nodes, we add two fields:
+<p><b>NOTE: This section is relevant only for X3D authors that directly edit X3D nodes.
+Most <i>Castle Game Engine</i> users can ignore it.
+Just control the shadows by toggling <?php echo cgeRef('TCastlePunctualLight.Shadows', 'Shadows'); ?>
+ property.</b>
+
+<p>To all X3D light nodes, we add two fields:
 
 <?php
   echo node_begin('*Light');
@@ -218,8 +231,8 @@ to use only one light). The scene lights are divided into three groups:
     is always turned off where the shadow is).</li>
 
   <li>Other lights that light everything. These just
-    work like usual VRML lights, they shine everywhere
-    (actually, according to VRML light scope rules).
+    work like usual X3D lights, they shine everywhere
+    (actually, according to X3D light scope rules).
     Usually only the dark lights should be in this group.
 
     <p>These are lights with <code>shadowVolumes</code> = <code>FALSE</code>
@@ -265,7 +278,12 @@ deprecated then.</i></p>
 
 <?php echo $toc->html_section(); ?>
 
-<p>In order for shadow volumes to work, you need to set
+<p>In order for shadow volumes to work, we need a <i>stencil buffer</i> initialized.
+
+<p><b>NOTE: There is nothing you need to do now. We enable 8-bit stencil buffer
+by default.</b>
+
+<p>To request stencil buffer explicitly, you need to set
 <?php api_link('TCastleWindow.StencilBits', 'CastleWindow.TCastleWindow.html#StencilBits'); ?>
  or
 <?php api_link('TCastleControl.StencilBits', 'CastleControl.TCastleControl.html#StencilBits'); ?>
