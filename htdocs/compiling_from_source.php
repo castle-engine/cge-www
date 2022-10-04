@@ -76,8 +76,12 @@ cd castle-engine/tools/build-tool/ # first enter the build tool directory
 
 <pre>
 cd castle-engine/tools/build-tool/ # first enter the build tool directory
+Set-ExecutionPolicy Bypass -Scope Process
 ./castle-engine_compile.ps1
 </pre>
+
+    <p>Note: The <code>Set-ExecutionPolicy...</code> is to avoid errors because our PowerShell script is not signed. Without it, you will likely get an error like <code>The file ....\castle-engine_compile.ps1 is not digitally signed. You cannot run this script on the current system</code>. We follow advise to solve it e.g. from <a href="https://chocolatey.org/install">Chocolatey</a>.
+
 
   <li>
     <p>Or you can compile by Lazarus:
