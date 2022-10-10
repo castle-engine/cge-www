@@ -143,3 +143,11 @@ castle-engine --target=android --mode=debug package --fast
 sudo apt purge gradle # if you installed gradle just for this test
 sudo apt --purge autoremove # if you didn't have anything else not pulled by gradle deps
 ```
+
+## Test: Before view3dsdcene release, make sure everything auto-generated is up-to-date and respective make targets work
+
+```
+cd view3dscene/
+make clean-code
+make generate-code
+```
