@@ -153,7 +153,9 @@ to hang on to FPC releases available in distros.
 <ul>
   <li><p>We test on 10.4 and 11.
 
-  <li><p>In principle, any Delphi version &gt;= 2009 (with generics support) should be OK. We welcome reports (of success or failure) if you use Delphi version between 2009 and 10.4, and tested CGE with it.
+  <li><p>In principle, any Delphi version &gt;= 2009 (with generics support) should be OK.
+
+    <p>We welcome reports (of success or failure) if you use Delphi version between 2009 and 10.4, and tested CGE with it. If you get a compilation error or any other issue, please report it with details &mdash; post a screenshot, post copy-pasted (exact!) error message and so on.
 
   <li><p>We will not support Delphi versions older than 10.4 <i>for mobile (Android and iOS)</i>.
 
