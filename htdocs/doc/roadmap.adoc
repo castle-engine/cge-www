@@ -170,3 +170,13 @@ We can make 3D modeling of realistically-looking stuff much easier by reusing li
 ## USD – Universal Scene Description support
 
 Explore possibility to support https://graphics.pixar.com/usd/release/index.html[USD – Universal Scene Description] format as a first-class citizen, alongside glTF and X3D, in CGE.
+
+## Integration with Nakama (scalable server for social and real-time games and apps)
+
+https://github.com/heroiclabs/nakama
+
+https://heroiclabs.com/docs/nakama/getting-started/index.html
+
+Nakama is an open-source server (which you can extend) and client API (which you can use from various game engines -- see https://heroiclabs.com/docs/nakama/client-libraries/ ) to get easy networking capabilities. You can host the server yourself or pay to get ready hosting.
+
+I think this, combined with CGE API, may give us networking capabilities comparable with some popular solutions known from other game engines.
