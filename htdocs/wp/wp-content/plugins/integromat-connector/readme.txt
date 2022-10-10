@@ -4,7 +4,7 @@ Tags: rest, api, rest api, integromat, endpoint, endpoints, meta, data, meta_dat
 Requires at least: 5.0
 Tested up to:  6.0.1
 Requires PHP: 5.6
-Stable tag: 1.5.3
+Stable tag: 1.5.4
 License: GPLv2 or later
 
 
