@@ -12,7 +12,12 @@ Important use-case:
 Future:
 
 * Asynchronous loading will be possible some day.
-* This requires renderer capable of multi-threading, like Vulkan.
+* This requires renderer capable of multi-threading.
++
+Like Vulkan.
++
+Or OpenGL, just with another context in another thread.
+
 * We prefer exposing asynchronous calls instead of just "allowing to use CGE from multiple threads". So you will still be required to call all CGE from main thread, however we will expose methods like `TCastleScene.PrepareResourcesAsynchronously` that call some callback in main thread when the loading finished. This is a more limited approach, but also easier to implement (greater flexibility for the implementation, because we know that only specific things are done in the background -- not that potentially everything is in different thread). It is also in practice better for some users -- using threads is _hard_ to do 100% correctly (without making any mistakes in data access, that result in very-rare-but-possible-and-painful-to-debug crashes).
 +
 Also `+TCastleScene.LoadAsync(..., OnFinish: TNotifyEvent)+`. As with `TCastleDownload`, it would internally use threads or not -- this fact would be hidden from users.  This approach gives simple API, allows engine to do it internally in various ways, and doesn't force users to deal with dangers of multi-threading (similar to Unity async loading).
@@ -24,9 +29,11 @@ Notes about parallelism already possible/done in CGE:
 
 Future challenges:
 
-* All OpenGL(ES) commands must be done from the same thread anyway. This is a limitation of OpenGL(ES).
+* (SOLVED?) All OpenGL(ES) commands in the same context must be done from the same thread. This is a limitation of OpenGL(ES).
 +
-So to e.g. load textures _to GPU_ while doing a smooth rendering from another thread, we would need to implement another renderer some day. E.g. Vulkan allows to use multi-threading. Although the burden of protecting multi-thread access in Vulkan lies in the hands of user, so it's not something trivial to take advantage of anyway, but at least it becomes possible. See:
+But, as I learned on GIC 2022, it is actually possible to load data into OpenGL from another thread. You just need a second context with _sharing_ (and all contexts that CGE initializes automatically use sharing). So it should be possible to e.g. load textures _to GPU_ while doing a smooth rendering from another thread.
++
+Vulkan also allows to use multi-threading. Although the burden of protecting multi-thread access in Vulkan lies in the hands of user, so it's not something trivial to take advantage of anyway, but at least it becomes possible. See:
 +
 --
 * https://www.khronos.org/registry/vulkan/specs/1.0/html/vkspec.html#fundamentals-threadingbehavior[Vulkan spec about threading]
