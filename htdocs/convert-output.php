@@ -1,7 +1,7 @@
 <?php
 
 /*
-  Copyright 2020-2020 Michalis Kamburelis.
+  Copyright 2020-2022 Michalis Kamburelis.
 
   This file is part of "Castle Game Engine Website".
 
@@ -293,10 +293,13 @@ function convert_to_x3d($encoding, $files, &$conversion_log,
       global $cge_config;
 
       $exec_command = 'sudo -u convert-to-x3d ' . $cge_config['cge-www-path'] . 'convert-to-x3d/convert-to-x3d.sh ' .
-        escapeshellcmd($volume_id) . ' ' .
-        escapeshellcmd($main_file) . ' ' .
-        escapeshellcmd($encoding) . ' ' .
-        escapeshellcmd($output_file_id);
+        /* Note: using escapeshellarg, not escapeshellcmd,
+           as escapeshellarg is good for single aguments -- it handles also spaces in name.
+           Testcase: trying to convert a file with space in name, like "foo bar.stl". */
+        escapeshellarg($volume_id) . ' ' .
+        escapeshellarg($main_file) . ' ' .
+        escapeshellarg($encoding) . ' ' .
+        escapeshellarg($output_file_id);
       if (CONVERSION_DEBUG) {
         $conversion_log .= "Executing: " . $exec_command . "\n";
       }
