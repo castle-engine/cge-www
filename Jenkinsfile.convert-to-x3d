@@ -55,6 +55,15 @@ pipeline {
             sh './build_docker_3_upload.sh'
           }
         }
+        /* Make sure that on this host, we have latest Docker image available for future
+           convert-to-x3d/convert-to-x3d.sh calls.
+           Testcase:
+           - ssh-cge
+           - docker run --name test-conv --volume="${HOME}":/home/michalis/ --volume="${HOME}"/sources/:/home/michalis/sources/ -it kambi/convert-to-x3d bash
+           - test tovrmlx3d inside
+           - later: docker stop test-conv && docker rm test-conv
+        */
+        sh 'docker pull kambi/convert-to-x3d'
       }
     }
   }
