@@ -238,6 +238,8 @@
   - Twitter: https://twitter.com/castleengine
   - Mastodon: https://mastodon.social/@michalis_kambi
 
+- https://opencollective.com/castle-engine
+
 - engine source code release means updating FPC contrib units info
   (see fpc_contrib_units_data.txt,
   http://www.freepascal.org/contrib/contribs.html).
