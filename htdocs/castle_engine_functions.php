@@ -2119,7 +2119,7 @@ function cge_download_engine($version, $tag)
     <div class="centered-download-wrapper">
         <div class="download jumbotron main-cge-download">
             <div class="download_platforms_list">
-                <div class="download_platform"><a class="btn btn-primary btn-lg" href="' . $download_prefix . '-win64-x86_64.zip"><img src="' . CURRENT_URL . '/images/os_icons/win.png" alt="Windows (64-bit, x86_64)" width="64" height="64"><br> Windows<br>(x86_64)</a></div>
+                <div class="download_platform"><a class="btn btn-primary btn-lg" href="' . $download_prefix . '-win64-x86_64-bundle.zip"><img src="' . CURRENT_URL . '/images/os_icons/win.png" alt="Windows (64-bit, x86_64)" width="64" height="64"><br> Windows<br>(x86_64)</a></div>
                 <div class="download_platform"><a class="btn btn-primary btn-lg" href="' . $download_prefix . '-linux-x86_64.zip"><img src="' . CURRENT_URL . '/images/os_icons/linux.png" alt="Linux (64 bit, x86_64)" width="64" height="64"><br> Linux<br>(x86_64)</a></div>
                 <div class="download_platform"><a class="btn btn-primary btn-lg" href="' . $download_prefix . '-linux-arm.zip"><img src="' . CURRENT_URL . '/images/os_icons/raspberry_pi.png" alt="Raspberry Pi (Linux Arm)" width="64" height="64"><br> Raspberry Pi<br>(Linux Arm)</a></div>
                 <div class="download_platform"><a class="btn btn-primary btn-lg" href="' . $download_prefix . '-darwin-x86_64.zip"><img src="' . CURRENT_URL . '/images/os_icons/macos.png" alt="macOS (Intel-based macs, 64-bit, x86_64)" width="64" height="64"><br> macOS<br>(x86_64)</a></div>

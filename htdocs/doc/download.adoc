@@ -7,7 +7,15 @@ cge::download-engine[7.0-alpha.snapshot,snapshot]
 
 NOTE: To build applications using the engine you also need to install a compiler. We recommend installing https://www.lazarus-ide.org/[Lazarus with FPC]. More information in the link:install[manual].
 
-== Alternative installation options
+== Alternative download and installation options
+
+=== GitHub releases with more variants (like downloads not bundled with FPC)
+
+More downloads are available on https://github.com/castle-engine/castle-engine/releases/latest . They contain:
+
+- Alternative "non-bundled" versions for some platforms (without the `-bundle` in zip name). Use them if you want to install the Pascal compiler (like https://www.freepascal.org/[FPC] or https://www.embarcadero.com/products/Delphi[Delphi]) yourself. Remember to point CGE to your compiler using the _"Preferences"_ editor window.
+
+- Win32 platform, which we still support but discourage. The world has largely moved to 64-bit (for Windows and other OSes) so we recommend using Win64.
 
 === Itch.io
 
@@ -15,7 +23,7 @@ Head over to https://castle-engine.itch.io/castle-game-engine[Castle Game Engine
 
 For extra comfort, use https://itch.io/app[itch.io app]. It's very nice and allows to download + install the engine, or later update, with really 1 click.
 
-NOTE: This installs the latest _released_ engine version, like `7.0-alpha2`. Not a snapshot.
+NOTE: This installs the latest _released_ engine version, like `7.0-alpha.2`. Not a snapshot.
 
 === Arch Linux User Repository
 
@@ -35,7 +43,7 @@ makepkg -sri
 
 * Or use a helper like link:https://aur.archlinux.org/packages/paru/[paru]. Once you have it working, just use `paru -S castle-engine-git`.
 
-NOTE: This installs the latest engine version from https://github.com/castle-engine/castle-engine/[GitHub repository]. Bleeding edge! (But in practice, often stable to be used even for production work.)
+NOTE: This installs the latest engine version from the https://github.com/castle-engine/castle-engine/[GitHub repository (master branch)]. Bleeding edge! (But in practice, often stable to be used even for production work.)
 
 ////
 == Debian / Ubuntu packages
