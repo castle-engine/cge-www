@@ -265,7 +265,7 @@ echo cgeImg('block', array(
 
 <p>Look at our <a href="modern_pascal">Modern Object Pascal Introduction for Programmers</a> to learn more about Pascal, the programming language we use.
 
-<p>To access (from code) the components you have designed, you need to manually declare and initialize their fields. We will manually add and initialize field <code>ImagePlayer</code>, as we want to modify its properties by Pascal code. This process will be automated in the future.
+<p>To access (from code) the components you have designed, you need to declare them in Pascal in the <code>published</code> section of your state class. Therefore we will add the field <code>ImagePlayer</code>, as we want to modify its properties by Pascal code.
 
 <ol>
   <li>
@@ -280,7 +280,7 @@ echo cgeImg('block', array(
 
   <li>
     <p>Find the <code>TStateMain</code> class declaration and add a field <code>ImagePlayer: TCastleImageControl;</code>
-    near the comment <code>{ Components designed using CGE editor, loaded from gamestatemain.castle-user-interface. }</code>.
+    in the <code>published</code> section.
 
     <p>So it looks like this:
 
@@ -288,28 +288,17 @@ echo cgeImg('block', array(
 'type
   { Main state, where most of the application logic takes place. }
   TStateMain = class(TUIState)
-  private
-    { Components designed using CGE editor, loaded from gamestatemain.castle-user-interface. }
+  // ... private and public sections may be specified before published
+  published
+    { Components designed using CGE editor.
+      These fields will be automatically initialized at Start. }
     LabelFps: TCastleLabel;
     ImagePlayer: TCastleImageControl; // NEW LINE WE ADDED
     ...'); ?>
-
-  <li>
-    <p>Find the <code>TStateMain.Start</code> method implementation and add there code to initialize the
-    <code>ImagePlayer</code> by <code>ImagePlayer := DesignedComponent('ImagePlayer') as TCastleImageControl;</code>.
-    The end result should look like this:
-
-<?php echo pascal_highlight(
-'procedure TStateMain.Start;
-begin
-  inherited;
-
-  { Find components, by name, that we need to access from code }
-  LabelFps := DesignedComponent(\'LabelFps\') as TCastleLabel;
-  ImagePlayer := DesignedComponent(\'ImagePlayer\') as TCastleImageControl;
-end;'); ?>
-
 </ol>
+
+<p>The value of this field will be automatically initialized (right before the state
+<code>Start</code> method is called) to the component loaded from your design.
 
 <p>Pascal code within <code>TStateMain</code> can now use the field <code>ImagePlayer</code>
 the change the properties of the designed image.

@@ -88,7 +88,7 @@ If you want to try all the examples on this page yourself, we recommend that you
 
 Often, your code will need to refer to some components that you have added in the editor. The component `Name` is used to uniquely get an instance of this component from code. In this example, we want to access `MainViewport` and `RoadScene` in Pascal. To do this:
 
-. Declare their corresponding fields. We recommend to do this in the `private` section of `TStateMain` class, near the comment _{ Components designed using CGE editor, loaded from gamestatemain.castle-user-interface. }_. There should be `LabelFps` already defined (it is part of the _"Empty"_ template), you will add 2 new lines below it:
+. Declare their corresponding fields. Do this in the `published` section of `TStateMain` class, near the comment _{ Components designed using CGE editor.... }_. There should be `LabelFps` already defined (it is part of the _"Empty"_ template), you will add 2 new lines below it:
 +
 [source,pascal]
 ----
@@ -96,37 +96,23 @@ RoadScene: TCastleScene;
 MainViewport: TCastleViewport;
 ----
 +
-The end result is that `TStateMain` class starts like this:
+The end result is that `TStateMain` class looks like this:
 +
 [source,pascal]
 ----
 type
   { Main state, where most of the application logic takes place. }
   TStateMain = class(TUIState)
-  private
-    { Components designed using CGE editor, loaded from gamestatemain.castle-user-interface. }
+  // ... private and public sections may be specified before published
+  published
+    { Components designed using CGE editor.
+      These fields will be automatically initialized at Start. }
     LabelFps: TCastleLabel;
     RoadScene: TCastleScene;
     MainViewport: TCastleViewport;
 ----
 
 . Remember to add the necessary units to your `uses` clause to have the appropriate identifiers defined. If you follow the reference links, like this one: cgeref:TCastleScene[], then you will see in which unit is each identifier defined. cgeref:TCastleScene[] class is part of the cgeref:CastleScene[] unit. cgeref:TCastleViewport[] is part of the cgeref:CastleViewport[] unit.
-
-. Find the implementation of `TStateMain.Start`. You need to initialize the fields, to actually refer to the components that were loaded from the design. Below the existing lines:
-+
-[source,pascal]
-----
-{ Find components, by name, that we need to access from code }
-LabelFps := DesignedComponent('LabelFps') as TCastleLabel;
-----
-+
-...add 2 more lines:
-+
-[source,pascal]
-----
-RoadScene := DesignedComponent('RoadScene') as TCastleScene;
-MainViewport := DesignedComponent('MainViewport') as TCastleViewport;
-----
 
 That's it. Now anywhere in your state code you can access `RoadScene` or `MainViewport`.
 

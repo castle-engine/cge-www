@@ -249,13 +249,7 @@ Instead of having the _mouse look_ just active by default, we can make it active
 Such behavior has to be implemented using the code. Chapter link:viewport_and_scenes_from_code[Writing code to modify scenes and transformations] describes how to edit the game code. We don't want to get ahead of ourselves... But actually it is quite easy. Just edit the `code/gamestatemain.pas` file, and
 
 . Add `CastleCameras` unit to the `uses` clause in the `interface`.
-. Declare `WalkNavigation1: TCastleWalkNavigation;` inside the `private` section of the `TStateMain`, under the comment _{ Components designed using CGE editor, loaded from gamestatemain.castle-user-interface. }_.
-. In `TStateMain.Start` implementation, add this code:
-+
-[source,pascal]
-----
-WalkNavigation1 := DesignedComponent('WalkNavigation1') as TCastleWalkNavigation;
-----
+. Declare `WalkNavigation1: TCastleWalkNavigation;` inside the `published` section of the `TStateMain`, under the comment _{ Components designed using CGE editor.... }_.
 . In `TStateMain.Press` implementation, add this code:
 +
 [source,pascal]

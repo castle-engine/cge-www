@@ -17,7 +17,7 @@ The basic usage of UI controls inside the _CGE editor_ is explained in the chapt
 
 - After adding, you want to adjust basic component properties, like `Name`, position and size.
 
-- To access the component from code, you add to your state `Start` method a line like `MyLabel := DesignedComponent('MyLabel') as TCastleLabel` and at any other place you can modify this component, like `MyLabel.Caption := 'something'`.
+- To access the component from code, you need to declare it in the `published` section of your class, like `MyLabel: TCastleLabel`. The field `MyLabel` will then be automatically initialized when state starts to point to the component in the design with the name `MyLabel`. You can modify this component from anywhere you want, e.g. doing `MyLabel.Caption := 'something'`.
 
 ## Available user interface controls
 
