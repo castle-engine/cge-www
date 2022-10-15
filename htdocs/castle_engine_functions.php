@@ -133,9 +133,11 @@ if (empty($castle_php_relative_path)) {
      Using set_include_path to include the castle-engine-website-base/ fixed the issue.
    - Because we actually depend on it for geshi. */
 global $castle_php_relative_path;
-set_include_path(get_include_path() .
-  PATH_SEPARATOR . $castle_php_relative_path . 'castle-engine-website-base/' .
-  PATH_SEPARATOR . $castle_php_relative_path . 'geshi/');
+set_include_path(get_include_path() . PATH_SEPARATOR . $castle_php_relative_path . 'castle-engine-website-base/');
+global $castle_wordpress;
+if (empty($castle_disable_cge_geshi)) {
+  set_include_path(get_include_path() . PATH_SEPARATOR . $castle_php_relative_path . 'geshi/');
+}
 
 /* Michalis' email address. Using the constant makes it easier to change
    the address everywhere at once, and saves me from accidentaly
@@ -146,7 +148,9 @@ require_once 'castle-engine-website-base/kambi_common.php';
 require_once 'generated_versions.php';
 require_once 'castle_engine_externals.php';
 require_once 'castle_engine_books.php';
-require_once 'geshi.php';
+if (empty($castle_disable_cge_geshi)) {
+  require_once 'geshi.php';
+}
 
 define('CASTLE_GENERATE_OFFLINE',
   isset($_GET['CASTLE_GENERATE_OFFLINE']) &&
@@ -855,80 +859,84 @@ function castle_toc_from_sitemap()
   return $result;
 }
 
-function echo_header_bonus ()
+function castle_geshi_header()
 {
+  global $castle_disable_cge_geshi;
+  if (!empty($castle_disable_cge_geshi)) {
+    return;
+  }
+
   global $geshi;
   $geshi = new GeSHi();
   $geshi->enable_classes();
   //$geshi->set_overall_class('sourcecode'); // not needed anymore
 
-  ?>
+  echo '<style type="text/css">' . "\n";
 
-<link rel="alternate" type="application/rss+xml"
-  title="Castle Game Engine - News Feed"
-  href="<?php echo page_url('news_feed'); ?>">
+  /* looks like we need to set_language before get_stylesheet,
+     otherwise not everything necessary is output. */
+  $geshi->set_language('delphi');
+  echo $geshi->get_stylesheet(false);
+  $geshi->set_language('VRML / X3D');
+  echo $geshi->get_stylesheet(false);
+  $geshi->set_language('C');
+  echo $geshi->get_stylesheet(false);
+  $geshi->set_language('XML');
+  echo $geshi->get_stylesheet(false);
 
-<!--
-  Add Inter font, https://developers.google.com/fonts/docs/getting_started .
-  Add &display=swap to render text ASAP, see https://web.dev/font-display/?utm_source=lighthouse&utm_medium=lr
--->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter&display=swap">
-
-<link type="text/css" rel="stylesheet" media="all" href="<?php echo page_requisite('castle-engine-website-base/castle-engine.css?version=' . CASTLE_ENGINE_CSS_VERSION); ?>">
-<link type="text/css" rel="stylesheet" media="all" href="<?php echo page_requisite('castle-engine-website-base/castle-asciidoctor.css?version=' . CASTLE_ENGINE_CSS_VERSION); ?>">
-
-<?php if (defined('CASTLE_ENGINE_CUSTOM_CSS')) { ?>
-  <link type="text/css" rel="stylesheet" media="all" href="<?php echo page_requisite(CASTLE_ENGINE_CUSTOM_CSS); ?>">
-<?php } ?>
-
-<style type="text/css">
-<?php
-/* looks like we need to set_language before get_stylesheet,
-   otherwise not everything necessary is output. */
-$geshi->set_language('delphi');
-echo $geshi->get_stylesheet(false);
-$geshi->set_language('VRML / X3D');
-echo $geshi->get_stylesheet(false);
-$geshi->set_language('C');
-echo $geshi->get_stylesheet(false);
-$geshi->set_language('XML');
-echo $geshi->get_stylesheet(false);
-?>
-</style>
-
-<script type="text/javascript">
-var _bftn_options = {
-//always_show_widget: true // @type {Boolean}
-};
-</script>
-<!-- script src="https://widget.battleforthenet.com/widget.js" async></script -->
-
-<?php
-/* echo flattr_header(); - Flattr not used now */
-
-/* Add icons, using same HTML code as Wordpress */
-global $castle_wordpress;
-if (empty($castle_wordpress)) {
-    ?>
-    <link rel="icon" href="<?php echo page_requisite('images/castle_game_engine_icon_fit_in_square.png'); ?>" sizes="256x256" />
-    <link rel="apple-touch-icon-precomposed" href="<?php echo page_requisite('images/castle_game_engine_icon_fit_in_square.png'); ?>" />
-    <meta name="msapplication-TileImage" content="<?php echo page_requisite('images/castle_game_engine_icon_fit_in_square.png'); ?>" />
-    <?php
+  echo '</style>' . "\n";
 }
 
-/* Add icon, following Google structured data recommendation.
-   https://developers.google.com/search/docs/advanced/structured-data/logo
-*/
-?>
-<script type="application/ld+json">
+function echo_header_bonus ()
 {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "url": "<?php echo CASTLE_PROD_URL; ?>",
-  "logo": "<?php echo CASTLE_PROD_URL; ?>images/castle_game_engine_icon.png"
-}
-</script>
-<?php
+  ?>
+  <link rel="alternate" type="application/rss+xml"
+    title="Castle Game Engine - News Feed"
+    href="<?php echo page_url('news_feed'); ?>">
+
+  <!--
+    Add Inter font, https://developers.google.com/fonts/docs/getting_started .
+    Add &display=swap to render text ASAP, see https://web.dev/font-display/?utm_source=lighthouse&utm_medium=lr
+  -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter&display=swap">
+
+  <link type="text/css" rel="stylesheet" media="all" href="<?php echo page_requisite('castle-engine-website-base/castle-engine.css?version=' . CASTLE_ENGINE_CSS_VERSION); ?>">
+  <link type="text/css" rel="stylesheet" media="all" href="<?php echo page_requisite('castle-engine-website-base/castle-asciidoctor.css?version=' . CASTLE_ENGINE_CSS_VERSION); ?>">
+  <?php
+
+  if (defined('CASTLE_ENGINE_CUSTOM_CSS')) {
+    ?>
+    <link type="text/css" rel="stylesheet" media="all" href="<?php echo page_requisite(CASTLE_ENGINE_CUSTOM_CSS); ?>">
+    <?php
+  }
+
+  castle_geshi_header();
+
+  /* echo flattr_header(); - Flattr not used now */
+
+  /* Add icons, using same HTML code as Wordpress */
+  global $castle_wordpress;
+  if (empty($castle_wordpress)) {
+      ?>
+      <link rel="icon" href="<?php echo page_requisite('images/castle_game_engine_icon_fit_in_square.png'); ?>" sizes="256x256" />
+      <link rel="apple-touch-icon-precomposed" href="<?php echo page_requisite('images/castle_game_engine_icon_fit_in_square.png'); ?>" />
+      <meta name="msapplication-TileImage" content="<?php echo page_requisite('images/castle_game_engine_icon_fit_in_square.png'); ?>" />
+      <?php
+  }
+
+  /* Add icon, following Google structured data recommendation.
+     https://developers.google.com/search/docs/advanced/structured-data/logo
+  */
+  ?>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "url": "<?php echo CASTLE_PROD_URL; ?>",
+    "logo": "<?php echo CASTLE_PROD_URL; ?>images/castle_game_engine_icon.png"
+  }
+  </script>
+  <?php
 }
 
 /* Echo a header.

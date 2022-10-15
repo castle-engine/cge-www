@@ -18,10 +18,15 @@ if (is_admin()) {
 } else {
     $castle_php_relative_path = '../';
 }
-require_once $castle_php_relative_path . 'castle_engine_functions.php';
 
 global $castle_wordpress;
 $castle_wordpress = true;
+
+// let Wordpress wp-syntax plugin to define Geshi class
+global $castle_disable_cge_geshi;
+$castle_disable_cge_geshi = true;
+
+require_once $castle_php_relative_path . 'castle_engine_functions.php';
 
 add_action('wp_enqueue_scripts', 'cge_theme_enqueue_styles');
 function cge_theme_enqueue_styles()

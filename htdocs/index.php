@@ -1,6 +1,10 @@
 <?php
 // define('CASTLE_GITHUB_NAME', 'castle-engine');
 
+// We will load Wordpress later, and we don't need Geshi in main CGE page -> so let Wordpress define Geshi class
+global $castle_disable_cge_geshi;
+$castle_disable_cge_geshi = true;
+
 require_once 'castle_engine_functions.php';
 
 global $main_page;
