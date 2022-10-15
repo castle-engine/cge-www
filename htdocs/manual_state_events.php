@@ -288,7 +288,6 @@ echo cgeImg('block', array(
 'type
   { Main state, where most of the application logic takes place. }
   TStateMain = class(TUIState)
-  // ... private and public sections may be specified before published
   published
     { Components designed using CGE editor.
       These fields will be automatically initialized at Start. }

@@ -96,14 +96,13 @@ RoadScene: TCastleScene;
 MainViewport: TCastleViewport;
 ----
 +
-The end result is that `TStateMain` class looks like this:
+The end result is that `TStateMain` class starts like this:
 +
 [source,pascal]
 ----
 type
   { Main state, where most of the application logic takes place. }
   TStateMain = class(TUIState)
-  // ... private and public sections may be specified before published
   published
     { Components designed using CGE editor.
       These fields will be automatically initialized at Start. }
