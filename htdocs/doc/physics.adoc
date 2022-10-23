@@ -5,9 +5,15 @@ include::common.adoc[]
 
 == Introduction
 
-Physics allows you to define _rigid bodies_ that can collide with each other (following the designated _collider_ geometry). These collisions (by default) automatically result in proper response, i.e. objects "bounce off" each other when they collide.
+Physics allows you to define _rigid bodies_ that can
 
-_Castle Game Engine_ is integrated with https://github.com/BeRo1985/kraft[Kraft Physics Engine] made by _Benjamin 'BeRo' Rosseaux_. Read on to learn how to add rigid-body physics to your own games.
+- _collide_ with each other (following the designated _collider_ geometry)
+- are affected by _forces_ (like _gravity_ and custom forces you apply)
+- are connected by _joints_.
+
+The physics collisions automatically result in a proper response, i.e. objects "bounce off" each other when they collide.
+
+To achieve all this, _Castle Game Engine_ is integrated with https://github.com/BeRo1985/kraft[Kraft Physics Engine] made by _Benjamin 'BeRo' Rosseaux_. Read on to learn how to add physics to your own games.
 
 cgeimg::block[
   physics_1.png|Bunch of physics rigid bodies,
@@ -15,13 +21,84 @@ cgeimg::block[
   physics_2d.png|Physics 2D
 ]
 
-== Demo Videos
+== New physics
+
+WARNING: The _"new physics"_ features described here are not yet available in CGE "master" branch, nor in the link:download[downloads] we recommend. They are on https://github.com/castle-engine/castle-engine/tree/physics[physics branch] and more (joints) in https://github.com/castle-engine/castle-engine/tree/physics_j[physics_j branch]. But they will be *soon*! We work on making them officially available in October 2022.
+
+=== Demo Videos
+
+video::9VPL2awHsMA[youtube,width=800,height=450]
+video::IUzIV6OmrIE[youtube,width=800,height=450]
+video::apCQXr9PBhs[youtube,width=800,height=450]
+
+=== Rigid bodies and colliders (TCastleRigidBody, TCastleXxxCollider components)
+
+Use these components (available in both editor and code) to control the physics.
+
+////
+TODO: Make links below using cgeref, once possible (on master).
+////
+
+- `TCastleRigidBody`
+- Family of components descending from abstract `TCastleCollider`:
++
+--
+- TCastleSphereCollider`
+- `TCastleBoxCollider`
+- `TCastleCapsuleCollider`
+- `TCastleMeshCollider` (only static bodies)
+- `TCastlePlaneCollider` (only static bodies)
+--
+
+Just add to any cgeref:TCastleTransform[] (usually to cgeref:TCastleScene[] or a primitive like cgeref:TCastleBox[], cgeref:TCastleSphere[]) one `TCastleRigidBody`, one collider, and observe that it's affected by
+
+- gravity
+- collisions with other objects.
+
+There are lots of options to tweak how things behave. See API docs for documentation.
+
+[NOTE]
+====
+A good test to enjoy the physics is to make a "bullet" that will hit some rigid body with significant speed, so that you can see how it behaves on collision. To make a bullet, just
+
+- add `TCastleRigidBody` and some collider to the object you want to act as a bullet
+- set `TCastleRigidBody.LinearVelocity` to something non-zero.
+
+See https://www.youtube.com/watch?v=9VPL2awHsMA[quick demo movie].
+====
+
+=== Physics Simulation in Editor
+
+You can start a _"Physics Simulation"_ right in the editor. This is a great way to test how physics behaves without the need to actually run the game.
+
+During the simulation you *can* click around and modify the design even while the physics is runnning. Beware: _the design will be restored to the original state when physics stops_. If you want to really modify the design (not only make a temporary experiment), you should first _stop the physics simulation_.
+
+NOTE: In the editor we only run physics simulation, not your actual game code. In the future, more components may behave differently in this simulation. But we'll never run your project's code (unless you put it into a link:custom_components[custom component] and add to the design this way).
+
+=== Using forces (pushing, rotating bodies)
+
+You can apply forces from code. This can be used to simulate forces other than gravity. For example: wind or explosion.
+
+See demos:
+
+- `examples/physics/physics_forces` - test various method to apply forces.
+
+- `examples/physics/physics_explosion` - test explosion.
+
+////
+TODO above: link to example, once on master.
+TODO: list method names, once decided.
+////
+
+== Old (deprecated) physics (TRigidBody, TXxxCollider components)
+
+=== Demo Videos
 
 video::8k9zX6dPQEU[youtube,width=800,height=450]
 
 video::hIuEGnRm-yM[youtube,width=800,height=450]
 
-== Usage
+=== Usage
 
 You can turn any cgeref:TCastleTransform[] instance into a _rigid body_, which means that it will be affected by gravity and collisions with other rigid bodies. cgeref:TCastleScene[], which you use to render 3D objects, is a descendant of cgeref:TCastleTransform[], so this implies that `TCastleScene` can be a _rigid body_ too. Or you can use cgeref:TCastleTransform[] as a container for other transformations and scenes inside, and thus a group of objects can be treated as a single rigid body.
 
@@ -88,7 +165,7 @@ Notes:
 
 - The collider shape is not synchronized with the scene shape in any way. This also applies to the cgeref:TMeshCollider[] that has a cgeref:TMeshCollider.Scene[]: the mesh is created _once_ from the scene geometry, it is not synchronized with scene changes later. (If you need it, the workaround is the same as above: set `TCastleTransform.RigidBody` to `nil` and then again to your `TRigidBody` instance. But creating a mesh collider is a costly operation, so think twice before doing this during the game!)
 
-== Physics in 2D games
+=== Physics in 2D games
 
 Although internally Castle Game Engine and Kraft work in 3D, the physics can work just fine for 2D games too.
 
@@ -100,7 +177,7 @@ Although internally Castle Game Engine and Kraft work in 3D, the physics can wor
 
 The example how to do this is in https://github.com/castle-engine/castle-engine/tree/master/examples/physics/physics_2d_game_sopwith[physics_2d_game_sopwith] (see in particular the https://github.com/castle-engine/castle-engine/tree/master/examples/physics/physics_2d_game_sopwith/code/gameinitialize.pas[physics_2d_game_sopwith/code/gameinitialize.pas] source code).
 
-== Future plans (TODOs)
+=== Future plans (TODOs)
 
 Current physics engine integration is just a start. The plans are:
 
