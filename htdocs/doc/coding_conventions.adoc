@@ -660,11 +660,11 @@ If you want to suggest some optimization (of speed, of memory usage) to the engi
 * makes a significant code complication to the existing code,
 * or it adds a significant amount of new code (which is also a code complication)
 
-... then always first do some tests/thinking whether it's really worth it.
+-> then always first do some tests/thinking whether it's really worth it.
 
 There are many situations where optimizing is not a good idea, because it will not change the "bottleneck" code (which means that the speed / memory use of something else is so large (in comparison) that it completely "masks" the thing that you optimize, making it irrelevant). In such cases, optimization is actually harmful, because the code quality goes down -- the optimized code is _usually_ longer and/or more convoluted.
 
-(Exception: in the rare cases when the optimized code is also shorter and cleaner, you have a full green light to do it _just because the code quality is better_.)
+NOTE: In the rare cases when the optimized code is also shorter and cleaner, you have a full green light to do it _just because the code quality is better_.
 
 Bottom line:
 
@@ -674,7 +674,7 @@ Bottom line:
 
 As you can see, I put more emphasis on thinking about code quality than optimization. That is because I see some of us often making the mistake of not caring about code quality enough, and instead rushing to make an optimization (that lowers code quality for little-to-no gain to the final applications).
 
-Of course, this does not mean we don't want to optimize. It just means that we require justification for each optimization, the optimization must have a noticeable effect on some real-world use-case. We want the code to be fast and use little memory -- there are various ways to achieve this, often using smart algorithms on CPU, and/or thinking about how the CPU cache is used, and/or delivering data in better chunks to GPU. Low-level optimization of some local routine is not always the most effective approach.
+Of course, this does not mean we don't want to optimize. It just means that we require justification for each optimization, the optimization must have a noticeable effect on some real-world use-case. We want the code to be fast and use little memory -- there are various ways to achieve this, often using smart algorithms on CPU, and/or thinking about how the CPU cache is used, and/or delivering data in better chunks to GPU. Low-level optimization of some local routine is often not the most effective approach.
 
 There is also a dreaded "death by 1000 cuts" that we want to avoid, which is sometimes caused by missing a number of small optimizations that _would_ have a noticeable effect overall. E.g. that's why we use "Single" throughout the engine code, not Double or Extended. (except some special code where we have testcases that "Single" precision is not enough). Using "Double" everywhere would have a noticeable negative effect on the speed (yes, I tested it long time ago). But e.g. paranoidally avoiding calling `Sqrt` in the engine... proved to be usually a useless optimization, causing various bugs and not achieving any speed gain.
 
