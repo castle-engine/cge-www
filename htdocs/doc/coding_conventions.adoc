@@ -377,7 +377,7 @@ Traditionally, `Extended` used to be a 10-byte floating-point type available in 
 The size and precision of `Extended` depends now on the platform and compiler:
 
 * FPC: Extended=Double for most of non-i386 architectures. One known exception to the above is Linux on x86-64, that allows to use normal Extended. Use `EXTENDED_EQUALS_DOUBLE` to check for it.
-* Delphi: See https://docwiki.embarcadero.com/RADStudio/Sydney/en/Simple_Types_(Delphi) . Similar to FPC, `Extended` is just `Double` (8 bytes) on most platforms except Win32.
+* Delphi: See https://docwiki.embarcadero.com/RADStudio/Sydney/en/Simple_Types_(Delphi)[] . Similar to FPC, `Extended` is just `Double` (8 bytes) on most platforms except Win32.
 +
 Moreover, Delphi defines `Extended` to be a new 16-byte floating-point type on some platforms:
 
@@ -403,7 +403,7 @@ See Delphi docs:
 
 * https://docwiki.embarcadero.com/Libraries/Sydney/en/System.UnicodeString
 * https://docwiki.embarcadero.com/RADStudio/Sydney/en/Unicode_in_RAD_Studio
-* https://docwiki.embarcadero.com/RADStudio/Sydney/en/String_Types_(Delphi)
+* https://docwiki.embarcadero.com/RADStudio/Sydney/en/String_Types_(Delphi)[]
 
 Correspondingly, `Char` is 8-bit with FPC, and 16-bit with Delphi. And `PChar` points to 8-bit characters on FPC, 16-bit on Delphi.
 
