@@ -411,7 +411,7 @@ With both compilers, you can explicitly use `AnsiString` to request 8-bit string
 
 What to do?
 
-* In most CGE code, just use `String` and `Char` and most of the time is just does what you want. You can often ignore the fact that FPC will do this using 8-bit chars and Delphi will do this using 16-bit chars.
+* In most CGE code, just use `String` and `Char` and most of the time it just does what you want. You can often ignore the fact that FPC will do this using 8-bit chars and Delphi will do this using 16-bit chars.
 * Exceptions:
  ** When we read/write to streams, like using various `CastleClassUtils` routines, we use 8-bit strings. Since UTF-8 is the file format that most software expects, it is a superset of ASCII (that is: simplest text files) etc. So `CastleClassUtils` routines dealing with streams + strings just declare `AnsiString` as input/output type.
 +
