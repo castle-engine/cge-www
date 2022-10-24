@@ -419,6 +419,218 @@ There are exceptions marked with `DefaultString` in the name, right now only `Me
 
  ** When interacting with external libraries, you will most often use `PAnsiChar` (not `PChar`) as most of them expect 8-bit UTF-8 (or just ASCII) text.
 
+=== Use `BeforeDestruction` for finalization tasks that keep the object state consistent
+
+While most of the finalization code should usually go to the destructor (`Destroy`), it is OK (and sometimes even desirable) to override `BeforeDestruction` and put there code that _finalizes things, but keeps the object state consistent_. The idea is that finalization can be split into 2 phases:
+
+1. `BeforeDestruction` : Do only things that keep the object state consistent. This means that 100% of class implementation is prepared to handle the state in the middle (and after) `BeforeDestruction` happens. Examples of things to do here:
+** Detach things, e.g. calling `BeforeParentDetach` and clearing the behaviors from parent `TCastleTransform`.
+** Calling notifications.
+
+2. `Destroy` : Do things that put the object in half-uninitialized state. Not all of class implementation has to be prepared to handle this state.
+** For example, here you can free (always using `FreeAndNil`) a child object owned by this instance.
+** This is also when `TComponent` free notification mechanism (provoked by `FreeNotification`, cgeref:TFreeNotificationObserver[]) happens. This happens in `TComponent.Destroy` (at least in case of FPC).
+
+100% of class implementation must be ready to work during `BeforeDestruction`. So
+
+- Do not just blindly move parts of finalization from `Destroy` to `BeforeDestruction`. It would be a mistake to fix things this way, as at some point we would then need `BeforeBeforeDestruction` and so on.
+
+- Things that can happen from `BeforeDestruction` can safely still call methods/properties of the class that is being destroyed. This is important, because detaching things often causes some callbacks, some virtual method calls -- and in general you cannot control what the code there will do.
+
+As a bonus, implementing `BeforeDestruction` is sometimes easier than implementing `Destroy`: Because `BeforeDestruction` is only called if the class constructor reached the end, i.e. fully initialized everything (see https://docwiki.embarcadero.com/Libraries/Sydney/en/System.TObject.BeforeDestruction[Delphi docs of TObject.BeforeDestruction]). This is in contrast to implementation of `Destroy`, that has to be very careful, because destructor can be called even on half-initialized object state (because destructor is called even when the constructor fails with an exception).
+
+Once the actual `Destroy` starts, the object may be in _half initialized_ state and in general it is not guaranteed that operating on such object works. The object may have some critical fields cleared (uninitialized), and in general methods/properties may assume they are initialized. E.g.
+
+- `Create` does `Something := TMySomething.Create`
+- `Destroy` does `FreeAndNil(Something)`
+- Nothing else can free/change `Something` instance
+- -> This means that most of the implementation may assume that `Something` is not `nil`. There is no need to write `if Something <> nil then...` before accessing `Something` methods/properties.
+- Only a subset of class implementation, that is known it *can* be reached from `Destroy` calls (directly or indirectly) has to be prepared to handle `Something = nil` case.
+
+We often make implementation of some class "robust" to work even when this class is in the middle of `Destroy`. But there is no guarantee about it and we do it on a case-by-case basis (when it is needed by something). In general, class implementation may assume that it is never called in "half initialized" state, and that user code checks `if not (csDestroying in SomeObject.ComponentState) then...` if it could happen when `SomeObject` is in the middle of `Destroy` operation.
+
+=== Blank lines
+
+NOTE: This is a guideline, not a strict rule. There are many cases where we added (or didn't add) blank lines on a case-by-case basis, because "here it looked better". Still, do follow this guideline if there are no good reasons to deviate from it.
+
+In the interface, *put a blank line before a comment* in
+
+- `protected`,
+- (not advised) `strict protected`,
+- `public`,
+- `published`
+
+sections. Unless that comment is preceded by the line with section keyword (like `public`).
+
+Putting *a blank line before a comment in a `private` or `strict private` section is allowed but not required*. Often you want to make these private sections more terse (also there is no need to strictly document everything private) so it's OK to not use blank lines.
+
+Do not add blank lines before the line with section keyword (like `public`). Do not add blank lines before every undocumented (private) method / property. E.g. this is good:
+
+[source,pascal]
+----
+type
+  TMyClass = class
+  private
+    Foo: Integer;
+    Bar: String;
+    procedure DoSomething;
+    { This is something else. }
+    procedure DoSomethingElse;
+    procedure SetSuperProperty(const Value: Integer);
+  public
+    { Incredibly useful operation. }
+    procedure DoSomethingIncrediblyUseful;
+
+    { Another incredibly useful operation. }
+    procedure AnotherIncrediblyUseful;
+
+    { Super important. }
+    property SuperProperty: Integer read FSuperProperty write SetSuperProperty;
+  published
+    { Published super important property. }
+    property PublishedSuperProperty: Integer ...;
+
+    { Another published super important property. }
+    property AnotherPublishedSuperProperty: Integer ...;
+  end;
+----
+
+This is not good:
+
+[source,pascal]
+----
+// DON'T WRITE LIKE THIS
+type
+  TMyClass = class
+  private
+
+    Foo: Integer;
+
+    Bar: String;
+
+    procedure DoSomething;
+
+    { This is something else. }
+    procedure DoSomethingElse;
+
+    procedure SetSuperProperty(const Value: Integer);
+  protected
+
+    procedure Something;
+
+    procedure Something;
+
+  public
+
+    { Incredibly useful operation. }
+    procedure DoSomethingIncrediblyUseful;
+    { Another incredibly useful operation. }
+    procedure AnotherIncrediblyUseful;
+    { Super important. }
+    property SuperProperty: Integer ...;
+
+  { Another published super important property. }
+  published property PublishedSuperProperty: Integer ...;
+  end;
+----
+
+=== Start a property setter with `if FXxx <> Value then`
+
+A typical setter implementation should check whether the new value is different than the previous, and early abort (not do anything) when they are equal.
+
+_Reason:_ This is an easy and useful optimization. The cost of checking for equality is usually trivial and it can save non-trivial operation cost. Do this even if you suspect (or know) that layer below is also doing such checks. Don't trust the authors of "layer below" (esp. if it's an external library).
+
+Implementing setters like this from a start is much easier than latter adding such conditions. If your setter doesn't make the check `if Xxx <> Value then`, then later developers will be afraid of adding it, fearing that it breaks something (by not reinitializing something in some cases). So we generally require to implement setters like this from a start.
+
+Our convention is to do it by `if FXxx <> Value then` followed by the `FXxx := Value;` assignment (with the `FXxx` always on the left side, so it's easy to see that comparison and assignment do the same). Like this:
+
+[source,pascal]
+----
+procedure TMyClass.SetFoo(const Value: Integer);
+begin
+  if FFoo <> Value then
+  begin
+    FFoo := Value;
+    // do some side-effect
+    SynchronizedObject.Foo := Value;
+    Invalidate;
+  end;
+end;
+----
+
+NOTE: Compare vectors like `if not TVector3.PerfectlyEquals(FFoo, Value) then...`.
+
+Lazarus CodeTools generate a setter with early exit using `Exit` instead, we discourage this setter form (not because it's inherently worse, but just the above is also good and it is prevalent in CGE sources, so better follow existing convention):
+
+[source,pascal]
+----
+// DON'T WRITE LIKE THIS
+procedure TMyClass.SetFoo(const Value: Integer);
+begin
+  if FFoo = Value then
+    Exit;
+
+  FFoo := Value;
+  // do some side-effect
+  SynchronizedObject.Foo := Value;
+  Invalidate;
+end;
+----
+
+=== Document at least every protected / public / published identifier, use a language that looks good in English and uses PasDoc tags
+
+All `protected`, `public`, `published` identifiers should be documented (unless you *really* don't have anything to add that isn't already spelled out by the identifier name).
+
+Documenting the `private` and `strict private` identifiers is also encouraged if there's anything that isn't obvious. We don't _stricly_ require documenting them -- as their meaning / purpose is often obvious enough from the name, and the details can be inferred by analyzing the implementation code. But if you're unsure, it is better to write docs.
+
+Do not make a documentation that just repeats what the identifier already says. If you define `property RotationAxis: TVector3 ...` then documenting it like this isn't very helpful:
+
+[source,pascal]
+----
+// DON'T WRITE LIKE THIS
+{ The axis of rotation. }
+property RotationAxis: TVector3 ...;
+----
+
+If this is really everything you have to say, then you can skip the documentation in such case -- there's no point in writing exactly the same words that the identifier is already composed of.
+
+*But there's almost always something more that you can add that is useful*.
+
+- You can usually summarize connections of the identifier to other identifiers or to the core function of the class.
+
+- If the property doesn't contain a `default` clause (e.g. records, like `TVector3`, cannot have such clause) then say in the documentation what is the default value (that the constructor sets).
+
+- You can often mention as `@seealso` closely related things.
+
+- If there are any limitations in how something works, describe them.
+
+- If the property value is ignored in some circumstances, it's useful to mention it.
+
+This is a better example:
+
+[source,pascal]
+----
+{ Object rotates around the given axis with the speed of @link(RotationSpeed).
+  This property is ignored if @link(Rotating) is @false.
+  Default value is +Y (0,1,0).
+  @seealso RotationSpeed
+  @seealso Rotating }
+property RotationAxis: TVector3 ...;
+----
+
+As for English:
+
+- Make it correct English, but also make it terse and precise.
+
+- Do not waste words on useless prefixes like _"This property defines rotation axis."_ or _"This method makes rotation."_. Instead be shorter: _"Rotation axis."_  (for a property) or _"Start rotating."_ (for a method).
+
+- Especially make the 1st sentence really good.
+** We use PasDoc with https://pasdoc.github.io/AutoAbstractOption[--auto-abstract], so the 1st sentence is used in various places as a good summary of this identifier.
+** It also means that the 1st sentence should "stand on its own".
+** Be aware that first sentence is detected by looking for the _first dot followed by a space character_. Avoid using mid-sentence abbreviations that would confuse this mechanism, like `i.e.` or `etc.`. For example this is bad: `Rotation axis, i.e. the axis around which it rotates.` Here, PasDoc would accidentally think that 1st sentence is just `Rotation axis, i.e.`.
+
+- We use PasDoc with https://pasdoc.github.io/AutoLinkOption[--auto-link], so identifiers are converted into links automatically, without the need to use PasDoc https://pasdoc.github.io/LinkTag[@link] tag. Advantage: the comments look more like regular English. Disadvantage: if you make a typo in related identifier name, or the related identifier will be renamed -- we will not warn about it. When the risk of latter is significant, we often still write `@link(SomethingRelated)` explicitly, instead of just `SomethingRelated`.
+
 == Other languages
 
 * Indent by 4 spaces in Java and Objective-C.

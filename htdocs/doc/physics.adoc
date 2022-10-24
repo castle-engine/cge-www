@@ -43,7 +43,7 @@ TODO: Make links below using cgeref, once possible (on master).
 - Family of components descending from abstract `TCastleCollider`:
 +
 --
-- TCastleSphereCollider`
+- `TCastleSphereCollider`
 - `TCastleBoxCollider`
 - `TCastleCapsuleCollider`
 - `TCastleMeshCollider` (only static bodies)
