@@ -101,7 +101,7 @@ define('PATREON_URL',         'https://patreon.com/castleengine');
 define('CGE_LATEST_DOWNLOAD', 'https://github.com/castle-engine/castle-engine/archive/snapshot.zip');
 
 // bump this each time you change castle-engine.css, to work with CloudFlare caching (or you can purge CloudFlare cache manually)
-define('CASTLE_ENGINE_CSS_VERSION', 39);
+define('CASTLE_ENGINE_CSS_VERSION', 40);
 
 define('TWITTER_HANDLE', 'castleengine'); // https://twitter.com/castleengine/
 
@@ -276,7 +276,7 @@ $castle_sitemap = array(
           'manual_editor' => array('title' => 'Editor',
             'sub' => array(
               'doc/custom_components' => array('title' => 'Custom Components in Editor'),
-              'doc/reuse_design' => array('title' => 'Components to reuse a design in other designs: TCastleDesign and TCastleTransformDesign'),
+              'doc/reuse_design' => array('title' => 'Components to reuse a design in other designs'), // TCastleDesign and TCastleTransformDesign -- too long names would make horizontal scroll on mobile
             )
           ),
           'manual_2d_games' => array('title' => '2D games',
@@ -300,7 +300,7 @@ $castle_sitemap = array(
           'manual_cross_platform' => array('title' => 'Cross-platform (desktop, mobile, consoles...) projects',
             'sub' => array(
               'manual_data_directory' => array('title' => 'Data directory'),
-              'doc/project_manifest' => array('title' => 'CastleEngineManifest.xml'),
+              'doc/project_manifest' => array('title' => 'CastleEngineManifest&ZeroWidthSpace;.xml'), // using zero-width space to avoid making mobile version with horizontal scroll
               'manual_castle_settings' => array('title' => 'Customize UI scaling, font, warmup cache by CastleSettings.xml'),
               'doc/build_tool' => array('title' => 'Build Tool'),
             ),

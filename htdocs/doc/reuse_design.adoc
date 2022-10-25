@@ -1,4 +1,5 @@
-# Components to reuse a design in other designs: TCastleDesign and TCastleTransformDesign
+# Components to reuse a design in other designs
+//: TCastleDesign and TCastleTransformDesign // too long identifier TCastleTransformDesign would make a horizontal scroll on mobile
 include::common.adoc[]
 :description: Use TCastleDesign and TCastleTransformDesign to reuse a composition of components, similar to Unity prefabs.
 :cge-social-share-image: reuse_designs_transform.png
