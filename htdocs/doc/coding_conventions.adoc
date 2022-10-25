@@ -14,9 +14,34 @@ Some particular conventions:
 
 === Indent by 2 spaces
 
+[source,pascal]
+----
+procedure Foo;
+var
+  X: Integer;
+begin
+  X := 1;
+  if Y > 4 then
+  begin
+    while Z = 'hello' do
+    begin
+      Bar;
+      Xyz;
+    end'
+    WriteLn(X);
+  end;
+end;
+----
+
 === Do not use tabs or trailing whitespace
 
-Do not leave "trailing whitespace" at the end of lines. In the long run, it causes unnecessary diffs when someone removes this whitespace.
+Do not leave "trailing whitespace" at the end of lines.
+
+*Reason:* In the long run, it causes unnecessary diffs when someone removes this whitespace, which many text editors (and some humans :) ) do automatically.
+
+Do not use tabs. Use only spaces for all indentation.
+
+*Reason:* Tabs are nice when they are used 100% consistently for indentation, but in the long run it's hard to enforce using them 100% consistently esp. when many people are working on the same codebase. And when tabs are used inconsistently (sometimes mixed with spaces for indentation), problems arise -- because people have diffent _tab width_ in their editors, so for some people indentation will look broken. It's much easier to enforce the rule _always use spaces_.
 
 === Use `PascalCase` for everything
 
@@ -27,6 +52,8 @@ Do not leave "trailing whitespace" at the end of lines. In the long run, it caus
 * Including type names. Even the type names that are Pascal keywords (so write `String` / `Boolean` instead of `string` / `boolean`). Note: this rule was changed during CGE 6.5 development. So you will find a lot of code using lowercase `string` now in engine sources, but new code should use `String`.
 
 === `true` and `false` are lowercase, not `True` and `False`
+
+*Reason:* We just historically wrote them always as lowercase `true` and `false`, and now it would be too big effort (for too little gain) to change to `True` and `False`. Some Pascal codebases write them also lowercase (e.g. LCL, although it is not 100% consistent) so we're not alone in this decision.
 
 === Put `begin` on a new line, indentation of `begin` and `end` should match
 
@@ -206,31 +233,39 @@ uses SysUtils, Classes,
   GameStatePlay;
 ----
 
+NOTE: We don't have a strict rule for the order of units within each group. They _often_ loosely follow the "dependency order" (if unit `A` is used by `B`, then we write `A, B`, like `SysUtils, Classes, Controls`) but we really don't make this a strict rule (it would be too tiresome to maintain, for no gain). Many `uses` clauses have in practice an order dictated by history and that's OK.
+
 === Use `strict private` where possible
 
-Use `strict private` whenever you can, that is: use it for private stuff that is not accessed by other classes/routines in the same unit. Use simple `private` only for private stuff that _is_ accessed by other classes/routines in the same unit.
+Use `strict private` whenever you can, that is: use it for private stuff that is not accessed by other classes/routines in the same unit.
 
-This improves code readability in case of large units, that feature more than just a single class.
+Use just `private` for stuff that _is_ accessed by other classes/routines in the same unit. Basically, use `private` where you would use _friends_ in C++.
+
+This improves code readability in case of large units, that feature more than just a single class. And we have many such large units.
 
 === Do not use `strict protected`
 
-Using `strict protected` is not advised in CGE. The distinction between `strict protected` and `protected` is not very useful for readability (regardless if something is `strict protected` or just `protected`, you must think _something outside of this class accessed it_). Moreover, it is forced downward, on all descendants of this class (that must then differentiate between overriding in `strict protected` vs `protected`, which is uncomfortable because the decision whether to use `strict protected` or `protected` should be an internal (implementation) decision within the ancestor, not affecting the descendants).
+Using `strict protected` is not advised in CGE.
+
+*Reason:* The distinction between `strict protected` and `protected` is not very useful for readability (regardless if something is `strict protected` or just `protected`, you must think _"something outside of this class, even outside of this unit, may access it"_). Moreover, it is forced downward, on all descendants of this class (that must then differentiate between overriding in `strict protected` vs `protected`, which is uncomfortable because the decision whether to use `strict protected` or `protected` should be an internal (implementation) decision within the ancestor, not affecting the descendants).
 
 So, use just one `protected` section, do not bother splitting it into `strict protected` and `protected`.
 
 === Write abbreviations using PascalCase
 
-This means to use `Url`, `Http` etc. in Pascal identifiers. Because it looks much better in long identifiers, e.g. `GetHttpResponse` is much more readable than `GetHTTPResponse`.
+Use `Url`, `Http` etc. in Pascal identifiers. Because it looks much better in long identifiers, e.g. `GetHttpResponse` is much more readable than `GetHTTPResponse`.
 
 Note that in the comments, you should still use English convention of writing the _whole_ abbreviation uppercase (not only the first letter). So e.g. documentation for `GetHttpResponse` would be `Returns a response received over HTTP`.
 
 [NOTE]
 ====
-In the special case of `Url`, we have an additional complication:
+In the special case of `Url`, we have additional complications:
 
-In some places we use the term `URI` instead of `URL`. The difference is explained in https://castle-engine.io/manual_network.php#section_terminology[terminology section of the networking manual] (`URI` is a more general concept than `URL`) but admittedly in some places we used the term `URL` where we should have used `URI` or vice-versa. X3D standard also mixes them a bit, in efffect cgeref:TInlineNode.SetUrl[] actually accepts various URIs (including https://en.wikipedia.org/wiki/Data_URI_scheme[data URI scheme]).
+- For historic reasons, a lot of code used uppercase `URL`.
 
-To make things simple, all future code should just use `Url`, and documentation clearly states that _"most URLs actually accept broader URI, e.g. https://en.wikipedia.org/wiki/Data_URI_scheme[data URI scheme]"_.
+- In some places we use the term `URI` instead of `URL`. The difference betwen URL and URI is explained in https://castle-engine.io/manual_network.php#section_terminology[terminology section of the networking manual] (`URI` is a more general concept than `URL`) but admittedly the difference is small and we didn't pay strict attention to this difference. In effect, in some places we used the term `URL` where we should have used `URI` or vice-versa. X3D standard also mixes them a bit, in efffect cgeref:TInlineNode.SetUrl[] actually accepts various URIs (including https://en.wikipedia.org/wiki/Data_URI_scheme[data URI scheme]).
+
+To make things simple, all future code should just use `Url`, and our https://castle-engine.io/manual_network.php[documentation about URLs] just clearly says _"most URLs actually accept a URI (a bit broader term than URL); in particular you can use https://en.wikipedia.org/wiki/Data_URI_scheme[data URI scheme]"_.
 ====
 
 === Indenting inside classes
@@ -248,7 +283,7 @@ type
   end;
 ----
 
-If you use the nested types / constants, indent the fields inside the `var` block as well. See the example below, notice that `MyField` is now indented more than in the example above. It's not perfect -- `MyField` indentation is now inconsistent with `MyPublicField`. But on the other hand, `MyField` indentation is consistent with `MyNestedConst` and `TMyNestedClass` and how you usually indent `var` block.
+If you use the nested types / constants, indent the fields inside the `var` block as well. See the example below, notice that `MyField` is now indented more than in the example above. Admittedly it's not a perfect convention -- `MyField` indentation is now inconsistent with `MyPublicField`. But on the other hand, `MyField` indentation is consistent with `MyNestedConst` and `TMyNestedClass` and how you usually indent `var` block.
 
 [source,pascal]
 ----
@@ -271,16 +306,15 @@ type
 
 === File extensions
 
-* `*.pas` files are units,
-* `*.inc` are files to be included in other Pascal source files using $I (short for $Include).
-* `*.dpr` and `*.lpr` are main program files. We will soon rename all program files to *.dpr. While Lazarus accepts either .dpr or .lpr extension for the program file, Delphi tolerates only .dpr extension. So, like it or not, we have to adjust to Delphi, and just use .dpr.
+- `*.pas` files are units,
+- `*.inc` are files to be included in other Pascal source files using `$I` (short for `$Include`).
+- `\*.dpr` and `*.lpr` are Pascal program files. We advise using `.dpr` extension, unless it's an application that will really only ever work with Lazarus (and not Delphi) e.g. because it relies on LCL.
++
+*Reason:* Lazarus accepts either `.dpr` or `.lpr` as extensions for the main program file. But Delphi tolerates only `.dpr` extension. And almost all CGE programs compile (or will compile) with both Delphi and Lazarus. So, like it or not, we have adjusted to Delphi, and just use `.dpr`.
 
 === Write reentrant routines
 
-All the engine functions are "reentrant", which means that they are safe
-to be called recursively, even through your own callbacks.
-E.g. the TFileProc callback passed to `FindFiles` can call `FindFiles` inside
-it's own implementation.
+All the engine functions are "reentrant", which means that they are safe to be called recursively, even through your own callbacks. E.g. the `TFileProc` callback passed to `FindFiles` can call `FindFiles` again inside it's own implementation, causing a recursion.
 
 === Some naming conventions
 
@@ -307,22 +341,61 @@ Stride may be negative. Stride may also be 0, then it means that `Stride = SizeO
 
 === Compilation symbols
 
-We use standard FPC and Delphi compilation symbols: MSWINDOWS, UNIX, LINUX, CPUI386, CPUX86_64, FPC to differentiate between compiler versions, and some more.
+We use standard FPC and Delphi compilation symbols like:
 
-See castleconf.inc.
+* `MSWINDOWS` (do not use `WINDOWS` which isn't defined by all compilers),
+* `LINUX`,
+* `UNIX` (remember this is broader than Linux, it includes also FreeBSD, macOS, Android, iOS... pretty much everything except Windows),
+* `CPUI386`,
+* `CPUX86_64`,
+* `FPC`
 
-We also use DEBUG symbol. The build tool when compiled in debug mode (--mode=debug) defines the `DEBUG` symbol, and adds some runtime checks, like https://github.com/michaliskambi/modern-pascal-introduction/wiki/What-are-range-and-overflow-checks-%28and-errors%29-in-Pascal[range checking and overflow checking]. You can use `{$ifdef DEBUG}` in your own code to add additional things. There's also the `RELEASE` symbol, but usually we don't check for it's existence -- if DEBUG then we're in debug mode, else we're in release mode.
+to differentiate between compiler versions, and some more.
+
+We detect _Delphi_ by just lack of `FPC`, e.g. `property Foo: Integer ...; {$ifdef FPC}deprecated 'Delphi does not support deprecated clause for properties';{$endif}`.
+
+See https://github.com/castle-engine/castle-engine/blob/master/src/common_includes/castleconf.inc[castleconf.inc] (included in every CGE unit).
+
+We also use `DEBUG` symbol. The build tool, when compiling in debug mode (`--mode=debug`), defines the `DEBUG` symbol, and adds some runtime checks, like https://github.com/michaliskambi/modern-pascal-introduction/wiki/What-are-range-and-overflow-checks-%28and-errors%29-in-Pascal[range checking and overflow checking]. You can use `{$ifdef DEBUG}` in your own code to add additional things. There's also the `RELEASE` symbol, but usually we don't check for it's existence -- if DEBUG then we're in debug mode, else we're in release mode.
 
 === Exceptions' messages
 
-* Do not start them with 'Error: ' or anything else that just says _"we have an error"_. This is redundant, since all exceptions signal some error.
-* Don't end the Message with '!' character. Do not cause panic :) The exception message must look normal when presented to end-user. If something should not occur (and signals a bug) then use `EInternalError` exception class to mark this.
-* Usually, `Message` should be a single sentence, and not end with the '.' character. But we do not follow this rule 100%, it's OK to break it for good reasons -- sometimes a multi-line sentence message is useful.
+This is good:
+
+[source,pascal]
+----
+raise Exception.Create('Invalid parameter');
+
+raise Exception.CreateFmt('Foo must be > 0 but is %d', [
+  Foo
+]);
+
+raise Exception.CreateFmt('%s:%s: Cannot draw an uninitialized component', [
+  Foo.Name,
+  Foo.ClassName
+]);
+
+raise Exception.CreateFmt('Invalid 3D model file %s', [
+  URIDisplay(Url)
+]);
+
+raise Exception.CreateFmt('Too many seconds: %f', [
+  TimeInSeconds
+]);
+----
+
+Guidelines:
+
+* Do not start the message with `'Error: '` or anything else that just means _"we have an error"_. This is redundant, since all exceptions signal some error.
+* Don't end the Message with `'!'` character. Do not cause panic :) The exception message must look normal when presented to the end-user. If something should not occur (and signals a bug) then use `EInternalError` exception class to mark this.
+* If the exception is related to some object instance, include useful information to identify this instance. If you have a `TComponent` descendant, then both `Name` and `ClassName` contain useful information to show. (see above example)
+* If the exception is related to some file / URL, include this URL using `URIDisplay(Url)`.
+* Usually, `Message` should be a single sentence, and not end with the '.' character. But we do not follow this rule 100%, it's OK to break it for good reasons -- sometimes a multi-line sentence message is useful. The last sentence in this case should not  the dot.
 * Message should not contain any line-breaks. Reason: this doesn't look good when displayed in some situations. Especially when one Message is embedded as part of the Message of other exception.
 +
-We do not follow this rule 100%, it's OK to break it with good reasons. We know that some information really looks much cleaner when split into multiple lines (e.g. TMatrix4.ToString output is multi-line already).
+We do not follow this rule 100%, it's OK to break it with good reasons. We know that some information really looks much cleaner when split into multiple lines (e.g. `TMatrix4.ToString` output is multi-line already).
 
-* Message should not contain any general program information like `ApplicationName`, `ExeName` etc. (The exception to this rule is when such information is really related to the error that happened, may help to explain this error etc.) In normal situation, the code that finally catched and outputs this exception should show such information.
+* Message should not contain any general program information like `ApplicationName`, `ExeName`, `ApplicationProperties.Version` etc. (The exception to this rule is when such information is really related to the error that happened, may help to explain this error etc.) The code that finally catches and outputs the exception should make such information available.
 
 === Prefer to make callbacks `of object`
 
@@ -540,9 +613,9 @@ A typical setter implementation should check whether the new value is different 
 
 _Reason:_ This is an easy and useful optimization. The cost of checking for equality is usually trivial and it can save non-trivial operation cost. Do this even if you suspect (or know) that layer below is also doing such checks. Don't trust the authors of "layer below" (esp. if it's an external library).
 
-Implementing setters like this from a start is much easier than latter adding such conditions. If your setter doesn't make the check `if Xxx <> Value then`, then later developers will be afraid of adding it, fearing that it breaks something (by not reinitializing something in some cases). So we generally require to implement setters like this from a start.
+Implementing setters like this from the start is much easier than latter adding such conditions. If your setter doesn't make the check `if Xxx <> Value then`, then later developers will be afraid of adding it, fearing that it breaks something (by not reinitializing something in some cases). So we generally require to implement setters like this from the start.
 
-Our convention is to do it by `if FXxx <> Value then` followed by the `FXxx := Value;` assignment (with the `FXxx` always on the left side, so it's easy to see that comparison and assignment do the same). Like this:
+Our convention is to do it by `if FXxx <> Value then` followed by the `FXxx := Value;` assignment (with the `FXxx` always on the left side, so it's easy to see that comparison and assignment work on the same identifiers). Like this:
 
 [source,pascal]
 ----
@@ -560,7 +633,7 @@ end;
 
 NOTE: Compare vectors like `if not TVector3.PerfectlyEquals(FFoo, Value) then...`.
 
-Lazarus CodeTools generate a setter with early exit using `Exit` instead, we discourage this setter form (not because it's inherently worse, but just the above is also good and it is prevalent in CGE sources, so better follow existing convention):
+_Lazarus CodeTools_ generate a setter with early exit using `Exit` instead, we discourage this setter form (not because it's inherently worse, but just the above is also good and it is prevalent in CGE sources, so better follow existing convention):
 
 [source,pascal]
 ----
@@ -622,14 +695,24 @@ As for English:
 
 - Make it correct English, but also make it terse and precise.
 
-- Do not waste words on useless prefixes like _"This property defines rotation axis."_ or _"This method makes rotation."_. Instead be shorter: _"Rotation axis."_  (for a property) or _"Start rotating."_ (for a method).
+- Do not waste words on useless prefixes like _"This property defines rotation axis."_ or _"This method starts the rotation."_. Instead be shorter: _"Rotation axis."_  (for a property) or _"Start rotating."_ (for a method).
 
 - Especially make the 1st sentence really good.
 ** We use PasDoc with https://pasdoc.github.io/AutoAbstractOption[--auto-abstract], so the 1st sentence is used in various places as a good summary of this identifier.
 ** It also means that the 1st sentence should "stand on its own".
-** Be aware that first sentence is detected by looking for the _first dot followed by a space character_. Avoid using mid-sentence abbreviations that would confuse this mechanism, like `i.e.` or `etc.`. For example this is bad: `Rotation axis, i.e. the axis around which it rotates.` Here, PasDoc would accidentally think that 1st sentence is just `Rotation axis, i.e.`.
+** Be aware that first sentence is detected by looking for the _first dot followed by a space character_. Avoid using mid-sentence abbreviations that would confuse this mechanism, like `i.e.`, `etc.`, `e.g.`.
++
+For example this is not good: `Rotation axis, i.e. the axis around which it rotates.` Here, PasDoc would accidentally think that 1st sentence is just `Rotation axis, i.e.`.
++
+To avoid this trap, rephrase the sentence, or don't use abbreviation (`Rotation axis, that is: the axis around which it rotates.`). Or use explicit PasDoc https://pasdoc.github.io/AbstractTag[@abstract] tag.
 
-- We use PasDoc with https://pasdoc.github.io/AutoLinkOption[--auto-link], so identifiers are converted into links automatically, without the need to use PasDoc https://pasdoc.github.io/LinkTag[@link] tag. Advantage: the comments look more like regular English. Disadvantage: if you make a typo in related identifier name, or the related identifier will be renamed -- we will not warn about it. When the risk of latter is significant, we often still write `@link(SomethingRelated)` explicitly, instead of just `SomethingRelated`.
+- We use PasDoc with https://pasdoc.github.io/AutoLinkOption[--auto-link], so identifiers are converted into links automatically, without the need to use PasDoc https://pasdoc.github.io/LinkTag[@link] tag.
++
+Advantage: the comments look more like regular English.
++
+Disadvantage: if you make a typo in related identifier name, or the related identifier will be renamed -- we will not warn about it.
++
+When the risk of latter is significant, we often still write `@link(SomethingRelated)` explicitly, instead of just `SomethingRelated`. So, there's no strict rule whether to write or not to write `@link(...)` explicitly, follow your heart :)
 
 == Other languages
 
