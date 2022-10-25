@@ -7,17 +7,17 @@ $toc = new TableOfContents(
   array(
     new TocItem('Future: where do we go with MultiTexture in X3D > 4.0', 'future'),
     new TocItem('Tests results', 'tests'),
-      new TocItem('modes_and_sources', NULL, 1),
-      new TocItem('modes_blend', NULL, 1),
-      new TocItem('modes_modulate_add_order', NULL, 1),
-      new TocItem('primitives', NULL, 1),
-      new TocItem('functions', NULL, 1),
-      new TocItem('transform_and_coordinates_faces', NULL, 1),
-      new TocItem('transform_and_coordinates_quads', NULL, 1),
-      new TocItem('image_with_movie_multi_texture', NULL, 1),
-      new TocItem('material_color_mixed_with_texture_color', NULL, 1),
-      new TocItem('subtract_and_force_alpha', NULL, 1),
-      new TocItem('subtract_rgb_various_sources', NULL, 1),
+      new TocItem('Modes and sources', NULL, 1),
+      new TocItem('Modes blend', NULL, 1),
+      new TocItem('Modes modulate add order', NULL, 1),
+      new TocItem('Primitives', NULL, 1),
+      new TocItem('Functions', NULL, 1),
+      new TocItem('Transform and coordinates faces', NULL, 1),
+      new TocItem('Transform and coordinates quads', NULL, 1),
+      new TocItem('Image with movie multi texture', NULL, 1),
+      new TocItem('Material color mixed with texture color', NULL, 1),
+      new TocItem('Subtract and force alpha', NULL, 1),
+      new TocItem('Subtract rgb various sources', NULL, 1),
     new TocItem('About tests', 'about_tests'),
       new TocItem('License', NULL, 1),
       new TocItem('How these files were created', NULL, 1),
@@ -623,6 +623,7 @@ In table below,
     it's interpolated material*lighting.</li>
 </ol>
 
+<div style="overflow-x:auto;"> <!-- avoids adding horizontal scrolling for whole page on narrow mobile screens -->
 <table class="specification">
   <tr>
     <th>Mode name</th>
@@ -758,6 +759,7 @@ In table below,
     <td>Not allowed.</td>
   </tr>
 </table>
+</div>
 
 <?php echo $toc->html_section(); ?>
 
