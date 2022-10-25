@@ -325,6 +325,9 @@ h1, h2, code {
      http://localhost:8777/coding_conventions
      broken into 2 lines, to not cause horizontal scroll on mobile */
   word-break: break-word;
+
+  /* breaking h1 useful for "Chapter 1. Overview of VRML" in
+     vrml_engine_internals/output/xsl/html-nochunks/vrml_engine.html */
   overflow-wrap: break-word;
 }
 
