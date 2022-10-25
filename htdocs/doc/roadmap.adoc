@@ -103,7 +103,7 @@ This would make the whole TCastleViewport.Items a single graph of X3D nodes, all
 
 ## Distance field fonts
 
-See link:https://github.com/libgdx/libgdx/wiki/Distance-field-fonts[about Distance field fonts]. See code from link:https://github.com/neurolabusc/OpenGLCoreTutorials[Chris Rorden] showing how to do it in Lazarus.
+See link:https://libgdx.com/wiki/graphics/2d/fonts/distance-field-fonts[about Distance field fonts]. See code from link:https://github.com/neurolabusc/OpenGLCoreTutorials[Chris Rorden] showing how to do it in Lazarus.
 
 ## Make 100% rendering features available on OpenGLES too
 
