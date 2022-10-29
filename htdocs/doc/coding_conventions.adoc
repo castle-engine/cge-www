@@ -339,6 +339,8 @@ If somewhere I use parameters like `+V: ^SOME-TYPE+` and `Stride: Integer` then 
 +
 Stride may be negative. Stride may also be 0, then it means that `Stride = SizeOf(SOME-TYPE)`.
 
+* Do not use `Minimal` or `Maximal`. Use `Min` and `Max`.
+
 === Compilation symbols
 
 We use standard FPC and Delphi compilation symbols like:
