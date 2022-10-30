@@ -16,17 +16,14 @@ class Config {
 	/**
 	 * Nonce action for setting the statuses of rating and score prompts.
 	 */
-	const SET_SHOW_RATING_PROMPT_NONCE = 'set_show_rating_prompt';
-	const SET_SHOW_SCORE_PROMPT_NONCE  = 'set_show_score_prompt';
+	const SET_SHOW_SCORE_PROMPT_NONCE = 'set_show_score_prompt';
 
 	/**
 	 * Name of option to store status of show/hide rating and score prompts
 	 */
-	const SHOW_RATING_PROMPT_OPTION = 'jb_show_rating_prompt';
-	const SHOW_SCORE_PROMPT_OPTION  = 'jb_show_score_prompt';
+	const SHOW_SCORE_PROMPT_OPTION = 'jb_show_score_prompt';
 
 	public function init() {
-		add_action( 'wp_ajax_set_show_rating_prompt', array( $this, 'handle_set_show_rating_prompt' ) );
 		add_action( 'wp_ajax_set_show_score_prompt', array( $this, 'handle_set_show_score_prompt' ) );
 	}
 
@@ -35,25 +32,25 @@ class Config {
 		$internal_path = apply_filters( 'jetpack_boost_asset_internal_path', 'app/assets/dist/' );
 
 		$constants = array(
-			'version'             => JETPACK_BOOST_VERSION,
-			'api'                 => array(
+			'version'               => JETPACK_BOOST_VERSION,
+			'api'                   => array(
 				'namespace' => JETPACK_BOOST_REST_NAMESPACE,
 				'prefix'    => JETPACK_BOOST_REST_PREFIX,
 			),
-			'optimizations'       => $optimizations,
-			'locale'              => get_locale(),
-			'site'                => array(
-				'domain'    => ( new Status() )->get_site_suffix(),
-				'url'       => get_home_url(),
-				'online'    => ! ( new Status() )->is_offline_mode(),
-				'assetPath' => plugins_url( $internal_path, JETPACK_BOOST_PATH ),
+			'optimizations'         => $optimizations,
+			'locale'                => get_locale(),
+			'site'                  => array(
+				'domain'     => ( new Status() )->get_site_suffix(),
+				'url'        => get_home_url(),
+				'online'     => ! ( new Status() )->is_offline_mode(),
+				'assetPath'  => plugins_url( $internal_path, JETPACK_BOOST_PATH ),
+				'getStarted' => self::is_getting_started(),
 			),
-			'shownAdminNoticeIds' => $this->get_shown_admin_notice_ids(),
-			'preferences'         => array(
-				'showRatingPrompt' => $this->get_show_rating_prompt(),
-				'showScorePrompt'  => $this->get_show_score_prompt(),
-				'prioritySupport'  => Premium_Features::has_feature( Premium_Features::PRIORITY_SUPPORT ),
+			'preferences'           => array(
+				'prioritySupport' => Premium_Features::has_feature( Premium_Features::PRIORITY_SUPPORT ),
 			),
+			'showScorePromptNonce'  => wp_create_nonce( self::SET_SHOW_SCORE_PROMPT_NONCE ),
+			'dismissedScorePrompts' => $this->get_dismissed_modals(),
 
 			/**
 			 * A bit of necessary magic,
@@ -61,27 +58,11 @@ class Config {
 			 *
 			 * Nonces are automatically generated when registering routes.
 			 */
-			'nonces'              => Nonce::get_generated_nonces(),
+			'nonces'                => Nonce::get_generated_nonces(),
 		);
 
 		// Give each module an opportunity to define extra constants.
 		return apply_filters( 'jetpack_boost_js_constants', $constants );
-	}
-
-	/**
-	 * Returns an array of notice ids (i.e.: jetpack-boost-notice-[slug]) for all
-	 * visible admin notices.
-	 *
-	 * @return array List of notice ids.
-	 */
-	private function get_shown_admin_notice_ids() {
-		$notices = Admin::get_admin_notices();
-		$ids     = array();
-		foreach ( $notices as $notice ) {
-			$ids[] = $notice->get_id();
-		}
-
-		return $ids;
 	}
 
 	/**
@@ -99,33 +80,32 @@ class Config {
 	/**
 	 * Handle the ajax request to set show-rating-prompt status.
 	 */
-	public function handle_set_show_rating_prompt() {
-		if ( check_ajax_referer( self::SET_SHOW_RATING_PROMPT_NONCE, 'nonce' ) && $this->check_for_permissions() ) {
-			$response = array(
-				'status' => 'ok',
-			);
-
-			$is_enabled = isset( $_POST['value'] ) && 'true' === $_POST['value'] ? '1' : '0';
-			\update_option( self::SHOW_RATING_PROMPT_OPTION, $is_enabled );
-
-			wp_send_json( $response );
-		} else {
-			$error = new \WP_Error( 'authorization', __( 'You do not have permission to take this action.', 'jetpack-boost' ) );
-			wp_send_json_error( $error, 403 );
-		}
-	}
-
-	/**
-	 * Handle the ajax request to set show-rating-prompt status.
-	 */
 	public function handle_set_show_score_prompt() {
 		if ( check_ajax_referer( self::SET_SHOW_SCORE_PROMPT_NONCE, 'nonce' ) && $this->check_for_permissions() ) {
 			$response = array(
 				'status' => 'ok',
 			);
 
-			$is_enabled = isset( $_POST['value'] ) && 'true' === $_POST['value'] ? '1' : '0';
-			\update_option( self::SHOW_SCORE_PROMPT_OPTION, $is_enabled );
+			// sanitize the id of the variable and then check it is one of the modals we
+			// allow.
+			if ( isset( $_POST['id'] ) ) {
+				$modal_to_banish = sanitize_text_field( wp_unslash( $_POST['id'] ) );
+				$allowed_modals  = array(
+					'score-increase',
+					'score-decrease',
+				);
+				if ( ! in_array( $modal_to_banish, $allowed_modals, true ) ) {
+					$error = new \WP_Error( 'authorization', __( 'This modal is not dismissable.', 'jetpack-boost' ) );
+					wp_send_json_error( $error, 403 );
+				}
+
+				// get the current dismissed modals
+				$is_dismissed = $this->get_dismissed_modals();
+				array_push( $is_dismissed, $modal_to_banish );
+				$is_dismissed = array_unique( $is_dismissed );
+
+				\update_option( self::SHOW_SCORE_PROMPT_OPTION, $is_dismissed, false );
+			}
 
 			wp_send_json( $response );
 		} else {
@@ -144,22 +124,24 @@ class Config {
 	}
 
 	/**
-	 * Get the value of show_score_prompt.
+	 * Get the which modals have been displayed.
 	 *
-	 * This determines if there should be a prompt after speed score worsens. Initially the value is set to true by
-	 * default. Once the user clicks on the support button, it is switched to false.
+	 * This now holds an array of modal IDs since we are keeping the option name the same
+	 * earlier versions of Boost would set this to false.
 	 *
-	 * @return bool
+	 * @return string[]
 	 */
-	public function get_show_score_prompt() {
-		return \get_option( self::SHOW_SCORE_PROMPT_OPTION, '1' ) === '1';
-	}
-
-	/**
-	 * Clear the status of show_rating_prompt
-	 */
-	public static function clear_show_rating_prompt() {
-		\delete_option( self::SHOW_RATING_PROMPT_OPTION );
+	public function get_dismissed_modals() {
+		// get the option. This will be false, or an empty array
+		$score_prompts = \get_option( self::SHOW_SCORE_PROMPT_OPTION, array() );
+		// if the value is false - "rate boost" was dismissed so the score-increase modal should not show.
+		if ( $score_prompts === false ) {
+			$score_prompts = array( 'score-increase' );
+			// if an empty array then no score prompts have been dismissed yet.
+		} elseif ( $score_prompts === array( '' ) ) {
+			$score_prompts = array();
+		}
+		return $score_prompts;
 	}
 
 	/**
@@ -167,5 +149,28 @@ class Config {
 	 */
 	public static function clear_show_score_prompt() {
 		\delete_option( self::SHOW_SCORE_PROMPT_OPTION );
+	}
+
+	/**
+	 * Enable of disable getting started page.
+	 *
+	 * If enabled, trying to open boost dashboard will take a user to the getting started page.
+	 */
+	public static function set_getting_started( $value ) {
+		return \update_option( 'jb_get_started', $value, false );
+	}
+
+	/**
+	 * Check if force redirect to getting started page is enabled.
+	 */
+	public static function is_getting_started() {
+		return \get_option( 'jb_get_started', false );
+	}
+
+	/**
+	 * Clear the getting started option.
+	 */
+	public static function clear_getting_started() {
+		\delete_option( 'jb_get_started' );
 	}
 }
