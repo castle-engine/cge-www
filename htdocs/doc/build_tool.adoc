@@ -275,3 +275,23 @@ Run the _Castle Game Engine Editor_ within this project. The executed editor wil
 * If your link:project_manifest[CastleEngineManifest.xml] contains `editor_units` attribute, then this automatically builds and runs a custom CGE editor (a fork of the CGE editor, for use in your project), with your custom components included.
 +
 The custom editor is compiled and present inside `castle-engine-output/editor/`, so it is tied to your project, cleared with `castle-engine clean` and so on. You should always execute it using `castle-engine editor` command. Or using the _"Project \-> Restart Editor (may rebuild editor with custom controls)"_ menu from the CGE editor (vanilla build or custom build, doesn't matter, the "Restart editor" will always build custom editor if project uses `editor_units`).
+
+=== cache
+
+Precompile CGE units, to speed up future compilation of all projects (with the current compiler and engine version).
+
+By default we prepare cache for compilation on the current platform. The options `--os`, `--cpu`, `--target` switch the platform, as usual. E.g. you can use `castle-engine cache --target android` to speedup future Android compilations.
+
+The precompiled units are stored in user files, and will be reused by all subsequent compilations of any CGE project for matching platform. The precompiled units from cache are simply copied over (as a starting point) to your project's compilation directory. The precompiled units do not overwrite the existing ones, moreover the compiler *will* overwrite them (in the project) if e.g. you have changed CGE since making the cache. So the cache tries hard not to conflict with what you're doing.
+
+The cache is always prepared for all possible modes: `debug`, `release`, `valgrind`. This command ignores the `--mode` option.
+
+The `--compiler` option is taken into account, but for now for Delphi we merely answer with an error. The code to use cache is now only for FPC. In the future we plan to extend this to Delphi.
+
+The `--ios-simulator` option is honored, it changes what `castle-engine cache --target=iOS` does (for what platforms does it prepare cache).
+
+=== cache-clean
+
+Remove all the cached files created by `cache` (for all platforms).
+
+This reclaims the disk space used by cache and it implies that future compilations will be done without using the cache.
