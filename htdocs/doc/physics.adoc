@@ -57,6 +57,8 @@ Just add to any cgeref:TCastleTransform[] (usually to cgeref:TCastleScene[] or a
 
 There are lots of options to tweak how things behave. See API docs for documentation.
 
+You can visualize physics colliders (esp. useful if you disable the `AutoSize` on them and want to see the effect) using the menu item _"Physics -> Show Colliders"_.
+
 [NOTE]
 ====
 A good test to enjoy the physics is to make a "bullet" that will hit some rigid body with significant speed, so that you can see how it behaves on collision. To make a bullet, just
@@ -207,11 +209,37 @@ Full integration with Bullet will require proper translation of Bullet API to C 
 
 In parallel to resolving collisions using physics engine (that honors the `TCastleRigidBody` and `TCastleXxxCollider` behaviors), for some purposes _Castle Game Engine_ can also use an older _"simple physics"_ implementation.
 
-This _"simple physics"_ implementation is fully implemented in CGE, without using Kraft or any other "full-blown" physics engine. Instead it:
+This _"simple physics"_ implementation is fully implemented in CGE, without using Kraft or any other "full-blown" physics engine. Capabilities:
 
-- Can resolve collisions using octrees, constructed for each cgeref:TCastleScene[] or each shape of such scene.
+- It can resolve collisions with (potentially dynamic) meshes using octrees, constructed for each cgeref:TCastleScene[] or each shape of such scene.
 
 - Can perform simple (non-realistic) gravity.
+
+It is used (for now) by:
+
+- FPS walk/fly navigation in cgeref:TCastleWalknavigation[].
+
+- API to query for collisions in world-space coordinates using `Viewport.Items.WorldXxx` methods, like
++
+--
+- cgeref:TCastleAbstractRootTransform.WorldMoveAllowed[Viewport.Items.WorldMoveAllowed],
+- cgeref:TCastleAbstractRootTransform.WorldHeight[Viewport.Items.WorldHeight],
+- cgeref:TCastleAbstractRootTransform.WorldLineOfSight[Viewport.Items.WorldLineOfSight],
+- cgeref:TCastleAbstractRootTransform.WorldRayCast[Viewport.Items.WorldRayCast],
+- cgeref:TCastleAbstractRootTransform.WorldBoxCollision[Viewport.Items.WorldBoxCollision],
+- cgeref:TCastleAbstractRootTransform.WorldSphereCollision[Viewport.Items.WorldSphereCollision].
+--
+
+- API to query for collisions in coordinates of particular transform parent using cgeref:TCastleViewport[] methods, like:
++
+--
+- cgeref:TCastleTransform.MoveAllowed[],
+- cgeref:TCastleTransform.Height[],
+- cgeref:TCastleTransform.LineOfSight[],
+- cgeref:TCastleTransform.RayCast[],
+- cgeref:TCastleTransform.BoxCollision[],
+- cgeref:TCastleTransform.SphereCollision[].
+--
 
 The long-term goal is to completely remove this _"simple physics"_ implementation in CGE. All it's functions can be, or will be, possible to achieve using _"real physics engine"_ (like Kraft). But for the time being, some functions are still realized using this _"simple physics"_. The relevant properties are:
 
@@ -232,13 +260,11 @@ This affects all collision routines *except* `RayCollision` and `RayCast` that l
 
 - cgeref:TCastleTransform.Pickable[]. By default this is `true`. When it is `false`, the transfomation object (and all its children) does not affect the results of ray collision (`RayCollision` and `RayCast`).
 
-- Note: when both cgeref:TCastleTransform.Collides[] and cgeref:TCastleTransform.Pickable[] are `false`, then cgeref:TCastleSceneCore.Spatial[] doesn't matter. In such case, the object will not collide ever (neither as bounding box, nor as a precise mesh).
+- Note: when both cgeref:TCastleTransform.Collides[] and cgeref:TCastleTransform.Pickable[] are `false`, then cgeref:TCastleSceneCore.Spatial[] and cgeref:TCastleSceneCore.PreciseCollisions[] don't matter. In such case, the object will not collide ever (neither as bounding box, nor as a precise mesh).
 
 - cgeref:TCastleTransform.Gravity[]. When `true`, the relevant object falls down according to (non-realistic) gravity. It will honor (be stopped by) other objects that have `Collides` = `true`.
 
 - cgeref:TCastleWalkNavigation.Gravity[]. When `true`, the player avatar falls down according to (non-realistic) gravity. It will honor (be stopped by) other objects that have `Collides` = `true`.
-
-- Various collision queries like `World.RayCast`, `WorldBoxCollision` etc. rely on this collision detection.
 
 In the long-term, all these properties/methods will be
 
