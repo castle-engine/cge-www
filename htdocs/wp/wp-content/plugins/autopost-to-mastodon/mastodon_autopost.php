@@ -3,9 +3,9 @@
  * Plugin Name: Mastodon Autopost
  * Plugin URI: https://github.com/simonfrey/mastodon_wordpress_autopost
  * Description: A Wordpress Plugin that automatically posts your new articles to Mastodon
- * Version: 3.6.1
+ * Version: 3.6.6
  * Author: L1am0
- * Author URI: https://www.simon-frey.eu
+ * Author URI: https://www.simon-frey.com
  * License: GPL2
  * Text Domain: autopost-to-mastodon
  * Domain Path: /languages
@@ -163,6 +163,9 @@ class autopostToMastodon
 
             if ($is_valid_nonce) {
                 $instance = esc_url($_POST['instance']);
+                if (strpos($instance, 'http') !== 0) {
+                    $instance = "https://"+$instance;
+                }
                 $message = stripslashes($_POST['message']);
                 $content_warning = $_POST['content_warning'];
 
@@ -170,12 +173,12 @@ class autopostToMastodon
                 $redirect_url = get_admin_url();
                 $auth_url = $client->register_app($redirect_url);
 
-                if ($auth_url == "ERROR") {
+                if (strpos($auth_url, 'ERROR') === 0) {
                     update_option(
                         'autopostToMastodon-notice',
                         serialize(
                             array(
-                                'message' => '<strong>Mastodon Autopost</strong> : ' . __('The given instance url belongs to no valid mastodon instance !', 'autopost-to-mastodon'),
+                                'message' => '<strong>Mastodon Autopost</strong> : ' . __('The given instance url belongs to no valid mastodon instance !', 'autopost-to-mastodon'). " ".$auth_url,
                                 'class' => 'error',
                             )
                         )
@@ -318,6 +321,12 @@ class autopostToMastodon
             if (get_post_meta($id, 'autopostToMastodon-post-status', true) == 'on') {
                 update_post_meta($id, 'autopostToMastodon-post-status', 'off');
             }
+        }
+
+
+        // Only toot once to prevent bans of people on instances that forbid this
+        if (get_post_meta($id, 'autopostToMastodonshare-lastSuccessfullTootURL', true) != "") {
+            return;
         }
 
         if ($toot_on_mastodon_option) {
@@ -542,13 +551,11 @@ class autopostToMastodon
         }
 
         $post_tags = get_the_tags($id);
-        if (sizeof($post_tags) > 0) {
-            if ($post_tags) {
-                foreach ($post_tags as $tag) {
-                    $post_tags_content = $post_tags_content . '#' . preg_replace('/\s+/', '', html_entity_decode($tag->name, ENT_COMPAT, 'UTF-8')) . ' ';
-                }
-                $post_tags_content = trim($post_tags_content);
+        if ($post_tags) {
+            foreach ($post_tags as $tag) {
+                $post_tags_content = $post_tags_content . '#' . preg_replace('/\s+/', '', html_entity_decode($tag->name, ENT_COMPAT, 'UTF-8')) . ' ';
             }
+            $post_tags_content = trim($post_tags_content);
         }
         $message_template = str_replace("[tags]", $post_tags_content, $message_template);
 
@@ -587,7 +594,7 @@ class autopostToMastodon
 
         $client = new Client($instance, $access_token);
         //TODO: Add propper message
-        $message = __("This is my first post with Mastodon Autopost for Wordpress", 'autopost-to-mastodon') . " - https://wordpress.org/plugins/autopost-to-mastodon/";
+        $message = __("This is my first post with Mastodon Autopost #plugin for #wordpress", 'autopost-to-mastodon') . " by @simon@indiehackers.social - https://wordpress.org/plugins/autopost-to-mastodon/";
         $media = null;
         $toot = $client->postStatus($message, $mode, $media);
 

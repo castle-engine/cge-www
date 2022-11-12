@@ -2,8 +2,8 @@
 Contributors: l1am0, Hellexis
 Tags: mastodon, Mastodon, Mastdon Autopost, federated web, GNU social, statusnet, social web, social media, auto post
 Requires at least: 4.6
-Tested up to: 5.6.1
-Stable tag: 3.6.1
+Tested up to: 6.1
+Stable tag: 3.6.6
 License: GPLv2
 Donate link: https://paypal.me/51edpo
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -21,8 +21,8 @@ Find the plugin settings: Settings > Mastodon Autpost
 Just set your credentials and your post preference and lean back. The rest is done in the background and you don't have to care about it.
 
 For any questions, do not hesitate to contact me:
-*	Mail: mastodonautopost@simon-frey.eu
-*	Mastodon: chaos.social/@l1am0
+*	Mail: mastodonautopost@simon-frey.com
+*	Mastodon: indiehackers.social/@simon
 
 Do you want to help translating this plugin in your language? [Visit the translation page](https://translate.wordpress.org/projects/wp-plugins/autopost-to-mastodon)
 

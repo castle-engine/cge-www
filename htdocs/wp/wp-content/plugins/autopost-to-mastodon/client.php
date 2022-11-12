@@ -20,7 +20,7 @@ class Client
 		));
 
 		if (!isset($response->client_id)){
-			return "ERROR";
+			return "ERROR. Response: ".json_encode($response);
 		}
 
 
