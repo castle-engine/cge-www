@@ -264,3 +264,9 @@ See https://castle-engine.io/manual_sound.php[manual chapter about sound] for in
 So `Parent` and `Owner` are separate concepts, even declared in different classes.
 
 Sometimes both `Parent` and `Owner` may be set to the same instance, if it is suitable in the particular situation, but in general these 2 things just perform 2 separate functions. For example, in CGE editor, owner of everything in the design is always one central `DesignOwner` component. When you load the design yourself, you provide the `Owner` instance explicitly (as a parameter to `UserInterfaceLoad`, `TransformLoad`, `ComponentLoad`) and then you specify parent yourself but adding the design to the hierarchy (e.g. `MyParentUi.InsertFront(MyLoadedUi)`).
+
+== Where is UnityWebRequest (WWW)?
+
+Use cgeref:TCastleDownload[]. Similarly to `UnityWebRequest`, this class can send HTTP requests (GET, POST and others) and can download data asynchronously. It has been designed as an easy but also powerful way to communicate over the network.
+
+CGE https://github.com/castle-engine/castle-engine/tree/master/examples/network[examples/network] demonstrate it.
