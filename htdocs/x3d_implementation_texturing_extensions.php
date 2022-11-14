@@ -714,6 +714,13 @@ contents than <code>foo.png</code> with <code>flipVertically=TRUE</code>".
 
         <p>So, this solution makes it possible to have efficient loading
         of textures, and of glTF.
+
+        <p>Bonus: This allows to support <a href="https://github.com/KhronosGroup/glTF/tree/main/extensions/2.0/Khronos/KHR_texture_transform">KHR_texture_transform</a>
+        without any headaches.
+        Since we flipped the textures, so glTF texture coordinates and texture (coordinate) transformations
+        "just work" without any additional necessary convertion.
+        There's no need to e.g. flip offset.y given in KHR_texture_transform,
+        there's no need to worry how it can interact with negative scale.y in KHR_texture_transform.
     </ol>
 </ul>
 
