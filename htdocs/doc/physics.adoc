@@ -217,7 +217,7 @@ This _"simple physics"_ implementation is fully implemented in CGE, without usin
 
 It is used (for now) by:
 
-- FPS walk/fly navigation in cgeref:TCastleWalknavigation[].
+- FPS walk/fly navigation in cgeref:TCastleWalkNavigation[].
 
 - API to query for collisions in world-space coordinates using `Viewport.Items.WorldXxx` methods, like
 +
