@@ -49,6 +49,15 @@ Note that (unfortunatately) it seems not possible to export a single animation l
 - We use link:color_space[linear color space (gamma correction)] automatically on PBR materials. You can request to apply it on all materials (including unlit) to follow glTF spec in 100% easily.
 - We read glTF "extras" data that can be defined by your authoring tool, for example in Blender this is defined by _"Custom properties"_. This allows to pass any custom information from Blender to the engine, for use in your own applications, or to influence the import &mdash; see link:blender#section_custom_properties[Custom properties in Blender].
 - We use https://github.com/BeRo1985/pasgltf/[PasGLTF], a great open-source library for reading glTF by https://www.patreon.com/bero[Benjamin "Bero" Rosseaux].
+- We support common glTF extensions:
++
+--
+- https://github.com/KhronosGroup/glTF/tree/main/extensions/2.0/Khronos/KHR_materials_unlit[KHR_materials_unlit] - unlit materials.
+- https://github.com/KhronosGroup/glTF/tree/main/extensions/2.0/Khronos/KHR_lights_punctual[KHR_lights_punctual] - define lights (point, spot, directional) within glTF file.
+- https://github.com/KhronosGroup/glTF/tree/main/extensions/2.0/Khronos/KHR_texture_transform[KHR_texture_transform] - transform (scale, offset, rotate) texture coordinates.
+- https://github.com/KhronosGroup/glTF/tree/main/extensions/2.0/Archived/KHR_materials_pbrSpecularGlossiness[KHR_materials_pbrSpecularGlossiness] - support for alernative specification of material parameters using specular-glossiness. Only partial support -- without textures. Extension considerd deprecated by Khronos in favor of https://github.com/KhronosGroup/glTF/tree/main/extensions/2.0/Khronos/KHR_materials_specular[KHR_materials_specular].
+--
+
 
 TODO: Main missing glTF feature is morph targets. It is coming!
 
