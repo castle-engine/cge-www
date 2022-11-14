@@ -38,7 +38,11 @@ Exporting from Blender to link:gltf[glTF 2.0] is the best way to use _Blender_ w
 
 * You usually want to check _"Geometry -> Apply Modifiers"_ in the export dialog.
 * _"Remember Export Settings"_ is also usually useful.
-* For typical games (where you distribute the game data with your application) we recommend exporting to _"glTF Separate (.gltf + .bin + textures)"_ variant. This allows to share textures between various models and keeps importing fast. You can edit the _"Textures"_ directory in the export dialog, to make the glTF file just point to your existing texture directory.
+* For typical games (where you distribute the game data with your application) we recommend exporting to _"glTF Separate (.gltf + .bin + textures)"_ variant.
++
+Moreover select _"Keep Original"_ or edit the _"Textures"_ directory in the export dialog, so that glTF file will refer to your existing textures by relative filenames. In the simplest case, if your textures are already in the same directory as your glTF file, you don't need to do anything, _"glTF Separate (.gltf + .bin + textures)"_ will just use these textures.
++
+This means that glTF file will only refer to your texture files. This allows to share textures between various models and keeps importing fast. It also allows to easily edit the textures in other applications, without the need to export glTF again.
 
 === Exporting normalmaps from Blender to glTF (and Castle Game Engine)
 
