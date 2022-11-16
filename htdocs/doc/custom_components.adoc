@@ -499,3 +499,158 @@ end.
 ----
 
 See https://github.com/castle-engine/castle-engine/tree/master/examples/advanced_editor/custom_component[advanced_editor/custom_component] for a larger, complete example that defines and registers `TImageGrid` component with a component editor to perform _"Reload URL"_.
+
+== Adding children components
+
+Often it is best to implement your new component as a composition of existing components.
+
+For example: cgeref:TCastleCheckbox[] is (internally) just an image (cgeref:TCastleImageControl[]) and a label (cgeref:TCastleLabel[]).
+
+In general there are 2 ways to make your component be a composition of other components:
+
+=== Adding internal children components
+
+This is good if you want to use children components in the implementation of your new component, but you don't want a regular user to actually see these children e.g. in the editor hierarchy.
+
+
+Advantages:
+
+- Your new component looks simple to the user. The fact that e.g. cgeref:TCastleCheckbox[] is composed from cgeref:TCastleImageControl[] and cgeref:TCastleLabel[] is really just an implementation detail.
+
+- You can depend that user will not free your internal components. In particular, when working in the editor, the user *cannot* free these internal components in any way, because the user will not be able to see or select them.
+
+To do this:
+
+- Create the internal component in your component constructor, as owner using your component. Like `FInternal := TMyInternalComponent.Create(Self);` .
+
+- Immediately after creation call cgeref:TCastleComponent.SetTransient[], like `FInternal.SetTransient;`.
+
+- Don't worry about the `FInternal.Name`. You *can* set it to something non-empty (and it only must be unique within the children of this component) but there's no need to.
+
+Examples:
+
+- As mentioned above: cgeref:TCastleCheckbox[] is composed from cgeref:TCastleImageControl[] and cgeref:TCastleLabel[]. See https://github.com/castle-engine/castle-engine/blob/master/src/ui/castlecontrols_checkbox.inc[src/ui/castlecontrols_checkbox.inc].
+
+- cgeref:TCastleBox[] is composed from internal cgeref:TCastleScene[].
+
+==== Example code
+
+[source,pascal]
+----
+type
+  { A label that shows an Integer number. }
+  TMyIntegerLabel = class(TCastleUserInterface)
+  strict private
+    FInternalLabel: TCastleLabel;
+    FNumber: Integer;
+    procedure SetNumber(const Value: Integer);
+  published
+    property Number: Integer read FNumber write SetNumber;
+  end;
+
+constructor TMyIntegerLabel.Create(AOwner: TComponent);
+begin
+  inherited;
+  FInternalLabel := TCastleLabel.Create(Self);
+  FInternalLabel.SetTransient;
+  FInternalLabel.Caption := IntToStr(FNumber); // set to '0'
+  InsertFront(FInternalLabel);
+end;
+
+procedure TMyIntegerLabel.SetNumber(const Value: Integer);
+begin
+  if FNumber <> Value then
+  begin
+    FNumber := Value;
+    FInternalLabel.Caption := IntToStr(FNumber);
+  end;
+end;
+----
+
+[WARNING]
+====
+The components made internal using `SetTransient` are not absolutely "out of reach" for the developer of an application. Any developer can still access them by iterating through the children list (e.g. `TCastleUserInterface` or `TCastleTransform` children). Components can be accessed, modified and even freed this way. Like:
+
+```pascal
+MyIntegerLabel := TMyIntegerLabel.Create(...);
+(MyIntegerLabel.Controls[0] as TCastleLabel).Caption := 'foo';
+MyIntegerLabel.Controls[0].Free;
+```
+
+That said, it is a convention in _Castle Game Engine_ that developers will *not* do that, i.e. _do not act on components you have just found in the tree and you are not "responsible for them"_. Thus the developer of `TMyIntegerLabel` can assume that noone will free the `FInternalLabel` or modify `FInternalLabel.Caption` or other properties.
+====
+
+=== Adding non-internal (editable by user) children components
+
+A different situation is when you want the new component to _propose_ to user some children components, but the user should see (and be able to freely modify and even free) these children components.
+
+An example of this can be seen each time you create a cgeref:TCastleViewport[] in the editor. You can create a viewport using either _"Viewport (3D)"_ or _"Viewport (2D)"_ menu items. They both create a cgeref:TCastleViewport[] (not any descendant) class, but they configure some properties on this viewport differently *and* they propose different children components by default. E.g. _"Viewport (3D)"_ adds to cgeref:TCastleViewport[] a background (with sky gradient), a camera, a plane and a light, and positions the camera for nice 3D view.
+
+To make it work:
+
+- Do not:
++
+--
+- Do not use `SetTransient` on the children components. You want the children components to be completely visible to user, and editable in the editor.
+- Do not create these children in the constructor. When deserializing, we always execute the constructor, and we would create new copies of the children -- instead of reading the existing children from the design.
+--
+- Define an `OnCreate` event at the component registration. This will be called by the editor only when user creates the component (and not when the component is just deserialized). Assign to it a `class procedure` that should act on `Sender` (parameter) and add to it proper children.
+- Create the children with the same `Owner` as current component. In the editor, whole design (components editable by user) is owned by one (internal) component. Like `FMyChild := TMyChildComponent.Create(Owner);` .
+- The children component should have some non-empty name (to be nice for user) and this name should be unique in the owner. Do this using cgeref:InternalProposeName[], like `FMyChild.Name := InternalProposeName(TMyChildComponent, Owner);` .
+
+==== Example code
+
+[source,pascal]
+----
+type
+  { A group of rectangles (initially 3). }
+  TMyRectanglesGroup = class(TCastleUserInterface)
+  private
+    class procedure CreateInitialChildren(Sender: TObject);
+  public
+    procedure MakeAllYellow;
+  end;
+
+procedure TMyRectanglesGroup.MakeAllYellow;
+var
+  Ui: TCastleUserInterface;
+begin
+  { Does not assume how many children we have, and of what type. }
+  for Ui in Self do
+    if Ui is TCastleRectangleControl then
+      TCastleRectangleControl(Ui).Color := Yellow;
+end;
+
+class procedure TMyRectanglesGroup.CreateInitialChildren(Sender: TObject);
+var
+  Child: TCastleRectangleControl;
+begin
+  Child := TCastleRectangleControl.Create(Owner);
+  Child.Name := InternalProposeName(TCastleRectangleControl, Owner);
+  Child.Color := Red;
+  Child.Anchor(hpLeft, 0);
+  (Sender as TMyRectanglesGroup).InsertFront(Child);
+
+  Child := TCastleRectangleControl.Create(Owner);
+  Child.Name := InternalProposeName(TCastleRectangleControl, Owner);
+  Child.Color := Blue;
+  Child.Anchor(hpLeft, 100);
+  (Sender as TMyRectanglesGroup).InsertFront(Child);
+
+  Child := TCastleRectangleControl.Create(Owner);
+  Child.Name := InternalProposeName(TCastleRectangleControl, Owner);
+  Child.Color := Green;
+  Child.Anchor(hpLeft, 200);
+  (Sender as TMyRectanglesGroup).InsertFront(Child);
+end;
+
+var
+  R: TRegisteredComponent;
+initialization
+  R := TRegisteredComponent.Create;
+  R.ComponentClass := TMyRectanglesGroup;
+  R.Caption := 'Rectangles Group (initially 3)';
+  R.OnCreate := {$ifdef FPC}@{$endif}TMyRectanglesGroup{$ifdef FPC}(nil){$endif}.CreateInitialChildren;
+  RegisterSerializableComponent(R);
+end.
+----
