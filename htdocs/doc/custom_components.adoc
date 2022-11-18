@@ -500,7 +500,7 @@ end.
 
 See https://github.com/castle-engine/castle-engine/tree/master/examples/advanced_editor/custom_component[advanced_editor/custom_component] for a larger, complete example that defines and registers `TImageGrid` component with a component editor to perform _"Reload URL"_.
 
-== Adding children components
+== Children components
 
 Often it is best to implement your new component as a composition of existing components.
 
@@ -508,7 +508,7 @@ For example: cgeref:TCastleCheckbox[] is (internally) just an image (cgeref:TCas
 
 In general there are 2 ways to make your component be a composition of other components:
 
-=== Adding internal children components
+=== Internal children components (using SetTransient)
 
 This is good if you want to use children components in the implementation of your new component, but you don't want a regular user to actually see these children e.g. in the editor hierarchy.
 
@@ -565,6 +565,10 @@ begin
     FInternalLabel.Caption := IntToStr(FNumber);
   end;
 end;
+
+initialization
+  RegisterSerializableComponent(TMyIntegerLabel, 'My Integer Label');
+end.
 ----
 
 [WARNING]
@@ -580,7 +584,7 @@ MyIntegerLabel.Controls[0].Free;
 That said, it is a convention in _Castle Game Engine_ that developers will *not* do that, i.e. _do not act on components you have just found in the tree and you are not "responsible for them"_. Thus the developer of `TMyIntegerLabel` can assume that noone will free the `FInternalLabel` or modify `FInternalLabel.Caption` or other properties.
 ====
 
-=== Adding non-internal (editable by user) children components
+===  Children components that user can freely edit and remove (using TRegisteredComponent.OnCreate)
 
 A different situation is when you want the new component to _propose_ to user some children components, but the user should see (and be able to freely modify and even free) these children components.
 
@@ -652,5 +656,56 @@ initialization
   R.Caption := 'Rectangles Group (initially 3)';
   R.OnCreate := {$ifdef FPC}@{$endif}TMyRectanglesGroup{$ifdef FPC}(nil){$endif}.CreateInitialChildren;
   RegisterSerializableComponent(R);
+end.
+----
+
+===  Children components on which user can edit properties (using SetSubComponent)
+
+You can use a _subcomponent_ to allow user to customize the component properties, but not free the component.
+
+At the core, this just means that you create a children component in the `constructor`, and you expose its instance using a read-only published property.
+
+Moreover:
+
+* Use the `SetSubComponent(true)` to make the component properly handled at serialization / deserialization. The serialization / deserialization will assume that the subcomponent will be always created by the constructor.
+
+* Set the `Name` of every subcomponent to correspond to the property name where it is published. Though it is not strictly required for now.
+//, but makes subcomponent look consistent in the object inspector.
+
+* The owner of subcomponent should be `Self`, i.e. it should be automatically freed along with the containing component (and never earlier).
+
+An example of this is cgeref:TCastleScene.RenderOptions[] property. It always contains a cgeref:TCastleRenderOptions[] instance that says how to render (e.g. whether to use wireframe) the containing cgeref:TCastleScene[]. There is simple "one to one" correspondence between cgeref:TCastleScene[] and cgeref:TCastleRenderOptions[] instances: every cgeref:TCastleScene[] has exactly one (and different) cgeref:TCastleRenderOptions[].
+
+A subcomponent can be also added as a visual child somewhere. For example, cgeref:TCastleScrollView[] defines a subcomponent cgeref:TCastleScrollView.ScrollArea[]. This scroll area is also added in the constructor as cgeref:TCastleScrollView[] visual child, using `InsertFront(FScrollArea);`.
+
+==== Example code
+
+[source,pascal]
+----
+type
+  { A TCastleTransform that always contains a sphere in the center.
+    You can configure sphere radius
+    and other properties through the @link(MySphere) subcomponent. }
+  TMyTransformationWithSphere = class(TCastleTransform)
+  strict private
+    FMySphere: TCastleSphere;
+  public
+    constructor Create(AOwner: TComponent); override;
+  published
+    property MySphere: TCastleSphere read FMySphere;
+  end;
+
+constructor TMyTransformationWithSphere.Create(AOwner: TComponent);
+begin
+  inherited;
+
+  FMySphere := TCastleSphere.Create(Self);
+  FMySphere.SetSubComponent(true);
+  FMySphere.Name := 'MySphere';
+  Add(FMySphere);
+end;
+
+initialization
+  RegisterSerializableComponent(TMyTransformationWithSphere, 'My Transformation With Sphere');
 end.
 ----
