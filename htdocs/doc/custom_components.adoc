@@ -581,7 +581,7 @@ MyIntegerLabel := TMyIntegerLabel.Create(...);
 MyIntegerLabel.Controls[0].Free;
 ```
 
-That said, it is a convention in _Castle Game Engine_ that developers will *not* do that, i.e. _do not act on components you have just found in the tree and you are not "responsible for them"_. Thus the developer of `TMyIntegerLabel` can assume that noone will free the `FInternalLabel` or modify `FInternalLabel.Caption` or other properties.
+That said, it is a convention in _Castle Game Engine_ that developers will *not* do that, i.e. _do not act on components you have just found in the tree and you are not "responsible for them"_. Thus the author of `TMyIntegerLabel` can assume that noone will free the `FInternalLabel` or modify `FInternalLabel.Caption` or other properties.
 ====
 
 ===  Children components that user can freely edit and remove (using TRegisteredComponent.OnCreate)
@@ -709,3 +709,14 @@ initialization
   RegisterSerializableComponent(TMyTransformationWithSphere, 'My Transformation With Sphere');
 end.
 ----
+
+[WARNING]
+====
+The subcomponent can in theory be freed by the developer of an application. In the above example, while `MySphere` property is read only, the developer can just do `MyTransformationWithSphere.MySphere.Free`. And the `MyTransformationWithSphere.MySphere` will become then a dangling pointer.
+
+Application developer could also remove it from being a visual child, e.g. doing `MyTransformationWithSphere.Remove(MyTransformationWithSphere.MySphere)` and such change will not be properly serialized (because in constructor `MySphere` is always added as a visual child).
+
+That said, it is a convention in _Castle Game Engine_ that developers will *not* do that. You should _not act on a component you are not "responsible for"_. And by default (unless otherwise documented) managing memory of the instance referenced somewhere is the sole responsibility of the containing class. By default, you are only welcome to change the exposed instance's properties.
+
+Thus the author of `TMyTransformationWithSphere` can assume that nothing will free the `FMySphere` instance and that it will remain a visual child of containing `TMyTransformationWithSphere` instance.
+====
