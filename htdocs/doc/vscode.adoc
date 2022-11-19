@@ -1,0 +1,135 @@
+# Visual Studio Code
+include::common.adoc[]
+:description: Using Visual Studio Code with intelligent code completion for Pascal and Castle Game Engine API.
+:cge-social-share-image: vscode_completion.png
+
+== Introduction
+
+https://code.visualstudio.com/[Visual Studio Code] is a powerful, free and open-source, cross-platform text editor for programmers.
+
+Below we describe how to configure it to be a perfect code editor for Pascal, and in particular for your _Castle Game Engine_ projects. We're proud to provide an LSP server that will make VS Code do _intelligent code completion_ that works great with Pascal and automatically completes all _Castle Game Engine_ API.
+
+cgeimg::block[vscode_completion.png|Visual Studio Code completing CGE code]
+
+== Make Castle Game Engine invoke VS Code
+
+Go to _Castle Game Engine_ editor preferences, _"Code Editor"_ tab, and select the _"Visual Studio Code"_.
+
+cgeimg::block[vscode_preferences.png|Configure VS Code in CGE Preferences]
+
+This will make CGE automatically open _VS Code_ when you open Pascal file
+
+- by double-clicking Pascal unit from CGE editor _"Files"_ panel,
+- by double-clicking a message in the _"Output"_ window referencing some Pascal file,
+- using menu item _"Code -> Open Project in Code Editor"_,
+- and in all other cases when CGE wants to open Pascal file.
+
+== Pascal syntax highlighting
+
+There are multiple _VS Code_ extensions that provide Pascal code highlighting.
+
+We recommend https://marketplace.visualstudio.com/items?itemName=AnsonYeung.pascal-language-basics[Pascal Language Basics]. It's available in the _VS Code_ marketplace, so you can just search for it and install right inside the VS Code _"Extensions"_ panel.
+
+== Pascal code completion
+
+We provide an _LSP server_ that implements an _intelligent code completion_ for Pascal and is aware of _Castle Game Engine_ units and default syntax options (e.g. FPC _ObjFpc_ mode).
+
+NOTE: https://github.com/castle-engine/pascal-language-server[Our LSP server] is based on https://github.com/Isopod/pascal-language-server[Philip Zander\'s LSP server] which in turn relies on https://www.lazarus-ide.org/[Lazarus] _CodeTools_ to do the code completion. So inside there is really a lot of work and testing from many people in the Pascal ecosystem to make it powerful.
+
+To use it with VS Code:
+
+1. Install the https://github.com/genericptr/pasls-vscode[Pascal Language Server Extension for Visual Studio Code]. It's easiest to do this by:
++
+--
+- Downloading https://github.com/genericptr/pasls-vscode/raw/master/pascal-language-server-0.0.1.vsix[this VSIX file].
+- Use _"Install from VSIX..."_ menu item in VS Code to install it:
++
+cgeimg::block[vscode_install_vsix.png|Install from VSIX]
+- Once done, you will see _"Pascal Language Server"_ extension installed. Make sure it is enabled.
+--
+
+2. Configure the extension, pointing it to your FPC, Lazarus, and `pasls` (our LSP server).
++
+cgeimg::block[vscode_extension_config.png|VS Code Extension configuration]
++
+--
+- Open the extension settings.
+- Set `Env: FPCDIR` to point to the FPC source code. If you use FPC bundled with CGE, this should look like `<cgepath>/tools/contrib/fpc/src/`.
+- Set `Env: FPCTARGET` to your OS, like `linux` or `windows`.
+- Set `Env: FPCTARGETCPU` to your CPU, like `x86_64`.
+- Set `Env: LAZARUSDIR` to your Lazarus (source) directory. This is optional, fill it if you have https://www.lazarus-ide.org/[Lazarus] installed. It will enable to find LCL units and do the code completion for LCL components too.
+- Set `Env: PP` to your FPC executable. If you use FPC bundled with CGE, this should look like `<cgepath>/tools/contrib/fpc/bin/fpc`. Add `.exe` extension on Windows.
+- Finally, set `Executable` to point to our LSP server, inside CGE directory, in `bin/pasls`. Like `<cgepath>/bin/pasls`. Add `.exe` extension on Windows.
+--
+
+////
+TODO test bundled fpc, no lazarus
+////
+
+[start=3]
+3. Enjoy!
++
+--
+- Open any _Castle Game Engine_ project.
+- You can open it from _Castle Game Engine_ editor (e.g. by _"Code -> Open Project in Code Editor"_ menu item).
+- Or you can open it from VS Code, using _"File -> Open Folder"_.
+- Place your cursor somewhere, hit _Ctrl + Space_ and enjoy a proper code completion.
++
+cgeimg::block[vscode_completion.png|VS Code Extension configuration]
+- Right click on any Pascal item and use _"Go To Definition"_, _"Go To Declaration"_ or just _Ctrl + click_ on it to move around. You can also peek at definition and declaration using _"Peek -> ..."_.
+--
+
+NOTE: There are more VS Code extension settings, but most of them are not handled (and not necessary) for our LSP server, they are only handled by the alternative https://github.com/genericptr/pascal-language-server[Ryan Joseph\'s Pascal LSP server].
+
+NOTE: If you have installed FPC yourself using link:fpcupdeluxe[] on Unix, remember to point `Env: PP` to the `fpc.sh` script (and not to the `fpc` binary) that should always be used to execute FPC managed by `fpcupdeluxe` on Unix.
+
+== Running and debugging
+
+It is easiest to just run from _Castle Game Engine_ editor using F9 (_"Run -> Compile And Run_").
+
+To run and debug from _VS Code_:
+
+- CGE applications compiled in _debug_ mode contain debug symbols compatible with GDB. Any debugger extension in _VS Code_ based on GDB should work.
+
+- To build and run CGE applications without leaving VS Code, you can utilize our command-line link:build_tool[build tool].
++
+--
+- Set `CASTLE_ENGINE_PATH` environment variable to point to your CGE directory.
+- Optionally set `PATH` to contain the `bin` subdirectory of your CGE directory. (Alternatively: always use absolute full paths to call the build tool.) Make sure that FPC is also on `PATH`, so that our build tool can find it.
+- Configure the _VS Code_ tasks to build using `castle-engine compile --mode=debug` and run using `castle-engine run`.
+--
+
+== More Information and Credits
+
+- The LSP server we use is based on https://github.com/Isopod/pascal-language-server[Philip Zander\'s Pascal LSP server].
+
+- Our fork of the LSP server is here: https://github.com/castle-engine/pascal-language-server[LSP server for Pascal and Castle Game Engine].
+
+- https://github.com/genericptr/pasls-vscode[VS Code extension] is developed by _Ryan Joseph_.
+
+- There is an alternative https://github.com/genericptr/pascal-language-server[Ryan Joseph\'s Pascal LSP server]. We have https://github.com/michaliskambi/pascal-language-server-genericptr[forked it too] to add some CGE extensions, though ultimately we decided to focus on https://github.com/castle-engine/pascal-language-server[this LSP server for Pascal and Castle Game Engine].
+
+- Both LSP servers are based on initial work of _Arjan Adriaanse_. They both use latest https://www.lazarus-ide.org/[Lazarus] CodeTools to do the actual code completion, so we can enjoy in every editor the same power as Lazarus users.
+
+- The LSP server is fully useful with any text editor that supports LSP:
++
+--
+- It is useful with https://www.gnu.org/software/emacs/[Emacs]. See https://github.com/michaliskambi/elisp/tree/master/lsp[Michalis Kamburelis notes about LSP + Pascal + CGE + Emacs]. The short version is: install https://github.com/arjanadriaanse/lsp-pascal[lsp-pascal], `lsp-mode`, `company` Emacs packages, and configure it like this in your `~/.emacs`:
++
+[source,lisp]
+----
+(require 'lsp-pascal)
+
+;; choose LSP server binary
+(setq lsp-pascal-command "/home/michalis/sources/castle-engine/castle-engine/bin/pasls")
+
+;; pass basic info to LSP server, all LSP Pascal servers above support these:
+(setq lsp-pascal-fpcdir "/home/michalis/installed/fpclazarus/current/fpcsrc/")
+(setq lsp-pascal-lazarusdir "/home/michalis/installed/fpclazarus/current/lazarus")
+(setq lsp-pascal-pp "/home/michalis/installed/fpclazarus/current/fpc/bin/x86_64-linux/fpc.sh")
+(setq lsp-pascal-fpctarget "linux")
+(setq lsp-pascal-fpctargetcpu "x86_64")
+----
+
+- Is it useful with http://neovim.io/[NeoVim]. See the `client/nvim` subdirectory of https://github.com/Isopod/pascal-language-server/tree/master/client/nvim[Philip Zander\'s repository].
+--
