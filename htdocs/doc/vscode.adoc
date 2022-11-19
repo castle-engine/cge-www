@@ -58,13 +58,9 @@ cgeimg::block[vscode_extension_config.png|VS Code Extension configuration]
 - Set `Env: FPCTARGET` to your OS, like `linux` or `windows`.
 - Set `Env: FPCTARGETCPU` to your CPU, like `x86_64`.
 - Set `Env: LAZARUSDIR` to your Lazarus (source) directory. This is optional, fill it if you have https://www.lazarus-ide.org/[Lazarus] installed. It will enable to find LCL units and do the code completion for LCL components too.
-- Set `Env: PP` to your FPC executable. If you use FPC bundled with CGE, this should look like `<cgepath>/tools/contrib/fpc/bin/fpc`. Add `.exe` extension on Windows.
-- Finally, set `Executable` to point to our LSP server, inside CGE directory, in `bin/pasls`. Like `<cgepath>/bin/pasls`. Add `.exe` extension on Windows.
+- Set `Env: PP` to your FPC executable. If you use FPC bundled with CGE, this should look like `<cgepath>/tools/contrib/fpc/bin/fpc-cge`. Add `.exe` extension on Windows. If you use regular FPC, this is a path to your regular FPC executable (`fpc`, `fpc.exe`, `fpc.sh`).
+- Finally, set `Executable` to point to our LSP server, inside CGE `bin` subdirectory. This should look like `<cgepath>/bin/pasls`. Add `.exe` extension on Windows.
 --
-
-////
-TODO test bundled fpc, no lazarus
-////
 
 [start=3]
 3. Enjoy!
@@ -81,13 +77,18 @@ cgeimg::block[vscode_completion.png|VS Code Extension configuration]
 
 NOTE: There are more VS Code extension settings, but most of them are not handled (and not necessary) for our LSP server, they are only handled by the alternative https://github.com/genericptr/pascal-language-server[Ryan Joseph\'s Pascal LSP server].
 
-NOTE: If you have installed FPC yourself using link:fpcupdeluxe[] on Unix, remember to point `Env: PP` to the `fpc.sh` script (and not to the `fpc` binary) that should always be used to execute FPC managed by `fpcupdeluxe` on Unix.
+[NOTE]
+====
+If you have installed FPC yourself using link:fpcupdeluxe[] on Unix, remember to point `Env: PP` to the `fpc.sh` script (and not to the `fpc` binary) that should always be used to execute FPC managed by `fpcupdeluxe` on Unix.
+
+In general, the `Env: PP` executable may be run by CodeTools, which may assume this FPC version "knows" standard RTL paths. That's why it's important to pass `fpc.sh` (in case of fpcupdeluxe) or `fpc-cge` (in case of FPC bundled with CGE) and not the "bare" `fpc` executable.
+====
 
 == Running and debugging
 
 It is easiest to just run from _Castle Game Engine_ editor using F9 (_"Run -> Compile And Run_").
 
-To run and debug from _VS Code_:
+If you really want to run and debug from _VS Code_:
 
 - CGE applications compiled in _debug_ mode contain debug symbols compatible with GDB. Any debugger extension in _VS Code_ based on GDB should work.
 
@@ -95,8 +96,9 @@ To run and debug from _VS Code_:
 +
 --
 - Set `CASTLE_ENGINE_PATH` environment variable to point to your CGE directory.
-- Optionally set `PATH` to contain the `bin` subdirectory of your CGE directory. (Alternatively: always use absolute full paths to call the build tool.) Make sure that FPC is also on `PATH`, so that our build tool can find it.
-- Configure the _VS Code_ tasks to build using `castle-engine compile --mode=debug` and run using `castle-engine run`.
+- Extend the `PATH` environment variable to contain the `bin` subdirectory of your CGE directory.
+- Make sure that FPC is also on `PATH`, so that our build tool can find it.
+- Configure the _VS Code_ tasks to build using `castle-engine compile --mode=debug` and run using `castle-engine run`. Remember to restart all applications (like VS Code) that need to be aware of new environment variables' values.
 --
 
 == More Information and Credits
@@ -107,14 +109,22 @@ To run and debug from _VS Code_:
 
 - https://github.com/genericptr/pasls-vscode[VS Code extension] is developed by _Ryan Joseph_.
 
-- There is an alternative https://github.com/genericptr/pascal-language-server[Ryan Joseph\'s Pascal LSP server]. We have https://github.com/michaliskambi/pascal-language-server-genericptr[forked it too] to add some CGE extensions, though ultimately we decided to focus on https://github.com/castle-engine/pascal-language-server[this LSP server for Pascal and Castle Game Engine].
+- There is an alternative https://github.com/genericptr/pascal-language-server[Ryan Joseph\'s Pascal LSP server]. We have https://github.com/michaliskambi/pascal-language-server-genericptr[forked it too] to add some CGE extensions, though ultimately we decided to not focus on it.
 
 - Both LSP servers are based on initial work of _Arjan Adriaanse_. They both use latest https://www.lazarus-ide.org/[Lazarus] CodeTools to do the actual code completion, so we can enjoy in every editor the same power as Lazarus users.
 
-- The LSP server is fully useful with any text editor that supports LSP:
-+
---
-- It is useful with https://www.gnu.org/software/emacs/[Emacs]. See https://github.com/michaliskambi/elisp/tree/master/lsp[Michalis Kamburelis notes about LSP + Pascal + CGE + Emacs]. The short version is: install https://github.com/arjanadriaanse/lsp-pascal[lsp-pascal], `lsp-mode`, `company` Emacs packages, and configure it like this in your `~/.emacs`:
+== Other text editors
+
+The LSP server is fully useful with any text editor that supports LSP, not only _VS Code_.
+
+=== Emacs
+
+You can use it with https://www.gnu.org/software/emacs/[Emacs]. See https://github.com/michaliskambi/elisp/tree/master/lsp[Michalis Kamburelis notes about LSP + Pascal + CGE + Emacs].
+
+The short version is:
+
+- Install https://github.com/arjanadriaanse/lsp-pascal[lsp-pascal], `lsp-mode`, `company` Emacs packages,
+- Configure it like this in your `~/.emacs`:
 +
 [source,lisp]
 ----
@@ -124,12 +134,14 @@ To run and debug from _VS Code_:
 (setq lsp-pascal-command "/home/michalis/sources/castle-engine/castle-engine/bin/pasls")
 
 ;; pass basic info to LSP server, all LSP Pascal servers above support these:
-(setq lsp-pascal-fpcdir "/home/michalis/installed/fpclazarus/current/fpcsrc/")
-(setq lsp-pascal-lazarusdir "/home/michalis/installed/fpclazarus/current/lazarus")
-(setq lsp-pascal-pp "/home/michalis/installed/fpclazarus/current/fpc/bin/x86_64-linux/fpc.sh")
+(setq lsp-pascal-fpcdir "/home/michalis/cge/tools/contrib/fpc/src")
+(setq lsp-pascal-lazarusdir "/home/michalis/lazarus")
+(setq lsp-pascal-pp "/home/michalis/cge/tools/contrib/fpc/bin/fpc-cge")
 (setq lsp-pascal-fpctarget "linux")
 (setq lsp-pascal-fpctargetcpu "x86_64")
 ----
 
-- Is it useful with http://neovim.io/[NeoVim]. See the `client/nvim` subdirectory of https://github.com/Isopod/pascal-language-server/tree/master/client/nvim[Philip Zander\'s repository].
+=== NeoVim
+
+The LSP server can be used with http://neovim.io/[NeoVim]. See the `client/nvim` subdirectory of https://github.com/Isopod/pascal-language-server/tree/master/client/nvim[Philip Zander\'s repository].
 --
