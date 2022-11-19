@@ -144,3 +144,17 @@ The short version is:
 === NeoVim
 
 The LSP server can be used with http://neovim.io/[NeoVim]. See the `client/nvim` subdirectory of https://github.com/Isopod/pascal-language-server/tree/master/client/nvim[Philip Zander\'s repository].
+
+== Plans, TODOs
+
+* The big plan is to bundle CGE with _VS Code_ at some point in 2023. If you just install (unpack) CGE you should have a ready setup with CGE + VS Code, and VS Code should automatically have Pascal syntax highlighting and code completion.
++
+Of course we will still make everything such that you don't have to use this "bundled" VS Code and instead can use your existing VS Code installation, or really any other text editor / IDE, like Lazarus, Emacs, NeoVim etc.
+
+* The LSP server should require less (or even zero) configuration. All the parameters required now by LSP configuration are things that CGE editor knows, after all.
+
+* Can we have "Code Completion" (that happens in Lazarus when you Ctrl + Shift + C) that can automatically insert e.g. method declarations or complete property declarations?
+
+* Have a recommended and perfectly working approach to running and debugging. If you open a directory with CGE project (`CastleEngineManifest.xml`) then running and debugging it in VS Code should be just a keystroke (like F9) away. We should use CGE build tool with all parameters that CGE editor already knows.
++
+There is https://microsoft.github.io/debug-adapter-protocol/[DAP (Debug Adapter Protocol)] with similar goals as LSP, but for debuggers. Maybe someone will wrap Lazarus debugger (GDB with Pascal specific interpretations) in DAP?
