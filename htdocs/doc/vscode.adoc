@@ -63,7 +63,7 @@ cgeimg::block[vscode_extension_config.png|VS Code Extension configuration]
 --
 
 [start=3]
-3. Enjoy!
+1. Enjoy!
 +
 --
 - Open any _Castle Game Engine_ project.
@@ -144,4 +144,3 @@ The short version is:
 === NeoVim
 
 The LSP server can be used with http://neovim.io/[NeoVim]. See the `client/nvim` subdirectory of https://github.com/Isopod/pascal-language-server/tree/master/client/nvim[Philip Zander\'s repository].
---
