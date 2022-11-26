@@ -34,7 +34,7 @@ castle_header('Discord, forum, GitHub and Patreon', array(
 
     <a href="https://www.patreon.com/castleengine" class="talk-button btn btn-success btn-lg">
       <p>
-        <img src="<?php echo CURRENT_URL; ?>/images/patreon-brand/Digital-Patreon-Logo_White.png" alt="Patreon"><br>
+        <img src="<?php echo CURRENT_URL; ?>/images/patreon-brand/Digital-Patreon-Logo_White.webp" alt="Patreon"><br>
         Support on Patreon
       </p>
     </a>
