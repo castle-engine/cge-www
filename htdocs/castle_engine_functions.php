@@ -1558,9 +1558,27 @@ function castle_thumbs($images, $columns=1, $align='right', $thumb_size = NULL)
     {
       $regenerate_thumbnails = CASTLE_ENVIRONMENT == 'development';
 
-      if ($regenerate_thumbnails &&
-          array_key_exists('filename', $image) &&
-          (!file_exists('images/' . $thumb_size . '/' . $image['filename'])))
+      // calculate $relative_filename_full, $relative_filename_thumb
+      if (array_key_exists('filename', $image)) {
+        $relative_filename_full  = 'images/original_size/' . $image['filename'];
+
+        $thumb_pathinfo = pathinfo($image['filename']);
+        $thumb_ext = $thumb_pathinfo['extension'];
+        // Following images/Makefile, change thumbnails extension to webp
+        if ($thumb_ext == 'png' || $thumb_ext == 'jpg') {
+          $thumb_ext = 'webp';
+        }
+        $relative_filename_thumb = 'images/' . $thumb_size . '/' .
+          $thumb_pathinfo['filename'] . '.' . $thumb_ext;
+      } else {
+        $relative_filename_full = NULL;
+        $relative_filename_thumb = NULL;
+      }
+
+      if ( $regenerate_thumbnails &&
+           ($relative_filename_thumb !== NULL) &&
+           (!file_exists($relative_filename_thumb))
+         )
       {
         /* Regenerate thumbnails.
            Output raport at any place within current doc -- this is only at development,
@@ -1577,12 +1595,9 @@ function castle_thumbs($images, $columns=1, $align='right', $thumb_size = NULL)
         echo '</pre>';
       }
 
-
-
       if (isset($image['url_full'])) {
         $url_full = $image['url_full'];
       } else {
-        $relative_filename_full  = 'images/original_size/' . $image['filename'];
         $url_full = page_url($relative_filename_full);
       }
 
@@ -1590,7 +1605,6 @@ function castle_thumbs($images, $columns=1, $align='right', $thumb_size = NULL)
         $url_thumb = $image['url_thumb'];
         $size_thumb = '';
       } else {
-        $relative_filename_thumb = 'images/' . $thumb_size . '/' . $image['filename'];
         $url_thumb =  page_requisite($relative_filename_thumb);
         $size_thumb = _castle_image_sizes($relative_filename_thumb);
       }
@@ -1825,14 +1839,23 @@ function glsl_highlight($source)
 }
 
 /* Link from a gallery.
-   Image used here for $image_name must have "gallery_size"
-   generated, so make sure it's listed in images/Makefile in GALLERY_SIZE.
    $page_name may be a complete URL, or a page name for a_href_page. */
 function gallery_link($title, $subtitle, $image_name, $page_name)
 {
+  $image_pathinfo = pathinfo($image_name);
+  $image_ext = $image_pathinfo['extension'];
+  // Following images/Makefile, change thumbnails extension to webp
+  if ($image_ext == 'png' || $image_ext == 'jpg') {
+    $image_ext = 'webp';
+  }
+
   $s = '<div class="col-sm-4"><div class="cge-gallery-link">';
-  $s .= '<p>' . a_href_page(
-    "<img src=\"images/gallery_size/$image_name\" alt=\"$title\" />", $page_name) .
+  $s .= '<p>' .
+    a_href_page(
+      '<img src="images/gallery_size/' . $image_pathinfo['filename'] . '.' . $image_ext . '" alt="' .
+      htmlspecialchars($title) . '" />',
+      $page_name
+    ) .
     '</p>';
   $s .= '<p class="cge-gallery-link-title">' .
     a_href_page("<b>$title</b>", $page_name) . '</p>' .
