@@ -4,49 +4,53 @@ return array(
   'domain' => 'jetpack-protect',
   'type' => 'plugins',
   'packages' => array(
+    'jetpack-admin-ui' => array(
+      'path' => 'jetpack_vendor/automattic/jetpack-admin-ui',
+      'ver' => '0.2.12',
+    ),
+    'jetpack-assets' => array(
+      'path' => 'jetpack_vendor/automattic/jetpack-assets',
+      'ver' => '1.17.25',
+    ),
     'jetpack-config' => array(
       'path' => 'jetpack_vendor/automattic/jetpack-config',
-      'ver' => '1.9.6',
+      'ver' => '1.11.0',
+    ),
+    'jetpack-connection' => array(
+      'path' => 'jetpack_vendor/automattic/jetpack-connection',
+      'ver' => '1.46.3',
+    ),
+    'jetpack-idc' => array(
+      'path' => 'jetpack_vendor/automattic/jetpack-identity-crisis',
+      'ver' => '0.8.31',
+    ),
+    'jetpack-jitm' => array(
+      'path' => 'jetpack_vendor/automattic/jetpack-jitm',
+      'ver' => '2.2.33',
+    ),
+    'jetpack-licensing' => array(
+      'path' => 'jetpack_vendor/automattic/jetpack-licensing',
+      'ver' => '1.7.11',
+    ),
+    'jetpack-my-jetpack' => array(
+      'path' => 'jetpack_vendor/automattic/jetpack-my-jetpack',
+      'ver' => '2.4.0',
+    ),
+    'jetpack-password-checker' => array(
+      'path' => 'jetpack_vendor/automattic/jetpack-password-checker',
+      'ver' => '0.2.7',
     ),
     'jetpack-plugins-installer' => array(
       'path' => 'jetpack_vendor/automattic/jetpack-plugins-installer',
       'ver' => '0.2.0',
     ),
-    'jetpack-admin-ui' => array(
-      'path' => 'jetpack_vendor/automattic/jetpack-admin-ui',
-      'ver' => '0.2.11',
-    ),
-    'jetpack-assets' => array(
-      'path' => 'jetpack_vendor/automattic/jetpack-assets',
-      'ver' => '1.17.21',
-    ),
-    'jetpack-jitm' => array(
-      'path' => 'jetpack_vendor/automattic/jetpack-jitm',
-      'ver' => '2.2.26',
-    ),
-    'jetpack-password-checker' => array(
-      'path' => 'jetpack_vendor/automattic/jetpack-password-checker',
-      'ver' => '0.2.6',
-    ),
-    'jetpack-idc' => array(
-      'path' => 'jetpack_vendor/automattic/jetpack-identity-crisis',
-      'ver' => '0.8.22',
-    ),
-    'jetpack-connection' => array(
-      'path' => 'jetpack_vendor/automattic/jetpack-connection',
-      'ver' => '1.44.0',
-    ),
-    'jetpack-licensing' => array(
-      'path' => 'jetpack_vendor/automattic/jetpack-licensing',
-      'ver' => '1.7.8',
-    ),
     'jetpack-sync' => array(
       'path' => 'jetpack_vendor/automattic/jetpack-sync',
-      'ver' => '1.38.2',
+      'ver' => '1.43.0',
     ),
-    'jetpack-my-jetpack' => array(
-      'path' => 'jetpack_vendor/automattic/jetpack-my-jetpack',
-      'ver' => '2.0.3',
+    'jetpack-transport-helper' => array(
+      'path' => 'jetpack_vendor/automattic/jetpack-transport-helper',
+      'ver' => '0.1.0',
     ),
   ),
 );
