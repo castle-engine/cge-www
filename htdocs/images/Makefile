@@ -22,6 +22,11 @@ ALL_FEATURE:=\
 ALL_OS_ICONS_ORIGINAL_SIZE:=$(wildcard os_icons_original_size/*.png)
 ALL_OS_ICONS:=$(subst _original_size,,$(ALL_OS_ICONS_ORIGINAL_SIZE))
 
+ALL_NOT_RESIZED_ORIGINAL:=$(wildcard not_resized_original/*.png)
+ALL_NOT_RESIZED:=\
+  $(patsubst %.png,%.webp,\
+    $(subst _original,,$(ALL_NOT_RESIZED_ORIGINAL)))
+
 .PHONY: all clean info
 
 ALL_TARGETS := $(ALL_TEASER) \
@@ -30,7 +35,8 @@ ALL_TARGETS := $(ALL_TEASER) \
   $(ALL_GALLERY) \
   $(ALL_OS_ICONS) \
   $(ALL_FEATURE) \
-  castle_game_engine_icon.png
+  $(ALL_NOT_RESIZED) \
+  not_resized_original/castle_game_engine_icon.png
 
 # On Cygwin, change it to /usr/bin/convert
 CONVERT := convert
@@ -93,13 +99,19 @@ main_link_size/%: original_size/%
 
 # engine icon processing -----------------------------------------------------
 
-castle_game_engine_icon.png: ../../../castle-engine/doc/pasdoc/logo/castle_game_engine_icon.png
+not_resized_original/castle_game_engine_icon.png: ../../../castle-engine/doc/pasdoc/logo/castle_game_engine_icon.png
 	cp -f $< $@
 
 # OS icons -------------------------------------------------------------------
 
 os_icons/%.png: os_icons_original_size/%.png
 	$(CONVERT) $< -geometry 64x64 $@
+
+# ----------------------------------------------------------------------------
+# not_resized (processing to webp)
+
+not_resized/%.webp: not_resized_original/%.png
+	$(CONVERT) $< $@
 
 # gifs -----------------------------------------------------------------------
 
