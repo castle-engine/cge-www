@@ -13,6 +13,8 @@ htdocs/compositing_shaders_doc/html/
 htdocs/compositing_shaders_doc/*.pdf
 htdocs/compositing_shaders_doc/*.fo
 htdocs/wp/wp-content/uploads/
+# created by W3 Total Cache
+htdocs/wp/wp-content/cache/
 htdocs/wp/jetpack-temp/
 htdocs/castle_engine_config.php
 htdocs/cge-delphi-beta.zip
