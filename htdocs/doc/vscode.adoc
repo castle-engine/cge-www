@@ -11,6 +11,11 @@ Below we describe how to configure it to be a perfect code editor for Pascal, an
 
 cgeimg::block[vscode_completion.png|Visual Studio Code completing CGE code]
 
+NOTE: The configuration described here also works with https://github.com/VSCodium/vscodium[VSCodium], a version of VS Code built using 100% open-source code (without e.g. Microsoft telemetry).
+////
+And many other text editors (like Emacs, NeoVim) can also use the LSP server described on this page, see <<Other text editors>>.
+////
+
 == Make Castle Game Engine invoke VS Code
 
 Go to _Castle Game Engine_ editor preferences, _"Code Editor"_ tab, and select the _"Visual Studio Code"_.
@@ -29,6 +34,13 @@ This will make CGE automatically open _VS Code_ when you open Pascal file
 There are multiple _VS Code_ extensions that provide Pascal code highlighting.
 
 We recommend https://marketplace.visualstudio.com/items?itemName=AnsonYeung.pascal-language-basics[Pascal Language Basics]. It's available in the _VS Code_ marketplace, so you can just search for it and install right inside the VS Code _"Extensions"_ panel.
+
+[NOTE]
+====
+Searching extensions' marketplace for _"Pascal"_ will yield a number of solid alternatives. They will likely work just as well for your Pascal and CGE editing, go ahead and try them. We just recommend choosing any "simple" extension that adds Pascal highlighting but _doesn't_ do code completion and parsing (because the LSP server will already take care of it).
+
+For _VS Codium_ users, the https://open-vsx.org/extension/theangryepicbanana/language-pascal[Pascal magic] extension may be the easiest to install, as is available in the _VS Codium_ (and _VS Code_ too) extensions' marketplace.
+====
 
 == Pascal code completion
 
