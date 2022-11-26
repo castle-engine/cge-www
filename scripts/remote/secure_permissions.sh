@@ -4,10 +4,14 @@ set -eu
 # Most things should be read-only for other users than michalis
 secure_dir ()
 {
-  find "$1" \
-    '(' -execdir chmod u=rwX,g=rwX,o=rX '{}' ';' -and \
-        -execdir chown michalis:michalis '{}' ';' \
-    ')'
+  # find "$1" \
+  #   '(' -execdir chmod u=rwX,g=rwX,o=rX '{}' ';' -and \
+  #       -execdir chown michalis:michalis '{}' ';' \
+  #   ')'
+  #
+  # Faster:
+  chmod -R u=rwX,g=rwX,o=rX "$1"
+  chown -R michalis:michalis "$1"
 }
 secure_dir /home/michalis/cge-www/
 secure_dir /home/michalis/cge-html/
@@ -25,8 +29,12 @@ writeable_dir ()
   #
   # In the end, it's more important to allow easy upgrades,
   # than to try to make Wordpress read-only by itself.
-  find "$1" \
-    '(' -execdir chown www-data:www-data '{}' ';' ')'
+  #
+  # find "$1" \
+  #   '(' -execdir chown www-data:www-data '{}' ';' ')'
+  #
+  # Faster:
+  chown -R www-data:www-data "$1"
 }
 # writeable_dir /home/michalis/cge-www/htdocs/wp/wp-content/cache/
 # writeable_dir /home/michalis/cge-www/htdocs/wp/wp-content/uploads/
