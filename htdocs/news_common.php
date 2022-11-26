@@ -122,7 +122,7 @@ function news_to_html($news_item, $full_description = true, $link_to_self = fals
       $image = $news_item['images'][0];
       $result = '<img
         class="news-teaser-image"
-        src="' . CURRENT_URL . 'images/teaser_size/' . $image['filename'] . '"
+        src="' . CURRENT_URL . 'images/original_size/' . $image['filename'] . '"
         alt="' . $image['titlealt'] . '"
       />' . $result;
     }
