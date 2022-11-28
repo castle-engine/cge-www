@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <?php
+
+/*
+  ---------------------------------------------------------------------------
+  Generates sitemap that can be consumed by search engines to help them index the site.
+
+  Exposed on https://castle-engine.io/sitemap.xml ,
+  though it should be manually submitted to at least Google anyway.
+
+  See
+  https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap
+  https://www.sitemaps.org/protocol.html
+  ----------------------------------------------------------------------------
+*/
+
 require_once 'castle_engine_functions.php';
 
 echo '<url><loc>' . htmlspecialchars(CASTLE_PROD_URL)  . '</loc>' . "\n";
