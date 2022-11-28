@@ -724,19 +724,19 @@ When the risk of latter is significant, we often still write `@link(SomethingRel
 
 == Guidelines (how to write good code)
 
-=== You can (and should) free the things you allocated; you cannot free other things, unless explicitly allowed
+=== You can (and should) free the things you allocated; you should never free other things, unless explicitly allowed
 
 NOTE: See link:modern_pascal[Modern Object Pascal Introduction for Programmers] if you're unsure what some of the terminology used in this section means.
 
 Pascal is a language with manual memory management, i.e. you have to remember to _free_ the things you allocate.
 
-It's often quite easy to manage this, _assuming that other code "plays nice"_:
+It's often quite easy to manage this, *assuming that other code "plays nice"*:
 
-1. If you create something in your _constructor_, then you are responsible for destroying it in your _destructor_ (or when it needs to be recreated for some reason).
+1. If you create something in your *constructor*, then you are responsible for destroying it in your *destructor* (or when it needs to be recreated for some reason).
 +
-This works OK but _assumes that nothing else will free your instance_. Otherwise you will get a _dangling pointer_, i.e. a non-`nil` reference that is invalid because something else freed the memory it pointed to.
+This works OK and *assumes that nothing else will free your instance*. Otherwise you will get a *dangling pointer*, i.e. a non-`nil` reference that is invalid because something else freed the memory it pointed to.
 +
-_Some_ code may allow others to free the things it created. It can avoid having a dangling pointer e.g. by observing the reference using `FreeNotification` or cgeref:TFreeNotificationObserver[], see link:custom_components[custom components]. (Or by not storing the reference at all.) But this permission ("you can free this") has to be explicitly documented as allowed.
+Some code may allow others to free the things it created. It can avoid having a dangling pointer e.g. by observing the reference using `FreeNotification` or cgeref:TFreeNotificationObserver[], see link:custom_components[custom components]. (Or by not storing the reference at all.) But this permission (_"others can free this thing I created"_) has to be explicitly documented as allowed.
 
 2. You can also use the "ownership" mechanism:
 +
@@ -746,29 +746,76 @@ _Some_ code may allow others to free the things it created. It can avoid having 
 _Other things can also free the children, this will be handled OK._
 - Ownership mechanism on `TObjectList`: list will make sure that children are freed (when they are removed from the list, or when list is destroyed).
 +
-_Other things cannot free the children, or you will get dangling pointers._
+_Other things cannot free the children, or you will get dangling pointers._ That is, `TObjectList` cannot detect when an item was freed through some other mechanism, e.g. because you did `O := List[123]; FreeAndNil(O);`.
 - Ownership mechanism on `TComponentList`: list will make sure that children are freed (when they are removed from the list, or when list is destroyed).
 +
-_Other things can still free it, this will be handled OK._
+_Other things can also free the children, this will be handled OK._
 --
 
-In short, things are easy when _nothing else frees the object you were supposed to free_.
+In short, things are easy when *nothing else frees the object you were supposed to free*. Without explicit allowance, the other code should not free the things you created.
 
-This guideline is thus: _When you create an instance of something, then you decide when and how it should be freed._ Nothing else should free it, unless explicitly permitted by the documentation.
+This guideline is thus: *When you create an instance of something, then you decide when and how it should be freed. Nothing else should free it, unless explicitly permitted by the documentation.*a
 
-This includes the cases when you receive an instance of something by accessing some property, function or class function. _Do not_ free it, unless it is explicitly documented that you should free it. Only free things where you have called `constructor`.
+This includes the cases when you receive an instance of something by accessing some property, function or class function. *Do not* free it, unless it is explicitly documented that you should free it. Only free things where you have called `constructor`.
+
+This rule has some additional consequences:
+
+==== If you receive an instance from some code you don't control, do not assume anything about the lifetime of this instance
+
+The prominent example of this is when you expose a settable property like `property FooInstance: TFoo read FFooInstance write SetFooInstance`.
+
+The best code should not assume that `FooInstance` will exist as long as it is set. Developer should be allowed to free it and the class that refers to it should account for it (automatically dropping all references to it, in particular `FooInstance` should change to `nil`). This is a consequence of the above guideline: _developer can free the things that the developer created!_
+
+The solution is to use components (`TComponent` descendants) with `FreeNotification` or cgeref:TFreeNotificationObserver[], see link:custom_components[custom components].
+
+This allows the developer to do this:
+
+[source,pascal]
+----
+C := TSomeParent.Create(Application);
+Foo := TFoo.Create(Application);
+
+C.FooInstance := Foo;
+FreeAndNil(Foo)
+
+Assert(C.FooInstance = nil);
+----
+
+==== Avoid making functions/methods that return new instance of some object and pass the responsibility to free it on the caller
+
+For example this is allowed (if you document it like below) _but discouraged_:
+
+[source,pascal]
+----
+{ Creates TFoo.
+  The caller is responsible for freeing the resulting TFoo instance. }
+function MakeSomeInstance: TFoo;
+begin
+  Result := TFoo.Create;
+end;
+----
+
+Instead of creating such methods, it is better to enable the same functionality by advising to use a constructor of the proper type. In the above example, the recommendation should be _"use the `TFoo.Create` explicitly instead of relying on a wrapper `MakeSomeInstance` "_. This makes things more obvious: when developer does `F := TFoo.Create`, then developer knows (s)he should take care of freeing `F`.
+
+Of course, this recommendation is harder to achieve in real-life cases that look more complicated than `MakeSomeInstance` :) You probably had some reason to introduce such function. Maybe the new `TFoo` instance must be configured in some special way, maybe it needs some special parameter coming from the internal variable of this unit or private field of containing class. The point is to think about remaking it. Maybe it should rather be a new `TFoo` constructor that takes special parameter, and it can convey the same functionality?
+
+The idea is that, by default, developer should be able to assume that when (s)he does `F := MakeSomeInstance`, (s)he doesn't need to care to free `F`. Because the developer didn't call constructor explicitly.
+
+If your function returns something that the caller should free, it must be explicitly documented.
 
 === What can be nil
 
-In Pascal, a value of an object instance (like `X: TMyObject`) can always be `nil`. But the code that does a lot of `X <> nil` comparisons at every step is hard to read, so we want to limit usage of `nil`.
+In Pascal, a value of an object instance (like `X: TMyObject`) can always be `nil`.
 
-To make things easy, follow this:
+This guideline limits the cases when you have to worry that something is `nil`, in order to avoid writing lots of checks `X <> nil` in the code.
 
-- All the object instances given as routine parameters must be non-`nil`. (That is, they cannot be `nil`.) This puts the burden on the caller, while the implementation of a routine can assume they are not `nil`.
+Follow this:
+
+- All the object instances given as routine parameters must be non-`nil`. (That is, they cannot be `nil`.) If a routine allows some particular parameter as `nil`, it should be explicitly documented as allowed.
 +
-If a particular routine allows some parameter as `nil`, it should be explicitly documented.
+This puts the burden on the caller, while the implementation of a routine can assume they are not `nil`.
 +
-This means that writing code like this is considered OK (there's no need to check `Person <> nil`):
+This means that writing code like this is considered OK (there's no need to check `Person <> nil`) and you don't even need to document explicitly _"Person cannot be nil!"_:
 +
 [source,pascal]
 ----
@@ -778,9 +825,9 @@ begin
 end;
 ----
 
-- All the functions that return an object instance always return a non-`nil` value. This puts the burden on the function implementation, not on the caller.
+- All the functions that return an object instance always return a non-`nil` value. If a particular function can return `nil`, it should be explicitly documented as possible.
 +
-If a particular routine can return `nil`, it should be explicitly documented.
+This puts the burden on the function implementation, not on the caller.
 +
 This means that writing code like this is considered OK (there's no need to check `GetCurrentUser(Context) <> nil`):
 +
@@ -792,9 +839,7 @@ begin
 end;
 ----
 
-- All the properties of an object instance are non-`nil` value (after the object is created).
-+
-In a property may be `nil`, it should be explicitly documented.
+- All the properties (of an object instance type) have non-`nil` value (after the object is created). If a property may be `nil`, it should be explicitly documented.
 +
 This means that writing code like this is considered OK (there's no need to check `GetCurrentUser <> nil`). And you don't need to care whether `GetCurrentUser` is a property or a parameter-less method, since the last 2 rules are consistent:
 +
