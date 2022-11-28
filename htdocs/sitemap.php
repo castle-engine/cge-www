@@ -3,12 +3,19 @@
   ---------------------------------------------------------------------------
   Generates sitemap that can be consumed by search engines to help them index the site.
 
-  Exposed on https://castle-engine.io/sitemap.xml ,
-  though it should be manually submitted to at least Google anyway.
-
   See
   https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap
   https://www.sitemaps.org/protocol.html
+
+  Exposed by
+
+  - https://castle-engine.io/sitemap.xml (although it's a standard name,
+    it's unsure whether something crawls xxx/sitemap.xml automatically),
+
+  - mentioned in robots.txt,
+
+  - manually submitted to Google anyway.
+
   ----------------------------------------------------------------------------
 */
 
