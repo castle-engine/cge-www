@@ -196,8 +196,18 @@ function page_requisite($page_name, $hash_link = '')
 }
 
 /* Returns URL of desired page.
-   Add to $page_name (string) the URL (prefix), extension if needed (suffix),
-   and $hash_link (suffix after #).
+   The $page_name (string) must be one of:
+
+   - a basename of PHP file, like 'compositing_shaders' for ../compositing_shaders.php
+
+   - a basename of DocBook file, prefixed with `doc`, like 'doc/android' for ../doc/android.adoc
+
+   - an already absolute URL (with protocol like http(s) etc.)
+
+   Adds to $page_name:
+   - the URL (prefix),
+   - extension like .php if needed (suffix),
+   - $hash_link (suffix after #).
 
    It makes the CASTLE_ENVIRONMENT == 'offline' honored OK:
    - when CASTLE_ENVIRONMENT != 'offline', adds CASTLE_PROD_URL
