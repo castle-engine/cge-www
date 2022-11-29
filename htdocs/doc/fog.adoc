@@ -27,4 +27,4 @@ Or can make background horizon color, or background skybox, visually match the f
 +
 cgeimg::block[fog_4_with_background.png|Fog and background colors matching]
 
-NOTE: The fog is aplied in the final (sRGB) color space, this allows to match fog color perfectly to background color or UI easily. This means that link:color_space[Linear color space (gamma correction)] doesn't affect fog application.
+NOTE: The fog is applied in the final (sRGB) color space, this allows to match fog color perfectly to background color or UI easily. This means that link:color_space[Linear color space (gamma correction)] doesn't affect fog application.
