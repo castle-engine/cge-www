@@ -113,18 +113,18 @@ function reference_link()
   return $castle_apidoc_url . 'index.html';
 }
 
-/* PHP file relative path from current file to "our root"
+/* PHP file path to "CGE root"
    (where castle-engine-website-base/ is a subdirectory).
    The original PHP file that handles the request can define it at the beginning,
    and require this file (...functions.php) using:
 
-     require_once $castle_php_relative_path . 'castle_engine_functions.php';
+     require_once $castle_php_path . 'castle_engine_functions.php';
 
    This may be used to set include path correctly.
 */
-global $castle_php_relative_path;
-if (empty($castle_php_relative_path)) {
-  $castle_php_relative_path = '';
+global $castle_php_path;
+if (empty($castle_php_path)) {
+  $castle_php_path = '';
 }
 
 /* Set path to include PHP files.
@@ -132,11 +132,11 @@ if (empty($castle_php_relative_path)) {
      was not reliable without this (sometimes fails, sometimes not).
      Using set_include_path to include the castle-engine-website-base/ fixed the issue.
    - Because we actually depend on it for geshi. */
-global $castle_php_relative_path;
-set_include_path(get_include_path() . PATH_SEPARATOR . $castle_php_relative_path . 'castle-engine-website-base/');
+global $castle_php_path;
+set_include_path(get_include_path() . PATH_SEPARATOR . $castle_php_path . 'castle-engine-website-base/');
 global $castle_wordpress;
 if (empty($castle_disable_cge_geshi)) {
-  set_include_path(get_include_path() . PATH_SEPARATOR . $castle_php_relative_path . 'geshi/');
+  set_include_path(get_include_path() . PATH_SEPARATOR . $castle_php_path . 'geshi/');
 }
 
 /* Michalis' email address. Using the constant makes it easier to change

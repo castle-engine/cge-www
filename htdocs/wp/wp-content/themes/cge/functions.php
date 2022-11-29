@@ -3,22 +3,6 @@
 
 /* Include main CGE PHP functions (and variables and constants...). */
 
-/* It would be more intuitive to set
-
-     $castle_php_relative_path = '../../../../';
-
-   but the functions.php is included in a special way it seems
-   (probably using eval and not require), so the current directory right now
-   is exactly in the Wordpress root (it is not inside wp-content/themes/cge/).
-   So we only need to go 1 level higher, from Wordpress root to CGE website root.
-*/
-global $castle_php_relative_path;
-if (is_admin()) {
-    $castle_php_relative_path = '../../';
-} else {
-    $castle_php_relative_path = '../';
-}
-
 global $castle_wordpress;
 $castle_wordpress = true;
 
@@ -26,7 +10,31 @@ $castle_wordpress = true;
 global $castle_disable_cge_geshi;
 $castle_disable_cge_geshi = true;
 
-require_once $castle_php_relative_path . 'castle_engine_functions.php';
+/* Note: using ABSPATH to include.
+
+   Using relative paths is not reliable. We used to have this hack:
+
+   It would be more intuitive to set
+
+     $castle_php_path = '../../../../';
+
+   but the functions.php is included in a special way it seems
+   (probably using eval and not require), so the current directory right now
+   is exactly in the Wordpress root (it is not inside wp-content/themes/cge/).
+   So we only need to go 1 level higher, from Wordpress root to CGE website root.
+
+      global $castle_php_path;
+      if (is_admin()) {
+          $castle_php_path = '../../';
+      } else {
+          $castle_php_path = '../';
+      }
+
+    ... but this fails for https://castle-engine.io/wp/wp-admin/network/admin.php
+*/
+global $castle_php_path;
+$castle_php_path = ABSPATH . '../';
+require_once($castle_php_path . 'castle_engine_functions.php');
 
 add_action('wp_enqueue_scripts', 'cge_theme_enqueue_styles');
 function cge_theme_enqueue_styles()
