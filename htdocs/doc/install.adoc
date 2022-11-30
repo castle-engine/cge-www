@@ -9,15 +9,25 @@ include::common.adoc[]
 
 . Run the _Castle Game Engine_ editor: open the unpacked `castle_game_engine` directory, open the subdirectory `bin` inside and run the `castle-editor` executable.
 
-## Install compiler and IDE
+## Optional: Install additional compiler and IDE
 
-Next, you should install
+Optionally, you can install:
 
-[role="compact"]
-* a Pascal compiler (we support _FPC_ and _Delphi_)
-* and a Pascal IDE (like _Lazarus_, _Delphi_, _Visual Studio Code_, or any other text editor you prefer).
+* Additional Pascal compiler.
++
+We support link:supported_compilers.php[recent versions of FPC and Delphi].
++
+The engine is bundled with a ready version of https://www.freepascal.org/[FPC], so you don't need to do anything if you don't have any special requirements.
 
+* A Pascal IDE.
++
+Like https://www.lazarus-ide.org/[Lazarus], link:vscode[Visual Studio Code] or https://www.embarcadero.com/products/Delphi[Delphi].
++
+In principle, you can edit the Pascal code in any text editor you have.
+
+////
 For a fully open-source cross-platform environment _we recommend FPC and Lazarus_.
+////
 
 ### FPC and Lazarus
 
@@ -39,7 +49,7 @@ cgeimg::block[lazarus_website.png|Lazarus website]
 +
 TIP: You can install _FPC_ and _Lazarus_ in other ways, for example link:fpcupdeluxe[using FpcUpDeluxe].
 +
-TIP: If you prefer other IDE than _Lazarus_, you can install link:https://www.freepascal.org/[only FPC] and use any Pascal code editor you like, like link:https://code.visualstudio.com/[Visual Studio Code].
+TIP: If you prefer other IDE than _Lazarus_, you can install link:https://www.freepascal.org/[only FPC] and use any Pascal code editor you like, like link:vscode[Visual Studio Code].
 
 . Configure FPC and Lazarus locations in  _Castle Game Engine_ editor _Preferences_, if they have not been auto-detected correctly.
 +
