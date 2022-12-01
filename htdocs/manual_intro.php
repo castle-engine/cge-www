@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-castle_header('Castle Game Engine Manual');
+castle_header('Manual');
 ?>
 
 <!-- <p>This manual shows all the major parts of the -->

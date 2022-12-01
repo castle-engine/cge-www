@@ -233,7 +233,7 @@ $castle_sitemap = array(
       'creating_data_intro' => array('title' => 'Creating Game Data'),
       'reference' => array('title' => 'API Reference', 'url' => reference_link()),
       'doc/modern_pascal' => array('title' => 'Modern Object Pascal Introduction'),
-      'doc/castle_game_engine_for_unity_developers' => array('title' => 'CGE for Unity Developers'),
+      'doc/castle_game_engine_for_unity_developers' => array('title' => 'Overview for Unity Developers'),
       'compiling_from_source' => array('title' => 'Compiling from source'),
       'vrml_x3d' => array('title' => 'Scene Graph (X3D)'),
     ),
@@ -357,7 +357,7 @@ $castle_sitemap = array(
               // 'engine_doc' => array('title' => 'Internals documentation'), // too outdated
               'doc/fpcupdeluxe' => array('title' => 'fpcupdeluxe'),
               'doc/fpmake' => array('title' => 'FpMake and FpPkg'),
-              'license' => array('title' => 'License'),
+              'doc/license' => array('title' => 'License'),
             )
           ),
           'helping' => array('title' => 'Helping in engine development',
@@ -408,7 +408,7 @@ $castle_sitemap = array(
       ),
       'reference' => array('title' => 'API Reference', 'url' => reference_link()),
       'doc/modern_pascal' => array('title' => 'Modern Object Pascal Introduction'),
-      'doc/castle_game_engine_for_unity_developers' => array('title' => 'CGE for Unity Developers'),
+      'doc/castle_game_engine_for_unity_developers' => array('title' => 'Overview for Unity Developers'),
 
       'vrml_x3d' => array('title' => 'Scene Graph (X3D)',
         'sidebar' => true,
