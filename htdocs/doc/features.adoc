@@ -411,4 +411,4 @@ cgeimg::block[combined_osi_ci_logos.png|Open source\, integration with Jenkins\,
 The engine is licensed on _"LGPL with static linking exception"_ license, similar to FPC and Lazarus standard libraries.
 
 * In short it means that you *can* create commercial closed-source applications with it without any issues.
-* See https://github.com/castle-engine/castle-engine/blob/master/COPYING.md for details.
+* See link:license[] for details.

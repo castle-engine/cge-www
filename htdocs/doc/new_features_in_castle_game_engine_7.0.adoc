@@ -212,7 +212,7 @@ https://castle-engine.io/wp/2018/04/22/engine-improvements-user-interface-horizo
 * Last but not least, stuff "around" CGE:
  ** Docker image with docs: https://castle-engine.io/wp/2019/02/16/using-castle-game-engine-with-docker/
  ** New forum https://forum.castle-engine.io/
- ** License simplified. The engine is "LGPL with static linking exception" (i.e. you can use it in commercial applications) out-of-the-box. See https://castle-engine.io/wp/2018/05/30/nurbs-simplified-license-just-lgpl-out-of-the-box/ and https://github.com/castle-engine/castle-engine/blob/master/COPYING.md for details.
+ ** License simplified. The engine is "LGPL with static linking exception" (i.e. you can use it in commercial applications) out-of-the-box. See https://castle-engine.io/wp/2018/05/30/nurbs-simplified-license-just-lgpl-out-of-the-box/ and link:license[] for details.
  ** API searching, switching between stable/unstable API docs.
  ** https://castle-engine.io/wp/2020/09/27/new-patreon-rewards-and-goals-since-october-including-plans-for-training-videos-conferencegamejam-occulus-port/[New Patreon rewards and goals] including conferences, Occulus port and more :)
 

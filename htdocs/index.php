@@ -33,7 +33,7 @@ castle_header('Castle Game Engine - Free open-source cross-platform 3D 2D game e
 
   Another old version:
 
-  <a href="https://github.com/castle-engine/castle-engine/blob/master/COPYING.md">Open-source</a>
+  <a href="license">Open-source</a>
   cross-platform 3D / 2D game engine using
   modern Object Pascal</a>
   and open standards like glTF and X3D</a>
