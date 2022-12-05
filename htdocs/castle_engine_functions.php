@@ -2102,6 +2102,8 @@ function cge_features_summary($feature_heading_level = 3)
     ),
   );
 
+  $heading = 'h' . (int)$feature_heading_level;
+
   $result = '';
   $odd = true;
   foreach ($features as $feature) {
@@ -2120,7 +2122,7 @@ function cge_features_summary($feature_heading_level = 3)
         </a>
       </div>
       <div class="feature-column-text">
-        <h' . (int)$feature_heading_level . ' class="feature-title"><a href="' . htmlspecialchars($feature['link']) . '">' . htmlspecialchars($feature['title']) .  '</a></h3>
+        <' .$heading. ' class="feature-title"><a href="' . htmlspecialchars($feature['link']) . '">' . htmlspecialchars($feature['title']) .  '</a></' .$heading. '>
         <div class="feature-description">' . $feature['description'] .  '</div>
       </div>
     </div>';
