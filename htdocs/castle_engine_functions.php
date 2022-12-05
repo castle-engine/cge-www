@@ -2134,8 +2134,14 @@ function cge_features_summary($feature_heading_level = 3)
   }
 
   in CSS, but for unknown reason it fails.
+
+  Careful:
+  <div class="clearfix" /> is not good, you cannot close <div> this way
+  in HTML 5. It would have a visible bad artifact: on main page,
+  <div class="container-fluid" ...">  would include also footer,
+  and footer would have unwanted left/right padding with white color.
   */
-  $result .= '<div class="clearfix" />';
+  $result .= '<div class="clearfix"></div>';
 
   return $result;
 }
