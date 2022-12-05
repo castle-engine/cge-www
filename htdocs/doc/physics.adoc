@@ -119,7 +119,7 @@ To make a rigid body you need to:
 - cgeref:TMeshCollider[].
 --
 +
-The collider will be connected to the parent rigid body at construction (the cgeref:TRigidBody.Collider[] property will be automatically set when creating the collider).
+The collider will be connected to the parent rigid body at construction (the `TRigidBody.Collider` property will be automatically set when creating the collider).
 
 4. Link to your rigid body from the cgeref:TCastleTransform.RigidBody[] property.
 
@@ -175,7 +175,7 @@ Although internally Castle Game Engine and Kraft work in 3D, the physics can wor
 
 - When creating colliders, make sure that they have some non-zero size in Z axis too. Even though the Z axis is not visible in 2D games, but the colliders need to have some volume in all 3 axes.
 
-- Constrain rotations and movement of dynamic rigid bodies to 2D by calling cgeref:TRigidBody.Setup2D[].
+- Constrain rotations and movement of dynamic rigid bodies to 2D by calling `TRigidBody.Setup2D`.
 
 The example how to do this is in https://github.com/castle-engine/castle-engine/tree/master/examples/physics/physics_2d_game_sopwith[physics_2d_game_sopwith] (see in particular the https://github.com/castle-engine/castle-engine/tree/master/examples/physics/physics_2d_game_sopwith/code/gameinitialize.pas[physics_2d_game_sopwith/code/gameinitialize.pas] source code).
 
