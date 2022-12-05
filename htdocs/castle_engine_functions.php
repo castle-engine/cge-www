@@ -1950,7 +1950,17 @@ function cgeImg($placement, $images)
 /* Replace AsciiDoctor macros like cgeref, cgeimg, documented in ../README.md. */
 function castle_replace_asciidoctor_macros($contents)
 {
-  $contents = preg_replace_callback('/(<p>)?cge::features-summary\[\](</p>)?/',
+  /* This optionally removes also surrounding HTML <p> and </p> to fix HTML validity
+     in case of most common usage: when cge::features-summary[] is used as a separate
+     paragraph.
+
+     Note: We use "?:" to make them non-capturing groups, see
+     https://www.php.net/manual/en/regexp.reference.subpatterns.php .
+     This matters for similar "cgeimg::..." trick, we didn't want to change numbering
+     of matching groups.
+  */
+
+  $contents = preg_replace_callback('/(?:<p>)?cge::features-summary\[\](?:<\/p>)?/',
     function ($matches) {
       return cge_features_summary();
     },
@@ -1977,7 +1987,7 @@ function castle_replace_asciidoctor_macros($contents)
     },
     $contents);
 
-  $contents = preg_replace_callback('/(<p>)?cgeimg::([A-Za-z0-9_.]+)\[([^]]*)\](</p>)?/',
+  $contents = preg_replace_callback('/(?:<p>)?cgeimg::([A-Za-z0-9_.]+)\[([^]]*)\](?:<\/p>)?/',
     function ($matches) {
       $placement = $matches[1];
 
