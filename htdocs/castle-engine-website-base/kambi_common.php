@@ -525,7 +525,7 @@ function common_footer($js_using_jquery = '')
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins).
      Used also by colorbox. -->
-<script src="<?php echo page_requisite('castle-engine-website-base/node_modules/jquery/dist/jquery.min.js'); ?>" type="text/javascript"></script>
+<script src="<?php echo page_requisite('castle-engine-website-base/node_modules/jquery/dist/jquery.min.js'); ?>"></script>
 <!-- Using passive event listeners can improve scrolling performance, according to
      https://web.dev/uses-passive-event-listeners/
      (linked from Lighthouse).
@@ -557,7 +557,7 @@ jQuery.event.special.mousewheel = {
 };
 </script>
 <!-- Include colorbox after jQuery is known -->
-<script src="<?php echo page_requisite('castle-engine-website-base/node_modules/jquery-colorbox/jquery.colorbox-min.js'); ?>" type="text/javascript"></script>
+<script src="<?php echo page_requisite('castle-engine-website-base/node_modules/jquery-colorbox/jquery.colorbox-min.js'); ?>"></script>
 <script>
   jQuery('a.screenshot').colorbox({opacity: 0.9, rel:'screenshot', maxWidth:'90%', maxHeight:'90%'});
   // For AsciiDoctor images with role=screnshot
