@@ -1950,7 +1950,7 @@ function cgeImg($placement, $images)
 /* Replace AsciiDoctor macros like cgeref, cgeimg, documented in ../README.md. */
 function castle_replace_asciidoctor_macros($contents)
 {
-  $contents = preg_replace_callback('/cge::features-summary\[\]/',
+  $contents = preg_replace_callback('/(<p>)?cge::features-summary\[\](</p>)?/',
     function ($matches) {
       return cge_features_summary();
     },
@@ -1977,7 +1977,7 @@ function castle_replace_asciidoctor_macros($contents)
     },
     $contents);
 
-  $contents = preg_replace_callback('/cgeimg::([A-Za-z0-9_.]+)\[([^]]*)\]/',
+  $contents = preg_replace_callback('/(<p>)?cgeimg::([A-Za-z0-9_.]+)\[([^]]*)\](</p>)?/',
     function ($matches) {
       $placement = $matches[1];
 
