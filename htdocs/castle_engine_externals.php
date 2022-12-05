@@ -36,7 +36,7 @@ function echo_piwik_tracking()
   ?>
 
 <!-- Matomo -->
-<script type="text/javascript">
+<script>
   var _paq = _paq || [];
   /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
   _paq.push(["setDomains", ["*.castle-engine.sourceforge.net","*.castle-engine.io","*.castle-engine.io","*.castle-engine.sourceforge.io"]]);

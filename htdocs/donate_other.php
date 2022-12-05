@@ -134,8 +134,8 @@ Unused donations options:
 
 ------------------------------------------------------------------------------
 <td>
-<script type="text/javascript" src="https://fundry.com/js/widget.js"></script>
-<script type="text/javascript">
+<script src="https://fundry.com/js/widget.js"></script>
+<script>
  // <![CDATA[
    new Fundry.Widget('https://fundry.com/project/91-castle-game-engine/widget', {width: '320px', height: '200px'});
  // ]]>

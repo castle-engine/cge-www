@@ -1290,7 +1290,7 @@ function castle_footer()
   /* This should be done after jQuery JS loaded.
      But, actually it's not needed, it seems.
   ? >
-  <script type="text/javascript">
+  <script>
   jQuery('.dropdown-toggle').dropdown();
   </script>
   < ?php

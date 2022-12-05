@@ -534,7 +534,7 @@ function common_footer($js_using_jquery = '')
 
      This must be really right after jquery.min.js, in castle-engine.js it would be too late.
 -->
-<script type="text/javascript">
+<script>
 jQuery.event.special.touchstart = {
     setup: function( _, ns, handle ) {
         this.addEventListener("touchstart", handle, { passive: !ns.includes("noPreventDefault") });
@@ -558,7 +558,7 @@ jQuery.event.special.mousewheel = {
 </script>
 <!-- Include colorbox after jQuery is known -->
 <script src="<?php echo page_requisite('castle-engine-website-base/node_modules/jquery-colorbox/jquery.colorbox-min.js'); ?>" type="text/javascript"></script>
-<script type="text/javascript">
+<script>
   jQuery('a.screenshot').colorbox({opacity: 0.9, rel:'screenshot', maxWidth:'90%', maxHeight:'90%'});
   // For AsciiDoctor images with role=screnshot
   jQuery('.screenshot a').colorbox({opacity: 0.9, rel:'screenshot', maxWidth:'90%', maxHeight:'90%'});
@@ -567,8 +567,8 @@ jQuery.event.special.mousewheel = {
 <script src="<?php echo page_requisite('castle-engine-website-base/node_modules/bootstrap/dist/js/bootstrap.min.js'); ?>"></script>
 
 <!-- slick carousel https://github.com/kenwheeler/slick/ -->
-<script type="text/javascript" src="<?php echo page_requisite('castle-engine-website-base/node_modules/slick-carousel/slick/slick.min.js'); ?>"></script>
-<script type="text/javascript">
+<script src="<?php echo page_requisite('castle-engine-website-base/node_modules/slick-carousel/slick/slick.min.js'); ?>"></script>
+<script>
 $(".banner-container img").css("display", "block");
 jQuery(".banner-container").slick({
   arrows: false,
@@ -583,7 +583,7 @@ jQuery(".banner-container").slick({
 
 <?php
 if ($js_using_jquery) {
-  echo '<script type="text/javascript" src="' . $js_using_jquery . '"></script>';
+  echo '<script src="' . $js_using_jquery . '"></script>';
 }
 ?>
 
