@@ -58,7 +58,7 @@ castle_header('Castle Game Engine - Free open-source cross-platform 3D 2D game e
 
 <h1 class="main-page-header">Comfortable visual designer and powerful code</h1>
 
-<?php echo cge_features_summary(); ?>
+<?php echo cge_features_summary(2); ?>
 
 <?php require_once 'index-wp-news.php'; ?>
 

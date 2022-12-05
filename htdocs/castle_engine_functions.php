@@ -2035,7 +2035,13 @@ function castle_sources_notice()
   return $result;
 }
 
-function cge_features_summary()
+/* Show CGE features.
+
+   $feature_heading_level (int) determines the HTML header level for each feature,
+   default 3 means we'll use <h3>.
+   Adjust it to have good header nesting (search engines like it, to understand the page better).
+*/
+function cge_features_summary($feature_heading_level = 3)
 {
   $features = array(
     array(
@@ -2109,7 +2115,7 @@ function cge_features_summary()
         </a>
       </div>
       <div class="feature-column-text">
-        <h3 class="feature-title"><a href="' . htmlspecialchars($feature['link']) . '">' . htmlspecialchars($feature['title']) .  '</a></h3>
+        <h' . (int)$feature_heading_level . ' class="feature-title"><a href="' . htmlspecialchars($feature['link']) . '">' . htmlspecialchars($feature['title']) .  '</a></h3>
         <div class="feature-description">' . $feature['description'] .  '</div>
       </div>
     </div>';
