@@ -61,7 +61,7 @@ The above code loads <code>castle-data:/face.png</code> which means we expect to
 <code>face.png</code> in the <a href="manual_data_directory.php"><code>data</code> subdirectory within your project</a>.
 You can really use any image file, for examples this:
 
-<p><a href="images/doom_face.png"><img src="images/doom_face.png" alt="DOOM hero face" /></a>
+<p><a href="images/doom_face.png"><img src="images/doom_face.png" alt="DOOM hero face"></a>
 
 <?php
   x3d_status_footer();

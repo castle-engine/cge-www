@@ -68,7 +68,7 @@ castle_header('Castle Game Engine - Free open-source cross-platform 3D 2D game e
      alt="MacStadium developer logo"
      style="width: 100px; height: auto; float: left; margin: 1em;"
      <?php echo _castle_image_sizes('images/not_resized/MacStadium-developerlogo.webp'); ?>
- />
+ >
 <p>We're a happy member of <a href="https://www.macstadium.com/opensource">MacStadium Open Source Developer Program</a>.<br>
 They provide us access to a remote Mac machine, we use it to develop our <a href="macos">macOS</a> and <a href="ios">iOS</a> targets.
 

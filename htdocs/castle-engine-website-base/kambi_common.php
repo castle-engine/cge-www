@@ -478,8 +478,8 @@ if ($castle_wordpress) {
 <link href="<?php echo page_requisite('castle-engine-website-base/node_modules/jquery-colorbox/example3/colorbox.css'); ?>" type="text/css" rel="stylesheet">
 
 <!-- slick carousel https://github.com/kenwheeler/slick/ -->
-<link rel="stylesheet" type="text/css" href="<?php echo page_requisite('castle-engine-website-base/node_modules/slick-carousel/slick/slick.css'); ?>"/>
-<link rel="stylesheet" type="text/css" href="<?php echo page_requisite('castle-engine-website-base/node_modules/slick-carousel/slick/slick-theme.css'); ?>"/>
+<link rel="stylesheet" type="text/css" href="<?php echo page_requisite('castle-engine-website-base/node_modules/slick-carousel/slick/slick.css'); ?>">
+<link rel="stylesheet" type="text/css" href="<?php echo page_requisite('castle-engine-website-base/node_modules/slick-carousel/slick/slick-theme.css'); ?>">
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

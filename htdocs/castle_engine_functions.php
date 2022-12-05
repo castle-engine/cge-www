@@ -1216,9 +1216,9 @@ function echo_castle_header_suffix($path, $enable_sidebar = true)
         <li>' . _castle_patreon_box() . '</li>
       </ul>
 
-      <!--button type="button" class="btn btn-default navbar-btn navbar-right" style="margin-right: 0px;"><a href="' . PATREON_URL . '" class="navbar-link">Support us on<br><img style="height: 40px" src="' . page_requisite('images/patreonlogoorange.png') . '" alt="Patreon" /></a></button-->
+      <!--button type="button" class="btn btn-default navbar-btn navbar-right" style="margin-right: 0px;"><a href="' . PATREON_URL . '" class="navbar-link">Support us on<br><img style="height: 40px" src="' . page_requisite('images/patreonlogoorange.png') . '" alt="Patreon"></a></button-->
 
-      <!--p class="navbar-text navbar-right"><a href="' . PATREON_URL . '" class="navbar-link">Support us on<br><img style="height:50px" src="' . page_requisite('images/patreonlogoorange.png') . '" alt="Patreon" /></a></p-->
+      <!--p class="navbar-text navbar-right"><a href="' . PATREON_URL . '" class="navbar-link">Support us on<br><img style="height:50px" src="' . page_requisite('images/patreonlogoorange.png') . '" alt="Patreon"></a></p-->
 
       <div class="navbar-header navbar-brand">
         <a href="/">

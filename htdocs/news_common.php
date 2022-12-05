@@ -124,7 +124,7 @@ function news_to_html($news_item, $full_description = true, $link_to_self = fals
         class="news-teaser-image"
         src="' . CURRENT_URL . 'images/original_size/' . $image['filename'] . '"
         alt="' . $image['titlealt'] . '"
-      />' . $result;
+      >' . $result;
     }
 
     // wrap in a link if needed

@@ -2,9 +2,11 @@
 require_once 'castle_engine_functions.php';
 castle_header('Documentation');
 
-echo '<img src="images/castle_game_engine_icon.png"
+echo '
+<img src="images/castle_game_engine_icon.png"
   alt="Castle Game Engine icon"
-  class="engine-icon" />';
+  class="engine-icon"
+>';
 ?>
 
 <p>Contents:

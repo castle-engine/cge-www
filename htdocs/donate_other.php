@@ -101,7 +101,7 @@ function donation_option_end()
 ------------------------------------------------------------------------------
 Old text:
 <div class="jumbotron">
-<a href="images/michalis_drawing.png" class="donate-photo" title="That's me, on a good day:)"><img src="images/michalis_drawing.png" /></a>
+<a href="images/michalis_drawing.png" class="donate-photo" title="That's me, on a good day:)"><img src="images/michalis_drawing.png"></a>
 <p>Hi,
 <p>I'm Michalis Kamburelis
 (<?php echo michalis_mailto('email'); ?>).
@@ -153,7 +153,7 @@ https://sourceforge.net/p/allura/tickets/2540/,
 so comment out section below:
 
 <td>
-<p><a href="https://sourceforge.net/donate/index.php?group_id=200653"><img src="http://images.sourceforge.net/images/project-support.jpg" width="88" height="32" border="0" alt="Support This Project" /> </a></p>
+<p><a href="https://sourceforge.net/donate/index.php?group_id=200653"><img src="http://images.sourceforge.net/images/project-support.jpg" width="88" height="32" border="0" alt="Support This Project"> </a></p>
 
 <p>You can <a href="https://sourceforge.net/donate/index.php?group_id=200653">donate
 through SourceForge</a>. This allows you to make a donation
