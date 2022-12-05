@@ -877,7 +877,7 @@ function castle_geshi_header()
   $geshi->enable_classes();
   //$geshi->set_overall_class('sourcecode'); // not needed anymore
 
-  echo '<style type="text/css">' . "\n";
+  echo '<style>' . "\n";
 
   /* looks like we need to set_language before get_stylesheet,
      otherwise not everything necessary is output. */
