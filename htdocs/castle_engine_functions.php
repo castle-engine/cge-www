@@ -579,6 +579,8 @@ $castle_sitemap = array(
   ),
   'doc/credits' => array(
     'title' => '<span class="glyphicon glyphicon-heart" aria-hidden="true"></span>',
+    /* Showing this makes the link better for users
+       and also makes Google Lighthouse report not complain about it. */
     'hint' => 'Credits'
   )
 );
