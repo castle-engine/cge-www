@@ -50,7 +50,7 @@ function echo_piwik_tracking()
     g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
   })();
 </script>
-<noscript><p><img src="//castle-engine.io/piwik/piwik.php?idsite=1&rec=1" style="border:0;" alt="" /></p></noscript>
+<noscript><p><img src="//castle-engine.io/piwik/piwik.php?idsite=1&rec=1" style="border:0;" alt=""></p></noscript>
 <!-- End Matomo Code -->
 
 <?php
