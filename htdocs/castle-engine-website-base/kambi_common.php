@@ -526,6 +526,36 @@ function common_footer($js_using_jquery = '')
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins).
      Used also by colorbox. -->
 <script src="<?php echo page_requisite('castle-engine-website-base/node_modules/jquery/dist/jquery.min.js'); ?>" type="text/javascript"></script>
+<!-- Using passive event listeners can improve scrolling performance, according to
+     https://web.dev/uses-passive-event-listeners/
+     (linked from Lighthouse).
+     Solution for jQuery from
+     https://stackoverflow.com/questions/60357083/does-not-use-passive-listeners-to-improve-scrolling-performance-lighthouse-repo
+
+     This must be really right after jquery.min.js, in castle-engine.js it would be too late.
+-->
+<script type="text/javascript">
+jQuery.event.special.touchstart = {
+    setup: function( _, ns, handle ) {
+        this.addEventListener("touchstart", handle, { passive: !ns.includes("noPreventDefault") });
+    }
+};
+jQuery.event.special.touchmove = {
+    setup: function( _, ns, handle ) {
+        this.addEventListener("touchmove", handle, { passive: !ns.includes("noPreventDefault") });
+    }
+};
+jQuery.event.special.wheel = {
+    setup: function( _, ns, handle ){
+        this.addEventListener("wheel", handle, { passive: true });
+    }
+};
+jQuery.event.special.mousewheel = {
+    setup: function( _, ns, handle ){
+        this.addEventListener("mousewheel", handle, { passive: true });
+    }
+};
+</script>
 <!-- Include colorbox after jQuery is known -->
 <script src="<?php echo page_requisite('castle-engine-website-base/node_modules/jquery-colorbox/jquery.colorbox-min.js'); ?>" type="text/javascript"></script>
 <script type="text/javascript">
