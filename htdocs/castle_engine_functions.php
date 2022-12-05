@@ -924,9 +924,9 @@ function echo_header_bonus ()
   global $castle_wordpress;
   if (empty($castle_wordpress)) {
       ?>
-      <link rel="icon" href="<?php echo page_requisite('images/castle_game_engine_icon_fit_in_square.png'); ?>" sizes="256x256" />
-      <link rel="apple-touch-icon-precomposed" href="<?php echo page_requisite('images/castle_game_engine_icon_fit_in_square.png'); ?>" />
-      <meta name="msapplication-TileImage" content="<?php echo page_requisite('images/castle_game_engine_icon_fit_in_square.png'); ?>" />
+      <link rel="icon" href="<?php echo page_requisite('images/castle_game_engine_icon_fit_in_square.png'); ?>" sizes="256x256">
+      <link rel="apple-touch-icon-precomposed" href="<?php echo page_requisite('images/castle_game_engine_icon_fit_in_square.png'); ?>">
+      <meta name="msapplication-TileImage" content="<?php echo page_requisite('images/castle_game_engine_icon_fit_in_square.png'); ?>">
       <?php
   }
 
@@ -1258,7 +1258,7 @@ function echo_castle_header_suffix($path, $enable_sidebar = true)
       $rendered .= '<img src="' . $image_src . '" alt="' .
         $banner_image['alt'] . '" ' .
         _castle_image_sizes($image_src) . ' ' .
-        $style . ' />' . "\n";
+        $style . '>' . "\n";
       $style = 'style="display: none"'; // subsequent images are hidden initially, this makes better look when loading
     }
     $rendered .= '</div>' . "\n";
@@ -1630,7 +1630,7 @@ function castle_thumbs($images, $columns=1, $align='right', $thumb_size = NULL)
             src="' . $url_thumb . '"
             ' . $size_thumb . '
             alt="' . htmlspecialchars($image['titlealt']) . '"
-          /></a>';
+          ></a>';
     }
 
     if ($columns !== 'auto') {
@@ -1858,7 +1858,7 @@ function gallery_link($title, $subtitle, $image_name, $page_name)
   $s .= '<p>' .
     a_href_page(
       '<img src="images/gallery_size/' . $image_pathinfo['filename'] . '.' . $image_ext . '" alt="' .
-      htmlspecialchars($title) . '" />',
+      htmlspecialchars($title) . '">',
       $page_name
     ) .
     '</p>';
@@ -2116,7 +2116,7 @@ function cge_features_summary($feature_heading_level = 3)
              alt="' . htmlspecialchars($feature['image_titlealt']) . '"
              src="' . htmlspecialchars($image_relative_filename) . '"
              ' . _castle_image_sizes($image_relative_filename) . '
-          />
+          >
         </a>
       </div>
       <div class="feature-column-text">
