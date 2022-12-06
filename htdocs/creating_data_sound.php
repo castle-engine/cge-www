@@ -4,22 +4,80 @@ castle_header('Sound');
 
 $toc = new TableOfContents(
   array(
-    new TocItem('Sample sounds XML file', 'sample'),
-    new TocItem('Sound groups and aliases', 'groups_aliases'),
+    new TocItem('Define common sounds in design file', 'sound_design_file'),
     new TocItem('Advises about creating sound files', 'advises'),
+    new TocItem('Deprecated: Sample sounds XML file', 'sample'),
+    new TocItem('Deprecated: Sound groups and aliases', 'groups_aliases'),
   )
 );
 ?>
 
 <?php echo $toc->html_toc(); ?>
 
-<p>You can use an XML file to configure "named sounds" in your game.
-Such XML file can be set as
-<?php api_link('SoundEngine.RepositoryURL', 'CastleSoundEngine.TRepoSoundEngine.html#RepositoryURL'); ?>
- (see <?php echo a_href_page('manual about sounds', 'manual_sound'); ?>
- for more information how to use sound from code).
+<?php echo $toc->html_section(); ?>
+
+<p>It is often useful to define a common "repository" for all the sounds.
+
+<p>To do this, create a design file in CGE editor starting from non-visual <?php echo cgeRef('TCastleComponent'); ?>
+ component. As children, add <?php echo cgeRef('TCastleSound'); ?> components.
+ Configure the sounds as needed, and load the design from code to play the sounds.
+
+<p>See the <code>examples/fps_game/data/sounds.castle-component</code> design file
+in <code>examples/fps_game/</code> demo.
 
 <?php echo $toc->html_section(); ?>
+
+<ul>
+  <li><p>Right now we support OggVorbis and (uncompressed) WAV files.
+    <!--
+    Short sounds should be stored as WAV,
+    long sounds (like level music) may be stored as OggVorbis files.
+    -->
+
+  <li><p>A general advice when creating sounds is to keep them
+    <i>normalized</i>, which means "as loud as possible".
+    It doesn't matter if you record a mouse squeak
+    or a plane engine, the sound file should be equally loud.
+    This allows to have best quality sound.
+
+    <p>Scale the sound by changing the <code>volume</code> property
+    in sound configuration.
+
+  <li><p>If sound is supposed to be spatialized, make sure it is mono.
+    Some OpenAL implementations never spatialize stereo sounds.
+
+<!--
+    <p>You can use any editor you like to convert your sounds to mono.
+    I like this sox command-line:
+    <pre>  sox input.wav -c 1 output.wav</pre>
+    See also <code>data/sounds/scripts/example_make_mono.sh</code>
+-->
+
+  <li><p>Specifically when making footsteps sound: synchronize it's duration
+    with the <?php echo cgeRef('TCastleWalkNavigation.HeadBobbingTime'); ?>.
+    Synchronize these times, to make them
+    feel right in the game &mdash; visuals (head bobbing) should match
+    what you hear (footsteps sound).
+
+<!--
+    <ul>
+      <li>Don't make the footsteps sound too long.
+        Preferably you should put there only 2 footsteps. Reason ?
+        When progress is displayed (e.g. because player changes levels),
+        or when player enters the game menu, footsteps sound is not
+        immediately stopped &mdash; it's just played until the end.
+        Yes, this is desired, as it makes better effect than suddenly
+        stopping all the sounds.
+-->
+</ul>
+
+<?php echo $toc->html_section(); ?>
+
+<p>You can use an XML file to configure "named sounds" in your game.
+Such XML file can be set as
+<?php echo cgeRef('TRepoSoundEngine.RepositoryURL', 'SoundEngine.RepositoryURL'); ?>
+ (see <?php echo a_href_page('manual about sounds', 'manual_sound'); ?>
+ for more information how to use sound from code).
 
 <p>In the simplest case, the sounds XML file is just a list of <code>&lt;sound&gt;</code>
 elements. Here's an example:
@@ -173,59 +231,6 @@ Both alias names, and target names, are automatically qualified by the group nam
     <target name="fight/drum_beat" />
   </alias>
 </sounds>'); ?>
-
-<?php echo $toc->html_section(); ?>
-
-<ul>
-  <li><p>Right now we support OggVorbis and (uncompressed) WAV files.
-    <!--
-    Short sounds should be stored as WAV,
-    long sounds (like level music) may be stored as OggVorbis files.
-    -->
-
-  <li><p>A general advice when creating sounds is to keep them
-    <i>normalized</i>, which means "as loud as possible".
-    It doesn't matter if you record a mouse squeak
-    or a plane engine, the sound file should be equally loud.
-    This allows to have best quality sound.
-
-    <p>Scale the sound by changing the <code>volume</code> property
-    in sound configuration.
-
-  <li><p>If sound is supposed to be spatialized (i.e. played
-    by <?php api_link('Sound3D', 'CastleSoundEngine.TRepoSoundEngine.html#Sound3D'); ?> method), make sure it is mono.
-    Some OpenAL implementations never spatialize stereo sounds.
-
-<!--
-    <p>You can use any editor you like to convert your sounds to mono.
-    I like this sox command-line:
-    <pre>  sox input.wav -c 1 output.wav</pre>
-    See also <code>data/sounds/scripts/example_make_mono.sh</code>
--->
-
-  <li><p>Specifically when making footsteps sound: synchronize it's duration
-    with the <?php api_link('HeadBobbingTime', 'CastleCameras.TWalkCamera.html#HeadBobbingTime'); ?>,
-    which you can set for example using
-    <?php echo a_href_page('player XML configuration file', 'creating_data_player'); ?>
-    (if your game loads it). By default it's 0.5, which means your footsteps
-    sound should be around half-second long. Or you can record 2 footsteps
-    and make it 1-second long.
-
-    <p>The important thing is to synchronize these times, to make them
-    feel right in the game &mdash; visuals (head bobbing) should match
-    what you hear (footsteps sound).
-
-<!--
-    <ul>
-      <li>Don't make the footsteps sound too long.
-        Preferably you should put there only 2 footsteps. Reason ?
-        When progress is displayed (e.g. because player changes levels),
-        or when player enters the game menu, footsteps sound is not
-        immediately stopped &mdash; it's just played until the end.
-        Yes, this is desired, as it makes better effect than suddenly
-        stopping all the sounds.
--->
-</ul>
 
 <?php
 castle_footer();
