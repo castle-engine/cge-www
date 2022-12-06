@@ -522,7 +522,7 @@ Examples are quite complicated?
 ////
 TODO: mention this somewhere?
 
-    <p>The viewports may be used as _layers_ if you set `ViewportXxx.Transparent := true` and place them on top of each other, using <?php api_link('InsertFront', 'CastleUIControls.TCastleUserInterface.html#InsertFront'); ?> in the proper order. This way you can explicitly render some objects on top of other objects, regardless of their positions in a 3D world.</p>
+    <p>The viewports may be used as _layers_ if you set `ViewportXxx.Transparent := true` and place them on top of each other, using <?php echo cgeRef('InsertFront'); ?> in the proper order. This way you can explicitly render some objects on top of other objects, regardless of their positions in a 3D world.</p>
   </li>
 ////
 
@@ -531,26 +531,26 @@ TODO: mention this somewhere?
 These descendants can override methods e.g. to collide or perform AI
 (move itself in the world).
 
-<p>Every object (a descendant of <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?>,
-like <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> or
-<?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?>) "knows"
- it's <?php api_link('World', 'CastleTransform.TCastleTransform.html#World'); ?>
+<p>Every object (a descendant of <?php echo cgeRef('TCastleTransform'); ?>,
+like <?php echo cgeRef('TCastleScene'); ?> or
+<?php echo cgeRef('TCastleTransform'); ?>) "knows"
+ it's <?php echo cgeRef('World'); ?>
  so it knows how to move and collide
  within the 3D world. This opens various ways how you can implement _"artificial intelligence"_
  of a creature, for example:
 
 <ol>
-  <li>Derive your creature class from a <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?>
-    or <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?>.
+  <li>Derive your creature class from a <?php echo cgeRef('TCastleTransform'); ?>
+    or <?php echo cgeRef('TCastleTransform'); ?>.
   </li>
-  <li>Override it's <?php api_link('Update', 'CastleTransform.TCastleTransform.html#Update'); ?> method to move the creature.
-    Use <?php api_link('TCastleTransform.Move', 'CastleTransform.TCastleTransform.html#Move'); ?>,
-    <?php api_link('TCastleTransform.MoveAllowed', 'CastleTransform.TCastleTransform.html#MoveAllowed'); ?>,
-    <?php api_link('TCastleTransform.Height', 'CastleTransform.TCastleTransform.html#Height'); ?> and
-    <?php api_link('TCastleTransform.LineOfSight', 'CastleTransform.TCastleTransform.html#LineOfSight'); ?> methods to query the world around you.
+  <li>Override it's <?php echo cgeRef('Update'); ?> method to move the creature.
+    Use <?php echo cgeRef('TCastleTransform.Move'); ?>,
+    <?php echo cgeRef('TCastleTransform.MoveAllowed'); ?>,
+    <?php echo cgeRef('TCastleTransform.Height'); ?> and
+    <?php echo cgeRef('TCastleTransform.LineOfSight'); ?> methods to query the world around you.
   </li>
   <li>As a child of your creature instance, add a
-    <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>
+    <?php echo cgeRef('TCastleScene'); ?>
     that shows an animated creature.
   </li>
 </ol>

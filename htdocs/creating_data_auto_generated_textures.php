@@ -65,7 +65,7 @@ MaterialProperties.URL := \'castle-data:/material_properties.xml\';'); ?>
     used by the engine, instead of the original ones.
 
     <p>If you want to also use <i>downscaled</i> textures,
-    change the <?php api_link('TextureLoadingScale', 'CastleMaterialProperties.html#TextureLoadingScale'); ?>
+    change the <?php echo cgeRef('TextureLoadingScale'); ?>
     global variable. By default it is 1. Setting it to 2 makes your textures
     use 1/2 size (their area will be 1/4, for 2D textures).
 </ol>
@@ -74,7 +74,8 @@ MaterialProperties.URL := \'castle-data:/material_properties.xml\';'); ?>
 
 <p>Below is a sample <code>material_properties.xml</code> file
 requesting to compress and downscale some images.
-Texture compression format names are <?php api_link('the same as TTextureCompression enum names but without leading "tc"', 'CastleImages.html#TTextureCompression'); ?>, e.g. <code>Dxt1_RGB</code>, <code>Pvrtc1_4bpp_RGBA</code> and so on.
+Texture compression format names are the same as TTextureCompression enum names but without leading "tc",
+see <?php echo cgeRef('TTextureCompression'); ?>, e.g. <code>Dxt1_RGB</code>, <code>Pvrtc1_4bpp_RGBA</code> and so on.
 </p>
 
 <?php echo xml_full_highlight(
@@ -365,10 +366,10 @@ them, using a high-quality scaling algorithm.
 <a href="http://www.imagemagick.org/">ImageMagick</a> tools).-->
 
 <p>These textures will be automatically used if you set the global
-<?php api_link('TextureLoadingScale', 'CastleMaterialProperties.html#TextureLoadingScale'); ?> variable in your code.
+<?php echo cgeRef('TextureLoadingScale'); ?> variable in your code.
 
 <p>The attribute <code>value</code> of the <code>&lt;scale&gt;</code> element
-is interpreted analogous to <?php api_link('TextureLoadingScale', 'CastleMaterialProperties.html#TextureLoadingScale'); ?> variable, so
+is interpreted analogous to <?php echo cgeRef('TextureLoadingScale'); ?> variable, so
 
 <ul>
   <li><code>&lt;scale value="1" /&gt;</code> (default) means that no downscaling actually occurs,
@@ -382,19 +383,19 @@ is interpreted analogous to <?php api_link('TextureLoadingScale', 'CastleMateria
   <li><p>For uncompressed textures, this downscaling is high-quality.
 
     <p>Unlike the fast
-    scaling at run-time which is done by <?php api_link('GLTextureScale', 'CastleGLImages.html#GLTextureScale'); ?>.
+    scaling at run-time which is done by <?php echo cgeRef('GLTextureScale'); ?>.
     Note that the runtime scaling can still be performed by
-    <?php api_link('GLTextureScale', 'CastleGLImages.html#GLTextureScale'); ?>,
+    <?php echo cgeRef('GLTextureScale'); ?>,
     if you set it.
     The effects of
-    <?php api_link('TextureLoadingScale', 'CastleMaterialProperties.html#TextureLoadingScale'); ?>
+    <?php echo cgeRef('TextureLoadingScale'); ?>
     and
-    <?php api_link('GLTextureScale', 'CastleGLImages.html#GLTextureScale'); ?>
+    <?php echo cgeRef('GLTextureScale'); ?>
     cummulate.
 
   <li><p>For compressed textures, this is the only way to get downscaled texture
     versions that can be chosen at runtime. We cannot downscale compressed textures
-    at runtime, so <?php api_link('GLTextureScale', 'CastleGLImages.html#GLTextureScale'); ?>
+    at runtime, so <?php echo cgeRef('GLTextureScale'); ?>
     has no effect on compressed textures.
 </ul>
 

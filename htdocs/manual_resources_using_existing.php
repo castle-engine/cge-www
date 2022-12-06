@@ -4,8 +4,8 @@ castle_header('Using creatures and items');
 ?>
 
 <p>You can use the existing creature and item classes in
-<?php api_link('CastleCreatures', 'CastleCreatures.html'); ?> and
-<?php api_link('CastleItems', 'CastleItems.html'); ?> units.
+<?php echo removedCgeRef('CastleCreatures'); ?> and
+<?php echo removedCgeRef('CastleItems'); ?> units.
 To do this, define your resources (creatures/items) in the <code>resource.xml</code>
 files, and call
 
@@ -53,9 +53,9 @@ end;
 
 <p>Creating an item is similar, except that we have an intermediate step
 where we get
-<?php api_link('TInventoryItem', 'CastleItems.TInventoryItem.html'); ?>
+<?php echo removedCgeRef('TInventoryItem'); ?>
  instance. This can be either wrapped inside
-<?php api_link('TItemOnWorld', 'CastleItems.TItemOnWorld.html'); ?>
+<?php echo removedCgeRef('TItemOnWorld'); ?>
  instance to put it on level, or it can be added to someone's inventory.
 
 <?php echo pascal_highlight(
@@ -93,7 +93,7 @@ end;
 <h2>Overview of existing resource classes</h2>
 
 <dl>
-  <dt><?php api_link('TWalkAttackCreatureResource', 'CastleCreatures.TWalkAttackCreatureResource.html'); ?></dt>
+  <dt><?php echo removedCgeRef('TWalkAttackCreatureResource'); ?></dt>
 
   <dd><p>Creature with walk-attack state intelligence.
     Such creature tracks the enemy
@@ -108,7 +108,7 @@ end;
     e.g. cowardly/brave, offensive/defensive, melee/ranged, etc.
   </dd>
 
-  <dt><?php api_link('TMissileCreatureResource', 'CastleCreatures.TMissileCreatureResource.html'); ?></dt>
+  <dt><?php echo removedCgeRef('TMissileCreatureResource'); ?></dt>
 
   <dd><p>A "missile" intelligence
     that blindly goes into the given direction (possibly
@@ -118,7 +118,7 @@ end;
     "missile creature", that flies independently of the shooter.
   </dd>
 
-  <dt><?php api_link('TStillCreatureResource', 'CastleCreatures.TStillCreatureResource.html'); ?></dt>
+  <dt><?php echo removedCgeRef('TStillCreatureResource'); ?></dt>
 
   <dd><p>Creature just standing still. It can
     still show some looping animation, but there is no fancy logic behind it.
@@ -126,7 +126,7 @@ end;
     This is one way to make destructible level parts.
   </dd>
 
-  <dt><?php api_link('TItemResource', 'CastleItems.TItemResource.html'); ?></dt>
+  <dt><?php echo removedCgeRef('TItemResource'); ?></dt>
 
   <dd><p>Basic item that can be kept in the inventory. You usually
     want to extend this class, otherwise the item doesn't do anything
@@ -134,12 +134,12 @@ end;
     is something like keys/keycards in the game, then this is enough.</p>
   </dd>
 
-  <dt><?php api_link('TItemWeaponResource', 'CastleItems.TItemWeaponResource.html'); ?></dt>
+  <dt><?php echo removedCgeRef('TItemWeaponResource'); ?></dt>
 
   <dd><p>Weapon that can be equipped. Very configurable in <code>resource.xml</code>
     file, can make a melee attack, or immediately shoot,
     or fire a missile (the last case means that we create new creature
-    of <?php api_link('TMissileCreatureResource', 'CastleCreatures.TMissileCreatureResource.html'); ?>
+    of <?php echo removedCgeRef('TMissileCreatureResource'); ?>
     type), may need ammunition or not.
   </dd>
 </dl>

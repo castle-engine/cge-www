@@ -47,7 +47,7 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
 
     <p>Note: In <i>Castle Game Engine</i> you can also control the camera by Pascal code,
     using the <code>Viewport.Camera</code> property that keeps a
-    <?php api_link('TCastleCamera', 'CastleCameras.TCastleCamera.html'); ?>
+    <?php echo cgeRef('TCastleCamera'); ?>
     instance.
     See <a href="camera">manual about controlling the camera</a>.
     Still, this X3D node is useful to set initial camera through e.g. <a href="blender">Blender</a>

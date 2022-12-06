@@ -11,17 +11,17 @@ echo castle_thumbs(array(
 ));
 ?>
 
-<p>The <?php api_link('TCastleOnScreenMenu', 'CastleOnScreenMenu.TCastleOnScreenMenu.html'); ?>
+<p>The <?php echo cgeRef('TCastleOnScreenMenu'); ?>
  is a <i>user interface control</i>
- (<?php api_link('TUIControl', 'CastleUIControls.TUIControl.html'); ?> descendant)
+ (<?php echo cgeRef('TUIControl'); ?> descendant)
  displaying an on-screen menu.
 All the menu items are displayed vertically on the screen.
 You can click on menu items, or choose them using the keyboard.
 Each menu item is a full-featured UI control.
 In the common case, a menu item is an instance of
-<?php api_link('TCastleMenuButton', 'CastleOnScreenMenu.TCastleMenuButton.html'); ?>,
- which descends from <?php api_link('TCastleButton', 'CastleControls.TCastleButton.html') ?>
- so you have available the event <?php api_link('OnClick', 'CastleControls.TCastleButton.html#OnClick') ?>.
+<?php echo cgeRef('TCastleMenuButton'); ?>,
+ which descends from <?php echo cgeRef('TCastleButton') ?>
+ so you have available the event <?php echo cgeRef('OnClick') ?>.
  In general, menu item is <i>any</i> UI control.
 
 <p>Menu items may also have attached an <i>"accessory"</i> which
@@ -29,7 +29,7 @@ is often used as an extra label (like a <i>"Yes"</i> / <i>"No"</i> state of some
 a slider (e.g. to control sound volume or texture quality).
 In general, an <i>"accessory"</i> is just a child UI control of
 the menu-item, and can be any UI control
-(<?php api_link('TUIControl', 'CastleUIControls.TUIControl.html'); ?>).
+(<?php echo cgeRef('TUIControl'); ?>).
 So you can really insert any convoluted things inside the on-screen menu:)
 
 <p>You create and insert the on-screen menu instance
@@ -37,7 +37,7 @@ So you can really insert any convoluted things inside the on-screen menu:)
  <!--When using Lazarus forms, you can also drop the <code>TCastleOnScreenMenu</code> on the form.-->
 
 <p>Once created, you should add menu items using the
-<?php api_link('TCastleOnScreenMenu.Add', 'CastleOnScreenMenu.TCastleOnScreenMenu.html#Add'); ?>
+<?php echo cgeRef('TCastleOnScreenMenu.Add'); ?>
  method. It has a couple of overloaded versions. In the simplest case,
  you can use the <code>Add(string)</code> or
  <code>Add(string, TNotifyEvent)</code>
@@ -60,16 +60,16 @@ So you can really insert any convoluted things inside the on-screen menu:)
 
 <p>You can use various UI controls on top of each other.
 So you can have
-<?php api_link('TCastleOnScreenMenu', 'CastleOnScreenMenu.TCastleOnScreenMenu.html'); ?>
+<?php echo cgeRef('TCastleOnScreenMenu'); ?>
  displayed on top of a TCastleViewport. You can control the existence of any UI control
 either by removing/adding it from the <code>Controls</code> list,
-or by changing it's <?php api_link('Exists', 'CastleUIControls.TUIControl.html#Exists'); ?>
+or by changing it's <?php echo cgeRef('Exists'); ?>
  property.</p>
 
 <p>If the game is already started, in single player games,
 you usually want to pause the game when the on-screen
 menu is displayed. You can do this easily by
-<?php api_link('Items.Paused', 'CastleTransform.TCastleAbstractRootTransform.html#Paused'); ?> property.
+<?php echo cgeRef('Items.Paused'); ?> property.
 
 Use the <a href="states">TUIState</a>
 to create a state like <code>TStateOptions</code> that will contain

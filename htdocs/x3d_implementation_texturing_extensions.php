@@ -541,7 +541,7 @@ automatically. There are three possible situations:
 
 <p>The difference between these cases is detected by analyzing alpha channel values.
 Developers: see
-<?php api_link('AlphaChannel method reference', 'CastleImages.TEncodedImage.html#AlphaChannel'); ?>.
+<?php echo cgeRef('TEncodedImage.AlphaChannel'); ?>.
 There is also a special program in <?php echo a_href_page('engine sources',
 'index'); ?> (see <code>examples/images_videos/image_identify.lpr</code>
 demo) if you want to test this algorithm yourself.

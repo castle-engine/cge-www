@@ -3,8 +3,8 @@ require_once 'castle_engine_functions.php';
 castle_header('Extending creatures and items classes');
 ?>
 
-<p>You can derive descendants of <?php api_link('CastleCreatures', 'CastleCreatures.html'); ?> and
-<?php api_link('CastleItems', 'CastleItems.html'); ?> classes,
+<p>You can derive descendants of <?php echo removedCgeRef('CastleCreatures'); ?> and
+<?php echo removedCgeRef('CastleItems'); ?> classes,
 to customize the behavior of creatures and items. There are a lot of methods
 to override and behaviors to customize. For example,
 you can make something interesting happen when you use an item
@@ -14,34 +14,34 @@ you can make something interesting happen when you use an item
 medkit item.
 
 <p>You can start your customizations from full-features classes, like
- <?php api_link('TWalkAttackCreatureResource', 'CastleCreatures.TWalkAttackCreatureResource.html'); ?> and
- <?php api_link('TWalkAttackCreature', 'CastleCreatures.TWalkAttackCreature.html'); ?>.
+ <?php echo removedCgeRef('TWalkAttackCreatureResource'); ?> and
+ <?php echo removedCgeRef('TWalkAttackCreature'); ?>.
 Or you can take the basic
- <?php api_link('TCreatureResource', 'CastleCreatures.TCreatureResource.html'); ?> and
- <?php api_link('TCreature', 'CastleCreatures.TCreature.html'); ?>,
+ <?php echo removedCgeRef('TCreatureResource'); ?> and
+ <?php echo removedCgeRef('TCreature'); ?>,
 and extend them to your liking.
 
 <p>This is a good moment to browse the classes inside
-<?php api_link('CastleCreatures', 'CastleCreatures.html'); ?> and
-<?php api_link('CastleItems', 'CastleItems.html'); ?> unit,
+<?php echo removedCgeRef('CastleCreatures'); ?> and
+<?php echo removedCgeRef('CastleItems'); ?> unit,
 if you haven't already. Some of the important creature/item classes:
 
 <ul>
-  <li><?php api_link('TCreatureResource', 'CastleCreatures.TCreatureResource.html'); ?> working with
-      <?php api_link('TCreature', 'CastleCreatures.TCreature.html'); ?>
+  <li><?php echo removedCgeRef('TCreatureResource'); ?> working with
+      <?php echo removedCgeRef('TCreature'); ?>
     <ul>
-      <li><?php api_link('TWalkAttackCreatureResource', 'CastleCreatures.TWalkAttackCreatureResource.html'); ?> working with
-          <?php api_link('TWalkAttackCreature', 'CastleCreatures.TWalkAttackCreature.html'); ?>
-      <li><?php api_link('TMissileCreatureResource', 'CastleCreatures.TMissileCreatureResource.html'); ?> working with
-          <?php api_link('TMissileCreature', 'CastleCreatures.TMissileCreature.html'); ?>
-      <li><?php api_link('TStillCreatureResource', 'CastleCreatures.TStillCreatureResource.html'); ?> working with
-          <?php api_link('TStillCreature', 'CastleCreatures.TStillCreature.html'); ?>
+      <li><?php echo removedCgeRef('TWalkAttackCreatureResource'); ?> working with
+          <?php echo removedCgeRef('TWalkAttackCreature'); ?>
+      <li><?php echo removedCgeRef('TMissileCreatureResource'); ?> working with
+          <?php echo removedCgeRef('TMissileCreature'); ?>
+      <li><?php echo removedCgeRef('TStillCreatureResource'); ?> working with
+          <?php echo removedCgeRef('TStillCreature'); ?>
     </ul>
-  <li><?php api_link('TItemResource', 'CastleItems.TItemResource.html'); ?> working with
-      <?php api_link('TInventoryItem', 'CastleItems.TInventoryItem.html'); ?>
+  <li><?php echo removedCgeRef('TItemResource'); ?> working with
+      <?php echo removedCgeRef('TInventoryItem'); ?>
     <ul>
-      <li><?php api_link('TItemWeaponResource', 'CastleItems.TItemWeaponResource.html'); ?> working with
-          <?php api_link('TItemWeapon', 'CastleItems.TItemWeapon.html'); ?>
+      <li><?php echo removedCgeRef('TItemWeaponResource'); ?> working with
+          <?php echo removedCgeRef('TItemWeapon'); ?>
     </ul>
 </ul>
 
@@ -78,14 +78,14 @@ if you haven't already. Some of the important creature/item classes:
 <p>Everything is designed to give you a lot of properties to set (most
 of them are also settable by <code>resource.xml</code> files) and a
 lot of methods to override. All creatures and items descend from
-common classes in <?php api_link('CastleTransform', 'CastleTransform.html'); ?> unit,
+common classes in <?php echo cgeRef('CastleTransform'); ?> unit,
 so see also there for various things that you can override and use.
 
 <p>You can code new creatures/items behaviors by deriving new classes
 from our existing classes in
-<?php api_link('CastleCreatures', 'CastleCreatures.html'); ?> and
-<?php api_link('CastleItems', 'CastleItems.html'); ?> and
-<?php api_link('CastleTransform', 'CastleTransform.html'); ?> units.
+<?php echo removedCgeRef('CastleCreatures'); ?> and
+<?php echo removedCgeRef('CastleItems'); ?> and
+<?php echo cgeRef('CastleTransform'); ?> units.
 This is the most flexible way to customize everything about a creature/item.
 
 <p>You usually override two classes to define a new creature/item:

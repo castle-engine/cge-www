@@ -3,12 +3,12 @@ require_once 'castle_engine_functions.php';
 castle_header('Defining creatures and items');
 ?>
 
-<p>Since we are using <?php api_link('TLevel.Load', 'CastleLevels.TLevel.html#Load'); ?>, the system
+<p>Since we are using <?php echo removedCgeRef('TLevel.Load'); ?>, the system
 to load creatures and items (together called <i>3D resources</i>)
 is actually ready to use. A nice default handling of creatures
 and items suitable for 3D games is ready, in
-<?php api_link('CastleCreatures', 'CastleCreatures.html'); ?> and
-<?php api_link('CastleItems', 'CastleItems.html'); ?> units.</p>
+<?php echo removedCgeRef('CastleCreatures'); ?> and
+<?php echo removedCgeRef('CastleItems'); ?> units.</p>
 
 <p>Creatures and items are defined by files named <code>resource.xml</code>
 in the game data. Their contents looks like this:</p>

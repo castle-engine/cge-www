@@ -4,15 +4,15 @@ castle_header('Notifications');
 ?>
 
 <p>You can show on-screen notifications by
-<?php api_link('TCastleNotifications', 'CastleNotifications.TCastleNotifications.html'); ?>
+<?php echo cgeRef('TCastleNotifications'); ?>
  <i>user interface control</i>
- (<?php api_link('TUIControl', 'CastleUIControls.TUIControl.html'); ?> descendant).
+ (<?php echo cgeRef('TUIControl'); ?> descendant).
 
 <p>You can just create an instance of this class,
 and add it to the <code>Window.Controls</code> list,
 as you do with any other UI control.
 But you can also use the global <code>Notifications</code> instance already created
-for you in the <?php api_link('CastleGameNotifications', 'CastleGameNotifications.html'); ?>
+for you in the <?php echo cgeRef('CastleGameNotifications'); ?>
  unit (just add it to
 <code>Window.Controls</code> list). Some engine components already make
 notifications to it, and it is also automatically set up to cooperate

@@ -11,7 +11,7 @@
 
 <p>Our engine can be used without the LCL (<i>Lazarus Component Library</i>)
 through the
-<?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?> class.
+<?php echo cgeRef('TCastleWindow'); ?> class.
 To compile the engine and applications without the help of Lazarus,
 you have a couple of options:
 
@@ -77,11 +77,11 @@ any Lazarus units. -->
 <p>From Lazarus, you can use the engine integrated
 with Lazarus forms (and the rest of the <i>Lazarus Component Library</i>)
 through the
-<?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?> class.
+<?php echo cgeRef('TCastleControl'); ?> class.
 Or you can use Lazarus only as an editor and debugger,
 and use the engine without the Lazarus forms,
 initializing the window using the
-<?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?> class.
+<?php echo cgeRef('TCastleWindow'); ?> class.
 
 ------------------------------------------------------------------------------
 
@@ -137,7 +137,7 @@ initializing the window using the
 <p>The editor and build tool are most natural to build
 applications that do not depend on LCL (<i>Lazarus Component Library</i>).
 This means that you should initialize your game window using
-the <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?> class.
+the <?php echo cgeRef('TCastleWindow'); ?> class.
 Our documentation and most examples follow this approach too.
 -->
 

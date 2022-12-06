@@ -49,13 +49,13 @@ probably start to wonder about the speed and memory usage.</p>
 
 <p>The main tool to measure your game speed is the <i>Frames Per Second (FPS)</i>
 value. Use the
- <?php api_link('TCastleControl.Fps', 'CastleControl.TCastleControlBase.html#Fps'); ?> or
- <?php api_link('TCastleWindow.Fps', 'CastleWindow.TCastleWindow.html#Fps'); ?>
+ <?php echo cgeRef('TCastleControl.Fps'); ?> or
+ <?php echo cgeRef('TCastleWindow.Fps'); ?>
  to get an instance of
- <?php api_link('TFramesPerSecond', 'CastleTimeUtils.TFramesPerSecond.html'); ?>.
+ <?php echo cgeRef('TFramesPerSecond'); ?>.
  It contains two useful numbers (and some extra information):
- <?php api_link('TFramesPerSecond.RealFps', 'CastleTimeUtils.TFramesPerSecond.html#RealFps'); ?> and
- <?php api_link('TFramesPerSecond.OnlyRenderFps', 'CastleTimeUtils.TFramesPerSecond.html#OnlyRenderFps'); ?>.
+ <?php echo cgeRef('TFramesPerSecond.RealFps'); ?> and
+ <?php echo cgeRef('TFramesPerSecond.OnlyRenderFps'); ?>.
 
 <?php echo $toc->html_section(); ?>
 
@@ -66,8 +66,8 @@ value. Use the
 <!--
 <p>Eventually, display directly the <code>Window.Fps.RealFps</code> value.
 In this case, it is easiest to have
- <?php api_link('TCastleControl.AutoRedisplay', 'CastleControl.TCastleControl.html#AutoRedisplay'); ?> or
- <?php api_link('TCastleWindow.AutoRedisplay', 'CastleWindow.TCastleWindow.html#AutoRedisplay'); ?> set
+ <?php echo cgeRef('TCastleControl.AutoRedisplay'); ?> or
+ <?php echo cgeRef('TCastleWindow.AutoRedisplay'); ?> set
  to <code>true</code>, otherwise the meaning of <code>RealFps</code>
  may not actually indicate the potential speed of your application.
  It is <code>true</code> by default, so you're already set.
@@ -94,7 +94,7 @@ In this case, it is easiest to have
 
     <p>If you need to change some Lazarus control,
     or write the FPS to some log, use a timer
-    (like <?php api_link('TCastleTimer', 'CastleControls.TCastleTimer.html'); ?> or
+    (like <?php echo cgeRef('TCastleTimer'); ?> or
     Lazarus <code>TTimer</code>) to write it e.g. only once per second.
     The <code>RealFps</code> and <code>OnlyRenderFps</code>
     are actually just an average from the last second,
@@ -149,7 +149,7 @@ number of frames per second that we managed to display.</b>
       <li>Or use <?php echo a_href_page('view3dscene', 'view3dscene'); ?>
         <i>"Preferences -&gt; Frames Per Second"</i> menu item to set them to zero.
       <li>Or change
-        <?php api_link('ApplicationProperties.LimitFPS', 'CastleApplicationProperties.TCastleApplicationProperties.html#LimitFPS'); ?>
+        <?php echo cgeRef('TCastleApplicationProperties.LimitFPS', 'ApplicationProperties.LimitFPS'); ?>
         to zero.
         Changing it to zero disables the "limit fps" feature.
     </ul>
@@ -242,7 +242,7 @@ detection and creature AI).
 <?php echo $toc->html_section(); ?>
 
 <p>Another useful statistics to display is
-<?php api_link('Viewport.Statistics.ToString', 'CastleTransform.TRenderStatistics.html'); ?>.
+<?php echo cgeRef('TRenderStatistics.ToString', 'Viewport.Statistics.ToString'); ?>.
 This shows how many scenes, and how many shapes, have been rendered in the last frame.
 It can be a useful guideline when to activate some specific optimizations discussed below.
 E.g. large value of displayed shapes may indicate that <i>dynamic batching</i>
@@ -321,8 +321,8 @@ It avoids useless drawing of the other side of the faces.
     You can do it <?php echo a_href_page('using <i>material properties</i> and auto-compressing the textures using our build tool', 'creating_data_auto_generated_textures'); ?>.
   <li>Scale down textures on low-end devices (desktops and mobiles).
     You can do it at loading <?php echo a_href_page('using <i>material properties</i> and auto-downscaling the textures using our build tool', 'creating_data_auto_generated_textures'); ?>,
-    see <?php api_link('TextureLoadingScale', 'CastleMaterialProperties.html#TextureLoadingScale'); ?>.
-    Or you can do it at runtime, by <?php api_link('GLTextureScale', 'CastleGLImages.html#GLTextureScale'); ?>.
+    see <?php echo cgeRef('TextureLoadingScale'); ?>.
+    Or you can do it at runtime, by <?php echo cgeRef('GLTextureScale'); ?>.
     Both of these approaches have their strengths, and can be combined.
   <li>Use texture atlases
     (try to reuse the whole X3D <code>Appearance</code> across many X3D shapes, if possible).
@@ -356,17 +356,15 @@ but in some special cases may be avoided:
 <ul>
   <li><p>If your model has animations but is often not visible (outside
     of view frustum), then consider using <code>Scene.AnimateOnlyWhenVisible := true</code>
-    (see <?php api_link('TCastleSceneCore.AnimateOnlyWhenVisible',
-    'CastleSceneCore.TCastleSceneCore.html#AnimateOnlyWhenVisible'); ?>).
+    (see <?php echo cgeRef('TCastleSceneCore.AnimateOnlyWhenVisible'); ?>).
 
   <li><p>If the model is small, and not updating it's animations every frame will not be noticeable, then consider setting <code>Scene.AnimateSkipTicks</code>
     to something larger than 0 (try 1 or 2).
-    (see <?php api_link('TCastleSceneCore.AnimateSkipTicks',
-    'CastleSceneCore.TCastleSceneCore.html#AnimateSkipTicks'); ?>).
+    (see <?php echo cgeRef('TCastleSceneCore.AnimateSkipTicks'); ?>).
 
   <li><p>For some games, turning globally <code>OptimizeExtensiveTransformations := true</code> improves the speed. This works best when you animate multiple <code>Transform</code> nodes within every X3D scene, and some of these animated <code>Transform</code> nodes are children of other animated <code>Transform</code> nodes. A typical example is a skeleton animation, for example from <a href="https://castle-engine.io/spine">Spine</a>, with non-trivial bone hierarchy, and with multiple bones changing position and rotation every frame.
 
-    <p>In a similar scenario, activating <?php api_link('InternalFastTransformUpdate', 'CastleSceneCore.html#InternalFastTransformUpdate'); ?> may be also beneficial. We plan to make this optimization automatic in the future.
+    <p>In a similar scenario, activating <?php echo cgeRef('InternalFastTransformUpdate'); ?> may be also beneficial. We plan to make this optimization automatic in the future.
 
   <!--
   <li><p>Consider using <code>TCastlePrecalculatedAnimation</code> to "bake" animation from events as a series of static scenes. This makes sense if your animation is from Spine or X3D exported from some software that understands X3D interpolation nodes.
@@ -438,7 +436,7 @@ to have hundreds or thousands of triangles in a single shape.
 <?php echo $toc->html_section(); ?>
 
 <p>If you have a large number of small shapes using the same shader,
-consider turning on <?php api_link('DynamicBatching', 'CastleScene.html#DynamicBatching'); ?>. This will internallly detect and merge multiple shapes into
+consider turning on <?php echo cgeRef('DynamicBatching'); ?>. This will internallly detect and merge multiple shapes into
 one just before passing them to the GPU. In some cases, it is a very powerful optimization,
 reducing the number of <i>draw calls</i>.
 
@@ -455,11 +453,11 @@ draw calls in this case.
 
 <?php echo $toc->html_section(); ?>
 
-<p>To reduce memory usage, you can use the same <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> instance many times within <code>Viewport.Items</code>, usually wrapped in a different <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?>. The whole code is ready for such "<i>multiple uses</i>" of a single scene instance.
+<p>To reduce memory usage, you can use the same <?php echo cgeRef('TCastleScene'); ?> instance many times within <code>Viewport.Items</code>, usually wrapped in a different <?php echo cgeRef('TCastleTransform'); ?>. The whole code is ready for such "<i>multiple uses</i>" of a single scene instance.
 
 <p>For an example of this approach, see <a href="https://github.com/castle-engine/frogger3d">frogger3d</a> game (in particular, it's main unit <a href="https://github.com/castle-engine/frogger3d/blob/master/code/game.pas">game.pas</a>). The game adds <i>hundreds</i> of 3D objects to <code>Viewport.Items</code>, but there are only <i>three</i> <code>TCastleScene</code> instances (player, cylinder and level).
 
-<p>However, this optimization is suitable only if all the visible scenes (that are actually a single <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> instance) are always in the same animation frame (or maybe they are not animated at all). If you want to play different animations, you have to create separate TCastleScene instances (you can create them efficiently using the <?php api_link('TCastleScene.Clone', 'CastleScene.TCastleScene.html#Clone'); ?> method).
+<p>However, this optimization is suitable only if all the visible scenes (that are actually a single <?php echo cgeRef('TCastleScene'); ?> instance) are always in the same animation frame (or maybe they are not animated at all). If you want to play different animations, you have to create separate TCastleScene instances (you can create them efficiently using the <?php echo cgeRef('TCastleScene.Clone'); ?> method).
 
 <?php echo $toc->html_section(); ?>
 
@@ -515,7 +513,7 @@ files around the demo models.
 -->
 
 <p>You can also build a <code>Collision</code> node by code.
-We have a helper method for this: <?php api_link('TCollisionNode.CollideAsBox', 'X3DNodes.TCollisionNode.html#CollideAsBox'); ?>.
+We have a helper method for this: <?php echo cgeRef('TCollisionNode.CollideAsBox'); ?>.
 
 <p>Another possible octree optimization is to adjust the parameters how
 the octree is created. You can
@@ -549,7 +547,7 @@ for a wide range of scenes.
 
 <p>Beware: Some of these flags (in particular <code>LogAllLoading</code>) can produce <i>a lot</i> of information, and you probably don't want to see it always. Dumping this information to the log will often cause a <b>noticeable slowdown</b> during loading stage, so do not bother to measure your loading speed when any of these flags are turned on. Use these flags only to detect if something "fishy" is happening during the gameplay.
 
-<p>You can also use <?php api_link('TCastleProfiler', 'CastleTimeUtils.TCastleProfiler.html'); ?> to easily get information about what was loaded, and what took most time to load.
+<p>You can also use <?php echo cgeRef('TCastleProfiler'); ?> to easily get information about what was loaded, and what took most time to load.
 
 <?php echo $toc->html_section(); ?>
 
@@ -562,7 +560,7 @@ to using shapes octree.
 in large city or indoor levels,
 where walls or large buildings can obscure a significant part of your geometry.
 Activate it by simply turnnig on the flag
-<?php api_link('OcclusionQuery', 'CastleRenderOptions.TCastleRenderOptions.html#OcclusionQuery'); ?>,
+<?php echo cgeRef('TCastleRenderOptions.OcclusionQuery'); ?>,
 like <code>Scene.RenderOptions.OcclusionQuery := true</code>.
 
 <p>You can also cull objects based on their distance from the camera,
@@ -593,7 +591,7 @@ Hints to make it faster:
   <li><p>If possible, do not use many transparent shapes.
     This will keep the cost of sorting minimal.
 
-  <li><p>If possible, turn off the sorting, using <code>Scene.Attributes.BlendingSort := bsNone</code>. See <?php api_link('TBlendingSort', 'CastleBoxes.html#TBlendingSort'); ?> for the explanation of possible <code>BlendingSort</code> values. Sorting is only necessary if you may see multiple partially-transparent shapes on the same screen pixel, otherwise sorting is a waste of time.
+  <li><p>If possible, turn off the sorting, using <code>Scene.Attributes.BlendingSort := bsNone</code>. See <?php echo cgeRef('TBlendingSort'); ?> for the explanation of possible <code>BlendingSort</code> values. Sorting is only necessary if you may see multiple partially-transparent shapes on the same screen pixel, otherwise sorting is a waste of time.
 
   <li><p>Sorting is also not necessary if you use some <i>blending modes</i> that make the order of rendering partially-transparent shapes irrelevant. For example, blending mode with <code>srcFactor = "src_alpha"</code> and <code>destFactor = "one"</code>. <a href="x3d_extensions.php#section_ext_blending">You can use a <code>blendMode</code> field in X3D to set a specific blending mode</a>. Of course, it will look differently, but maybe acceptably?
 
@@ -633,15 +631,15 @@ Hints to make it faster:
 
 <?php echo $toc->html_section(); ?>
 
-<p>Turn on <?php api_link('TCastleUserInterface.Culling', 'CastleUIControls.TCastleUserInterface.html#Culling'); ?> to optimize the case when a resource-intensive control is often off-screen (and thus doesn't need to be rendered or process other events). This also matters if the control is outside of the parent scrollable view (<?php api_link('TCastleScrollView', 'CastleControls.TCastleScrollView.html'); ?>) or other parent with <?php api_link('ClipChildren', 'CastleUIControls.TCastleUserInterface.html#ClipChildren'); ?>. This is very useful when creating a large number of children inside <?php api_link('TCastleScrollView', 'CastleControls.TCastleScrollView.html'); ?>.
+<p>Turn on <?php echo cgeRef('TCastleUserInterface.Culling'); ?> to optimize the case when a resource-intensive control is often off-screen (and thus doesn't need to be rendered or process other events). This also matters if the control is outside of the parent scrollable view (<?php echo cgeRef('TCastleScrollView'); ?>) or other parent with <?php echo cgeRef('TCastleUserInterface.ClipChildren'); ?>. This is very useful when creating a large number of children inside <?php echo cgeRef('TCastleScrollView'); ?>.
 
-<p>When rendering 2D stuff yourself usign <?php api_link('TDrawableImage', 'CastleGLImages.TDrawableImage.html'); ?>, you can often make a dramatic speedup by using the overload that draws multiple images (maybe different, maybe the same image parts) by a single <code>procedure TDrawableImage.Draw(ScreenRects, ImageRects: PFloatRectangleArray; const Count: Integer);</code> call.
-
-<?php echo $toc->html_section(); ?>
+<p>When rendering 2D stuff yourself usign <?php echo cgeRef('TDrawableImage'); ?>, you can often make a dramatic speedup by using the overload that draws multiple images (maybe different, maybe the same image parts) by a single <code>procedure TDrawableImage.Draw(ScreenRects, ImageRects: PFloatRectangleArray; const Count: Integer);</code> call.
 
 <?php echo $toc->html_section(); ?>
 
-<p>We have <?php api_link('TCastleProfiler', 'CastleTimeUtils.TCastleProfiler.html'); ?> to easily profile the speed of operations. The engine automatically uses it to log loading time of various assets. You can track the time spend in other operations (specific to your game) there too.
+<?php echo $toc->html_section(); ?>
+
+<p>We have <?php echo cgeRef('TCastleProfiler'); ?> to easily profile the speed of operations. The engine automatically uses it to log loading time of various assets. You can track the time spend in other operations (specific to your game) there too.
 
 <?php echo $toc->html_section(); ?>
 
@@ -649,7 +647,7 @@ Hints to make it faster:
 
 <p><iframe width="560" height="315" src="https://www.youtube.com/embed/5jBdPdj75yk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-<p>We have <?php api_link('TCastleFrameProfiler', 'CastleTimeUtils.TCastleFrameProfiler.html'); ?> to profile the time spend in a particular frame (from one <code>OnUpdate</code> start to another). Use this to track short tasks that occur within a frame. The engine automatically tracks there some operations (just enable <code>FrameProfiler.Enabled := true</code> and look in the <a href="log">log</a> for results), you can also track other operations (specific to your game). An example output looks like this:
+<p>We have <?php echo cgeRef('TCastleFrameProfiler'); ?> to profile the time spend in a particular frame (from one <code>OnUpdate</code> start to another). Use this to track short tasks that occur within a frame. The engine automatically tracks there some operations (just enable <code>FrameProfiler.Enabled := true</code> and look in the <a href="log">log</a> for results), you can also track other operations (specific to your game). An example output looks like this:
 
 <pre>
 -------------------- FrameProfiler begin

@@ -54,17 +54,18 @@ They show (from the ground up) the creation of a simple 3D FPS game and 2D game.
   </li>
 
   <li><p>New capabilities for <b>font rendering</b>: <b>scaling:</b>
-  ' . api_link('TCastleFont.Scale', 'CastleFonts.TCastleFont.html#Scale', false) . ',
-  <b>outline:</b>
-  ' . api_link('TCastleFont.Outline', 'CastleFonts.TCastleFont.html#Outline', false) . ',
-  ' . api_link('TCastleFont.OutlineColor', 'CastleFonts.TCastleFont.html#OutlineColor', false) . ',
-  <b>print in rect:</b>
-  ' . api_link('TCastleFont.PrintRect', 'CastleFonts.TCastleFont.html#PrintRect', false) . ',
-  ' . api_link('TCastleFont.PrintRectMultiline', 'CastleFonts.TCastleFont.html#PrintRectMultiline', false) . ',
-  ' . api_link('TCastleFont.PushProperties', 'CastleFonts.TCastleFont.html#PushProperties', false) . ',
-  ' . api_link('TCastleFont.PopProperties', 'CastleFonts.TCastleFont.html#PopProperties', false) . '.
 
-  <li><p>' . api_link('TUIState', 'CastleUIState.TUIState.html', false) . ' to help implementing <b>simple UI mode switching (with possible stack)</b>.
+  ' . cgeRef('TCastleFont.Scale') . ',
+  <b>outline:</b>
+  ' . cgeRef('TCastleAbstractFont.Outline') . ',
+  ' . cgeRef('TCastleAbstractFont.OutlineColor') . ',
+  <b>print in rect:</b>
+  ' . cgeRef('TCastleAbstractFont.PrintRect') . ',
+  ' . cgeRef('TCastleAbstractFont.PrintRectMultiline') . ',
+  ' . cgeRef('TCastleAbstractFont.PushProperties') . ',
+  ' . cgeRef('TCastleAbstractFont.PopProperties') . '.
+
+  <li><p>' . cgeRef('TUIState') . ' to help implementing <b>simple UI mode switching (with possible stack)</b>.
 
   <li><p>New option <code>android_project</code> was added to our <a href="https://castle-engine.io/build_tool">build tool</a> to support custom Java and manifest code in your Android project. This allows to <b>integrate your Android game with Google Games (leaderboards, achievements, save games...), biling, ads, analytics and anything else you want:)</b>
 
@@ -74,30 +75,30 @@ They show (from the ground up) the creation of a simple 3D FPS game and 2D game.
 
   <li><p>On <b>Windows GUI applications, we will log to the <code>xxx.log</code> file by default</b>, instead of trying to log to unavailable stderr. <a href="https://castle-engine.io/log">See the updated tutorial link about logging for details.</a>
 
-  <li><p>' . api_link('TCastle2DControl', 'CastleControl.TCastle2DControl.html', false) . ' component for easily creating 2D games. Already contains a ready T2DSceneManager.
+  <li><p>' . removedCgeRef('TCastle2DControl') . ' component for easily creating 2D games. Already contains a ready T2DSceneManager.
 
   <li><p><b>Encrypt/decrypt XML data using BlowFish</b>. In the simplest case, just set <code>TCastleConfig.BlowFishKeyPhrase</code> property. This allows to encrypt your XML data, for example to prevent cheaters from easily modifying your game configuration variables in XML. It assumes that the particular value of BlowFishKeyPhrase you use is kept secret &mdash; e.g. it\'s compiled and maybe obfuscated.
 
   <li><p>Numerous smaller new features:
-  ' . api_link('TGLImage.Draw3x1', 'CastleGLImages.TGLImage.html#Draw3x1', false) . ',
-  ' . api_link('TGLImage.Rect', 'CastleGLImages.TGLImage.html#Rect', false) . ',
-  ' . api_link('TGLImage.ScalingPossible settable', 'CastleGLImages.TGLImage.html#ScalingPossible', false) . ',
+  ' . removedCgeRef('TDrawableImage.Draw3x1') . ',
+  ' . cgeRef('TDrawableImage.Rect') . ',
+  ' . cgeRef('TDrawableImage.ScalingPossible') . ',
 
-  ' . api_link('TCasScriptExpression.AsFloat', 'CastleScript.TCasScriptExpression.html#AsFloat', false) . ',
+  ' . cgeRef('TCasScriptExpression.AsFloat') . ',
 
-  ' . api_link('TFramesPerSecond.MaxSensibleSecondsPassed', 'CastleTimeUtils.TFramesPerSecond.html#MaxSensibleSecondsPassed', false) . ',
+  ' . cgeRef('TFramesPerSecond.MaxSensibleSecondsPassed') . ',
 
-  ' . api_link('TCastleConfig.GetMultilineText', 'CastleXMLConfig.TCastleConfig.html#GetMultilineText', false) .
+  ' . cgeRef('TCastleConfig.GetMultilineText') .
   ' (plus a few helpers for ' .
-      api_link('TCastleConfig', 'CastleXMLConfig.TCastleConfig.html', false) .
+      cgeRef('TCastleConfig') .
   ' to get/set RGB and RGBA colors),
 
-  ' . api_link('TRectangle.Align', 'CastleRectangles.TRectangle.html#Align', false) . '
+  ' . cgeRef('TRectangle.Align') . '
    (plus related
-  ' . api_link('THorizontalPosition', 'CastleRectangles.html#THorizontalPosition', false) . ',
-  ' . api_link('TVerticalPosition', 'CastleRectangles.html#TVerticalPosition', false) . '),
+  ' . cgeRef('THorizontalPosition') . ',
+  ' . cgeRef('TVerticalPosition') . '),
 
-  ' . api_link('TCastleSceneCore.AnimationDuration', 'CastleSceneCore.TCastleSceneCore.html#AnimationDuration', false) . ' .
+  ' . cgeRef('TCastleSceneCore.AnimationDuration') . ' .
   </li>
 </ol>'),
 

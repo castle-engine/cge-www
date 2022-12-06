@@ -140,12 +140,12 @@ Set this to exact 0 to disable head bobbing.
 This must always be &lt; 1. For sensible effects, this should
 be something rather close to 0, like 0.02.
 
-<small>(<?php api_link('Developers: see also TWalkCamera.HeadBobbing property.', 'CastleCameras.TWalkCamera.html#HeadBobbing'); ?>)</small></p>
+<small>(See also <?php echo cgeRef('TCastleWalkNavigation.HeadBobbing'); ?>)</small></p>
 
 <p>The field <code>headBobbingTime</code> determines how much time passes
 to make full head bobbing sequence (camera swing up and then down back to original height).
 
-<small>(<?php api_link('Developers: see also TWalkCamera.HeadBobbingTime property.', 'CastleCameras.TWalkCamera.html#HeadBobbingTime'); ?>)</small></p>
+<small>(See also <?php echo cgeRef('TCastleWalkNavigation.HeadBobbingTime'); ?>)</small></p>
 
 <?php echo $toc->html_section(); ?>
 
@@ -263,7 +263,7 @@ will be used for headlight.
 <p>Values other than "DEFAULT" force specific blending sort
 treatment when rendering, which is useful since some scenes
 sometimes have specific requirements to be rendered sensibly.
-See <?php api_link('TBlendingSort', 'CastleScene.html#TBlendingSort'); ?>.
+See <?php echo cgeRef('TBlendingSort'); ?>.
 
 <?php echo $toc->html_section(); ?>
 

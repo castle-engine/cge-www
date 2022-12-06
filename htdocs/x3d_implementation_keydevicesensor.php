@@ -26,16 +26,16 @@
   <li><p>These nodes are not the most comfortable way to process keyboard.
     Do not use them.
 
-  <li><p>Instead, override <code>TUIState.Press</code> method to listen to keys
+  <li><p>Instead, override <?php echo cgeRef('TUIState.Press'); ?> method to listen to keys
     (see any <i>"New Project"</i> template created by the editor for an example).
     You can also react to
-    <?php api_link('TCastleWindow.OnPress', 'CastleWindow.TCastleWindow.html#OnPress'); ?> or
-    <?php api_link('TCastleControl.OnPress', 'CastleControl.TCastleControl.html#OnPress'); ?> or override
-    <?php api_link('Press method', 'CastleUIControls.TInputListener.html#Press'); ?>.
+    <?php echo cgeRef('TCastleWindow.OnPress'); ?> or
+    <?php echo cgeRef('TCastleControl.OnPress'); ?> or override
+    <?php echo cgeRef('TCastleUserInterface.Press'); ?> method.
     See <a href="manual_state_events.php">the manual describing handling events</a>.
 
   <li><p>If you definitely want to use these nodes with CGE, remember to set
-    <?php api_link('TCastleSceneCore.ListenPressRelease', 'CastleSceneCore.TCastleSceneCore.html#ListenPressRelease'); ?>
+    <?php echo cgeRef('TCastleTransform.ListenPressRelease'); ?>
     to <code>true</code>.
 </ul>
 

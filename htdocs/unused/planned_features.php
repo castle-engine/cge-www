@@ -4,7 +4,7 @@
     <p><i>Rejected. Just export to glTF, the exporter is way better than X3D exporter ever was. glTF has more momentum as an interchange format than X3D.</i>
 
     <p>Current Blender X3D exporter doesn't support animations,
-    configuring collisions (X3D <?php api_link('Collision', 'X3DNodes.TCollisionNode.html'); ?> node),
+    configuring collisions (X3D <?php echo cgeRef('Collision'); ?> node),
     3D sound sources and more.
     We would like to fix it!:) This will be useful for everyone using Blender and X3D,
     not only with our engine.

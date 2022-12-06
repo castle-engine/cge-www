@@ -284,9 +284,9 @@ deprecated then.</i></p>
 by default.</b>
 
 <p>To request stencil buffer explicitly, you need to set
-<?php api_link('TCastleWindow.StencilBits', 'CastleWindow.TCastleWindow.html#StencilBits'); ?>
+<?php echo cgeRef('TCastleWindow.StencilBits'); ?>
  or
-<?php api_link('TCastleControl.StencilBits', 'CastleControl.TCastleControl.html#StencilBits'); ?>
+<?php echo cgeRef('TCastleControl.StencilBits'); ?>
  to something non-zero.
 The number of bits should be large enough to track all the possible objects that may cast a shadow at a given pixel.
 In practice, in most reasonable cases, using 8 bits (256 possible objects) is enough. Like this:

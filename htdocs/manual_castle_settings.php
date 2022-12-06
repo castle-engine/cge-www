@@ -99,19 +99,19 @@ all set up by default UI scaling to the reference sizes of 1600x900
   <li>DpiScale
 </ul>
 
-<p>See the <?php api_link('TUIScaling', 'CastleUIControls.html#TUIScaling'); ?>
+<p>See the <?php echo cgeRef('TUIScaling'); ?>
  documentation for their description.
 
 <?php echo $toc->html_section(); ?>
 
 <p>Loading the <code>CastleSettings.xml</code> also sets the
-<?php api_link('Container.DefaultFont', 'CastleUIControls.TUIContainer.html#DefaultFont'); ?>.
+<?php echo cgeRef('TCastleContainer.DefaultFont'); ?>.
 
 <p>This controls the default font look (font file, font size)
 for all user-interface controls.
 Note that this is only a default, each control can still customize it
-(using <?php api_link('TCastleUserInterfaceFont.CustomFont', 'CastleControls.TCastleUserInterfaceFont.html#CustomFont'); ?>,
-<?php api_link('TCastleUserInterfaceFont.FontSize', 'CastleControls.TCastleUserInterfaceFont.html#FontSize'); ?>).
+(using <?php echo cgeRef('TCastleUserInterfaceFont.CustomFont'); ?>,
+<?php echo cgeRef('TCastleUserInterfaceFont.FontSize'); ?>).
 
 <p>An example code (only the <code>url</code> attribute is required):
 
@@ -124,9 +124,9 @@ Note that this is only a default, each control can still customize it
 />'); ?>
 
 <p>In effect,
-<?php api_link('Container.DefaultFont', 'CastleUIControls.TUIContainer.html#DefaultFont'); ?>
+<?php echo cgeRef('TCastleContainer.DefaultFont'); ?>
  will be set to a proper
-<?php api_link('TCastleFont', 'CastleFonts.TCastleFont.html'); ?> instance.
+<?php echo cgeRef('TCastleFont'); ?> instance.
 
 <p>You can also provide separate font variants for <code>regular</code>,
 <code>bold</code>, <code>italic</code> and <code>bold_italic</code> variants.
@@ -155,12 +155,12 @@ Like this:
 </default_font>'); ?>
 
 <p>In effect,
-<?php api_link('Container.DefaultFont', 'CastleUIControls.TUIContainer.html#DefaultFont'); ?>
+<?php echo cgeRef('TCastleContainer.DefaultFont'); ?>
  will be set to a proper
-<?php api_link('TFontFamily', 'CastleFontFamily.TFontFamily.html'); ?> instance.
+<?php echo cgeRef('TCastleFontFamily'); ?> instance.
 This is useful if you plan to use
-<?php api_link('TCastleLabel', 'CastleControls.TCastleLabel.html'); ?>
- with <?php api_link('HTML markup', 'CastleControls.TCastleLabel.html#Html'); ?>,
+<?php echo cgeRef('TCastleLabel'); ?>
+ with <?php echo cgeRef('TCastleLabel.Html'); ?>,
 this way bold and italic tags in HTML will work. You have to define at least the <code>regular</code>
 font variant (others are optional).
 
@@ -181,7 +181,7 @@ font variant (others are optional).
 
   <dt><p><code>size</code> (default: 20)
 
-  <dd><p>Determines the font size (<?php api_link('TCastleFont.Size', 'CastleFonts.TCastleFont.html#Size'); ?>),
+  <dd><p>Determines the font size (<?php echo cgeRef('TCastleAbstractFont.Size'); ?>),
     which determines how large the font is on the screen.
 
   <dt><p><code>size_at_load</code> (default: use <code>size</code> value)
@@ -191,14 +191,14 @@ font variant (others are optional).
     but it can be set to something larger to improve the quality of the font.
     This is useful if in your game you will often use this font
     with other sizes.
-    (E.g. your controls leave <?php api_link('TCastleUserInterfaceFont.CustomFont', 'CastleControls.TCastleUserInterfaceFont.html#CustomFont'); ?> = nil,
-    but often use large <?php api_link('TCastleUserInterfaceFont.FontSize', 'CastleControls.TCastleUserInterfaceFont.html#FontSize'); ?> or
-    <?php api_link('TCastleUserInterfaceFont.FontScale', 'CastleControls.TCastleUserInterfaceFont.html#FontScale'); ?>).
+    (E.g. your controls leave <?php echo cgeRef('TCastleUserInterfaceFont.CustomFont'); ?> = nil,
+    but often use large <?php echo cgeRef('TCastleUserInterfaceFont.FontSize'); ?> or
+    <?php echo cgeRef('TCastleUserInterfaceFont.FontScale'); ?>).
 
     <p>This attribute is used only when the list <code>sizes_at_load</code> is not defined
     (see below).
 
-    <p>Internally, one <code>TTextureFont</code> instance will be created,
+    <p>Internally, one <?php echo cgeRef('TCastleFont'); ?> instance will be created,
     for given size.
     During rendering it will be scaled to the requested size on screen.
     If you try to render font much smaller or much larger than
@@ -212,8 +212,8 @@ font variant (others are optional).
     to use in your application, e.g. <code>"10 15 20 25"</code>.
 
     <p>Internally, the font is loaded into a number of textures,
-    one for each size, using <code>TCustomizedFont.Load</code> that creates
-    a number of <code>TTextureFont</code> instances.
+    one for each size, using <?php echo cgeRef('TCustomizedFont.Load'); ?> that creates
+    a number of <?php echo cgeRef('TCastleFont'); ?> instances.
     When rendering using this font, the closest size will be used,
     and scaled to the requested size, to be rendered exactly at
     requested size.
@@ -266,7 +266,7 @@ font variant (others are optional).
 
 <?php echo $toc->html_section(); ?>
 
-<p>When loading settings (at <?php api_link('LoadSettings call', 'CastleUIControls.TUIContainer.html#LoadSettings'); ?>),
+<p>When loading settings (at <?php echo cgeRef('TCastleContainer.LoadSettings'); ?>),
 we can load and keep in cache some resources.
 
 <p>It may be useful to cache large images (used in UI or referenced
@@ -291,9 +291,9 @@ will be instant.
 </warmup_cache>'); ?>
 
 <p>Note that if you load designed UI using
- <?php api_link('TUIState.DesignUrl', 'CastleUIState.TUIState.html#DesignUrl'); ?>
+ <?php echo cgeRef('TUIState.DesignUrl'); ?>
  then you have a more straightforward way: set
- <?php api_link('TUIState.DesignPreload', 'CastleUIState.TUIState.html#DesignPreload'); ?> to <code>true</code>.
+ <?php echo cgeRef('TUIState.DesignPreload'); ?> to <code>true</code>.
  This will effectively cache all state resources, without the need to list them among
  <code>&lt;warmup_cache&gt;</code>.
 

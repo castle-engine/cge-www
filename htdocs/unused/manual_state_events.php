@@ -28,7 +28,7 @@ Let's draw some images and handle inputs.
           and do something continuously in <code>TStateMain.Update</code>.
       <li>
         <p>You can render an image directly (as described in this manual page, using
-          <?php api_link('TDrawableImage', 'CastleGLImages.TDrawableImage.html'); ?>)
+          <?php echo cgeRef('TDrawableImage'); ?>)
           by overriding <code>TStateMain.Render</code>.
           Alternatively, you could design (using CGE editor) an image as <code>TCastleImageControl</code>
           and only move it.
@@ -41,20 +41,20 @@ Let's draw some images and handle inputs.
 <ul>
   <li><p>See the <?php echo a_href_page('manual about drawing your own 2D controls', 'manual_2d_ui_custom_drawn'); ?>. It has a nice overview of 2D drawing capabilities. You can also use the <?php echo a_href_page('standard 2D controls', 'manual_2d_user_interface'); ?> with a lot of ready functionality.
 
-    <p>It also shows a more flexible way to handle drawing and inputs, by creating new descendants of <?php api_link('TCastleUserInterface', 'CastleUIControls.TCastleUserInterface.html'); ?> (instead of simply attaching to window callbacks).
+    <p>It also shows a more flexible way to handle drawing and inputs, by creating new descendants of <?php echo cgeRef('TCastleUserInterface'); ?> (instead of simply attaching to window callbacks).
 
   <li><p>If you want to use smooth and efficient animations, you can load a 2D model (and animation) from <a href="creating_data_model_formats.php">any supported format (like X3D or glTF or Spine)</a>. To do this:
 
     <ol>
-      <li>Create a <?php api_link('TCastleViewport', 'CastleViewport.TCastleViewport.html'); ?>.
-      <li>Call <?php api_link('TCastleViewport.Setup2D', 'CastleViewport.TCastleViewport.html#Setup2D'); ?>.
-      <li>Create <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> instance.
-      <li>Call <?php api_link('TCastleScene.Setup2D', 'CastleScene.TCastleScene.html#Setup2D'); ?>.
+      <li>Create a <?php echo cgeRef('TCastleViewport'); ?>.
+      <li>Call <?php echo cgeRef('TCastleViewport.Setup2D'); ?>.
+      <li>Create <?php echo cgeRef('TCastleScene'); ?> instance.
+      <li>Call <?php echo cgeRef('TCastleScene.Setup2D'); ?>.
     </ol>
 
-    <p>The following manual chapters focus on <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> usage, and apply for both 3D and 2D games.
+    <p>The following manual chapters focus on <?php echo cgeRef('TCastleScene'); ?> usage, and apply for both 3D and 2D games.
 
     <p>See the example code <code>castle_game_engine/examples/2d_dragon_spine_android_game/</code> inside the engine.
 
-  <li><p>You can also make inputs user-configurable. To do this, wrap each input in a <?php api_link('TInputShortcut', 'CastleInputs.TInputShortcut.html'); ?> instance. This will store whether the input is a key press or a mouse click, and you can check and change it at runtime. More information is in <?php echo a_href_page('manual about key / mouse shortcuts', 'manual_key_mouse'); ?>.
+  <li><p>You can also make inputs user-configurable. To do this, wrap each input in a <?php echo cgeRef('TInputShortcut'); ?> instance. This will store whether the input is a key press or a mouse click, and you can check and change it at runtime. More information is in <?php echo a_href_page('manual about key / mouse shortcuts', 'manual_key_mouse'); ?>.
 </ul>

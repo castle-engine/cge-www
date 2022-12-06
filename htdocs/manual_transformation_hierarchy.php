@@ -9,29 +9,21 @@ in a hierarchy. We have two transformation hierarchies in our engine:</p>
 <ol>
   <li><p><b>The "outer" tree containing scenes:</b>
 
-    <p><?php api_link('TCastleViewport.Items', 'CastleViewport.TCastleViewport.html#Items'); ?>
+    <p><?php echo cgeRef('TCastleViewport.Items'); ?>
     is a tree containing scenes. A scene is an instance of
-    <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> class,
+    <?php echo cgeRef('TCastleScene'); ?> class,
     which is probably <b>the</b> most important class in our engine.
     It represents a 3D or 2D model.
 
     <p>You can group and transform the scenes using
-    <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?>.
-    The <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>
+    <?php echo cgeRef('TCastleTransform'); ?>.
+    The <?php echo cgeRef('TCastleScene'); ?>
     is also a descendant of
-    <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?>,
+    <?php echo cgeRef('TCastleTransform'); ?>,
     so you can just transform a scene directly.
-    Existing management of creatures
-    (<?php api_link('TCreature', 'CastleCreatures.TCreature.html'); ?>)
-    and items on level (<?php api_link('TItemOnWorld', 'CastleItems.TItemOnWorld.html'); ?>)
-    and player (<?php api_link('TPlayer', 'CastlePlayer.TPlayer.html'); ?>)
-    uses such transformations to move creatures, player etc.
-    Loading a level by
-    <?php api_link('TLevel.Load', 'CastleLevels.TLevel.html#Load'); ?>
-    initializes the whole tree for you, but you can also do it by hand.
 
     <!--p>The visible leaves of this tree are
-    <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>
+    <?php echo cgeRef('TCastleScene'); ?>
     instances (although you can also implement your own visible 3D objects).
     -->
 
@@ -44,7 +36,7 @@ in a hierarchy. We have two transformation hierarchies in our engine:</p>
         (moving, rotating, scaling them),
         or completely rearranging the tree (adding, removing items),
         or hiding / showing the items (use the
-        <?php api_link('Exists', 'CastleTransform.TCastleTransform.html#Exists'); ?> property).
+        <?php echo cgeRef('TCastleTransform.Exists'); ?> property).
         It is ultimately fast and can be done as often as you need.
 
       <li><p>Downside: do not make this tree too deep and complicated.
@@ -66,26 +58,26 @@ in a hierarchy. We have two transformation hierarchies in our engine:</p>
   <li>
     <p><b>The "inner" tree inside every scene, containing X3D nodes:</b></p>
 
-    <p>Inside <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>
+    <p>Inside <?php echo cgeRef('TCastleScene'); ?>
     there is a transformation hierarchy of X3D nodes,
-    starting in <?php api_link('TCastleSceneCore.RootNode', 'CastleSceneCore.TCastleSceneCore.html#RootNode'); ?>.
+    starting in <?php echo cgeRef('TCastleSceneCore.RootNode'); ?>.
     Loading the scene by
-    <?php api_link('TCastleSceneCore.Load', 'CastleSceneCore.TCastleSceneCore.html#Load'); ?>
+    <?php echo cgeRef('TCastleSceneCore.Load'); ?>
     automatically builds a tree of X3D nodes based on 3D model contents.
     You can also build (or process) the X3D nodes tree by code.
     There are various grouping and transforming nodes,
-    most notably <?php api_link('Transform node (TTransformNode)', 'X3DNodes.TTransformNode.html'); ?>
+    most notably <?php echo cgeRef('TTransformNode'); ?>
     (see <?php echo a_href_page('X3D grouping component',
     'x3d_implementation_grouping'); ?>). Everything you see
     is expressed as a combination of X3D nodes &mdash; meshes, materials,
     textures, shaders, lighting, animations, collisions...
 
-    <p>Each single <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>
+    <p>Each single <?php echo cgeRef('TCastleScene'); ?>
     has a tree of X3D nodes.
 
     <p>In the simplest cases (if you load scenes using
-    <?php api_link('TCastleSceneCore.Load', 'CastleSceneCore.TCastleSceneCore.html#Load'); ?>)
-    you will create one <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>
+    <?php echo cgeRef('TCastleSceneCore.Load'); ?>)
+    you will create one <?php echo cgeRef('TCastleScene'); ?>
     instance for each 3D model file you have.
     But you're not limited to this approach, as you can split and merge
     X3D graphs freely.
@@ -136,19 +128,19 @@ in a hierarchy. We have two transformation hierarchies in our engine:</p>
 
     <p>The X3D nodes hierarchy is automatically reflected as (a little flattened and simplified)
     tree of shapes in the
-    <?php api_link('TCastleSceneCore.Shapes', 'CastleSceneCore.TCastleSceneCore.html#Shapes'); ?>
+    <?php echo cgeRef('TCastleSceneCore.Shapes'); ?>
     property.The visible nodes of this tree are X3D <code>Shape</code> nodes
-    (<?php api_link('TShapeNode', 'X3DNodes.TShapeNode.html'); ?>) linked
+    (<?php echo cgeRef('TShapeNode'); ?>) linked
     with geometry nodes inside
-    (<?php api_link('TAbstractGeometryNode', 'X3DNodes.TAbstractGeometryNode.html'); ?>).
+    (<?php echo cgeRef('TAbstractGeometryNode'); ?>).
 
     <p>This tree can be completely ignored by your code.
     It is automatically created and managed inside the
-    <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>.
+    <?php echo cgeRef('TCastleScene'); ?>.
     Sometimes you can use this tree to speedup some operations &mdash; instead of traversing
-    the tree in <?php api_link('TCastleSceneCore.RootNode', 'CastleSceneCore.TCastleSceneCore.html#RootNode'); ?>,
+    the tree in <?php echo cgeRef('TCastleSceneCore.RootNode'); ?>,
     it's sometimes enough to traverse simpler tree
-    <?php api_link('TCastleSceneCore.Shapes', 'CastleSceneCore.TCastleSceneCore.html#Shapes'); ?>.
+    <?php echo cgeRef('TCastleSceneCore.Shapes'); ?>.
   </li>
 </ol>
 

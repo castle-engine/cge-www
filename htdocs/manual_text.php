@@ -317,18 +317,17 @@ and recompile your program to see the new font.
 
 <p>You can use our own localization approach from the
 <a href="https://github.com/castle-engine/castle-engine/blob/master/src/deprecated_units/castlelocalization.pas">CastleLocalization</a>
-<?php /* api_link('CastleLocalization', 'CastleLocalization.html'); */ ?>
+<?php /* echo cgeRef('CastleLocalization'); */ ?>
  unit. It can read from a number of translation formats (XML, JSON, CSV, GetText MO). It can translate user-interface controls, like <?php echo cgeRef('TCastleLabel'); ?>. The demo is inside <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/localization/custom">examples/localization/custom/</a>.
 
 <p>For advanced users, the system allows to aid in localizing your custom classes too (see
-<?php /* api_link('OnUpdateLocalization', 'CastleLocalization.TCastleLocalization.html#OnUpdateLocalization'); */ ?>
+<?php /* echo cgeRef('OnUpdateLocalization'); */ ?>
 <code>OnUpdateLocalization</code>)
 and to add your own translation formats (see
-<?php /* api_link('FileLoader', 'CastleLocalization.TCastleLocalization.html#FileLoader'); */ ?>
+<?php /* echo cgeRef('FileLoader'); */ ?>
 <code>FileLoader</code>).
 
 <p>As with GetText approach, you can use a cross-platform <?php echo cgeRef('CastleSystemLanguage'); ?> unit that tells you the preferred user language. You can also translate strings "explicitly" using the
-<?php /* api_link('Localization.Items[\'my_id\']', 'CastleLocalization.TCastleLocalization.html#Items'); */ ?>
  <code>Localization.Items['my_id']</code>
  in CastleLocalization.
 

@@ -1708,15 +1708,6 @@ function depends_ul($depends_array)
   return array_to_ul($depends_array);
 }
 
-function api_link($title, $href, $output = true)
-{
-  global $castle_apidoc_url;
-  $result = '<a href="' . $castle_apidoc_url . htmlspecialchars($href) . '">'
-    . htmlspecialchars($title) . '</a>';
-  if ($output) echo $result;
-  return $result;
-}
-
 /* Highlight XML code, detecting [[xxx|yyy]] as links to API doc.
 
    We do not use geshi for this now, since as far as I know we cannot do this

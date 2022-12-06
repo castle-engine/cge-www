@@ -130,8 +130,8 @@ $toc = new TableOfContents(
 The look and behavior of everything is very customizable,
 as you often want a special-looking UI in your games.
 Our user-interface is rendered inside a container like
-<?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?> or
-<?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?>,
+<?php echo cgeRef('TCastleWindow'); ?> or
+<?php echo cgeRef('TCastleControl'); ?>,
 and of course works without any modifications on all the platforms
 we support &mdash; desktop, mobile...
 
@@ -159,70 +159,70 @@ echo castle_thumbs(array(
 
 <p>Our game window is covered by <i>2D user-interface controls</i>.
 All of the classes representing a user-interface control descend from
-the <?php api_link('TCastleUserInterface', 'CastleUIControls.TCastleUserInterface.html'); ?> class.
+the <?php echo cgeRef('TCastleUserInterface'); ?> class.
 They can render, they can handle inputs, they can perform any time-dependent task, and much more.
 
 <p>All of the currently used controls are added to the list of
-<?php api_link('TCastleWindow.Controls', 'CastleWindow.TCastleWindow.html#Controls'); ?>
- (if you use <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?>) or
-<?php api_link('TCastleControl.Controls', 'CastleControl.TCastleControl.html#Controls'); ?>
- (if you use Lazarus forms with <?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?>).
+<?php echo cgeRef('TCastleWindow.Controls'); ?>
+ (if you use <?php echo cgeRef('TCastleWindow'); ?>) or
+<?php echo cgeRef('TCastleControl.Controls'); ?>
+ (if you use Lazarus forms with <?php echo cgeRef('TCastleControl'); ?>).
 The controls on this list are ordered from the back to front. But usually you don't need to remember that,
 as you add them using the aptly-named methods
-<?php api_link('InsertFront', 'CastleUIControls.TChildrenControls.html#InsertFront'); ?> or
-<?php api_link('InsertBack', 'CastleUIControls.TChildrenControls.html#InsertBack'); ?>,
+<?php echo cgeRef('InsertFront'); ?> or
+<?php echo cgeRef('InsertBack'); ?>,
 indicating the visual "front" (<i>in front of other controls</i>) or "back".
-The <?php api_link('TCastleUserInterface', 'CastleUIControls.TCastleUserInterface.html'); ?> can be arranged
- in hierarchy: one instance of <?php api_link('TCastleUserInterface', 'CastleUIControls.TCastleUserInterface.html'); ?>
+The <?php echo cgeRef('TCastleUserInterface'); ?> can be arranged
+ in hierarchy: one instance of <?php echo cgeRef('TCastleUserInterface'); ?>
  can be a child of another, which makes it visually "contained" inside the parent,
 and moved along with parent.
 
 <p>Note that you can also render and handle inputs using the
-<?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?> or
-<?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?> callbacks,
-like <?php api_link('Window.OnRender', 'CastleWindow.TCastleWindow.html#OnRender'); ?>,
-<?php api_link('Window.OnPress', 'CastleWindow.TCastleWindow.html#OnPress'); ?> and
-<?php api_link('Window.OnUpdate', 'CastleWindow.TCastleWindow.html#OnUpdate'); ?>.
+<?php echo cgeRef('TCastleWindow'); ?> or
+<?php echo cgeRef('TCastleControl'); ?> callbacks,
+like <?php echo cgeRef('Window.OnRender'); ?>,
+<?php echo cgeRef('Window.OnPress'); ?> and
+<?php echo cgeRef('Window.OnUpdate'); ?>.
 But usually most of your rendering and input handling should be done inside some
-<?php api_link('TCastleUserInterface', 'CastleUIControls.TCastleUserInterface.html'); ?>
+<?php echo cgeRef('TCastleUserInterface'); ?>
  descendant, most importantly inside
- <?php api_link('TIUState', 'CastleUIState.TUIState.html'); ?> descendant
+ <?php echo cgeRef('TIUState'); ?> descendant
  (<code>TUIState</code> descends from <code>TCastleUserInterface</code>).
 
-<p>Note that <?php api_link('TCastleViewport', 'CastleViewport.TCastleViewport.html'); ?>
- is also a descendant of <?php api_link('TCastleUserInterface', 'CastleUIControls.TCastleUserInterface.html'); ?>.
+<p>Note that <?php echo cgeRef('TCastleViewport'); ?>
+ is also a descendant of <?php echo cgeRef('TCastleUserInterface'); ?>.
  So the organization follows what you see:
  inside a 2D window, you create a 2D viewport, that allows to view the 3D world inside.
-So, almost everything is "inside" some <?php api_link('TCastleUserInterface', 'CastleUIControls.TCastleUserInterface.html'); ?>
+So, almost everything is "inside" some <?php echo cgeRef('TCastleUserInterface'); ?>
  in our engine.<!--, and we advice you to follow this approach when creating your own games.-->
 
-<p>While <?php api_link('TCastleUserInterface', 'CastleUIControls.TCastleUserInterface.html'); ?> is basically
+<p>While <?php echo cgeRef('TCastleUserInterface'); ?> is basically
  a way to render <i>anything</i>, in this chapter we will focus on the most traditional
 use of this class: to create simple 2D user interfaces. Our engine includes a large number of
-<?php api_link('TCastleUserInterface', 'CastleUIControls.TCastleUserInterface.html'); ?> descendants for this. The most
+<?php echo cgeRef('TCastleUserInterface'); ?> descendants for this. The most
 often used controls are:
 
 <ul>
-  <li><?php api_link('TCastleLabel', 'CastleControls.TCastleLabel.html'); ?> - Label with text. As with all our text controls, the font family and size is customizable (see <a href="manual_text.php">chapter about text</a>). May have a frame. May be multiline. May contain some <?php api_link('HTML tags', 'CastleControls.TCastleLabel.html#Html'); ?>.</li>
+  <li><?php echo cgeRef('TCastleLabel'); ?> - Label with text. As with all our text controls, the font family and size is customizable (see <a href="manual_text.php">chapter about text</a>). May have a frame. May be multiline. May contain some <?php echo cgeRef('HTML tags'); ?>.</li>
 
-  <li><?php api_link('TCastleButton', 'CastleControls.TCastleButton.html'); ?> - Clickable button. The look is highly configurable with custom images and tint colors. May contain an icon inside (actually, by inserting other UI controls as children, it may contain <i>anything</i> inside). The size may be automatically adjusted to the inside caption (and icon), or may be explicitly given.</li>
+  <li><?php echo cgeRef('TCastleButton'); ?> - Clickable button. The look is highly configurable with custom images and tint colors. May contain an icon inside (actually, by inserting other UI controls as children, it may contain <i>anything</i> inside). The size may be automatically adjusted to the inside caption (and icon), or may be explicitly given.</li>
 
-  <li><?php api_link('TCastleImageControl', 'CastleControls.TCastleImageControl.html'); ?> - Image. May stretch the content, or adjust to the content size. Image may be partially transparent, with blending or alpha-testing. Image can be rotated or clipped by an arbitrary line. Image may be "tinted" (multiplied) by given color. Underneath, the image is a full-featured <?php api_link('TCastleImage', 'CastleImages.TCastleImage.html'); ?>, so you can process it in a myriad of ways.<!--, and load from a myriad sources (e.g. you can load here a dynamically generated <a href="">screenshot, not only an image file).--></li>
+  <li><?php echo cgeRef('TCastleImageControl'); ?> - Image. May stretch the content, or adjust to the content size. Image may be partially transparent, with blending or alpha-testing. Image can be rotated or clipped by an arbitrary line. Image may be "tinted" (multiplied) by given color. Underneath, the image is a full-featured <?php echo cgeRef('TCastleImage'); ?>, so you can process it in a myriad of ways.<!--, and load from a myriad sources (e.g. you can load here a dynamically generated <a href="">screenshot, not only an image file).--></li>
 
-  <li><?php api_link('TCastleRectangleControl', 'CastleControls.TCastleRectangleControl.html'); ?> - Rectangle filled with solid color. Good for a general-purpose background. The color may be partially transparent, in which case the content underneath is still visible.</li>
+  <li><?php echo cgeRef('TCastleRectangleControl'); ?> - Rectangle filled with solid color. Good for a general-purpose background. The color may be partially transparent, in which case the content underneath is still visible.</li>
 
-  <li><?php api_link('TCastleUserInterface', 'CastleUIControls.TCastleUserInterface.html'); ?> itself is also very useful - General-purpose container (or ancestor) for other UI controls. Does not do or show anything by itself, but it has a configurable position and size.</li>
+  <li><?php echo cgeRef('TCastleUserInterface'); ?> itself is also very useful - General-purpose container (or ancestor) for other UI controls. Does not do or show anything by itself, but it has a configurable position and size.</li>
 </ul>
 
-<p>These are just the basic UI classes. Find the <code>TCastleUserInterface</code> in our <?php api_link('class hierarchy', 'ClassHierarchy.html'); ?> diagram and look at all it's descendants to discover more:)
+<p>These are just the basic UI classes. Find the <code>TCastleUserInterface</code> in our <?php echo cgeRef('class hierarchy'); ?> diagram and look at all it's descendants to discover more:)
 
 <?php echo $toc->html_section(); ?>
 
 <p>You simply create an instance of any class you like, and add it as a children
-of <?php api_link('Window.Controls', 'CastleWindow.TCastleWindow.html#Controls'); ?>,
- <?php api_link('CastleControl.Controls', 'CastleControl.TCastleControl.html#Controls'); ?>
- or another (parent) <?php api_link('TCastleUserInterface', 'CastleUIControls.TCastleUserInterface.html'); ?>.
- Note that <?php api_link('TCastleUserInterface', 'CastleUIControls.TCastleUserInterface.html'); ?> is a descendant
+of <?php echo cgeRef('Window.Controls'); ?>,
+ <?php echo cgeRef('CastleControl.Controls'); ?>
+ or another (parent) <?php echo cgeRef('TCastleUserInterface'); ?>.
+ Note that <?php echo cgeRef('TCastleUserInterface'); ?> is a descendant
  of the standard <code>TComponent</code> property, so you can use the standard "ownership"
 mechanism to take care of freeing the UI control. In simple cases, you can make the <code>Application</code>
 or <code>Window</code> a parent of your UI control.
@@ -235,7 +235,7 @@ or <code>Window</code> a parent of your UI control.
 You can also make a control temporarily "not existing"
 (not visible, not handling inputs and so on &mdash;
 just like it would not be present on the controls list at all) by flipping it's
-<?php api_link('Exists', 'CastleUIControls.TCastleUserInterface.html#Exists'); ?>
+<?php echo cgeRef('Exists'); ?>
  property.
 
 <p>Here's the previous example expanded, showing how to handle button click,
@@ -254,38 +254,38 @@ echo castle_thumbs(array(
 <p>Every UI control may have children, which are positioned relative to their parent.
 The children are always drawn on top of their parent.
 (Although the parent has an additional chance to draw over the children in it's
-<?php api_link('RenderOverChildren', 'CastleUIControls.TCastleUserInterface.html#RenderOverChildren'); ?> method, but that's rarely used.)
+<?php echo cgeRef('RenderOverChildren'); ?> method, but that's rarely used.)
 
 <ul>
   <li><p>The <b>children receive input events (key and mouse presses) before their parent</b>.
     So the innermost children get the first chance to process an event
     (like a click), and only if they do not handle it (their
-    <?php api_link('Press', 'CastleUIControls.TInputListener.html#Press'); ?> method will return <code>false</code>)
+    <?php echo cgeRef('Press'); ?> method will return <code>false</code>)
     then the event is passed to the parent. If no UI control processes a press event,
     it is passed to the
-    <?php api_link('TCastleWindow.OnPress', 'CastleWindow.TCastleWindow.html#OnPress'); ?> or
-    <?php api_link('TCastleControl.OnPress', 'CastleControl.TCastleControl.html#OnPress'); ?>.
+    <?php echo cgeRef('TCastleWindow.OnPress'); ?> or
+    <?php echo cgeRef('TCastleControl.OnPress'); ?>.
 
     <p>Note that the <b>input events are only send to the controls under the pointer</b>
     (mouse or touch position). Although this is configurable using
-    the <?php api_link('CapturesEventsAtPosition', 'CastleUIControls.TCastleUserInterface.html#CapturesEventsAtPosition'); ?>
+    the <?php echo cgeRef('CapturesEventsAtPosition'); ?>
      method, but usually it's saner to leave it at default.
     A useful trick to capture the events from the whole window is to use a
-    <?php api_link('TCastleUserInterface', 'CastleUIControls.TCastleUserInterface.html'); ?>
+    <?php echo cgeRef('TCastleUserInterface'); ?>
      with
-    <?php api_link('FullSize', 'CastleUIControls.TCastleUserInterface.html#FullSize'); ?>
+    <?php echo cgeRef('FullSize'); ?>
      = <code>true</code>, this will capture mouse clicks and key presses from everything.
 
   <li><p><b>Any control can be a parent</b>. For example, you can insert arbitrary images and labels
-    inside a <?php api_link('TCastleButton', 'CastleControls.TCastleButton.html'); ?>, to make it's content look in any way you want.
+    inside a <?php echo cgeRef('TCastleButton'); ?>, to make it's content look in any way you want.
     If you want to group a couple of controls, but don't have a natural "parent" control,
     it's often a good idea to use a new instance of an
-    <?php api_link('TCastleUserInterface', 'CastleUIControls.TCastleUserInterface.html'); ?>
+    <?php echo cgeRef('TCastleUserInterface'); ?>
      as a parent.
 
   <li><p><b>Controls are positioned relative to the parent</b>, using just the
-    <?php api_link('Left', 'CastleUIControls.TCastleUserInterface.html#Left'); ?> and
-    <?php api_link('Bottom', 'CastleUIControls.TCastleUserInterface.html#Bottom'); ?> properties
+    <?php echo cgeRef('Left'); ?> and
+    <?php echo cgeRef('Bottom'); ?> properties
     by default. Remember that our engine in 2D uses a coordinate system
     where the Y grows from zero (bottom) to maximum height (at the top).
     This is contrary to a convention of various GUI libraries that designate <code>Top</code> as zero,
@@ -296,15 +296,15 @@ The children are always drawn on top of their parent.
     while X and Y axes are oriented the same in 2D and 3D).
 
     <p>Usually, instead of assigning the positions using the
-    <?php api_link('Left', 'CastleUIControls.TCastleUserInterface.html#Left'); ?> and
-    <?php api_link('Bottom', 'CastleUIControls.TCastleUserInterface.html#Bottom'); ?> properties,
+    <?php echo cgeRef('Left'); ?> and
+    <?php echo cgeRef('Bottom'); ?> properties,
     it's better to <b>use <i>anchors</i></b>. Anchors specify the position of some border (or center)
     of the control, relative to some border (or center) of it's parent.
     When the parent control is resized (e.g. when user resizes the window),
     children are automatically repositioned correctly.
     This usually avoids the need to react to window size changes in callbacks like
-     <?php api_link('Window.OnResize', 'CastleWindow.TCastleWindow.html#OnResize'); ?>
-     or <?php api_link('TCastleUserInterface.Resize', 'CastleUIControls.TInputListener.html#Resize'); ?> implementations.</p>
+     <?php echo cgeRef('Window.OnResize'); ?>
+     or <?php echo cgeRef('TCastleUserInterface.Resize'); ?> implementations.</p>
   </li>
 
   <li><p>Note that <b>the parent does not clip the visibility of the children</b>.
@@ -315,7 +315,7 @@ The children are always drawn on top of their parent.
     within the parent.
 
     <p>If you actually want to clip the children, set the
-    <?php api_link('ClipChildren', 'CastleUIControls.TCastleUserInterface.html#ClipChildren'); ?> to <code>true</code>.
+    <?php echo cgeRef('ClipChildren'); ?> to <code>true</code>.
   </li>
 </ul>
 
@@ -444,18 +444,18 @@ accommodate nicely to the various aspect ratios too.
 
 <p>The fact that things are scaled is largely hidden from you. You get and set
 the
- <?php api_link('Left', 'CastleUIControls.TCastleUserInterface.html#Left'); ?>,
- <?php api_link('Bottom', 'CastleUIControls.TCastleUserInterface.html#Bottom'); ?>,
- <?php api_link('Anchor', 'CastleUIControls.TCastleUserInterface.html#Anchor'); ?>,
- <?php api_link('EffectiveWidth', 'CastleUIControls.TCastleUserInterface.html#EffectiveWidth'); ?>,
- <?php api_link('EffectiveHeight', 'CastleUIControls.TCastleUserInterface.html#EffectiveHeight'); ?>,
- <?php api_link('EffectiveRect', 'CastleUIControls.TCastleUserInterface.html#EffectiveRect'); ?>,
- <?php api_link('FontSize', 'CastleControls.TCastleUserInterfaceFont.html#FontSize'); ?>
+ <?php echo cgeRef('Left'); ?>,
+ <?php echo cgeRef('Bottom'); ?>,
+ <?php echo cgeRef('Anchor'); ?>,
+ <?php echo cgeRef('EffectiveWidth'); ?>,
+ <?php echo cgeRef('EffectiveHeight'); ?>,
+ <?php echo cgeRef('EffectiveRect'); ?>,
+ <?php echo cgeRef('FontSize'); ?>
  and many other properties in the <i>unscaled</i> pixels. Which
 basically means that you can hardcode them, and they will still look
 right everywhere. Only a few properties uncover the final (<i>real</i>
 or <i>scaled</i>) control size. In particular the
-<?php api_link('RenderRect', 'CastleUIControls.TCastleUserInterface.html#RenderRect'); ?>
+<?php echo cgeRef('RenderRect'); ?>
  method (very useful for custom drawing) returns the control rectangle
 in the real device pixels (and with the anchors and parent
 transformations already applied). More about this in the
@@ -464,21 +464,21 @@ transformations already applied). More about this in the
 <?php echo $toc->html_section(); ?>
 
 <p>You can check the resulting size of the control
-with <?php api_link('EffectiveWidth', 'CastleUIControls.TCastleUserInterface.html#EffectiveWidth'); ?>
- and <?php api_link('EffectiveHeight', 'CastleUIControls.TCastleUserInterface.html#EffectiveHeight'); ?>.
+with <?php echo cgeRef('EffectiveWidth'); ?>
+ and <?php echo cgeRef('EffectiveHeight'); ?>.
 
 <p>Beware: Many controls,
-like <?php api_link('TCastleButton', 'CastleControls.TCastleButton.html'); ?>, expose also properties
-called <?php api_link('Width', 'CastleControls.TCastleButton.html#Width'); ?> and
- <?php api_link('Height', 'CastleControls.TCastleButton.html#Height'); ?>, but they are only to set
+like <?php echo cgeRef('TCastleButton'); ?>, expose also properties
+called <?php echo cgeRef('Width'); ?> and
+ <?php echo cgeRef('Height'); ?>, but they are only to set
 an <i>explicit</i> size of the control (if you have disabled
-auto-sizing using <?php api_link('TCastleButton.AutoSize', 'CastleControls.TCastleButton.html#AutoSize'); ?>
- or <?php api_link('TCastleButton.AutoSizeWidth', 'CastleControls.TCastleButton.html#AutoSizeWidth'); ?>
+auto-sizing using <?php echo cgeRef('TCastleButton.AutoSize'); ?>
+ or <?php echo cgeRef('TCastleButton.AutoSizeWidth'); ?>
  or such). They will not be updated when the control auto-sizing mechanism calculates the actual
 size. So <i>do not use <code>Width</code> or <code>Height</code> properties to query the size of a button.
 Always use the <code>EffectiveWidth</code> or <code>EffectiveHeight</code> properties instead.</i>
 
-<p>You can also use the <?php api_link('EffectiveRect', 'CastleUIControls.TCastleUserInterface.html#EffectiveRect'); ?>
+<p>You can also use the <?php echo cgeRef('EffectiveRect'); ?>
  property, it contains the control position and size. But note that it's
 valid only after the control, and all it's parents, is part of a window that already
 received a <code>Resize</code> event. So you may need to wait for the <code>Resize</code> event
@@ -500,7 +500,7 @@ that can be easily customized.
 even without using the theme, by it's custom images.</p-->
 
 <p>Use the <code>Theme</code> global variable
-(instance of <?php api_link('TCastleTheme', 'CastleControls.TCastleTheme.html'); ?>).
+(instance of <?php echo cgeRef('TCastleTheme'); ?>).
 For example, image type <code>tiButtonNormal</code> is the normal
 (not pressed or disabled) button look.
 
@@ -512,7 +512,7 @@ Theme.ImagesPersistent[tiButtonNormal].ProtectedSides.AllSides := 1;'); ?>
 
 <p>Note that we also adjust the <code>ProtectedSides</code> above.
 This way image will be drawn stretched, using the
-<?php api_link('Draw3x3', 'CastleGLImages.TDrawableImage.html#Draw3x3'); ?> technique
+<?php echo cgeRef('Draw3x3'); ?> technique
  (often called <a href="https://en.wikipedia.org/wiki/9-slice_scaling">9-slice scaling</a>)
  to intelligently stretch, taking the sides into account.</p>
 
@@ -545,13 +545,13 @@ echo castle_thumbs(array(
 ));
 ?>
 
-<p>As the viewport may contain a <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>
+<p>As the viewport may contain a <?php echo cgeRef('TCastleScene'); ?>
  with animation, and a viewport
 is just a 2D user-interface control,<!-- that can be children of other controls,-->
 you can mix user-interface with animations freely.
-For example, you can design an animation in Spine, load it to <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>,
-insert it to <?php api_link('TCastleViewport', 'CastleViewport.TCastleViewport.html'); ?>, which you can then insert inside a
-<?php api_link('TCastleButton', 'CastleControls.TCastleButton.html'); ?>. Thus you can have a button
+For example, you can design an animation in Spine, load it to <?php echo cgeRef('TCastleScene'); ?>,
+insert it to <?php echo cgeRef('TCastleViewport'); ?>, which you can then insert inside a
+<?php echo cgeRef('TCastleButton'); ?>. Thus you can have a button
  with any crazy animation inside:)
 
 <?php echo pascal_highlight_file('code-samples/button_with_viewport.lpr'); ?>

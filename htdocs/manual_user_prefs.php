@@ -15,7 +15,7 @@ $toc = new TableOfContents(
 
 <p>To manage persistent data, like user preferences
 or a simple <i>save game</i> values,
-use <?php api_link('CastleConfig', 'CastleConfig.html'); ?> unit
+use <?php echo cgeRef('CastleConfig'); ?> unit
 with a <code>UserConfig</code> singleton inside. A simple example:</p>
 
 <?php echo pascal_highlight_file('code-samples/user_prefs_demo.lpr'); ?>
@@ -41,25 +41,25 @@ methods:
     variables).
 </ul>
 
-<p>See the <?php api_link('TCastleConfig', 'CastleXMLConfig.TCastleConfig.html'); ?>
+<p>See the <?php echo cgeRef('TCastleConfig'); ?>
  for a documentation of our extensions.
 
 <p>Some engine components provide ready methods to load / save
 their configuration into a
-<?php api_link('TCastleConfig', 'CastleXMLConfig.TCastleConfig.html'); ?> instance
+<?php echo cgeRef('TCastleConfig'); ?> instance
 (for example into the <code>UserConfig</code>). These include:
 
 <ul>
-  <li><?php api_link('SoundEngine', 'CastleSoundEngine.html#SoundEngine'); ?>
+  <li><?php echo cgeRef('SoundEngine'); ?>
     &mdash; can load/save sound enabled state, sound volume and other parameters.
     See
-    <?php api_link('TSoundEngine.LoadFromConfig', 'CastleSoundEngine.TSoundEngine.html#LoadFromConfig'); ?>,
-    <?php api_link('TSoundEngine.SaveToConfig', 'CastleSoundEngine.TSoundEngine.html#SaveToConfig'); ?>.
+    <?php echo cgeRef('TSoundEngine.LoadFromConfig'); ?>,
+    <?php echo cgeRef('TSoundEngine.SaveToConfig'); ?>.
 
-  <li><?php api_link('InputsAll', 'CastleInputs.html#InputsAll'); ?>
+  <li><?php echo cgeRef('InputsAll'); ?>
     &mdash; input shortcuts (named key and mouse shortcuts) customizations. See
-    <?php api_link('TInputShortcutList.LoadFromConfig', 'CastleInputs.TInputShortcutList.html#LoadFromConfig'); ?>,
-    <?php api_link('TInputShortcutList.SaveToConfig', 'CastleInputs.TInputShortcutList.html#SaveToConfig'); ?>.
+    <?php echo cgeRef('TInputShortcutList.LoadFromConfig'); ?>,
+    <?php echo cgeRef('TInputShortcutList.SaveToConfig'); ?>.
 </ul>
 
 <p>Note that the engine does <b>not</b> automatically
@@ -75,8 +75,8 @@ these values as user preferences.
 <p>While you can load and save the config data at any time,
 you can also register your own load and save listeners using
 the
-<?php api_link('TCastleConfig.AddLoadListener', 'CastleXMLConfig.TCastleConfig.html#AddLoadListener'); ?>,
-<?php api_link('TCastleConfig.AddSaveListener', 'CastleXMLConfig.TCastleConfig.html#AddSaveListener'); ?>
+<?php echo cgeRef('TCastleConfig.AddLoadListener'); ?>,
+<?php echo cgeRef('TCastleConfig.AddSaveListener'); ?>
  mechanism. This sometimes allows to decentralize your code better.
 
 <?php echo $toc->html_section(); ?>
@@ -86,29 +86,29 @@ the savegames using the <a href="https://developers.google.com/games/services/co
 feature. To use this feature:
 
 <ol>
-  <li><p>Turn on the <a href="https://castle-engine.io/android-Project-Components-Integrated-with-Castle-Game-Engine#google_play_games">Google Play Games integration</a>
+  <li><p>Turn on the <a href="https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/android/integrated-services/google_play_games/README.adoc">Google Play Games integration</a>
     for your project.
 
   <li><p>Create and initialize the
-    <?php api_link('TGooglePlayGames', 'CastleGooglePlayGames.TGooglePlayGames.html'); ?>
+    <?php echo cgeRef('TGameService'); ?>
     instance in your code. Be sure to pass parameter <code>SaveGames</code>
-    as <code>true</code> to the <code>TGooglePlayGames.Initialize</code>
+    as <code>true</code> to the <code>TGameService.Initialize</code>
     call.
 
   <li><p>Connect player to the Google Play Games at runtime,
-    using <?php api_link('TGooglePlayGames.RequestSignedIn', 'CastleGooglePlayGames.TGooglePlayGames.html#RequestSignedIn'); ?> method,
+    using <?php echo cgeRef('TGameService.RequestSignedIn'); ?> method,
     and / or passing <code>AutoStartSignInFlow</code> as <code>true</code>
-    to the <code>TGooglePlayGames.Initialize</code> call.
+    to the <code>TGameService.Initialize</code> call.
 
     <p>You can wait for the sign-in to happen by the
-    <?php api_link('TGooglePlayGames.OnSignedInChanged', 'CastleGooglePlayGames.TGooglePlayGames.html#OnSignedInChanged'); ?>
+    <?php echo cgeRef('TGameService.OnSignedInChanged'); ?>
     event, or just observe the
-    <?php api_link('TGooglePlayGames.SignedIn', 'CastleGooglePlayGames.TGooglePlayGames.html#SignedIn'); ?>
+    <?php echo cgeRef('TGameService.SignedIn'); ?>
     property.
 
   <li><p>Then load and save games using the
-    <?php api_link('TGooglePlayGames.SaveGameLoad', 'CastleGooglePlayGames.TGooglePlayGames.html#SaveGameLoad'); ?> and
-    <?php api_link('TGooglePlayGames.SaveGameSave', 'CastleGooglePlayGames.TGooglePlayGames.html#SaveGameSave'); ?>
+    <?php echo cgeRef('TGameService.SaveGameLoad'); ?> and
+    <?php echo cgeRef('TGameService.SaveGameSave'); ?>
     methods. They represent the "savegame contents" as a simple string,
     and you can use the <code>UserConfig.SaveToString</code>
     and <code>UserConfig.LoadFromString</code> methods
@@ -117,7 +117,7 @@ feature. To use this feature:
 
   <li><p>If you want to allow user to choose a "slot" where to save the game,
     or from which to load the game, you can use a ready dialog by calling
-    <?php api_link('TGooglePlayGames.ShowSaveGames', 'CastleGooglePlayGames.TGooglePlayGames.html#ShowSaveGames'); ?>.
+    <?php echo cgeRef('TGameService.ShowSaveGames'); ?>.
 </ol>
 
 <?php

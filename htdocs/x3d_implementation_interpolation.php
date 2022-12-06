@@ -45,13 +45,13 @@ by only changing the <code>TimeSensor.cycleInterval</code> value.
 
 <p>How to start the animation?
 In <i>Castle Game Engine</i>, it's easiest to just use the
-<?php api_link('PlayAnimation', 'CastleSceneCore.TCastleSceneCore.html#PlayAnimation'); ?>
+<?php echo cgeRef('TCastleSceneCore.PlayAnimation'); ?>
  method. It internally does everything necessary to reliably start the
 indicated <code>TimeSensor</code> node.
 Just be aware that there are other ways to start an animation,
 X3D standard allows to make <code>TimeSensor</code> node active at open,
 or activate it through various other means. But using
-<?php api_link('PlayAnimation', 'CastleSceneCore.TCastleSceneCore.html#PlayAnimation'); ?>
+<?php echo cgeRef('TCastleSceneCore.PlayAnimation'); ?>
  is almost always simpler, <i>and</i> you get some cool extra options that
 we will mention later.
 
@@ -227,7 +227,7 @@ the <code>PlayAnimation</code> method. If you generate the X3D files yourself,
 leave <code>TimeSensor.loop</code> initially <code>FALSE</code> (this is the default),
 otherwise the animation will be already playing when you load the file.
 
-<p>The <?php api_link('PlayAnimation', 'CastleSceneCore.TCastleSceneCore.html#PlayAnimation'); ?> method is very powerful.
+<p>The <?php echo cgeRef('TCastleSceneCore.PlayAnimation'); ?> method is very powerful.
 For example you can optionally
 play the animation backward, or with <a href="https://castle-engine.io/wp/2018/03/21/animation-blending/">blending</a>,
 or get a notification when animation stops.
@@ -281,11 +281,10 @@ or get a notification when animation stops.
 
 <p>The important advice is that, no matter how complicated is your animation inside X3D graph, it's <i>worth to control each animation through a central <code>TimeSensor</code>, such that it can be controlled easily as a single animation</i>. This makes the <code>TCastleSceneCore.PlayAnimation</code> method useful for you to control your animations. This way the complexity of the animation system can be hidden by the engine. Even if the X3D graph is complicated, you just run a trivial <code>TCastleSceneCore.PlayAnimation</code> method.
 
-<p>Note that some other higher-level engine routines have the same "concept" of animations as <?php api_link('PlayAnimation', 'CastleSceneCore.TCastleSceneCore.html#PlayAnimation'); ?>. These include
-<?php api_link('AnimationDuration', 'CastleSceneCore.TCastleSceneCore.html#AnimationDuration'); ?>,
-<?php api_link('ForceAnimationPose', 'CastleSceneCore.TCastleSceneCore.html#ForceAnimationPose'); ?>,
-<?php api_link('HasAnimation', 'CastleSceneCore.TCastleSceneCore.html#HasAnimation'); ?>,
-and the animations <a href="manual_resources.php">used by our CastleCreatures and CastleItems units</a>.
+<p>Note that some other higher-level engine routines have the same "concept" of animations as <?php echo cgeRef('TCastleSceneCore.PlayAnimation'); ?>. These include
+<?php echo cgeRef('TCastleSceneCore.AnimationDuration'); ?>,
+<?php echo cgeRef('TCastleSceneCore.ForceAnimationPose'); ?>,
+<?php echo cgeRef('TCastleSceneCore.HasAnimation'); ?>.
 All these engine methods are capable of handling all the animation types
 described on this page.
 

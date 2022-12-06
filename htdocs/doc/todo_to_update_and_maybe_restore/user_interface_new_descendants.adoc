@@ -13,10 +13,10 @@ idea to wrap them in a parent UI control class.
 new descendant of your top-most UI class. The top-most UI class can be
 
 <ol>
-  <li>something specific, like the <?php api_link('TCastleRectangleControl', 'CastleControls.TCastleRectangleControl.html'); ?> if your whole UI
+  <li>something specific, like the <?php echo cgeRef('TCastleRectangleControl'); ?> if your whole UI
     is inside a simple rectangle,
   <li>or it can be our universal <i>"UI control with position and size"</i>:
-    <?php api_link('TCastleUserInterface', 'CastleUIControls.TCastleUserInterface.html'); ?>.
+    <?php echo cgeRef('TCastleUserInterface'); ?>.
 </ol>
 
 <p>In the constructor of your new class, you
@@ -33,7 +33,7 @@ handle inputs and so on.
 <p>The new UI control can be inserted directly to the
 <code>Window.Controls</code>, or it can be used as a child of other UI controls, to
 create even more complex stuff. It can be aligned within parent using
-the normal <?php api_link('Anchor', 'CastleUIControls.TCastleUserInterface.html#Anchor'); ?> methods.
+the normal <?php echo cgeRef('Anchor'); ?> methods.
 
 <p>Example below implements the <code>TZombieDialog</code> class, which is a reworked
 version of the previous UI example, that now wraps the dialog UI inside

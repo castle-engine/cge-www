@@ -763,9 +763,9 @@ latest <?php echo a_href_page('glplotter', 'glplotter'); ?> to see
 the curves shapes when rendered.
 For the detailed documentation, see the corresponding Pascal API
 documentation
- <?php api_link('CatmullRomSpline', 'CastleCurves.html#CatmullRomSpline'); ?>,
- <?php api_link('HermiteSpline', 'CastleCurves.html#HermiteSpline'); ?>,
- <?php api_link('HermiteTenseSpline', 'CastleCurves.html#HermiteTenseSpline'); ?>
+ <?php echo cgeRef('CatmullRomSpline'); ?>,
+ <?php echo cgeRef('HermiteSpline'); ?>,
+ <?php echo cgeRef('HermiteTenseSpline'); ?>
  and the <a href="https://en.wikipedia.org/wiki/Cubic_Hermite_spline">wikipedia about Hermite
 and Catmull-Rom splines</a>.
 

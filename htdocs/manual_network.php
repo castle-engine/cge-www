@@ -38,28 +38,28 @@ other resources) automatically deal with URLs.
 
 <ul>
   <li><p><b>To load (easily)</b>, use a simple
-    <?php api_link('Download', 'CastleDownload.html#Download'); ?> function.
+    <?php echo cgeRef('Download'); ?> function.
     It simply returns a <code>TStream</code> that contains the resource indicated by the URL.
     It supports all the protocols mentioned below, e.g. <code>file</code>,
     <code>castle-data</code>.
 
     <p>It can even download data using <code>http</code> or <code>https</code> protocols,
-    although you need to set <?php api_link('EnableBlockingDownloads', 'CastleDownload.html#EnableBlockingDownloads'); ?>
+    although you need to set <?php echo cgeRef('EnableBlockingDownloads'); ?>
     to <code>true</code> for this.
 
   <li><p><b>To load asynchronously</b>
     (to continue the flow of your application while the download takes place in the background),
     use the
-    <?php api_link('TCastleDownload', 'CastleDownload.TCastleDownload.html'); ?> class.
+    <?php echo cgeRef('TCastleDownload'); ?> class.
     It presents a trivial API to start and watch the download progress,
     and offers a lot of features for HTTP requests.
     When the
-    <?php api_link('TCastleDownload.Status', 'CastleDownload.TCastleDownload.html#Status'); ?>
+    <?php echo cgeRef('TCastleDownload.Status'); ?>
     is
-    <?php api_link('dsSuccess', 'CastleDownload.html#dsSuccess'); ?>
+    <?php echo cgeRef('dsSuccess'); ?>
     you have the data
     (as a <code>TStream</code>) inside
-    <?php api_link('TCastleDownload.Contents', 'CastleDownload.TCastleDownload.html#Contents'); ?>.
+    <?php echo cgeRef('TCastleDownload.Contents'); ?>.
 
     <p>It supports all our procotols.
     It can download data using <code>http</code> or <code>https</code> protocols
@@ -82,7 +82,7 @@ other resources) automatically deal with URLs.
     </ul>
 
   <li><p><b>To save</b>, use
-    <?php api_link('URLSaveStream', 'CastleDownload.html#URLSaveStream'); ?>
+    <?php echo cgeRef('URLSaveStream'); ?>
     function. Right now, it can only save to a local file,
     so it merely translates a URL to local filename and creates a <code>TFileStream</code>
     for you. Still, it's a good idea to use it, to uniformly deal with
@@ -90,8 +90,8 @@ other resources) automatically deal with URLs.
 </ul>
 
 <p>If you want to read or write text files from an URL, use
-<?php api_link('TTextReader', 'CastleDownload.TTextReader.html'); ?> and
-<?php api_link('TTextWriter', 'CastleDownload.TTextWriter.html'); ?>.
+<?php echo cgeRef('TTextReader'); ?> and
+<?php echo cgeRef('TTextWriter'); ?>.
 
 <?php echo $toc->html_section(); ?>
 
@@ -99,24 +99,24 @@ other resources) automatically deal with URLs.
 
 <p><code>http</code> and <code>https</code> work.
 You can download data from the Internet,
-and the <?php api_link('TCastleDownload', 'CastleDownload.TCastleDownload.html'); ?>
+and the <?php echo cgeRef('TCastleDownload'); ?>
  has a support for various HTTP methods (GET, POST).
 You can use this for simple downloading, or for full-featured communication with a REST
 server.
 
-<p>Asynchronous <?php api_link('TCastleDownload', 'CastleDownload.TCastleDownload.html'); ?>
+<p>Asynchronous <?php echo cgeRef('TCastleDownload'); ?>
  supports <code>http</code> and <code>https</code> automatically.
 It is perfect to use with unreliable / slow network.
 
-<p>Synchronous <?php api_link('Download', 'CastleDownload.html#Download'); ?>
+<p>Synchronous <?php echo cgeRef('Download'); ?>
  supports these protocols only if you set global variable
- <?php api_link('EnableBlockingDownloads', 'CastleDownload.html#EnableBlockingDownloads'); ?>
+ <?php echo cgeRef('EnableBlockingDownloads'); ?>
  to <code>true</code>.
 We call them "blocking downloads" because the application simply waits for
 the un-interruptible download to finish.
 This is easy to use, but may cause your application to hang,
 as network may be slow / unreliable.
-We advise using <?php api_link('TCastleDownload', 'CastleDownload.html#TCastleDownload'); ?>
+We advise using <?php echo cgeRef('TCastleDownload'); ?>
  for network protocols, although it requires a bit more effort.
 
 <p>For the <code>https</code> (encrypted version of <code>http</code>) protocol to work:
@@ -198,7 +198,7 @@ runs your application.
 use <a href="manual_data_directory.php"><code>castle-data</code> protocol</a>,
 not <code>file</code> protocol.
 
-<p><?php api_link('CastleURIUtils', 'CastleURIUtils.html'); ?>
+<p><?php echo cgeRef('CastleURIUtils'); ?>
  contains routines to operate on URLs (and more general URIs),
 including converting between regular filenames and URLs with
 <code>file:</code> protocol.
@@ -234,9 +234,9 @@ including converting between regular filenames and URLs with
 </ul>
 
 <p>See reference of
-<?php api_link('FilenameToURISafe', 'CastleURIUtils.html#FilenameToURISafe'); ?>,
-<?php api_link('AbsoluteURI', 'CastleURIUtils.html#AbsoluteURI'); ?>,
-<?php api_link('URIToFilenameSafe', 'CastleURIUtils.html#URIToFilenameSafe'); ?>.
+<?php echo cgeRef('FilenameToURISafe'); ?>,
+<?php echo cgeRef('AbsoluteURI'); ?>,
+<?php echo cgeRef('URIToFilenameSafe'); ?>.
 <!--
 See <a href="https://github.com/castle-engine/castle-engine/blob/master/doc/miscellaneous_notes/uri_filename.txt">doc/miscellaneous_notes/uri_filename.txt</a> for more internal comments.
 -->
@@ -244,8 +244,8 @@ See <a href="https://github.com/castle-engine/castle-engine/blob/master/doc/misc
 <p>If you read/write filenames from/to <a href="http://www.lazarus.freepascal.org/">Lazarus</a> classes,
 for example if you use Lazarus <code>TOpenDialog.FileName</code> or
 <code>TSaveDialog.FileName</code>, you can use the UTF-8 variants instead:
-<?php api_link('URIToFilenameSafeUTF8', 'CastleLCLUtils.html#URIToFilenameSafeUTF8'); ?> and
-<?php api_link('FilenameToURISafeUTF8', 'CastleLCLUtils.html#FilenameToURISafeUTF8'); ?>.
+<?php echo cgeRef('URIToFilenameSafeUTF8'); ?> and
+<?php echo cgeRef('FilenameToURISafeUTF8'); ?>.
 But it doesn't matter in practice.
 Both <i>Castle Game Engine</i> and <i>Lazarus</i> configure FPC RTL to use UTF-8 for all strings
 (by default FPC RTL uses system-dependent encoding).
@@ -272,14 +272,14 @@ then your application will "just wok" on all systems.
 about the data directory</a>.
 
 <p>Note that you can adjust
-<?php api_link('ApplicationDataOverride', 'CastleFilesUtils.html#ApplicationDataOverride'); ?>
+<?php echo cgeRef('ApplicationDataOverride'); ?>
  to host your data files wherever you want.
 This way data files may even be loaded from <code>http</code> location.
 On desktop systems, the data location is by default
 just a regular directory on disk, but you can change it.
 
 <p>Loading from the <code>castle-data:/images/my_image.png</code>
-is equivalent to using <?php api_link('ApplicationData', 'CastleFilesUtils.html#ApplicationData'); ?>
+is equivalent to using <?php echo cgeRef('ApplicationData'); ?>
  in code and loading from the <code>ApplicationData('images/my_image.png')</code>.
 Since <i>Castle Game Engine 6.5</i>, we advise using
 <code>castle-data:/images/my_image.png</code> form.
@@ -331,9 +331,9 @@ can be accessed (from the Android app) using the URL <code>assets:/my_texture.pn
 
 <p><i>You should never explicitly use this protocol name</i>,
 as it does not work on other platforms than Android.
-Instead, use <?php api_link('ApplicationData', 'CastleFilesUtils.html#ApplicationData'); ?>
+Instead, use <?php echo cgeRef('ApplicationData'); ?>
  to refer to your data files from code. The
-<?php api_link('ApplicationData', 'CastleFilesUtils.html#ApplicationData'); ?>
+<?php echo cgeRef('ApplicationData'); ?>
  will always return an absolute URL to the data file location on current platform.
 On Android it will start with <code>castle-android-assets:/...</code> but you should treat this
 as an internal detail.
@@ -354,19 +354,19 @@ docs for more information about assets and project layout</a>.
 <?php echo $toc->html_section(); ?>
 
 <p>If you use
-<?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?>,
+<?php echo cgeRef('TCastleWindow'); ?>,
 it gives you a ready
-<?php api_link('TCastleWindow.FileDialog', 'CastleWindow.TCastleWindow.html#FileDialog'); ?>
+<?php echo cgeRef('TCastleWindow.FileDialog'); ?>
  that takes and returns URLs.
 
 <p>If you use Lazarus with
-<?php api_link('TCastleControl', 'CastleControl.TCastleControl.html'); ?>,
+<?php echo cgeRef('TCastleControl'); ?>,
 we advise to use our dialog components:
-<?php api_link('TCastleOpenDialog', 'CastleDialogs.TCastleOpenDialog.html'); ?>,
-<?php api_link('TCastleSaveDialog', 'CastleDialogs.TCastleSaveDialog.html'); ?>,
-<?php api_link('TCastleOpen3DDialog', 'CastleDialogs.TCastleOpen3DDialog.html'); ?>,
-<?php api_link('TCastleOpenImageDialog', 'CastleDialogs.TCastleOpenImageDialog.html'); ?>,
-<?php api_link('TCastleSaveImageDialog', 'CastleDialogs.TCastleSaveImageDialog.html'); ?>.
+<?php echo cgeRef('TCastleOpenDialog'); ?>,
+<?php echo cgeRef('TCastleSaveDialog'); ?>,
+<?php echo cgeRef('TCastleOpen3DDialog'); ?>,
+<?php echo cgeRef('TCastleOpenImageDialog'); ?>,
+<?php echo cgeRef('TCastleSaveImageDialog'); ?>.
 They expose <code>URL</code> property which works naturally with CGE.
 
 <!--
@@ -381,7 +381,7 @@ mentioned earlier.
 <p><a href="https://en.wikipedia.org/wiki/Uniform_resource_identifier">URI</a>
 is a more general term. URI uniquely identifies a resource but does not
 necessarily tell us how to load (download) or save (upload) it.
-We have many routines in <?php api_link('CastleURIUtils', 'CastleURIUtils.html'); ?>
+We have many routines in <?php echo cgeRef('CastleURIUtils'); ?>
  unit that process URIs (strings), they use the more general term <code>URI</code>.
 They complement standard FPC <code>URIParser</code> routines.
 
@@ -395,7 +395,7 @@ Most of our routines that load or save use the term <code>URL</code>.
 It's not precisely an URL (it's not an address of a resource),
 but you <i>can</i> load it (since the URI itself contains the resource).
 And we support it fully (our
-<?php api_link('Download', 'CastleDownload.html#Download'); ?> method
+<?php echo cgeRef('Download'); ?> method
 loads it automatically). Admittedly, this means that our loading routines
 should rather use the term <i>URL or data URI</i>, but that's just long
 and (for those who don't use data URI) confusing, so for simplicity we
@@ -421,10 +421,10 @@ see <?php echo a_href_page('X3D extensions introduction', 'x3d_extensions'); ?>.
 
   <li><p>You want reliability (not maximum speed), since it uses TCP connection in a standard fashion.
 
-  <li><p><?php api_link('CastleClientServer', 'CastleClientServer.html'); ?> and Indy use standard TCP connection in a standard way, which is good for simplicity and interoperability. E.g. you could develop a server in Java or C++ if needed, to communicate with Pascal clients.
+  <li><p><?php echo cgeRef('CastleClientServer'); ?> and Indy use standard TCP connection in a standard way, which is good for simplicity and interoperability. E.g. you could develop a server in Java or C++ if needed, to communicate with Pascal clients.
 </ul>
 
-<p>This approach uses the <?php api_link('CastleClientServer', 'CastleClientServer.html'); ?> unit, which uses <a href="https://www.indyproject.org/">Indy</a> (with threads) on most platforms, except on Android where we utilize dedicated asynchronous Android API for this.
+<p>This approach uses the <?php echo cgeRef('CastleClientServer'); ?> unit, which uses <a href="https://www.indyproject.org/">Indy</a> (with threads) on most platforms, except on Android where we utilize dedicated asynchronous Android API for this.
 
 <p>To compile it, <b>be sure to install Indy</b> using one of the options below, and then also compile in Lazarus package <code>castle_indy</code>. To install Indy:
 
@@ -471,7 +471,7 @@ lazbuild Indy10/indylaz.lpk
 
   <li><p>FPC includes some networking units in the standard installation already. They work at various levels. In particular if you just want HTTP (REST) networking, FPC has <a href="https://wiki.freepascal.org/fcl-web">fcl-web</a> which allows to create HTTP(S) servers and clients.
 
-  <li><p>Remember about our <?php api_link('Download', 'CastleDownload.html#Download'); ?> function and <?php api_link('TCastleDownload', 'CastleDownload.TCastleDownload.html'); ?> class. They use <a href="https://wiki.freepascal.org/fphttpclient">FpHttpClient</a> under the hood. You can use <?php api_link('TCastleDownload', 'CastleDownload.TCastleDownload.html'); ?> for HTTP(S) communiction with a REST server written in any language (Pascal or not).
+  <li><p>Remember about our <?php echo cgeRef('Download'); ?> function and <?php echo cgeRef('TCastleDownload'); ?> class. They use <a href="https://wiki.freepascal.org/fphttpclient">FpHttpClient</a> under the hood. You can use <?php echo cgeRef('TCastleDownload'); ?> for HTTP(S) communiction with a REST server written in any language (Pascal or not).
 
 </ul>
 

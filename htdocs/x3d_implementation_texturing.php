@@ -261,8 +261,8 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
     <code>magnificationFilter</code> and
     <code>minificationFilter</code> is <code>"DEFAULT"</code>.
     Which means to use the texture filtering mode specified by
-    <?php api_link('Scene.RenderOptions.MinificationFilter', 'CastleRenderOptions.TCastleRenderOptions.html#MinificationFilter'); ?>,
-    <?php api_link('Scene.RenderOptions.MagnificationFilter', 'CastleRenderOptions.TCastleRenderOptions.html#MagnificationFilter'); ?>
+    <?php echo cgeRef('TCastleRenderOptions.MinificationFilter'); ?>,
+    <?php echo cgeRef('TCastleRenderOptions.MagnificationFilter'); ?>
     (by default nice <code>minLinearMipmapLinear</code>, <code>magLinear</code>),
     matching behavior when <code>TextureProperties</code> was not specified.
 
@@ -366,7 +366,7 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?> (look inside <co
 
     <p>More uncompressed formats can be trivially added, just submit a bugreport with a sample KTX file.
 
-  <li><p><b>Texture arrays, mipmaps</b>. Programmers: iterate over <?php api_link('TCompositeImage.Images', 'CastleCompositeImage.TCompositeImage.html#Images'); ?> to access all mipmaps, and for each mipmap: the items of the array.
+  <li><p><b>Texture arrays, mipmaps</b>. Engine programmers: look at internal <code>TCompositeImage</code> to access all mipmaps, and for each mipmap: the items of the array.
 
   <li><p><b>Configurable orientation</b>. KTX data may be specified in <i>top-to-bottom</i> or <i>bottom-to-top</i> order. For 3D images, the slices can additionally be in <i>front-to-back</i> or <i>back-to-front</i> order. This is specified by a special <code>KTXorientation</code> field inside the KTX file (see the KTX specification for details) and we support it fully.
 

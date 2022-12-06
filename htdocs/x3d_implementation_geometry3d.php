@@ -53,7 +53,7 @@ $toc = new TableOfContents(
     <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/terrain">the engine "terrain" demo</a>,
     <a href="https://www.patreon.com/posts/wyrd-forest-demo-15811244">"Wyrd Forest" demo</a>,
     and the engine unit
-    <?php api_link('CastleTerrain', 'CastleTerrain.html'); ?>
+    <?php echo cgeRef('CastleTerrain'); ?>
     for an example usage.
 
   <li><p><?php echo x3d_node_link('Extrusion'); ?></p>

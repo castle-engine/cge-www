@@ -47,16 +47,16 @@ This unit looks like this:
 <?php echo pascal_highlight_file('code-samples/gameinitialize.pas', false); ?>
 
 <p>The <code>initialization</code> section at the bottom of the <code>GameInitialize</code>
-unit should only assign a callback to <?php api_link('Application.OnInitialize', 'CastleWindow.TCastleApplication.html#OnInitialize'); ?>,
+unit should only assign a callback to <?php echo cgeRef('TCastleApplication.OnInitialize', 'Application.OnInitialize'); ?>,
 and create and assign <code>Application.MainWindow</code>.
 Most of the actual initialization (loading images, resources, setting up player
-and such) should happen in the callback you assigned to <?php api_link('Application.OnInitialize', 'CastleWindow.TCastleApplication.html#OnInitialize'); ?>.
+and such) should happen in the callback you assigned to <?php echo cgeRef('TCastleApplication.OnInitialize', 'Application.OnInitialize'); ?>.
 At that point you know that your program is ready to load and prepare resources.
 
 <!--
-<p>The initialization <b>must assign the <?php api_link('Applcation.MainWindow', 'CastleWindow.TCastleApplication.html#MainWindow'); ?></b> instance,
+<p>The initialization <b>must assign the <?php echo cgeRef('TCastleApplication.MainWindow', 'Application.MainWindow'); ?></b> instance,
 that will be used by platform-specific program/library code.
-It should be a <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?> class
+It should be a <?php echo cgeRef('TCastleWindow'); ?> class
 instance (it may be a descendant of this class, of course).
 -->
 
@@ -151,12 +151,12 @@ keyboard is uncomfortable on touch devices,
 multi-touch doesn't work on desktops with a single mouse and so on.
 
 <p>To account for this, you can adjust your input handling depending on the
-<?php api_link('ApplicationProperties.TouchDevice', 'CastleApplicationProperties.TCastleApplicationProperties.html#TouchDevice'); ?> value.
+<?php echo cgeRef('TCastleApplicationProperties.TouchDevice', 'ApplicationProperties.TouchDevice'); ?> value.
 It is automatically initialized to <code>true</code> on touch devices without keyboard / mouse (like mobile),
 and <code>false</code> elsewhere (like on typical desktops).
 
 <p>For navigation in 3D on mobile, we have a special UI control
-<?php api_link('TCastleTouchNavigation', 'CastleViewport.TCastleTouchNavigation.html'); ?>.
+<?php echo cgeRef('TCastleTouchNavigation'); ?>.
 This allows to easily navigate (examine / walk / fly) in the viewport by dragging on special controls
 in the corners.
 
@@ -173,7 +173,7 @@ in the corners.
 
   <li><p>Do not call <code>Application.Terminate</code> on platforms
     where users don't expect it. Use
-    <?php api_link('ApplicationProperties.ShowUserInterfaceToQuit', 'CastleApplicationProperties.TCastleApplicationProperties.html#ShowUserInterfaceToQuit'); ?>
+    <?php echo cgeRef('TCastleApplicationProperties.ShowUserInterfaceToQuit', 'ApplicationProperties.ShowUserInterfaceToQuit'); ?>
     to show or hide the appropriate user interface,
     like a "<i>Quit Game</i>" button.
     Mobile applications generally don't have

@@ -9,11 +9,11 @@ that will be able to display rendered content. There are two ways of doing this:
 <ol>
   <li>
     <p>Use our own window class
-    <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?>.
+    <?php echo cgeRef('TCastleWindow'); ?>.
 
     <p>The <i>"New Project"</i> templates used by our <a href="manual_editor.php">CGE editor</a>
     set this up by default.
-    You use <?php api_link('TCastleWindow', 'CastleWindow.TCastleWindow.html'); ?>
+    You use <?php echo cgeRef('TCastleWindow'); ?>
     if you just follow the (advised) code organization created by <a href="manual_editor.php">CGE editor</a>.
 
     <p>So <b>you don't need to do anything to make this happen.
