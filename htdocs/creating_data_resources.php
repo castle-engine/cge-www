@@ -24,7 +24,7 @@ with links to documentation for every attribute.
   <li>(Almost) every attribute is optional, so in practice
     there's no need to specify them all in your <code>resource.xml</code> files.
   <li>Note that sample below shows properties for resource of type <code>WalkAttack</code>
-    (indicating <?php api_link('TWalkAttackCreatureResource', 'CastleCreatures.TWalkAttackCreatureResource.html'); ?>
+    (indicating <?php echo removedCgeRef('TWalkAttackCreatureResource'); ?>
     class), there are other resource types (for creatures and items)
     with a little different properties.
   <li>See <?php echo a_href_page('manual about resources', 'manual_resources'); ?>
@@ -138,17 +138,17 @@ have the <code>&lt;attack&gt;</code> animation. See the properties of resource
 classes to know what is available:
 
 <ul>
-  <li><?php api_link('T3DResource', 'CastleResources.T3DResource.html'); ?>
+  <li><?php echo removedCgeRef('T3DResource'); ?>
     <ul>
-      <li><?php api_link('TCreatureResource', 'CastleCreatures.TCreatureResource.html'); ?>
+      <li><?php echo removedCgeRef('TCreatureResource'); ?>
         <ul>
-          <li><?php api_link('TWalkAttackCreatureResource', 'CastleCreatures.TWalkAttackCreatureResource.html'); ?>
-          <li><?php api_link('TMissileCreatureResource', 'CastleCreatures.TMissileCreatureResource.html'); ?>
-          <li><?php api_link('TStillCreatureResource', 'CastleCreatures.TStillCreatureResource.html'); ?>
+          <li><?php echo removedCgeRef('TWalkAttackCreatureResource'); ?>
+          <li><?php echo removedCgeRef('TMissileCreatureResource'); ?>
+          <li><?php echo removedCgeRef('TStillCreatureResource'); ?>
         </ul>
-      <li><?php api_link('TItemResource', 'CastleItems.TItemResource.html'); ?>
+      <li><?php echo removedCgeRef('TItemResource'); ?>
         <ul>
-          <li><?php api_link('TItemWeaponResource', 'CastleItems.TItemWeaponResource.html'); ?>
+          <li><?php echo removedCgeRef('TItemWeaponResource'); ?>
         </ul>
     </ul>
 </ul>
@@ -165,7 +165,7 @@ into the ground. This is usually the most comfortable approach.
 
 <p>For flying resources (not using gravity),
 this doesn't matter, basically you can place 0,0,0 wherever you
-like. See <?php api_link('TCastleTransform.MiddleHeight', 'CastleTransform.TCastleTransform.html#MiddleHeight'); ?>
+like. See <?php echo cgeRef('TCastleTransform.MiddleHeight'); ?>
  for precise details.
 
 <?php echo $toc->html_section(); ?>
@@ -175,9 +175,9 @@ appropriate to their current state. For example, a creature state may be
 <i>"idle"</i> or <i>"attacking"</i> or <i>"dying"</i>,
 and it will cause appropriate animation.
 A developer can also add additional animation types to the creature or item
-(by creating a <?php api_link('T3DResourceAnimation', 'CastleResources.T3DResourceAnimation.html'); ?>
+(by creating a <?php echo removedCgeRef('T3DResourceAnimation'); ?>
  instance and adding it to a
-<?php api_link('T3DResource', 'CastleResources.T3DResource.html'); ?> descendant).
+<?php echo removedCgeRef('T3DResource'); ?> descendant).
 
 <p>Inside the <code>&lt;model&gt;</code> element of the creature/item
 <code>resource.xml</code> file you specify from where to load particular
@@ -204,7 +204,7 @@ directly play loaded animations.
 <p>The <i>"animation_name"</i> recognizes animations defined in various
 formats (and expressed in X3D using <code>TimeSensor</code>),
 just like the engine
-<?php api_link('PlayAnimation', 'CastleSceneCore.TCastleSceneCore.html#PlayAnimation'); ?>
+<?php echo cgeRef('TCastleSceneCore.PlayAnimation'); ?>
  method. You can see these animations in the
 <?php echo a_href_page('view3dscene', 'view3dscene'); ?>
  by turning on <i>Animations</i> panel.

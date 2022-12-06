@@ -20,7 +20,7 @@
 <?php echo $toc->html_section(); ?>
 
 <p>As an extension, we add the <code>ColorSetInterpolator</code>
-<?php echo x3d_node_api_link('ColorSetInterpolator'); ?>
+<?php echo x3d_node_cgeRef('ColorSetInterpolator'); ?>
  node, that generates <code>MFColor</code> values.</p>
 
 <?php echo
@@ -56,7 +56,7 @@ or <code>Color.color</code> values.</p>
 <?php echo $toc->html_section(); ?>
 
 <p>As an extension, we add the <code>VectorInterpolator</code>
-<?php echo x3d_node_api_link('VectorInterpolator'); ?>
+<?php echo x3d_node_cgeRef('VectorInterpolator'); ?>
  node, that generates <code>MFFloat</code> values. This is
 <a href="http://doc.instantreality.org/documentation/nodetype/VectorInterpolator/">compatible with InstantReality</a>.</p>
 
@@ -121,12 +121,12 @@ but these ones use <i>cubic Bezier curves</i>.
 
 <ol>
   <li><code>CubicBezierPositionInterpolator</code>
-    <?php echo x3d_node_api_link('CubicBezierPositionInterpolator'); ?>
+    <?php echo x3d_node_cgeRef('CubicBezierPositionInterpolator'); ?>
      is equivalent to standard
     <?php echo x3d_node_link('PositionInterpolator'); ?>, except using
      cubic Bezier curve instead of linear interpolation.
   <li><code>CubicBezier2DOrientationInterpolator</code>
-    <?php echo x3d_node_api_link('CubicBezier2DOrientationInterpolator'); ?>
+    <?php echo x3d_node_cgeRef('CubicBezier2DOrientationInterpolator'); ?>
      is equivalent to standard
     <?php echo x3d_node_link('OrientationInterpolator'); ?>, except using
      cubic Bezier curve instead of linear interpolation, and simplifying parameters

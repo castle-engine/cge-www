@@ -45,17 +45,17 @@ like current life.</p>
 <ol>
   <li><p>You can just place the appropriate drawing code in
     <code>OnRender</code> event
-    (see <?php api_link('TCastleWindow.OnRender', 'CastleWindow.TCastleWindow.html#OnRender'); ?>,
-    <?php api_link('TCastleControl.OnRender', 'CastleControl.TCastleControl.html#OnRender'); ?>).
+    (see <?php echo cgeRef('TCastleWindow.OnRender'); ?>,
+    <?php echo cgeRef('TCastleControl.OnRender'); ?>).
     This is simple to use, and works OK for simple applications.
   </li>
 
   <li><p>In the long-term, it's usually better to create your own
-    <?php api_link('TCastleUserInterface', 'CastleUIControls.TCastleUserInterface.html'); ?>
+    <?php echo cgeRef('TCastleUserInterface'); ?>
     descendant. This way you wrap the rendering
     (and possibly other processing) inside your own class.
     You can draw anything you want in the overridden
-    <?php api_link('TCastleUserInterface.Render', 'CastleUIControls.TCastleUserInterface.html#Render'); ?>
+    <?php echo cgeRef('TCastleUserInterface.Render'); ?>
      method.</p>
    </li>
 </ol>
@@ -75,9 +75,9 @@ It shows the player health by simply writing it out as text.</p>
 <?php echo $toc->html_section(); ?>
 
 <p>To draw a text, you can use ready global font
-<?php api_link('UIFont', 'CastleControls.html#UIFont'); ?>
- (in <?php api_link('CastleControls', 'CastleControls.html'); ?> unit).
-This is an instance of <?php api_link('TCastleFont', 'CastleFonts.TCastleFont.html'); ?>.
+<?php echo cgeRef('UIFont'); ?>
+ (in <?php echo cgeRef('CastleControls'); ?> unit).
+This is an instance of <?php echo cgeRef('TCastleFont'); ?>.
 For example, you can show player's health like this:
 
 <?php echo pascal_highlight(
@@ -87,19 +87,19 @@ For example, you can show player's health like this:
 ]));'); ?>
 
 <p>You can also create your own instances
-of <?php api_link('TCastleFont', 'CastleFonts.TCastleFont.html'); ?>
+of <?php echo cgeRef('TCastleFont'); ?>
  to have more fonts. See
 <?php echo a_href_page('the manual chapter about "Text and fonts" for more',
 'manual_text'); ?>.
 
 <p><i>Note: It is more advised (easier, more flexible) to use
-<?php api_link('TCastleLabel', 'CastleControls.TCastleLabel.html'); ?>
+<?php echo cgeRef('TCastleLabel'); ?>
  control than to draw text like above.</i>
 
 <?php echo $toc->html_section(); ?>
 
 <p>To <b>draw a rectangle</b> use the
-<?php api_link('DrawRectangle', 'CastleGLUtils.html#DrawRectangle'); ?>
+<?php echo cgeRef('DrawRectangle'); ?>
  method. Blending is automatically used if you pass color with alpha &lt; 1.</p>
 
 <p>For example, we can show a nice health bar showing the player's life:</p>
@@ -127,35 +127,35 @@ begin
 end;'); ?>
 
 <p><i>Note: It is more advised (easier, more flexible) to use
-<?php api_link('TCastleRectangleControl', 'CastleControls.TCastleRectangleControl.html'); ?>
+<?php echo cgeRef('TCastleRectangleControl'); ?>
  control than to draw rectangle like above.</i>
 
 <p>To <b>draw a circle</b> use the
-<?php api_link('DrawCircle', 'CastleGLUtils.html#DrawCircle'); ?>.
+<?php echo cgeRef('DrawCircle'); ?>.
  There are also procedures to draw only an outline:
- <?php api_link('DrawRectangleOutline', 'CastleGLUtils.html#DrawRectangleOutline'); ?>
- <?php api_link('DrawCircleOutline', 'CastleGLUtils.html#DrawCircleOutline'); ?>.
+ <?php echo cgeRef('DrawRectangleOutline'); ?>
+ <?php echo cgeRef('DrawCircleOutline'); ?>.
 
 <p><i>Note: It is more advised (easier, more flexible) to use
-<?php api_link('TCastleShape', 'CastleControls.TCastleShape.html'); ?>
+<?php echo cgeRef('TCastleShape'); ?>
  control than to draw shapes like above.</i>
 
 <p>To <b>draw an arbitrary 2D primitive</b> use the
-<?php api_link('DrawPrimitive2D', 'CastleGLUtils.html#DrawPrimitive2D'); ?>
+<?php echo cgeRef('DrawPrimitive2D'); ?>
  method. Blending is automatically used if you pass color with alpha &lt; 1.</p>
 
 <?php echo $toc->html_section(); ?>
 
 <p>To draw an image, use the
-<?php api_link('TDrawableImage', 'CastleGLImages.TDrawableImage.html'); ?> class.
+<?php echo cgeRef('TDrawableImage'); ?> class.
  It has methods
- <?php api_link('Draw', 'CastleGLImages.TDrawableImage.html#Draw'); ?> and
- <?php api_link('Draw3x3', 'CastleGLImages.TDrawableImage.html#Draw3x3'); ?>
+ <?php echo cgeRef('TDrawableImage.Draw'); ?> and
+ <?php echo cgeRef('TDrawableImage.Draw3x3'); ?>
  to draw the image, intelligently stretching it,
  optionally preserving unstretched corners.
 
 <p>Here's a simple example of
-<?php api_link('TDrawableImage', 'CastleGLImages.TDrawableImage.html'); ?> usage
+<?php echo cgeRef('TDrawableImage'); ?> usage
 to display a hero's face. You can use an image below,
 if you're old enough to recognize it:)
 (<a href="http://doom.wikia.com/wiki/File:Doomfaces.png">Source</a>.)
@@ -197,7 +197,7 @@ begin
 end;'); ?>
 
 <p><i>Note: Note: It is more advised (easier, more flexible) to use
-<?php api_link('TCastleImageControl', 'CastleControls.TCastleImageControl.html'); ?>
+<?php echo cgeRef('TCastleImageControl'); ?>
  control than to draw image like above.</i>
 
 <?php echo $toc->html_section(); ?>
@@ -209,7 +209,7 @@ You can download and compile it right now!
 
 <?php echo $toc->html_section(); ?>
 
-<p>If you would like to display a series of images, not a static image, you can use <?php api_link('TGLVideo2D', 'CastleGLImages.TGLVideo2D.html'); ?> (show image sequence from many separate images or a video) or <?php api_link('TSprite', 'CastleGLImages.TSprite.html'); ?> (show image sequence from a sprite sheet &mdash; one large image containing many animation frames).
+<p>If you would like to display a series of images, not a static image, you can use <?php echo cgeRef('TGLVideo2D'); ?> (show image sequence from many separate images or a video) or <?php echo cgeRef('TSprite'); ?> (show image sequence from a sprite sheet &mdash; one large image containing many animation frames).
 
 <p>See e.g. <a href="https://gitlab.com/michaliskambi/muuu">our game "Muuu"</a> for a demo of using sprite animations.
 
@@ -224,7 +224,7 @@ and see the <code>examples/fps_game/data/item_medkit/</code> for an example
 item definition.
 
 <p>The image is available as a
- <?php api_link('TDrawableImage', 'CastleGLImages.TDrawableImage.html'); ?>
+ <?php echo cgeRef('TDrawableImage'); ?>
  instance ready for drawing.
 For example, you can iterate over the inventory list and show the items like this:</p>
 
@@ -237,18 +237,11 @@ For example, you can iterate over the inventory list and show the items like thi
 <?php echo $toc->html_section(); ?>
 
 <p>For simple screen fade effects, you have procedures inside the
- <?php api_link('CastleGLUtils', 'CastleGLUtils.html'); ?> unit
- called <?php api_link('GLFadeRectangleDark', 'CastleGLUtils.html#GLFadeRectangleDark'); ?>
- and <?php api_link('GLFadeRectangleLight', 'CastleGLUtils.html#GLFadeRectangleLight'); ?>.
+ <?php echo cgeRef('CastleGLUtils'); ?> unit
+ called <?php echo cgeRef('GLFadeRectangleDark'); ?>
+ and <?php echo cgeRef('GLFadeRectangleLight'); ?>.
  These allow you to draw
  a rectangle representing fade out (when player is in pain).
- And <?php api_link('TPlayer', 'CastlePlayer.TPlayer.html'); ?>
- instance already has properties
- <?php api_link('Player.FadeOutColor', 'CastlePlayer.TPlayer.html#FadeOutColor'); ?>,
- <?php api_link('Player.FadeOutIntensity', 'CastlePlayer.TPlayer.html#FadeOutIntensity'); ?>
- representing when player is in pain (and the pain color).
- <?php api_link('Player.Dead', 'CastleTransformExtra.TCastleAlive.html#Dead'); ?>
- says when player is dead (this is simply when <code>Life &lt;= 0</code>).
 
  <p>For example you can visualize pain and dead states like this:
 
@@ -259,13 +252,13 @@ else
   GLFadeRectangleDark(ContainerRect, Player.FadeOutColor, Player.FadeOutIntensity);'); ?>
 
  <p>Note that <code>Player.FadeOutIntensity</code> will be 0 when there is no pain, which cooperates
- nicely with <?php api_link('GLFadeRectangleDark', 'CastleGLUtils.html#GLFadeRectangleDark'); ?> definition that will do nothing when 4th parameter is 0.
- That is why we carelessly always call <?php api_link('GLFadeRectangleDark', 'CastleGLUtils.html#GLFadeRectangleDark'); ?> &mdash; when player is not dead,
+ nicely with <?php echo cgeRef('GLFadeRectangleDark'); ?> definition that will do nothing when 4th parameter is 0.
+ That is why we carelessly always call <?php echo cgeRef('GLFadeRectangleDark'); ?> &mdash; when player is not dead,
  and is not in pain (<code>Player.FadeOutIntensity</code> = 0) then nothing will actually happen.
 
  <p><i>Note: There is also a full-featured UI control that draws an effect with
  blending (possibly modulated by an image):
- <?php api_link('TCastleFlashEffect', 'CastleFlashEffect.TCastleFlashEffect.html'); ?>.</i>
+ <?php echo cgeRef('TCastleFlashEffect'); ?>.</i>
 
 <?php echo $toc->html_section(); ?>
 
@@ -273,34 +266,33 @@ else
  our projection has (0,0) in lower-left corner (as is standard
  for 2D OpenGL). You can look at the size, in pixels, of the current
  <!--2D control in
- <?php api_link('TCastleUserInterface.Width', 'CastleUIControls.TCastleUserInterface.html#Width'); ?> x
- <?php api_link('TCastleUserInterface.Height', 'CastleUIControls.TCastleUserInterface.html#Height'); ?>,
+ <?php echo cgeRef('TCastleUserInterface.Width'); ?> x
+ <?php echo cgeRef('TCastleUserInterface.Height'); ?>,
  and the size of the current--> OpenGL container (window, control) in
- <?php api_link('ContainerWidth', 'CastleUIControls.TInputListener.html#ContainerWidth'); ?> x
- <?php api_link('ContainerHeight', 'CastleUIControls.TInputListener.html#ContainerHeight'); ?>
+ <?php echo cgeRef('TCastleUserInterface.ContainerWidth'); ?> x
+ <?php echo cgeRef('TCastleUserInterface.ContainerHeight'); ?>
  or (as a rectangle) as
- <?php api_link('ContainerRect', 'CastleUIControls.TInputListener.html#ContainerRect'); ?>.
+ <?php echo cgeRef('TCastleUserInterface.ContainerRect'); ?>.
  The container size is also available as container properties, like
- <?php api_link('TCastleWindow.Width', 'CastleWindow.TCastleWindow.html#Width'); ?> x
- <?php api_link('TCastleWindow.Height', 'CastleWindow.TCastleWindow.html#Height'); ?>
+ <?php echo cgeRef('TCastleWindow.Width'); ?> x
+ <?php echo cgeRef('TCastleWindow.Height'); ?>
  or (as a rectangle)
- <?php api_link('TCastleWindow.Rect', 'CastleWindow.TCastleWindow.html#Rect'); ?>.
+ <?php echo cgeRef('TCastleWindow.Rect'); ?>.
 
 <?php echo $toc->html_section(); ?>
 
 <p>So far, we have simply carelessly drawn our contents over the window.
 <ul>
   <li>We used absolute pixel positions to draw.</li>
-  <li>We did not use the control position (<?php api_link('Left', 'CastleUIControls.TCastleUserInterface.html#Left'); ?> and
-    <?php api_link('Bottom', 'CastleUIControls.TCastleUserInterface.html#Bottom'); ?>).
+  <li>We did not use the control position (<?php echo cgeRef('TCastleUserInterface.Translation'); ?>).
     Nor did we take into account parent control position.</li>
   <li>We did not use the control size.
     We should use position and size defined by
-    <?php api_link('TCastleUserInterface', 'CastleUIControls.TCastleUserInterface.html'); ?>.</li>
+    <?php echo cgeRef('TCastleUserInterface'); ?>.</li>
   <li>We do not honor the anchors set by
-    <?php api_link('TCastleUserInterface.Anchor', 'CastleUIControls.TCastleUserInterface.html#Anchor'); ?>.</li>
+    <?php echo cgeRef('TCastleUserInterface.Anchor'); ?>.</li>
   <li>We do not honor UI scaling set by the
-    <?php api_link('Window.UIScaling', 'CastleUIControls.TUIContainer.html#UIScaling'); ?>.</li>
+    <?php echo cgeRef('TCastleContainer.UIScaling'); ?>.</li>
 </ul>
 
 <p>Note that it is OK to ignore (some) of these issues, if you design a UI control

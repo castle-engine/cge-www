@@ -5,7 +5,7 @@ castle_header('Alpha Bleeding');
 
 <p><b>"Alpha Blending"</b> means that you use partial transparency when rendering your image. It means that the alpha channel of your image contains any values within the range 0..1 (not just only 0 or 1). Alpha equal 0 means <i>"completely transparent"</i>, alpha equal 1 means <i>"complately opaque"</i>, values in-between mean <i>"partially transparent"</i>. For example alpha value 0.25 means that when rendering, we should take 1/4 from the image color, and mix it with 3/4 of the current screen color at this place.
 
-<p><i>Alpha Blending</i> makes sense both for user-interface (like images you place in <?php api_link('TCastleImageControl', 'CastleControls.TCastleImageControl.html'); ?>), 2D games, 3D games (e.g. textures on your 3D models, that you load to <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>). More info about <a href="https://castle-engine.io/blending">alpha blending in CGE is here</a>.
+<p><i>Alpha Blending</i> makes sense both for user-interface (like images you place in <?php echo cgeRef('TCastleImageControl'); ?>), 2D games, 3D games (e.g. textures on your 3D models, that you load to <?php echo cgeRef('TCastleScene'); ?>). More info about <a href="https://castle-engine.io/blending">alpha blending in CGE is here</a>.
 
 <p>Now, <b>"Alpha Bleeding"</b> is an operation you sometimes need to perform on your images to make <i>alpha blending</i> work as you expect. Why?
 
@@ -15,9 +15,9 @@ castle_header('Alpha Bleeding');
   <li>
     <p>Such filtering is done e.g. when
       <ul>
-        <li><?php api_link('TCastleImageControl.SmoothScaling', 'CastleControls.TCastleImageControl.html#SmoothScaling'); ?> is <code>true</code> (in this case we do bilinear filtering),
-        <li>or <?php api_link('TDrawableImage.SmoothScaling', 'CastleGLImages.TDrawableImage.html#SmoothScaling'); ?> is <code>true</code> (again, in this case we do bilinear filtering),
-        <li>or you use textures in <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> with default texture properties (see <a href="x3d_implementation_texturing.php"><code>TextureProperties</code> node</a> to customize how texture filtering is done), in which case we use bilinear or trilinear (bilinear with mipmaps) filtering.
+        <li><?php echo cgeRef('TCastleImageControl.SmoothScaling'); ?> is <code>true</code> (in this case we do bilinear filtering),
+        <li>or <?php echo cgeRef('TDrawableImage.SmoothScaling'); ?> is <code>true</code> (again, in this case we do bilinear filtering),
+        <li>or you use textures in <?php echo cgeRef('TCastleScene'); ?> with default texture properties (see <a href="x3d_implementation_texturing.php"><code>TextureProperties</code> node</a> to customize how texture filtering is done), in which case we use bilinear or trilinear (bilinear with mipmaps) filtering.
       </ul>
   <li>
     <p>It means that RGB values from the pixels that you see (in e.g. GIMP) as completely transparent, are, counter-intuitively, affecting the rendering output.
@@ -97,9 +97,9 @@ echo castle_thumbs(array(
     ?>
 
   <li>
-    <p>Or you can write your own code to perform this operation. Just call <?php api_link('TCastleImage.AlphaBleed', 'CastleImages.TCastleImage.html#AlphaBleed'); ?> to do the same thing that <a href="castle-view-image.php">castle-view-image</a> does.
+    <p>Or you can write your own code to perform this operation. Just call <?php echo cgeRef('TCastleImage.AlphaBleed'); ?> to do the same thing that <a href="castle-view-image.php">castle-view-image</a> does.
 
-    <p>Note: We heavily advise to <i>not</i> do <?php api_link('TCastleImage.AlphaBleed', 'CastleImages.TCastleImage.html#AlphaBleed'); ?> during actual loading of your game (even though, technically, you can). As the process is really slow and needs to be performed only once for a given image. It should be done as a pre-processing step that you run once over your data, before packaging it.
+    <p>Note: We heavily advise to <i>not</i> do <?php echo cgeRef('TCastleImage.AlphaBleed'); ?> during actual loading of your game (even though, technically, you can). As the process is really slow and needs to be performed only once for a given image. It should be done as a pre-processing step that you run once over your data, before packaging it.
 </ol>
 
 <p>Here's the resulting, fixed front image. You cannot really see a difference from the previous, incorrect image, by a human eye &mdash; you'd need to investigate the transparent pixels in GIMP to see the change.
@@ -119,9 +119,9 @@ echo castle_thumbs(array(
 ?>
 
 <p>There's an alternative to this: you can also use filtering that <i>doesn't</i> average pixel colors. Just
-set <?php api_link('TCastleImageControl.SmoothScaling', 'CastleControls.TCastleImageControl.html#SmoothScaling'); ?> to <code>false</code>,
-or set <?php api_link('TDrawableImage.SmoothScaling', 'CastleGLImages.TDrawableImage.html#SmoothScaling'); ?> to <code>false</code>,
-or use <i>nearest</i> filtering for textures in <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>.
+set <?php echo cgeRef('TCastleImageControl.SmoothScaling'); ?> to <code>false</code>,
+or set <?php echo cgeRef('TDrawableImage.SmoothScaling'); ?> to <code>false</code>,
+or use <i>nearest</i> filtering for textures in <?php echo cgeRef('TCastleScene'); ?>.
 This is good for pixel-art games usually (where you actually want to see "big pixels"), but not in general
 (you usually want smooth scaling, in most cases).
 

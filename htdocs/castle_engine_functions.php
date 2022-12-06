@@ -1925,6 +1925,18 @@ function cgeRef($identifier, $title = NULL)
     htmlspecialchars($title) . '</a></code>';
 }
 
+/* Return HTML that looks similar to cgeRef for the same arguments,
+   but actually has no link,
+   and communicates that given identifier is deprecated and no longer documented.
+   (Stuff that is outright removed from CGE should not be at all in our docs.) */
+function removedCgeRef($identifier, $title = NULL)
+{
+  if (empty($title)) {
+    $title = $identifier;
+  }
+  return '<code title="Deprecated, not documented anymore">' . htmlspecialchars($title) . '</code>';
+}
+
 /* Return HTML to display images (as a block inside regular content, or as a floating block
    on the side).
    This is just a thin wrapper over castle_thumbs now.

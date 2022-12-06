@@ -16,7 +16,7 @@ Loading from
 We advise to use only <code>castle-data:/xxx</code> for code targeting the new CGE
 versions &mdash; it is simpler, can be saved to files better (useful when saving CGE editor designs,
 X3D models with URLs etc.),
-and it works better in some corner-cases (e.g. <?php api_link('FindFiles', 'CastleFindFiles.html#FindFiles'); ?> will work
+and it works better in some corner-cases (e.g. <?php echo cgeRef('FindFiles'); ?> will work
 on Android, thanks to an internal information stored in the data on Android).
 -->
 
@@ -33,12 +33,12 @@ on Android, thanks to an internal information stored in the data on Android).
     in a system-wide location on Unix.
 
   <li><p>It can be customized using the
-    <?php api_link('ApplicationDataOverride', 'CastleFilesUtils.html#ApplicationDataOverride'); ?>
+    <?php echo cgeRef('ApplicationDataOverride'); ?>
     global variable.
 </ol>
 
 <p>Note that you do not have to place your files inside the <code>data</code>
-subdirectory, or use the <?php api_link('ApplicationData', 'CastleFilesUtils.html#ApplicationData'); ?> function
+subdirectory, or use the <?php echo cgeRef('ApplicationData'); ?> function
 or <code>castle-data:/xxx</code> URLs,
  if you don't want to.
 You can always load a file from any filename
@@ -72,7 +72,7 @@ This way the build tool will automatically package your game correctly.
     <?php echo pascal_highlight('MyTextReader := TTextReader.Create(\'castle-data:/my_text_file.txt\')'); ?>
 
     <p>See <a href="manual_network.php">loading from URLs</a>
-    and the <?php api_link('CastleDownload', 'CastleDownload.html'); ?> unit.
+    and the <?php echo cgeRef('CastleDownload'); ?> unit.
 </ul>
 
 <p>Note that the data contents should be treated as read-only in cross-platform

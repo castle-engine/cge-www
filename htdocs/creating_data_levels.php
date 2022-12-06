@@ -60,7 +60,7 @@ with links to documentation for every attribute.
 <?php echo $toc->html_section(); ?>
 
 <p>A major feature of loading level through
-<?php api_link('TLevel.Load', 'CastleLevels.TLevel.html#Load'); ?>
+<?php echo removedCgeRef('TLevel.Load'); ?>
  is that you can put "placeholders" on your level 3D model.
 These are 3D shapes with special names that will be recognized by the engine:
 
@@ -74,7 +74,7 @@ These are 3D shapes with special names that will be recognized by the engine:
     -->
 
     <p>The resource name refers to
-    <?php api_link('T3DResource.Name', 'CastleResources.T3DResource.html#Name'); ?>,
+    <?php echo removedCgeRef('T3DResource.Name'); ?>,
     it much match one of <code>name="ResourceName"</code> declarations in your
     <code>resource.xml</code> files.
 
@@ -88,7 +88,7 @@ These are 3D shapes with special names that will be recognized by the engine:
         by specifying life as 0.
         Initial creature looking direction
         is determined by the transformation of the placeholder object,
-        see <?php api_link('PlaceholderReferenceDirection', 'CastleLevels.TLevelInfo.html#PlaceholderReferenceDirection'); ?>,
+        see <?php echo removedCgeRef('PlaceholderReferenceDirection'); ?>,
         in short: look at where local +X of the placeholder is pointing.
 
       <li>To place an item on the level, name your placeholder
@@ -107,10 +107,10 @@ These are 3D shapes with special names that will be recognized by the engine:
     -->
 
   <li><p><b>Water</b> volume by placeholder "CasWater"
-    (see <?php api_link('TLevel.Water', 'CastleLevels.TLevel.html#Water'); ?>).
+    (see <?php echo removedCgeRef('TLevel.Water'); ?>).
 
   <li><p><b>Move limit</b> by placeholder "CasMoveLimit"
-    (see <?php api_link('TLevel.MoveLimit', 'CastleLevels.TLevel.html#MoveLimit'); ?>).
+    (see <?php echo removedCgeRef('TLevel.MoveLimit'); ?>).
 
   <li><p><b>Sectors / waypoints</b> to improve creature AI moving.
     Each sector occupies some volume in 3D (like a room).
@@ -161,13 +161,13 @@ These are 3D shapes with special names that will be recognized by the engine:
     the move direction is simply set to go to the target directly.
   </li>
 
-  <li><p>See <?php api_link('TLevel.Load', 'CastleLevels.TLevel.html#Load'); ?>
+  <li><p>See <?php echo removedCgeRef('TLevel.Load'); ?>
     documentation for full list of placeholders.
 
-  <li><p>And possibly your <?php api_link('TLevelLogic', 'CastleLevels.TLevelLogic.html'); ?>
+  <li><p>And possibly your <?php echo removedCgeRef('TLevelLogic'); ?>
     will define even more placeholders
-    (by overriding <?php api_link('TLevelLogic.Placeholder', 'CastleLevels.TLevelLogic.html#Placeholder'); ?>,
-    and using your logic as <?php api_link('LogicClass', 'CastleLevels.TLevelInfo.html#LogicClass'); ?>.
+    (by overriding <?php echo removedCgeRef('TLevelLogic.Placeholder'); ?>,
+    and using your logic as <?php echo removedCgeRef('LogicClass'); ?>.
 </ul>
 
 <p>The "placeholders" attribute in level.xml determines how we derive
@@ -183,9 +183,9 @@ These are 3D shapes with special names that will be recognized by the engine:
     In case of exporting to glTF, just set the Blender mesh name.
     In case of exporting to X3D, just set the Blender object name.
 
-  <li>and possibly more, see <?php api_link('PlaceholderNames', 'CastleShapes.html#PlaceholderNames'); ?>
+  <li>and possibly more, see <?php echo removedCgeRef('PlaceholderNames'); ?>
     list and
-    <?php api_link('TPlaceholderName', 'CastleShapes.html#TPlaceholderName'); ?> docs.
+    <?php echo removedCgeRef('TPlaceholderName'); ?> docs.
     You can define and register your own functions there, to handle
     other 3D modelers, like <i>3ds Max</i> or <i>Maya</i> or anything else
     (and you're welcome to contribute them to include them in engine code,

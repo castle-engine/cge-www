@@ -104,11 +104,11 @@ about the available X3D nodes and their fields.</p>
 <p>When we say that <i>"X3D is our scene graph"</i>,
 what it means in practice is that you have a graph of X3D nodes
 inside the
- <?php api_link('RootNode', 'CastleSceneCore.TCastleSceneCore.html#RootNode'); ?>
+ <?php echo cgeRef('TCastleSceneCore.RootNode'); ?>
  property of any
- <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>
+ <?php echo cgeRef('TCastleScene'); ?>
  instance.
-The <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>
+The <?php echo cgeRef('TCastleScene'); ?>
  is our central class to render and animate 3D and 2D content,
  see <a href="manual_scene.php">the manual about TCastleScene</a>.
 
@@ -118,17 +118,17 @@ You are not limited to only loading the content from X3D files
 (or Collada, or Wavefront OBJ...).
 
 <p>For example, consider an X3D node
-<?php echo x3d_node_link2('Box', 'geometry3D'); ?> (this is a link to the X3D specification about it).
+<?php echo x3d_node_link2('Box', 'geometry3D'); ?>.
 This node in X3D has fields <code>size</code> (the X3D type is <code>SFVec3f</code>)
 and <code>solid</code> (the X3D type is <code>SFBool</code>).
 In Pascal, this node corresponds to the class
-<?php api_link('TBoxNode', 'X3DNodes.TBoxNode.html'); ?>,
+<?php echo cgeRef('TBoxNode'); ?>,
 with properties
-<?php api_link('Size (type TVector3)', 'X3DNodes.TBoxNode.html#Size'); ?> and
-<?php api_link('Solid (type Boolean)', 'X3DNodes.TAbstractGeometryNode.html#Solid'); ?>.
+<?php echo cgeRef('TBoxNode.Size', 'Size: TVector3'); ?> and
+<?php echo cgeRef('TAbstractGeometryNode.Solid', 'Solid: Boolean'); ?>.
 You can create and edit instances of
-<?php api_link('TBoxNode', 'X3DNodes.TBoxNode.html'); ?> and use
-<?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?> to render them.
+<?php echo cgeRef('TBoxNode'); ?> and use
+<?php echo cgeRef('TCastleScene'); ?> to render them.
 
 <p>This section of the Castle Game Engine documentation describes all X3D nodes
 (often by referring you to the X3D specification for details),

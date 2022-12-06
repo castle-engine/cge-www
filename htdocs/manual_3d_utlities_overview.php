@@ -39,29 +39,29 @@ of the <i>3D first-person shooter games</i>, described below.
 <p>The features provided are:
 
 <ul>
-  <li><p><?php api_link('CastlePlayer unit', 'CastlePlayer.html'); ?>:
+  <li><p><?php echo removedCgeRef('CastlePlayer'); ?>:
     Single player management.
     Player has hit points, may collect items, may use weapons (short-range,
     immediate shooting,
     missile shooting), may be swimming, may have footsteps sound
     depending on the terrain.
 
-  <li><p><?php api_link('CastleCreatures unit', 'CastleCreatures.html'); ?>:
+  <li><p><?php echo removedCgeRef('CastleCreatures'); ?>:
     Creatures with various AI (<i>artificial intelligence</i>).
     AI ranges from smart walk-attack-flee, to a trivial "missile" (fly along a direction,
     explode on hit) AI.
 
-  <li><p><?php api_link('CastleItems unit', 'CastleItems.html'); ?>:
+  <li><p><?php echo removedCgeRef('CastleItems'); ?>:
     Items that are pickable, may lie on the level, may be in player's inventory,
     have icons.
 
-  <li><p><?php api_link('CastleLevels unit', 'CastleLevels.html'); ?>:
+  <li><p><?php echo removedCgeRef('CastleLevels'); ?>:
     Levels allow to load a 3D scene with placeholders to define creatures and items,
     to define water volume, to define move limit for player etc.
 
   <li><p>And utilities for the above units:
-    <?php api_link('CastleResources', 'CastleResources.html'); ?>,
-    <?php api_link('CastleGameNotifications', 'CastleGameNotifications.html'); ?>.
+    <?php echo removedCgeRef('CastleResources'); ?>,
+    <?php echo removedCgeRef('CastleGameNotifications'); ?>.
 </ul>
 
 <?php

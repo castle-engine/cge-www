@@ -34,9 +34,9 @@ the +Y axis. So things <i>just work</i>.
 <p>If you have existing models oriented such that +Z is "up",
 but you would like to use the engine default convention that +Y is "up",
 you can simply rotate them. You can rotate things in <i>Castle Game Engine</i>
-using the <?php api_link('TCastleTransform.Rotation', 'CastleTransform.TCastleTransform.html#Rotation'); ?>
- property. Note that <?php api_link('TCastleScene', 'CastleScene.TCastleScene.html'); ?>
- also descends from <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?>,
+using the <?php echo cgeRef('TCastleTransform.Rotation'); ?>
+ property. Note that <?php echo cgeRef('TCastleScene'); ?>
+ also descends from <?php echo cgeRef('TCastleTransform'); ?>,
  so you can directly rotate a scene.
 
 <p>To rotate each single model from +Z to +Y, just set rotation for every TCastleScene:
@@ -54,7 +54,7 @@ Scene.Rotation := Vector4(1, 0, 0, -Pi/2);'); ?>
 
 <?php echo pascal_highlight_file('code-samples/rotate_2.lpr'); ?>
 
-<p>Note that you can also rotate things in <i>Castle Game Engine</i> using <?php api_link('TTransformNode.Rotation', 'X3DNodes.TTransformNode.html#Rotation'); ?>. But in this case, <?php api_link('TCastleTransform.Rotation', 'CastleTransform.TCastleTransform.html#Rotation'); ?> is simpler to use.
+<p>Note that you can also rotate things in <i>Castle Game Engine</i> using <?php echo cgeRef('TTransformNode.Rotation'); ?>. But in this case, <?php echo cgeRef('TCastleTransform.Rotation'); ?> is simpler to use.
 
 <?php echo $toc->html_section(); ?>
 
@@ -79,7 +79,7 @@ Scene.Rotation := Vector4(1, 0, 0, -Pi/2);'); ?>
         Paste the generated <code>Viewpoint</code> code into your X3D file
         (or into an X3D "wrapper" file, that includes another X3D using the <code>Inline</code> node).
 
-      <li><p>Leave <?php api_link('TCastleTransform.DefaultOrientation', 'CastleTransform.TCastleTransform.html#DefaultOrientation'); ?> at the default value: <code>otUpYDirectionZ</code>
+      <li><p>Leave <?php echo cgeRef('TCastleTransform.DefaultOrientation'); ?> at the default value: <code>otUpYDirectionZ</code>
         (best for glTF export).
         Also <code>otUpYDirectionMinusZ</code> (best for X3D export) indicates +Y up.
         The point is: a value like <code>otUpYDirection*</code>.
@@ -111,7 +111,7 @@ Scene.Rotation := Vector4(1, 0, 0, -Pi/2);'); ?>
         <i>"Console -&gt; Print Current Camera (Viewpoint)"</i>, just make
         sure to set earlier the <i>"Navigation -&gt; Set Up (and Gravity Up) +Z"</i>.
 
-      <li><p>Set <?php api_link('TCastleTransform.DefaultOrientation', 'CastleTransform.TCastleTransform.html#DefaultOrientation'); ?> := <code>otUpZDirectionMinusY</code>.
+      <li><p>Set <?php echo cgeRef('TCastleTransform.DefaultOrientation'); ?> := <code>otUpZDirectionMinusY</code>.
     </ol>
   </li>
 </ul>
@@ -170,7 +170,7 @@ it is actually configurable:
 <p>To make things work smoothly, you usually want to
 use the same conventions for "up" throughout your asset creation process.
 Be wary of
-this when creating <?php api_link('TCastleTransform', 'CastleTransform.TCastleTransform.html'); ?> instances in the engine, when exporting
+this when creating <?php echo cgeRef('TCastleTransform'); ?> instances in the engine, when exporting
 3D models from Blender, when setting viewpoint (with gravity) in
 whatever way etc.</p>
 
@@ -203,27 +203,20 @@ engine (and other good VRML/X3D browsers actually) for gravity.</p>
 
 <ol>
   <li><p>Gravity pulls things (player, items, creatures...) down in the -up
-    vector. We automatically detect this based on the gravity vector of
-    the <code>Viewpoint</code> inside your <?php api_link('Viewport.Items.MainScene', 'CastleScene.TCastleRootTransform.html#MainScene'); ?>
-    (you usually
-    want to set this to your level 3D model). This means that we follow
-    VRML/X3D specification, and gravity vector is derived from the 3D
-    model of your level. You can use e.g. <?php echo a_href_page('view3dscene', 'view3dscene'); ?>
-    to generate
-    <code>Viewpoint</code> node with a desired gravity vector. You can read this vector
-    by looking at <code>TCastleViewport.Camera.GravityUp</code>.
+    vector. We use <?php echo cgeRef('TCastleCamera.GravityUp'); ?>
+    of the active camera for this.
 
-  <li><p>If you use <code>TCastleTransform.Direction</code>
-    and <code>TCastleTransform.Up</code> properties to rotate your models
+  <li><p>If you use <?php echo cgeRef('TCastleTransform.Direction'); ?>
+    and <?php echo cgeRef('TCastleTransform.Up'); ?> properties to rotate your models
     (which is the most natural way to transform creatures, player, and items)
     then they need to know what is your default orientation.
     That is, how does the model look like when rotation is at zero.
 
-    <p>You configure this using the <code>TCastleTransform.Orientation</code> property.
+    <p>You configure this using the <?php echo cgeRef('TCastleTransform.Orientation'); ?> property.
 </ol>
 
 <p>Usually, you want to just set
-<?php api_link('TCastleTransform.DefaultOrientation', 'CastleTransform.TCastleTransform.html#DefaultOrientation'); ?>, and then
+<?php echo cgeRef('TCastleTransform.DefaultOrientation'); ?>, and then
 it will be used for all your models.
 
 <?php echo $toc->html_section(); ?>
@@ -247,9 +240,9 @@ for this (that you may indeed encounter).
 producing different results for what happens with model "front" (assuming you used
 Blender's default suggested orientation for "front").
 
-<p>To account for this, and keep <?php api_link('TCastleTransform.Direction', 'CastleTransform.TCastleTransform.html#Direction'); ?> working
-in an intuitive way, you can adjust <?php api_link('TCastleTransform.Orientation', 'CastleTransform.TCastleTransform.html#Orientation'); ?> or even
-<?php api_link('TCastleTransform.DefaultOrientation', 'CastleTransform.TCastleTransform.html#DefaultOrientation'); ?>.
+<p>To account for this, and keep <?php echo cgeRef('TCastleTransform.Direction'); ?> working
+in an intuitive way, you can adjust <?php echo cgeRef('TCastleTransform.Orientation'); ?> or even
+<?php echo cgeRef('TCastleTransform.DefaultOrientation'); ?>.
 
 <p>By default they match Blender's glTF exporter, in CGE 6.5 and newer.
 In the earlier engine versions they matched the Blender's X3D exporter.

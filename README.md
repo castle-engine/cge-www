@@ -100,7 +100,7 @@ Example of page written this way: https://castle-engine.io/manual_state_events.p
 
 To edit: Fork this repository, edit php file in `htdocs/`, and create a pull request.
 
-To test your modifications, you can follow the _"Testing Locally"_ instructions below. If these instructions look too complicated, just ignore them for simple modifications --- the PHP files are mostly using trivial HTML with small PHP additions (like PHP castle_header, api_link functions) so if you understand basic HTML, you can probably figure out what is going on.
+To test your modifications, you can follow the _"Testing Locally"_ instructions below. If these instructions look too complicated, just ignore them for simple modifications --- the PHP files are mostly using trivial HTML with small PHP additions (like PHP `castle_header`, `cgeRef` functions) so if you understand basic HTML, you can probably figure out what is going on.
 
 Most important PHP functions are:
 

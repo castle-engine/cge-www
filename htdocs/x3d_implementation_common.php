@@ -66,12 +66,12 @@ function x3d_status_footer()
   castle_footer();
 }
 
-function x3d_node_api_link($node_name)
+function x3d_node_cgeRef($node_name)
 {
   $node_name_pascal = 'T' . $node_name . 'Node';
-  return '<small>' .
-    api_link(' (API reference)', 'X3DNodes.' . $node_name_pascal . '.html', false) .
-    '</small>';
+  return '<small>(Pascal API: ' .
+    cgeRef($node_name_pascal) .
+    ')</small>';
 }
 
 /* Display X3D node, linked to X3D specification and to Pascal API docs.
@@ -96,6 +96,6 @@ function x3d_node_link2($node_name, $component_name_for_url, $spec_version = NUL
 {
   $x3d_component_url = x3d_spec_latest_url($component_name_for_url, $node_name, $spec_version);
   return '<code><a href="' . $x3d_component_url . '">' .
-    $node_name . '</a></code>' . x3d_node_api_link($node_name);
+    $node_name . '</a></code>' . x3d_node_cgeRef($node_name);
 }
 ?>
