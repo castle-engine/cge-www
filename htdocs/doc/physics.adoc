@@ -23,8 +23,6 @@ cgeimg::block[
 
 == New physics
 
-WARNING: The _"new physics"_ features described here are not yet available in CGE "master" branch, nor in the link:download[downloads] we recommend. They are on https://github.com/castle-engine/castle-engine/tree/physics[physics branch] and more (joints) in https://github.com/castle-engine/castle-engine/tree/physics_j[physics_j branch]. But they will be *soon*! We work on making them officially available in October 2022.
-
 === Demo Videos
 
 video::9VPL2awHsMA[youtube,width=800,height=450]
@@ -35,36 +33,32 @@ video::apCQXr9PBhs[youtube,width=800,height=450]
 
 Use these components (available in both editor and code) to control the physics.
 
-////
-TODO: Make links below using cgeref, once possible (on master).
-////
-
-- `TCastleRigidBody`
-- Family of components descending from abstract `TCastleCollider`:
+- cgeref:TCastleRigidBody[]
+- Family of components descending from abstract cgeref:TCastleCollider[]:
 +
 --
-- `TCastleSphereCollider`
-- `TCastleBoxCollider`
-- `TCastleCapsuleCollider`
-- `TCastleMeshCollider` (only static bodies)
-- `TCastlePlaneCollider` (only static bodies)
+- cgeref:TCastleSphereCollider[]
+- cgeref:TCastleBoxCollider[]
+- cgeref:TCastleCapsuleCollider[]
+- cgeref:TCastleMeshCollider[] (using this collider forces the body to be static)
+- cgeref:TCastlePlaneCollider[] (using this collider forces the body to be static)
 --
 
-Just add to any cgeref:TCastleTransform[] (usually to cgeref:TCastleScene[] or a primitive like cgeref:TCastleBox[], cgeref:TCastleSphere[]) one `TCastleRigidBody`, one collider, and observe that it's affected by
+Just add to any cgeref:TCastleTransform[] (usually to cgeref:TCastleScene[] or a primitive like cgeref:TCastleBox[], cgeref:TCastleSphere[]) one cgeref:TCastleRigidBody[], one collider, and observe that it's affected by
 
 - gravity
 - collisions with other objects.
 
 There are lots of options to tweak how things behave. See API docs for documentation.
 
-You can visualize physics colliders (esp. useful if you disable the `AutoSize` on them and want to see the effect) using the menu item _"Physics -> Show Colliders"_.
+You can visualize physics colliders (esp. useful if you disable the cgeref:TCastleCollider.AutoSize[] on them and want to see the effect) using the menu item _"Physics -> Show Colliders"_.
 
 [NOTE]
 ====
 A good test to enjoy the physics is to make a "bullet" that will hit some rigid body with significant speed, so that you can see how it behaves on collision. To make a bullet, just
 
-- add `TCastleRigidBody` and some collider to the object you want to act as a bullet
-- set `TCastleRigidBody.LinearVelocity` to something non-zero.
+- add cgeref:TCastleRigidBody[] and some collider to the object you want to act as a bullet
+- set cgeref:TCastleRigidBody.LinearVelocity[] to something non-zero.
 
 See https://www.youtube.com/watch?v=9VPL2awHsMA[quick demo movie].
 ====
@@ -92,6 +86,10 @@ TODO above: link to example, once on master.
 TODO: list method names, once decided.
 ////
 
+=== Joints
+
+NOTE: The joints are in https://github.com/castle-engine/castle-engine/tree/physics_j[physics_j branch]. They will be merged soon!
+
 == Old (deprecated) physics (TRigidBody, TXxxCollider components)
 
 === Demo Videos
@@ -102,7 +100,7 @@ video::hIuEGnRm-yM[youtube,width=800,height=450]
 
 === Usage
 
-You can turn any cgeref:TCastleTransform[] instance into a _rigid body_, which means that it will be affected by gravity and collisions with other rigid bodies. cgeref:TCastleScene[], which you use to render 3D objects, is a descendant of cgeref:TCastleTransform[], so this implies that `TCastleScene` can be a _rigid body_ too. Or you can use cgeref:TCastleTransform[] as a container for other transformations and scenes inside, and thus a group of objects can be treated as a single rigid body.
+You can turn any cgeref:TCastleTransform[] instance into a _rigid body_, which means that it will be affected by gravity and collisions with other rigid bodies. cgeref:TCastleScene[], which you use to render 3D objects, is a descendant of cgeref:TCastleTransform[], so this implies that cgeref:TCastleScene[] can be a _rigid body_ too. Or you can use cgeref:TCastleTransform[] as a container for other transformations and scenes inside, and thus a group of objects can be treated as a single rigid body.
 
 To make a rigid body you need to:
 
