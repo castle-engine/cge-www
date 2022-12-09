@@ -16,20 +16,14 @@ The physics collisions automatically result in a proper response, i.e. objects "
 To achieve all this, _Castle Game Engine_ is integrated with https://github.com/BeRo1985/kraft[Kraft Physics Engine] made by _Benjamin 'BeRo' Rosseaux_. Read on to learn how to add physics to your own games.
 
 cgeimg::block[
-  physics_1.png|Bunch of physics rigid bodies,
-  physics_mesh.png|Physics with mesh collider,
-  physics_2d.png|Physics 2D
+  physics_1.png|Bunch of physics rigid bodies
 ]
 
-== New physics
-
-=== Demo Videos
+== Quick Video How To Use Physics Components
 
 video::9VPL2awHsMA[youtube,width=800,height=450]
-video::IUzIV6OmrIE[youtube,width=800,height=450]
-video::apCQXr9PBhs[youtube,width=800,height=450]
 
-=== Rigid bodies and colliders (TCastleRigidBody, TCastleXxxCollider components)
+== Rigid Bodies and Colliders
 
 Use these components (available in both editor and code) to control the physics.
 
@@ -63,133 +57,105 @@ A good test to enjoy the physics is to make a "bullet" that will hit some rigid 
 See https://www.youtube.com/watch?v=9VPL2awHsMA[quick demo movie].
 ====
 
-=== Physics Simulation in Editor
+== Physics Simulation in the Editor
 
 You can start a _"Physics Simulation"_ right in the editor. This is a great way to test how physics behaves without the need to actually run the game.
 
 During the simulation you *can* click around and modify the design even while the physics is runnning. Beware: _the design will be restored to the original state when physics stops_. If you want to really modify the design (not only make a temporary experiment), you should first _stop the physics simulation_.
 
-NOTE: In the editor we only run physics simulation, not your actual game code. In the future, more components may behave differently in this simulation. But we'll never run your project's code (unless you put it into a link:custom_components[custom component] and add to the design this way).
+NOTE: In the editor we only run the physics simulation, not your final game code. That said, various components may adapt to the "simulation" to behave in editor just as they do at run-time. Your link:custom_components[custom components] can adapt to simulation too, just honor the current cgeref:CastleApplicationMode[] value.
 
-=== Using forces (pushing, rotating bodies)
+== 2D Games
+
+cgeimg::block[
+  physics_2d.png|Physics 2D
+]
+
+The whole physics can work for 2D games as well as 3D. For 2D, remember to:
+
+- Adjust cgeref:TCastleRigidBody[] by locking rotation/translation (such that the object stays within the same XY plane). It's easiest to do this by calling cgeref:TCastleRigidBody.Setup2D[] from code. In CGE editor, just add _"Rigid Body (2D)"_ component.
+
+- Set cgeref:TCastleCollider.Mode2D[] to `true` (to auto-size and to account for scale in a way better for 2D). In CGE editor, just add the _"Xxx Collider (2D)"_ components.
+
+We feature a number of 2D physics demos in our examples on https://github.com/castle-engine/castle-engine/tree/master/examples/physics/[examples/physics], check them out.
+
+== Forces (Pushing, Rotating Bodies)
 
 You can apply forces from code. This can be used to simulate forces other than gravity. For example: wind or explosion.
 
 See demos:
 
-- `examples/physics/physics_forces` - test various method to apply forces.
+- https://github.com/castle-engine/castle-engine/tree/master/examples/physics/physics_forces[examples/physics/physics_forces] - test various methods to apply forces.
 
-- `examples/physics/physics_explosion` - test explosion.
+- https://github.com/castle-engine/castle-engine/tree/master/examples/physics/physics_explosion[examples/physics/physics_explosion] - test explosion.
 
-////
-TODO above: link to example, once on master.
-TODO: list method names, once decided.
-////
+To apply the force use on of these methods:
 
-=== Joints
+- cgeref:TCastleRigidBody.AddForceAtPosition[] - push objects in the given direction, with given strength, from the given position.
 
-NOTE: The joints are in https://github.com/castle-engine/castle-engine/tree/physics_j[physics_j branch]. They will be merged soon!
+- cgeref:TCastleRigidBody.AddForce[] - push objects in the given direction, with given strength. The direction may be in local or global coordinate system.
 
-== Old (deprecated) physics (TRigidBody, TXxxCollider components)
+- cgeref:TCastleRigidBody.AddTorque[] - rotate the objects using physics.
 
-=== Demo Videos
+- cgeref:TCastleRigidBody.ApplyImpulse[] - apply an instant impulse. This is more instant way of affecting the velocity than the `AddXxx` methods above.
 
-video::8k9zX6dPQEU[youtube,width=800,height=450]
+Here's how an explosion can look like:
 
-video::hIuEGnRm-yM[youtube,width=800,height=450]
+video::IUzIV6OmrIE[youtube,width=800,height=450]
 
-=== Usage
+== Ray-casting (Querying For Collision)
 
-You can turn any cgeref:TCastleTransform[] instance into a _rigid body_, which means that it will be affected by gravity and collisions with other rigid bodies. cgeref:TCastleScene[], which you use to render 3D objects, is a descendant of cgeref:TCastleTransform[], so this implies that cgeref:TCastleScene[] can be a _rigid body_ too. Or you can use cgeref:TCastleTransform[] as a container for other transformations and scenes inside, and thus a group of objects can be treated as a single rigid body.
+Use the cgeref:TCastleAbstractRootTransform.PhysicsRayCast[] to cast a ray and see whether it hits something. It takes and returns values (ray origin, direction, returned distance, point) in the world coordinate system.
 
-To make a rigid body you need to:
+Alternatively use the cgeref:TCastleRigidBody.PhysicsRayCast[] which is similar, but takes parameters in the coordinate system of the parent cgeref:TCastleTransform[].
 
-1. Create cgeref:TCastleScene[] (see also link:viewport_and_scenes[viewport and scenes documentation]).
+== Detecting Collisions
 
-2. Create and configure an instance of cgeref:TRigidBody[].
+You can detect whether a collision has occurred by
 
-3. Create and configure an instance of some cgeref:TCollider[] descendant, like
-+
---
-- cgeref:TPlaneCollider[],
-- cgeref:TBoxCollider[],
-- cgeref:TSphereCollider[],
-- cgeref:TMeshCollider[].
---
-+
-The collider will be connected to the parent rigid body at construction (the `TRigidBody.Collider` property will be automatically set when creating the collider).
+- Assigning a callback to events cgeref:TCastleRigidBody.OnCollisionEnter[], cgeref:TCastleRigidBody.OnCollisionStay[], cgeref:TCastleRigidBody.OnCollisionExit[].
 
-4. Link to your rigid body from the cgeref:TCastleTransform.RigidBody[] property.
+- Or checking (e.g. in each link:manual_state_events.php[state Update event]) the value of cgeref:TCastleRigidBody.GetCollidingTransforms[].
 
-This is a sample code:
+See the https://github.com/castle-engine/castle-engine/tree/master/examples/physics/physics_2d_collisions[examples/physics/physics_2d_collisions] for a demo.
 
-[source,pascal]
-----
-var
-  Scene: TCastleScene;
-  RigidBody: TRigidBody;
-  Collider: TBoxCollider;
-begin
-  // Create TCastleScene
-  Scene := TCastleScene.Create(Application);
-  Scene.Load(URL);
-  Scene.PreciseCollisions := true;
-  // Scene.Translation := Vector3(1, 2, 3); // set initial position
+== Joints
 
-  // Create TRigidBody
-  RigidBody := TRigidBody.Create(Application);
-  // RigidBody.Dynamic := ?; // boolean, default true
-  // RigidBody.Gravity := ?; // boolean, default true
-  // RigidBody.InitialLinearVelocity := Vector3(10, 0, 0);
+WARNING: The joints are not yet merged. They are in https://github.com/castle-engine/castle-engine/tree/physics_j[physics_j branch]. They will be merged soon!
 
-  // Create TCollider (a TBoxCollider, to be more precise, in this case).
-  // Note that TBoxCollider assumes that box is centered around (0,0,0) for now
-  Collider := TBoxCollider.Create(RigidBody);
-  Collider.Size := Scene.BoundingBox.Size;
-  // Collider.Restitution := 0.3;
-  // Collider.Density := 100.0;
+_Joints_ allow to connect one physics body to another in some way that limits their ability to move/rotate relative to each other.
 
-  // Connect rigid body
-  Scene.RigidBody := RigidBody;
+For example a _hinge joint_ forces one physics body to only be rotated relative to another along a given axis. Like a door that is attached to a wall using https://en.wikipedia.org/wiki/Hinge[hinges] and can only rotate in a constrained way.
 
-  // Add Scene to the Viewport, to make it visible
-  Viewport.Items.Add(Scene);
-end;
-----
+Hitting a physics body with something (like another physics body or using the forces API) will respect the joints.
 
-See https://github.com/castle-engine/castle-engine/blob/master/examples/physics/physics_3d_demo/[physics_3d_demo], in particular the https://github.com/castle-engine/castle-engine/blob/master/examples/physics/physics_3d_demo/code/gameinitialize.pas[physics_3d_demo/code/gameinitialize.pas] source code, for a complete working example.
+Joints can be made _breakable_ which means they can be broken if sufficiently big force is used.
 
-Notes:
+Joints are simply components in Pascal that are derived from cgeref:TCastleBehavior[] and can be attached to any cgeref:TCastleTransform[].
 
-- Right now the instruction to assign cgeref:TCastleTransform.RigidBody[] should be at the very end, when you configured all the rigid body and collider parameters. Right now, this is when the rigid body is actually created on the physics engine side. _Right now_ changing the properties of rigid body or collider later has no effect (if you need it, the temporary workaround is to set `TCastleTransform.RigidBody` to `nil` and then again to your `TRigidBody` instance).
+- You can add them from CGE editor using the _"Add Behavior -> Xxx Joint"_ menu items.
+- Each joint component has a number of properties to control its behavior.
+- Often joints have some _anchors_ that can be manipulated visually if you right-click on the joint component in the hierarchy and do _"Show Joint Tools"_.
 
-- The collider shape is not synchronized with the scene shape in any way. This also applies to the cgeref:TMeshCollider[] that has a cgeref:TMeshCollider.Scene[]: the mesh is created _once_ from the scene geometry, it is not synchronized with scene changes later. (If you need it, the workaround is the same as above: set `TCastleTransform.RigidBody` to `nil` and then again to your `TRigidBody` instance. But creating a mesh collider is a costly operation, so think twice before doing this during the game!)
+NOTE: Joints only make sense for cgeref:TCastleTransform[] that are affected by physics. So you most often need add cgeref:TCastleRigidBody[] and some cgeref:TCastleCollider[] descendant to the same cgeref:TCastleTransform[] that has a joint.
 
-=== Physics in 2D games
+Here's a demo:
 
-Although internally Castle Game Engine and Kraft work in 3D, the physics can work just fine for 2D games too.
+video::apCQXr9PBhs[youtube,width=800,height=450]
 
-- Simply position everything around Z = 0 (or any other Z = constant plane).
+== Examples
 
-- When creating colliders, make sure that they have some non-zero size in Z axis too. Even though the Z axis is not visible in 2D games, but the colliders need to have some volume in all 3 axes.
+We have a lot of examples dedicated to physics in the https://github.com/castle-engine/castle-engine/tree/master/examples/physics[examples/physics] subdirectory. Go ahead and check them out!
 
-- Constrain rotations and movement of dynamic rigid bodies to 2D by calling `TRigidBody.Setup2D`.
-
-The example how to do this is in https://github.com/castle-engine/castle-engine/tree/master/examples/physics/physics_2d_game_sopwith[physics_2d_game_sopwith] (see in particular the https://github.com/castle-engine/castle-engine/tree/master/examples/physics/physics_2d_game_sopwith/code/gameinitialize.pas[physics_2d_game_sopwith/code/gameinitialize.pas] source code).
-
-=== Future plans (TODOs)
+== Future plans (TODOs)
 
 Current physics engine integration is just a start. The plans are:
 
-- (https://github.com/castle-engine/castle-engine/pull/394/[PR in review]). Expose physics to be available in editor, by making `TCastleRigidBody` and `TCastleCollider` be descendants from `TCastleBehavior`.
+- (https://github.com/castle-engine/castle-engine/tree/physics_j[In progress, branch `physics_j`]). Add joints.
 
 - Expose Kraft layers.
 
-- (https://github.com/castle-engine/castle-engine/pull/394/[PR in review]). Enable to "run" physics in the editor, by saving the state + observing the effect of physics.
-
 - _(See section below about "Old system")_ Currently we also have an older, simpler, internal physics/collision engine in CGE, that takes care of some tasks: the collisions of player and creatures (from CastleCreatures), a simple gravity for them, and custom collision methods for you (like RayCollision, SphereCollision etc. in CastleTransform unit). The new physics engine should eventually replace them all, and there should be a flag to make it possible, and eventually it should even become the default, and the old collision implementation should be simply removed.
-
-- (https://github.com/castle-engine/castle-engine/tree/physics_j[In progress, branch `physics_j`]). The current implementation doesn't expose any API for joints.
 
 - A shape within the `TCastleScene` should be able to act like a rigid body, independent of the rest of the scene. Our current preferred plan to this is to depend that you will assign rigid bodies and colliders in CGE editor (or by Pascal code) to `TCastleTransform` created by the `ExposeTransforms` feature. And we can just synchronize changes from bones exposed by `ExposeTransforms` back to the original model.
 +
