@@ -1,15 +1,15 @@
-# How to render 2D images/sprites
+# How to render 2D games with images and sprites
 include::common.adoc[]
 
 cgeimg::float[platformer.png|Platformer]
 
-== How to render 2D images/sprites
+== How to render 2D things
 
 WARNING: This page compares 2 possible approaches to 2D rendering in CGE. This page is really *not* a good introduction into "making 2D games in CGE". For such introduction, instead follow the manual from the beginning, in particular link:viewport_and_scenes[learn about viewports, scenes] and link:viewport_2d[how to use them for 2D].
 
-=== Full-featured: Render using TCastleScene
+=== Full-featured option: Render using a viewport
 
-Use cgeref:TCastleViewport[]. Add cgeref:TCastleViewport[] control to the window, and inside it draw things by creating cgeref:TCastleScene[] instances.
+Use cgeref:TCastleViewport[]. Add cgeref:TCastleViewport[] control to the window, and inside it draw things by creating cgeref:TCastleTransform[] descendants (like cgeref:TCastleScene[], cgeref:TCastleImageTransform[], cgeref:TCastlePlane[]).
 
 You should call `TCastleViewport.Setup2D` on the viewport to easily make it suitable for 2D games, and call `TCastleScene.Setup2D` to easily make it suitable for 2D games. When using https://castle-engine.io/manual_editor.php[CGE editor], it already has in the menu components _"Viewport (2D)"_ and _"Scene (Optimal Blending for 2D Models)"_.
 
@@ -18,7 +18,7 @@ You should call `TCastleViewport.Setup2D` on the viewport to easily make it suit
  ** The cgeref:TCastleScene[] is incredibly versatile. You can load game models from files. E.g. Spine animations, Blender models etc. You can play animations. Everything described in link:viewport_and_scenes[viewport and scenes] works.
  ** Using cgeref:TCastleViewport[] for 2D is documented on link:viewport_2d[Viewport 2D].
  ** link:physics[Physics] shows how to use physics with it.
-* The engine template "2D game" and `physics/physics_2d_game_sopwith/` show this approach.
+* The engine template "2D game" and `physics/physics_2d_game_sopwith/` shows this approach.
 * The important API reference links: cgeref:TCastleScene[], cgeref:TCastleSceneCore[], cgeref:TCastleViewport[].
 * To construct your own scene (not loaded from external file), you need to create a graph of X3D nodes. Various examples showing it are around the engine, the simpler is http://castle-engine.io/x3d_implementation_geometry2d.php . It instantiates a `TRectangle2DNode`. One could instead instantiate also `TIndexedFaceSetNode` which represents a free mesh, with custom texture coordinates and anything else you may need.
 * To render sprites you can link:sprite_sheets[load sprite sheets from Castle Game Engine, Starling or Cocos2d formats to TCastleScene]. You can play it's animation just like any other scene (use `Scene.PlayAnimation` method, test with view3dscene panel "Animations").
@@ -60,7 +60,7 @@ To do this in X3D (editing X3D file), see https://github.com/castle-engine/demo-
 * This approach is also easy, if you mostly load 2D models from existing files (Spine JSON, X3D exported from Blender or sprite-sheet-to-x3d). But it is a little more work to construct your own X3D graph -- as there are simply a lot of X3D nodes that you can use. But it pays off in my experience, you really can do everything. Our http://cat-astrophe-games.com/[Cat-astrophe Games] games ("Dragon Squash", "Escape from the Universe", http://store.steampowered.com/app/746750/The_Unholy_Society/["The Unholy Society"]) are all implemented using this approach.
 * This approach allows engine to take care of animations, physics, and other cool stuff for you.
 
-=== Simple: Render using TDrawableImage
+=== Simple (imperative) option: Render using TDrawableImage
 
 Use `TDrawableImage` as your main way to draw. In this approach, you create `TDrawableImage` instance for each image, and then draw it in overridden `TCastleUserInterface.Render` method. This is the same approach as we use for our user-interface rendering (various `TCastleUserInterface` instances). *The main advantage of this approach is simplicity: you just draw 2D images.*
 
