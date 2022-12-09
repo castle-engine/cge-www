@@ -34,8 +34,10 @@ Use these components (available in both editor and code) to control the physics.
 - cgeref:TCastleSphereCollider[]
 - cgeref:TCastleBoxCollider[]
 - cgeref:TCastleCapsuleCollider[]
-- cgeref:TCastleMeshCollider[] (using this collider forces the body to be static)
 - cgeref:TCastlePlaneCollider[] (using this collider forces the body to be static)
+- cgeref:TCastleMeshCollider[] (using this collider forces the body to be static)
++
+A _mesh_ that collides (referenced by cgeref:TCastleMeshCollider.Mesh[]) can be cgeref:TCastleScene[], cgeref:TCastleTerrain[], or any primitive descending from cgeref:TCastleAbstractPrimitive[].
 --
 
 Just add to any cgeref:TCastleTransform[] (usually to cgeref:TCastleScene[] or a primitive like cgeref:TCastleBox[], cgeref:TCastleSphere[]) one cgeref:TCastleRigidBody[], one collider, and observe that it's affected by
