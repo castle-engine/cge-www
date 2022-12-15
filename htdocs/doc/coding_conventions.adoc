@@ -635,6 +635,8 @@ end;
 
 NOTE: Compare vectors like `if not TVector3.PerfectlyEquals(FFoo, Value) then...`.
 
+NOTE: The condition to perform setter should check for _exact_ equality (so check floats using `<>` not `SameValue`, check vectors using `PerfectlyEquals` not `Equals`). Reason: Right after performing setter, we want the property value to be exactly equal to what was set. This is more natural for user (following general rule _"properties should behave like fields when reasonable"_). This also avoids hard-to-find bugs like _"increasing the property 1000 times by epsilon/2 has no effect"_.
+
 _Lazarus CodeTools_ generate a setter with early exit using `Exit` instead, we discourage this setter form (not because it's inherently worse, but just the above is also good and it is prevalent in CGE sources, so better follow existing convention):
 
 [source,pascal]
@@ -754,13 +756,13 @@ _Other things can also free the children, this will be handled OK._
 
 In short, things are easy when *nothing else frees the object you were supposed to free*. Without explicit allowance, the other code should not free the things you created.
 
-This guideline is thus: *When you create an instance of something, then you decide when and how it should be freed. Nothing else should free it, unless explicitly permitted by the documentation.*a
+This guideline is thus: *When you create an instance of something, then you decide when and how it should be freed. Nothing else should free it, unless explicitly permitted by the documentation.*
 
 This includes the cases when you receive an instance of something by accessing some property, function or class function. *Do not* free it, unless it is explicitly documented that you should free it. Only free things where you have called `constructor`.
 
 This rule has some additional consequences:
 
-==== If you receive an instance from some code you don't control, do not assume anything about the lifetime of this instance
+==== If you receive an instance from some code you don't control, do not assume anything about the lifetime of this instance; use `TFreeNotificationObserver` to watch it
 
 The prominent example of this is when you expose a settable property like `property FooInstance: TFoo read FFooInstance write SetFooInstance`.
 
@@ -803,11 +805,11 @@ The idea is that, by default, developer should be able to assume that when (s)he
 
 If your function returns something that the caller should free, it must be explicitly documented.
 
-=== What can be nil
+=== Things (parameters, properties, function results) are not allowed to be `nil` unless this is explicitly stated by the documentation
 
-In Pascal, a value of an object instance (like `X: TMyObject`) can always be `nil`.
+Technically, in Pascal a value of an object instance (like `X: TMyObject`) can always be `nil`.
 
-This guideline limits the cases when you have to worry that something is `nil`, in order to avoid writing lots of checks `X <> nil` in the code.
+But this guideline limits the cases when you have to worry that something is `nil`, in order to avoid writing lots of checks `X <> nil` in the code.
 
 Follow this:
 
@@ -982,7 +984,7 @@ But I certainly recognize that there are cases when it's easier or harder to bre
 
 - designing API of a library that is dynamically linked, and distributed independently of the using applications, like OpenGL. You need to keep ABI compatibility then, which is even stronger than API. Not just language level breakage is not possible, also e.g. calling convention cannot change.
 
-In such cases, it is insanely difficult to break compatibility, because your users (in the wild) do not have automatic mechanisms that would force them to upgrade. Instead, their files / applications would suddently stop to work.
+In such cases, it is insanely difficult to break compatibility, because your users (in the wild) do not have automatic mechanisms that would force them to upgrade. Instead, their files / applications would suddenly stop to work. There are solutions to this (explicitly giving file format version in each file, like in glTF and X3D; explicitly requesting API version at initialization with flags for forward/backward compatibility behavior, like in OpenGL) but essentially breaking compatibility is hard -- you can do it only once per a long time, and you must have convincing arguments that new version is better (so it's worth forcing the entire ecosystem, like authoring tools, to upgrade).
 
 However, CGE is a library that is statically linked into your project. In the worst case, if we really break compatibility -- your game will not compile after you upgrade CGE. But we don't make it crashing for users. Developer will see that it will not compile, and will have to fix it.
 ====
