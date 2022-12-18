@@ -653,7 +653,7 @@ var
 initialization
   R := TRegisteredComponent.Create;
   R.ComponentClass := TMyRectanglesGroup;
-  R.Caption := 'Rectangles Group (initially 3)';
+  R.Caption := ['Rectangles Group (initially 3)'];
   R.OnCreate := {$ifdef FPC}@{$endif}TMyRectanglesGroup{$ifdef FPC}(nil){$endif}.CreateInitialChildren;
   RegisterSerializableComponent(R);
 end.
