@@ -27,8 +27,9 @@ video::9VPL2awHsMA[youtube,width=800,height=450]
 
 Use these components (available in both editor and code) to control the physics.
 
-- cgeref:TCastleRigidBody[]
-- Family of components descending from abstract cgeref:TCastleCollider[]:
+- cgeref:TCastleRigidBody[] : This component activates processing the transformation by physics.
+
+- _Colliders_ are components descending from abstract cgeref:TCastleCollider[]:
 +
 --
 - cgeref:TCastleSphereCollider[]
@@ -40,10 +41,15 @@ Use these components (available in both editor and code) to control the physics.
 A _mesh_ that collides (referenced by cgeref:TCastleMeshCollider.Mesh[]) can be cgeref:TCastleScene[], cgeref:TCastleTerrain[], or any primitive descending from cgeref:TCastleAbstractPrimitive[].
 --
 
-Just add to any cgeref:TCastleTransform[] (usually to cgeref:TCastleScene[] or a primitive like cgeref:TCastleBox[], cgeref:TCastleSphere[]) one cgeref:TCastleRigidBody[], one collider, and observe that it's affected by
+To make any cgeref:TCastleTransform[] affected by physics add there a collider (any cgeref:TCastleCollider[] descendant) and a rigid body (cgeref:TCastleRigidBody[]). In the editor, adding any collider automatically also adds the cgeref:TCastleRigidBody[], so *you only need to do one step: add a collider*. The usual way to do this is by right-clicking on a cgeref:TCastleTransform[] instance in your hierarchy, and choosing from context menu _"Add Behavior -> Physics -> Collider -> ..."_.
+
+Then run _"Physics -> Play Simulation"_ (use the menu item or button on the header) and observe that body is affected by
 
 - gravity
 - collisions with other objects.
+
+Note that various components descend from cgeref:TCastleTransform[] and thus can act as physics bodies: cgeref:TCastleScene[], primitives like cgeref:TCastleBox[], cgeref:TCastleSphere[], even terrains cgeref:TCastleTerrain[].
+
 
 There are lots of options to tweak how things behave. See API docs for documentation.
 
@@ -53,7 +59,7 @@ You can visualize physics colliders (esp. useful if you disable the cgeref:TCast
 ====
 A good test to enjoy the physics is to make a "bullet" that will hit some rigid body with significant speed, so that you can see how it behaves on collision. To make a bullet, just
 
-- add cgeref:TCastleRigidBody[] and some collider to the object you want to act as a bullet
+- add some collider to the object you want to act as a bullet (this will also add cgeref:TCastleRigidBody[] to it)
 - set cgeref:TCastleRigidBody.LinearVelocity[] to something non-zero.
 
 See https://www.youtube.com/watch?v=9VPL2awHsMA[quick demo movie].
@@ -123,8 +129,6 @@ See the https://github.com/castle-engine/castle-engine/tree/master/examples/phys
 
 == Joints
 
-WARNING: The joints are not yet merged. They are in https://github.com/castle-engine/castle-engine/tree/physics_j[physics_j branch]. They will be merged soon!
-
 _Joints_ allow to connect one physics body to another in some way that limits their ability to move/rotate relative to each other.
 
 For example a _hinge joint_ forces one physics body to only be rotated relative to another along a given axis. Like a door that is attached to a wall using https://en.wikipedia.org/wiki/Hinge[hinges] and can only rotate in a constrained way.
@@ -135,7 +139,7 @@ Joints can be made _breakable_ which means they can be broken if sufficiently bi
 
 Joints are simply components in Pascal that are derived from cgeref:TCastleBehavior[] and can be attached to any cgeref:TCastleTransform[].
 
-- You can add them from CGE editor using the _"Add Behavior -> Xxx Joint"_ menu items.
+- You can add them from CGE editor using the _"Add Behavior -> Physics -> Joints -> ..."_ menu item.
 - Each joint component has a number of properties to control its behavior.
 - Often joints have some _anchors_ that can be manipulated visually if you right-click on the joint component in the hierarchy and do _"Show Joint Tools"_.
 
