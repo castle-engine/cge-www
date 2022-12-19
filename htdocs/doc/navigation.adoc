@@ -17,13 +17,27 @@ As cgeref:TCastleNavigation[] class is abstract, you actually have to use some d
 
 - cgeref:TCastleThirdPersonNavigation[] - 3rd-person navigation in which an avatar of the player is shown. This navigation requires an animater avatar to use, see https://github.com/castle-engine/castle-engine/tree/master/examples/third_person_camera[examples/third_person_camera] how to set it up.
 
-You have complete freedom how do you handle the input in your games. You can
+You have complete freedom how do you handle the input in your games. You can:
 
 * use one of our ready navigation classes listed above,
 
 * or implement a new descendant of cgeref:TCastleNavigation[],
 
-* or leave cgeref:TCastleViewport.Navigation[] as `nil` and handle the navigation elsewhere. For example, move the camera in response to user input in your `TStatePlay.Update`.
+* or implement navigation simply by processing the keys and updating the camera position / rotation from anywhere you want.
++
+For example, move the camera in response to user input in your `TStatePlay.Update`. Example code would be like this (see link:manual_state_events.php[manual about handling state events]):
++
+[source,pascal]
+----
+procedure TStatePlay.Update(const SecondsPassed: Single; var HandleInput: Boolean);
+const
+  MoveSpeed = 10;
+begin
+  inherited;
+  MyViewport.Camera.Position := MyViewport.Camera.Position +
+    MyViewport.Camera.Direction * SecondsPassed * MoveSpeed;
+end;
+----
 
 See the link:viewport_3d[Tutorial: Designing a 3D world] and link:viewport_2d[Tutorial: Designing a 2D world] to see the typical workflow how do you manipulate the navigation using the editor.
 
