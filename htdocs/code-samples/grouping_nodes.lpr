@@ -115,15 +115,18 @@ begin
   Viewport := TCastleViewport.Create(Application);
   Viewport.FullSize := true;
   Viewport.AutoCamera := true;
-  Viewport.Navigation := TCastleExamineNavigation.Create(Application);
   Window.Controls.InsertFront(Viewport);
 
   Scene := TCastleScene.Create(Application);
   Scene.Load(BuildRootNode, true);
-  Scene.Spatial := [ssRendering, ssDynamicCollisions];
+  Scene.PreciseCollisions := true;
 
   Viewport.Items.Add(Scene);
-  Viewport.Items.MainScene := Scene;
+
+  Viewport.InsertFront(TCastleExamineNavigation.Create(Application));
+
+  // add a simple headlight, i.e. directional light attached to the camera
+  Viewport.Camera.Add(TCastleDirectionalLight.Create(Application));
 
   Application.Run;
 end.

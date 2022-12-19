@@ -120,10 +120,9 @@ begin
 
   Scene := TCastleScene.Create(Application);
   Scene.Load(RootNode, true);
-  Scene.Spatial := [ssRendering, ssDynamicCollisions];
+  Scene.PreciseCollisions := true;
 
   Viewport.Items.Add(Scene);
-  Viewport.Items.MainScene := Scene;
 
   // configure initial camera view
   Viewport.Camera.SetView(
@@ -131,8 +130,9 @@ begin
     Vector3(0, 0, -1),
     Vector3(0, 1, 0)
   );
+
   // let user rotate the scene by default Examine mode
-  Viewport.Navigation := TCastleExamineNavigation.Create(Application);
+  Viewport.InsertFront(TCastleExamineNavigation.Create(Application));
 
   Application.Run;
 end.

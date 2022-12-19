@@ -67,14 +67,14 @@ begin
   Viewport := TCastleViewport.Create(Application);
   Viewport.FullSize := true;
   Viewport.AutoCamera := true;
-  Viewport.Navigation := TCastleExamineNavigation.Create(Application);
   Window.Controls.InsertFront(Viewport);
+
+  Viewport.InsertFront(TCastleExamineNavigation.Create(Application));
 
   Scene := TCastleScene.Create(Application);
   Scene.Load(BuildRootNode('castle-data:/face.png'), true);
-  Scene.Spatial := [ssRendering, ssDynamicCollisions];
+  Scene.PreciseCollisions := true;
   Viewport.Items.Add(Scene);
-  Viewport.Items.MainScene := Scene;
 
   Application.Run;
 end.

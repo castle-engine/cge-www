@@ -12,8 +12,9 @@ begin
   Viewport := TCastleViewport.Create(Application);
   Viewport.FullSize := true;
   Viewport.AutoCamera := true;
-  Viewport.Navigation := TCastleExamineNavigation.Create(Application);
   Window.Controls.InsertFront(Viewport);
+
+  Viewport.InsertFront(TCastleExamineNavigation.Create(Application));
 
   Transform := TCastleTransform.Create(Application);
   // rotate by 90 degrees around X axis
@@ -21,12 +22,12 @@ begin
 
   Scene1 := TCastleScene.Create(Application);
   Scene1.Load('castle-data:/monkey_z_up.x3d');
-  Scene1.Spatial := [ssRendering, ssDynamicCollisions];
+  Scene1.PreciseCollisions := true;
   Scene1.Translation := Vector3(1, 1, 0);
 
   Scene2 := TCastleScene.Create(Application);
   Scene2.Load('castle-data:/monkey_z_up.x3d');
-  Scene2.Spatial := [ssRendering, ssDynamicCollisions];
+  Scene2.PreciseCollisions := true;
   Scene2.Translation := Vector3(-1, -1, 0);
 
   Transform.Add(Scene1);

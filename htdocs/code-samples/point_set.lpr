@@ -16,8 +16,9 @@ begin
   Viewport := TCastleViewport.Create(Application);
   Viewport.FullSize := true;
   Viewport.AutoCamera := true;
-  Viewport.Navigation := TCastleExamineNavigation.Create(Application);
   Window.Controls.InsertFront(Viewport);
+
+  Viewport.InsertFront(TCastleExamineNavigation.Create(Application));
 
   PointCoordinates := TCoordinateNode.Create;
   PointCoordinates.SetPoint(
@@ -59,11 +60,10 @@ begin
 
   Scene := TCastleScene.Create(Application);
   Scene.Load(Root, true);
-  Scene.Spatial := [ssRendering, ssDynamicCollisions];
+  Scene.PreciseCollisions := true;
   Scene.RenderOptions.PointSize := 10;
 
   Viewport.Items.Add(Scene);
-  Viewport.Items.MainScene := Scene;
 
   Application.Run;
 end.

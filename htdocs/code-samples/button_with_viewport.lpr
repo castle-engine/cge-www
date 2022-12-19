@@ -29,7 +29,7 @@ begin
   Scene := TCastleScene.Create(Application);
   Scene.Setup2D;
   Scene.Load('castle-data:/dragon/dragon.json');
-  Scene.Spatial := [ssRendering, ssDynamicCollisions];
+  Scene.PreciseCollisions := true;
   Scene.PlayAnimation('flying', true);
 
   Viewport := TCastleViewport.Create(Application);
@@ -41,7 +41,6 @@ begin
   Viewport.Anchor(hpMiddle);
   Viewport.Anchor(vpBottom, 10);
   Viewport.Items.Add(Scene);
-  Viewport.Items.MainScene := Scene;
   { below adjusted to the scene size and position }
   Viewport.Camera.Orthographic.Width := 3000;
   Viewport.Camera.Orthographic.Origin := Vector2(0.5, 0.5);
