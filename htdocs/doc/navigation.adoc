@@ -9,7 +9,13 @@ To use a navigation, just create and add the navigation component as a child of 
 
 As cgeref:TCastleNavigation[] class is abstract, you actually have to use some descendant of it, like:
 
-- cgeref:TCastleWalkNavigation[] - typical first-person 3D navigation. Depending on the cgeref:TCastleWalkNavigation.Gravity[] value, it feels more like _walking_ (when `Gravity` is `true`) or _flying_ (when `Gravity` is `false`).
+- cgeref:TCastleWalkNavigation[] - typical first-person 3D navigation.
++
+Depending on the cgeref:TCastleWalkNavigation.Gravity[] value, it feels more like _walking_ (when `Gravity` is `true`) or _flying_ (when `Gravity` is `false`).
++
+You can configure many properties of this navigation, e.g. to change speed manipulate cgeref:TCastleWalkNavigation.MoveSpeed[], cgeref:TCastleWalkNavigation.MoveHorizontalSpeed[], cgeref:TCastleWalkNavigation.MoveVerticalSpeed[].
++
+NOTE: Right now the cgeref:TCastleWalkNavigation[] resolves collisions with our _Old system for collisions and gravity_, see the bottom of link:physics[]. Long story short: you likely want to set cgeref:TCastleSceneCore.PreciseCollisions[] to `true` on your main level 3D model.
 
 - cgeref:TCastleExamineNavigation[] - inspect the 3D model, moving and rotating it to easily look at every side.
 

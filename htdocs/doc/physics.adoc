@@ -186,7 +186,7 @@ Our best candidate for proving an (alternative) physics engine is link:http://bu
 +
 Full integration with Bullet will require proper translation of Bullet API to C and then to Pascal (as Bullet is in C++, it's not readily usable from anything other than C++). There is a C header for Bullet, see https://code.google.com/archive/p/bullet/issues/43[this old Google Code issue] and https://github.com/bulletphysics/bullet3/issues/130[this GitHub issue], but it's rather minimalistic (only rigid body), although it may be a good start.
 
-## Old system for collisions and gravity
+== Old system for collisions and gravity
 
 In parallel to resolving collisions using physics engine (that honors the `TCastleRigidBody` and `TCastleXxxCollider` behaviors), for some purposes _Castle Game Engine_ can also use an older _"simple physics"_ implementation.
 
