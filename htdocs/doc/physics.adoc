@@ -41,7 +41,11 @@ Use these components (available in both editor and code) to control the physics.
 A _mesh_ that collides (referenced by cgeref:TCastleMeshCollider.Mesh[]) can be cgeref:TCastleScene[], cgeref:TCastleTerrain[], or any primitive descending from cgeref:TCastleAbstractPrimitive[].
 --
 
-To make any cgeref:TCastleTransform[] affected by physics add there a collider (any cgeref:TCastleCollider[] descendant) and a rigid body (cgeref:TCastleRigidBody[]). In the editor, adding any collider automatically also adds the cgeref:TCastleRigidBody[], so *you only need to do one step: add a collider*. The usual way to do this is by right-clicking on a cgeref:TCastleTransform[] instance in your hierarchy, and choosing from context menu _"Add Behavior -> Physics -> Collider -> ..."_.
+To make any cgeref:TCastleTransform[] affected by physics add there a collider (any cgeref:TCastleCollider[] descendant) and a rigid body (cgeref:TCastleRigidBody[]).
+
+In the editor, adding any collider automatically also adds the cgeref:TCastleRigidBody[], so you only need to do one step: add a collider. The usual way to do this is by right-clicking on a cgeref:TCastleTransform[] instance in your hierarchy, and choosing from context menu _"Add Behavior -> Physics -> Collider -> ..."_.
+
+NOTE: Adding a collider from `2D` group will automatically also add cgeref:TCastleRigidBody[] configured in an optimal way for 2D (using cgeref:TCastleRigidBody.Setup2D[]).
 
 Then run _"Physics -> Play Simulation"_ (use the menu item or button on the header) and observe that body is affected by
 
@@ -50,10 +54,15 @@ Then run _"Physics -> Play Simulation"_ (use the menu item or button on the head
 
 Note that various components descend from cgeref:TCastleTransform[] and thus can act as physics bodies: cgeref:TCastleScene[], primitives like cgeref:TCastleBox[], cgeref:TCastleSphere[], even terrains cgeref:TCastleTerrain[].
 
-
 There are lots of options to tweak how things behave. See API docs for documentation.
 
 You can visualize physics colliders (esp. useful if you disable the cgeref:TCastleCollider.AutoSize[] on them and want to see the effect) using the menu item _"Physics -> Show Colliders"_.
+
+The colliders in general should not collide at start. You should set up the colliders to avoid it. To make the collider smaller than automatically calculated you can:
+
+- disable the cgeref:TCastleCollider.AutoSize[] and setup all collider sizes manually,
+
+- or set cgeref:TCastleCollider.SizeScale[] to value like `0.9`, to make the size (auto-detected or not) smaller by 90%.
 
 [NOTE]
 ====
@@ -81,9 +90,11 @@ cgeimg::block[
 
 The whole physics can work for 2D games as well as 3D. For 2D, remember to:
 
-- Adjust cgeref:TCastleRigidBody[] by locking rotation/translation (such that the object stays within the same XY plane). It's easiest to do this by calling cgeref:TCastleRigidBody.Setup2D[] from code. In CGE editor, just add _"Rigid Body (2D)"_ component.
+- Adjust cgeref:TCastleRigidBody[] by locking rotation/translation (such that the object stays within the same XY plane). It's easiest to do this by calling cgeref:TCastleRigidBody.Setup2D[] from code.
++
+In CGE editor, just add _"Physics -> Rigid Body (2D)"_ component. Actually it will be added automatically if you add _"Physics -> Collider 2D -> ..."_.
 
-- Set cgeref:TCastleCollider.Mode2D[] to `true` (to auto-size and to account for scale in a way better for 2D). In CGE editor, just add the _"Xxx Collider (2D)"_ components.
+- Set cgeref:TCastleCollider.Mode2D[] to `true` (to auto-size and to account for scale in a way better for 2D). In CGE editor, just add the _"Physics -> Collider 2D -> ..."_ components.
 
 We feature a number of 2D physics demos in our examples on https://github.com/castle-engine/castle-engine/tree/master/examples/physics/[examples/physics], check them out.
 
@@ -157,9 +168,9 @@ We have a lot of examples dedicated to physics in the https://github.com/castle-
 
 Current physics engine integration is just a start. The plans are:
 
-- (https://github.com/castle-engine/castle-engine/tree/physics_j[In progress, branch `physics_j`]). Add joints.
+- Expose Kraft layers. (Started: branch https://github.com/castle-engine/castle-engine/tree/physics_layers[physics_layers])
 
-- Expose Kraft layers.
+- Make cgeref:TCastleWalkNavigation[] use physics to move (just like cgeref:TCastleThirdPersonNavigation[] already can).
 
 - _(See section below about "Old system")_ Currently we also have an older, simpler, internal physics/collision engine in CGE, that takes care of some tasks: the collisions of player and creatures (from CastleCreatures), a simple gravity for them, and custom collision methods for you (like RayCollision, SphereCollision etc. in CastleTransform unit). The new physics engine should eventually replace them all, and there should be a flag to make it possible, and eventually it should even become the default, and the old collision implementation should be simply removed.
 
