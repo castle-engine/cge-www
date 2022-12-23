@@ -77,9 +77,32 @@ To request correct blending sorting in 2D, you should set `MyScene.RenderOptions
 
 === However, the engine does not sort the list of `TCastleScene` instances by default
 
-You need to do this explicitly, using cgeref:TCastleTransform.SortBackToFront2D[]  method. You should call this method always after you add a partially-transparent object, or move partially-transparent object or camera in such way that the order of rendering should change. In usual cases, you call this using `Viewport.Items.SortBackToFront2D`.
+You need to do the sorting explicitly.
 
-In the future engine releases, we hope to remove the need to call `Viewport.Items.SortBackToFront2D`. Everything else mentioned on this page, all these complications -- are just unavoidable when using blending (you will find them in other game engines too), so they will likely stay forever.
+- For 2D:
++
+From the CGE editor, do the sorting using _"Viewport -> Sort Items For Correct 2D Blending"_ menu item.
++
+From code, you can do this sorting by calling the cgeref:TCastleTransform.SortBackToFront2D[]  method like `Viewport.Items.SortBackToFront2D`. You should call it always after:
++
+--
+- adding a partially-transparent object,
+- or moving partially-transparent object in the Z (depth) axis.
+--
+
+- For 3D:
++
+From the CGE editor, do the sorting using _"Sort Items For Correct 3D Blending (from current view)"_ menu item.
++
+From code, you can do this sorting by calling the cgeref:TCastleTransform.SortBackToFront[]  method like `Viewport.Items.SortBackToFront(bs3D, Viewport.Camera.WorldTranslation)`. You should call it always after:
++
+--
+- adding a partially-transparent object,
+- or moving partially-transparent object,
+- or moving the camera.
+--
+
+TODO: The need to manually do the sorting is definitely something we want to remove in the future engine releases. The engine should internally render the shapes, from all scenes, in the proper order for blending.
 
 == 2D drawing of primitives and images
 
