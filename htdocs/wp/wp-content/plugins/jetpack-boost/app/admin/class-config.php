@@ -25,6 +25,7 @@ class Config {
 
 	public function init() {
 		add_action( 'wp_ajax_set_show_score_prompt', array( $this, 'handle_set_show_score_prompt' ) );
+		add_action( 'jetpack_boost_before_module_status_update', array( $this, 'on_module_status_change' ), 10, 2 );
 	}
 
 	public function constants() {
@@ -93,6 +94,7 @@ class Config {
 				$allowed_modals  = array(
 					'score-increase',
 					'score-decrease',
+					'super-cache-not-enabled',
 				);
 				if ( ! in_array( $modal_to_banish, $allowed_modals, true ) ) {
 					$error = new \WP_Error( 'authorization', __( 'This modal is not dismissable.', 'jetpack-boost' ) );
@@ -149,6 +151,18 @@ class Config {
 	 */
 	public static function clear_show_score_prompt() {
 		\delete_option( self::SHOW_SCORE_PROMPT_OPTION );
+	}
+
+	/**
+	 * Flag get started as complete if a module is enabled.
+	 *
+	 * @param string $module Module Slug.
+	 * @param bool   $enabled Enabled status.
+	 */
+	public function on_module_status_change( $module, $status ) {
+		if ( $status ) {
+			self::set_getting_started( false );
+		}
 	}
 
 	/**
