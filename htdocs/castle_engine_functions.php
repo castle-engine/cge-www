@@ -334,7 +334,7 @@ $castle_sitemap = array(
               'manual_alpha_bleeding' => array('title' => 'Alpha Bleeding'),
             )
           ),
-          'doc/control_on_form' => array('title' => 'Use engine inside Lazarus form using TCastleControl'),
+          'doc/control_on_form' => array('title' => 'Engine on a form (VCL, FMX, LCL) using TCastleControl'),
           'manual_automatic_builds' => array('title' => 'Automatic Builds (Continuous Integration and Delivery)',
             'sub' => array(
               'doc/github_actions' => array('title' => 'GitHub Actions (automatic builds for GitHub projects)'),
