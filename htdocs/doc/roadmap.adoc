@@ -23,7 +23,7 @@ Extend our link:manual_editor.php[editor] with features mentioned on link:wp/202
 
 ## More Delphi
 
-See link:supported_compilers.php[about existing Delphi compatibility]. We plan to support more platforms with Delphi: Linux, Android, iOS... We also plan to implement link:control_on_form[TCastleControl] on VCL and FMX forms.
+See link:supported_compilers.php[about existing Delphi compatibility]. We plan to support more platforms with Delphi: Linux, Android, iOS...
 
 ## Load and animate glTF more efficiently
 
@@ -33,17 +33,11 @@ Some modifications to CGE may be required here (CastleGeometryArrays will have t
 
 We should also perform skinning fully on GPU, avoiding `CoordinateInterpolator` done on CPU.
 
-## (IN PROGRESS - MOSTLY DONE) More physics
+## More physics
 
-More physics engine integration:
+More physics engine integration. The details are listed in the link:physics[manual about physics].
 
-- Physics behaviors in editor (ALMOST DONE - PR IN REVIEW - by _Andrzej Kilijański_).
-- Auto-size for colliders (ALMOST DONE - PR IN REVIEW - by _Andrzej Kilijański_).
-- Visualize colliders in editor
-- Layers
-- Joints (IN PROGRESS - by _Andrzej Kilijański_).
-
-The details are listed in the link:physics[manual about physics].
+**Layers started on branch https://github.com/castle-engine/castle-engine/tree/physics_layers[physics_layers].**
 
 ## (IN PROGRESS) WebGL (HTML5) support
 
@@ -101,6 +95,14 @@ We have a simple example code that shows how you can start a new renderer: see l
 
 This would make the whole TCastleViewport.Items a single graph of X3D nodes, allowing for more sharing in code. The TCastleTranform would be just like TTransformNode, but a little diferently optimized (but it would become toggable at runtime).
 
+### Related to above: Possibility to reorder/merge all shapes, across all scenes
+
+This would mean
+
+- you no longer need to do link:blending.adoc[manual sorting] to have blending work correctly across scenes.
+
+- the cgeref:DynamicBatching[] can merge shapes even from different scenes.
+
 ## Distance field fonts
 
 See link:https://libgdx.com/wiki/graphics/2d/fonts/distance-field-fonts[about Distance field fonts]. See code from link:https://github.com/neurolabusc/OpenGLCoreTutorials[Chris Rorden] showing how to do it in Lazarus.
@@ -129,7 +131,9 @@ See link:macos[macOS].
 
 We should also enable developers to easily sign their own applications packaged with CGE build tool.
 
-## fps_game should be redesigned using editor, CreatureCreatures / CastleResources / CastleLevels / CastleItems / CastlePlayer should be replaced with a better API
+## (IN PROGRESS) fps_game should be redesigned using editor, CreatureCreatures / CastleResources / CastleLevels / CastleItems / CastlePlayer should be replaced with a better API
+
+**In progress. See https://castle-engine.io/wp/2022/10/21/concept-art-teaser-huge-graphical-and-functional-upgrade-to-our-fps-game-is-coming/[news post]. On branch https://github.com/castle-engine/castle-engine/tree/fps-game-upgrade[fps-game-upgrade].**
 
 These 5 units (CreatureCreatures / CastleResources / CastleLevels / CastleItems / CastlePlayer) expose a high-level API, that sits on top on existing classes (like TCastleScene and TCastleTransform). But I am not 100% happy with their API. Reasons:
 
