@@ -374,7 +374,14 @@ but in some special cases may be avoided:
     <p>TODO: The API for "baking" should use TNodeInterpolator, not deprecated <code>TCastlePrecalculatedAnimation</code>.
   -->
 
-  <li><p>Watch out what you're changing in the X3D nodes. Most changes, in particular the ones that can be achieved by sending X3D events (these changes are kind of "suggested by the X3D standard" to be optimized) are fast. But some changes are very slow, cause rebuilding of scene structures, e.g. reorganizing X3D node hierarchy. So avoid doing it during game. To detect this, set <code>LogSceneChanges := true</code> and watch log (see <a href="log">manual chapter "Logging"</a>) for lines saying <i>"ChangedAll"</i> - these are costly rebuilds, avoid them during the game!
+  <li><p>Watch out what you're changing in the X3D nodes. Most changes, in particular the ones that can be achieved by sending X3D events (these changes are kind of "suggested by the X3D standard" to be optimized) are fast. But some changes are very slow, cause rebuilding of scene structures, e.g. reorganizing X3D node hierarchy. So avoid doing them during game. How to detect if long <i>"ChangedAll"</i> occurs:
+
+<ul>
+  <li>
+    <p>Set <code>LogChanges := true</code> and watch <a href="log">log</a> for lines saying <i>ChangedAll</i>.
+
+  <li>
+    <p>Set <code>Profiler.Enabled := true</code> and watch <a href="log">log</a> for profiler of long <i>ChangedAll</i> calls.
 </ul>
 
 <?php echo $toc->html_section(); ?>
