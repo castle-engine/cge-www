@@ -11,6 +11,12 @@ We love to see how you use CGE.</i>
 
 <div class="row">
 
+  <?php gallery_link('Lynch',
+    'Walk around a mansion and discover the secret of the statues. Short gamejam game by Michalis. Source code is <a href="https://github.com/castle-engine/lynch">available on GitHub</a>.',
+    'lynch_editor_2.png',
+    'https://cat-astrophe-games.itch.io/lynch');
+  ?>
+
   <?php gallery_link('Foxy Misfortunes',
     'Top-down shooter with a funny NSFW theme. Download it for Windows, Linux and Android. Source code is <a href="https://gitlab.com/EugeneLoza/foxy-misfortunes">available on GitLab</a>.
 
