@@ -130,44 +130,45 @@ But note that cgeref:TCastleControl.OnOpen[] runs each time a form with cgeref:T
 ====
 ////
 
-## Loading user interface and state
+## Loading user interface and view
 
 In the simple case, you can load a design (file `xxx.castle-user-interface`) using cgeref:TCastleControlContainer.DesignUrl[], and access loaded components using cgeref:TCastleControlContainer.DesignedComponent[].
 
 cgeimg::block[control_lcl_design_loaded.png|Using TCastleControl.DesignUrl to load design in TCastleControl\, visible at Lazarus design-time]
 
-In more involved cases, you should use multiple link:states[] within your control. In this case, use cgeref:TUIState[] within the cgeref:TCastleControl[], and load a design (file `xxx.castle-user-interface`) inside the state using cgeref:TUIState.DesignUrl[]. This is analogous to our recommended workflow with cgeref:TCastleWindow[]. You can add new _state_ using CGE editor, or just define a new unit like this:
+In more involved cases, you should use multiple link:views[] within your control. In this case, use cgeref:TCastleView[] within the cgeref:TCastleControl[], and load a design (file `xxx.castle-user-interface`) inside the view using cgeref:TCastleView.DesignUrl[]. This is analogous to our recommended workflow with cgeref:TCastleWindow[]. You can add new _view_ using CGE editor (_"Code -> New Unit -> Unit With View..."_), or just define a new unit like this:
 
 [source,pascal]
 ----
-unit GameStateMain;
+unit GameViewMain;
 
 interface
 
-uses CastleUIState;
+uses CastleUIControls;
 
 type
-  TStateMain = class(TUIState)
-  private
-    { Components designed using CGE editor, loaded from gamestatemain.castle-user-interface. }
-    // ...
+  TViewMain = class(TCastleView)
+  published
+    { Components designed using CGE editor.
+      These fields will be automatically initialized at Start. }
+    // ButtonXxx: TCastleButton;
   public
     constructor Create(AOwner: TComponent); override;
     procedure Start; override;
   end;
 
 var
-  StateMain: TStateMain;
+  ViewMain: TViewMain;
 
 implementation
 
-constructor TStateMain.Create(AOwner: TComponent);
+constructor TViewMain.Create(AOwner: TComponent);
 begin
   inherited;
-  DesignUrl := 'castle-data:/gamestatemain.castle-user-interface';
+  DesignUrl := 'castle-data:/gameviewmain.castle-user-interface';
 end;
 
-procedure TStateMain.Start;
+procedure TViewMain.Start;
 begin
   inherited;
 end;
@@ -175,19 +176,17 @@ end;
 end.
 ----
 
-That's enough to load `gamestatemain.castle-user-interface` design from your `data` subdirectory.
+That's enough to load `gameviewmain.castle-user-interface` design from your `data` subdirectory.
 
-To initialize this state in your application, you can use this code in cgeref:TCastleControl.OnOpen[] :
+To initialize this view in your application, you can use this code e.g. in `OnCreate` form event:
 
 [source,pascal]
 ----
-TCastleControl.MainControl := MyCastleControl;
-
-StateMain := TStateMain.Create(Application);
-TUIState.Current := StateMain;
+ViewMain := TViewMain.Create(Application);
+MyCastleControl.Container.View := ViewMain;
 ----
 
-NOTE: We have an improvement to this approach coming, in branch https://github.com/castle-engine/castle-engine/tree/uistate-to-view[uistate-to-view]. Setting the singleton `TCastleControl.MainControl` will not be necessary soon. The example how it will work is in https://github.com/castle-engine/castle-engine/tree/uistate-to-view/examples/lazarus/model_3d_with_2d_controls[examples/lazarus/model_3d_with_2d_controls] in that branch. It is not yet merged to `master` branch.
+A simple example of using views with `TCastleControl` is in https://github.com/castle-engine/castle-engine/tree/master/examples/lazarus/multiple_views[examples/lazarus/multiple_views]. The CGE API used there is the same for Lazarus (LCL) and Delphi (VCL, FMX) versions of `TCastleControl`.
 
 ## Focus (receiving key input)
 
