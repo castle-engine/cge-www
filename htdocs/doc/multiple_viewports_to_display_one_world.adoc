@@ -20,15 +20,25 @@ view of the world (e.g. from the camera attached to a missile, or from camera ob
 ## Usage
 
 To use this feature, just set the `Items` property of one viewport to `Items` from another viewport.
-Like
+Like this:
 
 [source,pascal]
 ----
-Viewport1.Items := Viewport2.Items;
+NewViewport.Items := ExistingViewport.Items;
 ----
 
-Note that you cannot (yet) do this from the CGE editor. In the editor you can set multiple viewports,
-and their cameras, but you cannot yet make them _share_ the same items.
+NOTE: You cannot (yet) do this from the CGE editor. In the editor you can set multiple viewports and their cameras, but you cannot yet make them _share_ the same items.
+
+Moreover, when sharing `Items` across multiple viewports, all the cameras (from all the viewports) should also be added to the same `Items` (cgeref:TCastleRootTransform[]). You always want to keep the connection that _"the camera used by viewport, set in `Viewport.Camera`, is also part of the `Viewport.Items` "_.
+
+This usually means you should extend above example to remove `NewViewport.Camera` from the old world and add it to the new one. Like this:
+
+[source,pascal]
+----
+NewViewport.Items.Remove(NewViewport.Camera);
+NewViewport.Items := ExistingViewport.Items;
+NewViewport.Items.Add(NewViewport.Camera);
+----
 
 ## Examples
 
@@ -37,7 +47,3 @@ and their cameras, but you cannot yet make them _share_ the same items.
 * link:https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/multiple_viewports[multiple_viewports] example. Shows a window split into 4 viewports, all showing the same scene, but with a bit different effects.
 
 * link:https://github.com/castle-engine/castle-engine/tree/master/examples/fps_game[fps_game] example. Shows using additional viewport for an _"overview"_ camera looking at map from the top.
-
-## Cameras
-
-When sharing `Items` across multiple viewports: All the cameras (from all the viewports) should also be added to the same `Items` (cgeref:TCastleRootTransform[]). You always want to keep the connection that _"the camera used by viewport, set in `Viewport.Camera`, is also part of the `Viewport.Items` "_.
