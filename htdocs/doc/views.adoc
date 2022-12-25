@@ -1,0 +1,199 @@
+# Managing Views
+include::common.adoc[]
+
+## Introduction
+
+NOTE: _View_ was called _state_ before 2022-12-25. And instead of `TCastleView` class we used `TUIState` class. Bear with us as we're in progress of updating all documentation and examples to the new terminology.
+
+_View_ is a class descending from cgeref:TCastleView[]. It determines what is currently displayed, and is the primary place where you can react to events (handle user input, passage of time, clicks on buttons and more).
+
+In a larger application you will likely have more than one view.
+//Views are a useful way to split your application.
+If you want to display something "completely different" (like a game, or main menu, or a "game over screen") then it's most natural to do this by switching to a different view.
+
+You can add new view to your application using the menu item _Code -> New Unit -> Unit With View..._ in CGE editor. It just creates a new Pascal unit that defines a new cgeref:TCastleView[] descendant and loads a new user interface design.
+
+cgeimg::block[
+  zombie_fighter_1.png|Multiple viewports and basic game UI,
+  zombie_fighter_2.png|UI dialog\, in a view over the game UI
+]
+
+## Changing view
+
+At runtime, you can change from one view into another using:
+
+. You can set cgeref:TCastleContainer.View[Container.View := ViewXxx] to make the new view the _one and only_ currently active view.
++
+This is the simplest way to change current view. For example use this to change from _main menu_, to _loading_, to _playing game_, to _game over_ views.
++
+Usually the implementation of one view has code to change it into another view. For example, this is how `ViewMainMenu` can react to user pressing _Enter_ to switch to `ViewPlay`:
++
+[source,pascal]
+----
+function TViewMainMenu.Press(const Event: TInputPressRelease): Boolean;
+begin
+  Result := inherited;
+
+  if Event.IsKey(keyEnter) then
+  begin
+    Container.View := ViewPlay;
+    Exit(ExclusiveEvents);
+  end;
+end;
+----
+
+. You can alternatively use cgeref:TCastleContainer.PushView[Container.PushView] to _push_ new view on top of the stack, making it the front-most view (but not necessarily the only view active right now). Such view will usually _pop_ itself from the stack, using cgeref:TCastleContainer.PopView[Container.PopView], although you can also set cgeref:TCastleContainer.View[Container.View] to just change whole stack into a single new view.
++
+Using a view stack makes sense when you want to display one view on top of another. For example, you may want to push _options_ view to make options UI visible on top of the game. The game can even be still animated underneath (it is up to you to pause the game if you want, e.g. by changing cgeref:TCastleAbstractRootTransform.Paused[Viewport.Items.Paused]).
++
+For example, this is how `ViewPlay` could display `ViewOptions` on top, when user presses _Escape_:
++
+[source,pascal]
+----
+function TViewPlay.Press(const Event: TInputPressRelease): Boolean;
+begin
+  Result := inherited;
+  if Result then Exit; // allow the ancestor to handle keys
+
+  if Event.IsKey(keyEscape) and
+     (Container.FrontView = ViewPlay) then
+  begin
+    Container.PushView(ViewOptions);
+    Exit(true);
+  end;
+end;
+----
++
+The `ViewOptions` can in turn pop itself from the stack when user presses _Escape_ again:
++
+[source,pascal]
+----
+function TViewOptions.Press(const Event: TInputPressRelease): Boolean;
+begin
+  Result := inherited;
+  if Result then Exit; // allow the ancestor to handle keys
+
+  if Event.IsKey(keyEscape) then
+  begin
+    // parameter Self is optional here, just allows to make additional check
+    Container.PopView(Self);
+    Exit(true);
+  end;
+end;
+----
+
+## Creating new views
+
+While in theory you can create instances of the cgeref:TCastleView[] at any point, in practice it is usually most comfortable to create all of them at the beginning of the application, in cgeref:TCastleApplication.OnInitialize[Application.OnInitialize] handler.
+
+If you use the _"Code -> New Unit -> Unit With View..."_ editor menu item, it will automatically edit your cgeref:TCastleApplication.OnInitialize[Application.OnInitialize] handler in (by default) `gameinitialize.pas` unit to create the new view. So it will look like this:
+
+[source,pascal]
+----
+{ One-time initialization of resources. }
+procedure ApplicationInitialize;
+begin
+  ...
+
+  { Create game views and set initial view }
+  ViewPlay := TViewPlay.Create(Application);
+  ViewMainMenu := TViewMainMenu.Create(Application);
+
+  Window.Container.View := ViewMenu;
+end;
+----
+
+Each view loads the _user interface_ appropriate for the given view. The advised way to do this is to set cgeref:TCastleView.DesignUrl[] in the overridden view constructor, like this:
+
+[source,pascal]
+----
+constructor TViewMain.Create(AOwner: TComponent);
+begin
+  inherited;
+  DesignUrl := 'castle-data:/gameviewmain.castle-user-interface';
+end;
+----
+
+If you use the _"Code -> New Unit -> Unit With View..."_ editor menu item, the above code is also automatically created for you.
+
+## Reacting to view start, stop, pause, remove
+
+You can override a number of view methods to react to the view becoming _active_ (when it is started) and _resumed_ (when it is started _and_ it is the top of view stack).
+
+* cgeref:TCastleView.Start[] is executed when the view starts. This is your typical place to initialize things for this view.
++
+To create a component that lives only until the view stops, you can assign a special owner cgeref:TCastleView.FreeAtStop[] to this component. This is essentially equivalent to just using owner `nil` and manually freeing the component in cgeref:TCastleView.Stop[].
+
+* cgeref:TCastleView.Stop[] is executed when the view stops.
+
+* cgeref:TCastleView.Resume[] is executed when the view is started, and moreover it becomes the _top_ view on the stack.
+
+* cgeref:TCastleView.Pause[] is executed when the view is started, but it is no longer the _top_ view on the stack.
++
+Note that the view is not automatically _paused_ for the user in any way, i.e. a _paused view_ can still animate anything, process inputs and generally act like a normal view. It is your responsibility to pause any animations you want in the cgeref:TCastleView.Pause[] method, if you want it.
+// the view to have some particular look (e.g. be visible but frozen) when it is active (started) but no longer on top of the view stack.
++
+The paused view will also continue to receive user input (mouse and key) that was not processed by the views higher on the stack. The higher view should return `true` from their input methods, like cgeref:TCastleUserInterface.Press[Press], to mark the input as handled. You can also set cgeref:TCastleView.InterceptInput[] to `true` on a higher view to make it pretend that it handles *all* inputs, thus the inputs will not reach views lower on the stack.
+
+////
+The cgeref:TCastleView[]
+ is a special cgeref:TCastleUserInterface[]
+ descendant. As such, you can add there more UI children in a number of ways, and you can actually add/remove them
+ at any moment. For example
+
+<ul>
+  <li>Or you can add children in every cgeref:TCastleView.Start[]
+    call, overriding it. In this case, you
+    should remove the controls in the cgeref:TCastleView.Stop[] method.
+    Or you can set the controls' owner
+    to a special cgeref:TCastleView.FreeAtStop[] component,
+    to make them freed and removed automatically at the next
+    cgeref:TCastleView.Stop[] call.</li>
+
+  <li>For advanced uses, if you will use the view stack, you can
+    also add / remove children in the
+    cgeref:TCastleView.Resume[] and
+    cgeref:TCastleView.Pause[] calls.</li>
+</ul>
+////
+
+## Examples
+
+Explore the _"3D FPS game"_ and _"2D game"_ templates, by creating 2 new projects from these templates. Each of these templates creates 2 views, _"MainMenu"_ and _"Play"_. They follow the same pattern:
+
+. Class `TViewMainMenu`, unit `code/gameviewmainmenu.pas`, instance `ViewMainMenu`, design `data/gameviewmainmenu.castle-user-interface`.
+
+. Class `TViewPlay`, unit `code/gameviewplay.pas`, instance `ViewPlay`, design `data/gameviewplay.castle-user-interface`.
+
+Many examples in the engine show even more complicates views setup:
+
+- Platformer demo in link:https://github.com/castle-engine/castle-engine/tree/master/examples/platformer[examples/platformer/] has views for:
++
+--
+[role="compact"]
+- main menu,
+- options (with volume configuration),
+- pause,
+- credits,
+- game over,
+- and of course the actual game.
+--
+
+- Strategy game link:https://github.com/castle-engine/castle-engine/tree/master/examples/tiled/strategy_game_demo[examples/tiled/strategy_game_demo] has multiple views, including:
++
+--
+[role="compact"]
+- main menu,
+- game,
+- "win" views.
+--
+
+- "Zombie fighter" demo link:https://github.com/castle-engine/castle-engine/tree/master/examples/user_interface/zombie_fighter[examples/user_interface/zombie_fighter] has multiple views, including:
++
+--
+[role="compact"]
+- main menu,
+- loading (that displays progress),
+- actual game,
+- modal dialog box.
+--

@@ -10,7 +10,7 @@ cgeimg::float[
 
 It is possible to have multiple viewports visible at the same time.
 As cgeref:TCastleViewport[] is a regular user interface control, you can add as many viewports
-as you like on a particular `TUIState`. And you can configure the size and position of each viewport.
+as you like on a particular cgeref:TCastleView[]. And you can configure the size and position of each viewport.
 
 These viewports may even display the same world (but from different cameras).
 This feature is very useful for split-screen games.
