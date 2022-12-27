@@ -266,7 +266,7 @@ Do this for all your scenes, both cars and roads. Note that you can select multi
 
 NOTE: As outlined in link:physics[], the `PreciseCollisions` property will at some point in the future be deprecated. What we will recommend instead is that you add a link:TCastleMeshCollider[] to your scene. This waits for cgeref:TCastleWalkNavigation[] to be able to use physics to move.
 
-cgeimg::block[viewport_3d_spatial_all_scenes.png|Edit Spatial of all scenes]
+cgeimg::block[viewport_3d_precise_collisions_multi_selection.png|Edit PreciseCollisions on multiple scenes]
 
 ### Multiple instances of the same scene (using TCastleTransformReference)
 
