@@ -1,5 +1,9 @@
 # Blending (Rendering Partially-Transparent Objects)
 include::common.adoc[]
+:description: Correctly rendering partially-transparent objects using Castle Game Engine. Learn about the transparency, alpha and opacity and how does blending work in real-time graphic. The difference between alpha testing and alpha blending and how Castle Game Engine determines which to use. Finally, learn how to control sorting, which is crucial to have good rendering of blending.
+:cge-social-share-image: blending_sort.png
+
+cgeimg::block[blending_sort.png|Blending Sorting]
 
 == Introduction
 
@@ -59,7 +63,7 @@ You can explicitly override this auto-detection using cgeref:TAppearanceNode.Alp
 
 == Sorting
 
-=== Within a single `TCastleScene`, the engine sorts the shapes automatically by default
+=== Sort shapes within one `TCastleScene` (`MyScene.RenderOptions.BlendingSort`, default is to sort for 3D)
 
 * As mentioned above, this is controlled by cgeref:TCastleRenderOptions.BlendingSort[Scene.RenderOptions.BlendingSort] which is `bs3D` by default, and can be overridden by https://castle-engine.io/x3d_implementation_navigation_extensions.php#section_ext_blending_sort[TNavigationInfoNode.BlendingSort] in the loaded model.
 * You can set `Scene.RenderOptions.BlendingSort` to `bs2D` for 2D models. This makes their sorting faster. When importing link:spine[Spine] models, they automatically have `NavigationInfo.blendingSort = "2D"` so they automatically use this sorting.
@@ -75,34 +79,40 @@ NavigationInfo {
 
 To request correct blending sorting in 2D, you should set `MyScene.RenderOptions.BlendingSort := bs2D` (or call `MyScene.Setup2D` which is just a shortcut for it). Note that you actually don't need to do this when loading Spine (where we include proper `NavigationInfo` inside model) or for sprite sheets and images (where there is only 1 layer, so blending sorting doesn't matter). So actually you only need to care about this when you use "general (3D or 2D)" model format for 2D animation, e.g. you use glTF or X3D to define a 2D animation with layers.
 
-=== However, the engine does not sort the list of `TCastleScene` instances by default
+=== Sort scenes in viewport (`MyViewport.Items.BlendingSort`, default none)
 
-You need to do the sorting explicitly.
+By default the engine does not sort the scenes. You need to request the sorting explicitly.
 
-- For 2D:
-+
-From the CGE editor, do the sorting using _"Viewport -> Sort Items For Correct 2D Blending"_ menu item.
-+
-From code, you can do this sorting by calling the cgeref:TCastleTransform.SortBackToFront2D[]  method like `Viewport.Items.SortBackToFront2D`. You should call it always after:
-+
---
+==== Automatic sorting at every frame
+
+It is easiest to just set cgeref:TCastleAbstractRootTransform.BlendingSort[Viewport.Items.BlendingSort] to something else than cgeref:bsNone[]. We have a few algorithms, some better for 2D some for 3D:
+
+- cgeref:bs2D[] - Sort along the Z axis.
+
+- cgeref:bs3D[] - Sort based on the distance from current camera, looking at bounding box.
+
+- cgeref:bs3DOrigin[] - Sort based on the distance from current camera, looking at origin point (point (0,0,0) in local coordinates). This may be better than cgeref:bs3D[] in some cases because the origin point is sometimes more "persistent", e.g. animations or billboard orientation may change bounding box, but not origin point.
+
+- cgeref:bs3DGround[] - Sort based on the distance from current camera, looking at origin point (point (0,0,0) in local coordinates) projected on Y=0 plane. This may be better than cgeref:bs3DOrigin[] in some cases because it ignores the object height for the sorting purposes.
+
+NOTE: The current implementation of cgeref:TCastleAbstractRootTransform.BlendingSort[Viewport.Items.BlendingSort] mechanism has some flaws. Namely, it only sorts whole scenes (not shapes) and it only sorts non-recursively the direct children of `Viewport.Items.BlendingSort`. It is planned to be improved, see link:roadmap[].
+
+==== Manually doing sorting
+
+An alternative to using cgeref:TCastleAbstractRootTransform.BlendingSort[Viewport.Items.BlendingSort] is to sort manually by an explicit call to a method cgeref:TCastleTransform.SortBackToFront2D[Viewport.Items.SortBackToFront2D] or more general cgeref:TCastleTransform.SortBackToFront[Viewport.Items.SortBackToFront].
+
+You can also do it at design-time, from the CGE editor, using the _"Viewport -> Sort Items For Correct 2D Blending"_ menu item.
+
+The drawback is that you have to do it often enough.
+
+In case of 2D, you should call it always after:
+
 - adding a partially-transparent object,
 - or moving partially-transparent object in the Z (depth) axis.
---
 
-- For 3D:
-+
-From the CGE editor, do the sorting using _"Sort Items For Correct 3D Blending (from current view)"_ menu item.
-+
-From code, you can do this sorting by calling the cgeref:TCastleTransform.SortBackToFront[]  method like `Viewport.Items.SortBackToFront(bs3D, Viewport.Camera.WorldTranslation)`. You should call it always after:
-+
---
-- adding a partially-transparent object,
-- or moving partially-transparent object,
-- or moving the camera.
---
+Luckily, in 2D, the camera position doesn't affect the cgeref:bs2D[] sorting.
 
-TODO: The need to manually do the sorting is definitely something we want to remove in the future engine releases. The engine should internally render the shapes, from all scenes, in the proper order for blending.
+In 3D it is more difficult, and in general you should just sort every frame, which means that it will be easier to just rely on automatic cgeref:TCastleAbstractRootTransform.BlendingSort[Viewport.Items.BlendingSort] documented above.
 
 == 2D drawing of primitives and images
 
