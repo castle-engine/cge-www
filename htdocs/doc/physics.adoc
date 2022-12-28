@@ -25,6 +25,8 @@ video::9VPL2awHsMA[youtube,width=800,height=450]
 
 == Rigid Bodies and Colliders
 
+cgeimg::block[platformer_physics_components.png|Physics Components]
+
 Use these components (available in both editor and code) to control the physics.
 
 - cgeref:TCastleRigidBody[] : This component activates processing the transformation by physics.
@@ -73,6 +75,27 @@ A good test to enjoy the physics is to make a "bullet" that will hit some rigid 
 
 See https://www.youtube.com/watch?v=9VPL2awHsMA[quick demo movie].
 ====
+
+=== Adding physics components using code
+
+As with all CGE components, while you can add them by clicking in CGE editor (at design-time), you can also add them using Pascal code at run-time. Like this:
+
+[source,pascal]
+----
+var
+  NewBody: TCastleRigidBody;
+  NewCollider: TCastleSphereCollider;
+begin;
+  NewBody := TCastleRigidBody.Create(FreeAtStop);
+  //NewBody.Setup2D;
+  MyTransform.AddBehavior(NewBody);
+
+  NewCollider := TCastleSphereCollider.Create(FreeAtStop);
+  NewCollider.Restitution := 0.6;
+  NewCollider.Mass := 1;
+  MyTransform.AddBehavior(NewCollider);
+end;
+----
 
 == Physics Simulation in the Editor
 
