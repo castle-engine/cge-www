@@ -251,7 +251,7 @@ $castle_sitemap = array(
         'sub' => array(
           'doc/install' => array('title' => 'Install'),
           'doc/build_first' => array('title' => 'Build your first application'),
-          'manual_state_events' => array('title' => 'Designing user interface and handling events (press, update) within the state',
+          'doc/view_events' => array('title' => 'Designing user interface and handling events (press, update) within the view',
             'sub' => array(
               'doc/views' => array('title' => 'Managing Views'),
             )

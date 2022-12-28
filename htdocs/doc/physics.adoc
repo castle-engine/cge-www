@@ -134,7 +134,7 @@ You can detect whether a collision has occurred by
 
 - Assigning a callback to events cgeref:TCastleRigidBody.OnCollisionEnter[], cgeref:TCastleRigidBody.OnCollisionStay[], cgeref:TCastleRigidBody.OnCollisionExit[].
 
-- Or checking (e.g. in each link:manual_state_events.php[state Update event]) the value of cgeref:TCastleRigidBody.GetCollidingTransforms[].
+- Or checking (e.g. in each link:view_events[view Update event]) the value of cgeref:TCastleRigidBody.GetCollidingTransforms[].
 
 See the https://github.com/castle-engine/castle-engine/tree/master/examples/physics/physics_2d_collisions[examples/physics/physics_2d_collisions] for a demo.
 

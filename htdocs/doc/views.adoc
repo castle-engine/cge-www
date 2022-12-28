@@ -1,9 +1,11 @@
 # Managing Views
 include::common.adoc[]
+:description: Views allow to organize Castle Game Engine application into a number of pieces with different user interface. Each view is a user interface design with a corresponding Pascal code.
+:cge-social-share-image: zombie_fighter_2.png
 
 ## Introduction
 
-NOTE: _View_ was called _state_ before 2022-12-25. And instead of `TCastleView` class we used `TUIState` class. Bear with us as we're in progress of updating all documentation and examples to the new terminology.
+NOTE: _"View"_ was called _"state"_ before 2022-12-25. And instead of cgeref:TCastleView[] class we used `TUIState` class. While we tried to update all examples and docs to the new terminology, undoudtedly you can find some old code snippets talking about "state". Just mentally replace _state_ -> _view_ and you're good :)
 
 _View_ is a class descending from cgeref:TCastleView[]. It determines what is currently displayed, and is the primary place where you can react to events (handle user input, passage of time, clicks on buttons and more).
 
@@ -11,7 +13,7 @@ In a larger application you will likely have more than one view.
 //Views are a useful way to split your application.
 If you want to display something "completely different" (like a game, or main menu, or a "game over screen") then it's most natural to do this by switching to a different view.
 
-You can add new view to your application using the menu item _Code -> New Unit -> Unit With View..._ in CGE editor. It just creates a new Pascal unit that defines a new cgeref:TCastleView[] descendant and loads a new user interface design.
+You can add new view to your application using the menu item _Code -> New Unit -> View..._ in CGE editor. It just creates a new Pascal unit that defines a new cgeref:TCastleView[] descendant and loads a new user interface design.
 
 cgeimg::block[
   zombie_fighter_1.png|Multiple viewports and basic game UI,
@@ -86,7 +88,7 @@ end;
 
 While in theory you can create instances of the cgeref:TCastleView[] at any point, in practice it is usually most comfortable to create all of them at the beginning of the application, in cgeref:TCastleApplication.OnInitialize[Application.OnInitialize] handler.
 
-If you use the _"Code -> New Unit -> Unit With View..."_ editor menu item, it will automatically edit your cgeref:TCastleApplication.OnInitialize[Application.OnInitialize] handler in (by default) `gameinitialize.pas` unit to create the new view. So it will look like this:
+If you use the _"Code -> New Unit -> View..."_ editor menu item, it will automatically edit your cgeref:TCastleApplication.OnInitialize[Application.OnInitialize] handler in (by default) `gameinitialize.pas` unit to create the new view. So it will look like this:
 
 [source,pascal]
 ----
@@ -114,7 +116,7 @@ begin
 end;
 ----
 
-If you use the _"Code -> New Unit -> Unit With View..."_ editor menu item, the above code is also automatically created for you.
+If you use the _"Code -> New Unit -> View..."_ editor menu item, the above code is also automatically created for you.
 
 ## Reacting to view start, stop, pause, remove
 

@@ -6,7 +6,7 @@ include::common.adoc[]
 
 The easiest way to save a screenshot is to call cgeref:TCastleContainer.SaveScreenToDefaultFile[] method. It takes a screenshot and saves it to a reasonable filename under a reasonable directory (following the current system conventions). It returns the URL indicating where was the screenshot saved. The used URL is also send to link:manual_log.php[engine log].
 
-Use it from anywhere, e.g. link:manual_state_events.php[from the `Press` method of your state] like this:
+Use it from anywhere, e.g. link:view_events[from the `Press` method of your state] like this:
 
 [source,pascal]
 ----

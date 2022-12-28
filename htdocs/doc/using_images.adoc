@@ -1,11 +1,11 @@
 # Images
 include::common.adoc[]
 :description: How to display images using Castle Game Engine: TCastleImageControl and TCastleImageTransform.
-:cge-social-share-image: state_events_image_resize.png
+:cge-social-share-image: view_events_image_resize.png
 
 cgeimg::float[
-  state_events_new_image.png|Creating new TCastleImageControl in editor,
-  state_events_image_resize.png|Setting up TCastleImageControl in editor
+  view_events_new_image.png|Creating new TCastleImageControl in editor,
+  view_events_image_resize.png|Setting up TCastleImageControl in editor
 ]
 
 == Display images
@@ -18,7 +18,7 @@ When the image is part of a 2D user-interface, use cgeref:TCastleImageControl[].
 
 You can create such image components using Pascal code or using the CGE visual editor.
 
-Manual chapter link:manual_state_events.php[Designing user interface] describes using images in UI.
+Manual chapter link:view_events[Designing user interface] describes using images in UI.
 
 === TCastleImageTransform (image component inside a viewport, with powerful game features)
 
@@ -39,13 +39,13 @@ The basic code example is:
 
 [source,pascal]
 ----
-procedure TMyState.Create(AOwner: TComponent);
+procedure TMyView.Create(AOwner: TComponent);
 begin
   inherited;
   SomeImage := TDrawableImage.Create('castle-data:/image.png');
 end;
 ...
-procedure TMyState.Render;
+procedure TMyView.Render;
 begin
   inherited;
   SomeImage.Draw(XOnScreen, YOnScreen, WidthOnScreen, HeightOnScreen);

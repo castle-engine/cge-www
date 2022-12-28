@@ -11,13 +11,13 @@ cgeimg::block[inspector_design.png|Inspector UI,inspector_running.png|Inspector 
 
 ## Usage
 
-The basic usage of UI controls inside the _CGE editor_ is explained in the chapter link:manual_state_events.php[Designing user interface and handling events (press, update) within the state]. It shows how to use cgeref:TCastleImageControl[] -- but the workflow shown there applies to all other UI controls too. It comes down to:
+The basic usage of UI controls inside the _CGE editor_ is explained in the chapter link:view_events[Designing user interface and handling events (press, update) within the view]. It shows how to use cgeref:TCastleImageControl[] -- but the workflow shown there applies to all other UI controls too. It comes down to:
 
-- Using _"Add User Interface"_ menu item in the _CGE editor_ to choose a component. It will be added to the state. It's usually most comfortable to use _"Add User Interface"_ by right-clicking on the parent component in the editor hierarchy.
+- Using _"Add User Interface"_ menu item in the _CGE editor_ to choose a component. It will be added to the view. It's usually most comfortable to use _"Add User Interface"_ by right-clicking on the parent component in the editor hierarchy.
 
 - After adding, you want to adjust basic component properties, like `Name`, position and size.
 
-- To access the component from code, you need to declare it in the `published` section of your state, like `MyLabel: TCastleLabel`. The field `MyLabel` will then be automatically initialized when state starts. You can modify this component from code however you want, e.g. do `MyLabel.Caption := 'something'`.
+- To access the component from code, you need to declare it in the `published` section of your view, like `MyLabel: TCastleLabel`. The field `MyLabel` will then be automatically initialized when view starts. You can modify this component from code however you want, e.g. do `MyLabel.Caption := 'something'`.
 
 ## Available user interface controls
 
@@ -149,7 +149,7 @@ echo castle_thumbs(array(
   //array('filename' => 'view3dscene_viewports.png', 'titlealt' => 'Multiple viewports with a DOOM level in view3dscene'),
   array('filename' => 'button_with_2d_scene_manager.png', 'titlealt' => '2D animated scene inside a button'),
   //array('filename' => 'zombie_fighter_1.png', 'titlealt' => 'Multiple viewports and basic game UI'),
-  array('filename' => 'zombie_fighter_2.png', 'titlealt' => 'UI dialog, in a state over the game UI'),
+  array('filename' => 'zombie_fighter_2.png', 'titlealt' => 'UI dialog, in a view over the game UI'),
 ), 'auto', 'left');
 ?>
 
@@ -186,8 +186,8 @@ like <?php echo cgeRef('Window.OnRender'); ?>,
 But usually most of your rendering and input handling should be done inside some
 <?php echo cgeRef('TCastleUserInterface'); ?>
  descendant, most importantly inside
- <?php echo cgeRef('TIUState'); ?> descendant
- (<code>TUIState</code> descends from <code>TCastleUserInterface</code>).
+ cgeref:TCastleView[] descendant
+ (cgeref:TCastleView[] descends from <code>TCastleUserInterface</code>).
 
 <p>Note that <?php echo cgeRef('TCastleViewport'); ?>
  is also a descendant of <?php echo cgeRef('TCastleUserInterface'); ?>.

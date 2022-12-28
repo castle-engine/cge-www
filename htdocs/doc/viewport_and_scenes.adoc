@@ -11,7 +11,7 @@ cgeimg::float[viewport_3d_nice_view.png|Viewport with 3D design]
 
 The most important _Castle Game Engine_ class to display 3D and 2D models is cgeref:TCastleScene[]. You simply set the cgeref:TCastleSceneCore.URL[TCastleScene.URL] property to load a model, like link:glTF[gltf] or link:sprite_sheets[sprite sheet] file.
 
-You have to insert instances of scenes into a viewport (more precisely, cgeref:TCastleViewport.Items[] tree) to make them actually visible. cgeref:TCastleViewport[] represents a 2D viewport on a screen, within this viewport your world (3D or 2D) is displayed. Viewport is a _user interface_ control, which means that it descends from cgeref:TCastleUserInterface[] and it shares the same feature we've seen in the link:manual_state_events.php[previous chapter about states and UI].
+You have to insert instances of scenes into a viewport (more precisely, cgeref:TCastleViewport.Items[] tree) to make them actually visible. cgeref:TCastleViewport[] represents a 2D viewport on a screen, within this viewport your world (3D or 2D) is displayed. Viewport is a _user interface_ control, which means that it descends from cgeref:TCastleUserInterface[] and it shares the same feature we've seen in the link:view_events[previous chapter about states and UI].
 
 The scenes can be transformed (moved, rotated, scaled) within the viewport. You can arrange them in transformation groups using cgeref:TCastleTransform[]. cgeref:TCastleTransform[] is an ancestor of cgeref:TCastleScene[] that doesn't display anything by itself, but it transforms all the children.
 

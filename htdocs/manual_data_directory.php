@@ -58,7 +58,7 @@ This way the build tool will automatically package your game correctly.
   <li><p>2D images, loaded e.g. by
     <?php echo pascal_highlight('MyImageControl.Url := \'castle-data:/my_image.png\''); ?>
 
-    <p>See <a href="manual_state_events.php">displaying images</a>.
+    <p>See <a href="view_events">displaying images</a>.
 
   <li><p>Sounds, loaded e.g. by
     <?php echo pascal_highlight('MySoundBuffer := SoundEngine.LoadBuffer(\'castle-data:/my_sound.wav\')'); ?>

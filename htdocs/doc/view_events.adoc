@@ -1,0 +1,374 @@
+# Designing user interface and handling events (press, update) within the view
+include::common.adoc[]
+:description: Using basic view features: displaying images and handling events.
+:cge-social-share-image: view_events_screen.png
+
+NOTE: _"View"_ was called _"state"_ before 2022-12-25. And instead of cgeref:TCastleView[] class we used `TUIState` class. While we tried to update all examples and docs to the new terminology, undoudtedly you can find some old code snippets talking about "state". Just mentally replace _state_ -> _view_ and you're good :)
+
+== Overview
+
+cgeimg::block[
+  view_events_screen.png|Plane flying on the mountain background - game,
+  view_events_biplane_4_resized.png|Plane flying on the mountain background - design
+]
+
+_View_ in _Castle Game Engine_ is a class that descends from cgeref:TCastleView[] and manages _what you display on the screen and how you react to basic events (user input, updates)_.
+
+While it is not required to put everything in some _view_, we highly advise to organize your application into a number of views. They usually divide your application code into a number of smaller pieces in a natural way. If you have used Lazarus LCL or Delphi VCL for visual designing previosly, you will recognize that our cgeref:TCastleView[] is a similar concept to `TForm` from LCL and VCL.
+
+In this chapter we will learn how to use the basic view features. We will create a simple toy that displays some images and allows to move them. You can follow this chapter and do it yourself, or you can look at the ready version in link:https://github.com/castle-engine/castle-engine/tree/master/examples/user_interface/view_events[examples/user_interface/view_events].
+
+== Create empty project
+
+We assume you have already link:/[downloaded Castle Game Engine] and link:install[installed it].
+
+Start by creating a new project using the "Empty" template.
+
+cgeimg::block[
+  view_events_new_project.png|Castle Game Engine Editor New Project - View Events
+]
+
+When you create a new project, we create initial views for you. The _"Empty"_ template creates a single view, by default called just _"Main"_. It is
+
+
+- a Pascal class called `TViewMain`,
+- implemented in the unit `GameViewMain` (file `code/gameviewmain.pas`),
+- it has a single instance (singleton) `ViewMain`,
+- and it displays a design (user interface you can visually create in the editor) from file `data/gameviewmain.castle-user-interface`.
+
+
+We will edit this view (code and design) in the following steps.
+
+== Add the background image (mountains)
+
+. Download the image link:https://raw.githubusercontent.com/castle-engine/castle-engine/master/examples/user_interface/view_events/data/mountains_background.png[mountains_background.png] and put it inside your project's `data` subdirectory. You can right-click in the editor _"Files"_ panel to easily open your file manager inside the current project. Then just copy the file into the `data` subdirectory.
++
+After copying the file, you can see it inside the editor. If you select it, editor will show a preview in the bottom-right corner.
++
+cgeimg::block[
+  view_events_mountains_background.png|Mountains background,
+  view_events_open_containing.png|Open Containing Folder,
+  view_events_editor_mountains_background.png|Mountains background loaded in Castle Game Engine editor
+]
++
+If you want to experiment with graphics at this point, go ahead. The sample image we propose here is actually constructed from multiple layers in GIMP. If you know your way around, you can create a variation of this image easily. We also have alternative "industrial" background ready. See the link:https://github.com/castle-engine/castle-engine/tree/master/examples/user_interface/view_events/data[examples/user_interface/view_events/data] directory.
+
+. Double-click on the `gameviewmain.castle-user-interface` file in the `data` subdirectory in the editor. It will open the user interface design, where we'll add new controls.
++
+cgeimg::block[
+  view_events_empty_view.png|Empty user interface design
+]
+
+. Right-click on the `Group1` (the "root" component of your design) to select it and show a context menu. Then choose _Add User Interface -> Image (TCastleImageControl)_ from the context menu that appears.
++
+cgeimg::block[
+  view_events_new_image.png|New Image (TCastleImageControl)
+]
+
+. Load the image by editing the URL property. Click on the small button with 3 dots (`...`) on the right side of `URL` property to invoke a standard "Open File" dialog box where you should select your image.
++
+Note that once you confirm, the `URL` will change to something like `castle-data:/mountains_background.png`. The design saves the file location link:manual_data_directory.php[relative to a special "data" directory]. In a typical game, you will want to reference all your data files like this. The special `data` directory will be always properly packaged and available in your application.
++
+cgeimg::block[
+  view_events_image_url1.png|Set Image URL,
+  view_events_image_url2.png|Set Image URL
+]
+
+. Set the new image _name_ to `ImageBackground`.
++
+You can adjust the component name by editing the `Name` in the inspector on the right. You can alternatively click in the hierarchy on the left, or press F2, to edit the name inside the hierarchy panel.
++
+We advise to set useful _names_ for all new components, to easier recognize the components when designing. The `Name` can also be later used to find this component from code (you will see an example of it later).
++
+cgeimg::block[
+  view_events_name1.png|Editing Name property,
+  view_events_name2.png|Editing Name property in the hierarchy
+]
+
+. The image is very small at the beginning. The new project by default uses _UI scaling_ that simulates window size of 1600x900, while our image has size 272 x 160. By default `TCastleImageControl` follows the image size.
++
+Set on the new `TCastleImageControl` property `Stretch` to `true` (allow to resize the `TCastleImageControl` freely).
++
+// `ProportionalScale` to `psEnclose` (the displayed image keep aspect ratio of the original)
+_Test_ that you can move and resize the image freely now (by dragging using the left mouse button), test making the image larger. We will adjust the position and size more precisely in the next step, for now just test that you could play with it manually. Note that you could set `ProportionalScale` to `psEnclose` to always keep aspect ratio of the original image.
++
+cgeimg::block[
+  view_events_image_resize.png|Resize the image
+]
+
+. Switch to the _Layout_ tab and set image `Width` to `1600` and `Height` to `900`. This will make the image fit perfectly inside the game window.
++
+_Explanation:_ The project uses _UI (user interface) scaling_ to 1600x900 by default, so it is completely valid to just set sizes and positions to any hardcoded values. They will be adjusted to follow the actual window size correctly. You can take a look at link:manual_castle_settings.php[data/CastleSettings.xml] file -- it allows to adjust how UI scaling works.
++
+_Alternative:_ We can get _exactly_ the same behavior by setting `WidthFraction` to `1.0`, `HeightFraction` to `1.0`, and `ProportionalScale` to `psFit`. This will also make the image keep nicely within the window, and automatically follows whatever reference window size is used by the UI scaling.
++
+cgeimg::block[
+  view_events_mountains_resize.png|Set the image Width and Height
+]
+
+. To make the image stay at the window center, anchor it to the middle of the window (both horizontall and vertically):
++
+--
+- go to the _Layout_ tab and click the middle button in the 3x3 buttons grid. This sets the anchor to the middle.
+- Click the _"Move to the anchor"_ button to change image position _right now_ to be at the center.
+--
++
+When done, resize the game window (by dragging the "splitters", i.e. bars between the game window and hierarchy (on the left) or inspector (on the right)). Notice how image always stays within the window, with the image center in the window center.
++
+cgeimg::block[
+  view_events_anchor1.png|Adjust background anchor,
+  view_events_anchor2.png|Adjust background anchor - Move to anchor,
+  view_events_resized1.png|Testing background anchor by resizing window,
+  view_events_resized2.png|Testing background anchor by resizing window
+]
+. The background image is a _pixel-art_. It has low resolution, and if you make it larger (as we did) -- it is better to scale it _without_ smoothing the colors, to keep the result sharp.
++
+To do this, set `SmoothScaling` property of the image to `false`.
++
+cgeimg::block[
+  view_events_smooth_scaling.png|Changing image SmoothScaling
+]
+
+. As a final touch, drag the `LabelFps` in the hierarchy on the left to be _below_ the newly added `ImageControl1`. This will make the `LabelFps` displayed _in front_ of the background image.
++
+This matters when game window aspect ratio is close to 1600x900, the yellow text _"FPS: xxx"_ should then be displayed _in front_, not hidden _behind_ the background image. The code will update this label to display _frames per second_ when you run the game. This is a basic metric of the performance of your game.
++
+cgeimg::block[
+  view_events_label_front.png|Moved the LabelFps to the front
+]
+
+== Add the player image (plane)
+
+. Download the player (plane) image from link:https://raw.githubusercontent.com/castle-engine/castle-engine/master/examples/user_interface/view_events/data/biplane.png[biplane.png]. Just as before, add it to your project's `data` subdirectory.
++
+cgeimg::block[
+  view_events_biplane.png|Plane image,
+  view_events_biplane_1.png|Plane image loaded in Castle Game Engine editor
+]
+
+. Add a new `TCastleImageControl` as a child of `ImageBackground`.
++
+If you made a mistake and placed it under some other parent (like `Group1`) then simply drag it (in the hierarchy tree) to be a child of `ImageBackground`. Just drag the new control over the right side of the `ImageBackground` in the hierarchy (it will show a right-arrow -- indicating that you will drag the component to be a child of `ImageBackground`).
++
+This relationship means that `ImagePlayer` position is relative to parent `ImageBackground` position. So the player image will keep at the same place of the background, regardless of how do you position/resize the background.
++
+cgeimg::block[
+  view_events_biplane_add_child.png|Add TCastleImageControl as a child of ImageBackground,
+  view_events_biplane_add_child_2.png|Added TCastleImageControl as a child of ImageBackground
+]
+
+. Adjust new image control:
+// Place it behind the `LabelFps` but in front of our background image `ImageControl1`.
++
+--
+- Set the new image `Name` to `ImagePlayer`.
+- Set it's `URL` to point to the plane image.
+- The plane image is quite large. Set `Stretch` to `true`, `ProportionalScale` to `psEnclose`, and move and resize it manually to a nice position and size.
+--
++
+cgeimg::block[
+  view_events_biplane_2_added.png|Adding plane image,
+  view_events_biplane_3_set_url.png|Setting the plane image URL,
+  view_events_biplane_4_resized.png|Resizing the plane image
+]
+
+. Remember to save your design! Press Ctrl + S (menu item _Design -> Save_).
+
+////
+// we do not want this, we want ground to be level 0, for Update demo later
+. To behave nicer when the game window is resized, set the anchor of the new player image to be center too. Click on the middle button in the 3x3 grid. Do not click on the _"Move to the anchor"_, there's no need. When you resize the game window now, the plane will keep at the same position relative to the background.
+
+  cgeimg::block[
+    view_events_biplane_anchor.png|Setting anchor of the plane image
+  ]
+////
+
+So far we didn't write any code, we just modified the file `data/gameviewmain.castle-user-interface`. You can run the application to see that it displays 2 images, in whatever place you put them.
+
+== Access designed components in the code
+
+Now we will write some Pascal code. You can use any Pascal editor you like -- by default we use Lazarus, but you can configure it in the editor _Preferences_.
+
+Look at our link:modern_pascal[Modern Object Pascal Introduction for Programmers] to learn more about Pascal, the programming language we use.
+
+To access (from code) the components you have designed, you need to declare them in Pascal in the `published` section of your view class. Therefore we will add the field `ImagePlayer`, as we want to modify its properties by Pascal code.
+
+
+. Use our editor menu item _Code -> Open Project in Code Editor_ to make sure that Lazarus has loaded the appropriate project.
++
+Or just open Lazarus yourself, and use Lazarus menu item _Project -> Open Project_ and choose the `xxx_standalone.lpi` in the created project directory.
+
+. Double-click on the `code/gameviewmain.pas` unit to open it in your Pascal code editor.
+
+. Find the `TViewMain` class declaration and add a field `ImagePlayer: TCastleImageControl;` in the `published` section.
++
+So it looks like this:
++
+[source,pascal]
+----
+type
+  { Main view, where most of the application logic takes place. }
+  TViewMain = class(TCastleView)
+  published
+    { Components designed using CGE editor.
+      These fields will be automatically initialized at Start. }
+    LabelFps: TCastleLabel;
+    ImagePlayer: TCastleImageControl; // NEW LINE WE ADDED
+    ...
+----
+
+The value of this field will be automatically initialized (right before the view `Start` method is called) to the component loaded from your design.
+
+Pascal code within `TViewMain` can now use the field `ImagePlayer` the change the properties of the designed image. We will use it in the following sections, to change the player position and color.
+
+== Move the player in the Update method
+
+The view has an `Update` method that is continuously called by the engine. You should use it to update the view of your game as time passes. In this section, we will make the plane fall down by a simple gravity, by moving the plane down each time the `Update` method is called.
+
+. Add unit `Math` to the uses clause.
++
+You can extend the _uses clause_ of the `interface` or the `implementation` of the `GameViewMain` unit. It doesn't matter in this simple example, but it is easier to extend the `interface` section (in case you will need to use some type in the interface). So extend the uses clause in the interface, so it looks like this:
++
+[source,pascal]
+----
+unit GameViewMain;
+
+interface
+
+uses Classes, Math,
+  CastleComponentSerialize, CastleUIControls, CastleControls,
+  CastleKeysMouse, CastleVectors;
+----
+
+. Find the `TViewMain.Update` method implementation and change it into this:
++
+[source,pascal]
+----
+procedure TViewMain.Update(const SecondsPassed: Single; var HandleInput: Boolean);
+var
+  PlayerPosition: TVector2;
+begin
+  inherited;
+  LabelFps.Caption := 'FPS: ' + Container.Fps.ToString;
+
+  { update player position to fall down }
+  PlayerPosition := ImagePlayer.Translation;
+  PlayerPosition.Y := Max(PlayerPosition.Y - SecondsPassed * 400, 0);
+  ImagePlayer.Translation := PlayerPosition;
+end;
+----
++
+We use the `SecondsPassed` parameter to know how much time has passed since the last frame. You should scale all your movement by it, to adjust to any computer speed. For example, to move by 100 pixels per second, we would increase our position by `SecondsPassed * 100.0`.
++
+We use the `TVector2` in this code, which is a 2D vector, that is: just 2 floating-point fields `X` and `Y` (of standard Pascal type `Single`). We modify the `Y` to make the plane fall down, and use `Max` (from standard `Math` unit) to prevent it from falling too much (below the game window).
++
+We get and set the cgeref:TCastleUserInterface.Translation[ImagePlayer.Translation] which changes the image position. The translation is relative to the current anchor, which by default is in the left-bottom corner of the parent. So translation (0,0) means that the left-bottom corner of `ImagePlayer` matches the left-bottom corner of parent `ImageBackground`. This is what we want.
+
+Run the application now to see that the plane falls down. Note that this is a rather naive approach to implement gravity -- for a realistic gravity you should rather use link:physics[physics engine]. But it is enough for this demo, and it shows you how to do _anything_ that needs to be done (or tested) _"all the time when the game is running"_.
+
+== React to a key press
+
+The react to one-time key press, use the `TViewMain.Press` method.
+You can also check which keys are pressed inside the `TViewMain.Update` method,
+to update movement constantly. Examples below shows both ways.
+
+. Extend the `TViewMain.Update` method implementation into this:
++
+[source,pascal]
+----
+procedure TViewMain.Update(const SecondsPassed: Single; var HandleInput: Boolean);
+const
+  MoveSpeed = 800;
+var
+  PlayerPosition: TVector2;
+begin
+  inherited;
+  LabelFps.Caption := 'FPS: ' + Container.Fps.ToString;
+
+  PlayerPosition := ImagePlayer.Translation;
+
+  // NEW CODE WE ADD:
+  if Container.Pressed[keyArrowLeft] then
+    PlayerPosition := PlayerPosition + Vector2(-MoveSpeed * SecondsPassed, 0);
+  if Ctontainer.Pressed[keyArrowRight] then
+    PlayerPosition := PlayerPosition + Vector2( MoveSpeed * SecondsPassed, 0);
+  if Container.Pressed[keyArrowDown] then
+    PlayerPosition := PlayerPosition + Vector2(0, -MoveSpeed * SecondsPassed);
+  if Container.Pressed[keyArrowUp] then
+    PlayerPosition := PlayerPosition + Vector2(0,  MoveSpeed * SecondsPassed);
+
+  { update player position to fall down }
+  PlayerPosition.Y := Max(PlayerPosition.Y - SecondsPassed * 400, 0);
+  ImagePlayer.Translation := PlayerPosition;
+end;
+----
++
+The new code looks whether user has pressed one of the arrow keys by `if Container.Pressed[keyArrowXxx] then`. If yes, we modify the `PlayerPosition` variable accordingly.
++
+Note that we could also modify directly `ImagePlayer.Translation`, like `ImagePlayer.Translation := ImagePlayer.Translation + Vector2(...);` . This would also work perfectly. But since we already had a variable `PlayerPosition`, it seemed even better to use it, as it has a self-explanatory name.
++
+Just as with gravity, we scale all the movement by `SecondsPassed`. This way the movement will be equally fast, regardless of whether the game runs at 60 FPS (_frames per second_) or slower or faster. This also means that `MoveSpeed` constant defines a _"movement per 1 second"_.
++
+_You can now move the plane by arrow keys!_
+
+. To handle a _key press_ find the `TViewMain.Press` method implementation and change it into this:
++
+[source,pascal]
+----
+function TViewMain.Press(const Event: TInputPressRelease): Boolean;
+begin
+  Result := inherited;
+  if Result then Exit; // allow the ancestor to handle keys
+
+  // NEW CODE WE ADD:
+  if Event.IsKey(keySpace) then
+  begin
+    ImagePlayer.Color := Vector4(Random, Random, Random, 1);
+    Exit(true); // event was handled
+  end;
+end;
+----
++
+The `Event.IsKey(keySpace)` checks whether this is a press of the `space` key.
++
+As a demo, we modify the cgeref:TCastleImageControl.Color[ImagePlayer.Color], which is an RGBA value multiplied by the original image color. This allows to easily "tint" the image, e.g. setting it to `Vector4(0.5, 0.5, 1, 1)` means that _red_ and _green_ color components are darker (multiplied by 0.5) and thus the image appears more _blueish_. In this case we use random values for the all _red_, _green_ and _blue_ channels (the standard `Random` returns a random float in the 0..1 range), just for test. So each time you press the _space_ key, the player image will look a bit different.
++
+Note that we keep the 4th `ImagePlayer.Color` component (alpha) at 1.0. Lower _alpha_ would make image partially-transparent.
++
+Note that you can experiment with changing the `ImagePlayer.Color` effects also visually, in the editor.
+
+Run the application now to test the key handling.
+
+When to use `Press` to handle a single key press, and when to use `Update` to watch the key state? This depends on the need. If the action caused by the key is a single, instant, uninterruptible operation -- then do it in `Press`. If the key causes an effect that is somehow applied more and more over time  -- then watch the key and apply it in `Update`.
+
+== React to a mouse click or touch
+
+The mouse press is also handled in the `Press` method. In general, `Press` method receives key press, or a mouse press, or a mouse wheel use (see the documentation of cgeref:TInputPressRelease[]).
+
+Everywhere in the engine, the mouse events also work on touch devices, when they correspond to the movement / touches of the fingers. When you use a touch device, then we only report _left_ mouse button clicks (cgeref:TInputPressRelease.MouseButton[] will be `buttonLeft`). When you use use the actual mouse on the desktop, then we only report touches by the 1st finger (cgeref:TInputPressRelease.FingerIndex[]  will be `0`). The example code below checks for `if Event.IsMouseButton(buttonLeft) then` and thus it will work on both desktop (detecting mouse click) and mobile (detecting touch).
+
+Extend the `TViewMain.Press` method implementation into this:
+
+[source,pascal]
+----
+function TViewMain.Press(const Event: TInputPressRelease): Boolean;
+begin
+  Result := inherited;
+  if Result then Exit; // allow the ancestor to handle keys
+
+  if Event.IsKey(keySpace) then
+  begin
+    ImagePlayer.Color := Vector4(Random, Random, Random, 1);
+    Exit(true); // event was handled
+  end;
+
+  // NEW CODE:
+  if Event.IsMouseButton(buttonLeft) then
+  begin
+    ImagePlayer.Translation := ImagePlayer.Parent.ContainerToLocalPosition(Event.Position);
+    Exit(true); // event was handled
+  end;
+end;
+----
+
+The `Event.Position` contains the mouse/touch position. It is expressed in the _container_ coordinates, which means it is not affected by UI scaling or the UI hierarchy and anchors. It's easiest to convert it to a position relative to some UI control using the cgeref:TCastleUserInterface.ContainerToLocalPosition[]  method. In this case, we use `ImagePlayer.Parent.ContainerToLocalPosition`, to use the resulting position to set `ImagePlayer.Translation`. The `ImagePlayer.Parent` is just another way to access `ImageBackground` in this case. We want to calculate new player position, in the coordinates of `ImagePlayer` parent, because that's what `ImagePlayer.Translation` expects.

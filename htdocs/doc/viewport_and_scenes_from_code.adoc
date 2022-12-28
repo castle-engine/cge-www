@@ -23,19 +23,19 @@ The complete result of this tutorial is in the _Castle Game Engine_. Just open t
 
 ## Where to edit code
 
-In simple applications, most of the code modifications will be done in the Pascal file that defines your _state_.
+In simple applications, most of the code modifications will be done in the Pascal file that defines your _view_.
 
-If you started from the _"Empty"_ template, this state is called _Main_ by default, and the Pascal unit is `code/gamestatemain.pas`.
+If you started from the _"Empty"_ template, this view is called _Main_ by default, and the Pascal unit is `code/gameviewmain.pas`.
 
-If you started from the _"3D FPS game"_ or _"2D game"_ templates, then you have 2 states created by default. The actual game is in state called _Play_, and the Pascal unit is `code/gamestateplay.pas`.
+If you started from the _"3D FPS game"_ or _"2D game"_ templates, then you have 2 views created by default. The actual game is in view called _Play_, and the Pascal unit is `code/gameviewplay.pas`.
 
 You can just double-click on that Pascal file in _Castle Game Engine editor_. It will open your _code editor_, like _Lazarus_ or _Delphi_ or _Visual Studio Code_ (see link:install[installation] for instructions how to configure this).
 
-The Pascal unit defines a class called like `TStateMain` that descends from cgeref:TUIState[]. It overrides some virtual cgeref:TUIState[] methods, and these are the usual places where you will want to add your own code:
+The Pascal unit defines a class called like `TViewMain` that descends from cgeref:TCastleView[]. It overrides some virtual cgeref:TCastleView[] methods, and these are the usual places where you will want to add your own code:
 
-- `TStateMain.Start` overrides cgeref:TUIState.Start[]. It is run once when we enter the state. It is a good place to initialize something.
+- `TViewMain.Start` overrides cgeref:TCastleView.Start[]. It is run once when we enter the view. It is a good place to initialize something.
 
-- `TStateMain.Update` overrides cgeref:TUIState.Update[]. It is run very often, multiple times per second. It is a good place to do something you have to do constantly. Use this for example to
+- `TViewMain.Update` overrides cgeref:TCastleView.Update[]. It is run very often, multiple times per second. It is a good place to do something you have to do constantly. Use this for example to
 +
 [role="compact"]
 --
@@ -44,9 +44,9 @@ The Pascal unit defines a class called like `TStateMain` that descends from cger
 - check whether user is pressing some key to _keep doing something, as long as user holds the key down_.
 --
 
-- `TStateMain.Press` overrides cgeref:TUIState.Press[]. It is run when user presses a key or a mouse button.
+- `TViewMain.Press` overrides cgeref:TCastleView.Press[]. It is run when user presses a key or a mouse button.
 
-See link:manual_state_events.php[Designing user interface and handling events] chapter that also talks about the state code.
+See link:view_events[Designing user interface and handling events] chapter that also talks about the view code.
 
 ////
 ### Example: Creating TCastleViewport
@@ -67,7 +67,7 @@ begin
 end;
 ----
 
-You can place such code e.g. inside overridden cgeref:TUIState.Start[] method. The `InsertFront` method will call the cgeref:TCastleUserInterface.InsertFront[] method, which inserts the `Viewport` as the front-most control in the state. Using cgeref:TUIState.FreeAtStop[] as the owner means that the `Viewport` will be automatically freed when state stops.
+You can place such code e.g. inside overridden cgeref:TCastleView.Start[] method. The `InsertFront` method will call the cgeref:TCastleUserInterface.InsertFront[] method, which inserts the `Viewport` as the front-most control in the view. Using cgeref:TCastleView.FreeAtStop[] as the owner means that the `Viewport` will be automatically freed when view stops.
 
 Remember to add the necessary units to your `uses` clause to have the appropriate identifiers defined. If you follow the reference links, like this one: cgeref:TCastleViewport[], then you will see in which unit is each identifier defined. cgeref:TCastleViewport[] class is part of the cgeref:CastleViewport[] unit.
 ////
@@ -88,7 +88,7 @@ If you want to try all the examples on this page yourself, we recommend that you
 
 Often, your code will need to refer to some components that you have added in the editor. The component `Name` is used to uniquely get an instance of this component from code. In this example, we want to access `MainViewport` and `RoadScene` in Pascal. To do this:
 
-. Declare their corresponding fields. Do this in the `published` section of `TStateMain` class, near the comment _{ Components designed using CGE editor.... }_. There should be `LabelFps` already defined (it is part of the _"Empty"_ template), you will add 2 new lines below it:
+. Declare their corresponding fields. Do this in the `published` section of `TViewMain` class, near the comment _{ Components designed using CGE editor.... }_. There should be `LabelFps` already defined (it is part of the _"Empty"_ template), you will add 2 new lines below it:
 +
 [source,pascal]
 ----
@@ -96,13 +96,13 @@ RoadScene: TCastleScene;
 MainViewport: TCastleViewport;
 ----
 +
-The end result is that `TStateMain` class starts like this:
+The end result is that `TViewMain` class starts like this:
 +
 [source,pascal]
 ----
 type
-  { Main state, where most of the application logic takes place. }
-  TStateMain = class(TUIState)
+  { Main view, where most of the application logic takes place. }
+  TViewMain = class(TCastleView)
   published
     { Components designed using CGE editor.
       These fields will be automatically initialized at Start. }
@@ -113,7 +113,7 @@ type
 
 . Remember to add the necessary units to your `uses` clause to have the appropriate identifiers defined. If you follow the reference links, like this one: cgeref:TCastleScene[], then you will see in which unit is each identifier defined. cgeref:TCastleScene[] class is part of the cgeref:CastleScene[] unit. cgeref:TCastleViewport[] is part of the cgeref:CastleViewport[] unit.
 
-That's it. Now anywhere in your state code you can access `RoadScene` or `MainViewport`.
+That's it. Now anywhere in your view code you can access `RoadScene` or `MainViewport`.
 
 *Compile and run the application now.* Use menu item _"Run -> Compile And Run (F9)"_ from the _Castle Game Engine editor_.
 
@@ -127,7 +127,7 @@ Now that we have a reference to `RoadScene`, let's make a simple modification: l
 
 To do this, we will react to pressing the `R` key and toggle the cgeref:TCastleTransform.Exists[Exists] property of `RoadScene`.
 
-. Find the `TStateMain.Press` implementation.
+. Find the `TViewMain.Press` implementation.
 
 . In the implementation, add these lines:
 +
@@ -174,9 +174,9 @@ Yet another way to make the scene non-existing would be to remove it from `Viewp
 
 You can create cgeref:TCastleScene[] instances using code. You can add the created scene to a viewport and adjust it's properties like cgeref:TCastleTransform.Translation[Translation].
 
-. Declare a new field `CarScene: TCastleScene` in the `private` section of `TStateMain`.
+. Declare a new field `CarScene: TCastleScene` in the `private` section of `TViewMain`.
 
-. In the `TStateMain.Start` add code to initialize it, load car model, and add to the viewport:
+. In the `TViewMain.Start` add code to initialize it, load car model, and add to the viewport:
 +
 [source,pascal]
 ----
@@ -186,7 +186,7 @@ CarScene.Spatial := [ssRendering, ssDynamicCollisions];
 MainViewport.Items.Add(CarScene);
 ----
 
-Doing this in `TStateMain.Start` isn't yet very useful. We could have added the car scene using the editor too. But it will be useful later.
+Doing this in `TViewMain.Start` isn't yet very useful. We could have added the car scene using the editor too. But it will be useful later.
 
 ## Playing animation
 
@@ -197,7 +197,7 @@ cgeimg::float[
 
 To play an animation, call the cgeref:TCastleSceneCore.PlayAnimation[PlayAnimation] method from code.
 
-Just add this to the `TStateMain.Start` to play `wheels_turning` animation once the model is loaded:
+Just add this to the `TViewMain.Start` to play `wheels_turning` animation once the model is loaded:
 
 [source,pascal]
 ----
@@ -228,11 +228,11 @@ Code can also set the cgeref:TCastleSceneCore.AutoAnimation[AutoAnimation] and c
 
 ## Moving scene in each update
 
-To make the car moving, we can update its position in `TStateMain.Update`. Change it into this:
+To make the car moving, we can update its position in `TViewMain.Update`. Change it into this:
 
 [source,pascal]
 ----
-procedure TStateMain.Update(const SecondsPassed: Single; var HandleInput: Boolean);
+procedure TViewMain.Update(const SecondsPassed: Single; var HandleInput: Boolean);
 var
   T: TVector3;
 begin
@@ -263,14 +263,14 @@ NOTE: It is possible to achieve the optimization described in this section also 
 
 For example, let's make 20 cars moving along the road. You will need 20 instances of cgeref:TCastleTransform[], but only a single instance of the cgeref:TCastleScene[].
 
-. Declare in the `private` section of `TStateMain` an array of transformations:
+. Declare in the `private` section of `TViewMain` an array of transformations:
 +
 [source,pascal]
 ----
 CarTransforms: array [1..20] of TCastleTransform;
 ----
 
-. Initialize it in `TStateMain.Start` like this:
+. Initialize it in `TViewMain.Start` like this:
 +
 [source,pascal]
 ----
@@ -295,11 +295,11 @@ MainViewport.Items.Add(CarScene);
 +
 All our cars will be now controlled using the `CarTransforms` array. The `CarScene` is used 20 times as a child of `CarTransforms[...]` items.
 
-. Finally, make all our cars moving. Change the `TStateMain.Update` to do the same thing as previously, but now in a loop, for every instance of `CarTransforms` list.
+. Finally, make all our cars moving. Change the `TViewMain.Update` to do the same thing as previously, but now in a loop, for every instance of `CarTransforms` list.
 +
 [source,pascal]
 ----
-procedure TStateMain.Update(const SecondsPassed: Single; var HandleInput: Boolean);
+procedure TViewMain.Update(const SecondsPassed: Single; var HandleInput: Boolean);
 
   procedure UpdateCarTransform(const CarTransform: TCastleTransform);
   var
@@ -333,7 +333,7 @@ Note that all 20 cars are in the same state (they display the same animation). T
 
 _Behaviors_ allow to customize the cgeref:TCastleTransform[] behavior.
 
-While you can also create cgeref:TCastleTransform[] descendants (and override e.g. `Update` method), or operate on cgeref:TCastleTransform[] instances from the state (e.g. from `TStateMain.Update`), using behaviors often results in most flexible code:
+While you can also create cgeref:TCastleTransform[] descendants (and override e.g. `Update` method), or operate on cgeref:TCastleTransform[] instances from the view (e.g. from `TViewMain.Update`), using behaviors often results in most flexible code:
 
 . The logic of the particular action is nicely separated in a behavior class,
 . The behavior can be freely added/removed at runtime.
@@ -344,7 +344,7 @@ One example is in the _"New Project -> 3D FPS Game"_ template. See how the simpl
 
 Let's modify our cars demo to use behaviors to move each car.
 
-. Define and implement class `TCarBehavior` that descends from `TCastleBehavior`, and moves a car. Place this code in your project (you can create a new unit, or add it to the implementation of `GameStateMain` unit):
+. Define and implement class `TCarBehavior` that descends from `TCastleBehavior`, and moves a car. Place this code in your project (you can create a new unit, or add it to the implementation of `GameViewMain` unit):
 +
 [source,pascal]
 ----
@@ -369,7 +369,7 @@ begin
 end;
 ----
 
-. Create an instance of `TCarBehavior` (owned by `FreeAtStop`) and insert it into each `CarTransforms[I]` instance. To do this, extend the loop in `TStateMain.Start` that creates `CarTransforms[I]` instances from previous section. After this line:
+. Create an instance of `TCarBehavior` (owned by `FreeAtStop`) and insert it into each `CarTransforms[I]` instance. To do this, extend the loop in `TViewMain.Start` that creates `CarTransforms[I]` instances from previous section. After this line:
 +
 [source,pascal]
 ----
@@ -384,11 +384,11 @@ CarTransforms[I].AddBehavior(TCarBehavior.Create(FreeAtStop));
 +
 NOTE: The order doesn't really matter much, and you can rearrange most of the code we describe. In general, you can add children and behaviors in any order.
 
-. Remove whole movement logic from `TStateMain.Update`. We don't need it anymore, as new behavior class will move the car. So make `TStateMain.Update` as simple as it was at the beginning:
+. Remove whole movement logic from `TViewMain.Update`. We don't need it anymore, as new behavior class will move the car. So make `TViewMain.Update` as simple as it was at the beginning:
 +
 [source,pascal]
 ----
-procedure TStateMain.Update(const SecondsPassed: Single; var HandleInput: Boolean);
+procedure TViewMain.Update(const SecondsPassed: Single; var HandleInput: Boolean);
 begin
   inherited;
   { This virtual method is executed every frame.}
@@ -501,8 +501,8 @@ end;
 Test it like this:
 
 . Add cgeref:X3DNodes[] and cgeref:CastleBoxes[] units to the uses clause.
-. Add the `CreateAdditionalMesh` function as a nested routine to `TStateMain.Start`.
-. Call the `CreateAdditionalMesh` function and add the new scene to the viewport, by adding to `TStateMain.Start` this:
+. Add the `CreateAdditionalMesh` function as a nested routine to `TViewMain.Start`.
+. Call the `CreateAdditionalMesh` function and add the new scene to the viewport, by adding to `TViewMain.Start` this:
 +
 [source,pascal]
 ----

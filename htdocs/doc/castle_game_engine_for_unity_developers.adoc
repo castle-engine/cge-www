@@ -84,7 +84,7 @@ This is a classic OOP approach. This is like _Unreal Engine_ that allows you to 
 +
 You can even link:custom_components[register your custom classes to be available in the editor, to add/configure them visually].
 
-. You can also *assign events, like `OnPress`*. Most UI controls expose obvious events, like `TCastleButton.OnClick`. You are free to handle these events at one central place (like an LCL `TForm` descendant (only if you use `TCastleControl`), or CGE `TUIState` descendant) or decentralized (e.g. create a different instance of your own class to handle events of each different creature, different item).
+. You can also *assign events, like `OnPress`*. Most UI controls expose obvious events, like `TCastleButton.OnClick`. You are free to handle these events at one central place (like an LCL `TForm` descendant (only if you use cgeref:TCastleControl[]), or CGE cgeref:TCastleView[] descendant) or decentralized (e.g. create a different instance of your own class to handle events of each different creature, different item).
 +
 The approach to use events is similar to using UI in Lazarus LCL or Delphi VCL.
 
@@ -177,9 +177,9 @@ There in an additional time scaling possible by `TCastleScene.TimePlayingSpeed`.
 
 == Where is `Time.deltaTime`?
 
-In `Container.Fps.SecondsPassed`. See the https://castle-engine.io/manual_state_events.php for the most trivial usage example.
+In `Container.Fps.SecondsPassed`. See the link:view_events[view events] for the most trivial usage example.
 
-In you override the `TCastleUserInterface.Update` (including `TUIState.Update`) or `TCastleTransform.Update` method, then you also have an explicit parameter `SecondsPassed` that contains this value. In `TCastleTransform.Update` the time is already scaled (if you used `MyViewport.Items.TimeScale` mentioned above).
+In you override the cgeref:TCastleUserInterface.Update[] (including cgeref:TCastleView.Update[]) or `TCastleTransform.Update` method, then you also have an explicit parameter `SecondsPassed` that contains this value. In `TCastleTransform.Update` the time is already scaled (if you used `MyViewport.Items.TimeScale` mentioned above).
 
 == Making components inactive
 

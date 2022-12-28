@@ -31,11 +31,11 @@ You have complete freedom how do you handle the input in your games. You can:
 
 * or implement navigation simply by processing the keys and updating the camera position / rotation from anywhere you want.
 +
-For example, move the camera in response to user input in your `TStatePlay.Update`. Example code would be like this (see link:manual_state_events.php[manual about handling state events]):
+For example, move the camera in response to user input in your `TViewPlay.Update`. Example code would be like this (see link:view_events[manual about handling view events]):
 +
 [source,pascal]
 ----
-procedure TStatePlay.Update(const SecondsPassed: Single; var HandleInput: Boolean);
+procedure TViewPlay.Update(const SecondsPassed: Single; var HandleInput: Boolean);
 const
   MoveSpeed = 10;
 begin

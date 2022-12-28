@@ -104,7 +104,7 @@ cgeref:TCastleWindow[], window with an OpenGL context.
 
 _Depends on_: `ui`.
 
-NOTE: In the past it depended on more (even `scene`) but there should not be a need for this now. Window allows to add `TCastleUserInterface` and `TUIState` inside, it should not deal with viewports/scenes specifics directly.
+NOTE: In the past it depended on more (even `scene`) but there should not be a need for this now. Window allows to add cgeref:TCastleUserInterface[] and cgeref:TCastleView[] inside, it should not deal with viewports/scenes specifics directly.
 
 === castle_components package
 
@@ -116,4 +116,4 @@ _Depends on_: `ui`.
 
 This is an alternative to TCastleWindow, so it has the same dependencies. Units between `window` and `components` group cannot use each other.
 
-NOTE: In the past it depended on more (even `scene`) but there should not be a need for this now. Window allows to add `TCastleUserInterface` and `TUIState` inside, it should not deal with viewports/scenes specifics directly.
+NOTE: In the past it depended on more (even `scene`) but there should not be a need for this now. Window allows to add cgeref:TCastleUserInterface[] and cgeref:TCastleView[] inside, it should not deal with viewports/scenes specifics directly.

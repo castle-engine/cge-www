@@ -264,7 +264,7 @@ cgeimg::block[inspector_design.png|Inspector UI,ui_image.png|Images]
 
 * link:user_interface[User interface] library providing cross-platform UI controls that work on all platforms, like buttons, labels, images.
 * Their look can be adjusted to match the style of your game.
-* Your game is organized into link:states[states]. Each state can have a design (created in editor) and an associated unit where you can link:manual_state_events.php[handle various events, like a key press].
+* Your game is organized into link:views[views]. Each view can have a design (created in editor) and an associated unit where you can link:view_events[handle various events, like a key press].
 * Automatic UI scaling to adjust to any screen resolution and aspect ratio with anchors.
 
 === Text and fonts

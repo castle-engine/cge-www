@@ -136,7 +136,7 @@ In the simple case, you can load a design (file `xxx.castle-user-interface`) usi
 
 cgeimg::block[control_lcl_design_loaded.png|Using TCastleControl.DesignUrl to load design in TCastleControl\, visible at Lazarus design-time]
 
-In more involved cases, you should use multiple link:views[] within your control. In this case, use cgeref:TCastleView[] within the cgeref:TCastleControl[], and load a design (file `xxx.castle-user-interface`) inside the view using cgeref:TCastleView.DesignUrl[]. This is analogous to our recommended workflow with cgeref:TCastleWindow[]. You can add new _view_ using CGE editor (_"Code -> New Unit -> Unit With View..."_), or just define a new unit like this:
+In more involved cases, you should use multiple link:views[] within your control. In this case, use cgeref:TCastleView[] within the cgeref:TCastleControl[], and load a design (file `xxx.castle-user-interface`) inside the view using cgeref:TCastleView.DesignUrl[]. This is analogous to our recommended workflow with cgeref:TCastleWindow[]. You can add new _view_ using CGE editor (_"Code -> New Unit -> View..."_), or just define a new unit like this:
 
 [source,pascal]
 ----

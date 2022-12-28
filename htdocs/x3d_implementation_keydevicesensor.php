@@ -32,7 +32,7 @@
     <?php echo cgeRef('TCastleWindow.OnPress'); ?> or
     <?php echo cgeRef('TCastleControl.OnPress'); ?> or override
     <?php echo cgeRef('TCastleUserInterface.Press'); ?> method.
-    See <a href="manual_state_events.php">the manual describing handling events</a>.
+    See <a href="view_events">the manual describing handling events</a>.
 
   <li><p>If you definitely want to use these nodes with CGE, remember to set
     <?php echo cgeRef('TCastleTransform.ListenPressRelease'); ?>
