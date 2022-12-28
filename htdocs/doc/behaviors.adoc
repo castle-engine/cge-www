@@ -1,0 +1,189 @@
+# Behaviors
+include::common.adoc[]
+:description: Behaviors allow to define logic for a parent transformation (like a game object -- player, enemy, vehicle...) and attach / detach this logic at run-time and design-time.
+
+== Introduction
+
+_Behaviors_ allow to customize the parent cgeref:TCastleTransform[] behavior.
+
+A _behavior_ is a class descending from cgeref:TCastleBehavior[] that you add to parent using cgeref:TCastleTransform.AddBehavior[].
+
+[source,pascal]
+----
+MyBehavior := TMyBehavior.Create(...);
+MyTransform.AddBehavior(MyBehavior);
+----
+
+Using behaviors allows to:
+
+. Encapsulate (separate) the logic of some action as a behavior class,
+. The behavior can be freely added and removed at runtime.
+
+First example behavior is in the _"New Project -> 3D FPS Game"_ template. See how the simple enemy AI is implemented there, in https://github.com/castle-engine/castle-engine/blob/master/tools/castle-editor/data/project_templates/3d_fps_game/files/code/gameenemy.pas[GameEnemy unit].
+
+[NOTE]
+====
+There are alternative ways to operate on cgeref:TCastleTransform[]:
+
+* You can create cgeref:TCastleTransform[] descendants and override there methods like cgeref:TCastleTransform.Update[].
+//But this isn't so flexible: you cannot then attach / detach the behavior at run-time or design-time freely, and you need to choose a sensible inheritance path. This approach doesn't scale if your object has multiple behaviors.
+
+* You can operate on cgeref:TCastleTransform[] instances from the view (e.g. from `TViewMain.Update`). See link:viewport_and_scenes_from_code[Writing code to modify scenes and transformations].
+
+But behaviors remain our recommended approach, because it nicely _scales_ when you need multiple behaviors.
+====
+
+== Built-in behaviors
+
+The engine provides a number of ready behavior classes, e.g.
+
+- cgeref:TCastleSoundSource[] (see link:manual_sound.php[sound]),
+
+- cgeref:TCastleBillboard[],
+
+- cgeref:TCastleRigidBody[], all colliders derived from cgeref:TCastleCollider[], physics joints (see link:physics[]).
+
+== Example: behavior of a car
+
+Let's modify our cars demo from link:viewport_and_scenes_from_code[Writing code to modify scenes and transformations] example to use behaviors to move each car.
+
+. Define and implement class `TCarBehavior` that descends from `TCastleBehavior`, and moves a car. Place this code in your project (you can create a new unit, or add it to the implementation of `GameViewMain` unit):
++
+[source,pascal]
+----
+type
+  TCarBehavior = class(TCastleBehavior)
+  public
+    procedure Update(const SecondsPassed: Single; var RemoveMe: TRemoveType); override;
+  end;
+
+procedure TCarBehavior.Update(const SecondsPassed: Single; var RemoveMe: TRemoveType);
+var
+  T: TVector3;
+begin
+  T := Parent.Translation;
+  { Thanks to multiplying by SecondsPassed, it is a time-based operation,
+    and will always move 40 units / per second along the +Z axis. }
+  T := T + Vector3(0, 0, 40) * SecondsPassed;
+  { Wrap the Z position, to move in a loop }
+  if T.Z > 70 then
+    T.Z := -50;
+  Parent.Translation := T;
+end;
+----
+
+. Create an instance of `TCarBehavior` (owned by `FreeAtStop`) and insert it into each `CarTransforms[I]` instance. To do this, extend the loop in `TViewMain.Start` that creates `CarTransforms[I]` instances from previous section. After this line:
++
+[source,pascal]
+----
+CarTransforms[I].Add(CarScene);
+----
+add a new line:
++
+[source,pascal]
+----
+CarTransforms[I].AddBehavior(TCarBehavior.Create(FreeAtStop));
+----
++
+NOTE: The order doesn't really matter much, and you can rearrange most of the code we describe. In general, you can add children and behaviors in any order.
+
+. Remove previous movement logic from `TViewMain.Update`, if you added it by following the link:viewport_and_scenes_from_code[Writing code to modify scenes and transformations] chapter. We don't need it anymore, as new behavior class will move the car. So make `TViewMain.Update` as simple as it was at the beginning:
++
+[source,pascal]
+----
+procedure TViewMain.Update(const SecondsPassed: Single; var HandleInput: Boolean);
+begin
+  inherited;
+  { This virtual method is executed every frame.}
+  LabelFps.Caption := 'FPS: ' + Container.Fps.ToString;
+end;
+----
+
+Test and run. Play around with adding behaviors to only some of the cars (i.e. only cars with `I < 10`) to feel the flexibility of this.
+
+== Example: controlling the footsteps sound
+
+A behavior can be used to connect some other components with a custom functionality. For example this simple `TFootstepsBehavior` can be attached to the camera, and
+
+- It assumes that the parent defines another behavior, cgeref:TCastleSoundSource[], that can play footsteps sound,
+
+- It requires you to set `Navigation` property to a cgeref:TCastleWalkNavigation[] instance, so that it can observe cgeref:TCastleWalkNavigation.IsWalkingOnTheGround[] to know when to make a footsteps sound.
+
+The sample implementation is as follows:
+
+[source,pascal]
+----
+type
+  { Play footsteps sound, when we're walking.
+    This simply observes Navigation.IsWalkingOnTheGround,
+    and controls the playback of FootstepsSoundSource
+    (which is TCastleSoundSource found on parent). }
+  TFootstepsBehavior = class(TCastleBehavior)
+  strict private
+    FootstepsSoundSource: TCastleSoundSource;
+  public
+    { Navigation to observe.
+      Set it right after creation, cannot remain @nil for Update. }
+    Navigation: TCastleWalkNavigation;
+    procedure ParentAfterAttach; override;
+    procedure Update(const SecondsPassed: Single; var RemoveMe: TRemoveType); override;
+  end;
+
+procedure TFootstepsBehavior.ParentAfterAttach;
+begin
+  inherited;
+  FootstepsSoundSource := Parent.FindBehavior(TCastleSoundSource) as TCastleSoundSource;
+end;
+
+procedure TFootstepsBehavior.Update(const SecondsPassed: Single; var RemoveMe: TRemoveType);
+begin
+  inherited;
+  FootstepsSoundSource.SoundPlaying := Navigation.IsWalkingOnTheGround;
+end;
+----
+
+You can initialize it like this from code:
+
+[source,pascal]
+----
+procedure TStatePlay.Start;
+var
+  Footsteps: TFootstepsBehavior;
+begin
+  inherited;
+  Footsteps := TFootstepsBehavior.Create(FreeAtStop);
+  Footsteps.Navigation := WalkNavigation;
+  PlayerCamera.AddBehavior(Footsteps);
+end;
+----
+
+This simple implementation works, but you will notice an important problem: the footsteps sound may stop and start too often, if you walk on an uneven terrain. You can take a look at the https://github.com/castle-engine/lynch/blob/master/code/gamebehaviors.pas[example of TFootstepsBehavior from the "Lynch" demo] that avoids this problem, by not stopping the footsteps playback immediately. Thanks to the power of behaviors, this complicated mechanism is nicely encapsulated inside a `TFootstepsBehavior` class.
+
+== Registering behaviors to use at design-time (in CGE editor)
+
+As any other component, behaviors can be registered as link:custom_components[custom component] for the CGE editor. This way you can add and configure behaviors at design-time.
+
+Simply call cgeref:RegisterSerializableComponent[] to register the behavior, like
+
+[source,pascal]
+----
+unit MyBehavior;
+
+interface
+
+uses CastleTransform;
+
+type
+  TMyBehavior = class(TCastleBehavior)
+  end;
+
+implementation
+
+uses CastleComponentSerialize;
+
+initialization
+  RegisterSerializableComponent(TMyBehavior, 'My Behavior');
+end.
+----
+
+Inside your link:project_manifest[CastleEngineManifest.xml] file, set the attribute `editor_units` to list all the units that call the `RegisterSerializableComponent`, like `editor_units="MyBehavior"`.
