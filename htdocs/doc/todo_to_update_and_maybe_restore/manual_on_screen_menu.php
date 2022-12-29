@@ -13,7 +13,7 @@ echo castle_thumbs(array(
 
 <p>The <?php echo cgeRef('TCastleOnScreenMenu'); ?>
  is a <i>user interface control</i>
- (<?php echo cgeRef('TUIControl'); ?> descendant)
+ (<?php echo cgeRef('TCastleUserInterface'); ?> descendant)
  displaying an on-screen menu.
 All the menu items are displayed vertically on the screen.
 You can click on menu items, or choose them using the keyboard.
@@ -29,7 +29,7 @@ is often used as an extra label (like a <i>"Yes"</i> / <i>"No"</i> state of some
 a slider (e.g. to control sound volume or texture quality).
 In general, an <i>"accessory"</i> is just a child UI control of
 the menu-item, and can be any UI control
-(<?php echo cgeRef('TUIControl'); ?>).
+(<?php echo cgeRef('TCastleUserInterface'); ?>).
 So you can really insert any convoluted things inside the on-screen menu:)
 
 <p>You create and insert the on-screen menu instance
@@ -71,8 +71,8 @@ you usually want to pause the game when the on-screen
 menu is displayed. You can do this easily by
 <?php echo cgeRef('Items.Paused'); ?> property.
 
-Use the <a href="states">TUIState</a>
-to create a state like <code>TStateOptions</code> that will contain
+Use the <a href="views">TCastleView</a>
+to create a view like <code>TViewOptions</code> that will contain
 the "options" user-interface (e.g. using <code>TCastleOnScreenMenu</code>),
 and underneath pause the game by setting <code>Viewport.Items.Paused := true</code>.
 

@@ -1,19 +1,19 @@
 { This is only to test compilation of code-samples/ , we don't actually show this file
   on website now. }
 
-{ Main state, where most of the application logic takes place. }
-unit GameStateMain;
+{ Main view, where most of the application logic takes place. }
+unit GameViewMain;
 
 interface
 
 uses Classes,
-  CastleVectors, CastleUIState, CastleComponentSerialize,
+  CastleVectors, CastleComponentSerialize,
   CastleUIControls, CastleControls, CastleKeysMouse, CastleScene, CastleTransform,
   CastleViewport;
 
 type
-  { Main state, where most of the application logic takes place. }
-  TStateMain = class(TUIState)
+  { Main view, where most of the application logic takes place. }
+  TViewMain = class(TCastleView)
   published
     { Components designed using CGE editor.
       These fields will be automatically initialized at Start. }
@@ -26,34 +26,34 @@ type
   end;
 
 var
-  StateMain: TStateMain;
+  ViewMain: TViewMain;
 
 implementation
 
 uses SysUtils,
   CastleBoxes, X3DNodes, CastleUtils;
 
-{ TStateMain ----------------------------------------------------------------- }
+{ TViewMain ----------------------------------------------------------------- }
 
-constructor TStateMain.Create(AOwner: TComponent);
+constructor TViewMain.Create(AOwner: TComponent);
 begin
   inherited;
-  DesignUrl := 'castle-data:/gamestatemain.castle-user-interface';
+  DesignUrl := 'castle-data:/gameviewmain.castle-user-interface';
 end;
 
-procedure TStateMain.Start;
+procedure TViewMain.Start;
 begin
   inherited;
 end;
 
-procedure TStateMain.Update(const SecondsPassed: Single; var HandleInput: Boolean);
+procedure TViewMain.Update(const SecondsPassed: Single; var HandleInput: Boolean);
 begin
   inherited;
   { This virtual method is executed every frame.}
   LabelFps.Caption := 'FPS: ' + Container.Fps.ToString;
 end;
 
-function TStateMain.Press(const Event: TInputPressRelease): Boolean;
+function TViewMain.Press(const Event: TInputPressRelease): Boolean;
 begin
   Result := inherited;
   if Result then Exit; // allow the ancestor to handle keys

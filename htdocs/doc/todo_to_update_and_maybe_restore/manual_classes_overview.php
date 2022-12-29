@@ -85,7 +85,7 @@ It can be treated like a cheatsheet, concise description of engine architecture.
 
     <p>You can also <a href="manual_editor.php">design user interface using CGE editor</a>.
     In this case you can load (instantiate) it by setting
-    <?php echo cgeRef('TUIState.DesignUrl'); ?>
+    <?php echo cgeRef('TCastleView.DesignUrl'); ?>
     (see almost any engine example and "New Project" template)
     or using
     <?php echo cgeRef('UserInterfaceLoad'); ?>

@@ -291,9 +291,9 @@ will be instant.
 </warmup_cache>'); ?>
 
 <p>Note that if you load designed UI using
- <?php echo cgeRef('TUIState.DesignUrl'); ?>
+ <?php echo cgeRef('TCastleView.DesignUrl'); ?>
  then you have a more straightforward way: set
- <?php echo cgeRef('TUIState.DesignPreload'); ?> to <code>true</code>.
+ <?php echo cgeRef('TCastleView.DesignPreload'); ?> to <code>true</code>.
  This will effectively cache all state resources, without the need to list them among
  <code>&lt;warmup_cache&gt;</code>.
 

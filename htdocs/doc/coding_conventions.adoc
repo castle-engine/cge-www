@@ -1022,7 +1022,7 @@ If you create a new example using editor _"New Project"_ template, you should ed
 
 - Edit the `qualified_name` of the example to be like `qualified_name="io.castleengine.my.great.project"`.
 
-- Insert the standard engine copyright at the top of Pascal files, like `code/gameinitialize.pas` and `code/gamestatemain.pas`.
+- Insert the standard engine copyright at the top of Pascal files, like `code/gameinitialize.pas` and `code/gameviewmain.pas`.
 
 - Remove the `.gitignore` from the example subdirectory.
 

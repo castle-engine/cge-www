@@ -142,7 +142,7 @@ echo castle_thumbs(array(
 ));
 ?>
 
-<p>It is often comfortable to define a <i>collection</i> of sounds, which means that each sound file is assigned a simple name and configuration (e.g. priority, default volume), and all the sound files can be loaded easily from any place in code (regardless of the current <code>TUIState</code>).
+<p>It is often comfortable to define a <i>collection</i> of sounds, which means that each sound file is assigned a simple name and configuration (e.g. priority, default volume), and all the sound files can be loaded easily from any place in code (regardless of the current <a href="views">view</a>).
 
 <p>Do it by using a <code>TCastleComponent</code> as a design root and adding <code>TCastleSound</code> children. Save the resulting design to a file like <code>all_sounds.castle-component</code>.
 

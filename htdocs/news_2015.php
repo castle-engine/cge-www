@@ -65,7 +65,7 @@ They show (from the ground up) the creation of a simple 3D FPS game and 2D game.
   ' . cgeRef('TCastleAbstractFont.PushProperties') . ',
   ' . cgeRef('TCastleAbstractFont.PopProperties') . '.
 
-  <li><p>' . cgeRef('TUIState') . ' to help implementing <b>simple UI mode switching (with possible stack)</b>.
+  <li><p><code>TUIState</code> to help implementing <b>simple UI mode switching (with possible stack)</b>.
 
   <li><p>New option <code>android_project</code> was added to our <a href="https://castle-engine.io/build_tool">build tool</a> to support custom Java and manifest code in your Android project. This allows to <b>integrate your Android game with Google Games (leaderboards, achievements, save games...), biling, ads, analytics and anything else you want:)</b>
 

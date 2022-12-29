@@ -6,8 +6,8 @@ interface
 implementation
 
 uses SysUtils,
-  CastleWindow, CastleLog, CastleUIState,
-  GameStateMain;
+  CastleWindow, CastleLog,
+  GameViewMain;
 
 var
   Window: TCastleWindow;
@@ -18,13 +18,13 @@ begin
   { Adjust container settings for a scalable UI (adjusts to any window size in a smart way). }
   Window.Container.LoadSettings('castle-data:/CastleSettings.xml');
 
-  { Create TStateMain that will handle "main" state of the game.
-    Larger games may use multiple states,
-    e.g. TStateMainMenu ("main menu state"),
-    TStatePlay ("playing the game state"),
-    TStateCredits ("showing the credits state") etc. }
-  StateMain := TStateMain.Create(Application);
-  TUIState.Current := StateMain;
+  { Create TViewMain that will handle "main" view of the game.
+    Larger games may use multiple views,
+    e.g. TViewMainMenu ("main menu view"),
+    TViewPlay ("playing the game view"),
+    TViewCredits ("showing the credits view") etc. }
+  ViewMain := TViewMain.Create(Application);
+  Window.Container.View := ViewMain;
 end;
 
 initialization

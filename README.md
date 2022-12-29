@@ -96,7 +96,7 @@ We support additional macros within AsciiDoctor:
 
 ### PHP for static pages
 
-Example of page written this way: https://castle-engine.io/manual_state_events.php , content in `htdocs/manual_state_events.php` .
+Example of page written this way: https://castle-engine.io/compiling_from_source.php , content in `htdocs/compiling_from_source.php` .
 
 To edit: Fork this repository, edit php file in `htdocs/`, and create a pull request.
 
@@ -111,12 +111,12 @@ Most important PHP functions are:
     ```
     <?php
     echo cgeImg('float', array(
-      array('filename' => 'state_events_screen.png', 'titlealt' => 'Plane flying on the mountain background - game'),
-      array('filename' => 'state_events_biplane_4_resized.png', 'titlealt' => 'Plane flying on the mountain background - design'),
+      array('filename' => 'view_events_screen.png', 'titlealt' => 'Plane flying on the mountain background - game'),
+      array('filename' => 'view_events_biplane_4_resized.png', 'titlealt' => 'Plane flying on the mountain background - design'),
     ));
     ?>
 
-    Something descends from <?php echo cgeRef('TUIState'); ?> and manages something.
+    Something descends from <?php echo cgeRef('TCastleView'); ?> and manages something.
     ```
 
 ### Wordpress for news

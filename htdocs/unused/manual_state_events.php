@@ -24,12 +24,12 @@ Let's draw some images and handle inputs.
       <li>
         <p>Create a <i>"New Project"</i> in <a href="manual_editor.php">CGE editor</a> and start with the <i>Empty</i> template.
       <li>
-        <p>It has a code in <code>code/gamestatemain.pas</code> that shows how to handle keys in <code>TStateMain.Press</code>
-          and do something continuously in <code>TStateMain.Update</code>.
+        <p>It has a code in <code>code/gameviewmain.pas</code> that shows how to handle keys in <code>TViewMain.Press</code>
+          and do something continuously in <code>TViewMain.Update</code>.
       <li>
         <p>You can render an image directly (as described in this manual page, using
           <?php echo cgeRef('TDrawableImage'); ?>)
-          by overriding <code>TStateMain.Render</code>.
+          by overriding <code>TViewMain.Render</code>.
           Alternatively, you could design (using CGE editor) an image as <code>TCastleImageControl</code>
           and only move it.
     </ol>

@@ -27,7 +27,7 @@ The complete result of this tutorial is in the _Castle Game Engine_. Just open t
 +
 cgeimg::block[viewport_3d_editor_project.png|Create new project]
 
-. Open the `data/gamestatemain.castle-user-interface` design using the _Files_ panel at the bottom of the editor. Enter `data` subdirectory and double-click on `gamestatemain.castle-user-interface`.
+. Open the `data/gameviewmain.castle-user-interface` design using the _Files_ panel at the bottom of the editor. Enter `data` subdirectory and double-click on `gameviewmain.castle-user-interface`.
 +
 cgeimg::block[viewport_3d_design.png|Open the design]
 
@@ -104,7 +104,7 @@ cgeimg::block[viewport_3d_camera_better.png|Better camera position]
 
 . Allow user to navigate during the game. For start, we recommend using the `TCastleExamineNavigation`. Right click on the `Viewport1` and choose _"Add User Interface -> Navigation/Examine"_. This will add `ExamineNavigation1` component to your hierarchy.
 +
-NOTE: Other navigation methods are available, like `TCastleWalkNavigation` to walk or fly. You can also just control the camera completely through your own code, not relying on any built-in `TCastleNavigation` descendant. For example, you can process the keyboard input in your state to move/rotate the camera.
+NOTE: Other navigation methods are available, like `TCastleWalkNavigation` to walk or fly. You can also just control the camera completely through your own code, not relying on any built-in `TCastleNavigation` descendant. For example, you can process the keyboard input in your view to move/rotate the camera.
 
 . Move the light a bit higher. Switch to _"Move Transform"_ tool, select the light, and drag it up.
 +
@@ -246,11 +246,11 @@ Note that, as we grabbed the mouse but didn't provide any way to "escape" from i
 
 Instead of having the _mouse look_ just active by default, we can make it active e.g. only once you click the _right mouse button_. Clicking the button again could deactivate it.
 
-Such behavior has to be implemented using the code. Chapter link:viewport_and_scenes_from_code[Writing code to modify scenes and transformations] describes how to edit the game code. We don't want to get ahead of ourselves... But actually it is quite easy. Just edit the `code/gamestatemain.pas` file, and
+Such behavior has to be implemented using the code. Chapter link:viewport_and_scenes_from_code[Writing code to modify scenes and transformations] describes how to edit the game code. We don't want to get ahead of ourselves... But actually it is quite easy. Just edit the `code/gameviewmain.pas` file, and
 
 . Add `CastleCameras` unit to the `uses` clause in the `interface`.
-. Declare `WalkNavigation1: TCastleWalkNavigation;` inside the `published` section of the `TStateMain`, under the comment _{ Components designed using CGE editor.... }_.
-. In `TStateMain.Press` implementation, add this code:
+. Declare `WalkNavigation1: TCastleWalkNavigation;` inside the `published` section of the `TViewMain`, under the comment _{ Components designed using CGE editor.... }_.
+. In `TViewMain.Press` implementation, add this code:
 +
 [source,pascal]
 ----

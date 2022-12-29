@@ -26,7 +26,7 @@
   <li><p>These nodes are not the most comfortable way to process keyboard.
     Do not use them.
 
-  <li><p>Instead, override <?php echo cgeRef('TUIState.Press'); ?> method to listen to keys
+  <li><p>Instead, override <?php echo cgeRef('TCastleView.Press'); ?> method to listen to keys
     (see any <i>"New Project"</i> template created by the editor for an example).
     You can also react to
     <?php echo cgeRef('TCastleWindow.OnPress'); ?> or

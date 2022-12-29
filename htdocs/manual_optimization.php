@@ -543,16 +543,15 @@ for a wide range of scenes.
 <p>Enable some (or all) of these flags to get extensive information in the log about all the loading that is happening:
 
 <ul>
-  <li><code>LogTextureLoading</code>
-  <li><code>LogAllLoading</code>
-  <li><code>TextureMemoryProfiler.Enabled</code>
-  <li><code>LogRenderer</code> (from <code>CastleRenderer</code> unit)
-  <li><code>TSoundEngine.LogSoundLoading</code>
-  <li><code>TUIState.Log</code>
-  <li>Also enabling <code>Profiler.Enabled</code> and doing <code>WritelnLog(Profiler.Summary)</code> is a great way to be informed about most loading.
+  <li><?php echo cgeRef('LogTextureLoading'); ?>
+  <li><?php echo cgeRef('LogAllLoading'); ?>
+  <li><?php echo cgeRef('TTextureMemoryProfiler.Enabled', 'TextureMemoryProfiler.Enabled'); ?>
+  <li><?php echo cgeRef('TSoundEngine.LogSoundLoading'); ?>
+  <li><?php echo cgeRef('TCastleView.Log'); ?>
+  <li>Also enabling <?php echo cgeRef('TCastleProfiler.Enabled', 'Profiler.Enabled'); ?> and doing <code>WritelnLog(Profiler.Summary)</code> is a great way to be informed about most loading.
 </ul>
 
-<p>Beware: Some of these flags (in particular <code>LogAllLoading</code>) can produce <i>a lot</i> of information, and you probably don't want to see it always. Dumping this information to the log will often cause a <b>noticeable slowdown</b> during loading stage, so do not bother to measure your loading speed when any of these flags are turned on. Use these flags only to detect if something "fishy" is happening during the gameplay.
+<p>Beware: Some of these flags (in particular <?php echo cgeRef('LogAllLoading'); ?>) can produce <i>a lot</i> of information, and you probably don't want to see it always. Dumping this information to the log may even cause a <b>noticeable slowdown</b> during loading stage, so do not bother to measure your loading speed when any of these flags are turned on and you see they produce a lot of output.
 
 <p>You can also use <?php echo cgeRef('TCastleProfiler'); ?> to easily get information about what was loaded, and what took most time to load.
 
