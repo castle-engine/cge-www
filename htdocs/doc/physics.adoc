@@ -108,7 +108,8 @@ NOTE: In the editor we only run the physics simulation, not your final game code
 == 2D Games
 
 cgeimg::block[
-  physics_2d.png|Physics 2D
+  physics_2d.png|Physics 2D,
+  physics_asteroids.png|Physics Asteroids demo
 ]
 
 The whole physics can work for 2D games as well as 3D. For 2D, remember to:
@@ -144,6 +145,22 @@ To apply the force use on of these methods:
 Here's how an explosion can look like:
 
 video::IUzIV6OmrIE[youtube,width=800,height=450]
+
+=== Transforming various objects
+
+Instead of using forces, you *can* also just change the position/rotation of the object affected by physics, e.g. by directly changing cgeref:TCastleTransform.Translation[].
+
+Whether this is a good idea, depends on the object type:
+
+- _Dynamic_ objects: If the object has cgeref:TCastleRigidBody.Dynamic[] = `true` (cgeref:TCastleRigidBody.Animated[] is ignored in this case), it means physics simulation moves and rotates this object.
++
+We allow you to change the object, e.g. by explicitly changing cgeref:TCastleTransform.Translation[], but you should refrain from doing it often. As you effectively override physics calculations, forcing the physics engine also to reposition your object in various internal structures.
+
+- _Kinematic_ objects: If the object has cgeref:TCastleRigidBody.Dynamic[] = `false` and cgeref:TCastleRigidBody.Animated[] = `true`, you are welcome to transform this object. Physics engine is prepared for it.
+
+- _Static_ objects: If the object has cgeref:TCastleRigidBody.Dynamic[] = `false` and cgeref:TCastleRigidBody.Animated[] = `false`, you *can* change the object transformation, but you should refrain from doing so.
++
+Physics engine may optimize static objects. You make this optimization counter-productive (the physics engine will have to reposition your object in various internal structures) if you change the transformation of static object often.
 
 == Ray-casting (Querying For Collision)
 
