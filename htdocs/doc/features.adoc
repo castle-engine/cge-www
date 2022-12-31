@@ -107,7 +107,7 @@ cgeimg::block[viewport_3d_nice_view.png|Viewport with 3D design]
 * Other visible objects like cgeref:TCastleBox[], cgeref:TCastleSphere[], cgeref:TCastleText[], cgeref:TCastleImageTransform[]. Great also for quick prototyping 3D and 2D worlds.
 * Flexible link:camera[camera] support, with multiple camera possible, attaching children to camera and placing camera as child of other objects, like bones.
 * Easy link:navigation[navigation] components if you want to allow user to navigate in 3D or 2D worlds in a standard fashion. These include typical 2D and 3D navigation methods (like cgeref:TCastleWalkNavigation[], cgeref:TCastleExamineNavigation[], cgeref:TCastle2DNavigation[]) as well as 3rd-person navigation with avatar (cgeref:TCastleThirdPersonNavigation[]).
-* Each transformation can be enhanced with behaviors (descendants of cgeref:TCastleBehavior[]), like cgeref:TCastleBillboard[], cgeref:TCastleSoundSource[]. It is easy and encouraged to create behaviors required for your specific game, see link:viewport_and_scenes_from_code#_behaviors[Behaviors in the manual].
+* Each transformation can be enhanced with behaviors (descendants of cgeref:TCastleBehavior[]), like cgeref:TCastleBillboard[], cgeref:TCastleSoundSource[]. It is easy and encouraged to create behaviors required for your specific game, see link:behaviors[Behaviors in the manual].
 * cgeref:TCastleTransformReference[] to link:viewport_3d#_multiple_instances_of_the_same_scene_using_tcastletransformreference[efficiently reference the same transformation multiple times]. Great e.g. to instantiate thousands of trees.
 * Lights using components cgeref:TCastlePointLight[], cgeref:TCastleDirectionalLight[], cgeref:TCastleSpotLight[]. See link:viewport_3d#_lighting[lighting in manual].
 +
