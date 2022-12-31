@@ -77,7 +77,7 @@ function download_box($caption, $download_prefix)
 }
 
 echo download_box('Download Stable Version ' . VERSION_VIEW3DSCENE, DOWNLOAD_PREFIX_STABLE);
-//echo download_box('Download (Snapshot) Version ' . SNAPSHOTS_VERSION, DOWNLOAD_PREFIX_SNAPSHOT);
+echo download_box('Download (Snapshot) Version ' . SNAPSHOTS_VERSION, DOWNLOAD_PREFIX_SNAPSHOT);
 ?>
 
 <p><b><a href="demo_models.php">Download also our collection of demo models</a> to test view3dscene!</b></p>
