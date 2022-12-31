@@ -55,9 +55,19 @@ echo castle_thumbs(array(
   <li>
     <p><?php echo cgeRef('TCastleSoundSource', 'TCastleSoundSource'); ?>: A way to play spatial (3D) sounds.
 
-    <p>This is a behavior (see <a href="https://castle-engine.io/viewport_and_scenes_from_code#_behaviors">documentation about behaviors</a>) that enhances any <?php echo cgeRef('TCastleTransform', 'TCastleTransform'); ?> so that it emits (possibly spatial) sounds.
+    <p>This is a <a href="behaviors">behavior</a> that enhances any <?php echo cgeRef('TCastleTransform', 'TCastleTransform'); ?> so that it emits (possibly spatial) sounds.
 
-    <p><code>TCastleSoundSource</code> refers to <code>TCastleSound</code> for an actual sound information. You can set <?php echo cgeRef('TCastleSoundSource.Sound', 'TCastleSoundSource.Sound'); ?> (for looping). Or call <?php echo cgeRef('TCastleSoundSource.Play', 'TCastleSoundSource.Play'); ?> (for non-looping).
+    <p><code>TCastleSoundSource</code> refers to <code>TCastleSound</code> for an actual sound information. There are two ways to use it:
+
+    <ol>
+      <li>
+        <p>Set a looping sound in <?php echo cgeRef('TCastleSoundSource.Sound'); ?>. The sound source will play it automatically. Turn it on or off using <?php echo cgeRef('TCastleSoundSource.SoundPlaying'); ?>.
+
+      <li>
+        <p>Play a sound calling <?php echo cgeRef('TCastleSoundSource.Play'); ?>. You can pass any <?php echo cgeRef('TCastleSound'); ?> or even your own <?php echo cgeRef('TCastlePlayingSound'); ?> to observe the playback.
+    </ol>
+
+    <p>You can use both methods to play sounds. This way <?php echo cgeRef('TCastleSoundSource', 'TCastleSoundSource'); ?> can play multiple sounds at the same time.
 
   <li>
     <p><?php echo cgeRef('TCastlePlayingSound', 'TCastlePlayingSound'); ?>: Optional, use if you need more control before and during the sound playback.
