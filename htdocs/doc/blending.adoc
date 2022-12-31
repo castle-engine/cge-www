@@ -7,9 +7,25 @@ cgeimg::block[blending_sort.png|Blending Sorting]
 
 == Introduction
 
-_Blending_ is the technique to render _partially transparent_ objects in real-time graphic APIs. _Partially transparent_ objects mean that the algorithm accounts for transparency values between `0.0` and `1.0`, e.g. `0.25` or `0.5`.
+_Blending_ is the technique to render _partially transparent_ objects with real-time graphics. _Partially transparent_ objects mean that the algorithm accounts for transparency values between `0.0` and `1.0`, e.g. `0.25` or `0.5`.
 
+////
 While _Castle Game Engine_ tries to make it work "out of the box" correctly in usual cases, there are various edge-cases that require the developer and/or graphic artist to know how the algorithm works, and tweak something.
+////
+
+== Short summary
+
+If you have multiple _partially transparent_ objects in your game, set the cgeref:TCastleAbstractRootTransform.BlendingSort[Viewport.Items.BlendingSort] to:
+
+- cgeref:bs2D[] for 2D games.
+
+- cgeref:bs3D[] for 3D games. Eventually try cgeref:bs3DOrigin[] or cgeref:bs3DGround[].
+
+You can set it in the editor.
+
+If you leave it at default cgeref:bsNone[] value, you may experience rendering artifacts: When multiple partially transparent objects are visible at the same screen pixel, things that should be _obscured_ could be rendered instead _in front_ of others.
+
+Read on to understand it better -- how do we render partially transparent objects, what is sorting, what and why can go wrong.
 
 == Terminology
 
