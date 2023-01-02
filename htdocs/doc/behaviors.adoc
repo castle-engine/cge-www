@@ -146,7 +146,7 @@ You can initialize it like this from code:
 
 [source,pascal]
 ----
-procedure TStatePlay.Start;
+procedure TViewPlay.Start;
 var
   Footsteps: TFootstepsBehavior;
 begin

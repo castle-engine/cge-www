@@ -28,7 +28,7 @@ There are various ways to set the initial camera:
 
 - If you design your world using the _Castle Game Engine editor_, we recommend to set the initial camera following the link:viewport_3d[Tutorial: Designing a 3D world]. This means that you just move / rotate the camera as any other cgeref:TCastleTransform[].
 
-- Another approach is to just set the camera vectors by code during your state start. Call cgeref:TCastleTransform.SetView[Viewport.Camera.SetView] like this:
+- Another approach is to just set the camera vectors by code during your link:views[view] start. Call cgeref:TCastleTransform.SetView[Viewport.Camera.SetView] like this:
 +
 [source,pascal]
 ----

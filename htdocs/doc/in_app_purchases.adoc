@@ -93,18 +93,18 @@ Use these prices to update the UI of your game. Like this:
  procedure TGameInAppPurchases.RefreshedPrices;
  begin
    inherited;
-   if (StateBuyItems <> nil) and StateBuyItems.Active then
-     StateBuyItems.UpdatePrices;
+   if (ViewBuyItems <> nil) and ViewBuyItems.Active then
+     ViewBuyItems.UpdatePrices;
  end;
 
- // and in GameStateBuyItems unit you implement actual UI refreshing:
+ // and in GameViewBuyItems unit you implement actual UI refreshing:
 
- procedure TStateBuyItems.UpdatePrices;
+ procedure TViewBuyItems.UpdatePrices;
  begin
    MyLabel.Caption := 'Price of XXX: ' + InAppPurchases.Xxx.Price;
  end;
 
- // remember to also call UpdatePrices from TStateBuyItems.Start
+ // remember to also call UpdatePrices from TViewBuyItems.Start
 ----
 
 . Buy products by calling cgeref:TInAppPurchases.Purchase[], like `InAppPurchases.Purchase(InAppPurchases.Xxx)`.

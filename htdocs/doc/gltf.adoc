@@ -95,7 +95,7 @@ Like this:
 +
 [source,pascal]
 ----
- procedure TMyState.Load;
+ procedure TMyView.Load;
  var
    Model: TX3DRootNode;
  begin
@@ -104,7 +104,7 @@ Like this:
    Scene.Load(Model, true);
  end;
 
- procedure TMyState.HandleNode(Node: TX3DNode);
+ procedure TMyView.HandleNode(Node: TX3DNode);
  begin
    (Node as TShapeNode).Collision := scDefault;
  end;

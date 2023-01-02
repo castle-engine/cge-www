@@ -67,7 +67,7 @@ Use `TDrawableImage` as your main way to draw. In this approach, you create `TDr
 A similar approach is to draw your game using multiple cgeref:TCastleImageControl[] instances. `TCastleImageControl` is a simple user-interface control that draws images, using `TDrawableImage` under the hood, exposing mostly the same features.
 
 * Manual:
- ** link:view_events[Designing user interface and handling events (press, update) within the state] documents basic image display using cgeref:TCastleImageControl[].
+ ** link:view_events[Designing user interface and handling events (press, update) within the view] documents basic image display using cgeref:TCastleImageControl[].
  ** link:user_interface[User Interface].
  ** link:manual_2d_ui_custom_drawn.php[Custom drawn 2D controls] shows the "core" of this approach: new `TCastleUserInterface` descendant with your own `Render` implementation, in which we call `TDrawableImage.Draw`.
 * API reference: cgeref:TDrawableImage[].

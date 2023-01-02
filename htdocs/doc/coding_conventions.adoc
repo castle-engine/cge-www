@@ -230,7 +230,7 @@ Each part should start from a newline.
 // THIS IS OK:
 uses SysUtils, Classes,
   CastleUtils, CastleViewport,
-  GameStatePlay;
+  GameViewPlay;
 ----
 
 NOTE: We don't have a strict rule for the order of units within each group. They _often_ loosely follow the "dependency order" (if unit `A` is used by `B`, then we write `A, B`, like `SysUtils, Classes, Controls`) but we really don't make this a strict rule (it would be too tiresome to maintain, for no gain). Many `uses` clauses have in practice an order dictated by history and that's OK.

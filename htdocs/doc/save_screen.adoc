@@ -6,11 +6,11 @@ include::common.adoc[]
 
 The easiest way to save a screenshot is to call cgeref:TCastleContainer.SaveScreenToDefaultFile[] method. It takes a screenshot and saves it to a reasonable filename under a reasonable directory (following the current system conventions). It returns the URL indicating where was the screenshot saved. The used URL is also send to link:manual_log.php[engine log].
 
-Use it from anywhere, e.g. link:view_events[from the `Press` method of your state] like this:
+Use it from anywhere, e.g. link:view_events[from the `Press` method of your view] like this:
 
 [source,pascal]
 ----
-function TStateMain.Press(const Event: TInputPressRelease): Boolean;
+function TViewMain.Press(const Event: TInputPressRelease): Boolean;
 begin
   Result := inherited;
   if Result then Exit;
@@ -46,7 +46,7 @@ This example code grabs a screenshot and draws a yellow crosshair on it before s
 // Note: Add to "uses" clause some necessary units:
 // CastleImages, CastleColors, CastleLog, CastleFilesUtils
 
-function TStateMain.Press(const Event: TInputPressRelease): Boolean;
+function TViewMain.Press(const Event: TInputPressRelease): Boolean;
 var
   Image: TRGBImage;
   XMiddle, YMiddle: Integer;
