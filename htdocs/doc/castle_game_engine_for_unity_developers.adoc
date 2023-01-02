@@ -38,15 +38,21 @@ In the simplest case, for each 3D model, you create a `TCastleScene` instance. Y
 
 To group (and transform as a group) a number of `TCastleScene` instances you can use additional `TCastleTransform` instances. The `TCastleScene` is also a `TCastleTransform` descendant, so it can have children too.
 
-Follow the template _"3D FPS Game"_ (create it by running our editor, choose _"New Project"_ and then choose _"3D FPS Game"_ as a starting point). In the resulting project, open the design `data/gamestateplay.castle-user-interface` in the editor, to actually see what I mean (in this and previous answer).
+Follow the template _"3D FPS Game"_ (create it by running our editor, choose _"New Project"_ and then choose _"3D FPS Game"_ as a starting point). In the resulting project, open the design `data/gameviewplay.castle-user-interface` in the editor, to actually see what I mean (in this and previous answer).
 
 Our goal with https://castle-engine.io/manual_editor.php[CGE editor] is to provide an experience similar to Unity and other game engine editors. So you can drop 3D models on your design, and drag them to design a level.
 
 == Where to place code for specific actors (like creatures, items)? What is the equivalent of "adding a MonoBehaviour to a GameObject" in Unity?
 
-There are multiple ways how you can control CGE stuff:
+_Short answer:_
 
-. The equivalent of `MonoBehaviour` is `TCastleBehavior` class. So you can *define a class descending from `TCastleBehavior`, and add an instance of it to `TCastleTransform`*. Like
+The equivalent of `MonoBehaviour` is cgeref:TCastleBehavior[] class documented at link:behaviors[]. You can attach it to cgeref:TCastleTransform[] to control it.
+
+_Full answer:_
+
+There are multiple ways how you can control CGE stuff from code:
+
+. *Define a class descending from cgeref:TCastleBehavior[] (see link:behaviors[]), and add an instance of it to `TCastleTransform`*. Like
 +
 [source,pascal]
 ----
@@ -76,6 +82,16 @@ While the above examples show attaching a behavior using code, you could also ad
 +
 The engine comes with a few standard behaviors too (like cgeref:TCastleBillboard[], cgeref:TCastleSoundSource[]) and these are comfortable to add and configure from the editor.
 
+. You can *control things from the view (see link:views[])*. The view like `TViewPlay` (see above mentioned template _"3D FPS Game"_) has its own methods to `Update` and handle input. The view can keep references to everything you have in your world, and it can control them.
++
+For example you can process all the creatures in the view method like `TViewPlay.Update`. Our manual about link:https://castle-engine.io/viewport_and_scenes_from_code[controlling viewport using code] shows example of it, to move multiple cars.
+
+. You can also *assign events, like `OnClick`*. Most UI controls expose obvious events, like `TCastleButton.OnClick`. You are free to handle these events at one central place (like an LCL `TForm` descendant (only if you use cgeref:TCastleControl[]), or CGE cgeref:TCastleView[] descendant) or decentralized (e.g. create a different instance of your own class to handle events of each different creature, different item).
++
+The approach to use events is similar to using UI in Lazarus LCL or Delphi VCL.
++
+This approach is best when you want to handle in one class (the _view_) all events related to some UI, for example clicks on all buttons visible in game options.
+
 . Another way to control things in CGE is to *create class descendants from existing classes*. In CGE you can create descendants from almost all classes (including important `TCastleTransform` and `TCastleUserInterface`), and override virtual methods there. E.g. you can override `TCastleTransform.Update` to perform something every frame.
 +
 So you could *define a class like `TMyCreature`* that descends from `TCastleTransform` or `TCastleScene`. This class would control it's own transformation (e.g. it would change it's own `Translation` to move the creature) and it would possibly load some children (more `TCastleTransform` and `TCastleScene` instances) to show and animate the creature.
@@ -84,11 +100,6 @@ This is a classic OOP approach. This is like _Unreal Engine_ that allows you to 
 +
 You can even link:custom_components[register your custom classes to be available in the editor, to add/configure them visually].
 
-. You can also *assign events, like `OnPress`*. Most UI controls expose obvious events, like `TCastleButton.OnClick`. You are free to handle these events at one central place (like an LCL `TForm` descendant (only if you use cgeref:TCastleControl[]), or CGE cgeref:TCastleView[] descendant) or decentralized (e.g. create a different instance of your own class to handle events of each different creature, different item).
-+
-The approach to use events is similar to using UI in Lazarus LCL or Delphi VCL.
-
-. You can also *control things from outside, e.g. control all creatures from the state instance*. The state like `TStatePlay` (see above mentioned template _"3D FPS Game"_) has its own methods to `Update` and handle input. The state can keep references to everything you have in your world, and it can control them.
 
 == What is the equivalent of Unity `Assets` subdirectory?
 
@@ -107,11 +118,11 @@ my_project/                    <- the project root
     CastleSettings.xml         <- defines UI scaling, default font
     example_image.png
     example_model.gltf
-    gamestatemainmenu.castle-user-interface
+    gameviewmainmenu.castle-user-interface
     ...
   code/                        <- Pascal game code lives here; up to you how to organize this
     gameinitialize.pas
-    gamestatemainmenu.pas      <- Pascal unit corresponding (by convention) to gamestatemainmenu.castle-user-interface
+    gameviewmainmenu.pas      <- Pascal unit corresponding (by convention) to gameviewmainmenu.castle-user-interface
     ...
   ...                          <- any other subdirectories and files? Up to you. Consider docs/ and README.md.
 ----
@@ -134,7 +145,7 @@ If you have existing models in FBX format you can https://github.com/facebookinc
 
 The `examples/fps_game` example shows how to use our https://castle-engine.io/manual_3d_utlities_overview.php[(Deprecated) Utilities for typical 3D games] that are included in `CastleCreatures`, `CastleItems` and friend units. It is an older example, not using CGE editor to design the level.
 
-NOTE: The work to upgrade this example, to use editor to design the level and non-deprecated functionality, has started. You can define `UPCOMING_FPS_GAME_REDESIGN` in `examples/fps_game/code/gameinitialize.pas` to test it. You can double-click on `data/gamestatemain.castle-user-interface` in editor to see the 3D level designed in editor.
+NOTE: The work to upgrade this example, to use editor to design the level and non-deprecated functionality, has started. You can define `UPCOMING_FPS_GAME_REDESIGN` in `examples/fps_game/code/gameinitialize.pas` to test it. You can double-click on `data/gameviewmain.castle-user-interface` in editor to see the 3D level designed in editor.
 
 ////
 On one hand, the `examples/fps_game` approach gives you more things "out of the box" now. E.g. using this approach, you can trivially get a creature that knows how to travel in 3D space, how to approach an enemy to have a good position to shoot a missile or do a close-range attack. On the other hand,
@@ -230,7 +241,7 @@ In CGE, it is a bit different. Viewport (`TCastleViewport`) is a 2D control, and
 * Within a viewport (`TCastleViewport`) instance, you place your 3D world (in `Viewport.Items`).
 * A viewport is always connected with exactly one camera in `Viewport.Camera`. This camera determines projection settings and position, rotation of the viewer.
 
-The above describes the typical design as seen in editor templates. To see it in action, create a _"New Project"_ in the editor, using the template like _"3D FPS Game"_, and open the design `data/gamestateplay.castle-user-interface` in the editor.
+The above describes the typical design as seen in editor templates. To see it in action, create a _"New Project"_ in the editor, using the template like _"3D FPS Game"_, and open the design `data/gameviewplay.castle-user-interface` in the editor.
 
 In short, in Unity "viewport" and "camera" and "UI" are just things inside your 3D world. In CGE, "viewport" (and the corresponding "camera") contains your 3D world, and "viewport" is part of your UI.
 
@@ -270,3 +281,19 @@ Sometimes both `Parent` and `Owner` may be set to the same instance, if it is su
 Use cgeref:TCastleDownload[]. Similarly to `UnityWebRequest`, this class can send HTTP requests (GET, POST and others) and can download data asynchronously. It has been designed as an easy but also powerful way to communicate over the network.
 
 CGE https://github.com/castle-engine/castle-engine/tree/master/examples/network[examples/network] demonstrate it.
+
+== Physics forces API
+
+This is how various physics forces methods (see link:physics[]) map from Unity to CGE:
+
+- https://docs.unity3d.com/ScriptReference/Rigidbody.AddForceAtPosition.html -> cgeref:TCastleRigdBody.AddForceAtPosition[] (both take 2 params "Force, Position" in world coordinate space)
+
+- https://docs.unity3d.com/ScriptReference/Rigidbody.AddRelativeForce.html -> cgeref:TCastleRigdBody.AddForce[] (both take 1 param "Force"). Pass `ForceInLocalCoordinates` = `true`.
+
+- https://docs.unity3d.com/ScriptReference/Rigidbody.AddForce.html -> cgeref:TCastleRigdBody.AddForce[] (both take 1 param "Force"). Pass `ForceInLocalCoordinates` = `false`.
+
+- https://docs.unity3d.com/ScriptReference/Rigidbody.AddTorque.html -> cgeref:TCastleRigdBody.AddTorque[] (both take 1 param, "Torque", in world coordinate space)
+
+The above mapping applies to default Unity usage with `ForceMode.Force`.
+
+For impulses (using Unity API with `ForceMode.Impulse`) we have a separate method cgeref:TCastleRigdBody.ApplyImpulse[].
