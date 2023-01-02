@@ -20,6 +20,10 @@ if (!HTML_VALIDATION && (
         error_reporting(E_ALL & !E_DEPRECATED);
     }
 
+    /* Page Cache (using W3 Total Cache) breaks otherwise the index.php rendering.
+       Looks like it inserts some binary content (maybe gzipped) then in the middle of index.php. */
+    define('WP_CACHE', false);
+
     /* Load Wordpress PHP now
        (in global namespace, just like wp-blog-header.php does) */
     if (!isset($wp_did_header)) {
