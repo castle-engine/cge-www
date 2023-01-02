@@ -286,14 +286,14 @@ CGE https://github.com/castle-engine/castle-engine/tree/master/examples/network[
 
 This is how various physics forces methods (see link:physics[]) map from Unity to CGE:
 
-- https://docs.unity3d.com/ScriptReference/Rigidbody.AddForceAtPosition.html -> cgeref:TCastleRigdBody.AddForceAtPosition[] (both take 2 params "Force, Position" in world coordinate space)
+- https://docs.unity3d.com/ScriptReference/Rigidbody.AddForceAtPosition.html -> cgeref:TCastleRigidBody.AddForceAtPosition[] (both take 2 params "Force, Position" in world coordinate space)
 
-- https://docs.unity3d.com/ScriptReference/Rigidbody.AddRelativeForce.html -> cgeref:TCastleRigdBody.AddForce[] (both take 1 param "Force"). Pass `ForceInLocalCoordinates` = `true`.
+- https://docs.unity3d.com/ScriptReference/Rigidbody.AddRelativeForce.html -> cgeref:TCastleRigidBody.AddForce[] (both take 1 param "Force"). Pass `ForceInLocalCoordinates` = `true`.
 
-- https://docs.unity3d.com/ScriptReference/Rigidbody.AddForce.html -> cgeref:TCastleRigdBody.AddForce[] (both take 1 param "Force"). Pass `ForceInLocalCoordinates` = `false`.
+- https://docs.unity3d.com/ScriptReference/Rigidbody.AddForce.html -> cgeref:TCastleRigidBody.AddForce[] (both take 1 param "Force"). Pass `ForceInLocalCoordinates` = `false`.
 
-- https://docs.unity3d.com/ScriptReference/Rigidbody.AddTorque.html -> cgeref:TCastleRigdBody.AddTorque[] (both take 1 param, "Torque", in world coordinate space)
+- https://docs.unity3d.com/ScriptReference/Rigidbody.AddTorque.html -> cgeref:TCastleRigidBody.AddTorque[] (both take 1 param, "Torque", in world coordinate space)
 
 The above mapping applies to default Unity usage with `ForceMode.Force`.
 
-For impulses (using Unity API with `ForceMode.Impulse`) we have a separate method cgeref:TCastleRigdBody.ApplyImpulse[].
+For impulses (using Unity API with `ForceMode.Impulse`) we have a separate method cgeref:TCastleRigidBody.ApplyImpulse[].
