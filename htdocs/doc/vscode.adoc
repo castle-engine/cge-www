@@ -75,6 +75,8 @@ Use _operating system_ names that match FPC and CGE. You can see valid OS names:
 
 - In CGE editor menu _"Run -> Platform (To Compile And Run) -> ..."_.
 - If you execute on the command-line link:build_tool[build tool] as `castle-engine --help`. Look for possible arguments for the `--os` option.
+
+You can also leave it empty, our LSP will autodetect it.
 ====
 +
 - Set `Env: FPCTARGETCPU` to your CPU, like `x86_64`.
@@ -85,6 +87,8 @@ Use _processor_ names that match FPC and CGE. You can see valid CPU names:
 
 - In CGE editor menu _"Run -> Platform (To Compile And Run) -> ..."_.
 - If you execute on the command-line link:build_tool[build tool] as `castle-engine --help`. Look for possible arguments for the `--cpu` option.
+
+You can also leave it empty, our LSP will autodetect it.
 ====
 - Set `Env: LAZARUSDIR` to your Lazarus (source) directory. This is optional, fill it if you have https://www.lazarus-ide.org/[Lazarus] installed. It will enable to find LCL units and do the code completion for LCL components too.
 - Set `Env: PP` to your FPC executable. If you use FPC bundled with CGE, this should look like `<cgepath>/tools/contrib/fpc/bin/fpc-cge`. Add `.exe` extension on Windows. If you use regular FPC, this is a path to your regular FPC executable (`fpc`, `fpc.exe`, `fpc.sh`).
