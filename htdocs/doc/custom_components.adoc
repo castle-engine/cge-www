@@ -506,7 +506,7 @@ Often it is best to implement your new component as a composition of existing co
 
 For example: cgeref:TCastleCheckbox[] is (internally) just an image (cgeref:TCastleImageControl[]) and a label (cgeref:TCastleLabel[]).
 
-In general there are 2 ways to make your component be a composition of other components:
+There are a few ways to define a child component, depending on whether you want to expose the child component to the developer using your component.
 
 === Internal children components (using SetTransient)
 
