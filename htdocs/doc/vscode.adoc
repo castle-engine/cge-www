@@ -131,7 +131,8 @@ If you really want to run and debug from _VS Code_:
 - Set `CASTLE_ENGINE_PATH` environment variable to point to your CGE directory.
 - Extend the `PATH` environment variable to contain the `bin` subdirectory of your CGE directory.
 - Make sure that FPC is also on `PATH`, so that our build tool can find it.
-- Configure the _VS Code_ tasks to build using `castle-engine compile --mode=debug` and run using `castle-engine run`. Remember to restart all applications (like VS Code) that need to be aware of new environment variables' values.
+- Remember to restart all applications (like VS Code) that need to be aware of new environment variables' values.
+- Configure the _VS Code_ tasks to build using `castle-engine compile --mode=debug` and run using `castle-engine run`.
 --
 
 == More Information and Credits
