@@ -10,9 +10,6 @@
 <p>Results of testing our engine on <i>NIST Conformance Test Suite</i>.
 <a href="http://www.web3d.org/x3d/content/examples/Conformance/">NIST
 test suite is maintained and available currently on web3d.org</a>.
-For historical purposes, you can also see at
-<a href="http://xsun.sdct.itl.nist.gov/~mkass/vts/html/vrml.html">the old and original version of NIST VRML Test Suite</a>
-(but the links to actual models are broken there).</p>
 
 <p>Each test was classified as "pass" only if it passed fully.
 Which is a good objective measure,
@@ -69,9 +66,7 @@ function fail($count, $comment = '')
   }
 }
 
-$default_texture_mode_modulate_disclaimer = a_href_page_hashlink(
-  'You have to set <i>RGB Textures Color Mode -&gt; GL_REPLACE</i> to get 100% correct result.',
-  'x3d_implementation_texturing', 'default_texture_mode_modulate');
+$default_texture_mode_modulate_disclaimer = 'For 100% correct result, this requires <i>RGB Textures Color Mode -&gt; GL_REPLACE</i>, which was removed in X3D 4.0 and CGE no longer supports it (because it was counterintuitive for authors)';
 ?>
 
 <table class="nist_test_suite">
@@ -705,7 +700,7 @@ fail(1, 'Texture mapping is a little incorrect, text is too small');
   </tr>
 
   <tr>
-    <td rowspan="50">Misc</td>
+    <td rowspan="25">Misc</td>
     <td rowspan="18">EXTERNPROTO</td>
     <td>1</td>
     <td class="pass">+</td>
@@ -786,150 +781,39 @@ fail(1, 'Texture mapping is a little incorrect, text is too small');
   </tr>
 
   <tr>
-    <td rowspan="30">PROTO</td>
-    <td>1</td>
+    <td rowspan="5">PROTO</td>
+    <td>def</td>
     <td class="pass">+</td>
   </tr>
   <tr>
-    <td>2</td>
+    <td>fivedeepinternalroute</td>
     <td class="pass">+</td>
   </tr>
   <tr>
-    <td>3</td>
+    <td>fivedeepnesting</td>
     <td class="pass">+</td>
   </tr>
   <tr>
-    <td>4</td>
+    <td>route inside</td>
     <td class="pass">+</td>
   </tr>
   <tr>
-    <td>5</td>
-    <td class="pass">+</td>
-  </tr>
-  <tr>
-    <td>6</td>
-    <td class="pass">+</td>
-    <td>(It links to unrelated Text test that works?)</td>
-  </tr>
-  <tr>
-    <td>7A</td>
-    <td class="pass">+</td>
-    <td>Result is Ok, but we do not handle
-      Sound, AudioClip nodes (yet).</td>
-  </tr>
-  <tr>
-    <td>7B</td>
-    <td class="fail">-</td>
-    <td>Static result seems Ok, but we do not handle VisibilitySensor (yet).</td>
-  </tr>
-  <tr>
-    <td>7C</td>
-    <td class="fail">-</td>
-    <td>Static result seems Ok, but we do not handle VisibilitySensor
-      and Collision.collideTime is not generated (yet).</td>
-  </tr>
-  <tr>
-    <td>7D</td>
-    <td class="pass">+</td>
-  </tr>
-  <tr>
-    <td>7E</td>
-    <td class="pass">+</td>
-  </tr>
-  <tr>
-    <td>7F</td>
-    <td class="pass">+</td>
-  </tr>
-  <tr>
-    <td>7G</td>
-    <td class="pass">+</td>
-  </tr>
-  <tr>
-    <td>7H</td>
-    <td class="pass">+</td>
-    <td>Result is Ok, although actually we do not handle ECMAScript (yet).</td>
-  </tr>
-  <tr>
-    <td>7I</td>
-    <td class="pass">+</td>
-  </tr>
-  <tr>
-    <td>7J</td>
-    <td class="pass">+</td>
-  </tr>
-  <tr>
-    <td>7K</td>
-    <td class="pass">+</td>
-  </tr>
-
-  <tr>
-    <td>8</td>
-    <td class="pass">+</td>
-  </tr>
-  <tr>
-    <td>9</td>
-    <td class="fail">-</td>
-    <td>Tested features work perfectly. But VisibilitySensor
-    is not handled (yet), so animation doesn't start (you can replace
-    it by e.g. ProximitySensor with large sizes, and animation will work).
-  </tr>
-  <tr>
-    <td>10</td>
-    <td class="pass">+</td>
-  </tr>
-  <tr>
-    <td>11</td>
-    <td class="pass">+</td>
-  </tr>
-  <tr>
-    <td>12</td>
-    <td class="pass">+</td>
-  </tr>
-  <tr>
-    <td>13</td>
-    <td class="pass">+</td>
-  </tr>
-  <tr>
-    <td>14</td>
-    <td class="pass">+</td>
-  </tr>
-  <tr>
-    <td>15</td>
-    <td class="pass">+</td>
-  </tr>
-  <tr>
-    <td>16</td>
-    <td class="pass">+</td>
-  </tr>
-  <tr>
-    <td>17</td>
-    <td class="pass">+</td>
-  </tr>
-  <tr>
-    <td>18</td>
-    <td class="pass">+</td>
-  </tr>
-  <tr>
-    <td>19</td>
-    <td class="pass">+</td>
-  </tr>
-  <tr>
-    <td>20</td>
+    <td>simple</td>
     <td class="pass">+</td>
   </tr>
 
   <tr>
     <td rowspan="2">WorldInfo</td>
-    <td>1</td>
+    <td>info</td>
     <td class="pass">+</td>
   </tr>
   <tr>
-    <td>2</td>
+    <td>title</td>
     <td class="pass">+</td>
   </tr>
 
   <tr>
-    <td rowspan="12">Sensors
+    <td rowspan="20">Sensors
 
       <p>(Actually tested on <a href="http://www.web3d.org/x3d/content/examples/Conformance/Sensors/">X3DV versions here</a>.)
     </td>
@@ -993,10 +877,42 @@ fail(1, 'Texture mapping is a little incorrect, text is too small');
   </tr>
 
   <tr>
-    <td>VisibilitySensor</td>
-    <td class="testnr">1 .. 9 (all)</td>
-    <td class="fail">-</td>
-    <td>VisibilitySensor is not implemented yet.</td>
+    <td rowspan="9">VisibilitySensor</td>
+    <td>centersize</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>centersize 1</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>def use</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>default visibilitysensor</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>enabled</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>isactive</td>
+    <td class="pass">+</td>
+    <td>There's no "2nd viewpoint", test description is incorrect.</td>
+  </tr>
+  <tr>
+    <td>multi sensor</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>nested trans</td>
+    <td class="pass">+</td>
+  </tr>
+  <tr>
+    <td>time</td>
+    <td class="pass">+</td>
   </tr>
 
   <tr>
