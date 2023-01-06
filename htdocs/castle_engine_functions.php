@@ -1,7 +1,7 @@
 <?php /* -*- mode: kambi-php -*- */
 
 /*
-   Copyright 2001-2022 Michalis Kamburelis.
+   Copyright 2001-2023 Michalis Kamburelis.
 
    This file is part of "Castle Game Engine Website".
 
@@ -236,6 +236,7 @@ $castle_sitemap = array(
       'doc/castle_game_engine_for_unity_developers' => array('title' => 'Overview for Unity Developers'),
       'compiling_from_source' => array('title' => 'Compiling from source'),
       'vrml_x3d' => array('title' => 'Scene Graph (X3D)'),
+      'gic2022' => array('title' => 'Presentation (GIC 2022)', 'url' => 'https://castle-engine.io/gic2022'),
     ),
     'sidebar' => true,
     'sub' => array(
@@ -508,6 +509,7 @@ $castle_sitemap = array(
         ),
       ),
 
+      'gic2022' => array('title' => 'Presentation (GIC 2022)', 'url' => 'https://castle-engine.io/gic2022'),
     ),
   ),
 
