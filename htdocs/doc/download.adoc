@@ -15,6 +15,8 @@ More downloads are available on https://github.com/castle-engine/castle-engine/r
 
 - Alternative "non-bundled" versions for some platforms (without the `-bundle` in zip name). Use them if you want to install the Pascal compiler (like https://www.freepascal.org/[FPC] or https://www.embarcadero.com/products/Delphi[Delphi]) yourself. Remember to point CGE to your compiler using the _"Preferences"_ editor window.
 
+- For Windows, alternative zip versions instead of self-installing exe.
+
 - Win32 platform, which we still support but discourage. The world has largely moved to 64-bit (for Windows and other OSes) so we recommend using Win64.
 
 === Itch.io
