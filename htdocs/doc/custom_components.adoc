@@ -115,6 +115,8 @@ initialization
 end.
 ----
 
+See also section below <<Children components on which user can edit properties (using SetSubComponent)>>.
+
 ==== Editable reference to another instance
 
 A reference to any other class that can be assigned. Another common situation is if you want to expose a property that references another class, and allow to assign any instance (or `nil`) to this class. Like this:
@@ -654,7 +656,7 @@ initialization
   R := TRegisteredComponent.Create;
   R.ComponentClass := TMyRectanglesGroup;
   R.Caption := ['Rectangles Group (initially 3)'];
-  R.OnCreate := {$ifdef FPC}@{$endif}TMyRectanglesGroup{$ifdef FPC}(nil){$endif}.CreateInitialChildren;
+  R.OnCreate := {$ifdef FPC}@{$endif} TMyRectanglesGroup.CreateInitialChildren;
   RegisterSerializableComponent(R);
 end.
 ----
