@@ -626,7 +626,7 @@ Hints to make it faster:
 <p>We will automatically use Libpng if detected (and fallback on FPImage otherwise).
 
 <ul>
-  <li>On Linux, FreeBSD, Mac OS X and other desktop Unix systems it's usually installed system-wide, so you don't need to worry.
+  <li>On Linux, FreeBSD, macOS and other desktop Unix systems it's usually installed system-wide, so you don't need to worry.
   <li>On Windows, make sure to distribute Libpng alongside your exe. Our <a href="https://castle-engine.io/build_tool">build tool</a> takes care of this for you: it will copy appropriate DLL files when you do <code>castle-engine compile ...</code> or <code>castle-engine package ...</code>.
   <!--  For testing, you can copy the appropriate DLLs to your game directory yourself, or copy them somewhere on $PATH. At the bottom of the <a href="documentation.php">getting started</a> page we documented from where you can take these DLLs.
   <li>On Android and iOS, we will still use internal FpImage for now. (Modify <code>castleconf.inc</code> if you want to change it.)

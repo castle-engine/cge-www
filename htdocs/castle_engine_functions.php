@@ -1453,7 +1453,7 @@ function echo_standard_program_download(
     {
       // calculate non-empty $download_url
       if (empty($download_url)) {
-        // for Mac OS X dmg, there is no "-i386" in the filename
+        // for macOS dmg, there is no "-i386" in the filename
         $os_arch_filename = $os_arch;
         if ($os_arch_filename == 'macosx-i386' && $macosx_dmg) {
           $os_arch_filename = 'macosx';

@@ -3,7 +3,7 @@ define('CASTLE_GITHUB_NAME', 'rayhunter');
 
 require_once 'castle_engine_functions.php';
 castle_header("rayhunter", array(
-  'meta_description' => 'A simple raytracer. Classic ray tracer and basic Monte Carlo path tracer implemented. Open-source, portable (for Linux, FreeBSD, Mac OS X and Windows).',
+  'meta_description' => 'A simple raytracer. Classic ray tracer and basic Monte Carlo path tracer implemented. Open-source, portable (for Linux, FreeBSD, macOS and Windows).',
 ));
 require_once "octree_consts.php";
 

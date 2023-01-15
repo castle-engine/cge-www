@@ -914,7 +914,7 @@ and make sure it's available on $PATH.
   <li><i>Windows</i> users can install
     <a href="http://ffmpeg.zeranoe.com/builds/">FFmpeg Windows Builds</a>.
     Remember to add bin/ directory to your $PATH after unpacking.
-  <li><i>Mac OS X</i> users can install <code>ffmpeg</code> using
+  <li><i>macOS</i> users can install <code>ffmpeg</code> using
     <a href="https://brew.sh/">HomeBrew</a>,
     <a href="https://www.macports.org/">MacPorts</a> or
     <a href="http://www.finkproject.org/">Fink</a>.

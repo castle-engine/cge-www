@@ -189,7 +189,7 @@ castle-engine install --target=android
 castle-engine run --target=android
 ----
 
-On other platforms (e.g. standalone Windows, Linux, Mac OS X...), this simply runs the last compiled application. So just "compile" the application first, like this:
+On other platforms (e.g. standalone Windows, Linux, macOS...), this simply runs the last compiled application. So just "compile" the application first, like this:
 
 ----
 castle-engine compile
