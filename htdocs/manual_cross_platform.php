@@ -5,7 +5,7 @@ castle_header('Cross-platform (desktop, mobile, consoles...) projects');
 $toc = new TableOfContents(
   array(
     new TocItem('Introduction', 'introduction'),
-    new TocItem('Compiling and debugging', 'compiling_debuggng'),
+    new TocItem('Building for various platforms', 'building'),
     new TocItem('Differences in input handling between mobile (touch) and desktop (mouse) platforms', 'input'),
     new TocItem('Things to avoid in cross-platform games', 'avoid'),
     new TocItem('Explaining the standard new project setup', 'new_project'),
@@ -26,7 +26,7 @@ echo castle_thumbs(array(
 <p><i>Castle Game Engine</i> allows to build applications for many platforms:
 
 <ul>
-  <li><p>desktop (Windows, Linux, macOS, FreeBSD, Raspberry Pi...),
+  <li><p>desktop (Windows, Linux, <a href="macos">macOS</a>, FreeBSD, Raspberry Pi...),
   <li><p>mobile (<a href="android">Android</a>, <a href="ios">iOS</a>),
   <li><p><a href="nintendo_switch">Nintendo Switch</a>.
 </ul>
@@ -36,53 +36,58 @@ exposing a nice cross-platform API.
 
 <?php echo $toc->html_section(); ?>
 
-<p>Developing for mobile platforms requires installing
-some special tools. Everything is explained on these platform-specific pages:
+<p>By default, the engine compiles and runs the project for the current platform. This is by far the easiest approach to just build and test your application on a desktop system, like Windows, Linux, FreeBSD and Raspberry Pi. The engine (including our editor and build tool) just run there.
+
+<p>To build for a different platform:
+
+<ul>
+  <li>
+    <p>Choose the target platform in <a href="manual_editor.php">the CGE editor</a> using the submenu <i>"Run -&gt; Platform (To Build And Run) -&gt; ..."</i>.
+  <li>
+    <p>Then build the project using <i>"Run -&gt; Compile"</i>, package to a redistributable format using <i>"Run -&gt; Package"</i> and so on.
+</ul>
+
+<p>Make sure that your compiler installation supports the necessary targets. For FPC, it is easy to install cross-compilers using e.g. <a href="fpcupdeluxe">fpcupdeluxe</a>. For <i>Delphi</i>, right now we only support Windows (32 and 64) targets.
+
+<p>For some platforms, we have a dedicated manual page with instructions about what you need to install and how to use it. See:
 
 <ul>
   <li><p><a href="https://castle-engine.io/android">Developing for Android</a>.
 
-    <p>Once you have installed <a href="https://castle-engine.io/android">Android SDK, NDK and FPC cross-compiler for Android</a> then you can build and run for Android:
+    <p>You will have to install <a href="https://castle-engine.io/android">Android SDK and FPC cross-compiler for Android</a>.
 
-    <pre>castle-engine package --target=android # creates APK
-castle-engine install --target=android # installs on Android device connected through USB
-castle-engine run --target=android # runs on Android device</pre>
+    <p>Then you can build and run for Android.
 
-    <p>You can also create AAB file for Android, to upload to Google Play.
-    See the <a href="build_tool">build tool</a> docs.
+    <p>You can create a package in standard Android APK or AAB formats.
+
+    <p>You can run the application, and observe logs, on Android device connected through USB.
 
   <li><p><a href="https://castle-engine.io/ios">Developing for iOS (iPhone, iPad)</a>.
 
-    <p>If you have installed <a href="https://castle-engine.io/ios">FPC cross-compiler for iOS</a> then you can also build for iOS:
+    <p>Note that you need a macOS system to do this. And <a href="https://castle-engine.io/ios">FPC cross-compiler for iOS</a>.
 
-    <pre>castle-engine package --target=iOS # creates an Xcode project to run on device or simulator</pre>
+    <p>Doing <i>"Run -&gt; Package"</i> for iOS by default just creates an <i>Xcode project</i>. You should open it in Xcode to run on a connected device, or in simulator, or release on the AppStore. We can also build IPA file for iOS.
 
-    <p>You can also create IPA file for iOS.
-    See the <a href="build_tool">build tool</a> and <a href="https://castle-engine.io/ios">iOS</a> docs.
+  <li><p><a href="https://castle-engine.io/nintendo_switch">Nintendo Switch</a>.
+
+    <p>For this, first you need to be a <a href="https://developer.nintendo.com/">registered and confirmed Nintendo developer</a>. Then we will provide you with a version of CGE that works on Nintendo Switch.
 </ul>
 
 <?php echo $toc->html_section(); ?>
 
 <p>To create portable games you have to think about different types
-of inputs available on mobile platforms vs desktop.
-The engine gives you various helpers, and abstracts various things
-(for example, mouse clicks and touches can be handled using the same API,
-you just don't see multi-touches on desktop).
-But it's not possible to 100% hide the differences,
-because some concepts just cannot work &mdash; e.g. mouse look cannot work
-on touch interfaces (since we don't get motion events when you don't press...),
-keyboard is uncomfortable on touch devices,
-multi-touch doesn't work on desktops with a single mouse and so on.
+of inputs available on some platforms:
 
-<p>To account for this, you can adjust your input handling depending on the
-<?php echo cgeRef('TCastleApplicationProperties.TouchDevice', 'ApplicationProperties.TouchDevice'); ?> value.
-It is automatically initialized to <code>true</code> on touch devices without keyboard / mouse (like mobile),
-and <code>false</code> elsewhere (like on typical desktops).
+<ul>
+  <li>
+    <p>On desktop most users will have a keyboard and a mouse. Supporting gamepad (joystick) is also possible.
 
-<p>For navigation in 3D on mobile, we have a special UI control
-<?php echo cgeRef('TCastleTouchNavigation'); ?>.
-This allows to easily navigate (examine / walk / fly) in the viewport by dragging on special controls
-in the corners.
+  <li>
+    <p>On mobile platforms most users will use the touch screen (even if it's possible to plug external
+    keyboard or mouse at least to Android).
+</ul>
+
+<p>See <a href="touch_input">touch device input</a> for details.
 
 <?php echo $toc->html_section(); ?>
 

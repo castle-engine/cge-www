@@ -305,6 +305,7 @@ $castle_sitemap = array(
               'doc/project_manifest' => array('title' => 'CastleEngineManifest&ZeroWidthSpace;.xml'), // using zero-width space to avoid making mobile version with horizontal scroll
               'manual_castle_settings' => array('title' => 'Customize UI scaling, font, warmup cache by CastleSettings.xml'),
               'doc/build_tool' => array('title' => 'Build Tool'),
+              'doc/touch_input' => array('title' => 'Touch Input'),
             ),
           ),
           'manual_platforms' => array('title' => 'Platforms details',

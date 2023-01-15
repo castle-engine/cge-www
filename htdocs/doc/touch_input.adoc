@@ -1,0 +1,47 @@
+# Touch Input
+include::common.adoc[]
+:description: Handling touch screen input on Android, iOS and Nintendo Switch platforms.
+
+== Introduction
+
+Mobile devices (Android, iOS, Nintendo Switch) allow to use _touch screen_ where user literally touches the screen to indicate clicking / dragging.
+
+NOTE: Desktop devices actually can have a touch screen too. link:https://www.steamdeck.com/[Steam Deck] allows to use a touch screen on a platform that is technically just Linux. Though right now we don't have any special support for it, we just listen on mouse events from OS.
+
+== Just handle mouse "left" button
+
+The touches on the touch screen are reported exactly like using the _left mouse button_ on desktops. This is exactly what you want in general to have cross-platform support for both mouse and touch.
+
+So to write a cross-platform application that responds to both touches and mouse, just react to:
+
+* cgeref:TCastleUserInterface.Press[] with mouse button cgeref:buttonLeft[]. For example override the link:views[view] method `Press`.
+
+* cgeref:TCastleUserInterface.Release[] with mouse button cgeref:buttonLeft[]. Again, you can override the link:views[view] method `Release`.
+
+* cgeref:TCastleUserInterface.Motion[] when cgeref:buttonLeft[] is in cgeref:TInputMotion.Pressed[]. Again, you can override the link:views[view] method `Motion`.
+
+== Handling multi-touch
+
+If you want to additionally handle multi- touch on touch devices, you can also look at
+
+- cgeref:TInputPressRelease.FingerIndex[] at each `Press` / `Release` event with cgeref:buttonLeft[]. Note that when using actual mouse on desktops, we always report `FingerIndex = 0`.
+
+- To know currently pressed fingers, look at cgeref:TCastleContainer.Touches[].
+
+See example in link:https://github.com/castle-engine/castle-engine/tree/master/examples/mobile/drawing_toy[examples/mobile/drawing_toy] for a demo of using multi-touch.
+
+== Detecting devices with touch screen
+
+If you want to conditionally behave differently on devices with touch screen, you can always check cgeref:TCastleApplicationProperties.TouchDevice[ApplicationProperties.TouchDevice]. But in usual cases, you shouldn't really need it.
+
+NOTE: For easy testing, the cgeref:TCastleApplicationProperties.TouchDevice[ApplicationProperties.TouchDevice] property is settable, so you can set this property to `true` even on desktops, to test your "touch device mode" in a desktop application.
+
+NOTE: Some devices with touch screen, like _Android_ and _Nintendo Switch_, allow to plug external keyboard and mouse. We don't support it now in any special way, but we will in the future, and then user will be able to use normal mouse behavior in your mobile game. It also means that inferring too much from cgeref:TCastleApplicationProperties.TouchDevice[ApplicationProperties.TouchDevice] being `true` isn't wise -- the device may have a touch screen, but user may be using external keyboard / mouse.
+
+== Remember what is not possible
+
+Remember that some things are not possible with a touch screen. Namely:
+
+* You will never have mouse press with button different than `buttonLeft`
+
+* You will never observe motion when no mouse button is pressed, of course. Since we can only observe dragging when user is touching the screen. This means that e.g. mouse look cannot work the same -- while it could observe motion when dragging, this changes user experience and ultimately you just need different controls for 3D navigation on mobile. We provide cgeref:TCastleTouchNavigation[] for this.
