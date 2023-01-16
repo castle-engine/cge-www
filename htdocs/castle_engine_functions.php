@@ -313,6 +313,7 @@ $castle_sitemap = array(
               'doc/android' => array('title' => 'Android'),
               'doc/android_faq' => array('title' => 'Android FAQ'),
               'doc/android_services' => array('title' => 'Android Services (Google Play Games and many more...)'),
+              'doc/adding_new_android_services' => array('title' => 'Adding New Android Services'),
               'doc/ios' => array('title' => 'iOS'),
               'doc/ios_services' => array('title' => 'iOS Services (Apple Game Center and many more...)'),
               'doc/in_app_purchases' => array('title' => 'In-App Purchases (Android, iOS)'),
