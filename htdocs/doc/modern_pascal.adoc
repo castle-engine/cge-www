@@ -2533,8 +2533,6 @@ In practice, this means that:
 
 ** The standard class `TInterfacedObject` implements these methods to _enable_ the reference-counting.
 ** The standard class `TComponent` implements these methods to _disable_ the reference-counting.
-// *In the Castle Game Engine* we give you additional useful ancestors `TNonRefCountedInterfacedObject` and `TNonRefCountedInterfacedPersistent` for this purpose, see https://github.com/castle-engine/castle-engine/blob/0519585abc13e8386cdae5f7dfef6f9659dc9b57/src/base/castleinterfaces.pas .
-// Removed from CGE now.
 
 //* You can turn off the reference-counting mechanism by simple `_AddRef`, `_Release` implementations that always return `-1`. Actually, the standard implementation of these methods in `TComponent`, `TNonRefCountedInterfacedObject` and `TNonRefCountedInterfacedPersistent` already does this for you.
 
