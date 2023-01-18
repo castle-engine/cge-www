@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.17">
+<meta name="generator" content="Asciidoctor 2.0.18">
 <meta name="author" content="Michalis Kamburelis">
 <title>Modern Object Pascal Introduction for Programmers</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
@@ -85,10 +85,10 @@ code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;
 ul,ol,dl{line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
 ul,ol{margin-left:1.5em}
 ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0}
-ul.square li ul,ul.circle li ul,ul.disc li ul{list-style:inherit}
-ul.square{list-style-type:square}
 ul.circle{list-style-type:circle}
 ul.disc{list-style-type:disc}
+ul.square{list-style-type:square}
+ul.circle ul:not([class]),ul.disc ul:not([class]),ul.square ul:not([class]){list-style:inherit}
 ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
 dl dt{margin-bottom:.3125em;font-weight:bold}
 dl dd{margin-bottom:1.25em}
@@ -2356,7 +2356,19 @@ Eating an apple</pre>
 <p>This frees the <code>A</code>, unless it&#8217;s <code>nil</code>.</p>
 </div>
 <div class="paragraph">
-<p>Note that in normal circumstances, you should never call a method on an instance which may be <code>nil</code>. So the call <code>A.Free</code> may look suspicious at the first sight, if <code>A</code> can be <code>nil</code>. However, the <code>Free</code> method is an exception to this rule. It does something dirty in the implementation&#8201;&#8212;&#8201;namely, checks whether <code>Self &lt;&gt; nil</code>. This dirty trick works only in non-virtual methods (that don&#8217;t call any virtual methods and don&#8217;t access any fields).</p>
+<p>Note that in normal circumstances, you should never call a method on an instance which may be <code>nil</code>. So the call <code>A.Free</code> may look suspicious at the first sight, if <code>A</code> can be <code>nil</code>. However, the <code>Free</code> method is an exception to this rule. It does something dirty in the implementation&#8201;&#8212;&#8201;namely, checks whether <code>Self &lt;&gt; nil</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+This dirty trick (officially allowing the method to be used with <code>Self</code> equal <code>nil</code>) is possible only for non-virtual methods. And as long as <code>Self = nil</code> is possible, the method cannot call any virtual methods or access any fields, as these would crash with acces violation when called on a <code>nil</code> pointer. See the sample code <a href="https://github.com/michaliskambi/modern-pascal-introduction/blob/master/code-samples/method_with_self_nil.lpr">method_with_self_nil.lpr</a>. We discourage from using this trick in your own code (for virtual or non-virtual methods) as it is counter-intuitive to normal usage, in general all instance methods should be able to assume that they work on valid (non-nil) instance and can access fields and call any other methods (virtual or not).
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>I advise using <code>FreeAndNil(A)</code> always, without exceptions, and never to call directly the <code>Free</code> method or <code>Destroy</code> destructor. The <em>Castle Game Engine</em> does it like that. It helps to keep a nice assertion that <em>all references are either nil, or point to valid instances</em>.</p>
@@ -3976,7 +3988,7 @@ generic <span class="keyword">function</span> Min&lt;T&gt;(<span class="keyword"
 
 <span class="comment">{ Define a NewLine constant. Here you can see how the normal syntax of Pascal
   is &quot;broken&quot; by preprocessor directives. When you compile on Unix
-  (includes Linux, Android, Mac OS X), the compiler sees this:
+  (includes Linux, Android, macOS), the compiler sees this:
 
     const NewLine = #10;
 
@@ -4918,7 +4930,7 @@ The more general concept is <em>"type helper"</em>. Using them you can add metho
 <dd>
 <p>The name <strong>CORBA</strong> is unfortunate. A better name would be <strong>bare interfaces</strong>. These interfaces are a <em>"pure language feature"</em>. Use them when you want to cast various classes as the same interface, because they share a common API.</p>
 <div class="paragraph">
-<p>While these types of interfaces can be used together with the <em>CORBA (Common Object Request Broker Architecture) technology</em> (see <a href="https://en.wikipedia.org/wiki/Common_Object_Request_Broker_Architecture" class="bare">https://en.wikipedia.org/wiki/Common_Object_Request_Broker_Architecture</a>), they are <em>not</em> tied to this technology in any way.</p>
+<p>While these types of interfaces can be used together with the <em>CORBA (Common Object Request Broker Architecture) technology</em> (see <a href="https://en.wikipedia.org/wiki/Common_Object_Request_Broker_Architecture">wikipedia about CORBA</a>), they are <em>not</em> tied to this technology in any way.</p>
 </div>
 </dd>
 <dt class="hdlist1">Is the <code>{$interfaces corba}</code> declaration needed?</dt>
@@ -5066,7 +5078,7 @@ you create <em>COM interfaces</em>. This can be stated explicitly by saying <cod
 <p>The standard class <code>TInterfacedObject</code> implements these methods to <em>enable</em> the reference-counting.</p>
 </li>
 <li>
-<p>The standard class <code>TComponent</code> implements these methods to <em>disable</em> the reference-counting. <strong>In the Castle Game Engine</strong> we give you additional useful ancestors <code>TNonRefCountedInterfacedObject</code> and <code>TNonRefCountedInterfacedPersistent</code> for this purpose, see <a href="https://github.com/castle-engine/castle-engine/blob/0519585abc13e8386cdae5f7dfef6f9659dc9b57/src/base/castleinterfaces.pas" class="bare">https://github.com/castle-engine/castle-engine/blob/0519585abc13e8386cdae5f7dfef6f9659dc9b57/src/base/castleinterfaces.pas</a> .</p>
+<p>The standard class <code>TComponent</code> implements these methods to <em>disable</em> the reference-counting.</p>
 </li>
 </ul>
 </div>
@@ -5445,7 +5457,7 @@ you create <em>COM interfaces</em>. This can be stated explicitly by saying <cod
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-08-11 00:19:12 +0200
+Last updated 2023-01-18 12:44:45 +0100
 </div>
 </div>
 <!-- Google analytics -->
