@@ -53,6 +53,7 @@ To do this in Pascal (setup the nodes in Pascal), see demo on https://github.com
 +
 To do this in X3D (editing X3D file), see https://github.com/castle-engine/demo-models[our demo models], in particular https://github.com/castle-engine/demo-models/tree/master/compositing_shaders[compositing_shaders] subdirectory.
 --
+* You can use batching using cgeref:DynamicBatching[]. It works completely automatically by grouping rendered shapes that use the same material.
 
 *Advice when to use*:
 
@@ -80,6 +81,7 @@ A similar approach is to draw your game using multiple cgeref:TCastleImageContro
 To have the scaling automatically applied, you can use `TCastleImageControl` instead of directly drawing with `TDrawableImage`. `TCastleImageControl` is an UI control that wraps `TDrawableImage` underneath, and allows to control the image like a normal UI control: with anchors, automatically applied scaling and so on.
 
 * To use custom shader, set `TDrawableImage.CustomShader` or `TCastleImageControl.CustomShader`. Demo in `examples/images_videos/image_render_custom_shader.lpr`.
+* You can use batching using cgeref:BatchingBegin[] and cgeref:BatchingEnd[]. It works completely automatically by grouping rendering the same image many times into one draw call.
 
 *Advice when to use*: This approach is very easy to start. You have relatively small API to learn. You just learn how to use `TDrawableImage`, and you draw inside your own `TMyControl.Render` however you like. *If all you really want is a flexible API to draw images -- this is it.*
 
