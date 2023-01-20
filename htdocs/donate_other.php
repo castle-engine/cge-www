@@ -1,7 +1,7 @@
 <?php
 require_once 'castle_engine_functions.php';
 
-castle_header('Donate');
+castle_header('Donate to Castle Game Engine');
 
 function donation_option_begin()
 {
@@ -14,7 +14,16 @@ function donation_option_end()
 }
 ?>
 
-<p>I'm Michalis Kamburelis, and I'm developing this engine with a dream to create a great and <b>free and open-source</b> game engine. Whatever option to donate you choose &mdash; <b>thank you</b>!
+<P>We are making an <a href="features">open-source game engine, 3D and 2D, with comfortable visual editor and a powerful API</a>.
+
+<p>The main goal of donations is simply to cover the cost of people, so that they can work on the engine full-time, which in turn just translates to more features, faster. Right now we have 1/2 developer on a payroll (<i>Andrzej Kilijański</i>, paid from <i>Michalis Kamburelis</i> own pocket) and hiring him was a great decision &mdash; having Andrzej made a big difference, the engine progress in recent years owes much to his work. Imagine we can have 10x of that :)
+
+<?php /*
+Right now we have 1/2 developer on a payroll (<i>Andrzej Kilijański</i>, paid from <i>Michalis Kamburelis</i> own pocket) and I'm sure you can see in all <a href="https://castle-engine.io/wp/">news</a> how it made a huge difference in the features we can deliver in recent years. We want more of that :) Imagine that Michalis, Andrzej, <a href="https://github.com/castle-engine/castle-engine/graphs/contributors">any other past and future contributors to CGE</a> have time to hack on the engine as a full-time job. We can make <a href="roadmap">amazing things!</a>.
+*/
+?>
+
+<p>Whatever option to donate you choose &mdash; <b>thank you</b>!
 
 <div class="donations">
   <?php donation_option_begin(); ?>
@@ -33,10 +42,15 @@ function donation_option_end()
   <?php donation_option_begin(); ?>
     <?php if (!HTML_VALIDATION) { echo paypal_button(); } ?>
 
-    <p><b>Donate using <a href="https://www.paypal.com/">PayPal</a>.</b><br>
+    <p><b>Donate using <a href="https://paypal.me/castleengine">PayPal</a>.</b><br>
     You can pay directly using your credit card, or use a PayPal account.
     <!-- 5 USD or 10 USD would be a suggested amount, -->
     <!-- but in general please just donate any amount you feel appropriate. -->
+  <?php donation_option_end(); ?>
+
+  <?php donation_option_begin(); ?>
+    <p><b>Donate using <a href="https://ethereum.org/">Ethereum</a>.</b><br>
+    Send funds to this address: <code>0x0b0e37c7391C7268DEc9c0De63bA5A3b1B42baCe</code></p>
   <?php donation_option_end(); ?>
 
   <?php donation_option_begin(); ?>
