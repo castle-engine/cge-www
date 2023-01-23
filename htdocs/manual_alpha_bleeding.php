@@ -3,11 +3,13 @@ require_once 'castle_engine_functions.php';
 castle_header('Alpha Bleeding');
 ?>
 
-<p><b>"Alpha Blending"</b> means that you use partial transparency when rendering your image. It means that the alpha channel of your image contains any values within the range 0..1 (not just only 0 or 1). Alpha equal 0 means <i>"completely transparent"</i>, alpha equal 1 means <i>"complately opaque"</i>, values in-between mean <i>"partially transparent"</i>. For example alpha value 0.25 means that when rendering, we should take 1/4 from the image color, and mix it with 3/4 of the current screen color at this place.
+<p><b>"Alpha Bleeding"</b> is an operation you sometimes need to perform on your images to make <b>blending</b> work as you expect.
 
-<p><i>Alpha Blending</i> makes sense both for user-interface (like images you place in <?php echo cgeRef('TCastleImageControl'); ?>), 2D games, 3D games (e.g. textures on your 3D models, that you load to <?php echo cgeRef('TCastleScene'); ?>). More info about <a href="https://castle-engine.io/blending">alpha blending in CGE is here</a>.
+<p><b>"Blending"</b> means that you use partial transparency when rendering your image. It means that the alpha channel of your image contains any values within the range 0..1 (not just only 0 or 1). Alpha equal 0 means <i>"completely transparent"</i>, alpha equal 1 means <i>"complately opaque"</i>, values in-between mean <i>"partially transparent"</i>. For example alpha value 0.25 means that when rendering, we should take 1/4 from the image color, and mix it with 3/4 of the current screen color at this place.
 
-<p>Now, <b>"Alpha Bleeding"</b> is an operation you sometimes need to perform on your images to make <i>alpha blending</i> work as you expect. Why?
+<p><i>Blending</i> makes sense both for user-interface (like images you place in <?php echo cgeRef('TCastleImageControl'); ?>), 2D games and 3D games (e.g. textures on your 3D models, that you load to <?php echo cgeRef('TCastleScene'); ?>). More info about <a href="https://castle-engine.io/blending">blending in CGE is here</a>.
+
+<p>To avoid rendering artifacts, sometimes you need to proces your images with <b>"alpha bleeding"</b>. Why?
 
 <ul>
   <li>
