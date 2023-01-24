@@ -1,0 +1,50 @@
+# Tiled maps
+include::common.adoc[]
+:description: Using maps designed in Tiled map editor in Castle Game Engine.
+:cge-social-share-image: blender_castle_1.png
+
+== Introduction
+
+We feature an extensive support for maps designed in https://www.mapeditor.org/[Tiled map editor].
+
+cgeimg::block[
+  tiled_map_1.png|Tiled map
+]
+
+== Usage
+
+1. Design your map in https://www.mapeditor.org/[Tiled], and save the resulting map (.tmx) along with images (tilesets) somewhere in the project `data` subdirectory.
+
+2. Add to your link:viewport_and_scenes[viewport] a cgeref:TCastleTiledMap[] component and set cgeref:TCastleTiledMap.URL[] to indicate your map (.tmx) file.
+
+== Features
+
+cgeimg::float[
+  tiled_map_isometric.png|Tiled isometric map,
+  tiled_hex.png|Tiled hexagonal map,
+  tiled_3d.png|Tiled map in 3D perspective,
+  tiled_choose_layers.png|Choosing Tiled layers to show
+]
+
+We support many Tiled features, like
+
+- Any number of layers, any map sizes, multiple tilesets.
+- All map types: Orthogonal, Isometric, IsometricStaggered, Hexagonal.
+- Flipping of tiles (diagonal, horizontal, vertical).
+- Optimized rendering with static batching of map layers.
+
+The cgeref:TCastleTiledMap[] is a cgeref:TCastleTransform[] instance, and as such you can move, rotate and scale it.
+
+Inside the viewport you have a regular link:camera[]. You can move the camera, you can change the camera orthographic height (cgeref:TCastleOrthographic.Height[]) to zoom in/out. Add the cgeref:TCastle2DNavigation[] component as a child of your viewport to allow user to move/zoom on the map too.
+
+You can control cgeref:TCastleTiledMap.SmoothScaling[].
+
+* `false` (default) results in a pixel-art look.
+
+* `true` means to use smooth (bilinear) filtering for the tile images.
++
+If you see weird seams between tiles when using cgeref:TCastleTiledMap.SmoothScaling[] = `true`, this is likely a lack of link:manual_alpha_bleeding.php[alpha bleeding]. You have to process your tileset image by adding some spacing between tiles and perform link:manual_alpha_bleeding.php[alpha bleeding] in your image-editing software (you can use our link:castle-view-image.php[castle-view-image]). Alternatively, you can activate cgeref:TCastleTiledMap.SmoothScalingSafeBorder[] to workaround it.
+
+To show/hide specific layers use cgeref:TCastleTiledMap.Layers[]. Click on the button with 3 dots `...` at the `Layers` property to invoke a nice dialog where you can select layers by names.
+
+The cgeref:TCastleTiledMap.Map[] exposes internal map data (read-only) to query for various information about the map.

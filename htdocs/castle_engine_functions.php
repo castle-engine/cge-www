@@ -285,6 +285,7 @@ $castle_sitemap = array(
             'sub' => array(
               'doc/sprite_sheets' => array('title' => 'Sprite sheets'),
               'doc/using_images' => array('title' => 'Images'),
+              'doc/tiled_maps' => array('title' => 'Tiled maps'),
               'doc/how_to_render_2d' => array('title' => 'How to render 2D games with images and sprites'),
             )
           ),
