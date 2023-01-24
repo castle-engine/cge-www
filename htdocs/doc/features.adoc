@@ -380,6 +380,24 @@ cgeimg::block[combined_fpc_delphi.png|FPC\, Delphi\, Visual Studio Code]
 * elegant (type-safe, OOP, generics),
 * full-featured (big existing codebases can be used, e.g. Pascal and C, C++ libraries to connect your games with database, AI, networking),
 * native (compiled to native code that runs fast out-of-the-box).
++
+[NOTE]
+====
+////
+Note: I fought hard to keep this note small, to avoid breaking the reading flow with this sidenote.
+As for writing C++ name reliably in AsciiDoctor (because AsciiDoctor has other meaning for ++): see
+https://discuss.asciidoctor.org/Whats-wrong-with-this-simple-example-td2343.html
+https://docs.asciidoctor.org/asciidoc/latest/attributes/attribute-entries/
+////
+To interact with a library
+//written in {cpp},
+using {cpp} classes (and other features that only {cpp} compilers understand)
+// (or other features that cause _name mangling_ when being compiled)
+you generally need to write a _"wrapper"_ library that exposes the equivalent API in plain C.
+//The wrapper is compiled with a {cpp} compiler (which is the only compiler that can reliably "understand" how to link with {cpp} classes) to compile a wrapper library that exposes plain C API and then from Pascal you access plain C API.
+This is exactly the same as trying to use {cpp} library e.g. from C#.
+//The only thing essentially standardized, at binary level, across all compilers of various languages, is how the _plain C API_ is used.
+====
 --
 * The same programming language that is used to make the engine is used for your applications -- this results in simplicity (it's easy to contribute) and speed.
 * Fast execution. It's a language that compiles to fast native code, while staying elegant and type-safe.
