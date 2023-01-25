@@ -17,17 +17,61 @@ This page documents _Castle Game Engine_ 7.0 new features. It's a work in progre
 
 == Plans
 
-We plan to release version _7.0_ (stable) at the end of this year, 2022 (with an unofficial but hard deadline for 7.0 release at _Christmas 2022_ :) ).
+We plan to release version _7.0_ (stable) early 2023.
 
-Maybe there will be another _alpha_ or _beta_ release in 2022 before the full 7.0.
+There will be another _alpha_ release in early 2023 before the full 7.0.
 
-See https://castle-engine.io/wp/2022/01/01/summary-of-2021-plans-for-2022/[our plans for 2022] for details what we plan. And https://castle-engine.io/roadmap[our roadmap] for more long-term goals (not just in 7.0). Immediate future plans after _7.0-alpha.2_ release are:
-
-- Integrate physics with joints from _Andrzej Kilijański_, see link:https://github.com/castle-engine/castle-engine/pull/394[PR] and link:https://www.youtube.com/watch?v=mNgBttV5DuA[teaser movie].
-
-- Optimize memory usage of X3D nodes. We've done the 1st stage: all nodes have auto-generated code to create all fields. So now we can revolutionize it.
+See https://castle-engine.io/wp/2022/12/24/summary-of-4th-open-meeting-physics-pascal-lsp-android-on-screen-keyboard-near-release-plans-quickjs-announcing-5th-meeting/[summary of 4th open meeting] and https://castle-engine.io/wp/2022/01/01/summary-of-2021-plans-for-2022/[our plans for 2022] for details what we plan. And https://castle-engine.io/roadmap[our roadmap] for more long-term goals (not just in 7.0).
 
 == Features released so far
+
+=== Already available in snapshot, will be released in 7.0-alpha.3
+
+* link:https://castle-engine.io/physics[Physics]
++
+--
+* new components (colliders and bodies),
+* running simulation in the editor,
+* API to use physics forces from code,
+* joints and more.
+* See also https://castle-engine.io/wp/2022/12/29/summary-of-the-new-physics-capabilities/[news, where I tried and failed to provide a concise summary of what changed :)]
+--
+* https://castle-engine.io/vscode[Visual Studio Code integration, intelligent code completion with our LSP server, also for Emacs, NeoVim and other text editors]. Also see https://castle-engine.io/wp/2022/11/19/visual-studio-code-integration-intelligent-code-completion-with-our-lsp-server-also-for-emacs-neovim-and-other-text-editors/[news].
+* https://castle-engine.io/control_on_form[TCastleControl available now for Delphi VCL and FMX applications, in addition to existing Lazarus LCL].
+* Easily activate https://castle-engine.io/wp/2022/10/03/easy-shadows-in-editor-at-design-time-too-by-shadow-volumes-and-shadow-maps-are-coming-as-well/[shadows], just select checkbox `Shadows` at the light source to use shadow volumes. Note: We plan to expose also our _shadow maps_ in a similar easy-to-use fashion in future releases.
+* New component to support https://castle-engine.io/tiled_maps[Tiled maps] with features and excellent performance to render huge maps in CGE.
+* Many editor UX improvements. The most important ones:
++
+--
+* Unified tools to edit UI and transformations in the editor, also with slicker icons.
+* More reliable (much less often reloaded) hierarchy of components.
+* Wireframe view.
+* "Change Class" menu action.
+* Dragging and dropping in the hierarchy preserves transformation by default (hold "Ctrl" to not preserve).
+--
+* Improvements around our https://castle-engine.io/views[views] (formely _states_):
++
+--
+* Cleaner API to set / push / pop the view _on given container_.
+* https://castle-engine.io/wp/2022/10/16/published-state-fields-are-now-automatically-initialized-no-need-in-most-cases-for-designedcomponent-calls/[Published fields of a view are now automatically initialized].
+* Editor greets you, when you open a project, with UX to open existing view, or create a new view. This communicates the recommended actions to user after opening a project, and emphasizes our focus on designinig you application around _views_. See relevant https://castle-engine.io/wp/2022/12/28/tuistate-is-now-tcastleview-methods-to-change-the-view-are-now-part-of-container-new-slick-ui-when-opening-the-project/[news].
+--
+* Improvements around our installation process:
++
+--
+* On Windows and Linux, the engine download automatically includes a useful compiler (FPC 3.2.2) so that you can build CGE applications without the need to install anything extra.
+* On Windows, we now have a self-extracting installer, that is simpler and faster than manually unpacking zip, and registers our engine editor in Windows menu.
+--
+* Big graphical update to our `examples/fps_game` thanks to _Alya Vaneskehyan_ and _Adrianna Matejek_. See https://castle-engine.io/wp/2022/10/21/concept-art-teaser-huge-graphical-and-functional-upgrade-to-our-fps-game-is-coming/[news]. This will be followed in next releases by functional improvements to make it easy to design FPS games.
+* https://castle-engine.io/wp/2022/11/06/faster-compilation-with-cache/[Cache for faster compilation].
+* https://castle-engine.io/wp/2022/11/12/tcastletransform-renderlayer-to-render-stuff-in-front-tcastlescene-precisecolisions-upcoming-plans/[TCastleTransform.RenderLayer to render stuff in front].
+* Improvements to usage of https://castle-engine.io/wp/2022/09/30/components-to-reuse-a-design-in-other-designs-our-equivalent-to-unity-prefabs-tcastledesign-and-tcastletransformdesign/[TCastleDesign and TCastleTransformDesign]: context menu to them to edit, revert, and open a referenced design.
+* Lots of documentation updates. Links to some pages not already mentioned above: https://castle-engine.io/custom_components[custom components], https://castle-engine.io/behaviors[behaviors], https://castle-engine.io/coding_conventions[coding conventions (extended with our guidelines about memory management, nil and more)] .
+
+Not part of the engine release, but still cool to mention:
+
+* https://castle-engine.io/gic2022[GIC 2022 presentation materials]
+* https://cat-astrophe-games.itch.io/lynch["Lynch" gamejam demo]
 
 === Released in 7.0-alpha.2
 
