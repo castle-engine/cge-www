@@ -1,7 +1,7 @@
 # Tiled maps
 include::common.adoc[]
 :description: Using maps designed in Tiled map editor in Castle Game Engine.
-:cge-social-share-image: blender_castle_1.png
+:cge-social-share-image: tiled_map_1.png
 
 == Introduction
 
