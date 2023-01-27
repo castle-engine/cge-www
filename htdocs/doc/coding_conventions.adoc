@@ -433,8 +433,10 @@ Embarcadero decided to make things weird: https://docwiki.embarcadero.com/RADStu
 
 This is
 
-* Completely weird (why did you make it inconsistent across platforms???).
-* And contrary to older Pascal documentation statements, that suggested that `LongInt` / `LongWord` have 32-bit always. It was the `Integer` / `Cardinal` that were supposed to be (maybe) system-dependent! (though they remain in practice 32-bit always, in both FPC and Delphi.)
+* Completely weird. Why did you make it so inconsistent across platforms? You should have either made it architecture-depedendent (64-bit on all 64-bit platforms), or architecture-indepedendent (32-bit on all platforms regardless of their CPU architecture). Making an exception specifically for _64-bit Windows_ is a really bad idea, it invites bugs when writing code that is supposed to be cross-platform.
+
+* Contrary to older Pascal documentation statements, that suggested that `LongInt` / `LongWord` have 32-bit always. It was the `Integer` / `Cardinal` that were supposed to be (maybe) system-dependent! (though they remain in practice 32-bit always, in both FPC and Delphi.)
+
 * Incompatible with FPC.
 
 So just don't use these types in CGE code.
@@ -447,20 +449,36 @@ So just don't use these types in CGE code.
 
 === Do not use `Extended`. Use `Single` / `Double`.
 
-Traditionally, `Extended` used to be a 10-byte floating-point type available in old Pascal compilers. But it is not that useful anymore, in modern FPC and Delphi.
+Traditionally, `Extended` used to be a 10-byte floating-point type, available in old Pascal compilers like _Turbo Pascal_. But modern systems don't support such 10-byte floating-point type natively, so both FPC and Delphi actually make it an alias to some other type (usually `Double`, standard 8-byte floating-point type) on most (but not all) platforms.
 
-The size and precision of `Extended` depends now on the platform and compiler:
+The exact rules that define "what exactly is ``Extended``" depend on the compiler. Basically, both FPC and Delphi try to alias it to the best (most precise) floating-point type that can still be efficiently implemented on given OS/CPU combination.
 
-* FPC: Extended=Double for most of non-i386 architectures. One known exception to the above is Linux on x86-64, that allows to use normal Extended. Use `EXTENDED_EQUALS_DOUBLE` to check for it.
-* Delphi: See https://docwiki.embarcadero.com/RADStudio/Sydney/en/Simple_Types_(Delphi)[] . Similar to FPC, `Extended` is just `Double` (8 bytes) on most platforms except Win32.
+The rules are:
+
+* FPC:  docs say that `Extended` is alias for `Double` for _most_ of non-i386 architectures.
++
+One known exception to the above is Linux on x86-64, that still allows to use traditional 10-byte Extended, despite not being i386.
+
+* Delphi: See https://docwiki.embarcadero.com/RADStudio/Sydney/en/Simple_Types_(Delphi)[] . Similar to FPC, `Extended` is just `Double` (8 bytes) on most platforms.
++
+Delphi makes exception for Win32, where `Extended` is traditional 10-byte type.
 +
 Moreover, Delphi defines `Extended` to be a new 16-byte floating-point type on some platforms:
++
+--
+* 64-bit Intel Linux
+* 32-bit Intel macOS
+* 32-bit Intel iOS Simulator
+--
 
- ** 64-bit Intel Linux
- ** 32-bit Intel macOS
- ** 32-bit Intel iOS Simulator
+The end result makes `Extended` not very useful for general cross-platform (and cross-compiler) code, due to this uncertainty. You cannot rely that `Extended` has 10-byte precision, and if you use `Extended` a subtle bugs may creep in due to not testing on all possible `Extended` situations. And GPUs don't support anything above `Double` anyway.
 
-TBH, the end result makes `Extended` not very useful at all, at least for general cross-platform (and cross-compiler) code, due to this uncertainty. And GPUs don't support anything above `Double` anyway.
+So we recommend you just use `Single` for most of code, and eventually fallback on `Double` if you must have great precision (which usually means you proved that some calculation goes badly with `Single` and switching it to `Double` is a reasonable fix).
+
+For CGE developers: While the above recommendation holds (do not use `Extended`), if you really have to use it, then the `castleconf.inc` defines:
+
+- `EXTENDED_EQUALS_DOUBLE` symbol when `Extended` is 8-byte `Double`. Useful to not define overloads for both `Double` and `Extended` -- they would be equivalent (thus, not allowed by compiler) when these types are equal.
+- `EXTENDED_EQUALS_LONG_DOUBLE` symbol when `Extended` is 16-byte "long double".
 
 === Most code should use just `String`, and be prepared that it is 8-bit on FPC and 16-bit on Delphi. Only if writing to stream, explicitly use 8-bit `AnsiString` (in usual case, when you write UTF-8).
 
