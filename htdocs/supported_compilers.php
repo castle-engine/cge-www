@@ -141,11 +141,13 @@ to hang on to FPC releases available in distros.
 <?php echo $toc->html_section(); ?>
 
 <ul>
-  <li><p>Right now we support only Windows (both 32-bit and 64-bit). Through <?php echo cgeRef('TCastleWindow'); ?>, which is our standard way to create CGE window.
+  <li><p>Right now we support only Windows (both 32-bit and 64-bit).
 
-  <li><p>We will soon implement <?php echo cgeRef('TCastleControl'); ?> version for FMX (and maybe even VCL too) so that you can drop CGE rendering on the FMX/VCL form.
+  <li><p>Other platforms will come, most likely Android and Linux (<a href="talk.php">talk to us on <code>#delphi</code> on Discord about the progress</a>). I did make initial attempt at Linux and I know it's possible, just needs more work, e.g. importing cross-platform OpenGL units like <a href="https://www.saschawillems.de/creations/delphi-opengl-headers/">dglOpenGL</a>.
 
-  <li><p>This will be followed by other platforms: Linux, Android, iOS. There is basic Delphi+Linux support already, but we need to import cross-platform OpenGL units to make it actually work, and we'll likely need to add GTK, Glx, Xlib units.
+  <li><p>You can use <?php echo cgeRef('TCastleWindow'); ?>, which is our standard way to create CGE window. Our "New Project" templates as well as most examples use it.
+
+  <li><p>You can alternatively use <?php echo cgeRef('TCastleControl'); ?> that allows to put CGE rendering on FMX (FireMonkey) or VCL form.
 </ul>
 
 <?php echo $toc->html_section(); ?>
