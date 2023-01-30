@@ -73,16 +73,22 @@ For each:
 
 - check OpenGLES desktop rendering works on some demo-models using view3dscene.
 
-## Test: We tolerate GPU bugs
+## Test: Various OpenGL support cases, including modern and ancient, are supported
 
-- Fake in ../castle-engine/src/base/opengl/castleglversion.pas that `BuggyVbo` is true,
-  run view3dscene,
-  nd open anything in demo-models and check that rendering without VBO works.
-
-- Test with EnableFixedFunction := true:
+- Test `test_rendering_opengl_capabilities`:
 
     ```
-    view3dscene --debug-enable-fixed-function
+    ../castle-engine/examples/research_special_rendering_methods/test_rendering_opengl_capabilities/
+    castle-engine compile
+    castle-engine run -- --render=force-modern
+    castle-engine run -- --render=automatic
+    castle-engine run -- --render=force-fixed-function
+    ```
+
+- Test `view3dscene` with fixed-function:
+
+    ```
+    view3dscene --debug-fixed-function
     ```
 
 ## Test: fpmake installation and InstantFPC
