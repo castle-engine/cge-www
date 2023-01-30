@@ -80,9 +80,16 @@ For each:
     ```
     ../castle-engine/examples/research_special_rendering_methods/test_rendering_opengl_capabilities/
     castle-engine compile
-    castle-engine run -- --render=force-modern
-    castle-engine run -- --render=automatic
-    castle-engine run -- --render=force-fixed-function
+    castle-engine run # test it shows "automatic"
+    castle-engine run -- --capabilities=force-modern
+    castle-engine run -- --capabilities=force-fixed-function
+    ```
+
+- Test CGE editor with non-standard rendering (open 3D template):
+
+    ```
+    ./castle-editor --capabilities=force-fixed-function
+    ./castle-editor --capabilities=force-modern
     ```
 
 - Test `view3dscene` with fixed-function:
