@@ -11,14 +11,6 @@ Note that, except issues listed below, *everything else that works on desktops (
 
 == OpenGLES renderer
 
-. (_Easy_) *Shadow volumes*. Initializing stencil buffer is not a problem on OpenGLES. We need to
- .. fix https://github.com/castle-engine/castle-engine/blob/master/src/x3d/opengl/castleshapeinternalrendershadowvolumes.pas[castleshapeinternalrendershadowvolumes.pas] to use VBOs and shaders (right now it uses old fixed-function for rendering). It should be changed to use VBOs and `simplest.vs` / `simplest.fs` shaders, I advice looking at https://github.com/castle-engine/castle-engine/blob/master/src/x3d/opengl/castlesceneinternalocclusion.pas[castlesceneinternalocclusion.pas] that does this correctly now.
- .. later, you may also fix TGLRenderToTexture to honour PackedStencilDepth for OpenGLES (to be able to use FBO with stencil, for screen effects and cubemap mirrors).
-
-+
-In progress now: https://github.com/castle-engine/castle-engine/pull/312
-. (_Very easy_) *3D textures*. They are part of OpenGLES 3.0 standard, but are also available on some OpenGLES 2.0 devices through extension. The existing OpenGL code for them should work, just some constants need to be adjusted and tested. A demos of 3D textures can be found in https://github.com/castle-engine/demo-models/tree/master/texturing_advanced[demo-models/texturing_advanced].
-. (_Very easy_) *Occlusion query*. The implementation in https://github.com/castle-engine/castle-engine/blob/master/src/x3d/opengl/castlesceneinternalocclusion.pas[castlesceneinternalocclusion.pas] is mostly valid for OpenGLES already: it uses VBOs and shaders for rendering. However, it needs fixing to use triangles instead of quads (OpenGLES does not support GL_QUAD primitive). Also, we should use https://www.khronos.org/registry/OpenGL/extensions/EXT/EXT_occlusion_query_boolean.txt[EXT_occlusion_query_boolean] that has a chance to exist on OpenGLES.
 . (_Medium_) *Wireframe rendering*. Since `glPolygonMode` is not available at all on OpenGLES, we need to be able to generate wireframe geometry arrays on CPU, adding a "wireframe" option to `CastleArraysGenerator` that will generate a different (line) primitive for TGeometryArrays. Then the renderer can use such TGeometryArrays for OpenGLES.
 +
 This is started now, by having `Shape.shading = "WIREFRAME"` option, see https://castle-engine.io/x3d_implementation_shape_extensions.php#section_ext_shading[Shape.shading field]. We need to
@@ -30,7 +22,7 @@ This is started now, by having `Shape.shading = "WIREFRAME"` option, see https:/
 
 == Other missing features on Android / iOS
 
-* On-screen keyboard on iOS is not available yet. On Android it's partially working since CGE 6.5 (we can show the keyboard, but we don't process keys yet).
+* On-screen keyboard on iOS is not available yet.
 * TGLImage.GetContents is not available on OpenGLES, as it doesn't support glGetTexImage. Fixing it is a matter of implementing alternative way that draws texture to FBO and grabs using SaveScreenGL (using glReadPixels internally).
 +
 See https://discord.com/channels/389676745957310465/389676745957310467/851790467766026280 ,
