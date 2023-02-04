@@ -106,3 +106,37 @@ Alternative method of distribution macOS applications is the  link:http://wiki.f
 - If you need, you can add additional dynamic libraries to the bundle. If you link to them dynamically (e.g. using our `TDynLib.Load`), you should load them from a path relative to `BundlePath`, like `BundlePath + 'Contents/MacOS/libpng.dylib'`.
 +
 See link:http://wiki.freepascal.org/OS_X_Programming_Tips#Mac_OS_X_Libraries[macOS Libraries on FPC wiki] for general instructions how to include library inside a bundle.
+
+## FAQ
+
+### Apple says that OpenGL(ES) is deprecated. What happens if they remove OpenGL(ES) from macOS and iOS?
+
+_Short answer:_ We will integrate seamlessly with https://github.com/google/angle[ANGLE, that has a complete OpenGL ES 3.0 support, on top of Metal API].
+
+_Full answer:_
+
+First of all, I (_Michalis_) hope that Apple will not go with the removal of OpenGL(ES) from their devices. Or that they will add https://www.vulkan.org/[Vulkan] support as a 1st-class citizen on Apple devices, in exchange. I hope they will not make https://developer.apple.com/metal/[Metal] the only API to access GPU on macOS / iOS.
+
+_Reason:_ Open technologies, including cross-platform open standards (like OpenGL and Vulkan), are what allows us to innovate and ultimately enjoy technology. The world seems to agree -- as it stands, all platforms supported by CGE have _OpenGL or OpenGLES_ support, and many have _Vulkan_ support. Unless your software is only for Apple devices, it's hard to be enthusiastic for https://developer.apple.com/metal/[Metal], an Apple-specific technology that ultimately solves a similar problem that https://www.vulkan.org/[Vulkan] does on all other platforms.
+
+As of now, OpenGL is still fully supported on latest macOS (including on Apple _Silicon_ architecture) and OpenGLES is still fully supported on iOS (iPhone, iPad).
+
+If however Apple will really remove OpenGL(ES) from future devices, and make https://developer.apple.com/metal/[Metal] the only officially supported API for GPU access, we have a number of options. And we will be in a good company, a lot of projects will be in a similar spot -- including Apple's own _Safari web browser_ that in the end has to support WebGL (an API much like OpenGLES, but available for web page developers from JS) translating it in an efficient way to something available on Apple devices.
+
+1. Our first course of action will be using https://github.com/google/angle[ANGLE] that allows to effectively use OpenGLES API (and GLSL shaders) from CGE, and have them translated to _Metal_ under the hood.
++
+It's efficient, it's complete: full OpenGL ES 3.0 support.
++
+It's been in development for a long time, is supported by some big companies, it has multiple backends (not just Metal).
++
+Apple itself contributes to it (see notes from https://github.com/kakashidinho/metalangle#differences-between-metalangle-and-googles-angle[MetalANGLE], fork where initial work has happened to support OpenGLES 2.0 and 90% of OpenGL ES 3.0 on top of Metal).
+
+2. In the future, CGE will likely have an alternative https://www.vulkan.org/[Vulkan] renderer. A new API, harder to use, more low-level, but with possibilities to deliver amazing performance and also scale better to multiple cores.
++
+At that point, using https://moltengl.com/moltenvk/[MoltenVK] will become an option to. It exposes Vulkan API and uses Metal underneath.
+
+3. Finally, there is an option of developing another renderer in CGE on top of https://developer.apple.com/metal/[Metal].
++
+We know we will have extensible architecture in CGE for multiple renderers. I have been playing with idea to implement a Vulkan renderer (see https://github.com/castle-engine/castle-engine/tree/master/examples/research_special_rendering_methods/new_renderer_skeleton[new_renderer_skeleton]) and, beoynd some initial fun, of course it will imply the need for a pluggable architecture to implement many possible renderers. OpenGL(ES) will remain one, Vulkan will most likely become another, and it is possible that Metal will become yet another one.
++
+However, please note -- this (Metal renderer in CGE) is not an option that will happen fast. Making a new renderer _"production-ready"_ (that is, making it more feature-packed / efficient than just using abstraction layer like Angle + existing OpenGLES renderer) is a _lot_ of work. Moreover, CGE is a cross-platform game engine, and it's hard to prioritize big work on something that only benefits Apple platforms. That being said, I would be very happy to see a dedicated contributor interested in adding Metal support. Or if you want to find and sponsor such contributor, that can be arranged (https://castle-engine.io/talk.php[talk with us]).
