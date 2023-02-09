@@ -13,7 +13,11 @@ FROM debian:stable
 #   xinit `which view3dscene` --screenshot 0 a.png -- :1
 # inside Docker.
 
-RUN apt-get update && \
+# Using --allow-releaseinfo-change necessary to avoid error:
+#   The repository 'http://security.debian.org/debian-security stable/updates Release' does not have a Release file.
+# See https://stackoverflow.com/questions/68802802/repository-http-security-debian-org-debian-security-buster-updates-inrelease
+
+RUN apt-get --allow-releaseinfo-change update && \
   apt-get --no-install-recommends -y install \
     libglu1-mesa \
     libxmu6 \
