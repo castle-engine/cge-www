@@ -1795,8 +1795,8 @@ function x3d_spec_latest_url($component_name, $anchor = '', $spec_version = NULL
     $anchor = '#' . $anchor;
   }
 
-  // Return X3D 4.0 regardless of $draft, our materials now heavily depend on X3D 4.
-  $spec_base = 'https://www.web3d.org/specifications/X3Dv4Draft/ISO-IEC19775-1v4-CD/Part01/components/';
+  // Return X3D 4.0 now, ignoring $draft value, our materials now heavily depend on X3D 4.
+  $spec_base = 'https://www.web3d.org/documents/specifications/19775-1/V4.0/Part01/components/';
 
   switch ($component_name) { // the HTML name was updated in X3D 4
     case 'enveffects'    : $component_name = 'environmentalEffects'; break;
@@ -1808,16 +1808,6 @@ function x3d_spec_latest_url($component_name, $anchor = '', $spec_version = NULL
     case 'keyboard'      : $component_name = 'keyDeviceSensor'; break;
     case 'utils'         : $component_name = 'eventUtilities'; break;
   }
-
-  /*
-  if ($spec_version == 'draft') {
-    // latest X3D 4 draft
-    //$spec_base = 'https://www.web3d.org/specifications/X3Dv4Draft/ISO-IEC19775-1v4-WD3/Part01/components/';
-    $spec_base = 'https://www.web3d.org/specifications/X3Dv4Draft/ISO-IEC19775-1v4-CD/Part01/components/';
-  } else {
-    $spec_base = 'http://www.web3d.org/documents/specifications/19775-1/V3.3/Part01/components/';
-  }
-  */
 
   return $spec_base . $component_name . '.html' . $anchor;
 }
