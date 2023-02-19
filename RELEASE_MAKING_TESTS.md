@@ -85,6 +85,8 @@ For each:
     castle-engine run -- --capabilities=force-fixed-function
     ```
 
+    Change `InternalUpgradeGlslVersion` to `false` and retest. "automatic" should work. "force-modern" can fail (as resulting shaders do not satisfy OpenGL "core").
+
 - Test CGE editor with non-standard rendering (open 3D template):
 
     ```
