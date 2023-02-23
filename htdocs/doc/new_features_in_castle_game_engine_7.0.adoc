@@ -40,6 +40,15 @@ See https://castle-engine.io/wp/2022/12/24/summary-of-4th-open-meeting-physics-p
 * https://castle-engine.io/control_on_form[TCastleControl available now for Delphi VCL and FMX applications, in addition to existing Lazarus LCL].
 * Easily activate https://castle-engine.io/wp/2022/10/03/easy-shadows-in-editor-at-design-time-too-by-shadow-volumes-and-shadow-maps-are-coming-as-well/[shadows], just select checkbox `Shadows` at the light source to use shadow volumes. Note: We plan to expose also our _shadow maps_ in a similar easy-to-use fashion in future releases.
 * New component to support https://castle-engine.io/tiled_maps[Tiled maps] with features and excellent performance to render huge maps in CGE.
+* Renderer improvements:
++
+--
+* OpenGLES supports now almost all desktop rendering features: shadow volumes, shadow maps, 3D textures, occlusion query, anisotropic filtering, meshes with 32-bit indexes.
+* using only modern OpenGL 3.x context features, if possible
+* using "core" OpenGL profile on macOS by default, thus having OpenGL 4.x API on macOS
+* more optimal drawing of line primitives and quads
+* cgeref:TCastleRenderUnlitMesh[] utility
+--
 * Many editor UX improvements. The most important ones:
 +
 --
@@ -70,7 +79,9 @@ See https://castle-engine.io/wp/2022/12/24/summary-of-4th-open-meeting-physics-p
 
 Not part of the engine release, but still cool to mention:
 
-* https://castle-engine.io/gic2022[GIC 2022 presentation materials]
+* https://www.youtube.com/watch?v=Ad3UywYyRGU[GIC 2022 presentation] along with https://castle-engine.io/gic2022[slides]
+* https://www.youtube.com/watch?v=oA87iclrDZA[Embarcadero CodeRage 2022 presentation]
+* https://www.youtube.com/watch?v=xzfiy01Q8o0[DelphiCon 2023 presentation (CGE starts at 5:09)]
 * https://cat-astrophe-games.itch.io/lynch["Lynch" gamejam demo]
 
 === Released in 7.0-alpha.2
