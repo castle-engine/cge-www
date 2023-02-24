@@ -4,12 +4,12 @@ castle_header('Supported model formats');
 
 $toc = new TableOfContents(
   array(
-    new TocItem('Best formats to use', 'best'),
+    new TocItem('Best formats (recommended and with great support)', 'best'),
       new TocItem('glTF 2.0', 'gltf', 1),
       new TocItem('Spine JSON', 'spine', 1),
       new TocItem('X3D and VRML', 'x3d', 1),
       new TocItem('Sprite sheets', 'sprite_sheets', 1),
-    new TocItem('Other formats you can use', 'other'),
+    new TocItem('Other formats (supported but not recommended)', 'other'),
       new TocItem('Simple images', 'images', 1),
       new TocItem('Animation through a series of static models', 'animation_counter', 1),
       new TocItem('Collada', 'collada', 1),
@@ -20,6 +20,9 @@ $toc = new TableOfContents(
       new TocItem('STL', 'stl', 1),
       new TocItem('Videoscape GEO', '', 1),
       new TocItem('Deprecated: Castle Animation Frames (castle-anim-frames) format', 'castle_anim_frames', 1),
+    new TocItem('Other formats (not supported by engine core, but can be used with additional tools)', 'other_not_core'),
+      new TocItem('SVG', 'svg', 1),
+      new TocItem('FBX', 'fbx', 1),
   )
 );
 ?>
@@ -218,6 +221,34 @@ shape keys, materials, particles, physics...), although it is somewhat
 memory-hungry.
 
 <p>We advise now using glTF for all your animation needs.
+
+<?php echo $toc->html_section(); ?>
+
+<?php echo $toc->html_section(); ?>
+
+<p>You can <a href="https://create3000.github.io/x_ite/laboratory/x3d-file-converter">use X_ITE converter to convert SVG to X3D</a> and then read X3D inside our engine, as a scalable geometry. There is also <a href="https://www.npmjs.com/package/x3d-tidy">a command-line converter x3d-tidy using the same X_ITE under the hood</a>.
+
+<p>Note that in the generated X3D file, all objects will be placed at the same depth, Z = 0, at least right now. You may have to fix it to avoid Z-fighting in case SVG layers overlap. For simple cases, it is possible to do this by just manually editing the X3D file in any text editor.
+
+<p>Of course you can also convert SVG to a raster image (like PNG) using e.g. <a href="https://inkscape.org/">Inkscape export options</a>.
+
+<?php echo $toc->html_section(); ?>
+
+<p>FBX is a <a href="https://en.wikipedia.org/wiki/FBX">proprietary format from Autodesk</a>. As such it has good support in Autodesk software like <a href="creating_data_3dsmax.php">3ds Max</a> and <a href="creating_data_maya.php">Maya</a>.
+
+<p>If you have FBX models, we recommend converting them to glTF using <a href="https://github.com/facebookincubator/FBX2glTF">FBX2glTF</a>. It's a simple command-line tool, just call it with the FBX model file name:</p>
+
+<pre>
+FBX2glTF model.fbx
+</pre>
+
+<p>After the export, the <code>modelname_out</code> subfolder will appear with the exported model. The conversion result can be easily compared using e.g. <a href="https://castle-engine.io/view3dscene.php">view3dcene</a> and <a href="https://www.autodesk.com/products/fbx/fbx-review">FBX Review</a>.
+
+<p><i>Note: We do not recommend using FBX in your workflow.</i>
+<!--
+Being a proprietary format, it means that even official specification of FBX is not available to us. All software that supports FBX either paid royalties to Autodesk for their documentaion and proprietary FBX SDK, or reverse-engineered the format. In terms of features, both <a href="#section_gltf">glTF</a> and <a href="#section_x3d">X3D</a> rival FBX.
+-->
+We believe that <i>open standards</i>, like <a href="#section_gltf">glTF</a> and <a href="#section_x3d">X3D</a> are a better way to innovate. See e.g. <a href="https://castle-engine.io/gic2022">Michalis GIC 2022 presentation slides</a>.
 
 <?php
 castle_footer();
