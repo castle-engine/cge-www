@@ -4,11 +4,12 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitc4802e05bbcf59fd3b6350e8d3e5482c_protectⓥ1_1_2
+class ComposerStaticInitc4802e05bbcf59fd3b6350e8d3e5482c_protectⓥ1_2_0
 {
     public static $files = array (
         '3773ef3f09c37da5478d578e32b03a4b' => __DIR__ . '/../..' . '/jetpack_vendor/automattic/jetpack-assets/actions.php',
         '590147edb63acb03b2852d5c4db13ce8' => __DIR__ . '/../..' . '/jetpack_vendor/automattic/jetpack-transport-helper/actions.php',
+        '3d45c7e6a7f0e71849e33afe4b3b3ede' => __DIR__ . '/../..' . '/jetpack_vendor/automattic/jetpack-waf/cli.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -26,6 +27,8 @@ class ComposerStaticInitc4802e05bbcf59fd3b6350e8d3e5482c_protectⓥ1_1_2
     );
 
     public static $classMap = array (
+        'AhoCorasick\\MultiStringMatcher' => __DIR__ . '/..' . '/wikimedia/aho-corasick/src/MultiStringMatcher.php',
+        'AhoCorasick\\MultiStringReplacer' => __DIR__ . '/..' . '/wikimedia/aho-corasick/src/MultiStringReplacer.php',
         'Automattic\\Jetpack\\A8c_Mc_Stats' => __DIR__ . '/../..' . '/jetpack_vendor/automattic/jetpack-a8c-mc-stats/src/class-a8c-mc-stats.php',
         'Automattic\\Jetpack\\Admin_UI\\Admin_Menu' => __DIR__ . '/../..' . '/jetpack_vendor/automattic/jetpack-admin-ui/src/class-admin-menu.php',
         'Automattic\\Jetpack\\Assets' => __DIR__ . '/../..' . '/jetpack_vendor/automattic/jetpack-assets/src/class-assets.php',
@@ -179,6 +182,17 @@ class ComposerStaticInitc4802e05bbcf59fd3b6350e8d3e5482c_protectⓥ1_1_2
         'Automattic\\Jetpack\\Transport_Helper\\Helper_Script_Manager' => __DIR__ . '/../..' . '/jetpack_vendor/automattic/jetpack-transport-helper/src/class-helper-script-manager.php',
         'Automattic\\Jetpack\\Transport_Helper\\Package_Version' => __DIR__ . '/../..' . '/jetpack_vendor/automattic/jetpack-transport-helper/src/class-package-version.php',
         'Automattic\\Jetpack\\Transport_Helper\\REST_Controller' => __DIR__ . '/../..' . '/jetpack_vendor/automattic/jetpack-transport-helper/src/class-rest-controller.php',
+        'Automattic\\Jetpack\\Waf\\CLI' => __DIR__ . '/../..' . '/jetpack_vendor/automattic/jetpack-waf/src/class-waf-cli.php',
+        'Automattic\\Jetpack\\Waf\\REST_Controller' => __DIR__ . '/../..' . '/jetpack_vendor/automattic/jetpack-waf/src/class-rest-controller.php',
+        'Automattic\\Jetpack\\Waf\\Waf_Compatibility' => __DIR__ . '/../..' . '/jetpack_vendor/automattic/jetpack-waf/src/class-compatibility.php',
+        'Automattic\\Jetpack\\Waf\\Waf_Constants' => __DIR__ . '/../..' . '/jetpack_vendor/automattic/jetpack-waf/src/class-waf-constants.php',
+        'Automattic\\Jetpack\\Waf\\Waf_Initializer' => __DIR__ . '/../..' . '/jetpack_vendor/automattic/jetpack-waf/src/class-waf-initializer.php',
+        'Automattic\\Jetpack\\Waf\\Waf_Operators' => __DIR__ . '/../..' . '/jetpack_vendor/automattic/jetpack-waf/src/class-waf-operators.php',
+        'Automattic\\Jetpack\\Waf\\Waf_Request' => __DIR__ . '/../..' . '/jetpack_vendor/automattic/jetpack-waf/src/class-waf-request.php',
+        'Automattic\\Jetpack\\Waf\\Waf_Runner' => __DIR__ . '/../..' . '/jetpack_vendor/automattic/jetpack-waf/src/class-waf-runner.php',
+        'Automattic\\Jetpack\\Waf\\Waf_Runtime' => __DIR__ . '/../..' . '/jetpack_vendor/automattic/jetpack-waf/src/class-waf-runtime.php',
+        'Automattic\\Jetpack\\Waf\\Waf_Standalone_Bootstrap' => __DIR__ . '/../..' . '/jetpack_vendor/automattic/jetpack-waf/src/class-waf-standalone-bootstrap.php',
+        'Automattic\\Jetpack\\Waf\\Waf_Transforms' => __DIR__ . '/../..' . '/jetpack_vendor/automattic/jetpack-waf/src/class-waf-transforms.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'Jetpack_IXR_Client' => __DIR__ . '/../..' . '/jetpack_vendor/automattic/jetpack-connection/legacy/class-jetpack-ixr-client.php',
         'Jetpack_IXR_ClientMulticall' => __DIR__ . '/../..' . '/jetpack_vendor/automattic/jetpack-connection/legacy/class-jetpack-ixr-clientmulticall.php',
@@ -193,9 +207,9 @@ class ComposerStaticInitc4802e05bbcf59fd3b6350e8d3e5482c_protectⓥ1_1_2
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitc4802e05bbcf59fd3b6350e8d3e5482c_protectⓥ1_1_2::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitc4802e05bbcf59fd3b6350e8d3e5482c_protectⓥ1_1_2::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInitc4802e05bbcf59fd3b6350e8d3e5482c_protectⓥ1_1_2::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitc4802e05bbcf59fd3b6350e8d3e5482c_protectⓥ1_2_0::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitc4802e05bbcf59fd3b6350e8d3e5482c_protectⓥ1_2_0::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitc4802e05bbcf59fd3b6350e8d3e5482c_protectⓥ1_2_0::$classMap;
 
         }, null, ClassLoader::class);
     }

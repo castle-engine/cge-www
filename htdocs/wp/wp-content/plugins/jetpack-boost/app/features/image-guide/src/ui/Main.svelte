@@ -1,80 +1,116 @@
 <script lang="ts">
-	import { measure } from '../Measurements';
+	import { onMount } from 'svelte';
+	import { guideState } from '../stores/GuideState';
 	import Bubble from './Bubble.svelte';
-	import ImageGuide from './ImageGuide.svelte';
-	import { state } from './StateStore';
-	import type { GuideSize, MeasuredImage } from '../types';
+	import Popup from './Popup.svelte';
+	import type { MeasurableImageStore } from '../stores/MeasurableImageStore';
+	import type { GuideSize } from '../types';
 
-	export let images: MeasuredImage[];
-	let show: MeasuredImage | false = false;
+	export let stores: MeasurableImageStore[];
+	let show: number | false = false;
 
-	function onMouseLeave() {
-		if ( $state !== 'always_on' ) {
-			show = false;
+	/**
+	 * This onMount is triggered when the window loads
+	 * and the Image Guide UI is first
+	 */
+	onMount( () => {
+		stores.forEach( store => store.updateDimensions() );
+	} );
+
+	function closeDetails( e ) {
+		// Don't exit when hovering the Portal
+		if (
+			e.relatedTarget &&
+			// Don't exit when hovering the Popup
+			e.relatedTarget.classList.contains( 'keep-guide-open' )
+		) {
+			return;
+		}
+
+		show = false;
+	}
+
+	function getGuideSize( width = -1, height = -1 ): GuideSize {
+		if ( width < 200 || height < 200 ) {
+			return 'micro';
+		} else if ( width < 400 || height < 400 ) {
+			return 'small';
+		}
+		return 'normal';
+	}
+
+	function toggleBackdrop( on = false ) {
+		if ( on ) {
+			stores.forEach( store => store.node.classList.add( 'jetpack-boost-guide__backdrop' ) );
+		} else {
+			stores.forEach( store => store.node.classList.remove( 'jetpack-boost-guide__backdrop' ) );
 		}
 	}
-	$: show = $state === 'always_on' ? images[ 0 ] : false;
 
-	let size: GuideSize = 'normal';
-	const image = images[ 0 ];
-	// Looking at the first image in the set is fine, at least for now.
-	if ( image.onScreen.width < 200 || image.onScreen.height < 200 ) {
-		size = 'micro';
-	} else if ( image.onScreen.width < 400 || image.onScreen.height < 400 ) {
-		size = 'small';
-	}
+	// Use the first image available in the stores to determine the guide size
+	const sizeOnPage = stores[ 0 ].sizeOnPage;
+	$: size = getGuideSize( $sizeOnPage.width, $sizeOnPage.height );
 
-	$: if ( show ) {
-		images.forEach( i => i.node.classList.add( 'jetpack-boost-image-guide-backdrop' ) );
-	} else {
-		images.forEach( i => i.node.classList.remove( 'jetpack-boost-image-guide-backdrop' ) );
-	}
+	$: toggleBackdrop( show !== false );
+	let position = {
+		top: 0,
+		left: 0,
+	};
 
-	let debounce: number;
-	function updateDimensions() {
-		if ( debounce ) {
-			clearTimeout( debounce );
-		}
-		debounce = setTimeout( () => {
-			images = measure( images );
-		}, 500 );
+	function hover( e: CustomEvent ) {
+		const detail = e.detail;
+		const index = detail.index;
+		position = detail.position;
+		show = index;
 	}
 </script>
 
-<svelte:window on:resize={updateDimensions} />
-
-{#if $state === 'active' || $state === 'always_on'}
-	<div class="guide {size}" class:show={show !== false} on:mouseleave={onMouseLeave}>
+{#if $guideState === 'active'}
+	<div
+		class="guide {size}"
+		class:show={show !== false}
+		class:keep-guide-open={show !== false}
+		on:mouseleave={closeDetails}
+	>
 		<div class="previews">
-			{#each images as image, index}
-				<Bubble
-					{index}
-					oversizedBy={image.scaling.oversizedBy}
-					on:mouseenter={() => ( show = images[ index ] )}
-				/>
+			{#each stores as store, index}
+				<Bubble {index} {store} on:hover={hover} />
 			{/each}
 		</div>
 		{#if show !== false}
-			<ImageGuide {size} image={show} />
+			<!--
+				Intentionally using only a single component here.
+				See <Popup> component source for details.
+			 -->
+			<Popup store={stores[ show ]} {size} {position} on:mouseleave={closeDetails} />
 		{/if}
 	</div>
 {/if}
 
 <style lang="scss">
+	:global( .jetpack-boost-guide ) {
+		&:not( .relative ) {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			width: 100%;
+			height: 100%;
+		}
+	}
+	:global( .jetpack-boost-guide.relative ) {
+		position: relative;
+	}
 	.guide {
 		position: absolute;
 		top: 0;
 		left: 0;
-		right: 0;
-		bottom: 0;
-		width: 100%;
-		height: 100%;
 		z-index: 8000;
 		line-height: 1.55;
-		padding: 15px;
+		padding: 20px;
 		&.small {
 			font-size: 13px;
-			padding: 15px;
 		}
 
 		&.micro {
@@ -86,15 +122,10 @@
 			z-index: 9000;
 		}
 
-		// Important statements to override theme styles
+		// !important statements override theme styles
 		font-size: 15px !important;
 		font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen-Sans',
 			'Ubuntu', 'Cantarell', 'Helvetica Neue', sans-serif !important;
-	}
-
-	:global( .jetpack-boost-image-guide-backdrop ) {
-		transition: opacity 0.2s ease-in-out, filter 0.2s ease-in-out;
-		filter: brightness( 0.3 );
 	}
 
 	.previews {
@@ -103,5 +134,10 @@
 		gap: 15px;
 		flex-wrap: wrap;
 		margin-bottom: 15px;
+	}
+
+	:global( .jetpack-boost-guide__backdrop ) {
+		transition: opacity 0.2s ease-in-out, filter 0.2s ease-in-out;
+		filter: brightness( 0.3 );
 	}
 </style>

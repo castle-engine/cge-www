@@ -6,6 +6,8 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AhoCorasick\\MultiStringMatcher' => $vendorDir . '/wikimedia/aho-corasick/src/MultiStringMatcher.php',
+    'AhoCorasick\\MultiStringReplacer' => $vendorDir . '/wikimedia/aho-corasick/src/MultiStringReplacer.php',
     'Automattic\\Jetpack\\A8c_Mc_Stats' => $baseDir . '/jetpack_vendor/automattic/jetpack-a8c-mc-stats/src/class-a8c-mc-stats.php',
     'Automattic\\Jetpack\\Admin_UI\\Admin_Menu' => $baseDir . '/jetpack_vendor/automattic/jetpack-admin-ui/src/class-admin-menu.php',
     'Automattic\\Jetpack\\Assets' => $baseDir . '/jetpack_vendor/automattic/jetpack-assets/src/class-assets.php',
@@ -159,6 +161,17 @@ return array(
     'Automattic\\Jetpack\\Transport_Helper\\Helper_Script_Manager' => $baseDir . '/jetpack_vendor/automattic/jetpack-transport-helper/src/class-helper-script-manager.php',
     'Automattic\\Jetpack\\Transport_Helper\\Package_Version' => $baseDir . '/jetpack_vendor/automattic/jetpack-transport-helper/src/class-package-version.php',
     'Automattic\\Jetpack\\Transport_Helper\\REST_Controller' => $baseDir . '/jetpack_vendor/automattic/jetpack-transport-helper/src/class-rest-controller.php',
+    'Automattic\\Jetpack\\Waf\\CLI' => $baseDir . '/jetpack_vendor/automattic/jetpack-waf/src/class-waf-cli.php',
+    'Automattic\\Jetpack\\Waf\\REST_Controller' => $baseDir . '/jetpack_vendor/automattic/jetpack-waf/src/class-rest-controller.php',
+    'Automattic\\Jetpack\\Waf\\Waf_Compatibility' => $baseDir . '/jetpack_vendor/automattic/jetpack-waf/src/class-compatibility.php',
+    'Automattic\\Jetpack\\Waf\\Waf_Constants' => $baseDir . '/jetpack_vendor/automattic/jetpack-waf/src/class-waf-constants.php',
+    'Automattic\\Jetpack\\Waf\\Waf_Initializer' => $baseDir . '/jetpack_vendor/automattic/jetpack-waf/src/class-waf-initializer.php',
+    'Automattic\\Jetpack\\Waf\\Waf_Operators' => $baseDir . '/jetpack_vendor/automattic/jetpack-waf/src/class-waf-operators.php',
+    'Automattic\\Jetpack\\Waf\\Waf_Request' => $baseDir . '/jetpack_vendor/automattic/jetpack-waf/src/class-waf-request.php',
+    'Automattic\\Jetpack\\Waf\\Waf_Runner' => $baseDir . '/jetpack_vendor/automattic/jetpack-waf/src/class-waf-runner.php',
+    'Automattic\\Jetpack\\Waf\\Waf_Runtime' => $baseDir . '/jetpack_vendor/automattic/jetpack-waf/src/class-waf-runtime.php',
+    'Automattic\\Jetpack\\Waf\\Waf_Standalone_Bootstrap' => $baseDir . '/jetpack_vendor/automattic/jetpack-waf/src/class-waf-standalone-bootstrap.php',
+    'Automattic\\Jetpack\\Waf\\Waf_Transforms' => $baseDir . '/jetpack_vendor/automattic/jetpack-waf/src/class-waf-transforms.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
     'Jetpack_IXR_Client' => $baseDir . '/jetpack_vendor/automattic/jetpack-connection/legacy/class-jetpack-ixr-client.php',
     'Jetpack_IXR_ClientMulticall' => $baseDir . '/jetpack_vendor/automattic/jetpack-connection/legacy/class-jetpack-ixr-clientmulticall.php',
