@@ -119,8 +119,10 @@ that you want to display. Like this:
 function CreateMyFont: TCastleFont;
 begin
   Result := TCastleFont.Create(nil);
-  { below is a string containing all my international chars, in UTF-8 }
-  Result.LoadCharacters := SimpleAsciiCharacters + \'你好世界ΓειασουκόσμεЗдравствуймир\';
+  { Below is a string containing all my international chars, in UTF-8.
+    Note that basic ASCII characters are also always loaded,
+    because Result.LoadBasicCharacters = true by default. }
+  Result.LoadCharacters := \'你好世界ΓειασουκόσμεЗдравствуймир\';
   Result.OptimalSize := 20;
   Result.Url := \'castle-data:/MyFontFile.ttf\';
 end;'); ?>
