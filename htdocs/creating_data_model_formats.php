@@ -39,7 +39,7 @@ You can also <a href="view3dscene.php">open them in view3dscene</a>.
 
 <p>An efficient, modern format for animated 3D and 2D models.
 
-<p>We advise using it in CGE as much as you can. It is supported by a lot of tools. We focus on supporting this format perfectly, with all the features and efficiency.
+<p>glTF is supported by a lot of tools, in particular <a href="blender">Blender has a full-featured exporter to glTF built-in</a>. We are dedicated to perfect glTF support, with all the features and efficiency.
 
 <p><a href="gltf">Details about glTF support in Castle Game Engine</a>.
 
@@ -229,6 +229,15 @@ memory-hungry.
 <p>You can <a href="https://create3000.github.io/x_ite/laboratory/x3d-file-converter">use X_ITE converter to convert SVG to X3D</a> and then read X3D inside our engine, as a scalable geometry. There is also <a href="https://www.npmjs.com/package/x3d-tidy">a command-line converter x3d-tidy using the same X_ITE under the hood</a>.
 
 <p>Note that in the generated X3D file, all objects will be placed at the same depth, Z = 0, at least right now. You may have to fix it to avoid Z-fighting in case SVG layers overlap. For simple cases, it is possible to do this by just manually editing the X3D file in any text editor.
+
+<p>For more information see:
+
+<ul>
+  <li>
+    <p><a href="https://castle-engine.io/wp/2023/02/25/convert-svg-to-x3d-using-x_ite-to-display-svg-as-geometry-in-castle-game-engine/">News post about it</a>
+  <li>
+    <p><a href="https://github.com/castle-engine/demo-models/tree/master/svg">demo-models/svg with an example SVG and X3D files documenting the process</a>.
+</ul>
 
 <p>Of course you can also convert SVG to a raster image (like PNG) using e.g. <a href="https://inkscape.org/">Inkscape export options</a>.
 
