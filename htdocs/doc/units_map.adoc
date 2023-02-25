@@ -102,7 +102,7 @@ scene/load:: cgeref:X3DLoad[] and friends to load particular scene formats. Some
 
 cgeref:TCastleWindow[], window with an OpenGL context.
 
-_Depends on_: `ui`.
+_Depends on_: `castlescript`.
 
 NOTE: In the past it depended on more (even `scene`) but there should not be a need for this now. Window allows to add cgeref:TCastleUserInterface[] and cgeref:TCastleView[] inside, it should not deal with viewports/scenes specifics directly.
 
@@ -112,7 +112,7 @@ NOTE: In the past it depended on more (even `scene`) but there should not be a n
 
 cgeref:TCastleControl[], a Lazarus component to render with our engine.
 
-_Depends on_: `ui`.
+_Depends on_: `ui`. (not `castlescript` for now, doesn't need it.)
 
 This is an alternative to TCastleWindow, so it has the same dependencies. Units between `window` and `components` group cannot use each other.
 
