@@ -39,8 +39,11 @@ constantly improving. We want to use these tools, not reinvent them.
   <li><a href="blender">Blender</a></li>
   <li><a href="creating_data_3dsmax.php">3ds Max</a></li>
   <li><a href="creating_data_maya.php">Maya</a></li>
-  <li><a href="https://castle-engine.io/spine">Spine (wiki)</a></li>
+  <li><a href="spine">Spine</a></li>
+  <!--
+  Dragon Bones seems not maintained anymore, with broken website and even downloads.
   <li><a href="creating_data_dragon_bones.php">Dragon Bones</a></li>
+  -->
 </ul>
 
 <p>Other hints:

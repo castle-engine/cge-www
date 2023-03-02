@@ -397,7 +397,8 @@ $castle_sitemap = array(
               'creating_data_3dsmax' => array('title' => '3ds Max'),
               'creating_data_maya' => array('title' => 'Maya'),
               'doc/spine' => array('title' => 'Spine'),
-              'creating_data_dragon_bones' => array('title' => 'Dragon Bones'),
+              // Dragon Bones seems not maintained anymore, with broken website and even downloads.
+              //'creating_data_dragon_bones' => array('title' => 'Dragon Bones'),
             )
           ),
           'creating_data_auto_generated_textures' => array('title' => 'Auto-generated compressed and scaled textures'),

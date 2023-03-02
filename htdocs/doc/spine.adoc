@@ -56,7 +56,11 @@ See link:viewport_and_scenes[viewport and scenes] for more information about usi
 
 Basically, just create Spine models/animations as usual, and export them to JSON. Often it is comfortable to test your animations first in https://castle-engine.io/view3dscene.php[view3dscene] before trying them out in your game.
 
+////
+Dragon Bones seems not maintained anymore, with broken website and even downloads.
+
 You can also https://castle-engine.io/creating_data_dragon_bones.php[export from Dragon Bones].
+////
 
 It is advised (although not required) to create an atlas when you export to JSON, as rendering with atlas will be more efficient. Atlas options:
 

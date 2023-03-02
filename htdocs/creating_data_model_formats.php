@@ -45,11 +45,14 @@ You can also <a href="view3dscene.php">open them in view3dscene</a>.
 
 <?php echo $toc->html_section(); ?>
 
-<a href="http://esotericsoftware.com/">Spine</a> is a powerful program
+<p><a href="http://esotericsoftware.com/">Spine</a> is a powerful program
 for 2D game skeletal animations.
+<!--
+Dragon Bones seems not maintained anymore, with broken website and even downloads.
+
 <a href="creating_data_dragon_bones.php">Dragon Bones</a> can also export
 to this format.
-</p>
+-->
 
 <p><a href="https://castle-engine.io/spine">We have a big support for Spine JSON features</a>,
 and our friendly game studio <a href="http://cat-astrophe-games.com/">Cat-astrophe Games</a>
