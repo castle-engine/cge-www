@@ -112,6 +112,8 @@ The masked children, in turn, can also be any UI control. So you can filter rend
 
 cgeref:TCastleMask.MaskRendering[] determines if the children are rendered where the mask *is visible* or (on the contrary) where the mask *is not visible*.
 
+See the example https://github.com/castle-engine/castle-engine/tree/master/examples/user_interface/mask[examples/user_interface/mask] for demonstration.
+
 cgeimg::block[ui_mask.png|Mask,ui_mask_editor.png|Mask in editor]
 
 //TODO:TCastleTimer?
