@@ -97,7 +97,22 @@ cgeimg::block[ui_design.png|Design (refer to another UI design)]
 
 NOTE: Drag-and-drop `xxx.castle-user-interface` from the _"Files"_ panel (at the bottom) over a UI design to create a cgeref:TCastleDesign[] component easily.
 
-//TODO:TCastleTiledMapControl?
+### Mask
+
+cgeref:TCastleMask[] allows to define a _mask_ (using an arbitrary UI control) and use this mask to limit rendering the children.
+
+The _mask_ may be any UI control (or a composition of it). The colors do not matter, only which pixels are drawn by the mask. E.g. you can define a mask using
+
+[role="compact"]
+- An image (cgeref:TCastleImageControl[]) with alpha channel. Be sure to set cgeref:TCastleImageControl.AlphaChannel[] to cgeref:acTest[].
+- A viewport (cgeref:TCastleViewport[]), maybe even with something animated and/or 3D. Be sure to set cgeref:TCastleViewport.Transparent[] to `true`.
+- A shape (like cgeref:TCastleRectangleControl[], cgeref:TCastleShape[]).
+
+The masked children, in turn, can also be any UI control. So you can filter rendering of anything, even if it's interactive (like a button) or 3D (like a viewport).
+
+cgeref:TCastleMask.MaskRendering[] determines if the children are rendered where the mask *is visible* or (on the contrary) where the mask *is not visible*.
+
+cgeimg::block[ui_mask.png|Mask,ui_mask_editor.png|Mask in editor]
 
 //TODO:TCastleTimer?
 
