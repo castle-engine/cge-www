@@ -1322,7 +1322,8 @@ function echo_footer ()
 
     <p>This <a href="https://github.com/castle-engine/cge-www">webpage is also open-source and we welcome pull requests to improve it</a>.
 
-    <p>We use cookies for analytics. See our <a href="<?php echo CURRENT_URL; ?>privacy_policy.php">privacy policy</a>.
+    <?php // using CASTLE_PROD_URL to make sure it works also from API docs ?>
+    <p>We use cookies for analytics. See our <a href="<?php echo CASTLE_PROD_URL; ?>privacy_policy.php">privacy policy</a>.
   </div>
 
   <?php
