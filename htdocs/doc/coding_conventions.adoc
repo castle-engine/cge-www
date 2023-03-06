@@ -424,6 +424,7 @@ Same advise applies for related functions:
 * Use `FormatDot` instead of `Format`
 * Use `FloatToStrDot` instead of `FloatToStr`
 
+[#no_longint_longword]
 === Do not use `LongInt` / `LongWord`. Use `Int32` / `UInt32`, `Int64` / `UInt64`, `Integer` / `Cardinal`.
 
 Embarcadero decided to make things weird: https://docwiki.embarcadero.com/RADStudio/Sydney/en/Simple_Types_(Delphi)[]. The `LongInt` / `LongWord` are
@@ -447,6 +448,7 @@ So just don't use these types in CGE code.
 * Use `TListSize` for counts and capacities of lists. (It is signed, to not cause overflows with frequent constructions like `+for I := 0 to List.Count - 1 do...+`)
 * Use `PtrInt` / `PtrUInt` when you want to have integers of guaranteed pointer-size.
 
+[#no_extended]
 === Do not use `Extended`. Use `Single` / `Double`.
 
 Traditionally, `Extended` used to be a 10-byte floating-point type, available in old Pascal compilers like _Turbo Pascal_. But modern systems don't support such 10-byte floating-point type natively, so both FPC and Delphi actually make it an alias to some other type (usually `Double`, standard 8-byte floating-point type) on most (but not all) platforms.
@@ -480,6 +482,7 @@ For CGE developers: While the above recommendation holds (do not use `Extended`)
 - `EXTENDED_EQUALS_DOUBLE` symbol when `Extended` is 8-byte `Double`. Useful to not define overloads for both `Double` and `Extended` -- they would be equivalent (thus, not allowed by compiler) when these types are equal.
 - `EXTENDED_EQUALS_LONG_DOUBLE` symbol when `Extended` is 16-byte "long double".
 
+[#strings_unicode]
 === Most code should use just `String`, and be prepared that it is 8-bit on FPC and 16-bit on Delphi. Only if writing to stream, explicitly use 8-bit `AnsiString` (in usual case, when you write UTF-8).
 
 On FPC, we follow the same approach to `String` as in Lazarus: `String` is an alias to `AnsiString`, and it should always contain UTF-8 data. We use necessary compiler switches to make `String = AnsiString`, and the `CastleUtils` has necessary initialization to make sure that strings can just carry UTF-8 on all platforms.
@@ -512,6 +515,7 @@ There are exceptions marked with `DefaultString` in the name, right now only `Me
 
  ** When interacting with external libraries, you will most often use `PAnsiChar` (not `PChar`) as most of them expect 8-bit UTF-8 (or just ASCII) text.
 
+[#beforedestruction]
 === Use `BeforeDestruction` for finalization tasks that keep the object state consistent
 
 While most of the finalization code should usually go to the destructor (`Destroy`), it is OK (and sometimes even desirable) to override `BeforeDestruction` and put there code that _finalizes things, but keeps the object state consistent_. The idea is that finalization can be split into 2 phases:
