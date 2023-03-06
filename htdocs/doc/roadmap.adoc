@@ -184,3 +184,37 @@ https://heroiclabs.com/docs/nakama/getting-started/index.html
 Nakama is an open-source server (which you can extend) and client API (which you can use from various game engines -- see https://heroiclabs.com/docs/nakama/client-libraries/ ) to get easy networking capabilities. You can host the server yourself or pay to get ready hosting.
 
 I think this, combined with CGE API, may give us networking capabilities comparable with some popular solutions known from other game engines.
+
+## Request dedicated GPU automatically
+
+Many laptops come now with 2 GPUs: a slower one that consumes less battery (often cheaper Intel) and a _"dedicated"_ GPU consuming more battery but capable of much better speeds, esp. when used with non-trivial 3D data (often more expensive Nvidia / AMD). The CGE editor automatically uses the "dedicated" GPU.
+
+To use "dedicated" GPU in your own projects, right now, the solution is to copy https://raw.githubusercontent.com/castle-engine/castle-engine/master/src/common_includes/request_dedicated_gpu.inc[src/common_includes/request_dedicated_gpu.inc] into your project top-level directory, and add `{$I request_dedicated_gpu.inc}` into the lpr/dpr file.
+
+We should make it happend automatically in the future.
+
+## Project settings editable using GUI
+
+We will expose both current `CastleEngineManifest.xml` and `data/CastleSettings.xml` as something you can edit yourself with GUI.
+
+But we *don't want* to create and maintain a custom GUI for them, instead the plan is to:
+
+* Create Pascal components with published properties representing their data.
+* Make the project settings files just "JSON design files" for the editor.
+
+So you'll have a file like `project.castle-project` and using editor menu item like _"Project Build Settings"_ will really just open a design `project.castle-project` (JSON) in the editor, and it will be just a serialized `TCastleProject` component. Same for _"Project Runtime Settings"_ which edits `data/settings.castle-project-settings`.
+
+Bonus: we'll associate `*.castle-project` with the system, to open when you double-click it e.g. from Windows installer.
+
+Bonus: you can add non-visual components to `data/settings.castle-project-settings` and load them using `Container.DesignedComponent('xxx')`. This is great e.g. to add sounds or fonts or other data that you want to later load in CGE, from any view.
+
+There are a few details that have to be ironed out here:
+
+* how should the new equivalent of `CastleEngineManifest.xml` and `data/CastleSettings.xml` interact. We will likely keep 2 files, `project.castle-project` and `data/settings.castle-project-settings`, as
++
+--
+- Some information doesn't need to be packed into data, part of it could even be considered "somewhat secret" (e.g. SDK IDs for Android analytics should *not* be present anywhere in the non-Android builds).
+- Some information should be packed into data automatically, by default, everything. To enable that _Bonus: you can add non-visual components_ feature.
+--
+
+* most intuitive names for all the things above (menu item names, component names, extensions etc.) :)
