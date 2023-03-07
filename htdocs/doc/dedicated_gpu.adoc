@@ -1,0 +1,46 @@
+# Dedicated GPU
+include::common.adoc[]
+
+== Introduction
+
+Many laptops come now with 2 GPUs: a slower one that consumes less battery and a _"dedicated"_ GPU consuming more battery but capable of much better speeds, esp. when used with non-trivial 3D data. The CGE editor and your applications automatically use the "dedicated" GPU.
+
+NOTE: There's generally no need to do anything for new projects to activate this. Project DPR / LPR file will contain appropriate code automatically. Unless you have created your project with CGE before 2023-03-07, then run in CGE editor menu item _"Code -> Regenerate Project"_.
+
+== Disable using dedicated GPU
+
+Applications created using CGE automatically use dedicated GPU by default, as this is a much better default for games. However you can choose to disable it, and let system choose the default GPU (which may or may not be the faster one).
+
+To do this, compile the project with `CASTLE_NO_FORCE_DEDICATED_GPU` symbol defined. We recommend to define it in link:project_manifest[CastleEngineManifest.xml], like this:
+
+[source,xml]
+----
+...
+  <compiler_options>
+    <defines>
+      <define>CASTLE_NO_FORCE_DEDICATED_GPU</define>
+    </defines>
+  </compiler_options>
+----
+
+To update Lazarus LPI with new symbol, be sure to use _"Code -> Regenerate Project"_ menu item in CGE editor (otherwise compiling from Lazarus IDE would not use the new symbol).
+
+== Credits and references
+
+Our code to make it happen is based on https://www.patreon.com/bero[Benjamin Rosseaux] code from https://gist.github.com/BeRo1985/939241b471f776ab844657d28d59368c .
+
+NVidia resources about this:
+
+- https://docs.nvidia.com/gameworks/content/technologies/desktop/optimus.htm
+
+- https://developer.download.nvidia.com/devzone/devcenter/gamegraphics/files/OptimusRenderingPolicies.pdf
+
+== Platforms affected by this
+
+  - It is confirmed to work on Windows, with both FPC and Delphi applications.
+
+  - Linux: We use it, but despite all testing, I (Michalis) remain unsure whether it has any effect.
++
+The necessary code to force dedicated GPU compiles on Linux OK, but does it have any effect on e.g. https://wiki.archlinux.org/title/NVIDIA_Optimus[Nvidia Optimus] on Linux? On all my Linux laptop systems with Nvidia installed, I have a somewhat non-standard Optimus setup, and it seems that this flag is ignored (but maybe it's the fault of my setup). Reports to the contrary are welcome.
+
+- macOS, FreeBSD: The necessary code doesn't even compile, so we disabled it. If there's a sense to use some similar trick for macOS / FreeBSD, link:talk.php[let us know].

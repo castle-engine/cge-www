@@ -360,6 +360,7 @@ $castle_sitemap = array(
               'doc/coding_traps' => array('title' => 'Coding Traps'),
               'doc/units_map' => array('title' => 'Units Map'),
               // 'engine_doc' => array('title' => 'Internals documentation'), // too outdated
+              'doc/dedicated_gpu' => array('title' => 'Dedicated GPU'),
               'doc/fpcupdeluxe' => array('title' => 'fpcupdeluxe'),
               'doc/fpmake' => array('title' => 'FpMake and FpPkg'),
               'doc/license' => array('title' => 'License'),

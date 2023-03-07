@@ -185,14 +185,6 @@ Nakama is an open-source server (which you can extend) and client API (which you
 
 I think this, combined with CGE API, may give us networking capabilities comparable with some popular solutions known from other game engines.
 
-## Request dedicated GPU automatically
-
-Many laptops come now with 2 GPUs: a slower one that consumes less battery (often cheaper Intel) and a _"dedicated"_ GPU consuming more battery but capable of much better speeds, esp. when used with non-trivial 3D data (often more expensive Nvidia / AMD). The CGE editor automatically uses the "dedicated" GPU.
-
-To use "dedicated" GPU in your own projects, right now, the solution is to copy https://raw.githubusercontent.com/castle-engine/castle-engine/master/src/common_includes/request_dedicated_gpu.inc[src/common_includes/request_dedicated_gpu.inc] into your project top-level directory, and add `{$I request_dedicated_gpu.inc}` into the lpr/dpr file.
-
-We should make it happend automatically in the future.
-
 ## Project settings editable using GUI
 
 We will expose both current `CastleEngineManifest.xml` and `data/CastleSettings.xml` as something you can edit yourself with GUI.
