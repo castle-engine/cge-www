@@ -15,15 +15,23 @@ cgeimg::block[oculus.png|Oculus Quest 2: Developer Mode for Castle Game Engine e
 
 AR: most likely using Android / iOS built-in frameworks, as these make AR widely available on modern phones.
 
-## (IN PROGRESS - MOSTLY DONE) More visual editor
+## New material components (allowing also material editing in the editor)
 
-Extend our link:manual_editor.php[editor] with features mentioned on link:wp/2022/01/01/summary-of-2021-plans-for-2022/[2022 plans]. Remaining:
+We want to allow you to edit materials in the CGE editor,
 
-- Materials editing.
+- e.g. to modify (or completely override) materials from TCastleScene (like glTF),
 
-## More Delphi
+- to have full control over primitives (like `TCastleSphere` or `TCastleImageTransform` look),
 
-See link:supported_compilers.php[about existing Delphi compatibility]. We plan to support more platforms with Delphi: Linux, Android, iOS...
+- to enable you to use cool CGE features like mirrors ( https://castle-engine.io/x3d_extensions_mirror_plane.php ), shader effects ( https://castle-engine.io/compositing_shaders.php ) easier.
+
+This also means exposing new set of Pascal components to manage materials easier.
+
+See https://github.com/castle-engine/castle-engine/files/10324944/new-material-components.txt for rough plans.
+
+## More Delphi platforms
+
+See link:supported_compilers.php[about existing Delphi compatibility]. We plan to support more platforms with Delphi: Android, Linux, iOS...
 
 ## Load and animate glTF more efficiently
 
@@ -45,7 +53,7 @@ Using FPC + WebAssembly, new target announced at the end of 2021.
 
 Some parts may also be done using pas2js. Done most likely just "wrapper", and the majority can be done using WebAssembly.
 
-_This is already in-progress by Trung Le (Kagamma)._
+_This is already in-progress by Trung Le (Kagamma) and Andrzej Kilijański (test https://github.com/and3md/cge-fpc-internalerror )._
 
 ## (IN PROGRESS) Particle systems
 
@@ -53,11 +61,13 @@ With a designer. Example usage: blood, snow, rain, fire, smoke... 2D, 3D.
 
 _This is already in-progress by Trung Le (Kagamma). Use link:https://github.com/Kagamma/cge-3d-particle-emitter[cge-3d-particle-emitter] or link:https://github.com/Kagamma/cge-effekseer[Effekseer Integration]. See link:additional_components.php[CGE components]._
 
-## Steam integration, and engine available as Steam app
+## (IN PROGRESS) Steam integration, and engine available as Steam app
 
 Official Steam integration in CGE, see https://trello.com/c/RNDjQhqe/71-steam-headers . We already used it for The Unholy Society, we want to either “just publish that approach” or propose a new, improved (without an intermediate “wrapper” library) approach.
 
 We should also upload CGE as app to Steam.
+
+_This is already in-progress by Eugene Loza (branch: https://github.com/castle-engine/castle-engine/commits/castle-steam ), we also have a draft application on Steam for CGE :)_.
 
 ## Release mobile view3dscene (as Android and iOS application)
 
@@ -210,3 +220,18 @@ There are a few details that have to be ironed out here:
 --
 
 * most intuitive names for all the things above (menu item names, component names, extensions etc.) :)
+
+## User interface (or any other simple property of CGE component) animation in editor
+
+Expose simple component(s) (`TCastleUserInterfaceBehavior` descendants?) that allow to animate anything in CGE editor. They should have
+
+- key-frames
+- key-values
+- support a few most common options: animating floats, vec2, vec3
+- configurable target component (TComponent)
+- configurable target property (string? and get/set property using RTTI)
+- easing (e.g. to make "bouncing" effect at the end of animation), https://easings.net/ https://developer.mozilla.org/en-US/docs/Web/CSS/easing-function
+
+The use-case should cover animating anythign that you see in CGE editor directly: e.g. UI stuff (like `TCastleUserIterface.Translation`, `TCastleImageControl.Color`), 3D stuff (`TCastleTransform.Translation`, `TCastleTransform.Rotation` etc.).
+
+For now: you have to animate UI from code, updating any values you want in `Update` and change any value you need (like `MyControl`.Translation) using routines like `Lerp` or `SmoothStep`.

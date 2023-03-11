@@ -895,6 +895,7 @@ Properties should generally work like you would expect a variable works. E.g. re
 
 Classes with independent properties are simple to use -- both from CGE editor (that exposes any published properties of `TComponent` descendants), and from code (code that sets a few properties is obvious to follow).
 
+[#optimize_smart]
 === Optimize smartly: profile, optimize where it matters (and not where it doesn't), think about smarter algorithms and moving CPU work to GPU to get big benefits
 
 If you want to suggest some optimization (of speed, of memory usage) to the engine, especially if it:
