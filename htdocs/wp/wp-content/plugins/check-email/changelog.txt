@@ -1,5 +1,8 @@
 == Changelog ==
 
+= v1.0.7 - 08/03/2022 =
+- Fixed: Incompatibility with Post SMTP ( [#51]( https://github.com/WPChill/check-email/issues/51) )
+
 = v1.0.6 - 02/05/2022 =
 - Fixed: Security, sanitization and escaping
 
