@@ -1,32 +1,4 @@
 # Mobile (Android, iOS) TODOs
 include::common.adoc[]
 
-== Introduction
-
-Here we list the features not (yet!) implemented in https://castle-engine.io/[Castle Game Engine] for OpenGLES (which is used by default on Android and iOS, although can be tested on other platforms too), but already implemented for OpenGL (used by default on desktops).
-
-Note that, except issues listed below, *everything else that works on desktops (Linux, Windows, MacOSX) should also work flawlessly on OpenGLES (Android, iOS)*! See link:features[the engine features].
-
-*Contributions to fix/implement missing features below are very welcome!* We tried to give below a detailed overview of what is needed for a particular feature, to make it easier to jump in and help :)
-
-== OpenGLES renderer
-
-. (_Medium_) *Wireframe rendering*. Since `glPolygonMode` is not available at all on OpenGLES, we need to be able to generate wireframe geometry arrays on CPU, adding a "wireframe" option to `CastleArraysGenerator` that will generate a different (line) primitive for TGeometryArrays. Then the renderer can use such TGeometryArrays for OpenGLES.
-+
-This is started now, by having `Shape.shading = "WIREFRAME"` option, see https://castle-engine.io/x3d_implementation_shape_extensions.php#section_ext_shading[Shape.shading field]. We need to
-
- ** make it available for _all_ geometry shapes
- ** make this feature more flexible, so that the renderer can switch between wireframe/non-wireframe rendering without any cost.
- ** And then we can implement Attribute.WireframeEffect on OpenGLES correctly,
- ** and allow to set Wireframe on specific viewports (so that some viewports may view wireframe, independent of others) on OpenGLES.
-
-== Other missing features on Android / iOS
-
-* On-screen keyboard on iOS is not available yet.
-* TGLImage.GetContents is not available on OpenGLES, as it doesn't support glGetTexImage. Fixing it is a matter of implementing alternative way that draws texture to FBO and grabs using SaveScreenGL (using glReadPixels internally).
-+
-See https://discord.com/channels/389676745957310465/389676745957310467/851790467766026280 ,
-+
-""""
-  It is however possible to implement this operation on mobile, just a little bit differently. One has to use TGLRenderToTexture to render quad with a texture (making sure the framebuffer size, quad size, and texture size match, and  without filtering) and then use glReadPixels to get the pixels from FBO. This will work on mobile (and also on desktops, although it will be less optimal alternative to glGetTexImage).
-  """
+This page has been merged into link:roadmap[].

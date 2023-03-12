@@ -91,10 +91,6 @@ _What we have now:_ The engine includes a unit `CastleTerrain` to generate terra
 
 _What we need:_ Visual, interactive editor for the `ElevationGrid` (the thing you get from `TTerrain.Node` call). To make hills, valleys in a comfortable way. And comfortably plant there stuff (rocks, grass, trees...).
 
-## Ready components to replicate data over the Internet
-
-Allowing to trivially get multi-playter functionality in your games.
-
 ## Vulkan renderer
 
 Vulkan renderer.
@@ -117,9 +113,26 @@ This would mean
 
 See link:https://libgdx.com/wiki/graphics/2d/fonts/distance-field-fonts[about Distance field fonts]. See code from link:https://github.com/neurolabusc/OpenGLCoreTutorials[Chris Rorden] showing how to do it in Lazarus.
 
-## Make 100% rendering features available on OpenGLES too
+## Mobile
 
-link:mobile_todos[We have some small TODOs to make OpenGLES (mobile) renderer as capable as OpenGL (desktop).]
+### Wireframe on OpenGLES
+
+Since `glPolygonMode` is not available at all on OpenGLES, we need to be able to generate wireframe geometry arrays on CPU, adding a "wireframe" option to `CastleArraysGenerator` that will generate a different (line) primitive for TGeometryArrays. Then the renderer can use such TGeometryArrays for OpenGLES.
+
+This is started now, by having `Shape.shading = "WIREFRAME"` option, see https://castle-engine.io/x3d_implementation_shape_extensions.php#section_ext_shading[Shape.shading field]. We need to
+
+* make it available for _all_ geometry shapes
+* make this feature more flexible, so that the renderer can switch between wireframe/non-wireframe rendering without any cost.
+* And then we can implement Attribute.WireframeEffect on OpenGLES correctly,
+* and allow to set Wireframe on specific viewports (so that some viewports may view wireframe, independent of others) on OpenGLES.
+
+### On-screen keyboard on iOS (done on Android)
+
+### TGLImage.GetContents on OpenGLES
+
+TGLImage.GetContents is not available on OpenGLES, as it doesn't support `glGetTexImage`. Fixing it is a matter of implementing alternative way that draws texture to FBO and grabs using SaveScreenGL (using glReadPixels internally).
+
+One has to use TGLRenderToTexture to render quad with a texture (making sure the framebuffer size, quad size, and texture size match, and  without filtering) and then use glReadPixels to get the pixels from FBO. This will work on mobile (and also on desktops, although it will be less optimal alternative to glGetTexImage).
 
 ## macOS: Package engine as one big application bundle
 
@@ -195,6 +208,10 @@ Nakama is an open-source server (which you can extend) and client API (which you
 
 I think this, combined with CGE API, may give us networking capabilities comparable with some popular solutions known from other game engines.
 
+### Related: Ready components to replicate data over the Internet
+
+Allowing to trivially get multi-player functionality in your games.
+
 ## Project settings editable using GUI
 
 We will expose both current `CastleEngineManifest.xml` and `data/CastleSettings.xml` as something you can edit yourself with GUI.
@@ -235,3 +252,25 @@ Expose simple component(s) (`TCastleUserInterfaceBehavior` descendants?) that al
 The use-case should cover animating anythign that you see in CGE editor directly: e.g. UI stuff (like `TCastleUserIterface.Translation`, `TCastleImageControl.Color`), 3D stuff (`TCastleTransform.Translation`, `TCastleTransform.Rotation` etc.).
 
 For now: you have to animate UI from code, updating any values you want in `Update` and change any value you need (like `MyControl`.Translation) using routines like `Lerp` or `SmoothStep`.
+
+## Screen effects - expose as nicer components
+
+Address a few shortcomings of our screen effects (`examples/screen_effects_demo/`, https://castle-engine.io/x3d_extensions_screen_effects.php ):
+
+- Change terminology. "Screen effect" is non-standard, "post-processing effects" are better.
+
+- Expose as components some standard effects, like blur, changing colors in HSV, grayscale. They should have easy Pascal properties, serializable to JSON, and wrap the related X3D nodes underneath.
+
+- Expose as component a customizable shader effect allowing you to provide GLSL code in a text box (TStringList editor) in CGE editor.
+
+- This depends on making a more generic `TCastleComponentEditorList` to expose `TCastleScreenEffects.ScreenEffects` list nicely.
+
+## Export any TCastleTransform hierarchy to X3D
+
+Currently you can only export `TCastleScene` to X3D.
+
+## Export TCastleScene, or any TCastleTransform hierarchy, to glTF
+
+Currently you can only export `TCastleScene` to X3D.
+
+This will likely also imply rename of `tovrmlx3d` to `castle-convert`.
