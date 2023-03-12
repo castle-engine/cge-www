@@ -253,6 +253,7 @@ The use-case should cover animating anythign that you see in CGE editor directly
 
 For now: you have to animate UI from code, updating any values you want in `Update` and change any value you need (like `MyControl`.Translation) using routines like `Lerp` or `SmoothStep`.
 
+[#screen_effects]
 ## Screen effects - expose as nicer components
 
 Address a few shortcomings of our screen effects (`examples/screen_effects_demo/`, https://castle-engine.io/x3d_extensions_screen_effects.php ):

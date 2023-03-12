@@ -11,7 +11,11 @@ cgeimg::block[oq_demo.png|Occlusion Query effect]
 
 It is really trivial to use it: just set on `TCastleScene` the cgeref:TCastleRenderOptions.OcclusionQuery[MyScene.RenderOptions.OcclusionQuery] to `true`. You can do this at runtime (and change at any moment), you can also set it in the CGE editor.
 
-Be sure to measure FPS (see https://castle-engine.io/manual_optimization.php ) to see how effective it is.
+Be sure to measure how effective this is:
+
+* Display FPS (see https://castle-engine.io/manual_optimization.php[manual about FPS])
+
+* Display `MyViewport.Statistics.ToString` to observe how many shapes and scenes were effectively rendered.
 
 == How it works
 
@@ -26,7 +30,7 @@ Note that this algorithm happens after the _frustum culling_ has eliminated shap
 
 == Why (and when) does this make the rendering faster
 
-* The only overhead we add is making the "occlusion query" (updating the visibility flag), which is done using hardware-accelerated `ARB_occlusion_query`.
+* The only overhead we add is making the _"occlusion query"_ (updating the visibility flag), which is a feature in modern OpenGL and OpenGLES.
 * On the plus side, the gain is that often we can render merely the bounding box (instead of the actual shape). This is a big gain, if you have lots of "heavy" shapes, that are typically obscured.
 
 This often results in a performance gain.
@@ -73,18 +77,20 @@ The biggest problem:
 
 * Sometimes you may see a lag of 1 frame when the object is not rendered, but it should be. This happens when the shape (or even it's bounding box) was not visible in the previous frame, but now it is visible. If your game runs at 60 FPS, it means that 3D shapes may appear with a delay of 1/60 of the second.
 +
-This is usually not noticeable. If need be, we have ideas how to enable some tweaking to fight with this problem on a per-scene basis:
-
- ** `RenderOptions.OcclusionQueryAlwaysCheckBox: Boolean`
- ** `RenderOptions.OcclusionQueryEnlargeBox: Single`
- ** maybe even `RenderOptions.OcclusionQueryFramesToHide: Integer`
-
+This is usually not noticeable. If need be, we have ideas to fight with this problem:
++
+--
+* `RenderOptions.OcclusionQueryEnlargeBox: Single` (make bbox larger, so that shape is considered visible sooner than it strictly has to be)
+* `RenderOptions.OcclusionQueryFramesToHide: Integer` (do not hide the shape as soon as it is invisible for 1 frame)
+--
 +
 Neither of the proposed properties above are implemented for now. You're welcome to report if you see this problem (1 frame lag) in a practical use-case, we can implement them then.
 
 Minor problems:
 
 * Sometimes object state flips between "visible" and "not visible", making uneven frame render times. This happens when the proper shape is obscured, but its bounding box is not obscured. The issue can in general be ignored -- user doesn't see any "flipping".
++
+If the issue becomes more important, we could add in the future `RenderOptions.OcclusionQueryAlwaysCheckBox: Boolean` (to always check bbox visibility, not actual shape, even when shape is visible). Above-mentioned `RenderOptions.OcclusionQueryFramesToHide` would also help with this.
 * The algorithm, in its current form, is incompatible with doing cgeref:DynamicBatching[], so we just disable _dynamic batching_ optimization on scenes where the occlusion query is active. Why?
  ** Dynamic batching merges many shapes into one. This means that, at the very least, it would make the occlusion query less effective -- only the "large" (merged) shapes are tested.
  ** The implementation would need to be extended, to propagate visibility test results from the merged shape \-> into original shapes. This makes complicated code, for a small gain.
