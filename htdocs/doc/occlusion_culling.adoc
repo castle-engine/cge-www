@@ -1,9 +1,9 @@
-# Occlusion Query
+# Occlusion Culling
 include::common.adoc[]
 
 == Introduction
 
-_Castle Game Engine_ can utilize *GPU occlusion query* to avoid rendering things that are completely obscured by other things.
+_Castle Game Engine_ can perform _occlusion culling_ to avoid rendering things that are completely obscured by other things.
 
 A typical scenario is when you move in a city with tall buildings, and camera is at a ground level. E.g. a game when you walk in a city, ride a car/tank/whatever in a city. In a typical view in such game, your viewing _frustum_ includes many 3D things -- but most of them are actually obscured by the building in front of you.
 

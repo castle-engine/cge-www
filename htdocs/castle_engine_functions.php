@@ -324,7 +324,7 @@ $castle_sitemap = array(
           ),
           'manual_optimization' => array('title' => 'Optimization',
             'sub' => array(
-              'doc/occlusion_query' => array('title' => 'Occlusion Query'),
+              'doc/occlusion_culling' => array('title' => 'Occlusion Culling'),
               'doc/profiling_using_valgrind' => array('title' => 'Profiling Using Valgrind'),
               'doc/detecting_memory_leaks_using_heaptrc' => array('title' => 'Detecting Memory Leaks Using HeapTrc'),
             )
