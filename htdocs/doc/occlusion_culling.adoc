@@ -17,6 +17,16 @@ Be sure to measure how effective this is:
 
 * Display `MyViewport.Statistics.ToString` to observe how many shapes and scenes were effectively rendered.
 
+== Example
+
+Example using this feature (it works both on OpenGL and OpenGLES) is in https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/occlusion_culling[examples/viewport_and_scenes/occlusion_culling].
+
+cgeimg::block[
+  occlusion_culling.png|Occlusion Culling Example,
+  occlusion_culling_editor.png|Occlusion Culling Example in Editor,
+  occlusion_culling_android.png|Occlusion Culling Example on Android
+]
+
 == How it works
 
 For every shape within `TCastleScene` (where you set `MyScene.RenderOptions.OcclusionQuery` = `true`) we look at whether the shape was detected as "visible" by occlusion query in the _previous frame_ (if it was not tested, e.g. because this is the 1st render, we assume it is visible).
