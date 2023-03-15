@@ -48,7 +48,9 @@ Everyone who subscribes to support CGE with at least 10 USD / month (anywhere --
 * Gordon Niessen
 * Highball
 * Jack Taylor
+* Jan Adamec
 * Jeff Davis
 * Martin Heggestad
+* Milos Stanojevic
 
 *Thank you!*
