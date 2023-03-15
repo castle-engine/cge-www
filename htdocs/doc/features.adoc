@@ -354,8 +354,9 @@ cgeimg::block[
   tiled_strategy_ortho.png|Tiled orthogonal map in "Strategy Game" demo
 ]
 
-* Tiled maps (TMX files) can be loaded into cgeref:TCastleTiledMapControl[] for 2D display.
-* Or they can be loaded (work in progress) into cgeref:TCastleScene[] for 3D display and easy integration with other scenes on top of it, like sprite sheets for units on the map.
+* Tiled maps (TMX files) can be loaded into cgeref:TCastleTiledMap[] for a 2D or 3D display in a viewport.
+* Viewport display means they can be combined with other scenes on top of it, like sprite sheets for units on the map.
+* See https://castle-engine.io/tiled_maps[manual about Tiled map].
 * See https://github.com/castle-engine/castle-engine/tree/master/examples/tiled/strategy_game_demo/[examples/tiled/strategy_game_demo] for a complete strategy game in CGE using Tiled maps.
 
 == Particles
