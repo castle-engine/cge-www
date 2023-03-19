@@ -275,3 +275,9 @@ Currently you can only export `TCastleScene` to X3D.
 Currently you can only export `TCastleScene` to X3D.
 
 This will likely also imply rename of `tovrmlx3d` to `castle-convert`.
+
+## Allow animating selected graph properties, without changing the graph
+
+Right now our X3D graph usage is similar to HTML DOM usage from typical web applications: we modify the graph at runtime, everything that changes stuff (like animations) just changes the graph. This is simple to use, it nicely allows to animate _everything_ in X3D and gives developers an easy way to modify everything at runtime.
+
+The downside is that we waste significant memory, and loading time, in some cases. If you want to play different animations on each cgeref:TCastleScene[], then they need to have a different graph even though they are loaded from the same `URL`. Hence using e.g. cgeref:TCastleScene.Clone[] or cgeref:TCastleSceneCore.Cache[] really internally makes multiple copies of the graph. This could be more optimal in the future. E.g. assuming your model only uses glTF skinned animation or animates simple transformation position/rotation/scale, we could make the graph read-only, and only maintain small "diff" information at each instance.
