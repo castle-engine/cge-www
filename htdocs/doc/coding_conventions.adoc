@@ -801,7 +801,7 @@ _Other things can also free the children, this will be handled OK._
 _Other things cannot free the children, or you will get dangling pointers._ That is, `TObjectList` cannot detect when an item was freed through some other mechanism, e.g. because you did `O := List[123]; FreeAndNil(O);`.
 - Ownership mechanism on `TComponentList`: list will make sure that children are freed (when they are removed from the list, or when list is destroyed).
 +
-_Other things can also free the children, this will be handled OK._
+_Other things can also free the children, this will be handled OK. Though be careful: do not free things when we may be in the middle of iteration over the list containing them._
 --
 
 In short, things are easy when *nothing else frees the object you were supposed to free*. Without explicit allowance, the other code should not free the things you created.
@@ -949,18 +949,18 @@ So, there _are_ cases to be made for some low-level optimizations. But don't fal
 
 We want the compilation of the engine, and all examples, to pass without any warnings. On all supported platforms and with all supported compilers.
 
-We consider compiler warnings as _generally useful_, i.e. we don't want to hide them, we want to obey them. A warning is a TODO -- you need to deal with this, maybe by improving the code to be more reliable.
+We consider compiler warnings as _generally useful_, so we don't want to mindlessly hide all warnings (or get into a habit of ignoring them). We want to obey the warnings. A warning is a TODO -- you need to deal with this, maybe by improving the code to be more reliable.
 
 Sometimes the warning isn't really valid, but you _still should deal with it_. It is acceptable, in justified cases, to selectively turn off the warning, like this:
 
 [source,pascal]
 ----
 {$warnings off} // knowingly calling deprecated method in another deprecated method
-X := Foo;
+X.Foo;
 {$warnings on}
 ----
 
-We still consider this a "win": while you will occasionally have to deal with useless warnings from the compiler, but on the other hand you will pay attention to compiler warnings and the compiler will help you detect real problems in code. The warnings reported by the compiler are often about "edge-cases", situations that don't happen often (or maybe even you think they will never happen), but sometimes the compiler is right: that special situation *can* happen, and it is better to have reliable answer for it then let code do something undefined.
+We still consider this a "win": while you will occasionally have to deal with useless warnings from the compiler, but on the other hand you will pay attention to compiler warnings and the compiler will help you detect real problems in code. The warnings reported by the compiler are often about "edge-cases", situations that don't happen often (or maybe even you think they will never happen), but sometimes the compiler is right: that special situation *can* happen, and the code should account for it.
 
 === Be consistent in API design
 
@@ -1035,7 +1035,7 @@ But I certainly recognize that there are cases when it's easier or harder to bre
 
 - designing API of a library that is dynamically linked, and distributed independently of the using applications, like OpenGL. You need to keep ABI compatibility then, which is even stronger than API. Not just language level breakage is not possible, also e.g. calling convention cannot change.
 
-In such cases, it is insanely difficult to break compatibility, because your users (in the wild) do not have automatic mechanisms that would force them to upgrade. Instead, their files / applications would suddenly stop to work. There are solutions to this (explicitly giving file format version in each file, like in glTF and X3D; explicitly requesting API version at initialization with flags for forward/backward compatibility behavior, like in OpenGL) but essentially breaking compatibility is hard -- you can do it only once per a long time, and you must have convincing arguments that new version is better (so it's worth forcing the entire ecosystem, like authoring tools, to upgrade).
+In such cases, it is insanely difficult to break compatibility, because your users (in the wild) do not have automatic mechanisms that would force them to upgrade. Instead, their files / applications would suddenly stop working. There are solutions to this (explicitly giving file format version in each file, like in glTF and X3D; explicitly requesting API version at initialization with flags for forward/backward compatibility behavior, like in OpenGL) but essentially breaking compatibility is hard -- you can do it only once per a long time, and you must have convincing arguments that new version is better (so it's worth forcing the entire ecosystem, like authoring tools, to upgrade).
 
 However, CGE is a library that is statically linked into your project. In the worst case, if we really break compatibility -- your game will not compile after you upgrade CGE. But we don't make it crashing for users. Developer will see that it will not compile, and will have to fix it.
 ====
