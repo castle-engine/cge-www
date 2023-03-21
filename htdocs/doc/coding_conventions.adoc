@@ -1,6 +1,7 @@
 # Coding Conventions
 include::common.adoc[]
 
+[#pascal]
 == Pascal Coding Conventions
 
 In general, we follow the standard Lazarus and Delphi coding conventions, used throughout most modern Object Pascal code.
@@ -12,6 +13,7 @@ These are documented nicely on:
 
 Some particular conventions:
 
+[#indent]
 === Indent by 2 spaces
 
 [source,pascal]
@@ -33,6 +35,7 @@ begin
 end;
 ----
 
+[#no_tabs]
 === Do not use tabs or trailing whitespace
 
 Do not leave "trailing whitespace" at the end of lines.
@@ -43,6 +46,7 @@ Do not use tabs. Use only spaces for all indentation.
 
 *Reason:* Tabs are nice when they are used 100% consistently for indentation, but in the long run it's hard to enforce using them 100% consistently esp. when many people are working on the same codebase. And when tabs are used inconsistently (sometimes mixed with spaces for indentation), problems arise -- because people have diffent _tab width_ in their editors, so for some people indentation will look broken. It's much easier to enforce the rule _always use spaces_.
 
+[#pascal_case]
 === Use `PascalCase` for everything
 
 `PascalCase` means that the first character of each word is capatalized.
@@ -51,10 +55,12 @@ Do not use tabs. Use only spaces for all indentation.
 * Including local variables. Even 1-letter variable names (so write `I` instead of `i`).
 * Including type names. Even the type names that are Pascal keywords (so write `String` / `Boolean` instead of `string` / `boolean`). Note: this rule was changed during CGE 6.5 development. So you will find a lot of code using lowercase `string` now in engine sources, but new code should use `String`.
 
+[#true_false_lowecase]
 === `true` and `false` are lowercase, not `True` and `False`
 
 *Reason:* We just historically wrote them always as lowercase `true` and `false`, and now it would be too big effort (for too little gain) to change to `True` and `False`. Some Pascal codebases write them also lowercase (e.g. LCL, although it is not 100% consistent) so we're not alone in this decision.
 
+[#begin_end_indentation]
 === Put `begin` on a new line, indentation of `begin` and `end` should match
 
 Do _not_ mimic C "K & R" style (https://en.wikipedia.org/wiki/Indent_style#K.26R) in Pascal:
@@ -87,6 +93,7 @@ for I := 1 to 10 do
   Writeln(I);
 ----
 
+[#else_indentation]
 === Put `else` on a new line, unless it's right after `end`
 
 The "else" keyword is written on a new line, unless it's right after "end". So:
@@ -144,6 +151,7 @@ if Foo then
   Xyz;
 ----
 
+[#if_indentation]
 === Put `if` on a new line, even if it's right after `else`
 
 [source,pascal]
@@ -174,6 +182,7 @@ if SomethingElse then
   Xyz;
 ----
 
+[#no_with]
 === Do not use `with`
 
 Never use `with` keyword. Using `with` makes the code very difficult to read, as some of the symbols inside the `with A do begin ... end` clause  are bound to A, and some are not, and it's completely invisible to the human reader which symbols are which. And it's impossible to determine it, without intimately knowing the complete API of class/record A.
@@ -219,6 +228,7 @@ The `with` also makes the code fragile to any changes of `A` API.
 +
 Using `with A ...` takes away some of this advantage. Even if you removed `NonExistingField` from `A`, the code `with A do NonExistingField := ...` may still compile, if the outer namespace happens to have the `NonExistingField` symbol.
 
+[#uses_order]
 === Order of the `uses` clause: standard, CGE, application
 
 The uses clause of our units and examples should follow the order
@@ -239,6 +249,7 @@ uses SysUtils, Classes,
 
 NOTE: We don't have a strict rule for the order of units within each group, e.g. we don't really care in which order you specify CGE units -- `CastleUtils, CastleViewport` or `CastleViewport, CastleUtils` are both OK. The order _often_ loosely follows the _dependency order_ (if unit `A` is used by `B`, then we write `A, B`, like `CastleUtils, CastleViewport` or `SysUtils, Classes, Controls`) but we really don't make this a strict rule (it would be too tiresome to maintain, for no gain). Many `uses` clauses have in practice an order dictated by history and that's OK. We only require strict separation between these 3 groups (standard, engine, application).
 
+[#strict_private]
 === Use `strict private` where possible
 
 Use `strict private` whenever you can, that is: use it for private stuff that is not accessed by other classes/routines in the same unit.
@@ -247,6 +258,7 @@ Use just `private` for stuff that _is_ accessed by other classes/routines in the
 
 This improves code readability in case of large units, that feature more than just a single class. And we have many such large units.
 
+[#no_strict_protected]
 === Do not use `strict protected`
 
 Using `strict protected` is not advised in CGE.
@@ -255,6 +267,7 @@ Using `strict protected` is not advised in CGE.
 
 So, use just one `protected` section, do not bother splitting it into `strict protected` and `protected`.
 
+[#abbrevs]
 === Write abbreviations using PascalCase
 
 Use `Url`, `Http` etc. in Pascal identifiers. Because it looks much better in long identifiers, e.g. `GetHttpResponse` is much more readable than `GetHTTPResponse`.
@@ -308,6 +321,7 @@ type
   end;
 ----
 
+[#extensions]
 === File extensions
 
 - `*.pas` files are units,
@@ -415,6 +429,7 @@ Nowadays, I usually define "of object" callbacks, assuming that all non-trivial 
 
 Place the implementation of constructors (`Create*`) first, then destructor (`Destroy`), and then the rest of methods. I do not have a precise rule about the ordering of the rest of methods -- I usually like to group related methods together.
 
+[#float_string_dot]
 === Remember that `StrToFloat` and friends are locale-dependent. Almost always use `StrToFloatDot` instead.
 
 Standard `StrToFloat` in FPC and Delphi converts floats to/from Strings using locale-dependent `DecimalSeparator` value. On some systems (e.g. on Polish Windows) it is equal to comma (`,`), not a dot (`.`). This is usually not what you want: when you read/write files, or command-line arguments, you usually want to have "dot" as the only decimal separator, so that your application works regardless of user's system locale.
@@ -550,6 +565,7 @@ Once the actual `Destroy` starts, the object may be in _half initialized_ state 
 
 We often make implementation of some class "robust" to work even when this class is in the middle of `Destroy`. But there is no guarantee about it and we do it on a case-by-case basis (when it is needed by something). In general, class implementation may assume that it is never called in "half initialized" state, and that user code checks `if not (csDestroying in SomeObject.ComponentState) then...` if it could happen when `SomeObject` is in the middle of `Destroy` operation.
 
+[#blank_lines]
 === Blank lines
 
 NOTE: This is a guideline, not a strict rule. There are many cases where we added (or didn't add) blank lines on a case-by-case basis, because "here it looked better". Still, do follow this guideline if there are no good reasons to deviate from it.
@@ -635,6 +651,7 @@ type
   end;
 ----
 
+[#property_setter]
 === Start a property setter with `if FXxx <> Value then`
 
 A typical setter implementation should check whether the new value is different than the previous, and early abort (not do anything) when they are equal.
@@ -680,6 +697,7 @@ begin
 end;
 ----
 
+[#document_everything]
 === Document at least every protected / public / published identifier, use a language that looks good in English and uses PasDoc tags
 
 All `protected`, `public`, `published` identifiers should be documented (unless you *really* don't have anything to add that isn't already spelled out by the identifier name).
