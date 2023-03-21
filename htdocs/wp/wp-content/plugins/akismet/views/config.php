@@ -37,7 +37,7 @@
 			</div> <!-- close akismet-section-header -->
 
 				<div class="akismet-new-snapshot">
-					<iframe allowtransparency="true" scrolling="no" frameborder="0" style="width: 100%; height: 220px; overflow: hidden;" src="<?php echo esc_url( sprintf( 'https://tools.akismet.com/1.0/snapshot.php?blog=%s&api_key=%s&height=200&locale=%s', urlencode( get_option( 'home' ) ), Akismet::get_api_key(), get_locale() ) ); ?>"></iframe>
+					<iframe allowtransparency="true" scrolling="no" frameborder="0" style="width: 100%; height: 220px; overflow: hidden;" src="<?php echo esc_url( sprintf( 'https://tools.akismet.com/1.0/snapshot.php?blog=%s&token=%s&height=200&locale=%s', urlencode( get_option( 'home' ) ), urlencode( Akismet::get_access_token() ), get_locale() ) ); ?>"></iframe>
 					<ul>
 						<li>
 							<h3><?php esc_html_e( 'Past six months' , 'akismet');?></h3>
