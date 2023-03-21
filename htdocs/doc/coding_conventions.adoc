@@ -144,7 +144,7 @@ if Foo then
   Xyz;
 ----
 
-=== Put `if` on a new line, even if it's right after `end`
+=== Put `if` on a new line, even if it's right after `else`
 
 [source,pascal]
 ----
@@ -176,9 +176,9 @@ if SomethingElse then
 
 === Do not use `with`
 
-Never use "with" keyword. Using "with" makes the code very difficult to read, as some of the symbols inside the "with A do begin .... end" clause  are bound to A, and some are not, and it's completely invisible to the human reader which symbols are which.
+Never use `with` keyword. Using `with` makes the code very difficult to read, as some of the symbols inside the `with A do begin ... end` clause  are bound to A, and some are not, and it's completely invisible to the human reader which symbols are which. And it's impossible to determine it, without intimately knowing the complete API of class/record A.
 
-And it's impossible to determine it, without intimately knowing the complete API of class/record A.
+NOTE: Speaking in more general (and opinionated) terms: Using `with` produces, in our opinion, code that is _"easier to write but harder to read"_ and this is a bad tradeoff. The readability of the code is much more important (because the code must be reviewed and maintained to be reliable).
 
 E.g. what does this code do?
 
@@ -193,9 +193,9 @@ end;
 
 Does it modify A contents, or does it modify outside variables,
 merely reading the A contents? You really don't know,
-until I show you the documentation of the class of A, and all it's ancestors.
+until I show you the documentation (or declaration in Pascal) of the class of A, and all it's ancestors.
 
-Compare with a clear:
+Compare this with these obvious code snippets:
 
 [source,pascal]
 ----
@@ -211,9 +211,13 @@ A.SourceX := X;
 A.SourceY := Y;
 ----
 
-The "with" also makes the code very fragile to any changes of A API. Every time you add a new field/property/method to A, then the code inside "with A do begin .... end" may change it's meaning. It may compile, but suddenly will do something completely different.
+The `with` also makes the code fragile to any changes of `A` API.
 
-Likewise, every time you remove a field/property/method from A, the code inside "with A do begin .... end" may compile, if you happen to have a variable outside of this block with a name matching the name inside A.
+* Every time you add/delete a field/property/method in A, then the code inside `with A do begin ... end` potentially changed it's meaning. It may compile, but suddenly will do something completely different, because the symbols inside the `with` clause will be bound to a different namespace.
+
+* This is in contrast to all the other code (outside `with`) using `A`. If you remove some field from `A`, then you have a nice guarantee that all the code accessing `A.NonExistingField` will no longer compile. This is great when you need to break A API, this way you can remove / change something, and let the compiler tell you what needs to be adjusted.
++
+Using `with A ...` takes away some of this advantage. Even if you removed `NonExistingField` from `A`, the code `with A do NonExistingField := ...` may still compile, if the outer namespace happens to have the `NonExistingField` symbol.
 
 === Order of the `uses` clause: standard, CGE, application
 
@@ -233,7 +237,7 @@ uses SysUtils, Classes,
   GameViewPlay;
 ----
 
-NOTE: We don't have a strict rule for the order of units within each group. They _often_ loosely follow the "dependency order" (if unit `A` is used by `B`, then we write `A, B`, like `SysUtils, Classes, Controls`) but we really don't make this a strict rule (it would be too tiresome to maintain, for no gain). Many `uses` clauses have in practice an order dictated by history and that's OK.
+NOTE: We don't have a strict rule for the order of units within each group, e.g. we don't really care in which order you specify CGE units -- `CastleUtils, CastleViewport` or `CastleViewport, CastleUtils` are both OK. The order _often_ loosely follows the _dependency order_ (if unit `A` is used by `B`, then we write `A, B`, like `CastleUtils, CastleViewport` or `SysUtils, Classes, Controls`) but we really don't make this a strict rule (it would be too tiresome to maintain, for no gain). Many `uses` clauses have in practice an order dictated by history and that's OK. We only require strict separation between these 3 groups (standard, engine, application).
 
 === Use `strict private` where possible
 
