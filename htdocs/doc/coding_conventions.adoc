@@ -1063,7 +1063,8 @@ Advantages of pull requests:
 
 If for some reason you really cannot follow this workflow, it is OK to simply send a traditional ".patch" file, done by "git diff" or "svn diff" (you can access https://github.com/castle-engine/castle-engine/ as a GIT or SVN repository.) You can attach it to https://github.com/castle-engine/castle-engine/issues[a new issue].
 
-== Examples
+[#examples]
+== Adding an example to CGE repository
 
 Examples in CGE subdirectory `examples` should follow the `snake_case` naming (for their subdirectories and for the project name).
 
@@ -1078,3 +1079,27 @@ If you create a new example using editor _"New Project"_ template, you should ed
 - Remove the `.gitignore` from the example subdirectory.
 
 - Edit the top-level CGE `.gitignore` to ignore Unix binary of this executable. All other things should be already ignored by existing masks in that `.gitignore`.
+
+- Add a screenshot of the running application.
++
+--
+- See how pretty it looks in https://github.com/castle-engine/castle-engine/tree/master/examples/eye_of_beholder[eye_of_beholder] or https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/occlusion_culling[occlusion_culling].
+
+- For now, we don't have strict rule about whether to include window border and some decorations. I try to make all screenshots using GNOME 3 built-in screenshot tool, that adds a nice drop-shadow around the window border. This looks pretty on a white background when browsing GitHub. But I know that in other contexts, the shadow and window border will be a hindrance for UI, and we will remove them then. For now, don't worry about it much, any pretty screenshot is OK.
+
+- For now, we don't have strict rule about screenshot aspect ratio. I recommend to use a window with aspect ratio around 16:9.
+
+- Call this file `screenshot.png`. The name is important in case we will want to show this screenshot in the future as e.g. thumbnail in CGE editor _"Open Examples"_ dialog.
+
+- (Optional) If you think that additional screenshots are useful, go ahead and add them, with filenames like `screenshot_xxx.png`. In particular the editor screenshot should be called `screenshot_editor.png`. See how it looks in https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/occlusion_culling[occlusion_culling] demo. We may do a "carousel" of thumbnails in some UI, we will use then all `screenshot*.png` images.
+
+- Show all screenshots from `README.md`. Add them like this by Markdown:
++
+```
+![Screenshot](screenshot.png)
+
+![Screenshot from editor](screenshot_editor.png)
+
+![Screenshot running on Android](screenshot_android.png)
+```
+--
