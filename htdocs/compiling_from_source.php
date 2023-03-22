@@ -109,6 +109,15 @@ Set-ExecutionPolicy Bypass -Scope Process
     <p>Install in Lazarus <code>castle_components.lpk</code> package following <a href="https://castle-engine.io/manual_lazarus_control.php">the documentation how to get TCastleControl working</a>. As editor uses <code>TCastleControl</code>, this is a necessary step when building editor yourself.
 
   <li>
+    <p>Open and compile (no need to install) in Lazarus <code>castle_editor_components.lpk</code> package.
+
+    <p>This package contains some units and registers some components that are only useful for CGE editor development. In particular, <code>mbColorLib</code> (LCL components to display nice color dialogs) and some forms for CGE property editors (in <code>tools/castle-editor/components</code>).
+
+    <p><i>Only install this package if you want to contribute to CGE development</i> and edit all property editor forms.
+
+    <p><i>General users should not need to install this package</i>. If you just want to build CGE editor, it is enough that Lazarus "knows" about this package, so just <i>"Compile"</i> this package and it will be linked with CGE editor. If unsure, and you later want to contribute (thank you!), you can install it later :) Remember that you should not use <code>castle_editor_components.lpk</code> in your own applications &mdash; the units and components in this package are internal for CGE development, we may change their API disregarding backward compatibility.
+
+  <li>
     <p>Open in Lazarus <code>castle-engine/tools/castle-editor/castle-editor.lpi</code> and use <i>"Compile"</i> command (in the <i>"Run"</i> menu).
 
   <li>
