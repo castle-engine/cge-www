@@ -192,6 +192,8 @@ geometry with texture (coordinates, and texture filename from
 associated <code>xxx_default.skin</code> file), <i>animation is also read
 and played</i>.</p>
 
+<p>Note: Reading the MD3 file always results in one long animation called just <code>animation</code>. That's because the MD3 format doesn't allow to specify particular animations. However, you can use <code>animation.cfg</code> file and the code from our <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/animations/split_long_md3_animation_into_logical_pieces">examples/animations/split_long_md3_animation_into_logical_pieces</a> demo to play particular subanimations from MD3 file. See <a href="https://www.youtube.com/watch?v=DpRGTKqJZ4Y">the resulting demo</a>.
+
 <?php echo $toc->html_section(); ?>
 
 <p><b>Wavefront OBJ files</b>. We support most important things:
