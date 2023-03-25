@@ -5,6 +5,37 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.10.1] - 2023-03-07
+- Updated package dependencies.
+
+## [0.10.0] - 2023-02-28
+### Added
+- Added support for IP ranges in allow and block lists. [#29131]
+
+## [0.9.3] - 2023-02-20
+### Changed
+- Minor internal updates.
+
+## [0.9.2] - 2023-02-15
+### Changed
+- Minor internal updates.
+
+## [0.9.1] - 2023-02-13
+### Fixed
+- Fix an update error that impacted sites using the WAF in standalone mode. [#28844]
+
+## [0.9.0] - 2023-01-25
+### Changed
+- Change the web application firewall to run automatic and manual rules independently. [#27726]
+
+## [0.8.3] - 2023-01-11
+### Fixed
+- Fixed the WAF package's PHP tests and Composer requirements [#28185]
+
+## [0.8.2] - 2023-01-09
+### Fixed
+- Fix firewall activation hooks on first option updates. [#28234]
+
 ## [0.8.1] - 2023-01-07
 ### Changed
 - Change directory location that stores firewall rules. [#28049]
@@ -131,6 +162,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Core: do not ship .phpcs.dir.xml in production builds.
 
+[0.10.1]: https://github.com/Automattic/jetpack-waf/compare/v0.10.0...v0.10.1
+[0.10.0]: https://github.com/Automattic/jetpack-waf/compare/v0.9.3...v0.10.0
+[0.9.3]: https://github.com/Automattic/jetpack-waf/compare/v0.9.2...v0.9.3
+[0.9.2]: https://github.com/Automattic/jetpack-waf/compare/v0.9.1...v0.9.2
+[0.9.1]: https://github.com/Automattic/jetpack-waf/compare/v0.9.0...v0.9.1
+[0.9.0]: https://github.com/Automattic/jetpack-waf/compare/v0.8.3...v0.9.0
+[0.8.3]: https://github.com/Automattic/jetpack-waf/compare/v0.8.2...v0.8.3
+[0.8.2]: https://github.com/Automattic/jetpack-waf/compare/v0.8.1...v0.8.2
 [0.8.1]: https://github.com/Automattic/jetpack-waf/compare/v0.8.0...v0.8.1
 [0.8.0]: https://github.com/Automattic/jetpack-waf/compare/v0.7.2...v0.8.0
 [0.7.2]: https://github.com/Automattic/jetpack-waf/compare/v0.7.1...v0.7.2

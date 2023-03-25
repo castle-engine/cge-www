@@ -5,9 +5,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## 1.2.1-alpha - unreleased
+## 1.3.1-alpha - unreleased
 
 This is an alpha version! The changes listed here are not final.
+
+## 1.3.0 - 2023-03-13
+### Added
+- Add ability to toggle automatic and manual firewall rules independently. [#27726]
+- Add improved messaging for currently enabled firewall features. [#27845]
+- Disable Jetpack Firewall on unsupported environments. [#27939]
+- Add link to pricing page for getting started with an existing plan or license key. [#27745]
+
+### Changed
+- Updated package dependencies. [#29297]
+- Update to React 18. [#28710]
+- Use `flex-start`/`flex-end` instead of `start`/`end` for better browser compatibility. [#28530]
+
+### Fixed
+- Fix connection button loading indicators. [#28514]
+- Fix Protect status report caching. [#28766]
+- Remove unnecessary full path from example in UI. [#29037]
+- Other assorted fixes for minor bugs and grammar. [#27846] [#28091] [#28397] [#28273]
 
 ## 1.2.0 - 2023-01-16
 ### Added

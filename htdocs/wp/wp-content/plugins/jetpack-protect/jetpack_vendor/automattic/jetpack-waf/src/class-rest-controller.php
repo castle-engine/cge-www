@@ -17,6 +17,8 @@ use WP_REST_Server;
 class REST_Controller {
 	/**
 	 * Register REST API endpoints.
+	 *
+	 * @return void
 	 */
 	public static function register_rest_routes() {
 		register_rest_route(
@@ -52,28 +54,29 @@ class REST_Controller {
 
 	/**
 	 * Update rules endpoint
+	 *
+	 * @return WP_REST_Response|WP_Error
 	 */
 	public static function update_rules() {
-		$success = true;
-		$message = 'Rules updated succesfully';
-
 		try {
-			Waf_Runner::generate_rules();
-		} catch ( \Exception $e ) {
-			$success = false;
-			$message = $e->getMessage();
+			Waf_Rules_Manager::generate_automatic_rules();
+			Waf_Rules_Manager::generate_rules();
+		} catch ( Waf_Exception $e ) {
+			return $e->get_wp_error();
 		}
 
 		return rest_ensure_response(
 			array(
-				'success' => $success,
-				'message' => $message,
+				'success' => true,
+				'message' => __( 'Rules updated succesfully', 'jetpack-waf' ),
 			)
 		);
 	}
 
 	/**
 	 * WAF Endpoint
+	 *
+	 * @return WP_REST_Response
 	 */
 	public static function waf() {
 		return rest_ensure_response( Waf_Runner::get_config() );
@@ -83,22 +86,28 @@ class REST_Controller {
 	 * Update WAF Endpoint
 	 *
 	 * @param WP_REST_Request $request The API request.
-	 * @return WP_REST_Response
+	 *
+	 * @return WP_REST_Response|WP_Error
 	 */
 	public static function update_waf( $request ) {
+		// Automatic Rules Enabled
+		if ( isset( $request[ Waf_Rules_Manager::AUTOMATIC_RULES_ENABLED_OPTION_NAME ] ) ) {
+			update_option( Waf_Rules_Manager::AUTOMATIC_RULES_ENABLED_OPTION_NAME, (bool) $request->get_param( Waf_Rules_Manager::AUTOMATIC_RULES_ENABLED_OPTION_NAME ) );
+		}
+
 		// IP Lists Enabled
-		if ( isset( $request[ Waf_Runner::IP_LISTS_ENABLED_OPTION_NAME ] ) ) {
-			update_option( Waf_Runner::IP_LISTS_ENABLED_OPTION_NAME, (bool) $request->get_param( Waf_Runner::IP_LISTS_ENABLED_OPTION_NAME ) );
+		if ( isset( $request[ Waf_Rules_Manager::IP_LISTS_ENABLED_OPTION_NAME ] ) ) {
+			update_option( Waf_Rules_Manager::IP_LISTS_ENABLED_OPTION_NAME, (bool) $request->get_param( Waf_Rules_Manager::IP_LISTS_ENABLED_OPTION_NAME ) );
 		}
 
 		// IP Block List
-		if ( isset( $request[ Waf_Runner::IP_BLOCK_LIST_OPTION_NAME ] ) ) {
-			update_option( Waf_Runner::IP_BLOCK_LIST_OPTION_NAME, $request[ Waf_Runner::IP_BLOCK_LIST_OPTION_NAME ] );
+		if ( isset( $request[ Waf_Rules_Manager::IP_BLOCK_LIST_OPTION_NAME ] ) ) {
+			update_option( Waf_Rules_Manager::IP_BLOCK_LIST_OPTION_NAME, $request[ Waf_Rules_Manager::IP_BLOCK_LIST_OPTION_NAME ] );
 		}
 
 		// IP Allow List
-		if ( isset( $request[ Waf_Runner::IP_ALLOW_LIST_OPTION_NAME ] ) ) {
-			update_option( Waf_Runner::IP_ALLOW_LIST_OPTION_NAME, $request[ Waf_Runner::IP_ALLOW_LIST_OPTION_NAME ] );
+		if ( isset( $request[ Waf_Rules_Manager::IP_ALLOW_LIST_OPTION_NAME ] ) ) {
+			update_option( Waf_Rules_Manager::IP_ALLOW_LIST_OPTION_NAME, $request[ Waf_Rules_Manager::IP_ALLOW_LIST_OPTION_NAME ] );
 		}
 
 		// Share Data
@@ -106,7 +115,11 @@ class REST_Controller {
 			update_option( Waf_Runner::SHARE_DATA_OPTION_NAME, (bool) $request[ Waf_Runner::SHARE_DATA_OPTION_NAME ] );
 		}
 
-		Waf_Runner::update_waf();
+		try {
+			Waf_Runner::update_waf();
+		} catch ( Waf_Exception $e ) {
+			return $e->get_wp_error();
+		}
 
 		return self::waf();
 	}
