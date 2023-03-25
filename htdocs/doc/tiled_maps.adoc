@@ -1,23 +1,30 @@
 # Tiled maps
 include::common.adoc[]
 :description: Using maps designed in Tiled map editor in Castle Game Engine.
-:cge-social-share-image: tiled_map_1.png
+:cge-social-share-image: tiled_editor_snow.png
 
 == Introduction
 
 We feature an extensive support for maps designed in https://www.mapeditor.org/[Tiled map editor].
 
 cgeimg::block[
-  tiled_map_1.png|Tiled map
+  tiled_editor_snow.png|Tiled snow map (with animations),
+  tiled_editor_beach.png|Tiled beach map (with animations)
 ]
 
-== Usage
+//  tiled_map_1.png|Tiled map,
+
+== Basic usage
 
 1. Design your map in https://www.mapeditor.org/[Tiled], and save the resulting map (.tmx) along with images (tilesets) somewhere in the project `data` subdirectory.
 
 2. Add to your link:viewport_and_scenes[viewport] a cgeref:TCastleTiledMap[] component and set cgeref:TCastleTiledMap.URL[] to indicate your map (.tmx) file.
 
-== Features
+== Example
+
+Demo, along with many sample maps, is in https://github.com/castle-engine/castle-engine/tree/master/examples/tiled/map_viewer_in_viewport[examples/tiled/map_viewer_in_viewport].
+
+== Tiled features supported
 
 cgeimg::float[
   tiled_map_isometric.png|Tiled isometric map,
@@ -26,19 +33,21 @@ cgeimg::float[
   tiled_choose_layers.png|Choosing Tiled layers to show
 ]
 
-We support many Tiled features, like
-
 - Any number of layers, any map sizes, multiple tilesets.
 - All map types: Orthogonal, Isometric, IsometricStaggered, Hexagonal.
 - Flipping of tiles (diagonal, horizontal, vertical).
 - Optimized rendering with static batching of map layers.
 - Animations (all tile animations play automatically, you can also explicitly start and stop them).
 
+== Important properties and methods
+
 The cgeref:TCastleTiledMap[] is a cgeref:TCastleTransform[] instance, and as such you can move, rotate and scale it.
 
 Inside the viewport you have a regular link:camera[]. You can move the camera, you can change the camera orthographic height (cgeref:TCastleOrthographic.Height[]) to zoom in/out. Add the cgeref:TCastle2DNavigation[] component as a child of your viewport to allow user to move/zoom on the map too.
 
-You can control cgeref:TCastleTiledMap.SmoothScaling[].
+To load the map, set cgeref:TCastleTiledMap.URL[].
+
+You can control texture filtering by cgeref:TCastleTiledMap.SmoothScaling[].
 
 * `false` (default) results in a pixel-art look.
 
@@ -46,6 +55,12 @@ You can control cgeref:TCastleTiledMap.SmoothScaling[].
 +
 If you see weird seams between tiles when using cgeref:TCastleTiledMap.SmoothScaling[] = `true`, this is likely a lack of spacing and link:manual_alpha_bleeding.php[alpha bleeding] between tiles. You have to process your tileset image by adding some spacing between tiles and perform link:manual_alpha_bleeding.php[alpha bleeding] in your image-editing software (you can use our link:castle-view-image.php[castle-view-image]). Alternatively, you can activate cgeref:TCastleTiledMap.SmoothScalingSafeBorder[] or cgeref:TCastleTiledMap.ForceTilesetSpacing[] to workaround it.
 
-To show/hide specific layers use cgeref:TCastleTiledMap.Layers[]. Click on the button with 3 dots `...` at the `Layers` property to invoke a nice dialog where you can select layers by names.
+To show/hide specific layers use cgeref:TCastleTiledMap.Layers[].
 
-The cgeref:TCastleTiledMap.Map[] exposes internal map data (read-only) to query for various information about the map.
+- Click on the button with 3 dots `...` at the `Layers` property in _CGE editor_ to invoke a nice dialog where you can select layers by names.
+
+- cgeref:TCastleTiledMap.Layers[] property can also be used to split map into 2 pieces, e.g. front and back, and place them at distinct Z values. Simply use 2 instances of cgeref:TCastleTiledMap[] with the same `URL` (same map loaded) but showing disjoint layers.
+
+The cgeref:TCastleTiledMap.Map[] exposes map data (read-only) to query various information about the map, e.g. what tile type has been put at some map position.
+
+cgeref:TCastleTiledMap.PlayAnimations[], cgeref:TCastleTiledMap.StopAnimations[] control animations. By default, Tiled animations automatically play when the map is loaded.

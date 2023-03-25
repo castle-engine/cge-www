@@ -348,6 +348,8 @@ cgeimg::block[
 You can design game maps using https://www.mapeditor.org/[Tiled].
 
 cgeimg::block[
+  tiled_editor_snow.png|Tiled snow map (with animations),
+  tiled_editor_beach.png|Tiled beach map (with animations),
   tiled_3.png|Tiled isometric map,
   tiled_strategy_hex.png|Tiled hexagonal map in "Strategy Game" demo,
   tiled_strategy_iso.png|Tiled isometric map in "Strategy Game" demo,
@@ -356,7 +358,8 @@ cgeimg::block[
 
 * Tiled maps (TMX files) can be loaded into cgeref:TCastleTiledMap[] for a 2D or 3D display in a viewport.
 * Viewport display means they can be combined with other scenes on top of it, like sprite sheets for units on the map.
-* See https://castle-engine.io/tiled_maps[manual about Tiled map].
+* We support various map types (orthogonal, isometric, hexagonal), layers (you control which layers are displayed), animations and more.
+* See https://castle-engine.io/tiled_maps[the manual about Tiled map].
 * See https://github.com/castle-engine/castle-engine/tree/master/examples/tiled/strategy_game_demo/[examples/tiled/strategy_game_demo] for a complete strategy game in CGE using Tiled maps.
 
 == Particles
