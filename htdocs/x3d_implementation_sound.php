@@ -15,6 +15,7 @@
       new TocItem('Demos', 'demos'),
       new TocItem('Supported nodes', 'support'),
       new TocItem('DEF / USE on sounds', 'def_use'),
+      new TocItem('Plans for new X3D 4.0 sound nodes', 'x3d4'),
     ));
 ?>
 
@@ -195,6 +196,80 @@ so authors are well adviced to avoid this. If you want to play
 an audio track from a movie, consider just extracting the audio track
 to a separate .wav/.ogg file and playing it using AudioClip node.
 This way we will not have to download the whole movie just to play its audio.
+
+<?php echo $toc->html_section(); ?>
+
+<p>X3D version 4 introduced a number of new sound nodes and capabilities.
+See the <a href="<?php echo x3d_spec_latest_url('sound'); ?>"><i>Sound</i> in X3D 4.0 specification</a>.
+
+<p>They have been designed to match the <i>Web Audio API</i> (see
+<a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API">Web Audio API at Mozilla Developer Network</a>
+and
+<a href="https://www.w3.org/TR/2021/REC-webaudio-20210617/">W3C Recommendation</a>).
+This API is available in major web browsers (at least <i>Firefox</i> and <i>Google Chrome</i> support them).
+On other platforms (desktops and mobile),
+<a href="https://github.com/LabSound/LabSound">LabSound</a> is a nice C++ library that provides the equivalent.
+
+<p>To be clear, we applaud this move in X3D.
+Basing the sound design around an open standard, that is already implemented in web browsers,
+makes total sense from the X3D point of view, esp. if you consider <i>web</i> to be the major platform
+for X3D.
+
+<p>That said, implementing these nodes/capabilites in CGE/view3dscene is a non-trivial work
+that doesn't exactly fit our priorities (<i>"cross-platform game engine"</i>), at least now.
+It means doing 2 things:
+
+<ol>
+  <li>
+    <p><b>Implementing a cross-platform sound backend exposing <i>Web Audio</i> API.</b>
+    Likely using <a href="https://github.com/LabSound/LabSound">LabSound</a>
+    under the hood on non-web platforms (on web, we can just use browser support).
+
+    <p>To explain, we have a number of sound "backends" in Castle Game Engine:
+
+    <ul>
+      <li><a href="openal">OpenAL</a> (default, as open-source and fully-featured)
+      <li><a href="fmod">FMOD</a>
+      <li><a href="nintendo_switch">Nintendo Switch-specific backend</a>
+      <li>(purely for testing) "sox backend".
+    </ul>
+
+    <p>We will likely have another in 2023: <a href="roadmap#wwise">AudioKinetic's Wwise</a>, another popular solution in gamedev domain.
+
+    <p>In our domain (game engines), the above libraries seem commonly used.
+
+    <p>Moreover, a common practice in gamedev is to use "sound middleware". This means that sound designer/musician uses a sound middleware provided by FMOD (<i>"FMOD Studio"</i>) or Wwise &mdash; it's a special application, independent of the game engine. Such application can export a "sound bank" (which may be even optimized for given platform) and then the game engine (like CGE) uses FMOD / Wwise API to issue events. These events control the sounds <i>indirectly</i>, following the encoded instructions from the sound bank. E.g. an "event" may just play a sound, but it can also change a volume or pitch of something.
+
+    <p>All this means is that support for WebAudio API is not our priority. It does not seem a common practice in gamedev for sound designers to target WebAudio concepts.
+
+    <p>Surely, OpenAL, FMOD and Wwise have similar concepts to WebAudio... but finding a match between them and WebAudio would be quite a lot of work.
+
+    <p>There is one potential counter-argument though: maybe
+    <a href="https://github.com/LabSound/LabSound">LabSound</a>
+    will become just more popular than OpenAL with time.
+    This would be a strong reason to switch to it, and start recommending LabSound (and thus WebAudio) backend over OpenAL.
+
+    <p>Of course on the <a href="roadmap#web">(planned) web platform</a>, the situation is more straightforward, as there WebAudio API is just available in the web browser. But we're a cross-platform game engine, whatever we do -- we want to have consistent support on all platforms (desktop, mobile, consoles, web).
+
+  <li>
+    <p><b>Implementing X3D 4 sound nodes on top of <i>Web Audio</i> backend.</b>
+
+    <p>Admittedly this is low priority for CGE. Because for developers using "Castle Game Engine", the X3D sound nodes do not matter much. We recommend to use <a href="manual_sound.php">our sound components</a> instead, that are easy to set up in CGE editor, have convenient OOP API in Pascal. These components are different than X3D nodes. They have been modelled following what our users want, and looking at other game engines.
+</ol>
+
+<p>This is not "set in the stone" of course.
+It may be that <i>Web Audio</i> will become de-facto standard for how you do sound everywhere.
+And a dedicated contributor, interested in upgrading our code to support X3D 4 sound capabilities,
+is absolutely welcome.
+If you are interested in seeing <i>Web Audio</i> sound backend in CGE,
+and support for X3D 4 sound nodes/capabilities in CGE, please
+
+<ul>
+  <li>
+    <p><a href="talk.php">talk to us</a>
+  <li>
+    <p>and/or <a href="https://www.patreon.com/castleengine">support the engine development (you're welcome to mention that your support is targeted specifically toward WebAudio support)</a>.
+</ul>
 
 <?php
   x3d_status_footer();
