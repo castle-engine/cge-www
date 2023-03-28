@@ -216,7 +216,7 @@ makes total sense from the X3D point of view, esp. if you consider <i>web</i> to
 for X3D.
 
 <p>That said, implementing these nodes/capabilites in CGE/view3dscene is a non-trivial work
-that doesn't exactly fit our priorities (<i>"cross-platform game engine"</i>), at least now.
+and it's admittedly not our priority, at least now.
 It means doing 2 things:
 
 <ol>
@@ -236,18 +236,18 @@ It means doing 2 things:
 
     <p>We will likely have another in 2023: <a href="roadmap#wwise">AudioKinetic's Wwise</a>, another popular solution in gamedev domain.
 
-    <p>In our domain (game engines), the above libraries seem commonly used.
+    <!--p>In our domain (game engines), the above libraries (OpenAL, FMOD, Wwise) seem commonly used.-->
 
-    <p>Moreover, a common practice in gamedev is to use "sound middleware". This means that sound designer/musician uses a sound middleware provided by FMOD (<i>"FMOD Studio"</i>) or Wwise &mdash; it's a special application, independent of the game engine. Such application can export a "sound bank" (which may be even optimized for given platform) and then the game engine (like CGE) uses FMOD / Wwise API to issue events. These events control the sounds <i>indirectly</i>, following the encoded instructions from the sound bank. E.g. an "event" may just play a sound, but it can also change a volume or pitch of something.
+    <p>Note: a common practice in gamedev is to use "sound middleware". This means that sound designer/musician uses a sound middleware provided by FMOD (<i>"FMOD Studio"</i>) or Wwise &mdash; it's a special application, independent of the game engine. Such application can export a "sound bank" (which may be even optimized for given platform) and then the game engine (like CGE) uses FMOD / Wwise API to issue events. These events control the sounds <i>indirectly</i>, following the encoded instructions from the sound bank. E.g. an "event" may just play a sound, but it can also change a volume or pitch of something.
 
-    <p>All this means is that support for WebAudio API is not our priority. It does not seem a common practice in gamedev for sound designers to target WebAudio concepts.
+    <p>All this means is that support for WebAudio API is not our priority. It does not seem a common practice in gamedev for sound designers to target WebAudio concepts. Improving our support for FMOD and Wwise, to enable using "sound middleware", has higher priority as a standard workflow in gamedev.
 
-    <p>Surely, OpenAL, FMOD and Wwise have similar concepts to WebAudio... but finding a match between them and WebAudio would be quite a lot of work.
+    <p>Note: While OpenAL, FMOD and Wwise have similar concepts to WebAudio... finding a match between them and WebAudio seems to be quite a lot of work. That's why, for a complete implementation of X3D 4 sound nodes, I think we just need a WebAudio/LabSound backend.
 
-    <p>There is one potential counter-argument though: maybe
+    <p>Possible argument in favor of LabSound and WebAudio: maybe
     <a href="https://github.com/LabSound/LabSound">LabSound</a>
     will become just more popular than OpenAL with time.
-    This would be a strong reason to switch to it, and start recommending LabSound (and thus WebAudio) backend over OpenAL.
+    This would be a strong reason to switch to it, and start recommending LabSound (and thus WebAudio) backend over OpenAL. I mention this, because the development of <a href="http://www.openal.org/">OpenAL</a> as a specification has unfortunately stagnated &mdash; looks like Creative is no longer interested. Although, <a href="https://openal-soft.org/">OpenAL Soft</a> implementation continues to be very active.
 
     <p>Of course on the <a href="roadmap#web">(planned) web platform</a>, the situation is more straightforward, as there WebAudio API is just available in the web browser. But we're a cross-platform game engine, whatever we do -- we want to have consistent support on all platforms (desktop, mobile, consoles, web).
 
@@ -255,9 +255,11 @@ It means doing 2 things:
     <p><b>Implementing X3D 4 sound nodes on top of <i>Web Audio</i> backend.</b>
 
     <p>Admittedly this is low priority for CGE. Because for developers using "Castle Game Engine", the X3D sound nodes do not matter much. We recommend to use <a href="manual_sound.php">our sound components</a> instead, that are easy to set up in CGE editor, have convenient OOP API in Pascal. These components are different than X3D nodes. They have been modelled following what our users want, and looking at other game engines.
+
+    <p>This situation is not set in stone. For various things, CGE uses X3D under the hood (e.g. for all <code>TCastleScene</code> rendering as well as light sources). It is possible that CGE sound components would employ X3D sound nodes at some point, when it will result in a useful API expected by game developers.
 </ol>
 
-<p>This is not "set in the stone" of course.
+<p>This priority is not "set in the stone" of course.
 It may be that <i>Web Audio</i> will become de-facto standard for how you do sound everywhere.
 And a dedicated contributor, interested in upgrading our code to support X3D 4 sound capabilities,
 is absolutely welcome.
