@@ -185,14 +185,49 @@ meshes, cameras, materials, textures.
 
 <?php echo $toc->html_section(); ?>
 
-<p><b>MD3</b>. This is the format used for models
-in Quake 3 and derivatives (<a href="http://tremulous.net/">Tremulous</a>
-etc.). Almost everything useful from MD3 file is supported:
-geometry with texture (coordinates, and texture filename from
-associated <code>xxx_default.skin</code> file), <i>animation is also read
-and played</i>.</p>
+<p><b>MD3</b>. Format used for models in
+<a href="https://en.wikipedia.org/wiki/Quake_III_Arena">Quake 3</a> and derivatives,
+like <a href="http://tremulous.net/">Tremulous</a>.
 
-<p>Note: Reading the MD3 file always results in one long animation called just <code>animation</code>. That's because the MD3 format doesn't allow to specify particular animations. However, you can use <code>animation.cfg</code> file and the code from our <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/animations/split_long_md3_animation_into_logical_pieces">examples/animations/split_long_md3_animation_into_logical_pieces</a> demo to play particular subanimations from MD3 file. See <a href="https://www.youtube.com/watch?v=DpRGTKqJZ4Y">the resulting demo</a>.
+<?php
+echo cgeImg('block', array(
+  array(
+    'filename' => 'tremulous_editor.png',
+    'titlealt' => 'Tremulous animated MD3 in Castle Game Engine editor'
+  ),
+  array(
+    'filename' => 'tremulous_view3dscene.png',
+    'titlealt' => 'Tremulous animated MD3 in view3dscene'
+  ),
+));
+?>
+
+<p>Almost everything useful from MD3 file is supported:
+
+<ul>
+  <li>
+    <p>Geometry, possibly textured.
+
+  <li>
+    <p>Animations.
+
+    <p>We read optional <code>animation.cfg</code> file alongside the MD3 model that defines
+    animations inside the MD3 file.
+
+    <p>Without the <code>animation.cfg</code> file, the MD3 will only contain one long animation
+    called <code>animation</code> that plays all available frames.
+    You can still use manual approach to play any subrange of this animation, see
+    <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/animations/split_long_md3_animation_into_logical_pieces">examples/animations/split_long_md3_animation_into_logical_pieces</a>.
+    See also <a href="https://www.youtube.com/watch?v=DpRGTKqJZ4Y">the resulting demo</a>.
+
+  <li>
+    <p>We read optional "skin file" alongside the MD3 model that maps MD3 "shader" names to textures.
+
+    <p>By default we read the <code>default</code> skin, from <code>xxx_default.skin</code>.
+    The mechanism to change skins exists, albait it is a bit internal now:
+    you can change <code>Md3Skin</code> (global variable in <code>X3DLoadInternalMD3</code>)
+    right before reading the MD3 file.
+</ul>
 
 <?php echo $toc->html_section(); ?>
 
