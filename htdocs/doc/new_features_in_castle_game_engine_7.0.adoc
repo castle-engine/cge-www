@@ -39,7 +39,7 @@ See https://castle-engine.io/wp/2022/12/24/summary-of-4th-open-meeting-physics-p
 * https://castle-engine.io/vscode[Visual Studio Code integration, intelligent code completion with our LSP server, also for Emacs, NeoVim and other text editors]. Also see https://castle-engine.io/wp/2022/11/19/visual-studio-code-integration-intelligent-code-completion-with-our-lsp-server-also-for-emacs-neovim-and-other-text-editors/[news].
 * https://castle-engine.io/control_on_form[TCastleControl available now for Delphi VCL and FMX applications, in addition to existing Lazarus LCL].
 * Easily activate https://castle-engine.io/wp/2022/10/03/easy-shadows-in-editor-at-design-time-too-by-shadow-volumes-and-shadow-maps-are-coming-as-well/[shadows], just select checkbox `Shadows` at the light source to use shadow volumes. Note: We plan to expose also our _shadow maps_ in a similar easy-to-use fashion in future releases.
-* New component to support https://castle-engine.io/tiled_maps[Tiled maps] with features and excellent performance to render huge maps in CGE.
+* New component to support https://castle-engine.io/tiled_maps[Tiled maps]: part of the viewport (can be mixed with CGE scenes, sprite sheets...), excellent performance to render huge maps, configurable layers.
 * Renderer improvements:
 +
 --
@@ -77,6 +77,7 @@ See https://castle-engine.io/wp/2022/12/24/summary-of-4th-open-meeting-physics-p
 * Improvements to usage of https://castle-engine.io/wp/2022/09/30/components-to-reuse-a-design-in-other-designs-our-equivalent-to-unity-prefabs-tcastledesign-and-tcastletransformdesign/[TCastleDesign and TCastleTransformDesign]: context menu to them to edit, revert, and open a referenced design.
 * Masks in user interface: https://castle-engine.io/wp/2023/03/05/user-interface-features-render-with-mask-new-tcastlemask-component-better-slider-default-look-new-option-protectedsidesscaling/[news], https://castle-engine.io/user_interface#_mask[manual], https://castle-engine.io/apidoc/html/CastleControls.TCastleMask.html[API reference], https://github.com/castle-engine/castle-engine/tree/master/examples/user_interface/mask[example].
 * Cache for scene loading: cgeref:TCastleSceneCore.Cache[].
+* MD3 support improvements: we now automatically load `animation.cfg`, so playing particular MD3 animations is trivial, just use our `PlayAnimation` method. Also optimized loading. See https://castle-engine.io/creating_data_model_formats.php#section_md3[MD3 support docs].
 * Lots of documentation updates. Links to some pages not already mentioned above: https://castle-engine.io/custom_components[custom components], https://castle-engine.io/behaviors[behaviors], https://castle-engine.io/coding_conventions[coding conventions (extended with our guidelines about memory management, nil and more)] .
 
 Not part of the engine release, but still cool to mention:
