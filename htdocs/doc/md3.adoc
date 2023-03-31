@@ -41,4 +41,4 @@ You can choose a different skin by appending anchor `#skin:xxx` to the URL. E.g.
 +
 Tags in MD3 are animated transformations that (by default) don't show anything.
 +
-They can be used together with our link:wp/2020/10/09/attach-objects-to-animated-bones-like-weapon-in-characters-hand-by-exposetransforms/[ExposeTransforms] mechanism to attach things to them, e.g. you can attach a weapon model to a specific place in the character. This allows the weapon to realistically follow the movement of the character's hands.
+They can be used together with our link:https://castle-engine.io/wp/2020/10/09/attach-objects-to-animated-bones-like-weapon-in-characters-hand-by-exposetransforms/[ExposeTransforms] mechanism to attach things to them, e.g. you can attach a weapon model to a specific place in the character. This allows the weapon to realistically follow the movement of the character's hands.
