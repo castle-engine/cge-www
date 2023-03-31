@@ -10,12 +10,12 @@ $toc = new TableOfContents(
       new TocItem('X3D and VRML', 'x3d', 1),
       new TocItem('Sprite sheets', 'sprite_sheets', 1),
     new TocItem('Other formats (supported but not recommended)', 'other'),
+      new TocItem('MD3', 'md3', 1),
       new TocItem('Simple images', 'images', 1),
       new TocItem('Animation through a series of static models', 'animation_counter', 1),
       new TocItem('Collada', 'collada', 1),
       new TocItem('OpenInventor', 'open_inventor', 1),
       new TocItem('3DS', '3ds', 1),
-      new TocItem('MD3', 'md3', 1),
       new TocItem('Wavefront OBJ', 'wavefront_obj', 1),
       new TocItem('STL', 'stl', 1),
       new TocItem('Videoscape GEO', '', 1),
@@ -126,6 +126,15 @@ especially the level file
 
 <?php echo $toc->html_section(); ?>
 
+<p><b>MD3</b> is a 3D model format used by <a href="https://en.wikipedia.org/wiki/Id_Tech_3">id Tech 3</a> engine
+and games based on it, like
+<a href="https://en.wikipedia.org/wiki/Quake_III_Arena">Quake 3</a> and <a href="http://tremulous.net/">Tremulous</a>.
+
+<p>We have advanced support for this format, including skins and animations.
+More information in a <a href="md3">dedicated page about MD3 support</a>.
+
+<?php echo $toc->html_section(); ?>
+
 <p>You can load image as a scene too. That is, you can load a simple PNG, JPG etc. file using <code>TCastleScene.Load</code> method. It will create a rectangle (which you can use as 3D or 2D object) using this image as a texture, with size adjusted to the image size.
 
 <p>Or, even better, use a dedicated <?php echo cgeRef('TCastleImageTransform'); ?> that is a <a href="viewport_and_scenes">transformation dedicated to loading the image</a>, it has helpful properties to easily adjust image size, repeat, pivot etc.
@@ -182,72 +191,6 @@ formats, we also handle some additional Inventor-specific nodes.
 
 <p><b>3d Studio 3DS format</b>. We support most important things:
 meshes, cameras, materials, textures.
-
-<?php echo $toc->html_section(); ?>
-
-<p><b>MD3</b>. Format used for models in
-<a href="https://en.wikipedia.org/wiki/Quake_III_Arena">Quake 3</a> and derivatives,
-like <a href="http://tremulous.net/">Tremulous</a>.
-
-<?php
-echo cgeImg('block', array(
-  array(
-    'filename' => 'tremulous_editor.png',
-    'titlealt' => 'Tremulous animated MD3 in Castle Game Engine editor'
-  ),
-  array(
-    'filename' => 'tremulous_view3dscene.png',
-    'titlealt' => 'Tremulous animated MD3 in view3dscene'
-  ),
-));
-?>
-
-<p>Almost everything useful from MD3 file is supported:
-
-<ul>
-  <li>
-    <p>Geometry, possibly textured.
-
-  <li>
-    <p>Animations.
-
-    <p>We read optional <code>animation.cfg</code> file alongside the MD3 model that defines
-    animations inside the MD3 file.
-
-    <p>Note: CGE assumes that all animations from <code>animation.cfg</code> are suitable for the accompanying MD3 file,
-    as long as the number of animation frames is sufficient.
-    It is the developer's responsibility to actually use only the animations that make sense for given MD3 model.
-    Some Quake3-based games place multiple MD3 files in the same directory as one <code>animation.cfg</code>,
-    and there are game-specific assumptions which animations make sense for which MD3 model.
-    E.g. <a href="http://tremulous.net/">Tremulous</a> human models
-    have animations like
-    <code>BOTH_xxx</code>
-    (that make sense to play on both <code>upper.md3</code> and <code>lower.md3</code>) and
-    <code>TORSO_xxx</code>
-    (that make sense to play only on <code>upper.md3</code>).
-
-    <p>Without the <code>animation.cfg</code> file, the MD3 will only contain one long animation
-    called <code>animation</code> that plays all available frames.
-    You can still use manual approach to play any subrange of this animation, see
-    <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/animations/split_long_md3_animation_into_logical_pieces">examples/animations/split_long_md3_animation_into_logical_pieces</a>.
-    See also <a href="https://www.youtube.com/watch?v=DpRGTKqJZ4Y">the resulting demo</a>.
-
-  <li>
-    <p>We read optional "skin file" alongside the MD3 model that maps MD3 "shader" names to textures.
-
-    <p>By default we read the <code>default</code> skin, from <code>xxx_default.skin</code>.
-    The mechanism to change skins exists, albait it is a bit internal now:
-    you can change <code>Md3Skin</code> (global variable in <code>X3DLoadInternalMD3</code>)
-    right before reading the MD3 file.
-
-  <li>
-    <p>Tags.
-
-    <p>Tags are animated transformations that (by default) don't show anything.
-    They can be used together with our
-    <a href="https://castle-engine.io/wp/2020/10/09/attach-objects-to-animated-bones-like-weapon-in-characters-hand-by-exposetransforms/">ExposeTransforms</a>
-    mechanism to attach things to them, e.g. you can attach a weapon model to a specific place.
-</ul>
 
 <?php echo $toc->html_section(); ?>
 

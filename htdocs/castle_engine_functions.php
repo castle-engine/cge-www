@@ -392,6 +392,7 @@ $castle_sitemap = array(
               'creating_data_model_formats' => array('title' => 'Supported model formats',
                 'sub' => array(
                   'doc/gltf' => array('title' => 'glTF'),
+                  'doc/md3' => array('title' => 'MD3'),
                 ),
               ),
               'doc/blender' => array('title' => 'Blender'),

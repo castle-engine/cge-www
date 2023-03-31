@@ -1,0 +1,43 @@
+# MD3
+include::common.adoc[]
+
+== Introduction
+
+*MD3* is a 3D model format used by https://en.wikipedia.org/wiki/Id_Tech_3[id Tech 3] engine and games based on it, like https://en.wikipedia.org/wiki/Quake_III_Arena[Quake 3] and http://tremulous.net/[Tremulous].
+
+== Demo
+
+See https://github.com/castle-engine/castle-engine/tree/master/examples/animations/md3_animations_tags[examples/animations/md3_animations_tags] for a demo of MD3 support using http://tremulous.net/[Tremulous] data.
+
+cgeimg::block[
+  tremulous_editor.png|Tremulous animated MD3 in Castle Game Engine editor,
+  tremulous_view3dscene.png|Tremulous animated MD3 in view3dscene
+]
+
+== Features
+
+We support almost everything useful from the MD3 file format:
+
+- Geometry, possibly textured.
+
+- Animations.
++
+We read optional `animation.cfg` file alongside the MD3 model that defines  animations inside the MD3 file.
++
+NOTE: CGE assumes that all animations from `animation.cfg` are suitable for the accompanying MD3 file, as long as the number of animation frames is sufficient. It is the developer's responsibility to actually use only the animations that make sense for given MD3 model. Some games place multiple MD3 files in the same directory as one `animation.cfg`, and there are game-specific assumptions which animations make sense for which MD3 model. E.g. link:http://tremulous.net/[Tremulous] human models have animations like `BOTH_xxx` (that make sense to play on both `upper.md3` and `lower.md3`) and `TORSO_xxx` (that make sense to play only on `upper.md3`).
++
+Without the `animation.cfg` file, the MD3 will only contain one long animation  called `animation` that plays all available frames. You can still use manual approach to play any subrange of this animation, see link:https://github.com/castle-engine/castle-engine/tree/master/examples/animations/split_long_md3_animation_into_logical_pieces[examples/animations/split_long_md3_animation_into_logical_pieces]. See also link:https://www.youtube.com/watch?v=DpRGTKqJZ4Y[the resulting demo].
+
+- Skins.
++
+We read optional _"skin file"_ alongside the MD3 model that maps MD3 "shader" names to textures.
++
+By default we read the `default` skin, from file `xxx_default.skin`.
++
+You can choose a different skin by appending anchor `#skin:xxx` to the URL. E.g. loading URL `head.md3` will load skin from `head_default.skin`, but loading URL `head.md3#skin:light` will load skin from `head_light.skin`.
+
+- Tags.
++
+Tags in MD3 are animated transformations that (by default) don't show anything.
++
+They can be used together with our link:wp/2020/10/09/attach-objects-to-animated-bones-like-weapon-in-characters-hand-by-exposetransforms/[ExposeTransforms] mechanism to attach things to them, e.g. you can attach a weapon model to a specific place in the character. This allows the weapon to realistically follow the movement of the character's hands.
