@@ -10,8 +10,9 @@ include::common.adoc[]
 See https://github.com/castle-engine/castle-engine/tree/master/examples/animations/md3_animations_tags[examples/animations/md3_animations_tags] for a demo of MD3 support using http://tremulous.net/[Tremulous] data.
 
 cgeimg::block[
-  tremulous_editor.png|Tremulous animated MD3 in Castle Game Engine editor,
-  tremulous_view3dscene.png|Tremulous animated MD3 in view3dscene
+  tremulous_editor.png|Tremulous creature animated MD3 in Castle Game Engine editor,
+  tremulous_view3dscene.png|Tremulous animated MD3 in view3dscene,
+  tremulous_humans.png|Tremulous humans animated and using MD3 tags
 ]
 
 == Features
