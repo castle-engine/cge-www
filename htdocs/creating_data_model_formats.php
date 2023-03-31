@@ -214,6 +214,18 @@ echo cgeImg('block', array(
     <p>We read optional <code>animation.cfg</code> file alongside the MD3 model that defines
     animations inside the MD3 file.
 
+    <p>Note: CGE assumes that all animations from <code>animation.cfg</code> are suitable for the accompanying MD3 file,
+    as long as the number of animation frames is sufficient.
+    It is the developer's responsibility to actually use only the animations that make sense for given MD3 model.
+    Some Quake3-based games place multiple MD3 files in the same directory as one <code>animation.cfg</code>,
+    and there are game-specific assumptions which animations make sense for which MD3 model.
+    E.g. <a href="http://tremulous.net/">Tremulous</a> human models
+    have animations like
+    <code>BOTH_xxx</code>
+    (that make sense to play on both <code>upper.md3</code> and <code>lower.md3</code>) and
+    <code>TORSO_xxx</code>
+    (that make sense to play only on <code>upper.md3</code>).
+
     <p>Without the <code>animation.cfg</code> file, the MD3 will only contain one long animation
     called <code>animation</code> that plays all available frames.
     You can still use manual approach to play any subrange of this animation, see
@@ -227,6 +239,14 @@ echo cgeImg('block', array(
     The mechanism to change skins exists, albait it is a bit internal now:
     you can change <code>Md3Skin</code> (global variable in <code>X3DLoadInternalMD3</code>)
     right before reading the MD3 file.
+
+  <li>
+    <p>Tags.
+
+    <p>Tags are animated transformations that (by default) don't show anything.
+    They can be used together with our
+    <a href="https://castle-engine.io/wp/2020/10/09/attach-objects-to-animated-bones-like-weapon-in-characters-hand-by-exposetransforms/">ExposeTransforms</a>
+    mechanism to attach things to them, e.g. you can attach a weapon model to a specific place.
 </ul>
 
 <?php echo $toc->html_section(); ?>
