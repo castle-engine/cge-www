@@ -117,23 +117,66 @@ If you have installed FPC yourself using link:fpcupdeluxe[] on Unix, remember to
 In general, the `Env: PP` executable may be run by CodeTools, which may assume this FPC version "knows" standard RTL paths. That's why it's important to pass `fpc.sh` (in case of fpcupdeluxe) or `fpc-cge` (in case of FPC bundled with CGE) and not the "bare" `fpc` executable.
 ====
 
-== Running and debugging
+== Compiling and Running
 
-It is easiest to just run from _Castle Game Engine_ editor using F9 (_"Run -> Compile And Run_").
+You can configure _VS Code_ to compile and run CGE applications.
 
-If you really want to run and debug from _VS Code_:
+NOTE: The proces below allows for many tweaks for advanced _VS Code_ users but it may look intimidating. Remember this is optional. You can always just compile and run CGE applications from _Castle Game Engine_ editor (use F9, or _"Run -> Compile And Run_" menu item).
 
-- CGE applications compiled in _debug_ mode contain debug symbols compatible with GDB. Any debugger extension in _VS Code_ based on GDB should work.
+=== Tasks
 
-- To build and run CGE applications without leaving VS Code, you can utilize our command-line link:build_tool[build tool].
-+
---
-- Set `CASTLE_ENGINE_PATH` environment variable to point to your CGE directory.
-- Extend the `PATH` environment variable to contain the `bin` subdirectory of your CGE directory.
-- Make sure that FPC is also on `PATH`, so that our build tool can find it.
+To compile and run CGE projects from _VS Code_, you can define a `tasks.json` file with contents like this: https://github.com/castle-engine/castle-engine/blob/master/doc/sample_vs_code_tasks.json[sample_vs_code_tasks.json] (use https://raw.githubusercontent.com/castle-engine/castle-engine/master/doc/sample_vs_code_tasks.json[raw version of sample_vs_code_tasks.json for easy copy-paste]).
+
+This file defines 3 CGE tasks and makes the task _"(CGE) Compile And Run"_ the default.
+
+Use this sample as:
+
+* your personal (user-specific, apply to all projects) tasks. Use command _"Tasks: Open User Tasks"_ from the palette (_Ctrl + Shift + P_) to edit this file.
+
+* or inside the `.vscode` folder of your project. Use menu item _"Terminal -> Configure Tasks"_ to edit this file.
+
+=== Environment for tasks
+
+The above sample `tasks.json` assumes that the CGE link:build_tool[build tool] called `castle-engine` can be found on `PATH`. Make sure your environment is set correcttly to make it work:
+
+- Extend the `PATH` environment variable to contain the `bin` subdirectory of your CGE directory. This is where `castle-editor[.exe]` file should be. _Alternative_: Edit the sample `tasks.json` to provide full path to the build tool exe.
+
+- Make sure that compiler (FPC or Delphi) is on `PATH`, so that our build tool can find it.
+
+- _Optional, should not be needed in the usual case:_ Set `CASTLE_ENGINE_PATH` environment variable to point to your CGE directory. This should not be needed: build tool should detect CGE directory anyway.
+
 - Remember to restart all applications (like VS Code) that need to be aware of new environment variables' values.
-- Configure the _VS Code_ tasks to build using `castle-engine compile --mode=debug` and run using `castle-engine run`.
---
+
+=== Keybindings for tasks
+
+You can bind keys to the CGE tasks, to have a similar experience in _VS Code_ as in CGE editor:
+
+- _F9_ should do _"(CGE) Compile And Run"_
+- _Ctrl+F9_ should do _"(CGE) Compile"_
+- _Shift+F9_ should do _"(CGE) Run"_
+
+To adjust keybindings for tasks, you have to edit your `keybindings.json` file. See https://code.visualstudio.com/docs/editor/tasks#_binding-keyboard-shortcuts-to-tasks[adding shortcuts to tasks] and https://code.visualstudio.com/docs/getstarted/keybindings#_advanced-customization[editing keybindings] for information how to do this.
+
+Define keys like this in `keybindings.json`:
+
+```json
+    {
+        "key": "ctrl+f9",
+        "command": "workbench.action.tasks.runTask",
+        "args": "(CGE) Compile"
+    },
+    {
+        "key": "shift+f9",
+        "command": "workbench.action.tasks.runTask",
+        "args": "(CGE) Run"
+    }
+```
+
+To define key shortcut for default task _"(CGE) Compile And Run"_ just adjust the _"Tasks: Run Build Task"_ shortcut to F9 in VS Code key shortcuts settings. You can also adjust it by editing `keybindings.json`, as above.
+
+=== Debugging
+
+CGE applications compiled in _debug_ mode contain debug symbols compatible with GDB. Any debugger extension in _VS Code_ based on GDB should work.
 
 == More Information and Credits
 
@@ -189,6 +232,10 @@ Of course we will still make everything such that you don't have to use this "bu
 
 * Can we have "Code Completion" (that happens in Lazarus when you Ctrl + Shift + C) that can automatically insert e.g. method declarations or complete property declarations?
 
-* Have a recommended and perfectly working approach to running and debugging. If you open a directory with CGE project (`CastleEngineManifest.xml`) then running and debugging it in VS Code should be just a keystroke (like F9) away. We should use CGE build tool with all parameters that CGE editor already knows.
+* More automatic CGE tasks. Maybe CGE extension in VS Code? Would also allow to clear problems list before each compilation.
++
+In general, if you open a directory with CGE project (`CastleEngineManifest.xml`) then running and debugging it in VS Code should be just a keystroke (like F9) away.
+
+* Better debugging docs.
 +
 There is https://microsoft.github.io/debug-adapter-protocol/[DAP (Debug Adapter Protocol)] with similar goals as LSP, but for debuggers. Maybe someone will wrap Lazarus debugger (GDB with Pascal specific interpretations) in DAP?
