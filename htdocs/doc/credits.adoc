@@ -44,6 +44,7 @@ Everyone who subscribes to support CGE with at least 10 USD / month (anywhere --
 * Basti Schindla
 * Cristopher
 * Erik Johnson
+* Filip Demuynck
 * Friedrich Westermann
 * Gordon Niessen
 * Highball
