@@ -200,7 +200,28 @@ Here's a demo:
 
 video::apCQXr9PBhs[youtube,width=800,height=450]
 
-== Examples
+== Layers
+
+By default, all physics bodies are on the same, default layer (with index 0) and can collide with each other.
+
+You can place bodies on different layers, like _"ground"_, _"enemies"_, _"bullets"_ and so on. You can then configure which layer collides with which. You have 20 layers available.
+
+There are really just 2 things to configure:
+
+1. At each rigid body, set the cgeref:TCastleRigidBody.Layer[] to indicate the layer on which the body is.
++
+To help with this, you can add names and even longer descriptions to layers. Do this through cgeref:TPhysicsProperties.LayerNames[Viewport.Items.PhysicsProperties.LayerNames]. In the usual workflow, just click to configure `LayerNames` using "..." button in the editor. The names and descriptions are only for the developer, to better document the layer meaning.
++
+cgeimg::block[physics_platformer_layer.png|Physics layer combo box in platformer game]
+
+2. Configure which layer collides with which using the checkboxes at cgeref:TPhysicsProperties.LayerCollisions[Viewport.Items.PhysicsProperties.LayerCollisions]. You can set them from code, or click on "..." from CGE editor to configure them visually.
++
+cgeimg::block[physics_platformer_collisions.png|Physics collisions in platformer game]
+
+The simple usage example is in https://github.com/castle-engine/castle-engine/tree/master/examples/physics/physics_3d_collisions_layers[examples/physics/physics_3d_collisions_layers/].
+More involved example is in https://github.com/castle-engine/castle-engine/tree/master/examples/platformer[examples/platformer].
+
+== Examples of physics
 
 We have a lot of examples dedicated to physics in the https://github.com/castle-engine/castle-engine/tree/master/examples/physics[examples/physics] subdirectory. Go ahead and check them out!
 
@@ -208,9 +229,9 @@ We have a lot of examples dedicated to physics in the https://github.com/castle-
 
 Current physics engine integration is just a start. The plans are:
 
-- Expose Kraft layers. (Started: branch https://github.com/castle-engine/castle-engine/tree/physics_layers[physics_layers])
-
 - Make cgeref:TCastleWalkNavigation[] use physics to move (just like cgeref:TCastleThirdPersonNavigation[] already can).
++
+_In progress_ already (by Andrzej Kilijański).
 
 - _(See section below about "Old system")_ Currently we also have an older, simpler, internal physics/collision engine in CGE, that takes care of some tasks: the collisions of player and creatures (from CastleCreatures), a simple gravity for them, and custom collision methods for you (like RayCollision, SphereCollision etc. in CastleTransform unit). The new physics engine should eventually replace them all, and there should be a flag to make it possible, and eventually it should even become the default, and the old collision implementation should be simply removed.
 
@@ -222,9 +243,15 @@ We are close to realizing this goal, except that `ExposeTransforms` do not (yet)
 
 - Integration with other physics engines, through a layer providing a common API.
 +
-Our best candidate for proving an (alternative) physics engine is link:http://bulletphysics.org/[Bullet]. Very full-featured, e.g. there's soft body, not only rigid body.
+We consider these 2 candidates for proving an (alternative) physics engine now:
++
+--
+1. http://bulletphysics.org/[Bullet]. Very full-featured, e.g. there's soft body, not only rigid body.
 +
 Full integration with Bullet will require proper translation of Bullet API to C and then to Pascal (as Bullet is in C++, it's not readily usable from anything other than C++). There is a C header for Bullet, see https://code.google.com/archive/p/bullet/issues/43[this old Google Code issue] and https://github.com/bulletphysics/bullet3/issues/130[this GitHub issue], but it's rather minimalistic (only rigid body), although it may be a good start.
+
+2. https://developer.nvidia.com/physx-sdk[PhysX] from Nvidia. Open-source, multi-platform, lots of features.
+--
 
 == Old system for collisions and gravity
 
