@@ -15,7 +15,8 @@ cgeimg::block[oculus.png|Oculus Quest 2: Developer Mode for Castle Game Engine e
 
 AR: most likely using Android / iOS built-in frameworks, as these make AR widely available on modern phones.
 
-## New material components (allowing also material editing in the editor)
+[#materials]
+## (planned for 7.0) New material components (allowing also material editing in the editor)
 
 We want to allow you to edit materials in the CGE editor,
 
@@ -43,9 +44,12 @@ We should also perform skinning fully on GPU, avoiding `CoordinateInterpolator` 
 
 ## More physics
 
-More physics engine integration. The details are listed in the link:physics[manual about physics].
+More physics engine integration. The details are listed in the link:physics#_future_plans_todos[manual about physics, subsection "TODO"]. In short:
 
-**Layers started on branch https://github.com/castle-engine/castle-engine/tree/physics_layers[physics_layers].**
+- cgeref:TCastleWalkNavigation[] should support physics out-of-the-box.
+- Older physics based on octrees should be phased out.
+- cgeref:TCastleSceneCore.ExposeTransforms[] should work both ways, to allow to attach bodies and colliders to parts of the scene. This will enable e.g. ragdolls.
+- We should add more physics backends, like PhysX or Bullet.
 
 [#web]
 ## (IN PROGRESS) Web platform (rendering using WebGL) support
@@ -58,7 +62,9 @@ Using https://www.freepascal.org/[FPC] support for the _WebAssembly_:
 
 Some "glue" may also be done using https://wiki.freepascal.org/pas2js[pas2js]. This is a nice solution to expose to our WebAssembly code the JS API we need, like WebGL. Alternatively, we could just do it in plain JS.
 
-_This is already in-progress by Trung Le (Kagamma) and Andrzej Kilijański (test https://github.com/and3md/cge-fpc-internalerror )._
+_This is already in-progress by Trung Le (Kagamma), Andrzej Kilijański and Michalis._
+
+I wrote a longer post about plans and status of this here: https://castle-engine.io/wp/2023/04/08/web-target-progress-and-plans/ .
 
 ## (IN PROGRESS) Particle systems
 

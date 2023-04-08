@@ -33,7 +33,9 @@ See https://castle-engine.io/wp/2022/12/24/summary-of-4th-open-meeting-physics-p
 * new components (colliders and bodies),
 * running simulation in the editor,
 * API to use physics forces from code,
-* joints and more.
+* joints,
+* layers,
+* updates 3rd-person navigation component that can now work with physics,
 * See also https://castle-engine.io/wp/2022/12/29/summary-of-the-new-physics-capabilities/[news, where I tried and failed to provide a concise summary of what changed :)]
 --
 * https://castle-engine.io/vscode[Visual Studio Code integration, intelligent code completion with our LSP server, also for Emacs, NeoVim and other text editors]. Also see https://castle-engine.io/wp/2022/11/19/visual-studio-code-integration-intelligent-code-completion-with-our-lsp-server-also-for-emacs-neovim-and-other-text-editors/[news].
