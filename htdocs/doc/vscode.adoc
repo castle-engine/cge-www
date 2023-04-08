@@ -137,13 +137,21 @@ Use this sample as:
 
 === Environment for tasks
 
-The above sample `tasks.json` assumes that the CGE link:build_tool[build tool] called `castle-engine` can be found on `PATH`. Make sure your environment is set correcttly to make it work:
+The above sample `tasks.json` assumes that the CGE link:build_tool[build tool] called `castle-engine` can be found on environment variable `PATH`.
 
-- Extend the `PATH` environment variable to contain the `bin` subdirectory of your CGE directory. This is where `castle-editor[.exe]` file should be. _Alternative_: Edit the sample `tasks.json` to provide full path to the build tool exe.
+Make sure your environment is set correctly to make it work:
 
-- Make sure that compiler (FPC or Delphi) is on `PATH`, so that our build tool can find it.
+- Extend the `PATH` environment variable to contain the `bin` subdirectory of your CGE directory. This is where `castle-engine[.exe]` file should be. If you don't know how to set the environment variable, search the Internet (e.g. https://www.computerhope.com/issues/ch000549.htm[these are quick instructions how to do it on various Windows versions]).
++
+_Alternative_: Edit the sample `tasks.json` to provide full path to the build tool exe, like `/home/example/castle_game_engine/bin/castle-engine` instead of just `castle-engine`.
 
-- _Optional, should not be needed in the usual case:_ Set `CASTLE_ENGINE_PATH` environment variable to point to your CGE directory. This should not be needed: build tool should detect CGE directory anyway.
+- _(Optional)_ Make sure that compiler (FPC or Delphi) is on `PATH`, so that our build tool can find it.
++
+This is not necessary in the common case, when you use FPC bundled with CGE.
+
+- _(Optional)_ Set `CASTLE_ENGINE_PATH` environment variable to point to the root of CGE.
++
+This is not necessary if you run the build tool from CGE subdirectory `bin/`, it will auto-detect CGE path then correctly.
 
 - Remember to restart all applications (like VS Code) that need to be aware of new environment variables' values.
 
