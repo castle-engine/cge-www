@@ -150,6 +150,7 @@ Set-ExecutionPolicy Bypass -Scope Process
 
 <ol>
   <li>OpenGL (<i>essential for the engine to work</i>; used to render)
+  <li>GTK 2 (we plan to switch to GTK 3)
   <li>LibPng (to open png files more efficiently)
   <li>ZLib (to unpack gzip files; also used by LibPng)
   <li>OpenAL (to play sound)
@@ -159,9 +160,19 @@ Set-ExecutionPolicy Bypass -Scope Process
 
 <p>Most of them are already present on all Unix desktop installations.
 
-<p>On your (developer) system, you will need the development versions of some of these libraries. This allows to build programs that link to these libraries. On Debian systems, this command should install everything you need:
+<p>On your (developer) system, you will need the development versions of some of these libraries. This allows to build programs that link to these libraries.
 
-<pre>sudo apt install libgtk2.0-dev libgl1-mesa-dev</pre>
+<ul>
+  <li>
+    <p>On Debian and derivatives (like Ubuntu), this command should install everything you need:
+
+    <pre>sudo apt install libgtk2.0-dev libgl1-mesa-dev</pre>
+
+  <li>
+    <p>On Fedora, this command should install everything you need (and more, some of these are FPC requirements actually, not CGE):
+
+    <pre>sudo dnf install gtk2 gtk2-devel libX11-devel make binutils glibc-devel mesa-libGL-develG</pre>
+</ul>
 
 <p>Note that we link to many libraries dynamically using <i>"dlopen"</i> Unix mechanism. So it is not necessary to install e.g. <code>libpng-dev</code> or <code>libfreetype6-dev</code>.
 
