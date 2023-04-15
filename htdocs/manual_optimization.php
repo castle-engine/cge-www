@@ -28,6 +28,7 @@ $toc = new TableOfContents(
       new TocItem('Blending', 'blending', 1),
       new TocItem('Loading PNG using libpng', 'libpng', 1),
       new TocItem('User interface and 2D drawing', 'ui', 1),
+      new TocItem('Last resort: consider switching to old rendering pipeline for really old machines', 'old_rendering', 1),
     new TocItem('Profile (measure speed and memory usage)', 'profiling'),
       new TocItem('Use simple TCastleProfiler to measure specific tasks', 'profiler', 1),
       new TocItem('Use TCastleFrameProfiler (just press F8!) to measure what consumes your time', 'frame_profiler', 1),
@@ -640,6 +641,22 @@ Hints to make it faster:
 <p>Turn on <?php echo cgeRef('TCastleUserInterface.Culling'); ?> to optimize the case when a resource-intensive control is often off-screen (and thus doesn't need to be rendered or process other events). This also matters if the control is outside of the parent scrollable view (<?php echo cgeRef('TCastleScrollView'); ?>) or other parent with <?php echo cgeRef('TCastleUserInterface.ClipChildren'); ?>. This is very useful when creating a large number of children inside <?php echo cgeRef('TCastleScrollView'); ?>.
 
 <p>When rendering 2D stuff yourself usign <?php echo cgeRef('TDrawableImage'); ?>, you can often make a dramatic speedup by using the overload that draws multiple images (maybe different, maybe the same image parts) by a single <code>procedure TDrawableImage.Draw(ScreenRects, ImageRects: PFloatRectangleArray; const Count: Integer);</code> call.
+
+<?php echo $toc->html_section(); ?>
+
+<p>Our <?php echo cgeRef('TGLFeatures.RequestCapabilities'); ?> allow to force rendering using an ancient fixed-function pipeline. This is a rather "nuclear" way to resign from many benefits of modern rendering (PBR, Phong shading) and instead have something that is faster on many old GPUs, that have been optimized for fixed-function pipeline.
+
+<p>Note that many applications will look different (and worse) because of the unavoidable difference. If you use glTF with PBR, then switching to fixed-function will disable PBR and force older Phong lighting model with Gouraud shading.
+
+<p>To try this, set
+
+<pre>
+TGLFeatures.RequestCapabilities := rcForceFixedFunction;
+</pre>
+
+<p>before creating the window (e.g. in the <code>initialization</code> section of <code>GameInitialize</code> unit in your application).
+
+<p>Users can also run any application with command-line option <code>--capabilities=force-fixed-function</code>.
 
 <?php echo $toc->html_section(); ?>
 
