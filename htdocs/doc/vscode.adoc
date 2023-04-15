@@ -209,6 +209,16 @@ This is a sample `launch.json` you can use:
 
 For debugging code compiled with FPC, it's very useful to set a breakpoint at `fpc_raiseexception`.
 
+[NOTE]
+====
+The keybindings are of course your personal choice. Personally I use these:
+
+[role="compact"]
+- `F5` - _Debug: Toggle Breakpoint_ (consistent with Delphi / Lazarus)
+- `Shift + F5` - _Debug: Start Debugging_
+- `Ctrl + F2` - _Debug: Stop_ (consistent with Delphi / Lazarus)
+====
+
 == More Information and Credits
 
 - The LSP server we use is based on https://github.com/Isopod/pascal-language-server[Philip Zander\'s Pascal LSP server].
