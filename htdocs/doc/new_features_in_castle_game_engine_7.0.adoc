@@ -54,6 +54,7 @@ See https://castle-engine.io/wp/2022/12/24/summary-of-4th-open-meeting-physics-p
 * Many editor UX improvements. The most important ones:
 +
 --
+* Modern color picker dialog to adjust colors as HSV, RGB, hex, show Pascal code, auto-apply.
 * Unified tools to edit UI and transformations in the editor, also with slicker icons.
 * More reliable (much less often reloaded) hierarchy of components.
 * Wireframe view.
