@@ -127,13 +127,13 @@ NOTE: The proces below allows for many tweaks for advanced _VS Code_ users but i
 
 To compile and run CGE projects from _VS Code_, you can define a `tasks.json` file with contents like this: https://github.com/castle-engine/castle-engine/blob/master/doc/sample_vs_code_tasks.json[sample_vs_code_tasks.json] (use https://raw.githubusercontent.com/castle-engine/castle-engine/master/doc/sample_vs_code_tasks.json[raw version of sample_vs_code_tasks.json for easy copy-paste]).
 
-This file defines 3 CGE tasks and makes the task _"(CGE) Compile And Run"_ the default.
+This file defines a few CGE tasks and makes the task _"(CGE) Compile And Run"_ the default.
 
 Use this sample as:
 
 * your personal (user-specific, apply to all projects) tasks. Use command _"Tasks: Open User Tasks"_ from the palette (_Ctrl + Shift + P_) to edit this file.
 
-* or inside the `.vscode` folder of your project. Use menu item _"Terminal -> Configure Tasks"_ to edit this file.
+* or place these tasks inside the `.vscode` folder of your project. Use menu item _"Terminal -> Configure Tasks"_ to edit this file.
 
 === Environment for tasks
 
@@ -186,7 +186,7 @@ To define key shortcut for default task _"(CGE) Compile And Run"_ just adjust th
 
 CGE applications compiled in _debug_ mode contain debug symbols compatible with GDB. Any debugger extension in _VS Code_ based on GDB should work.
 
-This is a sample `launch.json` you can use:
+This is a sample `launch.json` you can use (edit `app_name` as necessary):
 
 ```json
 {
@@ -207,7 +207,7 @@ This is a sample `launch.json` you can use:
 }
 ```
 
-For debugging code compiled with FPC, it's very useful to set a breakpoint at `fpc_raiseexception`.
+For debugging code compiled with FPC, it's very useful to set a breakpoint at `fpc_raiseexception`. Just define a breakpoint at such function name (don't worry that it may seem like it doesn't work -- it will actually work once you run the project).
 
 [NOTE]
 ====
