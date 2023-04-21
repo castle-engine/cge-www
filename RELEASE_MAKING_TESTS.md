@@ -24,7 +24,7 @@ Download for important platforms (esp. Windows, that Michalis doesn't use regula
 - Create all templates
     - open designs inside
     - compile F9 with FPC
-    - compile F9 with Delphi at least one example
+    - compile F9 with Delphi
     - click and double-click on some glTF, to make sure preview and view3dscene appear ok
 - Build + run some examples
 - Open doc/reference/index.html
@@ -166,3 +166,10 @@ cd view3dscene/
 make clean-code
 make generate-code
 ```
+
+## Test: Interactive test in Delphi (compilation using DPROJ)
+
+* Compile and install all packages in Delphi
+* Compile examples/delphi/vcl in Delphi (interactively, so using DPROJ)
+* Compile examples/delphi/fmx in Delphi (interactively, so using DPROJ)
+* Compile examples/fps_game in Delphi (interactively, so using DPROJ)
