@@ -93,12 +93,7 @@ echo castle_thumbs(array(
     <p>In particular open the <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/audio/game_3d_sound">examples/audio/game_3d_sound</a> demo. It's a simple example of how <code>TCastleSoundSource</code> and <code>TCastleSound</code> can be set up in the CGE editor.
 
   <li>
-    <p>See also <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/fixed_camera_game">examples/fixed_camera_game</a> as a demo how to design a collection of sounds. In particular:
-
-      <ul>
-        <li><code>examples/fixed_camera_game/data/sounds/all_sounds.castle-component</code> describes all sounds
-        <li><code>examples/fixed_camera_game/code/gamesound.pas</code> loads them
-      </ul>
+    <p>See also <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/platformer">examples/platformer</a> as a demo how to design <a href="#section_components_collection">a collection of sounds (see below for details)</a>.
 </ul>
 
 <?php echo $toc->html_section(); ?>
@@ -142,7 +137,9 @@ MySound.URL := \'castle-data:/my-sound.wav\';'); ?>
 'SoundEngine.Play(MySound);'); ?>
 </ol>
 
-<p>See <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/audio/simplest_play_sound/simplest_play_sound.lpr">source code of examples/audio/simplest_play_sound/</a> for a working simplest possible example of this.
+<p>See <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/audio/simplest_play_sound/simplest_play_sound.dpr">source code of examples/audio/simplest_play_sound/simplest_play_sound.dpr</a> for a working simplest possible example of this.
+
+<p>NOTE: <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/audio/simplest_play_sound/simplest_play_sound.dpr">simplest_play_sound</a> example is literally the simplest application that only plays a sound, without displaying anything. In a real situation, you want to use such code to play sound inside a larger CGE application, e.g. play sound when user presses some key, using our <a href="view_events">view events</a>.
 
 <?php echo $toc->html_section(); ?>
 
@@ -154,13 +151,15 @@ echo castle_thumbs(array(
 
 <p>It is often comfortable to define a <i>collection</i> of sounds, which means that each sound file is assigned a simple name and configuration (e.g. priority, default volume), and all the sound files can be loaded easily from any place in code (regardless of the current <a href="views">view</a>).
 
-<p>Do it by using a <code>TCastleComponent</code> as a design root and adding <code>TCastleSound</code> children. Save the resulting design to a file like <code>all_sounds.castle-component</code>.
+<p>Do it by using a <code>TCastleComponent</code> as a design root and adding <code>TCastleSound</code> children. Save the resulting design to a file like <code>sounds.castle-component</code>.
 
-<p>See <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/fixed_camera_game">examples/fixed_camera_game</a> for an example of this approach. In particular:
+<p>See also <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/platformer">examples/platformer</a> for an example of this approach. In particular, important files in this example are:
 
 <ul>
-  <li><code>examples/fixed_camera_game/data/sounds/all_sounds.castle-component</code> describes all sounds
-  <li><code>examples/fixed_camera_game/code/gamesound.pas</code> loads them
+  <li>
+    <p><a href="https://github.com/castle-engine/castle-engine/blob/master/examples/platformer/data/sounds.castle-component">examples/platformer/data/sounds.castle-component</a> describes all sounds. Edit this JSON file visually in CGE editor, just double-click on it in the CGE editor <i>"Files"</i> panel.
+  <li>
+    <p><a href="https://github.com/castle-engine/castle-engine/blob/master/examples/platformer/code/gamesound.pas">examples/platformer/code/gamesound.pas</a> loads them. It defines a simple <code>NamedSound</code> routine used by the rest of code to play sounds like <code>SoundEngine.Play(NamedSound('something'))</code>.
 </ul>
 
 <?php echo $toc->html_section(); ?>
@@ -179,7 +178,9 @@ echo castle_thumbs(array(
   <li>
     <p>Main advantage of FMOD in CGE for now is <a href="https://castle-engine.io/nintendo_switch">Nintendo Switch compatibility</a>.
   <li>
-    <p>Big future advantage may be integration with the <a href="https://www.fmod.com/studio">FMOD Studio</a>. The goal of <i>FMOD Studio</i> is to make the work of <em>sound designer</em> easier. The sfx person can create sound effects in <i>FMOD Studio</i>, in a way that is agnostic to the game engine, and the code (like your game) simply sends <em>"events"</em> that may cause some sound effect (playing something, stopping something, fading in/out something...).
+    <p>Big future advantage will be integration with the <a href="https://www.fmod.com/studio">FMOD Studio</a>. The goal of <i>FMOD Studio</i> is to make the work of <em>sound designer</em> easier. The sfx person can create sound effects in <i>FMOD Studio</i>, in a way that is agnostic to the game engine, and the code (like your game) simply sends <em>"events"</em> that may cause some sound effect (playing something, stopping something, fading in/out something...).
+  <li>
+    <p>See also plans about <a href="https://castle-engine.io/roadmap#fmod_studio">FMOD Studio</a> and <a href="https://castle-engine.io/roadmap#wwise">Wwise</a>.
 </ul>
 
 <?php
