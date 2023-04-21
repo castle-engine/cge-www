@@ -60,21 +60,9 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
     (directly or by animating it's parent transformation) also works perfectly.</p>
 
     <p>TODO: We support most, but not all, X3D fields.
-    Fields not implemented yet: <code>jump</code>, <code>retainUserOffsets</code>, <code>centerOfRotation</code>.
+    Fields not implemented yet: <code>jump</code>, <code>retainUserOffsets</code>.
 
     <ul>
-      <li><p>Support for <code>centerOfRotation</code> already exists in the engine
-        (<code>TExamineCamera.CenterOfRotation</code>),
-        so it should be easy to finish it (copy X3D <code>Viewpoint.centerOfRotation</code>
-        to <code>TExamineCamera.CenterOfRotation</code>).
-        But we may have to treat centerOfRotation = 0,0,0
-        as special value meaning "middle of the box", otherwise many models will
-        have weird navigation because they lack correct centerOfRotation value
-        (and the default is just zero).
-
-        <p>Suggestions and reports how does this work in other VRML/X3D browsers
-        are welcome.
-
       <li><p>As for animating viewpoints (and also possible <code>jump</code>, <code>retainUserOffsets</code> implementation):
 
         <p>We do not support right now the notion of preserving user offsets
@@ -123,7 +111,7 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
             you can say that avatarSize[2] is by default like
             avatarSize[1] - avatarSize[0]).
 
-            <p>See TWalkCamera.ClimbHeight API docs for more details about this.
+            <p>See TCastleWalkNavigation.ClimbHeight API docs for more details about this.
         </ol>
 
       <li><p><code>speed</code> field is supported, it sets
