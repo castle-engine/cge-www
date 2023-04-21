@@ -126,7 +126,7 @@ echo castle_thumbs(array(
     <p>Add <code>CastleSoundEngine</code> to your uses clause.
 
   <li>
-    <p>Declare variable to hold it like <code>MySound: TSound;</code>
+    <p>Declare variable to hold it like <code>MySound: TCastleSound;</code>
 
   <li>
     <p>Initialize the variable and load sound file, e.g. in <code>Application.OnInitialize</code>:
