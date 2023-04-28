@@ -498,8 +498,9 @@ So we recommend you just use `Single` for most of code, and eventually fallback 
 
 For CGE developers: While the above recommendation holds (do not use `Extended`), if you really have to use it, then the `castleconf.inc` defines:
 
-- `EXTENDED_EQUALS_DOUBLE` symbol when `Extended` is 8-byte `Double`. Useful to not define overloads for both `Double` and `Extended` -- they would be equivalent (thus, not allowed by compiler) when these types are equal.
-- `EXTENDED_EQUALS_LONG_DOUBLE` symbol when `Extended` is 16-byte "long double".
+- `EXTENDED_EQUALS_DOUBLE` symbol when `Extended` is 8-byte `Double`.
+- `EXTENDED_OVERLOADS` symbol when you should define `Extended` overloads. This means that `EXTENDED_EQUALS_DOUBLE` is not defined, or that compiler wants such overloads anyway (Delphi allows and actually wants such overloads, because even when `Extended` is 8-byte `Double`, it is still a distinct type from `Double`).
+ - `EXTENDED_EQUALS_LONG_DOUBLE` symbol when `Extended` is 16-byte "long double".
 
 [#strings_unicode]
 === Most code should use just `String`, and be prepared that it is 8-bit on FPC and 16-bit on Delphi. Only if writing to stream, explicitly use 8-bit `AnsiString` (in usual case, when you write UTF-8).
