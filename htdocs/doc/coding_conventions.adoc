@@ -8,7 +8,7 @@ In general, we follow the standard Lazarus and Delphi coding conventions, used t
 
 These are documented nicely on:
 
-* http://edn.embarcadero.com/article/10280[Object Pascal Style Guide]
+* https://docwiki.embarcadero.com/RADStudio/Sydney/en/Delphi%E2%80%99s_Object_Pascal_Style_Guide[Delphi's Object Pascal Style Guide]
 * https://web.archive.org/web/20170607183644/http://kodu.ut.ee/~jellen/delphi/cs.html[Delphi Language Coding Standards Document]
 
 Some particular conventions:
@@ -29,7 +29,7 @@ begin
     begin
       Bar;
       Xyz;
-    end'
+    end;
     WriteLn(X);
   end;
 end;
