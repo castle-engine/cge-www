@@ -54,3 +54,60 @@ Castle Game Engine is available in Debian and Ubuntu through the official packag
 
 https://packages.debian.org/search?suite=sid&searchon=names&keywords=castle-game-engine
 ////
+
+=== Delphinus
+
+link:https://github.com/Memnarch/Delphinus/[Delphinus] is an open-source package manager for https://www.embarcadero.com/products/Delphi[Delphi]. You can use it to install _Castle Game Engine_ within Delphi IDE.
+
+- The nice benefit is that it will automatically modify your Delphi settings, to make CGE units available for all the projects.
++
+This means you can use CGE units for all projects, without the need to add all necessary CGE paths manually (to Delphi settings or to DPROJ) and without using CGE build tool to manage your DPROJ.
+
+- The drawback is that it will not install the binary tools, like CGE editor. _Delphinus_ only downloads the contents of CGE repository -- which means CGE source code.
++
+For this reason, we advise to install CGE from the standard installer (see higher on this page) too, and run CGE editor from it. As long as you use the same CGE version, it will work fine.
++
+Alternatively, you may follow https://castle-engine.io/compiling_from_source.php[compiling CGE from sources] to get CGE editor.
+
+Installing Delphinus:
+
+. Clone GIT repository https://github.com/Memnarch/Delphinus/
+
+. Open in your Delphi the package `Delphinus\Packages\DelphiXE6\Delphinus.dproj`.
++
+NOTE: This package file assumes you have Delphi >= Delphi XE 6, which is almost certain today.
+
+. Compile and Install this package in Delphi.
+
+. You will get a new menu item _"Tools -> Delphinus_" in Delphi. Use it to see the _Delphinus_ GUI.
++
+cgeimg::block[delphinus_1.png|Delphinus GUI]
+
+. Initially the list of packages in _Delphinus_ will be empty. You have to refresh them, and for this you need a GitHub _OAuth-Token_.
+
+. To create a token, login to your https://github.com/[GitHub] account and visit https://github.com/settings/tokens[Developer settings -> Personal access tokens -> Tokens (classic)]. Choose _"Generate new token (classic)"_.
+
+. On the token settings, set a name (like _"Delphinus"_), expiration time (you will have to recreate the token after that time). There's no need to select any scopes.
+
+. Click _"Generate Token"_ at the bottom. Copy the resulting token (text `ghp_xxxxxxxx`) to the clipboard.
+//Be sure to copy it before closing that page -- you will not see that token value again (if you loose it, you'll have to create a new one).
+
+. Go back to Delphi and the Delphinus dialog window. Open Delphinus settings by clicking on the cog-wheel button on the header.
++
+cgeimg::block[delphinus_2_oauth.png|Delphinus OAuth settings]
+
+. Paste the token into the _"OAuth-Token"_ field. Click _"Test"_, if all OK (it should answer _"Authenticated as xxx"_) click _"OK"_ to save it.
+
+. Finally click on the _"Refresh"_ button (icon with spinning arrows on the header) in Delphinus. It should download the list of packages from GitHub.
+//. The list of packages in Delphinus should be now nicely filled.
+
+. Now find _"Castle Game Engine"_ in Delphinus, click to install it. Choose version as you see fit (right now only `HEAD` is available).
++
+cgeimg::block[delphinus_3_cge.png|Delphinus CGE package]
+
+. Test it! Navigate to xxx and open some CGE example, like `x`
+
+More information in https://github.com/Memnarch/Delphinus/wiki/Installing-Delphinus[Installing Delphinus].
+
+NOTE: Currently you have to https://github.com/Memnarch/Delphinus/[build Delphinus from source]. Installing from https://memnarch.bplaced.net/blog/delphinus/[Delphinus Websetup] is temporarily broken, see https://github.com/Memnarch/Delphinus/issues/88[Delphinus #88]. The instructions below show the approach that works now.
+
