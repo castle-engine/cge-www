@@ -72,13 +72,13 @@ type
   end;
 ----
 
-=== Simple property types and their default value
+=== Default value (for simple property types, like Integer)
 
-Following Pascal rules, properties can have a `default` specifier. This should specify the property value that is always initialized by the constructor. When serializing (writing to file) given component, we know we *do not* need to write the property value when it is equal to its default value.
+Every property can have a `default` specifier. This should specify the initial property value, that is always set by the constructor. When serializing (writing to file) the given component, we do not write the property value when it is equal to this "default" value -- because we know it is not necessary.
 
-NOTE: Remember that you still have to initialize in constructor the property to a given value. Merely adding `default` does not actually initialize the property. It it only an information for serialization, that it can safely assume that this property is initialized.
+NOTE: Remember that you still have to initialize in constructor the property to a given value. Merely adding `default` does not actually initialize the property. It it only an information for serialization.
 
-For example, the `Rows` and `Columns` below have a default values of (respectively) 10 and 20. If you don't change their values, then they will not be written to serialized JSON file.
+For example, the `Rows` and `Columns` below have a default values of (respectively) `10` and `20`. If you don't change their values, then they will not be written to serialized JSON file.
 
 [source,pascal]
 ----
@@ -104,11 +104,11 @@ begin
 end;
 ----
 
-The above class always defines constants `DefaultRows` and `DefaultColumns`. While it is not required to define such constants, we advise doing it for all properties that have a non-obvious default value. This allows to easily set the default value from the code.
+The above class also defined constants `DefaultRows` and `DefaultColumns`. While it is not required to define such constants, we advise doing it for all properties that have a non-obvious default value. This allows to easily refer to the default value from the code.
 
-An alternative way to specify when should the property be stored is to use a `stored` method.
+An alternative way to specify when should the property be serialized is to use a `stored` method.
 
-A property without the `default` specifier or `stored` method is always serialized to file. _Except for some specific property types, like floats and Strings. See below_.
+In general, a property without the `default` specifier or `stored` method is always serialized to file. This is true for properties of e.g. `Integer` type. _But beware: Some specific property types, like floats and Strings, have "implicit" default value. See below_.
 
 === Float (Single, Double, Extended) properties
 
@@ -116,7 +116,7 @@ Properties with the floating-point type (`Single`, `Double`, `Extended`) behave 
 
 - `Double` and `Extended` (note that link:coding_conventions#no_extended[Extended is often an alias to Double]) cannot have `default` clause at all.
 
-- `Single` type can have a default value in FPC, but not Delphi. As our CGE editor right now uses only FPC/Lazarus, and the editor is where proper `default` really matters (because it serializes the designs), this is acceptable for us. Just put use `{$ifdef FPC} around it, like:
+- `Single` type can have a default value in FPC, but not Delphi. As our CGE editor right now is compiled only by FPC/Lazarus, and the editor is where proper `default` really matters (because editor serializes the designs), this is often acceptable for CGE code. Just put use `{$ifdef FPC}` around it, like:
 
 [source,pascal]
 ----
@@ -139,15 +139,15 @@ begin
 end;
 ----
 
-If you don't specify a default value for `Single` property, then it behaves as if it has default value `0.0`. Use the `nodefault` specified if you really want to save the `Single` property always.
+If you don't specify a default value for `Single` property, then it behaves as if it has default value `0.0`. Use the `nodefault` specifier if you really want to save the `Single` property always.
 
-Your final solution, when the above is not enough, is to use a `stored` method. This is useful if
+When the above capabities of `default` specifier are not good enough for you, just use the `stored` method. This is useful e.g. if:
 
 - You want to have proper serialization of `Single` property from Delphi.
 
 - You want to have proper serialization of `Double` or `Extended` (from Delphi or FPC).
 
-- You want to avoid storing when the field value is different than default by some epsilon.
+- You want to avoid serializing when the field value is different than default _by some epsilon_.
 
 For example:
 
@@ -162,9 +162,6 @@ type
       DefaultFieldOfView = Pi / 4;
     constructor Create(AOwner: TComponent); override;
   published
-    { Perspective field of view angle, in radians.
-      The @link(FieldOfViewAxis) determines whether this is horizontal
-      or vertical angle. }
     property FieldOfView: Single read FFieldOfView write SetFieldOfView
       stored IsStoredFieldOfView;
   end;
