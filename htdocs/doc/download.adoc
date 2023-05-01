@@ -57,6 +57,8 @@ https://packages.debian.org/search?suite=sid&searchon=names&keywords=castle-game
 
 === Delphinus
 
+WARNING: Downloading CGE this way is not yet reliable, see https://github.com/castle-engine/castle-engine/issues/84[here].
+
 link:https://github.com/Memnarch/Delphinus/[Delphinus] is an open-source package manager for https://www.embarcadero.com/products/Delphi[Delphi]. You can use it to install _Castle Game Engine_ within Delphi IDE.
 
 - The nice benefit is that it will automatically modify your Delphi settings, to make CGE units available for all the projects.
