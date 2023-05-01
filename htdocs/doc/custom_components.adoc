@@ -72,6 +72,115 @@ type
   end;
 ----
 
+=== Simple property types and their default value
+
+Following Pascal rules, properties can have a `default` specifier. This should specify the property value that is always initialized by the constructor. When serializing (writing to file) given component, we know we *do not* need to write the property value when it is equal to its default value.
+
+NOTE: Remember that you still have to initialize in constructor the property to a given value. Merely adding `default` does not actually initialize the property. It it only an information for serialization, that it can safely assume that this property is initialized.
+
+For example, the `Rows` and `Columns` below have a default values of (respectively) 10 and 20. If you don't change their values, then they will not be written to serialized JSON file.
+
+[source,pascal]
+----
+type
+  TMyTable = class(TCastleUserInterface)
+  strict private
+    FRows, FColumns: Integer;
+  public
+    const
+      DefaultRows = 10;
+      DefaultColumns = 20;
+    constructor Create(AOwner: TComponent); override;
+  published
+    property Rows: Integer read FRows write FRows default DefaultRows;
+    property Columns: Integer read FColumns write FColumns default DefaultColumns;
+  end;
+
+constructor TMyTable.Create(AOwner: TComponent);
+begin
+  inherited;
+  FRows := DefaultRows;
+  FColumns := DefaultColumns;
+end;
+----
+
+The above class always defines constants `DefaultRows` and `DefaultColumns`. While it is not required to define such constants, we advise doing it for all properties that have a non-obvious default value. This allows to easily set the default value from the code.
+
+An alternative way to specify when should the property be stored is to use a `stored` method.
+
+A property without the `default` specifier or `stored` method is always serialized to file. _Except for some specific property types, like floats and Strings. See below_.
+
+=== Float (Single, Double, Extended) properties
+
+Properties with the floating-point type (`Single`, `Double`, `Extended`) behave a bit differently when it comes to their `default` value.
+
+- `Double` and `Extended` (note that link:coding_conventions#no_extended[Extended is often an alias to Double]) cannot have `default` clause at all.
+
+- `Single` type can have a default value in FPC, but not Delphi. As our CGE editor right now uses only FPC/Lazarus, and the editor is where proper `default` really matters (because it serializes the designs), this is acceptable for us. Just put use `{$ifdef FPC} around it, like:
+
+[source,pascal]
+----
+type
+  TMyBehavior = class(TCastleBehavior)
+  strict private
+    FAngle: Single;
+  public
+    const
+      DefaultAngle = Pi/2;
+    constructor Create(AOwner: TComponent); override;
+  published
+    property Angle: Single read FAngle write FAngle {$ifdef FPC}default DefaultAngle{$endif};
+  end;
+
+constructor TMyBehavior.Create(AOwner: TComponent);
+begin
+  inherited;
+  FAngle := DefaultAngle;
+end;
+----
+
+If you don't specify a default value for `Single` property, then it behaves as if it has default value `0.0`. Use the `nodefault` specified if you really want to save the `Single` property always.
+
+Your final solution, when the above is not enough, is to use a `stored` method. This is useful if
+
+- You want to have proper serialization of `Single` property from Delphi.
+
+- You want to have proper serialization of `Double` or `Extended` (from Delphi or FPC).
+
+- You want to avoid storing when the field value is different than default by some epsilon.
+
+For example:
+
+[source,pascal]
+----
+type
+  TMyPerspective = class(TCastleComponent)
+  strict private
+    FFieldOfView: Single;
+  public
+    const
+      DefaultFieldOfView = Pi / 4;
+    constructor Create(AOwner: TComponent); override;
+  published
+    { Perspective field of view angle, in radians.
+      The @link(FieldOfViewAxis) determines whether this is horizontal
+      or vertical angle. }
+    property FieldOfView: Single read FFieldOfView write SetFieldOfView
+      stored IsStoredFieldOfView;
+  end;
+
+constructor TMyPerspective.Create(AOwner: TComponent);
+begin
+  inherited;
+  FFieldOfView := DefaultFieldOfView;
+end;
+
+function TMyPerspective.IsStoredFieldOfView: Boolean;
+begin
+  Result := not SameValue(FFieldOfView, DefaultFieldOfView);
+end;
+----
+
 === Publishing class properties
 
 You can also place in the `published` section a property that references another class. There are two common cases:
