@@ -69,8 +69,11 @@ For this reason, we advise to install CGE from the standard installer (see highe
 +
 Alternatively, you may follow https://castle-engine.io/compiling_from_source.php[compiling CGE from sources] to get CGE editor.
 
-Installing Delphinus:
+Instructions:
 
+. *Install Delphinus*
++
+--
 . Clone GIT repository https://github.com/Memnarch/Delphinus/
 
 . Open in your Delphi the package `Delphinus\Packages\DelphiXE6\Delphinus.dproj`.
@@ -82,10 +85,12 @@ NOTE: This package file assumes you have Delphi >= Delphi XE 6, which is almost 
 . You will get a new menu item _"Tools -> Delphinus_" in Delphi. Use it to see the _Delphinus_ GUI.
 +
 cgeimg::block[delphinus_1.png|Delphinus GUI]
+--
 
-. Initially the list of packages in _Delphinus_ will be empty. You have to refresh them, and for this you need a GitHub _OAuth-Token_.
-
-. To create a token, login to your https://github.com/[GitHub] account and visit https://github.com/settings/tokens[Developer settings -> Personal access tokens -> Tokens (classic)]. Choose _"Generate new token (classic)"_.
+. **Refresh packages available in Delphinus**
++
+--
+. You need to create _GitHub OAuth token_. When you're logged into https://github.com/[GitHub] account and visit https://github.com/settings/tokens[Developer settings -> Personal access tokens -> Tokens (classic)]. Choose _"Generate new token (classic)"_.
 
 . On the token settings, set a name (like _"Delphinus"_), expiration time (you will have to recreate the token after that time). There's no need to select any scopes.
 
@@ -100,14 +105,20 @@ cgeimg::block[delphinus_2_oauth.png|Delphinus OAuth settings]
 
 . Finally click on the _"Refresh"_ button (icon with spinning arrows on the header) in Delphinus. It should download the list of packages from GitHub.
 //. The list of packages in Delphinus should be now nicely filled.
+--
 
+. **Install Castle Game Engine**
++
+--
 . Now find _"Castle Game Engine"_ in Delphinus, click to install it. Choose version as you see fit (right now only `HEAD` is available).
 +
 cgeimg::block[delphinus_3_cge.png|Delphinus CGE package]
 
-. Test it! Navigate to xxx and open some CGE example, like `x`
+. Test it! Navigate to xxx and open some CGE example, like `examples/fps_game` and `examples/delphi/fmx`.
++
+Note that in order to run some examples on Windows, you will need to place DLL files alongside the EXE file. Copy the DLL files from engine locations mentioned link:compiling_from_source.php#section_Windows[here]. Or compile the example at least once from https://castle-engine.io/manual_editor.php[CGE editor], it will copy the DLL files automatically.
+--
 
 More information in https://github.com/Memnarch/Delphinus/wiki/Installing-Delphinus[Installing Delphinus].
 
 NOTE: Currently you have to https://github.com/Memnarch/Delphinus/[build Delphinus from source]. Installing from https://memnarch.bplaced.net/blog/delphinus/[Delphinus Websetup] is temporarily broken, see https://github.com/Memnarch/Delphinus/issues/88[Delphinus #88]. The instructions below show the approach that works now.
-
