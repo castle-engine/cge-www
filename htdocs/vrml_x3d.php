@@ -144,12 +144,57 @@ See for example:
 
 <?php echo $toc->html_section(); ?>
 
-<p>The X3D nodes have a reference-counting mechanism. The node is freed when the reference count of parent changes from non-zero to zero.
+<p>The X3D nodes have a reference-counting mechanism. The node (<?php echo cgeRef('TX3DNode'); ?> or any descendant) is freed when the reference count of it changes from non-zero to zero.
 
-<p>So in the usual case, if you insert the node into some parent, then you no longer need to think about releasing this node &mdash; it will be released along with the parent.
+<p>So in the usual case, if you set the node as a value of some propery of the other node, then you no longer need to think about releasing this node &mdash; it will be released along with the parent. For example:
 
-<p>And when you load nodes into <?php echo cgeRef('TCastleScene'); ?> using <?php echo cgeRef('TCastleSceneCore.Load', 'Scene.Load(MyNodes, true)'); ?>  &mdash; the 2nd parameter means that <code>Scene</code> takes ownership of the whole nodes tree. So the whole <?php echo cgeRef('TX3DRootNode'); ?> instance will be freed along with <code>Scene</code>.
+<?php echo pascal_highlight(
+'var
+  Geometry: TBoxNode;
+  Shape: TShapeNode;
+  Root: TX3DRootNode;
+begin
+  Geometry := TBoxNode.Create;
 
-<p>And <code>Scene</code> is a regular Pascal TComponent, with usual component ownership.
+  Shape := TShapeNode.Create;
+  Shape.Geometry := Geometry;
+
+  { Now you no longer need to worry about freeing Geometry.
+    It will be freed along with Shape.
+    Note that there\'s a shortcut for above 3 lines:
+
+    Geometry := TBoxNode.CreateWithShape(Shape);
+  }
+
+  Root := TX3DRootNode.Create;
+  Root.AddChildren(Shape);
+
+  { Now you no longer need to worry about freeing Shape.
+    It will be freed along with Root. }
+
+  // to be continued ...'); ?>
+
+<p>Moreover, when you load nodes into <?php echo cgeRef('TCastleScene'); ?> using <?php echo cgeRef('TCastleSceneCore.Load', 'Scene.Load(MyNodes, true)'); ?>  &mdash; the 2nd parameter means that <code>Scene</code> takes ownership of the whole nodes tree. So the whole <?php echo cgeRef('TX3DRootNode'); ?> instance will be freed along with <code>Scene</code>.
+
+<p>So we can continue the example above:
+
+<?php echo pascal_highlight(
+'  Scene := TCastleScene.Create(Application);
+  Scene.Load(Root, true);
+
+  { Now you no longer need to worry about freeing Root.
+    It will be freed along with Scene. }'); ?>
+
+<p>And <code>Scene</code> is a regular Pascal TComponent, with usual component ownership. In the above example, it is owned by the <code>Application</code> singleton. In larger application, when using <a href="views">views</a>, it will often be owned by <?php echo cgeRef('TCastleView.FreeAtStop'); ?>. And you can always free the scene explicitly too, like <code>FreeAndNil(Scene);</code>.
+
+<p>Notes:
+
+<ul>
+  <li>
+    <p>If a node is not referenced from anywhere, you are responsible for freeing it manually as usual. For example, if we would not load <code>Root</code> into <code>Scene</code> (if we remove the line <code>Scene.Load(Root, true)</code> from above example) then at some point you should call <code>FreeAndNil(Root);</code>.
+
+  <li>
+    <p>If for some reason you do want the node to not be automatically freed, you can use <?php echo cgeRef('TX3DNode.KeepExistingBegin'); ?> and <?php echo cgeRef('TX3DNode.KeepExistingEnd'); ?>.
+</ul>
 
 <?php vrmlx3d_footer(); ?>
