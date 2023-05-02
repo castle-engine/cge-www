@@ -154,19 +154,19 @@ Shape {
 <p>This is an example how to construct in Pascal a scene with
 points in a <code>PointSet</code> and render them or save to file:
 
-<?php echo pascal_highlight_file('code-samples/point_set.lpr'); ?>
+<?php echo pascal_highlight_file('code-samples/point_set.dpr'); ?>
 
 <?php echo $toc->html_section(); ?>
 
 <p>This is an example how to construct in Pascal a scene with <code>TriangleSet</code>:
 
-<?php echo pascal_highlight_file('code-samples/build_scene_triangleset.lpr'); ?>
+<?php echo pascal_highlight_file('code-samples/build_scene_triangleset.dpr'); ?>
 
 <?php echo $toc->html_section(); ?>
 
 <p>This is an example how to construct in Pascal a scene with <code>TriangleFanSet</code>:
 
-<?php echo pascal_highlight_file('code-samples/build_scene_trianglefanset.lpr'); ?>
+<?php echo pascal_highlight_file('code-samples/build_scene_trianglefanset.dpr'); ?>
 
 <?php
   x3d_status_footer();

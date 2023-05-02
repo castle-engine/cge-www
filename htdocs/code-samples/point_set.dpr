@@ -1,3 +1,5 @@
+{ Show points using TPointSetNode. }
+
 uses CastleVectors, CastleWindow, X3DNodes, X3DLoad, CastleScene, CastleViewport,
   CastleCameras;
 
