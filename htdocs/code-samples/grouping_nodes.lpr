@@ -14,8 +14,10 @@ var
   BoxTransform: TTransformNode;
   BoxShape: TShapeNode;
   BoxMaterial: TMaterialNode;
+  BoxAppearance: TAppearanceNode;
   TransformSwitch: TTransformNode;
   SwitchChildShape: TShapeNode;
+  SphereAppearance: TAppearanceNode;
 begin
   Result := TX3DRootNode.Create;
 
@@ -41,11 +43,9 @@ begin
   BoxMaterial := TMaterialNode.Create;
   BoxMaterial.DiffuseColor := RedRGB;
 
-  { Assigning Shape.Material is a shortcut to
-    - creating TAppearanceNode,
-    - placing it in Shape.Appearance
-    - placing the material in Shape.Appearance.Material. }
-  BoxShape.Material := BoxMaterial;
+  BoxAppearance := TAppearanceNode.Create;
+  BoxAppearance.Material := BoxMaterial;
+  BoxShape.Appearance := BoxAppearance;
 
   GroupBoxes.AddChildren(BoxTransform);
 
@@ -56,7 +56,9 @@ begin
   BoxTransform.Translation := Vector3(2, 0, 0);
   BoxMaterial := TMaterialNode.Create;
   BoxMaterial.DiffuseColor := GreenRGB;
-  BoxShape.Material := BoxMaterial;
+  BoxAppearance := TAppearanceNode.Create;
+  BoxAppearance.Material := BoxMaterial;
+  BoxShape.Appearance := BoxAppearance;
   GroupBoxes.AddChildren(BoxTransform);
 
   { create blue box }
@@ -66,7 +68,9 @@ begin
   BoxTransform.Translation := Vector3(3, 0, 0);
   BoxMaterial := TMaterialNode.Create;
   BoxMaterial.DiffuseColor := BlueRGB;
-  BoxShape.Material := BoxMaterial;
+  BoxAppearance := TAppearanceNode.Create;
+  BoxAppearance.Material := BoxMaterial;
+  BoxShape.Appearance := BoxAppearance;
   GroupBoxes.AddChildren(BoxTransform);
 
   { create translated Switch node with children }
@@ -80,15 +84,21 @@ begin
   TransformSwitch.AddChildren(Switch);
 
   TSphereNode.CreateWithShape(SwitchChildShape);
-  SwitchChildShape.Material := TMaterialNode.Create; // assign any material, to make it lit
+  SphereAppearance := TAppearanceNode.Create;
+  SphereAppearance.Material := TMaterialNode.Create; // assign any material, to make it lit
+  SwitchChildShape.Appearance := SphereAppearance;
   Switch.AddChildren(SwitchChildShape);
 
   TConeNode.CreateWithShape(SwitchChildShape);
-  SwitchChildShape.Material := TMaterialNode.Create; // assign any material, to make it lit
+  SphereAppearance := TAppearanceNode.Create;
+  SphereAppearance.Material := TMaterialNode.Create; // assign any material, to make it lit
+  SwitchChildShape.Appearance := SphereAppearance;
   Switch.AddChildren(SwitchChildShape);
 
   TCylinderNode.CreateWithShape(SwitchChildShape);
-  SwitchChildShape.Material := TMaterialNode.Create; // assign any material, to make it lit
+  SphereAppearance := TAppearanceNode.Create;
+  SphereAppearance.Material := TMaterialNode.Create; // assign any material, to make it lit
+  SwitchChildShape.Appearance := SphereAppearance;
   Switch.AddChildren(SwitchChildShape);
 end;
 

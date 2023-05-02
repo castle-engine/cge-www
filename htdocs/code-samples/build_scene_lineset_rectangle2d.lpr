@@ -18,6 +18,7 @@ var
   OutlineShape: TShapeNode;
   OutlineCoords: TCoordinateNode;
   OutlineGeometry: TLineSetNode;
+  Appearance: TAppearanceNode;
   Material: TMaterialNode;
 begin
   Transform := TTransformNode.Create;
@@ -49,7 +50,10 @@ begin
 
   Material := TMaterialNode.Create;
   Material.EmissiveColor := YellowRGB;
-  OutlineShape.Material := Material;
+
+  Appearance := TAppearanceNode.Create;
+  Appearance.Material := Material;
+  OutlineShape.Appearance := Appearance;
 
   Transform.AddChildren(OutlineShape);
 

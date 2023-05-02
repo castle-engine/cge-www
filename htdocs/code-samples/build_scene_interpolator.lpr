@@ -24,16 +24,18 @@ var
   Transform: TTransformNode;
   TimeSensor: TTimeSensorNode;
   PositionInterpolator: TPositionInterpolatorNode;
+  Appearance: TAppearanceNode;
 begin
   Result := TX3DRootNode.Create;
 
   Material := TMaterialNode.Create;
   Material.DiffuseColor := YellowRGB;
 
+  Appearance := TAppearanceNode.Create;
+  Appearance.Material := Material;
+
   Sphere := TSphereNode.CreateWithTransform(Shape, Transform);
-  { Note that assigning to Shape.Material is a shortcut for creating
-    Shape.Appearance, and assigning to Shape.Appearance.Material. }
-  Shape.Material := Material;
+  Shape.Appearance := Appearance;
   Result.AddChildren(Transform);
 
   TimeSensor := TTimeSensorNode.Create('MyAnimationName');
