@@ -18,6 +18,7 @@ $toc = new TableOfContents(
   array(
     new TocItem('What is X3D', 'x3d'),
     new TocItem('X3D in Pascal', 'pascal'),
+      new TocItem('X3D node instance lifetime in Pascal', 'pascal_node_lifetime'),
   )
 );
 ?>
@@ -140,5 +141,15 @@ See for example:
 </ul>
 
 <p>You can also <a href="https://forum.castle-engine.io/t/creating-objects-on-the-fly/140/">pre-process the loaded scene (e.g. change the texture), by changing the X3D nodes graph (see this forum post for details)</a>.
+
+<?php echo $toc->html_section(); ?>
+
+<p>The X3D nodes have a reference-counting mechanism. The node is freed when the reference count of parent changes from non-zero to zero.
+
+<p>So in the usual case, if you insert the node into some parent, then you no longer need to think about releasing this node &mdash; it will be released along with the parent.
+
+<p>And when you load nodes into <?php echo apidoc('TCastleScene'); ?> using <code>Scene.Load(MyNodes, true)</code> &mdash; the 2nd parameter means that <code>Scene</code> takes ownership of the whole nodes tree. So the whole <?php echo apidoc('TX3DRootNode'); ?> instance will be freed along with <code>Scene</code>.
+
+<p>And <code>Scene</code> is a regular Pascal TComponent, with usual component ownership.
 
 <?php vrmlx3d_footer(); ?>
