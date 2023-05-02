@@ -9,7 +9,9 @@ x3d_status_header('Rendering', 'rendering',
 $toc = new TableOfContents(
   array(
     new TocItem('Supported nodes', 'supported_nodes'),
-    new TocItem('Example of creating a PointSet in Pascal', 'example_pascal'),
+    new TocItem('Example of creating a PointSet in Pascal', 'example_pascal_pointset'),
+    new TocItem('Example of creating a TriangleSet in Pascal', 'example_pascal_triangleset'),
+    new TocItem('Example of creating a TriangleFanSet in Pascal', 'example_pascal_trianglefanset'),
   )
 );
 ?>
@@ -153,6 +155,18 @@ Shape {
 points in a <code>PointSet</code> and render them or save to file:
 
 <?php echo pascal_highlight_file('code-samples/point_set.lpr'); ?>
+
+<?php echo $toc->html_section(); ?>
+
+<p>This is an example how to construct in Pascal a scene with <code>TriangleSet</code>:
+
+<?php echo pascal_highlight_file('code-samples/build_scene_triangleset.lpr'); ?>
+
+<?php echo $toc->html_section(); ?>
+
+<p>This is an example how to construct in Pascal a scene with <code>TriangleFanSet</code>:
+
+<?php echo pascal_highlight_file('code-samples/build_scene_trianglefanset.lpr'); ?>
 
 <?php
   x3d_status_footer();
