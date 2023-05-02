@@ -8,8 +8,8 @@ x3d_status_header('Rendering', 'rendering',
 
 $toc = new TableOfContents(
   array(
-    new TocItem('Supported nodes', 'supported_nodes'),
     new TocItem('Indexed or non-indexed?'),
+    new TocItem('Supported nodes', 'supported_nodes'),
     new TocItem('Example of creating a PointSet in Pascal', 'example_pascal_pointset'),
     new TocItem('Example of creating a TriangleSet in Pascal', 'example_pascal_triangleset'),
     new TocItem('Example of creating a TriangleFanSet in Pascal', 'example_pascal_trianglefanset'),
