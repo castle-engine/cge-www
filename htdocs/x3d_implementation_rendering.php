@@ -160,13 +160,13 @@ points in a <code>PointSet</code> and render them or save to file:
 
 <p>This is an example how to construct in Pascal a scene with <code>TriangleSet</code>:
 
-<?php echo pascal_highlight_file('code-samples/build_scene_triangleset.dpr'); ?>
+<?php echo pascal_highlight_file('code-samples/build_scene_triangles.dpr'); ?>
 
 <?php echo $toc->html_section(); ?>
 
 <p>This is an example how to construct in Pascal a scene with <code>TriangleFanSet</code>:
 
-<?php echo pascal_highlight_file('code-samples/build_scene_trianglefanset.dpr'); ?>
+<?php echo pascal_highlight_file('code-samples/build_scene_trianglefan.dpr'); ?>
 
 <?php
   x3d_status_footer();
