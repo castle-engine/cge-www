@@ -18,7 +18,7 @@ $toc = new TableOfContents(
   array(
     new TocItem('What is X3D', 'x3d'),
     new TocItem('X3D in Pascal', 'pascal'),
-      new TocItem('X3D node instance lifetime in Pascal', 'pascal_node_lifetime'),
+      new TocItem('X3D node instance lifetime in Pascal', 'pascal_node_lifetime', 1),
   )
 );
 ?>
@@ -148,7 +148,7 @@ See for example:
 
 <p>So in the usual case, if you insert the node into some parent, then you no longer need to think about releasing this node &mdash; it will be released along with the parent.
 
-<p>And when you load nodes into <?php echo apidoc('TCastleScene'); ?> using <code>Scene.Load(MyNodes, true)</code> &mdash; the 2nd parameter means that <code>Scene</code> takes ownership of the whole nodes tree. So the whole <?php echo apidoc('TX3DRootNode'); ?> instance will be freed along with <code>Scene</code>.
+<p>And when you load nodes into <?php echo cgeRef('TCastleScene'); ?> using <code>Scene.Load(MyNodes, true)</code> &mdash; the 2nd parameter means that <code>Scene</code> takes ownership of the whole nodes tree. So the whole <?php echo cgeRef('TX3DRootNode'); ?> instance will be freed along with <code>Scene</code>.
 
 <p>And <code>Scene</code> is a regular Pascal TComponent, with usual component ownership.
 
