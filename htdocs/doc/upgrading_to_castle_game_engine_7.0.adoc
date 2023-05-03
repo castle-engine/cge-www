@@ -100,7 +100,7 @@ This may affect you if you used construction like this:
 +
 [source,pascal]
 ----
-  Shape.Material := TMaterialNode.Create; // this still works OK
+  Shape.Material := TMaterialNode.Create; // this still works OK, although is deprecated
   Shape.Material.DiffuseColor := GreenRgb; // this will not compile anymore
 ----
 +
@@ -112,7 +112,20 @@ Instead use local variable `Mat: TMaterialNode` and do it like this:
 ----
   Mat := TMaterialNode.Create;
   Mat.DiffuseColor := GreenRgb;
-  Shape.Material := Mat;
+  Shape.Material := Mat; // deprecated but compiles
+----
++
+Even better (not deprecated):
++
+[source,pascal]
+----
+  Mat := TMaterialNode.Create;
+  Mat.DiffuseColor := GreenRgb;
+
+  Appearance := TAppearanceNode.Create;
+  Appearance.Material := Mat;
+
+  Shape.Appearance := Appearance;
 ----
 +
 *Reason for breakage*: Other material descendants are possible in CGE 7.0:

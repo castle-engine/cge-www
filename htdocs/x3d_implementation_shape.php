@@ -75,7 +75,7 @@ $toc = new TableOfContents(
   <li><p><?php echo x3d_node_link('LineProperties'); ?>
 
     <p>Configure line width and type (pattern).
-    This node can be placed in <code>Shape.lineProperties</code>,
+    This node can be placed in <code>Appearance.lineProperties</code>,
     and it affects a shape that uses a line geometry,
     like <code>IndexedLineSet</code> and <code>LineSet</code>.
     It also affects normal (filled) geometry (like <code>IndexedFaceSet</code>)
