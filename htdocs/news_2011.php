@@ -726,7 +726,7 @@ castle_thumbs(array(
   <li>passed to OpenGL much faster (no need for passing a separate texture, and no need to combine images at loading).</li>
 </ol>
 
-<p>The old method for passing <code>heightMap</code> (by a separate <code>Apperance.heightMap</code> field) for now simply doesn\'t work &mdash; please report if you need it. I would advice to simply change your textures to the new method, that is put the height-map in the alpha channel of the normal-map. The new method feels easier for both texture creators and for the implementation.</p>
+<p>The old method for passing <code>heightMap</code> (by a separate <code>Appearance.heightMap</code> field) for now simply doesn\'t work &mdash; please report if you need it. I would advice to simply change your textures to the new method, that is put the height-map in the alpha channel of the normal-map. The new method feels easier for both texture creators and for the implementation.</p>
 
 <p>In another news, we released <a href="https://castle-engine.io/kambi_vrml_game_engine.php">Kambi VRML game engine version 2.4.1</a>. This is a bugfix release, compared to 2.4.0 there are no new features, only most critical fixes (ported from SVN work):</p>
 

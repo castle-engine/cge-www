@@ -74,7 +74,7 @@ Note that this auto-detection cannot be perfect in all cases. For example, the a
 You can explicitly override this auto-detection using cgeref:TAppearanceNode.AlphaChannel[] field. This makes sense when engine  doesn't do what you expect.
 
 * It can be set by Pascal code.
-* Or, when using X3D model, you can use https://castle-engine.io/x3d_implementation_shape_extensions.php#section_ext_alpha_channel[Apperance.alphaChannel] documentation).
+* Or, when using X3D model, you can use https://castle-engine.io/x3d_implementation_shape_extensions.php#section_ext_alpha_channel[Appearance.alphaChannel] documentation).
 * Or when using glTF. In glTF, it is always explicitly set, glTF format requires it. So the auto-detection is not used for glTF, the imported shapes always have `Appearance.alphaChannel <> acNone`. You can set the alpha treatment explicitly in link:blender[Blender] material.
 
 == Sorting

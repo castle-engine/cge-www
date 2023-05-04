@@ -390,8 +390,8 @@ castle_thumbs(array(
 
 <ul>
   <li><a href="https://castle-engine.io/x3d_extensions.php#section_ext_light_shadows_on_everything">X3DLightNode.shadows</a> field, to easily activate shadows on everything.</li>
-  <li><a href="https://castle-engine.io/x3d_extensions.php#section_ext_receive_shadows">Apperance.receiveShadows</a> field, to easily activate shadows on specific shadow receivers.</li>
-  <li>Light sources\' <code>projectionNear</code>, <code>projectionFar</code> and such are automatically calculated now to suitable values, as long as you use high-level <code>X3DLightNode.shadows</code> or <code>Apperance.receiveShadows</code> fields.</li>
+  <li><a href="https://castle-engine.io/x3d_extensions.php#section_ext_receive_shadows">Appearance.receiveShadows</a> field, to easily activate shadows on specific shadow receivers.</li>
+  <li>Light sources\' <code>projectionNear</code>, <code>projectionFar</code> and such are automatically calculated now to suitable values, as long as you use high-level <code>X3DLightNode.shadows</code> or <code>Appearance.receiveShadows</code> fields.</li>
   <li>Incompatible changes: <code>DirectionalLight.projectionRectangle</code> order changed, to match standard <code>OrthoViewpoint.fieldOfView</code> order. Also, <code>projection*</code> parameters are zero by default (which indicates that they should be automatically calculated).</li>
   <li>Easy menu items to control shadow maps, see the new <i>View -&gt; Shadow Maps -&gt; ...</i> submenu.</li>
   <li>New <a href="https://castle-engine.io/x3d_extensions.php#section_ext_texture_gen_projective">ProjectedTextureCoordinate</a> node for projective texturing. Can project a texture also from a viewpoint now.</li>
@@ -427,7 +427,7 @@ castle_thumbs(array(
 <p>The improvements already implemented are:</p>
 
 <ul>
-  <li>First of all, <a href="https://castle-engine.io/x3d_extensions_shadow_maps.php#section_receive_shadows"><code>Apperance.receiveShadows</code> field for nice and comfortable shadows usage</a>. This very simple extension is what I hope to be ultimately used in 90% of the simple cases when you "just want shadows".</li>
+  <li>First of all, <a href="https://castle-engine.io/x3d_extensions_shadow_maps.php#section_receive_shadows"><code>Appearance.receiveShadows</code> field for nice and comfortable shadows usage</a>. This very simple extension is what I hope to be ultimately used in 90% of the simple cases when you "just want shadows".</li>
   <li>Easy menu items to activate <i>Percentage Closer Filtering</i> (4, 16, 4 bilinear) and visualize shadow maps for scenes using the <code>receiveShadows</code> field. Look at the new <i>View -&gt; Shadow Maps -&gt; ...</i> menu items.</li>
   <li>New <code>ProjectedTextureCoordinate</code> node, that replaces deprecated now <code>TextureCoordinateGenerator.mode = "PROJECTION"</code>.</li>
   <li><a href="http://www.punkuser.net/vsm/">Variance Shadow Maps</a> are also implemented. Although their implementation is not optimal yet, and should be treated as experimental. You can easily turn them on by <i>View -&gt; Shadow Maps -&gt; Variance Shadow Maps</i> menu.</li>
