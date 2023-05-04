@@ -265,7 +265,20 @@ The LSP server can be used with http://neovim.io/[NeoVim]. See the `client/nvim`
 
 == Plans, TODOs
 
-* The big plan is to bundle CGE with _VS Code_ at some point in 2023. If you just install (unpack) CGE you should have a ready setup with CGE + VS Code, and VS Code should automatically have Pascal syntax highlighting and code completion.
+* _"Castle Game Engine"_ extension, in both _VS Code_ and _VS Codium_ extensions marketplaces. Features:
++
+--
+- Depend on one of Pascal syntax highlighters mentioned above, so it automatically makes Pascal code highlighted.
+- Connect to CGE LSP server automatically.
+- Give simple settings option to set CGE location (with CGE sources, and CGE pasls, and CGE build tool used by tasks).
+- Remove unnecessary settings (current https://github.com/genericptr/pasls-vscode[pasls-vscode] that we recommend has a few settings that are actually ignored by our LSP server).
+- Define tasks to make Compile / Compile+Run / Run automatic when you're inside CGE project (at least when workspace has `CastleEngineManifest.xml`, but preferably try to make it work out-of-the-box also when you visit any file, in case workspace contains multiple CGE projects). Maybe even propose to define F9 / Ctrl+F9 / Shift+F9 shortcuts to be consistent with CGE editor?
+- Define useful debugger experience (run GDB, setup breakpoint at `fpc_raiseexception` etc.) when the workspace contains CGE project.
+--
+
+* Bundle CGE with _VS Code_.
++
+If you just install (unpack) CGE you should have a ready setup with CGE + VS Code. This is practically just _VS Code_ with automatically enabled (or suggested?) _"Castle Game Engine"_ extension mentioned above.
 +
 Of course we will still make everything such that you don't have to use this "bundled" VS Code and instead can use your existing VS Code installation, or really any other text editor / IDE, like Lazarus, Emacs, NeoVim etc.
 
@@ -273,10 +286,4 @@ Of course we will still make everything such that you don't have to use this "bu
 
 * Can we have "Code Completion" (that happens in Lazarus when you Ctrl + Shift + C) that can automatically insert e.g. method declarations or complete property declarations?
 
-* More automatic CGE tasks. Maybe CGE extension in VS Code? Would also allow to clear problems list before each compilation.
-+
-In general, if you open a directory with CGE project (`CastleEngineManifest.xml`) then running and debugging it in VS Code should be just a keystroke (like F9) away.
-
-* Better debugging docs.
-+
-There is https://microsoft.github.io/debug-adapter-protocol/[DAP (Debug Adapter Protocol)] with similar goals as LSP, but for debuggers. Maybe someone will wrap Lazarus debugger (GDB with Pascal specific interpretations) in DAP?
+* There is https://microsoft.github.io/debug-adapter-protocol/[DAP (Debug Adapter Protocol)] with similar goals as LSP, but for debuggers. Maybe someone will wrap Lazarus debugger (GDB with Pascal specific interpretations) in DAP?
