@@ -17,6 +17,8 @@ NOTE: Please write to Michalis (michalis@castle-engine.io) if you want to change
 ## Contributors
 
 [role="compact"]
+* https://github.com/Sherchloex[Adrianna Matejek]
+* https://github.com/AlyaVanes[Alya Vaneskehyan]
 * https://github.com/andreasplesch[Andreas Plesch]
 * https://github.com/and3md[Andrzej Kilijański]
 * https://github.com/the-Arioch[Arioch]
@@ -52,6 +54,7 @@ Everyone who subscribes to support CGE with at least 10 USD / month (anywhere --
 * Jan Adamec
 * Jeff Davis
 * Martin Heggestad
+* Märten Rodes
 * Milos Stanojevic
 
 *Thank you!*
