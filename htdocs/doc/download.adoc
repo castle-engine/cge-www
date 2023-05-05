@@ -55,18 +55,19 @@ Castle Game Engine is available in Debian and Ubuntu through the official packag
 https://packages.debian.org/search?suite=sid&searchon=names&keywords=castle-game-engine
 ////
 
+[#delphinus]
 === Delphinus
 
 link:https://github.com/Memnarch/Delphinus/[Delphinus] is an open-source package manager for https://www.embarcadero.com/products/Delphi[Delphi]. You can use it to install _Castle Game Engine_ within Delphi IDE.
 
-The biggest benefit is that it will automatically modify your Delphi settings, to make CGE units available for all the projects. It also installs CGE design-time packages into Delphi, which make the link:control_on_form[TCastleControl component available to drop on Delphi FMX and VCL forms]. 
+The biggest benefit is that it will automatically modify your Delphi settings, to make CGE units available for all the projects. It also installs CGE design-time packages into Delphi, which make the link:control_on_form[TCastleControl component available to drop on Delphi FMX and VCL forms].
 //This is a big convenience for Delphi users interested in link:control_on_form[TCastleControl].
 
 NOTE: Delphi users interested in creating games solely with _Castle Game Engine_ user interface, using cgeref:TCastleWindow[] (following CGE editor templates) do not really need this. When you use CGE editor and build tool to manage your project, the project DPROJ will be automatically configured to use CGE units, and you don't need to install Delphi design-time packages.
 
 Using Delphinus:
 
-. *Install Delphinus*
+. *Install Delphinus.*
 +
 Download the https://memnarch.bplaced.net/blog/delphinus/[Delphinus Websetup]. Run the EXE inside and allow it to modify your Delphi installation.
 +
@@ -86,7 +87,7 @@ In either case, you will get a new menu item _"Tools -> Delphinus_" in Delphi. U
 +
 cgeimg::block[delphinus_1.png|Delphinus GUI]
 
-. *Recommended: Install Castle Game Engine (from a local directory)*
+. *Recommended: Install Castle Game Engine (from a local directory).*
 +
 We recommend that first you install our engine by downloading and running _Castle Game Engine_ installer, which you can download from the top of this page. This way you will have all the CGE tools (like CGE editor) and documentation available.
 +
@@ -96,13 +97,13 @@ NOTE: If you installed CGE from zip, or link:compiling_from_source.php[from sour
 +
 NOTE: Installation will fail if you have previously installed Delphi packages manually. Remove them first using Delphi _"Component -> Install Packages..."_ dialog (despite the name, this dialog allows also to remove packages).
 
-. *Alternative: Download and install Castle Game Engine completely from Delphinus*
+. *Alternative (not recommended): Download and install Castle Game Engine completely from Delphinus*
 +
 WARNING: Downloading CGE this way is not reliable, see https://github.com/castle-engine/castle-engine/issues/84[this issue].
 +
 We don't recommend this approach as it will not install the binary tools, like CGE editor. _Delphinus_ only downloads the contents of CGE repository -- which means CGE source code. You will have to download and install another copy of CGE independently (or https://castle-engine.io/compiling_from_source.php[compile CGE from sources]) to get CGE editor and other tools.
 +
-If you are sure you want to follow this approach, read on:
+If you still want to follow this approach, read on:
 +
 --
 . First you need to _Refresh packages available in Delphinus_ and for this you need to create _GitHub OAuth token_. When you're logged into https://github.com/[GitHub] account visit https://github.com/settings/tokens[Developer settings -> Personal access tokens -> Tokens (classic)]. Choose _"Generate new token (classic)"_.

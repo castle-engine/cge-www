@@ -18,6 +18,10 @@ cgeimg::block[
 
 1. Install the components:
 +
+We recommend now that you link:download#delphinus[install Castle Game Engine into Delphi IDE using Delphinus]. This will install our design-time packages, components, and enhance your Delphi units path.
++
+Alternatively, you can do it manually. Install packages like this:
++
 --
 1. Open in Delphi `packages/delphi/AllPackages.groupproj` from CGE directory. It's a group of 3 packages: `castle_base`, `castle_fmx`, `castle_vcl`.
 
@@ -26,6 +30,8 @@ cgeimg::block[
 3. Make sure your target is _"Windows 32-bit"_ before installing. (Delphi IDE is 32-bit, you cannot install packages when your platform is Windows 64-bit.)
 
 4. Then install the packages. Click "Install" on all 3 packages.
+
+5. If you will create new projects (not only compile CGE examples) remember to set proper paths to CGE units. You can add these paths to each project or to global Delphi settings. Copy the paths from one of our examples, like `examples/delphi/fmx`.
 --
 
 2. Test them: Open the examples in `examples/delphi`, there's one example for VCL one for FMX.
