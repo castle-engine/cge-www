@@ -169,7 +169,10 @@ make generate-code
 
 ## Test: Interactive test in Delphi (compilation using DPROJ)
 
+* Uninstall package using Delphinus, remove all paths in Delphi settings ("Tools -> Options" menu item, then "Language -> Delphi -> Library" panel, edit "Library path").
 * Compile and install all packages in Delphi
 * Compile examples/delphi/vcl in Delphi (interactively, so using DPROJ)
 * Compile examples/delphi/fmx in Delphi (interactively, so using DPROJ)
 * Compile examples/fps_game in Delphi (interactively, so using DPROJ)
+* Create a new FMX project with `TCastleControl`. Compiling it should initially fail. Install CGE using Delphinus to show it works.
+* Retest compiling examples/delphi/vcl, examples/fps_game once Delphinus paths are present, to be sure it's all OK.

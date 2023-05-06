@@ -96,11 +96,15 @@ Then, use _"Install from Folder"_ button in _Delphinus_ GUI (3rd button on the t
 Notes:
 +
 --
-- If you installed CGE from zip, or link:compiling_from_source.php[from sources], the same instructions apply. Just point Delphinus to wherever the CGE is installed. It will have a file `Delphinus.Install.json`.
+- Be sure to check _"Show Log"_ at the end, to make sure installation was successfull. At the end the log should say _"Installation finished"_, not _"Error: Installation failed"_. If you encounter a problem, please consult the messages above.
 
-- Installation will fail if you have previously installed Delphi packages manually. Remove them first using Delphi _"Component -> Install Packages..."_ dialog (despite the name, this dialog allows also to remove packages).
+- If you installed CGE from zip, or link:compiling_from_source.php[from sources], the same instructions apply. Just point Delphinus to the `Delphinus.Install.json` file in the top-level CGE directory.
 
-- After upgrading CGE, repeat this process to install in Delphi the latest versions of the packages.
+- Installation will fail if you have previously installed Delphi packages manually. Remove all CGE packages (`castle_*`) first using Delphi _"Component -> Install Packages..."_ dialog (despite the name, this dialog allows also to remove packages).
+
+- Each time you upgrade CGE, repeat this process (use _"Install from Folder"_ in Delphinus) to have the latest versions of the packages installed.
+
+- Delphinus creates a copy of CGE sources (in `C:\Users\Public\Documents\Embarcadero\Studio\<VERSION>\Comps\castle-engine\` by default). Make sure you have enough disk space.
 --
 
 . *Alternative (not recommended): Download and install Castle Game Engine completely from Delphinus*
@@ -127,7 +131,7 @@ cgeimg::block[delphinus_2_oauth.png|Delphinus OAuth settings]
 
 . Finally click on the _"Refresh"_ button (icon with spinning arrows on the header) in Delphinus. It should download the list of packages from GitHub.
 
-. Now find _"Castle Game Engine"_ in Delphinus, click to install it. Choose version as you see fit (right now only `HEAD` is available). The final CGE directory is like `C:\Users\Public\Documents\Embarcadero\Studio\<VERSION>\Comps\castle-engine\` (look at _"Show Log"_ when installing to see the exact path).
+. Now find _"Castle Game Engine"_ in Delphinus, click to install it. Choose version as you see fit (right now only `HEAD` is available). The final CGE directory is like `C:\Users\Public\Documents\Embarcadero\Studio\<VERSION>\Comps\castle-engine\` (look at _"Show Log"_ when installing to be sure).
 +
 cgeimg::block[delphinus_3_cge.png|Delphinus CGE package]
 --

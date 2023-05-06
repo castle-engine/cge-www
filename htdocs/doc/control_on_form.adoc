@@ -18,20 +18,14 @@ cgeimg::block[
 
 1. Install the components:
 +
-We recommend now that you link:download#delphinus[install Castle Game Engine into Delphi IDE using Delphinus]. This will install our design-time packages, components, and enhance your Delphi units path.
+We recommend link:download#delphinus[installing Castle Game Engine into Delphi IDE using Delphinus]. This will install our design-time packages, components, and extend your Delphi units path.
 +
-Alternatively, you can do it manually. Install packages like this:
+Alternatively, you can do it manually.
 +
 --
-1. Open in Delphi `packages/delphi/AllPackages.groupproj` from CGE directory. It's a group of 3 packages: `castle_base`, `castle_fmx`, `castle_vcl`.
+- Open in Delphi package `packages/delphi/castle_engine.dproj` (from CGE directory) and install it (right-click on the `castle_engine.bpl` and choose _"Install"_ from the context menu).
 
-2. You can build all 3 packages at once by right-clicking and using _"Build All"_ on the package group.
-
-3. Make sure your target is _"Windows 32-bit"_ before installing. (Delphi IDE is 32-bit, you cannot install packages when your platform is Windows 64-bit.)
-
-4. Then install the packages. Click "Install" on all 3 packages.
-
-5. If you will create new projects (not only compile CGE examples) remember to set proper paths to CGE units. You can add these paths to each project or to global Delphi settings. Copy the paths from one of our examples, like `examples/delphi/fmx`.
+- If you create a new project (not only compile CGE examples) remember to set proper paths to CGE units. You can add these paths to each project or to the global Delphi settings. Copy the paths from one of our examples, like `examples/delphi/fmx`.
 --
 
 2. Test them: Open the examples in `examples/delphi`, there's one example for VCL one for FMX.
@@ -233,12 +227,14 @@ You have to make a choice:
 
 You cannot mix these approaches, as neither VCL / FMX / LCL (in which our cgeref:TCastleControl[] works) nor cgeref:TCastleWindow[] are prepared to handle the situation that they only handle *some* application forms, and other library handles the other forms.
 
-That is also why we have separate packages
+That is also why for Lazarus we have separate packages
 
 -  `castle_window.lpk` (with cgeref:TCastleWindow[]) and
 
 - `castle_components.lpk` (with cgeref:TCastleControl[]; a better name would be `castle_lcl.lpk`).
 
 You should not use both of these packages at the same time.
+
+In case of Delphi, we have only one package, because there's no reason to put cgeref:TCastleWindow[] in a package.
 
 Note that, if you use cgeref:TCastleControl[], it is OK to have multiple cgeref:TCastleControl[] instances visible at the same time. Similarly, if you use cgeref:TCastleWindow[], you can have several cgeref:TCastleWindow[] instances visible at the same time (but only on desktop platforms), see https://github.com/castle-engine/castle-engine/tree/master/examples/window/multi_window[examples/window/multi_window].
