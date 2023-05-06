@@ -93,9 +93,15 @@ We recommend that first you install our engine by downloading and running _Castl
 +
 Then, use _"Install from Folder"_ button in _Delphinus_ GUI (3rd button on the toolbar). Choose the directory where you installed CGE. This is `C:\Users\<YOUR-USERNAME>\AppData\Local\Programs\Castle Game Engine\` by default.
 +
-NOTE: If you installed CGE from zip, or link:compiling_from_source.php[from sources], the same instructions apply. Just point Delphinus to wherever the CGE is installed. It will have a file `Delphinus.Install.json`.
+Notes:
 +
-NOTE: Installation will fail if you have previously installed Delphi packages manually. Remove them first using Delphi _"Component -> Install Packages..."_ dialog (despite the name, this dialog allows also to remove packages).
+---
+- If you installed CGE from zip, or link:compiling_from_source.php[from sources], the same instructions apply. Just point Delphinus to wherever the CGE is installed. It will have a file `Delphinus.Install.json`.
+
+- Installation will fail if you have previously installed Delphi packages manually. Remove them first using Delphi _"Component -> Install Packages..."_ dialog (despite the name, this dialog allows also to remove packages).
+
+- After upgrading CGE, repeat this process to install in Delphi the latest versions of the packages.
+--
 
 . *Alternative (not recommended): Download and install Castle Game Engine completely from Delphinus*
 +
