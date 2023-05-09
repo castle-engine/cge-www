@@ -174,7 +174,7 @@ Set-ExecutionPolicy Bypass -Scope Process
   <li>
     <p>On Fedora, this command should install everything you need (and more, some of these are FPC requirements actually, not CGE):
 
-    <pre>sudo dnf install gtk2 gtk2-devel libX11-devel make binutils glibc-devel mesa-libGL-develG</pre>
+    <pre>sudo dnf install gtk2 gtk2-devel libX11-devel make binutils glibc-devel mesa-libGL-devel</pre>
 </ul>
 
 <p>Note that we link to many libraries dynamically using <i>"dlopen"</i> Unix mechanism. So it is not necessary to install e.g. <code>libpng-dev</code> or <code>libfreetype6-dev</code>.
