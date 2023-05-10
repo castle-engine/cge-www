@@ -3,8 +3,8 @@ Contributors: automattic, retrofox, leogermani, renatoagds, bjorsch, ebinnion, f
 Tags: jetpack, protect, security, malware, scan
 Requires at least: 6.0
 Requires PHP: 5.6
-Tested up to: 6.1
-Stable tag: 1.3.0
+Tested up to: 6.2
+Stable tag: 1.4.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,7 +14,7 @@ Free daily malware scanning and WordPress site security. Jetpack Protect leverag
 
 == TOTAL SITE SECURITY FROM WORDPRESS EXPERTS ==
 
-Jetpack Protect is a free and essential WordPress security plugin that scans your site and warns you about vulnerabilities, keeping your site one step ahead of security threats. It’s easy to use; setup requires just a few clicks! 
+Jetpack Protect is a free and essential WordPress security plugin that scans your site and warns you about vulnerabilities, keeping your site one step ahead of security threats. It’s easy to use; setup requires just a few clicks!
 
 By upgrading Protect, you also unlock malware scanning with one-click fixes for most issues and instant notifications when threats are detected. Our automated Web Application Firewall (WAF) also protects your site from bad actors around the clock.
 
@@ -28,7 +28,7 @@ Jetpack Protect scans your site on a daily basis and warns you about:
 - What themes are installed, and any associated vulnerabilities
 
 = What are vulnerabilities? Why do I need to scan my site regularly? =
-Site vulnerabilities are flaws in a website's code that weaken the site's overall security. These can be introduced to a site in various ways, in most cases unintentionally. 
+Site vulnerabilities are flaws in a website's code that weaken the site's overall security. These can be introduced to a site in various ways, in most cases unintentionally.
 
 Some of the ways vulnerabilities can be introduced to a site are:
 - Poorly written site code
@@ -36,9 +36,17 @@ Some of the ways vulnerabilities can be introduced to a site are:
 - WordPress version bugs
 - System misconfigurations
 
-If a bad actor detects a vulnerability on your site, they can exploit it to access sensitive information, update your site, and more to damage your business or brand. 
+If a bad actor detects a vulnerability on your site, they can exploit it to access sensitive information, update your site, and more to damage your business or brand.
 
 That’s why it’s essential to use a reputable and reliable vulnerability & malware site scanner like Jetpack Protect to safeguard your site.
+
+= Can I use Jetpack Scan to fix a site that is already infected? =
+
+Jetpack Protect (Scan) detects and prevents attacks, but is not designed to fully clean up sites infected before it was active. If your site has malware, take immediate action to clean it up and remove the malicious code.
+
+To clean up your site, we suggest using a malware removal tool, or if possible restore from a backup taken before the infection. We recommend using Jetpack VaultPress Backup in conjunction with Jetpack Scan to secure your website.
+
+[Learn more about cleaning your site](https://jetpack.com/support/scan/how-to-clean-your-hacked-wordpress-site/)
 
 == UPGRADE PROTECT TO REMOVE MALWARE IN ONE CLICK AND BE PROTECTED BY OUR WAF ==
 By upgrading Protect, you unlock total site security from WordPress experts:
@@ -56,9 +64,9 @@ Similar to the vulnerabilities listed above, bad actors can use malware to captu
 Jetpack Protect instantly notifies you of any threats detected, with one-click fixes for most issues.
 
 = What is a Web Application Firewall (WAF)? =
-A web application firewall blocks traffic and malicious requests to your site from known bad actors. 
+A web application firewall blocks traffic and malicious requests to your site from known bad actors.
 
-As threats are detected, new rules are added to Jetpack Protect’s firewall, which provides around-the-clock protection for your WordPress site. 
+As threats are detected, new rules are added to Jetpack Protect’s firewall, which provides around-the-clock protection for your WordPress site.
 
 == OVER 38,393 REGISTERED VULNERABILITIES IN OUR DATABASE ==
 
@@ -94,7 +102,7 @@ Protect is a free WordPress security and malware scanner plugin that scans your 
 
 The free plan scans your site for WordPress version, plugin, and theme vulnerabilities from our extensive vulnerability database (38,393) that is powered by WPScan.
 
-By upgrading Protect, you gain access to WordPress malware scanning with one-click fixes, instant threat notifications, and our Web application Firewall (WAF) that protects your site around the clock. 
+By upgrading Protect, you gain access to WordPress malware scanning with one-click fixes, instant threat notifications, and our Web application Firewall (WAF) that protects your site around the clock.
 
 = Does this plugin require the Jetpack plugin to work? =
 
@@ -110,7 +118,7 @@ If you are already a Jetpack Scan, Jetpack Security, or Jetpack Complete custome
 
 WPScan is an enterprise vulnerability scanning solution. It is not recommended for small to medium-sized businesses. If you are an enterprise company looking for custom WordPress site protection solutions, please visit: https://wpscan.com/
 
-For small to medium-sized businesses, you can access our vulnerability scanning solution in the Jetpack Protect plugin. 
+For small to medium-sized businesses, you can access our vulnerability scanning solution in the Jetpack Protect plugin.
 
 = Will Jetpack Protect work on my local site?
 
@@ -122,7 +130,7 @@ You can visit Jetpack Protect dashboard in your WordPress admin panel to see the
 
 = What do I do if Jetpack Protect finds a security threat? =
 
-When the vulnerability scanner finds a security threat, you can view the recommended actions on the Jetpack Protect dashboard to secure your sites. 
+When the vulnerability scanner finds a security threat, you can view the recommended actions on the Jetpack Protect dashboard to secure your sites.
 
 If you have upgraded Protect, your site will also be automatically scanned for malware each day, and you will be notified instantly via email if any threats are detected. You will be able to fix most issues in one click.
 
@@ -150,17 +158,12 @@ The new Jetpack Protect plugin is different from the Jetpack feature formerly kn
 4. The Jetpack Firewall is a web application firewall (known as WAF) designed to protect your WordPress site from malicious requests.
 
 == Changelog ==
-### 1.3.0-beta2 - 2023-03-08
+### 1.4.0 - 2023-05-05
 #### Added
-- Add link to pricing page for getting started with an existing plan or license key.
+- Add brute force protection.
 
 #### Changed
+- General: indicate full compatibility with the latest version of WordPress, 6.2.
+- Improve the firewall status heading to provide more information based on the current configuration.
 - Updated package dependencies.
-- Update to React 18.
-- Use `flex-start`/`flex-end` instead of `start`/`end` for better browser compatibility.
-
-#### Fixed
-- Remove unnecessary full path from example in UI.
-- Fix connection button loading indicators.
-- Fix Protect status report caching.
 

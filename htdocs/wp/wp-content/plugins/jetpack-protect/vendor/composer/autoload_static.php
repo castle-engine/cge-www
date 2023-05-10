@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitc4802e05bbcf59fd3b6350e8d3e5482c_protectⓥ1_3_0
+class ComposerStaticInitc4802e05bbcf59fd3b6350e8d3e5482c_protectⓥ1_4_0
 {
     public static $files = array (
         '3773ef3f09c37da5478d578e32b03a4b' => __DIR__ . '/../..' . '/jetpack_vendor/automattic/jetpack-assets/actions.php',
@@ -185,6 +185,11 @@ class ComposerStaticInitc4802e05bbcf59fd3b6350e8d3e5482c_protectⓥ1_3_0
         'Automattic\\Jetpack\\Transport_Helper\\Helper_Script_Manager' => __DIR__ . '/../..' . '/jetpack_vendor/automattic/jetpack-transport-helper/src/class-helper-script-manager.php',
         'Automattic\\Jetpack\\Transport_Helper\\Package_Version' => __DIR__ . '/../..' . '/jetpack_vendor/automattic/jetpack-transport-helper/src/class-package-version.php',
         'Automattic\\Jetpack\\Transport_Helper\\REST_Controller' => __DIR__ . '/../..' . '/jetpack_vendor/automattic/jetpack-transport-helper/src/class-rest-controller.php',
+        'Automattic\\Jetpack\\Waf\\Brute_Force_Protection\\Brute_Force_Protection' => __DIR__ . '/../..' . '/jetpack_vendor/automattic/jetpack-waf/src/class-brute-force-protection.php',
+        'Automattic\\Jetpack\\Waf\\Brute_Force_Protection\\Brute_Force_Protection_Blocked_Login_Page' => __DIR__ . '/../..' . '/jetpack_vendor/automattic/jetpack-waf/src/brute-force-protection/class-blocked-login-page.php',
+        'Automattic\\Jetpack\\Waf\\Brute_Force_Protection\\Brute_Force_Protection_Math_Authenticate' => __DIR__ . '/../..' . '/jetpack_vendor/automattic/jetpack-waf/src/brute-force-protection/class-math-fallback.php',
+        'Automattic\\Jetpack\\Waf\\Brute_Force_Protection\\Brute_Force_Protection_Shared_Functions' => __DIR__ . '/../..' . '/jetpack_vendor/automattic/jetpack-waf/src/brute-force-protection/class-shared-functions.php',
+        'Automattic\\Jetpack\\Waf\\Brute_Force_Protection\\Brute_Force_Protection_Transient_Cleanup' => __DIR__ . '/../..' . '/jetpack_vendor/automattic/jetpack-waf/src/brute-force-protection/class-transient-cleanup.php',
         'Automattic\\Jetpack\\Waf\\CLI' => __DIR__ . '/../..' . '/jetpack_vendor/automattic/jetpack-waf/src/class-waf-cli.php',
         'Automattic\\Jetpack\\Waf\\File_System_Exception' => __DIR__ . '/../..' . '/jetpack_vendor/automattic/jetpack-waf/src/exceptions/class-file-system-exception.php',
         'Automattic\\Jetpack\\Waf\\REST_Controller' => __DIR__ . '/../..' . '/jetpack_vendor/automattic/jetpack-waf/src/class-rest-controller.php',
@@ -215,9 +220,9 @@ class ComposerStaticInitc4802e05bbcf59fd3b6350e8d3e5482c_protectⓥ1_3_0
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitc4802e05bbcf59fd3b6350e8d3e5482c_protectⓥ1_3_0::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitc4802e05bbcf59fd3b6350e8d3e5482c_protectⓥ1_3_0::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInitc4802e05bbcf59fd3b6350e8d3e5482c_protectⓥ1_3_0::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitc4802e05bbcf59fd3b6350e8d3e5482c_protectⓥ1_4_0::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitc4802e05bbcf59fd3b6350e8d3e5482c_protectⓥ1_4_0::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitc4802e05bbcf59fd3b6350e8d3e5482c_protectⓥ1_4_0::$classMap;
 
         }, null, ClassLoader::class);
     }
