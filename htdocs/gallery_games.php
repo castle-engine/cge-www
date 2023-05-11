@@ -17,6 +17,12 @@ We love to see how you use CGE.</i>
     'https://cat-astrophe-games.itch.io/lynch');
   ?>
 
+  <?php gallery_link('Vinculike (18+)',
+    'A roguelike-like dungeon crawler by EugeneLoza where clothes and restraints are essential part of the gameplay. Source code is <a href="https://gitlab.com/EugeneLoza/vinculike">available on GitLab</a>.',
+    '[[[vinculike]]].png',
+    'https://decoherence.itch.io/vinculike');
+  ?>
+
   <?php gallery_link('Foxy Misfortunes',
     'Top-down shooter with a funny NSFW theme. Download it for Windows, Linux and Android. Source code is <a href="https://gitlab.com/EugeneLoza/foxy-misfortunes">available on GitLab</a>.
 
