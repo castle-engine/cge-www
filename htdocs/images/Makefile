@@ -153,3 +153,11 @@ info:
 	@echo '  ' $(ALL_ORIGINAL)
 	@echo 'All targets:'
 	@echo '  ' $(ALL_TARGETS)
+
+# Use this to avoid regenerating existing image files by "make" or "make all" run.
+# This makes sense if you're sure that existing images are OK (up-to-date
+# wrt. to their sources in original_size/ directory) and you only want to generate
+# missing images.
+.PHONY: do-not-regenerate-existing-images
+do-not-regenerate-existing-images:
+	touch --no-create $(ALL_TARGETS)
