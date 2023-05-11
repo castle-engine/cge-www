@@ -11,6 +11,12 @@ We love to see how you use CGE.</i>
 
 <div class="row">
 
+  <?php gallery_link('DSDrive',
+    'A simple racing game developed by DidiSoft. Two game modes, three different racetracks, car customization, weather effects, different views. Source code available at the game page.',
+    'dsdrive.webp',
+    'https://didisoft.itch.io/dsdrive');
+  ?>
+
   <?php gallery_link('Lynch',
     'Walk around a mansion and discover the secret of the statues. Short gamejam game by Michalis. Source code is <a href="https://github.com/castle-engine/lynch">available on GitHub</a>.',
     'lynch_editor_2.png',
