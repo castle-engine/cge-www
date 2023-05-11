@@ -17,10 +17,8 @@ We love to see how you use CGE.</i>
     'https://cat-astrophe-games.itch.io/lynch');
   ?>
 
-  <?php gallery_link('Foxy Misfortunes',
-    'Top-down shooter with a funny NSFW theme. Download it for Windows, Linux and Android. Source code is <a href="https://gitlab.com/EugeneLoza/foxy-misfortunes">available on GitLab</a>.
-
-    <p>By Eugene Loza.',
+  <?php gallery_link('Foxy Misfortunes (18+)',
+    'A simple top-down shooter by EugeneLoza where clothes are hit-points. Source code is <a href="https://gitlab.com/EugeneLoza/foxy-misfortunes">available on GitLab</a>.',
     'foxy-misfortunes.png',
     'https://decoherence.itch.io/foxy-misfortunes');
   ?>
