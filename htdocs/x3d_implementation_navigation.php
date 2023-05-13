@@ -59,6 +59,18 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
     Animating viewpoint's position and orientation
     (directly or by animating it's parent transformation) also works perfectly.</p>
 
+    <p>Note that merely adding a <code>Viewpoint</code> (or <code>OrthoViewpoint</code>) node to the X3D model, with everything at default, changes how view3dscene and CGE interpret the model.
+
+    <ul>
+      <li>
+        <p>Without the <code>Viewpoint</code> (or <code>OrthoViewpoint</code>), we determine center of rotation (important for proper <i>"Examine"</i> work) based on scene contents (bounding box middle).
+      <li>
+        <p>With <code>Viewpoint</code> (or <code>OrthoViewpoint</code>), we assume you have set proper <code>centerOfRotation</code>. The default <code>centerOfRotation</code> is just (0,0,0). This follows X3D standard.
+
+        <p>You can set <code>Viewport.autoCenterOfRotation</code> (or <code>OrthoViewport.autoCenterOfRotation</code>) to <code>true</code> to explicitly request to automatically determine (based on bounding box middle) this center of rotation.
+        This field is a CGE extension.
+    </ul>
+
     <p>TODO: We support most, but not all, X3D fields.
     Fields not implemented yet: <code>jump</code>, <code>retainUserOffsets</code>.
 
