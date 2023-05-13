@@ -12,7 +12,7 @@ We love to see how you use CGE.</i>
 <div class="row">
 
   <?php gallery_link('DSDrive',
-    'A simple racing game developed by DidiSoft. Two game modes, three different racetracks, car customization, weather effects, different views. Source code available at the game page.',
+    'A simple racing game by DidiSoft. Two game modes, three different racetracks, car customization, weather effects, different views. Source code available at the game page.',
     'dsdrive.png',
     'https://didisoft.itch.io/dsdrive');
   ?>
