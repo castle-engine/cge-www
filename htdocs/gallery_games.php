@@ -32,12 +32,8 @@ We love to see how you use CGE.</i>
   ?>
 
   <?php gallery_link('Kryftolike',
-    'A roguelite-like hide-and seek game.
-    Hide from monsters and seek treasure in an infinite procedurally-generated map.
-    Danger awaits around every corner!
-    For Android, Windows and Linux.
-
-    <p>Full <a href="https://gitlab.com/EugeneLoza/kryftolike">source code</a> available too. By Eugene Loza.',
+    'A roguelike-like hide-and-seek game by EugeneLoza. Hide from monsters and seek treasure in an infinite procedurally-generated map.
+    <p>Source code is <a href="https://gitlab.com/EugeneLoza/kryftolike">available on GitLab</a>.',
     'kryftolike.png',
     'https://decoherence.itch.io/kryftolike');
   ?>
