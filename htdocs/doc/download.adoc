@@ -74,7 +74,7 @@ Using Delphinus:
 +
 Download the https://memnarch.bplaced.net/blog/delphinus/[Delphinus Websetup]. Run the EXE inside and allow it to modify your Delphi installation.
 +
-Alternatively you can also install from sources, as described below for CE users.
+Alternatively you can also install Delphinus from sources, as described below for _Community Edition_ users.
 
 * **For Delphi Community Edition users**:
 +
