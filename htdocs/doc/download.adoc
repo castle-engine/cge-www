@@ -69,11 +69,18 @@ Using Delphinus:
 
 . *Install Delphinus.*
 +
-Download the https://memnarch.bplaced.net/blog/delphinus/[Delphinus Websetup]. Run the EXE inside and allow it to modify your Delphi installation. Note that the _Delphinus Websetup_ cannot work Delphi _Community Edition_ (free), so if you use Delphi CE -- use the installation from sources described below.
-+
-Alternative way is to install from sources (it's really straightforward, no worries):
-+
 --
+* **For paid Delphi users (not Community Edition)**:
++
+Download the https://memnarch.bplaced.net/blog/delphinus/[Delphinus Websetup]. Run the EXE inside and allow it to modify your Delphi installation.
++
+Alternatively you can also install from sources, as described below for CE users.
+
+* **For Delphi Community Edition users**:
++
+Install Delphinus from sources (it's really straightforward, no worries):
++
+---
 . Clone GIT repository https://github.com/Memnarch/Delphinus/
 
 . Open in your Delphi the package `Delphinus\Packages\DelphiXE6\Delphinus.dproj`.
@@ -81,6 +88,7 @@ Alternative way is to install from sources (it's really straightforward, no worr
 NOTE: This package file assumes you have Delphi >= Delphi XE 6, which is almost certain today.
 
 . Compile and Install this package in Delphi.
+---
 --
 +
 In either case, you will get a new menu item _"Tools -> Delphinus_" in Delphi. Use it to see the _Delphinus_ GUI. For more information see https://github.com/Memnarch/Delphinus/wiki/Installing-Delphinus[Installing Delphinus].
