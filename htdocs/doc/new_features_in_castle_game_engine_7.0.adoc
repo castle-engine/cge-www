@@ -39,8 +39,19 @@ See https://castle-engine.io/wp/2022/12/24/summary-of-4th-open-meeting-physics-p
 * See also https://castle-engine.io/wp/2022/12/29/summary-of-the-new-physics-capabilities/[news, where I tried and failed to provide a concise summary of what changed :)]
 --
 * https://castle-engine.io/vscode[Visual Studio Code integration, intelligent code completion with our LSP server, also for Emacs, NeoVim and other text editors]. Also see https://castle-engine.io/wp/2022/11/19/visual-studio-code-integration-intelligent-code-completion-with-our-lsp-server-also-for-emacs-neovim-and-other-text-editors/[news].
+* Delphi:
++
+--
 * https://castle-engine.io/control_on_form[TCastleControl available now for Delphi VCL and FMX applications, in addition to existing Lazarus LCL].
-* Easily activate https://castle-engine.io/wp/2022/10/03/easy-shadows-in-editor-at-design-time-too-by-shadow-volumes-and-shadow-maps-are-coming-as-well/[shadows], just select checkbox `Shadows` at the light source to use shadow volumes. Note: We plan to expose also our _shadow maps_ in a similar easy-to-use fashion in future releases.
+* https://castle-engine.io/download#delphinus[Delphinus support]
+--
+* Easily activate https://castle-engine.io/wp/2022/10/03/easy-shadows-in-editor-at-design-time-too-by-shadow-volumes-and-shadow-maps-are-coming-as-well/[shadows], just select checkbox `Shadows` at the light source to use shadow volumes.
++
+--
+* By default only shapes that are 2-manifold are valid shadow casters.
+* You can also force to treat the whole scene as 2-manifold (useful when its 2-manifold when you sum all shapes, and shapes can use different materials) using cgeref:TCastleRenderOptions.WholeSceneManifold[].
+* Note: We plan to expose also our _shadow maps_ in a similar easy-to-use fashion in future releases.
+--
 * New component to support https://castle-engine.io/tiled_maps[Tiled maps]: part of the viewport (can be mixed with CGE scenes, sprite sheets...), excellent performance to render huge maps, configurable layers.
 * Renderer improvements:
 +
