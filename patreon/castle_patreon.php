@@ -25,6 +25,8 @@ require_once 'API.php';
    of given id.
    Returns NULL if not found.
 */
+// Unused now
+/*
 function _castle_patreon_find_included_resource($api_answer, $id_resource)
 {
   foreach ($api_answer['included'] as $included_data) {
@@ -33,6 +35,23 @@ function _castle_patreon_find_included_resource($api_answer, $id_resource)
     }
   }
   return NULL;
+}
+*/
+
+/* Process paginated array response to get all pages in turn. */
+function patreon_read_all_pages($api_client, $request_str)
+{
+  $last_page = $api_client->get_data($request_str);
+  $result = $last_page['data'];
+
+  while (!empty($last_page['meta']['pagination']['cursors']['next'])) {
+    $cursor = $last_page['meta']['pagination']['cursors']['next'];
+    $escaped_cursor = urlencode($cursor);
+    $last_page = $api_client->get_data($request_str ."&page%5Bcursor%5D={$escaped_cursor}");
+    $result = array_merge($result, $last_page['data']);
+  }
+
+  return $result;
 }
 
 /* Returns the details about nearest Patreon goal.
@@ -84,68 +103,88 @@ function castle_patreon_nearest_goal()
       --url https://www.patreon.com/api/oauth2/api/current_user/campaigns \
       --header 'Authorization: Bearer <access-token>'
   */
-  $campaign_details = $api_client->get_data("campaigns/{$campaign_id}?include=benefits,creator,goals,tiers&fields%5Bgoal%5D=amount_cents,completed_percentage,created_at,description,reached_at,title");
+  /*
+  // No longer useful, Patreon removed goals details
+
+  $campaign_details = $api_client->get_data("campaigns/{$campaign_id}?include=campaign_installations,benefits,creator,goals,tiers&fields%5Bgoal%5D=amount_cents,completed_percentage,created_at,description,reached_at,title");
   //print_r($campaign_details);
-
-  if (!isset($campaign_details['data']['relationships']['goals']['data'])) {
-    throw new Exception('Patreon details campaigns unexpected answer: ' . print_r($campaign_details, true));
-  }
-
-  // calculate $goals, containing details for each CGE goal on Patreon
-  $goals = array();
-  foreach ($campaign_details['data']['relationships']['goals']['data'] as $goal_link) {
-    $goal_id = $goal_link['id'];
-    $goal_details = _castle_patreon_find_included_resource($campaign_details, $goal_id);
-    if ($goal_details === NULL) {
-      throw new Exception('Goal details for ' . $goal_id . ' not found');
-    }
-    $goals[] = $goal_details['attributes'];
-  }
-
-  // print_r($goals);
-  /* $goals should look like this now:
-  Array
-  (
-      [0] => Array
-          (
-              [amount_cents] => 25000
-              [completed_percentage] => 62
-              [created_at] => 2017-01-24T06:07:05.000+00:00
-              [description] => ....
-              [reached_at] => 2021-03-10T08:23:23.000+00:00
-              [title] =>
-          )
-
-      [1] => Array
-          (
-              [amount_cents] => 50000
-              [completed_percentage] => 31
-              [created_at] => 2017-01-24T06:07:05.000+00:00
-              [description] => ....
-              [reached_at] =>
-              [title] =>
-          )
-
-      [2] => Array
-          (
-              [amount_cents] => 100000
-              [completed_percentage] => 15
-              [created_at] => 2017-01-24T06:14:30.000+00:00
-              [description] => ....
-              [reached_at] =>
-              [title] =>
-          )
-
-  )
   */
 
-  // calculate $nearest_goal
-  $nearest_goal = $goals[0];
-  foreach ($goals as $goal_attribs) {
-    if ($goal_attribs['completed_percentage'] > $nearest_goal['completed_percentage']) {
-      $nearest_goal =  $goal_attribs;
+  $campaign_details = $api_client->get_data("campaigns/{$campaign_id}?fields%5Bcampaign%5D=patron_count");
+  //print_r($campaign_details);
+  $patron_count = $campaign_details['data']['attributes']['patron_count'];
+  // echo 'Current Patrons count ' . $patron_count . "\n";
+
+  $campaign_members = patreon_read_all_pages($api_client, "campaigns/{$campaign_id}/members?fields%5Bmember%5D=currently_entitled_amount_cents,full_name,pledge_cadence,patron_status,will_pay_amount_cents");
+
+  /* Since Patreon removed goals, we need to get all members and sum their
+     contribution manually.
+     Note that we need to support pagination, despite docs saying pagination
+     starts at 500, it seems page only contains 20. */
+  $total_pledges = 0;
+  $members_counted = 0;
+  $members_counted_nonzero = 0;
+  //print_r($campaign_members);
+  foreach ($campaign_members as $member) {
+    $member_current_pledge = $member['attributes']['currently_entitled_amount_cents'];
+
+    if (isset($member['attributes']['pledge_cadence'])) {
+      $pledge_cadence = $member['attributes']['pledge_cadence'];
+      /* Divide by $pledge_cadence, to divide by 12 for amnual payments */
+      $member_current_pledge = $member_current_pledge / $pledge_cadence;
+    }
+
+    if (isset($member['attributes']['patron_status'])) {
+      $member_status = $member['attributes']['patron_status'];
+      // reject pledges from Patrons with status = Declined
+      if ($member_status != 'active_patron') {
+        $member_current_pledge = 0;
+      }
+    }
+
+    $total_pledges += $member_current_pledge;
+    $members_counted++;
+    if ($member_current_pledge > 0) {
+      $members_counted_nonzero++;
+      //echo 'Adding ' . $member_current_pledge . ' from ' . $member['attributes']['full_name'] . "\n";
     }
   }
+
+  // echo 'Members counted: ' . $members_counted . "\n";
+  // echo 'Members counted with non-zero: ' . $members_counted_nonzero . "\n";
+  // echo 'Total pledges: ' . $total_pledges . "\n";
+
+  if ($members_counted_nonzero != $patron_count) {
+    throw new Exception('Members counted with non-zero is not equal to Patrons count');
+  }
+
+  // in emergency, you can just hardcode this
+  $total_pledges = 18100;
+
+  // goals are hardcoded now here, as Patreon removed goals
+  $goals = array(
+    array(
+      'amount_cents' => 25000,
+    ),
+    array(
+      'amount_cents' => 50000,
+    ),
+    array(
+      'amount_cents' => 100000,
+    ),
+  );
+
+  // calculate $nearest_goal
+  foreach ($goals as $goal_attribs) {
+    $nearest_goal = $goal_attribs;
+    if ($goal_attribs['amount_cents'] > $total_pledges) {
+      break;
+    }
+  }
+
+  // set $nearest_goal['completed_percentage'], our _castle_patreon_box expects it
+  $nearest_goal['completed_percentage'] =
+    (int)round($total_pledges / $nearest_goal['amount_cents'] * 100);
 
   return $nearest_goal;
 }
@@ -155,6 +194,7 @@ function castle_echo_patreon_nearest_goal_json()
 {
   $nearest_goal = castle_patreon_nearest_goal();
   echo json_encode($nearest_goal);
+  // echo  "\n"; // easier debug
 }
 
 castle_echo_patreon_nearest_goal_json();
