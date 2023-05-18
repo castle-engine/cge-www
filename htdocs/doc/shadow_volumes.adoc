@@ -1,0 +1,200 @@
+# Shadow Volumes
+include::common.adoc[]
+:description: Rendering shadows using shadow volumes in Castle Game Engine.
+:cge-social-share-image: shadows_editor.png
+
+== Introduction
+
+_Shadow volumes_ are a method of rendering dynamic shadows. _"Dynamic"_ means that everything (light source, shadow casters, shadow receivers) can move and change each frame and the shadows will reflect that.
+
+To activate them in _Castle Game Engine_,
+just set the light's cgeref:TCastlePunctualLight.Shadows[Shadows] property to `true`.
+You can do this in the editor, and observe the effects immediately.
+
+cgeimg::block[
+  shadows_editor.png|Shadow volumes in editor,
+  shadows_screenshot.png|Shadow volumes example
+]
+
+Important limitations:
+
+- The models that cast shadows must be link:#manifold[2-manifold]. This means that every edge has exactly 2 (not more, not less) neighbor faces, so the whole shape is a closed volume.
+
+- Right now _only one light source_ can cast shadows using shadow volumes. Do not set cgeref:TCastlePunctualLight.Shadows[Shadows] to `true` on multiple lights.
+
+== Examples
+
+Check out these CGE examples:
+
+- link:https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/shadows[examples/viewport_and_scenes/shadows] - simple example showing shadow volumes from different light source types.
+
+- _"3D FPS game"_ template for new projects in CGE editor also has a light casting shadows by default.
+
+- link:https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/shadow_volumes_whole_scene_manifold[examples/viewport_and_scenes/shadow_volumes_whole_scene_manifold] - demonstrates cgeref:TCastleRenderOptions.WholeSceneManifold[] feature.
+
+== Features
+
+Featues of _shadows by shadow volumes_ (in particular, how does this technique compare to link:x3d_extensions_shadow_maps.php[shadow maps]):
+
+- Shadow volumes produce *hard shadows*. That's both an advantage (they are as sharp as your geometry, no problems with texture resolution like in shadow maps) and disadvantage (when simulating large area lights, hard shadows may look unrealistic).
+
+- *Shadow volumes are easier to activate.* To see the shadows, just choose one light in the scene (probably the brightest one) and set cgeref:TCastlePunctualLight.Shadows[Shadows] to `true`.
++
+*That's it.* Compared to link:x3d_extensions_shadow_maps.php[shadow maps], you don't need to tweak anything to deal with shadow maps resolution, bias etc.
+
+- *Shadow volumes require the shadow casters to be 2-manifold.* So you need to be more careful when modeling. Shadow volumes usually don't work if you try to activate them on a random 3D scene. More about this below.
+
+- *It's difficult to compare the speed of "shadow volumes" vs "shadow maps". Both techniques are expensive in different ways.* On one hand, shadow volumes require extra rendering passes (additional rendering of "shadow quads" to the stencil buffer, and then additional render to color buffer, for each shadow-casting light). On the other hand, shadow maps require updating the shadow textures (one for each light source).
+
+- Our current shadow volumes implementation allows for only *one light casting shadow volumes*. (This may be improved some day. Give us a shout at the forum if needed and link:donate.php[support the engine development] to make this happen sooner.)
++
+Note that shadow volumes will require more and more rendering passes when multiple light sources may cast shadows.
++
+In contrast, link:x3d_extensions_shadow_maps.php[shadow maps] support as many lights as you want already, and each light only requires to keep yet another shadow texture up-to-date.
+
+- Note that *it's perfectly fine to use both shadow volumes and shadow maps in a single scene*.
+//So you can use shadow volumes to cast a hard shadow from some particularly bright and distant light (like a sun during the summer day), and add shadow maps for some soft shadows.
+
+- *Applying a texture with transparency (alpha testing) on the object has no effect on the shadows cast.*
++
+cgeimg::float[leaf.png|Leaf texture with transparent parts]
++
+E.g. if you have a leaf designed as a simple quad, with a leaf texture that has transparent parts -- the shadows cast by shadow volumes will look like cast by quads, they will not reflect the leaf shape. Similarly if you make a fence as a plane with a texture.
++
+In general, shadow volumes cannot account for the object visual appearance like a texture. They only account for the object topology (polygons, edges, vertices).
++
+In contrast, link:x3d_extensions_shadow_maps.php[shadow maps] interact with objects using texture with alpha-testing nicely (fully transparent places will not cast shadows).
++
+Note that *shadow casters may use partial transparency (by alpha testing or alpha blending)*. They can use material with non-zero `transparency`, they can use textures with alpha channel. These shapes render OK, they just cast shadows just as if they were completely opaque.
+
+//(For programmers: reasoning may be found in `TCastleScene.RenderSilhouetteShadowVolume` comments, see `glDepthFunc(GL_NEVER)` notes. For transparent triangles, light/dark caps must always be drawn, even in Z-pass approach.)
+
+[#manifold]
+== Shadow casters 3D geometry must be 2-manifold (closed volume)
+
+By default, for shadow volumes, *all shapes that cast shadows must be 2-manifold*. This means that every edge has exactly 2 (not more, not less) neighbor faces, so the whole shape is a closed volume. Also, faces must be oriented consistently (e.g. CCW outside). This requirement is often quite naturally satisfied for natural objects.
+
+Note that satisfying the above requirements (2-manifold, consistent ordering) means that you can also use _backface culling_ which improves rendering performance. You typically turn on _backface culling_ in your 3D authoring software (e.g. check it in link:blender[Blender] material settings) which will export it to the glTF or X3D file. Our engine will automatically follow this information.
+
+You can inspect whether your shapes are detected as a 2-manifold by link:view3dscene.php[view3dscene]:  see menu item _"Help -> Manifold Edges Information"_. To check which edges are actually detected as "border edges" use _"View -> Fill mode -> Silhouette and Border Edges"_, manifold silhouette edges are displayed yellow and border edges (you want to get rid of them!) are blue.
+
+You can also check manifold edges in link:blender[Blender]: you can easily detect why the mesh is not manifold by _"Select -> Select All By Trait -> Non Manifold"_ command (press F3 to find this command in edit mode). Also, remember that faces must be ordered consistently CCW -- in some cases _"Recalculate normals outside"_ (this actually changes vertex order in Blender) may be needed to reorder them properly.
+
+cgeimg::block[blender_non_manifold.png|Select Non Manifold in Blender]
+
+Note that *each shape must be 2-manifold* (by default, when cgeref:TCastleRenderOptions.WholeSceneManifold[] is `false`). It's not enough (it's also not necessary) for the _whole scene (cgeref:TCastleScene[])_ to be 2-manifold.
+
+The _shape_ is a smallest unbreakable unit that we pass to GPU when rendering. It corresponds exactly to glTF _primitive_ and X3D cgeref:TShapeNode[]. When working with link:blender[Blender], each _Blender object_ corresponds to as many shapes as you use materials in that Blender object (so, usually just one).
+
+Putting the requirement to be 2-manifold on _shape_, not on _scene_, has advantages and disadvantages:
+
+- _Advantage:_ We prepare and render shadow volumes per-shape, so we work efficiently with dynamic models. Transforming a shape (move, rotate...), or changing the active shapes has zero cost, no data needs to be recalculated.
+
+- _Advantage:_ We can avoid rendering per-shape. We can reject shadow volume rendering for shape if we know shape's shadow will never be visible from the current camera view.
+
+- _Advantage:_ Not the whole scene needs to be 2-manifold. If a shape is 2-manifold, it casts shadow. If your scene has both 2-manifold and non-2-manifold shapes, it will work OK, just only a subset of shapes (the 2-manifold ones) will cast shadows.
+
+- _Disadvantage:_ The whole shape must be 2-manifold. You cannot create 2-manifold scenes by summing multiple non-2-manifold shapes.
+
+=== Optional: Treat whole scene as 2-manifold
+
+If you set cgeref:TCastleRenderOptions.WholeSceneManifold[MyScene.RenderOptions.WholeSceneManifold] to `true` then the *whole cgeref:TCastleScene[] must be 2-manifold*. In turn, we don't require in this case that each _shape_ is 2-manifold separately.
+
+This is useful when your model is composed from multiple shapes that _together_ are 2-manifold. For example, if your mesh in link:blender[Blender] is 2-manifold but it uses multiple materials. In such case, exporting it to glTF or X3D splits each mesh into multiple shapes. Each shape is _not_ 2-manifold but whole scene is.
+
+Use cgeref:TCastleRenderOptions.WholeSceneManifold[] to cast shadows from such models. See the _Alpaca_ model from link:https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/shadow_volumes_whole_scene_manifold[examples/viewport_and_scenes/shadow_volumes_whole_scene_manifold] for an example.
+
+cgeimg::block[whole_scene_manifold_editor.png|WholeSceneManifold example in editor]
+
+Note that when cgeref:TCastleRenderOptions.WholeSceneManifold[MyScene.RenderOptions.WholeSceneManifold] is `true`, right now we _assume_ that your whole scene is 2-manifold. We do not check it! You have to make sure it is true (e.g. check in link:blender[Blender] using _"Select -> Select All By Trait -> Non Manifold"_ mentioned above). If the scene is not actually 2-manifold, rendering artifacts will appear.
+
+== Adjust what casts shadows
+
+By default, every shape that is 2-manifold casts shadows, and every scene with cgeref:TCastleRenderOptions.WholeSceneManifold[] = `true` casts shadows.
+
+To stop some objects from casting shadows, set cgeref:TCastleTransform.CastShadows[] to `false`.
+
+== Advanced: Control from X3D
+
+cgeimg::block[
+  fountain_shadows_0.png|Fountain level model\, with shadow volumes,
+  fountain_shadows_1.png|The same fountain level model\, with shadow volumes. After some interactive fun with moving/rotating stuff around :)
+]
+
+NOTE: This section is relevant only for X3D authors that directly edit X3D nodes. Most _Castle Game Engine_ users can ignore it. Just control the shadows by toggling cgeref:TCastlePunctualLight.Shadows[Shadows]  property.
+
+You can use link:vrml_x3d.php[X3D] nodes to design your lights and shadow volumes on them. In the simplest case, just activate shadow volumes on a light source by setting fields `shadowVolumes` and `shadowVolumesMain` both to `TRUE`.
+
+=== Example models
+
+Demo 3D models that use dynamic shadow volumes are inside our link:demo_models.php[demo_models], see subdirectory `shadow_volumes/`. Open them with link:view3dscene.php[view3dscene] and play around.
+
+=== X3D fields `shadowVolumes` and `shadowVolumesMain`
+
+To all X3D light nodes, we add two fields:
+
+```
+*Light {
+  ... all normal *Light fields ...
+  SFBool  [in,out]  shadowVolumes      FALSE
+  SFBool  [in,out]  shadowVolumesMain  FALSE # meaningful only when shadowVolumes = TRUE
+}
+```
+
+The idea is that shadows are actually projected from only one light source (with shadow volumes, number of light sources is limited, since more light sources mean more rendering passes; for now, I decided to use only one light). The scene lights are divided into three groups:
+
+- First of all, there's one and exactly one light that makes shadows. Which means that shadows are made where this light doesn't reach. This should usually be the dominant, most intensive light on the scene.
++
+This is taken as the first light node with `shadowVolumesMain` and `shadowVolumes` = `TRUE`. Usually you will set `shadowVolumesMain` to `TRUE` on only one light node.
+
+- There are other lights that don't determine *where* shadows are, but they are turned off where shadows are. This seems like a nonsense from "realistic" point of view -- we turn off the lights, even though they may reach given scene point ? But, in practice, it's often needed to put many lights in this group. Otherwise, the scene could be so light, that shadows do not look "dark enough".
++
+All lights with `shadowVolumes` = `TRUE` are in this group. (As you see, the main light has to have `shadowVolumes` = `TRUE` also, so the main light is always turned off where the shadow is).
+
+- Other lights that light everything. These just work like usual X3D lights, they shine everywhere (actually, according to X3D light scope rules). Usually only the dark lights should be in this group.
++
+These are lights with `shadowVolumes` = `FALSE` (default).
+
+Usually you have to experiment a little to make the shadows look good. This involves determining which light should be the main light (`shadowVolumesMain` = `shadowVolumes` = `TRUE`), and which lights should be just turned off inside the shadow (only `shadowVolumes` = `TRUE`). This system tries to be flexible, to allow you to make shadows look good -- which usually means "dark, but not absolutely unrealistically black".
+
+In link:view3dscene.php[view3dscene] you can experiment with this using _Edit -> Lights Editor_.
+
+If no "main" light is found (`shadowVolumesMain` = `shadowVolumes` = `TRUE`) then shadows are turned off on this model.
+
+_Trick:_ note that you can set the main light to have `on` = `FALSE`. This is the way to make "fake light" -- this light will determine the shadows position (it will be treated as light source when calculating shadow placement), but will actually not make the scene lighter (be sure to set for some other lights `shadowVolumes` = `TRUE` then). This is a useful trick when there is no comfortable main light on the scene, so you want to add it, but you don't want to make the scene actually brighter.
+
+////
+
+_To be deprecated some day: currently `shadowVolumes` and `shadowVolumesMain` are the only way to get shadow volumes. However, we plan in the future to instead make our link:x3d_extensions_shadow_maps.php#section_light_shadows_on_everything[X3DLightNode.shadows field (currently only for shadow maps)] usable also for shadow volumes. The `shadowVolumes*` will become deprecated then._
+
+////
+
+=== X3D field `Appearance.shadowCaster`
+
+If you edit X3D nodes, you can control what casts shadows for each particular shape using the `Appearance.shadowCaster` field. link:x3d_extensions_shadow_maps.php#section_shadow_caster[See `Appearance.shadowCaster` documentation].
+
+////
+Section removed, as we now always use 8-bit stencil buffer.
+
+== Advanced: Control stencil buffer
+
+*There is nothing you need to do now. We enable 8-bit stencil buffer
+by default.*
+
+In order for shadow volumes to work, we need a _stencil buffer_ initialized.
+
+To request stencil buffer explicitly, you need to set
+cgeref:TCastleWindow.StencilBits[]
+ or
+cgeref:TCastleControl.StencilBits[]
+ to something non-zero.
+The number of bits should be large enough to track all the possible objects that may cast a shadow at a given pixel.
+In practice, in most reasonable cases, using 8 bits (256 possible objects) is enough. Like this:
+
+<?php echo pascal_highlight(
+'Window.StencilBits := 8;'); ?>
+
+You need to set this before the `Window.Open` call.
+In a link:manual_cross_platform.php[typical cross-platform CGE application]
+you would do this in your `gameinitialize.pas` `initialization` section.
+////

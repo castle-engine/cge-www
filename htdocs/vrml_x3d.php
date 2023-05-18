@@ -63,7 +63,7 @@ and open them with our
     <a href="x3d_implementation_cubemaptexturing.php">mirrors by generated cube map textures</a>,
     <a href="x3d_extensions_screen_effects.php">screen effects</a>,
     <a href="x3d_extensions_shadow_maps.php">shadow maps</a>,
-    <a href="x3d_extensions_shadow_volumes.php">shadow volumes</a>,
+    <a href="shadow_volumes">shadow volumes</a>,
     <a href="compositing_shaders.php">effects using GLSL shaders</a>
     and much more.</li>
 </ul>

@@ -230,7 +230,7 @@ cgeimg::block[
   sunny_street_tree_hard.png|Close up shadows on the tree. Notice that leaves (modeled by alpha-test texture) also cast correct shadows.
 ]
 
-* link:x3d_extensions_shadow_volumes.php[Shadow volumes] (with z-fail / z-pass automatic detection, silhouette detection).
+* link:shadow_volumes[Shadow volumes] (with z-fail / z-pass automatic detection, silhouette detection).
 +
 cgeimg::block[rift_2.png|Fixed-camera game]
 

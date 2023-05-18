@@ -332,6 +332,7 @@ $castle_sitemap = array(
           'doc/how_to_make_rendering_prettier' => array('title' => 'Making rendering prettier',
             'sub' => array(
               'doc/bump_mapping' => array('title' => 'Bump Mapping (Normal Maps)'),
+              'doc/shadow_volumes' => array('title' => 'Shadow Volumes'),
               'doc/background' => array('title' => 'Background (skybox, sky and ground)'),
               'doc/fog' => array('title' => 'Fog'),
               'doc/blending' => array('title' => 'Blending'),

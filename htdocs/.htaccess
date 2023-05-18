@@ -174,6 +174,7 @@ Redirect "/vrml_implementation_texturing.php" "/x3d_implementation_texturing.php
 Redirect "/vrml_implementation_texturing3d.php" "/x3d_implementation_texturing3d.php"
 Redirect "/vrml_implementation_time.php" "/x3d_implementation_time.php"
 Redirect "/vrml_time_origin_considered_uncomfortable.php" "/x3d_time_origin_considered_uncomfortable.php"
+Redirect "/x3d_extensions_shadow_volumes.php" "/shadow_volumes"
 Redirect "/apidoc-unstable/" "/apidoc/"
 Redirect "/gic2022" "https://docs.google.com/presentation/d/e/2PACX-1vRnaJqFT7l6wrnC8CJX3PQVxebGjqLptD7q3Qt-sH8UcfNos1dhlvXVWJ86AGZ5tp2P9BKLNnzO6260/pub?start=false&loop=false&delayms=3000"
 Redirect "/sitemap.xml" "/sitemap.php"
