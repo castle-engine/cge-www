@@ -528,9 +528,9 @@ Shape {
   shadow volumes, shadow maps (that is, both methods for dynamic
   shadows in OpenGL) and also by our ray-tracers.</p>
 
-  <p>Note that <i>no shadow algorithm can deal with transparency by
-  alpha-blending</i>. So these shapes are not treated as shadow casters,
-  by any shadow algorithm right now.
+  <p>Note that <i>shadow maps cannot deal with transparency by
+  alpha-blending</i>. The objects using blending are never shadow casters,
+  for shadow maps and ray-tracers.
 
 <?php echo $toc->html_section(); ?>
 

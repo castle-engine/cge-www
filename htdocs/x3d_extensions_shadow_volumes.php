@@ -5,13 +5,17 @@ require_once 'x3d_extensions_functions.php';
 castle_header('Shadow Volumes');
 
 $toc = new TableOfContents(array(
-  new TocItem('Intro', 'intro'),
+  new TocItem('Introduction', 'introduction'),
+  new TocItem('Examples', 'examples'),
   new TocItem('Features', 'features'),
-  new TocItem('Usage', 'usage'),
-    new TocItem('Make 3D models of shadow casters geometry to be 2-manifold', 'requirements', 1),
-    new TocItem('Advanced: Control shadow volumes using X3D fields <code>shadowVolumes</code> and <code>shadowVolumesMain</code>', 'ext_shadows_light', 1),
-    new TocItem('Advanced: Control stencil buffer', 'stencil', 1),
+  new TocItem('Shadow casters 3D geometry must be 2-manifold (closed volume)', 'manifold'),
+    new TocItem('Optional: Treat whole scene as 2-manifold', 'scene_manifold', 1),
   new TocItem('Adjust what casts shadows', 'shadow_caster'),
+  new TocItem('Advanced: Control from X3D', 'x3d'),
+    new TocItem('Example models', 'examples_x3d', 1),
+    new TocItem('X3D fields <code>shadowVolumes</code> and <code>shadowVolumesMain</code>', 'x3d_fields_light', 1),
+    new TocItem('X3D field <code>Appearance.shadowCaster</code>', 'x3d_field_shadow_caster', 1),
+  //new TocItem('Advanced: Control stencil buffer', 'stencil'),
 ));
 ?>
 
@@ -22,67 +26,109 @@ $toc = new TableOfContents(array(
 
 <?php echo $toc->html_section(); ?>
 
+<p><i>Shadow volumes</i> are a method of rendering dynamic shadows. <i>"Dynamic"</i> means that everything (light source, shadow casters, shadow receivers) can move and change each frame and the shadows will reflect that.
+
+<p>To activate them in <i>Castle Game Engine</i>,
+just set the light's <?php echo cgeRef('TCastlePunctualLight.Shadows', 'Shadows'); ?> property to <code>true</code>.
+You can do this in the editor, and observe the effects immediately.
+
 <?php
-  echo castle_thumbs(array(
-    array('filename' => 'fountain_shadows_0.png', 'titlealt' => 'Fountain level model, with shadow volumes.'),
-    array('filename' => 'fountain_shadows_1.png', 'titlealt' => 'The same fountain level model, with shadow volumes. After some interactive fun with moving/rotating stuff around :)'),
-    // array('filename' => "shadows_dynamic_2.png", 'titlealt' => 'Dynamic shadows demo'),
-    array('filename' => "castle_screen_3.png", 'titlealt' =>  'Werewolves with shadows'),
-    array('filename' => "castle_shadows_fountain.png", 'titlealt' =>  'Castle "fountain" level with shadows'),
+  echo cgeImg('block', array(
+    array('filename' => 'shadows_editor.png', 'titlealt' => 'Shadow volumes in editor'),
+    array('filename' => 'shadows_screenshot.png', 'titlealt' => 'Shadow volumes example'),
   ));
 ?>
 
-<p><i>Shadow volumes</i> are another method of rendering dynamic
-shadows in our engine.
-
-<p>To test it in <i>Castle Game Engine</i> editor,
-just set the light's <?php echo cgeRef('TCastlePunctualLight.Shadows', 'Shadows'); ?> property to <code>true</code>.
-Right now this one click activates shadow volumes, described in this chapter!
-
-<p><b>Demo 3D models that use dynamic shadow volumes</b> are
-inside our <?php echo a_href_page('demo models',
-'demo_models'); ?>, see subdirectory <code>shadow_volumes/</code>.
-Open them with <?php echo a_href_page('view3dscene', 'view3dscene'); ?>
- and play around.
-
-<?php echo $toc->html_section(); ?>
-
-<p>Featues of <i>shadows by shadow volumes</i> (especially when compared
-with <i>shadow maps</i>):</p>
+<p>Important limitations:
 
 <ul>
-  <li><p>Shadow volumes produce <b>hard shadows</b>. That's both an advantage (they are as sharp as your geometry, no problems with texture resolution like in shadow maps) and disadvantage (when simulating large area lights, hard shadows may look unrealistic).</p></li>
+  <li>
+    <p>The models that cast shadows must be <a href="#section_manifold">2-manifold</a>.
+      This means that every edge has exactly 2 (not more, not less)
+      neighbor faces, so the whole shape is a closed volume.
 
-  <li><p><b>Shadow volumes are much easier to activate...</b> To see the shadows, just choose one light in the scene (probably the brightest one) and set <?php echo cgeRef('TCastlePunctualLight.Shadows', 'Shadows'); ?> to <code>true</code>.
-
-    <p>(If you use X3D nodes, set fields <code>shadowVolumes</code> and <code>shadowVolumesMain</code> both to <code>TRUE</code>.)
-
-    <p><b>That's it.</b> Compared to shadow maps, you don't need to tweak anything to deal with shadow maps resolution, bias etc.</p>
-  </li>
-
-  <li><p><b>... but shadow volumes require the shadow casters to be 2-manifold.</b> So you need to be more careful when modeling. Shadow volumes usually don't work if you try to activate them on a random 3D scene. <!-- &mdash; you will often need to fix scenes to be 2-manifold. --> More about this below.</p></li>
-
-  <li><p><b>It's difficult to compare the speed of "shadow volumes" vs "shadow maps". Both techniques are expensive in totally different ways.</b> On one hand, shadow volumes are more expensive as they require extra rendering passes (additional rendering of "shadow quads" to the stencil buffer, and then additional render to color buffer, for each shadow-casting light). On the other hand, there is no need for a costly per-pixel shader over every shadow receiver (as in shadow maps).</p></li>
-
-  <li><p>Our current shadow volumes implementation allows for only <b>one light casting shadow volumes</b>. (This may be improved some day. Give us a shout at the forum if needed and <a href="donate.php">support the engine development</a> to make this happen sooner.)<!-- But shadow volumes become impractical anyway for more than a couple of lights, as each additional light requires an extra rendering pass.)--></p></li>
-
-  <li><p>Note that <b>it's perfectly fine to use both shadow volumes and shadow maps in a single scene</b>. <!--So you can use shadow volumes to cast a hard shadow from some particularly bright and distant light (like a sun during the summer day), and add shadow maps for some soft shadows.--></p></li>
-
-  <li><p><b>Shadow volumes do not take transparency by alpha-testing textures into account</b>. E.g. you cannot use them to make shadows from leaves on a trees (where a leaf is typically modeled as a simple quad, covered with a leaf texture).
+  <li>
+    <p>Right now <i>only one light source</i> can cast shadows using
+      shadow volumes. Do not set
+      <?php echo cgeRef('TCastlePunctualLight.Shadows', 'Shadows'); ?> to <code>true</code>
+      on multiple lights.
 </ul>
 
 <?php echo $toc->html_section(); ?>
 
+<p>Check out these CGE examples:
+
+<ul>
+  <li>
+    <p><a href="https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/shadows">examples/viewport_and_scenes/shadows</a> - simple example showing shadow volumes from different light source types.
+  <li>
+    <p><i>"3D FPS game"</i> template for new projects in CGE editor also has a light casting shadows by default.
+  <li>
+    <p><a href="https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/shadow_volumes_whole_scene_manifold">examples/viewport_and_scenes/shadow_volumes_whole_scene_manifold</a> - demonstrates <?php echo cgeRef('TCastleRenderOptions.WholeSceneManifold'); ?> feature.
+</ul>
+
 <?php echo $toc->html_section(); ?>
 
-<p>For shadow volumes, <b>all shapes that cast shadows must be 2-manifold</b>.
+<p>Featues of <i>shadows by shadow volumes</i> (in particular, how does this technique compare to <a href="x3d_extensions_shadow_maps.php">shadow maps</a>):</p>
+
+<ul>
+  <li><p>Shadow volumes produce <b>hard shadows</b>. That's both an advantage (they are as sharp as your geometry, no problems with texture resolution like in shadow maps) and disadvantage (when simulating large area lights, hard shadows may look unrealistic).</p></li>
+
+  <li><p><b>Shadow volumes are easier to activate.</b> To see the shadows, just choose one light in the scene (probably the brightest one) and set <?php echo cgeRef('TCastlePunctualLight.Shadows', 'Shadows'); ?> to <code>true</code>.
+
+    <p><b>That's it.</b> Compared to <a href="x3d_extensions_shadow_maps.php">shadow maps</a>, you don't need to tweak anything to deal with shadow maps resolution, bias etc.</p>
+  </li>
+
+  <li><p><b>Shadow volumes require the shadow casters to be 2-manifold.</b> So you need to be more careful when modeling. Shadow volumes usually don't work if you try to activate them on a random 3D scene. <!-- &mdash; you will often need to fix scenes to be 2-manifold. --> More about this below.</p></li>
+
+  <li><p><b>It's difficult to compare the speed of "shadow volumes" vs "shadow maps". Both techniques are expensive in different ways.</b> On one hand, shadow volumes require extra rendering passes (additional rendering of "shadow quads" to the stencil buffer, and then additional render to color buffer, for each shadow-casting light). On the other hand, shadow maps require updating the shadow textures (one for each light source).</p></li>
+
+  <li><p>Our current shadow volumes implementation allows for only <b>one light casting shadow volumes</b>. (This may be improved some day. Give us a shout at the forum if needed and <a href="donate.php">support the engine development</a> to make this happen sooner.)<!-- But shadow volumes become impractical anyway for more than a couple of lights, as each additional light requires an extra rendering pass.)--></p>
+
+  <p>Note that shadow volumes will require more and more rendering passes when multiple light sources may cast shadows.
+
+  <p>In contrast, <a href="x3d_extensions_shadow_maps.php">shadow maps</a> support as many lights as you want already, and each light only requires to keep yet another shadow texture up-to-date.</p>
+  </li>
+
+  <li><p>Note that <b>it's perfectly fine to use both shadow volumes and shadow maps in a single scene</b>. <!--So you can use shadow volumes to cast a hard shadow from some particularly bright and distant light (like a sun during the summer day), and add shadow maps for some soft shadows.--></p></li>
+
+  <li><p><b>Applying a texture with transparency (alpha testing) on the object has no effect on the shadows cast.</b>
+
+  <?php
+  echo cgeImg('float', array(
+    array('filename' => 'leaf.png', 'titlealt' => 'Leaf texture with transparent parts'),
+  ));
+  ?>
+
+  <p>E.g. if you have a leaf designed as a simple quad, with a leaf texture that has transparent parts &mdash; the shadows cast by shadow volumes will look like cast by quads, they will not reflect the leaf shape. Similarly if you make a fence as a plane with a texture.
+
+  <p>In general, shadow volumes cannot account for the object visual appearance like a texture. They only account for the object topology (polygons, edges, vertices).
+
+  <p>In contrast, <a href="x3d_extensions_shadow_maps.php">shadow maps</a> interact with objects using texture with alpha-testing nicely (fully transparent places will not cast shadows).
+
+  <p>Note that <b>shadow casters may use partial transparency (by alpha testing or alpha blending)</b>. They can use material with non-zero <code>transparency</code>, they can use textures with alpha channel. These shapes render OK, they just cast shadows just as if they were completely opaque.
+
+  <!--p>(For programmers: reasoning may be found in
+  <code>TCastleScene.RenderSilhouetteShadowVolume</code> comments,
+  see <code>glDepthFunc(GL_NEVER)</code> notes. For transparent triangles,
+  light/dark caps must always be drawn, even in Z-pass approach.)-->
+</ul>
+
+<?php echo $toc->html_section(); ?>
+
+<p>By default, for shadow volumes, <b>all shapes that cast shadows must be 2-manifold</b>.
 This means that every edge has exactly 2 (not more, not less)
 neighbor faces, so the whole shape is a closed volume.
 Also, faces must be oriented consistently (e.g. CCW outside).
 This requirement is often quite naturally satisfied for natural
-objects. Note that the consistent ordering allows you to use backface culling
-(<code>solid=TRUE</code> in X3D), which
-is a good thing on it's own.</p>
+objects.
+
+<p>Note that satisfying the above requirements (2-manifold, consistent ordering)
+means that you can also use <i>backface culling</i> which improves rendering performance.
+You typically turn on <i>backface culling</i> in your 3D authoring software
+(e.g. check it in <a href="blender">Blender</a> material settings)
+which will export it to the glTF or X3D file.
+Our engine will automatically follow this information.
 
 <?php /*
 
@@ -102,30 +148,44 @@ for shadow volumes.
 
 <p>You can inspect whether your shapes are detected as a 2-manifold
 by <?php echo a_href_page('view3dscene', 'view3dscene'); ?>:
- see menu item <i>Help -&gt; Manifold Edges Information</i>.
+ see menu item <i>"Help -&gt; Manifold Edges Information"</i>.
 To check which edges are actually detected as "border edges" use
-<i>View -&gt; Fill mode -&gt; Silhouette and Border Edges</i>,
+<i>"View -&gt; Fill mode -&gt; Silhouette and Border Edges"</i>,
 manifold silhouette edges are displayed yellow and border edges
 (you want to get rid of them!) are blue.</p>
 
-<p>You can also check manifold edges in <a href="http://www.blender.org/">Blender</a>:
+<p>You can also check manifold edges in <a href="blender">Blender</a>:
 you can easily detect why the mesh is not
-manifold by <i>Select non-manifold</i> command (in edit mode).
+manifold by <i>"Select -&gt; Select All By Trait -&gt; Non Manifold"</i> command
+(press F3 to find this command in edit mode).
 Also, remember that faces must be ordered consistently CCW
-&mdash; in some cases <i>Recalculate normals outside</i>
+&mdash; in some cases <i>"Recalculate normals outside"</i>
 (this actually changes vertex order in Blender)
 may be needed to reorder them properly.
 
-<p>Note that <b>each shape must be 2-manifold</b>.
+<?php
+echo cgeImg('block', array(
+  array('filename' => 'blender_non_manifold.png', 'titlealt' => 'Select Non Manifold in Blender'),
+));
+?>
+
+<p>Note that <b>each shape must be 2-manifold</b> (by default, when
+<?php echo cgeRef('TCastleRenderOptions.WholeSceneManifold'); ?>
+is <code>false</code>).
 <!--(since <i>Castle Game Engine 6.0.0</i>). -->
-It's not enough (it's also not necessary) for the whole scene
-to be 2-manifold. This has advantages and disadvantages:
+It's not enough (it's also not necessary) for the <i>whole scene (<?php echo cgeRef('TCastleScene'); ?>)</i>
+to be 2-manifold.
+
+<p>The <i>shape</i> is a smallest unbreakable unit that we pass to GPU when rendering. It corresponds exactly to glTF <i>primitive</i> and X3D <?php echo cgeRef('TShapeNode'); ?>. When working with <a href="blender">Blender</a>, each <i>Blender object</i> corresponds to as many shapes as you use materials in that Blender object (so, usually just one).
+
+<p>Putting the requirement to be 2-manifold on <i>shape</i>, not on <i>scene</i>, has advantages and disadvantages:
 
 <ul>
   <li><p><i>Advantage:</i> We prepare and render shadow volumes per-shape,
     so we work efficiently with dynamic models.
     Transforming a shape (move, rotate...),
-    or changing the active shapes (e.g. by changing <code>Switch.whichChoice</code>)
+    or changing the active shapes
+    <!-- (e.g. by changing <code>Switch.whichChoice</code>) -->
     has zero cost, no data needs to be recalculated.
 
   <li><p><i>Advantage:</i> We can avoid rendering per-shape. We can reject shadow volume
@@ -140,50 +200,60 @@ to be 2-manifold. This has advantages and disadvantages:
 
   <li><p><i>Disadvantage:</i> The whole shape must be 2-manifold.
     You cannot create 2-manifold scenes by summing multiple non-2-manifold shapes.
-    <!--
-    If you depended (in engine &lt; 6.0.0) on the fact
-    that you can build 2-manifold model from multiple non-2-manifold shapes &mdash; it
-    will not work anymore.
-    -->
-    <!--This is especially constraining because in X3D,
-    shape must have the same material (color, transparency etc.).
-    You may need to use textures with alpha channel and more tricks
-    now to satisfy the 2-manifold requirement.
-    -->
-
-  <!--
-  <li>Also there's no more ShareManifoldAndBorderEdges method, which means that rendering
-    shadow volumes using TCastlePrecalculatedAnimation performance drops.
-    But luckily, TCastlePrecalculatedAnimation is deprecated now.
-    But in exchange, you can load castle-anim-frames/MD3 and everything to TCastleScene,
-    and rendering shadow volumes using TCastleScene is now superb.
-  -->
 </ul>
 
-<p>Note that <b>shadow casters may be transparent</b> (have material with
-<code>transparency</code> &gt; 0), this is handled perfectly.
+<?php echo $toc->html_section(); ?>
 
-<!--
-<p>However, note that <i>all opaque shapes must
-be 2-manifold</i> and separately <i>all transparent shapes must
-be 2-manifold</i>. For example, it's Ok to have some transparent
-box cast shadows over the model. But it's not Ok to have a shadow casting
-box composed from two separate X3D shapes: one shape defining
-one box face as transparent, the other shape defining
-the rest of box faces as opaque.
--->
+<p>If you set <?php echo cgeRef('TCastleRenderOptions.WholeSceneManifold', 'MyScene.RenderOptions.WholeSceneManifold'); ?> to <code>true</code> then the <b>whole <?php echo cgeRef('TCastleScene'); ?> must be 2-manifold</b>. In turn, we don't require in this case that each <i>shape</i> is 2-manifold separately.
 
-<!--p>(For programmers: reasoning may be found in
-<code>TCastleScene.RenderSilhouetteShadowVolume</code> comments,
-see <code>glDepthFunc(GL_NEVER)</code> notes. For transparent triangles,
-light/dark caps must always be drawn, even in Z-pass approach.)-->
+<p>This is useful when your model is composed from multiple shapes that <i>together</i> are 2-manifold. For example, if your mesh in <a href="blender">Blender</a> is 2-manifold but it uses multiple materials. In such case, exporting it to glTF or X3D splits each mesh into multiple shapes. Each shape is <i>not</i> 2-manifold but whole scene is.
+
+<p>Use <?php echo cgeRef('TCastleRenderOptions.WholeSceneManifold'); ?> to cast shadows from such models. See the <i>Alpaca</i> model from <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/shadow_volumes_whole_scene_manifold">examples/viewport_and_scenes/shadow_volumes_whole_scene_manifold</a> for an example.
+
+<?php
+  echo cgeImg('block', array(
+    array('filename' => 'whole_scene_manifold_editor.png', 'titlealt' => 'WholeSceneManifold example in editor'),
+  ));
+?>
+
+<p>Note that when <?php echo cgeRef('TCastleRenderOptions.WholeSceneManifold', 'MyScene.RenderOptions.WholeSceneManifold'); ?> is <code>true</code>, right now we <i>assume</i> that your whole scene is 2-manifold. We do not check it! You have to make sure it is true (e.g. check in <a href="blender">Blender</a> using <i>"Select -&gt; Select All By Trait -&gt; Non Manifold"</i> mentioned above). If the scene is not actually 2-manifold, rendering artifacts will appear.
 
 <?php echo $toc->html_section(); ?>
+
+<p>By default, every shape that is 2-manifold casts shadows, and every scene with <?php echo cgeRef('TCastleRenderOptions.WholeSceneManifold'); ?> = <code>true</code> casts shadows.
+
+<p>To stop some objects from casting shadows, set <?php echo cgeRef('TCastleTransform.CastShadows'); ?> to <code>false</code>.
+
+<?php echo $toc->html_section(); ?>
+
+<?php
+  echo cgeImg('block', array(
+    array('filename' => 'fountain_shadows_0.png', 'titlealt' => 'Fountain level model, with shadow volumes.'),
+    array('filename' => 'fountain_shadows_1.png', 'titlealt' => 'The same fountain level model, with shadow volumes. After some interactive fun with moving/rotating stuff around :)'),
+    // array('filename' => "shadows_dynamic_2.png", 'titlealt' => 'Dynamic shadows demo'),
+    // array('filename' => "castle_screen_3.png", 'titlealt' =>  'Werewolves with shadows'),
+    // array('filename' => "castle_shadows_fountain.png", 'titlealt' =>  'Castle "fountain" level with shadows'),
+  ));
+?>
 
 <p><b>NOTE: This section is relevant only for X3D authors that directly edit X3D nodes.
 Most <i>Castle Game Engine</i> users can ignore it.
 Just control the shadows by toggling <?php echo cgeRef('TCastlePunctualLight.Shadows', 'Shadows'); ?>
  property.</b>
+
+<p>You can use <a href="vrml_x3d.php">X3D</a> nodes to design your lights and shadow volumes on them.
+In the simplest case, just activate shadow volumes on a light source
+by setting fields <code>shadowVolumes</code> and <code>shadowVolumesMain</code> both to <code>TRUE</code>.
+
+<?php echo $toc->html_section(); ?>
+
+<p>Demo 3D models that use dynamic shadow volumes are
+inside our <?php echo a_href_page('demo models',
+'demo_models'); ?>, see subdirectory <code>shadow_volumes/</code>.
+Open them with <?php echo a_href_page('view3dscene', 'view3dscene'); ?>
+ and play around.
+
+<?php echo $toc->html_section(); ?>
 
 <p>To all X3D light nodes, we add two fields:
 
@@ -278,10 +348,16 @@ deprecated then.</i></p>
 
 <?php echo $toc->html_section(); ?>
 
-<p>In order for shadow volumes to work, we need a <i>stencil buffer</i> initialized.
+<p>If you edit X3D nodes, you can control what casts shadows for each particular shape using the <code>Appearance.shadowCaster</code> field. <a href="x3d_extensions_shadow_maps.php#section_shadow_caster">See <code>Appearance.shadowCaster</code> documentation</a>.
 
-<p><b>NOTE: There is nothing you need to do now. We enable 8-bit stencil buffer
+<?php
+// echo $toc->html_section();
+/* Section removed, as we now always use 8-bit stencil buffer.
+
+<p><b>There is nothing you need to do now. We enable 8-bit stencil buffer
 by default.</b>
+
+<p>In order for shadow volumes to work, we need a <i>stencil buffer</i> initialized.
 
 <p>To request stencil buffer explicitly, you need to set
 <?php echo cgeRef('TCastleWindow.StencilBits'); ?>
@@ -298,11 +374,7 @@ In practice, in most reasonable cases, using 8 bits (256 possible objects) is en
 In a <a href="manual_cross_platform.php">typical cross-platform CGE application</a>
 you would do this in your <code>gameinitialize.pas</code> <code>initialization</code> section.
 
-<?php echo $toc->html_section(); ?>
-
-<p>Everything by default is a shadow caster (as long as it's 2-manifold). To stop some objects from casting shadows, set <?php echo cgeRef('TCastleTransform.CastShadows'); ?> to <code>false</code>.
-
-<p>If you edit X3D nodes, you can even control it for each particular shape. Set the <code>Appearance.shadowCaster</code> field to <code>false</code>. <a href="x3d_extensions_shadow_maps.php#section_shadow_caster">See <code>Appearance.shadowCaster</code> documentation</a>.
+*/ ?>
 
 <?php
   castle_footer();
