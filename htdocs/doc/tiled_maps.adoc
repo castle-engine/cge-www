@@ -73,6 +73,7 @@ The cgeref:TCastleTiledMap.Data[] exposes map data (read-only) to query various 
 
 cgeref:TCastleTiledMap.PlayAnimations[], cgeref:TCastleTiledMap.StopAnimations[] control animations. By default, Tiled animations automatically play when the map is loaded.
 
+[#tile_under_mouse]
 === Determine tile indicated by mouse
 
 It's a common task to determine what map tile is under the mouse (or, more generally, any coordinate on the screen).
