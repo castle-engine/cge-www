@@ -22,7 +22,9 @@ cgeimg::block[
 
 == Example
 
-Demo, along with many sample maps, is in https://github.com/castle-engine/castle-engine/tree/master/examples/tiled/map_viewer_in_viewport[examples/tiled/map_viewer_in_viewport].
+- Simple demo, along with many sample maps, is in https://github.com/castle-engine/castle-engine/tree/master/examples/tiled/map_viewer[examples/tiled/map_viewer].
+
+- Complete game, a simple turn-based strategy, is in https://github.com/castle-engine/castle-engine/tree/master/examples/tiled/strategy_game_demo[examples/tiled/strategy_game_demo].
 
 == Tiled features supported
 
@@ -39,11 +41,17 @@ cgeimg::float[
 - Optimized rendering with static batching of map layers.
 - Animations (all tile animations play automatically, you can also explicitly start and stop them).
 
-== Important properties and methods
+== Usage
+
+=== Using map inside a viewport
 
 The cgeref:TCastleTiledMap[] is a cgeref:TCastleTransform[] instance, and as such you can move, rotate and scale it.
 
+You can also place link:viewport_and_scenes[other things in the viewport] (like cgeref:TCastleScene[], cgeref:TCastleImageTransform[]) in front or behind the map. Use the Z coordinate to control what is in front/behind. If you want to place something on top of a specifc map tile, the cgeref:TCastleTiledMap.TileRectangle[] method is useful.
+
 Inside the viewport you have a regular link:camera[]. You can move the camera, you can change the camera orthographic height (cgeref:TCastleOrthographic.Height[]) to zoom in/out. Add the cgeref:TCastle2DNavigation[] component as a child of your viewport to allow user to move/zoom on the map too.
+
+=== Important properties and methods
 
 To load the map, set cgeref:TCastleTiledMap.URL[].
 
@@ -61,6 +69,113 @@ To show/hide specific layers use cgeref:TCastleTiledMap.Layers[].
 
 - cgeref:TCastleTiledMap.Layers[] property can also be used to split map into 2 pieces, e.g. front and back, and place them at distinct Z values. Simply use 2 instances of cgeref:TCastleTiledMap[] with the same `URL` (same map loaded) but showing disjoint layers.
 
-The cgeref:TCastleTiledMap.Map[] exposes map data (read-only) to query various information about the map, e.g. what tile type has been put at some map position.
+The cgeref:TCastleTiledMap.Data[] exposes map data (read-only) to query various information about the map, e.g. what tile type has been put at some map position.
 
 cgeref:TCastleTiledMap.PlayAnimations[], cgeref:TCastleTiledMap.StopAnimations[] control animations. By default, Tiled animations automatically play when the map is loaded.
+
+=== Determine tile indicated by mouse
+
+It's a common task to determine what map tile is under the mouse (or, more generally, any coordinate on the screen).
+
+==== Simple case (2D camera, no map transformation)
+
+To determine the map tile under mouse coordinates, use cgeref:TCastleTiledMapData.PositionToTile[].
+
+In the simplest and typical case, when the camera is standard for 2D (looks along -Z) and the map is not transformed, you can just use `MyViewport.PositionToRay(..., RayOrigin, RayDirection)`. Then
+
+- Ignore the returned `RayDirection`, knowing it is -Z (`(0,0,-1)`) in typical 2D games.
+
+- Knowing that map is not transformed, just use `RayOrigin.XY` and convert it into the map position.
+
+In summary, do it like this:
+
+[source,pascal]
+----
+var
+  RayOrigin, RayDirection: TVector3;
+  TileUnderMouseValid: Boolean;
+  TileUnderMouse: TVector2Integer;
+begin
+  MyViewport.PositionToRay(Container.MousePosition, true, RayOrigin, RayDirection);
+  TileUnderMouseValid := Map.Data.PositionToTile(RayOrigin.XY, TileUnderMouse);
+  // ... now use TileUnderMouseValid and TileUnderMouse as you see fit
+end;
+----
+
+==== General case (any camera, any map transformation)
+
+An alternative solution is to perform a proper collision check _"what does the ray (implied by the mouse position) hit"_. This is a more general solution that works in all cases (even if you transform the map, direcly or by parent transform, or change camera to non-2D view).
+
+To learn what the ray hits, read cgeref:TCastleViewport.MouseRayHit[MyViewport.MouseRayHit].
+
+The `MouseRayHit` value is a list, from the innermost `TCastleTransform` that was hit by the ray to the root of the viewport (`MyViewport.Items`). You want to just access the point on your map that was picked (if any). Assuming your map is declared as `Map: TCastleTiledMap;` and you have a `MyViewport: TCastleViewport;` somewhere, you can do it like this:
+
+[source,pascal]
+----
+var
+  TileUnderMouseValid: Boolean;
+  TileUnderMouse: TVector2Integer;
+  MapIndex: Integer;
+begin
+  TileUnderMouseValid := false;
+  if MyViewport.MouseRayHit <> nil then
+  begin
+    MapIndex := MyViewport.MouseRayHit.IndexOfItem(Map);
+    if MapIndex <> -1 then
+    begin
+      TileUnderMouseValid := Map.Data.PositionToTile(
+        MyViewport.MouseRayHit[MapIndex].Point.XY, TileUnderMouse);
+    end;
+  end;
+  // ... now use TileUnderMouseValid and TileUnderMouse as you see fit
+end;
+----
+
+[NOTE]
+====
+If you want even more general solution, know that cgeref:TCastleViewport.MouseRayHit[MyViewport.MouseRayHit] is more-or-less equivalent to:
+
+1. Determine the ray indicated by mouse using cgeref:TCastleViewport.PositionToRay[MyViewport.PositionToRay]
+
+2. Use this ray to perform collision query using cgeref:TCastleAbstractRootTransform.WorldRay[MyViewport.Items.WorldRay]
+
+So if you want, you can e.g. query any other ray this way. `MyViewport.Items.WorldRay` returns `TRayCollision` (remember to free it later!), just like `MyViewport.MouseRayHit` discussed around.
+====
+
+If you want to dig deeper and understand what are possible values of `MyViewport.MouseRayHit`, read on.
+
+First of all, you can inspect it like this. Try this code e.g. in `Update` or `Motion` method of your state, move mouse around and observe the results:
+
+[source,pascal]
+----
+var
+  I: Integer;
+begin
+  if MyViewport.MouseRayHit <> nil then
+    for I := 0 to MyViewport.MouseRayHit.Count - 1 do
+      WritelnLog('Mouse ray hit ' + IntToStr(I) + ': ' +
+        MyViewport.MouseRayHit[I].Item.Name + ' ' +
+        MyViewport.MouseRayHit[I].Item.ClassName + ' ' +
+        MyViewport.MouseRayHit[I].Point.ToString);
+end;
+----
+
+The `MyViewport.MouseRayHit` contains a path of `TCastleTransform` hierarchy, from the deepest `TCastleTransform` to root (`MyViewport.Items`).
+
+When the mouse is over the map, it will contain this:
+
+- The first (deepest) `TCastleTransform` on `MyViewport.MouseRayHit` list will be a `TCastleScene` that is internal in `TCastleTileMap`.
+- Next item will be `TCastleTileMap`.
+- Then, all `TCastleTransform` instances that are parents of `TCastleTileMap` will follow.
+- Last item on the list is root (`MyViewport.Items`).
+
+If you placed other things in the viewport, you will observe other possible values of `MyViewport.MouseRayHit`. For example https://github.com/castle-engine/castle-engine/tree/master/examples/tiled/strategy_game_demo[examples/tiled/strategy_game_demo] has a special `TileUnderMouseImage` (cgeref:TCastleImageTransform[]) placed as map child. When the mouse is over this image, the `MyViewport.MouseRayHit` will contain this:
+
+- First item (deepest) is a `TCastleScene` that is internal in `TileUnderMouseImage`.
+- Next item is `TileUnderMouseImage`.
+- Next item is `TCastleTileMap`.
+- Next (last) item is the root (`ViewportMap.Items` in case of that example).
+
+It is also possible that mouse is over a unit on the map.
+
+You likely don't want to think about all these cases, and you definitely do not want to think whether there are some internal `TCastleScene` instances on the way. So simply check whether `MouseRayHit` contains your `Map` like `MyViewport.MouseRayHit.IndexOfItem(Map)`.
