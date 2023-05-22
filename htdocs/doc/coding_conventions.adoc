@@ -775,6 +775,56 @@ I recommend to disable this (_"Header comment for class"_) in Lazarus settings, 
 * Never use tabs. (Unless they are inherent to the language, like `Makefile`).
 * Follow the standard coding conventions for that language.
 
+[#shebang]
+=== bash scripts: use portable shebang
+
+Use this shebang (first line of a shell script):
+
+[source,bash]
+----
+#!/usr/bin/env bash
+----
+
+This shebang is more portable than `#!/bin/bash` -- as it works reliably also on FreeBSD and OpenBSD. In total, we want our bash scripts to work on a variety of systems: Linux, FreeBSD, macOS, Windows (with Cygwin or MSYS2) etc.
+
+So never use `#!/bin/bash` as shebang.
+
+Also never use `#!/bin/sh`. On most Linux systems, this is not equivalent to `bash`,  instead it points to a shell that is a bit more lightweight but also quite more limited than `bash`. In CGE, performance of our shell scripts is really not critical all, so we should just use bash and have more maintainable scripts.
+
+[#strict-mode]
+=== bash scripts: strict mode
+
+Read and follow the http://redsymbol.net/articles/unofficial-bash-strict-mode/[Use Bash Strict Mode] (except the shebang shown there as example).
+
+Summing it up with the previous advise, this is what your scripts should start with:
+
+[source,bash]
+----
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+----
+
+For historical reasons, some of our scripts may use something a little more relaxed, like
+
+[source,bash]
+----
+#!/usr/bin/env bash
+set -eu
+----
+
+Usually is just a historical thing. We should follow http://redsymbol.net/articles/unofficial-bash-strict-mode/[Use Bash Strict Mode] fully going forward (except shebang, which we want more portable).
+
+[#power-shell]
+=== Use PowerShell (not BAT files) for Windows scripting; or, in many cases, use bash (from Cygwin or MSYS2)
+
+For many non-critical tasks, we use `bash` scripts for Windows too. Both http://www.cygwin.com/[Cygwin] and https://www.msys2.org/[MSYS2] provide `bash` and many other Unix tools for Windows.
+
+For some critical tasks though, really used by many people (like link:compiling_from_source.php[building CGE build tool]), we don't want to assume that user has Cygwin / MSYS2. In this case, we use https://learn.microsoft.com/en-us/powershell/scripting/overview[PowerShell] on Windows.
+
+Note: https://castle-engine.io/gitlab_ci[GitLab CI] also uses PowerShell on Windows machines.
+
+[#guidelines]
 == Guidelines (how to write good code)
 
 === You can (and should) free the things you allocated; you should never free other things, unless explicitly allowed
