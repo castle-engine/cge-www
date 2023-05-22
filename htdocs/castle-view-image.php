@@ -134,7 +134,7 @@ the power of image handling inside our <?php echo a_href_page(
     and doesn't really matter for user.)
   -->
 
-  <li>
+  <!--li>
     <p><b>TIFF</b>, <b>JP2</b>:
     Supported using
     <a href="https://castle-engine.io/wp/2021/12/18/integration-with-vampyre-imaging-library-new-example-image_display-to-test-image-loading-speed-and-format-support/">Vampyre Imaging Library</a>.
@@ -144,7 +144,7 @@ the power of image handling inside our <?php echo a_href_page(
     See the <a href="https://github.com/castle-engine/castle-engine/blob/master/src/vampyre_imaginglib/src/Extensions/ImagingJpeg2000.pas#L19">exact rule in source code</a> that sets allowed platforms.
 
     <p>Same for TIFF. As it was causing trouble on mobile (not possible to use on Arm, would require distributing extra libs for Aarch64) we decided to disable it by default, for now. You can use <code>ImagingTiff</code> unit (add it to uses clause anywhere in your source code) and define <code>CASTLE_ENABLE_TIFF</code> to use it.
-  </li>
+  </li-->
 
   <li>
     <p><b>IPL</b>: IPLab image format. Only 16 bits per pixel are supported (gray-scale).
