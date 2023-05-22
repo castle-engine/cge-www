@@ -778,14 +778,14 @@ I recommend to disable this (_"Header comment for class"_) in Lazarus settings, 
 [#shebang]
 === bash scripts: use portable shebang
 
-Use this shebang (first line of a shell script):
+To make our `bash` scripts portable, use this shebang (first line of a shell script):
 
 [source,bash]
 ----
 #!/usr/bin/env bash
 ----
 
-This shebang is more portable than `#!/bin/bash` -- as it works reliably also on FreeBSD and OpenBSD. In total, we want our bash scripts to work on a variety of systems: Linux, FreeBSD, macOS, Windows (with Cygwin or MSYS2) etc.
+This shebang is more portable than often-used `#!/bin/bash` -- as it works reliably also on FreeBSD and OpenBSD. In total, we want our bash scripts to work on a variety of systems: Linux, FreeBSD, macOS, Windows (with Cygwin or MSYS2) etc.
 
 So never use `#!/bin/bash` as shebang.
 
@@ -796,6 +796,8 @@ Also never use `#!/bin/sh`. On most Linux systems, this is not equivalent to `ba
 
 Read and follow the http://redsymbol.net/articles/unofficial-bash-strict-mode/[Use Bash Strict Mode] (except the shebang shown there as example).
 
+The `set` and `IFS` configuration described there make writing and maintaining shell scripts really much easier. Essentially bash behaves a bit more like a programming language.
+
 Summing it up with the previous advise, this is what your scripts should start with:
 
 [source,bash]
@@ -805,7 +807,7 @@ set -euo pipefail
 IFS=$'\n\t'
 ----
 
-For historical reasons, some of our scripts may use something a little more relaxed, like
+For historical reasons, some of CGE scripts may use something a little more relaxed:
 
 [source,bash]
 ----
@@ -813,7 +815,7 @@ For historical reasons, some of our scripts may use something a little more rela
 set -eu
 ----
 
-Usually is just a historical thing. We should follow http://redsymbol.net/articles/unofficial-bash-strict-mode/[Use Bash Strict Mode] fully going forward (except shebang, which we want more portable).
+Usually this is just a historical thing and will be upgraded in time. We should follow http://redsymbol.net/articles/unofficial-bash-strict-mode/[Use Bash Strict Mode] fully going forward (except shebang, which we want more portable).
 
 [#power-shell]
 === Use PowerShell (not BAT files) for Windows scripting; or, in many cases, use bash (from Cygwin or MSYS2)
