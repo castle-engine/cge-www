@@ -15,8 +15,9 @@ $toc = new TableOfContents(
       //new TocItem('If you use proprietary NVidia OpenGL on Linux', 'nvidia_linux', 1),
       new TocItem('If you use FPC development version (from GitLab)', 'fpc_unstable', 1),
     new TocItem('Delphi', 'delphi'),
+      new TocItem('Presentations', 'presentations', 1),
       new TocItem('Platforms supported with Delphi', 'platforms', 1),
-      new TocItem('Delphi versions', 'versions', 1),
+      new TocItem('Delphi versions supported', 'versions', 1),
     new TocItem('Code Typhon', 'code_typhon'),
   )
 );
@@ -128,15 +129,17 @@ to hang on to FPC releases available in distros.
 
 <p>Any Delphi tier, including free <a href="https://www.embarcadero.com/products/delphi/starter/free-download/">Delphi Community Edition</a>, is fine.
 
-<p>The support is available in the master branch of CGE, so you should just download the latest <a href="/">CGE release from the main page</a>. (You can also <a href="compiling_from_source.php">download sources</a> of course and compile the engine yourself &mdash; note that you will need FPC/Lazarus for this too.)
-
-<p>See the presentation:
-
-<p><iframe width="560" height="315" src="https://www.youtube.com/embed/6JfFxnZO4Jc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
 <p>We are an official <i>Embarcadero Technology Partner</i>. What this means, in simple terms, is that <i>Michalis</i> and <i>Andrzej</i> have full access to the latest Delphi version, with all the Delphi platforms (including Android and iOS), for free. For testing CGE compatibility.
 
-<p>If you like Delphi compatibility, and want to see more platforms, please show your support by <a href="https://www.patreon.com/castleengine">subscribing on Patreon</a>!
+<p>If you like Delphi compatibility, and want to see more platforms with Delphi, please <a href="https://www.patreon.com/castleengine">support us on Patreon</a>!
+
+<?php echo $toc->html_section(); ?>
+
+<p><iframe width="560" height="315" src="https://www.youtube.com/embed/epqLUe_HapM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+<p><iframe width="560" height="315" src="https://www.youtube.com/embed/oA87iclrDZA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+<p><iframe width="560" height="315" src="https://www.youtube.com/embed/6JfFxnZO4Jc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 <?php echo $toc->html_section(); ?>
 
@@ -147,25 +150,32 @@ to hang on to FPC releases available in distros.
 
   <li><p>You can use <?php echo cgeRef('TCastleWindow'); ?>, which is our standard way to create CGE window. Our "New Project" templates as well as most examples use it.
 
-  <li><p>You can alternatively use <?php echo cgeRef('TCastleControl'); ?> that allows to put CGE rendering on FMX (FireMonkey) or VCL form.
+  <li><p>You can alternatively use <?php echo cgeRef('TCastleControl'); ?> that allows to put CGE rendering on FMX (FireMonkey) or VCL form. <a href="control_on_form">See here for details</a>.
 </ul>
 
 <?php echo $toc->html_section(); ?>
 
 <ul>
-  <li><p>We test on 10.4 and 11.
+  <li><p>The engine is tested and supported on all Delphi versions &gt;= 10.2. It was actively tested on 10.2, 10.3, 10.4 (including CE), and all Delphi 11 editions (including 11.3 CE).
 
-  <li><p>In principle, any Delphi version &gt;= 2009 (with generics support) should be OK.
+  <li><p>In the future, we could support Delphi versions &gt;= XE 7.
 
-    <p>We welcome reports (of success or failure) if you use Delphi version between 2009 and 10.4, and tested CGE with it. If you get a compilation error or any other issue, please report it with details &mdash; post a screenshot, post copy-pasted (exact!) error message and so on.
+    <p>Adjusting to Delphi XE 7 seems to require only a few local changes (see 
+    <a href="https://github.com/castle-engine/castle-engine/issues/482">XE7 test</a>,
+    <a href="https://github.com/castle-engine/castle-engine/issues/486">10.0.1 test</a>,
+    <a href="https://github.com/castle-engine/castle-engine/issues/488">10.1.2 test</a>).
+
+    <p>We do not plan to support older Delphi versions. They are really old (<a href="https://en.wikipedia.org/wiki/History_of_Delphi_(software)">Delphi XE6 is from 2014</a>) and would require more work (see <a href="https://github.com/castle-engine/castle-engine/issues/481">XE4 test</a>). It doesn't seem wise to spend resources on maintaining (making and testing) compatibility with these ancient Delphi versions.
 
   <li><p>We will not support Delphi versions older than 10.4 <i>for mobile (Android and iOS)</i>.
 
-    <p>Reason: The older Delphi versions have crazy compatibility-breaking change to <code>String</code> handling on mobile: strings are 0-based (but only on mobile!, on desktop they remained 1-based) and <i>Embarcadero/Idera</i> recommended way forward was to use <code>TStringHelper</code>, with all operations 0-based, and maybe treat strings as immutable. See <a href="https://docwiki.embarcadero.com/RADStudio/XE7/en/Migrating_Delphi_Code_to_Mobile_from_Desktop#Use_0-Based_Strings">Delphi XE7: Migrating Delphi Code to Mobile from Desktop: Use 0-Based Strings</a>.
+    <p>Reason: The older Delphi versions have crazy compatibility-breaking change to <code>String</code> handling on mobile: strings are 0-based (but only on mobile!, on desktop they remained 1-based) and <i>Embarcadero/Idera</i> recommended way forward was to use <code>TStringHelper</code>, with all operations 0-based, and maybe treat strings as immutable. 
+    
+    <p>This is documented now in <a href="https://docwiki.embarcadero.com/RADStudio/Alexandria/en/Zero-based_strings_(Delphi)">Zero-based strings (Delphi)</a>. In the past page <a href="https://docwiki.embarcadero.com/RADStudio/XE7/en/Migrating_Delphi_Code_to_Mobile_from_Desktop#Use_0-Based_Strings">Migrating Delphi Code to Mobile from Desktop (for Delphi XE7)</a> had a longer section <i>"Use 0-Based Strings"</i>.
 
-    <p>This would mean completely rewriting all our <code>String</code> handling code in the engine. And it would be quite risky task &mdash; as the global <code>String</code> routines remained available for mobile, but they were nearly useless for cross-platform code, as they would use 1-based on desktop and 0-based on mobile, thus causing hard-to-find bugs, as the same code would <i>compile</i> everywhere, but would work <i>differently</i> between desktop and mobile.
+    <p>Adjusting to this would mean rewriting all <code>String</code> handling code in the engine to use new <code>TStringHelper</code>. And it would be quite risky task &mdash; as the global <code>String</code> routines remained available for mobile, but they were nearly useless for cross-platform code, as they would use 1-based on desktop and 0-based on mobile. Thus causing hard-to-find bugs, as the same code would <i>compile</i> everywhere, but would work <i>differently</i> between desktop and mobile.
 
-    <p>We're happy that Embarcadero backed off from this weird decision in later Delphi versions. See <a href="https://docwiki.embarcadero.com/RADStudio/Sydney/en/Zero-based_strings_(Delphi)">Delphi 10.4 (Sydney): Zero-based strings (Delphi)</a>. In particular it says <i>In general terms, string indexing is now uniform across platforms and uses 1-based index model.</i> and <i>Default <code>{$ZEROBASEDSTRINGS OFF}</code> for Delphi desktop and mobile compilers.</i>.
+    <p>We're happy that Embarcadero backed off from this weird decision in later Delphi versions. See <a href="https://docwiki.embarcadero.com/RADStudio/Sydney/en/Zero-based_strings_(Delphi)">Delphi 10.4 (Sydney): Zero-based strings (Delphi)</a>. In particular it says <i>"In general terms, string indexing is now uniform across platforms and uses 1-based index model."</i> and <i>"Default"</i> is <i>"<code>{$ZEROBASEDSTRINGS OFF}</code> for Delphi desktop and mobile compilers"</i>.
 
       <!--li>See also <a href="https://stackoverflow.com/questions/66682412/in-sydney-does-string-still-zero-based-in-mobile">StackOverflow: In Sydney does string still zero based in mobile?</a-->
 </ul>
