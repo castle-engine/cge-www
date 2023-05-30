@@ -184,7 +184,7 @@ To define key shortcut for default task _"(CGE) Compile And Run"_ just adjust th
 
 === Debugging
 
-CGE applications compiled in _debug_ mode contain debug symbols compatible with GDB. Any debugger extension in _VS Code_ based on GDB should work.
+CGE applications compiled in _debug_ mode contain debug symbols compatible with GDB. Any debugger extension in _VS Code_ based on GDB should work, like https://marketplace.visualstudio.com/items?itemName=webfreak.debug[Native Debug].
 
 This is a sample `launch.json` you can use (edit `app_name` as necessary):
 
