@@ -708,7 +708,7 @@ To make it work:
 --
 - Define an `OnCreate` event at the component registration. This will be called by the editor only when user creates the component (and not when the component is just deserialized). Assign to it a `class procedure` that should act on `Sender` (parameter) and add to it proper children.
 - Create the children with the same `Owner` as current component. In the editor, whole design (components editable by user) is owned by one (internal) component. Like `FMyChild := TMyChildComponent.Create(Owner);` .
-- The children component should have some non-empty name (to be nice for user) and this name should be unique in the owner. Do this using cgeref:InternalProposeName[], like `FMyChild.Name := InternalProposeName(TMyChildComponent, Owner);` .
+- The children component should have some non-empty name (to be nice for user) and this name should be unique in the owner. Do this using cgeref:ProposeComponentName[], like `FMyChild.Name := ProposeComponentName(TMyChildComponent, Owner);` .
 
 ==== Example code
 
@@ -738,19 +738,19 @@ var
   Child: TCastleRectangleControl;
 begin
   Child := TCastleRectangleControl.Create(Owner);
-  Child.Name := InternalProposeName(TCastleRectangleControl, Owner);
+  Child.Name := ProposeComponentName(TCastleRectangleControl, Owner);
   Child.Color := Red;
   Child.Anchor(hpLeft, 0);
   (Sender as TMyRectanglesGroup).InsertFront(Child);
 
   Child := TCastleRectangleControl.Create(Owner);
-  Child.Name := InternalProposeName(TCastleRectangleControl, Owner);
+  Child.Name := ProposeComponentName(TCastleRectangleControl, Owner);
   Child.Color := Blue;
   Child.Anchor(hpLeft, 100);
   (Sender as TMyRectanglesGroup).InsertFront(Child);
 
   Child := TCastleRectangleControl.Create(Owner);
-  Child.Name := InternalProposeName(TCastleRectangleControl, Owner);
+  Child.Name := ProposeComponentName(TCastleRectangleControl, Owner);
   Child.Color := Green;
   Child.Anchor(hpLeft, 200);
   (Sender as TMyRectanglesGroup).InsertFront(Child);
