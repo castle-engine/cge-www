@@ -1,12 +1,15 @@
 <?php
 
-namespace Automattic\Jetpack_Boost\Modules\Optimizations\Minify;
+namespace Automattic\Jetpack_Boost\Lib\Minify;
 
 use WP_Scripts;
 
 // Disable complaints about enqueuing scripts, as this class alters the way enqueuing them works.
 // phpcs:disable WordPress.WP.EnqueuedResources.NonEnqueuedScript
 
+/**
+ * Replacement for, and subclass of WP_Scripts - used to control the way that scripts are enqueued and output.
+ */
 class Concatenate_JS extends WP_Scripts {
 	private $dependency_path_mapping;
 	private $old_scripts;
@@ -55,9 +58,10 @@ class Concatenate_JS extends WP_Scripts {
 		return false;
 	}
 
+	/**
+	 * Override for WP_Scripts::do_item() - this is the method that actually outputs the scripts.
+	 */
 	public function do_items( $handles = false, $group = false ) {
-		global $wp_filesystem;
-
 		$handles     = false === $handles ? $this->queue : (array) $handles;
 		$javascripts = array();
 		$siteurl     = apply_filters( 'page_optimize_site_url', $this->base_url );
@@ -89,7 +93,7 @@ class Concatenate_JS extends WP_Scripts {
 			}
 
 			$obj           = $this->registered[ $handle ];
-			$js_url        = $obj->src;
+			$js_url        = jetpack_boost_enqueued_to_absolute_url( $obj->src );
 			$js_url_parsed = wp_parse_url( $js_url );
 
 			// Don't concat by default
@@ -97,7 +101,10 @@ class Concatenate_JS extends WP_Scripts {
 
 			// Only try to concat static js files
 			if ( false !== strpos( $js_url_parsed['path'], '.js' ) ) {
-				$do_concat = jetpack_boost_page_optimize_should_concat_js();
+				// Previously, the value of this variable was determined by a function.
+				// Now, since concatenation is always enabled when the module is active,
+				// the value will always be true for static files.
+				$do_concat = true;
 			} elseif ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
 					echo sprintf( "\n<!-- No Concat JS %s => Maybe Not Static File %s -->\n", esc_html( $handle ), esc_html( $obj->src ) );
 			}
@@ -136,7 +143,8 @@ class Concatenate_JS extends WP_Scripts {
 				}
 				$do_concat        = false;
 				$script_is_strict = true;
-			} elseif ( $do_concat && preg_match_all( '/^[\',"]use strict[\',"];/Uims', $wp_filesystem->get_contents( $js_realpath ), $matches ) ) {
+			// phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
+			} elseif ( $do_concat && preg_match_all( '/^[\',"]use strict[\',"];/Uims', file_get_contents( $js_realpath ), $matches ) ) {
 				// Skip third-party scripts that use Strict Mode
 				if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
 					echo sprintf( "\n<!-- No Concat JS %s => Has Strict Mode (Third-Party) -->\n", esc_html( $handle ) );
@@ -248,12 +256,10 @@ class Concatenate_JS extends WP_Scripts {
 				if ( isset( $href ) ) {
 					$handles = implode( ',', $js_array['handles'] );
 
-					$load_mode = jetpack_boost_page_optimize_load_mode_js();
-
 					if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-						$tag = "<script data-handles='" . esc_attr( $handles ) . "' $load_mode type='text/javascript' src='$href'></script>\n";
+						$tag = "<script data-handles='" . esc_attr( $handles ) . "' type='text/javascript' src='" . esc_url( $href ) . "'></script>\n";
 					} else {
-						$tag = "<script type='text/javascript' $load_mode src='$href'></script>\n";
+						$tag = "<script type='text/javascript' src='" . esc_url( $href ) . "'></script>\n";
 					}
 
 					if ( is_array( $js_array['handles'] ) && count( $js_array['handles'] ) === 1 ) {

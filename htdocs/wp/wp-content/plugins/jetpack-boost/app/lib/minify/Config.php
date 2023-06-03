@@ -1,6 +1,6 @@
 <?php
 
-namespace Automattic\Jetpack_Boost\Modules\Optimizations\Minify;
+namespace Automattic\Jetpack_Boost\Lib\Minify;
 
 class Config {
 
@@ -28,8 +28,6 @@ class Config {
 		return $enabled;
 	}
 
-	// @todo - PAGE_OPTIMIZE_CONCAT_BASE_DIR is used in the original plugin, but never defined anywhere.
-
 	public static function get_abspath() {
 		if ( defined( 'PAGE_OPTIMIZE_ABSPATH' ) ) {
 			$path = PAGE_OPTIMIZE_ABSPATH;
@@ -38,9 +36,5 @@ class Config {
 		}
 
 		return $path;
-	}
-
-	public static function get_cron_cache_cleanup_hook() {
-		return 'page_optimize_cron_cache_cleanup';
 	}
 }

@@ -1,12 +1,15 @@
 <?php
 
-namespace Automattic\Jetpack_Boost\Modules\Optimizations\Minify;
+namespace Automattic\Jetpack_Boost\Lib\Minify;
 
 use WP_Styles;
 
 // Disable complaints about enqueuing stylesheets, as this class alters the way enqueuing them works.
 // phpcs:disable WordPress.WP.EnqueuedResources.NonEnqueuedStylesheet
 
+/**
+ * Replacement for, and subclass of WP_Styles - used to control the way that styles are enqueued and output.
+ */
 class Concatenate_CSS extends WP_Styles {
 	private $dependency_path_mapping;
 	private $old_styles;
@@ -60,7 +63,8 @@ class Concatenate_CSS extends WP_Styles {
 				$css_url = wp_style_loader_src( $css_url, $obj->handle );
 			}
 
-			$css_url_parsed = wp_parse_url( $obj->src );
+			$css_url        = jetpack_boost_enqueued_to_absolute_url( $css_url );
+			$css_url_parsed = wp_parse_url( $css_url );
 			$extra          = $obj->extra;
 
 			// Don't concat by default
@@ -189,7 +193,6 @@ class Concatenate_CSS extends WP_Styles {
 				}
 
 				$style_tag = apply_filters( 'page_optimize_style_loader_tag', $style_tag, $handles, $href, $media );
-				$style_tag = apply_filters( 'style_loader_tag', $style_tag, $handles, $href, $media );
 
 				// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				echo $style_tag . "\n";
