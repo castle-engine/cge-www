@@ -327,3 +327,31 @@ We want to enable using higher-level FMOD events that drive the _sound banks_ ex
 ## Wwise backend
 
 Allow using https://www.audiokinetic.com/[AudioKinetic's Wwise] as sound backend, and as a middleware to design sounds.
+
+[#async]
+## Asynchronous loading of assets
+
+As described in https://castle-engine.io/threads[threads], we want to allow loading assets *asynchronously*. This means that you use CGE API from one thread, but some operations are not "blocking" and CGE can internally use threads to finish their work, while your code continues to calculate, CGE events like `Update` continue to be processed etc.
+
+For example:
+
+[source,pascal]
+----
+TCastleScene.LoadAsync(const Url: String; const OnFinish: TNotifyEvent);
+
+TCastleScene.PrepareResourcesAsynchronously;
+
+TCastleTerrain.UpdateDataAsync(const NewData: TCastleTerrainData; const OnFinish: TNotifyEvent);
+----
+
+We already use such approach e.g. with cgeref:TCastleDownload[]. Internally it can download in a thread, but you don't need to worry about inherent "hard" issues with threads (synchronizing communication between threads, being careful who/when touches the shared variables). This approach results in:
+
+- Really comfortable API. You handle everything from one thread, you get simple callbacks when things are done, you can simply watch (e.g. in some `Update`) status of something, display progress bars, interrupt the operation etc.
+
+- Flexible implementation underneath. It can use Pascal threads underneath, or it can delegate work to another asynchronous API (e.g. to download using Java classes on Android), it can even fallback to synchronous if threads are not possible on some platform.
+
+And it is possible to load OpenGL things in a thread: by having separate OpenGL context for the background thread, that shares resources (like VBO).
+
+The ultimate demo is to implement exploring a huge city and loading neighboring pieces of the city asynchronously.
+
+I mentioned this in the bottom part of https://castle-engine.io/wp/2022/10/12/slides-movies-and-thoughts-from-my-gic-2022-presentation/[Slides, movies and thoughts from my GIC 2022 presentation] .
