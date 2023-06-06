@@ -355,3 +355,32 @@ And it is possible to load OpenGL things in a thread: by having separate OpenGL 
 The ultimate demo is to implement exploring a huge city and loading neighboring pieces of the city asynchronously.
 
 I mentioned this in the bottom part of https://castle-engine.io/wp/2022/10/12/slides-movies-and-thoughts-from-my-gic-2022-presentation/[Slides, movies and thoughts from my GIC 2022 presentation] .
+
+## Merge TCastleImagePersistent and TDrawableImage
+
+One less image class (we have too many image classes, see https://castle-engine.io/using_images ).
+
+And it will avoid current counterintuive fact:
+
+```
+ImageControl.DrawableImage.CustomShader := Xxx;
+```
+
+The above is ignored, because `ImageControl.CustomShader` (equal to `ImageControl.Content.CustomShader`) overrides `TDrawableImage.CustomShader` it. Similarly a few other drawable image properties, as `TCastleImagePersistent.Draw` does now:
+
+[source,pascal]
+----
+ { All the DrawableImage properties must be set here,
+    in case muliple TCastleImagePersistent refer to the same
+    DrawableImage instance through the cache.
+    Fortunately, almost all TDrawableImage properties have zero cost
+    of change. }
+  DrawableImage.SmoothScaling := FSmoothScaling;
+  DrawableImage.Clip := FClip;
+  DrawableImage.ClipLine := FClipLine;
+  DrawableImage.Rotation := FRotation;
+  DrawableImage.RotationCenter := FRotationCenter;
+  DrawableImage.Alpha := FAlphaChannel;
+  DrawableImage.Color := FColor;
+  DrawableImage.CustomShader := FCustomShader;
+----
