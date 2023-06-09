@@ -338,6 +338,7 @@ $castle_sitemap = array(
               'doc/blending' => array('title' => 'Blending'),
               'doc/color_space' => array('title' => 'Color Space (Gamma Correction)'),
               'manual_alpha_bleeding' => array('title' => 'Alpha Bleeding'),
+              'doc/sketchfab' => array('title' => 'Sketchfab'),
             )
           ),
           'doc/control_on_form' => array('title' => 'Engine on a form (VCL, FMX, LCL) using TCastleControl'),

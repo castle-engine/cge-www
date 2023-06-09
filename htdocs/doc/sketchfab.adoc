@@ -1,0 +1,72 @@
+# Sketchfab Importer
+include::common.adoc[]
+:description: Import models from Sketchfab using Castle Game Engine editor.
+:cge-social-share-image: sketchfab_cat4.png
+
+cgeimg::float[
+  sketchfab_cat1.png|Searching for cats on Sketchfab,
+  sketchfab_cat2.png|Searching for cats on Sketchfab,
+  sketchfab_cat3.png|Searching for cats on Sketchfab
+]
+
+// cgeimg::block[
+//   sketchfab_tree1.png|Searching for trees on Sketchfab,
+//   sketchfab_tree2.png|Searching for trees on Sketchfab,
+//   sketchfab_tree3.png|Searching for trees on Sketchfab
+// ]
+
+You can search and import models from https://sketchfab.com/[Sketchfab] inside the _Castle Game Engine_ editor.
+
+## How to use
+
+* Open any project.
+
+* Use the menu item _"Data -> Import from Sketchfab..."_.
+
+* Search for any query, like `cat`, `tree`... Your imagination is your only limit, Sketchfab has an incredible number of models. There's a checkbox to limit the results to contain _"Only Animated"_ models.
+
+* Pick the model you want to download. You can view the models using a list (with license, description, face count) or using a grid view (with thumbnail). You can also open the corresponding model in the Sketchfab website viewer.
+
+* Press _"Download"_ to download the glTF version of the model from Sketchfab.
++
+Make sure to fill the _"API token"_ field first -- find your token on the link:https://sketchfab.com/settings/password[Sketchfab "Password & API"] page. You need a (completely free) Sketchfab account for this.
++
+The downloaded model is placed inside the link:manual_data_directory.php[data subdirectory] of your project, in a file like `data/sketchfab/<name>-<id>/scene.gltf`. There are accompanying files with textures, license, we also leave the downloaded zip.
+
+* If you have some design open, with some link:viewport_and_scenes[viewport] selected, then you can even _"Download and Add To Viewport"_. This is just a shortcut to download and drag-and-drop the glTF model into the viewport, instantiating [cgeref id=TCastleScene] pointing to the proper glTF model.
+
+Enjoy!
+
+## License
+
+The models' licenses are clearly specified (in the search dialog and in downloaded `license.txt` files). They use various versions of the link:https://creativecommons.org/[Creative Commons] licenses or _Public Domain_.
+
+Following link:https://sketchfab.com/developers/download-api[Sketchfab docs]: _Sketchfab provides a library of over 1 million free models, available under Creative Commons licenses. Most models allow commercial use._ Read the link:https://sketchfab.com/developers/download-api/guidelines[model licensing] for more details.
+
+NOTE: Be wary of using _Non-Commercial_ or _Non-Derivatives_ variants of the _Creative Commons_ licenses. They are incompatible with general open-source definition, which has been stated explicitly e.g. by Debian (DFSG) and FSF. See link:https://en.wikipedia.org/wiki/Creative_Commons_license[Creative Commons at Wikipedia] for more information. So works including these models cannot be distributed as freely as most open-source software. Other CC variants are cool.
+
+## Caveats
+
+. Sketchfab export to glTF is not perfect.
++
+--
+. Some models have too dark materials. E.g. link:https://sketchfab.com/3d-models/theminotaur-phone-modular-stylized-dungeon-kit-255b9ed86bf14874b17aacf7fa930d0c[this dungeon] has very dark unlit materials in glTF. It looks dark when viewed in _Castle Game Engine_ and link:https://gltf-viewer.donmccurdy.com/[other glTF] link:https://gestaltor.io/[viewers].
++
+TODO: https://castle-engine.io/roadmap#materials[New material components] will allow you to easily override faulty materials.
+
+. Sometimes the exported glTF says to use _blending_ when it actually should not. For example this link:https://sketchfab.com/3d-models/chunky-knight-f1722ab650ad4d8dbe6fc4bf44e33d38[chunky knight] has rendering issues, in _Castle Game Engine_ and link:https://gltf-viewer.donmccurdy.com/[other glTF viewers], due to using blending when it should not.
++
+This likely follows link:https://help.sketchfab.com/hc/en-us/articles/360046421631-glTF-GLB-and-USDZ[Sketchfab docs] saying that they don't export _Refraction, Dithered, and Additive transparency (will be converted to Blending)_.
++
+The solution is just to disable blending in CGE for these models, setting `MyScene.RenderOptions.Blending` to `false`.
+--
+
+. A minority of Sketchfab models use a "specular glossiness" PBR workflow through a deprecated (by Khronos) link:https://github.com/KhronosGroup/glTF/tree/main/extensions/2.0/Archived/KHR_materials_pbrSpecularGlossiness[KHR_materials_pbrSpecularGlossiness]. We support it in CGE only partially -- some models may look dark or too contrasting, like link:https://sketchfab.com/3d-models/knight-multi-anim-bind-5ac12d133e5a4ef3a8eaf1c533306c87[this knight].
++
+As link:https://github.com/KhronosGroup/glTF/tree/main/extensions/2.0/Archived/KHR_materials_pbrSpecularGlossiness[KHR_materials_pbrSpecularGlossiness] is deprecated, superseded by link:https://github.com/KhronosGroup/glTF/blob/main/extensions/2.0/Khronos/KHR_materials_specular/README.md[KHR_materials_specular], we are reluctant to put effort to support this way of rendering perfectly in CGE.
++
+Possibly Sketchfab can switch to the new approach in the future. In the meantime you can ask Sketchfab authors to use _metallic-roughness_ PBR workflow.
+
+. Some models expose just one big animation like `Take 001`, which is an artifact how some 3D software exports them.
++
+You can follow link:https://github.com/castle-engine/castle-engine/tree/master/examples/animations/split_long_animation[examples/animations/split_long_animation] to split such long animation into multiple "sub animations" in CGE.
