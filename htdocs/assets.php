@@ -23,8 +23,8 @@ echo pretty_heading($page_title);
     'https://kenney.nl/');
   ?>
 
-  <?php gallery_link('Sketchfab glTF models',
-    '3D models, in glTF format, uploaded by various arists. Some free (on clear licenses, like <i>Creative Commons</i>), some paid.',
+  <?php gallery_link('Sketchfab',
+    '3D models, in glTF format, uploaded by various arists. Some free (on clear licenses, like <i>Creative Commons</i>), some paid. <p>Note: you can also <a href="https://castle-engine.io/sketchfab">import from Sketchfab directly in CGE editor</a>!',
     'assets_sketchfab.png',
     'https://sketchfab.com/features/gltf');
   ?>
