@@ -52,15 +52,23 @@ See https://castle-engine.io/wp/2022/12/24/summary-of-4th-open-meeting-physics-p
 * You can also force to treat the whole scene as 2-manifold (useful when its 2-manifold when you sum all shapes, and shapes can use different materials) using cgeref:TCastleRenderOptions.WholeSceneManifold[].
 * Note: We plan to expose also our _shadow maps_ in a similar easy-to-use fashion in future releases.
 --
-* New component to support https://castle-engine.io/tiled_maps[Tiled maps]: part of the viewport (can be mixed with CGE scenes, sprite sheets...), excellent performance to render huge maps, configurable layers.
+* New component to support https://castle-engine.io/tiled_maps[Tiled maps]:
++
+--
+* Part of the viewport (can be mixed with CGE scenes, sprite sheets...),
+* Excellent performance to render huge maps.
+* Configurable layers.
+* Examples on https://github.com/castle-engine/castle-engine/tree/master/examples/tiled[examples/tiled/] upgraded, in particular we feature a complete playable turn-based strategy game.
+--
 * Renderer improvements:
 +
 --
 * OpenGLES supports now almost all desktop rendering features: shadow volumes, shadow maps, 3D textures, occlusion query, anisotropic filtering, meshes with 32-bit indexes.
-* using only modern OpenGL 3.x context features, if possible
-* using "core" OpenGL profile on macOS by default, thus having OpenGL 4.x API on macOS
-* more optimal drawing of line primitives and quads
-* cgeref:TCastleRenderUnlitMesh[] utility
+* Using only modern OpenGL 3.x context features, if possible.
+* Using "core" OpenGL profile on macOS by default, thus having OpenGL 4.x API on macOS
+* More optimal drawing of line primitives and quads.
+* cgeref:TCastleRenderUnlitMesh[] utility.
+* Fixes for older ATI GPUs.
 --
 * Many editor UX improvements. The most important ones:
 +
@@ -71,6 +79,8 @@ See https://castle-engine.io/wp/2022/12/24/summary-of-4th-open-meeting-physics-p
 * Wireframe view.
 * "Change Class" menu action.
 * Dragging and dropping in the hierarchy preserves transformation by default (hold "Ctrl" to not preserve).
+* link:sketchfab[Sketchfab Importer]
+* https://castle-engine.io/wp/2023/06/03/images-in-ui-regions-subset-of-image-and-visual-editing-of-both-region-and-9-slices/[Visually edit images region and 9-slices borders].
 --
 * Improvements around our https://castle-engine.io/views[views] (formely _states_):
 +
