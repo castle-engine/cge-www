@@ -4,9 +4,9 @@ include::common.adoc[]
 :cge-social-share-image: sketchfab_cat4.png
 
 cgeimg::float[
-  sketchfab_cat1.png|Searching for cats on Sketchfab,
+  sketchfab_cat3.png|Searching for cats on Sketchfab,
   sketchfab_cat2.png|Searching for cats on Sketchfab,
-  sketchfab_cat3.png|Searching for cats on Sketchfab
+  sketchfab_cat1.png|Searching for cats on Sketchfab
 ]
 
 // cgeimg::block[
