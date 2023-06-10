@@ -51,7 +51,7 @@ The nodes described here just place everything at a Z = zero plane
 <?php echo $toc->html_section(); ?>
 
 <p>This is an example how to construct in Pascal a scene with
-<code>Rectangle2D</code>, <code>LineSet</code>,
+<?php echo cgeRef('TRectangle2DNode'); ?>, <?php echo cgeRef('TLineSetNode'); ?>,
 and rotate it:
 
 <?php echo pascal_highlight_file('code-samples/build_scene_lineset_rectangle2d.lpr'); ?>
