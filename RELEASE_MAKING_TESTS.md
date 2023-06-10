@@ -176,3 +176,7 @@ make generate-code
 * Compile examples/fps_game in Delphi (interactively, so using DPROJ)
 * Create a new FMX project with `TCastleControl`. Compiling it should initially fail. Install CGE using Delphinus to show it works.
 * Retest compiling examples/delphi/vcl, examples/fps_game once Delphinus paths are present, to be sure it's all OK.
+
+## Test: Lazarus Project Group
+
+Has to be used interactively. Open and compile `most_important_lazarus_packages_and_tools.lpg` in Lazarus IDE.
