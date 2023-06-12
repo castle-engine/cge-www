@@ -275,9 +275,13 @@ There are a few details that have to be ironed out here:
 [#anims]
 ## Creating animations in CGE editor, for UI and transforms
 
-For now: animation of anhyting is absolutely possible, *from code*. You can  update any values you want in `Update` and change any value you need (like `MyControl.Translation`) using routines like `Lerp` or `SmoothStep`.
+Allow designing and testing animations in CGE editor.
 
-The goal here is to allow designing and testing such animations in CGE editor. The use-case should cover animating anythign that you see in CGE editor directly: e.g. UI stuff (like `TCastleUserIterface.Translation`, `TCastleImageControl.Color`), 3D stuff (`TCastleTransform.Translation`, `TCastleTransform.Rotation` etc.).
+The features cover animating typical UI/transform things that you see in CGE editor directly: e.g. UI stuff (like `TCastleUserIterface.Translation`, `TCastleImageControl.Color`), 3D stuff (`TCastleTransform.Translation`, `TCastleTransform.Rotation` etc.).
+
+NOTE: Animating everything in CGE is already possible right now _using code_. You can update any values you want in `Update` method of your link:views[view] and change any value you need (like `MyControl.Translation`) using routines like `Lerp` or `SmoothStep`.
+
+The point of this feature is to allow to design and see simple animations from editor. Code will then be able to just play them (e.g. using simple method `MyAnimation.Play`) whenever needed.
 
 Features:
 
