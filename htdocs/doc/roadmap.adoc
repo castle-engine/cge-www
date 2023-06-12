@@ -272,20 +272,36 @@ There are a few details that have to be ironed out here:
 
 * most intuitive names for all the things above (menu item names, component names, extensions etc.) :)
 
-## User interface (or any other simple property of CGE component) animation in editor
+[#anims]
+## Creating animations in CGE editor, for UI and transforms
 
-Expose simple component(s) (`TCastleUserInterfaceBehavior` descendants?) that allow to animate anything in CGE editor. They should have
+For now: animation of anhyting is absolutely possible, *from code*. You can  update any values you want in `Update` and change any value you need (like `MyControl.Translation`) using routines like `Lerp` or `SmoothStep`.
 
+The goal here is to allow designing and testing such animations in CGE editor. The use-case should cover animating anythign that you see in CGE editor directly: e.g. UI stuff (like `TCastleUserIterface.Translation`, `TCastleImageControl.Color`), 3D stuff (`TCastleTransform.Translation`, `TCastleTransform.Rotation` etc.).
+
+Features:
+
+- Make it possible to animate (at least!) any property of cgeref:TCastleUserInterface[] and cgeref:TCastleTransform[]. Access the property using RTTI, and at design-time in editor allow to choose `TargetObject` and `TargetProperty` with suitable type.
++
+Bonus: allow to animate any property of any `TComponent`.
+
+- It should allow to animate at least any `Single/Double`, `TVector2/3/4` properties (this includes also colors, as `TCastleColor[RGB]` is just alias for `TVector3/4`; this includes also rotations, that is just `TVector4` but can use slerp for interpolation).
++
+Bonus: allow to animate other property types. E.g. animating discrete (like boolean) actually makes sense -- to hide stuff by animation, by changing `Exists` at specific point in time.
+
+- It should use `TCastleBehaviorBase` that will allow to attach it to any `TCastleUserInterface` and `TCastleTransform`. See talk about it in https://github.com/castle-engine/castle-engine/issues/473 .
+
+- Each such animation should define:
++
+--
 - key-frames
 - key-values
-- support a few most common options: animating floats, vec2, vec3
 - configurable target component (TComponent)
 - configurable target property (string? and get/set property using RTTI)
-- easing (e.g. to make "bouncing" effect at the end of animation), https://easings.net/ https://developer.mozilla.org/en-US/docs/Web/CSS/easing-function
+- easing (e.g. to make "bouncing" effect at the end of animation), https://easings.net/ https://developer.mozilla.org/en-US/docs/Web/CSS/easing-function . Bonus: easing code and enums could be also used to acceleration/deceleration of `TCastleInputAxis`.
+--
 
-The use-case should cover animating anythign that you see in CGE editor directly: e.g. UI stuff (like `TCastleUserIterface.Translation`, `TCastleImageControl.Color`), 3D stuff (`TCastleTransform.Translation`, `TCastleTransform.Rotation` etc.).
-
-For now: you have to animate UI from code, updating any values you want in `Update` and change any value you need (like `MyControl`.Translation) using routines like `Lerp` or `SmoothStep`.
+- Bonus: Group animations, so that from code you can fire like `MyUserInterfaceAppear.Play` and it runs a number of animations at once -- e.g. something "slides in" (translation changes), something appears (Exists changes), something fades in (Color.alpha changes)
 
 [#screen_effects]
 ## Screen effects - expose as nicer components
@@ -384,17 +400,6 @@ The above is ignored, because `ImageControl.CustomShader` (equal to `ImageContro
   DrawableImage.Color := FColor;
   DrawableImage.CustomShader := FCustomShader;
 ----
-
-[#anims]
-## Creating animations in CGE editor, for UI and transforms
-
-Features:
-
-- Make it possible to animate (at least!) any property of cgeref:TCastleUserInterface[] and cgeref:TCastleTransform[]. Access the property using RTTI, and at design-time in editor allow to choose `TargetObject` and `TargetProperty` with suitable type.
-
-- It should allow to animate at least any `Single/Double`, `TVector2/3/4` properties (this includes also colors, as `TCastleColor[RGB]` is just alias for `TVector3/4`; this includes also rotations, that is just `TVector4` but can use slerp for interpolation).
-
-- It should use `TCastleBehaviorBase` that will allow to attach it to any `TCastleUserInterface` and `TCastleTransform`. See talk about it in https://github.com/castle-engine/castle-engine/issues/473 .
 
 ## (IN PROGRESS) Gamepads (joysticks) support
 
