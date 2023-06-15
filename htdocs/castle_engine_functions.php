@@ -1094,7 +1094,7 @@ function _castle_image_sizes($relative_filename)
 
 function _castle_patreon_box()
 {
-  $patreon_json = file_get_contents(__DIR__ . '/../patreon/patreon.json');
+  $patreon_json = @file_get_contents(__DIR__ . '/../patreon/patreon.json');
   /* Check _castle_disable_externals() to avoid adding Patreon data
      to static HTML pieces in castle-engine/doc/pasdoc/html-parts/ .
      These static HTML pieces then go to PasDoc output,
