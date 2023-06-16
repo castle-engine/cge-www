@@ -76,13 +76,13 @@ With a designer. Example usage: blood, snow, rain, fire, smoke... 2D, 3D.
 _This is already in-progress by Trung Le (Kagamma). Use link:https://github.com/Kagamma/cge-3d-particle-emitter[cge-3d-particle-emitter] or link:https://github.com/Kagamma/cge-effekseer[Effekseer Integration]. See link:additional_components.php[CGE components]._
 
 [#steam]
-## (IN PROGRESS) Steam integration, and engine available as Steam app
+## (IN REVIEW) Steam integration, and engine available as Steam app
 
 Official Steam integration in CGE, see https://trello.com/c/RNDjQhqe/71-steam-headers . We already used it for The Unholy Society, we want to either “just publish that approach” or propose a new, improved (without an intermediate “wrapper” library) approach.
 
 We should also upload CGE as app to Steam.
 
-_This is already in-progress by Eugene Loza (branch: https://github.com/castle-engine/castle-engine/commits/castle-steam ), we also have a draft application on Steam for CGE :)_.
+_This is already in-progress by Eugene Loza (branch: https://github.com/castle-engine/castle-engine/commits/castle-steam , PR: https://github.com/castle-engine/castle-engine/pull/471 ), we also have a draft application on Steam for CGE :)_.
 
 ## Release mobile view3dscene (as Android and iOS application)
 
@@ -119,7 +119,9 @@ We have a simple example code that shows how you can start a new renderer: see l
 This would make the whole TCastleViewport.Items a single graph of X3D nodes, allowing for more sharing in code. The TCastleTranform would be just like TTransformNode, but a little diferently optimized (but it would become toggable at runtime).
 
 [#shapes_across_scenes]
-## Possibility to reorder/merge all shapes, across all scenes (better blending, better batching)
+## (IN PROGRESS) Possibility to reorder/merge all shapes, across all scenes (better blending, better batching)
+
+*In progress on https://github.com/castle-engine/castle-engine/tree/shapes-rendering-2 branch.*
 
 This is a change in renderer routines. Right now each `TCastleScene` is too much like a "black box", even though the typical case is that 1 viewport renders *a lot* of scenes.
 
@@ -143,9 +145,12 @@ This means that rendering thousands of cgeref:TCastleImageTransform[] with the s
 +
 This means that `examples/isometric_game/` is an easy and efficient solution to render large maps.
 
-## Distance field fonts
+[#distance_field_fonts]
+## (IN REVIEW) Distance field fonts
 
 See link:https://libgdx.com/wiki/graphics/2d/fonts/distance-field-fonts[about Distance field fonts]. See code from link:https://github.com/neurolabusc/OpenGLCoreTutorials[Chris Rorden] showing how to do it in Lazarus.
+
+In review: PR: https://github.com/castle-engine/castle-engine/pull/504 .
 
 ## Mobile
 
@@ -330,7 +335,7 @@ Currently you can only export `TCastleScene` to X3D.
 
 This will likely also imply rename of `tovrmlx3d` to `castle-convert`.
 
-## Allow animating selected graph properties, without changing the graph
+## Allow animating selected node graph properties, without changing the graph, to be able to reuse graphs
 
 Right now our X3D graph usage is similar to HTML DOM usage from typical web applications: we modify the graph at runtime, everything that changes stuff (like animations) just changes the graph. This is simple to use, it nicely allows to animate _everything_ in X3D and gives developers an easy way to modify everything at runtime.
 
@@ -386,7 +391,7 @@ And it will avoid current counterintuive fact:
 ImageControl.DrawableImage.CustomShader := Xxx;
 ```
 
-The above is ignored, because `ImageControl.CustomShader` (equal to `ImageControl.Content.CustomShader`) overrides `TDrawableImage.CustomShader` it. Similarly a few other drawable image properties, as `TCastleImagePersistent.Draw` does now:
+The above is ignored, because `ImageControl.CustomShader` (equal to `ImageControl.Content.CustomShader`) overrides `TDrawableImage.CustomShader`. Similarly a few other drawable image properties, as `TCastleImagePersistent.Draw` does now:
 
 [source,pascal]
 ----
