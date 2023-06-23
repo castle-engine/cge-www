@@ -908,6 +908,7 @@ The idea is that, by default, developer should be able to assume that when (s)he
 
 If your function returns something that the caller should free, it must be explicitly documented.
 
+[#nil]
 === Things (parameters, properties, function results) are not allowed to be `nil` unless this is explicitly stated by the documentation
 
 Technically, in Pascal a value of an object instance (like `X: TMyObject`) can always be `nil`.
