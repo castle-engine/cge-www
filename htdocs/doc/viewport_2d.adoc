@@ -96,7 +96,9 @@ You can use any link:creating_data_model_formats.php[supported model format].
 
 ## Blending
 
-The editor contains a menu item _Add Transform -> Scene (Optimal Blending for 2D Models) (TCastleScene)_. This just adds a regular cgeref:TCastleScene[] and sets on it cgeref:TCastleRenderOptions.BlendingSort[RenderOptions.BlendingSort] to cgeref:bs2D[], to make blending always correct. This matters in case of 2D models with multiple layers, like typical link:spine[Spine] or link:gltf[glTF] 2D assets.
+Blending (partial transparency) should work in 2D games automatically.
+
+Shapes using blending will be sorted following cgeref:TCastleViewport.BlendingSort[] rules. This is by default cgeref:sortAuto[], which means it detects typical 2D camera setup and then behaves like cgeref:sort2D[].
 
 See link:blending[blending] for more details about blending, and see link:manual_alpha_bleeding.php[alpha bleeding] for details about how to prepare your images to behave correctly with blending.
 
