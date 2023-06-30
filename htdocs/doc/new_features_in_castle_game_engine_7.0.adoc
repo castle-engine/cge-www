@@ -43,7 +43,7 @@ See https://castle-engine.io/wp/2022/12/24/summary-of-4th-open-meeting-physics-p
 +
 --
 * https://castle-engine.io/control_on_form[TCastleControl available now for Delphi VCL and FMX applications, in addition to existing Lazarus LCL].
-* https://castle-engine.io/download#delphinus[Delphinus support]
+* https://castle-engine.io/download#delphinus[Delphinus support] (unfortunately not recommended anymore, due to https://github.com/Memnarch/Delphinus/issues/93 and https://github.com/castle-engine/castle-engine/issues/84 )
 --
 * Easily activate https://castle-engine.io/wp/2022/10/03/easy-shadows-in-editor-at-design-time-too-by-shadow-volumes-and-shadow-maps-are-coming-as-well/[shadows], just select checkbox `Shadows` at the light source to use shadow volumes.
 +

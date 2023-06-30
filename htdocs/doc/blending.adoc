@@ -15,15 +15,9 @@ While _Castle Game Engine_ tries to make it work "out of the box" correctly in u
 
 == Short summary
 
-If you have multiple _partially transparent_ objects in your game, set the cgeref:TCastleAbstractRootTransform.BlendingSort[Viewport.Items.BlendingSort] to:
-
-- cgeref:bs2D[] for 2D games.
-
-- cgeref:bs3D[] for 3D games. Eventually try cgeref:bs3DOrigin[] or cgeref:bs3DGround[].
+Things should work out-of-the-box, but if you experience artifacts at rendering multiple _partially transparent_ objects in your game, customize the cgeref:TCastleViewport.BlendingSort[].
 
 You can set it in the editor.
-
-If you leave it at default cgeref:bsNone[] value, you may experience rendering artifacts: When multiple partially transparent objects are visible at the same screen pixel, things that should be _obscured_ could be rendered instead _in front_ of others.
 
 Read on to understand it better -- how do we render partially transparent objects, what is sorting, what and why can go wrong.
 
@@ -33,7 +27,7 @@ Read on to understand it better -- how do we render partially transparent object
 +
 The X3D material nodes have a `Transparency` property, cgeref:TPhysicalMaterialNode.Transparency[], cgeref:TMaterialNode.Transparency[], cgeref:TUnlitMaterialNode.Transparency[].
 
-* _Alpha_ is "opaqueness", it is defined simply as _"1.0 - transparency"_. So alpha = 0.0 is something "completely invisible", alpha = 1.0 is "something totally opaque".
+* _Alpha_ says _"how much is something opaque"_, it is defined simply as _"1.0 - transparency"_. So alpha = 0.0 is something "completely invisible", alpha = 1.0 is "something totally opaque".
 +
 When you provide an RGBA color (`TCastleColor`, which is just equal to `TVector4`) then the last (4th) component is _alpha_.
 +
@@ -41,29 +35,36 @@ When you provide an RGBA texture, then it includes an alpha channel.
 +
 When you provide a texture without alpha channel (like RGB or grayscale) then it is always treated like _alpha is 1.0 everywhere_, i.e. it is fully opaque.
 
-== How various algorithms for transparency work
+== How transparency works
 
-The engine can handle transparency at each `Shape` in 3 ways:
+=== Alpha testing
 
-* No handling of transparency, i.e. the object is *opaque*.
-* Handle transparency using *alpha-testing*, which means that at each pixel, we test the shape RGBA color (which is a result of mixing material color, per-vertex colors, and texture colors). If the shape color's alpha is > 0.5 then the pixel is rendered (as if the shape was opaque at this pixel). Otherwise the pixel is not rendered (as if the shape was completely invisible at this pixel).
-+
+Engine can handle transparency using *alpha-testing*, which means that at each pixel, we test the shape RGBA color (which is a result of mixing material color, per-vertex colors, and texture colors). If the shape color's alpha is > 0.5 then the pixel is rendered (as if the shape was opaque at this pixel). Otherwise the pixel is not rendered (as if the shape was completely invisible at this pixel).
+
 While _alpha-testing_ is a less capable algorithm than _blending_ (as alpha-testing cannot account for partial transparency), it also doesn't have various problems unavoidable with blending, and mentioned on this page. E.g. alpha-testing works without any problems with https://castle-engine.io/x3d_extensions_shadow_maps.php[shadow maps].
 
-* Finally, engine can handle transparency using *blending*. This means that all partially-transparent shapes are rendered _after_ all other shapes (that are opaque or use alpha-testing). Moreover,
- ** The partially-transparent shapes are rendered with Z-testing but without Z-writing. This means that partially-transparent shapes that are behind opaque objects are correctly hidden, but partially-transparent shapes in front of all opaque objects are always considered visible (even if they are behind other transparent objects). This matches reality, as partially-transparent shapes never fully "obscure" stuff behind them, by definition.
- ** When the partially-transparent pixel is rendered, it is mixed with the existing screen color using the "blending equation". By default is it `screen_color.rgb = incoming_color.rgb * incoming_color.a + screen_color.rgb * (1 - incoming_color.a)`. This equation can be configured using cgeref:TCastleRenderOptions.BlendingSourceFactor[Scene.RenderOptions.BlendingSourceFactor], cgeref:TCastleRenderOptions.BlendingDestinationFactor[Scene.RenderOptions.BlendingDestinationFactor] and can be overridden per-shape using https://castle-engine.io/x3d_extensions.php#section_ext_blending[Appearance.blendMode].
- ** The partially-transparent shapes are rendered in back-to-front order (by default, when cgeref:TCastleRenderOptions.BlendingSort[Scene.RenderOptions.BlendingSort] is `bs3D` and it is not overridden by `TNavigationInfoNode.BlendingSort` in the loaded model). That is because the default blending equation (see above) assumes such order. Some other blending equations do not require sorting, and thus `Scene.RenderOptions.BlendingSort` may be `bsNone`, but they look less realistic.
+=== Alpha blending
 
-+
-The "ordering shapes" stage means that each shape is treated as a whole. We sort shape using "distance to the middle of the 3D bounding box" in case of `BlendingSort = bs3D`. _The possible problem:_ in some cases, shapes may be concave and intertwined in various crazy ways in 3D. It is not possible to strictly say "X is in front of Y" in general for two shapes, because they may be sometimes in front, sometimes behind each other, at each pixel of the screen. So using _blending_ requires that partially-transparent shapes stay simple, preferably convex and not mixed with each other at the same distance from camera.
+Engine can handle transparency using *blending*. This means that all partially-transparent shapes are rendered _after_ all other shapes (that are opaque or use alpha-testing). Moreover,
+
+* The partially-transparent shapes are rendered with Z-testing but without Z-writing. This means that partially-transparent shapes that are behind opaque objects are correctly hidden, but partially-transparent shapes in front of all opaque objects are always considered visible (even if they are behind other transparent objects). This matches reality, as partially-transparent shapes never fully "obscure" stuff behind them, by definition.
+
+* When the partially-transparent pixel is rendered, it is mixed with the existing screen color using the "blending equation". By default is it `screen_color.rgb = incoming_color.rgb * incoming_color.a + screen_color.rgb * (1 - incoming_color.a)`. This equation can be configured using cgeref:TCastleRenderOptions.BlendingSourceFactor[Scene.RenderOptions.BlendingSourceFactor], cgeref:TCastleRenderOptions.BlendingDestinationFactor[Scene.RenderOptions.BlendingDestinationFactor] and can be overridden per-shape using https://castle-engine.io/x3d_extensions.php#section_ext_blending[Appearance.blendMode].
+
+* The partially-transparent shapes are rendered in back-to-front order (if sorting is active, which is the default, see below). That is because the default blending equation (see above) assumes such order. Some non-default blending equations do not require sorting, and thus cgeref:TCastleViewport.BlendingSort[] may be cgeref:sortNone[], but they look less realistic.
+
+The "ordering shapes" stage means that each shape is treated as a whole.
+
+Various shape sorting algorithms are documented at cgeref:TShapeSort[]. Basically, common cgeref:sort3D[] is intuitive _"distance to the middle of the shape bounding box"_.
+
+_The possible problem:_ in some cases, shapes may be concave and intertwined in various crazy ways in 3D. It is not possible to strictly say "X is in front of Y" in general for two shapes, because they may be sometimes in front, sometimes behind each other, at each pixel of the screen. So using _blending_ requires that partially-transparent shapes stay simple, preferably convex and not mixed with each other at the same distance from camera.
 
 ////
 This is true, but imprecise:
         2. This approach means that shape with alpha = 0.99 (partially-transparent) is very different than the shape with alpha = 1.0. Which is not intuitive, because even epsilon change in alpha has drastic change in how the shape is rendered.
 ////
 
-== How does engine determine what algorithm to use
+== How do we determine whether to use alpha testing or alpha blending
 
 Engine makes the decision about blending per-shape.
 
@@ -77,45 +78,30 @@ You can explicitly override this auto-detection using cgeref:TAppearanceNode.Alp
 * Or, when using X3D model, you can use https://castle-engine.io/x3d_implementation_shape_extensions.php#section_ext_alpha_channel[Appearance.alphaChannel] documentation).
 * Or when using glTF. In glTF, it is always explicitly set, glTF format requires it. So the auto-detection is not used for glTF, the imported shapes always have `Appearance.alphaChannel <> acNone`. You can set the alpha treatment explicitly in link:blender[Blender] material.
 
-== Sorting
+== Sorting (for alpha blending)
 
-=== Sort shapes within one `TCastleScene` (`MyScene.RenderOptions.BlendingSort`, default is to sort for 3D)
+The sorting of partially-transparent objects is controlled using cgeref:TCastleViewport.BlendingSort[].
 
-* As mentioned above, this is controlled by cgeref:TCastleRenderOptions.BlendingSort[Scene.RenderOptions.BlendingSort] which is `bs3D` by default, and can be overridden by https://castle-engine.io/x3d_implementation_navigation_extensions.php#section_ext_blending_sort[TNavigationInfoNode.BlendingSort] in the loaded model.
-* You can set `Scene.RenderOptions.BlendingSort` to `bs2D` for 2D models. This makes their sorting faster. When importing link:spine[Spine] models, they automatically have `NavigationInfo.blendingSort = "2D"` so they automatically use this sorting.
-* You can set `Scene.RenderOptions.BlendingSort` to `bsNone`. This makes rendering faster, but assumes that you will never have more than one partially-transparent shapes visible in front of an opaque shape, or that your blending equation makes the order irrelevant.
+By default it is cgeref:sortAuto[], which performs best sorting for 2D (cgeref:sort2D[]) if you have a typical 2D camera (orthographic looking along -Z), and best sorting for 3D (cgeref:sort3D[]) otherwise.
 
-You can also override sorting inside the X3D model. E.g. add this to force 2D sorting in X3D classic encoding:
+All possible sorting options are:
 
-----
-NavigationInfo {
-  blendingSort "2D"
-}
-----
+- cgeref:sortAuto[] - Auto-detect and use either cgeref:sort2D[] or cgeref:sort3D[].
 
-To request correct blending sorting in 2D, you should set `MyScene.RenderOptions.BlendingSort := bs2D` (or call `MyScene.Setup2D` which is just a shortcut for it). Note that you actually don't need to do this when loading Spine (where we include proper `NavigationInfo` inside model) or for sprite sheets and images (where there is only 1 layer, so blending sorting doesn't matter). So actually you only need to care about this when you use "general (3D or 2D)" model format for 2D animation, e.g. you use glTF or X3D to define a 2D animation with layers.
+- cgeref:sort2D[] - Sort along the Z axis.
 
-=== Sort scenes in viewport (`MyViewport.Items.BlendingSort`, default none)
+- cgeref:sort3D[] - Sort based on the distance from current camera, looking at bounding box.
 
-By default the engine does not sort the scenes. You need to request the sorting explicitly.
+- cgeref:sort3DOrigin[] - Sort based on the distance from current camera, looking at origin point (point (0,0,0) in local coordinates). This may be better than cgeref:bs3D[] in some cases because the origin point is sometimes more "persistent", e.g. animations or billboard orientation may change bounding box, but not origin point.
 
-==== Automatic sorting at every frame
+- cgeref:sort3DGround[] - Sort based on the distance from current camera, looking at origin point (point (0,0,0) in local coordinates) projected on Y=0 plane. This may be better than cgeref:bs3DOrigin[] in some cases because it ignores the object height for the sorting purposes.
 
-It is easiest to just set cgeref:TCastleAbstractRootTransform.BlendingSort[Viewport.Items.BlendingSort] to something else than cgeref:bsNone[]. We have a few algorithms, some better for 2D some for 3D:
+- cgeref:sortCustom[] - Sort using custom comparer event, see cgeref:TCastleViewport.OnCustomShapeSort[] and cgeref:TShapeSortEvent[].
 
-- cgeref:bs2D[] - Sort along the Z axis.
-
-- cgeref:bs3D[] - Sort based on the distance from current camera, looking at bounding box.
-
-- cgeref:bs3DOrigin[] - Sort based on the distance from current camera, looking at origin point (point (0,0,0) in local coordinates). This may be better than cgeref:bs3D[] in some cases because the origin point is sometimes more "persistent", e.g. animations or billboard orientation may change bounding box, but not origin point.
-
-- cgeref:bs3DGround[] - Sort based on the distance from current camera, looking at origin point (point (0,0,0) in local coordinates) projected on Y=0 plane. This may be better than cgeref:bs3DOrigin[] in some cases because it ignores the object height for the sorting purposes.
-
-NOTE: The current implementation of cgeref:TCastleAbstractRootTransform.BlendingSort[Viewport.Items.BlendingSort] mechanism has some flaws. Namely, it only sorts whole scenes (not shapes) and it only sorts non-recursively the direct children of `Viewport.Items.BlendingSort`. It is planned to be improved, see link:roadmap[].
-
+////
 ==== Manually doing sorting
 
-An alternative to using cgeref:TCastleAbstractRootTransform.BlendingSort[Viewport.Items.BlendingSort] is to sort manually by an explicit call to a method cgeref:TCastleTransform.SortBackToFront2D[Viewport.Items.SortBackToFront2D] or more general cgeref:TCastleTransform.SortBackToFront[Viewport.Items.SortBackToFront].
+An alternative to using cgeref:TCastleViewport.BlendingSort[] is to sort manually by an explicit call to a method cgeref:TCastleTransform.SortBackToFront2D[Viewport.Items.SortBackToFront2D] or more general cgeref:TCastleTransform.SortBackToFront[Viewport.Items.SortBackToFront].
 
 You can also do it at design-time, from the CGE editor, using the _"Viewport -> Sort Items For Correct 2D Blending"_ menu item.
 
@@ -128,7 +114,8 @@ In case of 2D, you should call it always after:
 
 Luckily, in 2D, the camera position doesn't affect the cgeref:bs2D[] sorting.
 
-In 3D it is more difficult, and in general you should just sort every frame, which means that it will be easier to just rely on automatic cgeref:TCastleAbstractRootTransform.BlendingSort[Viewport.Items.BlendingSort] documented above.
+In 3D it is more difficult, and in general you should just sort every frame, which means that it will be easier to just rely on automatic cgeref:TCastleViewport.BlendingSort[] documented above.
+////
 
 == 2D drawing of primitives and images
 

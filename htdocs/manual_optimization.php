@@ -427,7 +427,7 @@ also more GPU friendly)).</p>
     to GPU (splitting shape on the fly would cause unacceptable
     slowdown), and shapes may be culled using <i>frustum culling</i>
     (active by default) or
-    <a href="https://castle-engine.io/occlusion_query">occlusion queries</a>. By using only a few very large shapes, you make
+    <a href="https://castle-engine.io/occlusion_culling">occlusion culling</a>. By using only a few very large shapes, you make
     this culling worthless.
 </ol>
 
@@ -563,7 +563,7 @@ and per-scene bounding boxes and spheres. If you add <code>ssRendering</code>
 flag to the <code>Scene.Spatial</code>, this will be even faster thanks
 to using shapes octree.
 
-<p>Using the <a href="https://castle-engine.io/occlusion_query">occlusion query</a> is often a good idea
+<p>Using the <a href="https://castle-engine.io/occlusion_culling">occlusion culling</a> is often a good idea
 in large city or indoor levels,
 where walls or large buildings can obscure a significant part of your geometry.
 Activate it by simply turnnig on the flag

@@ -9,7 +9,7 @@ A typical scenario is when you move in a city with tall buildings, and camera is
 
 cgeimg::block[oq_demo.png|Occlusion Query effect]
 
-It is really trivial to use it: just set on `TCastleScene` the cgeref:TCastleRenderOptions.OcclusionQuery[MyScene.RenderOptions.OcclusionQuery] to `true`. You can do this at runtime (and change at any moment), you can also set it in the CGE editor.
+It is really trivial to use it: just set cgeref:TCastleViewport.OcclusionCulling[] to `true`. You can do this at runtime (and change at any moment), you can also set it in the CGE editor.
 
 Be sure to measure how effective this is:
 
@@ -48,35 +48,12 @@ This often results in a performance gain.
 == What it means for your scenes and shapes?
 
 * Visibility of each shape is considered separately. So the "granularity" of how you split your scene into shapes matters.
+
 * The detection "what is obscured" takes into account other (rendered earlier) scenes. As the detection is done by GPU, everything that was in the Z-buffer is taken into account.
 +
-For best results, you may want to sort (maybe not every frame, but once in a while) your scenes in the order "from front to back" (this is the inverse order than done by `TCastleTransform.SortBackToFront`). That's because you want to render the "things that may obscure other things" earlier. An example how to do this:
-
-[source,pascal]
-----
-var
-  { Has to be global, since TObjectList.Sort
-    requires normal function (not "of object"). }
-  SortCameraPosition: TVector3;
-
-function CompareFrontToBack3D(A, B: Pointer): Integer;
-begin
-  // use TBox3D.CompareBackToFront3D and invert operands order
-  Result := TBox3D.CompareBackToFront3D(TCastleTransform(B).BoundingBox, TCastleTransform(A).BoundingBox,
-    SortCameraPosition);
-end;
-
-procedure SortTransformChildrenFrontToBack(const Items: TCastleTransform);
-begin
-  SortCameraPosition := Viewport.Camera.Translation;
-  Items.Sort(@CompareFrontToBack3D);
-end;
-
-procedure TCastleTransform.SortBackToFront2D;
-begin
-  SortBackToFront(bs2D, TVector3.Zero);
-end;
-----
+For best results, sort your opaque shapes (that write to depth buffer) in the order "from front to back". That's because you want to render the "things that may obscure other things" earlier.
++
+Do this by setting cgeref:TCastleViewport.OcclusionSort[] to cgeref:sort2D[] or cgeref:sort3D[]. See link:blending[] for description about possible sorting algorithms.
 
 * As the visibility information is associated with shapes, this algorithm doesn't work correctly when you instantiate the scene many times. While in general we allow to https://castle-engine.io/manual_scene.php#section_many_instances[use the same instance of TCastleScene or TCastleTransform multiple times within one viewport], but the occlusion query has to be turned off on such scene.
 * The algorithm should handle OK shapes that are partially transparent (using blending). Such shapes do not obscure other things, but they can be obscured by other (opaque) shapes -- this works correctly with the algorithm.
