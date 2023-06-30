@@ -1056,6 +1056,7 @@ public
 end;
 ----
 
+[#backward_compatibility]
 === Backward compatibility is important; having a consistent (easy to learn) API and useful features is even more important
 
 Sometimes adding new things without breaking old things, in such way that the end API is consistent, is not possible. We didn't predict everything when designing CGE API :) In this case, we have to change our API, to incorporate the new feature, such that the resulting engine API feels consistent. We don't want features to reinvent some concepts, e.g. because some detail in the existing concept was not perfectly suitable. We want to adjust existing concepts to be better.
