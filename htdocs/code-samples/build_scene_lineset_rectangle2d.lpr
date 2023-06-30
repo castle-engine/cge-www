@@ -89,7 +89,6 @@ begin
   Window.Controls.InsertFront(Viewport);
 
   Scene := TCastleScene.Create(Application);
-  Scene.Setup2D;
   Scene.Load(BuildScene, true);
 
   Viewport.Items.Add(Scene);

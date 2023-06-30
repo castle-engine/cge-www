@@ -27,7 +27,6 @@ begin
   Button.InsertFront(MyLabel);
 
   Scene := TCastleScene.Create(Application);
-  Scene.Setup2D;
   Scene.Load('castle-data:/dragon/dragon.json');
   Scene.PreciseCollisions := true;
   Scene.PlayAnimation('flying', true);

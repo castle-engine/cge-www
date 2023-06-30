@@ -64,11 +64,13 @@ begin
   Viewport.InsertFront(TCastleExamineNavigation.Create(Application));
   Window.Controls.InsertFront(Viewport);
 
+  // add headlight
+  Viewport.Camera.Add(TCastleDirectionalLight.Create(Application));
+
   Scene := TCastleScene.Create(Application);
   Scene.Load(BuildScene, true);
   Scene.PlayAnimation('MyAnimationName', true);
   Viewport.Items.Add(Scene);
-  Viewport.Items.MainScene := Scene;
 
   // move camera, to better see the animation
   Viewport.Camera.Translation := Vector3(0, 0, 30);
