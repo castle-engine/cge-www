@@ -15,6 +15,21 @@ You can use them in your own projects, to enhance what you can do with CGE.
 We love to see how you use CGE.</i>
 
 <div class="row">
+  <?php gallery_link('Castle Lines 2D',
+    'Draw 2D geometry inside CGE editor.
+     <p>See also <a href="https://castle-engine.io/wp/2023/01/13/draw-2d-geometry-inside-cge-editor-using-castle-lines-2d-components/">news</a>.
+     <p>By <i>Korchazhkin Sergey (KumurTash on GitHub)</i>.',
+    'component_castlelines2d.png',
+    'https://github.com/KumurTash/CastleLines2D');
+  ?>
+
+  <?php gallery_link('Spine Runtime for Castle Game Engine',
+    'Render Spine models using official Spine runtime, that supports more Spine features than built-in CGE support.
+     <p>By <i>Trung Le (Kagamma)</i>.',
+    'component_spine_runtime.png',
+    'https://github.com/KumurTash/CastleLines2D');
+  ?>
+
   <?php gallery_link("Particle Emitter",
     'Particle system for 3D and 2D that supports editing right inside CGE editor. Particles are calculated with GPU acceleration (transform feedback).
      <p>See forum threads: <a href="https://forum.castle-engine.io/t/3d-particle-system/">1</a>, <a href="https://forum.castle-engine.io/t/3d-particle-system-now-with-full-support-for-2d-and-castle-editor/">2</a>. See <a href="https://castle-engine.io/wp/2021/08/20/particle-system-updates-with-editing-integrated-inside-cge-editor-and-improvements-to-building-editor-with-custom-components/">news</a>.
