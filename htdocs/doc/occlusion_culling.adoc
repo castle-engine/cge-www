@@ -29,36 +29,59 @@ cgeimg::block[
 
 == How it works
 
-For every shape within `TCastleScene` (where you set `MyScene.RenderOptions.OcclusionQuery` = `true`) we look at whether the shape was detected as "visible" by occlusion query in the _previous frame_ (if it was not tested, e.g. because this is the 1st render, we assume it is visible).
+For every shape we check whether the shape was detected as "visible" by occlusion query in the _previous frame_.
+// (if it was not tested, e.g. because this is the 1st render, we assume it is visible).
 
 . If the shape was visible in the previous frame, then we render it as usual in the current frame.
-. If the shape was not visible in the previous frame, we render merely the bounding box of the shape (but this box is not actually visible in the color buffer -- we render it only for the "occlusion query").
+. If the shape was not visible in the previous frame, we render merely the bounding box of the shape (but this box is not actually visible in the color buffer -- we render it only for the _"occlusion query"_).
 
-In both cases (rendering actual shape, rendering bounding box) we surround the render call with a special OpenGL(ES) calls such that the visibility flag in updated based on whether the shape (or it's bounding box) is visible.
+In both cases (rendering actual shape, rendering bounding box) we surround the render call with a special commands such that the visibility flag in updated based on whether the shape (or it's bounding box) is visible, i.e. some pixels pass the _depth test_.
 
-Note that this algorithm happens after the _frustum culling_ has eliminated shapes that are definitely not visible because they are not within the _viewing frustum_. That is, _frustum culling_ (that we do both per-scene and per-shape, by default) works as it did, and it remains a very useful algorithm -- eliminating things earlier, with less hassle. The _occlusion query_ optimization only helps to eliminate shapes that _are_ within the frustum, but are obscured by something else.
+Note that this algorithm happens after the _frustum culling_ has eliminated shapes that are definitely not visible because they are not within the _viewing frustum_. That is, _frustum culling_ (that we do both per-scene and per-shape, by default) works as it did, and it remains a very useful algorithm -- eliminating things earlier, with less hassle. The primary job of _occlusion query_ is to eliminate shapes that _are_ within the frustum, but are obscured by something else.
 
 == Why (and when) does this make the rendering faster
 
 * The only overhead we add is making the _"occlusion query"_ (updating the visibility flag), which is a feature in modern OpenGL and OpenGLES.
 * On the plus side, the gain is that often we can render merely the bounding box (instead of the actual shape). This is a big gain, if you have lots of "heavy" shapes, that are typically obscured.
 
-This often results in a performance gain.
+This often results in a significant performance gain.
 
-== What it means for your scenes and shapes?
+== How to make occlusion culling most efficient
+
+[#occlusion_sort]
+=== Use also occlusion sorting
+
+The detection "what is obscured" takes into account rendered earlier scenes. As the detection is done by GPU, everything that was in the Z-buffer is taken into account.
+
+So for best results, sort your opaque shapes (that write to depth buffer) in the order "from front to back". That's because you want to render the "things that may obscure other things" earlier.
+
+Do this by setting cgeref:TCastleViewport.OcclusionSort[] to cgeref:sort2D[] or cgeref:sort3D[]. See link:blending[] for description about possible sorting algorithms.
+
+For demo that it works, test our https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/occlusion_culling[examples/viewport_and_scenes/occlusion_culling] in the CGE editor.
+
+- Use menu item "Edit -> Show Statistics" (F8).
+
+- Observe that:
++
+--
+- `OcclusionCulling` = `false` and `OcclusionSort` = `sortNone` results in most shapes being rendered (like 300).
+
+- `OcclusionCulling` = `true` and `OcclusionSort` = `sortNone` is better, when looking at a building wall obscuring most city you can easily have only 30 shapes rendered.
+
+- `OcclusionCulling` = `true` and `OcclusionSort` = `sort3D` is even better. Looking at a building wall obscuring most city you can easily have only a few shapes rendered.
+--
+
+The default cgeref:TCastleViewport.OcclusionSort[] value, cgeref:sortAuto[], for now is equivalent to cgeref:sortNone[]. It may change in the future to perform sorting esp. when cgeref:TCastleViewport.OcclusionCulling[] is `true`, as occlusion culling and sorting are a natural pair, sorting make occlusion culling even more effective.
+
+=== Other tips
 
 * Visibility of each shape is considered separately. So the "granularity" of how you split your scene into shapes matters.
 
-* The detection "what is obscured" takes into account other (rendered earlier) scenes. As the detection is done by GPU, everything that was in the Z-buffer is taken into account.
-+
-For best results, sort your opaque shapes (that write to depth buffer) in the order "from front to back". That's because you want to render the "things that may obscure other things" earlier.
-+
-Do this by setting cgeref:TCastleViewport.OcclusionSort[] to cgeref:sort2D[] or cgeref:sort3D[]. See link:blending[] for description about possible sorting algorithms.
+* As the visibility information is associated with shapes, this algorithm wouldn't work correctly when you instantiate the scene many times. For this reason, the occlusion culling is not used for shapes that are within link:viewport_and_scenes_from_code#_multiple_instances_of_the_same_scene[multiple instances of TCastleScene or TCastleTransform in one viewport].
 
-* As the visibility information is associated with shapes, this algorithm doesn't work correctly when you instantiate the scene many times. While in general we allow to https://castle-engine.io/manual_scene.php#section_many_instances[use the same instance of TCastleScene or TCastleTransform multiple times within one viewport], but the occlusion query has to be turned off on such scene.
-* The algorithm should handle OK shapes that are partially transparent (using blending). Such shapes do not obscure other things, but they can be obscured by other (opaque) shapes -- this works correctly with the algorithm.
+* The algorithm handles OK shapes that are partially transparent (using blending). Such shapes do not obscure other things, but they can be obscured by other (opaque) shapes -- this works correctly with the algorithm.
 
-== Problems
+== Possible issues to be aware of
 
 The biggest problem:
 
@@ -67,8 +90,8 @@ The biggest problem:
 This is usually not noticeable. If need be, we have ideas to fight with this problem:
 +
 --
-* `RenderOptions.OcclusionQueryEnlargeBox: Single` (make bbox larger, so that shape is considered visible sooner than it strictly has to be)
-* `RenderOptions.OcclusionQueryFramesToHide: Integer` (do not hide the shape as soon as it is invisible for 1 frame)
+* `OcclusionQueryEnlargeBox: Single` (make bbox larger, so that shape is considered visible sooner than it strictly has to be)
+* `OcclusionQueryFramesToHide: Integer` (do not hide the shape as soon as it is invisible for 1 frame)
 --
 +
 Neither of the proposed properties above are implemented for now. You're welcome to report if you see this problem (1 frame lag) in a practical use-case, we can implement them then.
@@ -77,11 +100,14 @@ Minor problems:
 
 * Sometimes object state flips between "visible" and "not visible", making uneven frame render times. This happens when the proper shape is obscured, but its bounding box is not obscured. The issue can in general be ignored -- user doesn't see any "flipping".
 +
-If the issue becomes more important, we could add in the future `RenderOptions.OcclusionQueryAlwaysCheckBox: Boolean` (to always check bbox visibility, not actual shape, even when shape is visible). Above-mentioned `RenderOptions.OcclusionQueryFramesToHide` would also help with this.
-* The algorithm, in its current form, is incompatible with doing cgeref:DynamicBatching[], so we just disable _dynamic batching_ optimization on scenes where the occlusion query is active. Why?
+If the issue becomes more important, we could add in the future `OcclusionQueryAlwaysCheckBox: Boolean` (to always check bbox visibility, not actual shape, even when shape is visible). Above-mentioned `OcclusionQueryFramesToHide` would also help with this.
+
+* The algorithm is incompatible with doing cgeref:DynamicBatching[], so we just disable _dynamic batching_ optimization on scenes where the occlusion query is active. Why?
  ** Dynamic batching merges many shapes into one. This means that, at the very least, it would make the occlusion query less effective -- only the "large" (merged) shapes are tested.
  ** The implementation would need to be extended, to propagate visibility test results from the merged shape \-> into original shapes. This makes complicated code, for a small gain.
 
+////
 == Alternative: Coherent Hierarchical Culling
 
 The page above described the currently advised approach, done by `MyScene.RenderOptions.OcclusionQuery`. We have an alternative approach implementing _"Coherent Hierarchical Culling"_ activated by `MyScene.RenderOptions.HierarchicalOcclusionQuery`. But, sadly, at least for now, we cannot advise this alternative. While the _"Coherent Hierarchical Culling"_  avoids the 1-frame-lag when object is shown, but the algorithm gets slower (and quite more complicated), making it impractical to use -- at least in the current implementation, based on our tests.
+////
