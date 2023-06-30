@@ -55,6 +55,15 @@ Castle Game Engine is available in Debian and Ubuntu through the official packag
 https://packages.debian.org/search?suite=sid&searchon=names&keywords=castle-game-engine
 ////
 
+////
+Unfortunately we cannot recommend Delphinus to users now:
+
+- It cannot download CGE: https://github.com/castle-engine/castle-engine/issues/84
+- It cannot install CGE packages: https://github.com/Memnarch/Delphinus/issues/93
+- The current use-case just means it copies entire CGE
+  ( https://github.com/castle-engine/castle-engine/issues/497 ) to enhance
+  Delphi environment paths.
+
 [#delphinus]
 === Delphinus
 
@@ -145,3 +154,5 @@ The end! Please test it now: Create a new VCL or FMX project, drop cgeref:TCastl
 We also encourage to build and run some CGE examples, like `examples/fps_game` and `examples/delphi/fmx`. Though the examples would build fine even without using Delphinus to install (as their DPROJ files already contain all necessary paths).
 
 NOTE: In order to run some examples on Windows, you will need to place DLL files alongside the EXE file. Copy the DLL files from engine locations mentioned link:compiling_from_source.php#section_Windows[here]. Or compile the example at least once from https://castle-engine.io/manual_editor.php[CGE editor], it will copy the DLL files automatically.
+
+////
