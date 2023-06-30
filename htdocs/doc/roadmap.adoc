@@ -114,36 +114,11 @@ Vulkan renderer.
 
 We have a simple example code that shows how you can start a new renderer: see link:https://github.com/castle-engine/castle-engine/blob/master/examples/research_special_rendering_methods/new_renderer_skeleton/[examples/research_special_rendering_methods/new_renderer_skeleton/].
 
-## Make TCastleScene, TCastleTranform and friends to be special X3D nodes
+## (Optional) Make TCastleScene, TCastleTranform and friends to be special X3D nodes
 
 This would make the whole TCastleViewport.Items a single graph of X3D nodes, allowing for more sharing in code. The TCastleTranform would be just like TTransformNode, but a little diferently optimized (but it would become toggable at runtime).
 
-[#shapes_across_scenes]
-## (IN PROGRESS) Possibility to reorder/merge all shapes, across all scenes (better blending, better batching)
-
-*In progress on https://github.com/castle-engine/castle-engine/tree/shapes-rendering-2 branch.*
-
-This is a change in renderer routines. Right now each `TCastleScene` is too much like a "black box", even though the typical case is that 1 viewport renders *a lot* of scenes.
-
-NOTE: We have `TGLRenderer.ViewportRenderBegin`, `TGLRenderer.ViewportRenderEnd`, these are a step in the right direction. But we can do much more.
-
-All the shapes from across all scenes should be able to "interact" with each other just like right now shapes inside a single `TCastleScene` can "interact". This means:
-
-- All partially transparent shapes, from all scenes, should be collected and sorted together, so that they are rendered in the correct order.
-+
-This means that you no longer need to do link:blending[manual sorting] to have blending work correctly across scenes.
-+
-This means that `TCastleViewport.Items.BlendingSort` can be actually a robust solution covering all cases, and https://github.com/castle-engine/castle-engine/issues/463[GitHub #463] has a trivial answer (just set `TCastleViewport.Items.BlendingSort := bs2D`).
-+
-This means that link:blending[blending] should be a much shorter page, because `TCastleViewport.Items.BlendingSort` should really be everything you need.
-
-- When cgeref:DynamicBatching[] is active, we can have one "batching renderer" instance for the viewport (so, reused by all scenes) and it can merge shapes even from different scenes.
-+
-This means that cgeref:DynamicBatching[] is much more powerful.
-+
-This means that rendering thousands of cgeref:TCastleImageTransform[] with the same URL is just 1 draw call.
-+
-This means that `examples/isometric_game/` is an easy and efficient solution to render large maps.
+It's unsure now whether this is really needed. Using cgeref:TCastleSceneCore.ExposeTransforms[] and making it better (synchronizing both ways) will fill the most important use-case of this.
 
 [#distance_field_fonts]
 ## (IN REVIEW) Distance field fonts
