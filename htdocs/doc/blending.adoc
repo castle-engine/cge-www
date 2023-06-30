@@ -13,13 +13,13 @@ _Blending_ is the technique to render _partially transparent_ objects with real-
 While _Castle Game Engine_ tries to make it work "out of the box" correctly in usual cases, there are various edge-cases that require the developer and/or graphic artist to know how the algorithm works, and tweak something.
 ////
 
-== Short summary
+== Summary
 
 Things should work out-of-the-box, but if you experience artifacts at rendering multiple _partially transparent_ objects in your game, customize the cgeref:TCastleViewport.BlendingSort[].
 
 You can set it in the editor.
 
-Read on to understand it better -- how do we render partially transparent objects, what is sorting, what and why can go wrong.
+Read on to understand the details.
 
 == Terminology
 
@@ -27,11 +27,11 @@ Read on to understand it better -- how do we render partially transparent object
 +
 The X3D material nodes have a `Transparency` property, cgeref:TPhysicalMaterialNode.Transparency[], cgeref:TMaterialNode.Transparency[], cgeref:TUnlitMaterialNode.Transparency[].
 
-* _Alpha_ says _"how much is something opaque"_, it is defined simply as _"1.0 - transparency"_. So alpha = 0.0 is something "completely invisible", alpha = 1.0 is "something totally opaque".
+* _Alpha_ says _"how much is something opaque"_, it is simply _"1.0 - transparency"_. So alpha = 0.0 is something "completely invisible", alpha = 1.0 is "something totally opaque".
 +
 When you provide an RGBA color (`TCastleColor`, which is just equal to `TVector4`) then the last (4th) component is _alpha_.
 +
-When you provide an RGBA texture, then it includes an alpha channel.
+When you provide an RGBA texture, then it includes an alpha channel, i.e. alpha value for each pixel.
 +
 When you provide a texture without alpha channel (like RGB or grayscale) then it is always treated like _alpha is 1.0 everywhere_, i.e. it is fully opaque.
 
@@ -39,44 +39,57 @@ When you provide a texture without alpha channel (like RGB or grayscale) then it
 
 === Alpha testing
 
-Engine can handle transparency using *alpha-testing*, which means that at each pixel, we test the shape RGBA color (which is a result of mixing material color, per-vertex colors, and texture colors). If the shape color's alpha is > 0.5 then the pixel is rendered (as if the shape was opaque at this pixel). Otherwise the pixel is not rendered (as if the shape was completely invisible at this pixel).
+Engine can handle transparency using *alpha-testing*, which means that each rendered pixel is either fully opaque or fully transparent.
 
-While _alpha-testing_ is a less capable algorithm than _blending_ (as alpha-testing cannot account for partial transparency), it also doesn't have various problems unavoidable with blending, and mentioned on this page. E.g. alpha-testing works without any problems with https://castle-engine.io/x3d_extensions_shadow_maps.php[shadow maps].
+More precisely: at each pixel, we test the alpha of the _"resulting color"_. _"Resulting color"_ here comes from mixing material color, per-vertex colors, and texture colors. If the color's alpha is > 0.5 then the pixel is rendered (as if the shape was opaque at this pixel). Otherwise the pixel is not rendered (as if the shape was completely invisible at this pixel).
+
+While _alpha-testing_ is a less capable algorithm than _blending_ (as alpha-testing cannot account for partial transparency), it also avoids some issues unavoidable with blending. E.g. alpha-testing works without any problems with https://castle-engine.io/x3d_extensions_shadow_maps.php[shadow maps].
+
+Alpha testing is sometimes called _alpha clipping_ (e.g. in link:blender[Blender] UI).
 
 === Alpha blending
 
 Engine can handle transparency using *blending*. This means that all partially-transparent shapes are rendered _after_ all other shapes (that are opaque or use alpha-testing). Moreover,
 
-* The partially-transparent shapes are rendered with Z-testing but without Z-writing. This means that partially-transparent shapes that are behind opaque objects are correctly hidden, but partially-transparent shapes in front of all opaque objects are always considered visible (even if they are behind other transparent objects). This matches reality, as partially-transparent shapes never fully "obscure" stuff behind them, by definition.
+* The partially-transparent shapes are rendered with Z-testing but without Z-writing. This means that partially-transparent shapes that are behind opaque objects are hidden, but partially-transparent shapes behind other partially-transparent shapes are visible. This matches reality, as partially-transparent shapes never fully "obscure" stuff behind them, by definition.
 
 * When the partially-transparent pixel is rendered, it is mixed with the existing screen color using the "blending equation". By default is it `screen_color.rgb = incoming_color.rgb * incoming_color.a + screen_color.rgb * (1 - incoming_color.a)`. This equation can be configured using cgeref:TCastleRenderOptions.BlendingSourceFactor[Scene.RenderOptions.BlendingSourceFactor], cgeref:TCastleRenderOptions.BlendingDestinationFactor[Scene.RenderOptions.BlendingDestinationFactor] and can be overridden per-shape using https://castle-engine.io/x3d_extensions.php#section_ext_blending[Appearance.blendMode].
 
-* The partially-transparent shapes are rendered in back-to-front order (if sorting is active, which is the default, see below). That is because the default blending equation (see above) assumes such order. Some non-default blending equations do not require sorting, and thus cgeref:TCastleViewport.BlendingSort[] may be cgeref:sortNone[], but they look less realistic.
+* The partially-transparent shapes are rendered in back-to-front order (if sorting is active, which is the default, see below). That is because the default blending equation (see above) assumes such order.
 
-The "ordering shapes" stage means that each shape is treated as a whole.
+//The "ordering shapes" stage means that each shape is treated as a whole.
 
-Various shape sorting algorithms are documented at cgeref:TShapeSort[]. Basically, common cgeref:sort3D[] is intuitive _"distance to the middle of the shape bounding box"_.
+Various shape sorting algorithms are documented at cgeref:TShapeSort[]. Basically, common cgeref:sort3D[] is intuitive _"distance to the middle of the shape bounding box"_. And common cgeref:sort2D[] is intuitive _"distance to 2D camera"_.
 
-_The possible problem:_ in some cases, shapes may be concave and intertwined in various crazy ways in 3D. It is not possible to strictly say "X is in front of Y" in general for two shapes, because they may be sometimes in front, sometimes behind each other, at each pixel of the screen. So using _blending_ requires that partially-transparent shapes stay simple, preferably convex and not mixed with each other at the same distance from camera.
+Beware: in some cases, partially transparent shapes may be concave and intertwined in various crazy ways in 3D. It may not be possible to strictly say "shape X is in front of shape Y", because they may be sometimes in front, sometimes behind each other, at each pixel of the screen. To have reliable _blending_ results keep partially-transparent shapes simple, preferably convex and using backface culling.
 
-////
-This is true, but imprecise:
-        2. This approach means that shape with alpha = 0.99 (partially-transparent) is very different than the shape with alpha = 1.0. Which is not intuitive, because even epsilon change in alpha has drastic change in how the shape is rendered.
-////
 
 == How do we determine whether to use alpha testing or alpha blending
 
 Engine makes the decision about blending per-shape.
 
-By default (if cgeref:TAppearanceNode.AlphaChannel[] is `acAuto`) the engine looks at material `transparency` field, and the texture's alpha channel. If `transparency` is > 0, or if the texture has non-trivial alpha channel (this is detected by analyzing alpha contents, see cgeref:TEncodedImage.AlphaChannel[] description), then we use blending.
+In most cases, cgeref:TAppearanceNode.AlphaChannel[] explicitly says what to do.
 
-Note that this auto-detection cannot be perfect in all cases. For example, the alpha channel detection at the image (cgeref:TEncodedImage.AlphaChannel[]) is a heuristic, with some alpha tolerance. And what happens when multiple textures are used, with different alpha channel? Again, the engine assumes something reasonable, but it may not be what you want. Also, if you use GLSL shader code to set/modify alpha value, then the engine doesn't know about it (in general, engine never parses your GLSL code).
+If you use link:gltf[glTF] model format, this always has explicit information (never `acAuto`) whether to use alpha testing, blending, or treat shape as opaque.
 
-You can explicitly override this auto-detection using cgeref:TAppearanceNode.AlphaChannel[] field. This makes sense when engine  doesn't do what you expect.
+If you use link:blender[Blender], you can explicitly specify alpha treatment at Blender material. It will be correctly exported to link:gltf[glTF].
 
-* It can be set by Pascal code.
-* Or, when using X3D model, you can use https://castle-engine.io/x3d_implementation_shape_extensions.php#section_ext_alpha_channel[Appearance.alphaChannel] documentation).
-* Or when using glTF. In glTF, it is always explicitly set, glTF format requires it. So the auto-detection is not used for glTF, the imported shapes always have `Appearance.alphaChannel <> acNone`. You can set the alpha treatment explicitly in link:blender[Blender] material.
+cgeimg::block[blender_alpha_ui.png|Choose alpha in Blender]
+
+If cgeref:TAppearanceNode.AlphaChannel[] is `acAuto` (this happens e.g. for X3D models):
+
+The engine looks at material `transparency` field, and the texture's alpha channel. If `transparency` is > 0, or if the texture has non-trivial alpha channel (this is detected by analyzing alpha contents, see cgeref:TEncodedImage.AlphaChannel[] description), then we use blending.
+
+[NOTE]
+====
+This auto-detection cannot be always right.
+
+For example, the alpha channel detection at the image (cgeref:TEncodedImage.AlphaChannel[]) is a heuristic, with some alpha tolerance. And what happens when multiple textures are used, with different alpha channel? Or if you use GLSL shader code to set/modify alpha value (the engine never parses your GLSL code, so it doesn't know about it)?
+
+The engine essentially makes an educated guess about the author's intentions.
+
+To be clear what happens, we advise to always specify the alpha treatment explicitly. One easy way to do this is just to use link:gltf[glTF]. Or set cgeref:TAppearanceNode.AlphaChannel[] from Pascal.
+====
 
 == Sorting (for alpha blending)
 
@@ -84,7 +97,7 @@ The sorting of partially-transparent objects is controlled using cgeref:TCastleV
 
 By default it is cgeref:sortAuto[], which performs best sorting for 2D (cgeref:sort2D[]) if you have a typical 2D camera (orthographic looking along -Z), and best sorting for 3D (cgeref:sort3D[]) otherwise.
 
-All possible sorting options are:
+All possible sorting options:
 
 - cgeref:sortAuto[] - Auto-detect and use either cgeref:sort2D[] or cgeref:sort3D[].
 
@@ -92,11 +105,14 @@ All possible sorting options are:
 
 - cgeref:sort3D[] - Sort based on the distance from current camera, looking at bounding box.
 
-- cgeref:sort3DOrigin[] - Sort based on the distance from current camera, looking at origin point (point (0,0,0) in local coordinates). This may be better than cgeref:bs3D[] in some cases because the origin point is sometimes more "persistent", e.g. animations or billboard orientation may change bounding box, but not origin point.
+- cgeref:sort3DOrigin[] - Sort based on the distance from current camera, looking at origin point (point (0,0,0) in local coordinates). This may be better than cgeref:sort3D[] in some cases because the origin point is sometimes more "persistent", e.g. animations or billboard orientation may change bounding box, but not origin point.
 
-- cgeref:sort3DGround[] - Sort based on the distance from current camera, looking at origin point (point (0,0,0) in local coordinates) projected on Y=0 plane. This may be better than cgeref:bs3DOrigin[] in some cases because it ignores the object height for the sorting purposes.
+- cgeref:sort3DGround[] - Sort based on the distance from current camera, looking at origin point (point (0,0,0) in local coordinates) projected on Y=0 plane. This may be better than cgeref:sort3DOrigin[] in some cases because it ignores the object height for the sorting purposes.
 
 - cgeref:sortCustom[] - Sort using custom comparer event, see cgeref:TCastleViewport.OnCustomShapeSort[] and cgeref:TShapeSortEvent[].
+
+- cgeref:sortNone[] - Do not sort. This may be reasonable for simple world arrangements, when you manually ordered all shapes and all scenes to follow back-to-front order, or when you use non-standard blending equation that does not require sorting.
+
 
 ////
 ==== Manually doing sorting
@@ -112,7 +128,7 @@ In case of 2D, you should call it always after:
 - adding a partially-transparent object,
 - or moving partially-transparent object in the Z (depth) axis.
 
-Luckily, in 2D, the camera position doesn't affect the cgeref:bs2D[] sorting.
+Luckily, in 2D, the camera position doesn't affect the cgeref:sort2D[] sorting.
 
 In 3D it is more difficult, and in general you should just sort every frame, which means that it will be easier to just rely on automatic cgeref:TCastleViewport.BlendingSort[] documented above.
 ////
