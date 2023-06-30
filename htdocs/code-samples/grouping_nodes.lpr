@@ -124,7 +124,7 @@ begin
 
   Viewport := TCastleViewport.Create(Application);
   Viewport.FullSize := true;
-  Viewport.AutoCamera := true;
+  Viewport.Camera.Translation := Vector3(2, -1, 8);
   Window.Controls.InsertFront(Viewport);
 
   Scene := TCastleScene.Create(Application);
