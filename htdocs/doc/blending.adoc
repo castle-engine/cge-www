@@ -1,13 +1,17 @@
 # Blending (Rendering Partially-Transparent Objects)
 include::common.adoc[]
-:description: Correctly rendering partially-transparent objects using Castle Game Engine. Learn about the transparency, alpha and opacity and how does blending work in real-time graphic. The difference between alpha testing and alpha blending and how Castle Game Engine determines which to use. Finally, learn how to control sorting, which is crucial to have good rendering of blending.
-:cge-social-share-image: blending_sort.png
-
-cgeimg::block[blending_sort.png|Blending Sorting]
+:description: Correctly rendering partially-transparent objects using Castle Game Engine. Learn about the transparency, alpha and opacity and how does blending work. The difference between alpha testing and alpha blending and how Castle Game Engine determines which to use. Finally, learn how to control sorting, which is crucial to have good rendering of blending.
+:cge-social-share-image: unholy_blending_2.png
 
 == Introduction
 
 _Blending_ is the technique to render _partially transparent_ objects with real-time graphics. _Partially transparent_ objects mean that the algorithm accounts for transparency values between `0.0` and `1.0`, e.g. `0.25` or `0.5`.
+
+cgeimg::block[
+  unholy_blending_2.png|Blending in 2D,
+  unholy_blending_1.png|Blending in 2D,
+  blending_sort.png|Blending Sorting in 3D
+]
 
 ////
 While _Castle Game Engine_ tries to make it work "out of the box" correctly in usual cases, there are various edge-cases that require the developer and/or graphic artist to know how the algorithm works, and tweak something.
