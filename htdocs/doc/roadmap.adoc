@@ -214,13 +214,21 @@ Explore possibility to support https://graphics.pixar.com/usd/release/index.html
 
 ## Integration with Nakama (scalable server for social and real-time games and apps)
 
-https://github.com/heroiclabs/nakama
+Integration with https://heroiclabs.com/docs/nakama/getting-started/index.html[Nakama]:
 
-https://heroiclabs.com/docs/nakama/getting-started/index.html
+Nakama is an open-source server and client library/API that provide networking capabilities typically needed in games.
 
-Nakama is an open-source server (which you can extend) and client API (which you can use from various game engines -- see https://heroiclabs.com/docs/nakama/client-libraries/ ) to get easy networking capabilities. You can host the server yourself or pay to get ready hosting.
+- The server is written in Go (see link:https://github.com/heroiclabs/nakama[source code]) and can be extended using Lua, JS, or Go modules. See https://heroiclabs.com/docs/nakama/server-framework/introduction/index.html[server framework].
 
-I think this, combined with CGE API, may give us networking capabilities comparable with some popular solutions known from other game engines.
+- It supports out-of-the-box stuff like user accounts, matchmaking (connect people into rooms where the game happens), leaderboards, chat, etc. There's infrastructure to synchronize data between players in a multi-player game.
+
+- Client library can be used from link:https://heroiclabs.com/docs/nakama/client-libraries/[various game engines and languages] so we're confident it can be used from CGE too.
+
+- You can host the server yourself or pay to get ready hosting.
+
+- As you can see in above links, it seems really well documented, and actively maintained. These are naturally critical qualities for our dependencies.
+
+I think Nakama may give CGE networking capabilities comparable with some popular solutions known from other game engines :)
 
 ### Related: Ready components to replicate data over the Internet
 
