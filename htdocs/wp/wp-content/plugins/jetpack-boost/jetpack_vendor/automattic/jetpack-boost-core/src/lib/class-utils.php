@@ -2,12 +2,10 @@
 /**
  * Utility class.
  *
- * @link       https://automattic.com
- * @since      1.0.0
- * @package    automattic/jetpack-boost
+ * @package automattic/jetpack-boost-core
  */
 
-namespace Automattic\Jetpack_Boost\Lib;
+namespace Automattic\Jetpack\Boost_Core\Lib;
 
 use Automattic\Jetpack\Connection\Client;
 
@@ -131,7 +129,7 @@ class Utils {
 		if ( 200 !== $code ) {
 			$default_message = sprintf(
 				/* translators: %d is a numeric HTTP error code */
-				__( 'HTTP %d while communicating with WordPress.com', 'jetpack-boost' ),
+				__( 'HTTP %d while communicating with WordPress.com', 'jetpack-boost-core' ),
 				$code
 			);
 
