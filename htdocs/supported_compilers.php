@@ -156,11 +156,11 @@ to hang on to FPC releases available in distros.
 <?php echo $toc->html_section(); ?>
 
 <ul>
-  <li><p>The engine is tested and supported on all Delphi versions &gt;= 10.2. It was actively tested on 10.2, 10.3, 10.4 (including CE), and all Delphi 11 editions (including 11.3 CE).
+  <li><p>The engine is tested and supported on all Delphi versions &gt;= 10.2.1. It was actively tested on 10.2, 10.3, 10.4 (including CE), and all Delphi 11 editions (including 11.3 CE).
 
   <li><p>In the future, we could support Delphi versions &gt;= XE 7.
 
-    <p>Adjusting to Delphi XE 7 seems to require only a few local changes (see 
+    <p>Adjusting to Delphi XE 7 seems to require only a few local changes (see
     <a href="https://github.com/castle-engine/castle-engine/issues/482">XE7 test</a>,
     <a href="https://github.com/castle-engine/castle-engine/issues/486">10.0.1 test</a>,
     <a href="https://github.com/castle-engine/castle-engine/issues/488">10.1.2 test</a>).
@@ -169,8 +169,8 @@ to hang on to FPC releases available in distros.
 
   <li><p>We will not support Delphi versions older than 10.4 <i>for mobile (Android and iOS)</i>.
 
-    <p>Reason: The older Delphi versions have crazy compatibility-breaking change to <code>String</code> handling on mobile: strings are 0-based (but only on mobile!, on desktop they remained 1-based) and <i>Embarcadero/Idera</i> recommended way forward was to use <code>TStringHelper</code>, with all operations 0-based, and maybe treat strings as immutable. 
-    
+    <p>Reason: The older Delphi versions have crazy compatibility-breaking change to <code>String</code> handling on mobile: strings are 0-based (but only on mobile!, on desktop they remained 1-based) and <i>Embarcadero/Idera</i> recommended way forward was to use <code>TStringHelper</code>, with all operations 0-based, and maybe treat strings as immutable.
+
     <p>This is documented now in <a href="https://docwiki.embarcadero.com/RADStudio/Alexandria/en/Zero-based_strings_(Delphi)">Zero-based strings (Delphi)</a>. In the past page <a href="https://docwiki.embarcadero.com/RADStudio/XE7/en/Migrating_Delphi_Code_to_Mobile_from_Desktop#Use_0-Based_Strings">Migrating Delphi Code to Mobile from Desktop (for Delphi XE7)</a> had a longer section <i>"Use 0-Based Strings"</i>.
 
     <p>Adjusting to this would mean rewriting all <code>String</code> handling code in the engine to use new <code>TStringHelper</code>. And it would be quite risky task &mdash; as the global <code>String</code> routines remained available for mobile, but they were nearly useless for cross-platform code, as they would use 1-based on desktop and 0-based on mobile. Thus causing hard-to-find bugs, as the same code would <i>compile</i> everywhere, but would work <i>differently</i> between desktop and mobile.
