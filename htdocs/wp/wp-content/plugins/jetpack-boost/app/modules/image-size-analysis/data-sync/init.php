@@ -1,13 +1,24 @@
 <?php
 
 use Automattic\Jetpack\WP_JS_Data_Sync\Schema\Schema;
-use Automattic\Jetpack_Boost\Data_Sync\Image_Size_Analysis_Entry;
-use Automattic\Jetpack_Boost\Data_Sync\Image_Size_Analysis_Groups;
-use Automattic\Jetpack_Boost\Data_Sync\Image_Size_Analysis_Ignored_Images;
+use Automattic\Jetpack_Boost\Modules\Image_Size_Analysis\Data_Sync\Image_Size_Analysis_Entry;
+use Automattic\Jetpack_Boost\Modules\Image_Size_Analysis\Data_Sync\Image_Size_Analysis_Summary;
 
 $image_data = Schema::as_assoc_array(
 	array(
+		'id'           => Schema::as_string(),
 		'thumbnail'    => Schema::as_string(),
+		'device_type'  => Schema::enum( array( 'phone', 'desktop' ) ),
+		'status'       => Schema::enum( array( 'active', 'ignored' ) )->fallback( 'active' ),
+		'instructions' => Schema::as_string(),
+		'page'         => Schema::as_assoc_array(
+			array(
+				'id'       => Schema::as_number(),
+				'url'      => Schema::as_string(),
+				'edit_url' => Schema::as_string()->nullable(),
+				'title'    => Schema::as_string(),
+			)
+		),
 		'image'        => Schema::as_assoc_array(
 			array(
 				'url'        => Schema::as_string(),
@@ -41,15 +52,7 @@ $image_data = Schema::as_assoc_array(
 				),
 			)
 		),
-		'page'         => Schema::as_assoc_array(
-			array(
-				'id'    => Schema::as_number(),
-				'url'   => Schema::as_string(),
-				'title' => Schema::as_string(),
-			)
-		),
-		'device_type'  => Schema::enum( array( 'phone', 'desktop' ) ),
-		'instructions' => Schema::as_string(),
+
 	)
 );
 
@@ -77,24 +80,42 @@ jetpack_boost_register_option( 'image_size_analysis', $image_size_analysis, $ent
 
 $group_schema = Schema::as_assoc_array(
 	array(
-		'name'     => Schema::as_string(),
-		'progress' => Schema::as_number(),
-		'issues'   => Schema::as_number(),
-		'done'     => Schema::as_boolean(),
+		'issue_count'   => Schema::as_number(),
+		'scanned_pages' => Schema::as_number(),
+		'total_pages'   => Schema::as_number(),
+	)
+)->nullable();
+
+$summary_schema = Schema::as_assoc_array(
+	array(
+		'status'    => Schema::enum(
+			array(
+				'not-found',
+				'new',
+				'queued',
+				'completed',
+				'error',
+			)
+		),
+		'report_id' => Schema::as_number()->nullable(),
+		'groups'    => Schema::as_assoc_array(
+			array(
+				'front_page' => $group_schema,
+				'page'       => $group_schema,
+				'post'       => $group_schema,
+				'other'      => $group_schema,
+			)
+		)->nullable(),
+	)
+)->fallback(
+	array(
+		'status'  => 'not-found',
+		'summary' => null,
 	)
 );
-jetpack_boost_register_option(
-	'image_size_analysis_groups',
-	Schema::as_array( $group_schema ),
-	new Image_Size_Analysis_Groups()
-);
 
-// @TODO
-// Implement using class Storage_Post_Type
 jetpack_boost_register_option(
-	'image_size_analysis_ignored_images',
-	Schema::as_array(
-		$image_data
-	)->fallback( array() ),
-	new Image_Size_Analysis_Ignored_Images()
+	'image_size_analysis_summary',
+	$summary_schema,
+	new Image_Size_Analysis_Summary()
 );
