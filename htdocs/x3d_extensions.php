@@ -436,8 +436,8 @@ end;
     TODO: make precompute_xxx work with animations, and make an example
     of this.
 
-    <p>For more information, see <code>kambi_vrml_game_engine/examples/vrml/radiance_transfer/</code>
-    demo in engine sources.</p>
+    <p>For more information, see
+    <a href="https://github.com/castle-engine/castle-radiance-transfer">Precomputed Radiance Transfer in Castle Game Engine</a>.</p>
 
     <p>TODO: currently <code>radianceTransfer</code> is read but ignored
     by <i>view3dscene</i> and simple VRML browser components.
