@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.20">
 <meta name="author" content="Michalis Kamburelis">
-<title>Castle Game Engine course</title>
+<title>Castle Game Engine Workshop (course)</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -525,7 +525,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1>Castle Game Engine course</h1>
+<h1>Castle Game Engine Workshop (course)</h1>
 <div class="details">
 <span id="author" class="author">Michalis Kamburelis</span><br>
 </div>
@@ -536,7 +536,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <li><a href="#_monday_overview_objects_classes_designing_3d_levels_and_2d_ui">2. Monday: Overview - objects, classes, designing 3D levels and 2D UI</a></li>
 <li><a href="#_tuesday_designing_a_level_playing_with_physics">3. Tuesday: Designing a level, playing with physics</a></li>
 <li><a href="#_wednesday_coding_behaviors">4. Wednesday: Coding, behaviors</a></li>
-<li><a href="#_thursday_plan_sound_savegames_using_github_actions">5. Thursday (plan): Sound, savegames, using GitHub actions</a></li>
+<li><a href="#_thursday_sound_savegames_using_github_actions">5. Thursday: Sound, savegames, using GitHub actions</a></li>
 </ul>
 </div>
 </div>
@@ -559,6 +559,9 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <p><a href="mailto:michalis@castle-engine.io">michalis@castle-engine.io</a></p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>Example project I made: <a href="https://github.com/michaliskambi/salamanca2" class="bare">https://github.com/michaliskambi/salamanca2</a></p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -765,23 +768,98 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 </div>
 </div>
 <div class="sect1">
-<h2 id="_thursday_plan_sound_savegames_using_github_actions">5. Thursday (plan): Sound, savegames, using GitHub actions</h2>
+<h2 id="_thursday_sound_savegames_using_github_actions">5. Thursday: Sound, savegames, using GitHub actions</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
 <p>Using spatial and non-spatial sound effects</p>
+<div class="openblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>music - OggVorbis (.ogg) or wav</p>
+</li>
+<li>
+<p>sound - emitted by some object in 3d</p>
+</li>
+<li>
+<p>sound - emitted by some object in 3d, from time to time, when user pressed key "keyP"</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="pascal">  <span class="keyword">if</span> Event.IsKey(keyP) <span class="keyword">then</span>
+  <span class="keyword">begin</span>
+    SoundSourceManual.Play(SoundAlien);
+  <span class="keyword">end</span>;</code></pre>
+</div>
+</div>
+</div>
+</div>
 </li>
 <li>
 <p>Saving persistent data (savegames)</p>
+<div class="openblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://castle-engine.io/manual_user_prefs.php" class="bare">https://castle-engine.io/manual_user_prefs.php</a></p>
 </li>
 <li>
-<p>Using GitHub Actions</p>
+<p>Windows: <code>c:/Users/&lt;YOU&gt;/AppData/Local/&lt;name of your project&gt;/&lt;name of your project&gt;.conf</code></p>
+</li>
+<li>
+<p>Linux: <code>~/.config/&lt;name of your project&gt;/&lt;name of your project&gt;.conf</code></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="keyword">procedure</span> TViewSomething.SaveGame(Sender: TObject);
+<span class="keyword">var</span>
+  Pos, Dir, Up: TVector3;
+<span class="keyword">begin</span>
+  MichalisViewport.Camera.GetWorldView(Pos, Dir, Up);
+
+  UserConfig.SetVector3(<span class="string"><span class="delimiter">'</span><span class="content">player_position</span><span class="delimiter">'</span></span>, Pos);
+  UserConfig.SetVector3(<span class="string"><span class="delimiter">'</span><span class="content">player_direction</span><span class="delimiter">'</span></span>, Dir);
+  UserConfig.SetVector3(<span class="string"><span class="delimiter">'</span><span class="content">player_up</span><span class="delimiter">'</span></span>, Up);
+  UserConfig.SetValue(<span class="string"><span class="delimiter">'</span><span class="content">player_saved</span><span class="delimiter">'</span></span>, true);
+
+  UserConfig.Save;
+<span class="keyword">end</span>;
+
+<span class="keyword">procedure</span> TViewSomething.LoadGame(Sender: TObject);
+<span class="keyword">var</span>
+  Pos, Dir, Up: TVector3;
+<span class="keyword">begin</span>
+  UserConfig.Load;
+
+  <span class="keyword">if</span> UserConfig.GetValue(<span class="string"><span class="delimiter">'</span><span class="content">player_saved</span><span class="delimiter">'</span></span>, false) <span class="keyword">then</span>
+  <span class="keyword">begin</span>
+    Pos := UserConfig.GetVector3(<span class="string"><span class="delimiter">'</span><span class="content">player_position</span><span class="delimiter">'</span></span>, Vector3(<span class="integer">0</span>, <span class="integer">0</span>, <span class="integer">0</span>));
+    Dir := UserConfig.GetVector3(<span class="string"><span class="delimiter">'</span><span class="content">player_direction</span><span class="delimiter">'</span></span>, Vector3(<span class="integer">0</span>, <span class="integer">0</span>, -<span class="integer">1</span>));
+    Up := UserConfig.GetVector3(<span class="string"><span class="delimiter">'</span><span class="content">player_up</span><span class="delimiter">'</span></span>, Vector3(<span class="integer">0</span>, <span class="integer">1</span>, <span class="integer">0</span>));
+
+    MichalisViewport.Camera.SetWorldView(Pos, Dir, Up);
+  <span class="keyword">end</span>;
+<span class="keyword">end</span>;</code></pre>
+</div>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>Using GitHub Actions ( <a href="https://castle-engine.io/github_actions" class="bare">https://castle-engine.io/github_actions</a> )</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>TODO: I will upload my complete version of the project, with sound and savegames, to GitHub. Actually I will do it while you watch, when setting up GitHub Actions :)</p>
+<p>Example project I made: <a href="https://github.com/michaliskambi/salamanca2" class="bare">https://github.com/michaliskambi/salamanca2</a></p>
 </div>
 <div class="paragraph">
 <p>Homework if you want:</p>
@@ -820,7 +898,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-07-05 18:53:59 +0200
+Last updated 2023-07-06 18:32:12 +0200
 </div>
 </div>
 </body>
