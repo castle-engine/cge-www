@@ -232,6 +232,7 @@ $castle_sitemap = array(
       'manual_intro' => array('title' => 'Manual'),
       'creating_data_intro' => array('title' => 'Creating Game Data'),
       'reference' => array('title' => 'API Reference', 'url' => reference_link()),
+      'doc/why_pascal' => array('title' => 'Why Pascal?'),
       'doc/modern_pascal' => array('title' => 'Modern Object Pascal Introduction'),
       'doc/castle_game_engine_for_unity_developers' => array('title' => 'Overview for Unity Developers'),
       'compiling_from_source' => array('title' => 'Compiling from source'),
