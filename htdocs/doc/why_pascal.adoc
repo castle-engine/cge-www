@@ -1,0 +1,101 @@
+# Why use Pascal?
+include::common.adoc[]
+:description: Object Pascal is a modern, readable, fast, type-safe, cross-platform OOP programming language. It is also easy to pick up.
+:cge-social-share-image: vscode_completion.png
+
+## Short answer
+
+Object Pascal is a
+
+- modern,
+- readable,
+- fast,
+- type-safe,
+- cross-platform
+
+programming language.
+
+It is also easy to pick up if you know any OOP language. Learn more in our https://castle-engine.io/modern_pascal[Modern Object Pascal Introduction for Programmers].
+
+cgeimg::block[vscode_completion.png|VS Code completion]
+
+## More elaborate answer
+
+### Modern clean language to develop maintainable applications
+
+- Object Pascal is a modern programming language. It supports classes, units, properties, generics, interfaces, reflection, closures... Everything you expect from a modern OOP language.
+
+- The syntax puts emphasis on readable code.
+
+- The language is type-safe. E.g. special types for booleans, strings, chars, sets, enums, ranges. Type conversions are either really safe, or have to be done explicitly.
+
+### Fast
+
+- Language can also be low-level if you need it to be. You can get as "close to the metal" as you need, including using pointers, doing pointer math, even using inline assembly.
++
+NOTE: But you will probably not need to get "low level" in usual applications. link:/[Castle Game Engine] has *zero assembler code*.
+
+- It is compiled to a native code (so is fast out of the box).
+
+- Compilation is also fast.
++
+////
+[source,bash]
+----
+$ castle-engine cache # once after installation
+
+$ cd castle-engine/examples/viewport_and_scenes/cars_demo/
+$ castle-engine clean # build from scratch, like a new project
+$ time castle-engine compile
+...
+real	0m2,513s
+
+$ time castle-engine package --target=android # 32 and 64-bit devices
+...
+Build cars_demo-0.1-android-debug.apk
+...
+real	0m10,188s
+----
+////
+image::images/not_resized/pascal-fast-compilation.webp[]
++
+2.5 seconds to get desktop build, 10.1 seconds to get Android build **of a new project, opened for the 1st time**. Try to match that with your engine :)
+
+### Cross-platform
+
+- Desktop (Windows, Linux, macOS, Raspberry Pi, FreeBSD, probably every Unix...),
+
+- mobile (Android, iOS),
+
+- consoles (Nintendo Switch, special in CGE),
+
+- web (both WebAssembly and JS (using pas2js)).
+
+See also link:features[Castle Game Engine platforms supported].
+
+### Welcoming
+
+- In link:/[Castle Game Engine] case, engine code and game code are in the same language. Every user is contributor!
+
+- And the engine is open-source.
+
+Don't hesitate to fork CGE to adjust it to your needs.
+
+### General purpose
+
+There are existing libraries (units) in Pascal for everything:
+
+- database
+- XML, JSON
+- A.I.
+- blockchain
+- networking
+
+Moreover you can easily integrate with (link to) any existing library with C API. Any renderer, sound library, physics - we can use everything.
+
+### Ecosystem of tools
+
+- https://www.freepascal.org/[FPC] - Free Pascal Compiler, open-source.
+- https://www.lazarus-ide.org/[Lazarus] - IDE for Pascal, on top of FPC, also open-source.
+- https://www.embarcadero.com/products/Delphi[Delphi] - commercial compiler and IDE for Pascal.
+- https://castle-engine.io/vscode[VS Code] support - CGE, as well as many others in the Pascal ecosystem, explicitly support integration with VS Code.
