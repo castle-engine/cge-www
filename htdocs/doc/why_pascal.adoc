@@ -29,13 +29,21 @@ cgeimg::block[vscode_completion.png|VS Code completion]
 
 - The language is type-safe. E.g. special types for booleans, strings, chars, sets, enums, ranges. Type conversions are either really safe, or have to be done explicitly.
 
+- There are additional run-time checks, e.g. array range checking, integer overflow checking, assertions, memory leak checking. Notes:
++
+--
+- You can turn off these checks in _release_ version, but use them in _debug_. When compiling using CGE build tool / editor, we have debug / release modes that automatically do this for you.
+- https://github.com/michaliskambi/modern-pascal-introduction/wiki/What-are-range-and-overflow-checks-(and-errors)-in-Pascal[What are range and overflow checks (and errors) in Pascal]
+- https://castle-engine.io/detecting_memory_leaks_using_heaptrc[Detecting Memory Leaks]
+--
+
 ### Fast
 
-- Language can also be low-level if you need it to be. You can get as "close to the metal" as you need, including using pointers, doing pointer math, even using inline assembly.
-+
-NOTE: But you will probably not need to get "low level" in usual applications. link:/[Castle Game Engine] has *zero assembler code*.
+- It is compiled to a native code and so is fast _"out of the box"_. There's seldom any need to do low-level optimizations.
 
-- It is compiled to a native code (so is fast out of the box).
+- But if you need to, language can be as low-level as you want. E.g. you can use pointers, do pointer math, write OS and CPU-specific code, even add pieces in assembly. You can work on the same level as C or C++ does.
++
+NOTE: But you will probably not need to get too "low level" in usual applications. E.g. link:/[Castle Game Engine] has *zero assembler code* to maximize portability and code readability and we're still fast.
 
 - Compilation is also fast.
 +
@@ -92,6 +100,8 @@ There are existing libraries (units) in Pascal for everything:
 - networking
 
 Moreover you can easily integrate with (link to) any existing library with C API. Any renderer, sound library, physics - we can use everything.
+
+You can also use https://github.com/pyscripter/python4delphi[Python libraries in Pascal] easily.
 
 ### Ecosystem of tools
 
