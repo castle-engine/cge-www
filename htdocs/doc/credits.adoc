@@ -55,6 +55,7 @@ Everyone who subscribes to support CGE with at least 10 USD / month (anywhere --
 * Jeff Davis
 * Martin Heggestad
 * Märten Rodes
+* Márton Polgár
 * Milos Stanojevic
 
 *Thank you!*
