@@ -426,7 +426,7 @@ see <?php echo a_href_page('X3D extensions introduction', 'x3d_extensions'); ?>.
 
 <p>This approach uses the <?php echo cgeRef('CastleClientServer'); ?> unit, which uses <a href="https://www.indyproject.org/">Indy</a> (with threads) on most platforms, except on Android where we utilize dedicated asynchronous Android API for this.
 
-<p>To compile it, <b>be sure to install Indy</b> using one of the options below, and then also compile in Lazarus package <code>castle_indy</code>. To install Indy:
+<p>To compile it with FPC/Lazarus, <b>be sure to install Indy</b> using one of the options below, and then also compile in Lazarus package <code>castle_indy</code>. To install Indy:
 
 <ul>
   <li><p>You can install Indy through the <a href="https://wiki.freepascal.org/Online_Package_Manager">Online Package Manager</a>. The OPM is a great way to install Lazarus packages in general, go ahead and try it :)
@@ -443,6 +443,8 @@ lazbuild Indy10/indylaz.lpk
 </ul>
 
 <p>In all cases, you should get an additional package <code>indylaz</code> known by Lazarus. Remember to also install <code>packages/castle_indy.lpk</code> package, and use it in your projects.
+
+<p>Delphi users don't need to do anything in this regard, as Indy is already included in Delphi.
 
 <?php echo $toc->html_section(); ?>
 
