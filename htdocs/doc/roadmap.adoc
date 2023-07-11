@@ -426,3 +426,22 @@ Buttons should have agnostic names, like _North_, _East_ etc. Avoid using names 
 Allow to define tasks that should occur regularly, but do not have to be done every frame. The engine should then automatically execute the tasks based on their need and current workload.
 
 E.g. animation task may say "I want to update the model every frame, but actually I don't have to -- if under heavy workload it's enough to only update 30 times per second or such". This would be a better (more general, smarter -- activated automatically) way of optimizing it than current `TCastleScene.AnimationSkipTicks`.
+
+[NOTE]
+====
+The API (terminology) and implementation have to play nicely with Delphi existing concept of "tasks" from Delphi _Parallel Programming Library_. Delphi already has a "task" meaning "a unit of work that can be executed in auto-created thread (using pool of threads underneath)", see
+
+- https://docwiki.embarcadero.com/RADStudio/Sydney/en/Tutorial:_Using_Tasks_from_the_Parallel_Programming_Library
+
+- https://docwiki.embarcadero.com/RADStudio/Sydney/en/Using_TTask_from_the_Parallel_Programming_Library
+
+- https://docwiki.embarcadero.com/Libraries/Sydney/en/System.Threading.TTask
+
+- https://blog.marcocantu.com/blog/2017-november-explaining-tasks-ppl-too-many.html
+
+So:
+
+1. Our tasks, that are mainly to execute tasks in the main thread but with some delay ("execute this when convenient, I don't need it done right now") should be clearly something different. To avoid confusing API for people that know Delphi tasks.
+
+2. When using threads, then we should use Delphi tasks (on Delphi), where possible. Only for FPC we'll need to duplicate subset of it (unless FPC will get the compatible implementation).
+====
