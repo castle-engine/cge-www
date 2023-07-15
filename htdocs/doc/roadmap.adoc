@@ -110,15 +110,37 @@ _What we need:_ Visual, interactive editor for the `ElevationGrid` (the thing yo
 [#vulkan]
 ## Vulkan renderer
 
-Vulkan renderer.
+Add a https://www.vulkan.org/[Vulkan] renderer.
 
-We have a simple example code that shows how you can start a new renderer: see link:https://github.com/castle-engine/castle-engine/blob/master/examples/research_special_rendering_methods/new_renderer_skeleton/[examples/research_special_rendering_methods/new_renderer_skeleton/].
+* API:
++
+Almost all public CGE API will remain unchanged. For a long time now, we design our API to be independent from OpenGL, and all rendering (e.g. done by cgeref:TCastleScene[], cgeref:TCastleViewport[], cgeref:TCastleUserInterface[], cgeref:TDrawableImage[]) is driven by a renderer-neutral API.
++
+Shaders will continue to be available using https://en.wikipedia.org/wiki/OpenGL_Shading_Language[GLSL]. There will be possibility to precompile them to https://en.wikipedia.org/wiki/Standard_Portable_Intermediate_Representation[SPIR-V] before usage (for both Vulkan and new OpenGL, as new OpenGL also supports SPIR-V).
++
+Underneath, we will create a "pluggable" architecture for renderers. In theory we could implement a lot of renderers (e.g. also Metal or Direct3D) but given the limited resources, realistically we will focus on 2 renderers: Vulkan and OpenGL ("OpenGL" here meaning really a family OpenGL + OpenGLES + WebGL).
 
+* Approach:
++
+We have a simple example code that shows how you can start a new renderer: see link:https://github.com/castle-engine/castle-engine/blob/master/examples/research_special_rendering_methods/new_renderer_skeleton/[examples/research_special_rendering_methods/new_renderer_skeleton/]. This is great for testing initial implementation, before we have a "pluggable" architecture.
+
+* Header:
++
+I was playing with https://github.com/BeRo1985/pasvulkan[PasVulkan] from which we could use a Vulkan API header. See https://castle-engine.io/wp/2022/03/27/web3d-webinar-this-tuesday-steam-deck-test-documentation-updates-pasvulkan-tests/[news about PasVulkan].
++
+We could also get Vulkan header from https://gen.glad.sh/[GLAD 2] if only we port it to Pascal (we plan this already).
+
+* Platforms:
++
+Not all platforms support Vulkan, in particular it's uncertain whether Apple with ever support it (they want to push Apple-specific Metal API). CGE will most likely use https://moltengl.com/moltenvk/[MoltenVK] to render using Vulkan on Apple, see https://castle-engine.io/macos#_apple_says_that_opengles_is_deprecated_what_happens_if_they_remove_opengles_from_macos_and_ios[plans regarding macOS / iOS and OpenGL, Vulkan].
+
+////
 ## (Optional) Make TCastleScene, TCastleTranform and friends to be special X3D nodes
 
 This would make the whole TCastleViewport.Items a single graph of X3D nodes, allowing for more sharing in code. The TCastleTranform would be just like TTransformNode, but a little diferently optimized (but it would become toggable at runtime).
 
 It's unsure now whether this is really needed. Using cgeref:TCastleSceneCore.ExposeTransforms[] and making it better (synchronizing both ways) will fill the most important use-case of this.
+////
 
 [#distance_field_fonts]
 ## (IN REVIEW) Distance field fonts
