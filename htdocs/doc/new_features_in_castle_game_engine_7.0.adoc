@@ -44,6 +44,7 @@ See https://castle-engine.io/wp/2022/12/24/summary-of-4th-open-meeting-physics-p
 --
 * https://castle-engine.io/control_on_form[TCastleControl available now for Delphi VCL and FMX applications, in addition to existing Lazarus LCL].
 * https://castle-engine.io/download#delphinus[Delphinus support] (unfortunately not recommended anymore, due to https://github.com/Memnarch/Delphinus/issues/93 and https://github.com/castle-engine/castle-engine/issues/84 )
+* Full support tested for Delphi >= 10.2.1, up to the latest 11.x (with plans to support some even older versions, see https://castle-engine.io/supported_compilers.php#section_versions[Delphi versions supported]).
 --
 * Easily activate https://castle-engine.io/wp/2022/10/03/easy-shadows-in-editor-at-design-time-too-by-shadow-volumes-and-shadow-maps-are-coming-as-well/[shadows], just select checkbox `Shadows` at the light source to use shadow volumes.
 +
@@ -69,6 +70,7 @@ See https://castle-engine.io/wp/2022/12/24/summary-of-4th-open-meeting-physics-p
 * More optimal drawing of line primitives and quads.
 * cgeref:TCastleRenderUnlitMesh[] utility.
 * Fixes for older ATI GPUs.
+* https://castle-engine.io/wp/2023/06/30/big-renderer-improvements-correct-and-automatic-blending-sorting-more-powerful-batching-now-cross-scene-easier-and-more-reliable-occlusion-culling-and-occlusion-sorting/[Correct and automatic blending sorting, more powerful batching (now cross-scene), easier and more reliable occlusion culling and occlusion sorting]
 --
 * Many editor UX improvements. The most important ones:
 +
@@ -81,6 +83,7 @@ See https://castle-engine.io/wp/2022/12/24/summary-of-4th-open-meeting-physics-p
 * Dragging and dropping in the hierarchy preserves transformation by default (hold "Ctrl" to not preserve).
 * link:sketchfab[Sketchfab Importer]
 * https://castle-engine.io/wp/2023/06/03/images-in-ui-regions-subset-of-image-and-visual-editing-of-both-region-and-9-slices/[Visually edit images region and 9-slices borders].
+* Property editors more comfortable, angles in degrees in editor (https://castle-engine.io/wp/2023/07/16/improvements-to-property-editors-in-particular-display-and-input-angles-in-degrees-in-the-editor/[news])
 --
 * Improvements around our https://castle-engine.io/views[views] (formely _states_):
 +
@@ -107,6 +110,7 @@ See https://castle-engine.io/wp/2022/12/24/summary-of-4th-open-meeting-physics-p
 Not part of the engine release, but still cool to mention:
 
 * https://www.youtube.com/watch?v=Ad3UywYyRGU[GIC 2022 presentation] along with https://castle-engine.io/gic2022[slides]
+* https://castle-engine.io/ipc2023[IPC 2023 workshop and keynote slides]
 * https://www.youtube.com/watch?v=oA87iclrDZA[Embarcadero CodeRage 2022 presentation]
 * https://www.youtube.com/watch?v=xzfiy01Q8o0[DelphiCon 2023 presentation (CGE starts at 5:09)]
 * https://cat-astrophe-games.itch.io/lynch["Lynch" gamejam demo]
