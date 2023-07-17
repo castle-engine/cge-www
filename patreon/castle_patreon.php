@@ -110,6 +110,8 @@ function castle_patreon_nearest_goal()
   //print_r($campaign_details);
   */
 
+  // pledge_sum is missing from campaign, it seems, despite being documented on https://docs.patreon.com/#campaign
+
   $campaign_details = $api_client->get_data("campaigns/{$campaign_id}?fields%5Bcampaign%5D=patron_count");
   //print_r($campaign_details);
   $patron_count = $campaign_details['data']['attributes']['patron_count'];
@@ -154,14 +156,13 @@ function castle_patreon_nearest_goal()
   // echo 'Members counted with non-zero: ' . $members_counted_nonzero . "\n";
   // echo 'Total pledges: ' . $total_pledges . "\n";
 
-  // TODO: Commented out, check fails
-  // if ($members_counted_nonzero != $patron_count) {
-  //   throw new Exception('Members counted with non-zero is not equal to Patrons count');
-  // }
+  if ($members_counted_nonzero != $patron_count) {
+    throw new Exception('Members counted with non-zero is not equal to Patrons count');
+  }
 
   // in emergency, you can just hardcode this
-  // TODO: above algorithm calculates value slightly larger (but matching Patron manager)
-  $total_pledges = 18100;
+  // TODO: above algorithm calculates value slightly larger (but matching Patron manager), use below algorithm to be consistent with Patreon display
+  $total_pledges = 18300;
 
   // goals are hardcoded now here, as Patreon removed goals
   $goals = array(
@@ -187,6 +188,10 @@ function castle_patreon_nearest_goal()
   // set $nearest_goal['completed_percentage'], our _castle_patreon_box expects it
   $nearest_goal['completed_percentage'] =
     (int)round($total_pledges / $nearest_goal['amount_cents'] * 100);
+
+  // only for debugging looking at JSON output
+  $nearest_goal['debug']['goals'] = $goals;
+  $nearest_goal['debug']['total_pledges'] = $total_pledges;
 
   return $nearest_goal;
 }
