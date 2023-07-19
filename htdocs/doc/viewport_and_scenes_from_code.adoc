@@ -217,7 +217,7 @@ cgeref:TCastleSceneCore.PlayAnimation[PlayAnimation] is very powerful. In additi
 
 - play animation from the middle (not from start) (see cgeref:TPlayAnimationParameters.InitialTime[]),
 
-- receive a stop notification, when animation stops (see cgeref:TPlayAnimationParameters.StopNotification[]),
+- receive a stop notification, when animation stops (see cgeref:TPlayAnimationParameters.StopNotification[]).
 
 See the example https://github.com/castle-engine/castle-engine/tree/master/examples/animations/play_animation[examples/animations/play_animation] in engine sources for a demo of `PlayAnimation` capabilities.
 
