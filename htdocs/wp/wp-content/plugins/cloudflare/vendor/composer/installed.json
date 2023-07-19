@@ -44,7 +44,11 @@
         "keywords": [
             "cloudflare",
             "ip rewrite"
-        ]
+        ],
+        "support": {
+            "issues": "https://github.com/cloudflare/cf-ip-rewrite/issues",
+            "source": "https://github.com/cloudflare/cf-ip-rewrite/tree/master"
+        }
     },
     {
         "name": "psr/log",
@@ -93,7 +97,10 @@
             "log",
             "psr",
             "psr-3"
-        ]
+        ],
+        "support": {
+            "source": "https://github.com/php-fig/log/tree/1.1.4"
+        }
     },
     {
         "name": "symfony/polyfill-intl-idn",
@@ -166,6 +173,9 @@
             "portable",
             "shim"
         ],
+        "support": {
+            "source": "https://github.com/symfony/polyfill-intl-idn/tree/v1.27.0"
+        },
         "funding": [
             {
                 "url": "https://symfony.com/sponsor",
@@ -249,6 +259,9 @@
             "portable",
             "shim"
         ],
+        "support": {
+            "source": "https://github.com/symfony/polyfill-intl-normalizer/tree/v1.27.0"
+        },
         "funding": [
             {
                 "url": "https://symfony.com/sponsor",
@@ -324,6 +337,9 @@
             "portable",
             "shim"
         ],
+        "support": {
+            "source": "https://github.com/symfony/polyfill-php72/tree/v1.27.0"
+        },
         "funding": [
             {
                 "url": "https://symfony.com/sponsor",
