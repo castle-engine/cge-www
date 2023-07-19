@@ -24,7 +24,7 @@ We want to allow you to edit materials in the CGE editor,
 
 - to have full control over primitives (like `TCastleSphere` or `TCastleImageTransform` look),
 
-- to enable you to use cool CGE features like mirrors ( https://castle-engine.io/x3d_extensions_mirror_plane.php ), shader effects ( https://castle-engine.io/compositing_shaders.php ) easier.
+- to enable you to use cool CGE features like link:x3d_extensions_mirror_plane.php[mirrors], link:compositing_shaders.php[shader effects] easier.
 
 This also means exposing new set of Pascal components to manage materials easier.
 
@@ -122,7 +122,7 @@ Underneath, we will create a "pluggable" architecture for renderers. In theory w
 
 * Approach:
 +
-We have a simple example code that shows how you can start a new renderer: see link:https://github.com/castle-engine/castle-engine/blob/master/examples/research_special_rendering_methods/new_renderer_skeleton/[examples/research_special_rendering_methods/new_renderer_skeleton/]. This is great for testing initial implementation, before we have a "pluggable" architecture.
+We have a simple example code that shows how you can start a new renderer: see link:https://github.com/castle-engine/castle-engine/blob/master/examples/research_special_rendering_methods/new_renderer_skeleton/[new_renderer_skeleton example]. This is great for testing initial implementation, before we have a "pluggable" architecture.
 
 * Header:
 +
@@ -320,7 +320,7 @@ Bonus: allow to animate other property types. E.g. animating discrete (like bool
 [#screen_effects]
 ## Screen effects - expose as nicer components
 
-Address a few shortcomings of our screen effects (`examples/screen_effects_demo/`, https://castle-engine.io/x3d_extensions_screen_effects.php ):
+Address a few shortcomings of our  (see `examples/screen_effects_demo/`, link:x3d_extensions_screen_effects.php[screen effects]):
 
 - Change terminology. "Screen effect" is non-standard, "post-processing effects" are better.
 
@@ -453,13 +453,13 @@ E.g. animation task may say "I want to update the model every frame, but actuall
 ====
 The API (terminology) and implementation have to play nicely with Delphi existing concept of "tasks" from Delphi _Parallel Programming Library_. Delphi already has a "task" meaning "a unit of work that can be executed in auto-created thread (using pool of threads underneath)", see
 
-- https://docwiki.embarcadero.com/RADStudio/Sydney/en/Tutorial:_Using_Tasks_from_the_Parallel_Programming_Library
+- https://docwiki.embarcadero.com/RADStudio/Sydney/en/Tutorial:_Using_Tasks_from_the_Parallel_Programming_Library[Tutorial: Using Tasks from the Parallel Programming Library]
 
-- https://docwiki.embarcadero.com/RADStudio/Sydney/en/Using_TTask_from_the_Parallel_Programming_Library
+- https://docwiki.embarcadero.com/RADStudio/Sydney/en/Using_TTask_from_the_Parallel_Programming_Library[Using TTask from the Parallel Programming Library]
 
-- https://docwiki.embarcadero.com/Libraries/Sydney/en/System.Threading.TTask
+- https://docwiki.embarcadero.com/Libraries/Sydney/en/System.Threading.TTask[TTask]
 
-- https://blog.marcocantu.com/blog/2017-november-explaining-tasks-ppl-too-many.html
+- https://blog.marcocantu.com/blog/2017-november-explaining-tasks-ppl-too-many.html[Explaining Tasks in Delphi Parallel Library... by Creating too Many Tasks]
 
 So:
 
