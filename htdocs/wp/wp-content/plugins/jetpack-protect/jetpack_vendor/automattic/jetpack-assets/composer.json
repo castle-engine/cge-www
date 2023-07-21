@@ -4,13 +4,16 @@
 	"type": "jetpack-library",
 	"license": "GPL-2.0-or-later",
 	"require": {
-		"automattic/jetpack-constants": "^1.6.21"
+		"automattic/jetpack-constants": "^1.6.22"
 	},
 	"require-dev": {
 		"brain/monkey": "2.6.1",
 		"yoast/phpunit-polyfills": "1.0.4",
-		"automattic/jetpack-changelogger": "^3.3.2",
+		"automattic/jetpack-changelogger": "^3.3.6",
 		"wikimedia/testing-access-wrapper": "^1.0 || ^2.0"
+	},
+	"suggest": {
+		"automattic/jetpack-autoloader": "Allow for better interoperability with other plugins that use this package."
 	},
 	"autoload": {
 		"files": [
@@ -47,7 +50,7 @@
 			"link-template": "https://github.com/Automattic/jetpack-assets/compare/v${old}...v${new}"
 		},
 		"branch-alias": {
-			"dev-trunk": "1.17.x-dev"
+			"dev-trunk": "1.18.x-dev"
 		}
 	}
 }

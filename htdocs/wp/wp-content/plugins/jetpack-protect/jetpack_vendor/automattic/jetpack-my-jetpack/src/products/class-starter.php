@@ -1,6 +1,6 @@
 <?php
 /**
- * Security product
+ * Starter plan
  *
  * @package my-jetpack
  */
@@ -12,23 +12,23 @@ use Automattic\Jetpack\My_Jetpack\Wpcom_Products;
 use WP_Error;
 
 /**
- * Class responsible for handling the Security product
+ * Class responsible for handling the Starter plan
  */
-class Security extends Module_Product {
+class Starter extends Module_Product {
 
 	/**
 	 * The product slug
 	 *
 	 * @var string
 	 */
-	public static $slug = 'security';
+	public static $slug = 'starter';
 
 	/**
 	 * The Jetpack module name
 	 *
 	 * @var string
 	 */
-	public static $module_name = 'security';
+	public static $module_name = 'starter';
 
 	/**
 	 * Get the internationalized product name
@@ -36,7 +36,7 @@ class Security extends Module_Product {
 	 * @return string
 	 */
 	public static function get_name() {
-		return _x( 'Security', 'Jetpack product name', 'jetpack-my-jetpack' );
+		return _x( 'Starter', 'Jetpack product name', 'jetpack-my-jetpack' );
 	}
 
 	/**
@@ -45,7 +45,7 @@ class Security extends Module_Product {
 	 * @return string
 	 */
 	public static function get_title() {
-		return _x( 'Security', 'Jetpack product name', 'jetpack-my-jetpack' );
+		return _x( 'Jetpack Starter', 'Jetpack product name', 'jetpack-my-jetpack' );
 	}
 
 	/**
@@ -54,7 +54,7 @@ class Security extends Module_Product {
 	 * @return string
 	 */
 	public static function get_description() {
-		return __( 'Comprehensive site security, including VaultPress Backup, Scan, and Akismet Anti-spam.', 'jetpack-my-jetpack' );
+		return __( 'Essential security tools: real-time backups and comment spam protection.', 'jetpack-my-jetpack' );
 	}
 
 	/**
@@ -63,20 +63,19 @@ class Security extends Module_Product {
 	 * @return string
 	 */
 	public static function get_long_description() {
-		return __( 'Comprehensive site security, including VaultPress Backup, Scan, and Akismet Anti-spam.', 'jetpack-my-jetpack' );
+		return __( 'Essential security tools: real-time backups and comment spam protection.', 'jetpack-my-jetpack' );
 	}
 
 	/**
 	 * Get the internationalized features list
 	 *
-	 * @return array Boost features list
+	 * @return array Starter features list
 	 */
 	public static function get_features() {
 		return array(
-			_x( 'Real-time cloud backups with 10GB storage', 'Security Product Feature', 'jetpack-my-jetpack' ),
-			_x( 'Automated real-time malware scan', 'Security Product Feature', 'jetpack-my-jetpack' ),
-			_x( 'One-click fixes for most threats', 'Security Product Feature', 'jetpack-my-jetpack' ),
-			_x( 'Comment & form spam protection', 'Security Product Feature', 'jetpack-my-jetpack' ),
+			_x( 'Real-time cloud backups with 1GB storage', 'Starter Product Feature', 'jetpack-my-jetpack' ),
+			_x( 'One-click fixes for most threats', 'Starter Product Feature', 'jetpack-my-jetpack' ),
+			_x( 'Comment & form spam protection', 'Starter Product Feature', 'jetpack-my-jetpack' ),
 		);
 	}
 
@@ -101,7 +100,7 @@ class Security extends Module_Product {
 	 * @return ?string
 	 */
 	public static function get_wpcom_product_slug() {
-		return 'jetpack_security_t1_yearly';
+		return 'jetpack_starter_yearly';
 	}
 
 	/**
@@ -141,18 +140,13 @@ class Security extends Module_Product {
 			return $activation;
 		}
 
-		$activation = Scan::activate();
-		if ( is_wp_error( $activation ) ) {
-			return $activation;
-		}
-
 		return $activation;
 	}
 
 	/**
 	 * Checks whether the Product is active
 	 *
-	 * Security is a bundle and not a module. Activation takes place on WPCOM. So lets consider it active if jetpack is active and has the plan.
+	 * Jetpack Starter is a bundle and not a module. Activation takes place on WPCOM. So lets consider it active if jetpack is active and has the plan.
 	 *
 	 * @return boolean
 	 */
@@ -172,10 +166,7 @@ class Security extends Module_Product {
 		}
 		if ( is_array( $purchases_data ) && ! empty( $purchases_data ) ) {
 			foreach ( $purchases_data as $purchase ) {
-				if (
-					0 === strpos( $purchase->product_slug, 'jetpack_security' ) ||
-					0 === strpos( $purchase->product_slug, 'jetpack_complete' )
-				) {
+				if ( 0 === strpos( $purchase->product_slug, 'jetpack_starter' ) ) {
 					return true;
 				}
 			}
@@ -198,7 +189,7 @@ class Security extends Module_Product {
 	 * @return Array Product slugs
 	 */
 	public static function get_supported_products() {
-		return array( 'backup', 'scan', 'anti-spam' );
+		return array( 'backup', 'anti-spam' );
 	}
 
 	/**
