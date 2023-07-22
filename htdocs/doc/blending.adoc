@@ -107,16 +107,27 @@ All possible sorting options:
 
 - cgeref:sort2D[] - Sort along the Z axis.
 
-- cgeref:sort3D[] - Sort based on the distance from current camera, looking at bounding box.
+- cgeref:sort3D[] - Sort based on the distance from current camera, looking at bounding box center.
 
-- cgeref:sort3DOrigin[] - Sort based on the distance from current camera, looking at origin point (point (0,0,0) in local coordinates). This may be better than cgeref:sort3D[] in some cases because the origin point is sometimes more "persistent", e.g. animations or billboard orientation may change bounding box, but not origin point.
-
-- cgeref:sort3DGround[] - Sort based on the distance from current camera, looking at origin point (point (0,0,0) in local coordinates) projected on Y=0 plane. This may be better than cgeref:sort3DOrigin[] in some cases because it ignores the object height for the sorting purposes.
+- cgeref:sort3DVerticalBillboards[] - Sort based on the distance from current camera, projected on the Y=constant plane, looking at bounding box center.
++
+This is especially suitable if your world consists of vertical billboards (like trees) with cgeref:TCastleBillboard.AxisOfRotation[] = +Y (0,1,0) and you want to sort them correctly.
++
+See example https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/billboards_blending_in_3d[examples/viewport_and_scenes/billboards_blending_in_3d], screenshot below:
++
+cgeimg::block[vertical_billboards.png|Billboards Blending in 3D]
 
 - cgeref:sortCustom[] - Sort using custom comparer event, see cgeref:TCastleViewport.OnCustomShapeSort[] and cgeref:TShapeSortEvent[].
 
 - cgeref:sortNone[] - Do not sort. This may be reasonable for simple world arrangements, when you manually ordered all shapes and all scenes to follow back-to-front order, or when you use non-standard blending equation that does not require sorting.
 
+=== Additional deprecated sorting options
+
+Moreover, the following 2 sorting options are available but _deprecated_. Most cases when these options were useful in the past should be now covered by `sort3D` or `sort3DVerticalBillboards`. link:talk.php[Contact us] if you have a use-case where these deprecated options still make sense.
+
+- cgeref:sort3DOrigin[] - Sort based on the distance from current camera, looking at origin point (point (0,0,0) in local coordinates). This may be better than cgeref:sort3D[] in some cases because the origin point is sometimes more "persistent", e.g. animations or billboard orientation may change bounding box, but not origin point.
+
+- cgeref:sort3DGround[] - Sort based on the distance from current camera, looking at origin point (point (0,0,0) in local coordinates) projected on Y=0 plane. This may be better than cgeref:sort3DOrigin[] in some cases because it ignores the object height for the sorting purposes.
 
 ////
 ==== Manually doing sorting
