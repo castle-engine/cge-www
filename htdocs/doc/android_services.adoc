@@ -34,7 +34,6 @@ The Android services are declared in link:project_manifest[CastleEngineManifest.
 * https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/google_play_games/README.adoc[google_play_games]
 * https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/google_play_services/README.adoc[google_play_services]
 * https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/helpshift/README.adoc[helpshift]
-* https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/heyzap/README.adoc[heyzap]
 * https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/sound/README.adoc[sound]
 * https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/startapp/README.adoc[startapp]
 * https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/tenjin/README.adoc[tenjin]
