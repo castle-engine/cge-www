@@ -15,6 +15,7 @@ Any Android >= 4.1 (platform android-16). Reasons:
  ** New executables (with PIC) can run only on Android 4.1+ (according to http://wiki.freepascal.org/Android ).
  ** New Android NDK just supports only >= 16.
  ** In theory, you could workaround it, by explicitly compiling Android library _without_ PIC support, and sticking to an ancient version of Android NDK. But this would give you an application that, in turn, doesn't work on newer phones (since platform 23, PIC support is required).
+* Android 5.0 (platform android-21) is necessary by https://developer.android.com/games/sdk/oboe[Oboe 1.7.0].
 
 == Loading and packaging game data
 
