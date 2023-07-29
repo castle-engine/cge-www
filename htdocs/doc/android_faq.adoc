@@ -3,11 +3,13 @@ include::common.adoc[]
 
 == Introduction
 
-Questions related to link:android[Android] development.
+Questions related to link:android[Android] support.
 
 == What Android devices are supported
 
-Any Android >= 4.1 (platform android-16). Reasons:
+Any Android >= 5.0.
+
+Reasons:
 
 * Android 2.0 (platform android-5) is necessary, to have `OpenGL ES 2.0`.
 * Android 2.3 (platform android-9) is necessary, to `NativeActivity` and `EGL`.
@@ -15,47 +17,59 @@ Any Android >= 4.1 (platform android-16). Reasons:
  ** New executables (with PIC) can run only on Android 4.1+ (according to http://wiki.freepascal.org/Android ).
  ** New Android NDK just supports only >= 16.
  ** In theory, you could workaround it, by explicitly compiling Android library _without_ PIC support, and sticking to an ancient version of Android NDK. But this would give you an application that, in turn, doesn't work on newer phones (since platform 23, PIC support is required).
-* Android 5.0 (platform android-21) is necessary by https://developer.android.com/games/sdk/oboe[Oboe 1.7.0].
+* Android 5.0 (platform android-21) is necessary by https://developer.android.com/games/sdk/oboe[Oboe 1.7.0], which in turn is necessary for flawless sound playback on all Android devices.
 
 == Loading and packaging game data
 
-*Simple answer:*
-
-Follow https://castle-engine.io/manual_data_directory.php . This means:
-
 . When developing a game, put all your game data under the "data/" subdirectory.
-. Then load it using `castle-data:/xxx` URLs, for example use `LoadImage('castle-data:/gui/blabla.png')` to load an image stored under `data/gui/blabla.png`.
 
-The above approach makes your code 100% working on both Android and standalone platforms. Our link:build_tool[build tool] will automatically package the `data/` subdirectory correctly.
+. Load it using `castle-data:/xxx` URLs.
++
+For example, set `TCastleScene.URL := 'castle-data:/my_model.gltf'` to load a 3D model.
++
+When you design using link:manual_editor.php[CGE editor], it will automatically use `castle-data:/xxx` URLs.
 
-*Longer explanation about what happens under the hood:*
+More information about https://castle-engine.io/manual_data_directory.php[data directory, and castle-data protocol, is here] .
 
-In an Android application, you _can_ read files on a normal filesystem, just like on any other Unix. Like `file:///sdcard/my_texture.png`. However, it's not a proper way to distribute your game read-only data. The game data should be placed as the "assets" inside the apk file, and opened using special Android functions. We support it seamlessly in the Castle Game Engine:
+This approach makes your code 100% working on both Android and other platforms. Our link:build_tool[build tool] will automatically package the `data/` subdirectory correctly.
+
+*What happens under the hood (internal):*
+
+In an Android application, you _can_ read files on a normal filesystem (if only you have permissions to do so, which are more fine-grained in recent Android version). Just like on any other Unix. Like `file:///sdcard/my_texture.png`. However, reading arbitrary files on a filesystem is not a proper way to distribute your game data. The game data should be placed as the _"assets"_ inside the Android APK / AAB file, and opened using special Android functions. We support it seamlessly in the Castle Game Engine:
 
 * Our build tool automatically packs files inside the `data/` subdirectory as Android "assets".
+
 * Our file-reading routines (the `Download` function, and https://castle-engine.io/manual_network.php[everything opening files/URLs built on top of it]) support a special protocol `castle-android-assets:/` to access Android assets. So you can open URL like `castle-android-assets:/my_texture.png`.
+
 * Finally, the `castle-data:/xxx` URL is resolved into `castle-android-assets:/xxx` on Android by default (assuming you didn't set `ApplicationDataOverride`).
 
-In effect, when you use the build tool and the `castle-data:/xxx` on Android, you seamlessly read data from your APK "assets".
+In effect, when you use the build tool and the `castle-data:/xxx` on Android, you seamlessly read data from your packaged "assets".
 
 == Saving user preferences and savegames
 
-Simply use the global `UserConfig` (in CastleConfig unit) to load/save your settings. See https://castle-engine.io/manual_user_prefs.php . The same mechanism works for saving preferences with standalone (desktop) applications.
+Simply use the global `UserConfig` (in CastleConfig unit) to load/save your settings. Follow https://castle-engine.io/manual_user_prefs.php[Persistent data (user preferences, savegames)] manual. The same mechanism works for saving preferences on other platforms.
 
-Just like with standalone code, you have to explicitly call `UserConfig.Load` and `UserConfig.Save` when necessary. You will usually call `UserConfig.Load` in your `Application.OnInitialize` handler, to load user preferences at the beginning of your application. You will usually call `UserConfig.Save` when user confirms the preferences change, or simply immediately -- the exact moment depends on the game UI flow. Don't wait too long before saving the user preferences -- on Android, your application may be killed at any moment.
+Note that (just like on other platforms) you have to explicitly call `UserConfig.Load` and `UserConfig.Save` when necessary. You will usually call `UserConfig.Load` in your `Application.OnInitialize` handler, to load user preferences at the beginning of your application. You will usually call `UserConfig.Save` when user confirms the preferences change, or simply immediately -- the exact moment depends on the game UI flow. Don't wait too long before saving the user preferences -- on Android, your application may be killed at any moment.
+
+For more possibilities, you can write file(s) using the  URL returned by cgeref:ApplicationConfig[] function. It returns a path to a special directory on Android, where you can write application settings.
 
 == Creating AAB (Android App Bundle)
 
 Traditionally, Android applications are distributed as _APK (Android Package)_ files. This package format remains the default in CGE, as it can be easily installed on any Android device (so it is convenient for development purposes). Also, it is the required distribution format on most stores _except the Google Play_. For example you can upload APK to https://itch.io/[itch.io] (see our https://castle-engine.itch.io/platformer[platformer for Android on itch.io]).
 
-However, _Google Play_ requires the new applications to be uploaded using a new _AAB (Android App Bundle)_ format, not an APK. To generate the AAB file, just add the `--package-format=android-app-bundle` to the link:build_tool[build tool] command-line, like this:
+However, _Google Play_ requires the new applications to be uploaded using a new _AAB (Android App Bundle)_ format, not an APK. To generate the AAB file:
 
+* In link:manual_editor.php[CGE editor], change _"Run -> Package Format"_ to _"Android App Bundle (AAB)"_.
+
+* Or, if using link:build_tool[build tool] from the command-line, add the `--package-format=android-app-bundle` option, resulting in call like this:
++
 ```
 castle-engine package --target=android --package-format=android-app-bundle
 ```
 
 _Android App Bundle (AAB)_ is a collection of prebuilt resources targeted for different user devices (such as Android version, CPU architecture, Screen resolution). _Play Store_ then automatically generates an APK based on user configuration. Note that it also means that AAB package cannot be directly installed on a mobile device/emulator and therefore for debugging and internal testing APK is still a necessary format.
 
+////
 The default remains to create APK. You can also request APK format explicitly using
 
 ```
@@ -67,6 +81,7 @@ or
 ```
 castle-engine package --target=android --package-format=default
 ```
+////
 
 == Signing a release APK / AAB
 
@@ -100,9 +115,9 @@ This will allow you to create release APK / AAB files (our link:build_tool[build
 
 == Logging
 
-* Use our `CastleLog` unit (see link:log[]).
-* (The call to `InitializeLog` will be done automatically, from `CastleAutoGenerated` unit, so don't worry about it.)
-* Use `WritelnLog` or `WritelnWarning` from your code.
+Simply call cgeref:WritelnLog[] or cgeref:WritelnWarning[] at any point of your application. They are defined in cgeref:CastleLog[] unit.
+
+See link:log[logging in our manual] for more information.
 
 On Android, these logs are send to the standard Android logging API ("logcat").
 
@@ -112,11 +127,9 @@ Alternatively, you can use any other Android tool, e.g. command-line `adb logcat
 
 == Is it possible to test our games using Android emulator from SDK?
 
-Yes!
+Yes! Android emulator can run OpenGL ES applications.
 
-With latest versions of Android emulator it is possible to run OpenGL ES applications (see http://android-developers.blogspot.com/2012/04/faster-emulator-with-better-hardware.html , emulator can now handle apps using OpenGL ES 2.0 and hard floats).
-
-NOTE: you will need to check "_Use Host GPU_" in emulator options. Otherwise the app will stop and in the log (Android logcat) you will see a message "_Emulator without GPU emulation detected_.".  Also, make sure your device is created with sufficient space (on _Internal storage_ or _SD Card_).
+NOTE: You will need to check "_Use Host GPU_" in emulator options. Otherwise the app will stop and in the log (Android logcat) you will see a message "_Emulator without GPU emulation detected_.".  Also, make sure your device is created with sufficient space (on _Internal storage_ or _SD Card_).
 
 [NOTE]
 ====
@@ -133,7 +146,7 @@ and transfer the resulting APK into the emulator/virtual machine. The Android SD
 
 == Testing mobile (OpenGL ES) rendering without an Android
 
-You can compile a standalone program, for your normal OS, using OpenGLES instead of the traditional desktop OpenGL. This way you can test how your application looks like before actually compiling it for Android. The differences between desktop (OpenGL) and mobile (OpenGLES) are usually very small, due to the link:mobile_todos[small number of things not yet implemented on OpenGLES].
+You can compile a standalone program, for your normal OS, using OpenGLES instead of the traditional desktop OpenGL. This way you can test how your application looks like before actually compiling it for Android. In general, there should be no differences between desktop (OpenGL) and mobile (OpenGLES) rendering, except https://castle-engine.io/roadmap#_mobile[temporarily we don't support wireframe rendering on OpenGLES].
 
 Just define `OpenGLES` symbol in `src/castleconf.inc` inside the engine sources. Or add `-dOpenGLES` to your `fpc.cfg` file, or to the `<compiler_options>` in your link:project_manifest[CastleEngineManifest.xml]. Then recompile (the engine and your game).
 
@@ -149,6 +162,8 @@ Note that you will need to compile your application for the same architecture as
  ** Also this post has useful links: http://www.g-truc.net/post-0457.html .
 
 == Debugging running application (on an Android device) using ndk-gdb
+
+NOTE: You can also use https://developer.android.com/studio[Android Studio] to open and run your Android project (stored in `<your-project>/castle-engine-output/android/`). This is a straightforward way to debug your application in many cases.
 
 If you use our link:build_tool[build tool] for compilation, the debug apk is already prepared such that you can debug it with "ndk-gdb". You must run `ndk-gdb` within the output Android project, like this:
 
@@ -204,6 +219,8 @@ Random hints:
 * If you get an error around the `[ .. readlink /system/bin/ps ..]` failing, a workaround is to edit `<ndk>/python-packages/gdbrunner/__init__.py` and set `ps_script = "ps"`.
 
 == Getting useful backtrace of a crash (on an Android device) using ndk-stack
+
+NOTE: You can also use https://developer.android.com/studio[Android Studio] to open and run your Android project (stored in `<your-project>/castle-engine-output/android/`). This is a straightforward way to debug your application in many cases.
 
 Similar to the above instructions for `ndk-gdb`, you should compile your application in the _debug mode_, and enter the directory of resulting Android project:
 
