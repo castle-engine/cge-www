@@ -135,7 +135,7 @@ $ find -iname *.jar
 ./tools/build-tool/data/android/base/gradle/wrapper/gradle-wrapper.jar
 $ find -iname *.so
 ./tools/build-tool/data/android/integrated-services/.../app/src/main/jniLibs/.../lib*.so
-# should show 4x libs for services that rely on them, like sound, freetype.
+# should show 4x libs for services that rely on them, like freetype.
 ```
 
 ## Test: Using system-provided Gradle instead of bundled (Android)

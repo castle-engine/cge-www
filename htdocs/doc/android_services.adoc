@@ -5,7 +5,7 @@ include::common.adoc[]
 
 cgeimg::block[android-components-icons.png|Android Services]
 
-When you use our link:build_tool[build tool] to package your game for Android, you can easily add _services_ to the project. They allow to comfortably access various Android services (from Google and other 3rd parties, like ad networks) from your Object Pascal game code using the https://castle-engine.io/engine.php[Castle Game Engine].
+When you package your game for Android, you can easily add _services_ to the project. They allow to comfortably access various Android services (from Google and other 3rd parties, like ad networks) from your Object Pascal game code using the https://castle-engine.io/[Castle Game Engine].
 
 The Android services are declared in link:project_manifest[CastleEngineManifest.xml] like this:
 
@@ -45,20 +45,27 @@ The Android services are declared in link:project_manifest[CastleEngineManifest.
 * https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/android/integrated-services/vibrate/README.adoc[vibrate]
 * https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/android/integrated-services/write_external_storage/README.adoc[write_external_storage]
 
-== Note on Android project types
+== How it works
 
-Using the `<android>` element, you can request a project type:
+While the base _Castle Game Engine_ activity on Android uses `NativeActivity`, we add Java code to integrate with additional services you request.
 
-* `<android project_type="base">`: No extra integration, the final project does not use any Java code at all. Rendering and inputs work 100%, since they don't require anything extra. This may be enough for some games. However _no services can work_.
-* `<android project_type="integrated">`: (*This is the default in CGE >= 6.5.*) We include extra Java integration code that allows to use Android project services that communicate with Object Pascal code. This opens the door for the services mentioned below. It also allows to integrate with various native-code libraries (like FreeType and OpenAL).
+The link:build_tool[build tool] will automatically create Android project that contains all the necessary services, and it will invoke Android tools to build and run it.
 
-Merely declaring the project type as "integrated" (even without any extra services) immediately gives you:
+== Default features of integrated projects
 
-* _Immersive mode_ on newer Android devices. This is a "true" full-screen mode for games on Android, where the back/home buttons are usually hidden.
-* You can open URLs in external applications using cgeref:OpenURL[] from cgeref:CastleOpenDocument[] unit. Hint: use special `market://` URL to send users to the _Google Play_ store, e.g. to rate your application.
-* You can share text and links with other applications. Use https://castle-engine.io/apidoc/html/CastleOpenDocument.html#ShareText[ShareText] from the https://castle-engine.io/apidoc/html/CastleOpenDocument.html[CastleOpenDocument] unit.
-* You can send Android standard on-screen notification ("toast") using https://castle-engine.io/apidoc/html/CastleOpenDocument.html#OnScreenNotification[OnScreenNotification] from the https://castle-engine.io/apidoc/html/CastleOpenDocument.html[CastleOpenDocument] unit.
-* Some services (like `sound` and `ogg_vorbis`) will be added automatically to your project if the sound files are detected in your game data. So merely declaring your project type as "integrated" makes sound work on Android.
+Even if you don't add any services explicitly, by default the following features are available:
+
+* _Immersive mode_. This is a "true" full-screen mode for games on Android, where the back/home buttons are usually hidden.
+
+* You can open URLs in external applications using cgeref:OpenURL[].
++
+NOTE: Open special `market://` URL on Android to send users to the _Google Play_ store, e.g. to rate your application.
+
+* You can share text and links with other applications using cgeref:ShareText[]. This allows to e.g. propose users to send a message with a link to your game to their friends.
+
+* You can send Android standard on-screen notification ("toast") using cgeref:OnScreenNotification[].
+
+* Some services (like `sound` and `ogg_vorbis`) will be added automatically to your project if the sound files are detected in your game data.
 
 == Adding new services
 
