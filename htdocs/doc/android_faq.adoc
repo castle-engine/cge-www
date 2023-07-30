@@ -163,7 +163,7 @@ Note that you will need to compile your application for the same architecture as
 
 == Debugging running application (on an Android device) using ndk-gdb
 
-NOTE: You can also use https://developer.android.com/studio[Android Studio] to open and run your Android project (stored in `<your-project>/castle-engine-output/android/`). This is a straightforward way to debug your application in many cases.
+NOTE: You can also use https://developer.android.com/studio[Android Studio] to open and run your Android project (stored in `<your-project>/castle-engine-output/android/project/`). This is a straightforward way to debug your application in many cases.
 
 If you use our link:build_tool[build tool] for compilation, the debug apk is already prepared such that you can debug it with "ndk-gdb". You must run `ndk-gdb` within the output Android project, like this:
 
@@ -220,7 +220,7 @@ Random hints:
 
 == Getting useful backtrace of a crash (on an Android device) using ndk-stack
 
-NOTE: You can also use https://developer.android.com/studio[Android Studio] to open and run your Android project (stored in `<your-project>/castle-engine-output/android/`). This is a straightforward way to debug your application in many cases.
+NOTE: You can also use https://developer.android.com/studio[Android Studio] to open and run your Android project (stored in `<your-project>/castle-engine-output/android/project/`). This is a straightforward way to debug your application in many cases.
 
 Similar to the above instructions for `ndk-gdb`, you should compile your application in the _debug mode_, and enter the directory of resulting Android project:
 
