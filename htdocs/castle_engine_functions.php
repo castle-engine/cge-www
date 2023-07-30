@@ -237,7 +237,8 @@ $castle_sitemap = array(
       'doc/castle_game_engine_for_unity_developers' => array('title' => 'Overview for Unity Developers'),
       'compiling_from_source' => array('title' => 'Compiling from source'),
       'vrml_x3d' => array('title' => 'Scene Graph (X3D)'),
-      'gic2022' => array('title' => 'Presentation (GIC 2022)', 'url' => 'https://castle-engine.io/gic2022'),
+      'gic2022' => array('title' => 'Slides from GIC 2022', 'url' => 'https://castle-engine.io/gic2022'),
+      'ipc2023' => array('title' => 'Slides from IPC 2023', 'url' => 'https://castle-engine.io/ipc2023'),
     ),
     'sidebar' => true,
     'sub' => array(
@@ -418,6 +419,7 @@ $castle_sitemap = array(
         )
       ),
       'reference' => array('title' => 'API Reference', 'url' => reference_link()),
+      'doc/why_pascal' => array('title' => 'Why Pascal?'),
       'doc/modern_pascal' => array('title' => 'Modern Object Pascal Introduction'),
       'doc/castle_game_engine_for_unity_developers' => array('title' => 'Overview for Unity Developers'),
 
@@ -518,7 +520,8 @@ $castle_sitemap = array(
         ),
       ),
 
-      'gic2022' => array('title' => 'Presentation (GIC 2022)', 'url' => 'https://castle-engine.io/gic2022'),
+      'gic2022' => array('title' => 'Slides from GIC 2022', 'url' => 'https://castle-engine.io/gic2022'),
+      'ipc2023' => array('title' => 'Slides from IPC 2023', 'url' => 'https://castle-engine.io/ipc2023'),
     ),
   ),
 
