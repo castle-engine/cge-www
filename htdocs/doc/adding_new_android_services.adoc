@@ -7,22 +7,25 @@ _Castle Game Engine_ defines a number of useful link:android_services[Android se
 
 This page documents how you can add new services for Android.
 
-== Be sure to use Android project_type "integrated" (this is the default now)
+== Overview
 
-All the Android services require that you have an `integrated` Android project type (default now), not `base`. With the `integrated` project type, our final Android project has it's own activity class (`MainActivity`, descendant of `NativeActivity`, in `tools/build-tool/data/android/integrated/app/src/main/java/net/sourceforge/castleengine/MainActivity.java`), and it has Java code that is "summed" by adding all the files from
+The final Android project has it's own activity class (`MainActivity`, descendant of `NativeActivity`), and it has Java code created by combining the files from:
 
-* `tools/build-tool/data/android/integrated`
-* and subdirectories of `tools/build-tool/data/android/integrated-services`
+* https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated[tools/build-tool/data/android/integrated]
 
+* Subdirectories of https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services[tools/build-tool/data/android/integrated-services] for all requested services.
+
+////
 The `base` project type (you can request it by `CastleEngineManifest.xml`) is _not_ suitable to implement additional services.
 
 * This project type on Android (constructed from code in `tools/build-tool/data/android/base/` ) does not contain _any_ Java code. It is possible thanks to using Android `NativeActivity` class. The activity type of our game can be simply declared as `NativeActivity` then, for Android build tools, and there's no need to create our own Java activity class, or to write any Java code at all. This possibility was explicitly documented at the `NativeActivity` docs from Google.
 * This allows our application to render, update, listen for touch events, in general use all the NDK functionality (including standard Unix library, e.g. to open files, and some Android-specific things like logging). For some simple games this is enough.
 * But any integrations that require Java libraries are impossible to implement in this case. The NDK libraries only provide some basic functionality, they absolutely _do not_ cover the functionality offered by the Java API on Android.
+////
 
 == Adding new service
 
-It's easy to add your own Android services, if you need to integrate with some Android library not covered by existing link:android_services[Android services]. Create your service inside the `castle_game_engine/tools/build-tool/data/android/integrated-services/xxx/` directory. The files there are copied to the final Android project, expanding macros inside. Most of the files are simply copied (but avoiding overwriting), but some files are merged in a special way:
+It's easy to add your own Android services, if you need to integrate with some Android library not covered by existing link:android_services[Android services]. Create your service by adding new directory under https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services[tools/build-tool/data/android/integrated-services]. The files there are copied to the final Android project, expanding macros inside. Most of the files are simply copied (but avoiding overwriting), but some files are merged in a special way:
 
 * `AndroidManifest.xml` of each service is merged with the main `AndroidManifest.xml` in a smart way, only adding the new permissions and new elements/attributes inside the +++<application>+++.+++</application>+++
 * `build.gradle` files inside the services have a special XML syntax. See the example services like `helpshift`. They are merged into the final (non-XML) `build.gradle` file in a smart way.
@@ -76,24 +79,42 @@ NOTE: The disadvantage of `CastleMessaging` approach is that the communication b
 
 == Adding a service with dynamic library (SO)
 
-A service can be to add a dynamic library (SO, file like `libxxx.so`) to your Android project.
+A service can add a dynamic library (SO, file like `libxxx.so`) to your Android project.
 
-This should be compiled for all Android architectures, so you actually need 2 versions:
+The library should be compiled for all possible Android architectures. At least provide versions for these 2 CPUs:
 
 * Arm 32-bit (called just `arm` by various tools)
-* and Arm 64-bit (called `aarch64` by various tools).
+* Arm 64-bit (called `aarch64` by various tools).
 
-In theory, only one of them can suffice, but then your application will only support one Android architecture. You would then build the application like
+Moreover, it's best to provide versions for "normal" (typically used on desktop PCs) CPUs, they will be useful in emulators and virtual machines:
+
+* `x86` (typical 32-bit PCs; also called `i386` by some tools)
+* `x86_64` (typical 64-bit PCs; also called `amd64` by some tools)
+
+In theory, you don't need to provide all versions, you don't even need to provide versions for both 32-bit and 64-bit Arm. But then your application will only support one Android architecture. You would then have to build the application like
 
 * `castle-engine --cpu=arm --os=android` (to make 32-bit-only application)
 
 * or `castle-engine --cpu=aarch64 --os=android` (to make 64-bit-only application).
 
-For now, we strongly advise that you provide both SO versions, and compile your APK for both architectures using simple `castle-engine --target=android`.
+We strongly advise that you provide all SO versions, and compile your Android applications for all common architectures using simple `castle-engine --target=android`. This compiles for both 32-bit Arm and 64-bit Arm now. For people testing in emulator, link:android_faq#_is_it_possible_to_test_our_games_using_android_emulator_from_sdk[we recommend to explicitly build with x86_64 CPU now].
 
 Example services that includes SO files see:
 
 * https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/ogg_vorbis[ogg_vorbis]
 * https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/freetype[freetype]
 
-They contain just a few trivial files, and two SO files (for Arm 32-bit and 64-bit).
+They contain just a few trivial files, and the SO files for all architectures.
+
+== Adding a service with C or {cpp} code
+
+A service can include C or {cpp} code that will be automatically compiled for all suitable Android architectures using _CMake_ system automatically invoked by Android Gradle.
+
+If your service is a library implemented using {cpp} code, we recommend to put {cpp} source code in the service (not a precompiled library) to avoid having to deal with complications of compiling {cpp} code for Android, linking with proper base {cpp} library etc. Let the Android Gradle do the job for you.
+
+For services using plain C, it may be that this is also the easiest approach.
+
+Examples of using this approach:
+
+* https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/sound[sound] (using https://github.com/kcat/openal-soft/[OpenAL Soft])
+* https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/internal_test_cpp_lib[internal_test_cpp_lib] (test dummy {cpp} library)

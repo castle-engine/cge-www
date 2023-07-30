@@ -91,7 +91,7 @@ Below is a sample project manifest with more information:
   <icons>
     <icon path="icon.png" />
   </icons>
-  <android project_type="integrated">
+  <android>
     <services>
       <service name="vibrate" />
     </services>
@@ -308,10 +308,9 @@ Notes for testing: iOS really aggressively caches these launch images. If you ch
 ----
 ...
   <android
-    project_type="integrated"
-    compile_sdk_version="27"
-    min_sdk_version="16"
-    target_sdk_version="27"
+    compile_sdk_version="33"
+    min_sdk_version="21"
+    target_sdk_version="33"
   >
     <services>
       <service name="google_play_services" />
@@ -325,12 +324,28 @@ Notes for testing: iOS really aggressively caches these launch images. If you ch
 
 The `<android>` element provides various extra Android-specific information.
 
-* See link:android_services[Android services] for a description of `project_type`, and what _services_ are available inside the `<services>` element.
-* `compile_sdk_version`: The Android SDK _platform version_ used to compile the project. You must have this version installed in the Android SDK. For example, if this is 27 (the current default), then you must install the _"SDK Platform"_ and _"Google APIs"_ components of the _"Android 6.0 (API 27)"_ section in your Android SDK. Note that this does _not_ determine the minimum (or maximum) Android version your application supports. It is optional, the default value is shown above.
-* `min_sdk_version`: The minimum supported Android version. It is a hard limit on where the application is installable, it also limits for which devices it appears in the Google Play store. See the link:android_faq#_what_android_devices_are_supported[Android FAQ: What Android devices are supported?] for a reason behind the current value.
-* `target_sdk_version`: Which Android version of Android Java APIs you can use. Don't worry about it, unless you use a specific link:android_services[Android service] that requires increasing this version.
-+
-Note that with FPC versions earlier than 3.0.2, you cannot increase `target_sdk_version` above 22. That's due to missing PIC support. See http://lists.freepascal.org/pipermail/fpc-devel/2015-September/035948.html and http://fpc-devel.freepascal.narkive.com/tMJHK2Hw/fpc-app-crash-with-has-text-relocations-android-6-0 . Compiling with -fPIC doesn't help, your app will crash then with `+java.lang.IllegalArgumentException: Unable to load native library:...+`
+* See link:android_services[Android services] about _services_ that are available inside the `<services>` element.
+
+* `compile_sdk_version`: Optionally customize the Android SDK _platform version_ used to compile the project. Note that this does _not_ determine the minimum (or maximum) Android version your application supports.
+
+* `min_sdk_version`: Optionally customize the minimum supported Android version. It is a hard limit on where the application is installable, it also limits for which devices it appears in the Google Play store.
+
+* `target_sdk_version`: Optionally customize version of Android Java APIs you can use. Don't worry about it, unless you use a specific link:android_services[Android service] that requires increasing this version.
+
+You generally should not customize the `xxx_sdk_version` values, the defaults have been chosen to support widest possible range of Android devices and allow smooth publishing in stores like _Google Play_ (that place some minimal requirements on these values for new and updated applications).
+
+See the link:android_faq#_what_android_devices_are_supported[Android FAQ: What Android devices are supported?] for what (and why) Android devices are supported by CGE.
+
+If you really need to customize them, you should not customize them to be _lower_ than the defaults. To see the default values execute build tool with command-line option `--help`, it outputs something like:
+
+```
+...
+Defaults:
+  android.compile_sdk_version = 33
+  android.min_sdk_version = 21
+  android.target_sdk_version = 33
+...
+```
 
 === iOS information
 
@@ -427,8 +442,6 @@ NOTE: To handle the URL to be opened, you have to implement `Window.OnDropFiles`
 ----
 
 The `<dependencies>` element allows to explicitly declare dependencies on various libraries. These dependencies are applied on all platforms. On some platforms (for now: Windows, Android, iOS) the necessary libraries are automatically bundled with your binary when packaging.
-
-(Note for Android: It is necessary to use `project_type="integrated"` to have some of the dependencies applied -- like `Sound` and `OggVorbis`.)
 
 Note that it's often not necessary to specify these dependencies. The build tool automatically adds the dependencies when it detects a particular file format in your game `data`. For example, if you have a file `music.ogg`, we will automatically add the `OggVorbis` and `Sound` dependencies.
 
