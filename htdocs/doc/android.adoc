@@ -20,9 +20,10 @@ If you have problems with the procedure outlined below, please:
 Almost all our examples, and all new projects created by CGE editor _"New Project"_ from one of the templates, are automatically https://castle-engine.io/manual_cross_platform.php[cross-platform] and can be compiled for Android. In particular:
 
 * You can create _"New Project"_ from any template - 2D game, 3D game etc. You get a cross-platform application that can be build for Android.
-* `examples/mobile/simple_3d_demo/` - 3D world and navigation and graphic effects on Android.
 
-* `examples/mobile/achievements/` - 2D animation and Google Play Games integration on Android.
+* https://github.com/castle-engine/castle-engine/tree/master/examples/mobile/simple_3d_demo[examples/mobile/simple_3d_demo/] - 3D world, navigation and graphic effects on Android.
+
+* https://github.com/castle-engine/castle-engine/tree/master/examples/mobile/game_services[examples/mobile/game_services/] - 2D animation and https://developers.google.com/games/services[Google Play Games] integration on Android. Shows how you can use achievements and leaderboards.
 
 Once you finish this chapter, you will be able to use use the link:manual_editor.php[CGE editor] or command-line link:build_tool[build tool] to compile all these programs (and almost all other CGE examples) for Android.
 

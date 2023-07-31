@@ -148,7 +148,7 @@ It is *expected* it will answer something like "Minimum supported Gradle version
 sudo apt install gradle
 
 make strip-precompiled-libraries
-cd examples/mobile/achievements/
+cd examples/mobile/game_services/
 castle-engine --target=android --mode=debug package --fast
 
 # Should use system-wide Gradle, should show a message like
