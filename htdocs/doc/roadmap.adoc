@@ -468,14 +468,12 @@ So:
 2. When using threads, then we should use Delphi tasks (on Delphi), where possible. Only for FPC we'll need to duplicate subset of it (unless FPC will get the compatible implementation).
 ====
 
-## Automatically reload (in editor) data files when they change
+## Improve automatic reloading of files (in editor) when they changed
 
-By deafult, at design-time, `TCastleScene` and other components loading stuff from URLs (possibly from `data`) should be notified when the file changes. And they should reload it automatically, without the need for user to do _"Reload URL"_ from context menu.
+Automatic reloading (`CastleInternalFileMonitor`) now:
 
-This should account for various changes:
+* Doesn't capture changes to secondary files, e.g. to textures used in glTF file. We only watch the file indicated by TCastleScene.Url now.
 
-- From CGE own sprite sheet editor.
+* When TCastleScene.Cache, the file will not be reloaded from disk correctly.
 
-- From external applications, e.g. exporting from Blender to glTF, changing Tiled TMX file, editing image (e.g. to add alpha bleeding using castle-image-view).
-
-There are OS-level notifications for file changes. As a fallback we should use internal in-process notifications, that would at least work e.g. for changes done in sprite sheet editor.
+* Not all components implement necessary watching logic. For now only TCastleSceneCore. All components should eventually do it, e.g. TCastleTiledMap, TCastleImageTransform, TCastleImageControl.
