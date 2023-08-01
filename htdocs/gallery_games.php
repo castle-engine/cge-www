@@ -23,6 +23,14 @@ We love to see how you use CGE.</i>
     'https://cat-astrophe-games.itch.io/lynch');
   ?>
 
+  <?php gallery_link('Not Quake',
+    'Online multi-player first-person shooter using <i>Castle Game Engine</i> and <a href="https://github.com/BeRo1985/rnl">RNL</a>. Gamejam game. By default automatically connects to an online server. Chat and shoot your friends over the Internet freely.
+
+    <p><a href="https://github.com/castle-engine/not-quake/">Source code</a>. <a href="https://castle-engine.io/wp/2022/06/24/not-quake-an-example-of-real-time-multi-player-shooter-a-bit-like-quake-using-castle-game-engine-and-rnl/">News announcement</a>.',
+    'not_quake_1.png',
+    'https://cat-astrophe-games.itch.io/not-quake');
+  ?>
+
   <?php gallery_link('Foxy Misfortunes (18+)',
     'A simple top-down shooter by EugeneLoza where clothes are hit-points. Source code is <a href="https://gitlab.com/EugeneLoza/foxy-misfortunes">available on GitLab</a>.',
     'foxy-misfortunes.png',
@@ -142,13 +150,13 @@ We love to see how you use CGE.</i>
 
 <ul>
   <?php gallery_link_noimage("Decoherence game collection on itch.io",
-    'Various games by Eugene Loza, some using Castle Game Engine.',
+    'Games by Eugene Loza, most using Castle Game Engine.',
     "https://decoherence.itch.io/");
   ?>
 
-  <?php gallery_link_noimage("Michalis game collection on itch.io",
-    'Various games by Michalis Kamburelis, all using Castle Game Engine. You can <a href="all_programs_sources.php">download sources of all these programs here</a>. They are also available on GitHub, <a href="https://github.com/castle-engine/">as part of GitHub Castle Game Engine organization</a>.',
-    "http://michaliskambi.itch.io/");
+  <?php gallery_link_noimage("Castle Game Engine collection on itch.io",
+    'Various "official" applications and games released by the Castle Game Engine developers. They are also available on GitHub, <a href="https://github.com/castle-engine/">as part of GitHub Castle Game Engine organization</a>.',
+    "https://castle-engine.itch.io/");
   ?>
 </ul>
 
