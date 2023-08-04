@@ -85,11 +85,9 @@ castle-engine package --target=android --package-format=default
 
 == Signing a release APK / AAB
 
-To create a "release" APK / AAB (one that you can distribute, e.g. through WWW or by uploading it to Google Play) you need to create your private key, and use it to sign your packages.
+To create a "release" APK / AAB (one that you can distribute, e.g. through WWW or by uploading it to Google Play) you need to create your _key store_, and use it to sign your packages.
 
-See https://developer.android.com/studio/publish/app-signing[Android signing documentation from Google] for description how to create and manage your key store.
-
-NOTE: For new applications uploaded to _Google Play_ store, you can (actually, you have to) let the Google Play handle the final signing for you. This is even required in case of AAB, because _Google Play_ needs to internally unpack your AAB and create APK from it. But you still need to sign the file you upload (whether APK or AAB) using the _upload key_, so the procedure described on this page still applies.
+See https://developer.android.com/studio/publish/app-signing[Android signing documentation from Google] for a description how to create and manage your key store.
 
 [NOTE]
 ====
@@ -102,7 +100,7 @@ keytool -genkey -v -keystore my_keystore_name.keystore -alias my_alias -keyalg R
 and fill an interactive questionnaire to provide the passwords and certificate details. Be sure to save the generated keystore file and passwords secure.
 ====
 
-Once you have your keys, you need to tell our link:build_tool[build tool] to use them. You do this by creating `AndroidSigningProperties.txt` file at the top of your project (along the `CastleEngineManifest.xml` file). Add there these lines:
+Once you have your keystore, create `AndroidSigningProperties.txt` file at the top of your project (along the `CastleEngineManifest.xml` file). Add there these lines:
 
 ----
 key.store=<path-to-your-keystore>
@@ -111,7 +109,11 @@ key.store.password=<my-password>
 key.alias.password=<my-password>
 ----
 
-This will allow you to create release APK / AAB files (our link:build_tool[build tool] will automatically use it when making a "package" in "release" mode).
+This will allow you to create release APK / AAB files. Our link:build_tool[build tool] will automatically use it when making a "package" in "release" mode.
+
+Note that for new applications uploaded to the _Google Play_ store, you have to use AAB format (not APK). And in this case, you have to let _Google Play_ handle signing for you (internally, _Google Play_ will unpack your AAB and create APK from it). You still need to sign the file you upload using the _upload key_, so you still need the _key store_.
+
+There are more options (see Google docs), but for us it seems it's simplest to use _"App signing preferences -> Export and upload a key from Java keystore"_ and upload to Google your (encrypted) keystore following recommendations there.
 
 == Logging
 
