@@ -6,7 +6,18 @@ castle_header("Privacy Policy", array(
 echo pretty_heading($page_title);
 ?>
 
-<h2>Analytics we use</h2>
+<h2>Mobile applications</h2>
+
+<p>Mobile applications released through <a href="https://play.google.com/store/apps/dev?id=8315026166336791468">our Google Play account</a> do not feature any analytics or ads unless explicitly stated in their description. They do not collect any data from you.
+
+<p>Note though:
+
+<ul>
+  <li>
+    <p>Applications using <i>Google Play Games</i> integration use standard  <a href="https://developers.google.com/games/services/">Google Play Games Services</a> mechanisms to login and associate game information (achievements, leaderboards, savegames) with your account.
+</ul>
+
+<h2>Website analytics</h2>
 
 <p>We use website analytics to improve your experience on our webpages: to detect erors (e.g. broken links) and to decide how to best present our content (e.g. what content is most useful to you). We use it only internally. The decisions we make upon these statistics are performed by humans (i.e. they are not automated, we do not do "profiling" to serve different users different content based on how they behave).
 
