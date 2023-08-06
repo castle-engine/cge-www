@@ -25,7 +25,6 @@ Inside the link:project_manifest[CastleEngineManifest.xml] you can declare which
 * https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/ios/services/fmod/README.adoc[fmod]
 * https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/ios/services/freetype/README.adoc[freetype]
 * https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/ios/services/game_analytics/README.adoc[game_analytics]
-* https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/ios/services/google_analytics/README.adoc[google_analytics]
 * https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/ios/services/icloud_for_save_games/README.adoc[icloud_for_save_games]
 * https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/ios/services/in_app_purchases/README.adoc[in_app_purchases]
 * https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/ios/services/ogg_vorbis/README.adoc[ogg_vorbis]
