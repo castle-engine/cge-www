@@ -106,6 +106,7 @@ See https://castle-engine.io/wp/2022/12/24/summary-of-4th-open-meeting-physics-p
 * Cache for scene loading: cgeref:TCastleSceneCore.Cache[].
 * MD3 support improvements: multiple animations supported (we load `animation.cfg`), so playing particular MD3 animations is trivial, just use our `PlayAnimation` method. Optimized loading. Choosing skins. Support for tags. See https://castle-engine.io/md3[MD3 support docs], see https://castle-engine.io/wp/2023/03/31/md3-support-improvements-multiple-animations-tags-configurable-skins/[news].
 * Lots of documentation updates. Links to some pages not already mentioned above: https://castle-engine.io/custom_components[custom components], https://castle-engine.io/behaviors[behaviors], https://castle-engine.io/coding_conventions[coding conventions (extended with our guidelines about memory management, nil and more)] .
+* Lots of https://castle-engine.io/android[Android] improvements: Google Play Games, OpenAL, AdMob, building APIs upgrades. See https://castle-engine.io/wp/2023/08/06/android-upgraded-everything-google-play-services-openal-admod-api-level-gradle/[news].
 
 Not part of the engine release, but still cool to mention:
 
