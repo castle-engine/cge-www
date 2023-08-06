@@ -29,7 +29,6 @@ The Android services are declared in link:project_manifest[CastleEngineManifest.
 * https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/facebook/README.adoc[facebook]
 * https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/freetype/README.adoc[freetype]
 * https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/game_analytics/README.adoc[game_analytics]
-* https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/google_analytics/README.adoc[google_analytics]
 * https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/google_in_app_purchases/README.adoc[google_in_app_purchases]
 * https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/google_play_games/README.adoc[google_play_games]
 * https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/google_play_services/README.adoc[google_play_services]
@@ -44,6 +43,34 @@ The Android services are declared in link:project_manifest[CastleEngineManifest.
 * https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/android/integrated-services/read_external_storage/README.adoc[read_external_storage]
 * https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/android/integrated-services/vibrate/README.adoc[vibrate]
 * https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/android/integrated-services/write_external_storage/README.adoc[write_external_storage]
+
+=== Past (removed) services
+
+The Android ecosystem is dynamic, and some products just disappear and/or are replaced by something very different over time. As such, some of our past services are no longer available:
+
+* _Giftiz_: Service no longer available, as the company developing it (and maintaining the server) is no longer available.
+
+* _Heyzap_: Service no longer available. The company behind it was acquired by _Fyber_. Which was later acquired by _Digital Turbine_. Perhaps the https://developer.digitalturbine.com/hc/en-us/sections/360002898457-FairBid-Android-Configuration[SDK from Digital Turbine] can offer similar functionality, but we didn't test it yet.
+
+* _Google Analytics_: It has been https://developers.google.com/analytics/devguides/collection/android/v4/[deprecated by Google] and, while it still compiles, it crashes on new devices:
++
+```
+ FATAL EXCEPTION: main
+Process: net.sourceforge.castleengine.dragonsquash, PID: 19322
+java.lang.IllegalArgumentException: net.sourceforge.castleengine.dragonsquash: Targeting S+ (version 31 and above) requires that one of FLAG_IMMUTABLE or FLAG_MUTABLE be specified when creating a PendingIntent.
+Strongly consider using FLAG_IMMUTABLE, only use FLAG_MUTABLE if some functionality depends on the PendingIntent being mutable, e.g. if it needs to be used with inline replies or bubbles.
+	at android.app.PendingIntent.checkFlags(PendingIntent.java:378)
+	at android.app.PendingIntent.getBroadcastAsUser(PendingIntent.java:648)
+	at android.app.PendingIntent.getBroadcast(PendingIntent.java:635)
+  ...
+	at com.google.android.gms.analytics.GoogleAnalytics.getInstance(Unknown Source:15)
+	at net.sourceforge.castleengine.ServiceGoogleAnalytics.getAppTracker(ServiceGoogleAnalytics.java:58)
+  ...
+```
++
+Google recommends to migrate to their https://firebase.google.com/[Firebase SDK]. Not implemented in CGE yet (but may be in the future).
++
+Currently the best mobile analytics, integrated with CGE on both Android and iOS, are provided by https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/game_analytics/README.adoc[game_analytics] service.
 
 == How it works
 
