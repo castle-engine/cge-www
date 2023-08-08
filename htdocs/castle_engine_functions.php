@@ -229,27 +229,19 @@ $castle_sitemap = array(
 
   'documentation' => array('title' => 'Documentation',
     'dropdown' => array(
+      // Keep this synchronized with 'sub' contents, to have dropdown contents consistent with e.g. https://castle-engine.io/documentation.php
       'manual_intro' => array('title' => 'Manual'),
       'creating_data_intro' => array('title' => 'Creating Game Data'),
       'reference' => array('title' => 'API Reference', 'url' => reference_link()),
       'doc/why_pascal' => array('title' => 'Why Pascal?'),
       'doc/modern_pascal' => array('title' => 'Modern Object Pascal Introduction'),
       'doc/castle_game_engine_for_unity_developers' => array('title' => 'Overview for Unity Developers'),
-      'compiling_from_source' => array('title' => 'Compiling from source'),
       'vrml_x3d' => array('title' => 'Scene Graph (X3D)'),
       'gic2022' => array('title' => 'Slides from GIC 2022', 'url' => 'https://castle-engine.io/gic2022'),
       'ipc2023' => array('title' => 'Slides from IPC 2023', 'url' => 'https://castle-engine.io/ipc2023'),
     ),
     'sidebar' => true,
     'sub' => array(
-      /* 'pascal_intro' => array('title' => 'Quick Modern Object Pascal for Programmers', */
-      /*   'url' => 'https://castle-engine.io/modern_pascal', */
-      /*   'sub' => array('pascal_intro_pdf' =>  array( */
-      /*       'title' => 'PDF version', */
-      /*       'url' => 'https://castle-engine.io/modern_pascal_introduction.pdf', */
-      /*     ), */
-      /*   ) */
-      /* ), */
       'manual_intro' => array('title' => 'Manual',
         'sub' => array(
           'doc/install' => array('title' => 'Install'),
@@ -860,7 +852,7 @@ function castle_toc_from_sitemap()
     throw new ErrorException('Requested castle_toc_from_sitemap for page that does not have "subitems" according to castle_sitemap');
   }
 
-  $result = '<ul>';
+  $result = '<ol>';
   foreach ($page_map['sub'] as $menu_item_page => $menu_item)
   {
     if (isset($menu_item['hidden_in_toc']) && $menu_item['hidden_in_toc']) {
@@ -876,7 +868,7 @@ function castle_toc_from_sitemap()
     $result .=  '<li><a href="' . $menu_item_url . '">' .
       $menu_item['title'] . '</a></li>';
   }
-  $result .= '</ul>';
+  $result .= '</ol>';
   return $result;
 }
 
