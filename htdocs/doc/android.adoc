@@ -36,6 +36,8 @@ Java is required by the Android SDK. Install Java _JDK (Java Development Kit)_.
 * On Debian or Ubuntu, you can install the `default-jdk` package that will pull in (as dependencies) the best _Java Development Kit_ version. Or install directly a package like `openjdk-X-jdk`.
 * On Windows, download the latest version from http://www.oracle.com/technetwork/java/javase/downloads/index.html . You usually want to install the latest version, like _Java SE Development Kit 17.0.2_. By default, it will be installed in `C:\Program Files\Java\jdk-17.0.2`.
 
+The Java version required is _at least 17_ (this is determined by the https://developer.android.com/build/releases/gradle-plugin[latest Android Gradle Plugin requirements]). It should not be problematic, e.g. https://packages.debian.org/bookworm/default-jdk[default-jdk in latest Debian stable] pulls Java 17.
+
 _For users who install full Android Studio below_: You do not need to install Java separately. The complete _Android Studio_ will already include Java version suitable for Android SDK. In case you will need this information (but probably not), the Java is located then in:
 
 * `C:/Program Files/Android/Android Studio/jre` on Windows
