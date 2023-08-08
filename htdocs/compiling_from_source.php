@@ -169,7 +169,7 @@ Set-ExecutionPolicy Bypass -Scope Process
   <li>
     <p>On Debian and derivatives (like Ubuntu), this command should install everything you need:
 
-    <pre>sudo apt install libgtk2.0-dev libgl1-mesa-dev</pre>
+    <pre>sudo apt install libgtk2.0-dev libglx-dev libgl-dev</pre>
 
   <li>
     <p>On Fedora, this command should install everything you need (and more, some of these are FPC requirements actually, not CGE):
