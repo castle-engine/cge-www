@@ -93,7 +93,7 @@ fpc -Paarch64 -l
 
 ////
 NOTE: Add `-V3.0.5` to the lines marked above, if you use the official "FPC for iOS" installed from `fpc-3.0.5.intel-macosx.cross.ios.dmg` file. See the `Getting Started - iOS.rtf` file inside for explanation. This is no longer needed for FPC 3.2.0.
- ///
+////
 
 // You can add `-it` to see the list of supported OSes for each one.
 
