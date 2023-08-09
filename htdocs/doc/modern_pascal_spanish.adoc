@@ -1,0 +1,17 @@
+# Introducción al lenguaje Pascal moderno para programadores
+include::common.adoc[]
+:description: Introducción al lenguaje Pascal moderno para programadores. Modern Object Pascal Introduction for Programmers - Spanish translation by Jorge Turiel Fernández.
+
+_Jorge Turiel Fernández_ has translated _"Modern Object Pascal Introduction for Programmers"_ into Spanish and published it https://jorgeturiel.es/[on his blog]. Thank you!
+
+Read all the parts:
+
+. https://jorgeturiel.es/?p=277[Básico]
+. https://jorgeturiel.es/?p=296[Units]
+. https://jorgeturiel.es/?p=299[Clases]
+. https://jorgeturiel.es/?p=312[Liberando las clases]
+. https://jorgeturiel.es/?p=314[Excepciones]
+. https://jorgeturiel.es/?p=320[Biblioteca en tiempo de ejecución (Run-time)]
+. https://jorgeturiel.es/?p=327[Funciones varias del lenguaje...]
+. https://jorgeturiel.es/?p=334[Características de las clases avanzadas...]
+. https://jorgeturiel.es/?p=338[Interfaces]
