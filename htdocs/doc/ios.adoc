@@ -236,11 +236,7 @@ They can be ignored. We link with proper iOS libraries, don't worry. We don't ye
 In particular `CastleMessages` unit is mostly useless on iOS. Functions in this unit make modal windows, running a message loop inside and only returning when user exits -- similar to `ShowMessage` in Lazarus LCL / Delphi VCL.
 +
 To make modal windows on iOS, design your modal dialog as a link:views[view] and "push" it, waiting for it to return to the previous view. See the link:views[] manual and examples linked there. To have ready-to-use modal dialogs, use cgeref:CastleDialogViews[] unit with ready descendants of cgeref:TCastleView[] class that implement simple dialog windows.
-////
-Hack, don't recommend anymore.
-+
-You can also set cgeref:MessageOKPushesView[] to `true` to be able to use cgeref:MessageOK[] on iOS. It will just push a specific view.
-////
+
 * On iOS, the OpenGL(ES) context is created and destroyed solely by the Objective-C code, not Pascal. You cannot use the `Window.Open` and `Window.Close` from the Pascal code to force recreating OpenGL context. This follows our https://castle-engine.io/manual_cross_platform.php[cross-platform code guidelines].
 * The https://developer.apple.com/documentation/uikit/uiresponder/1621084-touchesended?language=objc[touchesEnded] / https://developer.apple.com/documentation/uikit/uiresponder/1621116-touchescancelled?language=objc[touchesCancelled] events on iOS (that in turn determine CGE events like cgeref:TCastleView.Release[], cgeref:TCastleWindow.OnRelease[]) have poor behavior.
 +
