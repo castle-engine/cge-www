@@ -4,11 +4,6 @@ castle_header("The Castle - additional notes");
 
 $toc = new TableOfContents(
   array(
-    new TocItem('Detailed requirements', 'requirements_detailed'),
-    new TocItem('Window size', 'window_size'),
-    new TocItem('Sound notes', 'sound'),
-    new TocItem('Log', 'log'),
-    new TocItem('Other command-line options', 'command_line'),
     new TocItem('Details about items in the game', 'items_details'),
     new TocItem('Version numbers', 'versioning'),
     new TocItem('Debug menu, debug options', 'debug_menu_options'),
@@ -19,7 +14,7 @@ $toc = new TableOfContents(
 <h1><?php echo a_href_page('The Castle', 'castle'); ?> &mdash;
 additional notes</h1>
 
-This page collects various additional notes about running my game
+This page collects various additional notes about running
 <?php echo a_href_page('"The Castle"', "castle") ?>.
 If all you want is just to run the game, then <i>don't read this page</i>.
 You don't need this. This page explains some details that may be needed
@@ -28,99 +23,6 @@ but normal users will not find here anything useful.
 
 <p>Contents:
 <?php echo $toc->html_toc(); ?>
-
-<?php echo $toc->html_section(); ?>
-
-<p>In short: good graphics card, with good OpenGL drivers installed.
-In case of doubt, be sure to install newest drivers from your
-graphics card manufacturer.
-
-<p>Also you should have enough free memory available when running the game.
-As of version 0.6.3, game can take up to 280 MB on GeForce with Linux drivers
-from nvidia.com. But this may depend on various factors, including your
-OpenGL implementation. If the game seems to drain your system
-of all the memory (which will most likely be observed as sudden slowdown
-in the middle of "Loading creatures" sequence, as this is the main
-memory-eater) you can
-<ul>
-  <li>Try closing all other programs before running the game
-    (although a decent OS should send them to swap anyway...)</li>
-  <li>Lower the setting "Creature animation smoothness" in "Video options".</li>
-</ul>
-
-<p>Library requirements:
-
-<?php echo depends_ul(array(
-  DEPENDS_OPENGL,
-  DEPENDS_LIBPNG_AND_ZLIB,
-  SUGGESTS_OPENAL_VORBISFILE)); ?>
-
-<?php echo $toc->html_section(); ?>
-
-<p>The game prefers to be run in resolution 800x600.
-If possible, it will resize your screen to this.
-If you don't want to change your screen resolution,
-you can disable it from the main menu:
-"Video options -> Allow screen settings change on startup".
-
-<p>You can use <?php echo a_href_page("standard options
-understood by our OpenGL programs", "opengl_options") ?>
- like <code>--geometry</code> and <code>--fullscreen</code>
-to force windowed or fullscreen mode with desired size.
-For example run like this:
-
-<pre>
-castle --geometry 800x600
-</pre>
-
-<?php echo $toc->html_section(); ?>
-
-<p>OpenAL is used to play sounds. See
-<a href="openal#_command_line_options_that_control_the_sound_outupt">instructions about installing OpenAL and command-line options common for my programs using OpenAL</a>.
-
-<p>For best effect, be sure to try all available devices in "Sound options" &mdash;
-the default device doesn't always sound the best.
-This is true for both Unixes and Windows.
-E.g. a standard sound card (without real 3d surround support) on Windows
-may sound better with "Generic Software" device.
-
-<p>If the game performance suffers when the sound is on,
-or sound quality suffers, or there is sound latency, then you should
-probably stop any other programs that play some music.
-
-<?php echo $toc->html_section(); ?>
-
-Look at log output.
-<a href="log">Here we describe where log output is.</a>
-When sending bug reports, it may be useful to attach generated log
-to your report &mdash; it will show some things about your
-OpenGL, OpenAL, and what happened during the game.
-
-<?php echo $toc->html_section(); ?>
-
-<p>See <?php echo a_href_page('some general notes about command-line
-options understood by all my programs', 'common_options'); ?>.
-In particular, <code>castle --help</code> will show full list
-of all available command-line options.
-
-<?php /*
-  <li><p><code>--no-shadows</code>
-
-    <p>This disallows rendering of shadows in the game.
-    Just like turning off "Video options -> Shadows" option, this will
-    speed up rendering, since shadows will not be rendered.
-    Moreover this command-line option will cause whole
-    game to require less resources (we don't require stencil buffer
-    from the OpenGL context) and loading creatures will be (very slightly)
-    faster.
-
-    <p>It's advised to use this option only if stencil buffer
-    of your graphic card requires too much resources.
-    Then setting "Video options -> Shadows" option will not help,
-    but this command-line option will help.
-    In other cases, just turning off menu option "Video options -> Shadows"
-    is a sufficient way to speed up rendering.
-  </li> */ ?>
 
 <?php echo $toc->html_section(); ?>
 
