@@ -6,7 +6,9 @@
 #
 # Build and upload by build.sh.
 
-FROM debian:buster
+# Based on the same distro as CGE Docker image,
+# so e.g. glibc version is the same, and executables run for sure.
+FROM debian:bookworm-slim
 
 # TODO: add xinit,
 # allow making screenshots using
