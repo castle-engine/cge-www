@@ -228,18 +228,11 @@ $castle_sitemap = array(
   ),
 
   'documentation' => array('title' => 'Documentation',
-    'dropdown' => array(
-      // Keep this synchronized with 'sub' contents, to have dropdown contents consistent with e.g. https://castle-engine.io/documentation.php
-      'manual_intro' => array('title' => 'Manual'),
-      'creating_data_intro' => array('title' => 'Creating Game Data'),
-      'reference' => array('title' => 'API Reference', 'url' => reference_link()),
-      'doc/why_pascal' => array('title' => 'Why Pascal?'),
-      'doc/modern_pascal' => array('title' => 'Modern Object Pascal Introduction'),
-      'doc/castle_game_engine_for_unity_developers' => array('title' => 'Overview for Unity Developers'),
-      'vrml_x3d' => array('title' => 'Scene Graph (X3D)'),
-      'gic2022' => array('title' => 'Slides from GIC 2022', 'url' => 'https://castle-engine.io/gic2022'),
-      'ipc2023' => array('title' => 'Slides from IPC 2023', 'url' => 'https://castle-engine.io/ipc2023'),
-    ),
+    /* Dropdown contents are determined by "sub" below.
+       In the past we allowed to specify "dropdown" contents explicitly,
+       but it was weird for users, e.g.https://castle-engine.io/documentation.php
+       really should show the same ToC as the menu dropdown. */
+    'dropdown' => true,
     'sidebar' => true,
     'sub' => array(
       'manual_intro' => array('title' => 'Manual',
@@ -416,7 +409,6 @@ $castle_sitemap = array(
       'doc/castle_game_engine_for_unity_developers' => array('title' => 'Overview for Unity Developers'),
 
       'vrml_x3d' => array('title' => 'Scene Graph (X3D)',
-        'sidebar' => true,
         'sub' => array(
           'demo_models' => array('title' => 'Demo models'),
           'x3d_implementation_status' => array('title' => 'Standard X3D Nodes',
@@ -531,12 +523,7 @@ $castle_sitemap = array(
   // 'donate' => array('title' => 'Donate'),
 
   'gallery' => array('title' => 'Gallery',
-    'dropdown' => array(
-      'gallery_games' => array('title' => 'Games'),
-      'gallery_tools' => array('title' => 'Tools'),
-      'additional_components' => array('title' => 'Additional Components'),
-      'assets' => array('title' => 'Assets (3D and 2D Graphics, Sound)'),
-    ),
+    'dropdown' => true,
     'sub' => array(
       'gallery_games' => array('title' => 'Games',
         'sub' => array(
@@ -573,8 +560,8 @@ $castle_sitemap = array(
         'hint' => 'Additional components (Pascal code) on top of CGE, that you can use in your games',
       ),
       'assets' => array(
-        'title' => 'Graphic Assets',
-        'hint' => 'Graphic assets you can use in your games'
+        'title' => 'Assets (3D and 2D Graphics, Sound)',
+        'hint' => 'Various assets (graphics, sound) you can use in your games'
       ),
 
       /* We keep these pages here, to keep them working,
@@ -691,14 +678,14 @@ function _castle_header_menu($current_page)
     if ($menu_item_page == $current_page) {
       $result .= ' active';
     }
-    if (isset($menu_item['dropdown'])) {
+    if (!empty($menu_item['dropdown'])) {
       $result .= ' dropdown';
     }
     $result .= '">';
 
     // output <a href="..."
     $result .= '<a href="';
-    if (isset($menu_item['dropdown'])) {
+    if (!empty($menu_item['dropdown'])) {
       $result .= '#';
     } else
     if (isset($menu_item['url'])) {
@@ -709,7 +696,7 @@ function _castle_header_menu($current_page)
     $result .= '"';
 
     // output optional <a> dropdown attributes
-    if (isset($menu_item['dropdown'])) {
+    if (!empty($menu_item['dropdown'])) {
       $result .= ' class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"';
     }
 
@@ -725,15 +712,22 @@ function _castle_header_menu($current_page)
     } else {
       $result .= $menu_item['title'];
     }
-    if (isset($menu_item['dropdown'])) {
+    if (!empty($menu_item['dropdown'])) {
       $result .= ' <span class="caret"></span>';
     }
     $result .=  '</a>';
 
     // output dropdown contents
-    if (isset($menu_item['dropdown'])) {
+    if (!empty($menu_item['dropdown'])) {
+      if (!isset($menu_item['sub'])) {
+        throw new ErrorException('"dropdown" implies we need also "sub" for menu item ' . $menu_item_page);
+      }
       $result .= '<ul class="dropdown-menu">';
-      foreach ($menu_item['dropdown'] as $dropdown_item_page => $dropdown_item) {
+      foreach ($menu_item['sub'] as $dropdown_item_page => $dropdown_item) {
+        // do not show in dropdown items marked hidden_in_toc
+        if (!empty($dropdown_item['hidden_in_toc'])) {
+          continue;
+        }
         $result .= '<li>';
 
         // output <a href="..."
