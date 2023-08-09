@@ -1127,6 +1127,42 @@ function _castle_patreon_box()
   return $result;
 }
 
+/* Create a deep copy of given $map, but trimmed to not show all the depth,
+   except we do show all depth in $show_full_contents.
+   The parts that we don't modify from $map are copied directly, not a deep copy.
+
+   Array deep copy adapted from https://craftytechie.com/how-to-copy-array-in-php/ . */
+function _castle_clone_sitemap_and_trim($map, $show_full_contents, $level = 0)
+{
+  $clone = [];
+  foreach($map as $k => $v) {
+    if ((isset($show_full_contents[1])) &&
+        ($k == $show_full_contents[1]) &&
+        // We check $level is even, as our arrays have for PHP 2 conceptual levels,
+        // odd levels are with 'sub' etc.
+        ($level % 2 != 0))
+    {
+      /* make a copy (recursive, without any further consideration)
+       if it matches $show_full_contents path. */
+      $clone[$k] = $v;
+    } else
+    if (is_array($v)) {
+      // If a subarray
+      if ($level < 3) {
+        $clone[$k] = _castle_clone_sitemap_and_trim($v, $show_full_contents, $level + 1);
+      }
+    } else
+    if (is_object($v)) {
+      // If an object
+      $clone[$k] = clone $v;
+    } else {
+      //Other primitive types.
+      $clone[$k] = $v;
+    }
+  }
+  return $clone;
+}
+
 function echo_castle_header_suffix($path, $enable_sidebar = true)
 {
   global $castle_sidebar;
@@ -1187,7 +1223,8 @@ function echo_castle_header_suffix($path, $enable_sidebar = true)
   /* make sidebar */
   if ($sidebarroot_page !== NULL && $sidebarroot_info !== NULL)
   {
-    $castle_sidebar = _castle_sidebar($sidebarroot_page, $sidebarroot_info);
+    $castle_sidebar = _castle_sidebar($sidebarroot_page,
+      _castle_clone_sitemap_and_trim($sidebarroot_info, $path));
   } else {
     $castle_sidebar = '';
   }
