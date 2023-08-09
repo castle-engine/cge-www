@@ -108,12 +108,11 @@ fpc -Pi386    -Tiphonesim -WP7.0 -XR${SIMULATOR_SDK} test_compilation.lpr # old 
 fpc -Px86_64  -Tiphonesim -WP7.0 -XR${SIMULATOR_SDK} test_compilation.lpr # old note: maybe add -V3.0.5, if you use FPC 3.0.4/3.0.5 combination
 
 DEVICE_SDK='/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk'
-# Use below -TiOS instead of -Tdarwin with FPC >= 3.2.2.
-fpc -Parm     -Tdarwin    -WP7.0 -Cfvfpv3 -Cparmv7 -XR${DEVICE_SDK} test_compilation.lpr
-fpc -Paarch64 -Tdarwin    -WP7.0                   -XR${DEVICE_SDK} test_compilation.lpr
+fpc -Parm     -TiOS    -WP7.0 -Cfvfpv3 -Cparmv7 -XR${DEVICE_SDK} test_compilation.lpr
+fpc -Paarch64 -TiOS    -WP7.0                   -XR${DEVICE_SDK} test_compilation.lpr
 ----
 
-Note that in FPC 3.2.2 the iOS targets should be called with `-TiOS`, not `-Tdarwin`. See https://wiki.freepascal.org/FPC_New_Features_3.2.2#Support_for_macOS.2FAArch64[FPC 3.2.2 new features], https://wiki.freepascal.org/User_Changes_3.2.2#The_Darwin_targets_corresponding_to_iOS_have_been_renamed_to_iOS[FPC 3.2.2 user changes].
+NOTE: If you use older FPC 3.2.0: The iOS targets should be called as `-Tdarwin`. The `-TiOS` is not available. See https://wiki.freepascal.org/FPC_New_Features_3.2.2#Support_for_macOS.2FAArch64[FPC 3.2.2 new features], https://wiki.freepascal.org/User_Changes_3.2.2#The_Darwin_targets_corresponding_to_iOS_have_been_renamed_to_iOS[FPC 3.2.2 user changes]. For FPC >= 3.2.2, use `-TiOS`. The change was caused because now macOS is also available for Arm CPUs, so we needed to distinguish between iOS and macOS.
 
 Every `fpc` invocation should create `libtest_compilation.dylib`.
 
