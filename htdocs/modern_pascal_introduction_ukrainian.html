@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.20">
 <meta name="author" content="Michalis Kamburelis">
-<title>Modern Object Pascal Introduction for Programmers</title>
+<title>Короткий вступ у сучасний Object Pascal для програмістів</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -544,7 +544,7 @@ a.patreon-link:focus {
 </style></head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1>Modern Object Pascal Introduction for Programmers</h1>
+<h1>Короткий вступ у сучасний Object Pascal для програмістів</h1>
 <div class="details">
 <span id="author" class="author">Michalis Kamburelis</span><br>
 </div>
@@ -554,18 +554,18 @@ a.patreon-link:focus {
   </div>
 </a>
 <div id="toc" class="toc2">
-<div id="toctitle">Table of Contents</div>
+<div id="toctitle">Зміст</div>
 <ul class="sectlevel1">
-<li><a href="#_why">1. Why</a></li>
-<li><a href="#_basics">2. Basics</a>
+<li><a href="#_вступ_для_чого_це_потрібно">1. Вступ: Для чого це потрібно?</a></li>
+<li><a href="#_основи">2. Основи</a>
 <ul class="sectlevel2">
-<li><a href="#_hello_world_program">2.1. "Hello world" program</a></li>
+<li><a href="#_програма_привіт_світ">2.1. Програма "Привіт, світ!"</a></li>
 <li><a href="#_functions_procedures_primitive_types">2.2. Functions, procedures, primitive types</a></li>
-<li><a href="#_testing_if">2.3. Testing (if)</a></li>
-<li><a href="#_logical_relational_and_bit_wise_operators">2.4. Logical, relational and bit-wise operators</a></li>
-<li><a href="#_testing_single_expression_for_multiple_values_case">2.5. Testing single expression for multiple values (case)</a></li>
-<li><a href="#_enumerated_and_ordinal_types_and_sets_and_constant_length_arrays">2.6. Enumerated and ordinal types and sets and constant-length arrays</a></li>
-<li><a href="#_loops_for_while_repeat_for_in">2.7. Loops (for, while, repeat, for .. in)</a></li>
+<li><a href="#_тестування_if">2.3. Тестування (if)</a></li>
+<li><a href="#_логічні_реляційні_та_побітові_оператори">2.4. Логічні, реляційні та побітові оператори</a></li>
+<li><a href="#_перевірка_одного_виразу_для_кількох_значень_case">2.5. Перевірка одного виразу для кількох значень (case)</a></li>
+<li><a href="#_перелічувані_та_порядкові_типи_множини_та_масиви_постійної_довжини">2.6. Перелічувані та порядкові типи, множини та масиви постійної довжини</a></li>
+<li><a href="#_цикли_for_while_repeat_for_in">2.7. Цикли (for, while, repeat, for .. in)</a></li>
 <li><a href="#_output_logging">2.8. Output, logging</a></li>
 <li><a href="#_converting_to_a_string">2.9. Converting to a string</a></li>
 </ul>
@@ -579,7 +579,7 @@ a.patreon-link:focus {
 </li>
 <li><a href="#_classes">4. Classes</a>
 <ul class="sectlevel2">
-<li><a href="#_basics_2">4.1. Basics</a></li>
+<li><a href="#_basics">4.1. Basics</a></li>
 <li><a href="#_inheritance_is_as">4.2. Inheritance, is, as</a></li>
 <li><a href="#_properties">4.3. Properties</a>
 <ul class="sectlevel3">
@@ -662,72 +662,78 @@ a.patreon-link:focus {
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_why">1. Why</h2>
+<h2 id="_вступ_для_чого_це_потрібно">1. Вступ: Для чого це потрібно?</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>There are many books and resources about Pascal out there, but too many of them talk about the old Pascal, without classes, units or generics.</p>
+<p>У світі існує безліч книг про Pascal, однак, багато з них говорять про "застарілий" Pascal, без класів, модулів, дженериків.</p>
 </div>
 <div class="paragraph">
-<p>So I wrote this quick introduction to what I call <strong>modern Object Pascal</strong>. Most of the programmers using it don&#8217;t really call it <em>"modern Object Pascal"</em>, we just call it <em>"our Pascal"</em>. But when introducing the language, I feel it&#8217;s important to emphasize that it&#8217;s a modern, object-oriented language. It evolved a <strong>lot</strong> since the old (Turbo) Pascal that many people learned in schools long time ago. Feature-wise, it&#8217;s quite similar to C++ or Java or C#.</p>
+<p>Тож я написав цей короткий вступ до того, що я називаю <strong>сучасний Object Pascal</strong>. Більшість програмістів, які його використовують, насправді не називають його <em>"сучасний Object Pascal"</em>, ми просто називаємо його <em>"наш Pascal"</em>. Але, представляючи мову, я вважаю важливим підкреслити, що це сучасна, об’єктно-орієнтована мова. Він <strong>багато</strong> еволюціонував після старого (Turbo) Pascal, який багато людей вивчали колись в школах. За функціями він дуже схожий на C++, Java або C#.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>It has all the modern features you expect&#8201;&#8212;&#8201;classes, units, interfaces, generics&#8230;&#8203;</p>
+<p>Pascal має всі сучасні особливості, які можна очікувати - класи, модульну структуру, інтерфейси, дженеріки&#8230;&#8203;</p>
 </li>
 <li>
-<p>It&#8217;s compiled to a fast, native code,</p>
+<p>Pascal компілюється в швидкий машинний код.</p>
 </li>
 <li>
-<p>It&#8217;s very type safe,</p>
+<p>Pascal є типобезпечною мовою, що в деяких випадках суттєво спрощує налагодження.</p>
 </li>
 <li>
-<p>High-level but can also be low-level if you need it to be.</p>
+<p>В основному Pascal - високорівнева мова, проте він має можливість використовувати низькорівневі підходи, якщо це необхідно.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>It also has excellent, portable and open-source compiler called the <em>Free Pascal Compiler</em>, <a href="http://freepascal.org/" class="bare">http://freepascal.org/</a> . And an accompanying IDE (editor, debugger, a library of visual components, form designer) called <em>Lazarus</em> <a href="http://lazarus.freepascal.org/" class="bare">http://lazarus.freepascal.org/</a> . Myself, I&#8217;m the creator of <em>Castle Game Engine</em>, <a href="https://castle-engine.io/" class="bare">https://castle-engine.io/</a> , which is an open-source 3D and 2D game engine using modern Pascal to create games on many platforms (Windows, Linux, macOS, Android, iOS, Nintendo Switch; also WebGL is coming).</p>
+<p>Він також має чудовий кросплатформовий компілятор з відкритим вихідним кодом: <em>Free Pascal Compiler</em> (<a href="http://freepascal.org/" class="bare">http://freepascal.org/</a>). Для нього існує декілька IDE (включаючих в себе редактор, відлагоджувач, бібліотеки компонентів, дизайнер форм), одна з найвідоміших називається <em>Lazarus</em> (<a href="http://lazarus.freepascal.org/" class="bare">http://lazarus.freepascal.org/</a>). Автор цієї книги є творцем <em>Castle Game Engine</em> (<a href="https://castle-engine.io/" class="bare">https://castle-engine.io/</a>) - котрий є потужним дво- і тримірним ігровим рушієм, що використовує цю мову, для створення ігор під багато платформ: Windows, Linux, MacOSX, Android, iOS, Nintendo Switch; також очікується WebGL.</p>
 </div>
 <div class="paragraph">
-<p>This introduction is mostly directed at programmers who already have experience in other languages. We will not cover here the meanings of some universal concepts, like <em>"what is a class"</em>, we&#8217;ll only show how to do them in Pascal.</p>
+<p>Цей вступ здебільшого спрямований на програмістів, які вже мають досвід роботи з іншими мовами. Ми не розглядатимемо значення деяких універсальних понять, таких як <em>"що таке клас"</em>, ми лише покажемо, як це зробити в Pascal.</p>
+</div>
+<div class="paragraph">
+<p><em>Прим.перекл. Тут і далі ми будемо використовувати оригінальні англомовні терміни, такі як unit, constructor, override, reference-counting у випадках, якщо вони є ключовими словами мови або не мають загальноприйнятих перекладів на українську мову. Також часто надається перевага використанню оригінального англійського слова його транслітерації, як у випадку з поняттям "generic" вище.</em></p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_basics">2. Basics</h2>
+<h2 id="_основи">2. Основи</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_hello_world_program">2.1. "Hello world" program</h3>
+<h3 id="_програма_привіт_світ">2.1. Програма "Привіт, світ!"</h3>
+<div class="paragraph">
+<p>За доброю традицією знайомство з мовою починають із самої базової та простої програми "Привіт, світ!". На Pascal вона виглядає так:</p>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span> <span class="comment">// Just use this line in all modern sources</span>
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span> <span class="comment">// Просто використовуйте цей рядок у всіх сучасних сирцях</span>
 
-<span class="keyword">program</span> MyProgram; <span class="comment">// Save this file as myprogram.lpr</span>
+<span class="keyword">program</span> MyProgram; <span class="comment">// Збережіть цей файл як myprogram.lpr</span>
 <span class="keyword">begin</span>
-  WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">Hello world!</span><span class="delimiter">'</span></span>);
+  WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">Привіт, світ!</span><span class="delimiter">'</span></span>);
 <span class="keyword">end</span>.</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This is a complete program that you can <em>compile</em> and <em>run</em>.</p>
+<p>Це повноцінна програма, яку можна <em>компілювати</em> та <em>запускати</em>.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>If you use the command-line FPC, just create a new file <code>myprogram.lpr</code> and execute <code>fpc myprogram.lpr</code>.</p>
+<p>Якщо Ви користуєтесь компілятором FPC з командного рядка, просто створіть новий файл <code>myprogram.lpr</code> з кодом програми всередині й виконайте команду <code>fpc myprogram.lpr</code>.</p>
 </li>
 <li>
-<p>If you use <em>Lazarus</em>, create a new project (menu <em>Project</em> &#8594; <em>New Project</em> &#8594; <em>Simple Program</em>). Save it as <code>myprogram</code> and paste this source code as the main file. Compile using the menu item <em>Run &#8594; Compile</em>.</p>
+<p>Якщо Ви використовуєте <em>Lazarus</em>, створіть новий проект (меню <em>Проєкт</em> &#8594; <em>Новий проєкт</em> &#8594; <em>Проста програма</em>). Збережіть його як <code>myprogram</code> і вставте цей вихідний код як основний файл. Скомпілюйте за допомогою пункту меню <em>Виконання &#8594; Компілювати</em>.</p>
 </li>
 <li>
-<p>This is a command-line program, so in either case&#8201;&#8212;&#8201;just run the compiled executable from the command-line.</p>
+<p>Це програма командного рядка, тому в будь-якому випадку просто запустіть скомпільований виконуваний файл із командного рядка.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>The rest of this article talks about the Object Pascal language, so don&#8217;t expect to see anything more fancy than the command-line stuff. If you want to see something cool, just create a new GUI project in <em>Lazarus</em> (<em>Project</em> &#8594; <em>New Project</em> &#8594; <em>Application</em>).
-Voila&#8201;&#8212;&#8201;a working GUI application, cross-platform, with native look everywhere, using a comfortable visual component library. The <em>Lazarus</em> and <em>Free Pascal Compiler</em> come with lots of ready units for networking, GUI, database, file formats (XML, json, images&#8230;&#8203;), threading and everything else you may need. I already mentioned my cool <em>Castle Game Engine</em> earlier:)</p>
+<p>Решта цієї книги розповідає про мову Object Pascal, тому не очікуйте побачити щось більш привабливе, ніж речі командного рядка. Якщо Ви хочете побачити щось класне, просто створіть новий проект GUI у <em>Lazarus</em> (<em>Проєкт</em> &#8594; <em>Новий проєкт</em> &#8594; <em>Застосунок</em>).
+Вуаля — робоча програма з графічним інтерфейсом користувача, кросплатформна, з рідним виглядом усюди, використовуючи зручну бібліотеку візуальних компонентів. <em>Lazarus</em> і <em>Free Pascal Compiler</em> постачаються з великою кількістю готових модулів для роботи в мережі, GUI, бази даних, форматів файлів (XML, json, зображення&#8230;&#8203;), потоків і всього іншого, що може знадобитися. Я вже згадував свій крутий <em>Castle Game Engine</em> раніше :)</p>
 </div>
 </div>
 <div class="sect2">
@@ -745,40 +751,40 @@ Voila&#8201;&#8212;&#8201;a working GUI application, cross-platform, with native
 
 <span class="keyword">function</span> MyFunction(<span class="keyword">const</span> S: <span class="keyword">string</span>): <span class="keyword">string</span>;
 <span class="keyword">begin</span>
-  Result := S + <span class="string"><span class="delimiter">'</span><span class="content">strings are automatically managed</span><span class="delimiter">'</span></span>;
+  Result := S + <span class="string"><span class="delimiter">'</span><span class="content">рядки керуються автоматично</span><span class="delimiter">'</span></span>;
 <span class="keyword">end</span>;
 
 <span class="keyword">var</span>
   X: Single;
 <span class="keyword">begin</span>
-  WriteLn(MyFunction(<span class="string"><span class="delimiter">'</span><span class="content">Note: </span><span class="delimiter">'</span></span>));
+  WriteLn(MyFunction(<span class="string"><span class="delimiter">'</span><span class="content">Примітка: </span><span class="delimiter">'</span></span>));
   MyProcedure(<span class="integer">5</span>);
 
-  <span class="comment">// Division using &quot;/&quot; always makes float result, use &quot;div&quot; for integer division</span>
+  <span class="comment">// Ділення за допомогою &quot;/&quot; завжди дає результат з плаваючою точкою, використовуйте &quot;div&quot; для цілочисельного ділення</span>
   X := <span class="integer">15</span> / <span class="integer">5</span>;
-  WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">X is now: </span><span class="delimiter">'</span></span>, X); <span class="comment">// scientific notation</span>
-  WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">X is now: </span><span class="delimiter">'</span></span>, X:<span class="integer">1</span>:<span class="integer">2</span>); <span class="comment">// 2 decimal places</span>
+  WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">X is now: </span><span class="delimiter">'</span></span>, X); <span class="comment">// науковий запис</span>
+  WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">X is now: </span><span class="delimiter">'</span></span>, X:<span class="integer">1</span>:<span class="integer">2</span>); <span class="comment">// 2 десяткові позиції</span>
 <span class="keyword">end</span>.</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>To return a value from a function, assign something to the magic <code>Result</code> variable. You can read and set the <code>Result</code> freely, just like a local variable.</p>
+<p>Щоб повернути значення з функції, присвойте щось магічній змінні <code>Result</code>. Можна вільно читати і встановлювати <code>Result</code>, наче локальній змінні.</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="pascal"><span class="keyword">function</span> MyFunction(<span class="keyword">const</span> S: <span class="keyword">string</span>): <span class="keyword">string</span>;
 <span class="keyword">begin</span>
-  Result := S + <span class="string"><span class="delimiter">'</span><span class="content">something</span><span class="delimiter">'</span></span>;
-  Result := Result + <span class="string"><span class="delimiter">'</span><span class="content"> something more!</span><span class="delimiter">'</span></span>;
-  Result := Result + <span class="string"><span class="delimiter">'</span><span class="content"> and more!</span><span class="delimiter">'</span></span>;
+  Result := S + <span class="string"><span class="delimiter">'</span><span class="content">щось</span><span class="delimiter">'</span></span>;
+  Result := Result + <span class="string"><span class="delimiter">'</span><span class="content"> щось більше!</span><span class="delimiter">'</span></span>;
+  Result := Result + <span class="string"><span class="delimiter">'</span><span class="content"> і більше!</span><span class="delimiter">'</span></span>;
 <span class="keyword">end</span>;</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>You can also treat the function name (like <code>MyFunction</code> in example above) as the variable, to which you can assign. But I would discourage it in new code, as it looks "fishy" when used on the right side of the assignment expression. Just use <code>Result</code> always when you want to read or set the function result.</p>
+<p>Також можна розглядати ім&#8217;я функції (наприклад, <code>MyFunction</code> у прикладі вище) як змінну, якій можна присвоїти значення. Але я б не рекомендував це використовувати в новому коді, оскільки коли ім&#8217;я функції використовується в правій частині виразу присвоєння, це виглядає підозрілим.</p>
 </div>
 <div class="paragraph">
-<p>If you want to call the function itself recursively, you can of course do it. If you&#8217;re calling a parameter-less function recursively, be sure to specify the parenthesis <code>()</code> (even though in Pascal you can usually omit the parentheses for a parameter-less function), this makes a recursive call to a parameter-less function different from accessing this function&#8217;s current result. Like this:</p>
+<p>Якщо потрібно викликати саму функцію рекурсивно, Ви, звичайно, можете це зробити. Якщо Ви викликаєте функцію без параметрів рекурсивно, обов&#8217;язково вкажть дужки "()" після назви функці (хоча в Паскалі Ви зазвичай можете опускати дужки для функцій без параметрів), це робить рекурсивний виклик функції без параметрів, що відрізняється від доступу до поточного результату цієї функції. Ось так:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -794,7 +800,7 @@ Voila&#8201;&#8212;&#8201;a working GUI application, cross-platform, with native
 </div>
 </div>
 <div class="paragraph">
-<p>You can call <code>Exit</code> to end the execution of the procedure or function before it reaches the final <code>end;</code>. If you call parameter-less <code>Exit</code> in a function, it will return the last thing you set as <code>Result</code>. You can also use <code>Exit(X)</code> construct, to set the function result and exit <strong>now</strong>&#8201;&#8212;&#8201;this is just like <code>return X</code> construct in C-like languages.</p>
+<p>Ви можете викликати <code>Exit</code>, щоб завершити виконання процедури або функції до того, як вона досягне остаточного <code>end;</code>. Якщо ви викликаєте <code>Exit</code> без параметрів у функції, вона поверне останнє, що ви встановили як <code>Result</code>. Ви також можете використовувати конструкцію <code>Exit(X)</code>, щоб установити результат функції та вийти <strong>зараз</strong>&#8201;&#8212;&#8201;це так само, як конструкція <code>return X</code> у C-подібних мовах.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -807,7 +813,7 @@ Voila&#8201;&#8212;&#8201;a working GUI application, cross-platform, with native
 </div>
 </div>
 <div class="paragraph">
-<p>Note that the function result can be discarded. Any function may be used just like a procedure. This makes sense if the function has some <em>side effect</em> (e.g. it modifies a global variable) besides calculating the result. For example:</p>
+<p>Зверніть увагу, що результат функції можна відхилити. Будь-яку функцію можна використовувати як процедуру. Це має сенс, якщо функція має якийсь <em>побічний ефект</em> (наприклад, вона змінює глобальну змінну), крім обчислення результату. Наприклад:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -823,16 +829,16 @@ Voila&#8201;&#8212;&#8201;a working GUI application, cross-platform, with native
 
 <span class="keyword">begin</span>
   Count := <span class="integer">10</span>;
-  CountMe; <span class="comment">// the function result is discarded, but the function is executed, Count is now 11</span>
-  MyCount := CountMe; <span class="comment">// use the result of the function, MyCount equals to Count which is now 12</span>
+  CountMe; <span class="comment">// результат функції відкидається, але функція виконується, Count тепер дорівнює 11</span>
+  MyCount := CountMe; <span class="comment">// використовуйте результат функції, MyCount дорівнює Count, який тепер дорівнює 12</span>
 <span class="keyword">end</span>.</code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_testing_if">2.3. Testing (if)</h3>
+<h3 id="_тестування_if">2.3. Тестування (if)</h3>
 <div class="paragraph">
-<p>Use <code>if .. then</code> or <code>if .. then .. else</code> to run some code when some condition is satisfied. Unlike in the C-like languages, in Pascal you don&#8217;t have to wrap the condition in parenthesis.</p>
+<p>Використовуйте кострукції <code>if .. then</code> чи <code>if .. then .. else</code> щоб виконати певний код коли задоволена певна умова. На відміну від C-подібних мов, у Pascal вам не потрібно закривати умову в дужки.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -854,7 +860,7 @@ Voila&#8201;&#8212;&#8201;a working GUI application, cross-platform, with native
   <span class="keyword">else</span>
     DoSomethingElse;
 
-  <span class="comment">// equivalent to above</span>
+  <span class="comment">// еквівалент вище</span>
   B := A &gt; <span class="integer">10</span>;
   <span class="keyword">if</span> B <span class="keyword">then</span>
     DoSomething
@@ -864,7 +870,7 @@ Voila&#8201;&#8212;&#8201;a working GUI application, cross-platform, with native
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>else</code> is paired with the last <code>if</code>. So this works as you expect:</p>
+<p>"else" поєднується з останнім "if". Отже, це працює так, як ви очікуєте:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -876,7 +882,7 @@ Voila&#8201;&#8212;&#8201;a working GUI application, cross-platform, with native
 </div>
 </div>
 <div class="paragraph">
-<p>While the example with nested <code>if</code> above is correct, it is often better to place the nested <code>if</code> inside a <code>begin</code> &#8230;&#8203; <code>end</code> block in such cases. This makes the code more obvious to the reader, and it will remain obvious even if you mess up the indentation. The improved version of the example is below. When you add or remove some <code>else</code> clause in the code below, it&#8217;s obvious to which condition it will apply (to the <code>A</code> test or the <code>B</code> test), so it&#8217;s less error-prone.</p>
+<p>Хоча наведений вище приклад із вкладеним <code>if</code> правильний, у таких випадках часто краще розмістити вкладений <code>if</code> всередині блоку <code>begin</code> &#8230;&#8203; <code>end</code>. Це робить код більш очевидним для читача, і він залишатиметься очевидним, навіть якщо ви зіпсуєте відступ. Покращена версія прикладу наведена нижче. Коли ви додаєте або видаляєте речення <code>else</code> у наведеному нижче коді, очевидно, до якої умови воно застосовуватиметься (до тесту <code>A</code> чи <code>B</code>), тому воно менш схильне до помилок.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -891,32 +897,32 @@ Voila&#8201;&#8212;&#8201;a working GUI application, cross-platform, with native
 </div>
 </div>
 <div class="sect2">
-<h3 id="_logical_relational_and_bit_wise_operators">2.4. Logical, relational and bit-wise operators</h3>
+<h3 id="_логічні_реляційні_та_побітові_оператори">2.4. Логічні, реляційні та побітові оператори</h3>
 <div class="paragraph">
-<p>The <em>logical operators</em> are called <code>and</code>, <code>or</code>, <code>not</code>, <code>xor</code>. Their meaning is probably obvious (search for <em>"exclusive or"</em> if you&#8217;re unsure what <em>xor</em> does:)). They take <em>boolean arguments</em>, and return a <em>boolean</em>. They can also act as <em>bit-wise operators</em> when both arguments are integer values, in which case they return an integer.</p>
+<p><em>Логічні оператори</em> називаються <code>and</code>, <code>or</code>, <code>not</code>, <code>xor</code>. Їх сенс, мабуть, очевидний (пошукайте <em>"exclusive or"</em> якщо Ви не впевннені що виконує <em>xor</em> :)). Вони приймають <em>логічні аргументи</em>, і повертають результат типу <em>boolean</em>. Вони також можуть виконувати роль <em>побітових операторів</em> у випадку коли обидва аргументи - цілочисельні значення, у цьому випадку вони повертають ціле число.</p>
 </div>
 <div class="paragraph">
-<p>The <em>relational (comparison)</em> operators are <code>=</code>, <code>&lt;&gt;</code>, <code>&gt;</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;=</code>. If you&#8217;re accustomed to C-like languages, note that in Pascal you compare two values (check are they equal) using a single equality character <code>A = B</code> (unlike in C where you use <code>A == B</code>). The special <em>assignment</em> operator in Pascal is <code>:=</code>.</p>
+<p>Оператори <em>відношення (порівняння)</em> наступні: <code>=</code>, <code>&lt;&gt;</code>, <code>&gt;</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;=</code>. Якщо ви звикли до C-подібних мов, зауважте, що в Pascal ви порівнюєте два значення (перевіряєте, чи вони рівні) за допомогою одного символу рівності <code>A = B</code> (на відміну від C, де ви використовуєте <code>A == B</code>). Спеціальним оператором <em>присвоєння</em> в Pascal є <code>:=</code>.</p>
 </div>
 <div class="paragraph">
-<p>The <em>logical (or bit-wise) operators have a higher precedence than relational operators</em>. You may need to use parenthesis around some expressions to have the desired order of the calculations.</p>
+<p><em>Логічні (або побітові) оператори мають вищий пріоритет, ніж оператори відношення</em>. Вам може знадобитися використовувати дужки навколо деяких виразів, щоб мати потрібний порядок обчислень.</p>
 </div>
 <div class="paragraph">
-<p>For example this is a compilation error:</p>
+<p>Ось, наприклад, помилка компіляції:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="pascal"><span class="keyword">var</span>
   A, B: Integer;
 <span class="keyword">begin</span>
-  <span class="keyword">if</span> A = <span class="integer">0</span> <span class="keyword">and</span> B &lt;&gt; <span class="integer">0</span> <span class="keyword">then</span> ... <span class="comment">// INCORRECT example</span></code></pre>
+  <span class="keyword">if</span> A = <span class="integer">0</span> <span class="keyword">and</span> B &lt;&gt; <span class="integer">0</span> <span class="keyword">then</span> ... <span class="comment">// НЕПРАВИЛЬНИЙ приклад</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The above fails to compile, because the compiler first wants to perform a bit-wise <code>and</code> in the middle of the expression: <code>(0 and B)</code>. This is a bit-wise operation which returns an integer value. Then the compiler applies <code>=</code> operator which yields a boolean value <code>A = (0 and B)</code>. And finally the <em>"type mismatch"</em> error is risen after trying to compare the boolean value <code>A = (0 and B)</code> and integer value <code>0</code>.</p>
+<p>Наведене вище не компілюється, тому що компілятор спочатку хоче виконати побітове <code>and</code> в середині виразу: <code>(0 and B)</code>. Це побітова операція, яка повертає ціле значення. Потім компілятор застосовує оператор <code>=</code>, який дає логічне значення <code>A = (0 and B)</code>. І, нарешті, помилка <em>"невідповідність типу"</em> виникає після спроби порівняти логічне значення <code>A = (0 and B)</code> і ціле значення <code>0</code>.</p>
 </div>
 <div class="paragraph">
-<p>This is correct:</p>
+<p>Ось це правильно:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -927,7 +933,7 @@ Voila&#8201;&#8212;&#8201;a working GUI application, cross-platform, with native
 </div>
 </div>
 <div class="paragraph">
-<p>The <em>short-circuit evaluation</em> is used. Consider this expression:</p>
+<p>Використовується <em>оцінка короткого замикання</em>. Розглянемо такий вираз:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -937,32 +943,32 @@ Voila&#8201;&#8212;&#8201;a working GUI application, cross-platform, with native
 <div class="ulist">
 <ul>
 <li>
-<p>It&#8217;s guaranteed that <code>MyFunction(X)</code> will be evaluated first.</p>
+<p>Гарантується, що спершу буде обчислено функцію <code>MyFunction(X)</code>.</p>
 </li>
 <li>
-<p>And if <code>MyFunction(X)</code> returns <code>false</code>, then the value of expression is known (the value of <code>false and whatever</code> is always <code>false</code>), and <code>MyOtherFunction(Y)</code> will not be executed at all.</p>
+<p>І якщо <code>MyFunction(X)</code> поверне <code>false</code>, тоді значення виразу відоме (значення <code>false and що-завгодно</code> завжди є <code>false</code>), і <code>MyOtherFunction(Y)</code> не буде виконано взагалі.</p>
 </li>
 <li>
-<p>Analogous rule is for <code>or</code> expression. There, if the expression is known to be <code>true</code> (because the 1st operand is <code>true</code>), the 2nd operand is not evaluated.</p>
+<p>Аналогічне правило для виразу <code>або</code>. Там, якщо відомо, що вираз має значення <code>true</code> (оскільки 1-й операнд має значення <code>true</code>), другий операнд не обчислюється.</p>
 </li>
 <li>
-<p>This is particularly useful when writing expressions like</p>
+<p>Це особливо корисно під час написання таких виразів, як</p>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="pascal"><span class="keyword">if</span> (A &lt;&gt; <span class="keyword">nil</span>) <span class="keyword">and</span> A.IsValid <span class="keyword">then</span>...</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This will work OK, even when <code>A</code> is <code>nil</code>. The keyword <code>nil</code> is a pointer equal to zero (when represented as a number). It is called a <em>null pointer</em> in many other programming languages.</p>
+<p>Це буде нормально, навіть якщо <code>A</code> дорівнює <code>nil</code>. Ключове слово <code>nil</code> — це вказівник, що дорівнює нулю (коли представлено у вигляді числа). Це називається <em>нульовим покажчиком</em> у багатьох інших мовах програмування.</p>
 </div>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_testing_single_expression_for_multiple_values_case">2.5. Testing single expression for multiple values (case)</h3>
+<h3 id="_перевірка_одного_виразу_для_кількох_значень_case">2.5. Перевірка одного виразу для кількох значень (case)</h3>
 <div class="paragraph">
-<p>If a different action should be executed depending on the value of some expression, then the <code>case .. of .. end</code> statement is useful.</p>
+<p>Якщо необхідно виконати іншу дію залежно від значення якогось виразу, тоді корисним буде оператор <code>case .. of .. end</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -980,16 +986,16 @@ Voila&#8201;&#8212;&#8201;a working GUI application, cross-platform, with native
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>else</code> clause is optional (and corresponds to <code>default</code> in C-like languages). When no condition matches, and there&#8217;s no <code>else</code>, then nothing happens.</p>
+<p>Речення <code>else</code> є необов’язковим (і відповідає <code>default</code> у C-подібних мовах). Якщо жодна умова не відповідає, і немає <code>else</code>, нічого не відбувається.</p>
 </div>
 <div class="paragraph">
-<p>In you come from C-like languages, and compare this with <code>switch</code> statement in these languages, you will notice that there is no automatic <em>fall-through</em>. This is a deliberate blessing in Pascal. You don&#8217;t have to remember to place <code>break</code> instructions. In every execution, <em>at most one</em> branch of the <code>case</code> is executed, that&#8217;s it.</p>
+<p>Якщо ви походите з C-подібних мов, і порівняйте це з інструкцією <code>switch</code> у цих мовах, ви помітите, що немає автоматичного <em>провалу</em>. Це свідоме благословення в Паскалі. Вам не потрібно пам’ятати про розміщення інструкцій <code>break</code>. Під час кожного виконання виконується <em>щонайбільше одна</em> гілка <code>case</code>, і все.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_enumerated_and_ordinal_types_and_sets_and_constant_length_arrays">2.6. Enumerated and ordinal types and sets and constant-length arrays</h3>
+<h3 id="_перелічувані_та_порядкові_типи_множини_та_масиви_постійної_довжини">2.6. Перелічувані та порядкові типи, множини та масиви постійної довжини</h3>
 <div class="paragraph">
-<p>Enumerated type in Pascal is a very nice, opaque type. You will probably use it much more often than enums in other languages:)</p>
+<p>Перелічуваний тип у Паскалі — дуже гарний, непрозорий тип. Ймовірно, ви використовуватимете його набагато частіше, ніж переліки в інших мовах:)</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -998,16 +1004,16 @@ Voila&#8201;&#8212;&#8201;a working GUI application, cross-platform, with native
 </div>
 </div>
 <div class="paragraph">
-<p>The convention is to prefix the enum names with a two-letter shortcut of type name, hence <code>ak</code> = shortcut for <em>"Animal Kind"</em>. This is a useful convention, since the enum names are in the unit (global) namespace. So by prefixing them with <code>ak</code> prefix, you minimize the chances of collisions with other identifiers.</p>
+<p>Згідно з домовленістю до імен enum ставиться дволітерне скорочення імені типу, отже <code>ak</code> = скорочення для <em>"Animal Kind"</em>. Це корисна домовленість, оскільки імена enum знаходяться в просторі імен модуля (глобальному). Таким чином, додавши до них префікс <code>ak</code>, ви мінімізуєте ймовірність конфліктів з іншими ідентифікаторами.</p>
 </div>
 <div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<div class="title">Note</div>
+<div class="title">Зауваження</div>
 </td>
 <td class="content">
-The collisions in names are not a show-stopper. It&#8217;s Ok for different units to define the same identifier. But it&#8217;s a good idea to try to avoid the collisions anyway, to keep code simple to understand and grep.
+Зіткнення в іменах не перешкода. Це нормально, якщо різні модулі визначають той самий ідентифікатор. Але було б гарною ідеєю все одно намагатися уникнути колізій, щоб код був простим для розуміння та пошуку.
 </td>
 </tr>
 </table>
@@ -1016,19 +1022,19 @@ The collisions in names are not a show-stopper. It&#8217;s Ok for different unit
 <table>
 <tr>
 <td class="icon">
-<div class="title">Note</div>
+<div class="title">Зауваження</div>
 </td>
 <td class="content">
-You can avoid placing enum names in the global namespace by compiler directive <code>{$scopedenums on}</code>. This means you will have to access them qualified by a type name, like <code>TAnimalKind.akDuck</code>. The need for <code>ak</code> prefix disappears in this situation, and you will probably just call the enums <code>Duck, Cat, Dog</code>. This is similar to C# enums.
+Ви можете уникнути розміщення імен enum у глобальному просторі імен за допомогою директиви компілятора <code>{$scopedenums on}</code>. Це означає, що вам доведеться отримати до них доступ, визначивши назву типу, як-от <code>TAnimalKind.akDuck</code>. У цій ситуації потреба в префіксі <code>ak</code> зникає, і ви, ймовірно, просто називатимете переліки <code>Duck, Cat, Dog</code>. Це схоже на перерахування C#.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>The fact that enumerated type is <em>opaque</em> means that it cannot be just assigned to and from an integer. However, for special use, you can use <code>Ord(MyAnimalKind)</code> to forcefully convert enum to int, or typecast <code>TAnimalKind(MyInteger)</code> to forcefully convert int to enum. In the latter case, make sure to check first whether <code>MyInteger</code> is in good range (0 to <code>Ord(High(TAnimalKind))</code>).</p>
+<p>Той факт, що перерахований тип є <em>непрозорим</em>, означає, що його не можна просто призначити цілому числу. Однак для спеціального використання ви можете використати <code>Ord(MyAnimalKind)</code> для примусового перетворення enum на int або приведення типу <code>TAnimalKind(MyInteger)</code> для примусового перетворення int на enum. В останньому випадку переконайтеся, що спершу перевірте, чи <code>MyInteger</code> знаходиться в належному діапазоні (від 0 до <code>Ord(High(TAnimalKind))</code>).</p>
 </div>
 <div class="paragraph">
-<p>Enumerated and ordinal types can be used as array indexes:</p>
+<p>Перелічувані та порядкові типи можуть використовуватися як індекси масиву:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1044,7 +1050,7 @@ You can avoid placing enum names in the global namespace by compiler directive <
 </div>
 </div>
 <div class="paragraph">
-<p>They can also be used to create sets (a bit-fields internally):</p>
+<p>Вони також можуть бути використані для створення наборів (внутрішніх бітових полів):</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1065,51 +1071,51 @@ You can avoid placing enum names in the global namespace by compiler directive <
 </div>
 </div>
 <div class="sect2">
-<h3 id="_loops_for_while_repeat_for_in">2.7. Loops (for, while, repeat, for .. in)</h3>
+<h3 id="_цикли_for_while_repeat_for_in">2.7. Цикли (for, while, repeat, for .. in)</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
-<span class="preprocessor">{$R+}</span> <span class="comment">// range checking on - nice for debugging</span>
+<span class="preprocessor">{$R+}</span> <span class="comment">// перевірку діапазону ввімкнено – добре для налагодження</span>
 <span class="keyword">var</span>
   MyArray: <span class="keyword">array</span> [<span class="integer">0</span>..<span class="integer">9</span>] <span class="keyword">of</span> Integer;
   I: Integer;
 <span class="keyword">begin</span>
-  <span class="comment">// initialize</span>
+  <span class="comment">// ініціалізувати</span>
   <span class="keyword">for</span> I := <span class="integer">0</span> <span class="keyword">to</span> <span class="integer">9</span> <span class="keyword">do</span>
     MyArray[I] := I * I;
 
-  <span class="comment">// show</span>
+  <span class="comment">// показати</span>
   <span class="keyword">for</span> I := <span class="integer">0</span> <span class="keyword">to</span> <span class="integer">9</span> <span class="keyword">do</span>
-    WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">Square is </span><span class="delimiter">'</span></span>, MyArray[I]);
+    WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">Квадрати: </span><span class="delimiter">'</span></span>, MyArray[I]);
 
-  <span class="comment">// does the same as above</span>
+  <span class="comment">// виконує те саме, що й вище</span>
   <span class="keyword">for</span> I := Low(MyArray) <span class="keyword">to</span> High(MyArray) <span class="keyword">do</span>
-    WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">Square is </span><span class="delimiter">'</span></span>, MyArray[I]);
+    WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">Квадрати: </span><span class="delimiter">'</span></span>, MyArray[I]);
 
-  <span class="comment">// does the same as above</span>
+  <span class="comment">// виконує те саме, що й вище</span>
   I := <span class="integer">0</span>;
   <span class="keyword">while</span> I &lt; <span class="integer">10</span> <span class="keyword">do</span>
   <span class="keyword">begin</span>
-    WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">Square is </span><span class="delimiter">'</span></span>, MyArray[I]);
+    WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">Квадрати: </span><span class="delimiter">'</span></span>, MyArray[I]);
     I := I + <span class="integer">1</span>; <span class="comment">// or &quot;I += 1&quot;, or &quot;Inc(I)&quot;</span>
   <span class="keyword">end</span>;
 
-  <span class="comment">// does the same as above</span>
+  <span class="comment">// виконує те саме, що й вище</span>
   I := <span class="integer">0</span>;
   <span class="keyword">repeat</span>
-    WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">Square is </span><span class="delimiter">'</span></span>, MyArray[I]);
+    WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">Квадоати: </span><span class="delimiter">'</span></span>, MyArray[I]);
     Inc(I);
   <span class="keyword">until</span> I = <span class="integer">10</span>;
 
-  <span class="comment">// does the same as above</span>
-  <span class="comment">// note: here I enumerates MyArray values, not indexes</span>
+  <span class="comment">// виконує те саме, що й вище</span>
+  <span class="comment">// зауваження: тут я перераховую значення MyArray, а не індекси</span>
   <span class="keyword">for</span> I <span class="keyword">in</span> MyArray <span class="keyword">do</span>
-    WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">Square is </span><span class="delimiter">'</span></span>, I);
+    WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">Квадрати: </span><span class="delimiter">'</span></span>, I);
 <span class="keyword">end</span>.</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><strong>About the <code>repeat</code> and <code>while</code> loops</strong>:</p>
+<p><strong>Про цикли <code>repeat</code> і <code>while</code></strong>:</p>
 </div>
 <div class="paragraph">
 <p>There are two differences between these loop types:</p>
@@ -1125,7 +1131,7 @@ You can avoid placing enum names in the global namespace by compiler directive <
 </ol>
 </div>
 <div class="paragraph">
-<p><strong>About the <code>for I := &#8230;&#8203;</code> loops</strong>:</p>
+<p><strong>About the <code>for I := &#8230;&#8203;</code> loops`</strong>:</p>
 </div>
 <div class="paragraph">
 <p>The <code>for I := .. to .. do &#8230;&#8203;</code> construction it similar to the C-like <code>for</code> loop. However, it&#8217;s more constrained, as you cannot specify arbitrary actions/tests to control the loop iteration. This is strictly for iterating over a consecutive numbers (or other ordinal types). The only flexibility you have is that you can use <code>downto</code> instead of <code>to</code>, to make numbers go downward.</p>
@@ -1190,7 +1196,7 @@ You can avoid placing enum names in the global namespace by compiler directive <
   C: TMyClass;
   I: Integer;
 <span class="keyword">begin</span>
-  List := TMyClassList.Create(true); <span class="comment">// true = owns children</span>
+  List := TMyClassList.Create(true); <span class="comment">// true = володіє дітьми</span>
   <span class="keyword">try</span>
     <span class="keyword">for</span> I := <span class="integer">0</span> <span class="keyword">to</span> <span class="integer">9</span> <span class="keyword">do</span>
     <span class="keyword">begin</span>
@@ -1201,7 +1207,7 @@ You can avoid placing enum names in the global namespace by compiler directive <
     <span class="keyword">end</span>;
 
     <span class="keyword">for</span> C <span class="keyword">in</span> List <span class="keyword">do</span>
-      WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">Square of </span><span class="delimiter">'</span></span>, C.I, <span class="string"><span class="delimiter">'</span><span class="content"> is </span><span class="delimiter">'</span></span>, C.Square);
+      WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">Квадрат </span><span class="delimiter">'</span></span>, C.I, <span class="string"><span class="delimiter">'</span><span class="content"> є </span><span class="delimiter">'</span></span>, C.Square);
   <span class="keyword">finally</span>
     FreeAndNil(List);
   <span class="keyword">end</span>;
@@ -1297,7 +1303,7 @@ WriteLn(<span class="string"><span class="delimiter">'</span><span class="conten
 <p><em>Another advantage</em>: No compiler magic. You can use the same syntax to pass any number of arguments of an arbitrary type in your own routines (declare parameter as an <code>array of const</code>). You can then pass these arguments downward to <code>Format</code>, or deconstruct the list of parameters and do anything you like with them.</p>
 </li>
 <li>
-<p><em>Disadvantage</em>: Compiler does not check whether the pattern matches the arguments. Using a wrong placeholder type will result in an exception at runtime (<code>EConvertError</code> exception, not anything nasty like <em>Access Violation (Segmentation Fault)</em> error).</p>
+<p><em>Disadvantage</em>: Compiler does not check whether the pattern matches the arguments. Using a wrong placeholder type will result in an exception at runtime (<code>EConvertError</code> exception, not anything nasty like a segmentation fault).</p>
 </li>
 </ul>
 </div>
@@ -1383,9 +1389,9 @@ WriteLn(<span class="string"><span class="delimiter">'</span><span class="conten
 <span class="keyword">implementation</span>
 
 <span class="keyword">initialization</span>
-  WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">Hello world!</span><span class="delimiter">'</span></span>);
+  WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">Привіт, світ!</span><span class="delimiter">'</span></span>);
 <span class="keyword">finalization</span>
-  WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">Goodbye world!</span><span class="delimiter">'</span></span>);
+  WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">Бувай, світ!</span><span class="delimiter">'</span></span>);
 <span class="keyword">end</span>.</code></pre>
 </div>
 </div>
@@ -1403,8 +1409,8 @@ WriteLn(<span class="string"><span class="delimiter">'</span><span class="conten
 <span class="keyword">uses</span>
   Classes;
 
-<span class="comment">{ The &quot;TComponent&quot; type (class) is defined in the Classes unit.
-  That's why we had to use the Classes unit above. }</span>
+<span class="comment">{ Тип (клас) &quot;TComponent&quot; визначається в модулі Classes.
+   Ось чому нам довелося використати модуль Classes вище. }</span>
 <span class="keyword">procedure</span> DoSomethingWithComponent(<span class="keyword">var</span> C: TComponent);
 
 <span class="keyword">implementation</span>
@@ -1413,9 +1419,9 @@ WriteLn(<span class="string"><span class="delimiter">'</span><span class="conten
 
 <span class="keyword">procedure</span> DoSomethingWithComponent(<span class="keyword">var</span> C: TComponent);
 <span class="keyword">begin</span>
-  <span class="comment">{ The FreeAndNil procedure is defined in the SysUtils unit.
-    Since we only refer to its name in the implementation,
-    it was OK to use the SysUtils unit in the &quot;implementation&quot; section. }</span>
+  <span class="comment">{ Процедура FreeAndNil визначена в модулі SysUtils.
+     Оскільки ми посилаємося лише на його назву в реалізації,
+     модуль SysUtils можна використовувати у розділі «implementation». }</span>
   FreeAndNil(C);
 <span class="keyword">end</span>;
 
@@ -1599,7 +1605,7 @@ In such cases, the last unit on the <code>uses</code> clause "wins", which means
 <h2 id="_classes">4. Classes</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_basics_2">4.1. Basics</h3>
+<h3 id="_basics">4.1. Basics</h3>
 <div class="paragraph">
 <p>We have classes. At the basic level, a class is just a container for</p>
 </div>
@@ -1660,12 +1666,12 @@ In such cases, the last unit on the <code>uses</code> clause "wins", which means
 
 <span class="keyword">procedure</span> TMyClass.MyVirtualMethod;
 <span class="keyword">begin</span>
-  WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">TMyClass shows MyInt + 10: </span><span class="delimiter">'</span></span>, MyInt + <span class="integer">10</span>);
+  WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">TMyClass покаже MyInt + 10: </span><span class="delimiter">'</span></span>, MyInt + <span class="integer">10</span>);
 <span class="keyword">end</span>;
 
 <span class="keyword">procedure</span> TMyClassDescendant.MyVirtualMethod;
 <span class="keyword">begin</span>
-  WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">TMyClassDescendant shows MyInt + 20: </span><span class="delimiter">'</span></span>, MyInt + <span class="integer">20</span>);
+  WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">TMyClassDescendant покаже MyInt + 20: </span><span class="delimiter">'</span></span>, MyInt + <span class="integer">20</span>);
 <span class="keyword">end</span>;
 
 <span class="keyword">var</span>
@@ -1859,7 +1865,7 @@ In such cases, the last unit on the <code>uses</code> clause "wins", which means
 <table>
 <tr>
 <td class="icon">
-<div class="title">Note</div>
+<div class="title">Зауваження</div>
 </td>
 <td class="content">
 Properties can also be defined outside of class, at a unit level. They serve an analogous purpose then: look like a global variable, but are backed by a <em>getter</em> and <em>setter</em> routines.
@@ -1915,7 +1921,7 @@ Properties can also be defined outside of class, at a unit level. They serve an 
 <span class="keyword">procedure</span> TMyClass.MyMethod;
 <span class="keyword">begin</span>
   <span class="keyword">if</span> Random &gt; <span class="float">0.5</span> <span class="keyword">then</span>
-    <span class="keyword">raise</span> Exception.Create(<span class="string"><span class="delimiter">'</span><span class="content">Raising an exception!</span><span class="delimiter">'</span></span>);
+    <span class="keyword">raise</span> Exception.Create(<span class="string"><span class="delimiter">'</span><span class="content">Підняття винятку!</span><span class="delimiter">'</span></span>);
 <span class="keyword">end</span>;
 
 <span class="keyword">var</span>
@@ -2066,7 +2072,7 @@ Properties can also be defined outside of class, at a unit level. They serve an 
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<div class="title">Підказка</div>
 </td>
 <td class="content">
 Go ahead, change the implementation of <code>TMyClass2.MyOtherMethod</code> above to use <code>inherited MyMethod</code>, and see the difference in the output.
@@ -2133,7 +2139,7 @@ Go ahead, change the implementation of <code>TMyClass2.MyOtherMethod</code> abov
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<div class="title">Підказка</div>
 </td>
 <td class="content">
 In the above example, all the <code>inherited &#8230;&#8203;;</code> calls could be replaced by a simple <code>inherited;</code>.
@@ -2353,47 +2359,10 @@ Eating an apple</pre>
 <p>This frees the <code>A</code>, unless it&#8217;s <code>nil</code>.</p>
 </div>
 <div class="paragraph">
-<p>Note that in normal circumstances, you should never call a method on an instance which may be <code>nil</code>. So the call <code>A.Free</code> may look suspicious at the first sight, if <code>A</code> can be <code>nil</code>. However, the <code>Free</code> method is an exception to this rule. It does something dirty in the implementation&#8201;&#8212;&#8201;namely, checks whether <code>Self &lt;&gt; nil</code>.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Note</div>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>This trick (officially allowing the method to be used with <code>Self</code> equal <code>nil</code>) is possible only in non-virtual methods.</p>
+<p>Note that in normal circumstances, you should never call a method on an instance which may be <code>nil</code>. So the call <code>A.Free</code> may look suspicious at the first sight, if <code>A</code> can be <code>nil</code>. However, the <code>Free</code> method is an exception to this rule. It does something dirty in the implementation&#8201;&#8212;&#8201;namely, checks whether <code>Self &lt;&gt; nil</code>. This dirty trick works only in non-virtual methods (that don&#8217;t call any virtual methods and don&#8217;t access any fields).</p>
 </div>
 <div class="paragraph">
-<p>In the implementation of such method, as long as <code>Self = nil</code> is possible, the method cannot call any virtual methods or access any fields, as these would cause <em>Access Violation (Segmentation Fault)</em> error when called on a <code>nil</code> instance. See the sample code <a href="https://github.com/michaliskambi/modern-pascal-introduction/blob/master/code-samples/method_with_self_nil.lpr">method_with_self_nil.lpr</a>.</p>
-</div>
-<div class="paragraph">
-<p>We discourage from using this trick in your own code (for virtual or non-virtual methods) as it is counter-intuitive to normal usage. In general all instance methods should be able to assume that they work on valid (non-nil) instance and can access fields and call any other methods (virtual or not).</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>We advise using <code>FreeAndNil(A)</code> always, without exceptions, and never to call directly the <code>Free</code> method or <code>Destroy</code> destructor.</p>
-</div>
-<div class="paragraph">
-<p>The <em>Castle Game Engine</em> does it like that. It helps to keep a nice assertion that <em>all references are either nil, or point to valid instances</em>. But note that using <code>FreeAndNil(A)</code>  doesn&#8217;t <strong>guarantee</strong> this assertion. For example, if you copy the instance reference, and call <code>FreeAndNil(A)</code> on one copy, the other copy will be a non-nil dangling pointer.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal">A := TMyClass.Create;
-B := A;
-FreeAndNil(A);
-<span class="comment">// B now contains a dangling pointer</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>More about dealing with this in the later section about <em>"Free notification"</em>.</p>
-</div>
-<div class="paragraph">
-<p>Still, <code>FreeAndNil(A)</code> takes care of the most trivial cases, so it&#8217;s a good habit to use it IMHO. You will appreciate it when debuggging some errors, it is nice to easily observe <em>"<code>X</code> is already freed, because <code>X</code> is <code>nil</code> now"</em>.</p>
+<p>I advise using <code>FreeAndNil(A)</code> always, without exceptions, and never to call directly the <code>Free</code> method or <code>Destroy</code> destructor. The <em>Castle Game Engine</em> does it like that. It helps to keep a nice assertion that <em>all references are either nil, or point to valid instances</em>.</p>
 </div>
 </div>
 <div class="sect2">
@@ -2537,7 +2506,7 @@ FreeAndNil(A);
 <table>
 <tr>
 <td class="icon">
-<div class="title">Note</div>
+<div class="title">Зауваження</div>
 </td>
 <td class="content">
 <div class="paragraph">
@@ -2704,7 +2673,7 @@ results in an unpredictable behavior&#8201;&#8212;&#8201;maybe an access violati
   <span class="directive">public</span>
     <span class="keyword">constructor</span> Create(AOwner: TComponent); <span class="directive">override</span>;
     <span class="keyword">property</span> SomeSpecialControl: TControl
-      <span class="directive">read</span> FSomeSpecialControl <span class="directive">write</span> SetSomeSpecialControl;
+      <span class="directive">read</span> FSomeSpecialControl <span class="directive">write</span> FSomeSpecialControl;
   <span class="keyword">end</span>;
 
 <span class="keyword">implementation</span>
@@ -3019,7 +2988,7 @@ except
 </div>
 </div>
 <div class="paragraph">
-<p>The above example is not valid: if an exception occurs within <code>TMyClass.Create</code> (a constructor may also raise an exception), or within the <code>CallSomeOtherProcedure</code>, then the <code>MyInstance</code> variable is not initialized. Calling <code>FreeAndNil(MyInstance)</code> will try to call destructor of <code>MyInstance</code>, which will most likely crash with <em>Access Violation (Segmentation Fault)</em> error. In effect, one exception causes another exception, which will make the error report not very useful: you will not see the message of the original exception.</p>
+<p>The above example is not valid: if an exception occurs within <code>TMyClass.Create</code> (a constructor may also raise an exception), or within the <code>CallSomeOtherProcedure</code>, then the <code>MyInstance</code> variable is not initialized. Calling <code>FreeAndNil(MyInstance)</code> will try to call destructor of <code>MyInstance</code>, which will most likely crash with <em>Access Violation (Segmentation Fault)</em>. In effect, one exception causes another exception, which will make the error report not very useful: you will not see the message of the original exception.</p>
 </div>
 <div class="paragraph">
 <p>Sometimes it is justified to fix the above code by first initializing all local variables to <code>nil</code> (on which calling <code>FreeAndNil</code> is safe, and will not do anything). This makes sense if you free a <strong>lot</strong> of class instances. So the two code examples below work equally well:</p>
@@ -3090,7 +3059,7 @@ except
 <table>
 <tr>
 <td class="icon">
-<div class="title">Note</div>
+<div class="title">Зауваження</div>
 </td>
 <td class="content">
 In this simple example, you could also make a valid argument that the code should be split into 3 separate procedures, one calling each other.
@@ -3154,7 +3123,7 @@ In this simple example, you could also make a valid argument that the code shoul
     FreeAndNil(S);
   <span class="keyword">end</span>;
 
-  WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">Read from file got integer: </span><span class="delimiter">'</span></span>, OutputInt);
+  WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">Прочитано з файлу отримано ціле число: </span><span class="delimiter">'</span></span>, OutputInt);
 <span class="keyword">end</span>.</code></pre>
 </div>
 </div>
@@ -3283,14 +3252,14 @@ S := Download(<span class="string"><span class="delimiter">'</span><span class="
   Apples := TAppleList.Create(true);
   <span class="keyword">try</span>
     A := TApple.Create;
-    A.Name := <span class="string"><span class="delimiter">'</span><span class="content">my apple</span><span class="delimiter">'</span></span>;
+    A.Name := <span class="string"><span class="delimiter">'</span><span class="content">моє яблуко</span><span class="delimiter">'</span></span>;
     Apples.Add(A);
 
     A := TApple.Create;
-    A.Name := <span class="string"><span class="delimiter">'</span><span class="content">another apple</span><span class="delimiter">'</span></span>;
+    A.Name := <span class="string"><span class="delimiter">'</span><span class="content">інше яблуко</span><span class="delimiter">'</span></span>;
     Apples.Add(A);
 
-    Writeln(<span class="string"><span class="delimiter">'</span><span class="content">Count: </span><span class="delimiter">'</span></span>, Apples.Count);
+    Writeln(<span class="string"><span class="delimiter">'</span><span class="content">Кількість: </span><span class="delimiter">'</span></span>, Apples.Count);
     Writeln(Apples[<span class="integer">0</span>].Name);
     Writeln(Apples[<span class="integer">1</span>].Name);
   <span class="keyword">finally</span> FreeAndNil(Apples) <span class="keyword">end</span>;
@@ -3342,7 +3311,7 @@ S := Download(<span class="string"><span class="delimiter">'</span><span class="
 
     L.Sort(TAppleComparer.Construct(@CompareApples));
 
-    Writeln(<span class="string"><span class="delimiter">'</span><span class="content">Count: </span><span class="delimiter">'</span></span>, L.Count);
+    Writeln(<span class="string"><span class="delimiter">'</span><span class="content">Кількість: </span><span class="delimiter">'</span></span>, L.Count);
     Writeln(L[<span class="integer">0</span>].Name);
     Writeln(L[<span class="integer">1</span>].Name);
     Writeln(L[<span class="integer">2</span>].Name);
@@ -3377,33 +3346,33 @@ S := Download(<span class="string"><span class="delimiter">'</span><span class="
   Apples := TAppleDictionary.Create;
   <span class="keyword">try</span>
     A := TApple.Create;
-    A.Name := <span class="string"><span class="delimiter">'</span><span class="content">my apple</span><span class="delimiter">'</span></span>;
-    Apples.AddOrSetValue(<span class="string"><span class="delimiter">'</span><span class="content">apple key 1</span><span class="delimiter">'</span></span>, A);
+    A.Name := <span class="string"><span class="delimiter">'</span><span class="content">моє яблуко</span><span class="delimiter">'</span></span>;
+    Apples.AddOrSetValue(<span class="string"><span class="delimiter">'</span><span class="content">яблучний ключ 1</span><span class="delimiter">'</span></span>, A);
 
-    <span class="keyword">if</span> Apples.TryGetValue(<span class="string"><span class="delimiter">'</span><span class="content">apple key 1</span><span class="delimiter">'</span></span>, FoundA) <span class="keyword">then</span>
-      Writeln(<span class="string"><span class="delimiter">'</span><span class="content">Found apple under key &quot;apple key 1&quot; with name: </span><span class="delimiter">'</span></span> +
+    <span class="keyword">if</span> Apples.TryGetValue(<span class="string"><span class="delimiter">'</span><span class="content">яблучний ключ 1</span><span class="delimiter">'</span></span>, FoundA) <span class="keyword">then</span>
+      Writeln(<span class="string"><span class="delimiter">'</span><span class="content">Знайдено яблуко під ключем &quot;яблучний ключ 1&quot; з назвою: </span><span class="delimiter">'</span></span> +
         FoundA.Name);
 
     <span class="keyword">for</span> AppleKey <span class="keyword">in</span> Apples.Keys <span class="keyword">do</span>
-      Writeln(<span class="string"><span class="delimiter">'</span><span class="content">Found apple key: </span><span class="delimiter">'</span></span> + AppleKey);
+      Writeln(<span class="string"><span class="delimiter">'</span><span class="content">Знайдено яблучний ключ: </span><span class="delimiter">'</span></span> + AppleKey);
     <span class="keyword">for</span> A <span class="keyword">in</span> Apples.Values <span class="keyword">do</span>
-      Writeln(<span class="string"><span class="delimiter">'</span><span class="content">Found apple value: </span><span class="delimiter">'</span></span> + A.Name);
+      Writeln(<span class="string"><span class="delimiter">'</span><span class="content">Знайдено яблучне значення: </span><span class="delimiter">'</span></span> + A.Name);
     <span class="keyword">for</span> ApplePair <span class="keyword">in</span> Apples <span class="keyword">do</span>
-      Writeln(<span class="string"><span class="delimiter">'</span><span class="content">Found apple key-&gt;value: </span><span class="delimiter">'</span></span> +
+      Writeln(<span class="string"><span class="delimiter">'</span><span class="content">Знайдено яблучні ключ-&gt;значення: </span><span class="delimiter">'</span></span> +
         ApplePair.Key + <span class="string"><span class="delimiter">'</span><span class="content">-&gt;</span><span class="delimiter">'</span></span> + ApplePair.Value.Name);
 
-    <span class="comment">{ Line below works too, but it can only be used to set
-      an *existing* dictionary key.
-      Instead of this, usually use AddOrSetValue
-      to set or add a new key, as necessary. }</span>
-    <span class="comment">// Apples['apple key 1'] := ... ;</span>
+    <span class="comment">{ Рядок нижче також працює, але його можна використовувати
+     лише для встановлення *існуючого* ключа словника.
+     Замість цього зазвичай використовуйте AddOrSetValue,
+     щоб установити або додати новий ключ, якщо це необхідно. }</span>
+    <span class="comment">// Apples['яблучний ключ 1'] := ... ;</span>
 
-    Apples.Remove(<span class="string"><span class="delimiter">'</span><span class="content">apple key 1</span><span class="delimiter">'</span></span>);
+    Apples.Remove(<span class="string"><span class="delimiter">'</span><span class="content">яблучний ключ 1</span><span class="delimiter">'</span></span>);
 
-    <span class="comment">{ Note that the TDictionary doesn't own the items,
-      you need to free them yourself.
-      We could use TObjectDictionary to have automatic ownership
-      mechanism. }</span>
+    <span class="comment">{ Зверніть увагу, що TDictionary не володіє елементами,
+     вам потрібно звільнити їх самостійно.
+     Ми могли б використовувати TObjectDictionary,
+     щоб мати автоматичний механізм власності. }</span>
     A.Free;
   <span class="keyword">finally</span> FreeAndNil(Apples) <span class="keyword">end</span>;
 <span class="keyword">end</span>.</code></pre>
@@ -3435,14 +3404,14 @@ S := Download(<span class="string"><span class="delimiter">'</span><span class="
   Apples := TAppleDictionary.Create([doOwnsValues]);
   <span class="keyword">try</span>
     A := TApple.Create;
-    A.Name := <span class="string"><span class="delimiter">'</span><span class="content">my apple</span><span class="delimiter">'</span></span>;
-    Apples.AddOrSetValue(<span class="string"><span class="delimiter">'</span><span class="content">apple key 1</span><span class="delimiter">'</span></span>, A);
+    A.Name := <span class="string"><span class="delimiter">'</span><span class="content">моє яблуко</span><span class="delimiter">'</span></span>;
+    Apples.AddOrSetValue(<span class="string"><span class="delimiter">'</span><span class="content">яблучний ключ 1</span><span class="delimiter">'</span></span>, A);
 
     <span class="keyword">for</span> ApplePair <span class="keyword">in</span> Apples <span class="keyword">do</span>
-      Writeln(<span class="string"><span class="delimiter">'</span><span class="content">Found apple key-&gt;value: </span><span class="delimiter">'</span></span> +
+      Writeln(<span class="string"><span class="delimiter">'</span><span class="content">Знайдено яблучний ключ-&gt;значення: </span><span class="delimiter">'</span></span> +
         ApplePair.Key + <span class="string"><span class="delimiter">'</span><span class="content">-&gt;</span><span class="delimiter">'</span></span> + ApplePair.Value.Name);
 
-    Apples.Remove(<span class="string"><span class="delimiter">'</span><span class="content">apple key 1</span><span class="delimiter">'</span></span>);
+    Apples.Remove(<span class="string"><span class="delimiter">'</span><span class="content">яблучний ключ 1</span><span class="delimiter">'</span></span>);
   <span class="keyword">finally</span> FreeAndNil(Apples) <span class="keyword">end</span>;
 <span class="keyword">end</span>.</code></pre>
 </div>
@@ -3639,7 +3608,7 @@ end;</code></pre>
 <table>
 <tr>
 <td class="icon">
-<div class="title">Note</div>
+<div class="title">Зауваження</div>
 </td>
 <td class="content">
 This is not the <strong>exact</strong> implementation of <code>TPersistent</code>. I copied the FPC standard library code, but then I simplified it to hide unimportant details about the exception message.
@@ -3683,7 +3652,7 @@ This is not the <strong>exact</strong> implementation of <code>TPersistent</code
 <table>
 <tr>
 <td class="icon">
-<div class="title">Note</div>
+<div class="title">Зауваження</div>
 </td>
 <td class="content">
 Remember that when descending from <code>TPersistent</code>, the default <em>visibility specifier</em> is <code>published</code>, to allow streaming of <code>TPersistent</code> descendants. Not all field and property types are allowed in the <code>published</code> section. If you get errors related to it, and you don&#8217;t care about streaming, just change the visibility to <code>public</code>. See the <a href="#_visibility_specifiers">Visibility specifiers</a>.
@@ -3929,8 +3898,8 @@ Remember that when descending from <code>TPersistent</code>, the default <em>vis
 
   StringCalc := TMyStringCalculator.Create;
   <span class="keyword">try</span>
-    StringCalc.Add(<span class="string"><span class="delimiter">'</span><span class="content">something</span><span class="delimiter">'</span></span>);
-    StringCalc.Add(<span class="string"><span class="delimiter">'</span><span class="content"> more</span><span class="delimiter">'</span></span>);
+    StringCalc.Add(<span class="string"><span class="delimiter">'</span><span class="content">щось</span><span class="delimiter">'</span></span>);
+    StringCalc.Add(<span class="string"><span class="delimiter">'</span><span class="content"> більше</span><span class="delimiter">'</span></span>);
     WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">StringCalc: </span><span class="delimiter">'</span></span>, StringCalc.Value);
   <span class="keyword">finally</span>
     FreeAndNil(StringCalc);
@@ -3947,7 +3916,7 @@ Remember that when descending from <code>TPersistent</code>, the default <em>vis
 <span class="keyword">uses</span>
   SysUtils;
 
-<span class="comment">{ Note: this example requires FPC 3.1.1 (will not compile with FPC 3.0.0 or older). }</span>
+<span class="comment">{ Примітка: для цього прикладу потрібен FPC 3.1.1 (не компілюється з FPC 3.0.0 або старішим). }</span>
 
 generic <span class="keyword">function</span> Min&lt;T&gt;(<span class="keyword">const</span> A, B: T): T;
 <span class="keyword">begin</span>
@@ -4010,7 +3979,7 @@ generic <span class="keyword">function</span> Min&lt;T&gt;(<span class="keyword"
 
 <span class="comment">{ Define a NewLine constant. Here you can see how the normal syntax of Pascal
   is &quot;broken&quot; by preprocessor directives. When you compile on Unix
-  (includes Linux, Android, macOS), the compiler sees this:
+  (includes Linux, Android, Mac OS X), the compiler sees this:
 
     const NewLine = #10;
 
@@ -4622,7 +4591,7 @@ operator* (<span class="keyword">const</span> C1, C2: TMyRecord): TMyRecord;
 <table>
 <tr>
 <td class="icon">
-<div class="title">Note</div>
+<div class="title">Зауваження</div>
 </td>
 <td class="content">
 <div class="paragraph">
@@ -4687,7 +4656,7 @@ it can be declared by following the normal field definition with the keyword <co
 <span class="keyword">type</span>
   TMyClass = <span class="keyword">class</span>
   strict <span class="directive">private</span>
-    <span class="comment">// Alternative:</span>
+    <span class="comment">// Альтернатива:</span>
     <span class="comment">// FMyProperty: Integer; static;</span>
     <span class="keyword">class</span> <span class="keyword">var</span>
       FMyProperty: Integer;
@@ -4699,13 +4668,13 @@ it can be declared by following the normal field definition with the keyword <co
 
 <span class="keyword">class</span> <span class="keyword">procedure</span> TMyClass.SetMyProperty(<span class="keyword">const</span> Value: Integer);
 <span class="keyword">begin</span>
-  Writeln(<span class="string"><span class="delimiter">'</span><span class="content">MyProperty changes!</span><span class="delimiter">'</span></span>);
+  Writeln(<span class="string"><span class="delimiter">'</span><span class="content">MyProperty змінено!</span><span class="delimiter">'</span></span>);
   FMyProperty := Value;
 <span class="keyword">end</span>;
 
 <span class="keyword">begin</span>
   TMyClass.MyProperty := <span class="integer">123</span>;
-  Writeln(<span class="string"><span class="delimiter">'</span><span class="content">TMyClass.MyProperty is now </span><span class="delimiter">'</span></span>, TMyClass.MyProperty);
+  Writeln(<span class="string"><span class="delimiter">'</span><span class="content">TMyClass.MyProperty тепер </span><span class="delimiter">'</span></span>, TMyClass.MyProperty);
 <span class="keyword">end</span>.</code></pre>
 </div>
 </div>
@@ -4759,7 +4728,7 @@ it can be declared by following the normal field definition with the keyword <co
 <table>
 <tr>
 <td class="icon">
-<div class="title">Note</div>
+<div class="title">Зауваження</div>
 </td>
 <td class="content">
 The more general concept is <em>"type helper"</em>. Using them you can add methods even to primitive types, like integers or enums. You can also add <em>"record helpers</em>" to (you guessed it&#8230;&#8203;) records. See <a href="http://lists.freepascal.org/fpc-announce/2013-February/000587.html" class="bare">http://lists.freepascal.org/fpc-announce/2013-February/000587.html</a> .
@@ -4828,17 +4797,18 @@ The more general concept is <em>"type helper"</em>. Using them you can add metho
 <span class="keyword">begin</span>
   <span class="keyword">inherited</span>;
   Gun1 := TGun.Create;
-  <span class="keyword">raise</span> Exception.Create(<span class="string"><span class="delimiter">'</span><span class="content">Raising an exception from constructor!</span><span class="delimiter">'</span></span>);
+  <span class="keyword">raise</span> Exception.Create(<span class="string"><span class="delimiter">'</span><span class="content">Підняття винятку з конструктора!</span><span class="delimiter">'</span></span>);
   Gun2 := TGun.Create;
 <span class="keyword">end</span>;
 
 <span class="keyword">destructor</span> TPlayer.Destroy;
 <span class="keyword">begin</span>
-  <span class="comment">{ in case since the constructor crashed, we can
-    have Gun1 &lt;&gt; nil and Gun2 = nil now. Deal with it.
-    ...Actually, in this case, FreeAndNil deals with it without
-    any additional effort on our side, because FreeAndNil checks
-    whether the instance is nil before calling its destructor. }</span>
+  <span class="comment">{ у випадку, якщо в конструкторі стався збій, ми можемо
+    мати Gun1 &lt;&gt; nil і Gun2 = nil зараз. Змиріться з цим.
+    ...Насправді, у цьому випадку FreeAndNil справляється
+    з цим без будь-яких додаткових зусиль з нашого боку,
+    тому що FreeAndNil перевіряє, чи є екземпляр нульовим,
+    перш ніж викликати його деструктор }</span>
   FreeAndNil(Gun1);
   FreeAndNil(Gun2);
   <span class="keyword">inherited</span>;
@@ -4849,7 +4819,7 @@ The more general concept is <em>"type helper"</em>. Using them you can add metho
     TPlayer.Create;
   <span class="keyword">except</span>
     <span class="directive">on</span> E: Exception <span class="keyword">do</span>
-      WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">Caught </span><span class="delimiter">'</span></span> + E.ClassName + <span class="string"><span class="delimiter">'</span><span class="content">: </span><span class="delimiter">'</span></span> + E.Message);
+      WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">Спіймано </span><span class="delimiter">'</span></span> + E.ClassName + <span class="string"><span class="delimiter">'</span><span class="content">: </span><span class="delimiter">'</span></span> + E.Message);
   <span class="keyword">end</span>;
 <span class="keyword">end</span>.</code></pre>
 </div>
@@ -4952,7 +4922,7 @@ The more general concept is <em>"type helper"</em>. Using them you can add metho
 <dd>
 <p>The name <strong>CORBA</strong> is unfortunate. A better name would be <strong>bare interfaces</strong>. These interfaces are a <em>"pure language feature"</em>. Use them when you want to cast various classes as the same interface, because they share a common API.</p>
 <div class="paragraph">
-<p>While these types of interfaces can be used together with the <em>CORBA (Common Object Request Broker Architecture) technology</em> (see <a href="https://en.wikipedia.org/wiki/Common_Object_Request_Broker_Architecture">wikipedia about CORBA</a>), they are <em>not</em> tied to this technology in any way.</p>
+<p>While these types of interfaces can be used together with the <em>CORBA (Common Object Request Broker Architecture) technology</em> (see <a href="https://en.wikipedia.org/wiki/Common_Object_Request_Broker_Architecture" class="bare">https://en.wikipedia.org/wiki/Common_Object_Request_Broker_Architecture</a>), they are <em>not</em> tied to this technology in any way.</p>
 </div>
 </dd>
 <dt class="hdlist1">Is the <code>{$interfaces corba}</code> declaration needed?</dt>
@@ -5100,7 +5070,7 @@ you create <em>COM interfaces</em>. This can be stated explicitly by saying <cod
 <p>The standard class <code>TInterfacedObject</code> implements these methods to <em>enable</em> the reference-counting.</p>
 </li>
 <li>
-<p>The standard class <code>TComponent</code> implements these methods to <em>disable</em> the reference-counting.</p>
+<p>The standard class <code>TComponent</code> implements these methods to <em>disable</em> the reference-counting. <strong>In the Castle Game Engine</strong> we give you additional useful ancestors <code>TNonRefCountedInterfacedObject</code> and <code>TNonRefCountedInterfacedPersistent</code> for this purpose, see <a href="https://github.com/castle-engine/castle-engine/blob/0519585abc13e8386cdae5f7dfef6f9659dc9b57/src/base/castleinterfaces.pas" class="bare">https://github.com/castle-engine/castle-engine/blob/0519585abc13e8386cdae5f7dfef6f9659dc9b57/src/base/castleinterfaces.pas</a> .</p>
 </li>
 </ul>
 </div>
@@ -5354,7 +5324,7 @@ you create <em>COM interfaces</em>. This can be stated explicitly by saying <cod
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
 
-<span class="comment">// {$interfaces corba} // note that &quot;as&quot; typecasts for CORBA will not compile</span>
+<span class="comment">// {$interfaces corba} // зауважте, що приведення типу &quot;as&quot; для CORBA не компілюється</span>
 
 <span class="keyword">uses</span> Classes;
 
@@ -5418,31 +5388,31 @@ you create <em>COM interfaces</em>. This can be stated explicitly by saying <cod
   My := TMyClass2.Create(<span class="keyword">nil</span>);
   MyClass := TMyClass2.Create(<span class="keyword">nil</span>);
 
-  <span class="comment">// This doesn't compile, since at compile-time it's unknown if My is IMyInterface2.</span>
+  <span class="comment">// Це не компілюється, оскільки під час компіляції невідомо, чи My є IMyInterface2.</span>
   <span class="comment">// UseInterface2(My);</span>
   <span class="comment">// UseInterface2(MyClass);</span>
 
-  <span class="comment">// This compiles and works OK.</span>
+  <span class="comment">// Це компілюється та працює нормально.</span>
   UseInterface2(IMyInterface2(My));
-  <span class="comment">// This does not compile. Casting InterfaceType(ClassType) is checked at compile-time.</span>
+  <span class="comment">// Це не компілюється. Приведення InterfaceType(ClassType) перевіряється під час компіляції.</span>
   <span class="comment">// UseInterface2(IMyInterface2(MyClass));</span>
 
-  <span class="comment">// This compiles and works OK.</span>
+  <span class="comment">// Це компілюється та працює нормально.</span>
   UseInterface2(My <span class="keyword">as</span> IMyInterface2);
-  <span class="comment">// This compiles and works OK.</span>
+  <span class="comment">// Це компілюється та працює нормально.</span>
   UseInterface2(MyClass <span class="keyword">as</span> IMyInterface2);
 
-  <span class="comment">// This compiles, but will fail at runtime, with ugly &quot;Access violation&quot;.</span>
+  <span class="comment">// Це компілюється, але зазнає збою під час виконання, з потворним «Access Violation».</span>
   <span class="comment">// UseInterface3(IMyInterface3(My));</span>
-  <span class="comment">// This does not compile. Casting InterfaceType(ClassType) is checked at compile-time.</span>
+  <span class="comment">// Це не компілюється. Приведення InterfaceType(ClassType) перевіряється під час компіляції.</span>
   <span class="comment">// UseInterface3(IMyInterface3(MyClass));</span>
 
-  <span class="comment">// This compiles, but will fail at runtime, with nice &quot;EInvalidCast: Invalid type cast&quot;.</span>
+  <span class="comment">// Це компілюється, але зазнає збою під час виконання, з гарним «EInvalidCast: неправильне приведення типу».</span>
   <span class="comment">// UseInterface3(My as IMyInterface3);</span>
-  <span class="comment">// This compiles, but will fail at runtime, with nice &quot;EInvalidCast: Invalid type cast&quot;.</span>
+  <span class="comment">// Це компілюється, але зазнає збою під час виконання, з гарним «EInvalidCast: неправильне приведення типу».</span>
   <span class="comment">// UseInterface3(MyClass as IMyInterface3);</span>
 
-  Writeln(<span class="string"><span class="delimiter">'</span><span class="content">Finished</span><span class="delimiter">'</span></span>);
+  Writeln(<span class="string"><span class="delimiter">'</span><span class="content">Завершено</span><span class="delimiter">'</span></span>);
 <span class="keyword">end</span>.</code></pre>
 </div>
 </div>
@@ -5479,7 +5449,7 @@ you create <em>COM interfaces</em>. This can be stated explicitly by saying <cod
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-08-09 21:58:34 +0200
+Востаннє оновлено 2023-08-09 21:58:43 +0200
 </div>
 </div>
 <!-- Google analytics -->
