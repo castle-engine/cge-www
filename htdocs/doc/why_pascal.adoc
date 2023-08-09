@@ -27,14 +27,20 @@ cgeimg::block[vscode_completion.png|VS Code completion]
 
 - The syntax puts emphasis on readable code.
 
-- The language is type-safe. E.g. special types for booleans, strings, chars, sets, enums, ranges. Type conversions are either really safe, or have to be done explicitly.
+- The language is type-safe. E.g. there are special types for booleans, strings, chars, sets, enums, ranges. Type conversions are either really safe (e.g. integer can be assigned to float without any fuss), or have to be done explicitly.
+
+- There's a significant emphasis on checking things at _compile-time_. This makes refactoring things, e.g. rearranging data structures, pain-free in many cases: just do what you want, hit _"Compile"_, and let the compiler point all the things you have to adjust. Compilation will not allow obvious mistakes (like name typos or type mismatches) to ever reach the user.
 
 - There are additional run-time checks, e.g. array range checking, integer overflow checking, assertions, memory leak checking. Notes:
 +
 --
-- You can turn off these checks in _release_ version, but use them in _debug_. When compiling using CGE build tool / editor, we have debug / release modes that automatically do this for you.
-- https://github.com/michaliskambi/modern-pascal-introduction/wiki/What-are-range-and-overflow-checks-(and-errors)-in-Pascal[What are range and overflow checks (and errors) in Pascal]
-- https://castle-engine.io/detecting_memory_leaks_using_heaptrc[Detecting Memory Leaks]
+- You can turn off these checks in the _"release"_ version (for performance), but use them in _"debug"_ version to capture all problems during testing easier.
++
+When compiling using CGE editor, we have debug / release modes automatically set up, they activate / deactivate reasonable options automatically. Just switch the mode between debug / release using CGE editor _"Run"_ menu.
+
+- https://github.com/michaliskambi/modern-pascal-introduction/wiki/What-are-range-and-overflow-checks-(and-errors)-in-Pascal[What are range and overflow checks (and errors) in Pascal].
+
+- https://castle-engine.io/detecting_memory_leaks_using_heaptrc[Detecting Memory Leaks].
 --
 
 ### Fast
@@ -80,6 +86,8 @@ image::images/not_resized/pascal-fast-compilation.webp[]
 - web (both WebAssembly and JS (using pas2js)).
 
 See also link:features[Castle Game Engine platforms supported].
+
+Above we listed platforms interesting for CGE, for now. For all the possibilities, see https://www.freepascal.org/[FPC target platforms] and https://docwiki.embarcadero.com/RADStudio/Sydney/en/Supported_Target_Platforms[Delphi target platforms].
 
 ### Welcoming
 
