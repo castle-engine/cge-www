@@ -49,6 +49,7 @@ It's easiest to get them from the FPC:
 * Select latest stable version (like `3.2.0` at the time of writing this)
 * Download the cross-compiler for iOS from there, `xxx-macosx.cross.ios.dmg` from there (like `fpc-3.2.0.intel-macosx.cross.ios.dmg` at the time of writing this). Install this.
 
+////
 *Old note for FPC 3.0.4/3.0.5*: `fpc-3.0.5.intel-macosx.cross.ios.dmg` seems to have problems with the latest XCode versions, that don't create `/usr/lib/crt1.o`. This file is required to finish the installation (and later to compile libraries), by https://svn.freepascal.org/cgi-bin/viewvc.cgi/trunk/install/macosx/packaging/packages/fpc-3.0.4.intel-macosx.pkgproj?view=co&revision=1379&root=fpcbuild , otherwise the installer thinks that "XCode command-line tools" are not present. The workaround:
 
 . Check whether you have https://support.apple.com/en-gb/HT204899[SIP (System Integrity Protection)] enabled using `csrutil status`.
@@ -75,6 +76,7 @@ It's easiest to get them from the FPC:
 ----
 
 With FPC 3.2.0, the problems are gone.
+////
 
 === Testing FPC cross-compilers
 
@@ -83,13 +85,15 @@ Before attempting the compilation of a full program, we advise testing that your
 _First, test that you can compile for the necessary CPUs_. The cross-compiler for each CPU is actually a different FPC executable, so the lines below will make an error immediately if you cannot cross-compile to the given CPU. The desired result is that they should answer _No source file name in command line_.
 
 ----
-fpc -Pi386    -l # old note: maybe add -V3.0.5, if you use FPC 3.0.4/3.0.5 combination
-fpc -Px86_64  -l # old note: maybe add -V3.0.5, if you use FPC 3.0.4/3.0.5 combination
+fpc -Pi386    -l
+fpc -Px86_64  -l
 fpc -Parm     -l
 fpc -Paarch64 -l
 ----
 
+////
 NOTE: Add `-V3.0.5` to the lines marked above, if you use the official "FPC for iOS" installed from `fpc-3.0.5.intel-macosx.cross.ios.dmg` file. See the `Getting Started - iOS.rtf` file inside for explanation. This is no longer needed for FPC 3.2.0.
+ ///
 
 // You can add `-it` to see the list of supported OSes for each one.
 
@@ -227,16 +231,20 @@ Same instructions as for link:android_faq#_testing_mobile_opengl_es_rendering_wi
 +
 They can be ignored. We link with proper iOS libraries, don't worry. We don't yet know how to avoid this warning.
 
-* The event loop on iOS must be controlled by the main program in Objective-C, not in Pascal. This means that `Application.ProcessMessages` does not work. The library cannot force the main process to handle some events, and wait for something to happen. This means that you cannot use `Application.ProcessMessages`, or things depending on them:
- ** `CastleMessages` (functions in this unit make modal windows, running a message loop inside and only returning when user exits -- similar to `ShowMessage` in Lazarus LCL / Delphi VCL),
- ** `CastleWindowProgress` (it processes messages to redraw the screen inside `Progress.Step`).
-
+* The event loop on iOS must be controlled by the main program in Objective-C, not in Pascal. This means that `Application.ProcessMessages` cannot work. The library cannot force the main process to handle some events, and wait for something to happen. This means that you cannot use `Application.ProcessMessages`, or things depending on them.
 +
-To make modal windows on iOS, use cgeref:CastleDialogStates[] unit with modal windows using cgeref:TCastleView[] class. You can also set cgeref:MessageOKPushesState[] to `true`. To show progress bar, use `TCastleProgressBar` control, which you will need to continuously update yourself, for example in your `Window.OnUpdate` event.
+In particular `CastleMessages` unit is mostly useless on iOS. Functions in this unit make modal windows, running a message loop inside and only returning when user exits -- similar to `ShowMessage` in Lazarus LCL / Delphi VCL.
++
+To make modal windows on iOS, design your modal dialog as a link:views[view] and "push" it, waiting for it to return to the previous view. See the link:views[] manual and examples linked there. To have ready-to-use modal dialogs, use cgeref:CastleDialogViews[] unit with ready descendants of cgeref:TCastleView[] class that implement simple dialog windows.
+////
+Hack, don't recommend anymore.
++
+You can also set cgeref:MessageOKPushesView[] to `true` to be able to use cgeref:MessageOK[] on iOS. It will just push a specific view.
+////
 * On iOS, the OpenGL(ES) context is created and destroyed solely by the Objective-C code, not Pascal. You cannot use the `Window.Open` and `Window.Close` from the Pascal code to force recreating OpenGL context. This follows our https://castle-engine.io/manual_cross_platform.php[cross-platform code guidelines].
 * The https://developer.apple.com/documentation/uikit/uiresponder/1621084-touchesended?language=objc[touchesEnded] / https://developer.apple.com/documentation/uikit/uiresponder/1621116-touchescancelled?language=objc[touchesCancelled] events on iOS (that in turn determine CGE events like cgeref:TCastleView.Release[], cgeref:TCastleWindow.OnRelease[]) have poor behavior.
 +
-It seems to be implemented like _"report that touch ends, or is cancelled, when the finger position doesn't change for the 0.36 seconds"_. It seems to be done regardless of *when* did the user actually released the finger, and *if* the user actually released the finger. You can test this unfortunate behavior even with simple CGE example `examples/user_interface/test_all_state_events/` . As a result:
+It seems to be implemented like _"report that touch ends, or is cancelled, when the finger position doesn't change for the 0.36 seconds"_. It seems to be done regardless of *when* did the user actually released the finger, and *if* the user actually released the finger. You can test this unfortunate behavior even with simple CGE example https://github.com/castle-engine/castle-engine/tree/master/examples/user_interface/test_all_view_events[examples/user_interface/test_all_view_events]. As a result:
 
  ** If you press and release the finger, you will notice that CGE `Release` event is reported with small (0.36 sec) delay instead of being instant. This small delay sometimes matters in games -- you will e.g. see `buttonLeft in Container.MousePressed` for a short time, even after user physically released the finger.
  ** If you keep pressing your finger, but without any movement, then the CGE `Release` event will be reported (and the touch will no longer be tracked). Even if you keep holding the finger down.
@@ -251,9 +259,9 @@ There's no reliable solution, it seems to be just the way iOS behaves. Trying va
 * Building FPC and cross-compiling: see http://www.stack.nl/\~marcov/buildfaq.pdf[Build FAQ (PDF)], https://wiki.lazarus.freepascal.org/buildfaq[Build FAQ (Wiki)].
 // Old: http://www.ragnemalm.se/lightweight/iphone-install/iphone-installation.html
 
-== Alternative: Using FPC trunk (unstable)
+== Alternative: Using the latest FPC development branch
 
-Instead of using the stable FPC, you can try using the latest FPC trunk version (3.3.1 now). You need to install 4 cross-compilers, for all 4 platforms that are included in the _"iOS target"_:
+Instead of using the stable FPC, you can try using the latest development version of FPC (https://gitlab.com/freepascal.org/fpc/source[main branch from FPC GitLab]). You need to install 4 cross-compilers, for all 4 platforms that are included in the _"iOS target"_:
 
 . arm / darwin `# use iOS instead of darwin with FPC >= 3.2.2`
 . aarch64 / darwin `# use iOS instead of darwin with FPC >= 3.2.2`
@@ -265,22 +273,22 @@ An easy way to install cross-compilers is to use link:pass:[fpcupdeluxe][fpcupde
 * iPhoneSimulator is called _i-sim_ in the fpcupdeluxe UI.
 * Our build tool uses the `fpc` binary available on your `$PATH` environment variable. Make sure you create an appropriate symlink to make it call the FPC installed by link:pass:[fpcupdeluxe][fpcupdeluxe (this wiki page describes this)].
 
-When you compiled your own FPC version, you will want to use `--fpc-version-iphone-simulator ""` on the command-line to the build tool. Otherwise the build tool may try to call FPC for iPhone Simulator target with a different FPC version (because the standard FPC 3.0.4 / 3.0.5 mix requires this). So you will usually call this in your project:
+When you compiled your own FPC version, you will want to use `--fpc-version-iphone-simulator ""` on the command-line to the build tool. Otherwise the build tool may try to call FPC for iPhone Simulator target with a different FPC version (because some standard FPC versions required this). So you will usually call this in your project:
 
- $ fpc -v
- Free Pascal Compiler version 3.0.4 [2017/11/26] for i386
- ...
- $ castle-engine package --target=ios --fpc-version-iphone-simulator "" --fast
- ...
- Compiling project "drawing_toy" for target "ios" in mode "release".
- FPC version: 3.1.1
- FPC executing...
- Compiling Release Version
- ...
- Target OS: Darwin/iPhoneSim for i386
- ...
- Target OS: Darwin/iPhoneSim for x86_64
- ...
- Target OS: Darwin for ARM
- ...
- Target OS: Darwin for AArch64
+```
+$ castle-engine package --target=ios --fpc-version-iphone-simulator "" --fast
+...
+Compiling project "drawing_toy" for target "ios" in mode "release".
+FPC version: 3.3.1
+FPC executing...
+Compiling Release Version
+...
+Target OS: Darwin/iPhoneSim for i386
+...
+Target OS: Darwin/iPhoneSim for x86_64
+...
+Target OS: Darwin for ARM
+...
+Target OS: Darwin for AArch64
+...
+```
