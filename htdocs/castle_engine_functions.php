@@ -405,7 +405,30 @@ $castle_sitemap = array(
       ),
       'reference' => array('title' => 'API Reference', 'url' => reference_link()),
       'doc/why_pascal' => array('title' => 'Why Pascal?'),
-      'doc/modern_pascal' => array('title' => 'Modern Object Pascal Introduction'),
+      'doc/modern_pascal' => array('title' => 'Modern Object Pascal Introduction',
+        'sub' => array(
+          //'doc/modern_pascal' => array('title' => 'English (HTML)'),
+          'modern_pascal_en_pdf' => array('title' => 'PDF', 'url' => CASTLE_PROD_URL . 'modern_pascal_introduction.pdf'),
+
+          'doc/modern_pascal_translations' => array(
+            'title' => 'Translations',
+            'sub' => array(
+              'modern_pascal_bg_html' => array('title' => 'Bulgarian', 'url' => CASTLE_PROD_URL . 'modern_pascal_introduction_bg.html'),
+              //TODO:'modern_pascal_bg_pdf' => array('title' => 'Bulgarian (PDF)', 'url' => CASTLE_PROD_URL . 'modern_pascal_introduction_bg.pdf'),
+
+              'modern_pascal_chinese' => array('title' => 'Chinese (WIP)', 'url' => CASTLE_PROD_URL . 'modern_pascal_introduction_chinese.pdf'),
+
+              'modern_pascal_russian_html' => array('title' => 'Russian', 'url' => CASTLE_PROD_URL . 'modern_pascal_introduction_russian.html'),
+              //TODO:'modern_pascal_russian_pdf' => array('title' => 'Russian (PDF)', 'url' => CASTLE_PROD_URL . 'modern_pascal_introduction_russian.pdf'),
+
+              'doc/modern_pascal_spanish' => array('title' => 'Spanish'),
+
+              'modern_pascal_ukrainian_html' => array('title' => 'Ukrainian (WIP)', 'url' => CASTLE_PROD_URL . 'modern_pascal_introduction_ukrainian.html'),
+              //TODO:'modern_pascal_ukrainian_pdf' => array('title' => 'Ukrainian (WIP) (PDF)', 'url' => CASTLE_PROD_URL . 'modern_pascal_introduction_ukrainian.pdf'),
+            )
+          )
+        )
+      ),
       'doc/castle_game_engine_for_unity_developers' => array('title' => 'Overview for Unity Developers'),
 
       'vrml_x3d' => array('title' => 'Scene Graph (X3D)',
