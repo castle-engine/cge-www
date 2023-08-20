@@ -426,7 +426,9 @@ $castle_sitemap = array(
               'modern_pascal_ukrainian_html' => array('title' => 'Ukrainian (WIP)', 'url' => CASTLE_PROD_URL . 'modern_pascal_introduction_ukrainian.html'),
               //TODO:'modern_pascal_ukrainian_pdf' => array('title' => 'Ukrainian (WIP) (PDF)', 'url' => CASTLE_PROD_URL . 'modern_pascal_introduction_ukrainian.pdf'),
             )
-          )
+          ),
+
+          'doc/learn_pascal' => array('title' => 'More Resources to Learn Pascal'),
         )
       ),
       'doc/castle_game_engine_for_unity_developers' => array('title' => 'Overview for Unity Developers'),
