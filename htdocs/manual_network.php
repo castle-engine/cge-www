@@ -5,6 +5,7 @@ castle_header('Network, downloading and using URLs');
 $toc = new TableOfContents(
   array(
     new TocItem('Loading and saving files using URLs', 'loading_saving'),
+    new TocItem('Note about case-sensitive filesystems and URLs', 'case_sensitive'),
     new TocItem('Supported protocols', 'protocols'),
       new TocItem('Downloading from the network: <code>http</code> and <code>https</code>', 'https_http', 1),
       new TocItem('Loading local files: <code>file</code>', 'file', 1),
@@ -92,6 +93,16 @@ other resources) automatically deal with URLs.
 <p>If you want to read or write text files from an URL, use
 <?php echo cgeRef('TTextReader'); ?> and
 <?php echo cgeRef('TTextWriter'); ?>.
+
+<?php echo $toc->html_section(); ?>
+
+<p>Often, URLs just refer to files on the filesystem. Like <code>file://...</code> URLs, or <code>castle-data:/...</code> URLs (on platforms where the <a href="manual_data_directory.php">application data</a> is just a set of regular files). In this case, the underlying filesystem determines whether the names are case-sensitive (so e.g. <code>foobar</code> vs <code>FooBar</code> mean something else) or not. On Unix (like Linux, FreeBSD, macOS) the filesystems are typically case-sensitive. On Windows, the filesystems are typically <i>not</i> case-sensitive.
+
+<p>To make the application work on all platforms, be sure to always specify the same case in URLs as your files.
+
+<p>E.g. take care if you load <code>castle-data:/FooBar.png</code> or <code>castle-data:/foobar.png</code>. Using wrong letter case may be an easy mistake, because on Windows both versions will work, but on Linux only the version with correct case.
+
+<p>If you test and develop mostly on Windows, a simple option is also be to set global <code>CastleDataIgnoreCase:=true</code>. See <?php echo cgeRef('CastleDataIgnoreCase'); ?>.
 
 <?php echo $toc->html_section(); ?>
 
