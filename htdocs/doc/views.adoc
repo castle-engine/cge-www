@@ -5,7 +5,9 @@ include::common.adoc[]
 
 ## Introduction
 
+////
 NOTE: _"View"_ was called _"state"_ before 2022-12-25. And instead of cgeref:TCastleView[] class we used `TUIState` class. While we tried to update all examples and docs to the new terminology, undoudtedly you can find some old code snippets talking about "state". Just mentally replace _state_ -> _view_ and you're good :)
+////
 
 _View_ is a class descending from cgeref:TCastleView[]. It determines what is currently displayed, and is the primary place where you can react to events (handle user input, passage of time, clicks on buttons and more).
 
