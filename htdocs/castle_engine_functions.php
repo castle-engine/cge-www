@@ -529,8 +529,12 @@ $castle_sitemap = array(
         ),
       ),
 
-      'gic2022' => array('title' => 'Slides from GIC 2022', 'url' => 'https://castle-engine.io/gic2022'),
-      'ipc2023' => array('title' => 'Slides from IPC 2023', 'url' => 'https://castle-engine.io/ipc2023'),
+      'doc/conferences' => array('title' => 'Conferences',
+        'sub' => array(
+          'gic2022' => array('title' => 'Slides from GIC 2022', 'url' => 'https://castle-engine.io/gic2022'),
+          'ipc2023' => array('title' => 'Slides from IPC 2023', 'url' => 'https://castle-engine.io/ipc2023'),
+        )
+      ),
     ),
   ),
 
