@@ -3,7 +3,9 @@ include::common.adoc[]
 :description: Using basic view features: displaying images and handling events.
 :cge-social-share-image: view_events_screen.png
 
+////
 NOTE: _"View"_ was called _"state"_ before 2022-12-25. And instead of cgeref:TCastleView[] class we used `TUIState` class. While we tried to update all examples and docs to the new terminology, undoudtedly you can find some old code snippets talking about "state". Just mentally replace _state_ -> _view_ and you're good :)
+////
 
 == Overview
 
