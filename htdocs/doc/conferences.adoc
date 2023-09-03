@@ -1,0 +1,36 @@
+# Conferences
+include::common.adoc[]
+
+_Michalis Kamburelis_ enjoys speaking at various conferences about _Castle Game Engine_.
+
+////
+Not always, but sometimes there's a paper trace or video recording of what I talked about -- I'll
+
+This pages collects _some_ materials from them.
+////
+
+* *Upcoming: Catch me in-person here:* _20-21 September 2023_: https://www.bsc.com.pl/zlot-programistow-delphi-2023/[Zlot Programistów Delphi], Polish conference.
+
+* _July 2023_: I had a talk and CGE course at the http://pascalcongress.com/[International Pascal Congress] in Salamanca.
+** I collected my https://castle-engine.io/wp/2023/07/08/international-pascal-congress-my-presentation-slides-various-positive-thoughts-about-pascal-both-fpc-and-delphi-bright-future-and-why-you-should-use-pascal/[positive thoughts about Pascal future after the conference here].
+** Read https://castle-engine.io/ipc2023/slides[slides from my talk "Developing games and graphic visualizations in Pascal"].
+** https://castle-engine.io/ipc2023/cge-course.html[Castle Game Engine Workshop (course)] with https://github.com/michaliskambi/salamanca2[sample application source code].
+
+* _February 2023_: Online conference _DelphiCon 2023_, I gave a talk about CGE physics.
+** https://www.youtube.com/watch?v=epqLUe_HapM[Watch my talk "Getting Physical in Your Games with Castle Game Engine"]
+
+* _December 2022_: Online conference organized by Embarcadero _CodeRage 2022_.
+** https://www.youtube.com/watch?v=oA87iclrDZA[Watch my talk on YouTube. I presented TCastleControl for FMX and VCL.]
+** The latest https://castle-engine.io/control_on_form[documentation about TCastleControl for FMX and VCL is here].
+
+* _October 2022_: I gave a talk at the https://gic.gd/[Game Industry Conference] in Poznań, Poland.
+** https://www.youtube.com/watch?v=Ad3UywYyRGU[Watch my talk on YouTube]
+** Slides: https://castle-engine.io/gic2022[Castle Game Engine and the joy of making and using a custom game engine]
+** https://castle-engine.io/wp/2022/10/12/slides-movies-and-thoughts-from-my-gic-2022-presentation/[Thoughts after my GIC 2022 presentation]
+
+* _November 2020_: I gave a talk at the https://mdco2.mini.debconf.org/[MiniDebConf Online “Gaming Edition”].
+** https://mdco2.mini.debconf.org/talks/21-castle-game-engine-overview-and-upcoming-features/[Watch my talk here: Castle Game Engine - overview and upcoming features].
+
+* _2011_: I published and presented a paper at the _Theory and Practice of Computer Graphics 2011_ conference. The paper presented our https://castle-engine.io/compositing_shaders.php[Compositing Shaders, aka "shader effects"], which continue to be our advised way to use shaders in CGE.
+
+* _2010_: I published and presented a paper at _Web3D 2010_ conference. I presented our X3D nodes to use https://castle-engine.io/x3d_extensions_shadow_maps.php[shadow maps], which continue to be how you can use _shadow maps_ in CGE.
