@@ -261,7 +261,13 @@ This _"simple physics"_ implementation is fully implemented in CGE, without usin
 
 - It can resolve collisions with (potentially dynamic) meshes using octrees, constructed for each cgeref:TCastleScene[] or each shape of such scene.
 
-- Can perform simple (non-realistic) gravity.
+- A hierarchical octree structure allows to use precise collisions even for dynamic objects (like creatures). This works if the dynamic object internally is a set of unchanging meshes, and only X3D `TTransformNode` transformations change.
++
+Contrast this with our _"real physics"_ implementation, that works only on a hierarchy of cgeref:TCastleTransform[] objects. To support collisions with dynamic objects, you need to use `ExposeTransforms` to expose relevant transformations as cgeref:TCastleTransform[] objects.
+
+- Can perform simple (non-realistic) gravity. There are no additional possible forces. When the objects collide (IOW, something falls on the ground) it just stops (colliding objects do not _"bounce off"_ each other like in real physics engines).
+
+- Objects either collide as a mesh (`PreciseCollisions` = `true`) or as a box (`PreciseCollisions` = `false`). In certain cases object may alternatively collide as a sphere (when `CollisionSphereRadius` is non-zero).
 
 It is used (for now) by:
 
@@ -318,6 +324,6 @@ In the long-term, all these properties/methods will be
 
 * deprecated (and later removed)
 
-* or they will switch to using physics. They will honor whatever colliders you configure using the `TCastleRigidBody` and `TCastleXxxCollider` behaviors, and nothing more. And they will honor physics layers (coming soon).
+* or they will switch to using physics. They will honor whatever colliders you configure using the `TCastleRigidBody` and `TCastleXxxCollider` behaviors, and nothing more. And they will honor physics layers.
 
 So all collisions and all gravity should be done using physics engine.
