@@ -95,7 +95,6 @@ echo download_box('Download (Snapshot) Version ' . SNAPSHOTS_VERSION, DOWNLOAD_P
         new TocItem('Capturing screenshots and movies of 3D scenes and animations', 'screenshot', 1),
         new TocItem('Converting to X3D', 'converting', 1),
         new TocItem('Other options', 'other_options', 1),
-        new TocItem('Deprecated options', 'deprecated_options', 1),
       new TocItem(DEPENDS, 'depends'),
     )
   );
@@ -662,10 +661,8 @@ tovrmlx3d   input.wrl               --encoding=xml &gt; output.x3d
 <dl class="params_list">
   <dt>--write</dt>
   <dd><p>Do not open any window,
-    only write the 3D model to the standard output as VRML/X3D and exit.
+    only write the 3D model to the standard output and exit.
     Other <code>--write-xxx</code> options affect the generated output.
-    Model will also be processed by <code>--scene-change-*</code> options,
-    if specified (see their docs lower on this page).
   </dd>
 
   <dt>--write-encoding classic|xml</dt>
@@ -773,127 +770,6 @@ is only useful for converting). More precisely:
 <a href="openal#_command_line_options_that_control_the_sound_outupt">OpenAL (3D sound) programs</a>,
 <a href="common_options.php">all programs</a>
  are also allowed. Run with command-line <code>--help</code> to get full list.
-
-<?php section(false); ?>
-
-<dl class="params_list">
-  <dt>--scene-change-no-normals<br>
-      --scene-change-no-solid-objects<br>
-      --scene-change-no-convex-faces
-  <dd><p>Using one of these options changes the scene before it
-    is displayed (or saved to X3D or VRML, if you used <code>--write</code>
-    option). These options are useful when you suspect that some
-    of the informations in scene file are incorrect.
-
-    <p>These options change only the scene which filename was specified
-    at command-line. Later scenes (that you open using "Open"
-    menu item) are not affected by these options.
-    Instead, you can use "Edit" menu commands to perform any
-    of these scene changes at any time.
-    Really, these command-line options are usable mostly
-    when you're using parameter <code>--write</code>.
-
-    <p>Below is the detailed description of what each
-    scene change does. This is also a documentation what
-    corresponding command in "Edit" menu of view3dscene does.
-
-    <ul>
-      <li><p><code>--scene-change-no-normals</code> :
-        <p><b>Scene change:</b> Clear <code>normal</code> and <code>normalIndex</code> fields,
-          remove <code>Normal</code> and VRML 1.0 <code>NormalBinding</code> nodes.
-        <p><b>Effect:</b> view3dscene will always calculate by itself
-          normal vectors. Useful when you suspect that normals recorded
-          in scene file are incorrect (incorrectly oriented, incorrectly
-          smoothed etc.)
-
-      <li><p><code>--scene-change-no-solid-objects</code> :
-        <p><b>Scene change:</b> For VRML 1.0, in all <code>ShapeHints</code> nodes
-          we will set <code>shapeType</code> to <code>UNKNOWN_SHAPE_TYPE</code>.
-          <code>UNKNOWN_SHAPE_TYPE</code> is the default value of this field,
-          so the purpose of this modification is to cancel <code>SOLID</code>
-          values for this field.
-          For VRML &gt;= 2.0, all <code>solid</code> fields are set to <code>FALSE</code>
-          (on all geometric nodes, like <code>IndexedFaceSet</code>,
-          actually all <code>X3DComposedGeometryNode</code>, <code>Extrusion</code>, etc.).
-        <p><b>Effect:</b> program will not use <i>back-face culling</i>
-          optimization. This optimization often saves us time because we don't
-          have to render faces that would be seen from "inside" if these
-          faces are part of some solid object. Unfortunately, many VRML
-          models have objects incorrectly marked as solid. There are also
-          some scenes that were prepared for some special viewing (e.g. as game
-          levels) and so some amount of "cheating" to optimize these scenes
-          was allowed, e.g. to mark some non-solid objects as solid.
-
-          <p>To view such
-          models properly you have to tell view3dscene (using this command-line
-          option) that such objects are not really solid.
-
-      <li><p><code>--scene-change-no-convex-faces</code> :
-        <p><b>Scene change:</b> For VRML 1.0, in all <code>ShapeHints</code> nodes
-          we will set  <code>faceType</code> to <code>UNKNOWN_FACE_TYPE</code>.
-          Moreover we will wrap whole scene in <code>Group</code> node and we
-          will add at the beginning node
-          <pre>ShapeHints { faceType UNKNOWN_FACE_TYPE }</pre>
-          For VRML &gt;= 2.0, all <code>convex</code> fields are set to <code>FALSE</code>.
-        <p><b>Effect:</b> All <code>IndexedFaceSet</code>
-          and <code>Extrusion</code> faces will be treated
-          as potentially non-convex. This means that we will load the scene
-          a little longer but all faces will be correctly interpreted
-          and displayed. It's useful when you suspect that some scene faces
-          are non-convex but it's not correctly marked in the scene
-          by VRML author.
-    </ul>
-
-    <p>Example: I have here some model <code>helicopter.wrl</code> that looks
-    incorrectly when it is displayed because all parts of model are marked
-    as SOLID while they are not solid. So to view this model correctly
-    I can use command<br>
-    <code>&nbsp;&nbsp;view3dscene --scene-change-no-solid-objects helicopter.wrl</code><br>
-    I can also correct this model once using command<br>
-    <code>&nbsp;&nbsp;view3dscene --scene-change-no-solid-objects helicopter.wrl
-      --write &gt; helicopter-corrected.wrl</code>.
-
-    <p><i>Deprecated:</i> I don't think the <code>--scene-change-*</code>
-    options are useful.
-    Doing this operation interactively is sometimes useful (to check bad models),
-    doing it from command-line probably not (you better fix your exporter).
-    Please report if you have a good reason to keep this working.
-
-  <dt>--camera-radius &lt;float&gt;
-  <dd><p>When you move in the scene with collision
-    detection, the "user" is treated as a colliding sphere with given radius.
-    Default radius of this sphere is the average size of scene bounding box
-    divided by 100.
-    Using this command-line option, you can set the radius of this sphere
-    to any value (greater than 0). This can be very useful, but be careful:
-    too large radius will make moving (with collision detection turned on)
-    impossible (because every possible move will produce a collision).
-    Too little radius may produce precision-errors in depth-buffer
-    (this can lead to some strange display artifacts).
-
-    <p><i>Deprecated:</i> instead of using this option,
-    consider adding/editing a <code>NavigationInfo</code> node in your scene
-    (camera radius is taken from the first float on <code>NavigationInfo.avatarSize</code>).
-    Editing your scene (or creating a VRML/X3D file that includes the original
-    scene, by <code>Inline</code> node, and only adds some customization)
-    is much more flexible.
-
-  <dt>--navigation EXAMINE|WALK|FLY|NONE...
-  <dd><p>Set initial navigation type. Default is <code>EXAMINE</code>.
-    This can be overridden in particular VRML/X3D scene by using the
-    <a href="http://www.web3d.org/documents/specifications/19775-1/V3.3/Part01/components/navigation.html#NavigationInfo">NavigationInfo</a>
-    node. Valid values for this option are the navigation type names
-    for VRML/X3D <code>NavigationInfo.type</code>, see link above.</p>
-
-    <p>You can always change navigation mode later, while the program is running:
-    use the menu <i>Navigation</i>.</p>
-
-    <p><i>Deprecated:</i> instead of using this option,
-    consider adding/editing a <code>NavigationInfo</code> node in your scene.
-    Editing your scene (or creating a VRML/X3D file that includes the original
-    scene, by <code>Inline</code> node, and only adds some customization)
-    is much more flexible.
-</dl>
 
 <?php section(); ?>
 
