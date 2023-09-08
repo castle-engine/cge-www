@@ -163,7 +163,7 @@ function castle_patreon_nearest_goal()
 
   // in emergency, you can just hardcode this
   // TODO: above algorithm calculates value slightly larger (but matching Patron manager), use below algorithm to be consistent with Patreon display
-  $total_pledges = 18300;
+  $total_pledges = 24200;
 
   // goals are hardcoded now here, as Patreon removed goals
   $goals = array(
