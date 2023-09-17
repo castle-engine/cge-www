@@ -137,35 +137,7 @@ Test your models with https://castle-engine.io/view3dscene.php[view3dscene] to s
 
 No, and we will probably never do (unless indirectly through some universal conversion library). FBX is a proprietary model format by Autodesk. Please don't use FBX, it's proprietary (the Autodesk specification of FBX is "secret" deliberately, and Autodesk only sanctions using FBX through it's paid SDK), and also not that good. Use glTF.
 
-If you have existing models in FBX format you can https://github.com/facebookincubator/FBX2glTF[convert them to glTF]. If you have the source versions of your models, possibly you can just reexport them from https://castle-engine.io/creating_data_export.php[your authoring software] to glTF. You can also use https://www.blender.org/[Blender] or a number of https://github.com/KhronosGroup/glTF-Generator-Registry/blob/master/dist/REGISTRY.md[other tools] to convert between model formats.
-
-== Why does editor template "3D FPS Game" show a different approach than `examples/fps_game`?
-
-*TODO: We work on removing the inconsistency documented below, by introducing new, editor-friendly API for creature behaviors.*
-
-The `examples/fps_game` example shows how to use our https://castle-engine.io/manual_3d_utlities_overview.php[(Deprecated) Utilities for typical 3D games] that are included in `CastleCreatures`, `CastleItems` and friend units. It is an older example, not using CGE editor to design the level.
-
-NOTE: The work to upgrade this example, to use editor to design the level and non-deprecated functionality, has started. You can define `UPCOMING_FPS_GAME_REDESIGN` in `examples/fps_game/code/gameinitialize.pas` to test it. You can double-click on `data/gameviewmain.castle-user-interface` in editor to see the 3D level designed in editor.
-
-////
-On one hand, the `examples/fps_game` approach gives you more things "out of the box" now. E.g. using this approach, you can trivially get a creature that knows how to travel in 3D space, how to approach an enemy to have a good position to shoot a missile or do a close-range attack. On the other hand,
-////
-
-Current `examples/fps_game` approach doesn't map nicely to CGE editor, and is not as flexible as we want it to be (although it may be enough for a typical first-person shooter, and there are many ways to customize it -- see subpages of https://castle-engine.io/manual_high_level_3d_classes.php , and see TMedKitResource and TMedKit classes in `fps_game`).
-
-Our template _"3D FPS Game"_, on the other hand, presents a modern way to design 3D levels and enemies. You can design things in editor, you can use behaviors (`TCastleBehavior`) to attach logic to transformations. We advise you to follow this approach, but admittedly it lacks some functionality *for now* (we don't *yet* have a ready behavior that out-of-the-box makes a creature walk/attack behavior).
-
-Fixing this is an important piece of our link:roadmap[] for 2022.
-
-////
-So `examples/fps_game` and our template _"3D FPS Game"_ present a *different* approach to creating an FPS game. We know about it, and it is a TODO, of course we want to remove this discrepancy. The plan to do this is mentioned at the bottom of https://castle-engine.io/manual_3d_utlities_overview.php and link:roadmap[] . Basically our API from `CastleCreatures` will be adjusted to easily create a "ready" `TEnemy` with more intelligence out of the box. IOW, we will make the approach from template _"3D FPS Game"_ more powerful, it will be trivial to create your own `TEnemy` that has advanced intelligence.
-
-What to do right now:
-
-* If you want to have flexibility, I would advice following _"3D FPS Game"_ template idea, and create your own creature AI. This is the better approach long-term, and it is the approach which we will focus on (extending it in the future).
-
-* Only if you want to have something close to what `examples/fps_game` presents, i.e. a typical first-person shooter, then follow `examples/fps_game` approach.
-////
+If you have existing models in FBX format you can https://github.com/godotengine/FBX2glTF[convert them to glTF (use Godot Engine fork of FBX2glTF)]. If you have the source versions of your models, possibly you can just reexport them from https://castle-engine.io/creating_data_export.php[your authoring software] to glTF. You can also use https://www.blender.org/[Blender] or a number of https://github.com/KhronosGroup/glTF-Generator-Registry/blob/master/dist/REGISTRY.md[other tools] to convert between model formats.
 
 == Should I use TCastleWindow or TCastleControl?
 
@@ -258,6 +230,8 @@ _Prefabs_ are a way to store _GameObject_ hierarchy, with Unity components attac
 The usual equivalent in CGE is to create a `xxx.castle-transform` file where you create a design with a root being `TCastleTransform` or `TCastleScene`. This allows you to compose a transformation hierarchy of `TCastleTransform` / `TCastleScene` instances. You can then load this `xxx.castle-transform` multiple times, as a single thing. See the https://github.com/castle-engine/castle-engine/tree/master/examples/advanced_editor[examples/advanced_editor], the file `data/soldier_with_cape.castle-transform` there is a simplest example of this approach.
 
 The equivalent of prefabs for Unity UI elements is a UI design file, `xxx.castle-user-interface`, already mentioned above.
+
+video::peiWjieZpbM[youtube,width=800,height=450]
 
 == Playing sounds
 
