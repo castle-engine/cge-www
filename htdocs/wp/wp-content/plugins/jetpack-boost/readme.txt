@@ -1,11 +1,11 @@
 === Jetpack Boost - Website Speed, Performance and Critical CSS  ===
-Contributors: automattic, xwp, adnan007, bjorsch, danwalmsley, davidlonjon, ebinnion, exelero, jeherve, jpolakovic, karthikbhatb, kraftbj, luchad0res, ppetrov2c, pyronaur, rheinardkorf, scruffian, thingalon
+Contributors: automattic, xwp, adnan007, bjorsch, danwalmsley, davidlonjon, dilirity, ebinnion, exelero, jeherve, jpolakovic, karthikbhatb, kraftbj, luchad0res, pyronaur, rheinardkorf, scruffian, thingalon
 Donate link: https://automattic.com
 Tags: performance, speed, pagespeed, web vitals, critical css, optimize, defer
 Requires at least: 5.5
 Tested up to: 6.3
 Requires PHP: 7.0
-Stable tag: 2.0.2
+Stable tag: 2.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -187,12 +187,22 @@ If you run into compatibility issues, please do let us know. You can drop us a l
 2. Jetpack Boost Speed Improvement
 
 == Changelog ==
-### 2.0.2 - 2023-08-29
+### 2.1.1 - 2023-09-13
+#### Added
+- Image CDN: Added quality settings for premium users.
+- Performance History: New section to display historical performance.
+
 #### Changed
-- Critical CSS: Updated critical CSS url parameter to avoid redirect caching
+- Image Size Analyzer: Removed get parameters from image URLs on ISA report details page.
+- UI: Improved discount elements for pricing section.
+- UI: Updated Image Size Analyzer error feedback.
+- General: Removed WP 6.1 backwards compatibility checks.
 
 #### Fixed
-- Critical CSS: Improved compatibility with Yoast SEO and All in One SEO to ensure smooth Critical CSS generation.
+- UI: Added the footer back on the getting started page.
+- Critical CSS: Improved the regenerate button to eliminate the possibility of accidental parallel regeneration.
+- Image Guide: Fixed oversize ratio in some cases.
+- Image Guide: Fixed grammar issue in the feature description on the Boost dashboard.
 
 --------
 
