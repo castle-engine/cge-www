@@ -17,11 +17,11 @@ This page documents _Castle Game Engine_ 7.0 new features. It's a work in progre
 
 == Plans
 
-We plan to release version _7.0_ (stable) early 2023.
+We plan to release version _7.0_ (stable) around the end of 2023.
 
-There will be another _alpha_ release in early 2023 before the full 7.0.
+There will be another _alpha_ release in 2023 before the full 7.0.
 
-See https://castle-engine.io/wp/2022/12/24/summary-of-4th-open-meeting-physics-pascal-lsp-android-on-screen-keyboard-near-release-plans-quickjs-announcing-5th-meeting/[summary of 4th open meeting] and https://castle-engine.io/wp/2022/01/01/summary-of-2021-plans-for-2022/[our plans for 2022] for details what we plan. And https://castle-engine.io/roadmap[our roadmap] for more long-term goals (not just in 7.0).
+See https://castle-engine.io/roadmap[our roadmap] for more long-term goals (not just in 7.0).
 
 == Features released so far
 
