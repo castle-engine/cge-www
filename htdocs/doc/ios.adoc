@@ -40,8 +40,8 @@ See link:macos[macOS] for more information about developing desktop applications
 
 You will need to have FPC cross-compilers able to create these OS/CPU combinations:
 
-* `iphonesim/i386` and `iphonesim/x86_64` applications (for the iPhone simulator)
-* `darwin/arm` and `darwin/aarch64` applications (for the actual iPhone device). Note: `aarch64` is also called `arm64`.
+* `ios/arm` and `ios/aarch64` applications (for the actual iPhone device). Note: `aarch64` is also called `arm64`.
+* `iphonesim/x86_64` and `iphonesim/aarch64` applications (for the iPhone simulator; you will use the version matching your macOS architecture, depending on whether you use Intel-based on Arm-based macOS).
 
 It's easiest to get them from the FPC:
 
@@ -85,7 +85,6 @@ Before attempting the compilation of a full program, we advise testing that your
 _First, test that you can compile for the necessary CPUs_. The cross-compiler for each CPU is actually a different FPC executable, so the lines below will make an error immediately if you cannot cross-compile to the given CPU. The desired result is that they should answer _No source file name in command line_.
 
 ----
-fpc -Pi386    -l
 fpc -Px86_64  -l
 fpc -Parm     -l
 fpc -Paarch64 -l
@@ -104,8 +103,7 @@ cd /tmp/
 echo 'library test_compilation; begin end.' > test_compilation.lpr
 
 SIMULATOR_SDK='/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk'
-fpc -Pi386    -Tiphonesim -WP7.0 -XR${SIMULATOR_SDK} test_compilation.lpr # old note: maybe add -V3.0.5, if you use FPC 3.0.4/3.0.5 combination
-fpc -Px86_64  -Tiphonesim -WP7.0 -XR${SIMULATOR_SDK} test_compilation.lpr # old note: maybe add -V3.0.5, if you use FPC 3.0.4/3.0.5 combination
+fpc -Px86_64  -Tiphonesim -WP7.0 -XR${SIMULATOR_SDK} test_compilation.lpr
 
 DEVICE_SDK='/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk'
 fpc -Parm     -TiOS    -WP7.0 -Cfvfpv3 -Cparmv7 -XR${DEVICE_SDK} test_compilation.lpr
@@ -118,23 +116,20 @@ Every `fpc` invocation should create `libtest_compilation.dylib`.
 
 The reasons behind some of these compiler options:
 
-* We test by compiling a library, not a program. Compiling a program fails at linking:
- ** iphonesim/i386 error: Undefined symbols for architecture i386: "___keymgr_dwarf2_register_sections", referenced from:
- ** iphonesim/x86__64 error: Undefined symbols for architecture x86_64: "____keymgr_dwarf2_register_sections"
- ** darwin/arm error: Undefined symbols for architecture armv7: "start"
-* We use -WP5.1, otherwise the `darwin/arm` fails at linking (error: _symbol dyld_stub_binding_helper not found, normally in crt1.o/dylib1.o/bundle1.o for architecture armv7_).
+* We test by compiling a library, not a program. Compiling a program may fail at linking with some issues that are not relevant for our task.
+* We use -WP5.1, otherwise the linking fails (error: _symbol dyld_stub_binding_helper not found, normally in crt1.o/dylib1.o/bundle1.o for architecture armv7_).
 * Actually we use later `-WP7.0`, corresponding to what CGE uses now.
 * The additional parameters (the -XRxxx, and -Cfvfpv3 -Cparmv7) come from the `Getting Started - iOS.rtf` file from the FPC for iOS package.
 
 === iPhone Simulator is not an iPhone emulator
 
-The _iPhone Simulator_ is _not_ an emulator of a real iPhone device, i.e. it does not emulate the processor (like ARM) inside the iPhone. Rather, it's a modified version of the normal (desktop) macOS system, running on a normal (i386 or x86_64) CPU.
+The _iPhone Simulator_ is _not_ an emulator of a real iPhone device, i.e. it does not emulate the processor inside the iPhone. Rather, it's a modified version of the normal (desktop) macOS system, running on a normal (x86_64 or Aarch64) CPU.
 
-See "iPhone Simulator is not iPhone" on http://wiki.freepascal.org/iPhone/iPod_development for more information.
+In case of Arm-based mac, it's actually the same CPU (both modern macOS and modern iPhone will use _Aarch64_ CPU, also known as _Arm64_ CPU).
 
-This should help you understand why we did some things above, e.g. why do we have a special compilation target for _iPhone Simulator_ (because we cannot just run in the simular the application compiled for an actual iPhone), and why it works fast (because it doesn't emulate the iPhone CPU).
+This should help you understand why we did some things above, e.g. why do we have a special compilation target for _iPhone Simulator_ (because we cannot just run in the simulator the application compiled for an actual iPhone), and why it works fast (because it doesn't emulate the iPhone CPU).
 
-This is in contrast to the Android emulator.
+This is in contrast to the Android emulator that can emulate Android CPUs (Arm or Aarch64, though can also work on x86_64) and can run your application in a mostly-regular Android OS and environment in a virtual machine.
 
 === Using the build tool
 
@@ -258,32 +253,15 @@ There's no reliable solution, it seems to be just the way iOS behaves. Trying va
 
 Instead of using the stable FPC, you can try using the latest development version of FPC (https://gitlab.com/freepascal.org/fpc/source[main branch from FPC GitLab]). You need to install 4 cross-compilers, for all 4 platforms that are included in the _"iOS target"_:
 
-. arm / darwin `# use iOS instead of darwin with FPC >= 3.2.2`
-. aarch64 / darwin `# use iOS instead of darwin with FPC >= 3.2.2`
-. iPhoneSimulator / i386
-. iPhoneSimulator / x86_64
+. _arm / iOS_ `# use "darwin" instead of "iOS" with older FPC < 3.2.2`
+. _aarch64 / iOS_ `# use "darwin" instead of "iOS" with older FPC < 3.2.2`
+. _x86_64/ iPhoneSimulator_
+. _aarch64 / iPhoneSimulator_
 
 An easy way to install cross-compilers is to use link:pass:[fpcupdeluxe][fpcupdeluxe]. Notes:
 
 * iPhoneSimulator is called _i-sim_ in the fpcupdeluxe UI.
 * Our build tool uses the `fpc` binary available on your `$PATH` environment variable. Make sure you create an appropriate symlink to make it call the FPC installed by link:pass:[fpcupdeluxe][fpcupdeluxe (this wiki page describes this)].
 
-When you compiled your own FPC version, you will want to use `--fpc-version-iphone-simulator ""` on the command-line to the build tool. Otherwise the build tool may try to call FPC for iPhone Simulator target with a different FPC version (because some standard FPC versions required this). So you will usually call this in your project:
+When you compiled your own FPC version, you may want to use `--fpc-version-iphone-simulator ""` on the command-line to the build tool. Otherwise the build tool may try to call FPC for iPhone Simulator target with a different FPC version (because some standard FPC versions required this).
 
-```
-$ castle-engine package --target=ios --fpc-version-iphone-simulator "" --fast
-...
-Compiling project "drawing_toy" for target "ios" in mode "release".
-FPC version: 3.3.1
-FPC executing...
-Compiling Release Version
-...
-Target OS: Darwin/iPhoneSim for i386
-...
-Target OS: Darwin/iPhoneSim for x86_64
-...
-Target OS: Darwin for ARM
-...
-Target OS: Darwin for AArch64
-...
-```
