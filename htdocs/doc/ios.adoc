@@ -41,7 +41,9 @@ See link:macos[macOS] for more information about developing desktop applications
 You will need to have FPC cross-compilers able to create these OS/CPU combinations:
 
 * `ios/arm` and `ios/aarch64` applications (for the actual iPhone device). Note: `aarch64` is also called `arm64`.
-* `iphonesim/x86_64` and `iphonesim/aarch64` applications (for the iPhone simulator; you will use the version matching your macOS architecture, depending on whether you use Intel-based on Arm-based macOS).
+// TODO: fpcupdeluxe cannot make iphonesim/aarch64?
+// * `iphonesim/x86_64` and `iphonesim/aarch64` applications (for the iPhone simulator; you will use the version matching your macOS architecture, depending on whether you use Intel-based on Arm-based macOS).
+* `iphonesim/x86_64` applications (for the iPhoneSimulator on Intel-based macs; it seems iPhoneSimulator is not available for Arm-based macs now).
 
 It's easiest to get them from the FPC:
 
@@ -123,9 +125,10 @@ The reasons behind some of these compiler options:
 
 === iPhone Simulator is not an iPhone emulator
 
-The _iPhone Simulator_ is _not_ an emulator of a real iPhone device, i.e. it does not emulate the processor inside the iPhone. Rather, it's a modified version of the normal (desktop) macOS system, running on a normal (x86_64 or Aarch64) CPU.
+The _iPhone Simulator_ is _not_ an emulator of a real iPhone device, i.e. it does not emulate the processor inside the iPhone. Rather, it's a modified version of the normal (desktop) macOS system, running on a normal CPU, same CPU as your macOS is using.
 
-In case of Arm-based mac, it's actually the same CPU (both modern macOS and modern iPhone will use _Aarch64_ CPU, also known as _Arm64_ CPU).
+// TODO: fpcupdeluxe cannot make iphonesim/aarch64?
+// In case of Arm-based mac, it's actually the same CPU (both modern macOS and modern iPhone will use _Aarch64_ CPU, also known as _Arm64_ CPU).
 
 This should help you understand why we did some things above, e.g. why do we have a special compilation target for _iPhone Simulator_ (because we cannot just run in the simulator the application compiled for an actual iPhone), and why it works fast (because it doesn't emulate the iPhone CPU).
 
@@ -256,7 +259,8 @@ Instead of using the stable FPC, you can try using the latest development versio
 . _arm / iOS_ `# use "darwin" instead of "iOS" with older FPC < 3.2.2`
 . _aarch64 / iOS_ `# use "darwin" instead of "iOS" with older FPC < 3.2.2`
 . _x86_64/ iPhoneSimulator_
-. _aarch64 / iPhoneSimulator_
+// TODO: fpcupdeluxe cannot make iphonesim/aarch64?
+// . _aarch64 / iPhoneSimulator_
 
 An easy way to install cross-compilers is to use link:pass:[fpcupdeluxe][fpcupdeluxe]. Notes:
 
