@@ -328,20 +328,25 @@ cgeimg::block[
 
 == Physics
 
-You can use link:manual_physics.php[physics].
-
 cgeimg::block[
   physics_1.png|Bunch of physics rigid bodies,
   physics_mesh.png|Physics with mesh collider,
   physics_2d.png|Physics 2D
 ]
 
-* Define rigid bodies and colliders on your objects.
+Use link:physics[] to calculate and react to collisions between objects.
+
+* Define link:physics#_rigid_bodies_and_colliders[rigid bodies and colliders] on your objects. You can do it visually in the editor (and visualize colliders to make sure they make sense). Of course you can also set them up using code.
 * Allow gravity and collisions to automatically have an effect.
-* Register events on collisions or triggers.
-* We use https://github.com/BeRo1985/kraft/[Kraft Physics Engine] under the hood.
-* Coming soon (link:roadmap[]): designing colliders, rigid bodies and joints using code or by CGE editor. See https://www.youtube.com/watch?v=mNgBttV5DuA[teaser movie], https://github.com/castle-engine/castle-engine/pull/394[1st PR].
-* You can perform easily collision queries to determine... whatever you need. Just set cgeref:TCastleSceneCore.Spatial[] to at least `[ssDynamicCollisions]` to make collision queries treat your scene as more than just a bounding box. Then use routines like cgeref:TCastleAbstractRootTransform.WorldRayCast[Viewport.Items.WorldRayCast] or cgeref:TCastleAbstractRootTransform.WorldBoxCollision[Viewport.Items.WorldBoxCollision] to query whether something collides. Note that this, as of now, does not use the _"proper"_ physics engine (like _Kraft_ or planned _Bullet_), instead it uses custom octree implementation, but this will change in the future.
+* Test how physics behaves right inside the editor using link:physics#_physics_simulation_in_the_editor["Physics Simulation"] in editor.
+* link:physics#_detecting_collisions[React to collisions by registering events]. Objects can also be __"triggers"__ if you only want to detect when something enters their volume.
+* Set up link:physics#_joints[joints] that connect rigid bodies in some ways, e.g. to create a hinge.
+* Physics is fully useful in both 3D and link:physics#_physics_simulation_in_the_editor[2D]. Consult our examples (in `examples/physics/`) for demos.
+* Manually link:physics#_forces_pushing_rotating_bodies[apply forces to affect rigid bodies using physics], e.g. to make a character jump, or cause an explosion.
+* Perform link:physics#_ray_casting_querying_for_collision[collision queries using physics], like "ray casts". Use e.g. cgeref:TCastleAbstractRootTransform.PhysicsRayCast[Viewport.Items.PhysicsRayCast].
+* Organize objects in link:physics#_layers[layers] to limit what collides with what.
+* Using https://github.com/BeRo1985/kraft/[Kraft Physics Engine] under the hood.
+* _Deprecated_: We also feature an older system with (for now) a few more ways to query collisions. Just set cgeref:TCastleSceneCore.PreciseCollisions[] to `true` to make collision queries treat your scene as a precise mesh. Then use routines like cgeref:TCastleAbstractRootTransform.WorldRayCast[Viewport.Items.WorldRayCast] or cgeref:TCastleAbstractRootTransform.WorldBoxCollision[Viewport.Items.WorldBoxCollision] to query whether something collides.
 
 == Tiled integration
 
@@ -356,7 +361,7 @@ cgeimg::block[
   tiled_strategy_ortho.png|Tiled orthogonal map in "Strategy Game" demo
 ]
 
-* Tiled maps (TMX files) can be loaded into cgeref:TCastleTiledMap[] for a 2D or 3D display in a viewport.
+* Tiled maps (TMX files) can be loaded into cgeref:TCastleTiledMap[] for an efficient 2D or 3D display in a viewport.
 * Viewport display means they can be combined with other scenes on top of it, like sprite sheets for units on the map.
 * We support various map types (orthogonal, isometric, hexagonal), layers (you control which layers are displayed), animations and more.
 * See https://castle-engine.io/tiled_maps[the manual about Tiled map].
