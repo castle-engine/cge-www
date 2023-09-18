@@ -45,6 +45,13 @@ The build tool will internally use `pod` to download and install service depende
 
 . You should no longer open the project using `my_project_name.xcodeproj` file. This will not work, as the `+libPods...+` library will not be built in this case. Instead, open and run in Xcode the `my_project_name.xcworkspace` file (it is in the same directory as `my_project_name.xcodeproj`). Using this will correctly build and run the project with dependencies.
 
+[NOTE]
+====
+If you have installed the `pod` command using above instructions, and executing the `pod --version` in terminal works for you OK, *but* the CGE editor says that it _"Cannot find `pod` command"_, then try a workaround: execute the editor from the command-line. Type in the terminal `<location-where-you-downloaded-engine>/castle_game_engine/bin/castle-editor.app/Contents/MacOS/castle-editor` and press _<Enter>_. Try to build iOS application from that editor.
+
+The more long-term solution would be to add the path to `pod` to CGE GUI application, but it's not as straightforward on various macOS versions (see https://superuser.com/questions/476752/setting-environment-variables-in-os-x-for-gui-applications[pointers here]).
+====
+
 == Adding new services
 
 Adding new iOS service is deliberately very consistent with creating new service for Android, which is documented on link:adding_new_android_services[Adding New Android Services].
