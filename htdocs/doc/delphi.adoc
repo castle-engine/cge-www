@@ -51,6 +51,7 @@ video::6JfFxnZO4Jc[youtube,width=800,height=450]
 
 * You can alternatively use cgeref:TCastleControl[] that allows to put CGE rendering on FMX (FireMonkey) or VCL form. link:control_on_form[See here for details].
 
+////
 ### Linux-specific notes
 
 To compile _Castle Game Engine_ applications using Delphi for Linux, you need to have _FireMonkey for Linux_ (https://www.fmxlinux.com/[FMXLinux]) installed in the Delphi IDE and properly configured.
@@ -68,6 +69,7 @@ Be sure to also install required libraries in your Linux. Follow https://www.fmx
 Test FMXLinux by installing _"FMX Linux Samples"_ using GetIt (these are available for everyone, regardless of how you obtained FMXLinux above). Run some of them to test that FMX on Linux works.
 
 NOTE: _GtkWindow_ sample from FMXLinux has a bug, that prevents compilation due to permissions. Edit fhe project settings and change "Unit Output Directory" from `$(fmxlinux)\Lib\$(ProductVersion)\$(Config)` to `.\$(Platform)\$(Config)`. Or try a different sample, like _FontList_.
+////
 
 ## Delphi versions supported
 
