@@ -9,6 +9,9 @@ We support link:https://www.embarcadero.com/products/Delphi[Delphi], a powerful 
 
 Any Delphi tier, including free link:https://www.embarcadero.com/products/delphi/starter/free-download/[Delphi Community Edition], is fine.
 
+// Mentioned lower:
+//NOTE: Though note that Delphi _Community Edition_ versions don't have a working `dcc` (command-line) compiler, so compiling using F9 in CGE editor will not work. But you can simply open the project in Delphi and use F9 from _Delphi_.
+
 We are an official _Embarcadero Technology Partner_. This means that _Michalis Kamburelis_ and _Andrzej Kilijański_ have full access to the latest Delphi version, with all the Delphi platforms (including Android and iOS), for free. For testing CGE compatibility.
 
 If you like Delphi compatibility, and want to see more of it (e.g. more platforms or Delphi-specific integration tools), please voice your needs and if you can -- link:https://www.patreon.com/castleengine[support us on Patreon]!
@@ -17,6 +20,18 @@ cgeimg::block[
   delphi_code.png|Castle Game Engine API in Delphi,
   delphi_control.png|Castle Game Engine and Delphi
 ]
+
+== Configure Castle Game Engine to use Delphi
+
+In _Castle Game Engine_ editor, open "_Preferences"_ dialog. In both the _"Code Editor"_ and _"Compilation"_ tabs set _"Delphi"_, if it was not auto-detected already.
+
+That's it. CGE editor is now integrated with Delphi. You can test it:
+
+* Press F9 to compile the project from CGE editor (using CGE build tool which will use Delphi command-line compiler under the hood).
++
+NOTE: In case of Delphi _Community Edition_: It doesn't have command-line compiler, so you have to compile the project using F9 from the Delphi IDE.
+* Double-click on Pascal files to open them in Delphi.
+* Use _"Code -> Open Project in Code Editor"_ menu item to open project in Delphi.
 
 ## Presentations
 

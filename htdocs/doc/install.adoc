@@ -15,13 +15,17 @@ Optionally, you can install:
 
 * Additional Pascal compiler.
 +
-We support link:supported_compilers.php[recent versions of FPC and Delphi].
+The engine is bundled with a ready version of https://www.freepascal.org/[FPC], so you don't need to do anything. Compilation of CGE applications will "just work".
 +
-The engine is bundled with a ready version of https://www.freepascal.org/[FPC], so you don't need to do anything if you don't have any special requirements.
+But you can also install link:delphi[Delphi] or other FPC version (e.g. using link:fpcupdeluxe[]). Configure in the the editor _"Preferences"_ which compiler to use.
 
-* A Pascal IDE.
+* A Pascal IDE, like:
 +
-Like https://www.lazarus-ide.org/[Lazarus], link:vscode[Visual Studio Code] or https://www.embarcadero.com/products/Delphi[Delphi].
+--
+- link:lazarus[Lazarus]
+- link:vscode[Visual Studio Code]
+- link:delphi[Delphi]
+--
 +
 In principle, you can edit the Pascal code in any text editor you have.
 
@@ -29,57 +33,3 @@ In principle, you can edit the Pascal code in any text editor you have.
 For a fully open-source cross-platform environment _we recommend FPC and Lazarus_.
 ////
 
-### FPC and Lazarus
-
-. Install FPC and Lazarus.
-+
-Windows:: Download and run a simple installer from the link:https://www.lazarus-ide.org/[Lazarus website] that will install both _Lazarus_ (IDE) and _FPC_ (compiler).
-Linux:: You should
-+
-[role="compact"]
---
-- install https://www.freepascal.org/[FPC] first. It is easiest to install a package called `fpc` using your package manager.
-- Then download and install link:https://www.lazarus-ide.org/[Lazarus package] for Linux.
-- To compile the applications, install also GTK and OpenGL development libraries, from packages like `libgtk2.0-dev`, `libgl-dev` on Debian-based distros.
---
-+
-macOS:: You can download packages for both FPC (download file like `fpc-3.2.2.intelarm64-macosx.dmg`) and Lazarus (file like `Lazarus-2.2.0-0-x86_64-macosx.pkg`) from link:https://www.lazarus-ide.org/[the downloads on Lazarus website].
-+
-cgeimg::block[lazarus_website.png|Lazarus website]
-+
-TIP: You can install _FPC_ and _Lazarus_ in other ways, for example link:fpcupdeluxe[using FpcUpDeluxe].
-+
-TIP: If you prefer other IDE than _Lazarus_, you can install link:https://www.freepascal.org/[only FPC] and use any Pascal code editor you like, like link:vscode[Visual Studio Code].
-
-. Configure FPC and Lazarus locations in  _Castle Game Engine_ editor _Preferences_, if they have not been auto-detected correctly.
-+
-cgeimg::block[cge_editor_prefs.png|Castle Game Engine Editor Preferences]
-
-. In _Castle Game Engine_ editor _Preferences_, go to tab _FPC and Lazarus_ and click on the button _"Register Lazarus Packages"_. This will allow to compile and debug CGE applications inside Lazarus.
-+
-cgeimg::block[cge_lazarus_registered_ok.png|Lazarus packages registration confirmation]
-
-////
-. CGE editor is now integrated with FPC and Lazarus.
-** Press F9 to compile the project from CGE editor (using CGE build tool which will use FPC under the hood).
-** Double-click on Pascal files to open them in Lazarus.
-** Use _"Code -> Open Project in Code Editor"_ menu item to open project in Lazarus.
-////
-
-### Alternative: Delphi
-
-. Download https://www.embarcadero.com/products/Delphi[Delphi].
-+
-NOTE: Free https://www.embarcadero.com/products/delphi/starter/free-download[Community Edition] is fine. Though it doesn't have a working `dcc` compiler, so compiling using F9 in CGE editor will not work. But you can simply open the project in Delphi and use F9 from _Delphi_.
-+
-NOTE: link:supported_compilers.php[Details about supported Delphi versions are here.]
-
-. In _Castle Game Engine_ editor, open _Preferences_ dialog. In both the _Code Editor_ and _Compilation_ tabs set _Delphi_, if it was not auto-detected automatically.
-
-////
-. CGE editor is now integrated with Delphi.
-** Press F9 to compile the project from CGE editor (using CGE build tool which will use Delphi command-line compiler under the hood).
-** Double-click on Pascal files to open them in Delphi.
-** Use _"Code -> Open Project in Code Editor"_ menu item to open project in Delphi.
-** Note: as Delphi _Community Edition_ doesn't have command-line compiler, you have to compile the project using F9 in Delphi.
-////

@@ -337,10 +337,15 @@ $castle_sitemap = array(
               'doc/jenkins' => array('title' => 'Jenkins (automatic builds by your Jenkins server)'),
             )
           ),
-          'manual_miscellaneous' => array('title' => 'Miscellaneous',
+          'manual_ide' => array('title' => 'Pascal IDEs',
             'sub' => array(
+              'doc/lazarus' => array('title' => 'Lazarus'),
               'doc/delphi' => array('title' => 'Delphi'),
               'doc/vscode' => array('title' => 'Visual Studio Code'),
+            ),
+          ),
+          'manual_miscellaneous' => array('title' => 'Miscellaneous',
+            'sub' => array(
               'manual_up' => array('title' => 'Which way is up?'),
               'manual_transformation_hierarchy' => array('title' => 'Transformation hierarchy'),
               'doc/castlewindow_backends' => array('title' => 'CastleWindow Backends'),
