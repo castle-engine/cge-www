@@ -1,0 +1,75 @@
+# Delphi
+include::common.adoc[]
+:description: Using Castle Game Engine with Delphi IDE and compiler.
+:cge-social-share-image: delphi_code.png
+
+== Introduction
+
+We support link:https://www.embarcadero.com/products/Delphi[Delphi], a powerful commercial Pascal IDE and compiler.
+
+Any Delphi tier, including free link:https://www.embarcadero.com/products/delphi/starter/free-download/[Delphi Community Edition], is fine.
+
+We are an official _Embarcadero Technology Partner_. This means that _Michalis Kamburelis_ and _Andrzej Kilijański_ have full access to the latest Delphi version, with all the Delphi platforms (including Android and iOS), for free. For testing CGE compatibility.
+
+If you like Delphi compatibility, and want to see more of it (e.g. more platforms or Delphi-specific integration tools), please voice your needs and if you can -- link:https://www.patreon.com/castleengine[support us on Patreon]!
+
+cgeimg::block[
+  delphi_code.png|Castle Game Engine API in Delphi,
+  delphi_control.png|Castle Game Engine and Delphi
+]
+
+## Presentations
+
+video::epqLUe_HapM[youtube,width=800,height=450]
+
+video::oA87iclrDZA[youtube,width=800,height=450]
+
+video::6JfFxnZO4Jc[youtube,width=800,height=450]
+
+## Platforms supported with Delphi
+
+* Right now we support only Windows (both 32-bit and 64-bit).
+
+* Other platforms will come, most likely Android and Linux (link:talk.php[talk to us on `#delphi` on Discord about the progress]). The Delphi+Linux branch is actually in progress already, with lots of Delphi improvements along the way. (It also adds link:https://www.saschawillems.de/creations/delphi-opengl-headers/[dglOpenGL] usage.)
+
+* You can use cgeref:TCastleWindow[], which is our standard way to create CGE window. Our _"New Project"_ templates as well as most examples use it.
+
+* You can alternatively use cgeref:TCastleControl[] that allows to put CGE rendering on FMX (FireMonkey) or VCL form. link:control_on_form[See here for details].
+
+### Linux-specific notes
+
+To compile _Castle Game Engine_ applications using Delphi for Linux, you need to have _FireMonkey for Linux_ (https://www.fmxlinux.com/[FMXLinux]) installed in the Delphi IDE and properly configured.
+
+Use RAD Studio _GetIt Package Manager_ to install `fmxlinux`. Follow the https://docwiki.embarcadero.com/RADStudio/Sydney/en/FireMonkey_for_Linux[FireMonkey for Linux using GetIt] instructions for details.
+
+NOTE: With Delphi 11.2 (Enterprise), it seems GetIt cannot find "FMXLinux". Just upgrade to 11.3 in you experience this issue.
+
+NOTE: You can also https://www.fmxlinux.com/[buy FMXLinux]. There is also a free trial (it seems not time-limited but it shows a watermark over the UI and a dialog at run -- so it works but is not really something you can distribute to end-users). See https://www.fmxlinux.com/guide.html[FMXLinux installation instructions]. But, practically, if you already have Linux platform, then you should also have Delphi Enterprise, and then you should be able to install FMXLinux without any additional cost using GetIt.
+
+Once you have _FireMonkey for Linux_ installed, you should see that "_Linux 64-bit_" becomes a possible platform for FMX projects.
+
+Be sure to also install required libraries in your Linux. Follow https://www.fmxlinux.com/guide.html for the appropriate `apt install ...` command to execute. We found it useful to add also `sudo apt install libgtk3.0-dev`. As usual after installing libraries on Linux, refresh the cache: enter Delphi _"Options"_ dialog, inside find _"Deployment -> SDK Manager"_, select the Linux platform, and _"Update Local Cache"_ (answer _"Yes To All"_ in case it asks whether to override files).
+
+Test FMXLinux by installing _"FMX Linux Samples"_ using GetIt (these are available for everyone, regardless of how you obtained FMXLinux above). Run some of them to test that FMX on Linux works.
+
+NOTE: _GtkWindow_ sample from FMXLinux has a bug, that prevents compilation due to permissions. Edit fhe project settings and change "Unit Output Directory" from `$(fmxlinux)\Lib\$(ProductVersion)\$(Config)` to `.\$(Platform)\$(Config)`. Or try a different sample, like _FontList_.
+
+## Delphi versions supported
+
+* The engine is tested and supported on all Delphi versions >= 10.2.1. It was actively tested on 10.2, 10.3, 10.4 (including CE), and all Delphi 11 editions (including 11.3 CE).
+
+* In the future, we could support Delphi versions >= XE 7.
++
+Adjusting to Delphi XE 7 seems to require only a few local changes (see link:https://github.com/castle-engine/castle-engine/issues/482[XE7 test], link:https://github.com/castle-engine/castle-engine/issues/486[10.0.1 test], link:https://github.com/castle-engine/castle-engine/issues/488[10.1.2 test]).
++
+We do not plan to support older Delphi versions. They are really old (link:https://en.wikipedia.org/wiki/History_of_Delphi_(software)[Delphi XE6 is from 2014]) and would require more work (see link:https://github.com/castle-engine/castle-engine/issues/481[XE4 test]). It doesn't seem wise to spend resources on maintaining (making and testing) compatibility with these ancient Delphi versions.
+
+* We will not support Delphi versions older than 10.4 _for mobile (Android and iOS)_.
++
+Reason: The older Delphi versions have crazy compatibility-breaking change to `String` handling on mobile: strings are 0-based (but only on mobile!, on desktop they remained 1-based) and _Embarcadero/Idera_ recommended way forward was to use `TStringHelper`, with all operations 0-based, and maybe treat strings as immutable.
++
+This is documented now in link:https://docwiki.embarcadero.com/RADStudio/Alexandria/en/Zero-based_strings_(Delphi)[Zero-based strings (Delphi)]. In the past page link:https://docwiki.embarcadero.com/RADStudio/XE7/en/Migrating_Delphi_Code_to_Mobile_from_Desktop#Use_0-Based_Strings[Migrating Delphi Code to Mobile from Desktop (for Delphi XE7)] had a longer section _"Use 0-Based Strings"_.
++
+Adjusting to this would mean rewriting all `String` handling code in the engine to use new `TStringHelper`. And it would be quite risky task &mdash; as the global `String` routines remained available for mobile, but they were nearly useless for cross-platform code, as they would use 1-based on desktop and 0-based on mobile. Thus causing hard-to-find bugs, as the same code would _compile_ everywhere, but would work _differently_ between desktop and mobile.
++
+We're happy that Embarcadero backed off from this weird decision in later Delphi versions. See link:https://docwiki.embarcadero.com/RADStudio/Sydney/en/Zero-based_strings_(Delphi)[Delphi 10.4 (Sydney): Zero-based strings (Delphi)]. In particular it says _"In general terms, string indexing is now uniform across platforms and uses 1-based index model."_ and _"Default"_ is _"`{$ZEROBASEDSTRINGS OFF}` for Delphi desktop and mobile compilers"_.

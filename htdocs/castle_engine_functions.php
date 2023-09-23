@@ -262,7 +262,7 @@ $castle_sitemap = array(
               'manual_2d_ui_custom_drawn' => array('title' => 'Custom drawn 2D controls: player HUD'),
             )
           ),
-          'manual_editor' => array('title' => 'Editor',
+          'doc/editor' => array('title' => 'Editor',
             'sub' => array(
               'doc/custom_components' => array('title' => 'Custom Components in Editor'),
               'doc/reuse_design' => array('title' => 'Components to reuse a design in other designs'), // TCastleDesign and TCastleTransformDesign -- too long names would make horizontal scroll on mobile
@@ -339,6 +339,7 @@ $castle_sitemap = array(
           ),
           'manual_miscellaneous' => array('title' => 'Miscellaneous',
             'sub' => array(
+              'doc/delphi' => array('title' => 'Delphi'),
               'doc/vscode' => array('title' => 'Visual Studio Code'),
               'manual_up' => array('title' => 'Which way is up?'),
               'manual_transformation_hierarchy' => array('title' => 'Transformation hierarchy'),
