@@ -1,0 +1,58 @@
+# Lazarus
+include::common.adoc[]
+:description: Using Castle Game Engine with Lazarus IDE and compiler.
+:cge-social-share-image: delphi_code.png
+
+== Introduction
+
+You can use _Castle Game Engine_ with https://www.freepascal.org/[Free Pascal Compiler (FPC)] and https://www.lazarus-ide.org/[Lazarus IDE].
+
+== We don't strictly depend on Lazarus
+
+_Free Pascal Compiler (FPC)_ is a separate thing from _Lazarus IDE_. To understand the difference:
+
+- FPC is a (command-line) Pascal compiler. You need to use either FPC or link:delphi[Delphi] to compile your CGE programs. We only support these 2 modern Pascal compilers.
+
+- Lazarus IDE is an IDE (editor, project manager) using FPC.
++
+Lazarus also provides LCL, a visual component library, along with ability to visually design LCL applications. But we do not use LCL in most CGE applications (the ones based on cgeref:TCastleWindow[]). In effect, while _Castle Game Engine_ integrates well with Lazarus, we don't strictly depend on Lazarus -- not like we depend on FPC.
+
+== Installing both FPC and Lazarus
+
+Windows:: Download and run a simple installer from the link:https://www.lazarus-ide.org/[Lazarus website] that will install both _Lazarus_ (IDE) and _FPC_ (compiler).
+
+Linux:: You should
++
+[role="compact"]
+--
+- install https://www.freepascal.org/[FPC] first. It is easiest to install a package called `fpc` using your package manager.
+- Then download and install link:https://www.lazarus-ide.org/[Lazarus package] for Linux.
+- To compile the applications, install also GTK and OpenGL development libraries, from packages like `libgtk2.0-dev`, `libgl-dev` on Debian-based distros.
+--
+
+macOS:: You can download packages for both FPC (download file like `fpc-3.2.2.intelarm64-macosx.dmg`) and Lazarus (file like `Lazarus-2.2.0-0-x86_64-macosx.pkg`) from link:https://www.lazarus-ide.org/[the downloads on Lazarus website].
++
+cgeimg::block[lazarus_website.png|Lazarus website]
+
+TIP: You can install _FPC_ and _Lazarus_ in other ways, for example link:fpcupdeluxe[using FpcUpDeluxe].
+
+TIP: If you prefer other IDE than _Lazarus_, you can install link:https://www.freepascal.org/[only FPC] and use any Pascal code editor you like, like link:vscode[Visual Studio Code].
+
+== Configure FPC and Lazarus locations in _Castle Game Engine_ editor
+
+Configure FPC and Lazarus locations in  _Castle Game Engine_ editor _Preferences_, if they have not been auto-detected correctly.
+
+cgeimg::block[cge_editor_prefs.png|Castle Game Engine Editor Preferences]
+
+== Register Lazarus Packages
+
+In _Castle Game Engine_ editor _Preferences_, go to tab _FPC and Lazarus_ and click on the button _"Register Lazarus Packages"_. This will allow to compile and debug CGE applications inside Lazarus.
+
+cgeimg::block[cge_lazarus_registered_ok.png|Lazarus packages registration confirmation]
+
+////
+. CGE editor is now integrated with FPC and Lazarus.
+** Press F9 to compile the project from CGE editor (using CGE build tool which will use FPC under the hood).
+** Double-click on Pascal files to open them in Lazarus.
+** Use _"Code -> Open Project in Code Editor"_ menu item to open project in Lazarus.
+////
