@@ -1,0 +1,143 @@
+# Editor
+include::common.adoc[]
+:description: Using Castle Game Engine editor to manage (create, build, run) projects and visually design user interface and 3D / 2D worlds.
+:cge-social-share-image: fps_editor.png
+
+cgeimg::block[
+  fps_editor.png|Castle Game Engine editor designing fps_game,
+  fps_game_2.png|fps_game run from editor
+]
+
+## Introduction
+
+_Castle Game Engine Editor_ is the most important visual tool of our engine. It allows to create, edit and build applications with CGE. Get it by link:download[downlading latest Castle Game Engine release] and run `castle-editor` executable in the `bin` subdirectory.
+
+## Video Introduction - Tutorial
+
+video::rPU-IFltcuM[youtube,width=800,height=450]
+
+## Create, build, run projects
+
+You can create a project (using a number of templates) or open an existing one. You can compile, run and package the project using the _Run_ menu.
+
+A _Castle Game Engine_ project is a directory containing the link:project_manifest[CastleEngineManifest.xml] file. Most often it also contains a subdirectory `data/` that is accessed from code using the link:manual_data_directory.php[castle-data:/xxx] URLs. Everything else is up to you, organize your source code and data however you like.
+
+Note that compiling and packaging a project link:https://castle-engine.io/build_tool[can also be done using the command-line CGE build tool]. Actually, the editor just calls the build tool under the hood. The build tool in turn calls a compiler (FPC) and some other tools (e.g. Android-specific packaging tools).
+
+## Design user interfaces and 3D/2D transformation hierarchies
+
+You can visually design:
+
+* A hierarchy of user-interface controls. Anything descending from cgeref:TCastleUserInterface[], like a button, label, or a powerful viewport (that contains a hierarchy of 3D / 2D scenes and transformations inside).
++
+Saved as `xxx.castle-user-interface` files (somewhere in the `data/` subdirectory).
++
+They are typically loaded in your application by setting the cgeref:TCastleView.DesignUrl[] (see almost any engine example or "New Project" template). Other approaches are possible too, e.g. you can load using cgeref:UserInterfaceLoad[], `TSerializedComponent.UserInterfaceLoad` and more. See examples like link:https://github.com/castle-engine/castle-engine/tree/master/examples/advanced_editor/advanced_loading_designs[advanced_editor/advanced_loading_designs].
+
+ * A hierachy of 3D / 2D scenes and transformations. Anything descending from cgeref:TCastleTransform[].
++
+Saved as `xxx.castle-transform` files (somewhere in the `data/` subdirectory).
++
+You can load it in your game using cgeref:TransformLoad[] and insert into existing hierarchy of `TCastleViewport.Items`. You can also use cgeref:TCastleTransformDesign[] to use it in other designs (thus having a reusable composition of 3D/2D objects). See examples like link:https://github.com/castle-engine/castle-engine/tree/master/examples/advanced_editor/advanced_loading_designs[advanced_editor/advanced_loading_designs].
+
+* A hierachy of non-visual classes (really anything descending from link:https://www.freepascal.org/docs-html/rtl/classes/tcomponent.html[TComponent] although we advise to descend from our extended cgeref:TCastleComponent[]).
++
+Saved as `xxx.castle-component` files (somewhere in the `data/` subdirectory).
++
+You can load it in your game using cgeref:ComponentLoad[]. Do whatever you want with the resulting components. You can find the named components in your design using the cgeref:TComponentHelper.FindRequiredComponent[FindRequiredComponent] method, like this:
++
+[source,pascal]
+----
+var
+  ComponentRoot, ComponentOwner: TComponent;
+  MySound: TCastleSound;
+  MyFont: TCastleFont;
+begin
+  ComponentOwner := TComponent.Create(Application);
+  ComponentRoot := ComponentLoad(\'castle-data:/my_design.castle-component\', ComponentOwner);
+  MySound := ComponentOwner.FindRequiredComponent(\'MySound\') as TCastleSound;
+  MyFont := ComponentOwner.FindRequiredComponent(\'MyFont\') as TCastleFont;
+end;
+----
+
+The `xxx.castle-user-interface`, `xxx.castle-transform`, `xxx.castle-component` are simple JSON text files. You should commit them to the version control, just like your source code. You can have as many such files inside your project as you need to.
+
+Let us emphasize that _when using the editor, you still code using the same CGE API as described throughout this manual_. At any point you can load an instance of a component from a designed file and use it as you wish.
+
+Open various example projects to see the editor, with various components, in action. We recommend trying out various templates (create "New Project" in editor), link:https://github.com/castle-engine/castle-engine/tree/master/examples/component_gallery[examples/component_gallery], link:https://github.com/castle-engine/castle-engine/tree/master/examples/tiled/strategy_game_demo[examples/tiled/strategy_game_demo].
+
+## Edit source code
+
+The editor integrates with various Pascal code editors:
+
+* You can use link:https://www.lazarus-ide.org/[Lazarus] to edit Pascal code.
+
+* You can use Delphi IDE.
+
+* You can use link:vscode[VS Code].
+
+* Or really any other text editor. We advise looking for full-featured editor, with features like Pascal syntax highlighting, code completion and integrated debugger. In CGE editor, go to _"Preferences -> Code Editor"_ to configure your custom editor, so it is run when you e.g. double-click on Pascal files from the editor or use various other _"Code"_ menu features.
+
+To edit the Pascal unit you have various options:
+
+* In CGE editor: enter the `code/` subdirectory, and double-click on a Pascal unit.
+
+* In CGE editor: use menu item _"Code -> Edit Unit ..."_.
+
+* In CGE editor: press F12 when some design is open. This will open the associated unit.
+
+* In Lazarus: open the project in Lazarus, and open units from Lazarus then. All Pascal files found on the search path are automatically part of the LPI project, they are visible in _Project Inspector_ in Lazarus.
+
+* In Delphi: open the project in Delphi, and open units from Delphi then.
+
+The CGE editor automatically sets up Lazarus and Delphi project files, so that you can easily compile and run from these IDEs.
+
+////
+//Too much info?
+Note: If you're bothered by the default multiple-windows UI of Lazarus, install in Lazarus package `components/anchordocking/design/anchordockingdsgn.lpk` (you will find this in Lazarus source code). It will recompile Lazarus and give you an IDE with docked windows.
+////
+
+cgeimg::block[
+  custom-code-editor.png|Code Editor Preferences,
+  vscode_completion.png|VS Code completion
+]
+
+## File browser
+
+You can browse the application files. Our _"Files"_ browser at the bottom just displays the files inside your project directory. It merely hides some known unimportant things, like temporary `castle-engine-output` directory.
+
+* Note that the `data/` subdirectory is somewhat special. It is automatically detected, it is automatically packaged (e.g. in Android apk), and it can always be accessed by link:https://castle-engine.io/manual_data_directory.php[castle-data:/xxx URL]. You will place there 3D models, 2D images, designs (`xxx.castle-user-interface`, `xxx.castle-transform`, `xxx.castle-component` files) and everything else you load in the game.
++
+It is somewhat equivalent to Unity `Assets/` subdirectory. See link:https://castle-engine.io/castle_game_engine_for_unity_developers[Castle Game Engine for Unity developers] for more pointers, if you come with knowledge about Unity.
+
+* Note that your Pascal source code should be outside the `data/` subdirectory. Your source code can be anywhere within the project, we don't have any strict requirement here, although we recommend `code/` subdirectory and the compiler is set to search it by default. Remember to list any new code subdirectory in `&lt;search_paths&gt;` in link:https://castle-engine.io/project_manifest[CastleEngineManifest.xml] file (for now, just edit this file in any text editor; in the future CGE editor can allow to edit it through a GUI dialog).
++
+// If you really want, you can of course place source code in the `data/` subdirectory, but it usually doesn't make sense. Unless you really want to distribute to end-users your source code this way (but there are better ways to distribute source code, e.g. use _"Package Source"_).
+// This is in contrast to Unity (that requires putting source code also inside `Assets/` directory).
+
+* Double-clicking on various files runs a tool suitable to preview/edit them:
++
+--
+* On 3D and 2D models we run link:view3dscene.php[view3dscene].
+* On images we run link:castle-view-image.php[castle-view-image].
+* On Pascal files we run Lazarus (see above).
+* Design files are opened in the current editor.
+* On other files, we run the default system application for them.
+--
+
+* Scenes, images and audio files have a _preview_ window once you select them in the _Files_ panel. You can even quickly listen to audio files this way.
+
+* You can drag files from the _"Files"_ area onto the design.
++
+--
+* Drag 3D and 2D models (like glTF or Spine or X3D files) on `TCastleViewport` to automatically create a `TCastleScene` with the given scene loaded.
+* Drag audio files on `TCastleViewport` to automatically create link:manual_sound.php[sound source (TCastleSoundSource and TCastleSound)].
+* Drag images on `TCastleViewport` to automatically create cgeref:TCastleImageTransform[].
+* Drag UI designs (*.castle-user-interface) to automatically create cgeref:TCastleDesign[] that refers to them.
+* Drag transform designs (*.castle-transform) to automatically create cgeref:TCastleTransformDesign[] that refers to them.
+* Drag images on user interface (not viewport) to automatically create cgeref:TCastleImageControl[]. If you want to force creating 2D cgeref:TCastleImageControl[] even when you drop on viewport, hold _Shift_ when dropping.
+--
+
+## Custom components in the editor
+
+You can register your own components to use them within CGE editor. This is a powerful mechanism to define e.g. your own user interface elements. See the link:custom_components[documentation about custom components].
