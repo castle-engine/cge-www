@@ -9,7 +9,8 @@ Not always, but sometimes there's a paper trace or video recording of what I tal
 This pages collects _some_ materials from them.
 ////
 
-* *Upcoming: Catch me in-person here:* _20-21 September 2023_: https://www.bsc.com.pl/zlot-programistow-delphi-2023/[Zlot Programistów Delphi], Polish conference.
+* _20-21 September 2023_: https://www.bsc.com.pl/zlot-programistow-delphi-2023/[Zlot Programistów Delphi], Polish conference.
+** https://castle-engine.io/zlot2023/slides[Slides from my talk presenting Castle Game Engine - editor, coding, plans]
 
 * _July 2023_: I had a talk and CGE course at the http://pascalcongress.com/[International Pascal Congress] in Salamanca.
 ** I collected my https://castle-engine.io/wp/2023/07/08/international-pascal-congress-my-presentation-slides-various-positive-thoughts-about-pascal-both-fpc-and-delphi-bright-future-and-why-you-should-use-pascal/[positive thoughts about Pascal future after the conference here].
