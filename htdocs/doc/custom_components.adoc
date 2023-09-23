@@ -143,7 +143,7 @@ If you don't specify a default value for `Single` property, then it behaves as i
 
 When the above capabities of `default` specifier are not good enough for you, just use the `stored` method. This is useful e.g. if:
 
-- You want to have proper serialization of `Single` property from Delphi.
+- You want to have proper serialization of `Single` property from Delphi. So that it is not saved to JSON from Delphi, when it has the default value you specified by `default XXX` for FPC.
 
 - You want to have proper serialization of `Double` or `Extended` (from Delphi or FPC).
 
