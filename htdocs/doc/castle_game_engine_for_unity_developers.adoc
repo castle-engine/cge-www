@@ -210,8 +210,9 @@ In CGE, it is a bit different. Viewport (`TCastleViewport`) is a 2D control, and
 
 * You design a hierarchy of `TCastleUserInterface` components. They all have the same properties to control position and size, using anchors, using `FullSize` (fill the parent etc.).
 * There are numerous `TCastleUserInterface` descendants, like buttons, images, and viewports.
-* Within a viewport (`TCastleViewport`) instance, you place your 3D world (in `Viewport.Items`).
-* A viewport is always connected with exactly one camera in `Viewport.Camera`. This camera determines projection settings and position, rotation of the viewer.
+* Within a viewport (`TCastleViewport`) instance, you place your 3D or 2D world (in `Viewport.Items`).
+* A viewport always renders using a chosen camera in `Viewport.Camera`. This camera determines projection settings and position, rotation of the viewer. This camera determines which part of the world (your `TCastleTransform` instances) is visible.
+* A hierarchy of `TCastleTransform` is placed inside `TCastleVieport.Items`. These are 3D or 2D objects, rendered from the point of chosen camera.
 
 The above describes the typical design as seen in editor templates. To see it in action, create a _"New Project"_ in the editor, using the template like _"3D FPS Game"_, and open the design `data/gameviewplay.castle-user-interface` in the editor.
 
