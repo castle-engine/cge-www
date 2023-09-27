@@ -154,4 +154,4 @@ If you draw using cgeref:DrawPrimitive2D[], cgeref:DrawRectangle[] etc. -- they 
 
 If you draw using cgeref:TDrawableImage[] then it automatically determines alpha treatment looking at image contents and the cgeref:TDrawableImage.Color[]. You can override alpha treatment by cgeref:TDrawableImage.Alpha[] property, there are also properties to determine blending equation: cgeref:TDrawableImage.BlendingSourceFactor[], cgeref:TDrawableImage.BlendingDestinationFactor[].
 
-The above routines are used by user interface rendering, e.g. by `TCastleButton` or `TCastleImageControl` rendering, so they follow the same alpha treatment. The cgeref:TCastleImageControl.AlphaChannel[] allows to control blending in case of `TCastleImageControl`, underneath it uses `TDrawabbleImage` to render.
+The above routines are used by user interface rendering, e.g. by cgeref:TCastleButton[] or cgeref:TCastleImageControl[] rendering, so they follow the same alpha treatment. The cgeref:TCastleImageControl.AlphaChannel[] allows to control blending in case of cgeref:TCastleImageControl[], underneath it uses cgeref:TDrawableImage[] to render.
