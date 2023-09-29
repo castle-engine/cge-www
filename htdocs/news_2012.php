@@ -56,8 +56,8 @@ castle_thumbs(array(
     </ol>
   </li>
 
-  <li><p>Our <a href="https://castle-engine.io/blender.php"><b>Blender X3D exporter</b></a> updated for Blender 2.64a.</p>
-    <p>New <a href="https://castle-engine.io/blender.php"><b>KAnim exporter</b> for Blender 2.64a</a> added. For the same reason as a couple of years ago (Blender standard X3D exporter still cannot export animations) we still need it.</p></li>
+  <li><p>Our <a href="https://castle-engine.io/blender"><b>Blender X3D exporter</b></a> updated for Blender 2.64a.</p>
+    <p>New <a href="https://castle-engine.io/blender"><b>KAnim exporter</b> for Blender 2.64a</a> added. For the same reason as a couple of years ago (Blender standard X3D exporter still cannot export animations) we still need it.</p></li>
 
   <li><p><b>Levels improvements</b>:</p>
     <ol>
@@ -232,7 +232,7 @@ castle_thumbs(array(
 <ol>
   <li><p>Diagram (as a text file...) of the most important "Castle Game Engine" classes is available.</p>
 
-    <p>I may try to squeeze this into a real image (maybe just the important boxes, and add the text on a normal HTML page). If you have experience with some diagram-drawing tools (like <a href="https://live.gnome.org/Dia/">Dia</a> or other open-source tool) I would appreciate contributions here (<a href="https://castle-engine.io/forum.php">send them through forum or e-mail to Michalis</a>).</p>
+    <p>I may try to squeeze this into a real image (maybe just the important boxes, and add the text on a normal HTML page). If you have experience with some diagram-drawing tools (like <a href="https://live.gnome.org/Dia/">Dia</a> or other open-source tool) I would appreciate contributions here (<a href="https://forum.castle-engine.io/">send them through forum or e-mail to Michalis</a>).</p>
   </li>
 
   <li><p>"Castle Game Engine" draft tutorial is getting larger and larger (15 chapters now).</p></li>
@@ -398,7 +398,7 @@ castle_thumbs(array(
 )) .
 '<p>Hi!</p>
 
-<p>First of all, we had a plan to release new shiny engine version at the end of May &mdash; sorry everyone, as you can see, we failed to make it on time. The work is progressing nicely (more details below), but there\'s just never enough time to finish it. So, sorry, everything has to be delayed a little further. (And if you would like to help: <a href="https://castle-engine.io/forum.php">we have a list of things you can do to help (not all of them require experience with programming)</a>, and <a href="https://castle-engine.io/donate.php">donating is very appreciated (as it allows me to spend more time on the engine development, instead of on various freelance jobs)</a>. Thanks in advance!)</p>
+<p>First of all, we had a plan to release new shiny engine version at the end of May &mdash; sorry everyone, as you can see, we failed to make it on time. The work is progressing nicely (more details below), but there\'s just never enough time to finish it. So, sorry, everything has to be delayed a little further. (And if you would like to help: <a href="https://forum.castle-engine.io/">we have a list of things you can do to help (not all of them require experience with programming)</a>, and <a href="https://castle-engine.io/donate.php">donating is very appreciated (as it allows me to spend more time on the engine development, instead of on various freelance jobs)</a>. Thanks in advance!)</p>
 
 <p>New features done lately:</p>
 
@@ -571,7 +571,7 @@ castle_thumbs(array(
 
     <p><b>Making a screenshot in view3dscene doesn\'t capture GUI controls</b> (like toolbar buttons). Previously, it was inconsistent, e.g. "movie screenshot" was not capturing toolbar but "single image screenshot" was capturing them (unless it was initiated from command-line...). The general rule now is: screenshot avoids the buttons, visualizations (bounding box), and such. You can always capture a screenshot using external application, with window frames and all features you want. view3dscene screenshot\'s purpose is to capture <i>your scene</i> &mdash; not any GUI cruft.
 
-  <li><p><b><a href="https://castle-engine.io/blender.php">Our Blender X3D exporter</a> updated to be compatible to Blender 2.62</b> (and as close as possible to distributed original Blender exporter).
+  <li><p><b><a href="https://castle-engine.io/blender">Our Blender X3D exporter</a> updated to be compatible to Blender 2.62</b> (and as close as possible to distributed original Blender exporter).
 
   <li><p><b>Memory and speed optimizations</b> for scenes with many shapes (iteration by "is nested" callbacks instead of temporary lists, better opaque/transparent detection and more). Also, Lazarus package settings are now more suitable for production use (no assertions, no range/overflow checks, optimization level = 2).</p>
 
@@ -667,7 +667,7 @@ In somewhat random order:</p>
     adapted from Lazarus LCL, to open URLs and documents on all platforms.
 
   <li><p>To our
-    <a href="https://castle-engine.io/forum.php"><i>"Helping
+    <a href="https://forum.castle-engine.io/"><i>"Helping
     in the engine development"</i> section below the forum link</a>
     I added notes <i>"For Linux distros package maintainers"</i>.
     Please help creating a view3dscene package for popular Linux distributions!
@@ -727,7 +727,7 @@ Anchor {
   <li><p>Engine works fully under 64-bit Windows (Win64, Windows on x86_64).
     <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/">Snapshots
     are build for win-x86_64</a> too. If there\'s interest (please report on
-    <a href="https://castle-engine.io/forum.php">forum</a>)
+    <a href="https://forum.castle-engine.io/">forum</a>)
     we may release binaries for this system on next view3dscene release.
     (I don\'t think it\'s terribly important, because our 32-bit Windows
     binaries actually work on Win64 flawlessly already.)

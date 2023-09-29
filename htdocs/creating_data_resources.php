@@ -183,7 +183,7 @@ A developer can also add additional animation types to the creature or item
 <code>resource.xml</code> file you specify from where to load particular
 animations.
 You should use one file for all the animations, like
-<a href="blender.php">glTF file exported from Blender</a>
+<a href="blender">glTF file exported from Blender</a>
 with Blender actions for each required animation.
 See the example inside the
 <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/animations/resource_animations/">resource_animations engine example</a>.
