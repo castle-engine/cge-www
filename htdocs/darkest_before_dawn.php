@@ -67,7 +67,7 @@ docs for details.
 The rest of the game data is licensed on Creative Commons (various
 versions, see AUTHORS.txt files in the source code for details).
 The underlying Castle Game Engine is licensed on more permissive
-<a href="license.php">GNU LGPL with static linking exception</a>.
+<a href="license">GNU LGPL with static linking exception</a>.
 
 <?php
   castle_footer();
