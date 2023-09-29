@@ -129,7 +129,7 @@ $toc = new TableOfContents(
 
   <li><?php echo a_href_page('view3dscene', 'view3dscene'); ?> is GPL &gt;= 2.
     CGE may be used
-    <a href="license.php">under more permissive "LGPL with static-linking exception" &gt;= 2</a>.
+    <a href="license">under more permissive "LGPL with static-linking exception" &gt;= 2</a>.
 </ul>
 
 <?php castle_footer(); ?>

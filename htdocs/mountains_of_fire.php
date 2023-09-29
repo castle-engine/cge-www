@@ -138,7 +138,7 @@ and <a href="http://www.freepascal.org/">FPC</a>.
 The rest of the game data is licensed on Creative Commons (various
 versions, see AUTHORS.txt files in the source code for details).
 The underlying Castle Game Engine is licensed on more permissive
-<a href="license.php">GNU LGPL with static linking exception</a>.
+<a href="license">GNU LGPL with static linking exception</a>.
 
 <p>The game was originally developed
 during the weekend gamejam (<a href="https://www.facebook.com/tsgcompo">TSG compo</a>)
