@@ -87,7 +87,7 @@ castle_thumbs(array(
 
   <li><p>Comfortable TAbstractGeometryNode.Solid, TAbstractGeometryNode.Convex.
 
-  <li><p><a href="' . CURRENT_URL . 'blender.php">X3D and Kanim exporters for Blender</a> updated to work with latest Blender 2.68a.
+  <li><p><a href="' . CURRENT_URL . 'blender">X3D and Kanim exporters for Blender</a> updated to work with latest Blender 2.68a.
 </ol>
 '),
 
@@ -215,7 +215,7 @@ castle_thumbs(array(
 
     <p>Looking back, it was an unfortunate choice to use percent character to indicate images sequence, since percent is special inside URIs. It was done for consistency with <code>ffmpeg</code>, that supports things like <code>image%4d.png</code> on the command-line (but <b>not</b> when using URLs; for example, <code>ffplay /home/image%4d.png</code> works, but <code>ffplay file:///home/image%4d.png</code> does not work, neither does <code>ffplay file:///home/image%254d.png</code>). So, one can say that it was <code>ffmpeg</code> that made a bad choice, but then <code>ffmpeg</code> did it for consistency with common string formatting functions (C sprintf, ObjectPascal Format)...
 
-    <p>Comments about this change are of course welcome, through <a href="' . CURRENT_URL . 'forum.php">forum</a> or any other means. Right now, I just don\'t see a way to avoid breaking compatibility. We made a bad decision to use <code>%d</code> to indicate image sequence, and it has to change in order to correctly support URL encoding in new versions.
+    <p>Comments about this change are of course welcome, through <a href="https://forum.castle-engine.io/">forum</a> or any other means. Right now, I just don\'t see a way to avoid breaking compatibility. We made a bad decision to use <code>%d</code> to indicate image sequence, and it has to change in order to correctly support URL encoding in new versions.
 
   <li><p>A couple of bugfixes. Including bugfix to a quite horrible mistake in <code>ShaderPart</code> node, in some circumstances the shader code would be reloaded from file at every frame, causing a horrible slowdown. It\'s fixed now of course.
 </ol>'),
@@ -347,7 +347,7 @@ castle_thumbs(array(
 
     <!--p>This was probably the longest delay between releases of our engine, but I hope it was worth it :)</p-->
 
-    <p><i>For developers upgrading from engine 3 version</i>: all of our unit names are now prefixed with <code>CastleXxx</code>, see <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/doc/naming_engine_4.0.txt">doc/naming_engine_4.0.txt</a> document. So you will almost definitely need to fix your "uses" clauses. Aside from that, the engine is quite compatible with previous version. <!-- (as the basis for controls and scene manager and 3D objects was already there; now it\'s just used much more extensively). --> Of course please <a href="' . CURRENT_URL . 'forum.php">ask of the forum</a> if you have any questions about upgrading code from engine 3 to 4 (or about anything else, for that matter :)</p>
+    <p><i>For developers upgrading from engine 3 version</i>: all of our unit names are now prefixed with <code>CastleXxx</code>, see <a href="http://svn.code.sf.net/p/castle-engine/code/trunk/castle_game_engine/doc/naming_engine_4.0.txt">doc/naming_engine_4.0.txt</a> document. So you will almost definitely need to fix your "uses" clauses. Aside from that, the engine is quite compatible with previous version. <!-- (as the basis for controls and scene manager and 3D objects was already there; now it\'s just used much more extensively). --> Of course please <a href="https://forum.castle-engine.io/">ask of the forum</a> if you have any questions about upgrading code from engine 3 to 4 (or about anything else, for that matter :)</p>
 </ol>
 
 <p>We also release a <b>new 3.12.0 version of <a href="' . CURRENT_URL . 'view3dscene.php">view3dscene</a>, our VRML/X3D browser and viewer for other 3D model formats</b>. The most important improvements are listed below. Note that improvements 1-8 are actually in the engine, instantly available for all the games/applications using our engine. But most users will probably observe them in <a href="' . CURRENT_URL . 'view3dscene.php">view3dscene</a> for the 1st time.</p>
@@ -429,7 +429,7 @@ castle_thumbs(array(
       <li>New methods to define creature/items (all resources) animations are available. You can load animation from <a href="' . CURRENT_URL . 'kanim_format.php">kanim</a>, or from multiple VRML/X3D files (one VRML/X3D for each animation), or from a single VRML/X3D file (in which case the file will have to contain different TimeSensor to activate each animation). Description how it works is inside DRAFT.modeling_tutorial.txt for now. Example of all 3 methods to define animations are inside <code>castle_game_engine/examples/resource_animations/</code> in sources.</li>
       <li>Many improvements to our <code>RenderDebug3D</code> and <code>RenderDebugCaptions</code> mechanisms (you can see them e.g. in fps_game demo): respect Orientation (work with games with either +Y or +Z up), sphere is displayed better,  caption is multi-line and contains "enemy distance" info.</li>
       <li><code>TItem.Picked</code> method can be overridden to configure what happens when you pick item. Example code in fps_game shows how to make an item that is consumed on pickup (aka "power-up").</li>
-      <li><code>TextureProperties</code> mechanism was enhanced into <code>MaterialProperties</code>, that can describe much more things. In the future, we can add there more stuff about material/texture that cannot be comfortably expressed in Blender, but that is conceptually tied to material/texture. For now, the main addition is that you can define bump mapping by normal_map properties there. The hack in <a href="' . CURRENT_URL . 'blender.php">our Blender exporter</a> (to autodetect xxx_normalmap textures) will possibly be removed at some point (as it has no future, it\'s dirty).</li>
+      <li><code>TextureProperties</code> mechanism was enhanced into <code>MaterialProperties</code>, that can describe much more things. In the future, we can add there more stuff about material/texture that cannot be comfortably expressed in Blender, but that is conceptually tied to material/texture. For now, the main addition is that you can define bump mapping by normal_map properties there. The hack in <a href="' . CURRENT_URL . 'blender">our Blender exporter</a> (to autodetect xxx_normalmap textures) will possibly be removed at some point (as it has no future, it\'s dirty).</li>
       <li><code>player.xml</code> must be now loaded explicitly by <code>Player.LoadFromFile</code> (we try to never load the file from some hardcoded location without you requesting it). <!--; previous implementation was always loading <code>data/player.xml</code> in <code>TPlayer</code> constructor). You can give your own location of <code>player.xml</code>. --> Also, all player properties have now sensible defaults, so in simple cases there\'s no need to use this file at all.</li>
     </ul>
   </li>

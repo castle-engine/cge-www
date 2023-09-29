@@ -72,7 +72,7 @@ castle_thumbs(array(
   <li><p>The first release of the engine under <i>"Castle Game Engine"</i> name, previous versions were called <i>"Kambi VRML game engine"</i>. See <a href="https://castle-engine.io/old_news.php?id=2011-8-22-engine_rename_to__castle_game_engine__soon__development_news__some_important_fixes___improvements__many_api_improvements">earlier news about name change</a> for detailed reasoning.</p></li>
 
   <li><p>Note: This engine release <i>breaks compatibility</i> with earlier versions. Although there is no major change of the engine design (our scene manager design in engine 2.x was really good, and we want to push using it even further in engine 3.x). But there are a lot of renames around important units and classes. And some small things were redesigned more heavily.</p>
-    <p>Everything is detailed below, to help you with the migration to the new engine version. If you have <i>any</i> questions about the reasoning of the changes, or if you want to ask how to migrate some particular construct to new engine version, don\'t hesitate to <a href="https://castle-engine.io/forum.php">ask on our forum</a>.</p>
+    <p>Everything is detailed below, to help you with the migration to the new engine version. If you have <i>any</i> questions about the reasoning of the changes, or if you want to ask how to migrate some particular construct to new engine version, don\'t hesitate to <a href="https://forum.castle-engine.io/">ask on our forum</a>.</p>
   </li>
 
   <li><p>Examples completely reorganized. Many useless examples removed, many good examples rewritten and renamed to be better visible.</p>
@@ -151,7 +151,7 @@ castle_thumbs(array(
           <li>Unfortunately, on some older GPUs, they may exhibit really weird behavior and uncover wild OpenGL bugs.
           <li>In some cases, there are accuracy problems. These are known VSM problems (see papers around VSM describing possible improvements of the base idea).
         </ul>
-        <p>You\'re most welcome to test <i>Variance Shadow Maps</i> yourself. For starters, just get <a href="https://castle-engine.io/demo_models.php">demo models</a>, and open models inside shadow_maps subdirectory there with <a href="https://castle-engine.io/view3dscene.php">view3dscene</a>. <code>shadow_maps/sunny_street/sunny_street.x3dv</code> is one test worth trying, <code>projected_spotlight_*</code> is the other. Turn on Variance Shadow Maps by menu item <i>"View -&gt; Shadow Maps -&gt; Variance Shadow Maps"</i>. Please report on <a href="https://castle-engine.io/forum.php">forum</a> the GPUs where they work / where they don\'t, this will help me get some idea where they can/should be enabled by default.</p>
+        <p>You\'re most welcome to test <i>Variance Shadow Maps</i> yourself. For starters, just get <a href="https://castle-engine.io/demo_models.php">demo models</a>, and open models inside shadow_maps subdirectory there with <a href="https://castle-engine.io/view3dscene.php">view3dscene</a>. <code>shadow_maps/sunny_street/sunny_street.x3dv</code> is one test worth trying, <code>projected_spotlight_*</code> is the other. Turn on Variance Shadow Maps by menu item <i>"View -&gt; Shadow Maps -&gt; Variance Shadow Maps"</i>. Please report on <a href="https://forum.castle-engine.io/">forum</a> the GPUs where they work / where they don\'t, this will help me get some idea where they can/should be enabled by default.</p>
       </li>
     </ul>
   </li>
@@ -183,7 +183,7 @@ castle_thumbs(array(
 
     <p>Geometry shaders are executed between the vertex and fragment shader. They can change the primitive type (like triangles to points), explode a single primitive into many (maybe adding some intermediate vertexes), remove some primitives and more. We support geometry shaders following modern GLSL version &gt;= 1.50 (since OpenGL 3.2). See the <a href="https://castle-engine.io/x3d_implementation_shaders.php#section_geometry">documentation</a> for more details and links to example X3D files.</p>
 
-    <p>Interesting demos using geometry shaders are most welcome! You can post them on our <a href="https://castle-engine.io/forum.php">forum</a>. Nice demos may be included in our <a href="https://castle-engine.io/demo_models.php">demo models</a>.</p>
+    <p>Interesting demos using geometry shaders are most welcome! You can post them on our <a href="https://forum.castle-engine.io/">forum</a>. Nice demos may be included in our <a href="https://castle-engine.io/demo_models.php">demo models</a>.</p>
   </li>
 
   <li><p><a href="https://castle-engine.io/compositing_shaders.php">Michalis Ph.D. thesis, describing the "compositing shaders" idea, is published here :)</a>. There are HTML and PDF versions (45 pages for A4) with the same content.</p>
@@ -324,11 +324,11 @@ castle_thumbs(array(
 
     <p>We already have a nice engine icon that I like very much (this tower with tentacles and moon thing). It is connected to the fact that main <a href="https://castle-engine.io/view3dscene.php">view3dscene</a> screenshot, used on various pages, depicts a tower (which, in turn, comes from a very, very old Blender model I made). Also, we made a game called <a href="https://castle-engine.io/castle.php">"The Castle"</a>. So the new name <i>"Castle Game Engine"</i> seems sensible. No more "VRML" in the name, no more "Kambi" in the name. New name has nice connection with engine icon. When googling "castle game engine", we already hit our engine page (because of "The Castle" game).</p>
 
-    <p>Nothing is set in stone yet, so if you have an idea for an even cooler name &mdash; please write e.g. on <a href="https://castle-engine.io/forum.php">forum</a>.</p>
+    <p>Nothing is set in stone yet, so if you have an idea for an even cooler name &mdash; please write e.g. on <a href="https://forum.castle-engine.io/">forum</a>.</p>
 
     <p>The engine rename means also renaming many identifiers (as the idea is to get rid of VRML prefix), so this will be a large breakage of API compatibility.</p>
 
-    <p>Note that the rename doesn\'t mean that we drop support for any VRML version (we still fully support VRML 1.0 and VRML 97 (aka VRML 2.0)). It also doesn\'t mean any major redesign of the engine architecture &mdash; just a lot of renames, and of course a usual, steady progress (see below for some new engine features implemented since last release). So, although new engine release will require changes in your code (if you\'re a developer making a game using our engine), it will be relatively trivial, just renames &mdash; no architectural refactoring. I will of course publish a list of important renames (of components and units), and don\'t hesitate to ask (for example <a href="https://castle-engine.io/forum.php">through forum</a>) if you have any questions.</p>
+    <p>Note that the rename doesn\'t mean that we drop support for any VRML version (we still fully support VRML 1.0 and VRML 97 (aka VRML 2.0)). It also doesn\'t mean any major redesign of the engine architecture &mdash; just a lot of renames, and of course a usual, steady progress (see below for some new engine features implemented since last release). So, although new engine release will require changes in your code (if you\'re a developer making a game using our engine), it will be relatively trivial, just renames &mdash; no architectural refactoring. I will of course publish a list of important renames (of components and units), and don\'t hesitate to ask (for example <a href="https://forum.castle-engine.io/">through forum</a>) if you have any questions.</p>
 
     <p>Of course, old URLs will continue to work for a long time. I\'ll set appropriate redirects wherever possible.</p>
 
@@ -479,7 +479,7 @@ castle_thumbs(array(
 <p>Also minor website improvements:</p>
 
 <ul>
-  <li>Large <a href="https://castle-engine.io/forum.php">"Helping in the engine development" section on the forum page.</a></li>
+  <li>Large <a href="https://forum.castle-engine.io/">"Helping in the engine development" section on the forum page.</a></li>
   <li>Some new screenshots on <a href="https://castle-engine.io/view3dscene.php">view3dscene</a> page. The "tower" screenshot, that served as our "iconic" screenshot on various sites, is updated with a sunset lighting and sky.</li>
   <li>Separate <a href="https://castle-engine.io/donate.php">"Donate" page</a>.</li>
 </ul>'),
@@ -551,7 +551,7 @@ castle_thumbs(array(
 
   <li><p>We also release <b>(in source only) <a href="https://castle-engine.io/castle.php">castle</a> version 0.9.2</b>. This is for developers, so you have <a href="https://castle-engine.io/kambi_vrml_game_engine.php#section_download_src">castle sources compatible with latest engine</a>.</p></li>
 
-  <li><p>Our <a href="https://castle-engine.io/blender.php">Blender X3D exporter</a> is updated to <a href="http://www.blender.org/">Blender 2.58</a>, porting our <code>normalMap</code> features.</p></li>
+  <li><p>Our <a href="https://castle-engine.io/blender">Blender X3D exporter</a> is updated to <a href="http://www.blender.org/">Blender 2.58</a>, porting our <code>normalMap</code> features.</p></li>
 
   <li><p><b>Other new features and fixes</b>:</p>
     <ul>
@@ -628,7 +628,7 @@ castle_thumbs(array(
     <p>Cool :)</p>
     </li>
 
-  <li><p>Our <a href="https://castle-engine.io/blender.php">Blender X3D exporter</a> was updated to set correct <code>creaseAngle</code> in radians. This is also fixed in Blender (<a href="http://projects.blender.org/tracker/index.php?func=detail&amp;aid=27611&amp;group_id=9&amp;atid=127">my patch here, although they fixed it differently, by changing Python value to be already in radians</a>).</p></li>
+  <li><p>Our <a href="https://castle-engine.io/blender">Blender X3D exporter</a> was updated to set correct <code>creaseAngle</code> in radians. This is also fixed in Blender (<a href="http://projects.blender.org/tracker/index.php?func=detail&amp;aid=27611&amp;group_id=9&amp;atid=127">my patch here, although they fixed it differently, by changing Python value to be already in radians</a>).</p></li>
 
   <li><p><i>Developers</i>: one large "internal" improvement (not directly visible to user) is that the light sources are now much more comfortable to dynamically assign. You can override <code>TKamSceneManager.InitializeLights</code> to add dynamic lights to the scene (feel free to make their existence depend e.g. on time, or player position etc.). You also have <code>TVRMLGLScene.GlobalLights</code>, and you can easily make all global lights shine on everything through <code>TKamSceneManager.UseGlobalLights</code>.
 
@@ -652,7 +652,7 @@ castle_thumbs(array(
 '<p>Work on next <a href="https://castle-engine.io/view3dscene.php">view3dscene</a> release continues. Some highlights from May:</p>
 
 <ul>
-  <li><p><a href="https://castle-engine.io/blender.php">Our Blender X3D exporter</a> updated to latest <a href="http://www.blender.org/">Blender 2.57</a>. Not much difference from upstream now, we just add a small fix and allow using our normalmap extensions.</p></li>
+  <li><p><a href="https://castle-engine.io/blender">Our Blender X3D exporter</a> updated to latest <a href="http://www.blender.org/">Blender 2.57</a>. Not much difference from upstream now, we just add a small fix and allow using our normalmap extensions.</p></li>
 
   <li><p>Lights improvements:</p>
     <ul>
@@ -826,7 +826,7 @@ castle_thumbs(array(
     </ul>
   </li>
 
-  <li><p><a href="https://castle-engine.io/blender.php">Blender VRML/X3D exporters page</a> updated, I added there a modified version of Blender 2.56 X3D exporter, fixing small things, and adding exporting of normalMap (for our bump mapping extension).</p></li>
+  <li><p><a href="https://castle-engine.io/blender">Blender VRML/X3D exporters page</a> updated, I added there a modified version of Blender 2.56 X3D exporter, fixing small things, and adding exporting of normalMap (for our bump mapping extension).</p></li>
 
   <li><p>For developers using FPC 2.2.4 (or older): a bug slipped into the last engine sources, preventing compilation with FPC 2.2.4 or older. A fixed version of the sources is released, see <a href="https://castle-engine.io/kambi_vrml_game_engine.php#section_fpc_ver">FPC version notes</a> and <a href="https://castle-engine.io/kambi_vrml_game_engine.php#section_engine_src">engine sources</a>. Thanks to Stephen H. France for reporting this!</p></li>
 
