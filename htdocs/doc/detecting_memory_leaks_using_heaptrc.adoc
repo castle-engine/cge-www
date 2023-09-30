@@ -74,7 +74,7 @@ Same thing applies when your program crashes with an unhandled exception.
 
 The behavior in case of memory leaks on Windows GUI application is unfriendly. Memory leaks are displayed using a series of Windows modal message boxes, and you have to click through them, or kill the application.
 
-It's better to switch application to `CONSOLE`` for debugging, and run it from command-line, to observe HeapTrc output.
+It's better to switch application to `CONSOLE` for debugging, and run it from command-line, to observe HeapTrc output.
 
 Or use the advise below to redirect the output to file.
 
