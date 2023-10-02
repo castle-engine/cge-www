@@ -1,11 +1,39 @@
-# Threads usage
+# Threads
 include::common.adoc[]
+:description: Using threads with Castle Game Engine, plans for asynchronous loading.
 
-Right now *all access to Castle Game Engine API must happen from the same thread*.
+[#single_thread]
+## Access the engine only from a single thread
 
-Many other libraries, including Lazarus LCL, or Unity, have the same limitation, so we consider this limitation acceptable for now.
+All access to the _Castle Game Engine_ API must happen from one and the same thread.
 
-Important use-case:
+////
+Many other libraries, including Lazarus LCL, or Unity, share the same limitation, so we consider this acceptable for now.
+////
+
+We address various threads use-cases by introducing instead _asynchronous_ operations, which is a fancy way of saying that you still use engine from one thread, but you don't need to wait (block) for some operations to finish, instead you get a callback when they are finished. Such asynchronous API is both easier to use and easier to implement.
+// (as the engine then has a freedom when to internally use threads and how to efficiently synchronize).
+
+[#how_we_use_threads]
+## How does the engine use threads internally
+
+Some _Castle Game Engine_ code or the Pascal libraries we depend on internally uses Pascal `TThread`. You generally don't need to be aware of it, everything just works automatically.
+
+NOTE: When using FPC on Unix, we need to use https://www.freepascal.org/docs-html/rtl/cthreads/index.htm[CThreads] to enable threading support. Our program templates already do this, so in the typical case you don't need to worry about it.
+
+Example places that use threads from Pascal:
+
+* Unpacking streaming music (cgeref:TCastleSound.Stream[])
+
+* Asynchronous downloading (cgeref:TCastleDownload[])
+
+* Kraft, our link:physics[] engine, may also use threads
+
+Other (non-Pascal) libraries underneath naturally also may be use threads for rendering, audio playback and more.
+
+## Plans: asynchronous loading
+
+Important use-case for using threads:
 
 * The usual use-case for multi-threading in games is to have perfectly smooth rendering (of loading screen, or even of the interactive game) while at the same time loading some resources to GPU. This isn't possible now using Castle Game Engine. Things like "loading screen" must be done in discrete steps now (see e.g. `StateLoading` in https://github.com/castle-engine/castle-engine/tree/master/examples/user_interface/zombie_fighter[examples/user_interface/zombie_fighter]), and it is unavoidable that the process will just have to wait for some steps to finish, so your loading screen will not have 60 FPS.
 
