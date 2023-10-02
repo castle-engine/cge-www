@@ -49,16 +49,18 @@ Do not use tabs. Use only spaces for all indentation.
 [#pascal_case]
 === Use `PascalCase` for everything
 
-`PascalCase` means that the first character of each word is capatalized.
+`PascalCase` means that the first character of each word is capatalized. Use it for all identifiers.
 
 * Including constants. So write `MyConstant` instead of e.g. `MY_CONSTANT`.
 * Including local variables. Even 1-letter variable names (so write `I` instead of `i`).
 * Including type names. Even the type names that are Pascal keywords (so write `String` / `Boolean` instead of `string` / `boolean`). Note: this rule was changed during CGE 6.5 development. So you will find a lot of code using lowercase `string` now in engine sources, but new code should use `String`.
 
-[#true_false_lowecase]
-=== `true` and `false` are lowercase, not `True` and `False`
+WARNING: The keywords `nil`, `true`, `false` are stil lowercase.
 
-*Reason:* We just historically wrote them always as lowercase `true` and `false`, and now it would be too big effort (for too little gain) to change to `True` and `False`. Some Pascal codebases write them also lowercase (e.g. LCL, although it is not 100% consistent) so we're not alone in this decision.
+[#true_false_lowecase]
+=== `true`, `false`, `nil` are lowercase (not `True`, `False`, `Nil`)
+
+*Reason:* We just historically wrote them always as lowercase and now it would be too big effort (for too little gain) to change. Some Pascal codebases write them also lowercase (e.g. LCL, although it is not 100% consistent) so we're not alone in this decision.
 
 [#begin_end_indentation]
 === Put `begin` on a new line, indentation of `begin` and `end` should match
