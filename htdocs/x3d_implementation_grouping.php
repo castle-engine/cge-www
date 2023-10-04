@@ -10,6 +10,7 @@
 $toc = new TableOfContents(
   array(
     new TocItem('Supported nodes', 'supported_nodes'),
+    new TocItem('TODO', 'todo'),
     new TocItem('Example in Pascal', 'example_grouping'),
   )
 );
@@ -76,6 +77,15 @@ $toc = new TableOfContents(
 </ul>
 
 <p>Note: The <code>bboxCenter</code> and <code>bboxSize</code> fields of X3D grouping nodes are right now ignored by CGE. Instead, we internally always calculate and update best bounding boxes (and bounding spheres) for collision. So there's no need to fill these X3D fields.</p>
+
+<?php echo $toc->html_section(); ?>
+
+<p>Below fields are not implemented yet, but certainly planned and should be easy. Please <a href="https://castle-engine.io/talk.php">report</a> if you need any of these high-priority.
+
+<ul>
+  <li><code>X3DGroupingNode.visible</code> (Note: we do support <code>X3DShapeNode.visible</code>, so you can hide individual shapes.)
+  <li><code>X3DGroupingNode.bboxDisplay</code>
+</ul>
 
 <?php echo $toc->html_section(); ?>
 
