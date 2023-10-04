@@ -43,7 +43,7 @@ do_test_one_backend_lcl ()
 # Parameters: OS CPU backend-name
 do_test_one_backend ()
 {
-  if [ "$3" = 'CASTLE_WINDOW_LCL' ]; then
+  if [ "$3" = 'CASTLE_WINDOW_FORM' ]; then
     do_test_one_backend_lcl $1 $2
   else
     # Always clean to be sure that new -dCASTLE_WINDOW_xxx
@@ -67,14 +67,14 @@ do_test_all_backends ()
   # Note that CASTLE_WINDOW_LIBRARY backend will not really work
   # with a standalone application, but it should compile OK.
   do_test_one_backend linux i386 CASTLE_WINDOW_LIBRARY
-  do_test_one_backend linux i386 CASTLE_WINDOW_LCL
+  do_test_one_backend linux i386 CASTLE_WINDOW_FORM
 
   do_test_one_backend win32 i386 CASTLE_WINDOW_WINAPI
   do_test_one_backend win32 i386 CASTLE_WINDOW_GTK_2
   do_test_one_backend win32 i386 CASTLE_WINDOW_TEMPLATE
   do_test_one_backend win32 i386 CASTLE_WINDOW_LIBRARY
   # TODO: why this fails?
-#  do_test_one_backend win32 i386 CASTLE_WINDOW_LCL
+#  do_test_one_backend win32 i386 CASTLE_WINDOW_FORM
 
   do_test_one_backend win64 x86_64 CASTLE_WINDOW_WINAPI
   # GTK2 units not available for win64?
@@ -82,7 +82,7 @@ do_test_all_backends ()
   do_test_one_backend win64 x86_64 CASTLE_WINDOW_TEMPLATE
   do_test_one_backend win64 x86_64 CASTLE_WINDOW_LIBRARY
   # TODO: why this fails?
-#  do_test_one_backend win64 x86_64 CASTLE_WINDOW_LCL
+#  do_test_one_backend win64 x86_64 CASTLE_WINDOW_FORM
 }
 
 . /usr/local/fpclazarus/bin/setup.sh 3.0.0
