@@ -19,6 +19,8 @@
 
 <?php echo $toc->html_section(); ?>
 
+<p><b>This field is deprecated now. Use instead the standard (since X3D 4.0) field <code>visible</code> &mdash; it's a better name, and standardized. It is exactly equivalent to how <code>render</code> worked.</b>
+
 <?php
   echo node_begin('X3DShapeNode') .
   node_dots() .
