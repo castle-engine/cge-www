@@ -75,22 +75,12 @@ Known problems:
 
 WARNING: This section describes a feature that is being extended now. In the `master` branch of CGE, it is available only for LCL, with name `CASTLE_WINDOW_LCL`. In new `delphi-linux` branch it is available for both FMX and LCL, and is called `CASTLE_WINDOW_FORM`. Bear with us as we adapt CGE to support all platforms and all compilers:)
 
-Backend that uses `TForm` to create a window. It is fully-functional, aside from (of course) a rendering area in the window, it also supports a main menu (cgeref:TCastleWindow.MainMenu[]), native dialogs (cgeref:TCastleWindow.FileDialog[] and others) and fullscreen toggling (cgeref:TCastleWindow.FullScreen[]).
+Backend that uses `TForm` and other LCL / FMX components to create a window. It is fully-functional:
 
-It supports 2 options, LCL and FMX:
-
-- LCL (Lazarus) forms.
-+
-In turn, it can use various widgetsets (GTK, Qt, WinAPI, Cocoa) on various platforms.
-+
-The OpenGL is initialized using `TOpenGLControl`.
-
-- FMX aka FireMonkey (Delphi, cross-platform) forms.
-+
-In turn, it can also use various widgetsets under the hood, though FireMonkey is mostly _owner drawn_. This means that FMX depends much less on the underlying widgetset for a lot of work -- it generally uses widgetsets in more low-level fashion.
-// Advantages over LCL: FMX can be more reliable / consistent on various platforms (since it does more work itself, more things are the same on various platforms). Also FMX can have more configurable look (though by default it adjusts to platform, trying to look native). Disadvantages: Sometimes FMX does not look that 100% native (compared to applications done e.g. using pure GTK or Linux, or Android and iOS widgetsets), although generally it is very close to looking native.
-+
-The OpenGL is initialized using `TCastleControl`.
+- of course, has OpenGL rendering area filling the window,
+- supports main menu (cgeref:TCastleWindow.MainMenu[]),
+- supports native dialogs (cgeref:TCastleWindow.FileDialog[] and others)
+- supports fullscreen toggling (cgeref:TCastleWindow.FullScreen[]).
 
 To use this define `CASTLE_WINDOW_FORM`.
 
