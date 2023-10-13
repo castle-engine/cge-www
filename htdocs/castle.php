@@ -15,16 +15,36 @@ echo castle_thumbs(array(
 
 $toc = new TableOfContents(
   array(
+    new TocItem('Note: This is a game from 2006 and has some programmer art :)', 'old'),
     new TocItem('Overview', 'overview'),
     new TocItem('Download', 'download'),
     new TocItem('Installing', 'install', 1),
     new TocItem('Uninstalling', 'uninstall', 1),
-    new TocItem('Movies', 'movies'),
+    new TocItem('Movie', 'movies'),
   )
 );
 ?>
 
 <?php echo $toc->html_toc(); ?>
+
+<?php echo $toc->html_section(); ?>
+
+<p>Note that this game was done quite long time ago:
+it was done for <a href="http://pascalgamedevelopment.com/">PascalGameDevelopment</a>
+competition in 2006. I was tinkering with the code since then
+(the <a href="https://github.com/castle-engine/castle-game/">source code from GitHub</a>
+compiles with <a href="https://castle-engine.io/download">latest Castle Game Engine</a>).
+But I never had time
+to actually rework the 3D levels and creatures to something prettier.
+
+<p>This is combined with the fact that the game graphics was composed by me (Michalis),
+a programmer, not an artist.
+I used various free 3D models, doing various adjustments and adding some simple
+own models.
+
+<p>So forgive 3D graphics that look quite dated now :)
+
+<p>You want to see something pretty? Check out <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/fps_game">examples/fps_game</a> in CGE sources! This was done by real artists, and in 2022, and it looks amazing :)
 
 <?php echo $toc->html_section(); ?>
 
@@ -154,23 +174,15 @@ You may also want to delete configuration file:</p>
 
 <?php echo $toc->html_section(); ?>
 
-<div style="border: thin solid #D3D3D3; padding: 0.5em;">
-<p style="margin-top: 0em">Short gameplay sequences, and playing around with shadow volumes.<br/>
-<b>Spoiler alert</b>: the first half of the movie shows levels you will see
+<p>Short gameplay sequence and playing around with shadow volumes.
+Note that this was done with quite old engine version,
+in new version more things cast shadows.
+
+<p><b>Spoiler alert</b>: the first half of the movie shows levels you will see
 later in the game.</p>
 
 <?php if (!HTML_VALIDATION) { ?>
 <iframe width="425" height="349" src="https://www.youtube.com/embed/2XgQHo4DrGk" frameborder="0" allowfullscreen></iframe>
-<?php } ?>
-</div>
-
-<div style="border: thin solid #D3D3D3; padding: 0.5em; margin-top: 1em;">
-<p style="margin-top: 0em">Playing through The Castle (walkthrough) by "qubodup".<br/>
-<b>Spoiler alert</b>: this is a complete walkthrough :)
-Watch if you get stuck, or if you don't want to play the full game!</p>
-
-<?php if (!HTML_VALIDATION) { ?>
-<iframe width="560" height="349" src="https://www.youtube.com/embed/bs-fegqEID8" frameborder="0" allowfullscreen></iframe>
 <?php } ?>
 </div>
 
