@@ -1,9 +1,9 @@
 === Check & Log Email ===
-Contributors: wpchill, silkalns, giucu91
+Contributors: jack-kitterhing
 Tags: check, test, email, smtp, pop, send, delivery
 Requires at least: 5.0
-Tested up to: 6.1
-Stable tag: 1.0.7
+Tested up to: 6.3
+Stable tag: 1.0.8
 
 Check & Log email allows you to test if your WordPress installation is sending emails correctly by sending a test email to an address of your choice. Allows overriding of email headers and carbon copying to another address.
 
@@ -40,6 +40,9 @@ Someone using one of my other plugins had trouble with emails not being sent. I 
 3. Check & Log Email - Settings
 
 == Changelog ==
+
+= v1.0.8 - 16/10/2023 =
+- Updated: Plugin author to reflect ownership changes. 
 
 = v1.0.7 - 08/03/2022 =
 - Fixed: Incompatibility with Post SMTP ( [#51]( https://github.com/WPChill/check-email/issues/51) )

@@ -2,9 +2,9 @@
 /*
 * Plugin Name: 				Check & Log Email
 * Description: 				Check & Log email allows you to test if your WordPress installation is sending emails correctly and logs every email.
-* Author: 					WPChill
-* Version: 					1.0.7
-* Author URI: 				https://wpchill.com/
+* Author: 					WPOmnia
+* Version: 					1.0.8
+* Author URI: 				https://wpomnia.com/
 * License: 					GPLv3 or later
 * License URI:         		http://www.gnu.org/licenses/gpl-3.0.html
 * Requires PHP: 	    	5.6
@@ -14,10 +14,12 @@
 * Copyright 2015-2020 		Chris Taylor 		chris@stillbreathing.co.uk
 * Copyright 2020 		    MachoThemes 		office@machothemes.com
 * Copyright 2020 		    WPChill 			heyyy@wpchill.com
+* Copyright 2023			WPOmnia				contact@wpomnia.com
 *
 * NOTE:
 * Chris Taylor transferred ownership rights on: 2020-06-19 07:52:03 GMT when ownership was handed over to MachoThemes
 * The MachoThemes ownership period started on: 2020-06-19 07:52:03 GMT
+* MachoThemes sold the plugin to WPOmnia on: 2023-10-15 15:52:03 GMT
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License, version 3, as

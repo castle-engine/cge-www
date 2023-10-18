@@ -1,5 +1,8 @@
 == Changelog ==
 
+= v1.0.8 - 16/10/2023 = 
+- Updated: Plugin author to reflect ownership changes.
+
 = v1.0.7 - 08/03/2022 =
 - Fixed: Incompatibility with Post SMTP ( [#51]( https://github.com/WPChill/check-email/issues/51) )
 
