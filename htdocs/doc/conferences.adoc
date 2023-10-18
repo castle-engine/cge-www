@@ -9,12 +9,7 @@ Not always, but sometimes there's a paper trace or video recording of what I tal
 This pages collects _some_ materials from them.
 ////
 
-* **Upcoming: You can catch me next at:**
-+
---
-* _26-27 October 2023_: https://www.itdevcon.it/en/[ITDevCon - Delphi conference in Rome]. I will give 2 talks about CGE, details to come.
-* _6-8 October, 2023_: https://gic.gd/[GIC (Game Industry Conference) in Poznań]. I will not give a talk this year (too busy schedule, I need to rest :) ) but I will be there. To make sure you catch me, just send me a mail (`michalis@castle-engine.io`) or use the GIC meeting system to schedule a meeting. Don't be shy, I always love talking about CGE (as you probably know if you attended any of my presentations :) ).
---
+* * **Upcoming:** _26-27 October 2023_: https://www.itdevcon.it/en/[ITDevCon - Delphi conference in Rome]. I will give 2 talks about CGE, https://castle-engine.io/wp/2023/09/29/catch-me-at-itdevcon-2023-in-rome-giving-2-presentations-about-castle-game-engine/[details are here].
 
 * _20-21 September 2023_: https://www.bsc.com.pl/zlot-programistow-delphi-2023/[Zlot Programistów Delphi], Polish conference.
 ** https://castle-engine.io/zlot2023/slides[Slides from my talk presenting Castle Game Engine - editor, coding, plans]
