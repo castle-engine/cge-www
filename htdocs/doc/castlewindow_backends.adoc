@@ -166,6 +166,6 @@ Supported platforms: All platforms.
 * Create a file `castlewindow_foo.inc` with contents from  `castlewindow_backend_template.inc` and conditionally include it from `castlewindow_backend.inc`.
 * Adjust defining `CASTLE_WINDOW_HAS_VIDEO_CHANGE` and `CASTLE_WINDOW_USE_PRIVATE_MODIFIERS_DOWN`  for your backend.
 * Implement all methods in `castlewindow_foo.inc`.
-* Call `TCastleWindow.DoXxx` functions at appropriate places from your backend. You can call all `DoUpdate` and `DoTimer` for all `Application.OpenWindows` using `Application.FOpenWindows.DoUpdate/Timer`.
-* Call `TCastleApplication.DoApplicationUpdate` and `DoApplicationTimer` when appropriate.  Remember that you can always assume that the ONLY existing instance of `TCastleApplication` is `Application`.
+* Call `TCastleWindow.DoXxx` functions at appropriate places from your backend. You can call all `DoUpdate` all `Application.OpenWindows` using `Application.FOpenWindows.DoUpdate`.
+* Call `ApplicationProperties._Update` when appropriate. Remember that you can always assume that the ONLY existing instance of `TCastleApplication` is `Application`.
 * Remember that probably you will have to call `ReleaseAllKeysAndMouse` when user switches to another window or activates MainMenu.
