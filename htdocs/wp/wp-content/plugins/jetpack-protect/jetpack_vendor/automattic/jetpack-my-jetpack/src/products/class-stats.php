@@ -7,7 +7,6 @@
 
 namespace Automattic\Jetpack\My_Jetpack\Products;
 
-use Automattic\Jetpack\Constants as Jetpack_Constants;
 use Automattic\Jetpack\My_Jetpack\Module_Product;
 use Automattic\Jetpack\My_Jetpack\Wpcom_Products;
 use Jetpack_Options;
@@ -73,9 +72,8 @@ class Stats extends Module_Product {
 	 */
 	public static function get_features() {
 		return array(
-			__( 'Access to all-time data', 'jetpack-my-jetpack' ),
+			__( 'Instant access to upcoming features', 'jetpack-my-jetpack' ),
 			__( 'Priority support', 'jetpack-my-jetpack' ),
-			__( 'No upsell or ads in the Stats page', 'jetpack-my-jetpack' ),
 		);
 	}
 
@@ -93,6 +91,7 @@ class Stats extends Module_Product {
 				'wpcom_pwyw_product_slug' => static::get_wpcom_pwyw_product_slug(),
 			),
 			// TODO: replace with `Wpcom_Products::get_product_pricing` once available.
+			// This is not yet used anywhere, so it's fine to leave it as is for now.
 			array(
 				'currency_code'  => 'USD',
 				'full_price'     => 10,
@@ -135,23 +134,83 @@ class Stats extends Module_Product {
 	 * @return boolean
 	 */
 	public static function has_required_plan() {
-		// Check if paid stats plans have been enabled.
-		if ( Jetpack_Constants::is_true( 'JETPACK_PAID_STATS_ENABLED' ) ) {
-			$purchases_data = Wpcom_Products::get_site_current_purchases();
-			if ( is_wp_error( $purchases_data ) ) {
-				return false;
-			}
-			if ( is_array( $purchases_data ) && ! empty( $purchases_data ) ) {
-				foreach ( $purchases_data as $purchase ) {
-					if ( 0 === strpos( $purchase->product_slug, 'jetpack_stats' ) ) {
-						return true;
-					}
-				}
-			}
+		$purchases_data = Wpcom_Products::get_site_current_purchases();
+		if ( is_wp_error( $purchases_data ) ) {
 			return false;
 		}
+		if ( is_array( $purchases_data ) && ! empty( $purchases_data ) ) {
+			foreach ( $purchases_data as $purchase ) {
+				if ( 0 === strpos( $purchase->product_slug, 'jetpack_stats' ) ) {
+					return true;
+				}
+				if ( 0 === strpos( $purchase->product_slug, 'jetpack_complete' ) ) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 
-		// Until the new paid stats plans roll out, no plan purchase is required for Jetpack Stats.
+	/**
+	 * Checks whether the product can be upgraded to a different product.
+	 * Only Jetpack Stats Commercial plan is not upgradable.
+	 *
+	 * @return boolean
+	 */
+	public static function is_upgradable() {
+		$purchases_data = Wpcom_Products::get_site_current_purchases();
+		if ( is_wp_error( $purchases_data ) ) {
+			return false;
+		}
+		if ( is_array( $purchases_data ) && ! empty( $purchases_data ) ) {
+			foreach ( $purchases_data as $purchase ) {
+				if (
+					(
+						// Purchase is Jetpack Stats...
+						0 === strpos( $purchase->product_slug, 'jetpack_stats' ) &&
+						// but not Jetpack Stats Free...
+						false === strpos( $purchase->product_slug, 'free' )
+					) || 0 === strpos( $purchase->product_slug, 'jetpack_complete' )
+				) {
+					// Only Jetpack Stats paid plans should be eligible for this conditional.
+					// Sample product slugs: jetpack_stats_monthly
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+
+	/**
+	 * Returns a redirect parameter for an upgrade URL if current purchase license is a free license
+	 * or an empty string otherwise.
+	 *
+	 * @return string
+	 */
+	public static function get_url_redirect_string() {
+		$purchases_data = Wpcom_Products::get_site_current_purchases();
+		if ( is_wp_error( $purchases_data ) ) {
+			return '';
+		}
+		if ( is_array( $purchases_data ) && ! empty( $purchases_data ) ) {
+			foreach ( $purchases_data as $purchase ) {
+				if (
+					0 === strpos( $purchase->product_slug, static::get_wpcom_free_product_slug() )
+				) {
+					return '&productType=personal';
+				}
+			}
+		}
+		return '';
+	}
+
+	/**
+	 * Checks whether the product supports trial or not.
+	 * Since Jetpack Stats has been widely available as a free product in the past, it "supports" a trial.
+	 *
+	 * @return boolean
+	 */
+	public static function has_trial_support() {
 		return true;
 	}
 
@@ -161,12 +220,14 @@ class Stats extends Module_Product {
 	 * @return ?string
 	 */
 	public static function get_purchase_url() {
-		$blog_id = Jetpack_Options::get_option( 'id' );
-		// TODO: Handle unconnected sites without a defined blog_id. (Or check if we need to.)
-		// TODO: Remove the "stats/paid-stats" feature flag from the URL once paid stats has rolled out to the public.
-		// TODO: Consider adding a post-purchase redirect URL as a query string to the purchase URL.
-		// Appending get_manage_url() to the purchase URL would be a good option.
-		return sprintf( 'https://wordpress.com/stats/purchase/%d', $blog_id ) . '?flags=stats/paid-stats';
+		// The returning URL could be customized by changing the `redirect_uri` param with relative path.
+		return sprintf(
+			'%s#!/stats/purchase/%d?from=jetpack-my-jetpack%s&redirect_uri=%s',
+			admin_url( 'admin.php?page=stats' ),
+			Jetpack_Options::get_option( 'id' ),
+			static::get_url_redirect_string(),
+			rawurlencode( 'admin.php?page=stats' )
+		);
 	}
 
 	/**

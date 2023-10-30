@@ -4,17 +4,17 @@
 	"type": "jetpack-library",
 	"license": "GPL-2.0-or-later",
 	"require": {
-		"automattic/jetpack-connection": "^1.54.0",
-		"automattic/jetpack-constants": "^1.6.22",
-		"automattic/jetpack-identity-crisis": "^0.8.51",
-		"automattic/jetpack-password-checker": "^0.2.13",
-		"automattic/jetpack-ip": "^0.1.4",
-		"automattic/jetpack-roles": "^1.4.23",
-		"automattic/jetpack-status": "^1.17.2"
+		"automattic/jetpack-connection": "^1.58.1",
+		"automattic/jetpack-constants": "^1.6.23",
+		"automattic/jetpack-identity-crisis": "^0.11.0",
+		"automattic/jetpack-password-checker": "^0.2.14",
+		"automattic/jetpack-ip": "^0.1.6",
+		"automattic/jetpack-roles": "^1.4.25",
+		"automattic/jetpack-status": "^1.18.5"
 	},
 	"require-dev": {
-		"automattic/jetpack-changelogger": "^3.3.7",
-		"yoast/phpunit-polyfills": "1.0.4",
+		"automattic/jetpack-changelogger": "^3.3.11",
+		"yoast/phpunit-polyfills": "1.1.0",
 		"automattic/wordbless": "@dev"
 	},
 	"suggest": {
@@ -48,7 +48,7 @@
 			"link-template": "https://github.com/Automattic/jetpack-sync/compare/v${old}...v${new}"
 		},
 		"branch-alias": {
-			"dev-trunk": "1.51.x-dev"
+			"dev-trunk": "1.58.x-dev"
 		}
 	},
 	"config": {

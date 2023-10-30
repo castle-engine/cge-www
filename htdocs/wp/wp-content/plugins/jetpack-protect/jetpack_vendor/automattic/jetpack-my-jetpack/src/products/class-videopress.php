@@ -157,4 +157,13 @@ class Videopress extends Hybrid_Product {
 		}
 	}
 
+	/**
+	 * Checks whether the current plan (or purchases) of the site already supports the product
+	 *
+	 * @return boolean
+	 */
+	public static function has_required_plan() {
+		// TODO: import and perform a proper check with Current_Plan. See #33410.
+		return true;
+	}
 }
