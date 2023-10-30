@@ -40,7 +40,7 @@ const
   MoveSpeed = 10;
 begin
   inherited;
-  MyViewport.Camera.Position := MyViewport.Camera.Position +
+  MyViewport.Camera.Translation := MyViewport.Camera.Translation +
     MyViewport.Camera.Direction * SecondsPassed * MoveSpeed;
 end;
 ----
