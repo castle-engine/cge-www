@@ -519,9 +519,9 @@ $castle_sitemap = array(
           ),
           'x3d_larger_extensions' => array('title' => 'Larger X3D Extensions',
             'sub' => array(
-              'compositing_shaders' => array('title' => 'Compositing Shaders'),
+              'compositing_shaders' => array('title' => 'Shader Effects (Compositing Shaders)'),
               'x3d_extensions_mirror_plane' => array('title' => 'Mirrors on flat objects'),
-              'x3d_extensions_screen_effects' => array('title' => 'Screen Effects'),
+              'x3d_extensions_screen_effects' => array('title' => 'Screen (Post-Processing) Effects'),
               'x3d_extensions_shadow_maps' => array('title' => 'Shadow Maps'),
               'x3d_extensions_shadow_volumes' => array('title' => 'Shadow Volumes'),
               'x3d_extensions_vrml1' => array('title' => '(Old) VRML 1.0'),
