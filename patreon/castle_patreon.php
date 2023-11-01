@@ -54,116 +54,149 @@ function patreon_read_all_pages($api_client, $request_str)
   return $result;
 }
 
-/* Returns the details about nearest Patreon goal.
-   Returns associative array with these fields:
+/*
+  Use Patreon API ( https://docs.patreon.com/#apiv2-resources ).
 
-    'amount_cents'
-    'completed_percentage'
-    'created_at'
-    'description'
-    'reached_at'
-    'title'
+  False for now.
+  Patreon API is not good enough for us after changes in 2022/2023:
 
-  See https://docs.patreon.com/#apiv2-resources
-  for their meaning, they match Patreon API answer. */
-function castle_patreon_nearest_goal()
-{
-  // castle_patreon_config.php is not in repo.
-  // It should define $cge_patreon_access_token = '...';
-  include 'castle_patreon_config.php';
+  We cannot really get the data we need, which is "amount per month,
+  same as displayed in https://www.patreon.com/castleengine ".
 
-  if (!isset($cge_patreon_access_token)) {
-    throw new Exception('Patreon access token not defined');
-    /*
-    return array(
-      'amount_cents' => 0,
-      'completed_percentage' => 0,
-      'created_at' => NULL,
-      'description' => NULL,
-      'reached_at' => NULL,
-      'title' => 'Patreon access token not defined'
-    );
-    */
-  }
+  Trying to calculate it based on existing data (summing patrons)
+  never gives the exact same number as displayed on Patreon,
+  for reasons unknown, the differences don't seem consistent with anything.
+  castle_patreon_total_pledges algorithm calculates value slightly larger
+  than https://www.patreon.com/castleengine display
+  (but matching Patron manager), so I just don't understand how they
+  calculate value displayed on https://www.patreon.com/castleengine .
+*/
+define('QUERY_PATREON_API', false);
 
-  $api_client = new Patreon\API($cge_patreon_access_token);
-
-  $campaigns_list = $api_client->fetch_campaigns();
-  if (!isset($campaigns_list['data'][0]['id'])) {
-    throw new Exception('Patreon campaigns unexpected answer: ' . print_r($campaigns_list, true));
-  }
-  $campaign_id = $campaigns_list['data'][0]['id'];
-
-  //$campaign_details = $api_client->fetch_campaign_details($campaign_id);
-
-  /* To see available fields, see https://docs.patreon.com/#apiv2-resources
-
-     Or just run v1 query that returns everything:
-     curl --request GET \
-      --url https://www.patreon.com/api/oauth2/api/current_user/campaigns \
-      --header 'Authorization: Bearer <access-token>'
-  */
+if (QUERY_PATREON_API) {
   /*
-  // No longer useful, Patreon removed goals details
-
-  $campaign_details = $api_client->get_data("campaigns/{$campaign_id}?include=campaign_installations,benefits,creator,goals,tiers&fields%5Bgoal%5D=amount_cents,completed_percentage,created_at,description,reached_at,title");
-  //print_r($campaign_details);
+    Get amount of pledges using Patreon API.
   */
+  function castle_patreon_total_pledges()
+  {
+    // castle_patreon_config.php is not in repo.
+    // It should define $cge_patreon_access_token = '...';
+    include 'castle_patreon_config.php';
 
-  // pledge_sum is missing from campaign, it seems, despite being documented on https://docs.patreon.com/#campaign
-
-  $campaign_details = $api_client->get_data("campaigns/{$campaign_id}?fields%5Bcampaign%5D=patron_count");
-  //print_r($campaign_details);
-  $patron_count = $campaign_details['data']['attributes']['patron_count'];
-  // echo 'Current Patrons count ' . $patron_count . "\n";
-
-  $campaign_members = patreon_read_all_pages($api_client, "campaigns/{$campaign_id}/members?fields%5Bmember%5D=currently_entitled_amount_cents,full_name,pledge_cadence,patron_status,will_pay_amount_cents");
-
-  /* Since Patreon removed goals, we need to get all members and sum their
-     contribution manually.
-     Note that we need to support pagination, despite docs saying pagination
-     starts at 500, it seems page only contains 20. */
-  $total_pledges = 0;
-  $members_counted = 0;
-  $members_counted_nonzero = 0;
-  //print_r($campaign_members);
-  foreach ($campaign_members as $member) {
-    $member_current_pledge = $member['attributes']['currently_entitled_amount_cents'];
-
-    if (isset($member['attributes']['pledge_cadence'])) {
-      $pledge_cadence = $member['attributes']['pledge_cadence'];
-      /* Divide by $pledge_cadence, to divide by 12 for amnual payments */
-      $member_current_pledge = $member_current_pledge / $pledge_cadence;
+    if (!isset($cge_patreon_access_token)) {
+      throw new Exception('Patreon access token not defined');
+      /*
+      return array(
+        'amount_cents' => 0,
+        'completed_percentage' => 0,
+        'created_at' => NULL,
+        'description' => NULL,
+        'reached_at' => NULL,
+        'title' => 'Patreon access token not defined'
+      );
+      */
     }
 
-    if (isset($member['attributes']['patron_status'])) {
-      $member_status = $member['attributes']['patron_status'];
-      // reject pledges from Patrons with status = Declined
-      if ($member_status != 'active_patron') {
-        $member_current_pledge = 0;
+    $api_client = new Patreon\API($cge_patreon_access_token);
+
+    $campaigns_list = $api_client->fetch_campaigns();
+    if (!isset($campaigns_list['data'][0]['id'])) {
+      throw new Exception('Patreon campaigns unexpected answer: ' . print_r($campaigns_list, true));
+    }
+    $campaign_id = $campaigns_list['data'][0]['id'];
+
+    //$campaign_details = $api_client->fetch_campaign_details($campaign_id);
+
+    /* To see available fields, see https://docs.patreon.com/#apiv2-resources
+
+      Or just run v1 query that returns everything:
+      curl --request GET \
+        --url https://www.patreon.com/api/oauth2/api/current_user/campaigns \
+        --header 'Authorization: Bearer <access-token>'
+    */
+    /*
+    // No longer useful, Patreon removed goals details
+
+    $campaign_details = $api_client->get_data("campaigns/{$campaign_id}?include=campaign_installations,benefits,creator,goals,tiers&fields%5Bgoal%5D=amount_cents,completed_percentage,created_at,description,reached_at,title");
+    //print_r($campaign_details);
+    */
+
+    // pledge_sum is missing from campaign, it seems, despite being documented on https://docs.patreon.com/#campaign
+
+    $campaign_details = $api_client->get_data("campaigns/{$campaign_id}?fields%5Bcampaign%5D=patron_count");
+    //print_r($campaign_details);
+    $patron_count = $campaign_details['data']['attributes']['patron_count'];
+    // echo 'Current Patrons count ' . $patron_count . "\n";
+
+    $campaign_members = patreon_read_all_pages($api_client, "campaigns/{$campaign_id}/members?fields%5Bmember%5D=currently_entitled_amount_cents,full_name,pledge_cadence,patron_status,will_pay_amount_cents");
+
+    /* Since Patreon removed goals, we need to get all members and sum their
+      contribution manually.
+      Note that we need to support pagination, despite docs saying pagination
+      starts at 500, it seems page only contains 20. */
+    $total_pledges = 0;
+    $members_counted = 0;
+    $members_counted_nonzero = 0;
+    //print_r($campaign_members);
+    foreach ($campaign_members as $member) {
+      $member_current_pledge = $member['attributes']['currently_entitled_amount_cents'];
+
+      if (isset($member['attributes']['pledge_cadence'])) {
+        $pledge_cadence = $member['attributes']['pledge_cadence'];
+        /* Divide by $pledge_cadence, to divide by 12 for amnual payments */
+        $member_current_pledge = $member_current_pledge / $pledge_cadence;
+      }
+
+      if (isset($member['attributes']['patron_status'])) {
+        $member_status = $member['attributes']['patron_status'];
+        // reject pledges from Patrons with status = Declined
+        if ($member_status != 'active_patron') {
+          $member_current_pledge = 0;
+        }
+      }
+
+      $total_pledges += $member_current_pledge;
+      $members_counted++;
+      if ($member_current_pledge > 0) {
+        $members_counted_nonzero++;
+        //echo 'Adding ' . $member_current_pledge . ' from ' . $member['attributes']['full_name'] . "\n";
       }
     }
 
-    $total_pledges += $member_current_pledge;
-    $members_counted++;
-    if ($member_current_pledge > 0) {
-      $members_counted_nonzero++;
-      //echo 'Adding ' . $member_current_pledge . ' from ' . $member['attributes']['full_name'] . "\n";
-    }
+    // echo 'Members counted: ' . $members_counted . "\n";
+    // echo 'Members counted with non-zero: ' . $members_counted_nonzero . "\n";
+    // echo 'Total pledges: ' . $total_pledges . "\n";
+
+    // TODO: From time to time this test fails, reason unknown
+    // if ($members_counted_nonzero != $patron_count) {
+    //   throw new Exception('Members counted with non-zero is not equal to Patrons count');
+    // }
+
+    return $total_pledges;
   }
 
-  // echo 'Members counted: ' . $members_counted . "\n";
-  // echo 'Members counted with non-zero: ' . $members_counted_nonzero . "\n";
-  // echo 'Total pledges: ' . $total_pledges . "\n";
+} else {
 
-  // TODO: From time to time this test fails, reason unknown
-  // if ($members_counted_nonzero != $patron_count) {
-  //   throw new Exception('Members counted with non-zero is not equal to Patrons count');
-  // }
+  /* Workaround: just hardcoded and manually updated amount. */
+  function castle_patreon_total_pledges()
+  {
+    return 28700;
+  }
 
-  // in emergency, you can just hardcode this
-  // TODO: above algorithm calculates value slightly larger (but matching Patron manager), use below algorithm to be consistent with Patreon display
-  $total_pledges = 27500;
+}
+
+/*
+  Returns the details about nearest Patreon goal.
+  Returns associative array with at least these fields:
+
+    'amount_cents'
+    'completed_percentage'
+
+  Some more fields may be returned, but they are not guaranteed.
+*/
+function castle_patreon_nearest_goal()
+{
+  $total_pledges = castle_patreon_total_pledges();
 
   // goals are hardcoded now here, as Patreon removed goals
   $goals = array(
