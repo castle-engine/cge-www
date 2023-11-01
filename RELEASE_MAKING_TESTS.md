@@ -59,7 +59,6 @@ find-empty-dirs
 Test some special compilation options:
 - ../castle-engine/src/common_includes/castleconf.inc
     - define `CASTLE_DISABLE_LIBPNG`
-    - undefine `CASTLE_EMBED_ALL_3D_FONT_VARIATIONS`
 - ../castle-engine/src/x3d/octreeconf.inc
     - define `CONSERVE_TRIANGLE_MEMORY`
     - define `CONSERVE_TRIANGLE_MEMORY_MORE`
