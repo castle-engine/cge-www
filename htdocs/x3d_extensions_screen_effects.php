@@ -2,7 +2,7 @@
 require_once 'castle_engine_functions.php';
 require_once 'x3d_extensions_functions.php';
 
-castle_header('Screen Effects');
+castle_header('Screen (Post-Processing) Effects');
 
 $toc = new TableOfContents(array(
   new TocItem('Intro', 'intro'),
@@ -10,13 +10,13 @@ $toc = new TableOfContents(array(
   new TocItem('Shader language (GLSL) variables and functions', 'glsl'),
   new TocItem('Examples', 'examples'),
   new TocItem('Details', 'details'),
-  new TocItem('Todos', 'todos'),
+  new TocItem('TODOs', 'todos'),
 ));
 
 echo castle_thumbs(array(
   array('filename' => 'screen_effect_blood_in_the_eyes_1.png', 'titlealt' => 'Screen effect "blood in the eyes": modulate with reddish watery texture'),
   array('filename' => 'screen_effect_trees.png', 'titlealt' => 'Another screen effect example'),
-  array('filename' => 'screen_effects_demo3.png', 'titlealt' => 'Demo of three ScreenEffects defined in VRML/X3D, see screen_effects.x3dv'),
+  array('filename' => 'screen_effects_demo3.png', 'titlealt' => 'Demo of three ScreenEffects defined in X3D, see screen_effects.x3dv'),
   array('filename' => 'screen_effect_headlight_and_gamma.png', 'titlealt' => 'Screen effect: headlight, gamma brightness (on DOOM E1M1 level remade for our Castle)'),
   array('filename' => 'screen_effect_film_grain.png', 'titlealt' => 'Film grain effect'),
   array('filename' => 'screen_effect_grayscale_negative.png', 'titlealt' => 'Screen effect: grayscale, negative (on Tremulous ATCS level)'),
@@ -45,7 +45,7 @@ by processing the rendered image. Demos:</p>
     <a href="https://github.com/castle-engine/demo-models/blob/master/screen_effects/screen_effect_film_grain.x3dv">screen_effect_film_grain.x3dv</a>,
     <a href="https://github.com/castle-engine/demo-models/blob/master/screen_effects/screen_effect_movie_texture.x3dv">screen_effect_movie_texture.x3dv</a>.
     You should download
-    <?php echo a_href_page('our complete VRML/X3D demo models', 'demo_models'); ?>
+    <?php echo a_href_page('our complete X3D demo models', 'demo_models'); ?>
     and open files in <code>screen_effects</code> subdirectory there, to see the complete
     working demos with an example castle model underneath.</p></li>
 
@@ -55,7 +55,7 @@ by processing the rendered image. Demos:</p>
 <?php echo $toc->html_section(); ?>
 
 <p>You can define your own screen effects by using
-the <code>ScreenEffect</code> node in your VRML/X3D files.
+the <code>ScreenEffect</code> node in your X3D files.
 Inside the <code>ScreenEffect</code> node you provide your own shader code
 to process the rendered image, given the current color and depth buffer contents.
 With the power of GLSL shading language,
@@ -73,12 +73,12 @@ color operations and so on.</p>
   node_end();
 ?>
 
-<p>A <code>ScreenEffect</code> is active if it's a part of normal VRML/X3D
+<p>A <code>ScreenEffect</code> is active if it's a part of normal X3D
 transformation hierarchy (in normal words: it's not inside a disabled
 child of the <code>Switch</code> node or such) and when the <code>"enabled"</code>
 field is <code>TRUE</code>.
 In the simple cases, you usually just add <code>ScreenEffect</code> node
-anywhere at the top level of your VRML/X3D file. If you use many
+anywhere at the top level of your X3D file. If you use many
 <code>ScreenEffect</code> nodes, then their order matters:
 they process the rendered image in the given order.</p>
 

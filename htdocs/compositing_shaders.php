@@ -2,11 +2,12 @@
 require_once 'castle_engine_functions.php';
 require_once 'x3d_extensions_functions.php';
 
-castle_header('Compositing Shaders');
+castle_header('Shader Effects (Compositing Shaders)');
 
 $toc = new TableOfContents(array(
   new TocItem('Intro', 'intro'),
   new TocItem('Examples', 'examples'),
+  new TocItem('Nodes implementations', 'implementations'),
   new TocItem('Documentation', 'docs'),
   new TocItem('Conference paper and slides (a bit outdated)', 'old_docs'),
 ));
@@ -28,25 +29,27 @@ echo pretty_heading($page_title);
 <?php echo $toc->html_toc(); ?>
 <?php echo $toc->html_section(); ?>
 
-<p>This in an extension of <?php echo a_href_page('X3D', 'vrml_x3d'); ?> that allows
-to use shaders to define <i>effects</i> on 3D shapes, textures and lights.
-You basically provide small pieces of shading language code that
+<p><i>Castle Game Engine</i> defines a few
+nodes that allow to use shaders to define <i>effects</i> on 3D shapes, textures and lights.
+
+<p>You basically provide small pieces of shading language code
+(OpenGL Shading Language, GLSL) that
 will be seamlessly integrated with the engine internal shaders (and with each other).
 This allows to create graphic effects using
-the powerful shader langauges (like OpenGL Shading Language, GLSL, in case of <i>Castle Game Engine</i>).
-Contrary to the traditional approach (using <code>ComposedShader</code> node,
+the powerful shader languages.
+Contrary to the traditional approach of using shaders (using <code>ComposedShader</code> nodes,
 see <?php echo a_href_page(
 'shader component support', 'x3d_implementation_shaders'); ?>),
-our system allows to create the effects easily. There is no need
-to replicate existing functionality (you don't have to reimplement existing lighting or texturing operations
+this new system allows to create the effects more easily. There is no need
+to replicate existing functionality (e.g. you don't have to reimplement existing lighting or texturing operations
 in your shaders, if you don't want to modify them).
-Your shader effects automatically cooperate with each other and with standard
-rendering features.</p>
+Moreover, your shader effects automatically cooperate with each other and with standard
+rendering features, hence why we call this feature <i>compositing shaders</i>.</p>
 
 <?php echo $toc->html_section(); ?>
 
-<p>The examples are available inside
-<?php echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.
+<p>The example models are available inside
+<?php echo a_href_page('our demo models', 'demo_models'); ?>.
 Download them, and look inside the subdirectory <code>compositing_shaders</code> there.
 Also the <code>water</code> subdirectory contains water implementation
 using our effects.</p>
@@ -54,14 +57,23 @@ using our effects.</p>
 <p>You can open the example models with any of our engine tools, like
 <?php echo a_href_page('view3dscene', 'view3dscene'); ?>.</p>
 
-<p>I'm incredibly happy to note that we have <i>two</i> independent
-implementations of this concept now:
+<p>For engine developers using Pascal, the example is in
+<a href="https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/shader_effects">examples/viewport_and_scenes/shader_effects</a>.
+Build and run this example. Look at source code to see how effects are added
+by the Pascal code.
+
+<?php echo $toc->html_section(); ?>
+
+<p>The <a href="https://castle-engine.io/compositing_shaders_doc/html/">specification
+of these effects</a> is an extension of the <?php echo a_href_page('X3D', 'vrml_x3d'); ?> standard.
+We have <i>two</i> independent implementations of this concept now:
 
 <ol>
   <li>Inside
     <?php echo a_href_page('Castle Game Engine', 'index'); ?> and
     <?php echo a_href_page('view3dscene', 'view3dscene'); ?>.
     By Michalis Kamburelis, the author of this paper.
+
   <li>Inside <a href="http://freewrl.sourceforge.net/">FreeWRL</a>,
     another excellent VRML / X3D browser.
     By Doug Sanden.
