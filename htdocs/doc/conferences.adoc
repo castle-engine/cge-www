@@ -9,7 +9,11 @@ Not always, but sometimes there's a paper trace or video recording of what I tal
 This pages collects _some_ materials from them.
 ////
 
-* * **Upcoming:** _26-27 October 2023_: https://www.itdevcon.it/en/[ITDevCon - Delphi conference in Rome]. I will give 2 talks about CGE, https://castle-engine.io/wp/2023/09/29/catch-me-at-itdevcon-2023-in-rome-giving-2-presentations-about-castle-game-engine/[details are here].
+* _26-27 October 2023_: https://www.itdevcon.it/en/[ITDevCon - Delphi conference in Rome]. I had 2 talks about CGE.
+** https://castle-engine.io/wp/2023/09/29/catch-me-at-itdevcon-2023-in-rome-giving-2-presentations-about-castle-game-engine/[Announcement].
+** https://github.com/castle-engine/conference-itdevcon-2023[Example projects]
+** link:/itdevcon2023/slides1[Presentation (slides) from 1st talk, "Creating 3D games and applications using Castle Game Engine"]
+** link:/itdevcon2023/slides2[Presentation (slides) from 2nd talk, "Advanced Castle Game Engine: forms, 3D generation, shaders, customization"]
 
 * _20-21 September 2023_: https://www.bsc.com.pl/zlot-programistow-delphi-2023/[Zlot Programistów Delphi], Polish conference.
 ** https://castle-engine.io/zlot2023/slides[Slides from my talk presenting Castle Game Engine - editor, coding, plans]
