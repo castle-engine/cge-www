@@ -122,7 +122,7 @@ echo castle_thumbs(array(
 <p>To test it, create a new project from CGE editor using the <i>"Empty"</i> template, add <i>"Viewport (3D)"</i> on the design, then use this code for <code>gameviewmain.pas</code>.
 
 <?php
-echo echo cgeImg('float', array(
+echo cgeImg('block', array(
   array('filename' => 'extrusion_example.png', 'titlealt' => 'Extrusion example'),
   array('filename' => 'extrusion_example_editor.png', 'titlealt' => 'Extrusion example in CGE editor'),
 ));
