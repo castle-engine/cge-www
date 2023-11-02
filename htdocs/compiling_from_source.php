@@ -153,7 +153,7 @@ Set-ExecutionPolicy Bypass -Scope Process
 
 <ol>
   <li>OpenGL (<i>essential for the engine to work</i>; used to render)
-  <li>GTK 2 (we plan to switch to GTK 3)
+  <li>GTK 2 (we plan to switch to GTK 3, and editor may switch to Qt5)
   <li>LibPng (to open png files more efficiently)
   <li>ZLib (to unpack gzip files; also used by LibPng)
   <li>OpenAL (to play sound)
@@ -167,14 +167,18 @@ Set-ExecutionPolicy Bypass -Scope Process
 
 <ul>
   <li>
-    <p>On Debian and derivatives (like Ubuntu), this command should install everything you need:
+    <p>On <i>Debian</i> and derivatives (like <i>Ubuntu</i> or <i>Raspberry Pi OS</i>), this command should install everything you need:
 
-    <pre>sudo apt install libgtk2.0-dev libglx-dev libgl-dev</pre>
+    <pre>sudo apt install libgtk2.0-dev libglx-dev libgl-dev libqt5pas-dev</pre>
+
+    <p>(Anything missing? <a href="https://www.debian.org/distrib/packages">Search</a>)
 
   <li>
     <p>On Fedora, this command should install everything you need (and more, some of these are FPC requirements actually, not CGE):
 
-    <pre>sudo dnf install gtk2 gtk2-devel libX11-devel make binutils glibc-devel mesa-libGL-devel</pre>
+    <pre>sudo dnf install gtk2 gtk2-devel libX11-devel make binutils glibc-devel mesa-libGL-devel qt5pas</pre>
+
+    <p>(Anything missing? <a href="https://packages.fedoraproject.org/">Search</a>)
 </ul>
 
 <p>Note that we link to many libraries dynamically using <i>"dlopen"</i> Unix mechanism. So it is not necessary to install e.g. <code>libpng-dev</code> or <code>libfreetype6-dev</code>.
