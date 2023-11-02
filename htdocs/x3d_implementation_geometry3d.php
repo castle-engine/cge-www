@@ -14,8 +14,9 @@ x3d_status_header('Geometry3D', 'geometry3D',
 $toc = new TableOfContents(
   array(
     new TocItem('Supported nodes', 'supported_nodes'),
-    new TocItem('Example in Pascal (build a textured rectangle)', 'example_pascal_rect'),
-    new TocItem('Example in Pascal (build a textured 3D shape)', 'example_pascal'),
+    new TocItem('Example in Pascal: build a textured rectangle', 'example_pascal_rect'),
+    new TocItem('Example in Pascal: build a textured 3D shape', 'example_pascal'),
+    new TocItem('Example in Pascal: use Extrusion for a pipe with circular cross-section and configurable spine', 'example_pascal_extrusion'),
   )
 );
 ?>
@@ -91,6 +92,41 @@ node.
 <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/viewport_and_scenes/build_3d_object_by_code_2_tunnel">examples/viewport_and_scenes/build_3d_object_by_code_2_tunnel</a>).
 
 <?php echo pascal_highlight_file('code-samples/orthographic_cube_sheared_test.lpr'); ?>
+
+<?php echo $toc->html_section(); ?>
+
+<?php
+echo castle_thumbs(array(
+  array('filename' => 'extrusion_example.png', 'titlealt' => 'Extrusion example'),
+));
+?>
+
+<p>The following is an example code that uses <?php echo cgeRef('TExtrusionNode'); ?> to define a pipe. The pipe has a circular cross-section, and the spine is defined by a series of 3D points. The goal is to have a simple <code>AddPipe</code> routine that can be used like this to add more pipes to the viewport:
+
+<?php echo pascal_highlight(
+'AddPipe([
+  Vector3(0, 0, 0),
+  Vector3(0, 2, 0),
+  Vector3(0, 4.9, 0),
+  Vector3(0, 5, 0),
+  Vector3(0.1, 5, 0),
+  Vector3(2, 5, 0),
+  Vector3(5, 5, 0)
+], 0.1);');
+?>
+
+<p>See the <code>AddPipe</code> routine in the code below for details:
+
+<a href="https://gist.github.com/michaliskambi/229e111f17269d8dccc1cb76a0d9aafa">Complete code of a unit using an Extrusion</a>.
+
+<p>To test it, create a new project from CGE editor using the <i>"Empty"</i> template, add <i>"Viewport (3D)"</i> on the design, then use this code for <code>gameviewmain.pas</code>.
+
+<?php
+echo echo cgeImg('float', array(
+  array('filename' => 'extrusion_example.png', 'titlealt' => 'Extrusion example'),
+  array('filename' => 'extrusion_example_editor.png', 'titlealt' => 'Extrusion example in CGE editor'),
+));
+?>
 
 <?php
   x3d_status_footer();
