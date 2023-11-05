@@ -139,12 +139,11 @@ We advise using <?php echo cgeRef('TCastleDownload'); ?>
   -->
 
   <li><p>For FPC: Use the <code>OpenSSLSockets</code> unit. Simply add this to the uses clause
-    of one of your units (like <code>GameInitialize</code>,
-    <a href="manual_cross_platform.php">if you follow our conventions for cross-platform games)</a>):
+    of one of your units (like <code>GameInitialize</code>):
 
     <pre>{$ifdef FPC} OpenSSLSockets, {$endif} // support HTTPS</pre>
 
-  <li><p>You need to also distribute OpenSSL library.
+  <li><p>Make sure users have the OpenSSL library installed.
 
     <p>On Unix (Linux, FreeBSD, macOS...), it is standard to have OpenSSL
     installed already system-wide. Developers and users likely don't need to do
@@ -156,6 +155,10 @@ We advise using <?php echo cgeRef('TCastleDownload'); ?>
     You only need to add <code>&lt;dependency name="Https" /&gt;</code> in your
     <a href="project_manifest">CastleEngineManifest.xml</a>.
 </ol>
+
+<p>See an example like
+<a href="https://github.com/castle-engine/castle-engine/blob/master/examples/network/asynchronous_download/">examples/network/asynchronous_download/</a>
+that does both things above, to make <code>https</code> work.
 
 <p>Note that we use URLs, not filenames, throughout the entire engine API.
 So to load something from the network, you can just pass e.g. <code>https://...</code>
