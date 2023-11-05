@@ -131,49 +131,35 @@ We advise using <?php echo cgeRef('TCastleDownload'); ?>
  for network protocols, although it requires a bit more effort.
 
 <p>For the <code>https</code> (encrypted version of <code>http</code>) protocol to work:
-<ol>
-  <li><p>You need to use FPC &gt;= 3.2.0. Older FPC versions have critical problem with this.
 
-  <li><p>Use the <code>OpenSSLSockets</code> unit. Simply add this to the uses clause
+<ol>
+  <!--
+    // CGE now requires FPC >= 3.2.0
+    li><p>You need to use FPC &gt;= 3.2.0. Older FPC versions have critical problem with this.
+  -->
+
+  <li><p>For FPC: Use the <code>OpenSSLSockets</code> unit. Simply add this to the uses clause
     of one of your units (like <code>GameInitialize</code>,
     <a href="manual_cross_platform.php">if you follow our conventions for cross-platform games)</a>):
 
-    <pre>{$ifndef VER3_0} OpenSSLSockets, {$endif} // support HTTPS</pre>
+    <pre>{$ifdef FPC} OpenSSLSockets, {$endif} // support HTTPS</pre>
 
-  <li><p>You need to also distribute OpenSSL library. On Linux and FreeBSD, it is almost for sure
-    installed on user's system already.
-    On Windows, use the appropriate DLL.
+  <li><p>You need to also distribute OpenSSL library.
 
-    <p>Our <a href="https://castle-engine.io/build_tool">build tool</a>
-    (used also if you use <a href="manual_editor.php">our editor</a>)
-    takes care of it for you.
-    Simply add <code>&lt;dependency name="Https" /&gt;</code> in your
-    <a href="https://castle-engine.io/project_manifest">CastleEngineManifest.xml</a>.
+    <p>On Unix (Linux, FreeBSD, macOS...), it is standard to have OpenSSL
+    installed already system-wide. Developers and users likely don't need to do
+    anything.
+
+    <p>On Windows, use the appropriate DLLs.
+    Our <a href="editor">editor</a> (or command-line <a href="build_tool">build tool</a>)
+    will automatically place the proper DLLs alongside your EXE file on the first build.
+    You only need to add <code>&lt;dependency name="Https" /&gt;</code> in your
+    <a href="project_manifest">CastleEngineManifest.xml</a>.
 </ol>
 
-<p>Internally, we use
-<a href="http://wiki.freepascal.org/fphttpclient">FpHttpClient unit</a>,
-which supports <code>http</code> and <code>https</code>.
-
-<p>Note that (almost) all of the parameters and attributes
-in the engine API are URLs. So you can refer to network resources
-(http, https) anywhere, and it should "just work".
-
-<p>For example, your game level data may be actually downloaded from the
-network when loading level. To do this,
-<code>level.xml</code> may use an http protocol when referring to
-a <code>scene</code>. Like this:
-
-<?php echo xml_full_highlight(
-'<?xml version="1.0"?>
-<level
-  name="pits"
-  type="Level"
-  scene="https://raw.githubusercontent.com/castle-engine/castle-engine/master/tools/castle-editor/data/project_templates/3d_fps_game/files/data/level/level-dungeon.gltf"
-  title="The Pits of Azeroth"
-/>'); ?>
-
-<p>and the scene with all associated resources will be downloaded.
+<p>Note that we use URLs, not filenames, throughout the entire engine API.
+So to load something from the network, you can just pass e.g. <code>https://...</code>
+to <?php echo cgeRef('TCastleSceneCore.Load'); ?>.
 
 <p>Inside models (like X3D, glTF and other), you can also refer to network resources,
 and it will "just work".
@@ -335,7 +321,7 @@ see in particular <a href="https://github.com/castle-engine/demo-models/blob/mas
 
 <p>Used to access data files in an Android application.
 "Asset" files live inside your application's .apk file, together with your compiled game.
-The <a href="https://castle-engine.io/build_tool">build tool</a>
+The <a href="build_tool">build tool</a>
 will copy the <code>data</code> directory of your game to Android assets.
 For example, file that was in <code>data/my_texture.png</code> in your source code
 can be accessed (from the Android app) using the URL <code>assets:/my_texture.png</code>.
