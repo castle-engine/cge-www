@@ -461,11 +461,22 @@ draw calls in this case.
 
 <?php echo $toc->html_section(); ?>
 
-<p>To reduce memory usage, you can use the same <?php echo cgeRef('TCastleScene'); ?> instance many times within <code>Viewport.Items</code>, usually wrapped in a different <?php echo cgeRef('TCastleTransform'); ?>. The whole code is ready for such "<i>multiple uses</i>" of a single scene instance.
+<p>To reduce memory usage, you can use the same <?php echo cgeRef('TCastleScene'); ?> instance many times within <code>Viewport.Items</code>.
 
-<p>For an example of this approach, see <a href="https://github.com/castle-engine/frogger3d">frogger3d</a> game (in particular, it's main unit <a href="https://github.com/castle-engine/frogger3d/blob/master/code/game.pas">game.pas</a>). The game adds <i>hundreds</i> of 3D objects to <code>Viewport.Items</code>, but there are only <i>three</i> <code>TCastleScene</code> instances (player, cylinder and level).
+<ul>
+  <li>
+    <p>One way to do this is just to add, from Pascal code, the same <?php echo cgeRef('TCastleScene'); ?> instance many times to <code>Viewport.Items</code>.
 
-<p>However, this optimization is suitable only if all the visible scenes (that are actually a single <?php echo cgeRef('TCastleScene'); ?> instance) are always in the same animation frame (or maybe they are not animated at all). If you want to play different animations, you have to create separate TCastleScene instances (you can create them efficiently using the <?php echo cgeRef('TCastleScene.Clone'); ?> method).
+    <p>See the <a href="https://castle-engine.io/viewport_and_scenes_from_code#_multiple_instances_of_the_same_scene">"Multiple instances of the same scene" section of the manual "Writing code to modify scenes and transformations"</a> for an example.
+
+  <li>
+    <p>Another way to ensure such sharing (that results in the same sharing underneath) is to use <?php echo cgeRef('TCastleTransformReference'); ?>. This approach can also be used at design-time, i.e. you set set-up such sharing in CGE editor.
+
+    <p>Examples that use it include <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/terrain">examples/terrain</a> (for trees) and <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/view
+      port_and_scenes/shadows_distance_culling">examples/viewport_and_scenes/shadows_distance_culling</a>.
+</ul>
+
+<p>However, this optimization is suitable only if the scene should always be in the same animation frame (or not animated at all). If you want to play different animations, you have to create separate TCastleScene instances (you can create them efficiently using the <?php echo cgeRef('TCastleScene.Clone'); ?> method).
 
 <?php echo $toc->html_section(); ?>
 
