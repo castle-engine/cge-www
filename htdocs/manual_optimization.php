@@ -472,8 +472,7 @@ draw calls in this case.
   <li>
     <p>Another way to ensure such sharing (that results in the same sharing underneath) is to use <?php echo cgeRef('TCastleTransformReference'); ?>. This approach can also be used at design-time, i.e. you set set-up such sharing in CGE editor.
 
-    <p>Examples that use it include <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/terrain">examples/terrain</a> (for trees) and <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/view
-      port_and_scenes/shadows_distance_culling">examples/viewport_and_scenes/shadows_distance_culling</a>.
+    <p>Examples that use it include <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/terrain">examples/terrain</a> (for trees) and <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/shadows_distance_culling">examples/viewport_and_scenes/shadows_distance_culling</a>.
 </ul>
 
 <p>However, this optimization is suitable only if the scene should always be in the same animation frame (or not animated at all). If you want to play different animations, you have to create separate TCastleScene instances (you can create them efficiently using the <?php echo cgeRef('TCastleScene.Clone'); ?> method).
