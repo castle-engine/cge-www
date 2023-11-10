@@ -477,3 +477,10 @@ Automatic reloading (`CastleInternalFileMonitor`) now:
 * When TCastleScene.Cache, the file will not be reloaded from disk correctly.
 
 * Not all components implement necessary watching logic. For now only TCastleSceneCore. All components should eventually do it, e.g. TCastleTiledMap, TCastleImageTransform, TCastleImageControl.
+
+[#ktx2]
+## KTX 2.0 support
+
+https://www.khronos.org/api/index_2017/ktx
+
+A great format, by Khronos. Enables managing compressed textures much better. (than our existing solution: https://castle-engine.io/creating_data_auto_generated_textures.php )
