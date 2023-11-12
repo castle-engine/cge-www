@@ -35,7 +35,7 @@ We recommend installing https://marketplace.visualstudio.com/items?itemName=thea
 
 It's available in the _VS Code_ marketplace, so you can just search for it and install right inside the VS Code _"Extensions"_ panel.
 
-NOTE: _VS Codium_ users: The https://open-vsx.org/extension/theangryepicbanana/language-pascal[Pascal magic extension is also available in the VS Codium_marketplace].
+NOTE: _VS Codium_ users: The https://open-vsx.org/extension/theangryepicbanana/language-pascal[Pascal magic extension is also available in the VS Codium marketplace].
 
 [NOTE]
 ====
