@@ -4,5 +4,6 @@
         "titlealt",
         "todos",
         "Toon"
-    ]
+    ],
+    "asciidoc.antora.enableAntoraSupport": false
 }
