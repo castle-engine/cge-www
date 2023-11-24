@@ -270,22 +270,35 @@ Using `strict protected` is not advised in CGE.
 So, use just one `protected` section, do not bother splitting it into `strict protected` and `protected`.
 
 [#abbrevs]
-=== Write abbreviations using PascalCase
+=== Write abbreviations inside Pascal identifiers as regular words, without capitalizing all letters (e.g. `GetJson`, `SetUrl`, `MakeHttpQuery`)
 
-Use `Url`, `Http` etc. in Pascal identifiers. Because it looks much better in long identifiers, e.g. `GetHttpResponse` is much more readable than `GetHTTPResponse`.
+Use `Json`, `Url`, `Http` etc. in Pascal identifiers. Not `JSON`, `URL`, `HTTP`.
 
-Note that in the comments, you should still use English convention of writing the _whole_ abbreviation uppercase (not only the first letter). So e.g. documentation for `GetHttpResponse` would be `Returns a response received over HTTP`.
+Reason: It looks more readable in long identifiers, e.g. `GetHttpResponse` is more readable than `GetHTTPResponse`.
 
-[NOTE]
-====
-In the special case of `Url`, we have additional complications:
+Note that this rule applies only to the Pascal identifiers. The Pascal identifiers are `CamelCase`, and so they warrant writing abbreviations inside like words, `Json`, `Url`, `Http`. Normal English text (e.g. in comments and error messages) should follow English conventions of writing the _whole_ abbreviation uppercase.
 
-- For historic reasons, a lot of code used uppercase `URL`.
+- E.g. documentation for `GetHttpResponse` could say `{ Returns a response received over HTTP. }`. 
 
-- In some places we use the term `URI` instead of `URL`. The difference betwen URL and URI is explained in https://castle-engine.io/manual_network.php#section_terminology[terminology section of the networking manual] (`URI` is a more general concept than `URL`) but admittedly the difference is small and we didn't pay strict attention to this difference. In effect, in some places we used the term `URL` where we should have used `URI` or vice-versa. X3D standard also mixes them a bit, in efffect cgeref:TInlineNode.SetUrl[] actually accepts various URIs (including https://en.wikipedia.org/wiki/Data_URI_scheme[data URI scheme]).
+- E.g. `GetHttpResponse` could raise exception like this: `raise Exception.Create('Error creating HTTP response')`. 
 
-To make things simple, all future code should just use `Url`, and our https://castle-engine.io/manual_network.php[documentation about URLs] just clearly says _"most URLs actually accept a URI (a bit broader term than URL); in particular you can use https://en.wikipedia.org/wiki/Data_URI_scheme[data URI scheme]"_.
-====
+==== New content (identifiers, comments) should talk about URL, not URI
+
+Existing content (identifiers, documentation) in some places uses the term `URI`, in some `URL`. 
+
+To make things simple, all future code should just talk about URLs (not URIs), and our https://castle-engine.io/manual_network.php[documentation about URLs] just clearly says _"most URLs actually accept a URI (a bit broader term than URL); in particular you can use https://en.wikipedia.org/wiki/Data_URI_scheme[data URI scheme]"_.
+
+Background:
+
+The difference between URL and URI is explained in https://castle-engine.io/manual_network.php#section_terminology[terminology section of the networking manual] (`URI` is a more general concept than `URL`) but admittedly the difference is small and we didn't pay strict attention to this difference when naming some things, like cgeref:TCastleSceneCore.Url[]. In effect, in some places we used the term `URL` where we should have used `URI` or vice-versa. 
+
+X3D standard also mixes them a bit, in effect cgeref:TInlineNode.SetUrl[] actually accepts various URIs (including https://en.wikipedia.org/wiki/Data_URI_scheme[data URI scheme]).
+
+The https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html[glTF standard was more careful to talk about URIs not URLs]. FPC `URIParser` unit is also named more correctly.
+
+However, users are simply more familiar with the term `URL` (and not `URI`), so we decided to just use `URL` everywhere.
+
+[#no_underscore]
 
 === Indenting inside classes
 
