@@ -14,7 +14,7 @@ There are 3 recommended ways to display an image using _Castle Game Engine_.
 
 === TCastleImageControl (image as user interface component)
 
-When the image is part of a 2D user-interface, use cgeref:TCastleImageControl[]. Set the cgeref:TCastleImageControl.URL[] to load the image.
+When the image is part of a 2D user-interface, use cgeref:TCastleImageControl[]. Set the cgeref:TCastleImageControl.Url[] to load the image.
 
 You can create such image components using Pascal code or using the CGE visual editor.
 

@@ -84,7 +84,7 @@ Even if you don't add any services explicitly, by default the following features
 
 * _Immersive mode_. This is a "true" full-screen mode for games on Android, where the back/home buttons are usually hidden.
 
-* You can open URLs in external applications using cgeref:OpenURL[].
+* You can open URLs in external applications using cgeref:OpenUrl[].
 +
 NOTE: Open special `market://` URL on Android to send users to the _Google Play_ store, e.g. to rate your application.
 

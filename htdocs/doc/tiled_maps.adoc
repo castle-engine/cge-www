@@ -18,7 +18,7 @@ cgeimg::block[
 
 1. Design your map in https://www.mapeditor.org/[Tiled], and save the resulting map (.tmx) along with images (tilesets) somewhere in the project `data` subdirectory.
 
-2. Add to your link:viewport_and_scenes[viewport] a cgeref:TCastleTiledMap[] component and set cgeref:TCastleTiledMap.URL[] to indicate your map (.tmx) file.
+2. Add to your link:viewport_and_scenes[viewport] a cgeref:TCastleTiledMap[] component and set cgeref:TCastleTiledMap.Url[] to indicate your map (.tmx) file.
 
 == Example
 
@@ -53,7 +53,7 @@ Inside the viewport you have a regular link:camera[]. You can move the camera, y
 
 === Important properties and methods
 
-To load the map, set cgeref:TCastleTiledMap.URL[].
+To load the map, set cgeref:TCastleTiledMap.Url[].
 
 You can control texture filtering by cgeref:TCastleTiledMap.SmoothScaling[].
 

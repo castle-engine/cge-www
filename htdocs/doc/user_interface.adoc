@@ -45,7 +45,7 @@ cgeimg::block[ui_label.png|Labels]
 
 ### Image
 
-cgeref:TCastleImageControl[] displays an image. It can be scaled, preserving the aspect ratio or ignoring the aspect ratio, if needed. Its most important property is cgeref:TCastleImageControl.URL[].
+cgeref:TCastleImageControl[] displays an image. It can be scaled, preserving the aspect ratio or ignoring the aspect ratio, if needed. Its most important property is cgeref:TCastleImageControl.Url[].
 
 cgeimg::block[ui_image.png|Images]
 
