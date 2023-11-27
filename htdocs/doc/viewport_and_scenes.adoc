@@ -9,7 +9,7 @@ cgeimg::float[viewport_3d_nice_view.png|Viewport with 3D design]
 
 ### Overview
 
-The most important _Castle Game Engine_ class to display 3D and 2D models is cgeref:TCastleScene[]. You simply set the cgeref:TCastleSceneCore.URL[TCastleScene.URL] property to load a model, like link:glTF[gltf] or link:sprite_sheets[sprite sheet] file.
+The most important _Castle Game Engine_ class to display 3D and 2D models is cgeref:TCastleScene[]. You simply set the cgeref:TCastleSceneCore.Url[TCastleScene.Url] property to load a model, like link:glTF[gltf] or link:sprite_sheets[sprite sheet] file.
 
 You have to insert instances of scenes into a viewport (more precisely, cgeref:TCastleViewport.Items[] tree) to make them actually visible. cgeref:TCastleViewport[] represents a 2D viewport on a screen, within this viewport your world (3D or 2D) is displayed. Viewport is a _user interface_ control, which means that it descends from cgeref:TCastleUserInterface[] and it shares the same feature we've seen in the link:view_events[previous chapter about views and UI].
 
@@ -38,7 +38,7 @@ The most important properties are cgeref:TCastleTransform.Translation[Translatio
 
 cgeref:TCastleScene[] is the most important class to display 3D and 2D models.
 
-It can render, animate, perform collisions etc. Set cgeref:TCastleSceneCore.URL[URL] to load the model. Run animation using cgeref:TCastleSceneCore.PlayAnimation[PlayAnimation]. cgeref:TCastleScene[] descends from cgeref:TCastleTransform[]. So you can also use cgeref:TCastleTransform.Translation[Translation], cgeref:TCastleTransform.Rotation[Rotation], cgeref:TCastleTransform.Scale[Scale] to transform it. Scene can even have children. Use cgeref:TCastleSceneCore.ExposeTransforms[ExposeTransforms] to attach children to animated bones in glTF skeleton.
+It can render, animate, perform collisions etc. Set cgeref:TCastleSceneCore.Url[Url] to load the model. Run animation using cgeref:TCastleSceneCore.PlayAnimation[PlayAnimation]. cgeref:TCastleScene[] descends from cgeref:TCastleTransform[]. So you can also use cgeref:TCastleTransform.Translation[Translation], cgeref:TCastleTransform.Rotation[Rotation], cgeref:TCastleTransform.Scale[Scale] to transform it. Scene can even have children. Use cgeref:TCastleSceneCore.ExposeTransforms[ExposeTransforms] to attach children to animated bones in glTF skeleton.
 
 cgeimg::block[transform_scene.png|TCastleScene allows to place and animate 3D objects in the viewport]
 
