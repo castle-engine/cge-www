@@ -313,7 +313,7 @@ $castle_sitemap = array(
             'sub' => array(
               'doc/occlusion_culling' => array('title' => 'Occlusion Culling'),
               'doc/profiling_using_valgrind' => array('title' => 'Profiling Using Valgrind'),
-              'doc/detecting_memory_leaks_using_heaptrc' => array('title' => 'Detecting Memory Leaks Using HeapTrc'),
+              'doc/memory_leaks' => array('title' => 'Detecting Memory Leaks'),
             )
           ),
           'doc/how_to_make_rendering_prettier' => array('title' => 'Making rendering prettier',

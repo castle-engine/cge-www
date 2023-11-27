@@ -40,7 +40,7 @@ When compiling using CGE editor, we have debug / release modes automatically set
 
 - https://github.com/michaliskambi/modern-pascal-introduction/wiki/What-are-range-and-overflow-checks-(and-errors)-in-Pascal[What are range and overflow checks (and errors) in Pascal].
 
-- https://castle-engine.io/detecting_memory_leaks_using_heaptrc[Detecting Memory Leaks].
+- https://castle-engine.io/memory_leaks[Detecting Memory Leaks].
 --
 
 ### Fast

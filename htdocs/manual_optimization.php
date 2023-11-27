@@ -729,7 +729,7 @@ wiki about profiling</a>.
 
 <?php echo $toc->html_section(); ?>
 
-<p><a href="https://castle-engine.io/detecting_memory_leaks_using_heaptrc">We heavily advise to detect memory leaks automatically using HeapTrc. The details how to do it are here.</a>
+<p><a href="memory_leaks">We strongly advise to detect memory leaks automatically using HeapTrc (FPC) or ReportMemoryLeaksOnShutdown (Delphi). The details how to do it are here.</a>
 
 <?php echo $toc->html_section(); ?>
 
