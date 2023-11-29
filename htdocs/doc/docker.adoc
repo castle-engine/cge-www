@@ -8,7 +8,7 @@ We have a https://www.docker.com/[Docker] image that contains _Castle Game Engin
 Using the Docker image gives you a stable environment where we have:
 
 * Castle Game Engine (stable and unstable versions, depending on the Docker image tag: `cge-stable`, `cge-unstable`, `cge-none`).
-* FPC (stable and unstable versions) with cross-compilers for various platforms
+* FPC (latest stable version) with cross-compilers for various platforms
 * Android SDK and NDK
 * https://castle-engine.io/creating_data_auto_generated_textures.php[Texture compression tools useful with CGE] from NVidia and PowerVR
 * https://github.com/pasdoc/pasdoc/wiki[PasDoc]
@@ -99,7 +99,10 @@ castle-engine auto-generate-textures
 
 The advantage is, again, that you don't need to install all the tools mentioned on the https://castle-engine.io/creating_data_auto_generated_textures.php[generating compressed textures] docs. These tools are ready inside the Docker container.
 
-You can also use command-line `fpc` or `lazbuild` to build Pascal applications. By default we use the latest stable FPC/Lazarus, but this can be switched by executing command like `source /usr/local/fpclazarus/bin/setup.sh trunk`.  This will make you use FPC 3.3.1 within this shell.
+You can also use command-line `fpc` or `lazbuild` to build Pascal applications.
+
+// Not true anymore, after cge-none-fpcXXX split:
+//By default we use the latest stable FPC/Lazarus, but this can be switched by executing command like `source /usr/local/fpclazarus/bin/setup.sh trunk`.  This will make you use FPC 3.3.1 within this shell.
 
 == Limitations
 
@@ -161,3 +164,16 @@ You can use 1 of 3 possible Docker images we provide:
 == Sources
 
 The bash script, Dockerfiles, Jenkinksfiles etc. to generate these Docker images are open-source on https://github.com/castle-engine/castle-engine-cloud-builds-tools .
+
+== Alternative FPC versions
+
+Alternative FPC versions are in the alternative tags, right now:
+
+- `cge-none-fpc320` has FPC 3.2.0
+
+- `cge-none-fpc331` has recent FPC 3.3.1. The exact FPC 3.3.1 revision is listed https://github.com/castle-engine/castle-engine-cloud-builds-tools/blob/master/Dockerfile.no-cge#L249[here].
+
+In the past, we used to have bigger images, with all FPC versions switchable at runtime, but this was making image size too big. It was problematic for GitHub action default runners, and useless for people who didn't want to switch FPC versions.
+
+Note that the "alternative FPC versions" images come without CGE included (only all CGE prerequisites). Follow https://castle-engine.io/compiling_from_source.php[compiling from source] docs to set up CGE inside the container. If this sounds complicated, then use instead the tags `cge-stable` or `cge-unstable` with stable FPC.
+

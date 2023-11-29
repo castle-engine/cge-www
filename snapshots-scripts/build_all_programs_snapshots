@@ -79,7 +79,6 @@ do_compile_all_programs ()
 
 # main code ------------------------------------------------------------------
 
-. /usr/local/fpclazarus/bin/setup.sh default
 do_setup_bin
 do_clean
 do_compile_tool

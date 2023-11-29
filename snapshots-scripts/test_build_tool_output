@@ -2,9 +2,6 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-# Not needed, let android_setup.sh set FPC version.
-# . /usr/local/fpclazarus/bin/setup.sh default
-
 . /usr/local/android/android_setup.sh
 
 export CASTLE_ENGINE_PATH=`pwd`

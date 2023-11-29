@@ -85,9 +85,4 @@ do_test_all_backends ()
 #  do_test_one_backend win64 x86_64 CASTLE_WINDOW_FORM
 }
 
-. /usr/local/fpclazarus/bin/setup.sh 3.0.0
-do_test_all_backends
-. /usr/local/fpclazarus/bin/setup.sh default # 3.0.2
-do_test_all_backends
-. /usr/local/fpclazarus/bin/setup.sh trunk
 do_test_all_backends

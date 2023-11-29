@@ -159,26 +159,7 @@ stage('Build Mobile') {
 
 === Customize FPC and Lazarus version used
 
-By default, building uses the latest stable FPC version (currently 3.2.2), as advised by CGE. To switch to another FPC/Lazarus version, add a command like `+source /usr/local/fpclazarus/bin/setup.sh 3.2.0 && ...+` or `+source /usr/local/fpclazarus/bin/setup.sh trunk && ...+` at the beginning of the shell command. Like this:
-
-[source,groovy]
-----
-pipeline {
-  agent { docker { image 'castle-engine-cloud-builds-tools:cge-stable' } }
-  stages {
-    stage('Build') {
-      steps {
-        sh 'source /usr/local/fpclazarus/bin/setup.sh trunk && castle-engine package --os=linux --cpu=x86_64'
-        sh 'source /usr/local/fpclazarus/bin/setup.sh trunk && castle-engine package --os=win32 --cpu=i386'
-        sh 'source /usr/local/fpclazarus/bin/setup.sh trunk && castle-engine package --os=win64 --cpu=x86_64'
-        sh 'source /usr/local/fpclazarus/bin/setup.sh trunk && castle-engine package --target=android'
-      }
-    }
-  }
-}
-----
-
-As you can see, each build can use a different FPC version, if you want to.
+By default, building uses the latest stable FPC version (currently 3.2.2), as advised by CGE. To switch to another FPC/Lazarus version, use instead the alternative Docker image version, like `cge-none-fpc320` or `cge-none-fpc331`. These alternative images don't include CGE, so you will need to also build CGE inside the Docker, following https://castle-engine.io/compiling_from_source.php[compiling from source] docs (in practice, just download CGE sources and compile our _build tool_, that's likely all you need).
 
 === Jenkinsfile documentation
 
@@ -192,4 +173,6 @@ For more information about `Jenkinsfile`, and Jenkins with Pipeline plugin (whic
 
 We maintain a https://jenkins.castle-engine.io/[Jenkins for Castle Game Engine] server. It is used for _Castle Game Engine_ development, running a lot of CGE tests and builds on various slaves (Linux, Windows, macOS, Raspberry Pi). Michalis grants access to it. If you are a regular CGE contributor and you would like such access, link:mailto:michalis@castle-engine.io[send an email to Michalis Kamburelis].
 
-NOTE: In the past we considered even making this server public. That is, make it available to anyone who makes open-source applications using CGE (for free) or even closed-source (if you are on a specific Patreon tier). But this idea was abandoned -- as 100% securely isolating multiple projects managed by a single Jenkins master is not easy, and maintaining multiple isolated Jenkins master machines is just too costly for us to provide such service.
+In the past we considered even making this server public. That is, make it available to anyone who makes open-source applications using CGE (for free) or even closed-source (if you are on a specific Patreon tier). But this idea was abandoned -- as 100% securely isolating multiple projects managed by a single Jenkins master is not easy, and maintaining multiple isolated Jenkins master machines is just too costly for us to provide such service.
+
+However, both link:github_actions[GitHub Actions] and link:gitlab_ci[GitLab CI] are available and we document how to use them with CGE applications. Their usage is generally free for open-source projects.
