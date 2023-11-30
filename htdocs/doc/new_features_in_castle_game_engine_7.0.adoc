@@ -44,7 +44,10 @@ See https://castle-engine.io/roadmap[our roadmap] for more long-term goals (not 
 --
 * https://castle-engine.io/control_on_form[TCastleControl available now for Delphi VCL and FMX applications, in addition to existing Lazarus LCL].
 * https://castle-engine.io/download#delphinus[Delphinus support] (unfortunately not recommended anymore, due to https://github.com/Memnarch/Delphinus/issues/93 and https://github.com/castle-engine/castle-engine/issues/84 )
-* Full support tested for Delphi >= 10.2.1, up to the latest 11.x (with plans to support some even older versions, see https://castle-engine.io/supported_compilers.php#section_versions[Delphi versions supported]).
+* Full support tested for Delphi >= 10.2.1, up to the latest 12.0 (with plans to support some even older versions, see https://castle-engine.io/delphi[Delphi versions supported]).
+* https://castle-engine.io/wp/2023/12/01/full-compatibility-with-c-builder/[{cpp} Builder compatibility], so you can use 100% of CGE API from {cpp}.
+* https://castle-engine.io/wp/2023/11/05/asynchronous-downloading-using-tcastledownload-for-delphi/[TCastleDownload for Delphi supports http(s)]
+* Using Delphi _"welcome page"_ feature to show your `README.md`
 --
 * Easily activate https://castle-engine.io/wp/2022/10/03/easy-shadows-in-editor-at-design-time-too-by-shadow-volumes-and-shadow-maps-are-coming-as-well/[shadows], just select checkbox `Shadows` at the light source to use shadow volumes.
 +
@@ -71,6 +74,7 @@ See https://castle-engine.io/roadmap[our roadmap] for more long-term goals (not 
 * cgeref:TCastleRenderUnlitMesh[] utility.
 * Fixes for older ATI GPUs.
 * https://castle-engine.io/wp/2023/06/30/big-renderer-improvements-correct-and-automatic-blending-sorting-more-powerful-batching-now-cross-scene-easier-and-more-reliable-occlusion-culling-and-occlusion-sorting/[Correct and automatic blending sorting, more powerful batching (now cross-scene), easier and more reliable occlusion culling and occlusion sorting]
+* Default fonts include a lot of common Unicode characters, so rendering text in local language in most cases will not just work "out of the box".
 --
 * Many editor UX improvements. The most important ones:
 +
@@ -84,6 +88,7 @@ See https://castle-engine.io/roadmap[our roadmap] for more long-term goals (not 
 * link:sketchfab[Sketchfab Importer]
 * https://castle-engine.io/wp/2023/06/03/images-in-ui-regions-subset-of-image-and-visual-editing-of-both-region-and-9-slices/[Visually edit images region and 9-slices borders].
 * Property editors more comfortable, angles in degrees in editor (https://castle-engine.io/wp/2023/07/16/improvements-to-property-editors-in-particular-display-and-input-angles-in-degrees-in-the-editor/[news])
+* Component warnings, to warn e.g. if you have `TCastleRigidBody` without `TCastleCollider` or vice versa.
 --
 * Improvements around our https://castle-engine.io/views[views] (formely _states_):
 +
@@ -97,6 +102,7 @@ See https://castle-engine.io/roadmap[our roadmap] for more long-term goals (not 
 --
 * On Windows and Linux, the engine download automatically includes a useful compiler (FPC 3.2.2) so that you can build CGE applications without the need to install anything extra.
 * On Windows, we now have a self-extracting installer, that is simpler and faster than manually unpacking zip, and registers our engine editor in Windows menu.
+* Raspberry Pi engine downloads for both 32-bit and 64-bit processors (Arm, Aarch64) available officially.
 --
 * Big graphical update to our `examples/fps_game` thanks to _Alya Vaneskehyan_ and _Adrianna Matejek_. See https://castle-engine.io/wp/2022/10/21/concept-art-teaser-huge-graphical-and-functional-upgrade-to-our-fps-game-is-coming/[news]. This will be followed in next releases by functional improvements to make it easy to design FPS games.
 * https://castle-engine.io/wp/2022/11/06/faster-compilation-with-cache/[Cache for faster compilation].
@@ -115,6 +121,8 @@ Not part of the engine release, but still cool to mention:
 * https://www.youtube.com/watch?v=oA87iclrDZA[Embarcadero CodeRage 2022 presentation]
 * https://www.youtube.com/watch?v=xzfiy01Q8o0[DelphiCon 2023 presentation (CGE starts at 5:09)]
 * https://cat-astrophe-games.itch.io/lynch["Lynch" gamejam demo]
+* Zlot Programistów Delphi (Polish conference): https://castle-engine.io/zlot2023/slides[slides from talk] and https://github.com/castle-engine/zlot-delphi-2023[examples]
+* ITDevCon 2023 conference: https://castle-engine.io/itdevcon2023/slides1[Presentation (slides) from 1st talk, "Creating 3D games and applications using Castle Game Engine"], https://castle-engine.io/itdevcon2023/slides2[Presentation (slides) from 2nd talk, "Advanced Castle Game Engine: forms, 3D generation, shaders, customization"], https://github.com/castle-engine/conference-itdevcon-2023[Example projects].
 
 === Released in 7.0-alpha.2
 
