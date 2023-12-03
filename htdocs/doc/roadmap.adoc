@@ -484,3 +484,20 @@ Automatic reloading (`CastleInternalFileMonitor`) now:
 https://www.khronos.org/api/index_2017/ktx
 
 A great format, by Khronos. Enables managing compressed textures much better. (than our existing solution: https://castle-engine.io/creating_data_auto_generated_textures.php )
+
+[#expose_to_code]
+## Expose component name for Pascal code
+
+Right now to access a component set up in the design, you have to manually add it to the `published` section of the design, addign a declaration like `MyViewport: TCastleViewport`.
+
+The goal is to make it more automated. A bit like Lazarus or Delphi IDE when exposing components to code -- but with some twist.
+
+It would be easy to just expose *all* named components from the design in the `published` section of the view (this would be experience quite like when Delphi/Lazarus do) but, since typical game designs (we've seen it in Unity games in CAG) can contain thousands of components easily, and most of them are not supposed to be accessed from code, we want to go one step further:
+
+- Add a button "Expose To Code" (available on single component, or selection of components).
+
+- Once used, the component will be added to the `published` section of the view (`name: type`), and will be updated there (on rename/delete of this component, or change of it's class).
+
+- This is also means we'll edit the `uses` clause of unit to make sure all used component classes are registered, and declared, so that declarations in `published` section work. This is also something Delphi/Lazarus do. We know the unit of each component, so it should be easy.
+
+It is possible we'll add markers `{$region 'Castle ...'}` to help organize this. See the current markers in `gameinitialize.pas`.
