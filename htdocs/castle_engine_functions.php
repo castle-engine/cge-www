@@ -235,6 +235,7 @@ $castle_sitemap = array(
     'dropdown' => true,
     'sidebar' => true,
     'sub' => array(
+      'doc/bad_chess' => array('title' => 'Recommended Tutorial: 3D Physics Fun'),
       'manual_intro' => array('title' => 'Manual',
         'sub' => array(
           'doc/install' => array('title' => 'Install'),
