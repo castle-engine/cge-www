@@ -4717,7 +4717,7 @@ class GeSHi {
             static $callback_2;
             if (!isset($callback_2)) {
                 $callback_2 = function($matches) {
-                    return "[" . str_replace("|", "", $matches[1]) . "]";
+					return ( count( $matches ) > 1 ) ? '[' . str_replace( '|', '', $matches[1] ) . ']' : '[]';
                 };
             }
             $list = preg_replace_callback('#\(\?\:((?:.\|)+.)\)#', $callback_2, $list);

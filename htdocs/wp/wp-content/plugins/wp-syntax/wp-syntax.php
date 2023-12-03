@@ -3,7 +3,7 @@
 Plugin Name: WP-Syntax
 Plugin URI: http://www.connections-pro.com
 Description: Syntax highlighting using <a href="http://qbnz.com/highlighter/">GeSHi</a> supporting a wide range of popular languages.
-Version: 1.1
+Version: 1.2
 Author: Steven A. Zahm
 Author URI: http://www.connections-pro.com
 License: GPL2
@@ -139,7 +139,7 @@ if ( ! class_exists( 'WP_Syntax' ) ) {
 		 */
 		private static function defineConstants() {
 
-			define( 'WPS_VERSION', '1.1' );
+			define( 'WPS_VERSION', '1.2' );
 
 			define( 'WPS_DIR_NAME', plugin_basename( dirname( __FILE__ ) ) );
 			define( 'WPS_BASE_NAME', plugin_basename( __FILE__ ) );
@@ -389,7 +389,7 @@ if ( ! class_exists( 'WP_Syntax' ) ) {
 
 		public static function afterFilterContent( $content ) {
 
-			global $post;
+			global $post, $page;
 
 			$the_post    = $post;
 			$the_post_id = $post->ID;
@@ -397,7 +397,7 @@ if ( ! class_exists( 'WP_Syntax' ) ) {
 			//Reset cache settings on each filter - we might be showing
 			//multiple posts on the one page
 			self::$cache           = array();
-			self::$cache_match_num = 0;
+			self::$cache_match_num = ($page - 1) * 10;
 			self::$cache_generate  = FALSE;
 
 			if ( is_object( $the_post ) ) {
@@ -457,10 +457,12 @@ if ( ! class_exists( 'WP_Syntax' ) ) {
 		public static function afterFilterComment( $content ) {
 
 			global $comment;
-			$the_post    = $comment;
-			$the_post_id = $comment->comment_ID;
+
+			$the_post = $comment;
 
 			if ( is_object( $the_post ) ) {
+
+				$the_post_id = $comment->comment_ID;
 				self::$cache = get_comment_meta( $the_post_id, 'wp-syntax-cache-comment', TRUE );
 
 				if ( ! self::$cache ) {

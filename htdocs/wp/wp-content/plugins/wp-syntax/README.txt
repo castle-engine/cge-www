@@ -2,8 +2,8 @@
 Contributors: shazahm1@hotmail.com
 Tags: syntax highlighting, syntax, highlight, code, formatting, code, CSS, html, php, sourcecode
 Requires at least: 4.7
-Tested up to: 6.0
-Stable tag: 1.1
+Tested up to: 6.4
+Stable tag: 1.2
 Requires PHP: 5.6.20
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -186,6 +186,14 @@ This allows for a great possibility of different customizations. Be sure to
 review the [GeSHi Documentation](http://qbnz.com/highlighter/geshi-doc.html).
 
 == Changelog ==
+
+= 1.1 12/01/2023 =
+* TWEAK: Ensure `$content` is always returned by the filter callback.
+* TWEAK: Slash the highlighted code blocks before saving cache to the post meta.
+* BUG: Cache each page of a multi-paged post separately.
+* BUG: Fix notice level error when global $comment is not available.
+* OTHER: Update GeSHi to version 1.0.9.1 at GH commit 7884d22 on Feb 19, 2023.
+* OTHER: Correct misspellings.
 
 = 1.1 12/14/2016 =
 * NEW: Introduce caching of the syntax highlighted code rather than parsing it on page load.
