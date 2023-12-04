@@ -175,5 +175,26 @@ Alternative FPC versions are in the alternative tags, right now:
 
 In the past, we used to have bigger images, with all FPC versions switchable at runtime, but this was making image size too big. It was problematic for GitHub action default runners, and useless for people who didn't want to switch FPC versions.
 
-Note that the "alternative FPC versions" images come without CGE included (only all CGE prerequisites). Follow https://castle-engine.io/compiling_from_source.php[compiling from source] docs to set up CGE inside the container. If this sounds complicated, then use instead the tags `cge-stable` or `cge-unstable` with stable FPC.
+Note that the "alternative FPC versions" images come without CGE included (only all CGE prerequisites). Follow https://castle-engine.io/compiling_from_source.php[compiling from source] docs to set up CGE inside the container. Here are simple commands that should work within the container created from `cge-none`, `cge-none-fpc331` or other `cge-none*` images to set up CGE and compile a sample project for Linux and Android:
 
+```bash
+# 1. Get CGE from GitHub
+git clone --depth 1 --single-branch --branch master https://github.com/castle-engine/castle-engine/
+
+# 2. Make build tool
+cd castle-engine/tools/build-tool/
+./castle-engine_compile.sh
+
+# 3. Setup environment variables to use this CGE, with this build tool.
+export CASTLE_ENGINE_PATH=$HOME/castle-engine
+export PATH="${PATH}:"`pwd`
+
+# Note: next time you run the shell, you will have to set this environment again.
+# You can also add these lines to ~/.bashrc to make them permanent.
+# Print their current values with "echo $CASTLE_ENGINE_PATH" and "echo $PATH".
+
+# 4. Switch to some example project, and build it
+cd ../../examples/mobile/simple_3d_demo/
+castle-engine package # build for Linux by default
+castle-engine package --target=android # build for Android
+```
