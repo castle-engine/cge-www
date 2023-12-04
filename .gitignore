@@ -2,24 +2,26 @@
 .DS_Store
 *.blend1
 
-htdocs/doc/output/
-htdocs/wp/.htaccess
-htdocs/wp/wp-config-production.php
-htdocs/vrml_engine_doc/output/
-htdocs/vrml_engine_doc/*.tar.gz
-htdocs/apidoc/html/
-htdocs/apidoc/*.tar.gz
-htdocs/compositing_shaders_doc/html/
-htdocs/compositing_shaders_doc/*.pdf
-htdocs/compositing_shaders_doc/*.fo
-htdocs/wp/wp-content/uploads/
+/htdocs/doc/output/
+/htdocs/wp/.htaccess
+/htdocs/wp/wp-config-production.php
+/htdocs/vrml_engine_doc/output/
+/htdocs/vrml_engine_doc/*.tar.gz
+/htdocs/apidoc/html/
+/htdocs/apidoc/*.tar.gz
+/htdocs/compositing_shaders_doc/html/
+/htdocs/compositing_shaders_doc/*.pdf
+/htdocs/compositing_shaders_doc/*.fo
+/htdocs/wp/wp-content/uploads/
 # created by W3 Total Cache
 /htdocs/wp/wp-content/cache/
 # created by W3 Total Cache, would contains Google API key (for Page Speed reports)
 /htdocs/wp/wp-content/w3tc-config
-htdocs/wp/jetpack-temp/
-htdocs/castle_engine_config.php
-htdocs/cge-delphi-beta.zip
+/htdocs/wp/jetpack-temp/
+/htdocs/castle_engine_config.php
+/htdocs/cge-delphi-beta.zip
 # auto-updated at deploying
-htdocs/castle_image_sizes.php
-blaise-pascal-article/
+/htdocs/castle_image_sizes.php
+
+# articles uploaded
+/htdocs/bad-chess/
