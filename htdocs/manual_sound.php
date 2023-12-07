@@ -8,7 +8,7 @@ $toc = new TableOfContents(
     new TocItem('Examples', 'examples'),
     new TocItem('Editor sound features', 'editor'),
     new TocItem('Playing sound from Pascal code', 'code'),
-    new TocItem('Using sounds collection (.castle-components file)', 'components_collection'),
+    new TocItem('Using sounds collection (.castle-component file)', 'components_collection'),
     new TocItem('Sound backends', 'backends'),
   )
 );
