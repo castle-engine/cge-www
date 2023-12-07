@@ -27,14 +27,14 @@ echo castle_thumbs(array(
 
 <ul>
   <li>
-    <p><?php echo cgeRef('TCastleSound', 'TCastleSound'); ?>: The most important class, you should use this always when you want to play any sound.
+    <p><?php echo cgeRef('TCastleSound', 'TCastleSound'); ?>: The most important class, use this always when you want to play any sound.
 
     <p>This is a non-visual component that represents a sound file with some playback parameters. The most important properties are:
 
     <ul>
       <li>
         <p>
-          <?php echo cgeRef('TCastleSound.URL', 'URL'); ?> &mdash; undoubtedly the most important property, set this to actually load the sound file.
+          <?php echo cgeRef('TCastleSound.Url', 'Url'); ?> &mdash; set this to load the given sound file.
 
       <li>
         <p>
@@ -128,7 +128,7 @@ echo castle_thumbs(array(
 
 <?php echo pascal_highlight(
 'MySound := TCastleSound.Create(Application);
-MySound.URL := \'castle-data:/my-sound.wav\';'); ?>
+MySound.Url := \'castle-data:/my-sound.wav\';'); ?>
 
   <li>
     <p>Play the sound like this:

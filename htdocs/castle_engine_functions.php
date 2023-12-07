@@ -1977,7 +1977,22 @@ function cgeRef($identifier, $title = NULL)
              str_replace('}}}', ']',
              $title));
   }
-  return '<code><a href="' . $castle_apidoc_url . $pasdoc[$identifier]['html_filename'] . '">' .
+  if (array_key_exists($identifier, $pasdoc)) {
+    $html_filename = $pasdoc[$identifier]['html_filename'];
+  } else {
+    /* Try case-insensitive search.
+       This is slower, and also we try to be consistent (case-sensitive,
+       even though we could ignore it in Pascal)
+       in the way to specify identifiers in CGE code and docs.
+       So we warn about it. */
+    $identifier_lower = strtolower($identifier);
+    $pasdoc_lower = array_change_key_case($pasdoc, CASE_LOWER);
+    $html_filename = $pasdoc_lower[$identifier_lower]['html_filename'];
+    if (CASTLE_ENVIRONMENT == 'development') {
+      echo '<b>Development Warning</b>: Pascal identifier <code>' . htmlspecialchars($identifier) . '</code> found, but with different case, in docs<br>';
+    }
+  }
+  return '<code><a href="' . $castle_apidoc_url . $html_filename . '">' .
     htmlspecialchars($title) . '</a></code>';
 }
 
