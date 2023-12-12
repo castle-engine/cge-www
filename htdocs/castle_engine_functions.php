@@ -101,7 +101,7 @@ define('PATREON_URL',         'https://patreon.com/castleengine');
 define('CGE_LATEST_DOWNLOAD', 'https://github.com/castle-engine/castle-engine/archive/snapshot.zip');
 
 // bump this each time you change castle-engine.css, to work with CloudFlare caching (or you can purge CloudFlare cache manually)
-define('CASTLE_ENGINE_CSS_VERSION', 43);
+define('CASTLE_ENGINE_CSS_VERSION', 44);
 
 define('TWITTER_HANDLE', 'castleengine'); // https://twitter.com/castleengine/
 
@@ -2265,13 +2265,40 @@ function cge_download_engine($version, $tag)
     <div class="centered-download-wrapper">
         <div class="download jumbotron main-cge-download">
             <div class="download_platforms_list">
-                <div class="download_platform"><a class="btn btn-primary btn-lg" href="' . $download_prefix_general . 'castle-engine-setup-' . $version . '.exe"><img src="' . CURRENT_URL . '/images/os_icons/win.png" alt="Windows (64-bit, x86_64)" width="64" height="64"><br> Windows<br>(x86_64)</a></div>
-                <div class="download_platform"><a class="btn btn-primary btn-lg" href="' . $download_prefix . '-linux-x86_64-bundle.zip"><img src="' . CURRENT_URL . '/images/os_icons/linux.png" alt="Linux (64 bit, x86_64)" width="64" height="64"><br> Linux<br>(x86_64)</a></div>
-                <div class="download_platform"><a class="btn btn-primary btn-lg" href="' . $download_prefix . '-linux-arm.zip"><img src="' . CURRENT_URL . '/images/os_icons/raspberry_pi_32.png" alt="Raspberry Pi 32-bit (Linux Arm)" width="91" height="64"><br> Raspberry Pi<br>(Linux Arm)</a></div>
-                <div class="download_platform"><a class="btn btn-primary btn-lg" href="' . $download_prefix . '-linux-aarch64.zip"><img src="' . CURRENT_URL . '/images/os_icons/raspberry_pi_64.png" alt="Raspberry Pi 64-bit (Linux Aarch64)" width="91" height="64"><br> Raspberry Pi<br>(Linux Aarch64)</a></div>
-                <div class="download_platform"><a class="btn btn-primary btn-lg" href="' . $download_prefix . '-darwin-x86_64.zip"><img src="' . CURRENT_URL . '/images/os_icons/macos.png" alt="macOS (Intel-based macs, 64-bit, x86_64)" width="64" height="64"><br> macOS<br>(x86_64)</a></div>
-                <div class="download_platform"><a class="btn btn-primary btn-lg" href="https://castle-engine.io/compiling_from_source.php"><img src="' . CURRENT_URL . '/images/os_icons/freebsd.png" alt="FreeBSD (Sources)" width="64" height="64"><br> FreeBSD<br>(Use the Source Luke)</a></div>
-                <div class="download_platform"><a class="btn btn-primary btn-lg" href="https://github.com/castle-engine/castle-engine/"><img src="' . CURRENT_URL . '/images/os_icons/github.png" alt="Source Code on GitHub" width="64" height="64"><br> Source Code<br>(GitHub)</a></div>
+                <div class="download_platform"><a class="btn btn-primary btn-lg" href="' . $download_prefix_general . 'castle-engine-setup-' . $version . '.exe">' .
+                  '<img src="' . CURRENT_URL . '/images/os_icons/win.png" alt="Windows (64-bit, x86_64)" width="64" height="64">' .
+                  '<br>Windows' .
+                  '<br><span class="download_details">(x86_64)</span></a></div>'
+                .
+                '<div class="download_platform"><a class="btn btn-primary btn-lg" href="' . $download_prefix . '-linux-x86_64-bundle.zip">' .
+                  '<img src="' . CURRENT_URL . '/images/os_icons/linux.png" alt="Linux (64 bit, x86_64)" width="64" height="64">' .
+                  '<br>Linux' .
+                  '<br><span class="download_details">(x86_64)</span></a></div>'
+                .
+                '<div class="download_platform"><a class="btn btn-primary btn-lg" href="' . $download_prefix . '-linux-arm.zip">' . '
+                  <img src="' . CURRENT_URL . '/images/os_icons/raspberry_pi_32.png" alt="Raspberry Pi 32-bit (Linux Arm)" width="91" height="64">' .
+                  '<br>Raspberry Pi' .
+                  '<br><span class="download_details">(Linux Arm32)</span></a></div>'
+                .
+                '<div class="download_platform"><a class="btn btn-primary btn-lg" href="' . $download_prefix . '-linux-aarch64.zip">' .
+                  '<img src="' . CURRENT_URL . '/images/os_icons/raspberry_pi_64.png" alt="Raspberry Pi 64-bit (Linux Aarch64)" width="91" height="64">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="' . CURRENT_URL . '/images/os_icons/pine64.png" alt="PINE64 (PineTab2, Linux Aarch64)" width="48" height="64">' .
+                  '<br>Raspberry Pi, PineTab2' .
+                  '<br><span class="download_details">(Linux, Arm64 aka Aarch64)</span></a></div>'
+                .
+                '<div class="download_platform"><a class="btn btn-primary btn-lg" href="' . $download_prefix . '-darwin-x86_64.zip">' .
+                  '<img src="' . CURRENT_URL . '/images/os_icons/macos.png" alt="macOS (Intel-based macs, 64-bit, x86_64)" width="64" height="64">' .
+                  '<br>macOS' .
+                  '<br><span class="download_details">(x86_64)</span></a></div>'
+                .
+                '<div class="download_platform"><a class="btn btn-primary btn-lg" href="https://castle-engine.io/compiling_from_source.php">' .
+                  '<img src="' . CURRENT_URL . '/images/os_icons/freebsd.png" alt="FreeBSD (Sources)" width="64" height="64">' .
+                  '<br>FreeBSD' .
+                  '<br><span class="download_details">(Use the Source Luke)</span></a></div>'
+                .
+                '<div class="download_platform"><a class="btn btn-primary btn-lg" href="https://github.com/castle-engine/castle-engine/">' .
+                  '<img src="' . CURRENT_URL . '/images/os_icons/github.png" alt="Source Code on GitHub" width="64" height="64">' .
+                  '<br>Source Code' .
+                  '<br><span class="download_details">(GitHub)</span></a></div>
             </div>
         </div>
     </div>';
