@@ -43,7 +43,7 @@ cd castle-engine-git/
 makepkg -sri
 ```
 
-* Or use a helper like link:https://aur.archlinux.org/packages/paru/[paru]. Once you have it working, just use `paru -S castle-engine-git`.
+* Or use a helper like https://aur.archlinux.org/packages/yay[yay] or https://aur.archlinux.org/packages/paru/[paru]. Once you have it working, execute `yay -S castle-engine-git` or `paru -S castle-engine-git` on the command-line.
 
 NOTE: This installs the latest engine version from the https://github.com/castle-engine/castle-engine/[GitHub repository (master branch)]. Bleeding edge! (But in practice, often stable to be used even for production work.)
 
