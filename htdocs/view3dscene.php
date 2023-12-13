@@ -93,9 +93,10 @@ echo download_box('Download (Snapshot) Version ' . SNAPSHOTS_VERSION, DOWNLOAD_P
       new TocItem('Navigation with keys &amp; mouse', 'navigation'),
       new TocItem('Command-line options', 'command_line_options'),
         new TocItem('Capturing screenshots and movies of 3D scenes and animations', 'screenshot', 1),
-        new TocItem('Converting to X3D', 'converting', 1),
+        new TocItem('Converting model formats', 'converting', 1),
         new TocItem('Other options', 'other_options', 1),
       new TocItem(DEPENDS, 'depends'),
+      new TocItem('tovrmlx3d usage (convert models in batch mode)', 'tovrmlx3d'),
     )
   );
   echo $toc->html_toc();
@@ -106,7 +107,7 @@ echo download_box('Download (Snapshot) Version ' . SNAPSHOTS_VERSION, DOWNLOAD_P
 <p>No installation is required. Just download and unpack these archives wherever
 you want, and run the <code>view3dscene</code> program inside.
 Included is also the <code>tovrmlx3d</code> program,
-useful for <a href="#section_converting">converting 3D models to X3D in batch (command-line) mode</a>.</p>
+useful for <a href="#section_converting">converting models between various formats (e.g. glTF to X3D) in batch mode (command-line)</a>.</p>
 
 <p><?php echo castle_sources_notice(); ?>
 
@@ -200,9 +201,14 @@ flawlessly :) So give it a try!
     just open and save any X3D or VRML file without any version conversion.
 
     <p>Command-line options to convert in batch mode (<code>--write</code>)
-    are available in view3dscene. Special minimized binary
-    <code>tovrmlx3d</code> (useful to install on servers without GUI libraries
-    available) is also included in view3dscene archive.
+    are available also in view3dscene.
+
+    <p>Also a dedicated command-line program
+    <code>tovrmlx3d</code> is included in the view3dscene download.
+    It provides a few more conversion and validation options,
+    can be used in batch mode,
+    can be used on servers without GUI libraries installed.
+    See <a href="#section_tovrmlx3d">tovrmlx3d usage</a> below.
 
   <li><p>A number of Castle Game Engine's rendering features are available,
     like GLSL shaders, bump mapping and shadows.
@@ -627,33 +633,27 @@ around). Changing encoding is a lossless operation,
 as the same nodes graph can be exactly expressed in both encodings.</p>
 
 <p>All these conversions can be also performed in batch mode
-by command-line options described below. You can either use view3dscene with <code>--write</code>
-option, or you can use separate binary <code>tovrmlx3d</code>.
-Separate <code>tovrmlx3d</code> may be sometimes more desirable,
-as it's smaller, not linked with any GUI libraries (so it will work
-even on a stripped-down system) and has simpler command-line options
-(as it's purpose is only to convert).</p>
+by command-line options described below.
+Below we describe view3dscene <code>--write</code> options.
+
+<p>See also <a href="#section_tovrmlx3d">tovrmlx3d</a> for alternative
+approach to using command-line to convert models.
 
 <p>Examples:</p>
+
 <pre>
-# Convert Collada to X3D
-view3dscene input.dae --write &gt; output.x3dv
-# Same as above, but by tovrmlx3d binary
-tovrmlx3d   input.dae         &gt; output.x3dv
+# Convert glTF to X3D
+view3dscene input.gltf --write &gt; output.x3dv
 
 # Convert VRML 2.0 to X3D in classic encoding.
 # You could add --encoding=classic, but it's not needed
 # (it is the default anyway).
 view3dscene input.wrl --write --write-force-x3d &gt; output.x3dv
-# Same as above, but by tovrmlx3d binary
-tovrmlx3d   input.wrl               --force-x3d &gt; output.x3dv
 
 # Convert VRML 2.0 to X3D in XML encoding.
 # You could add --[write-]force-x3d, but it's not needed
 # (it is implied by XML encoding anyway).
 view3dscene input.wrl --write --write-encoding=xml &gt; output.x3d
-# Same as above, but by tovrmlx3d binary
-tovrmlx3d   input.wrl               --encoding=xml &gt; output.x3d
 </pre>
 
 <p>Detailed docs of <code>view3dscene</code> command-line options for converting:</p>
@@ -689,8 +689,8 @@ tovrmlx3d   input.wrl               --encoding=xml &gt; output.x3d
     VRML 1.0/Inventor node names. Real conversion from VRML 1.0/Inventor
     to X3D is not implemented (yet).
 
-    <p>This has no effect when used on 3D models that are already X3D,
-    or that can be only output as X3D (Collada, 3DS, etc.).
+    <p>This has no effect when used on models that are already X3D,
+    or that can be only output as X3D (glTF, Collada, 3DS, etc.).
 
     <p>This option is meaningful only when <code>--write</code> option is also used.</p>
   </dd>
@@ -708,19 +708,6 @@ tovrmlx3d   input.wrl               --encoding=xml &gt; output.x3d
     Both <code>view3dscene</code> and <code>tovrmlx3d</code> have this option.
   </dd>
 </dl>
-
-<p><code>tovrmlx3d</code> has analogous options for converting,
-but without the <code>write-</code> prefix (as <code>tovrmlx3d</code>
-is only useful for converting). More precisely:
-
-<ul>
-  <li><code>tovrmlx3d</code> always reads input 3D model (from filename given on a command-line),
-    and outputs it on standard output as VRML/X3D.
-  <li><code>--encoding=classic|xml</code> instructs to use given encoding.
-    See <code>--write-encoding=classic|xml</code> docs above.
-  <li><code>--force-x3d</code> instructs to force X3D conversion.
-    See <code>--write-force-x3d</code> docs above.
-</ul>
 
 <?php section(false); ?>
 
@@ -796,6 +783,71 @@ and make sure it's available on $PATH.
     <a href="http://www.finkproject.org/">Fink</a>.
     <!-- (<a href="http://pdb.finkproject.org/pdb/package.php/ffmpeg">in stable currently, although source-only</a>),-->
 </ul>
+
+<?php section(); ?>
+
+<p><code>tovrmlx3d</code> is a dedicated program to convert model formats
+using the command-line.
+It provides a few more conversion and validation options,
+and can be used in batch mode,
+and can be used on servers without GUI libraries installed.
+
+<p>Examples:</p>
+
+<pre>
+# Convert glTF to X3D
+tovrmlx3d input.gltf &gt; output.x3dv
+
+# Validate some glTF and X3D files
+tovrmlx3d --validate input.gltf
+tovrmlx3d --validate input.x3d
+
+# Convert standard input to X3D
+tovrmlx3d - &lt; input.x3dv &gt; output.x3dv
+tovrmlx3d - --stdin-url=fakeurl.gltf &lt; input.gltf &gt; output.x3dv
+
+# Convert VRML 2.0 to X3D in classic encoding.
+# You could add --encoding=classic, but it's not needed
+# (it is the default anyway).
+tovrmlx3d input.wrl --force-x3d &gt; output.x3dv
+
+# Convert VRML 2.0 to X3D in XML encoding.
+# You could add --force-x3d, but it's not needed
+# (it is implied by XML encoding anyway).
+tovrmlx3d input.wrl --encoding=xml &gt; output.x3d
+</pre>
+
+<p>Here are most important <code>tovrmlx3d</code> command-line features:
+
+<ul>
+  <li>
+    <p><code>tovrmlx3d</code> always reads one input model
+    (from the filename or URL given on the command-line).
+
+    <p>You can use <code>-</code> (dash) as the input filename to read
+    from the standard input. It may be useful to also use the <code>--stdin-url</code>
+    option in this case, to indicate the file type and base URL to resolve other
+    referenced files (e.g. binary blobs of glTF, which we need to read to convert
+    it to X3D).
+
+  <li>
+    <p><code>tovrmlx3d</code> outputs the model on a standard output as VRML/X3D.
+
+  <li>
+    <p><code>--validate</code> option is useful to validate the input model.
+    In effect, we will not output a converted model on the standard output
+    and we will exit with non-zero status if the input is not 100% valid.
+
+  <li>
+    <p><code>--encoding=classic|xml</code> instructs to use given encoding.
+    See <code>--write-encoding=classic|xml</code> docs above.
+
+  <li>
+    <p><code>--force-x3d</code> instructs to force X3D conversion.
+    See <code>--write-force-x3d</code> docs above.
+</ul>
+
+<p>Run <code>tovrmlx3d --help</code> to see the full list of options.
 
 <?php
   castle_footer();
