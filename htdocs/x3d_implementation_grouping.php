@@ -10,6 +10,7 @@
 $toc = new TableOfContents(
   array(
     new TocItem('Supported nodes', 'supported_nodes'),
+    new TocItem('How to calculate bounding box of something', 'bbox'),
     new TocItem('TODO', 'todo'),
     new TocItem('Example in Pascal', 'example_grouping'),
   )
@@ -77,6 +78,80 @@ $toc = new TableOfContents(
 </ul>
 
 <p>Note: The <code>bboxCenter</code> and <code>bboxSize</code> fields of X3D grouping nodes are right now ignored by CGE. Instead, we internally always calculate and update best bounding boxes (and bounding spheres) for collision. So there's no need to fill these X3D fields.</p>
+
+<?php echo $toc->html_section(); ?>
+
+<p>There are various properties in CGE that may specify the bounding box of something. Some of them are calculated by our engine, and updated (e.g. on animations) and are guaranteed to contain a useful value. Some of them do not &mdash; they may contain a value, useful for some optimizations, but it is not guaranteed.
+
+<p>To summarize:
+
+<ul>
+  <li>
+    <p>To have a <b>reliable bounding box of a scene (actually, any transform)</b>, that is calculated by CGE, and updated (e.g. in case of animations) by CGE, you should use one of these:
+
+    <ul>
+      <li>
+        <p><?php echo cgeRef('TCastleTransform.BoundingBox'); ?>,
+      <li>
+        <p><?php echo cgeRef('TCastleTransform.LocalBoundingBox'); ?>,
+      <li>
+        <p><?php echo cgeRef('TCastleTransform.WorldBoundingBox'); ?>.
+    </ul>
+
+    <p>Use these to calculate bounding box of the entire scene (and all children scenes). See their docs for details about their coordinate systems.
+
+  <li>
+    <p>To have a <b>reliable bounding box of a shape</b>, that is calculated and updated (e.g. in case of animations) by CGE, you should use one of these:
+
+    <ul>
+      <li>
+        <p><?php echo cgeRef('TShape.BoundingBox'); ?>. It is specified in the scene coordinates (transform by <code>MyScene.WorldTransform</code> to get the bounding box in world coordinates).
+
+      <li>
+        <p><?php echo cgeRef('TShape.LocalBoundingBox'); ?>. It is specified in the shape coordinates. Transform it by <code>MyScene.WorldTransform * MyShape.OriginalState.Transformation.Transform</code> to get the bounding box in world coordinates.
+    </ul>
+
+    <p>To find the <?php echo cgeRef('TShape'); ?> instance you are interested in,
+    find it among the <code>Scene.Shapes</code>. For example search it using the <?php echo cgeRef('TShapeTree.Traverse', 'MyScene.Shapes.Traverse'); ?> or <?php echo cgeRef('TShapeTree.TraverseList', 'MyScene.Shapes.TraverseList'); ?>.
+
+    <p><?php echo cgeRef('TShape'); ?> has a lot of information to inspect what it is. E.g. <?php echo cgeRef('TShape.Node'); ?>, that points to <?php echo cgeRef('TShapeNode'); ?>, which name you can in turn check e.g. like <code>MyShape.Node.X3DName</code>. We also store information about the parent nodes of shape, in <?php echo cgeRef('TShape.GeometryParentNode'); ?>, <?php echo cgeRef('TShape.GeometryGrandParentNode'); ?>, <?php echo cgeRef('TShape.GeometryGrandGrandParentNode'); ?>. You can look at shape geometry in <?php echo cgeRef('TShape.Geometry'); ?>.
+
+    <li>
+    <p>The <?php echo cgeRef('TAbstractGroupingNode.BBox'); ?> <b>may</b> specify the bounding box of a group of nodes.
+
+    <p>This property has the value that was specified in the X3D file. Or a value that was manually set there by some Pascal code (e.g. when converting something to X3D nodes). <i>But no code in CGE does this right now.</i>
+
+    <p>If provided, this value is given in local group coordinates.
+
+    <p>CGE does not validate, or calculate, or ever update this value. It is also not <i>used</i> by CGE for anything, right now (but we could use it for optimizations in the future).
+
+    <p>If the X3D file didn't specify any value, it will be an empty bounding box. You can check it by <?php echo cgeRef('TBox3D.IsEmpty'); ?>.
+
+    <p>Note: the <code>BBox</code> underneath uses <code>FdBBoxCenter</code>, <code>FdBBoxSize</code>. We discourage from using these lower-level fields directly, and they don't provide any extra information.
+
+  <li>
+    <p>The <?php echo cgeRef('TAbstractShapeNode.BBox'); ?> <b>may</b> specify the bounding box of a given shape.
+
+    <p>This property has the value that was specified in the X3D file. Or a value that was manually set there by some Pascal code (e.g. when importing glTF to X3D nodes). <i>glTF importer right now sets this value</i>.
+
+    <p>If provided, this value is given in local shape coordinates.
+
+    <p>CGE does not validate, or calculate, or ever update this value. But, if it is specified (provided in X3D file or by some Pascal import code) then we use it, for optimization.
+
+    <p>If the X3D file didn't specify any value, it will be an empty bounding box. You can check it by <?php echo cgeRef('TBox3D.IsEmpty'); ?>.
+
+    <p>Note: the <code>BBox</code> underneath uses <code>FdBBoxCenter</code>, <code>FdBBoxSize</code>. We discourage from using these lower-level fields directly, and they don't provide any extra information.
+
+    <p>In summary:
+
+    <ul>
+      <li>
+        <p><?php echo cgeRef('TAbstractShapeNode.BBox'); ?> is similar to <?php echo cgeRef('TAbstractGroupingNode.BBox'); ?>. There's no guarantee that it contains a useful value, it contains a value only if something was specified (in X3D file, or by importer).
+
+      <li>
+        <p>But, in contrast to <?php echo cgeRef('TAbstractGroupingNode.BBox'); ?>, the <?php echo cgeRef('TAbstractShapeNode.BBox'); ?> is actually used by CGE for optimizations. And it is automatically set by the glTF importer. So if you load your model from glTF, you can count on <?php echo cgeRef('TAbstractShapeNode.BBox'); ?> having a useful value.
+    </ul>
+</ul>
 
 <?php echo $toc->html_section(); ?>
 
