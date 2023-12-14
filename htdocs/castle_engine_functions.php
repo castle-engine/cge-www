@@ -2275,8 +2275,8 @@ function cge_download_engine($version, $tag)
                   '<br>Linux' .
                   '<br><span class="download_details">(x86_64)</span></a></div>'
                 .
-                '<div class="download_platform"><a class="btn btn-primary btn-lg" href="' . $download_prefix . '-linux-arm.zip">' . '
-                  <img src="' . CURRENT_URL . '/images/os_icons/raspberry_pi_32.png" alt="Raspberry Pi 32-bit (Linux Arm)" width="91" height="64">' .
+                '<div class="download_platform"><a class="btn btn-primary btn-lg" href="' . $download_prefix . '-linux-arm.zip">' .
+                  '<img src="' . CURRENT_URL . '/images/os_icons/raspberry_pi_32.png" alt="Raspberry Pi 32-bit (Linux Arm)" width="91" height="64">' .
                   '<br>Raspberry Pi' .
                   '<br><span class="download_details">(Linux Arm32)</span></a></div>'
                 .
