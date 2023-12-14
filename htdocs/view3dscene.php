@@ -60,24 +60,45 @@ define('SNAPSHOTS_VERSION', '4.3.0');
 define('DOWNLOAD_PREFIX_SNAPSHOT', SNAPSHOTS_BASE . 'view3dscene-' . SNAPSHOTS_VERSION);
 define('DOWNLOAD_PREFIX_STABLE', 'https://github.com/castle-engine/view3dscene/releases/download/v' . VERSION_VIEW3DSCENE . '/view3dscene-' . VERSION_VIEW3DSCENE);
 
-function download_box($caption, $download_prefix)
+function download_box($caption, $download_prefix, $has_linux_aarch64)
 {
   return '
     <div class="download jumbotron">
       <div class="download_title">' . $caption . ':</div>
       <div class="download_platforms_list">
-        <div class="download_platform"><a class="btn btn-primary btn-lg" href="' . $download_prefix .    '-win64-x86_64.zip"><img src="' . CURRENT_URL . '/images/os_icons/win.png"          alt="Windows (64-bit)"         width="64" height="64"><br> Windows<br>(x86_64)</a></div>
-        <div class="download_platform"><a class="btn btn-primary btn-lg" href="' . $download_prefix . '-linux-x86_64.tar.gz"><img src="' . CURRENT_URL . '/images/os_icons/linux.png"        alt="Linux (64 bit, x86_64)"   width="64" height="64"><br> Linux<br>(x86_64)</a></div>
-        <div class="download_platform"><a class="btn btn-primary btn-lg" href="' . $download_prefix .    '-linux-arm.tar.gz"><img src="' . CURRENT_URL . '/images/os_icons/raspberry_pi.png" alt="Raspberry Pi (Linux Arm)" width="64" height="64"><br> Raspberry Pi<br>(Linux Arm)</a></div>
-        <div class="download_platform"><a class="btn btn-primary btn-lg" href="' . $download_prefix .   '-darwin-x86_64.zip"><img src="' . CURRENT_URL . '/images/os_icons/macos.png"        alt="macOS (x86_64)"           width="64" height="64"><br> macOS<br>(x86_64)</a></div>
+        <div class="download_platform"><a class="btn btn-primary btn-lg" href="' . $download_prefix .    '-win64-x86_64.zip">' .
+          '<img src="' . CURRENT_URL . '/images/os_icons/win.png"          alt="Windows (64-bit)"         width="64" height="64">' .
+          '<br>Windows' .
+          '<br><span class="download_details">(x86_64)</span></a></div>
+        <div class="download_platform"><a class="btn btn-primary btn-lg" href="' . $download_prefix . '-linux-x86_64.tar.gz">' .
+          '<img src="' . CURRENT_URL . '/images/os_icons/linux.png"        alt="Linux (64 bit, x86_64)"   width="64" height="64">' .
+          '<br>Linux' .
+          '<br><span class="download_details">(x86_64)</span></a></div>
+        <div class="download_platform"><a class="btn btn-primary btn-lg" href="' . $download_prefix .    '-linux-arm.tar.gz">' .
+          '<img src="' . CURRENT_URL . '/images/os_icons/raspberry_pi_32.png" alt="Raspberry Pi (Linux Arm32)" width="91" height="64">' .
+          '<br>Raspberry Pi' .
+          '<br><span class="download_details">(Linux Arm32)</span></a></div>
+        '
+        . ($has_linux_aarch64 ?
+        '<div class="download_platform"><a class="btn btn-primary btn-lg" href="' . $download_prefix .    '-linux-aarch64.tar.gz">' .
+          '<img src="' . CURRENT_URL . '/images/os_icons/raspberry_pi_64.png" alt="Raspberry Pi 64-bit (Linux Aarch64)" width="91" height="64">' .
+          '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' .
+          '<img src="' . CURRENT_URL . '/images/os_icons/pine64.png" alt="PINE64 (PineTab2, Linux Aarch64)" width="48" height="64">' .
+          '<br>Raspberry Pi, PineTab2' .
+          '<br><span class="download_details">(Linux, Arm64 aka Aarch64)</span></a></div>'
+        : '') .
+        '<div class="download_platform"><a class="btn btn-primary btn-lg" href="' . $download_prefix .   '-darwin-x86_64.zip">' .
+          '<img src="' . CURRENT_URL . '/images/os_icons/macos.png"        alt="macOS (x86_64)"           width="64" height="64">' .
+          '<br>macOS' .
+          '<br><span class="download_details">(x86_64)</span></a></div>
       </div>
       <a class="btn btn-success btn-lg btn-patreon" href="' . PATREON_URL . '"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Support on Patreon</a>
     </div>
     ';
 }
 
-echo download_box('Download Stable Version ' . VERSION_VIEW3DSCENE, DOWNLOAD_PREFIX_STABLE);
-echo download_box('Download (Snapshot) Version ' . SNAPSHOTS_VERSION, DOWNLOAD_PREFIX_SNAPSHOT);
+echo download_box('Download Stable Version ' . VERSION_VIEW3DSCENE, DOWNLOAD_PREFIX_STABLE, false);
+echo download_box('Download (Snapshot) Version ' . SNAPSHOTS_VERSION, DOWNLOAD_PREFIX_SNAPSHOT, true);
 ?>
 
 <p><b><a href="demo_models.php">Download also our collection of demo models</a> to test view3dscene!</b></p>
