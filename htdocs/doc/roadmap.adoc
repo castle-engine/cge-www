@@ -142,6 +142,26 @@ This would make the whole TCastleViewport.Items a single graph of X3D nodes, all
 It's unsure now whether this is really needed. Using cgeref:TCastleSceneCore.ExposeTransforms[] and making it better (synchronizing both ways) will fill the most important use-case of this.
 ////
 
+[#bgfx]
+## BGFX renderer
+
+- https://github.com/bkaradzic/bgfx
+
+- Docs: https://bkaradzic.github.io/bgfx/bgfx.html
+
+- Pascal bindings: https://github.com/Akira13641/PasBGFX/ . Though reported as having issues: https://discord.com/channels/389676745957310465/468902667003887646/1173371248596762674 , we shall investigate.
+
+Look great:
+
+- open-source,
+- packed with features,
+- actively developed,
+- open for bindings from any language, any game engine (it is explicitly made as renderer useful for various game engines),
+- properly documented,
+- very good platform and renderer suport.
+
+This *may* be even better than direct Vulkan port. We shall see. On one hand, this provides more possibilities than just Vulkan (e.g. direct Metal renderer). And it may be easier to use than Vulkan. OTOH, it will not allow to squeeze "every last bit of performance from Vulkan" (though we really don't need that in CGE in the first place; there are lots of optimizations on the table in CGE before it's worth even thinking about low-level Vulkan optimizations).
+
 [#distance_field_fonts]
 ## (IN REVIEW) Distance field fonts
 
