@@ -158,7 +158,7 @@ if (QUERY_PATREON_API) {
       $total_pledges += $member_current_pledge;
       $members_counted++;
       if ($member_current_pledge > 0) {
-        $members_counted_nonzero++;
+-        $members_counted_nonzero++;
         //echo 'Adding ' . $member_current_pledge . ' from ' . $member['attributes']['full_name'] . "\n";
       }
     }

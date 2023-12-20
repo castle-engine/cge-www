@@ -29,6 +29,7 @@ NOTE: Please write to Michalis (michalis@castle-engine.io) if you want to change
 * https://github.com/janadamec1[Jan Adamec]
 * https://github.com/Free-Pascal-meets-SDL-Website[Matthias J. Molski]
 * https://github.com/paulgevers[Paul Gevers]
+* https://github.com/peardox[Simon Booth]
 * https://github.com/pascaldragon[Sven Barth]
 * https://github.com/tsr8[Tomasz Wojtyś]
 * https://github.com/Kagamma[Trung Le]
