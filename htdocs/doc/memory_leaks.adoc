@@ -92,7 +92,7 @@ Note, that as this way the `HeapTrc` would not be shown explicitly after the pro
 
 == Delphi
 
-Delphi has https://docwiki.embarcadero.com/Libraries/Sydney/en/System.ReportMemoryLeaksOnShutdown[ReportMemoryLeaksOnShutdown] global variable. Set it to `true` to detect and report memory leaks. It only affects Windows platform.
+Delphi has https://docwiki.embarcadero.com/Libraries/Sydney/en/System.ReportMemoryLeaksOnShutdown[ReportMemoryLeaksOnShutdown] global variable. Set it to `true` to detect and report memory leaks.
 
 To enable leak detection, just add this inside the main program file (`.dpr`):
 
@@ -109,3 +109,5 @@ If you'd like to show leaks only when running inside the debugger in Delphi IDE,
 ----
 ReportMemoryLeaksOnShutdown := DebugHook <> 0;
 ----
+
+NOTE: It is only reports leaks on the Windows platform. But it compiles everywhere, there's no need to use `{$ifdef MSWINDOWS}` around it.
