@@ -1,4 +1,4 @@
-# Delphi on Linux
+# Developing Linux applications using Delphi
 include::common.adoc[]
 :description: Using Castle Game Engine with Delphi IDE and compiler to build Linux applications.
 :cge-social-share-image: delphi_code.png
@@ -41,7 +41,7 @@ Later, use just `wsl` command to enter the virtual Linux environment. If the mac
 +
 Within the machine, you have full Linux system. Inspect it, upgrade it and install additional software as usual, e.g.:
 +
-```
+```bash
 lsb_release -A
 sudo apt update
 sudo apt dist-upgrade
@@ -50,7 +50,7 @@ glxinfo -B
 glxgears # make sure OpenGL works
 ```
 +
-Note to Nvidia users: You may need to use `export MESA_D3D12_DEFAULT_ADAPTER_NAME=nvidia` . You can add it to `~/.bashrc`` to make it permanent.
+Note to Nvidia users: You may need to use `export MESA_D3D12_DEFAULT_ADAPTER_NAME=nvidia` . You can add it to `~/.bashrc` to make it permanent.
 
 === Installing PA Server
 
@@ -58,7 +58,7 @@ Follow the https://docwiki.embarcadero.com/RADStudio/Alexandria/en/Installing_th
 
 If it reports issues with `libpython3.so` version, fix it by commands like this:
 
-```
+```bash
 cd ~/PAServer-22.0/lldb/lib
 ls -Flah libpython3.so # see if the symlink looks valid
 mv libpython3.so libpython3.so.old
@@ -106,9 +106,9 @@ All our examples are compatible with Delphi on Linux. This includes
 
 - Examples using cgeref:TCastleControl[] based on FMX. Test e.g. https://github.com/castle-engine/castle-engine/tree/master/examples/delphi/fmx[examples/delphi/fmx] and https://github.com/castle-engine/castle-engine/tree/master/examples/delphi/fmx_play_animation[examples/delphi/fmx_play_animation].
 
-== Special considerations for Delphi on Linux
+== Special things to watch out for when using Delphi for Linux with CGE
 
-=== Data files deployment (for all non-Windows platforms with Delphi)
+=== Data files deployment (applies to all non-Windows platforms with Delphi)
 
 When "deploying" your application (e.g. when you hit F9 in Delphi to run on Linux), Delphi needs to know which data files to copy to the target (Linux). This is particularly important for the link:manual_data_directory.php[data directory] of your project, it needs to be available on target. Unfortunately, we cannot tell Delphi to just _"copy whole `data` directory recursively"_ in the project deployment settings.
 
@@ -118,15 +118,15 @@ So we highly advise to manage your project files (DRPOJ) automatically, and just
 
 See at Delphi window _"Project -> Deployment"_ to confirm that Delphi is aware of all your data files.
 
-=== Replacing Application.Run in FireMonkey applications
+=== Use TCastleControl.ApplicationRun (instead of Application.Run) in FireMonkey applications
 
-Due to technical limitations of FMXLinux, you cannot just use Application.Run in FMX (FireMonkey) applications that you want to run on Linux (if you want to have smoothly working TCastleControl). You need to replace it with
+Due to technical limitations, you cannot just use `Application.Run` in FMX (FireMonkey) applications that you want to run on Linux (if you want to have smoothly working cgeref:TCastleControl[]). You need to replace it (usually in the main program file) with
 
-```
+```pascal
 TCastleControl.ApplicationRun
 ```
 
-call. Add to the uses clause the `Fmx.CastleControl` unit where it is defined.
+Add to the uses clause the `Fmx.CastleControl` unit where it is defined. https://github.com/castle-engine/castle-engine/blob/delphi-linux/examples/delphi/fmx/CastleFmx.dpr#L48p[Like this].
 
 On Windows, this is equivalent to just doing `Application.Run`. On Linux, this does the event loop in more special way, to ensure engine updates and rendering can happen reliably.
 

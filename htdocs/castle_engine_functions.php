@@ -341,8 +341,11 @@ $castle_sitemap = array(
           'manual_ide' => array('title' => 'Pascal IDEs',
             'sub' => array(
               'doc/lazarus' => array('title' => 'Lazarus'),
-              'doc/delphi' => array('title' => 'Delphi'),
-              'doc/delphi_linux' => array('title' => 'Delphi on Linux'),
+              'doc/delphi' => array('title' => 'Delphi',
+                'sub' => array(
+                  'doc/delphi_linux' => array('title' => 'Delphi for Linux'),
+                )
+              ),
               'doc/vscode' => array('title' => 'Visual Studio Code'),
             ),
           ),
