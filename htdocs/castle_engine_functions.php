@@ -342,6 +342,7 @@ $castle_sitemap = array(
             'sub' => array(
               'doc/lazarus' => array('title' => 'Lazarus'),
               'doc/delphi' => array('title' => 'Delphi'),
+              'doc/delphi_linux' => array('title' => 'Delphi on Linux'),
               'doc/vscode' => array('title' => 'Visual Studio Code'),
             ),
           ),
