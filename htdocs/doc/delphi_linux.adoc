@@ -131,3 +131,13 @@ Add to the uses clause the `Fmx.CastleControl` unit where it is defined. https:/
 On Windows, this is equivalent to just doing `Application.Run`. On Linux, this does the event loop in more special way, to ensure engine updates and rendering can happen reliably.
 
 All our FMX examples (like https://github.com/castle-engine/castle-engine/tree/master/examples/delphi/fmx[examples/delphi/fmx] and https://github.com/castle-engine/castle-engine/tree/master/examples/delphi/fmx_play_animation[examples/delphi/fmx_play_animation]) already do this. Remember to do this in your own FMX applications too.
+
+Moreover, if you ever call `Application.ProcessMessages;` to perform manual loop control in your FMX application, you should extend it to call CGE processing too:
+
+```pascal
+while Something do
+begin
+  Application.ProcessMessages;
+  TCastleControl.ProcessTasks; // additional CGE processing
+end;
+```
