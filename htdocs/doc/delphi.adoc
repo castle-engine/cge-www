@@ -43,33 +43,13 @@ video::6JfFxnZO4Jc[youtube,width=800,height=450]
 
 ## Platforms supported with Delphi
 
-* Right now we support only Windows (both 32-bit and 64-bit).
+* We support now Windows (both 32-bit and 64-bit) and link:delphi_linux[Linux]. This means that you can compile and run your CGE applications on these platforms using Delphi. See link:delphi_linux[Linux] for Linux-specific setup notes.
 
-* Other platforms will come, most likely Android and Linux (link:talk.php[talk to us on `#delphi` on Discord about the progress]). The Delphi+Linux branch is actually in progress already, with lots of Delphi improvements along the way. (It also adds link:https://www.saschawillems.de/creations/delphi-opengl-headers/[dglOpenGL] usage.)
+* Other platforms will come, next one is most likely Android.
 
 * You can use cgeref:TCastleWindow[], which is our standard way to create CGE window. Our _"New Project"_ templates as well as most examples use it.
 
 * You can alternatively use cgeref:TCastleControl[] that allows to put CGE rendering on FMX (FireMonkey) or VCL form. link:control_on_form[See here for details].
-
-////
-### Linux-specific notes
-
-To compile _Castle Game Engine_ applications using Delphi for Linux, you need to have _FireMonkey for Linux_ (https://www.fmxlinux.com/[FMXLinux]) installed in the Delphi IDE and properly configured.
-
-Use RAD Studio _GetIt Package Manager_ to install `fmxlinux`. Follow the https://docwiki.embarcadero.com/RADStudio/Sydney/en/FireMonkey_for_Linux[FireMonkey for Linux using GetIt] instructions for details.
-
-NOTE: With Delphi 11.2 (Enterprise), it seems GetIt cannot find "FMXLinux". Just upgrade to 11.3 in you experience this issue.
-
-NOTE: You can also https://www.fmxlinux.com/[buy FMXLinux]. There is also a free trial (it seems not time-limited but it shows a watermark over the UI and a dialog at run -- so it works but is not really something you can distribute to end-users). See https://www.fmxlinux.com/guide.html[FMXLinux installation instructions]. But, practically, if you already have Linux platform, then you should also have Delphi Enterprise, and then you should be able to install FMXLinux without any additional cost using GetIt.
-
-Once you have _FireMonkey for Linux_ installed, you should see that "_Linux 64-bit_" becomes a possible platform for FMX projects.
-
-Be sure to also install required libraries in your Linux. Follow https://www.fmxlinux.com/guide.html for the appropriate `apt install ...` command to execute. We found it useful to add also `sudo apt install libgtk3.0-dev`. As usual after installing libraries on Linux, refresh the cache: enter Delphi _"Options"_ dialog, inside find _"Deployment -> SDK Manager"_, select the Linux platform, and _"Update Local Cache"_ (answer _"Yes To All"_ in case it asks whether to override files).
-
-Test FMXLinux by installing _"FMX Linux Samples"_ using GetIt (these are available for everyone, regardless of how you obtained FMXLinux above). Run some of them to test that FMX on Linux works.
-
-NOTE: _GtkWindow_ sample from FMXLinux has a bug, that prevents compilation due to permissions. Edit fhe project settings and change "Unit Output Directory" from `$(fmxlinux)\Lib\$(ProductVersion)\$(Config)` to `.\$(Platform)\$(Config)`. Or try a different sample, like _FontList_.
-////
 
 ## Delphi versions supported
 

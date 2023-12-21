@@ -1,0 +1,133 @@
+# Delphi on Linux
+include::common.adoc[]
+:description: Using Castle Game Engine with Delphi IDE and compiler to build Linux applications.
+:cge-social-share-image: delphi_code.png
+
+== Introduction
+
+We support link:delphip[Delphi] to develop cross-platform applications for _Linux_, using _Castle Game Engine_. This page outlines Linux-specific details. See link:delphip[Delphi] page for general Delphi usage notes.
+
+== Setting up the Linux and Delphi environment
+
+NOTE: This information is not specific to _Castle Game Engine_. You may find it useful for any Linux development with Delphi.
+
+To deploy (build and run) Linux applications from Delphi (which runs on Windows), you need to
+
+- Have a working network connection from Windows to Linux
+
+- Install on Linux the https://docwiki.embarcadero.com/RADStudio/Alexandria/en/Installing_the_Platform_Assistant_on_Linux[PA Server] (Platform Assistant Server).
+
+- Connect from Delphi IDE to Linux.
+
+- Install FMXLinux in Delphi.
+
+=== Installing Linux, regular or in WSL
+
+You can use any Linux distribution and install it on any system:
+
+- You can use a regular, separate computer with Linux. We advise this to new users -- just get https://ubuntu.com/download/desktopp[Ubuntu for Desktop] and install it on a separate computer. This is the easiest way to get started with Linux.
+
+- Or you can set up a virtual machine using "full" virtualization software like https://www.virtualbox.org/[VirtualBox].
+
+- Or you can use https://learn.microsoft.com/en-us/windows/wsl/install[Windows Subsystem for Linux (WSL)] to setup a comfortable Linux environment on Windows. This is a great option if you know your way around Linux and can use it from the command-line. WSL gives you a really lightweight and comfortable Linux virtual machine within your Windows.
++
+For example set WSL machine with latest Ubuntu by just:
++
+```
+wsl --install # gets ubuntu latest
+```
++
+Later, use just `wsl` command to enter the virtual Linux environment. If the machine doesn't run yet (e.g. after Windows reboot) it will be automatically started.
++
+Within the machine, you have full Linux system. Inspect it, upgrade it and install additional software as usual, e.g.:
++
+```
+lsb_release -A
+sudo apt update
+sudo apt dist-upgrade
+sudo apt install mesa-utils libgtk3.0-dev
+glxinfo -B
+glxgears # make sure OpenGL works
+```
++
+Note to Nvidia users: You may need to use `export MESA_D3D12_DEFAULT_ADAPTER_NAME=nvidia` . You can add it to `~/.bashrc`` to make it permanent.
+
+=== Installing PA Server
+
+Follow the https://docwiki.embarcadero.com/RADStudio/Alexandria/en/Installing_the_Platform_Assistant_on_Linux[PA Server] docs how to install and run it on Linux.
+
+If it reports issues with `libpython3.so` version, fix it by commands like this:
+
+```
+cd ~/PAServer-22.0/lldb/lib
+ls -Flah libpython3.so # see if the symlink looks valid
+mv libpython3.so libpython3.so.old
+# check the actual libpython3.XXX version below on your system!
+ln -s /usr/lib/x86_64-linux-gnu/libpython3.10.so.1 libpython3.so
+```
+
+=== Connect from Delphi to Linux
+
+In Delphi IDE, go to _"Options" -> "Deployment" -> "Connection Profile Manager"_. Add a new connection to the Linux machine -- real, or virtual, doesn't matter. You just need to provide the IP address of the Linux machine.
+
+You also need to provide the username and password to connect to the PA Server running on it.
+
+To link applications on Linux, Delphi needs to have a local copy of the Linux libraries. It is critical that after you install or upgrade any library on Linux, in Delphi you go to _"Options" -> "Deployment" -> "SDK Manager"_ and run _"Update Local File Cache"_.
+
+=== Get and install FMXLinux
+
+To compile _Castle Game Engine_ applications using Delphi for Linux, you need to have _FireMonkey for Linux_ (https://www.fmxlinux.com/[FMXLinux]) installed in the Delphi IDE and properly configured.
+
+Use RAD Studio _GetIt Package Manager_ to install `fmxlinux`. Follow the https://docwiki.embarcadero.com/RADStudio/Sydney/en/FireMonkey_for_Linux[FireMonkey for Linux using GetIt] instructions for details.
+
+NOTE: With Delphi 11.2 (Enterprise), it seems GetIt cannot find "FMXLinux". Just upgrade to 11.3 in you experience this issue.
+
+NOTE: You can also https://www.fmxlinux.com/[buy FMXLinux]. There is also a free trial (it seems not time-limited but it shows a watermark over the UI and a dialog at run -- so it works but is not really something you can distribute to end-users). See https://www.fmxlinux.com/guide.html[FMXLinux installation instructions]. But, practically, if you already have Linux platform, then you should also have Delphi Enterprise, and then you should be able to install FMXLinux without any additional cost using GetIt.
+
+Once you have _FireMonkey for Linux_ installed, you should see that "_Linux 64-bit_" becomes a possible platform for FMX projects.
+
+Be sure to also install required libraries in your Linux. Follow https://www.fmxlinux.com/guide.html for the appropriate `apt install ...` command to execute. We found it useful to add also `sudo apt install libgtk3.0-dev`. As usual after installing libraries on Linux, refresh the cache: enter Delphi _"Options"_ dialog, inside find _"Deployment -> SDK Manager"_, select the Linux platform, and _"Update Local Cache"_ (answer _"Yes To All"_ in case it asks whether to override files).
+
+Test FMXLinux by installing _"FMX Linux Samples"_ using GetIt (these are available for everyone, regardless of how you obtained FMXLinux above). Run some of them to test that FMX on Linux works.
+
+NOTE: _GtkWindow_ sample from FMXLinux has a bug, that prevents compilation due to permissions. Edit fhe project settings and change "Unit Output Directory" from `$(fmxlinux)\Lib\$(ProductVersion)\$(Config)` to `.\$(Platform)\$(Config)`. Or try a different sample, like _FontList_.
+
+More FMXLinux useful resources:
+
+- https://www.slideshare.net/embarcaderotechnet/fmxlinux-introduction-delphis-firemonkey-for-linux
+
+== Test Castle Game Engine on Delphi/Linux
+
+Simply open in Delphi any example, switch to platform on top to _Linux 64-bit_, and hit F9 (compile and run) from Delphi.
+
+All our examples are compatible with Delphi on Linux. This includes
+
+- Examples using cgeref:TCastleWindow[], our recommended approach to develop games with _Castle Game Engine_, where the engine controls the entire application window. Most CGE examples use it, test e.g. https://github.com/castle-engine/castle-engine/tree/master/examples/eye_of_beholder[examples/eye_of_beholder], https://github.com/castle-engine/castle-engine/tree/master/examples/platformer[examples/platformer].
+
+- Examples using cgeref:TCastleControl[] based on FMX. Test e.g. https://github.com/castle-engine/castle-engine/tree/master/examples/delphi/fmx[examples/delphi/fmx] and https://github.com/castle-engine/castle-engine/tree/master/examples/delphi/fmx_play_animation[examples/delphi/fmx_play_animation].
+
+== Special considerations for Delphi on Linux
+
+=== Data files deployment (for all non-Windows platforms with Delphi)
+
+When "deploying" your application (e.g. when you hit F9 in Delphi to run on Linux), Delphi needs to know which data files to copy to the target (Linux). This is particularly important for the link:manual_data_directory.php[data directory] of your project, it needs to be available on target. Unfortunately, we cannot tell Delphi to just _"copy whole `data` directory recursively"_ in the project deployment settings.
+
+To make it work, our link:editor[] and link:build_tool[build tool] can generate in the DPROJ (project settings) the list of files to copy, by listing all current files in the data directory.
+
+So we highly advise to manage your project files (DRPOJ) automatically, and just use _"Code ->Regenerate Project"_ menu item from the link:editor[] whenever you add / remove some files in your data directory.
+
+See at Delphi window _"Project -> Deployment"_ to confirm that Delphi is aware of all your data files.
+
+=== Replacing Application.Run in FireMonkey applications
+
+Due to technical limitations of FMXLinux, you cannot just use Application.Run in FMX (FireMonkey) applications that you want to run on Linux (if you want to have smoothly working TCastleControl). You need to replace it with
+
+```
+TCastleControl.ApplicationRun
+```
+
+call. Add to the uses clause the `Fmx.CastleControl` unit where it is defined.
+
+On Windows, this is equivalent to just doing `Application.Run`. On Linux, this does the event loop in more special way, to ensure engine updates and rendering can happen reliably.
+
+All our FMX examples (like https://github.com/castle-engine/castle-engine/tree/master/examples/delphi/fmx[examples/delphi/fmx] and https://github.com/castle-engine/castle-engine/tree/master/examples/delphi/fmx_play_animation[examples/delphi/fmx_play_animation]) already do this. Remember to do this in your own FMX applications too.
