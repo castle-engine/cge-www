@@ -154,6 +154,6 @@ Additional notes:
 ...: Gtk-CRITICAL **: ...: gtk_main_quit: assertion 'main_loops != NULL' failed
 ```
 +
-You can simply ignore this GTK error.
+You have to simply ignore this GTK error. It doesn't break the execution flow, in particular code after `TCastleControl.ApplicationRun` executes normally.
 +
 The reason is that _FMXLinux_ `Application.Terminate` uses `gtk_main_quit`, but it should not be used when `gtk_main` is not called. And indeed `gtk_main` is not called when we don't call `Application.Run`. When you use cgeref:TCastleWindow[], we can adjust to it, by not using `Application.Terminate` at all. But when using cgeref:TCastleControl[], we cannot avoid it being called when last window gets closed.
