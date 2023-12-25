@@ -142,4 +142,18 @@ begin
 end;
 ```
 
-NOTE: It is OK to do this (replace `Application.Run` -> `TCastleControl.ApplicationRun`, add `TCastleControl.ProcessTasks` after `Application.ProcessMessages`) even if your application does not use cgeref:TCastleControl[], or it doesn't use it on all forms / all the time. It will just work, i.e. `TCastleControl.ApplicationRun` will be a drop-in replacement for `Application.Run` on all platforms.
+Additional notes:
+
+- The `TCastleControl.ApplicationRun` (and `TCastleControl.ProcessTasks`) work even if your application does not use cgeref:TCastleControl[]. Or if your application doesn't use it on all forms or all the time.
+
+- We have tried to avoid this non-standard need and make just `Application.Run` work for CGE applications. But it really seems unavoidable with current _FMXLinux_. See `USE_TIMER` comments in https://github.com/castle-engine/castle-engine/blob/delphi-linux/src/window/castlewindow_form.inc[castlewindow_form.inc] and https://github.com/castle-engine/castle-engine/blob/delphi-linux/src/delphi/fmx.castlecontrol.pas[fmx.castlecontrol.pas]. With `Application.Run`, there seems to be no reliable way to perform some work independent of user input (like update animations) many times per second, on _FMXLinux_.
+
+- As a consequence of this workaround, FMX applications (using `TCastleControl.ApplicationRun`) will always report this GTK error on exit:
++
+```
+...: Gtk-CRITICAL **: ...: gtk_main_quit: assertion 'main_loops != NULL' failed
+```
++
+You can simply ignore this GTK error.
++
+The reason is that _FMXLinux_ `Application.Terminate` uses `gtk_main_quit`, but it should not be used when `gtk_main` is not called. And indeed `gtk_main` is not called when we don't call `Application.Run`. When you use cgeref:TCastleWindow[], we can adjust to it, by not using `Application.Terminate` at all. But when using cgeref:TCastleControl[], we cannot avoid it being called when last window gets closed.
