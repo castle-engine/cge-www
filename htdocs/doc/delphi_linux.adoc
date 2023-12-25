@@ -120,10 +120,10 @@ See at Delphi window _"Project -> Deployment"_ to confirm that Delphi is aware o
 
 === Use TCastleControl.ApplicationRun (instead of Application.Run) in FireMonkey applications
 
-Due to technical limitations, you cannot just use `Application.Run` in FMX (FireMonkey) applications that you want to run on Linux (if you want to have smoothly working cgeref:TCastleControl[]). You need to replace it (usually in the main program file) with
+Due to technical limitations, you cannot just use `Application.Run` in FMX (FireMonkey) applications that you want to run on Linux if you want to have reliable cgeref:TCastleControl[]. You need to replace it (usually in the main program file) with
 
 ```pascal
-TCastleControl.ApplicationRun
+TCastleControl.ApplicationRun;
 ```
 
 Add to the uses clause the `Fmx.CastleControl` unit where it is defined. https://github.com/castle-engine/castle-engine/blob/delphi-linux/examples/delphi/fmx/CastleFmx.dpr#L48p[Like this].
@@ -141,3 +141,5 @@ begin
   TCastleControl.ProcessTasks; // additional CGE processing
 end;
 ```
+
+NOTE: It is OK to do this (replace `Application.Run` -> `TCastleControl.ApplicationRun`, add `TCastleControl.ProcessTasks` after `Application.ProcessMessages`) even if your application does not use cgeref:TCastleControl[], or it doesn't use it on all forms / all the time. It will just work, i.e. `TCastleControl.ApplicationRun` will be a drop-in replacement for `Application.Run` on all platforms.
