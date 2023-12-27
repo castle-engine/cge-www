@@ -56,14 +56,29 @@ Note to Nvidia users: You may need to use `export MESA_D3D12_DEFAULT_ADAPTER_NAM
 
 Follow the https://docwiki.embarcadero.com/RADStudio/Alexandria/en/Installing_the_Platform_Assistant_on_Linux[PA Server] docs how to install and run it on Linux.
 
-If it reports issues with `libpython3.so` version, fix it by commands like this:
+Note that it may report issues with `libpython3.so` version. Fix it by commands like this:
 
 ```bash
-cd ~/PAServer-22.0/lldb/lib
-ls -Flah libpython3.so # see if the symlink looks valid
+# The directory below may be different for you, depending on where you unpacked the PA Server
+cd ~/PAServer/lldb/lib
+
+# See if the symlink looks valid
+ls -Flah libpython3.so
+
+# If the symlink looks invalid, move it away (you could also "rm -f libpython3.so" if feeling brave)
 mv libpython3.so libpython3.so.old
-# check the actual libpython3.XXX version below on your system!
-ln -s /usr/lib/x86_64-linux-gnu/libpython3.10.so.1 libpython3.so
+
+# Setup proper symlink.
+# Check the actual libpython3.XXX version below on your system first!
+ls /usr/lib/x86_64-linux-gnu/libpython3*
+ln -s /usr/lib/x86_64-linux-gnu/libpython3.11.so.1 libpython3.so
+```
+
+Remember the directory where you unpacked the _PA Server_. Delphi will automatically _deploy_ Linux applications there, which means that it will copy the binaries and data into the directory like `~/PAServer/scratch-dir/<connection-name>/<project-name>/`. If need be, you *can* later run the applications directly, on that Linux machine, without using Delphi, just from command-line entering the directory and running the binary, like
+
+```bash
+cd ~/PAServer/scratch-dir/<connection-name>/my_project/
+./my_project
 ```
 
 === Connect from Delphi to Linux
