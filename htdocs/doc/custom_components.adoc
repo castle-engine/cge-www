@@ -842,7 +842,6 @@ What you can do *right now* to overcome this limitation is to combine these 2 ap
 Here's a demo how it can work:
 
 [source,pascal]
-[source,pascal]
 ----
 type
   { A button with 2 labels.
