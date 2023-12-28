@@ -828,3 +828,74 @@ That said, it is a convention in _Castle Game Engine_ that developers will *not*
 
 Thus the author of `TMyTransformationWithSphere` can assume that nothing will free the `FMySphere` instance and that it will remain a visual child of containing `TMyTransformationWithSphere` instance.
 ====
+
+== Using designs to visually set up default state of your component
+
+You can visually design a component (or a hierarchy of components) in the editor, following the https://www.youtube.com/watch?v=peiWjieZpbM[Reusing a design using TCastleDesign, TCastleTransformDesign (our equivalent to Unity prefabs)] video. This is, in some cases, an alternative to creating a custom component class (described in this manual page). So you can design a new hierarchy of components, _visually_, and can later reuse them by placing cgref:TCastleDesign[] or cgref:TCastleTransformDesign[] in your larger design files.
+
+The approach with cgref:TCastleDesign[] or cgref:TCastleTransformDesign[] however suffers from a limitation (for now): the hierarchy you instantiate through cgref:TCastleDesign[] or cgref:TCastleTransformDesign[] is _"opaque"_. You cannot customize the components you instantiate this way. While you can _"expand"_ them (using _"Edit (Copy Here) Referenced Design"_ context menu) but this effectively creates a copy of the design -- further changes to the original design will not be reflected.
+
+NOTE: In the long run, we plan to improve it, by allowing to customize the hierachy instantiated through cgref:TCastleDesign[] or cgref:TCastleTransformDesign[]. In Unity, this is called _"prefab overrides"_. In Delphi/Lazarus, _frames_ also offer this functionality. The idea is that, in the "outer" design, we can save only the differences from your original design to the customized version. It is a TODO to introduce this in CGE.
+
+What you can do *right now* to overcome this limitation is to combine these 2 approaches, in a way: visually design a component, place it in a design file, and then create a custom component class that will instantiate this design file.
+
+Here's a demo how it can work:
+
+[source,pascal]
+[source,pascal]
+----
+type
+  { A button with 2 labels.
+    Visually designed in my_button_with_2_labels.castle-user-interface design file.
+    Editing my_button_with_2_labels.castle-user-interface will dictate
+    the defaults of this button look.
+    Using the properties of this class, you can further customize it.
+  }
+  TMyButtonWith2Labels = class(TCastleUserInterface)
+  strict private
+    FDesign: TCastleDesign;
+    FInternalLabel1, FInternalLabel2: TCastleLabel;
+    function GetCaption1: String;
+    procedure SetCaption1(const Value: String);
+    function GetCaption2: String;
+    procedure SetCaption2(const Value: String);
+  published
+    property Caption1: String read GetCaption1 write SetCaption1;
+    property Caption2: String read GetCaption2 write SetCaption2;
+  end;
+
+constructor TMyButtonWith2Labels.Create(AOwner: TComponent);
+begin
+  inherited;
+  FDesign := TCastleDesign.Create(Self);
+  FDesign.Url := 'castle-data:/my_button_with_2_labels.castle-user-interface';
+  InsertFront(FDesign);
+
+  FInternalLabel1 := FDesign.FindDesignedComponent('InternalLabel1') as TCastleLabel;
+  FInternalLabel2 := FDesign.FindDesignedComponent('InternalLabel2') as TCastleLabel;
+end;
+
+function TMyButtonWith2Labels.GetCaption1: String;
+begin
+  Result := FInternalLabel1.Caption;
+end;
+
+procedure TMyButtonWith2Labels.SetCaption1(const Value: String);
+begin
+  FInternalLabel1.Caption := Value;
+end;
+
+function TMyButtonWith2Labels.GetCaption2: String;
+begin
+  Result := FInternalLabel2.Caption;
+end;
+
+procedure TMyButtonWith2Labels.SetCaption2(const Value: String);
+begin
+  FInternalLabel2.Caption := Value;
+end;
+
+initialization
+  RegisterSerializableComponent(TMyButtonWith2Labels, 'My Button with 2 labels');
+end.
+----
