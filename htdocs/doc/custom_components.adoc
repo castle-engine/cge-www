@@ -866,9 +866,10 @@ type
 constructor TMyButtonWith2Labels.Create(AOwner: TComponent);
 begin
   inherited;
+
   FDesign := TCastleDesign.Create(Self);
   FDesign.Url := 'castle-data:/my_button_with_2_labels.castle-user-interface';
-  FDesign.FullSize := true;
+  FDesign.SetTransient; // see above for explanation what does SetTransient
   InsertFront(FDesign);
 
   FInternalLabel1 := FDesign.FindDesignedComponent('InternalLabel1') as TCastleLabel;
