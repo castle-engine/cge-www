@@ -521,3 +521,25 @@ It would be easy to just expose *all* named components from the design in the `p
 - This is also means we'll edit the `uses` clause of unit to make sure all used component classes are registered, and declared, so that declarations in `published` section work. This is also something Delphi/Lazarus do. We know the unit of each component, so it should be easy.
 
 It is possible we'll add markers `{$region 'Castle ...'}` to help organize this. See the current markers in `gameinitialize.pas`.
+
+[#design_overrides]
+## Allow to override design properties when instantiated using TCastleDesign, TCastleTransformDesign
+
+Allow to customize the hierachy instantiated through cgeref:TCastleDesign[] or cgeref:TCastleTransformDesign[].
+
+In Unity, this is called _"prefab overrides"_. In Delphi/Lazarus, _frames_ also offer this functionality.
+
+The idea is that, in the "outer" design, we can save only the differences from your original design to the customized version.
+
+See link:custom_components[Custom components] documentation, and the section _"Using designs to visually set up default state of your component"_.
+
+[#shadow_maps]
+## Make shadow maps available by a trivial property on light sources
+
+Right now, activating https://castle-engine.io/x3d_extensions_shadow_maps.php[shadow maps] is more involved. You need to setup special X3D nodes, and they only https://github.com/castle-engine/castle-engine/issues/284[work within a single scene].
+
+This is in contrast to https://castle-engine.io/shadow_volumes[shadow volumes] that are trivial to activate: you literally just toggle one checkbox `Shadows` on our light components (`TCastleXxxLight`).
+
+We want to have both these shadow approaches be trivial to enable. Light source should just have a property like `ShadowsMethod` to choose shadows algorithm..
+
+NOTE: Alternative, rejected, API idea was to turn `Shadows` into an enum with a possible "none" value, like `Shadows: (None, Volumes, Maps)`. Separate Boolean to choose whether shadows are enabled at all, separate from choosing shadows algorithm, seems more natural.
