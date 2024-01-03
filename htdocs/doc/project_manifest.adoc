@@ -464,7 +464,7 @@ An example usage:
 
 The `<package>` element allows to fine-tune what files to include in the _package_. Package is created using the `castle-engine package` command of the build tool.
 
-By default, the build tool includes the `data/` subdirectory, the executable file and (on Windows) necessary DLLs. And it excludes some files known to be useful only for development, like `*.xcf` (GIMP), `*.blend*` (Blender), `*~` (backup files from various applications). To be precise, the defaults are like this:
+By default, the build tool includes the `data/` subdirectory, the executable file and (on Windows) necessary DLLs. And it excludes some files known to be useful only for development, like `\*.xcf` (GIMP), `*.blend*` (Blender), `*~` (backup files from various applications). To be precise, the defaults are like this:
 
 [source,xml]
 ----
@@ -491,7 +491,7 @@ The important fact to understand _how the inclusion/exclusion masks work_ is tha
 +
 For example:
 
- ** `<include path="gfx/textures/*.psd" recursive="True" />` adds files matching `*.psd` that are found inside the subdirectory `gfx/textures/` (or any of it's subdirectories).
+ ** `<include path="gfx/textures/\*.psd" recursive="True" />` adds files matching `*.psd` that are found inside the subdirectory `gfx/textures/` (or any of it's subdirectories).
 
 +
 You can request to set Unix executable bit (like `+chmod +x ...+`) on the packaged file using `+<include ... executable_permission="true" />+` (default `false`). The executable bit will be set, or unset, regardless of the executable bit of the original file.
@@ -506,7 +506,7 @@ For example:
  ** Use `<exclude path=".gitignore" />` to exclude file named `.gitignore` but only _at the project top-level directory_.
  ** Use `<exclude path="*/.gitignore" />` to exclude file named `.gitignore` _at any place within the project, not only at the project top-level directory_.
  ** Use `<exclude path=".svn/*" />` to exclude `.svn` subdirectory but only _at the project top-level directory_.
- ** Use `<exclude path="*/.svn/*" />` to exclude `.svn` subdirectory _at any place within the project, not only at the project top-level directory_.
+ ** Use `<exclude path="\*/.svn/*" />` to exclude `.svn` subdirectory _at any place within the project, not only at the project top-level directory_.
 
 The order of including and excluding:
 
