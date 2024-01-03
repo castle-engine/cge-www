@@ -197,7 +197,7 @@ The `<project>` attributes:
   *** We don't pass location of CGE units to lazbuild (Lazarus projects should use `castle_base` and `castle_window` / `castle_components` packages).
   *** We don't pass any compilation syntax options, but this usually doesn't matter (because our `castle_xxx` packages are compiled with proper options, and for your own projects -- the Lazarus defaults are largely similar to CGE defaults, e.g. using ObjFpc mode with AnsiStrings).
   *** We do not pass `--mode` (Lazarus supports build modes, but not all projects define Debug/Release modes).
-* `delphi_project` points to the `xxx.dproj` file of the project. By default this is calculated as `standalone_source` with extension changed to `.dprof`.
+* `delphi_project` points to the `xxx.dproj` file of the project. By default this is calculated as `standalone_source` with extension changed to `.dproj`.
 * `compiler` changes the default compiler used to compile this project (note that command-line `--compiler=xxx` option of the build tool can override it):
  ** `autodetect` (default) - use FPC or Delphi, whichever first is found
  ** `fpc`
