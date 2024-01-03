@@ -869,6 +869,7 @@ begin
 
   FDesign := TCastleDesign.Create(Self);
   FDesign.Url := 'castle-data:/my_button_with_2_labels.castle-user-interface';
+  FDesign.FullSize := true; // make FDesign fill the whole TMyButtonWith2Labels area
   FDesign.SetTransient; // see above for explanation what does SetTransient
   InsertFront(FDesign);
 
