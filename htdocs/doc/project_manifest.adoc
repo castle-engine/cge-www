@@ -117,7 +117,7 @@ The above example is a complete `CastleEngineManifest.xml` file, that allows to 
 +
 The `initialization` section of one of your units must create an instance of the class cgeref:TCastleWindow[], and you must set it as cgeref:TCastleApplication.MainWindow[Application.MainWindow]. Any example code, in particular all new projects created by the https://castle-engine.io/manual_editor.php[CGE editor], have a code doing this in `GameInitialize` unit.
 
-* The main program (or library) file, suitable for each platform, will be created automatically before every compilation, if you don't set appropriate `xxx_source` attribute for your platform. So if you don't set `android_source` / `ios_source` / `standalone_source` / `plugin_source`, but request compilation to a given platform, we will automatically generate a program (or library) file as necessary.
+* The main program (or library) file, suitable for each platform, will be created automatically before every compilation, if you don't set appropriate `xxx_source` attribute for your platform. So if you don't set `android_source` / `ios_source` / `standalone_source`, but request compilation to a given platform, we will automatically generate a program (or library) file as necessary.
 +
 *This is an important attribute to use when making a game portable to both standalone and mobile*. It allows you to avoid writing _any_ Android or iOS specific code. And you don't need to maintain the main program / library files. (These are the files typically with `.lpr` extension for FPC / Lazarus or `.dpr` for Delphi.)
 
@@ -162,7 +162,6 @@ This section documents the complete manifest file, with every possible attribute
   standalone_source="code/my_game.lpr"
   android_source="code/my_game_android.lpr"
   ios_source="code/my_game_ios.lpr"
-  plugin_source="code/my_game_plugin.lpr"
   game_units="MyMainGameUnit, MyOtherGameUnit"
   editor_units="MyVisualComponents"
   screen_orientation="any"
@@ -185,7 +184,7 @@ The `<project>` attributes:
   A convention is to derive this from the website address of your project. For example, for a game hosted on https://example.org/tetris , a sensible qualified name would be "org.example.tetris". But this is just a convention (no automatic mechanism will actually check is the portion of the name an existing domain name on the Internet), the only important fact is to make this string really unique.
 * `executable_name`: Binary name (without platform-specific extension, like `.exe` on Windows). Optional, by default equal to just `name`.
 * `standalone_source`: Main file for standalone (desktop -- Windows, Linux, MacOSX...) targets. Optional. You need to provide this, or the `game_units`, to compile for standalone platforms.
-* _(Deprecated)_ `android_source`, `ios_source`, `plugin_source`: Main file for a specified target. Optional. Using these attributes is discouraged: it's much better to specify only `game_units`, and let the engine auto-generate the appropriate main file for you. You need to understand a little the engine internals to create a valid `xxx_source` for Android, iOS or web plugin.
+* _(Deprecated)_ `android_source`, `ios_source`: Main file for a specified target. Optional. Using these attributes is discouraged: it's much better to specify only `game_units`, and let the engine auto-generate the appropriate main file for you. You need to understand a little the engine internals to create a valid `xxx_source` for Android, iOS or web plugin.
 * `screen_orientation`: Desired screen orientation on devices that support it, e.g. on Android. Allowed values are `any` (default), `landscape`, `portrait`.
 * `fullscreen_immersive `: Indicates whether you want to have the status bar and navigation buttons hidden on Android and iOS . Allowed values are `true` (default), `false`.
 * `game_units`: List of game units. To be included in the auto-generated library or program of your application. See the section above for more information.
