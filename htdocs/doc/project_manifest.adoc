@@ -186,7 +186,7 @@ The `<project>` attributes:
 * `standalone_source`: Main file for standalone (desktop -- Windows, Linux, MacOSX...) targets. Optional. You need to provide this, or the `game_units`, to compile for standalone platforms.
 * _(Deprecated)_ `android_source`, `ios_source`: Main file for a specified target. Optional. Using these attributes is discouraged: it's much better to specify only `game_units`, and let the engine auto-generate the appropriate main file for you. You need to understand a little the engine internals to create a valid `xxx_source` for Android, iOS or web plugin.
 * `screen_orientation`: Desired screen orientation on devices that support it, e.g. on Android. Allowed values are `any` (default), `landscape`, `portrait`.
-* `fullscreen_immersive `: Indicates whether you want to have the status bar and navigation buttons hidden on Android and iOS . Allowed values are `true` (default), `false`.
+* `fullscreen_immersive`: Indicates whether you want to have the status bar and navigation buttons hidden on Android and iOS . Allowed values are `true` (default), `false`.
 * `game_units`: List of game units. To be included in the auto-generated library or program of your application. See the section above for more information.
 * `editor_units`: List of the units that register custom components useful in CGE editor. See the section above for more information.
 * `lazarus_project`: The Lazarus project (`.lpi` extension) file of this project. It will be used to open this project in Lazarus. It will also be used to compile it, if `build_using_lazbuild`. By default this is calculated as `standalone_source` with extension changed to `.lpi`.
