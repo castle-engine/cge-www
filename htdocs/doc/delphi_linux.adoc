@@ -172,3 +172,21 @@ Additional notes:
 You have to simply ignore this GTK error. It doesn't break the execution flow, in particular code after `TCastleControl.ApplicationRun` executes normally.
 +
 The reason is that _FMXLinux_ `Application.Terminate` uses `gtk_main_quit`, but it should not be used when `gtk_main` is not called. And indeed `gtk_main` is not called when we don't call `Application.Run`. When you use cgeref:TCastleWindow[], we can adjust to it, by not using `Application.Terminate` at all. But when using cgeref:TCastleControl[], we cannot avoid it being called when last window gets closed.
+
+== Known Limitations
+
+=== Rendering is not as smooth as with FPC
+
+While the FPS counter shows the same values between FPC and Delphi (tested on various CGE examples, like `fps_game` and `play_animation`), and the OpenGL context details are equal (as seen using `LogGLInformationVerbose:=true;` -- OpenGL versions, vendors, all buffer sizes and multi-sampling), FPC applications (whether using `CASTLE_WINDOW_FORM` backend or `CASTLE_WINDOW_GTK` backend) seem to render more smoothly than Delphi applications. For some reason, the "perceived" frame-rate is lower on Delphi/Linux.
+
+The difference is most likely due to Delphi/Linux using FMXLinux underneath. Either FMXLinux or GTK3 are causing some worse perception of frame-rate.
+
+TODO: This shall be solved one day if we port `CASTLE_WINDOW_GTK` backend to Delphi. Than our code will really do exactly the same thing on FPC and Delphi.
+
+=== optirun (on laptops with 2 GPUs) doesn't affect Delphi applications
+
+For unknown reason, using `optirun`, like `optirun ./play_animation` to force the application to use dedicated GPU (like Nvidia) doesn't affect Delphi applications.
+
+Reasons are unknown. Note that we use the same OpenGL header (`CastleGL` based on `dglOpenGL`) and even load OpenGL library in the same way (`CastleDynLib`) on FPC and Delphi.
+
+Note that exporting `NvOptimusEnablement` on Delphi/Linux doesn't change anything. It is possible, see https://stackoverflow.com/questions/15372931/force-system-with-nvidia-optimus-to-use-the-real-gpu-for-my-application[this answer], but doesn't affect anything on Linux (doesn't change the default GPU, doesn't change whether `optirun` works). This is similar to FPC (where `NvOptimusEnablement` needs to be exported differently, but it also doesn't actually change anything on Linux, in our tests).
