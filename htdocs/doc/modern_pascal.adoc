@@ -23,7 +23,7 @@ So I wrote this quick introduction to what I call *modern Object Pascal*. Most o
 * It's very type safe,
 * High-level but can also be low-level if you need it to be.
 
-It also has excellent, portable and open-source compiler called the _Free Pascal Compiler_, http://freepascal.org/ . And an accompanying IDE (editor, debugger, a library of visual components, form designer) called _Lazarus_ http://lazarus.freepascal.org/ . Myself, I'm the creator of _Castle Game Engine_, https://castle-engine.io/ , which is an open-source 3D and 2D game engine using modern Pascal to create games on many platforms (Windows, Linux, macOS, Android, iOS, Nintendo Switch; also WebGL is coming).
+It also has excellent, portable and open-source compiler called the _Free Pascal Compiler_, http://freepascal.org/ . And an accompanying IDE (editor, debugger, a library of visual components, form designer) called _Lazarus_ http://lazarus.freepascal.org/ . There's also a proprietary and commercial compiler and IDE _Delphi_ https://www.embarcadero.com/products/Delphi . There's a lot of libraries (for both FPC and Delphi) available, see https://github.com/Fr0sT-Brutal/awesome-pascal . We also support existing editors like _VS Code_, see https://castle-engine.io/vscode . Myself, I'm the creator of _Castle Game Engine_, https://castle-engine.io/ , which is an open-source 3D and 2D game engine using modern Pascal to create games on many platforms (Windows, Linux, macOS, Android, iOS, Nintendo Switch; also WebGL is coming).
 
 This introduction is mostly directed at programmers who already have experience in other languages. We will not cover here the meanings of some universal concepts, like _"what is a class"_, we'll only show how to do them in Pascal.
 
@@ -412,7 +412,7 @@ To convert an arbitrary number of arguments to a string (instead of just directl
 * The `Format` function, used like `Format('%d %f %s', [MyInt, MyFloat, MyString])`. This is like `sprintf` function in the C-like languages. It inserts the arguments into the placeholders in the pattern. The placeholders may use special syntax to influence formatting, e.g. `%.4f` results in a floating-point format with 4 digits after the decimal point.
 ** _Advantage_: The separation of _pattern_ string from _arguments_ looks clean. If you need to change the pattern string without touching the arguments (e.g. when translating), you can do it easily.
 ** _Another advantage_: No compiler magic. You can use the same syntax to pass any number of arguments of an arbitrary type in your own routines (declare parameter as an `array of const`). You can then pass these arguments downward to `Format`, or deconstruct the list of parameters and do anything you like with them.
-** _Disadvantage_: Compiler does not check whether the pattern matches the arguments. Using a wrong placeholder type will result in an exception at runtime (`EConvertError` exception, not anything nasty like a segmentation fault).
+** _Disadvantage_: Compiler does not check whether the pattern matches the arguments. Using a wrong placeholder type will result in an exception at runtime (`EConvertError` exception, not anything nasty like _Access Violation (Segmentation Fault)_ error).
 //Note that, unlike the C `sprintf`, the correctness at runtime can be completely verified (there are no dirty pointer tricks inside
 
 * `WriteStr(TargetString, ...)` routine behaves much like `Write(...)`, except that the result is saved to the `TargetString`.
@@ -846,12 +846,12 @@ Note 1: The `inherited;` is really just a shortcut for calling the ancestor's me
 ----
 procedure TMyClass2.MyMethod(A: Integer);
 begin
-  Writeln('TMyClass2.MyMethod beginning ', A);
+  WriteLn('TMyClass2.MyMethod beginning ', A);
   A := 456;
   { This calls TMyClass1.MyMethod with A = 456,
     regardless of the A value passed to this method (TMyClass2.MyMethod). }
   inherited;
-  Writeln('TMyClass2.MyMethod ending ', A);
+  WriteLn('TMyClass2.MyMethod ending ', A);
 end;
 ----
 
@@ -946,9 +946,30 @@ This frees the `A`, unless it's `nil`.
 
 Note that in normal circumstances, you should never call a method on an instance which may be `nil`. So the call `A.Free` may look suspicious at the first sight, if `A` can be `nil`. However, the `Free` method is an exception to this rule. It does something dirty in the implementation -- namely, checks whether `Self <> nil`.
 
-NOTE: This dirty trick (officially allowing the method to be used with `Self` equal `nil`) is possible only for non-virtual methods. And as long as `Self = nil` is possible, the method cannot call any virtual methods or access any fields, as these would crash with acces violation when called on a `nil` pointer. See the sample code https://github.com/michaliskambi/modern-pascal-introduction/blob/master/code-samples/method_with_self_nil.lpr[method_with_self_nil.lpr]. We discourage from using this trick in your own code (for virtual or non-virtual methods) as it is counter-intuitive to normal usage, in general all instance methods should be able to assume that they work on valid (non-nil) instance and can access fields and call any other methods (virtual or not).
+[NOTE]
+====
+This trick (officially allowing the method to be used with `Self` equal `nil`) is possible only in non-virtual methods.
 
-I advise using `FreeAndNil(A)` always, without exceptions, and never to call directly the `Free` method or `Destroy` destructor. The _Castle Game Engine_ does it like that. It helps to keep a nice assertion that _all references are either nil, or point to valid instances_.
+In the implementation of such method, as long as `Self = nil` is possible, the method cannot call any virtual methods or access any fields, as these would cause _Access Violation (Segmentation Fault)_ error when called on a `nil` instance. See the sample code https://github.com/michaliskambi/modern-pascal-introduction/blob/master/code-samples/method_with_self_nil.lpr[method_with_self_nil.lpr].
+
+We discourage from using this trick in your own code (for virtual or non-virtual methods) as it is counter-intuitive to normal usage. In general all instance methods should be able to assume that they work on valid (non-nil) instance and can access fields and call any other methods (virtual or not).
+====
+
+We advise using `FreeAndNil(A)` always, without exceptions, and never to call directly the `Free` method or `Destroy` destructor.
+
+The _Castle Game Engine_ does it like that. It helps to keep a nice assertion that _all references are either nil, or point to valid instances_. But note that using `FreeAndNil(A)`  doesn't *guarantee* this assertion. For example, if you copy the instance reference, and call `FreeAndNil(A)` on one copy, the other copy will be a non-nil dangling pointer.
+
+[source,pascal]
+----
+A := TMyClass.Create;
+B := A;
+FreeAndNil(A);
+// B now contains a dangling pointer
+----
+
+More about dealing with this in the later section about _"Free notification"_.
+
+Still, `FreeAndNil(A)` takes care of the most trivial cases, so it's a good habit to use it IMHO. You will appreciate it when debuggging some errors, it is nice to easily observe _"``X`` is already freed, because `X` is `nil` now"_.
 
 ### Manual and automatic freeing
 
@@ -1316,16 +1337,16 @@ var
   Parameter1, Parameter2, Parameter3: String;
 begin
   try
-    Writeln('Input 1st parameter:');
+    WriteLn('Input 1st parameter:');
     Parameter1 := ReadParameter;
-    Writeln('Input 2nd parameter:');
+    WriteLn('Input 2nd parameter:');
     Parameter2 := ReadParameter;
-    Writeln('Input 3rd parameter:');
+    WriteLn('Input 3rd parameter:');
     Parameter3 := ReadParameter;
   except
     // capture EInvalidParameter raised by one of the above ReadParameter calls
     on EInvalidParameter do
-      Writeln('EInvalidParameter exception occurred');
+      WriteLn('EInvalidParameter exception occurred');
   end;
 end;
 ----
@@ -1338,7 +1359,7 @@ try
 ...
 except
   on E: EInvalidParameter do
-    Writeln('EInvalidParameter exception occurred with message: ' + E.Message);
+    WriteLn('EInvalidParameter exception occurred with message: ' + E.Message);
 end;
 ----
 
@@ -1350,9 +1371,9 @@ try
 ...
 except
   on E: EInvalidParameter do
-    Writeln('EInvalidParameter exception occurred with message: ' + E.Message);
+    WriteLn('EInvalidParameter exception occurred with message: ' + E.Message);
   on E: ESomeOtherException do
-    Writeln('ESomeOtherException exception occurred with message: ' + E.Message);
+    WriteLn('ESomeOtherException exception occurred with message: ' + E.Message);
 end;
 ----
 
@@ -1363,7 +1384,7 @@ You can also react to any exception raised, if you don't use any `on` expression
 try
 ...
 except
-  Writeln('Warning: Some exception occurred');
+  WriteLn('Warning: Some exception occurred');
 end;
 // WARNING: DO NOT FOLLOW THIS EXAMPLE WITHOUT READING A WARNING BELOW
 // ABOUT "CAPTURING ALL EXCEPTIONS"
@@ -1383,7 +1404,7 @@ try
 ...
 except
   on E: TObject do
-    Writeln('Warning: Some exception occurred');
+    WriteLn('Warning: Some exception occurred');
 end;
 // WARNING: DO NOT FOLLOW THIS EXAMPLE WITHOUT READING A WARNING ABOVE
 // ABOUT "CAPTURING ALL EXCEPTIONS"
@@ -1397,7 +1418,7 @@ try
 ...
 except
   on E: Exception do
-    Writeln('Warning: Some exception occurred: ' + E.ClassName + ', message: ' + E.Message);
+    WriteLn('Warning: Some exception occurred: ' + E.ClassName + ', message: ' + E.Message);
 end;
 // WARNING: DO NOT FOLLOW THIS EXAMPLE WITHOUT READING A WARNING ABOVE
 // ABOUT "CAPTURING ALL EXCEPTIONS"
@@ -1413,7 +1434,7 @@ except
   on E: EInvalidSoundFile do
   begin
     if E.InvalidUrl = 'http://example.com/blablah.wav' then
-      Writeln('Warning: loading http://example.com/blablah.wav failed, ignore it')
+      WriteLn('Warning: loading http://example.com/blablah.wav failed, ignore it')
     else
       raise;
   end;
@@ -1464,7 +1485,7 @@ begin
 end;
 ----
 
-The above example is not valid: if an exception occurs within `TMyClass.Create` (a constructor may also raise an exception), or within the `CallSomeOtherProcedure`, then the `MyInstance` variable is not initialized. Calling `FreeAndNil(MyInstance)` will try to call destructor of `MyInstance`, which will most likely crash with _Access Violation (Segmentation Fault)_. In effect, one exception causes another exception, which will make the error report not very useful: you will not see the message of the original exception.
+The above example is not valid: if an exception occurs within `TMyClass.Create` (a constructor may also raise an exception), or within the `CallSomeOtherProcedure`, then the `MyInstance` variable is not initialized. Calling `FreeAndNil(MyInstance)` will try to call destructor of `MyInstance`, which will most likely crash with _Access Violation (Segmentation Fault)_ error. In effect, one exception causes another exception, which will make the error report not very useful: you will not see the message of the original exception.
 
 Sometimes it is justified to fix the above code by first initializing all local variables to `nil` (on which calling `FreeAndNil` is safe, and will not do anything). This makes sense if you free a *lot* of class instances. So the two code examples below work equally well:
 
@@ -1530,6 +1551,46 @@ end;
 ----
 
 NOTE: In this simple example, you could also make a valid argument that the code should be split into 3 separate procedures, one calling each other.
+
+The final section in the `try .. finally .. end` block executes in most possible scenarios when you leave the main code. Consider this:
+
+[source,pascal]
+----
+try
+  A;
+finally
+  B;
+end;
+----
+
+So `B` will execute if
+
+- The `A` raised (and didn't catch) an exception.
+- Or you will call `Exit` or (if you're in the loop) `Break` or `Continue` right after calling `A`.
+- Or none of the above happened, and the code in `A` just executed without any exception, and you didn't call `Exit`, `Break` or `Continue` either.
+
+The only way to really avoid the `B` being executed is to unconditionally interrupt the application process using `Halt` or some platform-specific APIs (like https://www.man7.org/linux/man-pages/man3/exit.3.html[libc exit on Unix]) inside `A`. Which generally shall not be done -- it's more flexible to use exceptions to interrupt the application, because it allows some other code to have a chance to clean up.
+
+NOTE: The `try .. finally .. end` doesn't catch the exception. The exception will still propagate upward, and can be caught by the `try .. except .. end` block outside of this one.
+
+An example of `try .. finally .. end` together with `Exit` calls:
+
+[source,pascal]
+----
+procedure MyProcedure;
+begin
+  try
+    WriteLn('Do something');
+    Exit;
+    WriteLn('This will not happen');
+  finally
+    WriteLn('This will happen regardless if we have left the block through Exception, Exit, Continue, Break, etc.');
+  end;
+  WriteLn('This will not happen');
+end;
+----
+
+See the <<Exceptions>> chapter for more in-depth description of _exceptions_ including how to `raise` them and use `try ... except ... end` to catch them.
 
 ### How the exceptions are displayed by various libraries
 
