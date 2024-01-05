@@ -687,7 +687,7 @@ a.patreon-link:focus {
 </ul>
 </div>
 <div class="paragraph">
-<p>It also has excellent, portable and open-source compiler called the <em>Free Pascal Compiler</em>, <a href="http://freepascal.org/" class="bare">http://freepascal.org/</a> . And an accompanying IDE (editor, debugger, a library of visual components, form designer) called <em>Lazarus</em> <a href="http://lazarus.freepascal.org/" class="bare">http://lazarus.freepascal.org/</a> . Myself, I&#8217;m the creator of <em>Castle Game Engine</em>, <a href="https://castle-engine.io/" class="bare">https://castle-engine.io/</a> , which is an open-source 3D and 2D game engine using modern Pascal to create games on many platforms (Windows, Linux, macOS, Android, iOS, Nintendo Switch; also WebGL is coming).</p>
+<p>It also has excellent, portable and open-source compiler called the <em>Free Pascal Compiler</em>, <a href="http://freepascal.org/" class="bare">http://freepascal.org/</a> . And an accompanying IDE (editor, debugger, a library of visual components, form designer) called <em>Lazarus</em> <a href="http://lazarus.freepascal.org/" class="bare">http://lazarus.freepascal.org/</a> . There&#8217;s also a proprietary and commercial compiler and IDE <em>Delphi</em> <a href="https://www.embarcadero.com/products/Delphi" class="bare">https://www.embarcadero.com/products/Delphi</a> . There&#8217;s a lot of libraries (for both FPC and Delphi) available, see <a href="https://github.com/Fr0sT-Brutal/awesome-pascal" class="bare">https://github.com/Fr0sT-Brutal/awesome-pascal</a> . We also support existing editors like <em>VS Code</em>, see <a href="https://castle-engine.io/vscode" class="bare">https://castle-engine.io/vscode</a> . Myself, I&#8217;m the creator of <em>Castle Game Engine</em>, <a href="https://castle-engine.io/" class="bare">https://castle-engine.io/</a> , which is an open-source 3D and 2D game engine using modern Pascal to create games on many platforms (Windows, Linux, macOS, Android, iOS, Nintendo Switch; also WebGL is coming).</p>
 </div>
 <div class="paragraph">
 <p>This introduction is mostly directed at programmers who already have experience in other languages. We will not cover here the meanings of some universal concepts, like <em>"what is a class"</em>, we&#8217;ll only show how to do them in Pascal.</p>
@@ -2148,12 +2148,12 @@ In the above example, all the <code>inherited &#8230;&#8203;;</code> calls could
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="pascal"><span class="keyword">procedure</span> TMyClass2.MyMethod(A: Integer);
 <span class="keyword">begin</span>
-  Writeln(<span class="string"><span class="delimiter">'</span><span class="content">TMyClass2.MyMethod beginning </span><span class="delimiter">'</span></span>, A);
+  WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">TMyClass2.MyMethod beginning </span><span class="delimiter">'</span></span>, A);
   A := <span class="integer">456</span>;
   <span class="comment">{ This calls TMyClass1.MyMethod with A = 456,
     regardless of the A value passed to this method (TMyClass2.MyMethod). }</span>
   <span class="keyword">inherited</span>;
-  Writeln(<span class="string"><span class="delimiter">'</span><span class="content">TMyClass2.MyMethod ending </span><span class="delimiter">'</span></span>, A);
+  WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">TMyClass2.MyMethod ending </span><span class="delimiter">'</span></span>, A);
 <span class="keyword">end</span>;</code></pre>
 </div>
 </div>
@@ -2852,16 +2852,16 @@ results in an unpredictable behavior&#8201;&#8212;&#8201;maybe an access violati
   Parameter1, Parameter2, Parameter3: <span class="keyword">String</span>;
 <span class="keyword">begin</span>
   <span class="keyword">try</span>
-    Writeln(<span class="string"><span class="delimiter">'</span><span class="content">Input 1st parameter:</span><span class="delimiter">'</span></span>);
+    WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">Input 1st parameter:</span><span class="delimiter">'</span></span>);
     Parameter1 := ReadParameter;
-    Writeln(<span class="string"><span class="delimiter">'</span><span class="content">Input 2nd parameter:</span><span class="delimiter">'</span></span>);
+    WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">Input 2nd parameter:</span><span class="delimiter">'</span></span>);
     Parameter2 := ReadParameter;
-    Writeln(<span class="string"><span class="delimiter">'</span><span class="content">Input 3rd parameter:</span><span class="delimiter">'</span></span>);
+    WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">Input 3rd parameter:</span><span class="delimiter">'</span></span>);
     Parameter3 := ReadParameter;
   <span class="keyword">except</span>
     <span class="comment">// capture EInvalidParameter raised by one of the above ReadParameter calls</span>
     <span class="directive">on</span> EInvalidParameter <span class="keyword">do</span>
-      Writeln(<span class="string"><span class="delimiter">'</span><span class="content">EInvalidParameter exception occurred</span><span class="delimiter">'</span></span>);
+      WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">EInvalidParameter exception occurred</span><span class="delimiter">'</span></span>);
   <span class="keyword">end</span>;
 <span class="keyword">end</span>;</code></pre>
 </div>
@@ -2875,7 +2875,7 @@ results in an unpredictable behavior&#8201;&#8212;&#8201;maybe an access violati
 ...
 except
   <span class="directive">on</span> E: EInvalidParameter <span class="keyword">do</span>
-    Writeln(<span class="string"><span class="delimiter">'</span><span class="content">EInvalidParameter exception occurred with message: </span><span class="delimiter">'</span></span> + E.Message);
+    WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">EInvalidParameter exception occurred with message: </span><span class="delimiter">'</span></span> + E.Message);
 <span class="keyword">end</span>;</code></pre>
 </div>
 </div>
@@ -2888,9 +2888,9 @@ except
 ...
 except
   <span class="directive">on</span> E: EInvalidParameter <span class="keyword">do</span>
-    Writeln(<span class="string"><span class="delimiter">'</span><span class="content">EInvalidParameter exception occurred with message: </span><span class="delimiter">'</span></span> + E.Message);
+    WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">EInvalidParameter exception occurred with message: </span><span class="delimiter">'</span></span> + E.Message);
   <span class="directive">on</span> E: ESomeOtherException <span class="keyword">do</span>
-    Writeln(<span class="string"><span class="delimiter">'</span><span class="content">ESomeOtherException exception occurred with message: </span><span class="delimiter">'</span></span> + E.Message);
+    WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">ESomeOtherException exception occurred with message: </span><span class="delimiter">'</span></span> + E.Message);
 <span class="keyword">end</span>;</code></pre>
 </div>
 </div>
@@ -2902,7 +2902,7 @@ except
 <pre class="CodeRay highlight"><code data-lang="pascal"><span class="keyword">try</span>
 ...
 except
-  Writeln(<span class="string"><span class="delimiter">'</span><span class="content">Warning: Some exception occurred</span><span class="delimiter">'</span></span>);
+  WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">Warning: Some exception occurred</span><span class="delimiter">'</span></span>);
 <span class="keyword">end</span>;
 <span class="comment">// WARNING: DO NOT FOLLOW THIS EXAMPLE WITHOUT READING A WARNING BELOW</span>
 <span class="comment">// ABOUT &quot;CAPTURING ALL EXCEPTIONS&quot;</span></code></pre>
@@ -2930,7 +2930,7 @@ except
 ...
 except
   <span class="directive">on</span> E: TObject <span class="keyword">do</span>
-    Writeln(<span class="string"><span class="delimiter">'</span><span class="content">Warning: Some exception occurred</span><span class="delimiter">'</span></span>);
+    WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">Warning: Some exception occurred</span><span class="delimiter">'</span></span>);
 <span class="keyword">end</span>;
 <span class="comment">// WARNING: DO NOT FOLLOW THIS EXAMPLE WITHOUT READING A WARNING ABOVE</span>
 <span class="comment">// ABOUT &quot;CAPTURING ALL EXCEPTIONS&quot;</span></code></pre>
@@ -2945,7 +2945,7 @@ except
 ...
 except
   <span class="directive">on</span> E: Exception <span class="keyword">do</span>
-    Writeln(<span class="string"><span class="delimiter">'</span><span class="content">Warning: Some exception occurred: </span><span class="delimiter">'</span></span> + E.ClassName + <span class="string"><span class="delimiter">'</span><span class="content">, message: </span><span class="delimiter">'</span></span> + E.Message);
+    WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">Warning: Some exception occurred: </span><span class="delimiter">'</span></span> + E.ClassName + <span class="string"><span class="delimiter">'</span><span class="content">, message: </span><span class="delimiter">'</span></span> + E.Message);
 <span class="keyword">end</span>;
 <span class="comment">// WARNING: DO NOT FOLLOW THIS EXAMPLE WITHOUT READING A WARNING ABOVE</span>
 <span class="comment">// ABOUT &quot;CAPTURING ALL EXCEPTIONS&quot;</span></code></pre>
@@ -2962,7 +2962,7 @@ except
   <span class="directive">on</span> E: EInvalidSoundFile <span class="keyword">do</span>
   <span class="keyword">begin</span>
     <span class="keyword">if</span> E.InvalidUrl = <span class="string"><span class="delimiter">'</span><span class="content">http://example.com/blablah.wav</span><span class="delimiter">'</span></span> <span class="keyword">then</span>
-      Writeln(<span class="string"><span class="delimiter">'</span><span class="content">Warning: loading http://example.com/blablah.wav failed, ignore it</span><span class="delimiter">'</span></span>)
+      WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">Warning: loading http://example.com/blablah.wav failed, ignore it</span><span class="delimiter">'</span></span>)
     <span class="keyword">else</span>
       <span class="keyword">raise</span>;
   <span class="keyword">end</span>;
@@ -3097,6 +3097,70 @@ In this simple example, you could also make a valid argument that the code shoul
 </td>
 </tr>
 </table>
+</div>
+<div class="paragraph">
+<p>The final section in the <code>try .. finally .. end</code> block executes in most possible scenarios when you leave the main code. Consider this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="keyword">try</span>
+  A;
+<span class="keyword">finally</span>
+  B;
+<span class="keyword">end</span>;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>So <code>B</code> will execute if</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <code>A</code> raised (and didn&#8217;t catch) an exception.</p>
+</li>
+<li>
+<p>Or you will call <code>Exit</code> or (if you&#8217;re in the loop) <code>Break</code> or <code>Continue</code> right after calling <code>A</code>.</p>
+</li>
+<li>
+<p>Or none of the above happened, and the code in <code>A</code> just executed without any exception, and you didn&#8217;t call <code>Exit</code>, <code>Break</code> or <code>Continue</code> either.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The only way to really avoid the <code>B</code> being executed is to unconditionally interrupt the application process using <code>Halt</code> or some platform-specific APIs (like <a href="https://www.man7.org/linux/man-pages/man3/exit.3.html">libc exit on Unix</a>) inside <code>A</code>. Which generally shall not be done&#8201;&#8212;&#8201;it&#8217;s more flexible to use exceptions to interrupt the application, because it allows some other code to have a chance to clean up.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+The <code>try .. finally .. end</code> doesn&#8217;t catch the exception. The exception will still propagate upward, and can be caught by the <code>try .. except .. end</code> block outside of this one.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>An example of <code>try .. finally .. end</code> together with <code>Exit</code> calls:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="keyword">procedure</span> MyProcedure;
+<span class="keyword">begin</span>
+  <span class="keyword">try</span>
+    WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">Do something</span><span class="delimiter">'</span></span>);
+    Exit;
+    WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">This will not happen</span><span class="delimiter">'</span></span>);
+  <span class="keyword">finally</span>
+    WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">This will happen regardless if we have left the block through Exception, Exit, Continue, Break, etc.</span><span class="delimiter">'</span></span>);
+  <span class="keyword">end</span>;
+  WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">This will not happen</span><span class="delimiter">'</span></span>);
+<span class="keyword">end</span>;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>See the <a href="#_exceptions">Exceptions</a> chapter for more in-depth description of <em>exceptions</em> including how to <code>raise</code> them and use <code>try &#8230;&#8203; except &#8230;&#8203; end</code> to catch them.</p>
 </div>
 </div>
 <div class="sect2">
@@ -5479,7 +5543,7 @@ you create <em>COM interfaces</em>. This can be stated explicitly by saying <cod
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-08-09 21:58:34 +0200
+Last updated 2024-01-05 13:31:09 +0100
 </div>
 </div>
 <!-- Google analytics -->
