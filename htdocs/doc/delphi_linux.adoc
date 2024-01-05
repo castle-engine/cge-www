@@ -210,3 +210,21 @@ Reason is unknown at this point. Notes about things we considered:
 - Exporting `NvOptimusEnablement` on Delphi/Linux doesn't change anything. It is possible, see https://stackoverflow.com/questions/15372931/force-system-with-nvidia-optimus-to-use-the-real-gpu-for-my-application[this answer], but doesn't affect anything on Linux (doesn't change the default GPU, doesn't change whether `optirun` works). This is similar to FPC (where `NvOptimusEnablement` needs to be exported differently, but it also doesn't actually change anything on Linux, in our tests).
 
 - We tested changing `CastleDynLib` to handle shared libraries using directly `dlopen` / `dlsym` / `dlclose`, with and without `RTLD_GLOBAL`. (In case Delphi's `LoadLibrary` did something non-standard on Linux.) It didn't change anything -- that is the resulting applications worked OK, but remained "invulnerable" to `optirun`.
+
+=== TCastleDownload fails to download larger files
+
+Unfortunately, Delphi's `TNetHttpClient` component fails to download larger files on Linux. This is reproducible without CGE, try the `test_net_http_client.dpr` from https://github.com/michaliskambi/delphi-http-download , and uncomment the line to download https://castle-engine.io/latest.zip -- it will fail with a timeout. Tested with Delphi 11.3.
+
+In effect, our cgeref:TCastleDownload[] component also fails in this case. cgeref:TCastleDownload[] on Delphi/Linux is just a wrapper around `TNetHttpClient`.
+
+*Smaller requests (`GET`, `POST`) work OK*, as you can test by https://github.com/castle-engine/castle-engine/tree/master/examples/network/remote_logging[examples/network/remote_logging] and https://github.com/castle-engine/castle-engine/tree/master/examples/network/asynchronous_download[examples/network/asynchronous_download]. The latter (`asynchronous_download`) downloads OK smaller things, like https://en.wikipedia.org/wiki/Main_Page or https://castle-engine.io/modern_pascal_introduction.html . But it again fails to download a big file https://castle-engine.io/latest.zip .
+
+TODO: This should be submitted as bug to Embarcadero.
+
+For now, this unfortunately leaves us without a reliable component to perform HTTP(S) requests with Delphi/Linux:
+
+- https://github.com/castle-engine/castle-engine/blob/master/src/files/castledownload_url_http_indy.inc[Indy TIdHttp] relies on a really old OpenSSL version (even before 1.1) for HTTPS, that practically no user has installed. (And should not -- having outdated OpenSSL is a security risk.)
++
+Since almost everything on the web is now served over encrypted HTTPS, we cannot use a component that practically doesn't support HTTPS.
+
+- https://github.com/castle-engine/castle-engine/blob/master/src/files/castledownload_url_http_delphi_net.inc[TNetHTTPClient] suffers from the above-mentioned problem: it works for smaller downloads, fails for larger.
