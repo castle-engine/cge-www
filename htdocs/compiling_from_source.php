@@ -169,7 +169,7 @@ Set-ExecutionPolicy Bypass -Scope Process
   <li>
     <p>On <i>Debian</i> and derivatives (like <i>Ubuntu</i> or <i>Raspberry Pi OS</i>), this command should install everything you need:
 
-    <pre>sudo apt install libgtk2.0-dev libglx-dev libgl-dev libqt5pas-dev</pre>
+    <pre>sudo apt install libgtk2.0-dev libglx-dev libgl-dev libqt5pas-dev libpng-dev libz1 libopenal1 libfreetype6 libvorbisfile3</pre>
 
     <p>(Anything missing? <a href="https://www.debian.org/distrib/packages">Search</a>)
 
@@ -177,11 +177,12 @@ Set-ExecutionPolicy Bypass -Scope Process
     <p>On Fedora, this command should install everything you need (and more, some of these are FPC requirements actually, not CGE):
 
     <pre>sudo dnf install gtk2 gtk2-devel libX11-devel make binutils glibc-devel mesa-libGL-devel qt5pas</pre>
+    <!-- TODO: add on Fedora: libpng-dev libz1 libopenal1 libfreetype6 libvorbisfile3 -->
 
     <p>(Anything missing? <a href="https://packages.fedoraproject.org/">Search</a>)
 </ul>
 
-<p>Note that we link to many libraries dynamically using <i>"dlopen"</i> Unix mechanism. So it is not necessary to install e.g. <code>libpng-dev</code> or <code>libfreetype6-dev</code>.
+<p>Note that we link to most libraries dynamically using <i>"dlopen"</i> Unix mechanism. So it is not necessary to install e.g. <code>libfreetype6-dev</code>. And instead of <code>libpng-dev</code> you can install any recent <code>libpngXY</code> with <code>XY</code> indicating version 1.2-1.6 (various distros have a bit different naming here).
 
 <?php echo $toc->html_section(); ?>
 
