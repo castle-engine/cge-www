@@ -139,7 +139,7 @@ number of frames per second that we managed to display.</b>
     will show <code>no need to redraw</code>).
 -->
 
-  <li><p>If you hope to see higher values than 100 (the default
+  <li><p>If you hope to see higher values than 120 (the default
     <code>LimitFPS</code> value) then turn off "<i>limit FPS</i>" feature.
 
     <ul>
