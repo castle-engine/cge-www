@@ -175,14 +175,6 @@ The reason is that _FMXLinux_ `Application.Terminate` uses `gtk_main_quit`, but 
 
 == Known Limitations
 
-=== Rendering is not as smooth as with FPC
-
-While the FPS counter shows the same values between FPC and Delphi (tested on various CGE examples, like `fps_game` and `play_animation`), and the OpenGL context details are equal (as seen using `LogGLInformationVerbose:=true;` -- OpenGL versions, vendors, all buffer sizes and multi-sampling), FPC applications (whether using `CASTLE_WINDOW_FORM` backend or `CASTLE_WINDOW_GTK` backend) seem to render more smoothly than Delphi applications. For some reason, the "perceived" frame-rate is lower on Delphi/Linux.
-
-The difference is most likely due to Delphi/Linux using FMXLinux underneath. Either FMXLinux or GTK3 are causing some worse perception of frame-rate.
-
-TODO: This shall be solved one day if we port `CASTLE_WINDOW_GTK` backend to Delphi. Than our code will really do exactly the same thing on FPC and Delphi.
-
 === optirun (on laptops with 2 GPUs) doesn't affect Delphi applications
 
 For unknown reason, using `optirun`, like `optirun ./play_animation` to force the application to use dedicated GPU (like Nvidia) doesn't affect Delphi applications.
