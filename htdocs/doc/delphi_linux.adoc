@@ -179,6 +179,10 @@ The reason is that _FMXLinux_ `Application.Terminate` uses `gtk_main_quit`, but 
 
 For unknown reason, using `optirun`, like `optirun ./play_animation` to force the application to use dedicated GPU (like Nvidia) doesn't affect Delphi applications.
 
-Reasons are unknown. Note that we use the same OpenGL header (`CastleGL` based on `dglOpenGL`) and even load OpenGL library in the same way (`CastleDynLib`) on FPC and Delphi.
+Reason is unknown at this point. Notes about things we considered:
 
-Note that exporting `NvOptimusEnablement` on Delphi/Linux doesn't change anything. It is possible, see https://stackoverflow.com/questions/15372931/force-system-with-nvidia-optimus-to-use-the-real-gpu-for-my-application[this answer], but doesn't affect anything on Linux (doesn't change the default GPU, doesn't change whether `optirun` works). This is similar to FPC (where `NvOptimusEnablement` needs to be exported differently, but it also doesn't actually change anything on Linux, in our tests).
+- We use the same OpenGL header (`CastleGL` based on `dglOpenGL`) and even load OpenGL library in the same way (`CastleDynLib`) on FPC and Delphi.
+
+- Exporting `NvOptimusEnablement` on Delphi/Linux doesn't change anything. It is possible, see https://stackoverflow.com/questions/15372931/force-system-with-nvidia-optimus-to-use-the-real-gpu-for-my-application[this answer], but doesn't affect anything on Linux (doesn't change the default GPU, doesn't change whether `optirun` works). This is similar to FPC (where `NvOptimusEnablement` needs to be exported differently, but it also doesn't actually change anything on Linux, in our tests).
+
+- We tested changing `CastleDynLib` to handle shared libraries using directly `dlopen` / `dlsym` / `dlclose`, with and without `RTLD_GLOBAL`. (In case Delphi's `LoadLibrary` did something non-standard on Linux.) It didn't change anything -- that is the resulting applications worked OK, but remained "invulnerable" to `optirun`.
