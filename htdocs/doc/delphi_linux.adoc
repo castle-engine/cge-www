@@ -213,18 +213,41 @@ Reason is unknown at this point. Notes about things we considered:
 
 === TCastleDownload fails to download larger files
 
-Unfortunately, Delphi's `TNetHttpClient` component fails to download larger files on Linux. This is reproducible without CGE, using our test programs in https://github.com/michaliskambi/delphi-http-download :
+Unfortunately, Delphi's `TNetHttpClient` component fails to download larger files on Linux. We know it's not a problem in _Castle Game Engine_ as we can reproduce it without CGE, using our test programs in https://github.com/michaliskambi/delphi-http-download (see below about the details of what we tested trying to fix/workaround this issue).
 
-- It is reproducible using the command-line https://github.com/michaliskambi/delphi-http-download/blob/master/test_net_http_client.dpr[test_net_http_client.dpr]
+A sample URL that will fail to download is https://castle-engine.io/latest.zip -- it will fail with a timeout.
 
-- It is also reproducible using the FMX (GUI) application in https://github.com/michaliskambi/delphi-http-download/tree/master/fmx[fmx/ subdirectory in that repo].
+In effect, our cgeref:TCastleDownload[] component also fails in this case, for such URL. cgeref:TCastleDownload[] on Delphi/Linux is just a wrapper around `TNetHttpClient`.
 
-Use any of the above examples, change URL to https://castle-engine.io/latest.zip -- it will fail with a timeout. Tested with both Delphi 11.3 and 12.
+NOTE: Smaller requests (`GET`, `POST`) still work OK.
 
-In effect, our cgeref:TCastleDownload[] component also fails in this case. cgeref:TCastleDownload[] on Delphi/Linux is just a wrapper around `TNetHttpClient`.
+You can test CGE examples:
 
-*Smaller requests (`GET`, `POST`) work OK*, as you can test by https://github.com/castle-engine/castle-engine/tree/master/examples/network/remote_logging[examples/network/remote_logging] and https://github.com/castle-engine/castle-engine/tree/master/examples/network/asynchronous_download[examples/network/asynchronous_download]. The latter (`asynchronous_download`) downloads OK smaller things, like https://en.wikipedia.org/wiki/Main_Page or https://castle-engine.io/modern_pascal_introduction.html . But it fails to download a big file https://castle-engine.io/latest.zip .
+- https://github.com/castle-engine/castle-engine/tree/master/examples/network/remote_logging[examples/network/remote_logging]
+- https://github.com/castle-engine/castle-engine/tree/master/examples/network/asynchronous_download[examples/network/asynchronous_download]
+- https://github.com/castle-engine/castle-engine/tree/master/examples/network/castle_download[examples/network/castle_download] (command-line).
+
+The `asynchronous_download) downloads OK smaller things, like https://en.wikipedia.org/wiki/Main_Page or https://castle-engine.io/modern_pascal_introduction.html . But it fails to download a big file https://castle-engine.io/latest.zip .
 
 TODO: This should be submitted as bug to Embarcadero.
+
+Experiments done:
+
+- https://github.com/michaliskambi/delphi-http-download confirms this with 2 examples:
++
+--
+- It is reproducible using the command-line https://github.com/michaliskambi/delphi-http-download/blob/master/test_net_http_client.dpr[test_net_http_client.dpr]
+- It is also reproducible using the FMX (GUI) application in https://github.com/michaliskambi/delphi-http-download/tree/master/fmx[fmx/ subdirectory in that repo].
+--
+- Tested and reproduced with both Delphi 11.3 and 12.
+- It is reproducible regardless of the `Asynchronous` property value -- so it fails even in simpler case of synchronous operation.
+- It is reproducible in both console and FMX application. Both independent of CGE codebase.
+- Using `curl` from the command-line works OK, i.e. this works OK:
++
+```bash
+curl -L http://castle-engine.io/latest.zip --output cge.zip
+```
++
+Note that `TNetHttpClient` uses `libcurl` under the hood, so it should really work like `curl`.
 
 There seem to be no sensible workarounds, from what we tested. We considered using alternative HTTP(S) implementation using https://github.com/castle-engine/castle-engine/blob/master/src/files/castledownload_url_http_indy.inc[Indy TIdHttp] on Linux, but it's even worse: it relies on a really old OpenSSL version (even before 1.1) for HTTPS, that practically no user has installed. (And should not -- having outdated OpenSSL is a security risk.) Since almost everything on the web is now served over encrypted HTTPS, we cannot use a component that practically doesn't support HTTPS.
