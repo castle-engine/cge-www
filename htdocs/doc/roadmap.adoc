@@ -337,6 +337,11 @@ Bonus: allow to animate other property types. E.g. animating discrete (like bool
 
 - Bonus: Group animations, so that from code you can fire like `MyUserInterfaceAppear.Play` and it runs a number of animations at once -- e.g. something "slides in" (translation changes), something appears (Exists changes), something fades in (Color.alpha changes)
 
+See also:
+
+- PR https://github.com/castle-engine/castle-engine/issues/473 and animation-player branch in this fork https://github.com/Freedomax/castle-engine/tree/animation-player
+- Nice lean tweening code, independent from engine: https://github.com/glhrmfrts/wetween
+
 [#screen_effects]
 ## Screen effects - expose as nicer components
 
