@@ -51,6 +51,7 @@ Everyone who subscribes to support CGE with at least 10 USD / month (anywhere --
 * Filip Demuynck
 * Friedrich Westermann
 * Gordon Niessen
+* Guilherme Nemeth
 * Highball
 * Jack Taylor
 * Jan Adamec
@@ -59,6 +60,7 @@ Everyone who subscribes to support CGE with at least 10 USD / month (anywhere --
 * Milos Stanojevic
 * Márton Polgár
 * Märten Rodes
+* Nicholas Polys
 * Rafael Picanço
 * Ramazan Geven
 
