@@ -210,3 +210,13 @@ Reason is unknown at this point. Notes about things we considered:
 - Exporting `NvOptimusEnablement` on Delphi/Linux doesn't change anything. It is possible, see https://stackoverflow.com/questions/15372931/force-system-with-nvidia-optimus-to-use-the-real-gpu-for-my-application[this answer], but doesn't affect anything on Linux (doesn't change the default GPU, doesn't change whether `optirun` works). This is similar to FPC (where `NvOptimusEnablement` needs to be exported differently, but it also doesn't actually change anything on Linux, in our tests).
 
 - We tested changing `CastleDynLib` to handle shared libraries using directly `dlopen` / `dlsym` / `dlclose`, with and without `RTLD_GLOBAL`. (In case Delphi's `LoadLibrary` did something non-standard on Linux.) It didn't change anything -- that is the resulting applications worked OK, but remained "invulnerable" to `optirun`.
+
+=== "Loading" text is not displayed during Application.OnInitialize work
+
+On other platforms (like Windows) or other compilers (like FPC), if you use cgeref:TCastleWindow[] and put some work in `Application.OnInitialize`, then we display a simple screen with _"Loading"_ text when it happens. https://castle-engine.io/loading_image[Its look is configurable by adjusting colors or images.]
+
+Unfortunately, on Delphi/Linux, the _"Loading"_ is not visible. Instead the application shows either a completely black window, or the window is not even visible before we finish `Application.OnInitialize` callback.
+
+There's no solution for now, it's just a consequence of how FMXLinux works. Presumably, the same problem with happen if you put some work in `Form.OnCreate` in any FMX application, regardless of CGE, regardless of using cgeref:TCastleControl[] or cgeref:TCastleWindow[]. The FMX window is not drawn soon enough to show some UI.
+
+Eventually, once we adjust GTK backend of cgeref:TCastleWindow[] to Delphi, we will avoid using FMX in this case, and then we will control the window initialization completely -- and the problem will be solved.
