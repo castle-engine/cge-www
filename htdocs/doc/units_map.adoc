@@ -65,7 +65,7 @@ _Depends on_: everything above.
 
 Integration with environment (operating system). Opening a document, making a mobile payment, sending analytics data...
 
-NOTE: The unit cgeref:CastleMessaging[], important for Android services, is inside the `base` group, not here (since nearly everything else can use it, e.g. sound engine needs to use it).
+NOTE: The unit cgeref:CastleMessaging[], important for link:android_services[Android services] and link:ios_services[iOS services], is inside the `base` group, not here. Reason: nearly everything else can use it, e.g. sound engine needs to use it.
 
 _Depends on_: everything above.
 
@@ -104,7 +104,7 @@ cgeref:TCastleWindow[], window with an OpenGL context.
 
 _Depends on_: `castlescript`.
 
-NOTE: In the past it depended on more (even `scene`) but there should not be a need for this now. Window allows to add cgeref:TCastleUserInterface[] and cgeref:TCastleView[] inside, it should not deal with viewports/scenes specifics directly.
+NOTE: In the past it depended on more (even `scene`) but there should not be a need for this now. The container (cgeref:TCastleContainer[], inside cgeref:TCastleWindow[]) allows to add cgeref:TCastleUserInterface[] and cgeref:TCastleView[] inside, and that's enough, there's no need for window to deal with viewports/scenes specifics directly.
 
 === castle_components package
 
@@ -116,4 +116,4 @@ _Depends on_: `ui`. (not `castlescript` for now, doesn't need it.)
 
 This is an alternative to TCastleWindow, so it has the same dependencies. Units between `window` and `components` group cannot use each other.
 
-NOTE: In the past it depended on more (even `scene`) but there should not be a need for this now. Window allows to add cgeref:TCastleUserInterface[] and cgeref:TCastleView[] inside, it should not deal with viewports/scenes specifics directly.
+NOTE: In the past it depended on more (even `scene`) but there should not be a need for this now. The container (cgeref:TCastleContainer[], inside cgeref:TCastleControl[]) allows to add cgeref:TCastleUserInterface[] and cgeref:TCastleView[] inside, and that's enough, there's no need for control to deal with viewports/scenes specifics directly.
