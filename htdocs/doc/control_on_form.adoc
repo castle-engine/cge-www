@@ -16,7 +16,7 @@ cgeimg::block[
 
 ## Delphi installation
 
-1. Install the components following the https://github.com/castle-engine/castle-engine/blob/master/packages/delphi/README.md[Delphi packages installation instructions].
+1. Install the Delphi packages following the https://github.com/castle-engine/castle-engine/blob/master/packages/delphi/README.md[Delphi packages installation instructions].
 
 2. Test them: Open the examples in `examples/delphi`, there's one example for VCL one for FMX.
 +
