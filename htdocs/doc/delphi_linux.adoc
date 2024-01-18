@@ -144,7 +144,7 @@ More FMXLinux useful resources:
 - https://www.slideshare.net/embarcaderotechnet/fmxlinux-introduction-delphis-firemonkey-for-linux
 
 [#library_paths]
-== Optional: Add FMXLinux redistributables to "Library Paths"
+=== Optional: Add FMXLinux redistributables to "Library Paths"
 
 NOTE: This step is optional. It's not required to build CGE applications for Linux, using Delphi. It's not required to use `TCastleWindow` or `TCastleControl`. It's not required to install CGE packages in Delphi IDE.
 
