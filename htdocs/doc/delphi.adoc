@@ -50,6 +50,8 @@ video::6JfFxnZO4Jc[youtube,width=800,height=450]
 * You can use cgeref:TCastleWindow[], which is our standard way to create CGE window. Our _"New Project"_ templates as well as most examples use it.
 
 * You can alternatively use cgeref:TCastleControl[] that allows to put CGE rendering on FMX (FireMonkey) or VCL form. link:control_on_form[See here for details].
++
+To register the cgeref:TCastleControl[] component in Delphi IDE, follow https://github.com/castle-engine/castle-engine/blob/master/packages/delphi/README.md[Delphi packages installation instructions].
 
 ## Delphi versions supported
 
@@ -70,3 +72,7 @@ This is documented now in link:https://docwiki.embarcadero.com/RADStudio/Alexand
 Adjusting to this would mean rewriting all `String` handling code in the engine to use new `TStringHelper`. And it would be quite risky task &mdash; as the global `String` routines remained available for mobile, but they were nearly useless for cross-platform code, as they would use 1-based on desktop and 0-based on mobile. Thus causing hard-to-find bugs, as the same code would _compile_ everywhere, but would work _differently_ between desktop and mobile.
 +
 We're happy that Embarcadero backed off from this weird decision in later Delphi versions. See link:https://docwiki.embarcadero.com/RADStudio/Sydney/en/Zero-based_strings_(Delphi)[Delphi 10.4 (Sydney): Zero-based strings (Delphi)]. In particular it says _"In general terms, string indexing is now uniform across platforms and uses 1-based index model."_ and _"Default"_ is _"`{$ZEROBASEDSTRINGS OFF}` for Delphi desktop and mobile compilers"_.
+
+## C++ Builder
+
+The engine is fully compatible with _{Cpp} Builder_. The complete engine class API is available from {Cpp} in a natural way. You can use `TCastleWindow` or `TCastleControl` from {Cpp}, just like from Pascal. See https://castle-engine.io/wp/2023/12/01/full-compatibility-with-c-builder/[the details in this article].

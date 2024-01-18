@@ -11,9 +11,9 @@ We support link:delphip[Delphi] to develop cross-platform applications for _Linu
 
 NOTE: This information is not specific to _Castle Game Engine_. You may find it useful for any Linux development with Delphi.
 
-To deploy (build and run) Linux applications from Delphi (which runs on Windows), you need to
+In general, to deploy (build and run) Linux applications from Delphi (which runs on Windows), you need to
 
-- Have a working network connection from Windows to Linux
+- Have a working network connection from Windows to Linux.
 
 - Install on Linux the https://docwiki.embarcadero.com/RADStudio/Alexandria/en/Installing_the_Platform_Assistant_on_Linux[PA Server] (Platform Assistant Server).
 
@@ -21,11 +21,19 @@ To deploy (build and run) Linux applications from Delphi (which runs on Windows)
 
 - Install FMXLinux in Delphi.
 
+=== Make sure your Delphi supports Linux
+
+First of all, you need https://www.embarcadero.com/products/delphi/product-editions[Delphi Enterprise] to have a Linux support. Make sure you have checked the _"Linux"_ platform during the installation process.
+
+Note that _{Cpp} Builder_ does not support the Linux target.
+
 === Installing Linux, regular or in WSL
 
 You can use any Linux distribution and install it on any system:
 
 - You can use a regular, separate computer with Linux. We advise this to new users -- just get https://ubuntu.com/download/desktopp[Ubuntu for Desktop] and install it on a separate computer. This is the easiest way to get started with Linux.
++
+NOTE: We recommend this option especially for people who are not experienced with using Linux. You may be tempted to use some virtualization solution, and they indeed rock (see below), but using them requires some experience to deal with extra steps (e.g. to make sure modern OpenGL works with decent speed -- and you will need this to run CGE applications). If you're new to Linux, it will really be a smoother experience if you  just install Linux in a regular way, on a dedicated machine.
 
 - Or you can set up a virtual machine using "full" virtualization software like https://www.virtualbox.org/[VirtualBox].
 
