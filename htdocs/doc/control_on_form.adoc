@@ -17,12 +17,6 @@ cgeimg::block[
 ## Delphi installation
 
 1. Install the components following the https://github.com/castle-engine/castle-engine/blob/master/packages/delphi/README.md[Delphi packages installation instructions].
-////
-We recommend link:download#delphinus[installing Castle Game Engine into Delphi IDE using Delphinus]. This will install our design-time packages, components, and extend your Delphi units path.
-+
-Alternatively, you can do it manually.
-+
-////
 
 2. Test them: Open the examples in `examples/delphi`, there's one example for VCL one for FMX.
 +
