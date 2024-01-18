@@ -143,6 +143,19 @@ More FMXLinux useful resources:
 
 - https://www.slideshare.net/embarcaderotechnet/fmxlinux-introduction-delphis-firemonkey-for-linux
 
+[#library_paths]
+== Optional: Add FMXLinux redistributables to "Library Paths"
+
+NOTE: This step is optional. It's not required to build CGE applications for Linux, using Delphi. It's not required to use `TCastleWindow` or `TCastleControl`. It's not required to install CGE packages in Delphi IDE.
+
+If you want to build CGE packages that use FMX for the _"Linux 64-bit"_ platform, to use them as run-time packages in Linux, do this:
+
+- Enter _"Tools -> Options"_ dialog
+- Go to _"Language -> Delphi -> Library -> Library Path"_
+- Add the `$(BDSCatalogRepositoryAllUsers)\FmxLinux-1.74\Redist` path to the list. See the screenshot below.
+
+image::images/not_resized/delphi_fmxlinux_library_path.webp[]
+
 == Test Castle Game Engine on Delphi/Linux
 
 Simply open in Delphi any example, switch to platform on top to _Linux 64-bit_, and hit F9 (compile and run) from Delphi.
