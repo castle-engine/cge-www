@@ -127,9 +127,11 @@ To compile _Castle Game Engine_ applications using Delphi for Linux, you need to
 
 Use RAD Studio _GetIt Package Manager_ to install `fmxlinux`. Follow the https://docwiki.embarcadero.com/RADStudio/Sydney/en/FireMonkey_for_Linux[FireMonkey for Linux using GetIt] instructions for details.
 
-NOTE: With Delphi 11.2 (Enterprise), it seems GetIt cannot find "FMXLinux". Just upgrade to 11.3 in you experience this issue.
+Alternatively, you can also https://my.embarcadero.com/#downloadsPage[download FMXLinux from Embarcadero "My Downloads" page].
 
-NOTE: You can also https://www.fmxlinux.com/[buy FMXLinux]. There is also a free trial (it seems not time-limited but it shows a watermark over the UI and a dialog at run -- so it works but is not really something you can distribute to end-users). See https://www.fmxlinux.com/guide.html[FMXLinux installation instructions]. But, practically, if you already have Linux platform, then you should also have Delphi Enterprise, and then you should be able to install FMXLinux without any additional cost using GetIt.
+NOTE: With Delphi 11.2 (Enterprise), it seems GetIt cannot find "FMXLinux". Just upgrade to 11.3 in you experience this issue. Or use https://my.embarcadero.com/#downloadsPage[Embarcadero "My Downloads"] to download FMXLinux for Delphi 11.2.
+
+NOTE: You can also https://www.fmxlinux.com/[buy FMXLinux]. There is also a free trial. See https://www.fmxlinux.com/guide.html[FMXLinux installation instructions]. But, practically, if you already have Linux platform, then you should also have Delphi Enterprise, and then you should be able to install FMXLinux without any additional cost using GetIt.
 
 Once you have _FireMonkey for Linux_ installed, you should see that "_Linux 64-bit_" becomes a possible platform for FMX projects.
 
