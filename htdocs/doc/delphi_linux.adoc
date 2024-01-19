@@ -156,7 +156,13 @@ If you want to build CGE packages that use FMX for the _"Linux 64-bit"_ platform
 - Go to _"Language -> Delphi -> Library -> Library Path"_
 - Add the `$(BDSCatalogRepositoryAllUsers)\FmxLinux-1.74\Redist` path to the list. See the screenshot below.
 
+The exact path may differ based on _FMXLinux_ version.
+
 image::images/not_resized/delphi_fmxlinux_library_path.webp[]
+
+=== Test blank FMX application
+
+We advise to test everything above by creating a blank FMX application (_"File -> New -> Multi-Device Application"_), and compiling and running it on Linux. If this works, you know you have everything set up correctly.
 
 == Test Castle Game Engine on Delphi/Linux
 
