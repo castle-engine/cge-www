@@ -125,9 +125,9 @@ To link applications on Linux, Delphi needs to have a local copy of the Linux li
 
 To compile _Castle Game Engine_ applications using Delphi for Linux, you need to have _FireMonkey for Linux_ (https://www.fmxlinux.com/[FMXLinux]) installed in the Delphi IDE and properly configured.
 
-Use RAD Studio _GetIt Package Manager_ to install `fmxlinux`. Follow the https://docwiki.embarcadero.com/RADStudio/Sydney/en/FireMonkey_for_Linux[FireMonkey for Linux using GetIt] instructions for details.
+Use RAD Studio _GetIt Package Manager_ to install `FMXLinux`. Follow the https://docwiki.embarcadero.com/RADStudio/Sydney/en/FireMonkey_for_Linux[FireMonkey for Linux using GetIt] instructions for details.
 
-Alternatively, you can also https://my.embarcadero.com/#downloadsPage[download FMXLinux from Embarcadero "My Downloads" page].
+You can also https://my.embarcadero.com/#downloadsPage[download FMXLinux from Embarcadero "My Downloads" page]. Then you can use GetIt _"Load Local Package"_ feature.
 
 NOTE: With Delphi 11.2 (Enterprise), it seems GetIt cannot find "FMXLinux". Just upgrade to 11.3 in you experience this issue. Or use https://my.embarcadero.com/#downloadsPage[Embarcadero "My Downloads"] to download FMXLinux for Delphi 11.2.
 
