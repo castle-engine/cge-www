@@ -278,19 +278,19 @@ Reason: It looks more readable in long identifiers, e.g. `GetHttpResponse` is mo
 
 Note that this rule applies only to the Pascal identifiers. The Pascal identifiers are `CamelCase`, and so they warrant writing abbreviations inside like words, `Json`, `Url`, `Http`. Normal English text (e.g. in comments and error messages) should follow English conventions of writing the _whole_ abbreviation uppercase.
 
-- E.g. documentation for `GetHttpResponse` could say `{ Returns a response received over HTTP. }`. 
+- E.g. documentation for `GetHttpResponse` could say `{ Returns a response received over HTTP. }`.
 
-- E.g. `GetHttpResponse` could raise exception like this: `raise Exception.Create('Error creating HTTP response')`. 
+- E.g. `GetHttpResponse` could raise exception like this: `raise Exception.Create('Error creating HTTP response')`.
 
 ==== New content (identifiers, comments) should talk about URL, not URI
 
-Existing content (identifiers, documentation) in some places uses the term `URI`, in some `URL`. 
+Existing content (identifiers, documentation) in some places uses the term `URI`, in some `URL`.
 
 To make things simple, all future code should just talk about URLs (not URIs), and our https://castle-engine.io/manual_network.php[documentation about URLs] just clearly says _"most URLs actually accept a URI (a bit broader term than URL); in particular you can use https://en.wikipedia.org/wiki/Data_URI_scheme[data URI scheme]"_.
 
 Background:
 
-The difference between URL and URI is explained in https://castle-engine.io/manual_network.php#section_terminology[terminology section of the networking manual] (`URI` is a more general concept than `URL`) but admittedly the difference is small and we didn't pay strict attention to this difference when naming some things, like cgeref:TCastleSceneCore.Url[]. In effect, in some places we used the term `URL` where we should have used `URI` or vice-versa. 
+The difference between URL and URI is explained in https://castle-engine.io/manual_network.php#section_terminology[terminology section of the networking manual] (`URI` is a more general concept than `URL`) but admittedly the difference is small and we didn't pay strict attention to this difference when naming some things, like cgeref:TCastleSceneCore.Url[]. In effect, in some places we used the term `URL` where we should have used `URI` or vice-versa.
 
 X3D standard also mixes them a bit, in effect cgeref:TInlineNode.SetUrl[] actually accepts various URIs (including https://en.wikipedia.org/wiki/Data_URI_scheme[data URI scheme]).
 
@@ -1172,4 +1172,41 @@ If you create a new example using editor _"New Project"_ template, you should ed
 
 ![Screenshot running on Android](screenshot_android.png)
 ```
+--
+
+== Adding new unit or path
+
+List of tasks when adding new unit or path to CGE is admittedly not trivial, as we support multiple compilers and multiple ways to build CGE. We try to centralize it, but it's not always possible without causing headaches for some other cases. So sometimes you have to do a few things. Here we document all the steps:
+
+- And both new unit and new path to:
++
+--
+- proper Lazarus package (one of `packages/*.lpk`)
+- proper Delphi package (one of `packages/delphi/*.{dpk,dproj}`)
+- run check `tools/internal/check_packages` to make sure it is OK (Jenkins and GH Actions will check it anyway), new top-level path may require being added to `check_packages.dpr`
+- fpmake.pp
+--
+
+- New path only:
++
+--
+- extend `EnginePaths` in `src/castleinternaltools.pas`
+- add to `castle-fpc.cfg` (used when compiling build tool, used also by LSP server)
+- rebuild the build tool (as it uses `CastleInternalTools`)
+- reinstall in Delphi `castle_engine_design` package (as it uses `CastleInternalTools`)
+- add to `doc/pasdoc/mk_docs.sh` (if the new path contains non-internal units that should be documented)
+- add to `check_units_dependencies` (if it makes sense to define new rules)
+- add to `Delphinus.Install.json` (though unused now, we don't work with Delphinus now, see https://github.com/Memnarch/Delphinus/issues/93 )
+- rerun `examples/regenerate_auto_files_in_all_examples.sh` and commit updated DPROJ
+- rerun `castle-engine generate-program` in some applications in CGE that require updated DPROJ, but are not affected by `examples/regenerate_auto_files_in_all_examples.sh`:
+** `examples/delphi/{fmx,fmx_play_animation, vcl}`
+** `tests/`
+** `tests/delphi_tests/`
+** `tools/build_tool/`
+--
+
+- New unit only:
++
+--
+- add to `CastleCacheUnit` (optional, only for units used by most applications, and not already pulled by dependencies)
 --
