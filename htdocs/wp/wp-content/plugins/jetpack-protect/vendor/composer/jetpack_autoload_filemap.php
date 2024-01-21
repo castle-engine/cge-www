@@ -7,15 +7,15 @@ $baseDir   = dirname($vendorDir);
 
 return array(
 	'3773ef3f09c37da5478d578e32b03a4b' => array(
-		'version' => '1.18.13.0',
+		'version' => '2.0.4.0',
 		'path'    => $baseDir . '/jetpack_vendor/automattic/jetpack-assets/actions.php'
 	),
 	'590147edb63acb03b2852d5c4db13ce8' => array(
-		'version' => '0.1.6.0',
+		'version' => '0.2.0.0',
 		'path'    => $baseDir . '/jetpack_vendor/automattic/jetpack-transport-helper/actions.php'
 	),
 	'3d45c7e6a7f0e71849e33afe4b3b3ede' => array(
-		'version' => '0.11.13.0',
+		'version' => '0.12.4.0',
 		'path'    => $baseDir . '/jetpack_vendor/automattic/jetpack-waf/cli.php'
 	),
 );

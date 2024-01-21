@@ -4,14 +4,15 @@
 	"type": "jetpack-library",
 	"license": "GPL-2.0-or-later",
 	"require": {
-		"automattic/jetpack-connection": "^1.58.2",
-		"automattic/jetpack-constants": "^1.6.23",
-		"automattic/jetpack-status": "^1.18.5",
-		"automattic/jetpack-logo": "^1.6.3",
-		"automattic/jetpack-assets": "^1.18.13"
+		"php": ">=7.0",
+		"automattic/jetpack-connection": "^2.2.0",
+		"automattic/jetpack-constants": "^2.0.0",
+		"automattic/jetpack-status": "^2.0.2",
+		"automattic/jetpack-logo": "^2.0.0",
+		"automattic/jetpack-assets": "^2.0.4"
 	},
 	"require-dev": {
-		"automattic/jetpack-changelogger": "^3.3.11",
+		"automattic/jetpack-changelogger": "^4.0.5",
 		"yoast/phpunit-polyfills": "1.1.0",
 		"automattic/wordbless": "@dev"
 	},
@@ -56,7 +57,7 @@
 			"link-template": "https://github.com/Automattic/jetpack-identity-crisis/compare/v${old}...v${new}"
 		},
 		"branch-alias": {
-			"dev-trunk": "0.11.x-dev"
+			"dev-trunk": "0.15.x-dev"
 		}
 	},
 	"config": {
