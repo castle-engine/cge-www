@@ -3,7 +3,13 @@ include::common.adoc[]
 :description: Installing Using Castle Game Engine packages in Delphi IDE.
 :cge-social-share-image: delphi_fmx_3.png
 
+## Introduction
+
 Installing _Castle Game Engine_ packages in Delphi is necessary to link:control_on_form[register TCastleControl component, that you can drop on a VCL or FMX form].
+
+cgeimg::block[
+  delphi_fmx_3.png|TCastleControl on Delphi FMX form
+]
 
 ## Installation in Delphi
 
