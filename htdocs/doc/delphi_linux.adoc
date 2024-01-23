@@ -8,11 +8,15 @@ include::common.adoc[]
 We support link:delphip[Delphi] to develop cross-platform applications for _Linux_, using _Castle Game Engine_. This page outlines Linux-specific details. See link:delphip[Delphi] page for general Delphi usage notes.
 
 cgeimg::block[
-  delphi_linux_downloads.png|asynchronous_downloader example using TCastleDownload,
-  delphi_linux_fmx.png|CastleFmx example with TCastleControl on FMX form,
   delphi_linux_play_animation.png|play_animation example using TCastleWindow to display animated TCastleScene,
-  delphi_linux_tests.png|Automatic tests of CGE on Linux using Delphi
+  delphi_linux_fmx.png|CastleFmx example with TCastleControl on FMX form
 ]
+
+////
+less impressive screenshots.
+  delphi_linux_downloads.png|asynchronous_downloader example using TCastleDownload,
+  delphi_linux_tests.png|Automatic tests of CGE on Linux using Delphi
+////
 
 == Setting up the Linux and Delphi environment
 
