@@ -205,7 +205,7 @@ Due to technical limitations, you cannot just use `Application.Run` in FMX (Fire
 TCastleControl.ApplicationRun;
 ```
 
-Add to the uses clause the `Fmx.CastleControl` unit where it is defined. https://github.com/castle-engine/castle-engine/blob/delphi-linux/examples/delphi/fmx/CastleFmx.dpr#L48p[Like this].
+Add to the uses clause the `Fmx.CastleControl` unit where it is defined. https://github.com/castle-engine/castle-engine/blob/master/examples/delphi/fmx/CastleFmx.dpr#L48p[Like this].
 
 On Windows, this is equivalent to just doing `Application.Run`. On Linux, this does the event loop in more special way, to ensure engine updates and rendering can happen reliably.
 
@@ -225,7 +225,7 @@ Additional notes:
 
 - The `TCastleControl.ApplicationRun` (and `TCastleControl.ProcessTasks`) work even if your application does not use cgeref:TCastleControl[]. Or if your application doesn't use it on all forms or all the time.
 
-- We have tried to avoid this non-standard need and make just `Application.Run` work for CGE applications. But it really seems unavoidable with current _FMXLinux_. See `USE_TIMER` comments in https://github.com/castle-engine/castle-engine/blob/delphi-linux/src/window/castlewindow_form.inc[castlewindow_form.inc] and https://github.com/castle-engine/castle-engine/blob/delphi-linux/src/delphi/fmx.castlecontrol.pas[fmx.castlecontrol.pas]. With `Application.Run`, there seems to be no reliable way to perform some work independent of user input (like update animations) many times per second, on _FMXLinux_.
+- We have tried to avoid this non-standard need and make just `Application.Run` work for CGE applications. But it really seems unavoidable with current _FMXLinux_. See `USE_TIMER` comments in https://github.com/castle-engine/castle-engine/blob/master/src/window/castlewindow_form.inc[castlewindow_form.inc] and https://github.com/castle-engine/castle-engine/blob/master/src/delphi/fmx.castlecontrol.pas[fmx.castlecontrol.pas]. With `Application.Run`, there seems to be no reliable way to perform some work independent of user input (like update animations) many times per second, on _FMXLinux_.
 
 - As a consequence of this workaround, FMX applications (using `TCastleControl.ApplicationRun`) will always report this GTK error on exit:
 +

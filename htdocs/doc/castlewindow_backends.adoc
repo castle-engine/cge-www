@@ -73,8 +73,6 @@ Known problems:
 
 === Form (LCL or FMX) backend (CASTLE_WINDOW_FORM)
 
-WARNING: This section describes a feature that is being extended now. In the `master` branch of CGE, it is available only for LCL, with name `CASTLE_WINDOW_LCL`. In new `delphi-linux` branch it is available for both FMX and LCL, and is called `CASTLE_WINDOW_FORM`. Bear with us as we adapt CGE to support all platforms and all compilers:)
-
 Backend that uses `TForm` and other LCL / FMX components to create a window. It is fully-functional:
 
 - of course, has OpenGL rendering area filling the window,
