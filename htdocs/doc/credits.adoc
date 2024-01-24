@@ -47,6 +47,7 @@ Everyone who subscribes to support CGE with at least 10 USD / month (anywhere --
 * Alar Orion
 * Bartosz Jarzyna
 * Basti Schindla
+* Carlos Rafael Fernandes Picanço
 * Erik Johnson
 * Filip Demuynck
 * Friedrich Westermann
@@ -61,7 +62,6 @@ Everyone who subscribes to support CGE with at least 10 USD / month (anywhere --
 * Márton Polgár
 * Märten Rodes
 * Nicholas Polys
-* Rafael Picanço
 * Ramazan Geven
 
 *Thank you!*
