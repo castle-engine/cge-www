@@ -239,7 +239,7 @@ The reason is that _FMXLinux_ `Application.Terminate` uses `gtk_main_quit`, but 
 
 == Known Limitations
 
-=== optirun (on laptops with 2 GPUs) doesn't affect Delphi applications
+=== optirun (useful on some laptops with 2 GPUs) doesn't affect Delphi applications
 
 For unknown reason, using `optirun`, like `optirun ./play_animation` to force the application to use dedicated GPU (like Nvidia) doesn't affect Delphi applications.
 
