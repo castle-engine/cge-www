@@ -46,12 +46,25 @@ We should also perform skinning fully on GPU, avoiding `CoordinateInterpolator` 
 
 ## More physics
 
-More physics engine integration. The details are listed in the link:physics#_future_plans_todos[manual about physics, subsection "TODO"]. In short:
-
 - cgeref:TCastleWalkNavigation[] should support physics out-of-the-box.
++
+*In progress:* We have completely new navigation components in https://github.com/castle-engine/castle-engine/pull/533 . They achieve a few things: more universal (suitable for 1st person 3D, 3rd person 3D, 2D cases), more configurable inputs, also from editor (expose new "axis" paradigm), more flexible (functionality split into a few components, easier to pick a subset of functionality you want, easier to write extensions), and honor the physics engine.
++
+It will take some time (to test, merge and document new approach from PR above) but eventually cgeref:TCastleWalkNavigation[] will be deprecated. Don't worry, the deprecated cgeref:TCastleWalkNavigation[] will still be available for quite a while -- we're aware that many projects use it, since (as of today) we actually advise using cgeref:TCastleWalkNavigation[], as it's very easy to use and flexible enough for many situations.
+
 - Older physics based on octrees should be phased out.
++
+*In progress:* We're slowly already doing it. If you want to get ahead, you can already use physical colliders (link:physics[see physics manual]) and use queries like `PhysicsRayCast` instead of `WorldRay`.
+
 - cgeref:TCastleSceneCore.ExposeTransforms[] should work both ways, to allow to attach bodies and colliders to parts of the scene. This will enable e.g. ragdolls.
-- We should add more physics backends, like PhysX or Bullet.
+
+- More physics backends, not only _Kraft_.
++
+We're looking to add another physics engine that relies on some big, well-known and open-source engine. Our current considerations are either https://developer.nvidia.com/physx-sdk[PhysX] or https://pybullet.org/wordpress/[Bullet].
++
+As as result of this, more physics engines can also be added more easily in the future.
+
+- See more in link:physics#_future_plans_todos[manual about physics, subsection "TODO"].
 
 [#web]
 ## (IN PROGRESS) Web platform (rendering using WebGL) support
