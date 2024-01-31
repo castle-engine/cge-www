@@ -582,7 +582,7 @@ We want to have a component list class, that
 --
 - Screen (post-processing) effects list, see link:#screen_effects[Screen effects - expose as nicer components],
 - Materials, textures, effects, see link:#materials[New material components]
-- Tiled map layers, see https://github.com/castle-engine/castle-engine/pull/536
+- Tiled map layers, see link:#tiled_layers[New API for Tiled layers]
 --
 
 - Is generic, so we can be safe at compile-time about what is allowed to be inserted. That's why we don't want to just use standard `TComponentList`.
@@ -653,3 +653,32 @@ And you can also do
 `for C in MyTransform.NonVisualComponents do...`
 
 Right now... it's already mostly like that, but due to the fact that I declared a few things manually in the same way. The new `TCastleComponentList<T>` should force it to be consistent, and also make some code easier for editor.
+
+[#tiled_layers]
+## New API for Tiled layers
+
+- New class `TCastleTiledMap.TLayer = class(TCastleComponent)`
++
+TODO: Make sure it can be serialized OK. Fallback on `TCastleTiledMapLayer` if necessary. But we prefer `TCastleTiledMap.TLayer`.
+
+- New published property `Layers:TCastleComponentList<TLayer>` inside `TCastleTiledMap`.
++
+Depends on link:#component_list[TCastleComponentList] plans. We want to serialize the properties of layers this way.
+
+- Remove existing `Layers` set from `TCastleTiledMap`.
++
+Write code in `TCastleTiledMap.CustomSerialization(const SerializationProcess: TSerializationProcess);` to upgrade existing designs to new API.
++
+Pascal code using old `Layers` will just be broken and have to be upgraded, acceptable.
+
+- `Exists` should be in `TCastleTiledMap.TLayer`, and not in `TCastleTiledMapData.TLayer`.
++
+Should toggling it toggle also `TCastleTiledMapData.TLayer.Visible`? Or let `TCastleTiledMapData.TLayer.Visible` stay as "initial value"? Undecided, not really very important.
+
+- The long-term goal is to have nice components for layers and maybe more (tiles), inside `TCastleTiledMap`, with published properties, that can be designed in CGE editor, and that are serialized using existing system to JSON.
++
+It should be possible to design layers (and maybe more, like tiles) in CGE editor.
++
+This way we can go, step by step, to having own Tiled-like editor in CGE, like Godot or Unity.
++
+At the same time, we want to support https://www.mapeditor.org/[Tiled] (as external application for map editing) and support it fully, because Tiled is great! and it may take us long time to actually have fully useful tile editor in CGE editor. The road should be that `Data` stuff, and everything in `TCastleTiledMapData`, becomes less and less useful. It's an internal detail whether our public `TCastleTiledMap.TLayer` has a reference like `Data:TCastleTiledMapData.TLayer` or not.
