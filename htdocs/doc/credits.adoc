@@ -51,6 +51,7 @@ Everyone who subscribes to support CGE with at least 10 USD / month (anywhere --
 * Erik Johnson
 * Filip Demuynck
 * Friedrich Westermann
+* Gary Chike
 * Gordon Niessen
 * Guilherme Nemeth
 * Highball
