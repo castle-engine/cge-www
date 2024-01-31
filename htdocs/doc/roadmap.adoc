@@ -366,7 +366,7 @@ Address a few shortcomings of our  (see `examples/screen_effects_demo/`, link:x3
 
 - Expose as component a customizable shader effect allowing you to provide GLSL code in a text box (TStringList editor) in CGE editor.
 
-- This depends on making a more generic `TCastleComponentEditorList` to expose `TCastleScreenEffects.ScreenEffects` list nicely.
+- This depends on making a more generic link:#component_list[TCastleComponentList] to expose `TCastleScreenEffects.ScreenEffects` list nicely.
 
 ## Export any TCastleTransform hierarchy to X3D
 
@@ -561,3 +561,95 @@ This is in contrast to https://castle-engine.io/shadow_volumes[shadow volumes] t
 We want to have both these shadow approaches be trivial to enable. Light source should just have a property like `ShadowsMethod` to choose shadows algorithm..
 
 NOTE: Alternative, rejected, API idea was to turn `Shadows` into an enum with a possible "none" value, like `Shadows: (None, Volumes, Maps)`. Separate Boolean to choose whether shadows are enabled at all, separate from choosing shadows algorithm, seems more natural.
+
+[#component_list]
+## Component list class, to easily expose serialized list of components in editor
+
+We want to have a component list class, that
+
+- Maps to a subtree in the "Hierarchy" in CGE editor,
+
+- Can be used to express current (this will make some code in editor and `CastleInternalInspector` simpler):
++
+--
+- `TCastleTransform` children of `TCastleTransform`,
+- `TCastleBehavior` children of `TCastleTransform`,
+- `TCastleUserInterface` children of `TCastleUserInterface`
+--
+
+- Can be used to express future things:
++
+--
+- Screen (post-processing) effects list, see link:#screen_effects[Screen effects - expose as nicer components],
+- Materials, textures, effects, see link:#materials[New material components]
+- Tiled map layers, see https://github.com/castle-engine/castle-engine/pull/536
+--
+
+- Is generic, so we can be safe at compile-time about what is allowed to be inserted. That's why we don't want to just use standard `TComponentList`.
+
+- Would allow CGE editor to easily hide some lists, while not hiding others. E.g. whether to expand `TCastleBehavior` in the hierarchy -- can be just UI choice.
++
+Conceptually, when Unity has hierarchy (of `GameObject`) on left and list of components (_components_ in Unity sense, i.e. pieces of `GameObject`) on right, we instead have a tree of components (_components_ in Pascal and CGE sense, i.e. `TComponent`). It is just editor UI decision -- which levels are shown in the tree (hierarchy), which are not (e.g. behaviors could be hidden, or shown in some different way, in editor -- and it shall be unrelated to the Pascal classes organzation).
+
+Idea:
+
+`TCastleBaseComponentList = class(TComponent)`
+
+- Internally uses `TComponentList` for storage because we want items to auto-disappear when they are freed wherever.
+- Do not inherit from `TComponentList`, to not expose everything, limit access to our methods/properties. So only use it as a private field.
+- Non-generic, editor can use it as a base class for all nested lists.
+- Editor operations like move up/down, remove, add, should use this class.
+
+`TCastleComponent.GetComponentLists` method: Query all `TCastleBaseComponentList`. Maybe it should just use RTTI to query all `TCastleComponentList<T>` on given object, from them extract `TCastleBaseComponentList` and return them. This is crucial for editor to show hierarchy. One of the lists should be "default" to show it without intermediate item in hierarchy (e.g. TCastleTransform children are `Children: TCastleComponentList<TCastleTransform>` but we don't display `Children` intermediate item in hierarchy).
+
+`TCastleComponentList<T> = class(TComponent)`
+
+- Generic, safe to use from code.
+- internally uses `InternalBaseList: TCastleBaseComponentList` to store items, as private filed. (Do not inherit, to not expose everything non-generic.)
+
+Another phrasing of this (equivalent, mostly):
+
+Unify the processing of both visual children of TCastleTransform, and visual children of TCastleUserInterface, and NonVisualComponents -- by new `TCastleComponentList<T>`. This will be backward compatible, and will guarantee that all these iterations really use the same mechanism (right now these iterations are ~consistent just because they have been manually made to look siimlar each time).
+
+So we'll have
+
+```pascal
+TCastleComponent = class(TComponent)
+  NonVisualComponents: TCastleComponentList<TCastleComponent>;
+end;
+
+TCastleUserInterface = class(TCastleComponent)
+  Children: TCastleComponentList<TCastleUserInterface>;
+end;
+
+TCastleTransform =  = class(TCastleComponent)
+  Children: TCastleComponentList<TCastleTransform>;
+  Behaviors: TCastleComponentList<TCastleBehavior>;
+end;
+```
+
+and iterating with  `for .. in ... ` will be always equivalent to iterating over `Children`.
+
+So
+
+`for C in MyTransform do`
+
+will be equivalent to
+
+`for C in MyTransform.Children do`
+
+Same
+
+`for C in MyUserInterface do`
+
+will be equivalent to
+
+`for C in MyUserInterface.Children do`
+
+And you can also do
+
+`for C in MyTransform.Behaviors do...`
+
+`for C in MyTransform.NonVisualComponents do...`
+
+Right now... it's already mostly like that, but due to the fact that I declared a few things manually in the same way. The new `TCastleComponentList<T>` should force it to be consistent, and also make some code easier for editor.
