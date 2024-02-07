@@ -122,10 +122,10 @@ Of course, remember that you can also use unlit materials in glTF. These always 
 
 == Gamma Correction
 
-The `PhysicalMaterial`, used by most glTF models, has cgeref:GammaCorrection[] turned on by default.
+The `PhysicalMaterial`, used by most glTF models, is calculated in the linear space (correct calculation; alternatively you can say _"gamma correction is on"_) by default. This means that the global cgeref:ColorSpace[] variable is by default set to cgeref:csLinearWhenPhysicalMaterial[].
 
-* If you need maximum speed, consider disabling gamma correction, by `GammaCorrection := gcNone`.
-* If you need maximum glTF compatibility, consider enabling gamma correction for all materials (`PhysicalMaterial`, `UnlitMaterial`, `Material`), by `GammaCorrection := gcAlways`.
+* If you need maximum speed, consider disabling gamma correction, by `ColorSpace := csSRGB`.
+* If you need maximum glTF compatibility, consider enabling gamma correction for all materials (`PhysicalMaterial`, `UnlitMaterial`, `Material`), by `ColorSpace := csLinear`.
 
 Note that enabling or disabling gamma correction will change the look of your game. So you should make a decision about it early on -- and test your models look with the desired setting.
 
