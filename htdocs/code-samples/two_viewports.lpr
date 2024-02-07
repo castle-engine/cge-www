@@ -1,3 +1,18 @@
+{ Example code that creates and shows two TCastleViewport instances
+  to show the same 3D model (TCastleScene) from different cameras.
+
+  See https://castle-engine.io/multiple_viewports_to_display_one_world
+  for more information about using multiple viewports.
+
+  For the purpose of this demo, we set up everything from code,
+  i.e. we create instances of everything using Pascal code.
+  For a real application, we encourage to rather design it using CGE editor,
+  and load a design file.
+  Follow the standard engine "New Project" templates and see
+  https://castle-engine.io/views about the simple ways to load a design.
+  To do this in TCastleControl, see also https://castle-engine.io/control_on_form ,
+}
+
 uses SysUtils, CastleColors, CastleSceneCore, CastleScene, CastleFilesUtils,
   CastleWindow, CastleViewport, CastleControls, CastleUIControls,
   CastleCameras, CastleVectors;
@@ -20,14 +35,19 @@ begin
   Scene.PreciseCollisions := true;
 
   MainViewport := TCastleViewport.Create(Application);
-  MainViewport.AutoCamera := true;
   MainViewport.Anchor(hpLeft, 10);
   MainViewport.Anchor(vpBottom, 10);
   MainViewport.Width := 800;
   MainViewport.Height := 748;
   MainViewport.Items.Add(Scene);
-  MainViewport.Items.MainScene := Scene; // makes AutoCamera use camera from level1.x3d
   Window.Controls.InsertFront(MainViewport);
+
+  // Set initial camera
+  MainViewport.Camera.SetWorldView(
+    Vector3(3.25, 2.00, -5.42), // position
+    Vector3(-0.81, 0.00, 0.59), // direction
+    Vector3(0.00, 1.00, 0.00)  // up (current)
+  );
 
   Navigation := TCastleWalkNavigation.Create(Application);
   Navigation.MoveSpeed := 10;
