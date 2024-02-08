@@ -20,14 +20,15 @@ We love to see how you use CGE.</i>
      <p>See also <a href="https://castle-engine.io/wp/2023/01/13/draw-2d-geometry-inside-cge-editor-using-castle-lines-2d-components/">news</a>.
      <p>By <i>Korchazhkin Sergey (KumurTash on GitHub)</i>.',
     'component_castlelines2d.png',
-    'https://github.com/KumurTash/CastleLines2D');
+    'https://github.com/michaliskambi/CastleLines2D/');
+    // original on https://github.com/KumurTash/CastleLines2D but doesn't compile now, see https://github.com/KumurTash/CastleLines2D/pull/3
   ?>
 
   <?php gallery_link('Spine Runtime for Castle Game Engine',
     'Render Spine models using official Spine runtime, that supports more Spine features than built-in CGE support.
      <p>By <i>Trung Le (Kagamma)</i>.',
     'component_spine_runtime.png',
-    'https://github.com/KumurTash/CastleLines2D');
+    'https://github.com/Kagamma/spine-runtimes');
   ?>
 
   <?php gallery_link("Particle Emitter",
