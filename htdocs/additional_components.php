@@ -20,8 +20,7 @@ We love to see how you use CGE.</i>
      <p>See also <a href="https://castle-engine.io/wp/2023/01/13/draw-2d-geometry-inside-cge-editor-using-castle-lines-2d-components/">news</a>.
      <p>By <i>Korchazhkin Sergey (KumurTash on GitHub)</i>.',
     'component_castlelines2d.png',
-    'https://github.com/michaliskambi/CastleLines2D/');
-    // original on https://github.com/KumurTash/CastleLines2D but doesn't compile now, see https://github.com/KumurTash/CastleLines2D/pull/3
+    'https://github.com/KumurTash/CastleLines2D/');
   ?>
 
   <?php gallery_link('Spine Runtime for Castle Game Engine',
