@@ -116,6 +116,7 @@ See https://castle-engine.io/roadmap[our roadmap] for more long-term goals (not 
 
 Not part of the engine release, but still cool to mention:
 
+* https://castle-engine.io/wp/2023/12/02/two-new-articles-to-learn-castle-game-engine-and-a-fun-toy-to-play-bad-way-to-play-chess-aka-3d-physics-fun/[Bad way to play chess, aka 3D physics fun -- 2 great tutorial articles about CGE]
 * https://www.youtube.com/watch?v=Ad3UywYyRGU[GIC 2022 presentation] along with https://castle-engine.io/gic2022[slides]
 * https://castle-engine.io/ipc2023[IPC 2023 workshop and keynote slides]
 * https://www.youtube.com/watch?v=oA87iclrDZA[Embarcadero CodeRage 2022 presentation]
@@ -123,6 +124,16 @@ Not part of the engine release, but still cool to mention:
 * https://cat-astrophe-games.itch.io/lynch["Lynch" gamejam demo]
 * Zlot Programistów Delphi (Polish conference): https://castle-engine.io/zlot2023/slides[slides from talk] and https://github.com/castle-engine/zlot-delphi-2023[examples]
 * ITDevCon 2023 conference: https://castle-engine.io/itdevcon2023/slides1[Presentation (slides) from 1st talk, "Creating 3D games and applications using Castle Game Engine"], https://castle-engine.io/itdevcon2023/slides2[Presentation (slides) from 2nd talk, "Advanced Castle Game Engine: forms, 3D generation, shaders, customization"], https://github.com/castle-engine/conference-itdevcon-2023[Example projects].
+
+https://castle-engine.io/view3dscene.php[view3dscene and tovrmlx3d], our tools to view, convert and validate 3D models, also got many improvements.
+
+- tovrmlx3d now supports:
++
+--
+- `--validate` to perform only validation (not conversion).
+- `--float-precision` to control output floating-point precision.
+- reading from stdin, and `--stdin-url` to specify input type and base directory.
+--
 
 === Released in 7.0-alpha.2
 
