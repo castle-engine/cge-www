@@ -33,7 +33,9 @@ You can also open each example in CGE editor (point the CGE editor to the `Castl
 +
 You can check what happened by openinig the _"Project -> Options..."_ and looking at the _"Delphi Compiler"_ page. The above command just extended the _"Search path"_ for the current configuration (debug/release) and platform.
 +
-If you switch between platforms or configurations, you can repeat this step for each combination of platform and configuration you need. Or just copy-paste the paths into "parent" settings in _"All Configurations - All Platforms"_ in _"Delphi Compiler"_ page.
+If you switch between platforms or configurations, you can repeat this step for each combination of platform and configuration you need. Or just copy-paste these paths into "parent" settings in _"All Configurations - All Platforms"_ in _"Delphi Compiler"_ page.
++
+You can also copy-paste these paths into a global Delphi configuration (unrelated to a project) in _"Tools -> Options"_. Select there page _"Language -> Delphi -> Library"_ and add the new paths to the _"Library path"_. This way you can use CGE in any project without repeating these steps.
 --
 
 ### Screenshots
