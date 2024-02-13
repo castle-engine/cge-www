@@ -24,8 +24,17 @@ These are regular Delphi projects, open them in Delphi, compile and run (for Win
 +
 You can also open each example in CGE editor (point the CGE editor to the `CastleEngineManifest.xml` file inside the example directory), to edit the 3D / 2D / UI designs there.
 
-3. If you create a new project (not only compile CGE examples) remember to set proper paths to CGE units. You can add these paths to each project or to the global Delphi settings. Copy the paths from one of our examples, like `examples/delphi/fmx`.
-
+3. When you create a new project and want to use CGE, you have to add the necessary CGE paths to the project. Make sure you have link:delphi_packages[installed our Delphi packages] and use _"Tools -> Castle Game Engine -> ..."_ menu items in Delphi to do this:
++
+--
+1. Once, use the _"Tools -> Castle Game Engine -> Set Engine Path..."_ to tell Delphi where is the CGE _root directory_.  It should contain subdirectories like `src`, `examples`. Don't worry, we validate what you select, we will not let you select an invalid directory.
+//- Go to Delphi  select the platform and config for which you want to use CGE. We advise to always select here _"All Configurations"_
+2. Then use _"Tools -> Castle Game Engine -> Configure Current Project to Use Engine"_. It should answer something like _"Added XXX paths to project source directories"_.
++
+You can check what happened by openinig the _"Project -> Options..."_ and looking at the _"Delphi Compiler"_ page. The above command just extended the _"Search path"_ for the current configuration (debug/release) and platform.
++
+If you switch between platforms or configurations, you can repeat this step for each combination of platform and configuration you need. Or just copy-paste the paths into "parent" settings in _"All Configurations - All Platforms"_ in _"Delphi Compiler"_ page.
+--
 
 ### Screenshots
 
