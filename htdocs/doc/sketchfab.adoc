@@ -61,11 +61,19 @@ This likely follows link:https://help.sketchfab.com/hc/en-us/articles/3600464216
 The solution is just to disable blending in CGE for these models, setting `MyScene.RenderOptions.Blending` to `false`.
 --
 
-. A minority of Sketchfab models use a "specular glossiness" PBR workflow through a deprecated (by Khronos) link:https://github.com/KhronosGroup/glTF/tree/main/extensions/2.0/Archived/KHR_materials_pbrSpecularGlossiness[KHR_materials_pbrSpecularGlossiness]. We support it in CGE only partially -- some models may look dark or too contrasting, like link:https://sketchfab.com/3d-models/knight-multi-anim-bind-5ac12d133e5a4ef3a8eaf1c533306c87[this knight].
+. A minority of Sketchfab models use a _"specular glossiness"_ PBR workflow through a deprecated (by Khronos) link:https://github.com/KhronosGroup/glTF/tree/main/extensions/2.0/Archived/KHR_materials_pbrSpecularGlossiness[KHR_materials_pbrSpecularGlossiness]. We support it in CGE only partially -- some models may look dark or too contrasting, like link:https://sketchfab.com/3d-models/knight-multi-anim-bind-5ac12d133e5a4ef3a8eaf1c533306c87[this knight].
 +
 As link:https://github.com/KhronosGroup/glTF/tree/main/extensions/2.0/Archived/KHR_materials_pbrSpecularGlossiness[KHR_materials_pbrSpecularGlossiness] is deprecated, superseded by link:https://github.com/KhronosGroup/glTF/blob/main/extensions/2.0/Khronos/KHR_materials_specular/README.md[KHR_materials_specular], we are reluctant to put effort to support this way of rendering perfectly in CGE.
 +
-Possibly Sketchfab can switch to the new approach in the future. In the meantime you can ask Sketchfab authors to use _metallic-roughness_ PBR workflow.
+Possibly Sketchfab can switch to the new approach in the future. In the meantime you can ask Sketchfab authors to use _metallic-roughness_ PBR workflow. See:
++
+--
+- link:https://github.com/KhronosGroup/glTF/tree/main/extensions/2.0/Archived/KHR_materials_pbrSpecularGlossiness[KHR_materials_pbrSpecularGlossiness] says clearly "_Archived, Ratified by the Khronos Group_" and "_Superseded by KHR_materials_specular_".
+
+- https://www.khronos.org/blog/using-the-new-gltf-extensions-volume-index-of-refraction-and-specular[This Khronos blog post] talks about new link:https://github.com/KhronosGroup/glTF/blob/main/extensions/2.0/Khronos/KHR_materials_specular/README.md[KHR_materials_specular].
+
+- https://gltf-transform.dev/modules/extensions/classes/KHRMaterialsPBRSpecularGlossiness[glTF Transform] put it clearly: The link:https://github.com/KhronosGroup/glTF/tree/main/extensions/2.0/Archived/KHR_materials_pbrSpecularGlossiness[KHR_materials_pbrSpecularGlossiness] is deprecated because _"does not support other PBR extensions such as clearcoat, transmission, IOR"_.
+--
 
 . Some models expose just one big animation like `Take 001`, which is an artifact how some 3D software exports them.
 +

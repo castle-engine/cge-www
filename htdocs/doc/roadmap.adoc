@@ -44,6 +44,22 @@ Some modifications to CGE may be required here (CastleGeometryArrays will have t
 
 We should also perform skinning fully on GPU, avoiding `CoordinateInterpolator` done on CPU.
 
+[#gltf_material_features]
+## Support new glTF material extensions
+
+- https://github.com/KhronosGroup/glTF/blob/main/extensions/2.0/Khronos/KHR_materials_clearcoat/README.md[Clearcoat]
+- https://github.com/KhronosGroup/glTF/blob/main/extensions/2.0/Khronos/KHR_materials_transmission/README.md[Transmission]
+- https://github.com/KhronosGroup/glTF/tree/main/extensions/2.0/Khronos/KHR_materials_sheen/README.md[Sheen]
+- https://github.com/KhronosGroup/glTF/blob/main/extensions/2.0/Khronos/KHR_materials_ior/README.md[IOR (index of refraction)]
+- https://github.com/KhronosGroup/glTF/blob/main/extensions/2.0/Khronos/KHR_materials_volume/README.md[Volume]
+- https://github.com/KhronosGroup/glTF/blob/main/extensions/2.0/Khronos/KHR_materials_specular/README.md[Specular]
+
+See:
+
+- https://www.khronos.org/news/press/khronos-releases-wave-of-new-gltf-pbr-3d-material-capabilities[Khronos Releases Wave of New glTF PBR 3D Material Capabilities]
+- https://www.khronos.org/news/press/new-gltf-extensions-raise-the-bar-on-3d-asset-visual-realism[New glTF Extensions Raise the Bar on 3D Asset Visual Realism]
+- https://www.khronos.org/blog/using-the-new-gltf-extensions-volume-index-of-refraction-and-specular[Using the New glTF Extensions: Volume, Index of Refraction, and Specular]
+
 ## More physics
 
 - cgeref:TCastleWalkNavigation[] should support physics out-of-the-box.
