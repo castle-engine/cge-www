@@ -1,5 +1,9 @@
 # Docker
 include::common.adoc[]
+:description: Docker images with Castle Game Engine and tools (FPC, Lazarus, Android SDK, texture compression tools).
+:cge-social-share-image: combined_docker_cge.png
+
+cgeimg::float[combined_docker_cge.png|Docker and Castle Game Engine]
 
 == Using Castle Game Engine inside a Docker image
 
