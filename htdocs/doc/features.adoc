@@ -69,8 +69,8 @@ cgeimg::block[raspberry_pi_1.webp|Raspberry Pi,unholy_raspberry_1.webp|"The Unho
 +
 --
 * https://castle-engine.io/wp/2022/01/16/oculus-quest-2-developer-mode-for-castle-game-engine-enabled/[Oculus (VR)] (we have the hardware to test)
-* WebGL (FPC can compile to WebAssembly)
-* XBox (we have the hardware to test).
+* https://castle-engine.io/wp/2023/04/08/web-target-progress-and-plans/[WebGL (FPC can compile to WebAssembly)]
+* XBox (we have the hardware -- even devkit, though _"developer mode"_ can also be activated on a retail version of Xbox).
 --
 * The engine code is portable and in principle "just works" on any operating system and CPU supported by FPC or Delphi.
 
