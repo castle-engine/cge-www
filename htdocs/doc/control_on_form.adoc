@@ -17,6 +17,8 @@ cgeimg::block[
 ## Delphi installation
 
 1. Install the Delphi packages following the link:delphi_packages[Delphi packages installation instructions].
++
+Make sure to use the menu item _"Tools -> Castle Game Engine -> Configure Delphi to Use Engine"_ as described on that page, to have CGE units available for all your projects.
 
 2. Test: Open the examples in `examples/delphi`, there's one example for VCL one for FMX.
 +

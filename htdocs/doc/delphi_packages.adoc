@@ -21,8 +21,14 @@ NOTE: The platform of all our packages is set by default to _"Windows 32-bit"_ a
 
 3. Use the new menu item _"Tools -> Castle Game Engine -> Set Engine Path..."_ to tell Delphi where is the CGE _root directory_.  It should contain subdirectories like `src`, `examples`. Don't worry, we validate what you select, we will not let you select an invalid directory.
 
-4. Use the menu item _"Tools -> Castle Game Engine -> Configure Delphi to Use Engine"_. Restart Delphi IDE. (Restart is really necessary, as changing _"Library Path"_ in Delphi has to be done using the registry, and Delphi will load new values only on restart.)
+4. Use the menu item _"Tools -> Castle Game Engine -> Configure Delphi to Use Engine"_.
++
+Restart Delphi IDE, as adviced by the message that will appear.
++
+NOTE: Restart is really necessary, as changing _"Library Path"_ in Delphi has to be done using the registry and Delphi will load new values only on restart.
 
 ## More information (for CGE developers)
 
 More information about how and why CGE packages for Delphi are designed is in the https://github.com/castle-engine/castle-engine/blob/master/packages/delphi/README.md[Delphi packages README file in sources].
+
+If you are interested in developing Delphi IDE extensions, you may find it useful to take a look at our test project https://github.com/michaliskambi/delphi-test-package-design-features . This is small, independent of CGE, piece of Pascal code demonstrating how to extend Delphi IDE -- adding new menu items, changing project and global options. We used it as a "test bed" to develop the CGE integration, and it may be useful for you too.
