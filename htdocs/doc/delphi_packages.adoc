@@ -26,6 +26,8 @@ NOTE: The platform of all our packages is set by default to _"Windows 32-bit"_ a
 Restart Delphi IDE, as adviced by the message that will appear.
 +
 NOTE: Restart is really necessary, as changing _"Library Path"_ in Delphi has to be done using the registry and Delphi will load new values only on restart.
++
+This simply modifies the global _"Library Path"_ for all your Delphi platforms. You can visit _"Tools -> Options -> Language -> Delphi -> Library -> Library Path"_ (after restarting Delphi!) to see what it did. This way CGE source code is available to all your projects, and CGE units will be compiled and linked with your projects that use any `CastleXxx` units.
 
 ## More information (for CGE developers)
 
