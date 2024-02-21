@@ -5,7 +5,11 @@ include::common.adoc[]
 
 ## Introduction
 
-Installing _Castle Game Engine_ packages in Delphi is necessary to link:control_on_form[register TCastleControl component, that you can drop on a VCL or FMX form].
+Installing _Castle Game Engine_ packages in Delphi is necessary to
+
+- link:control_on_form[Register TCastleControl component, that you can drop on a VCL or FMX form].
+
+- Have _"Tools -> Castle Game Engine"_ menu available, with useful commands like _"Set Engine Path..."_ and _"Configure Delphi to Use Engine"_. These commands are used to set up the Delphi IDE to use CGE units and tools.
 
 cgeimg::block[
   delphi_fmx_3.png|TCastleControl on Delphi FMX form
