@@ -35,6 +35,20 @@ NOTE: Restart is really necessary, as changing _"Library Path"_ in Delphi has to
 +
 This simply modifies the global _"Library Path"_ for all your Delphi platforms. You can visit _"Tools -> Options -> Language -> Delphi -> Library -> Library Path"_ (after restarting Delphi!) to see what it did. This way CGE source code is available to all your projects, and CGE units will be compiled and linked with your projects that use any `CastleXxx` units.
 
+## Alternative: Configure Only Current Project
+
+If you want, instead of _"Configure Delphi to Use Engine"_, you can also configure a particular project using menu item _"Configure Only Current Project (for Current Platform and Debug/Release Config) to Use Engine"_.
+
+The latter option, _"Configure Only Current Project (for Current Platform and Debug/Release Config) to Use Engine"_, doesn't touch the global Delphi settings, it only modifies the current project. It also doesn't need Delphi restart. It is less recommended because:
+
+1. You will have to repeat this operation for every project, every platform, every config (debug/release).
+
+2. The resulting DPROJ will contain absolute paths to CGE sources, so it will not work for other developers if you share your project e.g. using a version control.
+
+But the option remains. Good if you just want to try CGE locally.
+
+NOTE: There's no point activating both global (_"Configure Delphi to Use Engine"_) and project (_"Configure Only Current Project (for Current Platform and Debug/Release Config) to Use Engine"_) settings. Only one of them is necessary, and any one of them is enough.
+
 ## More information (for CGE developers)
 
 More information about how and why CGE packages for Delphi are designed is in the https://github.com/castle-engine/castle-engine/blob/master/packages/delphi/README.md[Delphi packages README file in sources].
