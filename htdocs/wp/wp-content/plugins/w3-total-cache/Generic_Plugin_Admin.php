@@ -56,9 +56,13 @@ class Generic_Plugin_Admin {
 		$this->is_w3tc_page = Util_Admin::is_w3tc_admin_page();
 
 		add_action( 'admin_init', array( $this, 'admin_init' ) );
+		add_action( 'admin_init_w3tc_dashboard', array( '\W3TC\Generic_WidgetAccount', 'admin_init_w3tc_dashboard' ) );
+		add_action( 'admin_init_w3tc_dashboard', array( '\W3TC\Generic_WidgetSettings', 'admin_init_w3tc_dashboard' ) );
+		add_action( 'admin_init_w3tc_dashboard', array( '\W3TC\Generic_WidgetPartners', 'admin_init_w3tc_dashboard' ) );
 		add_action( 'admin_init_w3tc_dashboard', array( '\W3TC\Generic_WidgetServices', 'admin_init_w3tc_dashboard' ) );
-		add_action( 'admin_init_w3tc_dashboard', array( '\W3TC\Generic_WidgetCommunity', 'admin_init_w3tc_dashboard' ) );
 		add_action( 'admin_init_w3tc_dashboard', array( '\W3TC\Generic_WidgetBoldGrid', 'admin_init_w3tc_dashboard' ) );
+		add_action( 'admin_init_w3tc_dashboard', array( '\W3TC\Generic_WidgetStats', 'admin_init_w3tc_dashboard' ) );
+		add_action( 'admin_init_w3tc_dashboard', array( '\W3TC\Extension_ImageService_Widget', 'admin_init_w3tc_dashboard' ) );
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) );
 		add_action( 'admin_print_styles-toplevel_page_w3tc_dashboard', array( '\W3TC\Generic_Page_Dashboard', 'admin_print_styles_w3tc_dashboard' ) );
@@ -384,18 +388,6 @@ class Generic_Plugin_Admin {
 			}
 		}
 
-		if ( 'w3tc_dashboard' === $page ) {
-			?>
-			<script type="text/javascript">
-				jQuery( function() {
-					jQuery('#normal-sortables').masonry( {
-						itemSelector: '.postbox'
-					} );
-				} );
-			</script>
-			<?php
-		}
-
 		if ( $this->_config->get_boolean( 'common.track_usage' ) && $this->is_w3tc_page ) {
 
 			$current_user = wp_get_current_user();
@@ -631,6 +623,19 @@ class Generic_Plugin_Admin {
 					W3TC_VERSION,
 					true
 				);
+				// No break.
+			case 'w3tc_userexperience':
+				if ( UserExperience_Remove_CssJs_Extension::is_enabled() ) {
+					wp_enqueue_script(
+						'w3tc_remove_cssjs',
+						plugins_url( 'UserExperience_Remove_CssJs_Page_View.js', W3TC_FILE ),
+						array(
+							'jquery',
+						),
+						W3TC_VERSION,
+						true
+					);
+				}
 				// No break.
 			case 'w3tc_cdn':
 				wp_enqueue_script( 'jquery-ui-sortable' );
