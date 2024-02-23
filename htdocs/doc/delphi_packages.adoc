@@ -14,7 +14,8 @@ Installing _Castle Game Engine_ packages in Delphi allows to:
 - Necessary DLLs will be automatically deployed alongside your EXE file, if you build a project with link:project_manifest[CastleEngineManifest.xml] from Delphi IDE. These DLLs follow the declared `<dependencies>` of your project along with some auto-detected dependencies (e.g. we automatically deploy OpenAL DLLs if your project includes sound files in data).
 
 cgeimg::block[
-  delphi_fmx_3.png|TCastleControl on Delphi FMX form
+  delphi_fmx_3.png|TCastleControl on Delphi FMX form,
+  delphi_menu.png|Castle Game Engine menu in Delphi IDE
 ]
 
 ## Installation in Delphi
