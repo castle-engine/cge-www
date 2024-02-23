@@ -112,4 +112,14 @@ Parameters are passed using an anchor separated by a comma, with a colon between
 
 You can also use `TSprite` class in CGE to load a sprite, in which case you will have to draw it explicitly. See link:how_to_render_2d[How to render 2D images/sprites].
 
-We do not advise this approach and it is deprecated now. Using sprite sheets inside `TCastleScene` is much more powerful, and also it allows to have simpler CGE API (since you just use `TCastleScene` for all animations, sprite sheet or not).
+We do not advise this approach and it is deprecated now. Reasons:
+
+- Using `TSprite` requires manual code for drawing (you need to know when to draw and manage drawing order yourself). Also UI scaling needs to be manually applied.
+
+- `TSprite` is not affected by link:physics[].
+
+- `TSprite` is not part of the link:viewport_and_scenes[viewport], so there's no ready concept of camera that sees it.
+
+- `TSprite` is not a component you can visually design in the CGE editor.
+
+Using sprite sheets inside `TCastleScene` is much more powerful. Also it allows to have simpler CGE API -- there's no new API to move, play animation etc. for sprite sheets this way, you just use `TCastleScene` API.

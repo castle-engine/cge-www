@@ -72,10 +72,10 @@ A similar approach is to draw your game using multiple cgeref:TCastleImageContro
  ** link:user_interface[User Interface].
  ** link:manual_2d_ui_custom_drawn.php[Custom drawn 2D controls] shows the "core" of this approach: new `TCastleUserInterface` descendant with your own `Render` implementation, in which we call `TDrawableImage.Draw`.
 * API reference: cgeref:TDrawableImage[].
-* You can render sprites using the appropriate `TDrawableImage.Draw` overload (where you specify which part of the source image to render). Or use ready class `TSprite` (it uses `TDrawableImage` underneath).
+* You can render sprites using the appropriate `TDrawableImage.Draw` overload (where you specify which part of the source image to render). There's also a class `TSprite` (it uses `TDrawableImage` underneath), but it is _deprecated_ now, please don't use it.
 * To render pixel-art, set `TDrawableImage.SmoothScaling` to `false`.
 * Numerous engine demos use `TDrawableImage`. Example `isometric_game` draws simple map using it.
-* Besides `TDrawableImage` and `TSprite`, there are also simple drawing helpers like `DrawRectangle`.
+* Besides `TDrawableImage` there are also simple drawing helpers like `DrawRectangle`.
 * To have fixed resolution (regardless of the actual window size in pixels), use link:manual_castle_settings.php#section_ui_scaling[UI scaling]. However, while it scales correctly all the existing `TCastleUserInterface` instances, you will need to put some additional work to make UI scaling affect your custom `TCastleUserInterface` descendant. This is documented at the bottom of http://castle-engine.io/manual_2d_ui_custom_drawn.php[] -- basically, look at your `ScreenRect` and scale all coordinates by `UIScale` before passing them to `TDrawableImage`. So the scaling is _not_ hidden from you in this case -- you get the information you need, but you need to put some code to make it happen correctly.
 +
 To have the scaling automatically applied, you can use `TCastleImageControl` instead of directly drawing with `TDrawableImage`. `TCastleImageControl` is an UI control that wraps `TDrawableImage` underneath, and allows to control the image like a normal UI control: with anchors, automatically applied scaling and so on.

@@ -330,7 +330,8 @@ It avoids useless drawing of the other side of the faces.
     This avoids texture switching when rendering, so the scene renders faster.
     When exporting from <a href="https://castle-engine.io/spine">Spine</a>,
     be sure to use atlases.
-  <li>Use spite sheets (<code>TSprite</code> class) instead of separate images
+  <li>Use <a href="https://castle-engine.io/sprite_sheets">spite sheets</a>
+    instead of separate images
     (like <code>TGLVideo2D</code> class). This again avoids
     texture switching when rendering, making the scene render faster.
     It also allows to easily use any texture size (not necessarily a power of two)

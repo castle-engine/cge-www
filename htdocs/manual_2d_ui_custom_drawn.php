@@ -209,7 +209,7 @@ You can download and compile it right now!
 
 <?php echo $toc->html_section(); ?>
 
-<p>If you would like to display a series of images, not a static image, you can use <?php echo cgeRef('TGLVideo2D'); ?> (show image sequence from many separate images or a video) or <?php echo cgeRef('TSprite'); ?> (show image sequence from a sprite sheet &mdash; one large image containing many animation frames).
+<p>If you would like to display a series of images, not a static image, you can use <?php echo cgeRef('TGLVideo2D'); ?> (show image sequence from many separate images or a video).
 
 <p>See e.g. <a href="https://gitlab.com/michaliskambi/muuu">our game "Muuu"</a> for a demo of using sprite animations.
 
