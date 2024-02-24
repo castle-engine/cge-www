@@ -120,21 +120,46 @@ link:https://github.com/castle-engine/view3dscene-mobile[This is almost done, th
 Associated with glTF, X3D and other formats that the view3dscene (and _Castle Game Engine_) handles. Available in the App Store / Google Play Store. For free or for 1 USD (not sure yet; but definitely without ads, I really dislike ads).
 
 [#terrain]
-## Terrain designer
+## Terrain features (in particular, editing terrain in CGE editor)
 
-Easily design a height map (X3D cgeref:TElevationGridNode[] node, with trees, rocks, grass). Saved and loaded as an X3D file.
+_What we have now:_ The engine includes cgeref:TCastleTerrain[] component and https://github.com/castle-engine/castle-engine/tree/master/examples/terrain[examples/terrain] that shows how to generate terrains in various ways (from smoothed random noise, from a ready image) and render it. We also have the link:https://github.com/castle-engine/wyrd-forest["Wyrd Forest"] game that also uses `CastleTerrain`, and also includes a simple editor of terrain settings. See also https://castle-engine.io/wp/2022/08/21/new-components-to-generate-terrains-along-with-a-demo-including-water-and-planting-trees/[news about terrains].
 
-Implementing this feature will most likely be split into a couple of small releases:
+_What we need:_ Visual, interactive editor for terrains, matching e.g. Unity feature set.
 
-- Edit the heights.
-- Edit the grass and trees and rocks.
-- Efficiently render huge amounts of grass and trees and rocks.
+Enable editing heightmaps easily:
 
-Implement nice shaders to show it, like link:https://www.getlazarus.org/videos/bareterrain/#learning_resources[this BareGame example].
+- Edit the terrain heights within CGE editor, using something like a brush to lower/raise clicked points. To make hills, valleys in a comfortable way.
++
+The edited heights just land in cgeref:TCastleTerrainImage[] with internal contents.
 
-_What we have now:_ The engine includes a unit `CastleTerrain` to generate terrains in various ways (most notably, from smoothed random noise). We have `examples/terrain/` demo to play around with it. We have the link:https://github.com/castle-engine/wyrd-forest["Wyrd Forest"] game that also uses `CastleTerrain`, and also includes a simple editor of terrain settings.
+- Use _splatmap_ and enable editing it, to edit the terrain textures mixture within CGE editor. To effectively paint the terrain with different textures like grass, dirt, rock, snow.
++
+The _splatmap_ is an internal (not directly visible) RGBA texture that determines the weights of the visible textures. E.g. imagine you have 4 visible texture types: grass, dirt, rock, snow. Then
++
+--
+- splatmap _red_ channel determines "how much to add _grass_ at this point",
+- splatmap _green_ channel determines "how much to add _dirt_ at this point",
+- splatmap _blue_ channel determines "how much to add _rock_ at this point",
+- splatmap _alpha_ channel determines "how much to add _snow_ at this point".
+--
++
+The editing code can watch over to make sure the weights are normalized, i.e. always sum to 1.0.
 
-_What we need:_ Visual, interactive editor for the `ElevationGrid` (the thing you get from `TTerrain.Node` call). To make hills, valleys in a comfortable way. And comfortably plant there stuff (rocks, grass, trees...).
+- The existing terrain implementation, in cgeref:TCastleTerrain[] and https://github.com/castle-engine/castle-engine/tree/master/examples/terrain[examples/terrain] is a starting point -- shows how we can _randomize / generate_ a reasonable terrain with texture weights. But above additions are critical to make it really useful: in practice, for real games, people want to have control over the terrains. So the existing generation will remain part of the workflow, but only as an optional starting point.
++
+NOTE: The fact that you can connect a few terrains together, and our generation can generate "neighbors" effectively, is super-useful and will be preserved.
+
+- Tools to plant big things (3D `TCastleScene`) in the terrain, like trees, rocks. You can do it now, though it’s manual: Use behavior cgeref:TCastleStickToSurface[] and put multiple instances of the thing you want. Use cgeref:TCastleTransformReference[] to make it optimal for memory when you can, so that multiple instances share the same resources.
++
+Optional LODs could be nice (but maybe this is outside of scope of terrains; LODs should be just on `TCastleScene`. Currently we have LODs on `TCastleScene` using `TLODNode` - works nice, though complicated to set up, we want to move away from exposing X3D nodes for this.)
+
+- Tools to plant many small things, like grass. This is a big different than "big things", and here automatic LODs that e.g. decrease density of grass with distance make sense.
+
+- More specialized and efficient rendering algorithm. Right now terrain in the end is just a simple big mesh of triangles. It’s actually quite fast to render (because modern GPUs can handle big shapes) but it’s not a sustainable way to render huge terrains.
+
+- Improve shaders for terrain to show it, like link:https://www.getlazarus.org/videos/bareterrain/#learning_resources[this BareGame example].
+
+- More than 4 layers. Each new set of 4 layers mean a new _splatmap_.
 
 [#vulkan]
 ## Vulkan renderer
