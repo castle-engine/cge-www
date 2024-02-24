@@ -239,6 +239,51 @@ You have to simply ignore this GTK error. It doesn't break the execution flow, i
 +
 The reason is that _FMXLinux_ `Application.Terminate` uses `gtk_main_quit`, but it should not be used when `gtk_main` is not called. And indeed `gtk_main` is not called when we don't call `Application.Run`. When you use cgeref:TCastleWindow[], we can adjust to it, by not using `Application.Terminate` at all. But when using cgeref:TCastleControl[], we cannot avoid it being called when last window gets closed.
 
+=== For CI (Continuous Integration): Command-line compilation using Delphi for Linux requires additional options
+
+If you own a Delphi version with a command-line compiler (this means: not a _Community Edition_), then you can compile from the command-line. This means that CGE build tool and CGE editor can both invoke Delphi compiler from the command-line. This is also useful for CI (Continuous Integration) systems. For example, to compile a project for Windows, you can use the following command:
+
+```
+castle-engine compile --compiler=delphi --verbose
+```
+
+The default target OS/CPU corresponds to your current (source) OS/CPU, which is pretty much guaranteed to be `Win64` since Delphi runs on Windows and all Windowses are now 64-bit (it doesn't matter that Delphi IDE is 32-bit here). So this is equivalent to
+
+```
+castle-engine compile --compiler=delphi --verbose --os=win64 --cpu=x86_64
+```
+
+Alas, to compile for Linux (on x86_64 CPU), this is not enough:
+
+```
+castle-engine compile --compiler=delphi --verbose --os=linux --cpu=x86_64
+```
+
+That's because:
+
+- It will not find FMXLinux units.
+- Moreover, it cannot find Linux libraries to link to.
+
+So you need to add them on the command-line. Below is an example using typical paths for Delphi 11.3:
+
+```
+castle-engine compile --compiler=delphi --verbose --os=linux \
+  '--compiler-option=-UC:\Users\Public\Documents\Embarcadero\Studio\22.0\CatalogRepository\FmxLinux-1.74\source' \
+  '--compiler-option=-UC:\Users\Public\Documents\Embarcadero\Studio\22.0\CatalogRepository\FmxLinux-1.74\lib\Release' \
+  '--compiler-option=--syslibroot:C:\Users\michalis\Documents\Embarcadero\Studio\SDKs\ubuntu23.10.sdk\' \
+  '--compiler-option=--libpath:C:\Users\michalis\Documents\Embarcadero\Studio\SDKs\ubuntu23.10.sdk\usr\lib\gcc\x86_64-linux-gnu\10;C:\Users\michalis\Documents\Embarcadero\Studio\SDKs\ubuntu23.10.sdk\usr\lib\x86_64-linux-gnu;C:\Users\michalis\Documents\Embarcadero\Studio\SDKs\ubuntu23.10.sdk\lib\x86_64-linux-gnu;C:\Users\michalis\Documents\Embarcadero\Studio\SDKs\ubuntu23.10.sdk\lib64;C:\Program Files (x86)\Embarcadero\Studio\22.0\lib\linux64\release'
+```
+
+You can find these paths in Delphi IDE:
+
+- FMXLinux is in _"Tools -> Options -> Language -> Delphi -> Library Path"_.
+
+- Libraries are in _"Tools -> Options -> Deployment -> SDK Manager -> `<your Linux connection>` -> Local root directory"_.
++
+They may use environment variables, also defined locally in Delphi IDE, you'll have to expand them. You can also just take a look at the `dcclinux64...` command-line used by Delphi IDE when you compile a project for Linux from Delphi: it will contain also the correct `--syslibroot` etc.
+
+- Add one additional library location inside Delphi installation, `C:\Program Files (x86)\Embarcadero\Studio\22.0\lib\linux64\release` above.
+
 == Known Limitations
 
 === optirun (useful on some laptops with 2 GPUs) doesn't affect Delphi applications
