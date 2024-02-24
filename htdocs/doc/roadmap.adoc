@@ -144,6 +144,8 @@ The _splatmap_ is an internal (not directly visible) RGBA texture that determine
 --
 +
 The editing code can watch over to make sure the weights are normalized, i.e. always sum to 1.0.
++
+More about splatmaps: https://en.wikipedia.org/wiki/Texture_splatting , https://help.world-machine.com/topic/device-splatmap/ .
 
 - The existing terrain implementation, in cgeref:TCastleTerrain[] and https://github.com/castle-engine/castle-engine/tree/master/examples/terrain[examples/terrain] is a starting point -- shows how we can _randomize / generate_ a reasonable terrain with texture weights. But above additions are critical to make it really useful: in practice, for real games, people want to have control over the terrains. So the existing generation will remain part of the workflow, but only as an optional starting point.
 +
