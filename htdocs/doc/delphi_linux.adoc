@@ -5,7 +5,9 @@ include::common.adoc[]
 
 == Introduction
 
-We support link:delphip[Delphi] to develop cross-platform applications for _Linux_, using _Castle Game Engine_. This page outlines Linux-specific details. See link:delphip[Delphi] page for general Delphi usage notes.
+You can create applications for Linux using link:delphi[Delphi] and _Castle Game Engine_.
+
+This page outlines some details specific to Delphi on Linux. See link:delphi[Delphi] page for general Delphi usage notes.
 
 cgeimg::block[
   delphi_linux_play_animation.png|play_animation example using TCastleWindow to display animated TCastleScene,
@@ -22,7 +24,7 @@ less impressive screenshots.
 
 NOTE: This information is not specific to _Castle Game Engine_. You may find it useful for any Linux development with Delphi.
 
-In general, to deploy (build and run) Linux applications from Delphi (which runs on Windows), you need to
+_Delphi IDE_ runs on Windows. To build and run applications from Delphi for _Linux_, you need to:
 
 - Have a working network connection from Windows to Linux.
 
@@ -34,7 +36,7 @@ In general, to deploy (build and run) Linux applications from Delphi (which runs
 
 === Make sure your Delphi supports Linux
 
-First of all, you need https://www.embarcadero.com/products/delphi/product-editions[Delphi Enterprise] to have a Linux support. Make sure you have checked the _"Linux"_ platform during the installation process.
+You need https://www.embarcadero.com/products/delphi/product-editions[Delphi Enterprise] to have a Linux support. Make sure you have checked the _"Linux"_ platform during the installation process.
 
 Note that _{Cpp} Builder_ does not support the Linux target.
 
@@ -42,15 +44,15 @@ Note that _{Cpp} Builder_ does not support the Linux target.
 
 You can use any Linux distribution and install it on any system:
 
-- You can use a regular, separate computer with Linux. We advise this to new users -- just get https://ubuntu.com/download/desktopp[Ubuntu for Desktop] and install it on a separate computer. This is the easiest way to get started with Linux.
+- You can use a regular, separate computer with Linux. We advise this to new users -- just get https://ubuntu.com/download/desktop[Ubuntu for Desktop] and install it on a separate computer. This is the easiest way to get started with Linux.
 +
 NOTE: We recommend this option especially for people who are not experienced with using Linux. You may be tempted to use some virtualization solution, and they indeed rock (see below), but using them requires some experience to deal with extra steps (e.g. to make sure modern OpenGL works with decent speed -- and you will need this to run CGE applications). If you're new to Linux, it will really be a smoother experience if you  just install Linux in a regular way, on a dedicated machine.
 
 - Or you can set up a virtual machine using "full" virtualization software like https://www.virtualbox.org/[VirtualBox].
 
-- Or you can use https://learn.microsoft.com/en-us/windows/wsl/install[Windows Subsystem for Linux (WSL)] to setup a comfortable Linux environment on Windows. This is a great option if you know your way around Linux and can use it from the command-line. WSL gives you a really lightweight and comfortable Linux virtual machine within your Windows.
+- Or you can use https://learn.microsoft.com/en-us/windows/wsl/install[Windows Subsystem for Linux (WSL)] to setup a comfortable Linux environment on Windows. This is a great option if you know your way around Linux and can use it from the command-line. WSL gives a lightweight and comfortable Linux virtual machine within your Windows.
 +
-For example set WSL machine with latest Ubuntu by just:
+For example set WSL machine with latest Ubuntu by executing this on Windows command-line:
 +
 ```
 wsl --install # gets ubuntu latest
@@ -61,7 +63,7 @@ Later, use just `wsl` command to enter the virtual Linux environment. If the mac
 Within the machine, you have full Linux system. Inspect it, upgrade it and install additional software as usual, e.g.:
 +
 ```bash
-lsb_release -A
+lsb_release -a
 sudo apt update
 sudo apt dist-upgrade
 sudo apt install mesa-utils
@@ -91,9 +93,9 @@ sudo apt install mesa-utils libgtk-3-dev libegl1 libcurl4 libpng-dev libz1 libop
 
 Note that users do not need the `-dev` versions of these libraries.
 
-NOTE: The above list already contains the relevant subset of https://castle-engine.io/compiling_from_source.php#section_Linux,_FreeBSD[libraries used by CGE when compiled with FPC].
+NOTE: The above list already contains the relevant subset of https://castle-engine.io/compiling_from_source.php#section_Linux,_FreeBSD[libraries used by CGE when compiled with FPC for Linux].
 
-All these libraries are common and should be available out-of-the-box on any modern Linux distribution with any graphical environment installed.
+All these libraries are common and should be available out-of-the-box on any modern Linux distribution with a graphical environment installed.
 
 === Installing PA Server
 
@@ -126,31 +128,31 @@ cd ~/PAServer/scratch-dir/<connection-name>/my_project/
 
 === Connect from Delphi to Linux
 
-In Delphi IDE, go to _"Options" -> "Deployment" -> "Connection Profile Manager"_. Add a new connection to the Linux machine -- real, or virtual, doesn't matter. You just need to provide the IP address of the Linux machine.
+In Delphi IDE, go to _"Options" -> "Deployment" -> "Connection Profile Manager"_. Add a new connection to the Linux machine. You need to provide the IP address of the Linux machine (use e.g. `ip a` on Linux to see your current IP).
 
 You also need to provide the username and password to connect to the PA Server running on it.
 
-To link applications on Linux, Delphi needs to have a local copy of the Linux libraries. It is critical that after you install or upgrade any library on Linux, in Delphi you go to _"Options" -> "Deployment" -> "SDK Manager"_ and run _"Update Local File Cache"_.
+When you add a new connection, Delphi will copy the libraries from the Linux machine to your Windows machine. This is necessary to link applications for Linux. It is critical that after you install or upgrade any library on that Linux box, in Delphi go to _"Options" -> "Deployment" -> "SDK Manager"_ and run _"Update Local File Cache"_. This will copy the new libraries to your Windows machine.
 
 === Get and install FMXLinux
 
 To compile _Castle Game Engine_ applications using Delphi for Linux, you need to have _FireMonkey for Linux_ (https://www.fmxlinux.com/[FMXLinux]) installed in the Delphi IDE and properly configured.
 
-Use RAD Studio _GetIt Package Manager_ to install `FMXLinux`. Follow the https://docwiki.embarcadero.com/RADStudio/Sydney/en/FireMonkey_for_Linux[FireMonkey for Linux using GetIt] instructions for details.
+Use RAD Studio _GetIt Package Manager_ to install _FMXLinux_. Follow the https://docwiki.embarcadero.com/RADStudio/Sydney/en/FireMonkey_for_Linux[FireMonkey for Linux using GetIt] instructions for details.
 
 You can also https://my.embarcadero.com/#downloadsPage[download FMXLinux from Embarcadero "My Downloads" page]. Then you can use GetIt _"Load Local Package"_ feature.
 
 NOTE: Local packages from https://my.embarcadero.com/#downloadsPage[Embarcadero "My Downloads"] come with units precompiled for a specific Delphi version. Pay attention to download the version proper for your Delphi. E.g. _"FMXLinux Package Download for RAD Studio 12.0"_ contains _FMXLinux 1.76_ with unis for Delphi 12.0. Installing it in Delphi 11.3 will result in problems -- it will seem to install OK, but then compilation of any FMX application for Linux will fail with _"Could not compile used unit 'FMX.Forms'"_. To work with Delphi 11.3, you need to download _"FMXLinux Package Download for RAD Studio 11.3"_. If you mess things up, you may need to manually cleanup the directory like `C:\Users\Public\Documents\Embarcadero\Studio\22.0\CatalogRepository\FmxLinux-1.76_Local` , in case GetIt UI doesn't allow to uninstall packages when the GetIt website is offline, which https://blogs.embarcadero.com/we-are-experiencing-a-hardware-outage/[happens].
 
-NOTE: With Delphi 11.2 (Enterprise), it seems GetIt cannot find "FMXLinux". Just upgrade to 11.3 in you experience this issue. Or use https://my.embarcadero.com/#downloadsPage[Embarcadero "My Downloads"] to download FMXLinux for Delphi 11.2.
+NOTE: With Delphi 11.2 (Enterprise), it seems GetIt cannot find "FMXLinux". Just upgrade to 11.3 if you experience this issue. Or use https://my.embarcadero.com/#downloadsPage[Embarcadero "My Downloads"] to download FMXLinux for Delphi 11.2.
 
 NOTE: You can also https://www.fmxlinux.com/[buy FMXLinux]. There is also a free trial. See https://www.fmxlinux.com/guide.html[FMXLinux installation instructions]. But, practically, if you already have Linux platform, then you should also have Delphi Enterprise, and then you should be able to install FMXLinux without any additional cost using GetIt.
 
 Once you have _FireMonkey for Linux_ installed, you should see that "_Linux 64-bit_" becomes a possible platform for FMX projects.
 
-Be sure to also install required libraries in your Linux. Follow https://www.fmxlinux.com/guide.html for the appropriate `apt install ...` command to execute. We found it useful to add also `sudo apt install libgtk3.0-dev`. As usual after installing libraries on Linux, refresh the cache: enter Delphi _"Options"_ dialog, inside find _"Deployment -> SDK Manager"_, select the Linux platform, and _"Update Local Cache"_ (answer _"Yes To All"_ in case it asks whether to override files).
+Be sure to also install https://www.fmxlinux.com/guide.html[required libraries on  Linux]. As usual after installing libraries on Linux, refresh the cache: enter Delphi _"Options"_ dialog, inside find _"Deployment -> SDK Manager"_, select the Linux platform, and _"Update Local Cache"_ (answer _"Yes To All"_ in case it asks whether to override files).
 
-Test FMXLinux by installing _"FMX Linux Samples"_ using GetIt (these are available for everyone, regardless of how you obtained FMXLinux above). Run some of them to test that FMX on Linux works.
+Test FMXLinux by installing _"FMX Linux Samples"_ using GetIt. Run some of them to test that FMX on Linux works.
 
 NOTE: _GtkWindow_ sample from FMXLinux has a bug, that prevents compilation due to permissions. Edit fhe project settings and change "Unit Output Directory" from `$(fmxlinux)\Lib\$(ProductVersion)\$(Config)` to `.\$(Platform)\$(Config)`. Or try a different sample, like _FontList_.
 
@@ -161,7 +163,7 @@ More FMXLinux useful resources:
 [#library_paths]
 === Optional: Add FMXLinux redistributables to "Library Paths"
 
-NOTE: This step is optional. It's not required to build CGE applications for Linux, using Delphi. It's not required to use `TCastleWindow` or `TCastleControl`. It's not required to install CGE packages in Delphi IDE.
+NOTE: This step is optional. It's not required to build CGE applications for Linux. It's not required to use `TCastleWindow` or `TCastleControl`. It's not required to install CGE packages in Delphi IDE.
 
 If you want to build CGE packages that use FMX for the _"Linux 64-bit"_ platform, to use them as run-time packages in Linux, do this:
 
@@ -179,7 +181,7 @@ We advise to test everything above by creating a blank FMX application (_"File -
 
 == Test Castle Game Engine on Delphi/Linux
 
-Simply open in Delphi any example, switch to platform on top to _Linux 64-bit_, and hit F9 (compile and run) from Delphi.
+Simply open in Delphi any example, switch the platform on top to _Linux 64-bit_, and hit F9 (compile and run) from Delphi.
 
 All our examples are compatible with Delphi on Linux. This includes
 
@@ -195,11 +197,13 @@ When "deploying" your application (e.g. when you hit F9 in Delphi to run on Linu
 
 To make it work, our link:editor[] and link:build_tool[build tool] can generate in the DPROJ (project settings) the list of files to copy, by listing all current files in the data directory.
 
-So we highly advise to manage your project files (DRPOJ) automatically, and just use _"Code ->Regenerate Project"_ menu item from the link:editor[] whenever you add / remove some files in your data directory.
+So we highly advise to manage your project files (DPROJ) automatically, and just use _"Code ->Regenerate Project"_ menu item from the link:editor[] whenever you add / remove some files in your data directory.
 
 See at Delphi window _"Project -> Deployment"_ to confirm that Delphi is aware of all your data files.
 
 === Use TCastleControl.ApplicationRun (instead of Application.Run) in FireMonkey applications
+
+NOTE: This section only matters if you create applications using FMX. If you use cgeref:TCastleWindow[], you don't need to worry about this (even if cgeref:TCastleWindow[] _internally_ uses FMX).
 
 Due to technical limitations, you cannot just use `Application.Run` in FMX (FireMonkey) applications that you want to run on Linux if you want to have reliable cgeref:TCastleControl[]. You need to replace it (usually in the main program file) with
 
@@ -241,13 +245,13 @@ The reason is that _FMXLinux_ `Application.Terminate` uses `gtk_main_quit`, but 
 
 === For CI (Continuous Integration): Command-line compilation using Delphi for Linux requires additional options
 
-If you own a Delphi version with a command-line compiler (this means: not a _Community Edition_), then you can compile from the command-line. This means that CGE build tool and CGE editor can both invoke Delphi compiler from the command-line. This is also useful for CI (Continuous Integration) systems. For example, to compile a project for Windows, you can use the following command:
+If you own a Delphi version with a command-line compiler (this means: not a _Community Edition_), then you can compile from the command-line. This means that link:build_tool[CGE build tool] and link:editor[CGE editor] can both invoke Delphi compiler from the command-line. This is also useful for CI (Continuous Integration) systems. For example, to compile a project for Windows, you can use the following command:
 
 ```
 castle-engine compile --compiler=delphi --verbose
 ```
 
-The default target OS/CPU corresponds to your current (source) OS/CPU, which is pretty much guaranteed to be `Win64` since Delphi runs on Windows and all Windowses are now 64-bit (it doesn't matter that Delphi IDE is 32-bit here). So this is equivalent to
+The default target OS/CPU corresponds to your current (source) OS/CPU, which is pretty much guaranteed to be `Win64/x86_64` since Delphi runs on Windows and all Windows installations are now 64-bit (it doesn't matter that Delphi IDE is 32-bit here). So this is equivalent to
 
 ```
 castle-engine compile --compiler=delphi --verbose --os=win64 --cpu=x86_64
@@ -286,13 +290,15 @@ They may use environment variables, also defined locally in Delphi IDE, you'll h
 
 == Known Limitations
 
-=== optirun (useful on some laptops with 2 GPUs) doesn't affect Delphi applications
+=== optirun doesn't affect Delphi applications
 
-For unknown reason, using `optirun`, like `optirun ./play_animation` to force the application to use dedicated GPU (like Nvidia) doesn't affect Delphi applications.
+`optirun` is a useful utility on some laptops with 2 GPUs. It allows to force an application to use the dedicated, faster GPU (like _Nvidia_), instead of the integrated, slower GPU (like _Intel_).
+
+For unknown reason, using `optirun`, like `optirun ./play_animation`, doesn't affect Delphi applications. They continue to run on integrated GPU.
 
 Reason is unknown at this point. Notes about things we considered:
 
-- We use the same OpenGL header (`CastleGL` based on `dglOpenGL`) and even load OpenGL library in the same way (`CastleDynLib`) on FPC and Delphi.
+- We use the same OpenGL header (`CastleGL` based on `dglOpenGL`) and even load OpenGL library in the same way (`CastleDynLib`) on FPC and Delphi. And `optirun` works on FPC applications.
 
 - Exporting `NvOptimusEnablement` on Delphi/Linux doesn't change anything. It is possible, see https://stackoverflow.com/questions/15372931/force-system-with-nvidia-optimus-to-use-the-real-gpu-for-my-application[this answer], but doesn't affect anything on Linux (doesn't change the default GPU, doesn't change whether `optirun` works). This is similar to FPC (where `NvOptimusEnablement` needs to be exported differently, but it also doesn't actually change anything on Linux, in our tests).
 
