@@ -42,39 +42,22 @@ Install https://marketplace.visualstudio.com/items?itemName=castle-engine-team.c
 
 You can follow this link. Or just search for _"Castle Game Engine"_ in the _VS Code_ extensions sidebar.
 
-== Pascal syntax highlighting
+== Extension Settings and Pascal code completion
 
-We recommend installing https://marketplace.visualstudio.com/items?itemName=theangryepicbanana.language-pascal[Pascal magic] extension to get Pascal code highlighting.
+After installing https://marketplace.visualstudio.com/items?itemName=castle-engine-team.castle-engine[Castle Game Engine in VS Code] extension, go to the extension settings and configure engine, FPC and Lazarus paths to make it work:
 
-It's available in the _VS Code_ marketplace, so you can just search for it and install right inside the VS Code _"Extensions"_ panel.
-
-Our https://marketplace.visualstudio.com/items?itemName=castle-engine-team.castle-engine[Castle Game Engine in VS Code] depends on it, so you don't need to install it manually anymore.
-
-NOTE: _VS Codium_ users: The https://open-vsx.org/extension/theangryepicbanana/language-pascal[Pascal magic extension is also available in the VS Codium marketplace].
-
-[NOTE]
-====
-Searching extensions' marketplace for _"Pascal"_ will yield a number of alternatives. They will likely work just as well for your Pascal and CGE editing, go ahead and try them. We just recommend choosing any "simple" extension that adds Pascal highlighting but _doesn't_ do code completion and parsing (because the LSP server will take care of it).
-
-E.g. https://marketplace.visualstudio.com/items?itemName=AnsonYeung.pascal-language-basics[Pascal Language Basics] is also a solid choice. We recommended it in the past. We switched to _"Pascal magic"_ mainly because it handles better difficult long code in `tools/castle-editor/code/framedesign.pas`.
-====
-
-== Pascal code completion
-
-We provide an _LSP server_ that implements an _intelligent code completion_ for Pascal and is aware of _Castle Game Engine_ units and default syntax options (e.g. FPC _ObjFpc_ mode).
-
-NOTE: https://github.com/castle-engine/pascal-language-server[Our LSP server] is based on https://github.com/Isopod/pascal-language-server[Philip Zander\'s LSP server] which in turn relies on https://www.lazarus-ide.org/[Lazarus] _CodeTools_ to do the code completion. So inside there is really a lot of work and testing from many people in the Pascal ecosystem to make it powerful.
-
-After installing https://marketplace.visualstudio.com/items?itemName=castle-engine-team.castle-engine[Castle Game Engine in VS Code] extension, all you need to do is go to the extension settings and configure FPC, Lazarus paths to make it work.
-
-// TODO: New screenshot
-// cgeimg::block[vscode_extension_config.png|VS Code Extension configuration]
+cgeimg::block[vscode_extension_config.png|VS Code Extension configuration]
 
 Notes about extension settings:
 
 - Set `Engine Path` to point to our CGE directory. Inside CGE we expect to find `bin` subdirectory with `pasls` (`pasls.exe` on Windows).
 
+- Set `PP` to your FPC executable. If you use FPC bundled with CGE, this should look like `<cgepath>/tools/contrib/fpc/bin/fpc-cge`. Add `.exe` extension on Windows. If you use regular FPC, this is a path to your regular FPC executable (`fpc`, `fpc.exe`, `fpc.sh`).
+
 - Set `FPCDIR` to point to the FPC source code. If you use FPC bundled with CGE, this should look like `<cgepath>/tools/contrib/fpc/src/`.
+
+- Set `LAZARUSDIR` to your Lazarus (source) directory. This is optional, fill it if you have https://www.lazarus-ide.org/[Lazarus] installed. It will enable to find LCL units and do the code completion for LCL components too.
+
 - Set `FPCTARGET` to your OS, like `linux` or `win64`.
 +
 [NOTE]
@@ -98,8 +81,10 @@ Use _processor_ names that match FPC and CGE. You can see valid CPU names:
 
 You can also leave it empty, our LSP will autodetect it.
 ====
-- Set `LAZARUSDIR` to your Lazarus (source) directory. This is optional, fill it if you have https://www.lazarus-ide.org/[Lazarus] installed. It will enable to find LCL units and do the code completion for LCL components too.
-- Set `PP` to your FPC executable. If you use FPC bundled with CGE, this should look like `<cgepath>/tools/contrib/fpc/bin/fpc-cge`. Add `.exe` extension on Windows. If you use regular FPC, this is a path to your regular FPC executable (`fpc`, `fpc.exe`, `fpc.sh`).
+
+Setting up everything means that our _LSP server_ that implements an _intelligent code completion_ for Pascal and is aware of _Castle Game Engine_ units and default syntax options (e.g. FPC _ObjFpc_ mode) will work.
+
+NOTE: https://github.com/castle-engine/pascal-language-server[Our LSP server] is based on https://github.com/Isopod/pascal-language-server[Philip Zander\'s LSP server] which in turn relies on https://www.lazarus-ide.org/[Lazarus] _CodeTools_ to do the code completion. So inside there is really a lot of work and testing from many people in the Pascal ecosystem to make it powerful.
 
 === Test Code Completion
 
@@ -116,6 +101,25 @@ cgeimg::block[vscode_completion.png|VS Code Extension configuration]
 If you have installed FPC yourself using link:fpcupdeluxe[] on Unix, remember to point `PP` to the `fpc.sh` script (and not to the `fpc` binary) that should always be used to execute FPC managed by `fpcupdeluxe` on Unix.
 
 In general, the `PP` executable may be run by CodeTools, which may assume this FPC version "knows" standard RTL paths. That's why it's important to pass `fpc.sh` (in case of fpcupdeluxe) or `fpc-cge` (in case of FPC bundled with CGE) and not the "bare" `fpc` executable.
+====
+
+== Pascal syntax highlighting
+
+WARNING: TODO: This doc section is super-seeded by the new extension, that automatically gives Pascal code highlighting for you by depending on https://marketplace.visualstudio.com/items?itemName=theangryepicbanana.language-pascal[Pascal magic].
+
+We recommend installing https://marketplace.visualstudio.com/items?itemName=theangryepicbanana.language-pascal[Pascal magic] extension to get Pascal code highlighting.
+
+It's available in the _VS Code_ marketplace, so you can just search for it and install right inside the VS Code _"Extensions"_ panel.
+
+Our https://marketplace.visualstudio.com/items?itemName=castle-engine-team.castle-engine[Castle Game Engine in VS Code] depends on it, so you don't need to install it manually anymore.
+
+NOTE: _VS Codium_ users: The https://open-vsx.org/extension/theangryepicbanana/language-pascal[Pascal magic extension is also available in the VS Codium marketplace].
+
+[NOTE]
+====
+Searching extensions' marketplace for _"Pascal"_ will yield a number of alternatives. They will likely work just as well for your Pascal and CGE editing, go ahead and try them. We just recommend choosing any "simple" extension that adds Pascal highlighting but _doesn't_ do code completion and parsing (because the LSP server will take care of it).
+
+E.g. https://marketplace.visualstudio.com/items?itemName=AnsonYeung.pascal-language-basics[Pascal Language Basics] is also a solid choice. We recommended it in the past. We switched to _"Pascal magic"_ mainly because it handles better difficult long code in `tools/castle-editor/code/framedesign.pas`.
 ====
 
 == Compiling and Running
