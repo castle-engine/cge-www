@@ -88,6 +88,8 @@ This is an example for Delphi application:
 </project>
 ----
 
+NOTE: Delphi uses can just open the project in Delphi IDE, and use from Delphi the menu item _"Tools -> Castle Game Engine -> Open in CGE editor"_. This will automatically create a manifest file, just like shown above, if it is missing.
+
 This is an example for Lazarus application:
 
 [source,xml]
