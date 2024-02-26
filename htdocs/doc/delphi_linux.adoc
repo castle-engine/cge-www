@@ -173,7 +173,9 @@ If you want to build CGE packages that use FMX for the _"Linux 64-bit"_ platform
 
 The exact path may differ based on _FMXLinux_ version.
 
-image::images/not_resized/delphi_fmxlinux_library_path.webp[]
+cgeimg::block[
+  delphi_fmxlinux_library_path.png|Add FMXLinux redistributables to "Library Paths"
+]
 
 === Test blank FMX application
 
