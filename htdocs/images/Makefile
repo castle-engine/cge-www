@@ -22,7 +22,8 @@ ALL_GALLERY:=\
     $(patsubst %.jpg,%.webp,\
       $(subst original_size,gallery_size,$(ALL_ORIGINAL)))) \
       gallery_size/ui-shaker.gif \
-      gallery_size/typing-label.gif
+      gallery_size/typing-label.gif \
+	  gallery_size/castle_bars.gif
 ALL_FEATURE:=\
   $(patsubst %.png,%.webp,\
     $(patsubst %.jpg,%.webp,\
@@ -133,14 +134,19 @@ not_resized/%.webp: not_resized_original/%.png
 
 # gifs -----------------------------------------------------------------------
 
-# 1082 × 598
-# 300 x 598*300/1082=166
+# Original video size: 1082 × 598
+# So scaled height (adjusted to width 300) = 598*300/1082=166
 gallery_size/typing-label.gif: original_size/typing-label.mp4
 	ffmpeg -y -i $< -vf scale=300:166 $@
 
-# 1096 × 616
-# 300 x 616*300/1096=167
+# Original video size: 1096 × 616
+# So scaled height (adjusted to width 300) = 616*300/1096=167
 gallery_size/ui-shaker.gif: original_size/ui-shaker.mp4
+	ffmpeg -y -i $< -vf scale=300:167 $@
+
+# Original video size: 1092×614
+# So scaled height (adjusted to width 300) = 614 * 300 / 1092 = 167
+gallery_size/castle_bars.gif: original_size/castle_bars.mp4
 	ffmpeg -y -i $< -vf scale=300:167 $@
 
 # others ---------------------------------------------------------------------

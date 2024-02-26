@@ -15,6 +15,13 @@ You can use them in your own projects, to enhance what you can do with CGE.
 We love to see how you use CGE.</i>
 
 <div class="row">
+  <?php gallery_link('Castle Bars',
+    'Several basic bars (horizontal, vertical and circular progressbars) and sliders (horizontal, vertical and continuous, discrete).
+     <p>By <i>Eugene Loza</i>.',
+    'castle_bars.gif',
+    'https://gitlab.com/EugeneLoza/castle-bars');
+  ?>
+
   <?php gallery_link('Castle Lines 2D',
     'Draw 2D geometry inside CGE editor.
      <p>See also <a href="https://castle-engine.io/wp/2023/01/13/draw-2d-geometry-inside-cge-editor-using-castle-lines-2d-components/">news</a>.
