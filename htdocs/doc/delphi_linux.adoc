@@ -128,7 +128,10 @@ cd ~/PAServer/scratch-dir/<connection-name>/my_project/
 
 === Connect from Delphi to Linux
 
-In Delphi IDE, go to _"Options" -> "Deployment" -> "Connection Profile Manager"_. Add a new connection to the Linux machine. You need to provide the IP address of the Linux machine (use e.g. `ip a` on Linux to see your current IP).
+In Delphi IDE, go to _"Options" -> "Deployment" -> "Connection Profile Manager"_. Add a new connection to the Linux machine. You need to provide the IP address of the Linux machine. You can see the IP e.g. by
+
+- Running `ip a` from the terminal on Linux.
+- Using `i` command inside PAServer console on Linux.
 
 You also need to provide the username and password to connect to the PA Server running on it.
 
