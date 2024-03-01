@@ -134,28 +134,32 @@ begin
 end;
 ----
 
-Possible follow-up questions:
+#### Query the map position under an arbitrary UI position (not necessarily where the mouse is)
 
-- **Can we query the map position under an arbitrary UI position, not just where the mouse is?**
-+
-Sure. To do this, know that cgeref:TCastleViewport.MouseRayHit[MyViewport.MouseRayHit] is equivalent to:
-+
---
-1. Determine the ray indicated by mouse using cgeref:TCastleViewport.PositionToRay[MyViewport.PositionToRay]
+You are not limited to using `MouseRayHit` to query the map position under the mouse. You can use a similar approach to query the map position under... anything. E.g. to query what is in the middle or corner of the screen, or under a UI element.
 
-2. Use this ray to perform collision query using cgeref:TCastleAbstractRootTransform.WorldRay[MyViewport.Items.WorldRay]
---
-+
+To do this, realize that cgeref:TCastleViewport.MouseRayHit[MyViewport.MouseRayHit] is equivalent to:
+
+1. Get the mouse position using cgeref:TCastleContainer.MousePosition[Container.MousePosition].
+
+2. Determine the ray indicated by mouse using cgeref:TCastleViewport.PositionToRay[MyViewport.PositionToRay]
+
+3. Use this ray to perform collision query using cgeref:TCastleAbstractRootTransform.WorldRay[MyViewport.Items.WorldRay]
+
 So if you want, you can e.g. query any other ray this way. You can use cgeref:TCastleViewport.PositionToRay[MyViewport.PositionToRay] with any argument, or even calculate the ray yourself. Then use cgeref:TCastleAbstractRootTransform.WorldRay[MyViewport.Items.WorldRay] to get cgeref:TRayCollision[] instance, on which you have `Info` method discussed above.
-+
+
 Remember to free later the `TRayCollision` instance.
 
-- **Can we query the map position such that the map is not obscured (for this query) by stuff on top of the map, like NPCs on map?**
-+
+For an example, see the code snippet in the next section.
+
+#### Can we query the map position such that the map is not obscured (for this query) by stuff in front of the map, e.g. NPCs on map?
+
 Sure. Follow the above instructions to use cgeref:TCastleViewport.PositionToRay[MyViewport.PositionToRay] + cgeref:TCastleAbstractRootTransform.WorldRay[MyViewport.Items.WorldRay]. Around the calls to these methods, you can temporarily hide the things that you don't want to be returned by the query.
-+
-It is easiest when you have a parent `TCastleTransform` group that contains e.g. all NPCs. You can then hide them by setting e.g. `MyNpcs.Exists := false;` and then restore visibility by setting `MyNpcs.Exists := true;`. E.g.:
-+
+
+It is easiest when you have a parent `TCastleTransform` group that contains e.g. all NPCs. You can then hide them by setting `MyNpcs.Exists := false;` and then restore visibility by setting `MyNpcs.Exists := true;`.
+
+Example code:
+
 [source,pascal]
 ----
 var
@@ -184,5 +188,5 @@ begin
   MyNpcs.Exists := true; // restore
 end;
 ----
-+
-NOTE: Using the physics engine collision queries, you can utilize physics _layers_ to limit what is hit by the ray-cast. TODO: Extend our API and docs to enable physics ray cast naturally.
+
+NOTE: Using the link:physics[] engine collision queries, you can utilize physics _layers_ to limit what is hit by the ray-cast. TODO: Extend our API and docs to enable physics ray cast naturally.
