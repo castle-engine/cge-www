@@ -105,78 +105,84 @@ end;
 
 ==== General case (any camera, any map transformation)
 
-An alternative solution is to perform a proper collision check _"what does the ray (implied by the mouse position) hit"_. This is a more general solution that works in all cases (even if you transform the map, direcly or by parent transform, or change camera to non-2D view).
+An alternative solution is to perform a proper collision check _"what does the ray (implied by the mouse position) hit"_. This is a more general solution that works in all cases (even if you transform the map, directly or by parent transform, or change camera to non-2D view).
 
-To learn what the ray hits, read cgeref:TCastleViewport.MouseRayHit[MyViewport.MouseRayHit].
+To learn what the ray hits, it is easiest to use the `MyViewport.MouseRayHit.Info`. The `MyViewport.MouseRayHit.Info` returns `true` and fills a record (of type cgeref:TRayCollisionNode[]) with information about the collision.
 
-The `MouseRayHit` value is a list, from the innermost `TCastleTransform` that was hit by the ray to the root of the viewport (`MyViewport.Items`). You want to just access the point on your map that was picked (if any). Assuming your map is declared as `Map: TCastleTiledMap;` and you have a `MyViewport: TCastleViewport;` somewhere, you can do it like this:
+See the cgeref:TCastleViewport.MouseRayHit[MyViewport.MouseRayHit] and cgeref:TRayCollision.Info[TRayCollision.Info] methods documentation for details.
+
+You want to just access the point on your map that was picked (if any). Assuming your map is declared as `Map: TCastleTiledMap;` and you have a `MyViewport: TCastleViewport;` somewhere, you can do it like this:
 
 [source,pascal]
 ----
 var
   TileUnderMouseValid: Boolean;
   TileUnderMouse: TVector2Integer;
-  MapIndex: Integer;
+  RayHitInfo: TRayCollisionNode;
 begin
   TileUnderMouseValid := false;
   if MyViewport.MouseRayHit <> nil then
   begin
-    MapIndex := MyViewport.MouseRayHit.IndexOfItem(Map);
-    if MapIndex <> -1 then
+    if MyViewport.MouseRayHit.Info(RayHitInfo) and
+       (RayHitInfo.Item = Map) then
     begin
       TileUnderMouseValid := Map.Data.PositionToTile(
-        MyViewport.MouseRayHit[MapIndex].Point.XY, TileUnderMouse);
+        RayHitInfo.Point.XY, TileUnderMouse);
     end;
   end;
   // ... now use TileUnderMouseValid and TileUnderMouse as you see fit
 end;
 ----
 
-[NOTE]
-====
-If you want even more general solution, know that cgeref:TCastleViewport.MouseRayHit[MyViewport.MouseRayHit] is more-or-less equivalent to:
+Possible follow-up questions:
 
+- **Can we query the map position under an arbitrary UI position, not just where the mouse is?**
++
+Sure. To do this, know that cgeref:TCastleViewport.MouseRayHit[MyViewport.MouseRayHit] is equivalent to:
++
+--
 1. Determine the ray indicated by mouse using cgeref:TCastleViewport.PositionToRay[MyViewport.PositionToRay]
 
 2. Use this ray to perform collision query using cgeref:TCastleAbstractRootTransform.WorldRay[MyViewport.Items.WorldRay]
+--
++
+So if you want, you can e.g. query any other ray this way. You can use cgeref:TCastleViewport.PositionToRay[MyViewport.PositionToRay] with any argument, or even calculate the ray yourself. Then use cgeref:TCastleAbstractRootTransform.WorldRay[MyViewport.Items.WorldRay] to get cgeref:TRayCollision[] instance, on which you have `Info` method discussed above.
++
+Remember to free later the `TRayCollision` instance.
 
-So if you want, you can e.g. query any other ray this way. `MyViewport.Items.WorldRay` returns `TRayCollision` (remember to free it later!), just like `MyViewport.MouseRayHit` discussed around.
-====
-
-If you want to dig deeper and understand what are possible values of `MyViewport.MouseRayHit`, read on.
-
-First of all, you can inspect it like this. Try this code e.g. in `Update` or `Motion` method of your state, move mouse around and observe the results:
-
+- **Can we query the map position such that the map is not obscured (for this query) by stuff on top of the map, like NPCs on map?**
++
+Sure. Follow the above instructions to use cgeref:TCastleViewport.PositionToRay[MyViewport.PositionToRay] + cgeref:TCastleAbstractRootTransform.WorldRay[MyViewport.Items.WorldRay]. Around the calls to these methods, you can temporarily hide the things that you don't want to be returned by the query.
++
+It is easiest when you have a parent `TCastleTransform` group that contains e.g. all NPCs. You can then hide them by setting e.g. `MyNpcs.Exists := false;` and then restore visibility by setting `MyNpcs.Exists := true;`. E.g.:
++
 [source,pascal]
 ----
 var
-  I: Integer;
+  RayOrigin, RayDirection: TVector3;
+  TileUnderMouseValid: Boolean;
+  TileUnderMouse: TVector2Integer;
+  RayHit: TRayCollision;
+  RayHitInfo: TRayCollisionNode;
 begin
-  if MyViewport.MouseRayHit <> nil then
-    for I := 0 to MyViewport.MouseRayHit.Count - 1 do
-      WritelnLog('Mouse ray hit ' + IntToStr(I) + ': ' +
-        MyViewport.MouseRayHit[I].Item.Name + ' ' +
-        MyViewport.MouseRayHit[I].Item.ClassName + ' ' +
-        MyViewport.MouseRayHit[I].Point.ToString);
+  TileUnderMouseValid := false;
+
+  MyNpcs.Exists := false;
+
+  MyViewport.PositionToRay(Container.MousePosition, true, RayOrigin, RayDirection);
+  RayHit := MyViewport.Items.WorldRay(RayOrigin, RayDirection);
+  if RayHit <> nil then
+  try
+    if RayHit.Info(RayHitInfo) and
+       (RayHitInfo.Item = Map) then
+    begin
+      TileUnderMouseValid := Map.Data.PositionToTile(
+        RayHitInfo.Point.XY, TileUnderMouse);
+    end;
+  finally FreeAndNil(RayHit) end;
+
+  MyNpcs.Exists := true; // restore
 end;
 ----
-
-The `MyViewport.MouseRayHit` contains a path of `TCastleTransform` hierarchy, from the deepest `TCastleTransform` to root (`MyViewport.Items`).
-
-When the mouse is over the map, it will contain this:
-
-- The first (deepest) `TCastleTransform` on `MyViewport.MouseRayHit` list will be a `TCastleScene` that is internal in `TCastleTileMap`.
-- Next item will be `TCastleTileMap`.
-- Then, all `TCastleTransform` instances that are parents of `TCastleTileMap` will follow.
-- Last item on the list is root (`MyViewport.Items`).
-
-If you placed other things in the viewport, you will observe other possible values of `MyViewport.MouseRayHit`. For example https://github.com/castle-engine/castle-engine/tree/master/examples/tiled/strategy_game_demo[examples/tiled/strategy_game_demo] has a special `TileUnderMouseImage` (cgeref:TCastleImageTransform[]) placed as map child. When the mouse is over this image, the `MyViewport.MouseRayHit` will contain this:
-
-- First item (deepest) is a `TCastleScene` that is internal in `TileUnderMouseImage`.
-- Next item is `TileUnderMouseImage`.
-- Next item is `TCastleTileMap`.
-- Next (last) item is the root (`ViewportMap.Items` in case of that example).
-
-It is also possible that mouse is over a unit on the map.
-
-You likely don't want to think about all these cases, and you definitely do not want to think whether there are some internal `TCastleScene` instances on the way. So simply check whether `MouseRayHit` contains your `Map` like `MyViewport.MouseRayHit.IndexOfItem(Map)`.
++
+NOTE: Using the physics engine collision queries, you can utilize physics _layers_ to limit what is hit by the ray-cast. TODO: Extend our API and docs to enable physics ray cast naturally.
