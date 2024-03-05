@@ -133,7 +133,7 @@ In Delphi IDE, go to _"Options" -> "Deployment" -> "Connection Profile Manager"_
 - Running `ip a` from the terminal on Linux.
 - Using `i` command inside PAServer console on Linux.
 
-You also need to provide the username and password to connect to the PA Server running on it.
+You also need to provide the password to connect to the PA Server running on it.
 
 When you add a new connection, Delphi will copy the libraries from the Linux machine to your Windows machine. This is necessary to link applications for Linux. It is critical that after you install or upgrade any library on that Linux box, in Delphi go to _"Options" -> "Deployment" -> "SDK Manager"_ and run _"Update Local File Cache"_. This will copy the new libraries to your Windows machine.
 
