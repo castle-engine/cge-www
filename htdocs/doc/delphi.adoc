@@ -74,14 +74,26 @@ Adjusting to this would mean rewriting all `String` handling code in the engine 
 We're happy that Embarcadero backed off from this weird decision in later Delphi versions. See link:https://docwiki.embarcadero.com/RADStudio/Sydney/en/Zero-based_strings_(Delphi)[Delphi 10.4 (Sydney): Zero-based strings (Delphi)]. In particular it says _"In general terms, string indexing is now uniform across platforms and uses 1-based index model."_ and _"Default"_ is _"`{$ZEROBASEDSTRINGS OFF}` for Delphi desktop and mobile compilers"_.
 
 [#cpp_builder]
-## C++ Builder
+## {Cpp} Builder
 
 The engine is fully compatible with _{Cpp} Builder_. The complete engine class API is available from {Cpp} in a natural way. You can use cgeref:TCastleWindow[] or cgeref:TCastleControl[] from {Cpp}, just like from Pascal. See https://castle-engine.io/wp/2023/12/01/full-compatibility-with-c-builder/[the details in this article].
 
-There are 2 examples in CGE specifically for _{Cpp} Builder_, using engine API from C++:
+There are 2 examples in CGE specifically for _{Cpp} Builder_, using engine API from {Cpp}:
 
 - https://github.com/castle-engine/castle-engine/tree/master/examples/delphi/cpp_builder/fmx[examples/delphi/cpp_builder/fmx] shows using cgeref:TCastleControl[] inside FMX form.
 
-- https://github.com/castle-engine/castle-engine/tree/master/examples/delphi/cpp_builder/window[examples/delphi/cpp_builder/window] shows using cgeref:TCastleWindow[], with link:views[], loading a design, operating on cgeref:TCastleScene[] and more. It faithfully recreates in C++ the CGE Pascal example from the link:https://github.com/castle-engine/conference-itdevcon-2023/[ITDevCon 2023 conference].
+- https://github.com/castle-engine/castle-engine/tree/master/examples/delphi/cpp_builder/window[examples/delphi/cpp_builder/window] shows using cgeref:TCastleWindow[], with link:views[], loading a design, operating on cgeref:TCastleScene[] and more. It faithfully recreates in {Cpp} the CGE Pascal example from the link:https://github.com/castle-engine/conference-itdevcon-2023/[ITDevCon 2023 conference].
 
-NOTE: For _C++ Builder_ you need to _Build_ the link:delphi_packages[packages] **for all your target platforms**, which means: both Win32 and Win64. This is in contrast to usage from Pascal, where it is enough to only _Install_ them for Win32 (Delphi IDE architecture).
+NOTE: For _{Cpp} Builder_ you need to _Build_ the link:delphi_packages[packages] **for all your target platforms**, which means: both Win32 and Win64. This is in contrast to usage from Pascal, where it is enough to only _Install_ them for Win32 (Delphi IDE architecture).
+
+### Redistributing C++ Builder applications by default requires redistribution of Delphi run-time BPLs too
+
+_{Cpp} Builder_ applications by default require redistribution of Delphi run-time libraries (BPL files) too. This is unrelated to CGE. So you cannot just give your users the resulting EXE file, you need to also provide all the BPL (run-time packages) it uses. If you use CGE, then in addition to RTL and FMX, you will also need to redistribute CGE run-time packages (BPL files).
+
+If you want to avoid it, see https://blogs.embarcadero.com/how-do-i-create-a-stand-alone-application-in-c-builder/[How do I create a stand-alone application in C++Builder] for a solution. In short (as of RAD Studio 12.0) uncheck in project options
+
+1. "_Building -> {Cpp} Linker -> Link with Dynamic RTL_" and
+
+2. "_Packages > Runtime Packages -> Link with runtime packages_".
+
+NOTE: Unfortunately, https://github.com/castle-engine/castle-engine/tree/master/examples/delphi/cpp_builder/window[examples/delphi/cpp_builder/window] with these settings (no run-time packages) makes _{Cpp} Builder_ compiler crash with _Access Violation_. But at least it works for https://github.com/castle-engine/castle-engine/tree/master/examples/delphi/cpp_builder/fmx[examples/delphi/cpp_builder/fmx] and simple FMX applications we tested with.
