@@ -15,13 +15,15 @@ cgeimg::float[
 
 This page documents _Castle Game Engine_ 7.0 new features. It's a work in progress -- as we work on making CGE 7.0 ready for release.
 
-== Plans
+== Plans and Timeline
 
-We plan to release version _7.0_ (stable) around the end of 2023.
+- We will make another _alpha_ release in Q1 of 2024, called _7.0-alpha3_. The new features are documented below.
 
-There will be another _alpha_ release in 2023 before the full 7.0.
-
+- We plan to release version _7.0_ (stable) around the middle of 2024.
++
 See https://castle-engine.io/roadmap[our roadmap] for more long-term goals (not just in 7.0).
+
+- The most important feature *after* 7.0 release is https://castle-engine.io/wp/2023/04/08/web-target-progress-and-plans/[the web target]. This will be our focus for the rest of 2024. Our hope is to have web target working around Christmas 2024 -- seems like a nice Christmas present :)
 
 == Features released so far
 
