@@ -73,6 +73,15 @@ Adjusting to this would mean rewriting all `String` handling code in the engine 
 +
 We're happy that Embarcadero backed off from this weird decision in later Delphi versions. See link:https://docwiki.embarcadero.com/RADStudio/Sydney/en/Zero-based_strings_(Delphi)[Delphi 10.4 (Sydney): Zero-based strings (Delphi)]. In particular it says _"In general terms, string indexing is now uniform across platforms and uses 1-based index model."_ and _"Default"_ is _"`{$ZEROBASEDSTRINGS OFF}` for Delphi desktop and mobile compilers"_.
 
+[#cpp_builder]
 ## C++ Builder
 
-The engine is fully compatible with _{Cpp} Builder_. The complete engine class API is available from {Cpp} in a natural way. You can use `TCastleWindow` or `TCastleControl` from {Cpp}, just like from Pascal. See https://castle-engine.io/wp/2023/12/01/full-compatibility-with-c-builder/[the details in this article].
+The engine is fully compatible with _{Cpp} Builder_. The complete engine class API is available from {Cpp} in a natural way. You can use cgeref:TCastleWindow[] or cgeref:TCastleControl[] from {Cpp}, just like from Pascal. See https://castle-engine.io/wp/2023/12/01/full-compatibility-with-c-builder/[the details in this article].
+
+There are 2 examples in CGE specifically for _{Cpp} Builder_, using engine API from C++:
+
+- https://github.com/castle-engine/castle-engine/tree/master/examples/delphi/cpp_builder/fmx[examples/delphi/cpp_builder/fmx] shows using cgeref:TCastleControl[] inside FMX form.
+
+- https://github.com/castle-engine/castle-engine/tree/master/examples/delphi/cpp_builder/window[examples/delphi/cpp_builder/window] shows using cgeref:TCastleWindow[], with link:views[], loading a design, operating on cgeref:TCastleScene[] and more. It faithfully recreates in C++ the CGE Pascal example from the link:https://github.com/castle-engine/conference-itdevcon-2023/[ITDevCon 2023 conference].
+
+NOTE: For _C++ Builder_ you need to _Build_ the link:delphi_packages[packages] **for all your target platforms**, which means: both Win32 and Win64. This is in contrast to usage from Pascal, where it is enough to only _Install_ them for Win32 (Delphi IDE architecture).
