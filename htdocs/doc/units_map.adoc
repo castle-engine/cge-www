@@ -33,7 +33,7 @@ _Depends on_: everything above (that is, units in "base" group).
 
 ==== audio
 
-Sound files loading, sound playback (including 3D sound), processing of sound files. See link:manual_sound.php[manual about sound].
+Sound files loading, sound playback (including 3D sound), processing of sound files. See link:sound[manual about sound].
 
 _Depends on_: everything above (that is, units in "base" and "files" groups).
 

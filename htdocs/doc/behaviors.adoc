@@ -37,7 +37,7 @@ But behaviors remain our recommended approach, because it nicely _scales_ when y
 
 The engine provides a number of ready behavior classes, e.g.
 
-- cgeref:TCastleSoundSource[] (see link:manual_sound.php[sound]),
+- cgeref:TCastleSoundSource[] (see link:sound[sound]),
 
 - cgeref:TCastleBillboard[],
 

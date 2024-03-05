@@ -5,7 +5,7 @@ include::common.adoc[]
 
 link:http://openal.org/[OpenAL] is an open-source cross-platform library to play 3D sound. It is the default sound backend used by _Castle Game Engine_ to play all the sounds.
 
-If you want to learn how to play sounds using _Castle Game Engine_, see the link:manual_sound.php[manual about sound]. This pages only lists some OpenAL-specific information.
+If you want to learn how to play sounds using _Castle Game Engine_, see the link:sound[manual about sound]. This pages only lists some OpenAL-specific information.
 
 ## Installing OpenAL
 

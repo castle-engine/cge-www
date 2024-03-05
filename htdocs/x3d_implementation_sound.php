@@ -254,7 +254,7 @@ It means doing 2 things:
   <li>
     <p><b>Implementing X3D 4 sound nodes on top of <i>Web Audio</i> backend.</b>
 
-    <p>Admittedly this is low priority for CGE. Because for developers using "Castle Game Engine", the X3D sound nodes do not matter much. We recommend to use <a href="manual_sound.php">our sound components</a> instead, that are easy to set up in CGE editor, have convenient OOP API in Pascal. These components are different than X3D nodes. They have been modelled following what our users want, and looking at other game engines.
+    <p>Admittedly this is low priority for CGE. Because for developers using "Castle Game Engine", the X3D sound nodes do not matter much. We recommend to use <a href="sound">our sound components</a> instead, that are easy to set up in CGE editor, have convenient OOP API in Pascal. These components are different than X3D nodes. They have been modelled following what our users want, and looking at other game engines.
 
     <p>This situation is not set in stone. For various things, CGE uses X3D under the hood (e.g. for all <code>TCastleScene</code> rendering as well as light sources). It is possible that CGE sound components would employ X3D sound nodes at some point, when it will result in a useful API expected by game developers.
 </ol>

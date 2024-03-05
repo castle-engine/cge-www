@@ -1,0 +1,129 @@
+# Sound
+include::common.adoc[]
+:description: Play sound (audio effects, music) in Castle Game Engine applications.
+:cge-social-share-image: sound_example_3d_game_sound.png
+
+== The most important classes and their usage
+
+cgeimg::float[
+  sound_example_3d_game_sound.png|3D game sound demo - TCastleSound,
+  sound_example_3d_game_source.png|3D game sound demo - TCastleSoundSource
+]
+
+- cgeref:TCastleSound[]: The most important class, use this always when you want to play any sound.
++
+This is a non-visual component that represents a sound file with some playback parameters. The most important properties are:
++
+--
+- cgeref:TCastleSound.Url[] -- set this to load the given sound file.
+
+- cgeref:TCastleSound.Stream[] --  optionally use "streaming", which is an alternative loading method best suited for longer playing sounds (like music tracks).
+
+- cgeref:TCastleSound.Volume[] -- how loud the sound is. This is multiplied by volume at cgeref:TCastlePlayingSound.Volume[] and cgeref:TCastleSoundSource.Volume[] and by spatial calculations.
+
+- cgeref:TCastleSound.Pitch[] -- sound playing speed. As with volume, the volume of cgeref:TCastleSound.Pitch[] is multiplied by similar parameters controlled at cgeref:TCastlePlayingSound.Pitch[] and cgeref:TCastleSoundSource.Pitch[].
+--
++
+cgeref:TCastleSound[] by itself doesn't manage playing the sound. You have to use cgeref:TSoundEngine.Play[SoundEngine.Play] to play the sound (the simplest way to play, for non-spatial sounds) or cgeref:TCastleSoundSource[] (for sounds that can be spatial; assign to cgeref:TCastleSoundSource.Sound[] for looping, or use cgeref:TCastleSoundSource.Play[] for non-looping.
+
+- cgeref:TCastleSoundSource[]: A way to play spatial (3D) sounds.
++
+This is a link:behaviors[behavior] that enhances any cgeref:TCastleTransform[] so that it emits (possibly spatial) sounds.
++
+cgeref:TCastleSoundSource[] refers to cgeref:TCastleSound[] for an actual sound information. There are two ways to use it:
++
+--
+1. Set a looping sound in cgeref:TCastleSoundSource.Sound[]. The sound source will play it automatically. Turn it on or off using cgeref:TCastleSoundSource.SoundPlaying[].
+
+2. Play a sound calling cgeref:TCastleSoundSource.Play[]. You can pass any cgeref:TCastleSound[] or even your own cgeref:TCastlePlayingSound[] to observe the playback.
+--
++
+You can use both methods to play sounds. This way cgeref:TCastleSoundSource[] can play multiple sounds at the same time.
+
+- cgeref:TCastlePlayingSound[]: Optional, use if you need more control before and during the sound playback.
+
+Both cgeref:TCastleSoundSource[] and cgeref:TCastleSound[] can be created, configured and linked in the link:editor[CGE editor], e.g. when designing your state. You can hear the 3D sounds in the editor. You can also create and control them from code, as all CGE components.
+
+== Examples
+
+//  array('filename' => 'sound_example_player.png', 'titlealt' => 'Example audio player'),
+//  array('filename' => 'sound_example_doppler.png', 'titlealt' => 'Doppler demo'),
+
+cgeimg::float[
+  sound_example_play_sounds.png|Play sounds demo
+]
+
+- See all the examples in https://github.com/castle-engine/castle-engine/tree/master/examples/audio[examples/audio] subdirectory.
+
+- In particular open the https://github.com/castle-engine/castle-engine/tree/master/examples/audio/game_3d_sound[examples/audio/game_3d_sound] demo. It's a simple example of how cgeref:TCastleSoundSource[] and cgeref:TCastleSound[] can be set up in the CGE editor.
+
+- See also https://github.com/castle-engine/castle-engine/tree/master/examples/platformer[examples/platformer] as a demo how to design a _collection of sounds_ (see below for details).
+
+== Editor sound features
+
+cgeimg::float[
+  sound_editor_options.png|Sound editor options
+]
+
+- Sound volume, and _"Auto-mute on play"_ are available in the editor settings.
+
+- Drag-and-drop sound files on the viewport to automatically create a spatial sound: cgeref:TCastleTransform[], cgeref:TCastleSoundSource[], cgeref:TCastleSound[].
+
+== Playing sound from Pascal code
+
+Load a sound file as cgeref:TCastleSound[] like this:
+
+1. Add cgeref:CastleSoundEngine[] unit to your uses clause.
+
+2. Declare variable to hold it like `MySound: TCastleSound;`
+
+3. Initialize the variable and load sound file, e.g. in `Application.OnInitialize`:
++
+[source,pascal]
+----
+MySound := TCastleSound.Create(Application);
+MySound.Url := 'castle-data:/my-sound.wav';
+----
+
+4. Play the sound like this:
++
+[source,pascal]
+----
+SoundEngine.Play(MySound);
+----
+
+See https://github.com/castle-engine/castle-engine/blob/master/examples/audio/simplest_play_sound/simplest_play_sound.dpr[source code of examples/audio/simplest_play_sound/simplest_play_sound.dpr] for a working simplest possible example of this.
+
+NOTE: https://github.com/castle-engine/castle-engine/blob/master/examples/audio/simplest_play_sound/simplest_play_sound.dpr[simplest_play_sound] example is literally the simplest application that only plays a sound, without displaying anything. In a real situation, you want to use such code to play sound inside a larger CGE application, e.g. play sound when user presses some key, using our link:view_events[view events].
+
+== Using sounds collection (.castle-component file)
+
+cgeimg::float[
+  sound_collection.png|Sounds collection designed in editor
+]
+
+It is often comfortable to define a _collection_ of sounds, which means that each sound file is assigned a simple name and configuration (e.g. priority, default volume), and all the sound files can be loaded easily from any place in code (regardless of the current link:views[view]).
+
+Do it by using a cgeref:TCastleComponent[] as a design root and adding cgeref:TCastleSound[] children. Save the resulting design to a file like `sounds.castle-component`.
+
+See also https://github.com/castle-engine/castle-engine/tree/master/examples/platformer[examples/platformer] for an example of this approach. In particular, important files in this example are:
+
+- https://github.com/castle-engine/castle-engine/blob/master/examples/platformer/data/sounds.castle-component[examples/platformer/data/sounds.castle-component] describes all sounds. Edit this JSON file visually in CGE editor, just double-click on it in the CGE editor _"Files"_ panel.
+
+- https://github.com/castle-engine/castle-engine/blob/master/examples/platformer/code/gamesound.pas[examples/platformer/code/gamesound.pas] loads them. It defines a simple `NamedSound` routine used by the rest of code to play sounds like `SoundEngine.Play(NamedSound('something'))`.
+
+== Sound backends
+
+cgeimg::float[
+  sound_fmod.png|FMOD
+]
+
+By default we use _OpenAL_ to play sounds. It's a great full-featured open-source audio library, perfect match for our open-source game engine.
+
+You can alternatively switch to use the https://castle-engine.io/fmod[FMOD sound backend]. This is just an option. FMOD is proprietary (not open-source) and https://www.fmod.com/licensing[commercial (though free in some cases, for indie developers)].
+
+- Main advantage of FMOD in CGE for now is link:nintendo_switch[Nintendo Switch compatibility].
+
+- Big future advantage will be integration with the https://www.fmod.com/studio[FMOD Studio]. The goal of _FMOD Studio_ is to make the work of _sound designer_ easier. The sfx person can create sound effects in _FMOD Studio_, in a way that is agnostic to the game engine, and the code (like your game) simply sends _"events"_ that may cause some sound effect (playing something, stopping something, fading in/out something...).
+
+- See also plans about https://castle-engine.io/roadmap#fmod_studio[FMOD Studio] and https://castle-engine.io/roadmap#wwise[Wwise].

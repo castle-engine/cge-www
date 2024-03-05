@@ -75,8 +75,8 @@ in <code>examples/fps_game/</code> demo.
 
 <p>You can use an XML file to configure "named sounds" in your game.
 Such XML file can be set as
-<?php echo cgeRef('TRepoSoundEngine.RepositoryURL', 'SoundEngine.RepositoryURL'); ?>
- (see <?php echo a_href_page('manual about sounds', 'manual_sound'); ?>
+<?php echo cgeRef('TRepoSoundEngine.RepositoryUrl', 'SoundEngine.RepositoryUrl'); ?>
+ (see <a href="sound">manual about sounds</a>
  for more information how to use sound from code).
 
 <p>In the simplest case, the sounds XML file is just a list of <code>&lt;sound&gt;</code>

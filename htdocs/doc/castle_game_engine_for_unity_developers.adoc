@@ -182,7 +182,7 @@ Mobile services like ads, analytics, in-app purchases and more are available as 
 
 The _"service"_ means _"a part of the project, in binary or source code, added during the build stage"_.
 
-* Android services may contain Java code, precompiled libraries for Android, Gragle configuration and more.
+* Android services may contain Java code, precompiled libraries for Android, Gradle configuration and more.
 * iOS services may contain Objective-C code, precompiled libraries for iOS, https://cocoapods.org/[CocoaPods] configuration and more.
 * On other platforms, so far we didn't need a similar concept. E.g. integration of CGE with 3rd-party services on desktops is always possible by normal Pascal units that expose e.g. FMOD or Steam API. That said, it is possible that we will add "services" for other platforms some day.
 
@@ -190,7 +190,7 @@ The _"service"_ means _"a part of the project, in binary or source code, added d
 
 You can of course replace or enhance the shaders used by our engine.
 
-We have https://castle-engine.io/compositing_shaders.php[compositing shaders] which is like Unity3d "surface shaders" but on steroids :)  I'm quite proud of this, it really allows to easily write a piece of shader code and add it to some shapes, and (compared to Unity3d "surface shaders") it has some cool new features, like the ability to combine many effects (so you can write one shader effect, maybe add another shader effect), or changing shading of lights or textures or making proceduraly generated (on GPU) textures.
+We have https://castle-engine.io/compositing_shaders.php[compositing shaders] which is like Unity3d "surface shaders" but on steroids :)  I'm quite proud of this, it really allows to easily write a piece of shader code and add it to some shapes, and (compared to Unity3d "surface shaders") it has some cool new features, like the ability to combine many effects (so you can write one shader effect, maybe add another shader effect), or changing shading of lights or textures or making procedurally generated (on GPU) textures.
 
 See https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/shader_effects[examples/viewport_and_scenes/shader_effects] for simple demo in Pascal that attaches an effect, coded in GLSL, to a scene loaded from glTF. The shader uniform variable can be set at runtime from Pascal of course, and thus you can configure the shader at runtime with zero cost.
 
@@ -212,7 +212,7 @@ In CGE, it is a bit different. Viewport (`TCastleViewport`) is a 2D control, and
 * There are numerous `TCastleUserInterface` descendants, like buttons, images, and viewports.
 * Within a viewport (`TCastleViewport`) instance, you place your 3D or 2D world (in `Viewport.Items`).
 * A viewport always renders using a chosen camera in `Viewport.Camera`. This camera determines projection settings and position, rotation of the viewer. This camera determines which part of the world (your `TCastleTransform` instances) is visible.
-* A hierarchy of `TCastleTransform` is placed inside `TCastleVieport.Items`. These are 3D or 2D objects, rendered from the point of chosen camera.
+* A hierarchy of `TCastleTransform` is placed inside `TCastleViewport.Items`. These are 3D or 2D objects, rendered from the point of chosen camera.
 
 The above describes the typical design as seen in editor templates. To see it in action, create a _"New Project"_ in the editor, using the template like _"3D FPS Game"_, and open the design `data/gameviewplay.castle-user-interface` in the editor.
 
@@ -240,12 +240,12 @@ The equivalent of Unity https://docs.unity3d.com/Manual/class-AudioSource.html[A
 
 The equivalent of Unity https://docs.unity3d.com/Manual/class-AudioClip.html[AudioClip] is our cgeref:TCastleSound[].
 
-See https://castle-engine.io/manual_sound.php[manual chapter about sound] for information how to use sound in CGE.
+See link:sound[manual chapter about sound] for information how to use sound in CGE.
 
 == What is the difference between `Owner` and `Parent` in CGE?
 
 * `Owner` comes from from the standard `TComponent`. See link:modern_pascal#_manual_and_automatic_freeing[Manual and automatic freeing (Pascal introduction)]. It manages memory (owner will free the owned instance, when the owner is freed before the owned).
-* `Parent` is a visual parent. CGE UI has cgeref:TCastleUserInterface.Parent[]. CGE transformatons have cgeref:TCastleTransform.Parent[].
+* `Parent` is a visual parent. CGE UI has cgeref:TCastleUserInterface.Parent[]. CGE transformations have cgeref:TCastleTransform.Parent[].
 
 So `Parent` and `Owner` are separate concepts, even declared in different classes.
 

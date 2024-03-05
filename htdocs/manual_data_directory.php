@@ -63,7 +63,7 @@ This way the build tool will automatically package your game correctly.
   <li><p>Sounds, loaded e.g. by
     <?php echo pascal_highlight('MySoundBuffer := SoundEngine.LoadBuffer(\'castle-data:/my_sound.wav\')'); ?>
 
-    <p>See <a href="manual_sound.php">loading sounds</a>.
+    <p>See <a href="sound">loading sounds</a>.
 
   <li><p>... and really anything else you plan to load during the game.
     Your custom files can be loaded using

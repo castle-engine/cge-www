@@ -314,7 +314,7 @@ We have extensive link:manual_optimization.php[optimization documentation] and a
 
 == Sound
 
-You can play link:manual_sound.php[sound], spatial (in 3D) or not.
+You can play link:sound[sound], spatial (in 3D) or not.
 
 cgeimg::block[
   sound_example_3d_game_source.png|3D game sound demo - TCastleSoundSource
