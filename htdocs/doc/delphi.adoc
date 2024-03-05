@@ -86,6 +86,8 @@ There are 2 examples in CGE specifically for _{Cpp} Builder_, using engine API f
 
 NOTE: For _{Cpp} Builder_ you need to _Build_ the link:delphi_packages[packages] **for all your target platforms**, which means: both Win32 and Win64. This is in contrast to usage from Pascal, where it is enough to only _Install_ them for Win32 (Delphi IDE architecture).
 
+The _{Cpp} Builder_ compatibility is available for _{Cpp} Builder_ versions 11.3 and up.
+
 ### Redistributing C++ Builder applications by default requires redistribution of Delphi run-time BPLs too
 
 _{Cpp} Builder_ applications by default require redistribution of Delphi run-time libraries (BPL files) too. This is unrelated to CGE. So you cannot just give your users the resulting EXE file, you need to also provide all the BPL (run-time packages) it uses. If you use CGE, then in addition to RTL and FMX, you will also need to redistribute CGE run-time packages (BPL files).
