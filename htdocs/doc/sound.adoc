@@ -127,3 +127,55 @@ You can alternatively switch to use the https://castle-engine.io/fmod[FMOD sound
 - Big future advantage will be integration with the https://www.fmod.com/studio[FMOD Studio]. The goal of _FMOD Studio_ is to make the work of _sound designer_ easier. The sfx person can create sound effects in _FMOD Studio_, in a way that is agnostic to the game engine, and the code (like your game) simply sends _"events"_ that may cause some sound effect (playing something, stopping something, fading in/out something...).
 
 - See also plans about https://castle-engine.io/roadmap#fmod_studio[FMOD Studio] and https://castle-engine.io/roadmap#wwise[Wwise].
+
+== Various Advices
+
+=== Stereo sounds are never spatialized
+
+Stereo sounds are never spatialized. It means that their 3D position relative to the listener doesn't matter. If you want the sound to be spatialized, convert it to mono e.g. using https://www.audacityteam.org/[Audacity].
+
+[#limit]
+=== Trying to play too many sounds at once will result in some of them discarded
+
+There is a limit how many sounds are _actually_ played. That is because mixing a lot of sounds at once is computationally expensive. Moreover, the human ear cannot distinguish a lot of sounds at once anyway.
+
+The engine hides this from you, by managing sound sources using their cgeref:TCastleSound.Priority[]. The most important sounds are played, the rest (when it goes over the limit) may be stopped as necessary. By default, the limit is 16 (cgeref:TSoundAllocator.DefaultMaxAllocatedSources[]).
+
+To understand what actually happens, you can play with https://github.com/castle-engine/castle-engine/tree/master/examples/audio/test_sound_source_allocator[examples/audio/test_sound_source_allocator]. The example has a limit of 6 (not 16), just to easier experience the problem. Load any sound (the longer the sound, the easier to be hit by the problem) and press "_Play Sound_" to see the slots being filled with playing sounds. When all the slots are filled, playing new sound necessarily means that some old sound has to be stopped.
+
+The general advises to avoid stumbling on this problem:
+
+* Use cgeref:TCastleSound.Priority[] to manage sound priority wisely.
+
+* Do not start many sounds, with longer duration, in a short amount of time. Make sounds shorter or make intervals between starting sounds longer or both.
+
+E.g. let's consider using cgeref:TCastleTimer[] to start a sound. Let's calculate whether this is going to cause us issues:
+
+- Assume the timer cgeref:TCastleTimer.IntervalSeconds[] is 0.05, it means the timer fires 20 times per second.
+
+- Assume that each timer event plays new sound, by a code like this:
++
+[source,pascal]
+----
+procedure TViewMain.MyTimerEvent(Sender: TObject);
+begin
+  SoundEngine.Play(Sound1);
+end;
+----
+
+- Assume that the sound is long, e.g. 2 seconds.
+
+This means that when 2 seconds end, the 1st sound is still playing, and 40 sounds are already started. You will likely experience issues, as the sound engine has actually rejected playing most of these sounds -- only 16 are really mixed. Note that user probably couldn't hear (at least, not clearly) 40 sounds at once anyway, even if we would mix them all.
+
+The solution depends on the sound and use-case.
+
+* Maybe the sound has too long "tail" when it is almost-silent, playing echo, fading out etc. And maybe you can make it just shorter. E.g. cut the "tail" in https://www.audacityteam.org/[Audacity]. The screenshots below show a "brutal" cut done to make sound end shorter, to make it nicer you may want to fade out the sound at end.
++
+cgeimg::block[
+  audacity_before.png|Sound in Audacity before cutting,
+  audacity_after.png|Sound in Audacity after cutting
+]
+
+* Maybe you should just play the sound less often.
+
+* Maybe prepare a ready sound file that contains "premixed" sequence of shorter sounds. E.g. if you're going to always play 10 sounds in succession, create one WAV file with all 10 sounds already mixed into one. In effect, you call `SoundEngine.Play` once, not 10 times. Both _Castle Game Engine_ and the sound engine (like link:openal[OpenAL]) will have easier job to do.
