@@ -90,10 +90,24 @@ NOTE: For _{Cpp} Builder_ you need to _Build_ the link:delphi_packages[packages]
 
 _{Cpp} Builder_ applications by default require redistribution of Delphi run-time libraries (BPL files) too. This is unrelated to CGE. So you cannot just give your users the resulting EXE file, you need to also provide all the BPL (run-time packages) it uses. If you use CGE, then in addition to RTL and FMX, you will also need to redistribute CGE run-time packages (BPL files).
 
-If you want to avoid it, see https://blogs.embarcadero.com/how-do-i-create-a-stand-alone-application-in-c-builder/[How do I create a stand-alone application in C++Builder] for a solution. In short (as of RAD Studio 12.0) uncheck in project options
+If you forget to distribute the BPL files along with your EXE, users will see an error message like this:
+
+cgeimg::block[
+  cpp_builder_bpl_missing.png|Error message when BPL files are missing
+]
+
+If you want to avoid it, and have everything contained in one big EXE file, follow this answer; https://blogs.embarcadero.com/how-do-i-create-a-stand-alone-application-in-c-builder/[How do I create a stand-alone application in C++Builder] for a solution. In short (as of RAD Studio 12.0) uncheck in project options
 
 1. "_Building -> {Cpp} Linker -> Link with Dynamic RTL_" and
 
 2. "_Packages > Runtime Packages -> Link with runtime packages_".
 
-NOTE: Unfortunately, https://github.com/castle-engine/castle-engine/tree/master/examples/delphi/cpp_builder/window[examples/delphi/cpp_builder/window] with these settings (no run-time packages) makes _{Cpp} Builder_ compiler crash with _Access Violation_. But at least it works for https://github.com/castle-engine/castle-engine/tree/master/examples/delphi/cpp_builder/fmx[examples/delphi/cpp_builder/fmx] and simple FMX applications we tested with.
+Applications are then compiled into a larger EXE, that is "stand-alone" and does not require BPL files to be distributed.
+
+We have tested the above solution, it works for simple FMX applications and CGE applications using cgeref:TCastleControl[] like https://github.com/castle-engine/castle-engine/tree/master/examples/delphi/cpp_builder/fmx[examples/delphi/cpp_builder/fmx]. Below is a screenshot, as you can see in the background we only transferred the EXE file to another computer and the `data` subdirectory.
+
+cgeimg::block[
+  cpp_builder_no_bpl_required.png|No BPL files required
+]
+
+WARNING: Unfortunately https://github.com/castle-engine/castle-engine/tree/master/examples/delphi/cpp_builder/window[examples/delphi/cpp_builder/window] with these settings (no run-time packages) makes _{Cpp} Builder_ compiler crash with _Access Violation_. We haven't tested whether this problem affects all _{Cpp} Builder_ applications using cgeref:TCastleWindow[], the reason behind it also unknown -- cgeref:TCastleWindow[] isn't anything special, it just uses WinAPI (on Windows) under the hood to create a window with OpenGL context.
