@@ -25,6 +25,10 @@ NOTE: The configuration described here also works with https://github.com/VSCodi
 And many other text editors (like Emacs, NeoVim) can also use the LSP server described on this page, see <<Other text editors>>.
 ////
 
+== Video Overview
+
+video::24I-DPaYvlo[youtube,width=800,height=450]
+
 == Make Castle Game Engine invoke VS Code
 
 Go to _Castle Game Engine_ editor preferences, _"Code Editor"_ tab, and select the _"Visual Studio Code"_.
@@ -283,10 +287,16 @@ The LSP server can be used with http://neovim.io/[NeoVim]. See the `client/nvim`
 
 == Plans, TODOs
 
-* Bundle CGE with _VS Code_.
+- Upload our extension also to https://github.com/VSCodium/vscodium[VS Codium] marketplace. Note that fpDebug is not in VS Codium as of now, we'll likely fallback on different debuggger.
+
+- Make the status bar shorter, following https://code.visualstudio.com/api/ux-guidelines/status-bar[VS Code status bar guidelines]. We know that current buttons may be "too much", esp. if you have already a number of other extensions filling the status bar. Ideally, we move (and add more) CGE functionality to a https://code.visualstudio.com/api/extension-guides/tree-view[view (sidebar)] of VS Code, and in exchange make the status bar shorter.
+
+- Show our API docs using VS Code popup, and available offline. This will replace the current approach to use a separate Webview (with pre-filled search).
+
+- Bundle CGE with _VS Code_?
 +
 If you just install (unpack) CGE you should have a ready setup with CGE + VS Code. This is practically just _VS Code_ with automatically enabled (or suggested?) _"Castle Game Engine"_ extension mentioned above.
 +
 Of course we will still make everything such that you don't have to use this "bundled" VS Code and instead can use your existing VS Code installation, or really any other text editor / IDE, like Lazarus, Emacs, NeoVim etc.
 
-* Can we have "Code Completion" (that happens in Lazarus when you Ctrl + Shift + C) that can automatically insert e.g. method declarations or complete property declarations?
+- Can we have "Code Completion" (that happens in Lazarus when you Ctrl + Shift + C) that can automatically insert e.g. method declarations or complete property declarations?
