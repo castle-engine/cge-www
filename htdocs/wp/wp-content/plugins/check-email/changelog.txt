@@ -1,5 +1,9 @@
 == Changelog ==
 
+= v1.0.9 - 07/03/2024 =
+- Fixed: php8.2 deprecation warning #53
+- Enhancement: Added Support Form #56
+
 = v1.0.8 - 16/10/2023 = 
 - Updated: Plugin author to reflect ownership changes.
 

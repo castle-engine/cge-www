@@ -51,3 +51,32 @@
 .tab-content.ce_tab_logging .check_email_email_from_email  {
     display: none;
 }
+
+.ce-support-container *{
+  font-size: 16px;
+}
+
+.ce-support-label{
+  margin-top: 4px;
+  float: left;
+  width: 70px;
+  font-size: 14px;
+}
+
+.ce-star-mark{
+  color: red;
+  margin-left: 4px;
+  font-weight: bold;
+}
+
+.ce-hide{
+  display: none;
+}
+
+.ce-query-success{
+  color: #0b920b;
+}
+
+.ce-query-error{
+  color: #FF0000;
+}

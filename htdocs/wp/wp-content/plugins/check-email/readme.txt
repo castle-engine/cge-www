@@ -1,9 +1,12 @@
 === Check & Log Email ===
-Contributors: jack-kitterhing
-Tags: check, test, email, smtp, pop, send, delivery
+Contributors: checkemail
+Tags: check, test, email, smtp, delivery
 Requires at least: 5.0
-Tested up to: 6.3
-Stable tag: 1.0.8
+Tested up to: 6.4
+Requires PHP: 5.6.20
+Stable tag: 1.0.9
+License: GPLv3 or later
+License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 Check & Log email allows you to test if your WordPress installation is sending emails correctly by sending a test email to an address of your choice. Allows overriding of email headers and carbon copying to another address.
 
@@ -12,6 +15,8 @@ Check & Log email allows you to test if your WordPress installation is sending e
 In need of a tool that allows you to easily log and view all emails sent from WordPress? Check & Log might be just the solution for that. 
 This WordPress plugin helps you store sent emails for auditing purposes, as well as debug email related problems in your WordPress site. Works best on eCommerce websites that have been created with WooCommerce or Easy Digital Downloads.
 
+[Home](https://check-email.tech/) | [Help & Tech Support](https://check-email.tech/contact/) | [Documentation](https://check-email.tech/docs/)
+
 Some of its features include:
 
 - Test email sending - if you’re not sure whether WordPress is sending emails, you can use this plugin to find out. The process is very simple: you need to choose an address that will receive a simple test email. You can even override the custom header with your own values, to avoid any other issues.
@@ -19,9 +24,11 @@ Some of its features include:
 - Deleting logged emails - you can delete them by going to the admin interface. You can either delete them in bulk or  selectively - by date, email, or subject. 
 - Ability to change the "mail from" email address, "mail from name" and override default email WordPress addresses. 
 
-== Installation ==
+<strong>Support</strong><br>
+We try our best to provide support on WordPress.org forums. However, We have a special [community support](https://check-email.tech/contact/) where you can ask us questions and get help about your Check & Log Email related questions. Delivering a good user experience means a lot to us and so we try our best to reply each and every question that gets asked.
 
-Install the plugin from the plugin repository and activate.
+<strong>Bug Reports</strong><br>
+Bug reports for Check & Log Email are [welcomed on GitHub](https://github.com/ahmedkaludi/check-email). Please note GitHub is not a support forum, and issues that aren't properly qualified as bugs will be closed.
 
 == Frequently Asked Questions ==
 
@@ -39,7 +46,31 @@ Someone using one of my other plugins had trouble with emails not being sent. I 
 2. Check & Log Email - View Logs
 3. Check & Log Email - Settings
 
+== Installation ==
+
+= Using the WordPress Plugin Search =
+
+1. Navigate to the `Add New` sub-page under the Plugins admin page.
+2. Search for `Check & Log Email`.
+3. The plugin should be listed first in the search results.
+4. Click the `Install Now` link.
+5. Lastly click the `Activate Plugin` link to activate the plugin.
+
+= Uploading in WordPress Admin =
+
+1. [Download the plugin zip file](https://wordpress.org/plugins/check-email/) and save it to your computer.
+2. Navigate to the `Add New` sub-page under the Plugins admin page.
+3. Click the `Upload` link.
+4. Select Check & Log Email zip file from where you saved the zip file on your computer.
+5. Click the `Install Now` button.
+6. Lastly click the `Activate Plugin` link to activate the plugin.
+
+
 == Changelog ==
+
+= v1.0.9 - 07/03/2024 =
+- Fixed: php8.2 deprecation warning #53
+- Enhancement: Added Support Form #56
 
 = v1.0.8 - 16/10/2023 =
 - Updated: Plugin author to reflect ownership changes. 
@@ -56,80 +87,4 @@ Someone using one of my other plugins had trouble with emails not being sent. I 
 - Added: Tabs and grouped settings by tabs ( https://github.com/WPChill/check-email/issues/37 )
 - Added: Quick install WP SMTP plugin from settings ( https://github.com/WPChill/check-email/issues/37 )
 
-= v1.0.4 - 28/10/2021 =
-- Fixed: URL got too long when bulk deleting email logs. (https://github.com/WPChill/check-email/issues/30)
-- Fixed: Sanitization and Escaping
-
-= v1.0.3 - 24/09/2021 =
-- Fixed: Secutiry issue
-
-= v1.0.2 - 16/06/2021 =
-- Added: From column in Email Logs. ( https://github.com/WPChill/check-email/issues/24 )
-
-= v1.0.2 - 16/06/2021 =
-- Added: Translation for roles and notices. ( https://github.com/WPChill/check-email/issues/10 )
-- Added: Headers of the emails in the view log tab. ( https://github.com/WPChill/check-email/issues/12 )
-- Fixed: Admin subpages link bug. ( https://github.com/WPChill/check-email/issues/9 )
-- Fixed: Incompatibility with DIVI Theme. We enqued our JS only on Logs Page. ( https://github.com/WPChill/check-email/issues/13 )
-- Fixed: Incompatibility with WpLogging plugin. ( https://github.com/WPChill/check-email/issues/8 )
-- Fixed: Error by adding unique prefixes for Check-Email functions. ( https://github.com/WPChill/check-email/issues/16 )
-- Fixed: Redirect error when using custom folder structure for WP Core. ( https://github.com/WPChill/check-email/issues/21 )
-- Fixed: Deprecated jQuery functions.
-
-= 1.0.1 =
-* Fixed admin menu capabilities.
-* Rezolved incompatibility with Wp Mail Logging.
-
-= 1.0.0 =
-* Added Email Logs for all the emails sent through Wordpress.
-
-= 0.6.1 =
-Added feedback form. Improved CSS backend.
-
-= 0.6.0 =
-Fixed loopback error.
-
-= 0.5.7 =
-Added support for the wp_mail_from filter
-
-= 0.5.6 =
-Tested with WordPress 5.1.1
-
-= 0.5.5 =
-Fixed typo (sorry sorry sorry)
-
-= 0.5.4 =
-Added FAQ about the location of the tool in the WordPress admin area
-
-= 0.5.3 =
-Fixed deprecation error messages. Tested with 4.7.2.
-
-= 0.5.2 =
-Fixed un-encoded output related to XSS bug
-
-= 0.5.1 =
-Properly fixed XSS vulnerability (apologies)
-
-= 0.5 =
-Fixed XSS vulnerability found by Antonis Manaras
-
-= 0.4 =
-Added more information from php.ini, fixed incorrect textdomains
-
-= 0.3 =
-Moved the page to the Tools menu
-
-= 0.2 =
-Now displays SMTP server name
-
-= 0.1.3 =
-Fixed version number
-
-= 0.1.2 =
-Fixed bug in Plugin Register caused by latest version of WordPress
-
-= 0.1.1 =
-Fixed typo in plugin name
-
-= 0.1 =
-Initial version
+Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/check-email/trunk/changelog.txt)

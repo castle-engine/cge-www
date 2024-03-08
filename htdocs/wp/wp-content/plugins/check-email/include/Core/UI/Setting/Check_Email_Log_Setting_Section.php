@@ -11,6 +11,7 @@ class Check_Email_Log_Setting_Section {
 	public $title;
 	public $callback;
 	public $option_name;
+	public $page_slug;
 
 	public $sanitize_callback;
 
