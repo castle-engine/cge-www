@@ -16,8 +16,10 @@ Moreover, installing CGE will give you our _LSP server_ useful with _VS Code_ or
 
 cgeimg::block[vscode_completion.png|Visual Studio Code completing CGE code]
 
-NOTE: The configuration described here also works with https://github.com/VSCodium/vscodium[VSCodium], a version of VS Code built using 100% open-source code (without e.g. Microsoft telemetry). TODO: Our VS Code _"Castle Game Engine"_ extension will be uploaded to the _VS Codium_ marketplace soon.
-
+////
+TODO:
+NOTE: The configuration described here also works with https://github.com/VSCodium/vscodium[VSCodium], a version of VS Code built using 100% open-source code (without Microsoft telemetry, and with alternative marketplace).
+////
 
 ////
 And many other text editors (like Emacs, NeoVim) can also use the LSP server described on this page, see <<Other text editors>>.
@@ -40,51 +42,63 @@ This will make CGE automatically open _VS Code_ when you open Pascal file
 
 Install https://marketplace.visualstudio.com/items?itemName=castle-engine-team.castle-engine[Castle Game Engine in VS Code].
 
-You can follow this link. Or just search for _"Castle Game Engine"_ in the _VS Code_ extensions sidebar.
+You can follow the above link. Or just search for _"Castle Game Engine"_ in the _VS Code_ extensions sidebar.
 
 == Extension Settings and Pascal code completion
 
-After installing https://marketplace.visualstudio.com/items?itemName=castle-engine-team.castle-engine[Castle Game Engine in VS Code] extension, go to the extension settings and configure engine, FPC and Lazarus paths to make it work:
+After installing https://marketplace.visualstudio.com/items?itemName=castle-engine-team.castle-engine[Castle Game Engine in VS Code] extension, go to the extension settings and configure it:
 
 cgeimg::block[vscode_extension_config.png|VS Code Extension configuration]
 
-Notes about extension settings:
+Details about the extension settings:
 
-- Set `Engine Path` to point to our CGE directory. Inside CGE we expect to find `bin` subdirectory with `pasls` (`pasls.exe` on Windows).
-
-- Set `PP` to your FPC executable. If you use FPC bundled with CGE, this should look like `<cgepath>/tools/contrib/fpc/bin/fpc-cge`. Add `.exe` extension on Windows. If you use regular FPC, this is a path to your regular FPC executable (`fpc`, `fpc.exe`, `fpc.sh`).
-
-- Set `FPCDIR` to point to the FPC source code. If you use FPC bundled with CGE, this should look like `<cgepath>/tools/contrib/fpc/src/`.
-
-- Set `LAZARUSDIR` to your Lazarus (source) directory. This is optional, fill it if you have https://www.lazarus-ide.org/[Lazarus] installed. It will enable to find LCL units and do the code completion for LCL components too.
-
-- Set `FPCTARGET` to your OS, like `linux` or `win64`.
+Engine Path::
+Set this to _Castle Game Engine_ directory. **This is the only thing you really need to configure.** If you installed the engine from our https://castle-engine.io/download[official downloads], then everything else will be auto-detected correctly.
 +
-[NOTE]
-====
-Use _operating system_ names that match FPC and CGE. You can see valid OS names:
+Inside this directory we expect to find `bin` subdirectory with our tools, like `pasls` (`pasls.exe` on Windows), link:build_tool[build tool] and link:editor[editor].
 
+PP::
+FPC executable. Add `.exe` extension on Windows. If you use regular FPC, this is a path to your regular FPC executable (`fpc`, `fpc.exe`, `fpc.sh`).
++
+If you use FPC bundled with CGE, the correct path looks like `<cge-path>/tools/contrib/fpc/bin/fpc-cge`. But actually, you can also leave it blank in this case -- we will autodetect it.
++
+If you have installed FPC yourself using link:fpcupdeluxe[] on Unix, remember to point `PP` to the `fpc.sh` script (and not to the `fpc` binary) that should always be used to execute FPC managed by `fpcupdeluxe` on Unix.
++
+In general, the `PP` executable may be run by CodeTools, which may assume this FPC version "knows" standard RTL paths. That's why it's important to pass `fpc.sh` (in case of fpcupdeluxe) or `fpc-cge` (in case of FPC bundled with CGE) and not the "bare" `fpc` executable.
+
+FPCDIR::
+FPC source code.
++
+If you use FPC bundled with CGE, this should look like `<cge-path>/tools/contrib/fpc/src/`. But actually, you can also leave it blank in this case -- we will autodetect it.
+
+LAZARUSDIR::
+Lazarus (source) directory. This is optional, fill it if you have https://www.lazarus-ide.org/[Lazarus] installed. It will enable to find LCL units and do the code completion for LCL components too.
+
+FPCTARGET::
+Your OS, like `linux` or `win64`.
++
+Use _operating system_ names that match FPC and CGE. You can see valid OS names:
++
+--
 - In CGE editor menu _"Run -> Platform (To Compile And Run) -> ..."_.
 - If you execute on the command-line link:build_tool[build tool] as `castle-engine --help`. Look for possible arguments for the `--os` option.
-
+--
++
 You can also leave it empty, our LSP will autodetect it.
-====
-+
-- Set `FPCTARGETCPU` to your CPU, like `x86_64`.
-+
-[NOTE]
-====
-Use _processor_ names that match FPC and CGE. You can see valid CPU names:
 
+FPCTARGETCPU::
+Your CPU, like `x86_64`.
++
+Use _processor_ names that match FPC and CGE. You can see valid CPU names:
++
+--
 - In CGE editor menu _"Run -> Platform (To Compile And Run) -> ..."_.
 - If you execute on the command-line link:build_tool[build tool] as `castle-engine --help`. Look for possible arguments for the `--cpu` option.
-
+--
++
 You can also leave it empty, our LSP will autodetect it.
-====
 
-Setting up everything means that our _LSP server_ that implements an _intelligent code completion_ for Pascal and is aware of _Castle Game Engine_ units and default syntax options (e.g. FPC _ObjFpc_ mode) will work.
-
-NOTE: https://github.com/castle-engine/pascal-language-server[Our LSP server] is based on https://github.com/Isopod/pascal-language-server[Philip Zander\'s LSP server] which in turn relies on https://www.lazarus-ide.org/[Lazarus] _CodeTools_ to do the code completion. So inside there is really a lot of work and testing from many people in the Pascal ecosystem to make it powerful.
+NOTE: https://github.com/castle-engine/pascal-language-server[Our LSP server] is based on https://github.com/Isopod/pascal-language-server[Philip Zander's LSP server] which in turn uses on https://www.lazarus-ide.org/[Lazarus] _CodeTools_ to do the code completion. So inside there is really a lot of work and testing from many people in the Pascal ecosystem to make it powerful.
 
 === Test Code Completion
 
@@ -96,13 +110,7 @@ NOTE: https://github.com/castle-engine/pascal-language-server[Our LSP server] is
 cgeimg::block[vscode_completion.png|VS Code Extension configuration]
 - Right click on any Pascal item and use _"Go To Definition"_, _"Go To Declaration"_ or just _Ctrl + click_ on it to move around. You can also peek at definition and declaration using _"Peek -> ..."_.
 
-[NOTE]
-====
-If you have installed FPC yourself using link:fpcupdeluxe[] on Unix, remember to point `PP` to the `fpc.sh` script (and not to the `fpc` binary) that should always be used to execute FPC managed by `fpcupdeluxe` on Unix.
-
-In general, the `PP` executable may be run by CodeTools, which may assume this FPC version "knows" standard RTL paths. That's why it's important to pass `fpc.sh` (in case of fpcupdeluxe) or `fpc-cge` (in case of FPC bundled with CGE) and not the "bare" `fpc` executable.
-====
-
+////
 == Pascal syntax highlighting
 
 WARNING: TODO: This doc section is super-seeded by the new extension, that automatically gives Pascal code highlighting for you by depending on https://marketplace.visualstudio.com/items?itemName=theangryepicbanana.language-pascal[Pascal magic].
@@ -121,33 +129,41 @@ Searching extensions' marketplace for _"Pascal"_ will yield a number of alternat
 
 E.g. https://marketplace.visualstudio.com/items?itemName=AnsonYeung.pascal-language-basics[Pascal Language Basics] is also a solid choice. We recommended it in the past. We switched to _"Pascal magic"_ mainly because it handles better difficult long code in `tools/castle-editor/code/framedesign.pas`.
 ====
+////
 
 == Compiling and Running
 
-WARNING: TODO: This doc section is super-seeded by the new extension, that automatically gives commands to build and run for you.
+Simply open in _VS Code_ a directory with `CastleEngineManifest.xml`. Our extension will automatically detect it is a CGE project, and will show appropriate buttons on the status bar to compile, run and debug the project.
 
-You can configure _VS Code_ to compile and run CGE applications.
+=== Alternative ways to compile and run (for other text editors or custom needs)
 
-NOTE: The proces below allows for many tweaks for advanced _VS Code_ users but it may look intimidating. Remember this is optional. You can always just compile and run CGE applications from _Castle Game Engine_ editor (use F9, or _"Run -> Compile And Run_" menu item).
+Using our _VS Code_ extension commands is just one way to build and run CGE application. Some alternatives:
 
-=== Tasks
+- Use link:editor[], menu item _"Run -> Compile And Run_" (F9).
 
-To compile and run CGE projects from _VS Code_, you can define a `tasks.json` file with contents like this: https://github.com/castle-engine/castle-engine/blob/master/doc/sample_vs_code_tasks.json[sample_vs_code_tasks.json] (use https://raw.githubusercontent.com/castle-engine/castle-engine/master/doc/sample_vs_code_tasks.json[raw version of sample_vs_code_tasks.json for easy copy-paste]).
+- Use link:lazarus[Lazarus IDE] or link:delphi[Delphi IDE]. You can open CGE project in them.
 
+- Use command-line link:build_tool[build tool]. Like this: `castle-engine compile && castle-engine run`.
++
+This approach is also how you can build and run CGE projects from any text editor.
++
+You can also define _VS Code_ `tasks.json` file to allow to run the project indicated by the _currently open file_ (so you don't need to open the exact project directory in _VS Code_). https://github.com/castle-engine/castle-engine/blob/master/doc/sample_vs_code_tasks.json[Place in your `tasks.json` this] (use https://raw.githubusercontent.com/castle-engine/castle-engine/master/doc/sample_vs_code_tasks.json[raw version for easy copy-paste]).
++
 This file defines a few CGE tasks and makes the task _"(CGE) Compile And Run"_ the default.
-
++
 Use this sample as:
-
++
+--
 * your personal (user-specific, apply to all projects) tasks. Use command _"Tasks: Open User Tasks"_ from the palette (_Ctrl + Shift + P_) to edit this file.
 
 * or place these tasks inside the `.vscode` folder of your project. Use menu item _"Terminal -> Configure Tasks"_ to edit this file.
-
-=== Environment for tasks
-
+--
++
 The above sample `tasks.json` assumes that the CGE link:build_tool[build tool] called `castle-engine` can be found on environment variable `PATH`.
-
++
 Make sure your environment is set correctly to make it work:
-
++
+--
 - Extend the `PATH` environment variable to contain the `bin` subdirectory of your CGE directory. This is where `castle-engine[.exe]` file should be. If you don't know how to set the environment variable, search the Internet (e.g. https://www.computerhope.com/issues/ch000549.htm[these are quick instructions how to do it on various Windows versions]).
 +
 _Alternative_: Edit the sample `tasks.json` to provide full path to the build tool exe, like `/home/example/castle_game_engine/bin/castle-engine` instead of just `castle-engine`.
@@ -161,41 +177,32 @@ This is not necessary in the common case, when you use FPC bundled with CGE.
 This is not necessary if you run the build tool from CGE subdirectory `bin/`, it will auto-detect CGE path then correctly.
 
 - Remember to restart all applications (like VS Code) that need to be aware of new environment variables' values.
+--
 
-=== Keybindings for tasks
+== Keybindings
 
-WARNING: TODO: This doc section is super-seeded by the new extension, that automatically sets keys for you.
+Our https://marketplace.visualstudio.com/items?itemName=castle-engine-team.castle-engine[VS Code extension for Castle Game Engine] defines a few useful keybindings:
 
-You can bind keys to the CGE tasks, to have a similar experience in _VS Code_ as in CGE editor:
+- Compile using _Ctrl + F9_ (or _Cmd + F9_ on macOS).
 
-- _F9_ should do _"(CGE) Compile And Run"_
-- _Ctrl+F9_ should do _"(CGE) Compile"_
-- _Shift+F9_ should do _"(CGE) Run"_
+- Run using _Shift + F9_.
 
-To adjust keybindings for tasks, you have to edit your `keybindings.json` file. See https://code.visualstudio.com/docs/editor/tasks#_binding-keyboard-shortcuts-to-tasks[adding shortcuts to tasks] and https://code.visualstudio.com/docs/getstarted/keybindings#_advanced-customization[editing keybindings] for information how to do this.
+- Search API reference using _Ctrl + F1_ (or _Cmd + F1_ on macOS).
 
-Define keys like this in `keybindings.json`:
+- Go to declaration using _Ctrl + F12_ (or _Cmd + F12_ on macOS).
 
-```json
-    {
-        "key": "ctrl+f9",
-        "command": "workbench.action.tasks.runTask",
-        "args": "(CGE) Compile"
-    },
-    {
-        "key": "shift+f9",
-        "command": "workbench.action.tasks.runTask",
-        "args": "(CGE) Run"
-    }
-```
+You can change the bindings as you see fit, naturally, using VS Code.
+////
+See https://code.visualstudio.com/docs/editor/tasks#_binding-keyboard-shortcuts-to-tasks[adding shortcuts to tasks] and https://code.visualstudio.com/docs/getstarted/keybindings#_advanced-customization[editing keybindings] for information how to do this.
+////
 
-To define key shortcut for default task _"(CGE) Compile And Run"_ just adjust the _"Tasks: Run Build Task"_ shortcut to F9 in VS Code key shortcuts settings. You can also adjust it by editing `keybindings.json`, as above.
+== Debugging
 
-=== Debugging
+Our https://marketplace.visualstudio.com/items?itemName=castle-engine-team.castle-engine[VS Code extension for Castle Game Engine] defines a ready debugger called `castleDebug` based on `fpDebug`. Just start debugging in _VS Code_ and choose `castleDebug` as a debugger.
 
-WARNING: TODO: This doc section is super-seeded by the new extension, that automatically gives `castleDebug` debugger for you, using `fpDebug` under the hood.
+=== Alternative debuggers
 
-CGE applications compiled in _debug_ mode contain debug symbols compatible with GDB. Any debugger extension in _VS Code_ based on GDB should work, like https://marketplace.visualstudio.com/items?itemName=webfreak.debug[Native Debug].
+Any debugger extension in _VS Code_ based on GDB should work, like https://marketplace.visualstudio.com/items?itemName=webfreak.debug[Native Debug].
 
 This is a sample `launch.json` you can use (edit `app_name` as necessary):
 
@@ -220,6 +227,7 @@ This is a sample `launch.json` you can use (edit `app_name` as necessary):
 
 For debugging code compiled with FPC, it's very useful to set a breakpoint at `fpc_raiseexception`. Just define a breakpoint at such function name (don't worry that it may seem like it doesn't work -- it will actually work once you run the project).
 
+////
 [NOTE]
 ====
 The keybindings are of course your personal choice. Personally I use these:
@@ -229,6 +237,7 @@ The keybindings are of course your personal choice. Personally I use these:
 - `Shift + F5` - _Debug: Start Debugging_
 - `Ctrl + F2` - _Debug: Stop_ (consistent with Delphi / Lazarus)
 ====
+////
 
 == More Information and Credits
 
