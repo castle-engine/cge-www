@@ -1,7 +1,7 @@
 # Visual Studio Code
 include::common.adoc[]
 :description: Castle Game Engine extension for Visual Studio Code, that provides code completion and highlighting for Pascal and management of Castle Game Engine projects.
-:cge-social-share-image: vscode_completion.png
+:cge-social-share-image: vscode_ext_1.png
 
 == Introduction
 
@@ -14,7 +14,11 @@ We provide a https://marketplace.visualstudio.com/items?itemName=castle-engine-t
 
 Moreover, installing CGE will give you our _LSP server_ useful with _VS Code_ or various other text editors (like _Emacs_ or _Vim_) to make _intelligent code completion_ that works great with Pascal and automatically completes all _Castle Game Engine_ API.
 
-cgeimg::block[vscode_completion.png|Visual Studio Code completing CGE code]
+cgeimg::block[
+  vscode_ext_1.png|Visual Studio Code completing CGE code,
+  vscode_ext_2.png|Visual Studio Code - symbols in workspace,
+  vscode_ext_3.png|Visual Studio Code - symbols in file
+]
 
 ////
 TODO:
@@ -300,3 +304,5 @@ If you just install (unpack) CGE you should have a ready setup with CGE + VS Cod
 Of course we will still make everything such that you don't have to use this "bundled" VS Code and instead can use your existing VS Code installation, or really any other text editor / IDE, like Lazarus, Emacs, NeoVim etc.
 
 - Can we have "Code Completion" (that happens in Lazarus when you Ctrl + Shift + C) that can automatically insert e.g. method declarations or complete property declarations?
+
+- Debugging on macOS doesn't work yet.

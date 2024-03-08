@@ -1,7 +1,7 @@
 # Why use Pascal?
 include::common.adoc[]
 :description: Object Pascal is a modern, readable, fast, type-safe, cross-platform OOP programming language. It is also easy to pick up.
-:cge-social-share-image: vscode_completion.png
+:cge-social-share-image: vscode_ext_1.png
 
 ## Short answer
 
@@ -17,7 +17,7 @@ programming language.
 
 It is also easy to pick up if you know any OOP language. Learn more in our https://castle-engine.io/modern_pascal[Modern Object Pascal Introduction for Programmers].
 
-cgeimg::block[vscode_completion.png|VS Code completion]
+cgeimg::block[vscode_ext_1.png|VS Code completion]
 
 ## More elaborate answer
 

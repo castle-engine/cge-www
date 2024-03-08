@@ -99,7 +99,7 @@ Note: If you're bothered by the default multiple-windows UI of Lazarus, install 
 
 cgeimg::block[
   custom-code-editor.png|Code Editor Preferences,
-  vscode_completion.png|VS Code completion
+  vscode_ext_1.png|VS Code completion
 ]
 
 ## File browser
