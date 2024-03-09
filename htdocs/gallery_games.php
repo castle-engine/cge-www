@@ -11,8 +11,22 @@ We love to see how you use CGE.</i>
 
 <div class="row">
 
+  <?php gallery_link('Gem Islands',
+    'Medieval knight adventure game in a third-person view. 5 islands to explore, different weapons, items, minimap... Source code available. By DidiSoft.
+
+    <p>See also the <a href="https://forum.castle-engine.io/t/gem-islands-first-playable-version/">forum thread</a>.',
+    'gem_islands_cover.png',
+    'https://didisoft.itch.io/gem-islands');
+  ?>
+
+  <?php gallery_link('Ticoban',
+    '3D Sokoban version made using Castle Game Engine. By Rafael Campos.',
+    'ticoban.png',
+    'https://juegosenlazaruscr.itch.io/ticoban');
+  ?>
+
   <?php gallery_link('DSDrive',
-    'A simple racing game by DidiSoft. Two game modes, three different racetracks, car customization, weather effects, different views. Source code available at the game page.',
+    'A racing game. Two game modes, three different racetracks, car customization, weather effects, different views. Source code available at the game page. By DidiSoft.',
     'dsdrive.png',
     'https://didisoft.itch.io/dsdrive');
   ?>
@@ -32,7 +46,7 @@ We love to see how you use CGE.</i>
   ?>
 
   <?php gallery_link('Foxy Misfortunes (18+)',
-    'A simple top-down shooter by EugeneLoza where clothes are hit-points. Source code is <a href="https://gitlab.com/EugeneLoza/foxy-misfortunes">available on GitLab</a>.',
+    'A top-down shooter by Eugene Loza where clothes are hit-points. Source code is <a href="https://gitlab.com/EugeneLoza/foxy-misfortunes">available on GitLab</a>.',
     'foxy-misfortunes.png',
     'https://decoherence.itch.io/foxy-misfortunes');
   ?>
