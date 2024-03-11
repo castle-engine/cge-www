@@ -725,3 +725,22 @@ It should be possible to design layers (and maybe more, like tiles) in CGE edito
 This way we can go, step by step, to having own Tiled-like editor in CGE, like Godot or Unity.
 +
 At the same time, we want to support https://www.mapeditor.org/[Tiled] (as external application for map editing) and support it fully, because Tiled is great! and it may take us long time to actually have fully useful tile editor in CGE editor. The road should be that `Data` stuff, and everything in `TCastleTiledMapData`, becomes less and less useful. It's an internal detail whether our public `TCastleTiledMap.TLayer` has a reference like `Data:TCastleTiledMapData.TLayer` or not.
+
+[#tiles3d]
+## Built-in tile editor in CGE, with support for 3D models on a grid
+
+Built-in Tiled-like editing features in CGE would be great.
+
+- With ability to initialize them from https://www.mapeditor.org/[Tiled] data, and using similar API as we have for Tiled, see also link:#tiled_layers[plans for improving Tiled API].
+
+- With ability to design stuff in 3D. See:
++
+--
+- Unity: https://www.youtube.com/watch?v=u8zJnXnZiFE
+- Unreal: https://www.youtube.com/watch?v=DwPHsLJv5Gw
+- https://forum.castle-engine.io/t/request-for-a-tcastlegrid-component/839[CGE forum thread]
+--
+
+This is admittedly a long-term goal. A whole system for this, esp. with 3D, would be cool but also a significant new work.
+
+What will likely be done sooner: "snapping" for 3D operations, that fils some subset of this functionality, e.g. allows to put 3D buildings on a grid.
