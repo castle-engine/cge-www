@@ -56,23 +56,6 @@ function echo_piwik_tracking()
 <?php
 }
 
-function echo_google_analytics_tracking()
-{
-  if (_castle_disable_stats()) return;
-
-?>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-61279460-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-61279460-1');
-</script>
-<?php
-}
-
 /* Paypal -------------------------------------------------------------------- */
 
 function paypal_button($with_logos = true)

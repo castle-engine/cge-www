@@ -140,7 +140,7 @@ if (empty($castle_disable_cge_geshi)) {
 }
 
 /* Michalis' email address. Using the constant makes it easier to change
-   the address everywhere at once, and saves me from accidentaly
+   the address everywhere at once, and saves me from accidentally
    making typos in my email. */
 define('MICHALIS_EMAIL', 'michalis@castle-engine.io');
 
@@ -1402,7 +1402,6 @@ function echo_footer ()
 
   /* Insert tracking code */
   echo_piwik_tracking();
-  echo_google_analytics_tracking();
 }
 
 /* Return SVN URL to appropriate path with repository trunk.
