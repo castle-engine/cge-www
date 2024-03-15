@@ -91,6 +91,10 @@ class Check_Email_Review {
 
 		check_ajax_referer( 'epsilon-check-email-review', 'security' );
 
+		if ( ! current_user_can('manage_options') ) {
+      		return false;
+    	}
+
 		if ( ! isset( $_POST['check'] ) ) {
 			wp_die( 'ok' );
 		}

@@ -15,6 +15,9 @@ class Check_Email_Nonce_Checker implements Loadie {
 	}
 
 	public function check_nonce() {
+		if ( ! current_user_can('manage_options') ) {
+      		return false;
+    	}
 		if ( ! isset( $_POST['check-email-action'] ) && ! isset( $_REQUEST['action'] ) && ! isset( $_REQUEST['action2'] ) ) {
 			return;
 		}

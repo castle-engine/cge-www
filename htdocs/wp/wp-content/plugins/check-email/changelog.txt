@@ -1,5 +1,8 @@
 == Changelog ==
 
+= v1.0.10 - 14/03/2024 =
+- Fixed: Resolved security issue raised by Wordfence
+
 = v1.0.9 - 07/03/2024 =
 - Fixed: php8.2 deprecation warning #53
 - Enhancement: Added Support Form #56

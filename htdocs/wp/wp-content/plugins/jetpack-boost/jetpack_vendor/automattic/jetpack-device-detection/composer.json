@@ -8,7 +8,7 @@
 	},
 	"require-dev": {
 		"yoast/phpunit-polyfills": "1.1.0",
-		"automattic/jetpack-changelogger": "^4.0.2"
+		"automattic/jetpack-changelogger": "^4.1.0"
 	},
 	"suggest": {
 		"automattic/jetpack-autoloader": "Allow for better interoperability with other plugins that use this package."
@@ -35,7 +35,7 @@
 			"link-template": "https://github.com/Automattic/jetpack-device-detection/compare/v${old}...v${new}"
 		},
 		"branch-alias": {
-			"dev-trunk": "2.0.x-dev"
+			"dev-trunk": "2.1.x-dev"
 		}
 	}
 }

@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitb1e77e6231d50e7663f84529b6a3dfda_jetpack_boostⓥ3_0_2
+class ComposerStaticInitb1e77e6231d50e7663f84529b6a3dfda_jetpack_boostⓥ3_1_1
 {
     public static $files = array (
         '3773ef3f09c37da5478d578e32b03a4b' => __DIR__ . '/../..' . '/jetpack_vendor/automattic/jetpack-assets/actions.php',
@@ -61,6 +61,7 @@ class ComposerStaticInitb1e77e6231d50e7663f84529b6a3dfda_jetpack_boostⓥ3_0_2
         'Automattic\\Jetpack\\Boost_Core\\Lib\\Url' => __DIR__ . '/../..' . '/jetpack_vendor/automattic/jetpack-boost-core/src/lib/class-url.php',
         'Automattic\\Jetpack\\Boost_Core\\Lib\\Utils' => __DIR__ . '/../..' . '/jetpack_vendor/automattic/jetpack-boost-core/src/lib/class-utils.php',
         'Automattic\\Jetpack\\Boost_Core\\Lib\\WPCOM_Boost_API_Client' => __DIR__ . '/../..' . '/jetpack_vendor/automattic/jetpack-boost-core/src/lib/class-wpcom-boost-api-client.php',
+        'Automattic\\Jetpack\\Boost_Speed_Score\\Jetpack_Boost_Modules' => __DIR__ . '/../..' . '/jetpack_vendor/automattic/jetpack-boost-speed-score/src/class-jetpack-boost-modules.php',
         'Automattic\\Jetpack\\Boost_Speed_Score\\Speed_Score' => __DIR__ . '/../..' . '/jetpack_vendor/automattic/jetpack-boost-speed-score/src/class-speed-score.php',
         'Automattic\\Jetpack\\Boost_Speed_Score\\Speed_Score_Graph_History_Request' => __DIR__ . '/../..' . '/jetpack_vendor/automattic/jetpack-boost-speed-score/src/class-speed-score-graph-history-request.php',
         'Automattic\\Jetpack\\Boost_Speed_Score\\Speed_Score_History' => __DIR__ . '/../..' . '/jetpack_vendor/automattic/jetpack-boost-speed-score/src/class-speed-score-history.php',
@@ -254,6 +255,9 @@ class ComposerStaticInitb1e77e6231d50e7663f84529b6a3dfda_jetpack_boostⓥ3_0_2
         'Automattic\\Jetpack_Boost\\Admin\\Admin' => __DIR__ . '/../..' . '/app/admin/class-admin.php',
         'Automattic\\Jetpack_Boost\\Admin\\Config' => __DIR__ . '/../..' . '/app/admin/class-config.php',
         'Automattic\\Jetpack_Boost\\Admin\\Regenerate_Admin_Notice' => __DIR__ . '/../..' . '/app/admin/class-regenerate-admin-notice.php',
+        'Automattic\\Jetpack_Boost\\Contracts\\Changes_Page_Output' => __DIR__ . '/../..' . '/app/contracts/Changes_Output.php',
+        'Automattic\\Jetpack_Boost\\Contracts\\Has_Activate' => __DIR__ . '/../..' . '/app/contracts/Has_Activate.php',
+        'Automattic\\Jetpack_Boost\\Contracts\\Has_Deactivate' => __DIR__ . '/../..' . '/app/contracts/Has_Deactivate.php',
         'Automattic\\Jetpack_Boost\\Contracts\\Has_Setup' => __DIR__ . '/../..' . '/app/contracts/Has_Setup.php',
         'Automattic\\Jetpack_Boost\\Contracts\\Has_Slug' => __DIR__ . '/../..' . '/app/contracts/Has_Slug.php',
         'Automattic\\Jetpack_Boost\\Contracts\\Is_Always_On' => __DIR__ . '/../..' . '/app/contracts/Is_Always_On.php',
@@ -324,6 +328,21 @@ class ComposerStaticInitb1e77e6231d50e7663f84529b6a3dfda_jetpack_boostⓥ3_0_2
         'Automattic\\Jetpack_Boost\\Modules\\Optimizations\\Image_CDN\\Image_CDN' => __DIR__ . '/../..' . '/app/modules/optimizations/image-cdn/class-image-cdn.php',
         'Automattic\\Jetpack_Boost\\Modules\\Optimizations\\Minify\\Minify_CSS' => __DIR__ . '/../..' . '/app/modules/optimizations/minify/class-minify-css.php',
         'Automattic\\Jetpack_Boost\\Modules\\Optimizations\\Minify\\Minify_JS' => __DIR__ . '/../..' . '/app/modules/optimizations/minify/class-minify-js.php',
+        'Automattic\\Jetpack_Boost\\Modules\\Optimizations\\Page_Cache\\Data_Sync\\Page_Cache_Entry' => __DIR__ . '/../..' . '/app/modules/optimizations/page-cache/data-sync/Page_Cache_Entry.php',
+        'Automattic\\Jetpack_Boost\\Modules\\Optimizations\\Page_Cache\\Data_Sync_Actions\\Clear_Page_Cache' => __DIR__ . '/../..' . '/app/modules/optimizations/page-cache/data-sync-actions/clear-page-cache.php',
+        'Automattic\\Jetpack_Boost\\Modules\\Optimizations\\Page_Cache\\Data_Sync_Actions\\Run_Setup' => __DIR__ . '/../..' . '/app/modules/optimizations/page-cache/data-sync-actions/run-setup.php',
+        'Automattic\\Jetpack_Boost\\Modules\\Optimizations\\Page_Cache\\Garbage_Collection' => __DIR__ . '/../..' . '/app/modules/optimizations/page-cache/Garbage_Collection.php',
+        'Automattic\\Jetpack_Boost\\Modules\\Optimizations\\Page_Cache\\Page_Cache' => __DIR__ . '/../..' . '/app/modules/optimizations/page-cache/Page_Cache.php',
+        'Automattic\\Jetpack_Boost\\Modules\\Optimizations\\Page_Cache\\Page_Cache_Setup' => __DIR__ . '/../..' . '/app/modules/optimizations/page-cache/Page_Cache_Setup.php',
+        'Automattic\\Jetpack_Boost\\Modules\\Optimizations\\Page_Cache\\Pre_WordPress\\Boost_Cache' => __DIR__ . '/../..' . '/app/modules/optimizations/page-cache/pre-wordpress/Boost_Cache.php',
+        'Automattic\\Jetpack_Boost\\Modules\\Optimizations\\Page_Cache\\Pre_WordPress\\Boost_Cache_Error' => __DIR__ . '/../..' . '/app/modules/optimizations/page-cache/pre-wordpress/Boost_Cache_Error.php',
+        'Automattic\\Jetpack_Boost\\Modules\\Optimizations\\Page_Cache\\Pre_WordPress\\Boost_Cache_Settings' => __DIR__ . '/../..' . '/app/modules/optimizations/page-cache/pre-wordpress/Boost_Cache_Settings.php',
+        'Automattic\\Jetpack_Boost\\Modules\\Optimizations\\Page_Cache\\Pre_WordPress\\Boost_Cache_Utils' => __DIR__ . '/../..' . '/app/modules/optimizations/page-cache/pre-wordpress/Boost_Cache_Utils.php',
+        'Automattic\\Jetpack_Boost\\Modules\\Optimizations\\Page_Cache\\Pre_WordPress\\Filesystem_Utils' => __DIR__ . '/../..' . '/app/modules/optimizations/page-cache/pre-wordpress/Filesystem_Utils.php',
+        'Automattic\\Jetpack_Boost\\Modules\\Optimizations\\Page_Cache\\Pre_WordPress\\Logger' => __DIR__ . '/../..' . '/app/modules/optimizations/page-cache/pre-wordpress/Logger.php',
+        'Automattic\\Jetpack_Boost\\Modules\\Optimizations\\Page_Cache\\Pre_WordPress\\Request' => __DIR__ . '/../..' . '/app/modules/optimizations/page-cache/pre-wordpress/Request.php',
+        'Automattic\\Jetpack_Boost\\Modules\\Optimizations\\Page_Cache\\Pre_WordPress\\Storage\\File_Storage' => __DIR__ . '/../..' . '/app/modules/optimizations/page-cache/pre-wordpress/storage/File_Storage.php',
+        'Automattic\\Jetpack_Boost\\Modules\\Optimizations\\Page_Cache\\Pre_WordPress\\Storage\\Storage' => __DIR__ . '/../..' . '/app/modules/optimizations/page-cache/pre-wordpress/storage/Storage.php',
         'Automattic\\Jetpack_Boost\\Modules\\Optimizations\\Render_Blocking_JS\\Render_Blocking_JS' => __DIR__ . '/../..' . '/app/modules/optimizations/render-blocking-js/class-render-blocking-js.php',
         'Automattic\\Jetpack_Boost\\Modules\\Performance_History\\Performance_History' => __DIR__ . '/../..' . '/app/modules/performance-history/Performance_History.php',
         'Automattic\\Jetpack_Boost\\REST_API\\Contracts\\Endpoint' => __DIR__ . '/../..' . '/app/rest-api/contracts/Endpoint.php',
@@ -358,10 +377,10 @@ class ComposerStaticInitb1e77e6231d50e7663f84529b6a3dfda_jetpack_boostⓥ3_0_2
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitb1e77e6231d50e7663f84529b6a3dfda_jetpack_boostⓥ3_0_2::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitb1e77e6231d50e7663f84529b6a3dfda_jetpack_boostⓥ3_0_2::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitb1e77e6231d50e7663f84529b6a3dfda_jetpack_boostⓥ3_0_2::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInitb1e77e6231d50e7663f84529b6a3dfda_jetpack_boostⓥ3_0_2::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitb1e77e6231d50e7663f84529b6a3dfda_jetpack_boostⓥ3_1_1::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitb1e77e6231d50e7663f84529b6a3dfda_jetpack_boostⓥ3_1_1::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitb1e77e6231d50e7663f84529b6a3dfda_jetpack_boostⓥ3_1_1::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitb1e77e6231d50e7663f84529b6a3dfda_jetpack_boostⓥ3_1_1::$classMap;
 
         }, null, ClassLoader::class);
     }
