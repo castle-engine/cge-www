@@ -33,7 +33,7 @@ echo pretty_heading($page_title);
   <li><p>We use <a href="https://about.scarf.sh/">Scarf</a> for website and downloads analytics. This data is anonymous.
 </ol>
 
-We do not share the gathered data with any 3rd-party. We only store the data on Wordpress.com servers, as is necessary, and they guarantee that no one else should access this data.
+<p>We do not share the gathered data with any 3rd-party except the analytics providers above.
 
 <h2>Questions</h2>
 
