@@ -30,8 +30,6 @@ echo pretty_heading($page_title);
 
   <li><p>Privacy-First (read the details on their website) <a href="https://www.cloudflare.com/web-analytics/">Cloudflare Analytics</a>.
 
-  <li><p>Privacy-First (read the details on their website) <a href="https://www.cloudflare.com/web-analytics/">Cloudflare Analytics</a>.
-
   <li><p>We use <a href="https://about.scarf.sh/">Scarf</a> for website and downloads analytics. This data is anonymous.
 </ol>
 
