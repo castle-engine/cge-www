@@ -56,6 +56,15 @@ function echo_piwik_tracking()
 <?php
 }
 
+function echo_scarf_tracking()
+{
+  if (_castle_disable_stats()) return;
+
+?>
+<img referrerpolicy="no-referrer-when-downgrade" src="https://static.scarf.sh/a.png?x-pxid=8fb63cd5-e9ab-4d27-af9b-a979ff518df1" />
+<?php
+}
+
 /* Paypal -------------------------------------------------------------------- */
 
 function paypal_button($with_logos = true)

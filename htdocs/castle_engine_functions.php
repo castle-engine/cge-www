@@ -1396,6 +1396,8 @@ function echo_footer ()
 
     <?php // using CASTLE_PROD_URL to make sure it works also from API docs ?>
     <p>We use cookies for analytics. See our <a href="<?php echo CASTLE_PROD_URL; ?>privacy_policy.php">privacy policy</a>.
+
+    <?php echo_scarf_tracking(); ?>
   </div>
 
   <?php
@@ -2262,7 +2264,9 @@ function cge_features_summary($feature_heading_level = 3)
 */
 function cge_download_engine($version, $tag)
 {
-  $download_prefix_general = 'https://github.com/castle-engine/castle-engine/releases/download/' . $tag . '/';
+  $download_prefix_general =
+    'https://castle-engine.gateway.scarf.sh/' . $tag . '/';
+    //'https://github.com/castle-engine/castle-engine/releases/download/' . $tag . '/';
   $download_prefix = $download_prefix_general . 'castle-engine-' . $version;
 
   return '
