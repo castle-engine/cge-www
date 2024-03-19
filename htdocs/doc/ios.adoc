@@ -3,9 +3,17 @@ include::common.adoc[]
 
 == Introduction
 
-The advised way to build is to use the link:build_tool[build tool] to compile and package your game for iOS. Doing it is a matter of preparing link:project_manifest[CastleEngineManifest.xml] for your project (with `game_units` or `ios_source` defined), and then running `castle-engine package --target=ios`. This gives you a ready project that you can open, run and publish from Xcode.
+To build for iOS your application should reside in a directory with link:project_manifest[CastleEngineManifest.xml] file. Moreover, this link:project_manifest[CastleEngineManifest.xml] should have `game_units` attribute set, e.g. like this: `game_units="GameInitialize"`.
+// , to allow to compile it in various contexts (for platforms that require to package Pascal code as either a program or a library).
+This is already true for new projects created using the _"New Project"_ button from the link:editor[] and for almost all engine examples in the `examples/` subdirectory.
 
-Almost all engine examples, and all templates for _"New Project"_ created by CGE editor, follow this approach. So you can just recompile them for iOS.
+Then:
+
+- Use the GUI link:editor[]. Open the project, select _"Run -> Platform (To Compile And Run) -> iOS"_, and then press _"Run -> Package"_.
+
+- Or use a command-line link:build_tool[build tool]. In the terminal, go to the project directory and run `castle-engine package --target=ios`.
+
+Both these ways give you a ready project that you can open, run and publish from Xcode. The Xcode project is in `<my-project>/castle-engine-output/ios/xcode_project/` subdirectory.
 
 == Supported iOS Devices
 
@@ -18,38 +26,55 @@ The engine should work with all devices running iOS 4.2 or newer. It was success
 You will need any Mac computer with Xcode installed (available in Mac App Store, free).
 // While parts of the process can be done on any platform, but ultimately building and running requires Apple proprietary tools (Xcode and friends), which are available only on macOS.
 
-NOTE: If you browse the documentation on http://wiki.freepascal.org/iPhone/iPod_development , it will talk about Xcode templates and proprietary iOS SDK headers. For the sake of developing games using Castle Game Engine, this can be ignored -- we don't need these headers or templates (since our entire GUI is drawn using GLES through Castle Game Engine).
+You can use Intel-based or Arm-based (Silicon -- M1, M2...) Macs.
+
+NOTE: If you use Arm-based (Silicon -- M1, M2...) Macs, you can use still the `fpcupdeluxe` for `darwin-x86_64`. Both `darwin-x86_64` and `darwin-aarch64` should work equally well (report a bug if not!).
+
+NOTE: If you browse the documentation on http://wiki.freepascal.org/iPhone/iPod_development[FPC wiki about iOS], it will talk about Xcode templates and proprietary iOS SDK headers. For the sake of developing games using _Castle Game Engine_, this can be ignored -- we don't need these headers or templates (since our entire GUI is drawn using GLES through Castle Game Engine).
 
 Install also link:ios_services[CocoaPods] by `sudo gem install cocoapods` in the terminal.
 
+NOTE: Depending on your macOS version, the above command may fail on some packages with an error like this: _"The last version of XXX to support your Ruby & RubyGems was YYY. Try installing it with `gem install XXX -v YYY` and then running the current command again"_. This is normal. Follow the advise: run `sudo gem install XXX -v YYY`, and the try `sudo gem install cocoapods` again.
+
+If you're on Arm-based (Silicon -- M1, M2...) Macs, the above command will install CocoaPods for Arm architecture. If you need to build for x86_64 (e.g. because you build CGE tools for `x86_64`) then install CocoaPods for x86_64 using
+
+```
+sudo arch -x86_64 gem install ffi # make sure to rebuild this native dependency of CocoaPods
+sudo arch -x86_64 gem install cocoapods
+```
+
 === Install FPC for macOS
 
-You will need to install this before installing the cross-compiler.
+==== Version A: Use fpcupdeluxe
+
+Use link:pass:[fpcupdeluxe][fpcupdeluxe]. This works now great with latest stable FPC 3.2.2.
+
+- Install the regular FPC/Lazarus, latest _"Stable"_ version.
+- Add the necessary cross-compilers:
++
+--
+- `iOS / arm`
+- `iOS / aarch64`
+- `i-sim /x86_64` (only if you need testing in simulator)
+--
+
+==== Version B: Use the official FPC downloads
+
+First, the FPC compiler needs the _"Xcode command-line developer tools"_ installed. In short, open _/Applications/Utilities/Terminal_ and execute `xcode-select --install`. See link:macos[macOS] for more information about developing desktop applications for macOS using Castle Game Engine.
+
+Then install FPC:
 
 * Go to https://sourceforge.net/projects/freepascal/files/Mac%20OS%20X/
 * Select 3.2.0. (Usually we suggest here using the latest stable version, which is 3.2.2 now, but right now 3.2.2 has no precompiled cross-compiler for iOS.)
-* Download the regular compiler (for macOS) from there (like `fpc-3.2.0.intel-macosx.dmg` at the time of writing this).
-
-The FPC compiler needs the "Xcode command-line developer tools" installed. In short, open _/Applications/Utilities/Terminal_ and execute `xcode-select --install`.
-
-Alternative approach to the installation is to use link:pass:[fpcupdeluxe][fpcupdeluxe]. This works now great with latest stable FPC 3.2.2. You can install the regular FPC/Lazarus, and then the necessary cross-compilers (iOS/arm, iOS/aarch64, i-sim/x86_64).
-
-See link:macos[macOS] for more information about developing desktop applications for macOS using Castle Game Engine.
-
-=== Installing FPC cross-compilers for iPhone and iPhoneSimulator
-
-You will need to have FPC cross-compilers able to create these OS/CPU combinations:
-
-* `ios/arm` and `ios/aarch64` applications (for the actual iPhone device). Note: `aarch64` is also called `arm64`.
+* Download the regular compiler (for macOS) from there (like `fpc-3.2.0.intel-macosx.dmg` at the time of writing this). Install this.
+* Download the cross-compiler for iOS from there, `xxx-macosx.cross.ios.dmg` from there (like `fpc-3.2.0.intel-macosx.cross.ios.dmg`). Install them all. You need these FPC cross-compilers:
++
+--
+* `ios / arm` and `ios / aarch64` applications (for the actual iPhone device). Note: `aarch64` is also called `arm64`.
 // TODO: fpcupdeluxe cannot make iphonesim/aarch64?
 // * `iphonesim/x86_64` and `iphonesim/aarch64` applications (for the iPhone simulator; you will use the version matching your macOS architecture, depending on whether you use Intel-based on Arm-based macOS).
-* `iphonesim/x86_64` applications (for the iPhoneSimulator on Intel-based macs; it seems iPhoneSimulator is not available for Arm-based macs now).
-
-It's easiest to get them from the FPC:
-
-* Go to https://sourceforge.net/projects/freepascal/files/Mac%20OS%20X/
-* Select latest stable version (like `3.2.0` at the time of writing this)
-* Download the cross-compiler for iOS from there, `xxx-macosx.cross.ios.dmg` from there (like `fpc-3.2.0.intel-macosx.cross.ios.dmg` at the time of writing this). Install this.
+* `iphonesim / x86_64` applications (for the iPhoneSimulator on Intel-based macs; it seems iPhoneSimulator is not available for Arm-based macs now).
+--
 
 ////
 *Old note for FPC 3.0.4/3.0.5*: `fpc-3.0.5.intel-macosx.cross.ios.dmg` seems to have problems with the latest XCode versions, that don't create `/usr/lib/crt1.o`. This file is required to finish the installation (and later to compile libraries), by https://svn.freepascal.org/cgi-bin/viewvc.cgi/trunk/install/macosx/packaging/packages/fpc-3.0.4.intel-macosx.pkgproj?view=co&revision=1379&root=fpcbuild , otherwise the installer thinks that "XCode command-line tools" are not present. The workaround:
@@ -106,6 +131,8 @@ echo 'library test_compilation; begin end.' > test_compilation.lpr
 
 SIMULATOR_SDK='/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk'
 fpc -Px86_64  -Tiphonesim -WP7.0 -XR${SIMULATOR_SDK} test_compilation.lpr
+# TODO: This iphonesim will fails with FPC 3.2.2 now on Silicon-based Mac.
+# You can ignore it if you don't need simulator.
 
 DEVICE_SDK='/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk'
 fpc -Parm     -TiOS    -WP7.0 -Cfvfpv3 -Cparmv7 -XR${DEVICE_SDK} test_compilation.lpr
@@ -134,33 +161,33 @@ This should help you understand why we did some things above, e.g. why do we hav
 
 This is in contrast to the Android emulator that can emulate Android CPUs (Arm or Aarch64, though can also work on x86_64) and can run your application in a mostly-regular Android OS and environment in a virtual machine.
 
-=== Using the build tool
+=== Using the command-line build tool
 
 . Make sure the link:build_tool[build tool] is available on $PATH, so you can call `castle-engine` in the terminal.
 . Run in terminal:
 +
 ----
- cd <castle-engine>/examples/2d_dragon_spine_game/
- castle-engine package --target=ios
+cd <castle-engine>/examples/mobile/game_services
+castle-engine package --target=ios
 ----
 +
 *Tip: You can speedup this process*: The `package` command by default cleans and recompiles everything, to make sure everything is recompiled for the current mode (which is a _release mode_ by default). When developing, it's often useful to make this process quicker, and recompile only what changed. Do this by adding `--fast` option:
 +
 ----
- cd <castle-engine>/examples/2d_dragon_spine_game/
- castle-engine package --target=ios --fast
+cd <castle-engine>/examples/mobile/game_services
+castle-engine package --target=ios --fast
 ----
 +
 Another way to speedup the process is to rebuild _only code_. Add the `--update-only-code` option for this.
 +
-*Tip: You can include iOS simulator support*: Simply add the `--ios-simulator` command-line option. By default this is off, as including simulator support makes build longer (2 more platforms to compile for) and often it is not necessary. Like this:
+*Tip: You can include iOS simulator support*: Simply add the `--ios-simulator` command-line option. By default this is off, as including simulator support makes build longer (more platforms to compile for) and often it is not necessary. Like this:
 +
 ----
- cd <castle-engine>/examples/2d_dragon_spine_game/
- castle-engine package --target=ios --ios-simulator
+cd <castle-engine>/examples/mobile/game_services
+castle-engine package --target=ios --ios-simulator
 ----
 
-. Run _Xcode_ and open the resulting project in `<castle-engine>/examples/2d_dragon_spine_game/castle-engine-output/ios/xcode_project/`.
+. Run _Xcode_ and open the resulting project in `<castle-engine>/examples/mobile/game_services/castle-engine-output/ios/xcode_project/`.
 +
 Open the file with `.xcworkspace` extension in that directory. For now, all iOS projects use link:ios_services#_services_using_cocoapods[CocoaPods] and so you need to open them through the `.xcworkspace` file, not just `.xcodeproj`.
 
@@ -168,7 +195,7 @@ Open the file with `.xcworkspace` extension in that directory. For now, all iOS 
 +
 *Tip: Running on a real, physical device:* It works out of the box! You only need to set the _Development Team_ in Xcode, or set `<ios team="xxx" />` attribute in link:project_manifest[CastleEngineManifest.xml].
 +
-cgeimg::block[xcode_select_team.png|Selecting a team in Xcode]
+cgeimg::block[xcode_select_team_2.png|Selecting a team in Xcode]
 
 === Archive (deploy on iOS)
 
@@ -193,13 +220,13 @@ Note that these options automatically sign the application. To make it work,
 . If you do it through SSH (not in an interactive GUI session) you need to call
 +
 ----
- security unlock-keychain login.keychain
+security unlock-keychain login.keychain
 ----
 +
 or
 +
 ----
- security unlock-keychain -p YOUR-PASSWORD login.keychain
+security unlock-keychain -p YOUR-PASSWORD login.keychain
 ----
 +
 to unlock the keychain before building.
