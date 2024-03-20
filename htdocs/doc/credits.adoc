@@ -48,6 +48,7 @@ Everyone who subscribes to support CGE with at least 10 USD / month (anywhere --
 * Bartosz Jarzyna
 * Basti Schindla
 * Carlos Rafael Fernandes Picanço
+* Chris Haley
 * Erik Johnson
 * Filip Demuynck
 * Friedrich Westermann
