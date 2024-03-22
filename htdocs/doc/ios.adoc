@@ -1,5 +1,7 @@
 # iOS
 include::common.adoc[]
+:description: Building applications for iOS using Castle Game Engine.
+:cge-social-share-image: ios_combined_editor_and_phone.png
 
 == Introduction
 
@@ -14,6 +16,8 @@ Then:
 - Or use a command-line link:build_tool[build tool]. In the terminal, go to the project directory and run `castle-engine package --target=ios`.
 
 Both these ways give you a ready project that you can open, run and publish from Xcode. The Xcode project is in `<my-project>/castle-engine-output/ios/xcode_project/` subdirectory.
+
+cgeimg::block[ios_combined_editor_and_phone.png|Application running on iPhone\, alongside the same application opened in the editor]
 
 == Supported iOS Devices
 
