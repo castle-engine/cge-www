@@ -748,4 +748,16 @@ What will likely be done sooner: "snapping" for 3D operations, that fils some su
 [#expose]
 ## ExposeTransforms is a powerful idea that can cover more use-cases
 
-See cgeref:TCastleSceneCore.ExposeTransforms[] and link:expose[]. It already contains TODOs showing how it *should* work like.
+See link:expose[docs] and cgeref:TCastleSceneCore.ExposeTransforms[]. It already contains TODOs showing how it *should* work like.
+
+Moreover fix problem with names:
+
+* cannot duplicate model with ExposeTransforms now
+* cannot add another model with same bone names, before customizing bone name prefixes
+* solution: remove ExposeTransformsPrefix, rather add new property `BoneName` that doesn't have to be unique and can be used for synchronization
+* document this on link:expose[docs]
+
+Moreover, maybe:
+
+* ? Should expose the parent bones too (otherwise editing from code is hard, and applying edits back is hard -- as you see a combined transformation only)
+* ? Rename to just `Expose`? `ExposeTransforms` sounds convoluted.
