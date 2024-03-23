@@ -651,7 +651,9 @@ Hints to make it faster:
 
 <p>Turn on <?php echo cgeRef('TCastleUserInterface.Culling'); ?> to optimize the case when a resource-intensive control is often off-screen (and thus doesn't need to be rendered or process other events). This also matters if the control is outside of the parent scrollable view (<?php echo cgeRef('TCastleScrollView'); ?>) or other parent with <?php echo cgeRef('TCastleUserInterface.ClipChildren'); ?>. This is very useful when creating a large number of children inside <?php echo cgeRef('TCastleScrollView'); ?>.
 
-<p>When rendering 2D stuff yourself usign <?php echo cgeRef('TDrawableImage'); ?>, you can often make a dramatic speedup by using the overload that draws multiple images (maybe different, maybe the same image parts) by a single <code>procedure TDrawableImage.Draw(ScreenRects, ImageRects: PFloatRectangleArray; const Count: Integer);</code> call.
+<p>When rendering 2D stuff yourself using <?php echo cgeRef('TDrawableImage'); ?>, you can often make a dramatic speedup by using the overload that draws multiple images (maybe different, maybe the same image parts) by a single <code>procedure TDrawableImage.Draw(ScreenRects, ImageRects: PFloatRectangleArray; const Count: Integer);</code> call.
+
+<p>Try turning on <?php echo cgeRef('TCastleContainer.UserInterfaceBatching'); ?>. It reduces the number of draw calls needed in some cases to draw UI, which may provide a speedup. See <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/user_interface/ui_batching">examples/user_interface/ui_batching</a> for example how to use it and measure it.
 
 <?php echo $toc->html_section(); ?>
 
