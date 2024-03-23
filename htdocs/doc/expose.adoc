@@ -6,7 +6,7 @@ include::common.adoc[]
 
 == Introduction
 
-WARNING: Part of this feature is still in development. This documentation is written in advance, to show the planned feature. Pay attention to "TODO" notes below.
+WARNING: Part of this feature is still in development. This documentation is written in advance, to show the planned feature. Pay attention to "TODO" notes below. Want to speed it up? link:talk.php[Talk to us] and https://www.patreon.com/castleengine[support us].
 
 When you design a 3D model in an external application, like link:blender[Blender], you sometimes need to access some elements of this model. We think here about access both from code and from link:editor[] -- to manipulate, to observe or just to add more children (that will be animated along with the observed transformation).
 
@@ -40,7 +40,7 @@ It is more powerful and more obvious than alternative link:TCastleScene.CastGlob
 
 - (TODO) You can expose a camera from the model. This allows to design the camera in link:blender[Blender], and later use it in the application, e.g. as a starting point for player movement.
 
-== Bi-directional synchronization
+== (TODO) Bi-directional synchronization
 
 The _exposed_ elements synchronize in a bi-directional way.
 
