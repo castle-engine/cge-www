@@ -254,6 +254,8 @@ $castle_sitemap = array(
               'doc/viewport_and_scenes_from_code' => array('title' => 'Writing code to modify scenes and transformations'),
               'doc/behaviors' => array('title' => 'Behaviors'),
               'doc/multiple_viewports_to_display_one_world' => array('title' => 'Multiple viewports to display one world'),
+              'doc/expose' => array('title' => 'Expose scene elements, like children transformations as TCastleScene children'),
+              // TODO: 'doc/expose' => array('title' => 'Expose scene elements, like children transformations, lights, cameras as TCastleScene children'),
             ),
           ),
           'doc/user_interface' => array('title' => 'User interface',

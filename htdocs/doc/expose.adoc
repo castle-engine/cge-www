@@ -1,0 +1,54 @@
+# Expose scene elements, like children transformations as TCastleScene children
+// TODO: # Expose scene elements, like children transformations, lights, cameras as TCastleScene children
+include::common.adoc[]
+:description: Exposing elements defined in TCastleScene model allows to manipulate or observe a particular element of a model (designed e.g. in Blender) in your application.
+:cge-social-share-image: expose_3.png
+
+== Introduction
+
+WARNING: Part of this feature is still in development. This documentation is written in advance, to show the planned feature. Pay attention to "TODO" notes below.
+
+When you design a 3D model in an external application, like link:blender[Blender], you sometimes need to access some elements of this model. We think here about access both from code and from link:editor[] -- to manipulate, to observe or just to add more children (that will be animated along with the observed transformation).
+
+To do this, use cgeref:TCastleSceneCore.ExposeTransforms[] enables this. It can be set comfortably from CGE editor using a dialog box that shows the available transformations in the loaded model.
+// (but you can also enable it from code on a current model).
+
+cgeimg::block[expose_1.png|ExposeTransforms]
+
+== Examples
+
+The description given above may sound a bit vague, because there are a lot of practical use-cases for this feature. Let's discuss some examples:
+
+- You can _expose_ a transformation (translation, rotation, scale) of a child of the model. This means that we expose some transformation of your model, loaded in cgeref:TCastleScene[], from e.g. link:gltf[glTF] or link:vrml_x3d.php[X3D]. By _exposing_, we create a child cgeref:TCastleTransform[] under a parent cgeref:TCastleScene[] that corresponds to given transformation (maybe joint, bone) of your model. In turn this allows to:
++
+--
+- Attach children to this transformation. For example you can attach a weapon to a hand of a character model. If the hand is animated, it will move the weapon together with it. See https://github.com/castle-engine/castle-engine/tree/master/examples/animations/expose_transformations_to_animate_children[examples/animations/expose_transformations_to_animate_children] for a demo.
++
+cgeimg::block[
+  expose_1.png|ExposeTransforms,
+  expose_2.png|ExposeTransforms,
+  expose_3.png|ExposeTransforms
+]
+- You can observe the animation of some joint from code, e.g. to react to it ("when the hand moves high, play a sound").
+- (TODO) You can manipulate the transformation from code, e.g. to move the hand of a character model to a specific position. This allows to do animations, including skinned mesh animations, using code, and potentially even do _"inverse kinematics"_ in a manual way. The animated mesh stays part of the parent cgeref:TCastleScene[], but you can manipulate the joints from code.
+- (TODO) You can attach link:physics[] rigid bodies to the exposed transformations, and thus make parts of the model affected by physics.
+--
+
+- (TODO) You can expose a light from the model. This allows to design the light sources in link:blender[Blender], and later tweak them in the application.
++
+It is more powerful and more obvious than alternative link:TCastleScene.CastGlobalLights[] (which also allows scene lights to shine on other objects, but in that case lights stay hidden inside the scene, they are only accessible as X3D nodes).
+
+- (TODO) You can expose a camera from the model. This allows to design the camera in link:blender[Blender], and later use it in the application, e.g. as a starting point for player movement.
+
+== Bi-directional synchronization
+
+The _exposed_ elements synchronize in a bi-directional way.
+
+- Their initial state (transformation, light information like color, intensity etc.) is dictated by the state in the model. Moreover, if the model animates given state (e.g. transformation is animated by some animation designed in link:blender[Blender] and started using cgeref:TCastleSceneCore.PlayAnimation[]), it will affect the exposed transformation.
+
+- (TODO) But the synchronization also goes in the other direction, from exposed link:TCastleTransform[] children -> back to the original model. If you change a given state from code (and it is not animated in the model), it will affect the model in the scene. This allows to manipulate the transformation from code, e.g. to perform animations (including skinned mesh) using code. This also allow to attach link:physics[] rigid bodies to the exposed transformations, and thus make parts of the model affected by physics.
+
+== Why make features this way
+
+Exposing model features this way is powerful. Aside from all the features mentioned above, the components (like lights, cgeref:TCastleCamera[], cgeref:TCastleTransform[]) stay also independent components, so you can design cameras, lights, transformations group also in CGE editor (without using external tools like link:blender[Blender]). So you get the most flexibility.
+

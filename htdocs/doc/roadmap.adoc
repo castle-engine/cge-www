@@ -744,3 +744,8 @@ Built-in Tiled-like editing features in CGE would be great.
 This is admittedly a long-term goal. A whole system for this, esp. with 3D, would be cool but also a significant new work.
 
 What will likely be done sooner: "snapping" for 3D operations, that fils some subset of this functionality, e.g. allows to put 3D buildings on a grid.
+
+[#expose]
+## ExposeTransforms is a powerful idea that can cover more use-cases
+
+See cgeref:TCastleSceneCore.ExposeTransforms[] and link:expose[]. It already contains TODOs showing how it *should* work like.
