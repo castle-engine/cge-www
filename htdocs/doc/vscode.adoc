@@ -210,7 +210,11 @@ Our https://marketplace.visualstudio.com/items?itemName=castle-engine-team.castl
 
 === Alternative debuggers
 
-Any debugger extension in _VS Code_ based on GDB should work, like https://marketplace.visualstudio.com/items?itemName=webfreak.debug[Native Debug].
+Any debugger extension in _VS Code_ able to debug native applications should work.
+
+==== GDB
+
+You can use https://marketplace.visualstudio.com/items?itemName=webfreak.debug[Native Debug] with GDB.
 
 This is a sample `launch.json` you can use (edit `app_name` as necessary):
 
@@ -234,6 +238,28 @@ This is a sample `launch.json` you can use (edit `app_name` as necessary):
 ```
 
 For debugging code compiled with FPC, it's very useful to set a breakpoint at `fpc_raiseexception`. Just define a breakpoint at such function name (don't worry that it may seem like it doesn't work -- it will actually work once you run the project).
+
+==== fpDebug (directly)
+
+While CGE extension runs `fpDebug` for you (our `castleDebug` is only a shortcut for preconfigured `fpDebug`), you can also set up and tweak `fpDebug` yourself in the `launch.json`. Here's an example:
+
+```json
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug",
+            "type": "fpDebug",
+            "request": "launch",
+            "program": "${workspaceRoot}/ui_batching",
+            "workingdirectory": "${workspaceRoot}"
+        }
+    ]
+}
+```
 
 ////
 [NOTE]
