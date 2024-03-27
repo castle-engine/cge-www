@@ -52,7 +52,7 @@ Our engine can be used together <a href="manual_lazarus_control.php">with Lazaru
 though for most applications we recommend using <code>TCastleWindow</code> independent from LCL.
 <ul>
   <li>We don't <b>require</b> any special Lazarus version, just use Lazarus with a sufficiently up-to-date FPC version.
-  <li>We <b>advise</b> Lazarus &gt;= 2.2 in order to have <a href="https://gitlab.com/freepascal.org/lazarus/lazarus/-/issues/39338">this issue fixed, which allows more intuitive behavior when you double-click on a Pascal file in CGE editor to open Lazarus</a>.
+  <li>We <b>advise</b> Lazarus &gt;= 3.2 in order to have (since 2.2) <a href="https://gitlab.com/freepascal.org/lazarus/lazarus/-/issues/39338">this issue fixed, which allows more intuitive behavior when you double-click on a Pascal file in CGE editor to open Lazarus</a> and (since 3.0) <a href="https://github.com/castle-engine/pascal-language-server">pasls</a> compile fine with <code>IdentComplIncludeKeywords</code>.
 </ul>
 
 <!-- No longer active.
