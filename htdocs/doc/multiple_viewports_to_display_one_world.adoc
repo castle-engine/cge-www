@@ -40,6 +40,12 @@ NewViewport.Items := ExistingViewport.Items;
 NewViewport.Items.Add(NewViewport.Camera);
 ----
 
+## Sound listener
+
+If you use link:manual_sound.php[3D sound] in your application, for example through the cgeref:TCastleSoundSource[] behavior, you need to consider which viewport's camera should control the _"sound listener"_. The _sound listener_ determines the position and orientation of the "ears" in the 3D sound model, that determine which sounds (and how loud) go to left or right speaker.
+
+To do this, make sure cgeref:TCastleViewport.UpdateSoundListener[] is set to `true` on _one and only one_ cgeref:TCastleViewport[] instance.
+
 ## Examples
 
 * link:https://github.com/castle-engine/castle-engine/tree/master/examples/user_interface/zombie_fighter[zombie_fighter] example. The viewport setup there is described in the link:user_interface[chapter about user interface].
