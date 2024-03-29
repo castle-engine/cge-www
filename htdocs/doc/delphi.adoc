@@ -57,11 +57,36 @@ To register the cgeref:TCastleControl[] component in Delphi IDE, follow https://
 
 * The engine is tested and supported on all Delphi versions >= 10.2.1. It was actively tested on 10.2, 10.3, 10.4 (including CE), and all Delphi 11 editions (including 11.3 CE).
 
+* The exact Delphi version support from _Castle Game Engine_ depends on the target platform, since the support for non-Windows platforms isn't always perfect in older Delphis:
++
+--
+Windows (32-bit and 64-bit):: Delphi >= 10.2.1
+Linux (64-bit only):: Delphi >= 11.3 (see https://github.com/castle-engine/castle-engine/issues/577[#577 for reasons])
+Android, iOS, macOS (Upcoming):: Delphi >= 10.4 (see below for reasons; it may change once we finalize these platforms)
+--
+
+////
+|===
+|Platform|Supported Delphi version
+
+|Windows (32-bit and 64-bit)
+|>= 10.2.1
+
+|Linux
+|>= 11.3
+
+|Android, iOS (Upcoming)
+|>= 10.4 (It may change once we finalize these platforms)
+|===
+////
+
+////
 * In the future, we could support Delphi versions >= XE 7.
 +
 Adjusting to Delphi XE 7 seems to require only a few local changes (see link:https://github.com/castle-engine/castle-engine/issues/482[XE7 test], link:https://github.com/castle-engine/castle-engine/issues/486[10.0.1 test], link:https://github.com/castle-engine/castle-engine/issues/488[10.1.2 test]).
 +
 We do not plan to support older Delphi versions. They are really old (link:https://en.wikipedia.org/wiki/History_of_Delphi_(software)[Delphi XE6 is from 2014]) and would require more work (see link:https://github.com/castle-engine/castle-engine/issues/481[XE4 test]). It doesn't seem wise to spend resources on maintaining (making and testing) compatibility with these ancient Delphi versions.
+////
 
 * We will not support Delphi versions older than 10.4 _for mobile (Android and iOS)_.
 +
