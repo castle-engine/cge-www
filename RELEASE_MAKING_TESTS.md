@@ -131,10 +131,9 @@ Allowed binaries below:
 $ make cleanmore
 $ find -iname *.jar
 ./tools/build-tool/data/android/integrated/gradle/wrapper/gradle-wrapper.jar
-./tools/build-tool/data/android/base/gradle/wrapper/gradle-wrapper.jar
 $ find -iname *.so
 ./tools/build-tool/data/android/integrated-services/.../app/src/main/jniLibs/.../lib*.so
-# should show 4x libs for services that rely on them, like freetype.
+# should show 4x libs for services that rely on them, like freetype, png, ogg_vorbis.
 ```
 
 ## Test: Using system-provided Gradle instead of bundled (Android)
@@ -179,3 +178,5 @@ make generate-code
 ## Test: Lazarus Project Group
 
 Has to be used interactively. Open and compile `most_important_lazarus_packages_and_tools.lpg` in Lazarus IDE.
+
+Install first lazprojectgroups in Lazarus IDE: https://wiki.freepascal.org/Project_Groups .
