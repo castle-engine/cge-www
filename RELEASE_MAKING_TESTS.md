@@ -59,7 +59,7 @@ find-empty-dirs
 Test some special compilation options:
 - ../castle-engine/src/common_includes/castleconf.inc
     - define `CASTLE_DISABLE_LIBPNG`
-- ../castle-engine/src/x3d/octreeconf.inc
+- ../castle-engine/src/scene/octreeconf.inc
     - define `CONSERVE_TRIANGLE_MEMORY`
     - define `CONSERVE_TRIANGLE_MEMORY_MORE`
 For each:
@@ -96,7 +96,7 @@ For each:
 - Test `view3dscene` with fixed-function:
 
     ```
-    view3dscene --debug-fixed-function
+    view3dscene --capabilities=force-fixed-function
     ```
 
 ## Test: fpmake installation and InstantFPC
