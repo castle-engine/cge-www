@@ -16,38 +16,36 @@ php-7.4-build2: Pulling from cloudflare/cloudflare-wordpress/php-actions_compose
 5571c1cd7f43: Pulling fs layer
 65564f077fec: Pulling fs layer
 4d1e94121e00: Pulling fs layer
-4612e05a72cf: Waiting
 9b2beae78beb: Waiting
 79c03e12047a: Waiting
 51393fef6543: Waiting
 5571c1cd7f43: Waiting
 65564f077fec: Waiting
 4d1e94121e00: Waiting
-30e209609427: Verifying Checksum
-30e209609427: Download complete
+4612e05a72cf: Waiting
+320f26ee9b1c: Verifying Checksum
 320f26ee9b1c: Download complete
+30e209609427: Download complete
 801bfaa63ef2: Verifying Checksum
 801bfaa63ef2: Download complete
-801bfaa63ef2: Pull complete
-4612e05a72cf: Verifying Checksum
 4612e05a72cf: Download complete
+801bfaa63ef2: Pull complete
+79c03e12047a: Download complete
 30e209609427: Pull complete
 320f26ee9b1c: Pull complete
 4612e05a72cf: Pull complete
 9b2beae78beb: Verifying Checksum
 9b2beae78beb: Download complete
-79c03e12047a: Verifying Checksum
-79c03e12047a: Download complete
-9b2beae78beb: Pull complete
-79c03e12047a: Pull complete
 51393fef6543: Verifying Checksum
 51393fef6543: Download complete
-65564f077fec: Download complete
-51393fef6543: Pull complete
-4d1e94121e00: Verifying Checksum
-4d1e94121e00: Download complete
 5571c1cd7f43: Verifying Checksum
 5571c1cd7f43: Download complete
+9b2beae78beb: Pull complete
+79c03e12047a: Pull complete
+65564f077fec: Download complete
+4d1e94121e00: Verifying Checksum
+4d1e94121e00: Download complete
+51393fef6543: Pull complete
 5571c1cd7f43: Pull complete
 65564f077fec: Pull complete
 4d1e94121e00: Pull complete
