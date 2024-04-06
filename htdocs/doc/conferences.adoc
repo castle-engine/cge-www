@@ -9,6 +9,10 @@ Not always, but sometimes there's a paper trace or video recording of what I tal
 This pages collects _some_ materials from them.
 ////
 
+* _6th April 2024_: https://www.blaisepascalmagazine.eu/en/international-lazarus-conference-in-holland-april-2024/[Pascal Cafe 2024]. I made a presentation introducing _Castle Game Engine_ and then discussing some details about mobile (link:android[Android] and link:ios[iOS]) development with CGE.
+** https://castle-engine.io/pascalcafe2024[Presentation slides]
+** https://github.com/castle-engine/conference-pascalcafe2024[Sample application (for slides "Physics and Coding" section)]
+
 * _26-27 October 2023_: https://www.itdevcon.it/en/[ITDevCon - Delphi conference in Rome]. I had 2 talks about CGE.
 ** https://castle-engine.io/wp/2023/09/29/catch-me-at-itdevcon-2023-in-rome-giving-2-presentations-about-castle-game-engine/[Announcement].
 ** https://github.com/castle-engine/conference-itdevcon-2023[Example projects]
