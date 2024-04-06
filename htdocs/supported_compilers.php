@@ -121,7 +121,7 @@ to hang on to FPC releases available in distros.
 
 <p>Of course please remember that this FPC version is unstable, and it changes with every commit to FPC. We cannot test or guarantee that CGE works with an arbitray FPC development revision. But we welcome testing such FPC. PRs to make CGE work with latest FPC trunk are also welcome (unless there's a temporary bug in FPC which should be rather reported to FPC devs).
 
-<p>On Aaarch64 (important on mobile platforms): Note that if you use FPC 3.3.1, we assume that it is at least from SVN revision 48104. See <a href="https://trello.com/c/5ydB4MuA/113-enable-again-aarch64-optimizations">Trello ticket about Aarch64 optimizations</a>. The optimizations are disabled on Aarch64 with FPC &lt; 3.3.1. With FPC &gt;= 3.3.1, we assume it is from at least SVN revision 48104, and has Aaarch64 optimizer bugs fixed.
+<p>On Aaarch64 (important on mobile platforms): Note that optimizations are disabled on Aarch64 when used with FPC 3.2.0, due to FPC bugs. These are fixed in FPC SVN revision 48104 (fixes available in 3.2.2, 3.3.1 and all newer). See <a href="https://trello.com/c/5ydB4MuA/113-enable-again-aarch64-optimizations">CGE Trello ticket about Aarch64 optimizations</a>.
 
 <?php echo $toc->html_section(); ?>
 

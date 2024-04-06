@@ -86,7 +86,7 @@ For example:
 Instead of `--os` and/or `--cpu` options, you can also use `--target`. A _target_ is a collection of OS and CPU combinations that typically are distributed together. Right now, these targets are available:
 
 . `custom` (the default target), which means that we look at `--os` and/or `--cpu` options, and compile for this single OS/CPU.
-. `android`, which consists of 2 combinations of OS/CPU: Android on ARM (32-bit devices) and Android on Aarch64 (64-bit devices, only if your FPC is capable of compiling to Android/Aarch64 -- FPC 3.3.1 is necessary).
+. `android`, which consists of 2 combinations of OS/CPU: Android OS on ARM (32-bit) and Android on Aarch64 aka Arm64 (64-bit).
 . `ios`. By default this consists of 2 combinations of OS/CPU, to include 32-bit and 64-bit iOS devices. Add the `--ios-simulator` option to include 2 more combinations of OS/CPU to include also support for the iOS simulator. See link:ios[iOS] to learn more.
 . `nintendo-switch`, which builds an application for link:nintendo_switch[Nintendo Switch].
 
