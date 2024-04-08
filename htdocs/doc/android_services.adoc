@@ -97,3 +97,5 @@ NOTE: Open special `market://` URL on Android to send users to the _Google Play_
 == Adding new services
 
 See link:adding_new_android_services[Adding New Android Services].
+
+Take a look at the end of https://castle-engine.io/pascalcafe2024[Pascal Cafe 2024 Slides] for a short overview explaining how are Android and iOS projects build and how the services are added.

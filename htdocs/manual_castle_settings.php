@@ -6,10 +6,11 @@ $toc = new TableOfContents(
   array(
     new TocItem('Description', 'description'),
     new TocItem('Simple example', 'example'),
-    new TocItem('All possible settings', 'all_settings'),
-      new TocItem('UI scaling', 'ui_scaling', 1),
-      new TocItem('Default font', 'default_font', 1),
-      new TocItem('Warmup cache', 'warmup_cache', 1),
+    new TocItem('UI scaling', 'ui_scaling', 0),
+      new TocItem('How does UI scaling work', 'ui_scaling_how', 1),
+      new TocItem('Specify UI scaling in CastleSettings.xml', 'ui_scaling_xml', 1),
+    new TocItem('Default font', 'default_font'),
+    new TocItem('Warmup cache', 'warmup_cache'),
   )
 );
 ?>
@@ -18,17 +19,18 @@ $toc = new TableOfContents(
 
 <?php echo $toc->html_section(); ?>
 
-<p>You can place a file named <code>CastleSettings.xml</code> in your
+<p>Place a file <code>CastleSettings.xml</code> in your
 <a href="manual_data_directory.php">data directory</a>
 to influence the look of your application.
 From the Pascal code (usually, early in the
-<code>Application.OnInitialize</code> callback) load it by calling <code>Window.Container.LoadSettings('castle-data:/CastleSettings.xml');</code>.
+<code>Application.OnInitialize</code> callback) load it by calling <code>Window.Container.LoadSettings('castle-data:/CastleSettings.xml');</code>. The new projects created using the <i>"New Project"</i> templates provided by the editor already do this.
 
 <p>The <a href="manual_editor.php">Castle Game Engine Editor</a> will also
 automatically load this file. This way the editor can show (at design-time)
 your application in the same way as it will appear to the user.
-In the future, the <code>CastleSettings.xml</code> file will be editable by
-the CGE editor GUI. For now just edit it directly, in any text editor (like Lazarus).
+
+<p>In the future, the <code>CastleSettings.xml</code> file will be editable by
+the CGE editor GUI. For now just edit it directly, in any text editor.
 
 <?php echo $toc->html_section(); ?>
 
@@ -46,6 +48,32 @@ the CGE editor GUI. For now just edit it directly, in any text editor (like Laza
 </castle_settings>'); ?>
 
 <?php echo $toc->html_section(); ?>
+
+<?php echo $toc->html_section(); ?>
+
+<p>All the user interface coordinates and sizes (like <?php echo cgeRef('TCastleUserInterface.Translation'); ?>, <?php echo cgeRef('TCastleUserInterface.Width'); ?>, <?php echo cgeRef('TCastleUserInterface.Height'); ?>) are floating-point numbers (<code>Single</code> in Pascal) and are expressed in what we call <i>"unscaled coordinates"</i>.
+
+<p>If you follow the default <i>"New Project"</i> setup with the default <code>CastleSettings.xml</code>, then the "unscaled coordinates" pretend that your application works on a screen with size 1600 x 900, but adjusted (larger in one dimension) to keep the actual aspect ratio.
+
+<?php
+echo cgeImg('block', array(
+  array('filename' => 'ui_scaling.png', 'titlealt' => 'UI Scaling Coordinates'),
+));
+?>
+
+<p>As a result, the sizes and positions you specify will be later adjusted (scaled) to the actual device screen size (we call this <i>"pixel size"</i> or <i>"real, scaled, final size"</i>). So designing your UI, and even explicitly assigning hardcoded values for positions and sizes, will work on all the screens.
+
+<p>Remember to use anchors to keep things aligned to the proper border/center.
+
+<p>This is very useful for mobile devices (that may have drastically different pixel sizes) but also desktops (that may have different resolutions).
+
+<p>Here's an example how <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/component_gallery">examples/component_gallery</a> looks like in various window sizes. As you can see, it adjusts sensibly even to wild horizontal / vertical aspect ratios:
+
+<?php
+echo cgeImg('block', array(
+  array('filename' => 'ui_scaling_component_gallery.png', 'titlealt' => 'UI Scaling in component_gallery example'),
+));
+?>
 
 <?php echo $toc->html_section(); ?>
 

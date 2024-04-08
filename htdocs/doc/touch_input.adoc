@@ -28,7 +28,12 @@ If you want to additionally handle multi- touch on touch devices, you can also l
 
 - To know currently pressed fingers, look at cgeref:TCastleContainer.Touches[].
 
-See example in link:https://github.com/castle-engine/castle-engine/tree/master/examples/mobile/drawing_toy[examples/mobile/drawing_toy] for a demo of using multi-touch.
+See example in link:https://github.com/castle-engine/castle-engine/tree/master/examples/mobile/drawing_toy[examples/mobile/drawing_toy] for a demo using multi-touch. Screens below are from Android and iOS.
+
+cgeimg::block[
+  drawing_toy_android.png|Drawing Toy on Android,
+  drawing_toy_ios.png|Drawing Toy on iOS
+]
 
 == Detecting devices with touch screen
 
