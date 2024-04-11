@@ -34,26 +34,45 @@ Once you finish this chapter, you will be able to use use the link:manual_editor
 Java is required by the Android SDK. Install Java _JDK (Java Development Kit)_.
 
 * On Debian or Ubuntu, you can install the `default-jdk` package that will pull in (as dependencies) the best _Java Development Kit_ version. Or install directly a package like `openjdk-X-jdk`.
-* On Windows, download the latest version from http://www.oracle.com/technetwork/java/javase/downloads/index.html . You usually want to install the latest version, like _Java SE Development Kit 17.0.2_. By default, it will be installed in `C:\Program Files\Java\jdk-17.0.2`.
+* On Windows, download the latest version from http://www.oracle.com/technetwork/java/javase/downloads/index.html .
++
+--
+- You should install the latest version.
+- It that fails, try the most tested version, which as of now is _Java SE Development Kit 17.0.2_.
+--
++
+By default, it will be installed in `C:\Program Files\Java\jdk-17.0.2`.
 
 The Java version required is _at least 17_ (this is determined by the https://developer.android.com/build/releases/gradle-plugin[latest Android Gradle Plugin requirements]). It should not be problematic, e.g. https://packages.debian.org/bookworm/default-jdk[default-jdk in latest Debian stable] pulls Java 17.
 
-_For users who install full Android Studio below_: You do not need to install Java separately. The complete _Android Studio_ will already include Java version suitable for Android SDK. In case you will need this information (but probably not), the Java is located then in:
+[NOTE]
+====
+Alternatively, you can skip this step (Java installation) and in the next step install full https://developer.android.com/studio[Android Studio]. The complete _Android Studio_ will already include Java version suitable for Android SDK.
 
-* `C:/Program Files/Android/Android Studio/jre` on Windows
-* `<wherever-you-unpacked-android-studio-targz>/jre` on Linux
+For your information (if any tool asks), the Java is then located in:
 
-=== Install Android SDK
+* Windows: `C:/Program Files/Android/Android Studio/jre`
+* Linux: `<wherever-you-unpacked-android-studio-targz>/jre`
+====
 
-Download and install Android SDK from http://developer.android.com/sdk/index.html .
+=== Install Android SDK (maybe along with Android Studio)
 
-You can:
+Download and install _Android SDK_.
 
-* Install the whole _Android Studio and SDK Tools_ (main download on the above page). This is easier (some configuration can be then done using GUI), and thus is advised for new users.
+There are two ways to do it:
+
+* Install the whole https://developer.android.com/studio[Android Studio].
 +
-Location of the Android SDK is visible in the Android Studio _Settings \-> Android SDK_, on Windows it looks like `C:\Users\<my-user-name>\AppData\Local\Android\Sdk`.
+This is the easier way (some configuration can be then done using GUI) and comes with useful additional GUI tools to manage virtual Android devices or mirror real (physical) Android devices. So we advise this option.
++
+For your information (you will need this later), location of the Android SDK is visible in the Android Studio _Settings \-> Android SDK_. It looks like this, by default:
++
+--
+* Windows: `C:\Users\<my-user-name>\AppData\Local\Android\Sdk`
+* Linux: `~/Android/Sdk`
+--
 
-* Or install only the _Command line tools_ (see the bottom of the above page):
+* Alternatively: Install _Command line tools only_ (scroll to the bottom of https://developer.android.com/studio ):
 +
 --
 . Create a new directory on disk for Android SDK. Like `c:/android-sdk`.
@@ -74,6 +93,10 @@ If you don't know how to set the environment variable, search the Internet (e.g.
 Remember to close and reopen all the applications after setting the environment variable. Changing environment variables only takes effect for new applications.
 
 === Accept Android SDK license
+
+It's easiest to accept the licenses using https://developer.android.com/studio[Android Studio]. Just run it and proceed through the default _"Standard"_ configuration.
+
+Alternatively, you can accept them using command-line:
 
 Windows:: Open the terminal (press _Windows key_, type `cmd` and press _Enter_) and type commands like this:
 +
@@ -133,7 +156,7 @@ You could also do these steps using our command-line link:build_tool[Build Tool]
 
 - Package using `castle-engine package --target=android --fast --mode=debug`
 - Install using `castle-engine install --target=android --mode=debug`
-- Run using `castle-engine run --target=android`
+- Run using `castle-engine run --target=android --mode=debug`
 ====
 
 [NOTE]
