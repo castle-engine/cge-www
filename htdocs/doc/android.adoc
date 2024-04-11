@@ -49,10 +49,9 @@ The Java version required is _at least 17_ (this is determined by the https://de
 ====
 Alternatively, you can skip this step (Java installation) and in the next step install full https://developer.android.com/studio[Android Studio]. The complete _Android Studio_ will already include Java version suitable for Android SDK.
 
-For your information (if any tool asks), the Java is then located in:
+For your information (if some tool requires later to set e.g. `JAVA_HOME`), the Java installation can be located by going to _"File -> Settings"_ and there to _"Build, Execution, Deployment -> Build Tools -> Gradle -> Gradle JDK"_. See the screenshot below.
 
-* Windows: `C:/Program Files/Android/Android Studio/jre`
-* Linux: `<wherever-you-unpacked-android-studio-targz>/jre`
+cgeimg::block[android_studio_java_location.png|Java location in Android Studio]
 ====
 
 === Install Android SDK (maybe along with Android Studio)
