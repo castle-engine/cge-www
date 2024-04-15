@@ -185,11 +185,11 @@ A simple example of using views with `TCastleControl` is in https://github.com/c
 
 ## Focus (receiving key input)
 
-NOTE: This section is important if your cgeref:TCastleControl[] is placed on a form together with other LCL controls that may receive _focus_ (that is, key input), like buttons (`TButton`) or edit boxes (`TEdit`).
+Like every LCL / VCL / FMX control, our cgeref:TCastleControl[] receives the keys only when it has _focus_. The control _does not_ capture all the keys pressed over the form (this would be bad, as other controls, maybe even other cgeref:TCastleControl[] on the same form, may want to handle them). To make sure that controlling the camera by keys (like AWSD or arrows) works, make sure that your control has a focus.
 
-NOTE: TODO: Keyboard focus on Delphi (VCL, FMX) is in-progress. This section (for now) applies only to Lazarus (LCL).
+NOTE: The advises below were tested with LCL, though they should apply to VCL and FMX too. Report if you encounter difficulties applying them.
 
-Like every LCL control, our cgeref:TCastleControl[] receives the keys only when it has _focus_. The control _does not_ capture all the keys pressed over the form (this would be bad, as other controls, maybe even other cgeref:TCastleControl[] on the same form, may want to handle them). To make sure that controlling the camera by keys (like AWSD or arrows) works, make sure that your control has a focus.
+To make the control have focus:
 
 - You can call `MyCastleControl.SetFocus;` at any time to explicitly make the `MyCastleControl` focused. You can assign this to some menu item, or key shortcut handled by form, to allow user to easily switch focus to the cgeref:TCastleControl[] instance.
 
