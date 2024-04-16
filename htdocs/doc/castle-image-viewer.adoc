@@ -2,4 +2,4 @@
 
 Viewer for image formats supported by _Castle Game Engine_.
 
-**Temporary: See link:castle-view-image.php[castle-view-imageview3dscene]. We're migrating to a new application name.**
+**Temporary: See link:castle-view-image.php[castle-view-image]. We're migrating to a new application name.**
