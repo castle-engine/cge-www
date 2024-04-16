@@ -15,14 +15,22 @@ $toc = new TableOfContents(
     new TocItem('Dialog windows that support URLs', 'dialogs'),
     new TocItem('Notes about terminology: URI vs URL', 'terminology'),
     new TocItem('Multi-player options', 'multi_player'),
+      new TocItem('Use TCastleDownload for HTTP REST communication with a backend', 'castle_download', 1),
       new TocItem('Indy (CGE example using TCP streams)', 'indy', 1),
       new TocItem('RNL (CGE example of real-time online shooter)', 'rnl', 1),
+      new TocItem('Planned: Nakama integration', 'rnl', 1),
       new TocItem('Other options', 'other', 1),
   )
 );
 ?>
 
 <?php echo $toc->html_toc(); ?>
+
+<?php
+echo cgeImg('float', array(
+  array('filename' => 'delphi_linux_downloads.png', 'titlealt' => 'asynchronous_download example, downloading multiple URLs asynchronously (without blocking the UI)'),
+));
+?>
 
 <?php echo $toc->html_section(); ?>
 
@@ -62,7 +70,7 @@ other resources) automatically deal with URLs.
     (as a <code>TStream</code>) inside
     <?php echo cgeRef('TCastleDownload.Contents'); ?>.
 
-    <p>It supports all our procotols.
+    <p>It supports all our protocols.
     It can download data using <code>http</code> or <code>https</code> protocols
     without any issues.
     It can be used to communicate with a REST server.
@@ -412,7 +420,53 @@ see <?php echo a_href_page('X3D extensions introduction', 'x3d_extensions'); ?>.
 
 <?php echo $toc->html_section(); ?>
 
+<p>The engine provides a cross-platform component <?php echo cgeRef('TCastleDownload'); ?> to asynchronously download any URL and to perform HTTP(S) web requests. In effect, this can be used to communicate with any backend (written using Pascal or not) that uses HTTP(S) protocol.
+
+<p>Features of <?php echo cgeRef('TCastleDownload'); ?>:
+
+<ul>
+  <li>
+    <p>Supports various HTTP(S) methods (GET, POST, PUT...).
+  <li>
+    <p>Handles HTTP(S) redirects automatically.
+  <li>
+    <p>Allows to send custom HTTP headers.
+  <li>
+    <p>Gets MIME type from server automatically.
+  <li>
+    <p>Exposes HTTP response headers and code.
+  <li>
+    <p>It is really cross-platform and cross-compiler, covering all platforms supported by <i>Castle Game Engine</i>. E.g. it uses <a href="https://wiki.freepascal.org/fphttpclient">FpHttpClient</a> with FPC on most desktops, uses special <a href="https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/android/integrated-services/download_urls/README.adoc">Android service on Android</a>, on Delphi uses <i>Indy</i> or <code>TNetHTTPClient</code> (depending on what works better on given platform).
+  <li>
+    <p>Supports encrypted HTTPS out-of-the-box as much as possible, since HTTPS is standard nowadays. To this end, we adjust some <i>Indy</i> and <i>FpHttpClient</i> to make HTTPS just work.
+
+    <p>FPC applications only have to use <code>OpenSSLSockets</code> unit, e.g. add
+
+    <?php echo pascal_highlight('{$ifdef FPC} OpenSSLSockets, {$endif}'); ?>
+
+    <p>to the uses clause of one of your units (like <code>GameInitialize</code>).
+</ul>
+
+<p>Examples:
+
+<ul>
+  <li>
+    <p><a href="https://github.com/castle-engine/castle-engine/blob/master/examples/network/remote_logging/">examples/network/remote_logging/</a> (sends asynchronous HTTP POST message),
+  <li>
+    <p><a href="https://github.com/castle-engine/castle-engine/tree/master/examples/network/put_data">examples/network/put_data/</a> (send HTTP PUT).
+</ul>
+
+<?php echo $toc->html_section(); ?>
+
 <p>The <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/network/tcp_connection">examples/network/tcp_connection</a> directory in CGE sources demonstrates how to create and use a <b>classic client/server solution, where multiple clients talk to a server over a TCP/IP connection</b>.
+
+<?php
+echo cgeImg('block', array(
+  array('filename' => 'android_client.png', 'titlealt' => 'TCP client, on Android'),
+  array('filename' => 'server_linux.png', 'titlealt' => 'TCP server, on Linux'),
+  array('filename' => 'server_and_2_clients.png', 'titlealt' => 'TCP server and 2 clients, on Windows'),
+));
+?>
 
 <p>It's a good cross-platform solution when:
 
@@ -462,7 +516,11 @@ lazbuild Indy10/indylaz.lpk
 
 <?php echo $toc->html_section(); ?>
 
-<p>There are various other networing solutions for Pascal &mdash; and you can use any of them together with <i>Castle Game Engine</i>. Links:
+<p>We plan <a href="roadmap#_integration_with_nakama_scalable_server_for_social_and_real_time_games_and_apps">integration with Nakama</a> in the future. It's a great open-source solution that provides out-of-the-box common multi-player features and can be customized to each particular project.
+
+<?php echo $toc->html_section(); ?>
+
+<p>There are various other networking solutions for Pascal &mdash; and you can use any of them together with <i>Castle Game Engine</i>. Links:
 
 <ul>
   <li><p>Aforementioned <a href="https://www.indyproject.org/">Indy</a> is a big library providing a lot of networking options. You can use it directly in many ways. See the <a href="http://ww2.indyproject.org/docsite/html/frames.html">online documentation</a>.
@@ -472,9 +530,6 @@ lazbuild Indy10/indylaz.lpk
   <li><p><a href="https://lnet.wordpress.com/news/">lNet</a> is a cross-platform lightweight networking library for FPC. It's much smaller (in terms of API and implementation) than Synapse and Indy, which may be an advantage, depending on what you need. See <a href="https://lnet.wordpress.com/usage/faq/">lNet FAQ</a> and <a href="https://wiki.freepascal.org/lNet">FPC wiki about lNET</a>.
 
   <li><p>FPC includes some networking units in the standard installation already. They work at various levels. In particular if you just want HTTP (REST) networking, FPC has <a href="https://wiki.freepascal.org/fcl-web">fcl-web</a> which allows to create HTTP(S) servers and clients.
-
-  <li><p>Remember about our <?php echo cgeRef('Download'); ?> function and <?php echo cgeRef('TCastleDownload'); ?> class. They use <a href="https://wiki.freepascal.org/fphttpclient">FpHttpClient</a> under the hood. You can use <?php echo cgeRef('TCastleDownload'); ?> for HTTP(S) communiction with a REST server written in any language (Pascal or not).
-
 </ul>
 
 <p>The future may bring to <i>Castle Game Engine</i> more networking options (at a higher-level, to replicate some game state across multiple clients).
