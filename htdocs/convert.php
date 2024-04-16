@@ -1,7 +1,7 @@
 <?php
 require_once 'castle_engine_functions.php';
 castle_header('Convert glTF, OBJ, STL, Collada, 3DS (and other 3D and 2D model formats) to X3D', array(
-  'social_share_image' => 'view3dscene_gltf_helmet.png',
+  'social_share_image' => 'castle-model-viewer_gltf_helmet.png',
   'meta_description' => 'Online and free converter from many 3D model formats, like glTF, to X3D.',
   'meta_keywords' => 'convert, glTF, OBJ, 3DS, X3D',
 ));
@@ -12,12 +12,12 @@ Button "Make a screenshot"
 
     Makes a screenshot from the 1st viewpoint found in your scene.
 
-    (Allows to also choose a predefined "best fit" viewpoint, like view3dscene)
+    (Allows to also choose a predefined "best fit" viewpoint, like castle-model-viewer)
 
     How to set a viewpoint?
 
-    * Open the model in <a>view3dscene</a>, choose preferred navigation method (Examine, Walk), position camera as you like, and use "Console->Print Camera Xxx".
-    * Paste the copied Viewport at the top of your your VRML or X3D file.  (If it's not an VRML or X3D, you can convert it to VRML or X3D, using the form on this page... on using view3dscene "File -> Save As").
+    * Open the model in <a>castle-model-viewer</a>, choose preferred navigation method (Examine, Walk), position camera as you like, and use "Console->Print Camera Xxx".
+    * Paste the copied Viewport at the top of your your VRML or X3D file.  (If it's not an VRML or X3D, you can convert it to VRML or X3D, using the form on this page... on using castle-model-viewer "File -> Save As").
 
     Checkbox: Try to download all linked resources, necessary to correctly display the model (textures, inline 3D models...). They must be specified inside the file as http:/ or https:/ URLs.
 
@@ -66,13 +66,13 @@ Button "Make a screenshot"
 <ul>
   <li><p>You <b>can upload multiple files</b> (select them with <i>Ctrl</i> key in the open dialog) if it makes sense for the given model format. E.g. upload glTF JSON + optional binary data, or Wavefront OBJ + optional MTL file.
 
-  <li><p>This tool is <b>free and open-source software</b>. It is a set of scripts (<a href="https://github.com/castle-engine/cge-www/tree/master/convert-to-x3d">PHP, Docker and shell scripts</a>) using <a href="/">Castle Game Engine</a> and <a href="view3dscene.php">view3dscene (and tovrmlx3d)</a> under the hood.
+  <li><p>This tool is <b>free and open-source software</b>. It is a set of scripts (<a href="https://github.com/castle-engine/cge-www/tree/master/convert-to-x3d">PHP, Docker and shell scripts</a>) using <a href="/">Castle Game Engine</a> and <a href="castle-model-converter">castle-model-converter</a> under the hood.
 
-  <li><p>This online converter has some limits on the uploaded file size and conversion time. If needed <b>you can just download <a href="view3dscene.php">view3dscene (and tovrmlx3d)</a> and perform the same conversion on your own computer</b>, without any limits. You can also generate screenshots or perform mass conversion from your scripts this way.
+  <li><p>This online converter has some limits on the uploaded file size and conversion time. If needed <b>you can just download <a href="castle-model-viewer">castle-model-viewer</a> or <a href="castle-model-converter">castle-model-converter</a> and perform the same conversion on your own computer</b>, without any limits. You can also generate screenshots or perform mass conversion from your scripts this way.
 
   <li><p>The models you upload here, and the resulting output, are not stored on the server longer than absolutely necessary (to perform the conversion, and then the output is kept for 15 minutes to allow you download it). <b>Your models remain yours, we don't keep them.</b>
 
-  <li><p>If you experience any problems, please <a href="talk.php">contact us</a>. You can submit bugs to the <a href="https://github.com/castle-engine/view3dscene/issues">view3dscene bugtracker</a>. There is no warranty.
+  <li><p>If you experience any problems, please <a href="talk.php">contact us</a>. You can submit bugs to the <a href="https://github.com/castle-engine/castle-model-viewer/issues">castle-model-viewer bugtracker</a>. There is no warranty.
 </ul>
 
 </div>

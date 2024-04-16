@@ -1,7 +1,7 @@
 <?php
 require_once 'castle_engine_functions.php';
 castle_header('Compiling from source', array(
-  'meta_description' => 'How to compile Castle Game Engine (build tool, editor, view3dscene etc.) from sources',
+  'meta_description' => 'How to compile Castle Game Engine (build tool, editor, castle-model-viewer etc.) from sources',
 ));
 
 $toc = new TableOfContents(
@@ -15,8 +15,8 @@ $toc = new TableOfContents(
       new TocItem('Windows', NULL, 1),
       new TocItem('Linux, FreeBSD', NULL, 1),
       new TocItem('macOS', NULL, 1),
-    new TocItem('(Optional) Compile view3dscene'),
-    new TocItem('(Optional) Compile castle-view-image'),
+    new TocItem('(Optional) Compile castle-model-viewer'),
+    new TocItem('(Optional) Compile castle-image-viewer'),
     new TocItem('Test!'),
     new TocItem('Updating'),
   )
@@ -190,11 +190,11 @@ Set-ExecutionPolicy Bypass -Scope Process
 
 <?php echo $toc->html_section(); ?>
 
-<p>To have fully-working installation, build also <a href="https://castle-engine.io/view3dscene.php">view3dscene</a>. Editor executes it on double-click to view <a href="https://castle-engine.io/creating_data_model_formats.php">all our scene formats, 3D and 2D: glTF, X3D, Spine JSON, sprite sheets etc.</a>.
+<p>To have fully-working installation, build also <a href="https://castle-engine.io/castle-model-viewer">castle-model-viewer</a>. Editor executes it on double-click to view <a href="https://castle-engine.io/creating_data_model_formats.php">all our scene formats, 3D and 2D: glTF, X3D, Spine JSON, sprite sheets etc.</a>.
 
 <p>Get the code from GitHub:
 
-<pre>git clone https://github.com/castle-engine/view3dscene/</pre>
+<pre>git clone https://github.com/castle-engine/castle-model-viewer/</pre>
 
 <p>You now have a number of equivalent options to compile:
 
@@ -207,32 +207,32 @@ Set-ExecutionPolicy Bypass -Scope Process
         <p>First, Lazarus must be aware of the <code>castle_window</code> package. It is best to use <i>Register Lazarus Packages</i> button from the CGE editor, as described in the <a href="install">Installation manual</a>. Or you could just open the <code>packages/castle_window.lpk</code> package in CGE sources, and <i>"Compile"</i> it from Lazarus.
 
       <li>
-        <p>Then open in Lazarus <code>view3dscene.lpi</code>, and use <i>"Run -&gt; Compile"</i> menu item in Lazarus.
+        <p>Then open in Lazarus <code>castle_model_viewer.lpi</code>, and use <i>"Run -&gt; Compile"</i> menu item in Lazarus.
     </ol>
 
   <li>
-    <p>Or run <code>castle-editor</code>. Open the project in <code>view3dscene/CastleEngineManifest.xml</code>, and use <i>"Compile"</i> from CGE editor.
+    <p>Or run <code>castle-editor</code>. Open the project in <code>castle-model-viewer/CastleEngineManifest.xml</code>, and use <i>"Compile"</i> from CGE editor.
 
   <li>
     <p>Or use this in terminal (if you put the build tool on <code>$PATH</code>):
 
 <pre>
-cd view3dscene/
+cd castle-model-viewer/
 castle-engine compile
 </pre>
 </ul>
 
-<p>Similarly to the previous tools, we advise to put the binary <code>view3dscene</code> (<code>view3dscene.exe</code> on Windows) inside the <code>castle-engine/bin/</code> directory, alongside other tools.
+<p>Similarly to the previous tools, we advise to put the binary <code>castle-model-viewer</code> (<code>castle-model-viewer.exe</code> on Windows) inside the <code>castle-engine/bin/</code> directory, alongside other tools.
 
 <?php echo $toc->html_section(); ?>
 
-<p>You can build also <a href="https://castle-engine.io/castle-view-image.php">castle-view-image</a>. Editor executes in on double-click to view 2D images.
+<p>You can build also <a href="https://castle-engine.io/castle-image-viewer.php">castle-image-viewer</a>. Editor executes in on double-click to view 2D images.
 
 <p>Get the code from GitHub:
 
-<pre>git clone https://github.com/castle-engine/castle-view-image/</pre>
+<pre>git clone https://github.com/castle-engine/castle-image-viewer/</pre>
 
-<p>Similar to view3dscene step above, you now have a number of equivalent options to compile:
+<p>Similar to <code>castle-model-viewer</code> step above, you now have a number of equivalent options to compile:
 
 <ul>
   <li>
@@ -243,22 +243,22 @@ castle-engine compile
         <p>First, Lazarus must be aware of the <code>castle_window</code> package. It is best to use <i>Register Lazarus Packages</i> button from the CGE editor, as described in the <a href="install">Installation manual</a>. Or you could just open the <code>packages/castle_window.lpk</code> package in CGE sources, and <i>"Compile"</i> it from Lazarus.
 
       <li>
-        <p>Then open in Lazarus <code>castle-view-image.lpi</code>, and use <i>"Run -&gt; Compile"</i> menu item in Lazarus.
+        <p>Then open in Lazarus <code>castle_image_viewer.lpi</code>, and use <i>"Run -&gt; Compile"</i> menu item in Lazarus.
     </ol>
 
   <li>
-    <p>Run <code>castle-editor</code>, open project in <code>castle-view-image/CastleEngineManifest.xml</code>, and use <i>"Compile"</i> from CGE editor.
+    <p>Run <code>castle-editor</code>, open project in <code>castle-image-viewer/CastleEngineManifest.xml</code>, and use <i>"Compile"</i> from CGE editor.
 
   <li>
     <p>Use in terminal (if you put the build tool on <code>$PATH</code>):
 
 <pre>
-cd castle-view-image/
+cd castle-image-viewer/
 castle-engine compile
 </pre>
 </ul>
 
-<p>Similarly to the previous tools, we advise to put the binary <code>castle-view-image</code> (<code>castle-view-image.exe</code> on Windows) inside the <code>castle-engine/bin/</code> directory, alongside other tools.
+<p>Similarly to the previous tools, we advise to put the binary <code>castle-image-viewer</code> (<code>castle-image-viewer.exe</code> on Windows) inside the <code>castle-engine/bin/</code> directory, alongside other tools.
 
 <?php echo $toc->html_section(); ?>
 

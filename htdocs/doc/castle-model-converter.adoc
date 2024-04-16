@@ -1,0 +1,5 @@
+# castle-model-converter
+
+Command-line converter from various 3D and 2D model formats supported by _Castle Game Engine_ to X3D.
+
+**Temporary: See link:view3dscene.php[view3dscene]. We're migrating to a new application name.**
