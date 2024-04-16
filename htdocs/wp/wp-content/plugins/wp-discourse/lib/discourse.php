@@ -164,6 +164,7 @@ class Discourse {
 		'sso-client-login-form-change'   => 0,
 		'sso-client-login-form-redirect' => '',
 		'sso-client-sync-by-email'       => 0,
+		'sso-client-disable-create-user' => 0,
 		'sso-client-sync-logout'         => 0,
 	);
 
@@ -222,7 +223,7 @@ class Discourse {
 				$saved_values   = get_option( 'discourse_configurable_text' );
 				$default_values = $this->discourse_configurable_text;
 				$merged_values  = array_merge( $default_values, $saved_values );
-				array_walk( $merged_values, 'self::register_text_translations' );
+				array_walk( $merged_values, self::class . '::register_text_translations' );
 				update_option( $group_name, $merged_values );
 			} else {
 				add_option( $group_name, $this->$group_name );
