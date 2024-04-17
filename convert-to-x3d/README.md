@@ -16,9 +16,8 @@ This directory contains utilities for our online tool
 
 - convert-to-x3d.sh uses Docker image inside docker-image/ .
 
-  This Docker image contains the latest version of view3dscene and tovrmlx3d,
-  using latest Castle Game Engine.
-  See https://castle-engine.io/ and https://castle-engine.io/view3dscene.php .
+  This Docker image contains the latest version of
+  [castle-model-viewer](https://castle-engine.io/model-viewer) and [castle-model-converter](https://castle-engine.io/model-converter), using latest Castle Game Engine.
 
   Rebuild this image (and upload it to Docker hub)
   by "cd docker-image/ && ./build.sh"
@@ -47,9 +46,9 @@ sudo -i
     adduser convert-to-x3d --system --ingroup docker --home /nonexistent --no-create-home --disabled-password
     # adduser convert-to-x3d www-data # allow convert-to-x3d to write in dirs created by www-data (not useful for now)
     # test that convert-to-x3d can run Docker:
-    sudo -u convert-to-x3d docker run --rm kambi/convert-to-x3d tovrmlx3d --version
+    sudo -u convert-to-x3d docker run --rm kambi/convert-to-x3d castle-model-converter --version
     # test that www-data cannot run Docker:
-    sudo -u www-data docker run --rm kambi/convert-to-x3d tovrmlx3d --version
+    sudo -u www-data docker run --rm kambi/convert-to-x3d castle-model-converter --version
 
     # allow www-data to execute convert-to-x3d.sh
     visudo -f /etc/sudoers.d/convert-to-x3d

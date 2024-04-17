@@ -1,6 +1,7 @@
 # -*- mode: shell-script -*-
 #
-# Dockerfile that defines the Docker image with view3dscene and tovrmlx3d.
+# Dockerfile that defines the Docker image with
+# castle-model-viewer and castle-model-converter.
 # Used by "Convert everything to X3D" tool on
 # https://castle-engine.io/convert.php .
 #
@@ -12,7 +13,7 @@ FROM debian:bookworm-slim
 
 # TODO: add xinit,
 # allow making screenshots using
-#   xinit `which view3dscene` --screenshot 0 a.png -- :1
+#   xinit `which castle-model-viewer` --screenshot 0 a.png -- :1
 # inside Docker.
 
 # Using --allow-releaseinfo-change necessary to avoid error:

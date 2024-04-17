@@ -18,9 +18,9 @@ cd castle-engine/
 export CASTLE_ENGINE_PATH=`pwd`
 cd ../
 
-# get view3dcene, tovrmlx3d
-$GIT_SHALLOW_CLONE https://github.com/castle-engine/view3dscene/
-cd view3dscene/
+# get view3dcene, castle-model-converter
+$GIT_SHALLOW_CLONE https://github.com/castle-engine/castle-model-viewer/
+cd castle-model-viewer/
 "${CASTLE_ENGINE_PATH}"/tools/build-tool/castle-engine compile --compiler-option=-dCASTLE_WINDOW_XLIB
-"${CASTLE_ENGINE_PATH}"/tools/build-tool/castle-engine compile --manifest-name=CastleEngineManifest.tovrmlx3d.xml
+"${CASTLE_ENGINE_PATH}"/tools/build-tool/castle-engine compile --manifest-name=CastleEngineManifest.converter.xml
 cd ../../
