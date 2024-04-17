@@ -131,12 +131,15 @@ It is perfect to use with unreliable / slow network.
  supports these protocols only if you set global variable
  <?php echo cgeRef('EnableBlockingDownloads'); ?>
  to <code>true</code>.
-We call them "blocking downloads" because the application simply waits for
-the un-interruptible download to finish.
-This is easy to use, but may cause your application to hang,
-as network may be slow / unreliable.
-We advise using <?php echo cgeRef('TCastleDownload'); ?>
- for network protocols, although it requires a bit more effort.
+We call them "blocking downloads" because the application has to simply wait for
+the download to finish and there's no way to interrupt the download
+(without just killing the application) or even watch the progress.
+<!--So these "blocking downloads" are easy to use from code,
+but may cause your application to hang,
+as network may be slow / unreliable.-->
+We advise always using <?php echo cgeRef('TCastleDownload'); ?>
+ to get data from the network &mdash; although it requires
+ a bit more effort from code, but allows to observe and interrupt the download.
 
 <p>For the <code>https</code> (encrypted version of <code>http</code>) protocol to work:
 
@@ -323,7 +326,7 @@ to provide the contents "right there", without using any additional file.
 <!-- You can say that the data URI is "self-contained". -->
 
 <p>Demos of using data URI are inside <?php
-echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>,
+echo a_href_page('our demo models', 'demo_models'); ?>,
 see in particular <a href="https://github.com/castle-engine/demo-models/blob/master/x3d/data_uri.x3dv">x3d/data_uri.x3dv</a>.
 
 <?php echo $toc->html_section(); ?>
@@ -346,7 +349,7 @@ Instead, use <?php echo cgeRef('ApplicationData'); ?>
 On Android it will start with <code>castle-android-assets:/...</code> but you should treat this
 as an internal detail.
 <!--
-Inside your data, when referrring from one data file to another,
+Inside your data, when referring from one data file to another,
 e.g. when an 3D file refers to a texture,
 use relative URLs.
 -->
@@ -408,7 +411,7 @@ loads it automatically). Admittedly, this means that our loading routines
 should rather use the term <i>URL or data URI</i>, but that's just long
 and (for those who don't use data URI) confusing, so for simplicity we
 just keep (over-)using the term <i>URL</i>. Also, other standards (like CSS
-and X3D and VRML) allow placing <i>data URIs</i> inside fields called <code>url</code>.
+and X3D) allow placing <i>data URIs</i> inside fields called <code>url</code>.
 
 <p>If you enjoy reading about Internet terminology,
 note that we use in our engine also
