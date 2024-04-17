@@ -1,4 +1,4 @@
-# castle-model-viewer
+# Castle Model Viewer
 
 Viewer for 3D and 2D model formats supported by the Castle Game Engine.
 

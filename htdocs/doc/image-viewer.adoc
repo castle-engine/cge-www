@@ -1,4 +1,4 @@
-# castle-image-viewer
+# Image Viewer
 
 Viewer for image formats supported by _Castle Game Engine_.
 

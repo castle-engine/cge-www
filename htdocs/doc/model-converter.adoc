@@ -1,4 +1,4 @@
-# castle-model-converter
+# Castle Model Converter
 
 Command-line converter from various 3D and 2D model formats supported by _Castle Game Engine_ to X3D.
 
