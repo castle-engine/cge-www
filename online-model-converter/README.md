@@ -1,7 +1,9 @@
-This directory contains utilities for our online tool
-"Convert everything to X3D" on https://castle-engine.io/convert.php .
+# Online Model Converter
 
-# Architecture
+This directory contains utilities for our online 3D and 2D model converter
+available on https://castle-engine.io/convert.php .
+
+## Architecture
 
 - The PHP files implementing it are part of the CGE website,
   in ../htdocs/convert*.php .
@@ -24,7 +26,7 @@ This directory contains utilities for our online tool
 
   It is available on Docker hub publicly, on https://hub.docker.com/r/kambi/online-model-converter .
 
-# Installing on server
+## Installing on server
 
 Install Docker (see
 https://www.docker.com/ ,
@@ -84,7 +86,7 @@ Create a cron job, by creating `/etc/cron.d/online-model-converter`:
 */5 * * * *     www-data    cd /home/michalis/cge-www/htdocs/ && php < convert-cron.php
 ```
 
-# License
+## License
 
 Author: Michalis Kamburelis
 
