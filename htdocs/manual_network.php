@@ -91,7 +91,7 @@ other resources) automatically deal with URLs.
     </ul>
 
   <li><p><b>To save</b>, use
-    <?php echo cgeRef('URLSaveStream'); ?>
+    <?php echo cgeRef('UrlSaveStream'); ?>
     function. Right now, it can only save to a local file,
     so it merely translates a URL to local filename and creates a <code>TFileStream</code>
     for you. Still, it's a good idea to use it, to uniformly deal with
@@ -209,7 +209,7 @@ runs your application.
 use <a href="manual_data_directory.php"><code>castle-data</code> protocol</a>,
 not <code>file</code> protocol.
 
-<p><?php echo cgeRef('CastleURIUtils'); ?>
+<p><?php echo cgeRef('CastleUriUtils'); ?>
  contains routines to operate on URLs (and more general URIs),
 including converting between regular filenames and URLs with
 <code>file:</code> protocol.
@@ -219,10 +219,10 @@ including converting between regular filenames and URLs with
   to an absolute URL.
 
 <?php echo pascal_highlight(
-'URL := FilenameToURISafe(FileName);'); ?>
+'URL := FilenameToUriSafe(FileName);'); ?>
 
   <li><p>Use this to convert something that may be a FileName or URL to an URL.
-  This is safer than <code>FilenameToURISafe(...)</code>, in that it will
+  This is safer than <code>FilenameToUriSafe(...)</code>, in that it will
   never touch something that already is an URL.
   <!--
   On the other hand, there are some obscure cases
@@ -232,7 +232,7 @@ including converting between regular filenames and URLs with
   -->
 
 <?php echo pascal_highlight(
-'URL := AbsoluteURI(FileNameOrURL);'); ?>
+'URL := AbsoluteUri(FileNameOrUrl);'); ?>
 
   <li><p>Use this to convert URL back to a FileName.
   When the URL is a <code>file:</code> protocol, it will decode back
@@ -241,25 +241,27 @@ including converting between regular filenames and URLs with
   protocol (like <code>http</code>), returns empty string.
 
 <?php echo pascal_highlight(
-'FileName := URIToFilenameSafe(URL);'); ?>
+'FileName := UriToFilenameSafe(URL);'); ?>
 </ul>
 
 <p>See reference of
-<?php echo cgeRef('FilenameToURISafe'); ?>,
-<?php echo cgeRef('AbsoluteURI'); ?>,
-<?php echo cgeRef('URIToFilenameSafe'); ?>.
+<?php echo cgeRef('FilenameToUriSafe'); ?>,
+<?php echo cgeRef('AbsoluteUri'); ?>,
+<?php echo cgeRef('UriToFilenameSafe'); ?>.
 <!--
 See <a href="https://github.com/castle-engine/castle-engine/blob/master/doc/miscellaneous_notes/uri_filename.txt">doc/miscellaneous_notes/uri_filename.txt</a> for more internal comments.
 -->
 
+<!--
 <p>If you read/write filenames from/to <a href="http://www.lazarus.freepascal.org/">Lazarus</a> classes,
 for example if you use Lazarus <code>TOpenDialog.FileName</code> or
 <code>TSaveDialog.FileName</code>, you can use the UTF-8 variants instead:
-<?php echo cgeRef('URIToFilenameSafeUTF8'); ?> and
-<?php echo cgeRef('FilenameToURISafeUTF8'); ?>.
+<?php echo cgeRef('UriToFilenameSafeUTF8'); ?> and
+<?php echo cgeRef('FilenameToUriSafeUTF8'); ?>.
 But it doesn't matter in practice.
 Both <i>Castle Game Engine</i> and <i>Lazarus</i> configure FPC RTL to use UTF-8 for all strings
 (by default FPC RTL uses system-dependent encoding).
+-->
 
 <p><i>On Android</i>, you should use the <a href="https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/android/integrated-services/read_external_storage/README.md">read_external_storage service</a> to be able to read storage files (e.g. from SD card)
 through the <code>file</code> protocol.
@@ -392,7 +394,7 @@ mentioned earlier.
 <p><a href="https://en.wikipedia.org/wiki/Uniform_resource_identifier">URI</a>
 is a more general term. URI uniquely identifies a resource but does not
 necessarily tell us how to load (download) or save (upload) it.
-We have many routines in <?php echo cgeRef('CastleURIUtils'); ?>
+We have many routines in <?php echo cgeRef('CastleUriUtils'); ?>
  unit that process URIs (strings), they use the more general term <code>URI</code>.
 They complement standard FPC <code>URIParser</code> routines.
 
