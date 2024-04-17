@@ -17,6 +17,7 @@ $toc = new TableOfContents(
     new TocItem('Multi-player options', 'multi_player'),
       new TocItem('Use TCastleDownload for HTTP REST communication with a backend', 'castle_download', 1),
       new TocItem('Indy (CGE example using TCP streams)', 'indy', 1),
+        new TocItem('Known memory leaks with Indy', 'indy_memory_leaks', 2),
       new TocItem('RNL (CGE example of real-time online shooter)', 'rnl', 1),
       new TocItem('Planned: Nakama integration', 'rnl', 1),
       new TocItem('Other options', 'other', 1),
@@ -504,6 +505,32 @@ lazbuild Indy10/indylaz.lpk
 <p>In all cases, you should get an additional package <code>indylaz</code> known by Lazarus. Remember to also install <code>packages/castle_indy.lpk</code> package, and use it in your projects.
 
 <p>Delphi users don't need to do anything in this regard, as Indy is already included in Delphi.
+
+<?php echo $toc->html_section(); ?>
+
+<p>All applications using Indy (whether with <i>Castle Game Engine</i> or not) have memory leaks, by default. This is a design choice of Indy &mdash; letting the memory leak was better than crashing in some edge-cases at unit finalization.
+
+<p>If you are sure that all the Indy threads are given sufficient time to terminate gracefully before the application exits, you can define the symbol <code>FREE_ON_FINAL</code> in Indy sources. Search for <code>define FREE_ON_FINAL</code> inside Indy sources, as of now it means you will find 5 include files doing this:
+
+<?php echo pascal_highlight('{.$DEFINE FREE_ON_FINAL}
+{$UNDEF FREE_ON_FINAL}'); ?>
+
+<p>You need to change these lines to
+
+<?php echo pascal_highlight('{$DEFINE FREE_ON_FINAL}
+{.$UNDEF FREE_ON_FINAL}'); ?>
+
+<?php echo cgeImg('block', array(
+  array('filename' => 'indy_free_on_final.png', 'titlealt' => 'FREE_ON_FINAL in Indy sources'),
+)); ?>
+
+<p>Please note that it isn't always easy to guarantee that <i>"threads are given sufficient time to terminate gracefully before the application exits"</i>. It means that disconnecting (by clients) and stopping (by server) cannot be done right when the application exits (or you have to wait for it to finish, potentially hanging your application on exit). Basically, Indy developers had a good reason to not enable this by default.
+
+<p>For similar reason, the internal thread inside <?php echo cgeRef('CastleClientServer'); ?> actually may leak memory in case it didn't have time to terminate gracefully before the application exits. (But in our case, by default, it will not leak if exits cleanly, i.e. you disconnect client before application exit. It only leaks if the application exits too quickly, disconnecting the client.)
+
+<p>Note: There's a code in Indy to "register known leak" with some memory managers, but it is not active by default for FPC.
+
+<p>You can test for memory leaks following <a href="memory_leaks">our instructions about memory leaks</a>. We use FPC HeapTrc to detect memory leaks, and you can just set <code>&lt;compiler_options detect_memory_leaks="true"&gt;</code> in <a href="project_manifest">CastleEngineManifest.xml</a> to enable it.
 
 <?php echo $toc->html_section(); ?>
 
