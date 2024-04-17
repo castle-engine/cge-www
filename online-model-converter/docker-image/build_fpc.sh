@@ -18,7 +18,7 @@ cd castle-engine/
 export CASTLE_ENGINE_PATH=`pwd`
 cd ../
 
-# get view3dcene, castle-model-converter
+# get castle-model-viewer, castle-model-converter
 $GIT_SHALLOW_CLONE https://github.com/castle-engine/castle-model-viewer/
 cd castle-model-viewer/
 "${CASTLE_ENGINE_PATH}"/tools/build-tool/castle-engine compile --compiler-option=-dCASTLE_WINDOW_XLIB

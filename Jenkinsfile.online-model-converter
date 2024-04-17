@@ -26,10 +26,10 @@ pipeline {
       steps {
         dir ("online-model-converter/docker-image/") {
           sh './build_fpc.sh'
-          dir ("tmp/view3dscene/") {
+          dir ("tmp/castle-model-viewer/") {
             // note that stash remembers (and later recreates) the relative dirs,
             // that is why we do this under "dir".
-            stash name: 'binaries-made-by-fpc', includes: 'view3dscene,tovrmlx3d'
+            stash name: 'binaries-made-by-fpc', includes: 'castle-model-viewer,castle-model-converter'
           }
         }
       }
