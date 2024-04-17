@@ -25,7 +25,7 @@ FROM debian:bookworm-slim
 
 RUN apt-get --allow-releaseinfo-change update && \
   apt-get --no-install-recommends -y install \
-    libglu1-mesa \
+    libpng16-16 \
     libgl1 \
     libxmu6 \
     libopenal1 \
