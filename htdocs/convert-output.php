@@ -87,7 +87,7 @@ function output_success($output_file_id, $output_file_suggested_name, $output_fi
 
   <?php
   if (!empty($conversion_log)) {
-    $warnings_count = substr_count($conversion_log, 'tovrmlx3d: Warning: ');
+    $warnings_count = substr_count($conversion_log, 'castle-model-converter: Warning: ');
     if ($warnings_count != 0) {
       $warnings_str = ' <b>(' . $warnings_count . ' warnings)</b>';
     } else {
@@ -214,7 +214,7 @@ function conversion_volume_get(&$volume_path)
 
 /* Perform conversion.
 
-   $encoding (string) is 'classic' or 'xml', just like --encoding parameter of tovrmlx3d.
+   $encoding (string) is 'classic' or 'xml', just like --encoding parameter of castle-model-converter.
 
    $files is the PHP uploaded files structure for the appropriate form field
    (see https://www.php.net/manual/en/features.file-upload.multiple.php ).
@@ -223,7 +223,7 @@ function conversion_volume_get(&$volume_path)
 
    Returns boolean, whether converting was successful.
 */
-function convert_to_x3d($encoding, $files, &$conversion_log,
+function run_convert($encoding, $files, &$conversion_log,
   &$output_file_id, &$output_file_suggested_name, &$output_file_size)
 {
   $conversion_log = '';
@@ -376,7 +376,7 @@ function process_form_post()
     output_error('No input files to convert.', NULL);
   } else
   {
-    $conversion_success = convert_to_x3d($encoding, $files, $conversion_log,
+    $conversion_success = run_convert($encoding, $files, $conversion_log,
       $output_file_id, $output_file_suggested_name, $output_file_size);
     if ($conversion_success) {
       output_success($output_file_id, $output_file_suggested_name, $output_file_size,
