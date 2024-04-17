@@ -24,7 +24,7 @@ pipeline {
         }
       }
       steps {
-        dir ("convert-to-x3d/docker-image/") {
+        dir ("online-model-converter/docker-image/") {
           sh './build_fpc.sh'
           dir ("tmp/view3dscene/") {
             // note that stash remembers (and later recreates) the relative dirs,
@@ -40,12 +40,12 @@ pipeline {
         label 'jenkins-conv-x3d-docker-uploader'
       }
       steps {
-        sh "rm -Rf convert-to-x3d/docker-image/docker-context/"
-        sh "mkdir -p convert-to-x3d/docker-image/docker-context/bin/"
-        dir ("convert-to-x3d/docker-image/docker-context/bin/") {
+        sh "rm -Rf online-model-converter/docker-image/docker-context/"
+        sh "mkdir -p online-model-converter/docker-image/docker-context/bin/"
+        dir ("online-model-converter/docker-image/docker-context/bin/") {
           unstash name: 'binaries-made-by-fpc'
         }
-        dir ("convert-to-x3d/docker-image/") {
+        dir ("online-model-converter/docker-image/") {
           sh './build_docker_1_build.sh'
           sh './build_docker_2_test.sh'
           withCredentials([
@@ -56,14 +56,14 @@ pipeline {
           }
         }
         /* Make sure that on this host, we have latest Docker image available for future
-           convert-to-x3d/convert-to-x3d.sh calls.
+           online-model-converter/online-model-converter.sh calls.
            Testcase:
            - ssh-cge
-           - docker run --name test-conv --volume="${HOME}":/home/michalis/ --volume="${HOME}"/sources/:/home/michalis/sources/ -it kambi/convert-to-x3d bash
+           - docker run --name test-conv --volume="${HOME}":/home/michalis/ --volume="${HOME}"/sources/:/home/michalis/sources/ -it kambi/online-model-converter bash
            - test tovrmlx3d inside
            - later: docker stop test-conv && docker rm test-conv
         */
-        sh 'docker pull kambi/convert-to-x3d'
+        sh 'docker pull kambi/online-model-converter'
       }
     }
   }

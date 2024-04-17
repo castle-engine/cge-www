@@ -22,7 +22,7 @@ We love to see how you use CGE.</i>
 
   <?php gallery_link('Convert everything to X3D',
     'Convert onine glTF, OBJ, STL, Collada, 3DS (and other model formats handled by Castle Game Engine) to X3D. This is an online version of our <a href="view3dscene.php"><code>tovrmlx3d</code> converter (distributed with view3dscene)</a>.',
-    'convert-to-x3d.png',
+    'online-model-converter.png',
     'convert'); ?>
 
   <?php gallery_link('castle-view-image (formerly glViewImage)',

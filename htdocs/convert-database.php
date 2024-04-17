@@ -27,7 +27,7 @@
   ---------------------------------------------------------------------------
 */
 
-define('CONVERSION_OUTPUT_TIME_DATABASE', '/var/convert-to-x3d/output-times.json');
+define('CONVERSION_OUTPUT_TIME_DATABASE', '/var/online-model-converter/output-times.json');
 
 /* Like file_get_contents but uses locking.
  * Returns NULL if file doesn't exist.

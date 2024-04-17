@@ -43,7 +43,7 @@ function cge_convert_cron()
       $database[0]['time'] < $remove_earlier)
     {
       $to_remove = array_shift($database);
-      $to_remove_filename = '/var/convert-to-x3d/output/' . $to_remove['id'];
+      $to_remove_filename = '/var/online-model-converter/output/' . $to_remove['id'];
       if (!unlink($to_remove_filename)) {
         throw new Exception('Cannot remove file ' . $to_remove_filename);
       }

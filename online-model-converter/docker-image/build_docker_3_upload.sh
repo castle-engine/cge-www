@@ -12,5 +12,5 @@ set -euo pipefail
 
 export DOCKER_ID_USER="${docker_user}"
 echo "${docker_password}" | docker login --username="${DOCKER_ID_USER}" --password-stdin
-docker tag convert-to-x3d "${DOCKER_ID_USER}"/convert-to-x3d
-docker push "${DOCKER_ID_USER}"/convert-to-x3d
+docker tag online-model-converter "${DOCKER_ID_USER}"/online-model-converter
+docker push "${DOCKER_ID_USER}"/online-model-converter

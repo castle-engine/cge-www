@@ -54,7 +54,7 @@ $suggested_name = $_GET['suggested-name'];
 $extension = $encoding == 'xml' ? '.x3d' : '.x3dv';
 $mime = $encoding == 'xml' ? 'model/x3d+xml' : 'model/x3d+vrml';
 
-$file_name = '/var/convert-to-x3d/output/' . $file_id;
+$file_name = '/var/online-model-converter/output/' . $file_id;
 
 $file_size = filesize($file_name);
 if ($file_size === FALSE) {

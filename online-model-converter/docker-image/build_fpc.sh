@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-# Build the binaries to put in Docker on https://hub.docker.com/r/kambi/convert-to-x3d .
+# Build the binaries to put in Docker on https://hub.docker.com/r/kambi/online-model-converter .
 # Must be run on system with FPC.
 # Fills tmp/ directory with proper data (for Dockerfile to use in COPY).
 

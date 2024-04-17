@@ -1,7 +1,7 @@
 <?php
 
 /*
-  Copyright 2020-2022 Michalis Kamburelis.
+  Copyright 2020-2024 Michalis Kamburelis.
 
   This file is part of "Castle Game Engine Website".
 
@@ -21,8 +21,8 @@
 
   ---------------------------------------------------------------------------
 
-  Main PHP file doing the conversion from anything -> X3D.
-  Calls shell script convert-to-x3d/convert-to-x3d.sh to do the actual job.
+  Main PHP file doing the model conversion.
+  Calls shell script online-model-converter/online-model-converter.sh to do the actual job.
 
   ---------------------------------------------------------------------------
 */
@@ -154,13 +154,13 @@ function remove_directory($dir)
 }
 
 /* Acquire a lock file on given Docker volume.
-   Docker volume is simply a subdirectory like /var/convert-to-x3d/volumes/xxx/contents .
+   Docker volume is simply a subdirectory like /var/online-model-converter/volumes/xxx/contents .
    Returns false if volume is already locked.
 */
 function simple_lock($volume_id)
 {
   // See https://stackoverflow.com/questions/325806/best-way-to-obtain-a-lock-in-php
-  $f = @fopen('/var/convert-to-x3d/volumes/' . $volume_id . '/lock.txt', 'x');
+  $f = @fopen('/var/online-model-converter/volumes/' . $volume_id . '/lock.txt', 'x');
   $result = ($f !== FALSE);
   if ($result) {
     $me = getmypid();
@@ -173,12 +173,12 @@ function simple_lock($volume_id)
 
 function simple_unlock($volume_id)
 {
-  if (!unlink('/var/convert-to-x3d/volumes/' . $volume_id . '/lock.txt')) {
+  if (!unlink('/var/online-model-converter/volumes/' . $volume_id . '/lock.txt')) {
     throw new Exception('Cannot release lock for volume ' . $volume_id);
   }
 }
 
-/* Returns the volume id (to be passed to convert-to-x3d.sh).
+/* Returns the volume id (to be passed to online-model-converter.sh).
    Sets $volume_path (string), always ends with slash.
 
    Also creates a lock for this volume, to avoid using it from
@@ -197,11 +197,11 @@ function conversion_volume_get(&$volume_path)
     throw new Exception('All the conversion resources are busy, please try again in a few minutes');
   }
 
-  $volume_path = '/var/convert-to-x3d/volumes/' . $volume_id . '/contents/';
+  $volume_path = '/var/online-model-converter/volumes/' . $volume_id . '/contents/';
   remove_directory($volume_path);
-  /* Allow everyone to write in dir, this way docker user (from convert-to-x3d) can write there.
+  /* Allow everyone to write in dir, this way docker user (from online-model-converter) can write there.
      TODO: It would be safer to do umask(0002) and only allow group to write.
-     convert-to-x3d may be easily part of www-data.
+     online-model-converter may be easily part of www-data.
      But docker user is still not part of www-data (and should not be, for security).
   */
   $old_umask = umask(0000);
@@ -292,7 +292,7 @@ function convert_to_x3d($encoding, $files, &$conversion_log,
 
       global $cge_config;
 
-      $exec_command = 'sudo -u convert-to-x3d ' . $cge_config['cge-www-path'] . 'convert-to-x3d/convert-to-x3d.sh ' .
+      $exec_command = 'sudo -u online-model-converter ' . $cge_config['cge-www-path'] . 'online-model-converter/online-model-converter.sh ' .
         /* Note: using escapeshellarg, not escapeshellcmd,
            as escapeshellarg is good for single aguments -- it handles also spaces in name.
            Testcase: trying to convert a file with space in name, like "foo bar.stl". */
@@ -326,7 +326,7 @@ function convert_to_x3d($encoding, $files, &$conversion_log,
       $output_file_suggested_name = $main_file_without_ext . $output_extension;
 
       if (!rename($volume_path . $output_file_id,
-        '/var/convert-to-x3d/output/' . $output_file_id))
+        '/var/online-model-converter/output/' . $output_file_id))
       {
         $conversion_log .= 'Failed to move output file to the output directory';
         return false;
@@ -357,7 +357,7 @@ function convert_to_x3d($encoding, $files, &$conversion_log,
 /* Process form input, call either output_error or output_success */
 function process_form_post()
 {
-  openlog('convert-to-x3d', LOG_PID, LOG_LOCAL0);
+  openlog('online-model-converter', LOG_PID, LOG_LOCAL0);
 
   if (!isset($_POST['encoding']) ||
       !isset($_FILES['input-file'])) {

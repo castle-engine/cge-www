@@ -21,6 +21,6 @@ docker run \
   -u 1001:1001 \
   --workdir /home/ \
   --read-only \
-  --volume /var/convert-to-x3d/volumes/"${VOLUME_ID}"/contents/:/home/convert-to-x3d/ \
-  kambi/convert-to-x3d \
-  bash -c "cd /home/convert-to-x3d/ && /usr/local/bin/castle-model-converter '${MAIN_FILE}' --force-x3d --encoding='${ENCODING}' > '${OUTPUT_FILE_ID}' 2> error.log"
+  --volume /var/online-model-converter/volumes/"${VOLUME_ID}"/contents/:/home/online-model-converter/ \
+  kambi/online-model-converter \
+  bash -c "cd /home/online-model-converter/ && /usr/local/bin/castle-model-converter '${MAIN_FILE}' --force-x3d --encoding='${ENCODING}' > '${OUTPUT_FILE_ID}' 2> error.log"
