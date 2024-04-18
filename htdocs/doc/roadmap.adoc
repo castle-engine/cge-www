@@ -481,19 +481,19 @@ The above is ignored, because `ImageControl.CustomShader` (equal to `ImageContro
 
 [source,pascal]
 ----
- { All the DrawableImage properties must be set here,
-    in case muliple TCastleImagePersistent refer to the same
-    DrawableImage instance through the cache.
-    Fortunately, almost all TDrawableImage properties have zero cost
-    of change. }
-  DrawableImage.SmoothScaling := FSmoothScaling;
-  DrawableImage.Clip := FClip;
-  DrawableImage.ClipLine := FClipLine;
-  DrawableImage.Rotation := FRotation;
-  DrawableImage.RotationCenter := FRotationCenter;
-  DrawableImage.Alpha := FAlphaChannel;
-  DrawableImage.Color := FColor;
-  DrawableImage.CustomShader := FCustomShader;
+{ All the DrawableImage properties must be set here,
+  in case muliple TCastleImagePersistent refer to the same
+  DrawableImage instance through the cache.
+  Fortunately, almost all TDrawableImage properties have zero cost
+  of change. }
+DrawableImage.SmoothScaling := FSmoothScaling;
+DrawableImage.Clip := FClip;
+DrawableImage.ClipLine := FClipLine;
+DrawableImage.Rotation := FRotation;
+DrawableImage.RotationCenter := FRotationCenter;
+DrawableImage.Alpha := FAlphaChannel;
+DrawableImage.Color := FColor;
+DrawableImage.CustomShader := FCustomShader;
 ----
 
 ## (IN PROGRESS) Gamepads (joysticks) support
