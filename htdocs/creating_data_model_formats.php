@@ -101,9 +101,8 @@ But you can use <code>Inline</code> node to include one file (X3D, glTF or any o
 within another X3D file, and you can simply write some X3D content by hand.
 That's good for adding scripts to 3D data, and generally adding
 stuff that is uncomfortable (or impossible) to design in your 3D modeller.
-See e.g. <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/fps_game">examples/fps_game/</a> game data for comments,
-especially the level file
-<a href="https://github.com/castle-engine/castle-engine/blob/master/examples/fps_game/data/example_level/example_level_final.x3dv">examples/fps_game/data/example_level/example_level_final.x3dv</a>.
+See e.g. the
+<a href="https://github.com/castle-engine/castle-engine/blob/master/examples/fps_game/data/level/terrain_multi_texture.x3dv">terrain_multi_texture.x3dv example (X3D file from fps_game example)</a>.
 
 <!-- <p><i>If your authoring software -->
 <!-- can export to X3D, this is the format you should probably use.</i> -->
