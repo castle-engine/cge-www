@@ -2,4 +2,8 @@
 
 Command-line converter from various 3D and 2D model formats supported by _Castle Game Engine_ to X3D.
 
+cgeimg::block[
+  castle-model-converter.png|Castle Model Converter
+]
+
 **Temporary: See link:view3dscene.php[view3dscene]. We're migrating to a new application name.**
