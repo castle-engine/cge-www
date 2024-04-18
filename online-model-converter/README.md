@@ -19,7 +19,7 @@ available on https://castle-engine.io/convert.php .
 - online-model-converter.sh uses Docker image inside docker-image/ .
 
   This Docker image contains the latest version of
-  [castle-model-viewer](https://castle-engine.io/model-viewer) and [castle-model-converter](https://castle-engine.io/model-converter), using latest Castle Game Engine.
+  [castle-model-viewer](https://castle-engine.io/castle-model-viewer) and [castle-model-converter](https://castle-engine.io/castle-model-converter), using latest Castle Game Engine.
 
   Rebuild this image (and upload it to Docker hub)
   by "cd docker-image/ && ./build.sh"
