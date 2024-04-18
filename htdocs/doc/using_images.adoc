@@ -56,23 +56,31 @@ end;
 
 The approaches 1 and 2 can be used when designing the game in the https://castle-engine.io/manual_editor.php[editor] and are more advised.
 
-Approach 3 may be easier to use in some cases (if you already think in terms _"I want to have code that draws images"_). Also cgeref:TDrawableImage.Draw[] allows to draw with batching, which allows to reliably achieve great speed when drawing large maps.
-
-NOTE: TODO: In the future batching should also work across cgeref:TCastleImageTransform[], if you activate boolean cgeref:DynamicBatching[]. But right now, dynamic batching will not optimize multiple cgeref:TCastleImageTransform[] instances.
+Approach 3 may be easier to use in some cases (if you already think in terms _"I want to have code that draws images"_).
 
 == Supported image formats
 
 All approaches handle all the image formats supported by CGE, like PNG or JPG; see https://castle-engine.io/castle-view-image.php[castle-view-image] docs for the full list.
 
-== For 2D maps: Tiled is an alternative
+== Batching
 
-If you want to draw 2D maps, an alternative is to design them in https://www.mapeditor.org/[Tiled]. You can then:
+_Batching_ is a technique to increase rendering speed by passing multiple requests to draw the same image as a single _draw call_ to the lower-level rendering API. If you draw the same image (maybe a different subset of the same image) a lot, then batching can be a significant speedup. For example, rendering something similar to a 2D tile map / grid can often benefit from batching.
 
-1. load ready map in cgeref:TCastleTiledMapControl[]. See 2 examples in https://github.com/castle-engine/castle-engine/tree/master/examples/tiled[examples/tiled/]. It's a UI element.
+To use batching:
 
-2. load ready map in cgeref:TCastleScene[].
+- If you use UI and cgeref:TCastleImageControl[], enable cgeref:TCastleContainer.UserInterfaceBatching[]. See https://castle-engine.io/wp/2024/03/24/simple-user-interface-batching/[this news].
 
-For now cgeref:TCastleTiledMapControl[] supports a few more Tiled options.
+- If you use cgeref:TCastleImageTransform[], enable cgeref:TCastleViewport.DynamicBatching[].
+
+- If you use cgeref:TDrawableImage[], it has explicit methods to draw multiple images at once. Effectively, you can make your own batching. You can also use cgeref:TDrawableImage.BatchingBegin[] and cgeref:TDrawableImage.BatchingEnd[] to automatically batch as much as possible.
+
+== See also: Tiled maps for 2D games
+
+If you want to draw 2D maps, see how you can use https://www.mapeditor.org/[Tiled] and render maps using dedicated cgeref:TCastleTiledMap[].
+
+See the link:tiled_maps[Tiled maps] manual chapter for details.
+
+This is an alternative to drawing a map using images.
 
 == Internal: Image types in CGE
 
@@ -99,7 +107,7 @@ It's like a `TPicture` in VCL -- it doesn't draw the image, but it has everythin
 +
 These nodes are used underneath when you load image into cgeref:TCastleScene[] or cgeref:TCastleImageTransform[]. We do not advise using these nodes directly,
 
-TODO: There are too many classes above. In time, we hope to hide this complexity more, some of these classes should become internal (or not necessary at all).
+TODO: There are too many classes above. In time, we hope to remove some of the above, and hide some others (in internal units). See link:roadmap[].
 
 ## Deprecated: load image directly in TCastleScene
 
