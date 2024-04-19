@@ -15,6 +15,13 @@ You can use them in your own projects, to enhance what you can do with CGE.
 We love to see how you use CGE.</i>
 
 <div class="row">
+  <?php gallery_link('Icosphere',
+    'Create icosphere (alternative way to triangulate a sphere, that doesn\'t have poles).
+    <p>By <i>Erik Johnson</i>.',
+    'ico_sphere.png',
+    'https://forum.castle-engine.io/t/building-icospheres-in-x3d/1153/');
+  ?>
+
   <?php gallery_link('Castle Bars',
     'Several basic bars (horizontal, vertical and circular progressbars) and sliders (horizontal, vertical and continuous, discrete).
      <p>By <i>Eugene Loza</i>.',
