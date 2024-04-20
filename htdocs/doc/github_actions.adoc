@@ -36,14 +36,25 @@ The builds described above (actions' artifacts) will disappear after some time (
 
 If you want to distribute the builds to users, you should upload them e.g. as _"release"_ on GitHub or anywhere else.
 
-You can automate this too, using https://cli.github.com/manual/gh[GitHub CLI]. It is available both in link:docker[CGE Docker images] and in GitHub-hosted servers themselves. You would use it like this to replace files in `snapshot` release:
+You can automate this too, using https://cli.github.com/manual/gh[GitHub CLI]. It is available both in link:docker[CGE Docker images] and in GitHub-hosted servers themselves.
 
+For example, you can use it like this to replace files in `snapshot` release:
+
+[source,yaml]
 ----
-gh release --repo MY-ORGANIZATION/MY-PROJECT upload snapshot --clobber \
-  *-win64-x86_64.zip \
-  *-linux-x86_64.tar.gz \
-  *-darwin-x86_64.zip \
-  *.apk
+steps:
+- ...
+# Example GitHub Actions step that releases all *.zip, *tar.gz files
+# as new files in the "snapshot" release.
+- name: Release Artifacts
+  if: ${{ github.ref == 'refs/heads/master' }}
+  run: gh release --repo MY-ORGANIZATION/MY-PROJECT upload snapshot --clobber *.zip *.tar.gz
+  env:
+    GH_TOKEN: ${{ github.token }}
 ----
 
-Be sure to define environment variable `GITHUB_TOKEN` to make it work. See https://docs.github.com/en/actions[GitHub Actions] docs.
+See step https://github.com/castle-engine/cge-fpc/blob/master/.github/workflows/build.yml[at the end of this workflow] for a working example.
+
+NOTE: Above example step overwrites the `snapshot` release files every time it is done, while the release tag stays the same. It works and is useful for `snapshot` releases. But it is not a normal release setup: "normal" release should be done once, building binaries from the proper tag, and the released files should not change later. Tweak above example as you wish, e.g. to build on specific tag and/or to create a new release every time by `gh release create ...`.
+
+See https://docs.github.com/en/actions[GitHub Actions] docs for details.
