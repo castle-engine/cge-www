@@ -31,9 +31,11 @@ That's it, you can now use our "build tool" to easily compile and package your g
 
 == Creating and using the manifest file for your projects
 
-Create a `CastleEngineManifest.xml` file in your project's directory. See the link:project_manifest[CastleEngineManifest.xml examples] page for samples and documentation. You can create an trivial starting `CastleEngineManifest.xml` file by executing `castle-engine create-manifest`. The *manifest file describes your project's name, source code*, what files to include in the package and such.
+You need a `CastleEngineManifest.xml` file in your project's directory. See the link:project_manifest[CastleEngineManifest.xml examples] page for samples and documentation. The *manifest file describes your project's name, source code*, what files to include in the package and such.
 
-Then you *call `castle-engine` from within your project's directory* (or any subdirectory, we automatically look for `CastleEngineManifest.xml` in parent directories) *to quickly compile, package and clean the project*. See the description of command-line parameters to `castle-engine` below. The tool is integrated with our engine, so it can automatically compile the code correctly, and package it following our usual conventions. The data for the game is automatically packaged. On Windows the required DLL files are automatically included (see also the description of <dependencies> in link:project_manifest[CastleEngineManifest.xml]). On Android the required Java wrappers and libraries are automatically used.
+In most cases, the starting contents of the `CastleEngineManifest.xml` file will be created when creating the project. You can use link:editor[editor] to create a new project or build tool `castle-engine create ...` command.
+
+Once you have a project, *call `castle-engine` from within your project's directory* (or any subdirectory, we automatically look for `CastleEngineManifest.xml` in parent directories) *to quickly compile, package or clean the project*. See the description of command-line parameters to `castle-engine` below. The tool is integrated with our engine, so it can automatically compile the code correctly, and package it following our usual conventions. The data for the game is automatically packaged. On Windows the required DLL files are automatically included (see also the description of <dependencies> in link:project_manifest[CastleEngineManifest.xml]). On Android the required Java wrappers and libraries are automatically used.
 
 ////
 Commented out, as this is already covered by https://castle-engine.io/manual_data_directory.php:
@@ -67,9 +69,40 @@ Main advantages of using the build tool:
 
 == Commands supported by the castle-engine tool
 
-=== create-manifest
+=== create
 
-Create link:project_manifest[CastleEngineManifest.xml] file if it does not exist yet, guessing the project name based on directory name. You can use this `CastleEngineManifest.xml` as a starting point.
+Create a new project. Provide the project name as a required parameter, like this:
+
+```shell
+castle-engine create new-project-name
+```
+
+The `new-project-name` determines a few things:
+
+- It is the project name set in link:project_manifest[CastleEngineManifest.xml].
+- Thus is determines various output file names (e.g. executable name).
+- It also determines the directory name where the project will be placed.
+
+There are also optional parameters:
+
+--project-template TEMPLATE-NAME::
+Use the given template to create the project. Available template names correspond to subdirectories of https://github.com/castle-engine/castle-engine/tree/master/tools/castle-editor/data/project_templates[project_templates] in engine, right now they are:
+
+- `empty` (default) - an empty project, with a view that just shows FPS, nothing else.
+- `2d_game` - a simple 2D game.
+- `3d_fps_game` - a simple 3D first-person shooter game.
+- `3d_model_viewer` - a 3D model viewer.
+
+--project-parent-dir PARENT-DIR::
+By default subdirectory `new-project-name` will be created in the current directory. Use this option to specify a different directory.
+
+--project-caption::
+The project caption set in link:project_manifest[CastleEngineManifest.xml]. This is a human-readable name of the project, shown in various places by default (window title, application icon on mobile desktops...). Default is equal to project name.
+
+--project-main-view::
+Name of the initial design and Pascal unit. Affects only some templates (`empty`, `3d_model_viewer` for now). Default just `Main`.
+
+NOTE: At the end, this command also generates program files just like the `generate-program` command. So there's no point in calling `generate-program` right after `create`.
 
 === compile
 
@@ -295,3 +328,9 @@ The `--ios-simulator` option is honored, it changes what `castle-engine cache --
 Remove all the cached files created by `cache` (for all platforms).
 
 This reclaims the disk space used by cache and it implies that future compilations will be done without using the cache.
+
+=== (Deprecated) create-manifest
+
+Create link:project_manifest[CastleEngineManifest.xml] file if it does not exist yet, guessing the project name based on directory name. You can use this `CastleEngineManifest.xml` as a starting point.
+
+This is deprecated -- too little practical usage. Report if you find this useful.
