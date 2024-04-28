@@ -761,3 +761,16 @@ Moreover, maybe:
 
 * ? Should expose the parent bones too (otherwise editing from code is hard, and applying edits back is hard -- as you see a combined transformation only)
 * ? Rename to just `Expose`? `ExposeTransforms` sounds convoluted.
+
+[#edit]
+## Improve editing (TCastleEdit, planned TCastleMemo)
+
+- Moving cursor freely in text (clicking, arrow keys, ctrl+arrow keys to move by words)
+- Free selection of any text subset (clicking, shift+arrows)
+- Multiline display (thus TCastleMemo, which should internally share code and be essentially TCastleEdit with > 1 line)
+- Right click with contextual menu - copy, paste, cut, select all, use platform-specific input method
+- Manual focus. Clicking on edit should keep it focused, no matter where the mouse moves. Tab or clicking elsewhere switches focus. Right now you can workaround it / do it manually by setting `Container.ForceCaptureInput` to the edit control.
+
+All above will have to be synchronized with on-screen keyboard behavior on Android.
+
+Moreover we want to support on-screen keyboard behavior on iOS as well, see https://github.com/castle-engine/castle-engine/issues/554 .
