@@ -1,7 +1,7 @@
 <?php /* -*- mode: kambi-php -*- */
 
 /*
-   Copyright 2001-2023 Michalis Kamburelis.
+   Copyright 2001-2024 Michalis Kamburelis.
 
    This file is part of "Castle Game Engine Website".
 
@@ -558,7 +558,7 @@ $castle_sitemap = array(
 
   'videos' => array('title' => 'Videos', 'url' => 'https://www.youtube.com/c/CastleGameEngine'),
 
-  'view3dscene'  => array('hint' => 'Viewer for glTF, X3D, Collada, sprite sheets and other model formats', 'title' => 'Viewer for glTF, X3D...'),
+  'doc/castle-model-viewer'  => array('hint' => 'Viewer for glTF, X3D, Collada, sprite sheets and other 3D and 2D model formats', 'title' => 'Model Viewer'),
 
   'talk' => array('hint' => 'Ask for help, report bugs, discuss features', 'title' => 'Forum, Discord...',
     'sub' => array(
@@ -591,7 +591,7 @@ $castle_sitemap = array(
         'sub' => array(
           'convert' => array('title' => 'Convert glTF, OBJ, STL, Collada, 3DS (and other 3D and 2D model formats) to X3D'),
           'convert-output' => array('title' => 'Conversion output'),
-          'castle-view-image' => array('title' => 'castle-view-image'),
+          'doc/castle-image-viewer' => array('title' => 'castle-view-image'),
           'glplotter' => array('title' => 'glplotter'),
           'rayhunter' => array('title' => 'rayhunter',
             'sub' => array(
@@ -2250,6 +2250,117 @@ function cge_features_summary($feature_heading_level = 3)
   */
   $result .= '<div class="clearfix"></div>';
 
+  return $result;
+}
+
+/* Refer to download a given application on GitHub.
+
+  $version - part of CGE zip filename with version.
+
+  $tag - GitHub release (aka GIT tag).
+  E.g.
+    $version = '1.2.3';
+    $tag = 'v' . $version;
+
+  $organization_name - GitHub organization name, like 'castle-engine'.
+
+  $repo_name - GitHub repository name within the above organization,
+  like 'castle-image-viewer'.
+
+  $application_name - name of the project, prefix of download archives,
+  like 'castle-image-viewer'. Often equal to $repo_name.
+
+  $platforms - List of strings, in format OS-CPU, using OS and CPU names
+  matching CGE build tool and FPC. Like array('linux-x86_64').
+*/
+function cge_download_application($version, $tag, $organization_name, $repo_name,
+  $application_name, $platforms)
+{
+  $download_prefix =
+    'https://github.com/' . $organization_name . '/' . $repo_name  . '/releases/download/' . $tag . '/' . $application_name;
+
+  $result = '
+    <div class="download jumbotron">
+    <div class="download_platforms_list">';
+
+  foreach ($platforms as $platform)
+  {
+    switch ($platform) {
+      case 'win64-x86_64':
+        $icon_name = 'win.png';
+        $icon_width = '64';
+        $icon_height = '64';
+        $icon_alt = 'Windows (64-bit, x86_64)';
+        $platform_name = 'Windows';
+        $platform_details = '(x86_64)';
+        $extension = '.zip';
+        break;
+      case 'win32-i386':
+        $icon_name = 'win.png';
+        $icon_width = '64';
+        $icon_height = '64';
+        $icon_alt = 'Windows (32-bit, i386)';
+        $platform_name = 'Windows';
+        $platform_details = '(i386)';
+        $extension = '.zip';
+        break;
+      case 'linux-x86_64':
+        $icon_name = 'linux.png';
+        $icon_width = '64';
+        $icon_height = '64';
+        $icon_alt = 'Linux (64 bit, x86_64)';
+        $platform_name = 'Linux';
+        $platform_details = '(x86_64)';
+        $extension = '.tar.gz';
+        break;
+      case 'linux-arm':
+        $icon_name = 'raspberry_pi_32.png';
+        $icon_width = '91';
+        $icon_height = '64';
+        $icon_alt = 'Raspberry Pi 32-bit (Linux Arm)';
+        $platform_name = 'Raspberry Pi';
+        $platform_details = '(Linux Arm32)';
+        $extension = '.tar.gz';
+        break;
+      case 'linux-aarch64':
+        // TODO: combine raspberry_pi_64 and pine64 icons
+        $icon_name = 'raspberry_pi_64.png';
+        $icon_width = '48';
+        $icon_height = '64';
+        $icon_alt = 'Raspberry Pi 64-bit, PINE64 (like PineTab2) (Linux Aarch64)';
+        $platform_name = 'Raspberry Pi, Pine64 (like PineTab2)';
+        $platform_details = '(Linux, Arm64 aka Aarch64)';
+        $extension = '.tar.gz';
+        break;
+      case 'darwin-x86_64':
+        $icon_name = 'macos.png';
+        $icon_width = '64';
+        $icon_height = '64';
+        $icon_alt = 'macOS';
+        $platform_name = 'macOS';
+        $platform_details = '(x86_64)';
+        $extension = '.zip';
+        break;
+      default:
+        die('Unknown platform: ' . $platform);
+    }
+    $result .= '<div class="download_platform">' .
+      '<a class="btn btn-primary btn-lg" href="' . $download_prefix . '-' . $version . $extension . '">' .
+      '<img src="' . CURRENT_URL . '/images/os_icons/' . $icon_name . '" alt="' . $icon_alt . '" width="' . $icon_width . '" height="' . $icon_height . '">' .
+      '<br>' . $platform_name .
+      '<br><span class="download_details">' . $platform_details . '</span></a></div>';
+  }
+
+  $result .=
+    '<div class="download_platform"><a class="btn btn-primary btn-lg" href="https://github.com/' . $organization_name . '/' . $repo_name . '/">' .
+    '<img src="' . CURRENT_URL . '/images/os_icons/github.png" alt="Source Code on GitHub" width="64" height="64">' .
+    '<br>Source Code' .
+    '<br><span class="download_details">(GitHub)</span></a>' .
+    '</div>' .
+
+    '</div>' .
+    download_donate_footer() .
+    '</div>';
   return $result;
 }
 

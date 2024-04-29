@@ -1,9 +1,106 @@
 # Castle Model Converter
+:description: Command-line converter from all 3D and 2D model formats supported by Castle Game Engine (glTF, X3D, VRML, MD3, OBJ, STL, Collada, Spine JSON, sprite sheets..) to X3D. Free and open-source software. For Linux, Windows, macOS, Raspberry Pi and more.
+:cge-social-share-image: castle-model-converter.png
 
-Command-line converter from various 3D and 2D model formats supported by _Castle Game Engine_ to X3D.
+== Introduction
+
+`castle-model-converter` is a command-line converter from various 3D and 2D model formats supported by _Castle Game Engine_ to X3D.
 
 cgeimg::block[
   castle-model-converter.png|Castle Model Converter
 ]
 
+As input, supports link:creating_data_model_formats.php[all model formats supported by Castle Game Engine], including:
+
+- link:gltf[glTF],
+- link:vrml_x3d.php[X3D],
+- link:vrml_x3d.php[VRML],
+- link:md3[MD3],
+- Wavefront OBJ,
+- STL,
+- Collada,
+- link:spine[Spine JSON],
+- link:sprite_sheets[sprite sheets].
+
+As output, right now we support only X3D or VRML. We plan to add glTF output support also soon.
+
+It can also validate the models, without outputting anything.
+
+NOTE: Our _"validation"_ isn't 100% complete, that is: passing the validation doesn't guarantee that your model satisfies every detail of the specification of given format. We check for a lot of model issues (including, but not limited to, issues that would make it impossible to render this model using our engine). But it's not a complete validation of the model per every detail of the specification.
+
+== Download
+
+Simply download link:castle-model-viewer[Castle Model Viewer]. The downloaded package contains also `castle-model-converter` binary.
+
+You can also use our link:convert.php[online version of the converter].
+
+Source code is available on GitHub as part of https://github.com/castle-engine/castle-model-viewer[castle-model-viewer repository].
+
+== Usage
+
+TODO
+
 **Temporary: See link:view3dscene.php[view3dscene]. We're migrating to a new application name.**
+
+<p><code>tovrmlx3d</code> is a dedicated program to convert model formats
+using the command-line.
+It provides a few more conversion and validation options,
+and can be used in batch mode,
+and can be used on servers without GUI libraries installed.
+
+<p>Examples:</p>
+
+<pre>
+# Convert glTF to X3D
+tovrmlx3d input.gltf &gt; output.x3dv
+
+# Validate some glTF and X3D files
+tovrmlx3d --validate input.gltf
+tovrmlx3d --validate input.x3d
+
+# Convert standard input to X3D
+tovrmlx3d - &lt; input.x3dv &gt; output.x3dv
+tovrmlx3d - --stdin-url=fakeurl.gltf &lt; input.gltf &gt; output.x3dv
+
+# Convert VRML 2.0 to X3D in classic encoding.
+# You could add --encoding=classic, but it's not needed
+# (it is the default anyway).
+tovrmlx3d input.wrl --force-x3d &gt; output.x3dv
+
+# Convert VRML 2.0 to X3D in XML encoding.
+# You could add --force-x3d, but it's not needed
+# (it is implied by XML encoding anyway).
+tovrmlx3d input.wrl --encoding=xml &gt; output.x3d
+</pre>
+
+<p>Here are most important <code>tovrmlx3d</code> command-line features:
+
+<ul>
+  <li>
+    <p><code>tovrmlx3d</code> always reads one input model
+    (from the filename or URL given on the command-line).
+
+    <p>You can use <code>-</code> (dash) as the input filename to read
+    from the standard input. It may be useful to also use the <code>--stdin-url</code>
+    option in this case, to indicate the file type and base URL to resolve other
+    referenced files (e.g. binary blobs of glTF, which we need to read to convert
+    it to X3D).
+
+  <li>
+    <p><code>tovrmlx3d</code> outputs the model on a standard output as VRML/X3D.
+
+  <li>
+    <p><code>--validate</code> option is useful to validate the input model.
+    In effect, we will not output a converted model on the standard output
+    and we will exit with non-zero status if the input is not 100% valid.
+
+  <li>
+    <p><code>--encoding=classic|xml</code> instructs to use given encoding.
+    See <code>--write-encoding=classic|xml</code> docs above.
+
+  <li>
+    <p><code>--force-x3d</code> instructs to force X3D conversion.
+    See <code>--write-force-x3d</code> docs above.
+</ul>
+
+<p>Run <code>tovrmlx3d --help</code> to see the full list of options.

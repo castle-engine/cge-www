@@ -52,7 +52,7 @@ if (strpos($page_name, ' ') !== FALSE ||
   exit;
 }
 
-/* set $page_basename (disables autodetection done in kambi_bootstrap,
+/* set $page_basename (disables auto-detection done in kambi_bootstrap,
    which would set it always to 'doc' from 'doc.php').
    This makes current page properly detected by sitemap, breadcrumbs etc. */
 global $page_basename;
@@ -60,7 +60,7 @@ $page_basename = 'doc/' . $page_name;
 
 $adoc_file = 'doc/' . $page_name . '.adoc';
 
-/* Read .adoc file and extract some informatio from header.
+/* Read .adoc file and extract some information from header.
 
    Returns associative array with possible values (but nothing is guaranteed):
    - 'title'
