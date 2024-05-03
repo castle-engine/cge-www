@@ -17,6 +17,7 @@ $toc = new TableOfContents(
       new TocItem('macOS', NULL, 1),
     new TocItem('(Optional) Compile castle-model-viewer'),
     new TocItem('(Optional) Compile castle-image-viewer'),
+    new TocItem('(Optional) Compile pasls (Pascal LSP)'),
     new TocItem('Test!'),
     new TocItem('Updating'),
   )
@@ -29,13 +30,15 @@ $toc = new TableOfContents(
 
 <p>The very latest <i>Castle Game Engine</i> version is always available as a source code from <a href="https://github.com/castle-engine/castle-engine/">our Github repository</a>.
 
-<p>Before compiling it yourself, make sure you really need to do this. After all, you can <a href="https://castle-engine.io/">downlad the binary release of the engine</a> that <i>also contains the complete source code</i> (it just also contains ready binaries for a particular platform). And the current binary releases (<code>7.0-alpha.snapshot</code>) contain the very latest features and fixes, quite like source code &mdash; as they are automatically rebuild after every commit.<!--, after automatic tests confirm that the engine works with various compiler versions and OSes. --> Oh, and if you're looking for win32 version, it is <a href="https://github.com/castle-engine/castle-engine/releases/tag/snapshot">available on GitHub snapshot download page</a> (we don't link it on the main CGE page because we advise win64).
+<p>Before compiling it yourself, make sure you really need to do this. After all, you can <a href="https://castle-engine.io/">download the binary release of the engine</a> that <i>also contains the complete source code</i> (it just also contains ready binaries for a particular platform). And the current binary releases (<code>7.0-alpha.snapshot</code>) contain the very latest features and fixes, quite like source code &mdash; as they are automatically rebuild after every commit.<!--, after automatic tests confirm that the engine works with various compiler versions and OSes. --> Oh, and if you're looking for win32 version, it is <a href="https://github.com/castle-engine/castle-engine/releases/tag/snapshot">available on GitHub snapshot download page</a> (we don't link it on the main CGE page because we advise win64).
 
 <p>That being said, there are of course valid reasons to compile engine yourself. E.g. if you want to contribute (create <i>pull requests</i>). Or if you want to test on desktop systems for which we don't regularly provide binaries (like <a href="https://castle-engine.io/wp/2022/04/08/freebsd-build/">FreeBSD</a> or <a href="https://castle-engine.io/macos">macOS</a>). Also, updating from source code is faster, as you'll only update from GIT what has changed.
 
 <p>So, read on :)
 
-<p><a href="https://www.youtube.com/watch?v=_qjLWrHDwqE">We also have a video version of this, showing the process on Linux</a>.
+<p><a href="https://www.youtube.com/watch?v=_qjLWrHDwqE">We also have a video version showing the process of CGE compilation (a subset of this guide) on Linux</a>.
+
+<p>Looking for a one-liner that does everything? You can execute <a href="https://github.com/castle-engine/castle-engine/blob/master/tools/internal/pack_release/pack_release.sh">pack_release.sh</a> script (this is used to create actual releases on all platforms). But beware that it requires a few preexisting tools on PATH. Most people that want to compile our engine "just to peek a bit under the hood" will have easier time following the steps below than by trying to just execute <a href="https://github.com/castle-engine/castle-engine/blob/master/tools/internal/pack_release/pack_release.sh">pack_release.sh</a> and debugging all its requirements.
 
 <?php echo $toc->html_section(); ?>
 
@@ -259,6 +262,20 @@ castle-engine compile
 </ul>
 
 <p>Similarly to the previous tools, we advise to put the binary <code>castle-image-viewer</code> (<code>castle-image-viewer.exe</code> on Windows) inside the <code>castle-engine/bin/</code> directory, alongside other tools.
+
+<?php echo $toc->html_section(); ?>
+
+<p>If you use <code>pasls</code> (Pascal LSP), for example with our <a href="vscode">Visual Studio Code extension</a>, then download and build it too. Like this:
+
+<pre>
+git clone https://github.com/castle-engine/pascal-language-server.git
+cd pascal-language-server/
+git submodule update --init --recursive
+cd server/
+lazbuild pasls.lpi
+</pre>
+
+<p>Then put the <code>pasls</code> binary in the <code>castle-engine/bin/</code> directory. This is where it's expected e.g. by <a href="https://marketplace.visualstudio.com/items?itemName=castle-engine-team.castle-engine">our Visual Studio Code extension</a>.
 
 <?php echo $toc->html_section(); ?>
 
