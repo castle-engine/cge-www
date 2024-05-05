@@ -271,7 +271,13 @@ Contrast this with our _"real physics"_ implementation, that works only on a hie
 
 It is used (for now) by:
 
-- FPS walk/fly navigation in cgeref:TCastleWalkNavigation[].
+- FPS (1st person) walk/fly navigation in cgeref:TCastleWalkNavigation[].
+
+- 3rd person navigation in cgeref:TCastleThirdPersonNavigation[].
++
+The cgeref:TCastleThirdPersonNavigation[] can resolve _avatar vs world_ collisions using "real physics" (see cgeref:TCastleThirdPersonNavigation.ChangeTransformation[], cgeref:TChangeTransformation[]) -- it auto-detects whether to do this using "real physics" (when `TCastleRigidBody` and `TCastleXxxCollider` are present) or using "simple physics described below" (when they are not present).
++
+The cgeref:TCastleThirdPersonNavigation[] resolves _camera vs world_ collisions, for now, always using "simple physics". So it is important to set `PreciseCollisions` to `true` on relevant scenes to let camera travel when it should.
 
 - API to query for collisions in world-space coordinates using `Viewport.Items.WorldXxx` methods, like
 +
