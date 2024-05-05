@@ -12,6 +12,13 @@ cgeimg::block[
   castle-image-viewer_alpha.png|Castle Image Viewer - Alpha Channel View
 ]
 
+WARNING: *Work in progress*. We migrate documentation and downloads to a new application name, planned to be finished this week, before 2024-05-12 (but hopefully sooner!). Please have patience, and watch for https://castle-engine.io/wp/[news]!
+
+Downloads:
+
+- Last stable (version 2.1.0): https://github.com/castle-engine/castle-image-viewer/releases/tag/v2.1.0
+
+////
 <p><code>castle-view-image</code> is an image viewer, converter and even
 a very limited image editor.</p>
 
@@ -225,3 +232,4 @@ then you loose RGBE precision (and clamp color values above 1.0).
 <p>Also, S3TC compressed images (from KTX, DDS files) will be always decompressed,
 and saving them back will always make uncompressed files.
 
+////

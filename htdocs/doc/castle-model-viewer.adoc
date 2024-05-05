@@ -22,8 +22,15 @@ Viewer for 3D and 2D model formats supported by the Castle Game Engine.
 - Spine JSON,
 - sprite sheets in Castle Game Engine, Cocos2D and Starling XML formats.
 
-**Temporary: See link:view3dscene.php[view3dscene]. We're migrating to a new application name.**
+WARNING: *Work in progress*. We migrate documentation and downloads to a new application name, planned to be finished this week, before 2024-05-12 (but hopefully sooner!). Please have patience, and watch for https://castle-engine.io/wp/[news]!
 
+Downloads:
+
+- Snapshots (version 4.3.0, soon to be released as 4.4.0): https://jenkins.castle-engine.io/public/builds/view3dscene/
+
+- Last stable (version 4.2.0): https://github.com/castle-engine/castle-model-viewer/releases/tag/v4.2.0
+
+////
 echo castle_thumbs(array(
   /* The scene is by Luis Fernandez, downloaded from Sketchfab -
      https://sketchfab.com/3d-models/ftm-0970f30574d047b1976ba0aa6f2ef855 .
@@ -812,5 +819,4 @@ and make sure it's available on $PATH.
     <!-- (<a href="http://pdb.finkproject.org/pdb/package.php/ffmpeg">in stable currently, although source-only</a>),-->
 </ul>
 
-<?php section(); ?>
-
+////

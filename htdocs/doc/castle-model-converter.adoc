@@ -36,11 +36,12 @@ You can also use our link:convert.php[online version of the converter].
 
 Source code is available on GitHub as part of https://github.com/castle-engine/castle-model-viewer[castle-model-viewer repository].
 
+WARNING: *Work in progress*. We migrate documentation and downloads to a new application name, planned to be finished this week, before 2024-05-12 (but hopefully sooner!). Please have patience, and watch for https://castle-engine.io/wp/[news]!
+
+////
 == Usage
 
 TODO
-
-**Temporary: See link:view3dscene.php[view3dscene]. We're migrating to a new application name.**
 
 <p><code>tovrmlx3d</code> is a dedicated program to convert model formats
 using the command-line.
@@ -104,3 +105,4 @@ tovrmlx3d input.wrl --encoding=xml &gt; output.x3d
 </ul>
 
 <p>Run <code>tovrmlx3d --help</code> to see the full list of options.
+////
