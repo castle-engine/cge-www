@@ -36,20 +36,6 @@ class Two_Factor_Email extends Two_Factor_Provider {
 	const INPUT_NAME_RESEND_CODE = 'two-factor-email-code-resend';
 
 	/**
-	 * Ensures only one instance of this class exists in memory at any one time.
-	 *
-	 * @since 0.1-dev
-	 */
-	public static function get_instance() {
-		static $instance;
-		$class = __CLASS__;
-		if ( ! is_a( $instance, $class ) ) {
-			$instance = new $class();
-		}
-		return $instance;
-	}
-
-	/**
 	 * Class constructor.
 	 *
 	 * @since 0.1-dev
@@ -66,6 +52,15 @@ class Two_Factor_Email extends Two_Factor_Provider {
 	 */
 	public function get_label() {
 		return _x( 'Email', 'Provider Label', 'two-factor' );
+	}
+
+	/**
+	 * Returns the "continue with" text provider for the login screen.
+	 *
+	 * @since 0.9.0
+	 */
+	public function get_alternative_provider_label() {
+		return __( 'Send a code to your email', 'two-factor' );
 	}
 
 	/**
