@@ -31,7 +31,7 @@ We love to see how you use CGE.</i>
 
   <?php gallery_link('Castle Image Viewer',
     'Image viewer, handles many common image formats (PNG, JPG...) and some special formats used in game development (DDS, KTX, RGBE)',
-    "castle-view-image_dds.png",
+    'castle-image-viewer_alpha.png',
     'doc/castle-image-viewer'); ?>
 
   <?php gallery_link("Curves Tool",
