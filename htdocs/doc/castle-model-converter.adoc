@@ -15,12 +15,13 @@ As input, supports link:creating_data_model_formats.php[all model formats suppor
 - link:gltf[glTF],
 - link:vrml_x3d.php[X3D],
 - link:vrml_x3d.php[VRML],
+- link:spine[Spine JSON],
+- link:sprite_sheets[sprite sheets (in Castle Game Engine, Cocos2D and Starling XML formats)],
 - link:md3[MD3],
 - Wavefront OBJ,
+- 3DS,
 - STL,
-- Collada,
-- link:spine[Spine JSON],
-- link:sprite_sheets[sprite sheets].
+- Collada.
 
 As output, right now we support only X3D or VRML. We plan to add glTF output support also soon.
 
