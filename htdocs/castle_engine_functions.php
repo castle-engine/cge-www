@@ -2067,6 +2067,22 @@ function castle_replace_asciidoctor_macros($contents)
     },
     $contents);
 
+  $contents = preg_replace_callback('/cge::download-application\[([^],]*),([^],]*),([^],]*),([^],]*),([^],]*),([^],]*)\]/',
+    function ($matches) {
+      $matches_trimmed = array_map(function($value) { return trim($value); }, $matches);
+      $platforms = explode(';', $matches[6]);
+      $platforms = array_map(function($value) { return trim($value); }, $platforms);
+      return cge_download_application(
+        $matches_trimmed[1],
+        $matches_trimmed[2],
+        $matches_trimmed[3],
+        $matches_trimmed[4],
+        $matches_trimmed[5],
+        $platforms
+      );
+    },
+    $contents);
+
   $contents = preg_replace_callback('/cgeref:([A-Za-z0-9_.]+)\[([^]]*)\]/',
     function ($matches) {
       $identifier = $matches[1];
@@ -2272,6 +2288,8 @@ function cge_features_summary($feature_heading_level = 3)
 
   $platforms - List of strings, in format OS-CPU, using OS and CPU names
   matching CGE build tool and FPC. Like array('linux-x86_64').
+  Platform name can start with '//', it is ignored then
+  (helpful to easily comment out some platforms).
 */
 function cge_download_application($version, $tag, $organization_name, $repo_name,
   $application_name, $platforms)
@@ -2285,6 +2303,9 @@ function cge_download_application($version, $tag, $organization_name, $repo_name
 
   foreach ($platforms as $platform)
   {
+    if (substr($platform, 0, 2) == '//') {
+      continue;
+    }
     switch ($platform) {
       case 'win64-x86_64':
         $icon_name = 'win.png';
@@ -2324,11 +2345,11 @@ function cge_download_application($version, $tag, $organization_name, $repo_name
         break;
       case 'linux-aarch64':
         // TODO: combine raspberry_pi_64 and pine64 icons
-        $icon_name = 'raspberry_pi_64.png';
-        $icon_width = '48';
+        $icon_name = 'raspberry_pi_64_and_pine64.png';
+        $icon_width = '160';
         $icon_height = '64';
         $icon_alt = 'Raspberry Pi 64-bit, PINE64 (like PineTab2) (Linux Aarch64)';
-        $platform_name = 'Raspberry Pi, Pine64 (like PineTab2)';
+        $platform_name = 'Raspberry Pi, Pine64';
         $platform_details = '(Linux, Arm64 aka Aarch64)';
         $extension = '.tar.gz';
         break;
@@ -2345,7 +2366,7 @@ function cge_download_application($version, $tag, $organization_name, $repo_name
         die('Unknown platform: ' . $platform);
     }
     $result .= '<div class="download_platform">' .
-      '<a class="btn btn-primary btn-lg" href="' . $download_prefix . '-' . $version . $extension . '">' .
+      '<a class="btn btn-primary btn-lg" href="' . $download_prefix . '-' . $version . '-' . $platform . $extension . '">' .
       '<img src="' . CURRENT_URL . '/images/os_icons/' . $icon_name . '" alt="' . $icon_alt . '" width="' . $icon_width . '" height="' . $icon_height . '">' .
       '<br>' . $platform_name .
       '<br><span class="download_details">' . $platform_details . '</span></a></div>';

@@ -15,28 +15,22 @@ cgeimg::block[
   castle-image-viewer_alpha.png|Castle Image Viewer - Alpha Channel View
 ]
 
-== Download
+== Download (version 2.1.0)
 
-////
 // TODO: implement this macro
-cge::download-app[
+cge::download-application[
   2.1.0,
   v2.1.0,
   castle-engine,
   castle-image-viewer,
   castle-image-viewer,
-  win64-x86_64;
-  win32-i386;
-  linux-x86_64;
-  linux-arm;
-  linux-aarch64;
-  darwin-x86_64
+    win64-x86_64;
+    //win32-i386;
+    linux-x86_64;
+    linux-arm;
+    linux-aarch64;
+    darwin-x86_64
 ]
-////
-
-////
-- Last stable (version 2.1.0): https://github.com/castle-engine/castle-image-viewer/releases/tag/v2.1.0
-////
 
 NOTE: If you already have link:/[Castle Game Engine], then just run `castle-image-viewer` executable from the engine `bin` subdirectory. There's no need to download it separately.
 
