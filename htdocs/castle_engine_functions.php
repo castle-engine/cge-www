@@ -2173,7 +2173,7 @@ function cge_features_summary($feature_heading_level = 3)
     array(
       'link' => 'features#_visual_editor',
       'title' => 'Visual editor',
-      'description' => 'Design 3D and 2D games and user interfaces (with automatic scaling, anchors). Build and deploy the same project for multiple platforms. Integrate with various IDEs (Lazarus, Delphi, Visual Studio Code...).',
+      'description' => 'Design 3D and 2D games and user interfaces (with automatic scaling, anchors). Build and deploy the same project for multiple platforms. Integrate with various IDEs (<a href="vscode">Visual Studio Code</a>, Lazarus, Delphi...).',
       'image' => '2d_demo_editor.png',
       'image_titlealt' => '2D game in editor',
     ),
@@ -2189,7 +2189,7 @@ function cge_features_summary($feature_heading_level = 3)
     array(
       'link' => 'features#_data_formats',
       'title' => 'Lots of ways to define data',
-      'description' => 'Use 3D models, 2D animations, sprite sheets. Great integration with authoring tools like <a href="blender">Blender</a> or shops like Sketchfab thanks to using open standards like glTF and X3D.',
+      'description' => 'Use 3D models, 2D animations, sprite sheets. Great integration with authoring tools like <a href="blender">Blender</a> or shops like <a href="sketchfab">Sketchfab</a> thanks to using open standards like <a href="gltf">glTF</a> and X3D.',
       'image' => 'gltf_village_outlines.png',
       'image_titlealt' => 'Village scene with outlines in glTF from Sketchfab ( https://sketchfab.com/3d-models/ftm-0970f30574d047b1976ba0aa6f2ef855 by Luis Fernandez )',
     ),
@@ -2203,7 +2203,7 @@ function cge_features_summary($feature_heading_level = 3)
     array(
       'link' => 'features#_cross_platform',
       'title' => 'Cross-platform',
-      'description' => 'Target any platform (desktop: Windows, Linux, macOS, FreeBSD, Raspberry Pi, mobile: Android, iOS, console: Nintendo Switch). Work on any desktop platform. WebGL and Oculus (VR) are coming as targets soon.',
+      'description' => 'Target any platform (desktop: Windows, Linux, macOS, FreeBSD, Raspberry Pi, mobile: Android, iOS, console: Nintendo Switch). Work on any desktop platform. <a href="https://castle-engine.io/wp/2023/04/08/web-target-progress-and-plans/">WebGL</a> and Oculus (VR) are coming as targets soon.',
       'image' => 'nintendo_switch_3.jpg',
       'image_titlealt' => '"Escape from the Universe" on Nintendo Switch',
     ),
