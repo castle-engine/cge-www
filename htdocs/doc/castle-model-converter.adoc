@@ -1,64 +1,45 @@
 # Castle Model Converter
-:description: Command-line converter from all 3D and 2D model formats supported by Castle Game Engine (glTF, X3D, VRML, MD3, OBJ, STL, Collada, Spine JSON, sprite sheets..) to X3D. Free and open-source software. For Linux, Windows, macOS, Raspberry Pi and more.
+include::common.adoc[]
+:description: Command-line converter from all 3D and 2D model formats supported by Castle Game Engine (glTF, X3D, VRML, MD3, OBJ, STL, Collada, Spine JSON, sprite sheets and more) to X3D. Free and open-source software. For Linux, Windows, macOS, Raspberry Pi and more.
 :cge-social-share-image: castle-model-converter.png
 
 == Introduction
 
-`castle-model-converter` is a command-line converter from various 3D and 2D model formats supported by _Castle Game Engine_ to X3D.
+`castle-model-converter` is a command-line converter for various 3D and 2D model formats supported by _Castle Game Engine_.
 
 cgeimg::block[
   castle-model-converter.png|Castle Model Converter
 ]
 
-As input, supports link:creating_data_model_formats.php[all model formats supported by Castle Game Engine], including:
+As *input*, supports link:creating_data_model_formats.php[all 3D and 2D model formats supported by Castle Game Engine]: link:gltf[glTF], link:vrml_x3d.php[X3D], link:vrml_x3d.php[VRML], link:spine[Spine JSON], link:sprite_sheets[sprite sheets (in Castle Game Engine, Cocos2D and Starling XML formats)], link:md3[MD3], Wavefront OBJ, 3DS, STL, Collada, link:creating_data_model_formats.php[and more].
 
-- link:gltf[glTF],
-- link:vrml_x3d.php[X3D],
-- link:vrml_x3d.php[VRML],
-- link:spine[Spine JSON],
-- link:sprite_sheets[sprite sheets (in Castle Game Engine, Cocos2D and Starling XML formats)],
-- link:md3[MD3],
-- Wavefront OBJ,
-- 3DS,
-- STL,
-- Collada.
+As *output*, we support X3D or VRML. You can basically convert any input format to X3D. You can also convert between X3D classic and X3D XML encodings (in both directions) and you can convert (upgrade) from VRML 2.0 to X3D.
 
-As output, right now we support only X3D or VRML. We plan to add glTF output support also soon.
+NOTE: We plan to add soon glTF output (from any input).
 
-It can also validate the models, without outputting anything.
-
-NOTE: Our _"validation"_ isn't 100% complete, that is: passing the validation doesn't guarantee that your model satisfies every detail of the specification of given format. We check for a lot of model issues (including, but not limited to, issues that would make it impossible to render this model using our engine). But it's not a complete validation of the model per every detail of the specification.
+It can also validate the models, without doing any conversion.
 
 == Download
 
 Simply download link:castle-model-viewer[Castle Model Viewer]. The downloaded package contains also `castle-model-converter` binary.
 
-You can also use our link:convert.php[online version of the converter].
+The link:castle-model-viewer[Castle Model Viewer] GUI application can also be used to do the conversion. Just use _"File -> Save As ..."_ menu items. So you don't need to use the command-line tool if you prefer GUI.
+
+You can also use our link:convert.php[online version of the converter] if you don't want to install anything :)
+
+////
+TMI, this is castle-model-viewer downloads:
 
 Source code is available on GitHub as part of https://github.com/castle-engine/castle-model-viewer[castle-model-viewer repository].
+////
 
-== Features
+== Basic Usage
 
-A dedicated command-line program
-`castle-model-converter` is included in the `castle-model-viewer` download.
-It provides a few more conversion and validation options,
-can be used in batch mode,
-can be used on servers without GUI libraries installed.
+The only necessary parameter is the the input filename. It can be any filename, URL or `-` (to mean _standard input_).
 
-You can convert between X3D classic and XML encodings (in both directions),
-and you can convert from VRML 2 to X3D.
-You can also use castle-model-viewer as a "pretty-printer",
-just open and save any X3D or VRML file without any version conversion.
+The output is written to the _standard output_. You can redirect it to a file, see examples below.
 
-== Usage
-
-`castle-model-converter` is a dedicated program to convert model formats
-using the command-line.
-It provides a few more conversion and validation options,
-and can be used in batch mode,
-and can be used on servers without GUI libraries installed.
-
-Examples:
+== Examples
 
 ```bash
 # Convert glTF to X3D
@@ -72,33 +53,53 @@ castle-model-converter --validate input.x3d
 castle-model-converter - < input.x3dv > output.x3dv
 castle-model-converter - --stdin-url=fakeurl.gltf < input.gltf > output.x3dv
 
+# Convert file from X3D classic encoding to X3D XML encoding
+castle-model-converter input.x3dv --encoding=xml > output.x3d
+
+# Convert file from X3D XML encoding to X3D classic encoding
+castle-model-converter input.x3d --encoding=classic > output.x3dv
+
 # Convert VRML 2.0 to X3D in classic encoding.
 # You could add --encoding=classic, but it's not needed
 # (it is the default anyway).
 castle-model-converter input.wrl --force-x3d > output.x3dv
-
-# Convert VRML 2.0 to X3D in XML encoding.
-# You could add --force-x3d, but it's not needed
-# (it is implied by XML encoding anyway).
-castle-model-converter input.wrl --encoding=xml > output.x3d
 ```
 
-Here are most important `castle-model-converter` command-line features:
+== All Command-line Options
 
-- `castle-model-converter` always reads one input model (from the filename or URL given on the command-line).
+--validate::
+Only validate the input model, don't do any conversion. Will exit with non-zero status if the input is not 100% valid. Even warnings (that are ignorable during normal conversion) cause non-zero exit status when validating.
 +
-You can use `-` (dash) as the input filename to read from the standard input. It may be useful to also use the `--stdin-url` option in this case, to indicate the file type and base URL to resolve other referenced files (e.g. binary blobs of glTF, which we need to read to convert it to X3D).
+NOTE: Our _"validation"_ isn't 100% complete, that is: passing the validation doesn't guarantee that your model satisfies every detail of the specification of given format. We check for a lot of model issues (including, but not limited to, issues that would make it impossible to render this model using _Castle Game Engine_). But it's not a complete validation of the model per every detail of the specification.
 
-- `castle-model-converter` outputs the model on a standard output as VRML/X3D.
+--encoding=classic|xml::
+Use given X3D encoding on output. By default, we use _classic_ encoding (suitable for X3D files with `.x3dv` extensions).
 
-- `--validate` option is useful to validate the input model.
+--force-x3d::
+Force output to be X3D, even if input is VRML.
 +
-In effect, we will not output a converted model on the standard output and we will exit with non-zero status if the input is not 100% valid.
+This option is only useful to convert (upgrade) VRML 2.0 to X3D right now.
++
+Conversion to X3D is also automatically forced (no need to specify it explicitly by this option) if the chosen encoding is XML (that is, you used `--write-encoding=xml`). That's because only X3D supports XML encoding.
++
+NOTE: When this is used with VRML 1.0 or Inventor models as input, we'll also convert parts of them to X3D. But the result is not really useful: you will get a file encoded using X3D keywords, but using VRML 1.0 or Inventor node names. Proper conversion from VRML 1.0 or Inventor to X3D is not implemented (yet).
++
+This option has no effect when used on models that are already X3D, or that can be only output as X3D (glTF, Collada, 3DS, etc.).
 
-- `--encoding=classic|xml` instructs to use given encoding. See `--write-encoding=classic|xml` docs above.
+--no-x3d-extensions::
+Do not use Castle Game Engine extensions. This will output file valid in all X3D browsers (but maybe with some _Castle Game Engine_-specific features missing).
 
--`--force-x3d` instructs to force X3D conversion. See `--write-force-x3d` docs above.
+--enable-downloads::
+Enable (blocking) downloads from the net, e.g. to download a texture or inlined (using X3D `Inline` node) models referenced by htt(s) protocol.
 
-Run `castle-model-converter --help` to see the full list of options.
+--stdin-url::
+If input URL is `-`, then we read file contents from the standard input. In this case, you can use this option to provide a _fake_ URL for the input. We will use it to resolve relative URLs inside the input (e.g. to glTF binary blobs, textures or X3D inlines) and to guess the input file type. Default is `stdin.x3dv` in current directory, so we assume input is X3D (classic encoded), and resolve URLs with respect to the current directory.
 
+--float-precision=DIGITS::
+Number of digits after the decimal point when writing floating-point numbers. Default is to write all possibly relevant digits. Specify any value >= 0 to use this number of digits.
 
+-h / --help::
+Print the help message and exit.
+
+-v / --version::
+Print the version number and exit.
