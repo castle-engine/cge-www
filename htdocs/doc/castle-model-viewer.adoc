@@ -90,7 +90,7 @@ If you use GNOME, MATE or other desktops following
 <a href="http://freedesktop.org/">freedesktop.org</a> specifications,
 you can optionally install also a desktop file to have application
 available in your menu / dashboard, with a nice icon,
-and associate it with all handled model types.</p>
+and associate it with all handled model types.
 
 ```bash
 # Place castle-model-viewer on $PATH, for example like this:
@@ -101,27 +101,27 @@ cd desktop/
 ./install.sh
 ```
 
-<p>You may need to logout and login again to your GNOME/desktop
+You may need to logout and login again to your GNOME/desktop
 session for all programs to catch up (alternatively, you can do
-<code>killall gnome-panel &amp;&amp; killall nautilus</code>
-but this is obviously somewhat brutal method).</p>
+`killall gnome-panel &amp;&amp; killall nautilus`
+but this is obviously somewhat brutal method).
 
-<p>If you use GNOME file manager Nautilus there's
+If you use GNOME file manager Nautilus there's
 one more cool thing you can do: use
-castle-model-viewer to <b>generate on-the-fly thumbnails of 3D models</b>
+castle-model-viewer to *generate on-the-fly thumbnails of 3D models*
 in the viewed directory. Assuming that castle-model-viewer is on the $PATH
-and you already did previous <code>./install.sh</code>, you can run:</p>
+and you already did previous `./install.sh`, you can run:
 
 ```bash
 ./install_thumbnailer.sh
 ```
 
-<p><!--inside the <code>desktop</code> directory.-->
+<!--inside the `desktop` directory.-->
 This will add the gconf keys to run thumbnailers on your 3D models.
 Enter some directory with VRML / X3D / other 3D files,
 and enjoy your thumbnails :)
-<i>Beware that loading arbitrary 3D scene may take a lot of time,
-so using the thumbnailer may consume a lot of memory and CPU power</i>.
+_Beware that loading arbitrary 3D scene may take a lot of time,
+so using the thumbnailer may consume a lot of memory and CPU power_.
 But it seems that thumbnailer is nicely run with appropriate priority,
 so it doesn't actually exhaust your cpu.
 <!--
@@ -149,21 +149,21 @@ flawlessly :) So give it a try!
 
 <h3>All navigation modes:</h3>
 
-<ul>
-  <li><p><i>Left mouse button</i> is used for interacting
+
+- _Left mouse button_ is used for interacting
     with the X3D world. When the cursor turns into a grabbing hand
     you know you can click or drag on this 3D object. This uses
     the <?php echo a_href_page('X3D pointing-device sensors',
     'x3d_implementation_pointingdevicesensor'); ?>, and is fully configurable
-    by 3D world authors.</p>
+    by 3D world authors.
 
-  <li><p><i>Ctrl + Right mouse click</i> picks a point,
+- _Ctrl + Right mouse click_ picks a point,
     selecting a triangle and it's containing shape.
     The selected point / triangle / shape is then used for some
-    operations, like <i>"Help -&gt; Selected Object Information"</i>.
-</ul>
+    operations, like _"Help -> Selected Object Information"_.
 
-<h3><code>Examine</code> navigation mode:</h3>
+
+<h3>`Examine` navigation mode:</h3>
 
 <table class="key_list">
   <tr><th colspan="2">Mouse:</th></tr>
@@ -178,7 +178,7 @@ flawlessly :) So give it a try!
   <tr><td>Scale</td>         <td>+ / -</td>                             </tr>
 </table>
 
-<h3><code>Walk</code> / <code>Fly</code> navigation modes:</h3>
+<h3>`Walk` / `Fly` navigation modes:</h3>
 
 <img src="<?php echo page_requisite('images/original_size/navigation_controls.png'); ?>" alt="Walk/Fly navigation controls" class="media-responsive">
 
@@ -198,8 +198,8 @@ flawlessly :) So give it a try!
   <tr><td>Jump / Crouch (or fly up / down)</td>  <td>Space / C</td>          </tr>
   <tr><td>Run</td>                               <td>Shift</td>              </tr>
 
-  <tr><td colspan="2" style="text-align: left"><b>Turn <i>Mouse Look</i> <i>On</i>
-    (Ctrl+M) to look around by moving the mouse.</b><br>
+  <tr><td colspan="2" style="text-align: left">*Turn _Mouse Look_ _On_
+    (Ctrl+M) to look around by moving the mouse.*<br>
     It is usually comfortable to combine it with movement using AWSD keys.</td></tr>
 
   <tr><th colspan="2">Additional controls:</th></tr>
@@ -208,49 +208,49 @@ flawlessly :) So give it a try!
         Up / Down, Insert / Delete, Comma / Period) --></td> <td>+ / -</td></tr>
   <tr><td>Increase / decrease avatar height (preferred camera height above the ground)</td>
       <td>Insert / Delete</td></tr>
-  <tr><td>Rotate <i>slower</i> (useful to precisely set the camera)</td>
+  <tr><td>Rotate _slower_ (useful to precisely set the camera)</td>
   <!-- when you want to set up camera
        very precisely, e.g. to use this camera setting to render a scene
        image using ray-tracer)-->
        <td>Ctrl + Left / Right</td> </tr>
 </table>
 
-<p>We also support <a href="http://www.3dconnexion.com/">3D mouse devices</a>,
+We also support <a href="http://www.3dconnexion.com/">3D mouse devices</a>,
 see <a href="http://www.youtube.com/watch?v=7tV9Qmjgx1U">the demo video about 3D mouse inside
-castle-model-viewer</a>.</p>
+castle-model-viewer</a>.
 
-<p>There are many more operations with key shortcuts, that work in all
+There are many more operations with key shortcuts, that work in all
 navigation modes.
-Just explore the <i>castle-model-viewer</i> menu, and look at the key shortcuts.</p>
+Just explore the _castle-model-viewer_ menu, and look at the key shortcuts.
 
 == Command-line options
 
-<p>All options described below may be given in any order.
+All options described below may be given in any order.
 They all are optional.
 
 === Capturing screenshots and movies of 3D scenes and animations
 
-<p>Command-line options:
+Command-line options:
 
 ```bash
 --screenshot  TIME  FILE-NAME
 --screenshot-range  TIME-BEGIN  TIME-STEP  FRAMES-COUNT  FILE-NAME
 ```
 
-<p>These options allow you to capture a screenshot of the loaded scene.
+These options allow you to capture a screenshot of the loaded scene.
 They know about animations stored in 3D files, that's
 why they take parameters describing the animation time to capture.
 They are used to take screenshots in "batch mode".
 (In interactive mode, you can use comfortable
-menu items <i>Display -> Screenshot...</i>.)</p>
+menu items _Display -> Screenshot..._.)
 
-<p><i>For a still 3D scene</i>, you usually just want to use the simpler
-<code>--screenshot</code> option with <code>TIME</code>
+_For a still 3D scene_, you usually just want to use the simpler
+`--screenshot` option with `TIME`
 set to anything (like zero) and not worry about anything else.
 
-<p><i>For animations</i>, more possibilities are available. You can capture
-any frames of the animation by using many <code>--screenshot</code> options.
-You can also capture a movie by <code>--screenshot-range</code>
+_For animations_, more possibilities are available. You can capture
+any frames of the animation by using many `--screenshot` options.
+You can also capture a movie by `--screenshot-range`
 (as a series of images or, if
 <a href="http://ffmpeg.mplayerhq.hu/">ffmpeg</a> is installed and
 available on $PATH, even directly to a single movie file).
@@ -263,111 +263,111 @@ the fine <a href="https://github.com/nullkey/glc/wiki/">GLC</a>
 as real-time capture usually means that the program
 runs slower, and often you loose movie quality.
 
-<p>You most definitely want to pass 3D model file to load
+You most definitely want to pass 3D model file to load
 at command-line too, otherwise we'll just make a screenshot
 of the default empty (black) scene. So to take a simple screenshot
-of a scene, at it's default camera, just call</p>
+of a scene, at it's default camera, just call
 
 ```bash
 castle-model-viewer my_model.wrl --screenshot 0 output.png
 ```
 
-<p><b>The detailed specification how screenshot options work</b>:
+*The detailed specification how screenshot options work*:
 
-<ul>
-  <li><p>First of all, after all the <code>--screenshot</code>
-    and <code>--screenshot-range</code> options are processed,
+
+- First of all, after all the `--screenshot`
+    and `--screenshot-range` options are processed,
     castle-model-viewer exits. So they work in "batch mode".
 
-  <li><p>The <code>--screenshot  TIME  FILE-NAME</code> simply saves
-    the screenshot at time <code>TIME</code> to an image file <code>FILE-NAME</code>.
+- The `--screenshot  TIME  FILE-NAME` simply saves
+    the screenshot at time `TIME` to an image file `FILE-NAME`.
 
-    <p>Image format is guessed from <code>FILE-NAME</code> extension,
+    Image format is guessed from `FILE-NAME` extension,
     see <?php echo a_href_page("castle-view-image", "castle-view-image") ?>
     for detailed list of image formats that we can handle.
     In short, we handle many popular image formats, like PNG and JPG,
     and these are what usually you want to use.
 
-  <li><p>The <code>--screenshot-range  TIME-BEGIN  TIME-STEP  FRAMES-COUNT  FILE-NAME</code>
-    option takes <code>FRAMES-COUNT</code> screenshots. The first screenshot
-    is at time <code>TIME-BEGIN</code>, second screenshot is at
-    <code>TIME-BEGIN + TIME-STEP</code>, next one is at
-    <code>TIME-BEGIN + 2 * TIME-STEP</code>... you get the idea.
+- The `--screenshot-range  TIME-BEGIN  TIME-STEP  FRAMES-COUNT  FILE-NAME`
+    option takes `FRAMES-COUNT` screenshots. The first screenshot
+    is at time `TIME-BEGIN`, second screenshot is at
+    `TIME-BEGIN + TIME-STEP`, next one is at
+    `TIME-BEGIN + 2 * TIME-STEP`... you get the idea.
 
-    <p>The <code>FILE-NAME</code> is either
-    <ol>
-      <li><p>A movie filename. This must have a recognized movie MIME type
+    The `FILE-NAME` is either
+
+- A movie filename. This must have a recognized movie MIME type
         (for local files, MIME type is just recognized from extension),
         this includes:
 
-        <ul>
-          <!-- Based on FfmpegVideoMimeType and URIMimeType implementations -->
-          <li>video/x-msvideo (.avi)
-          <li>video/mpeg (.mpeg, .mpg, .mpe)
-          <li>video/ogg (.ogv)
-          <li>video/quicktime (.mov)
-          <li>video/x-flv (.flv)
-          <li>application/x-shockwave-flash (.swf, .swfl)
-          <li>video/mp4 (.mp4)
-        </ul>
 
-        <p>Please report if we miss some MIME type (and file extension)
+          <!-- Based on FfmpegVideoMimeType and URIMimeType implementations -->
+- video/x-msvideo (.avi)
+- video/mpeg (.mpeg, .mpg, .mpe)
+- video/ogg (.ogv)
+- video/quicktime (.mov)
+- video/x-flv (.flv)
+- application/x-shockwave-flash (.swf, .swfl)
+- video/mp4 (.mp4)
+
+
+        Please report if we miss some MIME type (and file extension)
         above, it's trivially easy to add all formats supported by ffmpeg.
         Availability of all these video formats may depend on installed ffmpeg
         codecs.
 
-        <p><a href="http://ffmpeg.mplayerhq.hu/">ffmpeg</a>
+        <a href="http://ffmpeg.mplayerhq.hu/">ffmpeg</a>
         must be installed and available on $PATH for this to work.
 
-      <li><p><code>FILE-NAME</code> may also be a pattern to generate
-        names of images to save, like <code>@counter(4).png</code>.
+- `FILE-NAME` may also be a pattern to generate
+        names of images to save, like `@counter(4).png`.
         Details about using filename patterns are below (although you
         can probably already guess how it works :) ).
-    </ol>
 
-  <li><p>All filenames for both screenshot options may specify a pattern
+
+- All filenames for both screenshot options may specify a pattern
     instead of an actual filename. A pattern is simply a filename
-    with macro <code>@counter(&lt;padding&gt;)</code> inside, when capturing <code>@counter(4)</code>
+    with macro `@counter(<padding>)` inside, when capturing `@counter(4)`
     will be replaced by the current screenshot number (padded with zeros to 4 digits).
     For capturing a series of images
-    by <code>--screenshot-range</code> it's even required to specify
-    a pattern with <code>@counter(&lt;padding&gt;)</code> (since capturing
+    by `--screenshot-range` it's even required to specify
+    a pattern with `@counter(<padding>)` (since capturing
     a number of images to a single image file has no point...). But
     it's also allowed in all other cases, even a movie filename
-    may also be a pattern with <code>@counter(&lt;padding&gt;)</code> sequence,
-    in case you want to use multiple <code>--screenshot-range</code>
+    may also be a pattern with `@counter(<padding>)` sequence,
+    in case you want to use multiple `--screenshot-range`
     options to get multiple auto-named movies.
 
-    <p>The precise description how <code>@counter(&lt;padding&gt;)</code> works:
-    All <code>--screenshot</code>
-    and <code>--screenshot-range</code> options are processed in order.
-    When a filename with pattern <code>@counter(&lt;padding&gt;)</code> is found, we replace all
-    <code>@counter(&lt;padding&gt;)</code> occurrences in this filename with current counter value
-    and increment the counter. For <code>--screenshot-range</code> with
+    The precise description how `@counter(<padding>)` works:
+    All `--screenshot`
+    and `--screenshot-range` options are processed in order.
+    When a filename with pattern `@counter(<padding>)` is found, we replace all
+    `@counter(<padding>)` occurrences in this filename with current counter value
+    and increment the counter. For `--screenshot-range` with
     an image pattern, we do this for every single frame.
     The counter starts at 1.
 
-    <p>The parameter of <code>@counter(&lt;padding&gt;)</code>
+    The parameter of `@counter(<padding>)`
     is the padding.
-    For example, <code>@counter(1)</code> results in names like
-    1, 2, ..., 9, 10... while <code>@counter(4)</code>
+    For example, `@counter(1)` results in names like
+    1, 2, ..., 9, 10... while `@counter(4)`
     results in names like 0001, 0002, ..., 0009, 0010, ...
 
-  <li><p>Add <code>--screenshot-transparent</code> option to have a transparent image,
+- Add `--screenshot-transparent` option to have a transparent image,
     with transparent pixels in place where background color would be visible.
-</ul>
 
-<p><b>Examples</b>:
 
-<ul>
-  <li><p>Simply get a single screenshot at given time:
+*Examples*:
+
+
+- Simply get a single screenshot at given time:
 
 ```bash
 castle-model-viewer my_model.wrl --screenshot 0 output.png
 ```
   </li>
 
-  <li><p>Simply get a movie of 2 seconds of animation.
+- Simply get a movie of 2 seconds of animation.
     To calculate the numbers, note that we generate a movie with
     25 frames per second:
 
@@ -375,11 +375,11 @@ castle-model-viewer my_model.wrl --screenshot 0 output.png
 castle-model-viewer my_model.castle-anim-frames --screenshot-range 0 0.04 50 output.avi
 ```
 
-    <p>To get this as a sequence of images, just use <code>output@counter(4).png</code>
-    instead of <code>output.avi</code>.
+    To get this as a sequence of images, just use `output@counter(4).png`
+    instead of `output.avi`.
   </li>
 
-  <li><p>Example of more complicated use:
+- Example of more complicated use:
 
 ```bash
 castle-model-viewer my_model.castle-anim-frames \
@@ -387,216 +387,216 @@ castle-model-viewer my_model.castle-anim-frames \
   --screenshot-range 10 0.04 50 output@counter(1).avi
 ```
 
-    <p>This generates two files: <code>output1.avi</code> with 2 second animation
-    from 0.0 to 2.0 time, and <code>output2.avi</code> with 2 second animation
+    This generates two files: `output1.avi` with 2 second animation
+    from 0.0 to 2.0 time, and `output2.avi` with 2 second animation
     from 10.0 to 12.0 time.
   </li>
-</ul>
 
-<p><b>Hints:</b></p>
 
-<ul>
-  <li><p>To control the look of your screenshot, you often want to
-    use VRML/X3D nodes like <code>Viewpoint</code>, <code>NavigationInfo</code>,
-    <code>Background</code>. For example, take a look at
-    <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/fixed_camera_game/data/creatures/humanoid/screenshot_for_kambi_www/walk_1.wrl">this sample VRML file</a>.</p>
+*Hints:*
 
-    <p>You can use <code>--viewpoint</code> command-line option (see below)
-    to choose a different viewpoint for screenshot.</p>
+
+- To control the look of your screenshot, you often want to
+    use VRML/X3D nodes like `Viewpoint`, `NavigationInfo`,
+    `Background`. For example, take a look at
+    <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/fixed_camera_game/data/creatures/humanoid/screenshot_for_kambi_www/walk_1.wrl">this sample VRML file</a>.
+
+    You can use `--viewpoint` command-line option (see below)
+    to choose a different viewpoint for screenshot.
     </li>
 
-  <li><p>You can generate wanted <code>Viewpoint</code> node
+- You can generate wanted `Viewpoint` node
     also by using castle-model-viewer, just set your camera (in interactive mode)
     the way you like and use menu item
-    <i>Console -> Print Current Camera Node</i>.</p>
+    _Console -> Print Current Camera Node_.
 
-  <li><p>To control the size of resulting screenshot, just use
-    <code>--geometry</code> command-line parameter
+- To control the size of resulting screenshot, just use
+    `--geometry` command-line parameter
     (documented at <?php echo a_href_page("standard options
     understood by our OpenGL programs", "opengl_options") ?>).
     For example, take a look at
     <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/fixed_camera_game/data/creatures/humanoid/screenshot_for_kambi_www/mk_screenshot_for_kambi_www.sh">mk_screenshot_for_kambi_www.sh</a>
-    script.</p></li>
+    script.</li>
 
-  <li><p>To make your screenshot look best, you may want to use anti-aliasing,
-    see <code>--anti-alias</code> option below.</p>
+- To make your screenshot look best, you may want to use anti-aliasing,
+    see `--anti-alias` option below.
 
-    <p>Take a look at the example how to make
+    Take a look at the example how to make
     a screenshot from animation in
     <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/fixed_camera_game/data/creatures/humanoid/screenshot_for_kambi_www">screenshot_for_kambi_www/</a>
-    directory.</p></li>
+    directory.</li>
 
-  <li><p>To <b>take a screenshot on a stripped-down Unix server</b>,
+- To *take a screenshot on a stripped-down Unix server*,
     please bear in mind that you need to install a graphic environment
-    (that is, <i>X Windows</i> and <i>OpenGL</i>) on your server. Even in batch mode,
+    (that is, _X Windows_ and _OpenGL_) on your server. Even in batch mode,
     we still use OpenGL to grab the screenshot images
     (because using off-screen Mesa or our toy ray-tracer doesn't result
     in a really nice output; we really want OpenGL for all those GLSL effects
     and such).<!-- Which means that all that GUI stuff must be installed
-    and working on your server.--></p>
+    and working on your server.-->
 
-    <p>Normally, you also need <i>GTK</i> libraries installed.
+    Normally, you also need _GTK_ libraries installed.
     However, you can compile from sources a version of castle-model-viewer that doesn't
     need these libraries, and directly accesses XWindows. It will miss
     a menu bar and some other nice GUI stuff, but that's not a problem if you only
     want to run it in batch mode for screenshots. To do this:
 
-    <ol>
-      <li><?php echo a_href_page('Download the sources of
+
+- <?php echo a_href_page('Download the sources of
         castle_game_engine and castle-model-viewer', 'all_programs_sources'); ?>.
-        Unpack them, such that <code>castle_game_engine/</code> and <code>castle-model-viewer/</code>
+        Unpack them, such that `castle_game_engine/` and `castle-model-viewer/`
         directories are siblings.
-      <li>In the terminal, do
+- In the terminal, do
 ```bash
 export CASTLE_FPC_OPTIONS=-dCASTLE_WINDOW_XLIB
 cd castle-model-viewer/
 make
 # and copy resulting castle-model-viewer binaries wherever you want
 ```
-    </ol>
 
-    <p>On a server, you probably want to initialize taking a screenshot
+
+    On a server, you probably want to initialize taking a screenshot
     from a script, and your script isn't necessarily running within the X server.
     There are basically two solutions to this:
     <!--
     Note that the instructions below are not really specific to castle-model-viewer,
-    the same concepts work with any X program.--></p>
+    the same concepts work with any X program.-->
 
-    <ol>
-      <li><p>You can keep the X server running continuously,
+
+- You can keep the X server running continuously,
         and keep your user logged in to the X server,
         and instruct castle-model-viewer to connect to your running X server.
-        You do this by adding <code>--display=:0</code> option
-        to the castle-model-viewer command-line (where <code>:0</code> is a common example; for details,
-        see X manuals). Or you can set and export the <code>DISPLAY</code>
-        environment variable, like <code>export DISPLAY=:0</code>.
+        You do this by adding `--display=:0` option
+        to the castle-model-viewer command-line (where `:0` is a common example; for details,
+        see X manuals). Or you can set and export the `DISPLAY`
+        environment variable, like `export DISPLAY=:0`.
 
-        <p>Unfortunately, this method sometimes doesn't work.
+        Unfortunately, this method sometimes doesn't work.
         On some systems, the castle-model-viewer will get an OpenGL context without
         a FrameBuffer (long story short, it means that you cannot capture
         the screen without actually seeing the window) and the resulting screenshot
         will be pure black (or garbage).
-        On other systems, there is a problem with <code>glXChooseVisual</code>
+        On other systems, there is a problem with `glXChooseVisual`
         that may hang until you actually switch the current terminal
         to the X server.
 
-      <li><p>The other approach, more reliable in my experience
+- The other approach, more reliable in my experience
         (<?php echo a_href_page('please share your own experience
         on the forum', 'forum'); ?>) is to create new X server along with running
-        castle-model-viewer, by using <code>xinit</code>. See <code>man xinit</code> for full
-        details, in short use something like <code>xinit /full/path/to/castle-model-viewer my_model.x3d --screenshot 0 /tmp/output.png -- :1</code>. The important thing
+        castle-model-viewer, by using `xinit`. See `man xinit` for full
+        details, in short use something like `xinit /full/path/to/castle-model-viewer my_model.x3d --screenshot 0 /tmp/output.png -- :1`. The important thing
         is to specify the full path of the castle-model-viewer binary (otherwise xinit
-        only adds the arguments to some useless default xterm command-line). Adding <code>-- :1</code>
-        at the end is only necessary if the default display (<code>:0</code>)
-        may be already taken. <code>xinit</code> will create an X server
+        only adds the arguments to some useless default xterm command-line). Adding `-- :1`
+        at the end is only necessary if the default display (`:0`)
+        may be already taken. `xinit` will create an X server
         with new display name, run castle-model-viewer, and exit immediately
         when castle-model-viewer exits (which should be as soon as a screenshot is done).
-    </ol>
+
   </li>
-</ul>
+
 
 == Converting model formats
 
-<p>In interactive mode, you can use castle-model-viewer menu items
-<i>File -&gt; Save As..</i> to save (converting if needed) all 3D model
+In interactive mode, you can use castle-model-viewer menu items
+_File -> Save As.._ to save (converting if needed) all 3D model
 formats to X3D or VRML.
 
-<ul>
-  <li><p>Most formats <b>glTF 2.0, Collada, Spine JSON, 3DS, MD3, Wavefront OBJ, GEO, sprite sheets</b>
-    are always converted <b>to X3D</b>.</p>
 
-  <li><p>Formats <b>Inventor, VRML 1.0, VRML 2.0, X3D</b>
-    can be saved back <b>to their original format</b>.
+- Most formats *glTF 2.0, Collada, Spine JSON, 3DS, MD3, Wavefront OBJ, GEO, sprite sheets*
+    are always converted *to X3D*.
+
+- Formats *Inventor, VRML 1.0, VRML 2.0, X3D*
+    can be saved back *to their original format*.
     In this case, castle-model-viewer is simply a "pretty-printer",
     exactly preserving all the information inside the file,
     only reformatting your content and removing the comments.
 
-  <li><p><b>VRML 2.0</b> can be also converted <b>to X3D</b>.
+- *VRML 2.0* can be also converted *to X3D*.
 
-    <p>Conversion from VRML 2.0 to X3D is mostly trivial.
+    Conversion from VRML 2.0 to X3D is mostly trivial.
     There are some different keywords between VRML 2 and X3D,
     <!--(and only X3D has XML encoding),-->
     but generally X3D is simply a superset of everything that VRML 2 has.
-</ul>
 
-<p>You can also change the X3D encoding (from classic to XML or the other way
+
+You can also change the X3D encoding (from classic to XML or the other way
 around). Changing encoding is a lossless operation,
-as the same nodes graph can be exactly expressed in both encodings.</p>
+as the same nodes graph can be exactly expressed in both encodings.
 
-<p>All these conversions can be also performed in batch mode
+All these conversions can be also performed in batch mode
 by command-line options described below.
-Below we describe castle-model-viewer <code>--write</code> options.
+Below we describe castle-model-viewer `--write` options.
 
-<p>See also <a href="#section_tovrmlx3d">tovrmlx3d</a> for alternative
+See also <a href="#section_tovrmlx3d">tovrmlx3d</a> for alternative
 approach to using command-line to convert models.
 
-<p>Examples:</p>
+Examples:
 
 ```bash
 # Convert glTF to X3D
-castle-model-viewer input.gltf --write &gt; output.x3dv
+castle-model-viewer input.gltf --write > output.x3dv
 
 # Convert VRML 2.0 to X3D in classic encoding.
 # You could add --encoding=classic, but it's not needed
 # (it is the default anyway).
-castle-model-viewer input.wrl --write --write-force-x3d &gt; output.x3dv
+castle-model-viewer input.wrl --write --write-force-x3d > output.x3dv
 
 # Convert VRML 2.0 to X3D in XML encoding.
 # You could add --[write-]force-x3d, but it's not needed
 # (it is implied by XML encoding anyway).
-castle-model-viewer input.wrl --write --write-encoding=xml &gt; output.x3d
+castle-model-viewer input.wrl --write --write-encoding=xml > output.x3d
 ```
 
-<p>Detailed docs of <code>castle-model-viewer</code> command-line options for converting:</p>
+Detailed docs of `castle-model-viewer` command-line options for converting:
 
 <dl class="params_list">
   <dt>--write</dt>
-  <dd><p>Do not open any window,
+  <dd>Do not open any window,
     only write the 3D model to the standard output and exit.
-    Other <code>--write-xxx</code> options affect the generated output.
+    Other `--write-xxx` options affect the generated output.
   </dd>
 
   <dt>--write-encoding classic|xml</dt>
-  <dd><p>Choose encoding of the output file. By default, we use classic encoding.</p>
+  <dd>Choose encoding of the output file. By default, we use classic encoding.
 
-    <p>This option is meaningful only when <code>--write</code> option is also used.</p>
+    This option is meaningful only when `--write` option is also used.
   </dd>
 
   <dt>--write-force-x3d</dt>
-  <dd><p>Force output to be an X3D file. This is really useful only
+  <dd>Force output to be an X3D file. This is really useful only
     when input model is VRML 2.0.
 
-    <p>Conversion to X3D is also automatically forced (no need to specify it explicitly
+    Conversion to X3D is also automatically forced (no need to specify it explicitly
     by this option) if the chosen encoding is XML
-    (that is, you used <code>--write-encoding=xml</code>).
-    That's because only X3D supports XML encoding.</p>
+    (that is, you used `--write-encoding=xml`).
+    That's because only X3D supports XML encoding.
 
-    <p>Summarizing, you only need
+    Summarizing, you only need
     to use this option when you want to convert VRML 2 to X3D in classic encoding.
 
-    <p>When this is used on VRML 1.0 or Inventor models, we'll also
+    When this is used on VRML 1.0 or Inventor models, we'll also
     convert parts of them to X3D. But the result is not really useful:
     you will get a file encoded using X3D keywords, but using
     VRML 1.0/Inventor node names. Real conversion from VRML 1.0/Inventor
     to X3D is not implemented (yet).
 
-    <p>This has no effect when used on models that are already X3D,
+    This has no effect when used on models that are already X3D,
     or that can be only output as X3D (glTF, Collada, 3DS, etc.).
 
-    <p>This option is meaningful only when <code>--write</code> option is also used.</p>
+    This option is meaningful only when `--write` option is also used.
   </dd>
 
   <dt>--no-x3d-extensions</dt>
-  <dd><p>Do not use Castle Game Engine extensions to X3D.
+  <dd>Do not use Castle Game Engine extensions to X3D.
 
-    <p>For example we will not use <code>Tangent</code>, <code>flipVertically</code>,
-    <code>gravityTransform</code> in the generated X3D when importing glTF.
+    For example we will not use `Tangent`, `flipVertically`,
+    `gravityTransform` in the generated X3D when importing glTF.
     This makes X3D output valid (but a little less functional)
     and suitable for other X3D browsers.
 
-    <p>This option works at loading, and it is meaningful regardless
-    of whether you used <code>--write</code>.
-    Both <code>castle-model-viewer</code> and <code>tovrmlx3d</code> have this option.
+    This option works at loading, and it is meaningful regardless
+    of whether you used `--write`.
+    Both `castle-model-viewer` and `tovrmlx3d` have this option.
   </dd>
 </dl>
 
@@ -604,35 +604,35 @@ castle-model-viewer input.wrl --write --write-encoding=xml &gt; output.x3d
 
 <dl class="params_list">
   <dt>--hide-menu
-  <dd><p>Hide the top menubar. Useful for full-screen presentations.
+  <dd>Hide the top menubar. Useful for full-screen presentations.
 
   <dt>--anti-alias AMOUNT</dt>
-  <dd><p>Use full-screen anti-aliasing. You can also configure it from
-    the menu <i>File -&gt; Startup Preferences -&gt; Anti aliasing</i>.
+  <dd>Use full-screen anti-aliasing. You can also configure it from
+    the menu _File -> Startup Preferences -> Anti aliasing_.
     Using this command-line option is mainly useful together with
-    <code>--screenshot</code> option.</p>
+    `--screenshot` option.
 
-    <p>Argument <code>AMOUNT</code>
-    is an integer &gt;= 0. Exact 0 means "no anti-aliasing", this is the default.
+    Argument `AMOUNT`
+    is an integer >= 0. Exact 0 means "no anti-aliasing", this is the default.
     Each successive integer generally makes method one step better.
-    But also more demanding &mdash; program may run slower
+    But also more demanding -- program may run slower
     (if your graphic card cannot provide context with sufficient number of samples
-    needed for multi-sampling). See <i>Anti aliasing</i> in interactive mode
-    for the meaning of <code>AMOUNT</code> values.
-    Currently, highest value is 4. So <code>AMOUNT</code> numbers above 4 are
-    exactly the same as 4.</p>
+    needed for multi-sampling). See _Anti aliasing_ in interactive mode
+    for the meaning of `AMOUNT` values.
+    Currently, highest value is 4. So `AMOUNT` numbers above 4 are
+    exactly the same as 4.
 
-    <p>There is no guarantee what specific values of <code>AMOUNT</code> exactly mean, as this depends on your graphic card capabilities.Just test each method and decide which looks best on your system and is fast enough.</p></dd>
+    There is no guarantee what specific values of `AMOUNT` exactly mean, as this depends on your graphic card capabilities.Just test each method and decide which looks best on your system and is fast enough.</dd>
 
   <dt>--viewpoint VIEWPOINT-NAME</dt>
   <dd>
-  <p>Specifies the name or a number of the viewpoint that will be bound (used) when the scene is loaded.</p>
+  Specifies the name or a number of the viewpoint that will be bound (used) when the scene is loaded.
 
-  <p>By default, when this option is not used, we follow VRML/X3D standard and use the first viewpoint found in the file (but not in the inlined files). Of course you can always add nodes to the scene to trigger binding other viewpoints at the beginning (for example, add <code>ProximitySensor</code> with very large size that sends the <code>enter</code> event to the <code>set_bind</code> of chosen viewpoint). Or you can just exchange the order of viewpoint nodes. But sometimes it's not comfortable to edit the scene. Especially if you want to use the <code>--screenshot</code> options to capture a scene, it's useful to be able to choose a viewpoint by this command-line option.</p>
+  By default, when this option is not used, we follow VRML/X3D standard and use the first viewpoint found in the file (but not in the inlined files). Of course you can always add nodes to the scene to trigger binding other viewpoints at the beginning (for example, add `ProximitySensor` with very large size that sends the `enter` event to the `set_bind` of chosen viewpoint). Or you can just exchange the order of viewpoint nodes. But sometimes it's not comfortable to edit the scene. Especially if you want to use the `--screenshot` options to capture a scene, it's useful to be able to choose a viewpoint by this command-line option.
 
-  <p>If you use this option: when the given <code>VIEWPOINT-NAME</code> is a number, it is treated as the index of viewpoint to be used (0 means the first viewpoint, 1 means the 2nd viewpoint and so on). Otherwise, <code>VIEWPOINT-NAME</code> is treated as a node name (node name is given by <code>"DEF Xxx"</code> in VRML/X3D, and it cannot start with a digit, so this is unambiguous).</p>
+  If you use this option: when the given `VIEWPOINT-NAME` is a number, it is treated as the index of viewpoint to be used (0 means the first viewpoint, 1 means the 2nd viewpoint and so on). Otherwise, `VIEWPOINT-NAME` is treated as a node name (node name is given by `"DEF Xxx"` in VRML/X3D, and it cannot start with a digit, so this is unambiguous).
 
-  <p>In interactive mode, remember that you don't need this option &mdash; instead you can use comfortable <i>Navigation -&gt; Viewpoints</i> menu.</p>
+  In interactive mode, remember that you don't need this option -- instead you can use comfortable _Navigation -> Viewpoints_ menu.
   </dd>
 </dl>
 
@@ -643,22 +643,19 @@ are handled as well. Run with command-line option `--help` to see the full list.
 
 == Dependencies
 
-<p>To play movies (in VRML/X3D <code>MovieTexture</code> nodes) and
-to record movies (by <code>--screenshot-range</code> option)
+To play movies (in VRML/X3D `MovieTexture` nodes) and
+to record movies (by `--screenshot-range` option)
 you have to install <a href="http://ffmpeg.mplayerhq.hu/">ffmpeg</a>
 and make sure it's available on $PATH.
 
-<ul>
-  <li><i>Linux and FreeBSD</i> users should find <code>ffmpeg</code> package
+
+- _Linux and FreeBSD_ users should find `ffmpeg` package
     suitable for their distribution.
-  <li><i>Windows</i> users can install
+- _Windows_ users can install
     <a href="http://ffmpeg.zeranoe.com/builds/">FFmpeg Windows Builds</a>.
     Remember to add bin/ directory to your $PATH after unpacking.
-  <li><i>macOS</i> users can install <code>ffmpeg</code> using
+- _macOS_ users can install `ffmpeg` using
     <a href="https://brew.sh/">HomeBrew</a>,
     <a href="https://www.macports.org/">MacPorts</a> or
     <a href="http://www.finkproject.org/">Fink</a>.
     <!-- (<a href="http://pdb.finkproject.org/pdb/package.php/ffmpeg">in stable currently, although source-only</a>),-->
-</ul>
-
-////
