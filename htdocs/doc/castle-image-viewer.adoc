@@ -31,7 +31,7 @@ cge::download-application[
     darwin-x86_64
 ]
 
-NOTE: If you already have link:/[Castle Game Engine], then just run `castle-image-viewer` executable from the engine `bin` subdirectory. There's no need to download it separately.
+NOTE: If you already have link:/[Castle Game Engine], then just run `castle-image-viewer` executable from the engine `bin` subdirectory. There's no need to download this separately.
 
 == Features
 

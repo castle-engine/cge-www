@@ -1570,11 +1570,16 @@ function echo_standard_program_download(
 /* Return html (<table> or <div>) with image links.
 
    Each $images array item is another associative array:
+
    - filename: name of the image file (with extension, without path).
      Must exist within original_size/ of our images, and be generated
      to our other sizes (like thumb_size and thumb_const_height_size).
      You can omit this,
      if you instead provide ready URLs in url_full and url_thumb.
+
+     Can start with //, then it is ignored.
+     This makes it easy to comment out particular images temporarily.
+
    - url_full: URL to the full-size image file.
      If missing, we will derive it from 'filename'.
    - url_thumb: URL to the thumb-size image file.
@@ -1600,7 +1605,7 @@ function echo_standard_program_download(
 
    The generated links are absolute (starting with CURRENT_URL).
    The important work is always done directly (without need for CSS classes),
-   so this content is suitablefor inclusion also in HTML RSS feeds.
+   so this content is suitable for inclusion also in HTML RSS feeds.
 */
 function castle_thumbs($images, $columns=1, $align='right', $thumb_size = NULL)
 {
@@ -1623,6 +1628,10 @@ function castle_thumbs($images, $columns=1, $align='right', $thumb_size = NULL)
 
   foreach ($images as $image)
   {
+    if (isset($image['filename']) && substr($image['filename'], 0, 2) == '//') {
+      continue;
+    }
+
     if ($columns !== 'auto') {
       if ($column_now == 0 && $image_index != 0) {
         $result .= '</tr><tr>';
@@ -1673,7 +1682,7 @@ function castle_thumbs($images, $columns=1, $align='right', $thumb_size = NULL)
          )
       {
         /* Regenerate thumbnails.
-           Output raport at any place within current doc -- this is only at development,
+           Output report at any place within current doc -- this is only at development,
            doesn't have to look good, just be informative. */
         echo "<pre>\nThumbnail for <b>${image['filename']}</b> does not exist, regenerating thumbnails:\n";
         $command = 'cd images/ && make';

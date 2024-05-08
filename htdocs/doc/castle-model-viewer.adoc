@@ -3,178 +3,103 @@ include::common.adoc[]
 :description: Viewer for 3D and 2D model formats supported by Castle Game Engine: glTF, X3D, VRML, MD3, OBJ, STL, Collada, Spine JSON, sprite sheets (and more). Supports viewing the scene in the "Examine" mode and walking in the virtual world with collision detection and gravity. Many 3D graphic effects are available like mirrors, shadows, shaders. We can also convert between some model formats. Free and open-source software. For Linux, Windows, macOS, Raspberry Pi and more.
 :cge-social-share-image: view3dscene_outlines.png
 
-// TODO: Show VERSION_VIEW3DSCENE
+== Introduction
+
+// Viewer for link:creating_data_model_formats.php[all 3D and 2D model formats supported by the Castle Game Engine]:
+
+// [role="compact"]
+// - link:gltf[glTF]
+// - link:vrml_x3d.php[X3D]
+// - link:vrml_x3d.php[VRML]
+// - link:spine[Spine JSON]
+// - link:sprite_sheets[sprite sheets (in Castle Game Engine, Cocos2D and Starling XML formats)]
+// - link:md3[MD3]
+// - Wavefront OBJ
+// - 3DS
+// - STL
+// - Collada
+// - link:creating_data_model_formats.php[and more].
+
+Viewer for link:creating_data_model_formats.php[3D and 2D model formats supported by the Castle Game Engine]: link:gltf[glTF], link:vrml_x3d.php[X3D], link:vrml_x3d.php[VRML], link:spine[Spine JSON], link:sprite_sheets[sprite sheets (in Castle Game Engine, Cocos2D and Starling XML formats)], link:md3[MD3], Wavefront OBJ, 3DS, STL, Collada, link:creating_data_model_formats.php[and more].
+
+Explore the virtual world with collisions, gravity, animations, sensors, shadows, mirrors, shaders and more. View it from multiple cameras at once. Take screenshots with various options (transparent background, cube maps).
+
+You can also convert between model formats -- right now you can convert any model to X3D, we plan to add output to glTF soon as well. Together with this application, we also distribute link:castle-model-converter[castle-model-converter] command-line tool and you can also use our link:convert.php[online model converter]. They all use the same codebase and have the same features.
+
+// view3dscene_outlines.png credits:
+//
+// The scene is by Luis Fernandez, downloaded from Sketchfab -
+// https://sketchfab.com/3d-models/ftm-0970f30574d047b1976ba0aa6f2ef855 .
+//
+// Find more of his work on
+// https://sketchfab.com/luyssport ,
+// https://www.artstation.com/artwork/8zYgE ,
+// https://www.artstation.com/artwork/oB5qz .
 
 cgeimg::block[
-  view3dscene_outlines.png|Castle Model Viewer
+  view3dscene_outlines.png|Castle Model Viewer (by Luis Fernandez\, https://sketchfab.com/3d-models/ftm-0970f30574d047b1976ba0aa6f2ef85 ),
+  view3dscene_mousey.png|glTF scene with Mixamo animations,
+  //view3dscene_steampunk_gltf.png|Steampunk glTF scene,
+  //view3dscene_spine_ffd_animation.png|Spine Free-Form Deformation animated,
+  view3dscene_spine_roseanne.png|Animated 2D Spine creature,
+  //view3dscene_dungeon_multiple_views.png|Multiple views at the same 3D dungeon
 ]
 
-Viewer for link:creating_data_model_formats.php[all 3D and 2D model formats supported by the Castle Game Engine]:
+== Download (version 4.3.0)
 
-- link:gltf[glTF],
-- link:vrml_x3d.php[X3D],
-- link:vrml_x3d.php[VRML],
-- link:spine[Spine JSON],
-- link:sprite_sheets[sprite sheets (in Castle Game Engine, Cocos2D and Starling XML formats)],
-- link:md3[MD3],
-- Wavefront OBJ,
-- 3DS,
-- STL,
-- Collada.
+cge::download-application[
+  4.3.0,
+  snapshot,
+  castle-engine,
+  castle-model-viewer,
+  castle-model-viewer,
+    win64-x86_64;
+    //win32-i386;
+    linux-x86_64;
+    linux-arm;
+    linux-aarch64;
+    darwin-x86_64
+]
 
-WARNING: *Work in progress*. We migrate documentation and downloads to a new application name, planned to be finished this week, before 2024-05-12 (but hopefully sooner!). Please have patience, and watch for https://castle-engine.io/wp/[news]!
+No installation is necessary. Just download and unpack these archives wherever you want, and run the `castle-model-viewer` program inside.
 
-Downloads:
+Platform-specific notes:
 
-- Snapshots (version 4.3.0, soon to be released as 4.4.0): https://jenkins.castle-engine.io/public/builds/view3dscene/
+Linux, FreeBSD::
+To hear 3D sound in X3D worlds, install also link:openal[OpenAL] and http://xiph.org/vorbis/[VorbisFile] libraries using your package manager.
 
-- Last stable (version 4.2.0): https://github.com/castle-engine/castle-model-viewer/releases/tag/v4.2.0
+macOS::
+Since our application is not signed (for now), for the first run you have to run it by clicking with _right mouse button_, choosing _"Open"_ from the context menu, and then accepting to run an unsigned application. link:macos[More information about macOS support.]
 
 ////
-echo castle_thumbs(array(
-  /* The scene is by Luis Fernandez, downloaded from Sketchfab -
-     https://sketchfab.com/3d-models/ftm-0970f30574d047b1976ba0aa6f2ef855 .
+Too much info:
 
-     Find more of his work on
-     https://sketchfab.com/luyssport ,
-     https://www.artstation.com/artwork/8zYgE ,
-     https://www.artstation.com/artwork/oB5qz .
-  */
-  array('filename' => 'view3dscene_outlines.png', 'titlealt' => 'Scene with outlines from glTF (by Luis Fernandez, https://sketchfab.com/3d-models/ftm-0970f30574d047b1976ba0aa6f2ef855)'),
-  array('filename' => 'view3dscene_mousey.png', 'titlealt' => 'glTF scene with Mixamo animations'),
-  array('filename' => 'view3dscene_steampunk_gltf.png', 'titlealt' => 'Steampunk glTF scene'),
-  array('filename' => 'view3dscene_spine_ffd_animation.png', 'titlealt' => 'Spine Free-Form Deformation animated'),
-  array('filename' => 'view3dscene_spine_roseanne.png', 'titlealt' => 'Animated 2D Spine creature'),
-  array('filename' => 'view3dscene_dungeon_multiple_views.png', 'titlealt' => 'Multiple views at the same 3D dungeon'),
-  // array('filename' => 'castle_sunset.png', 'titlealt' => 'view3dscene rendering tower with sunset sky'),
-//  array('filename' => 'atcs_viewports_frustum.png', 'titlealt' => 'Tremulous ATCS in VRML, with 2 viewports and frustum visualized in right viewport'),
-  // array('filename' => 'horse_bump_from_3ds.png', 'titlealt' => 'Horse model from 3DS file with bump map'),
-//    array('filename' => 'view3dscene_2.0.0_screen_demo.png', 'titlealt' => 'view3dscene rendering tower with mountains sky'),
-  // array('filename' => 'view3dscene_tooltip_and_smoke.png', 'titlealt' => 'Examine navigation tooltip, and some fog by texture layers'),
-  // array('filename' => 'view3dscene_screen_demo_1.png', 'titlealt' => 'view3dscene rendering Tremulous creature from MD3'),
-//    array('filename' => 'view3dscene_screen_demo_2.png', 'titlealt' => 'view3dscene in the middle of ray-tracing'),
-//    array('filename' => 'view3dscene_screen_demo_3.png', 'titlealt' => 'view3dscene with ProximitySensor visualization'),
-//  array('filename' => 'lucy_joints_visualization.png', 'titlealt' => 'Lucy with our joints visualization'),
-//    array('filename' => 'upwind_turbine.png', 'titlealt' => 'Wind turbine simulations, from SSB Wind Systems, with 4 viewports'),
-));
-?>
+Above recommends to download a snapshot, 4.3.0, automatically updated after every commit. The last https://github.com/castle-engine/castle-model-viewer/releases/tag/v4.2.0[stable release (version 4.2.0) is here] but it's quite old at this point.
+////
 
-<p><b>view3dscene</b> is a viewer for many 3D model formats: glTF, X3D, VRML, Collada, 3DS, MD3, Wavefront OBJ, STL and (2D) Spine JSON and sprite sheets (in CGE, Cocos2d, Starling XML formats).</p>
+NOTE: If you already have link:/[Castle Game Engine], then just run `castle-model-viewer` executable from the engine `bin` subdirectory. There's no need to download this separately.
 
-<p>Explore the virtual world with collisions, gravity, animations, sensors, shadows, mirrors, shaders and more. <!--use embedded ray-tracer, --> You can also convert all models to X3D.</p>
+NOTE: We also recommend to download link:demo_models.php[our collection of demo models]!
 
-<p><b>If you already have <a href="/">Castle Game Engine</a>, then just run <code>view3dscene</code> executable in CGE <code>bin</code> subdirectory. There's no need to download it separately.</b>
+////
+No longer actively tested, and was complicated to use, for now don't expose docs of it:
 
-<?php
-define('SNAPSHOTS_BASE', 'https://jenkins.castle-engine.io/public/builds/view3dscene/');
-define('SNAPSHOTS_VERSION', '4.3.0');
-define('DOWNLOAD_PREFIX_SNAPSHOT', SNAPSHOTS_BASE . 'view3dscene-' . SNAPSHOTS_VERSION);
-define('DOWNLOAD_PREFIX_STABLE', 'https://github.com/castle-engine/view3dscene/releases/download/v' . VERSION_VIEW3DSCENE . '/view3dscene-' . VERSION_VIEW3DSCENE);
+==== Optionally install GNOME (and other freedesktops) integration
 
-function download_box($caption, $download_prefix, $has_linux_aarch64)
-{
-  return '
-    <div class="download jumbotron">
-      <div class="download_title">' . $caption . ':</div>
-      <div class="download_platforms_list">
-        <div class="download_platform"><a class="btn btn-primary btn-lg" href="' . $download_prefix .    '-win64-x86_64.zip">' .
-          '<img src="' . CURRENT_URL . '/images/os_icons/win.png"          alt="Windows (64-bit)"         width="64" height="64">' .
-          '<br>Windows' .
-          '<br><span class="download_details">(x86_64)</span></a></div>
-        <div class="download_platform"><a class="btn btn-primary btn-lg" href="' . $download_prefix . '-linux-x86_64.tar.gz">' .
-          '<img src="' . CURRENT_URL . '/images/os_icons/linux.png"        alt="Linux (64 bit, x86_64)"   width="64" height="64">' .
-          '<br>Linux' .
-          '<br><span class="download_details">(x86_64)</span></a></div>
-        <div class="download_platform"><a class="btn btn-primary btn-lg" href="' . $download_prefix .    '-linux-arm.tar.gz">' .
-          '<img src="' . CURRENT_URL . '/images/os_icons/raspberry_pi_32.png" alt="Raspberry Pi (Linux Arm32)" width="91" height="64">' .
-          '<br>Raspberry Pi' .
-          '<br><span class="download_details">(Linux Arm32)</span></a></div>
-        '
-        . ($has_linux_aarch64 ?
-        '<div class="download_platform"><a class="btn btn-primary btn-lg" href="' . $download_prefix .    '-linux-aarch64.tar.gz">' .
-          '<img src="' . CURRENT_URL . '/images/os_icons/raspberry_pi_64.png" alt="Raspberry Pi 64-bit (Linux Aarch64)" width="91" height="64">' .
-          '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' .
-          '<img src="' . CURRENT_URL . '/images/os_icons/pine64.png" alt="PINE64 (PineTab2, Linux Aarch64)" width="48" height="64">' .
-          '<br>Raspberry Pi, PineTab2' .
-          '<br><span class="download_details">(Linux, Arm64 aka Aarch64)</span></a></div>'
-        : '') .
-        '<div class="download_platform"><a class="btn btn-primary btn-lg" href="' . $download_prefix .   '-darwin-x86_64.zip">' .
-          '<img src="' . CURRENT_URL . '/images/os_icons/macos.png"        alt="macOS (x86_64)"           width="64" height="64">' .
-          '<br>macOS' .
-          '<br><span class="download_details">(x86_64)</span></a></div>
-      </div>
-      <a class="btn btn-success btn-lg btn-patreon" href="' . PATREON_URL . '"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Support on Patreon</a>
-    </div>
-    ';
-}
-
-echo download_box('Download Stable Version ' . VERSION_VIEW3DSCENE, DOWNLOAD_PREFIX_STABLE, false);
-echo download_box('Download (Snapshot) Version ' . SNAPSHOTS_VERSION, DOWNLOAD_PREFIX_SNAPSHOT, true);
-?>
-
-<p><b><a href="demo_models.php">Download also our collection of demo models</a> to test view3dscene!</b></p>
-
-<p>Documentation:</p>
-
-<?php
-  $toc = new TableOfContents(
-    array(
-      new TocItem('Downloading and installing', 'install'),
-      /* new TocItem('Optionally install GNOME (and other freedesktops) integration', 'install_free_desktop', 1), */
-      new TocItem('Features', 'features'),
-      new TocItem('Navigation with keys &amp; mouse', 'navigation'),
-      new TocItem('Command-line options', 'command_line_options'),
-        new TocItem('Capturing screenshots and movies of 3D scenes and animations', 'screenshot', 1),
-        new TocItem('Converting model formats', 'converting', 1),
-        new TocItem('Other options', 'other_options', 1),
-      new TocItem(DEPENDS, 'depends'),
-      new TocItem('tovrmlx3d usage (convert models in batch mode)', 'tovrmlx3d'),
-    )
-  );
-  echo $toc->html_toc();
-?>
-
-<?php section(false); ?>
-
-<p>No installation is required. Just download and unpack these archives wherever
-you want, and run the <code>view3dscene</code> program inside.
-Included is also the <code>tovrmlx3d</code> program,
-useful for <a href="#section_converting">converting models between various formats (e.g. glTF to X3D) in batch mode (command-line)</a>.</p>
-
-Source code is available on GitHub in https://github.com/castle-engine/castle-model-viewer[castle-model-viewer repository].
-
-
-<p><?php echo castle_sources_notice(); ?>
-
-<p><i>Demo scenes</i>: our
-<?php echo a_href_page("demo models", "demo_models"); ?>
- contains a lot of interesting models,
-you can open them all with <code>view3dscene</code>.</p>
-
-<p>PLatform-specific notes:
-<ul>
-  <li><i>Linux:</i> If you want to hear 3D sound in X3D worlds, install also <a href="openal#_installing_openal">OpenAL</a> and <a href="http://xiph.org/vorbis/">VorbisFile</a> libraries using your Linux distribution package manager.
-  <li><i>macOS:</i> As our application is not signed (for now), for the first time you have to run it by clicking with <i>right mouse button</i>, choosing <i>"Open"</i> from the context menu, and then accepting to run an unsigned application. Next time you can run as usual, by just double-clicking on the application. <?php echo a_href_page('More information about macOS support is here.', 'doc/macos'); ?>.
-</ul>
-
-<?php /*
-
-< ?php section(false); ? >
-
-<p>If you use GNOME, MATE or other desktops following
+If you use GNOME, MATE or other desktops following
 <a href="http://freedesktop.org/">freedesktop.org</a> specifications,
-you can optionally install also view3dscene menu item
-(will be placed in the <i>Graphics</i> menu category), with a nice icon,
-and associate it with appropriate 3D model types.</p>
+you can optionally install also a desktop file to have application
+available in your menu / dashboard, with a nice icon,
+and associate it with all handled model types.</p>
 
-<pre>
-# Place view3dscene on $PATH, for example like this:
-sudo ln -s /usr/local/bin/view3dscene view3dscene
+```bash
+# Place castle-model-viewer on $PATH, for example like this:
+sudo ln -s /usr/local/bin/castle-model-viewer castle-model-viewer
 
 # Install menu items, icons, mime types:
 cd desktop/
 ./install.sh
-</pre>
+```
 
 <p>You may need to logout and login again to your GNOME/desktop
 session for all programs to catch up (alternatively, you can do
@@ -183,8 +108,8 @@ but this is obviously somewhat brutal method).</p>
 
 <p>If you use GNOME file manager Nautilus there's
 one more cool thing you can do: use
-view3dscene to <b>generate on-the-fly thumbnails of 3D models</b>
-in the viewed directory. Assuming that view3dscene is on the $PATH
+castle-model-viewer to <b>generate on-the-fly thumbnails of 3D models</b>
+in the viewed directory. Assuming that castle-model-viewer is on the $PATH
 and you already did previous <code>./install.sh</code>, you can run:</p>
 
 <pre>
@@ -210,12 +135,11 @@ movies or images has similar problems, but it works quite Ok, right?
 (Actually, 3D data is much more difficult than reading just a few starting
 seconds of a movie or a simple 2D image...) -->
 And the author of this
-text is using view3dscene thumbnailer all the time, and it works
+text is using castle-model-viewer thumbnailer all the time, and it works
 flawlessly :) So give it a try!
+////
 
-*/ ?>
-
-<?php section(); ?>
+== Features
 
 <ul>
   <li><p><a href="creating_data_model_formats.php">All the 3D and 2D model formats supported by Castle Game Engine</a>
@@ -232,14 +156,14 @@ flawlessly :) So give it a try!
 
     <p>You can convert between X3D classic and XML encodings (in both directions),
     and you can convert from VRML 2 to X3D.
-    You can also use view3dscene as a "pretty-printer",
+    You can also use castle-model-viewer as a "pretty-printer",
     just open and save any X3D or VRML file without any version conversion.
 
     <p>Command-line options to convert in batch mode (<code>--write</code>)
-    are available also in view3dscene.
+    are available also in castle-model-viewer.
 
     <p>Also a dedicated command-line program
-    <code>tovrmlx3d</code> is included in the view3dscene download.
+    <code>tovrmlx3d</code> is included in the castle-model-viewer download.
     It provides a few more conversion and validation options,
     can be used in batch mode,
     can be used on servers without GUI libraries installed.
@@ -290,7 +214,7 @@ flawlessly :) So give it a try!
     separate images).
 </ul>
 
-<?php section(); ?>
+== Navigation with keys &amp; mouse
 
 <h3>All navigation modes:</h3>
 
@@ -362,18 +286,18 @@ flawlessly :) So give it a try!
 
 <p>We also support <a href="http://www.3dconnexion.com/">3D mouse devices</a>,
 see <a href="http://www.youtube.com/watch?v=7tV9Qmjgx1U">the demo video about 3D mouse inside
-view3dscene</a>.</p>
+castle-model-viewer</a>.</p>
 
 <p>There are many more operations with key shortcuts, that work in all
 navigation modes.
-Just explore the <i>view3dscene</i> menu, and look at the key shortcuts.</p>
+Just explore the <i>castle-model-viewer</i> menu, and look at the key shortcuts.</p>
 
-<?php section(); ?>
+== Command-line options
 
 <p>All options described below may be given in any order.
 They all are optional.
 
-<?php section(false); ?>
+=== Capturing screenshots and movies of 3D scenes and animations
 
 <p>Command-line options:
 
@@ -414,7 +338,7 @@ of the default empty (black) scene. So to take a simple screenshot
 of a scene, at it's default camera, just call</p>
 
 <pre>
-view3dscene my_model.wrl --screenshot 0 output.png
+castle-model-viewer my_model.wrl --screenshot 0 output.png
 </pre>
 
 <p><b>The detailed specification how screenshot options work</b>:
@@ -422,7 +346,7 @@ view3dscene my_model.wrl --screenshot 0 output.png
 <ul>
   <li><p>First of all, after all the <code>--screenshot</code>
     and <code>--screenshot-range</code> options are processed,
-    view3dscene exits. So they work in "batch mode".
+    castle-model-viewer exits. So they work in "batch mode".
 
   <li><p>The <code>--screenshot  TIME  FILE-NAME</code> simply saves
     the screenshot at time <code>TIME</code> to an image file <code>FILE-NAME</code>.
@@ -508,7 +432,7 @@ view3dscene my_model.wrl --screenshot 0 output.png
   <li><p>Simply get a single screenshot at given time:
 
 <pre>
-view3dscene my_model.wrl --screenshot 0 output.png
+castle-model-viewer my_model.wrl --screenshot 0 output.png
 </pre>
   </li>
 
@@ -517,7 +441,7 @@ view3dscene my_model.wrl --screenshot 0 output.png
     25 frames per second:
 
 <pre>
-view3dscene my_model.castle-anim-frames --screenshot-range 0 0.04 50 output.avi
+castle-model-viewer my_model.castle-anim-frames --screenshot-range 0 0.04 50 output.avi
 </pre>
 
     <p>To get this as a sequence of images, just use <code>output@counter(4).png</code>
@@ -527,7 +451,7 @@ view3dscene my_model.castle-anim-frames --screenshot-range 0 0.04 50 output.avi
   <li><p>Example of more complicated use:
 
 <pre>
-view3dscene my_model.castle-anim-frames \
+castle-model-viewer my_model.castle-anim-frames \
   --screenshot-range 0 0.04 50 output@counter(1).avi \
   --screenshot-range 10 0.04 50 output@counter(1).avi
 </pre>
@@ -551,7 +475,7 @@ view3dscene my_model.castle-anim-frames \
     </li>
 
   <li><p>You can generate wanted <code>Viewpoint</code> node
-    also by using view3dscene, just set your camera (in interactive mode)
+    also by using castle-model-viewer, just set your camera (in interactive mode)
     the way you like and use menu item
     <i>Console -> Print Current Camera Node</i>.</p>
 
@@ -581,42 +505,42 @@ view3dscene my_model.castle-anim-frames \
     and working on your server.--></p>
 
     <p>Normally, you also need <i>GTK</i> libraries installed.
-    However, you can compile from sources a version of view3dscene that doesn't
+    However, you can compile from sources a version of castle-model-viewer that doesn't
     need these libraries, and directly accesses XWindows. It will miss
     a menu bar and some other nice GUI stuff, but that's not a problem if you only
     want to run it in batch mode for screenshots. To do this:
 
     <ol>
       <li><?php echo a_href_page('Download the sources of
-        castle_game_engine and view3dscene', 'all_programs_sources'); ?>.
-        Unpack them, such that <code>castle_game_engine/</code> and <code>view3dscene/</code>
+        castle_game_engine and castle-model-viewer', 'all_programs_sources'); ?>.
+        Unpack them, such that <code>castle_game_engine/</code> and <code>castle-model-viewer/</code>
         directories are siblings.
-      <li>In the terminal, do <pre>
+      <li>In the terminal, do ```bash
 export CASTLE_FPC_OPTIONS=-dCASTLE_WINDOW_XLIB
-cd view3dscene/
-./compile.sh
-# and copy resulting view3dscene (and tovrmlx3d) binaries wherever you want
-</pre></li>
+cd castle-model-viewer/
+make
+# and copy resulting castle-model-viewer binaries wherever you want
+```</li>
     </ol>
 
     <p>On a server, you probably want to initialize taking a screenshot
     from a script, and your script isn't necessarily running within the X server.
     There are basically two solutions to this:
     <!--
-    Note that the instructions below are not really specific to view3dscene,
+    Note that the instructions below are not really specific to castle-model-viewer,
     the same concepts work with any X program.--></p>
 
     <ol>
       <li><p>You can keep the X server running continuously,
         and keep your user logged in to the X server,
-        and instruct view3dscene to connect to your running X server.
+        and instruct castle-model-viewer to connect to your running X server.
         You do this by adding <code>--display=:0</code> option
-        to the view3dscene command-line (where <code>:0</code> is a common example; for details,
+        to the castle-model-viewer command-line (where <code>:0</code> is a common example; for details,
         see X manuals). Or you can set and export the <code>DISPLAY</code>
         environment variable, like <code>export DISPLAY=:0</code>.
 
         <p>Unfortunately, this method sometimes doesn't work.
-        On some systems, the view3dscene will get an OpenGL context without
+        On some systems, the castle-model-viewer will get an OpenGL context without
         a FrameBuffer (long story short, it means that you cannot capture
         the screen without actually seeing the window) and the resulting screenshot
         will be pure black (or garbage).
@@ -627,21 +551,21 @@ cd view3dscene/
       <li><p>The other approach, more reliable in my experience
         (<?php echo a_href_page('please share your own experience
         on the forum', 'forum'); ?>) is to create new X server along with running
-        view3dscene, by using <code>xinit</code>. See <code>man xinit</code> for full
-        details, in short use something like <code>xinit /full/path/to/view3dscene my_model.x3d --screenshot 0 /tmp/output.png -- :1</code>. The important thing
-        is to specify the full path of the view3dscene binary (otherwise xinit
+        castle-model-viewer, by using <code>xinit</code>. See <code>man xinit</code> for full
+        details, in short use something like <code>xinit /full/path/to/castle-model-viewer my_model.x3d --screenshot 0 /tmp/output.png -- :1</code>. The important thing
+        is to specify the full path of the castle-model-viewer binary (otherwise xinit
         only adds the arguments to some useless default xterm command-line). Adding <code>-- :1</code>
         at the end is only necessary if the default display (<code>:0</code>)
         may be already taken. <code>xinit</code> will create an X server
-        with new display name, run view3dscene, and exit immediately
-        when view3dscene exits (which should be as soon as a screenshot is done).
+        with new display name, run castle-model-viewer, and exit immediately
+        when castle-model-viewer exits (which should be as soon as a screenshot is done).
     </ol>
   </li>
 </ul>
 
-<?php section(false); ?>
+== Converting model formats
 
-<p>In interactive mode, you can use view3dscene menu items
+<p>In interactive mode, you can use castle-model-viewer menu items
 <i>File -&gt; Save As..</i> to save (converting if needed) all 3D model
 formats to X3D or VRML.
 
@@ -651,7 +575,7 @@ formats to X3D or VRML.
 
   <li><p>Formats <b>Inventor, VRML 1.0, VRML 2.0, X3D</b>
     can be saved back <b>to their original format</b>.
-    In this case, view3dscene is simply a "pretty-printer",
+    In this case, castle-model-viewer is simply a "pretty-printer",
     exactly preserving all the information inside the file,
     only reformatting your content and removing the comments.
 
@@ -669,7 +593,7 @@ as the same nodes graph can be exactly expressed in both encodings.</p>
 
 <p>All these conversions can be also performed in batch mode
 by command-line options described below.
-Below we describe view3dscene <code>--write</code> options.
+Below we describe castle-model-viewer <code>--write</code> options.
 
 <p>See also <a href="#section_tovrmlx3d">tovrmlx3d</a> for alternative
 approach to using command-line to convert models.
@@ -678,20 +602,20 @@ approach to using command-line to convert models.
 
 <pre>
 # Convert glTF to X3D
-view3dscene input.gltf --write &gt; output.x3dv
+castle-model-viewer input.gltf --write &gt; output.x3dv
 
 # Convert VRML 2.0 to X3D in classic encoding.
 # You could add --encoding=classic, but it's not needed
 # (it is the default anyway).
-view3dscene input.wrl --write --write-force-x3d &gt; output.x3dv
+castle-model-viewer input.wrl --write --write-force-x3d &gt; output.x3dv
 
 # Convert VRML 2.0 to X3D in XML encoding.
 # You could add --[write-]force-x3d, but it's not needed
 # (it is implied by XML encoding anyway).
-view3dscene input.wrl --write --write-encoding=xml &gt; output.x3d
+castle-model-viewer input.wrl --write --write-encoding=xml &gt; output.x3d
 </pre>
 
-<p>Detailed docs of <code>view3dscene</code> command-line options for converting:</p>
+<p>Detailed docs of <code>castle-model-viewer</code> command-line options for converting:</p>
 
 <dl class="params_list">
   <dt>--write</dt>
@@ -740,11 +664,11 @@ view3dscene input.wrl --write --write-encoding=xml &gt; output.x3d
 
     <p>This option works at loading, and it is meaningful regardless
     of whether you used <code>--write</code>.
-    Both <code>view3dscene</code> and <code>tovrmlx3d</code> have this option.
+    Both <code>castle-model-viewer</code> and <code>tovrmlx3d</code> have this option.
   </dd>
 </dl>
 
-<?php section(false); ?>
+== Other options
 
 <dl class="params_list">
   <dt>--hide-menu
@@ -793,7 +717,7 @@ view3dscene input.wrl --write --write-encoding=xml &gt; output.x3d
 <a href="common_options.php">all programs</a>
  are also allowed. Run with command-line <code>--help</code> to get full list.
 
-<?php section(); ?>
+== Dependencies
 
 <?php echo depends_ul(array(
   DEPENDS_OPENGL,
