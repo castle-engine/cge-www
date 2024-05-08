@@ -2357,8 +2357,8 @@ function cge_download_application($version, $tag, $organization_name, $repo_name
         $icon_name = 'raspberry_pi_64_and_pine64.png';
         $icon_width = '160';
         $icon_height = '64';
-        $icon_alt = 'Raspberry Pi 64-bit, PINE64 (like PineTab2) (Linux Aarch64)';
-        $platform_name = 'Raspberry Pi, Pine64';
+        $icon_alt = 'Raspberry Pi 64-bit, Pine64 products like PineTab2 (Linux Aarch64)';
+        $platform_name = 'Raspberry Pi, PineTab2';
         $platform_details = '(Linux, Arm64 aka Aarch64)';
         $extension = '.tar.gz';
         break;
