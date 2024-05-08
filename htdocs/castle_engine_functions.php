@@ -2353,7 +2353,6 @@ function cge_download_application($version, $tag, $organization_name, $repo_name
         $extension = '.tar.gz';
         break;
       case 'linux-aarch64':
-        // TODO: combine raspberry_pi_64 and pine64 icons
         $icon_name = 'raspberry_pi_64_and_pine64.png';
         $icon_width = '160';
         $icon_height = '64';
