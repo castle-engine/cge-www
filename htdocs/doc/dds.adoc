@@ -1,0 +1,80 @@
+# DDS (DirectDraw Surface) Image Format
+include::common.adoc[]
+:description: Castle Game Engine supports DDS, DirectDraw Surface image format, for GPU-compressed textures, mipmaps, texture arrays and more.
+:cge-social-share-image: dds_cube_map.png
+
+== Introduction
+
+In _Castle Game Engine_ we fully support https://en.wikipedia.org/wiki/DirectDraw_Surface[DirectDraw Surface (DDS) image format].
+
+There's nothing special you need to do to use DDS files in _Castle Game Engine_. Just load images in DDS format and display them as usual, see link:using_images[using images] in the manual.
+
+cgeimg::block[dds_cube_map.png|DDS cubemap image]
+
+== Tooling
+
+Our link:castle-image-viewer[Castle Image Viewer] supports DDS and allows to view each subimage of a DDS file.
+
+We also have example utility https://github.com/castle-engine/castle-engine/tree/master/examples/images_videos/image_decompose[image_decompose] that allows to extract all subimages from a DDS file.
+
+You may find example DDS images inside our link:demo_models.php[demo models].
+
+== Features
+
+- Textures can be compressed for GPU.
+- Mipmaps.
+- Cube maps.
+- Volume (3D) textures.
+
+== Support In Other Notable Software
+
+- http://web.archive.org/web/20100129150657/http://nifelheim.dyndns.org/~cocidius/dds/[GIMP-DDS plugin] is great to edit DDS in GIMP.
+
+- New http://www.imagemagick.org/[ImageMagick] (http://www.imagemagick.org/discourse-server/viewtopic.php?f=2&amp;t=10729[since 6.3.9]) supports DDS.
+
+== Support Details in Castle Game Engine
+
+=== Cube maps orientation
+
+* Cube maps are supposed to be oriented as is standard for DDS. This means they should match Direct X _"positive/negative x/y/z"_.
+
+* For OpenGL rendering we swap positive/negative Y faces (because Direct X has left-handed coordinate system). Don't worry about this -- we handle it internally.
+
+* Note that Direct X orientation is also different than X3D `ComposedCubeMap` specification (left/right, bottom/top, front/back, with bottom/top on Y axis; X3D orientation needs rotating left,right,front,back images by 180 degrees for OpenGL orientation). Again don't worry about this -- we handle it internally.
+
+=== Rows Order
+
+Rows in DDS are supposed to be written from top to bottom row, as is the standard in DDS.
+
+NOTE: We know of one tool, _AMD CubeMapGen_, that allows to invert rows of the DDS images to match OpenGL bottom-to-top ordering. Don't use this -- we expect rows ordered as is standard in DDS, top-to-bottom. Internally, our engine just inverts the rows for OpenGL (http://web.archive.org/web/20150530072520/http://users.telenet.be/tfautre/softdev/ddsload/explanation.htm[this is doable also for S3TC compressed images]).
+
+=== Pixel formats supported
+
+- All uncompressed non-float pixel formats are supported.
++
+The formats that are currently loaded optimally are ABGR8, BGR8, AL8, L8. They translate to RGBA8, RGB8 etc. OpenGL formats (reversed order, as DDS color masks are little-endian). Popular ARGB8 and RGB8 are also loaded very fast.
++
+Grayscale (luminance) images are allowed. AL8 and L8 are optimized. Note that grayscale images aren't officially allowed by DDS docs, but at least GIMP-DDS plugin can write it (just sets all R, G and B masks equal, and doesn't set any of DDPF_RGB, DDPF_FOURCC, DDPF_PALETTEINDEXED8).
++
+Also only-alpha images are allowed (another undocumented DDS feature, GIMP-DDS can write it, for now they will result in grayscale(white) with alpha image).
+
+- Compressed texture formats:
++
+--
+- DXT1, DXT3, DXT5 are supported.
++
+Texture with DXT1 is always treated like a texture with simple (yes/no) alpha channel (so it will be rendered with alpha testing) and DXT3 / DXT5 are always treated like a texture with full range alpha channel (so they will be rendered with blending).
+
+- Texture compression formats commonly used on mobile platforms are supported as well: ATITC, PVRTC, ETC1.
+
+- Both normal (2D) textures and cube maps may be compressed. There is no compression possible for 3D textures -- neither DDS format allows it, nor do common graphic cards.
+--
+
+- TODO: Reading float textures from DDS is for now not supported.
++
+Our engine supports float textures (see cgeref:TRGBFloatImage[] class), but DDS reader doesn't support them yet.
+
+=== Mipmaps
+
+If DDS file includes mipmaps, and mipmaps are required for texture minification filter, we will use DDS mipmaps (instead of generating mipmaps automatically). Works for all 2D, 3D, cubemap DDS files.
+

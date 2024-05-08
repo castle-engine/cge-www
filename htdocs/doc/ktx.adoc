@@ -1,0 +1,50 @@
+# KTX (Khronos Texture Format)
+include::common.adoc[]
+:description: Castle Game Engine supports KTX, Khronos Texture Format, for GPU-compressed textures, mipmaps, texture arrays and more.
+:cge-social-share-image: ktx_image_viewer.png
+
+== Introduction
+
+In _Castle Game Engine_ we fully support KTX, https://www.khronos.org/ktx/[Khronos Texture Format].
+
+There's nothing special you need to do to use KTX files in _Castle Game Engine_. Just load images in KTX format and display them as usual, see link:using_images[using images] in the manual.
+
+cgeimg::block[ktx_image_viewer.png|KTX in castle-image-viewer]
+
+== Tooling
+
+Our link:castle-image-viewer[Castle Image Viewer] supports KTX and allows to view each subimage of a KTX file.
+
+We also have example utility https://github.com/castle-engine/castle-engine/tree/master/examples/images_videos/image_decompose[image_decompose] that allows to extract all subimages from a KTX file.
+
+You may find example KTX images inside our link:demo_models.php[demo models]. Also https://github.com/KhronosGroup/KTX-Software[KTX-Software] has some samples (look in `tests` subdirectory).
+
+== Features
+
+KTX is an excellent image format with a number of graphic features useful when it comes to using it for textures and 3D:
+
+- Can utilize GPU compression (images are compressed not only on disk, but also in GPU memory). We support these GPU-compressed formats in KTX:
++
+--
+- S3TC (DXT* formats, often available on desktops),
+- ATITC (ATI compression, available on some mobile devices),
+- PVRTC (PowerVR compression, available on some mobile devices),
+- ETC1 (Ericsson compression, often available on mobile devices, but without alpha support).
+- More compressed formats can be trivially added, just submit a link:https://github.com/castle-engine/castle-engine/issues[bugreport] with a sample KTX file.
+--
+
+- Textures can have explicit mipmaps (allows texture have better quality when viewer from far away).
+
+- Volume (3D) textures.
+
+- Configurable orientation of the image data in file. KTX data may be specified in _top-to-bottom_ or _bottom-to-top_ order. For 3D images, the slices can additionally be in _front-to-back_ or _back-to-front_ order. We support all these possibilities.
+
+- Cube map can be stored -- this means that we effectively have 6 images (for skyboxes, reflections, etc.). TODO: We don't support cubemap yet, but we plan to add it. Submit a link:https://github.com/castle-engine/castle-engine/issues[bugreport] with a sample KTX file to make it happen sooner!
+
+We support KTX 1 right now. We plan to support KTX 2 (with https://github.com/KhronosGroup/glTF/tree/main/extensions/2.0/Khronos/KHR_texture_basisu[KHR_texture_basisu]) in the future too.
+
+== Advanced Usage
+
+While we have no guaranteed API to access KTX subimages directly, you can use https://github.com/castle-engine/castle-engine/blob/master/src/images/castleinternalcompositeimage.pas[CastleInternalCompositeImage] unit. This way you can explicitly iterate over items of a texture array in KTX, for any purpose.
+
+WARNING: As the name suggests, `CastleInternalCompositeImage` is an internal unit and its API may change arbitrarily in the future.

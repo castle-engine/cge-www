@@ -33,9 +33,9 @@
     In case of 2D textures, the 3rd component is just ignored
     and the 4th is normal divisor (as usual for homogeneous coordinates).</p>
 
-    <p><?php echo a_href_page_hashlink('DDS file format', 'x3d_implementation_texturing',
-    'section_dds'); ?> to specify 3d (volume)
-    textures is supported by <code>ImageTexture3D</code>.</p>
+    <p><a href="dds">DDS</a> and <a href="ktx">KTX</a> file formats
+    to specify 3D (volume)
+    textures are supported by <code>ImageTexture3D</code>.</p>
 
     <p>Note that <code>PixelTexture3D</code> with RGBA values has a
     problematic behavior because it uses <code>MFInt32</code> field for colors.

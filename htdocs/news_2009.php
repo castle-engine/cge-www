@@ -155,7 +155,7 @@ castle_thumbs(array(
 
   <li><p>All X3D 3D texture nodes implemented.</p></li>
 
-  <li><p>DDS (DirectDraw Surface) format is supported, for all texture types (2D, 3D in <code>ImageTexture3D</code>, cube map in <code>ImageCubeMapTexture</code>). S3TC compression, explicit mipmaps are all supported, <a href="https://castle-engine.io/x3d_implementation_texturing.php#section_dds">more details here</a>. New ' . news_a_href_page('glViewImage 1.3.0', 'glviewimage') . ' supports reading, writing and even limited editing of DDS images.<!-- Many other usability fixes were done to <code>glViewImage</code> along the road.--></p></li>
+  <li><p>DDS (DirectDraw Surface) format is supported, for all texture types (2D, 3D in <code>ImageTexture3D</code>, cube map in <code>ImageCubeMapTexture</code>). S3TC compression, explicit mipmaps are all supported, <a href="https://castle-engine.io/dds">more details here</a>. New ' . news_a_href_page('glViewImage 1.3.0', 'glviewimage') . ' supports reading, writing and even limited editing of DDS images.<!-- Many other usability fixes were done to <code>glViewImage</code> along the road.--></p></li>
 
   <li><p><a href="https://castle-engine.io/x3d_extensions.php#section_ext_rendered_texture">RenderedTexture</a> node is implemented: a texture rendered from a specified viewpoint.</p></li>
 

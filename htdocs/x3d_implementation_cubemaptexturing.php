@@ -154,8 +154,7 @@ to the surrounding enviroment (as there are are no self-reflections).</p>
 
   <li><?php echo x3d_node_link('ImageCubeMapTexture'); ?>
 
-    <p><?php echo a_href_page_hashlink('DDS file format', 'x3d_implementation_texturing',
-    'section_dds'); ?> to specify cube maps
+    <p><a href="dds">DDS file format</a> to specify cube maps
     (including S3TC compressed cube maps) is supported.</p></li>
 
   <li><?php echo x3d_node_link('GeneratedCubeMapTexture'); ?>

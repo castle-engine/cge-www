@@ -17,7 +17,6 @@ cgeimg::block[
 
 == Download (version 2.1.0)
 
-// TODO: implement this macro
 cge::download-application[
   2.1.0,
   v2.1.0,
@@ -62,14 +61,16 @@ NOTE: We do not recommend to rely on _Castle Game Engine_ reading PSD files dire
 NOTE: For most of the above formats, PNG is a better alternative. E.g. PNG will result in smaller file size (without losing any features) compared to PNM, PBM, PGM, PPM, XPM. PNG will be loaded much much faster than XPM (text-only format that is very slow to load). PNG is more widely supported and has proper specification, unlike PCX. And while using JPG is common (due to its lossy but often high-quality compression), this compression is somewhat wasted when loading images to GPU.
 
 KTX::
-https://www.khronos.org/opengles/sdk/tools/KTX/file_format_spec/[Khronos Texture format].
+_Khronos Texture Format_. Excellent image format to utilize various graphic features, like GPU compression (images stay compressed in GPU memory), explicit mipmaps, cube maps, volume (3D) textures. Bright future: there's support for excellent KTX 2 coming.
 +
-Excellent image format to utilize various graphic features, like GPU compression (images stay compressed in GPU memory), explicit mipmaps, cube maps, volume (3D) textures. Bright future: there's support for excellent KTX 2 coming.
+See link:ktx[details about KTX features and our support].
 +
 With _Castle Image Viewer_ you can view all subimages within one DDS file, see menu items _"Images -> Next/Previous Subimage in composite (DDS, KTX)"_.
 
 DDS::
 https://en.wikipedia.org/wiki/DirectDraw_Surface[Direct Draw Surface]. Similar to KTX, but older. Saving to DDS is also supported.
++
+See link:dds[details about DDS features and our support].
 
 RGBE::
 Simple HDR (high dynamic range) format.
