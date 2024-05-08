@@ -112,9 +112,9 @@ castle-model-viewer to <b>generate on-the-fly thumbnails of 3D models</b>
 in the viewed directory. Assuming that castle-model-viewer is on the $PATH
 and you already did previous <code>./install.sh</code>, you can run:</p>
 
-<pre>
+```bash
 ./install_thumbnailer.sh
-</pre>
+```
 
 <p><!--inside the <code>desktop</code> directory.-->
 This will add the gconf keys to run thumbnailers on your 3D models.
@@ -190,11 +190,11 @@ flawlessly :) So give it a try!
   <li><p><i>Animations</i> may be played from VRML / X3D files,
     using sensors, scripts, interpolators and all other VRML events features.
 
-    <p>You can activate VRML pointing-device sensors by clicking with
+    <p>You can activate X3D pointing-device sensors by clicking with
     <i>left mouse button</i> (the cursor will change shape and you will
     get status information when your cursor is over some clickable sensor).
     Note that this works only when <i>Collision
-    detection</i> is on (as it requires octree).</p>
+    detection</i> is on.</p>
 
     <p>You can also play a <i>named animation</i> using menu <i>Animation -&gt; Named Animations</i>.
   </li>
@@ -220,9 +220,9 @@ flawlessly :) So give it a try!
 
 <ul>
   <li><p><i>Left mouse button</i> is used for interacting
-    with the VRML/X3D world. When the cursor turns into a grabbing hand
+    with the X3D world. When the cursor turns into a grabbing hand
     you know you can click or drag on this 3D object. This uses
-    the <?php echo a_href_page('VRML/X3D pointing-device sensors',
+    the <?php echo a_href_page('X3D pointing-device sensors',
     'x3d_implementation_pointingdevicesensor'); ?>, and is fully configurable
     by 3D world authors.</p>
 
@@ -301,10 +301,10 @@ They all are optional.
 
 <p>Command-line options:
 
-<pre>
+```bash
 --screenshot  TIME  FILE-NAME
 --screenshot-range  TIME-BEGIN  TIME-STEP  FRAMES-COUNT  FILE-NAME
-</pre>
+```
 
 <p>These options allow you to capture a screenshot of the loaded scene.
 They know about animations stored in 3D files, that's
@@ -337,9 +337,9 @@ at command-line too, otherwise we'll just make a screenshot
 of the default empty (black) scene. So to take a simple screenshot
 of a scene, at it's default camera, just call</p>
 
-<pre>
+```bash
 castle-model-viewer my_model.wrl --screenshot 0 output.png
-</pre>
+```
 
 <p><b>The detailed specification how screenshot options work</b>:
 
@@ -431,18 +431,18 @@ castle-model-viewer my_model.wrl --screenshot 0 output.png
 <ul>
   <li><p>Simply get a single screenshot at given time:
 
-<pre>
+```bash
 castle-model-viewer my_model.wrl --screenshot 0 output.png
-</pre>
+```
   </li>
 
   <li><p>Simply get a movie of 2 seconds of animation.
     To calculate the numbers, note that we generate a movie with
     25 frames per second:
 
-<pre>
+```bash
 castle-model-viewer my_model.castle-anim-frames --screenshot-range 0 0.04 50 output.avi
-</pre>
+```
 
     <p>To get this as a sequence of images, just use <code>output@counter(4).png</code>
     instead of <code>output.avi</code>.
@@ -450,11 +450,11 @@ castle-model-viewer my_model.castle-anim-frames --screenshot-range 0 0.04 50 out
 
   <li><p>Example of more complicated use:
 
-<pre>
+```bash
 castle-model-viewer my_model.castle-anim-frames \
   --screenshot-range 0 0.04 50 output@counter(1).avi \
   --screenshot-range 10 0.04 50 output@counter(1).avi
-</pre>
+```
 
     <p>This generates two files: <code>output1.avi</code> with 2 second animation
     from 0.0 to 2.0 time, and <code>output2.avi</code> with 2 second animation
@@ -515,12 +515,13 @@ castle-model-viewer my_model.castle-anim-frames \
         castle_game_engine and castle-model-viewer', 'all_programs_sources'); ?>.
         Unpack them, such that <code>castle_game_engine/</code> and <code>castle-model-viewer/</code>
         directories are siblings.
-      <li>In the terminal, do ```bash
+      <li>In the terminal, do
+```bash
 export CASTLE_FPC_OPTIONS=-dCASTLE_WINDOW_XLIB
 cd castle-model-viewer/
 make
 # and copy resulting castle-model-viewer binaries wherever you want
-```</li>
+```
     </ol>
 
     <p>On a server, you probably want to initialize taking a screenshot
@@ -600,7 +601,7 @@ approach to using command-line to convert models.
 
 <p>Examples:</p>
 
-<pre>
+```bash
 # Convert glTF to X3D
 castle-model-viewer input.gltf --write &gt; output.x3dv
 
@@ -613,7 +614,7 @@ castle-model-viewer input.wrl --write --write-force-x3d &gt; output.x3dv
 # You could add --[write-]force-x3d, but it's not needed
 # (it is implied by XML encoding anyway).
 castle-model-viewer input.wrl --write --write-encoding=xml &gt; output.x3d
-</pre>
+```
 
 <p>Detailed docs of <code>castle-model-viewer</code> command-line options for converting:</p>
 
@@ -690,14 +691,7 @@ castle-model-viewer input.wrl --write --write-encoding=xml &gt; output.x3d
     Currently, highest value is 4. So <code>AMOUNT</code> numbers above 4 are
     exactly the same as 4.</p>
 
-    <p>There is no guarantee what specific values of <code>AMOUNT</code> exactly
-    mean, as this depends on your graphic card capabilities. The graphic cards
-    themselves don't provide methods to reliably set some specific FSAA method
-    (only hints, like <code>glHint(GL_MULTISAMPLE_FILTER_HINT_NV, ...)</code>)
-    since the general idea is that better GPU models may provide the same or even
-    better results using different methods. From your (user) point of view,
-    you can test each method and just decide which looks best and isn't too slow
-    on your 3D model and graphic card.</p></dd>
+    <p>There is no guarantee what specific values of <code>AMOUNT</code> exactly mean, as this depends on your graphic card capabilities.Just test each method and decide which looks best on your system and is fast enough.</p></dd>
 
   <dt>--viewpoint VIEWPOINT-NAME</dt>
   <dd>
@@ -705,25 +699,18 @@ castle-model-viewer input.wrl --write --write-encoding=xml &gt; output.x3d
 
   <p>By default, when this option is not used, we follow VRML/X3D standard and use the first viewpoint found in the file (but not in the inlined files). Of course you can always add nodes to the scene to trigger binding other viewpoints at the beginning (for example, add <code>ProximitySensor</code> with very large size that sends the <code>enter</code> event to the <code>set_bind</code> of chosen viewpoint). Or you can just exchange the order of viewpoint nodes. But sometimes it's not comfortable to edit the scene. Especially if you want to use the <code>--screenshot</code> options to capture a scene, it's useful to be able to choose a viewpoint by this command-line option.</p>
 
-  <p>If you use this option: when the given <code>VIEWPOINT-NAME</code> is a number, it is treated as the index of viewpoint to be used (0 means the first viewpoint, 1 means the 2nd viewpoint and so on). Otherwise, <code>VIEWPOINT-NAME</code> is treated as a node name (node name is given by <code>"DEF Xxx"</code> in VRML/X3D, and it cannot start with a digit, so this is unambigous).</p>
+  <p>If you use this option: when the given <code>VIEWPOINT-NAME</code> is a number, it is treated as the index of viewpoint to be used (0 means the first viewpoint, 1 means the 2nd viewpoint and so on). Otherwise, <code>VIEWPOINT-NAME</code> is treated as a node name (node name is given by <code>"DEF Xxx"</code> in VRML/X3D, and it cannot start with a digit, so this is unambiguous).</p>
 
   <p>In interactive mode, remember that you don't need this option &mdash; instead you can use comfortable <i>Navigation -&gt; Viewpoints</i> menu.</p>
   </dd>
 </dl>
 
-<p>As usual all standard options understood by
-<a href="opengl_options.php">OpenGL programs</a>,
-<a href="openal#_command_line_options_that_control_the_sound_outupt">OpenAL (3D sound) programs</a>,
-<a href="common_options.php">all programs</a>
- are also allowed. Run with command-line <code>--help</code> to get full list.
+All link:opengl_options.php[standard options understood by our GUI programs],
+link:openal[standard options understood by our programs using audio]
+and all link:common_options.php[standard options understood by all our programs]
+are handled as well. Run with command-line option `--help` to see the full list.
 
 == Dependencies
-
-<?php echo depends_ul(array(
-  DEPENDS_OPENGL,
-  DEPENDS_LIBPNG_AND_ZLIB,
-  DEPENDS_UNIX_CASTLE_WINDOW_GTK_2,
-  SUGGESTS_OPENAL_VORBISFILE)); ?>
 
 <p>To play movies (in VRML/X3D <code>MovieTexture</code> nodes) and
 to record movies (by <code>--screenshot-range</code> option)
