@@ -26,9 +26,11 @@ We support almost everything useful from the MD3 file format:
 +
 We read optional `animation.cfg` file alongside the MD3 model that defines  animations inside the MD3 file.
 +
-NOTE: CGE assumes that all animations from `animation.cfg` are suitable for the accompanying MD3 file, as long as the number of animation frames is sufficient. It is the developer's responsibility to actually use only the animations that make sense for given MD3 model. Some games place multiple MD3 files in the same directory as one `animation.cfg`, and there are game-specific assumptions which animations make sense for which MD3 model. E.g. link:http://tremulous.net/[Tremulous] human models have animations like `BOTH_xxx` (that make sense to play on both `upper.md3` and `lower.md3`) and `TORSO_xxx` (that make sense to play only on `upper.md3`).
+NOTE: CGE assumes that all animations from `animation.cfg` are suitable for the accompanying MD3 file, as long as the number of animation frames is sufficient. It is the developer's responsibility to actually use only the animations that make sense for given MD3 model. Some games place multiple MD3 files in the same directory with one `animation.cfg`, and there are game-specific assumptions which animations make sense for which MD3 model. E.g. link:http://tremulous.net/[Tremulous] human models have animations like `BOTH_xxx` (that make sense to play on both `upper.md3` and `lower.md3`) and `TORSO_xxx` (that make sense to play only on `upper.md3`).
 +
-Without the `animation.cfg` file, the MD3 will only contain one long animation  called `animation` that plays all available frames. You can still use manual approach to play any subrange of this animation, see link:https://github.com/castle-engine/castle-engine/tree/master/examples/animations/split_long_md3_animation_into_logical_pieces[examples/animations/split_long_md3_animation_into_logical_pieces]. See also link:https://www.youtube.com/watch?v=DpRGTKqJZ4Y[the resulting demo].
+Without the `animation.cfg` file, the MD3 will only contain one long animation  called `animation` that plays all available frames. You can still use manual approach to play any subrange of this animation, see link:https://github.com/castle-engine/castle-engine/tree/master/examples/animations/split_long_animation[examples/animations/split_long_animation].
++
+See also link:https://www.youtube.com/watch?v=DpRGTKqJZ4Y[the demo of playing animations on Tremulous creatures]. You can test playing MD3 animations using link:castle-model-viewer[Castle Model Viewer].
 
 - Skins.
 +
