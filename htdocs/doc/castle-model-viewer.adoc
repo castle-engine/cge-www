@@ -22,7 +22,7 @@ include::common.adoc[]
 
 Viewer for link:creating_data_model_formats.php[3D and 2D model formats supported by the Castle Game Engine]: link:gltf[glTF], link:vrml_x3d.php[X3D], link:vrml_x3d.php[VRML], link:spine[Spine JSON], link:sprite_sheets[sprite sheets (in Castle Game Engine, Cocos2D and Starling XML formats)], link:md3[MD3], Wavefront OBJ, 3DS, STL, Collada, link:creating_data_model_formats.php[and more].
 
-Explore the virtual world with collisions, gravity, animations, sensors, shadows, mirrors, shaders and more. View it from multiple cameras at once. Take screenshots with various options (transparent background, cube maps).
+Examine or walk in the virtual world with collisions, gravity, animations, X3D sensors, shadows, mirrors, shaders and more. View it from multiple cameras at once. Take screenshots with various options (transparent background, cube maps).
 
 You can also convert between model formats -- right now you can convert any model to X3D, we plan to add output to glTF soon as well. Together with this application, we also distribute link:castle-model-converter[castle-model-converter] command-line tool and you can also use our link:convert.php[online model converter]. They all use the same codebase and have the same features.
 
@@ -141,80 +141,11 @@ flawlessly :) So give it a try!
 
 == Features
 
-<ul>
-  <li><p><a href="creating_data_model_formats.php">All the 3D and 2D model formats supported by Castle Game Engine</a>
-    can be opened: X3D, VRML, Collada, 3DS, MD3, Wavefront OBJ, Spine JSON...
+-
 
-  <li><p>Various navigation modes are available:
-    <code>Examine</code> (easily rotate and move the whole model),
-    <code>Walk</code> (walk like in FPS games,
-    with collision detection, gravity and related features available),
-    <code>Fly</code> (similar to <code>Walk</code> but without gravity),
-    <code>2D</code>.
+== Navigation with keys and mouse
 
-  <li><p>All model formats can be converted to X3D.
-
-    <p>You can convert between X3D classic and XML encodings (in both directions),
-    and you can convert from VRML 2 to X3D.
-    You can also use castle-model-viewer as a "pretty-printer",
-    just open and save any X3D or VRML file without any version conversion.
-
-    <p>Command-line options to convert in batch mode (<code>--write</code>)
-    are available also in castle-model-viewer.
-
-    <p>Also a dedicated command-line program
-    <code>tovrmlx3d</code> is included in the castle-model-viewer download.
-    It provides a few more conversion and validation options,
-    can be used in batch mode,
-    can be used on servers without GUI libraries installed.
-    See <a href="#section_tovrmlx3d">tovrmlx3d usage</a> below.
-
-  <li><p>A number of Castle Game Engine's rendering features are available,
-    like GLSL shaders, bump mapping and shadows.
-
-  <li><p>Built-in ray-tracer
-    (that is also available as a separate command-line program,
-    <?php echo a_href_page("rayhunter", "rayhunter"); ?>)
-    to generate nice views of the scene (with shadows, mirrors,
-    and transmittance). Classic ray-tracer implements exactly VRML 97 / X3D
-    lighting equations.
-
-  <li><p>You can inspect your model (select triangles by clicking
-    <i>right mouse button</i> in <i>Walk / Fly</i> mode,
-    and use menu item <i>Help</i> -> <i>Selected object information</i>).
-
-    <p>There are also very limited editing capabilities. They are
-    intended to be used only as post-processing of some model.
-    We intentionally do not try to implement a full 3D authoring program here.
-
-  <li><p><i>Animations</i> may be played from VRML / X3D files,
-    using sensors, scripts, interpolators and all other VRML events features.
-
-    <p>You can activate X3D pointing-device sensors by clicking with
-    <i>left mouse button</i> (the cursor will change shape and you will
-    get status information when your cursor is over some clickable sensor).
-    Note that this works only when <i>Collision
-    detection</i> is on.</p>
-
-    <p>You can also play a <i>named animation</i> using menu <i>Animation -&gt; Named Animations</i>.
-  </li>
-
-  <li><p><i>Baked animations</i> can also be played from
-    <?php echo a_href_page('Castle Animation Frames
-    (castle-anim-frames) format', 'castle_animation_frames'); ?> or MD3 files
-    (and you can convert any interactive VRML/X3D animation to a baked one).</p>
-
-  <li><p>There are menu items and <a href="#section_screenshot">command-line
-    options to catch screenshots and movies
-    of 3D scenes and animations</a>. GNOME users will be happy to hear
-    that it can also be used as <a href="#section_install_free_desktop">Nautilus
-    thumbnailer</a>, providing thumbnails when you view directory with
-    VRML / X3D and other 3D models. We can also make a special
-    "screenshot" of 3D environment as a cube map (to DDS, or six
-    separate images).
-</ul>
-
-== Navigation with keys &amp; mouse
+=== Inspection (in all navigation modes)
 
 <h3>All navigation modes:</h3>
 

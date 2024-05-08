@@ -39,6 +39,21 @@ Source code is available on GitHub as part of https://github.com/castle-engine/c
 
 WARNING: *Work in progress*. We migrate documentation and downloads to a new application name, planned to be finished this week, before 2024-05-12 (but hopefully sooner!). Please have patience, and watch for https://castle-engine.io/wp/[news]!
 
+== Features
+
+    <p>Also a dedicated command-line program
+    <code>tovrmlx3d</code> is included in the castle-model-viewer download.
+    It provides a few more conversion and validation options,
+    can be used in batch mode,
+    can be used on servers without GUI libraries installed.
+    See <a href="#section_tovrmlx3d">tovrmlx3d usage</a> below.
+
+    <p>You can convert between X3D classic and XML encodings (in both directions),
+    and you can convert from VRML 2 to X3D.
+    You can also use castle-model-viewer as a "pretty-printer",
+    just open and save any X3D or VRML file without any version conversion.
+
+
 ////
 == Usage
 
@@ -107,3 +122,4 @@ tovrmlx3d input.wrl --encoding=xml &gt; output.x3d
 
 <p>Run <code>tovrmlx3d --help</code> to see the full list of options.
 ////
+
