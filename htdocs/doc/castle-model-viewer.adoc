@@ -310,8 +310,9 @@ You need to install a graphic environment
     want to run it in batch mode for screenshots. To do this:
 
 
-- <?php echo a_href_page('Download the sources of
-        castle_game_engine and castle-model-viewer', 'all_programs_sources'); ?>.
+- Download the sources of
+        castle_game_engine and castle-model-viewer
+
         Unpack them, such that `castle_game_engine/` and `castle-model-viewer/`
         directories are siblings.
 - In the terminal, do

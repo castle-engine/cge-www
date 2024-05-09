@@ -598,8 +598,7 @@ $castle_sitemap = array(
               'raytr_gallery' => array('title' => 'Small gallery of images rendered using rayhunter'),
             ),
           ),
-          'kambi_mgf2inv' => array('title' => 'kambi_mgf2inv'),
-          'all_programs_sources' => array('title' => 'All Programs Sources'),
+          'kambi_mgf2inv' => array('title' => 'kambi_mgf2inv')
         ),
       ),
       'additional_components' => array(
@@ -2162,10 +2161,9 @@ function castle_replace_asciidoctor_macros_file($file_name)
    Will use CASTLE_GITHUB_NAME if defined. */
 function castle_sources_notice()
 {
-  $result = 'This is free/open-source software. Developers can ' .
-    a_href_page('download sources of this program', 'all_programs_sources') . '.';
+  $result = 'This is free/open-source software.';
   if (defined('CASTLE_GITHUB_NAME')) {
-    $result .= ' Or just <a href="https://github.com/castle-engine/' . CASTLE_GITHUB_NAME . '">get the code from GitHub</a>.';
+    $result .= ' <a href="https://github.com/castle-engine/' . CASTLE_GITHUB_NAME . '">Get the code from GitHub</a>.';
   }
   return $result;
 }

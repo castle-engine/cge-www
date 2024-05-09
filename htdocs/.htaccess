@@ -50,6 +50,7 @@ RewriteRule . doc.php?page=%{REQUEST_URI} [L]
 # Old things, redirect to closest new things.
 # Sorted list.
 Redirect "/abbreviated_x3d_specs_for_users.chm" "/vrml_x3d.php"
+Redirect "/all_programs_sources.php" "https://github.com/castle-engine/"
 Redirect "/b.php" "https://github.com/castle-engine/cge-www/blob/master/htdocs/doc/obsolete/web3d_2020_browser_presentation.adoc"
 Redirect "/bezier_curves.php" "/curves_tool"
 Redirect "/blender.php" "/blender"
