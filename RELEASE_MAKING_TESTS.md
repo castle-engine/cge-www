@@ -25,7 +25,7 @@ Download for important platforms (esp. Windows, that Michalis doesn't use regula
     - open designs inside
     - compile F9 with FPC
     - compile F9 with Delphi
-    - click and double-click on some glTF, to make sure preview and view3dscene appear ok
+    - click and double-click on some glTF, to make sure preview and castle-model-viewer appear ok
 - Build + run some examples
 - Open doc/reference/index.html
 
@@ -70,7 +70,7 @@ For each:
 
 - define OpenGLES in ../castle-engine/src/common_includes/castleconf.inc
 
-- check OpenGLES desktop rendering works on some demo-models using view3dscene.
+- check OpenGLES desktop rendering works on some demo-models using castle-model-viewer.
 
 ## Test: Various OpenGL support cases, including modern and ancient, are supported
 
@@ -93,10 +93,10 @@ For each:
     ./castle-editor --capabilities=force-modern
     ```
 
-- Test `view3dscene` with fixed-function:
+- Test `castle-model-viewer` with fixed-function:
 
     ```
-    view3dscene --capabilities=force-fixed-function
+    castle-model-viewer --capabilities=force-fixed-function
     ```
 
 ## Test: fpmake installation and InstantFPC
@@ -157,10 +157,10 @@ sudo apt purge gradle # if you installed gradle just for this test
 sudo apt --purge autoremove # if you didn't have anything else not pulled by gradle deps
 ```
 
-## Test: Before view3dscene release, make sure everything auto-generated is up-to-date and respective make targets work
+## Test: Before castle-model-viewer release, make sure everything auto-generated is up-to-date and respective make targets work
 
 ```
-cd view3dscene/
+cd castle-model-viewer/
 make clean-code
 make generate-code
 ```

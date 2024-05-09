@@ -1,10 +1,10 @@
-## Release making (for CGE engine or application, like view3dscene)
+## Release making (for CGE engine or application, like castle-model-viewer)
 
 - Test as described in RELEASE_MAKING_TESTS.md
 
 - Bump versions:
 
-    - For applications (like view3dscene):
+    - For applications (like castle-model-viewer):
 
         - Make sure Version constant in the program's source code is incremented.
 
@@ -49,9 +49,9 @@
 
 - Make new releases from existing tags on GitHub, like
 
-  https://github.com/castle-engine/castle-view-image/releases/new
   https://github.com/castle-engine/castle-engine/releases/new
-  https://github.com/castle-engine/view3dscene/releases/new
+  https://github.com/castle-engine/castle-image-viewer/releases/new
+  https://github.com/castle-engine/castle-model-viewer/releases/new
 
   Save new release as merely a draft now.
 
@@ -62,7 +62,7 @@
     to proper release, like 7.0-alpha.2.
     Commit, push, wait for Jenkins.
 
-  - For pasdoc, view3dscene and most other projects under castle-engine org:
+  - For pasdoc, castle-model-viewer and most other projects under castle-engine org:
     Do it semi-automatically using scripts in cge-github-update-release:
 
     ssh jenkins.castle-engine.io
@@ -95,12 +95,7 @@
 - Publish releases on GitHub
 
 - Update the URLs:
-  - view3dscene links in htdocs/view3dscene.php (see lower about "how to update www content")
-    if you want to update snapshots, update
-    SNAPSHOTS_BASE
-    SNAPSHOTS_VERSION
-    if you want to update stable version, make sure the new links are OK
-    (VERSION_VIEW3DSCENE should already be OK)
+  - castle-model-viewer versions in htdocs/doc/castle-model-viewer.adoc (see lower about "how to update www content")
 
   - CGE links in `cge::download-engine[....]` in htdocs/doc/download.adoc ,
     update version/tag there.
@@ -135,8 +130,6 @@
       make clean upload
       ```
 
-  - update $engine_ver in htdocs/all_programs_sources.php, to reflect
-    with what engine ver each sources were tested.
   - update FPC/Lazarus requirements if needed:
     https://castle-engine.io/supported_compilers.php
 
@@ -146,7 +139,7 @@
         update in castle-engine-cloud-build-tools/ all versions to point to 7.0-alpha.2
         ./build-local.sh
 
-- In case of CGE and view3dscene, upload them also to http://castle-engine.itch.io/ :
+- In case of CGE and castle-model-viewer, upload them also to http://castle-engine.itch.io/ :
   Run
 
   ```
@@ -159,15 +152,15 @@
   pack/upload_itch_io.sh
   ```
 
-  Once `butler status castle-engine/view3dscene` is good,
-  - test downloading it from https://castle-engine.itch.io/view3dscene (using itch.io app)
+  Once `butler status castle-engine/castle-model-viewer` is good,
+  - test downloading it from https://castle-engine.itch.io/castle-model-viewer (using itch.io app). TODO: right now it is https://castle-engine.itch.io/view3dscene , should be renamed.
   - write a new devlog there (copy-paste from GitHub release notes)
 
   Once `butler status castle-engine/castle-game-engine` is good,
   - test downloading it from https://castle-engine.itch.io/castle-game-engine (using itch.io app)
   - write a new devlog there (copy-paste from GitHub release notes)
 
-- In case of CGE and view3dscene, upload them also to https://sourceforge.net/projects/castle-engine/ files:
+- In case of CGE and castle-model-viewer, upload them also to https://sourceforge.net/projects/castle-engine/ files:
   Run
 
   ```
@@ -180,7 +173,7 @@
   https://sourceforge.net/projects/castle-engine/
 
   Check this contains new files:
-  https://sourceforge.net/projects/castle-engine/files/view3dscene/
+  https://sourceforge.net/projects/castle-engine/files/castle-model-viewer/
   https://sourceforge.net/projects/castle-engine/files/castle_game_engine/
 
   Mark new CGE files as default for Linux/Windows.
@@ -198,9 +191,7 @@
 
       Also revert Jenkinsfile to do full "Build Examples" (in case you hacked it for release).
 
-    - view3dscene: version to `x.<odd>.0`
-
-      also in htdocs/view3dscene.php now bump SNAPSHOTS_VERSION
+    - castle-model-viewer: version to `x.<odd>.0`
 
 ## Website updating
 
@@ -247,6 +238,7 @@
 - new release of some programs/engine may be announced on freshcode:
 
   http://freshcode.club/projects/view3dscene
+    TODO: make new for castle-model-viewer?
   http://freshcode.club/projects/castle-engine
 
   (Old: our projects are also on freshmeat, but it's dead now:
@@ -326,8 +318,8 @@
 
 - Watch http://planetdev.freegamedev.net/ , they aggregate our news feed.
 
-- Submit devlog on itch.io ( https://michaliskambi.itch.io/ )
-  about Castle Game Engine and view3dscene releases.
+- Submit devlog on itch.io ( https://castle-engine.itch.io/ )
+  about Castle Game Engine and castle-model-viewer releases.
 
 - https://en.delphipraxis.net/forum/13-delphi-third-party/
   Sample: https://en.delphipraxis.net/topic/7480-castle-game-engine-70-alpha2-release/
