@@ -22,7 +22,7 @@ you can convert it into a perfect-quality movie.
 So we support recording a predefined animation in VRML/X3D
 (meaning: it plays without any user interaction) to a series of
 images. Such animation can then be converted into a movie e.g. using
-<code>ffmpeg</code> (our <?php echo a_href_page('view3dscene', 'view3dscene'); ?>
+<code>ffmpeg</code> (our <a href="castle-model-viewer">Castle Model Viewer</a>
  does this automatically under the hood).
 
 <p>Although this is

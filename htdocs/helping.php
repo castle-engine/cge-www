@@ -106,7 +106,7 @@ $toc = new TableOfContents(
 <?php echo $toc->html_section(); ?>
 
 <p>Package <?php echo a_href_page('Castle Game Engine', 'index'); ?>
- and <?php echo a_href_page('view3dscene', 'view3dscene'); ?>
+ and <a href="castle-model-viewer">Castle Model Viewer</a>
  for your favourite Linux distribution.
 
 <ul>
@@ -127,7 +127,7 @@ $toc = new TableOfContents(
     but this should not be a problem &mdash; all major distros already
     have fpc packaged.
 
-  <li><?php echo a_href_page('view3dscene', 'view3dscene'); ?> is GPL &gt;= 2.
+  <li><a href="castle-model-viewer">Castle Model Viewer</a> is GPL &gt;= 2.
     CGE may be used
     <a href="license">under more permissive "LGPL with static-linking exception" &gt;= 2</a>.
 </ul>

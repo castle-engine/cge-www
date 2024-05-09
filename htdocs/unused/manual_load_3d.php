@@ -1,7 +1,7 @@
 <p>You can also download
 <?php echo a_href_page('our demo models', 'demo_models'); ?>.
 And you can open all the models with
-<?php echo a_href_page('view3dscene', 'view3dscene'); ?>,
+<a href="castle-model-viewer">Castle Model Viewer</a>,
 to see how do they look like before loading them into your game.</p>
 
 <p>And if you want to make your own 3D model, go ahead &mdash; generally use any
@@ -26,9 +26,9 @@ with Object Pascal code, and you can always build/modify VRML/X3D graph
 by Object Pascal code).
 So <b>be sure to grab <?php echo a_href_page('our demo VRML/X3D models', 'demo_models'); ?></b>
  and try opening them with any engine example program (like the one you just created,
-or even our <?php echo a_href_page('view3dscene', 'view3dscene'); ?>)
+or even our <a href="castle-model-viewer">Castle Model Viewer</a>)
 &mdash; you will find that everything just works,
 not requiring a single line of Object Pascal code.</p>
 
-<p><b>Our model viewer <?php echo a_href_page('view3dscene', 'view3dscene'); ?></b>
+<p><b>Our model viewer <a href="castle-model-viewer">Castle Model Viewer</a></b>
  allows to test your models before loading them to your games.

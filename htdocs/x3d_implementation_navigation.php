@@ -105,7 +105,7 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
       <li><p><code>avatarSize</code> is honoured fully:
         <ol>
           <li><p>First <code>avatarSize</code> item is the camera radius.
-            If you use <?php echo a_href_page('view3dscene','view3dscene'); ?>,
+            If you use <a href="castle-model-viewer">Castle Model View</a>,
             note that <code>--camera-radius</code> command-line option overrides
             this value.
 
@@ -153,7 +153,7 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
 
         <p>The presence of navigation type
         <code>ANY</code> is ignored by
-        <?php echo a_href_page('view3dscene','view3dscene'); ?>.
+        <a href="castle-model-viewer">Castle Model View</a>.
         We always show controls to change navigation settings, hiding them
         feels harmful to user.
 
@@ -231,8 +231,8 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
 
   <li><p><?php echo x3d_node_link('ViewpointGroup'); ?></p>
 
-    <p>You can use this to create submenus in "Viewpoints" menu in
-    <?php echo a_href_page('view3dscene','view3dscene'); ?>.
+    <p>You can use this to create submenus in <i>"Navigation -> Jump To Viewpoint"</i> menu in
+    <a href="castle-model-viewer">Castle Model View</a>.
     Fields <code>description</code> and <code>children</code> are taken into account.
     Also, you can use this node to hide some viewpoints from the menu:
     the <code>displayed</code> field also works.</p>

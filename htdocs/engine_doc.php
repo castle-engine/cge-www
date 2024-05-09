@@ -58,7 +58,7 @@ and <code>ttf-dejavu</code> font if you want to make PDF version.</p>
 in this work, are available inside <?php echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>
  (see in <code>vrml_engine_doc_simple_examples</code> subdirectory).
 So you can view them comfortably in
-<?php echo a_href_page('view3dscene', 'view3dscene'); ?> etc.
+<a href="castle-model-viewer">Castle Model Viewer</a> etc.
 
 <?php
   castle_footer();

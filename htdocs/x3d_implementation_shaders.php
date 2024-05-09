@@ -408,7 +408,7 @@ So you can just write:</p>
 This happens automatically under the hood in many situations (for example
 when your shapes require bump mapping or shadow maps, or when you
 compile for OpenGLES &gt;= 2). You can run
-<?php echo a_href_page('view3dscene', 'view3dscene'); ?>
+<a href="castle-model-viewer">Castle Model Viewer</a>
  with a command-line option <code>--debug-log-shaders</code>
 and force rendering using shaders (for example by menu option
 <i>View -&gt; Shaders -&gt; Enable For Everything</i>)

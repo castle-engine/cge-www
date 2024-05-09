@@ -74,8 +74,8 @@ Scene.Rotation := Vector4(1, 0, 0, -Pi/2);'); ?>
         by code.
 
         <p>You can also set the viewpoint using the
-        <?php echo a_href_page('view3dscene', 'view3dscene'); ?> feature
-        <i>"Console -&gt; Print Current Camera (Viewpoint)"</i>.
+        <a href="castle-model-viewer">Castle Model Viewer</a> feature
+        <i>"Clipboard -&gt; Print Current Camera (Viewpoint)"</i>.
         Paste the generated <code>Viewpoint</code> code into your X3D file
         (or into an X3D "wrapper" file, that includes another X3D using the <code>Inline</code> node).
 
@@ -102,13 +102,13 @@ Scene.Rotation := Vector4(1, 0, 0, -Pi/2);'); ?>
           <li><i>Up</i> = Z Up</li>
         </ul>
 
-      <li><p>Make sure you use <?php echo a_href_page('view3dscene', 'view3dscene'); ?> (or other VRML/X3D editor) to
+      <li><p>Make sure you use <a href="castle-model-viewer">Castle Model Viewer</a> (or other VRML/X3D editor) to
         generate a <code>Viewpoint</code> in your level that makes gravity
         working in the Z axis.
 
         <p>You can set the viewpoint using the
-        <?php echo a_href_page('view3dscene', 'view3dscene'); ?> feature
-        <i>"Console -&gt; Print Current Camera (Viewpoint)"</i>, just make
+        <a href="castle-model-viewer">Castle Model Viewer</a> feature
+        <i>"Clipboard -&gt; Print Current Camera (Viewpoint)"</i>, just make
         sure to set earlier the <i>"Navigation -&gt; Set Up (and Gravity Up) +Z"</i>.
 
       <li><p>Set <?php echo cgeRef('TCastleTransform.DefaultOrientation'); ?> := <code>otUpZDirectionMinusY</code>.
@@ -158,8 +158,8 @@ it is actually configurable:
     the coordinate system of the currently bound X3DViewpointNode node</i>.
 
   <li><p>In practice, you can just set the viewpoint using the
-    <?php echo a_href_page('view3dscene', 'view3dscene'); ?> feature
-    <i>"Console -&gt; Print Current Camera (Viewpoint)"</i>.
+    <a href="castle-model-viewer">Castle Model Viewer</a> feature
+    <i>"Clipboard -&gt; Print Current Camera (Viewpoint)"</i>.
     Before doing it, you can use the <i>"Navigation -&gt; Set Up (and Gravity Up) ..."</i> menu item.
     The generated <code>Viewpoint</code> node will have correct settings.
 
@@ -192,9 +192,9 @@ feature, and instead decide to work with VRML/X3D files where +Z is
 up in +Y, the specification says that up is +Y transformed by the
 <code>Viewpoint</code> node transformation, and we honour it. In short, this means
 that gravity is configurable in VRML/X3D file. You can setup your
-camera in <?php echo a_href_page('view3dscene', 'view3dscene'); ?>,
+camera in <a href="castle-model-viewer">Castle Model Viewer</a>,
 use <i>"Navigation -> Set Up (and Gravity Up) ..."</i>, then use
-<i>"Console -> Print Current Camera..."</i> option, and copy-paste the
+<i>"Clipboard -> Print Current Camera..."</i> option, and copy-paste the
 generated code from the console to your VRML/X3D file. This will set a
 <code>Viewpoint</code> with desired up vector, which will be correctly used by our
 engine (and other good VRML/X3D browsers actually) for gravity.</p>

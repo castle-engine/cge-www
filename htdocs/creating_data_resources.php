@@ -206,7 +206,7 @@ formats (and expressed in X3D using <code>TimeSensor</code>),
 just like the engine
 <?php echo cgeRef('TCastleSceneCore.PlayAnimation'); ?>
  method. You can see these animations in the
-<?php echo a_href_page('view3dscene', 'view3dscene'); ?>
+<a href="castle-model-viewer">Castle Model Viewer</a>
  by turning on <i>Animations</i> panel.
 
 <!--p>This is nice if your authoring software can store multiple
@@ -295,7 +295,7 @@ state (and moment) of the animation.
     is a good thing on it's own.</p>
 
     <p>You can inspect whether your model is detected as a 2-manifold
-    by <?php echo a_href_page('view3dscene', 'view3dscene'); ?>:
+    by <a href="castle-model-viewer">Castle Model Viewer</a>:
     see menu item <i>Help -&gt; Manifold Edges Information</i>.
     To check which edges are actually detected as border you can use
     <i>View -&gt; Fill mode -&gt; Silhouette and Border Edges</i>,

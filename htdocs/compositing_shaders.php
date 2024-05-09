@@ -55,7 +55,7 @@ Also the <code>water</code> subdirectory contains water implementation
 using our effects.</p>
 
 <p>You can open the example models with any of our engine tools, like
-<?php echo a_href_page('view3dscene', 'view3dscene'); ?>.</p>
+<a href="castle-model-viewer">Castle Model Viewer</a>.</p>
 
 <p>For engine developers using Pascal, the example is in
 <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/shader_effects">examples/viewport_and_scenes/shader_effects</a>.
@@ -71,7 +71,7 @@ We have <i>two</i> independent implementations of this concept now:
 <ol>
   <li>Inside
     <?php echo a_href_page('Castle Game Engine', 'index'); ?> and
-    <?php echo a_href_page('view3dscene', 'view3dscene'); ?>.
+    <a href="castle-model-viewer">Castle Model Viewer</a>.
     By Michalis Kamburelis, the author of this paper.
 
   <li>Inside <a href="http://freewrl.sourceforge.net/">FreeWRL</a>,

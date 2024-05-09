@@ -78,8 +78,8 @@ in one model):
     was tested on <a href="http://www.seamless3d.com/browser_test/index.html">Lucy</a>.
     Make sure to export a version <i>without JavaScript</i>.</p>
 
-    <p>You can try the <?php echo a_href_page('view3dscene', 'view3dscene'); ?>
-    <i>Edit -&gt; Add Humanoids Joints Visualization</i>
+    <p>You can try the <a href="castle-model-viewer">Castle Model Viewer</a>
+    <i>"Edit -&gt; Add Humanoids Joints Visualization"</i>
     menu option to see the joints centers and their names.</p>
 
     <p>TODO: <code>skinNormal</code> is not supported yet.</p></li>

@@ -63,7 +63,7 @@ most of the models are simple and demonstrate some particular <i>Castle Game Eng
 
 <p>Most of the models are in X3D and VRML formats.
 but in general various formats handled by
- <?php echo a_href_page('view3dscene', 'view3dscene'); ?> and
+ <a href="castle-model-viewer">Castle Model Viewer</a> and
  <?php echo a_href_page('Castle Game Engine', 'index'); ?> are used.
 At the beginning of most files (remember that you can open X3D files
 in normal text editor too) you can find

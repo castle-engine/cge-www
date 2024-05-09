@@ -12,5 +12,5 @@
                     <?php /* <a href="< ?php echo reference_link(); ? >">reference</a>, */ ?>
                     <?php /* <a href="modern_pascal">modern Pascal introduction</a> */ ?>
 
-                    <?php /* You can also download <?php echo a_href_page('view3dscene', 'view3dscene'); ?>, our model viewer.</p>
+                    <?php /* You can also download <a href="castle-model-viewer">Castle Model Viewer</a>, our model viewer.</p>
                     */ ?>

@@ -12,11 +12,11 @@ make models for your games.
 <p><!--So the basic guide to create 3D data for our engine is actually
 trivial: export your models to the X3D, or eventually to other supported format.-->
 When exporting your models, we <i>highly advice</i> checking your models in
-<?php echo a_href_page('view3dscene', 'view3dscene'); ?>
+<a href="castle-model-viewer">Castle Model Viewer</a>
  to see if everything is exported correctly.
  Opening models in view3dscene is usually easier than running your whole game
  to test that a particular asset was exported OK.
- And <?php echo a_href_page('view3dscene', 'view3dscene'); ?> was implemented
+ And <a href="castle-model-viewer">Castle Model Viewer</a> was implemented
  using our engine, so it can render exactly the same thing as your game.
 
 <!--We consciously do not try to

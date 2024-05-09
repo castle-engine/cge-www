@@ -18,7 +18,7 @@ echo pretty_heading($page_title);
 developed for the <i>Castle Game Engine</i>.
 
 <p>Try them!
-Simply download <?php echo a_href_page('view3dscene', 'view3dscene'); ?> and
+Simply download <a href="castle-model-viewer">Castle Model Viewer</a> and
 explore the <?php echo a_href_page('demo models', 'demo_models'); ?> collection.
 All these extensions and graphic effects are easy to use,
 and available in <i>Castle Game Engine</i> without the need to code at all.

@@ -44,7 +44,7 @@ projection effect and started gravity for arrows implementation.</p>
     <p>We also used some engine tools and accompanying programs:
     <?php echo a_href_page('rayhunter', 'rayhunter'); ?>
     was used to render some items 2D images (see <code>data/items/xxx/image.png</code>),
-    <?php echo a_href_page('view3dscene', 'view3dscene'); ?>
+    <a href="castle-model-viewer">Castle Model Viewer</a>
     was used to test and slightly edit 3D models,
     and to make many screenshots.
   </li>

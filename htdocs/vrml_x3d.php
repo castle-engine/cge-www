@@ -40,7 +40,7 @@ now we advise using more feature-rich glTF exporter).
 (or download them from the Internet, or grab our
 <?php echo a_href_page('demo models', 'demo_models'); ?>)
 and open them with our
-<?php echo a_href_page('view3dscene', 'view3dscene'); ?>.
+<a href="castle-model-viewer">Castle Model Viewer</a>.
 
 <p>As a 3D file format, X3D is quite unique, as</p>
 

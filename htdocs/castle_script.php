@@ -242,7 +242,7 @@ Script {
   <li><p><a href="https://github.com/castle-engine/demo-models/blob/master/castle_script/ball_game.x3dv">ball_game.x3dv</a>
     &mdash; a small X3D game, with whole game logic implemented in CastleScript
     (key handling by KeySensor node). Can be played in any X3D browser
-    supporting CastleScript, like <?php echo a_href_page('view3dscene','view3dscene'); ?>
+    supporting CastleScript, like <a href="castle-model-viewer">Castle Model Viewer</a>
     or any of the example X3D browser components in engine sources.
 
   <li><p><a href="https://github.com/castle-engine/demo-models/blob/master/castle_script/edit_texture.x3dv">edit_texture.x3dv</a>
@@ -629,7 +629,7 @@ core types (numbers, booleans) to string may be done by the
 
 <p><?php func('writeln', 'writeln(my_string)'); ?> outputs a string.
 How exactly it is displayed depends on the application:
-normal 3D browsers (like <?php echo a_href_page('view3dscene', 'view3dscene'); ?>)
+normal 3D browsers (like <a href="castle-model-viewer">Castle Model Viewer</a>)
 display it on the console (standard error output, if <code>--debug-log</code> is used),
 games (like <?php echo a_href_page('The Castle', 'castle'); ?>)
 display it as in-game notification.

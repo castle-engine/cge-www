@@ -147,7 +147,7 @@ number of frames per second that we managed to display.</b>
         (if you use a standard program template, or manually call
         <code>Window.ParseParameters</code>) you can do it just by passing
         <code>--no-limit-fps</code> command-line option.
-      <li>Or use <?php echo a_href_page('view3dscene', 'view3dscene'); ?>
+      <li>Or use <a href="castle-model-viewer">Castle Model Viewer</a>
         <i>"Preferences -&gt; Frames Per Second"</i> menu item to set them to zero.
       <li>Or change
         <?php echo cgeRef('TCastleApplicationProperties.LimitFPS', 'ApplicationProperties.LimitFPS'); ?>
@@ -254,7 +254,7 @@ may be useful.
 <?php echo $toc->html_section(); ?>
 
 <p>First of all, watch the number of vertexes and faces of the models you load.
-Use <?php echo a_href_page('view3dscene', 'view3dscene'); ?>
+Use <a href="castle-model-viewer">Castle Model Viewer</a>
  menu item <i>Help -&gt; Scene Information</i> for this.
 
 <p>Graphic effects dealing with <i>dynamic and detailed lighting</i>,

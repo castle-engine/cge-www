@@ -16,7 +16,7 @@ Button "Make a screenshot"
 
     How to set a viewpoint?
 
-    * Open the model in <a>castle-model-viewer</a>, choose preferred navigation method (Examine, Walk), position camera as you like, and use "Console->Print Camera Xxx".
+    * Open the model in <a>castle-model-viewer</a>, choose preferred navigation method (Examine, Walk), position camera as you like, and use "Clipboard->Print Camera Xxx".
     * Paste the copied Viewport at the top of your your VRML or X3D file.  (If it's not an VRML or X3D, you can convert it to VRML or X3D, using the form on this page... on using castle-model-viewer "File -> Save As").
 
     Checkbox: Try to download all linked resources, necessary to correctly display the model (textures, inline 3D models...). They must be specified inside the file as http:/ or https:/ URLs.

@@ -95,7 +95,7 @@ of animation handling in our VRML engine documentation</a>.</p-->
                           // (default values are shown below).
                           // Some of it's attributes should be treated like a
                           // "hint for the renderer". General programs like
-                          // view3dscene may honor them,
+                          // Castle Model Viewer may honor them,
                           // but more specialized programs (like "The Castle"
                           // game) may ignore them, since "they know better".
 
