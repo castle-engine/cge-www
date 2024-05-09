@@ -17,9 +17,11 @@ We love to see how you use CGE.</i>
 <div class="row">
   <?php gallery_link('Icosphere',
     'Create icosphere (alternative way to triangulate a sphere, that doesn\'t have poles).
-    <p>By <i>Erik Johnson</i>.',
+    <p>See also <a href="https://forum.castle-engine.io/t/building-icospheres-in-x3d/1153/">related forum thread</a> and <a href="https://github.com/xistext/edjlib">GitHub repository with more goodies, like behavior trees</a>.
+    <p>By <i>Erik Johnson</i>.
+      ',
     'ico_sphere.png',
-    'https://forum.castle-engine.io/t/building-icospheres-in-x3d/1153/');
+    'https://github.com/xistext/edjlib/blob/main/icosphere.pas');
   ?>
 
   <?php gallery_link('Castle Bars',
