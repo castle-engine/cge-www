@@ -180,3 +180,11 @@ make generate-code
 Has to be used interactively. Open and compile `most_important_lazarus_packages_and_tools.lpg` in Lazarus IDE.
 
 Install first lazprojectgroups in Lazarus IDE: https://wiki.freepascal.org/Project_Groups .
+
+## Test: VS Code extension, with CGE installed from Windows installer, with bundled FPC
+
+Make sure no CGE / FPC is installed (or visible on env variables) on the system.
+
+Install new CGE using Windows installer.
+
+Make sure VS Code extension, if only you give CGE path in settings, works -- has code completion, knows FPC and CGE units.
