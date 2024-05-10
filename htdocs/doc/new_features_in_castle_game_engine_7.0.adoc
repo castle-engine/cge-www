@@ -86,11 +86,12 @@ See https://castle-engine.io/roadmap[our roadmap] for more long-term goals (not 
 * More reliable (much less often reloaded) hierarchy of components.
 * Wireframe view.
 * "Change Class" menu action.
-* Dragging and dropping in the hierarchy preserves transformation by default (hold "Ctrl" to not preserve).
+* Dragging and dropping in the hierarchy preserves transformation by default (hold "Ctrl" to not preserve). Also dragging and dropping of multiple components is now possible.
 * link:sketchfab[Sketchfab Importer]
 * https://castle-engine.io/wp/2023/06/03/images-in-ui-regions-subset-of-image-and-visual-editing-of-both-region-and-9-slices/[Visually edit images region and 9-slices borders].
 * Property editors more comfortable, angles in degrees in editor (https://castle-engine.io/wp/2023/07/16/improvements-to-property-editors-in-particular-display-and-input-angles-in-degrees-in-the-editor/[news])
 * Component warnings, to warn e.g. if you have `TCastleRigidBody` without `TCastleCollider` or vice versa.
+* https://castle-engine.io/wp/2024/05/03/find-ctrl-f-find-next-f3-to-easily-find-components-by-name-useful-in-large-designs/[Find components by name (useful in large designs)]
 --
 * Improvements around our https://castle-engine.io/views[views] (formely _states_):
 +
@@ -114,22 +115,27 @@ See https://castle-engine.io/roadmap[our roadmap] for more long-term goals (not 
 * Cache for scene loading: cgeref:TCastleSceneCore.Cache[].
 * MD3 support improvements: multiple animations supported (we load `animation.cfg`), so playing particular MD3 animations is trivial, just use our `PlayAnimation` method. Optimized loading. Choosing skins. Support for tags. See https://castle-engine.io/md3[MD3 support docs], see https://castle-engine.io/wp/2023/03/31/md3-support-improvements-multiple-animations-tags-configurable-skins/[news].
 * Lots of documentation updates. Links to some pages not already mentioned above: https://castle-engine.io/custom_components[custom components], https://castle-engine.io/behaviors[behaviors], https://castle-engine.io/coding_conventions[coding conventions (extended with our guidelines about memory management, nil and more)] .
-* Lots of https://castle-engine.io/android[Android] improvements: Google Play Games, OpenAL, AdMob, building APIs upgrades. See https://castle-engine.io/wp/2023/08/06/android-upgraded-everything-google-play-services-openal-admod-api-level-gradle/[news].
+* Lots of https://castle-engine.io/android[Android] improvements: Google Play Games, OpenAL, AdMob, building APIs upgrades. Installation of tools is also simpler and better documented. See https://castle-engine.io/wp/2023/08/06/android-upgraded-everything-google-play-services-openal-admod-api-level-gradle/[news].
 
 Not part of the engine release, but still cool to mention:
 
 * https://castle-engine.io/wp/2023/12/02/two-new-articles-to-learn-castle-game-engine-and-a-fun-toy-to-play-bad-way-to-play-chess-aka-3d-physics-fun/[Bad way to play chess, aka 3D physics fun -- 2 great tutorial articles about CGE]
+* https://cat-astrophe-games.itch.io/lynch["Lynch" gamejam demo]
+* Lots of materials (slides, examples) and recorded talks from conferences:
++
+--
 * https://www.youtube.com/watch?v=Ad3UywYyRGU[GIC 2022 presentation] along with https://castle-engine.io/gic2022[slides]
 * https://castle-engine.io/ipc2023[IPC 2023 workshop and keynote slides]
 * https://www.youtube.com/watch?v=oA87iclrDZA[Embarcadero CodeRage 2022 presentation]
 * https://www.youtube.com/watch?v=xzfiy01Q8o0[DelphiCon 2023 presentation (CGE starts at 5:09)]
-* https://cat-astrophe-games.itch.io/lynch["Lynch" gamejam demo]
 * Zlot Programistów Delphi (Polish conference): https://castle-engine.io/zlot2023/slides[slides from talk] and https://github.com/castle-engine/zlot-delphi-2023[examples]
 * ITDevCon 2023 conference: https://castle-engine.io/itdevcon2023/slides1[Presentation (slides) from 1st talk, "Creating 3D games and applications using Castle Game Engine"], https://castle-engine.io/itdevcon2023/slides2[Presentation (slides) from 2nd talk, "Advanced Castle Game Engine: forms, 3D generation, shaders, customization"], https://github.com/castle-engine/conference-itdevcon-2023[Example projects].
+* More at https://castle-engine.io/conferences
+--
 
-https://castle-engine.io/view3dscene.php[view3dscene and tovrmlx3d], our tools to view, convert and validate 3D models, also got many improvements.
+https://castle-engine.io/castle-model-viewer[castle-model-viewer (formerly view3dscene) and castle-model-converter (formerly tovrmlx3d)], our tools to view, convert and validate 3D and 2D models, also got many improvements.
 
-- tovrmlx3d now supports:
+- castle-model-converter now supports:
 +
 --
 - `--validate` to perform only validation (not conversion).
@@ -195,7 +201,7 @@ See https://castle-engine.io/wp/2021/02/06/castle-game-engine-7-0-alpha-1-releas
  ** It comes with 4 templates for new projects: empty, 3D model viewer, 2D game, 3D FPS game. These showcase nicely editor possibilities and were designed as a good starting point for your applications.
  ** Editor allows to visually design TCastleUserInterface (like TCastleButton, TCastleLabel) and TCastleTransform (like TCastleScene) hierarchies.
  ** Editor also manages (creates, compiles) Castle Game Engine projects, using our https://castle-engine.io/build_tool[build tool] underneath.
- ** Integrated with our tools (runs view3dscene, castle-view-image etc. when double-clicking), can preview data (models, images, sounds).
+ ** Integrated with our tools (runs link:castle-model-viewer[], link:castle-image-viewer[] etc. when double-clicking), can preview data (models, images, sounds).
  ** Runs a configured compiler: FPC or Delphi.
  ** Runs a configured Pascal code editor when double-clicking on Pascal files: Lazarus, Delphi, Visual Studio Code, custom (Emacs...).
  ** https://castle-engine.io/wp/2021/07/11/font-classes-upgraded-and-available-in-cge-editor/[Fonts], https://castle-engine.io/sound[sounds], and other non-visual components can be designed in the editor too.
