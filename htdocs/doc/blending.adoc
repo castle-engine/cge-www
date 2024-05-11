@@ -92,7 +92,7 @@ For example, the alpha channel detection at the image (cgeref:TEncodedImage.Alph
 
 The engine essentially makes an educated guess about the author's intentions.
 
-To be clear what happens, we advise to always specify the alpha treatment explicitly. One easy way to do this is just to use link:gltf[glTF]. Or set cgeref:TAppearanceNode.AlphaChannel[] from Pascal.
+To be clear what happens, we advise to always specify the alpha treatment explicitly. One easy way to do this is just to use link:gltf[glTF] (in this format, alpha treatment is always specified explicitly). Or set cgeref:TAppearanceNode.AlphaChannel[] from Pascal.
 ====
 
 == Sorting (for alpha blending)
