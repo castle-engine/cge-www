@@ -17,7 +17,7 @@ As *output*, we support X3D or VRML. You can basically convert any input format 
 
 NOTE: We plan to add soon glTF output (from any input).
 
-It can also validate the models, without doing any conversion.
+We can also validate the input model, without doing any conversion.
 
 == Download
 
