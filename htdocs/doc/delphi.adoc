@@ -51,7 +51,7 @@ video::6JfFxnZO4Jc[youtube,width=800,height=450]
 
 * You can alternatively use cgeref:TCastleControl[] that allows to put CGE rendering on FMX (FireMonkey) or VCL form. link:control_on_form[See here for details].
 +
-To register the cgeref:TCastleControl[] component in Delphi IDE, follow https://github.com/castle-engine/castle-engine/blob/master/packages/delphi/README.md[Delphi packages installation instructions].
+To register the cgeref:TCastleControl[] component in Delphi IDE, follow link:delphi_packages[Delphi packages installation instructions].
 
 ## Delphi versions supported
 
@@ -61,8 +61,9 @@ To register the cgeref:TCastleControl[] component in Delphi IDE, follow https://
 +
 --
 Windows (32-bit and 64-bit):: Delphi >= 10.2.1
-Linux (64-bit only):: Delphi >= 11.3 (see https://github.com/castle-engine/castle-engine/issues/577[#577 for reasons])
-Android, iOS, macOS (Upcoming):: Delphi >= 10.4 (see below for reasons; it may change once we finalize these platforms)
+link:delphi_linux[Linux] (64-bit only):: Delphi >= 11.3
+// (see https://github.com/castle-engine/castle-engine/issues/577[#577 for reasons])
+Android, iOS, macOS (Upcoming):: Delphi >= 10.4 (see below for reasons; these requirements may change once we finalize these platforms)
 --
 
 ////
