@@ -1,4 +1,4 @@
-# Castle Model Converter
+# Castle Model Converter (formerly tovrmlx3d)
 include::common.adoc[]
 :description: Command-line converter from all 3D and 2D model formats supported by Castle Game Engine (glTF, X3D, VRML, MD3, OBJ, STL, Collada, Spine JSON, sprite sheets and more) to X3D. Free and open-source software. For Linux, Windows, macOS, Raspberry Pi and more.
 :cge-social-share-image: castle-model-converter.png

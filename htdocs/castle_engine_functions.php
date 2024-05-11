@@ -558,7 +558,17 @@ $castle_sitemap = array(
 
   'videos' => array('title' => 'Videos', 'url' => 'https://www.youtube.com/c/CastleGameEngine'),
 
-  'doc/castle-model-viewer'  => array('hint' => 'Viewer for glTF, X3D, Collada, sprite sheets and other 3D and 2D model formats', 'title' => 'Model Viewer'),
+  'doc/castle-model-viewer'  => array(
+    'hint' => 'Viewer for glTF, X3D, Collada, sprite sheets and other 3D and 2D model formats',
+    'title' => 'Model Viewer',
+    'sidebar' => true,
+    'sub' => array(
+      'doc/castle-model-converter' => array('title' => 'Model Converter'),
+      'convert' => array('title' => 'Online Model Converter'),
+      //'convert-output' => array('title' => 'Conversion output'),
+      'doc/castle-image-viewer' => array('title' => 'Image Viewer'),
+    ),
+  ),
 
   'talk' => array('hint' => 'Ask for help, report bugs, discuss features', 'title' => 'Forum, Discord...',
     'sub' => array(
@@ -589,9 +599,6 @@ $castle_sitemap = array(
       ),
       'gallery_tools' => array('title' => 'Tools',
         'sub' => array(
-          'convert' => array('title' => 'Convert glTF, OBJ, STL, Collada, 3DS (and other 3D and 2D model formats) to X3D'),
-          'convert-output' => array('title' => 'Conversion output'),
-          'doc/castle-image-viewer' => array('title' => 'castle-view-image'),
           'glplotter' => array('title' => 'glplotter'),
           'rayhunter' => array('title' => 'rayhunter',
             'sub' => array(
