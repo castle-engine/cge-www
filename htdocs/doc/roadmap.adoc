@@ -774,3 +774,36 @@ Moreover, maybe:
 All above will have to be synchronized with on-screen keyboard behavior on Android.
 
 Moreover we want to support on-screen keyboard behavior on iOS as well, see https://github.com/castle-engine/castle-engine/issues/554 .
+
+[#dark_mode]
+## Editor Dark mode
+
+cgeimg::block[editor_dark_mode.png|Dark Mode design by Adrianna Matejek]
+
+I can't count how many times I've been asked _"when is the Dark Mode coming to CGE link:editor[]"_ :)
+
+1. One answer: It is already possible and easy on non-Windows.
++
+We use LCL and our editor just follows your OS (Windows, GTK, ...) theme. If you switch your system theme to something dark, then all your applications (including CGE) will become dark. This already works great e.g. on Linux or FreeBSD with GNOME, just switch your theme using GNOME settings and enjoy dark mode for everything.
++
+Unfortunately, on Windows, there's no setting to change the WinAPI controls to use the dark theme.
+
+2. On Windows you can use https://github.com/zamtmn/metadarkstyle[MetaDarkStyle] Lazarus package.
++
+We have a https://github.com/castle-engine/castle-engine/pull/555/[PR with this], not merged yet. You can easily do this yourself:
++
+--
+- Get link:compiling_from_source.php[Castle Game Engine sources and learn how to build editor yourself].
+- Get https://github.com/zamtmn/metadarkstyle[MetaDarkStyle] package.
+- Add it to the CGE editor application, and apply the trivial code changes to editor source from https://github.com/castle-engine/castle-engine/pull/555/[this PR].
+--
+
+3. _Big Plan_: The ultimate solution, that will allow to switch dark mode on/off on all platforms with exactly the same results, will come from reimplementing CGE editor using CGE link:user_interface[user interface components]. We made a decision some time ago, and it will definitely happen -- but it's still a big task, and it will take some time. The major benefits of it will be:
++
+--
+- We will be able to use the editor on all platforms there are CGE targets. In particular, on the upcoming https://castle-engine.io/wp/2023/04/08/web-target-progress-and-plans/[web target], which means you will be able to create and edit your games in your browser! Or even on mobile (but don't hold your breath for making games on mobile -- the form factors of mobile devices will likely make UX of CGE editor on mobile not very good).
+- It will necessitate CGE UI improvements, from which all CGE applications will benefit. For example, ready tree view, object inspector and list components.
+- It will allow to turn our link:https://www.youtube.com/watch?v=5jBdPdj75yk["inspector at run-time"] into full-featured "editor at run-time".
+- It will allow to avoid some LCL limitations, sometimes widgetset-specific. E.g. LCL GTK 2 widgetset uses deprecated GTK 2 and has https://github.com/castle-engine/castle-engine/issues/543[known crashing issues], Qt5 widgetset needs libqt5pas library that most people don't have (or don't have in relevant version for latest LCL), macOS widgetset https://github.com/castle-engine/castle-engine/issues/404[does not have a functional frames list and thus sprite sheet editor sucks]... We will be able to ignore all of this, as they will be replaced by a cross-platform implementation.
+- And, last but not least: the dark mode, on all platforms, will be trivial to implement :)
+--
