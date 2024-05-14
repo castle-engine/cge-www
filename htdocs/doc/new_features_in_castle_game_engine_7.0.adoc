@@ -148,6 +148,7 @@ All features below are already available. Download the engine from link:download
 * Improvements to usage of https://castle-engine.io/wp/2022/09/30/components-to-reuse-a-design-in-other-designs-our-equivalent-to-unity-prefabs-tcastledesign-and-tcastletransformdesign/[TCastleDesign and TCastleTransformDesign]: context menu to them to edit, revert, and open a referenced design.
 * Cache for scene loading: cgeref:TCastleSceneCore.Cache[].
 * MD3 support improvements: multiple animations supported (we load `animation.cfg`), so playing particular MD3 animations is trivial, just use our `PlayAnimation` method. Optimized loading. Choosing skins. Support for tags. See https://castle-engine.io/md3[MD3 support docs], see https://castle-engine.io/wp/2023/03/31/md3-support-improvements-multiple-animations-tags-configurable-skins/[news].
+* X3D 4.0 support improvements, e.g. proper `MetadataXxx` `containerField` handling for both X3D 4 and 3, added new X3D 4.0 fields to various nodes.
 * Lots of documentation updates. Links to some pages not already mentioned above: https://castle-engine.io/custom_components[custom components], https://castle-engine.io/behaviors[behaviors], https://castle-engine.io/coding_conventions[coding conventions (extended with our guidelines about memory management, nil and more)] .
 --
 * Lots of new or upgraded examples. E.g.
