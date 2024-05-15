@@ -216,8 +216,7 @@ We also support http://www.3dconnexion.com/[3D mouse devices], see http://www.yo
 
 This is a GUI application and you don't need to use any command-line options.
 
-But you can -- to automate some tasks, like capturing screenshots or
-converting models between formats.
+But you can -- to automate some tasks, like capturing screenshots.
 
 Run with command-line option `--help` to see the full list of options.
 
@@ -227,7 +226,7 @@ link:openal[standard options understood by our programs using audio]
 and link:common_options.php[standard options understood by all our programs]
 are handled. The options may be given in any order.
 
-You can specify a model filename, or URL to load at the command-line. You can combine this with some other options documented below, to make a screenshot of given model or to convert given model.
+You can specify a model filename, or URL to load at the command-line. You can combine this with some other options documented below, e.g. to make a screenshot of given model.
 
 === Capturing screenshots and movies of 3D scenes and animations
 
@@ -361,53 +360,6 @@ make
         when castle-model-viewer exits (which should be as soon as a screenshot is done).
 ////
 
-=== Converting model formats
-
-In GUI mode, you can use menu items _"File -> Save As..."_ to save (converting if needed) any model format to X3D or VRML.
-
-- Most formats (*glTF 2.0, Collada, Spine JSON, 3DS, MD3, Wavefront OBJ, GEO, sprite sheets*) are always converted *to X3D*.
-
-- Formats *Inventor, VRML 1.0, VRML 2.0, X3D* can be saved back *to their original format*.
-+
-In this case, castle-model-viewer is simply a "pretty-printer", exactly preserving all the information inside the file, only reformatting your content and removing the comments.
-
-- *VRML 2.0* can be also converted *to X3D*.
-+
-Conversion from VRML 2.0 to X3D is mostly trivial. There are some different keywords between VRML 2 and X3D, but generally X3D is simply a superset of everything that VRML 2 has.
-
-You can also change the X3D encoding (from classic to XML or the other way around). Changing encoding is a lossless operation, as the same nodes graph can be exactly expressed in both encodings.
-
-All these conversions can be also performed in batch mode by command-line options described below. Below we describe castle-model-viewer `--write` options.
-
-See also link:castle-model-converter[castle-model-converter] for a dedicated command-line-only application to convert models.
-
-Example:
-
-```bash
-# Convert glTF to X3D
-castle-model-viewer input.gltf --write > output.x3dv
-```
-
-Command-line options to convert models:
-
---write::
-Convert the model to the standard output and exit.
-
---write-encoding=classic|xml::
-Choose encoding of the output file. By default, we use classic encoding.
-+
-This option is meaningful only when `--write` option is also used.
-
---write-force-x3d::
-Force output to be an X3D file. This is really useful only when input model is VRML 2.0.
-+
-This option is meaningful only when `--write` option is also used.
-
---no-x3d-extensions::
-Do not use Castle Game Engine extensions to X3D.
-+
-For example we will not use `Tangent`, `flipVertically`,`gravityTransform` in the generated X3D when importing glTF. This makes X3D output valid in all X3D browsers, albeit a little less functional.
-
 === Other options
 
 --hide-menu::
@@ -429,6 +381,31 @@ By default, when this option is not used, we follow X3D standard and use the fir
 When the given `VIEWPOINT-NAME` is a number, it is treated as the index of viewpoint to be used (0 means the first viewpoint, 1 means the 2nd viewpoint and so on). Otherwise, `VIEWPOINT-NAME` is treated as a node name (node name is given by `"DEF Xxx"` in X3D, and it cannot start with a digit, so this is unambiguous).
 +
 In interactive mode, remember that you don't need this option -- instead you can use comfortable _"Navigation -> Jump To Viewpoint"_ menu.
+
+--no-x3d-extensions::
+Do not use Castle Game Engine extensions to X3D.
++
+For example we will not use `Tangent`, `flipVertically`,`gravityTransform` when importing glTF to X3D. This affects both rendering and converting to X3D using _"File -> Save As..."_ menu item. This makes X3D output valid in all X3D browsers, albeit a little less functional.
+
+== Converting model formats
+
+In GUI mode, you can use menu items _"File -> Save As..."_ to save (converting if needed) model to a new format.
+
+- Most formats (*glTF 2.0, Collada, Spine JSON, 3DS, MD3, Wavefront OBJ, GEO, sprite sheets*) are always converted *to X3D*.
+
+- Formats *Inventor, VRML 1.0, VRML 2.0, X3D* can be saved back *to their original format*.
++
+In this case, castle-model-viewer is simply a "pretty-printer", exactly preserving all the information inside the file, only reformatting your content and removing the comments.
+
+- *VRML 2.0* can be also converted *to X3D*.
++
+Conversion from VRML 2.0 to X3D is mostly trivial. There are some different keywords between VRML 2 and X3D, but generally X3D is simply a superset of everything that VRML 2 has.
+
+You can also change the X3D encoding (from classic to XML or the other way around). Changing encoding is a lossless operation, as the same nodes graph can be exactly expressed in both encodings.
+
+All these conversions can be also performed in batch mode using link:castle-model-converter[] command-line tool.
+
+WARNING: We used to also support `--write-xxx` options for `castle-model-viewer`. They are deprecated now. Use link:castle-model-converter[] to do command-line conversion. It is more functional, and the command-line is also simpler.
 
 [#ffmpeg]
 == Recording and playing movies using ffmpeg
