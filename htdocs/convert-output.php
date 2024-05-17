@@ -246,29 +246,7 @@ function run_convert($output_format, $files, &$conversion_log,
         }
       }
 
-      $model_extensions = array(
-        'wrl',
-        'wrl.gz', // TODO: will not be actually recognized, as we only take last extension
-        'wrz',
-        'x3d',
-        'x3dz',
-        'x3d.gz', // TODO: will not be actually recognized, as we only take last extension
-        'x3dv',
-        'x3dvz',
-        'x3dv.gz', // TODO: will not be actually recognized, as we only take last extension
-        'castle-anim-frames',
-        'kanim',
-        'glb',
-        'gltf',
-        'dae',
-        'iv',
-        '3ds',
-        'md3',
-        'obj',
-        'geo',
-        'json',
-        'stl'
-      );
+      global $convert_input_extensions;
 
       // calculate $main_file, $main_file_ext
       $main_file = null;
@@ -276,7 +254,7 @@ function run_convert($output_format, $files, &$conversion_log,
       $main_file_ext = null;
       foreach ($files['name'] as $possible_main_file) {
         $possible_main_file_ext = pathinfo($possible_main_file, PATHINFO_EXTENSION);
-        if (in_array($possible_main_file_ext, $model_extensions)) {
+        if (in_array($possible_main_file_ext, $convert_input_extensions)) {
           if ($main_file !== null) {
             $conversion_log .= 'More than one model uploaded: ' . $main_file . ', ' . $possible_main_file . "\n";
             return false;
@@ -287,7 +265,7 @@ function run_convert($output_format, $files, &$conversion_log,
         }
       }
       if ($main_file === null) {
-        $conversion_log = "No valid model extension found within the uploaded files.\nThe valid model extensions are:\n" . print_r($model_extensions, true) . "\n";
+        $conversion_log = "No valid model extension found within the uploaded files.\nThe valid model extensions are:\n" . print_r($convert_input_extensions, true) . "\n";
         return false;
       }
 

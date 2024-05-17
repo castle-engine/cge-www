@@ -51,3 +51,43 @@ $convert_output_formats = array(
   ),
 );
 global $convert_output_formats;
+
+$convert_input_extensions = array(
+  'wrl',
+  'wrl.gz', // TODO: will not be actually recognized, as we only take last extension
+  'wrz',
+  'x3d',
+  'x3dz',
+  'x3d.gz', // TODO: will not be actually recognized, as we only take last extension
+  'x3dv',
+  'x3dvz',
+  'x3dv.gz', // TODO: will not be actually recognized, as we only take last extension
+  'castle-anim-frames',
+  'kanim',
+  'glb',
+  'gltf',
+  'dae',
+  'iv',
+  '3ds',
+  'md3',
+  'obj',
+  'geo',
+  'json',
+  'stl',
+  'castle-sprite-sheet',
+  'starling-xml',
+  'plist',
+  'cocos2d-plist',
+  'tmx',
+  /*
+  All image formats are OK too, we convert them to X3D quad with proper size.
+  But we don't list them here, as then auto-detection "what is main format"
+  would be confused by textures selected alongside e.g. glTF or X3D files.
+  So if anything, we'd need $convert_input_extensions_secondary for images.
+
+  'png',
+  'jpg',
+  'ppm',
+  */
+);
+global $convert_input_extensions;
