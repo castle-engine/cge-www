@@ -270,7 +270,7 @@ function run_convert($output_format, $files, &$conversion_log,
       }
 
       global $convert_output_formats;
-      $stdout_url = 'fake-output-name-only-to-determine-type.' .
+      $stdout_url = 'fake-output-name-only-to-determine-type' .
         $convert_output_formats[$output_format]['extension'];
 
       global $cge_config;
