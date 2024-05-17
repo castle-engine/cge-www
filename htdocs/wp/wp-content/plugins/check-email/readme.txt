@@ -2,9 +2,9 @@
 Contributors: checkemail
 Tags: check, test, email, smtp, delivery
 Requires at least: 5.0
-Tested up to: 6.4
+Tested up to: 6.5
 Requires PHP: 5.6.20
-Stable tag: 1.0.10
+Stable tag: 1.0.11
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -67,6 +67,9 @@ Someone using one of my other plugins had trouble with emails not being sent. I 
 
 
 == Changelog ==
+
+= v1.0.11 - 16/05/2024 =
+- Fixed: Tested with new version of wordpress i.e. 6.5v
 
 = v1.0.10 - 14/03/2024 =
 - Fixed: Resolved security issue raised by Wordfence
