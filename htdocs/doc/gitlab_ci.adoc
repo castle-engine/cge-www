@@ -5,7 +5,7 @@ include::common.adoc[]
 
 cgeimg::float[gitlab_ci.png|GitLab CI]
 
-You can use https://docs.gitlab.com/ee/ci/[GitLab CI/CD] to automatically build your project, if you commit it to https://gitlab.com/[GitLab]. You can use the provided for free https://docs.gitlab.com/ee/ci/runners/runners_scope.html#shared-runners[GitLab shared runners] or set up your own runner.
+You can use https://docs.gitlab.com/ee/ci/[GitLab CI/CD] to automatically build your project, if you commit it to https://gitlab.com/[GitLab]. You can use the provided for free https://docs.gitlab.com/ee/ci/runners/[GitLab-hosted runners] or set up your own runner.
 
 == Example project
 
@@ -25,6 +25,6 @@ By default, these are builds for Linux and Windows.
 
 == Using the Docker image from GitLab CI/CD
 
-The `.gitlab-ci.yml` linked above *does not* rely on our link:docker[Castle Game Engine Docker image] because the disk space on https://docs.gitlab.com/ee/ci/runners/runners_scope.html#shared-runners[GitLab shared runners] seems too small to unpack it. We instead download FPC and build CGE at each run.
+The `.gitlab-ci.yml` linked above *does not* rely on our link:docker[Castle Game Engine Docker image] because the disk space on https://docs.gitlab.com/ee/ci/runners/[GitLab-hosted runners] seems too small to unpack it. We instead download FPC and build CGE at each run.
 
 But if you use your own runners, disk space may not be a problem. If you want you can change the YAML file to use Docker images (to have more power and build easily e.g. also for Android). Simply uncomment the section in that file marked as `# Commented out version using Docker image`.
