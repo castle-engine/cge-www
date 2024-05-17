@@ -85,7 +85,7 @@ function output_success($output_file_id, $output_file_suggested_name, $output_fi
   ?>
   <p><b>Success!</b><br>
   The resulting file
-  (<?php echo htmlspecialchars($output_file_suggested_name); ?>) size:
+  (<code><?php echo htmlspecialchars($output_file_suggested_name); ?></code>) size:
    <?php echo readable_byte_size($output_file_size); ?>.
 
   <?php
