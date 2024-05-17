@@ -26,27 +26,19 @@
   ---------------------------------------------------------------------------
 */
 
-// calculate and validate $output_format, calculate $extension and $mime
+require_once 'convert-functions.php';
+
+// calculate and validate $output_format
 if (!isset($_GET['output-format'])) {
   die('No output-format parameter');
 }
 $output_format = $_GET['output-format'];
-
-switch ($output_format) {
-  case 'x3d-classic':
-    //$extension = '.x3dv'; // unused
-    $mime = 'model/x3d+vrml';
-    break;
-  case 'x3d-xml':
-    //$extension = '.x3d'; // unused
-    $mime = 'model/x3d+xml';
-    break;
-  case 'stl':
-    //$extension = '.stl'; // unused
-    $mime = 'application/x-stl';
-    break;
-  default: die('Invalid output-format');
+if (!array_key_exists($output_format, $convert_output_formats)) {
+  die('Invalid output-format');
 }
+
+// calculate $mime
+$mime = $convert_output_formats[$output_format]['mime'];
 
 // calculate and validate $file_id
 if (!isset($_GET['id'])) {

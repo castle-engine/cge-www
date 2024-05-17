@@ -29,6 +29,7 @@
 
 require_once 'castle_engine_config.php';
 require_once 'convert-database.php';
+require_once 'convert-functions.php';
 
 define('CONVERSION_VOLUMES_COUNT', 10);
 define('CONVERSION_DEBUG', false); // enable only temporarily for some extra logging
@@ -67,7 +68,7 @@ function output_error($error_message, $conversion_log)
 
    $output_file_size (integer) is the size in bytes.
 
-   $output_format is 'x3d-classic', 'x3d-xml', 'stl'.
+   $output_format must be a valid key to global $convert_output_formats.
 
    $conversion_log may be NULL if empty. Otherwise it will output (after sanitization).
 */
@@ -214,7 +215,7 @@ function conversion_volume_get(&$volume_path)
 
 /* Perform conversion.
 
-   $output_format (string) is 'x3d-classic', 'x3d-xml', 'stl'.
+   $output_format (string) is a valid key to global $convert_output_formats.
 
    $files is the PHP uploaded files structure for the appropriate form field
    (see https://www.php.net/manual/en/features.file-upload.multiple.php ).
@@ -290,15 +291,19 @@ function run_convert($output_format, $files, &$conversion_log,
         return false;
       }
 
+      global $convert_output_formats;
+      $stdout_url = 'fake-output-name-only-to-determine-type.' .
+        $convert_output_formats[$output_format]['extension'];
+
       global $cge_config;
 
       $exec_command = 'sudo -u online-model-converter ' . $cge_config['cge-www-path'] . 'online-model-converter/online-model-converter.sh ' .
         /* Note: using escapeshellarg, not escapeshellcmd,
-           as escapeshellarg is good for single aguments -- it handles also spaces in name.
+           as escapeshellarg is good for single arguments -- it handles also spaces in name.
            Testcase: trying to convert a file with space in name, like "foo bar.stl". */
         escapeshellarg($volume_id) . ' ' .
         escapeshellarg($main_file) . ' ' .
-        escapeshellarg($output_format) . ' ' .
+        escapeshellarg($stdout_url) . ' ' .
         escapeshellarg($output_file_id);
       if (CONVERSION_DEBUG) {
         $conversion_log .= "Executing: " . $exec_command . "\n";
@@ -322,12 +327,12 @@ function run_convert($output_format, $files, &$conversion_log,
       }
 
       $output_file_size = filesize($volume_path . $output_file_id);
-      switch ($output_format) {
-        case 'x3d-classic': $output_extension = '.x3dv'; break;
-        case 'x3d-xml': $output_extension = '.x3d'; break;
-        case 'stl': $output_extension = '.stl'; break;
-        default: throw new Exception('Invalid output format');
+
+      global $convert_output_formats;
+      if (!array_key_exists($output_format, $convert_output_formats)) {
+        throw new Exception('Invalid output format');
       }
+      $output_extension = $convert_output_formats[$output_format]['extension'];
       $output_file_suggested_name = $main_file_without_ext . $output_extension;
 
       if (!rename($volume_path . $output_file_id,
@@ -373,8 +378,8 @@ function process_form_post()
   $output_format = $_POST['output-format'];
   $files = $_FILES['input-file'];
 
-  if ($output-format != 'xml' &&
-      $output-format != 'classic') {
+  global $convert_output_formats;
+  if (!array_key_exists($output_format, $convert_output_formats)) {
     output_error('Invalid output-format specified.', NULL);
   } else
   if (!isset($files['name'][0])) {

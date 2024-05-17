@@ -25,6 +25,8 @@ Button "Make a screenshot"
 
     *The generated screenshots do not have any watermark, logo or other attempts at promotion from us.* If you use our tools, we would appreciate it if you mention us, but it's your choice.
 */
+
+require_once 'convert-functions.php';
 ?>
 
 <div class="single-column-page">
@@ -54,9 +56,16 @@ Button "Make a screenshot"
     <div class="output-format-group">
       <p class="output-format-title">Output:</p>
       <div class="output-format-radio">
-        <p><input type="radio" id="output-format-x3d-xml" name="output-format" value="x3d-xml" checked><label for="output-format-xml">X3D, XML encoding (.x3d extension)</label></p>
-        <p><input type="radio" id="output-format-x3d-classic" name="output-format" value="x3d-classic"><label for="output-format-classic">X3D, classic encoding (.x3dv extension)</label></p>
-        <p><input type="radio" id="output-format-stl" name="output-format" value="stl"><label for="output-format-stl">STL, binary (.stl extension)</label></p>
+        <?php
+        global $convert_output_formats;
+        foreach ($convert_output_formats as $output_format => $output_format_data) {
+          echo '<p><input type="radio" id="output-format-' . $output_format . '" name="output-format" value="' . $output_format . '"';
+          if (isset($output_format_data['default']) && $output_format_data['default']) {
+            echo ' checked';
+          }
+          echo '><label for="output-format-' . $output_format . '">' . htmlspecialchars($output_format_data['description']) . '</label></p>';
+        }
+        ?>
       </div>
     </div><!-- /input-group -->
     <div class="convert-patreon">
