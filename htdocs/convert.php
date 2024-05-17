@@ -1,9 +1,9 @@
 <?php
 require_once 'castle_engine_functions.php';
-castle_header('Convert glTF, OBJ, STL, Collada, 3DS (and other 3D and 2D model formats) to X3D', array(
+castle_header('Online Converter for 3D and 2D Models', array(
   'social_share_image' => 'castle-model-viewer_gltf_helmet.png',
-  'meta_description' => 'Online and free converter from many 3D model formats, like glTF, to X3D.',
-  'meta_keywords' => 'convert, glTF, OBJ, 3DS, X3D',
+  'meta_description' => 'Online and free converter for many 3D model formats. As input supports a lot of 3D and 2D formats (everything supported by Castle Game Engine), like glTF, X3D, VRML, OBJ, STL, Collada, 3DS, Spine JSON. As output, supports X3D and STL.',
+  'meta_keywords' => 'convert, glTF, OBJ, 3DS, X3D, VRML, STL',
 ));
 
 /* TODO:
@@ -29,28 +29,34 @@ Button "Make a screenshot"
 
 <div class="single-column-page">
 
-<?php echo pretty_heading('Convert everything to X3D'); ?>
+<?php echo pretty_heading('Online Converter for 3D and 2D Models'); ?>
 
-<p><b>Convert to X3D</b> from <a href="creating_data_model_formats.php">any model format supported by Castle Game Engine</a> (glTF, X3D, VRML, Wavefront OBJ, STL, Collada, 3DS, MD3, Spine JSON and others).
+<ul>
+  <li>
+    <p><b>Convert from</b> <a href="creating_data_model_formats.php">any model format supported by Castle Game Engine: glTF, X3D, VRML, Wavefront OBJ, STL, Collada, 3DS, MD3, Spine JSON and more</a>.
 
-<p><b>Convert between X3D encodings</b> and pretty-print X3D (when both the input and output is X3D).
+  <li>
+    <p><b>Convert to</b> X3D and STL. <i>We plan to add glTF as an additional output format soon.</i>
+</ul>
+
+<p>Can also be used to <b>convert between X3D encodings (classic, XML)</b> and pretty-print X3D and VRML models.
 
   <!--li><p>You can also use this for a <b>basic validation</b>. Although we don't focus on validation, but in practice (since we need to understand the input) we perform a lot of checks whether the input makes sense.-->
-</ul>
 
 <form action="convert-output.php" method="post" enctype="multipart/form-data">
   <div class="convert-form jumbotron">
     <div class="input-group">
       <input type="file" class="form-control" multiple name="input-file[]">
       <span class="input-group-btn">
-        <input type="submit" value="Convert to X3D" class="btn btn-primary">
+        <input type="submit" value="Convert" class="btn btn-primary">
       </span>
     </div><!-- /input-group -->
-    <div class="encoding-group">
-      <p class="encoding-title">Output X3D encoding:</p>
-      <div class="encoding-radio">
-        <p><input type="radio" id="encoding-xml" name="encoding" value="xml" checked><label for="encoding-xml">XML (.x3d extension)</label></p>
-        <p><input type="radio" id="encoding-classic" name="encoding" value="classic"><label for="encoding-classic">Classic VRML (.x3dv extension)</label></p>
+    <div class="output-format-group">
+      <p class="output-format-title">Output:</p>
+      <div class="output-format-radio">
+        <p><input type="radio" id="output-format-x3d-xml" name="output-format" value="x3d-xml" checked><label for="output-format-xml">X3D, XML encoding (.x3d extension)</label></p>
+        <p><input type="radio" id="output-format-x3d-classic" name="output-format" value="x3d-classic"><label for="output-format-classic">X3D, classic encoding (.x3dv extension)</label></p>
+        <p><input type="radio" id="output-format-stl" name="output-format" value="stl"><label for="output-format-stl">STL, binary (.stl extension)</label></p>
       </div>
     </div><!-- /input-group -->
     <div class="convert-patreon">

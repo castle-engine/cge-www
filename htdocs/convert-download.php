@@ -1,7 +1,7 @@
 <?php
 
 /*
-  Copyright 2020-2020 Michalis Kamburelis.
+  Copyright 2020-2024 Michalis Kamburelis.
 
   This file is part of "Castle Game Engine Website".
 
@@ -26,14 +26,26 @@
   ---------------------------------------------------------------------------
 */
 
-// calculate and validate $encoding
-if (!isset($_GET['encoding'])) {
-  die('No encoding parameter');
+// calculate and validate $output_format, calculate $extension and $mime
+if (!isset($_GET['output-format'])) {
+  die('No output-format parameter');
 }
-$encoding = $_GET['encoding'];
-if ($encoding != 'xml' &&
-    $encoding != 'classic') {
-  die('Invalid encoding');
+$output_format = $_GET['output-format'];
+
+switch ($output_format) {
+  case 'x3d-classic':
+    //$extension = '.x3dv'; // unused
+    $mime = 'model/x3d+vrml';
+    break;
+  case 'x3d-xml':
+    //$extension = '.x3d'; // unused
+    $mime = 'model/x3d+xml';
+    break;
+  case 'stl':
+    //$extension = '.stl'; // unused
+    $mime = 'application/x-stl';
+    break;
+  default: die('Invalid output-format');
 }
 
 // calculate and validate $file_id
@@ -50,9 +62,6 @@ if (!isset($_GET['suggested-name'])) {
   die('No suggested-name parameter');
 }
 $suggested_name = $_GET['suggested-name'];
-
-$extension = $encoding == 'xml' ? '.x3d' : '.x3dv';
-$mime = $encoding == 'xml' ? 'model/x3d+xml' : 'model/x3d+vrml';
 
 $file_name = '/var/online-model-converter/output/' . $file_id;
 

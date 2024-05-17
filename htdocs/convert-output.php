@@ -67,18 +67,18 @@ function output_error($error_message, $conversion_log)
 
    $output_file_size (integer) is the size in bytes.
 
-   $encoding is 'classic' or 'xml'.
+   $output_format is 'x3d-classic', 'x3d-xml', 'stl'.
 
    $conversion_log may be NULL if empty. Otherwise it will output (after sanitization).
 */
 function output_success($output_file_id, $output_file_suggested_name, $output_file_size,
-  $encoding, $conversion_log)
+  $output_format, $conversion_log)
 {
   syslog(LOG_INFO, 'Success.' .
     ' Output id: ' . $output_file_id .
     ' Output suggested name: ' . $output_file_suggested_name .
     ' Output size: ' . $output_file_size .
-    ' Encoding: ' . $encoding .
+    ' Output format: ' . $output_format .
     ' Log: ' .$conversion_log);
 
   ?>
@@ -101,7 +101,7 @@ function output_success($output_file_id, $output_file_suggested_name, $output_fi
   }
   ?>
 
-  <p><a href="convert-download.php?id=<?php echo htmlspecialchars($output_file_id); ?>&amp;encoding=<?php echo htmlspecialchars($encoding); ?>&amp;suggested-name=<?php echo htmlspecialchars($output_file_suggested_name); ?>" class="btn btn-primary btn-lg">Download the resulting X3D file.</a></p>
+  <p><a href="convert-download.php?id=<?php echo htmlspecialchars($output_file_id); ?>&amp;output-format=<?php echo htmlspecialchars($output_format); ?>&amp;suggested-name=<?php echo htmlspecialchars($output_file_suggested_name); ?>" class="btn btn-primary btn-lg">Download the resulting X3D file.</a></p>
 
   <div class="convert-patreon">
     <a class="btn btn-success btn-lg btn-patreon" href="<?php echo PATREON_URL; ?>">Do you like this tool?<br><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Support us on Patreon.</a>
@@ -214,7 +214,7 @@ function conversion_volume_get(&$volume_path)
 
 /* Perform conversion.
 
-   $encoding (string) is 'classic' or 'xml', just like --encoding parameter of castle-model-converter.
+   $output_format (string) is 'x3d-classic', 'x3d-xml', 'stl'.
 
    $files is the PHP uploaded files structure for the appropriate form field
    (see https://www.php.net/manual/en/features.file-upload.multiple.php ).
@@ -223,7 +223,7 @@ function conversion_volume_get(&$volume_path)
 
    Returns boolean, whether converting was successful.
 */
-function run_convert($encoding, $files, &$conversion_log,
+function run_convert($output_format, $files, &$conversion_log,
   &$output_file_id, &$output_file_suggested_name, &$output_file_size)
 {
   $conversion_log = '';
@@ -298,7 +298,7 @@ function run_convert($encoding, $files, &$conversion_log,
            Testcase: trying to convert a file with space in name, like "foo bar.stl". */
         escapeshellarg($volume_id) . ' ' .
         escapeshellarg($main_file) . ' ' .
-        escapeshellarg($encoding) . ' ' .
+        escapeshellarg($output_format) . ' ' .
         escapeshellarg($output_file_id);
       if (CONVERSION_DEBUG) {
         $conversion_log .= "Executing: " . $exec_command . "\n";
@@ -322,7 +322,12 @@ function run_convert($encoding, $files, &$conversion_log,
       }
 
       $output_file_size = filesize($volume_path . $output_file_id);
-      $output_extension = $encoding == 'xml' ? '.x3d' : '.x3dv';
+      switch ($output_format) {
+        case 'x3d-classic': $output_extension = '.x3dv'; break;
+        case 'x3d-xml': $output_extension = '.x3d'; break;
+        case 'stl': $output_extension = '.stl'; break;
+        default: throw new Exception('Invalid output format');
+      }
       $output_file_suggested_name = $main_file_without_ext . $output_extension;
 
       if (!rename($volume_path . $output_file_id,
@@ -359,28 +364,28 @@ function process_form_post()
 {
   openlog('online-model-converter', LOG_PID, LOG_LOCAL0);
 
-  if (!isset($_POST['encoding']) ||
+  if (!isset($_POST['output-format']) ||
       !isset($_FILES['input-file'])) {
     output_error('No uploaded file, or the uploaded file was too large.', NULL);
     return;
   }
 
-  $encoding = $_POST['encoding'];
+  $output_format = $_POST['output-format'];
   $files = $_FILES['input-file'];
 
-  if ($encoding != 'xml' &&
-      $encoding != 'classic') {
-    output_error('Invalid encoding specified.', NULL);
+  if ($output-format != 'xml' &&
+      $output-format != 'classic') {
+    output_error('Invalid output-format specified.', NULL);
   } else
   if (!isset($files['name'][0])) {
     output_error('No input files to convert.', NULL);
   } else
   {
-    $conversion_success = run_convert($encoding, $files, $conversion_log,
+    $conversion_success = run_convert($output_format, $files, $conversion_log,
       $output_file_id, $output_file_suggested_name, $output_file_size);
     if ($conversion_success) {
       output_success($output_file_id, $output_file_suggested_name, $output_file_size,
-        $encoding, $conversion_log);
+        $output_format, $conversion_log);
     } else {
       output_error('Conversion failed.', $conversion_log);
     }
