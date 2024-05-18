@@ -17,9 +17,8 @@ $toc = new TableOfContents(
   array(
     new TocItem('Note: This is a game from 2006 and has some programmer art :)', 'old'),
     new TocItem('Overview', 'overview'),
-    new TocItem('Download', 'download'),
+    new TocItem('Download (version 1.1.0)', 'download'),
     new TocItem('Installing', 'install', 1),
-    new TocItem('Uninstalling', 'uninstall', 1),
     new TocItem('Movie', 'movies'),
   )
 );
@@ -97,54 +96,22 @@ of our engine (we developed a lot of new features since 2006...), is planned.
 
 <?php echo $toc->html_section(); ?>
 
-<?php
-  echo_standard_program_download(
-  '"The Castle", version ' . VERSION_CASTLE, 'castle',
-  VERSION_CASTLE);
-?>
-
-<p>See <?php echo a_href_page('news', 'news') ?> for
-the list of changes since last release.</p>
+<?php echo cge_download_application('1.1.0', 'snapshot',
+  'castle-engine', 'castle-game', 'castle',
+  array(
+    //'android-debug',
+    'win64-x86_64',
+    'linux-x86_64',
+    'darwin-x86_64',
+  )); ?>
 
 <?php echo $toc->html_section(); ?>
 
 <ul>
   <li>
-    <p><b>Linux, FreeBSD:</b></p>
-
-    <p>To hear game sounds you should
-    install <a href="openal#_installing_openal">OpenAL</a> and <a href="http://xiph.org/vorbis/">VorbisFile</a> libraries using your Linux distribution package manager.
-
-    <p>Installing actual game: extract the downloaded archive anywhere.
-    Run the game by running the binary, like <code>./castle</code>.</p>
-
-    <p>If you don't want to always run the binary from the game's
-    directory, you can also put the game binary anywhere on $PATH
-    (e.g. <code>$HOME/bin</code> or <code>/usr/local/bin</code>)
-    and extract the <code>data</code> to
-    to <code>$HOME/.local/share/castle/</code>, or <code>/usr/local/share/castle/</code>,
-    or <code>/usr/share/castle/</code>.</p>
-
-  <li>
-    <p><b>macOS:</b></p>
-
-    <p>The game requires X11 server, libpng and (if you want to hear
-    sound) OpenAL with vorbisfile. See <?php echo a_href_page(
-    'macOS dependencies', 'doc/macos'); ?> for simple
-    instructions how to get them.</p>
-
-    <p>Installing actual game: extract the downloaded archive anywhere.
-    Run the game by running the binary, like <code>./castle</code>.
-    You can also install / symlink in special directories, see
-    above Linux notes.</p>
-
-  <li>
     <p><b>Windows:</b></p>
 
-    <p>OpenAL and vorbis libraries are already
-    included in the archive. So you don't have to install OpenAL yourself.</p>
-
-    <p>Installing actual game: extract the downloaded archive anywhere.
+    <p>Extract the downloaded archive anywhere.
     Run the game by running <code>castle.exe</code>.</p>
 
     <p>Note that from the game you will be able to choose various
@@ -155,19 +122,27 @@ the list of changes since last release.</p>
     <i>Generic Hardware</i> can produce sound better than stereo, if you
     have more than 2 speakers.</p>
     </li>
+
+  <li>
+    <p><b>Linux, FreeBSD:</b></p>
+
+    <p>Installing actual game: extract the downloaded archive anywhere.
+    Run the game by running the binary, like <code>./castle</code>.</p>
+
+    <p>To hear game sounds you should
+    install <a href="openal#_installing_openal">OpenAL</a> and <a href="http://xiph.org/vorbis/">VorbisFile</a> libraries using your Linux distribution package manager.
+
+  <li>
+    <p><b>macOS:</b></p>
+
+    <p>Extract the archive, drag-and-drop the application wherever you like.
+
+    <p>Since the application is <i>unsigned</i>, double-clicking the application for the first time will result in an error along the lines <i>"developer cannot be verified"</i>. You have to right-click on the application, choose <i>"Open"</i> from the context menu, and then you will be able to confirm that you want to open an unsigned application.
+
+    <p>See <?php echo a_href_page(
+    'macOS dependencies', 'doc/macos'); ?> for more macOS information.</p>
+
 </ul>
-
-<?php echo $toc->html_section(); ?>
-
-<p>Just delete the directory where you unpacked the game.
-You may also want to delete configuration file:</p>
-
-<table class="thin_borders">
-  <tr><td>Unix (Linux, FreeBSD, macOS)<td><code>$HOME/.config/castle/castle.conf</code>
-  <tr><td>Windows >= NT / 2000 / XP <td><code>Documents and
-    Settings\&lt;UserName&gt;\Application Data\castle.conf</code>
-  <tr><td>Windows 95 / 98 / ME <td><code>&lt;program's directory&gt;\castle.conf</code>
-</table>
 
 <?php echo $toc->html_section(); ?>
 
@@ -181,7 +156,6 @@ later in the game.</p>
 <?php if (!HTML_VALIDATION) { ?>
 <iframe width="425" height="349" src="https://www.youtube.com/embed/2XgQHo4DrGk" frameborder="0" allowfullscreen></iframe>
 <?php } ?>
-</div>
 
 <?php
   castle_footer();
