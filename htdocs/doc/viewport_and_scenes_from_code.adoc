@@ -206,7 +206,7 @@ CarScene.PlayAnimation('wheels_turning', true);
 
 [NOTE]
 ====
-You can test what animations are available on your model e.g. by opening it with link:view3dscene.php[view3dscene] (activate the panel _Animations_ to test animations).
+You can test what animations are available on your model e.g. by opening it with link:castle-model-viewer[Castle Model Viewer] (activate the panel _Animations_ to test animations).
 ====
 
 cgeref:TCastleSceneCore.PlayAnimation[PlayAnimation] is very powerful. In addition to choosing an animation (by name) and whether it should loop, it has an overloaded version that takes cgeref:TPlayAnimationParameters[] instance and allows to:

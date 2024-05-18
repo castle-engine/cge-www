@@ -162,7 +162,7 @@ We support standard model format from Web3D: link:vrml_x3d.php[X3D and VRML].
 * The cgeref:TCastleScene[] is a set of X3D nodes. We implement link:vrml_x3d.php[extended set of X3D nodes].
 * You can build and process scene graph of X3D nodes. Procedural generation of models, any pre/post-processing of models is possible.
 * We can save the X3D graph back to file in X3D format, see cgeref:TCastleSceneCore.Save[], cgeref:SaveNode[].
-* You can write model conversion utilities. Our link:view3dscene.php[view3dscene] allows to convert various models to X3D.
+* You can write model conversion utilities. Our link:castle-model-viewer[Castle Model Viewer] allows to convert various models to X3D.
 
 === Sprite sheets
 

@@ -118,8 +118,8 @@ It is somewhat equivalent to Unity `Assets/` subdirectory. See link:https://cast
 * Double-clicking on various files runs a tool suitable to preview/edit them:
 +
 --
-* On 3D and 2D models we run link:view3dscene.php[view3dscene].
-* On images we run link:castle-view-image.php[castle-view-image].
+* On 3D and 2D models we run link:castle-model-viewer[Castle Model Viewer].
+* On images we run link:castle-image-viewer[Castle Image Viewer].
 * On Pascal files we run Lazarus (see above).
 * Design files are opened in the current editor.
 * On other files, we run the default system application for them.

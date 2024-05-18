@@ -60,7 +60,7 @@ Approach 3 may be easier to use in some cases (if you already think in terms _"I
 
 == Supported image formats
 
-All approaches handle all the image formats supported by CGE, like PNG or JPG; see https://castle-engine.io/castle-view-image.php[castle-view-image] docs for the full list.
+All approaches handle all the image formats supported by CGE, like PNG or JPG; see link:castle-image-viewer[Castle Image Viewer] docs for the full list.
 
 == Batching
 

@@ -21,7 +21,7 @@ We advise using it in CGE as much as you can. It is supported by a lot of tools.
 
 - glTF https://github.com/KhronosGroup/glTF[main development repository(lots of useful links in the README)].
 
-- glTF 2.0 sample models https://github.com/KhronosGroup/glTF-Sample-Models[from Khronos], https://sketchfab.com/features/gltf[Sketchfab] (open them easily with our link:view3dscene.php[view3dscene]),
+- glTF 2.0 sample models https://github.com/KhronosGroup/glTF-Sample-Models[from Khronos], https://sketchfab.com/features/gltf[Sketchfab] (open them easily with our link:castle-model-viewer[Castle Model Viewer]),
 
 - https://www.blender.org/[Blender] includes a full-featured glTF exporter. See https://docs.blender.org/manual/en/dev/addons/import_export/scene_gltf2.html[Blender manual about glTF exporter] and link:blender[our manual about exporting to Blender].
 
@@ -190,7 +190,7 @@ and then it can start  animations `jump`, `walk`. They are just `TimeSensor` nod
 
 === Use `Inline` and `IMPORT` to access glTF materials, meshes, transforms in an X3D file
 
-Demo of this technique is in https://github.com/michaliskambi/x3d-tests/tree/master/gltf/avocado_and_exports . Open the models there with https://castle-engine.io/view3dscene.php[view3dscene] or just load them into `TCastleScene` instance in CGE editor.
+Demo of this technique is in https://github.com/michaliskambi/x3d-tests/tree/master/gltf/avocado_and_exports . Open the models there with https://castle-engine.io/castle-model-viewer[Castle Model Viewer] or just load them into `TCastleScene` instance in CGE editor.
 
 It looks like this:
 

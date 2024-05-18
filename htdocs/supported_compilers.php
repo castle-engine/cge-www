@@ -73,17 +73,17 @@ though for most applications we recommend using <code>TCastleWindow</code> indep
 1. Advice and support latest FPC release from freepascal.org.
 2. Try to support a couple of older FPC releases, as much as is reasonable.
 The definition what is "reasonable" depends on:
-1. What FPC version is inluded in distros (in particular, what is in
+1. What FPC version is included in distros (in particular, what is in
    last Debian stable and last Ubuntu LTS).
+   Also because our engine/castle-model-viewer is included in distros like Debian,
+   we don't want to make it harder for them to adopt
+   new engine/castle-model-viewer versions.
 2. Do we need some new language features available in new FPC versions.
    For example, we heavily use FPC generics since some time, they make
    a lot of code very nice and clean, but they also bumped our FPC requirements
    at some point.
    We also use "nested of" construct of FPC 2.6.0, this again allows for
    much cleaner code, and also more optimized in one important case.
-When our engine/view3dscene will be officially included in distros,
-I would make the point 1. more influencial, and make everything possible
-to hang on to FPC releases available in distros.
 -->
 
 <?php /*

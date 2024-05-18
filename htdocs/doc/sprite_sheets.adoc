@@ -45,7 +45,7 @@ The editor saves sprite sheets in our _Castle Game Engine format_ (`.castle-spri
 
 The sprite sheet file:
 
-. points to a texture atlas (which can be any 2D image that _Castle Game Engine_ can read, like PNG or JPG; see https://castle-engine.io/castle-view-image.php[castle-view-image] docs for the full list)
+. points to a texture atlas (which can be any 2D image that _Castle Game Engine_ can read, like PNG or JPG; see link:castle-image-viewer[Castle Image Viewer] docs for the full list)
 . and describes frames within the file, and how they compose the final animation.
 
 To add the sprite sheet to a cgeref:TCastleViewport[] (see link:viewport_and_scenes.adoc[viewports and scenes documentation]) create a cgeref:TCastleScene[] inside cgeref:TCastleViewport[] and assign scene `URL`, `AutoAnimation` etc. All standard methods to load and play animations work. You can do this by code (at run-time) or in the CGE editor (at design-time).

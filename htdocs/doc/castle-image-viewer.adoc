@@ -120,7 +120,7 @@ Every command-line parameter must be one of:
 A directory name::
 Display all images found in the given directory.
 +
-E.g. `castle-view-image ~/my_images/` displays all images in `~/my_images/` directory.
+E.g. `castle-image-viewer ~/my_images/` displays all images in `~/my_images/` directory.
 
 A filename::
 Display this image and browse other images in the same directory.
@@ -128,13 +128,13 @@ Display this image and browse other images in the same directory.
 `@<filename>`::
 Read image filenames from file `<filename>`, each line is one filename.
 +
-`<filename>` equals `-` means _"standard input"_, as usual, so you can pipe output of e.g. `find` program to `castle-view-image` like this:
+`<filename>` equals `-` means _"standard input"_, as usual, so you can pipe output of e.g. `find` program to `castle-image-viewer` like this:
 +
 ```bash
-find . -name '*.jpg' -print | castle-view-image.exe @-
+find . -name '*.jpg' -print | castle-image-viewer.exe @-
 ```
 
-Running `castle-view-image` with no parameters opens all images in the current directory.
+Running `castle-image-viewer` with no parameters opens all images in the current directory.
 If none found, the default welcome image will be displayed.
 
 All link:opengl_options[standard options understood by our GUI programs]
@@ -146,9 +146,9 @@ are handled as well.
 Resulting image format is determined by filename extension, unknown
 extension will result in error.
 
-Image loaded and displayed by castle-view-image is internally always stored
+Image loaded and displayed by castle-image-viewer is internally always stored
 in format comfortable for OpenGL. This includes many formats, but not RGBE.
-It means that if you will load RGBE image to castle-view-image and then
+It means that if you will load RGBE image to castle-image-viewer and then
 you will save it (even to the RGBE format again)
 then you loose RGBE precision (and clamp color values above 1.0).
 

@@ -27,4 +27,4 @@ To list the available OpenAL devices use the `--help` command-line option.
 The `--audio-device` description will show a list of devices detected.
 +
 Particular applications may also expose this choice using a nice GUI, e.g. link:castle.php[The Castle] has a simple menu to choose the device.
-In link:view3dscene.php[view3dscene] you can choose it using _"File -&gt; Preferences -&gt; Sound Device"_ menu item.
+In link:castle-model-viewer[Castle Model Viewer] you can choose it using _"File -&gt; Preferences -&gt; Sound Device"_ menu item.

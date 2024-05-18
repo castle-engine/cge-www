@@ -18,7 +18,7 @@ like" are given at the bottom of this page.
   <dd>
     <ol>
       <li>Final programs: incremented on some major achievement (like VRML 97
-        conformance in view3dscene).
+        conformance in castle-model-viewer).
       <li>Libraries or programs that are meant to be used by other programs
         (in "batch" mode, like std UNIX programs):
         incremented on incompatible changes. This should be connected

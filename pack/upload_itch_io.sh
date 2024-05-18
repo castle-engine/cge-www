@@ -2,7 +2,7 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-# This script uploads cge and view3dscene packages to https://castle-engine.itch.io/ .
+# This script uploads cge and castle-model-viewer packages to https://castle-engine.itch.io/ .
 # Uses itch.io command-line butler:
 # https://itch.io/docs/butler/installing.html
 # https://itch.io/docs/itch/installing/linux/ubuntu-and-debian.html
@@ -76,13 +76,13 @@ butler_push ()
   rm -Rf "${UPLOAD_DIR}"
 }
 
-do_view3dscene ()
+do_castle_model_viewer ()
 {
-  VER="${GENERATED_VERSION_VIEW3DSCENE}"
-  butler_push view3dscene-windows.itch.toml https://github.com/castle-engine/view3dscene/releases/download/v"${VER}"/view3dscene-"${VER}"-win64-x86_64.zip    castle-engine/view3dscene:windows --userversion "${VER}"
-  butler_push view3dscene-linux.itch.toml   https://github.com/castle-engine/view3dscene/releases/download/v"${VER}"/view3dscene-"${VER}"-linux-x86_64.tar.gz castle-engine/view3dscene:linux   --userversion "${VER}"
-  echo 'Running "butler status castle-engine/view3dscene" to see status:'
-  butler status castle-engine/view3dscene
+  VER="${GENERATED_VERSION_CASTLE_MODEL_VIEWER}"
+  butler_push castle-model-viewer-windows.itch.toml https://github.com/castle-engine/castle-model-viewer/releases/download/v"${VER}"/castle-model-viewer-"${VER}"-win64-x86_64.zip    castle-engine/castle-model-viewer:windows --userversion "${VER}"
+  butler_push castle-model-viewer-linux.itch.toml   https://github.com/castle-engine/castle-model-viewer/releases/download/v"${VER}"/castle-model-viewer-"${VER}"-linux-x86_64.tar.gz castle-engine/castle-model-viewer:linux   --userversion "${VER}"
+  echo 'Running "butler status castle-engine/castle-model-viewer" to see status:'
+  butler status castle-engine/castle-model-viewer
 }
 
 do_castle_game_engine ()
@@ -94,5 +94,5 @@ do_castle_game_engine ()
   butler status castle-engine/castle-game-engine
 }
 
-do_view3dscene
+do_castle_model_viewer
 do_castle_game_engine

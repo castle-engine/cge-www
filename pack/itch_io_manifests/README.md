@@ -1,6 +1,6 @@
 This directory contains manifests to upload our applications to itch.io:
-- https://castle-engine.itch.io/castle-game-engine/
-- https://castle-engine.itch.io/view3dscene/
+- https://castle-engine.itch.io/castle-game-engine
+- https://castle-engine.itch.io/castle-model-viewer
 
 See itch.io docs about manifests and butler:
 - https://itch.io/docs/itch/integrating/manifest.html

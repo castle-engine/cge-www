@@ -21,7 +21,7 @@ You should call `TCastleViewport.Setup2D` on the viewport to easily make it suit
 * The engine template "2D game" and `physics/physics_2d_game_sopwith/` shows this approach.
 * The important API reference links: cgeref:TCastleScene[], cgeref:TCastleSceneCore[], cgeref:TCastleViewport[].
 * To construct your own scene (not loaded from external file), you need to create a graph of X3D nodes. Various examples showing it are around the engine, the simpler is http://castle-engine.io/x3d_implementation_geometry2d.php . It instantiates a `TRectangle2DNode`. One could instead instantiate also `TIndexedFaceSetNode` which represents a free mesh, with custom texture coordinates and anything else you may need.
-* To render sprites you can link:sprite_sheets[load sprite sheets from Castle Game Engine, Starling or Cocos2d formats to TCastleScene]. You can play it's animation just like any other scene (use `Scene.PlayAnimation` method, test with view3dscene panel "Animations").
+* To render sprites you can link:sprite_sheets[load sprite sheets from Castle Game Engine, Starling or Cocos2d formats to TCastleScene]. You can play it's animation just like any other scene (use `Scene.PlayAnimation` method, test with link:castle-model-viewer[Castle Model Viewer] panel "Animations").
 +
 If you want to do it manually, you can also construct your own `TIndexedFaceSetNode` instances and change texture coordinates.
 

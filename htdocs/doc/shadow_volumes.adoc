@@ -76,7 +76,7 @@ By default, for shadow volumes, *all shapes that cast shadows must be 2-manifold
 
 Note that satisfying the above requirements (2-manifold, consistent ordering) means that you can also use _backface culling_ which improves rendering performance. You typically turn on _backface culling_ in your 3D authoring software (e.g. check it in link:blender[Blender] material settings) which will export it to the glTF or X3D file. Our engine will automatically follow this information.
 
-You can inspect whether your shapes are detected as a 2-manifold by link:view3dscene.php[view3dscene]:  see menu item _"Help -> Manifold Edges Information"_. To check which edges are actually detected as "border edges" use _"View -> Fill mode -> Silhouette and Border Edges"_, manifold silhouette edges are displayed yellow and border edges (you want to get rid of them!) are blue.
+You can inspect whether your shapes are detected as a 2-manifold by link:castle-model-viewer[Castle Model Viewer]:  see menu item _"Help -> Manifold Edges Information"_. To check which edges are actually detected as "border edges" use _"View -> Fill mode -> Silhouette and Border Edges"_, manifold silhouette edges are displayed yellow and border edges (you want to get rid of them!) are blue.
 
 You can also check manifold edges in link:blender[Blender]: you can easily detect why the mesh is not manifold by _"Select -> Select All By Trait -> Non Manifold"_ command (press F3 to find this command in edit mode). Also, remember that faces must be ordered consistently CCW -- in some cases _"Recalculate normals outside"_ (this actually changes vertex order in Blender) may be needed to reorder them properly.
 
@@ -127,7 +127,7 @@ You can use link:vrml_x3d.php[X3D] nodes to design your lights and shadow volume
 
 === Example models
 
-Demo 3D models that use dynamic shadow volumes are inside our link:demo_models.php[demo_models], see subdirectory `shadow_volumes/`. Open them with link:view3dscene.php[view3dscene] and play around.
+Demo 3D models that use dynamic shadow volumes are inside our link:demo_models.php[demo_models], see subdirectory `shadow_volumes/`. Open them with link:castle-model-viewer[Castle Model Viewer] and play around.
 
 === X3D fields `shadowVolumes` and `shadowVolumesMain`
 
@@ -157,7 +157,7 @@ These are lights with `shadowVolumes` = `FALSE` (default).
 
 Usually you have to experiment a little to make the shadows look good. This involves determining which light should be the main light (`shadowVolumesMain` = `shadowVolumes` = `TRUE`), and which lights should be just turned off inside the shadow (only `shadowVolumes` = `TRUE`). This system tries to be flexible, to allow you to make shadows look good -- which usually means "dark, but not absolutely unrealistically black".
 
-In link:view3dscene.php[view3dscene] you can experiment with this using _Edit -> Lights Editor_.
+In link:castle-model-viewer[Castle Model Viewer] you can experiment with this using _Edit -> Lights Editor_.
 
 If no "main" light is found (`shadowVolumesMain` = `shadowVolumes` = `TRUE`) then shadows are turned off on this model.
 

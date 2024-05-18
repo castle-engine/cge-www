@@ -76,11 +76,11 @@ echo castle_thumbs(array(
     <p>E.g. if you use <a href="https://castle-engine.io/spine">Spine</a> to export texture atlases, it has a ready <i>"Alpha Bleed"</i> option at export.
 
   <li>
-    <p>Or use our <a href="castle-view-image.php">castle-view-image</a>:
+    <p>Or use our <a href="castle-image-viewer">Castle Image Viewer</a>:
 
       <ol>
         <li>
-          <p>Open the image in <a href="castle-view-image.php">castle-view-image</a>
+          <p>Open the image in <a href="castle-image-viewer">Castle Image Viewer</a>
         <li>
           <p>Uncheck <i>"View -&gt; Use Image Alpha Channel"</i> (optional, it will allow you to see effect of "alpha bleeding" in the next step)
         <li>
@@ -92,14 +92,14 @@ echo castle_thumbs(array(
     <p>
     <?php
     echo castle_thumbs(array(
-      array('filename' => 'alpha_bleeding_8_cge_viewer.png', 'titlealt' => 'Fixing Alpha Bleeding in castle-view-image: before'),
-      array('filename' => 'alpha_bleeding_6_cge_viewer.png', 'titlealt' => 'Fixing Alpha Bleeding in castle-view-image'),
-      array('filename' => 'alpha_bleeding_7_cge_viewer.png', 'titlealt' => 'Fixing Alpha Bleeding in castle-view-image: after'),
+      array('filename' => 'alpha_bleeding_8_cge_viewer.png', 'titlealt' => 'Fixing Alpha Bleeding in castle-image-viewer: before'),
+      array('filename' => 'alpha_bleeding_6_cge_viewer.png', 'titlealt' => 'Fixing Alpha Bleeding in castle-image-viewer'),
+      array('filename' => 'alpha_bleeding_7_cge_viewer.png', 'titlealt' => 'Fixing Alpha Bleeding in castle-image-viewer: after'),
     ), 'auto', 'left');
     ?>
 
   <li>
-    <p>Or you can write your own code to perform this operation. Just call <?php echo cgeRef('TCastleImage.AlphaBleed'); ?> to do the same thing that <a href="castle-view-image.php">castle-view-image</a> does.
+    <p>Or you can write your own code to perform this operation. Just call <?php echo cgeRef('TCastleImage.AlphaBleed'); ?> to do the same thing that <a href="castle-image-viewer">Castle Image Viewer</a> does.
 
     <p>Note: We heavily advise to <i>not</i> do <?php echo cgeRef('TCastleImage.AlphaBleed'); ?> during actual loading of your game (even though, technically, you can). As the process is really slow and needs to be performed only once for a given image. It should be done as a pre-processing step that you run once over your data, before packaging it.
 </ol>

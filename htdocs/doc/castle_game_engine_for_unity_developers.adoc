@@ -131,7 +131,7 @@ my_project/                    <- the project root
 
 See https://castle-engine.io/creating_data_model_formats.php[supported model formats]. In short: glTF is the best :) This documentation page also links to instructions for various authoring tools "how to export your data".
 
-Test your models with https://castle-engine.io/view3dscene.php[view3dscene] to see what is supported. If you double-click on a model from https://castle-engine.io/manual_editor.php[CGE editor], it will automatically launch view3dscene.
+Test your models with https://castle-engine.io/castle-model-viewer[Castle Model Viewer] to see what is supported. If you double-click on a model from https://castle-engine.io/editor[editor], it will automatically launch _Castle Model Viewer_.
 
 == Do you support FBX model format?
 

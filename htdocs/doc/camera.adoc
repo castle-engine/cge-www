@@ -40,7 +40,7 @@ Viewport.Camera.SetView(
 );
 ----
 +
-You can even generate such Pascal code: Use the _"Clipboard -> Print Current Camera (Viewpoint) (Pascal)"_ menu item in link:view3dscene.php[view3dscene].
+You can even generate such Pascal code: Use the _"Clipboard -> Print Current Camera (Viewpoint) (Pascal)"_ menu item in link:castle-model-viewer[Castle Model Viewer].
 
 - Alternatively, automatically initialize the camera defaults (including position, direction, up vectors) based on the information in the model.
 +
@@ -53,7 +53,7 @@ The way this auto-detection works:
 +
 For example link:gltf[glTF] format allows to define a default camera. link:blender[Blender] can export such glTF models.
 +
-Models in In X3D can also define a default camera, using X3D `Viewpoint` or `OrthoViewpoint` nodes. If you write X3D files by hand, you can even generate such nodes using the _"Clipboard -> Print Current Camera (Viewpoint)"_ menu item in link:view3dscene.php[view3dscene].
+Models in In X3D can also define a default camera, using X3D `Viewpoint` or `OrthoViewpoint` nodes. If you write X3D files by hand, you can even generate such nodes using the _"Clipboard -> Print Current Camera (Viewpoint)"_ menu item in link:castle-model-viewer[Castle Model Viewer].
 
 - Otherwise (if there is no `Viewpoint` node,or you didn't even set `MainScene`) then the camera will be auto-detected to look at the world bounding box.
 --

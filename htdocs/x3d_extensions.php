@@ -636,14 +636,15 @@ WWWInline { name "my_compressed_vrml_file.wrl.gz" }
     ?>
 
     <p>Currently this is respected only by classic ray-tracer
-    in <?php echo a_href_page("view3dscene", "view3dscene"); ?>
+    in <a href="castle-model-viewer">castle-model-viewer</a>
     and <?php echo a_href_page("rayhunter", "rayhunter"); ?>.
     Well, it's also respected by path-tracer, although
     it's much better to use <a href="#section_ext_material_phong_brdf_fields">
     fields describing physical properties (Phong's BRDF) for <code>Material</code>
     node</a> when using path-tracer. In the future <code>mirror</code> field
     may be somehow respected with normal OpenGL rendering in
-    <?php echo a_href_page("view3dscene", "view3dscene"); ?> and others.
+    <a href="castle-model-viewer">castle-model-viewer</a>
+    and others.
 
     <dl class="vrml_ver_differences">
       <dt>For VRML 1.0</dt>

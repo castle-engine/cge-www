@@ -37,7 +37,7 @@ FBX2glTF model.fbx
 
 <p>After the export, the <code>modelname_out</code> subfolder will appear with the exported model.</p>
 
-<p>The conversion result can be easily compared using <a href="https://castle-engine.io/view3dscene.php">view3dcene</a> and <a href="https://www.autodesk.com/products/fbx/fbx-review">FBX Review</a>.</p>
+<p>The conversion result can be easily compared using <a href="https://castle-engine.io/castle-model-viewer">view3dcene</a> and <a href="https://www.autodesk.com/products/fbx/fbx-review">FBX Review</a>.</p>
 
 <?php echo $toc->html_section(); ?>
 
@@ -77,7 +77,7 @@ echo castle_thumbs(array(
   array('filename' => 'export-3ds_babylon_081_textures_must_be_bitmap_type_changed.png', 'titlealt' => 'The same in second material editor, Glossines adjusted to 3'),
   array('filename' => 'export-3ds_babylon_09_run_exporter.png', 'titlealt' => 'Run exporter'),
   array('filename' => 'export-3ds_babylon_10_choose_format_gltf_or_glb.png', 'titlealt' => 'Choose gltf or glb'),
-  array('filename' => 'export-3ds_file_loaded_in_3dsmax_and_adjusted_to_export_by_babylon_gltf.png', 'titlealt' => 'Result in view3dscene'),
+  array('filename' => 'export-3ds_file_loaded_in_3dsmax_and_adjusted_to_export_by_babylon_gltf.png', 'titlealt' => 'Result in castle-model-viewer'),
 ), 'auto', 'left');
 ?>
 
@@ -113,7 +113,7 @@ echo castle_thumbs(array(
   array('filename' => 'export-3dsmax2.png', 'titlealt' => '3ds Max Export menu'),
   array('filename' => 'export-3dsmax3.png', 'titlealt' => '3ds Max Export file dialog - choose VRML97'),
   array('filename' => 'export-3dsmax4.png', 'titlealt' => '3ds Max VRML97 Exporter options'),
-  array('filename' => 'export-3dsmax5-view3dscene.png', 'titlealt' => 'View in view3dscene model exported from 3ds Max. Model By raptorus | From http://opengameart.org/content/golemmarine'),
+  array('filename' => 'export-3dsmax5-view3dscene.png', 'titlealt' => 'View in castle-model-viewer model exported from 3ds Max. Model By raptorus | From http://opengameart.org/content/golemmarine'),
 ), 'auto', 'left');
 ?>
 

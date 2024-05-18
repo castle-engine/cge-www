@@ -231,7 +231,7 @@ and Monte Carlo path tracing.
 
     <p>You can process RGBE images using
     <a href="http://floyd.lbl.gov/radiance/">Radiance</a> programs.
-    Also my <?php echo a_href_page("castle-view-image", "castle-view-image"); ?>
+    Also my <a href="castle-image-viewer">Castle Image Viewer</a>
     can be used to view RGBE images.
 </ul>
 
@@ -296,7 +296,7 @@ and Monte Carlo path tracing.
         so we can use it. Other 3D formats don't support camera information.
     </ul>
 
-    <p>Note that you can use <?php echo a_href_page("view3dscene", "view3dscene"); ?>
+    <p>Note that you can use <a href="castle-model-viewer">castle-model-viewer</a>
     to comfortably determine good values for these options &mdash;
     see <i>Console -> Print rayhunter command-line to render this view</i>
     menu item in view3dscene.</dd>
@@ -546,7 +546,7 @@ and Monte Carlo path tracing.
   <li><p>This concerns actually most 3d engines, including
     ray-tracer algorithms inside <code>rayhunter</code>
     and real-time OpenGL rendering inside
-    <?php echo a_href_page("view3dscene", "view3dscene"); ?>:
+    <a href="castle-model-viewer">castle-model-viewer</a>:
     3d model's geometry must be correct. Which means that:
     <ul>
       <li><p>No T-Intersections allowed. Otherwise you may see cracks.
@@ -574,9 +574,9 @@ and Monte Carlo path tracing.
 
 <p>The same ray-tracer code as is used by <code>rayhunter</code>
 is also used inside
-<?php echo a_href_page("view3dscene", "view3dscene"); ?>.
+<a href="castle-model-viewer">castle-model-viewer</a>.
 While using ray-tracer from
-<?php echo a_href_page("view3dscene", "view3dscene"); ?>
+<a href="castle-model-viewer">castle-model-viewer</a>
  is more comfortable, using command-line <code>rayhunter</code> has also
 some advantages:
 

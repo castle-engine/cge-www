@@ -90,7 +90,7 @@ Note that the documentation also includes some projects (Bootstrap, jQuery, Tipu
 - Note that we also develop some tools / games related to the Castle Game Engine, available in other repositories in https://github.com/castle-engine[GitHub CGE organization]. For example:
 +
 --
-- view3dscene: https://github.com/castle-engine/view3dscene
+- link:castle-model-viewer[Castle Model Viewer]: https://github.com/castle-engine/castle-model-viewer
 --
 +
 These tools / games are covered by their own license terms, and in general they use more strict GPL license.

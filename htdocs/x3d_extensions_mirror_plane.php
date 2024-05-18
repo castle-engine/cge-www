@@ -40,7 +40,7 @@ Get that repository, and open these models:
   <li><a href="https://github.com/castle-engine/demo-models/blob/master/water/simple/water_final_using_noise_from_shaders.x3dv">water/simple/water_final_using_noise_from_shaders.x3dv</a>
 </ul>
 
-<p>You can open them using <a href="view3dscene.php">view3dscene</a>.
+<p>You can open them using <a href="castle-model-viewer">castle-model-viewer</a>.
 
 <?php echo $toc->html_section(); ?>
 

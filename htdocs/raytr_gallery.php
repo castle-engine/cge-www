@@ -38,7 +38,7 @@ format, this means that I actually converted them to VRML using
 <?php echo a_href_page("kambi_mgf2inv", "kambi_mgf2inv"); ?>.
 Whenever I used 3d models in <code>3DS</code> format, this
 means that I actually converted them to VRML using
-<?php echo a_href_page("view3dscene", "view3dscene"); ?>.
+<a href="castle-model-viewer">castle-model-viewer</a>.
 
 <hr> <!-- =============================================== -->
 

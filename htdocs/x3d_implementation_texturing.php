@@ -43,7 +43,7 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
 
     <p><code>ImageTexture</code> allows various texture formats,
     including JPEG, PNG, GIF, BMP, PPM, RGBE, KTX, DDS.
-    See <?php echo a_href_page('castle-view-image', 'castle-view-image'); ?>
+    See <a href="castle-image-viewer">Castle Image Viewer</a>
     documentation for a detailed list.
 
     <p><i>Note about alpha channel</i>: alpha channel of the textures

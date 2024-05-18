@@ -253,7 +253,7 @@ memory-hungry.
 FBX2glTF model.fbx
 </pre>
 
-<p>After the export, the <code>modelname_out</code> subfolder will appear with the exported model. The conversion result can be easily compared using e.g. <a href="https://castle-engine.io/view3dscene.php">view3dcene</a> and <a href="https://www.autodesk.com/products/fbx/fbx-review">FBX Review</a>.
+<p>After the export, the <code>modelname_out</code> subfolder will appear with the exported model. The conversion result can be easily compared using e.g. <a href="https://castle-engine.io/castle-model-viewer">view3dcene</a> and <a href="https://www.autodesk.com/products/fbx/fbx-review">FBX Review</a>.
 
 <p><i>Note: We do not recommend using FBX in your workflow.</i>
 <!--

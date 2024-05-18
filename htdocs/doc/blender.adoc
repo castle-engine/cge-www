@@ -23,7 +23,7 @@ Exporting from Blender to link:gltf[glTF 2.0] is the best way to use _Blender_ w
 
 * Load the resulting file (in `.glb` or `.gltf` formats) to cgeref:TCastleScene[]. See manual about link:viewport_and_scenes[viewports and scenes].
 
-* You can also open the glTF file with link:view3dscene.php[view3dscene].
+* You can also open the glTF file with link:castle-model-viewer[Castle Model Viewer].
 
 === Important links
 

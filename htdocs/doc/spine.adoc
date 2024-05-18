@@ -26,13 +26,13 @@ Spine is a great software to design 2D animations for games, using modern techni
 * you can change attachments during animation,
 * and more (see Spine website for exhaustive list :).
 
-You can use https://castle-engine.io/view3dscene.php[view3dscene] to open Spine animations.
+You can use https://castle-engine.io/castle-model-viewer[Castle Model Viewer] to open Spine animations.
 
 You can also add Spine animations using the https://castle-engine.io/manual_editor.php[editor], just add a `TCastleScene` and set the scene `URL` to point to the JSON file.
 
 . Some sample Spine animations are in https://github.com/castle-engine/demo-models[demo models] in subdirectory https://github.com/castle-engine/demo-models/tree/master/spine[spine]. They are also used by some examples, like https://github.com/castle-engine/castle-engine/tree/master/examples/animations/play_animation[examples/animations/play_animation] and by our "New Project" \-> "2D game" template.
-. Just open a project exported from Spine (as a JSON file) using https://castle-engine.io/view3dscene.php[view3dscene] _File\->Open_ .
-. To run a named animation, use _Animations_ panel in view3dscene.
+. Just open a project exported from Spine (as a JSON file) using https://castle-engine.io/castle-model-viewer[Castle Model Viewer] _File\->Open_ .
+. To run a named animation, use _Animations_ panel in link:castle-model-viewer[Castle Model Viewer].
 
 video::AuI4zgmT-YQ[youtube,width=800,height=450]
 
@@ -54,7 +54,7 @@ See link:viewport_and_scenes[viewport and scenes] for more information about usi
 
 == Creating Spine models
 
-Basically, just create Spine models/animations as usual, and export them to JSON. Often it is comfortable to test your animations first in https://castle-engine.io/view3dscene.php[view3dscene] before trying them out in your game.
+Basically, just create Spine models/animations as usual, and export them to JSON. Often it is comfortable to test your animations first in https://castle-engine.io/castle-model-viewer[Castle Model Viewer] before trying them out in your game.
 
 ////
 Dragon Bones seems not maintained anymore, with broken website and even downloads.

@@ -36,7 +36,7 @@ FBX2glTF model.fbx
 
 <p>After the export, the <code>modelname_out</code> subfolder will appear with the exported model.</p>
 
-<p>The conversion result can be easily compared using <a href="https://castle-engine.io/view3dscene.php">view3dcene</a> and <a href="https://www.autodesk.com/products/fbx/fbx-review">FBX Review</a>.</p>
+<p>The conversion result can be easily compared using <a href="https://castle-engine.io/castle-model-viewer">view3dcene</a> and <a href="https://www.autodesk.com/products/fbx/fbx-review">FBX Review</a>.</p>
 
 <?php echo $toc->html_section(); ?>
 

@@ -113,11 +113,11 @@ We should also upload CGE as app to Steam.
 
 _This is already in-progress by Eugene Loza (branch: https://github.com/castle-engine/castle-engine/commits/castle-steam , PR: https://github.com/castle-engine/castle-engine/pull/471 ), we also have a draft application on Steam for CGE :)_.
 
-## Release mobile view3dscene (as Android and iOS application)
+## Release mobile castle-model-viewer (as Android and iOS application)
 
-link:https://github.com/castle-engine/view3dscene-mobile[This is almost done, thanks to Jan Adamec.] We need to release it :)
+link:https://github.com/castle-engine/castle-model-viewer-mobile[This is almost done, thanks to Jan Adamec.] We need to release it :)
 
-Associated with glTF, X3D and other formats that the view3dscene (and _Castle Game Engine_) handles. Available in the App Store / Google Play Store. For free or for 1 USD (not sure yet; but definitely without ads, I really dislike ads).
+Associated with glTF, X3D and other formats that the castle-model-viewer (and _Castle Game Engine_) handles. Available in the App Store / Google Play Store. For free or for 1 USD (not sure yet; but definitely without ads, I really dislike ads).
 
 [#terrain]
 ## Terrain features (in particular, editing terrain in CGE editor)
@@ -417,9 +417,9 @@ Currently you can only export `TCastleScene` to X3D.
 
 ## Export TCastleScene, or any TCastleTransform hierarchy, to glTF
 
-Currently you can only export `TCastleScene` to X3D.
+Currently you can export `TCastleScene` to X3D or STL.
 
-This will likely also imply rename of `tovrmlx3d` to `castle-convert`.
+GitHub issue: https://github.com/castle-engine/castle-engine/issues/595
 
 ## Allow animating selected node graph properties, without changing the graph, to be able to reuse graphs
 

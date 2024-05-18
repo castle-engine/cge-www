@@ -34,7 +34,7 @@ known and used by most good programs in the world) :
     <p><i>Note for Windows users of my programs that don't create a console</i>
     (e.g. <?php echo a_href_page('malfunction', 'malfunction'); ?>,
     <?php echo a_href_page('kambi_lines', 'kambi_lines'); ?> or
-    <?php echo a_href_page('castle-view-image', 'castle-view-image'); ?>):
+    <a href="castle-image-viewer">Castle Image Viewer</a>):
     when Windows program does not explicitly create a console,
     it usually has no standard output available.
     You must explicitly redirect it's stdout when using option <code>--version</code>.
@@ -45,12 +45,11 @@ known and used by most good programs in the world) :
     <code>-p=argument</code> (same as the first one, but using short form) or<br>
     <code>-p argument</code> (same as the second one, but using short form).
 
-    <p>E.g. following methods of running
-    <?php echo a_href_page("view3dscene", "view3dscene"); ?>
+    <p>E.g. following methods of running <a href="castle-model-viewer">castle-model-viewer</a>
     are equivalent:
 <pre>
-  view3dscene --navigation=Examine scene.wrl
-  view3dscene --navigation Examine scene.wrl
+  castle-model-viewer --navigation=Examine scene.wrl
+  castle-model-viewer --navigation Examine scene.wrl
 </pre>
 
     <p>If option <i>allows</i> but <i>not requires</i> an argument,
@@ -86,21 +85,21 @@ known and used by most good programs in the world) :
     You can use it if you have files with names beginning with a <code>'-'</code>.
 
     <p>E.g. suppose you have a file named <code>--file.png</code> and you want
-    to view it using <?php echo a_href_page("castle-view-image", "castle-view-image"); ?>.
+    to view it using <a href="castle-image-viewer">Castle Image Viewer</a>.
     If you call
-    <pre>  castle-view-image --file.png</pre>
-    then castle-view-image will exit with an error <i>'invalid
+    <pre>  castle-image-viewer --file.png</pre>
+    then castle-image-viewer will exit with an error <i>'invalid
     long option "--file.png"'</i>. Even worse, if you have a file named
     <code>--geometry</code> (<code>--geometry</code> not only begins with a dash
-    but it even IS a valid option for castle-view-image) and you call
-    <pre>  castle-view-image --geometry</pre>
-    then castle-view-image will try to interpret the <code>--geometry</code> option
+    but it even IS a valid option for castle-image-viewer) and you call
+    <pre>  castle-image-viewer --geometry</pre>
+    then castle-image-viewer will try to interpret the <code>--geometry</code> option
     and will give an error <i>'missing argument for "--geometry"'</i>.
-    So you can force castle-view-image to treat <code>--file.png</code> or
+    So you can force castle-image-viewer to treat <code>--file.png</code> or
     <code>--geometry</code> as file names using :
 <pre>
-  castle-view-image -- --file.png
-  castle-view-image -- --geometry
+  castle-image-viewer -- --file.png
+  castle-image-viewer -- --geometry
 </pre>
 
 </ul>
