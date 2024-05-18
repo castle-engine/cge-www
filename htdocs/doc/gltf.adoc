@@ -221,3 +221,32 @@ Shape {
   geometry IndexedFaceSet { ... }
 }
 ```
+
+[#unique_names]
+=== glTF files may have non-unique names, but we advise to keep them unique, and we'll force them unique at loading
+
+glTF format allows non-unique names.
+
+Even things of the same type (like _"glTF nodes"_, which are _"Transform nodes in X3D terminology"_) may have the same name. Moreover, things of different types (like _"glTF node"_ and _"glTF material"_) may have the same name.
+
+This can easily occur in practice, as link:blender[Blender] allows to have non-unique names across things of different types. It is common in Blender to have _"Blender mesh"_ and _"Blender object"_ with the same name, and then export to glTF.
+//At import to our engine, both _"Blender mesh"_ and _"Blender object"_ result in X3D nodes descending from `TAbstractGroupingNode` with the same name.
+// TODO ^ make sure above is true.
+
+**When importing to _Castle Game Engine_, we make all the names unique, by adding suffixes like `_2`, `_3` to X3D node instances that would otherwise have the same name. We do this for all X3D nodes, which include grouping and transforming nodes, appearances, materials, textures, lights, cameras, animations, and so on.**
+
+We do this because:
+
+- X3D standard requires unique names, and we want our converters (like link:castle-model-converter[]) to generate valid X3D files from valid input.
++
+This makes total sense for X3D. All the node names live in the same namespace, and can be referred to using e.g. `EXPORT xxx`, `ROUTE xxx.yyy...`, `USE xxx`.
+
+- Unique names behave more intuitively when searching among nodes from Pascal too. E.g. searching using Pascal API like `Scene.Node('MyName')`.
++
+While we always encourage to qualify search by node type, like `Scene.Node(TGroupingNode, 'MyName')`, it was still confusing when `MyName` could resolve to different nodes depending on type. And `Scene.Node(TX3DNode, 'MyName')` was still undefined.
++
+So to have reliable search for node names, you need to have unique names anyway.
+
+Please treat the order in which we add suffixes like `_2`, `_3` undefined. It may change from release to release. If you rely on some name `xxx` being available, make sure it is unique in your input.
+
+NOTE: See https://github.com/castle-engine/castle-engine/blob/master/doc/miscellaneous_notes/renaming_nodes_at_import.md[What to do with node names when importing e.g. glTF?] document for more discussion and details.
