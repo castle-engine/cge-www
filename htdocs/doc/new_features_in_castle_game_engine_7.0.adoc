@@ -149,6 +149,7 @@ All features below are already available. Download the engine from link:download
 * Cache for scene loading: cgeref:TCastleSceneCore.Cache[].
 * MD3 support improvements: multiple animations supported (we load `animation.cfg`), so playing particular MD3 animations is trivial, just use our `PlayAnimation` method. Optimized loading. Choosing skins. Support for tags. See https://castle-engine.io/md3[MD3 support docs], see https://castle-engine.io/wp/2023/03/31/md3-support-improvements-multiple-animations-tags-configurable-skins/[news].
 * X3D 4.0 support improvements, e.g. proper `MetadataXxx` `containerField` handling for both X3D 4 and 3, added new X3D 4.0 fields to various nodes.
+* Register custom model formats using cgeref:RegisterModelFormat[] and cgeref:TModelFormat[]. The formats you register this way, can be loaded using cgeref:LoadNode[] or cgeref:TCastleSceneCore.Load[] and saved using cgeref:SaveNode[].
 * Lots of documentation updates. Links to some pages not already mentioned above: https://castle-engine.io/custom_components[custom components], https://castle-engine.io/behaviors[behaviors], https://castle-engine.io/coding_conventions[coding conventions (extended with our guidelines about memory management, nil and more)] .
 --
 * Lots of new or upgraded examples. E.g.
