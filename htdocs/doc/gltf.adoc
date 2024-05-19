@@ -223,7 +223,7 @@ Shape {
 ```
 
 [#unique_names]
-=== glTF files may have non-unique names, but we advise to keep them unique, and we'll force them unique at loading
+=== glTF files may have non-unique names, but we advise to generate them to be unique; eventually we'll force them unique at loading
 
 glTF format allows non-unique names.
 
