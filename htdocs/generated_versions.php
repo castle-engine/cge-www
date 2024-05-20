@@ -2,7 +2,7 @@
   define('VERSION_CASTLE', '1.0.1');
   define('VERSION_MALFUNCTION', '1.2.8');
   define('VERSION_KAMBI_LINES', '1.1.7');
-  define('VERSION_CASTLE_MODEL_VIEWER', '4.3.0');
+  define('VERSION_CASTLE_MODEL_VIEWER', '5.0.0');
   define('VERSION_RAYHUNTER', '1.3.4');
   define('VERSION_CASTLE_IMAGE_VIEWER', '2.2.0');
   define('VERSION_GLPLOTTER', '2.0.0');
