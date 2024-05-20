@@ -45,11 +45,13 @@ cgeimg::block[
   //view3dscene_dungeon_multiple_views.png|Multiple views at the same 3D dungeon
 ]
 
-== Download (version 4.3.0)
+== Download
+
+=== Stable version (5.0.0)
 
 cge::download-application[
-  4.3.0,
-  snapshot,
+  5.0.0,
+  v5.0.0,
   castle-engine,
   castle-model-viewer,
   castle-model-viewer,
@@ -80,6 +82,24 @@ Above recommends to download a snapshot, 4.3.0, automatically updated after ever
 NOTE: If you already have link:/[Castle Game Engine], then just run `castle-model-viewer` executable from the engine `bin` subdirectory. There's no need to download this separately.
 
 NOTE: We also recommend to download link:demo_models.php[our collection of demo models]!
+
+////
+=== Snapshot (unstable, preview of the next version) (5.1.0)
+
+cge::download-application[
+  5.1.0,
+  snapshot,
+  castle-engine,
+  castle-model-viewer,
+  castle-model-viewer,
+    win64-x86_64;
+    //win32-i386;
+    linux-x86_64;
+    linux-arm;
+    linux-aarch64;
+    darwin-x86_64
+]
+////
 
 ////
 No longer actively tested, and was complicated to use, for now don't expose docs of it:

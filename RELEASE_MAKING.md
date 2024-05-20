@@ -47,12 +47,16 @@
 
 - Create and push GIT tag vX.Y.Z
 
-    (needs to be made by GIT, now using GitHub release "create tag on publish",
-    because we want to push files to this tag before publishing).
+    Notes:
+    - Needs to be made by GIT, now using GitHub release "create tag on publish",
+      because we want to push files to this tag before publishing).
+    - Pushing tag to repo (see below) requires that related commit be also pushed.
+      Our workflow can update the tag later anyway to newer commit,
+      so don't worry, don't be afraid to push the tag :)
 
     ```
     echo git tag -a vX.Y.Z -m "Tagging the version X.Y.Z."
-    # to push tag to repo
+    # To push tag to repo
     git push origin vX.Y.Z
     ```
 
