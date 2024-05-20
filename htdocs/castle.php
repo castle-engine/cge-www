@@ -6,7 +6,7 @@ castle_header("The Castle");
 
 // echo flattr_button(); - Flattr not used now
 
-echo pretty_heading('The Castle', VERSION_CASTLE);
+echo pretty_heading('The Castle');
 echo castle_thumbs(array(
   array('filename' => 'castle_screen_demo_1.png', 'titlealt' => 'Image from "The Castle"'),
   array('filename' => 'castle_screen_demo_4.png', 'titlealt' => 'Image from "The Castle"'),
@@ -15,35 +15,16 @@ echo castle_thumbs(array(
 
 $toc = new TableOfContents(
   array(
-    new TocItem('Note: This is a game from 2006 and has some programmer art :)', 'old'),
     new TocItem('Overview', 'overview'),
     new TocItem('Download (version 1.1.0)', 'download'),
-    new TocItem('Installing', 'install', 1),
+    new TocItem('Installing', 'install'),
+    new TocItem('WARNING: This is a game from 2006 and has some programmer art :)', 'old'),
     new TocItem('Movie', 'movies'),
   )
 );
 ?>
 
 <?php echo $toc->html_toc(); ?>
-
-<?php echo $toc->html_section(); ?>
-
-<p>Note that this game was done quite long time ago:
-it was done for <a href="http://pascalgamedevelopment.com/">PascalGameDevelopment</a>
-competition in 2006. I was tinkering with the code since then
-(the <a href="https://github.com/castle-engine/castle-game/">source code from GitHub</a>
-compiles with <a href="https://castle-engine.io/download">latest Castle Game Engine</a>).
-But I never had time
-to actually rework the 3D levels and creatures to something prettier.
-
-<p>This is combined with the fact that the game graphics was composed by me (Michalis),
-a programmer, not an artist.
-I used various free 3D models, doing various adjustments and adding some simple
-own models.
-
-<p>So forgive 3D graphics that look quite dated now :)
-
-<p>You want to see something pretty? Check out <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/fps_game">examples/fps_game</a> in CGE sources! This was done by real artists, and in 2022, and it looks amazing :)
 
 <?php echo $toc->html_section(); ?>
 
@@ -143,6 +124,25 @@ of our engine (we developed a lot of new features since 2006...), is planned.
     'macOS dependencies', 'doc/macos'); ?> for more macOS information.</p>
 
 </ul>
+
+<?php echo $toc->html_section(); ?>
+
+<p>Note that this game was done quite long time ago:
+it was done for <a href="http://pascalgamedevelopment.com/">PascalGameDevelopment</a>
+competition in 2006. I was tinkering with the code since then
+(the <a href="https://github.com/castle-engine/castle-game/">source code from GitHub</a>
+compiles with <a href="https://castle-engine.io/download">latest Castle Game Engine</a>).
+But I never had time
+to actually rework the 3D levels and creatures to something prettier.
+
+<p>This is combined with the fact that the game graphics was composed by me (Michalis),
+a programmer, not an artist.
+I used various free 3D models, doing various adjustments and adding some simple
+own models.
+
+<p>So forgive 3D graphics that look quite dated now :)
+
+<p>You want to see something pretty? Check out <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/fps_game">examples/fps_game</a> in CGE sources! This was done by real artists, and in 2022, and it looks amazing :)
 
 <?php echo $toc->html_section(); ?>
 
