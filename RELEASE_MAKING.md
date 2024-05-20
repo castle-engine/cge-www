@@ -2,7 +2,7 @@
 
 - Test as described in RELEASE_MAKING_TESTS.md
 
-- Bump versions:
+- Bump versions (commit but do not push yet):
 
     - For applications (like castle-model-viewer):
 
@@ -30,39 +30,63 @@
           (and run "make clean && make" in doc/pasdoc/html-parts/ to refresh API docs extra HTML).
         - check: grep "7.0-alpha"
 
-        - Change ../castle-engine/tools/internal/pack_release/github_update_release.txt
-          to empty.
-          Optional: hack Jenkinsfile to not do "Build Examples" as it takes some time.
+- Call in cge-www scripts/generate_versions.sh script.
 
-- Call scripts/generate_versions.sh script.
+  - Note: This is less important in new work.
+    The version numbers stored here matter less and less,
+    and we plan to just remove them eventually.
 
   - Before, you should recompile program for the current (source) OS.
     That's because generate_versions.sh actually calls program with --version
     to determine version number.
 
   - You should run generate_versions script to update
-    generated_versions.php (this makes version number on WWW page)
-    generated_versions.sh (this makes version number for some binary archives, like on itch.io).
+    generated_versions.php (this makes version number on WWW page - OBSOLETE)
+    generated_versions.sh (this makes version number for some binary archives,
+    like on itch.io).
 
-- Tag releases using scripts/make_tags.sh script.
-  Leave uncommented only the lines for newly released programs, and run it.
+- Create and push GIT tag vX.Y.Z
 
-- Make new releases from existing tags on GitHub, like
+    (needs to be made by GIT, now using GitHub release "create tag on publish",
+    because we want to push files to this tag before publishing).
+
+    ```
+    echo git tag -a vX.Y.Z -m "Tagging the version X.Y.Z."
+    # to push tag to repo
+    git push origin vX.Y.Z
+    ```
+
+- Create new *draft* release from existing tags on GitHub, like
 
   https://github.com/castle-engine/castle-engine/releases/new
   https://github.com/castle-engine/castle-image-viewer/releases/new
   https://github.com/castle-engine/castle-model-viewer/releases/new
 
-  Save new release as merely a draft now.
+  Set proper GIT tag.
+  The release will not have files -- we will let GitHub Actions
+  to fill it with files next.
+
+- Change GitHub Actions YAML to upload to vX.Y.Z tag.
+
+    In GitHub Actions (~/.github/workflows/*.yml) find line like this:
+
+    ```
+    env:
+      # To which GitHub release tag should we upload artifacts.
+      # Can be "snapshot" or "vX.Y.Z" (latter when we make stable release).
+      release_tag: snapshot
+    ```
+
+    Change to `release_tag: vX.Y.Z` and commit.
+
+- Now *push* this change.
+  Wait for GH Actions to update the release.
+
 
 - Uploading new release:
 
-  - For castle-engine:
-    Change ../castle-engine/tools/internal/pack_release/github_update_release.txt
-    to proper release, like 7.0-alpha.2.
-    Commit, push, wait for Jenkins.
+  - (Old for pasdoc):
 
-  - For pasdoc, castle-model-viewer and most other projects under castle-engine org:
     Do it semi-automatically using scripts in cge-github-update-release:
 
     ssh jenkins.castle-engine.io
@@ -80,34 +104,19 @@
         # For pasdoc:
         ./pasdoc-update-github-releases
 
-    Note: This workflow is not perfect, since we upload the builds from latest (master)
-    as the "last tagged" project version.
-    In case there were some commits since make_tags.sh, the binary builds will be a bit newer.
-    This is not a problem in practice, just be aware of it.
-    Eventually, you can set tag again and force-push it (this is what cge-github-update-release
-    also does to keep "snapshot" a moving tag).
+- Publish release on GitHub - fill with final description, press "Publish".
 
-  - Everything else:
-    Manually upload to releases on GitHub latest builds by Jenkins of the appropriate application/engine.
-    The Jenkinsfile for each project has perfect commands to make a build of every application,
-    using advised FPC version etc. So we just upload these builds as releases.
+- Update the webpage:
+  - Update versions in .adoc:
 
-- Publish releases on GitHub
+    - section names like `Download (version 2.1.0)`
+    - usage of `cge::download-application`
+    - for engine, usage of `cge::download-engine`
 
-- Update the URLs:
-  - castle-model-viewer versions in htdocs/doc/castle-model-viewer.adoc (see lower about "how to update www content")
-
-  - CGE links in `cge::download-engine[....]` in htdocs/doc/download.adoc ,
-    update version/tag there.
-
-    Note: If you change something outside of ADOC,
-    to force regenerate https://castle-engine.io/download , on CGE SSH:
-
-    ```
-    cd ~/cge-www/htdocs/doc
-    rm -f output/download.html
-    make
-    ```
+    Note: If you changed something outside of ADOC, that affects HTML generation,
+    do (on server) `touch xxx.adoc` to force regeneration of given page.
+    *Do not* do `rm -f output/download.html` to force this (as this means
+    the page gets temporarily broken).
 
   - Grep to make sure all things changed
     7.0-alpha.snapshot
@@ -118,7 +127,6 @@
 
   After:
   - Download.
-    If you manually uploaded: also compare are the downloaded files the same.
 
 - if you released new castle_game_engine version:
   - make sure new apidoc is already uploaded.
@@ -191,7 +199,7 @@
 
       Also revert Jenkinsfile to do full "Build Examples" (in case you hacked it for release).
 
-    - castle-model-viewer: version to `x.<odd>.0`
+    - applications: version to `x.<odd>.0`
 
 ## Website updating
 
@@ -222,7 +230,7 @@
 
 ## Announcing release
 
-- Regular annoucements sites:
+- Regular announcements sites:
   - Our Wordpress: https://castle-engine.io/wp/
   - Patreon: https://www.patreon.com/castleengine
   - Facebook: https://facebook.com/castleengine/
