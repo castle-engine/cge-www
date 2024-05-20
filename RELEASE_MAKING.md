@@ -82,27 +82,6 @@
 - Now *push* this change.
   Wait for GH Actions to update the release.
 
-- Uploading new release:
-
-  - (Old for pasdoc):
-
-    Do it semi-automatically using scripts in cge-github-update-release:
-
-    ssh jenkins.castle-engine.io
-      sudo -u jenkins-cge-uploader -i
-        # if cge-github-update-release missing:
-        git clone git@gitlab.com:castle-engine/cge-github-update-release.git
-        cd cge-github-update-release/
-
-        # if cge-github-update-release present:
-        cd cge-github-update-release/
-        mr up
-
-        # For castle-engine tools: adjust ./generic-update-github-releases
-        ./generic-update-github-releases
-        # For pasdoc:
-        ./pasdoc-update-github-releases
-
 - Publish release on GitHub - fill with final description, press "Publish".
 
 - Update the webpage:
