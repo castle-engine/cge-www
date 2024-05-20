@@ -82,7 +82,6 @@
 - Now *push* this change.
   Wait for GH Actions to update the release.
 
-
 - Uploading new release:
 
   - (Old for pasdoc):
@@ -125,8 +124,7 @@
     7.0-alpha1 # mistake
     to make sure everything is updated.
 
-  After:
-  - Download.
+- Download and make last tests.
 
 - if you released new castle_game_engine version:
   - make sure new apidoc is already uploaded.
@@ -200,6 +198,12 @@
       Also revert Jenkinsfile to do full "Build Examples" (in case you hacked it for release).
 
     - applications: version to `x.<odd>.0`
+
+- Fix snapshots:
+
+    - change GitHub Actions YAML to upload to `snapshot` tag.
+    - remove from `snapshot` release the old versions (new versions have new names).
+    - make sure new snapshot done OK.
 
 ## Website updating
 

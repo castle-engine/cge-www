@@ -7,7 +7,7 @@ include::common.adoc[]
 
 == Introduction
 
-Image viewer with support for many image formats, including common formats (PNG, JPG...) and some exotic formats useful in gamedev and 3D visualization (KTX, DDS, RGBE).
+Image viewer with support for many image formats, including common formats (PNG, JPG...) and some exotic formats useful in gamedev and 3D visualization (link:ktx[KTX], link:dds[DDS], RGBE).
 
 cgeimg::block[
   castle-image-viewer_welcome.png|Castle Image Viewer,
@@ -15,11 +15,13 @@ cgeimg::block[
   castle-image-viewer_alpha.png|Castle Image Viewer - Alpha Channel View
 ]
 
-== Download (version 2.1.0)
+== Download
+
+=== Stable version (2.2.0)
 
 cge::download-application[
-  2.1.0,
-  v2.1.0,
+  2.2.0,
+  v2.2.0,
   castle-engine,
   castle-image-viewer,
   castle-image-viewer,
@@ -32,6 +34,22 @@ cge::download-application[
 ]
 
 NOTE: If you already have link:/[Castle Game Engine], then just run `castle-image-viewer` executable from the engine `bin` subdirectory. There's no need to download this separately.
+
+=== Snapshot (unstable, preview of the next version) (2.3.0)
+
+cge::download-application[
+  2.3.0,
+  snapshot,
+  castle-engine,
+  castle-image-viewer,
+  castle-image-viewer,
+    win64-x86_64;
+    //win32-i386;
+    linux-x86_64;
+    linux-arm;
+    linux-aarch64;
+    darwin-x86_64
+]
 
 == Features
 
