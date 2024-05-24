@@ -2,20 +2,15 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-# This script uploads cge and castle-model-viewer packages to https://castle-engine.itch.io/ .
+# -----------------------------------------------------------------------
+# This script uploads Castle Game Engine packages
+# to https://castle-engine.itch.io/castle-game-engine .
 # Uses itch.io command-line butler:
 # https://itch.io/docs/butler/installing.html
 # https://itch.io/docs/itch/installing/linux/ubuntu-and-debian.html
+# -----------------------------------------------------------------------
 
-# define versions vars -------------------------------------------------------
-
-. generated_versions.sh
-
-# prepare $UPLOAD_DIR --------------------------------------------------------
-
-UPLOAD_DIR=/tmp/upload_itch_io_unpacked_$$
-
-# functions ------------------------------------------------------------------
+ITCH_IO_NAME='castle-engine/castle-game-engine'
 
 # We unpack the archive in a temporary directory, $UPLOAD_DIR.
 # $1 should be a file name (without path) that should exist in $UPLOAD_DIR
@@ -57,6 +52,7 @@ temporary_unpack ()
 
 butler_push ()
 {
+  UPLOAD_DIR=/tmp/upload_itch_io_unpacked_$$
   rm -Rf "${UPLOAD_DIR}"
   mkdir "${UPLOAD_DIR}"
 
@@ -76,23 +72,11 @@ butler_push ()
   rm -Rf "${UPLOAD_DIR}"
 }
 
-do_castle_model_viewer ()
-{
-  VER="${GENERATED_VERSION_CASTLE_MODEL_VIEWER}"
-  butler_push castle-model-viewer-windows.itch.toml https://github.com/castle-engine/castle-model-viewer/releases/download/v"${VER}"/castle-model-viewer-"${VER}"-win64-x86_64.zip    castle-engine/castle-model-viewer:windows --userversion "${VER}"
-  butler_push castle-model-viewer-linux.itch.toml   https://github.com/castle-engine/castle-model-viewer/releases/download/v"${VER}"/castle-model-viewer-"${VER}"-linux-x86_64.tar.gz castle-engine/castle-model-viewer:linux   --userversion "${VER}"
-  echo 'Running "butler status castle-engine/castle-model-viewer" to see status:'
-  butler status castle-engine/castle-model-viewer
-}
+VERSION=`castle-engine --version | sed -e "s/^castle-engine //" `
+echo "Uploading Castle Game Engine version ${VERSION} to itch.io"
 
-do_castle_game_engine ()
-{
-  VER="${GENERATED_VERSION_CASTLE_GAME_ENGINE}"
-  butler_push castle_game_engine-windows.itch.toml https://github.com/castle-engine/castle-engine/releases/download/v"${VER}"/castle-engine-"${VER}"-win64-x86_64.zip castle-engine/castle-game-engine:windows --userversion "${VER}"
-  butler_push castle_game_engine-linux.itch.toml   https://github.com/castle-engine/castle-engine/releases/download/v"${VER}"/castle-engine-"${VER}"-linux-x86_64.zip castle-engine/castle-game-engine:linux   --userversion "${VER}"
-  echo 'Runnig "butler status castle-engine/castle-game-engine" to see status:'
-  butler status castle-engine/castle-game-engine
-}
+butler_push castle_game_engine-windows.itch.toml https://github.com/castle-engine/castle-engine/releases/download/v"${VER}"/castle-engine-"${VER}"-win64-x86_64.zip $ITCH_IO_NAME:windows --userversion "${VER}"
+butler_push castle_game_engine-linux.itch.toml   https://github.com/castle-engine/castle-engine/releases/download/v"${VER}"/castle-engine-"${VER}"-linux-x86_64.zip $ITCH_IO_NAME:linux   --userversion "${VER}"
 
-do_castle_model_viewer
-do_castle_game_engine
+echo 'Runnig "butler status ..." to see status:'
+butler status $ITCH_IO_NAME
