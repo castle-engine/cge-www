@@ -128,8 +128,7 @@
         update in castle-engine-cloud-build-tools/ all versions to point to 7.0-alpha.2
         ./build-local.sh
 
-- In case of CGE and castle-model-viewer, upload them also to http://castle-engine.itch.io/ :
-  Run
+- In case of CGE and castle-model-viewer, upload them also to http://castle-engine.itch.io/
 
   ```
   # This is to make sure you have itch.io butler installed and authenticated.
@@ -137,19 +136,28 @@
   # you can actually install it using itch.io GUI app: https://itch.io/app ,
   # just "chmod +x ..." the butler binary and add it to $PATH.
   butler status castle-engine/castle-game-engine
-
-  pack/upload_itch_io.sh
   ```
 
-  Once `butler status castle-engine/castle-model-viewer` is good,
-  - test downloading it from https://castle-engine.itch.io/castle-model-viewer (using itch.io app). TODO: right now it is https://castle-engine.itch.io/view3dscene , should be renamed.
-  - write a new devlog there (copy-paste from GitHub release notes)
+  - To upload CGE, run script in this repo:
+      pack/upload_itch_io.sh
+
+  - To upload castle-model-viewer, run script from castle-model-viewer repo:
+      cd ..../castle-model-viewer/pack/itch_io/
+      ./upload_itch_io.sh
+
+  Once `butler status ...` is good,
+  - test downloading it from
+      https://castle-engine.itch.io/castle-model-viewer
+      https://castle-engine.itch.io/castle-game-engine
+    (using itch.io app).
+  - write a new devlog on itch.io (copy-paste from GitHub release notes)
 
   Once `butler status castle-engine/castle-game-engine` is good,
-  - test downloading it from https://castle-engine.itch.io/castle-game-engine (using itch.io app)
+  - test downloading it from  (using itch.io app)
   - write a new devlog there (copy-paste from GitHub release notes)
 
 - In case of CGE and castle-model-viewer, upload them also to https://sourceforge.net/projects/castle-engine/ files:
+
   Run
 
   ```
@@ -166,7 +174,7 @@
   https://sourceforge.net/projects/castle-engine/files/castle_game_engine/
 
   Mark new CGE files as default for Linux/Windows.
-  After a moment, Ctrl+R and "Looking for the latest version?" will show new version.
+  After a moment, Ctrl+R will show new version.
 
 - bump versions/code afterwards, to again make nice snapshots:
 
@@ -177,8 +185,7 @@
 
       Also revert ../castle-engine/tools/internal/pack_release/github_update_release.txt
       to snapshot.
-
-      Also revert Jenkinsfile to do full "Build Examples" (in case you hacked it for release).
+      TODO: This file will be removed soon.
 
     - applications: version to `x.<odd>.0`
 
