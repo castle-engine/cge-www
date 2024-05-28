@@ -24,7 +24,7 @@ Viewer for link:creating_data_model_formats.php[3D and 2D model formats supporte
 
 Examine or walk in the virtual world with collisions, gravity, animations, X3D sensors, shadows, mirrors, shaders and more. View it from multiple cameras at once. Take screenshots with various options (transparent background, cube maps).
 
-You can also convert between model formats -- right now you can convert any model to X3D, we plan to add output to glTF soon as well. Together with this application, we also distribute link:castle-model-converter[castle-model-converter] command-line tool and you can also use our link:convert.php[online model converter]. They all use the same codebase and have the same features.
+You can also convert between model formats -- right now you can convert any model to X3D or STL, we plan to add output to glTF soon as well. Together with this application, we also distribute link:castle-model-converter[castle-model-converter] command-line tool and you can also use our link:convert.php[online model converter]. They all use the same codebase and have the same features.
 
 // view3dscene_outlines.png credits:
 //
@@ -37,11 +37,13 @@ You can also convert between model formats -- right now you can convert any mode
 // https://www.artstation.com/artwork/oB5qz .
 
 cgeimg::block[
+  castle_model_viewer_cat_duelist.png|Artstation Challenge - Untamed - Cat Duelist by Marc_A_D\, from Sketchfab - https://sketchfab.com/3d-models/artstation-challenge-untamed-cat-duelist-5bec11c3160048f7a8ce482523ac2deb,
+  castle_model_viewer_cat_duelist_wireframe.png|(Wireframe View) Artstation Challenge - Untamed - Cat Duelist by Marc_A_D\, from Sketchfab - https://sketchfab.com/3d-models/artstation-challenge-untamed-cat-duelist-5bec11c3160048f7a8ce482523ac2deb,
   view3dscene_outlines.png|Castle Model Viewer (by Luis Fernandez\, https://sketchfab.com/3d-models/ftm-0970f30574d047b1976ba0aa6f2ef85 ),
-  view3dscene_mousey.png|glTF scene with Mixamo animations,
+  //view3dscene_mousey.png|glTF scene with Mixamo animations,
   //view3dscene_steampunk_gltf.png|Steampunk glTF scene,
   //view3dscene_spine_ffd_animation.png|Spine Free-Form Deformation animated,
-  view3dscene_spine_roseanne.png|Animated 2D Spine creature,
+  //view3dscene_spine_roseanne.png|Animated 2D Spine creature,
   //view3dscene_dungeon_multiple_views.png|Multiple views at the same 3D dungeon
 ]
 
