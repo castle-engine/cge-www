@@ -239,14 +239,8 @@
 
 - new release of some programs/engine may be announced on freshcode:
 
-  http://freshcode.club/projects/view3dscene
-    TODO: make new for castle-model-viewer?
+  http://freshcode.club/projects/castle-model-viewer
   http://freshcode.club/projects/castle-engine
-
-  (Old: our projects are also on freshmeat, but it's dead now:
-  http://freecode.com/projects/view3dscene/
-  http://freecode.com/projects/castlegame/
-  http://freecode.com/projects/castle-game-engine)
 
 - http://www.pascalgamedevelopment.com/
   go to the 'Home' section of the site and create 'News' article
@@ -301,13 +295,12 @@
 
   Also FSF wiki has descriptions:
     https://directory.fsf.org/wiki/Castle_Game_Engine
-    https://directory.fsf.org/wiki/View3dscene # or sthg like that
+    https://directory.fsf.org/wiki/View3dscene # TODO rename
 
   https://www.indiedb.com/engines/castle-game-engine
 
   https://castle-engine.itch.io/castle-game-engine
-
-  https://castle-engine.itch.io/view3dscene
+  https://castle-engine.itch.io/castle-model-viewer
 
 - http://www.web3d.org/news/submit/
   ... but it's pretty much ignored, giving up on this.
