@@ -89,6 +89,8 @@ other resources) automatically deal with URLs.
 
       <li><p><a href="https://github.com/castle-engine/castle-engine/blob/master/examples/network/remote_logging/">examples/network/remote_logging/</a>
         sends asynchronous HTTP POST message.
+
+      <li><p><a href="https://github.com/castle-engine/castle-openai">castle-openai: Talking with OpenAI assistant (essentially your own, customized ChatGPT)</a> is an example of using <code>TCastleDownload</code> to communicate with a REST server.
     </ul>
 
   <li><p><b>To save</b>, use
@@ -459,7 +461,9 @@ see <?php echo a_href_page('X3D extensions introduction', 'x3d_extensions'); ?>.
   <li>
     <p><a href="https://github.com/castle-engine/castle-engine/blob/master/examples/network/remote_logging/">examples/network/remote_logging/</a> (sends asynchronous HTTP POST message),
   <li>
-    <p><a href="https://github.com/castle-engine/castle-engine/tree/master/examples/network/put_data">examples/network/put_data/</a> (send HTTP PUT).
+    <p><a href="https://github.com/castle-engine/castle-engine/tree/master/examples/network/put_data">examples/network/put_data/</a> (send HTTP PUT),
+  <li>
+    <p><a href="https://github.com/castle-engine/castle-openai">castle-openai: Talking with OpenAI assistant (essentially your own, customized ChatGPT)</a> (sends a series of HTTP POST and GET messages to talk with OpenAI server).
 </ul>
 
 <?php echo $toc->html_section(); ?>
