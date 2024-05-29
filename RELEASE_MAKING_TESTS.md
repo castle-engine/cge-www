@@ -128,7 +128,7 @@ rm -Rf /home/michalis/installed/fpclazarus/current/fpc/lib/fpc/3.2.2/units/x86_6
 Allowed binaries below:
 
 ```
-$ make cleanmore
+$ make clean
 $ find -iname *.jar
 ./tools/build-tool/data/android/integrated/gradle/wrapper/gradle-wrapper.jar
 $ find -iname *.so
