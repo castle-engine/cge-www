@@ -35,7 +35,7 @@ class Check_Email_UI_Loader implements Loadie {
 			}
 		}
 	}
-
+        
 	public function is_show_dashboard_widget() {
 		$this->components['core_settings'] = new Setting\Check_Email_Core_Setting();
 		$dashboard_status                  = false;

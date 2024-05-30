@@ -135,7 +135,7 @@ class Check_Email_Status_Page extends Check_Email_BasePage {
                 foreach ( $args as $key => $value ) {
                     $headers .= $key . ': ' . $value . $break;
                 }
-
+               
             }
 
             $title = sprintf( esc_html__( "Test email from %s ", "check-email"), esc_url( get_bloginfo( "url" ) ) );

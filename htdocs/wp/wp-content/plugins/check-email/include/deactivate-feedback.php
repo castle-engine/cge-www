@@ -7,7 +7,7 @@
 $current_user = wp_get_current_user();
 $email = '';
 if( $current_user instanceof WP_User ) {
-	$email = trim( $current_user->user_email );
+	$email = trim( $current_user->user_email );	
 }
 
 $reasons = array(
@@ -31,7 +31,7 @@ shuffle($reasons);
 	<form action="" method="post">
 	    <h3><strong><?php _e('If you have a moment, please let us know why you are deactivating:', 'check-mail'); ?></strong></h3>
 	    <ul>
-                <?php
+                <?php 
                 foreach ($reasons as $reason){
                     echo $reason;
                 }

@@ -29,7 +29,7 @@ class Check_Email_Export_Log {
 	    }
 
 	    if ( !wp_verify_nonce( $_GET['ck_mail_export_nonce'], 'ck_mail_ajax_check_nonce' ) ){
-       		wp_die( -1 );
+       		wp_die( -1 );  
     	}
 
 		if ( ! current_user_can( 'manage_check_email' ) ) {
@@ -97,10 +97,10 @@ class Check_Email_Export_Log {
 
 		if($export_date == 'custom'){
 			if(isset($_GET['ck_mail_exp_from_date']) && !empty($_GET['ck_mail_exp_from_date'])){
-				$from_date = date('Y-m-d 00:00:00', strtotime(sanitize_text_field($_GET['ck_mail_exp_from_date'])));
+				$from_date = date('Y-m-d 00:00:00', strtotime(sanitize_text_field($_GET['ck_mail_exp_from_date'])));	
 			}
 			if(isset($_GET['ck_mail_exp_to_date']) && !empty($_GET['ck_mail_exp_to_date'])){
-				$to_date = date('Y-m-d 23:59:59', strtotime(sanitize_text_field($_GET['ck_mail_exp_to_date'])));
+				$to_date = date('Y-m-d 23:59:59', strtotime(sanitize_text_field($_GET['ck_mail_exp_to_date'])));	
 			}
 		}
 
@@ -174,7 +174,7 @@ class Check_Email_Export_Log {
 
 		$logs_data = implode($this->separator, $csv_headings);
 		if($file_format == 'txt'){
-			$logs_data = implode("\t \t", $csv_headings);
+			$logs_data = implode("\t \t", $csv_headings);	
 		}
 		$logs_data .= "\n";
 
@@ -184,7 +184,7 @@ class Check_Email_Export_Log {
 				if( !empty($l_value) && is_array($l_value) ){
 
 					$logs_data .= $log_cnt.$this->separator;
-
+					
 					if(in_array("From", $csv_headings)){
 						$from = '';
 						if ( function_exists('imap_rfc822_parse_headers' ) ) {
@@ -207,26 +207,26 @@ class Check_Email_Export_Log {
 
 						$logs_data .= $from.$this->separator;
 					}
-
+	
 					if(in_array("To", $csv_headings)){
-						$logs_data .= $l_value['to_email'].$this->separator;
+						$logs_data .= $l_value['to_email'].$this->separator; 
 					}
 
 					if(in_array("Subject", $csv_headings)){
-						$logs_data .= $l_value['subject'].$this->separator;
+						$logs_data .= $l_value['subject'].$this->separator; 
 					}
 
 					if(in_array("Message", $csv_headings)){
 						$message    = str_replace(',', '', $l_value['message']);
 						$message    = preg_replace('~[\r\n\t]+~', '', $message);
 						$logs_data .= $message.$this->separator;
-					}
+					} 
 
 					if(in_array("Sent At", $csv_headings)){
-						$logs_data .= date('d-m-Y H:i:s', strtotime($l_value['sent_date'])).$this->separator;
+						$logs_data .= date('d-m-Y H:i:s', strtotime($l_value['sent_date'])).$this->separator; 
 					}
 					if(in_array("Status", $csv_headings)){
-						$logs_data .= empty($l_value['error_message'])?'Success':$l_value['error_message'];
+						$logs_data .= empty($l_value['error_message'])?'Success':$l_value['error_message']; 
 					}
 
 					$log_cnt++;
@@ -248,11 +248,11 @@ class Check_Email_Export_Log {
 		}
 
 		if ( ! isset( $_GET['ck_mail_security_nonce'] ) ){
-            wp_die( '-1' );
+            wp_die( '-1' ); 
         }
 
         if ( !wp_verify_nonce( $_GET['ck_mail_security_nonce'], 'ck_mail_ajax_check_nonce' ) ){
-           wp_die( '-1' );
+           wp_die( '-1' );  
         }
 		?>
 
@@ -267,28 +267,28 @@ class Check_Email_Export_Log {
 
 							<div class="ck-mail-logs-contents">
 								<div class="ck-mail-log-exp-type ck-mail-export-options">
-									<label for="ck-mail-export-csv">
+									<label for="ck-mail-export-csv"> 
 										<input type="radio" name="export_type" class="ck-mail-export-type" id="ck-mail-export-csv" value="csv" checked>
 										<?php esc_html_e('Export in CSV (.csv)', 'check-email'); ?>
 									</label>
 								</div>
 
 								<div class="ck-mail-log-exp-type ck-mail-export-options">
-									<label for="ck-mail-export-xls">
+									<label for="ck-mail-export-xls"> 
 										<input type="radio" name="export_type" class="ck-mail-export-type" id="ck-mail-export-xls" value="xls">
 										<?php esc_html_e('Export in Microsoft Excel (.xls)', 'check-email'); ?>
 									</label>
 								</div>
 
 								<div class="ck-mail-log-exp-type ck-mail-export-options">
-									<label for="ck-mail-export-xlsx ck-mail-export-options">
+									<label for="ck-mail-export-xlsx ck-mail-export-options"> 
 										<input type="radio" name="export_type" class="ck-mail-export-type" id="ck-mail-export-xlsx" value="xlsx">
 										<?php esc_html_e('Export in Microsoft Excel (.xlsx)', 'check-email'); ?>
 									</label>
 								</div>
 
 								<div class="ck-mail-log-exp-type ck-mail-export-options">
-									<label for="ck-mail-export-txt">
+									<label for="ck-mail-export-txt"> 
 										<input type="radio" name="export_type" class="ck-mail-export-type" id="ck-mail-export-txt" value="txt">
 										<?php esc_html_e('Export in Text (.txt)', 'check-email'); ?>
 									</label>
@@ -307,42 +307,42 @@ class Check_Email_Export_Log {
 
 							<div class="ck-mail-logs-contents">
 								<div class="ck-mail-log-exp-comm-info ck-mail-export-options">
-									<label for="ck-mail-comm-info-from">
+									<label for="ck-mail-comm-info-from"> 
 										<input type="checkbox" name="common_information[From]" class="ck-mail-comm-info-chk" id="ck-mail-comm-info-from" value="From" checked>
 										<?php esc_html_e('From', 'check-email'); ?>
 									</label>
 								</div>
 
 								<div class="ck-mail-log-exp-comm-info ck-mail-export-options">
-									<label for="ck-mail-comm-info-to">
+									<label for="ck-mail-comm-info-to"> 
 										<input type="checkbox" name="common_information[To]" class="ck-mail-comm-info-chk" id="ck-mail-comm-info-to" value="To" checked>
 										<?php esc_html_e('To', 'check-email'); ?>
 									</label>
 								</div>
 
 								<div class="ck-mail-log-exp-comm-info ck-mail-export-options">
-									<label for="ck-mail-comm-info-subject">
+									<label for="ck-mail-comm-info-subject"> 
 										<input type="checkbox" name="common_information[Subject]" class="ck-mail-comm-info-chk" id="ck-mail-comm-info-subject" value="Subject" checked>
 										<?php esc_html_e('Subject', 'check-email'); ?>
 									</label>
 								</div>
 
 								<div class="ck-mail-log-exp-comm-info ck-mail-export-options">
-									<label for="ck-mail-comm-info-msg">
+									<label for="ck-mail-comm-info-msg"> 
 										<input type="checkbox" name="common_information[Message]" class="ck-mail-comm-info-chk" id="ck-mail-comm-info-msg" value="Message" checked>
 										<?php esc_html_e('Message', 'check-email'); ?>
 									</label>
 								</div>
 
 								<div class="ck-mail-log-exp-comm-info ck-mail-export-options">
-									<label for="ck-mail-comm-info-date">
+									<label for="ck-mail-comm-info-date"> 
 										<input type="checkbox" name="common_information[Sent-At]" class="ck-mail-comm-info-chk" id="ck-mail-comm-info-date" value="Sent At" checked>
 										<?php esc_html_e('Sent At', 'check-email'); ?>
 									</label>
 								</div>
 
 								<div class="ck-mail-log-exp-comm-info ck-mail-export-options">
-									<label for="ck-mail-comm-info-status">
+									<label for="ck-mail-comm-info-status"> 
 										<input type="checkbox" name="common_information[Status]" class="ck-mail-comm-info-chk" id="ck-mail-comm-info-status" value="Status" checked>
 										<?php esc_html_e('Status', 'check-email'); ?>
 									</label>
@@ -361,21 +361,21 @@ class Check_Email_Export_Log {
 
 							<div class="ck-mail-logs-contents">
 								<div class="ck-mail-log-exp-status ck-mail-export-options">
-									<label for="ck-mail-exp-status-all">
+									<label for="ck-mail-exp-status-all"> 
 										<input type="radio" name="export_status" class="ck-mail-exp-status-radio" id="ck-mail-exp-status-all" value="All" checked>
 										<?php esc_html_e('All', 'check-email'); ?>
 									</label>
 								</div>
 
 								<div class="ck-mail-log-exp-status ck-mail-export-options">
-									<label for="ck-mail-exp-status-success">
+									<label for="ck-mail-exp-status-success"> 
 										<input type="radio" name="export_status" class="ck-mail-exp-status-radio" id="ck-mail-exp-status-success" value="Success">
 										<?php esc_html_e('Success', 'check-email'); ?>
 									</label>
 								</div>
 
 								<div class="ck-mail-log-exp-status ck-mail-export-options">
-									<label for="ck-mail-exp-status-fail">
+									<label for="ck-mail-exp-status-fail"> 
 										<input type="radio" name="export_status" class="ck-mail-exp-status-radio" id="ck-mail-exp-status-fail" value="Fail">
 										<?php esc_html_e('Failure', 'check-email'); ?>
 									</label>
@@ -412,14 +412,14 @@ class Check_Email_Export_Log {
 
 							<div class="ck-mail-logs-contents">
 								<div class="ck-mail-log-exp-date ck-mail-export-options">
-									<label for="ck-mail-exp-date-all">
+									<label for="ck-mail-exp-date-all"> 
 										<input type="radio" name="export_date" class="ck-mail-exp-date-radio" id="ck-mail-exp-date-all" value="all" checked>
 										<?php esc_html_e('All', 'check-email'); ?>
 									</label>
 								</div>
 
 								<div class="ck-mail-log-exp-date ck-mail-export-options">
-									<label for="ck-mail-exp-date-custom">
+									<label for="ck-mail-exp-date-custom"> 
 										<input type="radio" name="export_date" class="ck-mail-exp-date-radio" id="ck-mail-exp-date-custom" value="custom">
 										<?php esc_html_e('Custom', 'check-email'); ?>
 									</label>
@@ -443,6 +443,6 @@ class Check_Email_Export_Log {
 
 		<?php
 
-		wp_die();
+		wp_die();	
 	}
 }

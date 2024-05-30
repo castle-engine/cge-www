@@ -27,22 +27,22 @@
         width: 30em;
 }
 
-#checkemail ul {
-    padding-left: 30px;
+#checkemail ul { 
+    padding-left: 30px; 
     list-style: square;
 
 }
-#autoheaders {
-    background-color: #FAFAFA;
-    border: 1px solid #CCC;
-    padding: 10px 15px;
+#autoheaders { 
+    background-color: #FAFAFA; 
+    border: 1px solid #CCC; 
+    padding: 10px 15px; 
 }
 
 .tab-content.ce_tab_general .check_email_enable_logs,
 .tab-content.ce_tab_general .check_email_enable_dashboard_widget,
 .tab-content.ce_tab_general .check_email_trigger_data,
 .tab-content.ce_tab_general .check_email_db_size_notification,
-.tab-content.ce_tab_general .check_email_smtp_from,
+.tab-content.ce_tab_general .check_email_smtp_from, 
 .tab-content.ce_tab_general .check_email_smtp_from_name,
 .tab-content.ce_tab_general .check_email_smtp_secure,
 .tab-content.ce_tab_general .check_email_smtp_host,
@@ -118,8 +118,8 @@
 }
 
 .check-email-pro-btn{
-    color: #fff;
-    font-weight: 500;
+    color: #fff; 
+    font-weight: 500; 
     border: 1px solid #F6AE4F;
 }
 

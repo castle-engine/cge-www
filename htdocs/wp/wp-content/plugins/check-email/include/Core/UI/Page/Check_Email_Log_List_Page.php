@@ -23,11 +23,11 @@ class Check_Email_Log_List_Page extends Check_Email_BasePage {
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'load_view_logs_assets' ) );
 	}
-
+        
 	public function register_page() {
                 $option = get_option( 'check-email-log-core' );
-
-                if ( is_array( $option ) && array_key_exists( 'enable_logs', $option ) && 'true' === strtolower( $option['enable_logs'] ) ) {
+                
+                if ( is_array( $option ) && array_key_exists( 'enable_logs', $option ) && 'true' === strtolower( $option['enable_logs'] ) ) {             
                     $this->page = add_submenu_page(
                             Check_Email_Status_Page::PAGE_SLUG,
                             esc_html__( 'View Logs', 'check-email'),
@@ -36,10 +36,10 @@ class Check_Email_Log_List_Page extends Check_Email_BasePage {
                             self::PAGE_SLUG,
                             array( $this, 'render_page' )
                     );
-
+                    
                     add_action( "load-{$this->page}", array( $this, 'load_page' ) );
                     do_action( 'check_email_load_log_list_page', $this->page );
-                }
+                } 
 
 	}
 
@@ -131,7 +131,7 @@ class Check_Email_Log_List_Page extends Check_Email_BasePage {
 		wp_register_script( 'insertionQ', $plugin_dir_url . 'assets/vendor/insertion-query/insQ.min.js', array( 'jquery' ), '1.0.6', true );
 
 		wp_enqueue_script( 'check-email-view-logs', $plugin_dir_url . 'assets/js/admin/view-logs.js', array( 'insertionQ', 'jquery-ui-core', 'jquery-ui-datepicker', 'jquery-ui-tooltip', 'jquery-ui-tabs' ), $check_email->get_version(), true );
-
+		
 		wp_enqueue_script( 'check-email-export-logs', $plugin_dir_url . 'assets/js/admin/export-logs.js', array( 'insertionQ', 'jquery-ui-core', 'jquery-ui-datepicker', 'jquery-ui-tooltip', 'jquery-ui-tabs' ), $check_email->get_version(), true );
 	}
 }

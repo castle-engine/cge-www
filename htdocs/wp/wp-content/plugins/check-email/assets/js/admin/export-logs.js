@@ -1,5 +1,5 @@
 jQuery(document).ready(function($){
-	/** Display date picker on modal window
+	/** Display date picker on modal window 
 	*  @since 1.0.11
 	* */
 	$(function() {
@@ -13,7 +13,7 @@ jQuery(document).ready(function($){
 	    });
 	});
 
-	/** On change of date range
+	/** On change of date range 
 	 * @since 1.0.11
 	 * */
 	$(document).on('change', '.ck-mail-exp-date-radio', function(e){
@@ -29,7 +29,7 @@ jQuery(document).ready(function($){
 		e.preventDefault();
 
 		let logFlag = ck_mail_validate_logs();
-
+		
 		if(logFlag == 1){
 			$('#ck-mail-export-form').submit();
 		}
@@ -38,7 +38,7 @@ jQuery(document).ready(function($){
 	$(document).on('change', '.ck-mail-comm-info-chk', function(e){
 		if($(this).is(':checked')){
 			$('#ck-mail-fields-error').hide();
-			$('.ck-mail-comm-info-chk').css('border', '1px solid #8c8f94');
+			$('.ck-mail-comm-info-chk').css('border', '1px solid #8c8f94');	
 		}
 	});
 
@@ -47,7 +47,7 @@ jQuery(document).ready(function($){
 		let fieldsChkFlag = 0;
 		$.each($('.ck-mail-comm-info-chk'), function(i){
 			if($(this).is(':checked')){
-				fieldsChkFlag = 1;
+				fieldsChkFlag = 1;	
 			}
 		});
 
@@ -87,6 +87,6 @@ jQuery(document).ready(function($){
 			}
 
 		}
-		return validateFlag;
+		return validateFlag;	
 	}
 });

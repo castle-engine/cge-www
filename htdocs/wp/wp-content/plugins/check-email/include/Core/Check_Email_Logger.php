@@ -22,7 +22,7 @@ class Check_Email_Logger implements Loadie {
 	 */
 	public function log_email( $original_mail_info ) {
         $option = get_option( 'check-email-log-core' );
-
+        
         if ( is_array( $option ) && array_key_exists( 'enable_logs', $option ) && 'true' === strtolower( $option['enable_logs'] ) ) {
             $original_mail_info = apply_filters( 'check_email_wp_mail_log', $original_mail_info );
 
@@ -75,10 +75,10 @@ class Check_Email_Logger implements Loadie {
 
             do_action( 'check_email_log_inserted' );
         }
-
+        
         return $original_mail_info;
 	}
-
+	
 	/**
      * Get the details of the method that originally triggered wp_mail
      *

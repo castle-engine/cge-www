@@ -21,10 +21,10 @@ if( !defined( 'ABSPATH' ) )
  *
  * @return bool
  */
-
+ 
 /**
  * display deactivation logic on plugins page
- *
+ * 
  * @since 1.4.0
  */
 function ck_mail_is_plugins_page() {
@@ -46,14 +46,14 @@ function ck_mail_add_deactivation_feedback_modal() {
     if( !is_admin() && !ck_mail_is_plugins_page()) {
         return;
     }
-
+    
     require_once CK_MAIL_PATH ."/include/deactivate-feedback.php";
 
 }
 
 /**
  * send feedback via email
- *
+ * 
  * @since 1.4.0
  */
 function ck_mail_send_feedback() {
@@ -61,7 +61,7 @@ function ck_mail_send_feedback() {
     if( isset( $_POST['data'] ) ) {
         parse_str( $_POST['data'], $form );
     }
-
+    
     if( !isset( $form['ck_mail_security_nonce'] ) || isset( $form['ck_mail_security_nonce'] ) && !wp_verify_nonce( sanitize_text_field( $form['ck_mail_security_nonce'] ), 'ck_mail_ajax_check_nonce' ) ) {
         echo 'security_nonce_not_verified';
         die();
@@ -69,7 +69,7 @@ function ck_mail_send_feedback() {
     if ( !current_user_can( 'manage_options' ) ) {
         die();
     }
-
+    
     $text = '';
     if( isset( $form['ck_mail_disable_text'] ) ) {
         $text = implode( " ", $form['ck_mail_disable_text'] );
@@ -98,13 +98,13 @@ function ck_mail_send_feedback() {
 
             $text = 'no description: '.$text;
           }
-
+      
     }else{
         $subject = 'Check & Log Email';
     }
 
     $success = wp_mail( 'team@magazine3.in', $subject, $text, $headers );
-
+    
     echo 'sent';
     die();
 }

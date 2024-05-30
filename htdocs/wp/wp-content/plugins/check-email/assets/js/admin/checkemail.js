@@ -98,7 +98,7 @@
         activatePlugin(activate_url);
       }
     });
-
+    
     /**
      * On click of Trigger Data option display link to upgrade to pro
      * @since 1.0.11
@@ -110,7 +110,7 @@
         $('#check-email-trigger-data-free-note').hide();
       }
     });
-
+    
     $(document).on('click', '#check-email-enable-smtp', function(e){
       if($(this).is(':checked')){
         $('#check-email-smtp-form').show();

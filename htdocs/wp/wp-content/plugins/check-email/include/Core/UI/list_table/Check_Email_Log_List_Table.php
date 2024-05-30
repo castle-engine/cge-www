@@ -215,8 +215,8 @@ class Check_Email_Log_List_Table extends \WP_List_Table {
 			<label class="screen-reader-text" for="<?php echo esc_attr( $input_id ); ?>"><?php echo esc_html( $text ); ?>:</label>
 			<input type="search" id="<?php echo esc_attr( $input_date_id ); ?>" name="d" value="<?php echo esc_attr( $input_date_val ); ?>" placeholder="<?php esc_attr_e( 'Search by date', 'check-email' ); ?>" />
 			<input type="search" id="<?php echo esc_attr( $input_text_id ); ?>" name="s" value="<?php _admin_search_query(); ?>" placeholder="<?php esc_attr_e( 'Search by term', 'check-email' ); ?>" />
-			<?php submit_button( $text, '', '', false, array( 'id' => 'search-submit' ) );
-				  $this->ck_mail_export_logs_button();
+			<?php submit_button( $text, '', '', false, array( 'id' => 'search-submit' ) ); 
+				  $this->ck_mail_export_logs_button();	
 			?>
 		</p>
 		<?php

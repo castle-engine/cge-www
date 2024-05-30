@@ -1,4 +1,4 @@
-<?php
+<?php 
 defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 
 /**
@@ -65,7 +65,7 @@ class Check_Email_SMTP_Tab {
 	 * Check for credentials
 	 *
 	 * @param array $options WP SMTP options
-	 *
+	 * 
 	 * @return mixed
 	 * @since 1.0.12
 	 */
@@ -167,8 +167,8 @@ class Check_Email_SMTP_Tab {
 						    </td>
 						</tr>
 					</tbody>
-
-					<tbody id="check-email-smtp-form" style="<?php echo esc_attr($style); ?>">
+					
+					<tbody id="check-email-smtp-form" style="<?php echo esc_attr($style); ?>">	
 						<tr class="check_email_smtp_from">
 						    <th scope="row"><?php esc_html_e('From', 'check-email'); ?></th>
 						    <td>
@@ -190,7 +190,7 @@ class Check_Email_SMTP_Tab {
 						<tr class="check_email_smtp_secure">
 						    <th scope="row"><?php esc_html_e('SMTP Secure', 'check-email'); ?></th>
 						    <td>
-						    	<?php
+						    	<?php 
 						    	$secure_array = array('None' => '', 'SSL' => 'ssl', 'TLS' => 'tls');
 						    	$field_value = isset($this->smtp_options['smtp_secure'])?$this->smtp_options['smtp_secure']:"";
 								foreach ($secure_array as $sa_key => $sa_value) {
@@ -200,7 +200,7 @@ class Check_Email_SMTP_Tab {
 										$id = 'check-email-smtp-secure-ssl';
 									}else if($sa_value == 'tls'){
 										$id = 'check-email-smtp-secure-tls';
-									}
+									} 
 									if($field_value == $sa_value){
 										$checked = 'checked';
 									}
@@ -232,7 +232,7 @@ class Check_Email_SMTP_Tab {
 									$id = 'check-email-smtp-secure-yes';
 									if($sa_value == 'no'){
 										$id = 'check-email-smtp-secure-no';
-									}
+									} 
 									if($field_value == $sa_value){
 										$checked = 'checked';
 									}
@@ -281,7 +281,7 @@ class Check_Email_SMTP_Tab {
 		    }
 
 		    if ( !wp_verify_nonce( $_POST['check_mail_smtp_nonce'], 'check_mail_smtp_nonce' ) ){
-	       		return;
+	       		return;  
 	    	}
 
 			if ( ! current_user_can( 'manage_check_email' ) ) {
@@ -304,8 +304,8 @@ class Check_Email_SMTP_Tab {
 
 			wp_redirect(admin_url('admin.php?page=check-email-settings&tab=smtp'));
 		}
-	}
-
+	}	
+	
 	/**
 	 * Add notice to retype credentials and info about the server
 	 *

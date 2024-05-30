@@ -32,7 +32,7 @@ class Check_Email_Tools_Tab {
 					<tr class="ck-mail-tools-logs">
 						<th><?php esc_html_e('Export Email Logs'); ?></th>
 						<td>
-							<?php
+							<?php 
 							$logs_ajax_url = add_query_arg(
 								array(
 									'action' => 'ck_email_export_filter_popup',
@@ -59,7 +59,7 @@ class Check_Email_Tools_Tab {
 	public function load_tools_logs_assets(){
 		$check_email      = wpchill_check_email();
 		$plugin_dir_url = plugin_dir_url( $check_email->get_plugin_file() );
-
+		
 		wp_enqueue_script( 'check-email-export-logs', $plugin_dir_url . 'assets/js/admin/export-logs.js', array( 'insertionQ', 'jquery-ui-core', 'jquery-ui-datepicker', 'jquery-ui-tooltip', 'jquery-ui-tabs' ), $check_email->get_version(), true );
 	}
 

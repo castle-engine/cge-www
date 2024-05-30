@@ -8,7 +8,7 @@ use CheckEmail\CheckEmailLogAutoloader;
  */
 class Check_Email_Log {
 
-	const VERSION = '1.0.12';
+	const VERSION = '1.0.12.1';
 
 	private $loaded = false;
 

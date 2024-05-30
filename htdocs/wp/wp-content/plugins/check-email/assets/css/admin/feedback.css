@@ -4,7 +4,7 @@
  PLUGINS ADMIN PAGE
 */
 #ck-mail-reloaded-feedback-overlay {
-    /* Height & width depends on how you want to reveal the overlay (see JS below) */
+    /* Height & width depends on how you want to reveal the overlay (see JS below) */   
     height: 100%;
     width: 100%;
     position: fixed; /* Stay in place */

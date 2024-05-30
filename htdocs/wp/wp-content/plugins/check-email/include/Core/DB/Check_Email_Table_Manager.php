@@ -29,7 +29,7 @@ class Check_Email_Table_Manager implements Loadie {
 		add_action( 'wpmu_new_blog', array( $this, 'create_table_for_new_blog' ) );
 
 		add_filter( 'wpmu_drop_tables', array( $this, 'delete_table_from_deleted_blog' ) );
-
+		
 		add_filter( 'admin_init', array( $this, 'add_backtrace_segment_field' ) );
 
 		// Do any DB upgrades.
@@ -92,10 +92,10 @@ class Check_Email_Table_Manager implements Loadie {
 		global $wpdb;
 
 		$table_name = $this->get_log_table_name();
-
+                
 		$ids = esc_sql( $ids );
 
-		return $wpdb->query( "DELETE FROM {$table_name} where id IN ( {$ids} )" );
+		return $wpdb->query( "DELETE FROM {$table_name} where id IN ( {$ids} )" ); 
 	}
 
 	public function delete_all_logs() {
@@ -138,7 +138,7 @@ class Check_Email_Table_Manager implements Loadie {
 
 		return $wpdb->get_results( $query, 'ARRAY_A' ); //@codingStandardsIgnoreLine
 	}
-
+        
 	public function fetch_log_items( $request, $per_page, $current_page_no ) {
 		global $wpdb;
 		$table_name = $this->get_log_table_name();
@@ -233,7 +233,7 @@ class Check_Email_Table_Manager implements Loadie {
 		}else{
 			$order = 'DESC';
 		}
-
+		
 
 		if ( ! empty( $orderby ) & ! empty( $order ) ) {
 			$query_cond .= ' ORDER BY ' . $orderby . ' ' . $order;
@@ -395,7 +395,7 @@ class Check_Email_Table_Manager implements Loadie {
 		if ( ! is_array( $columns ) ) {
 			return;
 		}
-
+                
 		$columns_keys = array_keys( $columns );
 		if ( ! array_filter( $columns_keys, array( $this, 'validate_columns' ) ) ) {
 			return;
@@ -429,7 +429,7 @@ class Check_Email_Table_Manager implements Loadie {
 			return $wpdb->get_results( $query );
 		}
 	}
-
+	
 	/**
 	 * Add new backtrace_segment field to check_email_log table
 	 * @since 1.0.12

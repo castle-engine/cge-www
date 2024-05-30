@@ -1,4 +1,4 @@
-<?php
+<?php 
 /**
  * Check_Email_Newsletter class
  *
@@ -13,7 +13,7 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 class Check_Email_Newsletter {
-
+        
 	public function __construct () {
                 add_filter( 'ck_mail_localize_filter',array($this,'ck_mail_add_localize_footer_data'),10,2);
                 add_action( 'admin_enqueue_scripts', array($this, 'ck_mail_enqueue_newsletter_js') );
@@ -21,7 +21,7 @@ class Check_Email_Newsletter {
         }
 
         /**
-        * Load css and js files
+        * Load css and js files 
         * @since 2.4.6
         * */
         public function ck_mail_enqueue_newsletter_js(){
@@ -46,38 +46,38 @@ class Check_Email_Newsletter {
                 wp_localize_script( 'ck_mail-newsletter-script', 'ck_mail_localize_data', $script_data );
                 wp_enqueue_script( 'ck_mail-newsletter-script' );
         }
-
+                
         public function ck_mail_add_localize_footer_data($object, $object_name){
-
+            
                 $dismissed = explode (',', get_user_meta (wp_get_current_user()->ID, 'dismissed_wp_pointers', true));
                 $do_tour   = !in_array ('ck_mail_subscribe_pointer', $dismissed);
-
+                
                 if ($do_tour) {
                         wp_enqueue_style ('wp-pointer');
-                        wp_enqueue_script ('wp-pointer');
+                        wp_enqueue_script ('wp-pointer');						
         	}
-
+                                
                 if($object_name == 'ck_mail_localize_data'){
-
-                        global $current_user;
+                                
+                        global $current_user;                
         		$tour     = array ();
-                        $tab      = isset($_GET['tab']) ? sanitize_text_field($_GET['tab']) : '';
-
-                        if (!array_key_exists($tab, $tour)) {
-
-                                $object['do_tour']            = $do_tour;
-                                $object['get_home_url']       = get_home_url();
-                                $object['current_user_email'] = $current_user->user_email;
-                                $object['current_user_name']  = $current_user->display_name;
-        			$object['displayID']          = '#toplevel_page_check-email-status';
+                        $tab      = isset($_GET['tab']) ? sanitize_text_field($_GET['tab']) : '';                   
+                        
+                        if (!array_key_exists($tab, $tour)) {                
+        			                                           			            	
+                                $object['do_tour']            = $do_tour;        
+                                $object['get_home_url']       = get_home_url();                
+                                $object['current_user_email'] = $current_user->user_email;                
+                                $object['current_user_name']  = $current_user->display_name;        
+        			$object['displayID']          = '#toplevel_page_check-email-status';                        
                                 $object['button1']            = esc_html__('No Thanks', 'check-email');
                                 $object['button2']            = false;
-                                $object['function_name']      = '';
+                                $object['function_name']      = '';                        
         		}
-
+        		                                                                                                                                                    
                 }
-                return $object;
-        }
+                return $object;    
+        }  
 
     /**
      * Process newsletter
@@ -85,21 +85,21 @@ class Check_Email_Newsletter {
      * */
         public function ck_mail_subscribe_to_news_letter(){
                 if(!current_user_can( 'manage_options' )){
-                    die( '-1' );
+                    die( '-1' );    
                 }
                 if ( ! isset( $_POST['ck_mail_security_nonce'] ) ){
-                    die( '-1' );
+                    die( '-1' ); 
                 }
                 if ( !wp_verify_nonce( $_POST['ck_mail_security_nonce'], 'ck_mail_ajax_check_nonce' ) ){
-                   die( '-1' );
+                   die( '-1' );  
                 }
-
+                                
                 $name    = isset($_POST['name'])?sanitize_text_field($_POST['name']):'';
                 $email   = isset($_POST['email'])?sanitize_text_field($_POST['email']):'';
                 $website = isset($_POST['website'])?sanitize_text_field($_POST['website']):'';
-
+                
                 if($email){
-
+                        
                     $api_url = 'http://magazine3.company/wp-json/api/central/email/subscribe';
 
                     $api_params = array(
@@ -108,14 +108,14 @@ class Check_Email_Newsletter {
                         'website' => $website,
                         'type'    => 'checkmail'
                     );
-
+                    
                     $response = wp_remote_post( $api_url, array( 'timeout' => 15, 'sslverify' => false, 'body' => $api_params ) );
-                    $response = wp_remote_retrieve_body( $response );
+                    $response = wp_remote_retrieve_body( $response );                    
                     echo $response;
 
                 }else{
-                        echo esc_html('Email id required', 'check-email');
-                }
+                        echo esc_html('Email id required', 'check-email');                        
+                }                        
 
                 wp_die();
         }

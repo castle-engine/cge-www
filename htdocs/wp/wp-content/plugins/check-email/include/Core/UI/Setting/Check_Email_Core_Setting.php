@@ -44,7 +44,7 @@ class Check_Email_Core_Setting extends Check_Email_Setting {
 			);
 
 		$this->load();
-
+	
 	}
 
 	public function load() {
@@ -404,7 +404,7 @@ EOT;
 		);
 
 	}
-
+	
 
 	public function render_email_from_email_settings( $args ){
 
@@ -418,7 +418,7 @@ EOT;
 			esc_attr( $field_value )
 		);
 	}
-
+	
 	/**
 	 * Add option for Trigger Data
 	 * @since 1.0.12
