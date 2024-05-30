@@ -3,7 +3,7 @@
 * Plugin Name: 				Check & Log Email
 * Description: 				Check & Log email allows you to test if your WordPress installation is sending emails correctly and logs every email.
 * Author: 					checkemail
-* Version: 					1.0.11
+* Version: 					1.0.12
 * Author URI: 				https://check-email.tech/
 * License: 					GPLv3 or later
 * License URI:         		http://www.gnu.org/licenses/gpl-3.0.html
@@ -35,6 +35,19 @@
 * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 defined( 'ABSPATH' ) || exit; // Exit if accessed directly.
+
+define( 'CK_MAIL_TOC_DIR_NAME', plugin_basename( dirname( __FILE__ ) ) );
+define( 'CK_MAIL_TOC_BASE_NAME', plugin_basename( __FILE__ ) );
+define( 'CK_MAIL_PATH', dirname( __FILE__ ) );
+define( 'CK_MAIL_URL', plugin_dir_url( __FILE__ ) );
+define( 'CK_MAIL_VERSION', '1.0.12' );
+
+if ( is_admin() ) {
+
+	require_once(CK_MAIL_PATH. "/include/helper-function.php" );
+	require_once(CK_MAIL_PATH. "/include/class-check-email-newsletter.php" );
+}
+
 
 if ( version_compare( PHP_VERSION, '5.6.0', '<' ) ) {
 	function check_email_compatibility_notice() {
@@ -92,6 +105,7 @@ function check_email_log( $plugin_file ) {
 
 	$check_email->add_loadie( new \CheckEmail\Core\Check_Email_Logger() );
         $check_email->add_loadie( new \CheckEmail\Core\Check_Email_Review() );
+        $check_email->add_loadie( new \CheckEmail\Core\Check_Email_Export_Log() );
 	$check_email->add_loadie( new \CheckEmail\Core\UI\Check_Email_UI_Loader() );
 
 	$check_email->add_loadie( new \CheckEmail\Core\Request\Check_Email_Nonce_Checker() );
@@ -118,3 +132,37 @@ function wpchill_check_email() {
 }
 
 check_email_log( __FILE__ );
+
+
+/**
+ * Add settings link to plugin actions
+ *
+ * @param  array  $plugin_actions
+ * @param  string $plugin_file
+ * @since  1.0.11
+ * @return array
+ */
+function check_email_add_plugin_link( $links ) {
+
+   $url = add_query_arg( 'page', 'check-email-settings', self_admin_url( 'admin.php' ) );
+		    $setting_link = '<a href="' . esc_url( $url ) . '">' . __( 'Settings', 'check-email' ) . '</a> |';
+		 	$setting_link .= '<a href="https://check-email.tech/contact/" target="_blank">' . __( ' Support', 'check-email' ) . '</a>';
+		    array_push( $links, $setting_link );
+		    return $links;
+}
+add_filter( 'plugin_action_links_'.plugin_basename(__FILE__), 'check_email_add_plugin_link', 10, 2 );
+
+function checkMail_is_plugins_page() {
+
+    if(function_exists('get_current_screen')){
+        $screen = get_current_screen();
+            if(is_object($screen)){
+                if($screen->id == 'plugins' || $screen->id == 'plugins-network'){
+                    return true;
+                }
+            }
+    }
+    return false;
+}
+
+require_once 'Check_Email_SMTP_Tab.php';

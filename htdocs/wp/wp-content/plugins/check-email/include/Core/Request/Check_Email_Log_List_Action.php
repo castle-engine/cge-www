@@ -71,6 +71,7 @@ class Check_Email_Log_List_Action implements Loadie {
 				<ul data-active-tab="<?php echo absint( $active_tab ); ?>">
 					<li><a href="#tabs-text"><?php esc_html_e( 'Raw Email Content', 'check-email' ); ?></a></li>
 					<li><a href="#tabs-preview"><?php esc_html_e( 'Preview Content as HTML', 'check-email' ); ?></a></li>
+					<li><a href="#tabs-trigger-data"><?php esc_html_e( 'Triggered Form', 'check-email' ); ?></a></li>
 				</ul>
 
 				<div id="tabs-text">
@@ -79,6 +80,19 @@ class Check_Email_Log_List_Action implements Loadie {
 
 				<div id="tabs-preview">
 					<?php echo wp_kses( $log_item['message'], $this->check_email_kses_allowed_html( 'post' ) ); ?>
+				</div>
+
+				<div id="tabs-trigger-data">
+					<?php
+					if(!defined('CK_MAIL_PRO_VERSION')){
+					?>
+						<p><?php esc_html_e( 'Triggered data helps you in debugging by showing the exact code that is sending that email ', 'check-email' ); ?><a href="https://check-email.tech/docs/knowledge-base/how-to-use-the-trigger-option-to-debug-emails-by-identifying-the-exact-code/" target="_blank"><?php esc_html_e(' Learn More'); ?></a></p>
+						<p id="check-email-trigger-data-free-note" style="font-weight: 600;"> <?php esc_html_e( 'This Feature requires the ', 'check-email' ); ?> <a href="https://check-email.tech/pricing/#pricings" target="_blank"><span class="check-mail-premium-text"><?php esc_html_e('Premium Version'); ?><span></a> </p>
+					<?php
+					}else{
+						do_action('check_email_pro_log_tabs_content', $id);
+					}
+					?>
 				</div>
 			</div>
 

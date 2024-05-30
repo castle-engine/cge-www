@@ -1,5 +1,13 @@
 == Changelog ==
 
+= v1.0.12 - 29/05/2024 =
+- Feature: Feature to export logs #49
+- Feature: Added feedback form on plugin deactivation #61
+- Enhancement: Added settings link on plugin dashboard #62
+- Feature: Added Newsletter Form #64
+- Feature: Added Trigger Data (Premium) #65
+- Feature: Added SMTP feature to configure email #66
+
 = v1.0.11 - 16/05/2024 =
 - Fixed: Tested with new version of wordpress i.e. 6.5v
 
@@ -10,7 +18,7 @@
 - Fixed: php8.2 deprecation warning #53
 - Enhancement: Added Support Form #56
 
-= v1.0.8 - 16/10/2023 = 
+= v1.0.8 - 16/10/2023 =
 - Updated: Plugin author to reflect ownership changes.
 
 = v1.0.7 - 08/03/2022 =

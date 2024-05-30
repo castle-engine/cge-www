@@ -54,6 +54,7 @@ class Check_Email_Log_Init {
 				to_email VARCHAR(100) NOT NULL,
 				subject VARCHAR(250) NOT NULL,
 				message TEXT NOT NULL,
+				backtrace_segment TEXT NOT NULL,
 				headers TEXT NOT NULL,
 				attachments TEXT NOT NULL,
 				sent_date timestamp NOT NULL,

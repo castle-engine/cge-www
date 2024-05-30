@@ -27,20 +27,28 @@
         width: 30em;
 }
 
-#checkemail ul { 
-    padding-left: 30px; 
+#checkemail ul {
+    padding-left: 30px;
     list-style: square;
 
 }
-#autoheaders { 
-    background-color: #FAFAFA; 
-    border: 1px solid #CCC; 
-    padding: 10px 15px; 
+#autoheaders {
+    background-color: #FAFAFA;
+    border: 1px solid #CCC;
+    padding: 10px 15px;
 }
 
 .tab-content.ce_tab_general .check_email_enable_logs,
 .tab-content.ce_tab_general .check_email_enable_dashboard_widget,
-.tab-content.ce_tab_general .check_email_db_size_notification {
+.tab-content.ce_tab_general .check_email_trigger_data,
+.tab-content.ce_tab_general .check_email_db_size_notification,
+.tab-content.ce_tab_general .check_email_smtp_from,
+.tab-content.ce_tab_general .check_email_smtp_from_name,
+.tab-content.ce_tab_general .check_email_smtp_secure,
+.tab-content.ce_tab_general .check_email_smtp_host,
+.tab-content.ce_tab_general .check_email_smtp_port,
+.tab-content.ce_tab_general .check_email_smtp_username,
+.tab-content.ce_tab_general .check_email_smtp_auth {
     display: none;
 }
 
@@ -48,12 +56,31 @@
 .tab-content.ce_tab_logging .check_email_remove_on_uninstall,
 .tab-content.ce_tab_logging .check_email_override_emails_from,
 .tab-content.ce_tab_logging .check_email_email_from_name,
-.tab-content.ce_tab_logging .check_email_email_from_email  {
+.tab-content.ce_tab_logging .check_email_email_from_email,
+.tab-content.ce_tab_logging .check_email_smtp_from,
+.tab-content.ce_tab_logging .check_email_smtp_from_name,
+.tab-content.ce_tab_logging .check_email_smtp_secure,
+.tab-content.ce_tab_logging .check_email_smtp_port,
+.tab-content.ce_tab_logging .check_email_smtp_host,
+.tab-content.ce_tab_logging .check_email_smtp_username,
+.tab-content.ce_tab_logging .check_email_smtp_auth  {
+    display: none;
+}
+
+.tab-content.ce_tab_smtp .check_email_enable_logs,
+.tab-content.ce_tab_smtp .check_email_enable_dashboard_widget,
+.tab-content.ce_tab_smtp .check_email_trigger_data,
+.tab-content.ce_tab_smtp .check_email_db_size_notification,
+.tab-content.ce_tab_smtp .check_email_allowed_user_roles,
+.tab-content.ce_tab_smtp .check_email_remove_on_uninstall,
+.tab-content.ce_tab_smtp .check_email_override_emails_from,
+.tab-content.ce_tab_smtp .check_email_email_from_name,
+.tab-content.ce_tab_smtp .check_email_email_from_email{
     display: none;
 }
 
 .ce-support-container *{
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .ce-support-label{
@@ -61,6 +88,7 @@
   float: left;
   width: 70px;
   font-size: 14px;
+  font-weight: 600;
 }
 
 .ce-star-mark{
@@ -79,4 +107,55 @@
 
 .ce-query-error{
   color: #FF0000;
+}
+
+.check-email-d-none{
+    display: none;
+}
+
+.check-email-bg-color{
+    background-color: #f47f16;
+}
+
+.check-email-pro-btn{
+    color: #fff;
+    font-weight: 500;
+    border: 1px solid #F6AE4F;
+}
+
+.check-email-pro-btn:hover{
+    background-color: #f47f16;
+    color: #fff;
+}
+
+#check-email-trigger-data-free-note{
+    padding: 5px 10px !important;
+    background-color: #f47f16;
+    width: 275px;
+    margin-top: 10px;
+    border-radius: 15px;
+    color: #fff;
+    font-weight: 500;
+}
+
+.check-mail-premium-text{
+    color: #2271b1;
+    text-decoration: inherit;
+}
+
+#check-email-trigger-data-free-note a:focus{
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.check-mail-std-color{
+    color: #f47f16 !important;
+}
+
+.check-email-opt-labels{
+    cursor: pointer;
+}
+
+.check-mail-smtp-secure-label{
+    margin-right: 15px;
 }

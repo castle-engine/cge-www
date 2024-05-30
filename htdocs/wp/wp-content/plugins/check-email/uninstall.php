@@ -39,6 +39,8 @@ function check_email_delete_db_data() {
 
 		delete_option( 'check-email-log-db' );
 		delete_option( 'check-email-log-core' );
+		delete_option( 'check-email-smtp-options' );
+		delete_option( 'check_email_smtp_status' );
 
 		$roles = get_editable_roles();
 		foreach ( $roles as $role_name => $role_obj ) {

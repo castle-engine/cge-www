@@ -4,7 +4,7 @@ Tags: check, test, email, smtp, delivery
 Requires at least: 5.0
 Tested up to: 6.5
 Requires PHP: 5.6.20
-Stable tag: 1.0.11
+Stable tag: 1.0.12
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -12,17 +12,21 @@ Check & Log email allows you to test if your WordPress installation is sending e
 
 == Description ==
 
-In need of a tool that allows you to easily log and view all emails sent from WordPress? Check & Log might be just the solution for that. 
+In need of a tool that allows you to easily log and view all emails sent from WordPress? Check & Log might be just the solution for that.
 This WordPress plugin helps you store sent emails for auditing purposes, as well as debug email related problems in your WordPress site. Works best on eCommerce websites that have been created with WooCommerce or Easy Digital Downloads.
 
-[Home](https://check-email.tech/) | [Help & Tech Support](https://check-email.tech/contact/) | [Documentation](https://check-email.tech/docs/)
+[Home](https://check-email.tech/) | [Help & Tech Support](https://check-email.tech/contact/) | [Documentation](https://check-email.tech/docs/) | [Premium Features](https://check-email.tech/pricing/#pro-feature)
 
-Some of its features include:
+== Features of the plugin Check & Log Email ==
 
 - Test email sending - if you’re not sure whether WordPress is sending emails, you can use this plugin to find out. The process is very simple: you need to choose an address that will receive a simple test email. You can even override the custom header with your own values, to avoid any other issues.
 - Viewing logged emails - they can be viewed from the admin interface, as they are stored in a separate table. You get the option to filter them based on subject, email, date, etc.
-- Deleting logged emails - you can delete them by going to the admin interface. You can either delete them in bulk or  selectively - by date, email, or subject. 
-- Ability to change the "mail from" email address, "mail from name" and override default email WordPress addresses. 
+- Deleting logged emails - you can delete them by going to the admin interface. You can either delete them in bulk or  selectively - by date, email, or subject.
+- Ability to change the "mail from" email address, "mail from name" and override default email WordPress addresses.
+
+== Premium Features of the plugin Check & Log Email ==
+
+- Triggered Data - Triggered data helps you in debugging by showing the exact code that is sending that email
 
 <strong>Support</strong><br>
 We try our best to provide support on WordPress.org forums. However, We have a special [community support](https://check-email.tech/contact/) where you can ask us questions and get help about your Check & Log Email related questions. Delivering a good user experience means a lot to us and so we try our best to reply each and every question that gets asked.
@@ -68,6 +72,14 @@ Someone using one of my other plugins had trouble with emails not being sent. I 
 
 == Changelog ==
 
+= v1.0.12 - 29/05/2024 =
+- Feature: Feature to export logs #49
+- Feature: Added feedback form on plugin deactivation #61
+- Enhancement: Added settings link on plugin dashboard #62
+- Feature: Added Newsletter Form #64
+- Feature: Added Trigger Data (Premium) #65
+- Feature: Added SMTP feature to configure email #66
+
 = v1.0.11 - 16/05/2024 =
 - Fixed: Tested with new version of wordpress i.e. 6.5v
 
@@ -79,7 +91,7 @@ Someone using one of my other plugins had trouble with emails not being sent. I 
 - Enhancement: Added Support Form #56
 
 = v1.0.8 - 16/10/2023 =
-- Updated: Plugin author to reflect ownership changes. 
+- Updated: Plugin author to reflect ownership changes.
 
 = v1.0.7 - 08/03/2022 =
 - Fixed: Incompatibility with Post SMTP ( [#51]( https://github.com/WPChill/check-email/issues/51) )

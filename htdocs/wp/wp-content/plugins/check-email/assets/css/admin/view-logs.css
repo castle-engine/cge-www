@@ -14,7 +14,8 @@
 }
 
 #tabs-preview,
-#tabs-text {
+#tabs-text,
+#tabs-trigger-data {
 	height: 335px;
 	overflow: auto;
 }

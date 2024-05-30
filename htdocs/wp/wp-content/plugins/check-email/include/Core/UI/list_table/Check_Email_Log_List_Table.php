@@ -215,8 +215,31 @@ class Check_Email_Log_List_Table extends \WP_List_Table {
 			<label class="screen-reader-text" for="<?php echo esc_attr( $input_id ); ?>"><?php echo esc_html( $text ); ?>:</label>
 			<input type="search" id="<?php echo esc_attr( $input_date_id ); ?>" name="d" value="<?php echo esc_attr( $input_date_val ); ?>" placeholder="<?php esc_attr_e( 'Search by date', 'check-email' ); ?>" />
 			<input type="search" id="<?php echo esc_attr( $input_text_id ); ?>" name="s" value="<?php _admin_search_query(); ?>" placeholder="<?php esc_attr_e( 'Search by term', 'check-email' ); ?>" />
-			<?php submit_button( $text, '', '', false, array( 'id' => 'search-submit' ) ); ?>
+			<?php submit_button( $text, '', '', false, array( 'id' => 'search-submit' ) );
+				  $this->ck_mail_export_logs_button();
+			?>
 		</p>
 		<?php
+	}
+
+	/**
+	 * Display Export Logs button
+	 * @since 1.0.11
+	 * */
+	public function ck_mail_export_logs_button(){
+		$logs_ajax_url = add_query_arg(
+			array(
+				'action' => 'ck_email_export_filter_popup',
+				'width'  => '800',
+				'height' => '550',
+				'ck_mail_security_nonce' => wp_create_nonce( 'ck_mail_ajax_check_nonce' )
+			),
+			'admin-ajax.php'
+		);
+		echo sprintf( '<a id="ck-mail-log-btn" href="%1$s" class="thickbox" title="%2$s"><button type="button" class="button-primary button" id="ck-mail-export-logs">%3$s</button></a>',
+			esc_url( $logs_ajax_url ),
+			esc_html__( 'Export Log Options', 'check-email' ),
+			esc_html__( 'Export Logs', 'check-email' )
+		);
 	}
 }
