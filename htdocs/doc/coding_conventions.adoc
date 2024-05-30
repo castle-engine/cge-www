@@ -784,6 +784,47 @@ Lazarus IDE, when editing, adds automatically a bit useless comment with just a 
 
 I recommend to disable this (_"Header comment for class"_) in Lazarus settings, see the screenshot in https://github.com/pasdoc/pasdoc/issues/149#issuecomment-1308837496 .
 
+[#os_cpu_names]
+=== Use the same OS and CPU names as FPC (e.g. `x86_64`, `aarch64`, `i386`)
+
+In _Castle Game Engine_ we use the same names for OSes (_operating systems_) and CPUs (_processors_) as FPC. FPC in turn follows names used by GNU tools.
+
+Reasons, in short:
+
+- This makes all the tools use consistent naming.
+
+- This avoids unnecessary name conversions in the codebase. Conversions that would spread to tools, packing scripts, documentation... lots of additional error-prone work, so we don't want that.
+
+We acknowledge that some of FPC (and GNU) names for OS / CPU are not "optimal". Users sometimes prefer (are accustomed to) a different name.  Sometimes FPC naming is justified by current technical reasons, sometimes it is only historical. So in the documentation / UI / website, you are welcome to write longer names (e.g. instead of _"Darwin"_ write _"macOS (Darwin)"_ ).
+
+* But be sure to also show the "core" name (used by CGE tools, FPC etc.) to make the name recognizable for users.
+
+* In our experience, inventing and using _only_ our own names for OS / CPU would really only add more confusion.
++
+We are then doomed to have support questions like _"why does `lazbuild --os=xxx --cpu=yyy` behave differently than ``castle-engine compile --os=xxx --cpu=yyy``"_. We want to avoid such questions :)
+
+* Moreover, sometimes the "user-friendly names" would backfire. For example, _Windows 64-bit_ was an unambiguous name for many years (it was obvious that _64-bit_ implies the _x86_64_ architecture, dominant architecture on computers where Windows is used). But now Windows on _Aarch64_ is coming. Thankfully, internally, FPC and GNU always called them with clearly separate names: _Win64 on x86_64_ and _Win64 on Aarch64_.
+
+Examples:
+
+- _Darwin_ is used as OS name for what is more commonly known as _macOS_. This is correct (name of https://en.wikipedia.org/wiki/MacOS[macOS] operating system is https://en.wikipedia.org/wiki/Darwin_(operating_system)[Darwin], Wikipedia explicitly says so). Though we acknowledge that many users are not aware of the difference or are just accustomed to call it _macOS_.
+
+- _Win32_ and _Win64_ are used a OS names. Using just _Windows_ would be more logical as OS name, we fully agree. But for historical reasons, _Win32_ and _Win64_ remain to be used.
+
+- _i386_ is the common 32-bit CPU architecture on PCs. It is often also called `x86`, which may even be more correct.
+
+- _x86_64_ is the common 64-bit CPU architecture on PCs. It is sometimes https://www.debian.org/ports/amd64/[(e.g. by Debian) called also `amd64`].
+
+- _Aarch64_ is the CPU name for common mobile (but also coming to desktops - on Raspberry Pi, Pine64 products, Apple Silicon Macs) 64-bit CPU architecture. It is sometimes called `arm64`, though this is not strictly correct.
+
+- Avoid naming CPUs as just _"32-bit"_ or _"64-bit"_.
++
+Unless by _64-bit CPUs_ you really mean *all* CPUs with 64-bit pointer size, so both _x86_64_ and _Aarch64_ (and maybe others).
++
+But if you really mean just _x86_64_, then say _x86_64_, not _64-bit architecture or such_.
++
+This is esp. important as _Aarch64_ architecture is going to be more and more popular among the desktop systems. It is already used by Raspberry Pi, Pine64 products, Apple Silicon Macs, new Windows versions. So all popular desktop OSes (Linux, macOS, Windows) have now 2 relevant 64-bit architectures: _x86_64_ and _aarch64_. Make sure to be precise in your communication about this.
+
 == Other languages
 
 * Indent by 4 spaces in Java and Objective-C.
