@@ -517,12 +517,14 @@ Of course support for more platforms is desired. macOS, and maybe even mobile (i
 - API should be nice. Current `CastleJoysticks` is complicated. This means:
 +
 --
-- `TInputPressRelease` structure, as send to `TCastleUserInterface.Press` (so in particular, `TCastleView.Press`) should have a type like `GamePadButton` (alternative to key on keyboard, or mouse botton) that occurs when user presses / releases the button. It should say which gamepad was used to press it (to support multiple joysticks connected to system). And it should report a button.
+- `TInputPressRelease` structure, as send to `TCastleUserInterface.Press` (so in particular, `TCastleView.Press`) should have a type like `GamePadButton` (alternative to key on keyboard, or mouse button) that occurs when user presses / releases the button. It should say which gamepad was used to press it (to support multiple joysticks connected to system). And it should report a button.
 +
 Buttons should have agnostic names, like _North_, _East_ etc. Avoid using names like ABXY that are in different places on different gamepad models (Xbox, PS, Nintendo...). Maybe we can also have names like _Accept_, _Cancel_ to follow conventions (e.g. on Xbox controller, A corresponds to "Accept" by convention, B corresponds to "Cancel").
 
 - `TCastleInputAxis` (that is also already in progress) should allow to observe chosen gamepad axis (based on gamepad index, and choice horizontal/vertical, also choice of gamepad axis -- typical gamepads now have 2 axis). This is already a nice API to observe input that we want to have.
 --
+
+- examples/joystick/ should look better. Show a sketch of a gamepad -- and highlight the current axis used, button pressed.
 
 ## Smart Tasks
 

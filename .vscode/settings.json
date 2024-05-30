@@ -42,6 +42,8 @@
         "freetype",
         "gamedev",
         "gameinitialize",
+        "gamepad",
+        "gamepads",
         "gameviewmainmenu",
         "gameviewplay",
         "gconf",
