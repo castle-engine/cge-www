@@ -804,6 +804,8 @@ We acknowledge that some of FPC (and GNU) names for OS / CPU are not "optimal". 
 We are then doomed to have support questions like _"why does `lazbuild --os=xxx --cpu=yyy` behave differently than ``castle-engine compile --os=xxx --cpu=yyy``"_. We want to avoid such questions :)
 
 * Moreover, sometimes the "user-friendly names" would backfire. For example, _Windows 64-bit_ was an unambiguous name for many years (it was obvious that _64-bit_ implies the _x86_64_ architecture, dominant architecture on computers where Windows is used). But now Windows on _Aarch64_ is coming. Thankfully, internally, FPC and GNU always called them with clearly separate names: _Win64 on x86_64_ and _Win64 on Aarch64_.
++
+WARNING: _Delphi_ also stepped into his mistake. They use ambiguous names like _Windows 64_ or _Linux 64_. Sooner or later they will have to deal with the fact that OSes supports various 64-bit CPU architectures, not only `x86_64`. Don't follow Delphi OS / CPU naming, it just doesn't scale.
 
 Examples:
 
