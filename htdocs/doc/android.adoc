@@ -60,9 +60,9 @@ Download and install _Android SDK_.
 
 There are two ways to do it:
 
-* Install the whole https://developer.android.com/studio[Android Studio].
+1. Install the whole https://developer.android.com/studio[Android Studio].
 +
-This is the easier way (some configuration can be then done using GUI) and comes with useful additional GUI tools to manage virtual Android devices or mirror real (physical) Android devices. So we advise this option.
+This is the easier way (some configuration can be then done using GUI) and comes with useful additional GUI tools to manage virtual Android devices or mirror real (physical) Android devices. We advise this option.
 +
 For your information (you will need this later), location of the Android SDK is visible in the Android Studio _File -> Settings -> Android SDK_. You need to have some project open to access this _Android Studio_ dialog -- just create a new empty project if you don't have any.
 +
@@ -75,7 +75,7 @@ It looks like this, by default:
 * Linux: `~/Android/Sdk`
 --
 
-* Alternatively: Install _Command line tools only_ (scroll to the bottom of https://developer.android.com/studio ):
+2. Alternatively: Install _Command line tools only_ (scroll to the bottom of https://developer.android.com/studio ):
 +
 --
 . Create a new directory on disk for Android SDK. Like `c:/android-sdk`.
@@ -87,13 +87,17 @@ It looks like this, by default:
 . If effect you should have a file like `c:/android-sdk/cmdline-tools/latest/bin/sdkmanager`. (with additional extension `.bat` on Windows).
 --
 
-=== Set ANDROID_SDK_ROOT
+=== Let Castle Game Engine know your Android SDK location
 
-Set the `ANDROID_SDK_ROOT` environment variable. This is the directory that contains `cmdline-tools` subdirectory. It would be `c:/android-sdk` in our above example.
+The _Android SDK location_ is the directory that contains subdirectories like `cmdline-tools`, `tools`, `platform-tools`. See above how to find where your Android SDK is installed.
 
-If you don't know how to set the environment variable, search the Internet (e.g. https://www.computerhope.com/issues/ch000549.htm[these are quick instructions how to do it on various Windows versions]).
+1. We recommend to set Android SDK location using _Castle Game Engine_ link:editor[]  _"Preferences"_ dialog. Go to the _"Android"_ page and adjust the _"Android SDK Location"_ value.
++
+This is simple and works great if you build and run Android applications using CGE editor.
 
-Remember to close and reopen all the applications after setting the environment variable. Changing environment variables only takes effect for new applications.
+2. Alternative: If you want to use our command-line link:build_tool[build tool] or some Android command-line tools, you can set instead the `ANDROID_HOME` environment variable.
++
+If you don't know how to set the environment variable, search the Internet (e.g. https://www.computerhope.com/issues/ch000549.htm[these are quick instructions how to do it on various Windows versions]). See also https://developer.android.com/tools/variables[official Android documentation]. Remember to close and reopen all the applications after setting the environment variable. Changing environment variables only takes effect for new applications.
 
 === Accept Android SDK license
 
@@ -168,7 +172,7 @@ The first Android build will take a while.
 
 That is because at the first run, we automatically download the proper components of Android SDK and NDK. Simply make sure to run the 1st build when connected to the Internet and be patient.
 
-//You *could* manually install the SDK and NDK components yourself, picking their proper versions, using the GUI Android Studio (_Configure -> SDK Manager_) or command-line (`cd $ANDROID_SDK_ROOT && ./cmdline-tools/latest/bin/sdkmanager --install 'platform-tools' 'platforms;android-30' ...`) but there's really no point in doing it.
+//You *could* manually install the SDK and NDK components yourself, picking their proper versions, using the GUI Android Studio (_Configure -> SDK Manager_) or command-line (`cd $ANDROID_HOME && ./cmdline-tools/latest/bin/sdkmanager --install 'platform-tools' 'platforms;android-30' ...`) but there's really no point in doing it.
 ====
 
 == Further steps
