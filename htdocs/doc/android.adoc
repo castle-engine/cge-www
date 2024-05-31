@@ -49,9 +49,11 @@ The Java version required is _at least 17_ (this is determined by the https://de
 ====
 Alternatively, you can skip this step (Java installation) and in the next step install full https://developer.android.com/studio[Android Studio]. The complete _Android Studio_ will already include Java version suitable for Android SDK.
 
-For your information (if some tool requires later to set e.g. `JAVA_HOME`), the Java installation can be located by going to _"File -> Settings"_ and there to _"Build, Execution, Deployment -> Build Tools -> Gradle -> Gradle JDK"_. See the screenshot below.
+For your information, the Java installation can be located by going to _"File -> Settings"_ and there to _"Build, Execution, Deployment -> Build Tools -> Gradle -> Gradle JDK"_. See the screenshot below.
 
 cgeimg::block[android_studio_java_location.png|Java location in Android Studio]
+
+If necessary, you can point to this Java location using Castle Game Engine link:editor[] (open _"Preferences"_ dialog, go to the _"Android"_ page, set _"Java Location"_) or by setting the `JAVA_HOME` environment variable. Though in many cases it is not necessary to do this, Android tools will find Java automatically.
 ====
 
 === Install Android SDK (maybe along with Android Studio)
