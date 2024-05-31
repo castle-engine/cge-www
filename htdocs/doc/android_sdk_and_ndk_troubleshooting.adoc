@@ -1,6 +1,8 @@
 # Android SDK And NDK Troubleshooting
 include::common.adoc[]
 
+////
+No longer important, we disable Gradle daemon which should make this problem go away.
 == Windows: Building for Android fails, because it cannot delete .jar file from previous compilation
 
 Sometimes, the intermediate jar file is locked by _some_ process, and all the attempts to build for Android, or to _Clean_ the project from CGE editor, will fail with message like this:
@@ -10,6 +12,7 @@ Cannot delete file "....\castle-engine-output\android\project\app\build\intermed
 ```
 
 Workaround: Delete the `castle-engine-output` subdirectory using Windows file manager. Searching the Internet confirms https://stackoverflow.com/questions/46917477/android-studio-cant-delete-files-when-compiling[this problem happens] and is not related to CGE.
+////
 
 ////
 No longer important, Gradle download them.
@@ -24,10 +27,12 @@ The new versions of Gradle will auto-install the necessary platforms if needed, 
 
 This indicates you compiled FPC standard units without `-CfVFPV3`. This would result in very slow execution on Android. Solutions:
 
-* If you compile FPC cross-compiler yourself, following link:android[Android], remember to add `CROSSOPT="-CfVFPV3"` .
+* If you compiled FPC cross-compiler manually remember to add `CROSSOPT="-CfVFPV3"` .
 * If you compile FPC cross-compiler by link:pass:[fpcupdeluxe][], go to the "Setup+" options and for Android/Arm add `-CfVFPV3` option.
 
 cgeimg::block[fpcupdeluxe-hard-floats.png|FpcUpDeluxe cross-compiler options]
+
+We recommend to install FPC cross-compilers for Android using latest link:[fpcupdeluxe] which will make it good out-of-the-box.
 
 == libz errors, "exception in thread png-cruncher" errors
 
@@ -58,6 +63,8 @@ apt-get install libc6-i386 lib32stdc++6 lib32z1
 
 (In general, old build-tools are distributed only for Linux 32-bit, and new build-tools are distributed only for Linux 64-bit. Google doesn't provide alternatives for both architectures here.) See https://stackoverflow.com/questions/24158727/android-sdk-aapt-error-libstdc-so-6-cannot-open-shared-object-file .
 
+////
+No longer relevant, we upgraded Android Gradle plugin, and Gradle, in CGE.
 == Error "No toolchains found in the NDK toolchains folder for ABI with prefix: mipsel-linux-android"
 
 This error occurs since Android NDK 18. They removed MIPS CPU support (which we never used), but old Gradle versions still expect to find the relevant folders.
@@ -73,3 +80,4 @@ This problem should no longer be present (we upgraded Gradle in CGE). See also
 
 * https://github.com/castle-engine/castle-engine/issues/105
 * https://github.com/google/filament/issues/15
+////
