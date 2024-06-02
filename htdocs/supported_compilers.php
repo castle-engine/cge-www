@@ -51,15 +51,17 @@ with a visual classes library (LCL).
 Our engine can be used together <a href="manual_lazarus_control.php">with Lazarus form (LCL)</a>
 though for most applications we recommend using <code>TCastleWindow</code> independent from LCL.
 <ul>
-  <li>We don't <b>require</b> any special Lazarus version, just use Lazarus with a sufficiently up-to-date FPC version.
-  <li>We <b>advise</b> Lazarus &gt;= 3.2 in order to have (since 2.2) <a href="https://gitlab.com/freepascal.org/lazarus/lazarus/-/issues/39338">this issue fixed, which allows more intuitive behavior when you double-click on a Pascal file in CGE editor to open Lazarus</a> and (since 3.0) <a href="https://github.com/castle-engine/pascal-language-server">pasls</a> compile fine with <code>IdentComplIncludeKeywords</code>.
+  <li>
+    <p>We don't <b>require</b> any special Lazarus version, just use Lazarus with a sufficiently up-to-date FPC version.
+
+  <li>
+    <p>We <b>advise</b> Lazarus &gt;= 3.2 in order to have (since 2.2) <a href="https://gitlab.com/freepascal.org/lazarus/lazarus/-/issues/39338">this issue fixed, which allows more intuitive behavior when you double-click on a Pascal file in CGE editor to open Lazarus</a> and (since 3.0) <a href="https://github.com/castle-engine/pascal-language-server">pasls</a> compile fine with <code>IdentComplIncludeKeywords</code>.
+
+  <li>
+    <p>A special requirement is on macOS users that want to <b>build CGE editor on macOS</b>: You have to use Lazarus sources with <a href="https://gitlab.com/freepascal.org/lazarus/lazarus/-/merge_requests/291">the patch from this MR applied</a>. Hopefully Lazarus developers will merge it soon to the "main" branch of Lazarus on GitLab. Without this fix, trying to open any project (new or existing) will fail with SEGFAULT.
 </ul>
 
-<!-- No longer active.
-<p>We also support using <a href="http://newpascal.org/">NewPascal</a>, a very nice fork of FPC+Lazarus with some new features.
--->
-
-<p><i>Hint: If you want to install multiple versions of FPC/Lazarus</i> (stable, unstable, NewPascal), with cross-compilers, it is easily possible with <a href="https://castle-engine.io/fpcupdeluxe">fpcupdeluxe</a>.
+<p><i>Hint: To install multiple versions of FPC / Lazarus</i>, with cross-compilers, use <a href="https://castle-engine.io/fpcupdeluxe">fpcupdeluxe</a>. We recommend and support using <a href="https://castle-engine.io/fpcupdeluxe">fpcupdeluxe</a>, it's a great tool to install FPC / Lazarus!
 
 <?php echo $toc->html_section(); ?>
 
