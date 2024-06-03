@@ -292,7 +292,7 @@ $castle_sitemap = array(
           'doc/log' => array('title' => 'Logging'),
           'manual_cross_platform' => array('title' => 'Cross-platform (desktop, mobile, consoles...) projects',
             'sub' => array(
-              'manual_data_directory' => array('title' => 'Data directory'),
+              'doc/data' => array('title' => 'Data directory and castle-data:/ URL protocol'),
               'doc/project_manifest' => array('title' => 'CastleEngineManifest&ZeroWidthSpace;.xml'), // using zero-width space to avoid making mobile version with horizontal scroll
               'manual_castle_settings' => array('title' => 'Customize UI scaling, font, warmup cache by CastleSettings.xml'),
               'doc/build_tool' => array('title' => 'Build Tool'),

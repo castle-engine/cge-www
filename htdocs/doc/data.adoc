@@ -1,0 +1,142 @@
+# Data directory and castle-data:/ URL protocol
+include::common.adoc[]
+:description: Using Castle Game Engine "data" directory and "castle-data:/" URL protocol
+:cge-social-share-image: castle_model_viewer_flying_cthulhu.png
+
+
+== Introduction
+
+The `data` subdirectory of a _Castle Game Engine_ project is special. This is where you should put all the files that your application will load during runtime. This includes _designs_ (usually created using link:editor[]), 3D models, images, sounds, and any other data files that you need.
+
+Load these files using a special URL protocol `castle-data:/...`.
+
+cgeimg::block[castle_model_viewer_flying_cthulhu.png|Here's an unrelated Cthulhu 3D model screenshot. Flying Cthulhu from Sketchfab https://sketchfab.com/3d-models/flying-cthulhu-4737a3b84e00415b9d8bb42ae44285b2 by TooManyDemons]
+
+// Loading from
+// `castle-data:/images/my_image.png` is equivalent to loading from
+// deprecated `ApplicationData('images/my_image.png')`.
+// We advise to use only `castle-data:/xxx`.
+// We like such URLs as they can be saved to files easily (since they are just
+// String) so can be saved to CGE editor designs, X3D models with URLs etc.
+// And using castle-data:/ everywhere is more consistent than having a mix
+// of castle-data:/ and ApplicationData usage.
+
+== Features
+
+- This directory is automatically correctly packaged by the link:build_tool[build tool] and link:editor[]. E.g. it will be correctly added to the Android `apk` file, iOS or Nintendo Switch application.
+
+- It is detected in a smart way. E.g. it allows to place your data files in a system-wide location on Unix. The details are below.
+
+- The detection can be customized using the cgeref:ApplicationDataOverride[] global variable. Though we recommend to not touch it -- the default algorithm was designed to account for a lot of normal use-cases and has been adjusted to account for specifics of every platform.
+
+NOTE: The files inside this directory should only be read (not modified) at run-time to make you sure that your application works in all contexts (e.g. with Android read-only assets or system-wide installations on desktops). If you want to write files, use the cgeref:ApplicationConfig[] to get URL for writing configuration files.
+
+NOTE: You are not limited at runtime to reading only files from this `data` directory, of course. You can read any file on disk (using regular filenames or `file:/...` URLs) at runtime. See link:manual_network.php[network docs].
+
+== Example things to put in the `data` subdirectory
+
+- Designs made by link:editor[]. A typical link:views[view] has this in constructor:
++
+[source,pascal]
+----
+constructor TViewMain.Create(AOwner: TComponent);
+begin
+  inherited;
+  DesignUrl := 'castle-data:/gameviewmain.castle-user-interface';
+end;
+----
+
+- Game 3D and 2D models, loaded e.g. by
++
+[source,pascal]
+----
+MyScene.Load('castle-data:/my_model.x3d');
+----
++
+See link:viewport_and_scenes[loading 3D and 2D models in viewports].
+
+- 2D images, loaded e.g. by
++
+[source,pascal]
+----
+MyImageControl.Url := 'castle-data:/my_image.png';
+----
++
+See link:using_images[displaying images].
+
+- Sounds, loaded e.g. by
++
+[source,pascal]
+----
+MySound.Url := 'castle-data:/my_sound.wav';
+----
++
+See link:sound[loading sounds].
+
+- ... and really anything else you plan to load during the game. Your custom files can be loaded using
++
+[source,pascal]
+----
+MyStream := Download('castle-data:/my_binary_file');
+----
++
+or
++
+[source,pascal]
+----
+MyTextReader := TTextReader.Create('castle-data:/my_text_file.txt');
+----
++
+See link:manual_network.php[loading from URLs].
+
+== Advanced: How do we determine the data directory?
+
+The algorithm to find base data directory is OS-specific. It searches a couple of common locations, using the first location that exists. We look inside standard user-specific directories, then inside standard system-wide directories, then we look for the `data` subdirectory in the current exe directory (under Windows) or in the current working directory (under other OSes).
+
+WARNING: *The algorithm below is complicated. Don't read this!* Instead follow the short explanation: just place the files inside the `data` subdirectory of your project, and everything will work out-of-the-box.
+
+The details how we currently choose the data directory:
+
+Windows::
+- `data` subdirectory inside our exe directory, if exists.
+- `../../data` relative to our exe location, if it exists and exe seems to be inside a subdirectory `<platform>/<config>/`.
++
+Where `<platform>` matches current Delphi `<platform>` name (like `Win32` or `Win64` -- this is combined OS and CPU) and `<config>` matches `Debug` or `Release`. This is deliberately adjusted to _Delphi / {Cpp} Builder_ default project settings, so that we detect `data` automatically when exe location follows Delphi conventions. This deliberately checks whether subdirectory names match `<platform>/<config>/`, to avoid picking up a random `data` subdirectory for unrelated project.
+- Otherwise: just our exe directory.
++
+WARNING: Don't depend on this "last resort" fallback in your applications. Instead, place the data inside the `data` subdirectory.
+
+macOS::
+- `Contents/Resources/data` subdirectory inside our bundle directory, if we are inside a bundle and such subdirectory exists.
+- Otherwise, fallback on generic Unix detection, see below.
+
+iOS::
+- `data` subdirectory inside our bundle directory, if we are inside a bundle and such subdirectory exists.
+- Otherwise, fallback on generic Unix detection, see below.
+
+Android::
+- Always use Android _assets_ packaged in APK. This is a special location on Android where application should store it's assets.
+
+Nintendo Switch::
+- Always use special location on Nintendo Switch where application should store it's data.
+
+Unix (Linux, FreeBSD, macOS...)::
+- `~/.local/share/<ApplicationName>`.
++
+This is user-specific data directory, following the default dictated by https://www.freedesktop.org/wiki/Specifications/basedir-spec/[basedir spec]. If such directory exists, it is returned.
++
+This is checked first, to allow user to always override system-wide installation of a program with his/her own installation. E.g. consider the situation when an old version of a program is installed system-wide in `/usr/local/share/my_program/` , but some user (with no access to root account) wants to install a newer version of it for himself. This is possible, because `~/.local/share/my_program/` is checked before `/usr/local/share/my_program/`.
+- `/usr/local/share/<ApplicationName>`. If such directory exists, it is returned.
++
+This is for system-wide installations without package manager.
+- `/usr/share/<ApplicationName>`. If such directory exists, it is returned.
++
+This is for system-wide installations with package manager.
+- `data` subdirectory of the current directory, if exists.
++
+This is easiest and comfortable for development, just keep the `data` subdirectory alongside the executable binary.
++
+This is searched *after* system-wide specific dirs above, to avoid accidentally picking unrelated `data` in current directory instead of system-wide data.
+- Otherwise: As a last resort, we just return the current directory.
++
+WARNING: Don't depend on this "last resort" fallback in your applications. Instead, place the data inside the `data` subdirectory.
