@@ -294,13 +294,6 @@ This way data files may even be loaded from <code>http</code> location.
 On desktop systems, the data location is by default
 just a regular directory on disk, but you can change it.
 
-<p>Loading from the <code>castle-data:/images/my_image.png</code>
-is equivalent to using <?php echo cgeRef('ApplicationData'); ?>
- in code and loading from the <code>ApplicationData('images/my_image.png')</code>.
-Since <i>Castle Game Engine 6.5</i>, we advise using
-<code>castle-data:/images/my_image.png</code> form.
-
-
 <!--
 The castle-data:/ URL designates files inside the application data directory. When developing, this is usually the subdirectory "data/" of your project. When the application is installed, this is sometimes a special directory within the filesystem, sometimes a special filesystem (read-only "assets" on Android). Use this for all your game's URLs to have a completely self-contained game that will work on any OS.
 
