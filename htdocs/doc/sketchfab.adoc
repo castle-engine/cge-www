@@ -31,7 +31,7 @@ You can search and import models from https://sketchfab.com/[Sketchfab] inside t
 +
 Make sure to fill the _"API token"_ field first -- find your token on the link:https://sketchfab.com/settings/password[Sketchfab "Password & API"] page. You need a (completely free) Sketchfab account for this.
 +
-The downloaded model is placed inside the link:manual_data_directory.php[data subdirectory] of your project, in a file like `data/sketchfab/<name>-<id>/scene.gltf`. There are accompanying files with textures, license, we also leave the downloaded zip.
+The downloaded model is placed inside the link:data[data subdirectory] of your project, in a file like `data/sketchfab/<name>-<id>/scene.gltf`. There are accompanying files with textures, license, we also leave the downloaded zip.
 
 * If you have some design open, with some link:viewport_and_scenes[viewport] selected, then you can even _"Download and Add To Viewport"_. This is just a shortcut to download and drag-and-drop the glTF model into the viewport, instantiating [cgeref id=TCastleScene] pointing to the proper glTF model.
 

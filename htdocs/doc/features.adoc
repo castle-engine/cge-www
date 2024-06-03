@@ -5,7 +5,7 @@ include::common.adoc[]
 
 ////
 Rules when writing this:
-- Try to fit things into categories, avoid desire to create category like "Other" or "Miscellaneaous" to stuff remaining things.
+- Try to fit things into categories, avoid desire to create category like "Other" or "Miscellaneous" to stuff remaining things.
 - Avoid linking to news, that often become outdated over time. Prefer linking to manual with high-level overview. Eventually link to API docs.
 - We do not mention explicitly "numerous examples" as a features, instead link to particular examples when sensible.
 
@@ -296,8 +296,8 @@ cgeimg::block[
   not_quake_4.png|"Not Quake" demo - real-time network game
 ]
 
-* All paths are expressed as URLs with some special CGE protocols, see link:manual_network.php[nerworking].
-* Application data can be always accessed using link:manual_data_directory.php[URLs like `castle-data:/xxx`].
+* All paths are expressed as URLs with some special CGE protocols, see link:manual_network.php[networking].
+* Application data can be always accessed using link:data[URLs like `castle-data:/xxx`].
 * You can download URLs asynchronously using cgeref:TCastleDownload[].
 * Integration with link:manual_network.php#section_indy[Indy].
 * An example integration with link:manual_network.php#section_rnl[RNL] is in our https://github.com/castle-engine/not-quake[not-quake] demo.
@@ -320,7 +320,7 @@ cgeimg::block[
   sound_example_3d_game_source.png|3D game sound demo - TCastleSoundSource
 ]
 
-* Supports for various sound backends: link:openal[OpenAL] or link:fmod[FMOD], on multipe platforms.
+* Supports for various sound backends: link:openal[OpenAL] or link:fmod[FMOD], on multiple platforms.
 * Sound streaming is done, for efficient playback of music tracks.
 * WAV and OggVorbis file formats are supported with all sound backends.
 * Sound components cgeref:TCastleSound[] and cgeref:TCastleSoundSource[] can be designed and tested also in editor.

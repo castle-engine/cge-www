@@ -205,7 +205,7 @@ echo cgeImg('block', array(
     <code>game.ja.mo</code>,
     <code>user_interface.ja.mo</code> (Japanese translation).
 
-    <p>Place these MO files inside the <a href="manual_data_directory.php">data directory</a>
+    <p>Place these MO files inside the <a href="data">data directory</a>
     of your application.
 
   <li><p>In game, determine user preferred language, e.g. using

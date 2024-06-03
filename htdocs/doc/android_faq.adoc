@@ -29,7 +29,7 @@ For example, set `TCastleScene.URL := 'castle-data:/my_model.gltf'` to load a 3D
 +
 When you design using link:manual_editor.php[CGE editor], it will automatically use `castle-data:/xxx` URLs.
 
-More information about https://castle-engine.io/manual_data_directory.php[data directory, and castle-data protocol, is here] .
+More information about link:data[data directory, and castle-data protocol, is here] .
 
 This approach makes your code 100% working on both Android and other platforms. Our link:build_tool[build tool] will automatically package the `data/` subdirectory correctly.
 

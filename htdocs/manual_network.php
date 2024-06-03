@@ -107,7 +107,7 @@ other resources) automatically deal with URLs.
 
 <?php echo $toc->html_section(); ?>
 
-<p>Often, URLs just refer to files on the filesystem. Like <code>file://...</code> URLs, or <code>castle-data:/...</code> URLs (on platforms where the <a href="manual_data_directory.php">application data</a> is just a set of regular files). In this case, the underlying filesystem determines whether the names are case-sensitive (so e.g. <code>foobar</code> vs <code>FooBar</code> mean something else) or not. On Unix (like Linux, FreeBSD, macOS) the filesystems are typically case-sensitive. On Windows, the filesystems are typically <i>not</i> case-sensitive.
+<p>Often, URLs just refer to files on the filesystem. Like <code>file://...</code> URLs, or <code>castle-data:/...</code> URLs (on platforms where the <a href="data">application data</a> is just a set of regular files). In this case, the underlying filesystem determines whether the names are case-sensitive (so e.g. <code>foobar</code> vs <code>FooBar</code> mean something else) or not. On Unix (like Linux, FreeBSD, macOS) the filesystems are typically case-sensitive. On Windows, the filesystems are typically <i>not</i> case-sensitive.
 
 <p>To make the application work on all platforms, be sure to always specify the same case in URLs as your files.
 
@@ -209,7 +209,7 @@ Note that the <i>current working directory</i> depends on how the user
 runs your application.
 
 <p>To reliably load game data from code you should
-use <a href="manual_data_directory.php"><code>castle-data</code> protocol</a>,
+use <a href="data"><code>castle-data</code> protocol</a>,
 not <code>file</code> protocol.
 
 <p><?php echo cgeRef('CastleUriUtils'); ?>
@@ -272,7 +272,7 @@ through the <code>file</code> protocol.
 <?php echo $toc->html_section(); ?>
 
 <p>This protocol should be used to load
-<a href="manual_data_directory.php">data files</a> of your project.
+<a href="data">data files</a> of your project.
 During development, on normal desktop systems (Windows, Linux etc.),
 the <i>data files</i> are simply files
 inside the <code>data</code> subdirectory of your project.
@@ -284,7 +284,7 @@ If you access all the data files using the <code>castle-data</code> protocol
 (or using URLs relative to files loaded using the <code>castle-data</code> protocol)
 then your application will "just wok" on all systems.
 
-<p>See the <a href="manual_data_directory.php">documentation
+<p>See the <a href="data">documentation
 about the data directory</a>.
 
 <p>Note that you can adjust

@@ -77,7 +77,7 @@ files, and <code>"scene"</code> field is actually a relative URL to get them.
 And <code>level.xml</code> files may be scattered
 throughout your directory as you wish. And what is "data directory" is
 configurable (by <?php echo removedCgeRef('Levels.LoadFromFiles'); ?> optional parameter, by default
-we use <a href="manual_data_directory.php">data directory</a>). It's only important that the XML files are named
+we use <a href="data">data directory</a>). It's only important that the XML files are named
 <code>level.xml</code>.</p>
 
 <p>You can now start a game by scanning all levels information from

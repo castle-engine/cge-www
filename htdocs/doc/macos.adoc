@@ -88,7 +88,7 @@ _When packaging the application_ we also create an application bundle, this time
 
 NOTE: You can disable using _application bundle_ by setting `mac_app_bundle="false"` in the link:project_manifest[CastleEngineManifest.xml]. Disabling it makes sense for command-line (not GUI) applications.
 
-Behavior of the link:manual_data_directory.php[data directory] (`castle-data:` protocol) on macOS, if the application detects it is being run through the "application bundle":
+Behavior of the link:data[data directory] (`castle-data:` protocol) on macOS, if the application detects it is being run through the "application bundle":
 
 - We expect the data to be found inside `MyApplication.app/Contents/Resources/data` subdirectory. This way user can move around `MyApplication.app` to move, install and uninstall the application.
 +

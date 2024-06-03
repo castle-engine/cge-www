@@ -38,11 +38,11 @@ In most cases, the starting contents of the `CastleEngineManifest.xml` file will
 Once you have a project, *call `castle-engine` from within your project's directory* (or any subdirectory, we automatically look for `CastleEngineManifest.xml` in parent directories) *to quickly compile, package or clean the project*. See the description of command-line parameters to `castle-engine` below. The tool is integrated with our engine, so it can automatically compile the code correctly, and package it following our usual conventions. The data for the game is automatically packaged. On Windows the required DLL files are automatically included (see also the description of <dependencies> in link:project_manifest[CastleEngineManifest.xml]). On Android the required Java wrappers and libraries are automatically used.
 
 ////
-Commented out, as this is already covered by https://castle-engine.io/manual_data_directory.php:
+Commented out, as this is already covered by link:data[]:
 
 Special file/directory names:
 
-* The `data` subdirectory of the project, if found, is used for game data. It is automatically included in the game package for all platforms. It is accessible at runtime using URLs like `castle-data:/xxx.png` function (see the https://castle-engine.io/manual_data_directory.php[manual about data directory]).
+* The `data` subdirectory of the project, if found, is used for game data. It is automatically included in the game package for all platforms. It is accessible at runtime using URLs like `castle-data:/xxx.png` function (see the link:data[manual about data directory]).
 +
 We filter out some common development files like `*.xcf` and `*.blend*` from the data. See also <include> and <exclude> directives (in link:project_manifest[CastleEngineManifest.xml]) to add/remove specific files from the package. These allow to add/remove files both inside and outside of data.
 

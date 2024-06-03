@@ -47,7 +47,7 @@ data in our engine.
 <h2>Notes specifically about level.xml and resource.xml files</h2>
 
 <ol>
-  <li><p>The <a href="manual_data_directory.php">data directory</a> of the game is scanned for the special XML files named
+  <li><p>The <a href="data">data directory</a> of the game is scanned for the special XML files named
     <code>level.xml</code> and <code>resource.xml</code>. This allows you to define new
     creatures or items (something that can be picked and carried by the player)
     or levels to the game simply by adding an additional subdirectory

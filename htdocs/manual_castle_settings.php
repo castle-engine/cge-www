@@ -20,7 +20,7 @@ $toc = new TableOfContents(
 <?php echo $toc->html_section(); ?>
 
 <p>Place a file <code>CastleSettings.xml</code> in your
-<a href="manual_data_directory.php">data directory</a>
+<a href="data">data directory</a>
 to influence the look of your application.
 From the Pascal code (usually, early in the
 <code>Application.OnInitialize</code> callback) load it by calling <code>Window.Container.LoadSettings('castle-data:/CastleSettings.xml');</code>. The new projects created using the <i>"New Project"</i> templates provided by the editor already do this.
@@ -204,7 +204,7 @@ font variant (others are optional).
     Any format supported by the <a href="https://www.freetype.org/">FreeType library</a>
     is allowed, in particular OTF and TTF.
     This file will be loaded at runtime by the compiled application,
-    so it should almost always be a URL leading <a href="manual_data_directory.php">to the application data</a>,
+    so it should almost always be a URL leading <a href="data">to the application data</a>,
     or a relative URL (since the <code>CastleSettings.xml</code> should already be inside data).
 
   <dt><p><code>size</code> (default: 20)

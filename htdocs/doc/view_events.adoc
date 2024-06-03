@@ -69,7 +69,7 @@ cgeimg::block[
 
 . Load the image by editing the URL property. Click on the small button with 3 dots (`...`) on the right side of `URL` property to invoke a standard "Open File" dialog box where you should select your image.
 +
-Note that once you confirm, the `URL` will change to something like `castle-data:/mountains_background.png`. The design saves the file location link:manual_data_directory.php[relative to a special "data" directory]. In a typical game, you will want to reference all your data files like this. The special `data` directory will be always properly packaged and available in your application.
+Note that once you confirm, the `URL` will change to something like `castle-data:/mountains_background.png`. The design saves the file location link:data[relative to a special "data" directory]. In a typical game, you will want to reference all your data files like this. The special `data` directory will be always properly packaged and available in your application.
 +
 cgeimg::block[
   view_events_image_url1.png|Set Image URL,

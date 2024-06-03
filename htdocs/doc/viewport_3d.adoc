@@ -83,7 +83,7 @@ cgeimg::block[viewport_3d_preview.png|Preview]
 
 . Set your `Scene1.URL` property to the `car.gltf` model in your data. To do this, select `Scene1` in the _hierarchy_ (left panel of the editor), then look for `URL` in the _object inspector_ (right panel of the editor), and click on the small button with 3 dots `...` in the edit field next to the `URL`. This will open a normal dialog window, where you should select the `car.gltf` in your project's data.
 +
-Once you accepted this, note that the `Scene1.URL` changed the `castle-data:/car.gltf`. In general, this is an URL of the file. It uses a special `castle-data` protocol to indicate that the file is in the project's special link:manual_data_directory.php[data directory].
+Once you accepted this, note that the `Scene1.URL` changed the `castle-data:/car.gltf`. In general, this is an URL of the file. It uses a special `castle-data` protocol to indicate that the file is in the project's special link:data[data directory].
 +
 Note that instead of clicking on the button with 3 dots, you could have also pasted the URL `castle-data:/car.gltf` in the edit field. It's a simple text field, you can edit it like any other text field if you need to, and it will reload the loaded model. You can set the `URL` to empty always to unload the model.
 +

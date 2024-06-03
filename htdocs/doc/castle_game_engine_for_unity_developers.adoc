@@ -103,7 +103,7 @@ You can even link:custom_components[register your custom classes to be available
 
 == What is the equivalent of Unity `Assets` subdirectory?
 
-You should place your game data in the `data` subdirectory of the project. See https://castle-engine.io/manual_data_directory.php[manual about the "data" directory]. It will be automatically packaged and available in your games.
+You should place your game data in the `data` subdirectory of the project. See link:data[manual about the "data" directory]. It will be automatically packaged and available in your games.
 
 Everything inside your `data` subdirectory is loadable at runtime. In this sense, it is actually similar to `Assets/Resources/` subdirectory of Unity, if you care about details.
 

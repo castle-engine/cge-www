@@ -198,7 +198,7 @@ All our examples are compatible with Delphi on Linux. This includes
 
 === Data files deployment (applies to all non-Windows platforms with Delphi)
 
-When "deploying" your application (e.g. when you hit F9 in Delphi to run on Linux), Delphi needs to know which data files to copy to the target (Linux). This is particularly important for the link:manual_data_directory.php[data directory] of your project, it needs to be available on target. Unfortunately, we cannot tell Delphi to just _"copy whole `data` directory recursively"_ in the project deployment settings.
+When "deploying" your application (e.g. when you hit F9 in Delphi to run on Linux), Delphi needs to know which data files to copy to the target (Linux). This is particularly important for the link:data[data directory] of your project, it needs to be available on target. Unfortunately, we cannot tell Delphi to just _"copy whole `data` directory recursively"_ in the project deployment settings.
 
 To make it work, our link:editor[] and link:build_tool[build tool] can generate in the DPROJ (project settings) the list of files to copy, by listing all current files in the data directory.
 

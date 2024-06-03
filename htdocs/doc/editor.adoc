@@ -20,7 +20,7 @@ video::rPU-IFltcuM[youtube,width=800,height=450]
 
 You can create a project (using a number of templates) or open an existing one. You can compile, run and package the project using the _Run_ menu.
 
-A _Castle Game Engine_ project is a directory containing the link:project_manifest[CastleEngineManifest.xml] file. Most often it also contains a subdirectory `data/` that is accessed from code using the link:manual_data_directory.php[castle-data:/xxx] URLs. Everything else is up to you, organize your source code and data however you like.
+A _Castle Game Engine_ project is a directory containing the link:project_manifest[CastleEngineManifest.xml] file. Most often it also contains a subdirectory `data/` that is accessed from code using the link:data[castle-data:/xxx] URLs. Everything else is up to you, organize your source code and data however you like.
 
 Note that compiling and packaging a project link:https://castle-engine.io/build_tool[can also be done using the command-line CGE build tool]. Actually, the editor just calls the build tool under the hood. The build tool in turn calls a compiler (FPC) and some other tools (e.g. Android-specific packaging tools).
 
@@ -106,7 +106,7 @@ cgeimg::block[
 
 You can browse the application files. Our _"Files"_ browser at the bottom just displays the files inside your project directory. It merely hides some known unimportant things, like temporary `castle-engine-output` directory.
 
-* Note that the `data/` subdirectory is somewhat special. It is automatically detected, it is automatically packaged (e.g. in Android apk), and it can always be accessed by link:https://castle-engine.io/manual_data_directory.php[castle-data:/xxx URL]. You will place there 3D models, 2D images, designs (`xxx.castle-user-interface`, `xxx.castle-transform`, `xxx.castle-component` files) and everything else you load in the game.
+* Note that the `data/` subdirectory is somewhat special. It is automatically detected, it is automatically packaged (e.g. in Android apk), and it can always be accessed by link:data[castle-data:/xxx URL]. You will place there 3D models, 2D images, designs (`xxx.castle-user-interface`, `xxx.castle-transform`, `xxx.castle-component` files) and everything else you load in the game.
 +
 It is somewhat equivalent to Unity `Assets/` subdirectory. See link:https://castle-engine.io/castle_game_engine_for_unity_developers[Castle Game Engine for Unity developers] for more pointers, if you come with knowledge about Unity.
 

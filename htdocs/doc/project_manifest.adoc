@@ -206,7 +206,7 @@ The `<project>` attributes:
 
 === Data directory
 
-By default, we expect a subdirectory named `data` inside the project directory. This is the only "special" directory name for _Castle Game Engine_ projects, it will be specially packaged, and https://castle-engine.io/manual_data_directory.php[your application can read from it on any platform using URL like 'castle-data:/xxx.png'].
+By default, we expect a subdirectory named `data` inside the project directory. This is the only "special" directory name for _Castle Game Engine_ projects, it will be specially packaged, and link:data[your application can read from it on any platform using URL like 'castle-data:/xxx.png'].
 
 If you don't have any data files in your project, you can say it explicitly to avoid some warnings from the build tool:
 
