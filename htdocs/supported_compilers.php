@@ -58,7 +58,7 @@ though for most applications we recommend using <code>TCastleWindow</code> indep
     <p>We <b>advise</b> Lazarus &gt;= 3.2 in order to have (since 2.2) <a href="https://gitlab.com/freepascal.org/lazarus/lazarus/-/issues/39338">this issue fixed, which allows more intuitive behavior when you double-click on a Pascal file in CGE editor to open Lazarus</a> and (since 3.0) <a href="https://github.com/castle-engine/pascal-language-server">pasls</a> compile fine with <code>IdentComplIncludeKeywords</code>.
 
   <li>
-    <p>A special requirement is on macOS users that want to <b>build CGE editor on macOS</b>: You have to use Lazarus sources with <a href="https://gitlab.com/freepascal.org/lazarus/lazarus/-/merge_requests/291">the patch from this MR applied</a>. Hopefully Lazarus developers will merge it soon to the "main" branch of Lazarus on GitLab. Without this fix, trying to open any project (new or existing) will fail with SEGFAULT.
+    <p>A special requirement is on macOS users that want to <b>build CGE editor on macOS</b>: You have to use Lazarus <code>fixes_3_0</code> or <code>main</code> branch from GitLab, recent enough to include this fix: <a href="https://gitlab.com/freepascal.org/lazarus/lazarus/-/merge_requests/291">Tolerate AValue = nil in TCocoaWSCustomListView.SetImageList</a>. Without it, trying to open any project (new or existing) will fail with SEGFAULT.
 </ul>
 
 <p><i>Hint: To install multiple versions of FPC / Lazarus</i>, with cross-compilers, use <a href="https://castle-engine.io/fpcupdeluxe">fpcupdeluxe</a>. We recommend and support using <a href="https://castle-engine.io/fpcupdeluxe">fpcupdeluxe</a>, it's a great tool to install FPC / Lazarus!
