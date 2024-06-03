@@ -29,6 +29,7 @@ create_textured_quad
 grouping_nodes
 logging
 test_simplest_game
+curves_example
 
 # particular example output
 my_points.x3d
