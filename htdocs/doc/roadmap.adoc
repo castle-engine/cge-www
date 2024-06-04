@@ -809,3 +809,10 @@ We have a https://github.com/castle-engine/castle-engine/pull/555/[PR with this]
 - It will allow to avoid some LCL limitations, sometimes widgetset-specific. E.g. LCL GTK 2 widgetset uses deprecated GTK 2 and has https://github.com/castle-engine/castle-engine/issues/543[known crashing issues], Qt5 widgetset needs libqt5pas library that most people don't have (or don't have in relevant version for latest LCL), macOS widgetset https://github.com/castle-engine/castle-engine/issues/404[does not have a functional frames list and thus sprite sheet editor sucks]... We will be able to ignore all of this, as they will be replaced by a cross-platform implementation.
 - And, last but not least: the dark mode, on all platforms, will be trivial to implement :)
 --
+
+## Environment Lighting
+
+- Finish https://github.com/michaliskambi/x3d-tests/wiki/Image-Based-Lighting-(EnvironmentLight-node)[EnvironmentLight X3D node]
+- On top of that CGE component `TCastleEnvironmentLight`
+
+It will work for all models, it is a great and modern way to do lighting.
