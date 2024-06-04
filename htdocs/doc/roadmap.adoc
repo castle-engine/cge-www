@@ -358,6 +358,10 @@ There are a few details that have to be ironed out here:
 
 * most intuitive names for all the things above (menu item names, component names, extensions etc.) :)
 
+Moreover:
+
+- Expose cgeref:CastleDataIgnoreCase[] in `data/settings.castle-project-settings`. This makes sense to be read also by editor when editing the project, to ignore case also at design-time.
+
 [#anims]
 ## Creating animations in CGE editor, for UI and transforms
 
