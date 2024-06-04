@@ -55,12 +55,12 @@ The cgeref:CastleMessaging[] is a simple asynchronous communication mechanism be
 
 +
 Typically, you wrap sending and receiving messages in a nice Pascal API. Examples of it are in the CGE `src/services/` directory.
-* On the Java side, you create a class descending from `ServiceAbstract`. Such class can override `messageReceived` method to receive messages, and use `messageSend` to send messages. Examples of it are CGE services inside `tools/build-tool/data/android/integrated-services/XXX/src/net/sourceforge/castleengine/ServiceXXX.java` files.
+* On the Java side, you create a class descending from `ServiceAbstract`. Such class can override `messageReceived` method to receive messages, and use `messageSend` to send messages. Examples of it are CGE services inside `tools/build-tool/data/android/integrated-services/XXX/src/io/castleengine/ServiceXXX.java` files.
 
 See e.g. Google Play Games handling:
 
 * the Pascal part is in `src/services/castlegameservices.pas` ,
-* the Java part is in `tools/build-tool/data/android/integrated-services/google_play_games/src/net/sourceforge/castleengine/ServiceGooglePlayGames.java` .
+* the Java part is in `tools/build-tool/data/android/integrated-services/google_play_games/src/io/castleengine/ServiceGooglePlayGames.java` .
 
 The Java code of this particular service is no longer straightforward (it has a lot of functionality by now...), but it shows how to pass messages back and forth.
 
