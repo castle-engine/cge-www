@@ -353,6 +353,8 @@ but in some special cases may be avoided:
   <li>Do not add <code>ssRendering</code> to <code>Scene.Spatial</code> if the scene is always small on the screen, and so it's usually either completely visible or invisible. <code>ssRendering</code> adds frustum culling per-shape.
 </ul>
 
+<p>We have an example <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/animations/optimize_animations_test">examples/animations/optimize_animations_test</a> demonstrating a few possible animations optimizations discussed below. Read the README there.
+
 <p>Various techniques to optimize animations include:
 
 <ul>

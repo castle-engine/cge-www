@@ -820,3 +820,14 @@ We have a https://github.com/castle-engine/castle-engine/pull/555/[PR with this]
 - On top of that CGE component `TCastleEnvironmentLight`
 
 It will work for all models, it is a great and modern way to do lighting.
+
+[#animations_optimized]
+## Optimized animations (OptimizeExtensiveTransformations, InternalFastTransformUpdate) just out-of-the-box
+
+As https://castle-engine.io/wp/2024/06/07/new-example-demonstrating-a-few-possible-animations-optimizations/[this post] discusses, we have a few options to speed up animation processing.
+
+Not all, but *some* of them should be "on" by default and have no possible adverse effects:
+
+- cgeref:InternalFastTransformUpdate[] enable by default and make it work regardless of what is animated.
+
+- cgeref:OptimizeExtensiveTransformations[] we should generalize it by remembering the top-most transform that needs to be processed.
