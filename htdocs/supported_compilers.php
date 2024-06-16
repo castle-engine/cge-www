@@ -118,7 +118,7 @@ The definition what is "reasonable" depends on:
 
     <p>Although by default we use latest stable FPC inside our Docker image, but you can get FPC unstable using the tag <code>cge-none-fpc331</code> when requesting the image. So the full image name <a href="https://hub.docker.com/r/kambi/castle-engine-cloud-builds-tools/">to get it from Docker Hub</a> would be <code>kambi/castle-engine-cloud-builds-tools:cge-unstable</code>.
 
-    <p>The exact FPC revision included is the one listed in <a href="https://github.com/castle-engine/castle-engine-cloud-builds-tools/blob/master/Dockerfile.no-cge#L249">the Docker build script</a>. This is updated manually from time to time (do you think we should bump it now? <a href="talk.php">let us know</a>).
+    <p>The exact FPC revision included is the one listed in <a href="https://github.com/castle-engine/castle-engine-docker/blob/master/Dockerfile.no-cge#L252">the Docker build script</a>. This is updated manually from time to time (do you think we should bump it now? <a href="talk.php">let us know</a>).
 </ul>
 
 <p>Of course please remember that this FPC version is unstable, and it changes with every commit to FPC. We cannot test or guarantee that CGE works with an arbitray FPC development revision. But we welcome testing such FPC. PRs to make CGE work with latest FPC trunk are also welcome (unless there's a temporary bug in FPC which should be rather reported to FPC devs).

@@ -167,7 +167,7 @@ You can use 1 of 3 possible Docker images we provide:
 
 == Sources
 
-The bash script, Dockerfiles, Jenkinksfiles etc. to generate these Docker images are open-source on https://github.com/castle-engine/castle-engine-cloud-builds-tools .
+The bash script, Dockerfiles, Jenkinksfiles etc. to generate these Docker images are open-source on https://github.com/castle-engine/castle-engine-docker .
 
 == Alternative FPC versions
 
@@ -175,7 +175,7 @@ Alternative FPC versions are in the alternative tags, right now:
 
 - `cge-none-fpc320` has FPC 3.2.0
 
-- `cge-none-fpc331` has recent FPC 3.3.1. The exact FPC 3.3.1 revision is listed https://github.com/castle-engine/castle-engine-cloud-builds-tools/blob/master/Dockerfile.no-cge#L249[here].
+- `cge-none-fpc331` has recent FPC 3.3.1. The exact FPC 3.3.1 revision is listed https://github.com/castle-engine/castle-engine-docker/blob/master/Dockerfile.no-cge#L252[here].
 
 In the past, we used to have bigger images, with all FPC versions switchable at runtime, but this was making image size too big. It was problematic for GitHub action default runners, and useless for people who didn't want to switch FPC versions.
 

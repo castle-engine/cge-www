@@ -125,7 +125,7 @@
   - update CGE version of Docker `cge-stable` by
     - ssh jenkins-linux-slave.castle-engine.io
       as michalis
-        update in castle-engine-cloud-build-tools/ all versions to point to 7.0-alpha.2
+        update in castle-engine-docker/ all versions to point to new version (like 7.0-alpha.3)
         ./build-local.sh
 
 - In case of CGE and castle-model-viewer, upload them also to http://castle-engine.itch.io/
