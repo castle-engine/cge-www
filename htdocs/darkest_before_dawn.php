@@ -32,21 +32,19 @@ Then just download the apk file, and Android should
 automatically propose to install it.
 -->
 
-<div class="download jumbotron">
-<a href="https://play.google.com/store/apps/details?id=net.sourceforge.castleengine.darkestbeforedawn" class="btn btn-primary btn-lg">Install "Darkest Before the Dawn" for Android through Google Play</a>
-
-  <br><br>
-
-  Or download:
-
-  <table><tbody><tr>
-    <td style="padding-left: 0"><a href="http://downloads.sourceforge.net/castle-engine/darkest_before_dawn-linux-i386.tar.gz" class="btn btn-primary btn-lg"><img width="64" height="64" alt=" Linux&lt;br/&gt;(32 bit)" src="images/os_icons/linux32.png"><br> Linux<br>(32 bit)</a></td>
-    <td><a href="http://downloads.sourceforge.net/castle-engine/darkest_before_dawn-win32.zip" class="btn btn-primary btn-lg"><img width="64" height="64" alt=" Windows&lt;br/&gt;(32 bit, works on 64-bit too)" src="images/os_icons/win.png"><br> Windows<br>(32 bit, works on 64-bit too)</a></td>
-    <td><a href="http://downloads.sourceforge.net/castle-engine/darkest_before_dawn-release.apk" class="btn btn-primary btn-lg"><img width="64" height="64" alt=" Android" src="images/os_icons/android.png"><br> &nbsp;<br>Android</a></td>
-  </tr></tbody></table>
-
-  <?php echo download_donate_footer(); ?>
-</div>
+<?php
+echo cge_download_application(
+  '1.4.0',
+  'snapshot',
+  'castle-engine',
+  'darkest-before-dawn',
+  'darkest_before_dawn',
+  array(
+    'win64-x86_64',
+    'linux-x86_64'
+  )
+);
+?>
 
 <h2>Source code</h2>
 

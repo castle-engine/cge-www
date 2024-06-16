@@ -38,7 +38,6 @@ Try it now!
       new TocItem('Download', 'download'),
       new TocItem('Controls and hints how to play', 'controls'),
       new TocItem('Command-line options', 'command_line'),
-      new TocItem('Source code', 'source'),
       new TocItem('License', 'license'),
     )
   );
@@ -47,14 +46,19 @@ Try it now!
 
 <?php echo $toc->html_section(); ?>
 
-<div class="download jumbotron">
-  <table><tbody><tr>
-    <td><a href="http://downloads.sourceforge.net/castle-engine/mountains_of_fire-<?php echo VERSION_MOUNTAINS_OF_FIRE; ?>-linux-i386.tar.gz" class="btn btn-primary btn-lg"><img width="64" height="64" alt=" Linux&lt;br/&gt;(32 bit)" src="images/os_icons/linux32.png"><br> Linux<br>(32 bit)</a></td>
-    <td><a href="http://downloads.sourceforge.net/castle-engine/mountains_of_fire-<?php echo VERSION_MOUNTAINS_OF_FIRE; ?>-win32-i386.zip" class="btn btn-primary btn-lg"><img width="64" height="64" alt=" Windows&lt;br/&gt;(32 bit, works on 64-bit too)" src="images/os_icons/win.png"><br> Windows<br>(32 bit, works on 64-bit too)</a></td>
-  </tr></tbody></table>
-
-  <?php echo download_donate_footer(); ?>
-</div>
+<?php
+echo cge_download_application(
+  '1.1.0',
+  'snapshot',
+  'castle-engine',
+  'mountains-of-fire',
+  'mountains_of_fire',
+  array(
+    'win64-x86_64',
+    'linux-x86_64'
+  )
+);
+?>
 
 <?php echo $toc->html_section(); ?>
 
@@ -119,18 +123,6 @@ Try it now!
 
   <li><p><code>--debug-log</code>, <code>--debug-speed</code>
 </ul>
-
-<?php echo $toc->html_section(); ?>
-
-<p>The full <a href="https://github.com/castle-engine/mountains-of-fire">source code and data are available on GitHub</a>.
-
-<p>The exact source code for version <?php echo VERSION_MOUNTAINS_OF_FIRE; ?>
- is also available as a tar.gz archive: <a href="http://downloads.sourceforge.net/castle-engine/mountains_of_fire-<?php echo VERSION_MOUNTAINS_OF_FIRE; ?>-src.tar.gz">download "Mountains Of Fire" <?php echo VERSION_MOUNTAINS_OF_FIRE; ?> sources</a>.
-
-<p>See the <code>README.txt</code> for compilation instructions.
-For a standalone compilation all you need is the
-<a href="/">Castle Game Engine</a>
-and <a href="http://www.freepascal.org/">FPC</a>.
 
 <?php echo $toc->html_section(); ?>
 
