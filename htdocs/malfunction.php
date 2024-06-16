@@ -14,27 +14,32 @@ $toc = new TableOfContents(
   )
 );
 
-echo pretty_heading("malfunction", VERSION_MALFUNCTION);
+echo pretty_heading("malfunction");
 echo $toc->html_toc();
 echo default_program_thumbnail("malfunction");
 ?>
 
-<p>If you want, you can dream that you're a saviour of galaxy
-or something like that. The truth is that
-<ol>
-  <li>You sit inside the most junky and malfunctioning space
-    ship in the whole universe
-  <li>Noone knows what's going on but there are some freakin'
-    <b>alien spaceships</b> everywhere around, and
-    <b>they just got down on you</b>
-</ol>
+<p><b>Malfunction</b> is a small 3D game made by Michalis Kamburelis
+with a very very early <i>Castle Game Engine</i> version.
 
-<p><b>Malfunction</b> is a small 3D game made by Michalis Kamburelis.
+<p>You sit inside the most malfunctioning space ship in the whole universe.
+You are surrounded by alien spaceships. Destroy them all!
 
 <?php echo $toc->html_section(); ?>
 
-<?php echo_standard_program_download(
-  'malfunction', 'malfunction', VERSION_MALFUNCTION); ?>
+<?php
+echo cge_download_application(
+  '1.3.0',
+  'snapshot',
+  'castle-engine',
+  'malfunction',
+  'malfunction',
+  array(
+    'win64-x86_64',
+    'linux-x86_64'
+  )
+);
+?>
 
 <p><i>Installation</i>: just extract the downloaded archive anywhere.
 Run the game binary (<code>./malfunction</code> on Unix,
