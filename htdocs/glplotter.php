@@ -7,8 +7,7 @@ castle_header("glplotter", array(
 ));
 ?>
 
-<h1>glplotter
-  <span style="font-size: small">(version <?php echo VERSION_GLPLOTTER; ?>)</span></h1>
+<h1>glplotter</h1>
 
 <?php
   echo castle_thumbs(array(
@@ -33,11 +32,16 @@ Maybe your data is not even a function at all &mdash;
 actually any shape consisting of line segments may be displayed by glplotter.</p>
 
 <?php
-echo_standard_program_download(
-  'Stable Version ' . VERSION_GLPLOTTER, 'glplotter', VERSION_GLPLOTTER,
+echo cge_download_application(
+  '2.1.0',
+  'snapshot',
+  'castle-engine',
+  'glplotter',
+  'glplotter',
   array(
-    'win-x86_64' => 'https://github.com/castle-engine/glplotter/releases/download/v' . VERSION_GLPLOTTER . '/glplotter-' . VERSION_GLPLOTTER . '-win64-x86_64.zip',
-    'linux-x86_64' => 'https://github.com/castle-engine/glplotter/releases/download/v' . VERSION_GLPLOTTER . '/glplotter-' . VERSION_GLPLOTTER . '-linux-x86_64.tar.gz',
+    'win64-x86_64',
+    'linux-x86_64',
+    'darwin-x86_64'
   )
 );
 ?>

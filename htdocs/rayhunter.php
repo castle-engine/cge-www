@@ -17,7 +17,7 @@ $toc = new TableOfContents(
   )
 );
 
-echo pretty_heading("rayhunter", VERSION_RAYHUNTER);
+echo pretty_heading("rayhunter");
 
 echo castle_thumbs(array(
   array('filename' => 'graz-wlight-1-classic-filt.png', 'titlealt' => ''),
@@ -48,8 +48,20 @@ and Monte Carlo path tracing.
 
 <?php echo $toc->html_section(); ?>
 
-<?php echo_standard_program_download('rayhunter', 'rayhunter',
-  VERSION_RAYHUNTER); ?>
+<?php
+echo cge_download_application(
+  '1.4.0',
+  'snapshot',
+  'castle-engine',
+  'rayhunter',
+  'rayhunter',
+  array(
+    'win64-x86_64',
+    'linux-x86_64',
+    'darwin-x86_64'
+  )
+);
+?>
 
 <p><?php echo S_INSTALLATION_INSTRUCTIONS_SHORT; ?></p>
 

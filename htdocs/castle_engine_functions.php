@@ -1436,17 +1436,6 @@ function castle_download_button($title, $url)
     htmlspecialchars($url) .  '">' . $title. '</a>';
 }
 
-function sf_download_url($file_name)
-{
-  return 'http://downloads.sourceforge.net/' . SF_UNIX_NAME . '/' . $file_name;
-}
-
-/* Makes a link to a download from SourceForge file release system. */
-function sf_download($title, $file_name)
-{
-  return castle_download_button($title, sf_download_url($file_name));
-}
-
 function download_donate_footer()
 {
   return /* '
@@ -1459,118 +1448,6 @@ function download_donate_footer()
 
     '<a class="btn btn-success btn-lg btn-patreon" href="' . PATREON_URL .
     '"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Support us on Patreon</a>';
-}
-
-/* This echoes a list to download various versions of the same program.
-     < ?php echo castle_download_button("Foo for Linux", ....); ? >
-   where $prog_nice_name = Foo.
-   The $prog_archive_basename is used to generate download URLs for SourceForge
-   (using sf_download_url), ignored if you supply $os_arch_urls for now.
-
-   If $prog_version is '' then the whole -version part will be omitted
-   (i.e. $prog_version = '' causes also the dash '-' before version
-   to disappear, since this is what you usually want).
-
-   $os_arch_urls is the list of supported OS/architectures (keys)
-   and appropriate URLs (values, may be NULL to use SourceForge link).
-   Leave NULL (default) to use the default set of OS/architectures hardcoded
-   inside, and SourceForge download links. */
-function echo_standard_program_download(
-  $prog_nice_name, $prog_archive_basename, $prog_version,
-  $os_arch_urls = NULL, $extra_bottom_html = '')
-{
-  global $this_page_name, $os_arch_caption, $os_arch_extension;
-
-  $arch_name_start = $prog_archive_basename;
-  if ($prog_version != '')
-    $arch_name_start .= '-' . $prog_version;
-  $arch_name_start .= '-';
-
-  $nice_name_start = 'Download ' . $prog_nice_name;
-  /* no, looks bad:
-  if ($prog_version != '')
-    $nice_name_start .= ' (' . $prog_version . ')';
-  */
-
-  if ($os_arch_urls === NULL) {
-    $os_arch_urls = array(
-      'win-i386'     => NULL,
-      'linux-i386'   => NULL,
-      'linux-x86_64' => NULL,
-      'macos-x86_64' => NULL,
-    );
-  }
-
-  $os_arch_caption = array(
-    'win-i386'     => ' Windows<br/>(all versions, 32 or 64-bit)',
-    'win-x86_64'   => ' Windows<br/>(64-bit)',
-    'linux-i386'   => ' Linux<br/>(32-bit, i386)',
-    'linux-x86_64' => ' Linux<br/>(64-bit, x86_64)',
-    'macos-x86_64' => ' macOS<br/>(64-bit, x86_64)',
-  );
-
-  $os_arch_extension = array(
-    'win-i386'     => '.zip',
-    'win-x86_64'   => '.zip',
-    'linux-i386'   => '.tar.gz',
-    'linux-x86_64' => '.tar.gz',
-    'macos-x86_64' => '.zip',
-  );
-
-  $os_arch_icon = array(
-    'win-i386'     => 'win',
-    'win-x86_64'   => 'win',
-    'linux-i386'   => 'linux32',
-    'linux-x86_64' => 'linux', // do not use 'linux64', as 64-bit is now obvious standard
-    'macos-x86_64' => 'macos'
-  );
-
-  echo '<div class="download jumbotron">';
-
-  if (CASTLE_GENERATE_OFFLINE) {
-    /* Since the download links contain so many things
-       (program version, available OSes, availability on servers
-       (github ? sf ?)), it's safer to not put this information
-       in the locally generated page (since it changes to often).
-       Instead, we can place a link to the WWW page. */
-    echo '<p><a href="' . page_url($this_page_name) .
-      '" class="btn btn-primary btn-lg">Download ' . $prog_nice_name . ' from our WWW page</a></p>';
-  } else
-  {
-    echo '<div class="download_title">' . $nice_name_start . ':</div>
-      <div class="download_platforms_list">';
-    foreach ($os_arch_urls as $os_arch => $download_url)
-    {
-      // calculate non-empty $download_url
-      if (empty($download_url)) {
-        // for macOS dmg, there is no "-i386" in the filename
-        $os_arch_filename = $os_arch;
-        if ($os_arch_filename == 'macosx-i386' && $macosx_dmg) {
-          $os_arch_filename = 'macosx';
-        }
-        $download_url = sf_download_url(
-          $arch_name_start . $os_arch_filename . $os_arch_extension[$os_arch]);
-      }
-
-      echo '<div class="download_platform">';
-      echo castle_download_button(
-        '<img src="' .
-        page_requisite('images/os_icons/' .
-          /* This size should be synched with images/Makefile rule */
-          $os_arch_icon[$os_arch] . '.png') .
-        '" width="64" height="64" alt="' .
-        $os_arch_caption[$os_arch] . '"><br/>' .
-        $os_arch_caption[$os_arch],
-        $download_url);
-      echo '</div>' . "\n";
-    }
-    echo "</div>\n";
-  }
-
-  echo $extra_bottom_html .
-  download_donate_footer() . '
-  </div>';
-  /* <!-- This helps Michalis to spend more time on developing our engine, our tools and games :) Details about how you can donate are here</a>.<--> */
 }
 
 /* Return html (<table> or <div>) with image links.

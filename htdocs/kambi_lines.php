@@ -6,7 +6,7 @@ castle_header("kambi_lines", array(
   'meta_description' => "A small game in OpenGL based on old DOS 'Color Lines'.",
 ));
 
-echo pretty_heading("kambi_lines", VERSION_KAMBI_LINES);
+echo pretty_heading("kambi_lines");
 echo default_program_thumbnail("kambi_lines");
 
 $toc = new TableOfContents(
@@ -25,8 +25,20 @@ $toc = new TableOfContents(
 
 <?php echo $toc->html_section(); ?>
 
-<?php echo_standard_program_download(
-  'kambi_lines', 'kambi_lines', VERSION_KAMBI_LINES); ?>
+<?php
+echo cge_download_application(
+  '1.2.0',
+  'snapshot',
+  'castle-engine',
+  'kambi-lines',
+  'kambi_lines',
+  array(
+    'win64-x86_64',
+    'linux-x86_64',
+    'darwin-x86_64'
+  )
+);
+?>
 
 <p><i>Installation</i>: just extract the downloaded archive anywhere.
 Run the game binary (<code>./kambi_lines</code> on Unix,
