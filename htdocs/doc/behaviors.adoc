@@ -21,6 +21,15 @@ Using behaviors allows to:
 
 First example behavior is in the _"New Project -> 3D FPS Game"_ template. See how the simple enemy AI is implemented there, in https://github.com/castle-engine/castle-engine/blob/master/tools/castle-editor/data/project_templates/3d_fps_game/files/code/gameenemy.pas[GameEnemy unit].
 
+You can query for behavior existence. In the simplest case just use cgeref:TCastleTransform.FindBehavior[] method to check whether a given cgeref:TCastleTransform[] contains a behavior. To iterate over all behaviors in a given tree use cgeref:TCastleTransform.FindAllBehaviors[].
+
+[NOTE]
+====
+In gamedev terminology, our _"behaviors"_ are somewhat similar to what Unity3D or https://en.wikipedia.org/wiki/Entity_component_system[Entity Component Systems] call _"components"_. That is, you can add and remove _behaviors_ at runtime, and various game objects (like player, enemy, vehicle...) can be composed from multiple behaviors, and behaviors define both data and functionality.
+
+We use the term _"behavior"_ throughout our engine, not _"component"_, because in the Pascal context the word _"component"_ is already associated with the `TComponent` class. And `TComponent` is an important standard Pascal class that is a basis (used also by our engine) for everything that can be visually edited and serialized. It's something _completely_ independent from the concept of _"behavior"_ that we introduce here.
+====
+
 [NOTE]
 ====
 There are alternative ways to operate on cgeref:TCastleTransform[]:
