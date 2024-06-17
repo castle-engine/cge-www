@@ -1,0 +1,25 @@
+# ----------------------------------------------------------------------------
+# GitHub Actions workflow to test correctness of examples, AsciiDoctor content.
+#
+# See docs:
+# - https://castle-engine.io/github_actions
+# - https://docs.github.com/en/actions
+# ----------------------------------------------------------------------------
+
+name: Test
+
+on: [pull_request, push]
+
+jobs:
+  test-docker:
+    name: Test Examples and AsciiDoctor
+    runs-on: ubuntu-latest
+    container: kambi/castle-engine-cloud-builds-tools:cge-unstable
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test Examples
+        run: cd htdocs/code-samples/ && make
+      - name: Test Images Generation
+        run: cd htdocs/images/ && ./update_image_sizes.sh
+      - name: Test AsciiDoctor
+        run: cd htdocs/doc/ && make test

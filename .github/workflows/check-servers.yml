@@ -1,0 +1,25 @@
+# ----------------------------------------------------------------------------
+# GitHub Actions workflow to regularly check servers.
+# ----------------------------------------------------------------------------
+
+name: Check
+
+on:
+  schedule:
+    - cron: '23 * * * *'
+  workflow_dispatch:
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  check_servers:
+    name: Check Servers
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check Online
+        run: ./scripts/check_online.sh
+      - name: Check Old SourceForge Online
+        run: ./scripts/check_online_sourceforge.sh
