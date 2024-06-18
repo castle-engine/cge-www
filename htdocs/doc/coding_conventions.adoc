@@ -44,20 +44,20 @@ Do not leave "trailing whitespace" at the end of lines.
 
 Do not use tabs. Use only spaces for all indentation.
 
-*Reason:* Tabs are nice when they are used 100% consistently for indentation, but in the long run it's hard to enforce using them 100% consistently esp. when many people are working on the same codebase. And when tabs are used inconsistently (sometimes mixed with spaces for indentation), problems arise -- because people have diffent _tab width_ in their editors, so for some people indentation will look broken. It's much easier to enforce the rule _always use spaces_.
+*Reason:* Tabs are nice when they are used 100% consistently for indentation, but in the long run it's hard to enforce using them 100% consistently esp. when many people are working on the same codebase. And when tabs are used inconsistently (sometimes mixed with spaces for indentation), problems arise -- because people have different _tab width_ in their editors, so for some people indentation will look broken. It's much easier to enforce the rule _always use spaces_.
 
 [#pascal_case]
 === Use `PascalCase` for everything
 
-`PascalCase` means that the first character of each word is capatalized. Use it for all identifiers.
+`PascalCase` means that the first character of each word is capitalized. Use it for all identifiers.
 
 * Including constants. So write `MyConstant` instead of e.g. `MY_CONSTANT`.
 * Including local variables. Even 1-letter variable names (so write `I` instead of `i`).
 * Including type names. Even the type names that are Pascal keywords (so write `String` / `Boolean` instead of `string` / `boolean`). Note: this rule was changed during CGE 6.5 development. So you will find a lot of code using lowercase `string` now in engine sources, but new code should use `String`.
 
-WARNING: The keywords `nil`, `true`, `false` are stil lowercase.
+WARNING: The keywords `nil`, `true`, `false` are still lowercase.
 
-[#true_false_lowecase]
+[#true_false_lowercase]
 === `true`, `false`, `nil` are lowercase (not `True`, `False`, `Nil`)
 
 *Reason:* We just historically wrote them always as lowercase and now it would be too big effort (for too little gain) to change. Some Pascal codebases write them also lowercase (e.g. LCL, although it is not 100% consistent) so we're not alone in this decision.
@@ -468,7 +468,7 @@ Embarcadero decided to make things weird: https://docwiki.embarcadero.com/RADStu
 
 This is
 
-* Completely weird. Why did you make it so inconsistent across platforms? You should have either made it architecture-depedendent (64-bit on all 64-bit platforms), or architecture-indepedendent (32-bit on all platforms regardless of their CPU architecture). Making an exception specifically for _64-bit Windows_ is a really bad idea, it invites bugs when writing code that is supposed to be cross-platform.
+* Completely weird. Why did you make it so inconsistent across platforms? You should have either made it architecture-dependent (64-bit on all 64-bit platforms), or architecture-independent (32-bit on all platforms regardless of their CPU architecture). Making an exception specifically for _64-bit Windows_ is a really bad idea, it invites bugs when writing code that is supposed to be cross-platform.
 
 * Contrary to older Pascal documentation statements, that suggested that `LongInt` / `LongWord` have 32-bit always. It was the `Integer` / `Cardinal` that were supposed to be (maybe) system-dependent! (though they remain in practice 32-bit always, in both FPC and Delphi.)
 
@@ -685,7 +685,7 @@ A typical setter implementation should check whether the new value is different 
 
 _Reason:_ This is an easy and useful optimization. The cost of checking for equality is usually trivial and it can save non-trivial operation cost. Do this even if you suspect (or know) that layer below is also doing such checks. Don't trust the authors of "layer below" (esp. if it's an external library).
 
-Implementing setters like this from the start is much easier than latter adding such conditions. If your setter doesn't make the check `if Xxx <> Value then`, then later developers will be afraid of adding it, fearing that it breaks something (by not reinitializing something in some cases). So we generally require to implement setters like this from the start.
+Implementing setters like this from the start is much easier than latter adding such conditions. If your setter doesn't make the check `if Xxx <> Value then`, then later developers will be afraid of adding it, fearing that it breaks something (by not re-initializing something in some cases). So we generally require to implement setters like this from the start.
 
 Our convention is to do it by `if FXxx <> Value then` followed by the `FXxx := Value;` assignment (with the `FXxx` always on the left side, so it's easy to see that comparison and assignment work on the same identifiers). Like this:
 
@@ -729,7 +729,7 @@ end;
 
 All `protected`, `public`, `published` identifiers should be documented (unless you *really* don't have anything to add that isn't already spelled out by the identifier name).
 
-Documenting the `private` and `strict private` identifiers is also encouraged if there's anything that isn't obvious. We don't _stricly_ require documenting them -- as their meaning / purpose is often obvious enough from the name, and the details can be inferred by analyzing the implementation code. But if you're unsure, it is better to write docs.
+Documenting the `private` and `strict private` identifiers is also encouraged if there's anything that isn't obvious. We don't _strictly_ require documenting them -- as their meaning / purpose is often obvious enough from the name, and the details can be inferred by analyzing the implementation code. But if you're unsure, it is better to write docs.
 
 Do not make a documentation that just repeats what the identifier already says. If you define `property RotationAxis: TVector3 ...` then documenting it like this isn't very helpful:
 
@@ -1064,7 +1064,7 @@ As you can see, I put more emphasis on thinking about code quality than optimiza
 
 Of course, this does not mean we don't want to optimize. It just means that we require justification for each optimization, the optimization must have a noticeable effect on some real-world use-case. We want the code to be fast and use little memory -- there are various ways to achieve this, often using smart algorithms on CPU, and/or thinking about how the CPU cache is used, and/or delivering data in better chunks to GPU. Low-level optimization of some local routine is often not the most effective approach.
 
-There is also a dreaded "death by 1000 cuts" that we want to avoid, which is sometimes caused by missing a number of small optimizations that _would_ have a noticeable effect overall. E.g. that's why we use "Single" throughout the engine code, not Double or Extended. (except some special code where we have testcases that "Single" precision is not enough). Using "Double" everywhere would have a noticeable negative effect on the speed (yes, I tested it long time ago). But e.g. paranoidally avoiding calling `Sqrt` in the engine... proved to be usually a useless optimization, causing various bugs and not achieving any speed gain.
+There is also a dreaded "death by 1000 cuts" that we want to avoid, which is sometimes caused by missing a number of small optimizations that _would_ have a noticeable effect overall. E.g. that's why we use "Single" throughout the engine code, not Double or Extended. (except some special code where we have testcases that "Single" precision is not enough). Using "Double" everywhere would have a noticeable negative effect on the speed (yes, I tested it long time ago). But e.g. obsessively avoiding calling `Sqrt` in the engine... proved to be usually a useless optimization, causing various bugs and not achieving any speed gain.
 
 So, there _are_ cases to be made for some low-level optimizations. But don't fall into the trap of implementing lots of useless low-level optimizations blindly.
 
@@ -1121,7 +1121,7 @@ public
 
   // See TMatrix4 declaration for more things to put here:
   // - overload operators,
-  // - define Rows, Colums, Transpose, Zero, Identity
+  // - define Rows, Columns, Transpose, Zero, Identity
 end;
 ----
 
@@ -1139,7 +1139,7 @@ procedure Foo; deprecated 'use Bar';
 
 It works nicely, will display a visible warning to users that they use the deprecated feature, but at the same time `Foo` will continue to function normally.
 
-But there are rare cases when providing backward compatibility is not possible. Or maybe it would be posisble, but would be a lot of work on engine development side (to make it / maintain it), or the existence of "compatibility crutch" would be too confusing to new users. In this case, after considering all the options, I say it is **acceptable to break backward compatibility**. You're doing it for the greater good. The engine must have room to evolve, to be better and better, we must have a way to change old/bad/unoptimal API design into new API design. This is the only way to keep our API consistent and keep adding new features. IOW:
+But there are rare cases when providing backward compatibility is not possible. Or maybe it would be possible, but would be a lot of work on engine development side (to make it / maintain it), or the existence of "compatibility crutch" would be too confusing to new users. In this case, after considering all the options, I say it is **acceptable to break backward compatibility**. You're doing it for the greater good. The engine must have room to evolve, to be better and better, we must have a way to change old/bad/un-optimal API design into new API design. This is the only way to keep our API consistent and keep adding new features. IOW:
 
 - We don't want an engine that, in 10 years, has a poor API (because new features (e.g. VR) are added to it in a weird way) and is hard to pick up by new people.
 
@@ -1153,7 +1153,7 @@ I am not trying to say that this reasoning applies equally to all the software. 
 
 _You need to plan to be perfect in the future, you cannot be stuck in bad design decisions_. And (no matter how smart you are) you have inevitably made some bad design decisions (which was not evident when you started, maybe even it was impossible to predict as you didn't knew all your features, but may become evident as you move along and explore possibilities of this thing you make).
 
-But I certainly recognize that there are cases when it's easier or harder to break backward compatibiilty. E.g.
+But I certainly recognize that there are cases when it's easier or harder to break backward compatibility. E.g.
 
 - designing a file format, like X3D or glTF,
 
