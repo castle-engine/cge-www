@@ -9,7 +9,7 @@
  * Plugin Name:       Jetpack Boost
  * Plugin URI:        https://jetpack.com/boost
  * Description:       Boost your WordPress site's performance, from the creators of Jetpack
- * Version: 3.3.1
+ * Version: 3.4.4
  * Author:            Automattic - Jetpack Site Speed team
  * Author URI:        https://jetpack.com/boost/
  * License:           GPL-2.0+
@@ -29,7 +29,7 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-define( 'JETPACK_BOOST_VERSION', '3.3.1' );
+define( 'JETPACK_BOOST_VERSION', '3.4.4' );
 define( 'JETPACK_BOOST_SLUG', 'jetpack-boost' );
 
 if ( ! defined( 'JETPACK_BOOST_CLIENT_NAME' ) ) {
@@ -183,7 +183,7 @@ add_action( 'activated_plugin', __NAMESPACE__ . '\jetpack_boost_plugin_activatio
 function jetpack_boost_plugin_activation( $plugin ) {
 	if (
 		JETPACK_BOOST_PLUGIN_BASE === $plugin &&
-		\Automattic\Jetpack\Plugins_Installer::is_current_request_activating_plugin_from_plugins_screen( JETPACK_BOOST_PLUGIN_BASE )
+		( new \Automattic\Jetpack\Paths() )->is_current_request_activating_plugin_from_plugins_screen( JETPACK_BOOST_PLUGIN_BASE )
 	) {
 		wp_safe_redirect( esc_url( admin_url( 'admin.php?page=jetpack-boost' ) ) );
 		exit;
@@ -219,7 +219,7 @@ function include_compatibility_files() {
 		require_once __DIR__ . '/compatibility/web-stories.php';
 	}
 
-	if ( class_exists( '\Elementor\TemplateLibrary\Source_Local' ) ) {
+	if ( defined( '\Elementor\TemplateLibrary\Source_Local::CPT' ) || defined( '\Elementor\Modules\LandingPages\Module::CPT' ) ) {
 		require_once __DIR__ . '/compatibility/elementor.php';
 	}
 

@@ -9,6 +9,24 @@ declare module '@wordpress/components';
 declare module '@wordpress/compose';
 declare module '@wordpress/i18n';
 declare module '@wordpress/icons';
+declare module '@automattic/jetpack-connection';
+
+type JetpackModule =
+	| 'anti-spam'
+	| 'backup'
+	| 'boost'
+	| 'crm'
+	| 'creator'
+	| 'extras'
+	| 'jetpack-ai'
+	| 'scan'
+	| 'search'
+	| 'social'
+	| 'security'
+	| 'protect'
+	| 'videopress'
+	| 'stats'
+	| 'ai';
 
 interface Window {
 	myJetpackInitialState?: {
@@ -43,6 +61,11 @@ interface Window {
 			videoPressStats: boolean;
 		};
 		lifecycleStats: {
+			historicallyActiveModules: JetpackModule[];
+			brokenModules: {
+				needs_site_connection: JetpackModule[];
+				needs_user_connection: JetpackModule[];
+			};
 			isSiteConnected: boolean;
 			isUserConnected: boolean;
 			jetpackPlugins: Array< string >;
@@ -79,8 +102,6 @@ interface Window {
 					features: string[];
 					has_paid_plan_for_product: boolean;
 					features_by_tier: Array< string >;
-					has_required_plan: boolean;
-					has_required_tier: Array< string >;
 					is_bundle: boolean;
 					is_plugin_active: boolean;
 					is_upgradable_by_bundle: string[];
@@ -197,7 +218,10 @@ interface Window {
 			} >;
 		};
 		redBubbleAlerts: {
-			'missing-site-connection'?: null;
+			'missing-connection'?: {
+				type: string;
+				is_error: boolean;
+			};
 			'welcome-banner-active'?: null;
 			[ key: `${ string }-bad-installation` ]: {
 				data: {

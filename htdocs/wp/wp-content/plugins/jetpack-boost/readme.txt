@@ -5,7 +5,7 @@ Tags: performance, speed, web vitals, critical css, cache
 Requires at least: 5.5
 Tested up to: 6.5
 Requires PHP: 7.0
-Stable tag: 3.3.1
+Stable tag: 3.4.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -183,10 +183,9 @@ If you run into compatibility issues, please do let us know. You can drop us a l
 2. Jetpack Boost Speed Improvement
 
 == Changelog ==
-### 3.3.1 - 2024-05-15
-#### Fixed
-- Concatenate JS: Added compatibility with WooCommerce 8.9
-- Critical CSS: Remove post types with empty Critical CSS URLs
+### 3.4.4 - 2024-06-18
+#### Fixes
+- My Jetpack: Update My Jetpack to a more stable version.
 
 --------
 
