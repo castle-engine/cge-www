@@ -6,7 +6,7 @@
 # - https://docs.github.com/en/actions
 # ----------------------------------------------------------------------------
 
-name: Test
+name: Test Examples and AsciiDoctor
 
 on: [pull_request, push]
 
