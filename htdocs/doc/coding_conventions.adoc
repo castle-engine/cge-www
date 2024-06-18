@@ -550,6 +550,17 @@ There are exceptions marked with `DefaultString` in the name, right now only `Me
 
  ** When interacting with external libraries, you will most often use `PAnsiChar` (not `PChar`) as most of them expect 8-bit UTF-8 (or just ASCII) text.
 
+Our unit cgeref:CastleUnicode[] contains various helpful things to deal with strings in a way that it Unicode-safe and works with both FPC and Delphi painlessly. In particular, use:
+
+cgeref:TCastleStringIterator[]::
+Iterate over strings, to get all Unicode character codes in sequence.
+
+cgeref:StringCopy[]::
+Get a substring of a string, with positions and count and whole logic accounting for multi-byte characters.
+
+cgeref:StringLength[]::
+Count of Unicode characters in a string, accounting for multi-byte characters.
+
 [#beforedestruction]
 === Use `BeforeDestruction` for finalization tasks that keep the object state consistent
 
