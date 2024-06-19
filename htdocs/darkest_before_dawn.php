@@ -1,5 +1,4 @@
 <?php
-define('CASTLE_ENGINE_CUSTOM_CSS', 'dark-game-theme.css');
 define('CASTLE_GITHUB_NAME', 'darkest-before-dawn');
 
 require_once 'castle_engine_functions.php';
@@ -40,6 +39,7 @@ echo cge_download_application(
   'darkest-before-dawn',
   'darkest_before_dawn',
   array(
+    'android',
     'win64-x86_64',
     'linux-x86_64'
   )

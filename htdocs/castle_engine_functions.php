@@ -965,12 +965,6 @@ function echo_header_bonus ()
   <link type="text/css" rel="stylesheet" media="all" href="<?php echo page_requisite('castle-engine-website-base/castle-asciidoctor.css?version=' . CASTLE_ENGINE_CSS_VERSION); ?>">
   <?php
 
-  if (defined('CASTLE_ENGINE_CUSTOM_CSS')) {
-    ?>
-    <link type="text/css" rel="stylesheet" media="all" href="<?php echo page_requisite(CASTLE_ENGINE_CUSTOM_CSS); ?>">
-    <?php
-  }
-
   castle_geshi_header();
 
   /* echo flattr_header(); - Flattr not used now */
