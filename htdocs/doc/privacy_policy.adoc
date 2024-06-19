@@ -1,0 +1,32 @@
+# Privacy Policy
+include::common.adoc[]
+
+== Mobile applications
+
+Mobile applications released through https://play.google.com/store/apps/dev?id=8315026166336791468[our Google Play account] do not feature any analytics or ads. They do not collect any data from you.
+
+NOTE: We reserve the right to make an exception to the above in the future, mostly to demonstrate that it is possible. Because you _can_ use various analytics and ad solutions in *your* games made using _Castle Game Engine_, see link:android_services[Android services] and link:ios_services[iOS services]. This is just a note for the potential future -- none of our current released applications use any ads or analytics.
+
+NOTE: Applications using _Google Play Games_ integration use standard https://developers.google.com/games/services/[Google Play Games Services] mechanisms to login and associate game information (achievements, leaderboards, savegames) with your account.
+
+== Website analytics
+
+We use website analytics to improve your experience on our webpages: to detect errors (e.g. broken links) and to decide how to best present our content (e.g. what content is most useful to you). We use it only internally.
+
+To be completely open, the analytics technologies we use:
+
+- https://matomo.org/[Matomo]. Self-hosted (the data is on our servers, not any 3rd party). The data (like IP addresses) is immediately anonymized (e.g. we store only first 2 bytes from IPv4 address). i.e. we don't store non-anonymized data in our database at all. The logs are removed after 180 days anyway.
+
+- https://jetpack.com/support/wordpress-com-stats/[Wordpress (Jetpack) stats]. The data is only stored by Wordpress.com servers. The logs are retained by Wordpress.com for 28 days.
+
+- Privacy-first (read the details on their website) https://www.cloudflare.com/web-analytics/[Cloudflare Analytics].
+
+- We use https://about.scarf.sh/[Scarf] for website and downloads analytics. This data is anonymous.
+
+We do not share the gathered data with any 3rd-party except the analytics providers above.
+
+NOTE: As you can see above, we *do not use Google Analytics* and we are proud of it! If you're looking for analytics solution that both respects users' privacy *and* immediately gives you much more useful insights, we recommend any of the above products. https://matomo.org/[Matomo] in particular is direct and fantastic alternative to Google Analytics.
+
+== Questions
+
+If you have any questions, contact us: https://castle-engine.io/talk.php[publicly (Discord, forum...)] or send an email to https://michalis.xyz/[Michalis Kamburelis] (various ways to contact Michalis, including encrypted, are listed on his website).
