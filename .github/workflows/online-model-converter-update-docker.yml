@@ -27,8 +27,8 @@ jobs:
       with:
         name: online-model-converter-tools
         path: |
-          online-model-converter/docker-image/castle-model-viewer
-          online-model-converter/docker-image/castle-model-converter
+          online-model-converter/docker-image/tmp/castle-model-viewer/castle-model-viewer
+          online-model-converter/docker-image/tmp/castle-model-viewer/castle-model-converter
         if-no-files-found: error
 
   update-docker:
