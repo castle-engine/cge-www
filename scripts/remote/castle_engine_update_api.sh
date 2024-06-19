@@ -81,8 +81,8 @@ rm -Rf \
   ~/cge-www/htdocs/apidoc/html.tar.gz
 
 mv reference ~/cge-www/htdocs/apidoc/html
-www_permissions.sh
-purge_cloudflare.sh
+~/bin/www_permissions.sh
+~/bin/purge_cloudflare.sh
 
 # store hash in LAST_DOWNLOADED_HASH_FILE -------------------------------------
 
