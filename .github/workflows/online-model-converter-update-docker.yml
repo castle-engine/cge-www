@@ -41,6 +41,9 @@ jobs:
       with:
         name: online-model-converter-tools
         path: online-model-converter/docker-image/docker-context/bin/
+        merge-multiple: true
+    - name: Debug online-model-converter/docker-image/
+      run: ls -FlahR online-model-converter/docker-image/
     - name: Docker Image Build
       run: |
         cd online-model-converter/docker-image/
