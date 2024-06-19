@@ -80,10 +80,10 @@ of our engine (we developed a lot of new features since 2006...), is planned.
 <?php echo cge_download_application('1.1.0', 'snapshot',
   'castle-engine', 'castle-game', 'castle',
   array(
-    //'android-debug',
     'win64-x86_64',
     'linux-x86_64',
     'darwin-x86_64',
+    'android',
   )); ?>
 
 <?php echo $toc->html_section(); ?>
