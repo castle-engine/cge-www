@@ -9,17 +9,17 @@ rm -Rf tmp/
 mkdir -p tmp/
 cd tmp/
 
-GIT_SHALLOW_CLONE='git clone --depth 1 --single-branch --branch master'
+GIT_SHALLOW_CLONE='git clone --depth 1 --single-branch --branch'
 
-# get CGE
-$GIT_SHALLOW_CLONE https://github.com/castle-engine/castle-engine/
+# get CGE (snapshot, auto-tested)
+$GIT_SHALLOW_CLONE snapshot https://github.com/castle-engine/castle-engine/
 cd castle-engine/
 ./tools/build-tool/castle-engine_compile.sh
 export CASTLE_ENGINE_PATH=`pwd`
 cd ../
 
 # get castle-model-viewer, castle-model-converter
-$GIT_SHALLOW_CLONE https://github.com/castle-engine/castle-model-viewer/
+$GIT_SHALLOW_CLONE master https://github.com/castle-engine/castle-model-viewer/
 cd castle-model-viewer/
 "${CASTLE_ENGINE_PATH}"/tools/build-tool/castle-engine compile --compiler-option=-dCASTLE_WINDOW_XLIB
 "${CASTLE_ENGINE_PATH}"/tools/build-tool/castle-engine compile --manifest-name=CastleEngineManifest.converter.xml
