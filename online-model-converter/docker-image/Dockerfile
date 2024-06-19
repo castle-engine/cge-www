@@ -32,4 +32,4 @@ RUN apt-get --allow-releaseinfo-change update && \
     libglx0 && \
   rm -rf /var/lib/apt/lists/*
 
-COPY bin/* /usr/local/bin/
+COPY --chmod=0755 bin/* /usr/local/bin/
