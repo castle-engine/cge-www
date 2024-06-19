@@ -1,0 +1,59 @@
+# ----------------------------------------------------------------------------
+# GitHub Actions workflow to update Docker image
+# for https://castle-engine.io/convert.php .
+#
+# See docs:
+# - https://castle-engine.io/github_actions
+# - https://docs.github.com/en/actions
+# ----------------------------------------------------------------------------
+
+name: Update Online Model Converter Docker Image
+
+on: [pull_request, push]
+
+jobs:
+  build-tools:
+    name: Build Tools
+    runs-on: ubuntu-latest
+    container: kambi/castle-engine-cloud-builds-tools:cge-unstable
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build
+      run: |
+        cd online-model-converter/docker-image/
+        ./build_fpc.sh
+    - name: Archive Tools
+      uses: actions/upload-artifact@v4
+      with:
+        name: online-model-converter-tools
+        path: |
+          online-model-converter/docker-image/castle-model-viewer
+          online-model-converter/docker-image/castle-model-converter
+        if-no-files-found: error
+
+  update-docker:
+    name: Update Docker Image
+    runs-on: ubuntu-latest
+    needs: [build-tools]
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/download-artifact@v4
+      with:
+        name: online-model-converter-tools
+        path: online-model-converter/docker-image/docker-context/bin/
+    - name: Docker Image Build
+      run: |
+        cd online-model-converter/docker-image/
+        ./build_docker_1_build.sh
+    - name: Docker Image Test
+      run: |
+        cd online-model-converter/docker-image/
+        ./build_docker_2_test.sh
+    - name: Docker Image Upload
+      env:
+        DOCKER_USER: ${{ secrets.DOCKER_USER }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      run: |
+        cd online-model-converter/docker-image/
+        ./build_docker_3_upload.sh
+

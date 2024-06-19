@@ -4,7 +4,21 @@ set -eu
 # --------------------------------------------------------------------
 # Script to call castle-model-converter inside a Docker container,
 # acting as a sandbox to prevent calling castle-model-converter
-# (and exploting any castle-model-converter security problem) on the server.
+# (and exploiting any possible castle-model-converter security problem)
+# directly on the server.
+#
+# Note: To make sure that on this host, we have latest Docker image available,
+# do
+#
+#   docker pull kambi/online-model-converter
+#
+# To test the Docker image:
+#
+#   docker run --name test-conv --volume="${HOME}":/home/michalis/ --volume="${HOME}"/sources/:/home/michalis/sources/ -it kambi/online-model-converter bash
+#     /usr/local/bin/castle-model-converter ...
+#   docker stop test-conv
+#   docker rm test-conv
+#
 # --------------------------------------------------------------------
 
 VOLUME_ID="$1"
