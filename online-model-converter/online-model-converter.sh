@@ -12,6 +12,7 @@ set -eu
 #
 #   docker pull kambi/online-model-converter
 #
+# (it is done from cron now automatically on CGE server).
 # To test the Docker image:
 #
 #   docker run --name test-conv --volume="${HOME}":/home/michalis/ --volume="${HOME}"/sources/:/home/michalis/sources/ -it kambi/online-model-converter bash
