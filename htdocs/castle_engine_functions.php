@@ -563,6 +563,7 @@ $castle_sitemap = array(
     'title' => 'Model Viewer',
     'sidebar' => true,
     'sub' => array(
+      'doc/castle-model-viewer-mobile' => array('title' => 'Mobile (Android) Version'),
       'doc/castle-model-converter' => array('title' => 'Model Converter'),
       'convert' => array('title' => 'Online Model Converter'),
       //'convert-output' => array('title' => 'Conversion output'),
@@ -2251,6 +2252,15 @@ function cge_download_application($version, $tag, $organization_name, $repo_name
         $platform_name = 'macOS';
         $platform_details = '(x86_64)';
         $extension = '.zip';
+        break;
+      case 'android':
+        $icon_name = 'android.png';
+        $icon_width = '64';
+        $icon_height = '64';
+        $icon_alt = 'Android';
+        $platform_name = 'Android';
+        $platform_details = '&nbsp;'; // must be non-empty to have box with similar height as others
+        $extension = '-release.apk';
         break;
       default:
         die('Unknown platform: ' . $platform);

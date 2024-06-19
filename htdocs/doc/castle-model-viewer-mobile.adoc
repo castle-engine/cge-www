@@ -1,0 +1,67 @@
+# Castle Model Viewer on Android
+include::common.adoc[]
+:description: Mobile viewer for 3D and 2D model formats supported by Castle Game Engine: glTF, X3D, VRML, MD3, OBJ, STL, Collada, Spine JSON, sprite sheets (and more). Supports viewing the scene in the "Examine" mode and walking in the virtual world with collision detection and gravity. Many 3D graphic effects are available like mirrors, shadows, shaders. Free and open-source software. For Android, iOS upcoming.
+:cge-social-share-image: castle-model-viewer-mobile-cat.png
+
+== Introduction
+
+Mobile-friendly viewer for link:creating_data_model_formats.php[3D and 2D model formats supported by the Castle Game Engine]: link:gltf[glTF], link:vrml_x3d.php[X3D], link:vrml_x3d.php[VRML], link:spine[Spine JSON], link:sprite_sheets[sprite sheets (in Castle Game Engine, Cocos2D and Starling XML formats)], link:md3[MD3], Wavefront OBJ, 3DS, STL, Collada, link:creating_data_model_formats.php[and more].
+
+In addition to the above formats, it also allows to open a ZIP file that contains a single model and associated media (like textures, sounds etc.).
+
+cgeimg::block[
+  castle-model-viewer-mobile-cat.png|Castle Model Viewer Mobile,
+  castle-model-viewer-mobile-open.png|Castle Model Viewer Mobile
+]
+
+This is a mobile version of link:castle-model-viewer[Castle Model Viewer], sharing the most basic capabilities with the desktop version (same model formats, navigation) but with entire UI remade for mobile devices. It is available for Android and (coming soon!) iOS.
+
+== Download
+
+=== Snapshot version (1.7.0)
+
+cge::download-application[
+  1.7.0,
+  snapshot,
+  castle-engine,
+  castle-model-viewer-mobile,
+  castle-model-viewer-mobile,
+    android;
+    //win64-x86_64;
+    //linux-x86_64;
+    //darwin-x86_64
+]
+
+NOTE: You can even https://github.com/castle-engine/castle-model-viewer-mobile/releases/tag/snapshot[download this exact application for desktop (Linux, Windows, macOS)]. But it doesn't make sense for normal usage. If you want  a desktop version, we recommend you just use full link:castle-model-viewer[Castle Model Viewer].
+
+== Usage
+
+=== Opening your own models
+
+All supported 3D and 2D models are automatically associated with our application. Just open them from any application, for example from a web browser downloads, or a file browser like _"My Files"_, _"My Downloads"_ or https://play.google.com/store/apps/details?id=com.ghisler.android.TotalCommander["Total Commander" for Android].
+
+You can try it on models in https://github.com/castle-engine/castle-model-viewer-mobile/tree/master/example_models[example_models] subdirectory: visit any of the models there, click the _"Download"_ icon and choose to open with _"Castle Model Viewer"_.
+
+## Models must be self-contained
+
+An important requirement is that the model file must be _self-contained_.
+
+This means you cannot rely on model referring to other files (like textures) using relative URLs and placing these relative files alongside the main model file (in the same directory) will not work.
+
+The reason behind this is that _"Castle Model Viewer"_ on mobile doesn't get the file path from the system, so it cannot resolve relative URLs. We only get file contents.
+
+Examples that work:
+
+- glTF GLB variant. This GLB version was specifically designed to "pack" everything into a single file.
+
+- ZIP file that contains a model (X3D, glTF... -- https://castle-engine.io/creating_data_model_formats.php[anything supported by Castle Game Engine]) and the associated media (textures etc.). We have implemented support for such ZIP files in _"Castle Model Viewer"_ exactly for this reason.
+
+- X3D/VRML with media embedded using https://en.wikipedia.org/wiki/Data_URI_scheme[data URI scheme]. You can use https://github.com/castle-engine/castle-engine/tree/master/tools/to-data-uri[to-data-uri] utility distributed as part of https://castle-engine.io/[Castle Game Engine] to convert any media to data URI.
+
+- X3D/VRML with textures embedded using X3D/VRML `PixelTexture` node. Though we recommend "data URI", it is more universal.
+
+- Models that don't need any additional media (e.g. X3D models that just don't need textures to look reasonably).
+
+- Models that refer to the additional media using http/https links.
++
+But you need to enable blocking downloads in the settings first. It is disabled by default, as the downloads are synchronous (blocking) for now -- there's no UI to interrupt a large download, you just have to wait for it to finish or kill the application. This is something we plan to improve in the future.
