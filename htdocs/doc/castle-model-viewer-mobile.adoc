@@ -18,10 +18,10 @@ This is a mobile version of link:castle-model-viewer[Castle Model Viewer], shari
 
 == Download
 
-=== Snapshot version (1.7.0)
+=== Snapshot version (1.7.1)
 
 cge::download-application[
-  1.7.0,
+  1.7.1,
   snapshot,
   castle-engine,
   castle-model-viewer-mobile,
