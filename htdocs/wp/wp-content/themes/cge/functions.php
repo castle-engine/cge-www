@@ -144,7 +144,7 @@ function cge_gallery_shortcode($output, $attr, $instance)
 add_filter( 'post_gallery', 'cge_gallery_shortcode', 10, 3 );
 
 /**
- * Get CGE main URL, to be used in links like <a href="[cge]view3dscene.php">
+ * Get CGE main URL, to be used in links like <a href="[cge]xxx.php">
  *
  * Allows to write links that reference main CGE pages
  * (that may be at various levels above current page,

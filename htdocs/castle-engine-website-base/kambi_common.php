@@ -296,7 +296,7 @@ function a_href_page_hashlink($link_title, $page_name, $hash_link)
 
    - $this_page_name is a global variable containing the end part of URL
      of this page (the thing after CURRENT_URL).
-     Like "view3dscene.php".
+     Like "xxx.php".
      The idea is that glueing CURRENT_URL . $this_page_name,
      or CASTLE_PROD_URL . $this_page_name,
      always gives you a real URL to the current page.
@@ -308,7 +308,7 @@ function a_href_page_hashlink($link_title, $page_name, $hash_link)
 
    - $page_basename is a name of this page used for navigation purposes.
      If not set, it is calculated by this function as $this_page_name
-     with the ".php" extension stripped, so it's like "view3dscene".
+     with the ".php" extension stripped.
      You can set it explicitly (before calling kambi_bootstrap)
      to anything you like.
 

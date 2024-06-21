@@ -15,7 +15,7 @@ castle_header('Exporting from Dragon Bones', array(
 echo castle_thumbs(array(
   array('filename' => 'export-dragon-bones-1.png', 'titlealt' => 'Dragon Bones'),
   array('filename' => 'export-dragon-bones-2.png', 'titlealt' => 'Dragon Bones Export'),
-  array('filename' => 'export-dragon-bones-3.png', 'titlealt' => 'Playing Animation from Dragon Bones in view3dscene'),
+  array('filename' => 'export-dragon-bones-3.png', 'titlealt' => 'Playing Animation from Dragon Bones in castle-model-viewer'),
 ), 'auto', 'left');
 ?>
 

@@ -14,7 +14,7 @@ trivial: export your models to the X3D, or eventually to other supported format.
 When exporting your models, we <i>highly advice</i> checking your models in
 <a href="castle-model-viewer">Castle Model Viewer</a>
  to see if everything is exported correctly.
- Opening models in view3dscene is usually easier than running your whole game
+ Opening models in castle-model-viewer is usually easier than running your whole game
  to test that a particular asset was exported OK.
  And <a href="castle-model-viewer">Castle Model Viewer</a> was implemented
  using our engine, so it can render exactly the same thing as your game.

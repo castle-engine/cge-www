@@ -66,7 +66,7 @@ echo castle_thumbs(array(
   array('filename' => 'export-maya_babylon_05_change_material_to_aiStandardSurface_and_connect_textures.png', 'titlealt' => 'Add aiStandardSurface material (Arnold Renderer) and connect textures. Other materials have glitches in my model case.'),
   array('filename' => 'export-maya_babylon_06_run_exporter.png', 'titlealt' => 'Run exporter'),
   array('filename' => 'export-maya_babylon_07_configure_and_export_file.png', 'titlealt' => 'Change format to gltf/glb, select output file and click Export.'),
-  array('filename' => 'export-maya_file_adjusted_and_exported_by_babylon.png', 'titlealt' => 'Result in view3dscene'),
+  array('filename' => 'export-maya_file_adjusted_and_exported_by_babylon.png', 'titlealt' => 'Result in castle-model-viewer'),
 ), 'auto', 'left');
 ?>
 
@@ -102,11 +102,11 @@ echo castle_thumbs(array(
   array('filename' => 'export-maya2.png', 'titlealt' => 'Maya Plug-in Manager window'),
   array('filename' => 'export-maya3.png', 'titlealt' => 'Maya Export All menu'),
   array('filename' => 'export-maya4.png', 'titlealt' => 'Maya Export All dialog'),
-  array('filename' => 'export-maya5-view3dscene.png', 'titlealt' => 'View in view3dscene city model exported from Maya. Model By Keenan Crane | From http://opengameart.org/content/abstract-city'),
+  array('filename' => 'export-maya5-view3dscene.png', 'titlealt' => 'View in castle-model-viewer city model exported from Maya. Model By Keenan Crane | From http://opengameart.org/content/abstract-city'),
 ), 'auto', 'left');
 ?>
 
-<p>If the exported things seem completely black, fix the material to have non-black diffuse color. (I don't know why Maya sets diffuse color to black on my test models...) You can edit the material in <a href="view3dscene.php">view3dscene</a>: open the OBJ file, select the object with <i>Ctrl + right mouse click</i>, and use <i>Edit -&gt; Edit Material -&gt; Diffuse Color</i> menu item. You can save the resulting file as X3D using view3dscene <i>File -&gt; Save As VRML/X3D</i> menu item.
+<p>If the exported things seem completely black, fix the material to have non-black diffuse color. (I don't know why Maya sets diffuse color to black on my test models...) You can edit the material in <a href="castle-model-viewer">Castle Model Viewer</a>: open the OBJ file, select the object with <i>Ctrl + right mouse click</i>, and use <i>Edit -&gt; Edit Material -&gt; Diffuse Color</i> menu item. You can save the resulting file as X3D using castle-model-viewer <i>File -&gt; Save As VRML/X3D</i> menu item.
 
 <p>Bonus points: OBJ format supports normalmaps, so we will read the normalmaps you set in Maya correctly.
 
