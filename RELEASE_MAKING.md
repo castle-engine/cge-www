@@ -295,7 +295,9 @@
 
   Also FSF wiki has descriptions:
     https://directory.fsf.org/wiki/Castle_Game_Engine
-    https://directory.fsf.org/wiki/View3dscene # TODO rename
+    https://directory.fsf.org/wiki/View3dscene
+      # Note: Unsure how to rename, but I did edit the name for "Castle Model Viewer".
+      # Note: No permissions to upload screenshots.
 
   https://www.indiedb.com/engines/castle-game-engine
 
