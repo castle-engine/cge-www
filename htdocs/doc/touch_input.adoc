@@ -6,9 +6,17 @@ include::common.adoc[]
 
 Mobile devices (Android, iOS, Nintendo Switch) allow to use _touch screen_ where user literally touches the screen to indicate clicking / dragging.
 
+This page discusses various aspects of handling touch screen input in your applications. The general principle is that you can handle touch screen input in the same way as mouse input. This is because:
+
+- Touching screen is reported as pressing the _left mouse button_. So all mouse-handling code will work for touch screen too.
+
+- Events of built-in controls naturally work with touch screen out-of-the-box. For example, a button will react to touch on mobile devices, generating cgeref:TCastleButton.OnClick[] event.
+
 NOTE: Desktop devices actually can have a touch screen too. link:https://www.steamdeck.com/[Steam Deck] allows to use a touch screen on a platform that is technically just Linux. Though right now we don't have any special support for it, we just listen on mouse events from OS.
 
-== Just handle mouse "left" button
+== Handling events
+
+=== Simple: Handle touch input by handling mouse (left) button clicks
 
 The touches on the touch screen are reported exactly like using the _left mouse button_ on desktops. This is exactly what you want in general to have cross-platform support for both mouse and touch.
 
@@ -16,11 +24,11 @@ So to write a cross-platform application that responds to both touches and mouse
 
 * cgeref:TCastleUserInterface.Press[] with mouse button cgeref:buttonLeft[]. For example override the link:views[view] method `Press`.
 
-* cgeref:TCastleUserInterface.Release[] with mouse button cgeref:buttonLeft[]. Again, you can override the link:views[view] method `Release`.
+* cgeref:TCastleUserInterface.Release[] with mouse button cgeref:buttonLeft[]. You can override the link:views[view] method `Release`.
 
-* cgeref:TCastleUserInterface.Motion[] when cgeref:buttonLeft[] is in cgeref:TInputMotion.Pressed[]. Again, you can override the link:views[view] method `Motion`.
+* cgeref:TCastleUserInterface.Motion[] when cgeref:buttonLeft[] is in cgeref:TInputMotion.Pressed[]. You can override the link:views[view] method `Motion`.
 
-== Handling multi-touch
+=== Multi-touch support
 
 If you want to additionally handle multi- touch on touch devices, you can also look at
 
@@ -35,18 +43,221 @@ cgeimg::block[
   drawing_toy_ios.png|Drawing Toy on iOS
 ]
 
-== Detecting devices with touch screen
-
-If you want to conditionally behave differently on devices with touch screen, you can always check cgeref:TCastleApplicationProperties.TouchDevice[ApplicationProperties.TouchDevice]. But in usual cases, you shouldn't really need it.
-
-NOTE: For easy testing, the cgeref:TCastleApplicationProperties.TouchDevice[ApplicationProperties.TouchDevice] property is settable, so you can set this property to `true` even on desktops, to test your "touch device mode" in a desktop application.
-
-NOTE: Some devices with touch screen, like _Android_ and _Nintendo Switch_, allow to plug external keyboard and mouse. We don't support it now in any special way, but we will in the future, and then user will be able to use normal mouse behavior in your mobile game. It also means that inferring too much from cgeref:TCastleApplicationProperties.TouchDevice[ApplicationProperties.TouchDevice] being `true` isn't wise -- the device may have a touch screen, but user may be using external keyboard / mouse.
-
-== Remember what is not possible
+=== Remember what is not possible with touch input
 
 Remember that some things are not possible with a touch screen. Namely:
 
 * You will never have mouse press with button different than `buttonLeft`
 
-* You will never observe motion when no mouse button is pressed, of course. Since we can only observe dragging when user is touching the screen. This means that e.g. mouse look cannot work the same -- while it could observe motion when dragging, this changes user experience and ultimately you just need different controls for 3D navigation on mobile. We provide cgeref:TCastleTouchNavigation[] for this.
+* You will never observe motion when no mouse button is pressed, of course. Since we can only observe dragging when user is touching the screen.
+
+== Detecting devices with touch screen
+
+If you want to conditionally behave differently on devices with touch screen, you can always check cgeref:TCastleApplicationProperties.TouchDevice[ApplicationProperties.TouchDevice].
+
+While you should avoid relying on it (it is better to just write code that makes sense for both touch and mouse), sometimes you may want to do something special for touch devices. For example, you may want to display buttons to do some actions on touch devices, where on desktops the same action can be performed by a keyboard shortcut. For example, a button to _"Exit Game"_ on touch devices, where on desktops you can just press `Escape` key. Like this:
+
+[source,pascal]
+----
+// For brevity, we show only the relevant part of the typical GameViewMain unit.
+// We assume you created in the editor,
+// and put in the published section of your view, this component:
+//   ButtonExitGame: TCastleButton;
+
+uses CastleApplicationProperties;
+
+procedure TViewMain.Start;
+begin
+  inherited;
+  ButtonExitGame.Exists := ApplicationProperties.TouchDevice;
+end;
+----
+
+////
+[source,pascal]
+----
+unit GameViewMain;
+
+uses CastleUiControls, CastleControls;
+
+type
+  TViewMain = class(TCastleView)
+  published
+    { Components designed using CGE editor.
+      These fields will be automatically initialized at Start. }
+    ButtonExitGame: TCastleButton;
+  public
+    constructor Create(AOwner: TComponent); override;
+    procedure Start; override;
+  end;
+
+implementation
+
+uses CastleApplicationProperties;
+
+constructor TViewMain.Create(AOwner: TComponent);
+begin
+  inherited;
+  DesignUrl := 'castle-data:/gameviewmain.castle-user-interface';
+end;
+
+procedure TViewMain.Start;
+begin
+  inherited;
+  ButtonExitGame.Exists := ApplicationProperties.TouchDevice;
+end;
+
+end.
+----
+////
+
+For easy testing, the cgeref:TCastleApplicationProperties.TouchDevice[ApplicationProperties.TouchDevice] property is settable, so you can set this property to `true` even on desktops, to test your "touch device mode" in a desktop application. For example, this allows to test how does the _"Exit Game"_ button, mentioned in the previous paragraph, looks and works on a desktop. Just set `ApplicationProperties.TouchDevice := true` from your code to debug how it behaves.
+
+NOTE: Some devices with touch screen, like _Android_ and _Nintendo Switch_, allow to plug external keyboard and mouse. We don't support it now in any special way, but we may in the future, and then user will be able to use normal mouse behavior in your mobile game. It also means that inferring too much from cgeref:TCastleApplicationProperties.TouchDevice[ApplicationProperties.TouchDevice] being `true` isn't wise -- the device may have a touch screen, but user may be using external keyboard / mouse.
+
+== Detecting platforms using conditional compilation
+
+NOTE: We do not recommend to detect touch devices by looking at compilation symbols. As described above, we recommend to use cgeref:TCastleApplicationProperties.TouchDevice[ApplicationProperties.TouchDevice] if you need conditional behavior based on touch devices.
+
+If you really need to detect the platform at compile-time, you can use the following compilation symbols:
+
+- `ANDROID` is defined on Android platform.
+
+- `CASTLE_IOS` is defined on iOS platform (including _iOS Simulator_; FPC >= 3.2.2 also defines just `IOS`, but not for iOS Simulator).
+
+- `CASTLE_NINTENDO_SWITCH` is defined on link:nintendo_switch[Nintendo Switch].
+
+== Navigating in 3D on touch devices using TCastleWalkNavigation
+
+Our built-in navigation components cgeref:TCastleExamineNavigation[] and cgeref:TCastleWalkNavigation[] work on mobile. However, they do provide optimal experience on mobile. Various key shortcuts of the navigation components are not possible to invoke on mobile, moreover the _mouse look_ mode of cgeref:TCastleWalkNavigation[] does not work on mobile.
+
+For this reason, we recommend to add cgeref:TCastleTouchNavigation[] to your viewport to allow for easy 3D navigation on mobile. The add cgeref:TCastleTouchNavigation[] displays visual UI in the viewport corners where user can touch to move around and rotate the camera. It cooperates with cgeref:TCastleWalkNavigation[] and cgeref:TCastleExamineNavigation[] to provide a seamless experience on all platforms.
+
+cgeimg::block[
+  touch_navigation.png|Touch Navigation
+]
+
+You can add it in the link:editor[] and at runtime just configure whether it exists, like this:
+
+////
+[source,pascal]
+----
+unit GameViewMain;
+
+uses CastleUiControls, CastleControls;
+
+type
+  TViewMain = class(TCastleView)
+  published
+    { Components designed using CGE editor.
+      These fields will be automatically initialized at Start. }
+    MyTouchNavigation: TCastleTouchNavigation;
+  public
+    constructor Create(AOwner: TComponent); override;
+    procedure Start; override;
+  end;
+
+implementation
+
+uses CastleApplicationProperties;
+
+constructor TViewMain.Create(AOwner: TComponent);
+begin
+  inherited;
+  DesignUrl := 'castle-data:/gameviewmain.castle-user-interface';
+end;
+
+procedure TViewMain.Start;
+begin
+  inherited;
+  MyTouchNavigation.Exists := ApplicationProperties.TouchDevice;
+end;
+
+end.
+----
+////
+
+[source,pascal]
+----
+// For brevity, we show only the relevant part of the typical GameViewMain unit.
+// We assume you created in the editor,
+// and put in the published section of your view, this component:
+//   MyTouchNavigation: TCastleTouchNavigation;
+
+uses CastleApplicationProperties;
+
+procedure TViewMain.Start;
+begin
+  inherited;
+  MyTouchNavigation.Exists := ApplicationProperties.TouchDevice;
+end;
+----
+
+You could also create it at runtime conditionally, like this:
+
+////
+[source,pascal]
+----
+unit GameViewMain;
+
+uses CastleUiControls, CastleControls;
+
+type
+  TViewMain = class(TCastleView)
+  published
+    { Components designed using CGE editor.
+      These fields will be automatically initialized at Start. }
+    MyViewport: TCastleViewport;
+  public
+    constructor Create(AOwner: TComponent); override;
+    procedure Start; override;
+  end;
+
+implementation
+
+uses CastleApplicationProperties;
+
+constructor TViewMain.Create(AOwner: TComponent);
+begin
+  inherited;
+  DesignUrl := 'castle-data:/gameviewmain.castle-user-interface';
+end;
+
+procedure TViewMain.Start;
+var
+  TouchNavigation: TCastleTouchNavigation;
+begin
+  inherited;
+  TouchNavigation := TCastleTouchNavigation.Create(FreeAtStop);
+  TouchNavigation.FullSize := true;
+  TouchNavigation.Viewport := MyViewport;
+  TouchNavigation.AutoTouchInterface := true;
+  MyViewport.InsertFront(TouchNavigation);
+end;
+
+end.
+----
+////
+
+[source,pascal]
+----
+// For brevity, we show only the relevant part of the typical GameViewMain unit.
+// We assume you created in the editor,
+// and put in the published section of your view, this component:
+//   MyViewport: TCastleViewport;
+
+uses CastleApplicationProperties;
+
+procedure TViewMain.Start;
+var
+  TouchNavigation: TCastleTouchNavigation;
+begin
+  inherited;
+  TouchNavigation := TCastleTouchNavigation.Create(FreeAtStop);
+  TouchNavigation.FullSize := true;
+  TouchNavigation.Viewport := MyViewport;
+  TouchNavigation.AutoTouchInterface := true;
+  MyViewport.InsertFront(TouchNavigation);
+end;
+----
+
