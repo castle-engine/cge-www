@@ -261,3 +261,18 @@ begin
 end;
 ----
 
+== On-screen keyboard
+
+Since mobile devices do not (usually) have a physical keyboard connected, we can show an on-screen keyboard when you focus an edit control.
+
+This is supported on Android.
+
+To make the cgeref:TCastleEdit[] receive focus and open on-screen keyboard correctly in your applications:
+
+- Use `<service name="keyboard" />` in the `CastleEngineManifest.xml` .
+- Set `AutoOnScreenKeyboard` to `true` on the `TCastleEdit` instance (you can set it from the editor, or from code).
+- If you want to focus the edit before user touches it, do it by `Edit1.Focused := true`
+
+See the https://github.com/castle-engine/castle-engine/tree/master/examples/mobile/on_screen_keyboard[examples/mobile/on_screen_keyboard] for a simplest working example.
+
+WARNING: On-screen keyboard is not supported on iOS yet. Subscribe to link:https://github.com/castle-engine/castle-engine/issues/554[issue 554 on GitHub] to get notified when it is implemented. Feel free to https://castle-engine.io/talk.php[talk about this on Discord or forum] if you need it sooner, your feedback really affects the priorities when things are implemented, so speak up :) https://www.patreon.com/castleengine[Donations toward this goal] are also welcome!
