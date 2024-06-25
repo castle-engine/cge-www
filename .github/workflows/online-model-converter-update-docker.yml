@@ -9,7 +9,11 @@
 
 name: Update Online Model Converter Docker Image
 
-on: [pull_request, push]
+on:
+  push:
+  pull_request:
+  repository_dispatch:
+    types: [cge-docker-unstable-changed]
 
 jobs:
   build-tools:
