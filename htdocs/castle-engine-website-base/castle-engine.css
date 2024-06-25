@@ -896,6 +896,10 @@ div.download span.download_details { font-size: smaller; }
   font-size: x-small;
 }
 
+.btn-store-in-downloads {
+  margin: 0.5em;
+}
+
 /* convert stuff ------------------------------------------------------------- */
 
 .single-column-page {

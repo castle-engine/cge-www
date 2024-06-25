@@ -101,7 +101,7 @@ define('PATREON_URL',         'https://patreon.com/castleengine');
 define('CGE_LATEST_DOWNLOAD', 'https://github.com/castle-engine/castle-engine/archive/snapshot.zip');
 
 // bump this each time you change castle-engine.css, to work with CloudFlare caching (or you can purge CloudFlare cache manually)
-define('CASTLE_ENGINE_CSS_VERSION', 45);
+define('CASTLE_ENGINE_CSS_VERSION', 46);
 
 define('TWITTER_HANDLE', 'castleengine'); // https://twitter.com/castleengine/
 
@@ -2192,6 +2192,33 @@ function cge_download_application($version, $tag, $organization_name, $repo_name
     if (substr($platform, 0, 2) == '//') {
       continue;
     }
+
+    if (is_prefix('google-play=', $platform)) {
+      $app_id = remove_prefix('google-play=', $platform);
+      $url = 'https://play.google.com/store/apps/details?id=' . $app_id;
+      $image_relative_filename = 'images/not_resized/google_play.webp';
+      $image_sizes = _castle_image_sizes($image_relative_filename);
+      $image_alt = 'Get it on Google Play (Android)';
+      $result .=
+        '<a class="btn-store-in-downloads" href="' . htmlspecialchars($url) . '">' .
+        '<img src="' . CURRENT_URL . '/' . htmlspecialchars($image_relative_filename) . '" alt="' . htmlspecialchars($image_alt) . '" '. $image_sizes . ' >' .
+        '</a>';
+      continue;
+    }
+
+    if (is_prefix('app-store=', $platform)) {
+      $app_id = remove_prefix('app-store=', $platform);
+      $url = 'https://apps.apple.com/app/id' . $app_id;
+      $image_relative_filename = 'images/not_resized/app_store.webp';
+      $image_sizes = _castle_image_sizes($image_relative_filename);
+      $image_alt = 'Download on the App Store (iOS)';
+      $result .=
+        '<a class="btn-store-in-downloads" href="' . htmlspecialchars($url) . '">' .
+        '<img src="' . CURRENT_URL . '/' . htmlspecialchars($image_relative_filename) . '" alt="' . htmlspecialchars($image_alt) . '" '. $image_sizes . ' >' .
+        '</a>';
+      continue;
+    }
+
     switch ($platform) {
       case 'win64-x86_64':
         $icon_name = 'win.png';
@@ -2253,7 +2280,8 @@ function cge_download_application($version, $tag, $organization_name, $repo_name
         $icon_height = '64';
         $icon_alt = 'Android';
         $platform_name = 'Android';
-        $platform_details = '&nbsp;'; // must be non-empty to have box with similar height as others
+        //$platform_details = '&nbsp;'; // must be non-empty to have box with similar height as others
+        $platform_details = '(APK)';
         $extension = '-release.apk';
         break;
       default:
