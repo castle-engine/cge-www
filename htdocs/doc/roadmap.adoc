@@ -60,6 +60,14 @@ See:
 - https://www.khronos.org/news/press/new-gltf-extensions-raise-the-bar-on-3d-asset-visual-realism[New glTF Extensions Raise the Bar on 3D Asset Visual Realism]
 - https://www.khronos.org/blog/using-the-new-gltf-extensions-volume-index-of-refraction-and-specular[Using the New glTF Extensions: Volume, Index of Refraction, and Specular]
 
+Thanks to _Holger Seelig_ and https://create3000.github.io/x_ite/[X_ITE] project, the path how to express this functionality in X3D is already known and tested:
+
+- https://create3000.github.io/x_ite/components/[X_ITE introduces new X3D nodes] like https://create3000.github.io/x_ite/components/x-ite/sheenmaterialextension/[SheenMaterialExtension], https://create3000.github.io/x_ite/components/x-ite/clearcoatmaterialextension/[ClearcoatMaterialExtension] that express additional material functionality and are straightforward equivalents to glTF extensions above.
+
+- X_ITE adds https://create3000.github.io/x_ite/components/shape/physicalmaterial/[new field to PhysicalMaterial] called `extensions` (`MFNode`, allows `X3DMaterialExtensionNode`) to add this functionality to a `PhysicalMaterial`.
+
+- See https://web3d.org/pipermail/x3d-public_web3d.org/2024-June/020587.html["X_ITE implementation of glTF material extensions" thread on x3d-public mailing list for more details].
+
 ## More physics
 
 - cgeref:TCastleWalkNavigation[] should support physics out-of-the-box.
