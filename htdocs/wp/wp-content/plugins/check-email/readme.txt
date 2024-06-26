@@ -1,10 +1,10 @@
 === Check & Log Email ===
 Contributors: checkemail
-Tags: check, test, email, smtp, delivery
+Tags: check, email, email log, smtp, log
 Requires at least: 5.0
 Tested up to: 6.5
 Requires PHP: 5.6.20
-Stable tag: 1.0.12.1
+Stable tag: 1.0.13
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -33,6 +33,9 @@ We try our best to provide support on WordPress.org forums. However, We have a s
 
 <strong>Bug Reports</strong><br>
 Bug reports for Check & Log Email are [welcomed on GitHub](https://github.com/ahmedkaludi/check-email). Please note GitHub is not a support forum, and issues that aren't properly qualified as bugs will be closed.
+
+<strong>Credits</strong><br>
+* jsPDF used https://github.com/parallax/jsPDF - License URI: https://github.com/parallax/jsPDF/blob/master/LICENSE
 
 == Frequently Asked Questions ==
 
@@ -72,8 +75,19 @@ Someone using one of my other plugins had trouble with emails not being sent. I 
 
 == Changelog ==
 
-= v1.0.12.1 - 30/05/2024 =
-- Fixed: Parse error after recent update #73
+= v1.0.13 - 25/06/2024 =
+- Feature: Added Log Retention Period #69
+- Feature: Added Print the email log, or save it as a PDF #70
+- Feature: Log Attachments Sent From WordPress #71
+- Feature: Added Display Host IP option #72
+- Feature: Trigger Data UI/UX Changes #74
+- Enhancement: View loggging should be on enabled by default #76
+- Feature: More Fields #77
+- Feature: Apply status filter in log list #78
+- Feature: Added Resend email feature #81
+- Feature: Added Easy migration from other email log plugins #80
+- Enhancement: Search should be searched from whole email, including the email content #82
+- Feature: Added Forward Email #83
 
 = v1.0.12 - 29/05/2024 =
 - Feature: Feature to export logs #49
@@ -101,11 +115,5 @@ Someone using one of my other plugins had trouble with emails not being sent. I 
 
 = v1.0.6 - 02/05/2022 =
 - Fixed: Security, sanitization and escaping
-
-= v1.0.5 - 10/03/2022 =
-- Fixed: Replaced deprecated jQuery code ( https://github.com/WPChill/check-email/issues/32 )
-- Fixed: HTML code was being shown in dashboard widget ( https://github.com/WPChill/check-email/issues/33 )
-- Added: Tabs and grouped settings by tabs ( https://github.com/WPChill/check-email/issues/37 )
-- Added: Quick install WP SMTP plugin from settings ( https://github.com/WPChill/check-email/issues/37 )
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/check-email/trunk/changelog.txt)

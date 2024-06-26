@@ -148,7 +148,7 @@ function wp_chill_check_email_get_column_label_map() {
 		'cc'          => esc_html__( 'CC', 'check-email' ),
 		'bcc'         => esc_html__( 'BCC', 'check-email' ),
 		'reply_to'    => esc_html__( 'Reply To', 'check-email' ),
-		'ip_address'  => esc_html__( 'IP Address', 'check-email' ),
+		'ip_address'  => esc_html__( 'Host IP', 'check-email' ),
 		'result'      => esc_html__( 'Sent Status', 'check-email' ),
 	);
 

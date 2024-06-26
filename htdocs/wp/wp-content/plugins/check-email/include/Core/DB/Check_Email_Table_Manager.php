@@ -32,6 +32,12 @@ class Check_Email_Table_Manager implements Loadie {
 		
 		add_filter( 'admin_init', array( $this, 'add_backtrace_segment_field' ) );
 
+		$option = get_option( 'check-email-log-core' );
+		if ((isset($option['is_retention_amount_enable']) &&  $option['is_retention_amount_enable']) || (isset($option['is_retention_period_enable']) && $option['is_retention_period_enable'])) {
+			add_action('admin_init',  array( $this, 'check_mail_cron_schedule' ));
+			add_action('check_mail_cron_hook',  array( $this, 'check_mail_cron_execute' ));
+		}
+
 		// Do any DB upgrades.
 		$this->update_table_if_needed();
 	}
@@ -146,13 +152,13 @@ class Check_Email_Table_Manager implements Loadie {
 		$query       = 'SELECT * FROM ' . $table_name;
 		$count_query = 'SELECT count(*) FROM ' . $table_name;
 		$query_cond  = '';
-
+		
 		if ( isset( $request['s'] ) && is_string( $request['s'] ) && $request['s'] !== '' ) {
 			$search_term = trim( esc_sql( $request['s'] ) );
-
+			
 			if ( Util\wp_chill_check_email_advanced_search_term( $search_term ) ) {
 				$predicates = Util\wp_chill_check_email_get_advanced_search_term_predicates( $search_term );
-
+				
 				foreach ( $predicates as $column => $email ) {
 					switch ( $column ) {
 						case 'id':
@@ -212,8 +218,8 @@ class Check_Email_Table_Manager implements Loadie {
 							break;
 					}
 				}
-			} else {
-				$query_cond .= " WHERE ( to_email LIKE '%$search_term%' OR subject LIKE '%$search_term%' ) ";
+			} else {				
+				$query_cond .= " WHERE ( to_email LIKE '%$search_term%' OR subject LIKE '%$search_term%'  OR message LIKE '%$search_term%' ) ";
 			}
 		}
 
@@ -223,6 +229,19 @@ class Check_Email_Table_Manager implements Loadie {
 				$query_cond .= " WHERE sent_date BETWEEN '$search_date 00:00:00' AND '$search_date 23:59:59' ";
 			} else {
 				$query_cond .= " AND sent_date BETWEEN '$search_date 00:00:00' AND '$search_date 23:59:59' ";
+			}
+		}
+		if ( isset( $request['status'] ) && $request['status'] !== '' ) {
+			$status = trim( esc_sql( $request['status'] ) );
+			switch( $status ) {
+				case 'failed':
+					$query_cond .= " WHERE `result` IS NULL OR `result` = ''";
+					break;
+				case 'complete':
+					$query_cond .= " WHERE `result` IS NOT NULL AND `result` != ''";
+					break;
+				default:
+					break;
 			}
 		}
 
@@ -453,5 +472,198 @@ class Check_Email_Table_Manager implements Loadie {
 			$query = "ALTER TABLE $table_name ADD backtrace_segment TEXT NULL DEFAULT NULL AFTER message";
 			$wpdb->query($query);
 		}
+	}
+
+	public function fetch_log_count_by_status( $request, $per_page, $current_page_no,$status='all' ) {
+		global $wpdb;
+		$table_name = $this->get_log_table_name();
+
+		
+		$count_query = 'SELECT count(*) FROM ' . $table_name;
+		$query_cond  = '';
+
+		if ( isset( $request['s'] ) && is_string( $request['s'] ) && $request['s'] !== '' ) {
+			$search_term = trim( esc_sql( $request['s'] ) );
+
+			if ( Util\wp_chill_check_email_advanced_search_term( $search_term ) ) {
+				$predicates = Util\wp_chill_check_email_get_advanced_search_term_predicates( $search_term );
+
+				foreach ( $predicates as $column => $email ) {
+					switch ( $column ) {
+						case 'id':
+							$query_cond .= empty( $query_cond ) ? ' WHERE ' : ' AND ';
+							$query_cond .= "id = '$email'";
+							break;
+						case 'to':
+							$query_cond .= empty( $query_cond ) ? ' WHERE ' : ' AND ';
+							$query_cond .= "to_email LIKE '%$email%'";
+							break;
+						case 'email':
+							$query_cond .= empty( $query_cond ) ? ' WHERE ' : ' AND ';
+							$query_cond .= ' ( '; /* Begin 1st */
+							$query_cond .= " ( to_email LIKE '%$email%' OR subject LIKE '%$email%' ) "; /* Begin 2nd & End 2nd */
+							$query_cond .= ' OR ';
+							$query_cond .= ' ( '; /* Begin 3rd */
+							$query_cond .= "headers <> ''";
+							$query_cond .= ' AND ';
+							$query_cond .= ' ( '; /* Begin 4th */
+							$query_cond .= "headers REGEXP '[F|f]rom:.*$email' OR ";
+							$query_cond .= "headers REGEXP '[CC|Cc|cc]:.*$email' OR ";
+							$query_cond .= "headers REGEXP '[BCC|Bcc|bcc]:.*$email' OR ";
+							$query_cond .= "headers REGEXP '[R|r]eply-[T|t]o:.*$email'";
+							$query_cond .= ' ) '; /* End 4th */
+							$query_cond .= ' ) '; /* End 3rd */
+							$query_cond .= ' ) '; /* End 1st */
+							break;
+						case 'cc':
+							$query_cond .= empty( $query_cond ) ? ' WHERE ' : ' AND ';
+							$query_cond .= ' ( '; /* Begin 1st */
+							$query_cond .= "headers <> ''";
+							$query_cond .= ' AND ';
+							$query_cond .= ' ( '; /* Begin 2nd */
+							$query_cond .= "headers REGEXP '[CC|Cc|cc]:.*$email' ";
+							$query_cond .= ' ) '; /* End 2nd */
+							$query_cond .= ' ) '; /* End 1st */
+							break;
+						case 'bcc':
+							$query_cond .= empty( $query_cond ) ? ' WHERE ' : ' AND ';
+							$query_cond .= ' ( '; /* Begin 1st */
+							$query_cond .= "headers <> ''";
+							$query_cond .= ' AND ';
+							$query_cond .= ' ( '; /* Begin 2nd */
+							$query_cond .= "headers REGEXP '[BCC|Bcc|bcc]:.*$email' ";
+							$query_cond .= ' ) '; /* End 2nd */
+							$query_cond .= ' ) '; /* End 1st */
+							break;
+						case 'reply-to':
+							$query_cond .= empty( $query_cond ) ? ' WHERE ' : ' AND ';
+							$query_cond .= ' ( '; /* Begin 1st */
+							$query_cond .= "headers <> ''";
+							$query_cond .= ' AND ';
+							$query_cond .= ' ( '; /* Begin 2nd */
+							$query_cond .= "headers REGEXP '[R|r]eply-to:.*$email' ";
+							$query_cond .= ' ) '; /* End 2nd */
+							$query_cond .= ' ) '; /* End 1st */
+							break;
+					}
+				}
+			} else {
+				$query_cond .= " WHERE ( to_email LIKE '%$search_term%' OR subject LIKE '%$search_term%' ) ";
+			}
+		}
+
+		if ( isset( $request['d'] ) && $request['d'] !== '' ) {
+			$search_date = trim( esc_sql( $request['d'] ) );
+			if ( '' === $query_cond ) {
+				$query_cond .= " WHERE sent_date BETWEEN '$search_date 00:00:00' AND '$search_date 23:59:59' ";
+			} else {
+				$query_cond .= " AND sent_date BETWEEN '$search_date 00:00:00' AND '$search_date 23:59:59' ";
+			}
+		}
+		if ( !empty($status) ) {
+			$status = trim( esc_sql( $status ) );
+			if ($status != 'all') {
+				if ( empty($request['d'])  && empty($request['s']) ) {
+					$query_cond .= " WHERE ";
+				}else{
+					$query_cond .= " AND ";
+				}
+			}
+
+			// print_r($query_cond);die;
+			
+			switch( $status ) {
+				case 'failed':
+					$query_cond .= " `result` = 0";
+					break;
+				case 'complete':
+					$query_cond .= " `result` != 0";
+					break;
+				default:
+					break;
+			}
+		}
+
+		// Ordering parameters.
+		$orderby = ! empty( $request['orderby'] ) ? sanitize_sql_orderby( $request['orderby'] ) : 'sent_date';
+		if ( isset( $request['order'] ) ) {
+			$order = in_array( strtoupper($request['order']), array( 'DESC', 'ASC' ) ) ? esc_sql( $request['order'] ) : 'DESC';
+		}else{
+			$order = 'DESC';
+		}
+
+		if ( ! empty( $orderby ) & ! empty( $order ) ) {
+			$query_cond .= ' ORDER BY ' . $orderby . ' ' . $order;
+		}
+
+		// Find total number of items.
+		$count_query = $count_query . $query_cond;
+		$total_items = $wpdb->get_var( $count_query );
+		return $total_items;
+	}
+
+	public function deleteLogOlderThan($timeInterval = null)
+    {
+		if ( ! current_user_can( 'manage_check_email' ) ) {
+			return;
+		}
+		global $wpdb;
+		$table_name = $this->get_log_table_name();
+		$option = get_option( 'check-email-log-core' );
+		if (isset($option['is_retention_amount_enable']) && isset($option['retention_amount']) &&  $option['is_retention_amount_enable']) {
+			$limit= intval($option['retention_amount']);
+			if(!empty($limit)){
+				$count_query = 'SELECT count(*) FROM ' . $table_name;
+				$total_items = $wpdb->get_var( $count_query );	
+				if ($total_items > $limit) {
+					$data_to_delete = $total_items - $limit;
+					$old_posts = $wpdb->get_col( $wpdb->prepare("
+						SELECT ID FROM $table_name
+						ORDER BY ID ASC 
+						LIMIT %d",$data_to_delete) );
+			
+					// Delete the logs
+					foreach ($old_posts as $column_value) {
+						$sql = $wpdb->prepare(
+							"DELETE FROM $table_name WHERE ID = %d",
+							$column_value
+						);
+						$wpdb->query($sql);
+					}
+				}
+
+			}
+		}
+		if (isset($option['is_retention_period_enable']) && $option['is_retention_period_enable']) {
+
+			if ($option['log_retention_period'] == 'custom_in_days') {
+				$custom_in_days = empty($option['log_retention_period_in_days']) ? 1 : intval($option['log_retention_period_in_days']);
+				$time_interval = strtotime('+' . $custom_in_days. ' days');
+			}else{
+				$periods = array( '1_day' =>86400,
+							'1_week' =>604800,
+							'1_month' =>2419200,
+							'6_month' =>15780000,
+							'1_year' =>31560000
+						);
+				$time_interval = $periods[$option['log_retention_period']];
+			}
+			$timestamp = time() - $time_interval;
+			
+			$sql = "DELETE FROM " . $table_name . " WHERE Unix_timestamp(sent_date) <= %d";
+			$sql = $wpdb->prepare($sql, $timestamp);
+			$wpdb->query($sql);
+		}
+    }
+
+	function check_mail_cron_schedule() {
+		if (!wp_next_scheduled('check_mail_cron_hook')) {
+			wp_schedule_event(time(), 'daily', 'check_mail_cron_hook');
+		}
+	}
+
+	function check_mail_cron_execute() {
+		$this->deleteLogOlderThan();
+		error_log('Cron job executed at' . date('Y-m-d H:i:s'));
 	}
 }

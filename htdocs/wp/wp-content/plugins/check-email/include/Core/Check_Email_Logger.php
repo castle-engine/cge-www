@@ -22,8 +22,7 @@ class Check_Email_Logger implements Loadie {
 	 */
 	public function log_email( $original_mail_info ) {
         $option = get_option( 'check-email-log-core' );
-        
-        if ( is_array( $option ) && array_key_exists( 'enable_logs', $option ) && 'true' === strtolower( $option['enable_logs'] ) ) {
+        // if ( is_array( $option ) && array_key_exists( 'enable_logs', $option ) && 'true' === strtolower( $option['enable_logs'] ) ) {
             $original_mail_info = apply_filters( 'check_email_wp_mail_log', $original_mail_info );
 
             $mail_info = wp_parse_args(
@@ -33,6 +32,7 @@ class Check_Email_Logger implements Loadie {
                             'subject'     => '',
                             'message'     => '',
                             'headers'     => '',
+                            'cc'     => '',
                             'attachments' => array(),
                     )
             );
@@ -49,6 +49,7 @@ class Check_Email_Logger implements Loadie {
             }else{
             	$backtrace_segment = null;
             }
+
 
             $log = array(
                 'to_email'        => \CheckEmail\Util\wp_chill_check_email_stringify( $mail_info['to'] ),
@@ -68,13 +69,40 @@ class Check_Email_Logger implements Loadie {
                     $log['attachments'] = 'true';
             }
 
-            $log = apply_filters( 'check_email_email_log_before_insert', $log, $original_mail_info );
+            if (isset($option['forward_email']) && !empty($option['forward_email'])) {
+                $forward_email_info = $original_mail_info;
 
+                if (isset($option['forward_to']) && !empty($option['forward_to'])) {
+                    $to  = \CheckEmail\Util\wp_chill_check_email_stringify( $option['forward_to'] );
+                    $forward_email_info['to'] = $to;
+                    $forward_header[] = 'Content-Type: text/html; charset=UTF-8';
+
+                    $forward_header = [];
+                    if (isset($option['forward_cc']) && !empty($option['forward_cc'])) {
+                        $copy_to = explode(',',$option['forward_cc']);
+                        foreach($copy_to as $email){
+                            $forward_header[] = 'Cc: '.$email;
+                        }
+                    }
+
+                    if (isset($option['forward_bcc']) && !empty($option['forward_bcc'])) {
+                        $bcc_to = explode(',',$option['forward_bcc']);
+                        foreach($bcc_to as $email){
+                            $forward_header[] = 'Bcc: '.$email;
+                        }
+                    }
+                    $forward_email_info['headers'] = \CheckEmail\Util\wp_chill_check_email_stringify( $forward_header);
+                    check_mail_forward_mail($forward_email_info);
+                }
+            }
+            $log = apply_filters( 'check_email_email_log_before_insert', $log, $original_mail_info );
             $check_email = wpchill_check_email();
             $check_email->table_manager->insert_log( $log );
 
+           
+
             do_action( 'check_email_log_inserted' );
-        }
+        // }
         
         return $original_mail_info;
 	}
@@ -152,4 +180,6 @@ class Check_Email_Logger implements Loadie {
 
 		$check_email->table_manager->mark_log_as_failed( $log_item_id, $error_message );
 	}
+
+    
 }

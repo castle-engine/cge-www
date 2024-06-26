@@ -23,6 +23,25 @@ class Check_Email_Tools_Tab {
 
 		wp_enqueue_style( 'check-email-export-logs-css', $plugin_dir_url . 'assets/css/admin/export-logs.css', array( 'jquery-ui-css' ), $check_email->get_version() );
 
+		$migration_plugins = array(
+			[
+				'data_id' => 'email_log',
+				'title' => 'Email Log'
+			],
+			[
+				'data_id' => 'mail_logging_wp_mail_catcher',
+				'title' => 'Mail logging - WP Mail Catcher'
+			],
+			[
+				'data_id' => 'wp_mail_logging',
+				'title' => 'WP Mail Logging'
+			],
+			[
+				'data_id' => 'wp_mail_log',
+				'title' => 'WP Mail Log'
+			],
+		);
+
 	?>
 		<div class="ck-mail-tools-tab-wrapper">
 			<h2><?php esc_html_e('Tools', 'check-email'); ?></h2>
@@ -42,7 +61,7 @@ class Check_Email_Tools_Tab {
 								),
 								'admin-ajax.php'
 							);
-							echo sprintf( '<a id="ck-mail-log-btn" href="%1$s" class="thickbox" title="%2$s"><button type="button" class="button-primary button" id="ck-mail-export-logs">%3$s</button></a>',
+							echo sprintf( '<a id="ck-mail-log-btn" href="%1$s" class="thickbox" title="%2$s"><button type="button" class="button button" id="ck-mail-export-logs">%3$s</button></a>',
 								esc_url( $logs_ajax_url ),
 								esc_html__( 'Export Log Options', 'check-email' ),
 								esc_html__( 'Export', 'check-email' )
@@ -53,6 +72,28 @@ class Check_Email_Tools_Tab {
 				</tbody>
 			</table>
 		</div>
+		<h3><?php esc_html_e('Migration', 'check-email'); ?></h3>
+		<span id="cm_security_nonce" data="<?php echo wp_create_nonce( 'ck_mail_ajax_check_nonce' ) ?>" ></span>
+		<span id="cm_ajax_url" data="<?php echo admin_url( 'admin-ajax.php' ); ?>" ></span>
+		<table class="form-table" role="presentation">
+			<tbody>
+				<?php
+				foreach ($migration_plugins as $key => $value) {
+				?>
+					<tr class="cm_js_migration">
+						<th scope=""><?php esc_html_e($value['title'], 'check-email');  ?></th>
+						<td>
+						<button type="button" data-id="<?php echo $value['data_id'] ?>" class="button check-mail-import-plugins"><?php esc_html_e('Import', 'check-email'); ?></button>
+						<span class="cm_js_error" style="color:red; line-height: 2;"></span>
+						<span class="cm_js_success" style="color:green;line-height: 2;"></span>
+						</td>
+						
+					</tr>
+				<?php
+				}
+				?>
+			</tbody>
+		</table>
 	<?php
 	}
 

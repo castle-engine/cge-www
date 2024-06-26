@@ -30,8 +30,27 @@ class Check_Email_Log_List_Table extends \WP_List_Table {
 		$columns = array(
 			'cb' => '<input type="checkbox" />',
 		);
+		$other_columns = array( 'sent_date', 'result', 'to_email', 'from_email', 'subject' );
 
-		foreach ( array( 'sent_date', 'result', 'to_email', 'from_email', 'subject' ) as $column ) {
+		$option = get_option( 'check-email-log-core' );
+		if ( is_array( $option ) && array_key_exists( 'display_host_ip', $option ) &&
+			'true' === strtolower( $option['display_host_ip'] ) ) {
+				$other_columns[]='ip_address';
+		}
+		if ( is_array( $option ) && array_key_exists( 'cc', $option ) &&
+			'true' === strtolower( $option['cc'] ) ) {
+				$other_columns[]='cc';
+		}
+		if ( is_array( $option ) && array_key_exists( 'bcc', $option ) &&
+			'true' === strtolower( $option['bcc'] ) ) {
+				$other_columns[]='bcc';
+		}
+		if ( is_array( $option ) && array_key_exists( 'reply_to', $option ) &&
+			'true' === strtolower( $option['reply_to'] ) ) {
+				$other_columns[]='reply_to';
+		}
+
+		foreach ($other_columns  as $column ) {
 			$columns[ $column ] = Util\wp_chill_check_email_get_column_label( $column );
 		}
 
@@ -42,7 +61,7 @@ class Check_Email_Log_List_Table extends \WP_List_Table {
 		$sortable_columns = array(
 			'sent_date' => array( 'sent_date', true ), // true means it's already sorted.
 			'to_email'  => array( 'to_email', false ),
-			'from_email'=> array( 'from_email', false ),
+			// 'from_email'=> array( 'from_email', false ),
 			'subject'   => array( 'subject', false ),
 		);
 
@@ -52,6 +71,46 @@ class Check_Email_Log_List_Table extends \WP_List_Table {
 	protected function column_default( $item, $column_name ) {
 
 		do_action( 'check_email_display_log_columns', $column_name, $item );
+	}
+
+	protected function column_ip_address( $item ) {
+		return esc_html( $item->ip_address );
+	}
+	protected function column_cc( $item ) {
+		$headers = array();
+			if ( ! empty( $item->headers ) ) {
+				$parser  = new \CheckEmail\Util\Check_Email_Header_Parser();
+				$headers = $parser->parse_headers( $item->headers );
+			}
+			$cc = "";
+			if (isset($headers['cc'])) {
+				$cc = $headers['cc'];
+			}
+		return esc_html( $cc );
+	}
+	protected function column_bcc( $item ) {
+		$headers = array();
+			if ( ! empty( $item->headers ) ) {
+				$parser  = new \CheckEmail\Util\Check_Email_Header_Parser();
+				$headers = $parser->parse_headers( $item->headers );
+			}
+			$bcc = "";
+			if (isset($headers['bcc'])) {
+				$bcc = $headers['bcc'];
+			}
+		return esc_html( $bcc );
+	}
+	protected function column_reply_to( $item ) {
+		$headers = array();
+			if ( ! empty( $item->headers ) ) {
+				$parser  = new \CheckEmail\Util\Check_Email_Header_Parser();
+				$headers = $parser->parse_headers( $item->headers );
+			}
+			$reply_to = "";
+			if (isset($headers['reply_to'])) {
+				$reply_to = $headers['reply_to'];
+			}
+		return esc_html( $reply_to );
 	}
 
 	protected function column_sent_date( $item ) {
@@ -76,6 +135,22 @@ class Check_Email_Log_List_Table extends \WP_List_Table {
 			esc_url( $content_ajax_url ),
 			esc_html__( 'Email Content', 'check-email' ),
 			esc_html__( 'View Content', 'check-email' )
+		);
+
+		$resend_ajax_url = add_query_arg(
+			array(
+				'action' => 'check-email-log-list-view-resend-message',
+				'log_id' => $item->id,
+				'width'  => '800',
+				'height' => '550',
+			),
+			'admin-ajax.php'
+		);
+
+		$actions['resend-content'] = sprintf( '<a href="%1$s" class="thickbox" title="%2$s">%3$s</a>',
+			esc_url( $resend_ajax_url ),
+			esc_html__( 'Resend Email', 'check-email' ),
+			esc_html__( 'Resend Email', 'check-email' )
 		);
 
 		$delete_url = add_query_arg(
@@ -132,6 +207,8 @@ class Check_Email_Log_List_Table extends \WP_List_Table {
 	protected function column_subject( $item ) {
 		return esc_html( $item->subject );
 	}
+
+	
 
 	protected function column_cb( $item ) {
 		return sprintf(
@@ -198,6 +275,7 @@ class Check_Email_Log_List_Table extends \WP_List_Table {
 	}
 
 	public function search_box( $text, $input_id ) {
+		$this->views();
 		$input_text_id  = $input_id . '-search-input';
 		$input_date_id  = $input_id . '-search-date-input';
 		$input_date_val = ( ! empty( $_REQUEST['d'] ) ) ? sanitize_text_field( wp_unslash($_REQUEST['d']) ) : '';
@@ -214,7 +292,7 @@ class Check_Email_Log_List_Table extends \WP_List_Table {
 		<p class="search-box">
 			<label class="screen-reader-text" for="<?php echo esc_attr( $input_id ); ?>"><?php echo esc_html( $text ); ?>:</label>
 			<input type="search" id="<?php echo esc_attr( $input_date_id ); ?>" name="d" value="<?php echo esc_attr( $input_date_val ); ?>" placeholder="<?php esc_attr_e( 'Search by date', 'check-email' ); ?>" />
-			<input type="search" id="<?php echo esc_attr( $input_text_id ); ?>" name="s" value="<?php _admin_search_query(); ?>" placeholder="<?php esc_attr_e( 'Search by term', 'check-email' ); ?>" />
+			<input type="search" id="<?php echo esc_attr( $input_text_id ); ?>" name="s" value="<?php _admin_search_query(); ?>" placeholder="<?php esc_attr_e( 'Search by term or email', 'check-email' ); ?>" />
 			<?php submit_button( $text, '', '', false, array( 'id' => 'search-submit' ) ); 
 				  $this->ck_mail_export_logs_button();	
 			?>
@@ -242,4 +320,66 @@ class Check_Email_Log_List_Table extends \WP_List_Table {
 			esc_html__( 'Export Logs', 'check-email' )
 		);
 	}
+
+	public function views() {
+        $views = $this->get_views(); 
+        $views = apply_filters( "views_{$this->screen->id}", $views );
+
+        if ( empty( $views ) )
+            return;
+
+        echo "<ul class='subsubsub'>\n";
+        foreach ( $views as $class => $view ) {
+            $views[ $class ] = "\t<li class='$class'>$view";
+        }
+        echo implode( " |</li>\n", $views ) . "</li>\n";
+        echo "</ul>";
+    }
+
+	public function get_views() {
+        $views = [];
+
+        // Get base url.
+        $email_log_page_url = $this->get_page_base_url();
+
+        foreach ( $this->get_statuses() as $status => $label ) {
+            $views[ $status ] = sprintf(
+                '<a href="%1$s" %2$s>%3$s <span class="count">(%4$d)</span></a>',
+                esc_url( add_query_arg( 'status', $status, $email_log_page_url ) ),
+                $this->get_current_page_status() == $status ? 'class="current"' : '',
+                esc_html( $label ),
+                absint( $this->get_status_count($status))
+            );
+        }
+
+        return $views;
+    }
+
+	public function get_current_page_status(){
+		$status ="all";
+		if (isset($_GET['status'])) {
+			$status = $_GET['status'];
+		}
+		return $status;
+	}
+
+	public function get_statuses() {
+        return [
+            'all'        => __( 'All', 'check-email' ),
+            'complete' => __( 'Completed', 'check-email' ),
+            'failed'     => __( 'Failed', 'check-email' ),
+        ];
+    }
+
+	public function get_status_count($status ='all') {
+		$current_page_no = $this->get_pagenum();
+		$per_page        = $this->page->get_per_page();
+
+		$total_items = $this->page->get_table_manager()->fetch_log_count_by_status( $_GET, $per_page, $current_page_no,$status);
+		if (empty($total_items)) {
+			$total_items = 0;
+		}
+		return $total_items;
+    }
+	
 }
