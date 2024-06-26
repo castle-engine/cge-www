@@ -4,7 +4,7 @@ include::common.adoc[]
 
 == Introduction
 
-Mobile devices (Android, iOS, Nintendo Switch) allow to use _touch screen_ where user literally touches the screen to indicate clicking / dragging.
+Some devices (link:android[Android], link:ios[iOS], link:nintendo_switch[Nintendo Switch]) allow to use _touch screen_ where user literally touches the screen to indicate clicking / dragging.
 
 This page discusses various aspects of handling touch screen input in your applications. The general principle is that you can handle touch screen input in the same way as mouse input. This is because:
 
@@ -111,7 +111,15 @@ end.
 ----
 ////
 
-For easy testing, the cgeref:TCastleApplicationProperties.TouchDevice[ApplicationProperties.TouchDevice] property is settable, so you can set this property to `true` even on desktops, to test your "touch device mode" in a desktop application. For example, this allows to test how does the _"Exit Game"_ button, mentioned in the previous paragraph, looks and works on a desktop. Just set `ApplicationProperties.TouchDevice := true` from your code to debug how it behaves.
+To test how such code behaves on desktop, you can (all the methods below do the same thing):
+
+- Run the application using link:editor[] selecting first _"Run -> Run Parameters -> Pretend Touch Device"_ from the editor menu.
+
+- Run the application from command-line adding the `--pretend-touch-device` option.
+
+- Or just manually set cgeref:TCastleApplicationProperties.TouchDevice[ApplicationProperties.TouchDevice] property to `true`.
+
+For example, this allows to test how does the _"Exit Game"_ button, mentioned above as an example, looks and works on a desktop.
 
 NOTE: Some devices with touch screen, like _Android_ and _Nintendo Switch_, allow to plug external keyboard and mouse. We don't support it now in any special way, but we may in the future, and then user will be able to use normal mouse behavior in your mobile game. It also means that inferring too much from cgeref:TCastleApplicationProperties.TouchDevice[ApplicationProperties.TouchDevice] being `true` isn't wise -- the device may have a touch screen, but user may be using external keyboard / mouse.
 
