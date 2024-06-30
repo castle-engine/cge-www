@@ -8,7 +8,7 @@
 namespace WPDiscourse\DiscourseSSO;
 
 use WPDiscourse\DiscourseBase;
-use \WPDiscourse\SSO\SSO;
+use WPDiscourse\SSO\SSO;
 
 /**
  * Class DiscourseSSO
@@ -51,16 +51,20 @@ class DiscourseSSO extends DiscourseBase {
 		$bypass_sync = apply_filters( 'wpdc_bypass_sync_sso', false, $user->ID, $user );
 
 		if ( ! $bypass_sync ) {
-			// Make sure the login hasn't been initiated by clicking on a SSO login link.
-			$query_string = wp_parse_url( wp_get_referer(), PHP_URL_QUERY );
-			$query_params = array();
-			parse_str( $query_string, $query_params );
-			$sso_referer = ! empty( $query_params['redirect_to'] ) && preg_match( '/^\/\?sso/', $query_params['redirect_to'] );
-			if ( ! $sso_referer ) {
-				$params = $this->get_sso_params( $user );
+        // Make sure the login hasn't been initiated by clicking on a SSO login link.
+        $query_string = wp_parse_url( wp_get_referer(), PHP_URL_QUERY );
+        $query_params = array();
+        $sso_referer  = null;
 
-				$this->sync_sso( $params, $user->ID );
-			}
+        if ( ! empty( $query_string ) ) {
+					parse_str( $query_string, $query_params );
+					$sso_referer = ! empty( $query_params['redirect_to'] ) && preg_match( '/^\/\?sso/', $query_params['redirect_to'] );
+        }
+
+        if ( ! $sso_referer ) {
+					$params = $this->get_sso_params( $user );
+					$this->sync_sso( $params, $user->ID );
+        }
 		}
 
 		return null;
@@ -94,7 +98,6 @@ class DiscourseSSO extends DiscourseBase {
 		} else {
 			return esc_url_raw( $login_url );
 		}
-
 	}
 
 	/**
@@ -258,11 +261,11 @@ class DiscourseSSO extends DiscourseBase {
 		return new \WP_Error( $type, isset( $args['message'] ) ? $args['message'] : 'SSO error' );
 	}
 
-  /**
-   * Handle redirects
-   *
-   * @param string $url Url to redirect to.
-   */
+    /**
+     * Handle redirects
+     *
+     * @param string $url Url to redirect to.
+     */
 	public function redirect_to( $url ) {
 		wp_safe_redirect( esc_url_raw( $url ) );
 		exit;
