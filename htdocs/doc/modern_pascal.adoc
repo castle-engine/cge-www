@@ -2,14 +2,6 @@
 include::common.adoc[]
 :description: Modern Object Pascal Introduction: units, classes, generics, memory management, exceptions and more.
 :cge-social-share-image: pascal_code_sample.png
-// These tags were specified in https://github.com/michaliskambi/modern-pascal-introduction/ , they don't matter anymore for CGE page.
-// Michalis Kamburelis
-// include::locale/attributes.adoc[]
-// :toc: left
-// :toclevels: 4
-// :sectnums:
-// :source-highlighter: coderay
-// :docinfo1:
 
 ## Why
 
@@ -1914,6 +1906,27 @@ end;
 Unfortunately, you need to write ugly `@TMyClass(nil).Add` instead of just `@TMyClass.Add`.
 
 * A (possibly) local routine: declare with `is nested` at the end, and make sure to use `{$modeswitch nestedprocvars}` directive for the code. These go hand-in-hand with <<Local (nested) routines>>.
+
+### Anonymous functions
+
+Delphi and new FPC versions (>= 3.3.1) support anynomous functions.
+
+Example:
+
+[source,pascal]
+----
+include::modern_pascal_code_samples/anon_functions_list_map_foreach.dpr[]
+----
+
+More information:
+
+- Delphi documentation: https://docwiki.embarcadero.com/RADStudio/Sydney/en/Anonymous_Methods_in_Delphi
+
+- FPC forum post: https://forum.lazarus.freepascal.org/index.php/topic,59468.0.html
+
+- FPC feature changelog: https://wiki.freepascal.org/FPC_New_Features_Trunk#Support_for_Function_References_and_Anonymous_Functions
+
+To get FPC 3.3.1, we recommend to use FpcUpDeluxe: https://castle-engine.io/fpcupdeluxe .
 
 ### Generics
 
