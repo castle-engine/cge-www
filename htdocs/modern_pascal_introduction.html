@@ -3981,16 +3981,22 @@ Remember that when descending from <code>TPersistent</code>, the default <em>vis
   <span class="preprocessor">{$modeswitch functionreferences}</span>
   <span class="preprocessor">{$modeswitch anonymousfunctions}</span>
 <span class="preprocessor">{$endif}</span>
+<span class="preprocessor">{$apptype CONSOLE}</span>
 
 <span class="keyword">uses</span> SysUtils, Generics.Collections;
 
 <span class="keyword">type</span>
   <span class="comment">{ Note about below TIntMapFunc and TIntMapProc definition, what to use?
 
-    For anonymous functions all 3 versions will compile.
-    You can assign anonymous function to any of them.
+    In short, use &quot;reference to&quot;. You can assign to them anonymous functions
+    reliably in both Delphi and FPC.
 
-    Decide of the version based on what you want to assign to them *aside*
+    With Delphi 12.1, only the &quot;reference to&quot; version will compile.
+
+    With FPC 3.3.1, other variants will also compile.
+    You can assign anonymous function to any of them.
+    So if you only target FPC, you can decide which version to use
+    based on what you want to assign to them *aside*
     from anonymous functions:
 
     - The 1st version (without &quot;of object&quot;, without &quot;reference to&quot;)
@@ -4013,7 +4019,7 @@ Remember that when descending from <code>TPersistent</code>, the default <em>vis
     <span class="comment">//procedure(const Index, Item: Integer) of object;</span>
     reference <span class="keyword">to</span> <span class="keyword">procedure</span>(<span class="keyword">const</span> Index, Item: Integer);
 
-  TMyInts = <span class="keyword">class</span>(specialize TList&lt;Integer&gt;)
+  TMyInts = <span class="keyword">class</span>(<span class="preprocessor">{$ifdef FPC}</span>specialize<span class="preprocessor">{$endif}</span> TList&lt;Integer&gt;)
     <span class="comment">{ Change every item in the list using AFunc. }</span>
     <span class="keyword">procedure</span> Map(<span class="keyword">const</span> AFunc: TIntMapFunc);
     <span class="comment">{ Call AProc for every item in the list. }</span>
