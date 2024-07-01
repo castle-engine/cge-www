@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.20">
+<meta name="generator" content="Asciidoctor 2.0.23">
 <meta name="author" content="Michalis Kamburelis">
 <title>Modern Object Pascal Introduction for Programmers</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
@@ -141,7 +141,7 @@ p a>code:hover{color:rgba(0,0,0,.9)}
 #content::before{content:none}
 #header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
 #header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
-#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header>h1:only-child{border-bottom:1px solid #dddddf;padding-bottom:8px}
 #header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:flex;flex-flow:row wrap}
 #header .details span:first-child{margin-left:-.125em}
 #header .details span.email a{color:rgba(0,0,0,.85)}
@@ -163,6 +163,7 @@ p a>code:hover{color:rgba(0,0,0,.9)}
 #toctitle{color:#7a2518;font-size:1.2em}
 @media screen and (min-width:768px){#toctitle{font-size:1.375em}
 body.toc2{padding-left:15em;padding-right:0}
+body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
 #toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
 #toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
 #toc.toc2>ul{font-size:.9em;margin-bottom:0}
@@ -328,7 +329,7 @@ a.image{text-decoration:none;display:inline-block}
 a.image object{pointer-events:none}
 sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
 sup.footnote a,sup.footnoteref a{text-decoration:none}
-sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
+sup.footnote a:active,sup.footnoteref a:active,#footnotes .footnote a:first-of-type:active{text-decoration:underline}
 #footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
 #footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
 #footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
@@ -624,13 +625,14 @@ a.patreon-link:focus {
 <ul class="sectlevel2">
 <li><a href="#_local_nested_routines">8.1. Local (nested) routines</a></li>
 <li><a href="#Callbacks">8.2. Callbacks (aka events, aka pointers to functions, aka procedural variables)</a></li>
-<li><a href="#_generics">8.3. Generics</a></li>
-<li><a href="#_overloading">8.4. Overloading</a></li>
-<li><a href="#_preprocessor">8.5. Preprocessor</a></li>
-<li><a href="#_records">8.6. Records</a></li>
-<li><a href="#_old_style_objects">8.7. Old-style objects</a></li>
-<li><a href="#_pointers">8.8. Pointers</a></li>
-<li><a href="#_operator_overloading">8.9. Operator overloading</a></li>
+<li><a href="#_anonymous_functions">8.3. Anonymous functions</a></li>
+<li><a href="#_generics">8.4. Generics</a></li>
+<li><a href="#_overloading">8.5. Overloading</a></li>
+<li><a href="#_preprocessor">8.6. Preprocessor</a></li>
+<li><a href="#_records">8.7. Records</a></li>
+<li><a href="#_old_style_objects">8.8. Old-style objects</a></li>
+<li><a href="#_pointers">8.9. Pointers</a></li>
+<li><a href="#_operator_overloading">8.10. Operator overloading</a></li>
 </ul>
 </li>
 <li><a href="#_advanced_classes_features">9. Advanced classes features</a>
@@ -3370,6 +3372,17 @@ S := Download(<span class="string"><span class="delimiter">'</span><span class="
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
+
+<span class="comment">{ If GENERICS_CONSTREF is defined, then various routines used with Generics.Collections
+  (like callbacks we pass to TComparer, or OnNotify callback or Notify virtual method)
+  should have &quot;constref&quot; parameter, not &quot;const&quot;.
+  This was the case of FPC&lt;= 3.2.0, FPC changed it in
+  https://gitlab.com/freepascal.org/fpc/source/-/commit/693491048bf2c6f9122a0d8b044ad0e55382354d .
+  It is also applied to FPC fixes branch 3.2.3. }</span>
+<span class="preprocessor">{$ifdef VER3_0}</span> <span class="preprocessor">{$define GENERICS_CONSTREF}</span> <span class="preprocessor">{$endif}</span>
+<span class="preprocessor">{$ifdef VER3_2_0}</span> <span class="preprocessor">{$define GENERICS_CONSTREF}</span> <span class="preprocessor">{$endif}</span>
+<span class="preprocessor">{$ifdef VER3_2_2}</span> <span class="preprocessor">{$define GENERICS_CONSTREF}</span> <span class="preprocessor">{$endif}</span>
+
 <span class="keyword">uses</span> SysUtils, Generics.Defaults, Generics.Collections;
 
 <span class="keyword">type</span>
@@ -3379,7 +3392,9 @@ S := Download(<span class="string"><span class="delimiter">'</span><span class="
 
   TAppleList = specialize TObjectList&lt;TApple&gt;;
 
-<span class="keyword">function</span> CompareApples(constref Left, Right: TApple): Integer;
+<span class="keyword">function</span> CompareApples(
+  <span class="preprocessor">{$ifdef GENERICS_CONSTREF}</span>constref<span class="preprocessor">{$else}</span><span class="keyword">const</span><span class="preprocessor">{$endif}</span>
+  Left, Right: TApple): Integer;
 <span class="keyword">begin</span>
   Result := AnsiCompareStr(Left.Name, Right.Name);
 <span class="keyword">end</span>;
@@ -3950,7 +3965,133 @@ Remember that when descending from <code>TPersistent</code>, the default <em>vis
 </div>
 </div>
 <div class="sect2">
-<h3 id="_generics">8.3. Generics</h3>
+<h3 id="_anonymous_functions">8.3. Anonymous functions</h3>
+<div class="paragraph">
+<p>Delphi and new FPC versions (&gt;= 3.3.1) support anynomous functions.</p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="comment">{ Example of Map, ForEach methods and processing list with anonymous functions. }</span>
+
+<span class="preprocessor">{$ifdef FPC}</span>
+  <span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
+  <span class="preprocessor">{$modeswitch functionreferences}</span>
+  <span class="preprocessor">{$modeswitch anonymousfunctions}</span>
+<span class="preprocessor">{$endif}</span>
+
+<span class="keyword">uses</span> SysUtils, Generics.Collections;
+
+<span class="keyword">type</span>
+  <span class="comment">{ Note about below TIntMapFunc and TIntMapProc definition, what to use?
+
+    For anonymous functions all 3 versions will compile.
+    You can assign anonymous function to any of them.
+
+    Decide of the version based on what you want to assign to them *aside*
+    from anonymous functions:
+
+    - The 1st version (without &quot;of object&quot;, without &quot;reference to&quot;)
+      allows to store a reference to a global function,
+
+    - The 2nd (with &quot;of object&quot;)
+      allows to store a reference to a method of an object,
+
+    - The 3rd (with &quot;reference to&quot;) is the most universal,
+      allows a lot of things --
+      see https://forum.lazarus.freepascal.org/index.php?topic=59468.0 .
+  }</span>
+
+  TIntMapFunc =
+    <span class="comment">//function(const Index, Item: Integer): Integer;</span>
+    <span class="comment">//function(const Index, Item: Integer): Integer of object;</span>
+    reference <span class="keyword">to</span> <span class="keyword">function</span>(<span class="keyword">const</span> Index, Item: Integer): Integer;
+  TIntMapProc =
+    <span class="comment">//procedure(const Index, Item: Integer);</span>
+    <span class="comment">//procedure(const Index, Item: Integer) of object;</span>
+    reference <span class="keyword">to</span> <span class="keyword">procedure</span>(<span class="keyword">const</span> Index, Item: Integer);
+
+  TMyInts = <span class="keyword">class</span>(specialize TList&lt;Integer&gt;)
+    <span class="comment">{ Change every item in the list using AFunc. }</span>
+    <span class="keyword">procedure</span> Map(<span class="keyword">const</span> AFunc: TIntMapFunc);
+    <span class="comment">{ Call AProc for every item in the list. }</span>
+    <span class="keyword">procedure</span> ForEach(<span class="keyword">const</span> AProc: TIntMapProc);
+  <span class="keyword">end</span>;
+
+<span class="keyword">procedure</span> TMyInts.Map(<span class="keyword">const</span> AFunc: TIntMapFunc);
+<span class="keyword">var</span>
+  Index: Integer;
+<span class="keyword">begin</span>
+  <span class="keyword">for</span> Index := <span class="integer">0</span> <span class="keyword">to</span> Count - <span class="integer">1</span> <span class="keyword">do</span>
+    Items[Index] := AFunc(Index, Items[Index]);
+<span class="keyword">end</span>;
+
+<span class="keyword">procedure</span> TMyInts.ForEach(<span class="keyword">const</span> AProc: TIntMapProc);
+<span class="keyword">var</span>
+  Index: Integer;
+<span class="keyword">begin</span>
+  <span class="keyword">for</span> Index := <span class="integer">0</span> <span class="keyword">to</span> Count - <span class="integer">1</span> <span class="keyword">do</span>
+    AProc(Index, Items[Index]);
+<span class="keyword">end</span>;
+
+<span class="keyword">var</span>
+  MyList: TMyInts;
+  I: Integer;
+  F: TIntMapFunc;
+<span class="keyword">begin</span>
+  MyList := TMyInts.Create;
+  <span class="keyword">try</span>
+    <span class="keyword">for</span> I := <span class="integer">0</span> <span class="keyword">to</span> <span class="integer">10</span> <span class="keyword">do</span>
+      MyList.Add(I);
+
+    F := <span class="keyword">function</span>(<span class="keyword">const</span> Index, Item: Integer): Integer
+      <span class="keyword">begin</span>
+        Result := Item + <span class="integer">1</span>;
+      <span class="keyword">end</span>;
+    <span class="comment">// effectively this increases all numbers on the list by 3</span>
+    MyList.Map(F);
+    MyList.Map(F);
+    MyList.Map(F);
+
+    <span class="comment">// change all items to their squares</span>
+    MyList.Map(<span class="keyword">function</span>(<span class="keyword">const</span> Index, Item: Integer): Integer
+      <span class="keyword">begin</span>
+        Result := Item * Item;
+      <span class="keyword">end</span>);
+
+    <span class="comment">// print all items</span>
+    MyList.ForEach(<span class="keyword">procedure</span>(<span class="keyword">const</span> Index, Item: Integer)
+      <span class="keyword">begin</span>
+        WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">Index: </span><span class="delimiter">'</span></span>, Index, <span class="string"><span class="delimiter">'</span><span class="content">, Item: </span><span class="delimiter">'</span></span>, Item);
+      <span class="keyword">end</span>);
+  <span class="keyword">finally</span> FreeAndNil(MyList) <span class="keyword">end</span>;
+<span class="keyword">end</span>.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>More information:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Delphi documentation: <a href="https://docwiki.embarcadero.com/RADStudio/Sydney/en/Anonymous_Methods_in_Delphi" class="bare">https://docwiki.embarcadero.com/RADStudio/Sydney/en/Anonymous_Methods_in_Delphi</a></p>
+</li>
+<li>
+<p>FPC forum post: <a href="https://forum.lazarus.freepascal.org/index.php/topic,59468.0.html" class="bare">https://forum.lazarus.freepascal.org/index.php/topic,59468.0.html</a></p>
+</li>
+<li>
+<p>FPC feature changelog: <a href="https://wiki.freepascal.org/FPC_New_Features_Trunk#Support_for_Function_References_and_Anonymous_Functions" class="bare">https://wiki.freepascal.org/FPC_New_Features_Trunk#Support_for_Function_References_and_Anonymous_Functions</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>To get FPC 3.3.1, we recommend to use FpcUpDeluxe: <a href="https://castle-engine.io/fpcupdeluxe" class="bare">https://castle-engine.io/fpcupdeluxe</a> .</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_generics">8.4. Generics</h3>
 <div class="paragraph">
 <p>A powerful feature of any modern language. The definition of something (typically, of a class) can be parameterized with another type. The most typical example is when you need to create a container (a list, dictionary, tree, graph&#8230;&#8203;): you can define <em>a list of type T</em>, and then <em>specialize</em> it to instantly get <em>a list of integers</em>, <em>a list of strings</em>, <em>a list of TMyRecord</em>, and so on.</p>
 </div>
@@ -4032,7 +4173,7 @@ generic <span class="keyword">function</span> Min&lt;T&gt;(<span class="keyword"
 </div>
 </div>
 <div class="sect2">
-<h3 id="_overloading">8.4. Overloading</h3>
+<h3 id="_overloading">8.5. Overloading</h3>
 <div class="paragraph">
 <p>Methods (and global functions and procedures) with the same name are allowed, as long as they have different parameters. At compile time, the compiler detects which one you want to use, knowing the parameters you pass.</p>
 </div>
@@ -4041,7 +4182,7 @@ generic <span class="keyword">function</span> Min&lt;T&gt;(<span class="keyword"
 </div>
 </div>
 <div class="sect2">
-<h3 id="_preprocessor">8.5. Preprocessor</h3>
+<h3 id="_preprocessor">8.6. Preprocessor</h3>
 <div class="paragraph">
 <p>You can use simple preprocessor directives for</p>
 </div>
@@ -4169,7 +4310,7 @@ generic <span class="keyword">function</span> Min&lt;T&gt;(<span class="keyword"
 </div>
 </div>
 <div class="sect2">
-<h3 id="_records">8.6. Records</h3>
+<h3 id="_records">8.7. Records</h3>
 <div class="paragraph">
 <p><em>Record</em> is just a container for other variables. It&#8217;s like a much, much simplified <em>class</em>: there is no inheritance or virtual methods. It is like a <em>structure</em> in C-like languages.</p>
 </div>
@@ -4245,7 +4386,7 @@ generic <span class="keyword">function</span> Min&lt;T&gt;(<span class="keyword"
 </div>
 </div>
 <div class="sect2">
-<h3 id="_old_style_objects">8.7. Old-style objects</h3>
+<h3 id="_old_style_objects">8.8. Old-style objects</h3>
 <div class="paragraph">
 <p>In the old days, Turbo Pascal introduced another syntax for class-like functionality, using the <code>object</code> keyword. It&#8217;s somewhat of a blend between the concept of a <code>record</code> and a modern <code>class</code>.</p>
 </div>
@@ -4267,7 +4408,7 @@ generic <span class="keyword">function</span> Min&lt;T&gt;(<span class="keyword"
 </div>
 </div>
 <div class="sect2">
-<h3 id="_pointers">8.8. Pointers</h3>
+<h3 id="_pointers">8.9. Pointers</h3>
 <div class="paragraph">
 <p>You can create a <em>pointer</em> to any other type. The pointer to type <code>TMyRecord</code> is declared as <code>^TMyRecord</code>, and by convention is called <code>PMyRecord</code>. This is a traditional example of a linked list of integers using records:</p>
 </div>
@@ -4305,7 +4446,7 @@ A linked list using classes is certainly possible, it would simply be this:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_operator_overloading">8.9. Operator overloading</h3>
+<h3 id="_operator_overloading">8.10. Operator overloading</h3>
 <div class="paragraph">
 <p>You can override the meaning of many language operators, for example to allow addition and multiplication of your custom types. Like this:</p>
 </div>
@@ -5543,7 +5684,7 @@ you create <em>COM interfaces</em>. This can be stated explicitly by saying <cod
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-01-05 13:31:09 +0100
+Last updated 2024-07-01 16:55:49 +0200
 </div>
 </div>
 <!-- Google analytics -->
