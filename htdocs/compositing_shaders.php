@@ -6,7 +6,8 @@ castle_header('Shader Effects (Compositing Shaders)');
 
 $toc = new TableOfContents(array(
   new TocItem('Intro', 'intro'),
-  new TocItem('Examples', 'examples'),
+  new TocItem('Examples for Pascal developers', 'examples_pascal'),
+  new TocItem('Examples for X3D authors', 'examples_x3d'),
   new TocItem('Nodes implementations', 'implementations'),
   new TocItem('Documentation', 'docs'),
   new TocItem('Conference paper and slides (a bit outdated)', 'old_docs'),
@@ -48,6 +49,18 @@ rendering features, hence why we call this feature <i>compositing shaders</i>.</
 
 <?php echo $toc->html_section(); ?>
 
+<p>For engine developers using Pascal:
+
+<ul>
+  <li>
+    <p>The most important example is <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/shader_effects">Using Shader Effects to implement rendering effects that enhance the standard rendering (examples/viewport_and_scenes/shader_effects)</a>. It shows applying shader effects on shapes.
+
+  <li>
+    <p>See also <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/shader_effects_on_texture">Shader Effects On Texture (examples/viewport_and_scenes/shader_effects_on_texture)</a>. This focuses on applying the effects on textures. As always, follow the <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/shader_effects_on_texture#readme">README of the example</a> to know all the details.
+</ul>
+
+<?php echo $toc->html_section(); ?>
+
 <p>The example models are available inside
 <?php echo a_href_page('our demo models', 'demo_models'); ?>.
 Download them, and look inside the subdirectory <code>compositing_shaders</code> there.
@@ -56,11 +69,6 @@ using our effects.</p>
 
 <p>You can open the example models with any of our engine tools, like
 <a href="castle-model-viewer">Castle Model Viewer</a>.</p>
-
-<p>For engine developers using Pascal, the example is in
-<a href="https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/shader_effects">examples/viewport_and_scenes/shader_effects</a>.
-Build and run this example. Look at source code to see how effects are added
-by the Pascal code.
 
 <?php echo $toc->html_section(); ?>
 
