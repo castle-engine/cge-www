@@ -150,7 +150,7 @@ Skies generated with <a href="http://www.planetside.co.uk/">Terragen</a>.</p>
 
   <li>lion bump mapping textures from
     <a href="http://www-static.cc.gatech.edu/grads/d/davidp/parallax_mapping/">Philippe
-    David steep parallax mapping code</a>, based on <a href="http://graphics.cs.brown.edu/games/SteepParallax/index.html">paper
+    David steep parallax mapping code</a>, based on <a href="https://www.casual-effects.com/research/McGuire2005Parallax/index.html">paper
     about steep mapping</a>.
 
   <li><p>See also <code>AUTHORS.txt</code> files inside the archive for detailed

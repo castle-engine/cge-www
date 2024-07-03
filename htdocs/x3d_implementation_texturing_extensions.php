@@ -293,7 +293,7 @@ This leads to easy and efficient implementation, and also it is easy
 for texture creators: in <a href="http://code.google.com/p/gimp-normalmap/">GIMP
 normal map plugin</a> just set <i>"Alpha Channel"</i> to <i>"Height"</i>.
 A height map allows to use more sophisticated <i>parallax bump mapping</i> algorithm,
-actually we have a full <a href="http://graphics.cs.brown.edu/games/SteepParallax/index.html">steep parallax mapping with
+actually we have a full <a href="https://www.casual-effects.com/research/McGuire2005Parallax/index.html">steep parallax mapping with
 self-shadowing</a> implementation. This can make the effect truly
 amazing, but also slower.</p>
 
