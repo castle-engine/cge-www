@@ -1,0 +1,24 @@
+# Tutorial: 3D physics fun (aka "the bad way to play chess")
+include::common.adoc[]
+
+cgeimg::block[
+  chess1.png|Bad way to play chess,
+  chess2.png|Bad way to play chess,
+  chess3.png|Bad way to play chess
+]
+
+We present two tutorial articles that introduce the _Castle Game Engine_. Highly recommended reading!
+
+1. https://castle-engine.io/bad-chess/castle_game_engine_bad_chess_1.html[Installation, editor, designing a 3D world, views, testing physics]
+(https://castle-engine.io/bad-chess/castle_game_engine_bad_chess_1.pdf[PDF version, 22 pages])
+(https://jorgeturiel.es/?p=723[Spanish translation])
+
+2. https://castle-engine.io/bad-chess/castle_game_engine_bad_chess_2.html[Coding using Pascal and engine API, behaviors, selection and hover, reusing a design of a 3D object] (https://castle-engine.io/bad-chess/castle_game_engine_bad_chess_2.pdf[PDF version, 33 pages])
+(https://jorgeturiel.es/?p=760[Spanish translation])
+
+These articles assume zero initial engine knowledge.
+They go through all most important aspects of our engine.
+All the techniques discussed are recommended ways to use the engine, they are proven to be comfortable and flexible for a wide range of games, and we work on keeping them optimal. The article and examples are suitable for both FPC and Delphi developers.
+// -- explaining everything, including editor usage and Pascal coding, resulting in a complete... game, or at least a fun toy :) The _"bad way to play chess"_ is our little joke, really just an excuse to design a 3D physics-based game.
+
+If you want to play a ready game, https://castle-engine.itch.io/bad-chess[download and install it from here (ready binaries for Linux and Windows)]. If you want to get the source code, clone the https://github.com/castle-engine/bad-chess/[GitHub repository at https://github.com/castle-engine/bad-chess/].

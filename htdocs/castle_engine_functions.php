@@ -235,7 +235,16 @@ $castle_sitemap = array(
     'dropdown' => true,
     'sidebar' => true,
     'sub' => array(
-      'doc/bad_chess' => array('title' => 'Recommended Tutorial: 3D Physics Fun'),
+      'doc/bad_chess' => array('title' => 'Tutorial: 3D physics fun',
+        'sub' => array(
+          'bad_chess_1' => array('title' => 'Part 1: Installation, editor, designing a 3D world, views, testing physics', 'url' => 'https://castle-engine.io/bad-chess/castle_game_engine_bad_chess_1.html'),
+          'bad_chess_2' => array('title' => 'Part 2:  Coding, behaviors, selection and hover, reusing a design of a 3D object', 'url' => 'https://castle-engine.io/bad-chess/castle_game_engine_bad_chess_2.html'),
+          'bad_chess_1_pdf' => array('title' => 'Part 1 (PDF)', 'url' => 'https://castle-engine.io/bad-chess/castle_game_engine_bad_chess_1.pdf'),
+          'bad_chess_2_pdf' => array('title' => 'Part 2 (PDF)', 'url' => 'https://castle-engine.io/bad-chess/castle_game_engine_bad_chess_2.pdf'),
+          'bad_chess_1_spanish' => array('title' => 'Part 1 (Spanish translation)', 'url' => 'https://jorgeturiel.es/?p=723'),
+          'bad_chess_2_spanish' => array('title' => 'Part 2 (Spanish translation)', 'url' => 'https://jorgeturiel.es/?p=760'),
+        ),
+      ),
       'manual_intro' => array('title' => 'Manual',
         'sub' => array(
           'doc/install' => array('title' => 'Install'),
