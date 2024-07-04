@@ -373,7 +373,7 @@ it gives you a ready
 we advise to use our dialog components:
 <?php echo cgeRef('TCastleOpenDialog'); ?>,
 <?php echo cgeRef('TCastleSaveDialog'); ?>,
-<?php echo cgeRef('TCastleOpen3DDialog'); ?>,
+<?php echo cgeRef('TCastleOpenSceneDialog'); ?>,
 <?php echo cgeRef('TCastleOpenImageDialog'); ?>,
 <?php echo cgeRef('TCastleSaveImageDialog'); ?>.
 They expose <code>URL</code> property which works naturally with CGE.
