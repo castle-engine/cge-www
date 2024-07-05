@@ -115,7 +115,7 @@ _This is already in-progress by Trung Le (Kagamma). Use link:https://github.com/
 [#steam]
 ## (IN REVIEW) Steam integration, and engine available as Steam app
 
-Official Steam integration in CGE, see https://trello.com/c/RNDjQhqe/71-steam-headers . We already used it for The Unholy Society, we want to either “just publish that approach” or propose a new, improved (without an intermediate “wrapper” library) approach.
+Official Steam integration in CGE, see https://trello.com/c/RNDjQhqe/71-steam-headers . We already used it for The Unholy Society, we want to either "just publish that approach" or propose a new, improved (without an intermediate "wrapper" library) approach.
 
 We should also upload CGE as app to Steam.
 
@@ -159,13 +159,13 @@ More about splatmaps: https://en.wikipedia.org/wiki/Texture_splatting , https://
 +
 NOTE: The fact that you can connect a few terrains together, and our generation can generate "neighbors" effectively, is super-useful and will be preserved.
 
-- Tools to plant big things (3D `TCastleScene`) in the terrain, like trees, rocks. You can do it now, though it’s manual: Use behavior cgeref:TCastleStickToSurface[] and put multiple instances of the thing you want. Use cgeref:TCastleTransformReference[] to make it optimal for memory when you can, so that multiple instances share the same resources.
+- Tools to plant big things (3D `TCastleScene`) in the terrain, like trees, rocks. You can do it now, though it's manual: Use behavior cgeref:TCastleStickToSurface[] and put multiple instances of the thing you want. Use cgeref:TCastleTransformReference[] to make it optimal for memory when you can, so that multiple instances share the same resources.
 +
 Optional LODs could be nice (but maybe this is outside of scope of terrains; LODs should be just on `TCastleScene`. Currently we have LODs on `TCastleScene` using `TLODNode` - works nice, though complicated to set up, we want to move away from exposing X3D nodes for this.)
 
 - Tools to plant many small things, like grass. This is a big different than "big things", and here automatic LODs that e.g. decrease density of grass with distance make sense.
 
-- More specialized and efficient rendering algorithm. Right now terrain in the end is just a simple big mesh of triangles. It’s actually quite fast to render (because modern GPUs can handle big shapes) but it’s not a sustainable way to render huge terrains.
+- More specialized and efficient rendering algorithm. Right now terrain in the end is just a simple big mesh of triangles. It's actually quite fast to render (because modern GPUs can handle big shapes) but it's not a sustainable way to render huge terrains.
 
 - Improve shaders for terrain to show it, like link:https://www.getlazarus.org/videos/bareterrain/#learning_resources[this BareGame example].
 
@@ -839,3 +839,38 @@ Not all, but *some* of them should be "on" by default and have no possible adver
 - cgeref:InternalFastTransformUpdate[] enable by default and make it work regardless of what is animated.
 
 - cgeref:OptimizeExtensiveTransformations[] we should generalize it by remembering the top-most transform that needs to be processed.
+
+[#reloading]
+## Improvements to auto-reloading changed data
+
+In _Castle Game Engine_, we can auto-reload data files (https://castle-engine.io/using_images[images (in TCastleImageControl, TCastleImageTransform)], https://castle-engine.io/viewport_and_scenes[scenes], https://castle-engine.io/tiled_maps[Tiled maps]) when they changed on disk. This is great when quickly prototyping the game, you can just save the file in external program (like Blender, GIMP, Tiled), _Alt+Tab_ to the editor (or even your running game), and see how the new data "fits in".
+
+Auto-reloading in link:editor[] (we call it _"at design-time"_) is done automatically. Auto-reloading during the running game (_"at run-time"_) must be explicitly enabled, by running the game in debug mode, then entering the inspector (using F8 key) and checking the _"Monitor and Auto-Reload Data"_ checkbox.
+
+The above describes what already works :)
+
+Below are some missing things related to this:
+
+1. Changing textures used in a scene doesn't cause reload of the scene.
++
+For example, when cgeref:TCastleScene[] has `xxx.gltf` loaded, and `xxx.gltf` refers to texture `my_texture.png`, then changing xxx.gltf correctly reloads the scene, but changing `my_texture.png` does not.
++
+In general, cgeref:TCastleScene[] doesn't keep a centralized knowledge "all the files that are my dependencies".
++
+Implementing this knowledge is a TODO, it would be good to have it. For auto-reloading, also for possible auto-detection of unused files in data. To expand on the latter idea: While we will probably always pack whole `data` to package (so it's like Unity `Assets/Resources`), it would be nice to have a button to allow to clean it manually ("list files in data that seem unused") or have a subdirectory in data (like `data/managed/`) where only used data is packaged.
+
+2. Caching right now sometimes "defeats" reloading. If something is in the cache and is referenced at least 2 times (e.g. there are 2 cgeref:TCastleImageTransform[] components referring to the same image), then reloading doesn't work.
++
+The underlying reason is that cache never "lets go" of the loaded resource, because always someone refers to it, even as cgeref:TCastleImageTransform[] is in the middle of cgeref:TCastleImageTransform.ReloadUrl[].
++
+Fixing this means reimplementing our `ReloadUrl` routines to reload the resource in the cache. Likely a way to notify all users of this resource "this is changing" will be necessary.
+
+3. We depend on LCL `TApplicationProperties.OnActivate` mechanism to detect the file changes when you switch back to CGE editor application. Unfortunately, it is not reliable with LCL GTK2 backend.
++
+Details: Sometimes the `TApplicationProperties.OnActivate` event fires when it should, sometimes it doesn't... You can _Alt+Tab_ between CGE editor and some other application, and see that sometimes `TApplicationProperties.OnActivate` just doesn't happen. This was reproduced also with a trivial application (unrelated to CGE editor). It also happens with Lazarus IDE itself -- Lazarus IDE seems to use similar mechanism to detect when Pascal file, opened in Lazarus, changed on disk (e.g. because you also edit it in VS Code). And sometimes, when you _Alt+Tab_ between Lazarus and VS Code, Lazarus doesn't notice the file change.
++
+The GTK2 can correctly send the relevant event (`focus_in_event`), which is used both by CGE `TCastleWindow` implementation on GTK, and Lazarus LCL GTK backend. So it doesn't seem to be GTK2 fault. A similar mechanism just works reliably for `TCastleWindow`.
++
+We haven't found any useful workaround, no other LCL event seems to receive any event that could be useful to workaround it. We have to submit a bugreport for LCL GTK2 (if you want to handle this, please let us know, we can use a help!). And possibly switch to something else (but Qt5 backend also has problems, using libraries that most people don't have; and it will take some time before we can implement editor without LCL).
++
+The end result: CGE editor on Linux sometimes does not reload the data that changed. However, CGE applications, with "Monitor and Auto-Reload Data" selected, do reload the data reliably at run-time.

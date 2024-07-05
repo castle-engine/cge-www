@@ -1897,7 +1897,11 @@ function cgeRef($identifier, $title = NULL)
     $pasdoc_lower = array_change_key_case($pasdoc, CASE_LOWER);
     $html_filename = $pasdoc_lower[$identifier_lower]['html_filename'];
     if (CASTLE_ENVIRONMENT == 'development') {
-      echo '<b>Development Warning</b>: Pascal identifier <code>' . htmlspecialchars($identifier) . '</code> found, but with different case, in docs<br>';
+      if (isset($html_filename)) {
+        echo '<b>Development Warning</b>: Pascal identifier <code>' . htmlspecialchars($identifier) . '</code> found, but with different case, in docs<br>';
+      } else {
+        echo '<b>Development Warning</b>: Pascal identifier <code>' . htmlspecialchars($identifier) . '</code> not found in docs<br>';
+      }
     }
   }
   return '<code><a href="' . $castle_apidoc_url . $html_filename . '">' .
