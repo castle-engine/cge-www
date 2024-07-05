@@ -4,7 +4,7 @@ Tags: check, email, email log, smtp, log
 Requires at least: 5.0
 Tested up to: 6.5
 Requires PHP: 5.6.20
-Stable tag: 1.0.13
+Stable tag: 1.0.13.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -75,6 +75,9 @@ Someone using one of my other plugins had trouble with emails not being sent. I 
 
 == Changelog ==
 
+= v1.0.13.1 - 04/07/2024 =
+- Bug: save button does not work after last update.
+
 = v1.0.13 - 25/06/2024 =
 - Feature: Added Log Retention Period #69
 - Feature: Added Print the email log, or save it as a PDF #70
@@ -112,8 +115,5 @@ Someone using one of my other plugins had trouble with emails not being sent. I 
 
 = v1.0.7 - 08/03/2022 =
 - Fixed: Incompatibility with Post SMTP ( [#51]( https://github.com/WPChill/check-email/issues/51) )
-
-= v1.0.6 - 02/05/2022 =
-- Fixed: Security, sanitization and escaping
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/check-email/trunk/changelog.txt)
