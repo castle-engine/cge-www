@@ -444,7 +444,7 @@ $castle_sitemap = array(
               'modern_pascal_russian_html' => array('title' => 'Russian', 'url' => CASTLE_PROD_URL . 'modern_pascal_introduction_russian.html'),
               //TODO:'modern_pascal_russian_pdf' => array('title' => 'Russian (PDF)', 'url' => CASTLE_PROD_URL . 'modern_pascal_introduction_russian.pdf'),
 
-              'doc/modern_pascal_spanish' => array('title' => 'Spanish'),
+              'doc/modern_pascal_spanish' => array('title' => 'Spanish', 'url' => 'https://jorgeturiel.es/?page_id=473'),
 
               'modern_pascal_ukrainian_html' => array('title' => 'Ukrainian (WIP)', 'url' => CASTLE_PROD_URL . 'modern_pascal_introduction_ukrainian.html'),
               //TODO:'modern_pascal_ukrainian_pdf' => array('title' => 'Ukrainian (WIP) (PDF)', 'url' => CASTLE_PROD_URL . 'modern_pascal_introduction_ukrainian.pdf'),
