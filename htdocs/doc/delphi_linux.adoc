@@ -196,6 +196,7 @@ All our examples are compatible with Delphi on Linux. This includes
 
 == Special things to watch out for when using Delphi for Linux with CGE
 
+[#data_files_deployment]
 === Data files deployment (applies to all non-Windows platforms with Delphi)
 
 When "deploying" your application (e.g. when you hit F9 in Delphi to run on Linux), Delphi needs to know which data files to copy to the target (Linux). This is particularly important for the link:data[data directory] of your project, it needs to be available on target. Unfortunately, we cannot tell Delphi to just _"copy whole `data` directory recursively"_ in the project deployment settings.
