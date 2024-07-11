@@ -874,3 +874,22 @@ The GTK2 can correctly send the relevant event (`focus_in_event`), which is used
 We haven't found any useful workaround, no other LCL event seems to receive any event that could be useful to workaround it. We have to submit a bugreport for LCL GTK2 (if you want to handle this, please let us know, we can use a help!). And possibly switch to something else (but Qt5 backend also has problems, using libraries that most people don't have; and it will take some time before we can implement editor without LCL).
 +
 The end result: CGE editor on Linux sometimes does not reload the data that changed. However, CGE applications, with "Monitor and Auto-Reload Data" selected, do reload the data reliably at run-time.
+
+[#saving_float_images]
+## Saving float-based images preserving their precision
+
+We can read float-based images, into these 4 image formats:
+
+- cgeref:TGrayscaleFloatImage[],
+- cgeref:TGrayscaleAlphaFloatImage[],
+- cgeref:TRGBFloatImage[],
+- cgeref:TRGBAlphaFloatImage[].
+
+We can read from KTX, PNG, TIFF.
+
+However, we cannot *save* them now.
+
+- It doesn't seem Vampyre supports saving TIFF, it always crashes.
+- We didn't test can Vampyre save 16-bit PNG images.
+- We miss code to save 16-bit PNG images using LibPng.
+- We miss code to save float images to KTX.
