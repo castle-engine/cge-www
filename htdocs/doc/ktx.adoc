@@ -7,7 +7,7 @@ include::common.adoc[]
 
 In _Castle Game Engine_ we fully support KTX, https://www.khronos.org/ktx/[Khronos Texture Format].
 
-There's nothing special you need to do to use KTX files in _Castle Game Engine_. Just load images in KTX format and display them as usual, see link:using_images[using images] in the manual.
+There's nothing special you need to do to use KTX files in _Castle Game Engine_. Just load images in KTX format and display them as usual. Yo can refer to KTX image anywhere you would refer to an image (texture), e.g. you point to their URLs from cgeref:TCastleImageControl.Url[], cgeref:TCastleImageTransform.Url[], cgeref:TDrawableImage[], cgeref:TImageTextureNode[]. See link:using_images[using images] in the manual.
 
 cgeimg::block[ktx_image_viewer.png|KTX in castle-image-viewer]
 
@@ -33,6 +33,15 @@ KTX is an excellent image format with a number of graphic features useful when i
 - More compressed formats can be trivially added, just submit a link:https://github.com/castle-engine/castle-engine/issues[bugreport] with a sample KTX file.
 --
 
+- Float-based formats are fully supported. When encountered, KTX files with float-based data will be read to engine float-based formats, and passed as floats to the GPU (so your shaders can enjoy data that has higher-precision and is not bounded to the [0, 1] range):
++
+--
+- cgeref:TGrayscaleFloatImage[],
+- cgeref:TGrayscaleAlphaFloatImage[],
+- cgeref:TRGBFloatImage[],
+- cgeref:TRGBAlphaFloatImage[].
+--
+
 - Textures can have explicit mipmaps (allows texture have better quality when viewer from far away).
 
 - Volume (3D) textures.
@@ -43,8 +52,8 @@ KTX is an excellent image format with a number of graphic features useful when i
 
 We support KTX 1 right now. We plan to support KTX 2 (with https://github.com/KhronosGroup/glTF/tree/main/extensions/2.0/Khronos/KHR_texture_basisu[KHR_texture_basisu]) in the future too.
 
-== Advanced Usage
+== Enumerating KTX subimages using Pascal
 
-While we have no guaranteed API to access KTX subimages directly, you can use https://github.com/castle-engine/castle-engine/blob/master/src/images/castleinternalcompositeimage.pas[CastleInternalCompositeImage] unit. This way you can explicitly iterate over items of a texture array in KTX, for any purpose.
+You can use https://github.com/castle-engine/castle-engine/blob/master/src/images/castleinternalcompositeimage.pas[CastleInternalCompositeImage] unit to load KTX files and explicitly iterate over subimages inside KTX. For example, to iterate over items in a texture array in KTX, for any purpose.
 
-WARNING: As the name suggests, `CastleInternalCompositeImage` is an internal unit and its API may change arbitrarily in the future.
+WARNING: As the name suggests, `CastleInternalCompositeImage` is an internal unit and its API may change arbitrarily in the future. Please link:talk.php[let us know] if you actually need this functionality and why -- at the very least, we will consider making it "official" (e.g. unit `CastleCompositeImage`) and we will put effort to not break its API.
