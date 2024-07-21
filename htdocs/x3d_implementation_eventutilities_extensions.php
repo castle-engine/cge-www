@@ -125,5 +125,5 @@ ROUTE MyValueTrigger.myBboxSize   TO MyShape.bboxSize'); ?>
 <p><a href="https://doc.instantreality.org/documentation/nodetype/ValueTrigger/">This extension is mostly compatible with InstantReality node of the same name</a>, but we allow only <code>SFBool</code> for <code>trigger</code>.
 
 <?php
-  x3d_status_footer();
+  castle_footer();
 ?>

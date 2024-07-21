@@ -51,5 +51,5 @@ by <?php echo a_href_page_hashlink(
 'section_ext_time_origin_at_load'); ?>.</p>
 
 <?php
-  x3d_status_footer();
+  castle_footer();
 ?>

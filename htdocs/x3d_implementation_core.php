@@ -75,5 +75,5 @@ UNIT length km 1000
 </ul>
 
 <?php
-  x3d_status_footer();
+  castle_footer();
 ?>

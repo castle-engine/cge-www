@@ -229,5 +229,5 @@ Why is this extension still useful?
 </ul>
 
 <?php
-  x3d_status_footer();
+  castle_footer();
 ?>

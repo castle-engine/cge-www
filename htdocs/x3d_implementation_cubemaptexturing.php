@@ -212,5 +212,5 @@ to the surrounding enviroment (as there are are no self-reflections).</p>
 </ul>
 
 <?php
-  x3d_status_footer();
+  castle_footer();
 ?>

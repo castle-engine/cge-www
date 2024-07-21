@@ -177,5 +177,5 @@ for rotations in 2D. The axis (in <code>axis</code> field) is constant, only the
 This makes it both more efficient, and the interpolation more obvious (no need for "slerp").
 
 <?php
-  x3d_status_footer();
+  castle_footer();
 ?>

@@ -423,5 +423,5 @@ program now. (<code>isSelected</code> and <code>isValid</code> work perfectly fo
 X3DShaderNode.)
 
 <?php
-  x3d_status_footer();
+  castle_footer();
 ?>

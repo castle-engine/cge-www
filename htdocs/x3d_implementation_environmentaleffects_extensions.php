@@ -101,5 +101,5 @@ You can use <code>X3DBindableNode</code> events to make this node active,
 or observe when it becomes active.
 
 <?php
-  x3d_status_footer();
+  castle_footer();
 ?>

@@ -284,5 +284,5 @@ and solutions (used in our engine, and proposed for future X3D spec) are here.',
 'x3d_multi_texturing'); ?>
 
 <?php
-  x3d_status_footer();
+  castle_footer();
 ?>

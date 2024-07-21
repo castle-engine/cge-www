@@ -1,7 +1,7 @@
 <?php
 require_once 'castle_engine_functions.php';
 require_once 'x3d_implementation_common.php';
-vrmlx3d_header('Larger X3D Extensions');
+castle_header('Larger X3D Extensions');
 
 echo castle_thumbs(array(
   array('filename' => 'sunny_street_tree_hard.png', 'titlealt' => 'Close up shadows on the tree. Notice that leaves (modeled by alpha-test texture) also cast correct shadows.'),
@@ -32,4 +32,4 @@ takes care of all the rendering and processing.
 alongside the respective X3D components.
 Look at the <i>"Extensions"</i> subpages of the <i>"Standard X3D Components"</i>.
 
-<?php vrmlx3d_footer(); ?>
+<?php castle_footer(); ?>

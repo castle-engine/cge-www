@@ -347,5 +347,5 @@ OrientationInterpolator {
 <p><i>TODO</i>: Nodes from the X3D standard not implemented yet: EaseInEaseOut, Spline*, SquadOrientationInterpolator.</p>
 
 <?php
-  x3d_status_footer();
+  castle_footer();
 ?>

@@ -44,5 +44,5 @@ Don Brutzman!</p>
 <?php echo x3d_node_link('IntegerSequencer'); ?>.
 
 <?php
-  x3d_status_footer();
+  castle_footer();
 ?>

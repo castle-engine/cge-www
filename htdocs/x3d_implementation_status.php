@@ -2,7 +2,7 @@
   require_once 'castle_engine_functions.php';
   require_once 'x3d_implementation_common.php';
 
-  vrmlx3d_header("Standard X3D Nodes");
+  castle_header("Standard X3D Nodes");
 
   $toc = new TableOfContents(
     array(
@@ -260,5 +260,5 @@ defined for VRML 97 (since VRML 1.0 didn't define any lighting model
 precisely).
 
 <?php
-  vrmlx3d_footer();
+  castle_footer();
 ?>

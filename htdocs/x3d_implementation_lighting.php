@@ -170,5 +170,5 @@ you <i>may</i> also install the proprietary OpenGL drivers to squeeze best perfo
 (although it's not necessary in many cases, even for 3D games, using CGE or not).
 
 <?php
-  x3d_status_footer();
+  castle_footer();
 ?>

@@ -31,5 +31,5 @@
 </ul>
 
 <?php
-  x3d_status_footer();
+  castle_footer();
 ?>

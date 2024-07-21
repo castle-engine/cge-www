@@ -250,5 +250,5 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
 </ul>
 
 <?php
-  x3d_status_footer();
+  castle_footer();
 ?>

@@ -1,7 +1,7 @@
 <?php
   require_once 'castle_engine_functions.php';
   require_once 'x3d_implementation_common.php';
-  vrmlx3d_header('CastleScript language');
+  castle_header('CastleScript language');
 
   function func_ref($name, $title)
   {
@@ -1077,5 +1077,5 @@ lewej do prawej wiec np. 2*4^2 = 8^2, nie 2*16))
 -->
 
 <?php
-  vrmlx3d_footer();
+  castle_footer();
 ?>

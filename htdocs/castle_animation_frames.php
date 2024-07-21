@@ -2,7 +2,7 @@
 require_once 'castle_engine_functions.php';
 require_once 'x3d_implementation_common.php';
 
-vrmlx3d_header("Castle Animation Frames (castle-anim-frames) file format", array(
+castle_header("Castle Animation Frames (castle-anim-frames) file format", array(
   'social_share_image' => 'blender_castle_anim_frames_export.png',
 ));
 
@@ -202,5 +202,5 @@ of animation handling in our VRML engine documentation</a>.</p-->
 </pre>
 
 <?php
-  vrmlx3d_footer();
+  castle_footer();
 ?>

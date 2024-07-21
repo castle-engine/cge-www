@@ -64,5 +64,5 @@ You can really use any image file, for examples this:
 <p><a href="images/doom_face.png"><img src="images/doom_face.png" alt="DOOM hero face"></a>
 
 <?php
-  x3d_status_footer();
+  castle_footer();
 ?>

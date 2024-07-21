@@ -182,5 +182,5 @@ points in a <code>PointSet</code> and render them or save to file:
 <?php echo pascal_highlight_file('code-samples/build_scene_trianglefan.dpr'); ?>
 
 <?php
-  x3d_status_footer();
+  castle_footer();
 ?>

@@ -51,5 +51,5 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
 <p><i>TODO</i>: TransformSensor missing.
 
 <?php
-  x3d_status_footer();
+  castle_footer();
 ?>

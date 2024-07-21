@@ -399,5 +399,5 @@ fields.
  <!-- funkcje X3DFields.CamDirUp2Orient i CastleVectors.RotatePointAroundAxis -->
 
 <?php
-  x3d_status_footer();
+  castle_footer();
 ?>

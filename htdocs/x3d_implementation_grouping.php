@@ -208,5 +208,5 @@ one of the children, or nothing.
 <?php echo pascal_highlight_file('code-samples/grouping_nodes.lpr'); ?>
 
 <?php
-  x3d_status_footer();
+  castle_footer();
 ?>

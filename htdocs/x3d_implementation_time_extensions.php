@@ -88,5 +88,5 @@ output events are always generated with increasing values
 <p>Set the <code>detectAffectedFields</code> field to <code>FALSE</code> when this detection would be useless and time-consuming. This applies to time sensors which are not supposed to be used with <code>TCastleSceneCore.PlayAnimation</code>. Saving the state of "affected" fields may take time (if they are e.g. MFVec3f fields with lots of data) and may change memory management (if they are e.g. SFNode or MFNode fields).
 
 <?php
-  x3d_status_footer();
+  castle_footer();
 ?>

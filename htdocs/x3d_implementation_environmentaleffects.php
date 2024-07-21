@@ -58,5 +58,5 @@ In particular it deals with <i>fog</i> and <i>background</i> features.
 </ul>
 
 <?php
-  x3d_status_footer();
+  castle_footer();
 ?>

@@ -4,7 +4,7 @@ define('CASTLE_GITHUB_NAME', 'demo-models');
 require_once 'castle_engine_functions.php';
 require_once 'x3d_implementation_common.php';
 
-vrmlx3d_header("Demo models");
+castle_header("Demo models");
 
 $toc = new TableOfContents(
   array(
@@ -160,5 +160,5 @@ Skies generated with <a href="http://www.planetside.co.uk/">Terragen</a>.</p>
 <p>Thanks to everyone!</p>
 
 <?php
-  vrmlx3d_footer();
+  castle_footer();
 ?>

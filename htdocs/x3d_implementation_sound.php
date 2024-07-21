@@ -274,5 +274,5 @@ and support for X3D 4 sound nodes/capabilities in CGE, please
 </ul>
 
 <?php
-  x3d_status_footer();
+  castle_footer();
 ?>

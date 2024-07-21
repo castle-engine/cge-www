@@ -2,7 +2,7 @@
   require_once 'castle_engine_functions.php';
   require_once 'x3d_implementation_common.php';
 
-  vrmlx3d_header("NIST conformance test suite results");
+  castle_header("NIST conformance test suite results");
 ?>
 
 <?php echo pretty_heading($page_title); ?>
@@ -954,5 +954,5 @@ pass(5);
 </table>
 
 <?php
-  vrmlx3d_footer();
+  castle_footer();
 ?>

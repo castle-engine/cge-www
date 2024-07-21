@@ -127,5 +127,5 @@ Note that you can also use <code>solid FALSE</code> to make it visible from both
 ?>
 
 <?php
-  x3d_status_footer();
+  castle_footer();
 ?>

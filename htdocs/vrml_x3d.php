@@ -1,7 +1,7 @@
 <?php
 require_once 'castle_engine_functions.php';
 require_once 'x3d_implementation_common.php';
-vrmlx3d_header('Scene graph (X3D)');
+castle_header('Scene graph (X3D)');
 
 echo castle_thumbs(array(
   array('filename' => 'sunny_street_tree_hard.png', 'titlealt' => 'Close up shadows on the tree. Notice that leaves (modeled by alpha-test texture) also cast correct shadows.'),
@@ -197,4 +197,4 @@ begin
     <p>If for some reason you do want the node to not be automatically freed, you can use <?php echo cgeRef('TX3DNode.KeepExistingBegin'); ?> and <?php echo cgeRef('TX3DNode.KeepExistingEnd'); ?>.
 </ul>
 
-<?php vrmlx3d_footer(); ?>
+<?php castle_footer(); ?>

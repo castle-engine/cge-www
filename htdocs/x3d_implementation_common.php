@@ -5,18 +5,6 @@
 
 require_once 'castle_engine_functions.php';
 
-function vrmlx3d_header($a_page_title)
-{
-  castle_header($a_page_title, array(
-    'path' => array('documentation', 'vrml_x3d')
-  ));
-}
-
-function vrmlx3d_footer()
-{
-  castle_footer();
-}
-
 function x3d_status_header($x3d_component_name, $component_name_for_url, $component_intro)
 {
   castle_header($x3d_component_name .' component');
@@ -59,11 +47,6 @@ function x3d_extensions_header($x3d_component_name, $base_component_page,
     <p class="paragraph_last">See also ' . a_href_page('documentaton of supported nodes of the ' . $x3d_component_name . ' component', $base_component_page) .
       ' and <a href="' . $x3d_component_url .
     '">X3D specification of the ' . $x3d_component_name . ' component</a>.</p></div>';
-}
-
-function x3d_status_footer()
-{
-  castle_footer();
 }
 
 function x3d_node_cgeRef($node_name)

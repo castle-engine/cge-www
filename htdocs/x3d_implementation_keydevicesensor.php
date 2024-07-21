@@ -82,5 +82,5 @@ spec), and without saying which sensor is chosen if many are present (the first?
 the last in the graph?).</p>
 
 <?php
-  x3d_status_footer();
+  castle_footer();
 ?>

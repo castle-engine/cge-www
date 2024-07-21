@@ -1,7 +1,7 @@
 <?php
   require_once 'castle_engine_functions.php';
   require_once 'x3d_implementation_common.php';
-  vrmlx3d_header("VRML / X3D time origin considered uncomfortable");
+  castle_header("VRML / X3D time origin considered uncomfortable");
 ?>
 
 <?php echo pretty_heading($page_title); ?>
@@ -153,5 +153,5 @@ sensible default behavior for me. (You can always set for example
 to push default <code>startTime</code> and such fields into the past. -->
 
 <?php
-  vrmlx3d_footer();
+  castle_footer();
 ?>

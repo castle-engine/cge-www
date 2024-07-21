@@ -112,5 +112,5 @@ you see in White Dune are actually <i>"X3D control points / divided by weight"</
 Octaga, InstantPlayer, BitManagement).
 
 <?php
-  x3d_status_footer();
+  castle_footer();
 ?>

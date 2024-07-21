@@ -3,7 +3,7 @@
   require_once 'x3d_implementation_common.php';
   require_once 'x3d_extensions_functions.php';
 
-  vrmlx3d_header('VRML / X3D extensions in our engine');
+  castle_header('VRML / X3D extensions in our engine');
 
 $toc = new TableOfContents(array(
   new TocItem('Introduction', 'introduction'),
@@ -1033,5 +1033,5 @@ WWWInline { name "my_compressed_vrml_file.wrl.gz" }
   <p><?php echo a_href_page('VRML 1.0-specific extensions are described here', 'x3d_extensions_vrml1'); ?>.</p>
 
 <?php
-  vrmlx3d_footer();
+  castle_footer();
 ?>
