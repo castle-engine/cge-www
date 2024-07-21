@@ -1324,8 +1324,8 @@ function echo_castle_header_suffix($path, $enable_sidebar = true)
         </a>
       </div>
       ' .
-      // TODO: No idea now where to place this, so it doesn't interfere with "patreon"
-      // search_box() .
+      // Too prominent? Moved to sidebar.
+      // castle_search_box() .
       '
       ' . _castle_header_menu($path[0]) . '
     </div>
@@ -1389,11 +1389,26 @@ function castle_footer()
   < ?php
   */
 
+  /* show search box only in "Documentation" sidebar,
+     this makes it looking good, and available where it's needed most */
+  $search_box = '';
+  global $castle_page_path;
+  if (count($castle_page_path) > 0 &&
+      $castle_page_path[0] == 'documentation') {
+    $search_box = castle_search_box();
+  }
+
   global $castle_sidebar;
   if (empty($castle_sidebar)) {
     echo '</div>';
   } else {
-    echo '</div><div class="col-sm-3 col-sm-pull-9 well sidebar">' .$castle_sidebar. '</div></div></div>';
+    echo '</div>
+          <div class="col-sm-3 col-sm-pull-9 well sidebar">' .
+            $castle_sidebar .
+            $search_box .
+          '</div>
+        </div>
+      </div>';
   }
 
   common_footer(page_requisite('castle-engine-website-base/castle-engine.js'));
