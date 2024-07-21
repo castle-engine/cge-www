@@ -92,8 +92,6 @@ switch (CASTLE_ENVIRONMENT) {
 }
 
 // other constants
-define('SF_UNIX_NAME', 'castle-engine'); // used only by download links.
-// unused: define('MAILING_LIST_URL',    'https://lists.sourceforge.net/lists/listinfo/castle-engine-main');
 define('FORUM_URL',           'https://forum.castle-engine.io/');
 define('PATREON_URL',         'https://patreon.com/castleengine');
 
@@ -1420,18 +1418,6 @@ function echo_footer ()
 
   /* Insert tracking code */
   echo_piwik_tracking();
-}
-
-/* Return SVN URL to appropriate path with repository trunk.
-   If $prefix_command is true then also will add 'svn checkout ' text
-   at the beginning. */
-function sf_checkout_link($prefix_command, $path, $force_https = false)
-{
-  return
-    ($prefix_command ? 'svn checkout ' : '') .
-    ($force_https ? 'https' : 'http' ).
-    '://svn.code.sf.net/p/castle-engine/code/trunk/' .
-    $path;
 }
 
 function castle_download_button($title, $url)
