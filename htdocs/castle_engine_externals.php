@@ -1,7 +1,6 @@
 <?php
 
-/* Functions to integrate our pages with external websites widgets,
-   like Flattr, G+, Facebook. */
+/* Functions to integrate our pages with external services. */
 
 function _castle_disable_externals()
 {
@@ -20,7 +19,7 @@ function _castle_disable_stats()
     CASTLE_GENERATE_OFFLINE);
 }
 
-/* Google ------------------------------------------------------------------- */
+/* Analytics ------------------------------------------------------------------- */
 
 function echo_piwik_tracking()
 {
@@ -88,69 +87,29 @@ function paypal_button($with_logos = true)
 </form>' );
 }
 
-/* Twitter ------------------------------------------------------------------- */
-
-function twitter_widget()
-{
-  if (_castle_disable_externals()) return '';
-  return '
-<a class="twitter-timeline" href="https://twitter.com/castleengine" data-widget-id="506585522525859840">Tweety na temat @castleengine</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?\'http\':\'https\';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-';
-}
-
-/* YouTube ------------------------------------------------------------------- */
-
-function youtube_subscribe()
-{
-  if (_castle_disable_externals()) return '';
-  /* Using https://developers.google.com/youtube/youtube_subscribe_button */
-  return '
-<script src="https://apis.google.com/js/platform.js"></script>
-<div class="g-ytsubscribe" data-channelid="UCq9jJ5ivIXC5VEWiUAfxBxw" data-layout="full" data-count="default"></div>
-';
-}
-
-/* Disqus -------------------------------------------------------------------- */
-
-// function disqus_form()
-// {
-//   if (_castle_disable_externals()) return '';
-
-//   global $page_basename, $page_title, $this_page_name, $disqus_form_already_done;
-
-//   /* only show it once. This allows to insert this earlier for news */
-//   if (!empty($disqus_form_already_done)) return '';
-//   $disqus_form_already_done = true;
-
-//   /* From https://castle-engine.disqus.com/admin/settings/universalcode/
-
-//      For Disqus, use the final website URL, even when looking at localhost
-//      or http://michalis.ii.uni.wroc.pl/cge-www-master/ version. */
-
-//   return "
-//     <div id=\"disqus_thread\"></div>
-//     <script type=\"text/javascript\">
-//       var disqus_shortname = 'castle-engine'; // required: replace example with your forum shortname
-//       var disqus_identifier = '" . htmlspecialchars($page_basename) . "';
-//       var disqus_title = '" . htmlspecialchars($page_title) . "';
-//       var disqus_url = '" . CASTLE_PROD_URL . $this_page_name . "';
-//       (function() {
-//           var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-//           dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-//           (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-//       })();
-//     </script>
-//     <noscript>Please enable JavaScript to view the <a href=\"https://disqus.com/?ref_noscript\">comments powered by Disqus.</a></noscript>";
-// }
-
 /* DuckDuckGo ---------------------------------------------------------------- */
 
-// Generated with https://duckduckgo.com/search_box
-function search_box()
+/* Our search box, using DuckDuckGo search engine.
+  See:
+  - Box HTML: https://getbootstrap.com/docs/3.4/components/
+  - DuckDuckGo sites:
+    https://stackoverflow.com/questions/54701276/how-to-direct-custom-duckduckgo-search-to-specific-site-in-html
+  - DuckDuckGo search parameters:
+    https://duckduckgo.com/duckduckgo-help-pages/settings/params/
+*/
+function castle_search_box()
 {
-//  if (_castle_disable_externals()) return '';
   return <<<EOD
-<iframe src="https://duckduckgo.com/search.html?width=\&site=castle-engine.io&prefill=Search Castle Game Engine" style="overflow:hidden;margin:0;padding:0;width:NaNpx;height:40px;" frameborder="0"></iframe>
+<form action="https://duckduckgo.com/" method="get">
+  <div class="input-group">
+    <input type="text" class="form-control" name="q" placeholder="Search...">
+    <input type="hidden" name="sites" value="castle-engine.io">
+    <span class="input-group-btn">
+      <button type="submit" class="btn btn-default">
+        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+      </button>
+    </span>
+  </div><!-- /input-group -->
+</form>
 EOD;
 }
