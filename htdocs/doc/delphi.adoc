@@ -12,7 +12,7 @@ Any Delphi tier, including free link:https://www.embarcadero.com/products/delphi
 // Mentioned lower:
 //NOTE: Though note that Delphi _Community Edition_ versions don't have a working `dcc` (command-line) compiler, so compiling using F9 in CGE editor will not work. But you can simply open the project in Delphi and use F9 from _Delphi_.
 
-We are an official _Embarcadero Technology Partner_. This means that _Michalis Kamburelis_ and _Andrzej Kilijański_ have full access to the latest Delphi version, with all the Delphi platforms (including Android and iOS), for free. For testing CGE compatibility.
+We are an official _Embarcadero Technology Partner_. This means that engine developers have full access to the latest Delphi version, with all the Delphi platforms (including Android and iOS), for free. For testing CGE compatibility.
 
 If you like Delphi compatibility, and want to see more of it (e.g. more platforms or Delphi-specific integration tools), please voice your needs and if you can -- link:https://www.patreon.com/castleengine[support us on Patreon]!
 

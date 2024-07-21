@@ -231,7 +231,7 @@ Current physics engine integration is just a start. The plans are:
 
 - Make cgeref:TCastleWalkNavigation[] use physics to move (just like cgeref:TCastleThirdPersonNavigation[] already can).
 +
-_In progress_ already (by Andrzej Kilijański).
+_In progress_ already (by _Andrzej Kilijański_) - https://github.com/castle-engine/castle-engine/pull/533[PR 533]
 
 - _(See section below about "Old system")_ Currently we also have an older, simpler, internal physics/collision engine in CGE, that takes care of some tasks: the collisions of player and creatures (from CastleCreatures), a simple gravity for them, and custom collision methods for you (like RayCollision, SphereCollision etc. in CastleTransform unit). The new physics engine should eventually replace them all, and there should be a flag to make it possible, and eventually it should even become the default, and the old collision implementation should be simply removed.
 

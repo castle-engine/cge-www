@@ -7,16 +7,64 @@ Don't see the feature you need? link:talk.php[Tell us on the forum or Discord].
 
 If you would like to see some feature implemented sooner, please link:https://www.patreon.com/castleengine[support the engine development on Patreon!]
 
-## VR and AR
+## Planned before 7.0 release
 
-VR: link:wp/2022/01/16/oculus-quest-2-developer-mode-for-castle-game-engine-enabled/[Michalis has access to Oculus Quest since the beginning of 2022]. Port most likely using link:https://www.khronos.org/OpenXR/[OpenXR] (to include the widest possible range of devices using a single cross-platform API).
+### (IN REVIEW) New navigation components that support physics out-of-the-box
 
-cgeimg::block[oculus.png|Oculus Quest 2: Developer Mode for Castle Game Engine enabled!]
+*In progress:* We have completely new navigation components in https://github.com/castle-engine/castle-engine/pull/533 . They achieve a few things:
 
-AR: most likely using Android / iOS built-in frameworks, as these make AR widely available on modern phones.
+- more universal (suitable for 1st person 3D, 3rd person 3D, 2D cases),
+
+- more configurable inputs, also from editor (expose new "axis" paradigm),
+
+- more flexible (functionality split into a few components, easier to pick a subset of functionality you want, easier to write extensions), and honor the physics engine.
+
+Once above is merged, eventually cgeref:TCastleWalkNavigation[] will be deprecated. Don't worry, the deprecated cgeref:TCastleWalkNavigation[] will still be available for quite a while -- we're aware that many projects use it, since (as of today, before we merge PR 533) we actually advise using cgeref:TCastleWalkNavigation[], as it's very easy to use and flexible enough for many situations.
+
+[#steam]
+### (IN REVIEW) Steam integration, and engine available as Steam app
+
+Official Steam integration in CGE.
+
+NOTE: We already used it for The Unholy Society, but we want to have better approach, without an intermediate "wrapper" library.
+
+We should also upload CGE as app to Steam.
+
+This is already in-progress:
+
+- branch: https://github.com/castle-engine/castle-engine/commits/castle-steam
+- PR (by Eugene Loza): https://github.com/castle-engine/castle-engine/pull/471
+- we also have a draft application on Steam for CGE
+
+### (IN PROGRESS) Implement TCastleWalkAttack behavior, use for enemies in examples/fps_game and examples/creatures_behaviors
+
+In progress.
+
+- See https://github.com/castle-engine/castle-engine/blob/master/src/transform/castlebehaviors_moveattack.inc[castlebehaviors_moveattack.inc].
+
+Create a new game using the _"3D FPS Game"_ template and explore how the "enemy" logic is implemented there to see how link:behaviors[] can be used for enemy intelligence.
+
+[NOTE]
+====
+Old approach to this was offered by the `CreatureCreatures` / `CastleResources` / `CastleLevels` / `CastleItems` / `CastlePlayer` units. They should be replaced with a better API. These 5 units expose a high-level API, that sits on top of the existing classes (like TCastleScene and TCastleTransform). But we are not 100% happy with their API. Reasons:
+
+- The API is too specialized at some points (3D games with creatures / items pickable),
+
+- It is confusing how it maps to API underneath (e.g. TPlayer somewhat controls the TCastleNavigation).
+
+We want to express their features in different ways, in ways that are more closely and obviously connected with TCastleScene / TCastleViewport / TCastleNavigation. Basically, we're very happy with current API of `TCastleScene` and `TCastleTransform`, and we want to make it more obvious how it is related to creatures/placeholders and other concepts in the engine. The existing `CreatureCreatures` / `CastleResources` / `CastleLevels` / `CastleItems` / `CastlePlayer` also use TCastleScene and TCastleTransform inside, but the relationship is non-obvious.
+====
+
+////
+Extra possible things:
+
+- _(Possibly reject -- not really useful, you can setup enemies in CGE editor)_ - New TCastleScene.Load should be able to take a callback (or some class instance) to easily perform the "placeholders" functionality of `TLevel.Load` in a flexible manner (user can decide what to replace with what).
+
+- _(Possibly reject -- such optimization should be hidden)_ - There will be TCastleSceneView that provides part of the functionality of T3DResource (multiple TCastleSceneView share a single TCastleScene but can show different animation frame of it), but without some often-unnecessary "baggage" from T3DResource (like refcounting of T3DResource, and it's special Prepare/Release methods).
+////
 
 [#materials]
-## (planned for 7.0) New material components (allowing also material editing in the editor)
+### New material components (allowing also material editing in the editor)
 
 We want to allow you to edit materials in the CGE editor,
 
@@ -30,22 +78,49 @@ This also means exposing new set of Pascal components to manage materials easier
 
 See https://github.com/castle-engine/castle-engine/files/10324944/new-material-components.txt for rough plans.
 
-[#delphi_platforms]
-## More Delphi platforms
+## Most important planned immediately after 7.0 release
 
-See link:supported_compilers.php[about existing Delphi compatibility]. We plan to support more platforms with Delphi: Android, Linux, iOS...
+[#web]
+### (IN PROGRESS) Web platform (rendering using WebGL) support
+
+Using https://www.freepascal.org/[FPC] support for the _WebAssembly_:
+
+- https://wiki.freepascal.org/WebAssembly
+- https://wiki.freepascal.org/WebAssembly/Compiler
+- https://wiki.freepascal.org/WebAssembly/Roadmap
+
+Some "glue" may also be done using https://wiki.freepascal.org/pas2js[pas2js]. This is a nice solution to expose to our WebAssembly code the JS API we need, like WebGL. Alternatively, we could just do it in plain JS.
+
+_This is already in-progress by Trung Le (Kagamma), Andrzej Kilijański and Michalis._
+
+I wrote a longer post about plans and status of this here: https://castle-engine.io/wp/2023/04/08/web-target-progress-and-plans/ .
+
+## Important, big, impactful features (but we first focus on stuff above)
+
+### VR and AR
+
+VR: link:wp/2022/01/16/oculus-quest-2-developer-mode-for-castle-game-engine-enabled/[Michalis has access to Oculus Quest since the beginning of 2022]. Port most likely using link:https://www.khronos.org/OpenXR/[OpenXR] (to include the widest possible range of devices using a single cross-platform API).
+
+cgeimg::block[oculus.png|Oculus Quest 2: Developer Mode for Castle Game Engine enabled!]
+
+AR: most likely using Android / iOS built-in frameworks, as these make AR widely available on modern phones.
+
+[#delphi_platforms]
+### More Delphi platforms
+
+See link:delphi[about existing Delphi compatibility] - we support _Windows_ and _Linux_ now. We plan to support more platforms with Delphi: Android, iOS...
 
 [#gltf_efficient]
-## Load and animate glTF more efficiently
+### Load and animate glTF more efficiently
 
-We should read meshes in a way that keeps binary layout of data in glTF, so that it is ultra-fast to load, and it is loaded almost straight from glTF to GPU.
-
+1. We should read meshes in a way that keeps binary layout of data in glTF, so that it is ultra-fast to load, and it is loaded almost straight from glTF to GPU.
++
 Some modifications to CGE may be required here (CastleGeometryArrays will have to be made more flexible for this). New X3D nodes should be introduced, like `BufferGeometry` (same as X3DOM?).
 
-We should also perform skinning fully on GPU, avoiding `CoordinateInterpolator` done on CPU.
+2. We should also perform skinning fully on GPU, avoiding `CoordinateInterpolator` done on CPU. We may introduce new X3D node for this like `SkinnedAnimation` (using H-Anim is also possible, but not that straightforward).
 
 [#gltf_material_features]
-## Support new glTF material extensions
+### Support new glTF material extensions
 
 - https://github.com/KhronosGroup/glTF/blob/main/extensions/2.0/Khronos/KHR_materials_clearcoat/README.md[Clearcoat]
 - https://github.com/KhronosGroup/glTF/blob/main/extensions/2.0/Khronos/KHR_materials_transmission/README.md[Transmission]
@@ -68,13 +143,7 @@ Thanks to _Holger Seelig_ and https://create3000.github.io/x_ite/[X_ITE] project
 
 - See https://web3d.org/pipermail/x3d-public_web3d.org/2024-June/020587.html["X_ITE implementation of glTF material extensions" thread on x3d-public mailing list for more details].
 
-## More physics
-
-- cgeref:TCastleWalkNavigation[] should support physics out-of-the-box.
-+
-*In progress:* We have completely new navigation components in https://github.com/castle-engine/castle-engine/pull/533 . They achieve a few things: more universal (suitable for 1st person 3D, 3rd person 3D, 2D cases), more configurable inputs, also from editor (expose new "axis" paradigm), more flexible (functionality split into a few components, easier to pick a subset of functionality you want, easier to write extensions), and honor the physics engine.
-+
-It will take some time (to test, merge and document new approach from PR above) but eventually cgeref:TCastleWalkNavigation[] will be deprecated. Don't worry, the deprecated cgeref:TCastleWalkNavigation[] will still be available for quite a while -- we're aware that many projects use it, since (as of today) we actually advise using cgeref:TCastleWalkNavigation[], as it's very easy to use and flexible enough for many situations.
+### More physics
 
 - Older physics based on octrees should be phased out.
 +
@@ -90,45 +159,21 @@ As as result of this, more physics engines can also be added more easily in the 
 
 - See more in link:physics#_future_plans_todos[manual about physics, subsection "TODO"].
 
-[#web]
-## (IN PROGRESS) Web platform (rendering using WebGL) support
-
-Using https://www.freepascal.org/[FPC] support for the _WebAssembly_:
-
-- https://wiki.freepascal.org/WebAssembly
-- https://wiki.freepascal.org/WebAssembly/Compiler
-- https://wiki.freepascal.org/WebAssembly/Roadmap
-
-Some "glue" may also be done using https://wiki.freepascal.org/pas2js[pas2js]. This is a nice solution to expose to our WebAssembly code the JS API we need, like WebGL. Alternatively, we could just do it in plain JS.
-
-_This is already in-progress by Trung Le (Kagamma), Andrzej Kilijański and Michalis._
-
-I wrote a longer post about plans and status of this here: https://castle-engine.io/wp/2023/04/08/web-target-progress-and-plans/ .
-
 [#particles]
-## (IN PROGRESS) Particle systems
+### (IN PROGRESS) Particle systems
 
 With a designer. Example usage: blood, snow, rain, fire, smoke... 2D, 3D.
 
 _This is already in-progress by Trung Le (Kagamma). Use link:https://github.com/Kagamma/cge-3d-particle-emitter[cge-3d-particle-emitter] or link:https://github.com/Kagamma/cge-effekseer[Effekseer Integration]. See link:additional_components.php[CGE components]._
 
-[#steam]
-## (IN REVIEW) Steam integration, and engine available as Steam app
-
-Official Steam integration in CGE, see https://trello.com/c/RNDjQhqe/71-steam-headers . We already used it for The Unholy Society, we want to either "just publish that approach" or propose a new, improved (without an intermediate "wrapper" library) approach.
-
-We should also upload CGE as app to Steam.
-
-_This is already in-progress by Eugene Loza (branch: https://github.com/castle-engine/castle-engine/commits/castle-steam , PR: https://github.com/castle-engine/castle-engine/pull/471 ), we also have a draft application on Steam for CGE :)_.
-
-## Release mobile castle-model-viewer (as Android and iOS application)
+### Release mobile castle-model-viewer (as Android and iOS application)
 
 link:https://github.com/castle-engine/castle-model-viewer-mobile[This is almost done, thanks to Jan Adamec.] We need to release it :)
 
 Associated with glTF, X3D and other formats that the castle-model-viewer (and _Castle Game Engine_) handles. Available in the App Store / Google Play Store. For free or for 1 USD (not sure yet; but definitely without ads, I really dislike ads).
 
 [#terrain]
-## Terrain features (in particular, editing terrain in CGE editor)
+### Terrain features (in particular, editing terrain in CGE editor)
 
 _What we have now:_ The engine includes cgeref:TCastleTerrain[] component and https://github.com/castle-engine/castle-engine/tree/master/examples/terrain[examples/terrain] that shows how to generate terrains in various ways (from smoothed random noise, from a ready image) and render it. We also have the link:https://github.com/castle-engine/wyrd-forest["Wyrd Forest"] game that also uses `CastleTerrain`, and also includes a simple editor of terrain settings. See also https://castle-engine.io/wp/2022/08/21/new-components-to-generate-terrains-along-with-a-demo-including-water-and-planting-trees/[news about terrains].
 
@@ -172,7 +217,7 @@ Optional LODs could be nice (but maybe this is outside of scope of terrains; LOD
 - More than 4 layers. Each new set of 4 layers mean a new _splatmap_.
 
 [#vulkan]
-## Vulkan renderer
+### Vulkan renderer
 
 Add a https://www.vulkan.org/[Vulkan] renderer.
 
@@ -199,7 +244,7 @@ We could also get Vulkan header from https://gen.glad.sh/[GLAD 2] if only we por
 Not all platforms support Vulkan, in particular it's uncertain whether Apple with ever support it (they want to push Apple-specific Metal API). CGE will most likely use https://moltengl.com/moltenvk/[MoltenVK] to render using Vulkan on Apple, see https://castle-engine.io/macos#_apple_says_that_opengles_is_deprecated_what_happens_if_they_remove_opengles_from_macos_and_ios[plans regarding macOS / iOS and OpenGL, Vulkan].
 
 ////
-## (Optional) Make TCastleScene, TCastleTranform and friends to be special X3D nodes
+### (Optional) Make TCastleScene, TCastleTranform and friends to be special X3D nodes
 
 This would make the whole TCastleViewport.Items a single graph of X3D nodes, allowing for more sharing in code. The TCastleTranform would be just like TTransformNode, but a little diferently optimized (but it would become toggable at runtime).
 
@@ -207,7 +252,7 @@ It's unsure now whether this is really needed. Using cgeref:TCastleSceneCore.Exp
 ////
 
 [#bgfx]
-## BGFX renderer
+### BGFX renderer
 
 - https://github.com/bkaradzic/bgfx
 
@@ -227,15 +272,13 @@ Look great:
 This *may* be even better than direct Vulkan port. We shall see. On one hand, this provides more possibilities than just Vulkan (e.g. direct Metal renderer). And it may be easier to use than Vulkan. OTOH, it will not allow to squeeze "every last bit of performance from Vulkan" (though we really don't need that in CGE in the first place; there are lots of optimizations on the table in CGE before it's worth even thinking about low-level Vulkan optimizations).
 
 [#distance_field_fonts]
-## (IN REVIEW) Distance field fonts
+### (IN REVIEW) Distance field fonts
 
 See link:https://libgdx.com/wiki/graphics/2d/fonts/distance-field-fonts[about Distance field fonts]. See code from link:https://github.com/neurolabusc/OpenGLCoreTutorials[Chris Rorden] showing how to do it in Lazarus.
 
 In review: PR: https://github.com/castle-engine/castle-engine/pull/504 .
 
-## Mobile
-
-### Wireframe on OpenGLES
+### Mobile: Wireframe on OpenGLES
 
 Since `glPolygonMode` is not available at all on OpenGLES, we need to be able to generate wireframe geometry arrays on CPU, adding a "wireframe" option to `CastleArraysGenerator` that will generate a different (line) primitive for TGeometryArrays. Then the renderer can use such TGeometryArrays for OpenGLES.
 
@@ -246,15 +289,17 @@ This is started now, by having `Shape.shading = "WIREFRAME"` option, see https:/
 * And then we can implement Attribute.WireframeEffect on OpenGLES correctly,
 * and allow to set Wireframe on specific viewports (so that some viewports may view wireframe, independent of others) on OpenGLES.
 
-### On-screen keyboard on iOS (done on Android)
+### Mobile: On-screen keyboard on iOS (already done on Android)
 
-### TGLImage.GetContents on OpenGLES
+You can subscribe tp https://github.com/castle-engine/castle-engine/issues/554 .
 
-TGLImage.GetContents is not available on OpenGLES, as it doesn't support `glGetTexImage`. Fixing it is a matter of implementing alternative way that draws texture to FBO and grabs using SaveScreenGL (using glReadPixels internally).
+### Mobile: TGLImage.GetContents on OpenGLES
+
+`TGLImage.GetContents` is not available on OpenGLES, as it doesn't support `glGetTexImage`. Fixing it is a matter of implementing alternative way that draws texture to FBO and grabs using SaveScreenGL (using glReadPixels internally).
 
 One has to use TGLRenderToTexture to render quad with a texture (making sure the framebuffer size, quad size, and texture size match, and  without filtering) and then use glReadPixels to get the pixels from FBO. This will work on mobile (and also on desktops, although it will be less optimal alternative to glGetTexImage).
 
-## macOS: Package engine as one big application bundle
+### macOS: Package engine as one big application bundle
 
 This will:
 
@@ -266,7 +311,7 @@ This will:
 
 See link:macos[macOS].
 
-## macOS: Have signed app bundle for the editor
+### macOS: Have signed app bundle for the editor
 
 This will allow to run CGE editor on macOS by just double-clicking it, out-of-the-box.
 
@@ -274,39 +319,11 @@ See link:macos[macOS].
 
 We should also enable developers to easily sign their own applications packaged with CGE build tool.
 
-## (IN PROGRESS) fps_game should be redesigned using editor, CreatureCreatures / CastleResources / CastleLevels / CastleItems / CastlePlayer should be replaced with a better API
-
-**In progress. See https://castle-engine.io/wp/2022/10/21/concept-art-teaser-huge-graphical-and-functional-upgrade-to-our-fps-game-is-coming/[news post]. On branch https://github.com/castle-engine/castle-engine/tree/fps-game-upgrade[fps-game-upgrade].**
-
-These 5 units (CreatureCreatures / CastleResources / CastleLevels / CastleItems / CastlePlayer) expose a high-level API, that sits on top on existing classes (like TCastleScene and TCastleTransform). But I am not 100% happy with their API. Reasons:
-
-- The API is too specialized at some points (3D games with creatures / items pickable),
-
-- It is confusing how it maps to API underneath (e.g. TPlayer somewhat controls the TCastleNavigation).
-
-Gradually I will want to express their features in different ways, in ways that are more closely and obviously connected with TCastleScene / TCastleViewport / TCastleNavigation. Basically, I'm very happy with current API of TCastleScene and TCastleTransform, and I want to make it more obvious how it is related to creatures/placeholders and other concepts introduced in CastleLevels and CastleCreatures and CastkeResources. Currently they use TCastleScene and TCastleTransform inside, but the relationship is non-obvious.
-
-It's not going to happen any time soon, but it will happen gradually, over the course of next 1 or more years. That is, some of the features of the 5 units mentioned above will become available in other ways too (more flexible, and more obviously connected to TCastleScene).
-
-I know this sounds vague, because I have not yet clarified these plans in my head:) These 5 units *are* useful, they provide various features on top of TCastleScene. I'm not going to just "ditch" them or even deprecate them, before I made a better API that also has these features. For example:
-
-- New TCastleScene.Load should be able to take a callback (or some class instance) to easily perform the "placeholders" functionality of `TLevel.Load` in a flexible manner (user can decide what to replace with what).
-
-- There will be TCastleSceneView that provides part of the functionality of T3DResource (multiple TCastleSceneView share a single TCastleScene but can show different animation frame of it), but without some often-unnecessary "baggage" from T3DResource (like refcounting of T3DResource, and it's special Prepare/Release methods).
-
-- It should be possible to add an A.I. (like TWalkAttackLogic) to any TCastleTransform instance.
-
-I know I want to go in this direction. Based on the questions (including on Discord) I see that the API of these 5 units is not clear to people. It wraps TCastleScene / TCastleViewport / TCastleNavigation, but in ways that are not obvious, and that is something I want to improve.
-
-Again, bear in mind that it will not happen any time soon :) You can safely and happily use these units, probably for a few years to come.
-
-But it is something I think about for the future, and it may explain some of my decisions. E.g. that is why I don't plan special integration of TCastleCreature with castle-editor. Instead I want to enable you to add future TWalkAttackLogic to any TCastleTransform one day. And thus we will have "easy creatures" in CGE but with more flexible API.
-
-## Bridge TDrawableImage with TCastleScene, enable drawing UI into TCastleScene, to have UI rotated in 3D with perspective.
+### Bridge TDrawableImage with TCastleScene, enable drawing UI into TCastleScene, to have UI rotated in 3D with perspective.
 
 link:how_to_render_2d[See also here.]
 
-## MDL and/or MaterialX integration
+### MDL and/or MaterialX integration
 
 - MDL, https://developer.nvidia.com/rendering-technologies/mdl-sdk
 
@@ -314,11 +331,11 @@ link:how_to_render_2d[See also here.]
 
 We can make 3D modeling of realistically-looking stuff much easier by reusing libraries of realistic materials.
 
-## USD – Universal Scene Description support
+### USD – Universal Scene Description support
 
 Explore possibility to support https://graphics.pixar.com/usd/release/index.html[USD – Universal Scene Description] format as a first-class citizen, alongside glTF and X3D, in CGE.
 
-## Integration with Nakama (scalable server for social and real-time games and apps)
+### Integration with Nakama (scalable server for social and real-time games and apps)
 
 Integration with https://heroiclabs.com/docs/nakama/getting-started/index.html[Nakama]:
 
@@ -340,7 +357,7 @@ I think Nakama may give CGE networking capabilities comparable with some popular
 
 Allowing to trivially get multi-player functionality in your games.
 
-## Project settings editable using GUI
+### Project settings editable using GUI
 
 We will expose both current `CastleEngineManifest.xml` and `data/CastleSettings.xml` as something you can edit yourself with GUI.
 
@@ -371,7 +388,7 @@ Moreover:
 - Expose cgeref:CastleDataIgnoreCase[] in `data/settings.castle-project-settings`. This makes sense to be read also by editor when editing the project, to ignore case also at design-time.
 
 [#anims]
-## Creating animations in CGE editor, for UI and transforms
+### Creating animations in CGE editor, for UI and transforms
 
 Allow designing and testing animations in CGE editor.
 
@@ -411,7 +428,7 @@ See also:
 - Nice lean tweening code, independent from engine: https://github.com/glhrmfrts/wetween
 
 [#screen_effects]
-## Screen effects - expose as nicer components
+### Screen effects - expose as nicer components
 
 Address a few shortcomings of our  (see `examples/screen_effects_demo/`, link:x3d_extensions_screen_effects.php[screen effects]):
 
@@ -423,36 +440,36 @@ Address a few shortcomings of our  (see `examples/screen_effects_demo/`, link:x3
 
 - This depends on making a more generic link:#component_list[TCastleComponentList] to expose `TCastleScreenEffects.ScreenEffects` list nicely.
 
-## Export any TCastleTransform hierarchy to X3D
+### Export any TCastleTransform hierarchy to X3D
 
 Currently you can only export `TCastleScene` to X3D.
 
-## Export TCastleScene, or any TCastleTransform hierarchy, to glTF
+### Export TCastleScene, or any TCastleTransform hierarchy, to glTF
 
 Currently you can export `TCastleScene` to X3D or STL.
 
 GitHub issue: https://github.com/castle-engine/castle-engine/issues/595
 
-## Allow animating selected node graph properties, without changing the graph, to be able to reuse graphs
+### Allow animating selected node graph properties, without changing the graph, to be able to reuse graphs
 
 Right now our X3D graph usage is similar to HTML DOM usage from typical web applications: we modify the graph at runtime, everything that changes stuff (like animations) just changes the graph. This is simple to use, it nicely allows to animate _everything_ in X3D and gives developers an easy way to modify everything at runtime.
 
 The downside is that we waste significant memory, and loading time, in some cases. If you want to play different animations on each cgeref:TCastleScene[], then they need to have a different graph even though they are loaded from the same `URL`. Hence using e.g. cgeref:TCastleScene.Clone[] or cgeref:TCastleSceneCore.Cache[] really internally makes multiple copies of the graph. This could be more optimal in the future. E.g. assuming your model only uses glTF skinned animation or animates simple transformation position/rotation/scale, we could make the graph read-only, and only maintain small "diff" information at each instance.
 
 [#fmod_studio]
-## FMOD Studio support
+### FMOD Studio support
 
 Right now our link:fmod[FMOD backend] uses only _"FMOD Core API"_.
 
 We want to enable using higher-level FMOD events that drive the _sound banks_ exported from "FMOD Studio".
 
 [#wwise]
-## Wwise backend
+### Wwise backend
 
 Allow using https://www.audiokinetic.com/[AudioKinetic's Wwise] as sound backend, and as a middleware to design sounds.
 
 [#async]
-## Asynchronous loading of assets
+### Asynchronous loading of assets
 
 As described in https://castle-engine.io/threads[threads], we want to allow loading assets *asynchronously*. This means that you use CGE API from one thread, but some operations are not "blocking" and CGE can internally use threads to finish their work, while your code continues to calculate, CGE events like `Update` continue to be processed etc.
 
@@ -479,7 +496,7 @@ The ultimate demo is to implement exploring a huge city and loading neighboring 
 
 I mentioned this in the bottom part of https://castle-engine.io/wp/2022/10/12/slides-movies-and-thoughts-from-my-gic-2022-presentation/[Slides, movies and thoughts from my GIC 2022 presentation] .
 
-## Merge TCastleImagePersistent and TDrawableImage
+### Merge TCastleImagePersistent and TDrawableImage
 
 One less image class (we have too many image classes, see https://castle-engine.io/using_images ).
 
@@ -508,7 +525,7 @@ DrawableImage.Color := FColor;
 DrawableImage.CustomShader := FCustomShader;
 ----
 
-## (IN PROGRESS) Gamepads (joysticks) support
+### (IN PROGRESS) Gamepads (joysticks) support
 
 Goal: Support modern gamepads (joysticks) with a nice API.
 
@@ -538,7 +555,7 @@ Buttons should have agnostic names, like _North_, _East_ etc. Avoid using names 
 
 - examples/joystick/ should look better. Show a sketch of a gamepad -- and highlight the current axis used, button pressed.
 
-## Smart Tasks
+### Smart Tasks
 
 Allow to define tasks that should occur regularly, but do not have to be done every frame. The engine should then automatically execute the tasks based on their need and current workload.
 
@@ -563,7 +580,7 @@ So:
 2. When using threads, then we should use Delphi tasks (on Delphi), where possible. Only for FPC we'll need to duplicate subset of it (unless FPC will get the compatible implementation).
 ====
 
-## Improve automatic reloading of files (in editor) when they changed
+### Improve automatic reloading of files (in editor) when they changed
 
 Automatic reloading (`CastleInternalFileMonitor`) now:
 
@@ -574,14 +591,14 @@ Automatic reloading (`CastleInternalFileMonitor`) now:
 * Not all components implement necessary watching logic. For now only TCastleSceneCore. All components should eventually do it, e.g. TCastleTiledMap, TCastleImageTransform, TCastleImageControl.
 
 [#ktx2]
-## KTX 2.0 support
+### KTX 2.0 support
 
 https://www.khronos.org/api/index_2017/ktx
 
 A great format, by Khronos. Enables managing compressed textures much better. (than our existing solution: https://castle-engine.io/creating_data_auto_generated_textures.php )
 
 [#expose_to_code]
-## Expose component name for Pascal code
+### Expose component name for Pascal code
 
 Right now to access a component set up in the design, you have to manually add it to the `published` section of the design, addign a declaration like `MyViewport: TCastleViewport`.
 
@@ -598,7 +615,7 @@ It would be easy to just expose *all* named components from the design in the `p
 It is possible we'll add markers `{$region 'Castle ...'}` to help organize this. See the current markers in `gameinitialize.pas`.
 
 [#design_overrides]
-## Allow to override design properties when instantiated using TCastleDesign, TCastleTransformDesign
+### Allow to override design properties when instantiated using TCastleDesign, TCastleTransformDesign
 
 Allow to customize the hierachy instantiated through cgeref:TCastleDesign[] or cgeref:TCastleTransformDesign[].
 
@@ -609,7 +626,7 @@ The idea is that, in the "outer" design, we can save only the differences from y
 See link:custom_components[Custom components] documentation, and the section _"Using designs to visually set up default state of your component"_.
 
 [#shadow_maps]
-## Make shadow maps available by a trivial property on light sources
+### Make shadow maps available by a trivial property on light sources
 
 Right now, activating https://castle-engine.io/x3d_extensions_shadow_maps.php[shadow maps] is more involved. You need to setup special X3D nodes, and they only https://github.com/castle-engine/castle-engine/issues/284[work within a single scene].
 
@@ -620,7 +637,7 @@ We want to have both these shadow approaches be trivial to enable. Light source 
 NOTE: Alternative, rejected, API idea was to turn `Shadows` into an enum with a possible "none" value, like `Shadows: (None, Volumes, Maps)`. Separate Boolean to choose whether shadows are enabled at all, separate from choosing shadows algorithm, seems more natural.
 
 [#component_list]
-## Component list class, to easily expose serialized list of components in editor
+### Component list class, to easily expose serialized list of components in editor
 
 We want to have a component list class, that
 
@@ -712,7 +729,7 @@ And you can also do
 Right now... it's already mostly like that, but due to the fact that I declared a few things manually in the same way. The new `TCastleComponentList<T>` should force it to be consistent, and also make some code easier for editor.
 
 [#tiled_layers]
-## New API for Tiled layers
+### New API for Tiled layers
 
 - New class `TCastleTiledMap.TLayer = class(TCastleComponent)`
 +
@@ -741,7 +758,7 @@ This way we can go, step by step, to having own Tiled-like editor in CGE, like G
 At the same time, we want to support https://www.mapeditor.org/[Tiled] (as external application for map editing) and support it fully, because Tiled is great! and it may take us long time to actually have fully useful tile editor in CGE editor. The road should be that `Data` stuff, and everything in `TCastleTiledMapData`, becomes less and less useful. It's an internal detail whether our public `TCastleTiledMap.TLayer` has a reference like `Data:TCastleTiledMapData.TLayer` or not.
 
 [#tiles3d]
-## Built-in tile editor in CGE, with support for 3D models on a grid
+### Built-in tile editor in CGE, with support for 3D models on a grid
 
 Built-in Tiled-like editing features in CGE would be great.
 
@@ -760,7 +777,7 @@ This is admittedly a long-term goal. A whole system for this, esp. with 3D, woul
 What will likely be done sooner: "snapping" for 3D operations, that fils some subset of this functionality, e.g. allows to put 3D buildings on a grid.
 
 [#expose]
-## ExposeTransforms is a powerful idea that can cover more use-cases
+### ExposeTransforms is a powerful idea that can cover more use-cases
 
 See link:expose[docs] and cgeref:TCastleSceneCore.ExposeTransforms[]. It already contains TODOs showing how it *should* work like.
 
@@ -777,7 +794,7 @@ Moreover, maybe:
 * ? Rename to just `Expose`? `ExposeTransforms` sounds convoluted.
 
 [#edit]
-## Improve editing (TCastleEdit, planned TCastleMemo)
+### Improve editing (TCastleEdit, planned TCastleMemo)
 
 - Moving cursor freely in text (clicking, arrow keys, ctrl+arrow keys to move by words)
 - Free selection of any text subset (clicking, shift+arrows)
@@ -790,7 +807,7 @@ All above will have to be synchronized with on-screen keyboard behavior on Andro
 Moreover we want to support on-screen keyboard behavior on iOS as well, see https://github.com/castle-engine/castle-engine/issues/554 .
 
 [#dark_mode]
-## Editor Dark mode
+### Editor Dark mode
 
 cgeimg::block[editor_dark_mode.png|Dark Mode design by Adrianna Matejek]
 
@@ -822,7 +839,7 @@ We have a https://github.com/castle-engine/castle-engine/pull/555/[PR with this]
 - And, last but not least: the dark mode, on all platforms, will be trivial to implement :)
 --
 
-## Environment Lighting
+### Environment Lighting
 
 - Finish https://github.com/michaliskambi/x3d-tests/wiki/Image-Based-Lighting-(EnvironmentLight-node)[EnvironmentLight X3D node]
 - On top of that CGE component `TCastleEnvironmentLight`
@@ -830,7 +847,7 @@ We have a https://github.com/castle-engine/castle-engine/pull/555/[PR with this]
 It will work for all models, it is a great and modern way to do lighting.
 
 [#animations_optimized]
-## Optimized animations (OptimizeExtensiveTransformations, InternalFastTransformUpdate) just out-of-the-box
+### Optimized animations (OptimizeExtensiveTransformations, InternalFastTransformUpdate) just out-of-the-box
 
 As https://castle-engine.io/wp/2024/06/07/new-example-demonstrating-a-few-possible-animations-optimizations/[this post] discusses, we have a few options to speed up animation processing.
 
@@ -841,7 +858,7 @@ Not all, but *some* of them should be "on" by default and have no possible adver
 - cgeref:OptimizeExtensiveTransformations[] we should generalize it by remembering the top-most transform that needs to be processed.
 
 [#reloading]
-## Improvements to auto-reloading changed data
+### Improvements to auto-reloading changed data
 
 In _Castle Game Engine_, we can auto-reload data files (https://castle-engine.io/using_images[images (in TCastleImageControl, TCastleImageTransform)], https://castle-engine.io/viewport_and_scenes[scenes], https://castle-engine.io/tiled_maps[Tiled maps]) when they changed on disk. This is great when quickly prototyping the game, you can just save the file in external program (like Blender, GIMP, Tiled), _Alt+Tab_ to the editor (or even your running game), and see how the new data "fits in".
 
@@ -876,7 +893,7 @@ We haven't found any useful workaround, no other LCL event seems to receive any 
 The end result: CGE editor on Linux sometimes does not reload the data that changed. However, CGE applications, with "Monitor and Auto-Reload Data" selected, do reload the data reliably at run-time.
 
 [#saving_float_images]
-## Saving float-based images preserving their precision
+### Saving float-based images preserving their precision
 
 We can read float-based images, into these 4 image formats:
 
