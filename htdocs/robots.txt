@@ -1,1 +1,5 @@
+# Disallow from indexing /doc/output/, as they duplicate the content available at root.
+User-agent: *
+Disallow: /doc/output/
+
 Sitemap: https://castle-engine.io/sitemap.xml
