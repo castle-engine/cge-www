@@ -44,7 +44,7 @@ function x3d_extensions_header($x3d_component_name, $base_component_page,
 
   echo '<div class="x3d_component_intro">
     <p class="paragraph_first">' . $component_intro . '</p>
-    <p class="paragraph_last">See also ' . a_href_page('documentaton of supported nodes of the ' . $x3d_component_name . ' component', $base_component_page) .
+    <p class="paragraph_last">See also ' . a_href_page('documentation of supported nodes of the ' . $x3d_component_name . ' component', $base_component_page) .
       ' and <a href="' . $x3d_component_url .
     '">X3D specification of the ' . $x3d_component_name . ' component</a>.</p></div>';
 }
