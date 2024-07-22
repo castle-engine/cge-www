@@ -19,6 +19,8 @@
 
   $toc = new TableOfContents(
     array(
+      new TocItem('Introduction', 'intro'),
+      new TocItem('Recommendation: Use shader effects (Effect, EffectPart nodes) instead of this', 'effect'),
       new TocItem('Demos', 'demos'),
       new TocItem('Support', 'support'),
       new TocItem('Features and examples', 'examples'),
@@ -40,6 +42,52 @@
 
 <?php echo $toc->html_section(); ?>
 
+<p>The nodes documented here allow to write custom shader code using <i>GLSL (OpenGL Shading Language)</i>.
+
+<p>There are many resources to learn GLSL:
+
+<ul>
+  <li>
+    <p><a href="https://www.khronos.org/opengl/wiki/OpenGL_Shading_Language">OpenGL Shading Language at Khronos wiki</a>.
+  <li>
+    <p><a href="https://en.wikipedia.org/wiki/OpenGL_Shading_Language">OpenGL Shading Language at Wikipedia</a>, includes links to Khronos specifications &mdash; this is your ultimate resource.
+  <li>
+    <p>For a gentler introduction to GLSL, explore e.g. <a href="https://learnopengl.com/Getting-started/Shaders">LearnOpenGL.com</a>.
+</ul>
+
+<?php echo $toc->html_section(); ?>
+
+<p><b>WARNING:</b> We do not recommend using nodes documented here (<code>ComposedShader</code>, <code>ShaderPart</code>). Reasons:
+
+<ul>
+  <li>
+    <p>The nodes documented here require you to write the <i>whole</i> shader code. For example, if you just want to tweak one thing (e.g. shift colors hue), you still have to replicate all the lighting calculation (which is normally implemented by the engine).
+
+  <li>
+    <p>To use the nodes documented here you need to know what <i>uniforms</i> are passed by the engine (<i>uniforms</i> are values passed from Pascal engine to the shader code).
+
+    <p>Details about these "uniforms" are somewhat internal and may change from engine version to another (may even change depending on GPU capabilities, desktop vs mobile etc. -- for example, skinned animation will result in different set of uniforms depending on whether we do skinned animation on GPU).
+
+    <p>Moreover, these uniforms are not portable between X3D implementations. E.g. in <i>Castle Game Engine</i> they are named <code>castle_xxx</code>.
+</ul>
+
+<p>We <b>strongly recommend</b> using the <a href="compositing_shaders.php">shader effects (compositing shaders)</a> instead, which mean using the <code>Effect</code> and <code>EffectPart</code> nodes. They overcome the above problems:
+
+<ul>
+  <li>
+    <p>They allow you to write pieces of shader code that can be easily combined with the default rendering of the engine (and with other effects).
+
+  <li>
+    <p>You simply define a function called <code>PLUG_xxx</code>. This shader code will be merged with the browser shader code, and the <code>PLUG_xxx</code> called when necessary.
+
+    <p>To get the standard engine information, you should use the parameters provided to the <code>PLUG_xxx</code> functions (and not <code>castle_xxx</code> uniforms). Though you can still access your own information through own uniforms freely.
+
+  <li>
+    <p>They are implemented by <a href="https://castle-engine.io/">Castle Game Engine</a> and <a href="https://freewrl.sourceforge.io/">FreeWRL</a>.
+</ul>
+
+<?php echo $toc->html_section(); ?>
+
 <p>For complete demos of features discussed here,
 see the <code>shaders</code> subdirectory inside <?php
 echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.
@@ -54,23 +102,6 @@ in particular with <?php echo a_href_page('view3dscene', 'view3dscene') ?>.
 <?php echo x3d_node_link('ShaderPart'); ?> nodes
 allow you to write shaders in the <i>OpenGL shading language (GLSL)</i>.
 These are standard X3D nodes to replace the default browser rendering with shaders.
-To learn GLSL, see:
-
-<ul>
-  <li><a href="https://www.opengl.org/sdk/docs/man4/">The GLSL function reference</a>.
-    Be careful: the reference linked here describes both GLSL and OpenGL API.
-    You can ignore the functions named <code>glXxx</code>,
-    they are part of the OpenGL API,
-    and they not useful to a shader author.
-  <li><a href="https://en.wikipedia.org/wiki/OpenGL_Shading_Language">GLSL description at Wikipedia</a> and
-    <a href="https://www.khronos.org/opengl/wiki/OpenGL_Shading_Language">GLSL description at Khronos wiki</a>.
-</ul>
-
-<p>If you're interested in shaders, we strongly encourage you to
-try also <?php echo a_href_page('our compositing shaders extensions for X3D, with <code>Effect</code> and related nodes',
-'compositing_shaders') ?>. They allow to write shader code that can cooperate
-with standard browser rendering, and define rendering effects that can be
-easily reused and combined.
 
 <?php echo $toc->html_section(); ?>
 
