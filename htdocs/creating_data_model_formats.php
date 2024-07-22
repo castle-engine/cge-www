@@ -60,7 +60,7 @@ is using Spine for all 2D games.
 
 <?php echo $toc->html_section(); ?>
 
-<p><?php echo a_href_page('X3D and VRML', 'vrml_x3d'); ?> is a flexible
+<p><?php echo a_href_page('X3D and VRML', 'doc/x3d'); ?> is a flexible
 and powerful format for 3D models and a basis of our scene graph.
 
 <p>The following extensions are recognized:
@@ -92,7 +92,7 @@ WWWInline handling, text rendering and more. -->
 and handle rendering, animation, interaction, scripts, shaders
 and more features of these formats.
 An entire section of this website,
-<?php echo a_href_page('Scene Graph (X3D)', 'vrml_x3d'); ?>,
+<?php echo a_href_page('Scene Graph: X3D nodes', 'doc/x3d'); ?>,
 documents all the features we support (from the X3D and VRML standard,
 and many of our own extensions).
 

@@ -278,11 +278,11 @@ castle_thumbs(array(
 <ol>
   <li><p>We have a nice header, visible at the top of every page, with most important links / sections clearly emphasized. Among other things, this avoids the previous looong index page. And makes the important but previously too-easy-to-miss links ' . news_a_href_page('"Forum"', 'forum') . ' and ' . news_a_href_page('"Engine" (for developers)', 'kambi_vrml_game_engine') . ' more visible.</p></li>
 
-  <li><p>Some sections get a sidebar on the right for easier navigation. This is especially useful with ' . news_a_href_page('VRML/X3D', 'vrml_x3d') . ' section, which has a huge number of useful content especially under ' . news_a_href_page('Implementation status', 'x3d_implementation_status') . '.</p></li>
+  <li><p>Some sections get a sidebar on the right for easier navigation. This is especially useful with X3D section, which has a huge number of useful content especially under ' . news_a_href_page('Implementation status', 'x3d_implementation_status') . '.</p></li>
 
   <li><p>We also have "breadcrumbs" visible on pages deeper in the hierarchy, like ' . news_a_href_page('Shaders implementation status', 'x3d_implementation_shaders') . '. Together with header and sidebar they (hopefully) clearly show you where you are in the website.</p></li>
 
-  <li><p>New ' . news_a_href_page('VRML/X3D', 'vrml_x3d') . ' page, an introduction to the whole VRML/X3D section, explains <i>"What is VRML / X3D"</i> in a short and friendly way. This will hopefully explain newcomers (to our engine, and/or X3D) why this 3D format is so great that I based my whole engine on it :)</p></li>
+  <li><p>New X3D page, an introduction to the whole VRML/X3D section, explains <i>"What is VRML / X3D"</i> in a short and friendly way. This will hopefully explain newcomers (to our engine, and/or X3D) why this 3D format is so great that I based my whole engine on it :)</p></li>
 
   <li>Our news are nicer now, with each ' . news_a_href_page('news', 'news') . ' post displayed on a separate page (previous "one page with all the news" was getting awfully long to load).  You get nice <i>Newer / Older</i> links and a sidebar to navigate among our news posts easily.</li>
 </ol>'),

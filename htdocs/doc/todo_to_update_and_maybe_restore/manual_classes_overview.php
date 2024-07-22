@@ -176,7 +176,7 @@ It can be treated like a cheatsheet, concise description of engine architecture.
       <dd><p>The main scene is used to detect initial
         background, initial viewpoint, initial navigation mode and so on &mdash;
         information that naturally has only a single value for the entire 3D world.
-        In <?php echo a_href_page('VRML/X3D', 'vrml_x3d'); ?>, these concepts are
+        In <?php echo a_href_page('X3D', 'doc/x3d'); ?>, these concepts are
         called "bindable nodes" &mdash; of course they
         can change during the lifetime of the world, but at a given time
         only one value is active.

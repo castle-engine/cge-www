@@ -341,7 +341,7 @@ The scene property cgeref:TCastleSceneCore.RootNode[RootNode] holds a _scene gra
 
 Below we show a sample code building a scene with a _mesh_. Building mesh like this is a bit pointless (because it would be easier to just define such mesh in Blender `road.blend` and export it to `road.gltf`) but it should give you lots of ideas how to extend it, to make procedurally-generated world. For example, you could take a curve defined using https://castle-engine.io/curves_tool[Curves tool] and build a road for cars using this curve as a guide.
 
-Our scene graph is composed from link:vrml_x3d.php[X3D nodes] organized in a tree. A number of classes used below, named like `TXxxNode`, correspond to various X3D nodes. The nodes we use below are:
+Our scene graph is composed from link:x3d[X3D nodes] organized in a tree. A number of classes used below, named like `TXxxNode`, correspond to various X3D nodes. The nodes we use below are:
 
 - cgeref:TIndexedFaceSetNode[] defines a mesh (set of polygons)
 - cgeref:TCoordinateNode[] provides 3D vertex positions for `TIndexedFaceSet`

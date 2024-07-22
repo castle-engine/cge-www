@@ -27,7 +27,7 @@ NOTE: The simplest demo to test bump mapping in _Castle Game Engine_ is https://
 
 == Basic usage
 
-Simply export your model to the link:gltf[glTF] or link:vrml_x3d.php[X3D] format making sure that they indicate the _normal map_ usage correctly. Both glTF and X3D (since X3D 4.0) allow to define the normal map and we support it fully.
+Simply export your model to the link:gltf[glTF] or link:x3d[X3D] format making sure that they indicate the _normal map_ usage correctly. Both glTF and X3D (since X3D 4.0) allow to define the normal map and we support it fully.
 
 To toggle on/off bump mapping (and optionally control the specific algorithm) you can use the cgeref:TCastleRenderOptions.BumpMapping[Scene.RenderOptions.BumpMapping] property.
 

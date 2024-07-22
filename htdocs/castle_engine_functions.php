@@ -454,10 +454,10 @@ $castle_sitemap = array(
       ),
       'doc/castle_game_engine_for_unity_developers' => array('title' => 'Overview for Unity Developers'),
 
-      'vrml_x3d' => array('title' => 'Scene Graph (X3D)',
+      'doc/x3d' => array('title' => 'Scene Graph: X3D nodes',
         'sub' => array(
           'demo_models' => array('title' => 'Demo models'),
-          'x3d_implementation_status' => array('title' => 'Standard X3D Nodes',
+          'x3d_implementation_status' => array('title' => 'Standard Nodes',
             'sub' => array(
               'x3d_implementation_core'                 => array('title' => 'Core'                            ),
               'x3d_implementation_time'                 => array('title' => 'Time',

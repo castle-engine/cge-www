@@ -14,7 +14,7 @@ See <?php echo a_href_page('our guide to creating game data', 'creating_data_int
 
 <p>An important strength of our engine is that you can express a lot
 of stuff inside your data, that is inside
-<?php echo a_href_page('VRML/X3D', 'vrml_x3d'); ?> models.
+<?php echo a_href_page('X3D', 'doc/x3d'); ?> models.
 So many features of our engine
 (<?php echo a_href_page('shaders','x3d_implementation_shaders'); ?>,
  <?php echo a_href_page('screen effects', 'x3d_extensions_screen_effects'); ?>,

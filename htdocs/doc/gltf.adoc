@@ -131,7 +131,7 @@ Note that enabling or disabling gamma correction will change the look of your ga
 
 == Interoperability with X3D
 
-Under the hood, glTF models are loaded as a graph of https://castle-engine.io/vrml_x3d.php[X3D nodes]. This allows to use all X3D nodes functionality with glTF models.
+Under the hood, glTF models are loaded as a graph of link:x3d[X3D nodes]. This allows to use all X3D nodes functionality with glTF models.
 
 For an introduction to X3D, Physically-Based Rendering (PBR) and glTF see this presentation:
 
@@ -139,7 +139,7 @@ video::iQ0s1V37tAw[youtube,width=800,height=450]
 
 ### Process glTF models (e.g. change material color) using Pascal
 
-You can process (modify after loading, e.g. to remove/change some nodes) loaded glTF models using CGE https://castle-engine.io/vrml_x3d.php[API to handle X3D nodes].
+You can process (modify after loading, e.g. to remove/change some nodes) loaded glTF models using CGE link:x3d[API to handle X3D nodes].
 
 For example _glTF material_ corresponds to the X3D node cgeref:TAppearanceNode[] (that in turn has cgeref:TPhysicalMaterialNode[] as a child). To modify color of an object loaded from glTF, you can find the cgeref:TAppearanceNode[] within the scene, get the cgeref:TPhysicalMaterialNode[] child, and modify the properties like cgeref:TPhysicalMaterialNode.BaseColor[] as you wish. Like this:
 

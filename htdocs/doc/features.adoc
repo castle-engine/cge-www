@@ -27,7 +27,7 @@ Sources:
 
 * TODO readd feature?
 
-                    <li><b>Build and edit</b> the <a href="vrml_x3d.php">scene graph (X3D)</a> <b>at runtime</b>.
+                    <li><b>Build and edit</b> the <a href="x3d">scene graph (X3D)</a> <b>at runtime</b>.
                       <!--Load and save images and X3D graph as needed.-->
                       Create 3D processing, visualization tools and CAD applications.
 
@@ -156,10 +156,10 @@ cgeimg::block[
 
 === X3D
 
-We support standard model format from Web3D: link:vrml_x3d.php[X3D and VRML].
+We support standard model format from Web3D: link:x3d[X3D and VRML].
 
 * Support for X3D 4.0 with _Physically Based Rendering_ and lots of possibilities for shapes, textures, animations etc.
-* The cgeref:TCastleScene[] is a set of X3D nodes. We implement link:vrml_x3d.php[extended set of X3D nodes].
+* The cgeref:TCastleScene[] is a set of X3D nodes. We implement link:x3d[extended set of X3D nodes].
 * You can build and process scene graph of X3D nodes. Procedural generation of models, any pre/post-processing of models is possible.
 * We can save the X3D graph back to file in X3D format, see cgeref:TCastleSceneCore.Save[], cgeref:SaveNode[].
 * You can write model conversion utilities. Our link:castle-model-viewer[Castle Model Viewer] allows to convert various models to X3D.

@@ -24,7 +24,7 @@ RewriteCond %{REQUEST_FILENAME} !-d
 
 # Never redirect PHP files. In principle, it should not be needed -- if the name
 # is existing PHP file, then above rules should reject it anyway.
-# But what if it's PHP that should be redirected? Then both rewrite and redirect would proces it, making
+# But what if it's PHP that should be redirected? Then both rewrite and redirect would process it, making
 #   https://castle-engine.io/engine.php
 # ->
 #   https://castle-engine.io/index.php?page=/engine.php
@@ -192,6 +192,9 @@ Redirect "/itdevcon2023/slides1" "https://docs.google.com/presentation/d/e/2PACX
 Redirect "/itdevcon2023/slides2" "https://docs.google.com/presentation/d/e/2PACX-1vSOehkeaLEHnowUhn-R-Y6g_wfvtNYjA0ILuUBoiZt1eHPcuNhgpYvEQxDiJ1X5gmnabtSwQJ-HbaYS/pub?start=false&loop=false&delayms=3000"
 Redirect "/detecting_memory_leaks_using_heaptrc" "/memory_leaks"
 Redirect "/pascalcafe2024" "https://docs.google.com/presentation/d/e/2PACX-1vTebx8APpDucJMCq9gT1RNpk6YvMaJS1svyOpliGWCxnAOolu0wojMEZjkrkUfFqpf9cDUD_8586snn/pub?start=false&loop=false&delayms=3000"
+Redirect "/x3d_overview.html" "/vrml_x3d.php"
+Redirect "/x3d_overview.pdf" "/vrml_x3d.php"
+Redirect "/vrml_x3d.php" "/x3d"
 
 # This link is used at least by http://planetdev.freegamedev.net/ .
 #

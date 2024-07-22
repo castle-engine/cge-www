@@ -123,7 +123,7 @@ cgeimg::block[
 
 NOTE: This section is relevant only for X3D authors that directly edit X3D nodes. Most _Castle Game Engine_ users can ignore it. Just control the shadows by toggling cgeref:TCastlePunctualLight.Shadows[Shadows]  property.
 
-You can use link:vrml_x3d.php[X3D] nodes to design your lights and shadow volumes on them. In the simplest case, just activate shadow volumes on a light source by setting fields `shadowVolumes` and `shadowVolumesMain` both to `TRUE`.
+You can use link:x3d[X3D] nodes to design your lights and shadow volumes on them. In the simplest case, just activate shadow volumes on a light source by setting fields `shadowVolumes` and `shadowVolumesMain` both to `TRUE`.
 
 === Example models
 

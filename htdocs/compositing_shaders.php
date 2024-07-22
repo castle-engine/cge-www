@@ -73,7 +73,7 @@ using our effects.</p>
 <?php echo $toc->html_section(); ?>
 
 <p>The <a href="https://castle-engine.io/compositing_shaders_doc/html/">specification
-of these effects</a> is an extension of the <?php echo a_href_page('X3D', 'vrml_x3d'); ?> standard.
+of these effects</a> is an extension of the <?php echo a_href_page('X3D', 'doc/x3d'); ?> standard.
 We have <i>two</i> independent implementations of this concept now:
 
 <ol>

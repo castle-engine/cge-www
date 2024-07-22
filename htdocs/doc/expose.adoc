@@ -19,7 +19,7 @@ cgeimg::block[expose_1.png|ExposeTransforms]
 
 There's a number of practical use-cases for this feature:
 
-- You can _expose_ a transformation (translation, rotation, scale) of a child of the model. This means that we expose some transformation of your model, loaded in cgeref:TCastleScene[], from e.g. link:gltf[glTF] or link:vrml_x3d.php[X3D]. By _exposing_, we create a child cgeref:TCastleTransform[] under a parent cgeref:TCastleScene[] that corresponds to given transformation (maybe joint, bone) of your model. In turn this allows to:
+- You can _expose_ a transformation (translation, rotation, scale) of a child of the model. This means that we expose some transformation of your model, loaded in cgeref:TCastleScene[], from e.g. link:gltf[glTF] or link:x3d[X3D]. By _exposing_, we create a child cgeref:TCastleTransform[] under a parent cgeref:TCastleScene[] that corresponds to given transformation (maybe joint, bone) of your model. In turn this allows to:
 +
 --
 - Attach children to this transformation. For example you can attach a weapon to a hand of a character model. If the hand is animated, it will move the weapon together with it. See https://github.com/castle-engine/castle-engine/tree/master/examples/animations/expose_transformations_to_animate_children[examples/animations/expose_transformations_to_animate_children] for a demo.

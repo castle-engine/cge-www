@@ -2,11 +2,11 @@
   require_once 'castle_engine_functions.php';
   require_once 'x3d_implementation_common.php';
 
-  castle_header("Standard X3D Nodes");
+  castle_header("Standard Nodes");
 
   $toc = new TableOfContents(
     array(
-      new TocItem('Try our view3dscene!', 'try'),
+      new TocItem('Try our Castle Model Viewer!', 'try'),
       new TocItem('X3D and VRML 2.0', 'x3d'),
       new TocItem('Components supported', 'x3d_components', 1),
       new TocItem('General notes', 'x3d_general', 1),
@@ -16,12 +16,6 @@
 
 <?php echo pretty_heading($page_title); ?>
 
-<!--p>Features of the VRML 1.0, VRML 2.0 (aka 97) and X3D
-specifications that are implemented.
-See also <?php echo a_href_page('VRML / X3D extensions', 'x3d_extensions'); ?>
- to know what is implemented <i>besides the things required by VRML/X3D specifications</i>.
--->
-
 <p>Contents:
 <?php echo $toc->html_toc(); ?>
 
@@ -29,15 +23,11 @@ See also <?php echo a_href_page('VRML / X3D extensions', 'x3d_extensions'); ?>
 
 <p>This is a summary of X3D components supported by
 <i>Castle Game Engine</i> and
-<?php echo a_href_page("view3dscene", "view3dscene") ?>.
-Remember that it's completely <b>free and easy to <?php echo a_href_page("download view3dscene", "view3dscene") ?>,
-our VRML/X3D browser, and just try it all in action</b>.
-Download also <?php echo a_href_page("our demo 3D models", "demo_models"); ?>
- to open them with view3dscene.
+<a href="castle-model-viewer">Castle Model Viewer</a>.
 
-<p>Once you tried view3dscene or our game engine, this page may serve
-as a detailed map (with lots of technical details and links to even more
-technical details), about what and how is implemented.
+<p>To test it all,
+ <?php echo a_href_page("download our demo models", "demo_models"); ?>
+ and open them with <a href="castle-model-viewer">our free Castle Model Viewer</a>.
 
 <?php echo $toc->html_section(); ?>
 

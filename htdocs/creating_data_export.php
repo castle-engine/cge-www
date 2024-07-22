@@ -4,8 +4,8 @@ castle_header('Exporting 3D and 2D models');
 ?>
 
 <p>Our engine supports a number of standardized formats for 3D and 2D assets, most notably
-<?php echo a_href_page('X3D', 'vrml_x3d'); ?> and
-<a href="creating_data_model_formats.php#section_gltf">glTF</a>.
+<?php echo a_href_page('X3D', 'doc/x3d'); ?> and
+<a href="gltf">glTF</a>.
 As such, you can use almost any 3D or 2D authoring tool to
 make models for your games.
 
