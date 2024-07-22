@@ -7,7 +7,6 @@ A collection of links to valuable resources to learn Pascal. Both FPC and Delphi
 * https://www.embarcadero.com/products/delphi/object-pascal-handbook[Delphi Object Pascal Handbook] - Free Object Pascal Handbook by Marco Cantu.
 
 * https://www.youtube.com/playlist?list=PLdVESrjTNUXtU8zclRh9ovhstzWQAY05U[Programming Tutorials (using Pascal and FPC) from Swinburne University].
-** See also https://drive.proton.me/urls/KBG7XAHV0G#bZpBH8RI5VR1["Programming Arcana" book] by _Andrew Cain_, one of course's authors.
 
 * Our link:modern_pascal[Modern Object Pascal Introduction for Programmers]. Concise overview of modern Pascal features, for programmers who already know basic concepts (classes etc.) from other OOP languages.
 
