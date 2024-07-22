@@ -811,6 +811,8 @@ return array(
     'Aws\\Proton\\ProtonClient' => $vendorDir . '/aws/aws-sdk-php/src/Proton/ProtonClient.php',
     'Aws\\Psr16CacheAdapter' => $vendorDir . '/aws/aws-sdk-php/src/Psr16CacheAdapter.php',
     'Aws\\PsrCacheAdapter' => $vendorDir . '/aws/aws-sdk-php/src/PsrCacheAdapter.php',
+    'Aws\\QApps\\Exception\\QAppsException' => $vendorDir . '/aws/aws-sdk-php/src/QApps/Exception/QAppsException.php',
+    'Aws\\QApps\\QAppsClient' => $vendorDir . '/aws/aws-sdk-php/src/QApps/QAppsClient.php',
     'Aws\\QBusiness\\Exception\\QBusinessException' => $vendorDir . '/aws/aws-sdk-php/src/QBusiness/Exception/QBusinessException.php',
     'Aws\\QBusiness\\QBusinessClient' => $vendorDir . '/aws/aws-sdk-php/src/QBusiness/QBusinessClient.php',
     'Aws\\QConnect\\Exception\\QConnectException' => $vendorDir . '/aws/aws-sdk-php/src/QConnect/Exception/QConnectException.php',

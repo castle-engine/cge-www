@@ -897,6 +897,8 @@ class ComposerStaticInit13b81efe3e6ff3621c72213476e5a182
         'Aws\\Proton\\ProtonClient' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/Proton/ProtonClient.php',
         'Aws\\Psr16CacheAdapter' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/Psr16CacheAdapter.php',
         'Aws\\PsrCacheAdapter' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/PsrCacheAdapter.php',
+        'Aws\\QApps\\Exception\\QAppsException' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/QApps/Exception/QAppsException.php',
+        'Aws\\QApps\\QAppsClient' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/QApps/QAppsClient.php',
         'Aws\\QBusiness\\Exception\\QBusinessException' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/QBusiness/Exception/QBusinessException.php',
         'Aws\\QBusiness\\QBusinessClient' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/QBusiness/QBusinessClient.php',
         'Aws\\QConnect\\Exception\\QConnectException' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/QConnect/Exception/QConnectException.php',
