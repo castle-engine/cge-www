@@ -18,6 +18,7 @@ $toc = new TableOfContents(
       new TocItem('Use TCastleDownload for HTTP REST communication with a backend', 'castle_download', 1),
       new TocItem('Indy (CGE example using TCP streams)', 'indy', 1),
         new TocItem('Known memory leaks with Indy', 'indy_memory_leaks', 2),
+        new TocItem('Code completion using LSP (e.g. in VS Code) when using Indy', 'lsp', 2),
       new TocItem('RNL (CGE example of real-time online shooter)', 'rnl', 1),
       new TocItem('Planned: Nakama integration', 'rnl', 1),
       new TocItem('Other options', 'other', 1),
@@ -528,6 +529,33 @@ lazbuild Indy10/indylaz.lpk
 <p>Note: There's a code in Indy to "register known leak" with some memory managers, but it is not active by default for FPC.
 
 <p>You can test for memory leaks following <a href="memory_leaks">our instructions about memory leaks</a>. We use FPC HeapTrc to detect memory leaks, and you can just set <code>&lt;compiler_options detect_memory_leaks="true"&gt;</code> in <a href="project_manifest">CastleEngineManifest.xml</a> to enable it.
+
+<?php echo $toc->html_section(); ?>
+
+<p>When you edit a project that uses <?php echo cgeRef('CastleClientServer'); ?> with <a href="vscode">VS Code</a> (or other editor using our <a href="https://github.com/castle-engine/pascal-language-server">LSP</a>) you may see errors like: <i>"unit not found: IdGlobal"</i>.
+
+<p>To solve this, you need to tell our LSP where are your Indy units. To do this, create a file:
+
+<ul>
+  <li>
+    <p>On Unix: <code>$HOME/.config/pasls/castle-pasls.ini</code>
+  <li>
+    <p>On Windows: <code>C:/Users/&lt;YOUR-USERNAME&gt;/AppData/Local/pasls/castle-pasls.ini</code>
+</ul>
+
+and inside put these lines:
+
+<pre>
+[extra_options]
+;; Specify as many extra FPC options as you want.
+;; Each extra option must have a consecutive number, start from 1.
+option_1=-Fu/home/myusername/src/Indy10/Core/
+option_2=-Fu/home/myusername/src/Indy10/System/
+</pre>
+
+Adjust the above paths (<code>/home/myusername/src/Indy10</code>) to your system to point to the directory where you have Indy sources.
+
+For more information, see <a href="https://github.com/castle-engine/pascal-language-server?tab=readme-ov-file#extra-configuration-in-castle-enginepascal-language-server">README about Extra configuration in castle-engine/pascal-language-server</a>.
 
 <?php echo $toc->html_section(); ?>
 
