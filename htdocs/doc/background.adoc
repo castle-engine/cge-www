@@ -9,7 +9,7 @@ cgeimg::block[
   background_3.png|TCastleBackground skybox
 ]
 
-. You can provide up to 6 textures that define 6 sides of a _skybox_. See https://en.wikipedia.org/wiki/Cube_mapping#Skyboxes[wikipedia about skyboxes]. Set 6 URLs like cgeref:TCastleBackground.TexturePositiveX[] for this (our naming follows e.g. X3D and http://www.humus.name/index.php?page=Textures[Emil Persson’s conventions].
+. You can provide up to 6 textures that define 6 sides of a _skybox_. See https://en.wikipedia.org/wiki/Cube_mapping#Skyboxes[wikipedia about skyboxes]. Set 6 URLs like cgeref:TCastleBackground.TexturePositiveX[] for this.
 +
 How to make such skyboxes?
 +
