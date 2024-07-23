@@ -109,6 +109,14 @@ NOTE: Other navigation methods are available, like `TCastleWalkNavigation` to wa
 . Move the light a bit higher. Switch to _"Move Transform"_ tool, select the light, and drag it up.
 +
 cgeimg::block[viewport_3d_light_higher.png|Light moved up]
++
+The default _point light_ (cgeref:TCastlePointLight[]) makes a nice local light effect. Later, to have a light nicely shine over a larger area, you can tweak it:
++
+--
+- increase cgeref:TCastlePointLight.Intensity[] (don't be afraid to experiment with really large values, like 100 or even 1000),
+- or set cgeref:TCastlePointLight.Attenuation[] to `0 0 0` (this makes unrealistic light that shines uniformly in all directions, without attenuation),
+- or add a new cgeref:TCastleDirectionalLight[] to make everything brighter (this is a light that shines in a given direction, like a sun). Maybe you will not need the point light anymore -- you can remove it.
+--
 
 ## Run the game
 
@@ -201,7 +209,7 @@ cgeimg::block[viewport_3d_game_running_walk.png|Game running with walking]
 
 You can add, modify, delete lights on the level.
 
-To add a new light in _Castle Game Engine_ editor simply click on the `Items` property of the viewport and choose a new _Add Transform -> Light...__. Then move/rotate the light as needed. The following light sources are available:
+To add a new light in _Castle Game Engine_ editor simply click on the `Items` property of the viewport and choose a new _"Add Transform -> Light..."_. Then move/rotate the light as needed. The following light sources are available:
 
 - cgeref:TCastlePointLight[] - omnidirectional light that shines with a certain cgeref:TCastlePointLight.Color[Color], cgeref:TCastlePointLight.Intensity[Intensity] and cgeref:TCastlePointLight.Radius[Radius]. The rotation of this light doesn't matter, only the position influences the actual effect.
 
