@@ -14,11 +14,13 @@ function donation_option_end()
 }
 ?>
 
-<P>We are making an <a href="features">open-source game engine, 3D and 2D, with comfortable visual editor and a powerful API</a>.
+<p><b>We are making</b> an <a href="features">open-source game engine, 3D and 2D, with comfortable visual editor and a powerful API</a>. We proudly cooperate with open standards (<a href="x3d">X3D</a>, <a href="gltf">glTF</a>). We like <a href="why_pascal">modern Pascal</a>, <a href="https://castle-engine.io/manual_automatic_builds.php">continuous integration</a>, being cross-platform (desktop, mobile, consoles, <a href="https://castle-engine.io/roadmap#web">soon web</a>). We're passionate about <i>open-source and free software</i> and tools to design <i>engaging</i> stories in the form of computer games.
 
-<p>The main goal of donations is simply to cover the cost of people, so that they can work on the engine full-time, which in turn just translates to more features, faster. Right now we have 1/2 developer on a payroll (<i>Andrzej Kilijański</i>, paid from <i>Michalis Kamburelis</i> own pocket) and hiring him was a great decision &mdash; having Andrzej made a big difference, the engine progress in recent years owes much to his work. Imagine we can have 10x of that :)
+<p><b>The primary goal of donations is</b> to cover the cost of people, so that we can work on the engine more, which in just translates to more features, faster. By 2024, <i>Michalis Kamburelis</i>, the lead engine developer, spent most of his life on the engine and doesn't plan to stop :) Moreover, since May 2024, Michalis works on the engine full-time counting only on your support. So anything you can give is really appreciated!
 
 <?php /*
+Right now we have 1/2 developer on a payroll (<i>Andrzej Kilijański</i>, paid from <i>Michalis Kamburelis</i> own pocket) and hiring him was a great decision &mdash; having Andrzej made a big difference, the engine progress in recent years owes much to his work. Imagine we can have 10x of that :)
+
 Right now we have 1/2 developer on a payroll (<i>Andrzej Kilijański</i>, paid from <i>Michalis Kamburelis</i> own pocket) and I'm sure you can see in all <a href="https://castle-engine.io/wp/">news</a> how it made a huge difference in the features we can deliver in recent years. We want more of that :) Imagine that Michalis, Andrzej, <a href="https://github.com/castle-engine/castle-engine/graphs/contributors">any other past and future contributors to CGE</a> have time to hack on the engine as a full-time job. We can make <a href="roadmap">amazing things!</a>.
 */
 ?>
@@ -28,15 +30,16 @@ Right now we have 1/2 developer on a payroll (<i>Andrzej Kilijański</i>, paid f
 <div class="donations">
   <?php donation_option_begin(); ?>
     <p><b>The suggested method of donating is to <a href="https://www.patreon.com/castleengine">support us on Patreon</a>.</b><br>
-    It is totally OK to just donate and delete your pledge right afterwards.</p>
+    We offer a few perks, including <a href="https://castle-engine.io/wp/2023/01/28/support-us-on-patreon-and-get-stickers-ethereum-open-collective-and-other-options/">cool stickers</a> :)
+  <?php donation_option_end(); ?>
+
+  <?php donation_option_begin(); ?>
+    <p><a href="https://opencollective.com/castle-engine">Support us through OpenCollective.</a><br>
+    <p>If you are a company and would like a b2b cooperation (for features, consulting, support) with formal invoices, this is easy with us through OpenCollective. Thanks to <a href="https://opencollective.com/castle-engine">our OpenCollective page</a> we can act as a company in all legal / tax ways.
   <?php donation_option_end(); ?>
 
   <?php donation_option_begin(); ?>
     <p><a href="https://github.com/sponsors/castle-engine">Support us by becoming Castle Game Engine Sponsor on GitHub.</a>
-  <?php donation_option_end(); ?>
-
-  <?php donation_option_begin(); ?>
-    <p><a href="https://opencollective.com/castle-engine">Support us through OpenCollective.</a>
   <?php donation_option_end(); ?>
 
   <?php donation_option_begin(); ?>
