@@ -23,6 +23,7 @@ NOTE: Please write to Michalis (michalis@castle-engine.io) if you want to change
 * https://github.com/and3md[Andrzej Kilijański]
 * https://github.com/the-Arioch[Arioch]
 * https://github.com/BenediktMagnus[Benedikt Magnus]
+* https://github.com/Dennis1000[Dennis Spreen]
 * https://github.com/eugeneloza[Eugene Loza]
 * https://github.com/ProHolz[Friedrich Westermann]
 * https://github.com/HotariTobu[Hotari]
@@ -34,6 +35,7 @@ NOTE: Please write to Michalis (michalis@castle-engine.io) if you want to change
 * https://github.com/tsr8[Tomasz Wojtyś]
 * https://github.com/Kagamma[Trung Le]
 * Victor Amat
+* https://github.com/phomm[Vlad]
 
 See also https://github.com/castle-engine/castle-engine/graphs/contributors[contributors to GitHub CGE repository] and related repositories.
 
