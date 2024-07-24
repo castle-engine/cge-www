@@ -127,24 +127,39 @@ It is most comfortable to observe them by running your APK using `castle-engine 
 
 Alternatively, you can use any other Android tool, e.g. command-line `adb logcat`. It's usually comfortable to filter by your program name, e.g. `adb logcat | grep androiddemo` (although, in case of mysterious crashes at startup, take a look at the full log, not filtered; some important startup info may not be marked with application name).
 
-== Is it possible to test our games using Android emulator from SDK?
+== Using Android emulator (virtual devices)
 
-Yes! Android emulator can run OpenGL ES applications.
+Using the Android _emulator_ works smoothly for _Castle Game Engine_ applications.
 
-NOTE: You will need to check "_Use Host GPU_" in emulator options. Otherwise the app will stop and in the log (Android logcat) you will see a message "_Emulator without GPU emulation detected_.".  Also, make sure your device is created with sufficient space (on _Internal storage_ or _SD Card_).
+- It is easiest to use the emulator provided by the _Android SDK_ (installed also by the _Android Studio_). You can easily configure "virtual devices" using Android Studio, to choose any Android version, screen size, etc.
 
-[NOTE]
-====
-You _can_ run emulator of the normal Android CPU (32-bit Arm or 64-bit Aarch64), running the "final" CGE application for the same CPU. But it is faster to use emulator/virtual machine of Android running 32-bit x86 or 64-bit x86_64 CPU and compile CGE applications for this CPU.
+- You can also use virtual machines made from images on https://www.android-x86.org/ . You can use them to create an Android virtual machine on your computer using various virtualization solutions.
 
-To do this, compile your application like this:
+Note about CPU architecture:
 
+- Your Android virtual machine may use an `x86` or `x86_64` CPU architecture. This is actually advised, because they can be emulated on regular PCs much faster than `arm` or `aarch64`.
+
+- In this case you have to also build CGE application for the given CPU. (Because by default, we build Android applications only for `arm` and `aarch64` CPUs.)
+
+- To do this, select the "_Android (emulator ...)_" from the editor _"Run -> Platform -> ..."_ menu.
++
+Alternatively, from the command-line, build like this:
++
 ----
+# Emulator with x86_64 CPU
 castle-engine package --os=android --cpu=x86_64
-----
 
-and transfer the resulting APK into the emulator/virtual machine. The Android SDK includes ready machines. You can also use virtual machines made from images on https://www.android-x86.org/ .
-====
+# Or, emulator with i386 (also known as x86) CPU
+castle-engine package --os=android --cpu=i386    #
+----
++
+Everything else is the same as for the normal Android applications. The resulting APK can be installed and run on the emulator.
+
+Additional notes for emulator usage:
+
+- You may need to check "_Use Host GPU_" in emulator options. Without it, the app may stop and in the log show a message "_Emulator without GPU emulation detected_.".
+
+- Make sure your device is created with sufficient space (on _Internal storage_ or _SD Card_).
 
 == Testing mobile (OpenGL ES) rendering without an Android
 
