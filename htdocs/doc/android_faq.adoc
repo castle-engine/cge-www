@@ -153,7 +153,7 @@ Alternatively, from the command-line, build like this:
 castle-engine package --os=android --cpu=x86_64
 
 # Or, emulator with i386 (also known as x86) CPU
-castle-engine package --os=android --cpu=i386    #
+castle-engine package --os=android --cpu=i386
 ----
 +
 Everything else is the same as for the normal Android applications. The resulting APK can be installed and run on the emulator.
