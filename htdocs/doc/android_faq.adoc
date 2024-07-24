@@ -142,7 +142,9 @@ Note about CPU architecture:
 
 - In this case you have to also build CGE application for the given CPU. (Because by default, we build Android applications only for `arm` and `aarch64` CPUs.)
 
-- To do this, select the "_Android (emulator ...)_" from the editor _"Run -> Platform -> ..."_ menu.
+- First, make sure you have cross-compilers for _Android / i386_ or _Android / x86_64_ combinations. You can install them using link:fpcupdeluxe[].
+
+- Then build application from engine link:editor[] by selecting the "_Android (emulator ...)_" from the editor _"Run -> Platform -> ..."_ menu. After selecting this, use _"Run -> Package"_ to create an APK (or just hit F9, _"Run -> Compile And Run"_, to package + install + run in one go).
 +
 Alternatively, from the command-line, build like this:
 +
