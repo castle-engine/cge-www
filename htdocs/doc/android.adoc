@@ -7,17 +7,11 @@ cgeimg::float[android12glued.png|Android applications using Castle Game Engine]
 
 == Introduction
 
-To create applications for Android you need to install some additional software. We explain everything below.
-
-If you have problems with the procedure outlined below, please:
-
-- Check out our link:android_sdk_and_ndk_troubleshooting[Android SDK and NDK troubleshooting] and link:android_faq[Android FAQ].
-- Consider an alternative to this: you can use our link:docker[Docker] image. It's basically a light-weight virtual machine, easy to download and update and quickly run. And it contains all the software related to CGE, FPC and Android configured and tested.
-- If you get stuck, link:talk.php[talk to us]! We have a forum, Discord chat and we want to help.
+To create applications for Android you need to install some additional software.
 
 ## Examples and build tool
 
-Almost all our examples, and all new projects created by CGE editor _"New Project"_ from one of the templates, are automatically https://castle-engine.io/manual_cross_platform.php[cross-platform] and can be compiled for Android. In particular:
+Almost all our examples, and all new projects created by CGE editor _"New Project"_, are automatically https://castle-engine.io/manual_cross_platform.php[cross-platform] and can be compiled for Android. In particular:
 
 * You can create _"New Project"_ from any template - 2D game, 3D game etc. You get a cross-platform application that can be build for Android.
 
@@ -25,15 +19,24 @@ Almost all our examples, and all new projects created by CGE editor _"New Projec
 
 * https://github.com/castle-engine/castle-engine/tree/master/examples/mobile/game_services[examples/mobile/game_services/] - 2D animation and https://developers.google.com/games/services[Google Play Games] integration on Android. Shows how you can use achievements and leaderboards.
 
-Once you finish this chapter, you will be able to use use the link:manual_editor.php[CGE editor] or command-line link:build_tool[build tool] to compile all these programs (and almost all other CGE examples) for Android.
+Once you finish this chapter, you will be able to use use the link:editor[editor] or command-line link:build_tool[build tool] to compile all these programs (and almost all other engine examples) for Android.
 
 == Installing Android tools
 
 === Install Java
 
-Java is required by the Android SDK. Install Java _JDK (Java Development Kit)_.
+1. We recommend that you install full https://developer.android.com/studio[Android Studio] that already includes best Java version suitable for Android development.
++
+The Java installation path can be located by going to _"File -> Settings"_ and there to _"Build, Execution, Deployment -> Build Tools -> Gradle -> Gradle JDK"_. See the screenshot below.
++
+cgeimg::block[android_studio_java_location.png|Java location in Android Studio]
 
-* On Debian or Ubuntu, you can install the `default-jdk` package that will pull in (as dependencies) the best _Java Development Kit_ version. Or install directly a package like `openjdk-X-jdk`.
+2. _Alternatively_: Install Java separately. You want to install Java _JDK (Java Development Kit)_.
+
+* On Debian or Ubuntu (Linux), you can install the `default-jdk` package that will pull in (as dependencies) the best _Java Development Kit_ version.
++
+In case of trouble (the Java version requirements sometimes change, and distros default Java is sometimes too old, sometimes too new) install directly a package like `openjdk-X-jdk`.
+
 * On Windows, download the latest version from http://www.oracle.com/technetwork/java/javase/downloads/index.html .
 +
 --
@@ -45,28 +48,23 @@ By default, it will be installed in `C:\Program Files\Java\jdk-17.0.2`.
 
 The Java version required is _at least 17_ (this is determined by the https://developer.android.com/build/releases/gradle-plugin[latest Android Gradle Plugin requirements]). It should not be problematic, e.g. https://packages.debian.org/bookworm/default-jdk[default-jdk in latest Debian stable] pulls Java 17.
 
-[NOTE]
-====
-Alternatively, you can skip this step (Java installation) and in the next step install full https://developer.android.com/studio[Android Studio]. The complete _Android Studio_ will already include Java version suitable for Android SDK.
+=== Tell the engine where's your Java located
 
-For your information, the Java installation can be located by going to _"File -> Settings"_ and there to _"Build, Execution, Deployment -> Build Tools -> Gradle -> Gradle JDK"_. See the screenshot below.
+Point the Castle Game Engine link:editor[] to this Java location: open _"Preferences"_ dialog, go to the _"Android"_ page, set _"Java Location"_.
 
-cgeimg::block[android_studio_java_location.png|Java location in Android Studio]
+_Alternatively_: set the `JAVA_HOME` environment variable.
 
-If necessary, you can point to this Java location using Castle Game Engine link:editor[] (open _"Preferences"_ dialog, go to the _"Android"_ page, set _"Java Location"_) or by setting the `JAVA_HOME` environment variable. Though in many cases it is not necessary to do this, Android tools will find Java automatically.
-====
+In some cases, you don't need to do this and things will work automatically (without you needing to set `JAVA_HOME` environment variable or _"Java Location"_ in editor preferences). In particular, on Unix (Linux), if `java` is located in your `PATH`, everything should use it automatically.
 
-=== Install Android SDK (maybe along with Android Studio)
+=== Install Android SDK (optionally: along with Android Studio)
 
 Download and install _Android SDK_.
 
-There are two ways to do it:
-
-1. Install the whole https://developer.android.com/studio[Android Studio].
+1. We recommend that you just install the whole https://developer.android.com/studio[Android Studio].
 +
-This is the easier way (some configuration can be then done using GUI) and comes with useful additional GUI tools to manage virtual Android devices or mirror real (physical) Android devices. We advise this option.
+This is the easiest way, in our experience. Reasons: Some configuration can be then done using GUI. You accept licenses using GUI. _Android Studio_ comes with useful additional GUI tools to manage virtual Android devices or mirror real (physical) Android devices. And it comes with the best Java version suitable for Android development, as we mentioned in previous section.
 +
-For your information (you will need this later), location of the Android SDK is visible in the Android Studio _File -> Settings -> Languages & Frameworks -> Android SDK_. You need to have some project open to access this _Android Studio_ dialog -- just create a new empty project if you don't have any.
+For your information (you will need this later), location of the Android SDK is visible in the Android Studio _"File -> Settings -> Languages & Frameworks -> Android SDK"_. You need to have some project open to access this _Android Studio_ dialog -- you can just create a new empty project in _Android Studio_ (from any template, any language -- Kotlin or Java, doesn't matter), just to be able to access the settings.
 +
 cgeimg::block[android_sdk_location.png|Android SDK location in Android Studio]
 +
@@ -77,7 +75,7 @@ It looks like this, by default:
 * Linux: `~/Android/Sdk`
 --
 
-2. Alternatively: Install _Command line tools only_ (scroll to the bottom of https://developer.android.com/studio ):
+2. _Alternatively_: Install _Command line tools only_ (scroll to the bottom of https://developer.android.com/studio ):
 +
 --
 . Create a new directory on disk for Android SDK. Like `c:/android-sdk`.
@@ -89,15 +87,15 @@ It looks like this, by default:
 . If effect you should have a file like `c:/android-sdk/cmdline-tools/latest/bin/sdkmanager`. (with additional extension `.bat` on Windows).
 --
 
-=== Let Castle Game Engine know your Android SDK location
+=== Tell the engine where's your Android SDK
 
-The _Android SDK location_ is the directory that contains subdirectories like `cmdline-tools`, `tools`, `platform-tools`. See above how to find where your Android SDK is installed.
+The _Android SDK location_ is the directory that contains subdirectories like `platform-tools`. See above how to find where your Android SDK is installed.
 
 1. We recommend to set Android SDK location using _Castle Game Engine_ link:editor[]  _"Preferences"_ dialog. Go to the _"Android"_ page and adjust the _"Android SDK Location"_ value.
 +
 This is simple and works great if you build and run Android applications using CGE editor.
 
-2. Alternative: If you want to use our command-line link:build_tool[build tool] or some Android command-line tools, you can set instead the `ANDROID_HOME` environment variable.
+2. _Alternative_: If you want to use our command-line link:build_tool[build tool] or some Android command-line tools, you can set instead the `ANDROID_HOME` environment variable.
 +
 If you don't know how to set the environment variable, search the Internet (e.g. https://www.computerhope.com/issues/ch000549.htm[these are quick instructions how to do it on various Windows versions]). See also https://developer.android.com/tools/variables[official Android documentation]. Remember to close and reopen all the applications after setting the environment variable. Changing environment variables only takes effect for new applications.
 
@@ -133,9 +131,15 @@ The easiest approach to get FPC for Android is to use fpcupdeluxe.
 
 - Build normal FPC and Lazarus with it. We advise picking the latest stable FPC and Lazarus versions at the time. All Android architectures are perfectly supported in latest FPC 3.2.2.
 
-- Install cross-compiler to Arm/Android. To do this, switch to _"Cross"_ tab in fpcupdeluxe, select CPU = `arm`, OS = `android`, click _"Install cross-compiler"_. Wait a while. When it shows a message that effectively asks _"Missing cross-tools, download them?"_ answer _"yes"_.
+- Install cross-compiler to _Android / Arm_. This is the architecture used by old (32-bit) Android devices.
++
+To do this, switch to _"Cross"_ tab in fpcupdeluxe, select CPU = `arm`, OS = `android`, click _"Install cross-compiler"_. Wait a while. When it shows a message that effectively asks _"Missing cross-tools, download them?"_ answer _"yes"_.
 
-- Install another cross-compiler for Aarch64 (64-bit Arm)/Android. This is done exactly like above, just select CPU = `aarch64` this time. Same as above, select OS = `android`, click _"Install cross-compiler"_, and confirm when it asks to download cross-tools.
+- Install another cross-compiler for _Android / Aarch64_. This is the 64-bit architecture used by most modern Android devices.
++
+This is done exactly like above, just select CPU = `aarch64` this time. Same as above, select OS = `android`, click _"Install cross-compiler"_, and confirm when it asks to download cross-tools.
+
+- _(Optionally)_: If you want to use link:android_faq#emulator[emulator], install also cross-compiler for _Android / i386_ and _Android / x86_64_. In total, this will cover all 4 CPU architectures used by Android devices and emulators.
 
 Make sure CGE is using the new FPC. It is best to do this by configuring FPC and Lazarus location in CGE editor _Preferences_. Make sure the detected FPC and Lazarus are the ones you have just installed using _fpcupdeluxe_.
 
@@ -184,3 +188,13 @@ At this point, you have a ready APK file, which you can upload / install / run j
 You can also upload your application to Google Play and release your game! Note that Google Play requires using AAB format for the uploads now, not APK. To create AAB, just switch in _CGE editor_ menu item _"Run -> Package Format -> Android App Bundle (AAB)"_ and press _"Run -> Package (Release to Users)"_.
 
 See the link:android_faq[Android FAQ] for more information about building AAB, signing for release etc.
+
+== If things don't work: alternatives, contact us
+
+If you have problems with the procedure outlined below:
+
+- Check out our link:android_sdk_and_ndk_troubleshooting[Android SDK and NDK troubleshooting] and link:android_faq[Android FAQ].
+
+- Consider an alternative to this: you can use our link:docker[Docker] image. It's basically a light-weight virtual machine, easy to download and update and quickly run. And it contains all the software related to CGE, FPC and Android configured and tested.
+
+- If you get stuck, link:talk.php[talk to us]! We have a forum, Discord chat and we want to help.
