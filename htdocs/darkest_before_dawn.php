@@ -39,6 +39,7 @@ echo cge_download_application(
   'darkest-before-dawn',
   'darkest_before_dawn',
   array(
+    'google-play=net.sourceforge.castleengine.darkestbeforedawn',
     'android',
     'win64-x86_64',
     'linux-x86_64'
