@@ -127,6 +127,7 @@ It is most comfortable to observe them by running your APK using `castle-engine 
 
 Alternatively, you can use any other Android tool, e.g. command-line `adb logcat`. It's usually comfortable to filter by your program name, e.g. `adb logcat | grep androiddemo` (although, in case of mysterious crashes at startup, take a look at the full log, not filtered; some important startup info may not be marked with application name).
 
+[#emulator]
 == Using Android emulator (virtual devices)
 
 Using the Android _emulator_ works smoothly for _Castle Game Engine_ applications.
