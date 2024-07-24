@@ -1,18 +1,21 @@
 <?php
-define('CASTLE_GITHUB_NAME', 'darkest-before-dawn');
-
 require_once 'castle_engine_functions.php';
-castle_header("Darkest Before the Dawn");
+castle_header("Darkest Before the Dawn", array(
+  'social_share_image' => 'darkest_before_dawn_1.png',
+));
 
-define('VERSION_DARKEST_BEFORE_DAWN', '1.2.0');
+echo pretty_heading('Darkest Before the Dawn');
+?>
 
-echo pretty_heading('Darkest Before the Dawn', VERSION_DARKEST_BEFORE_DAWN);
-echo castle_thumbs(array(
+<?php
+echo cgeImg('float', array(
   array('filename' => 'darkest_before_dawn_1.png', 'titlealt' => 'Darkest Before the Dawn - game screen 1'),
   array('filename' => 'darkest_before_dawn_2.png', 'titlealt' => 'Darkest Before the Dawn - game screen 2'),
   array('filename' => 'darkest_before_dawn_ui.png', 'titlealt' => 'Darkest Before the Dawn - title screen'),
 ));
 ?>
+
+<p>A scary 3D game. <b>You're only safe within the light.</b>
 
 <p><i>Darkest Before the Dawn</i> is a tiny game developed
 by Michalis Kamburelis during the
@@ -33,7 +36,7 @@ automatically propose to install it.
 
 <?php
 echo cge_download_application(
-  '1.4.0',
+  '2.0.0',
   'snapshot',
   'castle-engine',
   'darkest-before-dawn',
@@ -46,27 +49,6 @@ echo cge_download_application(
   )
 );
 ?>
-
-<h2>Source code</h2>
-
-<p>The full
-<a href="https://github.com/castle-engine/darkest-before-dawn">source code and data are available on GitHub</a>.
-
-<p>See the <code>README.md</code> for compilation instructions.
-For a standalone compilation all you need is the
-<a href="/">engine</a>
-and <a href="http://www.freepascal.org/">FPC</a>.
-To compile the Android version, you will need Android SDK, NDK, and FPC set
-up as a cross-compiler to Android+Arm. See the <i>Castle Game Engine</i>
-docs for details.
-
-<h2>License</h2>
-
-<p>The game code and some of the data are licensed on GNU GPL (version &gt;= 2).
-The rest of the game data is licensed on Creative Commons (various
-versions, see AUTHORS.txt files in the source code for details).
-The underlying Castle Game Engine is licensed on more permissive
-<a href="license">GNU LGPL with static linking exception</a>.
 
 <?php
   castle_footer();
