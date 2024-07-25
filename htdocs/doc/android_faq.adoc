@@ -47,11 +47,15 @@ In effect, when you use the build tool and the `castle-data:/xxx` on Android, yo
 
 == Saving user preferences and savegames
 
-Simply use the global `UserConfig` (in CastleConfig unit) to load/save your settings. Follow https://castle-engine.io/manual_user_prefs.php[Persistent data (user preferences, savegames)] manual. The same mechanism works for saving preferences on other platforms.
+Simply use the global cgeref:UserConfig[] to load/save your settings. Follow https://castle-engine.io/manual_user_prefs.php[Persistent data (user preferences, savegames)] manual. The same mechanism works for saving preferences on other platforms.
 
-Note that (just like on other platforms) you have to explicitly call `UserConfig.Load` and `UserConfig.Save` when necessary. You will usually call `UserConfig.Load` in your `Application.OnInitialize` handler, to load user preferences at the beginning of your application. You will usually call `UserConfig.Save` when user confirms the preferences change, or simply immediately -- the exact moment depends on the game UI flow. Don't wait too long before saving the user preferences -- on Android, your application may be killed at any moment.
+Note that (just like on other platforms) you have to explicitly call `UserConfig.Load` and `UserConfig.Save` to load and save the preferences to disk.
 
-For more possibilities, you can write file(s) using the  URL returned by cgeref:ApplicationConfig[] function. It returns a path to a special directory on Android, where you can write application settings.
+- You will usually call `UserConfig.Load` in your `Application.OnInitialize` handler, to load user preferences at the beginning of your application.
+
+- You will usually call `UserConfig.Save` when user confirms the preferences change, or even immediately when user changes a preference. Don't wait too long before saving the user preferences -- on Android, your application may be killed at any moment.
+
+For more possibilities, you can write data to URLs returned by cgeref:ApplicationConfig[] function. You can write to it using all CGE routines, like cgeref:StringToFile[], cgeref:UrlWriteXML[], cgeref:TTextWriter[], cgeref:UrlSaveStream[].
 
 == Creating AAB (Android App Bundle)
 
@@ -130,6 +134,10 @@ Alternatively, you can use any other Android tool, e.g. command-line `adb logcat
 [#emulator]
 == Using Android emulator (virtual devices)
 
+cgeimg::block[
+  android_emulator_2.png|Android emulator
+]
+
 Using the Android _emulator_ works smoothly for _Castle Game Engine_ applications.
 
 - It is easiest to use the emulator provided by the _Android SDK_ (installed also by the _Android Studio_). You can easily configure "virtual devices" using Android Studio, to choose any Android version, screen size, etc.
@@ -177,7 +185,7 @@ Be sure to also install an OpenGL ES library (with EGL). Unlike normal OpenGL, i
  ** https://developer.arm.com/products/software-development-tools/graphics-development-tools/opengl-es-emulator[Mali OpenGL ES 2.0 Emulator by ARM].
  ** Angle. https://github.com/Microsoft/angle/wiki[Official usage and download instructions are here], but it may be easiest to just copy `libEGL.dll` and `libGLESv2.dll` from your https://www.google.com/chrome/browser/desktop/index.html[Google Chrome] installation, like `C:\Program Files (x86)\Google\Chrome\Application\64.0.3282.119`. Just copy these two DLL files to the directory of your game .exe.
 +
-Note that you will need to compile your application for the same architecture as _Google Chrome_, which is most probably 64-bit Windows, not 32-bit. So make sure to choose 64-bit Windows and CPU as target (e.g. in Lazarus project compilation options, or using CGE build tool like `castle-engine compile --os=win64 --cpu=x86_64`).
+NOTE: If you use this approach, make sure to compile your application for the same architecture as _Google Chrome_, which is most probably 64-bit Windows, not 32-bit. Whe using _Castle Game Engine_ on Windows, we also recommend 64-bit architecture, so most likely everything already matches. But if necessary, check it and adjust the target architecture (in link:editor[] using _"Run -> Platform -> ..."_) to `x86_64`.
 
  ** Also this post has useful links: http://www.g-truc.net/post-0457.html .
 
