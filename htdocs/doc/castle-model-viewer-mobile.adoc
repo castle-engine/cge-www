@@ -14,7 +14,7 @@ cgeimg::block[
   castle-model-viewer-mobile-open.png|Castle Model Viewer Mobile
 ]
 
-This is a mobile version of link:castle-model-viewer[Castle Model Viewer], sharing the most basic capabilities with the desktop version (same model formats, navigation) but with entire UI remade for mobile devices. It is available for Android and (coming soon!) iOS.
+This is a mobile version of link:castle-model-viewer[Castle Model Viewer], sharing the capabilities with the desktop version (all supported model formats, navigation, viewpoints, animation, screenshots) but with UI streamlined for mobile devices. It is available now for Android, soon also for iOS.
 
 == Download
 
