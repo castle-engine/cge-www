@@ -10,8 +10,14 @@ Mobile-friendly viewer for link:creating_data_model_formats.php[3D and 2D model 
 In addition to the above formats, it also allows to open a ZIP file that contains a single model and associated media (like textures, sounds etc.).
 
 cgeimg::block[
-  castle-model-viewer-mobile-cat.png|Castle Model Viewer Mobile,
-  castle-model-viewer-mobile-open.png|Castle Model Viewer Mobile
+  castle-model-viewer-feature.png|Castle Model Viewer Mobile - Dungeon in Examine Mode,
+  castle-model-viewer-1.jpg|Castle Model Viewer Mobile 1,
+  castle-model-viewer-2.jpg|Castle Model Viewer Mobile 2,
+  castle-model-viewer-3.jpg|Castle Model Viewer Mobile 3,
+  castle-model-viewer-4.jpg|Castle Model Viewer Mobile 4,
+  castle-model-viewer-5.jpg|Castle Model Viewer Mobile 5,
+  castle-model-viewer-6.jpg|Castle Model Viewer Mobile 6,
+  castle-model-viewer-7.jpg|Castle Model Viewer Mobile 7
 ]
 
 You can change navigation type (walk, fly, examine, 2D), jump between viewpoints, play chosen animations, save a screenshot, display scene statistics (triangle, vertex count) and more.
