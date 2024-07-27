@@ -168,7 +168,7 @@ Most important Wordppress shortcodes are:
 
         Note: There's nothing special about the 8777 port. It just seems unused by most other software (looking at https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers ), so it is likely non-conflicting with anything else on your system.
 
-    - Create new site, following `apache-sample.conf` example. You can copy and adjust it to `/etc/apache2/sites-available/cge-www.conf` . Or even symlink it, if you use the same path as me: `cd /etc/apache2/sites-available && sudo ln -s ~/sources/castle-engine/cge-www/apache-sample.conf cge-www.conf`.
+    - Create new site, following [apache-sample.conf](https://github.com/castle-engine/cge-www/blob/master/apache-sample.conf) example from this repo. You can copy and adjust it to `/etc/apache2/sites-available/cge-www.conf` . Or even symlink it, if you use the same path as me: `cd /etc/apache2/sites-available && sudo ln -s ~/sources/castle-engine/cge-www/apache-sample.conf cge-www.conf`.
 
     - Enable it:
 
@@ -176,9 +176,13 @@ Most important Wordppress shortcodes are:
 
         - On Arch Linux, follow https://wiki.archlinux.org/title/Apache_HTTP_Server .
 
-    In the end, http://localhost:8777/manual_intro.php should work. Note that the main page, http://localhost:8777/ , depends on a working Wordpress installation (including database) -- see below, it may require additional work to see it.
+    - Make sure the Apache web user has access to at least read the files in `htdocs/` and subdirectories. You can make them owned by `www-data` user, like `sudo chown -R www-data:www-data ~/sources/castle-engine/cge-www/htdocs/`. Make sure the parent directories are also accessible to `www-data`, e.g. `chmod a+rX ~`. Check it all works by `sudo -u www-data ls ~/sources/castle-engine/cge-www/htdocs/`.
 
-    Note: It is also possible to set this up in non-root, you could even use Apache "userdir" to place it e.g in `http://localhost/~michalis/castle-engine/` . We used to even advise this here, but we don't advise it anymore, as it's a bit more work (need to make sure PHP works in userdir) and needs adjusting .htaccess to make rewrites/redirects work and `/` to link to main page (which we use now from both PHP and AsciiDoctor) will not work.
+    Now pages that use only our PHP framework, like http://localhost:8777/manual_intro.php should work.
+
+    Note that the main page, http://localhost:8777/ , depends on a working Wordpress installation (including the database) -- see below, it will require additional work to see it.
+
+    Note: It is also possible to set this up in non-root, you could even use Apache "userdir" to place it e.g in `http://localhost/~michalis/castle-engine/` . We used to even advise this here, but we don't advise it anymore, as it's a bit more work (need to make sure PHP works in userdir) and needs adjusting `.htaccess` to make rewrites/redirects work and `/` to link to main page (which we use now from both PHP and AsciiDoctor) work OK.
 
 * To enable testing of AsciiDoctor pages, like http://localhost:8777/build_tool :
 
@@ -188,7 +192,7 @@ Most important Wordppress shortcodes are:
 
 * To enable viewing the main page and other pages depending on Wordpress (http://localhost:8777/, http://localhost:8777/wp/):
 
-    * Install MySQL
+    * Install MySQL (on Debian/Ubuntu and derivatives: `sudo apt install default-mysql-server`).
 
     * Create empty Wordpress database
 
@@ -198,8 +202,10 @@ Most important Wordppress shortcodes are:
         GRANT ALL PRIVILEGES ON cgewp.* TO 'cgewp'@'localhost';
         ```
 
-    * Install PHP mysql extension.
+    * Install PHP mysql extension (on Debian/Ubuntu and derivatives: `sudo apt install php-mysql`).
 
-    * When the main page is first opened, configure Wordpress.
+    * When the main page is first opened, configure Wordpress. Just provide any information (username, email, password), it's a local installation, it doesn't really matter.
+
+    * Visit http://localhost:8777/wp/wp-admin/themes.php and change theme to _"Castle Game Engine Theme"_.
 
     * If you need to import the real content of our Wordpress, contact Michalis.
