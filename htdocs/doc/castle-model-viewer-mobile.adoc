@@ -14,7 +14,9 @@ cgeimg::block[
   castle-model-viewer-mobile-open.png|Castle Model Viewer Mobile
 ]
 
-This is a mobile version of link:castle-model-viewer[Castle Model Viewer], sharing the capabilities with the desktop version (all supported model formats, navigation, viewpoints, animation, screenshots) but with UI streamlined for mobile devices. It is available now for Android, soon also for iOS.
+You can change navigation type (walk, fly, examine, 2D), jump between viewpoints, play chosen animations, save a screenshot, display scene statistics (triangle, vertex count) and more.
+
+This is a mobile version of link:castle-model-viewer[Castle Model Viewer], sharing the capabilities with the desktop version but with UI streamlined for mobile devices. It is available now for Android, soon also for iOS.
 
 == Download
 
