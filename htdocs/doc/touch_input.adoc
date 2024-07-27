@@ -137,7 +137,9 @@ If you really need to detect the platform at compile-time, you can use the follo
 
 == Navigating in 3D on touch devices using TCastleWalkNavigation
 
-Our built-in navigation components cgeref:TCastleExamineNavigation[] and cgeref:TCastleWalkNavigation[] work on mobile. However, they do provide optimal experience on mobile. Various key shortcuts of the navigation components are not possible to invoke on mobile, moreover the _mouse look_ mode of cgeref:TCastleWalkNavigation[] does not work on mobile.
+Our built-in navigation components cgeref:TCastleExamineNavigation[] and cgeref:TCastleWalkNavigation[] work on mobile nicely. They allow to perform typical navigation actions using the touch screen. In particular, cgeref:TCastleExamineNavigation[] supports intuitive pinch and pan gestures using 2 fingers.
+
+However, the experience of _walking_ using only cgeref:TCastleWalkNavigation[] is not optimal for many games. While you can move and rotate by dragging (see cgeref:TCastleWalkNavigation.MouseDragMode[]) it is hard to do it precisely, which may be a problem in e.g. shooting games.
 
 For this reason, we recommend to add cgeref:TCastleTouchNavigation[] to your viewport to allow for easy 3D navigation on mobile. The add cgeref:TCastleTouchNavigation[] displays visual UI in the viewport corners where user can touch to move around and rotate the camera. It cooperates with cgeref:TCastleWalkNavigation[] and cgeref:TCastleExamineNavigation[] to provide a seamless experience on all platforms.
 
@@ -268,6 +270,21 @@ begin
   MyViewport.InsertFront(TouchNavigation);
 end;
 ----
+
+You can adjust what navigation controls are shown by `TouchNavigation`:
+
+- It is easiest to set cgeref:TCastleTouchNavigation.AutoTouchInterface[TouchNavigation.AutoTouchInterface] to `true` on platforms where you want to use it (like mobile).
++
+You don't *need* to do anything more then, but optionally you can customize cgeref:TCastleTouchNavigation.AutoWalkTouchInterface[TouchNavigation.AutoWalkTouchInterface] and cgeref:TCastleTouchNavigation.AutoExamineTouchInterface[TouchNavigation.AutoExamineTouchInterface].
+
+- Alternatively, you can set cgeref:TCastleTouchNavigation.AutoTouchInterface[TouchNavigation.AutoTouchInterface] to `false` and manually adjust the cgeref:TCastleTouchNavigation.TouchInterface[TouchNavigation.TouchInterface] to the best navigation approach at any given moment.
+
+[NOTE]
+====
+cgeref:TCastleWalkNavigation[] also allows to move / rotate, by dragging anywhere on the screen.
+
+These two components nicely work in tandem if they both exist: cgeref:TCastleWalkNavigation[] allows to move / rotate by dragging anywhere on the screen, while cgeref:TCastleTouchNavigation[] allows to move / rotate by dragging the special gizmos in screen corners. We recommend in this case to _disable movement using cgeref:TCastleWalkNavigation[]_ because movement using cgeref:TCastleTouchNavigation[] is more precise and then user can use the screen only for rotating (like aiming, in shooting games), without moving by accident. To achieve this, set cgeref:TCastleWalkNavigation.MouseDragMode[] to `mdRotate` or set cgeref:TCastleTouchNavigation.ControlMouseDragMode[] to `true`.
+====
 
 == On-screen keyboard
 

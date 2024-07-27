@@ -152,5 +152,6 @@
         "XLIB",
         "Zander's"
     ],
-    "cSpell.enabled": true
+    "cSpell.enabled": true,
+    "asciidoc.antora.enableAntoraSupport": false
 }
