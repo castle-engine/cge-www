@@ -55,7 +55,7 @@ All supported 3D and 2D models are automatically associated with our application
 
 You can try it on models in https://github.com/castle-engine/castle-model-viewer-mobile/tree/master/example_models[example_models] subdirectory: visit any of the models there, click the _"Download"_ icon and choose to open with _"Castle Model Viewer"_.
 
-## Models must be self-contained
+=== Models must be self-contained
 
 An important requirement is that the model file must be _self-contained_.
 
