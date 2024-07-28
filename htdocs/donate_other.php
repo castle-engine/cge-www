@@ -65,7 +65,7 @@ Right now we have 1/2 developer on a payroll (<i>Andrzej Kilijański</i>, paid f
   <?php donation_option_begin(); ?>
     <!-- img src="images/bitcoin_logo.png" alt="Bitcoin logo" style="float: left; margin-right: 1em" / -->
     <p><b>Donate using <a href="http://www.bitcoin.org/">BitCoin</a>.</b><br>
-    Send funds to this address: <code>1FuJkCsKpHLL3E5nCQ4Y99bFprYPytd9HN</code></p>
+    Send funds to this address: <code>bc1qhdzf9eaejfld9ymst5m73rxs8mgymzrqflvcwa</code></p>
   <?php donation_option_end(); ?>
 
   <?php donation_option_begin(); ?>
