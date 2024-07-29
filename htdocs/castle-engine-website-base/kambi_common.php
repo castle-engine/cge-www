@@ -569,7 +569,12 @@ jQuery.event.special.mousewheel = {
 <!-- slick carousel https://github.com/kenwheeler/slick/ -->
 <script src="<?php echo page_requisite('castle-engine-website-base/node_modules/slick-carousel/slick/slick.min.js'); ?>"></script>
 <script>
-$(".banner-container img").css("display", "block");
+$('.banner-container').on('init', function(event, slick){
+  /* Make images visible after slick initialization.
+     Don't make images visible immediately (before Slick initializes)
+     to avoid CLS. */
+  $(".banner-container img").css("display", "block");
+});
 jQuery(".banner-container").slick({
   arrows: false,
   dots: true,

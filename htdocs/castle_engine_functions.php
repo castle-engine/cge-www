@@ -1352,7 +1352,14 @@ function echo_castle_header_suffix($path, $enable_sidebar = true)
         $banner_image['alt'] . '" ' .
         _castle_image_sizes($image_src) . ' ' .
         $style . '>' . "\n";
-      $style = 'style="display: none"'; // subsequent images are hidden initially, this makes better look when loading
+      /* Subsequent images are hidden initially, this makes better look when
+         loading.
+         Failing to do so results in bad (large) CLS (Cumulative Layout Shift),
+         which is
+         - bad for users (content shifts at loading)
+         - bad for SEO (Google core web vitals
+           based on actual user experience measure this, also LightHouse). */
+      $style = 'style="display: none"';
     }
     $rendered .= '</div>' . "\n";
   }
