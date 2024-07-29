@@ -59,8 +59,15 @@ function echo_scarf_tracking()
 {
   if (_castle_disable_stats()) return;
 
+  /* Scarf tracking pixel from
+     https://app.scarf.sh/pixels/castle-engine
+
+     Note: added alt, width, height attributes to improve HTML validation
+     and accessibility (LightHouse audit).
+  */
+
 ?>
-<img referrerpolicy="no-referrer-when-downgrade" src="https://static.scarf.sh/a.png?x-pxid=8fb63cd5-e9ab-4d27-af9b-a979ff518df1" />
+<img referrerpolicy="no-referrer-when-downgrade" src="https://static.scarf.sh/a.png?x-pxid=8fb63cd5-e9ab-4d27-af9b-a979ff518df1" alt="Scarf Analytics" width="1" height="1" />
 <?php
 }
 
