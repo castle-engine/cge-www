@@ -106,3 +106,95 @@ We recognize a special property `CastleCollision` at Blender mesh. It sets link:
 * `none` &mdash; non-collidable mesh.
 * `box` &mdash; mesh collides as a simple axis-aligned box (auto-calculated from bounding box of the shape, unless link:x3d_implementation_shape_extensions.php#section_ext_shape_bbox[Shape.Bbox] is explicitly specified).
 * `default` &mdash; mesh collides as a precise set of triangles.
+
+=== Baking Lighting
+
+You can use _baking_ to store the result of a Blender computation (rendering) into a texture. For example, you can bake lights (that is, bright light spots on objects), shadows, procedural Blender textures and more. Everything that _Blender_ can render, can also be stored in a _baked texture_.
+
+Once done, you can export a model with unlit materials to link:gltf[glTF].
+
+This is a powerful optimization technique *when the lights and objects are static*. Once the lighting effects have been _baked_ into the texture, the engine can just render the object _unlit_, applying the texture without any additional lighting calculations at run-time. E.g. we used this trick in link:darkest_before_dawn.php["Darkest Before the Dawn"], an old game targeting old Android devices. Since 100% of the lighting was just baked into textures in Blender, the game worked smoothly everywhere, and yet we used lots of "dramatic" local lights.
+
+cgeimg::block[darkest_before_dawn_1.png|Darkest Before the Dawn\, a game where all lighting was baked in Blender]
+
+We describe the process in detail below. Follow the description and the screenshots. The files used in this example (input textures, baked texture, Blender files before and after using the baked texture) in the https://github.com/castle-engine/demo-models/tree/master/blender/baking_lighting[blender/baking_lighting] subdirectory of our https://github.com/castle-engine/demo-models[demo models].
+
+The process to bake lights looks like this:
+
+. Set up your scene as usual, using regular materials, UVs for textures (possibly using texture as repeatable, e.g. use repeatable bricks texture as usual), lights, colors.
++
+cgeimg::block[
+  blender_bake_10_before_1.png|Scene before baking,
+  blender_bake_10_before_2.png|Scene before baking
+]
+
+. For the easiest setup, everything you want to bake should be in one Blender object (it can still have different materials, so also different textures, for various faces). You can just _join_ (_Ctrl + J_) all meshes.
+
+. Create a new texture (image) in Blender as a target for baking. I call this texture `baked` on the screnshot below.
++
+Initial color doesn't really matter (just black is OK).
++
+Use a sufficiently large resolution (like 2048x2048 or 4096x4096).
++
+During baking, this texture will be filled with the result of rendering the scene. Do not use this texture in any material (yet) -- it is the _output_ of the baking process, not an _input_.
++
+cgeimg::block[blender_bake_30_new_baked_texture.png|Creating a new texture for baking]
+
+. Setup new _UV mapping_ (aka "texture coordinates") for the `baked` texture.
++
+If your object already has some UV map, add a new one (called `unwrapped_for_baking` in the screenshot below).
++
+Generate the UV by _unwrapping_ (press _U_). It is easiest to use _"Smart UV Project"_ algorithm for this, but you can also do it by regular _"Unwrap"_ after you created some seams to guide Blender's unwrapping process. Be sure to separate islands a bit (with _"Smart UV Project"_, set _"Island Margin"_ to something non-zero like 0.01).
++
+Make these new texture coordinates selected, but not used for rendering.
++
+cgeimg::block[blender_bake_40_unwrapping.png|Generate UV by unwrapping]
+
+. To _every material in your object_, add an _"Image Texture"_ node that uses the `baked` texture. Make this node the only selected (active) node. But do not connect it to anything. It has to be like this, for every material, as Blender uses as target _Active Image Texture_ node for baking.
++
+cgeimg::block[blender_bake_50_node_disconnected_text.png|Add Image Texture node to every material]
+
+. On the _"Render"_ properties, switch _"Render Engine"_ to _"Cycles Render"_ and scroll down to find the _"Bake"_ section. To bake everything, use _"Bake Type"_ = _"Combined"_.
+
+. Press _"Bake"_ button, and wait for _Blender_ to render the scene into the texture. Observe the output `baked` texture -- all areas that corresponded to some faces should now be nicely rendered, and reflect the surface lighting, input textures, shadows.
++
+cgeimg::block[blender_bake_70_baking_press.png|Baking]
+
+. Save the `baked` texture to a file (e.g. as `baked.png`). Use the Blender _"Image -> Save As..."_ menu item to save the image.
+
+. Change your model to use the baked texture, instead of the original textures.
++
+Since this is a somewhat destructive process, we recommend to save the Blender file under a new name, and keep the original file with all the materials intact. In our example on https://github.com/castle-engine/demo-models/tree/master/blender/baking_lighting[demo-models/blender/baking_lighting] we saved the resulting file (with only new baked material) as `sample_level_using_baked_texture.blend`. It is not supposed to be further edited. Instead, you should edit the original `sample_level.blend`, where materials are intact, and bake again after any edit.
++
+To use the baked texture, add a new material (called `mat_baked` below) and make it use the `baked.png` texture. Make this material used by all faces of the object.
++
+If your object had multiple materials (and you're working in a copy of the file, like `sample_level_using_baked_texture.blend` as we recommend above), it is easiest to just remove all other materials, and keep only `mat_baked` on this object. This way you can be sure that the baked texture is used everywhere.
++
+If you don't want any other lights than what you baked, then you can make the new material unlit (that is, use _"Background"_ shader in Blender). If you want to add other lights, then keep the material physical (called _"Principled BSDF"_ in Blender), just assign the baked texture to the _"Base Color"_ (this is not really correct, since your baked texture is now a combination of base color + some lighting, but it may look reasonable in some cases).
++
+cgeimg::block[blender_bake_90_baked_material.png|Use the baked texture in a new material]
+
+. Make the UV called `unwrapped_for_baking` the rendered UV of the object (select the camera icon at the `unwrapped_for_baking` name).
++
+cgeimg::block[blender_bake_100_use_unwrapped_uv.png|Use the UV unwrapped_for_baking]
+
+. Export to glTF as usual.
++
+Remember (at glTF export settings) that you most likely want to use _"Keep Original"_ (so that glTF exporter just refers to existing texture files) and not select _"Punctual Lights"_ (since you already baked the lights).
++
+Test it looks as expected in our engine tools, like link:castle-model-viewer[Castle Model Viewer] and link:editor[].
++
+cgeimg::block[
+  blender_bake_110_in_model_viewer.png|Level with baked lighting in Castle Model Viewer,
+  blender_bake_110_in_editor.png|Level with baked lighting in Castle Game Engine editor
+]
+
+NOTE: You can also choose to bake only some things into the texture (like _ambient occlusion_) and then choose to mix this newly baked texture with your regular texture in the engine. This means that the engine will use _multi-texturing_, which is fully supported across everything: https://docs.blender.org/manual/en/dev/addons/import_export/scene_gltf2.html[Blender -> X3D exporter can save material with mutiple textures if you set up nodes correctly] and link:gltf[gllTF] and _Castle Game Engine_ support it.
+
+See also:
+
+- https://docs.blender.org/manual/en/latest/render/cycles/baking.html[Blender manual about baking].
+
+- The baking process is similar to https://castle-engine.io/bump_mapping[baking a normal map which we show here], but here you want to choose something else than only baking _"normals"_.
+
+The description here has been tested with _Blender 4.2_.

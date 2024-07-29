@@ -69,11 +69,15 @@ We support additional macros within AsciiDoctor:
   though at development they will also be regenerated as-needed by PHP.
   To allow the PHP to do this,
 
-    - install ImageMagick (`convert` must be on $PATH),
+    - install ImageMagick (`convert` must be on `$PATH`),
+
+    - install Ffmpeg (`ffmpeg` must be on `$PATH`) to process some GIFs,
 
     - GNU `make`,
 
     - and make sure PHP has permissions to write within proper images/ subdirs: `chmod -R a+rwX htdocs/images/*_size/`.
+
+    - Once, right after cloning this repo from GIT, it is useful to execute `make do-not-regenerate-existing-images` to avoid regenerating all thumbnails because their timestamps are older than the source images.
 
   The idea is that (at development) you
 
