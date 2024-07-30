@@ -572,9 +572,12 @@ a.patreon-link:focus {
 </li>
 <li><a href="#_units">3. Units</a>
 <ul class="sectlevel2">
-<li><a href="#_units_using_each_other">3.1. Units using each other</a></li>
-<li><a href="#_qualifying_identifiers_with_unit_name">3.2. Qualifying identifiers with unit name</a></li>
-<li><a href="#_exposing_one_unit_identifiers_from_another">3.3. Exposing one unit identifiers from another</a></li>
+<li><a href="#_overview">3.1. Overview</a></li>
+<li><a href="#_extensions_used_for_units_and_programs">3.2. Extensions used for units and programs</a></li>
+<li><a href="#_initialization_and_finalization">3.3. Initialization and finalization</a></li>
+<li><a href="#_units_using_each_other">3.4. Units using each other</a></li>
+<li><a href="#_qualifying_identifiers_with_unit_name">3.5. Qualifying identifiers with unit name</a></li>
+<li><a href="#_exposing_one_unit_identifiers_from_another">3.6. Exposing one unit identifiers from another</a></li>
 </ul>
 </li>
 <li><a href="#_classes">4. Classes</a>
@@ -606,7 +609,7 @@ a.patreon-link:focus {
 </li>
 <li><a href="#_exceptions">6. Exceptions</a>
 <ul class="sectlevel2">
-<li><a href="#_overview">6.1. Overview</a></li>
+<li><a href="#_overview_2">6.1. Overview</a></li>
 <li><a href="#_raising">6.2. Raising</a></li>
 <li><a href="#_catching">6.3. Catching</a></li>
 <li><a href="#_finally_doing_things_regardless_if_an_exception_occurred">6.4. Finally (doing things regardless if an exception occurred)</a></li>
@@ -794,7 +797,7 @@ Voila&#8201;&#8212;&#8201;a working GUI application, cross-platform, with native
 <span class="keyword">var</span>
   I: Integer;
 <span class="keyword">begin</span>
-  Readln(I);
+  ReadLn(I);
   Result := I;
   <span class="keyword">if</span> I &lt;&gt; <span class="integer">0</span> <span class="keyword">then</span>
     Result := Result + SumIntegersUntilZero();
@@ -1331,8 +1334,10 @@ WriteLn(<span class="string"><span class="delimiter">'</span><span class="conten
 <div class="sect1">
 <h2 id="_units">3. Units</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_overview">3.1. Overview</h3>
 <div class="paragraph">
-<p>Units allow you to group common stuff (anything that can be declared), for usage by other units and programs. They are equivalent to <em>modules</em> and <em>packages</em> in other languages. They have an interface section, where you declare what is available for other units and programs, and then the implementation. Save unit <code>MyUnit</code> as <code>myunit.pas</code> (lowercase with <code>.pas</code> extension).</p>
+<p>Units allow you to group common stuff (anything that can be declared), for usage by other units and programs. They are equivalent to <em>modules</em> and <em>packages</em> in other languages. They have an interface section, where you declare what is available for other units and programs, and then the implementation.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1359,9 +1364,6 @@ WriteLn(<span class="string"><span class="delimiter">'</span><span class="conten
 </div>
 </div>
 <div class="paragraph">
-<p>Final programs are saved as <code>myprogram.lpr</code> files (<code>lpr</code> = Lazarus program file; in Delphi you would use <code>.dpr</code>). Note that other conventions are possible here, e.g. some projects just use <code>.pas</code> for main program file, some use <code>.pp</code> for units or programs. I advise using <code>.pas</code> for units and <code>.lpr</code> for FPC/Lazarus programs.</p>
-</div>
-<div class="paragraph">
 <p>A program can use a unit by a <code>uses</code> keyword:</p>
 </div>
 <div class="listingblock">
@@ -1379,6 +1381,63 @@ WriteLn(<span class="string"><span class="delimiter">'</span><span class="conten
 <span class="keyword">end</span>.</code></pre>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_extensions_used_for_units_and_programs">3.2. Extensions used for units and programs</h3>
+<div class="paragraph">
+<p>Save the unit file <code>MyUnit</code> as <code>myunit.pas</code>. That is, lowercase with <code>.pas</code> extension.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Other conventions are possible.</p>
+</div>
+<div class="paragraph">
+<p>E.g. FPC allows other file extensions for units. And some people use <code>.pp</code> for unit files, like <code>myunit.pp</code>.</p>
+</div>
+<div class="paragraph">
+<p>Using a different case is also possible. On Windows file systems, the letter case doesn&#8217;t matter. But on Unix file systems is does matter and FPC allows only to use <em>the exact same case as was specified in Pascal <code>uses</code> clause</em> (so <code>MyUnit.pas</code>) or <em>all lowercase</em> (so <code>myunit.pas</code>). Since Pascal is case-insensitive, the first rule sometimes causes issues when people specify unit names with different case in different places.</p>
+</div>
+<div class="paragraph">
+<p>All in all, we recommend the simple above rule <em>all lowercase, <code>.pas</code> extension</em> for your projects. This matches the most common established practices and works with all compilers and file systems without issues.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Save the <code>program</code> to a file with:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>.dpr</code> extension (short for <em>"Delphi Project"</em>), if you want the project to be compatible with both <em>FPC/Lazarus</em> and <em>Delphi</em>,</p>
+</li>
+<li>
+<p><code>.lpr</code> extension (short for <em>"Lazarus Project"</em>), if you want to use only <em>FPC/Lazarus</em>.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Other conventions are possible and used by some projects. E.g. some projects use <code>.pas</code> for main program file. Some projects use <code>.pp</code> for units or programs. There are reasonable reasons for this (e.g. for FPC programs, that don&#8217;t use Lazarus LCL, neither description <em>"Lazarus Project"</em> nor <em>"Delphi Project"</em> are strictly correct)&#8230;&#8203; But for the sake of simplicity, we recommend the above conventions (<code>.dpr</code> or <code>.lpr</code>), as they cover the most common established practices.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_initialization_and_finalization">3.3. Initialization and finalization</h3>
 <div class="paragraph">
 <p>A unit may also contain <code>initialization</code> and <code>finalization</code> sections. This is the code executed when the program starts and ends.</p>
 </div>
@@ -1397,8 +1456,9 @@ WriteLn(<span class="string"><span class="delimiter">'</span><span class="conten
 <span class="keyword">end</span>.</code></pre>
 </div>
 </div>
+</div>
 <div class="sect2">
-<h3 id="_units_using_each_other">3.1. Units using each other</h3>
+<h3 id="_units_using_each_other">3.4. Units using each other</h3>
 <div class="paragraph">
 <p>One unit can also use another unit. Another unit can be used in the interface section, or only in the implementation section. The former allows to define new public stuff (procedures, types&#8230;&#8203;) on top of another unit&#8217;s stuff. The latter is more limited (if you use a unit only in the implementation section, you can use its identifiers only in your implementation).</p>
 </div>
@@ -1440,7 +1500,7 @@ the interface section of a unit, the compiler must first "understand" all the un
 </div>
 </div>
 <div class="sect2">
-<h3 id="_qualifying_identifiers_with_unit_name">3.2. Qualifying identifiers with unit name</h3>
+<h3 id="_qualifying_identifiers_with_unit_name">3.5. Qualifying identifiers with unit name</h3>
 <div class="paragraph">
 <p>Different units may define the same identifier. To keep the code simple to read and search, you should usually avoid it, but it&#8217;s not always possible.
 In such cases, the last unit on the <code>uses</code> clause "wins", which means that the identifiers it introduces hide the same identifiers introduced by earlier units.</p>
@@ -1553,7 +1613,7 @@ In such cases, the last unit on the <code>uses</code> clause "wins", which means
 </div>
 </div>
 <div class="sect2">
-<h3 id="_exposing_one_unit_identifiers_from_another">3.3. Exposing one unit identifiers from another</h3>
+<h3 id="_exposing_one_unit_identifiers_from_another">3.6. Exposing one unit identifiers from another</h3>
 <div class="paragraph">
 <p>Sometimes you want to take an identifier from one unit, and <em>expose</em> it in a new unit. The end result should be that using the new unit will make the identifier available in the namespace.</p>
 </div>
@@ -2752,7 +2812,7 @@ results in an unpredictable behavior&#8201;&#8212;&#8201;maybe an access violati
 <h2 id="_exceptions">6. Exceptions</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_overview">6.1. Overview</h3>
+<h3 id="_overview_2">6.1. Overview</h3>
 <div class="paragraph">
 <p>Exceptions allow to <em>interrupt the normal execution of the code</em>.</p>
 </div>
@@ -4471,7 +4531,7 @@ generic <span class="keyword">function</span> Min&lt;T&gt;(<span class="keyword"
 <p>Do not use them without consideration: things are a bit less safe (you don&#8217;t control types, conversions happen implicitly). Also there&#8217;s a small performance hit, since all operations need to check and synchronize the types at run-time.</p>
 </div>
 <div class="paragraph">
-<p>But sometimes it is makes sense. Namely, when you have to process data that intrinsically indeed may have different types, and you only know those types at runtime. E.g. when you want to process result of SQL <code>select * from sometable</code> in a generic database viewer (not knowing table structure at compile-time).</p>
+<p>But sometimes it does make sense. Namely, when you have to process data that intrinsically indeed may have different types, and you only know those types at runtime. E.g. when you want to process result of SQL <code>select * from some_table</code> in a generic database viewer (not knowing table structure at compile-time).</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -5868,7 +5928,7 @@ you create <em>COM interfaces</em>. This can be stated explicitly by saying <cod
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-07-30 12:27:44 +0200
+Last updated 2024-07-30 15:34:19 +0200
 </div>
 </div>
 <!-- Google analytics -->
