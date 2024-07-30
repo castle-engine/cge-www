@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.23">
+<meta name="generator" content="Asciidoctor 2.0.20">
 <meta name="author" content="Michalis Kamburelis">
 <title>Modern Object Pascal Introduction for Programmers</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
@@ -141,7 +141,7 @@ p a>code:hover{color:rgba(0,0,0,.9)}
 #content::before{content:none}
 #header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
 #header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
-#header>h1:only-child{border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
 #header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:flex;flex-flow:row wrap}
 #header .details span:first-child{margin-left:-.125em}
 #header .details span.email a{color:rgba(0,0,0,.85)}
@@ -163,7 +163,6 @@ p a>code:hover{color:rgba(0,0,0,.9)}
 #toctitle{color:#7a2518;font-size:1.2em}
 @media screen and (min-width:768px){#toctitle{font-size:1.375em}
 body.toc2{padding-left:15em;padding-right:0}
-body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
 #toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
 #toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
 #toc.toc2>ul{font-size:.9em;margin-bottom:0}
@@ -329,7 +328,7 @@ a.image{text-decoration:none;display:inline-block}
 a.image object{pointer-events:none}
 sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
 sup.footnote a,sup.footnoteref a{text-decoration:none}
-sup.footnote a:active,sup.footnoteref a:active,#footnotes .footnote a:first-of-type:active{text-decoration:underline}
+sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
 #footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
 #footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
 #footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
@@ -630,9 +629,16 @@ a.patreon-link:focus {
 <li><a href="#_overloading">8.5. Overloading</a></li>
 <li><a href="#_preprocessor">8.6. Preprocessor</a></li>
 <li><a href="#_records">8.7. Records</a></li>
-<li><a href="#_old_style_objects">8.8. Old-style objects</a></li>
-<li><a href="#_pointers">8.9. Pointers</a></li>
-<li><a href="#_operator_overloading">8.10. Operator overloading</a></li>
+<li><a href="#_variant_records_and_related_concepts">8.8. Variant records and related concepts</a>
+<ul class="sectlevel3">
+<li><a href="#_variant_records">8.8.1. Variant records</a></li>
+<li><a href="#_variant_type">8.8.2. Variant type</a></li>
+<li><a href="#_tvarrec_in_array_of_const">8.8.3. TVarRec in array of const</a></li>
+</ul>
+</li>
+<li><a href="#_old_style_objects">8.9. Old-style objects</a></li>
+<li><a href="#_pointers">8.10. Pointers</a></li>
+<li><a href="#_operator_overloading">8.11. Operator overloading</a></li>
 </ul>
 </li>
 <li><a href="#_advanced_classes_features">9. Advanced classes features</a>
@@ -4071,6 +4077,7 @@ Remember that when descending from <code>TPersistent</code>, the default <em>vis
     MyList.ForEach(<span class="keyword">procedure</span>(<span class="keyword">const</span> Index, Item: Integer)
       <span class="keyword">begin</span>
         WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">Index: </span><span class="delimiter">'</span></span>, Index, <span class="string"><span class="delimiter">'</span><span class="content">, Item: </span><span class="delimiter">'</span></span>, Item);
+        WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">  If we would proces it by F: </span><span class="delimiter">'</span></span>, F(Index, Item));
       <span class="keyword">end</span>);
   <span class="keyword">finally</span> FreeAndNil(MyList) <span class="keyword">end</span>;
 <span class="keyword">end</span>.</code></pre>
@@ -4392,7 +4399,178 @@ generic <span class="keyword">function</span> Min&lt;T&gt;(<span class="keyword"
 </div>
 </div>
 <div class="sect2">
-<h3 id="_old_style_objects">8.8. Old-style objects</h3>
+<h3 id="_variant_records_and_related_concepts">8.8. Variant records and related concepts</h3>
+<div class="paragraph">
+<p>The concept <em>variant</em> may refer to 3 distinct (though, deep down related) things in Pascal:</p>
+</div>
+<div class="sect3">
+<h4 id="_variant_records">8.8.1. Variant records</h4>
+<div class="paragraph">
+<p><em>Variant records</em> allow to define a section at the end of your record where the same memory can be accessed by a few different names/types.</p>
+</div>
+<div class="paragraph">
+<p>This is described on <a href="https://en.wikipedia.org/wiki/Tagged_union" class="bare">https://en.wikipedia.org/wiki/Tagged_union</a> on Wikipedia. <em>"Union"</em> is more common name for this in other languages. See also <a href="https://www.freepascal.org/docs-html/ref/refsu15.html" class="bare">https://www.freepascal.org/docs-html/ref/refsu15.html</a> .</p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$ifdef FPC}</span> <span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span> <span class="preprocessor">{$endif}</span>
+
+<span class="keyword">type</span>
+  TVector2 = <span class="keyword">packed</span> <span class="keyword">record</span>
+    <span class="keyword">case</span> Integer <span class="keyword">of</span>
+      <span class="integer">0</span>: (X, Y: Single);
+      <span class="integer">1</span>: (Data: <span class="keyword">array</span> [<span class="integer">0</span>..<span class="integer">1</span>] <span class="keyword">of</span> Single);
+  <span class="keyword">end</span>;
+
+  TVector3 = <span class="keyword">packed</span> <span class="keyword">record</span>
+    <span class="keyword">case</span> Integer <span class="keyword">of</span>
+      <span class="integer">0</span>: (X, Y, Z: Single);
+      <span class="integer">1</span>: (Data: <span class="keyword">array</span> [<span class="integer">0</span>..<span class="integer">2</span>] <span class="keyword">of</span> Single);
+      <span class="integer">2</span>: (XY: TVector2);
+  <span class="keyword">end</span>;
+
+
+<span class="keyword">var</span>
+  V2: TVector2;
+  V: TVector3;
+  I: Integer;
+<span class="keyword">begin</span>
+  Writeln(<span class="string"><span class="delimiter">'</span><span class="content">Size of TVector2 is </span><span class="delimiter">'</span></span>, SizeOf(TVector2));
+  Writeln(<span class="string"><span class="delimiter">'</span><span class="content">  Should be equal to </span><span class="delimiter">'</span></span>, SizeOf(Single) * <span class="integer">2</span>);
+
+  Writeln(<span class="string"><span class="delimiter">'</span><span class="content">Size of TVector3 is </span><span class="delimiter">'</span></span>, SizeOf(TVector3));
+  Writeln(<span class="string"><span class="delimiter">'</span><span class="content">  Should be equal to </span><span class="delimiter">'</span></span>, SizeOf(Single) * <span class="integer">3</span>);
+
+  V.X := <span class="integer">1</span>;
+  V.Y := <span class="integer">2</span>;
+  V.Z := <span class="integer">3</span>;
+
+  <span class="keyword">for</span> I := <span class="integer">0</span> <span class="keyword">to</span> <span class="integer">2</span> <span class="keyword">do</span>
+    Writeln(<span class="string"><span class="delimiter">'</span><span class="content">V.Data[</span><span class="delimiter">'</span></span>, I, <span class="string"><span class="delimiter">'</span><span class="content">] is </span><span class="delimiter">'</span></span>, V.Data[I]:<span class="integer">1</span>:<span class="integer">2</span>);
+
+  V2 := V.XY;
+
+  <span class="keyword">for</span> I := <span class="integer">0</span> <span class="keyword">to</span> <span class="integer">1</span> <span class="keyword">do</span>
+    Writeln(<span class="string"><span class="delimiter">'</span><span class="content">V2.Data[</span><span class="delimiter">'</span></span>, I, <span class="string"><span class="delimiter">'</span><span class="content">] is </span><span class="delimiter">'</span></span>, V2.Data[I]:<span class="integer">1</span>:<span class="integer">2</span>);
+<span class="keyword">end</span>.</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_variant_type">8.8.2. Variant type</h4>
+<div class="paragraph">
+<p><code>Variant</code> is a special type in Pascal that underneath can hold values of various types. Moreover, operators are defined to allow operating on them and converting their values at run-time.</p>
+</div>
+<div class="paragraph">
+<p>The effect is a bit similar to scripting programming languages with dynamic typing.</p>
+</div>
+<div class="paragraph">
+<p>Do not use them without consideration: things are a bit less safe (you don&#8217;t control types, conversions happen implicitly). Also there&#8217;s a small performance hit, since all operations need to check and synchronize the types at run-time.</p>
+</div>
+<div class="paragraph">
+<p>But sometimes it is makes sense. Namely, when you have to process data that intrinsically indeed may have different types, and you only know those types at runtime. E.g. when you want to process result of SQL <code>select * from sometable</code> in a generic database viewer (not knowing table structure at compile-time).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$ifdef FPC}</span> <span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span> <span class="preprocessor">{$endif}</span>
+
+<span class="keyword">uses</span> Variants;
+<span class="keyword">var</span>
+  V1, V2, V3: Variant;
+<span class="keyword">begin</span>
+  V1 := <span class="string"><span class="delimiter">'</span><span class="content">My String</span><span class="delimiter">'</span></span>;
+  V1 := <span class="integer">123</span>; <span class="comment">// V1 no longer holds String, it has Integer now</span>
+  V2 := <span class="integer">45</span><span class="float">6.789</span>;
+  V3 := V1 + V2; <span class="comment">// result is float</span>
+  Writeln(<span class="string"><span class="delimiter">'</span><span class="content">V3 = </span><span class="delimiter">'</span></span>, V3);
+<span class="keyword">end</span>.</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Technically, <code>Variant</code> is realized using <code>TVarData</code> internal type, which is a record with variants. So these concepts are connected. But you should <strong>not need to know this</strong>, you should not use <code>TVarData</code> explicitly.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_tvarrec_in_array_of_const">8.8.3. TVarRec in array of const</h4>
+<div class="paragraph">
+<p>When you use <code>array of const</code> special parameter type, it is passed as an array of <code>TVarRec</code>. See</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>TVarRec</code> in FPC: <a href="https://www.freepascal.org/docs-html/rtl/system/tvarrec.html" class="bare">https://www.freepascal.org/docs-html/rtl/system/tvarrec.html</a></p>
+</li>
+<li>
+<p><code>TVarRec</code> in Delphi: <a href="https://docwiki.embarcadero.com/Libraries/Sydney/en/System.TVarRec" class="bare">https://docwiki.embarcadero.com/Libraries/Sydney/en/System.TVarRec</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This is useful to pass to a routine parameters of arbitrary (not known at compile-time) types. For example, to implement routines like standard <code>Format</code> (similar to <code>sprintf</code> in C) or <em>Castle Game Game</em> <code>WriteLnLog</code> / <code>WriteLnWarning</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$ifdef FPC}</span> <span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span> <span class="preprocessor">{$endif}</span>
+
+<span class="keyword">uses</span> SysUtils;
+
+<span class="comment">{ Example function that concatenates all elements of an array of const
+  into a String. }</span>
+<span class="keyword">function</span> GlueEverything(<span class="keyword">const</span> MyArray: <span class="keyword">array</span> <span class="keyword">of</span> <span class="keyword">const</span>): <span class="keyword">String</span>;
+<span class="keyword">var</span>
+  I: Integer;
+<span class="keyword">begin</span>
+  Result := <span class="string"><span class="delimiter">'</span><span class="delimiter">'</span></span>;
+
+  <span class="keyword">for</span> I := <span class="integer">0</span> <span class="keyword">to</span> High(MyArray) <span class="keyword">do</span>
+  <span class="keyword">begin</span>
+    <span class="comment">// treat MyArray[I] as TVarRec, check for type and do something</span>
+    <span class="keyword">case</span> MyArray[I].VType <span class="keyword">of</span>
+      vtInteger:
+        <span class="keyword">begin</span>
+          Writeln(<span class="string"><span class="delimiter">'</span><span class="content">Integer: </span><span class="delimiter">'</span></span>, MyArray[I].VInteger);
+          Result := Result + IntToStr(MyArray[I].VInteger) + <span class="char"><span class="delimiter">'</span><span class="content"> </span><span class="delimiter">'</span></span>;
+        <span class="keyword">end</span>;
+      vtAnsiString:
+        <span class="keyword">begin</span>
+          Writeln(<span class="string"><span class="delimiter">'</span><span class="content">Ansi String (8-bit chars): </span><span class="delimiter">'</span></span>, AnsiString(MyArray[I].VAnsiString));
+          Result := Result + AnsiString(MyArray[I].VAnsiString) + <span class="char"><span class="delimiter">'</span><span class="content"> </span><span class="delimiter">'</span></span>;
+        <span class="keyword">end</span>;
+      vtUnicodeString:
+        <span class="keyword">begin</span>
+          Writeln(<span class="string"><span class="delimiter">'</span><span class="content">Unicode String (16-bit chars): </span><span class="delimiter">'</span></span>, UnicodeString(MyArray[I].VUnicodeString));
+          Result := Result + UnicodeString(MyArray[I].VUnicodeString) + <span class="char"><span class="delimiter">'</span><span class="content"> </span><span class="delimiter">'</span></span>;
+        <span class="keyword">end</span>;
+      <span class="keyword">else</span>
+        Writeln(<span class="string"><span class="delimiter">'</span><span class="content">Something else, ignoring</span><span class="delimiter">'</span></span>);
+    <span class="keyword">end</span>;
+  <span class="keyword">end</span>;
+<span class="keyword">end</span>;
+
+<span class="keyword">var</span>
+  S: <span class="keyword">String</span>;
+<span class="keyword">begin</span>
+  S := GlueEverything([<span class="integer">123</span>, <span class="string"><span class="delimiter">'</span><span class="content">Hello</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">World</span><span class="delimiter">'</span></span>, <span class="integer">456</span>]);
+  Writeln(S);
+<span class="keyword">end</span>.</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_old_style_objects">8.9. Old-style objects</h3>
 <div class="paragraph">
 <p>In the old days, Turbo Pascal introduced another syntax for class-like functionality, using the <code>object</code> keyword. It&#8217;s somewhat of a blend between the concept of a <code>record</code> and a modern <code>class</code>.</p>
 </div>
@@ -4414,7 +4592,7 @@ generic <span class="keyword">function</span> Min&lt;T&gt;(<span class="keyword"
 </div>
 </div>
 <div class="sect2">
-<h3 id="_pointers">8.9. Pointers</h3>
+<h3 id="_pointers">8.10. Pointers</h3>
 <div class="paragraph">
 <p>You can create a <em>pointer</em> to any other type. The pointer to type <code>TMyRecord</code> is declared as <code>^TMyRecord</code>, and by convention is called <code>PMyRecord</code>. This is a traditional example of a linked list of integers using records:</p>
 </div>
@@ -4452,7 +4630,7 @@ A linked list using classes is certainly possible, it would simply be this:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_operator_overloading">8.10. Operator overloading</h3>
+<h3 id="_operator_overloading">8.11. Operator overloading</h3>
 <div class="paragraph">
 <p>You can override the meaning of many language operators, for example to allow addition and multiplication of your custom types. Like this:</p>
 </div>
@@ -5690,7 +5868,7 @@ you create <em>COM interfaces</em>. This can be stated explicitly by saying <cod
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-07-01 16:55:49 +0200
+Last updated 2024-07-30 12:27:44 +0200
 </div>
 </div>
 <!-- Google analytics -->
