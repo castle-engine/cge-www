@@ -113,9 +113,9 @@ cgeimg::block[viewport_3d_light_higher.png|Light moved up]
 The default _point light_ (cgeref:TCastlePointLight[]) makes a nice local light effect. Later, to have a light nicely shine over a larger area, you can tweak it:
 +
 --
-- increase cgeref:TCastlePointLight.Intensity[] (don't be afraid to experiment with really large values, like 100 or even 1000),
-- or set cgeref:TCastlePointLight.Attenuation[] to `0 0 0` (this makes unrealistic light that shines uniformly in all directions, without attenuation),
-- or add a new cgeref:TCastleDirectionalLight[] to make everything brighter (this is a light that shines in a given direction, like a sun). Maybe you will not need the point light anymore -- you can remove it.
+- increase cgeref:TCastlePointLight.Intensity[] (don't be afraid to experiment with really large values; default is 100, larger values are OK too; lights in the _Real World_ also do not have any brightness limit),
+- or set cgeref:TCastlePointLight.Attenuation[] to `0 0 0` (this makes unrealistic light that has no _attenuation_, so it remains bright even far away; completely unrealistic, but then we don't always want to be realistic),
+- or add a new cgeref:TCastleDirectionalLight[] to make everything brighter (this is a light that shines in a given direction, like a sun). Maybe you will not need the point light anymore then -- you can remove it.
 --
 
 ## Run the game
