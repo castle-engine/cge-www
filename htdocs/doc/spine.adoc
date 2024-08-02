@@ -46,9 +46,9 @@ When you run our https://castle-engine.io/manual_editor.php[editor], create a _"
 
 To play a Spine animation,
 
-* In editor or from code set cgeref:TCastleSceneCore.AutoAnimation[TCastleScene.AutoAnimation].
+* In editor or from code set cgeref:TCastleSceneCore.AutoAnimation[].
 
-* Or from code call cgeref:TCastleSceneCore.PlayAnimation[TCastleScene.PlayAnimation] method. Use cgeref:TCastleSceneCore.Animations[TCastleScene.Animations] to list available animations.
+* Or from code call cgeref:TCastleSceneCore.PlayAnimation[] method. Use cgeref:TCastleSceneCore.AnimationsList[] to list available animations.
 
 See link:viewport_and_scenes[viewport and scenes] for more information about using viewports and scenes -- there's nothing special about scene using Spine model.
 
