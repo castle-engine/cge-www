@@ -11,6 +11,9 @@ echo '<img src="images/castle_game_engine_icon.png"
 $toc = new TableOfContents(
   array(
     new TocItem('FPC and Lazarus', 'fpc_lazarus'),
+      new TocItem('FPC version', 'fpc_version', 1),
+      new TocItem('Lazarus version', 'lazarus_version', 1),
+      new TocItem('We recommend FpcUpDeluxe', 'fpcupdeluxe', 1),
       new TocItem('If you use sparta_Docked package', 'sparta_docked', 1),
       //new TocItem('If you use proprietary NVidia OpenGL on Linux', 'nvidia_linux', 1),
       new TocItem('If you use FPC development version (from GitLab)', 'fpc_unstable', 1),
@@ -25,31 +28,42 @@ $toc = new TableOfContents(
 
 <?php echo $toc->html_section(); ?>
 
-<p>We support <a href="http://www.freepascal.org/">Free Pascal Compiler (FPC)</a>
-version &gt;= 3.2.0.
+<?php echo $toc->html_section(); ?>
 
-<p>We always support and advice the latest <a href="http://www.freepascal.org/">stable
-release of FPC</a>.
-Usually, we also support a couple of older FPC releases.
+<p><i>FPC (Free Pascal Compiler)</i> is a Pascal compiler. You need a compiler, either FPC or <a href="delphi">Delphi</a>, to build <i>Castle Game Engine</i> applications.
 
-<p>We use some modern Pascal features (like generics) in CGE, so we occasionally
-bump the required FPC version. We check what is commonly available,
-e.g. <a href="https://packages.debian.org/stable/fpc">what is in the latest Debian stable (which is a baseline
-for many other Linux distros)</a>.
-Last time, on 2021-12-12, we bumped required version
-for <i>Castle Game Engine 7.0-alpha.snapshot</i> from <i>FPC &gt;= 3.0.2</i> to <i>FPC &gt;= 3.2.0</i>.
+<p>Our <a href="download">official downloads</a> for <i>Windows</i> and <i>Linux</i> already include the most recommended (latest stable) FPC version, so you don't need to install FPC yourself. On other platforms, you need to install FPC yourself. Some of the options are:
 
-<p>For Aarch64 (64-bit Arm), as found on Android, iOS, macOS: While we support any FPC &gt;= 3.2.0,
-we strongly advise FPC &gt;= 3.2.2. That is because certain optimizations have been broken
-in older FPC versions. Our build tool disables optimizations in released builds when it detects
-Aarch64 and older FPC.
+<ul>
+  <li>
+    <p>Download and install from the <a href="http://www.freepascal.org/">FPC website</a>.
+  <li>
+    <p>Or download and install <a href="https://www.lazarus-ide.org/">Lazarus along with FPC</a>.
+  <li>
+    <p>Or download and install both Lazarus and FPC using <a href="fpcupdeluxe">FpcUpDeluxe</a>.
+</ul>
 
-<p>You may also find it comfortable
-to use <a href="http://lazarus.freepascal.org/">Lazarus</a>,
-which is an IDE (editor, debugger etc.) built around FPC
-with a visual classes library (LCL).
-Our engine can be used together <a href="manual_lazarus_control.php">with Lazarus form (LCL)</a>
-though for most applications we recommend using <code>TCastleWindow</code> independent from LCL.
+<p>We always <b>support and advice the latest stable release of FPC: right now this means 3.2.2</b>.
+
+<p>Usually, we also support a couple of older FPC releases. Right now we support any FPC version &gt;= 3.2.0.
+
+<p><b>Explanation and history</b>: We use some modern Pascal features (like generics) in CGE, so we occasionally bump the required FPC version. We check what is commonly available, e.g. <a href="https://packages.debian.org/stable/fpc">what is in the latest Debian stable (which is a baseline for many other Linux distros)</a>.
+<!-- TMI:
+Last time, on 2021-12-12, we bumped required version for <i>Castle Game Engine 7.0-alpha.snapshot</i> from <i>FPC &gt;= 3.0.2</i> to <i>FPC &gt;= 3.2.0</i>.
+-->
+
+<p><b>Special note if you want to build for Aarch64 (64-bit Arm), as found on Android, iOS, macOS</b>: While we support any FPC &gt;= 3.2.0, we strongly advise FPC &gt;= 3.2.2. That is because certain optimizations have been broken in older FPC versions. Our build tool disables optimizations in released builds when it detects Aarch64 and older FPC.
+
+<?php echo $toc->html_section(); ?>
+
+<p><a href="https://www.lazarus-ide.org/">Lazarus</a> is an IDE (editor, debugger etc.) built around FPC. It also features a visual classes library (LCL) and an associated form designer.
+
+<p>Strictly speaking, you don't need Lazarus to use <i>Castle Game Engine</i>. You can use any editor to write Pascal code (e.g. <a href="vscode">VS Code</a>) and compile your games using the engine <a href="editor">editor</a> and <a href="build_tool">build tool</a> which under the hood just call FPC (or Delphi) command-line compilers.
+
+<p>That said, of course you can use Lazarus with CGE, it's a feature-packed cross-platform comfortable IDE made for Pascal. Moreover, you need Lazarus if you want to <a href="control_on_form">put TCastleControl on a Lazarus form (LCL)</a> or <a href="compiling_from_source.php">compile CGE editor from source</a>.
+
+<p>As for Lazarus version:
+
 <ul>
   <li>
     <p>We don't <b>require</b> any special Lazarus version, just use Lazarus with a sufficiently up-to-date FPC version.
@@ -58,10 +72,25 @@ though for most applications we recommend using <code>TCastleWindow</code> indep
     <p>We <b>advise</b> Lazarus &gt;= 3.2 in order to have (since 2.2) <a href="https://gitlab.com/freepascal.org/lazarus/lazarus/-/issues/39338">this issue fixed, which allows more intuitive behavior when you double-click on a Pascal file in CGE editor to open Lazarus</a> and (since 3.0) <a href="https://github.com/castle-engine/pascal-language-server">pasls</a> compile fine with <code>IdentComplIncludeKeywords</code>.
 
   <li>
-    <p>A special requirement is on macOS users that want to <b>build CGE editor on macOS</b>: You have to use Lazarus <code>fixes_3_0</code> or <code>main</code> branch from GitLab, recent enough to include this fix: <a href="https://gitlab.com/freepascal.org/lazarus/lazarus/-/merge_requests/291">Tolerate AValue = nil in TCocoaWSCustomListView.SetImageList</a>. Without it, trying to open any project (new or existing) will fail with SEGFAULT.
+    <p>A <b>special requirement on macOS</b> for users that want to <b>build CGE editor on macOS</b>: You have to use Lazarus <code>fixes_3_0</code> or <code>main</code> branch from GitLab, recent enough to include this fix: <a href="https://gitlab.com/freepascal.org/lazarus/lazarus/-/merge_requests/291">Tolerate AValue = nil in TCocoaWSCustomListView.SetImageList</a>. Without it, trying to open any project (new or existing) will fail with SEGFAULT.
+
+  <li>
+    <p>A <b>special recommendation on Linux/FreeBSD (everywhere where GTK2 backend is used)</b>: Use the latest Lazarus 3.4 and apply <a href="https://gitlab.com/freepascal.org/lazarus/lazarus/-/commit/9dccbc008faef7f7e7300dfad4b562ad3f385d94">this patch</a> to avoid <a href="https://gitlab.com/freepascal.org/lazarus/lazarus/-/issues/28840">this bug (occasional crashes when renaming components in the tree (hierarchy) view)</a>.
+
+    <p>Applying it is easy:
+
+<pre>
+wget https://gitlab.com/freepascal.org/lazarus/lazarus/-/commit/9dccbc008faef7f7e7300dfad4b562ad3f385d94.diff
+patch -p1 &lt; 9dccbc008faef7f7e7300dfad4b562ad3f385d94.diff
+</pre>
+
+    <p>Our <a href="docker">Docker images</a> already include such patched Lazarus.
 </ul>
 
-<p><i>Hint: To install multiple versions of FPC / Lazarus</i>, with cross-compilers, use <a href="https://castle-engine.io/fpcupdeluxe">fpcupdeluxe</a>. We recommend and support using <a href="https://castle-engine.io/fpcupdeluxe">fpcupdeluxe</a>, it's a great tool to install FPC / Lazarus!
+<?php echo $toc->html_section(); ?>
+
+
+<p>To install multiple versions of FPC / Lazarus, with cross-compilers (e.g. for <a href="android">Android</a> or <a href="ios">iOS</a>), use <a href="https://castle-engine.io/fpcupdeluxe">FpcUpDeluxe</a>! We absolutely recommend and support it.
 
 <?php echo $toc->html_section(); ?>
 
@@ -123,7 +152,11 @@ The definition what is "reasonable" depends on:
 
 <p>Of course please remember that this FPC version is unstable, and it changes with every commit to FPC. We cannot test or guarantee that CGE works with an arbitray FPC development revision. But we welcome testing such FPC. PRs to make CGE work with latest FPC trunk are also welcome (unless there's a temporary bug in FPC which should be rather reported to FPC devs).
 
-<p>On Aaarch64 (important on mobile platforms): Note that optimizations are disabled on Aarch64 when used with FPC 3.2.0, due to FPC bugs. These are fixed in FPC SVN revision 48104 (fixes available in 3.2.2, 3.3.1 and all newer). See <a href="https://trello.com/c/5ydB4MuA/113-enable-again-aarch64-optimizations">CGE Trello ticket about Aarch64 optimizations</a>.
+<!--
+Not necessary, we already mention it above:
+
+p>On Aaarch64 (important on mobile platforms): Note that optimizations are disabled on Aarch64 when used with FPC 3.2.0, due to FPC bugs. These are fixed in FPC SVN revision 48104 (fixes available in 3.2.2, 3.3.1 and all newer). See <a href="https://trello.com/c/5ydB4MuA/113-enable-again-aarch64-optimizations">CGE Trello ticket about Aarch64 optimizations</a>.
+-->
 
 <?php echo $toc->html_section(); ?>
 
@@ -133,9 +166,9 @@ The definition what is "reasonable" depends on:
 
 <p>We do not support using <i>Code Typhon</i> (a fork of FPC/Lazarus).
 
-<p>I (Michalis) strongly advice that you should rather use original <a href="http://www.freepascal.org/">FPC</a> and <a href="http://www.lazarus-ide.org/">Lazarus</a>. I have much more trust in FPC and Lazarus developers doing great quality job, respecting copyrights of other projects (CodeTyphon did some murky things), and working in a transparent fashion (version control, cooperating with other projects).<!-- to make open-source Pascal grow.-->
+<p>We advise that you rather use original <a href="http://www.freepascal.org/">FPC</a> and <a href="http://www.lazarus-ide.org/">Lazarus</a>. We have more trust in FPC and Lazarus developers doing great quality job, respecting copyrights of other projects (CodeTyphon did some murky things), and working in a transparent fashion (version control, cooperating with other projects).<!-- to make open-source Pascal grow.-->
 
-<p>Note that Lazarus comes now with <a href="http://wiki.freepascal.org/Online_Package_Manager">Online Package Manager</a>. And you can use <a href="https://castle-engine.io/fpcupdeluxe">fpcupdeluxe</a> to easily install cross-compilers. I mention these, in case your reason for using <i>Code Typhon</i> was to get such features.
+<p>Note that Lazarus comes now with <a href="http://wiki.freepascal.org/Online_Package_Manager">Online Package Manager</a>. And you can use <a href="https://castle-engine.io/fpcupdeluxe">FpcUpDeluxe</a> to easily install cross-compilers. These cover the most often cited reasons for using <i>Code Typhon</i> in the past.
 
 <?php
   castle_footer();
