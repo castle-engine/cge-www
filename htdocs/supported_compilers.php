@@ -85,6 +85,8 @@ patch -p1 &lt; 9dccbc008faef7f7e7300dfad4b562ad3f385d94.diff
 </pre>
 
     <p>Our <a href="docker">Docker images</a> already include such patched Lazarus.
+
+    <p>Alternatively, use Lazarus from the <code>main</code> branch, where this patch is already included.
 </ul>
 
 <?php echo $toc->html_section(); ?>
