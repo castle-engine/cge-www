@@ -48,8 +48,10 @@ castle_header('Castle Game Engine - Free open-source cross-platform 3D 2D game e
         <a class="btn btn-primary btn-lg main-page-action" href="download"><span class="glyphicon glyphicon-download" aria-hidden="true"></span> Download</a>
     </div>
     <div class="col-sm-4">
-        <a class="btn btn-primary btn-lg btn-info main-page-action" href="install">Read the manual</a>
-        <a class="btn btn-primary btn-lg btn-info main-page-action" href="https://www.youtube.com/watch?v=rPU-IFltcuM">Watch the tutorial</a>
+        <a class="btn btn-primary btn-lg btn-info main-page-action" href="bad_chess">Tutorial</a>
+        <a class="btn btn-primary btn-lg btn-info main-page-action" href="install">Manual</a>
+        <!-- TODO: Needs update for 2024 -->
+        <!--a class="btn btn-primary btn-lg btn-info main-page-action" href="https://www.youtube.com/watch?v=rPU-IFltcuM">Watch the tutorial</a-->
     </div>
     <div class="col-sm-4">
         <a class="btn btn-success btn-lg btn-patreon main-page-action" href="<?php echo PATREON_URL; ?>"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Support us on Patreon</a>

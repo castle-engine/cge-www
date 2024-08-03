@@ -35,6 +35,10 @@ Sources:
 
 NOTE: Not enough? Want more features? :) See our link:roadmap[] and https://www.patreon.com/castleengine[support us on Patreon] to make it happen!
 
+== Presentation
+
+cge::highlights-slides[]
+
 == Summary
 
 cge::features-summary[]

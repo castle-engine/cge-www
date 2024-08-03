@@ -1218,6 +1218,35 @@ function _castle_clone_sitemap_and_trim($map, $show_full_contents, $level = 0)
   return $clone;
 }
 
+/* Return HTML for the slideshow.
+   It cooperates with JS in slick-carousel added in common_footer. */
+function castle_slideshow()
+{
+  $banner_images = array(
+    array('src' => 'combined_cge_logo_game', 'alt' => 'Castle Game Engine logo and editor'),
+    array('src' => 'combined_cge_logo_game_2', 'alt' => 'Castle Game Engine logo and Escape from the Universe game'),
+  );
+  $rendered = '<div class="banner-container">' . "\n";
+  $style = ''; // first image is not hidden
+  foreach ($banner_images as $banner_image) {
+    $image_src = 'images/not_resized/' . $banner_image['src'] . '.webp';
+    $rendered .= '<img src="' . $image_src . '" alt="' .
+      $banner_image['alt'] . '" ' .
+      _castle_image_sizes($image_src) . ' ' .
+      $style . '>' . "\n";
+    /* Subsequent images are hidden initially, this makes better look when
+       loading.
+       Failing to do so results in bad (large) CLS (Cumulative Layout Shift),
+       which is
+       - bad for users (content shifts at loading)
+       - bad for SEO (Google core web vitals
+         based on actual user experience measure this, also LightHouse). */
+    $style = 'style="display: none"';
+  }
+  $rendered .= '</div>' . "\n";
+  return $rendered;
+}
+
 function echo_castle_header_suffix($path, $enable_sidebar = true)
 {
   global $castle_sidebar;
@@ -1340,28 +1369,7 @@ function echo_castle_header_suffix($path, $enable_sidebar = true)
   */
 
   if ($main_page) {
-    $banner_images = array(
-      array('src' => 'combined_cge_logo_game', 'alt' => 'Castle Game Engine logo and editor'),
-      array('src' => 'combined_cge_logo_game_2', 'alt' => 'Castle Game Engine logo and Escape from the Universe game'),
-    );
-    $rendered .= '<div class="banner-container">' . "\n";
-    $style = ''; // first image is not hidden
-    foreach ($banner_images as $banner_image) {
-      $image_src = 'images/not_resized/' . $banner_image['src'] . '.webp';
-      $rendered .= '<img src="' . $image_src . '" alt="' .
-        $banner_image['alt'] . '" ' .
-        _castle_image_sizes($image_src) . ' ' .
-        $style . '>' . "\n";
-      /* Subsequent images are hidden initially, this makes better look when
-         loading.
-         Failing to do so results in bad (large) CLS (Cumulative Layout Shift),
-         which is
-         - bad for users (content shifts at loading)
-         - bad for SEO (Google core web vitals
-           based on actual user experience measure this, also LightHouse). */
-      $style = 'style="display: none"';
-    }
-    $rendered .= '</div>' . "\n";
+    $rendered .= castle_slideshow();
   }
 
   // make sure to start container-fluid for bootstrap container
@@ -1950,6 +1958,13 @@ function cgeImg($placement, $images)
   return castle_thumbs($images, $columns, $align);
 }
 
+function cge_highlights_slides()
+{
+  return '<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRuG3TaWgS7S-AAj7tPzHF1MYpgKueE1Z-L6df03WTuYU0Y0K0GLxxbC54gUBygI0gxp4r11pQtCal5/embed?start=false&loop=false&delayms=60000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>';
+  //<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRuG3TaWgS7S-AAj7tPzHF1MYpgKueE1Z-L6df03WTuYU0Y0K0GLxxbC54gUBygI0gxp4r11pQtCal5/embed?start=false&loop=false&delayms=60000" frameborder="0" width="1440" height="839" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>';
+  //<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRuG3TaWgS7S-AAj7tPzHF1MYpgKueE1Z-L6df03WTuYU0Y0K0GLxxbC54gUBygI0gxp4r11pQtCal5/embed?start=true&loop=true&delayms=3000" frameborder="0" width="1440" height="839" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>';
+}
+
 /* Replace AsciiDoctor macros like cgeref, cgeimg, documented in ../README.md. */
 function castle_replace_asciidoctor_macros($contents)
 {
@@ -1966,6 +1981,12 @@ function castle_replace_asciidoctor_macros($contents)
   $contents = preg_replace_callback('/(?:<p>)?cge::features-summary\[\](?:<\/p>)?/',
     function ($matches) {
       return cge_features_summary();
+    },
+    $contents);
+
+  $contents = preg_replace_callback('/(?:<p>)?cge::highlights-slides\[\](?:<\/p>)?/',
+    function ($matches) {
+      return cge_highlights_slides();
     },
     $contents);
 
