@@ -91,7 +91,6 @@ patch -p1 &lt; 9dccbc008faef7f7e7300dfad4b562ad3f385d94.diff
 
 <?php echo $toc->html_section(); ?>
 
-
 <p>To install multiple versions of FPC / Lazarus, with cross-compilers (e.g. for <a href="android">Android</a> or <a href="ios">iOS</a>), use <a href="https://castle-engine.io/fpcupdeluxe">FpcUpDeluxe</a>! We absolutely recommend and support it.
 
 <?php echo $toc->html_section(); ?>
