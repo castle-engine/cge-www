@@ -1,7 +1,6 @@
-<?php /* -*- mode: kambi-php -*-
-  (This page should be edited in php mode, mmm mode is too slow). */
+<?php
 
-/* Copyright 2001-2022 Michalis Kamburelis.
+/* Copyright 2001-2024 Michalis Kamburelis.
 
    This file is part of "Kambi PHP library".
 
@@ -473,6 +472,8 @@ if ($castle_wordpress) {
 <link href="<?php echo page_requisite('castle-engine-website-base/node_modules/bootstrap/dist/css/bootstrap.min.css'); ?>" rel="stylesheet">
 <!-- Bootstrap theme -->
 <link href="<?php echo page_requisite('castle-engine-website-base/node_modules/bootstrap/dist/css/bootstrap-theme.min.css'); ?>" rel="stylesheet">
+<!-- Bootstrap icons, https://icons.getbootstrap.com/ -->
+<link href="<?php echo page_requisite('castle-engine-website-base/node_modules/bootstrap-icons/font/bootstrap-icons.min.css'); ?>" rel="stylesheet">
 
 <!-- Colorbox -->
 <link href="<?php echo page_requisite('castle-engine-website-base/node_modules/jquery-colorbox/example3/colorbox.css'); ?>" type="text/css" rel="stylesheet">
