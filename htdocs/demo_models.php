@@ -42,7 +42,7 @@ echo castle_thumbs(array(
       ?>
 
       <?php
-      $download_title = '<span class="glyphicon glyphicon-download" aria-hidden="true"></span><br>Download demo models';
+      $download_title = '<i class="bi bi-download"></i><br>Download demo models';
       echo castle_download_button($download_title, 'https://github.com/castle-engine/demo-models/archive/master.zip');
       echo download_donate_footer();
     }
