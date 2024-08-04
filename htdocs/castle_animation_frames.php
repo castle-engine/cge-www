@@ -38,12 +38,6 @@ it has already excellent support in 3D modeling software like <a href="blender">
 (older version: <code>*.kanim</code>)
 represent <i>"Castle Game Engine's Animation Frames"</i>.</p>
 
-<div class="download jumbotron">
-    <a class="btn btn-primary btn-lg" href="https://raw.githubusercontent.com/castle-engine/cge-blender/master/export_castle_anim_frames.py"><span class="glyphicon glyphicon-download" aria-hidden="true"></span><br>Download castle-anim-frames Blender exporter</a>
-</div>
-
-<p>More information about <a href="blender">exporting animations from Blender is available here</a>.</p>
-
 <p><a href="http://wdune.ourproject.org/">White Dune</a>
 also can generate <code>*.kanim</code> files
 from an VRML animation by interpolators.</p>
@@ -58,7 +52,7 @@ from an VRML animation by interpolators.</p>
 
 <p>At the same time, it will always remain something that <i>can handle any Blender animation, right now</i>. As opposed to the X3D exporter (that currently cannot export Blender animation at all, and in the future will support a limited subset of Blender possibilities).</p>
 
-<p>A temporary disadvantage (TODO) is that right now we do not interpolate at runtime using nice X3D interpolators. Instead, we generate a series of frames at loading, merge the tree when nodes are equal, and move through them using X3D <code>Switch</code> and <code>IntegerSequencer</code>. Once we improve this, the runtime memory usage will be <i>somewhat</i> better, and animation will be always perfectly smooth at runtime, and the collision detection will account for dynamic changes OK.
+<p>A disadvantage: we do not interpolate at runtime using nice X3D interpolators. Instead, we generate a series of frames at loading, merge the tree when nodes are equal, and move through them using X3D <code>Switch</code> and <code>IntegerSequencer</code>. We planned to improve this (to improve memory usage and make animation always perfectly smooth at runtime and the collision detection account for dynamic changes)... but <b>the format is deprecated now, no new work is planned. Use <a href="gltf">glTF</a> for animations instead</b>.
 
 <!--p>If you work with 3D modeler that can export proper VRML animation
 with interpolators, then you don't need to use Castle-Anim-Frames format.
