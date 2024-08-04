@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "bootstrap": "^3.4.1",
+    "bootstrap-icons": "^1.11.3",
     "jquery-colorbox": "^1.6.4",
     "slick-carousel": "^1.8.1"
   }
