@@ -60,33 +60,48 @@ Last time, on 2021-12-12, we bumped required version for <i>Castle Game Engine 7
 
 <p>Strictly speaking, you don't need Lazarus to use <i>Castle Game Engine</i>. You can use any editor to write Pascal code (e.g. <a href="vscode">VS Code</a>) and compile your games using the engine <a href="editor">editor</a> and <a href="build_tool">build tool</a> which under the hood just call FPC (or Delphi) command-line compilers.
 
-<p>That said, of course you can use Lazarus with CGE, it's a feature-packed cross-platform comfortable IDE made for Pascal. Moreover, you need Lazarus if you want to <a href="control_on_form">put TCastleControl on a Lazarus form (LCL)</a> or <a href="compiling_from_source.php">compile CGE editor from source</a>.
+<p>That said, of course you can use Lazarus with CGE, it's a feature-packed cross-platform comfortable IDE made for Pascal. Moreover, you need Lazarus if you want to
+
+<ol>
+  <li>
+    <p><a href="control_on_form">Put TCastleControl on a Lazarus form (LCL)</a>,
+  <li>
+    <p><a href="compiling_from_source.php">Compile CGE editor from sources</a> or
+  <li>
+    <p><a href="custom_components">Create custom components available at design-time, in an editor version special to the given project.</a>
+</ol>
 
 <p>As for Lazarus version:
 
 <ul>
   <li>
-    <p>We don't <b>require</b> any special Lazarus version, just use Lazarus with a sufficiently up-to-date FPC version.
+    <p><b>On Windows: We recommend Lazarus &gt;= 3.2</b>.
+
+    <p>Older Lazarus versions have known issues:
+
+    <ul>
+      <li>
+        <p>Versions before 2.2 don't have <a href="https://gitlab.com/freepascal.org/lazarus/lazarus/-/issues/39338">this fix</a> which allows more intuitive behavior when you double-click on a Pascal file in CGE editor to open Lazarus.
+      <li>
+        <p>Versions before 3.0 will not compile <a href="https://github.com/castle-engine/pascal-language-server">pasls</a> (miss <code>IdentComplIncludeKeywords</code>).
+    </ul>
 
   <li>
-    <p>We <b>advise</b> Lazarus &gt;= 3.2 in order to have (since 2.2) <a href="https://gitlab.com/freepascal.org/lazarus/lazarus/-/issues/39338">this issue fixed, which allows more intuitive behavior when you double-click on a Pascal file in CGE editor to open Lazarus</a> and (since 3.0) <a href="https://github.com/castle-engine/pascal-language-server">pasls</a> compile fine with <code>IdentComplIncludeKeywords</code>.
+    <p><b>On macOS, Linux, FreeBSD: We recommend Lazarus &gt;= 3.5</b>.
 
-  <li>
-    <p>A <b>special requirement on macOS</b> for users that want to <b>build CGE editor on macOS</b>: You have to use Lazarus <code>fixes_3_0</code> or <code>main</code> branch from GitLab, recent enough to include this fix: <a href="https://gitlab.com/freepascal.org/lazarus/lazarus/-/merge_requests/291">Tolerate AValue = nil in TCocoaWSCustomListView.SetImageList</a>. Without it, trying to open any project (new or existing) will fail with SEGFAULT.
+    <p>This means you should use Lazarus <code>fixes_3_0</code> or <code>main</code> branch from GitLab. It is easiest to use Lazarus from a branch using <a href="https://castle-engine.io/fpcupdeluxe">FpcUpDeluxe</a>.
 
-  <li>
-    <p>A <b>special recommendation on Linux/FreeBSD (everywhere where GTK2 backend is used)</b>: Use the latest Lazarus 3.4 and apply <a href="https://gitlab.com/freepascal.org/lazarus/lazarus/-/commit/9dccbc008faef7f7e7300dfad4b562ad3f385d94">this patch</a> to avoid <a href="https://gitlab.com/freepascal.org/lazarus/lazarus/-/issues/28840">this bug (occasional crashes when renaming components in the tree (hierarchy) view)</a>.
+    <p>Unfortunately, last stable Lazarus 3.4 has 2 important bugs that affect CGE editor:
 
-    <p>Applying it is easy:
+    <ul>
+      <li>
+        <p>This fix (present in <code>fixes_3_0</code> and <code>main</code> branches) is critical on macOS: <a href="https://gitlab.com/freepascal.org/lazarus/lazarus/-/merge_requests/291">Tolerate AValue = nil in TCocoaWSCustomListView.SetImageList</a>. Before this fix, trying to open any project (new or existing) will fail with SEGFAULT.
 
-<pre>
-wget https://gitlab.com/freepascal.org/lazarus/lazarus/-/commit/9dccbc008faef7f7e7300dfad4b562ad3f385d94.diff
-patch -p1 &lt; 9dccbc008faef7f7e7300dfad4b562ad3f385d94.diff
-</pre>
+      <li>
+        <p>This fix (present in <code>fixes_3_0</code> and <code>main</code> branches) is critical on platforms using GTK2, like Linux and FreeBSD: <a href="https://gitlab.com/freepascal.org/lazarus/lazarus/-/issues/28840">Crash due to postponed focus loss (issue)</a>. Before this fix, editor occasionally crashes when renaming components in the tree (hierarchy) view.
+    </ul>
 
-    <p>Our <a href="docker">Docker images</a> already include such patched Lazarus.
-
-    <p>Alternatively, use Lazarus from the <code>main</code> branch, where this patch is already included.
+    <p>Our <a href="docker">Docker images</a> right now include Lazarus versions with <a href="https://gitlab.com/freepascal.org/lazarus/lazarus/-/issues/28840">this issue patched</a> by <a href="https://github.com/castle-engine/castle-engine-docker/blob/master/docker-context.no-cge/fpclazarus-switchable/fix-edit-crash-9dccbc008faef7f7e7300dfad4b562ad3f385d94.diff">this diff</a>.
 </ul>
 
 <?php echo $toc->html_section(); ?>
