@@ -523,7 +523,7 @@ The above is ignored, because `ImageControl.CustomShader` (equal to `ImageContro
 [source,pascal]
 ----
 { All the DrawableImage properties must be set here,
-  in case muliple TCastleImagePersistent refer to the same
+  in case multiple TCastleImagePersistent refer to the same
   DrawableImage instance through the cache.
   Fortunately, almost all TDrawableImage properties have zero cost
   of change. }
