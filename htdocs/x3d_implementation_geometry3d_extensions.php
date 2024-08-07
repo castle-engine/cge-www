@@ -30,8 +30,8 @@ echo castle_thumbs(array(
     <?php echo node_begin("Cone");
       echo
       node_dots('') .
-      node_field('SFInt32', '[in,out]', "slices", "-1", "{-1} + [3, infinity)") .
-      node_field('SFInt32', '[in,out]', "stacks", "-1", "{-1} + [2, infinity)") .
+      node_field('SFInt32', '[in,out]', "slices", "0", "{0} + [3, infinity)") .
+      node_field('SFInt32', '[in,out]', "stacks", "0", "{0} + [2, infinity)") .
       node_end();
     ?>
 
@@ -42,8 +42,7 @@ echo castle_thumbs(array(
     <?php echo node_begin("Cylinder");
       echo
       node_dots('') .
-      node_field('SFInt32', '[in,out]', "slices", "-1", "{-1} + [3, infinity)") .
-      node_field('SFInt32', '[in,out]', "stacks", "-1", "{-1} + [2, infinity)") .
+      node_field('SFInt32', '[in,out]', "slices", "0", "{0} + [3, infinity)") .
       node_end();
     ?>
 
@@ -54,8 +53,8 @@ echo castle_thumbs(array(
     <?php echo node_begin("Sphere");
       echo
       node_dots('') .
-      node_field('SFInt32', '[in,out]', "slices", "-1", "{-1} + [3, infinity)") .
-      node_field('SFInt32', '[in,out]', "stacks", "-1", "{-1} + [2, infinity)") .
+      node_field('SFInt32', '[in,out]', "slices", "0", "{0} + [3, infinity)") .
+      node_field('SFInt32', '[in,out]', "stacks", "0", "{0} + [2, infinity)") .
       node_end();
     ?>
 
@@ -66,7 +65,7 @@ echo castle_thumbs(array(
     <?php echo node_begin("Circle2D");
       echo
       node_dots('') .
-      node_field('SFInt32', '[in,out]', "slices", "-1", "{-1} + [3, infinity)") .
+      node_field('SFInt32', '[in,out]', "slices", "0", "{0} + [3, infinity)") .
       node_end();
     ?>
 
@@ -77,7 +76,7 @@ echo castle_thumbs(array(
     <?php echo node_begin("Disk2D");
       echo
       node_dots('') .
-      node_field('SFInt32', '[in,out]', "slices", "-1", "{-1} + [3, infinity)") .
+      node_field('SFInt32', '[in,out]', "slices", "0", "{0} + [3, infinity)") .
       node_end();
     ?>
 
@@ -99,7 +98,7 @@ for example
   <li><a href="https://github.com/castle-engine/demo-models/blob/master/2d/2d_geometry_nodes.x3dv">2d/2d_geometry_nodes.x3dv</a>
 </ul>
 
-<p>Special value -1 for any of these fields means
+<p>Special value 0 for any of these fields means
 that we use a default value specified by the global variables
  <?php echo cgeRef('DefaultTriangulationSlices') ?>,
  <?php echo cgeRef('DefaultTriangulationStacks') ?>.
