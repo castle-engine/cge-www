@@ -64,6 +64,7 @@
         "gltf",
         "glxgears",
         "glxinfo",
+        "Gouraud",
         "ifdef",
         "indylaz",
         "inlines",
@@ -105,6 +106,7 @@
         "optirun",
         "pasdoc",
         "pasls",
+        "Phong",
         "Pickable",
         "pipefail",
         "pluggable",
@@ -147,6 +149,7 @@
         "VRML",
         "Vulkan",
         "webp",
+        "Wireframe",
         "Writeln",
         "XLIB",
         "Zander's"
