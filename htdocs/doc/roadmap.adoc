@@ -184,12 +184,6 @@ With a designer. Example usage: blood, snow, rain, fire, smoke... 2D, 3D.
 
 _This is already in-progress by Trung Le (Kagamma). Use link:https://github.com/Kagamma/cge-3d-particle-emitter[cge-3d-particle-emitter] or link:https://github.com/Kagamma/cge-effekseer[Effekseer Integration]. See link:additional_components.php[CGE components]._
 
-### Release mobile castle-model-viewer (as Android and iOS application)
-
-link:https://github.com/castle-engine/castle-model-viewer-mobile[This is almost done, thanks to Jan Adamec.] We need to release it :)
-
-Associated with glTF, X3D and other formats that the castle-model-viewer (and _Castle Game Engine_) handles. Available in the App Store / Google Play Store. For free or for 1 USD (not sure yet; but definitely without ads, I really dislike ads).
-
 [#terrain]
 ### Terrain features (in particular, editing terrain in CGE editor)
 
