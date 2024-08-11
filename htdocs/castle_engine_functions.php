@@ -2101,7 +2101,7 @@ function cge_features_summary($feature_heading_level = 3)
     array(
       'link' => 'features#_visual_editor',
       'title' => 'Visual editor',
-      'description' => 'Design 3D and 2D games and user interfaces (with automatic scaling, anchors). Build and deploy the same project for multiple platforms. Integrate with various IDEs (<a href="vscode">Visual Studio Code</a>, Lazarus, Delphi...).',
+      'description' => 'Design 3D and 2D games and user interfaces (with automatic scaling, anchors). Build and deploy the same project for multiple platforms. Integrate with various IDEs (<a href="vscode">Visual Studio Code</a>, <a href="lazarus">Lazarus</a>, <a href="delphi">Delphi</a>...).',
       'image' => '2d_demo_editor.png',
       'image_titlealt' => '2D game in editor',
     ),

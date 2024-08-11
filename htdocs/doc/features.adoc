@@ -65,7 +65,7 @@ cgeimg::block[
 cgeimg::block[nintendo_switch_3.jpg|"Escape from the Universe" on Nintendo Switch]
 //cgeimg::block[nintendo_switch_1.jpg|"Escape from the Universe" on Nintendo Switch,nintendo_switch_2_editor.webp|"Escape from the Universe" - editor,nintendo_switch_3.jpg|"Escape from the Universe" on Nintendo Switch]
 
-* Raspberry Pi (it's just desktop Linux on Arm CPU).
+* https://www.raspberrypi.com/[Raspberry Pi] and https://pine64.org/[Pine64] devices (it's just a Linux on _Arm_ (32-bit) or _Aarch64_ (64-bit) CPU).
 +
 cgeimg::block[raspberry_pi_1.webp|Raspberry Pi,unholy_raspberry_1.webp|"The Unholy Society" on Raspberry Pi]
 
@@ -91,7 +91,7 @@ cgeimg::block[editor_new_project.png|New project templates in CGE editor]
 cgeimg::block[editor_platforms.png|Choose target platform,editor_formats.png|Choose package format]
 
 * With file browser, with preview for data (3D models, images, sound files).
-* With easy way to execute code editor (Lazarus, Visual Studio Code or anything else you like) to edit your code.
+* With easy way to execute code editor (link:vscode[Visual Studio Code], link:lazarus[Lazarus], link:delphi[Delphi] or anything else you like) to edit your code.
 +
 cgeimg::block[code_editor_lazarus.png|Lazarus to edit Pascal code,code_editor_vscode.png|Visual Studio Code to edit Pascal code]
 
