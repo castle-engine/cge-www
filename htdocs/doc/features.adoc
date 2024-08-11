@@ -192,9 +192,9 @@ cgeimg::block[
 
 * We have own Spine importer in _Castle Game Engine_ that reads Spine JSON (not relying on any official _Spine runtime_).
 * Spine animations and rendering features are converted to standard engine animation nodes (same nodes as used by glTF and X3D) so they play consistently within the engine, with animation cross-fading etc.
-* Spine skins are suported.
+* Spine skins are supported.
 * Loading Spine JSON files from various Spine versions, up to and including Spine 4, is supported.
-* Spine texture atlases with all advanced options (e.g. stripping whitespace, rotating) are suported.
+* Spine texture atlases with all advanced options (e.g. stripping whitespace, rotating) are supported.
 * Alternative: https://github.com/Kagamma/spine-runtimes/[Spine runtime for Castle Game Engine] is an alternative approach to load and render Spine models. It supports some additional features by "offloading" some work to the Spine C runtime.
 
 == Graphic effects
