@@ -9,6 +9,10 @@ Not always, but sometimes there's a paper trace or video recording of what I tal
 This pages collects _some_ materials from them.
 ////
 
+* _10-11 October 2024_: *Upcoming* presentation at https://www.blaisepascalmagazine.eu/en/fpc-lazarus-meeting-2024-info/[FPC and Lazarus event in Cologne (Köln)]. See https://castle-engine.io/wp/2024/08/10/conferences-register-for-my-upcoming-talk-at-dev-days-of-summer-august-2024-catch-me-in-cologne-october-2024-watch-my-past-talk-from-itdevcon-2023/[details here].
+
+* _21 August 2024_: *Upcoming* presentation at https://www.codegear.com/DevDaysofSummer/[Dev Days of Summer 2024].
+
 * _6th April 2024_: https://www.blaisepascalmagazine.eu/en/international-lazarus-conference-in-holland-april-2024/[Pascal Cafe 2024]. I made a presentation introducing _Castle Game Engine_ and then discussing some details about mobile (link:android[Android] and link:ios[iOS]) development with CGE.
 ** https://castle-engine.io/pascalcafe2024[Presentation slides]
 ** https://github.com/castle-engine/conference-pascalcafe2024[Sample application (for slides "Physics and Coding" section)]
@@ -18,6 +22,7 @@ This pages collects _some_ materials from them.
 ** https://github.com/castle-engine/conference-itdevcon-2023[Example projects]
 ** link:/itdevcon2023/slides1[Presentation (slides) from 1st talk, "Creating 3D games and applications using Castle Game Engine"]
 ** link:/itdevcon2023/slides2[Presentation (slides) from 2nd talk, "Advanced Castle Game Engine: forms, 3D generation, shaders, customization"]
+** https://www.youtube.com/watch?v=R3niyAiiv4gp[Recording of the first talk]
 
 * _20-21 September 2023_: https://www.bsc.com.pl/zlot-programistow-delphi-2023/[Zlot Programistów Delphi], Polish conference.
 ** https://castle-engine.io/zlot2023/slides[Slides from my talk presenting Castle Game Engine - editor, coding, plans]
