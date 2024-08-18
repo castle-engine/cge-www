@@ -39,7 +39,9 @@
 }
 
 .tab-content.ce_tab_general .check_email_enable_logs,
+.tab-content.ce_tab_general .check_email_default_format_for_message,
 .tab-content.ce_tab_general .check_email_display_host_ip,
+.tab-content.ce_tab_general .check_email_log_email_content,
 .tab-content.ce_tab_general .check_email_reply_to,
 .tab-content.ce_tab_general .check_email_cc,
 .tab-content.ce_tab_general .check_email_bcc,
@@ -61,10 +63,12 @@
     display: none;
 }
 
+.tab-content.ce_tab_logging .check_email_setup_wizard,
 .tab-content.ce_tab_logging .check_email_allowed_user_roles,
 .tab-content.ce_tab_logging .check_email_remove_on_uninstall,
 .tab-content.ce_tab_logging .check_email_override_emails_from,
 .tab-content.ce_tab_logging .check_email_forward_email,
+.tab-content.ce_tab_logging .check_email_email_error_tracking,
 .tab-content.ce_tab_logging .check_email_forward_to,
 .tab-content.ce_tab_logging .check_email_forward_cc,
 .tab-content.ce_tab_logging .check_email_forward_bcc,
@@ -82,6 +86,8 @@
 }
 
 .tab-content.ce_tab_smtp .check_email_enable_logs,
+.tab-content.ce_tab_smtp .check_email_default_format_for_message,
+.tab-content.ce_tab_smtp .check_email_log_email_content,
 .tab-content.ce_tab_smtp .check_email_display_host_ip,
 .tab-content.ce_tab_smtp .check_email_reply_to,
 .tab-content.ce_tab_smtp .check_email_cc,
@@ -95,10 +101,12 @@
 .tab-content.ce_tab_smtp .check_email_enable_dashboard_widget,
 .tab-content.ce_tab_smtp .check_email_trigger_data,
 .tab-content.ce_tab_smtp .check_email_db_size_notification,
+.tab-content.ce_tab_smtp .check_email_setup_wizard,
 .tab-content.ce_tab_smtp .check_email_allowed_user_roles,
 .tab-content.ce_tab_smtp .check_email_remove_on_uninstall,
 .tab-content.ce_tab_smtp .check_email_override_emails_from,
 .tab-content.ce_tab_smtp .check_email_forward_email,
+.tab-content.ce_tab_smtp .check_email_email_error_tracking,
 .tab-content.ce_tab_smtp .check_email_forward_to,
 .tab-content.ce_tab_smtp .check_email_forward_cc,
 .tab-content.ce_tab_smtp .check_email_forward_bcc,
@@ -209,3 +217,5 @@
 .ce_tab_general table{
     margin-bottom: 50px;
 }
+
+

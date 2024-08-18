@@ -148,12 +148,6 @@ class Check_Email_SMTP_Tab {
 	 */
 	public function load_smtp_settings(){
 		$enable_smtp = isset($this->smtp_options['enable_smtp'])?$this->smtp_options['enable_smtp']:'';
-		$smtp_checked = "";
-		$style = "display: none";
-		if($enable_smtp == 'on'){
-			$smtp_checked = "checked";
-			$style = "";
-		}
 	?>
 		<form action="" method="post" >
 			<div id="check-mail-smtp-wrapper">
@@ -162,13 +156,13 @@ class Check_Email_SMTP_Tab {
 						<tr class="check_email_enable_smtp">
 						    <th scope="row"><label for="check-email-enable-smtp" class="check-email-opt-labels"><?php esc_html_e( 'SMTP', 'check-email' ); ?></label></th>
 						    <td>
-						        <input id="check-email-enable-smtp" type="checkbox" name="check-email-smtp-options[enable_smtp]" <?php echo esc_attr($smtp_checked); ?>>
+						        <input id="check-email-enable-smtp" type="checkbox" name="check-email-smtp-options[enable_smtp]" <?php echo $enable_smtp == 'on' ? "checked" : ''; ?>>
 						        <label for="check-email-enable-smtp" class="check-email-opt-labels"><?php esc_html_e('SMTP helps you to send emails via SMTP instead of the PHP mail()','check-email'); ?></label>
 						    </td>
 						</tr>
 					</tbody>
 					
-					<tbody id="check-email-smtp-form" style="<?php echo esc_attr($style); ?>">	
+					<tbody id="check-email-smtp-form" style="<?php echo $enable_smtp != 'on' ? "display: none" : ''; ?>">	
 						<tr class="check_email_smtp_from">
 						    <th scope="row"><?php esc_html_e('From', 'check-email'); ?></th>
 						    <td>
@@ -262,7 +256,7 @@ class Check_Email_SMTP_Tab {
 				</table>
 			</div>
 			<?php wp_nonce_field('check_mail_smtp_nonce','check_mail_smtp_nonce'); ?>
-			<p class="submit"><input type="submit" name="check_mail_smtp_submit" id="check_mail_smtp_submit" class="button button-primary" value="Save"></p>
+			<p class="submit"><input type="submit" name="check_mail_smtp_submit" id="check_mail_smtp_submit" class="button button-primary" value="<?php esc_attr_e( 'Save', 'check-email' ); ?>"></p>
 		</form>
 	<?php
 	}
@@ -288,7 +282,7 @@ class Check_Email_SMTP_Tab {
 				return;
 			}
 
-			$smtp_opt = array_map('sanitize_text_field', $_POST['check-email-smtp-options']);
+			$smtp_opt = array_map('sanitize_text_field', wp_unslash($_POST['check-email-smtp-options']));
 
 			if(isset($smtp_opt['smtp_username']) && !empty($smtp_opt['smtp_username'])){
 				$smtp_opt['smtp_username'] = base64_encode($smtp_opt['smtp_username']);
@@ -302,7 +296,7 @@ class Check_Email_SMTP_Tab {
 			delete_option( 'check_email_smtp_status' );
 			do_action( 'check_mail_smtp_admin_update' );
 
-			wp_redirect(admin_url('admin.php?page=check-email-settings&tab=smtp'));
+			wp_safe_redirect(admin_url('admin.php?page=check-email-settings&tab=smtp'));
 		}
 	}	
 	

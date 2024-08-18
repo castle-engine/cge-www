@@ -34,9 +34,9 @@ class Check_Email_Dashboard_Widget implements Loadie {
 		?>
 
 		<ul class="subsubsub" style="float: none">
-			<li><?php printf( wp_kses_post( __( '<a href="%s">Status</a>', 'check-email' ) ), 'admin.php?page=check-email-status' ); ?> <span style="color: #ddd"> | </span></li>
-			<li><?php printf( wp_kses_post( __( '<a href="%s">Email Logs</a>', 'check-email' ) ), 'admin.php?page=check-email-logs' ); ?> <span style="color: #ddd"> | </span></li>
-			<li><?php printf( wp_kses_post( __( '<a href="%s">Settings</a>', 'check-email' ) ), 'admin.php?page=check-email-settings' ); ?> <span style="color: #ddd"> | </span></li>
+			<li><a href="admin.php?page=check-email-status"><?php echo esc_html__('Status', 'check-email' ); ?></a><span style="color: #ddd"> | </span></li>
+			<li><a href="admin.php?page=check-email-logs"><?php echo esc_html__('Email Logs', 'check-email' ); ?></a><span style="color: #ddd"> | </span></li>
+			<li><a href="admin.php?page=check-email-settings"><?php echo esc_html__('Settings', 'check-email' ); ?></a><span style="color: #ddd"> | </span></li>
 		</ul>
 
 		<?php

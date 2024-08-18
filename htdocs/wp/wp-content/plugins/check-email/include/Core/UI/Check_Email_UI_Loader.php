@@ -58,12 +58,7 @@ class Check_Email_UI_Loader implements Loadie {
                 $this->pages['check_email']      = new Page\Check_Email_Status_Page();
                 $this->pages['log_list_page']    = new Page\Check_Email_Log_List_Page();
                 $this->pages['settings_page']    = new Page\Check_Email_Settings_Page();
-                if(!defined('CK_MAIL_PRO_VERSION')){
-                	$this->pages['features_page']    = new Page\Check_Email_PremiumFeatures_Page();
-                }
-                $this->pages['support_page']    = new Page\Check_Email_HelpSupport_Page();
-                if(!defined('CK_MAIL_PRO_VERSION')){
-                	$this->pages['pro_page']    	 = new Page\Check_Email_UpgradeToPro_Page();
-                }
+				$this->pages['wizard_page']    = new Page\Check_Email_Wizard_Page();
+				$this->pages['error_tracker_list']    = new Page\Check_Email_Error_Tracker_list();
 	}
 }

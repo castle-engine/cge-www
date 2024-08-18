@@ -3,7 +3,7 @@
 * Plugin Name: 				Check & Log Email
 * Description: 				Check & Log email allows you to test if your WordPress installation is sending emails correctly and logs every email.
 * Author: 					checkemail
-* Version: 					1.0.13.1
+* Version: 					2.0
 * Author URI: 				https://check-email.tech/
 * License: 					GPLv3 or later
 * License URI:         		http://www.gnu.org/licenses/gpl-3.0.html
@@ -40,12 +40,13 @@ define( 'CK_MAIL_TOC_DIR_NAME', plugin_basename( dirname( __FILE__ ) ) );
 define( 'CK_MAIL_TOC_BASE_NAME', plugin_basename( __FILE__ ) );
 define( 'CK_MAIL_PATH', dirname( __FILE__ ) );
 define( 'CK_MAIL_URL', plugin_dir_url( __FILE__ ) );
-define( 'CK_MAIL_VERSION', '1.0.13.1' );
+define( 'CK_MAIL_VERSION', '2.0' );
 
 if ( is_admin() ) {
 
 	require_once(CK_MAIL_PATH. "/include/helper-function.php" );
 	require_once(CK_MAIL_PATH. "/include/class-check-email-newsletter.php" );
+	require_once(CK_MAIL_PATH. "/include/Check_Email_SMTP_Tab.php" );
 }
 
 
@@ -55,9 +56,7 @@ if ( version_compare( PHP_VERSION, '5.6.0', '<' ) ) {
 		<div class="error">
 			<p>
 				<?php
-				printf(
-					esc_html__( 'Check & Log Email requires at least PHP 5.6 to function properly. Please upgrade PHP.', 'check-email' )
-				);
+					echo esc_html__( 'Check & Log Email requires at least PHP 5.6 to function properly. Please upgrade PHP.', 'check-email' );
 				?>
 			</p>
 		</div>
@@ -164,5 +163,3 @@ function checkMail_is_plugins_page() {
     }
     return false;
 }
-
-require_once 'Check_Email_SMTP_Tab.php';

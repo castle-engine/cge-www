@@ -41,14 +41,14 @@ function ck_mail_is_plugins_page() {
 }
 
 add_filter('admin_footer', 'ck_mail_add_deactivation_feedback_modal');
+
 function ck_mail_add_deactivation_feedback_modal() {
 
-    if( !is_admin() && !ck_mail_is_plugins_page()) {
-        return;
+    if( is_admin() && ck_mail_is_plugins_page() ) {
+
+        require_once CK_MAIL_PATH ."/include/deactivate-feedback.php";
     }
     
-    require_once CK_MAIL_PATH ."/include/deactivate-feedback.php";
-
 }
 
 /**
@@ -57,13 +57,14 @@ function ck_mail_add_deactivation_feedback_modal() {
  * @since 1.4.0
  */
 function ck_mail_send_feedback() {
-
+    // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Reason: in form variable.
     if( isset( $_POST['data'] ) ) {
-        parse_str( $_POST['data'], $form );
+        // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Reason: in form variable.
+        parse_str( wp_unslash($_POST['data']), $form );
     }
     
     if( !isset( $form['ck_mail_security_nonce'] ) || isset( $form['ck_mail_security_nonce'] ) && !wp_verify_nonce( sanitize_text_field( $form['ck_mail_security_nonce'] ), 'ck_mail_ajax_check_nonce' ) ) {
-        echo 'security_nonce_not_verified';
+        echo esc_html__('security_nonce_not_verified', 'check-email');
         die();
     }
     if ( !current_user_can( 'manage_options' ) ) {
@@ -72,7 +73,9 @@ function ck_mail_send_feedback() {
     
     $text = '';
     if( isset( $form['ck_mail_disable_text'] ) ) {
-        $text = implode( " ", $form['ck_mail_disable_text'] );
+        if (is_array($form['ck_mail_disable_text'])) {
+            $text = implode( " ", $form['ck_mail_disable_text'] );
+        }
     }
 
     $headers = array();
@@ -110,52 +113,55 @@ function ck_mail_send_feedback() {
 }
 add_action( 'wp_ajax_ck_mail_send_feedback', 'ck_mail_send_feedback' );
 
-function ck_mail_enqueue_makebetter_email_js(){
 
-    if( !is_admin() && !ck_mail_is_plugins_page()) {
-        return;
+function ck_mail_enqueue_makebetter_email_js() {
+
+    if ( is_admin() && ck_mail_is_plugins_page() ) {
+    
+        $suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+
+        wp_register_script( 'ck_mail_make_better_js', CK_MAIL_URL . 'assets/js/admin/feedback'. $suffix .'.js', array( 'jquery' ), CK_MAIL_VERSION, true);
+        $data = array(
+            'ajax_url'                     => admin_url( 'admin-ajax.php' ),
+            'ck_mail_security_nonce'         => wp_create_nonce('ck_mail_ajax_check_nonce'),
+        );
+
+        $data = apply_filters( 'ck_mail_localize_filter', $data, 'eztoc_admin_data' );
+
+        wp_localize_script( 'ck_mail_make_better_js', 'cn_ck_mail_admin_data', $data );
+        wp_enqueue_script( 'ck_mail_make_better_js' );
+        wp_enqueue_style( 'ck_mail_make_better_css', CK_MAIL_URL . 'assets/css/admin/feedback'. $suffix .'.css', array(), CK_MAIL_VERSION );
+
     }
-
-    wp_enqueue_script( 'ck_mail_make_better_js', CK_MAIL_URL . 'assets/js/admin/feedback.js', array( 'jquery' ));
-            $data = array(
-                'ajax_url'                     => admin_url( 'admin-ajax.php' ),
-                'ck_mail_security_nonce'         => wp_create_nonce('ck_mail_ajax_check_nonce'),
-            );
-
-            $data = apply_filters( 'ck_mail_localize_filter', $data, 'eztoc_admin_data' );
-
-            wp_localize_script( 'ck_mail_make_better_js', 'cn_ck_mail_admin_data', $data );
-
-    wp_enqueue_style( 'ck_mail_make_better_css', CK_MAIL_URL . 'assets/css/admin/feedback.css', false  );
-
-
+    
 }
 add_action( 'admin_enqueue_scripts', 'ck_mail_enqueue_makebetter_email_js' );
 
 
 add_action('wp_ajax_ck_mail_subscribe_newsletter','ck_mail_subscribe_for_newsletter');
-function ck_mail_subscribe_for_newsletter(){
-    if( !wp_verify_nonce( sanitize_text_field( $_POST['ck_mail_security_nonce'] ), 'ck_mail_ajax_check_nonce' ) ) {
-        echo 'security_nonce_not_verified';
+
+function ck_mail_subscribe_for_newsletter() {
+
+    if ( ! wp_verify_nonce( $_POST['ck_mail_security_nonce'], 'ck_mail_ajax_check_nonce' ) ) {
+        echo esc_html__('security_nonce_not_verified', 'check-email');
         die();
     }
     if ( !current_user_can( 'manage_options' ) ) {
         die();
     }
     $api_url = 'http://magazine3.company/wp-json/api/central/email/subscribe';
+
     $api_params = array(
-        'name' => sanitize_text_field($_POST['name']),
-        'email'=> sanitize_email($_POST['email']),
-        'website'=> sanitize_text_field($_POST['website']),
+        'name' => sanitize_text_field(wp_unslash($_POST['name'])),
+        'email'=> sanitize_email(wp_unslash($_POST['email'])),
+        'website'=> sanitize_text_field(wp_unslash($_POST['website'])),
         'type'=> 'checkmail'
     );
-    $response = wp_remote_post( $api_url, array( 'timeout' => 15, 'sslverify' => false, 'body' => $api_params ) );
-    $response = wp_remote_retrieve_body( $response );
-    echo $response;
-    die;
+    wp_remote_post( $api_url, array( 'timeout' => 15, 'sslverify' => false, 'body' => $api_params ) );
+    wp_die();
 }
 
-function check_mail_forward_mail($atts) {
+function ck_mail_forward_mail($atts) {
     if ( isset( $atts['to'] ) ) {
 		$to = $atts['to'];
         if ( ! is_array( $to ) ) {
@@ -317,7 +323,7 @@ function check_mail_forward_mail($atts) {
     try {
         $phpmailer->setFrom( $from_email, $from_name, false );
     } catch ( PHPMailer\PHPMailer\Exception $e ) {
-        error_log('Error in forwar email check & log : '.$e->getMessage());
+        error_log(esc_html__('Error in forwar email check & log : ', 'check-email').$e->getMessage());
         return false;
     }
 
@@ -439,7 +445,64 @@ function check_mail_forward_mail($atts) {
         $send = $phpmailer->send();
         return $send;
     } catch ( PHPMailer\PHPMailer\Exception $e ) {
-        error_log('Error in forwar email send check & log : '.$e->getMessage());
+        error_log(esc_html__('Error in forwar email send check & log : ', 'check-email').$e->getMessage());
         return false;
     }
+}
+
+function ck_mail_create_error_logs() {
+
+    global $wpdb;
+
+    $table_name           = $wpdb->prefix . 'check_email_error_logs';
+    $charset_collate = $wpdb->get_charset_collate();
+    // phpcs:disable.
+    if ( $wpdb->get_var( $wpdb->prepare( "show tables like %s",$wpdb->esc_like( $table_name )) ) != $table_name ) {
+
+        $sql = "CREATE TABLE IF NOT EXISTS `$table_name` (
+            `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+            `check_email_log_id` INT DEFAULT NULL,
+            `content` TEXT DEFAULT NULL,
+            `initiator` TEXT DEFAULT NULL,
+            `event_type` TINYINT UNSIGNED NOT NULL DEFAULT '0',
+            `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            PRIMARY KEY (id)
+        )
+        ENGINE='InnoDB'
+        {$charset_collate};";
+
+        $wpdb->query($sql);
+    }
+    // phpcs:enable.
+}
+
+function ck_mail_insert_error_logs($data_to_insert) {
+
+    global $wpdb;
+
+    $table_name           = $wpdb->prefix . 'check_email_error_logs';
+    $wpdb->insert( $table_name, $data_to_insert ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared
+}
+
+function ck_mail_local_file_get_contents($file_path){
+
+    // Include WordPress Filesystem API
+    if ( ! function_exists( 'WP_Filesystem' ) ) {
+        require_once( ABSPATH . 'wp-admin/includes/file.php' );
+    }
+
+    // Initialize the API
+    global $wp_filesystem;
+    if ( ! WP_Filesystem() ) {
+        return false;
+    }
+    // Check if the file exists
+    if ( $wp_filesystem->exists( $file_path ) ) {
+        // Read the file content
+        $file_content = $wp_filesystem->get_contents( $file_path );
+        return $file_content;
+    } else {
+       return false;
+    }
+
 }

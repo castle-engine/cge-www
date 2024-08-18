@@ -1,5 +1,5 @@
 <?php namespace CheckEmail;
-
+defined( 'ABSPATH' ) || exit; // Exit if accessed directly.
 class Check_Email_Log_Autoloader {
 
 	protected $prefixes = array();

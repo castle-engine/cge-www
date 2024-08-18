@@ -1,7 +1,14 @@
 == Changelog ==
-
-= v1.0.13.1 - 04/07/2024 =
-- Bug: save button does not work after last update.
+= v2.0 - 09/08/2024 =
+- Compatibility: Test with WordPress version 6.6 #95
+- Feature: Default Format for Message #86
+- Feature: Added small setup wizard #87
+- Feature: Log email content option #89
+- Enhancement: Hooks and actions #90
+- Enhancement: Fixed I18N Issues based on 1.0.13 helped by @alexclassroom #91
+- Fixed: Images folder missing for jquery-ui.min.css #93
+- Enhancement: Few improvement required #94
+- Feature: Email error tracker #96
 
 = v1.0.13 - 25/06/2024 =
 - Feature: Added Log Retention Period #69

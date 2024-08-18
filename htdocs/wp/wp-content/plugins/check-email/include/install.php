@@ -11,16 +11,11 @@ class Check_Email_Log_Init {
 		global $wpdb;
 
 		if ( is_multisite() && $network_wide ) {
-			// store the current blog id
-			$current_blog = $wpdb->blogid;
-
-			// Get all blogs in the network and activate plugin on each one
-			$blog_ids = $wpdb->get_col( "SELECT blog_id FROM $wpdb->blogs" );
-			foreach ( $blog_ids as $blog_id ) {
-				switch_to_blog( $blog_id );
-				self::create_checkemaillog_table();
+			foreach ( get_sites() as $site ) {
+                switch_to_blog( $site->blog_id );
+                self::create_checkemaillog_table();
 				restore_current_blog();
-			}
+            }
 		} else {
 			self::create_checkemaillog_table();
 		}
@@ -46,8 +41,8 @@ class Check_Email_Log_Init {
 
 		$table_name = $wpdb->prefix . Check_Email_Log::TABLE_NAME;
 		$charset_collate = $wpdb->get_charset_collate();
-
-		if ( $wpdb->get_var( "show tables like '{$table_name}'" ) != $table_name ) {
+		// phpcs:disable.
+		if ( $wpdb->get_var( $wpdb->prepare( "show tables like %s",$wpdb->esc_like( $table_name )) ) != $table_name ) {
 
 			$sql = 'CREATE TABLE ' . $table_name . ' (
 				id mediumint(9) NOT NULL AUTO_INCREMENT,
@@ -66,6 +61,7 @@ class Check_Email_Log_Init {
 
 			add_option( Check_Email_Log::DB_OPTION_NAME, Check_Email_Log::DB_VERSION );
 		}
+		// phpcs:enable.
 	}
 }
 

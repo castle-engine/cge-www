@@ -92,15 +92,15 @@ class Check_Email_Export_Log {
 			$export_date = sanitize_text_field($_GET['export_date']);
 		}
 
-		$from_date = date('Y-m-d 00:00:00');
-		$to_date = date('Y-m-d 23:59:59');
+		$from_date = gmdate('Y-m-d 00:00:00');
+		$to_date = gmdate('Y-m-d 23:59:59');
 
 		if($export_date == 'custom'){
 			if(isset($_GET['ck_mail_exp_from_date']) && !empty($_GET['ck_mail_exp_from_date'])){
-				$from_date = date('Y-m-d 00:00:00', strtotime(sanitize_text_field($_GET['ck_mail_exp_from_date'])));	
+				$from_date = gmdate('Y-m-d 00:00:00', strtotime(sanitize_text_field($_GET['ck_mail_exp_from_date'])));	
 			}
 			if(isset($_GET['ck_mail_exp_to_date']) && !empty($_GET['ck_mail_exp_to_date'])){
-				$to_date = date('Y-m-d 23:59:59', strtotime(sanitize_text_field($_GET['ck_mail_exp_to_date'])));	
+				$to_date = gmdate('Y-m-d 23:59:59', strtotime(sanitize_text_field($_GET['ck_mail_exp_to_date'])));	
 			}
 		}
 
@@ -112,7 +112,7 @@ class Check_Email_Export_Log {
 
 		if(!empty($fields)){
 			$logs = $this->ck_mail_generate_csv($fields, $status, $export_date, $from_date, $to_date, $export_recipient, $file_format);
-			echo $logs;
+			echo esc_html($logs);
 		}
 
 	   	wp_die();
@@ -124,49 +124,56 @@ class Check_Email_Export_Log {
 	 * */
 	public function ck_mail_generate_csv($fields, $status, $export_date, $from_date, $to_date, $export_recipient, $file_format){
 		global $wpdb;
-
-		$table_name = $wpdb->prefix.'check_email_log';
-
-		$query = $wpdb->prepare("SELECT * FROM $table_name");
-		if($status == 'All' && $export_date == 'all'){
-			if(!empty($export_recipient)){
-				$query = $wpdb->prepare("SELECT * FROM $table_name WHERE to_email = %s", $export_recipient);
-			}else{
-				$query = $wpdb->prepare("SELECT * FROM $table_name");
+		$cache_key = 'ck_mail_generate_csv'.$status;
+    	$ck_mail_generate_csv = wp_cache_get( $cache_key );
+		if ( false === $ck_mail_generate_csv ) {
+			$table_name = $wpdb->prefix.'check_email_log';
+			// phpcs:disable --  prepared
+			$query = $wpdb->prepare("SELECT * FROM $table_name");
+			if($status == 'All' && $export_date == 'all'){
+				if(!empty($export_recipient)){
+					$query = $wpdb->prepare("SELECT * FROM $table_name WHERE to_email = %s", $export_recipient);
+				}else{
+					$query = $wpdb->prepare("SELECT * FROM $table_name");
+				}
+			}else if($status == 'Success' && $export_date == 'all'){
+				if(!empty($export_recipient)){
+					$query = $wpdb->prepare("SELECT * FROM $table_name WHERE (error_message = %s OR error_message IS NULL) AND to_email = %s", $status, $export_recipient);
+				}else{
+					$query = $wpdb->prepare("SELECT * FROM $table_name WHERE error_message = %s OR error_message IS NULL", $status);
+				}
+			}else if($status == 'Fail' && $export_date == 'all'){
+				if(!empty($export_recipient)){
+					$query = $wpdb->prepare("SELECT * FROM $table_name WHERE error_message != %s AND to_email = %s", 'Success', $export_recipient);
+				}else{
+					$query = $wpdb->prepare("SELECT * FROM $table_name WHERE error_message != %s", 'Success');
+				}
+			}else if($status == 'All' && $export_date == 'custom'){
+				if(!empty($export_recipient)){
+					$query = $query = $wpdb->prepare("SELECT * FROM $table_name WHERE to_email = %s AND sent_date BETWEEN %s AND %s", $export_recipient, $from_date, $to_date);
+				}else{
+					$query = $query = $wpdb->prepare("SELECT * FROM $table_name WHERE sent_date BETWEEN %s AND %s", $from_date, $to_date);
+				}
+			}else if($status == 'Success' && $export_date == 'custom'){
+				if(!empty($export_recipient)){
+					$query = $wpdb->prepare("SELECT * FROM $table_name WHERE (error_message = %s OR error_message IS NULL) AND to_email = %s AND sent_date BETWEEN %s AND %s", $status, $export_recipient, $from_date, $to_date);
+				}else{
+					$query = $wpdb->prepare("SELECT * FROM $table_name WHERE (error_message = %s OR error_message IS NULL) AND sent_date BETWEEN %s AND %s", $status, $from_date, $to_date);
+				}
+			}else if($status == 'Fail' && $export_date == 'custom'){
+				if(!empty($export_recipient)){
+					$query = $wpdb->prepare("SELECT * FROM $table_name WHERE error_message != %s AND to_email = %s AND sent_date BETWEEN %s AND %s", 'Success', $export_recipient, $from_date, $to_date);
+				}else{
+					$query = $wpdb->prepare("SELECT * FROM $table_name WHERE error_message != %s AND sent_date BETWEEN %s AND %s", 'Success', $from_date, $to_date);
+				}
 			}
-		}else if($status == 'Success' && $export_date == 'all'){
-			if(!empty($export_recipient)){
-				$query = $wpdb->prepare("SELECT * FROM $table_name WHERE (error_message = %s OR error_message IS NULL) AND to_email = %s", $status, $export_recipient);
-			}else{
-				$query = $wpdb->prepare("SELECT * FROM $table_name WHERE error_message = %s OR error_message IS NULL", $status);
-			}
-		}else if($status == 'Fail' && $export_date == 'all'){
-			if(!empty($export_recipient)){
-				$query = $wpdb->prepare("SELECT * FROM $table_name WHERE error_message != %s AND to_email = %s", 'Success', $export_recipient);
-			}else{
-				$query = $wpdb->prepare("SELECT * FROM $table_name WHERE error_message != %s", 'Success');
-			}
-		}else if($status == 'All' && $export_date == 'custom'){
-			if(!empty($export_recipient)){
-				$query = $query = $wpdb->prepare("SELECT * FROM $table_name WHERE to_email = %s AND sent_date BETWEEN %s AND %s", $export_recipient, $from_date, $to_date);
-			}else{
-				$query = $query = $wpdb->prepare("SELECT * FROM $table_name WHERE sent_date BETWEEN %s AND %s", $from_date, $to_date);
-			}
-		}else if($status == 'Success' && $export_date == 'custom'){
-			if(!empty($export_recipient)){
-				$query = $wpdb->prepare("SELECT * FROM $table_name WHERE (error_message = %s OR error_message IS NULL) AND to_email = %s AND sent_date BETWEEN %s AND %s", $status, $export_recipient, $from_date, $to_date);
-			}else{
-				$query = $wpdb->prepare("SELECT * FROM $table_name WHERE (error_message = %s OR error_message IS NULL) AND sent_date BETWEEN %s AND %s", $status, $from_date, $to_date);
-			}
-		}else if($status == 'Fail' && $export_date == 'custom'){
-			if(!empty($export_recipient)){
-				$query = $wpdb->prepare("SELECT * FROM $table_name WHERE error_message != %s AND to_email = %s AND sent_date BETWEEN %s AND %s", 'Success', $export_recipient, $from_date, $to_date);
-			}else{
-				$query = $wpdb->prepare("SELECT * FROM $table_name WHERE error_message != %s AND sent_date BETWEEN %s AND %s", 'Success', $from_date, $to_date);
-			}
+			
+			$results = $wpdb->get_results($query, ARRAY_A);
+			// phpcs:enable -- prepared
+			wp_cache_set( $cache_key, $results );
+		}else{
+			$results = $ck_mail_generate_csv;
 		}
-
-		$results = $wpdb->get_results($query, ARRAY_A);
 
 		$logs_data = '';
 		$csv_headings = array('Sr No');
@@ -223,7 +230,7 @@ class Check_Email_Export_Log {
 					} 
 
 					if(in_array("Sent At", $csv_headings)){
-						$logs_data .= date('d-m-Y H:i:s', strtotime($l_value['sent_date'])).$this->separator; 
+						$logs_data .= gmdate('d-m-Y H:i:s', strtotime($l_value['sent_date'])).$this->separator; 
 					}
 					if(in_array("Status", $csv_headings)){
 						$logs_data .= empty($l_value['error_message'])?'Success':$l_value['error_message']; 
@@ -394,7 +401,7 @@ class Check_Email_Export_Log {
 							<div class="ck-mail-logs-contents">
 								<div class="ck-mail-log-exp-recipient ck-mail-export-options">
 									<label for="ck-mail-export-recipient"> <?php esc_html_e('Enter Email id', 'check-email'); ?> </label>
-									<input type="text" name="export_recipient" class="ck-mail-export-recipient" id="ck-mail-export-recipient" placeholder="Enter Recipient Email">
+									<input type="text" name="export_recipient" class="ck-mail-export-recipient" id="ck-mail-export-recipient" placeholder="<?php esc_attr_e( 'Enter Recipient Email', 'check-email' ); ?>">
 								</div>
 							</div>
 						</div>
@@ -425,8 +432,8 @@ class Check_Email_Export_Log {
 									</label>
 									<p class="ck-mail-exp-error ck-mail-d-none" id="ck-mail-exp-date-error"></p>
 									<div id="ck-mail-exp-c-date-wrapper" class="ck-mail-d-none">
-										<input type="search" id="ck-mail-exp-from-date" name="ck_mail_exp_from_date" value="<?php echo esc_attr(date('Y-m-d')); ?>" placeholder="<?php esc_attr_e( 'From Date', 'check-email' ); ?>" readonly />
-										<input type="search" id="ck-mail-exp-to-date" name="ck_mail_exp_to_date" value="<?php echo esc_attr(date('Y-m-d')); ?>" placeholder="<?php esc_attr_e( 'To Date', 'check-email' ); ?>" readonly />
+										<input type="search" id="ck-mail-exp-from-date" name="ck_mail_exp_from_date" value="<?php echo esc_attr(gmdate('Y-m-d')); ?>" placeholder="<?php esc_attr_e( 'From Date', 'check-email' ); ?>" readonly />
+										<input type="search" id="ck-mail-exp-to-date" name="ck_mail_exp_to_date" value="<?php echo esc_attr(gmdate('Y-m-d')); ?>" placeholder="<?php esc_attr_e( 'To Date', 'check-email' ); ?>" readonly />
 									</div>
 								</div>
 							</div>
@@ -435,7 +442,7 @@ class Check_Email_Export_Log {
 					</div>
 				</div> <!-- ck-mail-exp-row div end -->
 				<div style="clear: both;"></div>
-				<input type="hidden" name="ck_mail_export_nonce" value="<?php echo wp_create_nonce('ck_mail_ajax_check_nonce');    ?>">
+				<input type="hidden" name="ck_mail_export_nonce" value="<?php echo esc_attr(wp_create_nonce('ck_mail_ajax_check_nonce'));    ?>">
 				<input type="hidden" name="action" value="ck_mail_export_logs">
 				<button type="button" class="button-primary button" id="ck-mail-export-logs-btn"> <?php esc_html_e('Export Logs', 'check-email'); ?> </button>
 			</form>

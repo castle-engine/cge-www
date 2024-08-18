@@ -14,14 +14,16 @@ class Check_Email_Core_Setting extends Check_Email_Setting {
 			$this->section->option_name = 'check-email-log-core';
 
 			$this->section->field_labels = array(
+				'setup_wizard'      => esc_html__( 'Setup Wizard', 'check-email' ),
 				'allowed_user_roles'      => esc_html__( 'Allowed User Roles', 'check-email' ),
 				'remove_on_uninstall'     => '<label for="check-email-remove-on-uninstall" class="check-email-opt-labels">'.esc_html__( 'Remove Data on Uninstall?', 'check-email' ).'</label>',
 				'override_emails_from'    => '<label for="check-email-overdide-from" class="check-email-opt-labels">'.esc_html__( 'Override Emails From', 'check-email' ).'</label>',				
 				'email_from_name'         => '<label for="check-email-from_name" class="check-email-opt-labels" style="padding-left:10px;">'.esc_html__( 'Change the "from" name.', 'check-email' ).'</label>',
-				'email_from_email'        => '<label for="check-email-from_email" class="check-email-opt-labels" style="padding-left:10px;">'.esc_html__( 'Change the "from" email.', 'check-email' ).'</label>',
-				// 'enable_logs'             => '<label for="check-email-enable-logs" class="check-email-opt-labels">'.esc_html__( 'Enable Logs', 'check-email' ).'</label>',				
+				'email_from_email'        => '<label for="check-email-from_email" class="check-email-opt-labels" style="padding-left:10px;">'.esc_html__( 'Change the "from" email.', 'check-email' ).'</label>',				
 				'enable_dashboard_widget' => '<label for="check-email-enable-widget" class="check-email-opt-labels">'.esc_html__( 'Enable Dashboard Widget', 'check-email' ).'</label>',
 				'db_size_notification'    => '<label for="check-email-enable-db-notifications" class="check-email-opt-labels">'.esc_html__( 'Database Size Notification', 'check-email' ).'</label>',
+				'default_format_for_message'    => '<label for="check-email-default_format_for_message" class="check-email-opt-labels">'.esc_html__( 'Default Format for Message', 'check-email' ).'</label>',
+				'log_email_content'    => '<label for="check-email-log_email_content" class="check-email-opt-labels">'.esc_html__( 'Log Email Content', 'check-email' ).'</label>',			
 				'display_host_ip'    => '<label for="check-email-display-host-ip" class="check-email-opt-labels">'.esc_html__( 'Display Host IP', 'check-email' ).'</label>',			
 				'cc'    => '<label for="check-email-cc" class="check-email-opt-labels">'.esc_html__( 'Display CC', 'check-email' ).'</label>',			
 				'bcc'    => '<label for="check-email-bcc" class="check-email-opt-labels">'.esc_html__( 'Display BCC', 'check-email' ).'</label>',			
@@ -33,8 +35,9 @@ class Check_Email_Core_Setting extends Check_Email_Setting {
 				'is_retention_period_enable'    => '<label for="check-email-is_retention_period_enable" class="check-email-opt-labels">'.esc_html__( 'By Period', 'check-email' ).'</label>',
 				'log_retention_period'    => '<label for="check-email-log_retention_period" class="check-email-opt-labels" style="padding-left:10px;">'.esc_html__( 'Period', 'check-email' ).'</label>',
 				'log_retention_period_in_days'    => '<label for="check-email-log_retention_period_in_days" class="check-email-opt-labels" style="padding-left:10px;">'.esc_html__( 'Days', 'check-email' ).'</label>',
+				'email_error_tracking'    => '<label for="check-email-email_error_tracking" class="check-email-opt-labels">'.esc_html__( 'Email Error Tracking', 'check-email' ).'</label>',			
 				'forward_email'    => '<label for="check-email-forward_email" class="check-email-opt-labels">'.esc_html__( 'Forward Email', 'check-email' ).'</label>',			
-				'forward_to'    => '<label for="check-email-forward_to" class="check-email-opt-labels" style="padding-left:10px;">'.esc_html__( 'Froward To', 'check-email' ).'</label>',			
+				'forward_to'    => '<label for="check-email-forward_to" class="check-email-opt-labels" style="padding-left:10px;">'.esc_html__( 'Forward To', 'check-email' ).'</label>',			
 				'forward_cc'    => '<label for="check-email-forward_cc" class="check-email-opt-labels" style="padding-left:10px;">'.esc_html__( 'Forward Cc', 'check-email' ).'</label>',			
 				'forward_bcc'    => '<label for="check-email-forward_bcc" class="check-email-opt-labels" style="padding-left:10px;">'.esc_html__( 'Forward Bcc', 'check-email' ).'</label>',			
 				'trigger_data'    		  => '<label for="check-email-trigger-data" class="check-email-opt-labels">'.esc_html__( 'Triggered Data', 'check-email' ).'</label>',
@@ -42,13 +45,14 @@ class Check_Email_Core_Setting extends Check_Email_Setting {
 			);
 
 			$this->section->default_value = array(
+				'setup_wizard'      => '',
 				'allowed_user_roles'      => array(),
 				'remove_on_uninstall'     => '',
 				'email_from_name'         => '',
 				'email_from_email'        => '',
 				'override_emails_from'    => false,
 				'forward_email'    => false,
-				// 'enable_logs'             => false,				
+				'email_error_tracking'    => false,				
 				'enable_dashboard_widget' => false,
 				'db_size_notification'    => array(
 					'notify'                    => false,
@@ -57,10 +61,12 @@ class Check_Email_Core_Setting extends Check_Email_Setting {
 					'log_threshold_met'         => false,
 					'threshold_email_last_sent' => false,
 				),
-				'display_host_ip' 		  => false,			
-				'cc' 		  => false,			
-				'bcc' 		  => false,			
-				'reply_to' 		  => false,			
+				'default_format_for_message' 		  => '',			
+				'log_email_content' 		  => true,			
+				'display_host_ip' 		  => true,			
+				'cc' 		  => true,			
+				'bcc' 		  => true,			
+				'reply_to' 		  => true,			
 				'retention' 		  => 'its_heading',			
 				'log_retention_period' 		  => '',			
 				'log_retention_period_in_days' 		  => 0,			
@@ -115,11 +121,16 @@ class Check_Email_Core_Setting extends Check_Email_Setting {
 
 		<p>
 			<em>
-				<?php echo wp_kses_post( __( '<strong>Note:</strong> Users with the above User Roles can view Status and Logs Page.', 'check-email' ) ); ?>
-				<?php esc_html_e( 'Administrator always has access and cannot be disabled.', 'check-email' ); ?>
+			<?php echo '<strong>'.esc_html__('Note:', 'check-email' ).'</strong>&nbsp;'.esc_html__('Users with the above User Roles can view Status and Logs Page.', 'check-email' ); ?>
+			<?php esc_html_e( 'Administrator always has access and cannot be disabled.', 'check-email' ); ?>
 			</em>
 		</p>
 
+		<?php
+	}
+	public function render_setup_wizard_settings( $args ) {
+		?>
+		<a href="admin.php?page=check-email-wizard" class="button button-primary"><?php echo esc_html('Setup Wizard', 'check-email' ); ?></a>
 		<?php
 	}
 
@@ -130,21 +141,7 @@ class Check_Email_Core_Setting extends Check_Email_Setting {
 
 		return array_map( 'sanitize_text_field', $roles );
 	}
-	/*
-	public function render_enable_logs_settings( $args ) {
-		$option      = $this->get_value();
-		$enable_logs = $option[ $args['id'] ];
-
-		$field_name = $this->section->option_name . '[' . $args['id'] . ']';
-		?>
-            <input id="check-email-enable-logs" type="checkbox" name="<?php echo esc_attr( $field_name ); ?>" value="true" <?php checked( 'true', $enable_logs ); ?>>
-            <label for="check-email-enable-logs" class="check-email-opt-labels"><?php esc_html_e( 'Check this box if you would like to log your emails.', 'check-email' ) ?></label>
-            <?php
-	}
-
-    public function sanitize_enable_logs( $value ) {
-		return sanitize_text_field( $value );
-	} */
+	
 
 	public function render_remove_on_uninstall_settings( $args ) {
 		$option      = $this->get_value();
@@ -192,9 +189,13 @@ class Check_Email_Core_Setting extends Check_Email_Setting {
 		$enable_dashboard_widget = $option[ $args['id'] ];
 
 		$field_name = $this->section->option_name . '[' . $args['id'] . ']';
+		$checked = "";
+		if($enable_dashboard_widget){
+			$checked = "checked";
+		}
 		?>
 
-		<input id="check-email-enable-widget" type="checkbox" name="<?php echo esc_attr( $field_name ); ?>" value="true" <?php checked( 'true', $enable_dashboard_widget ); ?>>
+		<input id="check-email-enable-widget" type="checkbox" name="<?php echo esc_attr( $field_name ); ?>" value="true" <?php echo esc_attr($checked); ?>>
 		<label for="check-email-enable-widget" class="check-email-opt-labels"><?php esc_html_e( 'Check this box if you would like to enable dashboard widget.', 'check-email' ); ?></label>
 
 		<?php
@@ -248,22 +249,28 @@ class Check_Email_Core_Setting extends Check_Email_Setting {
 		<p>
 			<em>
 				<?php
+				// The values within each field are already escaped.
+				// phpcs:disable
 				printf(
 					esc_html__( '%1$s There are %2$s email logs currently logged in the database.', 'check-email' ),
 					'<strong>' . esc_html__( 'Note', 'check-email' ) . ':</strong>',
 					'<strong>' . esc_html( $logs_count ) . '</strong>'
 				);
+				// phpcs:enable
 				?>
 			</em>
 		</p>
 		<?php if ( ! empty( $db_size_notification_data['threshold_email_last_sent'] ) ) : ?>
 			<p>
 				<?php
+				// The values within each field are already escaped.
+				// phpcs:disable
 				printf(
 					esc_html__( 'Last notification email was sent on %1$s. Click %2$s button to reset sending the notification.', 'check-email' ),
-					'<strong>' . esc_html( get_date_from_gmt( date( 'Y-m-d H:i:s', $db_size_notification_data['threshold_email_last_sent'] ), \CheckEmail\Util\wp_chill_check_email_get_user_defined_date_format() ) ) . '</strong>',
-					'<b>Save</b>'
+					'<strong>' . esc_html( get_date_from_gmt( gmdate( 'Y-m-d H:i:s', $db_size_notification_data['threshold_email_last_sent'] ), \CheckEmail\Util\wp_chill_check_email_get_user_defined_date_format() ) ) . '</strong>',
+					'<b>' . esc_html__( 'Save', 'check-email' ) . '</b>'
 				);
+				// phpcs:enable
 				?>
 			</p>
 			<?php
@@ -374,11 +381,12 @@ class Check_Email_Core_Setting extends Check_Email_Setting {
 		$this->register_threshold_met_admin_notice();
 
 		if ( $is_notification_enabled && is_email( $admin_email ) ) {
+			// The values within each field are already escaped.
+			// phpcs:disable
 			$subject = sprintf( esc_html__( 'Check & Log Email: Your log threshold of %s has been met', 'check-email' ), $logs_threshold );
-			$message = <<<EOT
-<p>This email is generated by the Check & Log Email plugin.</p>
-<p>Your log threshold of $logs_threshold has been met. You may manually delete the logs to keep your database table in size.</p>
-EOT;
+			// phpcs:enable
+			$message = "<p>".esc_html__('This email is generated by the Check & Log Email plugin', 'check-email' ).".</p>
+<p>".esc_html__('Your log threshold of', 'check-email' )." $logs_threshold ".esc_html__('has been met. You may manually delete the logs to keep your database table in size', 'check-email' ).".</p>";
 			$headers = array( 'Content-Type: text/html; charset=UTF-8' );
 
 			$subject = apply_filters( 'check_email_log_threshold_met_notification_email_subject', $subject );
@@ -400,13 +408,11 @@ EOT;
 	public function render_log_threshold_met_notice() {
 		$check_email    = wpchill_check_email();
 		$logs_count     = absint( $check_email->table_manager->get_logs_count() );
-		$notice_message = sprintf(
-			esc_html__( 'Currently there are %1$s logged, which is more than the threshold. You can delete some logs or increase the threshold.', 'check-email' ),
-			$logs_count . esc_html(_n( ' email log', ' email logs', $logs_count, 'check-email' ))
-		);
+		// The values within each field are already escaped.
 		?>
 		<div class="notice notice-warning is-dismissible">
-			<p><?php echo wp_kses_post( $notice_message ); ?></p>
+			<p><?php echo esc_html__( 'Currently there are', 'check-email').'&nbsp;'.esc_html($logs_count, 'check-email').'&nbsp;'.esc_html__('logged, which is more than the threshold. You can delete some logs or increase the threshold.', 'check-email' ); 
+			?></p>
 		</div>
 		<?php
 	}
@@ -429,7 +435,21 @@ EOT;
 		$field_name  = $this->section->option_name . '[' . $args['id'] . ']';
 		?>
             <input id="check-email-forward_email" type="checkbox" name="<?php echo esc_attr( $field_name ); ?>" value="true" <?php checked( 'true', $field_value ); ?>>
-            <label for="check-email-forward_email" class="check-email-opt-labels"><?php esc_html_e( 'Automatically forward a copy of all emails sent by WordPress to other email addresses ', 'check-email' ) ?><a href="https://check-email.tech/docs/"><?php esc_html_e( 'Learn More', 'check-email' ) ?></label>
+            <label for="check-email-forward_email" class="check-email-opt-labels"><?php esc_html_e( 'Automatically forward a copy of all emails sent by WordPress to other email addresses ', 'check-email' ) ?><a href=" https://check-email.tech/docs/knowledge-base/forward-email-option-in-the-check-log-email-plugin/"><?php esc_html_e( 'Learn More', 'check-email' ) ?></label>
+		<?php
+
+	}
+	public function render_email_error_tracking_settings( $args ){
+
+		$option      = $this->get_value();
+		$field_value = $option[ $args['id'] ];
+		$field_name  = $this->section->option_name . '[' . $args['id'] . ']';
+		if (!empty($field_value) && $field_value) {
+			ck_mail_create_error_logs();
+		}
+		?>
+            <input id="check-email-email_error_tracking" type="checkbox" name="<?php echo esc_attr( $field_name ); ?>" value="true" <?php checked( 'true', $field_value ); ?>>
+            <label for="check-email-email_error_tracking" class="check-email-opt-labels"><?php esc_html_e( 'You can easily track errors in email delivery.', 'check-email' ) ?></label>
 		<?php
 
 	}
@@ -477,24 +497,46 @@ EOT;
 		if(!defined('CK_MAIL_PRO_VERSION')){
 		?>
 			<input id="check-email-trigger-data" type="checkbox" disabled />
-			<label for="check-email-trigger-data" class="check-email-opt-labels"><span><?php esc_html_e( 'Triggered data helps you in debugging by showing the exact code that is sending that email ', 'check-email' ); ?><a href="https://check-email.tech/docs/knowledge-base/how-to-use-the-trigger-option-to-debug-emails-by-identifying-the-exact-code/" target="_blank"><?php esc_html_e(' Learn More'); ?></a></span></label>
+			<label for="check-email-trigger-data" class="check-email-opt-labels"><span><?php esc_html_e( 'Triggered data helps you in debugging by showing the exact code that is sending that email ', 'check-email' ); ?><a href="https://check-email.tech/docs/knowledge-base/how-to-use-the-trigger-option-to-debug-emails-by-identifying-the-exact-code/" target="_blank"><?php esc_html_e(' Learn More', 'check-email'); ?></a></span></label>
 			<p id="check-email-trigger-data-free-note"> <?php esc_html_e( 'This Feature requires the Premium Version', 'check-email' ); ?> <a href="https://check-email.tech/pricing/#pricings" target="_blank" class="check-mail-premium-btn"><span><?php esc_html_e('Upgrade Now', 'check-email'); ?><span></a> </p>
 		<?php
 		}else{
 		?>
 			<input id="check-email-trigger-data" type="checkbox" name="<?php echo esc_attr( $field_name ); ?>" value="true" <?php checked( 'true', $trigger_data ); ?>>
-			<label for="check-email-trigger-data" class="check-email-opt-labels"><span><?php esc_html_e( 'Triggered data helps you in debugging by showing the exact code that is sending that email ', 'check-email' ); ?><a href="https://check-email.tech/docs/knowledge-base/how-to-use-the-trigger-option-to-debug-emails-by-identifying-the-exact-code/" target="_blank"><?php esc_html_e(' Learn More'); ?></a></span></label>
+			<label for="check-email-trigger-data" class="check-email-opt-labels"><span><?php esc_html_e( 'Triggered data helps you in debugging by showing the exact code that is sending that email ', 'check-email' ); ?><a href="https://check-email.tech/docs/knowledge-base/how-to-use-the-trigger-option-to-debug-emails-by-identifying-the-exact-code/" target="_blank"><?php esc_html_e(' Learn More', 'check-email'); ?></a></span></label>
 		<?php
 		}
 	}
 
-	public function render_display_host_ip_settings( $args ){
-
+	public function render_log_email_content_settings( $args ){
 		$option      = $this->get_value();
 		$field_value = $option[ $args['id'] ];
 		$field_name  = $this->section->option_name . '[' . $args['id'] . ']';
+
+		$checked = "";
+		if($field_value){
+			$checked = "checked";
+		}
 		?>
-			<input id="check-email-display-host-ip" type="checkbox" name="<?php echo esc_attr( $field_name ); ?>" value="true" <?php checked( 'true', $field_value ); ?>>
+			<input id="check-email-log_email_content" class="check_main_js_display_checkbox" type="checkbox" value="true" <?php echo esc_attr($checked); ?>>
+			<input id="check-email-log_email_content-hidden" class="check_mail_js_hidden_display" type="hidden" name="<?php echo esc_attr( $field_name ); ?>" value="<?php echo esc_attr( $field_value ); ?>">
+			<label for="check-email-log_email_content" class="check-email-opt-labels"><?php esc_html_e('Email content may contain personal information, such as plain text passwords. Please carefully consider before enabling this option, as it will store all sent email content to your site’s database.', 'check-email' ) ?></label>
+
+			
+		<?php
+	}
+	public function render_display_host_ip_settings( $args ){
+		$option      = $this->get_value();
+		$field_value = $option[ $args['id'] ];
+		$field_name  = $this->section->option_name . '[' . $args['id'] . ']';
+
+		$checked = "";
+		if($field_value){
+			$checked = "checked";
+		}
+		?>
+			<input id="check-email-display-host-ip" class="check_main_js_display_checkbox" type="checkbox" value="true" <?php echo esc_attr($checked); ?>>
+			<input id="check-email-display-host-ip-hidden" class="check_mail_js_hidden_display" type="hidden" name="<?php echo esc_attr( $field_name ); ?>" value="<?php echo esc_attr( $field_value ); ?>">
 			<label for="check-email-display-host-ip" class="check-email-opt-labels"><?php esc_html_e( 'Display the IP Addresses of the WordPress Host.', 'check-email' ) ?></label>
 		<?php
 	}
@@ -503,8 +545,13 @@ EOT;
 		$option      = $this->get_value();
 		$field_value = $option[ $args['id'] ];
 		$field_name  = $this->section->option_name . '[' . $args['id'] . ']';
+		$checked = "";
+		if($field_value){
+			$checked = "checked";
+		}
 		?>
-			<input id="check-email-cc" type="checkbox" name="<?php echo esc_attr( $field_name ); ?>" value="true" <?php checked( 'true', $field_value ); ?>>
+			<input id="check-email-cc" class="check_main_js_display_checkbox" type="checkbox"  value="true" <?php echo esc_attr($checked); ?>>
+			<input id="check-email-display-host-ip-hidden" class="check_mail_js_hidden_display" type="hidden" name="<?php echo esc_attr( $field_name ); ?>" value="<?php echo esc_attr( $field_value ); ?>">
 			<label for="check-email-cc" class="check-email-opt-labels"><?php esc_html_e( 'Display the Cc of emails.', 'check-email' ) ?></label>
 		<?php
 	}
@@ -513,8 +560,13 @@ EOT;
 		$option      = $this->get_value();
 		$field_value = $option[ $args['id'] ];
 		$field_name  = $this->section->option_name . '[' . $args['id'] . ']';
+		$checked = "";
+		if($field_value){
+			$checked = "checked";
+		}
 		?>
-			<input id="check-email-bcc" type="checkbox" name="<?php echo esc_attr( $field_name ); ?>" value="true" <?php checked( 'true', $field_value ); ?>>
+			<input id="check-email-bcc" class="check_main_js_display_checkbox" type="checkbox" value="true" <?php echo esc_attr($checked); ?>>
+			<input id="check-email-display-host-ip-hidden" class="check_mail_js_hidden_display" type="hidden" name="<?php echo esc_attr( $field_name ); ?>" value="<?php echo esc_attr( $field_value ); ?>">
 			<label for="check-email-bcc" class="check-email-opt-labels"><?php esc_html_e( 'Display the Bcc of emails.', 'check-email' ) ?></label>
 		<?php
 	}
@@ -523,15 +575,38 @@ EOT;
 		$option      = $this->get_value();
 		$field_value = $option[ $args['id'] ];
 		$field_name  = $this->section->option_name . '[' . $args['id'] . ']';
+		$checked = "";
+		if($field_value){
+			$checked = "checked";
+		}
 		?>
-			<input id="check-email-reply_to" type="checkbox" name="<?php echo esc_attr( $field_name ); ?>" value="true" <?php checked( 'true', $field_value ); ?>>
+			<input id="check-email-reply_to" class="check_main_js_display_checkbox" type="checkbox" value="true" <?php echo esc_attr($checked); ?>>
+			<input id="check-email-display-host-ip-hidden" class="check_mail_js_hidden_display" type="hidden" name="<?php echo esc_attr( $field_name ); ?>" value="<?php echo esc_attr( $field_value ); ?>">
 			<label for="check-email-reply_to" class="check-email-opt-labels"><?php esc_html_e( 'Display the Reply to of emails.', 'check-email' ) ?></label>
+		<?php
+	}
+	public function render_default_format_for_message_settings( $args ){
+		$option      = $this->get_value();
+		$field_value = $option[ $args['id'] ];
+		$field_name  = $this->section->option_name . '[' . $args['id'] . ']';
+		$periods = array( 'html' =>'HTML',
+						'raw' =>'RAW',
+						'json' =>'JSON'
+					);
+		?>
+			<select id="check-email-default_format_for_message" style="width:177px;" name="<?php echo esc_attr( $field_name ); ?>">				
+				<?php
+				foreach ($periods as $key => $value) {
+					?>
+						<option value='<?php echo esc_attr($key); ?>' <?php selected($field_value,$key); ?>><?php echo esc_attr( $value) ?></option>
+					<?php
+				}
+				?>
+			</select>
 		<?php
 	}
 	public function render_log_retention_period_settings( $args ){
 		$option      = $this->get_value();
-		$log_retention_period_in_days_field_value = $option[ 'log_retention_period_in_days' ];
-		$log_retention_period_in_days_field_name = $this->section->option_name . '[log_retention_period_in_days]';
 		$field_value = $option[ $args['id'] ];
 		$field_name  = $this->section->option_name . '[' . $args['id'] . ']';
 		$periods = array( '1_day' =>'1 Day',
@@ -546,7 +621,7 @@ EOT;
 				<?php
 				foreach ($periods as $key => $value) {
 					?>
-						<option value="<?php echo esc_attr($key); ?>" <?php selected($field_value,$key); ?>><?php esc_html_e( $value, 'check-email' ) ?></option>
+						<option value="<?php echo esc_attr($key); ?>" <?php selected($field_value,$key); ?>><?php echo esc_attr( $value) ?></option>
 					<?php
 				}
 				?>
@@ -554,7 +629,6 @@ EOT;
 		<?php
 	}
 	public function render_retention_amount_settings( $args ){
-
 		$option      = $this->get_value();
 		$field_value = $option[ $args['id'] ];
 		$field_name  = $this->section->option_name . '[' . $args['id'] . ']';		
@@ -564,6 +638,10 @@ EOT;
 			esc_attr( $field_value )
 			);
 	}
+
+	// This function in used only for headings
+	public function render_retention_settings(){
+	}
 	public function render_is_retention_amount_enable_settings( $args ){
 
 		$option      = $this->get_value();
@@ -572,7 +650,7 @@ EOT;
 		
 		?>
 			<input id="check-email-is_retention_amount_enable" type="checkbox" name="<?php echo esc_attr( $field_name ); ?>" value="true" <?php checked( 'true', $field_value ); ?>>
-			<label for="check-email-is_retention_amount_enable" class="check-email-opt-labels"><?php echo esc_html__( 'Automatically deletes old emails when a certain amount of logs have been saved.', 'check-email' ); ?></label>
+			<label for="check-email-is_retention_amount_enable" class="check-email-opt-labels"><?php esc_html_e( 'Automatically deletes old emails when a certain amount of logs have been saved.', 'check-email' ); ?></label>
 		<?php
 	}
 	public function render_is_retention_period_enable_settings( $args ){
@@ -583,7 +661,7 @@ EOT;
 		
 		?>
 			<input id="check-email-is_retention_period_enable" type="checkbox" name="<?php echo esc_attr( $field_name ); ?>" value="true" <?php checked( 'true', $field_value ); ?>>
-			<label for="check-email-is_retention_period_enable" class="check-email-opt-labels"><?php echo esc_html__( 'Automatically deletes old emails after a certain amount of time has passed', 'check-email' ); ?></label>
+			<label for="check-email-is_retention_period_enable" class="check-email-opt-labels"><?php esc_html_e( 'Automatically deletes old emails after a certain amount of time has passed', 'check-email' ); ?></label>
 		<?php
 	}
 	public function render_log_retention_period_in_days_settings( $args ){
@@ -597,8 +675,6 @@ EOT;
 			esc_attr( $field_name ),
 			esc_attr( $field_value )
 			);
-	}
-	public function render_retention_settings( $args ){		
 	}
 
 	public function sanitize_log_retention_period_in_days( $value ) {
@@ -616,6 +692,9 @@ EOT;
 	public function sanitize_bcc( $value ) {
 		return sanitize_text_field( $value );
 	}
+	public function sanitize_reply_to( $value ) {
+		return sanitize_text_field( $value );
+	}
 
 	public function render_forward_to_settings( $args ){
 
@@ -624,7 +703,7 @@ EOT;
 		$field_name  = $this->section->option_name . '[' . $args['id'] . ']';
 		
 		echo sprintf(
-		'<input id="check-email-forward_to"  placeholder="'.esc_html__( 'Froward To Email', 'check-email' ).'" type="text" name="%s" value="%s"  class="regular-text" /><small>&nbsp;'.esc_html__( 'Separate multiple emails  by comma ( , )', 'check-email' ).'</small>',
+		'<input id="check-email-forward_to"  placeholder="'.esc_html__( 'Forward To Email', 'check-email' ).'" type="text" name="%s" value="%s"  class="regular-text" /><small>&nbsp;'.esc_html__( 'Separate multiple emails by comma ( , )', 'check-email' ).'</small>',
 		esc_attr( $field_name ),
 		esc_attr( $field_value )
 		);
@@ -637,7 +716,7 @@ EOT;
 		$field_name  = $this->section->option_name . '[' . $args['id'] . ']';
 		
 		echo sprintf(
-		'<input id="check-email-forward_cc" placeholder="'.esc_html__( 'Froward To Cc Email', 'check-email' ).'" type="text" name="%s" value="%s" class="regular-text"  /><small>&nbsp;'.esc_html__( 'Separate multiple emails by comma ( , )', 'check-email' ).'</small>',
+		'<input id="check-email-forward_cc" placeholder="'.esc_html__( 'Forward To Cc Email', 'check-email' ).'" type="text" name="%s" value="%s" class="regular-text"  /><small>&nbsp;'.esc_html__( 'Separate multiple emails by comma ( , )', 'check-email' ).'</small>',
 		esc_attr( $field_name ),
 		esc_attr( $field_value )
 		);
@@ -650,13 +729,19 @@ EOT;
 		$field_name  = $this->section->option_name . '[' . $args['id'] . ']';
 		
 		echo sprintf(
-		'<input id="check-email-forward_bcc" placeholder="'.esc_html__( 'Froward To Bcc Email', 'check-email' ).'" type="text" name="%s" value="%s" class="regular-text"  /><small>&nbsp;'.esc_html__( 'Separate multiple emails  by comma ( , )', 'check-email' ).'</small>',
+		'<input id="check-email-forward_bcc" placeholder="'.esc_html__( 'Forward To Bcc Email', 'check-email' ).'" type="text" name="%s" value="%s" class="regular-text"  /><small>&nbsp;'.esc_html__( 'Separate multiple emails by comma ( , )', 'check-email' ).'</small>',
 		esc_attr( $field_name ),
 		esc_attr( $field_value )
 		);
 		
 	}
 
+	public function sanitize_forward_email( $value ) {
+		return sanitize_text_field( $value );
+	}
+	public function sanitize_email_error_tracking( $value ) {
+		return sanitize_text_field( $value );
+	}
 	public function sanitize_forward_to( $value ) {
 		return sanitize_text_field( $value );
 	}
@@ -664,6 +749,30 @@ EOT;
 		return sanitize_text_field( $value );
 	}
 	public function sanitize_forward_bcc( $value ) {
+		return sanitize_text_field( $value );
+	}
+	public function sanitize_is_retention_period_enable( $value ) {
+		return sanitize_text_field( $value );
+	}
+	public function sanitize_log_retention_period( $value ) {
+		return sanitize_text_field( $value );
+	}
+	public function sanitize_email_from_name( $value ) {
+		return sanitize_text_field( $value );
+	}
+	public function sanitize_email_from_email( $value ) {
+		return sanitize_text_field( $value );
+	}
+	public function sanitize_enable_dashboard_widget( $value ) {
+		return sanitize_text_field( $value );
+	}
+	public function sanitize_default_format_for_message( $value ) {
+		return sanitize_text_field( $value );
+	}
+	public function sanitize_log_email_content( $value ) {
+		return sanitize_text_field( $value );
+	}
+	public function sanitize_trigger_data( $value ) {
 		return sanitize_text_field( $value );
 	}
 }

@@ -8,10 +8,6 @@
     var dbNotifications = $("#check-email-enable-db-notifications")
       .parent()
       .parent();
-    // if (!$("#check-email-enable-logs").is(":checked")) {
-    //   widget.hide();
-    //   dbNotifications.hide();
-    // }
 
     $("#checkemail_autoheaders,#checkemail_customheaders").on(
       "change",
@@ -26,15 +22,6 @@
         }
       }
     );
-    // $("#check-email-enable-logs").on("click", function () {
-    //   if ($(this).is(":checked")) {
-    //     widget.show();
-    //     dbNotifications.show();
-    //   } else {
-    //     widget.hide();
-    //     dbNotifications.hide();
-    //   }
-    // });
 
     var from_name_setting = $("#check-email-from_name").parent().parent();
     var from_email_setting = $("#check-email-from_email").parent().parent();
@@ -231,6 +218,7 @@
         days.hide();
       }
     });
+    
 
     if ($("#check-email-log_retention_period").val() != 'custom_in_days') {
       days.hide();
@@ -240,6 +228,14 @@
         days.show();
       } else {
         days.hide();
+      }
+    });
+
+    $(".check_main_js_display_checkbox").on("click", function () {
+      if ($(this).is(":checked")) {
+        $(this).next('.check_mail_js_hidden_display').val(1);
+      } else {
+        $(this).next('.check_mail_js_hidden_display').val(0);
       }
     });
   

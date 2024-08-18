@@ -11,6 +11,7 @@ class Check_Email_Status_Page extends Check_Email_BasePage {
 	 * Page slug.
 	 */
 	const PAGE_SLUG = 'check-email-status';
+	const DASHBOARD_SLUG = 'check-email-dashboard';
 
 	/**
 	 * Specify additional hooks.
@@ -19,7 +20,7 @@ class Check_Email_Status_Page extends Check_Email_BasePage {
 	 */
 	public function load() {
 		parent::load();
-                add_action( 'admin_enqueue_scripts', array( $this, 'checkemail_assets' ) );;
+        add_action( 'admin_enqueue_scripts', array( $this, 'checkemail_assets' ) );;
 	}
 
 	/**
@@ -32,19 +33,19 @@ class Check_Email_Status_Page extends Check_Email_BasePage {
             esc_html__( 'Check & Log Email', 'check-email' ),
             'manage_check_email',
             self::PAGE_SLUG,
-            array( $this, 'render_page' ),
+            '',
             'dashicons-email-alt',
             26
         );
-
+		
 		$this->page = add_submenu_page(
 			Check_Email_Status_Page::PAGE_SLUG,
-			esc_html__( 'Status', 'check-email' ),
-			esc_html__( 'Status', 'check-email' ),
+			esc_html__( 'Test Email', 'check-email' ),
+			esc_html__( 'Test Email', 'check-email' ),
 			'manage_check_email',
 			self::PAGE_SLUG,
 			array( $this, 'render_page' ),
-            -10
+            -11
 		);
 	}
 
@@ -138,17 +139,18 @@ class Check_Email_Status_Page extends Check_Email_BasePage {
                
             }
 
-            $title = sprintf( esc_html__( "Test email from %s ", "check-email"), esc_url( get_bloginfo( "url" ) ) );
-            $body  = sprintf( esc_html__( 'This test email proves that your WordPress installation at %1$s can send emails.\n\nSent: %2$s', "check-email" ), esc_url( get_bloginfo( "url" ) ), date( "r" ) );
+            $title = esc_html__( "Test email from", "check-email").' '.esc_url( get_bloginfo( "url" ));
+            $body  = esc_html__( 'This test email proves that your WordPress installation at', "check-email" ).' '.esc_url( get_bloginfo( "url" ) ). esc_html__( 'can send emails. Sent: ', "check-email" ).gmdate( "r" ) ;
             wp_mail( $to, $title, $body, $headers );
 
             return $headers;
     }
 
     public function checkemail_assets() {
+        $suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 		$check_email    = wpchill_check_email();
 		$plugin_dir_url = plugin_dir_url( $check_email->get_plugin_file() );
-		wp_enqueue_style( 'checkemail-css', $plugin_dir_url . 'assets/css/admin/checkemail.css', array(), $check_email->get_version() );
-		wp_enqueue_script( 'checkemail', $plugin_dir_url . 'assets/js/admin/checkemail.js', array( 'jquery', 'updates' ), $check_email->get_version(), true );
+		wp_enqueue_style( 'checkemail-css', $plugin_dir_url . 'assets/css/admin/checkemail'. $suffix .'.css', array(), $check_email->get_version() );
+		wp_enqueue_script( 'checkemail', $plugin_dir_url . 'assets/js/admin/checkemail'. $suffix .'.js', array( 'jquery', 'updates' ), $check_email->get_version(), true );
 	}
 }

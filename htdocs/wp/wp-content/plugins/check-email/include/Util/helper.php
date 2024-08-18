@@ -150,6 +150,11 @@ function wp_chill_check_email_get_column_label_map() {
 		'reply_to'    => esc_html__( 'Reply To', 'check-email' ),
 		'ip_address'  => esc_html__( 'Host IP', 'check-email' ),
 		'result'      => esc_html__( 'Sent Status', 'check-email' ),
+		'content'      => esc_html__( 'Content', 'check-email' ),
+		'created_at'      => esc_html__( 'Date', 'check-email' ),
+		'initiator'      => esc_html__( 'Source', 'check-email' ),
+		'check_email_log_id'      => esc_html__( 'Log ID', 'check-email' ),
+		'action'      => esc_html__( 'Action', 'check-email' ),
 	);
 
 	return apply_filters( 'check_email_db_column_labels', $labels );

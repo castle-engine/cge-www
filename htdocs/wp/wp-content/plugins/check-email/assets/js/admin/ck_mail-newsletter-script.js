@@ -38,24 +38,24 @@ jQuery(document).ready(function($){
 	                 name:name, email:email, website:website },
 	        function(data) {
 	          
-	            if(data)
+	            if ( data )
 	            {
-	              if(data=="Some fields are missing.")
+	              if( data.response == "Some fields are missing." )
 	              {
 	                $("#ck-mail-news-letter-status").text("");
 	                $("#ck-mail-news-letter-status").css("color", "red");
 	              }
-	              else if(data=="Invalid email address.")
+	              else if( data.response == "Invalid email address.")
 	              {
 	                $("#ck-mail-news-letter-status").text("");
 	                $("#ck-mail-news-letter-status").css("color", "red");
 	              }
-	              else if(data=="Invalid list ID.")
+	              else if( data.response == "Invalid list ID." )
 	              {
 	                $("#ck-mail-news-letter-status").text("");
 	                $("#ck-mail-news-letter-status").css("color", "red");
 	              }
-	              else if(data=="Already subscribed.")
+	              else if( data.response == "Already subscribed." )
 	              {
 	                $("#ck-mail-news-letter-status").text("");
 	                $("#ck-mail-news-letter-status").css("color", "red");
@@ -71,7 +71,7 @@ jQuery(document).ready(function($){
 	              alert("Sorry, unable to subscribe. Please try again later!");
 	            }
 	        }
-	      );
+	      , 'json' );
 	    });      
         
         var setup;                

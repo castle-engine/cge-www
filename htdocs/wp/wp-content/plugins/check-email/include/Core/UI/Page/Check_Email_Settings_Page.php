@@ -5,6 +5,7 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly.
 class Check_Email_Settings_Page extends Check_Email_BasePage {
 
 	const PAGE_SLUG = 'check-email-settings';
+	const PAGE_HELP = 'check-email-settings&tab=support';
 	public $page_slug;
 	public function load() {
 		parent::load();
@@ -68,6 +69,26 @@ class Check_Email_Settings_Page extends Check_Email_BasePage {
 			self::PAGE_SLUG,
 			array( $this, 'render_page' )
 		);
+		
+		$this->page = add_submenu_page(
+			Check_Email_Status_Page::PAGE_SLUG,
+			esc_html__( 'Help & Support', 'check-email' ),
+			esc_html__( 'Help & Support', 'check-email' ),
+			'manage_options',
+			admin_url('admin.php?page=check-email-settings&tab=support'),
+			""
+		);
+
+		global $submenu;  
+		$permalink = 'javasctipt:void(0);';
+		
+		if(!defined('CK_MAIL_PRO_VERSION')){
+			$submenu[Check_Email_Status_Page::PAGE_SLUG][] = array( '<div onclick="window.open(\'https://check-email.tech/pricing/#pro-feature/\')">'.esc_html__( 'Premium Features', 'pwa-for-wp' ).'</div>', 'manage_options', $permalink);
+		}
+
+		if(!defined('CK_MAIL_PRO_VERSION')){
+			$submenu[Check_Email_Status_Page::PAGE_SLUG][] = array( '<div style="color:rgba(245, 127, 23, 1);font-weight:bold;" onclick="window.open(\'https://check-email.tech/pricing/#pricings/\')">'.esc_html__( 'Upgrade To Premium', 'pwa-for-wp' ).'</div>', 'manage_options', $permalink);
+		}
 
 	}
    /**
@@ -101,7 +122,7 @@ class Check_Email_Settings_Page extends Check_Email_BasePage {
     * @since 1.0.5
     */
 	public function render_page() {
-
+			// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
 			$tab = isset( $_GET['tab']) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : 'general';
 			
 		?>
@@ -151,31 +172,32 @@ class Check_Email_Settings_Page extends Check_Email_BasePage {
 					);
 					$check_email      = wpchill_check_email();
 					$plugin_dir_url = plugin_dir_url( $check_email->get_plugin_file() );
-					wp_register_script( 'ce_support_settings', $plugin_dir_url . 'assets/js/admin/support-settings.js', array(), $check_email->get_version(), true );
+					$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+					wp_register_script( 'ce_support_settings', $plugin_dir_url . 'assets/js/admin/support-settings'. $suffix .'.js', array(), $check_email->get_version(), true );
 					wp_localize_script( 'ce_support_settings', 'ce_support_settings_params', $main_params );
 					wp_enqueue_script('ce_support_settings');
 			?>
 					<div class="ce-support-container">
-						<p><?php echo esc_html_e('If you have any query, please write the query in below box or email us at', 'check-email') ?> <a href="mailto:team@magazine3.in"><?php echo esc_html_e('team@magazine3.in'); ?></a>. <?php echo esc_html_e('We will reply to your email address shortly', 'wp-multilang') ?></p>
+						<p><?php esc_html_e('If you have any query, please write the query in below box or email us at', 'check-email') ?> <a href="mailto:team@magazine3.in"><?php esc_html_e('team@magazine3.in'); ?></a>. <?php esc_html_e('We will reply to your email address shortly', 'check-email') ?></p>
 
 						<div class="ce-support-div-form">
 				            <ul>
 				                <li>
-				                  <label class="ce-support-label"><?php echo esc_html_e('Email', 'check-email') ?><span class="ce-star-mark">*</span></label>
+				                  <label class="ce-support-label"><?php esc_html_e('Email', 'check-email') ?><span class="ce-star-mark">*</span></label>
 				                   <div class="support-input">
-				                      <input type="text" id="ce_query_email" name="ce_query_email" size="47" placeholder="Enter your Email" required="">
+				                      <input type="text" id="ce_query_email" name="ce_query_email" size="47" placeholder="<?php esc_attr_e( 'Enter your Email', 'check-email' ); ?>" required="">
 				                   </div>
 				                </li>
 				                <li>
-				                    <label class="ce-support-label"><?php echo esc_html_e('Query', 'check-email') ?><span class="ce-star-mark">*</span></label>  
-				                    <div class="support-input"><textarea rows="5" cols="50" id="ce_query_message" name="ce_query_message" placeholder="Write your query"></textarea>
+				                    <label class="ce-support-label"><?php esc_html_e('Query', 'check-email') ?><span class="ce-star-mark">*</span></label>  
+				                    <div class="support-input"><textarea rows="5" cols="50" id="ce_query_message" name="ce_query_message" placeholder="<?php esc_attr_e( 'Write your query', 'check-email' ); ?>"></textarea>
 				                    </div>
 				                </li>
-				                <li><button class="button button-primary" id="ce-send-support-query"><?php echo esc_html_e('Send Support Request', 'check-email') ?></button></li>
+				                <li><button class="button button-primary" id="ce-send-support-query"><?php esc_html_e('Send Support Request', 'check-email') ?></button></li>
 				            </ul>            
 				            <div class="clear"> </div>
-			                <span class="ce-query-success ce-hide"><?php echo esc_html_e('Message sent successfully, Please wait we will get back to you shortly', 'check-email') ?></span>
-			                <span class="ce-query-error ce-hide"><?php echo esc_html_e('Message not sent. please check your network connection', 'check-email') ?></span>
+			                <span class="ce-query-success ce-hide"><?php esc_html_e('Message sent successfully, Please wait we will get back to you shortly', 'check-email') ?></span>
+			                <span class="ce-query-error ce-hide"><?php esc_html_e('Message not sent. please check your network connection', 'check-email') ?></span>
 				        </div>
 					</div>
 				<?php  
@@ -206,8 +228,8 @@ class Check_Email_Settings_Page extends Check_Email_BasePage {
 		}
 		
 		if(isset($_POST['message']) && isset($_POST['email'])){
-			$message        = sanitize_textarea_field($_POST['message']); 
-		    $email          = sanitize_email($_POST['email']);   
+			$message        = sanitize_textarea_field(wp_unslash($_POST['message'])); 
+		    $email          = sanitize_email(wp_unslash($_POST['email']));   
 		                            
 		    if(function_exists('wp_get_current_user')){
 

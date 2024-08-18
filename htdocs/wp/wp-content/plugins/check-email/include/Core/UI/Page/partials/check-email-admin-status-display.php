@@ -16,8 +16,7 @@ $checkemail_break = isset( $_POST['checkemail_break'] ) ? sanitize_text_field( w
     <?php if ( isset( $_POST["checkemail_to"]) && ! empty( $_POST["checkemail_to"] ) ): ?>
             <div class="updated">
                 <?php if ( ! empty( $headers ) ): ?>
-                    <p><?php esc_html_e( 'The test email has been sent by WordPress. Please note this does NOT mean it has been delivered. See', 'check_email' );?>
-                    <a href=<? echo esc_url( "http://codex.wordpress.org/Function_Reference/wp_mail")?>> <?php esc_html_e( "wp_mail in the Codex", "check-email") ?></a> <?php esc_html_e( "for more information. The headers sent were :", 'check-email' ) ?>
+                    <p><?php printf(esc_html__( 'The test email has been sent by WordPress. Please note this does NOT mean it has been delivered. See %1$swp_mail in the Codex%2$s for more information. The headers sent were :', 'check-email' ),'<a href="https://developer.wordpress.org/reference/functions/wp_mail/" target="_blank")>','</a>');?>
                     </p>
 
                     <pre><?php echo esc_textarea( str_replace( chr( 10 ), '\n' . "\n", str_replace( chr( 13 ), '\r', $headers ) ) ); ?></pre>

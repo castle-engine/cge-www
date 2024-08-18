@@ -1,0 +1,49 @@
+#ck-mail-log-btn{
+	margin-left: 5px;
+}
+
+#ck-mail-elog-options{
+	margin-left: 15px;
+    margin-right: 15px;
+}
+
+.ck-mail-exp-col{
+	float: left;
+	width: 50%;
+}
+
+.ck-mail-logs-heading-wrapper h2{
+	font-size: 20px;	
+}
+
+.ck-mail-export-options label{
+	font-weight: 500;
+    line-height: 25px;
+    font-size: 14px;
+    color: #676c70;
+}
+
+.ck-mail-export-options label:hover{
+	cursor: pointer;
+}
+
+.ck-mail-export-h2{
+	margin-top: 10px;
+}
+
+.ck-mail-d-none{
+	display: none;
+}
+
+#ck-mail-export-logs-btn{
+	float: right;
+	margin: 10px;
+}
+
+.ck-mail-exp-error{
+	color: red;
+    display: block;
+    margin: 0px;
+    padding: 0px;
+    font-weight: 500;
+}
