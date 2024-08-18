@@ -9,7 +9,7 @@ If you would like to see some feature implemented sooner, please link:https://ww
 
 ## Planned before 7.0 release
 
-### (IN REVIEW) New navigation components that support physics out-of-the-box
+### (IN PROGRESS) New navigation components that support physics out-of-the-box
 
 *In progress:* We have completely new navigation components in https://github.com/castle-engine/castle-engine/pull/533 . They achieve a few things:
 
@@ -40,7 +40,7 @@ To do this:
 - Make cgeref:TCastleSceneCore.PreciseCollisions[] always `true` in editor.
 
 [#steam]
-### (IN REVIEW) Steam integration, and engine available as Steam app
+### (IN PROGRESS) Steam integration, and engine available as Steam app
 
 Official Steam integration in CGE.
 
@@ -413,7 +413,7 @@ Look great:
 This *may* be even better than direct Vulkan port. We shall see. On one hand, this provides more possibilities than just Vulkan (e.g. direct Metal renderer). And it may be easier to use than Vulkan. OTOH, it will not allow to squeeze "every last bit of performance from Vulkan" (though we really don't need that in CGE in the first place; there are lots of optimizations on the table in CGE before it's worth even thinking about low-level Vulkan optimizations).
 
 [#distance_field_fonts]
-### (IN REVIEW) Distance field fonts
+### (IN PROGRESS) Distance field fonts
 
 See link:https://libgdx.com/wiki/graphics/2d/fonts/distance-field-fonts[about Distance field fonts]. See code from link:https://github.com/neurolabusc/OpenGLCoreTutorials[Chris Rorden] showing how to do it in Lazarus.
 
@@ -583,7 +583,7 @@ Address a few shortcomings of our  (see `examples/screen_effects_demo/`, link:x3
 
 ### Export any TCastleTransform hierarchy to X3D
 
-Currently you can only export `TCastleScene` to X3D.
+Currently you can only export `TCastleScene` to X3D or STL.
 
 ### Export TCastleScene, or any TCastleTransform hierarchy, to glTF
 
