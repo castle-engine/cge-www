@@ -948,3 +948,47 @@ However, we cannot *save* them now.
 - We didn't test can Vampyre save 16-bit PNG images.
 - We miss code to save 16-bit PNG images using LibPng.
 - We miss code to save float images to KTX.
+
+[#records_rtti]
+### Remove the need for "record wrappers" like TCastleVector3Persistent, instead serialize/deserialize directly from TVector3, and expose in editor TVector3, as RTTI for them is available
+
+See the https://lists.freepascal.org/pipermail/fpc-devel/2024-August/045761.html["Published record" thread on fpc-devel].
+
+NOTE: This will require link:supported_compilers.php[bumping required FPC version], but it's worth it, as it will simplify a lot of code in CGE (and for users that define custom components). And before we get to this in CGE, possibly new FPC release(s) will happen, and most users will have the required FPC version anyway :)
+
+While records (like `TVector3`) cannot be `published` in FPC, the information about `public` records is available using RTTI. We should add
+
+```delphi
+{$RTTI EXPLICIT
+  PROPERTIES([vcPublic])
+  FIELDS([vcPublic])
+  METHODS([vcPublic])}
+```
+
+(or only `PROPERTIES([vcPublic]))`, seems enough?) to `castleconf.inc` and recommend it in link:custom_components[Custom components] documentation.
+
+Then for `public` records, like this:
+
+```delphi
+TCastleTransform = class
+public
+  property Translation: TVector3 read ... write ...;
+  property Scale: TVector3 read ... write ...;
+end;
+```
+
+we should be able to read/write them using RTTT, hopefully with code mostly compatible with both FPC and Delphi.
+
+On high level, this means:
+
+1. We can enhance cgeref:CastleComponentSerialize[] to serialize/deserialize records. Do it, at least for our important records (`TVector2`, `TVector3`, `TVector4`...) or (if no big obstacles) for all records in general.
++
+
+2. We can enhance the object inspector, used in CGE editor, to show records. See https://gitlab.com/freepascal.org/lazarus/lazarus/-/tree/main/components/jitclasses?ref_type=heads[lazarus/components/jitclasses/].
+
+We shall be able to remove then:
+
+- All wrapper classes `TCastleVector3Persistent` etc.
+- All fields using them, like `TranslationPersistent: TCastleVector3Persistent` etc.
+- Generator in `tools/internal/generate-persistent-vectors/`
+- Complicated explanation about it in link:custom_components[Custom components] documentation.
