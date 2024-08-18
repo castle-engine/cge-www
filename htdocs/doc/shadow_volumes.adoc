@@ -34,7 +34,7 @@ Check out these CGE examples:
 
 == Features
 
-Featues of _shadows by shadow volumes_ (in particular, how does this technique compare to link:x3d_extensions_shadow_maps.php[shadow maps]):
+Features of _shadows by shadow volumes_ (in particular, how does this technique compare to link:x3d_extensions_shadow_maps.php[shadow maps]):
 
 - Shadow volumes produce *hard shadows*. That's both an advantage (they are as sharp as your geometry, no problems with texture resolution like in shadow maps) and disadvantage (when simulating large area lights, hard shadows may look unrealistic).
 
