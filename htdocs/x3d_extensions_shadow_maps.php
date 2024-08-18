@@ -6,6 +6,7 @@ castle_header('Shadow Maps');
 
 $toc = new TableOfContents(array(
   new TocItem('Intro', 'intro'),
+  new TocItem('Comparison with shadow volumes', 'compare'),
   new TocItem('Examples', 'examples'),
   new TocItem('Define lights casting shadows on everything', 'light_shadows_on_everything'),
   new TocItem('Define shadow receivers', 'receive_shadows'),
@@ -14,7 +15,7 @@ $toc = new TableOfContents(array(
   new TocItem('Optionally specify shadow map parameters (<code>GeneratedShadowMap</code> node)', 'generated_shadow_map', 1),
   new TocItem('Use projective texturing explicitly to map textures (<code>ProjectedTextureCoordinate</code> node)', 'texture_projective', 1),
   new TocItem('Optionally specify shadow casters (<code>Appearance.shadowCaster</code>)', 'shadow_caster', 1),
-  new TocItem('Deprecated: use <code>GeneratedShadowMap</code> and <code>ProjectedTextureCoordinate</code> at each shadow-receiving shape', 'deprecated_at_shape', 1),
+  new TocItem('No longer supported: use <code>GeneratedShadowMap</code> and <code>ProjectedTextureCoordinate</code> at each shadow-receiving shape', 'deprecated_at_shape', 1),
   // new TocItem('How the receiveShadows field maps to the lower-level extensions', 'receive_shadows_to_lower_level', 1),
 ));
 ?>
@@ -35,30 +36,72 @@ $toc = new TableOfContents(array(
   ));
   ?>
 
-  <p>One of the shadows algorithms implemented in our engine is
+  <p>One of the shadow algorithms implemented in our engine is
   <i>shadow maps</i>.
+  In the simplest case, <i>shadow maps</i> require that you add
+  just <code>shadows TRUE</code> to your light source in the X3D file.
+  Everything else is auto-detected as best as we can.
 
-  <p><i>Shadow maps</i> work completely orthogonal to <i>shadow
-  volumes</i> (see
-  <?php echo a_href_page_hashlink('shadow volumes docs', 'x3d_extensions',
-  'section_ext_shadows'); ?>), which means that you can freely mix
-  both shadow approaches within a single scene.
-  <i>Shadow maps</i>, described here, are usually more adviced: they are simpler to use
-  (in the simplest case, just add "<code>shadows TRUE</code>" to your light source,
-  and it just works with an abritrary 3D scene),
-  and have a better implementation (shadow maps from multiple light sources
-  cooperate perfectly thanks to the shaders pipeline).</p>
-
-  <p><i>Most important TODO about shadow maps:</i> <code>PointLight</code>
-  sources do not cast shadow maps yet. (Easy to do, please report if you need it.)
+  <p>Though in many cases you will want to have more control, at least by defining
+  a <code>defaultShadowMap</code> node at the same light source.
+  Read on for details.
 
 <?php echo $toc->html_section(); ?>
 
-  <p><?php echo a_href_page('Our VRML/X3D demo models',
-  'demo_models'); ?> contain many demos using shadow maps.
-  Download them and open with <?php echo a_href_page('view3dscene',
-  'view3dscene'); ?> files insde <a href="https://github.com/castle-engine/demo-models/tree/master/shadow_maps/castle_with_trees">shadow_maps</a> subdirectory.
-  See in particular the nice model inside <a href="https://github.com/castle-engine/demo-models/tree/master/shadow_maps/castle_with_trees">shadow_maps/castle_with_trees/</a>,
+  <p>How shadow maps compare to <a href="shadow_volumes">shadow
+  volumes</a> (the other shadowing algorithm implemented in our engine):
+
+  <ol>
+    <li>
+      <p>Advantage: Shadow maps work with an arbitrary 3D scene.
+      There's no need to worry about 2-manifold, like with shadow volumes.</p>
+    </li>
+    <li>
+      <p>Advantage: Shadow maps account for geometry with "alpha test" transparency.
+      E.g. trees with leaves modeled by alpha-test textures.
+      Or a fence.</p>
+    </li>
+    <li>
+      <p>Advantage: Shadow maps from multiple light sources cooperate perfectly.
+      Use shadow maps with as many light sources as you want.
+
+      <p>In contrast, shadow volumes right now can be cast from only a single light source.</p>
+    </li>
+    <li>
+      <p>Disadvantage and TODO: <code>PointLight</code>
+      sources do not cast shadow maps (yet).
+      Only <code>SpotLight</code> and <code>DirectionalLight</code>
+      cast shadow maps.
+
+      <p>In contrast, shadow volumes work with all light sources.</p>
+    </li>
+    <li>
+      <p>Note: <i>Shadow maps</i> work independently to the shadow volumes.
+      You can use them both at the same time, no problem.
+      That is, you can have one light casting shadows using shadow maps,
+      and another light casting shadows using shadow volumes.</p>
+    </li>
+    <li>
+      <p>Disadvantage and TODO: Shadow maps are not comfortable to control
+      from CGE editor.
+
+      <p>In contrast, shadow volumes can be activated by a single checkbox
+      <code>Shadows</code> at our light source components like <code>TCastlePointLight</code>.</p>
+
+      <p><i>TODO:</i> We plan a rework of shadow maps approach,
+      to address <a href="roadmap#shadow_maps">these issues</a>.</p>
+    </li>
+  </ol>
+
+<?php echo $toc->html_section(); ?>
+
+  <p><?php echo a_href_page('Our demo models',
+  'demo_models'); ?> contain many demos using shadow maps in the
+  <a href="https://github.com/castle-engine/demo-models/tree/master/shadow_maps/castle_with_trees">shadow_maps</a> subdirectory.
+
+  <p>Download them and open with <a href="castle-model-viewer">Castle Model Viewer</a>.
+
+  <p>See in particular the model inside <a href="https://github.com/castle-engine/demo-models/tree/master/shadow_maps/castle_with_trees">shadow_maps/castle_with_trees/</a>,
   that was used for some screenshots visible on this page.</p>
 
 <?php echo $toc->html_section(); ?>
@@ -66,6 +109,8 @@ $toc = new TableOfContents(array(
   <p>In the very simplest case, to make the light source just cast shadows
   on everything, set the <code>shadows</code> field of the light source
   to <code>TRUE</code>.
+
+  <p>This is the official specification:
 
   <?php
     echo node_begin('*Light');
@@ -99,7 +144,7 @@ $toc = new TableOfContents(array(
 
 <?php echo $toc->html_section(); ?>
 
-  To enable the shadows on specific receivers, use this field:
+  <p>To enable the shadows only on specific receivers, use this field:
 
   <?php
     echo node_begin('Appearance');
@@ -112,7 +157,9 @@ $toc = new TableOfContents(array(
   <p>Each light present in the <code>receiveShadows</code> list will cast shadows on
   the given shape. That is, contribution of the light source
   will be scaled down if the light is occluded at a given fragment.
-  The whole light contribution is affected, including the ambient term.
+  <!-- The whole light contribution is affected, including the ambient term.
+  TODO: confirm this is still true looking at implementation,
+  after rework of lighting to X3D 4.0. -->
   We do not make any additional changes to the X3D lighting model.
   The resulting fragment color is the sum of all the visible lights (visible
   because they are not occluded, or because they don't cast shadows on this shape),
@@ -291,10 +338,8 @@ Shape {
     node_field('SFNode'  , '[in,out]', 'metadata',          'NULL', '[X3DMetadataObject]') .
     node_field('SFString', '[in,out]', 'update',            '"NONE"', '["NONE"|"NEXT_FRAME_ONLY"|"ALWAYS"]') .
     node_field('SFInt32' , '[]',       'size',              '128') .
-    node_field('SFNode'  , '[]',       'light',             'NULL', 'any light node; deprecated') .
     node_field('SFFloat' , '[in,out]', 'scale',             '4.0') .
     node_field('SFFloat' , '[in,out]', 'bias',              '4.0') .
-    node_field('SFString', '[]',       'compareMode',       '"COMPARE_R_LEQUAL"', '["COMPARE_R_LEQUAL" | "COMPARE_R_GEQUAL" | "NONE"]') .
     node_end();
   ?>
 
@@ -328,30 +373,6 @@ Shape {
 
   <p>The field <code>size</code> gives the size of the (square) shadow map texture
   in pixels.
-
-  <p>The <i>deprecated</i> field <code>light</code> specifies
-  the light node from which to generate the map.
-  Ideally, implementation should support all three X3D light source types.
-  <code>NULL</code> will prevent the texture from generating.
-  It's usually comfortable to <code>"USE"</code> here some existing light node,
-  instead of defining a new one.
-  TODO: for now, we do not handle shadow maps from <code>PointLight</code>
-  nodes.
-
-  <p>Note that the light node instanced inside the <code>GeneratedShadowMap.light</code>
-  or <code>ProjectedTextureCoordinate.projector</code> fields isn't
-  considered a normal light, that is it doesn't shine anywhere.
-  It should be defined elsewhere in the scene to actually
-  act like a normal light. Moreover, it should not be
-  instanced many times (outside of <code>GeneratedShadowMap.light</code>
-  and <code>ProjectedTextureCoordinate.projector</code>), as then it's
-  unspecified from which view we will generate the shadow map.
-
-  <p>Note that this field is ignored when the <code>GeneratedShadowMap</code>
-  is placed in a <code>X3DLightNode.defaultShadowMap</code> field.
-  And placing <code>GeneratedShadowMap</code> on
-  <code>X3DLightNode.defaultShadowMap</code> is the only non-deprecated
-  usage for <code>GeneratedShadowMap</code> node now.
 
   <?php
   echo castle_thumbs(array(
@@ -394,39 +415,14 @@ Shape {
   Our <i>Variance Shadow Maps</i> implementation simply ignores these offsets.
   -->
 
-  <p>Field <code>compareMode</code> allows to additionally do depth comparison
-  on the texture. For texture coordinate <i>(s, t, r, q)</i>,
-  compare mode allows to compare <i>r/q</i> with <i>texture(s/q, t/q)</i>.
-  Typically combined with the projective texture mapping, this is the moment when we
-  actually decide which screen pixel is in the shadow and which is not.
-  Default value <code>COMPARE_R_LEQUAL</code> is the most useful
-  value for standard shadow mapping, it generates 1 (true) when
-  <i>r/q <= texture(s/q, t/q)</i>, and 0 (false) otherwise. Recall from
-  the shadow maps algorithm that, theoretically, assuming infinite shadow map
-  resolution and such, <i>r/q</i> should never be smaller than the texture value
-  (it can only be equal or larger).
-
-  <p>When the <code>compareMode</code> is set to <code>NONE</code>,
-  the comparison is not done, and depth texture values are returned directly.
-  This is very useful to visualize shadow maps, for debug and demonstration
-  purposes &mdash; you can view the texture as a normal grayscale (luminance) texture.
-  In particular, problems with tweaking the <code>projectionNear</code> and
-  <code>projectionFar</code> values become easily solvable when you can actually
-  see how the texture contents look.
-
   <p>For OpenGL implementations, the most natural format for a shadow map texture
   is the <code>GL_DEPTH_COMPONENT</code> (see <code>ARB_depth_texture</code>).
   This makes it ideal for typical shadow map operations.
   For GLSL shader, this is best used with <code>sampler2DShadow</code>
   (for spot and directional lights) and
   <code>samplerCubeShadow</code> (for point lights).
-  Unless the <code>compareMode</code> is <code>NONE</code>, in which case
-  you should treat them like a normal grayscale textures
-  and use the <code>sampler2D</code> or the <code>samplerCube</code> types.
 
   <p><i>Usage notes:</i> You should place <code>GeneratedShadowMap</code> node inside light's <code>defaultShadowMap</code> field.
-
-  <p>Alternatively, <a href="#section_deprecated_at_shape">only for backward compatibility</a>, you can also treat <code>GeneratedShadowMap</code> as any other <code>X3DTextureNode</code> and place it inside <code>Appearance.texture</code>.
 
   <p><i>Variance Shadow Maps</i> notes:
   If you turn on <i>Variance Shadow Maps</i> (e.g. by <?php echo a_href_page("view3dscene", "view3dscene") ?>
@@ -458,12 +454,21 @@ Shape {
   expressed in the same way as depth buffer values are stored in the shadow map).
   In other words, the generated texture coordinates will contain the actual
   3D geometry positions, but expressed in the projector's frustum coordinate system.
-  This cooperates closely with the <code>GeneratedShadowMap.compareMode = COMPARE_R_LEQUAL</code> behavior,
-  see the previous subsection.
+  This cooperates closely with the shadow map test.
 
   <p>This can be used in all situations when the light or the viewpoint act like
   a projector for a 2D texture. For shadow maps, <code>projector</code> should be
   a light source.
+
+  <p>Note that the light node instanced inside the
+  <code>ProjectedTextureCoordinate.projector</code> field
+  (or deprecated <code>GeneratedShadowMap.light</code> field)
+  isn't considered a normal light, that is it doesn't shine anywhere.
+  It should be defined elsewhere in the scene to actually
+  act like a normal light. Moreover, it should not be
+  instanced many times (outside of <code>GeneratedShadowMap.light</code>
+  and <code>ProjectedTextureCoordinate.projector</code>), as then it's
+  unspecified from which view we will generate the shadow map.
 
   <p>When a perspective <code>Viewpoint</code> is used as the <code>projector</code>,
   we need an additional rule. That's because the viewpoint doesn't explicitly
@@ -549,10 +554,11 @@ Shape {
   <a href="https://castle-engine.io/shadow_maps_x3d_slides.pdf">The slides
   from the presentation</a> are also available.</p>
 
-  <p>Note that the adviced usage of shadow maps
+  <p>Note that the advised usage of shadow maps
   (section 4 of the paper) shifted a bit since the paper was written.
-  The PDF paper talks about "low-level nodes", which are deprecated now,
-  for reasons explained below.</p>
+  The PDF paper talks about "low-level nodes usage", which has been deprecated and later removed. The described nodes are still supported but with different usage:
+  now, the <code>GeneratedShadowMap</code> should only be placed in <code>defaultShadowMap</code> field of the light node, and <code>ProjectedTextureCoordinate</code> should only be used for projective texturing (not for shadow maps).
+  </p>
 
   <p style="margin-bottom: 0px;">Note that the paper, and so portions of the text below,
   are <a href="http://www.acm.org/publications/policies/copyright_policy">Copyright 2010 by ACM, Inc.</a>
@@ -561,8 +567,11 @@ Shape {
   This is a necessary exception from my usual rules of publishing everything on GNU GPL.</p>
   </div>
 
-  <p>For backward compatibility (avoid it in new applications!),
-  you can place <code>GeneratedShadowMap</code> node
+  <p><b>The approach described below was deprecated for a long time,
+  and finally <a href="https://github.com/castle-engine/castle-engine/commit/7031d20e73a38d66985e35f8e53cd298e252c519">it will no longer work after this refactor</a>.
+  </b>
+
+  <p>You can place <code>GeneratedShadowMap</code> node
   in the <code>Appearance.texture</code> (possibly inside <code>MultiTexture</code>
   node).
   In this case you also need to specify texture coordinates using an explicit
