@@ -65,9 +65,9 @@ All features below are already available. Download the engine from link:download
 * Easily activate https://castle-engine.io/wp/2022/10/03/easy-shadows-in-editor-at-design-time-too-by-shadow-volumes-and-shadow-maps-are-coming-as-well/[shadows], just select checkbox `Shadows` at the light source to use shadow volumes.
 +
 --
-* By default only shapes that are 2-manifold are valid shadow casters.
+* By default only shapes that are detected as 2-manifold are valid shadow casters. We use the link:shadow_volumes[shadow volumes] technique to render shadows.
 * You can also force to treat the whole scene as 2-manifold (useful when its 2-manifold when you sum all shapes, and shapes can use different materials) using cgeref:TCastleRenderOptions.WholeSceneManifold[].
-* Note: We plan to expose also our _shadow maps_ in a similar easy-to-use fashion in future releases.
+* Note: We plan to expose also our _shadow maps_ in a similar easy-to-use fashion in future releases. See https://castle-engine.io/roadmap#shadow_maps[shadow maps plans]. We've done initial work on this.
 * Both shadow volumes and shadows maps work on mobile (OpenGLES) too.
 --
 * New component to support https://castle-engine.io/tiled_maps[Tiled maps]:
