@@ -20,9 +20,13 @@
            and recompile castle-engine tool:
 
            ```
-           cd ../castle-engine/tools/build-tool
+           # cge-prepare # private Michalis script, or use below:
+
+           cd $CASTLE_ENGINE_PATH/tools/build-tool
            ./castle-engine_compile.sh
-           mv -f castle-engine ~/bin/
+           mkdir -p $CASTLE_ENGINE_PATH/bin
+           mv -f castle-engine $CASTLE_ENGINE_PATH/bin
+           export PATH="$CASTLE_ENGINE_PATH/bin:$PATH"
            castle-engine -v # check
            ```
 
@@ -48,8 +52,8 @@
 - Create and push GIT tag vX.Y.Z
 
     Notes:
-    - Needs to be made by GIT, now using GitHub release "create tag on publish",
-      because we want to push files to this tag before publishing).
+    - Needs to be made by GIT, *not* using GitHub release "create tag on publish",
+      because we want to push files to this tag before publishing.
     - Pushing tag to repo (see below) requires that related commit be also pushed.
       Our workflow can update the tag later anyway to newer commit,
       so don't worry, don't be afraid to push the tag :)
