@@ -125,11 +125,12 @@
   - update FPC/Lazarus requirements if needed:
     https://castle-engine.io/supported_compilers.php
 
-  - update CGE version of Docker `cge-stable` by
-    - ssh jenkins-linux-slave.castle-engine.io
-      as michalis
-        update in castle-engine-docker/ all versions to point to new version (like 7.0-alpha.3)
-        ./build-local.sh
+  - update CGE version of Docker `cge-stable`:
+
+    Open https://github.com/castle-engine/castle-engine-docker/ .
+
+    Grep for 7.0-alpha, change to new version, commit and push.
+    GHA will build new Docker image for `cge-stable`.
 
 - In case of CGE and castle-model-viewer, upload them also to http://castle-engine.itch.io/
 

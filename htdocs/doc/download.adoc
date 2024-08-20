@@ -27,7 +27,7 @@ Head over to https://castle-engine.itch.io/castle-game-engine[Castle Game Engine
 
 For extra comfort, use https://itch.io/app[itch.io app]. It's very nice and allows to download + install the engine, or later update, with really 1 click.
 
-NOTE: This installs the latest _released_ engine version, like `7.0-alpha.2`. Not a snapshot.
+NOTE: This installs the latest _released_ engine version, like `7.0-alpha.3`. Not a snapshot.
 
 === Arch Linux User Repository
 
