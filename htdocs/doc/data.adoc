@@ -29,8 +29,6 @@ cgeimg::block[castle_model_viewer_flying_cthulhu.png|Here's an unrelated Cthulhu
 
 - The detection can be customized using the cgeref:ApplicationDataOverride[] global variable. Though we recommend to not touch it -- the default algorithm was designed to account for a lot of normal use-cases and has been adjusted to account for specifics of every platform.
 
-NOTE: The files inside this directory should only be read (not modified) at run-time to make you sure that your application works in all contexts (e.g. with Android read-only assets or system-wide installations on desktops). If you want to write files, use the cgeref:ApplicationConfig[] to get URL for writing configuration files.
-
 NOTE: You are not limited at runtime to reading only files from this `data` directory, of course. You can read any file on disk (using regular filenames or `file:/...` URLs) at runtime. See link:manual_network.php[network docs].
 
 == Example things to put in the `data` subdirectory
@@ -88,6 +86,68 @@ MyTextReader := TTextReader.Create('castle-data:/my_text_file.txt');
 ----
 +
 See link:manual_network.php[loading from URLs].
+
+== Data should be considered read-only
+
+The resources accessed using the `castle-data:/` should be treated as *read-only*. That is, do not attempt to modify them.
+
+While _sometimes_ you can actually modify them (in particular, they are just regular files, owned by the current user, when you distribute your application as a simple `.zip` on Windows or Linux) but for portability we advise to treat them as read-only. This means that your application will continue to work on Android, iOS, or when users install it "system-wide" on desktops e.g. to `c:/program files.../` on Windows. In all these scenarios, the `castle-data:/` resources will be strictly read-only.
+
+=== Use ApplicationConfig instead to write stuff
+
+If you need to _write_ some data, use the cgeref:ApplicationConfig[] to get URL for writing configuration files. For example
+
+[source,pascal]
+----
+var
+  MyUrl: String;
+  MyStream: TStream;
+begin
+  MyUrl := ApplicationConfig('my_data.txt');
+  MyStream := UrlSaveStream(MyUrl);
+  try
+    // TODO: write to MyStream whatever you need
+  finally
+    FreeAndNil(MyStream);
+  end;
+end;
+----
+
+More cgeref:ApplicationConfig[] notes:
+
+- The URLs you get from cgeref:ApplicationConfig[] point to writeable resources.
++
+If case of regular desktops, these are just files and opening them with cgeref:UrlSaveStream[] does underneath just `TFileStream.Create(FileName, fmCreate)`.
+
+- The contents of streams saved to cgeref:ApplicationConfig[] are _persistent_ across program runs. Use it for savegames, databases (e.g. using https://wiki.freepascal.org/SQLite[SQLite]), user preferences, etc.
++
+Our link:manual_user_prefs.php[UserConfig] is also saved there.
+
+- The `ApplicationConfig('')` is a directory that is initially (when user first runs the application) empty. But you can create as many files there as you want.
++
+There is no special way to initialize it with some files before your first application run. If you want to initialize something in your _config_ based on your _data_, do it explicitly -- e.g. like this:
++
+```delphi
+uses SysUtils, CastleClassUtils;
+
+procedure MakeSureMyStuffExistsInConfig;
+var
+  OutputStream, InputStream: TStream;
+begin
+  if not UriExists(ApplicationConfig('my_stuff.data')) then
+  begin
+    OutputStream := UrlSaveStream(ApplicationConfig('my_stuff.data'));
+    try
+      InputStream := Download('castle-data:/my_stuff_initial.data');
+      try
+        ReadGrowingStream(InputStream, OutputStream, true);
+      finally FreeAndNil(InputStream) end;
+    finally FreeAndNil(OutputStream) end;
+  end;
+end;
+```
+
+- The subdirectories inside `ApplicationConfig('')` are automatically created as you save files using cgeref:UrlSaveStream[], so saving e.g.`MyStream := UrlSaveStream(ApplicationConfig('my_subdirectory/my_data.txt'));` just works.
 
 == Advanced: How do we determine the data directory?
 
