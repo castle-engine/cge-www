@@ -49,31 +49,6 @@
     generated_versions.sh (this makes version number for some binary archives,
     like on itch.io).
 
-- Create and push GIT tag vX.Y.Z
-
-    Notes:
-    - Needs to be made by GIT, *not* using GitHub release "create tag on publish",
-      because we want to push files to this tag before publishing.
-    - Pushing tag to repo (see below) requires that related commit be also pushed.
-      Our workflow can update the tag later anyway to newer commit,
-      so don't worry, don't be afraid to push the tag :)
-
-    ```
-    echo git tag -a vX.Y.Z -m "Tagging the version X.Y.Z."
-    # To push tag to repo
-    git push origin vX.Y.Z
-    ```
-
-- Create new *draft* release from existing tags on GitHub, like
-
-  https://github.com/castle-engine/castle-engine/releases/new
-  https://github.com/castle-engine/castle-image-viewer/releases/new
-  https://github.com/castle-engine/castle-model-viewer/releases/new
-
-  Set proper GIT tag.
-  The release will not have files -- we will let GitHub Actions
-  to fill it with files next.
-
 - Change GitHub Actions YAML to upload to vX.Y.Z tag.
 
     In GitHub Actions (~/.github/workflows/*.yml) find line like this:
@@ -87,8 +62,32 @@
 
     Change to `release_tag: vX.Y.Z` and commit.
 
-- Now *push* this change.
-  Wait for GH Actions to update the release.
+- Create and push GIT tag vX.Y.Z, pushing also all above changes.
+
+    Notes:
+    - Needs to be made by GIT, *not* using GitHub release "create tag on publish",
+      because we want to push files to this tag before publishing.
+    - Pushing tag to repo (see below) requires that related commit be also pushed.
+      Our workflow can update the tag later anyway to newer commit,
+      so don't worry, don't be afraid to push the tag :)
+
+    ```
+    git tag -a vX.Y.Z -m "Tagging the version X.Y.Z."
+    git push # push all commits
+    git push origin vX.Y.Z # push tag to repo
+    ```
+
+- Create new *draft* release from existing tags on GitHub, like
+
+  https://github.com/castle-engine/castle-engine/releases/new
+  https://github.com/castle-engine/castle-image-viewer/releases/new
+  https://github.com/castle-engine/castle-model-viewer/releases/new
+
+  Set proper GIT tag.
+  The release will not have files -- we will let GitHub Actions
+  to fill it with files next.
+
+- Wait for GH Actions to update the release.
 
 - Publish release on GitHub - fill with final description, press "Publish".
 
