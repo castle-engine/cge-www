@@ -331,6 +331,11 @@ h1, h2, code {
   overflow-wrap: break-word;
 }
 
+/* Compatible with Bootstrap 4 and 5, https://getbootstrap.com/docs/5.3/utilities/display/#hiding-elements */
+.d-none {
+  display: none !important;
+}
+
 /* main page stuff ----------------------------------------------------------- */
 
 .centered-wrapper {

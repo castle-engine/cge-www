@@ -1,0 +1,24 @@
+# Release Notes
+include::common.adoc[]
+:cge-social-share-image: terrain_component_1.png
+
+cgeimg::float[
+  terrain_component_1.png|Terrain with water and trees
+]
+
+== Plans and Timeline
+
+- We plan to release big version _7.0_ (stable) in 2024.
+
+- See link:roadmap[our roadmap] for all the long-term goals (before and after 7.0). It is one the most frequently updated page on our website, reflecting the prioritization of our work.
+
+- The most important feature *after* 7.0 release is https://castle-engine.io/wp/2023/04/08/web-target-progress-and-plans/[the web target]. This will be our focus after 7.0 release.
+
+== Past Release Notes
+
+All features below are already available. Download the engine from link:download[our download page] and enjoy them.
+
+- link:release_7.0-alpha.1[7.0-alpha.1]
+- link:release_7.0-alpha.2[7.0-alpha.2]
+- link:release_7.0-alpha.3[7.0-alpha.3]
+- Past release notes have not been tracked in this format. Search our https://castle-engine.io/wp/[news] for all the past release notes.

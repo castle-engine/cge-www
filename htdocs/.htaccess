@@ -196,6 +196,7 @@ Redirect "/highlights" "https://docs.google.com/presentation/d/e/2PACX-1vRuG3TaW
 Redirect "/x3d_overview.html" "/vrml_x3d.php"
 Redirect "/x3d_overview.pdf" "/vrml_x3d.php"
 Redirect "/vrml_x3d.php" "/x3d"
+Redirect "/new_features_in_castle_game_engine_7.0" "/release"
 
 # This link is used at least by http://planetdev.freegamedev.net/ .
 #

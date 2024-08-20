@@ -99,7 +99,7 @@ define('PATREON_URL',         'https://patreon.com/castleengine');
 define('CGE_LATEST_DOWNLOAD', 'https://github.com/castle-engine/castle-engine/archive/snapshot.zip');
 
 // bump this each time you change castle-engine.css, to work with CloudFlare caching (or you can purge CloudFlare cache manually)
-define('CASTLE_ENGINE_CSS_VERSION', 46);
+define('CASTLE_ENGINE_CSS_VERSION', 47);
 
 define('TWITTER_HANDLE', 'castleengine'); // https://twitter.com/castleengine/
 
@@ -206,6 +206,14 @@ $site_title = 'Castle Game Engine';
    - url: target URL (ready to be used as HTML attribute, i.e. already escaped).
      Optional, if not present we will generate proper link to internal page
      using the key as page basename.
+
+   - dropdown: (boolean, default false) If true, allow to see the pages
+     underneath using a dropdown.
+     This means less people will reach the main page (as people may not know
+     there's something there), but more will reach beneath.
+
+   - hidden: (boolean, default false) If true, hide this in navigation
+     top bar.
 */
 global $castle_sitemap;
 $castle_sitemap = array(
@@ -637,7 +645,17 @@ $castle_sitemap = array(
     /* Showing this makes the link better for users
        and also makes Google Lighthouse report not complain about it. */
     'hint' => 'Credits'
-  )
+  ),
+  'doc/release'  => array(
+    'title' => 'Release notes',
+    'hidden' => true,
+    'sidebar' => true,
+    'sub' => array(
+      'doc/release_7.0-alpha.1' => array('title' => '7.0-alpha.1'),
+      'doc/release_7.0-alpha.2' => array('title' => '7.0-alpha.2'),
+      'doc/release_7.0-alpha.3' => array('title' => '7.0-alpha.3'),
+    ),
+  ),
 );
 
 function _castle_bootstrap()
@@ -741,6 +759,9 @@ function _castle_header_menu($current_page)
     }
     if (!empty($menu_item['dropdown'])) {
       $result .= ' dropdown';
+    }
+    if (!empty($menu_item['hidden'])) {
+      $result .= ' d-none';
     }
     $result .= '">';
 
