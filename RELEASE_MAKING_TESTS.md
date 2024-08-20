@@ -6,11 +6,11 @@ The following tests/tasks should be done before release,
 to make sure that everything is in top-quality-shape before release.
 
 As much as possible, we run automated tests after every commit,
-using both Jenkins and GitHub Actions,
-see https://castle-engine.io/jenkins and https://castle-engine.io/github_actions .
+using GitHub Actions now.
+( Related: see about [using GitHub Actions in your own projects](https://castle-engine.io/github_actions). )
 So the first step is just to...
 
-**Make sure our Jenkins shows OK status for every CGE project.**
+[Make sure our GitHub Actions status is OK](https://github.com/castle-engine/castle-engine/actions).
 
 ## Test: Interactive test of basic actions from manual
 
@@ -30,12 +30,6 @@ Download for important platforms (esp. Windows, that Michalis doesn't use regula
 - Open doc/reference/index.html
 
 ## Test: custom editor building
-
-```
-cd ~/sources/castle-engine/castle-engine/tools/build-tool/data
-./custom_editor_template_rebuild.sh
-git status # should show no modification
-```
 
 Open in CGE editor `examples/advanced_editor/custom_component`, allow to rebuild custom editor,
 make sure custom editor defines project-specific component.
@@ -84,7 +78,9 @@ For each:
     castle-engine run -- --capabilities=force-fixed-function
     ```
 
-    Change `InternalUpgradeGlslVersion` to `false` and retest. "automatic" should work. "force-modern" can fail (as resulting shaders do not satisfy OpenGL "core").
+    Change `InternalUpgradeGlslVersion` to `false` and retest.
+    - with "automatic" it should work.
+    - with "force-modern" it *may* (but don't have to) fail (as resulting shaders do not satisfy OpenGL "core").
 
 - Test CGE editor with non-standard rendering (open 3D template):
 
