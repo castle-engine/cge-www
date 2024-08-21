@@ -22,39 +22,41 @@ cgeimg::float[
 
 == Main News Announcement
 
-_This release is dedicated to the late https://github.com/eugeneloza[Eugene] https://gitlab.com/EugeneLoza/[Loza]. I miss you, dear friend._
-
-See the TODO[main news announcement here]. This page serves as a detailed release notes.
+See the TODO[main news announcement on blog for the summary]. This page serves as a detailed release notes.
 
 == Summary
 
-We are proud to present a big new release of _Castle Game Engine_, with lots of new features, improvements and fixes. The new engine version is available for link:download[download] now.
+We are proud to present a big new release of _Castle Game Engine_, with lots of new features, improvements and fixes. The new engine version is available for https://castle-engine.io/download[download] now.
 
-The highlights of the release are below. For more details, see the link:release_7.0-alpha.3[full release notes]. The number of this release, _"7.0-alpha.3"_, is a signal that we're on our road to the big _7.0_ release (see link:roadmap[roadmap] and link:release[plans and timeline]).
+The highlights of the release are below. For more details, see the https://castle-engine.io/release_7.0-alpha.3[full release notes]. The number of this release, _"7.0-alpha.3"_, is a signal that we're on our road to the big _7.0_ release (see the https://castle-engine.io/roadmap[roadmap] and https://castle-engine.io/release[plans and timeline]).
 
-_We appreciate your support of the engine https://www.patreon.com/castleengine[on Patreon]. There are also https://castle-engine.io/donate_other.php[other ways to support us] and if you're a company, we're open to cooperation (write to `michalis@castle-engine.io`). By 2024, Michalis Kamburelis, the lead engine developer, spent most of his life on the engine and doesn't plan to stop. Moreover, since May 2024, Michalis works on the engine full-time counting only on your support. So anything you can give is really appreciated!_
+_This release is dedicated to the late https://github.com/eugeneloza[Eugene] https://gitlab.com/EugeneLoza/[Loza]. I miss you, dear friend._
 
-The most important new features are:
+The most important highlights of this release are:
 
-* link:https://castle-engine.io/physics[Physics]. New components for colliders and rigid bodies, ability to run physics simulation in the editor, joints, layers, new examples.
-* Many rendering improvements: Correct and automatic blending, batching and occlusion culling - easier to use and more powerful, fully modern rendering but also better support for ancient systems with old GPUs.
+* https://castle-engine.io/https://castle-engine.io/physics[Physics]. New components for colliders and rigid bodies, ability to run physics simulation in the editor, joints, layers, forces.
+* Many rendering improvements: Correct and automatic blending, both batching and occlusion culling easier to use and more powerful, fully modern rendering on new GPUs, better support for ancient systems with old GPUs.
 * Also OpenGLES (Android, iOS, Nintendo Switch) rendering supports now almost all desktop rendering features: shadow volumes, shadow maps, 3D textures, occlusion query, anisotropic filtering, meshes with 32-bit indexes.
-* link:shadow_volumes[Shadows using shadow volumes] are trivial to activate (work is under way to expose https://castle-engine.io/x3d_extensions_shadow_maps.php[shadow maps] in a similar easy-to-use fashion).
-* https://castle-engine.io/vscode[Visual Studio Code integration]. Our own https://marketplace.visualstudio.com/items?itemName=castle-engine-team.castle-engine[VS Code "Castle Game Engine" extension] with code completion and syntax highlighting for all Pascal code, and easy building / running / debugging of Castle Game Engine projects.
-* link:delphi[Delphi] improvements: link:control_on_form[TCastleControl] available for VCL and FMX applications, link:delphi_packages[Delphi packages] with IDE support, link:delphi_linux[Delphi Linux support] and more.
-* Support for https://castle-engine.io/tiled_maps[Tiled maps] with a new component that is comfortable to use and efficient.
-* User Interface improvements: better default font, UI batching, image regions and 9-slices borders visually configurable, link:user_interface#_mask[mask component].
-* Many editor UX improvements: modern color picker, unified tools to edit UI and transformations, wireframe view, "Change Class" menu action, link:sketchfab[Sketchfab Importer], finding components by name.
-* Improvements to https://castle-engine.io/views[views] (formerly _states_): better API, automatic initialization of published fields, editor greets you with UX manage views.
-* Mobile improvements: lots of link:android_services[Android services] improvements, https://castle-engine.io/castle-model-viewer-mobile[Castle Model Viewer Mobile] and https://play.google.com/store/apps/dev?id=8315026166336791468[more Android applications released on Google Play], lots of general link:android[Android] and link:ios[iOS] fixes and improvements to make porting your games to mobile trivial, safe borders.
-* Loading and saving: cache, MF3 improvements, X3D 4.0 improvements, custom model formats registration, STL saving.
+* https://castle-engine.io/shadow_volumes[Shadows using shadow volumes] are trivial to activate. Work is under way to expose https://castle-engine.io/x3d_extensions_shadow_maps.php[shadow maps] through a trivial property as well.
+* https://castle-engine.io/vscode[Visual Studio Code integration]. Our own https://marketplace.visualstudio.com/items?itemName=castle-engine-team.castle-engine[VS Code "Castle Game Engine" extension] with code completion and syntax highlighting for all Pascal code and easy building / running / debugging of Castle Game Engine projects.
+* https://castle-engine.io/delphi[Delphi] integration improvements: https://castle-engine.io/control_on_form[TCastleControl] available for VCL and FMX applications, https://castle-engine.io/delphi_packages[Delphi packages] with IDE support, https://castle-engine.io/delphi_linux[Delphi Linux support] and more.
+* Support for https://castle-engine.io/tiled_maps[Tiled maps] with a new component that is comfortable to use and efficient to render.
+* User Interface improvements: better default font, UI batching, image regions and 9-slices borders visually configurable, https://castle-engine.io/user_interface#_mask[mask component].
+* Many editor UX improvements: modern color picker, unified tools to edit UI and transformations, wireframe view, "Change Class" menu action, https://castle-engine.io/sketchfab[Sketchfab Importer], finding components by name, multi-selection.
+* Improvements to https://castle-engine.io/views[views] (formerly _states_): better API, automatic initialization of the `published` fields, opening the project greets you with UX to manage views.
+* Mobile improvements: lots of https://castle-engine.io/android_services[Android services] improvements, https://castle-engine.io/castle-model-viewer-mobile[Castle Model Viewer Mobile] and https://play.google.com/store/apps/dev?id=8315026166336791468[more Android applications released on Google Play], lots of general https://castle-engine.io/android[Android] and https://castle-engine.io/ios[iOS] fixes and improvements to make porting your games to mobile trivial, safe borders.
+* Loading and saving: cache, MD3 improvements, X3D 4.0 improvements, custom model formats registration, STL saving.
 * Inspector (press _F8 / 3 fingers_ in a debug build of any project) improvements: tweaking boolean properties at run-time, hot-reloading at run-time to iterate on your graphics.
 * Float-based images (e.g. for precise terrains) full support at loading and rendering (https://castle-engine.io/wp/2024/07/12/float-based-images-e-g-for-precise-terrains-full-support-4-float-based-image-classes-passed-to-gpu-and-shaders-loading-16-bit-png-loading-float-based-ktx-loading-16-32-bit-tiffs-castle-image/[formats: 16-bit PNG, float-based KTX, 16/32-bit TIFFs]).
-* A lot of new documentation and examples. We in particular recommend 2 tutorial articles introducing most important engine concepts: link:bad_chess[Bad way to play chess, aka 3D physics fun].
+* A lot of new documentation and examples. We in particular recommend 2 new tutorial articles introducing most important engine concepts: https://castle-engine.io/bad_chess[Bad way to play chess, aka 3D physics fun].
+
+*Support us*
+
+We appreciate your support https://www.patreon.com/castleengine[on Patreon]. There are also https://castle-engine.io/donate_other.php[other ways to support us] and if you're a company, we're open to cooperation (write to `michalis@castle-engine.io`). By 2024, Michalis, the lead engine developer, spent most of his life on the engine and doesn't plan to stop. Moreover, Michalis now works on the engine full-time counting only on your support. So anything you can give is really appreciated!
 
 *Spread the word!*
 
-We don't do marketing. Because we suck at marketing. Help us -- spread the word about this new release! Post about it anywhere you can. Talk about it in your communities -- online or in the _Real World_. Tell your family about it (they really want to know). Reuse this news post and screenshots freely.
+We don't do much marketing. Because we suck at marketing. Help us -- spread the word about this new release! Post about it anywhere you can. Talk about it in your communities -- online or in the _Real World_. Tell your family about it (they really want to know). Reuse this news post and screenshots freely.
 
 Have fun everyone and thank you for using the engine.
 
@@ -147,7 +149,6 @@ Have fun everyone and thank you for using the engine.
 * "Change Class" menu action.
 * Dragging and dropping in the hierarchy preserves transformation by default (hold "Ctrl" to not preserve). Also dragging and dropping of multiple components is now possible.
 * link:sketchfab[Sketchfab Importer]
-* https://castle-engine.io/wp/2023/06/03/images-in-ui-regions-subset-of-image-and-visual-editing-of-both-region-and-9-slices/[Visually edit images region and 9-slices borders].
 * Property editors more comfortable, angles in degrees in editor (https://castle-engine.io/wp/2023/07/16/improvements-to-property-editors-in-particular-display-and-input-angles-in-degrees-in-the-editor/[news])
 * Component warnings, to warn e.g. if you have `TCastleRigidBody` without `TCastleCollider` or vice versa.
 * https://castle-engine.io/wp/2024/05/03/find-ctrl-f-find-next-f3-to-easily-find-components-by-name-useful-in-large-designs/[Find components by name (useful in large designs)]
