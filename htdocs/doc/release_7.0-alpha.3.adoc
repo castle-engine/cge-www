@@ -12,9 +12,40 @@ include::common.adoc[]
 
 == Main News Announcement
 
+_This release is dedicated to the late https://github.com/eugeneloza[Eugene] https://gitlab.com/EugeneLoza/[Loza]. I miss you, dear friend._
+
 See the TODO[main news announcement here]. This page serves as a detailed release notes.
 
 == Summary
+
+We are proud to present a big new release of _Castle Game Engine_, with lots of new features, improvements and fixes. The new engine version is available for link:download[download] now.
+
+The highlights of the release are below. For more details, see the link:release_7.0-alpha.3[full release notes]. The number of this release, _"7.0-alpha.3"_, is a signal that we're on our road to the big _7.0_ release (see link:roadmap[roadmap] and link:release[plans and timeline]).
+
+_We appreciate your support of the engine https://www.patreon.com/castleengine[on Patreon]. There are also https://castle-engine.io/donate_other.php[other ways to support us] and if you're a company, we're open to cooperation (write to `michalis@castle-engine.io`). By 2024, Michalis Kamburelis, the lead engine developer, spent most of his life on the engine and doesn't plan to stop. Moreover, since May 2024, Michalis works on the engine full-time counting only on your support. So anything you can give is really appreciated!_
+
+The most important new features are:
+
+* link:https://castle-engine.io/physics[Physics]. New components for colliders and rigid bodies, ability to run physics simulation in the editor, joints, layers, new examples.
+* Many rendering improvements: Correct and automatic blending, batching and occlusion culling - easier to use and more powerful, fully modern rendering but also better support for ancient systems with old GPUs.
+* Also OpenGLES (Android, iOS, Nintendo Switch) rendering supports now almost all desktop rendering features: shadow volumes, shadow maps, 3D textures, occlusion query, anisotropic filtering, meshes with 32-bit indexes.
+* link:shadow_volumes[Shadows using shadow volumes] are trivial to activate (work is under way to expose https://castle-engine.io/x3d_extensions_shadow_maps.php[shadow maps] in a similar easy-to-use fashion).
+* https://castle-engine.io/vscode[Visual Studio Code integration]. Our own https://marketplace.visualstudio.com/items?itemName=castle-engine-team.castle-engine[VS Code "Castle Game Engine" extension] with code completion and syntax highlighting for all Pascal code, and easy building / running / debugging of Castle Game Engine projects.
+* link:delphi[Delphi] improvements: link:control_on_form[TCastleControl] available for VCL and FMX applications, link:delphi_packages[Delphi packages] with IDE support, link:delphi_linux[Delphi Linux support] and more.
+* Support for https://castle-engine.io/tiled_maps[Tiled maps] with a new component that is comfortable to use and efficient.
+* User Interface improvements: better default font, UI batching, image regions and 9-slices borders visually configurable, link:user_interface#_mask[mask component].
+* Many editor UX improvements: modern color picker, unified tools to edit UI and transformations, wireframe view, "Change Class" menu action, link:sketchfab[Sketchfab Importer], finding components by name.
+* Improvements to https://castle-engine.io/views[views] (formerly _states_): better API, automatic initialization of published fields, editor greets you with UX manage views.
+* Mobile improvements: lots of link:android_services[Android services] improvements, https://castle-engine.io/castle-model-viewer-mobile[Castle Model Viewer Mobile] and https://play.google.com/store/apps/dev?id=8315026166336791468[more Android applications released on Google Play], lots of general link:android[Android] and link:ios[iOS] fixes and improvements to make porting your games to mobile trivial, safe borders.
+* Loading and saving: cache, MF3 improvements, X3D 4.0 improvements, custom model formats registration, STL saving.
+* Inspector (press _F8 / 3 fingers_ in a debug build of any project) improvements: tweaking boolean properties at run-time, hot-reloading at run-time to iterate on your graphics.
+* A lot of new documentation and examples. We in particular recommend 2 tutorial articles introducing most important engine concepts: link:bad_chess[Bad way to play chess, aka 3D physics fun].
+
+*Spread the word!*
+
+We don't do marketing. Because we suck at marketing. Help us -- spread the word about this new release! Post about it anywhere you can. Talk about it in your communities -- online or in the _Real World_. Tell your family about it (they really want to know). Reuse this news post and screenshots freely.
+
+Have fun everyone and thank you for using the engine.
 
 == Details
 
@@ -23,50 +54,15 @@ See the TODO[main news announcement here]. This page serves as a detailed releas
 --
 * New components (colliders and bodies)
 * Running simulation in the editor
-* API to use physics forces from code
+* Explicitly causing forces and impulses by Pascal API
 * Joints
 * Layers
+* Ray-casting (querying for collision) using physics colliders
 * Updated 3rd-person navigation component that can now work with physics too
 * A lot of new examples, see https://github.com/castle-engine/castle-engine/tree/master/examples/physics[examples/physics]
-* See also https://castle-engine.io/wp/2022/12/29/summary-of-the-new-physics-capabilities/[news, where I tried and failed to provide a concise summary of what changed :)]
+* See also https://castle-engine.io/wp/2022/12/29/summary-of-the-new-physics-capabilities/[the initial news about physics, where I tried and failed to provide a concise summary of what changed :)]
 --
-* https://castle-engine.io/vscode[Visual Studio Code integration]:
-+
---
-- Intelligent code completion and syntax highlighting for all Pascal code (not necessarily CGE projects).
-- Integration with engine project building / running / debugging for Castle Game Engine projects.
-- Packaged in one neat https://marketplace.visualstudio.com/items?itemName=castle-engine-team.castle-engine[VS Code "Castle Game Engine" extension] with trivial configuration: just point it to your engine directory.
-- The underlying https://github.com/castle-engine/pascal-language-server[LSP server] usefu also with Emacs, NeoVim and other text editors supporting LSP.
---
-* Delphi:
-+
---
-* https://castle-engine.io/control_on_form[TCastleControl available now for Delphi VCL and FMX applications, in addition to existing Lazarus LCL].
-//* https://castle-engine.io/download#delphinus[Delphinus support] (unfortunately not recommended anymore, due to https://github.com/Memnarch/Delphinus/issues/93 and https://github.com/castle-engine/castle-engine/issues/84 )
-* Full support tested for Delphi >= 10.2.1, up to the latest 12.0 (see https://castle-engine.io/delphi[Delphi versions supported]).
-* https://castle-engine.io/delphi#cpp_builder[{cpp} Builder compatibility], so you can use 100% of CGE API from {cpp}.
-* https://castle-engine.io/wp/2023/11/05/asynchronous-downloading-using-tcastledownload-for-delphi/[TCastleDownload for Delphi supports http(s)]
-* Using Delphi _"welcome page"_ feature to show your `README.md`
-* _"Tools -> Castle Game Engine"_ menu in Delphi IDE, with easy access to main engine tools. See https://castle-engine.io/wp/2024/02/23/new-delphi-packages-organization-and-tools-castle-game-engine-menu-in-delphi-ide/[news].
-* New link:delphi_packages[Delphi packages] organization, cross-platform and future-proof.
-* Full link:delphi_linux[Linux] support with Delphi, for both cgeref:TCastleWindow[] and cgeref:TCastleControl[], with almost all CGE examples compatible and entire CGE API fully supported.
---
-* Easily activate https://castle-engine.io/wp/2022/10/03/easy-shadows-in-editor-at-design-time-too-by-shadow-volumes-and-shadow-maps-are-coming-as-well/[shadows], just select checkbox `Shadows` at the light source to use shadow volumes.
-+
---
-* By default only shapes that are detected as 2-manifold are valid shadow casters. We use the link:shadow_volumes[shadow volumes] technique to render shadows.
-* You can also force to treat the whole scene as 2-manifold (useful when its 2-manifold when you sum all shapes, and shapes can use different materials) using cgeref:TCastleRenderOptions.WholeSceneManifold[].
-* Note: We plan to expose also our _shadow maps_ in a similar easy-to-use fashion in future releases. See https://castle-engine.io/roadmap#shadow_maps[shadow maps plans]. We've done initial work on this.
-* Both shadow volumes and shadows maps work on mobile (OpenGLES) too.
---
-* New component to support https://castle-engine.io/tiled_maps[Tiled maps]:
-+
---
-* Part of the viewport (can be mixed with CGE scenes, sprite sheets...),
-* Excellent performance to render huge maps.
-* Configurable layers.
-* Examples on https://github.com/castle-engine/castle-engine/tree/master/examples/tiled[examples/tiled/] upgraded, in particular we feature a complete playable turn-based strategy game.
---
+
 * Renderer improvements:
 +
 --
@@ -81,6 +77,46 @@ See the TODO[main news announcement here]. This page serves as a detailed releas
 * Fixes for older ATI GPUs.
 * New projects automatically contain code to use link:dedicated_gpu[dedicated GPU] (important on laptops with dual GPUs).
 * https://castle-engine.io/wp/2022/11/12/tcastletransform-renderlayer-to-render-stuff-in-front-tcastlescene-precisecolisions-upcoming-plans/[TCastleTransform.RenderLayer to render stuff in front].
+--
+* Easily activate link:shadow_volumes[shadows], just select checkbox `Shadows` at the light source to use shadow volumes.
++
+--
+* By default only shapes that are detected as 2-manifold are valid shadow casters. We use the link:shadow_volumes[shadow volumes] technique to render shadows.
+* You can also force to treat the whole scene as 2-manifold (useful when its 2-manifold when you sum all shapes, and shapes can use different materials) using cgeref:TCastleRenderOptions.WholeSceneManifold[].
+* Note: We plan to expose also our _shadow maps_ in a similar easy-to-use fashion in future releases. See https://castle-engine.io/roadmap#shadow_maps[shadow maps plans]. We've done initial work on this.
+* Both shadow volumes and shadows maps work on mobile (OpenGLES) too.
+* See https://castle-engine.io/wp/2022/10/03/easy-shadows-in-editor-at-design-time-too-by-shadow-volumes-and-shadow-maps-are-coming-as-well/[news].
+--
+
+
+* https://castle-engine.io/vscode[Visual Studio Code integration]:
++
+--
+- Intelligent code completion and syntax highlighting for all Pascal code (not necessarily CGE projects).
+- Integration with engine project building / running / debugging for Castle Game Engine projects.
+- Packaged in one neat https://marketplace.visualstudio.com/items?itemName=castle-engine-team.castle-engine[VS Code "Castle Game Engine" extension] with trivial configuration: just point it to your engine directory.
+- The underlying https://github.com/castle-engine/pascal-language-server[LSP server] is useful also with Emacs, NeoVim and other text editors supporting LSP.
+--
+* Delphi:
++
+--
+* https://castle-engine.io/control_on_form[TCastleControl available now for Delphi VCL and FMX applications, in addition to existing Lazarus LCL].
+//* https://castle-engine.io/download#delphinus[Delphinus support] (unfortunately not recommended anymore, due to https://github.com/Memnarch/Delphinus/issues/93 and https://github.com/castle-engine/castle-engine/issues/84 )
+* Full support tested for Delphi >= 10.2.1, up to the latest 12.0 (see https://castle-engine.io/delphi[Delphi versions supported]).
+* https://castle-engine.io/delphi#cpp_builder[{cpp} Builder compatibility], so you can use 100% of CGE API from {cpp}.
+* https://castle-engine.io/wp/2023/11/05/asynchronous-downloading-using-tcastledownload-for-delphi/[TCastleDownload for Delphi supports http(s)]
+* Using Delphi _"welcome page"_ feature to show your `README.md`
+* _"Tools -> Castle Game Engine"_ menu in Delphi IDE, with easy access to main engine tools. See https://castle-engine.io/wp/2024/02/23/new-delphi-packages-organization-and-tools-castle-game-engine-menu-in-delphi-ide/[news].
+* New link:delphi_packages[Delphi packages] organization, cross-platform and future-proof.
+* Full link:delphi_linux[Linux] support with Delphi, for both cgeref:TCastleWindow[] and cgeref:TCastleControl[], with almost all CGE examples compatible and entire CGE API fully supported.
+--
+* New component to support https://castle-engine.io/tiled_maps[Tiled maps]:
++
+--
+* Part of the viewport (can be mixed with CGE scenes, sprite sheets...),
+* Excellent performance to render huge maps.
+* Configurable layers.
+* Examples on https://github.com/castle-engine/castle-engine/tree/master/examples/tiled[examples/tiled/] upgraded, in particular we feature a complete playable turn-based strategy game.
 --
 * User Interface improvements:
 +
@@ -111,7 +147,7 @@ See the TODO[main news announcement here]. This page serves as a detailed releas
 --
 * Cleaner API to set / push / pop the view _on given container_.
 * https://castle-engine.io/wp/2022/10/16/published-state-fields-are-now-automatically-initialized-no-need-in-most-cases-for-designedcomponent-calls/[Published fields of a view are now automatically initialized].
-* Editor greets you, when you open a project, with UX to open existing view, or create a new view. This communicates the recommended actions to user after opening a project, and emphasizes our focus on designinig you application around _views_. See relevant https://castle-engine.io/wp/2022/12/28/tuistate-is-now-tcastleview-methods-to-change-the-view-are-now-part-of-container-new-slick-ui-when-opening-the-project/[news].
+* Editor greets you, when you open a project, with UX to open existing view, or create a new view. This communicates the recommended actions to user after opening a project, and emphasizes our focus on designing you application around _views_. See relevant https://castle-engine.io/wp/2022/12/28/tuistate-is-now-tcastleview-methods-to-change-the-view-are-now-part-of-container-new-slick-ui-when-opening-the-project/[news].
 --
 * Mobile:
 +
@@ -144,7 +180,6 @@ See the TODO[main news announcement here]. This page serves as a detailed releas
 --
 * https://castle-engine.io/wp/2022/11/06/faster-compilation-with-cache/[Cache for faster compilation].
 * Improvements to usage of https://castle-engine.io/reuse_design[TCastleDesign and TCastleTransformDesign]: context menu to them to edit, revert, and open a referenced design.
-* Lots of documentation updates. Links to some pages not already mentioned above: https://castle-engine.io/custom_components[custom components], https://castle-engine.io/behaviors[behaviors], https://castle-engine.io/coding_conventions[coding conventions (extended with our guidelines about memory management, nil and more)] .
 * Inspector (press F8 in a debug build of any project) improvements: https://castle-engine.io/wp/2024/07/11/auto-reloading-hot-reloading-when-the-game-runs-and-more-things-auto-reloaded-at-design-time/[hot reloading at run-time], https://castle-engine.io/wp/2024/07/13/inspector-f8-in-all-your-games-improvements-to-debug-tweak-inspect-your-game-at-run-time/[tweak boolean properties at run-time].
 * https://castle-engine.io/wp/2024/07/12/float-based-images-e-g-for-precise-terrains-full-support-4-float-based-image-classes-passed-to-gpu-and-shaders-loading-16-bit-png-loading-float-based-ktx-loading-16-32-bit-tiffs-castle-image/[Float-based images (e.g. for precise terrains) full support: 4 float-based image classes (passed to GPU and shaders), loading 16-bit PNG, loading float-based KTX, loading 16/32-bit TIFFs]
 --
@@ -162,6 +197,8 @@ See the TODO[main news announcement here]. This page serves as a detailed releas
 --
 
 == New Tutorial and Learning Materials From Conferences
+
+* Lots of documentation updates. Links to some pages not already mentioned above: https://castle-engine.io/custom_components[custom components], https://castle-engine.io/behaviors[behaviors], https://castle-engine.io/coding_conventions[coding conventions (extended with our guidelines about memory management, nil and more)] .
 
 * link:bad_chess[Bad way to play chess, aka 3D physics fun -- 2 great tutorial articles about CGE]. **Highly advised reading if you want to learn the engine right now.** Solid, up-to-date and practical tour of all the important engine features. Shows using the editor (part 1) and Pascal programming (part 2) and how they go in tandem.
 

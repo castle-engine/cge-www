@@ -3,7 +3,9 @@
         "aarch",
         "adoc",
         "Adriaanse",
+        "Adrianna",
         "alphanum",
+        "Alya",
         "apidoc",
         "Arjan",
         "ASideOfChidori",
@@ -97,6 +99,7 @@
         "lldb",
         "longword",
         "Lumoize",
+        "Matejek",
         "Matomo",
         "michalis",
         "Miklas",
@@ -121,6 +124,7 @@
         "platformer",
         "pluggable",
         "pointingdevicesensor",
+        "Programistów",
         "quicktime",
         "raiseexception",
         "rayhunter",
@@ -157,6 +161,7 @@
         "TRGB",
         "valgrind",
         "Vampyre",
+        "Vaneskehyan",
         "viewports",
         "Vorbis",
         "VRML",
@@ -165,7 +170,8 @@
         "Wireframe",
         "Writeln",
         "XLIB",
-        "Zander's"
+        "Zander's",
+        "Zlot"
     ],
     "cSpell.enabled": true,
     "asciidoc.antora.enableAntoraSupport": false
