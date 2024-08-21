@@ -22,7 +22,7 @@ cgeimg::float[
 
 == Main News Announcement
 
-See the TODO[main news announcement on blog for the summary]. This page serves as a detailed release notes.
+See the https://castle-engine.io/wp/2024/08/21/7-0-alpha-3-release-physics-blending-batching-shadows-delphi-packages-linux-ui-masks-lots-of-editor-ux-android-ios-work-float-textures-vs-code-sketchfab-more/[main news announcement on our blog]. This page contains both the summary and the link:#details[details, down below].
 
 == Summary
 
@@ -60,6 +60,7 @@ We don't do much marketing. Because we suck at marketing. Help us -- spread the 
 
 Have fun everyone and thank you for using the engine.
 
+[#details]
 == Details
 
 * link:https://castle-engine.io/physics[Physics]
