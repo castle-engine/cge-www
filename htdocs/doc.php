@@ -124,6 +124,13 @@ if (!empty($adoc_header['description'])) {
 }
 if (!empty($adoc_header['social_share_image'])) {
   $header_params['social_share_image'] = $adoc_header['social_share_image'];
+  // in development, check and fail if image doesn't exist, otherwise it would too easy mistake
+  if (CASTLE_ENVIRONMENT == 'development') {
+    $check_filename = __DIR__ . '/images/original_size/' . $header_params['social_share_image'];
+    if (!file_exists($check_filename)) {
+      die('Social share image not found: ' . $header_params['social_share_image']);
+    }
+  }
 }
 castle_header($title, $header_params);
 

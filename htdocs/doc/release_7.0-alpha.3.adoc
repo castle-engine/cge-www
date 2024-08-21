@@ -1,14 +1,24 @@
 # Castle Game Engine 7.0-alpha.3 - Release notes
 include::common.adoc[]
-:cge-social-share-image: TODO
+:cge-social-share-image: fps_game_editor.png
 
-// TODO
-// cgeimg::float[
-//   2d_demo_editor.png|Visual editor,
-//   gltf_village_outlines.png|Village scene with outlines in glTF from Sketchfab ( https://sketchfab.com/3d-models/ftm-0970f30574d047b1976ba0aa6f2ef855 by Luis Fernandez ),
-//   tiled_3.png|Tiled isometric map,
-//   tiled_strategy_hex.png|Tiled hexagonal map in "Strategy Game" demo
-// ]
+cgeimg::float[
+  fps_game_editor.png|First-person shooter game example,
+  chess3.png|Bad way to play chess,
+  color2.png|Color picker in "Eye of Beholder" example,
+  cat_jetpack-1.png|Cat with jetpack from Sketchfab - https://sketchfab.com/3d-models/jetpack-cat-6838f7599617408485cd055cd0ce5182,
+  castle-model-viewer-mobile-feature.png|Castle Model Viewer Mobile - Dungeon in Examine Mode,
+  castle_model_viewer_cat_duelist.png|Artstation Challenge - Untamed - Cat Duelist by Marc_A_D\, from Sketchfab - https://sketchfab.com/3d-models/artstation-challenge-untamed-cat-duelist-5bec11c3160048f7a8ce482523ac2deb,
+  castle_model_viewer_cat_duelist_wireframe.png|(Wireframe View) Artstation Challenge - Untamed - Cat Duelist by Marc_A_D\, from Sketchfab - https://sketchfab.com/3d-models/artstation-challenge-untamed-cat-duelist-5bec11c3160048f7a8ce482523ac2deb,
+  cthulhu.png|Flying Cthulhu from Sketchfab https://sketchfab.com/3d-models/flying-cthulhu-4737a3b84e00415b9d8bb42ae44285b2 by TooManyDemons,
+  delphi_fmx_3.png|TCastleControl on Delphi FMX form,
+  inspector_2.png|Inspector debug view,
+  lynch_editor_2.png|"Lynch" game editor screenshot,
+  lynch_view3dscene_statue.png|"Lynch" statue in Castle Model Viewer,
+  minecraft_castle.png|Cathedral minecraft model\, by Patrix\, from https://sketchfab.com/3d-models/cathedral-faed84a829114e378be255414a7826ca,
+  terrain_screenshot_great_lakes.png|Great lakes - terrain from precise 16-bit PNG ( https://www.motionforgepictures.com/height-maps/ ),
+  tiled_editor_snow.png|Tiled snow map (with animations)
+]
 
 == Main News Announcement
 
@@ -39,6 +49,7 @@ The most important new features are:
 * Mobile improvements: lots of link:android_services[Android services] improvements, https://castle-engine.io/castle-model-viewer-mobile[Castle Model Viewer Mobile] and https://play.google.com/store/apps/dev?id=8315026166336791468[more Android applications released on Google Play], lots of general link:android[Android] and link:ios[iOS] fixes and improvements to make porting your games to mobile trivial, safe borders.
 * Loading and saving: cache, MF3 improvements, X3D 4.0 improvements, custom model formats registration, STL saving.
 * Inspector (press _F8 / 3 fingers_ in a debug build of any project) improvements: tweaking boolean properties at run-time, hot-reloading at run-time to iterate on your graphics.
+* Float-based images (e.g. for precise terrains) full support at loading and rendering (https://castle-engine.io/wp/2024/07/12/float-based-images-e-g-for-precise-terrains-full-support-4-float-based-image-classes-passed-to-gpu-and-shaders-loading-16-bit-png-loading-float-based-ktx-loading-16-32-bit-tiffs-castle-image/[formats: 16-bit PNG, float-based KTX, 16/32-bit TIFFs]).
 * A lot of new documentation and examples. We in particular recommend 2 tutorial articles introducing most important engine concepts: link:bad_chess[Bad way to play chess, aka 3D physics fun].
 
 *Spread the word!*
