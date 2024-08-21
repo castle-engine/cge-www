@@ -89,6 +89,21 @@
 
 - Wait for GH Actions to update the release.
 
+- Write release notes, for GH and Wordpress:
+
+  - Write using AsciiDoc:
+    - Make a separate page on our website like `release_7.0-alpha.3.adoc`.
+    - Link to it from `castle_engine_functions.php` and `release.adoc`.
+  - Convert to Markdown:
+    - Take the "summary" part to separate temp file `summary.adoc`
+    - Make links absolute (link: -> https://castle-engine,io/)
+    - Convert to Markdown (for GH release) using https://github.com/opendevise/downdoc
+      ```
+      npm i downdoc
+      npx downdoc summary.adoc
+      ```
+    - Markdown is good for GH release text and Wordpress.
+
 - Publish release on GitHub - fill with final description, press "Publish".
 
 - Update the webpage:
