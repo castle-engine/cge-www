@@ -7,9 +7,8 @@
 		"php": ">=7.0"
 	},
 	"require-dev": {
-		"automattic/jetpack-changelogger": "^4.2.3",
+		"automattic/jetpack-changelogger": "^4.2.4",
 		"automattic/jetpack-connection": "@dev",
-		"automattic/jetpack-identity-crisis": "@dev",
 		"automattic/jetpack-import": "@dev",
 		"automattic/jetpack-jitm": "@dev",
 		"automattic/jetpack-post-list": "@dev",
@@ -46,7 +45,6 @@
 		"dependencies": {
 			"test-only": [
 				"packages/connection",
-				"packages/identity-crisis",
 				"packages/import",
 				"packages/jitm",
 				"packages/post-list",

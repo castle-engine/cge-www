@@ -5,7 +5,7 @@
  * @package automattic/jetpack-autoloader
  */
 
-namespace Automattic\Jetpack\Autoloader\jpc4802e05bbcf59fd3b6350e8d3e5482c_protectⓥ2_2_0\al3_0_7;
+namespace Automattic\Jetpack\Autoloader\jpc4802e05bbcf59fd3b6350e8d3e5482c_protectⓥ3_0_0\al3_0_9;
 
  // phpcs:ignore
 
@@ -45,7 +45,7 @@ class Autoloader_Locator {
 
 		foreach ( $plugin_paths as $plugin_path ) {
 			$version = $this->get_autoloader_version( $plugin_path );
-			if ( ! $this->version_selector->is_version_update_required( $latest_version, $version ) ) {
+			if ( ! $version || ! $this->version_selector->is_version_update_required( $latest_version, $version ) ) {
 				continue;
 			}
 

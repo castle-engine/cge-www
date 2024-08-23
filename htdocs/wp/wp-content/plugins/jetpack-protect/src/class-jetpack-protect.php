@@ -20,10 +20,11 @@ use Automattic\Jetpack\My_Jetpack\Initializer as My_Jetpack_Initializer;
 use Automattic\Jetpack\My_Jetpack\Products as My_Jetpack_Products;
 use Automattic\Jetpack\Plugins_Installer;
 use Automattic\Jetpack\Protect\Onboarding;
-use Automattic\Jetpack\Protect\Plan;
 use Automattic\Jetpack\Protect\REST_Controller;
+use Automattic\Jetpack\Protect\Scan_History;
 use Automattic\Jetpack\Protect\Site_Health;
-use Automattic\Jetpack\Protect\Status;
+use Automattic\Jetpack\Protect_Status\Plan;
+use Automattic\Jetpack\Protect_Status\Status;
 use Automattic\Jetpack\Status as Jetpack_Status;
 use Automattic\Jetpack\Sync\Functions as Sync_Functions;
 use Automattic\Jetpack\Sync\Sender;
@@ -211,6 +212,7 @@ class Jetpack_Protect {
 			'apiNonce'           => wp_create_nonce( 'wp_rest' ),
 			'registrationNonce'  => wp_create_nonce( 'jetpack-registration-nonce' ),
 			'status'             => Status::get_status( $refresh_status_from_wpcom ),
+			'scanHistory'        => Scan_History::get_scan_history( $refresh_status_from_wpcom ),
 			'installedPlugins'   => Plugins_Installer::get_plugins(),
 			'installedThemes'    => Sync_Functions::get_themes(),
 			'wpVersion'          => $wp_version,
@@ -231,6 +233,7 @@ class Jetpack_Protect {
 				'isUpdating'          => false,
 				'config'              => Waf_Runner::get_config(),
 				'stats'               => self::get_waf_stats(),
+				'globalStats'         => Waf_Stats::get_global_stats(),
 			),
 		);
 

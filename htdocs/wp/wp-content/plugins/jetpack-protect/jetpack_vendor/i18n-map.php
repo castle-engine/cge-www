@@ -10,7 +10,7 @@ return array(
     ),
     'jetpack-assets' => array(
       'path' => 'jetpack_vendor/automattic/jetpack-assets',
-      'ver' => '2.1.11',
+      'ver' => '2.3.0',
     ),
     'jetpack-boost-core' => array(
       'path' => 'jetpack_vendor/automattic/jetpack-boost-core',
@@ -22,15 +22,15 @@ return array(
     ),
     'jetpack-config' => array(
       'path' => 'jetpack_vendor/automattic/jetpack-config',
-      'ver' => '2.0.2',
+      'ver' => '2.0.4',
     ),
     'jetpack-connection' => array(
       'path' => 'jetpack_vendor/automattic/jetpack-connection',
-      'ver' => '2.8.4',
+      'ver' => '2.11.4',
     ),
-    'jetpack-idc' => array(
-      'path' => 'jetpack_vendor/automattic/jetpack-identity-crisis',
-      'ver' => '0.20.0',
+    'jetpack-explat' => array(
+      'path' => 'jetpack_vendor/automattic/jetpack-explat',
+      'ver' => '0.1.1',
     ),
     'jetpack-ip' => array(
       'path' => 'jetpack_vendor/automattic/jetpack-ip',
@@ -38,7 +38,7 @@ return array(
     ),
     'jetpack-jitm' => array(
       'path' => 'jetpack_vendor/automattic/jetpack-jitm',
-      'ver' => '3.1.11',
+      'ver' => '3.1.15',
     ),
     'jetpack-licensing' => array(
       'path' => 'jetpack_vendor/automattic/jetpack-licensing',
@@ -46,7 +46,7 @@ return array(
     ),
     'jetpack-my-jetpack' => array(
       'path' => 'jetpack_vendor/automattic/jetpack-my-jetpack',
-      'ver' => '4.24.1',
+      'ver' => '4.32.1',
     ),
     'jetpack-password-checker' => array(
       'path' => 'jetpack_vendor/automattic/jetpack-password-checker',
@@ -56,9 +56,17 @@ return array(
       'path' => 'jetpack_vendor/automattic/jetpack-plugins-installer',
       'ver' => '0.4.0',
     ),
+    'jetpack-protect-models' => array(
+      'path' => 'jetpack_vendor/automattic/jetpack-protect-models',
+      'ver' => '0.2.0',
+    ),
+    'jetpack-protect-status' => array(
+      'path' => 'jetpack_vendor/automattic/jetpack-protect-status',
+      'ver' => '0.1.1',
+    ),
     'jetpack-sync' => array(
       'path' => 'jetpack_vendor/automattic/jetpack-sync',
-      'ver' => '2.16.6',
+      'ver' => '3.5.1',
     ),
     'jetpack-transport-helper' => array(
       'path' => 'jetpack_vendor/automattic/jetpack-transport-helper',
@@ -66,7 +74,7 @@ return array(
     ),
     'jetpack-waf' => array(
       'path' => 'jetpack_vendor/automattic/jetpack-waf',
-      'ver' => '0.16.8',
+      'ver' => '0.18.1',
     ),
   ),
 );
