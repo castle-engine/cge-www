@@ -106,7 +106,7 @@ MANIFESTS_DIR="`pwd`/itch_io_manifests"
 # Note about platform names (:linux etc. below):
 # detection is documented on https://itch.io/docs/butler/pushing.html#channel-names .
 
-#do_upload_itch_io castle_game_engine-windows.itch.toml "castle-engine/castle-engine" "v${VERSION}" "castle-engine-${VERSION}-win64-x86_64-bundle.zip"  $ITCH_IO_NAME:windows --userversion "${VERSION}"
+do_upload_itch_io castle_game_engine-windows.itch.toml "castle-engine/castle-engine" "v${VERSION}" "castle-engine-${VERSION}-win64-x86_64-bundle.zip"  $ITCH_IO_NAME:windows --userversion "${VERSION}"
 do_upload_itch_io castle_game_engine-unix.itch.toml    "castle-engine/castle-engine" "v${VERSION}" "castle-engine-${VERSION}-linux-x86_64-bundle.zip"  $ITCH_IO_NAME:linux   --userversion "${VERSION}"
 do_upload_itch_io castle_game_engine-unix.itch.toml    "castle-engine/castle-engine" "v${VERSION}" "castle-engine-${VERSION}-darwin-x86_64.zip"        $ITCH_IO_NAME:mac     --userversion "${VERSION}"
 
