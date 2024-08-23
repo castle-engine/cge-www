@@ -176,6 +176,8 @@
       ./upload_itch_io.sh
       ```
 
+      Store MD5 sums on the side -- to compare with SF uploader, to validate that the downloads from GH were OK.
+
   - To upload castle-model-viewer, run script from castle-model-viewer repo:
 
       ```
@@ -268,6 +270,7 @@
   - Facebook: https://facebook.com/castleengine/
   - Twitter: https://twitter.com/castleengine
   - Mastodon: https://mastodon.social/@michalis_kambi
+  - Reddit: https://www.reddit.com/r/castleengine/
 
 - https://opencollective.com/castle-engine
 
