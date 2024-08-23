@@ -368,3 +368,5 @@
   and browse links on
   https://blogs.embarcadero.com/community/
   for other places where it may be good to post.
+
+- Debian Pascal mailing list
