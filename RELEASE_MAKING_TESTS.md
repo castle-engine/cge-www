@@ -97,26 +97,49 @@ For each:
 
 ## Test: fpmake installation and InstantFPC
 
+Note: This is known to fail with FPC installed by https://castle-engine.io/fpcupdeluxe .
+Use the official installer from
+- https://sourceforge.net/projects/freepascal/files/
+- like `fpc-3.2.2.x86_64-linux.tar` on https://sourceforge.net/projects/freepascal/files/Linux/3.2.2/
+
+- Michalis-specific setup:
+  ```
+  # Install to /home/michalis/installed/fpclazarus/fpc322-official/fpc
+  # (makes it a bit consistent with fpcupdeluxe installs).
+  michalis-fpclazarus-config # should say that adjusts my environment to FPC official
+  fpc
+  ```
+
 Install CGE units following https://castle-engine.io/fpmake , test them.
-Test also InstantFPC.
 
 ```
-# Remember to define `FPCDIR` first, like this:
-export FPCDIR=/home/michalis/installed/fpclazarus/current/fpc/lib/fpc/3.2.2/
+# Remember to define `FPCDIR` first, like below.
+export FPCDIR=/home/michalis/installed/fpclazarus/fpc322-official/fpc/lib/fpc/3.2.2/
 
 make test-fpmake
 ./fpmake --globalunitdir="${FPCDIR}" install
 # The CGE installed units should now be known to FPC, no need for any -Fu or @castle-fpc.cfg
-ls -Flah /home/michalis/installed/fpclazarus/current/fpc/lib/fpc/3.2.2/units/x86_64-linux/castle-game-engine
+ls -Flah $FPCDIR/units/x86_64-linux/castle-game-engine
 fpc -Mobjfpc -Fuexamples/fps_game/code/ examples/fps_game/fps_game.dpr
 ```
 
-Run the InstantFPC examples in examples/instantfpc/ .
-
-Cleanup:
+Run the InstantFPC examples in examples/instantfpc/ :
 
 ```
-rm -Rf /home/michalis/installed/fpclazarus/current/fpc/lib/fpc/3.2.2/units/x86_64-linux/castle-game-engine
+cd examples/instantfpc/
+./castle_color_hex_to_pascal ff00ff
+./castle_list_files
+./castle_open_dialog
+```
+
+Cleanup (this is specific to Michalis setup, adjust as you see fit):
+
+```
+rm -Rf $FPCDIR/units/x86_64-linux/castle-game-engine
+mv ~/.fpc.cfg /home/michalis/installed/fpclazarus/fpc322-official/moved.fpc.cfg
+set_fpclazarus_current ...
+michalis-fpclazarus-config # should say that adjusts my environment to FPC from fpcupdeluxe
+fpc
 ```
 
 ## Test: Released zip/tar.gz should not contain any unwanted binary files
@@ -132,11 +155,14 @@ $ find -iname *.so
 # should show 4x libs for services that rely on them, like freetype, png, ogg_vorbis.
 ```
 
-## Test: Using system-provided Gradle instead of bundled (Android)
+## RESIGN FOR NOW: Test: Using system-provided Gradle instead of bundled (Android)
 
-This *will fail* right now on Debian, that contains too old Gradle,
-see https://packages.debian.org/sid/gradle .
-It is *expected* it will answer something like "Minimum supported Gradle version is 6.5".
+This *will fail* right now on Debian or Ubuntu, that contain too old Gradle,
+
+- see [Debian Gradle version](https://packages.debian.org/sid/gradle).
+- see [Ubuntu Gradle version](https://packages.ubuntu.com/oracular/gradle).
+
+It is *expected* that procedure below will answer something like "Minimum supported Gradle version is 6.5". There's no solution -- we just need newer Gradle in Linux distros like Debian/Ubuntu. (We cannot downgrade our Android toolchain to downgrade our Gradle requirements, as our Android toolchain version is really necessary -- we upgrade it to fix other building problems and be able to target latest Android SDKs, required in turn by latest Google Play.)
 
 ```
 sudo apt install gradle
