@@ -75,8 +75,8 @@ butler_push ()
 VERSION=`castle-engine --version | sed -e "s/^castle-engine //" `
 echo "Uploading Castle Game Engine version ${VERSION} to itch.io"
 
-butler_push castle_game_engine-windows.itch.toml https://github.com/castle-engine/castle-engine/releases/download/v"${VER}"/castle-engine-"${VER}"-win64-x86_64.zip $ITCH_IO_NAME:windows --userversion "${VER}"
-butler_push castle_game_engine-linux.itch.toml   https://github.com/castle-engine/castle-engine/releases/download/v"${VER}"/castle-engine-"${VER}"-linux-x86_64.zip $ITCH_IO_NAME:linux   --userversion "${VER}"
+butler_push castle_game_engine-windows.itch.toml https://github.com/castle-engine/castle-engine/releases/download/v"${VERSION}"/castle-engine-"${VERSION}"-win64-x86_64.zip $ITCH_IO_NAME:windows --userversion "${VERSION}"
+butler_push castle_game_engine-linux.itch.toml   https://github.com/castle-engine/castle-engine/releases/download/v"${VERSION}"/castle-engine-"${VERSION}"-linux-x86_64.zip $ITCH_IO_NAME:linux   --userversion "${VERSION}"
 
 echo 'Runnig "butler status ..." to see status:'
 butler status $ITCH_IO_NAME
