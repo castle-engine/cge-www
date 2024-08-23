@@ -79,9 +79,9 @@
 
 - Create new *draft* release from existing tags on GitHub, like
 
-  https://github.com/castle-engine/castle-engine/releases/new
-  https://github.com/castle-engine/castle-image-viewer/releases/new
-  https://github.com/castle-engine/castle-model-viewer/releases/new
+  - https://github.com/castle-engine/castle-engine/releases/new
+  - https://github.com/castle-engine/castle-image-viewer/releases/new
+  - https://github.com/castle-engine/castle-model-viewer/releases/new
 
   Set proper GIT tag.
   The release will not have files -- we will let GitHub Actions
@@ -147,6 +147,18 @@
     Grep for 7.0-alpha, change to new version, commit and push.
     GHA will build new Docker image for `cge-stable`.
 
+    Once done, check it:
+
+    ```
+    docker pull kambi/castle-engine-cloud-builds-tools:cge-stable
+    docker run --name my-cge-container-teststable -it kambi/castle-engine-cloud-builds-tools:cge-stable bash
+      castle-engine --version
+      cat /usr/local/castle-engine/src/base/castleversion.inc
+      cd /usr/local/castle-engine/examples/animations/play_animation/
+      castle-engine compile
+    docker rm my-cge-container-teststable
+    ```
+
 - In case of CGE and castle-model-viewer, upload them also to http://castle-engine.itch.io/
 
   ```
@@ -158,29 +170,40 @@
   ```
 
   - To upload CGE, run script in this repo:
-      pack/upload_itch_io.sh
+
+      ```
+      cd ..../cge-www/pack/
+      ./upload_itch_io.sh
+      ```
 
   - To upload castle-model-viewer, run script from castle-model-viewer repo:
+
+      ```
       cd ..../castle-model-viewer/pack/itch_io/
       ./upload_itch_io.sh
+      ```
 
   Once `butler status ...` is good,
   - test downloading it from
       https://castle-engine.itch.io/castle-model-viewer
       https://castle-engine.itch.io/castle-game-engine
     (using itch.io app).
-  - write a new devlog on itch.io (copy-paste from GitHub release notes)
-
-  Once `butler status castle-engine/castle-game-engine` is good,
-  - test downloading it from  (using itch.io app)
-  - write a new devlog there (copy-paste from GitHub release notes)
+  - write a new devlog on itch.io (copy-paste from GitHub release notes or Wordpress, itch.io form gracefully handles pasting text with links)
 
 - In case of CGE and castle-model-viewer, upload them also to https://sourceforge.net/projects/castle-engine/ files:
 
-  Run
+  Make sure auth works and doesn't ask for password/2fa each time:
+  (upload your SSH key to https://sourceforge.net/auth/shell_services)
 
   ```
-  pack/upload_sourceforge.sh
+  ssh 'kambi,castle-engine@frs.sourceforge.net'
+  ```
+
+  To upload, run
+
+  ```
+  cd pack/
+  ./upload_sourceforge.sh
   ```
 
   Mark on SourceForge default download for Linux/Windows as latest CGE.
@@ -201,10 +224,6 @@
 
       (redo again the section above about bumping version,
       also recheck "bump version" commit that we touched the same files)
-
-      Also revert ../castle-engine/tools/internal/pack_release/github_update_release.txt
-      to snapshot.
-      TODO: This file will be removed soon.
 
     - applications: version to `x.<odd>.0`
 
@@ -286,6 +305,9 @@
   http://forum.lazarus.freepascal.org/index.php?topic=26927.msg166141
   http://www.lazarus.freepascal.org/index.php/topic,15653.0.html
   https://forum.lazarus.freepascal.org/index.php/topic,53399.0.html
+  https://forum.lazarus.freepascal.org/index.php/topic,68286.0.html
+
+  - Convert to BBCode (for Lazarus forum): https://rtxa.github.io/mdtobb/
 
 - Post to community on FB:
 
