@@ -72,7 +72,7 @@ do_upload_itch_io ()
   rm -Rf "${UPLOAD_DIR}"
   mkdir "${UPLOAD_DIR}"
 
-  local MANIFEST="`pwd`/itch_io_manifests/${1}"
+  local MANIFEST="${MANIFESTS_DIR}/${1}"
 
   # arguments for download_github_release
   local DOWNLOAD_GIT_ORG_REPO="$2"
@@ -101,12 +101,14 @@ do_upload_itch_io ()
 VERSION=`castle-engine --version | sed -e "s/^castle-engine //" `
 echo "Uploading Castle Game Engine version ${VERSION} to itch.io"
 
+MANIFESTS_DIR="`pwd`/itch_io_manifests"
+
 # Note about platform names (:linux etc. below):
 # detection is documented on https://itch.io/docs/butler/pushing.html#channel-names .
 
-do_upload_itch_io castle_game_engine-windows.itch.toml "castle-engine/castle-engine" "v${VERSION}" "castle-engine-${VERSION}-win64-x86_64-bundle.zip"  $ITCH_IO_NAME:windows --userversion "${VERSION}"
+#do_upload_itch_io castle_game_engine-windows.itch.toml "castle-engine/castle-engine" "v${VERSION}" "castle-engine-${VERSION}-win64-x86_64-bundle.zip"  $ITCH_IO_NAME:windows --userversion "${VERSION}"
 do_upload_itch_io castle_game_engine-unix.itch.toml    "castle-engine/castle-engine" "v${VERSION}" "castle-engine-${VERSION}-linux-x86_64-bundle.zip"  $ITCH_IO_NAME:linux   --userversion "${VERSION}"
 do_upload_itch_io castle_game_engine-unix.itch.toml    "castle-engine/castle-engine" "v${VERSION}" "castle-engine-${VERSION}-darwin-x86_64.zip"        $ITCH_IO_NAME:mac     --userversion "${VERSION}"
 
 echo 'Runnig "butler status ..." to see status:'
-butler status $ITCH_IO_NAME
+butler status "${ITCH_IO_NAME}"
