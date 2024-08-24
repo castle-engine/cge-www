@@ -329,6 +329,18 @@ Remove all the cached files created by `cache` (for all platforms).
 
 This reclaims the disk space used by cache and it implies that future compilations will be done without using the cache.
 
+=== unused-data
+
+Perform simple analysis of link:data[] files that are possibly _unused_ in your project.
+
+If they are really unused, avoid packaging these files, to keep the application smaller to download for the user. To do this:
+
+- Exclude them from being packaged. Note that files like `\*.blend*` are excluded by default.
+- Move them out of `data` subdirectory (to some other project directory like `data-for-possible-future-usage`).
+- Or just delete them. Because you use a _version control system_ and you are not afraid of removing things, right?
+
+WARNING: Right now, this analysis is using some quick assumptions and heuristics. The data files are just _"grepped"_ (not intelligently analyzed) for the filenames they use. Do not trust this detection 100% -- sometimes files may be detected as used when they are not, or the other way around.
+
 === (Deprecated) create-manifest
 
 Create link:project_manifest[CastleEngineManifest.xml] file if it does not exist yet, guessing the project name based on directory name. You can use this `CastleEngineManifest.xml` as a starting point.

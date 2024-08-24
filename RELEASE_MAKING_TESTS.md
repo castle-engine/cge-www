@@ -213,3 +213,13 @@ Make sure no CGE / FPC is installed (or visible on env variables) on the system.
 Install new CGE using Windows installer.
 
 Make sure VS Code extension, if only you give CGE path in settings, works -- has code completion, knows FPC and CGE units.
+
+## Analyze can we remove some unused data from examples, to make downloads smaller
+
+```
+cd /tmp/
+find "${CASTLE_ENGINE_PATH}/examples/" \
+  '(' -iname CastleEngineManifest.xml ')' -and \
+  '(' -execdir bash -c 'echo `pwd`' ';' ')' -and \
+  '(' -execdir bash -c 'castle-engine unused-data' ';' ')' > unused-data.txt
+```
