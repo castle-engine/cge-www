@@ -21,7 +21,7 @@ If you would like to see some feature implemented sooner, please link:https://ww
 
 Once above is merged, eventually cgeref:TCastleWalkNavigation[] will be deprecated. Don't worry, the deprecated cgeref:TCastleWalkNavigation[] will still be available for quite a while -- we're aware that many projects use it, since (as of today, before we merge PR 533) we actually advise using cgeref:TCastleWalkNavigation[], as it's very easy to use and flexible enough for many situations.
 
-### Remove the need to care about PreciseCollisions, cleanup old collision detection using our octrees
+### (IN PROGRESS) Remove the need to care about PreciseCollisions, cleanup old collision detection using our octrees
 
 We want 100% of collision detection (which also means ray-casting) at runtime to be done using link:physics[], and thus determined by the presence of components like cgeref:TCastleMeshCollider[].
 
@@ -38,6 +38,8 @@ To do this:
 - New `Viewport.PointingDeviceHit` instead of `Viewport.MouseRayHit`, `Viewport.TransformUnderMouse`, that exposes physics ray-casting by default.
 
 - Make cgeref:TCastleSceneCore.PreciseCollisions[] always `true` in editor.
+
+This is started -- past `Spatial` property is now both simplified (only `ssRendering,ssDynamicCollisions`, does not manage other structures) and private. Only cgeref:TCastleSceneCore.PreciseCollisions[] is public.
 
 [#steam]
 ### (IN PROGRESS) Steam integration, and engine available as Steam app

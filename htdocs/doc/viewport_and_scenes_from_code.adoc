@@ -182,7 +182,7 @@ You can create cgeref:TCastleScene[] instances using code. You can add the creat
 ----
 CarScene := TCastleScene.Create(FreeAtStop);
 CarScene.Load('castle-data:/car.gltf');
-CarScene.Spatial := [ssRendering, ssDynamicCollisions];
+CarScene.PreciseCollisions := true;
 MainViewport.Items.Add(CarScene);
 ----
 
