@@ -85,7 +85,6 @@ NOTE: If you already have link:/[Castle Game Engine], then just run `castle-mode
 
 NOTE: We also recommend to download link:demo_models.php[our collection of demo models]!
 
-////
 === Snapshot (unstable, preview of the next version) (5.3.0)
 
 cge::download-application[
@@ -101,7 +100,6 @@ cge::download-application[
     linux-aarch64;
     darwin-x86_64
 ]
-////
 
 ////
 Below is no longer actively tested, and was complicated to use, for now don't expose docs of it:
