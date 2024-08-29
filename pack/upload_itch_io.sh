@@ -13,12 +13,12 @@ IFS=$'\n\t'
 
 source download_github.sh
 
-local ITCH_IO_NAME='castle-engine/castle-game-engine'
+ITCH_IO_NAME='castle-engine/castle-game-engine'
 
-local VERSION=`castle-engine --version | sed -e "s/^castle-engine //" `
+VERSION=`castle-engine --version | sed -e "s/^castle-engine //" `
 echo "Uploading Castle Game Engine version ${VERSION} to itch.io"
 
-local MANIFESTS_PATH="`pwd`/itch_io_manifests/"
+MANIFESTS_PATH="`pwd`/itch_io_manifests/"
 
 # Note about platform names (:linux etc. below):
 # detection is documented on https://itch.io/docs/butler/pushing.html#channel-names .

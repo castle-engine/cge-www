@@ -21,27 +21,27 @@
 # e.g. building on different Linux means linking to different GLIBC. )
 download_github_release ()
 {
-  GIT_ORG_REPO="$1"
+  GITHUB_ORG_REPO="$1"
   GIT_TAG="$2"
   FILE_NAME="$3"
   shift 3
 
   echo '-------------------------------------------------------------'
-  echo "Downloading $FILE_NAME from GitHub $GIT_ORG_REPO release $GIT_TAG"
+  echo "Downloading $FILE_NAME from GitHub $GITHUB_ORG_REPO release $GIT_TAG"
 
   # Remove file if it already exists.
   rm -f "$FILE_NAME"
 
   # wget is one option.
-  # wget "https://github.com/${GIT_ORG_REPO}/releases/download/"${GIT_TAG}"/${FILE_NAME}"
+  # wget "https://github.com/${GITHUB_ORG_REPO}/releases/download/"${GIT_TAG}"/${FILE_NAME}"
 
   # GH CLI is another option.
   # Requires installing https://cli.github.com/ and authenticating.
   # May be more reliable? Or faster? Testing.
   gh auth status
-  # gh release list --repo "$GIT_ORG_REPO"
-  # gh release view --repo "$GIT_ORG_REPO" "$GIT_TAG"
-  gh release download --repo "$GIT_ORG_REPO" "$GIT_TAG" --pattern "$FILE_NAME"
+  # gh release list --repo "$GITHUB_ORG_REPO"
+  # gh release view --repo "$GITHUB_ORG_REPO" "$GIT_TAG"
+  gh release download --repo "$GITHUB_ORG_REPO" "$GIT_TAG" --pattern "$FILE_NAME"
 
   echo 'MD5 checksum:'
   md5sum "$FILE_NAME"
@@ -104,7 +104,7 @@ do_upload_itch_io ()
   local ITCH_IO_NAME="$1"
   local MANIFEST="$2"
   # arguments for download_github_release
-  local DOWNLOAD_GIT_ORG_REPO="$3"
+  local DOWNLOAD_GITHUB_ORG_REPO="$3"
   local DOWNLOAD_GIT_TAG="$4"
   local DOWNLOAD_FILE_NAME="$5"
   shift 5
@@ -114,12 +114,12 @@ do_upload_itch_io ()
   mkdir "${UPLOAD_DIR}"
   cd "${UPLOAD_DIR}"
 
-  download_github_release "${DOWNLOAD_GIT_ORG_REPO}" "${DOWNLOAD_GIT_TAG}" "${DOWNLOAD_FILE_NAME}"
+  download_github_release "${DOWNLOAD_GITHUB_ORG_REPO}" "${DOWNLOAD_GIT_TAG}" "${DOWNLOAD_FILE_NAME}"
 
   echo '-------------------------------------------------------------'
   echo 'Unpacking'
 
-  unpack_archive ${DOWNLOAD_FILE_NAME}"
+  unpack_archive "${DOWNLOAD_FILE_NAME}"
   cp -f "${MANIFEST}" "${UPLOAD_DIR}"/.itch.toml
 
   echo '-------------------------------------------------------------'
