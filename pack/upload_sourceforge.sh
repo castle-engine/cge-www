@@ -49,7 +49,7 @@ upload_sf ()
 
 do_castle_model_viewer ()
 {
-  VER=5.0.0 # "${GENERATED_VERSION_CASTLE_MODEL_VIEWER}"
+  VER="${GENERATED_VERSION_CASTLE_MODEL_VIEWER}"
   upload_sf castle-model-viewer castle-engine/castle-model-viewer v"${VER}" castle-model-viewer-"${VER}"-win64-x86_64.zip
   upload_sf castle-model-viewer castle-engine/castle-model-viewer v"${VER}" castle-model-viewer-"${VER}"-linux-x86_64.tar.gz
   upload_sf castle-model-viewer castle-engine/castle-model-viewer v"${VER}" castle-model-viewer-"${VER}"-darwin-x86_64.zip
@@ -64,5 +64,5 @@ do_castle_game_engine ()
 }
 
 do_castle_model_viewer
-do_castle_game_engine
+#do_castle_game_engine
 rm -Rf "${TEMP_DIR}" # reclaim disk space

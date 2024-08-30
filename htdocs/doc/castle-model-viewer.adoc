@@ -49,11 +49,11 @@ cgeimg::block[
 
 == Download
 
-=== Stable version (5.0.0)
+=== Stable version (5.2.0)
 
 cge::download-application[
-  5.0.0,
-  v5.0.0,
+  5.2.0,
+  v5.2.0,
   castle-engine,
   castle-model-viewer,
   castle-model-viewer,
@@ -85,10 +85,10 @@ NOTE: If you already have link:/[Castle Game Engine], then just run `castle-mode
 
 NOTE: We also recommend to download link:demo_models.php[our collection of demo models]!
 
-=== Snapshot (unstable, preview of the next version) (5.1.0)
+=== Snapshot (unstable, preview of the next version) (5.3.0)
 
 cge::download-application[
-  5.1.0,
+  5.3.0,
   snapshot,
   castle-engine,
   castle-model-viewer,
