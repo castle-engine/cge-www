@@ -9,11 +9,17 @@ _Castle Game Engine_ supports compiling games to the https://www.nintendo.com/sw
 
 It is a modern, successful, indie-friendly console from Nintendo. Our friend company, _Cat-astrophe Games_, has already released games using CGE on Nintendo Switch (https://cat-astrophe-games.party/escape-universe/[Escape from the Universe] and https://unholy-society.com/[The Unholy Society]).
 
-It is a full integration, really 100% of the engine works on Nintendo Switch. From the developer point of view, you just write cross-platform Pascal code using CGE units, and then you can recompile the application using the Castle Game Engine link:build_tool[build tool] with the `--target=nintendo-switch` parameter.
+It is a full integration, really 100% of the engine works on Nintendo Switch. You just write cross-platform Pascal code using CGE units. You can compile the application for _Nintendo Switch_:
+
+- from the GUI link:editor[]: Set _"Run -> Platform"_ to _"Nintendo Switch"_,
+
+- or from the command-line: using the link:build_tool[build tool] with the `--target=nintendo-switch` parameter.
+
+All the existing CGE examples, like https://github.com/castle-engine/castle-engine/tree/master/examples/eye_of_beholder[eye_of_beholder] or https://github.com/castle-engine/castle-engine/tree/master/examples/platformer[platformer] just work on _Nintendo Switch_.
 
 == Example games
 
-We have released games on Nintendo store:
+We have released games on Nintendo store using _Castle Game Engine_:
 
 * https://www.nintendo.com/store/products/the-unholy-society-switch/[The Unholy Society]
 +
@@ -32,17 +38,29 @@ cgeimg::block[escape_universe_japanese.jpg|Escape from the Universe (Switch) - J
 The integration code with Nintendo Switch is not public and not open-source. It cannot be, as we are covered by Nintendo NDA agreements and we cannot disclose the technological details about how Nintendo Switch works. To develop on Nintendo Switch, you have to:
 
 * Become a https://developer.nintendo.com/[Nintendo Developer] yourself, and sign the necessary NDA agreements between your company and Nintendo. You will most likely want to buy a developer version of the console, as well.
-* Contact me (Michalis Kamburelis) through the non-public Nintendo developer forum. I can then share with you the necessary code that adds Nintendo Switch integration on top of the open-source CGE core, through the Nintendo forum, so Nintendo can confirm it's legally OK with them. Of course you get this for free. The integration code cannot be open-source, but I still want to give it to everyone for free.
+
+* Contact _Michalis Kamburelis_ through the non-public Nintendo developer forum. I can then share with you the necessary code that adds Nintendo Switch integration on top of the open-source CGE core, through the Nintendo forum, so Nintendo can confirm it's legally OK with them. Of course you get this for free. The integration code cannot be open-source, but I still want to give it to everyone for free.
++
+We already went through this process with an external company, and everything was smooth, Nintendo has zero issues with us sharing code this way -- under the roof of a closed forum where all participants are known to have signed NDA agreements.
 
 == Technical details
 
-Note that we cannot share various technical details, due to Nintendo restrictions. The full documentation describing using CGE on Nintendo Switch is part of the closed-source CGE branch, that you get for free once you confirm that you are registered Nintendo Developer.
+As stressed in the previous section, the technical details of _Nintendo Switch_ are confidential. Thus, the full documentation describing using the engine on Nintendo Switch is part of the closed-source engine branch, that you get for free once you confirm that you are registered Nintendo Developer -- see above.
 
-Some public information:
+Some information that is not confidential:
+
+* It is public knowledge that _Nintendo Switch_ devices uses Aarch64 CPU (see https://en.wikipedia.org/wiki/Nintendo_Switch[device CPU on Wikipedia]). It is also public knowledge that https://www.nintendo-insider.com/nintendo-switch-supports-vulkan-opengl-4-5-and-opengl-es-3-2/[Nintendo Switch supports OpenGL, OpenGLES and Vulkan APIs]. So, yeah, we rely on these.
 
 * We are using unmodified https://www.freepascal.org/[FPC].
-* All the units available on Android/Aarch64 platform are available on Nintendo Switch as well. We use a small trick to utilize FPC for Android/Aarch64 (compiler and standard library) to develop on Nintendo Switch, since FPC lacks Embedded/Aarch64 target.
-* You cannot access system-specific things using standard library. You have to use CGE. For example, you cannot open files using `TFileStream`, you must open files using CGE `Download` function. Even a large game can be easily recompiled for Nintendo Switch, but you need to use CGE API consistently for everything (reading files, measuring time etc.)
-* Other than that, everything just works. The whole CGE API works, and the FPC standard library works as well as long as you avoid system calls. E.g. you can use standard FPC units to process XML, JSON etc.
+* All the units available on _Android / Aarch64_ platform are available on Nintendo Switch as well. We use a small trick to utilize FPC for _Android / Aarch64_ (compiler and standard library) to develop on Nintendo Switch.
++
+NOTE: TODO: FPC 3.3.1 has support for _Embedded / Aarch64_ target since September 2023. See https://gitlab.com/freepascal.org/fpc/source/-/commit/a6b508b09464d31e8fbc1a81f2a97b82cb5273a1[commit to packages/fpmkunit/src/fpmkunit.pp]. We should see can we use _Embedded / Aarch64_ instead of _Android / Aarch64_ hack -- this would make things cleaner and simpler.
+* You cannot access system-specific things using standard library. You have to use CGE. For example, you cannot open files using `TFileStream`, you must open files using CGE cgeref:Download[] function. Even a large game can be easily recompiled for Nintendo Switch, but you need to use CGE API consistently for everything (reading and writing files, measuring time etc.)
+* Aside from syscalls (or things that indirectly do syscalls), everything else just works. The whole CGE API works, and the FPC standard library works as well as long as you avoid system calls. E.g. you can use standard FPC units to process XML, JSON etc. (just be sure to open/save them using CGE API like cgeref:Download[], cgeref:UrlSaveStream[]).
+* You can use `CASTLE_NINTENDO_SWITCH` conditional to make platform-specific code, if you need to. Like `{$ifdef CASTLE_NINTENDO_SWITCH} DoSomethingNintendoSpecific; {$endif}`. But there's a good chance you won't need it, as the whole CGE API is available on _Nintendo Switch_ and you can write cross-platform code that just works everywhere for all "normal" game needs.
+
+== Questions
 
 If you have any questions, https://castle-engine.io/talk.php[please ask].
+
+For confident matters (and most _Nintendo Switch_ questions are confidential, due to Nintendo NDA agreements) you can contact me privately. Send email to `michalis@castle-engine.io` and/or write a thread on Nintendo developer forum and ping me about it.
