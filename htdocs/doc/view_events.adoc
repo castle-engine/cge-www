@@ -292,7 +292,7 @@ begin
   // NEW CODE WE ADD:
   if Container.Pressed[keyArrowLeft] then
     PlayerPosition := PlayerPosition + Vector2(-MoveSpeed * SecondsPassed, 0);
-  if Ctontainer.Pressed[keyArrowRight] then
+  if Container.Pressed[keyArrowRight] then
     PlayerPosition := PlayerPosition + Vector2( MoveSpeed * SecondsPassed, 0);
   if Container.Pressed[keyArrowDown] then
     PlayerPosition := PlayerPosition + Vector2(0, -MoveSpeed * SecondsPassed);
