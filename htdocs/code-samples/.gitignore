@@ -2,6 +2,8 @@ castle-engine-output
 *.o
 *.ppu
 *.exe
+castle-auto-generated-resources.res
+*.dll
 
 # particular Unix binaries
 build_scene_interpolator
