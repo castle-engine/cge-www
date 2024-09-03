@@ -1,7 +1,7 @@
 { Demo of Group, Transform, Switch nodes. }
 
 uses SysUtils,
-  CastleWindow, CastleScene, CastleViewport, CastleCameras,
+  CastleWindow, CastleScene, CastleViewport, CastleCameras, CastleUiControls,
   CastleColors, CastleVectors, CastleFilesUtils, X3DNodes, CastleKeysMouse;
 
 var
@@ -102,14 +102,24 @@ begin
   Switch.AddChildren(SwitchChildShape);
 end;
 
-procedure WindowPress(Container: TUIContainer; const Event: TInputPressRelease);
+type
+  { View to contain whole UI and to handle events, like key press. }
+  TMyView = class(TCastleView)
+    function Press(const Event: TInputPressRelease): Boolean; override;
+  end;
+
+function TMyView.Press(const Event: TInputPressRelease): Boolean;
 begin
+  Result := inherited;
+  if Result then Exit;
+
   if Event.IsKey(keyS) then
   begin
     // Switch.WhichChoice cycles from -1 to 2.
     Switch.WhichChoice := Switch.WhichChoice + 1;
     if Switch.WhichChoice > 2 then
       Switch.WhichChoice := -1;
+    Exit(true);
   end;
 end;
 
@@ -117,15 +127,17 @@ var
   Window: TCastleWindow;
   Viewport: TCastleViewport;
   Scene: TCastleScene;
+  MyView: TMyView;
 begin
   Window := TCastleWindow.Create(Application);
-  Window.Open;
-  Window.OnPress := @WindowPress;
+
+  MyView := TMyView.Create(Application);
+  Window.Container.View := MyView;
 
   Viewport := TCastleViewport.Create(Application);
   Viewport.FullSize := true;
   Viewport.Camera.Translation := Vector3(2, -1, 8);
-  Window.Controls.InsertFront(Viewport);
+  MyView.InsertFront(Viewport);
 
   Scene := TCastleScene.Create(Application);
   Scene.Load(BuildRootNode, true);
@@ -138,5 +150,6 @@ begin
   // add a simple headlight, i.e. directional light attached to the camera
   Viewport.Camera.Add(TCastleDirectionalLight.Create(Application));
 
+  Window.Open;
   Application.Run;
 end.
