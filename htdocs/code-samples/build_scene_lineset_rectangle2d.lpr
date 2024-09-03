@@ -2,7 +2,8 @@
   and rotate it. }
 
 uses CastleWindow, CastleViewport, CastleScene, X3DNodes, CastleFilesUtils,
-  CastleColors, CastleVectors, CastleTimeUtils, CastleSceneCore;
+  CastleColors, CastleVectors, CastleTimeUtils, CastleSceneCore,
+  CastleUiControls;
 
 var
   LifeTime: TFloatTime;
@@ -61,8 +62,17 @@ begin
   Result.AddChildren(Transform);
 end;
 
-procedure WindowUpdate(Container: TUIContainer);
+type
+  { View to contain whole UI and to handle events, like updates. }
+  TMyView = class(TCastleView)
+    procedure Update(const SecondsPassed: Single; var HandleInput: boolean); override;
+  end;
+
+procedure TMyView.Update(const SecondsPassed: Single;
+  var HandleInput: boolean);
 begin
+  inherited;
+
   LifeTime := LifeTime + Container.Fps.SecondsPassed;
 
   // update rotation every frame
@@ -77,23 +87,25 @@ end;
 var
   Window: TCastleWindow;
   Viewport: TCastleViewport;
+  MyView: TMyView;
 begin
   Window := TCastleWindow.Create(Application);
   Window.Open;
+
+  MyView := TMyView.Create(Application);
+  Window.Container.View := MyView;
 
   Viewport := TCastleViewport.Create(Application);
   Viewport.Setup2D;
   Viewport.FullSize := true;
   Viewport.Camera.Orthographic.Height := 1000;
   Viewport.Camera.Orthographic.Origin := Vector2(0.5, 0.5);
-  Window.Controls.InsertFront(Viewport);
+  MyView.InsertFront(Viewport);
 
   Scene := TCastleScene.Create(Application);
   Scene.Load(BuildScene, true);
 
   Viewport.Items.Add(Scene);
-
-  Window.OnUpdate := @WindowUpdate;
 
   Application.Run;
 end.
