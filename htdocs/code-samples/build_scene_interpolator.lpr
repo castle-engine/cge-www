@@ -1,5 +1,5 @@
 {
-  Copyright 2018-2022 Michalis Kamburelis.
+  Copyright 2018-2024 Michalis Kamburelis.
   No warranty.
   This example is under a permissive Apache 2.0 license,
   https://www.apache.org/licenses/LICENSE-2.0 .
@@ -20,7 +20,7 @@ function BuildScene: TX3DRootNode;
 var
   Shape: TShapeNode;
   Material: TMaterialNode;
-  Sphere: TSphereNode;
+  //Sphere: TSphereNode; // unused
   Transform: TTransformNode;
   TimeSensor: TTimeSensorNode;
   PositionInterpolator: TPositionInterpolatorNode;
@@ -34,7 +34,7 @@ begin
   Appearance := TAppearanceNode.Create;
   Appearance.Material := Material;
 
-  Sphere := TSphereNode.CreateWithTransform(Shape, Transform);
+  {Sphere := }TSphereNode.CreateWithTransform(Shape, Transform);
   Shape.Appearance := Appearance;
   Result.AddChildren(Transform);
 
