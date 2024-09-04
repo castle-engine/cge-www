@@ -165,7 +165,7 @@ class Check_Email_Wizard_Page extends Check_Email_BasePage {
         if(isset( $option['enable_dashboard_widget']) && $option['enable_dashboard_widget']){
             $enable_dashboard_widget = "checked";
         }
-        if(empty($option) || !isset( $option['default_format_for_message']) || (isset( $option['default_format_for_message'])) && $option['default_format_for_message']){
+        if(isset( $option['default_format_for_message']) && $option['default_format_for_message']){
             $default_format_for_message = $option['default_format_for_message'];
         }
         $html = "";
@@ -226,7 +226,7 @@ class Check_Email_Wizard_Page extends Check_Email_BasePage {
 		}
 		
 
-		$merge_options = array_merge($option, $from_data);
+		$merge_options = array_merge((array)$option, (array)$from_data);
         update_option('check-email-log-core',$merge_options);
 
 		echo wp_json_encode(array('status'=> 200, 'step'=> $step,'steps_data'=>$this->cm_wizard_steps(), 'message'=> esc_html__('Wizard setup succefully.','check-email')));

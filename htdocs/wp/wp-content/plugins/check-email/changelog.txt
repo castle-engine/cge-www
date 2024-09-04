@@ -1,4 +1,9 @@
 == Changelog ==
+= v2.0.1 - 02/09/2024 =
+- Enhancement: Added confirmation box on deletion of log email #84
+- Fixed: Conflict issue with Override Emails feature. #98
+- Fixed: PHP Fatal error #101
+
 = v2.0 - 09/08/2024 =
 - Compatibility: Test with WordPress version 6.6 #95
 - Feature: Default Format for Message #86

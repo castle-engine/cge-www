@@ -128,6 +128,8 @@ class Jetpack_Options {
 			'identity_crisis_url_secret',          // (array) The IDC URL secret and its expiration date.
 			'identity_crisis_ip_requester',        // (array) The IDC IP address and its expiration date.
 			'dismissed_welcome_banner',            // (bool) Determines if the welcome banner has been dismissed or not.
+			'recommendations_evaluation',          // (object) Catalog of recommended modules with corresponding score following successful site evaluation in Welcome Banner.
+			'dismissed_recommendations',           // (bool) Determines if the recommendations have been dismissed or not.
 			'historically_active_modules',         // (array) List of installed plugins/enabled modules that have at one point in time been active and working
 		);
 	}
@@ -285,9 +287,9 @@ class Jetpack_Options {
 	/**
 	 * Updates the single given option.  Updates jetpack_options or jetpack_$name as appropriate.
 	 *
-	 * @param string $name Option name. It must come _without_ `jetpack_%` prefix. The method will prefix the option name.
-	 * @param mixed  $value Option value.
-	 * @param string $autoload If not compact option, allows specifying whether to autoload or not.
+	 * @param string    $name Option name. It must come _without_ `jetpack_%` prefix. The method will prefix the option name.
+	 * @param mixed     $value Option value.
+	 * @param bool|null $autoload If not compact option, allows specifying whether to autoload or not.
 	 *
 	 * @return bool Was the option successfully updated?
 	 */

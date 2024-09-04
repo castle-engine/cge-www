@@ -206,6 +206,14 @@ class Defaults {
 		'jetpack_package_versions',
 		'jetpack_newsletters_publishing_default_frequency',
 		'jetpack_scheduled_plugins_update',
+		'jetpack_waf_automatic_rules',
+		'jetpack_waf_ip_allow_list',
+		'jetpack_waf_ip_allow_list_enabled',
+		'jetpack_waf_ip_block_list',
+		'jetpack_waf_ip_block_list_enabled',
+		'jetpack_waf_share_data',
+		'jetpack_waf_share_debug_data',
+		'jetpack_waf_automatic_rules_last_updated_timestamp',
 	);
 
 	/**
@@ -348,6 +356,7 @@ class Defaults {
 		'wp_version'                        => array( 'Automattic\\Jetpack\\Sync\\Functions', 'wp_version' ),
 		'active_modules'                    => array( 'Automattic\\Jetpack\\Sync\\Functions', 'get_active_modules' ),
 		'jetpack_connection_active_plugins' => array( 'Automattic\\Jetpack\\Sync\\Functions', 'get_jetpack_connection_active_plugins' ),
+		'jetpack_sync_active_modules'       => array( 'Automattic\\Jetpack\\Sync\\Functions', 'get_jetpack_sync_active_modules' ),
 	);
 
 	/**

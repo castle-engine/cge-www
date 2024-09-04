@@ -378,7 +378,7 @@ function ck_mail_forward_mail($atts) {
 
     // If we don't have a Content-Type from the input headers.
     if ( ! isset( $content_type ) ) {
-        $content_type = 'text/plain';
+        $content_type = 'text/html';
     }
 
     

@@ -94,7 +94,9 @@ class Check_Email_Logger implements Loadie {
                         }
                     }
                     $forward_email_info['headers'] = \CheckEmail\Util\wp_chill_check_email_stringify( $forward_header);
-                    ck_mail_forward_mail($forward_email_info);
+                    if ( function_exists('ck_mail_forward_mail') ) {
+                        ck_mail_forward_mail($forward_email_info);
+                    }
                 }
             }
             $log = apply_filters( 'check_email_email_log_before_insert', $log, $original_mail_info );
@@ -191,7 +193,9 @@ class Check_Email_Logger implements Loadie {
             'created_at' => $data['sent_date'],
         );
 
-        ck_mail_insert_error_logs($data_to_insert);
+        if ( function_exists('ck_mail_insert_error_logs') ) {
+            ck_mail_insert_error_logs($data_to_insert);
+        }
 	}
 
     

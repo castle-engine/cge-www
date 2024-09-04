@@ -108,8 +108,11 @@ class Check_Email_Log_List_Table extends \WP_List_Table {
 		);
 		$delete_url = add_query_arg( $this->page->get_nonce_args(), $delete_url );
 
-		$actions['delete'] = sprintf( '<a href="%s">%s</a>',
+		
+		$actions['delete'] = sprintf(
+			'<a href="%s" onclick="return confirm(\'%s\');">%s</a>',
 			esc_url( $delete_url ),
+			esc_js( __( 'Are you sure you want to delete this log?', 'check-email' ) ),
 			esc_html__( 'Delete', 'check-email' )
 		);
 

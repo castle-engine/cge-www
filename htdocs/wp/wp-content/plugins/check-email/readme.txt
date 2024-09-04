@@ -4,7 +4,7 @@ Tags: logging, email, email log, smtp, log
 Requires at least: 5.0
 Tested up to: 6.6
 Requires PHP: 5.6.20
-Stable tag: 2.0
+Stable tag: 2.0.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -19,47 +19,47 @@ This WordPress plugin helps you store sent emails for auditing purposes, as well
 
 == New Features of the plugin Check & Log Email 2.0 ==
 
-- <b>Export Logs</b> - It allows to export email logs in multiple file format with date range and status. 
-- <b>More Fields</b> - Such as Cc, Bcc, Host IP, Reply To etc. 
-- <b>Log Retention Period</b> - It allows to deletes old emails when a certain amount of logs and time has passed. 
-- <b>Print or save as PDF</b> - You can print the email log, or save it as a PDF. 
-- <b>Resend email</b> - This feature allow you to modify email and resend email. 
-- <b>Forward Email</b> - By using this feature you can automatically forward a copy of all emails sent by WordPress to other email addresses <a href=" https://check-email.tech/docs/knowledge-base/forward-email-option-in-the-check-log-email-plugin/">Learn More</a>. 
-- <b>Easy migration</b> - It is allow you to import data from various plugins like <i>Email Log</i>, <i>Mail logging - WP Mail Catcher</i>, <i>WP Mail Logging</i>, <i>WP Mail Log</i> and export the data. 
-- <b>Email Error Tracking</b> - You can easily see list of errors of emails and view details of error. 
-- <b>Setup Wizard</b> - Wizard setup allows you to one time setup of this plugin. 
-- <b>Default Format for Message</b> - Its allow you to Default Format for Message on view of content. 
-- <b>SMTP</b> - Its allow you to setup your own smtp through Check & Email Log SMTP form. 
+- <strong>Export Logs</strong> - It allows to export email logs in multiple file format with date range and status. 
+- <strong>More Fields</strong> - Such as Cc, Bcc, Host IP, Reply To etc. 
+- <strong>Log Retention Period</strong> - It allows to deletes old emails when a certain amount of logs and time has passed. 
+- <strong>Print or save as PDF</strong> - You can print the email log, or save it as a PDF. 
+- <strong>Resend email</strong> - This feature allow you to modify email and resend email. 
+- <strong>Forward Email</strong> - By using this feature you can automatically forward a copy of all emails sent by WordPress to other email addresses <a href=" https://check-email.tech/docs/knowledge-base/forward-email-option-in-the-check-log-email-plugin/">Learn More</a>. 
+- <strong>Easy migration</strong> - It is allow you to import data from various plugins like <i>Email Log</i>, <i>Mail logging - WP Mail Catcher</i>, <i>WP Mail Logging</i>, <i>WP Mail Log</i> and export the data. 
+- <strong>Email Error Tracking</strong> - You can easily see list of errors of emails and view details of error. 
+- <strong>Setup Wizard</strong> - Wizard setup allows you to one time setup of this plugin. 
+- <strong>Default Format for Message</strong> - Its allow you to Default Format for Message on view of content. 
+- <strong>SMTP</strong> - Its allow you to setup your own smtp through Check & Email Log SMTP form. 
 
 == Features of the plugin Check & Log Email ==
 
-- <b>Test email sending</b> - if you’re not sure whether WordPress is sending emails, you can use this plugin to find out. The process is very simple: you need to choose an address that will receive a simple test email. You can even override the custom header with your own values, to avoid any other issues.
-- <b>Viewing logged emails</b> - they can be viewed from the admin interface, as they are stored in a separate table. You get the option to filter them based on subject, email, date, etc.
-- <b>Deleting logged emails</b> - you can delete them by going to the admin interface. You can either delete them in bulk or  selectively - by date, email, or subject. 
-- <b>Ability to change</b> the "mail from" email address, "mail from name" and override default email WordPress addresses. 
+- <strong>Test email sending</strong> - if you’re not sure whether WordPress is sending emails, you can use this plugin to find out. The process is very simple: you need to choose an address that will receive a simple test email. You can even override the custom header with your own values, to avoid any other issues.
+- <strong>Viewing logged emails</strong> - they can be viewed from the admin interface, as they are stored in a separate table. You get the option to filter them based on subject, email, date, etc.
+- <strong>Deleting logged emails</strong> - you can delete them by going to the admin interface. You can either delete them in bulk or  selectively - by date, email, or subject. 
+- <strong>Ability to change</strong> the "mail from" email address, "mail from name" and override default email WordPress addresses. 
 
 == Premium Features of the plugin Check & Log Email ==
 
-- <b>Triggered Data</b> - Triggered data helps you in debugging by showing the exact code that is sending that email
+- <strong>Triggered Data</strong> - Triggered data helps you in debugging by showing the exact code that is sending that email
 
 == Filters ==
 
-- <b>wp_mail_catcher_mail_success</b> -  is triggered before an email is sent. It has a single argument that is an array containing original mail info.
+- <strong>wp_mail_catcher_mail_success</strong> -  is triggered before an email is sent. It has a single argument that is an array containing original mail info.
 
-- <b>check_email_email_log_before_insert</b> -  is triggered before an email data about to save in check & Log Email. It has a two argument.
-    - <b>log</b> -  It is an array containing argument that will store in database
-    - <b>original_mail_info</b> -   It is an array containing argument of original mail info.
+- <strong>check_email_email_log_before_insert</strong> -  is triggered before an email data about to save in check & Log Email. It has a two argument.
+    - <strong>log</strong> -  It is an array containing argument that will store in database
+    - <strong>original_mail_info</strong> -   It is an array containing argument of original mail info.
 
-- <b>wp_check_email_failed</b> -  is triggered when an email is failed. It has a two argument.
-    - <b>mail_error_data</b> -  It is an array containing argument that has what possible reasons of error.
-    - <b>mail_error_message</b> -   It is an string containing error message.
+- <strong>wp_check_email_failed</strong> -  is triggered when an email is failed. It has a two argument.
+    - <strong>mail_error_data</strong> -  It is an array containing argument that has what possible reasons of error.
+    - <strong>mail_error_message</strong> -   It is an string containing error message.
 
 
 == Action ==
 
-- <b>check_email_log_inserted</b> -  is triggered after data successfully saved in log.
+- <strong>check_email_log_inserted</strong> -  is triggered after data successfully saved in log.
 
-- <b>check_email_loaded</b> -  is triggered when check & log email successfully loaded.
+- <strong>check_email_loaded</strong> -  is triggered when check & log email successfully loaded.
 
 
 <strong>Support</strong><br>
@@ -109,6 +109,11 @@ Someone using one of my other plugins had trouble with emails not being sent. I 
 
 == Changelog ==
 
+= v2.0.1 - 02/09/2024 =
+- Enhancement: Added confirmation box on deletion of log email #84
+- Fixed: Conflict issue with Override Emails feature. #98
+- Fixed: PHP Fatal error #101
+
 = v2.0 - 09/08/2024 =
 - Compatibility: Test with WordPress version 6.6 #95
 - Feature: Default Format for Message #86
@@ -153,10 +158,7 @@ Someone using one of my other plugins had trouble with emails not being sent. I 
 - Enhancement: Added Support Form #56
 
 = v1.0.8 - 16/10/2023 =
-- Updated: Plugin author to reflect ownership changes. 
-
-= v1.0.7 - 08/03/2022 =
-- Fixed: Incompatibility with Post SMTP ( [#51]( https://github.com/WPChill/check-email/issues/51) )
+- Updated: Plugin author to reflect ownership changes.
 
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/check-email/trunk/changelog.txt)

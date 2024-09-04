@@ -444,9 +444,6 @@ class Check_Email_Core_Setting extends Check_Email_Setting {
 		$option      = $this->get_value();
 		$field_value = $option[ $args['id'] ];
 		$field_name  = $this->section->option_name . '[' . $args['id'] . ']';
-		if (!empty($field_value) && $field_value) {
-			ck_mail_create_error_logs();
-		}
 		?>
             <input id="check-email-email_error_tracking" type="checkbox" name="<?php echo esc_attr( $field_name ); ?>" value="true" <?php checked( 'true', $field_value ); ?>>
             <label for="check-email-email_error_tracking" class="check-email-opt-labels"><?php esc_html_e( 'You can easily track errors in email delivery.', 'check-email' ) ?></label>

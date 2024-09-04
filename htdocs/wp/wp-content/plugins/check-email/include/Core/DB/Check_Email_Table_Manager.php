@@ -53,11 +53,15 @@ class Check_Email_Table_Manager implements Loadie {
 				switch_to_blog( $site->blog_id );
 				$this->create_table_if_needed();
 				restore_current_blog();
-				ck_mail_create_error_logs();
+				if (function_exists('ck_mail_create_error_logs') ) {
+					ck_mail_create_error_logs();
+				}
 			}
 		} else {
 			$this->create_table_if_needed();
-			ck_mail_create_error_logs();
+			if (function_exists('ck_mail_create_error_logs') ) {
+				ck_mail_create_error_logs();
+			}
 		}
 	}
 

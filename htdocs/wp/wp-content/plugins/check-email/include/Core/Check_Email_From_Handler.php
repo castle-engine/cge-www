@@ -86,7 +86,7 @@ class Check_Email_From_Handler {
                 $headers['headers'] .= "From: <". $email .">\r\n" ;
             }
 
-            $headers['headers'] .= "Content-Type: text/plain; charset=\"UTF-8\"\r\n";
+            $headers['headers'] .= "Content-Type: text/html; charset=\"UTF-8\"\r\n";
         }
 
 
