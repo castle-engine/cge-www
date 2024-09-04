@@ -5,8 +5,8 @@ include::common.adoc[]
 
 == Download the engine for your system
 
-// cge ::download-engine[7.0-alpha.snapshot,snapshot]
-cge::download-engine[7.0-alpha.3,v7.0-alpha.3]
+cge::download-engine[7.0-alpha.3.snapshot,snapshot]
+// cge ::download-engine[7.0-alpha.3,v7.0-alpha.3]
 
 NOTE: To build applications using the engine you also need to install a _compiler_. The _Windows_ and _Linux_ downloads already contain the latest stable version of https://www.freepascal.org/[FPC], so you can build and run projects out-of-the-box. If you want more, read link:install[the manual about installation].
 
