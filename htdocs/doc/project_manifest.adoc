@@ -533,7 +533,7 @@ The inclusion and exclusion compare _paths_ of _files_. The directories themselv
     </custom_options>
     <library_paths>
       <path value="static_libraries/"/>
-    <library_paths>
+    </library_paths>
   </compiler_options>
 ...
 ----
