@@ -969,6 +969,95 @@ begin
 end;
 ```
 
+[#includes]
+=== Large engine units may be split into include files
+
+For some large units, it is reasonable to split them into multiple include files. The structure to do it looks like this:
+
+```delphi
+unit CastleXxx;
+
+interface
+
+uses ... { all units required by all includes, in the interface };
+
+{$define read_interface}
+{$I castlexxx_foo.inc}
+{$I castlexxx_bar.inc}
+{$undef read_interface}
+
+implementation
+
+uses ... { all units required by all implementations, in the interface };
+
+{$define read_implementation}
+{$I castlexxx_foo.inc}
+{$I castlexxx_bar.inc}
+{$undef read_implementation}
+
+// if necessary, dispatch initialization / finalization by calling procedures in include files
+initialization
+  CallInitializationOfFoo;
+finalization
+  CallFinalizationOfFoo;
+end.
+```
+
+and then in each include we do this
+
+
+```delphi
+{%MainUnit castlexxx.pas}
+
+{$ifdef read_interface}
+type
+  TMyClass = class
+    procedure MyMethod;
+  end;
+
+procedure MyProc;
+{$endif read_interface}
+
+{$ifdef read_implementation}
+procedure TMyClass.MyMethod;
+begin
+end;
+
+procedure MyProc;
+begin
+  ...
+end;
+{$endif read_implementation}
+```
+
+This is not really our idea -- at least FPC source code also uses a similar trick for some units.
+
+The `{%MainUnit castlexxx.pas}` is a comment for the compiler, but it is useful for the _Lazarus CodeTools_ (used in both _Lazarus IDE_ and also in our link:vscode[VS Code extension]) to properly complete code when inside an include file.
+
+When is such organization useful?
+
+- Splitting unit into multiple include files shows the logical "blocks" of the unit in a clear way.
++
+For example, cgeref:CastleControls[] unit (link:https://github.com/castle-engine/castle-engine/blob/master/src/ui/castlecontrols.pas[see source]) is mostly a collection of components. Placing each component in a different include file is easier to work with -- you look at a small include file, not at a large unit file.
++
+NOTE: As with everything, there are advantages and disadvantages :) If the include files are actually connected to each other, then during editing you may need to use less _"Find / Replace In This File"_ operations and more _"Find / Replace In Multiple Files"_ operations. A good text editor has all these operations, but surely working with multiple files is harder. So we try to limit this technique (splitting into includes) only when it really makes sense, when _most of the time_ your include file contains all your brain needs to care about.
++
+A good split is often _"one class per one include file"_. But *not always*. Sometimes we group some related classes into one include file.
+
+- To express the same argument in other words (thinking "what do we avoid", instead of "what do we gain"): Splitting into include files avoids having very large Pascal `.pas` files.
++
+Sometimes, a unit grows into something big (for example a collection of components, like cgeref:CastleControls[]; or even interconnected collection of components, cgeref:CastleTransform[]). Having all the code in one large Pascal `.pas` file is uncomfortable -- you have a big text file to edit. Large files are less comfortable to work with, for text editors, for version control diffs, but mostly for our brains -- because you just have to think about "this big code that you're editing".
+
+- It's *not* a technique we generally recommend you to do in your own applications, and we actually try to *not* do this for CGE units -- unless they grow really large.
++
+A rule of thumb is that once a unit grows above 1000 lines, it's probably good to think should it be split.
++
+Maybe it should be split into multiple unis? This is cleaner from the language standpoint, it allows the compiler to strictly protect the separation (and we also do this technique sometimes, e.g. our renderer is split into a number of internal units).
++
+But sometimes the split into multiple units is not comfortable or not possible. E.g. splitting cgeref:CastleControls[] or cgeref:CastleTransform[] would mean you'd often have super-long `uses` clauses, because you often use multiple classes from these units. Moreover, sometimes, classes need access to each other `private` stuff. Moreover, sometimes the split is impossible because it would force circular dependencies in units interfaces (this most often occurs in tightly-coupled container/children relationships, e.g. cgeref:TCastleApplication[] and cgeref:TCastleWindow[] really need to be in one unit cgeref:CastleWindow[]).
++
+So, in such cases, splitting into include files is a good compromise. It allows you to keep the code in one unit, but still have it split into logical blocks.
+
 == Other languages
 
 * Indent by 4 spaces in Java and Objective-C.
