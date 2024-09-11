@@ -40,7 +40,6 @@ class Jetpack_Options {
 					'allowed_xsite_search_ids', // (array) Array of WP.com blog ids that are allowed to search the content of this site
 					'available_modules',
 					'do_activate',
-					'edit_links_calypso_redirect', // (bool) Whether post/page edit links on front end should point to Calypso.
 					'log',
 					'slideshow_background_color',
 					'widget_twitter',
@@ -66,7 +65,6 @@ class Jetpack_Options {
 					'safe_mode_confirmed',         // (bool) True if someone confirms that this site was correctly put into safe mode automatically after an identity crisis is discovered.
 					'migrate_for_idc',             // (bool) True if someone confirms that this site should migrate stats and subscribers from its previous URL
 					'ab_connect_banner_green_bar', // (int) Version displayed of the A/B test for the green bar at the top of the connect banner.
-					'onboarding',                  // (string) Auth token to be used in the onboarding connection flow
 					'tos_agreed',                  // (bool)   Whether or not the TOS for connection has been agreed upon.
 					'static_asset_cdn_files',      // (array) An nested array of files that we can swap out for cdn versions.
 					'mapbox_api_key',              // (string) Mapbox API Key, for use with Map block.
@@ -86,7 +84,6 @@ class Jetpack_Options {
 
 			case 'network':
 				return array(
-					'onboarding',                   // (string) Auth token to be used in the onboarding connection flow
 					'file_data',                     // (array) List of absolute paths to all Jetpack modules
 				);
 		}
@@ -231,8 +228,6 @@ class Jetpack_Options {
 			}
 		}
 
-		trigger_error( sprintf( 'Invalid Jetpack option name: %s', esc_html( $name ) ), E_USER_WARNING ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_trigger_error -- Don't wish to change legacy behavior.
-
 		return $default;
 	}
 
@@ -287,9 +282,9 @@ class Jetpack_Options {
 	/**
 	 * Updates the single given option.  Updates jetpack_options or jetpack_$name as appropriate.
 	 *
-	 * @param string $name Option name. It must come _without_ `jetpack_%` prefix. The method will prefix the option name.
-	 * @param mixed  $value Option value.
-	 * @param string $autoload If not compact option, allows specifying whether to autoload or not.
+	 * @param string    $name Option name. It must come _without_ `jetpack_%` prefix. The method will prefix the option name.
+	 * @param mixed     $value Option value.
+	 * @param bool|null $autoload If not compact option, allows specifying whether to autoload or not.
 	 *
 	 * @return bool Was the option successfully updated?
 	 */
@@ -639,10 +634,6 @@ class Jetpack_Options {
 			'jetpack_sso_require_two_step',
 			'jetpack_sso_remove_login_form',
 			'jetpack_last_connect_url_check',
-			'jpo_business_address',
-			'jpo_site_type',
-			'jpo_homepage_format',
-			'jpo_contact_page',
 			'jetpack_excluded_extensions',
 		);
 	}

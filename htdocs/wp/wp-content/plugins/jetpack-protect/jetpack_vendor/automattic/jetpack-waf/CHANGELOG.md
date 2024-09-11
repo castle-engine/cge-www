@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.18.5] - 2024-09-06
+### Changed
+- Updated package dependencies. [#39253]
+
+### Fixed
+- Ensure that request body is parsed correctly [#39262]
+
+## [0.18.4] - 2024-08-26
+### Changed
+- Updated package dependencies. [#39004]
+
+## [0.18.3] - 2024-08-19
+### Changed
+- Internal updates.
+
+## [0.18.2] - 2024-08-15
+### Fixed
+- Fix incorrect next-version tokens in php `@since` and/or `@deprecated` docs. [#38869]
+
 ## [0.18.1] - 2024-08-08
 ### Security
 - Parse request body when method used is not POST [#38621]
@@ -347,6 +366,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Core: do not ship .phpcs.dir.xml in production builds.
 
+[0.18.5]: https://github.com/Automattic/jetpack-waf/compare/v0.18.4...v0.18.5
+[0.18.4]: https://github.com/Automattic/jetpack-waf/compare/v0.18.3...v0.18.4
+[0.18.3]: https://github.com/Automattic/jetpack-waf/compare/v0.18.2...v0.18.3
+[0.18.2]: https://github.com/Automattic/jetpack-waf/compare/v0.18.1...v0.18.2
 [0.18.1]: https://github.com/Automattic/jetpack-waf/compare/v0.18.0...v0.18.1
 [0.18.0]: https://github.com/Automattic/jetpack-waf/compare/v0.17.0...v0.18.0
 [0.17.0]: https://github.com/Automattic/jetpack-waf/compare/v0.16.10...v0.17.0

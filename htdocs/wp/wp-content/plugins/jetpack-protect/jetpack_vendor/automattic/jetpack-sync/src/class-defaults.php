@@ -356,6 +356,7 @@ class Defaults {
 		'wp_version'                        => array( 'Automattic\\Jetpack\\Sync\\Functions', 'wp_version' ),
 		'active_modules'                    => array( 'Automattic\\Jetpack\\Sync\\Functions', 'get_active_modules' ),
 		'jetpack_connection_active_plugins' => array( 'Automattic\\Jetpack\\Sync\\Functions', 'get_jetpack_connection_active_plugins' ),
+		'jetpack_sync_active_modules'       => array( 'Automattic\\Jetpack\\Sync\\Functions', 'get_jetpack_sync_active_modules' ),
 	);
 
 	/**
@@ -781,6 +782,7 @@ class Defaults {
 		'videopress_guid',
 		'vimeo_poster_image',
 		'_jetpack_blogging_prompt_key',
+		'footnotes', // Core footnotes block
 	);
 
 	/**
