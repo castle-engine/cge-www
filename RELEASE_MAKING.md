@@ -109,9 +109,12 @@
 - Update the webpage:
   - Update versions in .adoc:
 
-    - section names like `Download (version 2.1.0)`
-    - usage of `cge::download-application`
-    - for engine, usage of `cge::download-engine`
+    - for applications
+      - section names like `Download (version 2.1.0)`
+      - usage of `cge::download-application`
+    - for engine
+      - link to GitHub release, either `snapshot` or `latest`, in htdocs/doc/download.adoc
+      - usage of `cge::download-engine` in htdocs/doc/download.adoc
 
     Note: If you changed something outside of ADOC, that affects HTML generation,
     do (on server) `touch xxx.adoc` to force regeneration of given page.
