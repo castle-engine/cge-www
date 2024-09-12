@@ -8,7 +8,7 @@ include::common.adoc[]
 cge::download-engine[7.0-alpha.3.snapshot,snapshot]
 // cge ::download-engine[7.0-alpha.3,v7.0-alpha.3]
 
-NOTE: To build applications using the engine you also need to install a _compiler_. The _Windows_ and _Linux_ downloads already contain the latest stable version of https://www.freepascal.org/[FPC], so you can build and run projects out-of-the-box. If you want more, read link:install[the manual about installation].
+NOTE: To build applications using the engine you also need to install a _compiler_. The _Windows_ and _Linux_ downloads already contain the latest stable version of https://www.freepascal.org/[FPC], so you can build and run projects out-of-the-box. For more information and options, see link:install[the manual about installation].
 
 NOTE: Linux downloads require GLIBC >= 2.34. This should be OK on any modern Linux distribution. If you have https://www.debian.org/releases/oldstable/[Debian 11 (oldstable, bullseye)] you have to upgrade to at least https://www.debian.org/releases/stable/[Debian 12 (stable, bookworm)]. Or link:compiling_from_source.php[compile CGE from sources] to link to your current GLIBC. We plan to distribute the engine also as https://snapcraft.io/[snap package] in the future.
 
@@ -16,7 +16,10 @@ NOTE: Linux downloads require GLIBC >= 2.34. This should be OK on any modern Lin
 
 === GitHub releases with more variants (like downloads not bundled with FPC)
 
-More downloads are available on https://github.com/castle-engine/castle-engine/releases/latest . They contain:
+More downloads are available on
+//https://github.com/castle-engine/castle-engine/releases/latest
+https://github.com/castle-engine/castle-engine/releases/snapshot
+. They contain:
 
 - Alternative "non-bundled" versions for some platforms (without the `-bundle` in zip name). Use them if you want to install the Pascal compiler (like https://www.freepascal.org/[FPC] or https://www.embarcadero.com/products/Delphi[Delphi]) yourself. Remember to point CGE to your compiler using the _"Preferences"_ editor window.
 
