@@ -11,7 +11,10 @@ This pages collects _some_ materials from them.
 
 * _10-11 October 2024_: *Upcoming* presentation at https://www.blaisepascalmagazine.eu/en/fpc-lazarus-meeting-2024-info/[FPC and Lazarus event in Cologne (Köln)]. See https://castle-engine.io/wp/2024/08/10/conferences-register-for-my-upcoming-talk-at-dev-days-of-summer-august-2024-catch-me-in-cologne-october-2024-watch-my-past-talk-from-itdevcon-2023/[details here].
 
-* _21 August 2024_: *Upcoming* presentation at https://www.codegear.com/DevDaysofSummer/[Dev Days of Summer 2024].
+* _21st August 2024_: Presentation at https://www.codegear.com/DevDaysofSummer/[Dev Days of Summer 2024]:
+** https://www.youtube.com/watch?v=xvAmuPD4PrU[Watch replay of the presentation]
+** https://github.com/castle-engine/conference-dev-days-summer-2024/[Sample project]
+** https://castle-engine.io/dev-days-summer-2024-slides[Presentaion slides]
 
 * _6th April 2024_: https://www.blaisepascalmagazine.eu/en/international-lazarus-conference-in-holland-april-2024/[Pascal Cafe 2024]. I made a presentation introducing _Castle Game Engine_ and then discussing some details about mobile (link:android[Android] and link:ios[iOS]) development with CGE.
 ** https://castle-engine.io/pascalcafe2024[Presentation slides]
