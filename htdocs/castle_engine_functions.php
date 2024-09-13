@@ -566,6 +566,8 @@ $castle_sitemap = array(
           'itdevcon2023-1' => array('title' => 'Slides from ITDevCon 2023, 1', 'url' => 'https://castle-engine.io/itdevcon2023/slides1'),
           'itdevcon2023-2' => array('title' => 'Slides from ITDevCon 2023, 2', 'url' => 'https://castle-engine.io/itdevcon2023/slides2'),
           'pascalcafe2024' => array('title' => 'Slides from Pascal Cafe 2024', 'url' => 'https://castle-engine.io/pascalcafe2024'),
+          'highlights-slides' => array('title' => 'Slides highlighting engine features 2024', 'url' => 'https://castle-engine.io/highlights-slides'),
+          'dev-days-summer-2024-slides' => array('title' => 'Slides for Dev Days of Summer 2024', 'url' => 'https://castle-engine.io/dev-days-summer-2024-slides'),
         )
       ),
     ),

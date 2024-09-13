@@ -199,6 +199,7 @@ Redirect "/vrml_x3d.php" "/x3d"
 Redirect "/new_features_in_castle_game_engine_7.0" "/release"
 Redirect "/dev-days-summer-2024-slides" "https://docs.google.com/presentation/d/1YccCVc3fq_NRT7N2hB7ZcOmEgFfc6y0XqWUlJa_N_C4/pub?start=false&loop=false&delayms=3000"
 Redirect "/authoring-x3d-doc" "https://docs.google.com/document/d/1W2UrOJTU7Ra_aavOHXfZVFcLwYfl7pE1j0ZKO3ZcxoE/edit?usp=sharing"
+Redirect "/highlights-slides" "https://docs.google.com/presentation/d/19ChjO6lon4_EaVIXarbMTdmn-pR637BIAieawvZguBo/edit?usp=sharing"
 
 # This link is used at least by http://planetdev.freegamedev.net/ .
 #
