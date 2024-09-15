@@ -226,3 +226,8 @@ Have fun everyone and thank you for using the engine.
 * ITDevCon 2023 conference: https://castle-engine.io/itdevcon2023/slides1[Presentation (slides) from 1st talk, "Creating 3D games and applications using Castle Game Engine"], https://castle-engine.io/itdevcon2023/slides2[Presentation (slides) from 2nd talk, "Advanced Castle Game Engine: forms, 3D generation, shaders, customization"], https://github.com/castle-engine/conference-itdevcon-2023[Example projects].
 * More at https://castle-engine.io/conferences
 --
+
+
+== When Upgrading: Be Aware of Important Change to Lights Attenuation
+
+This release includes an important rendering bugfix, that unfortunately had to change the rendered look in some cases (because the previous look was really incorrect). See this news post for details -- what changed, why, how to adjust: https://castle-engine.io/wp/2024/09/14/important-rendering-bugfix-light-components-tcastlepointlight-and-tcastlespotlight-defaults-are-correctly-applied-now-look-realistic-out-of-the-box-but-also-look-a-bit-different-read-on-for-de/[Important rendering bugfix: Light components (TCastlePointLight and TCastleSpotLight) defaults are correctly applied now, look realistic out-of-the-box (but also, look a bit different – read on for details)].
