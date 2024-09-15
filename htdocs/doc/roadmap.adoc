@@ -723,16 +723,6 @@ So:
 2. When using threads, then we should use Delphi tasks (on Delphi), where possible. Only for FPC we'll need to duplicate subset of it (unless FPC will get the compatible implementation).
 ====
 
-### Improve automatic reloading of files (in editor) when they changed
-
-Automatic reloading (`CastleInternalFileMonitor`) now:
-
-* Doesn't capture changes to secondary files, e.g. to textures used in glTF file. We only watch the file indicated by TCastleScene.Url now.
-
-* When TCastleScene.Cache, the file will not be reloaded from disk correctly.
-
-* Not all components implement necessary watching logic. For now only TCastleSceneCore. All components should eventually do it, e.g. TCastleTiledMap, TCastleImageTransform, TCastleImageControl.
-
 [#ktx2]
 ### KTX 2.0 support
 
@@ -916,7 +906,7 @@ In general, cgeref:TCastleScene[] doesn't keep a centralized knowledge "all the 
 +
 Implementing this knowledge is a TODO, it would be good to have it. For auto-reloading, also for possible auto-detection of unused files in data. To expand on the latter idea: While we will probably always pack whole `data` to package (so it's like Unity `Assets/Resources`), it would be nice to have a button to allow to clean it manually ("list files in data that seem unused") or have a subdirectory in data (like `data/managed/`) where only used data is packaged.
 
-2. Caching right now sometimes "defeats" reloading. If something is in the cache and is referenced at least 2 times (e.g. there are 2 cgeref:TCastleImageTransform[] components referring to the same image), then reloading doesn't work.
+2. Caching right now sometimes "defeats" reloading. If something is in the cache and is referenced at least 2 times (e.g. there are 2 cgeref:TCastleImageTransform[] components referring to the same image or you use cgeref:TCastleScene.Cache[] and the same scene URL is loaded 2 times), then reloading doesn't work.
 +
 The underlying reason is that cache never "lets go" of the loaded resource, because always someone refers to it, even as cgeref:TCastleImageTransform[] is in the middle of cgeref:TCastleImageTransform.ReloadUrl[].
 +
