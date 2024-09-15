@@ -906,7 +906,7 @@ In general, cgeref:TCastleScene[] doesn't keep a centralized knowledge "all the 
 +
 Implementing this knowledge is a TODO, it would be good to have it. For auto-reloading, also for possible auto-detection of unused files in data. To expand on the latter idea: While we will probably always pack whole `data` to package (so it's like Unity `Assets/Resources`), it would be nice to have a button to allow to clean it manually ("list files in data that seem unused") or have a subdirectory in data (like `data/managed/`) where only used data is packaged.
 
-2. Caching right now sometimes "defeats" reloading. If something is in the cache and is referenced at least 2 times (e.g. there are 2 cgeref:TCastleImageTransform[] components referring to the same image or you use cgeref:TCastleScene.Cache[] and the same scene URL is loaded 2 times), then reloading doesn't work.
+2. Caching right now sometimes "defeats" reloading. If something is in the cache and is referenced at least 2 times (e.g. there are 2 cgeref:TCastleImageTransform[] components referring to the same image or you use cgeref:TCastleSceneCore.Cache[] and the same scene URL is loaded 2 times), then reloading doesn't work.
 +
 The underlying reason is that cache never "lets go" of the loaded resource, because always someone refers to it, even as cgeref:TCastleImageTransform[] is in the middle of cgeref:TCastleImageTransform.ReloadUrl[].
 +
