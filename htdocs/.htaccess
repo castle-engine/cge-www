@@ -226,6 +226,10 @@ Redirect "/kambi-php-lib/" "/castle-engine-website-base/"
 # in Firefox or wget causes redirect error.
 Redirect "/engine.php/creating_data_intro.php" "/"
 
+# Used from https://bbs.warensemble.com/?page=001-forum.ssjs&sub=fn-pascal&thread=86
+# (it's accidental wrong link, still we support it, to help bots)
+Redirect "/modern_pascal_introduction" "/modern_pascal"
+
 # PHP config -----------------------------------------------------------------
 
 php_value upload_max_filesize 64M
