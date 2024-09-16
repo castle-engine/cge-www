@@ -37,9 +37,11 @@ To do this:
 
 - New `Viewport.PointingDeviceHit` instead of `Viewport.MouseRayHit`, `Viewport.TransformUnderMouse`, that exposes physics ray-casting by default.
 
-- Make cgeref:TCastleSceneCore.PreciseCollisions[] always `true` in editor.
+This is started, things done:
 
-This is started -- past `Spatial` property is now both simplified (only `ssRendering,ssDynamicCollisions`, does not manage other structures) and private. Only cgeref:TCastleSceneCore.PreciseCollisions[] is public.
+- Past `Spatial` property is now both simplified (only `ssRendering,ssDynamicCollisions`, does not manage other structures) and private. Only cgeref:TCastleSceneCore.PreciseCollisions[] is public.
+
+- At design-time (in editor) we always behave as if cgeref:TCastleSceneCore.PreciseCollisions[] is `true` and this is good.
 
 [#steam]
 ### (IN PROGRESS) Steam integration, and engine available as Steam app
@@ -668,7 +670,7 @@ DrawableImage.Color := FColor;
 DrawableImage.CustomShader := FCustomShader;
 ----
 
-### (IN PROGRESS) Gamepads (joysticks) support
+### (IN PROGRESS) Better gamepads (joysticks) API
 
 Goal: Support modern gamepads (joysticks) with a nice API.
 
@@ -696,7 +698,7 @@ Buttons should have agnostic names, like _North_, _East_ etc. Avoid using names 
 - `TCastleInputAxis` (that is also already in progress) should allow to observe chosen gamepad axis (based on gamepad index, and choice horizontal/vertical, also choice of gamepad axis -- typical gamepads now have 2 axis). This is already a nice API to observe input that we want to have.
 --
 
-- examples/joystick/ should look better. Show a sketch of a gamepad -- and highlight the current axis used, button pressed.
+- `examples/joystick/` should look better. Show a sketch of a gamepad -- and highlight the current axis used, button pressed.
 
 ### Smart Tasks
 
