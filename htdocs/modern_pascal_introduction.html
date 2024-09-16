@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.20">
+<meta name="generator" content="Asciidoctor 2.0.23">
 <meta name="author" content="Michalis Kamburelis">
 <title>Modern Object Pascal Introduction for Programmers</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
@@ -141,7 +141,7 @@ p a>code:hover{color:rgba(0,0,0,.9)}
 #content::before{content:none}
 #header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
 #header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
-#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header>h1:only-child{border-bottom:1px solid #dddddf;padding-bottom:8px}
 #header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:flex;flex-flow:row wrap}
 #header .details span:first-child{margin-left:-.125em}
 #header .details span.email a{color:rgba(0,0,0,.85)}
@@ -163,6 +163,7 @@ p a>code:hover{color:rgba(0,0,0,.9)}
 #toctitle{color:#7a2518;font-size:1.2em}
 @media screen and (min-width:768px){#toctitle{font-size:1.375em}
 body.toc2{padding-left:15em;padding-right:0}
+body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
 #toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
 #toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
 #toc.toc2>ul{font-size:.9em;margin-bottom:0}
@@ -328,7 +329,7 @@ a.image{text-decoration:none;display:inline-block}
 a.image object{pointer-events:none}
 sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
 sup.footnote a,sup.footnoteref a{text-decoration:none}
-sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
+sup.footnote a:active,sup.footnoteref a:active,#footnotes .footnote a:first-of-type:active{text-decoration:underline}
 #footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
 #footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
 #footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
@@ -659,12 +660,11 @@ a.patreon-link:focus {
 </li>
 <li><a href="#_interfaces">10. Interfaces</a>
 <ul class="sectlevel2">
-<li><a href="#_bare_corba_interfaces">10.1. Bare (CORBA) interfaces</a></li>
-<li><a href="#_corba_and_com_types_of_interfaces">10.2. CORBA and COM types of interfaces</a></li>
-<li><a href="#_interfaces_guids">10.3. Interfaces GUIDs</a></li>
+<li><a href="#_interfaces_guids">10.1. Interfaces GUIDs</a></li>
+<li><a href="#_typecasting_interfaces">10.2. Typecasting interfaces</a></li>
+<li><a href="#_corba_and_com_types_of_interfaces">10.3. CORBA and COM types of interfaces</a></li>
 <li><a href="#_reference_counted_com_interfaces">10.4. Reference-counted (COM) interfaces</a></li>
 <li><a href="#_using_com_interfaces_with_reference_counting_disabled">10.5. Using COM interfaces with reference-counting disabled</a></li>
-<li><a href="#_typecasting_interfaces">10.6. Typecasting interfaces</a></li>
 </ul>
 </li>
 <li><a href="#_about_this_document">11. About this document</a></li>
@@ -5309,21 +5309,16 @@ The more general concept is <em>"type helper"</em>. Using them you can add metho
 <div class="sect1">
 <h2 id="_interfaces">10. Interfaces</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="_bare_corba_interfaces">10.1. Bare (CORBA) interfaces</h3>
 <div class="paragraph">
-<p><em>An interface</em> declares an API, much like a class, but it does not define the implementation. A class can implement many interfaces, but it can only have one ancestor class.</p>
+<p><em>An interface</em> declares an API, much like a class, but it does not define the implementation. A class can implement many interfaces, but it can only have one ancestor class. By convention, we start interface type names with letter <code>I</code>, like <code>IMyInterface</code>.</p>
 </div>
 <div class="paragraph">
-<p>You can cast a class to any interface it supports, and then <em>call the methods through that interface</em>. This allows to treat in a uniform fashion the classes that don&#8217;t descend from each other, but still share some common functionality. Useful when a simple class inheritance is not enough.</p>
-</div>
-<div class="paragraph">
-<p>The <em>CORBA interfaces</em> in Object Pascal work pretty much like interfaces in Java (<a href="https://docs.oracle.com/javase/tutorial/java/concepts/interface.html" class="bare">https://docs.oracle.com/javase/tutorial/java/concepts/interface.html</a>) or C# (<a href="https://msdn.microsoft.com/en-us/library/ms173156.aspx" class="bare">https://msdn.microsoft.com/en-us/library/ms173156.aspx</a>).</p>
+<p>You can cast a class to any interface it implements, and then <em>call the methods through that interface</em>. This allows to treat in a uniform fashion the classes that don&#8217;t descend from each other, but still share some common functionality. Useful when a simple class inheritance is not enough.</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
-<span class="preprocessor">{$interfaces corba}</span>
+<span class="preprocessor">{$interfaces corba}</span> <span class="comment">// See below why we recommend CORBA interfaces</span>
 
 <span class="keyword">uses</span>
   SysUtils, Classes;
@@ -5392,16 +5387,210 @@ The more general concept is <em>"type helper"</em>. Using them you can add metho
 <span class="keyword">end</span>.</code></pre>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_interfaces_guids">10.1. Interfaces GUIDs</h3>
+<div class="paragraph">
+<p>GUIDs are the seemingly random characters <code>['{ABCD1234-&#8230;&#8203;}']</code> that you see placed at every interface definition. Yes, they are just random. Unfortunately, they are necessary.</p>
+</div>
+<div class="paragraph">
+<p>The GUIDs have no meaning if you don&#8217;t plan on integrating with communication technologies like <em>COM</em>. But they are necessary, for implementation reasons. Don&#8217;t be fooled by the compiler, that unfortunately allows you to declare interfaces without GUIDs. Without the (unique) GUIDs, your interfaces will be treated equal by the <code>is</code> operator. In effect, it will return <code>true</code> if your class supports <em>any</em> of your interfaces. The magic function <code>Supports(ObjectInstance, IMyInterface)</code> behaves slightly better here, as it refuses to be compiled for interfaces without a GUID.</p>
+</div>
+<div class="paragraph">
+<p>To make inserting GUIDs easier, you can use <em>Lazarus</em> GUID generator (<code>Ctrl + Shift + G</code> shortcut in the editor). Alternatively, you can use <code>uuidgen</code> program on Unix or use an online service like <a href="https://www.guidgenerator.com/" class="bare">https://www.guidgenerator.com/</a> . Or you can write your own tool for this, using the <code>CreateGUID</code> and <code>GUIDToString</code> functions in RTL. See the example below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
+<span class="keyword">uses</span>
+  SysUtils;
+<span class="keyword">var</span>
+  MyGuid: TGUID;
+<span class="keyword">begin</span>
+  Randomize;
+  CreateGUID(MyGuid);
+  WriteLn(<span class="char"><span class="delimiter">'</span><span class="content">[</span><span class="delimiter">'</span></span><span class="string"><span class="delimiter">'</span><span class="delimiter">'</span></span> + GUIDToString(MyGuid) + <span class="string"><span class="delimiter">'</span><span class="char">''</span><span class="content">]</span><span class="delimiter">'</span></span>);
+<span class="keyword">end</span>.</code></pre>
+</div>
+</div>
 </div>
 <div class="sect2">
-<h3 id="_corba_and_com_types_of_interfaces">10.2. CORBA and COM types of interfaces</h3>
+<h3 id="_typecasting_interfaces">10.2. Typecasting interfaces</h3>
+<div class="paragraph">
+<p>Suppose we have a procedure with the following signature:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="keyword">procedure</span> UseThroughInterface(I: IMyInterface);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When calling it with a variable <code>InterfacedVariable</code> which is not exactly of type <code>IMyInterface</code>, we have to typecast. There are a couple of options to choose from:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Casting using the <code>as</code> operator:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="pascal">UseThroughInterface(InterfacedVariable <span class="keyword">as</span> IMyInterface);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If executed, it would make a run-time check and raise an exception if <code>InterfacedVariable</code> does not implement <code>IMyInterface</code>.</p>
+</div>
+<div class="paragraph">
+<p>Using <code>as</code> operator works consistently regardless if <code>InterfacedVarialbe</code> is declared as a class instance (like <code>TSomeClass</code>) or interface (like <code>ISomeInterface</code>). However, casting an interface to another interface this way is not allowed under <code>{$interfaces corba}</code> - we will cover that topic later.</p>
+</div>
+</li>
+<li>
+<p>Explicit typecasting:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="pascal">UseThroughInterface(IMyInterface(InterfacedVariable));</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Usually, such typecasting syntax indicates an <em>unsafe, unchecked</em> typecast. Bad things will happen if you cast to an incorrect interface. And that&#8217;s true, if you cast <em>a class to a class</em>, or <em>an interface to an interface</em>, using this syntax.</p>
+</div>
+<div class="paragraph">
+<p>There is a small exception here: if <code>InterfacedVariable</code> is declared as a class (like <code>TSomeClass</code>), then this is a typecast that must be valid at compile-time. So casting <em>a class to an interface</em> this way is a safe, fast (checked at compile-time) typecast.</p>
+</div>
+</li>
+<li>
+<p>Implicit typecasting:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="pascal">UseThroughInterface(InterfacedVariable);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this case, the typecast must be valid at compile-time. This will compile only if the type of <code>InterfacedVariable</code> (either class or an interface) is implementing <code>IMyInterface</code>.</p>
+</div>
+<div class="paragraph">
+<p>In essence, this typecast looks and works just like for regular classes. Wherever an instance of a class <code>TSomeClass</code> is required, you can always use there a variable that is declared with a class of <code>TSomeClass</code>, <strong>or <code>TSomeClass</code> descendant</strong>. The same rule applies to interfaces. No need for any explicit typecast in such situations.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>To test it all, play around with this example code:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
+
+<span class="comment">// {$interfaces corba} // note that &quot;as&quot; typecasts will not compile with CORBA interfaces</span>
+
+<span class="keyword">uses</span> Classes;
+
+<span class="keyword">type</span>
+  IMyInterface = <span class="keyword">interface</span>
+  [<span class="string"><span class="delimiter">'</span><span class="content">{7FC754BC-9CA7-4399-B947-D37DD30BA90A}</span><span class="delimiter">'</span></span>]
+    <span class="keyword">procedure</span> One;
+  <span class="keyword">end</span>;
+
+  IMyInterface2 = <span class="keyword">interface</span>(IMyInterface)
+  [<span class="string"><span class="delimiter">'</span><span class="content">{A72B7008-3F90-45C1-8F4C-E77C4302AA3E}</span><span class="delimiter">'</span></span>]
+    <span class="keyword">procedure</span> Two;
+  <span class="keyword">end</span>;
+
+  IMyInterface3 = <span class="keyword">interface</span>(IMyInterface2)
+  [<span class="string"><span class="delimiter">'</span><span class="content">{924BFB98-B049-4945-AF17-1DB08DB1C0C5}</span><span class="delimiter">'</span></span>]
+    <span class="keyword">procedure</span> Three;
+  <span class="keyword">end</span>;
+
+  TMyClass = <span class="keyword">class</span>(TComponent, IMyInterface)
+    <span class="keyword">procedure</span> One;
+  <span class="keyword">end</span>;
+
+  TMyClass2 = <span class="keyword">class</span>(TMyClass, IMyInterface, IMyInterface2)
+    <span class="keyword">procedure</span> One;
+    <span class="keyword">procedure</span> Two;
+  <span class="keyword">end</span>;
+
+<span class="keyword">procedure</span> TMyClass.One;
+<span class="keyword">begin</span>
+  Writeln(<span class="string"><span class="delimiter">'</span><span class="content">TMyClass.One</span><span class="delimiter">'</span></span>);
+<span class="keyword">end</span>;
+
+<span class="keyword">procedure</span> TMyClass2.One;
+<span class="keyword">begin</span>
+  Writeln(<span class="string"><span class="delimiter">'</span><span class="content">TMyClass2.One</span><span class="delimiter">'</span></span>);
+<span class="keyword">end</span>;
+
+<span class="keyword">procedure</span> TMyClass2.Two;
+<span class="keyword">begin</span>
+  Writeln(<span class="string"><span class="delimiter">'</span><span class="content">TMyClass2.Two</span><span class="delimiter">'</span></span>);
+<span class="keyword">end</span>;
+
+<span class="keyword">procedure</span> UseInterface2(<span class="keyword">const</span> I: IMyInterface2);
+<span class="keyword">begin</span>
+  I.One;
+  I.Two;
+<span class="keyword">end</span>;
+
+<span class="keyword">procedure</span> UseInterface3(<span class="keyword">const</span> I: IMyInterface3);
+<span class="keyword">begin</span>
+  I.One;
+  I.Two;
+  I.Three;
+<span class="keyword">end</span>;
+
+<span class="keyword">var</span>
+  MyInterface: IMyInterface;
+  MyClass: TMyClass;
+<span class="keyword">begin</span>
+  MyInterface := TMyClass2.Create(<span class="keyword">nil</span>);
+  MyClass := TMyClass2.Create(<span class="keyword">nil</span>);
+
+  <span class="comment">// This doesn't compile, since at compile-time it's unknown if My is IMyInterface2.</span>
+  <span class="comment">// UseInterface2(My);</span>
+  <span class="comment">// UseInterface2(MyClass);</span>
+
+  <span class="comment">// This compiles and works OK.</span>
+  UseInterface2(IMyInterface2(MyInterface));
+  <span class="comment">// This does not compile. Casting InterfaceType(ClassType) is checked at compile-time.</span>
+  <span class="comment">// UseInterface2(IMyInterface2(MyClass));</span>
+
+  <span class="comment">// This compiles and works OK.</span>
+  UseInterface2(MyInterface <span class="keyword">as</span> IMyInterface2);
+  <span class="comment">// This compiles and works OK.</span>
+  UseInterface2(MyClass <span class="keyword">as</span> IMyInterface2);
+
+  <span class="comment">// This compiles, but will fail at runtime, with ugly &quot;Access violation&quot;.</span>
+  <span class="comment">// UseInterface3(IMyInterface3(My));</span>
+  <span class="comment">// This does not compile. Casting InterfaceType(ClassType) is checked at compile-time.</span>
+  <span class="comment">// UseInterface3(IMyInterface3(MyClass));</span>
+
+  <span class="comment">// This compiles, but will fail at runtime, with nice &quot;EInvalidCast: Invalid type cast&quot;.</span>
+  <span class="comment">// UseInterface3(My as IMyInterface3);</span>
+  <span class="comment">// This compiles, but will fail at runtime, with nice &quot;EInvalidCast: Invalid type cast&quot;.</span>
+  <span class="comment">// UseInterface3(MyClass as IMyInterface3);</span>
+
+  Writeln(<span class="string"><span class="delimiter">'</span><span class="content">Finished</span><span class="delimiter">'</span></span>);
+<span class="keyword">end</span>.</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_corba_and_com_types_of_interfaces">10.3. CORBA and COM types of interfaces</h3>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">Why are the interfaces (presented above) called "CORBA"?</dt>
 <dd>
-<p>The name <strong>CORBA</strong> is unfortunate. A better name would be <strong>bare interfaces</strong>. These interfaces are a <em>"pure language feature"</em>. Use them when you want to cast various classes as the same interface, because they share a common API.</p>
+<p>Because these types of interfaces can be used together with the <em>CORBA (Common Object Request Broker Architecture) technology</em> (see <a href="https://en.wikipedia.org/wiki/Common_Object_Request_Broker_Architecture">wikipedia about CORBA</a>).</p>
 <div class="paragraph">
-<p>While these types of interfaces can be used together with the <em>CORBA (Common Object Request Broker Architecture) technology</em> (see <a href="https://en.wikipedia.org/wiki/Common_Object_Request_Broker_Architecture">wikipedia about CORBA</a>), they are <em>not</em> tied to this technology in any way.</p>
+<p>But they are <em>not really</em> tied to the CORBA technology.</p>
+</div>
+<div class="paragraph">
+<p>The name <strong>CORBA</strong> is perhaps unfortunate. A better name would be <strong>bare interfaces</strong>. The point of these interfaces is that they are a <em>"pure language feature"</em>. Use them when you want to cast various classes as the same interface, because they share a common API, and you don&#8217;t want other features (life reference-counting or COM integration).</p>
+</div>
+</dd>
+<dt class="hdlist1">How do these compare with other programming languages?</dt>
+<dd>
+<p>The <em>CORBA interfaces</em> in Object Pascal work pretty much like interfaces in Java (<a href="https://docs.oracle.com/javase/tutorial/java/concepts/interface.html" class="bare">https://docs.oracle.com/javase/tutorial/java/concepts/interface.html</a>) or C# (<a href="https://msdn.microsoft.com/en-us/library/ms173156.aspx" class="bare">https://msdn.microsoft.com/en-us/library/ms173156.aspx</a>).</p>
+<div class="paragraph">
+<p>Although Java and C# languages have <em>garbage collection</em>, so comparison is somewhat flawed, regardless if you compare with CORBA or COM interfaces. In our experience, the CORBA interfaces in Pascal are similar to Java and C# interfaces <em>in the way they are used</em>. That is, you use CORBA interfaces when you <em>want unrelated (not descending from each other) classes to share a common API</em> and you don&#8217;t want anything else to change.</p>
 </div>
 </dd>
 <dt class="hdlist1">Is the <code>{$interfaces corba}</code> declaration needed?</dt>
@@ -5484,38 +5673,6 @@ you create <em>COM interfaces</em>. This can be stated explicitly by saying <cod
 <p>Yeah. Just add <code>_AddRef</code> / <code>_ReleaseRef</code> methods. There&#8217;s no need to descend from the <code>IUnknown</code> interface. Although in most cases, if you want reference-counting with your interfaces, you may as well just use COM interfaces.</p>
 </dd>
 </dl>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_interfaces_guids">10.3. Interfaces GUIDs</h3>
-<div class="paragraph">
-<p>GUIDs are the seemingly random characters <code>['{ABCD1234-&#8230;&#8203;}']</code> that you see placed at every interface definition. Yes, they are just random. Unfortunately, they are necessary.</p>
-</div>
-<div class="paragraph">
-<p>The GUIDs have no meaning if you don&#8217;t plan on integrating with communication technologies like <em>COM</em> nor <em>CORBA</em>. But they are necessary, for implementation reasons. Don&#8217;t be fooled by the compiler, that unfortunately allows you to declare interfaces without GUIDs.</p>
-</div>
-<div class="paragraph">
-<p>Without the (unique) GUIDs, your interfaces will be treated equal by the <code>is</code> operator. In effect, it will return <code>true</code> if your class supports <em>any</em> of your interfaces. The magic function <code>Supports(ObjectInstance, IMyInterface)</code> behaves slightly better here, as it refuses to be compiled for interfaces without a GUID. This is true for both CORBA and COM interfaces, as of FPC 3.0.0.</p>
-</div>
-<div class="paragraph">
-<p>So, to be on the safe side, you should always declare a GUID for your interface. You can use <em>Lazarus</em> GUID generator (<code>Ctrl + Shift + G</code> shortcut in the editor). Or you can use an online service like <a href="https://www.guidgenerator.com/" class="bare">https://www.guidgenerator.com/</a> .</p>
-</div>
-<div class="paragraph">
-<p>Or you can write your own tool for this, using the <code>CreateGUID</code> and <code>GUIDToString</code> functions in RTL. See the example below:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
-<span class="keyword">uses</span>
-  SysUtils;
-<span class="keyword">var</span>
-  MyGuid: TGUID;
-<span class="keyword">begin</span>
-  Randomize;
-  CreateGUID(MyGuid);
-  WriteLn(<span class="char"><span class="delimiter">'</span><span class="content">[</span><span class="delimiter">'</span></span><span class="string"><span class="delimiter">'</span><span class="delimiter">'</span></span> + GUIDToString(MyGuid) + <span class="string"><span class="delimiter">'</span><span class="char">''</span><span class="content">]</span><span class="delimiter">'</span></span>);
-<span class="keyword">end</span>.</code></pre>
-</div>
 </div>
 </div>
 <div class="sect2">
@@ -5742,160 +5899,6 @@ you create <em>COM interfaces</em>. This can be stated explicitly by saying <cod
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_typecasting_interfaces">10.6. Typecasting interfaces</h3>
-<div class="paragraph">
-<p>This section applies to both <em>CORBA</em> and <em>COM</em> interfaces (however, it has some explicit exceptions for CORBA).</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Casting to an interface type using the <code>as</code> operator makes a check at run-time. Consider this code:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal">UseThroughInterface(Cx <span class="keyword">as</span> IMyInterface);</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>It works for all <code>C1</code>, <code>C2</code>, <code>C3</code> instances in the examples in previous sections. If executed, it would make a run-time error in case of <code>C3</code>, that does not implement <code>IMyInterface</code>.</p>
-</div>
-<div class="paragraph">
-<p>Using <code>as</code> operator works consistently regardless if <code>Cx</code> is declared as a class instance (like <code>TMyClass2</code>) or interface (like <code>IMyInterface2</code>).</p>
-</div>
-<div class="paragraph">
-<p>However, it is not allowed for CORBA interfaces.</p>
-</div>
-</li>
-<li>
-<p>You can instead cast the instance as an interface implicitly:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal">UseThroughInterface(Cx);</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>In this case, the typecast must be valid at compile-time. So this will compile for <code>C1</code> and <code>C2</code> (that are declared as classes that implement <code>IMyInterface</code>). But it will not compile for <code>C3</code>.</p>
-</div>
-<div class="paragraph">
-<p>In essence, this typecast looks and works just like for regular classes. Wherever an instance of a class <code>TMyClass</code> is required, you can always use there a variable that is declared with a class of <code>TMyClass</code>, <strong>or <code>TMyClass</code> descendant</strong>. The same rule applies to interfaces. No need for any explicit typecast in such situations.</p>
-</div>
-</li>
-<li>
-<p>You can also typecast using <code>IMyInterface(Cx)</code>. Like this:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal">UseThroughInterface(IMyInterface(Cx));</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Usually, such typecasting syntax indicates an <em>unsafe, unchecked</em> typecast. Bad things will happen if you cast to an incorrect interface. And that&#8217;s true, if you cast <em>a class to a class</em>, or <em>an interface to an interface</em>, using this syntax.</p>
-</div>
-<div class="paragraph">
-<p>There is a small exception here: if <code>Cx</code> is declared as a class (like <code>TMyClass2</code>), then this is a typecast that must be valid at compile-time. So casting <em>a class to an interface</em> this way is a safe, fast (checked at compile-time) typecast.</p>
-</div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>To test it all, play around with this example code:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
-
-<span class="comment">// {$interfaces corba} // note that &quot;as&quot; typecasts for CORBA will not compile</span>
-
-<span class="keyword">uses</span> Classes;
-
-<span class="keyword">type</span>
-  IMyInterface = <span class="keyword">interface</span>
-  [<span class="string"><span class="delimiter">'</span><span class="content">{7FC754BC-9CA7-4399-B947-D37DD30BA90A}</span><span class="delimiter">'</span></span>]
-    <span class="keyword">procedure</span> One;
-  <span class="keyword">end</span>;
-
-  IMyInterface2 = <span class="keyword">interface</span>(IMyInterface)
-  [<span class="string"><span class="delimiter">'</span><span class="content">{A72B7008-3F90-45C1-8F4C-E77C4302AA3E}</span><span class="delimiter">'</span></span>]
-    <span class="keyword">procedure</span> Two;
-  <span class="keyword">end</span>;
-
-  IMyInterface3 = <span class="keyword">interface</span>(IMyInterface2)
-  [<span class="string"><span class="delimiter">'</span><span class="content">{924BFB98-B049-4945-AF17-1DB08DB1C0C5}</span><span class="delimiter">'</span></span>]
-    <span class="keyword">procedure</span> Three;
-  <span class="keyword">end</span>;
-
-  TMyClass = <span class="keyword">class</span>(TComponent, IMyInterface)
-    <span class="keyword">procedure</span> One;
-  <span class="keyword">end</span>;
-
-  TMyClass2 = <span class="keyword">class</span>(TMyClass, IMyInterface, IMyInterface2)
-    <span class="keyword">procedure</span> One;
-    <span class="keyword">procedure</span> Two;
-  <span class="keyword">end</span>;
-
-<span class="keyword">procedure</span> TMyClass.One;
-<span class="keyword">begin</span>
-  Writeln(<span class="string"><span class="delimiter">'</span><span class="content">TMyClass.One</span><span class="delimiter">'</span></span>);
-<span class="keyword">end</span>;
-
-<span class="keyword">procedure</span> TMyClass2.One;
-<span class="keyword">begin</span>
-  Writeln(<span class="string"><span class="delimiter">'</span><span class="content">TMyClass2.One</span><span class="delimiter">'</span></span>);
-<span class="keyword">end</span>;
-
-<span class="keyword">procedure</span> TMyClass2.Two;
-<span class="keyword">begin</span>
-  Writeln(<span class="string"><span class="delimiter">'</span><span class="content">TMyClass2.Two</span><span class="delimiter">'</span></span>);
-<span class="keyword">end</span>;
-
-<span class="keyword">procedure</span> UseInterface2(<span class="keyword">const</span> I: IMyInterface2);
-<span class="keyword">begin</span>
-  I.One;
-  I.Two;
-<span class="keyword">end</span>;
-
-<span class="keyword">procedure</span> UseInterface3(<span class="keyword">const</span> I: IMyInterface3);
-<span class="keyword">begin</span>
-  I.One;
-  I.Two;
-  I.Three;
-<span class="keyword">end</span>;
-
-<span class="keyword">var</span>
-  My: IMyInterface;
-  MyClass: TMyClass;
-<span class="keyword">begin</span>
-  My := TMyClass2.Create(<span class="keyword">nil</span>);
-  MyClass := TMyClass2.Create(<span class="keyword">nil</span>);
-
-  <span class="comment">// This doesn't compile, since at compile-time it's unknown if My is IMyInterface2.</span>
-  <span class="comment">// UseInterface2(My);</span>
-  <span class="comment">// UseInterface2(MyClass);</span>
-
-  <span class="comment">// This compiles and works OK.</span>
-  UseInterface2(IMyInterface2(My));
-  <span class="comment">// This does not compile. Casting InterfaceType(ClassType) is checked at compile-time.</span>
-  <span class="comment">// UseInterface2(IMyInterface2(MyClass));</span>
-
-  <span class="comment">// This compiles and works OK.</span>
-  UseInterface2(My <span class="keyword">as</span> IMyInterface2);
-  <span class="comment">// This compiles and works OK.</span>
-  UseInterface2(MyClass <span class="keyword">as</span> IMyInterface2);
-
-  <span class="comment">// This compiles, but will fail at runtime, with ugly &quot;Access violation&quot;.</span>
-  <span class="comment">// UseInterface3(IMyInterface3(My));</span>
-  <span class="comment">// This does not compile. Casting InterfaceType(ClassType) is checked at compile-time.</span>
-  <span class="comment">// UseInterface3(IMyInterface3(MyClass));</span>
-
-  <span class="comment">// This compiles, but will fail at runtime, with nice &quot;EInvalidCast: Invalid type cast&quot;.</span>
-  <span class="comment">// UseInterface3(My as IMyInterface3);</span>
-  <span class="comment">// This compiles, but will fail at runtime, with nice &quot;EInvalidCast: Invalid type cast&quot;.</span>
-  <span class="comment">// UseInterface3(MyClass as IMyInterface3);</span>
-
-  Writeln(<span class="string"><span class="delimiter">'</span><span class="content">Finished</span><span class="delimiter">'</span></span>);
-<span class="keyword">end</span>.</code></pre>
-</div>
-</div>
-</div>
 </div>
 </div>
 <div class="sect1">
@@ -5928,7 +5931,7 @@ you create <em>COM interfaces</em>. This can be stated explicitly by saying <cod
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-07-30 15:34:19 +0200
+Last updated 2024-09-16 15:26:58 +0200
 </div>
 </div>
 <!-- Google analytics -->
