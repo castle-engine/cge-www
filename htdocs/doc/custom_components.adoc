@@ -346,7 +346,8 @@ begin
 
   FCenter := Vector3(1, 2, 3); // default value of Center
 
-  FCenterPersistent := TCastleVector3Persistent.Create;
+  FCenterPersistent := TCastleVector3Persistent.Create(nil);
+  FCenterPersistent.SetSubComponent(true);
   FCenterPersistent.InternalGetValue := {$ifdef FPC}@{$endif} GetCenterForPersistent;
   FCenterPersistent.InternalSetValue := {$ifdef FPC}@{$endif} SetCenterForPersistent;
   FCenterPersistent.InternalDefaultValue := Center; // current value is default
