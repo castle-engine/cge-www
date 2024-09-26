@@ -416,13 +416,6 @@ Look great:
 
 This *may* be even better than direct Vulkan port. We shall see. On one hand, this provides more possibilities than just Vulkan (e.g. direct Metal renderer). And it may be easier to use than Vulkan. OTOH, it will not allow to squeeze "every last bit of performance from Vulkan" (though we really don't need that in CGE in the first place; there are lots of optimizations on the table in CGE before it's worth even thinking about low-level Vulkan optimizations).
 
-[#distance_field_fonts]
-### (IN PROGRESS) Distance field fonts
-
-See link:https://libgdx.com/wiki/graphics/2d/fonts/distance-field-fonts[about Distance field fonts]. See code from link:https://github.com/neurolabusc/OpenGLCoreTutorials[Chris Rorden] showing how to do it in Lazarus.
-
-In review: PR: https://github.com/castle-engine/castle-engine/pull/504 .
-
 ### Mobile: Wireframe on OpenGLES
 
 Since `glPolygonMode` is not available at all on OpenGLES, we need to be able to generate wireframe geometry arrays on CPU, adding a "wireframe" option to `CastleArraysGenerator` that will generate a different (line) primitive for TGeometryArrays. Then the renderer can use such TGeometryArrays for OpenGLES.
