@@ -13,7 +13,7 @@
 		"automattic/jetpack-changelogger": "^4.2.6",
 		"automattic/jetpack-connection": "@dev",
 		"automattic/jetpack-plans": "@dev",
-		"automattic/jetpack-ip": "^0.2.3"
+		"automattic/jetpack-ip": "^0.3.0"
 	},
 	"suggest": {
 		"automattic/jetpack-autoloader": "Allow for better interoperability with other plugins that use this package."
@@ -40,7 +40,7 @@
 			"link-template": "https://github.com/Automattic/jetpack-status/compare/v${old}...v${new}"
 		},
 		"branch-alias": {
-			"dev-trunk": "3.3.x-dev"
+			"dev-trunk": "4.0.x-dev"
 		},
 		"dependencies": {
 			"test-only": [
