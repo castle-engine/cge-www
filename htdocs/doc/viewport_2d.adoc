@@ -33,8 +33,8 @@ This creates a viewport with 2D navigation, 2D orthographic camera, and adds a d
 - Y goes up,
 
 - Z axis is "depth". Camera looks in the -Z direction. Larger Z means that object is closer to the camera (_in front_ of other objects), smaller Z means that it is further from the camera (_behind_ other objects). Is it OK to use negative Z values.
-+
-NOTE: For 2D objects will blending, you may (for now) need to sort the hierarchy after setting their Z, using _"Viewport -> Sort Items For Correct 2D Blending"_.
+
+Blending should automatically work for 2D viewports, see link:blending[blending] for details. In short, you can use partial transparency in your images, and it will work correctly in 2D viewports.
 
 ## Navigation in 2D
 

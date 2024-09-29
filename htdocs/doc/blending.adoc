@@ -132,9 +132,9 @@ Moreover, the following 2 sorting options are available but _deprecated_. Most c
 ////
 ==== Manually doing sorting
 
-An alternative to using cgeref:TCastleViewport.BlendingSort[] is to sort manually by an explicit call to a method cgeref:TCastleTransform.SortBackToFront2D[Viewport.Items.SortBackToFront2D] or more general cgeref:TCastleTransform.SortBackToFront[Viewport.Items.SortBackToFront].
+An alternative to using cgeref:TCastleViewport.BlendingSort[] is to sort manually by ... (methods no longer available in the engine).
 
-You can also do it at design-time, from the CGE editor, using the _"Viewport -> Sort Items For Correct 2D Blending"_ menu item.
+You can also do it at design-time, from the CGE editor, using the _"Viewport -> Sort Items For Correct 2D Blending"_ menu item (no longer available in the engine).
 
 The drawback is that you have to do it often enough.
 
