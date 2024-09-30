@@ -980,7 +980,9 @@ We shall be able to remove then:
 - Generator in `tools/internal/generate-persistent-vectors/`
 - Complicated explanation about it in link:custom_components[Custom components] documentation.
 
-### Options to deal with resources (like textures) when saving
+### IN PROGRESS: Options to deal with resources (like textures) when saving
+
+PR: https://github.com/castle-engine/castle-engine/pull/636
 
 There are a few useful options we could offer for saving, from all cases (from "Data -> Export to X3D, STL..." in editor, from https://castle-engine.io/castle-model-viewer , from https://castle-engine.io/castle-model-converter ):
 
@@ -989,3 +991,43 @@ There are a few useful options we could offer for saving, from all cases (from "
 - or copy all resources to the target directory (this could be similar to an option offered by Blender -> glTF exporter, it can also copy textures on save).
 
 The term "resources" means here everything -- other files referred to be `Inline` nodes, textures, audio files, shader files etc.
+
+### Python integration
+
+We want to allow using Python to develop _Castle Game Engine_ games.
+
+Two use-cases are important:
+
+1. Use Python just for adding some behaviors.
++
+This means implementing a class like `TCastlePythonBehavior` with `PythonCode: TStringList` that descends from link:behaviors[TCastleBehavior] and allows to write Python code that can be executed at both design-time and run-time. This code should have access to all CGE API.
++
+The main advantage here is that, in contrast to implementing link:behaviors[TCastleBehavior] in Pascal, Python code can run at design-time. The practical advantages of it:
++
+--
+- You don't need to rebuild the editor to change the `published` properties of the Python behavior in the editor's object inspector, so the workflow is a bit faster than using link:custom_components[custom Pascal components in editor]. (Python doesn't have `published` but we'll invent equivalent mechanism).
+
+- You can test the execution in editor's _"Play Simulation"_ mode (now only used to test physics). You can quickly iterate on some code, by just using _"Play Simulation"_ from editor, and editing the Python code in the editor.
+--
++
+Overall, this approach should be useful for everyone, including Pascal developers. You don't resign from coding in Pascal, you just move some logic to Python. For some behaviors you lose some advantages of Pascal (type-safety checked at compile-time) but you gain some advantages of Python as a scripting language (you can iterate on some ideas faster, test them in editor).
+
+2. Write the whole game in Python.
++
+This means you write the whole game code in Python. In particular, view's code is in Python, so e.g. you have a design `gameviewmain.castle-user-interface` and a corresponding Python code in `gameviewmain.py`. The Python code defines `ViewMain` class.
++
+This makes our engine available for Python developers. We get an additional crowd of people interested in our engine. To be clear, you can still mix Python with Pascal code, but the main use-case is here for people who want to write the whole game in Python.
+
+Why?
+
+- Choosing Python is enticing. It's very popular. It does not have a game engine like CGE, from what we can tell (comfortable editor, powerful 3D and 2D, open-source). What we offer may be very attractive to Python developers.
+
+- We have https://github.com/pyscripter/python4delphi . Very active, tested by both Delphi and FPC users.
+
+- This idea was somewhat validated at https://castle-engine.io/wp/2023/07/08/international-pascal-congress-my-presentation-slides-various-positive-thoughts-about-pascal-both-fpc-and-delphi-bright-future-and-why-you-should-use-pascal/[2023 conference in Salamanca]. Namely, Embarcadero tries to do similar with FMX - offer it as library for Python devs.
+
+To be clear, this doesn't preclude integration with other scripting languages. Other reasonable choices exist and we welcome work on integrating them:
+
+- _Lua_ is a popular choice in gamedev. One can implement something like `TCastleLuaBehavior` that allows to paste LUA scripts that interact with CGE.
+
+- https://en.wikipedia.org/wiki/Pascal_Script[Pascal Script] is a natural choice for us. And it would bring us the benefits of "it can run at design-time" while staying within the same (well, similar) programming language.
