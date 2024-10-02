@@ -101,7 +101,9 @@ Steam := TCastleSteam.Create(AppId);
 
 == Steam application id in our example application
 
-The example on https://github.com/castle-engine/castle-engine/tree/castle-steam/examples/steam[examples/steam] by default uses application id of https://partner.steamgames.com/doc/sdk/api/example[SteamWorks game example: SpaceWar]. Note that using this example will add this game to your Steam library.
+The example on https://github.com/castle-engine/castle-engine/tree/castle-steam/examples/steam[examples/steam] by default uses application id of https://partner.steamgames.com/doc/sdk/api/example[SteamWorks game example: SpaceWar].
+
+NOTE: Using this example will add this game to your Steam library. If you run it for the 1st time, you may not see the achievements -- just close and run the 2nd time. This seems to be just a quirk of this test game and the way Steam automatically adds it to your library. Things are smooth for a real game that you own before you run.
 
 However, you can edit this example to use your own application id. You will have it once you have created your own application on Steam. The application id is specified in 2 places, be sure to change them both:
 
@@ -148,9 +150,9 @@ This is a nice way when you want to distribute your game as a ZIP file but you w
 
 - Windows / x86_64
 - Windows / i386
-- Linux / x86_64 - TODO: not tested
-- Linux / i386 - TODO: not tested
-- macOS - TODO
+- Linux / x86_64
+- Linux / i386 (TODO: not tested)
+- macOS - TODO: test and finish
 
 Other platforms are not supported by Steam. In particular, _Linux / Arm_, _Linux / Aarch64_ (Raspberry Pi) -- Steam is not available there, there's no dynamic library for them.
 
