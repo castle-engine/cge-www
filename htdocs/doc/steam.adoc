@@ -84,20 +84,28 @@ As an example, see https://github.com/castle-engine/castle-engine/blob/castle-st
 
 // TODO: make API docs available
 
-Use the unit cgeref:CastleSteam[] and class cgeref:TCastleSteam[] for all the features.
+Use the unit cgeref:CastleSteam[] and class cgeref:TCastleSteam[] for all the features. The typical usage goes like this:
 
-1. Create an instance of cgeref:TCastleSteam[] class, like this:
+. Define an instance of a cgeref:TCastleSteam[] class.
++
+We recommend to do this in a dedicated new unit in your project, like `GameSteam`. Later you may put there other useful things related to the Steam integration (like constants for application id, achievement names etc.)
++
+See the https://github.com/castle-engine/castle-engine/blob/castle-steam/examples/steam/code/gamesteam.pas[examples/steam/code/gamesteam.pas] for a working example.
+
+. Create an instance of cgeref:TCastleSteam[] class, like this:
 +
 [source,pascal]
 ----
 Steam := TCastleSteam.Create(AppId);
 ----
++
+We recommend to do this along with the rest of your game initialization, in the callback you provided to the `Application.OnInitialize`. See https://github.com/castle-engine/castle-engine/blob/castle-steam/examples/steam/code/gameinitialize.pas[examples/steam/code/gameinitialize.pas]. But in principle, you can create it at any time.
 
-2. Right after the constructor you can check if everything is OK (in particular, we found Steam dynamic library) by checking cgeref:TCastleSteam.Enabled[].
+. Right after the constructor you can check if everything is OK (in particular, we found Steam dynamic library) by checking cgeref:TCastleSteam.Enabled[].
 
-3. If cgeref:TCastleSteam.Enabled[] is `true`, then some time after you should see the cgeref:TCastleSteam.Initialized[] change from `false` to `true`. You can observe this property e.g. in the `Update` method of your view or assign a callback to cgeref:TCastleSteam.OnInitialize[].
+. If cgeref:TCastleSteam.Enabled[] is `true`, then some time after you should see the cgeref:TCastleSteam.Initialized[] change from `false` to `true`. You can observe this property e.g. in the `Update` method of your view or assign a callback to cgeref:TCastleSteam.OnInitialize[].
 
-4. Once cgeref:TCastleSteam.Initialized[] is `true`, you're good to go. You can report achievements using cgeref:TCastleSteam.SetAchievement[].
+. Once cgeref:TCastleSteam.Initialized[] is `true`, you're good to go. You can report achievements using cgeref:TCastleSteam.SetAchievement[].
 
 == Steam application id in our example application
 
@@ -107,7 +115,7 @@ NOTE: Using this example will add this game to your Steam library. If you run it
 
 However, you can edit this example to use your own application id. You will have it once you have created your own application on Steam. The application id is specified in 2 places, be sure to change them both:
 
-1. `AppId` constant in the https://github.com/castle-engine/castle-engine/blob/castle-steam/examples/steam/code/gameinitialize.pas[GameInitialize] unit.
+1. `AppId` constant in the https://github.com/castle-engine/castle-engine/blob/castle-steam/examples/steam/code/gamesteam.pas[examples/steam/code/gamesteam.pas] unit.
 2. https://github.com/castle-engine/castle-engine/blob/castle-steam/examples/steam/steam_appid.txt[steam_appid.txt] file in the same directory as the executable.
 
 When testing with your own game, make sure that:
