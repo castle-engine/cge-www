@@ -369,6 +369,7 @@ $castle_sitemap = array(
           ),
           'manual_miscellaneous' => array('title' => 'Miscellaneous',
             'sub' => array(
+              'doc/steam' => array('title' => 'Steam'),
               'manual_up' => array('title' => 'Which way is up?'),
               'manual_transformation_hierarchy' => array('title' => 'Transformation hierarchy'),
               'doc/castlewindow_backends' => array('title' => 'CastleWindow Backends'),
