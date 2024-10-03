@@ -103,9 +103,9 @@ We recommend to do this along with the rest of your game initialization, in the 
 
 . Right after the constructor you can check if everything is OK (in particular, we found Steam dynamic library) by checking cgeref:TCastleSteam.Enabled[].
 
-. If cgeref:TCastleSteam.Enabled[] is `true`, then some time after you should see the cgeref:TCastleSteam.Initialized[] change from `false` to `true`. You can observe this property e.g. in the `Update` method of your view or assign a callback to cgeref:TCastleSteam.OnInitialize[].
+. If cgeref:TCastleSteam.Enabled[] is `true`, then some time after you should see the cgeref:TCastleSteam.UserStatsReceived[] change from `false` to `true`. You can observe this property e.g. in the `Update` method of your view or assign a callback to cgeref:TCastleSteam.OnUserStatsReceived[].
 
-. Once cgeref:TCastleSteam.Initialized[] is `true`, you're good to go. You can report achievements using cgeref:TCastleSteam.SetAchievement[].
+. Once cgeref:TCastleSteam.UserStatsReceived[] is `true`, you're good to go. You can report achievements using cgeref:TCastleSteam.SetAchievement[].
 
 == Steam application id in our example application
 
@@ -143,7 +143,7 @@ Details, how the game behaves:
 This even works if Steam is not *installed* (we tested this case on Windows). In this case, the game will *not* restart, and it will continue to work (without Steam integration of course).
 +
 This is a nice way when you want to distribute your game as a ZIP file but you want it to still integrate with Steam (e.g. report achievements), if only user has Steam.
-// TODO: What happens if user doesn't own Steam.
+// TODO: What happens if user doesn't own the app on Steam.
 --
 
 2. _Ways to run the game that should only be used during development_:
