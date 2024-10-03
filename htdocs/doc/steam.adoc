@@ -8,7 +8,10 @@ include::common.adoc[]
 // TODO: remove this warning
 WARNING: This page describes a work-in-progress. *The things documented below are not yet available in our official downloads*.
 
-Out-of-the-box our engine includes integration with https://store.steampowered.com/[Steam]. This allows you to use https://partner.steamgames.com/[Steamworks] API from Pascal code to e.g. report Steam achievements.
+Out-of-the-box our engine includes integration with https://store.steampowered.com/[Steam]. This allows you to use https://partner.steamgames.com/[Steamworks] API from Pascal code to
+
+- Use Steam achievements (list, get, set state).
+- Get some information from Steam (country, language, VR mode, Steam Deck, whether some DLC is installed).
 
 // TODO: do this.
 // TODO: mention Steam download also in download.adoc
