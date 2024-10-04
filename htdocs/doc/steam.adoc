@@ -88,8 +88,6 @@ As an example, see https://github.com/castle-engine/castle-engine/blob/master/ex
 
 == Using Steam integration from Pascal
 
-// TODO: make API docs available
-
 Use the unit cgeref:CastleSteam[] and class cgeref:TCastleSteam[] for all the features. The typical usage goes like this:
 
 . Define an instance of a cgeref:TCastleSteam[] class.
