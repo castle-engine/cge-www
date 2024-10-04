@@ -44,19 +44,11 @@ This is started, things done:
 - At design-time (in editor) we always behave as if cgeref:TCastleSceneCore.PreciseCollisions[] is `true` and this is good.
 
 [#steam]
-### (IN PROGRESS) Steam integration, and engine available as Steam app
+### (ALMOST DONE) Steam integration, and engine available as Steam app
 
-Official Steam integration in CGE.
+Integration with Steam done and rocks, https://castle-engine.io/steam .
 
-NOTE: We already used it for The Unholy Society, but we want to have better approach, without an intermediate "wrapper" library.
-
-We should also upload CGE as app to Steam.
-
-This is already in-progress:
-
-- branch: https://github.com/castle-engine/castle-engine/commits/castle-steam
-- PR (by Eugene Loza): https://github.com/castle-engine/castle-engine/pull/471
-- we also have a draft application on Steam for CGE
+TODO: Put engine on Steam as an app. We already have registered the application with Steam, and we have the app ID. We need to add achievements to CGE editor and submit it to Steam.
 
 ### (IN PROGRESS) Implement TCastleWalkAttack behavior, use for enemies in examples/fps_game and examples/creatures_behaviors
 
