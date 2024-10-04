@@ -6,5 +6,5 @@ define( 'JETPACK_WAF_SHARE_DATA', false );
 define( 'JETPACK_WAF_SHARE_DEBUG_DATA', false );
 define( 'JETPACK_WAF_DIR', '/home/michalis/cge-www/htdocs/wp/wp-content/jetpack-waf' );
 define( 'JETPACK_WAF_WPCONFIG', '/home/michalis/cge-www/htdocs/wp/wp-content/../wp-config.php' );
-require_once '/home/michalis/cge-www/htdocs/wp/wp-content/plugins/jetpack-protect/vendor/autoload.php';
+require_once '/home/michalis/cge-www/htdocs/wp/wp-content/plugins/jetpack/vendor/autoload.php';
 Automattic\Jetpack\Waf\Waf_Runner::initialize();

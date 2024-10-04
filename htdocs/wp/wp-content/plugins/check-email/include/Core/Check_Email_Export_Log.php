@@ -28,7 +28,7 @@ class Check_Email_Export_Log {
 	    	wp_die( -1 );
 	    }
 
-	    if ( !wp_verify_nonce( $_GET['ck_mail_export_nonce'], 'ck_mail_ajax_check_nonce' ) ){
+	    if ( !wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['ck_mail_export_nonce'] ) ), 'ck_mail_ajax_check_nonce' ) ){
        		wp_die( -1 );  
     	}
 
@@ -40,7 +40,7 @@ class Check_Email_Export_Log {
 		$file_name = 'email_logs.csv';
 
 		if(isset($_GET['export_type']) && !empty($_GET['export_type'])){
-			$file_format = sanitize_text_field($_GET['export_type']);
+			$file_format = sanitize_text_field( wp_unslash( $_GET['export_type'] ) );
 		}
 
 		switch($file_format){
@@ -79,17 +79,17 @@ class Check_Email_Export_Log {
 
 		$fields = array();
 		if(isset($_GET['common_information']) && is_array($_GET['common_information'])){
-			$fields = array_map('sanitize_text_field',$_GET['common_information']);
+			$fields = array_map('sanitize_text_field', wp_unslash($_GET['common_information']));
 		}
 
 		$status = 'All';
 		if(isset($_GET['export_status']) && !empty($_GET['export_status'])){
-			$status = sanitize_text_field($_GET['export_status']);
+			$status = sanitize_text_field( wp_unslash( $_GET['export_status'] ) );
 		}
 
 		$export_date = 'all';
 		if(isset($_GET['export_date']) && !empty($_GET['export_date'])){
-			$export_date = sanitize_text_field($_GET['export_date']);
+			$export_date = sanitize_text_field( wp_unslash( $_GET['export_date'] ) );
 		}
 
 		$from_date = gmdate('Y-m-d 00:00:00');
@@ -97,16 +97,16 @@ class Check_Email_Export_Log {
 
 		if($export_date == 'custom'){
 			if(isset($_GET['ck_mail_exp_from_date']) && !empty($_GET['ck_mail_exp_from_date'])){
-				$from_date = gmdate('Y-m-d 00:00:00', strtotime(sanitize_text_field($_GET['ck_mail_exp_from_date'])));	
+				$from_date = gmdate('Y-m-d 00:00:00', strtotime(sanitize_text_field( wp_unslash( $_GET['ck_mail_exp_from_date'] ) ) ) );	
 			}
 			if(isset($_GET['ck_mail_exp_to_date']) && !empty($_GET['ck_mail_exp_to_date'])){
-				$to_date = gmdate('Y-m-d 23:59:59', strtotime(sanitize_text_field($_GET['ck_mail_exp_to_date'])));	
+				$to_date = gmdate('Y-m-d 23:59:59', strtotime(sanitize_text_field( wp_unslash( $_GET['ck_mail_exp_to_date'] ) ) ) );	
 			}
 		}
 
 		$export_recipient = '';
 		if(isset($_GET['export_recipient']) && !empty($_GET['export_recipient'])){
-			$export_recipient = sanitize_text_field($_GET['export_recipient']);
+			$export_recipient = sanitize_text_field( wp_unslash( $_GET['export_recipient'] ) );
 		}
 
 
@@ -258,7 +258,7 @@ class Check_Email_Export_Log {
             wp_die( '-1' ); 
         }
 
-        if ( !wp_verify_nonce( $_GET['ck_mail_security_nonce'], 'ck_mail_ajax_check_nonce' ) ){
+        if ( !wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['ck_mail_security_nonce'] ) ), 'ck_mail_ajax_check_nonce' ) ){
            wp_die( '-1' );  
         }
 		?>

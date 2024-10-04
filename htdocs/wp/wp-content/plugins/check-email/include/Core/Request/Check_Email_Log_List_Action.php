@@ -84,14 +84,14 @@ class Check_Email_Log_List_Action implements Loadie {
 				</tr>
                 <tr style="background: #eee;">
 					<td style="padding: 5px;"><b><?php esc_html_e( 'From', 'check-email' ); ?></b>:</td>
-					<td style="padding: 5px;"><?php echo esc_html( $headers['from'] ); ?></td>
+					<td style="padding: 5px;"><?php echo ( isset($headers['from'] ) ) ? esc_html( $headers['from'] ) : ""; ?></td>
 				</tr>
 				<?php
 					if(empty($option) || !isset( $option['reply_to']) || (isset( $option['reply_to'])) && $option['reply_to']){
 				?>
 				<tr style="background: #eee;">
 					<td style="padding: 5px;"><b><?php esc_html_e( 'Reply To', 'check-email' ); ?></b>:</td>
-					<td style="padding: 5px;"><?php echo esc_html( $headers['reply_to'] ); ?></td>
+					<td style="padding: 5px;"><?php echo ( isset($headers['reply_to'] ) ) ? esc_html( $headers['reply_to'] ) : ""; ?></td>
 				</tr>
 				<?php
 					}
@@ -99,7 +99,7 @@ class Check_Email_Log_List_Action implements Loadie {
 				?>
 				<tr style="background: #eee;">
 					<td style="padding: 5px;"><b><?php esc_html_e( 'Cc', 'check-email' ); ?></b>:</td>
-					<td style="padding: 5px;"><?php echo esc_html( $headers['cc'] ); ?></td>
+					<td style="padding: 5px;"><?php echo ( isset($headers['cc'] ) ) ? esc_html( $headers['cc'] ) : ""; ?></td>
 				</tr>
 				<?php
 					}
@@ -107,7 +107,7 @@ class Check_Email_Log_List_Action implements Loadie {
 				?>
 				<tr style="background: #eee;">
 					<td style="padding: 5px;"><b><?php esc_html_e( 'Bcc', 'check-email' ); ?></b>:</td>
-					<td style="padding: 5px;"><?php echo esc_html( $headers['bcc'] ); ?></td>
+					<td style="padding: 5px;"><?php echo ( isset($headers['bcc'] ) ) ? esc_html( $headers['bcc'] ) : ""; ?></td>
 				</tr>
 				<?php
 					}
@@ -157,7 +157,7 @@ class Check_Email_Log_List_Action implements Loadie {
 						$attachments = explode(',',$log_item['attachment_name']);
 						if ($attachments) {
 							?>
-							<h4>Attachments</h4>
+							<h4><?php esc_html_e( 'Attachments', 'check-email'); ?> </h4>
 							<?php
 							foreach ($attachments as $key => $attachment) {
 								?>
@@ -364,7 +364,7 @@ class Check_Email_Log_List_Action implements Loadie {
 		$type    = 'error';
 
 		if ( absint( $logs_deleted ) > 0 ) {
-			$message = $logs_deleted .' '.esc_html('email log deleted.','check-email');
+			$message = $logs_deleted .' '.esc_html__('email log deleted.','check-email');
 			// $message = sprintf(  _n( esc_html('1 email log deleted.'), '%s email logs deleted', $logs_deleted, 'check-email' ), $logs_deleted );
 			$type    = 'updated';
 		}
@@ -507,19 +507,19 @@ class Check_Email_Log_List_Action implements Loadie {
 			echo wp_json_encode(array('status'=> 503, 'message'=> esc_html__( 'Unauthorized access, CSRF token not matched','check-email'))); 
 			wp_die();
 		}
-		if ( !wp_verify_nonce( $_POST['ck_mail_security_nonce'], 'ck_mail_ajax_check_nonce' ) ){
+		if ( !wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['ck_mail_security_nonce'] ) ), 'ck_mail_ajax_check_nonce' ) ){
 			echo wp_json_encode(array('status'=> 503, 'message'=> esc_html__( 'Unauthorized access, CSRF token not matched','check-email')));
 			wp_die();
 		}
-		$to = sanitize_text_field(wp_unslash($_POST['ckm_to']));
-		$from = sanitize_text_field(wp_unslash($_POST['ckm_from']));
-		$cc = sanitize_text_field(wp_unslash($_POST['ckm_cc']));
-		$bcc = sanitize_text_field(wp_unslash($_POST['ckm_bcc']));
-		$content_type = sanitize_text_field(wp_unslash($_POST['ckm_content_type']));
-		$reply_to = sanitize_text_field(wp_unslash($_POST['ckm_reply_to']));
+		$to = ( isset($_POST['ckm_to'] ) ) ? sanitize_text_field(wp_unslash($_POST['ckm_to'])) : "";
+		$from = ( isset($_POST['ckm_from'] ) ) ? sanitize_text_field(wp_unslash($_POST['ckm_from'])) : "";
+		$cc = ( isset($_POST['ckm_cc'] ) ) ? sanitize_text_field(wp_unslash($_POST['ckm_cc'])) : "";
+		$bcc = ( isset($_POST['ckm_bcc'] ) ) ? sanitize_text_field(wp_unslash($_POST['ckm_bcc'])) : "";
+		$content_type = ( isset($_POST['ckm_content_type'] ) ) ? sanitize_text_field(wp_unslash($_POST['ckm_content_type'])) : "";
+		$reply_to = ( isset($_POST['ckm_reply_to'] ) ) ? sanitize_text_field(wp_unslash($_POST['ckm_reply_to'])) : "";
 
-		$subject = sanitize_text_field(wp_unslash($_POST['ckm_subject']));
-		$message = sanitize_textarea_field(wp_unslash($_POST['ckm_message']));
+		$subject = ( isset($_POST['ckm_subject'] ) ) ? sanitize_text_field(wp_unslash($_POST['ckm_subject'])) : "";
+		$message = ( isset($_POST['ckm_message'] ) ) ? sanitize_textarea_field(wp_unslash($_POST['ckm_message'])) : "";
 		$headers = array(
 		);
 		
@@ -583,7 +583,7 @@ class Check_Email_Log_List_Action implements Loadie {
 			echo wp_json_encode(array('status'=> 503, 'message'=> esc_html__( 'Unauthorized access, CSRF token not matched','check-email'))); 
 			wp_die();
 		}
-		if ( !wp_verify_nonce( $_POST['ck_mail_security_nonce'], 'ck_mail_ajax_check_nonce' ) ){
+		if ( !wp_verify_nonce( sanitize_text_field(wp_unslash( $_POST['ck_mail_security_nonce'] ) ), 'ck_mail_ajax_check_nonce' ) ){
 			echo wp_json_encode(array('status'=> 503, 'message'=> esc_html__( 'Unauthorized access, CSRF token not matched','check-email')));
 			wp_die();
 		}

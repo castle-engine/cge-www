@@ -90,13 +90,14 @@
      * On click of Trigger Data option display link to upgrade to pro
      * @since 1.0.11
      * */
-         
+    
     $(document).on('click', '#check-email-enable-smtp', function(e){
       if($(this).is(':checked')){
-        $('#check-email-smtp-form').show();
+        $('.check_email_all_smtp').show();
       }else{
-        $('#check-email-smtp-form').hide();
+        $('.check_email_all_smtp').hide();
       }
+      chec_email_manage_display_state();
     });
     $(document).on('click', '#check_mail_resend_btn', function(e){
       t = jQuery(this);
@@ -139,7 +140,6 @@
           t.prop('disabled',true);
         },
         success:function(response){
-          console.log(response)
           if (response.status != 200) {
             t.parents('.cm_js_migration').find('.cm_js_error').html(response.message);
           }else{
@@ -241,4 +241,81 @@
   
 
   });
+  
+  
+  $(document).on('click', '.check_email_mailer_type', function(e){  
+    $(".ck_radio_selected").removeClass('ck_radio_selected');
+    if($(this).val() == 'outlook'){
+      $('#check-email-outllook').show();
+      $('#check-email-smtp-form').hide();
+      $(this).parents('.ce_radio-label').addClass('ck_radio_selected');
+    }
+    if($(this).val() == 'smtp'){
+      $('#check-email-outllook').hide();
+      $('#check-email-smtp-form').show();
+      $(this).parents('.ce_radio-label').addClass('ck_radio_selected');
+    }
+  });
+  $(document).on('click', '#check-email-email-encode-options-is_enable', function(e){
+    if ($(this).is(":checked")) {
+      $('.check-email-etr').show();
+    } else {
+      $('.check-email-etr').hide();
+    }
+  });
+
+  $(document).on('click', '#check_email_remove_outlook', function(e){
+    t = jQuery(this);
+    var ajaxurl = checkemail_data.ajax_url;
+    var nonce = checkemail_data.ck_mail_security_nonce;
+    jQuery.ajax({
+      url:ajaxurl,
+      method:'post',
+      dataType: "json",
+      data:{action:"check_email_remove_outlook",'ck_mail_security_nonce':nonce},
+      beforeSend: function(response){
+      },
+      success:function(response){
+        if (response.status == 200) {
+          location.reload();
+        }
+      },
+      complete:function(response){
+      }               
+    });
+  });
+
+  $("#check_mail_request_uri").on("click", function () {
+    check_email_copy_code();
+  })
+
+  function check_email_copy_code() {
+      var copyText = document.getElementById("check_mail_request_uri");
+
+      // Select the text field
+      copyText.select();
+
+      // Copy the text inside the text field
+      navigator.clipboard.writeText(copyText.value);
+
+      // Alert the copied text
+      $("#check_mail_copy_text").html("Copied!");
+  }
+
+  function chec_email_manage_display_state() {
+    if($('#check-email-enable-smtp').is(':checked')){
+      var check_email_mailer_type = $(".check_email_mailer_type:checked").val();
+      console.log(check_email_mailer_type);
+      if(check_email_mailer_type == 'outlook'){
+        $('#check-email-outllook').show();
+        $('#check-email-smtp-form').hide();
+      }
+      if(check_email_mailer_type == 'smtp'){
+        $('#check-email-outllook').hide();
+        $('#check-email-smtp-form').show();
+      }
+    }
+  }
+
 })(jQuery);
+

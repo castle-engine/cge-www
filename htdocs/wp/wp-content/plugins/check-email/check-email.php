@@ -3,7 +3,7 @@
 * Plugin Name: 				Check & Log Email
 * Description: 				Check & Log email allows you to test if your WordPress installation is sending emails correctly and logs every email.
 * Author: 					checkemail
-* Version: 					2.0.1
+* Version: 					2.0.2
 * Author URI: 				https://check-email.tech/
 * License: 					GPLv3 or later
 * License URI:         		http://www.gnu.org/licenses/gpl-3.0.html
@@ -40,7 +40,7 @@ define( 'CK_MAIL_TOC_DIR_NAME', plugin_basename( dirname( __FILE__ ) ) );
 define( 'CK_MAIL_TOC_BASE_NAME', plugin_basename( __FILE__ ) );
 define( 'CK_MAIL_PATH', dirname( __FILE__ ) );
 define( 'CK_MAIL_URL', plugin_dir_url( __FILE__ ) );
-define( 'CK_MAIL_VERSION', '2.0.1' );
+define( 'CK_MAIL_VERSION', '2.0.2' );
 
 require_once(CK_MAIL_PATH. "/include/helper-function.php" );
 if ( is_admin() ) {
@@ -101,9 +101,11 @@ function check_email_log( $plugin_file ) {
 
 	$check_email = new \CheckEmail\Core\Check_Email_Log( $plugin_file, $loader, new \CheckEmail\Core\DB\Check_Email_Table_Manager() );
 
+	$check_email->add_loadie( new \CheckEmail\Core\Check_Email_Multisite() );
+	$check_email->add_loadie( new \CheckEmail\Check_Email_Encode_Tab() );
 	$check_email->add_loadie( new \CheckEmail\Core\Check_Email_Logger() );
-        $check_email->add_loadie( new \CheckEmail\Core\Check_Email_Review() );
-        $check_email->add_loadie( new \CheckEmail\Core\Check_Email_Export_Log() );
+	$check_email->add_loadie( new \CheckEmail\Core\Check_Email_Review() );
+	$check_email->add_loadie( new \CheckEmail\Core\Check_Email_Export_Log() );
 	$check_email->add_loadie( new \CheckEmail\Core\UI\Check_Email_UI_Loader() );
 
 	$check_email->add_loadie( new \CheckEmail\Core\Request\Check_Email_Nonce_Checker() );

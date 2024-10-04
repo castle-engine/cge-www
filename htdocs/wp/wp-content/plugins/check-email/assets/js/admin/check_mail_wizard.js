@@ -14,16 +14,14 @@ let currentStep = 1;
                 }
             });
 
-            if (stepContent) {
-                stepContent.innerHTML = `
-                    <div class="cm_step">${steps[step - 1].title}</div>
-                    <h2 class="cm_H2">${steps[step - 1].heading}</h2>
-                    <div><form id="cm_step_form">
-                    <input type="hidden" name="action" value="check_mail_save_wizard_data" />
-                    <input type="hidden" name="ck_mail_security_nonce" value="${ck_mail_security_nonce}">
-                    ${steps[step - 1].content}</form></div>
-                `;
-            }
+            stepContent.innerHTML = `
+                <div class="cm_step">${steps[step - 1].title}</div>
+                <h2 class="cm_H2">${steps[step - 1].heading}</h2>
+                <div><form id="cm_step_form">
+                <input type="hidden" name="action" value="check_mail_save_wizard_data" />
+                <input type="hidden" name="ck_mail_security_nonce" value="${ck_mail_security_nonce}">
+                ${steps[step - 1].content}</form></div>
+            `;
             document.getElementById('cm_prevBtn').style.visibility = step === 1 ? 'hidden' : 'visible';
             document.getElementById('cm_nextBtn').innerText = step === steps.length ? 'Finish' : 'Save and Continue →';
         }

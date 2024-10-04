@@ -60,7 +60,7 @@ function ck_mail_send_feedback() {
     // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Reason: in form variable.
     if( isset( $_POST['data'] ) ) {
         // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Reason: in form variable.
-        parse_str( wp_unslash($_POST['data']), $form );
+        parse_str( sanitize_text_field( wp_unslash($_POST['data'])), $form );
     }
     
     if( !isset( $form['ck_mail_security_nonce'] ) || isset( $form['ck_mail_security_nonce'] ) && !wp_verify_nonce( sanitize_text_field( $form['ck_mail_security_nonce'] ), 'ck_mail_ajax_check_nonce' ) ) {
@@ -141,23 +141,28 @@ add_action( 'admin_enqueue_scripts', 'ck_mail_enqueue_makebetter_email_js' );
 add_action('wp_ajax_ck_mail_subscribe_newsletter','ck_mail_subscribe_for_newsletter');
 
 function ck_mail_subscribe_for_newsletter() {
-
-    if ( ! wp_verify_nonce( $_POST['ck_mail_security_nonce'], 'ck_mail_ajax_check_nonce' ) ) {
+    if ( ! isset( $_POST['ck_mail_security_nonce'] ) ){
+        echo esc_html__('security_nonce_not_verified', 'check-email');
+        die();
+    }
+    if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['ck_mail_security_nonce'] ) ), 'ck_mail_ajax_check_nonce' ) ) {
         echo esc_html__('security_nonce_not_verified', 'check-email');
         die();
     }
     if ( !current_user_can( 'manage_options' ) ) {
         die();
     }
-    $api_url = 'http://magazine3.company/wp-json/api/central/email/subscribe';
-
-    $api_params = array(
-        'name' => sanitize_text_field(wp_unslash($_POST['name'])),
-        'email'=> sanitize_email(wp_unslash($_POST['email'])),
-        'website'=> sanitize_text_field(wp_unslash($_POST['website'])),
-        'type'=> 'checkmail'
-    );
-    wp_remote_post( $api_url, array( 'timeout' => 15, 'sslverify' => false, 'body' => $api_params ) );
+    if (isset( $_POST['name'] ) && isset( $_POST['email'] ) && isset( $_POST['website'] )) {
+        $api_url = 'http://magazine3.company/wp-json/api/central/email/subscribe';
+    
+        $api_params = array(
+            'name' => sanitize_text_field(wp_unslash($_POST['name'])),
+            'email'=> sanitize_email(wp_unslash($_POST['email'])),
+            'website'=> sanitize_text_field(wp_unslash($_POST['website'])),
+            'type'=> 'checkmail'
+        );
+        wp_remote_post( $api_url, array( 'timeout' => 15, 'sslverify' => false, 'body' => $api_params ) );
+    }
     wp_die();
 }
 
@@ -187,7 +192,7 @@ function ck_mail_forward_mail($atts) {
 	}
 
 
-    $subject = esc_html('Forward Email Check & Log ', 'check-email').$subject;
+    $subject = esc_html__('Forward Email Check & Log ', 'check-email').$subject;
 
     if ( ! is_array( $attachments ) ) {
         $attachments = explode( "\n", str_replace( "\r\n", "\n", $attachments ) );
@@ -506,3 +511,286 @@ function ck_mail_local_file_get_contents($file_path){
     }
 
 }
+
+function ck_mail_update_network_settings() {
+    // Check nonce
+    check_ajax_referer( 'ck_mail_ajax_check_nonce', 'nonce' );
+
+    // Check if user is allowed to manage network options
+    if ( ! current_user_can( 'manage_check_email' ) ) {
+        wp_send_json_error(esc_html__('Unauthorized user', 'check-email') );
+        return;
+    }
+    if ( isset( $_POST['check-email-log-global'] ) ) {
+        $all_fields = array_map('sanitize_text_field', wp_unslash($_POST['check-email-log-global']));
+    
+    // Sanitize all the key
+        if ( ! empty( $all_fields ) ) {
+            foreach ($all_fields as $key => $value) {
+                $all_fields[sanitize_key( $key ) ] = sanitize_text_field( $value );
+            }
+            $all_fields['enable_smtp'] = 1;
+            $old_settings = get_site_option('check-email-log-global-smtp');
+
+            if ( ! empty( $old_settings ) && is_array( $old_settings ) ) {
+                $updated_settings = array_merge( $old_settings, $all_fields );
+            } else {
+                $updated_settings = $all_fields;
+            }
+            update_site_option( 'check-email-log-global-smtp', $updated_settings );
+            if ( isset($all_fields['mailer'] ) == 'outlook' && isset( $_POST['check-email-outlook-options'] ) ) {
+                $outlook_fields = array_map('sanitize_text_field', wp_unslash($_POST['check-email-outlook-options']));
+                if(isset($outlook_fields['client_id']) && !empty($outlook_fields['client_id'])){
+                    $outlook_option['client_id'] = base64_encode($outlook_fields['client_id']);
+                }
+                if(isset($outlook_fields['client_secret']) && !empty($outlook_fields['client_secret'])){
+                    $outlook_option['client_secret'] = base64_encode($outlook_fields['client_secret']);
+                }
+                $auth = new CheckEmail\Core\Auth( 'outlook' );
+                $auth->update_mailer_option( $outlook_option );
+            }
+            wp_send_json_success();
+        }
+    } else {
+        wp_send_json_error(esc_html__('Invalid input', 'check-email') );
+    }
+}
+
+add_action( 'wp_ajax_update_network_settings', 'ck_mail_update_network_settings' );
+
+
+// email and phone encoding start
+/**
+ * Define filter-priority constant, unless it has already been defined.
+ */
+if ( ! defined( 'CHECK_EMAIL_E_FILTER_PRIORITY' ) ) {
+	define(
+		'CHECK_EMAIL_E_FILTER_PRIORITY',
+		(integer) get_option( 'check_email_e_filter_priority', 2000 )
+	);
+}
+
+if ( ! defined( 'CHECK_EMAIL_E_REGEXP' ) ) {
+    define(
+        'CHECK_EMAIL_E_REGEXP',
+        '{
+            (?:mailto:)?      # Optional mailto:
+            (?:
+                [-!#$%&*+/=?^_`.{|}~\w\x80-\xFF]+  # Local part before @
+            |
+                ".*?"                               # Quoted local part
+            )
+            \@               # At sign (@)
+            (?:
+                [-a-z0-9\x80-\xFF]+(\.[-a-z0-9\x80-\xFF]+)*\.[a-z]+   # Domain name
+            |
+                \[[\d.a-fA-F:]+\]                                     # IPv4/IPv6 address
+            )
+        }xi'
+    );
+}
+
+
+$encode_options = get_option('check-email-email-encode-options', true);
+$is_enable = ( isset( $encode_options['is_enable'] ) ) ? $encode_options['is_enable'] : 0;
+$email_using = ( isset( $encode_options['email_using'] ) ) ? $encode_options['email_using'] : "";
+if ( $is_enable && $email_using == 'filters' ) {
+	foreach ( array( 'the_content', 'the_excerpt', 'widget_text', 'comment_text', 'comment_excerpt' ) as $filter ) {
+		add_filter( $filter, 'check_email_e_encode_emails', CHECK_EMAIL_E_FILTER_PRIORITY );
+	}
+}
+if ( $is_enable && $email_using == 'full_page' ) {
+	add_action( 'wp', 'check_email_full_page_scanner',999 );
+}
+
+add_action( 'init', 'check_email_e_register_shortcode', 2000 );
+	
+	function check_email_e_register_shortcode() {
+		if ( ! shortcode_exists( 'checkmail-encode' ) ) {
+			add_shortcode( 'checkmail-encode', 'check_email_e_shortcode' );
+		}
+	}
+
+	function check_email_rot47($str) {
+		$rotated = '';
+		foreach (str_split($str) as $char) {
+			$ascii = ord($char);
+			if ($ascii >= 33 && $ascii <= 126) {
+				$rotated .= chr(33 + (($ascii + 14) % 94));
+			} else {
+				$rotated .= $char;
+			}
+		}
+		return $rotated;
+	}
+
+	function check_email_encode_str( $string, $hex = false ) {
+		$encode_options = get_option('check-email-email-encode-options', true);
+		$email_technique = ( isset( $encode_options['email_technique'] ) ) ? $encode_options['email_technique'] : "";
+        if (strpos($string, 'mailto:') !== false) {
+            $string = str_replace('mailto:', '', $string);
+            switch ($email_technique) {
+                case 'css_direction':
+                    $reversed_email = strrev($string);
+                    // Wrap it with the span and necessary CSS
+                    return 'mailto:'.esc_html($reversed_email);
+                    break;
+                case 'rot_13':
+                    $encoded_email = check_email_rot13($string);
+                    return 'mailto:'.esc_html($encoded_email);
+                    break;
+                case 'rot_47':
+                    $encoded_email = check_email_rot47($string);
+                    return 'mailto:'.esc_html($encoded_email);
+                    break;
+                
+                default:
+                    # code...
+                    break;
+            }
+        }else{
+            switch ($email_technique) {
+                case 'css_direction':
+                    $reversed_email = strrev($string);
+                    // Wrap it with the span and necessary CSS
+                    return ' <span style="direction: rtl; unicode-bidi: bidi-override;">' . esc_html($reversed_email) . '</span>';
+                    break;
+                case 'rot_13':
+                    $encoded_email = check_email_rot13($string);
+                    return ' <span class="check-email-encoded-email" >' . esc_html($encoded_email).' </span>';
+                    break;
+                case 'rot_47':
+                    $encoded_email = check_email_rot47($string);
+                    return ' <span class="check-email-rot47-email" >' . esc_html($encoded_email).' </span>';
+                    break;
+                
+                default:
+                    # code...
+                    break;
+            }
+        }
+    
+		
+		$chars = str_split( $string );
+		$seed = wp_rand( 0, (int) abs( crc32( $string ) / strlen( $string ) ) );
+		
+
+		foreach ( $chars as $key => $char ) {
+			$ord = ord( $char );
+
+			if ( $ord < 128 ) { // ignore non-ascii chars
+				$r = ( $seed * ( 1 + $key ) ) % 100; // pseudo "random function"
+
+				if ( $r > 75 && $char !== '@' && $char !== '.' ); // plain character (not encoded), except @-signs and dots
+				else if ( $hex && $r < 25 ) $chars[ $key ] = '%' . bin2hex( $char ); // hex
+				else if ( $r < 45 ) $chars[ $key ] = '&#x' . dechex( $ord ) . ';'; // hexadecimal
+				else $chars[ $key ] = "&#{$ord};"; // decimal (ascii)
+			}
+		}
+
+		return implode( '', $chars );
+	}
+
+	function check_email_e_shortcode( $attributes, $content = '' ) {
+		$atts = shortcode_atts( array(
+			'link' => null,
+			'class' => null,
+		), $attributes, 'checkmail-encode' );
+
+		
+		$method = apply_filters( 'check_email_e_method', 'check_email_encode_str' );
+
+		if ( ! empty( $atts[ 'link' ] ) ) {
+			$link = esc_url( $atts[ 'link' ], null, 'shortcode' );
+
+			if ( $link === '' ) {
+				return $method( $content );
+			}
+
+			if ( empty( $atts[ 'class' ] ) ) {
+				return sprintf(
+					'<a href="%s">%s</a>',
+					$method( $link ),
+					$method( $content )
+				);
+			}
+
+			return sprintf(
+				'<a href="%s" class="%s">%s</a>',
+				$method( $link ),
+				esc_attr( $atts[ 'class' ] ),
+				$method( $content )
+			);
+		}
+
+		return $method( $content );
+	}
+
+	function check_email_e_encode_emails( $string ) {
+		if ( ! is_string( $string ) ) {
+			return $string;
+		}
+		// abort if `check_email_e_at_sign_check` is true and `$string` doesn't contain a @-sign
+		if ( apply_filters( 'check_email_e_at_sign_check', true ) && strpos( $string, '@' ) === false ) {
+			return $string;
+		}
+		// override encoding function with the 'check_email_e_method' filter
+		$method = apply_filters( 'check_email_e_method', 'check_email_encode_str' );
+		
+		$regexp = apply_filters( 'check_email_e_regexp', CHECK_EMAIL_E_REGEXP );
+		
+		$callback = function ( $matches ) use ( $method ) {
+			return $method( $matches[ 0 ] );
+		};
+        
+		if ( has_filter( 'check_email_e_callback' ) ) {
+			$callback = apply_filters( 'check_email_e_callback', $callback, $method );
+			return preg_replace_callback( $regexp, $callback, $string );
+		}
+
+		return preg_replace_callback( $regexp, $callback, $string );
+	}
+
+	function check_email_full_page_scanner() {
+		if(!is_admin() ) {
+			ob_start('check_email_full_page_callback');
+		}
+	}
+	function check_email_full_page_callback($string) {
+		return check_email_e_encode_emails($string);
+	}
+
+	
+	add_action( 'wp_enqueue_scripts', 'ck_mail_enqueue_encoder_js' );
+
+	function ck_mail_enqueue_encoder_js() {
+        $encode_options = get_option('check-email-email-encode-options', true);
+		$is_enable = ( isset( $encode_options['is_enable'] ) ) ? $encode_options['is_enable'] : 0;
+        if ( $is_enable ) {
+            $email_using = ( isset( $encode_options['email_using'] ) ) ? $encode_options['email_using'] : "";
+            $email_technique = ( isset( $encode_options['email_technique'] ) ) ? $encode_options['email_technique'] : "";
+    
+            $check_email    = wpchill_check_email();
+            $plugin_dir_url = plugin_dir_url( $check_email->get_plugin_file() );
+            $suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+            wp_register_script( 'checkemail_encoder', $plugin_dir_url . 'assets/js/check-email-front'. $suffix .'.js', array(), $check_email->get_version(), true );
+            $data = array();
+            $data['email_using'] = $email_using;
+            $data['is_enable'] = $is_enable;
+            $data['email_technique'] = $email_technique;
+    
+            wp_localize_script( 'checkemail_encoder', 'checkemail_encoder_data', $data );
+            wp_enqueue_script( 'checkemail_encoder' );
+        }
+	}
+
+    function check_email_rot13( $string ) {
+
+        $from = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $to   = 'nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM';
+
+        return strtr( $string, $from, $to );
+    }
+    
+// email and phone encoding end
+

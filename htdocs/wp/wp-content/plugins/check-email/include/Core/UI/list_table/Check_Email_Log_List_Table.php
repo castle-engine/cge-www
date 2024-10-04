@@ -108,7 +108,6 @@ class Check_Email_Log_List_Table extends \WP_List_Table {
 		);
 		$delete_url = add_query_arg( $this->page->get_nonce_args(), $delete_url );
 
-		
 		$actions['delete'] = sprintf(
 			'<a href="%s" onclick="return confirm(\'%s\');">%s</a>',
 			esc_url( $delete_url ),
@@ -318,7 +317,7 @@ class Check_Email_Log_List_Table extends \WP_List_Table {
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
 		if (isset($_GET['status'])) {
 			// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
-			$status = $_GET['status'];
+			$status = sanitize_text_field( wp_unslash( $_GET['status'] ) );
 		}
 		return $status;
 	}

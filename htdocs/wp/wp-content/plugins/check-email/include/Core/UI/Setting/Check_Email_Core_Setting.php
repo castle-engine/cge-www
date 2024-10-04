@@ -130,7 +130,7 @@ class Check_Email_Core_Setting extends Check_Email_Setting {
 	}
 	public function render_setup_wizard_settings( $args ) {
 		?>
-		<a href="admin.php?page=check-email-wizard" class="button button-primary"><?php echo esc_html('Setup Wizard', 'check-email' ); ?></a>
+		<a href="admin.php?page=check-email-wizard" class="button button-primary"><?php esc_html_e('Setup Wizard', 'check-email' ); ?></a>
 		<?php
 	}
 

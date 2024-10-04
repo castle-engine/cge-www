@@ -11,6 +11,13 @@ class Check_Email_From_Handler {
     public function __construct() {
 
         $this->options = get_option('check-email-log-core', false);
+        if (is_multisite()) {
+            $smtp_options = get_site_option( 'check-email-log-global-smtp');
+            if ( isset($smtp_options['enable_global']) && ! empty($smtp_options['enable_global'] ) ) {
+                $this->options = $smtp_options;
+            }
+        }
+
         
         add_filter( 'wp_mail', array( $this, 'override_values'), 15 );
         add_filter( 'wp_mail_from', array($this, 'set_wp_mail_from' ), 99 );

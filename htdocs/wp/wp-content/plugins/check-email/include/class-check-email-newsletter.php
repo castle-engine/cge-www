@@ -61,20 +61,18 @@ class Check_Email_Newsletter {
                         global $current_user;                
         		$tour     = array ();
                         // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
-                        $tab      = isset($_GET['tab']) ? sanitize_text_field($_GET['tab']) : '';                   
+                        $tab      = isset($_GET['tab']) ? sanitize_text_field( wp_unslash($_GET['tab'])) : '';                   
                         
-                        if (!array_key_exists($tab, $tour)) {                
-        			                                           			            	
+                        if (!array_key_exists($tab, $tour)) {
                                 $object['do_tour']            = $do_tour;        
                                 $object['get_home_url']       = get_home_url();                
                                 $object['current_user_email'] = $current_user->user_email;                
                                 $object['current_user_name']  = $current_user->display_name;        
-        			$object['displayID']          = '#toplevel_page_check-email-status';                        
+                                $object['displayID']          = '#toplevel_page_check-email-status';                        
                                 $object['button1']            = esc_html__('No Thanks', 'check-email');
                                 $object['button2']            = false;
                                 $object['function_name']      = '';                        
         		}
-        		                                                                                                                                                    
                 }
                 return $object;    
         }  
@@ -91,7 +89,7 @@ class Check_Email_Newsletter {
                 if ( ! isset( $_POST['ck_mail_security_nonce'] ) ){
                     die( '-1' ); 
                 }
-                if ( !wp_verify_nonce( $_POST['ck_mail_security_nonce'], 'ck_mail_ajax_check_nonce' ) ){
+                if ( !wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['ck_mail_security_nonce'] ) ), 'ck_mail_ajax_check_nonce' ) ){
                    die( '-1' );  
                 }
                                 

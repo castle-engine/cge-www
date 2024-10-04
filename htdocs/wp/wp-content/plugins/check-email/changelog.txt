@@ -1,4 +1,10 @@
 == Changelog ==
+= v2.0.2 - 27/09/2024 =
+- Feature: Added an option to use one SMTP settings for multisite #97
+- Feature: Added encoding of email and phone #55
+- Feature: Added integration with Microsoft SMTP that requires oAuth authentication. #100
+- Fixed: Some warnings appear while viewing the email log #104
+
 = v2.0.1 - 02/09/2024 =
 - Enhancement: Added confirmation box on deletion of log email #84
 - Fixed: Conflict issue with Override Emails feature. #98

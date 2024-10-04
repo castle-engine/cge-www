@@ -5,6 +5,7 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly
  * @class Check_Email_SMTP_Tab
  * @since 1.0.12
  */
+use CheckEmail\Core\Auth;
 class Check_Email_SMTP_Tab {
 
 	private $smtp_options;
@@ -14,6 +15,7 @@ class Check_Email_SMTP_Tab {
 
 		add_action( 'check_mail_smtp_form', array($this, 'load_smtp_settings'));
 		add_action('admin_init', array($this, 'smtp_form_submission_handler'));
+		add_action('wp_ajax_check_email_remove_outlook', array( $this, 'check_email_remove_outlook' ));
 
 		if(isset($this->smtp_options['enable_smtp'])){
 			add_action( 'phpmailer_init', array( $this,'check_mail_smtp' ) );
@@ -31,6 +33,12 @@ class Check_Email_SMTP_Tab {
 	 */
 	public function setup_vars(){
 		$this->smtp_options = get_option('check-email-smtp-options', true);
+		if (is_multisite()) {
+			$smtp_options = get_site_option( 'check-email-log-global-smtp');
+			if ( isset($smtp_options['enable_smtp']) && ! empty($smtp_options['enable_smtp'] )  && isset($smtp_options['enable_global']) && ! empty($smtp_options['enable_global'] )) {
+				$this->smtp_options = $smtp_options;
+			}
+		}
 	}
 
 	/**
@@ -40,7 +48,6 @@ class Check_Email_SMTP_Tab {
 	 * @since 1.0.12
 	 */
 	public function check_mail_smtp( $phpmailer ) {
-
 		if( ! is_email($this->smtp_options["smtp_from"] ) || empty( $this->smtp_options["smtp_host"] ) ) {
 			return;
 		}
@@ -91,6 +98,12 @@ class Check_Email_SMTP_Tab {
 
 		if ( empty( $options ) ) {
 			$options = get_option( 'check-email-smtp-options' );
+			if (is_multisite()) {
+				$smtp_options = get_site_option( 'check-email-log-global-smtp');
+				if ( isset($smtp_options['enable_smtp']) && ! empty($smtp_options['enable_smtp'] )  && isset($smtp_options['enable_global']) && ! empty($smtp_options['enable_global'] )) {
+					$options = $smtp_options;
+				}
+			}
 		}
 
 		if ( ! isset( $options['smtp_username'] ) || ! isset( $options['smtp_password'] ) || ! isset( $options['smtp_host'] ) || ! isset( $options['smtp_port'] ) || ! isset( $options['smtp_auth'] ) || ! isset( $options['smtp_secure'] ) || '' === $options['smtp_username'] || '' === $options['smtp_password'] || '' === $options['smtp_host'] || '' === $options['smtp_port'] || '' === $options['smtp_auth'] ) {
@@ -147,22 +160,131 @@ class Check_Email_SMTP_Tab {
 	 * @since 1.0.12
 	 */
 	public function load_smtp_settings(){
+		$check_email    = wpchill_check_email();
+		$plugin_dir_url = plugin_dir_url( $check_email->get_plugin_file() );
 		$enable_smtp = isset($this->smtp_options['enable_smtp'])?$this->smtp_options['enable_smtp']:'';
-	?>
+		$mailer = isset($this->smtp_options['mailer'])?$this->smtp_options['mailer']:'smtp';
+		
+		$auth = new Auth( 'outlook' );
+		if ( $mailer == 'outlook' ) {
+			$this->smtp_options = $auth->get_mailer_option();
+		}
+		if (is_multisite()) {
+			$smtp_options = get_site_option( 'check-email-log-global-smtp');
+			if ( isset($smtp_options['enable_global']) && ! empty($smtp_options['enable_global'] ) ) {
+				?>
+				<div class="notice notice-error is-dismissible">
+					<h3><?php esc_html_e( 'You are using global smtp configuration for multisite', 'check-email' ); ?></h3>
+					<p><?php esc_html_e( 'If you want separate smtp configuration for each site, you need to uncheck setting Control from netework admin.', 'check-email' ); ?></p>
+				</div>
+				<?php
+				exit;
+			}
+		}
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
+		if (isset( $_GET['error'] ) ) {
+			// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
+			$error = sanitize_text_field( wp_unslash( $_GET['error'] ) );
+		?>	<div class="notice notice-error is-dismissible">
+				<h3><?php esc_html_e( 'Its an error to linking with microsoft 365 / outlook' ); ?></h3>
+				<p><?php echo esc_html( $error ); ?></p>
+			</div>
+		<?php
+		}
+		?>
+		
 		<form action="" method="post" >
 			<div id="check-mail-smtp-wrapper">
 				<table class="form-table" role="presentation">
-					<tbody>
-						<tr class="check_email_enable_smtp">
+					<thead>
+						<tr class="check_email_enable_smtp" >
 						    <th scope="row"><label for="check-email-enable-smtp" class="check-email-opt-labels"><?php esc_html_e( 'SMTP', 'check-email' ); ?></label></th>
 						    <td>
 						        <input id="check-email-enable-smtp" type="checkbox" name="check-email-smtp-options[enable_smtp]" <?php echo $enable_smtp == 'on' ? "checked" : ''; ?>>
-						        <label for="check-email-enable-smtp" class="check-email-opt-labels"><?php esc_html_e('SMTP helps you to send emails via SMTP instead of the PHP mail()','check-email'); ?></label>
+						        <label for="check-email-enable-smtp" class="check-email-opt-labels"><?php esc_html_e('Configure your own SMTP instead of the PHP mail()','check-email'); ?></label>
 						    </td>
+						</tr>
+						<tr class="check_email_mailer check_email_all_smtp" style="<?php echo $enable_smtp != 'on' ? "display: none" : ''; ?>">
+						    <th scope="row"><label for="check-email-mailer" class="check-email-opt-labels"><?php esc_html_e( 'Mailer', 'check-email' ); ?></label></th>
+						    <td>
+								<div class="ce_radio-container">
+									<label class="ce_radio-label <?php echo $mailer == 'smtp' ? "ck_radio_selected" : ''; ?>">
+										<input class="check_email_mailer_type" type="radio" name="check-email-smtp-options[mailer]" value="smtp" <?php echo $mailer == 'smtp' ? "checked" : ''; ?>>
+										<img src="<?php echo esc_attr($plugin_dir_url . 'assets/images/smtp.svg') ?>" alt="SMTP Icon">
+										<div class="ce_radio-title"><?php esc_html_e('General SMTP','check-email'); ?></div>
+									</label>
+
+									<label class="ce_radio-label <?php echo $mailer == 'outlook' ? "ck_radio_selected" : ''; ?>" >
+										<input class="check_email_mailer_type" type="radio" name="check-email-smtp-options[mailer]" value="outlook" <?php echo $mailer == 'outlook' ? "checked" : ''; ?>>
+										<img src="<?php echo esc_attr($plugin_dir_url . 'assets/images/microsoft.svg') ?>" alt="Outlook Icon">
+										<div class="ce_radio-title"><?php esc_html_e('365 / Outlook','check-email'); ?></div>
+									</label>
+								</div>
+						    </td>
+						</tr>
+					</thead>
+					<tbody id="check-email-outllook" class="check_email_all_smtp" style="<?php echo $enable_smtp != 'on' || $mailer != 'outlook' ? "display: none" : ''; ?>">	
+						<tr class="check_email_smtp_from">
+						    <th scope="row"><?php esc_html_e('Application ID', 'check-email'); ?></th>
+						    <td>
+						        <input class="regular-text" type="text" name="check-email-outlook-options[client_id]" value="<?php echo isset($this->smtp_options['client_id'])?esc_attr(base64_decode($this->smtp_options['client_id'])):"" ?>" >
+						    </td>
+						</tr>
+						<tr class="">
+						    <th scope="row"><?php esc_html_e('Client Secret', 'check-email'); ?></th>
+						    <td>
+						        <input  class="regular-text" type="password" name="check-email-outlook-options[client_secret]" value="<?php echo isset($this->smtp_options['client_secret'])?esc_attr(base64_decode($this->smtp_options['client_secret'])):"" ?>">
+						    </td>
+						</tr>
+						<tr class="">
+						    <th scope="row"><?php esc_html_e('Redirect URI', 'check-email'); ?></th>
+						    <td>
+								
+								<input class="regular-text" type="text" readonly id="check_mail_request_uri" value="<?php echo (is_network_admin()) ? esc_url(network_admin_url()):esc_url(admin_url()) ?>" ><small id="check_mail_copy_text"></small>
+								<p><?php esc_html_e('This is the page on your site that you will be redirected to after you have authenticated with Microsoft. You need to copy this URL into "Authentication > Redirect URIs" web field for your application on Microsoft Azure site for your project there.','check-email'); ?></p>
+						    </td>
+						</tr>
+						<tr class="">
+							<td colspan="2">
+						<?php
+
+						if (  $auth->is_clients_saved() ) :
+							if ( $auth->is_auth_required() ) : ?>
+								<a href="<?php echo esc_url( $auth->get_auth_url() ); ?>" class="button button-secondary">
+									<?php esc_html_e( 'Allow plugin to send emails using your Microsoft account', 'check-email' ); ?>
+								</a>
+
+							<?php else : ?>
+
+								<button class="button" id="check_email_remove_outlook">
+									<?php esc_html_e( 'Remove OAuth Connection', 'check-email' ); ?>
+								</button>
+								<span class="">
+									<?php
+									$user = (isset( $this->smtp_options['user_details'] )) ? $this->smtp_options['user_details'] : [];
+
+									if ( isset( $user['email'] ) &&  isset( $user['display_name'] ) && ! empty( $user['email'] ) && ! empty( $user['display_name'] ) ) {
+										printf(
+											/* translators: %s - Display name and email, as received from oAuth provider. */
+											esc_html__( 'Connected as %s', 'check-email' ),
+											'<code>' . esc_html( $user['display_name'] . ' <' . $user['email'] . '>' ) . '</code>'
+										);
+									}
+									?>
+								</span>
+								<p class="desc">
+									<?php esc_html_e( 'Removing the OAuth connection will give you an ability to redo the OAuth connection or link to another Microsoft account.', 'check-email' ); ?>
+								</p>
+
+							<?php endif; ?>													
+						<?php
+						endif;
+						?>
+							</td>
 						</tr>
 					</tbody>
 					
-					<tbody id="check-email-smtp-form" style="<?php echo $enable_smtp != 'on' ? "display: none" : ''; ?>">	
+					<tbody id="check-email-smtp-form" class="check_email_all_smtp" style="<?php echo $enable_smtp != 'on' || $mailer != 'smtp' ? "display: none" : ''; ?>">	
 						<tr class="check_email_smtp_from">
 						    <th scope="row"><?php esc_html_e('From', 'check-email'); ?></th>
 						    <td>
@@ -274,29 +396,40 @@ class Check_Email_SMTP_Tab {
 		    	return;
 		    }
 
-		    if ( !wp_verify_nonce( $_POST['check_mail_smtp_nonce'], 'check_mail_smtp_nonce' ) ){
+		    if ( !wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['check_mail_smtp_nonce'] ) ), 'check_mail_smtp_nonce' ) ){
 	       		return;  
 	    	}
 
 			if ( ! current_user_can( 'manage_check_email' ) ) {
 				return;
 			}
-
-			$smtp_opt = array_map('sanitize_text_field', wp_unslash($_POST['check-email-smtp-options']));
-
-			if(isset($smtp_opt['smtp_username']) && !empty($smtp_opt['smtp_username'])){
-				$smtp_opt['smtp_username'] = base64_encode($smtp_opt['smtp_username']);
+			if ( isset( $_POST['check-email-smtp-options']) ) {
+				$smtp_opt = array_map('sanitize_text_field', wp_unslash($_POST['check-email-smtp-options']));
+				
+				if ( $smtp_opt['mailer'] == 'outlook' && isset( $_POST['check-email-outlook-options'] ) ) {				
+					$outlook_option = array_map('sanitize_text_field', wp_unslash($_POST['check-email-outlook-options']));
+					if(isset($outlook_option['client_id']) && !empty($outlook_option['client_id'])){
+						$outlook_option['client_id'] = base64_encode($outlook_option['client_id']);
+					}
+					if(isset($outlook_option['client_secret']) && !empty($outlook_option['client_secret'])){
+						$outlook_option['client_secret'] = base64_encode($outlook_option['client_secret']);
+					}
+					$auth = new Auth( 'outlook' );
+					$auth->update_mailer_option( $outlook_option );
+				}else{
+					if(isset($smtp_opt['smtp_username']) && !empty($smtp_opt['smtp_username'])){
+						$smtp_opt['smtp_username'] = base64_encode($smtp_opt['smtp_username']);
+					}
+					if(isset($smtp_opt['smtp_password']) && !empty($smtp_opt['smtp_password'])){
+						$smtp_opt['smtp_password'] = base64_encode($smtp_opt['smtp_password']);
+					}
+				}
+				update_option('check-email-smtp-options', $smtp_opt);
+				delete_option( 'check_email_smtp_status' );
+				do_action( 'check_mail_smtp_admin_update' );
+	
+				wp_safe_redirect(admin_url('admin.php?page=check-email-settings&tab=smtp'));
 			}
-			if(isset($smtp_opt['smtp_password']) && !empty($smtp_opt['smtp_password'])){
-				$smtp_opt['smtp_password'] = base64_encode($smtp_opt['smtp_password']);
-			}
-
-			update_option('check-email-smtp-options', $smtp_opt);
-
-			delete_option( 'check_email_smtp_status' );
-			do_action( 'check_mail_smtp_admin_update' );
-
-			wp_safe_redirect(admin_url('admin.php?page=check-email-settings&tab=smtp'));
 		}
 	}	
 	
@@ -320,6 +453,25 @@ class Check_Email_SMTP_Tab {
 			<p><?php esc_html_e( 'Seems like there are some problems with the enterd information. Please re-check & re-enter it and hit the "Save changes" button.', 'check-email' ); ?></p>
 		</div>
 		<?php
+	}
+	public function check_email_remove_outlook() {
+		
+		if(!isset($_POST['ck_mail_security_nonce'])){
+			return;
+		}
+
+		if ( !wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['ck_mail_security_nonce'] ) ), 'ck_mail_security_nonce' ) ){
+			return;  
+		}
+		
+
+		if ( ! current_user_can( 'manage_check_email' ) ) {
+			return;
+		}
+		$auth = new Auth('outlook');
+		$auth->delete_outlook_options();
+		echo wp_json_encode(array('status'=> 200));
+		wp_die();
 	}
 }
 new Check_Email_SMTP_Tab();

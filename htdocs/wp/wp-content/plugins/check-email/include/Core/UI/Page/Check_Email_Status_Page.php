@@ -5,6 +5,7 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly.
 /**
  * Status Page.
  */
+use CheckEmail\Core\Auth;
 class Check_Email_Status_Page extends Check_Email_BasePage {
 
 	/**
@@ -64,7 +65,8 @@ class Check_Email_Status_Page extends Check_Email_BasePage {
             $headers = '';
             // phpcs:ignore
             if ( isset($_REQUEST['_wpnonce']) && wp_verify_nonce( $_REQUEST['_wpnonce'], 'checkemail' ) && isset( $_POST['checkemail_to'] ) && isset( $_POST['checkemail_headers'] ) ) {
-                $headers = $this->checkemail_send( sanitize_email( wp_unslash($_POST['checkemail_to']) ), sanitize_textarea_field(wp_unslash($_POST['checkemail_headers'])) );
+                $to_email = sanitize_email( wp_unslash($_POST['checkemail_to'] ) );
+                $headers = $this->checkemail_send( $to_email, sanitize_textarea_field(wp_unslash($_POST['checkemail_headers'])) );
             }
             ?>
 
@@ -152,5 +154,10 @@ class Check_Email_Status_Page extends Check_Email_BasePage {
 		$plugin_dir_url = plugin_dir_url( $check_email->get_plugin_file() );
 		wp_enqueue_style( 'checkemail-css', $plugin_dir_url . 'assets/css/admin/checkemail'. $suffix .'.css', array(), $check_email->get_version() );
 		wp_enqueue_script( 'checkemail', $plugin_dir_url . 'assets/js/admin/checkemail'. $suffix .'.js', array( 'jquery', 'updates' ), $check_email->get_version(), true );
+
+        $data['ajax_url'] = admin_url( 'admin-ajax.php' );
+        $data['ck_mail_security_nonce'] = wp_create_nonce('ck_mail_security_nonce');
+
+        wp_localize_script( 'checkemail', 'checkemail_data', $data );
 	}
 }

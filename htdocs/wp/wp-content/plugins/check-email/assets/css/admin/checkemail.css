@@ -218,4 +218,62 @@
     margin-bottom: 50px;
 }
 
+.ce_radio-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 320px;
+    max-width: 350px;
+}
 
+.ce_radio-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 150px;
+    padding: 5px; /* Reduced padding for each label */
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+    border: 2px solid transparent; /* Initially no border */
+    border-radius: 8px;
+    margin: 0 5px; /* Adjusted margin to reduce space between labels */
+}
+
+.ce_radio-label img {
+    max-width: 100px;
+    max-height: 50px;
+    margin-bottom: 10px;
+}
+
+/* Hide the default radio button */
+.ce_radio-label input {
+    display: none;
+}
+
+
+
+/* Change the title color when checked */
+.ce_radio-label input:checked + img + .ce_radio-title {
+    font-weight: bold;
+    color: #0078D7; /* Change title color */
+}
+
+/* Apply border to label when radio is checked */
+.ce_radio-label input:checked {
+    border-color: #0078D7; /* Border around the entire label */
+    color: #0078D7
+}
+.ck_radio_selected {
+    border-color: #0078D7;
+}
+
+/* Optional: Add a hover effect */
+.ce_radio-label:hover {
+    border-color: #ccc; /* Light border on hover */
+}
+
+.check-email-opt-labels-encoder {
+    display: block;
+    margin-top: 10px;
+    cursor: pointer;
+}
