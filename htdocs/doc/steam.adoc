@@ -24,13 +24,11 @@ cgeimg::block[
 
 == Example
 
-// TODO: update castle-steam->master links
-
-Consult the https://github.com/castle-engine/castle-engine/tree/castle-steam/examples/steam[examples/steam] for a ready application that connects to Steam and allows to experiment with achievements -- list them, clear, set.
+Consult the https://github.com/castle-engine/castle-engine/tree/master/examples/steam[examples/steam] for a ready application that connects to Steam and allows to experiment with achievements -- list them, clear, set.
 
 == Get the Steam dynamic library
 
-In order for the integration to work, you need to set up the _Steam dynamic library_ in your project. (For start, we advise to test it with https://github.com/castle-engine/castle-engine/tree/castle-steam/examples/steam[examples/steam] example mentioned above.) If you don't do this, then the integration will do nothing -- the game will run, but without the Steam dynamic library we cannot "talk" with Steam.
+In order for the integration to work, you need to set up the _Steam dynamic library_ in your project. (For start, we advise to test it with https://github.com/castle-engine/castle-engine/tree/master/examples/steam[examples/steam] example mentioned above.) If you don't do this, then the integration will do nothing -- the game will run, but without the Steam dynamic library we cannot "talk" with Steam.
 
 1. First, you need to be a https://partner.steamgames.com/[registered Steam partner] to have access to the Steam API.
 
@@ -61,7 +59,7 @@ export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:."
 +
 Save this file and do `chmod +x run.sh`. Now you can execute it like `./run.sh`. Our link:build_tool[build tool] and link:editor[] are aware of this convention, so they will also execute your game through the `run.sh` script automatically.
 +
-See https://github.com/castle-engine/castle-engine/blob/castle-steam/examples/steam/run.sh[examples/steam/run.sh] file.
+See https://github.com/castle-engine/castle-engine/blob/master/examples/steam/run.sh[examples/steam/run.sh] file.
 +
 NOTE: The instructions above assume a simple case where you only support one Linux architecture, most likely the modern `x86_64`. If you want to support multiple architectures with Linux (Steam supports both `i386` and `x86_64` now) then you have to place the `libsteam_api.so` in a CPU-specific subdirectory and extend `LD_LIBRARY_PATH` to include different subdirectories, based on `uname --processor`.
 +
@@ -86,7 +84,7 @@ NOTE: We deliberately say this step matters for _Linux_, not _Unix_ in general. 
 </package>
 ----
 +
-As an example, see https://github.com/castle-engine/castle-engine/blob/castle-steam/examples/steam/CastleEngineManifest.xml[examples/steam/CastleEngineManifest.xml].
+As an example, see https://github.com/castle-engine/castle-engine/blob/master/examples/steam/CastleEngineManifest.xml[examples/steam/CastleEngineManifest.xml].
 
 == Using Steam integration from Pascal
 
@@ -98,7 +96,7 @@ Use the unit cgeref:CastleSteam[] and class cgeref:TCastleSteam[] for all the fe
 +
 We recommend to do this in a dedicated new unit in your project, like `GameSteam`. Later you may put there other useful things related to the Steam integration (like constants for application id, achievement names etc.)
 +
-See the https://github.com/castle-engine/castle-engine/blob/castle-steam/examples/steam/code/gamesteam.pas[examples/steam/code/gamesteam.pas] for a working example.
+See the https://github.com/castle-engine/castle-engine/blob/master/examples/steam/code/gamesteam.pas[examples/steam/code/gamesteam.pas] for a working example.
 
 . Create an instance of cgeref:TCastleSteam[] class, like this:
 +
@@ -107,7 +105,7 @@ See the https://github.com/castle-engine/castle-engine/blob/castle-steam/example
 Steam := TCastleSteam.Create(AppId);
 ----
 +
-We recommend to do this along with the rest of your game initialization, in the callback you provided to the `Application.OnInitialize`. See https://github.com/castle-engine/castle-engine/blob/castle-steam/examples/steam/code/gameinitialize.pas[examples/steam/code/gameinitialize.pas]. But in principle, you can create it at any time.
+We recommend to do this along with the rest of your game initialization, in the callback you provided to the `Application.OnInitialize`. See https://github.com/castle-engine/castle-engine/blob/master/examples/steam/code/gameinitialize.pas[examples/steam/code/gameinitialize.pas]. But in principle, you can create it at any time.
 
 . Right after the constructor you can check if everything is OK (in particular, we found Steam dynamic library) by checking cgeref:TCastleSteam.Enabled[].
 
@@ -117,14 +115,14 @@ We recommend to do this along with the rest of your game initialization, in the 
 
 == Steam application id in our example application
 
-The example on https://github.com/castle-engine/castle-engine/tree/castle-steam/examples/steam[examples/steam] by default uses application id of https://partner.steamgames.com/doc/sdk/api/example[SteamWorks game example: SpaceWar].
+The example on https://github.com/castle-engine/castle-engine/tree/master/examples/steam[examples/steam] by default uses application id of https://partner.steamgames.com/doc/sdk/api/example[SteamWorks game example: SpaceWar].
 
 NOTE: Using this example will add this game to your Steam library. If you run it for the 1st time, you may not see the achievements -- just close and run the 2nd time. This seems to be just a quirk of this test game and the way Steam automatically adds it to your library. Things are smooth for a real game that you own before you run.
 
 However, you can edit this example to use your own application id. You will have it once you have created your own application on Steam. The application id is specified in 2 places, be sure to change them both:
 
-1. `AppId` constant in the https://github.com/castle-engine/castle-engine/blob/castle-steam/examples/steam/code/gamesteam.pas[examples/steam/code/gamesteam.pas] unit.
-2. https://github.com/castle-engine/castle-engine/blob/castle-steam/examples/steam/steam_appid.txt[steam_appid.txt] file in the same directory as the executable.
+1. `AppId` constant in the https://github.com/castle-engine/castle-engine/blob/master/examples/steam/code/gamesteam.pas[examples/steam/code/gamesteam.pas] unit.
+2. https://github.com/castle-engine/castle-engine/blob/master/examples/steam/steam_appid.txt[steam_appid.txt] file in the same directory as the executable.
 
 When testing with your own game, make sure that:
 
