@@ -1472,7 +1472,7 @@ List of tasks when adding new unit or path to CGE is admittedly not trivial, as 
 - add to `check_units_dependencies` (if it makes sense to define new rules)
 //- add to `Delphinus.Install.json` ( unused now, we don't work with Delphinus now, see https://github.com/Memnarch/Delphinus/issues/93 )
 - rerun `./tools/internal/examples_regenerate_auto_files` and commit updated DPROJ
-- rerun `castle-engine generate-program` in some applications in CGE that require updated DPROJ, but are not affected by `examples/regenerate_auto_files_in_all_examples.sh`:
+- rerun `castle-engine generate-program --guid-from-name` in some applications in CGE that require updated DPROJ, but are not affected by `examples/regenerate_auto_files_in_all_examples.sh`:
 ** `examples/delphi/{fmx,fmx_play_animation,vcl}`
 ** `tests/`
 ** `tests/delphi_tests/`
