@@ -5,19 +5,18 @@ include::common.adoc[]
 
 == Introduction
 
-// TODO: remove this warning
-WARNING: This page describes a work-in-progress. *The things documented below are not yet available in our official downloads*.
-
 Out-of-the-box our engine includes integration with https://store.steampowered.com/[Steam]. This allows you to use https://partner.steamgames.com/[Steamworks] API from Pascal code to
 
 - Use Steam achievements (list, get, set state).
 - Get some information from Steam (country, language, VR mode, Steam Deck, whether some DLC is installed).
 
-// TODO: do this.
+////
+// TODO: do this, put engine on Steam.
 // TODO: mention Steam download also in download.adoc
 Independently, you can also https://store.steampowered.com/app/2306540/Castle_Game_Engine/[download Castle Game Engine using Steam]. This means that our engine is also a regular Steam application, you can download, install, update it just like any other Steam tool. We also included some fun achievements for developers to unlock :)
 
 NOTE: Downloading the engine from Steam, and using the engine to develop Steam games, are _completely independent_. This means that you can download the engine in any way (through Steam or through link:download[our downloads]) and use it to develop games with Steam integration. And the games created using the engine you get from Steam are not automatically connected with Steam in any way.
+////
 
 cgeimg::block[
   steam_cge.png|Castle Game Engine editor on Steam
@@ -49,7 +48,7 @@ For example, in case of 64-bit Windows, copy the DLL file from `sdk/redistributa
 +
 NOTE: You can ignore `*.lib` files on Windows, they are not needed for dynamic linking.
 
-5. _Additional step necessary on Linux_: Create a `run.sh` script to run your game on Unix (e.g. Linux) with a modified `LD_LIBRARY_PATH`. This is necessary to link with the Steam dynamic library. Just create a new file, called `run.sh` in your project's top-level directory with contents like this:
+5. _Additional step necessary on Linux_: Create a `run.sh` script to run your game on Linux with a modified `LD_LIBRARY_PATH`. This is necessary to link with the Steam dynamic library. Just create a new file, called `run.sh` in your project's top-level directory with contents like this:
 +
 [source,bash]
 ----
@@ -65,6 +64,8 @@ Save this file and do `chmod +x run.sh`. Now you can execute it like `./run.sh`.
 See https://github.com/castle-engine/castle-engine/blob/castle-steam/examples/steam/run.sh[examples/steam/run.sh] file.
 +
 NOTE: The instructions above assume a simple case where you only support one Linux architecture, most likely the modern `x86_64`. If you want to support multiple architectures with Linux (Steam supports both `i386` and `x86_64` now) then you have to place the `libsteam_api.so` in a CPU-specific subdirectory and extend `LD_LIBRARY_PATH` to include different subdirectories, based on `uname --processor`.
++
+NOTE: We deliberately say this step matters for _Linux_, not _Unix_ in general. That's because on _macOS_ (which is also _Unix_) you typically use an application bundle, and then our build tool and library loading cooperate to make things work automatically (the build tool copies `*.dylib` inside application bundle, and when loading we look inside the bundle). And other Unixes, like _FreeBSD_, are not supported by Steam as of now.
 
 6. _Additional step to package your application_: You want to distribute your application with the Steam dynamic library. To do this, extend the link:project_manifest[CastleEngineManifest.xml] in your project to package the Steam dynamic library, like this:
 +
@@ -73,11 +74,15 @@ NOTE: The instructions above assume a simple case where you only support one Lin
 <package>
   <!-- For 64-bit Windows -->
   <include path="steam_api64.dll" />
+
   <!-- For Linux -->
   <include path="run.sh" />
   <include path="libsteam_api.so" />
-  <!-- For macOS -->
-  <include path="libsteam_api.dylib" />
+
+  <!-- For macOS: nothing is necessary for now.
+    We pack lib*.dylib (and steam_appid.txt for testing)
+    into bundle alongside exe automatically. -->
+  <!-- include path="libsteam_api.dylib" /-->
 </package>
 ----
 +
@@ -132,8 +137,6 @@ Depending on how you run the game (clicking _"Play"_ in Steam, or by running the
 
 The important advise is: When you upload the application to Steam, or when you give end-users a ZIP with the game (with Steam integration included), *do not* include the `steam_appid.txt` file. The `steam_appid.txt` file is supposed to be used only during development -- see below, it prevents from ever restarting the process.
 
-// TODO: test all below.
-
 Details, how the game behaves:
 
 1. _Ways to run the game for end-users_:
@@ -157,15 +160,18 @@ This is a nice way when you want to distribute your game as a ZIP file but you w
 2. _Running the game by running the exe file directly (with the `steam_appid.txt` file present), when Steam does not run in the background_: Steam integration will not work. But nothing crashes etc. So it's not a problem, just remember during testing that Steam achievements are not collected in this case.
 --
 
-== Platforms supported
+== Platforms supported and tested
 
 - Windows / x86_64
 - Windows / i386
 - Linux / x86_64
-- Linux / i386 (TODO: not tested)
-- macOS - TODO: test and finish
+- Linux / i386 _(TODO: untested, but should work out-of-the-box)_
+- macOS / x86_64
+- macOS / arm64 _(TODO: untested, but should work out-of-the-box)_
 
-Other platforms are not supported by Steam. In particular, _Linux / Arm_, _Linux / Aarch64_ (Raspberry Pi) -- Steam is not available there, there's no dynamic library for them.
+_Castle Game Engine_ supports a few more platforms (even for desktop, like _Linux / Aarch64_ or _FreeBSD_), but Steam does not support other platforms.
+
+NOTE: We put quite some effort to make our Steam integration code clean and simple. E.g. there's no wrapper library. And we dispatch Steam callbacks using the `SteamAPI_ManualDispatch_GetNextCallback` and friends -- no assembler, no hacks to simulate C++ VMT. This implies that our integration should "just work" on any platform supported by Steam, as long as you provide the Steam dynamic library.
 
 == TODO
 
