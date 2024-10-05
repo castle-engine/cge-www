@@ -115,7 +115,7 @@ We recommend to do this along with the rest of your game initialization, in the 
 
 The example on https://github.com/castle-engine/castle-engine/tree/master/examples/steam[examples/steam] by default uses application id of https://partner.steamgames.com/doc/sdk/api/example[SteamWorks game example: SpaceWar].
 
-NOTE: Using this example will add this game to your Steam library. If you run it for the 1st time, you may not see the achievements -- just close and run the 2nd time. This seems to be just a quirk of this test game and the way Steam automatically adds it to your library. Things are smooth for a real game that you own before you run.
+NOTE: Using this example will add the _"SpaceWar"_ game to your Steam library. Moreover, if you don't see the achievements initially (integration seems to work but 0 achievements are visible), then just view _"SpaceWar"_ in your Steam library and run our test again. This seems to be just a quirk of this test game and the way Steam automatically adds it to your library. Things are smooth for a real game that you own before you run.
 
 However, you can edit this example to use your own application id. You will have it once you have created your own application on Steam. The application id is specified in 2 places, be sure to change them both:
 
