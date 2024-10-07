@@ -6,7 +6,7 @@ $toc = new TableOfContents(
   array(
     new TocItem('Introduction', 'introduction'),
     new TocItem('Engine core classes', 'core'),
-    new TocItem('Utilities for typical 3D games', 'utilities_3d'),
+    new TocItem('Deprecated: Utilities for typical 3D games', 'utilities_3d'),
   )
 );
 ?>
@@ -216,7 +216,7 @@ Level.Load(\'myLevelName\');
 
 <?php echo $toc->html_section(); ?>
 
-<p>As explained in the <a href="manual_3d_utlities_overview.php">Utilities for typical 3D games -&gt; Overview</a>,
+<p>As explained in the <a href="manual_3d_utilities_overview.php">Utilities for typical 3D games -&gt; Overview</a>,
 our engine contains a number of optional classes helpful to implement typical 3D games.
 Their usage is more limited than the "core" classes listed above.
 

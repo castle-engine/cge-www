@@ -394,7 +394,7 @@ $castle_sitemap = array(
           ),
           'manual_high_level_3d_classes' => array('title' => 'Deprecated: Utilities for typical 3D games',
             'sub' => array(
-              'manual_3d_utlities_overview' => array('title' => 'Overview'),
+              'manual_3d_utilities_overview' => array('title' => 'Overview'),
               'manual_game_level' => array('title' => 'Loading game level'),
               'manual_player' => array('title' => 'Player'),
               'manual_resources' => array('title' => 'Defining creatures and items'),
