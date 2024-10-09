@@ -56,7 +56,7 @@ The engine provides a number of ready behavior classes, e.g.
 
 Let's modify our cars demo from link:viewport_and_scenes_from_code[Writing code to modify scenes and transformations] example to use behaviors to move each car.
 
-. Define and implement class `TCarBehavior` that descends from `TCastleBehavior`, and moves a car. Place this code in your project (you can create a new unit, or add it to the implementation of `GameViewMain` unit):
+. Define and implement class `TCarBehavior` that descends from cgeref:TCastleBehavior[], and moves a car. Place this code in your project (you can create a new unit, or add it to the implementation of `GameViewMain` unit):
 +
 [source,pascal]
 ----

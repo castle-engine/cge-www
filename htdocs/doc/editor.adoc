@@ -130,9 +130,9 @@ It is somewhat equivalent to Unity `Assets/` subdirectory. See link:https://cast
 * You can drag files from the _"Files"_ area onto the design.
 +
 --
-* Drag 3D and 2D models (like glTF or Spine or X3D files) on `TCastleViewport` to automatically create a `TCastleScene` with the given scene loaded.
-* Drag audio files on `TCastleViewport` to automatically create link:sound[sound source (TCastleSoundSource and TCastleSound)].
-* Drag images on `TCastleViewport` to automatically create cgeref:TCastleImageTransform[].
+* Drag 3D and 2D models (like glTF or Spine or X3D files) on cgeref:TCastleViewport[] to automatically create a cgeref:TCastleScene[] with the given scene loaded.
+* Drag audio files on cgeref:TCastleViewport[] to automatically create link:sound[sound source (TCastleSoundSource and TCastleSound)].
+* Drag images on cgeref:TCastleViewport[] to automatically create cgeref:TCastleImageTransform[].
 * Drag UI designs (*.castle-user-interface) to automatically create cgeref:TCastleDesign[] that refers to them.
 * Drag transform designs (*.castle-transform) to automatically create cgeref:TCastleTransformDesign[] that refers to them.
 * Drag images on user interface (not viewport) to automatically create cgeref:TCastleImageControl[]. If you want to force creating 2D cgeref:TCastleImageControl[] even when you drop on viewport, hold _Shift_ when dropping.

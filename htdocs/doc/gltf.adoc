@@ -63,7 +63,7 @@ TODO: Main missing glTF feature is morph targets. It is coming!
 
 == Attaching objects to bones
 
-This is available using cgeref:TCastleSceneCore.ExposeTransforms[TCastleScene.ExposeTransforms]. You can "expose" a bone transformation as `TCastleTransform` child and attach there a scene. See https://castle-engine.io/wp/2020/10/09/attach-objects-to-animated-bones-like-weapon-in-characters-hand-by-exposetransforms/ .
+This is available using cgeref:TCastleSceneCore.ExposeTransforms[TCastleScene.ExposeTransforms]. You can "expose" a bone transformation as cgeref:TCastleTransform[] child and attach there a scene. See https://castle-engine.io/wp/2020/10/09/attach-objects-to-animated-bones-like-weapon-in-characters-hand-by-exposetransforms/ .
 
 == Collisions when your glTF mesh uses skinned animation
 
@@ -190,7 +190,7 @@ and then it can start  animations `jump`, `walk`. They are just `TimeSensor` nod
 
 === Use `Inline` and `IMPORT` to access glTF materials, meshes, transforms in an X3D file
 
-Demo of this technique is in https://github.com/michaliskambi/x3d-tests/tree/master/gltf/avocado_and_exports . Open the models there with https://castle-engine.io/castle-model-viewer[Castle Model Viewer] or just load them into `TCastleScene` instance in CGE editor.
+Demo of this technique is in https://github.com/michaliskambi/x3d-tests/tree/master/gltf/avocado_and_exports . Open the models there with https://castle-engine.io/castle-model-viewer[Castle Model Viewer] or just load them into cgeref:TCastleScene[] instance in CGE editor.
 
 It looks like this:
 

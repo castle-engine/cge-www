@@ -111,7 +111,7 @@ TODO: There are too many classes above. In time, we hope to remove some of the a
 
 ## Deprecated: load image directly in TCastleScene
 
-You can load the image to `TCastleScene`, using the `TCastleScene.Load` method (or by setting `TCastleScene.URL`). While traditionally `TCastleScene` is used for "heavier" 3D and 2D assets, it is perfectly suitable to also just use it to render a trivial rectangle with a simple image. See link:viewport_and_scenes[CGE manual about loading and using scenes].
+You can load the image to cgeref:TCastleScene[], using the `TCastleScene.Load` method (or by setting `TCastleScene.URL`). While traditionally cgeref:TCastleScene[] is used for "heavier" 3D and 2D assets, it is perfectly suitable to also just use it to render a trivial rectangle with a simple image. See link:viewport_and_scenes[CGE manual about loading and using scenes].
 
 Under the hood, this method creates nodes to define a rectangle, and applies the image as a texture. The "manual" way of achieving the same is https://castle-engine.io/x3d_implementation_geometry3d.php#section_example_pascal_rect[presented in the example code here].
 
@@ -119,7 +119,7 @@ This approach is deprecated now, as cgeref:TCastleImageTransform[] is better.
 
 ### Parameters when loading image to TCastleScene
 
-By default we display an entire image. Alternatively, when loading the image to `TCastleScene`, you can use a special syntax with URL anchors to specify a subset of the image. That is, instead of
+By default we display an entire image. Alternatively, when loading the image to cgeref:TCastleScene[], you can use a special syntax with URL anchors to specify a subset of the image. That is, instead of
 
 ----
 my_image.png

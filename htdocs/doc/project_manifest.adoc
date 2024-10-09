@@ -139,7 +139,7 @@ The standalone program file can be customized to initialize a specific window si
 
 == Editor components
 
-Your application can register link:custom_components[custom components] available for the link:editor[Castle Game Engine Editor]. These component classes heave to descend from `TCastleUserInterface` or `TCastleTransform`, and must be registered in the `initialization` section of some unit by calling `RegisterSerializableComponent(TMyButton, 'My Button');`.
+Your application can register link:custom_components[custom components] available for the link:editor[Castle Game Engine Editor]. These component classes heave to descend from cgeref:TCastleUserInterface[] or cgeref:TCastleTransform[], and must be registered in the `initialization` section of some unit by calling `RegisterSerializableComponent(TMyButton, 'My Button');`.
 
 You should list the units that contain these components in the `editor_units` attribute, which has a syntax similar to the `game_units` attribute: a number of units separated by commas.
 

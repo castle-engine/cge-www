@@ -235,7 +235,7 @@ _In progress_ already (by _Andrzej Kilijański_) - https://github.com/castle-eng
 
 - _(See section below about "Old system")_ Currently we also have an older, simpler, internal physics/collision engine in CGE, that takes care of some tasks: the collisions of player and creatures (from CastleCreatures), a simple gravity for them, and custom collision methods for you (like RayCollision, SphereCollision etc. in CastleTransform unit). The new physics engine should eventually replace them all, and there should be a flag to make it possible, and eventually it should even become the default, and the old collision implementation should be simply removed.
 
-- A shape within the `TCastleScene` should be able to act like a rigid body, independent of the rest of the scene. Our current preferred plan to this is to depend that you will assign rigid bodies and colliders in CGE editor (or by Pascal code) to `TCastleTransform` created by the `ExposeTransforms` feature. And we can just synchronize changes from bones exposed by `ExposeTransforms` back to the original model.
+- A shape within the cgeref:TCastleScene[] should be able to act like a rigid body, independent of the rest of the scene. Our current preferred plan to this is to depend that you will assign rigid bodies and colliders in CGE editor (or by Pascal code) to cgeref:TCastleTransform[] created by the `ExposeTransforms` feature. And we can just synchronize changes from bones exposed by `ExposeTransforms` back to the original model.
 +
 This will allow you to attach physics to particular parts (any transformation) of the model.
 +

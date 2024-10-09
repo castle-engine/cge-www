@@ -78,7 +78,7 @@ For example: You can set cgeref:TCastleOrthographic.Width[Viewport.Camera.Orthog
 
 A viewport created using the _"Add User Interface -> Viewport (2D)"_ menu item has, by default, cgeref:TCastleOrthographic.Origin[Viewport.Camera.Orthographic.Origin] set as `(0.5,0.5)`. This means that the camera position determines what is visible in the _middle_ of the viewport. In effect, when `Camera.Translation` is `(0, 0, 0)`, the _middle_ of the viewport will show the things at position `(0, 0, 0)` in your world. This is most comfortable if you place your assets around the `(0, 0, 0)` point.
 
-As an example, you can add a `TCastleScene` with an image or a sprite sheet. By default their pivot is in the middle of the asset. So if cgeref:TCastleOrthographic.Origin[Viewport.Camera.Orthographic.Origin] is `(0.5,0.5)` you will see them in the middle of the viewport.
+As an example, you can add a cgeref:TCastleScene[] with an image or a sprite sheet. By default their pivot is in the middle of the asset. So if cgeref:TCastleOrthographic.Origin[Viewport.Camera.Orthographic.Origin] is `(0.5,0.5)` you will see them in the middle of the viewport.
 
 You can change cgeref:TCastleOrthographic.Origin[Viewport.Camera.Orthographic.Origin] to whatever makes sense for your game. For example, cgeref:TCastleOrthographic.Origin[Viewport.Camera.Orthographic.Origin] equal to `(0, 0)` means that the camera position determines what is visible at the _left-bottom viewport corner_. So when camera position is `(0, 0, 0)` the left-bottom viewport corner will show the things at position `(0, 0, 0)` in your world.
 
@@ -104,7 +104,7 @@ See link:blending[blending] for more details about blending, and see link:manual
 
 ## Advanced: Turning any viewport (like 3D) into 2D
 
-There is really no strict distinction between 3D and 2D viewports in _Castle Game Engine_. In both cases you have `TCastleViewport`, just some sensible defaults are different. In _"Viewport (2D)"_ the camera projection is _orthographic_ and design-time navigation method is 2D.
+There is really no strict distinction between 3D and 2D viewports in _Castle Game Engine_. In both cases you have cgeref:TCastleViewport[], just some sensible defaults are different. In _"Viewport (2D)"_ the camera projection is _orthographic_ and design-time navigation method is 2D.
 
 You can always turn a "regular" viewport (with defaults for 3D) into 2D.
 

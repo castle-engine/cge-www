@@ -68,7 +68,7 @@ Otherwise gamma correction is not used. So unlit materials (e.g. with cartoon re
 +
 If you want maximum speed, you may also consider using Phong lighting (maybe even with Gouraud shading) instead of PBR. IOW, using `Material` instead of `PhysicalMaterial` X3D nodes. And of course use `UnlitMaterial` for unrealistic rendering. But these decisions are independent of the gamma correction, that in principle  makes sense with any lighting model (even unlit).
 
-NOTE: Color space (and gamma correction) only affects things rendered using `TCastleScene` in `TCastleViewport`. It is not applied to other things. In particular user-interface elements (like `TCastleButton` or `TCastleImageControl`) or low-level 2D APIs (like `TDrawableImage`) ignore the `ColorSpace` setting.
+NOTE: Color space (and gamma correction) only affects things rendered using cgeref:TCastleScene[] in cgeref:TCastleViewport[]. It is not applied to other things. In particular user-interface elements (like cgeref:TCastleButton[] or cgeref:TCastleImageControl[]) or low-level 2D APIs (like `TDrawableImage`) ignore the `ColorSpace` setting.
 
 == Why does this matter also for unlit materials (that don't calculate lighting)?
 

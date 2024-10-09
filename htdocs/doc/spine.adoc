@@ -28,7 +28,7 @@ Spine is a great software to design 2D animations for games, using modern techni
 
 You can use https://castle-engine.io/castle-model-viewer[Castle Model Viewer] to open Spine animations.
 
-You can also add Spine animations using the https://castle-engine.io/manual_editor.php[editor], just add a `TCastleScene` and set the scene `URL` to point to the JSON file.
+You can also add Spine animations using the https://castle-engine.io/manual_editor.php[editor], just add a cgeref:TCastleScene[] and set the scene `URL` to point to the JSON file.
 
 . Some sample Spine animations are in https://github.com/castle-engine/demo-models[demo models] in subdirectory https://github.com/castle-engine/demo-models/tree/master/spine[spine]. They are also used by some examples, like https://github.com/castle-engine/castle-engine/tree/master/examples/animations/play_animation[examples/animations/play_animation] and by our "New Project" \-> "2D game" template.
 . Just open a project exported from Spine (as a JSON file) using https://castle-engine.io/castle-model-viewer[Castle Model Viewer] _File\->Open_ .
@@ -42,7 +42,7 @@ video::AuI4zgmT-YQ[youtube,width=800,height=450]
 
 See our https://castle-engine.io/documentation.php[engine documentation] for an overview how to use the engine.
 
-When you run our https://castle-engine.io/manual_editor.php[editor], create a _"New Project"_ and use template _"2D Game"_. This shows a viewport with mutliple Spine scenes. A Spine scene is just a `TCastleScene` instance and you add it to `TCastleViewport` to make it visible, animated etc.
+When you run our https://castle-engine.io/manual_editor.php[editor], create a _"New Project"_ and use template _"2D Game"_. This shows a viewport with mutliple Spine scenes. A Spine scene is just a cgeref:TCastleScene[] instance and you add it to cgeref:TCastleViewport[] to make it visible, animated etc.
 
 To play a Spine animation,
 

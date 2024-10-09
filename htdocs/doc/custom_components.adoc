@@ -15,7 +15,7 @@ All custom components have to descend from https://www.freepascal.org/docs-html/
 
 * Descend from cgeref:TCastleUserInterface[] to define new user interface controls.
 * Descend from cgeref:TCastleTransform[] to define new things you can put in your 3D and 2D game world.
-* Descend from cgeref:TCastleBehavior[] to define new things that enhance the behavior of `TCastleTransform`.
+* Descend from cgeref:TCastleBehavior[] to define new things that enhance the behavior of cgeref:TCastleTransform[].
 * Descend from cgeref:TCastleComponent[] otherwise.
 
 == Example of custom component and its registration
@@ -424,7 +424,7 @@ end.
 
 In general, your custom component can freely create other classes for internal purposes, and generally do anything it wants with them.
 
-But note that if you add new children of `TCastleUserInterface`, or new children of `TCastleTransform`, or new behaviors of `TCastleTransform`, then these new children will be (by default) visible to the user (in CGE editor) and editable (user will be able to modify their properties, or even free their instances). Sometimes this is undesirable, when you want to create something _internal_ (but it still has to be a child of `TCastleUserInterface`, `TCastleTransform` etc.).
+But note that if you add new children of cgeref:TCastleUserInterface[], or new children of cgeref:TCastleTransform[], or new behaviors of cgeref:TCastleTransform[], then these new children will be (by default) visible to the user (in CGE editor) and editable (user will be able to modify their properties, or even free their instances). Sometimes this is undesirable, when you want to create something _internal_ (but it still has to be a child of cgeref:TCastleUserInterface[], cgeref:TCastleTransform[] etc.).
 
 The solution to this is to call cgeref:TCastleComponent.SetTransient[] on an internal instance. "Transient" is a Pascal term for components that are internal, that should not be accessible at design-time, and should not be serialized/deserialized.
 
@@ -682,7 +682,7 @@ end.
 
 [WARNING]
 ====
-The components made internal using `SetTransient` are not absolutely "out of reach" for the developer of an application. Any developer can still access them by iterating through the children list (e.g. `TCastleUserInterface` or `TCastleTransform` children). Components can be accessed, modified and even freed this way. Like:
+The components made internal using `SetTransient` are not absolutely "out of reach" for the developer of an application. Any developer can still access them by iterating through the children list (e.g. cgeref:TCastleUserInterface[] or cgeref:TCastleTransform[] children). Components can be accessed, modified and even freed this way. Like:
 
 ```pascal
 MyIntegerLabel := TMyIntegerLabel.Create(...);

@@ -66,7 +66,7 @@ Old approach to this was offered by the `CreatureCreatures` / `CastleResources` 
 
 - It is confusing how it maps to API underneath (e.g. TPlayer somewhat controls the TCastleNavigation).
 
-We want to express their features in different ways, in ways that are more closely and obviously connected with TCastleScene / TCastleViewport / TCastleNavigation. Basically, we're very happy with current API of `TCastleScene` and `TCastleTransform`, and we want to make it more obvious how it is related to creatures/placeholders and other concepts in the engine. The existing `CreatureCreatures` / `CastleResources` / `CastleLevels` / `CastleItems` / `CastlePlayer` also use TCastleScene and TCastleTransform inside, but the relationship is non-obvious.
+We want to express their features in different ways, in ways that are more closely and obviously connected with TCastleScene / TCastleViewport / TCastleNavigation. Basically, we're very happy with current API of cgeref:TCastleScene[] and cgeref:TCastleTransform[], and we want to make it more obvious how it is related to creatures/placeholders and other concepts in the engine. The existing `CreatureCreatures` / `CastleResources` / `CastleLevels` / `CastleItems` / `CastlePlayer` also use TCastleScene and TCastleTransform inside, but the relationship is non-obvious.
 ====
 
 ////
@@ -87,9 +87,9 @@ We want to have a component list class, that
 - Can be used to express current (this will make some code in editor and `CastleInternalInspector` simpler):
 +
 --
-- `TCastleTransform` children of `TCastleTransform`,
-- `TCastleBehavior` children of `TCastleTransform`,
-- `TCastleUserInterface` children of `TCastleUserInterface`
+- cgeref:TCastleTransform[] children of cgeref:TCastleTransform[],
+- cgeref:TCastleBehavior[] children of cgeref:TCastleTransform[],
+- cgeref:TCastleUserInterface[] children of cgeref:TCastleUserInterface[]
 --
 
 - Can be used to express future things:
@@ -102,7 +102,7 @@ We want to have a component list class, that
 
 - Is generic, so we can be safe at compile-time about what is allowed to be inserted. That's why we don't want to just use standard `TComponentList`.
 
-- Would allow CGE editor to easily hide some lists, while not hiding others. E.g. whether to expand `TCastleBehavior` in the hierarchy -- can be just UI choice.
+- Would allow CGE editor to easily hide some lists, while not hiding others. E.g. whether to expand cgeref:TCastleBehavior[] in the hierarchy -- can be just UI choice.
 +
 Conceptually, when Unity has hierarchy (of `GameObject`) on left and list of components (_components_ in Unity sense, i.e. pieces of `GameObject`) on right, we instead have a tree of components (_components_ in Pascal and CGE sense, i.e. `TComponent`). It is just editor UI decision -- which levels are shown in the tree (hierarchy), which are not (e.g. behaviors could be hidden, or shown in some different way, in editor -- and it shall be unrelated to the Pascal classes organization).
 
@@ -341,9 +341,9 @@ More about splatmaps: https://en.wikipedia.org/wiki/Texture_splatting , https://
 +
 NOTE: The fact that you can connect a few terrains together, and our generation can generate "neighbors" effectively, is super-useful and will be preserved.
 
-- Tools to plant big things (3D `TCastleScene`) in the terrain, like trees, rocks. You can do it now, though it's manual: Use behavior cgeref:TCastleStickToSurface[] and put multiple instances of the thing you want. Use cgeref:TCastleTransformReference[] to make it optimal for memory when you can, so that multiple instances share the same resources.
+- Tools to plant big things (3D cgeref:TCastleScene[]) in the terrain, like trees, rocks. You can do it now, though it's manual: Use behavior cgeref:TCastleStickToSurface[] and put multiple instances of the thing you want. Use cgeref:TCastleTransformReference[] to make it optimal for memory when you can, so that multiple instances share the same resources.
 +
-Optional LODs could be nice (but maybe this is outside of scope of terrains; LODs should be just on `TCastleScene`. Currently we have LODs on `TCastleScene` using `TLODNode` - works nice, though complicated to set up, we want to move away from exposing X3D nodes for this.)
+Optional LODs could be nice (but maybe this is outside of scope of terrains; LODs should be just on cgeref:TCastleScene[]. Currently we have LODs on cgeref:TCastleScene[] using `TLODNode` - works nice, though complicated to set up, we want to move away from exposing X3D nodes for this.)
 
 - Tools to plant many small things, like grass. This is a big different than "big things", and here automatic LODs that e.g. decrease density of grass with distance make sense.
 
@@ -538,7 +538,7 @@ Bonus: allow to animate any property of any `TComponent`.
 +
 Bonus: allow to animate other property types. E.g. animating discrete (like boolean) actually makes sense -- to hide stuff by animation, by changing `Exists` at specific point in time.
 
-- It should use `TCastleBehaviorBase` that will allow to attach it to any `TCastleUserInterface` and `TCastleTransform`. See talk about it in https://github.com/castle-engine/castle-engine/issues/473 .
+- It should use `TCastleBehaviorBase` that will allow to attach it to any cgeref:TCastleUserInterface[] and cgeref:TCastleTransform[]. See talk about it in https://github.com/castle-engine/castle-engine/issues/473 .
 
 - Each such animation should define:
 +
@@ -572,11 +572,11 @@ Address a few shortcomings of our  (see `examples/screen_effects_demo/`, link:x3
 
 ### Export any TCastleTransform hierarchy to X3D
 
-Currently you can only export `TCastleScene` to X3D or STL.
+Currently you can only export cgeref:TCastleScene[] to X3D or STL.
 
 ### Export TCastleScene, or any TCastleTransform hierarchy, to glTF
 
-Currently you can export `TCastleScene` to X3D or STL.
+Currently you can export cgeref:TCastleScene[] to X3D or STL.
 
 GitHub issue: https://github.com/castle-engine/castle-engine/issues/595
 

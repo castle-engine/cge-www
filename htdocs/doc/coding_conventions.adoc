@@ -567,7 +567,7 @@ Count of Unicode characters in a string, accounting for multi-byte characters.
 While most of the finalization code should usually go to the destructor (`Destroy`), it is OK (and sometimes even desirable) to override `BeforeDestruction` and put there code that _finalizes things, but keeps the object state consistent_. The idea is that finalization can be split into 2 phases:
 
 1. `BeforeDestruction` : Do only things that keep the object state consistent. This means that 100% of class implementation is prepared to handle the state in the middle (and after) `BeforeDestruction` happens. Examples of things to do here:
-** Detach things, e.g. calling `BeforeParentDetach` and clearing the behaviors from parent `TCastleTransform`.
+** Detach things, e.g. calling `BeforeParentDetach` and clearing the behaviors from parent cgeref:TCastleTransform[].
 ** Calling notifications.
 
 2. `Destroy` : Do things that put the object in half-uninitialized state. Not all of class implementation has to be prepared to handle this state.

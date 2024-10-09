@@ -8,7 +8,7 @@ Note that _we try to do most of our changes without breaking compatibility, mere
 https://castle-engine.io/talk.php[If you are unsure how to upgrade something, or why something changed, please talk with us!]
 
 * `TUIControl.RenderStyle` is removed. It was a convoluted way to specify rendering order. Now, only the position of the control among the children (when you `InsertFront`, `InsertBack` etc.) determines the rendering order.
-* The default `TCastleLabel` color is now `Black`, not `White`. This compatibility break seemed unavoidable, unfortunately our UI controls were inconsistent -- most assumed a modern "black colors over white background scheme" (TCastleEdit, TCastleRectangleControl, TCastleCheckbox...), but TCastleLabel was by default white. So it e.g. was invisible over default TCastleRectangleControl.
+* The default cgeref:TCastleLabel[] color is now `Black`, not `White`. This compatibility break seemed unavoidable, unfortunately our UI controls were inconsistent -- most assumed a modern "black colors over white background scheme" (TCastleEdit, TCastleRectangleControl, TCastleCheckbox...), but TCastleLabel was by default white. So it e.g. was invisible over default TCastleRectangleControl.
 +
 If you depended that the label is by default white, then now simply adjust your code to always set `MyLabel.Color := White` after creating `+MyLabel := TCastleLabel.Create(...)+`. Alternatively, temporarily, you can set `Theme.DefaultLabelWhite := true` at the initialization of your game. (But beware that `Theme.DefaultLabelWhite` is only a temporary compatibility crutch. It doesn't play nicely with designs created in CGE editor, since the (de)serialization will still assume that by default label has white color.)
 
@@ -19,9 +19,9 @@ If you'd like to restore the old default, just set `MySceneManager.BackgroundCol
 Note that this doesn't matter if you use https://castle-engine.io/x3d_implementation_environmentaleffects.php[Background node to specify a background color (or skybox textures) in X3D]. It also doesn't matter if your scene manager is transparent (`TCastleSceneManager.Transparent` is `true`). In these cases, scene manager `BackgroundColor` doesn't matter.
 
 * _The user interface coordinates (all positions, sizes, as well as font sizes) are float-based now._ See https://castle-engine.io/wp/2018/10/21/big-user-interface-and-editor-improvements/[this post] for details. In some cases, you may need to adjust your code. For example if you do `SomeIntValue := MyOtherControl.Width div 2;`, now you will have to change it to `SomeFloatValue := MyOtherControl.Width / 2;`.
-* The interpretation of `FullSize=true` is now consistent across all `TCastleUserInterface` ancestors. It _always_ overrides the control to fill the parent.
+* The interpretation of `FullSize=true` is now consistent across all cgeref:TCastleUserInterface[] ancestors. It _always_ overrides the control to fill the parent.
 +
-So `FullSize=true` works the same. Even for `TCastleButton`. Even for `TCastleImageControl` with `TCastleImageControl.Stretch=false` value.
+So `FullSize=true` works the same. Even for cgeref:TCastleButton[]. Even for cgeref:TCastleImageControl[] with `TCastleImageControl.Stretch=false` value.
 +
 Also, changing `Left`/`Bottom` properties doesn't matter when you use `FullSize`. Previously, it was possible to use `FullSize` to have a rectangle with the same size as parent, but still move it using `Left`/`Bottom` properties. It is no longer possible: `FullSize` always means _fill the parent_, so the rendered area of the control covers the parent. You can use `WidthFraction := 1; HeightFraction := 1;` to set size equal to the parent, but control the position as you like.
 
@@ -135,7 +135,7 @@ Even better (not deprecated):
  ** `TTwoSidedMaterialNode`. Acting just like one-sided material for now (`separateBackColor` is ignored, and the two-sidedness is actually determined by geometry `solid` field, following X3D spec).
 
 * `TCastleSceneManager.OnMoveAllowed` callback is removed. You can use `TCastleWalkNavigation.OnMoveAllowed` instead. Or set invisible colliders to limit the movement.
-* `TCastleViewport` by default has `FullSize`, `AutoCamera`, `AutoNavigation` set to `false`. Set them to `true` to have exact behavior from previous engine versions.
+* cgeref:TCastleViewport[] by default has `FullSize`, `AutoCamera`, `AutoNavigation` set to `false`. Set them to `true` to have exact behavior from previous engine versions.
 * The management of levels and player in `CastleLevels`, `CastlePlayer` was upgraded in a few ways. In particular, you should now _never_ add `Player` instance manually to `Viewport.Items` (so do not call `Viewport.Items.Add(Player)` yourself). Also, always assign `TLevel.Player` _before_ calling  `TLevel.Load`.
 * `TCastleTransform.DefaultOrientation` changed from `otUpYDirectionMinusZ` to `otUpYDirectionZ`. Reason:
  ** First of all, this matches the default orientation made by Blender exporter to glTF and Wavefront OBJ. This way, if you create a model in Blender following Blender's conventions of views (Front / Back, Left  / Right, Top / Bottom) and then load this in CGE, then `TCastleTransform.Direction` will behave in an intuitive manner out-of-the-box.
@@ -204,7 +204,7 @@ To render quadrics, use TCastleScene, with various 3D and 2D primitives https://
 +
 The need to process keys in TCastleTransform is very seldom (we only had 2 use-cases for it in the engine, one is in soon-to-be-deprecated `CastlePlayer`, the other was for https://castle-engine.io/x3d_implementation_keydevicesensor.php[X3D key sensors] which are not very useful to normal engine usage).
 
-* `TLevelLogic` is now `TCastleBehavior` descendant. Overriding `TLevelLogic.Create` and `TLevelLogic.Update` still has the same effect though, so you may not notice much difference. Note that `TLevelLogic` instance is not yet part of the world when `TLevelLogic.Create` happens (override `TLevelLogic.ParentChanged` to do something once it's part of level; we may introduce event like `WorldChanged` if necessary too).
+* `TLevelLogic` is now cgeref:TCastleBehavior[] descendant. Overriding `TLevelLogic.Create` and `TLevelLogic.Update` still has the same effect though, so you may not notice much difference. Note that `TLevelLogic` instance is not yet part of the world when `TLevelLogic.Create` happens (override `TLevelLogic.ParentChanged` to do something once it's part of level; we may introduce event like `WorldChanged` if necessary too).
 * The speed of movement in case of `TCastleExamineNavigation` with orthographic projection and standard dir/up (+Z/+Y) is now more natural. You can revert to previous behavior by setting `TCastleExamineNavigation.ExactMovement` to `false`.
 * `TCastleFont` is now `TCastleAbstractFont`, and `TTextureFont` is now `TCastleFont`. If you use `TCastleFont` class name explicitly, this affects you. Now:
  ** `TCastleFont` is the (non-abstract) font class that allows to load font from file (ttf, otf)
@@ -257,13 +257,13 @@ Another possibility, temporary, to resolve it is to just use `SoundFromName` eac
 - `OnCreatureExists`, `OnItemOnWorldExists`
 --
 +
-To new solution is to just assign `TCastleTransform.Exists` property to change existence. If you want to easily disable/enable a bunch of items, put them under a common group (like `TCastleTransform`) and disable/enable the group.
+To new solution is to just assign `TCastleTransform.Exists` property to change existence. If you want to easily disable/enable a bunch of items, put them under a common group (like cgeref:TCastleTransform[]) and disable/enable the group.
 +
 This change allows to track on engine side when the existence changes reliably. In particular it allowed to implement `ExistsInRoot` with a straightforward implementation.
 
 * `T3DResource` is now a descendant of `TComponent`, and inherits a virtual constructor `constructor Create(AOwner: TComponent);`. If you were overriding old constructor constructor `Create(const AName: string);`, you need to change the parameter. Outside code sets `Name` later, after construction.
 
-* `CastleRenderingCamera` unit and `RenderingCamera` singleton no longer exist. Access rendering camera only during rendering, using `RenderParams.RenderingCamera` (`RenderParams` is a parameter passed to `TCastleTransform.LocalRender`). Outside of rendering, you only have usual camera in `MyViewport.Camera` (accessible in `TCastleTransform` as `World.MainCamera`).
+* `CastleRenderingCamera` unit and `RenderingCamera` singleton no longer exist. Access rendering camera only during rendering, using `RenderParams.RenderingCamera` (`RenderParams` is a parameter passed to `TCastleTransform.LocalRender`). Outside of rendering, you only have usual camera in `MyViewport.Camera` (accessible in cgeref:TCastleTransform[] as `World.MainCamera`).
 
 * If you use `CastleLevels` and friends, note that all creatures are now under `Level.CreaturesRoot` group (not directly in `Viewport.Items`; instead, the `Level.CreaturesRoot` is in `Viewport.Items`). Similarly all items are in `Level.ItemsRoot`. This matters if you iterated manually over `Viewport.Items` searching for some creature/item.
 

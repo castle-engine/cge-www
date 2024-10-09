@@ -11,7 +11,7 @@ If you come with a knowledge of another game engine, like _Unity_, this page wil
 
 `GameObject` in Unity is (simplifying) something that exists in your world, and may be visible, and may have children that are affected by a transformation.
 
-For game objects (not user-interface), the closest equivalent of `GameObject` in _Castle Game Engine_ is the cgeref:TCastleTransform[] class. Instances of `TCastleTransform` can be arranged in a hierarchy, where each element transforms (moves, rotates, scales) the children. The most important class of CGE is the `TCastleScene`, which is a descendant of `TCastleTransform` that can actually render/animate/collide a model. Simply set `TCastleScene.Url` to load your model (like a glTF file) there.
+For game objects (not user-interface), the closest equivalent of `GameObject` in _Castle Game Engine_ is the cgeref:TCastleTransform[] class. Instances of cgeref:TCastleTransform[] can be arranged in a hierarchy, where each element transforms (moves, rotates, scales) the children. The most important class of CGE is the cgeref:TCastleScene[], which is a descendant of cgeref:TCastleTransform[] that can actually render/animate/collide a model. Simply set cgeref:TCastleSceneCore.Url[TCastleScene.Url] to load your model (like a glTF file) there.
 
 Our manual documents cgeref:TCastleScene[] and cgeref:TCastleTransform[] features in chapter link:viewport_and_scenes[Viewport with scenes, camera, navigation]. Basically you can do stuff like
 
@@ -22,21 +22,21 @@ MyScene.Translation := Vector3(1, 2, 3);
 MyScene.PlayAnimation('run', true);
 ----
 
-The `TCastleTransform` hierarchy is placed in a `TCastleViewport`, which is a 2D user-interface element (descendant of `TCastleUserInterface`).
+The cgeref:TCastleTransform[] hierarchy is placed in a cgeref:TCastleViewport[], which is a 2D user-interface element (descendant of cgeref:TCastleUserInterface[]).
 
-For objects that are user-interface elements, the most important base class is `TCastleUserInterface`. It has many descendants, like
+For objects that are user-interface elements, the most important base class is cgeref:TCastleUserInterface[]. It has many descendants, like
 
-* obvious user interface controls: `TCastleButton`, `TCastleLabel`, `TCastleRectangleControl`, `TCastleImageControl`...
-* layouts: `TCastleVerticalGroup`, `TCastleHorizontalGroup`,
-* and finally a critical UI component `TCastleViewport` which is a "gateway" to actually render a hierarchy of `TCastleTransform`.
+* obvious user interface controls: cgeref:TCastleButton[], cgeref:TCastleLabel[], cgeref:TCastleRectangleControl[], cgeref:TCastleImageControl[]...
+* layouts: cgeref:TCastleVerticalGroup[], cgeref:TCastleHorizontalGroup[],
+* and finally a critical UI component cgeref:TCastleViewport[] which is a "gateway" to actually render a hierarchy of cgeref:TCastleTransform[].
 
 See link:user_interface[user interface] documentation.
 
 == How to design a level composed from multiple assets, creatures etc.?
 
-In the simplest case, for each 3D model, you create a `TCastleScene` instance. You can do this visually, using the https://castle-engine.io/manual_editor.php[CGE editor], or from code.
+In the simplest case, for each 3D model, you create a cgeref:TCastleScene[] instance. You can do this visually, using the https://castle-engine.io/manual_editor.php[CGE editor], or from code.
 
-To group (and transform as a group) a number of `TCastleScene` instances you can use additional `TCastleTransform` instances. The `TCastleScene` is also a `TCastleTransform` descendant, so it can have children too.
+To group (and transform as a group) a number of cgeref:TCastleScene[] instances you can use additional cgeref:TCastleTransform[] instances. The cgeref:TCastleScene[] is also a cgeref:TCastleTransform[] descendant, so it can have children too.
 
 Follow the template _"3D FPS Game"_ (create it by running our editor, choose _"New Project"_ and then choose _"3D FPS Game"_ as a starting point). In the resulting project, open the design `data/gameviewplay.castle-user-interface` in the editor, to actually see what I mean (in this and previous answer).
 
@@ -52,7 +52,7 @@ _Full answer:_
 
 There are multiple ways how you can control CGE stuff from code:
 
-. *Define a class descending from cgeref:TCastleBehavior[] (see link:behaviors[]), and add an instance of it to `TCastleTransform`*. Like
+. *Define a class descending from cgeref:TCastleBehavior[] (see link:behaviors[]), and add an instance of it to cgeref:TCastleTransform[]*. Like
 +
 [source,pascal]
 ----
@@ -76,7 +76,7 @@ Then add such behavior instance from code:
   end;
 ----
 +
-See our template _"3D FPS Game"_ (create it by running our editor, choose _"New Project"_ and then choose _"3D FPS Game"_ as a starting point) that shows exactly this approach. It defines a trivial `TEnemy` class that defines the logic of an enemy, and is a `TCastleBehavior` descendant. It controls the enemy movement. It also allows to check (e.g. when shooting ray) "did I hit an enemy" by checking `SomeTransform.FindBehavior(TEnemy) <> nil`.
+See our template _"3D FPS Game"_ (create it by running our editor, choose _"New Project"_ and then choose _"3D FPS Game"_ as a starting point) that shows exactly this approach. It defines a trivial `TEnemy` class that defines the logic of an enemy, and is a cgeref:TCastleBehavior[] descendant. It controls the enemy movement. It also allows to check (e.g. when shooting ray) "did I hit an enemy" by checking `SomeTransform.FindBehavior(TEnemy) <> nil`.
 +
 While the above examples show attaching a behavior using code, you could also add `TEnemy` in editor. See link:manual_editor.php[editor] and link:custom_components[custom components] docs for information how to register `TEnemy` class in editor. This requires to restart editor within the project with menu option _"Project \-> Restart Editor (With Custom Components)"_. It is an extra step, but it makes sense for complicated behaviors, which can be configured in the editor easier.
 +
@@ -92,9 +92,9 @@ The approach to use events is similar to using UI in Lazarus LCL or Delphi VCL.
 +
 This approach is best when you want to handle in one class (the _view_) all events related to some UI, for example clicks on all buttons visible in game options.
 
-. Another way to control things in CGE is to *create class descendants from existing classes*. In CGE you can create descendants from almost all classes (including important `TCastleTransform` and `TCastleUserInterface`), and override virtual methods there. E.g. you can override `TCastleTransform.Update` to perform something every frame.
+. Another way to control things in CGE is to *create class descendants from existing classes*. In CGE you can create descendants from almost all classes (including important cgeref:TCastleTransform[] and cgeref:TCastleUserInterface[]), and override virtual methods there. E.g. you can override `TCastleTransform.Update` to perform something every frame.
 +
-So you could *define a class like `TMyCreature`* that descends from `TCastleTransform` or `TCastleScene`. This class would control it's own transformation (e.g. it would change it's own `Translation` to move the creature) and it would possibly load some children (more `TCastleTransform` and `TCastleScene` instances) to show and animate the creature.
+So you could *define a class like `TMyCreature`* that descends from cgeref:TCastleTransform[] or cgeref:TCastleScene[]. This class would control it's own transformation (e.g. it would change it's own `Translation` to move the creature) and it would possibly load some children (more cgeref:TCastleTransform[] and cgeref:TCastleScene[] instances) to show and animate the creature.
 +
 This is a classic OOP approach. This is like _Unreal Engine_ that allows you to define your own actor classes that override the base class.
 +
@@ -135,28 +135,30 @@ Test your models with https://castle-engine.io/castle-model-viewer[Castle Model 
 
 == Do you support FBX model format?
 
-No, and we will probably never do (unless indirectly through some universal conversion library). FBX is a proprietary model format by Autodesk. Please don't use FBX, it's proprietary (the Autodesk specification of FBX is "secret" deliberately, and Autodesk only sanctions using FBX through it's paid SDK), and also not that good. Use glTF.
+No, and we will probably never do (unless indirectly, through some universal conversion library or through automatic conversion using https://github.com/godotengine/FBX2glTF[FBX2glTF]). FBX is a proprietary model format by Autodesk. Please don't use FBX, it's proprietary (the Autodesk specification of FBX is "secret" deliberately, and Autodesk only sanctions using FBX through it's paid SDK), and also not that good. Use link:gltf[glTF] which is excellent.
 
 If you have existing models in FBX format you can https://github.com/godotengine/FBX2glTF[convert them to glTF (use Godot Engine fork of FBX2glTF)]. If you have the source versions of your models, possibly you can just reexport them from https://castle-engine.io/creating_data_export.php[your authoring software] to glTF. You can also use https://www.blender.org/[Blender] or a number of https://github.com/KhronosGroup/glTF-Generator-Registry/blob/master/dist/REGISTRY.md[other tools] to convert between model formats.
 
+More information: https://castle-engine.io/creating_data_model_formats.php#section_fbx[FBX model format].
+
 == Should I use TCastleWindow or TCastleControl?
 
-A short summary of the answer: Use TCastleWindow. If all you want is a cross-platform game, where everything is rendered using Castle Game Engine. If you come here and want to "just make a game using CGE", use `TCastleWindow`.
+A short summary of the answer: Use cgeref:TCastleWindow[]. If all you want is a cross-platform game, where everything is rendered using Castle Game Engine. If you come here and want to "just make a game using CGE", use cgeref:TCastleWindow[].
 
 Details: The difference is outlined on https://castle-engine.io/manual_lazarus_control.php :
 
-* TCastleControl means that engine rendering is inside Lazarus form. That is, TCastleControl is a regular Lazarus control that can be placed on a larger form. You can use Lazarus designer to place LCL controls, and you can use CGE editor to design CGE controls (within TCastleControl).
-* TCastleWindow means that engine rendering is a separate window, and we're not using LCL. You can use CGE editor to design controls. So you lose access to LCL controls, but in exchange you get perfect cross-platform code (Android, iOS, Switch work only with TCastleWindow).
+* cgeref:TCastleControl[] means that engine rendering is inside Lazarus form. That is, cgeref:TCastleControl[] is a regular Lazarus control that can be placed on a larger form. You can use Lazarus designer to place LCL controls, and you can use CGE editor to design CGE controls (within cgeref:TCastleControl[]).
+* cgeref:TCastleWindow[] means that engine rendering is a separate window, and we're not using LCL. You can use CGE editor to design controls. So you lose access to LCL controls, but in exchange you get perfect cross-platform code (Android, iOS, Switch work only with cgeref:TCastleWindow[]).
 
-In both cases, you can use Lazarus as an IDE -- to write code, debug etc. In both cases, you can use CGE editor to design CGE controls (that go inside TCastleControl or TCastleWindow).
+In both cases, you can use Lazarus as an IDE -- to write code, debug etc. In both cases, you can use CGE editor to design CGE controls (that go inside cgeref:TCastleControl[] or cgeref:TCastleWindow[]).
 
 == Where is `Time.timeScale`?
 
 An equivalent is to set `MyViewport.Items.TimeScale`.
 
-It is specific to the given world, which is an instance of `TCastleAbstractRootTransform` available in `MyViewport.Items`. Simple games will just have one viewport, a `TCastleViewport` instance. Multiple instances of `TCastleViewport` are possible, and then can share the same world, or show a different world (just assign `Items` between).
+It is specific to the given world, which is an instance of `TCastleAbstractRootTransform` available in `MyViewport.Items`. Simple games will just have one viewport, a cgeref:TCastleViewport[] instance. Multiple instances of cgeref:TCastleViewport[] are possible, and then can share the same world, or show a different world (just assign `Items` between).
 
-There in an additional time scaling possible by `TCastleScene.TimePlayingSpeed`. This is local in given `TCastleScene` instance.
+There in an additional time scaling possible by cgeref:TCastleSceneCore.TimePlayingSpeed[TCastleScene.TimePlayingSpeed]. This is local in given cgeref:TCastleScene[] instance.
 
 == Where is `Time.deltaTime`?
 
@@ -166,7 +168,7 @@ In you override the cgeref:TCastleUserInterface.Update[] (including cgeref:TCast
 
 == Making components inactive
 
-Both `TCastleTransform` and `TCastleUserInterface` have a Boolean `Exists` property: cgeref:TCastleTransform.Exists[], cgeref:TCastleUserInterface.Exists[]. By default this is `true`. Simply set it to `false` to make everything behave as if this component was _not_ part of the hierarchy. Non-existing components are not visible, do not collide, do not handle any input, do not cause any events etc. So Unity `GameObject.SetActive(xxx)` translates to CGE `MyTransform.Exists := xxx`.
+Both cgeref:TCastleTransform[] and cgeref:TCastleUserInterface[] have a Boolean `Exists` property: cgeref:TCastleTransform.Exists[], cgeref:TCastleUserInterface.Exists[]. By default this is `true`. Simply set it to `false` to make everything behave as if this component was _not_ part of the hierarchy. Non-existing components are not visible, do not collide, do not handle any input, do not cause any events etc. So Unity `GameObject.SetActive(xxx)` translates to CGE `MyTransform.Exists := xxx`.
 
 You can also control the cgeref:TCastleTransform.Collides[], cgeref:TCastleTransform.Pickable[] and cgeref:TCastleTransform.Visible[] properties of cgeref:TCastleTransform[]. These are useful to make something e.g. visible but non-collidable, or collidable but invisible. Note that when `Exists` is `false`, it "overrides" them, and non-existing object never collides and is never visible.
 
@@ -184,7 +186,7 @@ The _"service"_ means _"a part of the project, in binary or source code, added d
 
 * Android services may contain Java code, precompiled libraries for Android, Gradle configuration and more.
 * iOS services may contain Objective-C code, precompiled libraries for iOS, https://cocoapods.org/[CocoaPods] configuration and more.
-* On other platforms, so far we didn't need a similar concept. E.g. integration of CGE with 3rd-party services on desktops is always possible by normal Pascal units that expose e.g. FMOD or Steam API. That said, it is possible that we will add "services" for other platforms some day.
+* On other platforms, so far we didn't need a similar concept. E.g. integration of CGE with 3rd-party services on desktops is always possible by normal Pascal units that expose e.g. link:fmod[FMOD] or link:steam[Steam API]. That said, we plan to add "services" for all platforms at some point -- to distribute anything that contains platform-specific files (like shared libraries) even easier.
 
 == Shaders
 
@@ -206,13 +208,16 @@ In Unity, your typical world is a hierarchy of 3D ``GameObject``s.
 * You can have multiple `Camera` components on different GameObjects to have multiple viewports.
 * Somewhere in this world, you have a canvas that acts as a place for 2D controls like buttons and images.
 
-In CGE, it is a bit different. Viewport (`TCastleViewport`) is a 2D control, and it can render 3D world inside.
+In CGE, it is a bit different. Viewport (cgeref:TCastleViewport[]) is a 2D control, and it can render 3D world inside. This means:
 
-* You design a hierarchy of `TCastleUserInterface` components. They all have the same properties to control position and size, using anchors, using `FullSize` (fill the parent etc.).
-* There are numerous `TCastleUserInterface` descendants, like buttons, images, and viewports.
-* Within a viewport (`TCastleViewport`) instance, you place your 3D or 2D world (in `Viewport.Items`).
-* A viewport always renders using a chosen camera in `Viewport.Camera`. This camera determines projection settings and position, rotation of the viewer. This camera determines which part of the world (your `TCastleTransform` instances) is visible.
-* A hierarchy of `TCastleTransform` is placed inside `TCastleViewport.Items`. These are 3D or 2D objects, rendered from the point of chosen camera.
+* You design a hierarchy of cgeref:TCastleUserInterface[] components. They all share the same properties to control position and size, using anchors, using cgeref:TCastleUserInterface.FullSize[] (fill the parent) etc.
+
+* There are numerous cgeref:TCastleUserInterface[] descendants, like buttons, images, and *viewports*. So cgeref:TCastleViewport[] is just a descendant of cgeref:TCastleUserInterface[], arranged just like any other UI control.
+* Within a viewport (cgeref:TCastleViewport[]) instance, you place your 3D or 2D world (in `Viewport.Items`). `TCastleViewport.Items` is a hierarchy of cgeref:TCastleTransform[]. These are 3D or 2D objects, rendered from the point of chosen camera.
+
+* A viewport always renders using a chosen camera in cgeref:TCastleViewport.Camera[]. This camera determines projection settings and position, rotation of the viewer. This camera determines which part of the world (your cgeref:TCastleTransform[] instances) is visible. There can be multiple cgeref:TCastleCamera[] instances in the world, but at a given time, the viewport renders using the one chosen camera. You can of course change which camera is "chosen" by just changing cgeref:TCastleViewport.Camera[] value at any time.
+
+* To have multiple viewports in _Castle Game Engine_ you, intuitively, need to have multiple instances of cgeref:TCastleViewport[]. They each can occupy a different part of the screen. They can show a different 3D world or the same 3D world. See link:multiple_viewports_to_display_one_world[Multiple viewports to display one world].
 
 The above describes the typical design as seen in editor templates. To see it in action, create a _"New Project"_ in the editor, using the template like _"3D FPS Game"_, and open the design `data/gameviewplay.castle-user-interface` in the editor.
 
@@ -221,14 +226,16 @@ In short, in Unity "viewport" and "camera" and "UI" are just things inside your 
 In effect,
 
 * In CGE the "viewport" can be positioned/sized just like any other 2D control. See https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/multiple_viewports[examples/viewport_and_scenes/multiple_viewports] for an example that shows 4 viewports.
-* The Z-order (what is in front/behind) of the viewport in CGE is straightforward, it works just like all other 2D controls. You can easily place other 2D controls in front or behind a viewport (the latter is useful if the viewport has `Transparent` background).
+* The Z-order (what is in front/behind) of the viewport in CGE is straightforward, it works just like all other 2D controls. You can easily place other 2D controls in front or behind a viewport (the latter is useful if the viewport has cgeref:TCastleViewport.Transparent[Transparent] background).
 * In CGE each "viewport" may show a completely different, unrelated, 3D world. The viewports can also share the world (show the same world from different cameras), simply set them the same `Viewport.Items` value.
 
 == Prefabs
 
 _Prefabs_ are a way to store _GameObject_ hierarchy, with Unity components attached, in a file.
 
-The usual equivalent in CGE is to create a `xxx.castle-transform` file where you create a design with a root being `TCastleTransform` or `TCastleScene`. This allows you to compose a transformation hierarchy of `TCastleTransform` / `TCastleScene` instances. You can then load this `xxx.castle-transform` multiple times, as a single thing. See the https://github.com/castle-engine/castle-engine/tree/master/examples/advanced_editor[examples/advanced_editor], the file `data/soldier_with_cape.castle-transform` there is a simplest example of this approach.
+See link:reuse_design[reusable designs]. This is the equivalent of Unity _prefabs_ in _Castle Game Engine_.
+
+The usual equivalent in CGE is to create a `xxx.castle-transform` file where you create a design with a root being cgeref:TCastleTransform[] or cgeref:TCastleScene[]. This allows you to compose a transformation hierarchy of cgeref:TCastleTransform[] / cgeref:TCastleScene[] instances. You can then load this `xxx.castle-transform` multiple times, as a single thing. See the https://github.com/castle-engine/castle-engine/tree/master/examples/advanced_editor[examples/advanced_editor], the file `data/soldier_with_cape.castle-transform` there is a simplest example of this approach.
 
 The equivalent of prefabs for Unity UI elements is a UI design file, `xxx.castle-user-interface`, already mentioned above.
 
@@ -236,7 +243,7 @@ video::peiWjieZpbM[youtube,width=800,height=450]
 
 == Playing sounds
 
-The equivalent of Unity https://docs.unity3d.com/Manual/class-AudioSource.html[AudioSource] is our cgeref:TCastleSoundSource[]. It is a behavior, you attach it to a parent `TCastleTransform` and it can play spatialized sound. Note that for non-spatial sounds, you can also just call cgeref:TSoundEngine.Play[], this is simpler and there's no need for a `TCastleSoundSource` instances.
+The equivalent of Unity https://docs.unity3d.com/Manual/class-AudioSource.html[AudioSource] is our cgeref:TCastleSoundSource[]. It is a behavior, you attach it to a parent cgeref:TCastleTransform[] and it can play spatialized sound. Note that for non-spatial sounds, you can also just call cgeref:TSoundEngine.Play[], this is simpler and there's no need for a `TCastleSoundSource` instances.
 
 The equivalent of Unity https://docs.unity3d.com/Manual/class-AudioClip.html[AudioClip] is our cgeref:TCastleSound[].
 
@@ -253,7 +260,7 @@ Sometimes both `Parent` and `Owner` may be set to the same instance, if it is su
 
 == Where is UnityWebRequest (WWW)?
 
-Use cgeref:TCastleDownload[]. Similarly to `UnityWebRequest`, this class can send HTTP requests (GET, POST and others) and can download data asynchronously. It has been designed as an easy but also powerful way to communicate over the network.
+Use cgeref:TCastleDownload[]. Similarly to `UnityWebRequest`, this class can send HTTP requests (GET, POST and others) and can download data asynchronously. It has been designed as an easy but also powerful way to communicate over the network. It also handles getting data from non-network requests (`file://` and other protocols) so you can easily switch your URLs.
 
 CGE https://github.com/castle-engine/castle-engine/tree/master/examples/network[examples/network] demonstrate it.
 

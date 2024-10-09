@@ -88,7 +88,7 @@ The available parameters now are:
 
 * `fps:<float>` (only for the _Starling_ and _Cocos2d_ formats)
 +
-Frames per second, determine the default animation speed. Note that you can later adjust the time at runtime using cgeref:TCastleSceneCore.TimePlayingSpeed[], just like with any `TCastleScene`.
+Frames per second, determine the default animation speed. Note that you can later adjust the time at runtime using cgeref:TCastleSceneCore.TimePlayingSpeed[], just like with any cgeref:TCastleScene[].
 +
 By default we use 8 frames per second (see cgeref:DefaultSpriteSheetFramesPerSecond[]).
 +
@@ -122,4 +122,4 @@ We do not advise this approach and it is deprecated now. Reasons:
 
 - `TSprite` is not a component you can visually design in the CGE editor.
 
-Using sprite sheets inside `TCastleScene` is much more powerful. Also it allows to have simpler CGE API -- there's no new API to move, play animation etc. for sprite sheets this way, you just use `TCastleScene` API.
+Using sprite sheets inside cgeref:TCastleScene[] is much more powerful. Also it allows to have simpler CGE API -- there's no new API to move, play animation etc. for sprite sheets this way, you just use cgeref:TCastleScene[] API.

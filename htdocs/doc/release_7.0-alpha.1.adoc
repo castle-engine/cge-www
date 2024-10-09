@@ -18,7 +18,7 @@ See the https://castle-engine.io/wp/2021/02/06/castle-game-engine-7-0-alpha-1-re
 - link:manual_editor.php[CGE editor]
 - link:creating_data_model_formats.php#section_gltf[glTF 2.0 full support and realistic rendering upgrades]
 - link:https://github.com/castle-engine/castle-engine/wiki/Nintendo-Switch[Nintendo Switch]
-- link:manual_load_3d.php#section_camera[Better API for viewports and cameras in `TCastleViewport`]
+- link:manual_load_3d.php#section_camera[Better API for viewports and cameras in cgeref:TCastleViewport[]]
 - link:wp/2020/06/29/third-person-navigation-with-avatar-component-in-castle-game-engine/[Third-person navigation (with avatar)]
 - link:wp/2020/07/19/asynchronous-non-blocking-downloading-using-tcastledownload-class-and-other-http-communication-features/[TCastleDownload class, to make asynchronous (non-blocking) downloading]
 - link:https://github.com/castle-engine/castle-engine/wiki/Sprite-sheets[Load sprite sheets and images to TCastleScene]
@@ -26,7 +26,7 @@ See the https://castle-engine.io/wp/2021/02/06/castle-game-engine-7-0-alpha-1-re
 - link:apidoc-unstable/html/CastleComponentSerialize.html[Easy serialization of components as JSON]
 - link:manual_castle_settings.php[CastleSettings.xml file support]
 - link:data[`castle-data:/` protocol]
-- link:https://github.com/castle-engine/castle-engine/wiki/Castle-Game-Engine-for-Unity-developers[`TCastleBehavior` to enhance `TCastleTransform` functionality like `TCastleBillboard` or `TCastleSoundSource`]
+- link:https://github.com/castle-engine/castle-engine/wiki/Castle-Game-Engine-for-Unity-developers[cgeref:TCastleBehavior[] to enhance cgeref:TCastleTransform[] functionality like `TCastleBillboard` or `TCastleSoundSource`]
 - link:manual_optimization.php[Many optimizations and profiling features]
 - link:wp/2018/07/29/new-screen-effects-api-and-demo-text-node-optimizations-multi-texture-modes-fixes/[New screen effects API]
 - link:x3d_extensions_mirror_plane.php[Easy mirrors on flat surfaces]
@@ -63,7 +63,7 @@ See https://castle-engine.io/wp/2021/02/06/castle-game-engine-7-0-alpha-1-releas
  ** link:color_space[Color Space (Gamma Correction)].
 * Nintendo Switch full support. See https://castle-engine.io/nintendo_switch
 * Much better API for viewports and cameras.
- ** To display `TCastleScene`/`TCastleTransform` hierarchy, use `TCastleViewport`, always. It is a normal user interface control, you can set it's size/position as any other UI control.
+ ** To display cgeref:TCastleScene[]/cgeref:TCastleTransform[] hierarchy, use cgeref:TCastleViewport[], always. It is a normal user interface control, you can set it's size/position as any other UI control.
  ** The concept of _camera_ (where are you looking at) and _navigation_ (whether we handle some keys/mouse to move the camera) was split. `TCastleViewport.Camera` is always created, and corresponds 1-to-1 to the parent viewport. `TCastleViewport.Navigation` is optional, you can explicitly create an instance of `TCastleExamineNavigation` or `TCastleWalkNavigation` and assign them there.
  ** Auto-detection of camera is by default off. This way you can reliably use `+Viewport.Camera.SetView(...)+` or `+Viewport.Camera.Translation := ...+`, without worrying that some auto-detection will override them. Use `Viewport.AutoCamera := true` to explicitly request this auto-detection.
  ** Auto-detection of navigation is by default off. This way you can reliably set `+Viewport.Navigation := ...+` (or leave it `nil` deliberately) without worrying that some auto-detection will override it. Use `Viewport.AutoNavigation := true` to explicitly request this auto-detection.
@@ -91,7 +91,7 @@ https://castle-engine.io/wp/2018/12/24/database-aware-demo-using-castle-game-eng
 https://castle-engine.io/wp/2018/04/22/engine-improvements-user-interface-horizontal-vertical-layout-groups-on-screen-keyboard-and-freetype-on-android-better-ui-scaling/[7].
 * `castle-data:/` protocol (more advised than previous `ApplicationData` function). The "`data`" directory is documented link:data[in a new manual page]. It is also listed on a reworked manual page about networking, downloading and URLs https://castle-engine.io/manual_network.php.
 * `TCastleTransformDesign` to refer to a designed `xxx.castle-transform` file, which can be used similar to Unity prefabs,
-* `TCastleBehavior` to enhance `TCastleTransform` functionality by behaviors like `TCastleBillboard` or `TCastleSoundSource`. See `examples/creature_behaviors/`. See also link:castle_game_engine_for_unity_developers[Castle Game Engine for Unity developers].
+* cgeref:TCastleBehavior[] to enhance cgeref:TCastleTransform[] functionality by behaviors like `TCastleBillboard` or `TCastleSoundSource`. See `examples/creature_behaviors/`. See also link:castle_game_engine_for_unity_developers[Castle Game Engine for Unity developers].
 
 * https://castle-engine.io/wp/2021/11/19/presentation-about-castle-game-engine-from-delphicon-2021/[Delphi port]
 

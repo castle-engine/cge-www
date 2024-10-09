@@ -156,7 +156,7 @@ For an example, see the code snippet in the next section.
 
 Sure. Follow the above instructions to use cgeref:TCastleViewport.PositionToRay[MyViewport.PositionToRay] + cgeref:TCastleAbstractRootTransform.WorldRay[MyViewport.Items.WorldRay]. Around the calls to these methods, you can temporarily hide the things that you don't want to be returned by the query.
 
-It is easiest when you have a parent `TCastleTransform` group that contains e.g. all NPCs. You can then hide them by setting `MyNpcs.Exists := false;` and then restore visibility by setting `MyNpcs.Exists := true;`.
+It is easiest when you have a parent cgeref:TCastleTransform[] group that contains e.g. all NPCs. You can then hide them by setting `MyNpcs.Exists := false;` and then restore visibility by setting `MyNpcs.Exists := true;`.
 
 Example code:
 

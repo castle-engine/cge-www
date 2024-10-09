@@ -72,6 +72,6 @@ Vulkan also allows to use multi-threading. Although the burden of protecting mul
 * Right now, some engine code uses global caches (for texture/audio data, for X3D prototypes, and much more). If we decide to make some of them thread-safe, they will have to be reworked (so, more complicated code and possibly a little slower) or be separate per thread (so, less caching \-> less gains).
 * The CGE will probably never be thread-safe in the sense that "you can access _anything_ from multiple threads simultaneously". This would require a lot of safeguards and code complications, more than we can realistically maintain. Again, software larger than CGE (like LCL or Unity) also didn't dare to do this.
 +
-Maybe we can make (but even this is far future) some clear separation, e.g. being able to use classes like `TCastleScene`, `TDrawableImage` from separate threads, but only if you use different instances of them.
+Maybe we can make (but even this is far future) some clear separation, e.g. being able to use classes like cgeref:TCastleScene[], `TDrawableImage` from separate threads, but only if you use different instances of them.
 +
 Although I'm leaning more toward only having specific operations asynchronous, like `PrepareResourcesAsynchronously`, thus "hiding" threads in simple (but more limited, but also easier to implement) API. Thus, it is possible that access to CGE will remain limited to "only a single thread" forever, but we will expose APIs to do asynchronous loading of specific stuff like images or scenes.

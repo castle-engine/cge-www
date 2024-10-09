@@ -87,9 +87,9 @@ cgeimg::block[
   view_events_name2.png|Editing Name property in the hierarchy
 ]
 
-. The image is very small at the beginning. The new project by default uses _UI scaling_ that simulates window size of 1600x900, while our image has size 272 x 160. By default `TCastleImageControl` follows the image size.
+. The image is very small at the beginning. The new project by default uses _UI scaling_ that simulates window size of 1600x900, while our image has size 272 x 160. By default cgeref:TCastleImageControl[] follows the image size.
 +
-Set on the new `TCastleImageControl` property `Stretch` to `true` (allow to resize the `TCastleImageControl` freely).
+Set on the new cgeref:TCastleImageControl[] property `Stretch` to `true` (allow to resize the cgeref:TCastleImageControl[] freely).
 +
 // `ProportionalScale` to `psEnclose` (the displayed image keep aspect ratio of the original)
 _Test_ that you can move and resize the image freely now (by dragging using the left mouse button), test making the image larger. We will adjust the position and size more precisely in the next step, for now just test that you could play with it manually. Note that you could set `ProportionalScale` to `psEnclose` to always keep aspect ratio of the original image.
@@ -148,7 +148,7 @@ cgeimg::block[
   view_events_biplane_1.png|Plane image loaded in Castle Game Engine editor
 ]
 
-. Add a new `TCastleImageControl` as a child of `ImageBackground`.
+. Add a new cgeref:TCastleImageControl[] as a child of `ImageBackground`.
 +
 If you made a mistake and placed it under some other parent (like `Group1`) then simply drag it (in the hierarchy tree) to be a child of `ImageBackground`. Just drag the new control over the right side of the `ImageBackground` in the hierarchy (it will show a right-arrow -- indicating that you will drag the component to be a child of `ImageBackground`).
 +

@@ -351,9 +351,9 @@ Our scene graph is composed from link:x3d[X3D nodes] organized in a tree. A numb
 - cgeref:TAppearanceNode[] acts just as a container for `TPhysicalMaterialNode`
 - cgeref:TShapeNode[] connects geometry (`TIndexedFaceSet`) with its appearance (`TAppearanceNode`)
 - cgeref:TTransformNode[] transforms children
-- cgeref:TX3DRootNode[] acts as final container node, that can be loaded to `TCastleScene`
+- cgeref:TX3DRootNode[] acts as final container node, that can be loaded to cgeref:TCastleScene[]
 
-This is a function using these nodes to create `TCastleScene` with a mesh:
+This is a function using these nodes to create cgeref:TCastleScene[] with a mesh:
 
 [source,pascal]
 ----
