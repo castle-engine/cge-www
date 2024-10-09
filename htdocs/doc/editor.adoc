@@ -32,15 +32,15 @@ You can visually design:
 +
 Saved as `xxx.castle-user-interface` files (somewhere in the `data/` subdirectory).
 +
-They are typically loaded in your application by setting the cgeref:TCastleView.DesignUrl[] (see almost any engine example or "New Project" template). Other approaches are possible too, e.g. you can load using cgeref:UserInterfaceLoad[], `TSerializedComponent.UserInterfaceLoad` and more. See examples like link:https://github.com/castle-engine/castle-engine/tree/master/examples/advanced_editor/advanced_loading_designs[advanced_editor/advanced_loading_designs].
+They are typically loaded in your application by setting the cgeref:TCastleView.DesignUrl[] (see almost any engine example or "New Project" template). Other approaches are possible too, e.g. you can load using cgeref:UserInterfaceLoad[], cgeref:TCastleComponentFactory[] and more. See examples like link:https://github.com/castle-engine/castle-engine/tree/master/examples/advanced_editor/advanced_loading_designs[advanced_editor/advanced_loading_designs].
 
- * A hierachy of 3D / 2D scenes and transformations. Anything descending from cgeref:TCastleTransform[].
+ * A hierarchy of 3D / 2D scenes and transformations. Anything descending from cgeref:TCastleTransform[].
 +
 Saved as `xxx.castle-transform` files (somewhere in the `data/` subdirectory).
 +
 You can load it in your game using cgeref:TransformLoad[] and insert into existing hierarchy of `TCastleViewport.Items`. You can also use cgeref:TCastleTransformDesign[] to use it in other designs (thus having a reusable composition of 3D/2D objects). See examples like link:https://github.com/castle-engine/castle-engine/tree/master/examples/advanced_editor/advanced_loading_designs[advanced_editor/advanced_loading_designs].
 
-* A hierachy of non-visual classes (really anything descending from link:https://www.freepascal.org/docs-html/rtl/classes/tcomponent.html[TComponent] although we advise to descend from our extended cgeref:TCastleComponent[]).
+* A hierarchy of non-visual classes (really anything descending from link:https://www.freepascal.org/docs-html/rtl/classes/tcomponent.html[TComponent] although we advise to descend from our extended cgeref:TCastleComponent[]).
 +
 Saved as `xxx.castle-component` files (somewhere in the `data/` subdirectory).
 +

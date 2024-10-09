@@ -89,7 +89,8 @@ We want to have a component list class, that
 --
 - cgeref:TCastleTransform[] children of cgeref:TCastleTransform[],
 - cgeref:TCastleBehavior[] children of cgeref:TCastleTransform[],
-- cgeref:TCastleUserInterface[] children of cgeref:TCastleUserInterface[]
+- cgeref:TCastleUserInterface[] children of cgeref:TCastleUserInterface[],
+- cgeref:TCastleComponent[] non-visual children of cgeref:TCastleComponent[], now managed in cgeref:TCastleComponent.NonVisualComponents[].
 --
 
 - Can be used to express future things:

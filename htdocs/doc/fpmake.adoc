@@ -48,4 +48,4 @@ See the http://wiki.freepascal.org/InstantFPC[InstantFPC] for more information.
 Examples:
 
 * https://github.com/castle-engine/castle-engine/blob/master/examples/instantfpc/instant_fpc_test_list_pascal_files - list Pascal files in the current directory, using `CastleFindFiles`
-* https://github.com/castle-engine/castle-engine/blob/master/examples/instantfpc/instant_fpc_test_open_window - open a window, with text taken from the 1st command-line parameter, using `CastleWindow` and cgeref:TCastleLabel[].
+* https://github.com/castle-engine/castle-engine/blob/master/examples/instantfpc/instant_fpc_test_open_window - open a window, with text taken from the 1st command-line parameter, using cgeref:TCastleWindow[] and cgeref:TCastleLabel[].
