@@ -71,6 +71,7 @@ TODO:
 - Finish firing missiles, `TCastleMissile` finish
 - Eliminate all TODO in `src/scene/castlelivingbehaviors_moveattack.inc` and friends
 - Restore + modernize our "waypoints / sectors" (known as "navmesh" in other engines), make it possible to set up in editor
+- Change section title from _"Living (Early Preview - Functionality Will Change!)"_ -> _"Living"_
 - Phase 2: Use behavior trees
 
 [NOTE]
