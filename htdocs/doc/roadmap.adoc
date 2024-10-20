@@ -44,19 +44,34 @@ This is started, things done:
 - At design-time (in editor) we always behave as if cgeref:TCastleSceneCore.PreciseCollisions[] is `true` and this is good.
 
 [#steam]
-### (ALMOST DONE) Steam integration, and engine available as Steam app
+### (IN PROGRESS - ALMOST DONE) Steam integration, and engine available as Steam app
 
 Integration with Steam done and rocks, https://castle-engine.io/steam .
 
 TODO: Put engine on Steam as an app. We already have registered the application with Steam, and we have the app ID. We need to add achievements to CGE editor and submit it to Steam.
 
-### (IN PROGRESS) Implement TCastleMoveAttack behavior, use for enemies in examples/fps_game and examples/creatures_behaviors
+[#behavior_move_attack]
+### (IN PROGRESS - ALMOST DONE) Implement TCastleMoveAttack behavior, use for enemies in examples/fps_game and examples/creatures_behaviors
 
 In progress.
 
-- See https://github.com/castle-engine/castle-engine/blob/master/src/scene/castlelivingbehaviors_moveattack.inc[TCastleMoveAttack implementation].
+- Initial `TCastleMoveAttack` done, used in
++
+--
+- examples/creature_behaviors
+- examples/fps_game
+- Demo at "Delphi Programmers Meeting 2024 (Zlot Programistów Delphi 2024)", see https://github.com/castle-engine/conference-zlot-delphi-2024[demo application]. See https://castle-engine.io/zlot2024[demo slides (in Polish)].
+--
+- Has simple logic of movement, getting close to player (or any other enemy), short-range attack.
+- We also have simple enemy logic implemented in _"3D FPS Game"_ template and to show our link:behaviors[].
 
-Create a new game using the _"3D FPS Game"_ template and explore how the "enemy" logic is implemented there to see how link:behaviors[] can be used for enemy intelligence.
+TODO:
+
+- Use link:physics[] for all movement and gravity
+- Finish firing missiles, `TCastleMissile` finish
+- Eliminate all TODO in `src/scene/castlelivingbehaviors_moveattack.inc` and friends
+- Restore + modernize our "waypoints / sectors" (known as "navmesh" in other engines), make it possible to set up in editor
+- Phase 2: Use behavior trees
 
 [NOTE]
 ====
@@ -144,7 +159,7 @@ TCastleTransform =  = class(TCastleComponent)
 end;
 ```
 
-and iterating with  `for .. in ... ` will be always equivalent to iterating over `Children`.
+and iterating with  `for ... in ...` will be always equivalent to iterating over `Children`.
 
 So
 
