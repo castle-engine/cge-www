@@ -2,14 +2,14 @@
 # This file is distributed under the GPL v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: W3 Total Cache 2.7.6\n"
+"Project-Id-Version: W3 Total Cache 2.7.7\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/w3-total-cache\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-09-23T14:49:13+00:00\n"
+"POT-Creation-Date: 2024-10-17T14:57:41+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: w3-total-cache\n"
@@ -572,6 +572,8 @@ msgstr ""
 #: inc/options/cdn/att.php:63
 #: inc/options/cdn/azure.php:42
 #: inc/options/cdn/azure.php:72
+#: inc/options/cdn/azuremi.php:87
+#: inc/options/cdn/azuremi.php:117
 #: inc/options/cdn/cf.php:90
 #: inc/options/cdn/cf.php:120
 #: inc/options/cdn/cf2.php:81
@@ -863,7 +865,7 @@ msgstr ""
 msgid "Browser Cache Content-Security-Policy-Report-Only Settings"
 msgstr ""
 
-#: Cache.php:210
+#: Cache.php:214
 #: inc/options/minify/csstidy2.php:23
 #: SetupGuide_Plugin_Admin.php:969
 msgid "None"
@@ -1477,6 +1479,7 @@ msgstr ""
 #: inc/options/cdn/att.php:61
 #: inc/options/cdn/att.php:93
 #: inc/options/cdn/azure.php:70
+#: inc/options/cdn/azuremi.php:115
 #: inc/options/cdn/cf.php:118
 #: inc/options/cdn/cf2.php:109
 #: inc/options/cdn/cotendo.php:68
@@ -1524,6 +1527,7 @@ msgstr ""
 #: Cdn_StackPath_Page_View.php:48
 #: Cdn_StackPath_Page_View.php:88
 #: inc/options/cdn/azure.php:103
+#: inc/options/cdn/azuremi.php:149
 #: inc/options/cdn/cf.php:154
 #: inc/options/cdn/cf2.php:145
 #: inc/options/cdn/ftp.php:327
@@ -1616,7 +1620,7 @@ msgstr ""
 #: Cdnfsd_BunnyCdn_Popup_View_Deauthorize.php:44
 #: Cdn_BunnyCdn_Popup_View_Deauthorize.php:44
 #: Generic_Plugin_Admin.php:656
-#: inc/options/cdn/common/cnames.php:58
+#: inc/options/cdn/common/cnames.php:63
 #: inc/options/minify.php:496
 #: inc/options/minify.php:770
 #: inc/popup/cdn_queue.php:25
@@ -2172,126 +2176,139 @@ msgstr ""
 
 #: Cdn_AdminActions.php:433
 #: Cdn_AdminActions.php:437
-#: Cdn_AdminActions.php:482
+#: Cdn_AdminActions.php:483
 msgid "Error: %s"
 msgstr ""
 
-#: Cdn_AdminActions.php:479
+#: Cdn_AdminActions.php:480
 msgid "Created successfully."
 msgstr ""
 
-#: Cdn_AdminActions.php:491
+#: Cdn_AdminActions.php:492
 msgid "Incorrect type."
 msgstr ""
 
-#: Cdn_AdminNotes.php:26
-msgid "The active theme has changed, please %s now to ensure proper operation. %s"
+#. translators: 1: Button code, 2: Button code.
+#: Cdn_AdminNotes.php:33
+msgid "The active theme has changed, please %1$s now to ensure proper operation. %2$s"
 msgstr ""
 
-#: Cdn_AdminNotes.php:29
+#. translators: 1: Button code, 2: Button code.
+#: Cdn_AdminNotes.php:34
 msgid "upload active theme files"
 msgstr ""
 
-#: Cdn_AdminNotes.php:43
-msgid "Upgraded WordPress? Please %s files now to ensure proper operation. %s"
+#. translators: 1: Button code, 2: Button code.
+#: Cdn_AdminNotes.php:51
+msgid "Upgraded WordPress? Please %1$s files now to ensure proper operation. %2$s"
 msgstr ""
 
-#: Cdn_AdminNotes.php:85
-msgid "Make sure to %s and upload the %s, files to the <acronym title=\"Content Delivery Network\">CDN</acronym> to ensure proper operation. %s"
+#. translators: 1: Button code, 2: Button code, 3: Button code.
+#: Cdn_AdminNotes.php:93
+msgid "Make sure to %1$s and upload the %2$s, files to the <acronym title=\"Content Delivery Network\">CDN</acronym> to ensure proper operation. %3$s"
 msgstr ""
 
-#: Cdn_AdminNotes.php:98
-msgid "Settings that affect Browser Cache settings for files hosted by the CDN have been changed. To apply the new settings %s and %s. %s"
+#. translators: 1: Button code, 2: Button code, 3: Button code.
+#: Cdn_AdminNotes.php:112
+msgid "Settings that affect Browser Cache settings for files hosted by the CDN have been changed. To apply the new settings %1$s and %2$s. %3$s"
 msgstr ""
 
-#: Cdn_AdminNotes.php:101
+#: Cdn_AdminNotes.php:116
 msgid "export the media library"
 msgstr ""
 
-#: Cdn_AdminNotes.php:119
-msgid "The <strong>CURL PHP</strong> extension is not available. Please install it to enable S3 or CloudFront functionality. %s"
+#. translators: 1: Button code.
+#: Cdn_AdminNotes.php:136
+msgid "The <strong>CURL PHP</strong> extension is not available. Please install it to enable S3 or CloudFront functionality. %1$s"
 msgstr ""
 
 #. translators: 1: Opening anchor tag with a link to the CDN settings page, 2: closing anchor tag, 3 opening anchor tag to MaxCDN/StackPath migration guide.
-#: Cdn_AdminNotes.php:130
+#: Cdn_AdminNotes.php:150
 msgid "MaxCDN has been replaced with StackPath CDN. As a result your configuration is now invalid and requires reconfiguration to a new %1$sCDN provider%2$s. You can migrate to StackPath using %3$sthis guide%2$s."
 msgstr ""
 
-#: Cdn_AdminNotes.php:156
-msgid "The %s has unresolved errors. Empty the queue to restore normal operation."
+#. translators: 1: Button code.
+#: Cdn_AdminNotes.php:182
+msgid "The %1$s has unresolved errors. Empty the queue to restore normal operation."
 msgstr ""
 
-#: Cdn_AdminNotes.php:159
+#. translators: 1: Button code.
+#: Cdn_AdminNotes.php:183
 msgid "unsuccessful transfer queue"
 msgstr ""
 
-#: Cdn_AdminNotes.php:181
-msgid "The uploads directory is not available. Default WordPress directories will be created: <strong>%s</strong>."
+#. translators: 1: Upload path.
+#: Cdn_AdminNotes.php:207
+msgid "The uploads directory is not available. Default WordPress directories will be created: <strong>%1$s</strong>."
 msgstr ""
 
-#: Cdn_AdminNotes.php:188
-msgid "The uploads path found in the database (%s) is inconsistent with the actual path. Please manually adjust the upload path either in miscellaneous settings or if not using a custom path %s automatically to resolve the issue."
+#. translators: 1: Upload path, 2: Button code.
+#: Cdn_AdminNotes.php:215
+msgid "The uploads path found in the database (%1$s) is inconsistent with the actual path. Please manually adjust the upload path either in miscellaneous settings or if not using a custom path %2$s automatically to resolve the issue."
 msgstr ""
 
-#: Cdn_AdminNotes.php:191
+#: Cdn_AdminNotes.php:220
 msgid "update the path"
 msgstr ""
 
-#: Cdn_AdminNotes.php:204
-msgid ""
-"A configuration issue prevents <acronym title=\"Content Delivery Network\">CDN</acronym> from working:\n"
-"                                        The <strong>\"Replace default hostname with\"</strong>\n"
-"                                        field cannot be empty. Enter <acronym\n"
-"                                        title=\"Content Delivery Network\">CDN</acronym>\n"
-"                                        provider hostname <a href=\"?page=w3tc_cdn#configuration\">here</a>.\n"
-"                                        <em>(This is the hostname used in order to view objects\n"
-"                                        in a browser.)</em>"
+#: Cdn_AdminNotes.php:232
+msgid "A configuration issue prevents <acronym title=\"Content Delivery Network\">CDN</acronym> from working: The <strong>\"Replace default hostname with\"</strong> field cannot be empty. Enter <acronym title=\"Content Delivery Network\">CDN</acronym> provider hostname <a href=\"?page=w3tc_cdn#configuration\">here</a>. <em>(This is the hostname used in order to view objects in a browser.)</em>"
 msgstr ""
 
-#: Cdn_AdminNotes.php:214
+#: Cdn_AdminNotes.php:239
 msgid "The <strong>\"Access key\", \"Secret key\" and \"Bucket\"</strong> fields cannot be empty."
 msgstr ""
 
-#: Cdn_AdminNotes.php:218
+#: Cdn_AdminNotes.php:243
 msgid "The <strong>\"Access key\", \"Secret key\", \"Bucket\" and \"Replace default hostname with\"</strong> fields cannot be empty."
 msgstr ""
 
-#: Cdn_AdminNotes.php:222
+#: Cdn_AdminNotes.php:247
 msgid "The <strong>\"Access key\", \"Secret key\" and \"Replace default hostname with\"</strong> fields cannot be empty."
 msgstr ""
 
-#: Cdn_AdminNotes.php:226
+#: Cdn_AdminNotes.php:251
 msgid "The <strong>\"Username\", \"API key\", \"Container\" and \"Replace default hostname with\"</strong> fields cannot be empty."
 msgstr ""
 
-#: Cdn_AdminNotes.php:230
+#: Cdn_AdminNotes.php:255
 msgid "The <strong>\"Account name\", \"Account key\" and \"Container\"</strong> fields cannot be empty."
 msgstr ""
 
-#: Cdn_AdminNotes.php:234
-#: Cdn_AdminNotes.php:238
-#: Cdn_AdminNotes.php:242
-#: Cdn_AdminNotes.php:246
+#: Cdn_AdminNotes.php:259
+msgid "Microsoft Azure using Managed Identities is only available for \"WordPress on App Service\"."
+msgstr ""
+
+#: Cdn_AdminNotes.php:263
+msgid "The <strong>\"Account name\", \"Entra client ID\" and \"Container\"</strong> fields cannot be empty."
+msgstr ""
+
+#: Cdn_AdminNotes.php:267
+#: Cdn_AdminNotes.php:271
+#: Cdn_AdminNotes.php:275
+#: Cdn_AdminNotes.php:279
 msgid "The <strong>\"Replace default hostname with\"</strong> field cannot be empty."
 msgstr ""
 
-#: Cdn_AdminNotes.php:255
+#: Cdn_AdminNotes.php:288
 msgid "A configuration issue prevents <acronym title=\"Content Delivery Network\">CDN</acronym> from working: "
 msgstr ""
 
-#: Cdn_AdminNotes.php:255
+#: Cdn_AdminNotes.php:289
 msgid " <a href=\"?page=w3tc_cdn#configuration\">Specify it here</a>."
 msgstr ""
 
-#: Cdn_AdminNotes.php:277
-msgid "Encountered issue with CDN: %s. See %s for instructions of creating correct table."
+#. translators: 1: Error message, 2: Install link.
+#: Cdn_AdminNotes.php:314
+msgid "Encountered issue with CDN: %1$s. See %2$s for instructions of creating correct table."
 msgstr ""
 
-#: Cdn_AdminNotes.php:279
+#: Cdn_AdminNotes.php:316
 msgid "Install page"
 msgstr ""
 
-#: Cdn_AdminNotes.php:282
+#. translators: 1: Error message.
+#: Cdn_AdminNotes.php:323
 msgid "Encountered issue with CDN: %s."
 msgstr ""
 
@@ -2684,6 +2701,7 @@ msgstr ""
 #: inc/options/cdn/akamai.php:55
 #: inc/options/cdn/att.php:29
 #: inc/options/cdn/azure.php:38
+#: inc/options/cdn/azuremi.php:83
 #: inc/options/cdn/cf.php:86
 #: inc/options/cdn/cf2.php:77
 #: inc/options/cdn/cotendo.php:36
@@ -2704,6 +2722,7 @@ msgstr ""
 #: inc/options/cdn/akamai.php:73
 #: inc/options/cdn/att.php:47
 #: inc/options/cdn/azure.php:56
+#: inc/options/cdn/azuremi.php:101
 #: inc/options/cdn/cf.php:104
 #: inc/options/cdn/cf2.php:95
 #: inc/options/cdn/cotendo.php:54
@@ -2722,6 +2741,7 @@ msgstr ""
 #: inc/options/cdn/akamai.php:74
 #: inc/options/cdn/att.php:48
 #: inc/options/cdn/azure.php:57
+#: inc/options/cdn/azuremi.php:102
 #: inc/options/cdn/cf.php:105
 #: inc/options/cdn/cf2.php:96
 #: inc/options/cdn/cotendo.php:55
@@ -2740,6 +2760,7 @@ msgstr ""
 #: inc/options/cdn/akamai.php:75
 #: inc/options/cdn/att.php:49
 #: inc/options/cdn/azure.php:58
+#: inc/options/cdn/azuremi.php:103
 #: inc/options/cdn/cf.php:106
 #: inc/options/cdn/cf2.php:97
 #: inc/options/cdn/cotendo.php:56
@@ -2761,6 +2782,7 @@ msgstr ""
 #: inc/options/cdn/akamai.php:83
 #: inc/options/cdn/att.php:57
 #: inc/options/cdn/azure.php:66
+#: inc/options/cdn/azuremi.php:111
 #: inc/options/cdn/cf.php:114
 #: inc/options/cdn/cf2.php:105
 #: inc/options/cdn/cotendo.php:64
@@ -2783,6 +2805,7 @@ msgstr ""
 #: inc/options/cdn/akamai.php:103
 #: inc/options/cdn/att.php:77
 #: inc/options/cdn/azure.php:86
+#: inc/options/cdn/azuremi.php:131
 #: inc/options/cdn/cf.php:134
 #: inc/options/cdn/cf2.php:125
 #: inc/options/cdn/cotendo.php:84
@@ -3030,10 +3053,14 @@ msgid "Microsoft Azure Storage"
 msgstr ""
 
 #: Cdn_Plugin_Admin.php:196
-msgid "Rackspace Cloud Files"
+msgid "Microsoft Azure Storage (Managed Identity)"
 msgstr ""
 
 #: Cdn_Plugin_Admin.php:202
+msgid "Rackspace Cloud Files"
+msgstr ""
+
+#: Cdn_Plugin_Admin.php:208
 msgid "Self-hosted / File Transfer Protocol Upload"
 msgstr ""
 
@@ -3146,6 +3173,7 @@ msgstr ""
 
 #: Cdn_RackSpaceCloudFiles_Page_View.php:35
 #: inc/options/cdn/azure.php:23
+#: inc/options/cdn/azuremi.php:68
 #: inc/options/cdn/rscf.php:56
 msgid "Container:"
 msgstr ""
@@ -5783,7 +5811,7 @@ msgstr ""
 msgid "You do not have the rights to perform this action."
 msgstr ""
 
-#: Generic_AdminActions_Default.php:597
+#: Generic_AdminActions_Default.php:601
 msgid "Added by W3 Total Cache"
 msgstr ""
 
@@ -7799,6 +7827,7 @@ msgid "Token:"
 msgstr ""
 
 #: inc/options/cdn/azure.php:9
+#: inc/options/cdn/azuremi.php:54
 msgid "Account name:"
 msgstr ""
 
@@ -7807,17 +7836,24 @@ msgid "Account key:"
 msgstr ""
 
 #: inc/options/cdn/azure.php:27
+#: inc/options/cdn/azuremi.php:72
 #: inc/options/cdn/rscf.php:61
 msgid "Create container"
 msgstr ""
 
 #. translators: 1 opening HTML acronym tag, 2 closing HTML acronym tag.
 #: inc/options/cdn/azure.php:99
+#: inc/options/cdn/azuremi.php:145
 msgid " or %1$sCNAME%2$s:"
 msgstr ""
 
 #: inc/options/cdn/azure.php:120
+#: inc/options/cdn/azuremi.php:166
 msgid "Test Microsoft Azure Storage upload"
+msgstr ""
+
+#: inc/options/cdn/azuremi.php:61
+msgid "Entra client ID:"
 msgstr ""
 
 #. translators: 9 closing HTML acronym tag, 10 closing HTML a tag.
@@ -7900,26 +7936,26 @@ msgid "Test CloudFront distribution"
 msgstr ""
 
 #: inc/options/cdn/common/cnames-readonly.php:18
-#: inc/options/cdn/common/cnames.php:33
+#: inc/options/cdn/common/cnames.php:38
 msgid "(reserved for CSS)"
 msgstr ""
 
 #: inc/options/cdn/common/cnames-readonly.php:20
-#: inc/options/cdn/common/cnames.php:37
+#: inc/options/cdn/common/cnames.php:42
 msgid "(reserved for JS in <head>)"
 msgstr ""
 
 #: inc/options/cdn/common/cnames-readonly.php:22
-#: inc/options/cdn/common/cnames.php:41
+#: inc/options/cdn/common/cnames.php:46
 msgid "(reserved for JS after <body>)"
 msgstr ""
 
 #: inc/options/cdn/common/cnames-readonly.php:24
-#: inc/options/cdn/common/cnames.php:45
+#: inc/options/cdn/common/cnames.php:50
 msgid "(reserved for JS before </body>)"
 msgstr ""
 
-#: inc/options/cdn/common/cnames.php:66
+#: inc/options/cdn/common/cnames.php:71
 msgid "Add CNAME"
 msgstr ""
 

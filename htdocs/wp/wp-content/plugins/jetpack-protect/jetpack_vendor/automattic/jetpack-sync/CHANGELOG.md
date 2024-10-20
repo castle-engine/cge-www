@@ -5,6 +5,51 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.14.2] - 2024-10-15
+### Changed
+- Jetpack Sync: Update default Post Type Blacklist [#39770]
+
+### Fixed
+- Jetpack Sync: Ensure Full Sync is only triggered on backend admin POST requests [#39747]
+- Update plugin action links filter parameter to avoid conflicts with other plugins. [#39681]
+
+## [3.14.1] - 2024-10-14
+### Changed
+- Internal updates.
+
+## [3.14.0] - 2024-10-10
+### Added
+- Jetpack Sync: Add 'woocommerce_analytics_first_activation' in options' whitelist
+
+### Changed
+- Sync: Ensure we don't sync set_object_terms action for terms with blacklisted taxonomies
+
+## [3.13.2] - 2024-09-30
+### Fixed
+- Jetpack Sync: Fix a bug in syncing HPOS 'woocommerce_delete_order' actions [#39562]
+
+## [3.13.1] - 2024-09-23
+### Changed
+- Update dependencies.
+
+## [3.13.0] - 2024-09-16
+### Removed
+- Social: Cleaned up media auto-conversion backend logic [#38587]
+
+### Fixed
+- Sync: Ensure is_plugin_active exists when loading Table Checksums [#39369]
+
+## [3.12.0] - 2024-09-10
+### Added
+- Sync: Enable Full Sync for woocommerce_hpos_orders module [#39297]
+
+## [3.11.0] - 2024-09-09
+### Added
+- Sync: Enable Full Sync Immediately for woocommerce module [#39254]
+
+### Removed
+- Jetpack Sync: Stop syncing 'automatic_updates_complete' actions [#39296]
+
 ## [3.10.0] - 2024-09-05
 ### Added
 - Sync: Add a filter that allows modification of the default modules list used for full sync procedure. [#39117]
@@ -1273,6 +1318,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Packages: Move sync to a classmapped package
 
+[3.14.2]: https://github.com/Automattic/jetpack-sync/compare/v3.14.1...v3.14.2
+[3.14.1]: https://github.com/Automattic/jetpack-sync/compare/v3.14.0...v3.14.1
+[3.14.0]: https://github.com/Automattic/jetpack-sync/compare/v3.13.2...v3.14.0
+[3.13.2]: https://github.com/Automattic/jetpack-sync/compare/v3.13.1...v3.13.2
+[3.13.1]: https://github.com/Automattic/jetpack-sync/compare/v3.13.0...v3.13.1
+[3.13.0]: https://github.com/Automattic/jetpack-sync/compare/v3.12.0...v3.13.0
+[3.12.0]: https://github.com/Automattic/jetpack-sync/compare/v3.11.0...v3.12.0
+[3.11.0]: https://github.com/Automattic/jetpack-sync/compare/v3.10.0...v3.11.0
 [3.10.0]: https://github.com/Automattic/jetpack-sync/compare/v3.9.1...v3.10.0
 [3.9.1]: https://github.com/Automattic/jetpack-sync/compare/v3.9.0...v3.9.1
 [3.9.0]: https://github.com/Automattic/jetpack-sync/compare/v3.8.1...v3.9.0
