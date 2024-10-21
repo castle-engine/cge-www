@@ -5,6 +5,45 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [5.1.3] - 2024-10-10
+### Changed
+- Updated package dependencies.
+
+## [5.1.2] - 2024-10-07
+### Changed
+- Adjust conditions to optimize admin notices callback. [#39650]
+- Initialize assets in wp-admin only. [#39604]
+- Updated package dependencies. [#39594]
+
+## [5.1.1] - 2024-09-30
+### Changed
+- In 'connect_url_redirect' hook, redirect to 'redirect_after_auth` url if already connected (for connect_after_checkout flow). [#39573]
+- My Jetpack Welcome Flow: Display default recommendations upfront first, then offer optional survey for customized recommendations. [#39485]
+
+## [5.1.0] - 2024-09-25
+### Changed
+- Jetpack Connection - REST API: Allow site-level authentication on POST requests to 'jetpack/v4/connection' [#39503]
+
+## [5.0.0] - 2024-09-23
+### Removed
+- Connection: Removed deprecated features_enabled method [#39475]
+- Connection: Removed deprecated method features_available [#39442]
+
+## [4.0.4] - 2024-09-18
+### Changed
+- SSO tooltip: Use anchor element's document instead of the global `document`. [#39364]
+
+## [4.0.3] - 2024-09-16
+### Removed
+- Remove deprecated code from connected plugins component. [#39375]
+
+### Fixed
+- Fix the connected plugins option on multisites. [#39355]
+
+## [4.0.2] - 2024-09-10
+### Changed
+- Updated package dependencies. [#39302]
+
 ## [4.0.1] - 2024-09-06
 ### Removed
 - Removed throwing of warning if a given Jetpack options does not exist [#39270]
@@ -1187,6 +1226,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Separate the connection library into its own package.
 
+[5.1.3]: https://github.com/Automattic/jetpack-connection/compare/v5.1.2...v5.1.3
+[5.1.2]: https://github.com/Automattic/jetpack-connection/compare/v5.1.1...v5.1.2
+[5.1.1]: https://github.com/Automattic/jetpack-connection/compare/v5.1.0...v5.1.1
+[5.1.0]: https://github.com/Automattic/jetpack-connection/compare/v5.0.0...v5.1.0
+[5.0.0]: https://github.com/Automattic/jetpack-connection/compare/v4.0.4...v5.0.0
+[4.0.4]: https://github.com/Automattic/jetpack-connection/compare/v4.0.3...v4.0.4
+[4.0.3]: https://github.com/Automattic/jetpack-connection/compare/v4.0.2...v4.0.3
+[4.0.2]: https://github.com/Automattic/jetpack-connection/compare/v4.0.1...v4.0.2
 [4.0.1]: https://github.com/Automattic/jetpack-connection/compare/v4.0.0...v4.0.1
 [4.0.0]: https://github.com/Automattic/jetpack-connection/compare/v3.0.0...v4.0.0
 [3.0.0]: https://github.com/Automattic/jetpack-connection/compare/v2.12.5...v3.0.0

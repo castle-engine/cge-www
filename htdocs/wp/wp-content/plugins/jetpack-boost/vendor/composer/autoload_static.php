@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitb1e77e6231d50e7663f84529b6a3dfda_jetpack_boostⓥ3_5_1
+class ComposerStaticInitb1e77e6231d50e7663f84529b6a3dfda_jetpack_boostⓥ3_5_2
 {
     public static $files = array (
         '3773ef3f09c37da5478d578e32b03a4b' => __DIR__ . '/../..' . '/jetpack_vendor/automattic/jetpack-assets/actions.php',
@@ -329,6 +329,7 @@ class ComposerStaticInitb1e77e6231d50e7663f84529b6a3dfda_jetpack_boostⓥ3_5_1
         'Automattic\\Jetpack_Boost\\Lib\\Minify\\Config' => __DIR__ . '/../..' . '/app/lib/minify/Config.php',
         'Automattic\\Jetpack_Boost\\Lib\\Minify\\Dependency_Path_Mapping' => __DIR__ . '/../..' . '/app/lib/minify/Dependency_Path_Mapping.php',
         'Automattic\\Jetpack_Boost\\Lib\\Minify\\Utils' => __DIR__ . '/../..' . '/app/lib/minify/Utils.php',
+        'Automattic\\Jetpack_Boost\\Lib\\My_Jetpack' => __DIR__ . '/../..' . '/app/lib/My_Jetpack.php',
         'Automattic\\Jetpack_Boost\\Lib\\Nonce' => __DIR__ . '/../..' . '/app/lib/class-nonce.php',
         'Automattic\\Jetpack_Boost\\Lib\\Output_Filter' => __DIR__ . '/../..' . '/app/lib/class-output-filter.php',
         'Automattic\\Jetpack_Boost\\Lib\\Premium_Features' => __DIR__ . '/../..' . '/app/lib/Premium_Features.php',
@@ -419,9 +420,9 @@ class ComposerStaticInitb1e77e6231d50e7663f84529b6a3dfda_jetpack_boostⓥ3_5_1
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitb1e77e6231d50e7663f84529b6a3dfda_jetpack_boostⓥ3_5_1::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitb1e77e6231d50e7663f84529b6a3dfda_jetpack_boostⓥ3_5_1::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInitb1e77e6231d50e7663f84529b6a3dfda_jetpack_boostⓥ3_5_1::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitb1e77e6231d50e7663f84529b6a3dfda_jetpack_boostⓥ3_5_2::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitb1e77e6231d50e7663f84529b6a3dfda_jetpack_boostⓥ3_5_2::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitb1e77e6231d50e7663f84529b6a3dfda_jetpack_boostⓥ3_5_2::$classMap;
 
         }, null, ClassLoader::class);
     }

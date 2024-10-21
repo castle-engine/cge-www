@@ -6,7 +6,7 @@
 	"require": {
 		"php": ">=7.0",
 		"automattic/jetpack-backup-helper-script-manager": "^0.2.7",
-		"automattic/jetpack-connection": "^4.0.0"
+		"automattic/jetpack-connection": "^5.1.3"
 	},
 	"require-dev": {
 		"yoast/phpunit-polyfills": "^1.1.1",
