@@ -9,7 +9,20 @@ Not always, but sometimes there's a paper trace or video recording of what I tal
 This pages collects _some_ materials from them.
 ////
 
-* _10-11 October 2024_: *Upcoming* presentation at https://www.blaisepascalmagazine.eu/en/fpc-lazarus-meeting-2024-info/[FPC and Lazarus event in Cologne (Köln)]. See https://castle-engine.io/wp/2024/08/10/conferences-register-for-my-upcoming-talk-at-dev-days-of-summer-august-2024-catch-me-in-cologne-october-2024-watch-my-past-talk-from-itdevcon-2023/[details here].
+* _15-16 October 2024_: Presentation at https://www.bsc.com.pl/zlot-programistow-delphi-2024/[Zlot Programistów Delphi 2024 ("Delphi Programmer's Meeting 2024", in Polish)].
++
+--
+- https://github.com/castle-engine/conference-zlot-delphi-2024[Demo application: complete FPS game using Blender, Sketchfab, Quaternius models, TCastleMoveAttack].
+- https://castle-engine.io/zlot2024[Slides (in Polish)]
+--
+
+* _10-11 October 2024_: Presentation at https://www.blaisepascalmagazine.eu/en/fpc-lazarus-meeting-2024-info/[FPC and Lazarus event in Cologne (Köln)].
++
+--
+- https://castle-engine.io/cologne2024[Slides].
+- See https://castle-engine.io/wp/2024/08/10/conferences-register-for-my-upcoming-talk-at-dev-days-of-summer-august-2024-catch-me-in-cologne-october-2024-watch-my-past-talk-from-itdevcon-2023/[annoucement before conference].
+- https://castle-engine.io/wp/2024/10/11/slides-from-my-presentation-in-koln-cologne-germany-today-spoilers-about-some-new-engine-features/[thoughts after conference].
+--
 
 * _21st August 2024_: Presentation at https://www.codegear.com/DevDaysofSummer/[Dev Days of Summer 2024]:
 ** https://www.youtube.com/watch?v=xvAmuPD4PrU[Watch replay of the presentation]
