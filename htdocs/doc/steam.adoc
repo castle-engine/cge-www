@@ -19,12 +19,18 @@ NOTE: Downloading the engine from Steam, and using the engine to develop Steam g
 ////
 
 cgeimg::block[
-  steam_cge.png|Castle Game Engine editor on Steam
+  steam_cge.png|Castle Game Engine editor on Steam,
+  steam_achievement_unholy.png|Steam Achievements in The Unholy Society game,
+  steam_achievements_ui.png|Steam UI for Achievements
 ]
 
 == Example
 
 Consult the https://github.com/castle-engine/castle-engine/tree/master/examples/steam[examples/steam] for a ready application that connects to Steam and allows to experiment with achievements -- list them, clear, set.
+
+cgeimg::block[
+  steam_achievement_test.png|Steam Achievement Test
+]
 
 == Get the Steam dynamic library
 
