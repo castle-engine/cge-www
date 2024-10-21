@@ -108,19 +108,25 @@ Use the official installer from
   # (makes it a bit consistent with fpcupdeluxe installs).
   michalis-fpclazarus-config # should say that adjusts my environment to FPC official
   fpc
+
+  # Remember to define `FPCDIR` first
+  export FPCDIR=/home/michalis/installed/fpclazarus/fpc322-official/fpc/lib/fpc/3.2.2/
+
+  # Generate fpc.cfg to point to proper units
+  ~/installed/fpclazarus/fpc322-official/fpc/bin/fpcmkcfg -d basepath="$FPCDIR" -o ~/.fpc.cfg
   ```
+
+Note: The completeness of `fpmake.pp` is also automatically tested by our `tools/internal/check_packages/` which is in turn run by CI (GitHub Actions). Still, let's test it manually before release to be sure.
 
 Install CGE units following https://castle-engine.io/fpmake , test them.
 
 ```
-# Remember to define `FPCDIR` first, like below.
-export FPCDIR=/home/michalis/installed/fpclazarus/fpc322-official/fpc/lib/fpc/3.2.2/
-
 make test-fpmake
 ./fpmake --globalunitdir="${FPCDIR}" install
 # The CGE installed units should now be known to FPC, no need for any -Fu or @castle-fpc.cfg
 ls -Flah $FPCDIR/units/x86_64-linux/castle-game-engine
 fpc -Mobjfpc -Fuexamples/fps_game/code/ examples/fps_game/fps_game.dpr
+fpc -Mobjfpc -Sh -Sa -gh -gl -Futests/code/testcases/ -Futests/code/tester-castle/ tests/castle_tester_standalone.dpr
 ```
 
 Run the InstantFPC examples in examples/instantfpc/ :
