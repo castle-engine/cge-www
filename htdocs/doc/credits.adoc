@@ -62,11 +62,13 @@ Everyone who subscribes to support CGE with at least 10 USD / month (anywhere --
 * Jan Adamec
 * Jeff Davis
 * Martin Heggestad
+* Matthew
 * Milos Stanojevic
 * Márton Polgár
 * Märten Rodes
 * Nicholas Polys
 * Ramazan Geven
+* Szczepan Ratajczyk
 * Vedran Rodić
 
 *Thank you!*
