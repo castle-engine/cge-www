@@ -16,7 +16,10 @@ This pages collects _some_ materials from them.
 - https://castle-engine.io/zlot2024[Slides (in Polish)]
 --
 
-* _10-11 October 2024_: Presentation at https://www.blaisepascalmagazine.eu/en/fpc-lazarus-meeting-2024-info/[FPC and Lazarus event in Cologne (Köln)].
+* _10-11 October 2024_:
+//Presentation at https://www.blaisepascalmagazine.eu/en/fpc-lazarus-meeting-2024-info/[FPC and Lazarus event in Cologne (Köln)].
+// link dead
+Presentation at _FPC and Lazarus event in Cologne (Köln)_.
 +
 --
 - https://castle-engine.io/cologne2024[Slides].
