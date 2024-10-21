@@ -587,15 +587,22 @@ Address a few shortcomings of our  (see `examples/screen_effects_demo/`, link:x3
 
 - This depends on making a more generic link:#component_list[TCastleComponentList] to expose `TCastleScreenEffects.ScreenEffects` list nicely.
 
-### Export any TCastleTransform hierarchy to X3D
+[#gltf_save]
+### Export (save) nodes graph to glTF
 
-Currently you can only export cgeref:TCastleScene[] to X3D or STL.
+Currently we can export (save) nodes graph (from one cgeref:TCastleScene[] or, using cgeref:TCastleTransform.InternalBuildNode[], from whole cgeref:TCastleViewport[] contents) to X3D or STL.
 
-### Export TCastleScene, or any TCastleTransform hierarchy, to glTF
+We want to enable also saving to glTF. This means that _everywhere_ where we allow saving, glTF will also be an output option:
 
-Currently you can export cgeref:TCastleScene[] to X3D or STL.
+- link:castle-model-viewer[], link:castle-model-converter[] should be able to save to glTF (from any input model, like X3D, STL, or another glTF).
 
-GitHub issue: https://github.com/castle-engine/castle-engine/issues/595
+- The editor menu item _"Data -> Export Viewport to X3D, STL"_ (see https://castle-engine.io/wp/2024/09/18/export-3d-or-2d-world-designed-in-castle-game-engine-editor-to-x3d-or-stl/[news]) will be able to save to glTF.
+
+- API: cgeref:TCastleSceneCore.Save[], cgeref:SaveNode[] will be able to save to glTF.
+
+- https://castle-engine.io/convert.php[Our online converter] will be able to save to glTF.
+
+GitHub issue: https://github.com/castle-engine/castle-engine/issues/595 .
 
 ### Allow animating selected node graph properties, without changing the graph, to be able to reuse graphs
 
