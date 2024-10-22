@@ -7,7 +7,7 @@ _Castle Game Engine_ can use various _backends_ for our link:sound[sound (Castle
 
 One of the alternative backends is https://www.fmod.com/[FMOD], using a commercial (closed-source) FMOD library. FMOD works nicely, and is even more cross-platform (in particular it supports also link:nintendo_switch[Nintendo Switch]). It also supports more sound file formats out-of-the-box.
 
-Note that using FMOD is not free. See https://www.fmod.com/ for library downloads and pricing.
+NOTE: FMOD is not free, in general. But they have a _"Free Indie License"_ if your revenue and budget are below certain thresholds. See https://www.fmod.com/licensing[FMOD licensing and pricing] for the details.
 
 == Activating FMOD in CGE
 
