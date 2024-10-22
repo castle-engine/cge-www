@@ -88,7 +88,7 @@ Call trace for block $00007F9B14E42980 size 44
 
 === Caveat: Ignore output when `Halt` occurred
 
-When you exit with `Halt`, ou will always have some memory leaks, that's unavoidable right now. You should ignore the "_Heap dump by heaptrc unit_" output in this case.
+When you exit with `Halt`, output will always show some memory leaks, that's unavoidable right now. You should ignore the "_Heap dump by heaptrc unit_" output in this case.
 
 Same thing applies when your program crashes with an unhandled exception.
 
@@ -102,7 +102,7 @@ Or use the advise below to redirect the output to file.
 
 === Advanced: Routing HeapTrc output to a file
 
-By default, `HeapTrc` output is dumped into standard output (on *Nix systems and on console Windows applications). However, for Windows GUI applications, the `HeapTrc` output is shown as a series of modal popup windows and can be very tedious to work with in case the output is extensive.
+By default, `HeapTrc` output is dumped into standard output (on Unix systems and on console Windows applications). However, for Windows GUI applications, the `HeapTrc` output is shown as a series of modal popup windows and can be very tedious to work with in case the output is extensive.
 
 This behavior can be changed by explicitly requesting to dump `HeapTrc` output to a file by using https://www.freepascal.org/docs-html/rtl/heaptrc/setheaptraceoutput.html[SetHeapTraceOutput] procedure. E.g. add `SetHeapTraceOutput(URLToFilenameSafe(ApplicationConfig('heaptrc.log')));` in main project source file.
 

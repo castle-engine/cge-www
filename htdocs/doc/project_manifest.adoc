@@ -567,7 +567,7 @@ Subset of `<compiler_options>` supported only by FPC (for now):
 
 * `<library_paths>` define paths where the linked may found `xxx.o` files. This is typically used to statically link with Pascal units code compiled from other languages. It corresponds to the FPC `-Fl` command-line option.
 
-* `detect_memory_leaks` attribute activates link:detecting_memory_leaks_using_heaptrc[memory leak detection using HeapTrc].
+* `detect_memory_leaks` attribute activates link:memory_leaks[memory leak detection using HeapTrc].
 
 === Debian and Free Desktop metadata
 
