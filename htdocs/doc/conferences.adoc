@@ -42,6 +42,7 @@ Presentation at _FPC and Lazarus event in Cologne (Köln)_.
 ** link:/itdevcon2023/slides1[Presentation (slides) from 1st talk, "Creating 3D games and applications using Castle Game Engine"]
 ** link:/itdevcon2023/slides2[Presentation (slides) from 2nd talk, "Advanced Castle Game Engine: forms, 3D generation, shaders, customization"]
 ** https://www.youtube.com/watch?v=R3niyAiiv4gp[Recording of the first talk]
+** https://www.youtube.com/watch?v=Lsce48ltVqY[Recording of the second talk]
 
 * _20-21 September 2023_: https://www.bsc.com.pl/zlot-programistow-delphi-2023/[Zlot Programistów Delphi], Polish conference.
 ** https://castle-engine.io/zlot2023/slides[Slides from my talk presenting Castle Game Engine - editor, coding, plans]
