@@ -11,18 +11,5 @@ if ( ! is_active_sidebar( 'sidebar-1' ) ) {
 ?>
 
 <aside id="secondary" class="widget-area" role="complementary">
-
-    <?php /* // Now we display social icons using Wordpress block
-    <div class="panel-follow-us">
-        Follow us to get the latest news about the engine development:
-        <ul>
-          <li><a href="https://www.patreon.com/castleengine">Patreon</a>
-          <li><a href="https://mastodon.social/@michalis_kambi">Mastodon</a>
-          <li><a href="https://www.facebook.com/castleengine">Facebook</a>
-          <li><a href="https://twitter.com/castleengine">Twitter</a>
-        </ul>
-    </div>
-    */ ?>
-
     <?php dynamic_sidebar( 'sidebar-1' ); ?>
 </aside><!-- #secondary -->

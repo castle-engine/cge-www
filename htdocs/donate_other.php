@@ -123,8 +123,6 @@ Right now we have 1/2 developer on a payroll (<i>Andrzej Kilijański</i>, paid f
 
 ------------------------------------------------------------------------------
 Old text:
-<div class="jumbotron">
-<a href="images/michalis_drawing.png" class="donate-photo" title="That's me, on a good day:)"><img src="images/michalis_drawing.png"></a>
 <p>Hi,
 <p>I'm Michalis Kamburelis
 (<?php echo michalis_mailto('email'); ?>).
@@ -140,7 +138,6 @@ So I'm really crazy about making cool games and keeping the engine growing and o
 Even a small donation matters <b>a lot</b> to me. It allows me
 to continue to improve the awesomeness of our engine,
 and view3dscene, and our games. <b>Thank you!</b></p>
-</div> <!-- jumbotron -->
 
 ------------------------------------------------------------------------------
 Old text:

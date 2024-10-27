@@ -33,13 +33,6 @@ code, kbd, pre, samp {
     }
 }
 
-@media only screen and (min-width : 768px) {
-    .content-near-sidebar {
-        /* horizontal margin from sidebar */
-        /* padding-left: 2em; */
-    }
-}
-
 /* all images, movies responsive */
 .media-responsive, img, iframe {
   max-width: 100%;
@@ -166,8 +159,6 @@ span.version_number { font-size: small }
   font-weight: bold
 }
 
-pre.vrml_extension_spec { }
-
 dl.vrml_ver_differences > dt {
   font-weight: normal;
   font-style: italic;
@@ -257,18 +248,6 @@ a.screenshot:hover img { border: 2pt solid #888; }
 .banner-container {
     width: 100%;
     margin-bottom: 3em !important;
-}
-
-.donate-photo {
-    float: right;
-    width: 300px;
-    max-width: 50%;
-    display: inline-block;
-    margin-bottom: 0.5rem;
-    margin-left: 0.5rem;
-}
-.donate-photo img {
-    width: 100%;
 }
 
 .preview-warning {
@@ -551,45 +530,6 @@ span.news_title.only_anchor a {
 }
 span.news_title.only_anchor {
   text-decoration: none;
-}
-
-.castle_rss_link {
-  float: right;
-  background: red;
-  padding: 0.3em;
-  border: thin outset black;
-  margin: 1em;
-}
-
-.castle_rss_link a {
-  color: white;
-  font-weight: bold
-}
-
-/* based on Bootstrap panel-footer */
-.panel-follow-us-old {
-  background-color: #f5f5f5;
-  border-bottom-left-radius: 3px;
-  border-bottom-right-radius: 3px;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
-  border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
-  padding: 10px 15px;
-  font-size: larger;
-}
-
-/* based on Bootstrap panel-footer */
-.panel-follow-us {
-  background-color: #f5f5f5;
-  border-bottom-left-radius: 3px;
-  border-bottom-right-radius: 3px;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
-  border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
-  padding: 10px 15px;
-  font-size: 1.5rem;
 }
 
 /* header ------------------------------------------------------------------- */
@@ -993,8 +933,6 @@ div.download span.download_details { font-size: smaller; }
   font-weight: bold;
   text-align: center;
   font-size: larger;
-}
-.feature-description {
 }
 .feature-image {
   width: 100%;
