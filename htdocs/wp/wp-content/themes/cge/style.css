@@ -2242,7 +2242,7 @@ img.alignright {
         /* Layout */
 
         .wrap {
-                /* Like CGE .fixed-width-content */
+                /* Old: synchronized with CGE .fixed-width-content, but not anymore, removed from CGE */
                 max-width: 1200px;
                 padding-left: 3em;
                 padding-right: 3em;

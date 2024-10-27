@@ -40,14 +40,6 @@ code, kbd, pre, samp {
     }
 }
 
-.fixed-width-content {
-    /* Like Wordpress .wrap */
-    width: 1200px;
-    max-width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
 /* all images, movies responsive */
 .media-responsive, img, iframe {
   max-width: 100%;
