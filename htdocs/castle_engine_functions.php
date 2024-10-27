@@ -99,7 +99,7 @@ define('PATREON_URL',         'https://patreon.com/castleengine');
 define('CGE_LATEST_DOWNLOAD', 'https://github.com/castle-engine/castle-engine/archive/snapshot.zip');
 
 // bump this each time you change castle-engine.css, to work with CloudFlare caching (or you can purge CloudFlare cache manually)
-define('CASTLE_ENGINE_CSS_VERSION', 47);
+define('CASTLE_ENGINE_CSS_VERSION', 48);
 
 define('TWITTER_HANDLE', 'castleengine'); // https://twitter.com/castleengine/
 
@@ -1420,12 +1420,14 @@ function castle_footer()
 
   /* show search box only in "Documentation" sidebar,
      this makes it looking good, and available where it's needed most */
+  /* Later: search box now in navbar, more standard.
   $search_box = '';
   global $castle_page_path;
   if (count($castle_page_path) > 0 &&
       $castle_page_path[0] == 'documentation') {
     $search_box = castle_search_box();
   }
+  */
 
   global $castle_sidebar;
   if (empty($castle_sidebar)) {
@@ -1434,7 +1436,6 @@ function castle_footer()
     echo '</div>
           <div class="col-sm-3 col-sm-pull-9 well sidebar">' .
             $castle_sidebar .
-            $search_box .
           '</div>
         </div>
       </div>';
