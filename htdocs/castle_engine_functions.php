@@ -578,7 +578,7 @@ $castle_sitemap = array(
 
   'doc/castle-model-viewer'  => array(
     'hint' => 'Viewer for glTF, X3D, Collada, sprite sheets and other 3D and 2D model formats',
-    'title' => 'Model Viewer',
+    'title' => 'Model&nbsp;Viewer',
     'sidebar' => true,
     'sub' => array(
       'doc/castle-model-viewer-mobile' => array('title' => 'Mobile (Android) Version'),
@@ -589,7 +589,7 @@ $castle_sitemap = array(
     ),
   ),
 
-  'talk' => array('hint' => 'Ask for help, report bugs, discuss features', 'title' => 'Forum, Discord...',
+  'talk' => array('hint' => 'Ask for help, report bugs, discuss features', 'title' => 'Community',
     'sub' => array(
       'privacy_policy' => array('title' => 'Privacy Policy'),
     ),
@@ -748,18 +748,12 @@ function _castle_header_menu($current_page)
 {
   global $castle_sitemap;
 
-  $result = '
-    <!-- Uncomment this for toggable navbar -->
-    <!--div class="collapse navbar-collapse" id="main-navbar-collapse-1" -->
-    <ul class="nav nav-tabs">';
+  $result = '<ul class="navbar-nav me-auto mb-2 mb-lg-0">';
 
   foreach($castle_sitemap as $menu_item_page => $menu_item)
   {
     // output <li ...>
-    $result .= '<li class="';
-    if ($menu_item_page == $current_page) {
-      $result .= ' active';
-    }
+    $result .= '<li class="nav-item ';
     if (!empty($menu_item['dropdown'])) {
       $result .= ' dropdown';
     }
@@ -780,25 +774,31 @@ function _castle_header_menu($current_page)
     }
     $result .= '"';
 
+    $a_attributes = '';
+    $a_classes = 'nav-link';
+
+    // output optional <a> attributes on currently active
+    if ($menu_item_page == $current_page) {
+      $a_classes .= ' active';
+      $a_attributes .= ' aria-current="page"';
+    }
     // output optional <a> dropdown attributes
     if (!empty($menu_item['dropdown'])) {
-      $result .= ' class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"';
+      $a_classes .= ' dropdown-toggle';
+      $a_attributes .= ' data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"';
     }
 
     // output title="..."
     if (isset($menu_item['hint'])) {
-      $result .= ' title="' . $menu_item['hint'] . '"';
+      $a_attributes .= ' title="' . $menu_item['hint'] . '"';
     }
 
-    // output <a> content
-    $result .= '>';
+    // finish output of <a> content
+    $result .= 'class="' . $a_classes . '"' . $a_attributes . '>';
     if (isset($menu_item['title-for-header-menu'])) {
       $result .= $menu_item['title-for-header-menu'];
     } else {
       $result .= $menu_item['title'];
-    }
-    if (!empty($menu_item['dropdown'])) {
-      $result .= ' <span class="caret"></span>';
     }
     $result .=  '</a>';
 
@@ -816,7 +816,7 @@ function _castle_header_menu($current_page)
         $result .= '<li>';
 
         // output <a href="..."
-        $result .= '<a href="';
+        $result .= '<a class="dropdown-item" href="';
         if (isset($dropdown_item['url'])) {
           $result .= $dropdown_item['url'];
         } else {
@@ -844,10 +844,7 @@ function _castle_header_menu($current_page)
   unset($menu_item);
   unset($menu_item_page);
 
-  $result .= '
-    </ul>
-    <!-- Uncomment this for toggable navbar -->
-    <!--/div-->';
+  $result .= '</ul>';
 
   return $result;
 }
@@ -1163,6 +1160,14 @@ function _castle_image_sizes($relative_filename)
 
 function _castle_patreon_box()
 {
+  $result = '
+    <form class="container-fluid justify-content-start d-flex">
+      <a href="' . PATREON_URL . '" class="btn btn-primary btn-success">Donate</a>
+    </form>';
+  return $result;
+
+  // TODO: is the rest worth restoring?
+
   $patreon_json = @file_get_contents(__DIR__ . '/../patreon/patreon.json');
   /* Check _castle_disable_externals() to avoid adding Patreon data
      to static HTML pieces in castle-engine/doc/pasdoc/html-parts/ .
@@ -1346,41 +1351,26 @@ function echo_castle_header_suffix($path, $enable_sidebar = true)
   global $main_page;
 
   $rendered = '
-  <nav class="navbar navbar-default ' . ($main_page?'navbar-main-page':'') . '">
-    <div class="container-fluid container-nav">
-      <!-- Uncomment this for toggable navbar -->
-      <!--
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">
+        <img alt="Castle Game Engine Logo" class="d-inline-block" src="' .
+          page_requisite('images/header_icon.png') . '" ' .
+          // _castle_image_sizes('images/header_icon.png')
+          ' width="32" height="32" ' // hardcode here, to avoid even loading castle_image_sizes.php in some cases
+          . '>
+        <!--Castle Game Engine-->
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
       </button>
-      -->
 
-      <ul class="nav nav-tabs navbar-right">
-        <li>' . _castle_patreon_box() . '</li>
-      </ul>
-
-      <!--button type="button" class="btn btn-default navbar-btn navbar-right" style="margin-right: 0px;"><a href="' . PATREON_URL . '" class="navbar-link">Support us on<br><img style="height: 40px" src="' . page_requisite('images/patreonlogoorange.png') . '" alt="Patreon"></a></button-->
-
-      <!--p class="navbar-text navbar-right"><a href="' . PATREON_URL . '" class="navbar-link">Support us on<br><img style="height:50px" src="' . page_requisite('images/patreonlogoorange.png') . '" alt="Patreon"></a></p-->
-
-      <div class="navbar-header navbar-brand">
-        <a href="/">
-          <img alt="Castle Game Engine Logo" src="' .
-            page_requisite('images/header_icon.png') . '" ' .
-            // _castle_image_sizes('images/header_icon.png')
-            ' width="32" height="32" ' // hardcode here, to avoid even loading castle_image_sizes.php in some cases
-            . '>
-          Castle Game Engine
-        </a>
-      </div>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
       ' .
-      // Too prominent? Moved to sidebar.
-      // castle_search_box() .
+      _castle_header_menu($path[0]) .
+      _castle_patreon_box() .
+      castle_search_box() .
       '
-      ' . _castle_header_menu($path[0]) . '
     </div>
 
     ' . $github_ribbon . '
