@@ -1359,7 +1359,8 @@ function echo_castle_header_suffix($path, $enable_sidebar = true)
           // _castle_image_sizes('images/header_icon.png')
           ' width="32" height="32" ' // hardcode here, to avoid even loading castle_image_sizes.php in some cases
           . '>
-        <!--Castle Game Engine-->
+        <!-- Hide it on large screens, as it takes too much space when it is adjacent to expanded navbar -->
+        <span class="d-lg-none">Castle Game Engine</span>
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
