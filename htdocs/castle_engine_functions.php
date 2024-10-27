@@ -1355,9 +1355,8 @@ function echo_castle_header_suffix($path, $enable_sidebar = true)
     <div class="container-fluid">
       <a class="navbar-brand" href="/">
         <img alt="Castle Game Engine Logo" class="d-inline-block" src="' .
-          page_requisite('images/header_icon.png') . '" ' .
-          // _castle_image_sizes('images/header_icon.png')
-          ' width="32" height="32" ' // hardcode here, to avoid even loading castle_image_sizes.php in some cases
+          page_requisite('images/castle_game_engine_icon.svg') . '" ' .
+          ' width="30" height="30" ' // this is SVG, size is whatever we want
           . '>
         <!-- Hide it on large screens, as it takes too much space when it is adjacent to expanded navbar -->
         <span class="d-lg-none">Castle Game Engine</span>
