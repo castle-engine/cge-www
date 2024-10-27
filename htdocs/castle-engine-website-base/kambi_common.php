@@ -470,8 +470,7 @@ if ($castle_wordpress) {
 
 <!-- Bootstrap -->
 <link href="<?php echo page_requisite('castle-engine-website-base/node_modules/bootstrap/dist/css/bootstrap.min.css'); ?>" rel="stylesheet">
-<!-- Bootstrap theme -->
-<link href="<?php echo page_requisite('castle-engine-website-base/node_modules/bootstrap/dist/css/bootstrap-theme.min.css'); ?>" rel="stylesheet">
+
 <!-- Bootstrap icons, https://icons.getbootstrap.com/ -->
 <link href="<?php echo page_requisite('castle-engine-website-base/node_modules/bootstrap-icons/font/bootstrap-icons.min.css'); ?>" rel="stylesheet">
 
@@ -527,6 +526,7 @@ function common_footer($js_using_jquery = '')
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins).
      Used also by colorbox. -->
 <script src="<?php echo page_requisite('castle-engine-website-base/node_modules/jquery/dist/jquery.min.js'); ?>"></script>
+
 <!-- Using passive event listeners can improve scrolling performance, according to
      https://web.dev/uses-passive-event-listeners/
      (linked from Lighthouse).
@@ -557,6 +557,7 @@ jQuery.event.special.mousewheel = {
     }
 };
 </script>
+
 <!-- Include colorbox after jQuery is known -->
 <script src="<?php echo page_requisite('castle-engine-website-base/node_modules/jquery-colorbox/jquery.colorbox-min.js'); ?>"></script>
 <script>
@@ -564,8 +565,9 @@ jQuery.event.special.mousewheel = {
   // For AsciiDoctor images with role=screnshot
   jQuery('.screenshot a').colorbox({opacity: 0.9, rel:'screenshot', maxWidth:'90%', maxHeight:'90%'});
 </script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="<?php echo page_requisite('castle-engine-website-base/node_modules/bootstrap/dist/js/bootstrap.min.js'); ?>"></script>
+
+<!-- Bootstrap JS (bundled, with Popper) -->
+<script src="<?php echo page_requisite('castle-engine-website-base/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js'); ?>"></script>
 
 <!-- slick carousel https://github.com/kenwheeler/slick/ -->
 <script src="<?php echo page_requisite('castle-engine-website-base/node_modules/slick-carousel/slick/slick.min.js'); ?>"></script>
