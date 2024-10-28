@@ -21,12 +21,6 @@ implementation as practically finished.
 But unrelated things like missing <code>Script</code> support for ECMAScript
 prevented the tests in <code>PROTO</code> category from passing completely.</p>
 
-<p>The style of table below was modeled after similar page
-at <a href="http://www.openvrml.org/doc/conformance.html">
-OpenVRML Conformance Test Results</a>. <!-- See there also
-for some  remarks about invalid tests included in
-NIST test suite. -->
-
 <?php
 function pass($count, $comment = '')
 {
