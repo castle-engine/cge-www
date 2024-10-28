@@ -1,30 +1,3 @@
-body {
-  /* Override Bootstrap to add Inter https://fonts.google.com/specimen/Inter */
-  /* font-family: Inter,"Helvetica Neue",Helvetica,Arial,sans-serif !important; */
-  /* Override Bootstrap 14px */
-  font-size: 16px;
-  line-height: 1.5;
-}
-
-/* Makes reading much easier, like on
-   https://docs.asciidoctor.org/asciidoc/latest/macros/audio-and-video/
-   https://castle-engine.io/build_tool */
-p {
-  margin-bottom: 16px;
-}
-
-/* Override Bootstrap default:
-
-   Remove "Courier New",
-   "Courier New" bold width doesn't match regular "Courier New",
-   this hurts our CommonSurfaceShader view on x3d_implementation_texturing_extensions.php .
-   It is also not nice on Linux according to
-   https://github.com/twbs/bootstrap/issues/18609
-*/
-code, kbd, pre, samp {
-  font-family: monospace !important;
-}
-
 @media only screen and (max-width : 767px) {
     .sidebar {
         /* vertical margin between sidebar and content,
@@ -147,17 +120,6 @@ dt { font-weight: bold; }
 }
 
 span.version_number { font-size: small }
-
-.rss_link {
-  float: right;
-  background: red;
-  padding: 0.3em;
-  border: thin outset black;
-}
-.rss_link a {
-  color: white;
-  font-weight: bold
-}
 
 dl.vrml_ver_differences > dt {
   font-weight: normal;
