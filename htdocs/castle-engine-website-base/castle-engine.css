@@ -1,11 +1,3 @@
-@media only screen and (max-width : 767px) {
-    .sidebar {
-        /* vertical margin between sidebar and content,
-           on small devices when sidebar is at bottom */
-        margin-top: 1em;
-    }
-}
-
 /* all images, movies responsive */
 .media-responsive, img, iframe {
   max-width: 100%;
