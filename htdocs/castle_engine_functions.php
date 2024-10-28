@@ -1387,7 +1387,7 @@ function echo_castle_header_suffix($path, $enable_sidebar = true)
     $rendered .=
     '<div class="container-fluid">
       <div class="row">
-        <div class="col-sm-9 col-sm-push-3 content-near-sidebar">
+        <div class="col-sm-9 content-near-sidebar">
           ' . _castle_breadcrumbs($path);
   }
 
@@ -1427,7 +1427,7 @@ function castle_footer()
     echo '</div>';
   } else {
     echo '</div>
-          <div class="col-sm-3 col-sm-pull-9 well sidebar">' .
+          <div class="col-sm-3 col-sm-pull-9 p-4 bg-body-secondary border rounded-3 sidebar">' .
             $castle_sidebar .
           '</div>
         </div>
