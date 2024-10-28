@@ -2386,7 +2386,7 @@ function cge_download_engine($version, $tag)
 
   return '
     <div class="centered-download-wrapper">
-        <div class="download jumbotron main-cge-download">
+        <div class="download main-cge-download">
             <div class="download_platforms_list">
                 <div class="download_platform"><a class="btn btn-primary btn-lg" href="' . $download_prefix_general . 'castle-engine-setup-' . $version . '.exe">' .
                   '<img src="' . CURRENT_URL . '/images/os_icons/win.png" alt="Windows (64-bit, x86_64)" width="64" height="64">' .

@@ -5,6 +5,8 @@
 
 require_once 'castle_engine_functions.php';
 
+define('X3D_INTRO_CLASSES', 'p-2 bg-body-secondary border rounded-3 castle-x3d-intro-block');
+
 function x3d_status_header($x3d_component_name, $component_name_for_url, $component_intro)
 {
   castle_header($x3d_component_name .' component');
@@ -16,9 +18,9 @@ function x3d_status_header($x3d_component_name, $component_name_for_url, $compon
 
   $x3d_component_url = x3d_spec_latest_url($component_name_for_url);
 
-  echo '<div class="x3d_component_intro">
-    <p class="paragraph_first">' . $component_intro . '</p>
-    <p class="paragraph_last">See also <a href="' . $x3d_component_url .
+  echo '<div class="' . X3D_INTRO_CLASSES . '">
+    <p>' . $component_intro . '</p>
+    <p>See also <a href="' . $x3d_component_url .
     '">X3D specification of the ' . $x3d_component_name . ' component</a>.</p></div>';
 }
 
@@ -42,9 +44,9 @@ function x3d_extensions_header($x3d_component_name, $base_component_page,
 
   $x3d_component_url = x3d_spec_latest_url($component_name_for_url);
 
-  echo '<div class="x3d_component_intro">
-    <p class="paragraph_first">' . $component_intro . '</p>
-    <p class="paragraph_last">See also ' . a_href_page('documentation of supported nodes of the ' . $x3d_component_name . ' component', $base_component_page) .
+  echo '<div class="' . X3D_INTRO_CLASSES . '">
+    <p>' . $component_intro . '</p>
+    <p>See also ' . a_href_page('documentation of supported nodes of the ' . $x3d_component_name . ' component', $base_component_page) .
       ' and <a href="' . $x3d_component_url .
     '">X3D specification of the ' . $x3d_component_name . ' component</a>.</p></div>';
 }

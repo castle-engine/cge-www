@@ -646,7 +646,7 @@ WWWInline { name "my_compressed_vrml_file.wrl.gz" }
     <a href="castle-model-viewer">castle-model-viewer</a>
     and others.
 
-    <dl class="vrml_ver_differences">
+    <dl>
       <dt>For VRML 1.0</dt>
       <dd>This field is of <code>multi-</code> type
         (<code>MFFloat</code>), just like other <code>Material</code>

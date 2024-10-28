@@ -80,39 +80,10 @@ code {
   padding: 0;
 }
 
-/* Override above rule for x3d_component_intro. These <code> are in practice
-   surrounded by <b> now. */
-div.x3d_component_intro code { background-color: transparent; }
-
-span.js_link { text-decoration: underline; color: #00F; cursor: pointer; }
-
-/* Style for note_box and note_title shamelessly stolen from CSS
-   of the Subversion book. (from .sidebar and .sidebar .title) */
-.note_box
-{
-    border-top: dotted 1px black;
-    border-left: dotted 1px black;
-    border-right: solid 2px black;
-    border-bottom: solid 2px black;
-    background: rgb(240,220,170);
-    padding: 0 0.12in;
-    margin: 0.5in;
+/* Fix excessive space after last paragraph in castle-x3d-intro-block */
+.castle-x3d-intro-block p:last-child {
+  margin-bottom: 0;
 }
-
-.note_box .note_title {
-  text-align: center;
-  font-size: 125%;
-}
-
-/* Tables with key controls should be done with
-   <table class="key_list"> */
-table.key_list {
-  width: 90%;
-  border: thin solid;
-  border-collapse: separate;
-}
-table.key_list th { background: #eeeee0; border: thin solid white; }
-table.key_list td { background: #ddddd0; border: thin solid white; width: 50%; }
 
 /* Adapted from my pasdoc.css */
 table.thin_borders { border-collapse: collapse; }
@@ -147,11 +118,6 @@ dt { font-weight: bold; }
 }
 
 span.version_number { font-size: small }
-
-dl.vrml_ver_differences > dt {
-  font-weight: normal;
-  font-style: italic;
-}
 
 .cge-gallery-link {
   /* background: #e8d59a; */
@@ -291,34 +257,14 @@ h1, h2, code {
   overflow-wrap: break-word;
 }
 
-/* Compatible with Bootstrap 4 and 5, https://getbootstrap.com/docs/5.3/utilities/display/#hiding-elements */
-.d-none {
-  display: none !important;
-}
-
 /* main page stuff ----------------------------------------------------------- */
 
-.centered-wrapper {
-    text-align: center;
-}
-.centered {
-    display: inline-block;
-    text-align: left;
-}
 .centered-download-wrapper {
     text-align: center;
     margin-top: 1em;
 }
 .centered-download-wrapper .download {
     display: inline-block;
-}
-.download-hints {
-    margin-top: 1em;
-    margin-bottom: 1em;
-}
-.download-hints p {
-    margin-top: 0; /* .download-hints already makes margins */
-    margin-bottom: 0; /* .download-hints already makes margins */
 }
 
 .centered-download-wrapper .main-cge-download .btn-primary {
@@ -469,27 +415,6 @@ div.main_list_item {
 
   padding: 0.1em;
 }
-
-/* Don't set it float here, we may want to use it with various float values
-   or without float. */
-div.useful_link {
-  display: inline-block;
-  background: #EEE;
-  /* #ffff91; */
-  border: thin solid black;
-  padding: 0.3em;
-}
-
-div.x3d_component_intro {
-  display: block;
-  border: thin solid #333;
-  background: #fff4d2;
-  padding: 0.3em;
-}
-
-div.x3d_component_intro p.paragraph_first { margin-top: 0px; }
-div.x3d_component_intro p.paragraph_last { margin-bottom: 0px; }
-div.x3d_component_intro p.paragraph_first code { font-weight: bold; }
 
 dd { margin-left: 2em; }
 
