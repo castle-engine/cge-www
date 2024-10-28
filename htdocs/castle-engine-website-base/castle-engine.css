@@ -3,11 +3,16 @@
 a {
   text-decoration: none;
 }
-a:hover, a:focus {
+a:hover,
+a:focus {
   text-decoration: underline;
 }
-.btn:hover, .btn:focus {
-  /* No underline in buttons, even on hover/focus -- buttons already show hover/focus */
+/* No underline in buttons, even on hover/focus -- buttons already show hover/focus */
+a.btn:hover,
+a.btn:focus,
+/* No underline in navbars, it already has styling */
+.navbar a:hover,
+.navbar a:focus {
   text-decoration: none !important;
 }
 
@@ -100,8 +105,6 @@ code {
 /* Override above rule for x3d_component_intro. These <code> are in practice
    surrounded by <b> now. */
 div.x3d_component_intro code { background-color: transparent; }
-
-pre.plug_declaration { border: thin solid #333; padding: 0.2em; }
 
 span.js_link { text-decoration: underline; color: #00F; cursor: pointer; }
 
