@@ -2239,7 +2239,7 @@ function cge_download_application($version, $tag, $organization_name, $repo_name
     'https://github.com/' . $organization_name . '/' . $repo_name  . '/releases/download/' . $tag . '/' . $application_name;
 
   $result = '
-    <div class="download jumbotron">
+    <div class="download p-5 bg-body-secondary border rounded-3">
     <div class="download_platforms_list">';
 
   foreach ($platforms as $platform)
