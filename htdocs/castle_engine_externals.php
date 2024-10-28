@@ -111,6 +111,7 @@ function castle_search_box()
   <div class="input-group flex-nowrap">
     <input type="text" class="form-control" name="q" placeholder="Search..." style="min-width: 8em">
     <input type="hidden" name="sites" value="castle-engine.io">
+    <input type="hidden" name="kae" value="d">
     <span class="input-group-btn">
       <button type="submit" class="btn btn-default">
         <i class="bi bi-search"></i>
