@@ -50,9 +50,9 @@ if ($next_item !== NULL || $previous_item !== NULL)
 {
   $older_newer_bar .= '<div class="btn-group btn-group-justified" role="group">';
   if ($previous_item !== NULL)
-    $older_newer_bar .= '<a title="' . htmlspecialchars($previous_item['title']) . '" href="old_news.php?id=' . $previous_item['id'] . '" class="btn btn-default">&laquo; Newer</a>';
+    $older_newer_bar .= '<a title="' . htmlspecialchars($previous_item['title']) . '" href="old_news.php?id=' . $previous_item['id'] . '" class="btn btn-secondary">&laquo; Newer</a>';
   if ($next_item !== NULL)
-    $older_newer_bar .= '<a title="' . htmlspecialchars($next_item['title']) . '" href="old_news.php?id=' . $next_item['id'] . '" class="btn btn-default">Older &raquo;</a>';
+    $older_newer_bar .= '<a title="' . htmlspecialchars($next_item['title']) . '" href="old_news.php?id=' . $next_item['id'] . '" class="btn btn-secondary">Older &raquo;</a>';
   $older_newer_bar .= '</div>';
 }
 

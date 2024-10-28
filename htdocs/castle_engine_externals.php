@@ -113,7 +113,7 @@ function castle_search_box()
     <input type="hidden" name="sites" value="castle-engine.io">
     <input type="hidden" name="kae" value="d">
     <span class="input-group-btn">
-      <button type="submit" class="btn btn-default">
+      <button type="submit" class="btn">
         <i class="bi bi-search"></i>
       </button>
     </span>
