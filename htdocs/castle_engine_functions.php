@@ -1267,6 +1267,13 @@ function castle_slideshow()
   return $rendered;
 }
 
+/* Size at which our sidebar becomes a 2nd column, horizontally adjacent to main content.
+   At smaller sizes (for mobile), our sidebar is below the main content.
+   This is the breakpoint name from bootstrap
+   ( https://getbootstrap.com/docs/5.3/layout/columns/ )
+   like sm, md, lg. */
+define('CASTLE_BREAKPOINT_SIDEBAR', 'md');
+
 function echo_castle_header_suffix($path, $enable_sidebar = true)
 {
   global $castle_sidebar;
@@ -1387,7 +1394,7 @@ function echo_castle_header_suffix($path, $enable_sidebar = true)
     $rendered .=
     '<div class="container-fluid">
       <div class="row">
-        <div class="col-sm-9 content-near-sidebar">
+        <div class="col-' . CASTLE_BREAKPOINT_SIDEBAR . '-9 order-' . CASTLE_BREAKPOINT_SIDEBAR . '-last">
           ' . _castle_breadcrumbs($path);
   }
 
@@ -1427,7 +1434,7 @@ function castle_footer()
     echo '</div>';
   } else {
     echo '</div>
-          <div class="col-sm-3 col-sm-pull-9 p-4 bg-body-secondary border rounded-3 sidebar">' .
+          <div class="col-' . CASTLE_BREAKPOINT_SIDEBAR . '-3 p-4 bg-body-secondary border rounded-3 sidebar">' .
             $castle_sidebar .
           '</div>
         </div>
