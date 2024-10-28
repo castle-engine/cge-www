@@ -46,7 +46,7 @@ require_once 'convert-functions.php';
   <!--li><p>You can also use this for a <b>basic validation</b>. Although we don't focus on validation, but in practice (since we need to understand the input) we perform a lot of checks whether the input makes sense.-->
 
 <form action="convert-output.php" method="post" enctype="multipart/form-data">
-  <div class="convert-form jumbotron">
+  <div class="convert-form p-5 bg-body-secondary border rounded-3">
     <div class="input-group">
       <input type="file" class="form-control" multiple name="input-file[]">
       <span class="input-group-btn">

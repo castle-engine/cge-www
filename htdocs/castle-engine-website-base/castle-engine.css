@@ -6,6 +6,10 @@ a {
 a:hover, a:focus {
   text-decoration: underline;
 }
+.btn:hover, .btn:focus {
+  /* No underline in buttons, even on hover/focus -- buttons already show hover/focus */
+  text-decoration: none !important;
+}
 
 /* Space from navbar to content,
    except on main page (no space between navbar and banner). */
@@ -688,7 +692,7 @@ div.thumbnails a {
 }
 
 /* ---------------------------------------------------------------------------
-   download and jumbotron (but not specific to main page) */
+   download (but not specific to main page) */
 
 div.download {
   display: inline-block;
@@ -744,17 +748,8 @@ div.download span.download_details { font-size: smaller; }
   height: auto !important; /* override Bootstrap */
 }
 
-.convert-form .jumbotron {
-  padding: 30px !important;
-}
-
 .convert-form label {
   font-weight: inherit;
-}
-
-.convert-form p {
-  font-size: inherit !important; /* override Bootstrap */
-  font-weight: inherit !important; /* override Bootstrap */
 }
 
 .convert-form .output-format-title {
@@ -776,17 +771,17 @@ div.download span.download_details { font-size: smaller; }
   margin-right: auto;
 }
 
+.convert-form .output-format-group {
+  margin: 1em 0;
+}
+
 .convert-form .convert-patreon,
 .convert-form .another {
   margin-top: 2em;
 }
 
-.convert-form .convert-patreon a.btn {
-  max-width: 20em;
-}
-
-.convert-output p {
-  text-align: center;
+.convert-form {
+  margin-bottom: 1em;
 }
 
 /* talk page ---------------------------------------------------------------- */
