@@ -106,9 +106,8 @@ span.command_line_option {
 
 dt { font-weight: bold; }
 
-.panel-footer {
+.castle-page-footer {
     font-size: smaller;
-    margin-top: 2rem;
 }
 
 span.version_number { font-size: small }
@@ -738,10 +737,6 @@ div.download span.download_details { font-size: smaller; }
 
 .convert-output p {
   text-align: center;
-}
-
-.panel-body::after {
-  clear: none !important;
 }
 
 /* talk page ---------------------------------------------------------------- */

@@ -1438,16 +1438,21 @@ function castle_footer()
 function echo_footer ()
 {
   ?>
+  <!-- Clear floats, e.g. MacStadium float image on main page, before footer -->
+  <div class="clearfix">
+  </div>
 
-  <div class="panel-footer">
-    <p>Copyright <a href="https://michalis.xyz/">Michalis Kamburelis</a> and <a href="https://github.com/castle-engine/castle-engine/graphs/contributors">Castle Game Engine Contributors</a>.
+  <div class="card">
+    <div class="card-footer castle-page-footer">
+      <p>Copyright <a href="https://michalis.xyz/">Michalis Kamburelis</a> and <a href="https://github.com/castle-engine/castle-engine/graphs/contributors">Castle Game Engine Contributors</a>.
 
-    <p>This <a href="https://github.com/castle-engine/cge-www">webpage is also open-source and we welcome pull requests to improve it</a>.
+      <p>This <a href="https://github.com/castle-engine/cge-www">webpage is also open-source and we welcome pull requests to improve it</a>.
 
-    <?php // using CASTLE_PROD_URL to make sure it works also from API docs ?>
-    <p>We use cookies for analytics. See our <a href="<?php echo CASTLE_PROD_URL; ?>privacy_policy">privacy policy</a>.
+      <?php // using CASTLE_PROD_URL to make sure it works also from API docs ?>
+      <p>We use cookies for analytics. See our <a href="<?php echo CASTLE_PROD_URL; ?>privacy_policy">privacy policy</a>.
 
-    <?php echo_scarf_tracking(); ?>
+      <?php echo_scarf_tracking(); ?>
+    </div>
   </div>
 
   <?php
