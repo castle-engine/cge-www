@@ -48,6 +48,13 @@
     margin-bottom: 1em;
     td {
         padding: 1em;
+
+        /* Remove extra bottom margin after last paragraphs of notes in
+           .../viewport_and_scenes_from_code .
+           Careful: .paragraph has last-child, testcase: .../modern_pascal */
+        .paragraph:last-child p {
+            margin-bottom: 0;
+        }
     }
     td.icon {
         padding: 1em;

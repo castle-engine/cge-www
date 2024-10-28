@@ -42,7 +42,6 @@ h1 {
   height: auto;
 }
 
-
 .features-page h1,
 .features-page h2,
 .features-page h3 {
@@ -50,20 +49,6 @@ h1 {
   border-bottom: thin solid #DDD;
   margin-top: 1em;
   margin-bottom: 1em;
-}
-
-object.movie_thumbnail {
-  width: 200px;
-  height: 167px;
-}
-
-div.thumbs_cell_with_text_or_movie {
-  width: 210px;
-  background: #DDD;
-  margin: 0em;
-  padding: 0.2em;
-  font-size: small;
-  text-align: center;
 }
 
 pre {
@@ -82,24 +67,17 @@ a.kscript_func_docs {
 }
 
 /* Inline code (that we use often, for API links) clearly stands out --
-   background with some padding.
-   Except, do not customize code in AsciiDoctor multi-line code blocks
-   (.highlight). */
+   background with some padding. */
 code {
   background-color: #f0f0f0;
   padding: .1875rem .375rem;
 }
+/* Exception to above:
+   do not customize code in AsciiDoctor multi-line code blocks (.highlight). */
 .highlight code {
   background-color: transparent;
   /* no padding, testcase: "RoadScene" on .../viewport_and_scenes_from_code */
   padding: 0;
-}
-
-/* Remove extra bottom margin after last paragraphs of notes in
-   .../viewport_and_scenes_from_code .
-   Careful: .paragraph has last-child, testcase: .../modern_pascal */
-.admonitionblock .content .paragraph:last-child p {
-  margin-bottom: 0;
 }
 
 /* Override above rule for x3d_component_intro. These <code> are in practice

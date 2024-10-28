@@ -27,8 +27,6 @@ echo castle_thumbs(array(
   array('filename' => 'zupa-wlight-path.png', 'titlealt' => ''),
   array('filename' => 'box-path-samp10x5-depth2-rroul0.5.png', 'titlealt' => ''),
   array('filename' => 'graz-wlight-1-path-filt.png', 'titlealt' => ''),
-  array('html' => '<div class="thumbs_cell_with_text_or_movie">More sample images in '
-    . a_href_page("rayhunter gallery.","raytr_gallery") . '</div>'),
 ));
 ?>
 

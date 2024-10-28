@@ -9,12 +9,6 @@
   echo castle_thumbs(array(
     array('filename' => 'glsl_teapot_demo.png', 'titlealt' => 'Teapot X3D model rendered with toon shading in GLSL'),
     array('filename' => 'glsl_flutter.png', 'titlealt' => 'GLSL demo "flutter" (from FreeWRL examples)'),
-    array('html' =>
-      '<div class="thumbs_cell_with_text_or_movie">This movie shows GLSL shaders by our engine.'
-      . (!HTML_VALIDATION ?
-      '<iframe width="200" height="167" src="https://www.youtube.com/embed/fG1owuqwcmc" frameborder="0" allowfullscreen></iframe>'
-      : '')
-      . '</div>'),
   ));
 
   $toc = new TableOfContents(
@@ -54,6 +48,8 @@
   <li>
     <p>For a gentler introduction to GLSL, explore e.g. <a href="https://learnopengl.com/Getting-started/Shaders">LearnOpenGL.com</a>.
 </ul>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/fG1owuqwcmc?si=tsFKBy1ZlMjK791w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 <?php echo $toc->html_section(); ?>
 

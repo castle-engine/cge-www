@@ -585,17 +585,7 @@ and rendering, regardless of initial texture contents.
 
 <?php echo $toc->html_section(); ?>
 
-<?php
-  echo castle_thumbs(array(
-    array('filename' => 'fireplace_movie_texture_demo.png', 'titlealt' => 'Fireplace demo screenshot'),
-    array('html' =>
-      '<div class="thumbs_cell_with_text_or_movie">This movie shows how it looks animated.'
-      . (!HTML_VALIDATION ?
-      '<iframe width="200" height="167" src="https://www.youtube.com/embed/6ecZInTrfak" frameborder="0" allowfullscreen></iframe>'
-      : '')
-      . '</div>'),
-  ));
-?>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/6ecZInTrfak?si=jxU1g2aHs6OL2ASv" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 <p>Inside <code>MovieTexture</code> nodes, you can use an URL like
 <code>my_animation_@counter(1).png</code> to load movie from a sequence of images.
