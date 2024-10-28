@@ -534,25 +534,6 @@ span.news_title.only_anchor {
 
 /* header ------------------------------------------------------------------- */
 
-.navbar-brand {
-  padding: 5px !important;
-  margin-left: -5px !important;
-}
-.navbar-brand a {
-  display: block;
-  padding: 5px 10px;
-  color: #5e5e5e !important;
-}
-.navbar-brand a img {
-  margin-right: 0.25em;
-}
-/* present main page link similar to menu items, to communicate it is useful to click */
-.navbar-brand a:hover,
-.navbar-brand a:focus {
-  text-decoration: none !important;
-  background-color: #eeeeee !important;
-}
-
 .header_breadcrumbs {
   color: #222;
   padding: 0.4em;
@@ -560,26 +541,6 @@ span.news_title.only_anchor {
 .header_breadcrumbs a       { color: #5EB2E5; }
 .header_breadcrumbs a:hover { color: #39C; }
 
-.nav-tabs {
-  /* Separate brand from menu items on navbar */
-  clear: left;
-}
-/* Extra padding for navbar-collapse not needed, as we already have padding
-   from container-fluid.
-   This customization is necessary because of above "clear: both" on nav-tabs. */
-.navbar-collapse {
-  padding-left: 0;
-  padding-right: 0;
-}
-
-.nav-tabs.navbar-right {
-  border-bottom: 0 none;
-  /* In default bootstrap, it is aligned to right only when
-     "min-width: @grid-float-breakpoint".
-     We want it always, as we don't use collapsing, so @grid-float-breakpoint
-     doesn't apply to us. */
-  float: right;
-}
 .patreon-logo {
   height: 45px;
   margin-top: 5px;
