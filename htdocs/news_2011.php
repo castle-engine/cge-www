@@ -621,9 +621,9 @@ castle_thumbs(array(
 
   <li><p>Bartha Rolland (aka B42iso) has made a small game called <i>Hunter\'s Mark</i> using our engine :) The screenshots are visible on the side of this news post. An excerpt from the mail:</p>
 
-    <div class="quote">
+    <p><i>
     I\'m really amazed at Kambi VRML. It\'s easy to use if you know the basics of Pascal programing language and Lazarus. [...] I was able to create a game using the map models from "The Castle".This game i named "Hunter\'s Mark" is just a project,but I\'m going to start the developing of a real game as soon as I feel like the time is right.
-    </div>
+    </i></p>
 
     <p>Cool :)</p>
     </li>

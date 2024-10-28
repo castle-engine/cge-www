@@ -474,12 +474,6 @@ span.news_title.only_anchor {
 
 /* --------------------------------------------------------------------------- */
 
-div.quote {
-  margin-left: 1em;
-  background: #FFD;
-  border: dotted 1px black;
-}
-
 .github-ribbon img {
   position: absolute;
   top: 100%;
