@@ -91,8 +91,9 @@ code {
 }
 
 /* Remove extra bottom margin after last paragraphs of notes in
-   .../viewport_and_scenes_from_code */
-.admonitionblock .content .paragraph p:last-child {
+   .../viewport_and_scenes_from_code .
+   Careful: .paragraph has last-child, testcase: .../modern_pascal */
+.admonitionblock .content .paragraph:last-child p {
   margin-bottom: 0;
 }
 
