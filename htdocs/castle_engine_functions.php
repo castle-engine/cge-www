@@ -1342,7 +1342,9 @@ function echo_castle_header_suffix($path, $enable_sidebar = true)
   global $main_page;
 
   $rendered = '
-  <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary ' .
+    ($main_page ? 'castle-navbar-main-page' : '') .
+    '" data-bs-theme="dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="/">
         <img alt="Castle Game Engine Logo" class="d-inline-block" src="' .

@@ -1,3 +1,26 @@
+/* Do not underline links until hover.
+   Looks a bit less noisy, AsciiDoctor CSS also does this. */
+a {
+  text-decoration: none;
+}
+a:hover, a:focus {
+  text-decoration: underline;
+}
+
+/* Space from navbar to content,
+   except on main page (no space between navbar and banner). */
+.navbar {
+  margin-bottom: 1em;
+}
+.navbar.castle-navbar-main-page {
+  margin-bottom: 0;
+}
+
+/* Margin from h1 to above content, like .book-header, see .../navigation */
+h1 {
+  margin-top: 0.25em;
+}
+
 /* all images, movies responsive */
 .media-responsive, img, iframe {
   max-width: 100%;
@@ -34,14 +57,41 @@ div.thumbs_cell_with_text_or_movie {
   text-align: center;
 }
 
-/* Our <pre> must break, otherwise our right sidebar is shifted and looks bad */
 pre {
+  /* Our <pre> must break, otherwise our right sidebar is shifted and looks bad */
   white-space: pre-wrap;
+
+  /* border makes code blocks stand out better */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+
+  padding: 0.5em;
 }
 
-a.kscript_func_docs { text-decoration: underline; }
+a.kscript_func_docs {
+  text-decoration: underline;
+}
 
-code { background-color: #f0f0f0; }
+/* Inline code (that we use often, for API links) clearly stands out --
+   background with some padding.
+   Except, do not customize code in AsciiDoctor multi-line code blocks
+   (.highlight). */
+code {
+  background-color: #f0f0f0;
+  padding: .1875rem .375rem;
+}
+.highlight code {
+  background-color: transparent;
+  /* no padding, testcase: "RoadScene" on .../viewport_and_scenes_from_code */
+  padding: 0;
+}
+
+/* Remove extra bottom margin after last paragraphs of notes in
+   .../viewport_and_scenes_from_code */
+.admonitionblock .content .paragraph p:last-child {
+  margin-bottom: 0;
+}
+
 /* Override above rule for x3d_component_intro. These <code> are in practice
    surrounded by <b> now. */
 div.x3d_component_intro code { background-color: transparent; }
