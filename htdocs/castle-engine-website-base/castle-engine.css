@@ -195,7 +195,7 @@ a.screenshot:hover img { border: 2pt solid #888; }
     margin-bottom: 0.5em;
 }
 
-.main-page-action.btn-info {
+.main-page-action.castle-button-middle-actions {
     line-height: 2em; /* override height to be smaller */
 }
 
