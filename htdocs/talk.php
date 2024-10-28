@@ -8,13 +8,13 @@ castle_header('Discord, forum, GitHub and Patreon', array(
 ?>
 
 <div class="talk-buttons-row">
-  <iframe class="talk-button" src="https://discordapp.com/widget?id=389676745957310465&amp;theme=dark" allowtransparency="true" frameborder="0"></iframe>
   <a href="<?php echo FORUM_URL; ?>" class="talk-button btn btn-info btn-lg">
     <p>
       <img src="<?php echo CURRENT_URL; ?>/images/discourse_icon.png" alt="Discourse Forum"><br>
       Forum
     </p>
   </a>
+  <iframe class="talk-button" src="https://discordapp.com/widget?id=389676745957310465&amp;theme=dark" allowtransparency="true" frameborder="0"></iframe>
   <a href="https://github.com/castle-engine/castle-engine/issues" class="talk-button btn btn-info btn-lg">
     <p>
       <img src="<?php echo CURRENT_URL; ?>/images/os_icons/github.png" alt="GitHub Issues"><br>
