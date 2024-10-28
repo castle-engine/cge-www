@@ -730,15 +730,6 @@ function _castle_sidebar($page, $pageinfo)
   if (isset($pageinfo['sub']))
     $result .= _castle_sidebar_menu($pageinfo['sub']);
 
-/*
-  $result .= '
-    <div style="text-align: center; width: 200px; margin-right: auto; margin-left: auto; padding: 0.1em; border: medium outset #FFF;">
-    <p><a href="https://castle-engine.io/donate.php">Donate</a></p>
-    <p>' . flattr_button(false) . '</p>
-    <p>' . paypal_button() . '</p>
-    </div>';
-*/
-
   $result .= '</div>';
 
   return $result;
@@ -1161,7 +1152,7 @@ function _castle_image_sizes($relative_filename)
 function _castle_patreon_box()
 {
   $result = '
-    <form class="container-fluid justify-content-start d-flex">
+    <form class="container-fluid justify-content-start d-flex castle-donate-button-form">
       <a href="' . PATREON_URL . '" class="btn btn-primary btn-success">Donate</a>
     </form>';
   return $result;

@@ -546,6 +546,18 @@ span.news_title.only_anchor {
   margin-top: 5px;
 }
 
+/*
+  Fix paddings when castle-donate-button-form is inside expanded menu,
+  this happens only for < large screens.
+  See https://getbootstrap.com/docs/5.0/layout/breakpoints/
+*/
+@media (max-width: 991.98px) {
+  .castle-donate-button-form {
+    padding-left: 0;
+    padding-bottom: 0.5em;
+  }
+}
+
 /* --------------------------------------------------------------------------- */
 
 div.quote {
