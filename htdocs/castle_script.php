@@ -14,8 +14,7 @@
   }
 ?>
 
-<?php echo pretty_heading('CastleScript language', NULL,
-'Language for expressions and (simple) scripts in Castle Game Engine'); ?>
+<?php echo pretty_heading('CastleScript language'); ?>
 
 <?php
   $toc = new TableOfContents(

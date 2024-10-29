@@ -1,8 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-castle_header('XML files describing game data', array(
-  'subheading_text' => '(level.xml, resource.xml and others)'
-));
+castle_header('XML files describing game data (level.xml, resource.xml and others)');
 ?>
 
 <p>In this documentation we show a sample of XML files useful to define

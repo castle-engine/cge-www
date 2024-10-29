@@ -7,12 +7,13 @@ castle_header("Engine internals documentation", array(
 ));
 ?>
 
-<?php echo pretty_heading('Castle Game Engine internals', NULL,
-  '(Outdated) Overview of the Castle Game Engine and VRML 1.0'); ?>
+<?php echo pretty_heading('Castle Game Engine internals'); ?>
 
 <p>Most of this documentation was originally written as my master's thesis,
 passed in September 2006. Although I was occasionally updating and adding content
 to this document later.</p>
+
+<p><b>This is an outdated overview of the Castle Game Engine and VRML 1.0.</b>
 
 <p><b>Warning: This document isn't a good introduction to the Castle Game Engine (anymore)!</b>
 

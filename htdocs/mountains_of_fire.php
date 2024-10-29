@@ -4,7 +4,7 @@ define('CASTLE_GITHUB_NAME', 'mountains-of-fire');
 require_once 'castle_engine_functions.php';
 castle_header("Mountains Of Fire");
 
-echo pretty_heading('Mountains Of Fire', VERSION_MOUNTAINS_OF_FIRE);
+echo pretty_heading('Mountains Of Fire');
 echo castle_thumbs(array(
   array('filename' => 'mountains_of_fire_screen_0.png', 'titlealt' => 'Mountains Of Fire - game screen 1'),
   array('filename' => 'mountains_of_fire_screen_1.png', 'titlealt' => 'Mountains Of Fire - game screen 2'),

@@ -128,23 +128,11 @@ $main_page = false;
 /* functions ======================================================= */
 
 /* Return HTML heading (<h1>).
-   Given $heading_text, $version_number, $subheading_text will be sanitized for HTML display
-   (so you cannot use there HTML tags).
-
-   You may supply $version_number, this is intended for pages
-   that document functionality of some program.
-
-   You may supply $subheading_text, this will be printed in newline
-   and with smaller font below heading text. */
-function pretty_heading($heading_text, $version_number = NULL, $subheading_text = '')
+   Given $heading_text will be sanitized for HTML display
+   (so you cannot use there HTML tags). */
+function pretty_heading($heading_text)
 {
-  $result = '<h1>' . htmlspecialchars($heading_text);
-  if (!is_null($version_number))
-    $result .= ' <span class="label label-default version_number">' . htmlspecialchars($version_number) . '</span>';
-  if (!empty($subheading_text))
-    $result .= '<br><small>' . htmlspecialchars($subheading_text) . '</small>';
-  $result .= '</h1>';
-
+  $result = '<h1>' . htmlspecialchars($heading_text) .'</h1>';
   return $result;
 }
 

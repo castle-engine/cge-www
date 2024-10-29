@@ -1027,9 +1027,6 @@ function echo_header_bonus ()
      name of image to be used as Facebook share image (og:image);
      relative to in images/original_size/ , unless it's an absolute URL,
      with a protocol like http[s] etc.)
-   - 'subheading_text' (string,
-     will be shown in page content, within pretty_heading.
-     Only relevant when page is part of some book.)
 */
 function castle_header($a_page_title, array $parameters = array())
 {
@@ -1087,8 +1084,7 @@ function castle_header($a_page_title, array $parameters = array())
   // output extra header HTML, in case we're part of book
   if ($castle_current_book != NULL) {
     echo book_bar($castle_current_book);
-    $subheading_text = isset($parameters['subheading_text']) ? $parameters['subheading_text'] : '';
-    echo pretty_heading($a_page_title_without_book, NULL, $subheading_text);
+    echo pretty_heading($a_page_title_without_book);
   }
 }
 
