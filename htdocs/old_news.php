@@ -16,7 +16,7 @@ if (isset($_GET['id']) || isset($_GET['item']))
   $news_id = isset($_GET['id']) ? $_GET['id'] : $_GET['item'];
   castle_news_item_by_id($news_id, $previous_item, $item, $next_item);
   if ($item === NULL)
-    die('Invalid news item "' . $news_id . '"');
+    die('Invalid news item "' . htmlspecialchars($news_id) . '"');
 } else
 {
   /* By default, if someone uses just "news.php" URL,
