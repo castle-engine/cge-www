@@ -387,7 +387,7 @@ $castle_sitemap = array(
           ),
           'helping' => array('title' => 'Helping in engine development',
             'sub' => array(
-              'donate_other' => array('title' => 'Donate'),
+              'doc/donate' => array('title' => 'Donate'),
               'doc/roadmap' => array('title' => 'Roadmap'),
               'doc/coding_conventions' => array('title' => 'Coding Conventions'),
             )
@@ -1153,7 +1153,10 @@ function _castle_patreon_box()
 {
   $result = '
     <form class="container-fluid justify-content-start d-flex castle-donate-button-form">
-      <a href="' . PATREON_URL . '" class="btn btn-primary btn-success">Donate</a>
+      <a href="' .
+      //PATREON_URL .
+      'donate' .
+      '" class="btn btn-primary btn-success">Donate</a>
     </form>';
   return $result;
 
@@ -1484,7 +1487,7 @@ function download_donate_footer()
 
       /* <div style="float: left">' . paypal_button(false) . '</div> */
 
-      /* <small>If you like this software, <a href="' . CURRENT_URL . 'donate.php">please consider donating</a>.</small>'; */
+      /* <small>If you like this software, <a href="' . CURRENT_URL . 'donate">please consider donating</a>.</small>'; */
 
     '<a class="btn btn-success btn-lg btn-patreon" href="' . PATREON_URL .
     '"><i class="bi bi-suit-heart-fill"></i> Support us on Patreon</a>';

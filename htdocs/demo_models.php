@@ -8,6 +8,7 @@ castle_header("Demo models");
 
 $toc = new TableOfContents(
   array(
+    new TocItem('Download', 'download'),
     new TocItem('About', 'about'),
     new TocItem('Development', 'development'),
     new TocItem('Authors', 'authors'),
@@ -27,33 +28,13 @@ echo castle_thumbs(array(
 ));
 ?>
 
-<div class="download jumbotron">
-    <!-- We use a div with min-width,
-         to make sure the text "Support on Patreon"
-         fits on the button. -->
-    <div style="display: block; min-width: 20em; text-align: center;">
-
-    <?php
-    if (CASTLE_GENERATE_OFFLINE) {
-      echo '<p><a href="' . page_url($this_page_name) .
-        '" class="btn btn-primary btn-lg">Download demo models from our WWW page</a></p>';
-    } else
-    {
-      ?>
-
-      <?php
-      $download_title = '<i class="bi bi-download"></i><br>Download demo models';
-      echo castle_download_button($download_title, 'https://github.com/castle-engine/demo-models/archive/master.zip');
-      echo download_donate_footer();
-    }
-    ?>
-
-    </div>
-</div>
-
 <p>Documentation:
 
 <?php echo $toc->html_toc(); ?>
+
+<?php echo $toc->html_section(); ?>
+
+<a class="btn btn-primary btn-lg" href="https://github.com/castle-engine/demo-models/archive/master.zip">Download demo models</a>
 
 <?php echo $toc->html_section(); ?>
 

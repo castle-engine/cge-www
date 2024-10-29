@@ -602,7 +602,7 @@ div.download span.download_details { font-size: smaller; }
   margin: 0.1em 0.5em;
 }
 
-.jumbotron .btn-patreon {
+.download .btn-patreon {
   margin-right: auto;
   margin-left: auto;
   display: block;

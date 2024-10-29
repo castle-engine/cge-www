@@ -46,7 +46,7 @@ Features of _shadows by shadow volumes_ (in particular, how does this technique 
 
 - *It's difficult to compare the speed of "shadow volumes" vs "shadow maps". Both techniques are expensive in different ways.* On one hand, shadow volumes require extra rendering passes (additional rendering of "shadow quads" to the stencil buffer, and then additional render to color buffer, for each shadow-casting light). On the other hand, shadow maps require updating the shadow textures (one for each light source).
 
-- Our current shadow volumes implementation allows for only *one light casting shadow volumes*. (This may be improved some day. Give us a shout at the forum if needed and link:donate.php[support the engine development] to make this happen sooner.)
+- Our current shadow volumes implementation allows for only *one light casting shadow volumes*. (This may be improved some day. Give us a shout at the forum if needed and link:donate[support the engine development] to make this happen sooner.)
 +
 Note that shadow volumes will require more and more rendering passes when multiple light sources may cast shadows.
 +

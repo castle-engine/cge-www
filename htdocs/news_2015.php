@@ -29,10 +29,6 @@ array_push($news,
 '<p>We\'re proud to present new <b>Castle Game Engine release 5.2.0</b>!</p>
 <!-- teaser -->
 
-<div class="download jumbotron">
-<a href="' . CURRENT_URL . 'engine.php" class="btn btn-primary btn-lg">Download Castle Game Engine 5.2.0!</a>
-</div>
-
 <p>Be sure to also check out
 <a href="https://castle-engine.io/miscella/cge_tutorial_slides.pdf">the slides</a>
 and <a href="https://github.com/castle-engine/deprecated-cge-tutorial">examples (data and code)</a>
@@ -114,10 +110,6 @@ They show (from the ground up) the creation of a simple 3D FPS game and 2D game.
           'description' =>
 '<p>Castle Game Engine version 5.1.2 was just released! This release brings a couple of fixes and improvements to the engine.</p>
 <!-- teaser -->
-
-<div class="download jumbotron">
-<a href="' . CURRENT_URL . 'engine.php" class="btn btn-primary btn-lg">Download Castle Game Engine 5.1.2!</a>
-</div>
 
 <ol>
   <li>New useful events are published on <code>TCastleControl</code>:

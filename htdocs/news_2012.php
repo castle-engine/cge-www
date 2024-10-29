@@ -398,7 +398,7 @@ castle_thumbs(array(
 )) .
 '<p>Hi!</p>
 
-<p>First of all, we had a plan to release new shiny engine version at the end of May &mdash; sorry everyone, as you can see, we failed to make it on time. The work is progressing nicely (more details below), but there\'s just never enough time to finish it. So, sorry, everything has to be delayed a little further. (And if you would like to help: <a href="https://forum.castle-engine.io/">we have a list of things you can do to help (not all of them require experience with programming)</a>, and <a href="https://castle-engine.io/donate.php">donating is very appreciated (as it allows me to spend more time on the engine development, instead of on various freelance jobs)</a>. Thanks in advance!)</p>
+<p>First of all, we had a plan to release new shiny engine version at the end of May &mdash; sorry everyone, as you can see, we failed to make it on time. The work is progressing nicely (more details below), but there\'s just never enough time to finish it. So, sorry, everything has to be delayed a little further. (And if you would like to help: <a href="https://forum.castle-engine.io/">we have a list of things you can do to help (not all of them require experience with programming)</a>, and <a href="https://castle-engine.io/donate">donating is very appreciated (as it allows me to spend more time on the engine development, instead of on various freelance jobs)</a>. Thanks in advance!)</p>
 
 <p>New features done lately:</p>
 
@@ -435,7 +435,7 @@ castle_thumbs(array(
 
   <li><p><a href="https://castle-engine.io/lets_take_a_walk.php">lets_take_a_walk, demo of 3D sounds inside our engine</a>, was refreshed (to use T3D classes) and added as another example to our engine sources (under <code>castle_game_engine/examples/3d_sound_game/</code>).</p></li>
 
-  <li><p>Added comments about sponsoring, and links to <a href="http://www.fossfactory.org/">FOSS Factory</a> and <a href="http://gun.io/">Gun.io</a> to our <a href="https://castle-engine.io/donate.php">donations</a> page.</p></li>
+  <li><p>Added comments about sponsoring, and links to <a href="http://www.fossfactory.org/">FOSS Factory</a> and <a href="http://gun.io/">Gun.io</a> to our <a href="https://castle-engine.io/donate">donations</a> page.</p></li>
 
   <li><p><a href="http://www.lazarus.freepascal.org/">Lazarus</a> TOpenGLControl component got quite a few improvements in Lazarus SVN, thanks to the work of Michalis, Jan Adamec and Andrey Zubarev: <a href="http://bugs.freepascal.org/view.php?id=22026">MultiSampling</a>, <a href="http://bugs.freepascal.org/view.php?id=22170">AlphaBits, DepthBits, StencilBits</a>, <a href="http://bugs.freepascal.org/view.php?id=18046">AUX buffers</a>. This is an ancestor of our <code>TCastleControl</code> component, so all these improvements are directly useful also inside our engine.</p></li>
 
@@ -485,7 +485,7 @@ castle_thumbs(array(
 )) .
 '<p>Hi everyone! We have a <i>lot</i> of news about new features and improvements in our <a href="https://castle-engine.io/engine.php">engine</a> and <a href="https://castle-engine.io/view3dscene.php">view3dscene</a>. No new release yet, we just announce what is available in SVN (and can be tested by <a href="http://michalis.ii.uni.wroc.pl/castle-engine-snapshots/">downloading view3dscene from snapshots</a>). I really have to start making these news posts more often, otherwise they get ridiculously long, well.. as long as this one :)</p>
 
-<p>Oh, and before we start: if you like seeing the engine grow so much, please consider <a href="' . CURRENT_URL . 'donate.php">donating</a>. I really appreciate it, especially as I plan to spend next year without a regular job, focusing mostly on the development of "Castle 2", a new great open-source game using our engine.</p>
+<p>Oh, and before we start: if you like seeing the engine grow so much, please consider <a href="' . CURRENT_URL . 'donate">donating</a>. I really appreciate it, especially as I plan to spend next year without a regular job, focusing mostly on the development of "Castle 2", a new great open-source game using our engine.</p>
 
 <p>Features and improvements implemented in the last months:</p>
 
@@ -616,7 +616,7 @@ castle_thumbs(array(
 
     <ol>
       <li><p>As you may have seen at our header, our small website joined the protests against the bad legislations being pushed lately &mdash; pretending to be about anti-piracy, in fact being about censorship and anti-privacy. <a href="https://www.eff.org/deeplinks/2012/01/how-pipa-and-sopa-violate-white-house-principles-supporting-free-speech">Stop PIPA and SOPA</a> in USA, <a href="http://panoptykon.org/">Stop ACTA (in Polish)</a> (<a href="http://www.stopacta.info/">list of ACTA issues in English here</a>.)</p></li>
-      <li><p><i>Fundry.com</i> (crowdfunding for software) has shut down in March/April. It was one of the ways to <a href="' . CURRENT_URL . 'donate.php">donate to our engine</a>, where you could donate to a development of a particular feature (suggested by you or someone else). It\'s sad that the site bankrupted, as I liked the idea very much (even if my particular project didn\'t yet earn anything this way). Fortunately, I found quite a few alternatives for crowdfunding specifically for FOSS projects:</p>
+      <li><p><i>Fundry.com</i> (crowdfunding for software) has shut down in March/April. It was one of the ways to <a href="' . CURRENT_URL . 'donate">donate to our engine</a>, where you could donate to a development of a particular feature (suggested by you or someone else). It\'s sad that the site bankrupted, as I liked the idea very much (even if my particular project didn\'t yet earn anything this way). Fortunately, I found quite a few alternatives for crowdfunding specifically for FOSS projects:</p>
         <ol>
           <li><a href="http://www.fossfactory.org/">fossfactory.org</a>
           <li><a href="http://gun.io/">gun.io</a>
@@ -672,11 +672,11 @@ In somewhat random order:</p>
     I added notes <i>"For Linux distros package maintainers"</i>.
     Please help creating a view3dscene package for popular Linux distributions!
 
-  <li><p>We accept BitCoin for <a href="https://castle-engine.io/donate.php">donations</a>.
+  <li><p>We accept BitCoin for <a href="https://castle-engine.io/donate">donations</a>.
     If you wish to donate this way,
     simply send some bitcoins to this address: <code>1FuJkCsKpHLL3E5nCQ4Y99bFprYPytd9HN</code></p>
 
-    <p>If you like view3dscene, please consider <a href="https://castle-engine.io/donate.php">donating
+    <p>If you like view3dscene, please consider <a href="https://castle-engine.io/donate">donating
     using any of the listed options</a> :) Thanks!
 
   <li><p>For developers using our <a href="https://castle-engine.io/engine.php">engine</a>:

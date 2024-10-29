@@ -481,7 +481,7 @@ castle_thumbs(array(
 <ul>
   <li>Large <a href="https://forum.castle-engine.io/">"Helping in the engine development" section on the forum page.</a></li>
   <li>Some new screenshots on <a href="https://castle-engine.io/view3dscene.php">view3dscene</a> page. The "tower" screenshot, that served as our "iconic" screenshot on various sites, is updated with a sunset lighting and sky.</li>
-  <li>Separate <a href="https://castle-engine.io/donate.php">"Donate" page</a>.</li>
+  <li>Separate <a href="https://castle-engine.io/donate">"Donate" page</a>.</li>
 </ul>'),
 
     array('title' => 'view3dscene 3.10.0, engine 2.5.0, demo models 3.0.0 released',
@@ -879,7 +879,7 @@ castle_thumbs(array(
     </ul>
   </li>
 
-  <li><p>A new website feature is the possibility to <b>donate money specifically for implementing a particular feature</b>: <a href="https://fundry.com/project/91-kambi-vrml-game-engine">go to fundry page for our engine</a>. The fundry widget is available also on the <a href="https://castle-engine.io/donate.php">Donate page</a>.</p></li>
+  <li><p>A new website feature is the possibility to <b>donate money specifically for implementing a particular feature</b>: <a href="https://fundry.com/project/91-kambi-vrml-game-engine">go to fundry page for our engine</a>. The fundry widget is available also on the <a href="https://castle-engine.io/donate">Donate page</a>.</p></li>
 
   <li><p>At the end: I decided to <b>deprecate some of our old extensions</b>. As far as I know noone used them, and they are rather useless in the light of new features:</p>
 

@@ -183,18 +183,15 @@ ROUTE MyInterpolator.value_changed TO MyTransform.translation'); ?>
 or it can be constructed by code. You can create X3D nodes and routes
 completely programmatically, using Object Pascal.
 
-<div class="jumbotron">
-  <p><a href="code-samples/build_scene_interpolator.lpr">Download and compile
-    build_scene_interpolator.lpr</a>
+<p>The example program below creates a sphere animation,
+by programmatically creating the <code>TimeSensor</code> and all the other
+X3D nodes we discussed above.
+It is done completely in Pascal (instead of loading the scene from X3D file,
+like <code>Scene.Load('example.x3dv')</code>), which allows you to extend
+this example to do something much cooler (e.g. add it to a procedurally-generated
+model).</p>
 
-  <p>This example program creates a sphere animation,
-  by programmatically creating the <code>TimeSensor</code> and all the other
-  X3D nodes we discussed above.
-  It is done completely in Pascal (instead of loading the scene from X3D file,
-  like <code>Scene.Load('example.x3dv')</code>), which allows you to extend
-  this example to do something much cooler (e.g. add it to a procedurally-generated
-  model).</p>
-</div>
+<?php echo pascal_highlight_file('code-samples/build_scene_interpolator.lpr'); ?>
 
 <?php echo $toc->html_section(); ?>
 

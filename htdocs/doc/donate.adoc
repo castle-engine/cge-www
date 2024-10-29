@@ -1,0 +1,55 @@
+# Donate
+include::common.adoc[]
+:description: Support Castle Game Engine development by supporting us on Patreon, Open Collective, GitHub Sponsors, PayPal, Ethereum, BitCoin, LiteCoin.
+:cge-social-share-image: michalis_itdevcon2023.jpg
+
+== Introduction
+
+cgeimg::block[
+  michalis_itdevcon2023.jpg|Michalis Kamburelis at ITDevCon 2023\, Pascal / Delphi conference\, presenting the Castle Game Engine
+]
+
+*We are making* an link:features[open-source game engine, 3D and 2D, with comfortable visual editor and a powerful API]. We proudly cooperate with open standards (link:x3d[X3D], link:gltf[glTF]). We like link:why_pascal[modern Pascal], https://castle-engine.io/manual_automatic_builds.php[continuous integration], being cross-platform (desktop, mobile, consoles, link:roadmap#web[soon web]). We're passionate about _open-source and free software_ and tools to design _engaging stories_ in the form of computer games.
+
+*The primary goal of your donations* is to give us time to spend on the engine development. More time translates to link:roadmap[more features], faster. By 2024, _Michalis Kamburelis_, the lead engine developer, spent most of his life on the engine and doesn't plan to stop :) Moreover, since May 2024, Michalis works on the engine full-time counting only on your support. So anything you can give is really appreciated!
+
+== How to donate
+
+=== Patreon
+
+The suggested method of donating is to https://www.patreon.com/castleengine[support us on Patreon].
+
+We offer a few perks, including https://castle-engine.io/wp/2023/01/28/support-us-on-patreon-and-get-stickers-ethereum-open-collective-and-other-options/[these cool stickers]!
+
+=== Open Collective
+
+Another option is to https://opencollective.com/castle-engine[support us on Open Collective].
+
+- For regular people, this is similar to _Patreon_. You can easily donate monthly or one-time.
+
+- For companies, this is how you can cooperate with _Castle Game Engine_ as a company.
++
+First of all, contact Michalis (`michalis@castle-engine.io`) and tell me what do you need. Support, priority fixes, consulting about engine usage? Specific engine features to meet your use-cases? We can discuss it all.
++
+Then you can pay for this work, and get a formal invoice for your company, through https://opencollective.com/opensource[Open Source Collective]. The gist of it is that _Castle Game Engine_ can formally act as a (US-based) company, in particular we can issue invoices for your accounting and tax needs.
+
+=== GitHub Sponsors
+
+Another option is to https://github.com/sponsors/castle-engine[support us by becoming Castle Game Engine Sponsor on GitHub].
+
+=== PayPal
+
+You can donate directly using https://paypal.me/castleengine[PayPal]. You can pay directly using your credit card, or use a PayPal account.
+
+=== Crypto
+
+We accept donations in various crypto-currencies:
+
+- Donate using https://ethereum.org/[Ethereum] by sending funds to this address: `0x0b0e37c7391C7268DEc9c0De63bA5A3b1B42baCe`
+
+- Donate using http://www.bitcoin.org/[BitCoin] by sending funds to this address: `bc1qhdzf9eaejfld9ymst5m73rxs8mgymzrqflvcwa`
+
+- Donate using https://litecoin.org/[LiteCoin] by sending funds to this address: `LSQzhb96SiBejZW5VSV5ebzeRE67XGg16W`
+
+You're welcome to send me a mail (`michalis@castle-engine.io`) to make sure your funds are received and/or just to say hi! :)
+
