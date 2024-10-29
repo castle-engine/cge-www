@@ -4,9 +4,8 @@ To export _any_ kind of animation from Blender, use the exporter to our link:cas
 
 Internally they are a set of X3D or glTF files.
 
-<div class="download jumbotron">
-    <a class="btn btn-primary btn-lg" href="https://raw.githubusercontent.com/castle-engine/cge-blender/master/export_castle_anim_frames.py"><span class="glyphicon glyphicon-download" aria-hidden="true"></span><br>Download Castle Animation Frames exporter</a>
-</div>
+https://raw.githubusercontent.com/castle-engine/cge-blender/master/export_castle_anim_frames.py
+Download Castle Animation Frames exporter
 
 Install it like every other Blender addon:
 

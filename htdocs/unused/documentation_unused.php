@@ -85,21 +85,6 @@ initializing the window using the
 
 ------------------------------------------------------------------------------
 
-<div class="centered-download-wrapper">
-<div class="download jumbotron">
-<a class="btn btn-primary btn-lg" href="<?php echo page_url('manual_intro'); ?>">Now go to our manual!</a>
-
-<div style="margin-top: 1em;">..and create some cool games!:)
-
-<p>It's really easy, and if you have any questions &mdash; please <a href="<?php echo FORUM_URL; ?>">ask on the forum</a>!
-</div>
-
-<?php echo download_donate_footer(); ?>
-</div>
-</div>
-
-------------------------------------------------------------------------------
-
 <!--p><a href="https://www.youtube.com/watch?v=rCPEOw8700c">Watch the movie showing the Lazarus installation process.</a-->
 
 ------------------------------------------------------------------------------
@@ -111,21 +96,6 @@ initializing the window using the
 <p>
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/zdwN4mdQG_8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-------------------------------------------------------------------------------
-
-<div class="centered-download-wrapper" style="text-align: left">
-<div class="download jumbotron" style="text-align: center">
-<a class="btn btn-primary btn-lg" href="<?php echo page_url('manual_intro'); ?>">Now go to our manual!</a>
-
-<div style="margin-top: 1em;">..and create some cool games!:)
-
-<p>If you have any questions <a href="talk.php">ask on the forum or chat</a>.
-</div>
-
-<?php echo download_donate_footer(); ?>
-</div>
-</div>
 
 ------------------------------------------------------------------------------
 
