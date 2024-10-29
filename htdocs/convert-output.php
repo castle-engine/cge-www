@@ -27,7 +27,11 @@
   ---------------------------------------------------------------------------
 */
 
+/* Note for debugging website look without Docker installed:
+   you can just comment out using castle_engine_config.php below
+   to test how output looks like. */
 require_once 'castle_engine_config.php';
+
 require_once 'convert-database.php';
 require_once 'convert-functions.php';
 
@@ -384,7 +388,7 @@ castle_header('Conversion output');
 ?>
 
 <div class="single-column-page">
-  <div class="convert-form convert-output jumbotron">
+  <div class="convert-form convert-output p-5 border radius-3 bg-body-tertiary">
     <?php process_form_post(); ?>
     <p class="another"><a href="convert.php">Convert another file.</a></p>
   </div>
