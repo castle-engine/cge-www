@@ -291,9 +291,6 @@ div.main-cge-download {
     text-align: center;
 }
 .news-row-wrapper .row {
-    width: 1200px;
-    max-width: 100%;
-    display: inline-block;
     text-align: left;
 }
 .news-row-wrapper img.wp-post-image {
