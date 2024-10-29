@@ -14,6 +14,15 @@
 
 /* CGE additions */
 
+/* We have CGE search on navbar on WP pages:
+   1. because it has a bit broken style (background, border, height)
+      due to WP CSS
+   2. but also it is confusing since WP adds it's own "Search" right
+      below, in the sidebar on the right. */
+.castle-navbar-search {
+    display: none;
+}
+
 .news_date .edit-link {
     margin-left: 1em;
 }

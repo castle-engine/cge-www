@@ -107,7 +107,7 @@ function paypal_button($with_logos = true)
 function castle_search_box()
 {
   return <<<EOD
-<form action="https://duckduckgo.com/" method="get" role="search">
+<form action="https://duckduckgo.com/" method="get" role="search" class="castle-navbar-search">
   <div class="input-group flex-nowrap">
     <input type="text" class="form-control" name="q" placeholder="Search..." style="min-width: 8em">
     <input type="hidden" name="sites" value="castle-engine.io">
