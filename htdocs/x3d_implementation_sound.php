@@ -234,7 +234,7 @@ It means doing 2 things:
       <li>(purely for testing) "sox backend".
     </ul>
 
-    <p>We will likely have another in 2023: <a href="roadmap#wwise">AudioKinetic's Wwise</a>, another popular solution in gamedev domain.
+    <p>We will likely have another: <a href="roadmap#wwise">AudioKinetic's Wwise</a>, another popular solution in gamedev domain.
 
     <!--p>In our domain (game engines), the above libraries (OpenAL, FMOD, Wwise) seem commonly used.-->
 
@@ -249,7 +249,7 @@ It means doing 2 things:
     will become just more popular than OpenAL with time.
     This would be a strong reason to switch to it, and start recommending LabSound (and thus WebAudio) backend over OpenAL. I mention this, because the development of <a href="http://www.openal.org/">OpenAL</a> as a specification has unfortunately stagnated &mdash; looks like Creative is no longer interested. Although, <a href="https://openal-soft.org/">OpenAL Soft</a> implementation continues to be very active.
 
-    <p>Of course on the <a href="roadmap#web">(planned) web platform</a>, the situation is more straightforward, as there WebAudio API is just available in the web browser. But we're a cross-platform game engine, whatever we do -- we want to have consistent support on all platforms (desktop, mobile, consoles, web).
+    <p>Of course on the <a href="web">web</a>, the situation is more straightforward, as there WebAudio API is just available in the web browser. But we're a cross-platform game engine, whatever we do -- we want to have consistent support on all platforms (desktop, mobile, consoles, web).
 
   <li>
     <p><b>Implementing X3D 4 sound nodes on top of <i>Web Audio</i> backend.</b>

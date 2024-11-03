@@ -17,6 +17,9 @@ The goal of the _web target_ in _Castle Game Engine_ is to allow you to recompil
 +
 Possibly there will be some additional "glue" bits done using https://wiki.freepascal.org/pas2js[pas2js] (such "glue" is necessary as WebAssembly doesn't otherwise get access to JavaScript APIs available in a web browser).
 
+// done: https://gitlab.com/freepascal.org/fpc/source/-/issues/40229
+// done: https://gitlab.com/freepascal.org/fpc/source/-/issues/39547
+
 - We will render using https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API[WebGL 1.0], with optional WebGL 2.0 features. This is very similar to current rendering on mobile, where we use https://castle-engine.io/wp/2023/03/12/mobile-opengles-rendering-upgrades-occlusion-query-anisotropic-filtering-3d-textures-shadows-plus-new-occlusion-query-demo/[OpenGL ES 2.0, with optional OpenGL ES 3.0 features].
 
 - For audio, we will add a new sound backend using https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API[WebAudio]. This will be the default sound backend on the web (like the https://castle-engine.io/openal[OpenAL] is now the default backend on non-web platforms).
