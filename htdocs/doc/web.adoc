@@ -6,7 +6,7 @@
 
 [WARNING]
 ====
-This feature is in the "research" stage now. Which means we have some results, but no, you cannot actually run (even a simplest) CGE applications on the web yet. Stay tuned!
+This feature is in development now. You can compile for WebAssembly, but the resulting application is not functional yet. Stay tuned!
 ====
 
 The goal of the _web target_ in _Castle Game Engine_ is to allow you to recompile more-or-less any application you wrote using _Castle Game Engine_ (using cgeref:TCastleWindow[]) to the web. So you can put your application on a website, as part of a regular HTML webpage, and users can play it instantly, without the need to download / install any native application or browser plugin.
@@ -36,7 +36,16 @@ Both FPC and Delphi have built-in support for ZIP handling, we even https://gith
 
 == What we have now
 
-- Branch https://github.com/castle-engine/castle-engine/tree/webassm_platformer_test[webassm_platformer_test] in CGE contains a code that compiles (but it is not functional yet!) for WebAssembly. This means that CGE compiles, and also build tool supports a new OS/CPU. So you can enter any CGE project, and execute on command-line:
+- Branch https://github.com/castle-engine/castle-engine/tree/webassm_platformer_test[webassm_platformer_test] in CGE contains a code that compiles (but it is not functional yet!) for WebAssembly. This means that CGE compiles, and also build tool supports a new OS/CPU. So you can enter any CGE project and build it for WebAssembly. To test this:
++
+--
+1. Get FPC cross-compiler for WebAssembly. It's easiest to do this using link:fpcupdeluxe[]: install FPC _"trunk"_ version, then install FPC cross-compiler for OS=`Wasi` and CPU=`Wasm32`.
+
+2. Get the https://github.com/castle-engine/castle-engine/tree/webassm_platformer_test[webassm_platformer_test] branch of CGE.
+
+3. Follow link:compiling_from_source.php[compiling from source] docs to compile at least new CGE build tool from this CGE branch.
+
+4. Enter any CGE project and compile it for WebAssembly. For example, to compile the `examples/platformer` project:
 +
 [source,shell]
 ----
@@ -44,8 +53,7 @@ castle-engine compile --os=wasi --cpu=wasm32
 # or
 castle-engine compile --os=wasi --cpu=wasm32 --mode=debug
 ----
-+
-To test it, get FPC cross-compiler for WebAssembly. It's easiest to use link:fpcupdeluxe[] to get it: install FPC _"trunk"_ version, then install FPC cross-compiler for OS=`Wasi` and CPU=`Wasm32`.
+--
 
 - _Trung Le (Kagamma)_ has been doing lots of work with CGE + FPC WebAssembly. His fork contains a branch https://github.com/Kagamma/castle-engine/tree/wasm32-wasi-port[wasm32-wasi-port]. I absolutely expect that we'll merge it to CGE https://github.com/castle-engine/castle-engine/tree/webassm_platformer_test[webassm_platformer_test] at some point, and then to master branch :)
 
@@ -56,6 +64,13 @@ The gzipped size is really what matters &mdash; both web browsers and servers su
 Note that above is for a _release_ build. The _debug_ build weights 51 MB, and gzipped 12 MB. How is the debug build actually useful on the web &mdash; I am not certain now :)
 +
 We could also use https://en.wikipedia.org/wiki/Brotli[Brotli], a newer compression method also commonly supported by web browsers and servers.
+
+== TODO: How to continue
+
+- Read about _WebAssembly_ and _Pas2js + WebAssembly_. Figure out how to make the compiled code in `platformer.wasm` actually run in the browser.
+- Start by getting the basics, writelns, logs (`CastleLog`) from CGE work and be visible in the browser console.
+- Then make the rendering work, by making our `CastleGLES` route calls to WebGL on the web. At the beginning, test by simple drawing (e.g. `DrawPrimitive2D`) before you have any data.
+- Then finish the plans in "How" section above: data from zip, sound, automatic webserver, etc.
 
 == Thank you
 
