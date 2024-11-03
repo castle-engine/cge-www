@@ -1,0 +1,57 @@
+# Web Target
+:description: Upcoming support for web development in CGE.
+// :cge-social-share-image: blender_castle_1.png
+
+== Introduction
+
+[WARNING]
+====
+This feature is in the "research" stage now. Which means we have some results, but no, you cannot actually run (even a simplest) CGE applications on the web yet. Stay tuned!
+====
+
+The goal of the _web target_ in _Castle Game Engine_ is to allow you to recompile more-or-less any application you wrote using _Castle Game Engine_ (using cgeref:TCastleWindow[]) to the web. So you can put your application on a website, as part of a regular HTML webpage, and users can play it instantly, without the need to download / install any native application or browser plugin.
+
+== How
+
+- We're using FPC https://wiki.freepascal.org/WebAssembly[WebAssembly] target. Huge thank you go to the whole FPC team for making it possible! For usage, see also https://www.freepascal.org/~michael/articles/fpcwasm1/fpcwasm1.pdf[this article by Michael Van Canneyt].
++
+Possibly there will be some additional "glue" bits done using https://wiki.freepascal.org/pas2js[pas2js] (such "glue" is necessary as WebAssembly doesn't otherwise get access to JavaScript APIs available in a web browser).
+
+- We will render using https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API[WebGL 1.0], with optional WebGL 2.0 features. This is very similar to current rendering on mobile, where we use https://castle-engine.io/wp/2023/03/12/mobile-opengles-rendering-upgrades-occlusion-query-anisotropic-filtering-3d-textures-shadows-plus-new-occlusion-query-demo/[OpenGL ES 2.0, with optional OpenGL ES 3.0 features].
+
+- For audio, we will add a new sound backend using https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API[WebAudio]. This will be the default sound backend on the web (like the https://castle-engine.io/openal[OpenAL] is now the default backend on non-web platforms).
++
+It is also possible our https://castle-engine.io/fmod[FMOD] sound backend will also be ported to web, as https://www.fmod.com/docs/2.02/api/platforms-html5.html[FMOD supports HTML5]. This would make FMOD a truly cross-platform sound backend, working on every platform we support in CGE.
++
+NOTE: About https://castle-engine.io/x3d_implementation_sound.php#section_x3d4[WebAudio in the context of X3D 4.0]. Supporting advanced X3D 4.0 audio nodes is not our priority, but since WebAudio will happen anyway, on the web... they will open this possibility. There is also https://github.com/LabSound/LabSound[LabSound] that provides WebAudio-like API on non-web platforms, and in principle it could one day replace OpenAL, making web and non-web audio handling closer.
+
+- For data delivery, we know we'll have to invent a simple format to carry our game data as one big binary blob. The simple plan is to just pack game data into zip.
++
+Both FPC and Delphi have built-in support for ZIP handling, we even https://github.com/castle-engine/castle-engine/blob/master/examples/network/custom_url_handler/code/gameunzip.pas[use it in one example], we'll likely create a more full-featured wrapped that works on both FPC and Delphi.
+
+- For development purposes, likely we'll add a _"Run simple webserver on localhost"_ feature, to allow you to easily run WebAssembly applications. This can be done using a number of things, I like most the idea of using https://wiki.lazarus.freepascal.org/fcl-web[FpWeb] which can instantiate a https://wiki.lazarus.freepascal.org/fphttpserver[standalone HTTP server] in just a few lines of code.
+
+== What we have now
+
+- Branch https://github.com/castle-engine/castle-engine/tree/webassm_platformer_test[webassm_platformer_test] in CGE contains a code that compiles (but it is not functional yet!) for WebAssembly. This means that CGE compiles, and also build tool supports a new OS/CPU. So you can enter any CGE project, and execute on command-line:
++
+[source,shell]
+----
+castle-engine compile --os=wasi --cpu=wasm32
+# or
+castle-engine compile --os=wasi --cpu=wasm32 --mode=debug
+----
+
+- _Trung Le (Kagamma)_ has been doing lots of work with CGE + FPC WebAssembly. His fork contains a branch https://github.com/Kagamma/castle-engine/tree/wasm32-wasi-port[wasm32-wasi-port]. I absolutely expect that we'll merge it to CGE https://github.com/castle-engine/castle-engine/tree/webassm_platformer_test[webassm_platformer_test] at some point, and then to master branch :)
+
+- File-size tests are promising. Compilation of https://github.com/castle-engine/castle-engine/tree/webassm_platformer_test/examples/platformer[examples/platformer], which practically uses 100% of CGE units, yields a binary `platformer.wasm` that has 16 MB. Gzipped it has 3.4 MB.
++
+The gzipped size is really what matters &mdash; both web browsers and servers support gzip-(de)compression on the fly, you can also just put ready-gzipped version on the server and tell the browser to just decompress. So in all practical cases, users will download 3.4 MB, not 16 MB.
++
+Note that above is for a _release_ build. The _debug_ build weights 51 MB, and gzipped 12 MB. How is the debug build actually useful on the web &mdash; I am not certain now :)
++
+We could also use https://en.wikipedia.org/wiki/Brotli[Brotli], a newer compression method also commonly supported by web browsers and servers.
+
+== Thank you
+
+I want to thank everyone involved in this and let's push forward! Web target is a really cool feature, from my talks I know it's an important feature for many CGE users, and I feel we have it in our reach. Let's keep coding and enjoy making games :)
