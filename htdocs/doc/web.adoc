@@ -44,6 +44,8 @@ castle-engine compile --os=wasi --cpu=wasm32
 # or
 castle-engine compile --os=wasi --cpu=wasm32 --mode=debug
 ----
++
+To test it, get FPC cross-compiler for WebAssembly. It's easiest to use link:fpcupdeluxe[] to get it: install FPC _"trunk"_ version, then install FPC cross-compiler for OS=`Wasi` and CPU=`Wasm32`.
 
 - _Trung Le (Kagamma)_ has been doing lots of work with CGE + FPC WebAssembly. His fork contains a branch https://github.com/Kagamma/castle-engine/tree/wasm32-wasi-port[wasm32-wasi-port]. I absolutely expect that we'll merge it to CGE https://github.com/castle-engine/castle-engine/tree/webassm_platformer_test[webassm_platformer_test] at some point, and then to master branch :)
 
