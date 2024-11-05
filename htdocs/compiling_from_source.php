@@ -183,6 +183,11 @@ Set-ExecutionPolicy Bypass -Scope Process
     <!-- TODO: add on Fedora: libpng-dev libz1 libopenal1 libfreetype6 libvorbisfile3 -->
 
     <p>(Anything missing? <a href="https://packages.fedoraproject.org/">Search</a>)
+
+  <li>
+    <p>On <i>Arch Linux</i> and derivatives, try this:
+
+    <pre>sudo pacman -S gtk2</pre>
 </ul>
 
 <p>Note that we link to most libraries dynamically using <i>"dlopen"</i> Unix mechanism. So it is not necessary to install e.g. <code>libfreetype6-dev</code>. And instead of <code>libpng-dev</code> you can install any recent <code>libpngXY</code> with <code>XY</code> indicating version 1.2-1.6 (various distros have a bit different naming here).
