@@ -10,8 +10,6 @@ cge::download-engine[7.0-alpha.3.snapshot,snapshot]
 
 NOTE: To build applications using the engine you also need to install a _compiler_. The _Windows_ and _Linux_ downloads already contain the latest stable version of https://www.freepascal.org/[FPC], so you can build and run projects out-of-the-box. For more information and options, see link:install[the manual about installation].
 
-NOTE: Linux downloads require GLIBC >= 2.34. This should be OK on any modern Linux distribution. If you have https://www.debian.org/releases/oldstable/[Debian 11 (oldstable, bullseye)] you have to upgrade to at least https://www.debian.org/releases/stable/[Debian 12 (stable, bookworm)]. Or link:compiling_from_source.php[compile CGE from sources] to link to your current GLIBC. We plan to distribute the engine also as https://snapcraft.io/[snap package] in the future.
-
 == Alternative download and installation options
 
 === GitHub releases with more variants (like downloads not bundled with FPC)
@@ -164,3 +162,32 @@ We also encourage to build and run some CGE examples, like `examples/fps_game` a
 NOTE: In order to run some examples on Windows, you will need to place DLL files alongside the EXE file. Copy the DLL files from engine locations mentioned link:compiling_from_source.php#section_Windows[here]. Or compile the example at least once from https://castle-engine.io/manual_editor.php[CGE editor], it will copy the DLL files automatically.
 
 ////
+
+== System Requirements
+
+=== Linux (including Raspberry Pi)
+
+Linux binaries for _desktops (x86_64 CPU) and 64-bit Raspberry Pi (Aarch64 CPU)_ require GLIBC >= 2.34. This should be OK on any modern Linux distribution. If you have https://www.debian.org/releases/oldstable/[Debian 11 (oldstable, bullseye)] you have to upgrade to at least https://www.debian.org/releases/stable/[Debian 12 (stable, bookworm)].
+
+If you have to use an older system, you can still use CGE by link:compiling_from_source.php[compiling it from sources] to link to your current GLIBC. We plan to distribute the engine also as https://snapcraft.io/[snap package] in the future, which will sidestep this limitation.
+
+NOTE: This limitation applies to the provided engine binaries only. For your own applications, they will require the same GLIBC as the system on which they have been built, as this is the standard behavior of Unix linker. Consider using CI/CD (like link:github_actions[GitHub Actions] or link:gitlab_ci[GitLab CI/CD] or link:jenkins[Jenkins]) to build your applications on a system version independent of your dev machine.
+
+_Linux binaries for 32-bit Raspberry Pi (Arm CPU)_ work fine with older GLIBC, including the one in Debian's `bullseye`. This is done deliberately to support older Raspberry Pi 4 32-bit installations.
+
+=== General
+
+In general our engine is supported _only on systems that have security support from their vendors_.
+
+This in particular applies to Windows (as of 2024, https://en.wikipedia.org/wiki/List_of_Microsoft_Windows_versions[this implies we support only Windows >= 10]). No matter how much you like your _Windows XP_, it's time to move on :), either to a newer Windows or to a different system, like Linux.
+
+Notes and explanation:
+
+- Older OS versions may work by accident, but you have to understand that we do not actively test the engine on them.
++
+You're still welcome to report a bug, even if you encounter it on an unsupported system. As long as you specify your OS version and understand that the answer may be _"it looks like this crash is caused by an outdated system / GPU drivers, please upgrade"_. There are many options to upgrade (including free and light-weight options like _Linux_) and you will surely find some solution even for an older hardware.
+
+- Independently of _Castle Game Engine_, we do recommend you upgrade your system for security reasons. If you do anything that consumes untrusted input (like connecting to the Internet or using Bluetooth), using a system with up-to-date security is critical nowadays. There are real, known, exploitable security vulnerabilities in older systems.
++
+Note that we're not alone in this approach. _Google Chrome_, _Firefox_, _Steam_, _GPU drivers_.... a lot of the software is not supported on older systems. Which means that if you use an old system, you're not only missing out on system updates, you also miss on updates to web browsers, drivers and other software. This implies eve more security risks.
+//And the risk that engine will fail to work for reasons unrelated to the engine itself.
