@@ -71,6 +71,13 @@ class Check_Email_Logger implements Loadie {
             } else {
                     $log['attachments'] = 'true';
             }
+            if ( isset( $option['email_open_tracking'] )  && $option['email_open_tracking'] ) {
+                $timestamp = current_time('timestamp');
+                $tracking_content = check_email_content_with_tracking($timestamp);
+                $original_mail_info['message'] = $original_mail_info['message'].$tracking_content;
+                $open_tracking_id = $timestamp;
+                $log['open_tracking_id'] = $open_tracking_id;
+            }
             $smtp_options = get_option('check-email-smtp-options', true);
             if (is_multisite()) {
 				$smtp_options = get_site_option( 'check-email-log-global-smtp');
@@ -83,6 +90,8 @@ class Check_Email_Logger implements Loadie {
             $to_email = $log['to_email'];
             $subject = $log['subject'];
             $response = [];
+
+            
             if (isset($smtp_options['mailer']) && $smtp_options['mailer'] == 'outlook') {
                 $auth = new Auth('outlook');
                 if ( $auth->is_clients_saved() && ! $auth->is_auth_required() ) {
@@ -147,8 +156,6 @@ class Check_Email_Logger implements Loadie {
             $log = apply_filters( 'check_email_email_log_before_insert', $log, $original_mail_info );
             $check_email = wpchill_check_email();
             $check_email->table_manager->insert_log( $log );
-
-           
 
             do_action( 'check_email_log_inserted' );
         

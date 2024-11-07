@@ -193,6 +193,7 @@ class Check_Email_Log_List_Table extends \WP_List_Table {
 		$actions = array(
 			'check-email-log-list-delete'     => esc_html__( 'Delete', 'check-email' ),
 			'check-email-log-list-delete-all' => esc_html__( 'Delete All Logs', 'check-email' ),
+			'check-email-log-list-resend'     => esc_html__( 'Resend Email', 'check-email' )			
 		);
 		$actions = apply_filters( 'el_bulk_actions', $actions );
 
@@ -200,6 +201,7 @@ class Check_Email_Log_List_Table extends \WP_List_Table {
 	}
 
 	public function prepare_items() {
+		$this->process_bulk_action();
 		$this->_column_headers = $this->get_column_info();
 
 		// Get current page number.
@@ -340,5 +342,54 @@ class Check_Email_Log_List_Table extends \WP_List_Table {
 		}
 		return $total_items;
     }
+
+	public function process_bulk_action() {
+		if ('check-email-log-list-resend' === $this->current_action()) {
+			// Security check to ensure nonce validation.
+			check_admin_referer('bulk-' . $this->_args['plural']);
+			
+			$log_ids = isset($_GET[$this->_args['singular']]) ? array_map('intval', $_GET[$this->_args['singular']]) : array();
+			if (!empty($log_ids)) {
+				foreach ($log_ids as $log_id) {
+					$this->resend_email_log($log_id);
+				}
+				$redirect_url = add_query_arg('bulk_resend_success', count($log_ids), $this->get_page_base_url());
+				wp_redirect($redirect_url);
+				exit;
+			}
+		}
+	}
+
+	protected function resend_email_log($log_id) {
+		$email_log = $this->page->get_table_manager()->fetch_log_items_by_id( array($log_id) );
+		if ($email_log) {
+			$email_log = $email_log[0];
+			$headers = array();
+			$attachments=array();
+
+			$to = ( isset($email_log['to_email'] ) ) ? $email_log['to_email'] : "";
+			$subject = ( isset($email_log['subject'] ) ) ? $email_log['subject'] : "";
+			$message = ( isset($email_log['message'] ) ) ? $email_log['message'] : "";
+			$headers = array();
+			if ( ! empty( $email_log['headers'] ) ) {
+				$parser  = new \CheckEmail\Util\Check_Email_Header_Parser();
+				$headers = $parser->parse_headers( $email_log['headers'] );
+			}
+			if ( ! empty( $email_log['attachments'] ) ) {
+				$attachments = $email_log['attachment_name'];
+			}
+			wp_mail( $to, $subject, $message, $headers, $attachments );
+		}
+	}
+
+	public function admin_notices() {
+		if (isset($_GET['bulk_resend_success'])) {
+			$resend_count = intval($_GET['bulk_resend_success']);
+			printf('<div id="message" class="updated notice is-dismissible"><p>' . esc_html__('%s emails have been resent.', 'check-email') . '</p></div>', $resend_count);
+		}
+	}
+	
+	
+	
 	
 }

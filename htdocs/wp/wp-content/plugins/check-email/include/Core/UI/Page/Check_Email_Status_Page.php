@@ -88,7 +88,7 @@ class Check_Email_Status_Page extends Check_Email_BasePage {
     // send a test email
     private function checkemail_send( $to, $headers = "auto" ) {
             global $current_user;
-
+            $timestamp = current_time('timestamp');
             $from_name = '';
             $from_email = apply_filters( 'wp_mail_from', $current_user->user_email );
             $from_name = apply_filters( 'wp_mail_from_name', $from_name );
@@ -142,11 +142,13 @@ class Check_Email_Status_Page extends Check_Email_BasePage {
             }
 
             $title = esc_html__( "Test email from", "check-email").' '.esc_url( get_bloginfo( "url" ));
-            $body  = esc_html__( 'This test email proves that your WordPress installation at', "check-email" ).' '.esc_url( get_bloginfo( "url" ) ). esc_html__( 'can send emails. Sent: ', "check-email" ).gmdate( "r" ) ;
+            $body  = esc_html__( 'This test email proves that your WordPress installation at', "check-email" ).' '.esc_url( get_bloginfo( "url" ) ). esc_html__( ' can send emails. Sent: ', "check-email" ).gmdate( "r" ) ;
+            $body = $body;
             wp_mail( $to, $title, $body, $headers );
 
             return $headers;
     }
+    
 
     public function checkemail_assets() {
         $suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';

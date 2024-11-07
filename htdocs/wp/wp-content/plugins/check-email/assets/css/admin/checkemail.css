@@ -69,6 +69,7 @@
 .tab-content.ce_tab_logging .check_email_override_emails_from,
 .tab-content.ce_tab_logging .check_email_forward_email,
 .tab-content.ce_tab_logging .check_email_email_error_tracking,
+.tab-content.ce_tab_logging .check_email_email_open_tracking,
 .tab-content.ce_tab_logging .check_email_forward_to,
 .tab-content.ce_tab_logging .check_email_forward_cc,
 .tab-content.ce_tab_logging .check_email_forward_bcc,
@@ -107,6 +108,7 @@
 .tab-content.ce_tab_smtp .check_email_override_emails_from,
 .tab-content.ce_tab_smtp .check_email_forward_email,
 .tab-content.ce_tab_smtp .check_email_email_error_tracking,
+.tab-content.ce_tab_smtp .check_email_email_open_tracking,
 .tab-content.ce_tab_smtp .check_email_forward_to,
 .tab-content.ce_tab_smtp .check_email_forward_cc,
 .tab-content.ce_tab_smtp .check_email_forward_bcc,
@@ -222,8 +224,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 320px;
-    max-width: 350px;
+    width: 540px;
+    max-width: 570px;
 }
 
 .ce_radio-label {

@@ -283,7 +283,7 @@ class Auth
 
 	protected function get_state()
 	{
-		return wp_create_nonce('ck_mail_outlook_check_nonce');
+		return 'check-email-nonce_'.wp_create_nonce('ck_mail_outlook_check_nonce');
 	}
 
 	public function is_clients_saved()

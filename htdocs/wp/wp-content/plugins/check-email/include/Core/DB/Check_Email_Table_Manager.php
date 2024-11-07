@@ -32,6 +32,7 @@ class Check_Email_Table_Manager implements Loadie {
 		add_filter( 'wpmu_drop_tables', array( $this, 'delete_table_from_deleted_blog' ) );
 		
 		add_filter( 'admin_init', array( $this, 'add_backtrace_segment_field' ) );
+		add_filter( 'admin_init', array( $this, 'add_open_count_field' ) );
 
 		$option = get_option( 'check-email-log-core' );
 		if ((isset($option['is_retention_amount_enable']) &&  $option['is_retention_amount_enable']) || (isset($option['is_retention_period_enable']) && $option['is_retention_period_enable'])) {
@@ -534,6 +535,33 @@ class Check_Email_Table_Manager implements Loadie {
 
 		if(empty($field_exists)){
 			$query = "ALTER TABLE $table_name ADD backtrace_segment TEXT NULL DEFAULT NULL AFTER message";
+			// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared,WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
+			$wpdb->query($query);
+		}
+	}
+	/**
+	 * Add new open_count field to check_email_log table = will check email is opened count by user
+	 * @since 1.0.12
+	 * */
+	public function add_open_count_field(){
+		global $wpdb;
+		$table_name = $this->get_log_table_name();
+
+		// Field to check
+		$field_name = 'open_count';
+
+		// Query to check if the field exists in the table
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
+		$field_exists = $wpdb->get_results(
+		    $wpdb->prepare(
+				// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		        "SHOW COLUMNS FROM $table_name LIKE %s",
+		        $field_name
+		    )
+		);
+
+		if(empty($field_exists)){
+			$query = "ALTER TABLE $table_name ADD open_tracking_id TEXT NULL DEFAULT NULL, ADD open_count TEXT NULL DEFAULT NULL AFTER message";
 			// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared,WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 			$wpdb->query($query);
 		}

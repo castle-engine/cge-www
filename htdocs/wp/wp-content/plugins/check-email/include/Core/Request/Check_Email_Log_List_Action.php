@@ -124,6 +124,12 @@ class Check_Email_Log_List_Action implements Loadie {
 					<td style="padding: 5px;"><b><?php esc_html_e( 'Headers', 'check-email' ); ?></b>:</td>
 					<td style="padding: 5px;"><?php echo esc_html( $log_item['headers'] ); ?></td>
 				</tr>
+				<?php if(isset( $option['email_open_tracking']) && $option['email_open_tracking'] ) {  ?>
+				<tr style="background: #eee;">
+					<td style="padding: 5px;"><b><?php esc_html_e( 'Email Opened', 'check-email' ); ?></b>:</td>
+					<td style="padding: 5px;"><?php echo ($log_item['open_count']) ?  esc_html( $log_item['open_count'] ) : 0; ?></td>
+				</tr>
+				<?php } ?>
 
 				<?php do_action( 'check_email_view_log_after_headers', $log_item ); ?>
 
@@ -148,10 +154,14 @@ class Check_Email_Log_List_Action implements Loadie {
 					if(empty($option) || !isset( $option['log_email_content']) || (isset( $option['log_email_content'])) && $option['log_email_content']){
 					?>
 				<div id="tabs-text">
-					<pre class="tabs-text-pre"><?php echo esc_textarea( $log_item['message'] ); ?></pre>
+					<?php
+						// Regular expression to match and remove <img> tags with class="check-email-tracking"
+						$email_content_without_img = preg_replace('/<img[^>]*class=[\'\"]check-email-tracking[\'\"][^>]*>/i', '', $log_item['message']);
+					?>
+					<pre class="tabs-text-pre"><?php echo esc_textarea( $email_content_without_img ); ?></pre>
 				</div>
 				<div id="tabs-preview">
-					<?php echo wp_kses( $log_item['message'], $this->check_email_kses_allowed_html( 'post' ) ); ?>
+					<?php echo wp_kses( $email_content_without_img, $this->check_email_kses_allowed_html( 'post' ) ); ?>
 					<?php
 					if (!empty($log_item['attachment_name'])) {
 						$attachments = explode(',',$log_item['attachment_name']);

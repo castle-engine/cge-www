@@ -1,4 +1,11 @@
 == Changelog ==
+= v2.0.3 - 06/11/2024 =
+- Enhancement: Email Logs Show Failure as Success #113
+- Feature: Added an option for Opened mails data #79
+- Feature: Added Gmail mailer in smtp section #106
+- Feature: Added a feature to send the bulk email. #107
+- Fixed: Login OAuth Broken After Updating Check-Email Plugin to 2.0.2 #108
+
 = v2.0.2 - 27/09/2024 =
 - Feature: Added an option to use one SMTP settings for multisite #97
 - Feature: Added encoding of email and phone #55

@@ -141,7 +141,7 @@ class Check_Email_Wizard_Page extends Check_Email_BasePage {
         $html = "";
         $html .='<ul class="cm_checklist">
             <li>
-                <span>'. esc_html( "Administrator", "check-email" ).'</span>
+                <span>'. esc_html__( "Administrator", "check-email" ).'</span>
                 <span class="checkmark">&#10003;</span>
             </li>';
             foreach ( $available_roles as $role_id => $role ){

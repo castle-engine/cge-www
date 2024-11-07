@@ -233,7 +233,7 @@ class Check_Email_Export_Log {
 						$logs_data .= gmdate('d-m-Y H:i:s', strtotime($l_value['sent_date'])).$this->separator; 
 					}
 					if(in_array("Status", $csv_headings)){
-						$logs_data .= empty($l_value['error_message'])?'Success':$l_value['error_message']; 
+						$logs_data .= $l_value['result'] == 0 ?'Failed : '.$l_value['error_message'] : 'Success'; 
 					}
 
 					$log_cnt++;

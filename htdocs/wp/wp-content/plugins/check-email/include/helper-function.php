@@ -530,6 +530,10 @@ function ck_mail_update_network_settings() {
                 $all_fields[sanitize_key( $key ) ] = sanitize_text_field( $value );
             }
             $all_fields['enable_smtp'] = 1;
+
+            if (!isset($all_fields['enable_global'])) {
+                $all_fields['enable_global'] = 0;
+            }
             $old_settings = get_site_option('check-email-log-global-smtp');
 
             if ( ! empty( $old_settings ) && is_array( $old_settings ) ) {
@@ -793,4 +797,77 @@ add_action( 'init', 'check_email_e_register_shortcode', 2000 );
     }
     
 // email and phone encoding end
+
+function check_email_track_email_open() {
+    if (isset($_GET['action']) && $_GET['action'] === 'check_email_track_email_open' && isset($_GET['open_tracking_id']) && isset($_GET['_wpnonce'])) {
+        if (!check_email_verify_extended_nonce($_GET['_wpnonce'])) {
+            return false;
+        }
+        $open_tracking_id = absint($_GET['open_tracking_id']);
+
+        if ($open_tracking_id) {
+            global $wpdb;
+            $table_name = $wpdb->prefix . 'check_email_log';
+
+            $query = $wpdb->prepare(
+                "SELECT * FROM {$table_name} WHERE open_tracking_id = %s",
+                $open_tracking_id
+            );
+            
+            $record = $wpdb->get_row($query);
+
+            if ($record) {
+                $data_to_update = [
+                    'open_count' => $record->open_count + 1
+                ];
+                $where = [
+                    'open_tracking_id' => $open_tracking_id,
+                ];
+                $wpdb->update( $table_name, $data_to_update, $where );
+                header("Content-Type: image/png");
+                echo base64_decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/wcAAgMBAptL0ygAAAAASUVORK5CYII=');
+                exit;
+            }
+
+        }
+    }
+    
+}
+add_action('init', 'check_email_track_email_open');
+
+function check_email_generate_extended_nonce($action = -1, $lifetime = WEEK_IN_SECONDS) {
+    $i = wp_nonce_tick() - (floor(time() / $lifetime) - floor(time() / (DAY_IN_SECONDS * 2)));
+    return wp_create_nonce($action . $i);
+}
+
+function check_email_verify_extended_nonce($nonce, $action = -1, $lifetime = WEEK_IN_SECONDS) {
+    $i = wp_nonce_tick() - (floor(time() / $lifetime) - floor(time() / (DAY_IN_SECONDS * 2)));
+
+    if (wp_verify_nonce($nonce, $action . $i)) {
+        return true;
+    }
+    if (wp_verify_nonce($nonce, $action . ($i - 1))) {
+        return true;
+    }
+    return false;
+}
+
+function check_email_content_with_tracking($open_tracking_id) {
+    $nonce = check_email_generate_extended_nonce();
+    $tracking_url = add_query_arg(
+        array(
+            '_wpnonce'=>$nonce,
+            'open_tracking_id' => $open_tracking_id,
+            'action' => 'check_email_track_email_open',
+        ),
+        site_url('/check-email-tracking/')
+    );
+    $tracking_url = esc_url_raw($tracking_url);
+    $email_content = "
+        <img src='$tracking_url' class='check-email-tracking' alt='' width='1' height='1' style='display:none;' />
+    ";
+    return $email_content;
+}
+
+
 

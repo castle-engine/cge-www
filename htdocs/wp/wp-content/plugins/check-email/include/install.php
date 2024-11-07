@@ -50,6 +50,8 @@ class Check_Email_Log_Init {
 				subject VARCHAR(250) NOT NULL,
 				message TEXT NOT NULL,
 				backtrace_segment TEXT NOT NULL,
+				open_tracking_id VARCHAR(250) NOT NULL,
+				open_count VARCHAR(250) NOT NULL,
 				headers TEXT NOT NULL,
 				attachments TEXT NOT NULL,
 				sent_date timestamp NOT NULL,

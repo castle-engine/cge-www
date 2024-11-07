@@ -66,7 +66,7 @@ jQuery(document).ready(function ($) {
 
         }
 
-        if($(this).val() == 'smtp'){
+        if($(this).val() == 'smtp' || $(this).val() == 'gmail'){
 
             $('#check-email-outllook').hide();
 
@@ -80,7 +80,7 @@ jQuery(document).ready(function ($) {
 
     var mailer = $('.check_email_mailer_type_multi:checked').val();
 
-    if (mailer == 'smtp') {
+    if (mailer == 'smtp' || mailer == 'gmail') {
 
         $('.check_email_smtp_class').show();
 
@@ -100,7 +100,7 @@ jQuery(document).ready(function ($) {
 
             $('#check-email-global-smtp-form').show();
 
-            if (mailer == 'smtp') {
+            if (mailer == 'smtp' || mailer == 'gmail') {
 
                 $('.check_email_smtp_class').show();
 

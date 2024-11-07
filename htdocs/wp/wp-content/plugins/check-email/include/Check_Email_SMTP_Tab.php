@@ -219,6 +219,11 @@ class Check_Email_SMTP_Tab {
 										<img src="<?php echo esc_attr($plugin_dir_url . 'assets/images/microsoft.svg') ?>" alt="Outlook Icon">
 										<div class="ce_radio-title"><?php esc_html_e('365 / Outlook','check-email'); ?></div>
 									</label>
+									<label class="ce_radio-label <?php echo $mailer == 'gmail' ? "ck_radio_selected" : ''; ?>" >
+										<input class="check_email_mailer_type" type="radio" name="check-email-smtp-options[mailer]" value="gmail" <?php echo $mailer == 'gmail' ? "checked" : ''; ?>>
+										<img src="<?php echo esc_attr($plugin_dir_url . 'assets/images/gmail.png') ?>" alt="Gmail Icon">
+										<div class="ce_radio-title"><?php esc_html_e('Gmail','check-email'); ?></div>
+									</label>
 								</div>
 						    </td>
 						</tr>
@@ -284,7 +289,7 @@ class Check_Email_SMTP_Tab {
 						</tr>
 					</tbody>
 					
-					<tbody id="check-email-smtp-form" class="check_email_all_smtp" style="<?php echo $enable_smtp != 'on' || $mailer != 'smtp' ? "display: none" : ''; ?>">	
+					<tbody id="check-email-smtp-form" class="check_email_all_smtp" style="<?php echo $enable_smtp == 'on' && ($mailer == 'smtp' || $mailer == 'gmail') ? "" : 'display: none'; ?>">	
 						<tr class="check_email_smtp_from">
 						    <th scope="row"><?php esc_html_e('From', 'check-email'); ?></th>
 						    <td>
