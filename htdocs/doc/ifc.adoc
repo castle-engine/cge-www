@@ -103,7 +103,11 @@ The advantage of this approach is that you work with the IFC concepts directly. 
 
 - Round-trip (read IFC, save it back) preserves exactly the input. Because you keep the cgeref:TIfcFile[] instance existing. You load to cgeref:TIfcFile[], keep it and modify it, then save it back to file.
 +
-In contrast, when working only with cgeref:TX3DRootNode[] without knowing about IFC classes, the reader discards the original IFC data, and the writer creates new IFC data from X3D nodes, using cgeref:X3DToIfc[]. We will try to make cgeref:X3DToIfc[] perfect anyway. But if you keep around the cgeref:TIfcFile[] instance, then it's guaranteed to be perfect, always, without any effort.
+In contrast, when working only with cgeref:TX3DRootNode[] and discarding the IFC-native information, the writer has to create new IFC data from X3D nodes, inside cgeref:X3DToIfc[].
+// If you try to read and write back the IFC file this way,
+This necessarily "drops" some information (otherwise we'd need to replicate all the IFC information using only X3D metadata, which would be a big work given lots of IFC classes and concepts that are hard to transfer both ways like IFC `PlacementRelTo`; and it would likely be unnecessary work -- since people who want to use IFC natively are better served by just using IFC classes from Pascal).
+//So the export from X3D to IFC creates a new IFC file,  that is similar to the original in presentation, but does not preserve all the metadata.
+//The solution is just to keep around the cgeref:TIfcFile[] instance, then round-trip is guaranteed to be perfect, always, without any effort.
 
 To follow this approach, load IFC files using cgeref:IfcJsonLoad[]:
 
