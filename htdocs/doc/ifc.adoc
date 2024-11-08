@@ -1,0 +1,207 @@
+# IFC (Industry Foundation Classes) support in Castle Game Engine
+include::common.adoc[]
+:description: Loading, saving, processing IFC (architecture, engineering and construction data) using Castle Game Engine.
+:cge-social-share-image: ifc_1.png
+
+## Introduction
+
+_Castle Game Engine_ supports loading 3D models in the _IFC (Industry Foundation Classes)_ format.
+
+## What is IFC?
+
+IFC is a standard format for storing building information models (BIM). It is used in the architecture, engineering and construction (AEC) industry.
+
+It's an open, vendor-neutral and non-proprietary format, which means everyone has access to the full specification how everything should work and everyone can implement it. And it is supported by a lot of software:
+
+- https://www.freecad.org/[FreeCAD], https://bonsaibim.org/[BonsaiBIM] support it as a _"first-class citizen"_, so they can load, save and internally they "think" using IFC concepts,
+- popular proprietary CAD software like _Revit_, _ArchiCAD_ can export to this format too.
+
+An excellent overview of the format goals is in this video: https://www.youtube.com/watch?v=h2Rv9iu7yDk[Introduction to OpenBIM, Native IFC, and Open Source AEC].
+
+Specifications:
+- https://standards.buildingsmart.org/IFC/RELEASE/IFC4_3/index.html[Most important, latest specification (which we implement)]
+- https://www.buildingsmart.org/standards/bsi-standards/industry-foundation-classes/
+- https://technical.buildingsmart.org/standards/ifc/
+- https://technical.buildingsmart.org/standards/ifc/ifc-schema-specifications/
+
+We naturally like this format :) We like open 3D standards, _Michalis_ is preaching about his love for link:gltf[glTF] and link:x3d[X3D] at various link:conferences[], so IFC naturally joins our capabilities.
+
+cgeimg::block[
+  ifc_1.png|IFC model loaded in Castle Game Engine,
+  ifc_2.png|IFC model loaded in Castle Game Engine
+]
+
+## Supported IFC features
+
+We can load and save the IFC entities listed in API docs of cgeref:CastleIfc[] unit. This includes over 100 classes reflecting the IFC specification.
+
+All the defined IFC entities can be loaded and saved to IFC files in the JSON encoding, with the `.ifcjson` extension.
+
+NOTE: We require to use `.ifcjson` extension for IFC files in JSON encoding, not just `.json`. That's because we also support another popular format, link:spine[Spine animations], that uses `.json` extension.
+
+We convert a lot of "presentational" IFC entities to X3D nodes and display them.
+
+- A lot of IFC content is just "metadata" for our engine, that is: we load and save it, and you can use it from Pascal (by looking at IFC classes properties, or by looking at X3D nodes metadata like `MyTransform.MetadataString['IFC_Name']`), but it doesn't affect the display in any way.
+
+- We load various IFC containers and lists to the corresponding X3D cgeref:TGroupNode[]. The transformation hierarchy is preserved using X3D cgeref:TTransformNode[].
+
+- We display these 3D shape entities:
++
+--
+- lines: cgeref:TIfcPolyline[] in IFC, cgeref:TLineSetNode[] in X3D
+- extrusion of a cross-section along a direction: cgeref:TIfcExtrudedAreaSolid[] in IFC, cgeref:TExtrusionNode[] in X3D
+- mesh: cgeref:TIfcPolygonalFaceSet[] in IFC, cgeref:TIndexedFaceSetNode[] in X3D
+--
+
+Our conversion from IFC to X3D allows to display IFC models using _Castle Game Engine_ (using cgeref:TCastleScene[]) and allows to literally convert between model formats, from IFC to any format we can save (X3D, STL, and soon glTF).
+
+NOTE: Let us know if you need more features related to IFC. Bug reports and PRs are welcome, as well as link:donate[donations toward the IFC support, we're happy to provide commercial support for companies too]. We're committed to IFC support. link:conference[Michalis talks at conferences how he loves open 3D standards] --- well, IFC is one of them!
+
+## Loading and saving IFC
+
+Basically, you don't need to learn anything new to use IFC with _Castle Game Engine_.
+
+Just get a sample IFC file,
+
+- for example one of the testcases from https://github.com/buildingsmart-community/Community-Sample-Test-Files/tree/main/IFC%204.0.2.1%20(IFC%204)/ISO%20Spec%20archive[Community-Sample-Test-Files for IFC 4.x],
+
+- or export IFC from link:blender[Blender] using the https://bonsaibim.org/[BonsaiBIM] add-on (amazing add-on that turns Blender into a full-featured IFC editor).
+
+Then load it:
+
+- using the cgeref:TCastleSceneCore.Load[] method,
+- or by setting cgeref:TCastleSceneCore.Url[] property to the IFC file.
+
+Just follow the manual page about link:viewport_and_scenes[viewports and scenes] and subsequent pages about cgeref:TCastleScene[] usage.
+
+You can then modify the cgeref:TCastleScene[] contents (a set of link:x3d[X3D] nodes rooted in cgeref:TCastleSceneCore.RootNode[]) and save it back to IFC using the cgeref:TCastleSceneCore.Save[] method.
+
+TODO: Saving described above (from X3D -> IFC) is not yet implemented. It is possible we will implement it. For now, it is actually more powerful to use the approach described below, to work directly with IFC classes and save using cgeref:IfcJsonSave[].
+
+You can also use the cgeref:LoadNode[] and cgeref:SaveNode[] methods to load and save cgeref:TX3DRootNode[] instance, without the need for a full cgeref:TCastleScene[]. This makes sense if you don't need to display the model at all.
+
+## Working with IFC classes (native IFC in Castle Game Engine)
+
+There is another way to use IFC support that allows you to utilize the full power of IFC and work directly with IFC classes. All IFC entities and other types are expressed as natural Pascal classes, enums etc.
+
+In contrast to the previous approach, where you load and save IFC files but your _"single source of truth"_ above the model is the state of cgeref:TCastleScene[] (which means: set of link:x3d[X3D] nodes), in this new approach your _"single source of truth"_ is your hierarchy of IFC classes. This approach is also called _"native BIM"_ by various tools in the IFC ecosystem.
+
+To follow this, load IFC files using cgeref:IfcJsonLoad[]:
+
+```delphi
+var
+  IfcFile: TIfcFile;
+begin
+  IfcFile := IfcJsonLoad('castle-data:/my_file.ifcjson');
+  // ...
+end;
+```
+
+and then operate on the loaded `IfcFile`, exploring the properties of cgeref:TIfcFile[] and everything inside, rooted in cgeref:TIfcFile.Project[]. The documentation of all the IFC classes is part of our API documentation: see cgeref:CastleIfc[].
+
+Once you're happy, you can
+
+1. Save to result back to file using cgeref:IfcJsonSave[]. It creates a JSON object, this is how you can save it to a file:
++
+```delphi
+var
+  JsonObj: TJsonObject;
+  JsonString: String;
+  Stream: TStream;
+begin
+  Stream := UrlSaveStream('output.ifcjson');
+  try
+    JsonObj := IfcJsonSave(IfcFile);
+    try
+      JsonString := JsonObj.FormatJSON;
+      WriteStr(Stream, JsonString);
+    finally FreeAndNil(JsonObj) end;
+  finally FreeAndNil(Stream) end;
+end;
+```
++
+TODO: Add `IfcJsonSave(TIfcFile, String)` utility to make above example a 1-liner.
+
+2. Convert the IFC to a set of X3D nodes (to display them using cgeref:TCastleScene[]) using cgeref:IfcToX3D[], like this:
++
+```delphi
+var
+  MyRoot: TX3DRootNode;
+begin
+  MyRoot := IfcToX3D(IfcFile);
+  MyScene.Load(MyRoot, true);
+end;
+```
+
+3. And, what is possibly the most important, _update_ the displayed scene when you change the IFC classes.
++
+TODO: Not yet implemented.
++
+This is done by using cgeref:TCastleIfcMapping[] class instead of cgeref:IfcToX3D[] and cgeref:X3DToIfc[].
++
+```delphi
+var
+  MyRoot: TX3DRootNode;
+  IfcFile: TIfcFile;
+  IfcMapping: TCastleIfcMapping;
+begin
+  IfcMapping := TCastleIfcMapping.Create;
+  try
+    (*
+    IfcFile := IfcFromJson('castle-data:/my_file.ifcjson');
+    try
+      IfcMapping.Load(IfcFile);
+    finally FreeAndNil(IfcFile) end;
+    *)
+
+    // shorter version:
+    IfcMapping.Load('castle-data:/my_file.ifcjson');
+
+    // this does something similar to IfcToX3D, but also updates internal structures to be able to repeat it later
+    MyScene.Load(IfcMapping.RootNode);
+
+    // modify IfcFile, e.g. add a new wall
+    IfcFile.Walls.Add(TIfcWall.Create); // TODO make this example correct, try to keep it as simple
+
+    // this will modify the contents of RootNode;
+    // the MyScene displaying it will automatically reflect the changes
+    IfcMapping.UpdateRootNode; // update the displayed scene
+  end;
+end;
+```
++
+TODO: To be decided, maybe instead implement x3d-native diff, then the above example would change to
++
+```delphi
+var
+  MyRoot: TX3DRootNode;
+  IfcFile: TIfcFile;
+begin
+  IfcFile := IfcFromJson('castle-data:/my_file.ifcjson');
+
+  MyRoot := IfcToX3D(IfcFile);
+  MyScene.Load(MyRoot, true);
+
+  // modify IfcFile, e.g. add a new wall
+  IfcFile.Walls.Add(TIfcWall.Create); // TODO make this example correct, try to keep it as simple
+
+  // this will modify the contents of RootNode;
+  // the MyScene displaying it will automatically reflect the changes.
+  // Note that UpdateNode owns the given 1st argument, it will free the given nodes (immediately, or by making them new children of MyScene.RootNode)
+  UpdateNode(IfcToX3D(IfcFile), MyScene.RootNode);
+end;
+```
+
+The advantage of this approach is that you work with the IFC concepts directly. You can modify the IFC data, and mak the displayed scene to reflect the changes. So:
+
+- You use classes from cgeref:CastleIfc[] unit, following exactly the same concepts and names as the IFC specification.
+
+- You don't wonder _"how did this metadata was mapped to X3D node"_ because you don't need to inspect X3D nodes to investigate what's inside the IFC file.
+
+- Round-trip (read IFC, save it back) preserves exactly the input. Because we don't lose the intermediate cgeref:TIfcFile[] in the process -- you load to cgeref:TIfcFile[], then you save it back.
++
+In contrast, when working with cgeref:TX3DRootNode[], the reader discards the original IFC data, and the writer creates new IFC data from X3D nodes, using @link(X3DToIfc). Note that we will try to make @link(X3DToIfc) perfect anyway. But if you keep around the TIfcFile instance, then it's guaranteed to be perfect, always, without any effort.
+
+## Credits
+
+This work has been sponsored by the https://www.sorpetaler.de/[Sorpetaler Fensterbau GmbH] company. Thank you!

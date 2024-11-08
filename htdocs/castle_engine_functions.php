@@ -325,6 +325,7 @@ $castle_sitemap = array(
               'doc/in_app_purchases' => array('title' => 'In-App Purchases (Android, iOS)'),
               'doc/nintendo_switch' => array('title' => 'Nintendo Switch'),
               'doc/macos' => array('title' => 'macOS'),
+              'doc/web' => array('title' => 'Web'),
             ),
           ),
           'manual_optimization' => array('title' => 'Optimization',
@@ -412,6 +413,7 @@ $castle_sitemap = array(
                 'sub' => array(
                   'doc/gltf' => array('title' => 'glTF'),
                   'doc/md3' => array('title' => 'MD3'),
+                  'doc/ifc' => array('title' => 'IFC'),
                 ),
               ),
               'doc/blender' => array('title' => 'Blender'),
