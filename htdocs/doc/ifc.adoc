@@ -1,13 +1,18 @@
 # IFC (Industry Foundation Classes) format support
 include::common.adoc[]
 :description: Loading, saving and processing IFC models, used in AEC (architecture, engineering and construction data) using Castle Game Engine.
-:cge-social-share-image: ifc_1.png
+:cge-social-share-image: ifc_3.png
 
 ## Introduction
 
 _Castle Game Engine_ supports loading 3D models in the _IFC (Industry Foundation Classes)_ format.
 
 WARNING: This is a work in progress, in active development now. Pay attention to the things marked as "TODO" below.
+
+cgeimg::block[
+  ifc_3.png|IFC model loaded in Castle Game Engine,
+  ifc_4.png|IFC model loaded in Castle Game Engine
+]
 
 ## What is IFC?
 
@@ -33,11 +38,6 @@ Specifications:
 
 As we like open 3D standards in _Castle Game Engine_ (_Michalis_ is preaching about his love for link:gltf[glTF] and link:x3d[X3D] at various link:conferences[]) so IFC naturally joins our capabilities.
 
-cgeimg::block[
-  ifc_1.png|IFC model loaded in Castle Game Engine,
-  ifc_2.png|IFC model loaded in Castle Game Engine
-]
-
 ## Supported IFC features
 
 We can load and save the IFC entities listed in API docs of cgeref:CastleIfc[] unit. This includes over 100 classes reflecting the IFC specification.
@@ -58,6 +58,7 @@ We convert a lot of "presentational" IFC entities to X3D nodes and display them.
 +
 --
 - lines: cgeref:TIfcPolyline[] in IFC, cgeref:TLineSetNode[] in X3D
+- indexed lines: cgeref:TIfcIndexedPolyCurve[] in IFC, cgeref:TIndexedLineSetNode[] in X3D
 - extrusion of a cross-section along a direction: cgeref:TIfcExtrudedAreaSolid[] in IFC, cgeref:TExtrusionNode[] in X3D
 - mesh: cgeref:TIfcPolygonalFaceSet[] in IFC, cgeref:TIndexedFaceSetNode[] in X3D
 --
