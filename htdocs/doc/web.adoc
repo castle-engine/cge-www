@@ -1,4 +1,5 @@
 # Web Target
+include::common.adoc[]
 :description: Upcoming support for web development in CGE.
 // :cge-social-share-image: blender_castle_1.png
 
@@ -34,18 +35,59 @@ Both FPC and Delphi have built-in support for ZIP handling, we even https://gith
 
 - For development purposes, likely we'll add a _"Run simple webserver on localhost"_ feature, to allow you to easily run WebAssembly applications. This can be done using a number of things, I like most the idea of using https://wiki.lazarus.freepascal.org/fcl-web[FpWeb] which can instantiate a https://wiki.lazarus.freepascal.org/fphttpserver[standalone HTTP server] in just a few lines of code.
 
+== Prerequisites
+
+- *link:https://getpas2js.freepascal.org/[Pas2js]*
++
+You can get it along with https://www.freepascal.org/[FPC] or install it separately from link:https://getpas2js.freepascal.org/[here]. We don't have any special version requirements, just get the latest stable version.
++
+_Test that it works._ Create the following simple program, save it as `hello_pas2js.lpr`:
++
+[source,pascal]
+----
+begin
+  Writeln('Hello from pas2js!');
+end.
+----
++
+If everything is installed and configured OK, then you should be able to compile it using this from the command-line:
++
+```
+pas2js -Jc -Jirtl.js -Tbrowser hello_pas2js.lpr
+```
++
+If everything went well, you should get a file `hello_pas2js.js` in the same directory.
+
+- *link:https://www.freepascal.org/[FPC] with link:https://wiki.freepascal.org/WebAssembly[WebAssembly] support.*
++
+In our opinion, it's easiest to get this using link:fpcupdeluxe[]: install FPC _"trunk"_ version, then install FPC cross-compiler for OS=`Wasi` and CPU=`Wasm32`. You can also just get it from GIT and compile manually, following link:https://wiki.freepascal.org/WebAssembly[FPC wiki about WebAssembly].
++
+_Test that it works._ Create the following simple program, saved as `hello_wasm.lpr`:
++
+```delphi
+begin
+  Writeln('Hello from WebAssembly!');
+end.
+```
++
+If everything is installed and configured OK, then you should be able to compile it using this command:
++
+```
+fpc -Twasi -Pwasm32 hello_wasm.lpr
+```
++
+If everything went well, you should get `hello_wasm.wasm` in the same directory.
+
 == What we have now
 
 - Branch https://github.com/castle-engine/castle-engine/tree/webassm_platformer_test[webassm_platformer_test] in CGE contains a code that compiles (but it is not functional yet!) for WebAssembly. This means that CGE compiles, and also build tool supports a new OS/CPU. So you can enter any CGE project and build it for WebAssembly. To test this:
 +
 --
-1. Get FPC cross-compiler for WebAssembly. It's easiest to do this using link:fpcupdeluxe[]: install FPC _"trunk"_ version, then install FPC cross-compiler for OS=`Wasi` and CPU=`Wasm32`.
+1. Get the https://github.com/castle-engine/castle-engine/tree/webassm_platformer_test[webassm_platformer_test] branch of CGE.
 
-2. Get the https://github.com/castle-engine/castle-engine/tree/webassm_platformer_test[webassm_platformer_test] branch of CGE.
+2. Follow link:compiling_from_source.php[compiling from source] docs to compile at least new CGE build tool from this CGE branch.
 
-3. Follow link:compiling_from_source.php[compiling from source] docs to compile at least new CGE build tool from this CGE branch.
-
-4. Enter any CGE project and compile it for WebAssembly. For example, to compile the `examples/platformer` project:
+3. Enter any CGE project and compile it for WebAssembly. For example, to compile the `examples/platformer` project:
 +
 [source,shell]
 ----
@@ -55,7 +97,7 @@ castle-engine compile --os=wasi --cpu=wasm32 --mode=debug
 ----
 --
 
-- _Trung Le (Kagamma)_ has been doing lots of work with CGE + FPC WebAssembly. His fork contains a branch https://github.com/Kagamma/castle-engine/tree/wasm32-wasi-port[wasm32-wasi-port]. I absolutely expect that we'll merge it to CGE https://github.com/castle-engine/castle-engine/tree/webassm_platformer_test[webassm_platformer_test] at some point, and then to master branch :)
+- _Trung Le (Kagamma)_ has been doing lots of work with CGE + FPC WebAssembly. His fork contains a branch https://github.com/Kagamma/castle-engine/tree/wasm32-wasi-port[wasm32-wasi-port]. We merge and/or cherry-pick this work to CGE as needed. Thank you!
 
 - File-size tests are promising. Compilation of https://github.com/castle-engine/castle-engine/tree/webassm_platformer_test/examples/platformer[examples/platformer], which practically uses 100% of CGE units, yields a binary `platformer.wasm` that has 16 MB. Gzipped it has 3.4 MB.
 +
