@@ -14,26 +14,41 @@ The goal of the _web target_ in _Castle Game Engine_ is to allow you to recompil
 
 == How
 
-- We're using FPC https://wiki.freepascal.org/WebAssembly[WebAssembly] target. Huge thank you go to the whole FPC team for making it possible! For usage, see also https://www.freepascal.org/~michael/articles/fpcwasm1/fpcwasm1.pdf[this article by Michael Van Canneyt].
-+
-Possibly there will be some additional "glue" bits done using https://wiki.freepascal.org/pas2js[pas2js] (such "glue" is necessary as WebAssembly doesn't otherwise get access to JavaScript APIs available in a web browser).
+- We're using FPC https://wiki.freepascal.org/WebAssembly[WebAssembly] target. Huge thank you go to the whole FPC team for making it possible! For general documentation (unrelated to CGE), see https://www.freepascal.org/~michael/articles/fpcwasm1/fpcwasm1.pdf[this article by Michael Van Canneyt].
+
+- To run the _WebAssembly_ in a web browser, there is additional "glue" code, which we also write in Pascal and compile using https://getpas2js.freepascal.org/[Pas2js]. The integration between https://getpas2js.freepascal.org/[Pas2js] and _FPC + WebAssembly_ is extremely easy, again thanks to the work of everyone involved!
 
 // done: https://gitlab.com/freepascal.org/fpc/source/-/issues/40229
 // done: https://gitlab.com/freepascal.org/fpc/source/-/issues/39547
 
-- We will render using https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API[WebGL 1.0], with optional WebGL 2.0 features. This is very similar to current rendering on mobile, where we use https://castle-engine.io/wp/2023/03/12/mobile-opengles-rendering-upgrades-occlusion-query-anisotropic-filtering-3d-textures-shadows-plus-new-occlusion-query-demo/[OpenGL ES 2.0, with optional OpenGL ES 3.0 features].
+- TODO: We render using https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API[WebGL 1.0], with optional WebGL 2.0 features. This is very similar to current rendering on mobile, where we use https://castle-engine.io/wp/2023/03/12/mobile-opengles-rendering-upgrades-occlusion-query-anisotropic-filtering-3d-textures-shadows-plus-new-occlusion-query-demo/[OpenGL ES 2.0, with optional OpenGL ES 3.0 features].
++
+The WebGL API is available in the browser to https://getpas2js.freepascal.org/[Pas2js] (that is, any _JavaScript_ code in the browser). We can expose this API for the WebAssembly, following the https://www.freepascal.org/~michael/pas2js-demos/wasienv/canvas/[canvas example] described in the 2nd part of https://www.freepascal.org/~michael/articles/fpcwasm1/fpcwasm1.pdf[this article].
 
-- For audio, we will add a new sound backend using https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API[WebAudio]. This will be the default sound backend on the web (like the https://castle-engine.io/openal[OpenAL] is now the default backend on non-web platforms).
+- TODO: For audio, we will add a new sound backend using https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API[WebAudio]. This will be the default sound backend on the web (like the https://castle-engine.io/openal[OpenAL] is now the default backend on non-web platforms).
 +
 It is also possible our https://castle-engine.io/fmod[FMOD] sound backend will also be ported to web, as https://www.fmod.com/docs/2.02/api/platforms-html5.html[FMOD supports HTML5]. This would make FMOD a truly cross-platform sound backend, working on every platform we support in CGE.
 +
 NOTE: About https://castle-engine.io/x3d_implementation_sound.php#section_x3d4[WebAudio in the context of X3D 4.0]. Supporting advanced X3D 4.0 audio nodes is not our priority, but since WebAudio will happen anyway, on the web... they will open this possibility. There is also https://github.com/LabSound/LabSound[LabSound] that provides WebAudio-like API on non-web platforms, and in principle it could one day replace OpenAL, making web and non-web audio handling closer.
 
-- For data delivery, we know we'll have to invent a simple format to carry our game data as one big binary blob. The simple plan is to just pack game data into zip.
+- TODO: For data delivery, we know we'll have to invent a simple format to carry our game data as one big binary blob. The simple plan is to just pack game data into zip.
 +
-Both FPC and Delphi have built-in support for ZIP handling, we even https://github.com/castle-engine/castle-engine/blob/master/examples/network/custom_url_handler/code/gameunzip.pas[use it in one example], we'll likely create a more full-featured wrapped that works on both FPC and Delphi.
+Both FPC and Delphi have built-in support for ZIP handling, we even https://github.com/castle-engine/castle-engine/blob/master/examples/network/custom_url_handler/code/gameunzip.pas[use it in one example], we'll likely create a more full-featured wrapper that works on both FPC and Delphi.
++
+Packing resources into ZIP is beneficial over just placing all data files separately in the webserver directory. It allows to download the ZIP once (at application load) and then our WebAssembly code can load data from it synchronously, thus it can work similarly to how a non-web game data is loaded. Naturally we also want to have cgeref:TCastleDownload[] working and being able to load things asynchronously (see our https://castle-engine.io/manual_network.php[network docs]).
 
-- For development purposes, likely we'll add a _"Run simple webserver on localhost"_ feature, to allow you to easily run WebAssembly applications. This can be done using a number of things, I like most the idea of using https://wiki.lazarus.freepascal.org/fcl-web[FpWeb] which can instantiate a https://wiki.lazarus.freepascal.org/fphttpserver[standalone HTTP server] in just a few lines of code.
+- For development purposes, we can run a simple webserver on the localhost. link:https://getpas2js.freepascal.org/[Pas2js] features a ready `compileserver`, we just use it.
++
+TODO: Make the pipeline to build + run automatically run `compileserver` in proper dir at the end. The goal is to enable this sequence from command-line:
++
+```
+castle-engine compile --target=web
+castle-engine run --target=web
+```
++
+and use it from CGE editor too.
++
+NOTE: https://wiki.lazarus.freepascal.org/fcl-web[FpWeb] also can instantiate a https://wiki.lazarus.freepascal.org/fphttpserver[standalone HTTP server] in just a few lines of code. But it seems we don't need even this, `compileserver` is what we need.
 
 == Prerequisites
 
