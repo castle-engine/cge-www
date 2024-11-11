@@ -37,7 +37,7 @@ Both FPC and Delphi have built-in support for ZIP handling, we even https://gith
 
 == Prerequisites
 
-- *link:https://getpas2js.freepascal.org/[Pas2js]*
+- *link:https://getpas2js.freepascal.org/[Pas2js]*.
 +
 You can get it along with https://www.freepascal.org/[FPC] or install it separately from link:https://getpas2js.freepascal.org/[here]. We don't have any special version requirements, just get the latest stable version.
 +
@@ -57,6 +57,20 @@ pas2js -Jc -Jirtl.js -Tbrowser hello_pas2js.lpr
 ```
 +
 If everything went well, you should get a file `hello_pas2js.js` in the same directory.
+
+- *compileserver* from *link:https://getpas2js.freepascal.org/[Pas2js]*.
++
+This is a very useful tool distributed along with link:https://getpas2js.freepascal.org/[Pas2js]. Make sure you got it, test it by executing on the  command-line this:
++
+```
+compileserver
+```
++
+Leave it running and access `http://localhost:3000/` in a web browser.
++
+Kill it by _Ctrl+C_ in the terminal.
++
+Why is this useful? Most dynamic webpages should be tested through a webserver running on your system (like `compileserver`, though you can also spin a full https://httpd.apache.org/[Apache] or https://nginx.org/[Nginx]) that serves the HTML, JS, WASM and other files. You view them using a `http://localhost:.../` URL, which means you access the webserver on your own system. In contrast, just opening the HTML files in a web browser (which results in URLs like `file:///.../index.html`) will usually not work, because of security: JavaScript code on such pages will not be able to load extra resources (like WASM files). It's possible to configure your browser to circumvent this (disable CORS checking) but it's a hassle. Using a "temporary webserver" like `compileserver` is the easiest way to test your applications.
 
 - *link:https://www.freepascal.org/[FPC] with link:https://wiki.freepascal.org/WebAssembly[WebAssembly] support.*
 +
