@@ -139,7 +139,7 @@ We could also use https://en.wikipedia.org/wiki/Brotli[Brotli], a newer compress
 == TODO: How to continue
 
 - Read about _WebAssembly_ and _Pas2js + WebAssembly_. Figure out how to make the compiled code in `platformer.wasm` actually run in the browser. Consult https://github.com/Kagamma/castle-engine/tree/wasm32-wasi-port[wasm32-wasi-port] Kagamma's branch (though it is based on old CGE now)).
-- Start by getting the basics, writelns, logs (`CastleLog`) from CGE work and be visible in the browser console.
+- Start by getting the basics, writeln, logs (`CastleLog`) from CGE work and be visible in the browser console.
 - Then make the rendering work, by making our `CastleGLES` route calls to WebGL on the web. At the beginning, test by simple drawing (e.g. `DrawPrimitive2D`) before you have any data.
 - Then finish the plans in "How" section above: data from zip, sound, automatic webserver, etc.
 
