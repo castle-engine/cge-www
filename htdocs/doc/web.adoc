@@ -17,7 +17,7 @@ cgeimg::block[
   web_1_vivaldi.png|Castle Game Engine in Vivaldi
 ]
 
-== How
+== How it works (or will work)
 
 === Already working
 
@@ -171,7 +171,20 @@ Currently, the project executes, printing logs (using our cgeref:CastleLog[]) to
 == TODO: How to continue
 
 - Investigate next `Exception class:  object , message: indirect call to null` from `platformer.wasm` error cause.
-- Then make the rendering work, by making our `CastleGLES` route calls to WebGL on the web. At the beginning, test by simple drawing (e.g. `DrawPrimitive2D`) before you have any data.
+- Then make the rendering work, by routing calls to WebGL on the web.
++
+--
+- We could use WebGL from Pasj2s (see `pas2js/packages/rtl/src/webgl.pas` and pasj2s demos using it). We can make these calls available to our WebAssembly code (using canvas example from Pas2js and explanation from https://www.freepascal.org/~michael/articles/fpcwasm1/fpcwasm1.pdf how to expose JS functionality to WebAssembly).
+
+- ... but actually it seems unnecessary: FPC includes a unit `job_web` with `TJSWebGL2RenderingContext`. It does seem that the hard work is done for us, it should allow to expose WebGL API from Pas2js to WebAssembly. Learn how to use it. See wiki, https://wiki.freepascal.org/WebAssembly/DOM .
+
+- Define `CastleWebGL` unit, exposing these calls in a flat way, to be similar to OpenGLES, and add macro `CastleGLES:=CastleWebGL` in `castleconf.conf`.
+
+- Test rendering first on some simple application without any data, just do some `DrawRectangle` from CGE in `TCastleUserInterface.Draw`. Hack any CGE example for this.
+
+- Once we got this rendering, we need to pass resources, from our data, to web application -- preferably as one big zip, to allow synchronous reading of it in WebAssembly. See "How" plans.
+--
+
 - Then finish the plans in "How" section above: data from zip, sound, automatic webserver, etc.
 - _Trung Le (Kagamma)_ has been doing lots of work with CGE + FPC WebAssembly. His fork contains a branch https://github.com/Kagamma/castle-engine/tree/wasm32-wasi-port[wasm32-wasi-port]. Merge and/or cherry-pick this work to CGE as needed. Thank you!
 
