@@ -1,5 +1,7 @@
 # Tutorial: 3D physics fun (aka "the bad way to play chess")
 include::common.adoc[]
+:description: Castle Game Engine tutorial, explaining everything about the engine, using editor and Pascal coding, resulting in a complete application.  Consists of two parts: 1. Installation, editor, designing a 3D world, views, testing physics, 2. Coding using Pascal and engine API, behaviors, selection and hover, reusing a design of a 3D object.
+:cge-social-share-image: chess1.png
 
 cgeimg::block[
   chess1.png|Bad way to play chess,
