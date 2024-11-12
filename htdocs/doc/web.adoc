@@ -1,7 +1,7 @@
 # Web Target
 include::common.adoc[]
 :description: Upcoming support for web development in CGE.
-// :cge-social-share-image: blender_castle_1.png
+:cge-social-share-image: web_1_vivaldi.png
 
 == Introduction
 
@@ -12,14 +12,60 @@ This feature is in development now. You can compile for WebAssembly, but the res
 
 The goal of the _web target_ in _Castle Game Engine_ is to allow you to recompile more-or-less any application you wrote using _Castle Game Engine_ (using cgeref:TCastleWindow[]) to the web. So you can put your application on a website, as part of a regular HTML webpage, and users can play it instantly, without the need to download / install any native application or browser plugin.
 
+cgeimg::block[
+  web_1_firefox.png|Castle Game Engine in Firefox,
+  web_1_vivaldi.png|Castle Game Engine in Vivaldi
+]
+
 == How
 
-- We're using FPC https://wiki.freepascal.org/WebAssembly[WebAssembly] target. Huge thank you go to the whole FPC team for making it possible! For general documentation (unrelated to CGE), see https://www.freepascal.org/~michael/articles/fpcwasm1/fpcwasm1.pdf[this article by Michael Van Canneyt].
+=== Already working
 
-- To run the _WebAssembly_ in a web browser, there is additional "glue" code, which we also write in Pascal and compile using https://getpas2js.freepascal.org/[Pas2js]. The integration between https://getpas2js.freepascal.org/[Pas2js] and _FPC + WebAssembly_ is extremely easy, again thanks to the work of everyone involved!
+- We're using FPC https://wiki.freepascal.org/WebAssembly[WebAssembly] target.
++
+Huge thank you go to the whole FPC team for making it possible! For general documentation (unrelated to CGE), see https://www.freepascal.org/~michael/articles/fpcwasm1/fpcwasm1.pdf[this article by Michael Van Canneyt].
 
-// done: https://gitlab.com/freepascal.org/fpc/source/-/issues/40229
-// done: https://gitlab.com/freepascal.org/fpc/source/-/issues/39547
+- To run the _WebAssembly_ in a web browser, there is additional "glue" code, which we also write in Pascal and compile using https://getpas2js.freepascal.org/[Pas2js].
++
+The integration between https://getpas2js.freepascal.org/[Pas2js] and _FPC + WebAssembly_ is extremely easy, again thanks to the work of everyone involved!
+
+- For development purposes, we can run a simple webserver on the localhost. link:https://getpas2js.freepascal.org/[Pas2js] features a ready `compileserver`, we just use it.
++
+NOTE: https://wiki.lazarus.freepascal.org/fcl-web[FpWeb] also can instantiate a https://wiki.lazarus.freepascal.org/fphttpserver[standalone HTTP server] in just a few lines of code. But it seems we don't need even this, `compileserver` is all that we need.
+
+- Our link:build_tool[build tool] takes care of everything. You usually want to execute 2 commands:
++
+--
+1. `castle-engine compile --target=web  --mode=debug`
++
+This command:
++
+- generates web-specific files (in `castle-engine-output/web/`),
+- compiles the glue code using Pas2js,
+- compiles the application code using FPC for WebAssembly.
+2. `castle-engine run --target=web`
++
+This command:
++
+- runs web server (`compileserver`) on `http://localhost:3000/` to serve `castle-engine-output/web/dist/`,
+- runs web browser (default web browser on your system, logic using our cgeref:OpenUrl[]) to open `http://localhost:3000/`.
+--
++
+[NOTE]
+====
+It is also possible to just compile using FPC + WebAssembly to a `.wasm` file. This does a subset of work performed by `castle-engine compile --target=web`. To do this, just execute:
+
+```shell
+castle-engine compile --os=wasi --cpu=wasm32
+```
+
+You likely don't need to use above options, unless you have your own idea how to deploy the `.wasm` file. The `--target=web` does everything for you.
+====
+
+
+=== Plans (TODOs)
+
+- TODO: Our link:editor[] also does the above steps, just change the platform using _"Run -> Platform -> Web"_ menu item and hit _"Build and Run"_ (F9).
 
 - TODO: We render using https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API[WebGL 1.0], with optional WebGL 2.0 features. This is very similar to current rendering on mobile, where we use https://castle-engine.io/wp/2023/03/12/mobile-opengles-rendering-upgrades-occlusion-query-anisotropic-filtering-3d-textures-shadows-plus-new-occlusion-query-demo/[OpenGL ES 2.0, with optional OpenGL ES 3.0 features].
 +
@@ -37,18 +83,15 @@ Both FPC and Delphi have built-in support for ZIP handling, we even https://gith
 +
 Packing resources into ZIP is beneficial over just placing all data files separately in the webserver directory. It allows to download the ZIP once (at application load) and then our WebAssembly code can load data from it synchronously, thus it can work similarly to how a non-web game data is loaded. Naturally we also want to have cgeref:TCastleDownload[] working and being able to load things asynchronously (see our https://castle-engine.io/manual_network.php[network docs]).
 
-- For development purposes, we can run a simple webserver on the localhost. link:https://getpas2js.freepascal.org/[Pas2js] features a ready `compileserver`, we just use it.
+- Possibly throw in additional compression of data and/or wasm executable?
 +
-TODO: Make the pipeline to build + run automatically run `compileserver` in proper dir at the end. The goal is to enable this sequence from command-line:
+So far, file-size tests are promising. Compilation of https://github.com/castle-engine/castle-engine/tree/webassm_platformer_test/examples/platformer[examples/platformer], which practically uses 100% of CGE units, yields a binary `platformer.wasm` that has 16 MB. Gzipped it has 3.4 MB.
 +
-```
-castle-engine compile --target=web
-castle-engine run --target=web
-```
+The gzipped size is really what matters &mdash; both web browsers and servers support gzip-(de)compression on the fly, you can also just put ready-gzipped version on the server and tell the browser to just decompress. So in all practical cases, users will download 3.4 MB, not 16 MB.
 +
-and use it from CGE editor too.
+Note that above is for a _release_ build. The _debug_ build weights 51 MB, and gzipped 12 MB. How is the debug build actually useful on the web &mdash; I am not certain now :)
 +
-NOTE: https://wiki.lazarus.freepascal.org/fcl-web[FpWeb] also can instantiate a https://wiki.lazarus.freepascal.org/fphttpserver[standalone HTTP server] in just a few lines of code. But it seems we don't need even this, `compileserver` is what we need.
+We could also use https://en.wikipedia.org/wiki/Brotli[Brotli], a newer compression method also commonly supported by web browsers and servers.
 
 == Prerequisites
 
@@ -107,41 +150,30 @@ fpc -Twasi -Pwasm32 hello_wasm.lpr
 +
 If everything went well, you should get `hello_wasm.wasm` in the same directory.
 
-== What we have now
+== How to test what we have now
 
-- Branch https://github.com/castle-engine/castle-engine/tree/webassm_platformer_test[webassm_platformer_test] in CGE contains a code that compiles (but it is not functional yet!) for WebAssembly. This means that CGE compiles, and also build tool supports a new OS/CPU. So you can enter any CGE project and build it for WebAssembly. To test this:
-+
---
+Branch https://github.com/castle-engine/castle-engine/tree/webassm_platformer_test[webassm_platformer_test] in CGE contains the work on WebAssembly. To test it:
+
 1. Get the https://github.com/castle-engine/castle-engine/tree/webassm_platformer_test[webassm_platformer_test] branch of CGE.
 
 2. Follow link:compiling_from_source.php[compiling from source] docs to compile at least new CGE build tool from this CGE branch.
 
-3. Enter any CGE project and compile it for WebAssembly. For example, to compile the `examples/platformer` project:
+3. Enter any CGE project and compile and run it for WebAssembly. For example, to compile the `examples/platformer` project:
 +
 [source,shell]
 ----
-castle-engine compile --os=wasi --cpu=wasm32
-# or
-castle-engine compile --os=wasi --cpu=wasm32 --mode=debug
+castle-engine compile --target=web --mode=debug
+castle-engine run --target=web
 ----
---
 
-- _Trung Le (Kagamma)_ has been doing lots of work with CGE + FPC WebAssembly. His fork contains a branch https://github.com/Kagamma/castle-engine/tree/wasm32-wasi-port[wasm32-wasi-port]. We merge and/or cherry-pick this work to CGE as needed. Thank you!
-
-- File-size tests are promising. Compilation of https://github.com/castle-engine/castle-engine/tree/webassm_platformer_test/examples/platformer[examples/platformer], which practically uses 100% of CGE units, yields a binary `platformer.wasm` that has 16 MB. Gzipped it has 3.4 MB.
-+
-The gzipped size is really what matters &mdash; both web browsers and servers support gzip-(de)compression on the fly, you can also just put ready-gzipped version on the server and tell the browser to just decompress. So in all practical cases, users will download 3.4 MB, not 16 MB.
-+
-Note that above is for a _release_ build. The _debug_ build weights 51 MB, and gzipped 12 MB. How is the debug build actually useful on the web &mdash; I am not certain now :)
-+
-We could also use https://en.wikipedia.org/wiki/Brotli[Brotli], a newer compression method also commonly supported by web browsers and servers.
+Currently, the project executes, printing logs (using our cgeref:CastleLog[]) to the browser console. The rendering is not yet working.
 
 == TODO: How to continue
 
-- Read about _WebAssembly_ and _Pas2js + WebAssembly_. Figure out how to make the compiled code in `platformer.wasm` actually run in the browser. Consult https://github.com/Kagamma/castle-engine/tree/wasm32-wasi-port[wasm32-wasi-port] Kagamma's branch (though it is based on old CGE now)).
-- Start by getting the basics, writeln, logs (`CastleLog`) from CGE work and be visible in the browser console.
+- Investigate next `Exception class:  object , message: indirect call to null` from `platformer.wasm` error cause.
 - Then make the rendering work, by making our `CastleGLES` route calls to WebGL on the web. At the beginning, test by simple drawing (e.g. `DrawPrimitive2D`) before you have any data.
 - Then finish the plans in "How" section above: data from zip, sound, automatic webserver, etc.
+- _Trung Le (Kagamma)_ has been doing lots of work with CGE + FPC WebAssembly. His fork contains a branch https://github.com/Kagamma/castle-engine/tree/wasm32-wasi-port[wasm32-wasi-port]. Merge and/or cherry-pick this work to CGE as needed. Thank you!
 
 == Thank you
 
