@@ -130,7 +130,7 @@ cgeimg::block[
 
 . For the easiest setup, everything you want to bake should be in one Blender object (it can still have different materials, so also different textures, for various faces). You can just _join_ (_Ctrl + J_) all meshes.
 
-. Create a new texture (image) in Blender as a target for baking. I call this texture `baked` on the screnshot below.
+. Create a new texture (image) in Blender as a target for baking. I call this texture `baked` on the screenshot below.
 +
 Initial color doesn't really matter (just black is OK).
 +
@@ -189,7 +189,7 @@ cgeimg::block[
   blender_bake_110_in_editor.png|Level with baked lighting in Castle Game Engine editor
 ]
 
-NOTE: You can also choose to bake only some things into the texture (like _ambient occlusion_) and then choose to mix this newly baked texture with your regular texture in the engine. This means that the engine will use _multi-texturing_, which is fully supported across everything: https://docs.blender.org/manual/en/dev/addons/import_export/scene_gltf2.html[Blender -> X3D exporter can save material with mutiple textures if you set up nodes correctly] and link:gltf[gllTF] and _Castle Game Engine_ support it.
+NOTE: You can also choose to bake only some things into the texture (like _ambient occlusion_) and then choose to mix this newly baked texture with your regular texture in the engine. This means that the engine will use _multi-texturing_, which is fully supported across everything: https://docs.blender.org/manual/en/dev/addons/import_export/scene_gltf2.html[Blender -> X3D exporter can save material with multiple textures if you set up nodes correctly] and link:gltf[gllTF] and _Castle Game Engine_ support it.
 
 See also:
 

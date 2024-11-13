@@ -47,7 +47,7 @@ cgeimg::float[
 
 The cgeref:TCastleTiledMap[] is a cgeref:TCastleTransform[] instance, and as such you can move, rotate and scale it.
 
-You can also place link:viewport_and_scenes[other things in the viewport] (like cgeref:TCastleScene[], cgeref:TCastleImageTransform[]) in front or behind the map. Use the Z coordinate to control what is in front/behind. If you want to place something on top of a specifc map tile, the cgeref:TCastleTiledMap.TileRectangle[] method is useful.
+You can also place link:viewport_and_scenes[other things in the viewport] (like cgeref:TCastleScene[], cgeref:TCastleImageTransform[]) in front or behind the map. Use the Z coordinate to control what is in front/behind. If you want to place something on top of a specific map tile, the cgeref:TCastleTiledMap.TileRectangle[] method is useful.
 
 Inside the viewport you have a regular link:camera[]. You can move the camera, you can change the camera orthographic height (cgeref:TCastleOrthographic.Height[]) to zoom in/out. Add the cgeref:TCastle2DNavigation[] component as a child of your viewport to allow user to move/zoom on the map too.
 
