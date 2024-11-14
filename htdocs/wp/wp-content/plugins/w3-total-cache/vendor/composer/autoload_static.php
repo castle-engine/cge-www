@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit13b81efe3e6ff3621c72213476e5a182
+class ComposerStaticInit478b5ce6a217e61c41550f8cc0199805
 {
     public static $files = array (
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
@@ -603,6 +603,12 @@ class ComposerStaticInit13b81efe3e6ff3621c72213476e5a182
         'Aws\\FreeTier\\FreeTierClient' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/FreeTier/FreeTierClient.php',
         'Aws\\GameLift\\Exception\\GameLiftException' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/GameLift/Exception/GameLiftException.php',
         'Aws\\GameLift\\GameLiftClient' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/GameLift/GameLiftClient.php',
+        'Aws\\GeoMaps\\Exception\\GeoMapsException' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/GeoMaps/Exception/GeoMapsException.php',
+        'Aws\\GeoMaps\\GeoMapsClient' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/GeoMaps/GeoMapsClient.php',
+        'Aws\\GeoPlaces\\Exception\\GeoPlacesException' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/GeoPlaces/Exception/GeoPlacesException.php',
+        'Aws\\GeoPlaces\\GeoPlacesClient' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/GeoPlaces/GeoPlacesClient.php',
+        'Aws\\GeoRoutes\\Exception\\GeoRoutesException' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/GeoRoutes/Exception/GeoRoutesException.php',
+        'Aws\\GeoRoutes\\GeoRoutesClient' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/GeoRoutes/GeoRoutesClient.php',
         'Aws\\Glacier\\Exception\\GlacierException' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/Glacier/Exception/GlacierException.php',
         'Aws\\Glacier\\GlacierClient' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/Glacier/GlacierClient.php',
         'Aws\\Glacier\\MultipartUploader' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/Glacier/MultipartUploader.php',
@@ -835,8 +841,6 @@ class ComposerStaticInit13b81efe3e6ff3621c72213476e5a182
         'Aws\\NetworkManager\\NetworkManagerClient' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/NetworkManager/NetworkManagerClient.php',
         'Aws\\NetworkMonitor\\Exception\\NetworkMonitorException' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/NetworkMonitor/Exception/NetworkMonitorException.php',
         'Aws\\NetworkMonitor\\NetworkMonitorClient' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/NetworkMonitor/NetworkMonitorClient.php',
-        'Aws\\NimbleStudio\\Exception\\NimbleStudioException' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/NimbleStudio/Exception/NimbleStudioException.php',
-        'Aws\\NimbleStudio\\NimbleStudioClient' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/NimbleStudio/NimbleStudioClient.php',
         'Aws\\OAM\\Exception\\OAMException' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/OAM/Exception/OAMException.php',
         'Aws\\OAM\\OAMClient' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/OAM/OAMClient.php',
         'Aws\\OSIS\\Exception\\OSISException' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/OSIS/Exception/OSISException.php',
@@ -1727,9 +1731,9 @@ class ComposerStaticInit13b81efe3e6ff3621c72213476e5a182
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit13b81efe3e6ff3621c72213476e5a182::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit13b81efe3e6ff3621c72213476e5a182::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit13b81efe3e6ff3621c72213476e5a182::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit478b5ce6a217e61c41550f8cc0199805::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit478b5ce6a217e61c41550f8cc0199805::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit478b5ce6a217e61c41550f8cc0199805::$classMap;
 
         }, null, ClassLoader::class);
     }
