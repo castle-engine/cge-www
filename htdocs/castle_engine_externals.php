@@ -67,7 +67,7 @@ function echo_scarf_tracking()
   */
 
 ?>
-<img referrerpolicy="no-referrer-when-downgrade" src="https://static.scarf.sh/a.png?x-pxid=8fb63cd5-e9ab-4d27-af9b-a979ff518df1" alt="Scarf Analytics" width="1" height="1" />
+<img referrerpolicy="no-referrer-when-downgrade" src="https://static.scarf.sh/a.png?x-pxid=8fb63cd5-e9ab-4d27-af9b-a979ff518df1" alt="Scarf Analytics" width="1" height="1">
 <?php
 }
 

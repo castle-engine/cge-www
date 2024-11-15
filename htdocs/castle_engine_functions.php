@@ -787,7 +787,7 @@ function _castle_header_menu($current_page)
     }
 
     // finish output of <a> content
-    $result .= 'class="' . $a_classes . '"' . $a_attributes . '>';
+    $result .= ' class="' . $a_classes . '"' . $a_attributes . '>';
     if (isset($menu_item['title-for-header-menu'])) {
       $result .= $menu_item['title-for-header-menu'];
     } else {
@@ -1368,6 +1368,7 @@ function echo_shared_body_begin($path, $enable_sidebar = true)
       _castle_patreon_box() .
       castle_search_box() .
       '
+      </div>
     </div>
   </nav>';
 
