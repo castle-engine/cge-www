@@ -1133,7 +1133,13 @@ function _castle_patreon_box()
     <form class="container-fluid justify-content-start d-flex castle-donate-button-form">
       <a href="' .
       //PATREON_URL .
-      'donate' .
+      /* Note: using page_url to make URL absolute, this is necessary when
+         navigation is inside generated PasDoc page like
+         https://castle-engine.io/apidoc/html/index.html
+         and link should not lead to
+         https://castle-engine.io/apidoc/html/donate
+      */
+      page_url('doc/donate') .
       '" class="btn btn-primary btn-success">Donate</a>
     </form>';
   return $result;
