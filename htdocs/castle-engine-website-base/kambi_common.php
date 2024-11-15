@@ -92,11 +92,6 @@ define_if_needed('CASTLE_ENVIRONMENT', 'production');
 define('S_HERE_ARE_BINARIES', 'Here are the binaries. No special installation ' .
   'is required, just unpack these archives and run the program.');
 
-/* Constants for languages, used for $page_lang parameter of common_header.
-   They are also suitable for HTML (e.g. as <html lang="..."> value). */
-define('LANG_PL', 'pl');
-define('LANG_EN', 'en');
-
 /* in normal circumstances this should always be 'index' */
 define('MAIN_PAGE_BASENAME', 'index');
 
@@ -354,8 +349,6 @@ function common_header($a_page_title, array $parameters = array())
 
   $page_title = $a_page_title;
 
-  $page_lang = isset($parameters['lang']) ? $parameters['lang'] : LANG_EN;
-
   kambi_bootstrap();
 
 ?>
@@ -366,7 +359,7 @@ if ($castle_wordpress) {
   echo ' class="no-js no-svg"';
 } else {
   /* when $castle_wordpress, then Wordpress adds lang= in language_attributes() call */
-  echo 'lang="' . $page_lang . '"';
+  echo 'lang="en"';
 }
 ?>>
 
