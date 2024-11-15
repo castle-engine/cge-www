@@ -1060,7 +1060,7 @@ function castle_header($a_page_title, array $parameters = array())
   if (array_key_exists('canonical_url', $parameters)) {
     $common_header_parameters['canonical_url'] = $parameters['canonical_url'];
   } else {
-    // Autocalcualate canonical_url based on $this_page_name, if none provided.
+    // Auto-calculate canonical_url based on $this_page_name, if none provided.
     global $this_page_name;
     $common_header_parameters['canonical_url'] = CASTLE_PROD_URL . $this_page_name;
   }
