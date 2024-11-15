@@ -244,12 +244,6 @@ function page_url($page_name, $hash_link = '')
   return $result;
 }
 
-/* Deprecated version of page_url. */
-function en_page_url($page_name, $hash_link = '')
-{
-  return page_url($page_name, $hash_link);
-}
-
 /* Internal, aby zapewnić wspólną implementację dla a_href_page i
    a_href_page_hashlink. */
 function a_href_page_core($link_title, $page_name, $hash_link)
