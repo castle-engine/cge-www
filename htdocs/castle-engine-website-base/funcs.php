@@ -66,13 +66,6 @@ function readable_file_size($f_name)
   return readable_byte_size(filesize($f_name));
 }
 
-/* zwraca napis <a href="$fname">$link_title (readable_file_size($f_name)) </a> */
-function a_href_size($link_title, $f_name)
-{
-  $rable_size = readable_file_size($f_name);
-  return "<a href=\"$f_name\">$link_title ($rable_size)</a>";
-}
-
 /* zwraca boola - czy wsrod argv[0]...argv[argc-1] jest string param ?
    (tak, tak - w phpie istotne argv to [0..argc-1] zamiast [1..argc]
    w C czy Pascalu) */

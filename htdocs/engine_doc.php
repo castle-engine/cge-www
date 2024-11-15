@@ -41,22 +41,15 @@ to this document later.</p>
 
 <h2>Sources</h2>
 
-<p>Sources archive (full DocBook sources, Makefile, XSL, images &mdash;
-everything you need to remake the HTML / PDF outputs above) :<br />
-<?php echo current_www_a_href_size(
-  'vrml_engine_doc.tar.gz',
-  'vrml_engine_doc/vrml_engine_doc.tar.gz'); ?></p>
-
-<p>You will need docbook (search for <code>docbook</code>,
-<code>docbook-xsl</code>, <code>xmlto</code> packages)
-to make HTML version of the document from DocBook sources.
-Additionally you will need <code>fop</code> (version &gt;= 0.9x)
-and <code>ttf-dejavu</code> font if you want to make PDF version.</p>
-
-<p>You can also get the latest version from <a href="https://github.com/castle-engine/cge-documentation">the GitHub repository (in vrml_engine_internals)</a>.
+<p>See <a href="https://github.com/castle-engine/cge-documentation">cge-documentation</a>
+repository, subdirectory
+<a href="https://github.com/castle-engine/cge-documentation/tree/master/vrml_engine_internals">vrml_engine_internals</a>.
+This contains full DocBook sources, Makefile, XSL, images &mdash;
+everything you need to remake the HTML / PDF outputs above.
+See the README for information how to regenerate it.</p>
 
 <p>The example VRML 1.0/2.0 models, used for screenshots
-in this work, are available inside <?php echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>
+in this work, are available inside <?php echo a_href_page('our demo models', 'demo_models'); ?>
  (see in <code>vrml_engine_doc_simple_examples</code> subdirectory).
 So you can view them comfortably in
 <a href="castle-model-viewer">Castle Model Viewer</a> etc.

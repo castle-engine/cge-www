@@ -35,7 +35,6 @@
    - Instead of <a href ...> always use
      - a_href_page[_hashlink] function for php/html files.
      - current_www_a_href_size for downloadable files (not php/html).
-       Do not use a_href_size from funcs.php.
      - or lower-level page_url for any files.
 
      This makes sure that CASTLE_ENVIRONMENT is honored,
@@ -95,17 +94,7 @@ define('S_HERE_ARE_BINARIES', 'Here are the binaries. No special installation ' 
 /* in normal circumstances this should always be 'index' */
 define('MAIN_PAGE_BASENAME', 'index');
 
-/* Global variables =======================================================
-
-   Żadna funkcja z tego pliku (poza common_header)
-   nie może być wywołana przed zainicjowaniem
-   wszystkich poniższych zmiennych (za wyjątkiem kilku wyjątków które będą
-   miały to wyraźnie stwierdzone w komentarzu; będzie wtedy wyraźnie określone
-   których zmiennych dana funkcja wymaga).
-
-   Jest gwarantowane że wywołanie common_header zapewnia że wszystkie te
-   zmienne są zainicjowane, więc po wywołaniu common_header nie musisz się
-   już o nic martwić. */
+/* Global variables ======================================================= */
 
 /* Initialized in common_header.
    This is always sanitized when displaying as HTML (so you cannot use here HTML tags).
@@ -131,14 +120,13 @@ function pretty_heading($heading_text)
   return $result;
 }
 
-/* When CASTLE_ENVIRONMENT != 'offline' then this is exactly a_href_size.
-   Otherwise prefixes $f_name with full URL our page (CASTLE_PROD_URL)
-   and doesn't give size.
+/* Return link to given file ($f_name should be relative file URL)
+   with size of the file in brackets.
 
-   Innymi slowy, $f_name powinien byc sciezka wzgledna do pliku.
-   Wtedy ta funkcja wygeneruje a_href_size lub,
-   w przypadku offline, sensowny odpowiednik z linkiem CASTLE_PROD_URL.
-*/
+   Behaves OK when CASTLE_ENVIRONMENT == 'offline',
+   makes then absolute URL and doesn't query the file size (because
+   the file size may change between generating the offline version
+   and when the offline document will be read). */
 function current_www_a_href_size($link_title, $f_name)
 {
   if (CASTLE_ENVIRONMENT == 'offline') {
