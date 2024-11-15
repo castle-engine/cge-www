@@ -193,6 +193,7 @@ Redirect "/x3d_overview.pdf" "/vrml_x3d.php"
 Redirect "/vrml_x3d.php" "/x3d"
 Redirect "/new_features_in_castle_game_engine_7.0" "/release"
 Redirect "/upgrading_to_castle_game_engine_7.0" "/release"
+Redirect "/creating_data_dragon_bones.php" "/spine"
 
 # alias names for slides, docs hosted outside
 Redirect "/itdevcon2023/slides1" "https://docs.google.com/presentation/d/e/2PACX-1vQiwg5wboWVn8aCgxj7u617taha28IQDN1GPKtnEICi3aHRBhor9ZLLpyXmF_cHB4LdcMuH3AXwZ001/pub?start=false&loop=false&delayms=3000"
