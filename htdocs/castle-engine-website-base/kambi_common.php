@@ -320,6 +320,30 @@ function kambi_bootstrap()
 
 /* header ============================================================ */
 
+/* Subset of common_header that goes inside <head> and makes sense for both
+   regular CGE pages, and pages generated (by PasDoc or DocBook
+   that already have basic <head> stuff, like <title>, so we should not add it). */
+function echo_shared_head()
+{
+?>
+
+<!-- Bootstrap -->
+<link href="<?php echo page_requisite('castle-engine-website-base/node_modules/bootstrap/dist/css/bootstrap.min.css'); ?>" rel="stylesheet">
+
+<!-- Bootstrap icons, https://icons.getbootstrap.com/ -->
+<link href="<?php echo page_requisite('castle-engine-website-base/node_modules/bootstrap-icons/font/bootstrap-icons.min.css'); ?>" rel="stylesheet">
+
+<!-- Colorbox -->
+<link href="<?php echo page_requisite('castle-engine-website-base/node_modules/jquery-colorbox/example3/colorbox.css'); ?>" type="text/css" rel="stylesheet">
+
+<!-- slick carousel https://github.com/kenwheeler/slick/ -->
+<link rel="stylesheet" type="text/css" href="<?php echo page_requisite('castle-engine-website-base/node_modules/slick-carousel/slick/slick.css'); ?>">
+<link rel="stylesheet" type="text/css" href="<?php echo page_requisite('castle-engine-website-base/node_modules/slick-carousel/slick/slick-theme.css'); ?>">
+
+<?php
+  echo_header_bonus();
+}
+
 /* Echo a header.
    Sets also global $page_basename, if not already set.
 
@@ -435,24 +459,10 @@ if ($castle_wordpress) {
 
     <?php
   }
+
+  echo_shared_head();
 ?>
 
-<!-- Bootstrap -->
-<link href="<?php echo page_requisite('castle-engine-website-base/node_modules/bootstrap/dist/css/bootstrap.min.css'); ?>" rel="stylesheet">
-
-<!-- Bootstrap icons, https://icons.getbootstrap.com/ -->
-<link href="<?php echo page_requisite('castle-engine-website-base/node_modules/bootstrap-icons/font/bootstrap-icons.min.css'); ?>" rel="stylesheet">
-
-<!-- Colorbox -->
-<link href="<?php echo page_requisite('castle-engine-website-base/node_modules/jquery-colorbox/example3/colorbox.css'); ?>" type="text/css" rel="stylesheet">
-
-<!-- slick carousel https://github.com/kenwheeler/slick/ -->
-<link rel="stylesheet" type="text/css" href="<?php echo page_requisite('castle-engine-website-base/node_modules/slick-carousel/slick/slick.css'); ?>">
-<link rel="stylesheet" type="text/css" href="<?php echo page_requisite('castle-engine-website-base/node_modules/slick-carousel/slick/slick-theme.css'); ?>">
-
-<?php
-  echo_header_bonus();
-?>
 </head>
 
 <body <?php
@@ -465,7 +475,10 @@ if ($castle_wordpress) {
 
 /* footer ============================================================ */
 
-function common_footer($js_using_jquery = '')
+/* Subset of common_footer that goes right before </body> and makes sense for both
+   regular CGE pages, and pages generated (by PasDoc or DocBook
+   that already have basic <head> stuff, like <title>, so we should not add it). */
+function echo_shared_body_end()
 {
   global $castle_wordpress;
 ?>
@@ -543,15 +556,16 @@ jQuery(".banner-container").slick({
 });
 </script>
 
+<script src="<?php echo page_requisite('castle-engine-website-base/castle-engine.js'); ?>"></script>
 <?php
-if ($js_using_jquery) {
-  echo '<script src="' . $js_using_jquery . '"></script>';
 }
-?>
 
+function common_footer()
+{
+  echo_shared_body_end();
+?>
 </body>
 </html>
-
 <?php
 }
 

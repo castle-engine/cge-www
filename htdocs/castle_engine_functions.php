@@ -1081,7 +1081,7 @@ function castle_header($a_page_title, array $parameters = array())
   if (isset($parameters['path'])) {
     $path = $parameters['path'];
   }
-  echo_castle_header_suffix($path);
+  echo_shared_body_begin($path);
 
   // output extra header HTML, in case we're part of book
   if ($castle_current_book != NULL) {
@@ -1275,7 +1275,9 @@ function castle_slideshow()
    like sm, md, lg. */
 define('CASTLE_BREAKPOINT_SIDEBAR', 'md');
 
-function echo_castle_header_suffix($path, $enable_sidebar = true)
+/* Things that should be placed right after <body>.
+   Used by both regular CGE pages, and generated (PasDoc, DocBook) pages. */
+function echo_shared_body_begin($path, $enable_sidebar = true)
 {
   global $castle_sidebar;
   global $castle_sitemap;
@@ -1434,7 +1436,7 @@ function castle_footer()
       </div>';
   }
 
-  common_footer(page_requisite('castle-engine-website-base/castle-engine.js'));
+  common_footer();
 }
 
 function echo_footer ()
