@@ -1,6 +1,6 @@
 <?php
 require_once 'castle_engine_functions.php';
-castle_header('Custom drawn 2D controls: player HUD');
+castle_header('Advanced: custom drawn 2D controls');
 
 $toc = new TableOfContents(
   array(
@@ -12,11 +12,9 @@ $toc = new TableOfContents(
     new TocItem('Images', 'images', 1),
     new TocItem('Complete example code showing above features', 'comple_code_finished', 1),
     new TocItem('Animations from images (movies, sprite sheets)', 'animations', 1),
-    new TocItem('Player inventory', 'inventory', 1),
     new TocItem('Screen fade effects', 'screen_fade', 1),
     new TocItem('Coordinates and window (container) sizes', 'coordinates_and_sizes'),
     new TocItem('Take into account UI scaling and anchors', 'scaling_and_anchors'),
-    new TocItem('Examples', 'examples'),
   )
 );
 
@@ -36,29 +34,13 @@ user interface from existing UI controls</a>,
 sometimes it's more flexible to create a control that renders what you want
 using lower-level utilities for 2D drawing.
 
+<p><b>Warning: Drawing 2D things manually, as documented on this page,    is possible but not advised.</b> In our experience, manual drawing often results in more work while at the same time the resulting solution is less efficient and has less features (compared to composing your UI from components). The page below lists various ways to draw things manually but also points to higher-level components that achieve the same, and often are easier to use and more powerful. So, instead of this page, better read about <a href="user_interface">higher-level UI controls</a> and use them.
+
 <p>An example that we will consider in this chapter is designing
 a HUD (<i>heads-up display</i>) that displays some player information,
 like current life.</p>
 
-<p>There are two places where you can draw:</p>
-
-<ol>
-  <li><p>You can just place the appropriate drawing code in
-    <code>OnRender</code> event
-    (see <?php echo cgeRef('TCastleWindow.OnRender'); ?>,
-    <?php echo cgeRef('TCastleControl.OnRender'); ?>).
-    This is simple to use, and works OK for simple applications.
-  </li>
-
-  <li><p>In the long-term, it's usually better to create your own
-    <?php echo cgeRef('TCastleUserInterface'); ?>
-    descendant. This way you wrap the rendering
-    (and possibly other processing) inside your own class.
-    You can draw anything you want in the overridden
-    <?php echo cgeRef('TCastleUserInterface.Render'); ?>
-     method.</p>
-   </li>
-</ol>
+<p>Place your own drawing code in an overridden <code>Render</code> method of <?php echo cgeRef('TCastleUserInterface'); ?> descendants. It is simplest to use your <a href="views">view class</a> (which is also a <?php echo cgeRef('TCastleUserInterface'); ?> descendant) for this, just add a <code>Render</code> method to your view. But you can also create your own <?php echo cgeRef('TCastleUserInterface'); ?> descendants.</p>
 
 <?php echo $toc->html_section(); ?>
 
@@ -92,9 +74,9 @@ of <?php echo cgeRef('TCastleFont'); ?>
 <?php echo a_href_page('the manual chapter about "Text and fonts" for more',
 'manual_text'); ?>.
 
-<p><i>Note: It is more advised (easier, more flexible) to use
+<p><b>Note: It is more advised (easier, more flexible) to use
 <?php echo cgeRef('TCastleLabel'); ?>
- control than to draw text like above.</i>
+ control than to draw text like above.</b>
 
 <?php echo $toc->html_section(); ?>
 
@@ -126,9 +108,9 @@ begin
   ]));
 end;'); ?>
 
-<p><i>Note: It is more advised (easier, more flexible) to use
+<p><b>Note: It is more advised (easier, more flexible) to use
 <?php echo cgeRef('TCastleRectangleControl'); ?>
- control than to draw rectangle like above.</i>
+ control than to draw rectangle like above.</b>
 
 <p>To <b>draw a circle</b> use the
 <?php echo cgeRef('DrawCircle'); ?>.
@@ -136,9 +118,9 @@ end;'); ?>
  <?php echo cgeRef('DrawRectangleOutline'); ?>
  <?php echo cgeRef('DrawCircleOutline'); ?>.
 
-<p><i>Note: It is more advised (easier, more flexible) to use
+<p><b>Note: It is more advised (easier, more flexible) to use
 <?php echo cgeRef('TCastleShape'); ?>
- control than to draw shapes like above.</i>
+ control than to draw shapes like above.</b>
 
 <p>To <b>draw an arbitrary 2D primitive</b> use the
 <?php echo cgeRef('DrawPrimitive2D'); ?>
@@ -196,9 +178,9 @@ begin
   FMyImage.Draw(420, 10);
 end;'); ?>
 
-<p><i>Note: Note: It is more advised (easier, more flexible) to use
+<p><b>Note: It is more advised (easier, more flexible) to use
 <?php echo cgeRef('TCastleImageControl'); ?>
- control than to draw image like above.</i>
+ control than to draw image like above.</b>
 
 <?php echo $toc->html_section(); ?>
 
@@ -213,26 +195,7 @@ You can download and compile it right now!
 
 <p>See e.g. <a href="https://gitlab.com/michaliskambi/muuu">our game "Muuu"</a> for a demo of using sprite animations.
 
-<?php echo $toc->html_section(); ?>
-
-<p>The <code>TPlayer</code> class manages the player inventory.
-Each <i>inventory item</i> may already have a default image associated with it.
-It is defined in the <code>resource.xml</code> file of the item,
-see <a href="manual_resources.php">the chapter about using creatures / items</a>
-and see <a href="creating_data_resources.php">the chapter about defining creatures / items resource.xml files</a>
-and see the <code>examples/fps_game/data/item_medkit/</code> for an example
-item definition.
-
-<p>The image is available as a
- <?php echo cgeRef('TDrawableImage'); ?>
- instance ready for drawing.
-For example, you can iterate over the inventory list and show the items like this:</p>
-
-<?php echo pascal_highlight(
-'for I := 0 to Player.Inventory.Count - 1 do
-  Player.Inventory[I].Resource.GLImage.Draw(I * 100, 0);'); ?>
-
- <p>See the <code>examples/fps_game/</code> for a working example of this.</p>
+<p><b>Note: We advise to use instead <a href="sprite_sheets">sprite sheets</a> for animations, as they are more efficient and easier to use.</b>
 
 <?php echo $toc->html_section(); ?>
 
@@ -256,9 +219,9 @@ else
  That is why we carelessly always call <?php echo cgeRef('GLFadeRectangleDark'); ?> &mdash; when player is not dead,
  and is not in pain (<code>Player.FadeOutIntensity</code> = 0) then nothing will actually happen.
 
- <p><i>Note: There is also a full-featured UI control that draws an effect with
- blending (possibly modulated by an image):
- <?php echo cgeRef('TCastleFlashEffect'); ?>.</i>
+ <p><b>Note: There is also a full-featured UI control that draws an effect with
+ blending (possibly modulated by an image), and we advise to use it instead:
+ <?php echo cgeRef('TCastleFlashEffect'); ?>.</b>
 
 <?php echo $toc->html_section(); ?>
 
@@ -327,14 +290,6 @@ begin
   MyControl.Height := 400;
   Window.Controls.InsertFront(MyControl);
 end;'); ?>
-
-<?php echo $toc->html_section(); ?>
-
-<p>See <code>examples/fps_game</code> for a working and fully-documented
-demo of such <code>TPlayerHud</code> implementation.
-See <?php echo a_href_page('"The Castle"', 'castle'); ?> sources (unit <code>GamePlay</code>)
-for an example implementation that shows
-more impressive player's life indicator and inventory and other things on the screen.
 
 <?php
 castle_footer();

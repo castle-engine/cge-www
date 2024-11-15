@@ -269,7 +269,7 @@ $castle_sitemap = array(
               'doc/viewport_and_scenes_from_code' => array('title' => 'Writing code to modify scenes and transformations'),
               'doc/behaviors' => array('title' => 'Behaviors'),
               'doc/multiple_viewports_to_display_one_world' => array('title' => 'Multiple viewports to display one world'),
-              'doc/expose' => array('title' => 'Expose scene elements, like children transformations as TCastleScene children'),
+              'doc/expose' => array('title' => 'Expose scene elements, like children transformations, as TCastleScene children'),
               // TODO: 'doc/expose' => array('title' => 'Expose scene elements, like children transformations, lights, cameras as TCastleScene children'),
             ),
           ),
@@ -277,7 +277,7 @@ $castle_sitemap = array(
             'sub' => array(
               'manual_text' => array('title' => 'Text and fonts'),
               'doc/loading_image' => array('title' => 'Customize loading image'),
-              'manual_2d_ui_custom_drawn' => array('title' => 'Custom drawn 2D controls: player HUD'),
+              'manual_2d_ui_custom_drawn' => array('title' => 'Advanced: custom drawn 2D controls'),
             )
           ),
           'doc/editor' => array('title' => 'Editor',
