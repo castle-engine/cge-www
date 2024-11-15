@@ -69,7 +69,7 @@ We love to see how you use CGE.</i>
   <?php gallery_link('The Unholy Society',
     'Game inspired by action movies and comic books such as <i>Preacher</i> and <i>Constantine</i>. Developed using <i>Castle Game Engine</i> by <a href="https://cat-astrophe-games.com/">Cat-astrophe Games</a>, most animations done in <a href="https://castle-engine.io/spine">Spine</a>. Released on <a href="https://www.nintendo.com/games/detail/the-unholy-society-switch/">Nintendo Switch</a>, <a href="https://store.steampowered.com/app/746750/The_Unholy_Society/">Steam (Windows, Linux)</a>, <a href="https://apps.apple.com/app/id1562725324">iOS</a> and <a href="https://play.google.com/store/apps/details?id=games.catastrophe.adventure.point.click.unholy.society">Android</a> (mobile versions come with free demo).',
     'unholy_society_in_game.jpg',
-    'https://unholy-society.com/');
+    'https://store.steampowered.com/app/746750/The_Unholy_Society/');
   ?>
 
   <?php gallery_link('Bumpcars-2019',
@@ -90,7 +90,7 @@ We love to see how you use CGE.</i>
   <?php gallery_link('Escape from the Universe',
     'Action shooter in the outer space with an incredible randomized storyline. New version is already released on the Nintendo Switch platform. Originally, the game was available for mobile devices (Android and iOS).',
     'escape_universe.png',
-    'https://cat-astrophe-games.com/escape-universe/'); ?>
+    'https://www.nintendo.com/us/store/products/escape-from-the-universe-switch/'); ?>
 
   <?php gallery_link('Connect4',
     'Fun free game for Android. You can plan against a computer, or against a friend over the network. Shows various engine features like localization and 2D scalable UI. <a href="https://castle-engine.io/wp/2018/04/11/connect4-new-android-game-using-castle-game-engine/">By Benedikt Magnus and LanIstAn.</a>',

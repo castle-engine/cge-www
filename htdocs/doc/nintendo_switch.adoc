@@ -7,7 +7,7 @@ include::common.adoc[]
 
 _Castle Game Engine_ supports compiling games to the https://www.nintendo.com/switch/[Nintendo Switch] console.
 
-It is a modern, successful, indie-friendly console from Nintendo. Our friend company, _Cat-astrophe Games_, has already released games using CGE on Nintendo Switch (https://cat-astrophe-games.party/escape-universe/[Escape from the Universe] and https://unholy-society.com/[The Unholy Society]).
+It is a modern, successful, indie-friendly console from Nintendo. Our friend company, _Cat-astrophe Games_, has already released games using CGE on Nintendo Switch (https://www.nintendo.com/us/store/products/escape-from-the-universe-switch/[Escape from the Universe] and https://www.nintendo.com/games/detail/the-unholy-society-switch/[The Unholy Society]).
 
 It is a full integration, really 100% of the engine works on Nintendo Switch. You just write cross-platform Pascal code using CGE units. You can compile the application for _Nintendo Switch_:
 
