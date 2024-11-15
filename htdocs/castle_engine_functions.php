@@ -393,16 +393,6 @@ $castle_sitemap = array(
               'doc/coding_conventions' => array('title' => 'Coding Conventions'),
             )
           ),
-          'manual_high_level_3d_classes' => array('title' => 'Deprecated: Utilities for typical 3D games',
-            'sub' => array(
-              'manual_3d_utilities_overview' => array('title' => 'Overview'),
-              'manual_game_level' => array('title' => 'Loading game level'),
-              'manual_player' => array('title' => 'Player'),
-              'manual_resources' => array('title' => 'Defining creatures and items'),
-              'manual_resources_using_existing' => array('title' => 'Using creatures and items'),
-              'manual_resources_extending' => array('title' => 'Extending creatures and items classes'),
-            ),
-          ),
         ),
       ),
       'creating_data_intro' => array('title' => 'Creating Game Data',
@@ -425,14 +415,6 @@ $castle_sitemap = array(
             )
           ),
           'creating_data_auto_generated_textures' => array('title' => 'Auto-generated compressed and scaled textures'),
-          'creating_data_xml' => array('title' => 'Deprecated: XML files describing game data for typical 3D games',
-            'sub' => array(
-              'creating_data_levels' => array('title' => 'Levels'),
-              'creating_data_resources' => array('title' => 'Resources (creatures and items)'),
-              'creating_data_player' => array('title' => 'Player configuration'),
-            )
-          ),
-          'creating_data_sound' => array('title' => 'Deprecated: Sounds XML description'),
         )
       ),
       'reference' => array('title' => 'API Reference', 'url' => reference_link()),
