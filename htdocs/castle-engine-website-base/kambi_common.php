@@ -373,9 +373,8 @@ if ($castle_wordpress) {
 <head>
 
 <meta charset="<?php if ($castle_wordpress) bloginfo('charset'); else echo 'utf-8'; ?>">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="Author" content="Michalis Kamburelis">
+<meta name="Author" content="Michalis Kamburelis and Castle Game Engine Developers">
 
 <?php
   if (array_key_exists('canonical_url', $parameters)) {
@@ -471,9 +470,6 @@ if ($castle_wordpress) {
 
 <?php
   echo_header_bonus();
-  if (isset($parameters['bonus_head_html'])) {
-      echo $parameters['bonus_head_html'];
-  }
 ?>
 </head>
 
