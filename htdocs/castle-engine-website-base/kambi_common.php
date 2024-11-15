@@ -419,11 +419,6 @@ if ($castle_wordpress) {
 
   echo '<link rel="Start" href="/" type="text/html" title="Castle Game Engine">' . "\n";
 
-  $extra_body_classes = array();
-  if (defined('CASTLE_GITHUB_NAME')) {
-    $extra_body_classes[] = 'has-github-ribbon';
-  }
-
   if ($castle_wordpress) {
     echo '<link rel="profile" href="http://gmpg.org/xfn/11">'; // as twentyseventeen does
     wp_head();
@@ -475,11 +470,7 @@ if ($castle_wordpress) {
 
 <body <?php
 if ($castle_wordpress) {
-  body_class($extra_body_classes);
-} else {
-  if (count($extra_body_classes) != 0) {
-    echo 'class="' . implode(' ', $extra_body_classes) . '"';
-  }
+  body_class();
 } ?>>
 
 <?php

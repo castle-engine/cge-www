@@ -4,10 +4,6 @@ castle_header("Supported compilers and IDEs", array(
   'social_share_image' => page_url('images/castle_game_engine_icon.png'),
 ));
 
-echo '<img src="images/castle_game_engine_icon.png"
-  alt="Castle Game Engine icon"
-  class="engine-icon" />';
-
 $toc = new TableOfContents(
   array(
     new TocItem('FPC and Lazarus', 'fpc_lazarus'),

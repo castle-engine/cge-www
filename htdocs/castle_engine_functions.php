@@ -1341,12 +1341,6 @@ function echo_castle_header_suffix($path, $enable_sidebar = true)
     $castle_sidebar = '';
   }
 
-  if (defined('CASTLE_GITHUB_NAME')) {
-    $github_ribbon = '<a href="https://github.com/castle-engine/' . CASTLE_GITHUB_NAME . '" class="github-ribbon"><img src="' . page_requisite('images/forkme_right_orange_ff7600.png') . '" alt="Fork me on GitHub"></a>';
-  } else {
-    $github_ribbon = '';
-  }
-
   global $main_page;
 
   $rendered = '
@@ -1373,8 +1367,6 @@ function echo_castle_header_suffix($path, $enable_sidebar = true)
       castle_search_box() .
       '
     </div>
-
-    ' . $github_ribbon . '
   </nav>';
 
   /* preview version is not maintained anymore
