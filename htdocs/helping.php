@@ -1,35 +1,25 @@
 <?php
 require_once 'castle_engine_functions.php';
 castle_header('Helping in the engine development');
-?>
 
-<!--p>We have a ton of TODOs if you're interested in helping the engine development!
-Thank you!:)</p-->
-
-<?php
 $toc = new TableOfContents(
   array(
-    new TocItem('For everyone', 'everyone'),
-    new TocItem('For developers', 'developers'),
-    new TocItem('For 3D artists', 'creators'),
-    // new TocItem('For Blender users', 'blender'),
-    new TocItem('For Linux package maintainers', 'distros'),
+    new TocItem('Everyone', 'everyone'),
+    new TocItem('If you create games', 'creators'),
+    new TocItem('If you are a package maintainer', 'distros'),
   ));
 ?>
 
 <?php echo $toc->html_toc(); ?>
 
-<!-- <p>If you'd like to help in the development of our engine, here are some -->
-<!-- proposed tasks:</p> -->
-
 <?php echo $toc->html_section(); ?>
 
 <ul>
-  <li><a href="https://www.patreon.com/castleengine">Support us on Patren</a>
-  <li><a href="donate_other.php">Donate through other ways</a>
-  <!--li>First of all, don't hesitate to post questions and suggestions
-    about anything to our <a href="<?php echo FORUM_URL; ?>">forum</a>.-->
-  <!--?php echo a_href_page('Donate', 'donate'); ?-->
+  <li>
+    <p><a href="https://www.patreon.com/castleengine">Support us on Patreon</a>.
+
+  <li>
+    <p><a href="donate">All the ways how you can donate - Patreon, Open Collective, PayPal, crypto...</a>
 
   <?php /*
   Delayed for now,
@@ -49,87 +39,55 @@ $toc = new TableOfContents(
     -->
   */ ?>
 
-  <li>Talk about our engine on blogs and social platforms :)
+  <li>Spread the word! Mention the engine in your company, in your online community, talk about our engine on blogs, social platforms.
 </ul>
 
 <?php echo $toc->html_section(); ?>
 
-<!--p>For Object Pascal (<a href="http://www.freepascal.org/">FPC</a>, <a href="http://www.lazarus.freepascal.org/">Lazarus</a>) developers:-->
-
 <ul>
-  <li><p><b>Use our engine to make your next fantastic game!</b>
+  <li><p>First of all, just <b>use our engine to make your next fantastic game!</b> And publish it everywhere you can (your website, Steam, Itch.io, Google Play, App Store, Nintendo Switch store...).
 
-  <li><p>Contribute code! Remove a bug, add a feature! (Not the other way around:)
+  <li><p>Show your game on our <a href="https://forum.castle-engine.io/">forum</a> or <a href="talk.php">Discord</a>. Share a screenshot, movie recording, a build, code -- anything you can/want to share .
 
-    <p>Code changes are best submitted as
-    <a href="https://github.com/castle-engine/castle-engine/pulls">pull requests on GitHub</a>.
-    <i>Pull requests</i> are really easy for you to create (fork our <a href="https://github.com/castle-engine/castle-engine/">repository</a>,
-    commit stuff to your fork,
-    then create a pull request by clicking on GitHub),
-    and for me to apply.
+  <li><p>Give us feedback about the engine: what works good, what could be improved, what do you miss. Let's talk on <a href="https://forum.castle-engine.io/">forum</a> or <a href="talk.php">Discord</a>.
 
-    <p>See <a href="coding_conventions">Coding conventions</a> for useful tips on contributing code.
+  <li><p>Report any bug to <a href="https://github.com/castle-engine/castle-engine/issues">our issues tracker</a>.
 
-    <!--
-    <p>If you prefer to do things the traditional way,
-    you can also just create a patch file (versus recent GIT or SVN state)
-    and <a href="https://github.com/castle-engine/castle-engine/issues">create
-    a new issue with the patch file attached</a>.
-    -->
+  <li><p>Improve our documentation.
+    It's easiest to improve the pages maintained in AsciiDoctor format, just edit the <code>.adoc</code> files in the <a href="https://github.com/castle-engine/cge-www/tree/master/htdocs/doc">htdocs/doc subdirectory of the cge-www repository</a>.
 
-    <p>If you're looking for a feature to implement,
-    <a href="roadmap">take a look at our roadmap</a>.
 
-  <li><p><a href="https://github.com/castle-engine/cge-www/">Contribute to our documentation</a>.
-</ul>
+  <li><p>Contribute code, send pull requests.
 
-<?php echo $toc->html_section(); ?>
+    <p>If you're looking for a feature / fix to implement,
+    it's usually best to just start with <i>"what is your itch"</i>,
+    that is: address a problem (bug or missing feature) that you have in your game.
+    If you're open to help with anything we need,
+    <a href="roadmap">take a look at our roadmap</a>
+    or just <a href="talk.php">ask us</a> for what's currently needed.
 
-<p>If you use <i>Castle Game Engine</i> or our tools (like view3dscene) to view or play anything
-(a game, or just your 3D or 2D assets):
-
-<ul>
-  <li><p>Show it on our <a href="talk.php">Discord or forum</a>
-    by sharing a screenshot or movie recording.
-    Michalis loves to see how his work is useful for others :)
-
-  <li><p>Contribute models to our <?php echo a_href_page('demo models', 'demo_models'); ?>.
-
-  <li><p>Test the <a href="view3dscene.php">view3dscene snapshots</a>. These are build automatically after every commit to GitHub.
-    You can test them and catch eventual bugs
-    before the release. This way you can also preview new features before they
-    are released.
-
-    <p>Bugs are best reported in the <a href="https://github.com/castle-engine/view3dscene/issues">issues tracker</a>.
+    <p>See <a href="coding_conventions">coding conventions</a> on how to contribute code.
 </ul>
 
 <?php echo $toc->html_section(); ?>
 
 <p>Package <?php echo a_href_page('Castle Game Engine', 'index'); ?>
  and <a href="castle-model-viewer">Castle Model Viewer</a>
- for your favourite Linux distribution.
+ for your favorite Linux distribution.
 
 <ul>
-  <li><p>view3dscene is a versatile and stable viewer for <a href="creating_data_model_formats.php">many model formats</a>.
+  <li><p><a href="castle-model-viewer">Castle Model Viewer</a> is a versatile viewer for <a href="creating_data_model_formats.php">many model formats</a>.
 
-  <li><p>Castle Game Engine <a href="features">features are listed here</a>.
+  <li><p>Castle Game Engine is an open-source 3D and 2D cross-platform game engine, with a comfortable editor and a powerful API using modern Object Pascal.
+    <a href="features">All features are listed here</a>.
 
   <li><p>Desktop integration files (SVG icons, .desktop files etc.)
     are already included in our archives.
 
-  <li><p>The <?php echo a_href_page_hashlink('dependencies of view3dscene',
-    'view3dscene', 'section_depends'); ?> and <a href="documentation.php#section_libraries">dependencies of CGE</a>
-    are documented.
-    There's nothing weird there.
-
   <li><p>Build-dependencies include
     <a href="http://www.freepascal.org/">Free Pascal Compiler</a>,
-    but this should not be a problem &mdash; all major distros already
-    have fpc packaged.
-
-  <li><a href="castle-model-viewer">Castle Model Viewer</a> is GPL &gt;= 2.
-    CGE may be used
-    <a href="license">under more permissive "LGPL with static-linking exception" &gt;= 2</a>.
+    but this should not be a problem &mdash; all major Linux distros already
+    have FPC packaged.
 </ul>
 
 <?php castle_footer(); ?>
