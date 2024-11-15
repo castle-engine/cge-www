@@ -537,7 +537,7 @@ $castle_sitemap = array(
           'castle_script' => array('title' => 'CastleScript language reference'),
           'castle_animation_frames' => array('title' => 'Castle Animation Frames (castle-anim-frames) file format'),
           'x3d_time_origin_considered_uncomfortable' => array('title' => 'VRML / X3D time origin considered uncomfortable'),
-          'nist_vrml_test_suite' => array('title' => 'NIST conformace test suite'),
+          'nist_vrml_test_suite' => array('title' => 'NIST conformance test suite'),
         ),
       ),
 
