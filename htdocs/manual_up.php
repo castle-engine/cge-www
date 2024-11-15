@@ -243,11 +243,7 @@ Blender's default suggested orientation for "front").
 <p>To account for this, and keep <?php echo cgeRef('TCastleTransform.Direction'); ?> working
 in an intuitive way, you can adjust <?php echo cgeRef('TCastleTransform.Orientation'); ?> or even
 <?php echo cgeRef('TCastleTransform.DefaultOrientation'); ?>.
-
-<p>By default they match Blender's glTF exporter, in CGE 6.5 and newer.
-In the earlier engine versions they matched the Blender's X3D exporter.
-See our
-<a href="https://castle-engine.io/upgrading_to_castle_game_engine_7.0">Upgrading to Castle Game Engine 7.0</a> notes.
+By default they match Blender's glTF exporter.
 
 <?php
 castle_footer();
