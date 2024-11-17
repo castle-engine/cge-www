@@ -170,40 +170,9 @@ Currently, the project executes, printing logs (using our cgeref:CastleLog[]) to
 
 == TODO: How to continue
 
-- The current code fails at `glGetString(GL_VERSION)`, because OpenGLES routines are `nil`, we eliminated other causes. So the situation is clear, making the rendering work using WebGL will eliminate this.
+- The current code fails (both in `wasmtime` and browsers) at `glGetString(GL_VERSION)` call, because OpenGLES routines are `nil`. So the situation is clear, making the rendering work using WebGL will eliminate this.
 +
-```
-$ export WASMTIME_BACKTRACE_DETAILS=1
-$ wasmtime castle-engine-output/web/dist/platformer.wasm
-Log for "platformer".
-  Version: 1.5.1.
-  Started on 2024-11-17 at 01:01:31.
-  Castle Game Engine version: 7.0-alpha.3.snapshot.
-  Compiled with FPC 3.3.1.
-  Platform: Desktop, OS: Wasi, CPU: wasm32 (code compiled for 32-bit architecture).
-Error: failed to run main module `castle-engine-output/web/dist/platformer.wasm`
-
-Caused by:
-    0: failed to invoke command default
-    1: error while executing at wasm backtrace:
-           0: 0x81296e - GLINFORMATIONINITIALIZE
-                           at /home/michalis/sources/castle-engine/castle-engine/examples/platformer/../../src/base_rendering/castleglutils_features.inc:590:37
-           1: 0xa7ee3 - OPENUNPROTECTED
-                           at /home/michalis/sources/castle-engine/castle-engine/examples/platformer/../../src/window/castlewindow.pas:2667:5
-           2: 0xa793c - OPENCORE
-                           at /home/michalis/sources/castle-engine/castle-engine/examples/platformer/../../src/window/castlewindow.pas:2745:7
-           3: 0xa8587 - OPEN
-                           at /home/michalis/sources/castle-engine/castle-engine/examples/platformer/../../src/window/castlewindow.pas:2755:5
-           4: 0xa8732 - OPEN
-                           at /home/michalis/sources/castle-engine/castle-engine/examples/platformer/../../src/window/castlewindow.pas:2798:3
-           5: 0xab9fa - OPENANDRUN
-                           at /home/michalis/sources/castle-engine/castle-engine/examples/platformer/../../src/window/castlewindow.pas:3408:3
-           6: 0x261c8 - main
-                           at /home/michalis/sources/castle-engine/castle-engine/examples/platformer/platformer_standalone.dpr:69:3
-           7: 0x26104 - platformer_standalone.wasm!SI_PRC_$$__START_PASCAL
-           8: 0x260ed - platformer_standalone.wasm!SI_PRC_$$__START
-    2: wasm trap: uninitialized element
-```
+We added an exception `Exception: Failed to load OpenGL(ES) library` when `not Assigned(glGetString)` to make it clear.
 
 - Make the rendering work, by routing calls to WebGL on the web.
 +
