@@ -82,6 +82,8 @@ NOTE: About https://castle-engine.io/x3d_implementation_sound.php#section_x3d4[W
 Both FPC and Delphi have built-in support for ZIP handling, we even https://github.com/castle-engine/castle-engine/blob/master/examples/network/custom_url_handler/code/gameunzip.pas[use it in one example], we'll likely create a more full-featured wrapper that works on both FPC and Delphi.
 +
 Packing resources into ZIP is beneficial over just placing all data files separately in the webserver directory. It allows to download the ZIP once (at application load) and then our WebAssembly code can load data from it synchronously, thus it can work similarly to how a non-web game data is loaded. Naturally we also want to have cgeref:TCastleDownload[] working and being able to load things asynchronously (see our https://castle-engine.io/manual_network.php[network docs]).
++
+TODO: FPC provides some ready file implementation in WASI RTL, it seems. How it works? In browser, in wasmtime?
 
 - Possibly throw in additional compression of data and/or wasm executable?
 +
@@ -228,6 +230,22 @@ castle-engine compile -web=target --mode=debug
 ```
 
 The main use-case of this is additional https://wiki.freepascal.org/WebAssembly/Debugging[debugging] approach. In case of a crash, the `wasmtime` will give you a useful stack trace with line numbers (if only you compiled with `--mode=debug`, as shown above).
+
+=== Running engine test-suite on WASM
+
+As a particular application of the above ("you can run engine code using wasmtime, except rendering"), you can run our test suite on WASM.
+
+WARNING: Making `castle-tester.wasm` work this way is a work-in-progress. The `time_measurements_tests.wasm` mentioned below works already.
+
+```shell
+cd tests/
+castle-engine compile --os=wasi --cpu=wasm32 --mode=debug
+wasmtime castle-tester.wasm --console --no-window-create
+
+cd time_measurements_tests/ # enter tests/time_measurements_tests/ in CGE
+castle-engine compile --os=wasi --cpu=wasm32 --mode=debug
+wasmtime time_measurements_tests.wasm
+```
 
 == Thank you
 
