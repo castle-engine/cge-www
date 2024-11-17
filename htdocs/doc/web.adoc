@@ -193,7 +193,22 @@ We added an exception `Exception: Failed to load OpenGL(ES) library` when `not A
 
 == Running WASM code outside of the browser
 
-_WebAssembly_ is not limited to running in a web browser. We support running the compiled WASM binaries also using https://wasmtime.dev/[Wasmtime]. Just run then like this on the command-line:
+_WebAssembly_ is not limited to running in a web browser. We support running the compiled WASM binaries also using https://wasmtime.dev/[Wasmtime], though **without rendering**.
+
+[WARNING]
+====
+Trying to render anything in https://wasmtime.dev/[Wasmtime] will fail, as we don't have access to WebGL API and context. So you cannot even create cgeref:TCastleWindow[], i.e. it will fail inside https://wasmtime.dev/[Wasmtime] with
+
+```
+Exception: Failed to load OpenGL(ES) library
+```
+
+and we don't have immediate plans to make it work. But, at least everything else (all the code _up to the rendering_) will work on https://wasmtime.dev/[Wasmtime].
+
+If you know of an easy way to pass WebGL API and context to application run in https://wasmtime.dev/[Wasmtime] (e.g. implementing WebGL by OpenGL(ES) on the desktop), let us know. And note that we prefer to pass WebGL API, not OpenGL(ES) API, to our application run in https://wasmtime.dev/[Wasmtime]. We want the _wasmtime_ to work as close to _web browser_ as possible, 1. because it avoids `wasmtime`-specific maintenance, 2. because it makes `wasmtime` more suited to debugging what happens on the web, which is its main use-case for us.
+====
+
+Just run then like this on the command-line:
 
 ```
 export WASMTIME_BACKTRACE_DETAILS=1 # get a more detailed backtrace
