@@ -186,6 +186,17 @@ And you can also do
 
 Right now... it's already mostly like that, but due to the fact that I declared a few things manually in the same way. The new `TCastleComponentList<T>` should force it to be consistent, and also make some code easier for editor.
 
+[NOTE]
+====
+The new class will also be our recommendation to use instead of https://wiki.freepascal.org/TCollection[TCollection]. Our `TCastleComponentList<T>` should full-fill similar use-case, with some advantages:
+
+- Based on generics, so type-safe (compiler will not allow you to add an instance of wrong class).
+- Does not require making the child a descendant of any particular type (like `TCollectionItem`), so it's more flexible.
+- It is expanded in CGE editor hierarchy (with future options to make it collapsed by default) and CGE inspector (F8 in debug builds).
+
+We could achieve some of these advantages with `TGenericCollection<T>` as shown on https://wiki.freepascal.org/TCollection[TCollection wiki page], but still we would not avoid the `TCollectionItem` necessity.
+====
+
 [#materials]
 ### New material components (allowing also material editing in the editor)
 
