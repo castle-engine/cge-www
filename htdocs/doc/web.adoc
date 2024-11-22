@@ -117,6 +117,13 @@ pas2js -Jc -Jirtl.js -Tbrowser hello_pas2js.lpr
 ```
 +
 If everything went well, you should get a file `hello_pas2js.js` in the same directory.
++
+[NOTE]
+====
+If `pas2js` reports an error like `Error: can't find unit "System"`, it most likely means that the https://wiki.freepascal.org/pas2js.cfg[pas2js.cfg] configuration file is missing or wrong. You can either generate it using `createconfig` tool or take and adjust the sample from https://wiki.freepascal.org/pas2js.cfg[pas2js.cfg wiki page], then place the resulting file in a system-specific location indicated on that wiki page.
+
+It does seem that `fpcupdeluxe`, although it provides `pas2js` and `compileserver` binaries (good!), but it doesn't provide the `createconfig` tool nor does it contain the relevant pas2js package structure (you need files like `packages/rtl/system.js`). So instead get `pas2js` from https://getpas2js.freepascal.org/ and make sure it's the first on `$PATH`. TODO: Submit issue to fpcupdeluxe about it.
+====
 
 - *compileserver* from *link:https://getpas2js.freepascal.org/[Pas2js]*.
 +
