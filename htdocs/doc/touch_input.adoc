@@ -203,7 +203,7 @@ begin
 end;
 ----
 
-You could also create it at runtime conditionally, like this:
+You could also create it at runtime, like this:
 
 ////
 [source,pascal]
@@ -283,7 +283,9 @@ You don't *need* to do anything more then, but optionally you can customize cger
 ====
 cgeref:TCastleWalkNavigation[] also allows to move / rotate, by dragging anywhere on the screen.
 
-These two components nicely work in tandem if they both exist: cgeref:TCastleWalkNavigation[] allows to move / rotate by dragging anywhere on the screen, while cgeref:TCastleTouchNavigation[] allows to move / rotate by dragging the special gizmos in screen corners. We recommend in this case to _disable movement using cgeref:TCastleWalkNavigation[]_ because movement using cgeref:TCastleTouchNavigation[] is more precise and then user can use the screen only for rotating (like aiming, in shooting games), without moving by accident. To achieve this, set cgeref:TCastleWalkNavigation.MouseDragMode[] to cgeref:mdRotate[].
+These two components nicely work in tandem if they both exist: cgeref:TCastleWalkNavigation[] allows to move / rotate by dragging anywhere on the screen, while cgeref:TCastleTouchNavigation[] allows to move / rotate by dragging the special gizmos in screen corners.
+
+When you use cgeref:TCastleTouchNavigation[], we recommend to _disable movement using cgeref:TCastleWalkNavigation[]_ because movement using cgeref:TCastleTouchNavigation[] is more precise and then user can use the screen only for rotating (like aiming, in shooting games), without moving by accident. To achieve this, set cgeref:TCastleWalkNavigation.MouseDragMode[] to cgeref:mdRotate[].
 ====
 
 == On-screen keyboard
