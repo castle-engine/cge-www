@@ -7,7 +7,7 @@
 		"php": ">=7.0"
 	},
 	"require-dev": {
-		"automattic/jetpack-changelogger": "^4.2.6",
+		"automattic/jetpack-changelogger": "^4.2.8",
 		"automattic/wordbless": "@dev",
 		"yoast/phpunit-polyfills": "^1.1.1"
 	},
@@ -22,6 +22,9 @@
 	"scripts": {
 		"phpunit": [
 			"./vendor/phpunit/phpunit/phpunit --colors=always"
+		],
+		"test-coverage": [
+			"php -dpcov.directory=. ./vendor/bin/phpunit --coverage-php \"$COVERAGE_DIR/php.cov\""
 		],
 		"test-php": [
 			"@composer phpunit"

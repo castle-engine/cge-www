@@ -5,6 +5,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.14.4] - 2024-11-04
+### Added
+- Enable test coverage. [#39961]
+
+## [3.14.3] - 2024-10-25
+### Fixed
+- Hooks: Hook init_sync_cron_jobs into init to ensure translation loading within the function is not triggered too early. [#39841]
+
+## [3.14.2] - 2024-10-15
+### Changed
+- Jetpack Sync: Update default Post Type Blacklist [#39770]
+
+### Fixed
+- Jetpack Sync: Ensure Full Sync is only triggered on backend admin POST requests [#39747]
+- Update plugin action links filter parameter to avoid conflicts with other plugins. [#39681]
+
+## [3.14.1] - 2024-10-14
+### Changed
+- Internal updates.
+
 ## [3.14.0] - 2024-10-10
 ### Added
 - Jetpack Sync: Add 'woocommerce_analytics_first_activation' in options' whitelist
@@ -1306,6 +1326,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Packages: Move sync to a classmapped package
 
+[3.14.4]: https://github.com/Automattic/jetpack-sync/compare/v3.14.3...v3.14.4
+[3.14.3]: https://github.com/Automattic/jetpack-sync/compare/v3.14.2...v3.14.3
+[3.14.2]: https://github.com/Automattic/jetpack-sync/compare/v3.14.1...v3.14.2
+[3.14.1]: https://github.com/Automattic/jetpack-sync/compare/v3.14.0...v3.14.1
 [3.14.0]: https://github.com/Automattic/jetpack-sync/compare/v3.13.2...v3.14.0
 [3.13.2]: https://github.com/Automattic/jetpack-sync/compare/v3.13.1...v3.13.2
 [3.13.1]: https://github.com/Automattic/jetpack-sync/compare/v3.13.0...v3.13.1
