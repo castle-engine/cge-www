@@ -83,6 +83,15 @@ Our conversion from IFC to X3D allows to display IFC models using _Castle Game E
 
 X3D nodes can be mapped back to IFC classes, which is useful e.g. for picking 3D objects using mouse. _Castle Game Engine_ has APIs to determine what X3D node has been picked, and then you can map it back to an IFC _"product"_ (like a wall, a window, a door) using cgeref:TCastleIfcMapping.NodeToProduct[].
 
+We also define some utility methods to operate on IFC classes:
+
+- cgeref:TIfcProduct.AddMeshRepresentation[],
+- cgeref:TIfcProduct.AddBoxRepresentation[],
+- cgeref:TIfcProduct.SetRelativePlacement[],
+- cgeref:TIfcObjectDefinition.AddIsDecomposedBy[].
+
+The goal of these utility methods is to easily construct IFC models using the most common IFC concepts (products, representations, placements). They simplify some IFC complexity. These methods don't do anything that you couldn't do yourself by operating on IFC classes directly. See lower on this page for example usage of these methods to easily add walls and floors.
+
 NOTE: Let us know if you need more features related to IFC. Bug reports and PRs are welcome, as well as link:donate[donations toward the IFC support, we're happy to provide commercial support for companies too]. We're committed to IFC support. link:conferences[Michalis talks at conferences how he loves open 3D standards] --- well, IFC is one of them!
 
 ## Loading and saving IFC in TCastleScene
@@ -164,6 +173,7 @@ This is done by using cgeref:TCastleIfcMapping[] class. Like this:
 var
   IfcFile: TIfcFile;
   IfcMapping: TCastleIfcMapping;
+  Wall: TIfcWall;
 begin
   IfcFile := IfcFromJson('castle-data:/my_file.ifcjson');
   try
@@ -176,14 +186,18 @@ begin
       MyScene.Load(IfcMapping.RootNode, true);
 
       // modify IfcFile, e.g. add a new wall
-      // TODO make this example correct, but still try to keep it as simple as possible
-      IfcFile.Walls.Add(TIfcWall.Create);
+      Wall := TIfcWall.Create(IfcFile);
+      Wall.AddBoxRepresentation(Box3D(
+        Vector3(0, 0, 0),
+        Vector3(10, 0.5, 2) // Z is "up", by convention, in IFC
+      ));
+      IfcFile.Project.AddIsDecomposedBy(Wall);
 
       // modify the contents of RootNode, to reflect above new wall.
       // the MyScene displaying it will automatically reflect the changes
       IfcMapping.Update(IfcFile);
     finally FreeAndNil(IfcMapping) end;
-  finally FreeAndNil(IfcFile)
+  finally FreeAndNil(IfcFile) end;
 end;
 ```
 
