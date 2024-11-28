@@ -34,6 +34,7 @@ Specifications:
 - https://www.buildingsmart.org/standards/bsi-standards/industry-foundation-classes/
 - https://technical.buildingsmart.org/standards/ifc/
 - https://technical.buildingsmart.org/standards/ifc/ifc-schema-specifications/
+- https://bonsaibim.org/search-ifc-class.html[Which IFC class should I use? - from BonsaiBIM]
 --
 
 As we like open 3D standards in _Castle Game Engine_ (_Michalis_ is preaching about his love for link:gltf[glTF] and link:x3d[X3D] at various link:conferences[]) so IFC naturally joins our capabilities.
