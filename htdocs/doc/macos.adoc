@@ -136,9 +136,17 @@ It's been in development for a long time, is supported by some big companies, it
 +
 Apple itself contributes to it (see notes from https://github.com/kakashidinho/metalangle#differences-between-metalangle-and-googles-angle[MetalANGLE], fork where initial work has happened to support OpenGLES 2.0 and 90% of OpenGL ES 3.0 on top of Metal).
 
-2. In the future, CGE will likely have an alternative https://www.vulkan.org/[Vulkan] renderer. A new API, harder to use, more low-level, but with possibilities to deliver amazing performance and also scale better to multiple cores.
+2. In the future, CGE will definitely have an alternative renderer:
++
+--
+- https://github.com/bkaradzic/bgfx[BGFX] is right now attractive option for us.
++
+This in turn has various backends, including _Metal_, _Vulkan_, various _OpenGL (ES)_ and _Direct3D_ versions.
+
+- Direct https://www.vulkan.org/[Vulkan] renderer. _Vulkan_ is a new API, harder to use, more low-level, but with possibilities to deliver amazing performance and also scale better to multiple cores.
 +
 At that point, using https://moltengl.com/moltenvk/[MoltenVK] will become an option to. It exposes Vulkan API and uses Metal underneath.
+--
 
 3. Finally, there is an option of developing another renderer in CGE on top of https://developer.apple.com/metal/[Metal].
 +
