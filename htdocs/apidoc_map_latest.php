@@ -3732,6 +3732,8 @@ $pasdoc = array(
   'TIfcContext.Declares' => array('html_filename' => 'CastleIfc.TIfcContext.html#Declares', 'type' => 'property'),
   'TIfcProjectLibrary' => array('html_filename' => 'CastleIfc.TIfcProjectLibrary.html', 'type' => 'class'),
   'TIfcProject' => array('html_filename' => 'CastleIfc.TIfcProject.html', 'type' => 'class'),
+  'TIfcProject.Create' => array('html_filename' => 'CastleIfc.TIfcProject.html#Create-TComponent-', 'type' => 'constructor'),
+  'TIfcProject.SetupUnits' => array('html_filename' => 'CastleIfc.TIfcProject.html#SetupUnits', 'type' => 'procedure'),
   'TIfcRepresentation' => array('html_filename' => 'CastleIfc.TIfcRepresentation.html', 'type' => 'class'),
   'TIfcRepresentation.Create' => array('html_filename' => 'CastleIfc.TIfcRepresentation.html#Create-TComponent-', 'type' => 'constructor'),
   'TIfcRepresentation.Destroy' => array('html_filename' => 'CastleIfc.TIfcRepresentation.html#Destroy', 'type' => 'destructor'),
