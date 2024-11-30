@@ -49,6 +49,8 @@ Get or make a sample IFC file:
 - For example take one of the testcases from https://github.com/buildingsmart-community/Community-Sample-Test-Files/tree/main/IFC%204.0.2.1%20(IFC%204)/ISO%20Spec%20archive[Community-Sample-Test-Files for IFC 4.x]. Rename the file from `.json` -> `.ifcjson`.
 
 - Or create IFC file using link:blender[Blender] and https://bonsaibim.org/[BonsaiBIM] add-on, a great add-on that turns Blender into a full-featured IFC editor. Save the IFC to `.ifcjson` format.
+
+- Or convert any IFC in STEP format (`.ifc`) to IFC in JSON format (`.ifcjson`) using https://github.com/michaliskambi/ifcJSON[Python conversion scripts (our fork with some fixes)].
 --
 +
 Then open it using link:castle-model-viewer[Castle Model Viewer].
@@ -86,10 +88,11 @@ X3D nodes can be mapped back to IFC classes, which is useful e.g. for picking 3D
 
 We also define some utility methods to operate on IFC classes:
 
-- cgeref:TIfcProduct.AddMeshRepresentation[],
-- cgeref:TIfcProduct.AddBoxRepresentation[],
-- cgeref:TIfcProduct.SetRelativePlacement[],
-- cgeref:TIfcObjectDefinition.AddIsDecomposedBy[].
+- cgeref:TIfcProduct.AddMeshRepresentation[]
+- cgeref:TIfcProduct.AddBoxRepresentation[]
+- cgeref:TIfcProduct.SetRelativePlacement[]
+- cgeref:TIfcObjectDefinition.AddIsDecomposedBy[]
+- cgeref:TIfcProject.SetupUnits[]
 
 The goal of these utility methods is to easily construct IFC models using the most common IFC concepts (products, representations, placements). They simplify some IFC complexity. These methods don't do anything that you couldn't do yourself by operating on IFC classes directly. See lower on this page for example usage of these methods to easily add walls and floors.
 
