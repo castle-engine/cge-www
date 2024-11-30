@@ -4,13 +4,13 @@
 	"type": "jetpack-library",
 	"license": "GPL-2.0-or-later",
 	"require": {
-		"php": ">=7.0",
-		"automattic/jetpack-schema": "^0.1.3"
+		"php": ">=7.2",
+		"automattic/jetpack-schema": "^0.2.0"
 	},
 	"require-dev": {
 		"yoast/phpunit-polyfills": "^1.1.1",
-		"automattic/jetpack-changelogger": "^4.2.8",
-		"automattic/wordbless": "dev-master"
+		"automattic/jetpack-changelogger": "^5.1.0",
+		"automattic/wordbless": "^0.4.2"
 	},
 	"suggest": {
 		"automattic/jetpack-autoloader": "Allow for better interoperability with other plugins that use this package."
@@ -44,7 +44,7 @@
 		},
 		"autotagger": true,
 		"branch-alias": {
-			"dev-trunk": "0.5.x-dev"
+			"dev-trunk": "0.6.x-dev"
 		},
 		"textdomain": "jetpack-wp-js-data-sync",
 		"version-constants": {
