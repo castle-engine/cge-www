@@ -13,6 +13,7 @@ This feature is in development now. You can compile for WebAssembly, but the res
 The goal of the _web target_ in _Castle Game Engine_ is to allow you to recompile more-or-less any application you wrote using _Castle Game Engine_ (using cgeref:TCastleWindow[]) to the web. So you can put your application on a website, as part of a regular HTML webpage, and users can play it instantly, without the need to download / install any native application or browser plugin.
 
 cgeimg::block[
+  web_clear.png|Castle Game Engine - Pas2js initialized WebGL context,
   web_1_firefox.png|Castle Game Engine in Firefox,
   web_1_vivaldi.png|Castle Game Engine in Vivaldi
 ]
