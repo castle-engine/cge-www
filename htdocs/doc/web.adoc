@@ -100,7 +100,9 @@ We could also use https://en.wikipedia.org/wiki/Brotli[Brotli], a newer compress
 
 - *link:https://getpas2js.freepascal.org/[Pas2js]*.
 +
-You can get it along with https://www.freepascal.org/[FPC] or install it separately from link:https://getpas2js.freepascal.org/[here]. We don't have any special version requirements, just get the latest stable version.
+You can get it along with https://www.freepascal.org/[FPC] or install it separately from link:https://getpas2js.freepascal.org/[here].
++
+WARNING: We test with the latest https://wiki.freepascal.org/pas2js#GIT[Pas2js from GIT] right now, so this is also what we advise to use. The stable release 3.0.1 from https://getpas2js.freepascal.org/ is _not supported_ right now (due to incompatibilities around `Job_Web` usage, which are all solved in latest Pas2js + FPC). With time we may change this (adjust to older Pas2js) and/or a new release of _Pas2js_ may happen which will make things easier :)
 +
 _Test that it works._ Create the following simple program, save it as `hello_pas2js.lpr`:
 +
@@ -180,7 +182,7 @@ Currently, the project executes, printing logs (using our cgeref:CastleLog[]) to
 
 == TODO: How to continue
 
-- The current code fails (both in `wasmtime` and browsers) at `glGetString(GL_VERSION)` call, because OpenGLES routines are `nil`. So the situation is clear, making the rendering work using WebGL will eliminate this.
+- The current code fails (both in `wasmtime` and browsers) at `glGetString(GL_VERSION)` call, because OpenGLES routines are `nil`. So the situation is clear, making the rendering work using WebGL will eliminate this. (In particular `glGetString(GL_VERSION)` -> should be routed to `gl.getParameter(gl.VERSION)` in WebGL.)
 +
 We added an exception `Exception: Failed to load OpenGL(ES) library` when `not Assigned(glGetString)` to make it clear.
 
@@ -188,8 +190,10 @@ We added an exception `Exception: Failed to load OpenGL(ES) library` when `not A
 +
 --
 - We could use WebGL from Pasj2s (see `pas2js/packages/rtl/src/webgl.pas` and pasj2s demos using it). We can make these calls available to our WebAssembly code (using canvas example from Pas2js and explanation from https://www.freepascal.org/~michael/articles/fpcwasm1/fpcwasm1.pdf how to expose JS functionality to WebAssembly).
++
+Our Pas2js code already has basic context initialization + render + animate code, to test it works.
 
-- ... but actually it seems unnecessary: FPC includes a unit `job_web` with `TJSWebGL2RenderingContext`. It does seem that the hard work is done for us, it should allow to expose WebGL API from Pas2js to WebAssembly. Learn how to use it. See wiki, https://wiki.freepascal.org/WebAssembly/DOM .
+- FPC includes a unit `Job_Web` with `TJSWebGL2RenderingContext`. Michalis already learned how to use it. See wiki, https://wiki.freepascal.org/WebAssembly/DOM . TODO: integrate it with CGE code.
 
 - Define `CastleWebGL` unit, exposing these calls in a flat way, to be similar to OpenGLES, and add macro `CastleGLES:=CastleWebGL` in `castleconf.conf`.
 
