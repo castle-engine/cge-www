@@ -59,11 +59,17 @@ Then open it using link:castle-model-viewer[Castle Model Viewer].
 
 ## Supported IFC features
 
+### Saving and loading
+
 We can load and save the IFC entities listed in API docs of cgeref:CastleIfc[] unit. This includes over 100 classes reflecting the IFC specification.
 
 All the defined IFC entities can be loaded and saved to IFC files in the JSON encoding, with the `.ifcjson` extension.
 
 NOTE: We require to use `.ifcjson` extension for IFC files in JSON encoding, not just `.json`. That's because we also support another popular format, link:spine[Spine animations], that uses `.json` extension.
+
+NOTE: If you're looking for conversion between `.ifcjson` and `.ifc` (STEP encoding), you can use the https://github.com/michaliskambi/ifcJSON[Python conversion scripts (our fork with some fixes)].
+
+### Display and conversion to X3D nodes
 
 We convert a lot of "presentational" IFC entities to X3D nodes and display them.
 
@@ -86,15 +92,20 @@ Our conversion from IFC to X3D allows to display IFC models using _Castle Game E
 
 X3D nodes can be mapped back to IFC classes, which is useful e.g. for picking 3D objects using mouse. _Castle Game Engine_ has APIs to determine what X3D node has been picked, and then you can map it back to an IFC _"product"_ (like a wall, a window, a door) using cgeref:TCastleIfcMapping.NodeToProduct[].
 
-We also define some utility methods to operate on IFC classes:
+### Utilities and examples
+
+We define some utility methods to operate on IFC classes:
 
 - cgeref:TIfcProduct.AddMeshRepresentation[]
 - cgeref:TIfcProduct.AddBoxRepresentation[]
 - cgeref:TIfcProduct.SetRelativePlacement[]
 - cgeref:TIfcObjectDefinition.AddIsDecomposedBy[]
+- cgeref:TIfcSpatialElement.AddContainedElement[]
 - cgeref:TIfcProject.SetupUnits[]
 
-The goal of these utility methods is to easily construct IFC models using the most common IFC concepts (products, representations, placements). They simplify some IFC complexity. These methods don't do anything that you couldn't do yourself by operating on IFC classes directly. See lower on this page for example usage of these methods to easily add walls and floors.
+The goal of these utility methods is to easily construct IFC models using the most common IFC concepts (products, representations, placements). They are not strictly necessary to build/modify IFC content, but they make some operations simpler. See lower on this page for example usage of these methods to easily add walls and floors.
+
+Our example https://github.com/castle-engine/castle-engine/tree/master/examples/ifc[examples/ifc/] shows the usage of these methods to make a small IFC editor in _Castle Game Engine_, that can load, save and display IFC models. The created IFC files can be then opened in other IFC tools, like _BonsaiBIM_ or _FreeCAD_.
 
 NOTE: Let us know if you need more features related to IFC. Bug reports and PRs are welcome, as well as link:donate[donations toward the IFC support, we're happy to provide commercial support for companies too]. We're committed to IFC support. link:conferences[Michalis talks at conferences how he loves open 3D standards] --- well, IFC is one of them!
 
