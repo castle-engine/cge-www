@@ -40,7 +40,7 @@ class Two_Factor_Backup_Codes extends Two_Factor_Provider {
 		add_action( 'two_factor_user_options_' . __CLASS__, array( $this, 'user_options' ) );
 		add_action( 'admin_notices', array( $this, 'admin_notices' ) );
 
-		return parent::__construct();
+		parent::__construct();
 	}
 
 	/**
@@ -398,5 +398,16 @@ class Two_Factor_Backup_Codes extends Two_Factor_Provider {
 
 		// Update the backup code master list.
 		update_user_meta( $user->ID, self::BACKUP_CODES_META_KEY, $backup_codes );
+	}
+
+	/**
+	 * Return user meta keys to delete during plugin uninstall.
+	 *
+	 * @return array
+	 */
+	public static function uninstall_user_meta_keys() {
+		return array(
+			self::BACKUP_CODES_META_KEY,
+		);
 	}
 }

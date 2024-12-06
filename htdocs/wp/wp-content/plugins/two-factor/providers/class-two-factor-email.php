@@ -42,7 +42,7 @@ class Two_Factor_Email extends Two_Factor_Provider {
 	 */
 	protected function __construct() {
 		add_action( 'two_factor_user_options_' . __CLASS__, array( $this, 'user_options' ) );
-		return parent::__construct();
+		parent::__construct();
 	}
 
 	/**
@@ -287,7 +287,7 @@ class Two_Factor_Email extends Two_Factor_Provider {
 	 * Send the email code if missing or requested. Stop the authentication
 	 * validation if a new token has been generated and sent.
 	 *
-	 * @param  WP_USer $user WP_User object of the logged-in user.
+	 * @param  WP_User $user WP_User object of the logged-in user.
 	 * @return boolean
 	 */
 	public function pre_process_authentication( $user ) {
@@ -350,5 +350,17 @@ class Two_Factor_Email extends Two_Factor_Provider {
 			?>
 		</div>
 		<?php
+	}
+
+	/**
+	 * Return user meta keys to delete during plugin uninstall.
+	 *
+	 * @return array
+	 */
+	public static function uninstall_user_meta_keys() {
+		return array(
+			self::TOKEN_META_KEY,
+			self::TOKEN_META_KEY_TIMESTAMP,
+		);
 	}
 }
