@@ -102,7 +102,7 @@ We define some utility methods to operate on IFC classes:
 
 - cgeref:TIfcProduct.AddMeshRepresentation[], cgeref:TIfcProduct.AddBoxRepresentation[] (adding meshes to products)
 - cgeref:TIfcProduct.SetRelativePlacement[] (move products)
-- cgeref:TIfcObjectDefinition.AddIsDecomposedBy[] (relationship between larger spatial elements)
+- cgeref:TIfcObjectDefinition.AddIsDecomposedBy[], cgeref:TIfcProject.BestContainer[] (relationship between larger spatial elements)
 - cgeref:TIfcSpatialElement.AddContainedElement[] (relationship to add elements (products) inside larger spatial elements)
 - cgeref:TIfcProject.SetupUnits[] (setup standard (metric) units for the project)
 - cgeref:TIfcFile.Project[] (the main project of the IFC file)
@@ -126,7 +126,7 @@ This allows to develop a specialized IFC tools in _Castle Game Engine_ that can 
 
 To test this, IFC files produced by our example https://github.com/castle-engine/castle-engine/tree/master/examples/ifc[examples/ifc/] can be verified to look the same in _BonsaiBIM_ and _FreeCAD_:
 
-NOTE: Above, we added some lights for display in our engine, just to make it look fancy :) These are not part of the IFC standard. There are other graphic features in our engine you could use, like link:shadow_volumes[shadows using shadow volumes].
+NOTE: Above, we added some lights for display in our engine, just to make it look fancy :) These are not part of the IFC standard. There are other graphic features in our engine you could use, like link:shadow_volumes[shadows using shadow volumes], tweaking cgeref:TCastleRenderOptions.WireframeEffect[MyScene.RenderOptions.WireframeEffect].
 
 ## Loading and saving IFC in TCastleScene
 
