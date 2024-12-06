@@ -205,11 +205,11 @@ We added an exception `Exception: Failed to load OpenGL(ES) library` when `not A
 +
 Our Pas2js code already has basic context initialization + render + animate code, to test it works.
 
-- FPC includes a unit `Job_Web` with `TJSWebGL2RenderingContext`. Michalis already learned how to use it. See wiki, https://wiki.freepascal.org/WebAssembly/DOM . **We already use this approach with success, we have `CastleJobWeb` exposing working WebGL API for WebAssembly.**
+- FPC includes a unit `Job_Web` with `TJSWebGL2RenderingContext`. Michalis already learned how to use it. See wiki, https://wiki.freepascal.org/WebAssembly/DOM . **We already use this approach with success, we have `CastleInternalJobWeb` exposing working WebGL API for WebAssembly.**
 
 - TODO: Next steps: integrate WebGL usage through CGE code, utilizing the fact that it's similar (though not identical) to OpenGL ES 2.0.
 
-- Maybe: Define `CastleWebGL` unit, exposing these calls in a flat way, to be similar to OpenGLES, and add macro `CastleGLES:=CastleWebGL` in `castleconf.conf`. This is to be decided, how much we want to "pretend that WebGL is OpenGLES".
+- Maybe: Define `CastleInternalWebGL` unit, exposing these calls in a flat way, to be similar to OpenGLES, and add macro `CastleGLES:=CastleInternalWebGL` in `castleconf.conf`. This is to be decided, how much we want to "pretend that WebGL is OpenGLES".
 
 - Test rendering first on some simple application without any data, just do some `DrawRectangle` from CGE in `TCastleUserInterface.Draw`. Hack any CGE example for this.
 
