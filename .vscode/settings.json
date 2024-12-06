@@ -223,6 +223,7 @@
         "wasi",
         "wasmtime",
         "webgl",
+        "WEBIDL",
         "webp",
         "webserver",
         "Wireframe",
