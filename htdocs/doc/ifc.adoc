@@ -23,21 +23,25 @@ It's an open, vendor-neutral and non-proprietary format, which means everyone ha
 - https://www.freecad.org/[FreeCAD], https://bonsaibim.org/[BonsaiBIM] support it as a _"first-class citizen"_, so they can load, save and internally they "think" using IFC concepts,
 - popular proprietary CAD software like _Revit_, _ArchiCAD_ can export to this format too.
 
-An excellent overview of the format goals is in this video: https://www.youtube.com/watch?v=h2Rv9iu7yDk[Introduction to OpenBIM, Native IFC, and Open Source AEC].
+If you want to learn more about the IFC format, follow these links:
 
-Specifications:
-
-- https://standards.buildingsmart.org/IFC/RELEASE/IFC4_3/index.html[Most important, latest specification (which we implement)]
-- Related links:
+- Various IFC overviews:
 +
 --
-- https://www.buildingsmart.org/standards/bsi-standards/industry-foundation-classes/
-- https://technical.buildingsmart.org/standards/ifc/
-- https://technical.buildingsmart.org/standards/ifc/ifc-schema-specifications/
-- https://bonsaibim.org/search-ifc-class.html[Which IFC class should I use? - from BonsaiBIM]
+- https://www.youtube.com/watch?v=h2Rv9iu7yDk[Excellent (video) overview of IFC goals: Introduction to OpenBIM, Native IFC, and Open Source AEC].
+- https://stackoverflow.com/a/51755888[Excellent answer on StackOverflow that explains the most essential IFC classes] (see https://stackoverflow.com/questions/51665572/required-data-for-ifc[the question]).
+- https://bonsaibim.org/search-ifc-class.html[Which IFC class should I use - from BonsaiBIM].
+--
+- Official documentation and standards:
++
+--
+- https://www.buildingsmart.org/standards/bsi-standards/industry-foundation-classes/[IFC overview]
+- https://technical.buildingsmart.org/standards/ifc/[IFC introduction]
+- https://technical.buildingsmart.org/standards/ifc/ifc-schema-specifications/[All IFC specifications]
+- **https://standards.buildingsmart.org/IFC/RELEASE/IFC4_3/index.html[IFC 4.3 specification (latest), this is what we implement]**. This is not an easy read (and you don't need to read it all), but this is the ultimate source of knowledge about IFC.
 --
 
-As we like open 3D standards in _Castle Game Engine_ (_Michalis_ is preaching about his love for link:gltf[glTF] and link:x3d[X3D] at various link:conferences[]) so IFC naturally joins our capabilities.
+We like open 3D standards in _Castle Game Engine_ (_Michalis_ is preaching about his love for link:gltf[glTF] and link:x3d[X3D] at various link:conferences[]) so IFC naturally joins our capabilities.
 
 ## Testing
 
@@ -96,18 +100,33 @@ X3D nodes can be mapped back to IFC classes, which is useful e.g. for picking 3D
 
 We define some utility methods to operate on IFC classes:
 
-- cgeref:TIfcProduct.AddMeshRepresentation[]
-- cgeref:TIfcProduct.AddBoxRepresentation[]
-- cgeref:TIfcProduct.SetRelativePlacement[]
-- cgeref:TIfcObjectDefinition.AddIsDecomposedBy[]
-- cgeref:TIfcSpatialElement.AddContainedElement[]
-- cgeref:TIfcProject.SetupUnits[]
+- cgeref:TIfcProduct.AddMeshRepresentation[], cgeref:TIfcProduct.AddBoxRepresentation[] (adding meshes to products)
+- cgeref:TIfcProduct.SetRelativePlacement[] (move products)
+- cgeref:TIfcObjectDefinition.AddIsDecomposedBy[] (relationship between larger spatial elements)
+- cgeref:TIfcSpatialElement.AddContainedElement[] (relationship to add elements (products) inside larger spatial elements)
+- cgeref:TIfcProject.SetupUnits[] (setup standard (metric) units for the project)
+- cgeref:TIfcFile.Project[] (the main project of the IFC file)
+- cgeref:TIfcProject.ModelContext[], cgeref:TIfcProject.PlanContext[], cgeref:TIfcProject.SetupModelContext[] (querying and creation of geometric contexts, necessary to designate things to be visible in "3D model view" or "2D plan" view).
 
-The goal of these utility methods is to easily construct IFC models using the most common IFC concepts (products, representations, placements). They are not strictly necessary to build/modify IFC content, but they make some operations simpler. See lower on this page for example usage of these methods to easily add walls and floors.
+These utility methods provide easy API to perform common operations, like adding and moving elements represented by transformed meshes. These utilities are not strictly necessary to build/modify IFC content, but they make some usage simpler.
 
-Our example https://github.com/castle-engine/castle-engine/tree/master/examples/ifc[examples/ifc/] shows the usage of these methods to make a small IFC editor in _Castle Game Engine_, that can load, save and display IFC models. The created IFC files can be then opened in other IFC tools, like _BonsaiBIM_ or _FreeCAD_.
+Examples:
+
+- See lower on this page for example usage of these methods to easily add walls and floors.
+
+- Our example https://github.com/castle-engine/castle-engine/tree/master/examples/ifc[examples/ifc/] shows the usage of these methods to make a small IFC editor in _Castle Game Engine_, that can load, save and display IFC models. The created IFC files can be then opened in other IFC tools, like _BonsaiBIM_ or _FreeCAD_.
 
 NOTE: Let us know if you need more features related to IFC. Bug reports and PRs are welcome, as well as link:donate[donations toward the IFC support, we're happy to provide commercial support for companies too]. We're committed to IFC support. link:conferences[Michalis talks at conferences how he loves open 3D standards] --- well, IFC is one of them!
+
+### Interchange with other IFC tools, like BonsaiBIM and FreeCAD
+
+The IFC files saved by our engine can be opened back in other IFC tools like https://bonsaibim.org/[BonsaiBIM] and https://www.freecad.org/[FreeCAD] (after conversion from IFC JSON to STEP using https://github.com/michaliskambi/ifcJSON[Python conversion scripts]). They work regardless if you build IFC structure from scratch in our engine or load + modify some existing IFC model.
+
+This allows to develop a specialized IFC tools in _Castle Game Engine_ that can be used in the IFC ecosystem. We can consume and produce IFC files that _"play well"_ with other software, and everything _"thinks"_ using IFC classes.
+
+To test this, IFC files produced by our example https://github.com/castle-engine/castle-engine/tree/master/examples/ifc[examples/ifc/] can be verified to look the same in _BonsaiBIM_ and _FreeCAD_:
+
+NOTE: Above, we added some lights for display in our engine, just to make it look fancy :) These are not part of the IFC standard. There are other graphic features in our engine you could use, like link:shadow_volumes[shadows using shadow volumes].
 
 ## Loading and saving IFC in TCastleScene
 
@@ -202,11 +221,12 @@ begin
 
       // modify IfcFile, e.g. add a new wall
       Wall := TIfcWall.Create(IfcFile);
-      Wall.AddBoxRepresentation(Box3D(
-        Vector3(0, 0, 0),
-        Vector3(10, 0.5, 2) // Z is "up", by convention, in IFC
-      ));
-      IfcFile.Project.AddIsDecomposedBy(Wall);
+      Wall.AddBoxRepresentation(IfcFile.Project.ModelContext,
+        Box3D(
+          Vector3(0, 0, 0),
+          Vector3(10, 0.5, 2) // Z is "up", by convention, in IFC
+        ));
+      IfcFile.Project.AddContainedElement(Wall);
 
       // modify the contents of RootNode, to reflect above new wall.
       // the MyScene displaying it will automatically reflect the changes
