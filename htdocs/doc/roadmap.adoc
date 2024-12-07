@@ -281,14 +281,43 @@ AR: most likely using Android / iOS built-in frameworks, as these make AR widely
 
 See link:delphi[about existing Delphi compatibility] - we support _Windows_ and _Linux_ now. We plan to support more platforms with Delphi: Android, iOS...
 
-[#gltf_efficient]
-### Load and animate glTF more efficiently
+[#gltf_meshes_gpu]
+### Loading glTF meshes directly to GPU
 
-1. We should read meshes in a way that keeps binary layout of data in glTF, so that it is ultra-fast to load, and it is loaded almost straight from glTF to GPU.
+We should read meshes from glTF to GPU in a way that keeps binary layout of data in glTF, so that it is ultra-fast to load, and it is loaded almost straight from glTF to GPU.
+
+Some modifications to CGE may be required here (CastleGeometryArrays will have to be made more flexible for this). New X3D nodes should be introduced, like `BufferGeometry` (same as X3DOM?). See https://github.com/michaliskambi/x3d-tests/wiki/Binary-meshes[Binary meshes in X3D - my plan and reasons to add binary meshes to X3D spec].
+
+[#gltf_skinning_gpu]
+### Efficient skinned animation on GPU (from glTF and more) using new SkinnedAnimation node
+
+We want to perform _skinning_ fully on GPU, avoiding the drawbacks of current way of importing glTF animations.
+
+To explain, right now we "precalculate" skinned animation imported from glTF to `CoordinateInterpolator` nodes, so loading is slower and consumes memory, although playback is fast. We also have an independent skinned animation support in H-Anim, which is slow at runtime (CPU-based). The plan below is to reconcile these two approaches, and make skinned animation in CGE perfect, for both glTF and X3D (H-Anim) users.
+
+We plan to introduce new X3D node for this called `SkinnedAnimation`:
+
+- This new node would match exactly the glTF skinned animation design.
 +
-Some modifications to CGE may be required here (CastleGeometryArrays will have to be made more flexible for this). New X3D nodes should be introduced, like `BufferGeometry` (same as X3DOM?).
+In particular, it would allow to give explicitly the skin's _"Inverse Bind Matrices"_, a powerful concept in glTF that allows to perform the skinned animation super-efficiently on GPU. See https://www.slideshare.net/slideshow/gltf-20-reference-guide/78149291[glTF 2.0 Reference Guide] for an overview of glTF specification -- the skinned animation is explained there on 2 pages, along with sketch of implementation on GPU.
++
+Also, as the name implies, the new node only deals with _skinned_ animation (where mesh vertexes are affected by joints through weights). You don't need it at all to make "regular" animation when rigid shapes move/rotate around (e.g. like link:spine[Spine] skeletal animation).
 
-2. We should also perform skinning fully on GPU, avoiding `CoordinateInterpolator` done on CPU. We may introduce new X3D node for this like `SkinnedAnimation` (using H-Anim is also possible, but not that straightforward).
+- The new node would also enable making skinned animation in X3D using just `Transform` nodes for joints. No need for `HAnimJoint`.
+
+- The new node deliberately avoids any naming connotation with "humanoids". Skinned animation is a standard 2D and 3D animation technique, not specific to humanoids at all. (though of course it can be used for humanoids, as a specific case.)
+
+- We could reimplement H-Anim support (currently using CPU implementation, that calculates skin at runtime on CPU each frame -- this is slow) by internally using `SkinnedAnimation` node.
+
+- This new node will make our "skinned animation" have all performance advantages and no disadvantages:
++
+--
+- It will react at runtime to changes of joints, so it will be suitable also for inverse kinematics or other usage where joints change at runtime. See https://forum.castle-engine.io/t/joint-bone-controlled-mesh-animation/546 . See https://github.com/castle-engine/castle-engine/tree/master/examples/animations/animate_bones_by_code .
+
+- It will be fast at run-time, due to animating on GPU.
+
+- It will be fast at loading, and not eat excessive amounts of memory, due to just loading the skin data to GPU.
+--
 
 [#gltf_material_features]
 ### Support new glTF material extensions
