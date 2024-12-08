@@ -7,7 +7,7 @@ include::common.adoc[]
 
 [WARNING]
 ====
-This feature is in development now. You can compile for WebAssembly, but the resulting application is not functional yet. Stay tuned!
+This feature is in development now. We can already build and run a CGE application in the browser but it's not yet our real rendering -- WebAssembly code only renders an unimpressive yellow rectangle. Stay tuned!
 ====
 
 The goal of the _web target_ in _Castle Game Engine_ is to allow you to recompile more-or-less any application you wrote using _Castle Game Engine_ (using cgeref:TCastleWindow[]) to the web. So you can put your application on a website, as part of a regular HTML webpage, and users can play it instantly, without the need to download / install any native application or browser plugin.
@@ -73,16 +73,16 @@ Some alternative HTML templates may be available in the future, as well as the a
 
 - We use WebGL API from _WebAssembly_ through the https://wiki.freepascal.org/WebAssembly/DOM[JOB] units implemented in Pas2js + FPC. This is a collection of units (on both Pas2js and FPC sides) that cooperate with each other. The goal is to allow our WASM applications to access https://hg.mozilla.org/mozilla-central/raw-file/tip/dom/webidl/WebGLRenderingContext.webidl[WebGL API defined in this WEBIDL file].
 +
-NOTE: TODO: For now we also use the WebGL API from Pas2js, using the `WebGL` unit in Pas2js, to initialize the context. We use this now, though in the future we'll likely eliminate it -- in the end, rendering has to be done from WebAssembly anyway, so it should do 100% of the WebGL talking.
+We create our unit `CastleInternalJobWeb` using this script and WEBIDLs: https://github.com/castle-engine/castle-engine/tree/webassm_platformer_test/src/base_rendering/web/webidl .
 +
 NOTE: The WebGL API is available in the browser to https://getpas2js.freepascal.org/[Pas2js] (that is, any _JavaScript_ code in the browser). If not for https://wiki.freepascal.org/WebAssembly/DOM[JOB], we would expose this API for the WebAssembly, following the https://www.freepascal.org/~michael/pas2js-demos/wasienv/canvas/[canvas example] described in the 2nd part of https://www.freepascal.org/~michael/articles/fpcwasm1/fpcwasm1.pdf[this article]. But, well, using https://wiki.freepascal.org/WebAssembly/DOM[JOB] makes things even easier.
 
 
 === Plans (TODOs)
 
-- TODO: Our link:editor[] also does the above steps, just change the platform using _"Run -> Platform -> Web"_ menu item and hit _"Build and Run"_ (F9).
+- **TODO, IN PROGRESS NOW**: We render using https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API[WebGL 1.0], with optional WebGL 2.0 features. This is very similar to current rendering on mobile, where we use https://castle-engine.io/wp/2023/03/12/mobile-opengles-rendering-upgrades-occlusion-query-anisotropic-filtering-3d-textures-shadows-plus-new-occlusion-query-demo/[OpenGL ES 2.0, with optional OpenGL ES 3.0 features].
 
-- TODO, IN PROGRESS: We render using https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API[WebGL 1.0], with optional WebGL 2.0 features. This is very similar to current rendering on mobile, where we use https://castle-engine.io/wp/2023/03/12/mobile-opengles-rendering-upgrades-occlusion-query-anisotropic-filtering-3d-textures-shadows-plus-new-occlusion-query-demo/[OpenGL ES 2.0, with optional OpenGL ES 3.0 features].
+- TODO: Our link:editor[] also does the above steps, just change the platform using _"Run -> Platform -> Web"_ menu item and hit _"Build and Run"_ (F9).
 
 - TODO: For audio, we will add a new sound backend using https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API[WebAudio]. This will be the default sound backend on the web (like the https://castle-engine.io/openal[OpenAL] is now the default backend on non-web platforms).
 +
@@ -201,13 +201,9 @@ We added an exception `Exception: Failed to load OpenGL(ES) library` when `not A
 - Make the rendering work, by routing calls to WebGL on the web.
 +
 --
-- We could use WebGL from Pasj2s (see `pas2js/packages/rtl/src/webgl.pas` and pasj2s demos using it). We can make these calls available to our WebAssembly code (using canvas example from Pas2js and explanation from https://www.freepascal.org/~michael/articles/fpcwasm1/fpcwasm1.pdf how to expose JS functionality to WebAssembly).
-+
-Our Pas2js code already has basic context initialization + render + animate code, to test it works.
+- We already call WebGL from WebAssembly using JOB integration in `CastleInternalWebJob`.
 
-- FPC includes a unit `Job_Web` with `TJSWebGL2RenderingContext`. Michalis already learned how to use it. See wiki, https://wiki.freepascal.org/WebAssembly/DOM . **We already use this approach with success, we have `CastleInternalJobWeb` exposing working WebGL API for WebAssembly.**
-
-- TODO: Next steps: integrate WebGL usage through CGE code, utilizing the fact that it's similar (though not identical) to OpenGL ES 2.0.
+- TODO: Next steps: integrate WebGL usage throughout CGE code, utilizing the fact that it's similar (though not identical) to OpenGL ES 2.0.
 
 - Maybe: Define `CastleInternalWebGL` unit, exposing these calls in a flat way, to be similar to OpenGLES, and add macro `CastleGLES:=CastleInternalWebGL` in `castleconf.conf`. This is to be decided, how much we want to "pretend that WebGL is OpenGLES".
 
