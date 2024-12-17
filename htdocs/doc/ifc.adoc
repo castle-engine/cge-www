@@ -102,7 +102,7 @@ X3D nodes can be mapped back to IFC classes, which is useful e.g. for picking 3D
 We define some utility methods to operate on IFC classes:
 
 - cgeref:TIfcProduct.AddMeshRepresentation[], cgeref:TIfcProduct.AddBoxRepresentation[] (adding meshes to products)
-- cgeref:TIfcProduct.SetRelativePlacement[] (move products)
+- cgeref:TIfcProduct.RelativePlacement[] (move products)
 - cgeref:TIfcObjectDefinition.AddIsDecomposedBy[], cgeref:TIfcProject.BestContainer[] (relationship between larger spatial elements)
 - cgeref:TIfcSpatialElement.AddContainedElement[], cgeref:TIfcSpatialElement.GetContainedElements[] (relationship to add elements (products) inside larger spatial elements)
 - cgeref:TIfcProject.SetupUnits[] (setup standard (metric) units for the project)
@@ -170,7 +170,7 @@ The IFC files follow the convention of _"Z axis is up"_. This is different to _C
 
 Sometimes you can just ignore this difference. Everything works. Just setup your camera to look natural with _"Z up"_.
 
-But for most projects, we advise to display IFC models to follow the _"Y up"_ convention. This will make e.g. link:physics[] works in natural way (our gravity pulls down in -Y by default). And it will make IFC models match link:gltf[glTF] and link:x3d[X3D] models better. Simply rotate the cgeref:TCastleScene[] holding the IFC, by rotating it 90 degrees around X axis. To do this, set cgeref:TCastleTransform.Rotation[MyIfcScene.Rotation] to `Vector4(1, 0, 0, Deg(90))`.
+But for most projects, we advise to display IFC models to follow the _"Y up"_ convention. This will make e.g. link:physics[] works in natural way (our gravity pulls down in -Y by default). And it will make IFC models match link:gltf[glTF] and link:x3d[X3D] models better. To do this you can rotate the cgeref:TCastleScene[] instance (where the IFC model is loaded) by 90 degrees around X axis. Just set cgeref:TCastleTransform.Rotation[MyIfcScene.Rotation] to `Vector4(1, 0, 0, Deg(-90))`.
 ====
 
 ## Working with IFC classes (native IFC in Castle Game Engine)
