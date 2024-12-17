@@ -7,8 +7,6 @@ include::common.adoc[]
 
 _Castle Game Engine_ supports loading 3D models in the _IFC (Industry Foundation Classes)_ format.
 
-WARNING: This is a work in progress, in active development now. Pay attention to the things marked as "TODO" below.
-
 cgeimg::block[
   ifc_cge.png|IFC example in Castle Game Engine,
   ifc_blender.png|Same IFC example loaded in Blender (with BonsaiBIM add-on),
@@ -106,7 +104,7 @@ We define some utility methods to operate on IFC classes:
 - cgeref:TIfcProduct.AddMeshRepresentation[], cgeref:TIfcProduct.AddBoxRepresentation[] (adding meshes to products)
 - cgeref:TIfcProduct.SetRelativePlacement[] (move products)
 - cgeref:TIfcObjectDefinition.AddIsDecomposedBy[], cgeref:TIfcProject.BestContainer[] (relationship between larger spatial elements)
-- cgeref:TIfcSpatialElement.AddContainedElement[] (relationship to add elements (products) inside larger spatial elements)
+- cgeref:TIfcSpatialElement.AddContainedElement[], cgeref:TIfcSpatialElement.GetContainedElements[] (relationship to add elements (products) inside larger spatial elements)
 - cgeref:TIfcProject.SetupUnits[] (setup standard (metric) units for the project)
 - cgeref:TIfcFile.Project[] (the main project of the IFC file)
 - cgeref:TIfcProject.ModelContext[], cgeref:TIfcProject.PlanContext[], cgeref:TIfcProject.SetupModelContext[] (querying and creation of geometric contexts, necessary to designate things to be visible in "3D model view" or "2D plan" view).
@@ -139,7 +137,12 @@ cgeimg::block[
 
 NOTE: Above, we added some lights for display in our engine, just to make it look fancy :) These are not part of the IFC standard. There are other graphic features in our engine you could use, like link:shadow_volumes[shadows using shadow volumes], tweaking cgeref:TCastleRenderOptions.WireframeEffect[MyScene.RenderOptions.WireframeEffect].
 
-## Loading and saving IFC in TCastleScene
+////
+TODO: This section talks about "only loading" for now, because that's what is implemented.
+But we have below working about saving too, which is planned.
+////
+//## Loading and saving IFC in TCastleScene
+## Loading IFC in TCastleScene
 
 Basically, you don't need to learn anything new to use IFC with _Castle Game Engine_.
 
@@ -150,11 +153,25 @@ Load a sample IFC file:
 
 Just follow the manual page about link:viewport_and_scenes[viewports and scenes] and subsequent pages about cgeref:TCastleScene[] usage.
 
+////
 You can then modify the cgeref:TCastleScene[] contents (a set of link:x3d[X3D] nodes rooted in cgeref:TCastleSceneCore.RootNode[]) and save it back to IFC using the cgeref:TCastleSceneCore.Save[] method.
 
 WARNING: TODO: Saving described above (from X3D -> IFC) is not yet implemented. It is possible we will implement it. For now, it is actually more powerful to use the approach described lower, to work directly with IFC classes and save using cgeref:IfcJsonSave[].
+////
 
-You can also use the cgeref:LoadNode[] and cgeref:SaveNode[] methods to load and save cgeref:TX3DRootNode[] instance, without the need for a full cgeref:TCastleScene[]. This makes sense if you don't need to display the model at all.
+You can also use the cgeref:LoadNode[]
+//TODO: and cgeref:SaveNode[] methods to load and save
+method to load
+cgeref:TX3DRootNode[] instance, without the need for a full cgeref:TCastleScene[]. This makes sense if you don't need to display the model at all.
+
+[NOTE]
+====
+The IFC files follow the convention of _"Z axis is up"_. This is different to _Castle Game Engine_ convention (consistent with link:gltf[glTF], link:x3d[X3D], and some other game engines) of _"Y axis is up"_.
+
+Sometimes you can just ignore this difference. Everything works. Just setup your camera to look natural with _"Z up"_.
+
+But for most projects, we advise to display IFC models to follow the _"Y up"_ convention. This will make e.g. link:physics[] works in natural way (our gravity pulls down in -Y by default). And it will make IFC models match link:gltf[glTF] and link:x3d[X3D] models better. Simply rotate the cgeref:TCastleScene[] holding the IFC, by rotating it 90 degrees around X axis. To do this, set cgeref:TCastleTransform.Rotation[MyIfcScene.Rotation] to `Vector4(1, 0, 0, Deg(90))`.
+====
 
 ## Working with IFC classes (native IFC in Castle Game Engine)
 
@@ -237,7 +254,7 @@ begin
           Vector3(0, 0, 0),
           Vector3(10, 0.5, 2) // Z is "up", by convention, in IFC
         ));
-      IfcFile.Project.AddContainedElement(Wall);
+      IfcFile.Project.BestContainer.AddContainedElement(Wall);
 
       // modify the contents of RootNode, to reflect above new wall.
       // the MyScene displaying it will automatically reflect the changes
