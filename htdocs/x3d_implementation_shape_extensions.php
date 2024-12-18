@@ -97,10 +97,13 @@ Although toggling Switch node is also ultra-fast.
   </li>
 
   <li><p><code>WIREFFRAME</code>: render as a wireframe.
-    The rendering model matches the <code>IndexedLineSet</code> specification,
+    The rendering model matches the
+    <a href="https://www.web3d.org/documents/specifications/19775-1/V4.0/Part01/components/rendering.html#LineSet">LineSet specification</a>.
     in particular: the shape is not lit.
+    The unlit color is taken from the material's <code>EmissiveColor</code> value.
 
-    <p>For now this is only honored by the <code>Box</code>, <code>Sphere</code> nodes.
+    <p>For now this is only honored by the <code>Box</code>, <code>Sphere</code>,
+    <code>IndexedFaceSet</code> nodes.
     It will be extended to all geometry nodes when necessary in the future.
   </li>
 </ul>
