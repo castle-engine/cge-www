@@ -198,8 +198,13 @@ function castle_news_item_by_id($id, &$previous, &$current, &$next)
 /* --------------------------------------------------------------------------- */
 
 /* An array of news entries.
-   It is in format accepted by rss_generator class, but also has some
-   extras for news_to_html:
+
+   Each entry is an associative array with the following fields:
+
+   - title: title of the news item.
+     (do not use HTML, i.e. special chars will be escaped).
+
+   - description: HTML description of the news item.
 
    - short_title: used instead of title, if defined, for short view.
 
@@ -228,8 +233,6 @@ function castle_news_item_by_id($id, &$previous, &$current, &$next)
    - images: list of images, like arguments to castle_thumbs.
      1st image is the main one.
 
-   - description: HTML full description. (also used by rss_generator.)
-   - title: title (not HTML, i.e. special chars will be escaped). (also used by rss_generator.)
    - alternative_id: if set, then it's an alternative id (may be used in URLs
      like https://castle-engine.io/old_news.php?id=XXX).
      Useful when original id is too long, but I don't want to change it
@@ -256,6 +259,7 @@ require_once 'news_2007.php';
 
 foreach ($news as &$log_entry)
 {
+  // Was used by rss_generator, unused now
   $log_entry['pubDate'] = date_timestamp(
     $log_entry['year'],
     $log_entry['month'],
@@ -263,6 +267,7 @@ foreach ($news as &$log_entry)
     (isset($log_entry['hour'])   ? $log_entry['hour']   : 0),
     (isset($log_entry['minute']) ? $log_entry['minute'] : 0));
 
+  // Was used by rss_generator, also copied to 'id' below
   if (!isset($log_entry['guid']))
     $log_entry['guid'] =
       $log_entry['year'] . '-' .
