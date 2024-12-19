@@ -43,7 +43,9 @@ class Generic_Plugin_Admin {
 	private $w3tc_message = null;
 
 	/**
-	 * Constructor.
+	 * Constructor
+	 *
+	 * @return void
 	 */
 	public function __construct() {
 		$this->_config = Dispatcher::config();
@@ -51,6 +53,8 @@ class Generic_Plugin_Admin {
 
 	/**
 	 * Runs plugin
+	 *
+	 * @return void
 	 */
 	public function run() {
 		$this->is_w3tc_page = Util_Admin::is_w3tc_admin_page();
@@ -110,6 +114,9 @@ class Generic_Plugin_Admin {
 				delete_option( 'w3tc_message' );
 			}
 		}
+
+		// Run post-update tasks.
+		$this->post_update_tasks();
 	}
 
 	/**
@@ -148,6 +155,13 @@ class Generic_Plugin_Admin {
 		}
 	}
 
+	/**
+	 * Save settings handler.
+	 *
+	 * @param array $data Data.
+	 *
+	 * @return array
+	 */
 	public function w3tc_save_options( $data ) {
 		$new_config = $data['new_config'];
 		$old_config = $data['old_config'];
@@ -206,9 +220,13 @@ class Generic_Plugin_Admin {
 	}
 
 	/**
-	 * Admin init.
+	 * Admin init (administrators only).
 	 */
 	public function admin_init() {
+		if ( ! \user_can( \get_current_user_id(), 'manage_options' ) ) {
+			return;
+		}
+
 		// Special handling for deactivation link, it's plugins.php file.
 		if ( 'w3tc_deactivate_plugin' === Util_Request::get_string( 'action' ) ) {
 			Util_Activation::deactivate_plugin();
@@ -338,9 +356,13 @@ class Generic_Plugin_Admin {
 	}
 
 	/**
-	 * Enqueue admin scripts.
+	 * Enqueue admin scripts (administrators only).
 	 */
 	public function admin_enqueue_scripts() {
+		if ( ! \user_can( \get_current_user_id(), 'manage_options' ) ) {
+			return;
+		}
+
 		wp_register_style( 'w3tc-options', plugins_url( 'pub/css/options.css', W3TC_FILE ), array(), W3TC_VERSION );
 		wp_register_style( 'w3tc-lightbox', plugins_url( 'pub/css/lightbox.css', W3TC_FILE ), array(), W3TC_VERSION );
 		wp_register_style( 'w3tc-bootstrap-css', plugins_url( 'pub/css/bootstrap-buttons.css', W3TC_FILE ), array(), W3TC_VERSION );
@@ -378,20 +400,24 @@ class Generic_Plugin_Admin {
 	}
 
 	/**
-	 * Render sticky top navigation bar on all W3TC admin pages.
+	 * Render sticky top navigation bar on all W3TC admin pages (administrators only).
 	 */
 	public function top_nav_bar() {
-		if ( Util_Admin::is_w3tc_admin_page() ) {
+		if ( \user_can( \get_current_user_id(), 'manage_options' ) && Util_Admin::is_w3tc_admin_page() ) {
 			require W3TC_INC_DIR . '/options/common/top_nav_bar.php';
 		}
 	}
 
 	/**
-	 * Define icon styles for the custom post type.
+	 * Define icon styles for the custom post type (administrators only).
 	 *
 	 * @throws \Exception Exception.
 	 */
 	public function admin_head() {
+		if ( ! \user_can( \get_current_user_id(), 'manage_options' ) ) {
+			return;
+		}
+
 		global $wp_version;
 		global $wpdb;
 
@@ -450,8 +476,6 @@ class Generic_Plugin_Admin {
 
 				function w3tc_ga(){dataLayer.push(arguments);}
 
-				w3tc_ga('js', new Date());
-
 				w3tc_ga('config', '<?php echo esc_attr( $profile ); ?>', {
 					'user_properties': {
 						'plugin': 'w3-total-cache',
@@ -465,7 +489,12 @@ class Generic_Plugin_Admin {
 						'w3tc_edition': '<?php echo esc_attr( Util_Environment::w3tc_edition( $this->_config ) ); ?>',
 						'w3tc_widgets': '<?php echo esc_attr( Util_Widget::list_widgets() ); ?>',
 						'page': '<?php echo esc_attr( $page ); ?>',
-						'w3tc_install_date': '<?php echo esc_attr( get_option( 'w3tc_install_date' ) ); ?>'
+						'w3tc_install_date': '<?php echo esc_attr( get_option( 'w3tc_install_date' ) ); ?>',
+						'w3tc_pro': '<?php echo Util_Environment::is_w3tc_pro( $this->_config ) ? 1 : 0; ?>',
+						'w3tc_has_key': '<?php $this->_config->get_string( 'plugin.license_key' ) ? 1 : 0; ?>',
+						'w3tc_pro_c': '<?php echo defined( 'W3TC_PRO') && W3TC_PRO ? 1 : 0; ?>',
+						'w3tc_enterprise_c': '<?php echo defined( 'W3TC_ENTERPRISE' ) && W3TC_ENTERPRISE ? 1 : 0; ?>',
+						'w3tc_plugin_type': '<?php echo esc_attr( $this->_config->get_string( 'plugin.type' ) ); ?>',
 					}
 				});
 
@@ -479,10 +508,10 @@ class Generic_Plugin_Admin {
 
 				// Track clicks on W3TC Pro Services tab.
 				document.addEventListener('click', function(event) {
-					if ( jQuery( event.target ).hasClass( 'w3tc-pro-services') ) {
+					if (event.target.getAttribute('data-tab-type')) {
 						w3tc_ga('event', 'click', {
-							'eventCategory': 'w3tc-pro-services',
-							'eventLabel': event.target.innerText
+							'eventCategory': event.target.closest('.postbox-tabs').getAttribute('id'),
+							'eventLabel': event.target.getAttribute('data-tab-type'),
 						});
 					}
 				});
@@ -512,7 +541,7 @@ class Generic_Plugin_Admin {
 	 * Defines the W3TC footer
 	 */
 	public function admin_footer() {
-		if ( $this->is_w3tc_page ) {
+		if ( \user_can( \get_current_user_id(), 'manage_options' ) && $this->is_w3tc_page ) {
 			require W3TC_INC_DIR . '/options/common/footer.php';
 		}
 	}
@@ -586,20 +615,28 @@ class Generic_Plugin_Admin {
 	}
 
 	/**
-	 * Print styles
+	 * Print styles (administrators only).
 	 *
 	 * @return void
 	 */
 	public function admin_print_styles() {
+		if ( ! \user_can( \get_current_user_id(), 'manage_options' ) ) {
+			return;
+		}
+
 		wp_enqueue_style( 'w3tc-options' );
 		wp_enqueue_style( 'w3tc-bootstrap-css' );
 		wp_enqueue_style( 'w3tc-lightbox' );
 	}
 
 	/**
-	 * Print scripts.
+	 * Print scripts (administrators only).
 	 */
 	public function admin_print_scripts() {
+		if ( ! \user_can( \get_current_user_id(), 'manage_options' ) ) {
+			return;
+		}
+
 		wp_enqueue_script( 'w3tc-metadata' );
 		wp_enqueue_script( 'w3tc-options' );
 		wp_enqueue_script( 'w3tc-lightbox' );
@@ -676,54 +713,54 @@ class Generic_Plugin_Admin {
 						'W3TCRemoveCssJsData',
 						array(
 							'lang' => array(
-								'singlesPathDescription'                   => __( 'Enter the path of the CSS/JS file to be managed. If a directory is used, all CSS/JS files within that directory will be managed with this entry.', 'w3-total-cache' ),
-								'singlesExampleTrigger'                    => __( 'View Examples', 'w3-total-cache' ),
-								'singlesExampleTriggerClose'               => __( 'Hide Examples', 'w3-total-cache' ),
-								'singlesPathExampleDirLabel'               => __( 'Target all CSS/JS from a plugin/theme:', 'w3-total-cache' ),
-								'singlesPathExampleDir'                    => wp_kses(
+								'singlesPathDescription' => __( 'Enter the path of the CSS/JS file to be managed. If a directory is used, all CSS/JS files within that directory will be managed with this entry.', 'w3-total-cache' ),
+								'singlesExampleTrigger'  => __( 'View Examples', 'w3-total-cache' ),
+								'singlesExampleTriggerClose' => __( 'Hide Examples', 'w3-total-cache' ),
+								'singlesPathExampleDirLabel' => __( 'Target all CSS/JS from a plugin/theme:', 'w3-total-cache' ),
+								'singlesPathExampleDir'  => wp_kses(
 									'https://example.com/wp-content/plugins/example-plugin/<br/>/wp-content/plugins/example-plugin/',
 									array(
 										'br' => array(),
 									)
 								),
-								'singlesPathExampleFileLabel'              => __( 'Target a specific CSS/JS file:', 'w3-total-cache' ),
-								'singlesPathExampleFile'                   => wp_kses(
+								'singlesPathExampleFileLabel' => __( 'Target a specific CSS/JS file:', 'w3-total-cache' ),
+								'singlesPathExampleFile' => wp_kses(
 									'https://example.com/wp-content/themes/example-theme/example-script.js<br/>/wp-content/themes/example-script.js<br/>example-script.js',
 									array(
 										'br' => array(),
 									)
 								),
-								'singlesNoEntries'                         => __( 'No CSS/JS entries added.', 'w3-total-cache' ),
-								'singlesExists'                            => __( 'Entry already exists!', 'w3-total-cache' ),
-								'singlesPathLabel'                         => __( 'Target CSS/JS:', 'w3-total-cache' ),
-								'singlesDelete'                            => __( 'Delete', 'w3-total-cache' ),
-								'singlesBehaviorLabel'                     => __( 'Action:', 'w3-total-cache' ),
-								'singlesBehaviorExcludeText'               => __( 'Exclude', 'w3-total-cache' ),
-								'singlesBehaviorExcludeText2'              => __( '(Remove the script ONLY WHEN a condition below matches)', 'w3-total-cache' ),
-								'singlesBehaviorIncludeText'               => __( 'Include', 'w3-total-cache' ),
-								'singlesBehaviorIncludeText2'              => __( '(Allow the script ONLY WHEN a condition below matches)', 'w3-total-cache' ),
-								'singlesBehaviorDescription'               => __( 'When the above CSS/JS file is found within your markup.', 'w3-total-cache' ),
-								'singlesIncludesLabelExclude'              => __( 'Exclude on URL Match:', 'w3-total-cache' ),
-								'singlesIncludesLabelInclude'              => __( 'Include on URL Match:', 'w3-total-cache' ),
-								'singlesIncludesDescriptionExclude'        => __( 'Specify the conditions for which the target file should be excluded based on matching absolute/relative page URLs. Include one entry per line.', 'w3-total-cache' ),
-								'singlesIncludesDescriptionInclude'        => __( 'Specify the conditions for which the target file should be included based on matching absolute/relative page URLs. Include one entry per line.', 'w3-total-cache' ),
-								'singlesIncludesExample'                   => wp_kses(
+								'singlesNoEntries'       => __( 'No CSS/JS entries added.', 'w3-total-cache' ),
+								'singlesExists'          => __( 'Entry already exists!', 'w3-total-cache' ),
+								'singlesPathLabel'       => __( 'Target CSS/JS:', 'w3-total-cache' ),
+								'singlesDelete'          => __( 'Delete', 'w3-total-cache' ),
+								'singlesBehaviorLabel'   => __( 'Action:', 'w3-total-cache' ),
+								'singlesBehaviorExcludeText' => __( 'Exclude', 'w3-total-cache' ),
+								'singlesBehaviorExcludeText2' => __( '(Remove the script ONLY WHEN a condition below matches)', 'w3-total-cache' ),
+								'singlesBehaviorIncludeText' => __( 'Include', 'w3-total-cache' ),
+								'singlesBehaviorIncludeText2' => __( '(Allow the script ONLY WHEN a condition below matches)', 'w3-total-cache' ),
+								'singlesBehaviorDescription' => __( 'When the above CSS/JS file is found within your markup.', 'w3-total-cache' ),
+								'singlesIncludesLabelExclude' => __( 'Exclude on URL Match:', 'w3-total-cache' ),
+								'singlesIncludesLabelInclude' => __( 'Include on URL Match:', 'w3-total-cache' ),
+								'singlesIncludesDescriptionExclude' => __( 'Specify the conditions for which the target file should be excluded based on matching absolute/relative page URLs. Include one entry per line.', 'w3-total-cache' ),
+								'singlesIncludesDescriptionInclude' => __( 'Specify the conditions for which the target file should be included based on matching absolute/relative page URLs. Include one entry per line.', 'w3-total-cache' ),
+								'singlesIncludesExample' => wp_kses(
 									'https://example.com/example-page/<br/>/example-page/<br/>example-page?arg=example-arg',
 									array(
 										'br' => array(),
 									)
 								),
-								'singlesIncludesContentLabelExclude'       => __( 'Exclude on Content Match:', 'w3-total-cache' ),
-								'singlesIncludesContentLabelInclude'       => __( 'Include on Content Match:', 'w3-total-cache' ),
+								'singlesIncludesContentLabelExclude' => __( 'Exclude on Content Match:', 'w3-total-cache' ),
+								'singlesIncludesContentLabelInclude' => __( 'Include on Content Match:', 'w3-total-cache' ),
 								'singlesIncludesContentDescriptionExclude' => __( 'Specify the conditions for which the target file should be excluded based on matching page content. Include one entry per line.', 'w3-total-cache' ),
 								'singlesIncludesContentDescriptionInclude' => __( 'Specify the conditions for which the target file should be included based on matching page content. Include one entry per line.', 'w3-total-cache' ),
-								'singlesIncludesContentExample'            => wp_kses(
+								'singlesIncludesContentExample' => wp_kses(
 									'&lt;div id="example-id"&gt;<br/>&lt;span class="example-class"&gt;<br/>name="example-name"',
 									array(
 										'br' => array(),
 									)
 								),
-								'singlesEmptyUrl'                          => __( 'Empty match pattern!', 'w3-total-cache' ),
+								'singlesEmptyUrl'        => __( 'Empty match pattern!', 'w3-total-cache' ),
 							),
 						)
 					);
@@ -746,9 +783,13 @@ class Generic_Plugin_Admin {
 	}
 
 	/**
-	 * Load plugins page JS.
+	 * Load plugins page JS (administrators only).
 	 */
 	public function load_plugins_page_js() {
+		if ( ! \user_can( \get_current_user_id(), 'manage_options' ) ) {
+			return;
+		}
+
 		wp_enqueue_script( 'w3tc-options' );
 	}
 
@@ -757,7 +798,7 @@ class Generic_Plugin_Admin {
 	 */
 	public function print_plugins_page_css() {
 		?>
-		<style type=\"text/css\">
+		<style type="text/css">
 			.w3tc-missing-files ul {
 				margin-left: 20px;
 				list-style-type: disc;
@@ -811,9 +852,7 @@ class Generic_Plugin_Admin {
 	 */
 	public function w3tc_ajax_faq() {
 		$section = Util_Request::get_string( 'section' );
-
-		$entries  = Generic_Faq::parse( $section );
-		$response = array();
+		$entries = Generic_Faq::parse( $section );
 
 		ob_start();
 		include W3TC_DIR . '/Generic_Plugin_Admin_View_Faq.php';
@@ -925,11 +964,15 @@ class Generic_Plugin_Admin {
 	}
 
 	/**
-	 * Admin notices action
+	 * Admin notices action (administrators only).
 	 *
 	 * @return void
 	 */
 	public function admin_notices() {
+		if ( ! \user_can( \get_current_user_id(), 'manage_options' ) ) {
+			return;
+		}
+
 		$cookie_domain = Util_Admin::get_cookie_domain();
 
 		$error_messages = array(
@@ -1209,6 +1252,41 @@ class Generic_Plugin_Admin {
 					esc_attr( $key ),
 					$error // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				);
+		}
+	}
+
+	/**
+	 * Run post-update tasks.
+	 *
+	 * @since 2.8.1
+	 *
+	 * @see Util_Admin::fix_on_event()
+	 *
+	 * @return void
+	 */
+	public function post_update_tasks(): void {
+		// Check if W3TC was updated.
+		$state            = Dispatcher::config_state();
+		$last_run_version = $state->get_string( 'tasks.last_run_version' );
+
+		if ( empty( $last_run_version ) || version_compare( W3TC_VERSION, $last_run_version, '>' ) ) {
+			switch ( W3TC_VERSION ) {
+				case '2.8.1':
+					// Fix environment.
+					Util_Admin::fix_on_event( $this->_config, 'w3tc_plugin_updated' );
+
+					// Adjust "objectcache.file.gc".
+					if ( $this->_config->get_integer( 'objectcache.file.gc' ) === 3600 ) {
+						$this->_config->set( 'objectcache.file.gc', 600 );
+						$this->_config->save();
+					}
+					break;
+				default:
+					break;
+			}
+
+			$state->set( 'tasks.last_run_version', W3TC_VERSION );
+			$state->save();
 		}
 	}
 }

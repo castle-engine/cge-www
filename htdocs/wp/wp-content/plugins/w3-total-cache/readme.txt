@@ -3,7 +3,7 @@ Contributors: boldgrid, fredericktownes, maxicusc, gidomanders, bwmarkle, harryj
 Tags: CDN, pagespeed, caching, performance, optimize
 Requires at least: 5.3
 Tested up to: 6.7
-Stable tag: 2.8.0
+Stable tag: 2.8.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -356,10 +356,26 @@ It's quite difficult to recall all of the innovators that have shared their thou
 * [Gopal Vijayaraghavan](http://notmysock.org/)
 * [Bart Vanbraban](http://eaccelerator.net/)
 * [mOo](http://xcache.lighttpd.net/)
+* [villu164] (https://www.wordfence.com/threat-intel/vulnerabilities/researchers/villu164)
 
 Please reach out to all of these people and support their projects if you're so inclined.
 
 == Changelog ==
+
+= 2.8.2 =
+* Fix: Added additional user capability checks
+* Fix: Ensure Object Cache garbage collection (disk) WP Cron event is scheduled
+* Fix: Added additional checks when loading the Object Cache dropin
+* Fix: Disable Database, Object, and Fragment Cache when using WP-CLI
+* Fix: Object Cache debug logging
+* Fix: FAQ help tabs
+* Update: Coding standards
+
+= 2.8.1=
+* Fix: Ensure WP Cron events get scheduled when using the Setup Guide wizard and on upgrade
+* Fix: Undefined variable when the Object Cache purge debug log is enabled
+* Update: Added warnings in the Setup Guide and the General Settings page when using Disk for Database and Object Caches
+* Update: Skip Database and Object caches when using WP-CLI
 
 = 2.8.0 =
 * Feature: Always Cached extension
@@ -1184,6 +1200,12 @@ Please reach out to all of these people and support their projects if you're so 
 
 
 == Upgrade Notice ==
+
+= 2.8.2
+This is a security update.  All users are encouraged to update to this version.
+
+= 2.8.1 =
+Users with Object Cache enabled using Disk storage should upgrade to this version to ensure proper garbage collection.  A memory-based engine is recommended for database and object cache engines.  Using the Disk option can lead to a large number of cache files.  Hosting accounts with inode limits may experience issues, including downtime, if limits are reached.
 
 = 2.7.3 =
 Thanks for using W3 Total Cache! The minimum required PHP version has been raised to PHP 7.2.5.  We recommend using PHP 8.  StackPath CDN has cased all operations and will be removed in a future release.  We recommend switching to Bunny CDN.
