@@ -68,17 +68,20 @@ Although toggling Switch node is also ultra-fast.
   node_end();
 ?>
 
-<p>The allowed values for the <code>shading</code> field:</p>
+<p>The allowed values for the <code>shading</code> field are listed below.
+They are consistent with <a href="<?php echo x3d_spec_latest_url('networking'); ?>#t-BrowserProperties">"Browser options" in X3D spec</a>
+(with <code>DEFAULT</code> added by us).</p>
 
 <ul>
   <li><p><code>DEFAULT</code>: use the default shading.
 
     <p>The default is to use <i>Phong shading</i> in the latest version of CGE.
 
-    <p>In <?php echo a_href_page("view3dscene", "view3dscene") ?>
+    <p>In <a href="castle-model-viewer">Castle Model Viewer</a>
     you control this using the <i>"View -&gt; Phong Shading on Everything"</i> checkbox.
     In your own games you control this using the
-    <code>Scene.RenderOptions.PhongShading</code> property in Pascal code.
+    <?php echo cgeRef('TCastleRenderOptions.PhongShading', 'MyScene.RenderOptions.PhongShading'); ?>
+    property in Pascal code.
   </li>
 
   <li><p><code>GOURAUD</code>: fast per-vertex lighting calculation.
@@ -97,19 +100,32 @@ Although toggling Switch node is also ultra-fast.
   </li>
 
   <li><p><code>WIREFFRAME</code>: render as a wireframe.
-    The rendering model matches the
-    <a href="https://www.web3d.org/documents/specifications/19775-1/V4.0/Part01/components/rendering.html#LineSet">LineSet specification</a>.
-    in particular: the shape is not lit.
-    The unlit color is taken from the material's <code>EmissiveColor</code> value.
 
-    <p>For now this is only honored by the <code>Box</code>, <code>Sphere</code>,
-    <code>IndexedFaceSet</code> nodes.
-    It will be extended to all geometry nodes when necessary in the future.
+    <p>The rendering technique matches the
+    <a href="https://www.web3d.org/documents/specifications/19775-1/V4.0/Part01/components/rendering.html#LineSet">LineSet specification</a>.
+    This means that we display the wireframe as unlit,
+    using the <code>EmissiveColor</code> of the material for the unlit color
+    (or white, if there's no material).
+
+    <p>For now this is only honored by some nodes: <code>Box</code>, <code>Sphere</code>,
+    <code>IndexedFaceSet</code>.
+    The intention is to extend this to all geometry nodes
+    (submit a GitHub issue if you need this).
+
+    <p><a href="https://github.com/castle-engine/demo-models/blob/master/x3d/castle_extensions/shading_wireframe.x3dv">Testcase of Shape.shading="WIREFRAME"</a>.
+
+    <p>NOTE: Having "wireframe" as an option for "shading" may sound weird.
+    Traditionally, <i>shading</i> is Gouraud or Phong, and it determines how lighting
+    is calculated (not whether we render polygons or lines).
+    But in this case, "wireframe" implies also "unlit" so it makes sense,
+    it means you are no longer concerned with lighting calculations.
+    It is possible we will introduce in the future an independent boolean flag
+    to toggle "wireframe" rendering, but still enable lit shading.
+    For now, the current approach is satisfactory for many use-cases, and
+    it's consistent with
+    <a href="<?php echo x3d_spec_latest_url('networking'); ?>#t-BrowserProperties">"Browser options" in X3D spec</a>.
   </li>
 </ul>
-
-<p>These shading names are consistent with <a href="<?php echo x3d_spec_latest_url('networking'); ?>#t-BrowserProperties">"Browser options" in X3D spec</a>
-(with <code>DEFAULT</code> added by us).</p>
 
 <?php echo $toc->html_section(); ?>
 
@@ -134,6 +150,10 @@ alpha treatment when rendering.
   node_field('SFString', '[in,out]', 'alphaChannel', '"AUTO"', '"AUTO"|"NONE"|"TEST"|"BLENDING"') .
   node_end();
 ?>
+
+<p><b>This is no longer CGE extension. X3D 4.0 defines the
+<code>alphaMode</code> and we advise to use it.
+Our extension <code>alphaChannel</code> is deprecated, and it's equivalent to <code>alphaMode</code> with just different names.</b>
 
 <p><a href="https://github.com/michaliskambi/x3d-tests/tree/master/alpha_mode">Test file of <code>alphaMode</code> feature.</a>
 
