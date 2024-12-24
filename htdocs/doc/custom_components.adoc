@@ -832,13 +832,13 @@ Thus the author of `TMyTransformationWithSphere` can assume that nothing will fr
 
 == Using designs to visually set up default state of your component
 
-You can visually design a component (or a hierarchy of components) in the editor, following the https://www.youtube.com/watch?v=peiWjieZpbM[Reusing a design using TCastleDesign, TCastleTransformDesign (our equivalent to Unity prefabs)] video. This is, in some cases, an alternative to creating a custom component class (described in this manual page). So you can design a new hierarchy of components, _visually_, and can later reuse them by placing cgeref:TCastleDesign[] or cgeref:TCastleTransformDesign[] in your larger design files.
+You can visually design a component (or a hierarchy of components) in the editor, following the link:reuse_design[Reusing a design using TCastleDesign, TCastleTransformDesign (our equivalent to Unity prefabs)] docs. This is, in some cases, a visual alternative to creating a custom component class. So you can design a new hierarchy of components, _visually_, and can later reuse them by placing cgeref:TCastleDesign[] or cgeref:TCastleTransformDesign[] in your larger design files.
 
-The approach with cgeref:TCastleDesign[] or cgeref:TCastleTransformDesign[] however suffers from a limitation (for now): the hierarchy you instantiate through cgeref:TCastleDesign[] or cgeref:TCastleTransformDesign[] is _"opaque"_. You cannot customize the components you instantiate this way. While you can _"expand"_ them (using _"Edit (Copy Here) Referenced Design"_ context menu) but this effectively creates a copy of the design -- further changes to the original design will not be reflected.
+Using cgeref:TCastleDesign[] or cgeref:TCastleTransformDesign[] however suffers from a limitation (for now): the hierarchy you instantiate through cgeref:TCastleDesign[] or cgeref:TCastleTransformDesign[] is _"opaque"_ in the editor. You cannot customize the components you instantiate this way in the editor. While you can _"expand"_ them (using _"Edit (Copy Here) Referenced Design"_ context menu) but this effectively creates a copy of the design -- further changes to the original design will not be reflected.
 
-NOTE: In the long run, we plan to improve it, by allowing to customize the hierachy instantiated through cgeref:TCastleDesign[] or cgeref:TCastleTransformDesign[]. See link:roadmap#design_overrides[roadmap "Allow to override design properties when instantiated using TCastleDesign, TCastleTransformDesign"] section.
+NOTE: In the long run, we plan to improve it, by allowing to customize the hierarchy instantiated through cgeref:TCastleDesign[] or cgeref:TCastleTransformDesign[] in the editor. See link:roadmap#design_overrides[roadmap "Allow to override design properties when instantiated using TCastleDesign, TCastleTransformDesign"] section.
 
-What you can do *right now* to overcome this limitation is to combine these 2 approaches, in a way: visually design a component, place it in a design file, and then create a custom component class that will instantiate this design file.
+You can overcome the limitation mentioned above by combining these 2 approaches, in a way: visually design a component, place it in a design file (following link:reuse_design[these docs]) and then create a custom component class that will instantiate this design file (following this page) and allow to customize things inside.
 
 Here's a demo how it can work:
 
@@ -902,3 +902,47 @@ initialization
   RegisterSerializableComponent(TMyButtonWith2Labels, 'My Button with 2 labels');
 end.
 ----
+
+== Use CastleApplicationMode to determine in which context (application running, editor, simulation) the logic works
+
+The code you use in custom components is executed, by default, in all situations. This means it is executed not only by your application (at _run-time_) but also in the _Castle Game Engine_ editor (at _design-time_).
+
+- Most often, this is desirable. E.g. if updating a property should have a side-effect of updating something else, then you usually want this logic to happen at _design-time_ as well.
+
+- But sometimes it's not desirable. For example, if you write a custom link:behaviors[behavior] that implements creature intelligence (e.g. so that creature follows and attacks the player) you probably not want to execute it at design-time.
+
+Use the global variable cgeref:CastleApplicationMode[] to make some of your logic run only in some situations. For example, at the beginning of your cgeref:TCastleBehavior.Update[] implementation check it like this:
+
+```delphi
+procedure TMyBehavior.Update(const SecondsPassed: Single; var RemoveMe: TRemoveType);
+begin
+  inherited;
+
+  if CastleApplicationMode <> appRunning then
+    Exit;
+
+  // here implement creature logic
+  // ...
+end;
+```
+
+See cgeref:TCastleApplicationMode[] for possible values.
+
+Consider enabling your logic to run in both cgeref:appRunning[] (regular application running) and cgeref:appSimulation[] (done when user presses _"Simulation Run"_ in editor).
+
+Enabling the logic to run also when cgeref:appSimulation[] allows to test it also during simulation in the editor, which is useful to quickly test some behaviors without recompiling the game. Just like you can test link:physics[] at design-time.
+Our https://castle-engine.io/wp/2024/10/21/demo-game-using-blender-sketchfab-quaternius-models-tcastlemoveattack-early-preview-of-tcastlemoveattack-merged-slides-from-conference-last-week/[TCastleMoveAttack behavior] is using this approach, so that you can test creature logic in the editor. At the end of _"simulation"_, editor resets the state of the design, so all the changes done during simulation (like moving some objects) are reliably reverted. To do this, implement your behavior like this:
+
+```delphi
+procedure TMyBehavior.Update(const SecondsPassed: Single; var RemoveMe: TRemoveType);
+begin
+  inherited;
+
+  if not (CastleApplicationMode in [appRunning, appSimulation]) then
+    Exit;
+
+  // here implement creature logic
+  // ...
+end;
+```
+
