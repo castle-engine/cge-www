@@ -254,19 +254,158 @@ This matches the existing logic in `shadow(` in GLSL that says _"where the shado
 [#web]
 ### (IN PROGRESS) Web platform (rendering using WebGL) support
 
-Using https://www.freepascal.org/[FPC] support for the _WebAssembly_:
-
-- https://wiki.freepascal.org/WebAssembly
-- https://wiki.freepascal.org/WebAssembly/Compiler
-- https://wiki.freepascal.org/WebAssembly/Roadmap
-
-Some "glue" may also be done using https://wiki.freepascal.org/pas2js[pas2js]. This is a nice solution to expose to our WebAssembly code the JS API we need, like WebGL. Alternatively, we could just do it in plain JS.
-
-_This is already in-progress by Trung Le (Kagamma), Andrzej Kilijański and Michalis._
-
-I wrote a longer post about plans and status of this here: https://castle-engine.io/wp/2023/04/08/web-target-progress-and-plans/ .
+This is already in-progress, see link:web[] for all docs.
 
 ## Important, big, impactful features (but we first focus on stuff above)
+
+[#packages]
+### Package system
+
+We want a system to define "packages" in _Castle Game Engine_.
+
+- Package creators can define a "package" that contains *code* and/or *data*.
++
+The _data_ can be naturally referred to by the _code_, e.g. a _"car behavior (Pascal code)"_ can use a _"default car crash sound (data, .wav file)"_.
++
+We can have mostly-data packages (like _"collection of medieval weapons"_) or mostly-code packages (like _"support for scripting in LUA"_, _"easy TCP/IP client/server"_) or a combination of both (like _"logic and basic data for Arcade Car Racing game type"_).
++
+Package can also define platform-specific code (e.g. Java on Android), thus new packages would also allow user-created link:android_services[Android services], link:ios_services[iOS services].
+
+- Users (developers of games/applications) can define that their project uses given packages.
++
+They can also "lock" versions of the packages (like NPM packages) (so co-developers can checkout the project and associated packages with _exactly_ equal versions). They can also upgrade the packages easily (by command-line build tool and GUI editor).
++
+And of course they can search for packages, both from editor GUI and WWW browser. Packages include typical metadata like title, description, license, screenshot(s), version control repository (GIT for start), website, donation link. Website can feature things like ratings, comments (design of the website is _not_ part of this roadmap item).
+
+- We want to have active ecosystem of packages. Packages are created / updated / used without making CGE developers (like Michalis) a bottleneck. CGE becomes the "core" around which we have this ecosystem. This is also our answer to _"Unity Asset Store"_ etc.
+
+NOTE: We have a few specific requirements (which are also a reason why we cannot use existing Lazarus packages / OPM, or FpMake / FpPkg, or GetIt) and a design how to satisfy them. Read on :)
+
+Basics how it works:
+
+- Use lock file like NPM, boss.
+
+- Command to install, upgrade:
++
+`castle-engine packages install`:
++
+--
+- Installs all packages listed in the `CastleProject.json`
+- Creates for them a new entry in `CastlePackageLock.json`, creating also `CastlePackageLock.json`, if it does not exist already; if `CastlePackageLock.json` exists and already mentions the package -> use version of package specified ("locked").
+- Creates `castle-packages` subdirectory
+--
++
+`castle-engine packages upgrade`
++
+--
+- Updates to latest versions all packages from server.
++
+Default server of each package is "CGE main packages" registry, which is just a repo with JSON pointing to other repos with packages. Package creators submit PR to link to their new package; updating package requires no PR. The server of each package can be customized.
+
+- Updates `CastlePackageLock.json` (bumps versions)
+
+- Updates `castle-packages` subdirectory contents.
+--
+
+- Files are JSONs serializable with `CastleComponentSerialize`:
++
+--
+- Upgrade project definition, following existing link:#_project_settings_editable_using_gui[project roadmap item]. So `CastleProject.json` with matching Pascal class. Add there declaration of "used packages". This makes project definition readable/editable as easy JSON, and readable/editable using GUI editor at the same time, and consistent with everything else we read/write using `CastleComponentSerialize`, like our designs.
+
+- For package, create `CastlePackageLock.json`, serialized component `TCastlePackagesLock`. This is where package metadata lives.
+
+- Both `CastleProject.json` and `CastlePackageLock.json` need a place for comments at top,  using JSON field "comment": "..."
+--
+
+CGE editor "Packages" dialog:
+
+- Lists currently installed packages
+- Allow to upgrade them (all, or specific ones)
+- Allow to install new one from "CGE main packages" registry
+
+Prerequisites:
+
+- Make link:#component_list[lists serializable nicer].
+- link:#_project_settings_editable_using_gui[Rework `CastleEngineManifest.xml` -> `CastleProject.json`]
+
+Packages in `CastleProject.json` must allow to override location from which they are to be downloaded:
+
+- for development (when package is not submitted to "CGE main packages registry" yet).
+
+- for package examples.
++
+Because examples must be able to refer to package data. There has be a way to say "I use a package that is in relative path from me, like `CastleLines2D path=".."`` ". And then `castle-engine packages upgrade` does nothing, and the lock file just copies this relative path, and the package is not downloaded from anywhere.
+
+- for organization-specific package repositories. You don't need to use "CGE main packages registry", though we will of course have one and use it by default.
+
+For each installed package:
+
+- Clone repo using GIT
+
+- Must contain `CastlePackage.json`.
++
+(make error if also CastleProject.json present? or ignore?)
++
+We define `TCastlePackage` component, with
++
+```delphi
+CodeSearchPaths: TCastleStringList
+// Auto added to compiler paths for this project
+// Also auto added to LSP paths for this project
+```
++
+If package contains `data/` subdir, make it available with this URL:
++
+`castle-package-data:/package-name/<path-inside-package-data>`
++
+`castle-package-data` protocol is resolved:
++
+--
+- when `castle-packages` exists (running when in development, from project source repo) then look there in `castle-packages/package-name/data/<path-inside-package-data>`.
++
+This is similar to how we resolve `caste-data:/` by looking in subdirectory `data`.
+
+- when `castle-packages` does not exist (running from packaged game): look in `castle-data:/_castle-packages/package-name/<path-inside-package-data>`. To make it work, `castle-engine package` will copy all package data (but not other package stuff, like metadata or code) into `_castle-packages` before packing.
+--
+
+High-level goals:
+
+- Packages allow users to get extra functionality (beyond what is in main CGE repo). Of course.
+
+- Packages allow developers to easily share extra functionality with others.
+
+- Packages are easy to install using CGE editor or command-line build tool.
+
+- Packages used follow the spec in `CastleProject.json`, which is just upgraded `CastleEngineManifest.xml`
+
+- Follow the "packages lock" known from NPM, boss etc.: Allow developer to commit a file that describes each package version, exactly, using GIT hash. This file can be committed to version control, and means that all developers use the same package versions. The "upgrade" of packages must be explicit!
+
+- Packages can be upgraded, all or specific ones, using CGE editor or build tool
+
+- Packages can contain Pascal code. No extra action should be necessary after installing the package -- that is, extra package Pascal paths will be automatically derived from package metadata and passed to compiler.
+
+- Packages can contain services -- Android-specific, iOS-specific services subdirectories that define any integration with Android or iOS. This is useful for e.g. integrating ad networks, analytics, etc.
+
+- Similarly, packages can contain CGE data. And no extra action should be necessary to use this data -- both for components included in the package (e.g. internal data for some package functionality) or for project (which may use e.g. some designs).
+// Introduce some split, "internal" package data that isn't supposed to be used by project? Or not, seems useless -- if needed, a package can use just subdirectory "internal" inside it's data, no drawback of this.
+
+- Packages can contain example projects one can run. This makes sense in CGE (unlike Unity or other engines where you can "run a scene", in CGE you run a project).
+
+Review process: Unlike PRs to CGE repo, new/updated packages don't require any big review process from CGE devs -- we want to be permissive in what packages we allow to be published with "CGE main packages registry".
+
+- We reserve the right to make some review, but mostly with goal "doesn't this contain anything malicious" (e.g. we don't want package called "easy MMO RPG" that does something malicious on the developer and/or application user machine). But this PR is not "make a decision if this is the right approach, or if CGE devs judge this as good quality or whatever". Of course we will try to review everything and post helpful comments, but CGE core devs *cannot* be a bottleneck in this process. So:
+
+- New package submissions are accepted "by default", the only allowed blocker is "we see something malicious".
+
+- Everyone understands that by downloading a package, they download a piece of code/data written by the package's author. CGE core devs are not responsible for the quality of it.
+
+- Ratings, comments, PRs to package, are a way to give feedback / judge the package before you use. We only remove packages (from "CGE main packages registry") packages that are malicious (try to do something obviously unexpected abusing developer/user machine). Packages that are "low quality" just receive the corresponding feedback (ratings, comments). Of course, comments on the CGE website follow our https://forum.castle-engine.io/t/forum-guidelines/28[forum and Discord guidelines]. Let's be helpful and constructive and together strive to create something cool.
+
+- To repeat: Everyone, including CGE core devs, is of course welcome to make more thorough review of the package, post comments whether something could be done differently etc. But this is just optional, not a blocker. A blocker is only if we see (or someone reports) something malicious.
+
+- Releasing new version of package doesn't require any review. You can just tag your GitHub repo, and the new release is there, CGE repo will find the new tag soon.
+
+- New packages, and notices of upgrades, go to internal queue for "quick review": with the main goal to check if the package contains anything malicious.
 
 ### VR and AR
 
