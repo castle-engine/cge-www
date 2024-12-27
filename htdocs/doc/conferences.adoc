@@ -23,7 +23,7 @@ Presentation at _FPC and Lazarus event in Cologne (Köln)_.
 +
 --
 - https://castle-engine.io/cologne2024[Slides].
-- See https://castle-engine.io/wp/2024/08/10/conferences-register-for-my-upcoming-talk-at-dev-days-of-summer-august-2024-catch-me-in-cologne-october-2024-watch-my-past-talk-from-itdevcon-2023/[annoucement before conference].
+- See https://castle-engine.io/wp/2024/08/10/conferences-register-for-my-upcoming-talk-at-dev-days-of-summer-august-2024-catch-me-in-cologne-october-2024-watch-my-past-talk-from-itdevcon-2023/[announcement before conference].
 - https://castle-engine.io/wp/2024/10/11/slides-from-my-presentation-in-koln-cologne-germany-today-spoilers-about-some-new-engine-features/[thoughts after conference].
 --
 

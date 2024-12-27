@@ -1,7 +1,7 @@
 Castle Game Engine documentation using AsciiDoctor.
 
 Going forward, we want to maintain all CGE docs like this -- AsciiDoctor is really comfortable.
-See our annoucement and Michalis thoughts about ways to write documentation on
+See our announcement and Michalis thoughts about ways to write documentation on
 https://castle-engine.io/wp/2021/12/31/many-documentation-upgrades-using-asciidoctor-as-our-primary-way-to-write-documentation-michalis-thoughts-and-plans-about-our-documentation/ .
 
 These pages are rendered using ../doc.php . Users access them just like
