@@ -18,7 +18,7 @@ $reasons = array(
 		4 => '<li><label><input type="radio" name="ck_mail_disable_reason" required value="technical issue"/>' . esc_html__('Technical Issue', 'check-email') . '</label></li>
 		<li><textarea name="ck_mail_disable_text[]" placeholder="' . esc_attr__('Can we help? Please describe your problem', 'check-email') . '"></textarea></li>',
 		5 => '<li><label><input type="radio" name="ck_mail_disable_reason" required value="'.esc_attr('other plugin').'"/>' . esc_html__('I switched to another plugin', 'check-email') .  '</label></li>
-		<li><input type="text" name="ck_mail_disable_text[]" value="" placeholder="'.esc_attr__('Name of the plugin').'"/></li>',
+		<li><input type="text" name="ck_mail_disable_text[]" value="" placeholder="'.esc_attr__('Name of the plugin', 'check-email').'"/></li>',
 		6 => '<li><label><input type="radio" name="ck_mail_disable_reason" required value="other"/>' . __('Other reason', 'check-email') . '</label></li>
 		<li><textarea name="ck_mail_disable_text[]" placeholder="' . esc_attr__('Please specify, if possible', 'check-email') . '"></textarea></li>',
     );

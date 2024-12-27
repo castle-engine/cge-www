@@ -154,12 +154,12 @@ class Auth
 		} catch (IdentityProviderException $e) {
 			$response = $e->getResponseBody();
 
-			error_log(print_r($response, true));
+			// error_log(print_r($response, true));
 
 			
 			$this->update_auth_code('');
 		} catch (Exception $e) { // Catch any other general exceptions just in case.
-			error_log(print_r($e->getMessage(), true));
+			// error_log(print_r($e->getMessage(), true));
 			$this->update_auth_code('');
 		}
 	}

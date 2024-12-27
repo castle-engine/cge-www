@@ -383,13 +383,11 @@ class Check_Email_Log_List_Table extends \WP_List_Table {
 	}
 
 	public function admin_notices() {
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		if (isset($_GET['bulk_resend_success'])) {
+			// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			$resend_count = intval($_GET['bulk_resend_success']);
-			printf('<div id="message" class="updated notice is-dismissible"><p>' . esc_html__('%s emails have been resent.', 'check-email') . '</p></div>', $resend_count);
+			echo'<div id="message" class="updated notice is-dismissible"><p>'.esc_html($resend_count). esc_html__(' emails have been resent.', 'check-email') . '</p></div>';
 		}
 	}
-	
-	
-	
-	
 }

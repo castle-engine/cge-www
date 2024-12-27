@@ -12,6 +12,16 @@ class Check_Email_Error_Tracker_list extends Check_Email_BasePage {
 	const LOG_LIST_ACTION_NONCE = 'check-email-log-list-nonce';
     const CAPABILITY = 'manage_check_email';
 
+	public function __construct() {
+		$option = get_option( 'check-email-log-core' );
+		if ( isset($_GET['_wpnonce']) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) ), 'ck_error_tracker') ) {
+			if( isset( $_GET['enable-error-tracker'] ) && sanitize_text_field( wp_unslash($_GET['enable-error-tracker'] ) ) && current_user_can('manage_options')) {
+				$option['email_error_tracking'] = 'true';
+				update_option('check-email-log-core',$option);
+			}
+		}
+	}
+
 	/**
 	 * Setup hooks.
 	 */
@@ -25,8 +35,7 @@ class Check_Email_Error_Tracker_list extends Check_Email_BasePage {
         
 	public function register_page() {
         $option = get_option( 'check-email-log-core' );
-        
-        if ( is_array( $option ) && array_key_exists( 'email_error_tracking', $option ) && 'true' === strtolower( $option['email_error_tracking'] ) ) {  
+        if ( is_array( $option ) && array_key_exists( 'email_error_tracking', $option ) && 'true' === strtolower( $option['email_error_tracking'] ) ) {
             $this->page = add_submenu_page(
                     Check_Email_Status_Page::PAGE_SLUG,
                     esc_html__( 'Error Tracker', 'check-email'),
@@ -36,10 +45,9 @@ class Check_Email_Error_Tracker_list extends Check_Email_BasePage {
                     array( $this, 'render_page' ),
                     2
             );
-            
             add_action( "load-{$this->page}", array( $this, 'load_page' ) );
             do_action( 'check_email_load_log_list_page', $this->page );
-        } 
+        }
 
 	}
 

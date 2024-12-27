@@ -25,7 +25,7 @@ $checkemail_break = isset( $_POST['checkemail_break'] ) ? sanitize_text_field( w
                 <?php endif; ?>
             </div>
     <?php endif; ?>
-    <h2><?php esc_html_e( 'Check & Log Email', 'check-email' ) ?></h2><hr />
+    <h2><?php esc_html_e( 'Test Email', 'check-email' ) ?></h2><hr />
 
     <?php if ( $phpmailer ) { ?>
     
@@ -53,11 +53,10 @@ $checkemail_break = isset( $_POST['checkemail_break'] ) ? sanitize_text_field( w
 
     <?php } ?>
 
-    <h3><?php esc_html_e( 'Send a test email', 'check-email' ) ?></h3><hr />
+    <h3><?php esc_html_e( 'Send a test email', 'check-email' ) ?></h3>
     <form action="<?php echo esc_url( get_admin_url() ) . 'admin.php?page=check-email-status' ?>" method="post">
         <p>
-            <label for="checkemail_to"><?php esc_html_e( 'Send test email to', 'check-email' ); ?></label>
-            <input type="text" name="checkemail_to" id="checkemail_to" class="text" value="<?php echo esc_attr( $checkemail_to ) ?>"/>
+            <input type="text" name="checkemail_to" id="checkemail_to" placeholder="Enter an email" class="text" value="<?php echo esc_attr( $checkemail_to ) ?>"/>
         </p>
         <p>
             <label for="checkemail_autoheaders"><?php esc_html_e( 'Use standard headers', 'check-email' ) ?></label>
@@ -105,4 +104,14 @@ $checkemail_break = isset( $_POST['checkemail_break'] ) ? sanitize_text_field( w
             <input type="submit" name="checkemail_go" id="checkemail_go" class="button-primary" value="<?php esc_attr_e( 'Send test email', 'check-email' ) ?>" />
         </p>
     </form>
+
+    <div id="CKE_banner">
+        <h2>
+            <img draggable="false" role="img" class="emoji" alt="👉" src="https://s.w.org/images/core/emoji/13.0.1/svg/1f449.svg">
+            <?php esc_html_e('Suggest a new feature!', 'check-email') ?>
+            <img draggable="false" role="img" class="emoji" alt="👈" src="https://s.w.org/images/core/emoji/13.0.1/svg/1f448.svg">
+        </h2>
+        <p><?php esc_html_e('Help us build the next set of features for Check & Log Email. Tell us what you think and we will make it happen!', 'check-email') ?></p>
+        <a target="_blank" rel="noreferrer noopener" href="https://check-email.tech/contact/" class="button button-primary button-hero"><?php esc_html_e('Click here', 'check-email') ?></a>
+    </div>
 </div>

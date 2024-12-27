@@ -55,10 +55,12 @@ class Check_Email_UI_Loader implements Loadie {
 	 * @access protected
 	 */
 	protected function initialize_pages() {
-                $this->pages['check_email']      = new Page\Check_Email_Status_Page();
-                $this->pages['log_list_page']    = new Page\Check_Email_Log_List_Page();
-                $this->pages['settings_page']    = new Page\Check_Email_Settings_Page();
-				$this->pages['wizard_page']    = new Page\Check_Email_Wizard_Page();
-				$this->pages['error_tracker_list']    = new Page\Check_Email_Error_Tracker_list();
+		$this->pages['check_email']      = new Page\Check_Email_Status_Page();
+		$this->pages['log_list_page']    = new Page\Check_Email_Log_List_Page();
+		$this->pages['settings_page']    = new Page\Check_Email_Settings_Page();
+		$this->pages['wizard_page']    = new Page\Check_Email_Wizard_Page();
+		$this->pages['error_tracker_list']    = new Page\Check_Email_Error_Tracker_list();
+		$this->pages['check_email_analyzer']      = new Page\Check_Email_Analyzer();
+		$this->pages['check_email_dashboard']      = new Page\Check_Email_Dashboard();
 	}
 }

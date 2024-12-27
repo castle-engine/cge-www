@@ -2,10 +2,21 @@
 
 defined( 'ABSPATH' ) || exit; // Exit if accessed directly.
 
+$check_email      = wpchill_check_email();
+$plugin_path = plugin_dir_path($check_email->get_plugin_file());
+require_once $plugin_path . '/vendor/autoload.php';
+
 /**
  * Status Page.
  */
 use CheckEmail\Core\Auth;
+
+use Egulias\EmailValidator\EmailValidator;
+use Egulias\EmailValidator\Validation\DNSCheckValidation;
+use Egulias\EmailValidator\Validation\MultipleValidationWithAnd;
+use Egulias\EmailValidator\Validation\RFCValidation;
+use Egulias\EmailValidator\Validation\Extra\SpoofCheckValidation;
+
 class Check_Email_Status_Page extends Check_Email_BasePage {
 
 	/**
@@ -14,6 +25,8 @@ class Check_Email_Status_Page extends Check_Email_BasePage {
 	const PAGE_SLUG = 'check-email-status';
 	const DASHBOARD_SLUG = 'check-email-dashboard';
 
+
+
 	/**
 	 * Specify additional hooks.
 	 *
@@ -21,7 +34,38 @@ class Check_Email_Status_Page extends Check_Email_BasePage {
 	 */
 	public function load() {
 		parent::load();
-        add_action( 'admin_enqueue_scripts', array( $this, 'checkemail_assets' ) );;
+        add_action( 'admin_enqueue_scripts', array( $this, 'checkemail_assets' ) );
+        add_action('wp_ajax_ck_email_verify', array( $this, 'ck_email_verify' ));
+	}
+
+    public function ck_email_verify() {
+		if(!isset($_POST['ck_mail_security_nonce'])){
+			return;
+		}
+		if ( !wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['ck_mail_security_nonce'] ) ), 'ck_mail_security_nonce' ) ){
+			return;
+		}
+		if ( ! current_user_can( 'manage_check_email' ) ) {
+			return;
+		}
+        $response = array('status'=> false);
+        if ( isset( $_POST['email'] ) && ! empty( $_POST['email'] )) {
+            $email = sanitize_text_field( wp_unslash( $_POST['email'] ) );
+            $validator = new EmailValidator();
+            // ietf.org has MX records signaling a server with email capabilities
+            $email_valid = $validator->isValid($email, new RFCValidation());
+            $dns_valid = $validator->isValid($email, new DNSCheckValidation());
+            $spoof_valid = $validator->isValid($email, new SpoofCheckValidation());
+            $response['status'] = true;
+            $response['spoof_valid'] = ($spoof_valid) ? 1 : 0;
+            $response['dns_valid'] = ($dns_valid) ? 1 : 0;
+            $response['email_valid'] = ($email_valid) ? 1 : 0;
+        }else{
+            $response['error'] = 'Please enter email address';
+        }
+
+		echo wp_json_encode($response);
+		wp_die();
 	}
 
 	/**
@@ -53,7 +97,7 @@ class Check_Email_Status_Page extends Check_Email_BasePage {
 	public function render_page() {
 		?>
 		<div class="wrap">
-			<h1><?php esc_html_e( 'Status', 'check-email' ); ?></h1>
+			<h1><?php esc_html_e( 'Check & Log Email', 'check-email' ); ?></h1>
             <?php
             global $current_user;
             global $phpmailer;
@@ -69,17 +113,6 @@ class Check_Email_Status_Page extends Check_Email_BasePage {
                 $headers = $this->checkemail_send( $to_email, sanitize_textarea_field(wp_unslash($_POST['checkemail_headers'])) );
             }
             ?>
-
-            <div id="CKE_banner">
-                <h2>
-                    <img draggable="false" role="img" class="emoji" alt="👉" src="https://s.w.org/images/core/emoji/13.0.1/svg/1f449.svg">
-                    <?php esc_html_e('Suggest a new feature!', 'check-email') ?>
-                    <img draggable="false" role="img" class="emoji" alt="👈" src="https://s.w.org/images/core/emoji/13.0.1/svg/1f448.svg">
-                </h2>
-                <p><?php esc_html_e('Help us build the next set of features for Check & Log Email. Tell us what you think and we will make it happen!', 'check-email') ?></p>
-                <a target="_blank" rel="noreferrer noopener" href="https://check-email.tech/contact/" class="button button-primary button-hero"><?php esc_html_e('Click here', 'check-email') ?></a>
-            </div>
-
             <?php require_once 'partials/check-email-admin-status-display.php'; ?>
 		</div>
 		<?php

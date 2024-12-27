@@ -57,11 +57,17 @@ class Check_Email_Table_Manager implements Loadie {
 				if (function_exists('ck_mail_create_error_logs') ) {
 					ck_mail_create_error_logs();
 				}
+				if (function_exists('ck_mail_create_spam_analyzer_table') ) {
+					ck_mail_create_spam_analyzer_table();
+				}
 			}
 		} else {
 			$this->create_table_if_needed();
 			if (function_exists('ck_mail_create_error_logs') ) {
 				ck_mail_create_error_logs();
+			}
+			if (function_exists('ck_mail_create_spam_analyzer_table') ) {
+				ck_mail_create_spam_analyzer_table();
 			}
 		}
 	}
@@ -765,7 +771,7 @@ class Check_Email_Table_Manager implements Loadie {
 
 	function ck_mail_cron_execute() {
 		$this->delete_log_older_than();
-		error_log('Cron job executed at' . gmdate('Y-m-d H:i:s'));
+		// error_log('Cron job executed at' . gmdate('Y-m-d H:i:s'));
 	}
 
 	public function fetch_error_tracker_items( $request, $per_page, $current_page_no ) {

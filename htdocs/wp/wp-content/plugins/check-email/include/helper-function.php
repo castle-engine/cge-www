@@ -328,7 +328,7 @@ function ck_mail_forward_mail($atts) {
     try {
         $phpmailer->setFrom( $from_email, $from_name, false );
     } catch ( PHPMailer\PHPMailer\Exception $e ) {
-        error_log(esc_html__('Error in forwar email check & log : ', 'check-email').$e->getMessage());
+        // error_log(esc_html__('Error in forwar email check & log : ', 'check-email').$e->getMessage());
         return false;
     }
 
@@ -450,7 +450,7 @@ function ck_mail_forward_mail($atts) {
         $send = $phpmailer->send();
         return $send;
     } catch ( PHPMailer\PHPMailer\Exception $e ) {
-        error_log(esc_html__('Error in forwar email send check & log : ', 'check-email').$e->getMessage());
+        // error_log(esc_html__('Error in forwar email send check & log : ', 'check-email').$e->getMessage());
         return false;
     }
 }
@@ -481,6 +481,42 @@ function ck_mail_create_error_logs() {
     // phpcs:enable.
 }
 
+function ck_mail_create_spam_analyzer_table() {
+
+    global $wpdb;
+
+    $table_name           = $wpdb->prefix . 'check_email_spam_analyzer';
+    $charset_collate = $wpdb->get_charset_collate();
+    // phpcs:disable.
+    if ( $wpdb->get_var( $wpdb->prepare( "show tables like %s",$wpdb->esc_like( $table_name )) ) != $table_name ) {
+
+        $sql = "CREATE TABLE IF NOT EXISTS `$table_name` (
+            `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+            `html_content` LONGTEXT DEFAULT NULL,
+            `spam_assassin` LONGTEXT DEFAULT NULL,
+            `authenticated` LONGTEXT DEFAULT NULL,
+            `block_listed` TEXT DEFAULT NULL,
+            `broken_links` TEXT DEFAULT NULL,
+            `final_score` TEXT DEFAULT NULL,
+            `test_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            PRIMARY KEY (id)
+        )
+        ENGINE='InnoDB'
+        {$charset_collate};";
+
+        $wpdb->query($sql);
+    }
+    // phpcs:enable.
+}
+
+function ck_mail_insert_spam_analyzer($data_to_insert) {
+
+    global $wpdb;
+
+    $table_name           = $wpdb->prefix . 'check_email_spam_analyzer';
+    $wpdb->insert( $table_name, $data_to_insert ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared
+}
 function ck_mail_insert_error_logs($data_to_insert) {
 
     global $wpdb;
@@ -561,6 +597,252 @@ function ck_mail_update_network_settings() {
 }
 
 add_action( 'wp_ajax_update_network_settings', 'ck_mail_update_network_settings' );
+
+function ck_mail_check_dns() {
+    // Check nonce
+    if ( isset( $_POST['ck_mail_security_nonce'] ) ) {
+        if ( !wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['ck_mail_security_nonce'] ) ), 'ck_mail_security_nonce' ) ){
+            die( '-1' );
+        }
+
+        // Check if user is allowed to manage network options
+        if ( ! current_user_can( 'manage_check_email' ) ) {
+            wp_send_json_error(esc_html__('Unauthorized user', 'check-email') );
+            return;
+        }
+        // $api_url = 'http://127.0.0.1:8000/custom-api/check-dns';
+        $api_url = 'https://enchain.tech/custom-api/check-dns';
+        $domain = null;
+        if ( isset( $_POST['domain'] ) ) {
+            $domain = sanitize_text_field( wp_unslash( $_POST['domain'] ) );
+        }
+        $api_params = array(
+            'domain' => $domain,
+        );
+
+        $response = wp_remote_post( $api_url, array( 'timeout' => 15, 'sslverify' => false, 'body' => $api_params ) );
+
+        if ( ! is_wp_error( $response ) ) {
+            $response = wp_remote_retrieve_body( $response );
+            $response = json_decode( $response, true );
+            if (isset($response['is_error'])) {
+                $result = $response;
+            }else{
+                $result['is_error'] = 0;
+                $result['data'] = $response;
+            }
+            echo wp_json_encode( $result );
+        } else {
+            $error_message = $response->get_error_message();
+            echo wp_json_encode( array( 'response' => $error_message ) );
+        }
+    }
+    wp_die();
+}
+
+function ck_email_verify($email) {
+    $validator = new Egulias\EmailValidator\EmailValidator();
+    // ietf.org has MX records signaling a server with email capabilities
+    $email_valid = $validator->isValid($email, new Egulias\EmailValidator\Validation\RFCValidation());
+    $dns_valid = $validator->isValid($email, new Egulias\EmailValidator\Validation\DNSCheckValidation());
+    $spoof_valid = $validator->isValid($email, new Egulias\EmailValidator\Validation\Extra\SpoofCheckValidation());
+    $response['status'] = true;
+    $response['spoof_valid'] = ($spoof_valid) ? 1 : 0;
+    $response['dns_valid'] = ($dns_valid) ? 1 : 0;
+    $response['email_valid'] = ($email_valid) ? 1 : 0;
+    return $response;
+}
+
+add_action( 'wp_ajax_check_dns', 'ck_mail_check_dns' );
+
+function ck_mail_check_email_analyze() {
+    // Check nonce
+    if (isset($_POST['ck_mail_security_nonce'])) {
+        if ( !wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['ck_mail_security_nonce'] ) ), 'ck_mail_security_nonce' ) ){
+            die( '-1' );
+        }
+        if ( ! current_user_can( 'manage_check_email' ) ) {
+            wp_send_json_error(esc_html__('Unauthorized user', 'check-email') );
+            return;
+        }
+        // $api_url = 'http://127.0.0.1:8000/custom-api/email-analyze';
+        $api_url = 'https://enchain.tech/custom-api/email-analyze';
+        $current_user = wp_get_current_user();
+        $email = $current_user ->user_email;
+        if ( !empty( $email ) ) {
+            $to = 'plugintest@check-email.tech';
+            $title = esc_html__("Test email to analyze check email", "check-email");
+            $body  = esc_html__('This test email will analyze score', "check-email");
+            $body = $body;
+            $site_name = get_bloginfo('name');
+            $headers = [
+                'Content-Type: text/html; charset=UTF-8',
+                'From: '.$site_name .'<'.$email.'>'
+            ];
+            wp_mail($to, $title, $body, $headers);
+        }
+        $api_params = array(
+            'email' => $email,
+        );
+
+        if (function_exists('ck_mail_create_spam_analyzer_table') ) {
+			ck_mail_create_spam_analyzer_table();
+		}
+
+        $response = wp_remote_post( $api_url, array( 'timeout' => 15, 'sslverify' => false, 'body' => $api_params ) );
+
+        if ( ! is_wp_error( $response ) ) {
+            $response = wp_remote_retrieve_body( $response );
+            $response = json_decode( $response, true );
+            if (isset($response['is_error']) && $response['is_error'] == 1) {
+                $result = $response;
+            }else{
+                $result['is_error'] = 0;
+                $result['data'] = $response;
+                // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated , WordPress.Security.ValidatedSanitizedInput.MissingUnslash , WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+                $ip_address = $_SERVER['SERVER_ADDR']; // Replace with your target IP
+                $blocklist = is_ip_blocked($ip_address);
+                $result['blocklist'] = $blocklist;
+                $result['ip_address'] = $ip_address;
+                $spam_final_score = 0;
+                $block_final_score = 0;
+                $auth_final_score = 0;
+                $link_final_score = 0;
+                if ( isset( $response['spamcheck_result'] )) {
+                    $spam_score = $response['spamcheck_result']['score'];
+                    if ($spam_score > 0) {
+                        $spam_final_score = 2.5;
+                    } else if ($spam_score < 0 && $spam_score > -5) {
+                        $spam_final_score = 1.5;
+                    } else if ($spam_score < -5) {
+                        $spam_final_score = 0;
+                    }
+                }
+                $block_count = 0;
+                foreach ($blocklist as $key => $value) {
+                    if($value['status']){
+                        $block_count +=1;
+                    }
+                }
+                if ($block_count == 0) {
+                    $block_final_score = 2.5;
+                } else if ($block_count > 0 && $block_count <= 12) {
+                    $block_final_score = 1.5;
+                } else if ($block_count > 12) {
+                    $block_final_score = 0;
+                }
+                if ( isset( $response['authenticated'] )) {
+                    $auth_count = 0;
+                    foreach ($response['authenticated'] as $key => $value) {
+                        if( ! $value['status'] ){
+                            $auth_count +=1;
+                        }
+                    }
+                    if ($auth_count == 0) {
+                        $auth_final_score = 2.5;
+                    } else if ($auth_count > 0 && $auth_count < 3) {
+                        $auth_final_score = 1.5;
+                    } else if ($auth_count >= 3) {
+                        $auth_final_score = 0;
+                    }
+                }
+                if ( isset( $response['links'] ) ) {
+                    $link_count = 0;
+                    foreach ($response['links'] as $key => $value) {
+                        if( $value['status'] > 200 ){
+                            $link_count +=1;
+                        }
+                    }
+                    if ($link_count > 0) {
+                        $link_final_score = 0;
+                    } else {
+                        $link_final_score = 2.5;
+                    }
+                }
+                $final_score = ($link_final_score + $auth_final_score + $block_final_score + $spam_final_score);
+                $spam_score_get = get_option('check_email_spam_score_' . $current_user ->user_email,[]);
+                $current_date_time = current_time('Y-m-d H:i:s');
+                $spam_score_get[$current_date_time] = array('score' => $final_score, 'datetime' => $current_date_time);
+                $spam_score = array_reverse($spam_score_get);
+                $n = 1;
+                foreach (array_reverse($spam_score_get) as $key => $value) {
+                    if( $n > 15 ){
+                        unset($spam_score[$key]);
+                    }
+                    $n++;
+                }
+                update_option('check_email_spam_score_' . $current_user ->user_email, $spam_score);
+                $result['previous_spam_score'] = $spam_score;
+                $result['previous_email_result'] = ck_email_verify($email);
+                $data_to_insert = array(
+                    'html_content' => wp_json_encode($response['html_tab']),
+                    'spam_assassin' => wp_json_encode(array('data'=> $response['spamcheck_result'],'spam_final_score' => $spam_final_score)),
+                    'authenticated' => wp_json_encode(array('data'=> $response['authenticated'],'auth_final_score' => $auth_final_score)),
+                    'block_listed' => wp_json_encode(array('data'=> $blocklist,'block_final_score' => $block_final_score)),
+                    'broken_links' => wp_json_encode(array('data'=> $response['links'],'link_final_score' => $link_final_score)),
+                    'final_score' => $final_score,
+                    'test_date' => $current_date_time,
+                );
+                if ( function_exists('ck_mail_insert_spam_analyzer') ) {
+                    ck_mail_insert_spam_analyzer($data_to_insert);
+                }
+            }
+            echo wp_json_encode( $result );
+        } else {
+            $error_message = $response->get_error_message();
+            echo wp_json_encode( array( 'response' => $error_message ) );
+        }
+    }
+    wp_die();
+}
+
+add_action( 'wp_ajax_check_email_analyze', 'ck_mail_check_email_analyze' );
+
+
+
+
+function is_ip_blocked($ip) {
+    $dnsbl_list = [
+        "zen.spamhaus.org",
+        "bl.spamcop.net",
+        "dnsbl.sorbs.net",
+        "b.barracudacentral.org",
+        "spam.dnsbl.sorbs.net",
+        "pbl.spamhaus.org",
+        "xbl.spamhaus.org",
+        "dbl.spamhaus.org",
+        "cbl.abuseat.org",
+        "psbl.surriel.com",
+        "rbl.spamlab.com",
+        "rbl.dns-servicios.com",
+        "dnsbl.spfbl.net",
+        "ipbl.mailspike.net",
+        "aspews.ext.sorbs.net",
+        "ubl.unsubscore.com",
+        "dnsbl.kempt.net",
+        "truncate.gbudb.net",
+        "rbl.efnetrbl.org",
+        "dnsbl-1.uceprotect.net",
+        "all.s5h.net",
+        "dnsbl.inps.de",
+        "dnsbl.dronebl.org",
+        "hostkarma.junkemailfilter.com"
+    ];
+    $reversed_ip = implode(".", array_reverse(explode(".", $ip)));
+    $blocked_on = [];
+
+    foreach ($dnsbl_list as $blocklist) {
+        $query = $reversed_ip . "." . $blocklist;
+        // Perform DNS lookup
+        $outpt = checkdnsrr($query, "A");
+        if ($outpt) {
+            $blocked_on[] = array('status' => 1,'ip' => $blocklist);
+        }else{
+            $blocked_on[] = array('status' => 0,'ip' => $blocklist);
+        }
+    }
+    return $blocked_on;
+}
 
 
 // email and phone encoding start
@@ -799,21 +1081,24 @@ add_action( 'init', 'check_email_e_register_shortcode', 2000 );
 // email and phone encoding end
 
 function check_email_track_email_open() {
+    // phpcs:ignore WordPress.Security.NonceVerification.Recommended
     if (isset($_GET['action']) && $_GET['action'] === 'check_email_track_email_open' && isset($_GET['open_tracking_id']) && isset($_GET['_wpnonce'])) {
-        if (!check_email_verify_extended_nonce($_GET['_wpnonce'])) {
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        if (!check_email_verify_extended_nonce(sanitize_text_field( wp_unslash($_GET['_wpnonce'])))) {
             return false;
         }
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         $open_tracking_id = absint($_GET['open_tracking_id']);
 
         if ($open_tracking_id) {
             global $wpdb;
             $table_name = $wpdb->prefix . 'check_email_log';
-
             $query = $wpdb->prepare(
+                // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
                 "SELECT * FROM {$table_name} WHERE open_tracking_id = %s",
                 $open_tracking_id
             );
-            
+            // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
             $record = $wpdb->get_row($query);
 
             if ($record) {
@@ -823,12 +1108,12 @@ function check_email_track_email_open() {
                 $where = [
                     'open_tracking_id' => $open_tracking_id,
                 ];
+                // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
                 $wpdb->update( $table_name, $data_to_update, $where );
                 header("Content-Type: image/png");
-                echo base64_decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/wcAAgMBAptL0ygAAAAASUVORK5CYII=');
+                echo esc_html(base64_decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/wcAAgMBAptL0ygAAAAASUVORK5CYII='));
                 exit;
             }
-
         }
     }
     
@@ -863,11 +1148,7 @@ function check_email_content_with_tracking($open_tracking_id) {
         site_url('/check-email-tracking/')
     );
     $tracking_url = esc_url_raw($tracking_url);
-    $email_content = "
-        <img src='$tracking_url' class='check-email-tracking' alt='' width='1' height='1' style='display:none;' />
-    ";
+    // phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage
+    $email_content = "<img src='$tracking_url' class='check-email-tracking' alt='' width='1' height='1' style='display:none;' />";
     return $email_content;
 }
-
-
-

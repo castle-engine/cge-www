@@ -1,4 +1,11 @@
 == Changelog ==
+= v2.0.4 - 26/12/2024 =
+- Enhancement: Notice "Function _load_textdomain_just_in_time was called incorrectly" since wp 6.7 #116
+- Enhancement: Few improvement needed #112
+- Enhancement: Make an option to use one SMTP settings for multisite #97
+- Feature: Email Spam Analyzer #119
+- Fixed: Php error #117
+
 = v2.0.3 - 06/11/2024 =
 - Enhancement: Email Logs Show Failure as Success #113
 - Feature: Added an option for Opened mails data #79

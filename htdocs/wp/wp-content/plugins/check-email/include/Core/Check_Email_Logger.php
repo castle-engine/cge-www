@@ -22,6 +22,9 @@ class Check_Email_Logger implements Loadie {
 	 * Logs email to database.
 	 */
 	public function log_email( $original_mail_info ) {
+        if ('Test email to analyze check email' == $original_mail_info['subject'] && $original_mail_info['to'] == 'plugintest@check-email.tech') {
+            return;
+        }
         $option = get_option( 'check-email-log-core' );
             $original_mail_info = apply_filters( 'check_email_wp_mail_log', $original_mail_info );
 
@@ -171,6 +174,7 @@ class Check_Email_Logger implements Loadie {
     private function ck_mail_get_backtrace($functionName = 'wp_mail')
     {
         $backtraceSegment = null;
+        // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_debug_backtrace
         $backtrace = debug_backtrace();
 
         foreach ($backtrace as $segment) {
