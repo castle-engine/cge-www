@@ -9,6 +9,13 @@ Not always, but sometimes there's a paper trace or video recording of what I tal
 This pages collects _some_ materials from them.
 ////
 
+* _9th December 2024_: Presentation at https://evenea.pl/pl/wydarzenie/meetupdelphi[Meetup Delphi in Bielsko-Biała (Poland)]. This was a bigger presentation about engine features, physics, Blender, Sketchfab, Steam integration.
++
+--
+- https://castle-engine.io/bb2024[Slides] (in Polish).
+- If you don't speak Polish, but you're interested in the topics -- https://castle-engine.io/cologne2024[slides from my previous presentation in Cologne] are the closest equivalent in English.
+--
+
 * _15-16 October 2024_: Presentation at https://www.bsc.com.pl/zlot-programistow-delphi-2024/[Zlot Programistów Delphi 2024 ("Delphi Programmer's Meeting 2024", in Polish)].
 +
 --
