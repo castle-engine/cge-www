@@ -22,7 +22,11 @@ cgeimg::block[
 
 You can change navigation type (walk, fly, examine, 2D), jump between viewpoints, play chosen animations, save a screenshot, display scene statistics (triangle, vertex count) and more.
 
-This is a mobile version of link:castle-model-viewer[Castle Model Viewer], sharing the capabilities with the desktop version but with UI streamlined for mobile devices. It is available now for Android, soon also for iOS.
+This is a mobile version of link:castle-model-viewer[Castle Model Viewer], sharing the capabilities with the desktop version but with UI streamlined for mobile devices.
+
+- It is available now for Android.
+
+- We hope to make it available for iOS too. Please link:donate[] to help cover Apple membership cost (100 USD / year) to make this happen.
 
 == Download
 
