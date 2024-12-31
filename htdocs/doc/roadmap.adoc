@@ -249,8 +249,6 @@ This matches the existing logic in `shadow(` in GLSL that says _"where the shado
 - Take a look at what Godot, Unity, Ogre3d (last one has both shadow maps and volumes) expose in API, and what are their defaults.
 --
 
-## Most important planned immediately after 7.0 release
-
 [#web]
 ### (IN PROGRESS) Web platform (rendering using WebGL) support
 
@@ -334,7 +332,7 @@ Packages in `CastleProject.json` must allow to override location from which they
 
 - for package examples.
 +
-Because examples must be able to refer to package data. There has be a way to say "I use a package that is in relative path from me, like `CastleLines2D path=".."`` ". And then `castle-engine packages upgrade` does nothing, and the lock file just copies this relative path, and the package is not downloaded from anywhere.
+Because examples must be able to refer to package data. There has be a way to say "I use a package that is in relative path from me, like `CastleLines2D path=".."`. And then `castle-engine packages upgrade` does nothing, and the lock file just copies this relative path, and the package is not downloaded from anywhere.
 
 - for organization-specific package repositories. You don't need to use "CGE main packages registry", though we will of course have one and use it by default.
 
@@ -1175,7 +1173,7 @@ We shall be able to remove then:
 - Generator in `tools/internal/generate-persistent-vectors/`
 - Complicated explanation about it in link:custom_components[Custom components] documentation.
 
-### IN PROGRESS: Options to deal with resources (like textures) when saving
+### (IN PROGRESS) Options to deal with resources (like textures) when saving
 
 PR: https://github.com/castle-engine/castle-engine/pull/636
 
