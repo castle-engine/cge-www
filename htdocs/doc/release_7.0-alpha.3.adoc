@@ -34,7 +34,7 @@ _This release is dedicated to the late https://github.com/eugeneloza[Eugene] htt
 
 The most important highlights of this release are:
 
-* https://castle-engine.io/https://castle-engine.io/physics[Physics]. New components for colliders and rigid bodies, ability to run physics simulation in the editor, joints, layers, forces.
+* https://castle-engine.io/physics[Physics]. New components for colliders and rigid bodies, ability to run physics simulation in the editor, joints, layers, forces.
 * Many rendering improvements: Correct and automatic blending, both batching and occlusion culling easier to use and more powerful, fully modern rendering on new GPUs, better support for ancient systems with old GPUs.
 * Also OpenGLES (Android, iOS, Nintendo Switch) rendering supports now almost all desktop rendering features: shadow volumes, shadow maps, 3D textures, occlusion query, anisotropic filtering, meshes with 32-bit indexes.
 * https://castle-engine.io/shadow_volumes[Shadows using shadow volumes] are trivial to activate. Work is under way to expose https://castle-engine.io/x3d_extensions_shadow_maps.php[shadow maps] through a trivial property as well.
