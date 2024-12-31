@@ -190,7 +190,7 @@ castle-engine compile --target=web --mode=debug
 castle-engine run --target=web
 ----
 
-Currently, the project executes, printing logs (using our cgeref:CastleLog[]) to the browser console. The rendering is not yet working.
+Currently, the project executes, printing logs (using our cgeref:CastleLog[]) to the browser console and displays a yellow rectangle. The real rendering and input does not yet work (stay tuned!).
 
 == TODO: How to continue
 
@@ -203,9 +203,7 @@ We added an exception `Exception: Failed to load OpenGL(ES) library` when `not A
 --
 - We already call WebGL from WebAssembly using JOB integration in `CastleInternalWebJob`.
 
-- TODO: Next steps: integrate WebGL usage throughout CGE code, utilizing the fact that it's similar (though not identical) to OpenGL ES 2.0.
-
-- Maybe: Define `CastleInternalWebGL` unit, exposing these calls in a flat way, to be similar to OpenGLES, and add macro `CastleGLES:=CastleInternalWebGL` in `castleconf.conf`. This is to be decided, how much we want to "pretend that WebGL is OpenGLES".
+- TODO: In progress: We implement `CastleInternalWebGL` with an API resembling OpenGL ES, calling WebGL under the hood. We utilize the fact that WebGL is similar (though not identical) to OpenGL ES 2.0.
 
 - Test rendering first on some simple application without any data, just do some `DrawRectangle` from CGE in `TCastleUserInterface.Draw`. Hack any CGE example for this.
 
@@ -268,6 +266,28 @@ cd time_measurements_tests/ # enter tests/time_measurements_tests/ in CGE
 castle-engine compile --os=wasi --cpu=wasm32 --mode=debug
 wasmtime time_measurements_tests.wasm
 ```
+
+== Run the project by default for the web
+
+You can create a file `CastleProjectLocalSettings.json` in your project. Place it at the top-level of the project, so it is next to the link:project_manifest[CastleEngineManifest.xml] file. The `CastleProjectLocalSettings.json` can contain settings that are specific to your local user or machine.
+
+For example, it can specify that the default target is _web_ like this:
+
+```json
+{
+  "$$ClassName" : "TCastleProjectLocalSettings",
+  "UsePlatformDefaults" : true,
+  "DefaultTarget": "targetWeb"
+}
+```
+
+Changing the default platform is useful if you want to always build and run for the web, without specifying `--target=web` every time. Now using just `castle-engine compile` and `castle-engine run` will build and run for the web. You can still override this at command-line, using the `--target`, `--os`, `--cpu` options (see link:build_tool[build tool] docs).
+
+NOTE: The `CastleProjectLocalSettings.json` support is not strictly a feature of the _web target_, it's useful in every case when you want to change the default platform (and we plan to add there more things). By default, we build and run for the current desktop target, with current OS and CPU.
+
+All the possibilities are described by the https://github.com/castle-engine/castle-engine/blob/webassm_platformer_test/tools/build-tool/code/toolprojectlocalsettings.pas[TCastleProjectLocalSettings class].
+
+WARNING: The file `CastleProjectLocalSettings.json` should not be committed to the version control, it should be ignored by file like `.gitignore` (if you use GIT).
 
 == Thank you
 
