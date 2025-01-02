@@ -79,10 +79,15 @@ Some alternative HTML templates may be available in the future, as well as the a
 
 - We use WebGL API from _WebAssembly_ through the https://wiki.freepascal.org/WebAssembly/DOM[JOB] units implemented in Pas2js + FPC. This is a collection of units (on both Pas2js and FPC sides) that cooperate with each other. The goal is to allow our WASM applications to access https://hg.mozilla.org/mozilla-central/raw-file/tip/dom/webidl/WebGLRenderingContext.webidl[WebGL API defined in this WEBIDL file].
 +
-We create our unit `CastleInternalJobWeb` using this script and WEBIDLs: https://github.com/castle-engine/castle-engine/tree/webassm_platformer_test/src/base_rendering/web/webidl .
-+
 NOTE: The WebGL API is available in the browser to https://getpas2js.freepascal.org/[Pas2js] (that is, any _JavaScript_ code in the browser). If not for https://wiki.freepascal.org/WebAssembly/DOM[JOB], we would expose this API for the WebAssembly, following the https://www.freepascal.org/~michael/pas2js-demos/wasienv/canvas/[canvas example] described in the 2nd part of https://www.freepascal.org/~michael/articles/fpcwasm1/fpcwasm1.pdf[this article]. But, well, using https://wiki.freepascal.org/WebAssembly/DOM[JOB] makes things even easier.
-
++
+We generate a unit `CastleInternalJobWeb` using this script and WEBIDLs: https://github.com/castle-engine/castle-engine/tree/webassm_platformer_test/src/base_rendering/web/webidl .
++
+We then generate include file `castleinternalwebgl_flat_api.inc` that "flattens" the API exposed in `CastleInternalJobWeb`, making it more similar OpenGL ES API in `CastleGLES`. This generation is also looking at WEBIDL, to process all WebGL methods we need. The tool that does this is https://github.com/castle-engine/castle-engine/tree/webassm_platformer_test/tools/internal/generate_webgl_flat_api/generate_webgl_flat_api.dpr[tools/internal/generate_webgl_flat_api].
++
+We then use `CastleInternalWebGL` unit as a drop-in replacement (as much as possible) for `CastleGLES` unit.
++
+Lastly, we manually adjusted rendering code to account for final, unavoidable differences between OpenGL ES (`CastleGLES`) and WebGL (`CastleInternalWebGL`). Mostly straightforward work, differences stem mostly from the fact that OpenGL ES is a C API (no as `Variant`, more pointer usage), while WebGL is a JavaScript API (more usage of arrays and, when reasonable, untyped variables like `getParameter`).
 
 === Plans (TODOs)
 
