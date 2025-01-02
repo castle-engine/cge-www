@@ -63,6 +63,12 @@ castle-engine compile --os=wasi --cpu=wasm32
 You likely don't need to use above options, unless you have your own idea how to deploy the `.wasm` file. The `--target=web` does everything for you.
 ====
 
+- Our link:editor[] can also build and run for web. Underneath, it just calls the build tool commands described above (which you can see in the _"Console"_).
++
+Just change the platform using _"Run -> Platform -> Web"_ menu item and hit _"Build and Run"_ button or menu item (F9).
++
+You can also link:#platform_default[set web platform as default], by creating `CastleProjectLocalSettings.json` or (TODO) using menu item _"Run -> Save Platform As Default in Project Local Settings"_.
+
 - We create a HTML file with the `<canvas id="castle-canvas">` element (see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas[canvas] docs at MDN). This HTML runs the JS code (compiled by Pas2js) that will in turn run the WASM code of your application, which will initialize and use WebGL context on this canvas.
 +
 This HTML file can be customized / replaced / rejected as you wish. It only needs to contain a reference to the generated JavaScript file using `<script>` and a `<canvas>` element with ID `castle-canvas`. You can surround it with any content and style.
@@ -81,8 +87,6 @@ NOTE: The WebGL API is available in the browser to https://getpas2js.freepascal.
 === Plans (TODOs)
 
 - **TODO, IN PROGRESS NOW**: We render using https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API[WebGL 1.0], with optional WebGL 2.0 features. This is very similar to current rendering on mobile, where we use https://castle-engine.io/wp/2023/03/12/mobile-opengles-rendering-upgrades-occlusion-query-anisotropic-filtering-3d-textures-shadows-plus-new-occlusion-query-demo/[OpenGL ES 2.0, with optional OpenGL ES 3.0 features].
-
-- TODO: Our link:editor[] also does the above steps, just change the platform using _"Run -> Platform -> Web"_ menu item and hit _"Build and Run"_ (F9).
 
 - TODO: For audio, we will add a new sound backend using https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API[WebAudio]. This will be the default sound backend on the web (like the https://castle-engine.io/openal[OpenAL] is now the default backend on non-web platforms).
 +
@@ -267,6 +271,7 @@ castle-engine compile --os=wasi --cpu=wasm32 --mode=debug
 wasmtime time_measurements_tests.wasm
 ```
 
+[#platform_default]
 == Run the project by default for the web
 
 You can create a file `CastleProjectLocalSettings.json` in your project. Place it at the top-level of the project, so it is next to the link:project_manifest[CastleEngineManifest.xml] file. The `CastleProjectLocalSettings.json` can contain settings that are specific to your local user or machine.
@@ -285,7 +290,7 @@ Changing the default platform is useful if you want to always build and run for 
 
 NOTE: The `CastleProjectLocalSettings.json` support is not strictly a feature of the _web target_, it's useful in every case when you want to change the default platform (and we plan to add there more things). By default, we build and run for the current desktop target, with current OS and CPU.
 
-All the possibilities are described by the https://github.com/castle-engine/castle-engine/blob/webassm_platformer_test/tools/build-tool/code/toolprojectlocalsettings.pas[TCastleProjectLocalSettings class].
+All the possibilities are described by the cgeref:TCastleProjectLocalSettings[].
 
 WARNING: The file `CastleProjectLocalSettings.json` should not be committed to the version control, it should be ignored by file like `.gitignore` (if you use GIT).
 
