@@ -33,7 +33,7 @@ To toggle on/off bump mapping (and optionally control the specific algorithm) yo
 
 * `bmNone` means that bump mapping is _off_.
 
-* `bmBasic` (default) means to use the _basic_ bump mapping algoritm: normal vectors at each pixel are adjusted, acoording to the _normal map_ information, and the resulting normal vectors are used to calculate lighting as usual.
+* `bmBasic` (default) means to use the _basic_ bump mapping algorithm: normal vectors at each pixel are adjusted, according to the _normal map_ information, and the resulting normal vectors are used to calculate lighting as usual.
 +
 Note that this is ignored (behaves like `bmNone`) if the _normal map_ is not provided for a particular material.
 
@@ -73,7 +73,7 @@ This approach is not perfect -- you're essentially guessing the normal map from 
 
 NOTE: In http://code.google.com/p/gimp-normalmap/[GIMP normalmap plugin] check _"invert y"_ when generating normal maps, we want the Y (as interpreted by normals) coordinate to grow up, just like texture T coordinate.
 
-NOTE: The _nornal map_ textures are usually blueish, this is expected. The typical normal vector is `(0, 0, 1)` in tangent space which corresponds to the `(0.5, 0.5, 1)` (light blue) RGB color.
+NOTE: The _normal map_ textures are usually blueish, this is expected. The typical normal vector is `(0, 0, 1)` in tangent space which corresponds to the `(0.5, 0.5, 1)` (light blue) RGB color.
 
 == Provide a height map and use parallax bump mapping algorithms
 

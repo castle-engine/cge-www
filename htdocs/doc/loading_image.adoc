@@ -3,7 +3,7 @@ include::common.adoc[]
 
 You can customize the initial _"Loading"_ image (visible when you open the application) by changing the `Theme.ImagesPersistent[tiLoading]` image.
 
-cgeimg::block[orcs_and_volcanoes_loading.png|Looading from "Orcs and Volcanoes"]
+cgeimg::block[orcs_and_volcanoes_loading.png|Loading from "Orcs and Volcanoes"]
 
 This should be done in the `initialization` section of some unit (more specifically, it should happen before window is opened). As such, you cannot load image from disk at this moment (as on Android, you cannot read from disk from `initialization` sections of units). So you want to process this image first with `image-to-pascal` tool, to make an embedded image in a Pascal unit.
 

@@ -9,7 +9,7 @@ cgeimg::float[
 ]
 
 ////
-  venice_named_animation.png|Venice character by Cat-atrophe Games in Spine,
+  venice_named_animation.png|Venice character by Cat-astrophe Games in Spine,
   dragon_spine.png|Dragon in Spine,
   dragon_0.png|Dragon from Spine rendered using Castle Game Engine,
   dragon_0_wire2.png|Dragon from Spine rendered using Castle Game Engine with special effects,
@@ -42,7 +42,7 @@ video::AuI4zgmT-YQ[youtube,width=800,height=450]
 
 See our https://castle-engine.io/documentation.php[engine documentation] for an overview how to use the engine.
 
-When you run our https://castle-engine.io/manual_editor.php[editor], create a _"New Project"_ and use template _"2D Game"_. This shows a viewport with mutliple Spine scenes. A Spine scene is just a cgeref:TCastleScene[] instance and you add it to cgeref:TCastleViewport[] to make it visible, animated etc.
+When you run our https://castle-engine.io/manual_editor.php[editor], create a _"New Project"_ and use template _"2D Game"_. This shows a viewport with multiple Spine scenes. A Spine scene is just a cgeref:TCastleScene[] instance and you add it to cgeref:TCastleViewport[] to make it visible, animated etc.
 
 To play a Spine animation,
 

@@ -37,7 +37,7 @@ See the _"2D game"_ new project template for example.
 //You can also use link:manual_castle_settings.php#section_ui_scaling[UI scaling] to just make cgeref:TCastleViewport[] have the same width or height, regardless of the actual window size. All the scaling is completely hidden from you, inside cgeref:TCastleViewport[] you just work in your preferred coordinates.
 
 * You can use physics in this approach (see example `physics/physics_2d_game_sopwith/`).
-* You can mix 2D and 3D freely. The `TCastleViewport.Camera` defines projection settings and controls camera. The orthographic camera, `TCastleViewport.Camera.Orthoraphic`, is usually what you want for 2D games. Note that you can insert a cgeref:TCastleScene[] with 3D content to cgeref:TCastleViewport[].
+* You can mix 2D and 3D freely. The `TCastleViewport.Camera` defines projection settings and controls camera. The orthographic camera, `TCastleViewport.Camera.Orthographic`, is usually what you want for 2D games. Note that you can insert a cgeref:TCastleScene[] with 3D content to cgeref:TCastleViewport[].
 * To use custom shaders, use X3D shader nodes.
 +
 --

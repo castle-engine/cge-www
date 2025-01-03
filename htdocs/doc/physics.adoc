@@ -310,7 +310,7 @@ The long-term goal is to completely remove this _"simple physics"_ implementatio
 - `true` indicates that we build and update a collision structure (octree) reflecting precisely the triangles in the scene. So the scene collides as a precise set of triangles.
 --
 +
-NOTE: The value doesn't matter at design-time (in CGE editor). To have reliable object picking in editor, at design-time we internally always create collisions strutures, ignoring cgeref:TCastleSceneCore.PreciseCollisions[] value. Otherwise picking smaller scenes (like creatures inside a level) would be impossible in some cases, because the big level scene would collide as a big box that includes everything.
+NOTE: The value doesn't matter at design-time (in CGE editor). To have reliable object picking in editor, at design-time we internally always create collisions structures, ignoring cgeref:TCastleSceneCore.PreciseCollisions[] value. Otherwise picking smaller scenes (like creatures inside a level) would be impossible in some cases, because the big level scene would collide as a big box that includes everything.
 
 - cgeref:TCastleTransform.Collides[]. By default this is `true`. When it is `false`, the transformation object (and all its children) does not collide at all.
 +

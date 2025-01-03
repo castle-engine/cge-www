@@ -41,7 +41,7 @@ We recommend that you install at least these plugins in Jenkins:
 
 === Create a project
 
-You can make Jennkins observe a particular repository (using GIT, SVN or other version control). We recommend setting Jenkins to scan all the branches in the indicated repository for `Jenkinsfile` files, and execute the builds for all branches where `Jenkinsfile` is present. To do this, just create _"Multibranch Pipeline"_.
+You can make Jenkins observe a particular repository (using GIT, SVN or other version control). We recommend setting Jenkins to scan all the branches in the indicated repository for `Jenkinsfile` files, and execute the builds for all branches where `Jenkinsfile` is present. To do this, just create _"Multibranch Pipeline"_.
 
 Or, you can go one step further, and observe whole _GitHub organization_, with all projects within. To do this, create _"Organization Folder"_.
 
@@ -106,7 +106,7 @@ pipeline {
     }
     fixed {
       mail to: 'me@example.org',
-        subject: "[jenkins] Build is again successfull: ${currentBuild.fullDisplayName}",
+        subject: "[jenkins] Build is again successful: ${currentBuild.fullDisplayName}",
         body: "See the build details on ${env.BUILD_URL}"
     }
   }

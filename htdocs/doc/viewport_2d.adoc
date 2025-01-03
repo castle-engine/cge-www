@@ -54,7 +54,7 @@ NOTE: You *can* still use a different navigation, like 3D _Fly_ navigation. Use 
 
 A viewport created using the _"Add User Interface -> Viewport (2D)"_ menu item will use an _orthographic_ projection by default.
 
-In such projection, the distance to the object doesn't change its perceived size. Constrast this with the _perspective_ projection, default in 3D, in which the objects further away are perceived as smaller.
+In such projection, the distance to the object doesn't change its perceived size. Contrast this with the _perspective_ projection, default in 3D, in which the objects further away are perceived as smaller.
 
 You can always change the camera projection manually using the cgeref:TCastleCamera.ProjectionType[] property. This sets the projection used at runtime (when you run the game). You can also change the projection used at design-time (in the editor) using the _"Viewport -> Toggle Perspective / Orthogonal"_ menu item.
 
@@ -128,6 +128,6 @@ TODO: tutorial
   Add scene.
   We could use Camera -> View All...
     but instead we will move things.
-  Add some navigation, position camera, save navigatio by "Initial := Current".
+  Add some navigation, position camera, save navigation by "Initial := Current".
   Run.
 ////
