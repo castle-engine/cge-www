@@ -67,7 +67,7 @@ You likely don't need to use above options, unless you have your own idea how to
 +
 Just change the platform using _"Run -> Platform -> Web"_ menu item and hit _"Build and Run"_ button or menu item (F9).
 +
-You can also link:#platform_default[set web platform as default], by creating `CastleProjectLocalSettings.json` or (TODO) using menu item _"Run -> Save Platform As Default in Project Local Settings"_.
+You can also link:#platform_default[set web platform as default].
 
 - We create a HTML file with the `<canvas id="castle-canvas">` element (see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas[canvas] docs at MDN). This HTML runs the JS code (compiled by Pas2js) that will in turn run the WASM code of your application, which will initialize and use WebGL context on this canvas.
 +
@@ -279,6 +279,10 @@ wasmtime time_measurements_tests.wasm
 [#platform_default]
 == Run the project by default for the web
 
+In the editor: Select the new platform, like _"Web"_, in the _"Run -> Platforms -> ..."_ menu. Then you can save it for the future using menu item _"Run -> Platforms -> Save Chosen Platform As Default (in Project Local Settings)"_.
+
+Alternatively and equivalently:
+
 You can create a file `CastleProjectLocalSettings.json` in your project. Place it at the top-level of the project, so it is next to the link:project_manifest[CastleEngineManifest.xml] file. The `CastleProjectLocalSettings.json` can contain settings that are specific to your local user or machine.
 
 For example, it can specify that the default target is _web_ like this:
@@ -296,6 +300,8 @@ Changing the default platform is useful if you want to always build and run for 
 NOTE: The `CastleProjectLocalSettings.json` support is not strictly a feature of the _web target_, it's useful in every case when you want to change the default platform (and we plan to add there more things). By default, we build and run for the current desktop target, with current OS and CPU.
 
 All the possibilities are described by the cgeref:TCastleProjectLocalSettings[].
+
+Note that you can also open the `CastleProjectLocalSettings.json` as a _design_ in the editor and edit the component in the object inspector. That's because cgeref:TCastleProjectLocalSettings[] is a regular serializable component for our engine. Right now, this doesn't really imply any new features, but it may, and it will be compatible with future link:roadmap#_project_settings_editable_using_gui[CastleProject.json].
 
 WARNING: The file `CastleProjectLocalSettings.json` should not be committed to the version control, it should be ignored by file like `.gitignore` (if you use GIT).
 
