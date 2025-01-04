@@ -6110,7 +6110,6 @@ rtl.module("JOB_Browser",["System","SysUtils","Types","JS","weborworker","Web","
       this.RegisterGlobalObject(document,"document");
       this.RegisterGlobalObject(window,"window");
       this.RegisterGlobalObject(CSS,"CSS");
-      this.RegisterGlobalObject(caches,"caches");
       this.RegisterGlobalObject(window.console,"console");
       this.RegisterGlobalObject(Object,"Object");
       this.RegisterGlobalObject(Function,"Function");
@@ -6289,7 +6288,7 @@ rtl.module("program",["System","Classes","SysUtils","wasienv","Web","BrowserApp"
     };
     this.DoRun = function () {
       pas.System.Writeln("Starting WebAssembly program from webgl-tests.wasm");
-      this.StartWebAssembly("webgl-tests.wasm?random_suffix_to_avoid_cache=G740",true,rtl.createCallback(this,"DoBeforeStart"),null);
+      this.StartWebAssembly("webgl-tests.wasm?random_suffix_to_avoid_cache=DFBHSTLN110",true,rtl.createCallback(this,"DoBeforeStart"),null);
       this.Terminate();
     };
     this.Create$1 = function (aOwner) {
