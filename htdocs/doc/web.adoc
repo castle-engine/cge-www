@@ -155,6 +155,17 @@ We could also use https://en.wikipedia.org/wiki/Brotli[Brotli], a newer compress
 
 == Prerequisites
 
+[NOTE]
+====
+Things below look complicated? We have plans to make them easier:
+
+- We plan to extend our link:docker[Docker images] to provide pas2js and FPC with WebAssembly support out-of-the-box. (And if you don't know yet what _Docker_ is, we advive to learn! :)
+
+- We also will provide recipes how to use link:github_actions[Github Actions] and link:gitlab_ci[GitLab CI] to build applications to the web. So if you host your repository on _GitHub_ or _GitLab_, you can let the build be done for you.
+====
+
+Installing the tools:
+
 - *link:https://getpas2js.freepascal.org/[Pas2js]*.
 +
 You can get it along with https://www.freepascal.org/[FPC] or install it separately from link:https://getpas2js.freepascal.org/[here].
