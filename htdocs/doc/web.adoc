@@ -7,16 +7,31 @@ include::common.adoc[]
 
 [WARNING]
 ====
-This feature is in development now. We can already build and run a CGE application in the browser but it's not yet our real rendering -- WebAssembly code only renders an unimpressive yellow rectangle. Stay tuned!
+This feature is in development now. This page is updated often as we go. Stay tuned!
 ====
 
-The goal of the _web target_ in _Castle Game Engine_ is to allow you to recompile more-or-less any application you wrote using _Castle Game Engine_ (using cgeref:TCastleWindow[]) to the web. So you can put your application on a website, as part of a regular HTML webpage, and users can play it instantly, without the need to download / install any native application or browser plugin.
+_Web target_ allows you to recompile any application you wrote using _Castle Game Engine_ (using cgeref:TCastleWindow[]) to the web. So you can put your application on a website, as part of a regular HTML webpage, and users can play it instantly, without the need to download / install any native application or browser plugin.
+
+The resulting application works in any modern web browser and does not require user to install anything special (like old plugins). Everything we need is already built-in in all modern web browsers, in particular _WebAssembly_ and _WebGL_ support in completely standard. _Firefox_, _Chrome_ and derivatives, are all good choices.
+
+////
+TODO: For now, on mobile (Android, Firefox) we fail:
+"ReferenceError: caches is not defined"
+
+Desktop as well as mobile browsers are supported (we support touches in a way consisten with mouse events, link:touch_input[just like on non-web mobile targets]).
+////
 
 cgeimg::block[
-  web_clear.png|Castle Game Engine - Pas2js initialized WebGL context,
-  web_1_firefox.png|Castle Game Engine in Firefox,
-  web_1_vivaldi.png|Castle Game Engine in Vivaldi
+  web_2.png|Castle Game Engine - Simplest example in Firefox
 ]
+
+== Demo
+
+Open link:web-demos/simplest[the first, simplest example that runs on the web]!
+
+Source code in https://github.com/castle-engine/castle-engine/tree/webassm_platformer_test/examples/web/simplest[examples/web/simplest (on webassm_platformer_test branch)].
+
+WARNING: Visit the above on a desktop browser. On Android, both Firefox and Chrome fail with `ReferenceError: caches is not defined`. It's a TODO to investigate and fix this.
 
 == How it works (or will work)
 
@@ -97,9 +112,13 @@ Lastly, we manually adjusted rendering code to account for final, unavoidable di
 +
 In the end, we render using https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API[WebGL 1.0], with optional WebGL 2.0 features. This is very similar to current rendering on mobile, where we use https://castle-engine.io/wp/2023/03/12/mobile-opengles-rendering-upgrades-occlusion-query-anisotropic-filtering-3d-textures-shadows-plus-new-occlusion-query-demo/[OpenGL ES 2.0, with optional OpenGL ES 3.0 features].
 
+- Input: We handle pointer events (down, motion, up) thus we handle mouse and touch input.
+
 === Plans (TODOs)
 
-- Handle input (for start: at least mouse down / motion / up).
+- Research and fix mobile browsers, for now both Firefox and Chrome on Android fail with `ReferenceError: caches is not defined`.
+
+- Handle keys (manage focus). Initial code already, but not yet working.
 
 - For data delivery, we know we'll have to invent a simple format to carry our game data as one big binary blob. The simple plan is to just pack game data into zip.
 +
@@ -126,8 +145,6 @@ Note that above is for a _release_ build. The _debug_ build weights 51 MB, and g
 We could also use https://en.wikipedia.org/wiki/Brotli[Brotli], a newer compression method also commonly supported by web browsers and servers.
 
 - Allow to go fullscreen on web.
-
-- Allow to use keyboard on web. (manage focus)
 
 - Implement cgeref:TCastleDownload[] for web.
 
