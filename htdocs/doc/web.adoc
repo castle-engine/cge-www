@@ -12,15 +12,6 @@ This feature is in development now. This page is updated often as we go. Stay tu
 
 _Web target_ allows you to recompile any application you wrote using _Castle Game Engine_ (using cgeref:TCastleWindow[]) to the web. So you can put your application on a website, as part of a regular HTML webpage, and users can play it instantly, without the need to download / install any native application or browser plugin.
 
-The resulting application works in any modern web browser and does not require user to install anything special (like old plugins). Everything we need is already built-in in all modern web browsers, in particular _WebAssembly_ and _WebGL_ support in completely standard. _Firefox_, _Chrome_ and derivatives, are all good choices.
-
-////
-TODO: For now, on mobile (Android, Firefox) we fail:
-"ReferenceError: caches is not defined"
-
-Desktop as well as mobile browsers are supported (we support touches in a way consisten with mouse events, link:touch_input[just like on non-web mobile targets]).
-////
-
 cgeimg::block[
   web_2.png|Castle Game Engine - Simplest example in Firefox
 ]
@@ -32,6 +23,18 @@ Open link:web-demos/simplest[the first, simplest example that runs on the web]!
 Source code in https://github.com/castle-engine/castle-engine/tree/webassm_platformer_test/examples/web/simplest[examples/web/simplest (on webassm_platformer_test branch)].
 
 WARNING: Visit the above on a desktop browser. On Android, both Firefox and Chrome fail with `ReferenceError: caches is not defined`. It's a TODO to investigate and fix this.
+
+== Compatibility
+
+Absolute :)
+
+- The resulting application works in any modern web browser and does not require user to install anything special (like old plugins). Everything we need is already built-in in all modern web browsers, in particular _WebAssembly_ and _WebGL_ support in completely standard.
+
+- All the web browsers should be good. _Firefox_, _Google Chrome_ and derivatives (like _Vivaldi_) are all good.
+
+- Mobile web browsers are supported as well. We support touches in a way consisten with mouse events, link:touch_input[just like on non-web mobile targets]. We tested with both _Firefox_ and _Google Chrome_ on _Android_.
++
+WARNING: To build application web working on mobile, one needs to apply a 1-line hack to `pas2js` sources, see below for details.
 
 == How it works (or will work)
 
@@ -116,7 +119,9 @@ In the end, we render using https://developer.mozilla.org/en-US/docs/Web/API/Web
 
 === Plans (TODOs)
 
-- Research and fix mobile browsers, for now both Firefox and Chrome on Android fail with `ReferenceError: caches is not defined`.
+- Reproduce with clean sample and submit to FPC:
++
+Running on mobile requires now hacking pas2js, in `pas2js/packages/job/src/job_browser.pp`, find and comment out `RegisterGlobalObject(caches,'caches');`. Otherwise both Firefox and Chrome on Android fail with `ReferenceError: caches is not defined`.
 
 - Handle keys (manage focus). Initial code already, but not yet working.
 
