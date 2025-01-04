@@ -54,13 +54,15 @@ This command:
 +
 [NOTE]
 ====
-It is also possible to just compile using FPC + WebAssembly to a `.wasm` file. This does a subset of work performed by `castle-engine compile --target=web`. To do this, just execute:
+For some specific applications (like our `tests/`) you can also compile the regular _program_ file (like `xxx_standalone.dpr`, whatever is indicated by `standalone_source` in `CastleEngineManifest.xml`) using FPC + WebAssembly to a `.wasm` file using this command:
 
 ```shell
 castle-engine compile --os=wasi --cpu=wasm32
 ```
 
-You likely don't need to use above options, unless you have your own idea how to deploy the `.wasm` file. The `--target=web` does everything for you.
+This is _not_ equivalent to `castle-engine compile --target=web`, which generates and compiles a special _library_ file with WebAssembly (and also generates and compiles the glue code using Pas2js, and generates HTML template).
+
+Compiling the standalone program with `castle-engine compile --os=wasi --cpu=wasm32` only makes sense if application was prepared to be run this way. E.g. it allows to run our testsuite using `wasmtime`.
 ====
 
 - Our link:editor[] can also build and run for web. Underneath, it just calls the build tool commands described above (which you can see in the _"Console"_).
@@ -77,35 +79,41 @@ For nice look, our generated HTML also uses https://getbootstrap.com/[Bootstrap]
 +
 Some alternative HTML templates may be available in the future, as well as the ability to provide your own template. For now, just https://github.com/castle-engine/castle-engine/blob/webassm_platformer_test/tools/build-tool/data/web/dist/index.html[customize the engine's `tools/build-tool/data/web/dist/index.html`] file.
 
-- We use WebGL API from _WebAssembly_ through the https://wiki.freepascal.org/WebAssembly/DOM[JOB] units implemented in Pas2js + FPC. This is a collection of units (on both Pas2js and FPC sides) that cooperate with each other. The goal is to allow our WASM applications to access https://hg.mozilla.org/mozilla-central/raw-file/tip/dom/webidl/WebGLRenderingContext.webidl[WebGL API defined in this WEBIDL file].
+- We use WebGL API from _WebAssembly_. All our rendering code has been adjusted to WebGL!
++
+First step to do this was the https://wiki.freepascal.org/WebAssembly/DOM[JOB] units implemented in Pas2js + FPC. This is a collection of units (on both Pas2js and FPC sides) that cooperate with each other. The goal is to allow our WASM applications to access https://hg.mozilla.org/mozilla-central/raw-file/tip/dom/webidl/WebGLRenderingContext.webidl[WebGL API defined in this WEBIDL file].
 +
 NOTE: The WebGL API is available in the browser to https://getpas2js.freepascal.org/[Pas2js] (that is, any _JavaScript_ code in the browser). If not for https://wiki.freepascal.org/WebAssembly/DOM[JOB], we would expose this API for the WebAssembly, following the https://www.freepascal.org/~michael/pas2js-demos/wasienv/canvas/[canvas example] described in the 2nd part of https://www.freepascal.org/~michael/articles/fpcwasm1/fpcwasm1.pdf[this article]. But, well, using https://wiki.freepascal.org/WebAssembly/DOM[JOB] makes things even easier.
 +
 We generate a unit `CastleInternalJobWeb` using this script and WEBIDLs: https://github.com/castle-engine/castle-engine/tree/webassm_platformer_test/src/base_rendering/web/webidl .
 +
-We then generate include file `castleinternalwebgl_flat_api.inc` that "flattens" the API exposed in `CastleInternalJobWeb`, making it more similar OpenGL ES API in `CastleGLES`. This generation is also looking at WEBIDL, to process all WebGL methods we need. The tool that does this is https://github.com/castle-engine/castle-engine/tree/webassm_platformer_test/tools/internal/generate_webgl_flat_api/generate_webgl_flat_api.dpr[tools/internal/generate_webgl_flat_api].
+NOTE: FPC ships an example `job_web.pas` that already contains everything we need, but it's a huge unit. It has 184 thousands of lines and compiling it is slow (this is esp. problematic as current FPC 3.3.1 recompiles everything more often than it should -- it seems that every change even to implementation causes rebuild of everything derived, as if we changed interface). That's why we generate our own unit, `CastleInternalJobWeb` (merely ~16 thousands of lines) that is more focused on what we need: mostly WebGL API.
 +
-We then use `CastleInternalWebGL` unit as a drop-in replacement (as much as possible) for `CastleGLES` unit.
+Second step: We then generate include file `castleinternalwebgl_flat_api.inc` that "flattens" the API exposed in `CastleInternalJobWeb`, making it more similar OpenGL ES API in `CastleGLES`. This generation is also looking at WEBIDL, to process all WebGL methods we need. The tool that does this is https://github.com/castle-engine/castle-engine/tree/webassm_platformer_test/tools/internal/generate_webgl_flat_api/generate_webgl_flat_api.dpr[tools/internal/generate_webgl_flat_api].
 +
-Lastly, we manually adjusted rendering code to account for final, unavoidable differences between OpenGL ES (`CastleGLES`) and WebGL (`CastleInternalWebGL`). Mostly straightforward work, differences stem mostly from the fact that OpenGL ES is a C API (no as `Variant`, more pointer usage), while WebGL is a JavaScript API (more usage of arrays and, when reasonable, untyped variables like `getParameter`).
+Third step: We then use `CastleInternalWebGL` unit as a drop-in replacement (as much as possible) for `CastleGLES` unit.
++
+Lastly, we manually adjusted rendering code to account for final, unavoidable differences between OpenGL ES (`CastleGLES`) and WebGL (`CastleInternalWebGL`). Mostly straightforward work, differences stem mostly from the fact that OpenGL ES is a C API (no as `Variant`, more pointer usage), while WebGL is a JavaScript API (more usage of arrays and, when reasonable, untyped variables like `getParameter`). Just a few `{$ifdef CASTLE_WEBGL}` in strategic places got the job done.
++
+In the end, we render using https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API[WebGL 1.0], with optional WebGL 2.0 features. This is very similar to current rendering on mobile, where we use https://castle-engine.io/wp/2023/03/12/mobile-opengles-rendering-upgrades-occlusion-query-anisotropic-filtering-3d-textures-shadows-plus-new-occlusion-query-demo/[OpenGL ES 2.0, with optional OpenGL ES 3.0 features].
 
 === Plans (TODOs)
 
-- **TODO, IN PROGRESS NOW**: We render using https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API[WebGL 1.0], with optional WebGL 2.0 features. This is very similar to current rendering on mobile, where we use https://castle-engine.io/wp/2023/03/12/mobile-opengles-rendering-upgrades-occlusion-query-anisotropic-filtering-3d-textures-shadows-plus-new-occlusion-query-demo/[OpenGL ES 2.0, with optional OpenGL ES 3.0 features].
+- Handle input (for start: at least mouse down / motion / up).
 
-- TODO: For audio, we will add a new sound backend using https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API[WebAudio]. This will be the default sound backend on the web (like the https://castle-engine.io/openal[OpenAL] is now the default backend on non-web platforms).
-+
-It is also possible our https://castle-engine.io/fmod[FMOD] sound backend will also be ported to web, as https://www.fmod.com/docs/2.02/api/platforms-html5.html[FMOD supports HTML5]. This would make FMOD a truly cross-platform sound backend, working on every platform we support in CGE.
-+
-NOTE: About https://castle-engine.io/x3d_implementation_sound.php#section_x3d4[WebAudio in the context of X3D 4.0]. Supporting advanced X3D 4.0 audio nodes is not our priority, but since WebAudio will happen anyway, on the web... they will open this possibility. There is also https://github.com/LabSound/LabSound[LabSound] that provides WebAudio-like API on non-web platforms, and in principle it could one day replace OpenAL, making web and non-web audio handling closer.
-
-- TODO: For data delivery, we know we'll have to invent a simple format to carry our game data as one big binary blob. The simple plan is to just pack game data into zip.
+- For data delivery, we know we'll have to invent a simple format to carry our game data as one big binary blob. The simple plan is to just pack game data into zip.
 +
 Both FPC and Delphi have built-in support for ZIP handling, we even https://github.com/castle-engine/castle-engine/blob/master/examples/network/custom_url_handler/code/gameunzip.pas[use it in one example], we'll likely create a more full-featured wrapper that works on both FPC and Delphi.
 +
 Packing resources into ZIP is beneficial over just placing all data files separately in the webserver directory. It allows to download the ZIP once (at application load) and then our WebAssembly code can load data from it synchronously, thus it can work similarly to how a non-web game data is loaded. Naturally we also want to have cgeref:TCastleDownload[] working and being able to load things asynchronously (see our https://castle-engine.io/manual_network.php[network docs]).
 +
 TODO: FPC provides some ready file implementation in WASI RTL, it seems. How it works? In browser, in wasmtime?
+
+- For audio, we will add a new sound backend using https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API[WebAudio]. This will be the default sound backend on the web (like the https://castle-engine.io/openal[OpenAL] is now the default backend on non-web platforms).
++
+It is also possible our https://castle-engine.io/fmod[FMOD] sound backend will also be ported to web, as https://www.fmod.com/docs/2.02/api/platforms-html5.html[FMOD supports HTML5]. This would make FMOD a truly cross-platform sound backend, working on every platform we support in CGE.
++
+NOTE: About https://castle-engine.io/x3d_implementation_sound.php#section_x3d4[WebAudio in the context of X3D 4.0]. Supporting advanced X3D 4.0 audio nodes is not our priority, but since WebAudio will happen anyway, on the web... they will open this possibility. There is also https://github.com/LabSound/LabSound[LabSound] that provides WebAudio-like API on non-web platforms, and in principle it could one day replace OpenAL, making web and non-web audio handling closer.
 
 - Possibly throw in additional compression of data and/or wasm executable?
 +
@@ -116,6 +124,12 @@ The gzipped size is really what matters &mdash; both web browsers and servers su
 Note that above is for a _release_ build. The _debug_ build weights 51 MB, and gzipped 12 MB. (Debug build contains https://wiki.freepascal.org/WebAssembly/Debugging[debugging symbols].)
 +
 We could also use https://en.wikipedia.org/wiki/Brotli[Brotli], a newer compression method also commonly supported by web browsers and servers.
+
+- Allow to go fullscreen on web.
+
+- Allow to use keyboard on web. (manage focus)
+
+- Implement cgeref:TCastleDownload[] for web.
 
 == Prerequisites
 
@@ -198,29 +212,8 @@ Branch https://github.com/castle-engine/castle-engine/tree/webassm_platformer_te
 castle-engine compile --target=web --mode=debug
 castle-engine run --target=web
 ----
-
-Currently, the project executes, printing logs (using our cgeref:CastleLog[]) to the browser console and displays a yellow rectangle. The real rendering and input does not yet work (stay tuned!).
-
-== TODO: How to continue
-
-- The current code fails (both in `wasmtime` and browsers) at `glGetString(GL_VERSION)` call, because OpenGLES routines are `nil`. So the situation is clear, making the rendering work using WebGL will eliminate this. (In particular `glGetString(GL_VERSION)` -> should be routed to `gl.getParameter(gl.VERSION)` in WebGL.)
 +
-We added an exception `Exception: Failed to load OpenGL(ES) library` when `not Assigned(glGetString)` to make it clear.
-
-- Make the rendering work, by routing calls to WebGL on the web.
-+
---
-- We already call WebGL from WebAssembly using JOB integration in `CastleInternalWebJob`.
-
-- TODO: In progress: We implement `CastleInternalWebGL` with an API resembling OpenGL ES, calling WebGL under the hood. We utilize the fact that WebGL is similar (though not identical) to OpenGL ES 2.0.
-
-- Test rendering first on some simple application without any data, just do some `DrawRectangle` from CGE in `TCastleUserInterface.Draw`. Hack any CGE example for this.
-
-- Once we got this rendering, we need to pass resources, from our data, to web application -- preferably as one big zip, to allow synchronous reading of it in WebAssembly. See "How" plans.
---
-
-- Then finish the plans in "How" section above: data from zip, sound, automatic webserver, etc.
-- _Trung Le (Kagamma)_ has been doing lots of work with CGE + FPC WebAssembly. His fork contains a branch https://github.com/Kagamma/castle-engine/tree/wasm32-wasi-port[wasm32-wasi-port]. Merge and/or cherry-pick this work to CGE as needed. Thank you!
+TODO: *For now: Do not enter any project, most projects will fail* because loading `castle-data` is not implemented yet. Use examle project `examples/web/simplest` now.
 
 == Running WASM code outside of the browser
 
@@ -228,34 +221,30 @@ _WebAssembly_ is not limited to running in a web browser. We support running the
 
 [WARNING]
 ====
-Trying to render anything in https://wasmtime.dev/[Wasmtime] will fail, as we don't have access to WebGL API and context. So you cannot even create cgeref:TCastleWindow[], i.e. it will fail inside https://wasmtime.dev/[Wasmtime] with
+Trying to render anything in https://wasmtime.dev/[Wasmtime] will fail, as we don't have access to WebGL API and context (or the rest of JS API, like `window.requestAnimationFrame`). So you cannot even create cgeref:TCastleWindow[], i.e. it will fail inside https://wasmtime.dev/[Wasmtime] with
 
 ```
-Exception: Failed to load OpenGL(ES) library
+TODO update this error message
 ```
 
 and we don't have immediate plans to make it work. But, at least everything else (all the code _up to the rendering_) will work on https://wasmtime.dev/[Wasmtime].
 
-If you know of an easy way to pass WebGL API and context to application run in https://wasmtime.dev/[Wasmtime] (e.g. implementing WebGL by OpenGL(ES) on the desktop), let us know. And note that we prefer to pass WebGL API, not OpenGL(ES) API, to our application run in https://wasmtime.dev/[Wasmtime]. We want the _wasmtime_ to work as close to _web browser_ as possible, 1. because it avoids `wasmtime`-specific maintenance, 2. because it makes `wasmtime` more suited to debugging what happens on the web, which is its main use-case for us.
+////
+If you know of an easy way to pass WebGL API and context (and rest of JS stuff we need, like `window.requestAnimationFrame`) to application run in https://wasmtime.dev/[Wasmtime] (e.g. implementing JS APIs, including WebGL by OpenGL(ES) on the desktop), let us know. And note that we prefer to pass WebGL API, not OpenGL(ES) API, to our application run in https://wasmtime.dev/[Wasmtime]. We want the _wasmtime_ to work as close to _web browser_ as possible, 1. because it avoids `wasmtime`-specific maintenance, 2. because it makes `wasmtime` more suited to debugging what happens on the web, which is its main use-case for us.
+////
 ====
 
-Just run then like this on the command-line:
-
-```
-export WASMTIME_BACKTRACE_DETAILS=1 # get a more detailed backtrace
-wasmtime <project-name>.wasm
-```
-
-The WASM file is in the project top-level directory if you compiled using
+Build your application like this (on the command-line):
 
 ```
 castle-engine compile --os=wasi --cpu=wasm32 --mode=debug
 ```
 
-or inside `castle-engine-output/web/dist/` if you compiled using
+Run it like this:
 
-```shell
-castle-engine compile -web=target --mode=debug
+```
+export WASMTIME_BACKTRACE_DETAILS=1 # get a more detailed backtrace
+wasmtime <project-name>.wasm
 ```
 
 The main use-case of this is additional https://wiki.freepascal.org/WebAssembly/Debugging[debugging] approach. In case of a crash, the `wasmtime` will give you a useful stack trace with line numbers (if only you compiled with `--mode=debug`, as shown above).
