@@ -16,13 +16,32 @@ cgeimg::block[
   web_2.png|Castle Game Engine - Simplest example in Firefox
 ]
 
-== Demo
+== Demos
 
-Open link:web-demos/simplest[the first, simplest example that runs on the web]!
+[WARNING]
+====
+These are _early demos_, so don't judge the final quality by these demos (yet) :) We have some known TODOs, including:
 
+- Text borders look a bit "fuzzy" (likely due to missing texture swizzle on WebGL which makes our image rendering not exactly how we want).
+- The demos use only 3D / 2D things set up from code (because we don't load data files, not even designs, yet) so they don't look impressive.
+- No fullscreen, no configurable canvas size, demos run only in 512 x 512 fixed size now.
+- Keyboard not handled yet.
+- No shadow volumes on web yet.
+====
+
+Demos:
+
+1. link:web-demos/simplest[The first, simplest example that runs on the web]!
++
 Source code in https://github.com/castle-engine/castle-engine/tree/webassm_platformer_test/examples/web/simplest[examples/web/simplest (on webassm_platformer_test branch)].
 
-WARNING: Visit the above on a desktop browser. On Android, both Firefox and Chrome fail with `ReferenceError: caches is not defined`. It's a TODO to investigate and fix this.
+2. link:web-demos/simplest_viewport[3D viewport, with animated light, dropping boxes with physics].
++
+Source code in https://github.com/castle-engine/castle-engine/tree/webassm_platformer_test/examples/web/simplest_viewport[examples/web/simplest_viewport (on webassm_platformer_test branch)].
+
+3. link:web-demos/simplest_invaders[2D "Invaders" game].
++
+Source code in https://github.com/castle-engine/castle-engine/tree/webassm_platformer_test/examples/web/simplest_invaders[examples/web/simplest_invaders (on webassm_platformer_test branch)].
 
 == Compatibility
 
