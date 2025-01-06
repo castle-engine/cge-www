@@ -91,7 +91,7 @@ This command:
 +
 [NOTE]
 ====
-For some specific applications (like our `tests/`) you can also compile the regular _program_ file (like `xxx_standalone.dpr`, whatever is indicated by `standalone_source` in `CastleEngineManifest.xml`) using FPC + WebAssembly to a `.wasm` file using this command:
+For some specific applications (like our `tests/`) you can also compile the regular _program_ file (like `xxx_standalone.dpr`, whatever is indicated by `standalone_source` in link:project_manifest[CastleEngineManifest.xml]) using FPC + WebAssembly to a `.wasm` file using this command:
 
 ```shell
 castle-engine compile --os=wasi --cpu=wasm32
@@ -99,7 +99,7 @@ castle-engine compile --os=wasi --cpu=wasm32
 
 This is _not_ equivalent to `castle-engine compile --target=web`, which generates and compiles a special _library_ file with WebAssembly (and also generates and compiles the glue code using Pas2js, and generates HTML template).
 
-Compiling the standalone program with `castle-engine compile --os=wasi --cpu=wasm32` only makes sense if application was prepared to be run this way. E.g. it allows to run our testsuite using `wasmtime`.
+Compiling the standalone program with `castle-engine compile --os=wasi --cpu=wasm32` only makes sense if application was prepared to be run this way. E.g. it allows to run our testsuite using https://wasmtime.dev/[Wasmtime].
 ====
 
 - Our link:editor[] can also build and run for web. Underneath, it just calls the build tool commands described above (which you can see in the _"Console"_).
@@ -114,23 +114,27 @@ This HTML file can be customized / replaced / rejected as you wish. It only need
 +
 For nice look, our generated HTML also uses https://getbootstrap.com/[Bootstrap], but again: this can be customized / removed. We don't depend on any special CSS or JS libraries.
 +
-Some alternative HTML templates may be available in the future, as well as the ability to provide your own template. For now, just https://github.com/castle-engine/castle-engine/blob/webassm_platformer_test/tools/build-tool/data/web/dist/index.html[customize the engine's `tools/build-tool/data/web/dist/index.html`] file.
+Some alternative HTML templates may be available in the future, as well as the ability to provide your own template. For now, just https://github.com/castle-engine/castle-engine/blob/webassm_platformer_test/tools/build-tool/data/web/dist/index.html[(before building) customize the engine's `tools/build-tool/data/web/dist/index.html`] file or (after building) customize the generated `castle-engine-output/web/dist/index.html` (e.g. by `sed`).
 
 - We use WebGL API from _WebAssembly_. All our rendering code has been adjusted to WebGL!
 +
-First step to do this was the https://wiki.freepascal.org/WebAssembly/DOM[JOB] units implemented in Pas2js + FPC. This is a collection of units (on both Pas2js and FPC sides) that cooperate with each other. The goal is to allow our WASM applications to access https://hg.mozilla.org/mozilla-central/raw-file/tip/dom/webidl/WebGLRenderingContext.webidl[WebGL API defined in this WEBIDL file].
+First step to do this was the https://wiki.freepascal.org/WebAssembly/DOM[JOB] units implemented in Pas2js + FPC. This is a collection of units (on both Pas2js and FPC sides) that cooperate with each other. The goal is to allow our WASM applications to access https://hg.mozilla.org/mozilla-central/raw-file/tip/dom/webidl/WebGLRenderingContext.webidl[WebGL API (defined in this WEBIDL file)] plus a few other JavaScript APIs we need (for HTML canvas, `window.requestAnimationFrame` etc.).
 +
 NOTE: The WebGL API is available in the browser to https://getpas2js.freepascal.org/[Pas2js] (that is, any _JavaScript_ code in the browser). If not for https://wiki.freepascal.org/WebAssembly/DOM[JOB], we would expose this API for the WebAssembly, following the https://www.freepascal.org/~michael/pas2js-demos/wasienv/canvas/[canvas example] described in the 2nd part of https://www.freepascal.org/~michael/articles/fpcwasm1/fpcwasm1.pdf[this article]. But, well, using https://wiki.freepascal.org/WebAssembly/DOM[JOB] makes things even easier.
 +
-We generate a unit `CastleInternalJobWeb` using this script and WEBIDLs: https://github.com/castle-engine/castle-engine/tree/webassm_platformer_test/src/base_rendering/web/webidl .
+We generate a unit https://github.com/castle-engine/castle-engine/blob/webassm_platformer_test/src/base_rendering/web/castleinternaljobweb.pas[CastleInternalJobWeb] using this script and WEBIDLs: https://github.com/castle-engine/castle-engine/tree/webassm_platformer_test/src/base_rendering/web/webidl .
 +
-NOTE: FPC ships an example `job_web.pas` that already contains everything we need, but it's a huge unit. It has 184 thousands of lines and compiling it is slow (this is esp. problematic as current FPC 3.3.1 recompiles everything more often than it should -- it seems that every change even to implementation causes rebuild of everything derived, as if we changed interface). That's why we generate our own unit, `CastleInternalJobWeb` (merely ~16 thousands of lines) that is more focused on what we need: mostly WebGL API.
+NOTE: FPC ships an example https://gitlab.com/freepascal.org/fpc/source/-/blob/main/packages/wasm-job/examples/job_web.pas?ref_type=heads[job_web.pas] that already contains everything we need, but it's a huge unit. It has ~184 thousands of lines and compiling it is slow (this is esp. problematic as current FPC 3.3.1 recompiles units more often than it should -- it seems that every change even to implementation causes rebuild of everything derived, as if we changed interface). That's why we generate our own unit, https://github.com/castle-engine/castle-engine/blob/webassm_platformer_test/src/base_rendering/web/castleinternaljobweb.pas[CastleInternalJobWeb] (merely ~19 thousands of lines) that contains only what we need.
 +
-Second step: We then generate include file `castleinternalwebgl_flat_api.inc` that "flattens" the API exposed in `CastleInternalJobWeb`, making it more similar to the OpenGL ES API in `CastleGLES`. This generation is also looking at WEBIDL, to process all WebGL methods we need. The tool that does this is https://github.com/castle-engine/castle-engine/tree/webassm_platformer_test/tools/internal/generate_webgl_flat_api/generate_webgl_flat_api.dpr[tools/internal/generate_webgl_flat_api].
+Second step: We then generate include file https://github.com/castle-engine/castle-engine/blob/webassm_platformer_test/src/base_rendering/web/castleinternalwebgl_flat_api.inc[castleinternalwebgl_flat_api.inc] that "flattens" the API exposed in https://github.com/castle-engine/castle-engine/blob/webassm_platformer_test/src/base_rendering/web/castleinternaljobweb.pas[CastleInternalJobWeb], making it more similar to the OpenGL ES API in the https://github.com/castle-engine/castle-engine/blob/webassm_platformer_test/src/base_rendering/castlegles.pas[CastleGLES] unit. This generation also consults WEBIDL, to process all WebGL methods we need. The tool that does this is https://github.com/castle-engine/castle-engine/tree/webassm_platformer_test/tools/internal/generate_webgl_flat_api/generate_webgl_flat_api.dpr[tools/internal/generate_webgl_flat_api].
 +
-Third step: We then use `CastleInternalWebGL` unit as a drop-in replacement (as much as possible) for `CastleGLES` unit.
+Third step: We then use
+https://github.com/castle-engine/castle-engine/blob/webassm_platformer_test/src/base_rendering/web/castleinternalwebgl.pas[CastleInternalWebGL]
+unit as (to a large extent) a drop-in replacement for the
+https://github.com/castle-engine/castle-engine/blob/webassm_platformer_test/src/base_rendering/castlegles.pas[CastleGLES]
+unit.
 +
-Lastly, we manually adjusted rendering code to account for final, unavoidable differences between OpenGL ES (`CastleGLES`) and WebGL (`CastleInternalWebGL`). Mostly straightforward work, differences stem mostly from the fact that OpenGL ES is a C API (so: no such thing as `Variant`; and occasional pointer usage to pass arrays or "raw" buffers), while WebGL is a JavaScript API (so: everything is an array, even "raw" buffers; some reasonable usage of `Variant` types, like `getParameter` results). Just a small number of `{$ifdef CASTLE_WEBGL}` clauses in strategic places got the job done.
+Lastly, we manually adjusted rendering code to account for final, unavoidable differences between OpenGL ES (https://github.com/castle-engine/castle-engine/blob/webassm_platformer_test/src/base_rendering/castlegles.pas[CastleGLES]) and WebGL (https://github.com/castle-engine/castle-engine/blob/webassm_platformer_test/src/base_rendering/web/castleinternalwebgl.pas[CastleInternalWebGL]). Mostly straightforward work, differences stem mostly from the fact that OpenGL ES is a C API (so: no such thing as `Variant`; and occasional pointer usage to pass arrays or "raw" buffers), while WebGL is a JavaScript API (so: everything is an array, even "raw" buffers; some reasonable usage of `Variant` types, like `getParameter` results). Just a small number of `{$ifdef CASTLE_WEBGL}` clauses in strategic places got the job done.
 +
 In the end, we render using https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API[WebGL 1.0], with optional WebGL 2.0 features. This is very similar to our current rendering approach on mobile, where we use https://castle-engine.io/wp/2023/03/12/mobile-opengles-rendering-upgrades-occlusion-query-anisotropic-filtering-3d-textures-shadows-plus-new-occlusion-query-demo/[OpenGL ES 2.0, with optional OpenGL ES 3.0 features].
 
