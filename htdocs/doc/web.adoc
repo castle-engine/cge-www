@@ -255,7 +255,11 @@ Branch https://github.com/castle-engine/castle-engine/tree/webassm_platformer_te
 
 2. Follow link:compiling_from_source.php[compiling from source] docs to compile at least new CGE build tool from this CGE branch.
 
-3. Enter any CGE project and compile and run it for WebAssembly. For example, to compile the `examples/platformer` project:
+3. Enter any CGE project in `examples/web/` and compile and run it for WebAssembly.
++
+You can do it using the link:editor[]. Switch the platform using _"Run -> Platform -> Web"_, then click _"Compile And Run"_ (F9).
++
+Or you can do it from the command-line, using our link:build_tool[build tool]:
 +
 [source,shell]
 ----
@@ -263,7 +267,7 @@ castle-engine compile --target=web --mode=debug
 castle-engine run --target=web
 ----
 +
-TODO: *For now: Do not enter any project, most projects will fail* because loading `castle-data` is not implemented yet. Use examle project `examples/web/simplest` now.
+TODO: It is our plan to allow compiling *any* project from `examples/` to the web. But for now, only projects in `examples/web/` are prepared for this.
 
 == Running WASM code outside of the browser
 
