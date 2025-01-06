@@ -172,6 +172,10 @@ We could also use https://en.wikipedia.org/wiki/Brotli[Brotli], a newer compress
 
 - Is it good we capture keys by listening to `keydown` and `keyup` events on the whole `window`? Could conflict with other things on the same page trying to handle keys. Should we rather rely on canvas being focused? (but will need code to make it focused).
 
+- Save the user settings / save games (link:manual_user_prefs.php[CastleConfig]) to webpage persistent storage.
+
+- Open / save files by browser dialog (cgeref:TCastleWindow.FileDialog[]).
+
 == Prerequisites
 
 [NOTE]
