@@ -7,7 +7,7 @@ include::common.adoc[]
 
 [WARNING]
 ====
-This feature is in development now. This page is updated often as we go. Stay tuned!
+This feature is in intensive development now. As such, this page will change as we go forward. Stay tuned!
 ====
 
 _Web target_ allows you to recompile any application you wrote using _Castle Game Engine_ (using cgeref:TCastleWindow[]) to the web. So you can put your application on a website, as part of a regular HTML webpage, and users can play it instantly, without the need to download / install any native application or browser plugin.
@@ -47,13 +47,13 @@ These are _early demos_, so don't judge the final quality by these demos (yet) :
 
 Absolute :)
 
-- The resulting application works in any modern web browser and does not require user to install anything special (like old plugins). Everything we need is already built-in in all modern web browsers, in particular _WebAssembly_ and _WebGL_ support in completely standard.
+- The resulting application works in any modern web browser and does not require user to install anything special (like old plugins). Everything we need is already built-in in all modern web browsers, in particular https://caniuse.com/wasm[WebAssembly] and https://caniuse.com/?search=webgl[WebGL support] are completely standard now.
 
 - All the web browsers should be good. _Firefox_, _Google Chrome_ and derivatives (like _Vivaldi_) are all good.
 
 - Mobile web browsers are supported as well. We support touches in a way consisten with mouse events, link:touch_input[just like on non-web mobile targets]. We tested with both _Firefox_ and _Google Chrome_ on _Android_.
 +
-WARNING: To build application web working on mobile, one needs to apply a 1-line hack to `pas2js` sources, see below for details.
+WARNING: To make the resulting web application working also in mobile (like Android) web browsers, one needs to apply a 1-line hack to `pas2js` sources, see below for details.
 
 == How it works (or will work)
 
@@ -126,15 +126,17 @@ We generate a unit `CastleInternalJobWeb` using this script and WEBIDLs: https:/
 +
 NOTE: FPC ships an example `job_web.pas` that already contains everything we need, but it's a huge unit. It has 184 thousands of lines and compiling it is slow (this is esp. problematic as current FPC 3.3.1 recompiles everything more often than it should -- it seems that every change even to implementation causes rebuild of everything derived, as if we changed interface). That's why we generate our own unit, `CastleInternalJobWeb` (merely ~16 thousands of lines) that is more focused on what we need: mostly WebGL API.
 +
-Second step: We then generate include file `castleinternalwebgl_flat_api.inc` that "flattens" the API exposed in `CastleInternalJobWeb`, making it more similar OpenGL ES API in `CastleGLES`. This generation is also looking at WEBIDL, to process all WebGL methods we need. The tool that does this is https://github.com/castle-engine/castle-engine/tree/webassm_platformer_test/tools/internal/generate_webgl_flat_api/generate_webgl_flat_api.dpr[tools/internal/generate_webgl_flat_api].
+Second step: We then generate include file `castleinternalwebgl_flat_api.inc` that "flattens" the API exposed in `CastleInternalJobWeb`, making it more similar to the OpenGL ES API in `CastleGLES`. This generation is also looking at WEBIDL, to process all WebGL methods we need. The tool that does this is https://github.com/castle-engine/castle-engine/tree/webassm_platformer_test/tools/internal/generate_webgl_flat_api/generate_webgl_flat_api.dpr[tools/internal/generate_webgl_flat_api].
 +
 Third step: We then use `CastleInternalWebGL` unit as a drop-in replacement (as much as possible) for `CastleGLES` unit.
 +
-Lastly, we manually adjusted rendering code to account for final, unavoidable differences between OpenGL ES (`CastleGLES`) and WebGL (`CastleInternalWebGL`). Mostly straightforward work, differences stem mostly from the fact that OpenGL ES is a C API (no as `Variant`, more pointer usage), while WebGL is a JavaScript API (more usage of arrays and, when reasonable, untyped variables like `getParameter`). Just a few `{$ifdef CASTLE_WEBGL}` in strategic places got the job done.
+Lastly, we manually adjusted rendering code to account for final, unavoidable differences between OpenGL ES (`CastleGLES`) and WebGL (`CastleInternalWebGL`). Mostly straightforward work, differences stem mostly from the fact that OpenGL ES is a C API (so: no such thing as `Variant`; and occasional pointer usage to pass arrays or "raw" buffers), while WebGL is a JavaScript API (so: everything is an array, even "raw" buffers; some reasonable usage of `Variant` types, like `getParameter` results). Just a small number of `{$ifdef CASTLE_WEBGL}` clauses in strategic places got the job done.
 +
-In the end, we render using https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API[WebGL 1.0], with optional WebGL 2.0 features. This is very similar to current rendering on mobile, where we use https://castle-engine.io/wp/2023/03/12/mobile-opengles-rendering-upgrades-occlusion-query-anisotropic-filtering-3d-textures-shadows-plus-new-occlusion-query-demo/[OpenGL ES 2.0, with optional OpenGL ES 3.0 features].
+In the end, we render using https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API[WebGL 1.0], with optional WebGL 2.0 features. This is very similar to our current rendering approach on mobile, where we use https://castle-engine.io/wp/2023/03/12/mobile-opengles-rendering-upgrades-occlusion-query-anisotropic-filtering-3d-textures-shadows-plus-new-occlusion-query-demo/[OpenGL ES 2.0, with optional OpenGL ES 3.0 features].
 
-- Input: We handle pointer events (down, motion, up) thus we handle mouse and touch input.
+- Input: We handle pointer events on the canvas (down, motion, up) thus we handle mouse and touch input. We also handle key events (keydown, keyup) on the whole DOM window.
++
+WARNING: TODO: key handling may change to rely on focus instead, to allow to e.g. have 2 web applications using CGE on the same page.
 
 === Plans (TODOs)
 
@@ -170,7 +172,7 @@ We could also use https://en.wikipedia.org/wiki/Brotli[Brotli], a newer compress
 
 - Implement cgeref:TCastleDownload[] for web.
 
-- Is it good we capture keys by listening to `keydown` and `keyup` events on the whole `window`? Could conflict with other things on the same page trying to handle keys. Should we rather rely on canvas being focused? (but will need code to make it focused).
+- Is it good we capture keys by listening to `keydown` and `keyup` events on the whole `window`? Could conflict with other things on the same page trying to handle keys (like 2nd CGE web application). Should we rather rely on canvas being focused, or maybe some canvas div wrapper? (but will need code to make it focused, because out-of-the-box canvas doesn't get any keydown / keyup).
 
 - Save the user settings / save games (link:manual_user_prefs.php[CastleConfig]) to webpage persistent storage.
 
@@ -182,9 +184,9 @@ We could also use https://en.wikipedia.org/wiki/Brotli[Brotli], a newer compress
 ====
 Things below look complicated? We have plans to make them easier:
 
-- We plan to extend our link:docker[Docker images] to provide pas2js and FPC with WebAssembly support out-of-the-box. (And if you don't know yet what _Docker_ is, we advive to learn! :)
+- We plan to extend our link:docker[Docker images] to provide pas2js and FPC with WebAssembly support out-of-the-box. Don't know yet what https://www.docker.com/[Docker] is? Then we advise to play and learn, Docker images and containers are nice way to share "development environments".
 
-- We also will provide recipes how to use link:github_actions[Github Actions] and link:gitlab_ci[GitLab CI] to build applications to the web. So if you host your repository on _GitHub_ or _GitLab_, you can let the build be done for you.
+- We also will provide recipes how to use link:github_actions[Github Actions] and link:gitlab_ci[GitLab CI] to build applications for the web. So if you host your repository on _GitHub_ or _GitLab_, you can let the build be done for you.
 ====
 
 Installing the tools:
