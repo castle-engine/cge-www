@@ -22,17 +22,17 @@ cgeimg::block[
 
 Demos:
 
-1. link:web-demos/simplest[The first, simplest example that runs on the web]!
-+
-Source code in https://github.com/castle-engine/castle-engine/tree/webassm_platformer_test/examples/web/simplest[examples/web/simplest (on webassm_platformer_test branch)].
-
-2. link:web-demos/simplest_viewport[3D viewport, with animated light, dropping boxes with physics].
+1. link:web-demos/simplest_viewport[3D viewport, with animated light, dropping boxes with physics].
 +
 Source code in https://github.com/castle-engine/castle-engine/tree/webassm_platformer_test/examples/web/simplest_viewport[examples/web/simplest_viewport (on webassm_platformer_test branch)].
 
-3. link:web-demos/simplest_invaders[2D "Invaders" game].
+2. link:web-demos/simplest_invaders[2D "Invaders" game].
 +
 Source code in https://github.com/castle-engine/castle-engine/tree/webassm_platformer_test/examples/web/simplest_invaders[examples/web/simplest_invaders (on webassm_platformer_test branch)].
+
+3. link:web-demos/simplest[The first, simplest example that runs on the web]!
++
+Source code in https://github.com/castle-engine/castle-engine/tree/webassm_platformer_test/examples/web/simplest[examples/web/simplest (on webassm_platformer_test branch)].
 
 [WARNING]
 ====
