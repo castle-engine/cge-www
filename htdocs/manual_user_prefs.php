@@ -44,34 +44,6 @@ methods:
 <p>See the <?php echo cgeRef('TCastleConfig'); ?>
  for a documentation of our extensions.
 
-<p>Some engine components provide ready methods to load / save
-their configuration into a
-<?php echo cgeRef('TCastleConfig'); ?> instance
-(for example into the <code>UserConfig</code>). These include:
-
-<ul>
-  <li><?php echo cgeRef('SoundEngine'); ?>
-    &mdash; can load/save sound enabled state, sound volume and other parameters.
-    See
-    <?php echo cgeRef('TSoundEngine.LoadFromConfig'); ?>,
-    <?php echo cgeRef('TSoundEngine.SaveToConfig'); ?>.
-
-  <li><?php echo cgeRef('InputsAll'); ?>
-    &mdash; input shortcuts (named key and mouse shortcuts) customizations. See
-    <?php echo cgeRef('TInputShortcutList.LoadFromConfig'); ?>,
-    <?php echo cgeRef('TInputShortcutList.SaveToConfig'); ?>.
-</ul>
-
-<p>Note that the engine does <b>not</b> automatically
-call the load / save methods mentioned above. We used to call them automatically
-(in engine version &lt;= 5.2.0), but this automatization was more trouble
-than gain. <small>(It meant that <code>UserConfig.Load</code> could, often by surprise
-to the developer, override the sound parameters set by
-<code>SoundEngine.ParseParameters</code> or explicit
-<code>SoundEngine.Enabled := false</code> code.)</small>
-So you're supposed to call them yourself (see example above) if you want to save
-these values as user preferences.
-
 <p>While you can load and save the config data at any time,
 you can also register your own load and save listeners using
 the
