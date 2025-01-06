@@ -6288,7 +6288,7 @@ rtl.module("program",["System","Classes","SysUtils","wasienv","Web","BrowserApp"
     };
     this.DoRun = function () {
       pas.System.Writeln("Starting WebAssembly program from simplest_viewport.wasm");
-      this.StartWebAssembly("simplest_viewport.wasm?random_suffix_to_avoid_cache=L144",true,rtl.createCallback(this,"DoBeforeStart"),null);
+      this.StartWebAssembly("simplest_viewport.wasm?random_suffix_to_avoid_cache=JGEHZCJ106",true,rtl.createCallback(this,"DoBeforeStart"),null);
       this.Terminate();
     };
     this.Create$1 = function (aOwner) {
