@@ -18,17 +18,6 @@ cgeimg::block[
 
 == Demos
 
-[WARNING]
-====
-These are _early demos_, so don't judge the final quality by these demos (yet) :) We have some known TODOs, including:
-
-- Text borders look a bit "fuzzy" (likely due to missing texture swizzle on WebGL which makes our image rendering not exactly how we want).
-- The demos use only 3D / 2D things set up from code (because we don't load data files, not even designs, yet) so they don't look impressive.
-- No fullscreen, no configurable canvas size, demos run only in 512 x 512 fixed size now.
-- Keyboard not handled yet.
-- No shadow volumes on web yet.
-====
-
 Demos:
 
 1. link:web-demos/simplest[The first, simplest example that runs on the web]!
@@ -42,6 +31,15 @@ Source code in https://github.com/castle-engine/castle-engine/tree/webassm_platf
 3. link:web-demos/simplest_invaders[2D "Invaders" game].
 +
 Source code in https://github.com/castle-engine/castle-engine/tree/webassm_platformer_test/examples/web/simplest_invaders[examples/web/simplest_invaders (on webassm_platformer_test branch)].
+
+[WARNING]
+====
+These are _early demos_, so don't judge the final quality by these demos (yet) :) We have some known TODOs, including:
+
+- Text looks a bit "fuzzy" (likely due to missing texture swizzle on WebGL which makes our image alpha not exactly applied how we want).
+- The demos use only 3D / 2D things set up from code (because we don't load data files, not even designs, yet) so they don't look impressive.
+- No shadow volumes on web yet (we need to initialize with stencil to have them).
+====
 
 == Compatibility
 
@@ -142,8 +140,6 @@ In the end, we render using https://developer.mozilla.org/en-US/docs/Web/API/Web
 +
 Running on mobile requires now hacking pas2js, in `pas2js/packages/job/src/job_browser.pp`, find and comment out `RegisterGlobalObject(caches,'caches');`. Otherwise both Firefox and Chrome on Android fail with `ReferenceError: caches is not defined`.
 
-- Handle keys (manage focus). Initial code already, but not yet working.
-
 - For data delivery, we know we'll have to invent a simple format to carry our game data as one big binary blob. The simple plan is to just pack game data into zip.
 +
 Both FPC and Delphi have built-in support for ZIP handling, we even https://github.com/castle-engine/castle-engine/blob/master/examples/network/custom_url_handler/code/gameunzip.pas[use it in one example], we'll likely create a more full-featured wrapper that works on both FPC and Delphi.
@@ -171,6 +167,8 @@ We could also use https://en.wikipedia.org/wiki/Brotli[Brotli], a newer compress
 - Allow to go fullscreen on web.
 
 - Implement cgeref:TCastleDownload[] for web.
+
+- Is it good we capture keys by listening to `keydown` and `keyup` events on the whole `window`? Could conflict with other things on the same page trying to handle keys. Should we rather rely on canvas being focused? (but will need code to make it focused).
 
 == Prerequisites
 
@@ -316,6 +314,23 @@ cd time_measurements_tests/ # enter tests/time_measurements_tests/ in CGE
 castle-engine compile --os=wasi --cpu=wasm32 --mode=debug
 wasmtime time_measurements_tests.wasm
 ```
+
+[#manifest]
+== Customize default canvas size
+
+TODO: Move this to link:project_manifest[CastleEngineManifest.xml] docs.
+
+The default area available for rendering is determined by the `<canvas>` size in the generated HTML file. You can customize this by editing the link:project_manifest[CastleEngineManifest.xml] of your project and adding there lines like this:
+
+```xml
+<web>
+  <canvas width="800" height="600" />
+</web>
+```
+
+See https://github.com/castle-engine/castle-engine/blob/webassm_platformer_test/examples/web/simplest_invaders/CastleEngineManifest.xml[examples/web/simplest_invaders/CastleEngineManifest.xml (on webassm_platformer_test branch)] for a full example.
+
+NOTE: You can also just edit / replace the generated `index.html` file completely. As we mentioned above, we don't assume much about this HTML, it only must have `<canvas id="castle-canvas">`.
 
 [#platform_default]
 == Run the project by default for the web
