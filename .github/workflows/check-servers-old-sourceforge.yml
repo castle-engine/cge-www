@@ -1,0 +1,29 @@
+# ----------------------------------------------------------------------------
+# GitHub Actions workflow to regularly check SourceForge servers,
+# do they redirect to new servers.
+#
+# This is a separate workflow from check-servers.yml because
+# it often fails in 2024, and there's nothing we can do about it, it seems
+# -- SourceForge is not reliable. So we can easily ignore occasional
+# notifications when it fails.
+# ----------------------------------------------------------------------------
+
+name: Check Old SourceForge Servers Online
+
+on:
+  schedule:
+    - cron: '33 * * * *'
+  workflow_dispatch:
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  check_servers:
+    name: Check Old SourceForge Servers
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check Old SourceForge Online
+        run: ./scripts/check_online_sourceforge.sh
