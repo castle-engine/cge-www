@@ -803,9 +803,47 @@ WWWInline { name "my_compressed_vrml_file.wrl.gz" }
     ));
     ?>
 
-    <p>Use the <code>BlendMode</code> to specify how partially-transparent objects
-    are displayed on top of other geometry.
-    Place this node as the <code>Appearance.blendMode</code> value.
+<p>Use the <code>BlendMode</code> to specify how partially-transparent objects are displayed on top of other geometry.
+
+<p><i>Explanation what is a "blend mode" in 3D rendering:</i>
+
+<ul>
+  <li>
+    <p>The real-time 3D rendering APIs (like OpenGL) allow to render partially transparent objects (like <i>"blueish glass"</i>) using <a href="blending">blending</a>.
+
+  <li>
+    <p>The software first renders opaque objects, and then it renders partially transparent objects "on top" of the opaque objects. When rendering the partially transparent objects, "blending" mode is active, which means that incoming color (like <i>"blue"</i> from the <i>"blueish glass"</i> example) is mixed with the screen color (like color of the thing that was behind the glass).
+
+    <p>( Forget for a second about the problem "what should be the rendering order". We document in <a href="blending">blending</a> page how does <i>Castle Game Engine</i> handle this. Here, assume you have good order for each screen pixel. )
+
+    <p>Now, when rendering a partially-transparent object over something underneath, the color of the partially-transparent thing is mixed with the existing screen color. How is it mixed?
+
+  <li>
+    <p>The standard operation is to do
+
+<pre>
+new_screen_color :=
+  old_screen_color * (1 - object_opacity)
+  object_rgb_color * object_opacity
+</pre>
+
+    <p>This is effectively a <?php echo cgeRef('Lerp'); ?> (linear interpolation) between screen color and incoming color, using new object's opacity (aka "alpha", aka "1 - transparency") as a factor.
+
+    <p><i>Is this correct (with respect to reality)?</i> Not fully, but there is no "fully correct" equation. What we do is a poor approximation of how "partially transparent" objects work in reality. There's no equation that will be "fully correct".
+
+    <p><i>Is this "good enough"?</i> Often, yes. Consider a thin (very transparent) glass, it can have transparency=0.9, so opacity=alpha=0.1. So the equation implies that color behind the glass mostly stays visible (it is only multiplied by 0.9) and the color of the glass mostly doesn't disappears (it is multiplied by 0.1). This makes sense.
+
+    <p>In contrast, a "thick" glass could have transparency=0.1, so opacity=alpha=0.1. Follow the equation to see what happens &mdash; just like in reality, color of the thick glass will now be prominent, and the thing behind will almost become invisible.
+
+    <p><i>Is this problematic?</i> Sometimes. The equation requires the partially-transparent objects to be sorted. (because imagine what happens when the object is seen through multiple layers of differently-colored glass.)
+
+    <p><i>Is this standard?</i> Yes.
+
+    <li>
+      <p>BlendMode is X3D allows to configure this equation. All the BlendMode modes directly correspond to the <a href="https://registry.khronos.org/OpenGL-Refpages/gl4/html/glBlendFunc.xhtml">glBlendFunc parameters of OpenGL</a>.
+  </ul>
+
+  <p>Place this node as the <code>Appearance.blendMode</code> value.
     The exact specification of <code>BlendMode</code> possibilities:
 
     <?php
