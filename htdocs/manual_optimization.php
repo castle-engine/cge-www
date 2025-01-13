@@ -737,7 +737,7 @@ end;
 > > 1.91 [1.91] - Loading "castle-data:/level/level.gltf" (TCastleSceneCore)
 > > > 1.44 [1.44] - ChangedAll for Scene1 from castle-data:/level/level.gltf
 > > > > 0.35 [0.35] - Creating octree for shape Circle.001/Circle.001_2/Circle.001_Primitive0/IndexedTriangleSet
-> > > > 0.21 [0.24] - Creating octree for shape Plane.003/Plane.003_2/Plane.003_Primitive0/IndexedTriangleSet
+> > > > 0.21 [0.21] - Creating octree for shape Plane.003/Plane.003_2/Plane.003_Primitive0/IndexedTriangleSet
 > > > > 0.12 [0.12] - Creating octree for shape Stairs_2/Circle/Circle_Primitive0/IndexedTriangleSet
 > > > > 0.04 [0.04] - Creating octree for shape Cube.052/Cube.069/Cube.069_Primitive0/IndexedTriangleSet
 ....
