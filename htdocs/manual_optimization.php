@@ -711,7 +711,7 @@ end;
 
     <ul>
       <li>
-        <p>For a simple output of everything captured so fat, just use <?php echo cgeRef('TCastleProfiler.Summary', 'Profiler.Summary'); ?> anytime you want. For example write it to the <a href="log">log</a> file when some button is pressed:
+        <p>For a simple output of everything captured so far, just use <?php echo cgeRef('TCastleProfiler.Summary', 'Profiler.Summary'); ?> anytime you want. For example write it to the <a href="log">log</a> file when some button is pressed:
 
         <?php echo pascal_highlight('WritelnLog(Profiler.Summary);'); ?>
 
