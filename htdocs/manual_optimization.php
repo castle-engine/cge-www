@@ -665,9 +665,7 @@ Hints to make it faster:
 
 <p>To try this, set
 
-<pre>
-TGLFeatures.RequestCapabilities := rcForceFixedFunction;
-</pre>
+<?php echo pascal_highlight('TGLFeatures.RequestCapabilities := rcForceFixedFunction;'); ?>
 
 <p>before creating the window (e.g. in the <code>initialization</code> section of <code>GameInitialize</code> unit in your application).
 
@@ -677,7 +675,73 @@ TGLFeatures.RequestCapabilities := rcForceFixedFunction;
 
 <?php echo $toc->html_section(); ?>
 
-<p>We have <?php echo cgeRef('TCastleProfiler'); ?> to easily profile the speed of operations. The engine automatically uses it to log loading time of various assets. You can track the time spend in other operations (specific to your game) there too.
+<p>Use <?php echo cgeRef('TCastleProfiler'); ?> (through the singleton <?php echo cgeRef('Profiler'); ?>, in <?php echo cgeRef('CastleTimeUtils'); ?> unit) to easily profile the speed of various operations. You can measure the speed of your own code, or just enable the profiler to measure the speed of various engine loading operations. The profiler automatically builds a tree of <i>"what sub-operation was within each operation"</i>, so you can investigate <i>"what took most time in something else"</i>, e.g. loading which 3D model took the most time when loading a game level.
+
+<p>Usage:
+
+<ol>
+  <li>
+    <p>Enable it by calling
+
+    <?php echo pascal_highlight('Profiler.Enabled := true;'); ?>
+
+    <p>Usually you want to do this as early as possible, e.g. from the <code>initialization</code> section of your main unit like <code>GameInitialize</code>.
+
+  <li>
+    <p>Surround the code you want to measure with <?php echo cgeRef('TCastleProfiler.Start', 'Profiler.Start'); ?> and <?php echo cgeRef('TCastleProfiler.Stop', 'Profiler.Stop'); ?> calls. Like this:
+
+    <?php echo pascal_highlight(
+'procedure TMyClass.LoadSomething;
+var
+  TimeStart: TCastleProfilerTime;
+begin
+  TimeStart := Profiler.Start(\'Loading something (in TMyClass)\');
+  try
+    // do the time-consuming loading now...
+  finally
+    Profiler.Stop(TimeStart);
+  end;
+end;
+'); ?>
+
+    <p>The engine automatically measures the speed of various loading operations, like loading images, sounds, 3D models. So you don't actually need to add any <?php echo cgeRef('TCastleProfiler.Start', 'Profiler.Start'); ?> / <?php echo cgeRef('TCastleProfiler.Stop', 'Profiler.Stop'); ?> calls if you just want to measure the speed of loading assets.
+
+  <li>
+    <p>You want to output the profiling information at some point.
+
+    <ul>
+      <li>
+        <p>For a simple output of everything captured so fat, just use <?php echo cgeRef('TCastleProfiler.Summary', 'Profiler.Summary'); ?> anytime you want. For example write it to the <a href="log">log</a> file when some button is pressed:
+
+        <?php echo pascal_highlight('WritelnLog(Profiler.Summary);');
+
+      <li>
+        <p>If you measure some specific operation, you can output only this operation (including sub-operations that happened within) by passing additional argument to the <?php echo cgeRef('TCastleProfiler.Stop', 'Profiler.Stop'); ?>. Like this:
+
+        <?php echo pascal_highlight('Profiler.Stop(TimeStart, true);');
+
+      <li>
+        <p>If you want to measure the time of <a href="views">view</a> starting, just set <?php echo cgeRef('TCastleView.Log'); ?> to <code>true</code> early (e.g. in <code>initialization</code> of <code>GameInitialize</code> unit) like this:
+
+        <?php echo pascal_highlight('TCastleView.Log := true;');
+    </ul>
+</ol>
+
+<p>Expect an output like this:
+
+<pre>
+-------------------- TCastleApplication Initialization begin
+2.8745 [2.8745] - TCastleApplication Initialization
+> 2.8745 [2.8745] - TCastleApplication.OnInitialize
+> > 1.9167 [1.9167] - Loading "castle-data:/level/level.gltf" (TCastleSceneCore)
+> > > 1.4425 [1.4425] - ChangedAll for Scene1 from castle-data:/level/level.gltf
+> > > > 0.3526 [0.3526] - Creating octree for shape Circle.001/Circle.001_2/Circle.001_Primitive0/IndexedTriangleSet
+> > > > 0.2164 [0.2164] - Creating octree for shape Plane.003/Plane.003_2/Plane.003_Primitive0/IndexedTriangleSet
+> > > > 0.1296 [0.1296] - Creating octree for shape Stairs_2/Circle/Circle_Primitive0/IndexedTriangleSet
+> > > > 0.0415 [0.0415] - Creating octree for shape Cube.052/Cube.069/Cube.069_Primitive0/IndexedTriangleSet
+....
+-------------------- TCastleApplication Initialization end
+</pre>
 
 <?php echo $toc->html_section(); ?>
 
