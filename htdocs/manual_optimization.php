@@ -732,14 +732,14 @@ end;
 
 <pre>
 -------------------- TCastleApplication Initialization begin
-2.8745 [2.8745] - TCastleApplication Initialization
-> 2.8745 [2.8745] - TCastleApplication.OnInitialize
-> > 1.9167 [1.9167] - Loading "castle-data:/level/level.gltf" (TCastleSceneCore)
-> > > 1.4425 [1.4425] - ChangedAll for Scene1 from castle-data:/level/level.gltf
-> > > > 0.3526 [0.3526] - Creating octree for shape Circle.001/Circle.001_2/Circle.001_Primitive0/IndexedTriangleSet
-> > > > 0.2164 [0.2164] - Creating octree for shape Plane.003/Plane.003_2/Plane.003_Primitive0/IndexedTriangleSet
-> > > > 0.1296 [0.1296] - Creating octree for shape Stairs_2/Circle/Circle_Primitive0/IndexedTriangleSet
-> > > > 0.0415 [0.0415] - Creating octree for shape Cube.052/Cube.069/Cube.069_Primitive0/IndexedTriangleSet
+2.87 [2.87] TCastleApplication Initialization
+> 2.87 [2.87] - TCastleApplication.OnInitialize
+> > 1.91 [1.91] - Loading "castle-data:/level/level.gltf" (TCastleSceneCore)
+> > > 1.44 [1.44] - ChangedAll for Scene1 from castle-data:/level/level.gltf
+> > > > 0.35 [0.35] - Creating octree for shape Circle.001/Circle.001_2/Circle.001_Primitive0/IndexedTriangleSet
+> > > > 0.21 [0.24] - Creating octree for shape Plane.003/Plane.003_2/Plane.003_Primitive0/IndexedTriangleSet
+> > > > 0.12 [0.12] - Creating octree for shape Stairs_2/Circle/Circle_Primitive0/IndexedTriangleSet
+> > > > 0.04 [0.04] - Creating octree for shape Cube.052/Cube.069/Cube.069_Primitive0/IndexedTriangleSet
 ....
 -------------------- TCastleApplication Initialization end
 </pre>
