@@ -30,7 +30,7 @@ $toc = new TableOfContents(
       new TocItem('User interface and 2D drawing', 'ui', 1),
       new TocItem('Last resort: consider switching to old rendering pipeline for really old machines', 'old_rendering', 1),
     new TocItem('Profile (measure speed and memory usage)', 'profiling'),
-      new TocItem('Use simple TCastleProfiler to measure specific tasks', 'profiler', 1),
+      new TocItem('Use TCastleProfiler to measure time of tasks and their sub-tasks', 'profiler', 1),
       new TocItem('Use TCastleFrameProfiler (just press F8!) to measure what consumes your time', 'frame_profiler', 1),
       new TocItem('Use Valgrind, incredibly powerful profiler on Linux', 'valgrind', 1),
       new TocItem('Use profiler on Nintendo Switch', 'nintendo_profiler', 1),
@@ -675,7 +675,7 @@ Hints to make it faster:
 
 <?php echo $toc->html_section(); ?>
 
-<p>Use <?php echo cgeRef('TCastleProfiler'); ?> (through the singleton <?php echo cgeRef('Profiler'); ?>, in <?php echo cgeRef('CastleTimeUtils'); ?> unit) to easily profile the speed of various operations. You can measure the speed of your own code, or just enable the profiler to measure the speed of various engine loading operations. The profiler automatically builds a tree of <i>"what sub-operation was within each operation"</i>, so you can investigate <i>"what took most time in something else"</i>, e.g. loading which 3D model took the most time when loading a game level.
+<p>Use <?php echo cgeRef('TCastleProfiler'); ?> (through the singleton <?php echo cgeRef('Profiler'); ?>, in <?php echo cgeRef('CastleTimeUtils'); ?> unit) to easily profile the speed of various tasks. You can measure the speed of your own code, or just enable the profiler to measure the speed of various engine loading operations. The profiler automatically builds and sorts a tree of <i>"which sub-tasks contribute to the time of each task"</i>, so you can investigate <i>"what took most time in something else"</i>, e.g. loading which 3D model took the most time when loading a game level.
 
 <p>Usage:
 
@@ -716,7 +716,7 @@ end;
         <?php echo pascal_highlight('WritelnLog(Profiler.Summary);'); ?>
 
       <li>
-        <p>If you measure some specific operation, you can output only this operation (including sub-operations that happened within) by passing additional argument to the <?php echo cgeRef('TCastleProfiler.Stop', 'Profiler.Stop'); ?>. Like this:
+        <p>If you measure some specific task, you can output only this task (including sub-tasks that happened within) by passing additional argument to the <?php echo cgeRef('TCastleProfiler.Stop', 'Profiler.Stop'); ?>. Like this:
 
         <?php echo pascal_highlight('Profiler.Stop(TimeStart, true);'); ?>
 
