@@ -281,6 +281,15 @@ castle-engine run --target=web
 +
 TODO: It is our plan to allow compiling *any* project from `examples/` to the web. But for now, only projects in `examples/web/` are prepared for this.
 
+[WARNING]
+====
+Beware of the cache!
+
+Browsers may cache the contents of everything (HTML, JS, WASM files, application data...). We counter this somewhat (by randomizing the URL by which we access the WASM file), but still cache affects us, as other files are cached. Just refresh using _Ctrl + Shift + R_ if it seems like you look at an old application version (or even a different application that was run previously from the same server).
+
+TODO: We could counter cache more, by accessing `http://localhost:3000/?random=XXX` , and using random URL params for everything (JS, HTML, application data). Also, we should make it configurable, to enable turning off "fighting with cache" for production reproducible-builds.
+====
+
 == Running WASM code outside of the browser
 
 _WebAssembly_ is not limited to running in a web browser. We support running the compiled WASM binaries also using https://wasmtime.dev/[Wasmtime], though **without rendering**.
