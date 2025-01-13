@@ -713,17 +713,17 @@ end;
       <li>
         <p>For a simple output of everything captured so fat, just use <?php echo cgeRef('TCastleProfiler.Summary', 'Profiler.Summary'); ?> anytime you want. For example write it to the <a href="log">log</a> file when some button is pressed:
 
-        <?php echo pascal_highlight('WritelnLog(Profiler.Summary);');
+        <?php echo pascal_highlight('WritelnLog(Profiler.Summary);'); ?>
 
       <li>
         <p>If you measure some specific operation, you can output only this operation (including sub-operations that happened within) by passing additional argument to the <?php echo cgeRef('TCastleProfiler.Stop', 'Profiler.Stop'); ?>. Like this:
 
-        <?php echo pascal_highlight('Profiler.Stop(TimeStart, true);');
+        <?php echo pascal_highlight('Profiler.Stop(TimeStart, true);'); ?>
 
       <li>
         <p>If you want to measure the time of <a href="views">view</a> starting, just set <?php echo cgeRef('TCastleView.Log'); ?> to <code>true</code> early (e.g. in <code>initialization</code> of <code>GameInitialize</code> unit) like this:
 
-        <?php echo pascal_highlight('TCastleView.Log := true;');
+        <?php echo pascal_highlight('TCastleView.Log := true;'); ?>
     </ul>
 </ol>
 
