@@ -41,7 +41,7 @@ castle_header('Castle Game Engine - Free open-source cross-platform 3D 2D game e
 - Another old version:
   Free open-source game engine for <a href="http://www.freepascal.org/">FreePascal and Lazarus</a>. Excellent support for many 3D and 2D data formats, portable (desktops, Android, iOS...), many advanced graphic effects, comfortable API.
 */ ?>
-<h2 class="main-subtitle">Cross-platform (desktop, mobile, console) 3D and 2D game engine. Powerful visual editor. Support for glTF, X3D, Spine and more. Fast clean code using modern Pascal. Free and open-source.</h2>
+<h2 class="main-subtitle">Cross-platform (desktop, mobile, console, web) 3D and 2D game engine. Powerful visual editor. Support for open standards like glTF, X3D, IFC and more. Fast clean code using modern Pascal. Free and open-source.</h2>
 
 <div class="row">
     <div class="col-sm-4">
