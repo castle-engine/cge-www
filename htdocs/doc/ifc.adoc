@@ -102,7 +102,7 @@ X3D nodes can be mapped back to IFC classes, which is useful e.g. for picking 3D
 We define some utility methods to operate on IFC classes:
 
 - cgeref:TIfcProduct.AddMeshRepresentation[], cgeref:TIfcProduct.AddBoxRepresentation[] (adding meshes to products)
-- cgeref:TIfcProduct.RelativePlacement[] (move products)
+- cgeref:TIfcProduct.Translation[], cgeref:TIfcProduct.SetTransformRelativeTo[] (move products)
 - cgeref:TIfcObjectDefinition.AddIsDecomposedBy[], cgeref:TIfcProject.BestContainer[] (relationship between larger spatial elements)
 - cgeref:TIfcSpatialElement.AddContainedElement[], cgeref:TIfcSpatialElement.GetContainedElements[] (relationship to add elements (products) inside larger spatial elements)
 - cgeref:TIfcElement.AddOpening[] (add openings to elements)
@@ -256,6 +256,7 @@ begin
           Vector3(0, 0, 0),
           Vector3(10, 0.5, 2) // Z is "up", by convention, in IFC
         ));
+      Wall.Translation := Vector3(1, 2, 0);
       IfcFile.Project.BestContainer.AddContainedElement(Wall);
 
       // modify the contents of RootNode, to reflect above new wall.
