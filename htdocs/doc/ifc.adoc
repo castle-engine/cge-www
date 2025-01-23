@@ -91,7 +91,7 @@ We convert a lot of "presentational" IFC entities to X3D nodes and display them.
 - indexed lines: cgeref:TIfcIndexedPolyCurve[] in IFC, cgeref:TIndexedLineSetNode[] in X3D
 - extrusion of a cross-section along a direction: cgeref:TIfcExtrudedAreaSolid[] in IFC, cgeref:TExtrusionNode[] in X3D
 - mesh: cgeref:TIfcPolygonalFaceSet[] in IFC, cgeref:TIndexedFaceSetNode[] in X3D
-- wireframe box: cgeref:TIfcBoundingBox[] in IFC, cgeref:TBoxNode[] in X3D (with cgeref:TShapeNode.Shading[] set to cgeref:shWireframe[])
+- wireframe box: cgeref:TIfcBoundingBox[] in IFC, cgeref:TBoxNode[] in X3D (with cgeref:TAbstractShapeNode.Shading[] set to cgeref:shWireframe[])
 - ellipse: cgeref:TIfcEllipse[] in IFC, cgeref:TCircle2DNode[] in X3D (with cgeref:TCircle2DNode.RadiusY[] customized)
 - others: cgeref:TIfcTrimmedCurve[], cgeref:TIfcMappedItem[]
 --
@@ -109,7 +109,7 @@ We define some utility methods to operate on IFC classes:
 - cgeref:TIfcObjectDefinition.AddIsDecomposedBy[], cgeref:TIfcProject.BestContainer[] (relationship between larger spatial elements)
 - cgeref:TIfcSpatialElement.AddContainedElement[], cgeref:TIfcSpatialElement.GetContainedElements[] (relationship to add elements (products) inside larger spatial elements)
 - cgeref:TIfcElement.AddOpening[] (add openings to elements)
-- cgeref:TIfcElement.AddConnectedTo[] (add connections between elements, e.g. wall to window)
+- cgeref:TIfcElement.AddConnected[] (add connections between elements, e.g. wall to window)
 - cgeref:TIfcProject.SetupUnits[] (setup standard (metric) units for the project)
 - cgeref:TIfcFile.Project[] (the main project of the IFC file)
 - cgeref:TIfcProject.ModelContext[], cgeref:TIfcProject.PlanContext[], cgeref:TIfcProject.SetupModelContext[] (querying and creation of geometric contexts, necessary to designate things to be visible in "3D model view" or "2D plan" view).
