@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit478b5ce6a217e61c41550f8cc0199805
+class ComposerStaticInit38c910d933b63c22d9a8ed399e15f44b
 {
     public static $files = array (
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
@@ -253,6 +253,8 @@ class ComposerStaticInit478b5ce6a217e61c41550f8cc0199805
         'Aws\\BCMPricingCalculator\\Exception\\BCMPricingCalculatorException' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/BCMPricingCalculator/Exception/BCMPricingCalculatorException.php',
         'Aws\\BackupGateway\\BackupGatewayClient' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/BackupGateway/BackupGatewayClient.php',
         'Aws\\BackupGateway\\Exception\\BackupGatewayException' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/BackupGateway/Exception/BackupGatewayException.php',
+        'Aws\\BackupSearch\\BackupSearchClient' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/BackupSearch/BackupSearchClient.php',
+        'Aws\\BackupSearch\\Exception\\BackupSearchException' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/BackupSearch/Exception/BackupSearchException.php',
         'Aws\\Backup\\BackupClient' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/Backup/BackupClient.php',
         'Aws\\Backup\\Exception\\BackupException' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/Backup/Exception/BackupException.php',
         'Aws\\Batch\\BatchClient' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/Batch/BatchClient.php',
@@ -416,6 +418,7 @@ class ComposerStaticInit478b5ce6a217e61c41550f8cc0199805
         'Aws\\Credentials\\AssumeRoleCredentialProvider' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/Credentials/AssumeRoleCredentialProvider.php',
         'Aws\\Credentials\\AssumeRoleWithWebIdentityCredentialProvider' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/Credentials/AssumeRoleWithWebIdentityCredentialProvider.php',
         'Aws\\Credentials\\CredentialProvider' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/Credentials/CredentialProvider.php',
+        'Aws\\Credentials\\CredentialSources' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/Credentials/CredentialSources.php',
         'Aws\\Credentials\\Credentials' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/Credentials/Credentials.php',
         'Aws\\Credentials\\CredentialsInterface' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/Credentials/CredentialsInterface.php',
         'Aws\\Credentials\\CredentialsUtils' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/Credentials/CredentialsUtils.php',
@@ -680,10 +683,6 @@ class ComposerStaticInit478b5ce6a217e61c41550f8cc0199805
         'Aws\\InternetMonitor\\InternetMonitorClient' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/InternetMonitor/InternetMonitorClient.php',
         'Aws\\Invoicing\\Exception\\InvoicingException' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/Invoicing/Exception/InvoicingException.php',
         'Aws\\Invoicing\\InvoicingClient' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/Invoicing/InvoicingClient.php',
-        'Aws\\IoT1ClickDevicesService\\Exception\\IoT1ClickDevicesServiceException' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/IoT1ClickDevicesService/Exception/IoT1ClickDevicesServiceException.php',
-        'Aws\\IoT1ClickDevicesService\\IoT1ClickDevicesServiceClient' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/IoT1ClickDevicesService/IoT1ClickDevicesServiceClient.php',
-        'Aws\\IoT1ClickProjects\\Exception\\IoT1ClickProjectsException' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/IoT1ClickProjects/Exception/IoT1ClickProjectsException.php',
-        'Aws\\IoT1ClickProjects\\IoT1ClickProjectsClient' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/IoT1ClickProjects/IoT1ClickProjectsClient.php',
         'Aws\\IoTAnalytics\\Exception\\IoTAnalyticsException' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/IoTAnalytics/Exception/IoTAnalyticsException.php',
         'Aws\\IoTAnalytics\\IoTAnalyticsClient' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/IoTAnalytics/IoTAnalyticsClient.php',
         'Aws\\IoTDeviceAdvisor\\Exception\\IoTDeviceAdvisorException' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/IoTDeviceAdvisor/Exception/IoTDeviceAdvisorException.php',
@@ -826,6 +825,7 @@ class ComposerStaticInit478b5ce6a217e61c41550f8cc0199805
         'Aws\\MedicalImaging\\MedicalImagingClient' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/MedicalImaging/MedicalImagingClient.php',
         'Aws\\MemoryDB\\Exception\\MemoryDBException' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/MemoryDB/Exception/MemoryDBException.php',
         'Aws\\MemoryDB\\MemoryDBClient' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/MemoryDB/MemoryDBClient.php',
+        'Aws\\MetricsBuilder' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/MetricsBuilder.php',
         'Aws\\Middleware' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/Middleware.php',
         'Aws\\MigrationHubConfig\\Exception\\MigrationHubConfigException' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/MigrationHubConfig/Exception/MigrationHubConfigException.php',
         'Aws\\MigrationHubConfig\\MigrationHubConfigClient' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/MigrationHubConfig/MigrationHubConfigClient.php',
@@ -1193,6 +1193,7 @@ class ComposerStaticInit478b5ce6a217e61c41550f8cc0199805
         'Aws\\Translate\\TranslateClient' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/Translate/TranslateClient.php',
         'Aws\\TrustedAdvisor\\Exception\\TrustedAdvisorException' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/TrustedAdvisor/Exception/TrustedAdvisorException.php',
         'Aws\\TrustedAdvisor\\TrustedAdvisorClient' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/TrustedAdvisor/TrustedAdvisorClient.php',
+        'Aws\\UserAgentMiddleware' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/UserAgentMiddleware.php',
         'Aws\\VPCLattice\\Exception\\VPCLatticeException' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/VPCLattice/Exception/VPCLatticeException.php',
         'Aws\\VPCLattice\\VPCLatticeClient' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/VPCLattice/VPCLatticeClient.php',
         'Aws\\VerifiedPermissions\\Exception\\VerifiedPermissionsException' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/VerifiedPermissions/Exception/VerifiedPermissionsException.php',
@@ -1759,9 +1760,9 @@ class ComposerStaticInit478b5ce6a217e61c41550f8cc0199805
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit478b5ce6a217e61c41550f8cc0199805::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit478b5ce6a217e61c41550f8cc0199805::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit478b5ce6a217e61c41550f8cc0199805::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit38c910d933b63c22d9a8ed399e15f44b::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit38c910d933b63c22d9a8ed399e15f44b::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit38c910d933b63c22d9a8ed399e15f44b::$classMap;
 
         }, null, ClassLoader::class);
     }

@@ -121,17 +121,17 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.334.7",
-            "version_normalized": "3.334.7.0",
+            "version": "3.337.2",
+            "version_normalized": "3.337.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "8e0104e95a1edba209e077e6c4212b8cca04686f"
+                "reference": "f885dd803a257da9d54e72a4750bba73e1196aee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/8e0104e95a1edba209e077e6c4212b8cca04686f",
-                "reference": "8e0104e95a1edba209e077e6c4212b8cca04686f",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/f885dd803a257da9d54e72a4750bba73e1196aee",
+                "reference": "f885dd803a257da9d54e72a4750bba73e1196aee",
                 "shasum": ""
             },
             "require": {
@@ -172,7 +172,7 @@
                 "ext-openssl": "Allows working with CloudFront private distributions and verifying received SNS messages",
                 "ext-sockets": "To use client-side monitoring"
             },
-            "time": "2024-12-16T19:09:36+00:00",
+            "time": "2025-01-17T19:10:04+00:00",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -216,7 +216,7 @@
             "support": {
                 "forum": "https://forums.aws.amazon.com/forum.jspa?forumID=80",
                 "issues": "https://github.com/aws/aws-sdk-php/issues",
-                "source": "https://github.com/aws/aws-sdk-php/tree/3.334.7"
+                "source": "https://github.com/aws/aws-sdk-php/tree/3.337.2"
             },
             "install-path": "../aws/aws-sdk-php"
         },
@@ -1313,12 +1313,12 @@
             "time": "2024-09-25T14:11:13+00:00",
             "type": "library",
             "extra": {
+                "thanks": {
+                    "url": "https://github.com/symfony/contracts",
+                    "name": "symfony/contracts"
+                },
                 "branch-alias": {
                     "dev-main": "2.5-dev"
-                },
-                "thanks": {
-                    "name": "symfony/contracts",
-                    "url": "https://github.com/symfony/contracts"
                 }
             },
             "installation-source": "dist",

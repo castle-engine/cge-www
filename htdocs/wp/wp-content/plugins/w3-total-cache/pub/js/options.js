@@ -488,11 +488,7 @@ function cdn_cf_bucket_location() {
  * @since 2.8.0
  */
 function toggle_dbcache_notice() {
-	if ( jQuery('#dbcache__engine').val() === 'file' && jQuery('#dbcache__enabled').is(':checked') ) {
-		jQuery('.dbcache_disk_notice').show();
-	} else {
-		jQuery('.dbcache_disk_notice').hide();
-	}
+	jQuery('.dbcache_disk_notice').toggle(jQuery('#dbcache__engine').val() === 'file' && jQuery('#dbcache__enabled').is(':checked'));
 }
 
 /**
@@ -501,11 +497,16 @@ function toggle_dbcache_notice() {
  * @since 2.8.0
  */
 function toggle_objectcache_notice() {
-	if ( jQuery('#objectcache__engine').val() === 'file' && jQuery('#objectcache__enabled').is(':checked') ) {
-		jQuery('.objectcache_disk_notice').show();
-	} else {
-		jQuery('.objectcache_disk_notice').hide();
-	}
+	jQuery('.objectcache_disk_notice').toggle(jQuery('#objectcache__engine').val() === 'file' && jQuery('#objectcache__enabled').is(':checked'));
+}
+
+/**
+ * Toggle the disk notice for fragmentcache.
+ *
+ * @since 2.8.0
+ */
+function toggle_fragmentcache_notice() {
+	jQuery('.fragmentcache_disk_notice').toggle(jQuery('#fragmentcache___engine').val() === 'file');
 }
 
 // On document ready.
@@ -523,6 +524,10 @@ jQuery(function() {
 	toggle_objectcache_notice();
 	jQuery('#objectcache__enabled').change(toggle_objectcache_notice);
 	jQuery('#objectcache__engine').change(toggle_objectcache_notice);
+
+	// Fragment cache disk usage warning.
+	toggle_fragmentcache_notice();
+	jQuery('#fragmentcache___engine').change(toggle_fragmentcache_notice);
 
 	// General page.
 	jQuery('.w3tc_read_technical_info').on('click', function() {
@@ -591,45 +596,58 @@ jQuery(function() {
 
 	// Tutorial page forum links via API.
 	jQuery(document).on( 'click', '[data-tab-type="help"]', function() {
-
-		const $helpTab          = jQuery( this ),
-		$inside               = $helpTab.closest( ".postbox-tabs" ).find( ".inside" );
-		$forumTopicsContainer = $inside.find( '.help-forum-topics' );
-		isLoaded              = $forumTopicsContainer.attr( 'data-loaded' ) === "1";
-		tabId                 = $forumTopicsContainer.attr( 'data-tab-id' );
+		const $helpTab        = jQuery(this),
+		$inside               = $helpTab.closest('.postbox-tabs').find('.inside');
+		$forumTopicsContainer = $inside.find('.help-forum-topics');
+		isLoaded              = $forumTopicsContainer.attr('data-loaded') === '1';
+		tabId                 = $forumTopicsContainer.attr('data-tab-id');
 
 		// Check if topics are already loaded
-		if ( isLoaded ) return;
-		// Construct the API URL with the tab ID
-		const apiUrl = `https://boldgrid.com/support/wp-json/w3tc/v1/help_topics?tag=${tabId}`;
+		if (isLoaded) {
+			return;
+		}
 
 		// Fetch topics from the API
 		jQuery.ajax({
-			url: apiUrl,
-			method: 'GET',
-			dataType: 'json',
-			success: function( data ) {
-				// Check for errors or empty results
-				if ( Array.isArray( data ) && data.length === 0 ) {
-					$forumTopicsContainer.html( "<p>No forum topics found.</p>" );
+			url: ajaxurl,
+			method: 'POST',
+			data: {
+				action: 'w3tc_forums_api',
+				_wpnonce: w3tc_nonce[0],
+				tabId: tabId
+			},
+			success: function(data) {
+				// Check for timeout
+				if ( data.errors && data.errors.http_request_failed ) {
+					$forumTopicsContainer.html('HTTP Error:', data.errors.http_request_failed);
+				}
+				// Check for empty results
+				else if (Array.isArray(data) && data.length === 0) {
+					$forumTopicsContainer.html('<p>No forum topics found.</p>');
 				} else {
 					// Create a list of topics
-					const $ul = jQuery( '<ul></ul>' );
-					jQuery.each( data, function( index, topic ) {
-						const $li = jQuery( '<li></li>' );
-						const $link = jQuery( '<a></a>' ).addClass('w3tc-control-after').attr( 'href', topic.link ).text( topic.title ).attr( 'target', '_blank' ); // Open in new tab
-						const $icon = jQuery( '<span></span>' ).addClass( 'dashicons dashicons-external' );
-						$link.append( $icon );
-						$li.append( $link );
-						$ul.append( $li );
+					const $ul       = jQuery('<ul></ul>');
+					const forumData = JSON.parse(data.body);
+					jQuery.each(forumData, function(index, topic) {
+						const $li = jQuery('<li></li>');
+						const $link = jQuery('<a></a>').addClass('w3tc-control-after').attr('href', topic.link).attr('target', '_blank'); // Open in new tab
+
+						// Decode HTML entities in topic.title
+						const decodedTitle = jQuery('<textarea />').html(topic.title).text();
+						$link.text(decodedTitle);
+
+						const $icon = jQuery('<span></span>').addClass('dashicons dashicons-external');
+						$link.append($icon);
+						$li.append($link);
+						$ul.append($li);
 					});
-					$forumTopicsContainer.html( $ul );
+					$forumTopicsContainer.html($ul);
 				}
 				// Mark topics as loaded to prevent duplicate requests
-				$forumTopicsContainer.attr( 'data-loaded', "1" );
+				$forumTopicsContainer.attr('data-loaded', '1');
 			},
 			error: function() {
-				$forumTopicsContainer.html( "<p>Error loading topics. Please try again later.</p>" );
+				$forumTopicsContainer.html('<p>Error loading topics. Please try again later.</p>');
 			}
 		});
 	});
