@@ -66,7 +66,7 @@ Then open it using link:castle-model-viewer[Castle Model Viewer].
 
 ### Saving and loading
 
-We can load and save the IFC entities listed in API docs of cgeref:CastleIfc[] unit. This includes over 100 classes reflecting the IFC specification.
+We can load and save the IFC entities listed in API docs of cgeref:CastleIfc[] unit. This includes over 120 classes reflecting the IFC specification.
 
 All the defined IFC entities can be loaded and saved to IFC files in the JSON encoding, with the `.ifcjson` extension.
 
@@ -91,6 +91,9 @@ We convert a lot of "presentational" IFC entities to X3D nodes and display them.
 - indexed lines: cgeref:TIfcIndexedPolyCurve[] in IFC, cgeref:TIndexedLineSetNode[] in X3D
 - extrusion of a cross-section along a direction: cgeref:TIfcExtrudedAreaSolid[] in IFC, cgeref:TExtrusionNode[] in X3D
 - mesh: cgeref:TIfcPolygonalFaceSet[] in IFC, cgeref:TIndexedFaceSetNode[] in X3D
+- wireframe box: cgeref:TIfcBoundingBox[] in IFC, cgeref:TBoxNode[] in X3D (with cgeref:TShapeNode.Shading[] set to cgeref:shWireframe[])
+- ellipse: cgeref:TIfcEllipse[] in IFC, cgeref:TCircle2DNode[] in X3D (with cgeref:TCircle2DNode.RadiusY[] customized)
+- others: cgeref:TIfcTrimmedCurve[], cgeref:TIfcMappedItem[]
 --
 
 Our conversion from IFC to X3D allows to display IFC models using _Castle Game Engine_ (using cgeref:TCastleScene[]) and allows to literally convert between model formats, from IFC to any format we can save (X3D, STL, and soon glTF).
@@ -139,12 +142,7 @@ cgeimg::block[
 
 NOTE: Above, we added some lights for display in our engine, just to make it look fancy :) These are not part of the IFC standard. There are other graphic features in our engine you could use, like link:shadow_volumes[shadows using shadow volumes], tweaking cgeref:TCastleRenderOptions.WireframeEffect[MyScene.RenderOptions.WireframeEffect].
 
-////
-TODO: This section talks about "only loading" for now, because that's what is implemented.
-But we have below working about saving too, which is planned.
-////
-//## Loading and saving IFC in TCastleScene
-## Loading IFC in TCastleScene
+## Loading and saving IFC in TCastleScene
 
 Basically, you don't need to learn anything new to use IFC with _Castle Game Engine_.
 
@@ -155,16 +153,20 @@ Load a sample IFC file:
 
 Just follow the manual page about link:viewport_and_scenes[viewports and scenes] and subsequent pages about cgeref:TCastleScene[] usage.
 
-////
-You can then modify the cgeref:TCastleScene[] contents (a set of link:x3d[X3D] nodes rooted in cgeref:TCastleSceneCore.RootNode[]) and save it back to IFC using the cgeref:TCastleSceneCore.Save[] method.
+As always in our engine, you can modify the cgeref:TCastleScene[] contents (a set of link:x3d[X3D] nodes rooted in cgeref:TCastleSceneCore.RootNode[]). You can save it back to IFC using the cgeref:TCastleSceneCore.Save[] method.
 
-WARNING: TODO: Saving described above (from X3D -> IFC) is not yet implemented. It is possible we will implement it. For now, it is actually more powerful to use the approach described lower, to work directly with IFC classes and save using cgeref:IfcJsonSave[].
-////
+[WARNING]
+====
+Using this approach to load and then save IFC _does not preserve a lof of information from the IFC file_. Converting IFC to X3D nodes (in cgeref:TCastleScene[]) will only preserve some IFC metadata and transformation hierarchy, but there's a lot of IFC details we don't keep.
+// -- so _"loading is a bit lossy"_.
+Saving IFC from these X3D nodes
+// is even more _"lossy"_ right now, it
+will result in one big cgeref:TIfcBuildingElementProxy[] entity in the IFC file. This expresses the geometry (triangles) you had -- but nothing more, for now.
 
-You can also use the cgeref:LoadNode[]
-//TODO: and cgeref:SaveNode[] methods to load and save
-method to load
-cgeref:TX3DRootNode[] instance, without the need for a full cgeref:TCastleScene[]. This makes sense if you don't need to display the model at all.
+Instead, *to load and then save IFC without any loss, and manipulate all the IFC information, we recommend the approach described lower*, that can work directly with IFC classes and save them using cgeref:IfcJsonSave[].
+====
+
+You can also use the cgeref:LoadNode[] and cgeref:SaveNode[] methods to load and save cgeref:TX3DRootNode[] instance, without the need for a full cgeref:TCastleScene[]. This makes sense if you don't need to display the model at all.
 
 [NOTE]
 ====
