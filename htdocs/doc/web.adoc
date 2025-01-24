@@ -380,9 +380,15 @@ Changing the default platform is useful if you want to always build and run for 
 
 NOTE: The `CastleProjectLocalSettings.json` support is not strictly a feature of the _web target_, it's useful in every case when you want to change the default platform (and we plan to add there more things). By default, we build and run for the current desktop target, with current OS and CPU.
 
-All the possibilities are described by the cgeref:TCastleProjectLocalSettings[].
+All the possibilities are described by the
+//cgeref:TCastleProjectLocalSettings[].
+`TCastleProjectLocalSettings` (TODO: this will link to API docs once we merge to master, for now https://github.com/castle-engine/castle-engine/blob/webassm_platformer_test/src/files/tools/castleinternalprojectlocalsettings.pas[see code]).
 
-Note that you can also open the `CastleProjectLocalSettings.json` as a _design_ in the editor and edit the component in the object inspector. That's because cgeref:TCastleProjectLocalSettings[] is a regular serializable component for our engine. Right now, this doesn't really imply any new features, but it may, and it will be compatible with future link:roadmap#_project_settings_editable_using_gui[CastleProject.json].
+Note that you can also open the `CastleProjectLocalSettings.json` as a _design_ in the editor and edit the component in the object inspector. That's because
+// TODO - link
+//cgeref:TCastleProjectLocalSettings[]
+`TCastleProjectLocalSettings`
+is a regular serializable component for our engine. Right now, this doesn't really imply any new features, but it may in the future, and it will be compatible with future link:roadmap#_project_settings_editable_using_gui[CastleProject.json].
 
 WARNING: The file `CastleProjectLocalSettings.json` should not be committed to the version control, it should be ignored by file like `.gitignore` (if you use GIT).
 
