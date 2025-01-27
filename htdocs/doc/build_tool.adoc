@@ -341,6 +341,12 @@ If they are really unused, avoid packaging these files, to keep the application 
 
 WARNING: Right now, this analysis is using some quick assumptions and heuristics. The data files are just _"grepped"_ (not intelligently analyzed) for the filenames they use. Do not trust this detection 100% -- sometimes files may be detected as used when they are not, or the other way around.
 
+=== devices
+
+List connected devices.
+
+Right now, this is just a simple wrapper for calling `adb devices`, using the `adb` tool from the Android SDK. It lists all Android devices connected through USB, paired over Wi-Fi, or running Android Virtual Devices. Use the _Android Studio_ to manage the Android Virtual Devices and pair real devices over Wi-Fi.
+
 === (Deprecated) create-manifest
 
 Create link:project_manifest[CastleEngineManifest.xml] file if it does not exist yet, guessing the project name based on directory name. You can use this `CastleEngineManifest.xml` as a starting point.
