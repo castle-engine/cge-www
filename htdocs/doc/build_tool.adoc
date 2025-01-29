@@ -134,8 +134,6 @@ You can customize what options we pass to the compiler by:
 . Adding options to the `<custom_options>` in link:project_manifest[CastleEngineManifest.xml]. This is the good place to define options specific to your project (that should be used by all developers working with this project).
 . Using `--compiler-option` command-line option. For example, `--compiler-option=-dMY_DEFINE` or `--compiler-option=-gl --compiler-option=-gh`. This is the good place to pass options specific to your development system or preferences, that should not be shared by all developers working on this project.
 
-Use `--plugin` to compile a web browser plugin.
-
 Use `--output DIR` to place the output files (executable, temporary `castle-engine-output` subdirectory) in a specified directory. When not given, they are placed in the current project directory. This option is also available for other commands, like `package`, `install` and `run`.
 
 Compiling on Windows will also copy the necessary `.dll` files from the engine to be alongside your `.exe` file. This allows to run the executable afterwards, in any way.
@@ -154,7 +152,7 @@ What exactly is produced by this command depends on the target platform and the 
 
 * `--package-format=default` (used also when no `+--package-format=...+` was specified):
  ** For the standalone platforms, we package to a simple `zip` / `tar.gz` archive containing the executable, libraries and data. For Windows, we create `zip`, otherwise `tar.gz`.
- ** For the Android (when `--target=android` or `--os=android --cpu=arm/aarch64`), we create a complete apk with your application, ready to be installed and uploaded to Google Play!
+ ** For the Android (when `--target=android` or `--os=android --cpu=aarch64` or `--os=android --cpu=arm`), we create an `.apk` file with your application, ready to be installed on your device and distributed to testers.
  ** For iOS (when `--target=ios`), we create an Xcode project, that you can run and publish using Xcode.
 * `--package-format=zip`: Pack files into a zip file.
 * `--package-format=tar.gz`: Pack files into a tar.gz file.
@@ -162,7 +160,7 @@ What exactly is produced by this command depends on the target platform and the 
 * `--package-format=directory`: Put files into a directory. This is useful if you plan to further process this directory, e.g. pack it with your own scripts.
 * Android formats:
  ** `--package-format=android-apk`: Create an APK file. This is right now the equivalent to `--package-format=default` and it is just the default behavior when target/OS is Android. It's the standard way to build applications for Android. It also allows you to manually install the app on your Android device.
- ** `--package-format=android-app-bundle`: Create an https://developer.android.com/platform/technology/app-bundle[Android App Bundle (AAB)]. This is a new format recommended for submitting a release to Google Play Store. Android App Bundle may contain multiple precompiled versions of the app and assets, and Google Play Store internally generates an installable APK for every specific user depending on user device configuration (such as Android version or screen resolution). AAB format is strictly required to upload a project larger than 100Mb to Play Store.
+ ** `--package-format=android-app-bundle`: Create an https://developer.android.com/platform/technology/app-bundle[Android App Bundle (AAB)]. This is a new format recommended for submitting a release to _Google Play Store_. _Android App Bundle_ internally may contain multiple precompiled versions of the app and assets, and Google Play Store internally generates an installable APK for every specific user depending on user device configuration (such as Android version or screen resolution). AAB format is required to upload a project to the _Google Play Store_ now.
 * iOS formats:
  ** `--package-format=ios-xcode-project`: Create the Xcode project. This is the default package method for iOS. You can open the resulting project in Xcode and build/deploy the application for iOS device or AppStore.
  ** `--package-format=ios-archive-ad-hoc`: Archive and export using the _ad-hoc_ method, which results in an IPA file of the application. To install on designated devices, upload to https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/ios/services/test_fairy/README.adoc[TestFairy] etc.
@@ -195,16 +193,37 @@ Another (independent) way to make packaging faster is to use `--update-only-code
 
 === install
 
-Install the application created by previous "package" call.
+Install the application created by the previous `package` command.
 
-* This is useful when OS is "android", it installs and runs the apk package created by previous "package" call for Android. Useful for quick testing of your app on a device connected through USB. Note: it's best to first test do you see your device using SDK tools, for example execute `adb devices` and see is your device listed.
-* Use --plugin to install a web browser plugin. We install the compiled plugin such that it should be visible by all web browsers supporting NPAPI. (On Windows, this means installing proper registry entries. On Unix, it means copying the library to special directory.)
+Right now this is useful only on Android. So use the `install` command together with `--target=android` or `--os=android --cpu=aarch64` or `--os=android --cpu=arm`, like:
 
-Pass also additional options reflecting the OS/architecture, mode and package name format. In general, pass to `install` _exactly_ the same values as you used for `package`, so that we know which package to install:
+```
+castle-engine --target=android install
+```
 
-* Use `--os`, `--cpu` or `--target` to specify target operating system/processor (by default, we install for the current standalone platform).
+This installs the `.apk` file, which should have been made by executing `package` before this. Useful for testing on an Android device connected through USB, or paired over Wi-Fi, or on emulated device. You can use https://developer.android.com/studio[Android Studio] to manage _Android Virtual Devices_ and pair real devices over Wi-Fi.
+
+NOTE: It's recommended to first test is your device detected. Use `castle-engine devices` and see if your device is listed.
+
+You can pass also additional options reflecting the OS/CPU, mode and package name format. In general, pass to `install` _exactly_ the same values as you used for `package`, so that we know which package to install:
+
+* Use `--os`, `--cpu` or `--target` to specify target operating system/processor (by default, we install for the current standalone platform, which will likely fail -- as this supports only Android).
 * Use `--mode=xxx` to specify debug or release package.
 * Use `--package-format`, `--package-name-no-version` to determine the package name.
+
+=== uninstall
+
+Uninstall the application installed by the previous `install` call.
+
+Just like `install`, this is useful only on Android.
+
+NOTE: You usually do not need to use this, as `install` automatically overwrites the previous installation, if only it was installed with the same key.
+
+=== devices
+
+List connected devices.
+
+Right now, this is just a simple wrapper for calling `adb devices`, using the `adb` tool from the Android SDK. It lists all Android devices connected through USB, paired over Wi-Fi, or running Android Virtual Devices. Use the _Android Studio_ to manage the Android Virtual Devices and pair real devices over Wi-Fi.
 
 === run
 
@@ -340,12 +359,6 @@ If they are really unused, avoid packaging these files, to keep the application 
 - Or just delete them. Because you use a _version control system_ and you are not afraid of removing things, right?
 
 WARNING: Right now, this analysis is using some quick assumptions and heuristics. The data files are just _"grepped"_ (not intelligently analyzed) for the filenames they use. Do not trust this detection 100% -- sometimes files may be detected as used when they are not, or the other way around.
-
-=== devices
-
-List connected devices.
-
-Right now, this is just a simple wrapper for calling `adb devices`, using the `adb` tool from the Android SDK. It lists all Android devices connected through USB, paired over Wi-Fi, or running Android Virtual Devices. Use the _Android Studio_ to manage the Android Virtual Devices and pair real devices over Wi-Fi.
 
 === (Deprecated) create-manifest
 
