@@ -39,7 +39,26 @@ $toc = new TableOfContents(
     -->
   */ ?>
 
-  <li>Spread the word! Mention the engine in your company, in your online community, talk about our engine on blogs, social platforms.
+  <li>
+    <p>Spread the word! Mention the engine in your company, in your online community, talk about our engine on blogs, social platforms.
+
+  <li>
+    <p>Give us good rating (if we deserve it &mdash; if we don't, <a href="talk.php">tell us why</a>) on:
+
+    <ul>
+      <li>
+        <p><a href="https://play.google.com/store/apps/details?id=io.castleengine.castle.model.viewer.mobile">Castle Model Viewer on Google Play</a>,
+      <li>
+        <p><a href="https://castle-engine.itch.io/castle-game-engine">Castle Game Engine on itch.io</a>,
+      <li>
+        <p><a href="https://github.com/castle-engine/castle-engine/">"Star" Castle Game Engine on GitHub</a>.
+      <!--
+      <li>
+        <p><a href="https://play.google.com/store/apps/dev?id=8315026166336791468">our other applications on Google Play</a>,
+      <li>
+        <p><a href="https://castle-engine.itch.io/">our other applications on itch.io</a>.
+      -->
+    </ul>
 </ul>
 
 <?php echo $toc->html_section(); ?>
