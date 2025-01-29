@@ -8,11 +8,9 @@ cgeimg::float[
 
 == Plans and Timeline
 
-- We plan to release big version _7.0_ (stable) in 2024.
+- We plan to release big version _7.0_ (stable) in 2025. We moved the deadline so many times, we don't want to promise an exact month now :)
 
 - See link:roadmap[our roadmap] for all the long-term goals (before and after 7.0). It is one the most frequently updated page on our website, reflecting the prioritization of our work.
-
-- The most important feature *after* 7.0 release is https://castle-engine.io/wp/2023/04/08/web-target-progress-and-plans/[the web target]. This will be our focus after 7.0 release.
 
 == Past Release Notes
 
