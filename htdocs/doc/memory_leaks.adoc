@@ -128,4 +128,4 @@ If you'd like to show leaks only when running inside the debugger in Delphi IDE,
 ReportMemoryLeaksOnShutdown := DebugHook <> 0;
 ----
 
-NOTE: It is only reports leaks on the Windows platform. But it compiles everywhere, there's no need to use `{$ifdef MSWINDOWS}` around it.
+NOTE: It only reports leaks on the Windows platform. But it compiles everywhere, there's no need to use `{$ifdef MSWINDOWS}` around it.
