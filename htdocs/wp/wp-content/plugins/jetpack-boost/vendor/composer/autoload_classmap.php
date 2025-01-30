@@ -57,6 +57,7 @@ return array(
     'Automattic\\Jetpack\\Connection\\Server_Sandbox' => $baseDir . '/jetpack_vendor/automattic/jetpack-connection/src/class-server-sandbox.php',
     'Automattic\\Jetpack\\Connection\\Tokens' => $baseDir . '/jetpack_vendor/automattic/jetpack-connection/src/class-tokens.php',
     'Automattic\\Jetpack\\Connection\\Tokens_Locks' => $baseDir . '/jetpack_vendor/automattic/jetpack-connection/src/class-tokens-locks.php',
+    'Automattic\\Jetpack\\Connection\\Traits\\WPCOM_REST_API_Proxy_Request' => $baseDir . '/jetpack_vendor/automattic/jetpack-connection/src/traits/trait-wpcom-rest-api-proxy-request.php',
     'Automattic\\Jetpack\\Connection\\Urls' => $baseDir . '/jetpack_vendor/automattic/jetpack-connection/src/class-urls.php',
     'Automattic\\Jetpack\\Connection\\Utils' => $baseDir . '/jetpack_vendor/automattic/jetpack-connection/src/class-utils.php',
     'Automattic\\Jetpack\\Connection\\Webhooks' => $baseDir . '/jetpack_vendor/automattic/jetpack-connection/src/class-webhooks.php',
@@ -379,8 +380,4 @@ return array(
     'MatthiasMullie\\PathConverter\\ConverterInterface' => $vendorDir . '/matthiasmullie/path-converter/src/ConverterInterface.php',
     'MatthiasMullie\\PathConverter\\NoConverter' => $vendorDir . '/matthiasmullie/path-converter/src/NoConverter.php',
     'Performance_History_Entry' => $baseDir . '/app/data-sync/Performance_History_Entry.php',
-    'tubalmartin\\CssMin\\Colors' => $vendorDir . '/tubalmartin/cssmin/src/Colors.php',
-    'tubalmartin\\CssMin\\Command' => $vendorDir . '/tubalmartin/cssmin/src/Command.php',
-    'tubalmartin\\CssMin\\Minifier' => $vendorDir . '/tubalmartin/cssmin/src/Minifier.php',
-    'tubalmartin\\CssMin\\Utils' => $vendorDir . '/tubalmartin/cssmin/src/Utils.php',
 );
