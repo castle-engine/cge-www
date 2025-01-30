@@ -24,15 +24,15 @@ Demos:
 
 1. link:web-demos/simplest_viewport[3D viewport, with animated light, dropping boxes with physics].
 +
-Source code in https://github.com/castle-engine/castle-engine/tree/webassm_platformer_test/examples/web/simplest_viewport[examples/web/simplest_viewport (on webassm_platformer_test branch)].
+Source code in https://github.com/castle-engine/castle-engine/tree/master/examples/web/simplest_viewport[examples/web/simplest_viewport].
 
 2. link:web-demos/simplest_invaders[2D "Invaders" game].
 +
-Source code in https://github.com/castle-engine/castle-engine/tree/webassm_platformer_test/examples/web/simplest_invaders[examples/web/simplest_invaders (on webassm_platformer_test branch)].
+Source code in https://github.com/castle-engine/castle-engine/tree/master/examples/web/simplest_invaders[examples/web/simplest_invaders].
 
 3. link:web-demos/simplest[The first, simplest example that runs on the web]!
 +
-Source code in https://github.com/castle-engine/castle-engine/tree/webassm_platformer_test/examples/web/simplest[examples/web/simplest (on webassm_platformer_test branch)].
+Source code in https://github.com/castle-engine/castle-engine/tree/master/examples/web/simplest[examples/web/simplest].
 
 [WARNING]
 ====
@@ -114,7 +114,7 @@ This HTML file can be customized / replaced / rejected as you wish. It only need
 +
 For nice look, our generated HTML also uses https://getbootstrap.com/[Bootstrap], but again: this can be customized / removed. We don't depend on any special CSS or JS libraries.
 +
-Some alternative HTML templates may be available in the future, as well as the ability to provide your own template. For now, just https://github.com/castle-engine/castle-engine/blob/webassm_platformer_test/tools/build-tool/data/web/dist/index.html[(before building) customize the engine's `tools/build-tool/data/web/dist/index.html`] file or (after building) customize the generated `castle-engine-output/web/dist/index.html` (e.g. by `sed`).
+Some alternative HTML templates may be available in the future, as well as the ability to provide your own template. For now, just https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/web/dist/index.html[(before building) customize the engine's `tools/build-tool/data/web/dist/index.html`] file or (after building) customize the generated `castle-engine-output/web/dist/index.html` (e.g. replace it with whatever contents you prefer, or edit the lines you want, manually or automatically, e.g. using `sed`).
 
 - We use WebGL API from _WebAssembly_. All our rendering code has been adjusted to WebGL!
 +
@@ -122,19 +122,19 @@ First step to do this was the https://wiki.freepascal.org/WebAssembly/DOM[JOB] u
 +
 NOTE: The WebGL API is available in the browser to https://getpas2js.freepascal.org/[Pas2js] (that is, any _JavaScript_ code in the browser). If not for https://wiki.freepascal.org/WebAssembly/DOM[JOB], we would expose this API for the WebAssembly, following the https://www.freepascal.org/~michael/pas2js-demos/wasienv/canvas/[canvas example] described in the 2nd part of https://www.freepascal.org/~michael/articles/fpcwasm1/fpcwasm1.pdf[this article]. But, well, using https://wiki.freepascal.org/WebAssembly/DOM[JOB] makes things even easier.
 +
-We generate a unit https://github.com/castle-engine/castle-engine/blob/webassm_platformer_test/src/base_rendering/web/castleinternaljobweb.pas[CastleInternalJobWeb] using this script and WEBIDLs: https://github.com/castle-engine/castle-engine/tree/webassm_platformer_test/src/base_rendering/web/webidl .
+We generate a unit https://github.com/castle-engine/castle-engine/blob/master/src/base_rendering/web/castleinternaljobweb.pas[CastleInternalJobWeb] using this script and WEBIDLs: https://github.com/castle-engine/castle-engine/tree/master/src/base_rendering/web/webidl .
 +
-NOTE: FPC ships an example https://gitlab.com/freepascal.org/fpc/source/-/blob/main/packages/wasm-job/examples/job_web.pas?ref_type=heads[job_web.pas] that already contains everything we need, but it's a huge unit. It has ~184 thousands of lines and compiling it is slow (this is esp. problematic as current FPC 3.3.1 recompiles units more often than it should -- it seems that every change even to implementation causes rebuild of everything derived, as if we changed interface). That's why we generate our own unit, https://github.com/castle-engine/castle-engine/blob/webassm_platformer_test/src/base_rendering/web/castleinternaljobweb.pas[CastleInternalJobWeb] (merely ~19 thousands of lines) that contains only what we need.
+NOTE: FPC ships an example https://gitlab.com/freepascal.org/fpc/source/-/blob/main/packages/wasm-job/examples/job_web.pas?ref_type=heads[job_web.pas] that already contains everything we need, but it's a huge unit. It has ~184 thousands of lines and compiling it is slow (this is esp. problematic as current FPC 3.3.1 recompiles units more often than it should -- it seems that every change even to implementation causes rebuild of everything derived, as if we changed interface). That's why we generate our own unit, https://github.com/castle-engine/castle-engine/blob/master/src/base_rendering/web/castleinternaljobweb.pas[CastleInternalJobWeb] (merely ~19 thousands of lines) that contains only what we need.
 +
-Second step: We then generate include file https://github.com/castle-engine/castle-engine/blob/webassm_platformer_test/src/base_rendering/web/castleinternalwebgl_flat_api.inc[castleinternalwebgl_flat_api.inc] that "flattens" the API exposed in https://github.com/castle-engine/castle-engine/blob/webassm_platformer_test/src/base_rendering/web/castleinternaljobweb.pas[CastleInternalJobWeb], making it more similar to the OpenGL ES API in the https://github.com/castle-engine/castle-engine/blob/webassm_platformer_test/src/base_rendering/castlegles.pas[CastleGLES] unit. This generation also consults WEBIDL, to process all WebGL methods we need. The tool that does this is https://github.com/castle-engine/castle-engine/tree/webassm_platformer_test/tools/internal/generate_webgl_flat_api/generate_webgl_flat_api.dpr[tools/internal/generate_webgl_flat_api].
+Second step: We then generate include file https://github.com/castle-engine/castle-engine/blob/master/src/base_rendering/web/castleinternalwebgl_flat_api.inc[castleinternalwebgl_flat_api.inc] that "flattens" the API exposed in https://github.com/castle-engine/castle-engine/blob/master/src/base_rendering/web/castleinternaljobweb.pas[CastleInternalJobWeb], making it more similar to the OpenGL ES API in the https://github.com/castle-engine/castle-engine/blob/master/src/base_rendering/castlegles.pas[CastleGLES] unit. This generation also consults WEBIDL, to process all WebGL methods we need. The tool that does this is https://github.com/castle-engine/castle-engine/tree/master/tools/internal/generate_webgl_flat_api/generate_webgl_flat_api.dpr[tools/internal/generate_webgl_flat_api].
 +
 Third step: We then use
-https://github.com/castle-engine/castle-engine/blob/webassm_platformer_test/src/base_rendering/web/castleinternalwebgl.pas[CastleInternalWebGL]
+https://github.com/castle-engine/castle-engine/blob/master/src/base_rendering/web/castleinternalwebgl.pas[CastleInternalWebGL]
 unit as (to a large extent) a drop-in replacement for the
-https://github.com/castle-engine/castle-engine/blob/webassm_platformer_test/src/base_rendering/castlegles.pas[CastleGLES]
+https://github.com/castle-engine/castle-engine/blob/master/src/base_rendering/castlegles.pas[CastleGLES]
 unit.
 +
-Lastly, we manually adjusted rendering code to account for final, unavoidable differences between OpenGL ES (https://github.com/castle-engine/castle-engine/blob/webassm_platformer_test/src/base_rendering/castlegles.pas[CastleGLES]) and WebGL (https://github.com/castle-engine/castle-engine/blob/webassm_platformer_test/src/base_rendering/web/castleinternalwebgl.pas[CastleInternalWebGL]). Mostly straightforward work, differences stem mostly from the fact that OpenGL ES is a C API (so: no such thing as `Variant`; and occasional pointer usage to pass arrays or "raw" buffers), while WebGL is a JavaScript API (so: everything is an array, even "raw" buffers; some reasonable usage of `Variant` types, like `getParameter` results). Just a small number of `{$ifdef CASTLE_WEBGL}` clauses in strategic places got the job done.
+Lastly, we manually adjusted rendering code to account for final, unavoidable differences between OpenGL ES (https://github.com/castle-engine/castle-engine/blob/master/src/base_rendering/castlegles.pas[CastleGLES]) and WebGL (https://github.com/castle-engine/castle-engine/blob/master/src/base_rendering/web/castleinternalwebgl.pas[CastleInternalWebGL]). Mostly straightforward work, differences stem mostly from the fact that OpenGL ES is a C API (so: no such thing as `Variant`; and occasional pointer usage to pass arrays or "raw" buffers), while WebGL is a JavaScript API (so: everything is an array, even "raw" buffers; some reasonable usage of `Variant` types, like `getParameter` results). Just a small number of `{$ifdef CASTLE_WEBGL}` clauses in strategic places got the job done.
 +
 In the end, we render using https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API[WebGL 1.0], with optional WebGL 2.0 features. This is very similar to our current rendering approach on mobile, where we use https://castle-engine.io/wp/2023/03/12/mobile-opengles-rendering-upgrades-occlusion-query-anisotropic-filtering-3d-textures-shadows-plus-new-occlusion-query-demo/[OpenGL ES 2.0, with optional OpenGL ES 3.0 features].
 
@@ -164,7 +164,7 @@ NOTE: About https://castle-engine.io/x3d_implementation_sound.php#section_x3d4[W
 
 - Possibly throw in additional compression of data and/or wasm executable?
 +
-So far, file-size tests are promising. Compilation of https://github.com/castle-engine/castle-engine/tree/webassm_platformer_test/examples/platformer[examples/platformer], which practically uses 100% of CGE units, yields a binary `platformer.wasm` that has 16 MB. Gzipped it has 3.4 MB.
+So far, file-size tests are promising. Compilation of https://github.com/castle-engine/castle-engine/tree/master/examples/platformer[examples/platformer], which practically uses 100% of CGE units, yields a binary `platformer.wasm` that has 16 MB. Gzipped it has 3.4 MB.
 +
 The gzipped size is really what matters &mdash; both web browsers and servers support gzip-(de)compression on the fly, you can also just put ready-gzipped version on the server and tell the browser to just decompress. So in all practical cases, users will download 3.4 MB, not 16 MB.
 +
@@ -261,9 +261,9 @@ If everything went well, you should get `hello_wasm.wasm` in the same directory.
 
 == How to test what we have now
 
-Branch https://github.com/castle-engine/castle-engine/tree/webassm_platformer_test[webassm_platformer_test] in CGE contains the work on WebAssembly. To test it:
+Right now, https://github.com/castle-engine/castle-engine/tree/master[master] branch of CGE contains the work on WebAssembly. To test it:
 
-1. Get the https://github.com/castle-engine/castle-engine/tree/webassm_platformer_test[webassm_platformer_test] branch of CGE.
+1. Get the https://github.com/castle-engine/castle-engine/tree/master[master] branch of CGE.
 
 2. Follow link:compiling_from_source.php[compiling from source] docs to compile at least new CGE build tool from this CGE branch.
 
@@ -279,7 +279,7 @@ castle-engine compile --target=web --mode=debug
 castle-engine run --target=web
 ----
 +
-TODO: It is our plan to allow compiling *any* project from `examples/` to the web. But for now, only projects in `examples/web/` are prepared for this.
+TODO: Naturally we plan to allow compiling *any* project from `examples/` to the web. But for now, only projects in `examples/web/` are prepared for this.
 
 [WARNING]
 ====
@@ -353,7 +353,7 @@ The default area available for rendering is determined by the `<canvas>` size in
 </web>
 ```
 
-See https://github.com/castle-engine/castle-engine/blob/webassm_platformer_test/examples/web/simplest_invaders/CastleEngineManifest.xml[examples/web/simplest_invaders/CastleEngineManifest.xml (on webassm_platformer_test branch)] for a full example.
+See https://github.com/castle-engine/castle-engine/blob/master/examples/web/simplest_invaders/CastleEngineManifest.xml[examples/web/simplest_invaders/CastleEngineManifest.xml] for a full example.
 
 NOTE: You can also just edit / replace the generated `index.html` file completely. As we mentioned above, we don't assume much about this HTML, it only must have `<canvas id="castle-canvas">`.
 
@@ -380,15 +380,10 @@ Changing the default platform is useful if you want to always build and run for 
 
 NOTE: The `CastleProjectLocalSettings.json` support is not strictly a feature of the _web target_, it's useful in every case when you want to change the default platform (and we plan to add there more things). By default, we build and run for the current desktop target, with current OS and CPU.
 
-All the possibilities are described by the
-//cgeref:TCastleProjectLocalSettings[].
-`TCastleProjectLocalSettings` (TODO: this will link to API docs once we merge to master, for now https://github.com/castle-engine/castle-engine/blob/webassm_platformer_test/src/files/tools/castleinternalprojectlocalsettings.pas[see code]).
+All the possibilities are described by the cgeref:TCastleProjectLocalSettings[].
+// https://github.com/castle-engine/castle-engine/blob/master/src/files/tools/castleinternalprojectlocalsettings.pas[see code]).
 
-Note that you can also open the `CastleProjectLocalSettings.json` as a _design_ in the editor and edit the component in the object inspector. That's because
-// TODO - link
-//cgeref:TCastleProjectLocalSettings[]
-`TCastleProjectLocalSettings`
-is a regular serializable component for our engine. Right now, this doesn't really imply any new features, but it may in the future, and it will be compatible with future link:roadmap#_project_settings_editable_using_gui[CastleProject.json].
+Note that you can also open the `CastleProjectLocalSettings.json` as a _design_ in the editor and edit the component in the object inspector. That's because cgeref:TCastleProjectLocalSettings[] is a regular serializable component for our engine. Right now, this doesn't really imply any new features, but it may in the future, and it will be compatible with future link:roadmap#_project_settings_editable_using_gui[CastleProject.json].
 
 WARNING: The file `CastleProjectLocalSettings.json` should not be committed to the version control, it should be ignored by file like `.gitignore` (if you use GIT).
 
