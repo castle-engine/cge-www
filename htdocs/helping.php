@@ -51,7 +51,9 @@ $toc = new TableOfContents(
       <li>
         <p><a href="https://castle-engine.itch.io/castle-game-engine">Castle Game Engine on itch.io</a>,
       <li>
-        <p><a href="https://github.com/castle-engine/castle-engine/">"Star" Castle Game Engine on GitHub</a>.
+        <p><a href="https://marketplace.visualstudio.com/items?itemName=castle-engine-team.castle-engine">Castle Game Engine Visual Studio Code extension</a>,
+      <li>
+        <p>and <a href="https://github.com/castle-engine/castle-engine/">"star" Castle Game Engine on GitHub</a>.
       <!--
       <li>
         <p><a href="https://play.google.com/store/apps/dev?id=8315026166336791468">our other applications on Google Play</a>,
