@@ -44,10 +44,12 @@ See also https://github.com/castle-engine/castle-engine/graphs/contributors[cont
 Everyone who subscribes to support CGE with at least 10 USD / month (anywhere -- on https://www.patreon.com/castleengine[Patreon], https://github.com/sponsors/castle-engine[GitHub Sponsors] or https://opencollective.com/castle-engine[Open Collective]).
 
 [role="compact"]
+* Aaron Bergstrom
 * Antitu
 * Adrian Marius Popa
 * Alar Orion
 * Ancient Phoenix
+* Azzub
 * Bartosz Jarzyna
 * Basti Schindla
 * Carlos Rafael Fernandes Picanço
