@@ -172,7 +172,7 @@ We love to see how you use CGE.</i>
   <?php gallery_link_noimage("Castle Game Engine on Google Play",
     'Various Android applications and games released by the Castle Game Engine developers.
     <a href="https://github.com/castle-engine/">Sources in Castle Game Engine organization on GitHub</a>.',
-    'https://play.google.com/store/apps/dev?id=8315026166336791468');
+    'https://play.google.com/store/apps/dev?id=7891434499544220905');
   ?>
 
   <?php gallery_link_noimage("Decoherence game collection on itch.io",

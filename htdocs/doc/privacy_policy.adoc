@@ -3,7 +3,7 @@ include::common.adoc[]
 
 == Mobile applications
 
-Mobile applications released through https://play.google.com/store/apps/dev?id=8315026166336791468[our Google Play account] do not feature any analytics or ads. They do not collect any data from you.
+Mobile applications released through https://play.google.com/store/apps/dev?id=7891434499544220905[our Google Play account] do not feature any analytics or ads. They do not collect any data from you.
 
 NOTE: We reserve the right to make an exception to the above in the future, mostly to demonstrate that it is possible. Because you _can_ use various analytics and ad solutions in *your* games made using _Castle Game Engine_, see link:android_services[Android services] and link:ios_services[iOS services]. This is just a note for the potential future -- none of our current released applications use any ads or analytics.
 

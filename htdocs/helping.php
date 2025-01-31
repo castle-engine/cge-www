@@ -56,7 +56,7 @@ $toc = new TableOfContents(
         <p>and <a href="https://github.com/castle-engine/castle-engine/">"star" Castle Game Engine on GitHub</a>.
       <!--
       <li>
-        <p><a href="https://play.google.com/store/apps/dev?id=8315026166336791468">our other applications on Google Play</a>,
+        <p><a href="https://play.google.com/store/apps/dev?id=7891434499544220905">our other applications on Google Play</a>,
       <li>
         <p><a href="https://castle-engine.itch.io/">our other applications on itch.io</a>.
       -->
