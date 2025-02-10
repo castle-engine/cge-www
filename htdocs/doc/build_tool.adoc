@@ -152,7 +152,9 @@ What exactly is produced by this command depends on the target platform and the 
 
 * `--package-format=default` (used also when no `+--package-format=...+` was specified):
  ** For the standalone platforms, we package to a simple `zip` / `tar.gz` archive containing the executable, libraries and data. For Windows, we create `zip`, otherwise `tar.gz`.
- ** For the Android (when `--target=android` or `--os=android --cpu=aarch64` or `--os=android --cpu=arm`), we create an `.apk` file with your application, ready to be installed on your device and distributed to testers.
+ ** For the Android, we create an `.apk` file with your application, ready to be installed on your device and distributed to testers.
++
+This happens when you used `--target=android` or `--os=android --cpu=<any supported Android processor>` (processors supported by Android now are `arm`, `aarch64`, `x86_64`).
  ** For iOS (when `--target=ios`), we create an Xcode project, that you can run and publish using Xcode.
 * `--package-format=zip`: Pack files into a zip file.
 * `--package-format=tar.gz`: Pack files into a tar.gz file.
@@ -195,7 +197,7 @@ Another (independent) way to make packaging faster is to use `--update-only-code
 
 Install the application created by the previous `package` command.
 
-Right now this is useful only on Android. So use the `install` command together with `--target=android` or `--os=android --cpu=aarch64` or `--os=android --cpu=arm`, like:
+Right now this is useful only on Android. So typically you use the `install` command together with `--target=android`, like this:
 
 ```
 castle-engine --target=android install
@@ -207,9 +209,11 @@ NOTE: It's recommended to first test is your device detected. Use `castle-engine
 
 You can pass also additional options reflecting the OS/CPU, mode and package name format. In general, pass to `install` _exactly_ the same values as you used for `package`, so that we know which package to install:
 
-* Use `--os`, `--cpu` or `--target` to specify target operating system/processor (by default, we install for the current standalone platform, which will likely fail -- as this supports only Android).
+* Use `--os`, `--cpu` or `--target` to specify target operating system/processor (by default, we install for the current standalone platform, which will likely fail -- as `install` supports only Android).
 * Use `--mode=xxx` to specify debug or release package.
 * Use `--package-format`, `--package-name-no-version` to determine the package name.
+
+NOTE: Instead of `--target=android`, you can also use `--os=android --cpu=<any supported Android processor>` to target only a specific Android CPU. Processors supported by Android now are `arm`, `aarch64`, `x86_64`.
 
 === uninstall
 
