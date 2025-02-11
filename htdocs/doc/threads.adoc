@@ -29,7 +29,7 @@ Example places that use threads from Pascal:
 
 * Kraft, our link:physics[] engine, may also use threads
 
-Other (non-Pascal) libraries underneath naturally also may be use threads for rendering, audio playback and more.
+* Other linked libraries (not necessarily in Pascal), like OpenGL and link:openal[OpenAL], may also use threads for rendering, audio playback and more.
 
 ## Plans: asynchronous loading
 
@@ -44,7 +44,7 @@ Future:
 +
 Like Vulkan.
 +
-Or OpenGL, just with another context in another thread.
+Or OpenGL, just with another context in another thread. Our contexts share objects (like textures, VBO) and one can initialize things in a different context (and thus different thread).
 
 * We prefer exposing asynchronous calls instead of just "allowing to use CGE from multiple threads". So you will still be required to call all CGE from main thread, however we will expose methods like `TCastleScene.PrepareResourcesAsynchronously` that call some callback in main thread when the loading finished. This is a more limited approach, but also easier to implement (greater flexibility for the implementation, because we know that only specific things are done in the background -- not that potentially everything is in different thread). It is also in practice better for some users -- using threads is _hard_ to do 100% correctly (without making any mistakes in data access, that result in very-rare-but-possible-and-painful-to-debug crashes).
 +
@@ -72,6 +72,6 @@ Vulkan also allows to use multi-threading. Although the burden of protecting mul
 * Right now, some engine code uses global caches (for texture/audio data, for X3D prototypes, and much more). If we decide to make some of them thread-safe, they will have to be reworked (so, more complicated code and possibly a little slower) or be separate per thread (so, less caching \-> less gains).
 * The CGE will probably never be thread-safe in the sense that "you can access _anything_ from multiple threads simultaneously". This would require a lot of safeguards and code complications, more than we can realistically maintain. Again, software larger than CGE (like LCL or Unity) also didn't dare to do this.
 +
-Maybe we can make (but even this is far future) some clear separation, e.g. being able to use classes like cgeref:TCastleScene[], `TDrawableImage` from separate threads, but only if you use different instances of them.
+Maybe we can make (but even this is far future) some clear separation, e.g. being able to use classes like cgeref:TCastleScene[], cgeref:TDrawableImage[] from separate threads, but only if you use different instances of them.
 +
 Although I'm leaning more toward only having specific operations asynchronous, like `PrepareResourcesAsynchronously`, thus "hiding" threads in simple (but more limited, but also easier to implement) API. Thus, it is possible that access to CGE will remain limited to "only a single thread" forever, but we will expose APIs to do asynchronous loading of specific stuff like images or scenes.
