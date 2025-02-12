@@ -90,7 +90,8 @@ We convert a lot of "presentational" IFC entities to X3D nodes and display them.
 - lines: cgeref:TIfcPolyline[] in IFC, cgeref:TLineSetNode[] in X3D
 - indexed lines: cgeref:TIfcIndexedPolyCurve[] in IFC, cgeref:TIndexedLineSetNode[] in X3D
 - extrusion of a cross-section along a direction: cgeref:TIfcExtrudedAreaSolid[] in IFC, cgeref:TExtrusionNode[] in X3D
-- mesh: cgeref:TIfcPolygonalFaceSet[] in IFC, cgeref:TIndexedFaceSetNode[] in X3D
+- mesh (arbitrary polygons): cgeref:TIfcPolygonalFaceSet[] in IFC, cgeref:TIndexedFaceSetNode[] in X3D
+- mesh (triangles): cgeref:TIfcTriangulatedFaceSet[] in IFC, cgeref:TIndexedTriangleSetNode[] in X3D
 - wireframe box: cgeref:TIfcBoundingBox[] in IFC, cgeref:TBoxNode[] in X3D (with cgeref:TAbstractShapeNode.Shading[] set to cgeref:shWireframe[])
 - ellipse: cgeref:TIfcEllipse[] in IFC, cgeref:TCircle2DNode[] in X3D (with cgeref:TCircle2DNode.RadiusY[] customized)
 - others: cgeref:TIfcTrimmedCurve[], cgeref:TIfcMappedItem[]
