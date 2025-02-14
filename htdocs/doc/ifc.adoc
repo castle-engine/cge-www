@@ -66,7 +66,7 @@ Then open it using link:castle-model-viewer[Castle Model Viewer].
 
 ### Saving and loading
 
-We can load and save the IFC entities listed in API docs of cgeref:CastleIfc[] unit. This includes over 120 classes reflecting the IFC specification.
+We can load and save the IFC entities listed in API docs of cgeref:CastleIfc[] unit. This includes over 150 classes reflecting the IFC specification.
 
 All the defined IFC entities can be loaded and saved to IFC files in the JSON encoding, with the `.ifcjson` extension.
 
@@ -93,6 +93,7 @@ We convert a lot of "presentational" IFC entities to X3D nodes and display them.
 - mesh (arbitrary polygons): cgeref:TIfcPolygonalFaceSet[] in IFC, cgeref:TIndexedFaceSetNode[] in X3D
 - mesh (triangles): cgeref:TIfcTriangulatedFaceSet[] in IFC, cgeref:TIndexedTriangleSetNode[] in X3D
 - wireframe box: cgeref:TIfcBoundingBox[] in IFC, cgeref:TBoxNode[] in X3D (with cgeref:TAbstractShapeNode.Shading[] set to cgeref:shWireframe[])
+- circle: cgeref:TIfcCircle[] in IFC, cgeref:TCircle2DNode[] in X3D
 - ellipse: cgeref:TIfcEllipse[] in IFC, cgeref:TCircle2DNode[] in X3D (with cgeref:TCircle2DNode.RadiusY[] customized)
 - others: cgeref:TIfcTrimmedCurve[], cgeref:TIfcMappedItem[]
 --
