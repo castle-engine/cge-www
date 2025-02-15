@@ -84,7 +84,7 @@ We convert a lot of "presentational" IFC entities to X3D nodes and display them.
 
 - The transformation hierarchy (following cgeref:TIfcObjectPlacement[] including cgeref:TIfcObjectPlacement.PlacementRelTo[]) is expressed using X3D cgeref:TTransformNode[].
 
-- We display these 3D shape entities:
+- We display these 3D / 2D shape entities:
 +
 --
 - lines: cgeref:TIfcPolyline[] in IFC, cgeref:TLineSetNode[] in X3D
@@ -95,6 +95,7 @@ We convert a lot of "presentational" IFC entities to X3D nodes and display them.
 - wireframe box: cgeref:TIfcBoundingBox[] in IFC, cgeref:TBoxNode[] in X3D (with cgeref:TAbstractShapeNode.Shading[] set to cgeref:shWireframe[])
 - circle: cgeref:TIfcCircle[] in IFC, cgeref:TCircle2DNode[] in X3D
 - ellipse: cgeref:TIfcEllipse[] in IFC, cgeref:TCircle2DNode[] in X3D (with cgeref:TCircle2DNode.RadiusY[] customized)
+- grid: cgeref:TIfcGrid[] in IFC, just lines (colored red/green/blue, until, partially transparent) in X3D
 - others: cgeref:TIfcTrimmedCurve[], cgeref:TIfcMappedItem[]
 --
 
