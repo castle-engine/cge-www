@@ -51,7 +51,9 @@ We like open 3D standards in _Castle Game Engine_ (_Michalis_ is preaching about
 Get or make a sample IFC file:
 +
 --
-- For example take one of the testcases from https://github.com/buildingsmart-community/Community-Sample-Test-Files/tree/main/IFC%204.0.2.1%20(IFC%204)/ISO%20Spec%20archive[Community-Sample-Test-Files for IFC 4.x]. Rename the file from `.json` -> `.ifcjson`.
+- For example take one of our testcases from https://github.com/castle-engine/demo-models/tree/master/ifc[our demo-models, ifc subdirectory].
+
+//- For example take one of the testcases from https://github.com/buildingsmart-community/Community-Sample-Test-Files/tree/main/IFC%204.0.2.1%20(IFC%204)/ISO%20Spec%20archive[Community-Sample-Test-Files for IFC 4.x]. Rename the file from `.json` -> `.ifcjson`.
 
 - Or create IFC file using link:blender[Blender] and https://bonsaibim.org/[BonsaiBIM] add-on, a great add-on that turns Blender into a full-featured IFC editor. Save the IFC to `.ifcjson` format.
 
@@ -66,7 +68,7 @@ Then open it using link:castle-model-viewer[Castle Model Viewer].
 
 ### Saving and loading
 
-We can load and save the IFC entities listed in API docs of cgeref:CastleIfc[] unit. This includes over 150 classes reflecting the IFC specification.
+We can load and save the IFC entities listed in API docs of cgeref:CastleIfc[] unit. This includes over 170 classes reflecting the IFC specification.
 
 All the defined IFC entities can be loaded and saved to IFC files in the JSON encoding, with the `.ifcjson` extension.
 
@@ -89,7 +91,9 @@ We convert a lot of "presentational" IFC entities to X3D nodes and display them.
 --
 - lines: cgeref:TIfcPolyline[] in IFC, cgeref:TLineSetNode[] in X3D
 - indexed lines: cgeref:TIfcIndexedPolyCurve[] in IFC, cgeref:TIndexedLineSetNode[] in X3D
-- extrusion of a cross-section along a direction: cgeref:TIfcExtrudedAreaSolid[] in IFC, cgeref:TExtrusionNode[] in X3D
+- extrusion of a cross-section along a direction: cgeref:TIfcExtrudedAreaSolid[] in IFC, mesh (cgeref:TIndexedQuadSet[] for sides, cgeref:TIndexedFaceSet[] for top/bottom caps) in X3D
+//+
+//NOTE: In the past we used X3D cgeref:TExtrusionNode[] for this, but it wasn't really a good match (despite similar names) because X3D cgeref:TExtrusionNode[] adjusts rotation at spine points, causing issues in some edge-cases for IFC extrusions.
 - mesh (arbitrary polygons): cgeref:TIfcPolygonalFaceSet[] in IFC, cgeref:TIndexedFaceSetNode[] in X3D
 - mesh (triangles): cgeref:TIfcTriangulatedFaceSet[] in IFC, cgeref:TIndexedTriangleSetNode[] in X3D
 - wireframe box: cgeref:TIfcBoundingBox[] in IFC, cgeref:TBoxNode[] in X3D (with cgeref:TAbstractShapeNode.Shading[] set to cgeref:shWireframe[])
@@ -102,6 +106,8 @@ We convert a lot of "presentational" IFC entities to X3D nodes and display them.
 Our conversion from IFC to X3D allows to display IFC models using _Castle Game Engine_ (using cgeref:TCastleScene[]) and allows to literally convert between model formats, from IFC to any format we can save (X3D, STL, and soon glTF).
 
 X3D nodes can be mapped back to IFC classes, which is useful e.g. for picking 3D objects using mouse. _Castle Game Engine_ has APIs to determine what X3D node has been picked, and then you can map it back to an IFC _"product"_ (like a wall, a window, a door) using cgeref:TCastleIfcMapping.NodeToProduct[].
+
+Our implementation targets IFC specification version 4.3, but we some made provisions to account for older specification versions too. You're welcome to report (as https://github.com/castle-engine/castle-engine/issues[engine bugs]) any issues you find with any IFC files.
 
 ### Utilities and examples
 
