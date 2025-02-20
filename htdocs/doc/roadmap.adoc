@@ -602,20 +602,20 @@ Look great:
 
 This *may* be even better than direct Vulkan port. We shall see. On one hand, this provides more possibilities than just Vulkan (e.g. direct Metal renderer). And it may be easier to use than Vulkan. OTOH, it will not allow to squeeze "every last bit of performance from Vulkan" (though we really don't need that in CGE in the first place; there are lots of optimizations on the table in CGE before it's worth even thinking about low-level Vulkan optimizations).
 
-### Mobile: Wireframe on OpenGLES
+[#opengles_wirefame]
+### Mobile: Support TCastleRenderOptions.WireframeEffect on OpenGLES
 
-Since `glPolygonMode` is not available at all on OpenGLES, we need to be able to generate wireframe geometry arrays on CPU, adding a "wireframe" option to `CastleArraysGenerator` that will generate a different (line) primitive for TGeometryArrays. Then the renderer can use such TGeometryArrays for OpenGLES.
+This is started now, by having `Shape.shading = "WIREFRAME"` option, see https://castle-engine.io/x3d_implementation_shape_extensions.php#section_ext_shading[Shape.shading field]. The implementation makes pretty wireframe (quads and n-gons don't show internal diagonal edges) and it is renderer-agnostic (so it works on OpenGLES too, doesn't rely on `glPolygonMode`), it generates line primitives on our engine side.
 
-This is started now, by having `Shape.shading = "WIREFRAME"` option, see https://castle-engine.io/x3d_implementation_shape_extensions.php#section_ext_shading[Shape.shading field]. We need to
+To continue we need to:
 
-* make it available for _all_ geometry shapes
-* make this feature more flexible, so that the renderer can switch between wireframe/non-wireframe rendering without any cost.
-* And then we can implement Attribute.WireframeEffect on OpenGLES correctly,
-* and allow to set Wireframe on specific viewports (so that some viewports may view wireframe, independent of others) on OpenGLES.
+* Allow renderer to switch between wireframe/non-wireframe rendering without any cost. This means storing the generated `TGeometryArrays` and things they imply (VBOs etc.) for wireframe independently of the non-wireframe data, so that they don't need to be recreated when switching between wireframe/non-wireframe rendering.
+* Then we can implement cgeref:TCastleRenderOptions.WireframeEffect[] on OpenGLES correctly.
+* Then we can also improve current cgeref:InternalForceWireframe[] (used by editor) to work on OpenGLES and possibly change it to non-internal `TCastleViewport.WireframeEffect` to use wireframe on specific viewports (so that some viewports may view wireframe, independent of others).
 
 ### Mobile: On-screen keyboard on iOS (already done on Android)
 
-You can subscribe tp https://github.com/castle-engine/castle-engine/issues/554 .
+You can subscribe to https://github.com/castle-engine/castle-engine/issues/554 to be notified about the progress.
 
 ### Mobile: TGLImage.GetContents on OpenGLES
 

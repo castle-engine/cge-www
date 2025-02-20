@@ -107,10 +107,7 @@ They are consistent with <a href="<?php echo x3d_spec_latest_url('networking'); 
     using the <code>EmissiveColor</code> of the material for the unlit color
     (or white, if there's no material).
 
-    <p>For now this is only honored by some nodes: <code>Box</code>, <code>Sphere</code>,
-    <code>IndexedFaceSet</code>.
-    The intention is to extend this to all geometry nodes
-    (submit a GitHub issue if you need this).
+    <p>This is honored by all geometry nodes now.
 
     <p><a href="https://github.com/castle-engine/demo-models/blob/master/x3d/castle_extensions/shading_wireframe.x3dv">Testcase of Shape.shading="WIREFRAME"</a>.
 
