@@ -5,13 +5,13 @@
 	"license": "GPL-2.0-or-later",
 	"require": {
 		"php": ">=7.2",
-		"automattic/jetpack-connection": "^6.1.0"
+		"automattic/jetpack-connection": "^6.3.2"
 	},
 	"require-dev": {
 		"yoast/phpunit-polyfills": "^1.1.1",
 		"automattic/jetpack-changelogger": "^5.1.0",
-		"automattic/jetpack-status": "^5.0.1",
-		"automattic/wordbless": "^0.4.2"
+		"automattic/jetpack-status": "^5.0.3",
+		"automattic/jetpack-test-environment": "@dev"
 	},
 	"suggest": {
 		"automattic/jetpack-autoloader": "Allow for better interoperability with other plugins that use this package."
@@ -31,8 +31,6 @@
 		"test-php": [
 			"@composer phpunit"
 		],
-		"post-install-cmd": "WorDBless\\Composer\\InstallDropin::copy",
-		"post-update-cmd": "WorDBless\\Composer\\InstallDropin::copy",
 		"build-production": "echo 'Add your build step to composer.json, please!'",
 		"build-development": "echo 'Add your build step to composer.json, please!'"
 	},

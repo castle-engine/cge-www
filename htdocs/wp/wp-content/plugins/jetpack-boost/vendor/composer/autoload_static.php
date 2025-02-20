@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitb1e77e6231d50e7663f84529b6a3dfda_jetpack_boostⓥ3_8_0
+class ComposerStaticInitb1e77e6231d50e7663f84529b6a3dfda_jetpack_boostⓥ3_9_0
 {
     public static $files = array (
         '3773ef3f09c37da5478d578e32b03a4b' => __DIR__ . '/../..' . '/jetpack_vendor/automattic/jetpack-assets/actions.php',
@@ -172,6 +172,7 @@ class ComposerStaticInitb1e77e6231d50e7663f84529b6a3dfda_jetpack_boostⓥ3_8_0
         'Automattic\\Jetpack\\Protect_Models\\History_Model' => __DIR__ . '/../..' . '/jetpack_vendor/automattic/jetpack-protect-models/src/class-history-model.php',
         'Automattic\\Jetpack\\Protect_Models\\Status_Model' => __DIR__ . '/../..' . '/jetpack_vendor/automattic/jetpack-protect-models/src/class-status-model.php',
         'Automattic\\Jetpack\\Protect_Models\\Threat_Model' => __DIR__ . '/../..' . '/jetpack_vendor/automattic/jetpack-protect-models/src/class-threat-model.php',
+        'Automattic\\Jetpack\\Protect_Models\\Vulnerability_Model' => __DIR__ . '/../..' . '/jetpack_vendor/automattic/jetpack-protect-models/src/class-vulnerability-model.php',
         'Automattic\\Jetpack\\Protect_Status\\Plan' => __DIR__ . '/../..' . '/jetpack_vendor/automattic/jetpack-protect-status/src/class-plan.php',
         'Automattic\\Jetpack\\Protect_Status\\Protect_Status' => __DIR__ . '/../..' . '/jetpack_vendor/automattic/jetpack-protect-status/src/class-protect-status.php',
         'Automattic\\Jetpack\\Protect_Status\\REST_Controller' => __DIR__ . '/../..' . '/jetpack_vendor/automattic/jetpack-protect-status/src/class-rest-controller.php',
@@ -301,7 +302,8 @@ class ComposerStaticInitb1e77e6231d50e7663f84529b6a3dfda_jetpack_boostⓥ3_8_0
         'Automattic\\Jetpack_Boost\\Lib\\CLI' => __DIR__ . '/../..' . '/app/lib/class-cli.php',
         'Automattic\\Jetpack_Boost\\Lib\\Collection' => __DIR__ . '/../..' . '/app/lib/class-collection.php',
         'Automattic\\Jetpack_Boost\\Lib\\Connection' => __DIR__ . '/../..' . '/app/lib/class-connection.php',
-        'Automattic\\Jetpack_Boost\\Lib\\Cornerstone_Pages' => __DIR__ . '/../..' . '/app/lib/Cornerstone_Pages.php',
+        'Automattic\\Jetpack_Boost\\Lib\\Cornerstone\\Cornerstone_Pages' => __DIR__ . '/../..' . '/app/lib/cornerstone/Cornerstone_Pages.php',
+        'Automattic\\Jetpack_Boost\\Lib\\Cornerstone\\Cornerstone_Utils' => __DIR__ . '/../..' . '/app/lib/cornerstone/Cornerstone_Utils.php',
         'Automattic\\Jetpack_Boost\\Lib\\Critical_CSS\\Admin_Bar_Compatibility' => __DIR__ . '/../..' . '/app/lib/critical-css/Admin_Bar_Compatibilty.php',
         'Automattic\\Jetpack_Boost\\Lib\\Critical_CSS\\Critical_CSS_Invalidator' => __DIR__ . '/../..' . '/app/lib/critical-css/Critical_CSS_Invalidator.php',
         'Automattic\\Jetpack_Boost\\Lib\\Critical_CSS\\Critical_CSS_State' => __DIR__ . '/../..' . '/app/lib/critical-css/Critical_CSS_State.php',
@@ -418,9 +420,9 @@ class ComposerStaticInitb1e77e6231d50e7663f84529b6a3dfda_jetpack_boostⓥ3_8_0
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitb1e77e6231d50e7663f84529b6a3dfda_jetpack_boostⓥ3_8_0::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitb1e77e6231d50e7663f84529b6a3dfda_jetpack_boostⓥ3_8_0::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInitb1e77e6231d50e7663f84529b6a3dfda_jetpack_boostⓥ3_8_0::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitb1e77e6231d50e7663f84529b6a3dfda_jetpack_boostⓥ3_9_0::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitb1e77e6231d50e7663f84529b6a3dfda_jetpack_boostⓥ3_9_0::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitb1e77e6231d50e7663f84529b6a3dfda_jetpack_boostⓥ3_9_0::$classMap;
 
         }, null, ClassLoader::class);
     }

@@ -4,12 +4,13 @@
 	"type": "jetpack-library",
 	"license": "GPL-2.0-or-later",
 	"require": {
-		"php": ">=7.2"
+		"php": ">=7.2",
+		"automattic/jetpack-redirect": "^3.0.1"
 	},
 	"require-dev": {
 		"yoast/phpunit-polyfills": "^1.1.1",
 		"automattic/jetpack-changelogger": "^5.1.0",
-		"automattic/wordbless": "^0.4.2"
+		"automattic/jetpack-test-environment": "@dev"
 	},
 	"autoload": {
 		"classmap": [
@@ -27,16 +28,14 @@
 		],
 		"test-php": [
 			"@composer phpunit"
-		],
-		"post-install-cmd": "WorDBless\\Composer\\InstallDropin::copy",
-		"post-update-cmd": "WorDBless\\Composer\\InstallDropin::copy"
+		]
 	},
 	"minimum-stability": "dev",
 	"prefer-stable": true,
 	"extra": {
 		"autotagger": true,
 		"branch-alias": {
-			"dev-trunk": "0.4.x-dev"
+			"dev-trunk": "0.5.x-dev"
 		},
 		"changelogger": {
 			"link-template": "https://github.com/Automattic/jetpack-protect-models/compare/v${old}...v${new}"

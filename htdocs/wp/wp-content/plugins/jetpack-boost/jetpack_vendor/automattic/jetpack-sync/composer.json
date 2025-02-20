@@ -5,19 +5,19 @@
 	"license": "GPL-2.0-or-later",
 	"require": {
 		"php": ">=7.2",
-		"automattic/jetpack-connection": "^6.3.0",
+		"automattic/jetpack-connection": "^6.4.1",
 		"automattic/jetpack-constants": "^3.0.1",
-		"automattic/jetpack-password-checker": "^0.4.1",
+		"automattic/jetpack-password-checker": "^0.4.2",
 		"automattic/jetpack-ip": "^0.4.1",
 		"automattic/jetpack-roles": "^3.0.1",
-		"automattic/jetpack-status": "^5.0.2"
+		"automattic/jetpack-status": "^5.0.3"
 	},
 	"require-dev": {
 		"automattic/jetpack-changelogger": "^5.1.0",
 		"yoast/phpunit-polyfills": "^1.1.1",
 		"automattic/jetpack-search": "@dev",
-		"automattic/jetpack-waf": "^0.23.2",
-		"automattic/wordbless": "^0.4.2"
+		"automattic/jetpack-waf": "^0.23.3",
+		"automattic/jetpack-test-environment": "@dev"
 	},
 	"suggest": {
 		"automattic/jetpack-autoloader": "Allow for better interoperability with other plugins that use this package."
@@ -36,9 +36,7 @@
 		],
 		"test-php": [
 			"@composer phpunit"
-		],
-		"post-install-cmd": "WorDBless\\Composer\\InstallDropin::copy",
-		"post-update-cmd": "WorDBless\\Composer\\InstallDropin::copy"
+		]
 	},
 	"minimum-stability": "dev",
 	"prefer-stable": true,
@@ -53,7 +51,7 @@
 			"link-template": "https://github.com/Automattic/jetpack-sync/compare/v${old}...v${new}"
 		},
 		"branch-alias": {
-			"dev-trunk": "4.5.x-dev"
+			"dev-trunk": "4.8.x-dev"
 		},
 		"dependencies": {
 			"test-only": [

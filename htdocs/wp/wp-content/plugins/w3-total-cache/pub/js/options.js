@@ -534,37 +534,6 @@ jQuery(function() {
 		jQuery('.w3tc_technical_info').toggle();
 	});
 
-	jQuery('#plugin_license_key_verify').on('click', function() {
-		jQuery('.w3tc_license_verification').html("Checking...");
-
-		var license_key = jQuery('#plugin_license_key').val();
-
-		if (!license_key) {
-			jQuery('.w3tc_license_verification').html('Please enter an license key and try again.');
-			return;
-		}
-		var params = {
-			action: 'w3tc_verify_plugin_license_key',
-			license_key: license_key
-		};
-
-		jQuery.get(ajaxurl, params, function(data) {
-			if (w3tc_starts_with(data + '.', 'inactive.expired.')) {
-				jQuery('.w3tc_license_verification').html('The license key has expired. Please renew it.');
-			} else if (w3tc_starts_with(data + '.', 'active.')) {
-				jQuery('.w3tc_license_verification').html('License key is correct.');
-			} else if (w3tc_starts_with(data + '.', 'inactive.by_rooturi.activations_limit_not_reached.')) {
-				jQuery('.w3tc_license_verification').html('License key is correct and can be activated now.');
-			} else if (w3tc_starts_with(data + '.', 'inactive.by_rooturi.')) {
-				jQuery('.w3tc_license_verification').html('License key is correct but already in use on another site. See the FAQ for how to enable Pro version in development mode.');
-			} else {
-				jQuery('.w3tc_license_verification').html('The license key is not valid. Please check it and try again.');
-			}
-		}).fail(function() {
-			jQuery('.w3tc_license_verification').html('Check failed');
-		});
-	});
-
 	// General Settings Tab actions.
 	jQuery( document ).on( 'click', '.performance_page_w3tc_general .nav-tab', function(){
    		const $tab         = jQuery( this ),
@@ -981,14 +950,12 @@ jQuery(function() {
 				break;
 
 			case 'cf':
-				let region = jQuery('#cdn_cf_bucket_location').val();
-
 				jQuery.extend(params, {
 					engine: 'cf',
 					'config[key]': jQuery('#cdn_cf_key').val(),
 					'config[secret]': jQuery('#cdn_cf_secret').val(),
 					'config[bucket]': jQuery('#cdn_cf_bucket').val(),
-					'config[bucket_location]': region,
+					'config[bucket_location]': jQuery('#cdn_cf_bucket_location').val(),
 					'config[id]': jQuery('#cdn_cf_id').val()
 				});
 
@@ -1736,9 +1703,9 @@ jQuery(function() {
 		if (window.w3tc_ga) {
 			w3tc_ga(
 				'event',
+				'link',
 				{
 					eventCategory: 'w3tc_topnav_bar',
-					eventAction: 'link',
 					eventLabel: jQuery(this).text()
 				}
 			);
@@ -1750,9 +1717,9 @@ jQuery(function() {
 		if (window.w3tc_ga) {
 			w3tc_ga(
 				'event',
+				'anchor',
 				{
 					eventCategory: 'w3tc_options_menu',
-					eventAction: 'anchor',
 					eventLabel: jQuery(this).text()
 				}
 			);
@@ -1764,9 +1731,9 @@ jQuery(function() {
 		if (window.w3tc_ga) {
 			w3tc_ga(
 				'event',
+				'button',
 				{
 					eventCategory: 'w3tc_form_bar',
-					eventAction: 'button',
 					eventLabel: jQuery(this).text()
 				}
 			);
@@ -1778,9 +1745,9 @@ jQuery(function() {
 		if (window.w3tc_ga) {
 			w3tc_ga(
 				'event',
+				'link',
 				{
 					eventCategory: 'w3tc_footer',
-					eventAction: 'link',
 					eventLabel: jQuery(this).text()
 				}
 			);
@@ -1792,9 +1759,9 @@ jQuery(function() {
 		if (window.w3tc_ga) {
 			w3tc_ga(
 				'event',
+				'link',
 				{
 					eventCategory: 'w3tc_general_advanced_tab',
-					eventAction: 'link',
 					eventLabel: jQuery(this).attr('gatitle')
 				}
 			);
@@ -1806,9 +1773,9 @@ jQuery(function() {
 		if (window.w3tc_ga) {
 			w3tc_ga(
 				'event',
+				'link',
 				{
 					eventCategory: 'w3tc_general_extra_link_tab',
-					eventAction: 'link',
 					eventLabel: jQuery(this).attr('gatitle')
 				}
 			);
