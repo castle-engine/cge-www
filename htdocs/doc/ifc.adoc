@@ -283,3 +283,25 @@ Consult the https://github.com/castle-engine/castle-engine/tree/master/examples/
 ## Credits
 
 This work has been sponsored by the https://www.sorpetaler.de/[Sorpetaler Fensterbau GmbH] company. Thank you!
+
+## TODO: Possible future work
+
+NOTE: Want the below features to happen? Please contact us and link:donate[donate toward the IFC support, we provide commercial support for companies too].
+
+Easier:
+
+- Ability to toggle which representation (3D model, 2D plan) is displayed. We have the necessary information (which object comes from what representation).
+
+- Optimize updates more.
+
+- Support for textures and per-vertex colors. Support from the authoring tools, like _BonsaiBIM_, to define them would help (it seems that _BonsaiBIM_ doesn't support textures yet? if this is not true, please point us to docs/video showing how to use them).
+
+- Cross sections with holes (`IfcArbitraryProfileDefWithVoids.InnerCurves`) support.
+
+- NURBS in IFC (we already have NURBS in X3D nodes).
+
+Harder:
+
+- STEP encoding support (`.ifc` files).
+
+- Boolean operations (CSG) on IFC entities, likely using https://dev.opencascade.org/doc/overview/html/specification__boolean_operations.html[Open CASCADE]. For now, we show the openings (using a wireframe display for opening geometry, and partial transparency for the container geometry) but we don't actually subtract the opening geometry from the container geometry.
