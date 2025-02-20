@@ -286,21 +286,32 @@ This work has been sponsored by the https://www.sorpetaler.de/[Sorpetaler Fenste
 
 ## TODO: Possible future work
 
-NOTE: Want the below features to happen? Please contact us and link:donate[donate toward the IFC support, we provide commercial support for companies too].
+NOTE: Do you want the features described below to happen? Please link:donate[donate towards the IFC support]. We're open to support from the community (https://www.patreon.com/castleengine[e.g. through Patreon]) as well as business cooperation (contact `michalis@castle-engine.io`).
 
-Easier:
+Easier tasks:
 
-- Ability to toggle which representation (3D model, 2D plan) is displayed. We have the necessary information (which object comes from what representation).
-
-- Optimize updates more.
+- Ability to toggle which representation (3D model, 2D plan) is displayed. We have the necessary information (which object comes from what representation) already.
 
 - Support for textures and per-vertex colors. Support from the authoring tools, like _BonsaiBIM_, to define them would help (it seems that _BonsaiBIM_ doesn't support textures yet? if this is not true, please point us to docs/video showing how to use them).
 
 - Cross sections with holes (`IfcArbitraryProfileDefWithVoids.InnerCurves`) support.
 
-- NURBS in IFC (we already have NURBS in X3D nodes).
+- More curves support:
++
+--
+- Surfaces:
+https://standards.buildingsmart.org/IFC/RELEASE/IFC4_3/HTML/lexical/IfcBSplineSurface.htm[IfcBSplineSurface],
+https://standards.buildingsmart.org/IFC/RELEASE/IFC4_3/HTML/lexical/IfcBSplineSurfaceWithKnots.htm[IfcBSplineSurfaceWithKnots],
+https://standards.buildingsmart.org/IFC/RELEASE/IFC4_3/HTML/lexical/IfcRationalBSplineSurfaceWithKnots.htm[IfcRationalBSplineSurfaceWithKnots].
+- Curves:
+https://standards.buildingsmart.org/IFC/RELEASE/IFC4_3/HTML/lexical/IfcBSplineCurve.htm[IfcBSplineCurve],
+https://standards.buildingsmart.org/IFC/RELEASE/IFC4_3/HTML/lexical/IfcBSplineCurveWithKnots.htm[IfcBSplineCurveWithKnots],
+https://standards.buildingsmart.org/IFC/RELEASE/IFC4_3/HTML/lexical/IfcRationalBSplineCurveWithKnots.htm[IfcRationalBSplineCurveWithKnots].
+--
 
-Harder:
+Harder tasks:
+
+- Optimize more how the changes to IFC update the display (X3D graph). Internally, changing translation and adding new items could be _much_ optimized in how they map to X3D. The cgeref:TCastleIfcMapping.Update[] already tries to be "_smart_" but testing it on large/complicated IFC models showed that we still have some way to go to be really optimal.
 
 - STEP encoding support (`.ifc` files).
 
