@@ -1457,8 +1457,8 @@ List of tasks when adding new unit or path to CGE is admittedly not trivial, as 
 --
 - proper Lazarus package (one of `packages/*.lpk`)
 - proper Delphi package (one of `packages/delphi/*.{dpk,dproj}`)
+- `fpmake.pp`
 - run check `tools/internal/check_packages` to make sure it is OK (Jenkins and GH Actions will check it anyway), new top-level path may require being added to `check_packages.dpr`
-- fpmake.pp
 --
 
 - New path only:
