@@ -66,13 +66,25 @@ castle_header('Castle Game Engine - Free open-source cross-platform 3D 2D game e
 
 <hr>
 
-<img src="images/not_resized/MacStadium-developerlogo.webp"
-     alt="MacStadium developer logo"
-     style="width: 100px; height: auto; float: left; margin: 1em;"
-     <?php echo _castle_image_sizes('images/not_resized/MacStadium-developerlogo.webp'); ?>
- >
-<p>We're a happy member of <a href="https://www.macstadium.com/company/opensource">MacStadium Open Source Developer Program</a>.<br>
-They provide us access to a remote Mac machine, we use it to develop our <a href="macos">macOS</a> and <a href="ios">iOS</a> targets.
+<div class="clearfix">
+  <img src="images/not_resized/MacStadium-developerlogo.webp"
+      alt="MacStadium developer logo"
+      style="width: 100px; height: auto; float: left; margin: 1em;"
+      <?php echo _castle_image_sizes('images/not_resized/MacStadium-developerlogo.webp'); ?>
+  >
+  <p>We're a happy member of <a href="https://www.macstadium.com/company/opensource">MacStadium Open Source Developer Program</a>.<br>
+  They provide us access to a remote Mac machine, we use it to develop our <a href="macos">macOS</a> and <a href="ios">iOS</a> targets.
+</div>
+
+<div>
+  <a href="https://uptimerobot.com/">
+    <a href="https://uptimerobot.com/"><img src="images/not_resized/uptime_robot_logo_small.webp"
+        alt="Uptime Robot logo"
+        style="width: 2em; height: auto; margin: 0.5em; vertical-align: middle;"
+        <?php echo _castle_image_sizes('images/not_resized/uptime_robot_logo_small.webp'); ?>
+    ></a>
+  <a href="https://stats.uptimerobot.com/uOJX9Nc4bq">Status of our servers</a>.
+</div>
 
 <?php
 castle_footer();
