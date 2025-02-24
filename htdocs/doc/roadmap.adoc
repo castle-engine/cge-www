@@ -1189,6 +1189,8 @@ The term "resources" means here everything -- other files referred to be `Inline
 
 We want to allow using Python to develop _Castle Game Engine_ games.
 
+NOTE: Thanks to _Kagamma_ (_Trung Le_, aka _kdoll_ on our Discord), we have a sample how to implement option 1 described below, i.e. a _behavior_ that allows to edit a piece of code in a scripting language in our editor: https://github.com/Kagamma/cge-script-integration-example .
+
 Two use-cases are important:
 
 1. Use Python just for adding some behaviors.
@@ -1211,16 +1213,22 @@ This means you write the whole game code in Python. In particular, view's code i
 +
 This makes our engine available for Python developers. We get an additional crowd of people interested in our engine. To be clear, you can still mix Python with Pascal code, but the main use-case is here for people who want to write the whole game in Python.
 
-Why?
+*Why?*
 
-- Choosing Python is enticing. It's very popular. It does not have a game engine like CGE, from what we can tell (comfortable editor, powerful 3D and 2D, open-source). What we offer may be very attractive to Python developers.
+- Choosing Python is enticing. It's very popular. It does not have a game engine like CGE, from what we can tell (comfortable editor, powerful 3D and 2D, open-source). (Unity used to have "Boo", but it is now removed.) So this part of the reason is "opportunistic", i.e. what we offer may be very attractive to Python developers.
 
-- We have https://github.com/pyscripter/python4delphi . Very active, tested by both Delphi and FPC users.
+- We have https://github.com/pyscripter/python4delphi project providing feature-rich integration. Very active, tested by both Delphi and FPC users. These are important point for something we would depend on.
 
-- This idea was somewhat validated at https://castle-engine.io/wp/2023/07/08/international-pascal-congress-my-presentation-slides-various-positive-thoughts-about-pascal-both-fpc-and-delphi-bright-future-and-why-you-should-use-pascal/[2023 conference in Salamanca]. Namely, Embarcadero tries to do similar with FMX - offer it as library for Python devs.
+- If someone is looking for a "simple scripting language", Python is closer to "super simple" than e.g. C#.
+
+- Python is similar to https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_basics.html[GDScript] known from Godot.
+
+- This idea was somewhat validated at https://castle-engine.io/wp/2023/07/08/international-pascal-congress-my-presentation-slides-various-positive-thoughts-about-pascal-both-fpc-and-delphi-bright-future-and-why-you-should-use-pascal/[2023 conference in Salamanca]. Namely, Embarcadero tries to do a similar thing with FMX - offer it as library for Python devs, see https://github.com/embarcadero/DelphiFMX4Python[DelphiFMX for Python].
 
 To be clear, this doesn't preclude integration with other scripting languages. Other reasonable choices exist and we welcome work on integrating them:
 
 - _Lua_ is a popular choice in gamedev. One can implement something like `TCastleLuaBehavior` that allows to paste LUA scripts that interact with CGE.
 
 - https://en.wikipedia.org/wiki/Pascal_Script[Pascal Script] is a natural choice for us. And it would bring us the benefits of "it can run at design-time" while staying within the same (well, similar) programming language.
+
+- JS using QuickJS is an option too, and it's already being worked on. See `#quickjs` channel on our link:talk.php[Discord] and https://github.com/castle-engine/quickjs-demo[quickjs-demo repo].
