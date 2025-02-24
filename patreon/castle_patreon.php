@@ -180,7 +180,7 @@ if (QUERY_PATREON_API) {
   /* Workaround: just hardcoded and manually updated amount. */
   function castle_patreon_total_pledges()
   {
-    return 349 * 100;
+    return 308 * 100;
   }
 
 }
