@@ -343,19 +343,7 @@ wasmtime time_measurements_tests.wasm
 [#manifest]
 == Customize default canvas size
 
-TODO: Move this to link:project_manifest[CastleEngineManifest.xml] docs.
-
-The default area available for rendering is determined by the `<canvas>` size in the generated HTML file. You can customize this by editing the link:project_manifest[CastleEngineManifest.xml] of your project and adding there lines like this:
-
-```xml
-<web>
-  <canvas width="800" height="600" />
-</web>
-```
-
-See https://github.com/castle-engine/castle-engine/blob/master/examples/web/simplest_invaders/CastleEngineManifest.xml[examples/web/simplest_invaders/CastleEngineManifest.xml] for a full example.
-
-NOTE: You can also just edit / replace the generated `index.html` file completely. As we mentioned above, we don't assume much about this HTML, it only must have `<canvas id="castle-canvas">`.
+You can customize the default canvas size using the link:project_manifest#web[web options in CastleEngineManifest.xml].
 
 [#platform_default]
 == Run the project by default for the web
