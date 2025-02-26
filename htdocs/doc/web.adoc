@@ -51,7 +51,7 @@ Absolute :)
 
 - All the web browsers should be good. _Firefox_, _Google Chrome_ and derivatives (like _Vivaldi_) are all good.
 
-- Mobile web browsers are supported as well. We support touches in a way consisten with mouse events, link:touch_input[just like on non-web mobile targets]. We tested with both _Firefox_ and _Google Chrome_ on _Android_.
+- Mobile web browsers are supported as well. We support touches in a way consistent with mouse events, link:touch_input[just like on non-web mobile targets]. We tested with both _Firefox_ and _Google Chrome_ on _Android_.
 +
 WARNING: To make the resulting web application working also in mobile (like Android) web browsers, one needs to apply a 1-line hack to `pas2js` sources, see below for details.
 
@@ -124,7 +124,7 @@ NOTE: The WebGL API is available in the browser to https://getpas2js.freepascal.
 +
 We generate a unit https://github.com/castle-engine/castle-engine/blob/master/src/base_rendering/web/castleinternaljobweb.pas[CastleInternalJobWeb] using this script and WEBIDLs: https://github.com/castle-engine/castle-engine/tree/master/src/base_rendering/web/webidl .
 +
-NOTE: FPC ships an example https://gitlab.com/freepascal.org/fpc/source/-/blob/main/packages/wasm-job/examples/job_web.pas?ref_type=heads[job_web.pas] that already contains everything we need, but it's a huge unit. It has ~184 thousands of lines and compiling it is slow (this is esp. problematic as current FPC 3.3.1 recompiles units more often than it should -- it seems that every change even to implementation causes rebuild of everything derived, as if we changed interface). That's why we generate our own unit, https://github.com/castle-engine/castle-engine/blob/master/src/base_rendering/web/castleinternaljobweb.pas[CastleInternalJobWeb] (merely ~19 thousands of lines) that contains only what we need.
+NOTE: FPC ships an example https://gitlab.com/freepascal.org/fpc/source/-/blob/main/packages/wasm-job/examples/job_web.pas?ref_type=heads[job_web.pas] that already contains everything we need, but it's a huge unit. It has ~184 thousands of lines and compiling it is slow (this is esp. problematic as current FPC 3.3.1 re-compiles units more often than it should -- it seems that every change even to implementation causes rebuild of everything derived, as if we changed interface). That's why we generate our own unit, https://github.com/castle-engine/castle-engine/blob/master/src/base_rendering/web/castleinternaljobweb.pas[CastleInternalJobWeb] (merely ~19 thousands of lines) that contains only what we need.
 +
 Second step: We then generate include file https://github.com/castle-engine/castle-engine/blob/master/src/base_rendering/web/castleinternalwebgl_flat_api.inc[castleinternalwebgl_flat_api.inc] that "flattens" the API exposed in https://github.com/castle-engine/castle-engine/blob/master/src/base_rendering/web/castleinternaljobweb.pas[CastleInternalJobWeb], making it more similar to the OpenGL ES API in the https://github.com/castle-engine/castle-engine/blob/master/src/base_rendering/castlegles.pas[CastleGLES] unit. This generation also consults WEBIDL, to process all WebGL methods we need. The tool that does this is https://github.com/castle-engine/castle-engine/tree/master/tools/internal/generate_webgl_flat_api/generate_webgl_flat_api.dpr[tools/internal/generate_webgl_flat_api].
 +
@@ -138,7 +138,7 @@ Lastly, we manually adjusted rendering code to account for final, unavoidable di
 +
 In the end, we render using https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API[WebGL 1.0], with optional WebGL 2.0 features. This is very similar to our current rendering approach on mobile, where we use https://castle-engine.io/wp/2023/03/12/mobile-opengles-rendering-upgrades-occlusion-query-anisotropic-filtering-3d-textures-shadows-plus-new-occlusion-query-demo/[OpenGL ES 2.0, with optional OpenGL ES 3.0 features].
 
-- Input: We handle pointer events on the canvas (down, motion, up) thus we handle mouse and touch input. We also handle key events (keydown, keyup) on the whole DOM window.
+- Input: We handle pointer events on the canvas (down, motion, up) thus we handle mouse and touch input. We also handle key events (key down, key up) on the whole DOM window.
 +
 WARNING: TODO: key handling may change to rely on focus instead, to allow to e.g. have 2 web applications using CGE on the same page.
 
@@ -289,6 +289,8 @@ Browsers may cache the contents of everything (HTML, JS, WASM files, application
 
 TODO: We could counter cache more, by accessing `http://localhost:3000/?random=XXX` , and using random URL params for everything (JS, HTML, application data). Also, we should make it configurable, to enable turning off "fighting with cache" for production reproducible-builds.
 ====
+
+NOTE: Our default HTML template displays link:log[] underneath your application, including everything you write to the log e.g. using `WritelnLog('Hello!')`. The log is also accessible using the _"Developer Tools"_ of your browser (press F12) -> _"Console"_ . The console can also be toggled when in the _fullscreen_ mode.
 
 == Running WASM code outside of the browser
 
