@@ -637,6 +637,8 @@ See https://github.com/castle-engine/castle-engine/blob/master/examples/web/simp
 +
 NOTE: The default canvas size, 960 x 540, was chosen for a few reasons. It is landscape (which matches expectation of most games), has aspect ratio 16:9 (consistent with our UI reference sizes in https://castle-engine.io/manual_castle_settings.php[CastleSettings.xml in new projects]), it seems large enough to show various content, it seems small enough to fit in most maximized browser windows. Finally, it is similar to what link:castle_game_engine_for_unity_developers[Unity sets by default].
 +
+NOTE: The given size is in CSS pixels, not in "device pixels". On high-DPI screens (like Retina) the actual pixel resolution will be larger. If you zoom on the page (using _Ctrl +_, _Ctrl -_) then also the actual pixel resolution may be different. Once the application runs, query the cgeref:TCastleWindow.Width[] and cgeref:TCastleWindow.Height[] to get the actual size in pixels you have.
++
 NOTE: Instead of setting canvas size in `CastleEngineManifest.xml`, you can also adjust the canvas size by just editing or replacing the generated `index.html` file. As we mentioned in the link:web[] documentation, we don't assume much about this HTML, it only must have `<canvas id="castle-canvas">` and include our JS script.
 
 === The end
