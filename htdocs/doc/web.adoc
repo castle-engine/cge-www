@@ -38,8 +38,7 @@ Source code in https://github.com/castle-engine/castle-engine/tree/master/exampl
 ====
 These are _early demos_, so don't judge the final quality by these demos (yet) :) We have some known TODOs, including:
 
-- Text looks a bit "fuzzy" (likely due to missing texture swizzle on WebGL which makes our image alpha not exactly applied how we want).
-- The demos use only 3D / 2D things set up from code (because we don't load data files, not even designs, yet) so they don't look impressive.
+- The demos use only 3D / 2D things set up from code (because they don't load data files, not even designs) so they don't look impressive.
 - No shadow volumes on web yet (we need to initialize with stencil to have them).
 ====
 
@@ -142,19 +141,21 @@ In the end, we render using https://developer.mozilla.org/en-US/docs/Web/API/Web
 +
 WARNING: TODO: key handling may change to rely on focus instead, to allow to e.g. have 2 web applications using CGE on the same page.
 
+- We can switch to fullscreen. The default `index.html` features a button to do this.
+
+- Rendering is crisp, in "real device pixels", including on high-DPI screens and when you zoom the page.
+
+- For application data, we pack the data as one binary file (zip). This allows to download the complete data at a clearly specified moment, with a nice progress bar, and later just load data files synchronously and reliably.
++
+We use our cgeref:TCastleZip[] to handle ZIP. It uses FPC and Delphi standard units.
++
+TODO: Downloading the zip is in progress now. We have a bit of data hardcoded now.
+
 === Plans (TODOs)
 
 - Reproduce with clean sample and submit to FPC:
 +
 Running on mobile requires now hacking pas2js, in `pas2js/packages/job/src/job_browser.pp`, find and comment out `RegisterGlobalObject(caches,'caches');`. Otherwise both Firefox and Chrome on Android fail with `ReferenceError: caches is not defined`.
-
-- For data delivery, we know we'll have to invent a simple format to carry our game data as one big binary blob. The simple plan is to just pack game data into zip.
-+
-Both FPC and Delphi have built-in support for ZIP handling, we even https://github.com/castle-engine/castle-engine/blob/master/examples/network/custom_url_handler/code/gameunzip.pas[use it in one example], we'll likely create a more full-featured wrapper that works on both FPC and Delphi.
-+
-Packing resources into ZIP is beneficial over just placing all data files separately in the webserver directory. It allows to download the ZIP once (at application load) and then our WebAssembly code can load data from it synchronously, thus it can work similarly to how a non-web game data is loaded. Naturally we also want to have cgeref:TCastleDownload[] working and being able to load things asynchronously (see our https://castle-engine.io/manual_network.php[network docs]).
-+
-TODO: FPC provides some ready file implementation in WASI RTL, it seems. How it works? In browser, in wasmtime?
 
 - For audio, we will add a new sound backend using https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API[WebAudio]. This will be the default sound backend on the web (like the https://castle-engine.io/openal[OpenAL] is now the default backend on non-web platforms).
 +
@@ -171,8 +172,6 @@ The gzipped size is really what matters &mdash; both web browsers and servers su
 Note that above is for a _release_ build. The _debug_ build weights 51 MB, and gzipped 12 MB. (Debug build contains https://wiki.freepascal.org/WebAssembly/Debugging[debugging symbols].)
 +
 We could also use https://en.wikipedia.org/wiki/Brotli[Brotli], a newer compression method also commonly supported by web browsers and servers.
-
-- Allow to go fullscreen on web.
 
 - Implement cgeref:TCastleDownload[] for web.
 
