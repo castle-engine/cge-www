@@ -1,5 +1,6 @@
 {
     "cSpell.words": [
+        "-Mdelphi",
         "-Pwasm32",
         "-Tbrowser",
         "-Twasi",
@@ -149,9 +150,11 @@
         "lldb",
         "longword",
         "Lumoize",
+        "Magick",
         "Makefiles",
         "Matejek",
         "Matomo",
+        "menufile",
         "michalis",
         "Miklas",
         "mipmaps",
@@ -161,6 +164,7 @@
         "MSWINDOWS",
         "MSYS2",
         "Multibranch",
+        "mycompany",
         "Nakama",
         "navmesh",
         "noimage",
@@ -235,6 +239,7 @@
         "Terragen",
         "Testcase",
         "testcases",
+        "tetris",
         "threadvar",
         "thumbnailer",
         "thumbnailers",
@@ -270,6 +275,7 @@
         "Writeln",
         "wwise",
         "Wyrd",
+        "xcodeproj",
         "XLIB",
         "Zander's",
         "Zlot"
