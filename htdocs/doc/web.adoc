@@ -40,6 +40,7 @@ These are _early demos_, so don't judge the final quality by these demos (yet) :
 
 - The _"3 earliest demos"_ use only 3D / 2D things set up from code (they don't load any data files, not even designs) so they don't look impressive. Reason: When we made these demos, reading data was not implemented yet (it is implemented now).
 - No shadow volumes on web yet (we need to initialize with stencil to have them).
+- We don't show much 3D demos, because our PBR shaders in some cases fail compilation on WebGL. This is of course just a regular bug to find and solve.
 ====
 
 == Compatibility
@@ -151,6 +152,8 @@ We use our cgeref:TCastleZip[] to handle ZIP. It uses FPC and Delphi standard un
 
 === Plans (TODOs)
 
+- TODO: PBR shaders (used by most 3D demos) have weird error at compilation on WebGL.
+
 - Reproduce with clean sample and submit to FPC:
 +
 Running on mobile requires now hacking pas2js, in `pas2js/packages/job/src/job_browser.pp`, find and comment out `RegisterGlobalObject(caches,'caches');`. Otherwise both Firefox and Chrome on Android fail with `ReferenceError: caches is not defined`.
@@ -163,11 +166,12 @@ NOTE: About link:x3d_implementation_sound.php#section_x3d4[WebAudio in the conte
 
 - Possibly throw in additional compression of data and/or wasm executable?
 +
-So far, file-size tests are promising. Compilation of https://github.com/castle-engine/castle-engine/tree/master/examples/platformer[examples/platformer], which practically uses 100% of CGE units, yields a binary `platformer.wasm` that has 16 MB. Gzipped it has 3.4 MB.
+WASM size: while it started smaller (compilation of https://github.com/castle-engine/castle-engine/tree/master/examples/platformer[examples/platformer], which practically uses 100% of CGE units, yields a binary `platformer.wasm` that has 16 MB. Gzipped it has 3.4 MB.) ... but it grew larger, to 40 MB. TODO: investigate why. JOB? IFC?
 +
 The gzipped size is really what matters &mdash; both web browsers and servers support gzip-(de)compression on the fly, you can also just put ready-gzipped version on the server and tell the browser to just decompress. So in all practical cases, users will download 3.4 MB, not 16 MB.
-+
-Note that above is for a _release_ build. The _debug_ build weights 51 MB, and gzipped 12 MB. (Debug build contains https://wiki.freepascal.org/WebAssembly/Debugging[debugging symbols].)
+//+
+// Old numbers
+//Note that above is for a _release_ build. The _debug_ build weights 51 MB, and gzipped 12 MB. (Debug build contains https://wiki.freepascal.org/WebAssembly/Debugging[debugging symbols].)
 +
 We could also use https://en.wikipedia.org/wiki/Brotli[Brotli], a newer compression method also commonly supported by web browsers and servers.
 
@@ -178,6 +182,8 @@ We could also use https://en.wikipedia.org/wiki/Brotli[Brotli], a newer compress
 - Save the user settings / save games (link:manual_user_prefs.php[CastleConfig]) to webpage persistent storage.
 
 - Open / save files by browser dialog (cgeref:TCastleWindow.FileDialog[]).
+
+- Block context menu (maybe make it optional) to allow using right mouse button comfortably?
 
 == Prerequisites
 
@@ -262,7 +268,9 @@ If everything went well, you should get `hello_wasm.wasm` in the same directory.
 +
 Since we have merged the web target into the https://github.com/castle-engine/castle-engine/tree/master[master] branch, you don't need to do any special things to get it. But of course, if you want to "build from scratch", you can https://github.com/castle-engine/castle-engine/tree/master[checkout the master branch using GIT] and then follow link:compiling_from_source.php[compiling from sources docs].
 
-2. Enter any CGE project https://github.com/castle-engine/castle-engine/blob/master/examples/web/upload.sh#L72[that was tested for web] and compile and run it for web. Most other examples should already work with web too, actually, so feel free to experiment.
+2. Enter any CGE project https://github.com/castle-engine/castle-engine/blob/master/examples/web/upload.sh#L72[that was tested for web] and compile and run it for web.
+// TODO: not until we fix PBR shader fails
+// Many other examples should already work with web too, actually, so feel free to experiment.
 +
 You can do it using the link:editor[]. Switch the platform using _"Run -> Platform -> Web"_, then click _"Compile And Run"_ (F9).
 +
