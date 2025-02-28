@@ -206,6 +206,9 @@ Redirect "/creating_data_player.php" "/documentation.php"
 Redirect "/creating_data_resources.php" "/documentation.php"
 Redirect "/creating_data_xml.php" "/documentation.php"
 Redirect "/creating_data_sound.php" "/documentation.php"
+Redirect "/web-demos/simplest_viewport" "/web-demos/examples/web/simplest_viewport"
+Redirect "/web-demos/simplest_invaders" "/web-demos/examples/web/simplest_invaders"
+Redirect "/web-demos/simplest" "/web-demos/examples/web/simplest"
 
 # alias names for slides, docs hosted outside
 Redirect "/itdevcon2023/slides1" "https://docs.google.com/presentation/d/e/2PACX-1vQiwg5wboWVn8aCgxj7u617taha28IQDN1GPKtnEICi3aHRBhor9ZLLpyXmF_cHB4LdcMuH3AXwZ001/pub?start=false&loop=false&delayms=3000"

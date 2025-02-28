@@ -22,15 +22,15 @@ cgeimg::block[
 
 Demos:
 
-1. link:web-demos/simplest_viewport[3D viewport, with animated light, dropping boxes with physics].
+1. link:web-demos/examples/web/simplest_viewport[3D viewport, with animated light, dropping boxes with physics].
 +
 Source code in https://github.com/castle-engine/castle-engine/tree/master/examples/web/simplest_viewport[examples/web/simplest_viewport].
 
-2. link:web-demos/simplest_invaders[2D "Invaders" game].
+2. link:web-demos/examples/web/simplest_invaders[2D "Invaders" game].
 +
 Source code in https://github.com/castle-engine/castle-engine/tree/master/examples/web/simplest_invaders[examples/web/simplest_invaders].
 
-3. link:web-demos/simplest[The first, simplest example that runs on the web]!
+3. link:web-demos/examples/web/simplest[The first, simplest example that runs on the web]!
 +
 Source code in https://github.com/castle-engine/castle-engine/tree/master/examples/web/simplest[examples/web/simplest].
 
@@ -38,7 +38,7 @@ Source code in https://github.com/castle-engine/castle-engine/tree/master/exampl
 ====
 These are _early demos_, so don't judge the final quality by these demos (yet) :) We have some known TODOs, including:
 
-- The demos use only 3D / 2D things set up from code (because they don't load data files, not even designs) so they don't look impressive.
+- The _"3 earliest demos"_ use only 3D / 2D things set up from code (they don't load any data files, not even designs) so they don't look impressive. Reason: When we made these demos, reading data was not implemented yet (it is implemented now).
 - No shadow volumes on web yet (we need to initialize with stencil to have them).
 ====
 
@@ -148,8 +148,6 @@ WARNING: TODO: key handling may change to rely on focus instead, to allow to e.g
 - For application data, we pack the data as one binary file (zip). This allows to download the complete data at a clearly specified moment, with a nice progress bar, and later just load data files synchronously and reliably.
 +
 We use our cgeref:TCastleZip[] to handle ZIP. It uses FPC and Delphi standard units.
-+
-TODO: Downloading the zip is in progress now. We have a bit of data hardcoded now.
 
 === Plans (TODOs)
 
@@ -157,11 +155,11 @@ TODO: Downloading the zip is in progress now. We have a bit of data hardcoded no
 +
 Running on mobile requires now hacking pas2js, in `pas2js/packages/job/src/job_browser.pp`, find and comment out `RegisterGlobalObject(caches,'caches');`. Otherwise both Firefox and Chrome on Android fail with `ReferenceError: caches is not defined`.
 
-- For audio, we will add a new sound backend using https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API[WebAudio]. This will be the default sound backend on the web (like the https://castle-engine.io/openal[OpenAL] is now the default backend on non-web platforms).
+- For audio, we will add a new sound backend using https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API[WebAudio]. This will be the default sound backend on the web (like the link:openal[OpenAL] is now the default backend on non-web platforms).
 +
-It is also possible our https://castle-engine.io/fmod[FMOD] sound backend will also be ported to web, as https://www.fmod.com/docs/2.02/api/platforms-html5.html[FMOD supports HTML5]. This would make FMOD a truly cross-platform sound backend, working on every platform we support in CGE.
+It is also possible our link:fmod[FMOD] sound backend will also be ported to web, as https://www.fmod.com/docs/2.02/api/platforms-html5.html[FMOD supports HTML5]. This would make FMOD a truly cross-platform sound backend, working on every platform we support in CGE.
 +
-NOTE: About https://castle-engine.io/x3d_implementation_sound.php#section_x3d4[WebAudio in the context of X3D 4.0]. Supporting advanced X3D 4.0 audio nodes is not our priority, but since WebAudio will happen anyway, on the web... they will open this possibility. There is also https://github.com/LabSound/LabSound[LabSound] that provides WebAudio-like API on non-web platforms, and in principle it could one day replace OpenAL, making web and non-web audio handling closer.
+NOTE: About link:x3d_implementation_sound.php#section_x3d4[WebAudio in the context of X3D 4.0]. Supporting advanced X3D 4.0 audio nodes is not our priority, but since WebAudio will happen anyway, on the web... they will open this possibility. There is also https://github.com/LabSound/LabSound[LabSound] that provides WebAudio-like API on non-web platforms, and in principle it could one day replace OpenAL, making web and non-web audio handling closer.
 
 - Possibly throw in additional compression of data and/or wasm executable?
 +
@@ -260,13 +258,11 @@ If everything went well, you should get `hello_wasm.wasm` in the same directory.
 
 == How to test what we have now
 
-Right now, https://github.com/castle-engine/castle-engine/tree/master[master] branch of CGE contains the work on WebAssembly. To test it:
+1. link:download[Download the latest Castle Game Engine] as usual.
++
+Since we have merged the web target into the https://github.com/castle-engine/castle-engine/tree/master[master] branch, you don't need to do any special things to get it. But of course, if you want to "build from scratch", you can https://github.com/castle-engine/castle-engine/tree/master[checkout the master branch using GIT] and then follow link:compiling_from_source.php[compiling from sources docs].
 
-1. Get the https://github.com/castle-engine/castle-engine/tree/master[master] branch of CGE.
-
-2. Follow link:compiling_from_source.php[compiling from source] docs to compile at least new CGE build tool from this CGE branch.
-
-3. Enter any CGE project in `examples/web/` and compile and run it for WebAssembly.
+2. Enter any CGE project https://github.com/castle-engine/castle-engine/blob/master/examples/web/upload.sh#L72[that was tested for web] and compile and run it for web. Most other examples should already work with web too, actually, so feel free to experiment.
 +
 You can do it using the link:editor[]. Switch the platform using _"Run -> Platform -> Web"_, then click _"Compile And Run"_ (F9).
 +
@@ -277,16 +273,20 @@ Or you can do it from the command-line, using our link:build_tool[build tool]:
 castle-engine compile --target=web --mode=debug
 castle-engine run --target=web
 ----
-+
-TODO: Naturally we plan to allow compiling *any* project from `examples/` to the web. But for now, only projects in `examples/web/` are prepared for this.
 
 [WARNING]
 ====
-Beware of the cache!
+Beware of the cache! Browsers may cache the contents of everything. We counter this to some extent, by adding a random (determined at compile-time) suffix to URLs of everything we access:
 
-Browsers may cache the contents of everything (HTML, JS, WASM files, application data...). We counter this somewhat (by randomizing the URL by which we access the WASM file), but still cache affects us, as other files are cached. Just refresh using _Ctrl + Shift + R_ if it seems like you look at an old application version (or even a different application that was run previously from the same server).
+[role="compact"]
+- the `index.html` (during development, we access URL like `http://localhost:3000/index.html?random_suffix_to_avoid_cache=XXX`)
+- the WASM file
+- the JS file
+- the data ZIP file
 
-TODO: We could counter cache more, by accessing `http://localhost:3000/?random=XXX` , and using random URL params for everything (JS, HTML, application data). Also, we should make it configurable, to enable turning off "fighting with cache" for production reproducible-builds.
+But if you still run into cache issues (it seems like you see the previous application version, or even a different application that was run previously from the same server) -> just refresh using _Ctrl + Shift + R_.
+
+TODO: We should make it configurable, to enable turning off "fighting with cache" for reproducible-builds that should not have random suffixes in the generated files.
 ====
 
 NOTE: Our default HTML template displays link:log[] underneath your application, including everything you write to the log e.g. using `WritelnLog('Hello!')`. The log is also accessible using the _"Developer Tools"_ of your browser (press F12) -> _"Console"_ . The console can also be toggled when in the _fullscreen_ mode.
