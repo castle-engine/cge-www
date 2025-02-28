@@ -43,6 +43,161 @@ These are _early demos_, so don't judge the final quality by these demos (yet) :
 - We don't show much 3D demos, because our PBR shaders in some cases fail compilation on WebGL. This is of course just a regular bug to find and solve.
 ====
 
+== Usage (building examples and your own projects)
+
+=== Installing Prerequisites
+
+[NOTE]
+====
+Things below look complicated? We have plans to make them easier:
+
+- We plan to extend our link:docker[Docker images] to provide pas2js and FPC with WebAssembly support out-of-the-box. Don't know yet what https://www.docker.com/[Docker] is? Then we advise to play and learn, Docker images and containers are nice way to share "development environments".
+
+- We also will provide recipes how to use link:github_actions[Github Actions] and link:gitlab_ci[GitLab CI] to build applications for the web. So if you host your repository on _GitHub_ or _GitLab_, you can let the build be done for you.
+====
+
+Installing the tools:
+
+- *link:https://getpas2js.freepascal.org/[Pas2js]*.
++
+You can get it along with https://www.freepascal.org/[FPC] or install it separately from link:https://getpas2js.freepascal.org/[here].
++
+WARNING: We test with the latest https://wiki.freepascal.org/pas2js#GIT[Pas2js from GIT] right now, so this is also what we advise to use. The stable release 3.0.1 from https://getpas2js.freepascal.org/ is _not supported_ right now (due to incompatibilities around `Job.Js` and friends usage, which are all solved in latest Pas2js + FPC). With time we may change this (adjust to older Pas2js) and/or a new release of _Pas2js_ may happen which will make things easier :)
++
+_Test that it works._ Create the following simple program, save it as `hello_pas2js.lpr`:
++
+[source,pascal]
+----
+begin
+  Writeln('Hello from pas2js!');
+end.
+----
++
+If everything is installed and configured OK, then you should be able to compile it using this from the command-line:
++
+```
+pas2js -Jc -Jirtl.js -Tbrowser hello_pas2js.lpr
+```
++
+If everything went well, you should get a file `hello_pas2js.js` in the same directory.
++
+[NOTE]
+====
+If `pas2js` reports an error like `Error: can't find unit "System"`, it most likely means that the https://wiki.freepascal.org/pas2js.cfg[pas2js.cfg] configuration file is missing or wrong. You can either generate it using `createconfig` tool or take and adjust the sample from https://wiki.freepascal.org/pas2js.cfg[pas2js.cfg wiki page], then place the resulting file in a system-specific location indicated on that wiki page.
+
+It does seem that `fpcupdeluxe`, although it provides `pas2js` and `compileserver` binaries (good!), but it doesn't provide the `createconfig` tool nor does it contain the relevant pas2js package structure (you need files like `packages/rtl/system.js`). So instead get `pas2js` from https://getpas2js.freepascal.org/ and make sure it's the first on `$PATH`. TODO: Submit issue to fpcupdeluxe about it.
+====
+
+- *compileserver* from *link:https://getpas2js.freepascal.org/[Pas2js]*.
++
+This is a very useful tool distributed along with link:https://getpas2js.freepascal.org/[Pas2js]. Make sure you got it, test it by executing on the  command-line this:
++
+```
+compileserver
+```
++
+Leave it running and access `http://localhost:3000/` in a web browser.
++
+Kill it by _Ctrl+C_ in the terminal.
++
+Why is this useful? Most dynamic webpages should be tested through a webserver running on your system (like `compileserver`, though you can also spin a full https://httpd.apache.org/[Apache] or https://nginx.org/[Nginx]) that serves the HTML, JS, WASM and other files. You view them using a `http://localhost:.../` URL, which means you access the webserver on your own system. In contrast, just opening the HTML files in a web browser (which results in URLs like `file:///.../index.html`) will usually not work, because of security: JavaScript code on such pages will not be able to load extra resources (like WASM files). It's possible to configure your browser to circumvent this (disable CORS checking) but it's a hassle. Using a "temporary webserver" like `compileserver` is the easiest way to test your applications.
+
+- *link:https://www.freepascal.org/[FPC] with link:https://wiki.freepascal.org/WebAssembly[WebAssembly] support.*
++
+In our opinion, it's easiest to get this using link:fpcupdeluxe[]: install FPC _"trunk"_ version, then install FPC cross-compiler for OS=`Wasi` and CPU=`Wasm32`. You can also just get it from GIT and compile manually, following link:https://wiki.freepascal.org/WebAssembly[FPC wiki about WebAssembly].
++
+_Test that it works._ Create the following simple program, saved as `hello_wasm.lpr`:
++
+```delphi
+begin
+  Writeln('Hello from WebAssembly!');
+end.
+```
++
+If everything is installed and configured OK, then you should be able to compile it using this command:
++
+```
+fpc -Twasi -Pwasm32 hello_wasm.lpr
+```
++
+If everything went well, you should get `hello_wasm.wasm` in the same directory.
+
+=== Building Castle Game Engine applications
+
+1. link:download[Download the latest Castle Game Engine] as usual.
++
+Since we have merged the web target into the https://github.com/castle-engine/castle-engine/tree/master[master] branch, you don't need to do any special things to get it. But of course, if you want to "build from scratch", you can https://github.com/castle-engine/castle-engine/tree/master[checkout the master branch using GIT] and then follow link:compiling_from_source.php[compiling from sources docs].
+
+2. Enter any CGE project https://github.com/castle-engine/castle-engine/blob/master/examples/web/upload.sh#L72[that was tested for web] and compile and run it for web.
+// TODO: not until we fix PBR shader fails
+// Many other examples should already work with web too, actually, so feel free to experiment.
++
+You can do it using the link:editor[]. Switch the platform using _"Run -> Platform -> Web"_, then click _"Compile And Run"_ (F9).
++
+Or you can do it from the command-line, using our link:build_tool[build tool]:
++
+[source,shell]
+----
+castle-engine compile --target=web --mode=debug
+castle-engine run --target=web
+----
+
+[WARNING]
+====
+Beware of the cache! Browsers may cache the contents of everything. We counter this to some extent, by adding a random (determined at compile-time) suffix to URLs of everything we access:
+
+[role="compact"]
+- the `index.html` (during development, we access URL like `http://localhost:3000/index.html?random_suffix_to_avoid_cache=XXX`)
+- the WASM file
+- the JS file
+- the data ZIP file
+
+But if you still run into cache issues (it seems like you see the previous application version, or even a different application that was run previously from the same server) -> just refresh using _Ctrl + Shift + R_.
+
+TODO: We should make it configurable, to enable turning off "fighting with cache" for reproducible-builds that should not have random suffixes in the generated files.
+====
+
+NOTE: Our default HTML template displays link:log[] underneath your application, including everything you write to the log e.g. using `WritelnLog('Hello!')`. The log is also accessible using the _"Developer Tools"_ of your browser (press F12) -> _"Console"_ . The console can also be toggled when in the _fullscreen_ mode.
+
+[#manifest]
+=== Customize default canvas size
+
+You can customize the default canvas size using the link:project_manifest#web[web options in CastleEngineManifest.xml].
+
+[#platform_default]
+=== Run the project by default for the web
+
+In the editor: Select the new platform, like _"Web"_, in the _"Run -> Platforms -> ..."_ menu. Then you can save it for the future using menu item _"Run -> Platforms -> Save Chosen Platform As Default (in Project Local Settings)"_.
+
+Alternatively and equivalently:
+
+You can create a file `CastleProjectLocalSettings.json` in your project. Place it at the top-level of the project, so it is next to the link:project_manifest[CastleEngineManifest.xml] file. The `CastleProjectLocalSettings.json` can contain settings that are specific to your local user or machine.
+
+For example, it can specify that the default target is _web_ like this:
+
+```json
+{
+  "$$ClassName" : "TCastleProjectLocalSettings",
+  "UsePlatformDefaults" : true,
+  "DefaultTarget": "targetWeb"
+}
+```
+
+Changing the default platform is useful if you want to always build and run for the web, without specifying `--target=web` every time. Now using just `castle-engine compile` and `castle-engine run` will build and run for the web. You can still override this at command-line, using the `--target`, `--os`, `--cpu` options (see link:build_tool[build tool] docs).
+
+NOTE: The `CastleProjectLocalSettings.json` support is not strictly a feature of the _web target_, it's useful in every case when you want to change the default platform (and we plan to add there more things). By default, we build and run for the current desktop target, with current OS and CPU.
+
+All the possibilities are described by the cgeref:TCastleProjectLocalSettings[].
+// https://github.com/castle-engine/castle-engine/blob/master/src/files/tools/castleinternalprojectlocalsettings.pas[see code]).
+
+Note that you can also open the `CastleProjectLocalSettings.json` as a _design_ in the editor and edit the component in the object inspector. That's because cgeref:TCastleProjectLocalSettings[] is a regular serializable component for our engine. Right now, this doesn't really imply any new features, but it may in the future, and it will be compatible with future link:roadmap#_project_settings_editable_using_gui[CastleProject.json].
+
+WARNING: The file `CastleProjectLocalSettings.json` should not be committed to the version control, it should be ignored by file like `.gitignore` (if you use GIT).
+
+== Thank you
+
+I want to thank everyone involved in this and let's push forward! Web target is a really cool feature, from my talks I know it's an important feature for many CGE users, and I feel we have it in our reach. Let's keep coding and enjoy making games :)
+
 == Compatibility
 
 Absolute :)
@@ -55,9 +210,57 @@ Absolute :)
 +
 WARNING: To make the resulting web application working also in mobile (like Android) web browsers, one needs to apply a 1-line hack to `pas2js` sources, see below for details.
 
-== How it works (or will work)
+== Running WASM code outside of the browser
 
-=== Already working
+_WebAssembly_ is not limited to running in a web browser. We support running the compiled WASM binaries also using https://wasmtime.dev/[Wasmtime], though **without rendering**.
+
+[WARNING]
+====
+Trying to render anything in https://wasmtime.dev/[Wasmtime] will fail, as we don't have access to WebGL API and context (or the rest of JS API, like `window.requestAnimationFrame`). So you cannot even create cgeref:TCastleWindow[], i.e. it will fail inside https://wasmtime.dev/[Wasmtime] with
+
+```
+TODO update this error message
+```
+
+and we don't have immediate plans to make it work. But, at least everything else (all the code _up to the rendering_) will work on https://wasmtime.dev/[Wasmtime].
+
+////
+If you know of an easy way to pass WebGL API and context (and rest of JS stuff we need, like `window.requestAnimationFrame`) to application run in https://wasmtime.dev/[Wasmtime] (e.g. implementing JS APIs, including WebGL by OpenGL(ES) on the desktop), let us know. And note that we prefer to pass WebGL API, not OpenGL(ES) API, to our application run in https://wasmtime.dev/[Wasmtime]. We want the _wasmtime_ to work as close to _web browser_ as possible, 1. because it avoids `wasmtime`-specific maintenance, 2. because it makes `wasmtime` more suited to debugging what happens on the web, which is its main use-case for us.
+////
+====
+
+Build your application like this (on the command-line):
+
+```
+castle-engine compile --os=wasi --cpu=wasm32 --mode=debug
+```
+
+Run it like this:
+
+```
+export WASMTIME_BACKTRACE_DETAILS=1 # get a more detailed backtrace
+wasmtime <project-name>.wasm
+```
+
+The main use-case of this is additional https://wiki.freepascal.org/WebAssembly/Debugging[debugging] approach. In case of a crash, the `wasmtime` will give you a useful stack trace with line numbers (if only you compiled with `--mode=debug`, as shown above).
+
+=== Running engine test-suite on WASM
+
+As a particular application of the above ("you can run engine code using wasmtime, except rendering"), you can run our test suite on WASM.
+
+WARNING: Making `castle-tester.wasm` work this way is a work-in-progress. The `time_measurements_tests.wasm` mentioned below works already.
+
+```shell
+cd tests/
+castle-engine compile --os=wasi --cpu=wasm32 --mode=debug
+wasmtime castle-tester.wasm --console --no-window-create
+
+cd time_measurements_tests/ # enter tests/time_measurements_tests/ in CGE
+castle-engine compile --os=wasi --cpu=wasm32 --mode=debug
+wasmtime time_measurements_tests.wasm
+```
+
+== How it works
 
 - We're using FPC https://wiki.freepascal.org/WebAssembly[WebAssembly] target.
 +
@@ -150,9 +353,9 @@ WARNING: TODO: key handling may change to rely on focus instead, to allow to e.g
 +
 We use our cgeref:TCastleZip[] to handle ZIP. It uses FPC and Delphi standard units.
 
-=== Plans (TODOs)
+== Plans (TODOs)
 
-- TODO: PBR shaders (used by most 3D demos) have weird error at compilation on WebGL.
+- PBR shaders (used by most 3D demos) have weird error at compilation on WebGL.
 
 - Reproduce with clean sample and submit to FPC:
 +
@@ -185,205 +388,4 @@ We could also use https://en.wikipedia.org/wiki/Brotli[Brotli], a newer compress
 
 - Block context menu (maybe make it optional) to allow using right mouse button comfortably?
 
-== Prerequisites
-
-[NOTE]
-====
-Things below look complicated? We have plans to make them easier:
-
-- We plan to extend our link:docker[Docker images] to provide pas2js and FPC with WebAssembly support out-of-the-box. Don't know yet what https://www.docker.com/[Docker] is? Then we advise to play and learn, Docker images and containers are nice way to share "development environments".
-
-- We also will provide recipes how to use link:github_actions[Github Actions] and link:gitlab_ci[GitLab CI] to build applications for the web. So if you host your repository on _GitHub_ or _GitLab_, you can let the build be done for you.
-====
-
-Installing the tools:
-
-- *link:https://getpas2js.freepascal.org/[Pas2js]*.
-+
-You can get it along with https://www.freepascal.org/[FPC] or install it separately from link:https://getpas2js.freepascal.org/[here].
-+
-WARNING: We test with the latest https://wiki.freepascal.org/pas2js#GIT[Pas2js from GIT] right now, so this is also what we advise to use. The stable release 3.0.1 from https://getpas2js.freepascal.org/ is _not supported_ right now (due to incompatibilities around `Job.Js` and friends usage, which are all solved in latest Pas2js + FPC). With time we may change this (adjust to older Pas2js) and/or a new release of _Pas2js_ may happen which will make things easier :)
-+
-_Test that it works._ Create the following simple program, save it as `hello_pas2js.lpr`:
-+
-[source,pascal]
-----
-begin
-  Writeln('Hello from pas2js!');
-end.
-----
-+
-If everything is installed and configured OK, then you should be able to compile it using this from the command-line:
-+
-```
-pas2js -Jc -Jirtl.js -Tbrowser hello_pas2js.lpr
-```
-+
-If everything went well, you should get a file `hello_pas2js.js` in the same directory.
-+
-[NOTE]
-====
-If `pas2js` reports an error like `Error: can't find unit "System"`, it most likely means that the https://wiki.freepascal.org/pas2js.cfg[pas2js.cfg] configuration file is missing or wrong. You can either generate it using `createconfig` tool or take and adjust the sample from https://wiki.freepascal.org/pas2js.cfg[pas2js.cfg wiki page], then place the resulting file in a system-specific location indicated on that wiki page.
-
-It does seem that `fpcupdeluxe`, although it provides `pas2js` and `compileserver` binaries (good!), but it doesn't provide the `createconfig` tool nor does it contain the relevant pas2js package structure (you need files like `packages/rtl/system.js`). So instead get `pas2js` from https://getpas2js.freepascal.org/ and make sure it's the first on `$PATH`. TODO: Submit issue to fpcupdeluxe about it.
-====
-
-- *compileserver* from *link:https://getpas2js.freepascal.org/[Pas2js]*.
-+
-This is a very useful tool distributed along with link:https://getpas2js.freepascal.org/[Pas2js]. Make sure you got it, test it by executing on the  command-line this:
-+
-```
-compileserver
-```
-+
-Leave it running and access `http://localhost:3000/` in a web browser.
-+
-Kill it by _Ctrl+C_ in the terminal.
-+
-Why is this useful? Most dynamic webpages should be tested through a webserver running on your system (like `compileserver`, though you can also spin a full https://httpd.apache.org/[Apache] or https://nginx.org/[Nginx]) that serves the HTML, JS, WASM and other files. You view them using a `http://localhost:.../` URL, which means you access the webserver on your own system. In contrast, just opening the HTML files in a web browser (which results in URLs like `file:///.../index.html`) will usually not work, because of security: JavaScript code on such pages will not be able to load extra resources (like WASM files). It's possible to configure your browser to circumvent this (disable CORS checking) but it's a hassle. Using a "temporary webserver" like `compileserver` is the easiest way to test your applications.
-
-- *link:https://www.freepascal.org/[FPC] with link:https://wiki.freepascal.org/WebAssembly[WebAssembly] support.*
-+
-In our opinion, it's easiest to get this using link:fpcupdeluxe[]: install FPC _"trunk"_ version, then install FPC cross-compiler for OS=`Wasi` and CPU=`Wasm32`. You can also just get it from GIT and compile manually, following link:https://wiki.freepascal.org/WebAssembly[FPC wiki about WebAssembly].
-+
-_Test that it works._ Create the following simple program, saved as `hello_wasm.lpr`:
-+
-```delphi
-begin
-  Writeln('Hello from WebAssembly!');
-end.
-```
-+
-If everything is installed and configured OK, then you should be able to compile it using this command:
-+
-```
-fpc -Twasi -Pwasm32 hello_wasm.lpr
-```
-+
-If everything went well, you should get `hello_wasm.wasm` in the same directory.
-
-== How to test what we have now
-
-1. link:download[Download the latest Castle Game Engine] as usual.
-+
-Since we have merged the web target into the https://github.com/castle-engine/castle-engine/tree/master[master] branch, you don't need to do any special things to get it. But of course, if you want to "build from scratch", you can https://github.com/castle-engine/castle-engine/tree/master[checkout the master branch using GIT] and then follow link:compiling_from_source.php[compiling from sources docs].
-
-2. Enter any CGE project https://github.com/castle-engine/castle-engine/blob/master/examples/web/upload.sh#L72[that was tested for web] and compile and run it for web.
-// TODO: not until we fix PBR shader fails
-// Many other examples should already work with web too, actually, so feel free to experiment.
-+
-You can do it using the link:editor[]. Switch the platform using _"Run -> Platform -> Web"_, then click _"Compile And Run"_ (F9).
-+
-Or you can do it from the command-line, using our link:build_tool[build tool]:
-+
-[source,shell]
-----
-castle-engine compile --target=web --mode=debug
-castle-engine run --target=web
-----
-
-[WARNING]
-====
-Beware of the cache! Browsers may cache the contents of everything. We counter this to some extent, by adding a random (determined at compile-time) suffix to URLs of everything we access:
-
-[role="compact"]
-- the `index.html` (during development, we access URL like `http://localhost:3000/index.html?random_suffix_to_avoid_cache=XXX`)
-- the WASM file
-- the JS file
-- the data ZIP file
-
-But if you still run into cache issues (it seems like you see the previous application version, or even a different application that was run previously from the same server) -> just refresh using _Ctrl + Shift + R_.
-
-TODO: We should make it configurable, to enable turning off "fighting with cache" for reproducible-builds that should not have random suffixes in the generated files.
-====
-
-NOTE: Our default HTML template displays link:log[] underneath your application, including everything you write to the log e.g. using `WritelnLog('Hello!')`. The log is also accessible using the _"Developer Tools"_ of your browser (press F12) -> _"Console"_ . The console can also be toggled when in the _fullscreen_ mode.
-
-== Running WASM code outside of the browser
-
-_WebAssembly_ is not limited to running in a web browser. We support running the compiled WASM binaries also using https://wasmtime.dev/[Wasmtime], though **without rendering**.
-
-[WARNING]
-====
-Trying to render anything in https://wasmtime.dev/[Wasmtime] will fail, as we don't have access to WebGL API and context (or the rest of JS API, like `window.requestAnimationFrame`). So you cannot even create cgeref:TCastleWindow[], i.e. it will fail inside https://wasmtime.dev/[Wasmtime] with
-
-```
-TODO update this error message
-```
-
-and we don't have immediate plans to make it work. But, at least everything else (all the code _up to the rendering_) will work on https://wasmtime.dev/[Wasmtime].
-
-////
-If you know of an easy way to pass WebGL API and context (and rest of JS stuff we need, like `window.requestAnimationFrame`) to application run in https://wasmtime.dev/[Wasmtime] (e.g. implementing JS APIs, including WebGL by OpenGL(ES) on the desktop), let us know. And note that we prefer to pass WebGL API, not OpenGL(ES) API, to our application run in https://wasmtime.dev/[Wasmtime]. We want the _wasmtime_ to work as close to _web browser_ as possible, 1. because it avoids `wasmtime`-specific maintenance, 2. because it makes `wasmtime` more suited to debugging what happens on the web, which is its main use-case for us.
-////
-====
-
-Build your application like this (on the command-line):
-
-```
-castle-engine compile --os=wasi --cpu=wasm32 --mode=debug
-```
-
-Run it like this:
-
-```
-export WASMTIME_BACKTRACE_DETAILS=1 # get a more detailed backtrace
-wasmtime <project-name>.wasm
-```
-
-The main use-case of this is additional https://wiki.freepascal.org/WebAssembly/Debugging[debugging] approach. In case of a crash, the `wasmtime` will give you a useful stack trace with line numbers (if only you compiled with `--mode=debug`, as shown above).
-
-=== Running engine test-suite on WASM
-
-As a particular application of the above ("you can run engine code using wasmtime, except rendering"), you can run our test suite on WASM.
-
-WARNING: Making `castle-tester.wasm` work this way is a work-in-progress. The `time_measurements_tests.wasm` mentioned below works already.
-
-```shell
-cd tests/
-castle-engine compile --os=wasi --cpu=wasm32 --mode=debug
-wasmtime castle-tester.wasm --console --no-window-create
-
-cd time_measurements_tests/ # enter tests/time_measurements_tests/ in CGE
-castle-engine compile --os=wasi --cpu=wasm32 --mode=debug
-wasmtime time_measurements_tests.wasm
-```
-
-[#manifest]
-== Customize default canvas size
-
-You can customize the default canvas size using the link:project_manifest#web[web options in CastleEngineManifest.xml].
-
-[#platform_default]
-== Run the project by default for the web
-
-In the editor: Select the new platform, like _"Web"_, in the _"Run -> Platforms -> ..."_ menu. Then you can save it for the future using menu item _"Run -> Platforms -> Save Chosen Platform As Default (in Project Local Settings)"_.
-
-Alternatively and equivalently:
-
-You can create a file `CastleProjectLocalSettings.json` in your project. Place it at the top-level of the project, so it is next to the link:project_manifest[CastleEngineManifest.xml] file. The `CastleProjectLocalSettings.json` can contain settings that are specific to your local user or machine.
-
-For example, it can specify that the default target is _web_ like this:
-
-```json
-{
-  "$$ClassName" : "TCastleProjectLocalSettings",
-  "UsePlatformDefaults" : true,
-  "DefaultTarget": "targetWeb"
-}
-```
-
-Changing the default platform is useful if you want to always build and run for the web, without specifying `--target=web` every time. Now using just `castle-engine compile` and `castle-engine run` will build and run for the web. You can still override this at command-line, using the `--target`, `--os`, `--cpu` options (see link:build_tool[build tool] docs).
-
-NOTE: The `CastleProjectLocalSettings.json` support is not strictly a feature of the _web target_, it's useful in every case when you want to change the default platform (and we plan to add there more things). By default, we build and run for the current desktop target, with current OS and CPU.
-
-All the possibilities are described by the cgeref:TCastleProjectLocalSettings[].
-// https://github.com/castle-engine/castle-engine/blob/master/src/files/tools/castleinternalprojectlocalsettings.pas[see code]).
-
-Note that you can also open the `CastleProjectLocalSettings.json` as a _design_ in the editor and edit the component in the object inspector. That's because cgeref:TCastleProjectLocalSettings[] is a regular serializable component for our engine. Right now, this doesn't really imply any new features, but it may in the future, and it will be compatible with future link:roadmap#_project_settings_editable_using_gui[CastleProject.json].
-
-WARNING: The file `CastleProjectLocalSettings.json` should not be committed to the version control, it should be ignored by file like `.gitignore` (if you use GIT).
-
-== Thank you
-
-I want to thank everyone involved in this and let's push forward! Web target is a really cool feature, from my talks I know it's an important feature for many CGE users, and I feel we have it in our reach. Let's keep coding and enjoy making games :)
+- Handle scrollbar.
