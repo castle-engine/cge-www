@@ -20,19 +20,37 @@ cgeimg::block[
 
 == Demos
 
-Demos:
+=== 2D demos
 
-1. link:web-demos/examples/web/simplest_viewport[3D viewport, with animated light, dropping boxes with physics].
-+
-Source code in https://github.com/castle-engine/castle-engine/tree/master/examples/web/simplest_viewport[examples/web/simplest_viewport].
+- link:web-demos/examples/platformer[Platformer game] (https://github.com/castle-engine/castle-engine/tree/master/examples/platformer[Source code])
 
-2. link:web-demos/examples/web/simplest_invaders[2D "Invaders" game].
-+
-Source code in https://github.com/castle-engine/castle-engine/tree/master/examples/web/simplest_invaders[examples/web/simplest_invaders].
+- link:web-demos/examples/component_gallery[User interface components] (https://github.com/castle-engine/castle-engine/tree/master/examples/component_gallery[Source code])
 
-3. link:web-demos/examples/web/simplest[The first, simplest example that runs on the web]!
-+
-Source code in https://github.com/castle-engine/castle-engine/tree/master/examples/web/simplest[examples/web/simplest].
+- link:web-demos/examples/animations/play_animation[Test playing animations (with cross-fading) from Spine, glTF, sprite sheets] (https://github.com/castle-engine/castle-engine/tree/master/examples/animations/play_animation[Source code])
+
+- link:web-demos/examples/space_shooter[Space shooter] (https://github.com/castle-engine/castle-engine/tree/master/examples/space_shooter[Source code])
+
+- link:web-demos/examples/tiled/map_viewer[Tiled Map Viewer] (https://github.com/castle-engine/castle-engine/tree/master/examples/tiled/map_viewer[Source code])
+
+- link:web-demos/examples/tiled/strategy_game_demo[Strategy game (using Tiled maps)] (https://github.com/castle-engine/castle-engine/tree/master/examples/tiled/strategy_game_demo[Source code])
+
+=== 3D demos
+
+- link:web-demos/examples/ifc[Manipulating IFC] (https://github.com/castle-engine/castle-engine/tree/master/examples/ifc[Source code])
+
+- link:web-demos/examples/user_interface/zombie_fighter[Zombie Fighter - 3D demo] (https://github.com/castle-engine/castle-engine/tree/master/examples/user_interface/zombie_fighter[Source code])
+
+- link:web-demos/examples/viewport_and_scenes/cars_demo[Cars demo] (https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/cars_demo[Source code])
+
+- link:web-demos/examples/viewport_and_scenes/collisions[Collisions in 3D test] (https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/collisions[Source code])
+
+=== Earliest (simplest) demos
+
+- link:web-demos/examples/web/simplest_viewport[3D viewport, with animated light, dropping boxes with physics] (Source code in https://github.com/castle-engine/castle-engine/tree/master/examples/web/simplest_viewport[examples/web/simplest_viewport])
+
+- link:web-demos/examples/web/simplest_invaders[2D "Invaders" game] (Source code in https://github.com/castle-engine/castle-engine/tree/master/examples/web/simplest_invaders[examples/web/simplest_invaders])
+
+- link:web-demos/examples/web/simplest[The first, simplest example that runs on the web]! (Source code in https://github.com/castle-engine/castle-engine/tree/master/examples/web/simplest[examples/web/simplest])
 
 [WARNING]
 ====
