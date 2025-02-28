@@ -22,3 +22,5 @@
 /htdocs/cge-delphi-beta.zip
 # auto-updated at deploying
 /htdocs/castle_image_sizes.php
+# auto-generated, and large and often changing, so copy it by rsync without GIT
+/htdocs/web-demos/
