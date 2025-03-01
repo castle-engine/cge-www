@@ -146,7 +146,7 @@ If everything went well, you should get `hello_wasm.wasm` in the same directory.
 +
 Since we have merged the web target into the https://github.com/castle-engine/castle-engine/tree/master[master] branch, you don't need to do any special things to get it. But of course, if you want to "build from scratch", you can https://github.com/castle-engine/castle-engine/tree/master[checkout the master branch using GIT] and then follow link:compiling_from_source.php[compiling from sources docs].
 
-2. Enter any CGE project https://github.com/castle-engine/castle-engine/blob/master/examples/web/upload.sh#L72[that was tested for web] and compile and run it for web.
+2. Enter any CGE project https://github.com/castle-engine/castle-engine/blob/deae9e6ac3f8c1dc07fc5735bae1f2cc63ad39d4/tools/internal/build_web_demos#L85[that was tested for web] and compile and run it for web.
 // TODO: not until we fix PBR shader fails
 // Many other examples should already work with web too, actually, so feel free to experiment.
 +
@@ -371,9 +371,21 @@ WARNING: TODO: key handling may change to rely on focus instead, to allow to e.g
 +
 We use our cgeref:TCastleZip[] to handle ZIP. It uses FPC and Delphi standard units.
 
+- Fonts: We have a hacky solution right now. We generate embedded font, just like when using `texture-font-to-pascal`, for all fonts found in your data. Then we compile them in.
++
+The way it currently works was easy to do, but it's not the final solution, TODO: it has a few drawbacks.
++
+--
+- We move away from "compiling things into Pascal", because some approaches to this (`image-to-pascal`, `texture-font-to-pascal`) caused only maintenance burden, do not scale (e.g. to distance field fonts) and do not have real benefits. In practice, we want to read "external data" and we can do this on all platforms. (And if we ever need to, we could use generic FPC resources.) `texture-font-to-pascal` is deprecated for this reasons. What we really want is to convert the ttf/otf/woff to our font format (still in `data/`) that no longer needs FreeType to open at runtime. This would be similar to e.g. how we generate GPU-compressed textures.
+
+- A practical problem with current approach is also that we embed arbitrary size (20), anti-aliasing and character set (only ASCII) for this font.
+
+- Another practical problem is that it doesn't work on Windows, where build tool cannot use FreeType, to avoid another Windows issue (mistakenly locking the DLL you want to replace).
+--
+
 == Plans (TODOs)
 
-- PBR shaders (used by most 3D demos) have weird error at compilation on WebGL.
+- PBR shaders (used by most 3D demos) combined with textures have weird error at compilation on WebGL.
 
 - Reproduce with clean sample and submit to FPC:
 +
@@ -407,3 +419,5 @@ We could also use https://en.wikipedia.org/wiki/Brotli[Brotli], a newer compress
 - Block context menu (maybe make it optional) to allow using right mouse button comfortably?
 
 - Handle scrollbar.
+
+- The way we embed fonts has a few drawbacks. We assume hardcoded size (20), character set (ASCII) and it cannot work on Windows (because build tool right now doesn't use dynamic libraries, to avoid conflicting with removal/updating of DLLs of the project).
