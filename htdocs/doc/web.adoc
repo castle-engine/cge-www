@@ -1,7 +1,7 @@
 # Web Target
 include::common.adoc[]
-:description: Upcoming support for web development in CGE.
-:cge-social-share-image: web_1_vivaldi.png
+:description: Building web applications using Castle Game Engine. Thanks to FPC and WebAssembly, we can recompile applications for the web. Applications are rendered on a canvas using WebGL.
+:cge-social-share-image: web_0_play_animation.png
 
 == Introduction
 
@@ -374,6 +374,10 @@ WARNING: TODO: key handling may change to rely on focus instead, to allow to e.g
 - Rendering is crisp, in "real device pixels", including on high-DPI screens and when you zoom the page.
 
 - For application data, we pack the data as one binary file (zip). This allows to download the complete data at a clearly specified moment, with a nice progress bar, and later just load data files synchronously and reliably.
++
+Zip is in this case both a _container for multiple files_, and provider for basic compression. Frankly, we use it more "container for multiple files" here than compression. Because http(s) communication between any modern web browser and server will add a gzip compression on top of this anyway.
++
+We used zip, as the simplest and most common archive format, supported by a myriad of software on all systems, with tools to unpack available even out-of-the-box in all modern systems. It is also consistent e.g. with id Software pk3 (which was really a zip file).
 +
 We use our cgeref:TCastleZip[] to handle ZIP. It uses FPC and Delphi standard units.
 
