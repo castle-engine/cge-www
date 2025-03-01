@@ -13,9 +13,15 @@ This feature is in intensive development now. As such, this page will change as 
 _Web target_ allows you to recompile any application you wrote using _Castle Game Engine_ (using cgeref:TCastleWindow[]) to the web. So you can put your application on a website, as part of a regular HTML webpage, and users can play it instantly, without the need to download / install any native application or browser plugin.
 
 cgeimg::block[
-  web_simplest_viewport.png|Castle Game Engine - Viewport example (in Firefox),
-  web_simplest_invaders.png|Castle Game Engine - Invaders example (in Firefox),
-  web_simplest.png|Castle Game Engine - Simplest example (in Firefox)
+//  web_simplest_viewport.png|Castle Game Engine - Viewport example (in Firefox),
+//  web_simplest_invaders.png|Castle Game Engine - Invaders example (in Firefox),
+//  web_simplest.png|Castle Game Engine - Simplest example (in Firefox)
+  web_0_play_animation.png|Web demo - Play animation,
+  web_1_space_shooter.png|Web demo - Space shooter,
+  web_1_ifc.png|Web demo - Manipulating IFC,
+  web_1_zombie_fighter.png|Web demo - Zombie Fighter,
+  web_5_platformer.png|Web demo - Platformer,
+  web_7_tiled.png|Web demo - Strategy Game Using Tiled
 ]
 
 == Demos
