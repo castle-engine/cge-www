@@ -22,11 +22,11 @@ cgeimg::block[
 
 === 2D demos
 
-- link:web-demos/examples/platformer[Platformer game] (https://github.com/castle-engine/castle-engine/tree/master/examples/platformer[Source code])
-
 - link:web-demos/examples/component_gallery[User interface Components Gallery] (https://github.com/castle-engine/castle-engine/tree/master/examples/component_gallery[Source code])
 
 - link:web-demos/examples/animations/play_animation[Test playing animations (with cross-fading) from Spine, glTF, sprite sheets] (https://github.com/castle-engine/castle-engine/tree/master/examples/animations/play_animation[Source code])
+
+- link:web-demos/examples/platformer[Platformer game] (https://github.com/castle-engine/castle-engine/tree/master/examples/platformer[Source code])
 
 - link:web-demos/examples/space_shooter[Space shooter] (https://github.com/castle-engine/castle-engine/tree/master/examples/space_shooter[Source code])
 
