@@ -4,7 +4,7 @@ Tags: logging, email, email log, smtp, log
 Requires at least: 5.0
 Tested up to: 6.7
 Requires PHP: 5.6.20
-Stable tag: 2.0.4
+Stable tag: 2.0.5.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -114,6 +114,19 @@ Someone using one of my other plugins had trouble with emails not being sent. I 
 
 == Changelog ==
 
+= v2.0.5.1 - 28/02/2025 =
+- Fixed: No Access to /wp-admin After Update to v2.0.5 #131
+
+= v2.0.5 - 27/02/2025 =
+- Feature: Added Notify users after X (user defined) email sending failures #20
+- Feature: Added Graph detail of mail delivered and failed  #120
+- Fixed: Conflict with Gravity Forms #128
+- Fixed: Error in debug log #123
+- Fixed: Fatal error on user end. #126
+- Fixed: Conflict Between "Check & Log Email" v2.0.4 and BackWPup Plugin Causing Dropbox Backup Failures #124
+- Enhancement: Some Enhancement #129
+- Enhancement: Updated screenshots on wp.org #122
+
 = v2.0.4 - 26/12/2024 =
 - Enhancement: Notice "Function _load_textdomain_just_in_time was called incorrectly" since wp 6.7 #116
 - Enhancement: Few improvement needed #112
@@ -174,8 +187,5 @@ Someone using one of my other plugins had trouble with emails not being sent. I 
 
 = v1.0.11 - 16/05/2024 =
 - Fixed: Tested with new version of wordpress i.e. 6.5v
-
-= v1.0.10 - 14/03/2024 =
-- Fixed: Resolved security issue raised by Wordfence
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/check-email/trunk/changelog.txt)

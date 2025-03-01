@@ -117,6 +117,9 @@ class Check_Email_Log_List_Page extends Check_Email_BasePage {
 	}
 
 	public function load_view_logs_assets( $hook ) {
+		if ('check-log-email_page_check-email-logs' != $hook) {
+			return;
+		}
 
 		$check_email      = wpchill_check_email();
 		$plugin_dir_url = plugin_dir_url( $check_email->get_plugin_file() );

@@ -2,20 +2,11 @@
 
 defined( 'ABSPATH' ) || exit; // Exit if accessed directly.
 
-$check_email      = wpchill_check_email();
-$plugin_path = plugin_dir_path($check_email->get_plugin_file());
-require_once $plugin_path . '/vendor/autoload.php';
 
 /**
  * Status Page.
  */
-use CheckEmail\Core\Auth;
 
-use Egulias\EmailValidator\EmailValidator;
-use Egulias\EmailValidator\Validation\DNSCheckValidation;
-use Egulias\EmailValidator\Validation\MultipleValidationWithAnd;
-use Egulias\EmailValidator\Validation\RFCValidation;
-use Egulias\EmailValidator\Validation\Extra\SpoofCheckValidation;
 
 class Check_Email_Status_Page extends Check_Email_BasePage {
 
@@ -35,37 +26,6 @@ class Check_Email_Status_Page extends Check_Email_BasePage {
 	public function load() {
 		parent::load();
         add_action( 'admin_enqueue_scripts', array( $this, 'checkemail_assets' ) );
-        add_action('wp_ajax_ck_email_verify', array( $this, 'ck_email_verify' ));
-	}
-
-    public function ck_email_verify() {
-		if(!isset($_POST['ck_mail_security_nonce'])){
-			return;
-		}
-		if ( !wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['ck_mail_security_nonce'] ) ), 'ck_mail_security_nonce' ) ){
-			return;
-		}
-		if ( ! current_user_can( 'manage_check_email' ) ) {
-			return;
-		}
-        $response = array('status'=> false);
-        if ( isset( $_POST['email'] ) && ! empty( $_POST['email'] )) {
-            $email = sanitize_text_field( wp_unslash( $_POST['email'] ) );
-            $validator = new EmailValidator();
-            // ietf.org has MX records signaling a server with email capabilities
-            $email_valid = $validator->isValid($email, new RFCValidation());
-            $dns_valid = $validator->isValid($email, new DNSCheckValidation());
-            $spoof_valid = $validator->isValid($email, new SpoofCheckValidation());
-            $response['status'] = true;
-            $response['spoof_valid'] = ($spoof_valid) ? 1 : 0;
-            $response['dns_valid'] = ($dns_valid) ? 1 : 0;
-            $response['email_valid'] = ($email_valid) ? 1 : 0;
-        }else{
-            $response['error'] = 'Please enter email address';
-        }
-
-		echo wp_json_encode($response);
-		wp_die();
 	}
 
 	/**

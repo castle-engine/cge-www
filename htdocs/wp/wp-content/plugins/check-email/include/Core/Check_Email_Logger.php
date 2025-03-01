@@ -193,8 +193,8 @@ class Check_Email_Logger implements Loadie {
 
 		$mail_error_data = $wp_error->get_error_data( 'wp_mail_failed' );
 		$mail_error_message = $wp_error->get_error_message( 'wp_mail_failed' );
-
-		$this->mark_email_log_as_failed(apply_filters('wp_check_email_failed', $mail_error_data, $mail_error_message) );
+        apply_filters('wp_check_email_failed', $mail_error_data, $mail_error_message);
+		$this->mark_email_log_as_failed($mail_error_data, $mail_error_message );
 	}
 
 	public function log_buddy_press_email( $status, $bp_mail ) {

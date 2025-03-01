@@ -240,10 +240,11 @@ class Check_Email_Log_List_Action implements Loadie {
 		if ( $id <= 0 ) {
 			wp_die();
 		}
-
+		
 		$log_items = $this->get_table_manager()->fetch_error_tracker_items_by_id( array( $id ) );
 		if ( count( $log_items ) > 0 ) {
 			$log_item = $log_items[0];
+			$main_logs = $this->get_table_manager()->fetch_log_items_by_id( array( $log_item['check_email_log_id'] ) )[0];
 
 			$headers = array();
 			
@@ -255,7 +256,7 @@ class Check_Email_Log_List_Action implements Loadie {
 			?>
 			<table style="width: 100%;" id="email_log_table">
 				<tr style="background: #eee;">
-					<td style="padding: 5px;"><b><?php esc_html_e( 'Date', 'check-email' ); ?></b>:</td>
+					<td style="padding: 5px;width: 20%;"><b><?php esc_html_e( 'Date', 'check-email' ); ?></b>:</td>
 					<td style="padding: 5px;"><?php echo esc_html( $log_item['created_at'] ); ?></td>
 				</tr>
 				<tr style="background: #eee;">
@@ -265,6 +266,10 @@ class Check_Email_Log_List_Action implements Loadie {
 				<tr style="background: #eee;">
 					<td style="padding: 5px;"><b><?php esc_html_e( 'Initiator', 'check-email' ); ?></b>:</td>
 					<td style="padding: 5px;"><?php echo esc_html( $log_item['initiator'] ); ?></td>
+				</tr>
+				<tr style="background: #eee;">
+					<td style="padding: 5px;"><b><?php esc_html_e( 'Error', 'check-email' ); ?></b>:</td>
+					<td style="padding: 5px;"><?php echo esc_html( $main_logs['error_message'] ); ?></td>
 				</tr>
 
 				<?php do_action( 'check_email_view_log_after_headers', $log_item ); ?>

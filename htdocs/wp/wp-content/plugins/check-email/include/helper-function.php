@@ -641,11 +641,16 @@ function ck_mail_check_dns() {
 }
 
 function ck_email_verify($email) {
-    $validator = new Egulias\EmailValidator\EmailValidator();
-    // ietf.org has MX records signaling a server with email capabilities
-    $email_valid = $validator->isValid($email, new Egulias\EmailValidator\Validation\RFCValidation());
-    $dns_valid = $validator->isValid($email, new Egulias\EmailValidator\Validation\DNSCheckValidation());
-    $spoof_valid = $validator->isValid($email, new Egulias\EmailValidator\Validation\Extra\SpoofCheckValidation());
+    $spoof_valid = 1;
+    $dns_valid = 1;
+    $email_valid = 1;
+    if (class_exists('\Egulias\EmailValidator\EmailValidator')) {
+        $validator = new \Egulias\EmailValidator\EmailValidator();
+        // ietf.org has MX records signaling a server with email capabilities
+        $email_valid = $validator->isValid($email, new \Egulias\EmailValidator\Validation\RFCValidation());
+        $dns_valid = $validator->isValid($email, new \Egulias\EmailValidator\Validation\DNSCheckValidation());
+        $spoof_valid = $validator->isValid($email, new \Egulias\EmailValidator\Validation\Extra\SpoofCheckValidation());
+    }
     $response['status'] = true;
     $response['spoof_valid'] = ($spoof_valid) ? 1 : 0;
     $response['dns_valid'] = ($dns_valid) ? 1 : 0;
@@ -797,6 +802,40 @@ function ck_mail_check_email_analyze() {
 }
 
 add_action( 'wp_ajax_check_email_analyze', 'ck_mail_check_email_analyze' );
+
+add_action('wp_ajax_checkmail_save_admin_fcm_token', 'checkmail_save_admin_fcm_token');
+
+function checkmail_save_admin_fcm_token() {
+    $result['status'] = false;
+    if (!isset($_POST['ck_mail_security_nonce'])) {
+        return;
+    }
+    if (!wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['ck_mail_security_nonce'])), 'ck_mail_security_nonce')) {
+        return;
+    }
+    if (isset($_POST['token']) && !empty($_POST['token'])) {
+
+        $current_user = wp_get_current_user();
+
+        if (in_array('administrator', (array) $current_user->roles)) {
+
+            $device_tokens = get_option('checkmail_admin_fcm_token');
+            if (!is_array($device_tokens)) {
+                $device_tokens = [];
+            }
+            $new_token = sanitize_text_field(wp_unslash(($_POST['token'] )));
+
+            if (!in_array($new_token, $device_tokens)) {
+                $device_tokens[] = $new_token;
+            }
+            $device_tokens = array_slice(array_unique($device_tokens), -5);
+            update_option('checkmail_admin_fcm_token', $device_tokens);
+            $result['status'] = true;
+        }
+    }
+    echo wp_json_encode( $result );
+    wp_die();
+}
 
 
 
@@ -958,8 +997,9 @@ add_action( 'init', 'check_email_e_register_shortcode', 2000 );
     
 		
 		$chars = str_split( $string );
-		$seed = wp_rand( 0, (int) abs( crc32( $string ) / strlen( $string ) ) );
-		
+        $string_length = (int) abs(crc32($string) / strlen($string));
+        $length = max($string_length, 1);
+        $seed = openssl_random_pseudo_bytes($length);
 
 		foreach ( $chars as $key => $char ) {
 			$ord = ord( $char );
@@ -1151,4 +1191,116 @@ function check_email_content_with_tracking($open_tracking_id) {
     // phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage
     $email_content = "<img src='$tracking_url' class='check-email-tracking' alt='' width='1' height='1' style='display:none;' />";
     return $email_content;
+}
+
+if ( is_admin() ) {
+
+    function checmail_dashboard_widget() {
+        echo '<canvas id="checkmail-dashboard-chart" style="width: 100%; height: 250px;"></canvas>';
+        echo '
+            <div style="margin-top: 10px; text-align: center; display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <select id="checkmail-dashboard-date-range">
+                        <option value="7">'.esc_html__('Last 7 Days', 'check-email').'</option>
+                        <option value="14">'.esc_html__('Last 14 Days', 'check-email').'</option>
+                        <option value="30">'.esc_html__('Last 30 Days', 'check-email').'</option>
+                    </select>
+                </div>
+                <div style="margin-top: 10px; text-align: center; font-size: 14px;">
+                    <p><span style="color: blue; font-weight: bold;" id="js_checkmail_total"></span> |
+                    <span style="color: green; font-weight: bold;" id="js_checkmail_sent"></span> |
+                    <span style="color: red; font-weight: bold;" id="js_checkmail_failed"></span></p>
+                </div>
+            </div>
+        ';
+    }
+
+    function add_checmail_dashboard_widget() {
+        $option = get_option( 'check-email-log-core' );
+       
+        if(!isset( $option['enable_dashboard_widget']) || (isset( $option['enable_dashboard_widget']) && $option['enable_dashboard_widget'] ) ){
+            wp_add_dashboard_widget(
+                'checmail_dashboard_widget',
+                esc_html__('Check & Log Email Activity', 'check-email'),
+                'checmail_dashboard_widget'
+            );
+        }
+    }
+    add_action('wp_dashboard_setup', 'add_checmail_dashboard_widget');
+
+    function custom_dashboard_scripts($hook) {
+        if ($hook !== 'index.php') return;
+            $suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+            wp_enqueue_script('chartjs', CK_MAIL_URL . 'assets/js/admin/chart.js', [], CK_MAIL_VERSION, true);
+            wp_register_script('custom-dashboard-chart', CK_MAIL_URL . 'assets/js/admin/checkmail-dashboard-chart'. $suffix .'.js', ['jquery','chartjs'], CK_MAIL_VERSION, true);
+            $data = array(
+                'ajax_url'                     => admin_url( 'admin-ajax.php' ),
+                'ck_mail_security_nonce'         => wp_create_nonce('ck_mail_ajax_check_nonce'),
+            );
+
+            wp_localize_script( 'custom-dashboard-chart', 'checkmail_chart', $data );
+            wp_enqueue_script( 'custom-dashboard-chart' );
+
+        
+    
+    }
+    add_action('admin_enqueue_scripts', 'custom_dashboard_scripts');
+
+    function get_email_analytics_data() {
+        if( !isset( $_GET['ck_mail_security_nonce'] ) || isset( $_GET['ck_mail_security_nonce'] ) && !wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['ck_mail_security_nonce'] ) ), 'ck_mail_ajax_check_nonce' ) ) {
+            echo esc_html__('security_nonce_not_verified', 'check-email');
+            die();
+        }
+        if ( !current_user_can( 'manage_options' ) ) {
+            die();
+        }
+        global $wpdb;
+
+        $table_name = $wpdb->prefix . 'check_email_log';
+        $ck_days = isset($_GET['ck_days']) ? sanitize_text_field( wp_unslash( $_GET['ck_days'] ) ) : 7;
+        $query = $wpdb->prepare(
+            // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+            "SELECT * FROM $table_name WHERE sent_date >= CURDATE() - INTERVAL %d DAY",
+            $ck_days
+        );
+        // phpcs:ignore InterpolatedNotPrepared
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared
+        $results = $wpdb->get_results($query);
+
+        $data = [
+            'labels' => [],
+            'sent' => [],
+            'failed' => [],
+        ];
+
+        
+        $daily_counts = [];
+        foreach ($results as $row) {
+            $created_at = $row->sent_date;
+            $status = $row->result;
+            $date = gmdate('M j', strtotime($created_at));
+            if (!isset($daily_counts[$date])) {
+                $daily_counts[$date] = ['sent' => 0, 'failed' => 0];
+            }
+            if ($status == 1) {
+                $daily_counts[$date]['sent']++;
+            } else {
+                $daily_counts[$date]['failed']++;
+            }
+        }
+        ksort($daily_counts);
+        foreach ($daily_counts as $date => $counts) {
+            $data['labels'][] = $date;
+            $data['sent'][] = $counts['sent'];
+            $data['failed'][] = $counts['failed'];
+        }
+
+        $data['total_mail'] =  array_sum($data['sent']) + array_sum($data['failed']);
+        $data['total_failed'] =  array_sum($data['failed']);
+        $data['total_sent'] =  array_sum($data['sent']);
+
+        wp_send_json($data);
+    }
+    add_action('wp_ajax_get_email_analytics', 'get_email_analytics_data');
+
 }

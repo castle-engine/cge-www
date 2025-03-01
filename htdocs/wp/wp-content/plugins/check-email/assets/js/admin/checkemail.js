@@ -238,6 +238,20 @@
         $(this).next('.check_mail_js_hidden_display').val(0);
       }
     });
+    $(".check_main_js_error_tracking").on("click", function () {
+      if ($(this).is(":checked")) {
+        $(this).next('.check_main_js_error_tracking_hidden').val(1);
+      } else {
+        $(this).next('.check_main_js_error_tracking_hidden').val(0);
+      }
+    });
+    $(".check-email-enable-widget_checkbox").on("click", function () {
+      if ($(this).is(":checked")) {
+        $(this).next('.check-email-enable-widget_display').val(1);
+      } else {
+        $(this).next('.check-email-enable-widget_display').val(0);
+      }
+    });
   
 
   });
@@ -315,6 +329,30 @@
       }
     }
   }
+  $(document).on('click', '#check-email-email-notify-options-is_enable', function(e){
+    if($(this).is(':checked')){
+      $('#ck-notify-table-id').show();
+    }else{
+      $('#ck-notify-table-id').hide();
+    }
+  });
+  $(document).on('click', '#check-email-notify-by-sms-enable', function(e){
+    if($(this).is(':checked')){
+      $('.check-email-twilio').show();
+    }else{
+      $('.check-email-twilio').hide();
+    }
+  });
+  $(document).on('click', '.checkmail_trigger', function(e){
+    parent_tr = $(this).parents('tr')
+    if($(this).is(':checked')){
+      parent_tr.find('.checkmail_trigger_counts').show();
+      $(this).next('label').hide();
+    }else{
+      parent_tr.find('.checkmail_trigger_counts').hide();
+      $(this).next('label').show();
+    }
+  });
 
   $("#ck_email_analyze").on("click", function(e){
     e.preventDefault();

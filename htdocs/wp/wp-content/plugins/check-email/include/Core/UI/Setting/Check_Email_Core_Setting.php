@@ -53,7 +53,7 @@ class Check_Email_Core_Setting extends Check_Email_Setting {
 				'email_from_email'        => '',
 				'override_emails_from'    => false,
 				'forward_email'    => false,
-				'email_error_tracking'    => false,				
+				'email_error_tracking'    => true,				
 				'email_open_tracking'    => false,				
 				'enable_dashboard_widget' => false,
 				'db_size_notification'    => array(

@@ -64,9 +64,9 @@ class Check_Email_Settings_Page extends Check_Email_BasePage {
 			'email_from_email'        => '',
 			'override_emails_from'    => false,
 			'forward_email'    => false,
-			'email_error_tracking'    => false,				
+			'email_error_tracking'    => true,				
 			'email_open_tracking'    => false,				
-			'enable_dashboard_widget' => false,
+			'enable_dashboard_widget' => true,
 			'db_size_notification'    => array(
 				'notify'                    => false,
 				'admin_email'               => '',
@@ -100,6 +100,7 @@ class Check_Email_Settings_Page extends Check_Email_BasePage {
 		foreach ( $sections as $section ) {
 			$section->page_slug = 'check-email-settings';
 			$section->fields = $this->build_fields();
+			// phpcs:ignore PluginCheck.CodeAnalysis.SettingSanitization.register_settingDynamic
 			register_setting(
 				$this->page_slug ,
 				$section->option_name,
@@ -257,6 +258,7 @@ class Check_Email_Settings_Page extends Check_Email_BasePage {
 				<a href="?page=check-email-settings&tab=smtp" class="nav-tab <?php if( 'smtp' == $tab ):?>nav-tab-active<?php endif; ?>"><?php esc_html_e( 'SMTP', 'check-email' ); ?></a>
 				<a href="?page=check-email-settings&tab=email-encode" class="nav-tab <?php if( 'email-encode' == $tab ):?>nav-tab-active<?php endif; ?>"><?php esc_html_e( 'Encoding', 'check-email' ); ?></a>
 				<a href="?page=check-email-settings&tab=tools" class="nav-tab <?php if( 'tools' == $tab ):?>nav-tab-active<?php endif; ?>"><?php esc_html_e( 'Tools', 'check-email' ); ?></a>
+				<a href="?page=check-email-settings&tab=notify" class="nav-tab <?php if( 'notify' == $tab ):?>nav-tab-active<?php endif; ?>"><?php esc_html_e( 'Notify', 'check-email' ); ?></a>
 				<?php do_action('ck_mail_add_license_tab'); ?>
 				<a href="?page=check-email-settings&tab=support" class="nav-tab <?php if( 'support' == $tab ):?>nav-tab-active<?php endif; ?>"><?php esc_html_e( 'Help & Support', 'check-email' ); ?></a>
 				<a href="https://check-email.tech/contact/" target="_blank" class="nav-tab"><span class="dashicons dashicons-external"></span><?php esc_html_e( 'Suggest a feature', 'check-email' ); ?></a>
@@ -269,6 +271,8 @@ class Check_Email_Settings_Page extends Check_Email_BasePage {
 
 			<?php if( 'general' == $tab ): ?>
 				<h2><?php esc_html_e( 'Core Check Email Log Settings', 'check-email' ); ?></h2>
+			<?php elseif( 'notify' == $tab ): ?>
+				<h2><?php esc_html_e( 'Notify', 'check-email' ); ?></h2>
 			<?php elseif( 'logging' == $tab ): ?>
 				<h2><?php esc_html_e( 'Logging', 'check-email' ); ?></h2>
 			<?php elseif( 'smtp' == $tab ): ?>
@@ -277,7 +281,7 @@ class Check_Email_Settings_Page extends Check_Email_BasePage {
 				<h2><?php esc_html_e( 'Encoding', 'check-email' ); ?></h2>
 			<?php endif; ?>
 
-			<?php if( 'email-encode' !== $tab && 'smtp' !== $tab && 'support' !== $tab && 'tools' !== $tab && 'license' !== $tab ): ?>
+			<?php if( 'email-encode' !== $tab && 'notify' !== $tab && 'smtp' !== $tab && 'support' !== $tab && 'tools' !== $tab && 'license' !== $tab ): ?>
 				<?php $submit_url = ( '' != $tab ) ? add_query_arg( 'tab', $tab, admin_url( 'options.php' ) ) : 'options.php'; ?>
 				<form method="post" action="<?php echo esc_url( $submit_url ); ?>">
 					<?php
@@ -328,9 +332,11 @@ class Check_Email_Settings_Page extends Check_Email_BasePage {
 			                <span class="ce-query-error ce-hide"><?php esc_html_e('Message not sent. please check your network connection', 'check-email') ?></span>
 				        </div>
 					</div>
-				<?php  
+				<?php
 				elseif('email-encode' == $tab):
 					do_action('check_mail_email_encode');
+				elseif('notify' == $tab):
+					do_action('check_mail_email_notify');
 				elseif('tools' == $tab):
 					global $check_email;
 					$check_email->add_loadie( new \CheckEmail\Core\UI\Setting\Check_Email_Tools_Tab() );
@@ -493,16 +499,16 @@ class Check_Email_Settings_Page extends Check_Email_BasePage {
 
 	public function render_enable_dashboard_widget_settings( $args ) {
 		$option                  = $this->get_value();
-		$enable_dashboard_widget = $option[ $args['id'] ];
+		$field_value = $option[ $args['id'] ];
 
 		$field_name = $this->section->option_name . '[' . $args['id'] . ']';
 		$checked = "";
-		if($enable_dashboard_widget){
+		if($field_value){
 			$checked = "checked";
 		}
 		?>
-
-		<input id="check-email-enable-widget" type="checkbox" name="<?php echo esc_attr( $field_name ); ?>" value="true" <?php echo esc_attr($checked); ?>>
+		<input id="check-email-enable-widget" class="check-email-enable-widget_checkbox" type="checkbox" value="true" <?php echo esc_attr($checked); ?>>
+		<input id="check-email-enable-widget-hidden" class="check-email-enable-widget_display" type="hidden" name="<?php echo esc_attr( $field_name ); ?>" value="<?php echo esc_attr( $field_value ); ?>">
 		<label for="check-email-enable-widget" class="check-email-opt-labels"><?php esc_html_e( 'Check this box if you would like to enable dashboard widget.', 'check-email' ); ?></label>
 
 		<?php
@@ -751,8 +757,14 @@ class Check_Email_Settings_Page extends Check_Email_BasePage {
 		$option      = $this->get_value();
 		$field_value = $option[ $args['id'] ];
 		$field_name  = $this->section->option_name . '[' . $args['id'] . ']';
+		$checked = '';
+		if($field_value){
+			$checked = 'checked';
+		}
+		
 		?>
-            <input id="check-email-email_error_tracking" type="checkbox" name="<?php echo esc_attr( $field_name ); ?>" value="true" <?php checked( 'true', $field_value ); ?>>
+			<input id="check-email-email_error_tracking" class="check_main_js_error_tracking" type="checkbox" value="true" <?php echo esc_attr($checked); ?>>
+            <input id="check-email-email_error_tracking-hidden" class="check_main_js_error_tracking_hidden" type="hidden" name="<?php echo esc_attr( $field_name ); ?>" value="<?php echo esc_attr( $field_value ); ?>">
             <label for="check-email-email_error_tracking" class="check-email-opt-labels"><?php esc_html_e( 'You can easily track errors in email delivery.', 'check-email' ) ?></label>
 		<?php
 

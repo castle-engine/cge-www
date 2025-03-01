@@ -8,7 +8,6 @@ defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 /**
  * Its functionality is inspired by Email encode address
  */
-use CheckEmail\Core\Auth;
 class Check_Email_Encode_Tab {
 
 	private $encode_options;

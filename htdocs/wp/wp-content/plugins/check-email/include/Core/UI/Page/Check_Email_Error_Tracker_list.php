@@ -35,7 +35,7 @@ class Check_Email_Error_Tracker_list extends Check_Email_BasePage {
         
 	public function register_page() {
         $option = get_option( 'check-email-log-core' );
-        if ( is_array( $option ) && array_key_exists( 'email_error_tracking', $option ) && 'true' === strtolower( $option['email_error_tracking'] ) ) {
+        if (!isset($option['email_error_tracking']) ||  $option['email_error_tracking'] ) {
             $this->page = add_submenu_page(
                     Check_Email_Status_Page::PAGE_SLUG,
                     esc_html__( 'Error Tracker', 'check-email'),
@@ -131,19 +131,5 @@ class Check_Email_Error_Tracker_list extends Check_Email_BasePage {
 	}
 
 	public function load_error_tracker_assets( $hook ) {
-
-		$check_email      = wpchill_check_email();
-		$plugin_dir_url = plugin_dir_url( $check_email->get_plugin_file() );
-		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-
-		wp_register_style( 'jquery-ui-css', $plugin_dir_url . 'assets/vendor/jquery-ui/themes/base/jquery-ui.min.css', array(), '1.12.1' );
-
-		wp_register_script( 'insertionQ', $plugin_dir_url . 'assets/vendor/insertion-query/insQ.min.js', array( 'jquery' ), '1.0.6', true );
-		wp_enqueue_script( 'check-email-jsPdf', $plugin_dir_url .'assets/js/admin/check-mail-jsPdf.js', array(), $check_email->get_version(), true );
-
-		wp_enqueue_script( 'check-email-view-logs', $plugin_dir_url . 'assets/js/admin/view-logs'. $suffix .'.js', array( 'insertionQ', 'jquery-ui-core', 'jquery-ui-datepicker', 'jquery-ui-tooltip', 'jquery-ui-tabs' ), $check_email->get_version(), true );
-		
-		wp_enqueue_script( 'check-email-export-logs', $plugin_dir_url . 'assets/js/admin/export-logs'. $suffix .'.js', array( 'insertionQ', 'jquery-ui-core', 'jquery-ui-datepicker', 'jquery-ui-tooltip', 'jquery-ui-tabs' ), $check_email->get_version(), true );
-		
 	}
 }

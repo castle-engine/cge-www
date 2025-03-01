@@ -164,7 +164,7 @@ class Check_Email_Wizard_Page extends Check_Email_BasePage {
         $option = get_option( 'check-email-log-core' );
         $enable_dashboard_widget = "";
         $default_format_for_message = "";
-        if(isset( $option['enable_dashboard_widget']) && $option['enable_dashboard_widget']){
+        if(!isset( $option['enable_dashboard_widget']) || (isset( $option['enable_dashboard_widget']) && $option['enable_dashboard_widget'] ) ){
             $enable_dashboard_widget = "checked";
         }
         if(isset( $option['default_format_for_message']) && $option['default_format_for_message']){
