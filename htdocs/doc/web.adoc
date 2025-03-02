@@ -452,9 +452,14 @@ What we really want is to convert the font file (TTF / OTF / WOFF) to our own fo
 - be useful on all platforms. It would be easier if we didn't need to care about FreeType distribution for e.g. mobile or console targets.
 --
 +
-So we need own font format. Actually: just serialize `TCastleFont` to JSON, this is exactly what we need, so `xxx.castle-font`. And:
+So we need own font format.
 +
 --
-- Make a dedicated editor for `TCastleFont` that, when saving, also saves font texture (distance field or not) alongside it. Just like sprite sheet editor saves atlas.
-- `TCastleFont.Load` should allow reading `xxx.castle-font`, and then read texture alongside too.
+- One part of it should JSON serialized using our cgeref:CastleComponentSerialize[].
++
+We considered just serializing cgeref:TCastleFont[], but it's not optimal, as it contains not only `OptimalSize` but also `Size` (which matters for display, but not data). It also lacks glyphs and font metadata like family name.
++
+Existing `TTextureFontData` is close to what we need, this is exactly the information we need. Remake it to be `TCastleFontData`, a `TComponent` descendant, with consistent property names (`Size` -> `OptimalSize`). Save it as `xxx.castle-font-data`.
+- Make a dedicated editor for `TCastleFontData` that, when saving, also saves font texture (distance field or not) alongside it and glyphs (as children components). A bit like sprite sheet editor saves atlas.
+- `TCastleFont.Load` should allow reading `xxx.castle-font-data`, and then read texture alongside too.
 --
