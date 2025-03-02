@@ -457,9 +457,9 @@ So we need own font format.
 --
 - One part of it should JSON serialized using our cgeref:CastleComponentSerialize[].
 +
-We considered just serializing cgeref:TCastleFont[], but it's not optimal, as it contains not only `OptimalSize` but also `Size` (which matters for display, but not data). It also lacks glyphs and font metadata like family name.
+Maybe just serialize cgeref:TCastleFont[]? It only has stuff for generation, not display (`OptimalSize`, not `Size`), which is good for this use-case. Through it lacks glyphs and font metadata like family name -- IOW things that are "output from FreeType". With `xxx.castle-font` (simple consistent extension is a big plus here.)
 +
-Existing `TTextureFontData` is close to what we need, this is exactly the information we need. Remake it to be `TCastleFontData`, a `TComponent` descendant, with consistent property names (`Size` -> `OptimalSize`). Save it as `xxx.castle-font-data`.
-- Make a dedicated editor for `TCastleFontData` that, when saving, also saves font texture (distance field or not) alongside it and glyphs (as children components). A bit like sprite sheet editor saves atlas.
-- `TCastleFont.Load` should allow reading `xxx.castle-font-data`, and then read texture alongside too.
+Or existing `TTextureFontData`? Remake it to be `TCastleFontData`, a `TComponent` descendant, with consistent property names (`Size` -> `OptimalSize`). Save it as `xxx.castle-font-data`.
+- Make a dedicated editor for above component that, when saving, also saves font texture (distance field or not) alongside it and glyphs (as children components). A bit like sprite sheet editor saves atlas.
+- `TCastleFont.Load` should allow reading `xxx.castle-font[-data]`, and then read texture alongside too.
 --
