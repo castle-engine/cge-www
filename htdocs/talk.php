@@ -22,6 +22,9 @@ castle_header('Discord, forum, GitHub and Patreon', array(
     </p>
   </a>
 
+  <!--
+  Do not recommend anymore, no community there -- we tried.
+
   <a href="https://www.reddit.com/r/castleengine/    " class="talk-button btn btn-info btn-lg">
     <p>
     <p>
@@ -29,6 +32,7 @@ castle_header('Discord, forum, GitHub and Patreon', array(
       Reddit
     </p>
   </a>
+  -->
 
   <a href="https://www.patreon.com/castleengine" class="talk-button btn btn-success btn-lg">
     <p>
