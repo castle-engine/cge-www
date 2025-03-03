@@ -17,7 +17,7 @@ See the https://castle-engine.io/wp/2022/09/12/castle-game-engine-7-0-alpha-2-re
 
 * https://castle-engine.io/sprite_sheets[Sprite Sheet editor]
 * https://castle-engine.io/viewport_and_scenes[Many new components in the viewport - primitives, text, image, reference]
-* https://castle-engine.io/manual_text.php[Font components]
+* https://castle-engine.io/text[Font components]
 * https://castle-engine.io/sound[Sound components, ability to design spatial sounds in editor]
 * https://castle-engine.io/viewport_3d#_lighting[Lights components]
 * https://castle-engine.io/background[Background (gradient, skybox)]

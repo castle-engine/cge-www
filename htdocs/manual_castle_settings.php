@@ -286,7 +286,7 @@ font variant (others are optional).
   <dd><p>A list (separated by whitespace or commas) of GetText MO files.
     All the characters from the translated strings will be included in the font texture.
     This is useful to load all characters used by your translators.
-    <a href="manual_text.php">See the manual chapter about fonts and localization (translation).</a>
+    <a href="text">See the manual chapter about fonts and localization (translation).</a>
 
     <p>By default, the font texture has only ASCII characters loaded.
     Use this (or some other <code>sample_xxx</code>) to extend the available character set.

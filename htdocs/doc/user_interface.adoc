@@ -220,7 +220,7 @@ use of this class: to create simple 2D user interfaces. Our engine includes a la
 often used controls are:
 
 <ul>
-  <li><?php echo cgeRef('TCastleLabel'); ?> - Label with text. As with all our text controls, the font family and size is customizable (see <a href="manual_text.php">chapter about text</a>). May have a frame. May be multiline. May contain some <?php echo cgeRef('HTML tags'); ?>.</li>
+  <li><?php echo cgeRef('TCastleLabel'); ?> - Label with text. As with all our text controls, the font family and size is customizable (see <a href="text">chapter about text</a>). May have a frame. May be multiline. May contain some <?php echo cgeRef('HTML tags'); ?>.</li>
 
   <li><?php echo cgeRef('TCastleButton'); ?> - Clickable button. The look is highly configurable with custom images and tint colors. May contain an icon inside (actually, by inserting other UI controls as children, it may contain <i>anything</i> inside). The size may be automatically adjusted to the inside caption (and icon), or may be explicitly given.</li>
 

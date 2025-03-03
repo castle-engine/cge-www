@@ -284,7 +284,7 @@ cgeimg::block[inspector_design.png|Inspector UI,ui_image.png|Images]
 
 === Text and fonts
 
-* link:manual_text.php[Rendering text in user interface and in 3D, with customizable fonts].
+* link:text[Rendering text in user interface and in 3D, with customizable fonts].
 * Fonts can be loaded from common formats (like TTF or OTF, cgeref:TCastleFont[]) or images (cgeref:TCastleBitmapFont[]).
 * Localization (including automatically translating user interface and ``resourcestring``s).
 * UTF-8 support for all strings through the engine API, in particular to render text.

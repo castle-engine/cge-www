@@ -1,0 +1,278 @@
+# Text and Fonts
+include::common.adoc[]
+:description: Rendering text, in 2D and 3D, and customizing fonts.
+:cge-social-share-image: fonts_editor.png
+
+== Introduction
+
+You can display text as a user interface label (cgeref:TCastleLabel[], always 2D) or as an object inside the link:viewport_and_scenes[viewport] (cgeref:TCastleText[], can be 2D or 3D). You can customize the font (using font files like TTF, OTF, WOFF, WOFF2). You can also use international characters and localize your application (translate it to other languages).
+
+cgeimg::block[
+  fonts_editor.png|Various fonts in CGE editor,
+  fonts_runtime.png|Various fonts
+]
+
+== Show text using a label in user interface: TCastleLabel
+
+Use cgeref:TCastleLabel[] to display text as part of the user interface (always 2D). You can customize it's font using cgeref:TCastleUserInterfaceFont.CustomFont[] and cgeref:TCastleUserInterfaceFont.FontSize[] properties.
+
+Many UI controls (see for example unit cgeref:CastleControls[]) descend from cgeref:TCastleUserInterfaceFont[], and thus can render text and have their font customized, for example cgeref:TCastleButton[].
+
+You can add and configure UI controls (like cgeref:TCastleLabel[], cgeref:TCastleButton[] and many more) by code, or using link:manual_editor.php[the CGE editor].
+
+== Show (potentially 3D) text in a viewport: TCastleText
+
+Another way to render text is to use cgeref:TCastleText[]. You can place such component in a link:viewport_and_scenes[viewport] and it can be transformed just like any other 3D object.
+
+This is a great way to display text in 3D and/or attach the text to some 3D or 2D game object, e.g. as a debug text over some character.
+
+The properties of cgeref:TCastleText[] and cgeref:TCastleLabel[] are deliberately very similar. They also use the same font classes underneath.
+
+== Customizing font
+
+You can add and configure fonts. We support all the font formats handled by the link:https://freetype.org/[FreeType library] which includes
+
+- TrueType Fonts (`ttf` extension)
+- OpenType Fonts (`otf` extension)
+- Web Open Font Format (`woff` and `woff2` extensions). For more information see https://en.wikipedia.org/wiki/Web_Open_Font_Format[Wikipedia about WOFF], and the W3C specifications: https://www.w3.org/TR/WOFF/[WOFF] and https://www.w3.org/TR/WOFF2/[WOFF2].
+
+To customize font in the link:https://castle-engine.io/manual_editor.php[CGE editor]:
+
+
+- Use the _"Design -> Add Non-Visual Component"_ menu item, or the context menu (when you right-click in the hierarchy on the left). Font is added as _"Non-Visual Component"_ to whatever parent you selected.
++
+The parent that keeps reference to the font instance can be anything -- cgeref:TCastleComponent[], cgeref:TCastleTransform[], cgeref:TCastleUserInterface[] etc. It is similar to VCL/LCL non-visual components: it doesn't really matter where you drop them on the form.
+
+- Then assign this font to cgeref:TCastleUserInterfaceFont.CustomFont[TCastleLabel.CustomFont]. Or any other UI control descending from cgeref:TCastleUserInterfaceFont[TCastleUserInterfaceFont], like cgeref:TCastleButton[TCastleButton] or cgeref:TCastleEdit[TCastleEdit].
++
+You can also assign font to cgeref:TCastleText.CustomFont[TCastleText.CustomFont] to customize font used by the (potentially 3D) cgeref:TCastleText[] in the viewport.
+
+Our most important font classes:
+
+- cgeref:TCastleAbstractFont[TCastleAbstractFont]
+- cgeref:TCastleFont[TCastleFont] - the most often used font class, loads font from a variety of file formats.
++
+Most important properties:
++
+--
+- cgeref:TCastleFont.Url[Url] (font file URL, e.g. `castle-data:/my-font.ttf`),
+- cgeref:TCastleFont.OptimalSize[OptimalSize],
+- cgeref:TCastleFont.AntiAliased[AntiAliased],
+- cgeref:TCastleFont.LoadCharacters[LoadCharacters],
+- cgeref:TCastleFont.LoadBasicCharacters[LoadBasicCharacters].
+--
+
+- cgeref:TCastleBitmapFont[TCastleBitmapFont] - define letters using an image.
++
+Most important properties:
++
+--
+- cgeref:TCastleBitmapFont.ImageUrl[ImageUrl],
+- cgeref:TCastleBitmapFont.ImageColumns[ImageColumns],
+- cgeref:TCastleBitmapFont.ImageRows[ImageRows],
+- cgeref:TCastleBitmapFont.ImageMargin[ImageMargin],
+- cgeref:TCastleBitmapFont.DisplayMargin[DisplayMargin].
+--
+
+- cgeref:TCastleFontFamily[TCastleFontFamily] - a collection of other fonts to provide bold/italic variants, useful with rich text in cgeref:TCastleLabel.Html[].
+
+See examples, e.g. https://github.com/castle-engine/castle-engine/tree/master/examples/fonts/text_tests[examples/fonts/text_tests] for demos of it.
+
+== Change the default font
+
+You can define a `default_font` inside the link:manual_castle_settings.php[CastleSettings.xml] file to change the default font. This way CGE editor will also use the new font as default.
+
+== International characters
+
+cgeimg::block[
+  test_local_characters.png|Testing local (international) characters
+]
+
+NOTE: A complete demo displaying text with various (international) characters is in the engine examples,
+in the https://github.com/castle-engine/castle-engine/tree/master/examples/fonts/test_local_characters[examples/fonts/test_local_characters/].
+
+All font routines (printing, measuring) expect the international characters to be encoded using UTF-8. To draw the international characters (anything beyond basic English ASCII set) you also need to create a font with these characters.
+
+To cgeref:TCastleFont[] provide a list of the characters (including all the possible international characters) that you want to display. Like this:
+
+[source,pascal]
+----
+uses ..., CastleFonts, CastleStringUtils;
+
+function CreateMyFont: TCastleFont;
+begin
+  Result := TCastleFont.Create(nil);
+  { Below is a string containing all my international chars, in UTF-8.
+    Note that basic ASCII characters are also always loaded,
+    because Result.LoadBasicCharacters = true by default. }
+  Result.LoadCharacters := '你好世界ΓειασουκόσμεЗдравствуймир';
+  Result.OptimalSize := 20;
+  Result.Url := 'castle-data:/MyFontFile.ttf';
+end;
+----
+
+Make sure to provide the sample characters encoded in UTF-8.
+In the example above, they are simply hardcoded in the Pascal source file,
+so make sure that compiler understands it as UTF-8 data.
+Make sure your source code is in UTF-8 (edit it using an UTF-8
+capable editor, consider adding an UTF-8 BOM,
+consider using `{$CODEPAGE UTF8}`,
+see https://www.freepascal.org/docs-html/prog/progsu87.html[FPC source codepage] option).
+
+If you use the `texture-font-to-pascal` utility to embed fonts in
+Pascal sources (see above) then use it's parameter `--sample-text`
+to provide the additional (beyond simple ASCII) chars. Like this:
+
+```
+texture-font-to-pascal --size 20 MyFontFile.ttf --sample-text '你好世界ΓειασουκόσμεЗдравствуймир'
+```
+
+And make sure that your command-line, and/or your script interpreter, correctly
+handles UTF-8 (on Linux, this should be a breeze, since everything works with UTF-8
+out of the box; on modern Windows it should also work).
+
+== Localization
+
+cgeimg::block[
+  escape_universe_japanese.jpg|Escape from the Universe (Switch) - Japanese edition
+]
+
+You recommend to use the cgeref:CastleLocalizationGetText[] for a localization approach based on GetText.
+
+You use standard GetText formats for translating (PO, MO) and utilizing GetText tools like link:https://poedit.net/[PoEdit]. You can automatically translate strings in Pascal code, declared as `resourcestring` (use cgeref:CastleTranslateResourceStrings[]). You can automatically translate user interface (use cgeref:TranslateAllDesigns[]). You can generate starting file to translate user interface (use cgeref:GenerateGetTextPo[]).
+
+A typical workflow for translating an application looks like this:
+
+- Generate POT (PO Template) files containing everything to translate:
++
+--
+- Generate POT file to translate the user interface by calling `GenerateGetTextPo('castle-data:/gui/*.castle-user-interface');`. Place the resulting contents in `user_interface.pot`.
+
+- Generate POT file to translate all resourcestrings using the `rstconv` tool from FPC. Place the resulting contents in `game.pot`.
+--
+
+- Create and translate the PO files for each language you support.
++
+For each `xxx.pot`, create a file `xxx.<language-code>.po`. For example:
++
+--
+- For Polish translation you would create files like `game.pl.po` and `user_interface.pl.po`.
+- For Japanese translation you would create files `game.ja.po` and `user_interface.ja.po`.
+--
++
+Each `game.xx.po` should contain a map from English text -> localized (Polish, Japanese etc.) text. In contrast, each `user_interface.xx.po` should contain a map from internal identifier (qualified component names) -> localized (Polish, Japanese etc.) text. Both approaches are possible with GetText.
++
+You can create and edit PO files using any GetText PO editor, like https://poedit.net/"[PoEdit]. The PO is a text file format, so you can use any regular text editor (like Atom or Emacs) as well.
+
+- Generate MO files from PO using the GetText `msgfmt` tool. Some editors like https://poedit.net/[PoEdit] may also do this automatically.
++
+In effect you will get
+`game.pl.mo`,
+`user_interface.pl.mo` (Polish translation) and
+`game.ja.mo`,
+`user_interface.ja.mo` (Japanese translation).
++
+Place these MO files inside the link:data[data directory] of your application.
+
+- In game, determine user preferred language, e.g. using cgeref:CastleSystemLanguage[].
++
+Then translate things by loading appropriate MO file.
++
+--
+- To translate all user interface that will be loaded, call `TranslateAllDesigns('castle-data:/translations/user_interface.ja.mo');` (where "ja" stands for Japanese localization, just an example).
+
+- To translate resourcestrings, call `CastleTranslateResourceStrings('castle-data:/translations/game.ja.mo');`.
+--
+
+For more details and example how to do it all see the README and source code of our
+https://github.com/castle-engine/castle-engine/tree/master/examples/localization/gettext[example application using CastleLocalizationGetText (examples/localization/gettext/)].
+
+You can tweak this workflow to your needs by using various other routines from
+cgeref:CastleLocalizationGetText[]
+ unit and overriding cgeref:TCastleComponent.TranslateProperties[].
+You can use more POT / PO files for your own needs.
+You can translate strings explicitly at any moment, using
+https://www.freepascal.org/docs-html/fcl/gettext/tmofile.translate.html[TMOFile.Translate('my_id')].
+
+The engine uses resourcestrings for some internally-generated messages, so these can be translated too.
+
+== Deprecated
+
+=== Explicitly drawing text
+
+WARNING: While this functionality is still available, we advise to rather render all text using  cgeref:TCastleLabel[] (in UI) or cgeref:TCastleText[] (in viewport, maybe in 3D).
+
+Instead of using cgeref:TCastleLabel[], you can explicitly draw the text. For this you need an instance of the cgeref:TCastleAbstractFont[] class. To make it easy, one global instance of this class is already created for you: cgeref:UIFont[] (part of cgeref:CastleControls[] unit). So you can simply draw text like this:
+
+[source,pascal]
+----
+UIFont.Print(10, 10, Yellow, 'Some text to print');
+----
+
+You should place such drawing code inside a render method, for example inside the  overridden cgeref:TCastleUserInterface.Render[] implementation. See link:manual_2d_ui_custom_drawn.php[the manual about 2D drawing] for a general info about 2D rendering.
+
+cgeref:TCastleAbstractFont[] class has a lot of methods and properties.
+
+- You can simply print the text
+    (cgeref:TCastleAbstractFont.Print[]).
+- You can change the font size
+    (cgeref:TCastleAbstractFont.Size[]).
+- You can add an outline around it
+    (cgeref:TCastleAbstractFont.Outline[],
+    cgeref:TCastleAbstractFont.OutlineColor[]).
+- You can measure the text
+    (cgeref:TCastleAbstractFont.TextWidth[],
+    cgeref:TCastleAbstractFont.TextHeight[],
+    cgeref:TCastleAbstractFont.TextSize[],
+    cgeref:TCastleAbstractFont.RowHeight[]...).
+- You can print a multi-line text, with optional line wrapping
+    (cgeref:TCastleAbstractFont.PrintRect[],
+    cgeref:TCastleAbstractFont.PrintRectMultiline[],
+    cgeref:TCastleAbstractFont.PrintStrings[],
+    cgeref:TCastleAbstractFont.PrintBrokenString[]
+    and other methods).
+
+=== Embed font data in compiled application using texture-font-to-pascal
+
+WARNING: While this functionality is still available, we advise to rather load fonts from files (like TTF, OTF, WOFF, WOFF2). It is more flexible.
+
+Instead of loading the font data from a file, you can also provide
+a cgeref:TTextureFontData[]
+ instance to the cgeref:TCastleFont[]
+ constructor. This allows to create the font data at runtime
+ or *to use the font data embedded in a Pascal source code*.
+You can use the `texture-font-to-pascal` program (compile it from
+`castle_game_engine/tools/texture-font-to-pascal/texture-font-to-pascal.lpr`)
+to convert a font file into a Pascal unit:
+
+```
+texture-font-to-pascal --size 20 MyFontFile.ttf
+```
+
+In response, it will create a unit called
+`CastleTextureFont_MyFontFile_20` with a public function:
+
+[source,pascal]
+----
+function TextureFont_MyFontFile_20: TTextureFontData;
+----
+
+You can use this unit in your program, and create a font instance like this:
+
+[source,pascal]
+----
+MyNewFont := TCastleFont.Create(Application { any TComponent to act as owner });
+MyNewFont.Load(TextureFont_MyFontFile_20);
+----
+
+The advantages of embedding a font inside a Pascal unit are:
+
+- You don't need to distribute the FreeType2 library. (Although this shouldn't be a big problem,
+    CGE can package FreeType2 with your project for all platforms automatically.)
+
+- Font is loaded slightly faster, since it's already processed to
+    a suitable texture data.
+
+The disadvantages are of course that you cannot simply change the font file anymore,
+you need to rerun the `texture-font-to-pascal` command
+and recompile your program to see the new font.

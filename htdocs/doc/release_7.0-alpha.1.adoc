@@ -30,7 +30,7 @@ See the https://castle-engine.io/wp/2021/02/06/castle-game-engine-7-0-alpha-1-re
 - link:manual_optimization.php[Many optimizations and profiling features]
 - link:wp/2018/07/29/new-screen-effects-api-and-demo-text-node-optimizations-multi-texture-modes-fixes/[New screen effects API]
 - link:x3d_extensions_mirror_plane.php[Easy mirrors on flat surfaces]
-- link:manual_text.php#section_localization_gettext[Localization]
+- link:text#section_localization_gettext[Localization]
 - link:wp/2018/04/21/engine-improvements-rejuvenated-playanimation-method-easily-play-animations-backward-with-blending-stop-notifications/[Animation blending improvements]
 - Many new notable examples
 - Android support for Arm64, link:https://github.com/castle-engine/castle-engine/wiki/Android-Services[many new services], upgrades to build infrastructure
@@ -113,7 +113,7 @@ https://castle-engine.io/wp/2018/04/22/engine-improvements-user-interface-horizo
  ** https://castle-engine.io/wp/2020/10/09/attach-objects-to-animated-bones-like-weapon-in-characters-hand-by-exposetransforms/[Easily attaching an object to an animated bones, by ExposeTransforms]
  ** https://castle-engine.io/wp/2020/11/07/render-options-configurable-in-editor/[TCastleScene.RenderOptions, configurable by editor too]
 * Localization:
- ** Two methods, with demos: https://castle-engine.io/manual_text.php
+ ** Two methods, with demos: https://castle-engine.io/text
  ** CastleLocalizationGetText allows to easily translate UI design (created e.g. using CGE editor), including generating template for translators to translate UI design.
  ** See https://castle-engine.io/wp/2019/07/21/localization-improvements-and-a-japanese-version-of-escape-from-the-universe/ and https://castle-engine.io/wp/2018/04/25/engine-improvements-localization/ .
 * Animation features:
@@ -155,7 +155,7 @@ https://castle-engine.io/wp/2018/04/22/engine-improvements-user-interface-horizo
  ** https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/ios/services/vibrate/README.adoc[Vibrations].
  ** GPU compressed textures support for square textures (Apple makes it harder to support non-square textures).
  ** Build tool has command-line options to create IPA file or even upload the build to TestFlight, see https://castle-engine.io/ios[iOS building page].
- ** https://castle-engine.io/manual_text.php[FreeType is supported] so you can freely load fonts at runtime.
+ ** https://castle-engine.io/text[FreeType is supported] so you can freely load fonts at runtime.
 * Other https://castle-engine.io/build_tool[build tool] improvements:
  ** https://castle-engine.io/creating_data_auto_generated_textures.php[Packaging of textures specific to given platform]
  ** Filtering of messages (better output, that avoids some unnecessary warnings from specializing generics containers, but at the same time leaves these warnings enabled for your code)

@@ -70,9 +70,7 @@ For example, you can show player's health like this:
 
 <p>You can also create your own instances
 of <?php echo cgeRef('TCastleFont'); ?>
- to have more fonts. See
-<?php echo a_href_page('the manual chapter about "Text and fonts" for more',
-'manual_text'); ?>.
+ to have more fonts. See <a href="text">the manual chapter about "Text and fonts" for more</a>.
 
 <p><b>Note: It is more advised (easier, more flexible) to use
 <?php echo cgeRef('TCastleLabel'); ?>
