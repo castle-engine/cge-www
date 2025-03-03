@@ -1,0 +1,75 @@
+# Localization (translating your application)
+include::common.adoc[]
+:description: Localizing your application, translating it into different languages.
+:cge-social-share-image: escape_universe_japanese.jpg
+
+== Introduction
+
+Use the cgeref:CastleLocalizationGetText[] unit to localize your application. This means that you can translate your application into different languages and switch between these languages when the application runs.
+
+cgeimg::block[
+  escape_universe_japanese.jpg|Escape from the Universe (Switch) - Japanese edition
+]
+
+== How to localize your application
+
+You use standard GetText formats for translating (PO, MO) and utilizing GetText tools like link:https://poedit.net/[PoEdit]. You can automatically translate strings in Pascal code, declared as `resourcestring` (use cgeref:CastleTranslateResourceStrings[]). You can automatically translate user interface (use cgeref:TranslateAllDesigns[]). You can generate starting file to translate user interface (use cgeref:GenerateGetTextPo[]).
+
+A workflow for translating an application goes like this:
+
+. Generate POT (PO Template) files containing everything to translate:
++
+--
+- Generate POT file to translate the user interface by calling `GenerateGetTextPo('castle-data:/gui/*.castle-user-interface');`. Place the resulting contents in `user_interface.pot`.
+
+- Generate POT file to translate all resourcestrings using the `rstconv` tool from FPC. Place the resulting contents in `game.pot`.
+--
+
+. Create and translate the PO files for each language you support.
++
+For each `xxx.pot`, create a file `xxx.<language-code>.po`. For example:
++
+--
+- For Polish translation you would create files like `game.pl.po` and `user_interface.pl.po`.
+- For Japanese translation you would create files `game.ja.po` and `user_interface.ja.po`.
+--
++
+Each `game.xx.po` should contain a map from English text -> localized (Polish, Japanese etc.) text. In contrast, each `user_interface.xx.po` should contain a map from internal identifier (qualified component names) -> localized (Polish, Japanese etc.) text. Both approaches are possible with GetText.
++
+You can create and edit PO files using any GetText PO editor, like https://poedit.net/"[PoEdit]. The PO is a text file format, so you can use any regular text editor (like Atom or Emacs) as well.
+
+. Generate MO files from PO using the GetText `msgfmt` tool. Some editors like https://poedit.net/[PoEdit] may also do this automatically.
++
+In effect you will get
+`game.pl.mo`,
+`user_interface.pl.mo` (Polish translation) and
+`game.ja.mo`,
+`user_interface.ja.mo` (Japanese translation).
++
+Place these MO files inside the link:data[data directory] of your application.
+
+. In game, determine user preferred language, e.g. using cgeref:CastleSystemLanguage[].
++
+Then translate things by loading appropriate MO file.
++
+--
+- To translate all user interface that will be loaded, call `TranslateAllDesigns('castle-data:/translations/user_interface.ja.mo');` (where "ja" stands for Japanese localization, just an example).
+
+- To translate resourcestrings, call `CastleTranslateResourceStrings('castle-data:/translations/game.ja.mo');`.
+--
+
+== Example
+
+For more details and example how to do it all see the README and source code of our
+https://github.com/castle-engine/castle-engine/tree/master/examples/localization/gettext[example application using CastleLocalizationGetText (examples/localization/gettext/)].
+
+== More information
+
+You can tweak this workflow to your needs by using various other routines from
+cgeref:CastleLocalizationGetText[]
+ unit and overriding cgeref:TCastleComponent.TranslateProperties[].
+You can use more POT / PO files for your own needs.
+You can translate strings explicitly at any moment, using
+https://www.freepascal.org/docs-html/fcl/gettext/tmofile.translate.html[TMOFile.Translate('my_id')].
+
+The engine uses resourcestrings for some internally-generated messages, so these can be translated too.
