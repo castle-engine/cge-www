@@ -405,14 +405,22 @@ NOTE: About link:x3d_implementation_sound.php#section_x3d4[WebAudio in the conte
 
 - Possibly throw in additional compression of data and/or wasm executable?
 +
-WASM size: while it started smaller (compilation of https://github.com/castle-engine/castle-engine/tree/master/examples/platformer[examples/platformer], which practically uses 100% of CGE units, yields a binary `platformer.wasm` that has 16 MB. Gzipped it has 3.4 MB.) ... but it grew larger, to 40 MB. TODO: investigate why. JOB? IFC?
+WASM size: 
 +
-The gzipped size is really what matters &mdash; both web browsers and servers support gzip-(de)compression on the fly, you can also just put ready-gzipped version on the server and tell the browser to just decompress. So in all practical cases, users will download 3.4 MB, not 16 MB.
+--
+- It started small, with older CGE code and older FPC: https://github.com/castle-engine/castle-engine/tree/master/examples/platformer[examples/platformer] (which practically uses 100% of CGE units) results in a binary `platformer.wasm` that has 16 MB. Gzipped it has 3.4 MB. 
+- But it grew larger, once we got more things working and updated everything: now it is 44 MB (debug or release doesn't matter), gzipped 7.1 MB. 
+- Unsure what caused it. IFC? Without IFC it is 39 MB (6.4 MB) gzipped, so IFC matters, but not that much. Embedding fonts? But `web/simplest/` weights 35 MB and has no extra embedded fonts (only default font, but that was already included in first measurement). Is using Job.Web causing it? Or update in FPC?
+--
++
+The gzipped size is what matters more &mdash; both web browsers and servers support gzip-(de)compression on the fly, you can also just put ready-gzipped version on the server and tell the browser to just decompress. So in most practical cases, users will download version compressed.
 //+
 // Old numbers
 //Note that above is for a _release_ build. The _debug_ build weights 51 MB, and gzipped 12 MB. (Debug build contains https://wiki.freepascal.org/WebAssembly/Debugging[debugging symbols].)
 +
 We could also use https://en.wikipedia.org/wiki/Brotli[Brotli], a newer compression method also commonly supported by web browsers and servers.
++
+Overall, the TODO here: Test using Gzip or Brotli compression. Test configuring web browsers, like Apache, to serve our WASM and data using Gzip / Brotli. Test using Gzip / Brotli compression in our build tool, to have smaller size even on disk.
 
 - Implement cgeref:TCastleDownload[] for web.
 
