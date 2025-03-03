@@ -52,6 +52,12 @@ cgeimg::block[
 
 - link:web-demos/castle-model-viewer-mobile[Castle Model Viewer (Mobile)] (https://github.com/castle-engine/castle-model-viewer-mobile/[Source code]). While you cannot (yet) open arbitrary files with it, but you can explore predefined files (glTF, X3D, Spine), switching animations, walk / examine modes, and finally you can view your WebGL properties.
 
+- link:web-demos/examples/eye_of_beholder[Eye of Beholder] (https://github.com/castle-engine/castle-engine/tree/master/examples/eye_of_beholder[Source code])
+
+- link:web-demos/examples/creature_behaviors[Creature behaviors (our simple creature AI, fight with skeletons)] (https://github.com/castle-engine/castle-engine/tree/master/examples/creature_behaviors[Source code])
+
+- link:web-demos/examples/third_person_navigation[Third-person navigation] (https://github.com/castle-engine/castle-engine/tree/master/examples/third_person_navigation[Source code])
+
 === Earliest (simplest) demos
 
 - link:web-demos/examples/web/simplest_viewport[3D viewport, with animated light, dropping boxes with physics] (Source code in https://github.com/castle-engine/castle-engine/tree/master/examples/web/simplest_viewport[examples/web/simplest_viewport])
@@ -407,11 +413,11 @@ NOTE: About link:x3d_implementation_sound.php#section_x3d4[WebAudio in the conte
 
 - Possibly throw in additional compression of data and/or wasm executable?
 +
-WASM size: 
+WASM size:
 +
 --
-- It started small, with older CGE code and older FPC: https://github.com/castle-engine/castle-engine/tree/master/examples/platformer[examples/platformer] (which practically uses 100% of CGE units) results in a binary `platformer.wasm` that has 16 MB. Gzipped it has 3.4 MB. 
-- But it grew larger, once we got more things working and updated everything: now it is 44 MB (debug or release doesn't matter), gzipped 7.1 MB. 
+- It started small, with older CGE code and older FPC: https://github.com/castle-engine/castle-engine/tree/master/examples/platformer[examples/platformer] (which practically uses 100% of CGE units) results in a binary `platformer.wasm` that has 16 MB. Gzipped it has 3.4 MB.
+- But it grew larger, once we got more things working and updated everything: now it is 44 MB (debug or release doesn't matter), gzipped 7.1 MB.
 - Unsure what caused it. IFC? Without IFC it is 39 MB (6.4 MB) gzipped, so IFC matters, but not that much. Embedding fonts? But `web/simplest/` weights 35 MB and has no extra embedded fonts (only default font, but that was already included in first measurement). Is using Job.Web causing it? Or update in FPC?
 --
 +
