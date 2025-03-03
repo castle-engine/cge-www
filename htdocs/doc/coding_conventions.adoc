@@ -1472,11 +1472,12 @@ List of tasks when adding new unit or path to CGE is admittedly not trivial, as 
 - add to `check_units_dependencies` (if it makes sense to define new rules)
 //- add to `Delphinus.Install.json` ( unused now, we don't work with Delphinus now, see https://github.com/Memnarch/Delphinus/issues/93 )
 - rerun `./tools/internal/examples_regenerate_auto_files` and commit updated DPROJ
-- rerun `castle-engine generate-program --guid-from-name` in some applications in CGE that require updated DPROJ, but are not affected by `examples/regenerate_auto_files_in_all_examples.sh`:
-** `examples/delphi/{fmx,fmx_play_animation,vcl}`
-** `tests/`
+- rerun `castle-engine generate-program --guid-from-name` in some applications in CGE that require updated DPROJ, but are not affected by `examples_regenerate_auto_files`:
+** `examples/delphi/{fmx,fmx_play_animation,vcl}`. Beware: in `vcl`, revert all changes except `<DCC_UnitSearchPath>`, the DPROJ is different because it needs to refer to VCL.
+** `tests/`. Beware: revert DPR changes (we maintain it by hand). Beware: to DPROJ, apply only changes to `<DCC_UnitSearchPath>` and deploy files list, rest if managed by hand.
 ** `tests/delphi_tests/`
-** `tools/build_tool/`
+** `tools/build_tool/`. Beware: revert LPI changes (this cannot use `castle_window.lpk`).
+** Beware for all above: remove unversioned, we don't want to add some files. (e.g. LPI for Delphi-specific examples would make no sense).
 --
 
 - New unit only:
