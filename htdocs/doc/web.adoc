@@ -130,6 +130,8 @@ Why is this useful? Most dynamic webpages should be tested through a webserver r
 +
 In our opinion, it's easiest to get this using link:fpcupdeluxe[]: install FPC _"trunk"_ version, then install FPC cross-compiler for OS=`WasiP1` and CPU=`Wasm32`. You can also just get it from GIT and compile manually, following link:https://wiki.freepascal.org/WebAssembly[FPC wiki about WebAssembly].
 +
+WARNING: Since 2025-02-27, the fpcupdeluxe will fail to build FPC+WebAssembly because the OS name changed in FPC: `wasi` -> `wasip1`. We submitted an https://github.com/LongDirtyAnimAlf/fpcupdeluxe/issues/747[issue about it] and https://github.com/LongDirtyAnimAlf/fpcupdeluxe/pull/748[PR that fixes it]. For now, get fpcupdeluxe from the fork indicated in this PR, that is: https://github.com/michaliskambi/fpcupdeluxe .
++
 _Test that it works._ Create the following simple program, saved as `hello_wasm.lpr`:
 +
 ```delphi
@@ -435,7 +437,7 @@ Current problems:
 +
 Because this is causing a maintenance burden (programs and units to convert things to specialized Pascal code). It does not "scale" (e.g. to distance field fonts) because each idea would need a new converter X -> Pascal. `texture-font-to-pascal` is deprecated for above reasons.
 +
-And because this is unnecessary. For embedding things in EXE, FPC already has "cross-platform resources" with nice API and it just allows to embed a binary blob. And we don't even need embedding things: we have "data organized in subdirs and files" on all platforms, including the web.
+And because this is unnecessary. For embedding things in EXE, FPC already has "cross-platform resources" with nice API and it just allows to embed a binary blob. And we don't even need embedding things: we have "data organized in subdirectories and files" on all platforms, including the web.
 +
 In other words, thinking higher-level: We don't need to solve "how to embed" problem. We only need to solve "how to read the data format (efficiently, without FreeType)" problem. And in general "embedding" is a different task than "making format easier to read", we don't need "embedding things by compiling them into Pascal" to be a combined solution to both things.
 --
