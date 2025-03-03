@@ -50,6 +50,8 @@ cgeimg::block[
 
 - link:web-demos/examples/viewport_and_scenes/collisions[Collisions in 3D test] (https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/collisions[Source code])
 
+- link:web-demos/castle-model-viewer-mobile[Castle Model Viewer (Mobile)] (https://github.com/castle-engine/castle-model-viewer-mobile/[Source code]). While you cannot (yet) open arbitrary files with it, but you can explore predefined files (glTF, X3D, Spine), switching animations, walk / examine modes, and finally you can view your WebGL properties.
+
 === Earliest (simplest) demos
 
 - link:web-demos/examples/web/simplest_viewport[3D viewport, with animated light, dropping boxes with physics] (Source code in https://github.com/castle-engine/castle-engine/tree/master/examples/web/simplest_viewport[examples/web/simplest_viewport])
