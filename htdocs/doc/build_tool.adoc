@@ -122,6 +122,7 @@ Instead of `--os` and/or `--cpu` options, you can also use `--target`. A _target
 . `android`, which consists of 2 combinations of OS/CPU: Android OS on ARM (32-bit) and Android on Aarch64 aka Arm64 (64-bit).
 . `ios`. By default this consists of 2 combinations of OS/CPU, to include 32-bit and 64-bit iOS devices. Add the `--ios-simulator` option to include 2 more combinations of OS/CPU to include also support for the iOS simulator. See link:ios[iOS] to learn more.
 . `nintendo-switch`, which builds an application for link:nintendo_switch[Nintendo Switch].
+. `web` which builds for link:web[].
 
 Use `--mode=debug` or `--mode=release` or `--mode=valgrind` for a specific compilation mode. By default, it is "release". The "valgrind" mode is for profiling (speed, memory usage) using the excellent http://valgrind.org/[Valgrind tool].
 
@@ -156,6 +157,7 @@ What exactly is produced by this command depends on the target platform and the 
 +
 This happens when you used `--target=android` or `--os=android --cpu=<any supported Android processor>` (processors supported by Android now are `arm`, `aarch64`, `x86_64`).
  ** For iOS (when `--target=ios`), we create an Xcode project, that you can run and publish using Xcode.
+ ** For link:web[] (when `--target=web`), we create a zip archive with the files that should be served by the web server. These are the contents of `castle-engine-output/web/dist/` directory after compilation to the web.
 * `--package-format=zip`: Pack files into a zip file.
 * `--package-format=tar.gz`: Pack files into a tar.gz file.
 * `--package-format=deb`: Pack files into a Debian Package (deb).
@@ -171,6 +173,8 @@ This happens when you used `--target=android` or `--os=android --cpu=<any suppor
 * macOS formats:
  ** `--package-format=mac-app-bundle-zip`: Application bundle on macOS, packed into `zip`. Default format for link:macos[macOS].
  ** `--package-format=mac-app-bundle`: Application bundle on macOS, not packed (so it is just a directory like `MyApplication.app`).
+* link:web[] formats:
+ ** `--package-format=web-zip-dist`: Pack the `castle-engine-output/web/dist/` directory into a zip file. These files should be served by the web server.
 * link:nintendo_switch[Nintendo Switch] format: `--package-format=nintendo-switch`.
 
 When target is `iOS` you can also use `--ios-simulator` option to include iOS simulator support (see link:ios[iOS]).

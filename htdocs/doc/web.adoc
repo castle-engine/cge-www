@@ -128,7 +128,7 @@ Why is this useful? Most dynamic webpages should be tested through a webserver r
 
 - *link:https://www.freepascal.org/[FPC] with link:https://wiki.freepascal.org/WebAssembly[WebAssembly] support.*
 +
-In our opinion, it's easiest to get this using link:fpcupdeluxe[]: install FPC _"trunk"_ version, then install FPC cross-compiler for OS=`Wasi` and CPU=`Wasm32`. You can also just get it from GIT and compile manually, following link:https://wiki.freepascal.org/WebAssembly[FPC wiki about WebAssembly].
+In our opinion, it's easiest to get this using link:fpcupdeluxe[]: install FPC _"trunk"_ version, then install FPC cross-compiler for OS=`WasiP1` and CPU=`Wasm32`. You can also just get it from GIT and compile manually, following link:https://wiki.freepascal.org/WebAssembly[FPC wiki about WebAssembly].
 +
 _Test that it works._ Create the following simple program, saved as `hello_wasm.lpr`:
 +
@@ -141,7 +141,7 @@ end.
 If everything is installed and configured OK, then you should be able to compile it using this command:
 +
 ```
-fpc -Twasi -Pwasm32 hello_wasm.lpr
+fpc -Twasip1 -Pwasm32 hello_wasm.lpr
 ```
 +
 If everything went well, you should get `hello_wasm.wasm` in the same directory.
@@ -256,7 +256,7 @@ If you know of an easy way to pass WebGL API and context (and rest of JS stuff w
 Build your application like this (on the command-line):
 
 ```
-castle-engine compile --os=wasi --cpu=wasm32 --mode=debug
+castle-engine compile --os=wasip1 --cpu=wasm32 --mode=debug
 ```
 
 Run it like this:
@@ -276,11 +276,11 @@ WARNING: Making `castle-tester.wasm` work this way is a work-in-progress. The `t
 
 ```shell
 cd tests/
-castle-engine compile --os=wasi --cpu=wasm32 --mode=debug
+castle-engine compile --os=wasip1 --cpu=wasm32 --mode=debug
 wasmtime castle-tester.wasm --console --no-window-create
 
 cd time_measurements_tests/ # enter tests/time_measurements_tests/ in CGE
-castle-engine compile --os=wasi --cpu=wasm32 --mode=debug
+castle-engine compile --os=wasip1 --cpu=wasm32 --mode=debug
 wasmtime time_measurements_tests.wasm
 ```
 
@@ -321,12 +321,12 @@ This command:
 For some specific applications (like our `tests/`) you can also compile the regular _program_ file (like `xxx_standalone.dpr`, whatever is indicated by `standalone_source` in link:project_manifest[CastleEngineManifest.xml]) using FPC + WebAssembly to a `.wasm` file using this command:
 
 ```shell
-castle-engine compile --os=wasi --cpu=wasm32
+castle-engine compile --os=wasip1 --cpu=wasm32
 ```
 
 This is _not_ equivalent to `castle-engine compile --target=web`, which generates and compiles a special _library_ file with WebAssembly (and also generates and compiles the glue code using Pas2js, and generates HTML template).
 
-Compiling the standalone program with `castle-engine compile --os=wasi --cpu=wasm32` only makes sense if application was prepared to be run this way. E.g. it allows to run our testsuite using https://wasmtime.dev/[Wasmtime].
+Compiling the standalone program with `castle-engine compile --os=wasip1 --cpu=wasm32` only makes sense if application was prepared to be run this way. E.g. it allows to run our testsuite using https://wasmtime.dev/[Wasmtime].
 ====
 
 - Our link:editor[] can also build and run for web. Underneath, it just calls the build tool commands described above (which you can see in the _"Console"_).
