@@ -136,7 +136,7 @@ Kill it by _Ctrl+C_ in the terminal.
 +
 Why is this useful? Most dynamic webpages should be tested through a webserver running on your system (like `compileserver`, though you can also spin a full https://httpd.apache.org/[Apache] or https://nginx.org/[Nginx]) that serves the HTML, JS, WASM and other files. You view them using a `http://localhost:.../` URL, which means you access the webserver on your own system. In contrast, just opening the HTML files in a web browser (which results in URLs like `file:///.../index.html`) will usually not work, because of security: JavaScript code on such pages will not be able to load extra resources (like WASM files). It's possible to configure your browser to circumvent this (disable CORS checking) but it's a hassle. Using a "temporary webserver" like `compileserver` is the easiest way to test your applications.
 
-- *link:https://www.freepascal.org/[FPC] with link:https://wiki.freepascal.org/WebAssembly[WebAssembly] support.*
+- *https://www.freepascal.org/[FPC] with https://wiki.freepascal.org/WebAssembly[WebAssembly] support.*
 +
 In our opinion, it's easiest to get this using link:fpcupdeluxe[]: install FPC _"trunk"_ version, then install FPC cross-compiler for OS=`WasiP1` and CPU=`Wasm32`. You can also just get it from GIT and compile manually, following link:https://wiki.freepascal.org/WebAssembly[FPC wiki about WebAssembly].
 +
@@ -157,6 +157,28 @@ fpc -Twasip1 -Pwasm32 hello_wasm.lpr
 ```
 +
 If everything went well, you should get `hello_wasm.wasm` in the same directory.
+
+- *Optional, for extra size/speed optimization: https://github.com/WebAssembly/binaryen/[Binaryen (for `wasm-opt` tool)]*
++
+The https://github.com/WebAssembly/binaryen[Binaryen] project includes a tool called `wasm-opt`. If you have this tool installed (available on `$PATH`) then we will use it to optimize our WASM binaries when building a _release_ version. This results in binaries that are smaller (it can be a significant improvement, like 1/3 of original size!), load faster and potentially even run faster.
+//(not noticeable in our experiments, but that's OK because our bottleneck is typically not WASM execution).
++
+You can toggle between the _"debug"_ and _"release"_ modes:
++
+--
+- In the GUI link:editor[]: Use the _"Run -> ... Mode"_ menu items. The "debug" mode is default in the editor.
+- In the command-line link:build_tool[build tool]: Use the `--mode=debug` or `--mode=release` command-line options. Right now, the "release" mode is default in the build tool (we know it's inconsistent, this default may change in the future).
+--
++
+We only execute `wasm-opt` in the _"release"_ mode as it can take a while (like 1.5 minute). Observe the output where we log how much time it took, and how smaller is the resulting WASM. It will look like this:
++
+```
+wasm-opt found, using it to optimize the release build.
+...
+Optimized .wasm file in 84.64sec, size decrease 34% (from 43.04 MB to 14.61 MB).
+```
++
+If you don't have this installed, no problem, this is *completely optional*. Everything will work and execute smoothly, just the WASM binaries will not benefit from this size+speed optimization.
 
 === Building Castle Game Engine applications
 
@@ -401,7 +423,7 @@ This approach is not final, as it has a number of problems: We assume hardcoded 
 
 == Plans (TODOs)
 
-- PBR shaders (used by most 3D demos) combined with textures have weird error at compilation on WebGL.
+- Some shader code (bump mapping, fog, terrains) makes weird errors at compilation on WebGL. For now, we disabled these shaders, so the relevant examples will run smoothly.
 
 - Reproduce with clean sample and submit to FPC:
 +
@@ -415,15 +437,9 @@ NOTE: About link:x3d_implementation_sound.php#section_x3d4[WebAudio in the conte
 
 - Possibly throw in additional compression of data and/or wasm executable?
 +
-WASM size:
+We already make one size optimization (thank you to _Michael Van Canneyt_ for the tip): we use `wasm-opt` which decreases size ~1/3. Unoptimized _release_ build of `examples/platformer` drops from 43 MB to 14 MB. (gzipped: 3.3 MB).
 +
---
-- It started small, with older CGE code and older FPC: https://github.com/castle-engine/castle-engine/tree/master/examples/platformer[examples/platformer] (which practically uses 100% of CGE units) results in a binary `platformer.wasm` that has 16 MB. Gzipped it has 3.4 MB.
-- But it grew larger, once we got more things working and updated everything: now it is 44 MB (debug or release doesn't matter), gzipped 7.1 MB.
-- Unsure what caused it. IFC? Without IFC it is 39 MB (6.4 MB) gzipped, so IFC matters, but not that much. Embedding fonts? But `web/simplest/` weights 35 MB and has no extra embedded fonts (only default font, but that was already included in first measurement). Is using Job.Web causing it? Or update in FPC?
---
-+
-The gzipped size is what matters more &mdash; both web browsers and servers support gzip-(de)compression on the fly, you can also just put ready-gzipped version on the server and tell the browser to just decompress. So in most practical cases, users will download version compressed.
+The gzipped size matters more (for the download speed) &mdash; both web browsers and servers support gzip-(de)compression on the fly, you can also just put ready-gzipped version on the server and tell the browser to just decompress. So in most practical cases, users will download version compressed.
 //+
 // Old numbers
 //Note that above is for a _release_ build. The _debug_ build weights 51 MB, and gzipped 12 MB. (Debug build contains https://wiki.freepascal.org/WebAssembly/Debugging[debugging symbols].)
