@@ -74,7 +74,6 @@ These are _early demos_, so don't judge the final quality by these demos (yet) :
 
 - The _"3 earliest demos"_ use only 3D / 2D things set up from code (they don't load any data files, not even designs) so they don't look impressive. Reason: When we made these demos, reading data was not implemented yet (it is implemented now).
 - No shadow volumes on web yet (we need to initialize with stencil to have them).
-- We don't show much 3D demos, because our PBR shaders in some cases fail compilation on WebGL. This is of course just a regular bug to find and solve.
 ====
 
 == Usage (building examples and your own projects)
