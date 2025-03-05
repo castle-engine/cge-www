@@ -58,6 +58,8 @@ cgeimg::block[
 
 - link:web-demos/examples/third_person_navigation[Third-person navigation] (https://github.com/castle-engine/castle-engine/tree/master/examples/third_person_navigation[Source code])
 
+- link:web-demos/castle-dice-throwing[Dice Throwing] (https://github.com/castle-engine/castle-dice-throwing/[Source code]). A fun experiment, showing how to run physics simulation invisibly. You can throw a 6-sided dice, it looks nice (following physics)... and yet the result is predetermined (set the outcome using a button before throwing). Underneath, we run invisible physics simulation and rotate the dice to match the desired outcome.
+
 === Earliest (simplest) demos
 
 - link:web-demos/examples/web/simplest_viewport[3D viewport, with animated light, dropping boxes with physics] (Source code in https://github.com/castle-engine/castle-engine/tree/master/examples/web/simplest_viewport[examples/web/simplest_viewport])
