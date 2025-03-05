@@ -159,17 +159,15 @@ If everything went well, you should get `hello_wasm.wasm` in the same directory.
 
 - *Optional, for extra size/speed optimization: https://github.com/WebAssembly/binaryen/[Binaryen (for `wasm-opt` tool)]*
 +
-The https://github.com/WebAssembly/binaryen[Binaryen] project includes a tool called `wasm-opt`. If you have this tool installed (available on `$PATH`) then we will use it to optimize our WASM binaries when building a _release_ version. This results in binaries that are smaller (it can be a significant improvement, like 1/3 of original size!), load faster and potentially even run faster.
-//(not noticeable in our experiments, but that's OK because our bottleneck is typically not WASM execution).
-+
-You can toggle between the _"debug"_ and _"release"_ modes:
+The https://github.com/WebAssembly/binaryen[Binaryen] project includes a tool called `wasm-opt`. If you have this tool installed (available on `$PATH`) then we will use it to optimize our WASM binaries when building a _release_ version. This results in binaries that are
 +
 --
-- In the GUI link:editor[]: Use the _"Run -> ... Mode"_ menu items. The "debug" mode is default in the editor.
-- In the command-line link:build_tool[build tool]: Use the `--mode=debug` or `--mode=release` command-line options. Right now, the "release" mode is default in the build tool (we know it's inconsistent, this default may change in the future).
+- smaller (significant improvement, ~1/3 of original size!),
+- load (noticeably!) faster and
+- run (noticeably!) faster.
 --
 +
-We only execute `wasm-opt` in the _"release"_ mode as it can take a while (like 1.5 minute). Observe the output where we log how much time it took, and how smaller is the resulting WASM. It will look like this:
+Observe the output where we log how much time it took, and how smaller is the resulting WASM. It will look like this:
 +
 ```
 wasm-opt found, using it to optimize the release build.
@@ -177,7 +175,17 @@ wasm-opt found, using it to optimize the release build.
 Optimized .wasm file in 84.64sec, size decrease 34% (from 43.04 MB to 14.61 MB).
 ```
 +
-If you don't have this installed, no problem, this is *completely optional*. Everything will work and execute smoothly, just the WASM binaries will not benefit from this size+speed optimization.
+[NOTE]
+====
+We only execute `wasm-opt` in the _"release"_ mode as it can take a while (like 1.5 minute).
+
+You can toggle between the _"debug"_ and _"release"_ modes:
+
+- In the GUI link:editor[]: Use the _"Run -> ... Mode"_ menu items. The "debug" mode is default in the editor.
+- In the command-line link:build_tool[build tool]: Use the `--mode=debug` or `--mode=release` command-line options. Right now, the "release" mode is default in the build tool (we know it's inconsistent; we will likely change in the future the build tool to also default to "debug").
+====
++
+If you don't have `wasm-opt` installed, no problem, this is *completely optional*. Everything will work and execute smoothly, just the WASM binaries will not benefit from this size+speed optimization.
 
 === Building Castle Game Engine applications
 
@@ -498,3 +506,9 @@ Or existing `TTextureFontData`? Remake it to be `TCastleFontData`, a `TComponent
 - Make a dedicated editor for above component that, when saving, also saves font texture (distance field or not) alongside it and glyphs (as children components). A bit like sprite sheet editor saves atlas.
 - `TCastleFont.Load` should allow reading `xxx.castle-font[-data]`, and then read texture alongside too.
 --
+
+- Change the build tool to by default do "debug". Because this is a better default for devs (from both editor and command-line), making builds quicker and with debug checks.
++
+This will cause some compatibility breakage for scripts, though.
++
+Also, `package` really makes more sense (from editor or build tool) with "release". But we cannot just change it to `release` for `package`, as this would also be inconsistent and potentially surprising. Maybe just add `DEBUG` to package names done in debug mode? This would send a clear signal.
