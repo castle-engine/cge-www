@@ -68,7 +68,7 @@ Then open it using link:castle-model-viewer[Castle Model Viewer].
 
 ### Saving and loading
 
-We can load and save the IFC entities listed in API docs of cgeref:CastleIfc[] unit. This includes over 170 classes reflecting the IFC specification.
+We can load and save the IFC entities listed in API docs of cgeref:CastleIfc[] unit. This includes all the classes reflecting the IFC specification (of which 178 classes have all the properties and docs, and 596 classes are only bare-bones definition for now).
 
 All the defined IFC entities can be loaded and saved to IFC files in the JSON encoding, with the `.ifcjson` extension.
 
