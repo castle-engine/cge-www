@@ -60,6 +60,15 @@ cgeimg::block[
 // iphone_dragon.jpg|Dragon demo on iOS (iPhone),
 //, android_little_things.png|"Little Things" demo on Android
 
+* link:web[Web]. Using the FPC _WebAssembly_ target and _WebGL_ for rendering. You can distribute your application by just including it as part of your webpage. Any modern web browser, desktop or mobile, supports it.
++
+cgeimg::block[
+  web_0_play_animation.png|Web demo - Play animation,
+  web_1_space_shooter.png|Web demo - Space shooter,
+  web_5_platformer.png|Web demo - Platformer,
+  web_7_tiled.png|Web demo - Strategy Game Using Tiled
+]
+
 * Console (link:nintendo_switch[Nintendo Switch]).
 +
 cgeimg::block[nintendo_switch_3.jpg|"Escape from the Universe" on Nintendo Switch]
@@ -72,7 +81,6 @@ cgeimg::block[raspberry_pi_1.webp|Raspberry Pi,unholy_raspberry_1.webp|"The Unho
 * Coming soon (link:roadmap[]):
 +
 --
-* https://castle-engine.io/wp/2023/04/08/web-target-progress-and-plans/[WebGL (FPC can compile to WebAssembly)]
 * https://castle-engine.io/wp/2022/01/16/oculus-quest-2-developer-mode-for-castle-game-engine-enabled/[Oculus (VR)] (we have the hardware to test)
 * XBox (we have the hardware -- even devkit, though _"developer mode"_ can also be activated on a retail version of Xbox).
 --
@@ -370,6 +378,16 @@ cgeimg::block[
 * We support various map types (orthogonal, isometric, hexagonal), layers (you control which layers are displayed), animations and more.
 * See https://castle-engine.io/tiled_maps[the manual about Tiled map].
 * See https://github.com/castle-engine/castle-engine/tree/master/examples/tiled/strategy_game_demo/[examples/tiled/strategy_game_demo] for a complete strategy game in CGE using Tiled maps.
+
+== Data and Systems
+
+Developing games means dealing a lot with _data_ (assets). We have full-featured systems providing all the capabilities you need. They are the basis of our link:editor[] but are also useful at run-time to deal with your data while your application runs.
+
+* Automatic packaging of link:data[data] files for all platforms, exposing them through `castle-data:/` URL.
+* All the reading, writing, searching in our engine accepts https://castle-engine.io/manual_network.php[URLs]. So you can use regular file-system (`file:/`), you can refer to files in your data (`castle-data:/`), you can refer to resources inside ZIP files, or even resources on the network (`https:/...`). You can easily register your own URL protocols (schemes) to extend this system.
+* ZIP handling, supporting read and write, supporting all platforms and compilers, with optional URL protocol registration. See cgeref:TCastleZip[] and https://castle-engine.io/wp/2025/03/09/new-class-for-zip-handling-tcastlezip-progress-on-new-pretty-wireframe-approach-woff-fonts-support-lod-usage-demo/[news about ZIP].
+* Loading and saving components (our engine components or any other Pascal `TComponent`) to JSON files. The base unit to do this is cgeref:CastleComponentSerialize[], and there are many things build "on top" of it, like our link:editor[], loading designs in views, https://castle-engine.io/reuse_design[reusing designs].
+* Cloning the components using cgeref:TCastleComponentFactory[], cgeref:ComponentClone[]. See e.g. https://github.com/castle-engine/castle-engine/tree/master/examples/space_shooter[examples/space_shooter] that uses a factory to spawn rockets and rocks.
 
 == Particles
 

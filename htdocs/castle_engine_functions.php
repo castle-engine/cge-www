@@ -1,7 +1,7 @@
 <?php /* -*- mode: kambi-php -*- */
 
 /*
-   Copyright 2001-2024 Michalis Kamburelis.
+   Copyright 2001-2025 Michalis Kamburelis.
 
    This file is part of "Castle Game Engine Website".
 
@@ -2134,7 +2134,7 @@ function cge_features_summary($feature_heading_level = 3)
     array(
       'link' => 'features#_cross_platform',
       'title' => 'Cross-platform',
-      'description' => 'Target any platform (desktop: Windows, Linux, macOS, FreeBSD, Raspberry Pi, mobile: Android, iOS, console: Nintendo Switch). Work on any desktop platform. <a href="https://castle-engine.io/wp/2023/04/08/web-target-progress-and-plans/">WebGL</a> and Oculus (VR) are coming as targets soon.',
+      'description' => 'Target any platform (desktop: Windows, Linux, macOS, FreeBSD, Raspberry Pi, mobile: Android, iOS, console: Nintendo Switch, web). Work on any desktop platform. VR is coming as a next target soon.',
       'image' => 'nintendo_switch_3.jpg',
       'image_titlealt' => '"Escape from the Universe" on Nintendo Switch',
     ),
