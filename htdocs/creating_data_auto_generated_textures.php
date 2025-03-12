@@ -185,7 +185,7 @@ see <?php echo cgeRef('TTextureCompression'); ?>, e.g. <code>Dxt1_RGB</code>, <c
       If not specified, by default this is .png.
       It can be any image format that CGE can write.
 
-      - This does affect the uncompressed (only downlscaled,
+      - This does affect the uncompressed (only downscaled,
         or not even downscaled when trivial_uncompressed_convert) format.
 
       - This does not affect the GPU-compressed (e.g. to DXT5) textures now.
@@ -238,16 +238,17 @@ see <?php echo cgeRef('TTextureCompression'); ?>, e.g. <code>Dxt1_RGB</code>, <c
   </auto_generated_textures>
 </properties>'); ?>
 
-<p>Possible values inside <code>&lt;platform&gt;</code> are:</p>
+<p>Possible values inside <code>&lt;platform&gt;</code> (following the <?php echo cgeRef('TCastlePlatform'); ?> enum values):
 
 <ul>
   <li>Nintendo Switch</li>
   <li>Android</li>
   <li>iOS</li>
   <li>Desktop</li>
+  <li>Web</li>
 </ul>
 
-<p>Note: Not specyfing <code>&lt;platforms&gt;</code> at all means that the format should be distributed on <em>all</em> platforms (current and future). On the other hand, specifying empty <code>&lt;platforms&gt;&lt;/platforms&gt;</code> means that the format is not distributed on <em>any</em> platform (this makes commenting out a particular <code>&lt;platform&gt;xxx&lt;/platform&gt;</code> line behave naturally).</p>
+<p>Note: Not specifying <code>&lt;platforms&gt;</code> at all means that the format should be distributed on <em>all</em> platforms (current and future). On the other hand, specifying empty <code>&lt;platforms&gt;&lt;/platforms&gt;</code> means that the format is not distributed on <em>any</em> platform (this makes commenting out a particular <code>&lt;platform&gt;xxx&lt;/platform&gt;</code> line behave naturally).</p>
 
 <p>In a similar fashion, the <code>&lt;scale&gt;</code> element can optionally limit the platforms where given texture scale will be packaged. E.g.
 
@@ -310,7 +311,7 @@ and at runtime we will automatically load a suitable GPU-compressed alternative 
     environment variable. If you don't know what it means or how to set
     your <code>PATH</code> environment variable,
     please search the Internet, there are step-by-step
-    instrucions for all operating systems.
+    instructions for all operating systems.
     Some of these tools have also a standardized install location,
     we look there too.
 
@@ -391,7 +392,7 @@ is interpreted analogous to <?php echo cgeRef('TextureLoadingScale'); ?> variabl
     <?php echo cgeRef('TextureLoadingScale'); ?>
     and
     <?php echo cgeRef('GLTextureScale'); ?>
-    cummulate.
+    cumulate.
 
   <li><p>For compressed textures, this is the only way to get downscaled texture
     versions that can be chosen at runtime. We cannot downscale compressed textures
