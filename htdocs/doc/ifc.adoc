@@ -8,6 +8,7 @@ include::common.adoc[]
 _Castle Game Engine_ supports loading 3D models in the _IFC (Industry Foundation Classes)_ format.
 
 cgeimg::block[
+  house_ifc.png|House modeled using BonsaiBIM and opened in Castle Game Engine,
   ifc_cge.png|IFC example in Castle Game Engine,
   ifc_blender.png|Same IFC example loaded in Blender (with BonsaiBIM add-on),
   ifc_freecad.png|Same IFC example loaded in FreeCAD,
