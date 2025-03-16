@@ -5,7 +5,7 @@ include::common.adoc[]
 
 == Introduction
 
-Mobile-friendly viewer for link:creating_data_model_formats.php[3D and 2D model formats supported by the Castle Game Engine]: link:gltf[glTF], link:x3d[X3D], link:x3d[VRML], link:spine[Spine JSON], link:sprite_sheets[sprite sheets (in Castle Game Engine, Cocos2D and Starling XML formats)], link:md3[MD3], Wavefront OBJ, 3DS, STL, Collada, link:creating_data_model_formats.php[and more].
+Mobile-friendly viewer for link:creating_data_model_formats.php[3D and 2D model formats supported by the Castle Game Engine]: link:gltf[glTF], link:x3d[X3D], link:x3d[VRML], link:ifc[IFC], link:spine[Spine JSON], link:sprite_sheets[sprite sheets (in Castle Game Engine, Cocos2D and Starling XML formats)], link:md3[MD3], Wavefront OBJ, 3DS, STL, Collada, link:creating_data_model_formats.php[and more].
 
 In addition to the above formats, it also allows to open a ZIP file that contains a single model and associated media (like textures, sounds etc.).
 
@@ -26,7 +26,7 @@ This is a mobile version of link:castle-model-viewer[Castle Model Viewer], shari
 
 - It is available now for Android.
 
-- We hope to make it available for iOS too. Please link:donate[] to help cover Apple membership cost (100 USD / year) to make this happen.
+- We will make it available for iOS too. Please link:donate[] to help cover Apple membership cost (100 USD / year) to make this happen (one person already sponsored our Apple membership for 1 year, thank you!) and our development cost.
 
 == Download
 

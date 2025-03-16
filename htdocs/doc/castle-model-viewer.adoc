@@ -11,6 +11,7 @@ include::common.adoc[]
 // - link:gltf[glTF]
 // - link:x3d[X3D]
 // - link:x3d[VRML]
+// - link:ifc[IFC]
 // - link:spine[Spine JSON]
 // - link:sprite_sheets[sprite sheets (in Castle Game Engine, Cocos2D and Starling XML formats)]
 // - link:md3[MD3]
@@ -20,7 +21,7 @@ include::common.adoc[]
 // - Collada
 // - link:creating_data_model_formats.php[and more].
 
-Viewer for link:creating_data_model_formats.php[3D and 2D model formats supported by the Castle Game Engine]: link:gltf[glTF], link:x3d[X3D], link:x3d[VRML], link:spine[Spine JSON], link:sprite_sheets[sprite sheets (in Castle Game Engine, Cocos2D and Starling XML formats)], link:md3[MD3], Wavefront OBJ, 3DS, STL, Collada, link:creating_data_model_formats.php[and more].
+Viewer for link:creating_data_model_formats.php[3D and 2D model formats supported by the Castle Game Engine]: link:gltf[glTF], link:x3d[X3D], link:x3d[VRML], link:ifc[IFC], link:spine[Spine JSON], link:sprite_sheets[sprite sheets (in Castle Game Engine, Cocos2D and Starling XML formats)], link:md3[MD3], Wavefront OBJ, 3DS, STL, Collada, link:creating_data_model_formats.php[and more].
 
 Examine or walk in the virtual world with collisions, gravity, animations, X3D sensors, shadows, mirrors, shaders and more. View it from multiple cameras at once. Take screenshots with various options (transparent background, cube maps).
 
