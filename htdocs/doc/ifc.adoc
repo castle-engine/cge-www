@@ -65,6 +65,26 @@ Then open it using link:castle-model-viewer[Castle Model Viewer].
 
 2. Check out the dedicated example using IFC classes to add and modify walls, that can load, save and display IFC models. It's in the https://github.com/castle-engine/castle-engine/tree/master/examples/ifc[examples/ifc/] directory of the engine sources.
 
+[#tools]
+### Support in engine tools
+
+The IFC format is supported as input and output in all our tools, including:
+
+- link:editor[Castle Game Engine editor] - design 3D applications using https://castle-engine.io/creating_data_model_formats.php[IFC, glTF, X3D and other supported model formats] and all our link:features[engine features].
+- Viewers:
++
+--
+- link:castle-model-viewer[Castle Model Viewer],
+- link:castle-model-viewer-mobile[Castle Model Viewer Mobile],
+- https://castle-engine.io/web-demos/castle-model-viewer-mobile/[pre-release of Castle Model Viewer on the web] (TODO: doesn't yet allow to choose arbitrary IFC file from your disk).
+--
+- Converters:
++
+--
+- Command-line link:castle-model-converter[Castle Model Converter]
+- https://castle-engine.io/convert.php[Online Model Converter]
+--
+
 ## Supported IFC features
 
 ### Saving and loading
