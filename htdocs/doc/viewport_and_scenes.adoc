@@ -80,6 +80,8 @@ cgeref:TCastleTransformReference[] makes a reference to another cgeref:TCastleTr
 
 Set cgeref:TCastleTransformReference.Reference[] to indicate which transformation is referenced by this instance.
 
+NOTE: It's usually simplest to create an instance of cgeref:TCastleTransformReference[] by right-clicking on the source cgeref:TCastleTransform[] in the hierarchy and choosing _"Duplicate Linked (TCastleTransformReference)"_ from the context menu.
+
 cgeimg::block[cars_demo_2.png|Many car instances]
 
 ## Camera
