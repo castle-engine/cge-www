@@ -2,8 +2,8 @@
 require_once 'castle_engine_functions.php';
 castle_header('Online Converter for 3D and 2D Models', array(
   'social_share_image' => 'castle-model-viewer_gltf_helmet.png',
-  'meta_description' => 'Online and free converter for many 3D model formats. As input supports a lot of 3D and 2D formats (everything supported by Castle Game Engine), like glTF, X3D, VRML, OBJ, STL, Collada, 3DS, Spine JSON. As output, supports X3D and STL.',
-  'meta_keywords' => 'convert, glTF, OBJ, 3DS, X3D, VRML, STL',
+  'meta_description' => 'Online and free converter for many 3D model formats. As input supports a lot of 3D and 2D formats (everything supported by Castle Game Engine), like glTF, X3D, VRML, IFC, OBJ, STL, Collada, 3DS, Spine JSON. As output, supports X3D, IFC and STL.',
+  'meta_keywords' => 'convert, glTF, OBJ, 3DS, X3D, VRML, IFC, STL',
 ));
 
 /* TODO:
@@ -35,10 +35,10 @@ require_once 'convert-functions.php';
 
 <ul>
   <li>
-    <p><b>Convert from</b> <a href="creating_data_model_formats.php">any model format supported by Castle Game Engine: glTF, X3D, VRML, Wavefront OBJ, STL, Collada, 3DS, MD3, Spine JSON and more</a>.
+    <p><b>Convert from</b> <a href="creating_data_model_formats.php">any model format supported by Castle Game Engine: glTF, X3D, VRML, IFC, Wavefront OBJ, STL, Collada, 3DS, MD3, Spine JSON and more</a>.
 
   <li>
-    <p><b>Convert to</b> X3D and STL. <i>We plan to add glTF as an additional output format soon.</i>
+    <p><b>Convert to</b> X3D, IFC and STL. <i>We plan to add glTF as an additional output format soon.</i>
 </ul>
 
 <p>Can also be used to <b>convert between X3D encodings (classic, XML)</b> and pretty-print X3D and VRML models.
@@ -63,7 +63,11 @@ require_once 'convert-functions.php';
           if (isset($output_format_data['default']) && $output_format_data['default']) {
             echo ' checked';
           }
-          echo '><label for="output-format-' . $output_format . '">' . htmlspecialchars($output_format_data['description']) . '</label></p>';
+          echo '><label for="output-format-' . $output_format . '">'
+            . htmlspecialchars($output_format_data['description'])
+            . ' (extension <code>'
+            . htmlspecialchars($output_format_data['extension']) . '</code>)'
+            . '</label></p>';
         }
         ?>
       </div>
@@ -74,7 +78,7 @@ require_once 'convert-functions.php';
   </div>
 </form>
 
-<p>This tool is completely free (for any usage, commercial or not). If you find it useful <a href="https://www.patreon.com/castleengine">please support me on Patreon</a>. <!--Every month, I commit time to developing features solely requested by Patreons.-->
+<p>This tool is completely free (for any usage, commercial or not). If you find it useful <a href="https://www.patreon.com/castleengine">please support us on Patreon</a>.
 
 <p>Advanced usage notes:
 

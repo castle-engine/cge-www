@@ -36,18 +36,23 @@ $convert_output_formats = array(
   'x3d-xml' => array(
     'extension' => '.x3d',
     'mime' => 'model/x3d+xml',
-    'description' => 'X3D, XML encoding (.x3d extension)',
+    'description' => 'X3D, XML encoding',
     'default' => true, // can be true on only one item; can be omitted if false
   ),
   'x3d-classic' => array(
     'extension' => '.x3dv',
     'mime' => 'model/x3d+vrml',
-    'description' => 'X3D, classic encoding (.x3dv extension)',
+    'description' => 'X3D, classic encoding',
   ),
   'stl' => array(
     'extension' => '.stl',
     'mime' => 'application/x-stl',
-    'description' => 'STL, binary (.stl extension)',
+    'description' => 'STL, binary',
+  ),
+  'ifc' => array(
+    'extension' => '.ifcjson',
+    'mime' => 'application/x-ifc-json',
+    'description' => 'IFC JSON',
   ),
 );
 global $convert_output_formats;
