@@ -93,7 +93,7 @@ You can easily create an Android application (APK file) with:
 castle-engine package --target=android
 ----
 
-This way you don't need to install all the things mentioned at https://castle-engine.io/android -- they are already available inside the Docker container. You get an APK, which you can copy to your Android device (phone, tablet) in any way, and then install and run it -- like any other application in APK form.
+This way you don't need to install any of the software mentioned at https://castle-engine.io/android[Android docs] -- all the prerequisites are already available inside the Docker container. You get an APK, which you can copy to your Android device (phone, tablet) in any way, and then install and run it -- like any other application in APK form.
 
 If you want to https://castle-engine.io/creating_data_auto_generated_textures.php[generate compressed textures], you can run in Docker container
 
@@ -101,7 +101,7 @@ If you want to https://castle-engine.io/creating_data_auto_generated_textures.ph
 castle-engine auto-generate-textures
 ----
 
-The advantage is, again, that you don't need to install all the tools mentioned on the https://castle-engine.io/creating_data_auto_generated_textures.php[generating compressed textures] docs. These tools are ready inside the Docker container.
+The advantage is similar to the above: you don't need to install all the tools mentioned on the https://castle-engine.io/creating_data_auto_generated_textures.php[generating compressed textures] docs. These tools are ready inside the Docker container.
 
 You can also use command-line `fpc` or `lazbuild` to build Pascal applications.
 
@@ -112,13 +112,16 @@ You can also use command-line `fpc` or `lazbuild` to build Pascal applications.
 
 * *No GUI*. Although https://www.lazarus-ide.org/[Lazarus] is installed inside the container, but it's primary use is to run `lazbuild` to compile Lazarus packages. The container doesn't have visual libraries (X) installed, and is not connected to your host display, so you cannot readily use GUI Lazarus for development. It is http://fabiorehm.com/blog/2014/09/11/running-gui-apps-with-docker/[possible to execute GUI application inside Docker], but it may be easier to just install Lazarus in a normal way, on your host system.
 * *No connection to host USB port to connect to your phone*. Using Android SDK to install and run APK on your phone will not work, as inside the Docker container we don't see your USB devices. So commands like this will not work within the container:
- ** `adb devices`
- ** `adb logcat`
- ** `castle-engine install --target=android`
- ** `castle-engine run --target=android`
-
 +
- If you need these commands to work, you need to link:android[install Android SDK/NDK on your regular host system] and work without the Docker.
+--
+* `adb devices`
+* `adb logcat`
+* `castle-engine devices --target=android`
+* `castle-engine install --target=android`
+* `castle-engine run --target=android`
+--
++
+If you need these commands to work, you need to link:android[install Android SDK/NDK on your regular host system] and work without the Docker.
 +
 You can also copy the APK file to your phone, and install APK by selecting it on your phone. This works, but you will not see the logs of the running application, which are quite valuable when debugging.
 +
