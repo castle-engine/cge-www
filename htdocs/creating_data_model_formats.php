@@ -6,9 +6,10 @@ $toc = new TableOfContents(
   array(
     new TocItem('Best formats (recommended and with great support)', 'best'),
       new TocItem('glTF 2.0', 'gltf', 1),
+      new TocItem('IFC', 'ifc', 1),
       new TocItem('Spine JSON', 'spine', 1),
-      new TocItem('X3D and VRML', 'x3d', 1),
       new TocItem('Sprite sheets', 'sprite_sheets', 1),
+      new TocItem('X3D and VRML', 'x3d', 1),
     new TocItem('Other formats (supported but not recommended)', 'other'),
       new TocItem('MD3', 'md3', 1),
       new TocItem('Simple images', 'images', 1),
@@ -45,12 +46,30 @@ You can also <a href="castle-model-viewer">open them in Castle Model Viewer</a>.
 
 <?php echo $toc->html_section(); ?>
 
+<p><a href="ifc">IFC</a> (Industry Foundation Classes) is a standard format for BIM (Building Information Modeling) data. It is supported by many tools in the industry, like <a href="https://www.freecad.org/">FreeCAD</a>, <a href="https://bonsaibim.org/">BonsaiBIM</a>, <i>Revit</i>, <i>ArchiCAD</i>.
+
+<?php echo $toc->html_section(); ?>
+
 <p><a href="http://esotericsoftware.com/">Spine</a> is a powerful program
 for 2D game skeletal animations.
 
 <p><a href="https://castle-engine.io/spine">We have a big support for Spine JSON features</a>,
 and our friendly game studio <a href="http://cat-astrophe-games.com/">Cat-astrophe Games</a>
 is using Spine for all 2D games.
+
+<?php echo $toc->html_section(); ?>
+
+<p>You can load animations as <i>sprite sheets</i>, defined using various formats:
+
+<ol>
+  <li><p><i>Castle Game Engine</i> format (extension <code>.castle-sprite-sheet</code>), created by <a href="manual_editor.php">sprite sheet editor inside the CGE editor</a>.
+
+  <li><p><i>Starling (XML) format</i> (traditionally with <code>.xml</code> extension, in CGE we require you rename them to <code>.starling-xml</code>).
+
+  <li><p><i>Cocos2d format</i> (traditionally with <code>.plist</code> extension, in CGE we advise (but do not require yet) to use <code>.cocos2d-plist</code>).
+</ol>
+
+<p>See the <a href="https://castle-engine.io/sprite_sheets">sprite sheets documentation</a>.
 
 <?php echo $toc->html_section(); ?>
 
@@ -100,20 +119,6 @@ See e.g. the
 
 <!-- <p><i>If your authoring software -->
 <!-- can export to X3D, this is the format you should probably use.</i> -->
-
-<?php echo $toc->html_section(); ?>
-
-<p>You can load animations as <i>sprite sheets</i>, defined using various formats:
-
-<ol>
-  <li><p><i>Castle Game Engine</i> format (extension <code>.castle-sprite-sheet</code>), created by <a href="manual_editor.php">sprite sheet editor inside the CGE editor</a>.
-
-  <li><p><i>Starling (XML) format</i> (traditionally with <code>.xml</code> extension, in CGE we require you rename them to <code>.starling-xml</code>).
-
-  <li><p><i>Cocos2d format</i> (traditionally with <code>.plist</code> extension, in CGE we advise (but do not require yet) to use <code>.cocos2d-plist</code>).
-</ol>
-
-<p>See the <a href="https://castle-engine.io/sprite_sheets">sprite sheets documentation</a>.
 
 <?php echo $toc->html_section(); ?>
 
