@@ -84,6 +84,7 @@ $convert_input_extensions = array(
   'plist',
   'cocos2d-plist',
   'tmx',
+  'ifcjson',
   /*
   All image formats are OK too, we convert them to X3D quad with proper size.
   But we don't list them here, as then auto-detection "what is main format"
