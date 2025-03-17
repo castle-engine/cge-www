@@ -74,8 +74,8 @@ The IFC format is supported as input and output in all our tools, including:
 - Viewers:
 +
 --
-- link:castle-model-viewer[Castle Model Viewer],
-- link:castle-model-viewer-mobile[Castle Model Viewer Mobile],
+- link:castle-model-viewer[Castle Model Viewer] (use the "snapshot" version for the IFC support now),
+- link:castle-model-viewer-mobile[Castle Model Viewer Mobile] (use the APK version for the IFC support now),
 - https://castle-engine.io/web-demos/castle-model-viewer-mobile/[pre-release of Castle Model Viewer on the web] (TODO: doesn't yet allow to choose arbitrary IFC file from your disk).
 --
 - Converters:
