@@ -80,7 +80,9 @@ cgeref:TCastleTransformReference[] makes a reference to another cgeref:TCastleTr
 
 Set cgeref:TCastleTransformReference.Reference[] to indicate which transformation is referenced by this instance.
 
-NOTE: It's usually simplest to create an instance of cgeref:TCastleTransformReference[] by right-clicking on the source cgeref:TCastleTransform[] in the hierarchy and choosing _"Duplicate Linked (TCastleTransformReference)"_ from the context menu.
+In the link:editor[], it's simplest to create an instance of cgeref:TCastleTransformReference[] using the _"Duplicate Linked (TCastleTransformReference)"_ menu item. It's available in the context menu (right-click on the cgeref:TCastleTransform[] you want to see multiple times) and in the main menu (in "Edit"). The key shortcut is _Ctrl+Shift+D_.
+
+Since all the references point to the same cgeref:TCastleTransform[], it must have the same _state_ (e.g. be static, or show the same moment of the same animation). If you use LODs (level of detail), each reference will display the appropriate LOD level (see example https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/level_of_detail_demo[examples/viewport_and_scenes/level_of_detail_demo]).
 
 cgeimg::block[cars_demo_2.png|Many car instances]
 

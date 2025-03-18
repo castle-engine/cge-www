@@ -152,7 +152,7 @@ cgeimg::block[
 
 . Edit the car scene name too, to make it more obvious in the hierarchy. Right now it is called `Scene1`, we recommend to edit it to `SceneCar` now.
 
-. Add more cars. While you could add new cgeref:TCastleScene[] instances, by repeating the process above, it is easier to use _"Duplicate"_ command (key shortcut _Ctrl + D_) available when you righ-click on the `SceneCar`.
+. Add more cars. While you could add new cgeref:TCastleScene[] instances, by repeating the process above, it is easier to use _"Duplicate"_ command (key shortcut _Ctrl + D_) available when you right-click on the `SceneCar`.
 +
 New car scenes, named like `SceneCar1`, `SceneCar2`..., will appear at the same position as the original car. Use the _"Move Transform_" tool to show a _"gizmo"_, to move each car to a unique position. Click and drag on one of the arrows to move the car.
 +
