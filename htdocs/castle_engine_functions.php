@@ -566,6 +566,9 @@ $castle_sitemap = array(
     'sub' => array(
       'doc/castle-model-viewer-mobile' => array('title' => 'Mobile (Android) Version'),
       'doc/castle-model-converter' => array('title' => 'Model Converter'),
+      'castle-model-viewer-web' => array('title' => 'Web (Early Prerelease)',
+        'url' => 'https://castle-engine.io/web-demos/castle-model-viewer-mobile/',
+      ),
       'convert' => array('title' => 'Online Model Converter'),
       //'convert-output' => array('title' => 'Conversion output'),
       'doc/castle-image-viewer' => array('title' => 'Image Viewer'),
