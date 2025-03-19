@@ -11,7 +11,7 @@ If you come with a knowledge of another game engine, like _Unity_, this page wil
 
 `GameObject` in Unity is (simplifying) something that exists in your world, and may be visible, and may have children that are affected by a transformation.
 
-For game objects (not user-interface), the closest equivalent of `GameObject` in _Castle Game Engine_ is the cgeref:TCastleTransform[] class. Instances of cgeref:TCastleTransform[] can be arranged in a hierarchy, where each element transforms (moves, rotates, scales) the children. The most important class of CGE is the cgeref:TCastleScene[], which is a descendant of cgeref:TCastleTransform[] that can actually render/animate/collide a model. Simply set cgeref:TCastleSceneCore.Url[TCastleScene.Url] to load your model (like a glTF file) there.
+For game objects (not user-interface), the closest equivalent of `GameObject` in _Castle Game Engine_ is the cgeref:TCastleTransform[] class. Instances of cgeref:TCastleTransform[] can be arranged in a hierarchy, where each element transforms (moves, rotates, scales) the children. The most important class of our engine is the cgeref:TCastleScene[], which is a descendant of cgeref:TCastleTransform[] that can actually render/animate/collide a model. Simply set cgeref:TCastleSceneCore.Url[TCastleScene.Url] to load your model (like a glTF file) there.
 
 Our manual documents cgeref:TCastleScene[] and cgeref:TCastleTransform[] features in chapter link:viewport_and_scenes[Viewport with scenes, camera, navigation]. Basically you can do stuff like
 
@@ -34,13 +34,13 @@ See link:user_interface[user interface] documentation.
 
 == How to design a level composed from multiple assets, creatures etc.?
 
-In the simplest case, for each 3D model, you create a cgeref:TCastleScene[] instance. You can do this visually, using the https://castle-engine.io/manual_editor.php[CGE editor], or from code.
+In the simplest case, for each 3D model, you create a cgeref:TCastleScene[] instance. You can do this visually, using the link:editor[editor], or from code.
 
 To group (and transform as a group) a number of cgeref:TCastleScene[] instances you can use additional cgeref:TCastleTransform[] instances. The cgeref:TCastleScene[] is also a cgeref:TCastleTransform[] descendant, so it can have children too.
 
 Follow the template _"3D FPS Game"_ (create it by running our editor, choose _"New Project"_ and then choose _"3D FPS Game"_ as a starting point). In the resulting project, open the design `data/gameviewplay.castle-user-interface` in the editor, to actually see what I mean (in this and previous answer).
 
-Our goal with https://castle-engine.io/manual_editor.php[CGE editor] is to provide an experience similar to Unity and other game engine editors. So you can drop 3D models on your design, and drag them to design a level.
+Our goal with link:editor[CGE editor] is to provide an experience similar to Unity and other game engine editors. So you can drop 3D models on your design, and drag them to design a level.
 
 == Where to place code for specific actors (like creatures, items)? What is the equivalent of "adding a MonoBehaviour to a GameObject" in Unity?
 
@@ -131,7 +131,7 @@ my_project/                    <- the project root
 
 See https://castle-engine.io/creating_data_model_formats.php[supported model formats]. In short: glTF is the best :) This documentation page also links to instructions for various authoring tools "how to export your data".
 
-Test your models with https://castle-engine.io/castle-model-viewer[Castle Model Viewer] to see what is supported. If you double-click on a model from https://castle-engine.io/editor[editor], it will automatically launch _Castle Model Viewer_.
+Test your models with https://castle-engine.io/castle-model-viewer[Castle Model Viewer] to see what is supported. If you double-click on a model from link:editor[editor], it will automatically launch _Castle Model Viewer_.
 
 == Do you support FBX model format?
 
@@ -260,9 +260,13 @@ Sometimes both `Parent` and `Owner` may be set to the same instance, if it is su
 
 == Where is UnityWebRequest (WWW)?
 
-Use cgeref:TCastleDownload[]. Similarly to `UnityWebRequest`, this class can send HTTP requests (GET, POST and others) and can download data asynchronously. It has been designed as an easy but also powerful way to communicate over the network. It also handles getting data from non-network requests (`file://` and other protocols) so you can easily switch your URLs.
+Use cgeref:TCastleDownload[]. Similarly to `UnityWebRequest`, this class can send HTTP requests (GET, POST and others) and can download data asynchronously. It has been designed as an easy but also powerful way to get any resource (over the network or not).
 
-CGE https://github.com/castle-engine/castle-engine/tree/master/examples/network[examples/network] demonstrate it.
+In addition to supporting HTTP(S), our cgeref:TCastleDownload[] can also get data from other resources (`file://`, game data, registered ZIP files, custom protocols...) so you can easily configure where you get your data from. See link:url[URLs, loading (downloading) and saving resources] for more information.
+
+See also link:multi_player[Multi-player options] for a description of cgeref:TCastleDownload[] features to communicate with HTTP REST servers.
+
+Our examples in https://github.com/castle-engine/castle-engine/tree/master/examples/network[examples/network] demonstrate it.
 
 == Physics forces API
 

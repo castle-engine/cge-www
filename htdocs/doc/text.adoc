@@ -36,7 +36,7 @@ You can add and configure fonts. We support all the font formats handled by the 
 - OpenType Fonts (`otf` extension)
 - Web Open Font Format (`woff` and `woff2` extensions). For more information see https://en.wikipedia.org/wiki/Web_Open_Font_Format[Wikipedia about WOFF], and the W3C specifications: https://www.w3.org/TR/WOFF/[WOFF] and https://www.w3.org/TR/WOFF2/[WOFF2].
 
-To customize font in the link:https://castle-engine.io/manual_editor.php[CGE editor]:
+To customize font in the link:link:editor[CGE editor]:
 
 
 - Use the _"Design -> Add Non-Visual Component"_ menu item, or the context menu (when you right-click in the hierarchy on the left). Font is added as _"Non-Visual Component"_ to whatever parent you selected.

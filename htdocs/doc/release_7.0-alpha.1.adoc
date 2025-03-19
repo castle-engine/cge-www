@@ -42,7 +42,7 @@ See https://castle-engine.io/wp/2021/02/06/castle-game-engine-7-0-alpha-1-releas
 
 == Details
 
-* https://castle-engine.io/manual_editor.php[Castle Game Engine Editor application!]
+* link:editor[Castle Game Engine Editor application!]
  ** Run it by simply executing "castle-editor" binary in the "bin/" subdirectory of our release zip.
  ** It comes with 4 templates for new projects: empty, 3D model viewer, 2D game, 3D FPS game. These showcase nicely editor possibilities and were designed as a good starting point for your applications.
  ** Editor allows to visually design TCastleUserInterface (like TCastleButton, TCastleLabel) and TCastleTransform (like TCastleScene) hierarchies.

@@ -54,7 +54,7 @@ end;
 
 == Which approach to use?
 
-The approaches 1 and 2 can be used when designing the game in the https://castle-engine.io/manual_editor.php[editor] and are more advised.
+The approaches 1 and 2 can be used when designing the game in the link:editor[editor] and are more advised.
 
 Approach 3 may be easier to use in some cases (if you already think in terms _"I want to have code that draws images"_).
 

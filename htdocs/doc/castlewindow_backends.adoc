@@ -92,7 +92,7 @@ It will also automatically add `LazOpenGLContext` package as dependency, which i
 
 * Or you can use `alternative_castle_window_based_on_lcl.lpk` instead of `castle_window.lpk` in the project. This should take care of above 2 things.
 
-* Usually you should compile programs using Lazarus then (IDE or `lazbuild`), to automatically have correct LCL paths used. If you use our link:build_tool[build tool] or https://castle-engine.io/manual_editor.php[CGE editor], set `build_using_lazbuild="true"` in https://castle-engine.io/project_manifest[CastleEngineManifest.xml].
+* Usually you should compile programs using Lazarus then (IDE or `lazbuild`), to automatically have correct LCL paths used. If you use our link:build_tool[build tool] or link:editor[CGE editor], set `build_using_lazbuild="true"` in https://castle-engine.io/project_manifest[CastleEngineManifest.xml].
 
 Supported platforms: everywhere where LCL or FMX runs.
 

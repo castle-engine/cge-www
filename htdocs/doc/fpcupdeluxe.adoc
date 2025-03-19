@@ -53,7 +53,7 @@ Or the `Lazarus_fpcupdeluxe` shell script (it's placed in `$HOME` by default, yo
 
 == Putting FPC on $PATH
 
-If you compile through our https://castle-engine.io/manual_editor.php[Castle Game Engine editor] then you should configure the FPC and Lazarus locations in editor _Preferences_ window. You can ignore the rest of this section then :) There is no need to mess with `$PATH`. And it will make switching between different FPC/Lazarus versions easier.
+If you compile through our link:editor[Castle Game Engine editor] then you should configure the FPC and Lazarus locations in editor _Preferences_ window. You can ignore the rest of this section then :) There is no need to mess with `$PATH`. And it will make switching between different FPC/Lazarus versions easier.
 
 If you use the link:build_tool[Castle Game Engine build tool] from the command-line, we need the `fpc` to be available on `$PATH` to run the FPC compiler. Follow one of the approaches described below.
 

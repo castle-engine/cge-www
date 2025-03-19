@@ -30,7 +30,7 @@ video::Eol0qzKP1Zw[youtube,width=800,height=450]
 
 The most advised way to use sprite sheets is to create and edit them using our dedicated editor.
 
-Our _Sprite Sheet Editor_ as part of https://castle-engine.io/manual_editor.php[our CGE editor]. Just right-click within the _"Files"_ browser at the bottom and use _New Sprite Sheet_ command, or double-click on an existing `.castle-sprite-sheet` file.
+Our _Sprite Sheet Editor_ as part of link:editor[our CGE editor]. Just right-click within the _"Files"_ browser at the bottom and use _New Sprite Sheet_ command, or double-click on an existing `.castle-sprite-sheet` file.
 
 You can create sprite sheet animations in a number of ways:
 

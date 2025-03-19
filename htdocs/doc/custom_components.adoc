@@ -7,7 +7,7 @@ include::common.adoc[]
 
 You can enhance the functionality of _Castle Game Engine_ by implementing new classes. These classes can descend from anything you want, in particular from existing engine classes.
 
-Moreover, any class that descends from `TComponent` can be _registered_ such that it is available within https://castle-engine.io/manual_editor.php[Castle Game Engine Editor] and you can visually create and modify instances of this class. This is a powerful mechanism to invent pretty much anything you want (generally useful or tailored to your specific project) and use it just like a regular engine class.
+Moreover, any class that descends from `TComponent` can be _registered_ such that it is available within link:editor[Castle Game Engine Editor] and you can visually create and modify instances of this class. This is a powerful mechanism to invent pretty much anything you want (generally useful or tailored to your specific project) and use it just like a regular engine class.
 
 == Base classes
 
