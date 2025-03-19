@@ -3,7 +3,6 @@ include::common.adoc[]
 :description: Using Castle Game Engine "data" directory and "castle-data:/" URL protocol
 :cge-social-share-image: castle_model_viewer_flying_cthulhu.png
 
-
 == Introduction
 
 The `data` subdirectory of a _Castle Game Engine_ project is special. This is where you should put all the files that your application will load during runtime. This includes _designs_ (usually created using link:editor[]), 3D models, images, sounds, and any other data files that you need.

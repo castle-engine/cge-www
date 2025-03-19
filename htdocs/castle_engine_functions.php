@@ -287,6 +287,12 @@ $castle_sitemap = array(
               'doc/reuse_design' => array('title' => 'Components to reuse a design in other designs'), // TCastleDesign and TCastleTransformDesign -- too long names would make horizontal scroll on mobile
             )
           ),
+          'doc/url' => array('title' => 'URLs, loading (downloading) and saving resources',
+            'sub' => array(
+              'doc/data' => array('title' => 'Data directory and castle-data:/ URL protocol'),
+              'doc/multi_player' => array('title' => 'Multi-player'),
+            )
+          ),
           'manual_2d_games' => array('title' => '2D games',
             'sub' => array(
               'doc/sprite_sheets' => array('title' => 'Sprite sheets'),
@@ -304,11 +310,9 @@ $castle_sitemap = array(
           ),
           'manual_user_prefs' => array('title' => 'Persistent data (user preferences, savegames)'),
           'doc/save_screen' => array('title' => 'Save screen (screenshot)'),
-          'manual_network' => array('title' => 'Network, downloading and using URLs'),
           'doc/log' => array('title' => 'Logging'),
           'manual_cross_platform' => array('title' => 'Cross-platform (desktop, mobile, consoles...) projects',
             'sub' => array(
-              'doc/data' => array('title' => 'Data directory and castle-data:/ URL protocol'),
               'doc/project_manifest' => array('title' => 'CastleEngineManifest&ZeroWidthSpace;.xml'), // using zero-width space to avoid making mobile version with horizontal scroll
               'manual_castle_settings' => array('title' => 'Customize UI scaling, font, warmup cache by CastleSettings.xml'),
               'doc/build_tool' => array('title' => 'Build Tool'),
