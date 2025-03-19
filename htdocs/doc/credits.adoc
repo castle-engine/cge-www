@@ -24,10 +24,12 @@ NOTE: Please write to Michalis (michalis@castle-engine.io) if you want to change
 * https://github.com/the-Arioch[Arioch]
 * https://github.com/BenediktMagnus[Benedikt Magnus]
 * https://github.com/Dennis1000[Dennis Spreen]
+* https://github.com/DiggiDoggi[Diggi Doggi]
 * https://github.com/eugeneloza[Eugene Loza]
 * https://github.com/ProHolz[Friedrich Westermann]
 * https://github.com/HotariTobu[Hotari]
 * https://github.com/janadamec1[Jan Adamec]
+* https://github.com/coderextreme[John Carlson]
 * https://github.com/Free-Pascal-meets-SDL-Website[Matthias J. Molski]
 * https://github.com/paulgevers[Paul Gevers]
 * https://github.com/peardox[Simon Booth]
@@ -44,7 +46,7 @@ See also https://github.com/castle-engine/castle-engine/graphs/contributors[cont
 Everyone who subscribes to support CGE with at least 10 USD / month (anywhere -- on https://www.patreon.com/castleengine[Patreon], https://github.com/sponsors/castle-engine[GitHub Sponsors] or https://opencollective.com/castle-engine[Open Collective]).
 
 [role="compact"]
-* Aaron Bergstrom
+* UND DREAM Lab (Aaron Bergstrom)
 * Antitu
 * Adrian Marius Popa
 * Alar Orion
@@ -70,6 +72,7 @@ Everyone who subscribes to support CGE with at least 10 USD / month (anywhere --
 * Márton Polgár
 * Märten Rodes
 * Nicholas Polys
+* Przemyslaw Hass
 * Ramazan Geven
 * Szczepan Ratajczyk
 * Vedran Rodić
