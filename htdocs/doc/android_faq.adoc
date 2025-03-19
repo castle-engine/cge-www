@@ -55,7 +55,7 @@ Note that (just like on other platforms) you have to explicitly call `UserConfig
 
 - You will usually call `UserConfig.Save` when user confirms the preferences change, or even immediately when user changes a preference. Don't wait too long before saving the user preferences -- on Android, your application may be killed at any moment.
 
-For more possibilities, you can write data to URLs returned by cgeref:ApplicationConfig[] function. You can write to it using all CGE routines, like cgeref:StringToFile[], cgeref:UrlWriteXML[], cgeref:TTextWriter[], cgeref:UrlSaveStream[].
+For more possibilities, you can write data to URLs returned by cgeref:ApplicationConfig[] function. You can write to it using all engine routines, like cgeref:StringToFile[], cgeref:UrlWriteXML[], cgeref:TTextWriter[], cgeref:UrlSaveStream[]. See link:url[Saving resources to URLs].
 
 == Creating AAB (Android App Bundle)
 
