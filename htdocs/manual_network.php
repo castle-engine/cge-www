@@ -5,13 +5,15 @@ castle_header('Network, downloading and using URLs');
 $toc = new TableOfContents(
   array(
     new TocItem('Loading and saving files using URLs', 'loading_saving'),
-    new TocItem('Note about case-sensitive filesystems and URLs', 'case_sensitive'),
+      new TocItem('Loading and saving any URL using TStream, synchronously or asynchronously', 'stream', 1),
+      new TocItem('Loading and saving specialized resources', 'specialized', 1),
+    new TocItem('Case-sensitive filesystems and URLs', 'case_sensitive'),
     new TocItem('Supported protocols', 'protocols'),
-      new TocItem('Downloading from the network: <code>http</code> and <code>https</code>', 'https_http', 1),
       new TocItem('Loading local files: <code>file</code>', 'file', 1),
       new TocItem('Loading data files: <code>castle-data</code>', 'castle_data', 1),
+      new TocItem('Downloading from the network: <code>http</code> and <code>https</code>', 'https_http', 1),
       new TocItem('Embedded data: <code>data</code>', 'data', 1),
-      new TocItem('(Internal) Android assets: <code>castle-android-assets</code>', 'castle_android_assets', 1),
+      //new TocItem('(Internal) Android assets: <code>castle-android-assets</code>', 'castle_android_assets', 1),
     new TocItem('Dialog windows that support URLs', 'dialogs'),
     new TocItem('Notes about terminology: URI vs URL', 'terminology'),
     new TocItem('Multi-player options', 'multi_player'),
@@ -37,22 +39,26 @@ echo cgeImg('float', array(
 <?php echo $toc->html_section(); ?>
 
 <p>All methods in our engine take URL as the parameter,
-not just a FileName. Although in most cases you can also pass
+not just a <i>filename</i>. Although in most cases you can also pass
 a filename (absolute or relative to the current directory),
 and it will also work as expected.
 
 <p>All loading and saving routines (for models, images, sounds, and all
 other resources) automatically deal with URLs.
 
-<p>To directly load or save <i>your own binary file formats</i>
-(as ObjectPascal <code>TStream</code>):
+<?php echo $toc->html_section(); ?>
+
+<p>To directly load or save <i>your own files</i> using ObjectPascal <code>TStream</code>:
 
 <ul>
-  <li><p><b>To load (easily)</b>, use a simple
+  <li><p><b>To load (easily)</b>, use the
     <?php echo cgeRef('Download'); ?> function.
     It simply returns a <code>TStream</code> that contains the resource indicated by the URL.
     It supports all the protocols mentioned below, e.g. <code>file</code>,
     <code>castle-data</code>.
+
+    <p>It can also load data from a ZIP file if you associate a custom protocol
+    with your ZIP file. See <?php echo cgeRef('TCastleZip.RegisterUrlProtocol'); ?>.
 
     <p>It can even download data using <code>http</code> or <code>https</code> protocols,
     although you need to set <?php echo cgeRef('EnableBlockingDownloads'); ?>
@@ -95,99 +101,83 @@ other resources) automatically deal with URLs.
     </ul>
 
   <li><p><b>To save</b>, use
-    <?php echo cgeRef('UrlSaveStream'); ?>
-    function. Right now, it can only save to a local file,
-    so it merely translates a URL to local filename and creates a <code>TFileStream</code>
-    for you. Still, it's a good idea to use it, to uniformly deal with
-    URLs throughout your application.
-</ul>
+    <?php echo cgeRef('UrlSaveStream'); ?> function.
 
-<p>If you want to read or write text files from an URL, use
-<?php echo cgeRef('TTextReader'); ?> and
-<?php echo cgeRef('TTextWriter'); ?>.
+    <p>It can save to a local file.
+
+    <p>It can also write to a ZIP file if you associate a custom protocol
+    with your ZIP file. See <?php echo cgeRef('TCastleZip.RegisterUrlProtocol'); ?>.
+</ul>
 
 <?php echo $toc->html_section(); ?>
 
-<p>Often, URLs just refer to files on the filesystem. Like <code>file://...</code> URLs, or <code>castle-data:/...</code> URLs (on platforms where the <a href="data">application data</a> is just a set of regular files). In this case, the underlying filesystem determines whether the names are case-sensitive (so e.g. <code>foobar</code> vs <code>FooBar</code> mean something else) or not. On Unix (like Linux, FreeBSD, macOS) the filesystems are typically case-sensitive. On Windows, the filesystems are typically <i>not</i> case-sensitive.
+<p>More higher-level loading and saving routines are available.
+They are all implemented on top of the above functions dealing with <code>TStream</code>,
+so they all support all registered URLs.
 
-<p>To make the application work on all platforms, be sure to always specify the same case in URLs as your files.
+<ul>
+  <li>
+    <p>To read / write text files from an URL, use
+    <?php echo cgeRef('TTextReader'); ?> and
+    <?php echo cgeRef('TTextWriter'); ?>.
+
+  <li>
+    <p>To read / write text files as a simple <code>String</code> from an URL, use
+    <?php echo cgeRef('FileToString'); ?> and
+    <?php echo cgeRef('StringToFile'); ?>.
+
+  <li>
+    <p>To read / write 3D models, use
+    <?php echo cgeRef('LoadNode'); ?> and
+    <?php echo cgeRef('SaveNode'); ?>.
+
+    <p>Or (advised for most cases) use higher-level classes for 3D models: just set
+    <?php echo cgeRef('TCastleSceneCore.Url'); ?> to read and
+    call <?php echo cgeRef('TCastleSceneCore.Save'); ?> to write.
+    See <a href="viewport_and_scenes">viewport and scenes</a> for more information.
+
+  <li>
+    <p>To read / write images, use
+    <?php echo cgeRef('LoadImage'); ?> and
+    <?php echo cgeRef('SaveImage'); ?>.
+
+    <p>Or (advised for most cases) use even higher-level classes for displaying images:
+    <?php echo cgeRef('TCastleImageTransform'); ?>,
+    <?php echo cgeRef('TCastleImageControl'); ?>.
+    See <a href="using_images">using images</a> for more information.
+
+  <li>
+    <p>To read audio files, use <?php echo cgeRef('TCastleSound'); ?>.
+    See <a href="sound">sound</a> for more information.
+
+  <li>
+    <p>To read / write XML files, use
+    <?php echo cgeRef('UrlReadXML'); ?> and <?php echo cgeRef('UrlWriteXML'); ?>.
+
+  <li>
+    <p>To read / write serialized components in JSON files, use routines in
+    <?php echo cgeRef('CastleComponentSerialize'); ?> unit.
+</ul>
+
+<?php echo $toc->html_section(); ?>
+
+<p>Often, URLs just refer to files on the filesystem. Like <code>file://...</code> URLs, or <code>castle-data:/...</code> URLs (on platforms where the <a href="data">application data</a> is just a set of regular files). In this case, the underlying filesystem determines whether the names are <b>case-sensitive</b> (so e.g. <code>foobar</code> vs <code>FooBar</code> mean something else) or not.
+
+<ul>
+  <li><p>On most systems (like <i>Linux</i>, <i>FreeBSD</i>, <i>macOS</i>; but also mobile and console filesystems) the filesystems are typically case-sensitive.
+
+  <li><p>On <i>Windows</i>, the filesystems are typically <i>not</i> case-sensitive.
+</ul>
+
+<p><i>WARNING:</i> To complicate matters more, whether the filesystem is <i>case sensitive</i> or not &mdash; is not exactly determined by the OS. You can mount on Windows a case-sensitive filesystem like <a href="https://en.wikipedia.org/wiki/Ext4">Ext4</a>. You can mount on Linux a case-ignoring filesystem like <a href="https://en.wikipedia.org/wiki/NTFS">NTFS</a>. So the filesystems can be case-sensitive or not on any OS.
+
+<p>To make the application work on all platforms, be sure to always specify the same case in URLs as your files. So, <i>assume that URLs are case-sensitive</i>.
 
 <p>E.g. take care if you load <code>castle-data:/FooBar.png</code> or <code>castle-data:/foobar.png</code>. Using wrong letter case may be an easy mistake, because on Windows both versions will work, but on Linux only the version with correct case.
 
-<p>If you test and develop mostly on Windows, a simple option is also be to set global <code>CastleDataIgnoreCase:=true</code>. See <?php echo cgeRef('CastleDataIgnoreCase'); ?>.
+<p>If you don't want to care about the latter case (which makes sense if you develop mostly on Windows but want your application to also work on other platforms), a simple solution is to set global variable <?php echo cgeRef('CastleDataIgnoreCase'); ?> to <code>true</code>.
 
 <?php echo $toc->html_section(); ?>
-
-<?php echo $toc->html_section(); ?>
-
-<p><code>http</code> and <code>https</code> work.
-You can download data from the Internet,
-and the <?php echo cgeRef('TCastleDownload'); ?>
- has a support for various HTTP methods (GET, POST).
-You can use this for simple downloading, or for full-featured communication with a REST
-server.
-
-<p>Asynchronous <?php echo cgeRef('TCastleDownload'); ?>
- supports <code>http</code> and <code>https</code> automatically.
-It is perfect to use with unreliable / slow network.
-
-<p>Synchronous <?php echo cgeRef('Download'); ?>
- supports these protocols only if you set global variable
- <?php echo cgeRef('EnableBlockingDownloads'); ?>
- to <code>true</code>.
-We call them "blocking downloads" because the application has to simply wait for
-the download to finish and there's no way to interrupt the download
-(without just killing the application) or even watch the progress.
-<!--So these "blocking downloads" are easy to use from code,
-but may cause your application to hang,
-as network may be slow / unreliable.-->
-We advise always using <?php echo cgeRef('TCastleDownload'); ?>
- to get data from the network &mdash; although it requires
- a bit more effort from code, but allows to observe and interrupt the download.
-
-<p>For the <code>https</code> (encrypted version of <code>http</code>) protocol to work:
-
-<ol>
-  <!--
-    // CGE now requires FPC >= 3.2.0
-    li><p>You need to use FPC &gt;= 3.2.0. Older FPC versions have critical problem with this.
-  -->
-
-  <li><p>For FPC: Use the <code>OpenSSLSockets</code> unit. Simply add this to the uses clause
-    of one of your units (like <code>GameInitialize</code>):
-
-    <pre>{$ifdef FPC} OpenSSLSockets, {$endif} // support HTTPS</pre>
-
-  <li><p>Make sure users have the OpenSSL library installed.
-
-    <p>On Unix (Linux, FreeBSD, macOS...), it is standard to have OpenSSL
-    installed already system-wide. Developers and users likely don't need to do
-    anything.
-
-    <p>On Windows, use the appropriate DLLs.
-    Our <a href="editor">editor</a> (or command-line <a href="build_tool">build tool</a>)
-    will automatically place the proper DLLs alongside your EXE file on the first build.
-    You only need to add <code>&lt;dependency name="Https" /&gt;</code> in your
-    <a href="project_manifest">CastleEngineManifest.xml</a>.
-</ol>
-
-<p>See an example like
-<a href="https://github.com/castle-engine/castle-engine/blob/master/examples/network/asynchronous_download/">examples/network/asynchronous_download/</a>
-that does both things above, to make <code>https</code> work.
-
-<p>Note that we use URLs, not filenames, throughout the entire engine API.
-So to load something from the network, you can just pass e.g. <code>https://...</code>
-to <?php echo cgeRef('TCastleSceneCore.Load'); ?>.
-
-<p>Inside models (like X3D, glTF and other), you can also refer to network resources,
-and it will "just work".
-For example you can use X3D <code>Inline</code> node to inline a model from given URL,
-you can use X3D <code>Anchor</code> node to switch to given model on click,
-you can refer to textures and sounds and scripts and everything else
-from the network. Relative URLs are always resolved
-with respect to the containing document.
-
-<p><i>On Android</i>, you should use the <a href="https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/android/integrated-services/download_urls/README.md">download_urls service</a> to support <code>http</code> and <code>https</code> protocols.
 
 <?php echo $toc->html_section(); ?>
 
@@ -200,8 +190,8 @@ You can also use normal absolute filenames with most CGE routines, like
 <code>c:\windows\clock.avi</code> (on Windows; you can use slash or backslash)
 or <code>/etc/fstab</code> (on Unix).
 
-<p>In most cases absolute filenames are not very useful
-(since they would be specific to a particular system).
+<p>In most cases hardcoding an absolute filename in your application
+is not very useful (since it would be specific to a particular system).
 Using relative URLs makes more sense, like <code>textures/wood.png</code>.
 Relative URLs should use slashes, and work naturally when used
 in other files (relative URL is then relative to the containing file)
@@ -301,6 +291,76 @@ The castle-data:/ URL designates files inside the application data directory. Wh
 When setting the URLs of various components from Lazarus, by clicking on "..." in the Lazarus Object Inspector, we automatically detect when you chose a file inside the "data/" subdirectory, and change the URL into appropriate castle-data:/ (instead of a file:/ URL).
 -->
 
+<?php echo $toc->html_section(); ?>
+
+<p><code>http</code> and <code>https</code> work.
+You can download data from the Internet,
+and the <?php echo cgeRef('TCastleDownload'); ?>
+ has a support for various HTTP methods (GET, POST).
+You can use this for simple downloading, or for full-featured communication with a REST
+server.
+
+<p>Asynchronous <?php echo cgeRef('TCastleDownload'); ?>
+ supports <code>http</code> and <code>https</code> automatically.
+It is perfect to use with unreliable / slow network.
+
+<p>Synchronous <?php echo cgeRef('Download'); ?>
+ supports these protocols only if you set global variable
+ <?php echo cgeRef('EnableBlockingDownloads'); ?>
+ to <code>true</code>.
+We call them "blocking downloads" because the application has to simply wait for
+the download to finish and there's no way to interrupt the download
+(without just killing the application) or even watch the progress.
+<!--So these "blocking downloads" are easy to use from code,
+but may cause your application to hang,
+as network may be slow / unreliable.-->
+We advise always using <?php echo cgeRef('TCastleDownload'); ?>
+ to get data from the network &mdash; although it requires
+ a bit more effort from code, but allows to observe and interrupt the download.
+
+<p>For the <code>https</code> (encrypted version of <code>http</code>) protocol to work:
+
+<ol>
+  <!--
+    // CGE now requires FPC >= 3.2.0
+    li><p>You need to use FPC &gt;= 3.2.0. Older FPC versions have critical problem with this.
+  -->
+
+  <li><p>For FPC: Use the <code>OpenSSLSockets</code> unit. Simply add this to the uses clause
+    of one of your units (like <code>GameInitialize</code>):
+
+    <pre>{$ifdef FPC} OpenSSLSockets, {$endif} // support HTTPS</pre>
+
+  <li><p>Make sure users have the OpenSSL library installed.
+
+    <p>On Unix (Linux, FreeBSD, macOS...), it is standard to have OpenSSL
+    installed already system-wide. Developers and users likely don't need to do
+    anything.
+
+    <p>On Windows, use the appropriate DLLs.
+    Our <a href="editor">editor</a> (or command-line <a href="build_tool">build tool</a>)
+    will automatically place the proper DLLs alongside your EXE file on the first build.
+    You only need to add <code>&lt;dependency name="Https" /&gt;</code> in your
+    <a href="project_manifest">CastleEngineManifest.xml</a>.
+</ol>
+
+<p>See an example like
+<a href="https://github.com/castle-engine/castle-engine/blob/master/examples/network/asynchronous_download/">examples/network/asynchronous_download/</a>
+that does both things above, to make <code>https</code> work.
+
+<p>Note that we use URLs, not filenames, throughout the entire engine API.
+So to load something from the network, you can just pass e.g. <code>https://...</code>
+to <?php echo cgeRef('TCastleSceneCore.Load'); ?>.
+
+<p>Inside models (like X3D, glTF and other), you can also refer to network resources,
+and it will "just work".
+For example you can use X3D <code>Inline</code> node to inline a model from given URL,
+you can use X3D <code>Anchor</code> node to switch to given model on click,
+you can refer to textures and sounds and scripts and everything else
+from the network. Relative URLs are always resolved
+with respect to the containing document.
+
+<p><i>On Android</i>, you should use the <a href="https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/android/integrated-services/download_urls/README.md">download_urls service</a> to support <code>http</code> and <code>https</code> protocols.
 
 <?php echo $toc->html_section(); ?>
 
@@ -328,7 +388,10 @@ to provide the contents "right there", without using any additional file.
 echo a_href_page('our demo models', 'demo_models'); ?>,
 see in particular <a href="https://github.com/castle-engine/demo-models/blob/master/x3d/data_uri.x3dv">x3d/data_uri.x3dv</a>.
 
-<?php echo $toc->html_section(); ?>
+<?php
+//echo $toc->html_section();
+
+/*
 
 <p>This protocol is called <code>castle-android-assets</code> or (deprecated name) <code>assets</code>. It is only available on Android.
 
@@ -341,12 +404,13 @@ can be accessed (from the Android app) using the URL <code>assets:/my_texture.pn
 
 <p><i>You should never explicitly use this protocol name</i>,
 as it does not work on other platforms than Android.
-Instead, use <?php echo cgeRef('ApplicationData'); ?>
+Instead, use < ?php echo cgeRef('ApplicationData'); ? >
  to refer to your data files from code. The
-<?php echo cgeRef('ApplicationData'); ?>
+< ?php echo cgeRef('ApplicationData'); ? >
  will always return an absolute URL to the data file location on current platform.
 On Android it will start with <code>castle-android-assets:/...</code> but you should treat this
 as an internal detail.
+
 <!--
 Inside your data, when referring from one data file to another,
 e.g. when an 3D file refers to a texture,
@@ -359,7 +423,9 @@ consistent <a href="http://qt-project.org/doc/qt-5.1/qtdoc/platform-notes-androi
 See also <a href="http://developer.android.com/tools/projects/index.html">Android
 docs for more information about assets and project layout</a>.
 -->
-</ul>
+
+*/
+?>
 
 <?php echo $toc->html_section(); ?>
 
