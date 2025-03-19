@@ -302,17 +302,18 @@ cgeimg::block[inspector_design.png|Inspector UI,ui_image.png|Images]
 The engine uses URLs, allows to download contents of URLs, and can be integrated with various networking libraries.
 
 cgeimg::block[
+  delphi_linux_downloads.png|asynchronous_download example\, downloading multiple URLs asynchronously (without blocking the UI),
   not_quake_1.png|"Not Quake" demo - real-time network game,
-  not_quake_2.png|"Not Quake" demo - real-time network game,
-  not_quake_3.png|"Not Quake" demo - real-time network game,
-  not_quake_4.png|"Not Quake" demo - real-time network game
+  mormot_example_screenshot1.png|Collaborative editing of 3D world using Castle Game Engine and mORMot2,
+  server_and_2_clients.png|TCP server and 2 clients\, on Windows
 ]
 
-* All paths are expressed as URLs with some special CGE protocols, see link:manual_network.php[networking].
+* All paths are expressed as URLs with some special CGE protocols, see link:url[URLs, loading (downloading) and saving resources].
 * Application data can be always accessed using link:data[URLs like `castle-data:/xxx`].
 * You can download URLs asynchronously using cgeref:TCastleDownload[].
-* Integration with link:manual_network.php#section_indy[Indy].
-* An example integration with link:manual_network.php#section_rnl[RNL] is in our https://github.com/castle-engine/not-quake[not-quake] demo.
+* Integration with link:multi_player#indy[Indy] (example client-server in https://github.com/castle-engine/castle-engine/tree/master/examples/network/tcp_connection[examples/network/tcp_connection]).
+* Integration with link:multi_player#mormot[mORMot 2] (example in our https://github.com/castle-engine/castle-and-mormot-collaborative-editing/[castle-and-mormot-collaborative-editing] demo).
+* Integration with link:multi_player#rnl[RNL] (example in our https://github.com/castle-engine/not-quake[not-quake] demo).
 
 == Optimization and profiling
 

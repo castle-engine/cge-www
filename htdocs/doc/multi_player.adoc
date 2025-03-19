@@ -1,26 +1,23 @@
 # Multi-player
 include::common.adoc[]
 :description: TODO
-:cge-social-share-image: castle_model_viewer_flying_cthulhu.png
+:cge-social-share-image: not_quake_1.png
 
-$toc = new TableOfContents(
-    new TocItem('Multi-player options', 'multi_player'),
-      new TocItem('Use TCastleDownload for HTTP REST communication with a backend', 'castle_download', 1),
-      new TocItem('Indy (CGE example using TCP streams)', 'indy', 1),
-        new TocItem('Known memory leaks with Indy', 'indy_memory_leaks', 2),
-        new TocItem('Code completion using LSP (e.g. in VS Code) when using Indy', 'lsp', 2),
-      new TocItem('mORMot', 'mormot', 1),
-      new TocItem('RNL (CGE example of real-time online shooter)', 'rnl', 1),
-      new TocItem('Planned: Nakama integration', 'rnl', 1),
-      new TocItem('Other options', 'other', 1),
-  )
-);
-?>
+== Introduction
 
+_Castle Game Engine_ does not have (right now) dedicated high-level components for multi-player games. We provide:
 
-<?php echo $toc->html_section(); ?>
+- Building blocks, like link:url[using URLs for all resource access] and _asynchronous HTTP requests_ using cgeref:TCastleDownload[].
 
-<?php echo $toc->html_section(); ?>
+- And we provide integrations (with examples) with many 3rd-party networking libraries.
+
+cgeimg::block[
+  not_quake_1.png|"Not Quake" demo - real-time network game,
+  mormot_example_screenshot1.png|Collaborative editing of 3D world using Castle Game Engine and mORMot2,
+  server_and_2_clients.png|TCP server and 2 clients\, on Windows
+]
+
+== Use TCastleDownload for HTTP REST communication with a backend
 
 <p>The engine provides a cross-platform component <?php echo cgeRef('TCastleDownload'); ?> to asynchronously download any URL and to perform HTTP(S) web requests. In effect, this can be used to communicate with any backend (written using Pascal or not) that uses HTTP(S) protocol.
 
@@ -60,17 +57,16 @@ $toc = new TableOfContents(
     <p><a href="https://github.com/castle-engine/castle-openai">castle-openai: Talking with OpenAI assistant (essentially your own, customized ChatGPT)</a> (sends a series of HTTP POST and GET messages to talk with OpenAI server).
 </ul>
 
-<?php echo $toc->html_section(); ?>
+[#indy]
+== Indy (CGE example using TCP streams)
 
 <p>The <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/network/tcp_connection">examples/network/tcp_connection</a> directory in CGE sources demonstrates how to create and use a <b>classic client/server solution, where multiple clients talk to a server over a TCP/IP connection</b>.
 
-<?php
-echo cgeImg('block', array(
-  array('filename' => 'android_client.png', 'titlealt' => 'TCP client, on Android'),
-  array('filename' => 'server_linux.png', 'titlealt' => 'TCP server, on Linux'),
-  array('filename' => 'server_and_2_clients.png', 'titlealt' => 'TCP server and 2 clients, on Windows'),
-));
-?>
+cgeimg::block[
+  android_client.png|TCP client\, on Android,
+  server_linux.png|TCP server\, on Linux,
+  server_and_2_clients.png|TCP server and 2 clients\, on Windows
+]
 
 <p>It's a good cross-platform solution when:
 
@@ -104,7 +100,7 @@ lazbuild Indy10/indylaz.lpk
 
 <p>Delphi users don't need to do anything in this regard, as Indy is already included in Delphi.
 
-<?php echo $toc->html_section(); ?>
+=== Known memory leaks with Indy
 
 <p>All applications using Indy (whether with <i>Castle Game Engine</i> or not) have memory leaks, by default. This is a design choice of Indy &mdash; letting the memory leak was better than crashing in some edge-cases at unit finalization.
 
@@ -130,7 +126,7 @@ lazbuild Indy10/indylaz.lpk
 
 <p>You can test for memory leaks following <a href="memory_leaks">our instructions about memory leaks</a>. We use FPC HeapTrc to detect memory leaks, and you can just set <code>&lt;compiler_options detect_memory_leaks="true"&gt;</code> in <a href="project_manifest">CastleEngineManifest.xml</a> to enable it.
 
-<?php echo $toc->html_section(); ?>
+=== Code completion using LSP (e.g. in VS Code) when using Indy
 
 <p>When you edit a project that uses <?php echo cgeRef('CastleClientServer'); ?> with <a href="vscode">VS Code</a> (or other editor using our <a href="https://github.com/castle-engine/pascal-language-server">LSP</a>) you may see errors like: <i>"unit not found: IdGlobal"</i>.
 
@@ -157,13 +153,28 @@ Adjust the above paths (<code>/home/myusername/src/Indy10</code>) to your system
 
 For more information, see <a href="https://github.com/castle-engine/pascal-language-server?tab=readme-ov-file#extra-configuration-in-castle-enginepascal-language-server">README about Extra configuration in castle-engine/pascal-language-server</a>.
 
-<?php echo $toc->html_section(); ?>
+[#mormot]
+== mORMot 2 (with an example: edit 3D world online and persist it to database)
+
+cgeimg::block[
+  mormot_example_screenshot1.png|Collaborative editing of 3D world using Castle Game Engine and mORMot2,
+  mormot_example_screenshot2.png|Collaborative editing of 3D world using Castle Game Engine and mORMot2,
+  mormot_example_screenshot3.png|Collaborative editing of 3D world using Castle Game Engine and mORMot2
+]
 
 <p><a href="https://github.com/synopse/mORMot2/">mORMot2</a> is a feature-rich Object Pascal framework for developing network applications. It can support traditional client-server communication (exchanging messages), ORM (where you pass around objects that can be easily synchronized over the network and can be saved/loaded from the database), and more. It has a number of high-level (like ORM) and low-level (like database access) utilities to make programming of client-server (and other!) applications easier.
 
 <p>See our example integration of Castle Game Engine with <a href="https://github.com/synopse/mORMot2/">mORMot2</a> in <a href="https://github.com/castle-engine/castle-and-mormot-collaborative-editing/">collaborative editing of 3D world using Castle Game Engine and mORMot2</a>.
 
-<?php echo $toc->html_section(); ?>
+[#rnl]
+== RNL (with an example: real-time online shooter)
+
+cgeimg::block[
+  not_quake_1.png|"Not Quake" demo - real-time network game,
+  not_quake_2.png|"Not Quake" demo - real-time network game,
+  not_quake_3.png|"Not Quake" demo - real-time network game,
+  not_quake_4.png|"Not Quake" demo - real-time network game
+]
 
 <p><a href="https://github.com/BeRo1985/rnl">RNL (Realtime Network Library)</a> is an open-source, reliable UDP network library, for FPC and Delphi, cross-platform, developed by <a href="https://www.patreon.com/bero">Benjamin Rosseaux</a> . If you want to make real-time communication over a network (e.g. an FPS game like Quake) this is a good start.
 
@@ -177,11 +188,11 @@ For more information, see <a href="https://github.com/castle-engine/pascal-langu
     <p><a href="https://castle-engine.io/wp/2022/06/24/not-quake-an-example-of-real-time-multi-player-shooter-a-bit-like-quake-using-castle-game-engine-and-rnl/">Read the news post</a>
 </ul>
 
-<?php echo $toc->html_section(); ?>
+== Planned: Nakama integration
 
 <p>We plan <a href="roadmap#_integration_with_nakama_scalable_server_for_social_and_real_time_games_and_apps">integration with Nakama</a> in the future. It's a great open-source solution that provides out-of-the-box common multi-player features and can be customized to each particular project.
 
-<?php echo $toc->html_section(); ?>
+== Other options
 
 <p>There are various other networking solutions for Pascal &mdash; and you can use any of them together with <i>Castle Game Engine</i>. Links:
 
@@ -192,7 +203,7 @@ For more information, see <a href="https://github.com/castle-engine/pascal-langu
 
   <li><p><a href="https://lnet.wordpress.com/news/">lNet</a> is a cross-platform lightweight networking library for FPC. It's much smaller (in terms of API and implementation) than Synapse and Indy, which may be an advantage, depending on what you need. See <a href="https://lnet.wordpress.com/usage/faq/">lNet FAQ</a> and <a href="https://wiki.freepascal.org/lNet">FPC wiki about lNET</a>.
 
-  <li><p>FPC includes some networking units in the standard installation already. They work at various levels. In particular if you just want HTTP (REST) networking, FPC has <a href="https://wiki.freepascal.org/fcl-web">fcl-web</a> which allows to create HTTP(S) servers and clients.
+  <li><p>FPC includes various networking units in the standard installation already. They work at various levels. In particular if you just want HTTP (REST) networking, FPC has <a href="https://wiki.freepascal.org/fcl-web">fcl-web</a> which allows to create HTTP(S) servers and clients.
 </ul>
 
 <p>The future may bring to <i>Castle Game Engine</i> more networking options (at a higher-level, to replicate some game state across multiple clients).

@@ -1,33 +1,9 @@
 # URLs, loading (downloading) and saving resources
 include::common.adoc[]
 :description: TODO
-:cge-social-share-image: castle_model_viewer_flying_cthulhu.png
+:cge-social-share-image: delphi_linux_downloads.png
 
-  array(
-    new TocItem('Loading and saving files using URLs', 'loading_saving'),
-      new TocItem('Loading and saving any URL using TStream, synchronously or asynchronously', 'stream', 1),
-      new TocItem('Loading and saving specialized resources', 'specialized', 1),
-    new TocItem('Case-sensitive filesystems and URLs', 'case_sensitive'),
-    new TocItem('Supported protocols', 'protocols'),
-      new TocItem('Loading local files: <code>file</code>', 'file', 1),
-      new TocItem('Loading data files: <code>castle-data</code>', 'castle_data', 1),
-      new TocItem('Downloading from the network: <code>http</code> and <code>https</code>', 'https_http', 1),
-      new TocItem('Embedded data: <code>data</code>', 'data', 1),
-      new TocItem('Data from a zip', 'zip', 1),
-      new TocItem('Registering your own protocol', 'register_protocol', 1),
-      //new TocItem('(Internal) Android assets: <code>castle-android-assets</code>', 'castle_android_assets', 1),
-    new TocItem('Dialog windows that support URLs', 'dialogs'),
-    new TocItem('Notes about terminology: URI vs URL', 'terminology'),
-
-<?php echo $toc->html_toc(); ?>
-
-<?php
-echo cgeImg('float', array(
-  array('filename' => 'delphi_linux_downloads.png', 'titlealt' => 'asynchronous_download example, downloading multiple URLs asynchronously (without blocking the UI)'),
-));
-?>
-
-<?php echo $toc->html_section(); ?>
+== Introduction
 
 <p>All methods in our engine take URL as the parameter,
 not just a <i>filename</i>. Although in most cases you can also pass
@@ -37,7 +13,11 @@ and it will also work as expected.
 <p>All loading and saving routines (for models, images, sounds, and all
 other resources) automatically deal with URLs.
 
-<?php echo $toc->html_section(); ?>
+cgeimg::block[
+  delphi_linux_downloads.png|asynchronous_download example\, downloading multiple URLs asynchronously (without blocking the UI)
+]
+
+== Loading and saving any URL using TStream, synchronously or asynchronously
 
 <p>To directly load or save <i>your own files</i> using ObjectPascal <code>TStream</code>:
 
@@ -100,7 +80,7 @@ other resources) automatically deal with URLs.
     with your ZIP file. See <?php echo cgeRef('TCastleZip.RegisterUrlProtocol'); ?>.
 </ul>
 
-<?php echo $toc->html_section(); ?>
+== Loading and saving specialized resources
 
 <p>More higher-level loading and saving routines are available.
 They are all implemented on top of the above functions dealing with <code>TStream</code>,
@@ -150,7 +130,7 @@ so they all support all registered URLs.
     <?php echo cgeRef('CastleComponentSerialize'); ?> unit.
 </ul>
 
-<?php echo $toc->html_section(); ?>
+== Case-sensitive filesystems and URLs
 
 <p>Often, URLs just refer to files on the filesystem. Like <code>file://...</code> URLs, or <code>castle-data:/...</code> URLs (on platforms where the <a href="data">application data</a> is just a set of regular files). In this case, the underlying filesystem determines whether the names are <b>case-sensitive</b> (so e.g. <code>foobar</code> vs <code>FooBar</code> mean something else) or not.
 
@@ -168,9 +148,9 @@ so they all support all registered URLs.
 
 <p>If you don't want to care about the latter case (which makes sense if you develop mostly on Windows but want your application to also work on other platforms), a simple solution is to set global variable <?php echo cgeRef('CastleDataIgnoreCase'); ?> to <code>true</code>.
 
-<?php echo $toc->html_section(); ?>
+== Supported protocols
 
-<?php echo $toc->html_section(); ?>
+=== Loading local files: <code>file</code>
 
 <p>To load normal files from disk, use a <code>file</code> URL.
 
@@ -251,7 +231,7 @@ Both <i>Castle Game Engine</i> and <i>Lazarus</i> configure FPC RTL to use UTF-8
 <p><i>On Android</i>, you should use the <a href="https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/android/integrated-services/read_external_storage/README.md">read_external_storage service</a> to be able to read storage files (e.g. from SD card)
 through the <code>file</code> protocol.
 
-<?php echo $toc->html_section(); ?>
+=== Loading data files: <code>castle-data</code>
 
 <p>This protocol should be used to load
 <a href="data">data files</a> of your project.
@@ -282,7 +262,7 @@ The castle-data:/ URL designates files inside the application data directory. Wh
 When setting the URLs of various components from Lazarus, by clicking on "..." in the Lazarus Object Inspector, we automatically detect when you chose a file inside the "data/" subdirectory, and change the URL into appropriate castle-data:/ (instead of a file:/ URL).
 -->
 
-<?php echo $toc->html_section(); ?>
+=== Downloading from the network: <code>http</code> and <code>https</code>
 
 <p><code>http</code> and <code>https</code> work.
 You can download data from the Internet,
@@ -353,7 +333,7 @@ with respect to the containing document.
 
 <p><i>On Android</i>, you should use the <a href="https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/android/integrated-services/download_urls/README.md">download_urls service</a> to support <code>http</code> and <code>https</code> protocols.
 
-<?php echo $toc->html_section(); ?>
+=== Embedded data: <code>data</code>
 
 <p><code>data</code> is a special protocol that doesn't refer to
 an external resource. Instead, the complete data URI <i>contains</i> the contents.
@@ -379,24 +359,21 @@ to provide the contents "right there", without using any additional file.
 echo a_href_page('our demo models', 'demo_models'); ?>,
 see in particular <a href="https://github.com/castle-engine/demo-models/blob/master/x3d/data_uri.x3dv">x3d/data_uri.x3dv</a>.
 
-<?php echo $toc->html_section(); ?>
+[#zip]
+=== Data from a zip
 
 <p>You can open and register an arbitrary ZIP file to read / write resources from it using a custom URL. See the <?php echo cgeRef('TCastleZip.RegisterUrlProtocol'); ?> docs.
 
 <p>See the <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/network/custom_url_handler">examples/network/custom_url_handler</a>, when <code>USE_ZIP_URL_HANDLER</code> is defined.
 
-<?php echo $toc->html_section(); ?>
+[#register]
+=== Registering your own protocol
 
 <p>You are not limited to the protocols documented here. You can register your own URL protocols, with custom reading and writing handlers, using <?php echo cgeRef('RegisterUrlProtocol'); ?>.
 
 <p>See the <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/network/custom_url_handler">examples/network/custom_url_handler</a>, when <code>USE_ZIP_URL_HANDLER</code> is undefined.
 
-
-<?php
-//echo $toc->html_section();
-
-/*
-
+////
 <p>This protocol is called <code>castle-android-assets</code> or (deprecated name) <code>assets</code>. It is only available on Android.
 
 <p>Used to access data files in an Android application.
@@ -428,10 +405,9 @@ See also <a href="http://developer.android.com/tools/projects/index.html">Androi
 docs for more information about assets and project layout</a>.
 -->
 
-*/
-?>
+////
 
-<?php echo $toc->html_section(); ?>
+== Dialog windows that support URLs
 
 <p>If you use
 <?php echo cgeRef('TCastleWindow'); ?>,
@@ -456,7 +432,7 @@ or you can explicitly convert between filenames and URLs using functions
 mentioned earlier.
 -->
 
-<?php echo $toc->html_section(); ?>
+== Notes about terminology: URI vs URL
 
 <p><a href="https://en.wikipedia.org/wiki/Uniform_resource_identifier">URI</a>
 is a more general term. URI uniquely identifies a resource but does not
