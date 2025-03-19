@@ -13,6 +13,8 @@ $toc = new TableOfContents(
       new TocItem('Loading data files: <code>castle-data</code>', 'castle_data', 1),
       new TocItem('Downloading from the network: <code>http</code> and <code>https</code>', 'https_http', 1),
       new TocItem('Embedded data: <code>data</code>', 'data', 1),
+      new TocItem('Data from a zip', 'zip', 1),
+      new TocItem('Registering your own protocol', 'register_protocol', 1),
       //new TocItem('(Internal) Android assets: <code>castle-android-assets</code>', 'castle_android_assets', 1),
     new TocItem('Dialog windows that support URLs', 'dialogs'),
     new TocItem('Notes about terminology: URI vs URL', 'terminology'),
@@ -21,6 +23,7 @@ $toc = new TableOfContents(
       new TocItem('Indy (CGE example using TCP streams)', 'indy', 1),
         new TocItem('Known memory leaks with Indy', 'indy_memory_leaks', 2),
         new TocItem('Code completion using LSP (e.g. in VS Code) when using Indy', 'lsp', 2),
+      new TocItem('mORMot', 'mormot', 1),
       new TocItem('RNL (CGE example of real-time online shooter)', 'rnl', 1),
       new TocItem('Planned: Nakama integration', 'rnl', 1),
       new TocItem('Other options', 'other', 1),
@@ -388,6 +391,19 @@ to provide the contents "right there", without using any additional file.
 echo a_href_page('our demo models', 'demo_models'); ?>,
 see in particular <a href="https://github.com/castle-engine/demo-models/blob/master/x3d/data_uri.x3dv">x3d/data_uri.x3dv</a>.
 
+<?php echo $toc->html_section(); ?>
+
+<p>You can open and register an arbitrary ZIP file to read / write resources from it using a custom URL. See the <?php echo cgeRef('TCastleZip.RegisterUrlProtocol'); ?> docs.
+
+<p>See the <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/network/custom_url_handler">examples/network/custom_url_handler</a>, when <code>USE_ZIP_URL_HANDLER</code> is defined.
+
+<?php echo $toc->html_section(); ?>
+
+<p>You are not limited to the protocols documented here. You can register your own URL protocols, with custom reading and writing handlers, using <?php echo cgeRef('RegisterUrlProtocol'); ?>.
+
+<p>See the <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/network/custom_url_handler">examples/network/custom_url_handler</a>, when <code>USE_ZIP_URL_HANDLER</code> is undefined.
+
+
 <?php
 //echo $toc->html_section();
 
@@ -622,6 +638,12 @@ option_2=-Fu/home/myusername/src/Indy10/System/
 Adjust the above paths (<code>/home/myusername/src/Indy10</code>) to your system to point to the directory where you have Indy sources.
 
 For more information, see <a href="https://github.com/castle-engine/pascal-language-server?tab=readme-ov-file#extra-configuration-in-castle-enginepascal-language-server">README about Extra configuration in castle-engine/pascal-language-server</a>.
+
+<?php echo $toc->html_section(); ?>
+
+<p><a href="https://github.com/synopse/mORMot2/">mORMot2</a> is a feature-rich Object Pascal framework for developing network applications. It can support traditional client-server communication (exchanging messages), ORM (where you pass around objects that can be easily synchronized over the network and can be saved/loaded from the database), and more. It has a number of high-level (like ORM) and low-level (like database access) utilities to make programming of client-server (and other!) applications easier.
+
+<p>See our example integration of Castle Game Engine with <a href="https://github.com/synopse/mORMot2/">mORMot2</a> in <a href="https://github.com/castle-engine/castle-and-mormot-collaborative-editing/">collaborative editing of 3D world using Castle Game Engine and mORMot2</a>.
 
 <?php echo $toc->html_section(); ?>
 
