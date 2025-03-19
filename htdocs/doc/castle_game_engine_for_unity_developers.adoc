@@ -7,7 +7,7 @@ include::common.adoc[]
 
 If you come with a knowledge of another game engine, like _Unity_, this page will try to explain how some concepts map to _Castle Game Engine_. If you have any questions, remember to ask on https://forum.castle-engine.io/[forum], https://castle-engine.io/talk.php[Discord chat or other places].
 
-== What is the equivalent of Unity `GameObject`?
+== The equivalent of Unity `GameObject` is, to some extent, `TCastleTransform`
 
 `GameObject` in Unity is (simplifying) something that exists in your world, and may be visible, and may have children that are affected by a transformation.
 
@@ -101,7 +101,7 @@ This is a classic OOP approach. This is like _Unreal Engine_ that allows you to 
 You can even link:custom_components[register your custom classes to be available in the editor, to add/configure them visually].
 
 
-== What is the equivalent of Unity `Assets` subdirectory?
+== The equivalent of Unity `Assets/` subdirectory is, to some extent, `data/` subdirectory
 
 You should place your game data in the `data` subdirectory of the project. See link:data[manual about the "data" directory]. It will be automatically packaged and available in your games.
 
@@ -145,30 +145,43 @@ More information: https://castle-engine.io/creating_data_model_formats.php#secti
 
 A short summary of the answer: Use cgeref:TCastleWindow[]. If all you want is a cross-platform game, where everything is rendered using Castle Game Engine. If you come here and want to "just make a game using CGE", use cgeref:TCastleWindow[].
 
-Details: The difference is outlined on https://castle-engine.io/manual_lazarus_control.php :
+Details: The difference is outlined in link:control_on_form[Engine on a form using TCastleControl] page:
 
-* cgeref:TCastleControl[] means that engine rendering is inside Lazarus form. That is, cgeref:TCastleControl[] is a regular Lazarus control that can be placed on a larger form. You can use Lazarus designer to place LCL controls, and you can use CGE editor to design CGE controls (within cgeref:TCastleControl[]).
-* cgeref:TCastleWindow[] means that engine rendering is a separate window, and we're not using LCL. You can use CGE editor to design controls. So you lose access to LCL controls, but in exchange you get perfect cross-platform code (Android, iOS, Switch work only with cgeref:TCastleWindow[]).
+* cgeref:TCastleControl[] means that engine rendering is inside a _Lazarus_ or _Delphi_ form. That is, cgeref:TCastleControl[] is a regular control that can be placed on a larger form.
++
+You can use Lazarus form designer to place LCL controls around cgeref:TCastleControl[].
++
+You can use Delphi form designer to place VCL or FMX controls around cgeref:TCastleControl[].
++
+And you can use _Castle Game Engine_ link:editor[] to design controls inside cgeref:TCastleControl[].
 
-In both cases, you can use Lazarus as an IDE -- to write code, debug etc. In both cases, you can use CGE editor to design CGE controls (that go inside cgeref:TCastleControl[] or cgeref:TCastleWindow[]).
+* cgeref:TCastleWindow[] means that engine rendering is a separate window, and we're not using LCL, VCL, FMX.
++
+So you use our _Castle Game Engine_ link:editor[] to design all the controls, all user interface.
++
+You no longer can use visual LCL, VCL, FMX controls (you can still use all non-visual components of course), but in exchange you get perfect cross-platform code. Android, iOS, link:nintendo_switch[Nintendo Switch], link:web[] work only with cgeref:TCastleWindow[].
 
-== Where is `Time.timeScale`?
+In both cases, you can still use _Lazarus_ or _Delphi_ as an IDE -- to write code, debug etc. In both cases, you can use CGE link:editor[] to design CGE controls (that go inside cgeref:TCastleControl[] or cgeref:TCastleWindow[]).
 
-An equivalent is to set `MyViewport.Items.TimeScale`.
+== The equivalent of `Time.timeScale` is `MyViewport.Items.TimeScale`
 
-It is specific to the given world, which is an instance of `TCastleAbstractRootTransform` available in `MyViewport.Items`. Simple games will just have one viewport, a cgeref:TCastleViewport[] instance. Multiple instances of cgeref:TCastleViewport[] are possible, and then can share the same world, or show a different world (just assign `Items` between).
+The equivalent of Unity `Time.timeScale` is cgeref:TCastleAbstractRootTransform.TimeScale[MyViewport.Items.TimeScale].
+
+It is specific to the given world, which is an instance of cgeref:TCastleAbstractRootTransform[] available in `MyViewport.Items`. Simple games will just have one viewport, a cgeref:TCastleViewport[] instance. Multiple instances of cgeref:TCastleViewport[] are possible, and then can share the same world, or show a different world (just assign `Items` between). See link:https://castle-engine.io/multiple_viewports_to_display_one_world[Multiple viewports to display one world] for more details.
 
 There in an additional time scaling possible by cgeref:TCastleSceneCore.TimePlayingSpeed[TCastleScene.TimePlayingSpeed]. This is local in given cgeref:TCastleScene[] instance.
 
-== Where is `Time.deltaTime`?
+== The equivalent of `Time.deltaTime` is `Container.Fps.SecondsPassed`, or `SecondsPassed` parameter in `Update` methods
 
-In `Container.Fps.SecondsPassed`. See the link:view_events[view events] for the most trivial usage example.
+The equivalent of Unity global `Time.deltaTime` is our `Container.Fps.SecondsPassed`. See the link:view_events[view events] for the most trivial usage example.
 
-In you override the cgeref:TCastleUserInterface.Update[] (including cgeref:TCastleView.Update[]) or `TCastleTransform.Update` method, then you also have an explicit parameter `SecondsPassed` that contains this value. In `TCastleTransform.Update` the time is already scaled (if you used `MyViewport.Items.TimeScale` mentioned above).
+In you override the cgeref:TCastleUserInterface.Update[] (including cgeref:TCastleView.Update[]) or cgeref:TCastleTransform.Update[] method, then you also have an explicit parameter `SecondsPassed` that contains this value. In cgeref:TCastleTransform.Update[] this parameter is already scaled by your multiplier (if you tweaked the `MyViewport.Items.TimeScale` mentioned above).
 
 == Making components inactive
 
 Both cgeref:TCastleTransform[] and cgeref:TCastleUserInterface[] have a Boolean `Exists` property: cgeref:TCastleTransform.Exists[], cgeref:TCastleUserInterface.Exists[]. By default this is `true`. Simply set it to `false` to make everything behave as if this component was _not_ part of the hierarchy. Non-existing components are not visible, do not collide, do not handle any input, do not cause any events etc. So Unity `GameObject.SetActive(xxx)` translates to CGE `MyTransform.Exists := xxx`.
+
+To get does the component _and all it's parents_ exist, check cgeref:TCastleTransform.ExistsInRoot[].
 
 You can also control the cgeref:TCastleTransform.Collides[], cgeref:TCastleTransform.Pickable[] and cgeref:TCastleTransform.Visible[] properties of cgeref:TCastleTransform[]. These are useful to make something e.g. visible but non-collidable, or collidable but invisible. Note that when `Exists` is `false`, it "overrides" them, and non-existing object never collides and is never visible.
 
@@ -258,9 +271,9 @@ So `Parent` and `Owner` are separate concepts, even declared in different classe
 
 Sometimes both `Parent` and `Owner` may be set to the same instance, if it is suitable in the particular situation, but in general these 2 things just perform 2 separate functions. For example, in CGE editor, owner of everything in the design is always one central `DesignOwner` component. When you load the design yourself, you provide the `Owner` instance explicitly (as a parameter to `UserInterfaceLoad`, `TransformLoad`, `ComponentLoad`) and then you specify parent yourself but adding the design to the hierarchy (e.g. `MyParentUi.InsertFront(MyLoadedUi)`).
 
-== Where is UnityWebRequest (WWW)?
+== The equivalent of `UnityWebRequest` (for WWW access) is `TCastleDownload`
 
-Use cgeref:TCastleDownload[]. Similarly to `UnityWebRequest`, this class can send HTTP requests (GET, POST and others) and can download data asynchronously. It has been designed as an easy but also powerful way to get any resource (over the network or not).
+Use cgeref:TCastleDownload[] to download things. Similarly to `UnityWebRequest`, this class can send HTTP requests (GET, POST and others) and can download data asynchronously. It has been designed as an easy but also powerful way to get any resource (over the network or not).
 
 In addition to supporting HTTP(S), our cgeref:TCastleDownload[] can also get data from other resources (`file://`, game data, registered ZIP files, custom protocols...) so you can easily configure where you get your data from. See link:url[URLs, loading (downloading) and saving resources] for more information.
 
