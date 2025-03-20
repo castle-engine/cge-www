@@ -13,7 +13,7 @@ Right now, we always use exactly one "backend", which is determined at the compi
 
 == Available backends
 
-=== WinAPI backend (CASTLE_WINDOW_WINAPI)
+=== WinAPI (CASTLE_WINDOW_WINAPI)
 
 The default backend on Windows. Looks native and supports everything.
 
@@ -29,7 +29,7 @@ Advantages:
 * Dialog windows like `TCastleWindow.FileDialog` are implemented using standard Windows dialog boxes, so again they look nice and native.
 * Supports both OpenGL (by `wgl`) and OpenGLES (by `EGL`) contexts.
 
-=== GTK backend (CASTLE_WINDOW_GTK_2)
+=== GTK (CASTLE_WINDOW_GTK_2)
 
 The default backend on most Unix systems, like Linux. Looks native and supports everything (except changing screen resolution, see below). Uses _GTK 2_. Initializes OpenGL(ES) context using Xlib + glX (for OpenGL) or EGL (for OpenGLES).
 
@@ -55,7 +55,7 @@ History: at some point this was using GtkGlExt, and was portable to any system u
 * This way our dependencies are simpler (not every system has GtkGlExt),
 * there was not practical usage of this backend outside of GTK+Xlib anyway.
 
-=== Xlib (X11) backend (CASTLE_WINDOW_XLIB)
+=== Xlib (X11) (CASTLE_WINDOW_XLIB)
 
 A backend useful on most Unix systems, like Linux, that use X11.
 
@@ -71,7 +71,7 @@ Known problems:
 * Doesn't provide nicely-looking dialog boxes (`TCastleWindow.FileDialog`). The dialog boxes are implemented using simple modal boxes in `CastleMessages` instead, which works OK but doesn't look pretty.
 * Full-screen (`TCastleWindow.FullScreen`) is realized using an obsolete method ("override_redirect") that doesn't allow to switch applications with Alt+Tab from a fullscreen window.
 
-=== Form (LCL or FMX) backend (CASTLE_WINDOW_FORM)
+=== Form (LCL or FMX) (CASTLE_WINDOW_FORM)
 
 Backend that uses `TForm` and other LCL / FMX components to create a window. It is fully-functional:
 
@@ -108,11 +108,11 @@ Known problems:
 * LCL: Message loop may stutter in case of a lot of mouse movement (may be visible in case of "mouse look" navigation).
 * LCL: Doesn't support OpenGLES, as underlying `TOpenGLControl` doesn't support it.
 
-=== Android backend (CASTLE_WINDOW_ANDROID)
+=== Android (CASTLE_WINDOW_ANDROID)
 
 Backend using Android NDK cooperating with _Castle Game Engine_ Android activity code. Used when you compile for Android, which you should always do using our https://castle-engine.io/build_tool[build tool].
 
-=== Library backend (CASTLE_WINDOW_LIBRARY)
+=== Library (CASTLE_WINDOW_LIBRARY)
 
 Use existing OpenGL(ES) context. This is useful when the engine is used as a library, and an external code initializes OpenGL(ES) context, merely informing CGE about it. Useful for various cases, e.g. to "drive" Castle Game Engine rendering from another programming language. See `examples/library/` for an example of wrapping CGE in a library.
 
@@ -120,7 +120,7 @@ Also, this is the only possible backend to use CGE on link:ios[iOS] or link:nint
 
 Supported platforms: All platforms. But note that using this backend requires additional "outside" code to manage our library. In case of link:ios[iOS] and link:nintendo_switch[Nintendo Switch], this is automatically provided when building using our link:build_tool[build tool].
 
-=== Cocoa backend (CASTLE_WINDOW_COCOA)
+=== Cocoa (CASTLE_WINDOW_COCOA)
 
 Backend using https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaFundamentals/WhatIsCocoa/WhatIsCocoa.html[Cocoa] with https://developer.apple.com/documentation/appkit?language=objc[AppKit] library, coded using https://www.freepascal.org/docs-html/current/ref/refse71.html#x132-15600011.1[Objective-Pascal].
 //_ (a dialect of Pascal, implemented in FPC, as an analogy to _Objective-C_ -- making some unique OOP features/misfeatures from _Objective-C_ available in Pascal).
@@ -143,7 +143,7 @@ Known problems:
 - When building, a few messages like `warning: section "\__datacoal_nt" is deprecated: .section __DATA, __datacoal_nt, coalesced` are displayed. https://wiki.lazarus.freepascal.org/Mac_Installation_FAQ#Lazarus_reports_success.2C_but_there_are_errors.21[Compiling LCL app on macOS shows these warnings too]. There is no solution for now, but the warnings can be safely ignored.
 
 ////
-=== Obsolete: DispmanX backend (CASTLE_WINDOW_DISPMANX)
+=== Obsolete: DispmanX (CASTLE_WINDOW_DISPMANX)
 
 Use the Castle Game Engine on the Raspberry Pi under Linux (tested with Raspbian) without X or Wayland.
 
@@ -151,6 +151,10 @@ Obsolete: This is only available in a fork, and no longer maintained.
 
 See link:pass:[DispmanX backend][] for details.
 ////
+
+=== Web (CASTLE_WINDOW_WEBASSEMBLY)
+
+Backend used on the link:web[]. Communicates with the browser environment, in particular with the WebGL context in an HTML `<canvas>`, using JavaScript APIs.
 
 === Template (CASTLE_WINDOW_TEMPLATE)
 
