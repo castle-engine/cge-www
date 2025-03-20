@@ -76,6 +76,12 @@ These are _early demos_, so don't judge the final quality by these demos (yet) :
 - No shadow volumes on web yet (we need to initialize with stencil to have them).
 ====
 
+== Video Introduction
+
+The 1st part of this video introduces our web support:
+
+video::MJcMqfx6u98[youtube,width=800,height=450]
+
 == Usage (building examples and your own projects)
 
 === Installing Prerequisites
@@ -275,56 +281,6 @@ Absolute :)
 +
 WARNING: To make the resulting web application working also in mobile (like Android) web browsers, one needs to apply a 1-line hack to `pas2js` sources, see below for details.
 
-== Running WASM code outside of the browser
-
-_WebAssembly_ is not limited to running in a web browser. We support running the compiled WASM binaries also using https://wasmtime.dev/[Wasmtime], though **without rendering**.
-
-[WARNING]
-====
-Trying to render anything in https://wasmtime.dev/[Wasmtime] will fail, as we don't have access to WebGL API and context (or the rest of JS API, like `window.requestAnimationFrame`). So you cannot even create cgeref:TCastleWindow[], i.e. it will fail inside https://wasmtime.dev/[Wasmtime] with
-
-```
-TODO update this error message
-```
-
-and we don't have immediate plans to make it work. But, at least everything else (all the code _up to the rendering_) will work on https://wasmtime.dev/[Wasmtime].
-
-////
-If you know of an easy way to pass WebGL API and context (and rest of JS stuff we need, like `window.requestAnimationFrame`) to application run in https://wasmtime.dev/[Wasmtime] (e.g. implementing JS APIs, including WebGL by OpenGL(ES) on the desktop), let us know. And note that we prefer to pass WebGL API, not OpenGL(ES) API, to our application run in https://wasmtime.dev/[Wasmtime]. We want the _wasmtime_ to work as close to _web browser_ as possible, 1. because it avoids `wasmtime`-specific maintenance, 2. because it makes `wasmtime` more suited to debugging what happens on the web, which is its main use-case for us.
-////
-====
-
-Build your application like this (on the command-line):
-
-```
-castle-engine compile --os=wasip1 --cpu=wasm32 --mode=debug
-```
-
-Run it like this:
-
-```
-export WASMTIME_BACKTRACE_DETAILS=1 # get a more detailed backtrace
-wasmtime <project-name>.wasm
-```
-
-The main use-case of this is additional https://wiki.freepascal.org/WebAssembly/Debugging[debugging] approach. In case of a crash, the `wasmtime` will give you a useful stack trace with line numbers (if only you compiled with `--mode=debug`, as shown above).
-
-=== Running engine test-suite on WASM
-
-As a particular application of the above ("you can run engine code using wasmtime, except rendering"), you can run our test suite on WASM.
-
-WARNING: Making `castle-tester.wasm` work this way is a work-in-progress. The `time_measurements_tests.wasm` mentioned below works already.
-
-```shell
-cd tests/
-castle-engine compile --os=wasip1 --cpu=wasm32 --mode=debug
-wasmtime castle-tester.wasm --console --no-window-create
-
-cd time_measurements_tests/ # enter tests/time_measurements_tests/ in CGE
-castle-engine compile --os=wasip1 --cpu=wasm32 --mode=debug
-wasmtime time_measurements_tests.wasm
-```
-
 == How it works
 
 - We're using FPC https://wiki.freepascal.org/WebAssembly[WebAssembly] target.
@@ -512,3 +468,77 @@ Or existing `TTextureFontData`? Remake it to be `TCastleFontData`, a `TComponent
 This will cause some compatibility breakage for scripts, though.
 +
 Also, `package` really makes more sense (from editor or build tool) with "release". But we cannot just change it to `release` for `package`, as this would also be inconsistent and potentially surprising. Maybe just add `DEBUG` to package names done in debug mode? This would send a clear signal.
+
+== Running WASM code outside of the browser
+
+_WebAssembly_ is not limited to running in a web browser. We support running the compiled WASM binaries also using https://wasmtime.dev/[Wasmtime], though **without rendering**.
+
+[WARNING]
+====
+Trying to render anything in https://wasmtime.dev/[Wasmtime] will fail, as we don't have access to the WebGL API and context (or the rest of JS API, like `window.requestAnimationFrame`). So trying to create a `TCastleWindow` with rendering context inside _Wasmtime_ will fail.
+
+Moreover, right now, even using any unit that deals with rendering (and thus, uses JS APIs like WebGL) will fail inside https://wasmtime.dev/[Wasmtime] with an error like this:
+
+```
+Error: failed to run main module `xxx.wasm`
+Caused by:
+    0: failed to instantiate "xxx.wasm"
+    1: unknown import: `job::invoke_noresult` has not been defined
+```
+
+That's because https://wiki.freepascal.org/WebAssembly/DOM[JOB] units cannot communicate with the browser environment provided by their counterpart in Pas2Js, because this counterpart is not present in _Wasmtime_.
+
+////
+If you know of an easy way to pass WebGL API and context (and rest of JS stuff we need, like `window.requestAnimationFrame`) to application run in https://wasmtime.dev/[Wasmtime] (e.g. implementing JS APIs, including WebGL by OpenGL(ES) on the desktop), let us know. And note that we prefer to pass WebGL API, not OpenGL(ES) API, to our application run in https://wasmtime.dev/[Wasmtime]. We want the _wasmtime_ to work as close to _web browser_ as possible, 1. because it avoids `wasmtime`-specific maintenance, 2. because it makes `wasmtime` more suited to debugging what happens on the web, which is its main use-case for us.
+////
+====
+
+In the light of the above, your possibilities are limited to using the subset of engine units that don't do the rendering.
+// TODO: test the below statement about "model converter".
+// Our X3DLoad may use indirectly some code that depends on rendering, so it may not be true.
+// E.g. utilities like a model converter (that doesn't do rendering) can work using https://wasmtime.dev/[Wasmtime].
+
+Build your application like this (on the command-line):
+
+```
+castle-engine compile --os=wasip1 --cpu=wasm32 --mode=debug
+```
+
+Run it like this:
+
+```
+export WASMTIME_BACKTRACE_DETAILS=1 # get a more detailed backtrace
+wasmtime <project-name>.wasm
+```
+
+The main use-case of this is additional https://wiki.freepascal.org/WebAssembly/Debugging[debugging] possibility for some Pascal code (that doesn't link to any code relying on JS). In case of a crash, the `wasmtime` will give you a useful stack trace with line numbers (if only you compiled with `--mode=debug`, as shown above).
+
+For example, try the `tests/time_measurements_tests/` trivial test from the engine:
+
+```shell
+cd tests/time_measurements_tests/
+castle-engine compile --os=wasip1 --cpu=wasm32 --mode=debug
+wasmtime time_measurements_tests.wasm
+```
+
+////
+Not supported anymore:
+To make the full test suite work in Wasmtime,
+it seems test suite would need to not even link to JOB units, which is hard.
+Instead, we should be able to run testsuite interactively, in an actual browser.
+
+=== Running engine test-suite on the web
+
+As a particular application of the above ("you can run engine code using wasmtime, except rendering"), you can run our test suite on WASM.
+
+```shell
+cd tests/
+castle-engine compile --os=wasip1 --cpu=wasm32 --mode=debug
+wasmtime castle-tester.wasm --console --no-window-create
+
+cd time_measurements_tests/ # enter tests/time_measurements_tests/ in CGE
+castle-engine compile --os=wasip1 --cpu=wasm32 --mode=debug
+wasmtime time_measurements_tests.wasm
+```
+
+////
