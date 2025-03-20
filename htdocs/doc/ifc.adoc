@@ -337,3 +337,9 @@ Harder tasks:
 - STEP encoding support (`.ifc` files).
 
 - Boolean operations (CSG) on IFC entities, likely using https://dev.opencascade.org/doc/overview/html/specification__boolean_operations.html[Open CASCADE]. For now, we show the openings (using a wireframe display for opening geometry, and partial transparency for the container geometry) but we don't actually subtract the opening geometry from the container geometry.
+
+## Video Introduction
+
+The 2nd part of this video introduces the IFC features:
+
+video::MJcMqfx6u98[youtube,width=800,height=450]
