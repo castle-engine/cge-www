@@ -473,6 +473,28 @@ This will cause some compatibility breakage for scripts, though.
 +
 Also, `package` really makes more sense (from editor or build tool) with "release". But we cannot just change it to `release` for `package`, as this would also be inconsistent and potentially surprising. Maybe just add `DEBUG` to package names done in debug mode? This would send a clear signal.
 
+== Known Limitations
+
+Aside from above TODOs (which should be eventually addressed), there are some known limitations which we cannot (or don't plan to) "overcome" in our engine:
+
+- You cannot open multiple windows (multiple cgeref:TCastleWindow[] instances) on the web. Our initialization matches the cgeref:TCastleWindow[] to the single `<canvas>` in the HTML document with id `castle-canvas`, and right now we handle only one such canvas at a time.
++
+NOTE: The canvas id may be configurable in the future, and we may enable running multiple CGE applications on the same page. So handling multiple canvases will likely be possible this way. But still, _one application = one canvas_.
++
+This limitation is similar to Android, iOS, and link:nintendo_switch[Nintendo Switch] limitation. You can query cgeref:TCastleApplication.MultipleWindowsPossible[] at run-time to write a cross-platform code that adjusts to this.
++
+It is in theory possible to lift this limitation some day, but it would be rather convoluted, and the use-case is uncertain. Typical games are just one canvas, most other game engines don't allow to open many windows on _any_ platform (even on desktop, when it's technically easy). And _"many ``<canvas>``es in the HTML page"_ is only an approximation of _"many windows on the desktop"_, so the behavior would likely be not useful for cross-platform applications anyway, which are our focus.
++
+That's our way of thinking _for now_, you're of course welcome to link:talk.php[talk to us] and present a case why we should rethink it :)
+
+- WebAssembly does not support _catching_ exceptions. So anytime you `raise` an exception in Pascal, you just break the application, unconditionally.
++
+This is mostly OK for our engine. We didn't rely on exception catching and valid applications should not cause the engine to raise+catch an exception.
++
+NOTE: Though our shader compilation/linking code was raising an exception in case of invalid shader code, only to catch it and report a warning later. We have adjusted this code, to tolerate invalid shaders on the web the same way, so that they cause a warning in the log, not a crash.
++
+However, be aware of this limitation in your own code. Do not depend on `try .. except` for the logic that should work in "production".
+
 == Running WASM code outside of the browser
 
 _WebAssembly_ is not limited to running in a web browser. We support running the compiled WASM binaries also using https://wasmtime.dev/[Wasmtime], though **without rendering**.
