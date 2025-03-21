@@ -99,6 +99,7 @@ $pasdoc = array(
   'TCastleApplicationProperties' => array('html_filename' => 'CastleApplicationProperties.TCastleApplicationProperties.html', 'type' => 'class'),
   'TCastleApplicationProperties.Create' => array('html_filename' => 'CastleApplicationProperties.TCastleApplicationProperties.html#Create', 'type' => 'constructor'),
   'TCastleApplicationProperties.Destroy' => array('html_filename' => 'CastleApplicationProperties.TCastleApplicationProperties.html#Destroy', 'type' => 'destructor'),
+  'TCastleApplicationProperties.CanCatchExceptions' => array('html_filename' => 'CastleApplicationProperties.TCastleApplicationProperties.html#CanCatchExceptions', 'type' => 'function'),
   'TCastleApplicationProperties.AddInitializeDebugListener' => array('html_filename' => 'CastleApplicationProperties.TCastleApplicationProperties.html#AddInitializeDebugListener-TProcedure-', 'type' => 'procedure'),
   'TCastleApplicationProperties.WriteWarningOnConsole' => array('html_filename' => 'CastleApplicationProperties.TCastleApplicationProperties.html#WriteWarningOnConsole-String-String-', 'type' => 'procedure'),
   'TCastleApplicationProperties.Description' => array('html_filename' => 'CastleApplicationProperties.TCastleApplicationProperties.html#Description', 'type' => 'function'),

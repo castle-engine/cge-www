@@ -60,9 +60,22 @@ cgeimg::block[
 
 - link:web-demos/castle-dice-throwing[Dice Throwing] (https://github.com/castle-engine/castle-dice-throwing/[Source code]). A fun experiment, showing how to run physics simulation invisibly. You can throw a 6-sided dice, it looks nice (following physics)... and yet the result is predetermined (set the outcome using a button before throwing). Underneath, we run invisible physics simulation and rotate the dice to match the desired outcome.
 
+////
+TODO: These demos run, but no sound yet.
+
+=== Audio
+
+- link:web-demos/examples/audio/game_3d_sound/[3D Sound Demo] (https://github.com/castle-engine/castle-engine/tree/master/examples/audio/game_3d_sound[Source code]).
+
+- link:web-demos/examples/audio/play_sounds/[Play Sounds] (https://github.com/castle-engine/castle-engine/tree/master/examples/audio/play_sounds[Source code]).
+
+////
+
 === Automatic Engine Tests
 
-- link:web-demos/tests[Automatic Engine Tests] (https://github.com/castle-engine/castle-engine/tree/master/tests[Source code]). Our full, cross-platform test suite with over 470 tests, running on the web. TODO: Not all the tests execute correctly yet.
+- link:web-demos/tests[Automatic Engine Tests] (https://github.com/castle-engine/castle-engine/tree/master/tests[Source code]). Our full, cross-platform test suite with over 470 tests, running on the web.
++
+NOTE: Don't be alarmed by a ~1 minute hang in the middle, `TTestX3DNodes.TestGltfConversion` indeed takes time.
 
 === Earliest (simplest) demos
 
@@ -477,23 +490,25 @@ Also, `package` really makes more sense (from editor or build tool) with "releas
 
 Aside from above TODOs (which should be eventually addressed), there are some known limitations which we cannot (or don't plan to) "overcome" in our engine:
 
+- FPC on WebAssembly does not support _catching_ exceptions. So anytime you `raise` an exception in Pascal, you just break the application, unconditionally.
+//+
+//This is mostly OK for our engine. We didn't rely on exception catching and valid applications should not cause the engine to raise+catch an exception.
+//+
+//NOTE: Though our shader compilation/linking code was raising an exception in case of invalid shader code, only to catch it and report a warning later. We have adjusted this code, to tolerate invalid shaders on the web the same way, so that they cause a warning in the log, not a crash.
++
+So do not depend on `try .. except` for the logic that could catch the exception. Use exceptions only to report errors from which you cannot recover and the only option is to crash the application.
++
+You can query cgeref:TCastleApplicationProperties.CanCatchExceptions[ApplicationProperties.CanCatchExceptions] at run-time to write a cross-platform code that adjusts to this.
+
 - You cannot open multiple windows (multiple cgeref:TCastleWindow[] instances) on the web. Our initialization matches the cgeref:TCastleWindow[] to the single `<canvas>` in the HTML document with id `castle-canvas`, and right now we handle only one such canvas at a time.
 +
 NOTE: The canvas id may be configurable in the future, and we may enable running multiple CGE applications on the same page. So handling multiple canvases will likely be possible this way. But still, _one application = one canvas_.
 +
-This limitation is similar to Android, iOS, and link:nintendo_switch[Nintendo Switch] limitation. You can query cgeref:TCastleApplication.MultipleWindowsPossible[] at run-time to write a cross-platform code that adjusts to this.
+This limitation is similar to Android, iOS, and link:nintendo_switch[Nintendo Switch] limitation. You can query cgeref:TCastleApplication.MultipleWindowsPossible[Application.MultipleWindowsPossible] at run-time to write a cross-platform code that adjusts to this.
 +
 It is in theory possible to lift this limitation some day, but it would be rather convoluted, and the use-case is uncertain. Typical games are just one canvas, most other game engines don't allow to open many windows on _any_ platform (even on desktop, when it's technically easy). And _"many ``<canvas>``es in the HTML page"_ is only an approximation of _"many windows on the desktop"_, so the behavior would likely be not useful for cross-platform applications anyway, which are our focus.
 +
 That's our way of thinking _for now_, you're of course welcome to link:talk.php[talk to us] and present a case why we should rethink it :)
-
-- WebAssembly does not support _catching_ exceptions. So anytime you `raise` an exception in Pascal, you just break the application, unconditionally.
-+
-This is mostly OK for our engine. We didn't rely on exception catching and valid applications should not cause the engine to raise+catch an exception.
-+
-NOTE: Though our shader compilation/linking code was raising an exception in case of invalid shader code, only to catch it and report a warning later. We have adjusted this code, to tolerate invalid shaders on the web the same way, so that they cause a warning in the log, not a crash.
-+
-However, be aware of this limitation in your own code. Do not depend on `try .. except` for the logic that should work in "production".
 
 == Running WASM code outside of the browser
 
