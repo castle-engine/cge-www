@@ -2,14 +2,14 @@
 # This file is distributed under the GPL v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: W3 Total Cache 2.8.6\n"
+"Project-Id-Version: W3 Total Cache 2.8.7\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/w3-total-cache\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-02-21T16:11:58+00:00\n"
+"POT-Creation-Date: 2025-03-20T17:53:18+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: w3-total-cache\n"
@@ -17,10 +17,10 @@ msgstr ""
 #. Plugin Name of the plugin
 #: w3-total-cache.php
 #: Generic_Plugin_Admin.php:1252
-#: SetupGuide_Plugin_Admin.php:1175
-#: SetupGuide_Plugin_Admin.php:1225
-#: SetupGuide_Plugin_Admin.php:1297
-#: SetupGuide_Plugin_Admin.php:1326
+#: SetupGuide_Plugin_Admin.php:1181
+#: SetupGuide_Plugin_Admin.php:1231
+#: SetupGuide_Plugin_Admin.php:1303
+#: SetupGuide_Plugin_Admin.php:1332
 msgid "W3 Total Cache"
 msgstr ""
 
@@ -848,9 +848,9 @@ msgstr ""
 #: PageSpeed_Instructions.php:555
 #: Root_AdminMenu.php:85
 #: Root_AdminMenu.php:86
-#: SetupGuide_Plugin_Admin.php:1150
-#: SetupGuide_Plugin_Admin.php:1319
-#: SetupGuide_Plugin_Admin.php:1352
+#: SetupGuide_Plugin_Admin.php:1156
+#: SetupGuide_Plugin_Admin.php:1325
+#: SetupGuide_Plugin_Admin.php:1358
 #: Util_PageUrls.php:915
 #: Util_Ui.php:1673
 msgid "Browser Cache"
@@ -867,7 +867,7 @@ msgstr ""
 
 #: Cache.php:214
 #: inc/options/minify/csstidy2.php:23
-#: SetupGuide_Plugin_Admin.php:979
+#: SetupGuide_Plugin_Admin.php:985
 msgid "None"
 msgstr ""
 
@@ -3775,9 +3775,9 @@ msgstr ""
 #: inc/options/general.php:326
 #: Root_AdminMenu.php:73
 #: Root_AdminMenu.php:74
-#: SetupGuide_Plugin_Admin.php:1142
-#: SetupGuide_Plugin_Admin.php:1256
-#: SetupGuide_Plugin_Admin.php:1267
+#: SetupGuide_Plugin_Admin.php:1148
+#: SetupGuide_Plugin_Admin.php:1262
+#: SetupGuide_Plugin_Admin.php:1273
 #: UsageStatistics_Page_View.php:316
 #: Util_PageUrls.php:905
 #: Util_Ui.php:1665
@@ -5702,7 +5702,7 @@ msgid "Monthly limit:"
 msgstr ""
 
 #: Extension_ImageService_Plugin_Admin.php:101
-#: SetupGuide_Plugin_Admin.php:1370
+#: SetupGuide_Plugin_Admin.php:1376
 msgid "Adds the ability to convert images in the Media Library to the modern WebP format for better performance."
 msgstr ""
 
@@ -5886,7 +5886,7 @@ msgid "Learn more about Pro"
 msgstr ""
 
 #: Extension_ImageService_Widget_View.php:39
-#: SetupGuide_Plugin_Admin.php:1376
+#: SetupGuide_Plugin_Admin.php:1382
 msgid "Enable WebP Converter"
 msgstr ""
 
@@ -5904,8 +5904,8 @@ msgstr ""
 #: PgCache_Plugin.php:359
 #: Root_AdminMenu.php:61
 #: Root_AdminMenu.php:62
-#: SetupGuide_Plugin_Admin.php:1138
-#: SetupGuide_Plugin_Admin.php:1213
+#: SetupGuide_Plugin_Admin.php:1144
+#: SetupGuide_Plugin_Admin.php:1219
 #: UsageStatistics_Page_View.php:28
 #: Util_PageUrls.php:895
 #: Util_Ui.php:1653
@@ -6517,7 +6517,7 @@ msgid "Reduce load time by decreasing the size and number of CSS and JS files."
 msgstr ""
 
 #: FeatureShowcase_Plugin_Admin.php:467
-#: SetupGuide_Plugin_Admin.php:1388
+#: SetupGuide_Plugin_Admin.php:1394
 #: UserExperience_GeneralPage_View.php:41
 msgid "Lazy Load Images"
 msgstr ""
@@ -6562,9 +6562,9 @@ msgstr ""
 #: ObjectCache_Plugin.php:217
 #: Root_AdminMenu.php:79
 #: Root_AdminMenu.php:80
-#: SetupGuide_Plugin_Admin.php:1146
-#: SetupGuide_Plugin_Admin.php:1290
-#: SetupGuide_Plugin_Admin.php:1304
+#: SetupGuide_Plugin_Admin.php:1152
+#: SetupGuide_Plugin_Admin.php:1296
+#: SetupGuide_Plugin_Admin.php:1310
 #: UsageStatistics_Page_View.php:250
 #: UsageStatistics_Page_View.php:255
 #: Util_PageUrls.php:910
@@ -7618,46 +7618,48 @@ msgid "I didn’t see an improvement in website speed or performance"
 msgstr ""
 
 #: inc/lightbox/exit_survey.php:43
-msgid "Other (please specify):"
+#: inc/options/install.php:255
+#: Util_Ui.php:1979
+msgid "Other"
 msgstr ""
 
-#: inc/lightbox/exit_survey.php:45
-msgid "Please specify..."
-msgstr ""
-
-#: inc/lightbox/exit_survey.php:48
-msgid "May we contact you?"
+#: inc/lightbox/exit_survey.php:47
+msgid "Please provide details..."
 msgstr ""
 
 #: inc/lightbox/exit_survey.php:49
+msgid "May we contact you?"
+msgstr ""
+
+#: inc/lightbox/exit_survey.php:50
 msgid "We're serious about making W3 Total Cache better, and sometimes that means reaching out to users like you to get a few more details about your experience. Would you be open to us contacting you for further feedback? If so, please enter your email address below."
 msgstr ""
 
-#: inc/lightbox/exit_survey.php:52
+#: inc/lightbox/exit_survey.php:53
 msgid "Email address..."
 msgstr ""
 
-#: inc/lightbox/exit_survey.php:55
+#: inc/lightbox/exit_survey.php:56
 msgid "Remove all plugin data?"
 msgstr ""
 
-#: inc/lightbox/exit_survey.php:56
+#: inc/lightbox/exit_survey.php:57
 msgid "Selecting \"Yes\" will permanently delete all W3 Total Cache settings, cached data, and other plugin-related information from your site. This action cannot be undone."
 msgstr ""
 
-#: inc/lightbox/exit_survey.php:61
+#: inc/lightbox/exit_survey.php:62
 msgid "Yes"
 msgstr ""
 
-#: inc/lightbox/exit_survey.php:68
+#: inc/lightbox/exit_survey.php:69
 msgid "No"
 msgstr ""
 
-#: inc/lightbox/exit_survey.php:74
+#: inc/lightbox/exit_survey.php:75
 msgid "Submit & Deactivate"
 msgstr ""
 
-#: inc/lightbox/exit_survey.php:75
+#: inc/lightbox/exit_survey.php:76
 msgid "Skip & Deactivate"
 msgstr ""
 
@@ -8003,7 +8005,7 @@ msgid "URL rewrite:"
 msgstr ""
 
 #: inc/lightbox/self_test.php:501
-#: SetupGuide_Plugin_Admin.php:983
+#: SetupGuide_Plugin_Admin.php:989
 msgid "Enabled"
 msgstr ""
 
@@ -9010,7 +9012,7 @@ msgstr ""
 #: inc/options/common/top_nav_bar.php:76
 #: Root_AdminMenu.php:131
 #: Root_AdminMenu.php:132
-#: SetupGuide_Plugin_Admin.php:940
+#: SetupGuide_Plugin_Admin.php:941
 #: Util_PageUrls.php:949
 msgid "Setup Guide"
 msgstr ""
@@ -9248,12 +9250,12 @@ msgid "Caching pages will reduce the response time of your site and increase the
 msgstr ""
 
 #: inc/options/general.php:127
-#: SetupGuide_Plugin_Admin.php:981
+#: SetupGuide_Plugin_Admin.php:987
 msgid "Disk: Basic"
 msgstr ""
 
 #: inc/options/general.php:131
-#: SetupGuide_Plugin_Admin.php:982
+#: SetupGuide_Plugin_Admin.php:988
 msgid "Disk: Enhanced"
 msgstr ""
 
@@ -9408,7 +9410,7 @@ msgid "Enable this option to utilize an object cache mechanism, which significan
 msgstr ""
 
 #: inc/options/general.php:396
-#: SetupGuide_Plugin_Admin.php:1300
+#: SetupGuide_Plugin_Admin.php:1306
 msgid "Object Cache is disabled via filter."
 msgstr ""
 
@@ -9792,11 +9794,6 @@ msgstr ""
 
 #: inc/options/install.php:247
 msgid "Rewrite Rules (based on active settings)"
-msgstr ""
-
-#: inc/options/install.php:255
-#: Util_Ui.php:1979
-msgid "Other"
 msgstr ""
 
 #: inc/options/install.php:264
@@ -11032,12 +11029,12 @@ msgid "The W3 Total Cache license key cannot be verified."
 msgstr ""
 
 #: Licensing_Plugin_Admin.php:342
-#: SetupGuide_Plugin_Admin.php:1207
+#: SetupGuide_Plugin_Admin.php:1213
 msgid "Accept"
 msgstr ""
 
 #: Licensing_Plugin_Admin.php:346
-#: SetupGuide_Plugin_Admin.php:1208
+#: SetupGuide_Plugin_Admin.php:1214
 msgid "Decline"
 msgstr ""
 
@@ -12621,277 +12618,277 @@ msgstr ""
 msgid "Not present"
 msgstr ""
 
-#: SetupGuide_Plugin_Admin.php:966
+#: SetupGuide_Plugin_Admin.php:972
 msgid "Testing complete.  Click Next to advance to the section and see the results."
 msgstr ""
 
-#: SetupGuide_Plugin_Admin.php:970
+#: SetupGuide_Plugin_Admin.php:976
 msgid "Could not perform this test.  Please reload the page to try again or click skip button to abort the setup guide."
 msgstr ""
 
-#: SetupGuide_Plugin_Admin.php:974
+#: SetupGuide_Plugin_Admin.php:980
 msgid "Could not update configuration.  Please reload the page to try again or click skip button to abort the setup guide."
 msgstr ""
 
-#: SetupGuide_Plugin_Admin.php:978
+#: SetupGuide_Plugin_Admin.php:984
 msgid "Unavailable"
 msgstr ""
 
-#: SetupGuide_Plugin_Admin.php:980
+#: SetupGuide_Plugin_Admin.php:986
 #: Util_Ui.php:1309
 msgid "Disk"
 msgstr ""
 
-#: SetupGuide_Plugin_Admin.php:984
+#: SetupGuide_Plugin_Admin.php:990
 msgid "Not Enabled"
 msgstr ""
 
-#: SetupGuide_Plugin_Admin.php:987
+#: SetupGuide_Plugin_Admin.php:993
 msgid "Warning: Using disk storage for this setting can potentially create a large number of files.  Please be aware of any inode or disk space limits you may have on your hosting account."
 msgstr ""
 
-#: SetupGuide_Plugin_Admin.php:1134
+#: SetupGuide_Plugin_Admin.php:1140
 msgid "Welcome"
 msgstr ""
 
-#: SetupGuide_Plugin_Admin.php:1154
-#: SetupGuide_Plugin_Admin.php:1367
+#: SetupGuide_Plugin_Admin.php:1160
+#: SetupGuide_Plugin_Admin.php:1373
 msgid "Image Optimization"
 msgstr ""
 
-#: SetupGuide_Plugin_Admin.php:1158
-#: SetupGuide_Plugin_Admin.php:1379
+#: SetupGuide_Plugin_Admin.php:1164
+#: SetupGuide_Plugin_Admin.php:1385
 msgid "Lazy Load"
 msgstr ""
 
-#: SetupGuide_Plugin_Admin.php:1162
+#: SetupGuide_Plugin_Admin.php:1168
 msgid "More Caching Options"
 msgstr ""
 
-#: SetupGuide_Plugin_Admin.php:1167
+#: SetupGuide_Plugin_Admin.php:1173
 msgid "Welcome to the W3 Total Cache Setup Guide!"
 msgstr ""
 
-#: SetupGuide_Plugin_Admin.php:1171
+#: SetupGuide_Plugin_Admin.php:1177
 msgid "You have selected the Performance Suite that professionals have consistently ranked #1 for options and speed improvements."
 msgstr ""
 
-#: SetupGuide_Plugin_Admin.php:1176
+#: SetupGuide_Plugin_Admin.php:1182
 msgid "provides many options to help your website perform faster.  While the ideal settings vary for every website, there are a few settings we recommend that you enable now."
 msgstr ""
 
-#: SetupGuide_Plugin_Admin.php:1181
+#: SetupGuide_Plugin_Admin.php:1187
 msgid "If a caching method shows as unavailable you do not have the necessary modules installed. You may need to reach out to your host for installation availablity and directions."
 msgstr ""
 
 #. translators: 1: Anchor/link open tag, 2: Anchor/link close tag.
-#: SetupGuide_Plugin_Admin.php:1187
+#: SetupGuide_Plugin_Admin.php:1193
 msgid "If you prefer to configure the settings on your own, you can %1$sskip this setup guide%2$s."
 msgstr ""
 
 #. translators: 1: Anchor/link open tag, 2: Anchor/link close tag.
-#: SetupGuide_Plugin_Admin.php:1199
+#: SetupGuide_Plugin_Admin.php:1205
 msgid "By allowing us to collect data about how W3 Total Cache is used, we can improve our features and experience for everyone. This data will not include any personally identifiable information.  Feel free to review our %1$sterms of use and privacy policy%2$s."
 msgstr ""
 
 #. translators: 1: HTML emphesis open tag, 2: HTML emphesis close tag.
-#: SetupGuide_Plugin_Admin.php:1217
+#: SetupGuide_Plugin_Admin.php:1223
 msgid "The time it takes between a visitor's browser page request and receiving the first byte of a response is referred to as %1$sTime to First Byte%2$s."
 msgstr ""
 
-#: SetupGuide_Plugin_Admin.php:1226
+#: SetupGuide_Plugin_Admin.php:1232
 msgid "can help you speed up"
 msgstr ""
 
-#: SetupGuide_Plugin_Admin.php:1227
-#: SetupGuide_Plugin_Admin.php:1238
+#: SetupGuide_Plugin_Admin.php:1233
+#: SetupGuide_Plugin_Admin.php:1244
 msgid "Time to First Byte"
 msgstr ""
 
-#: SetupGuide_Plugin_Admin.php:1230
+#: SetupGuide_Plugin_Admin.php:1236
 msgid "We'll test your homepage with Page Cache disabled and then with several storage engines.  You should review the test results and choose the best for your website."
 msgstr ""
 
-#: SetupGuide_Plugin_Admin.php:1236
+#: SetupGuide_Plugin_Admin.php:1242
 msgid "Test Page Cache"
 msgstr ""
 
-#: SetupGuide_Plugin_Admin.php:1237
+#: SetupGuide_Plugin_Admin.php:1243
 msgid "Measuring"
 msgstr ""
 
-#: SetupGuide_Plugin_Admin.php:1242
+#: SetupGuide_Plugin_Admin.php:1248
 msgid "Test URL:"
 msgstr ""
 
-#: SetupGuide_Plugin_Admin.php:1247
-#: SetupGuide_Plugin_Admin.php:1273
-#: SetupGuide_Plugin_Admin.php:1310
+#: SetupGuide_Plugin_Admin.php:1253
+#: SetupGuide_Plugin_Admin.php:1279
+#: SetupGuide_Plugin_Admin.php:1316
 msgid "Select"
 msgstr ""
 
-#: SetupGuide_Plugin_Admin.php:1248
-#: SetupGuide_Plugin_Admin.php:1274
-#: SetupGuide_Plugin_Admin.php:1311
+#: SetupGuide_Plugin_Admin.php:1254
+#: SetupGuide_Plugin_Admin.php:1280
+#: SetupGuide_Plugin_Admin.php:1317
 msgid "Storage Engine"
 msgstr ""
 
-#: SetupGuide_Plugin_Admin.php:1249
-#: SetupGuide_Plugin_Admin.php:1275
-#: SetupGuide_Plugin_Admin.php:1312
+#: SetupGuide_Plugin_Admin.php:1255
+#: SetupGuide_Plugin_Admin.php:1281
+#: SetupGuide_Plugin_Admin.php:1318
 msgid "Time (ms)"
 msgstr ""
 
-#: SetupGuide_Plugin_Admin.php:1259
+#: SetupGuide_Plugin_Admin.php:1265
 msgid "Many database queries are made in every dynamic page request.  A database cache may speed up the generation of dynamic pages.  Database Cache serves query results directly from a storage engine."
 msgstr ""
 
-#: SetupGuide_Plugin_Admin.php:1265
+#: SetupGuide_Plugin_Admin.php:1271
 msgid "Test Database Cache"
 msgstr ""
 
-#: SetupGuide_Plugin_Admin.php:1266
-#: SetupGuide_Plugin_Admin.php:1303
-#: SetupGuide_Plugin_Admin.php:1351
+#: SetupGuide_Plugin_Admin.php:1272
+#: SetupGuide_Plugin_Admin.php:1309
+#: SetupGuide_Plugin_Admin.php:1357
 msgid "Testing"
 msgstr ""
 
-#: SetupGuide_Plugin_Admin.php:1283
+#: SetupGuide_Plugin_Admin.php:1289
 msgid "By default, this feature is disabled.  We recommend using Redis or Memcached, otherwise leave this feature disabled as the server database engine may be faster than using disk caching."
 msgstr ""
 
-#: SetupGuide_Plugin_Admin.php:1293
+#: SetupGuide_Plugin_Admin.php:1299
 msgid "WordPress caches objects used to build pages, but does not reuse them for future page requests."
 msgstr ""
 
-#: SetupGuide_Plugin_Admin.php:1298
+#: SetupGuide_Plugin_Admin.php:1304
 msgid "can help you speed up dynamic pages by persistently storing objects."
 msgstr ""
 
-#: SetupGuide_Plugin_Admin.php:1302
+#: SetupGuide_Plugin_Admin.php:1308
 msgid "Test Object Cache"
 msgstr ""
 
-#: SetupGuide_Plugin_Admin.php:1322
+#: SetupGuide_Plugin_Admin.php:1328
 msgid "To render your website, browsers must download many different types of assets, including javascript files, CSS stylesheets, images, and more.  For most assets, once a browser has downloaded them, they shouldn't have to download them again."
 msgstr ""
 
-#: SetupGuide_Plugin_Admin.php:1327
+#: SetupGuide_Plugin_Admin.php:1333
 msgid "can help ensure browsers are properly caching your assets."
 msgstr ""
 
 #. translators: 1: HTML emphesis open tag, 2: HTML emphesis close tag.
-#: SetupGuide_Plugin_Admin.php:1333
+#: SetupGuide_Plugin_Admin.php:1339
 msgid "The %1$sCache-Control%2$s header tells your browser how it should cache specific files.  The %1$smax-age%2$s setting tells your browser how long, in seconds, it should use its cached version of a file before requesting an updated one."
 msgstr ""
 
 #. translators: 1: HTML emphesis open tag, 2: HTML emphesis close tag.
-#: SetupGuide_Plugin_Admin.php:1342
+#: SetupGuide_Plugin_Admin.php:1348
 msgid "To improve %1$sBrowser Cache%2$s, we recommend enabling %1$sBrowser Cache%2$s."
 msgstr ""
 
-#: SetupGuide_Plugin_Admin.php:1350
+#: SetupGuide_Plugin_Admin.php:1356
 msgid "Test Browser Cache"
 msgstr ""
 
-#: SetupGuide_Plugin_Admin.php:1358
+#: SetupGuide_Plugin_Admin.php:1364
 msgid "Setting"
 msgstr ""
 
-#: SetupGuide_Plugin_Admin.php:1359
+#: SetupGuide_Plugin_Admin.php:1365
 msgid "File"
 msgstr ""
 
-#: SetupGuide_Plugin_Admin.php:1360
+#: SetupGuide_Plugin_Admin.php:1366
 msgid "Cache-Control Header"
 msgstr ""
 
-#: SetupGuide_Plugin_Admin.php:1382
+#: SetupGuide_Plugin_Admin.php:1388
 msgid "Pages containing images and other objects can have their load time reduced by deferring them until they are needed.  For example, images can be loaded when a visitor scrolls down the page to make them visible."
 msgstr ""
 
-#: SetupGuide_Plugin_Admin.php:1391
+#: SetupGuide_Plugin_Admin.php:1397
 msgid "Setup Complete!"
 msgstr ""
 
 #. translators: 1: HTML strong open tag, 2: HTML strong close tag, 3: Label.
-#: SetupGuide_Plugin_Admin.php:1396
+#: SetupGuide_Plugin_Admin.php:1402
 msgid "%1$sPage Cache%2$s engine set to %1$s%3$s%2$s"
 msgstr ""
 
-#: SetupGuide_Plugin_Admin.php:1402
-#: SetupGuide_Plugin_Admin.php:1424
-#: SetupGuide_Plugin_Admin.php:1448
-#: SetupGuide_Plugin_Admin.php:1461
-#: SetupGuide_Plugin_Admin.php:1471
-#: SetupGuide_Plugin_Admin.php:1481
+#: SetupGuide_Plugin_Admin.php:1408
+#: SetupGuide_Plugin_Admin.php:1430
+#: SetupGuide_Plugin_Admin.php:1454
+#: SetupGuide_Plugin_Admin.php:1467
+#: SetupGuide_Plugin_Admin.php:1477
+#: SetupGuide_Plugin_Admin.php:1487
 msgid "UNKNOWN"
 msgstr ""
 
 #. translators: 1: HTML strong open tag, 2: HTML strong close tag.
-#: SetupGuide_Plugin_Admin.php:1407
+#: SetupGuide_Plugin_Admin.php:1413
 msgid "%1$sTime to First Byte%2$s has changed by %1$s%3$s%2$s"
 msgstr ""
 
 #. translators: 1: HTML strong open tag, 2: HTML strong close tag, 3: Label.
-#: SetupGuide_Plugin_Admin.php:1418
+#: SetupGuide_Plugin_Admin.php:1424
 msgid "%1$sDatabase Cache%2$s engine set to %1$s%3$s%2$s"
 msgstr ""
 
 #. translators: 1: HTML strong open tag, 2: HTML strong close tag.
-#: SetupGuide_Plugin_Admin.php:1432
+#: SetupGuide_Plugin_Admin.php:1438
 msgid "%1$sObject Cache%2$s is %1$sdisabled via filter%2$s"
 msgstr ""
 
 #. translators: 1: HTML strong open tag, 2: HTML strong close tag, 3: Label.
-#: SetupGuide_Plugin_Admin.php:1442
+#: SetupGuide_Plugin_Admin.php:1448
 msgid "%1$sObject Cache%2$s engine set to %1$s%3$s%2$s"
 msgstr ""
 
 #. translators: 1: HTML strong open tag, 2: HTML strong close tag, 3: Label.
-#: SetupGuide_Plugin_Admin.php:1455
+#: SetupGuide_Plugin_Admin.php:1461
 msgid "%1$sBrowser Cache%2$s headers set for JavaScript, CSS, and images? %1$s%3$s%2$s"
 msgstr ""
 
 #. translators: 1: HTML strong open tag, 2: HTML strong close tag, 3: Label.
-#: SetupGuide_Plugin_Admin.php:1465
+#: SetupGuide_Plugin_Admin.php:1471
 msgid "%1$sImage Optimization%2$s enabled? %1$s%3$s%2$s"
 msgstr ""
 
 #. translators: 1: HTML strong open tag, 2: HTML strong close tag, 3: Label.
-#: SetupGuide_Plugin_Admin.php:1475
+#: SetupGuide_Plugin_Admin.php:1481
 msgid "%1$sLazy Load%2$s images? %1$s%3$s%2$s"
 msgstr ""
 
-#: SetupGuide_Plugin_Admin.php:1483
+#: SetupGuide_Plugin_Admin.php:1489
 msgid "What's Next?"
 msgstr ""
 
 #. translators: 1: HTML emphesis open tag, 2: HTML emphesis close tag.
-#: SetupGuide_Plugin_Admin.php:1487
+#: SetupGuide_Plugin_Admin.php:1493
 msgid "Your website's performance can still be improved by configuring %1$sminify%2$s settings, setting up a %1$sCDN%2$s, and more!"
 msgstr ""
 
 #. translators: 1: Anchor/link open tag, 2: Anchor/link close tag.
-#: SetupGuide_Plugin_Admin.php:1497
+#: SetupGuide_Plugin_Admin.php:1503
 msgid "Please visit %1$sGeneral Settings%2$s to learn more about these features."
 msgstr ""
 
-#: SetupGuide_Plugin_Admin.php:1504
+#: SetupGuide_Plugin_Admin.php:1510
 msgid "Google PageSpeed Tool"
 msgstr ""
 
 #. translators: 1: Anchor/link open tag, 2: Anchor/link close tag.
-#: SetupGuide_Plugin_Admin.php:1507
+#: SetupGuide_Plugin_Admin.php:1513
 msgid "Google PageSpeed Insights can be used to analyze your homepage and provide an explanation of metrics and recommendations for improvements using W3 Total Cache features/extensions.  This tool is enabled by default but will not function until authorization is granted, which can be done on the %1$sGeneral Settings%2$s page."
 msgstr ""
 
-#: SetupGuide_Plugin_Admin.php:1514
+#: SetupGuide_Plugin_Admin.php:1520
 msgid "Need help?"
 msgstr ""
 
 #. translators: 1: Anchor/link open tag, 2: Anchor/link close tag.
-#: SetupGuide_Plugin_Admin.php:1518
+#: SetupGuide_Plugin_Admin.php:1524
 msgid "We're here to help you!  Visit our %1$sSupport Center%2$s for helpful information and to ask questions."
 msgstr ""
 

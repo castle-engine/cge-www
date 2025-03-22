@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'boldgrid/w3-total-cache',
-        'pretty_version' => '2.8.6',
-        'version' => '2.8.6.0',
-        'reference' => 'da5f1680625cf6ede030efa76391a2335ef05b2d',
+        'pretty_version' => '2.8.7',
+        'version' => '2.8.7.0',
+        'reference' => 'a7ae6cde7b947f73117d3eb2cffe09d131a158ab',
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -20,9 +20,9 @@
             'dev_requirement' => false,
         ),
         'aws/aws-php-sns-message-validator' => array(
-            'pretty_version' => '1.9.0',
-            'version' => '1.9.0.0',
-            'reference' => 'de457eaf8fbfa05f2f611d546d7357c6fdec86f8',
+            'pretty_version' => '1.9.1',
+            'version' => '1.9.1.0',
+            'reference' => '80850e8d93fb57889ce609e113895dd2f1d7eed6',
             'type' => 'library',
             'install_path' => __DIR__ . '/../aws/aws-php-sns-message-validator',
             'aliases' => array(),
@@ -38,9 +38,9 @@
             'dev_requirement' => false,
         ),
         'boldgrid/w3-total-cache' => array(
-            'pretty_version' => '2.8.6',
-            'version' => '2.8.6.0',
-            'reference' => 'da5f1680625cf6ede030efa76391a2335ef05b2d',
+            'pretty_version' => '2.8.7',
+            'version' => '2.8.7.0',
+            'reference' => 'a7ae6cde7b947f73117d3eb2cffe09d131a158ab',
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
