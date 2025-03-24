@@ -619,18 +619,22 @@ Following https://specifications.freedesktop.org/desktop-entry-spec/desktop-entr
 --
 
 [#web]
-=== Web options: canvas size
+=== Web options
 
 [source,xml]
 ----
 ...
-<web>
+<web html_contents="additional_information.html">
   <canvas width="960" height="540" />
 </web>
 ...
 ----
 
 Use this element to customize the link:web[] options.
+
+- `html_contents="xxx.html"` can point to a file with additional HTML content to be included in the generated `index.html` file. This can be used e.g. to provide additional information and links about your application.
++
+Our default template will include this additional HTML after the canvas and after the _"Enter Fullscreen"_ button. Additional link to it _"(more information)"_ will be visible at the top, to make it clear to user that there's some interesting content below `<canvas>`.
 
 - `<canvas width="..." height="..." />` allows to customize the default area available for rendering. These values determine the initial HTML `<canvas>` size in the generated `index.html` file.
 +
