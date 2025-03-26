@@ -4,13 +4,14 @@
 	"type": "jetpack-library",
 	"license": "GPL-2.0-or-later",
 	"require": {
-		"php": ">=7.0",
-		"automattic/jetpack-connection": "^5.0.0"
+		"php": ">=7.2",
+		"automattic/jetpack-connection": "^6.7.7"
 	},
 	"require-dev": {
-		"automattic/wordbless": "@dev",
-		"yoast/phpunit-polyfills": "^1.1.1",
-		"automattic/jetpack-changelogger": "^4.2.6"
+		"automattic/jetpack-test-environment": "@dev",
+		"yoast/phpunit-polyfills": "^3.0.0",
+		"automattic/jetpack-changelogger": "^6.0.2",
+		"automattic/phpunit-select-config": "^1.0.1"
 	},
 	"suggest": {
 		"automattic/jetpack-autoloader": "Allow for better interoperability with other plugins that use this package."
@@ -22,10 +23,11 @@
 	},
 	"scripts": {
 		"phpunit": [
-			"./vendor/phpunit/phpunit/phpunit --colors=always"
+			"phpunit-select-config phpunit.#.xml.dist --colors=always"
 		],
-		"post-install-cmd": "WorDBless\\Composer\\InstallDropin::copy",
-		"post-update-cmd": "WorDBless\\Composer\\InstallDropin::copy",
+		"test-coverage": [
+			"php -dpcov.directory=. ./vendor/bin/phpunit-select-config phpunit.#.xml.dist --coverage-php \"$COVERAGE_DIR/php.cov\""
+		],
 		"test-php": [
 			"@composer phpunit"
 		]
@@ -40,7 +42,7 @@
 			"link-template": "https://github.com/Automattic/jetpack-licensing/compare/v${old}...v${new}"
 		},
 		"branch-alias": {
-			"dev-trunk": "2.0.x-dev"
+			"dev-trunk": "3.0.x-dev"
 		}
 	},
 	"config": {

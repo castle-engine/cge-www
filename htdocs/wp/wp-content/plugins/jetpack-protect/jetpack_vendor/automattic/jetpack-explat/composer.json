@@ -4,12 +4,13 @@
 	"type": "jetpack-library",
 	"license": "GPL-2.0-or-later",
 	"require": {
-		"php": ">=7.0",
-		"automattic/jetpack-connection": "^5.1.3"
+		"php": ">=7.2",
+		"automattic/jetpack-connection": "^6.7.7"
 	},
 	"require-dev": {
-		"yoast/phpunit-polyfills": "^1.1.1",
-		"automattic/jetpack-changelogger": "^4.2.6"
+		"yoast/phpunit-polyfills": "^3.0.0",
+		"automattic/jetpack-changelogger": "^6.0.2",
+		"automattic/phpunit-select-config": "^1.0.1"
 	},
 	"autoload": {
 		"classmap": [
@@ -18,13 +19,14 @@
 	},
 	"scripts": {
 		"phpunit": [
-			"./vendor/phpunit/phpunit/phpunit --colors=always"
+			"phpunit-select-config phpunit.#.xml.dist --colors=always"
 		],
+		"test-coverage": "pnpm concurrently --names php,js 'php -dpcov.directory=. ./vendor/bin/phpunit-select-config phpunit.#.xml.dist --coverage-php \"$COVERAGE_DIR/php.cov\"' 'pnpm:test-coverage'",
 		"test-php": [
 			"@composer phpunit"
 		],
 		"test-js": [
-			"echo 'Run `pnpm run test` when ready'"
+			"pnpm run test"
 		],
 		"test-js-watch": [
 			"Composer\\Config::disableProcessTimeout",
@@ -46,7 +48,7 @@
 	"extra": {
 		"autotagger": true,
 		"branch-alias": {
-			"dev-trunk": "0.1.x-dev"
+			"dev-trunk": "0.2.x-dev"
 		},
 		"changelogger": {
 			"link-template": "https://github.com/Automattic/jetpack-explat/compare/v${old}...v${new}"

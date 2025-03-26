@@ -4,17 +4,18 @@
 	"type": "jetpack-library",
 	"license": "GPL-2.0-or-later",
 	"require": {
-		"php": ">=7.0",
-		"automattic/jetpack-connection": "^5.1.3",
-		"automattic/jetpack-constants": "^2.0.4",
-		"automattic/jetpack-ip": "^0.3.0",
-		"automattic/jetpack-status": "^4.0.2",
+		"php": ">=7.2",
+		"automattic/jetpack-connection": "^6.8.0",
+		"automattic/jetpack-constants": "^3.0.5",
+		"automattic/jetpack-ip": "^0.4.6",
+		"automattic/jetpack-status": "^5.0.10",
 		"wikimedia/aho-corasick": "^1.0"
 	},
 	"require-dev": {
-		"yoast/phpunit-polyfills": "^1.1.1",
-		"automattic/jetpack-changelogger": "^4.2.6",
-		"automattic/wordbless": "@dev"
+		"yoast/phpunit-polyfills": "^3.0.0",
+		"automattic/jetpack-changelogger": "^6.0.2",
+		"automattic/jetpack-test-environment": "@dev",
+		"automattic/phpunit-select-config": "^1.0.1"
 	},
 	"suggest": {
 		"automattic/jetpack-autoloader": "Allow for better interoperability with other plugins that use this package."
@@ -29,14 +30,13 @@
 	},
 	"scripts": {
 		"phpunit": [
-			"./vendor/phpunit/phpunit/phpunit --configuration tests/php/integration/phpunit.xml.dist --colors=always",
-			"./vendor/phpunit/phpunit/phpunit --configuration tests/php/unit/phpunit.xml.dist --colors=always"
+			"phpunit-select-config tests/php/integration/phpunit.#.xml.dist --colors=always",
+			"phpunit-select-config tests/php/unit/phpunit.#.xml.dist --colors=always"
 		],
-		"post-install-cmd": "WorDBless\\Composer\\InstallDropin::copy",
-		"post-update-cmd": "WorDBless\\Composer\\InstallDropin::copy",
+		"test-coverage": "tests/action-test-coverage.sh",
 		"test-coverage-html": [
-			"php -dpcov.directory=. ./vendor/bin/phpunit --coverage-html ./coverage --configuration tests/php/integration/phpunit.xml.dist",
-			"php -dpcov.directory=. ./vendor/bin/phpunit --coverage-html ./coverage --configuration tests/php/unit/phpunit.xml.dist"
+			"php -dpcov.directory=. ./vendor/bin/phpunit-select-config tests/php/integration/phpunit.#.xml.dist --coverage-html ./coverage",
+			"php -dpcov.directory=. ./vendor/bin/phpunit-select-config tests/php/unit/phpunit.#.xml.dist --coverage-html ./coverage"
 		],
 		"test-php": [
 			"@composer phpunit"
@@ -52,7 +52,7 @@
 			"link-template": "https://github.com/Automattic/jetpack-waf/compare/v${old}...v${new}"
 		},
 		"branch-alias": {
-			"dev-trunk": "0.22.x-dev"
+			"dev-trunk": "0.23.x-dev"
 		}
 	},
 	"config": {
