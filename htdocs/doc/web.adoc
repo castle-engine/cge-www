@@ -107,7 +107,14 @@ video::MJcMqfx6u98[youtube,width=800,height=450]
 ====
 Things below look complicated? We have plans to make them easier:
 
-- We plan to extend our link:docker[Docker images] to provide pas2js and FPC with WebAssembly support out-of-the-box. Don't know yet what https://www.docker.com/[Docker] is? Then we advise to play and learn, Docker images and containers are nice way to share "development environments".
+- We plan to provide *ready (precompiled and tested) versions of FPC cross-compiler for Wasm and Pas2js (from popular OSes: Windows, Linux, macOS)*. 
++
+They will be build by CI actions in https://github.com/castle-engine/cge-fpc[cge-fpc] repository. GUI link:editor[editor] and command-line link:build_tool[build tool] will enable to easily download them. 
++
+This way you will be able to get all these prerequisites in a trivial way, in latest versions that are tested and recommended by CGE developers.
+// This way we do not have to depend on FPC and Pas2js teams to prepare official releases with WebAssembly support. Or wait for FpcUpDeluxe to apply our PR to fix Wasmp1.
+
+- We plan to extend our link:docker[Docker images] to provide Pas2js and FPC with WebAssembly support out-of-the-box. Don't know yet what https://www.docker.com/[Docker] is? Then we advise to play and learn, Docker images and containers are nice way to share "development environments".
 
 - We also will provide recipes how to use link:github_actions[Github Actions] and link:gitlab_ci[GitLab CI] to build applications for the web. So if you host your repository on _GitHub_ or _GitLab_, you can let the build be done for you.
 ====
@@ -118,7 +125,14 @@ Installing the tools:
 +
 You can get it along with https://www.freepascal.org/[FPC] or install it separately from link:https://getpas2js.freepascal.org/[here].
 +
-WARNING: We test with the latest https://wiki.freepascal.org/pas2js#GIT[Pas2js from GIT] right now, so this is also what we advise to use. The stable release 3.0.1 from https://getpas2js.freepascal.org/ is _not supported_ right now (due to incompatibilities around `Job.Js` and friends usage, which are all solved in latest Pas2js + FPC). With time we may change this (adjust to older Pas2js) and/or a new release of _Pas2js_ may happen which will make things easier :)
+[WARNING]
+====
+You need to use the https://wiki.freepascal.org/pas2js#GIT[Pas2js version from GIT] right now. The exact GIT revision we recommend is https://gitlab.com/freepascal.org/fpc/pas2js/-/commit/e9a258cc8e00f3da94f7e45fbdf01cc7f9995b27[e9a258cc8e00f3da94f7e45fbdf01cc7f9995b27] (this is what we tested now), though in principle any newer version should be OK as well.
+
+Older versions of Pas2js are not going to work well, and in particular the stable release 3.0.1 from https://getpas2js.freepascal.org/ is _not supported_. We need later versions (due to incompatibilities around `Job.Js` and friends usage, which are all solved in latest Pas2js + FPC; we also need https://gitlab.com/freepascal.org/fpc/pas2js/-/merge_requests/89[this fix for loading progress]).
+
+With time, a new release of _Pas2js_ will hopefully appear and make things easier :)
+====
 +
 _Test that it works._ Create the following simple program, save it as `hello_pas2js.lpr`:
 +
@@ -137,11 +151,11 @@ pas2js -Jc -Jirtl.js -Tbrowser hello_pas2js.lpr
 +
 If everything went well, you should get a file `hello_pas2js.js` in the same directory.
 +
-[NOTE]
+[WARNING]
 ====
 If `pas2js` reports an error like `Error: can't find unit "System"`, it most likely means that the https://wiki.freepascal.org/pas2js.cfg[pas2js.cfg] configuration file is missing or wrong. You can either generate it using `createconfig` tool or take and adjust the sample from https://wiki.freepascal.org/pas2js.cfg[pas2js.cfg wiki page], then place the resulting file in a system-specific location indicated on that wiki page.
 
-It does seem that `fpcupdeluxe`, although it provides `pas2js` and `compileserver` binaries (good!), but it doesn't provide the `createconfig` tool nor does it contain the relevant pas2js package structure (you need files like `packages/rtl/system.js`). So instead get `pas2js` from https://getpas2js.freepascal.org/ and make sure it's the first on `$PATH`. TODO: Submit issue to fpcupdeluxe about it.
+It also seems that `fpcupdeluxe`, although it provides `pas2js` and `compileserver` binaries (good!), but it doesn't provide the `createconfig` tool nor does it contain the relevant pas2js package structure (you need files like `packages/rtl/system.js`). For now, we recommend to not rely on `fpcupdeluxe` to get Pas2js. TODO: Submit issue to fpcupdeluxe about it.
 ====
 
 - *compileserver* from *link:https://getpas2js.freepascal.org/[Pas2js]*.
@@ -162,7 +176,12 @@ Why is this useful? Most dynamic webpages should be tested through a webserver r
 +
 In our opinion, it's easiest to get this using link:fpcupdeluxe[]: install FPC _"trunk"_ version, then install FPC cross-compiler for OS=`WasiP1` and CPU=`Wasm32`. You can also just get it from GIT and compile manually, following link:https://wiki.freepascal.org/WebAssembly[FPC wiki about WebAssembly].
 +
-WARNING: Since 2025-02-27, the fpcupdeluxe will fail to build FPC+WebAssembly because the OS name changed in FPC: `wasi` -> `wasip1`. We submitted an https://github.com/LongDirtyAnimAlf/fpcupdeluxe/issues/747[issue about it] and https://github.com/LongDirtyAnimAlf/fpcupdeluxe/pull/748[PR that fixes it]. For now, get fpcupdeluxe from the fork indicated in this PR, that is: https://github.com/michaliskambi/fpcupdeluxe .
+[WARNING]
+====
+Since 2025-02-27, the fpcupdeluxe will fail to build FPC+WebAssembly because the OS name changed in FPC: `wasi` -> `wasip1`. We submitted an https://github.com/LongDirtyAnimAlf/fpcupdeluxe/issues/747[issue about it] and https://github.com/LongDirtyAnimAlf/fpcupdeluxe/pull/748[PR that fixes it], they wait to be applied. For now, get fpcupdeluxe from the fork indicated in this PR, that is: https://github.com/michaliskambi/fpcupdeluxe .
+
+So, practically speaking, first you need to get and compile https://github.com/michaliskambi/fpcupdeluxe[this version of FpcUpDeluxe] and then use it to build and install latest ("trunk") FPC with WebAssembly support.
+====
 +
 _Test that it works._ Create the following simple program, saved as `hello_wasm.lpr`:
 +
@@ -230,9 +249,9 @@ castle-engine compile --target=web --mode=debug
 castle-engine run --target=web
 ----
 
-[WARNING]
+[NOTE]
 ====
-Beware of the cache! Browsers may cache the contents of everything. We counter this to some extent, by adding a random (determined at compile-time) suffix to URLs of everything we access:
+Browsers may cache the contents of everything. But we counter this to some extent, by adding a random (determined at compile-time) suffix to URLs of everything we access:
 
 [role="compact"]
 - the `index.html` (during development, we access URL like `http://localhost:3000/index.html?random_suffix_to_avoid_cache=XXX`)
@@ -240,12 +259,14 @@ Beware of the cache! Browsers may cache the contents of everything. We counter t
 - the JS file
 - the data ZIP file
 
-But if you still run into cache issues (it seems like you see the previous application version, or even a different application that was run previously from the same server) -> just refresh using _Ctrl + Shift + R_.
-
-TODO: We should make it configurable, to enable turning off "fighting with cache" for reproducible-builds that should not have random suffixes in the generated files.
+This actually works very well in our experience. But if you still run into cache issues (it seems like you see the previous application version, or even a different application that was run previously from the same server) -> just refresh using _Ctrl + Shift + R_.
 ====
 
-NOTE: Our default HTML template displays link:log[] underneath your application, including everything you write to the log e.g. using `WritelnLog('Hello!')`. The log is also accessible using the _"Developer Tools"_ of your browser (press F12) -> _"Console"_ . The console can also be toggled when in the _fullscreen_ mode.
+=== Logging and browser console
+
+In your applications, as a basic debugging feature, use our cross-platform link:log[]. Just call cgeref:WritelnLog[] or cgeref:WritelnWarning[], like `WritelnLog('Hello!')`. 
+
+The messages written this way can be inspected using the _"Developer Tools"_ of your browser (press F12) and looking at the _"Console"_ tab there. This browser console can even be activated when in the _fullscreen_ mode.
 
 [#manifest]
 === Customize default canvas size
@@ -485,6 +506,8 @@ Or existing `TTextureFontData`? Remake it to be `TCastleFontData`, a `TComponent
 This will cause some compatibility breakage for scripts, though.
 +
 Also, `package` really makes more sense (from editor or build tool) with "release". But we cannot just change it to `release` for `package`, as this would also be inconsistent and potentially surprising. Maybe just add `DEBUG` to package names done in debug mode? This would send a clear signal.
+
+- Enable turning off "fighting with cache" for reproducible-builds that should not have random suffixes in the generated files.
 
 == Known Limitations
 
