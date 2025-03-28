@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitb1e77e6231d50e7663f84529b6a3dfda_jetpack_boostⓥ3_11_0
+class ComposerStaticInitb1e77e6231d50e7663f84529b6a3dfda_jetpack_boostⓥ3_12_1
 {
     public static $files = array (
         '3773ef3f09c37da5478d578e32b03a4b' => __DIR__ . '/../..' . '/jetpack_vendor/automattic/jetpack-assets/actions.php',
@@ -282,7 +282,8 @@ class ComposerStaticInitb1e77e6231d50e7663f84529b6a3dfda_jetpack_boostⓥ3_11_0
         'Automattic\\Jetpack_Boost\\Admin\\Admin' => __DIR__ . '/../..' . '/app/admin/class-admin.php',
         'Automattic\\Jetpack_Boost\\Admin\\Config' => __DIR__ . '/../..' . '/app/admin/class-config.php',
         'Automattic\\Jetpack_Boost\\Admin\\Regenerate_Admin_Notice' => __DIR__ . '/../..' . '/app/admin/class-regenerate-admin-notice.php',
-        'Automattic\\Jetpack_Boost\\Contracts\\Changes_Page_Output' => __DIR__ . '/../..' . '/app/contracts/Changes_Output.php',
+        'Automattic\\Jetpack_Boost\\Contracts\\Changes_Output_After_Activation' => __DIR__ . '/../..' . '/app/contracts/interface-changes-output-after-activation.php',
+        'Automattic\\Jetpack_Boost\\Contracts\\Changes_Output_On_Activation' => __DIR__ . '/../..' . '/app/contracts/interface-changes-output-on-activation.php',
         'Automattic\\Jetpack_Boost\\Contracts\\Has_Activate' => __DIR__ . '/../..' . '/app/contracts/Has_Activate.php',
         'Automattic\\Jetpack_Boost\\Contracts\\Has_Data_Sync' => __DIR__ . '/../..' . '/app/contracts/Has_Data_Sync.php',
         'Automattic\\Jetpack_Boost\\Contracts\\Has_Deactivate' => __DIR__ . '/../..' . '/app/contracts/Has_Deactivate.php',
@@ -290,6 +291,7 @@ class ComposerStaticInitb1e77e6231d50e7663f84529b6a3dfda_jetpack_boostⓥ3_11_0
         'Automattic\\Jetpack_Boost\\Contracts\\Has_Slug' => __DIR__ . '/../..' . '/app/contracts/Has_Slug.php',
         'Automattic\\Jetpack_Boost\\Contracts\\Has_Submodules' => __DIR__ . '/../..' . '/app/contracts/Has_Submodules.php',
         'Automattic\\Jetpack_Boost\\Contracts\\Is_Always_On' => __DIR__ . '/../..' . '/app/contracts/Is_Always_On.php',
+        'Automattic\\Jetpack_Boost\\Contracts\\Needs_To_Be_Ready' => __DIR__ . '/../..' . '/app/contracts/interface-needs-to-be-ready.php',
         'Automattic\\Jetpack_Boost\\Contracts\\Optimization' => __DIR__ . '/../..' . '/app/contracts/Optimization.php',
         'Automattic\\Jetpack_Boost\\Contracts\\Pluggable' => __DIR__ . '/../..' . '/app/contracts/Pluggable.php',
         'Automattic\\Jetpack_Boost\\Data_Sync\\Cornerstone_Pages_Entry' => __DIR__ . '/../..' . '/app/data-sync/Cornerstone_Pages_Entry.php',
@@ -366,8 +368,8 @@ class ComposerStaticInitb1e77e6231d50e7663f84529b6a3dfda_jetpack_boostⓥ3_11_0
         'Automattic\\Jetpack_Boost\\Modules\\Optimizations\\Image_CDN\\Image_CDN' => __DIR__ . '/../..' . '/app/modules/optimizations/image-cdn/class-image-cdn.php',
         'Automattic\\Jetpack_Boost\\Modules\\Optimizations\\Image_CDN\\Liar' => __DIR__ . '/../..' . '/app/modules/optimizations/image-cdn/class-liar.php',
         'Automattic\\Jetpack_Boost\\Modules\\Optimizations\\Image_CDN\\Quality_Settings' => __DIR__ . '/../..' . '/app/modules/optimizations/image-cdn/class-quality-settings.php',
-        'Automattic\\Jetpack_Boost\\Modules\\Optimizations\\Minify\\Minify' => __DIR__ . '/../..' . '/app/modules/optimizations/minify/Minify.php',
         'Automattic\\Jetpack_Boost\\Modules\\Optimizations\\Minify\\Minify_CSS' => __DIR__ . '/../..' . '/app/modules/optimizations/minify/class-minify-css.php',
+        'Automattic\\Jetpack_Boost\\Modules\\Optimizations\\Minify\\Minify_Common' => __DIR__ . '/../..' . '/app/modules/optimizations/minify/class-minify-common.php',
         'Automattic\\Jetpack_Boost\\Modules\\Optimizations\\Minify\\Minify_JS' => __DIR__ . '/../..' . '/app/modules/optimizations/minify/class-minify-js.php',
         'Automattic\\Jetpack_Boost\\Modules\\Optimizations\\Page_Cache\\Cache_Preload' => __DIR__ . '/../..' . '/app/modules/optimizations/page-cache/class-cache-preload.php',
         'Automattic\\Jetpack_Boost\\Modules\\Optimizations\\Page_Cache\\Data_Sync\\Page_Cache_Entry' => __DIR__ . '/../..' . '/app/modules/optimizations/page-cache/data-sync/Page_Cache_Entry.php',
@@ -427,9 +429,9 @@ class ComposerStaticInitb1e77e6231d50e7663f84529b6a3dfda_jetpack_boostⓥ3_11_0
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitb1e77e6231d50e7663f84529b6a3dfda_jetpack_boostⓥ3_11_0::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitb1e77e6231d50e7663f84529b6a3dfda_jetpack_boostⓥ3_11_0::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInitb1e77e6231d50e7663f84529b6a3dfda_jetpack_boostⓥ3_11_0::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitb1e77e6231d50e7663f84529b6a3dfda_jetpack_boostⓥ3_12_1::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitb1e77e6231d50e7663f84529b6a3dfda_jetpack_boostⓥ3_12_1::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitb1e77e6231d50e7663f84529b6a3dfda_jetpack_boostⓥ3_12_1::$classMap;
 
         }, null, ClassLoader::class);
     }
