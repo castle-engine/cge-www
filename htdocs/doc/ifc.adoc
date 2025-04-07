@@ -121,7 +121,7 @@ We convert a lot of "presentational" IFC entities to X3D nodes and display them.
 - circle: cgeref:TIfcCircle[] in IFC, cgeref:TCircle2DNode[] in X3D
 - ellipse: cgeref:TIfcEllipse[] in IFC, cgeref:TCircle2DNode[] in X3D (with cgeref:TCircle2DNode.RadiusY[] customized)
 - grid: cgeref:TIfcGrid[] in IFC, just lines (colored red/green/blue, until, partially transparent) in X3D
-- others: cgeref:TIfcTrimmedCurve[], cgeref:TIfcMappedItem[]
+- others: cgeref:TIfcTrimmedCurve[], cgeref:TIfcMappedItem[], cgeref:TIfcManifoldSolidBrep[], cgeref:TIfcGeometricCurveSet[], cgeref:TIfcGrid[], cgeref:TIfcConnectedFaceSet[], cgeref:TIfcBooleanResult[] (no CSG implemented yet, we just display one or both arguments), cgeref:TIfcCompositeCurve[].
 --
 
 Our conversion from IFC to X3D allows to display IFC models using _Castle Game Engine_ (using cgeref:TCastleScene[]) and allows to literally convert between model formats, from IFC to any format we can save (X3D, STL, and soon glTF).
@@ -135,7 +135,7 @@ Our implementation targets IFC specification version 4.3, but we some made provi
 We define some utility methods to operate on IFC classes:
 
 - cgeref:TIfcProduct.AddMeshRepresentation[], cgeref:TIfcProduct.AddBoxRepresentation[] (adding meshes to products)
-- cgeref:TIfcProduct.Translation[], cgeref:TIfcProduct.SetTransformRelativeTo[] (move products)
+- cgeref:TIfcProduct.Translation[], cgeref:TIfcProduct.SetTransformRelativeTo[] (move products; setting the cgeref:TIfcProduct.Translation[] is properly optimized to be ultra-fast even when moving parts of very large models)
 - cgeref:TIfcObjectDefinition.AddIsDecomposedBy[], cgeref:TIfcProject.BestContainer[] (relationship between larger spatial elements)
 - cgeref:TIfcSpatialElement.AddContainedElement[], cgeref:TIfcSpatialElement.GetContainedElements[] (relationship to add elements (products) inside larger spatial elements)
 - cgeref:TIfcElement.AddOpening[] (add openings to elements)

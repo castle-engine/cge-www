@@ -254,6 +254,7 @@
         "threadvar",
         "thumbnailer",
         "thumbnailers",
+        "TIfcManifoldSolidBrep",
         "tileable",
         "tileset",
         "tilesets",
