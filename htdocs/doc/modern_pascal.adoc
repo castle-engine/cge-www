@@ -930,9 +930,17 @@ If you don't use the `override` keyword, the compiler will warn you that you're 
 
 ### Remember to free the class instances
 
-The class instances have to be manually freed, otherwise you get memory leaks. I advise using FPC `-gl -gh` options to detect memory leaks (see https://castle-engine.io/manual_optimization.php#section_memory ).
+The class instances have to be manually freed, otherwise you get memory leaks.
 
-Note that this doesn't concern raised exceptions. Although you do create a class when raising an exception (and it's a perfectly normal class, and you can create your own classes for this purpose too). But this class instance is freed automatically.
+We advise to automatically detect memory leaks using:
+
+- FPC command-line options `-gl -gh`
+- Delphi `ReportMemoryLeaksOnShutdown := true`
+- Castle Game Engine `detect_memory_leaks="true"` in `CastleEngineManifest.xml`
+
+See https://castle-engine.io/memory_leaks for more information.
+
+NOTE: You don't need to free the instances of raised exceptions. Although you do create an instance when raising an exception (and it's a perfectly normal class instance). But this class instance is freed automatically.
 
 ### How to free
 
@@ -967,14 +975,14 @@ Note that in normal circumstances, you should never call a method on an instance
 ====
 This trick (officially allowing the method to be used with `Self` equal `nil`) is possible only in non-virtual methods.
 
-In the implementation of such method, as long as `Self = nil` is possible, the method cannot call any virtual methods or access any fields, as these would cause _Access Violation (Segmentation Fault)_ error when called on a `nil` instance. See the sample code https://github.com/michaliskambi/modern-pascal-introduction/blob/master/code-samples/method_with_self_nil.lpr[method_with_self_nil.lpr].
+In the implementation of such method, as long as `Self = nil` is possible, the method cannot call any virtual methods or access any fields, as these would cause _Access Violation (Segmentation Fault)_ error when called on a `nil` instance. See the sample code https://github.com/modern-pascal/modern-pascal-introduction/blob/master/code-samples/method_with_self_nil.lpr[method_with_self_nil.lpr].
 
 We discourage from using this trick in your own code (for virtual or non-virtual methods) as it is counter-intuitive to normal usage. In general all instance methods should be able to assume that they work on valid (non-nil) instance and can access fields and call any other methods (virtual or not).
 ====
 
 We advise using `FreeAndNil(A)` always, without exceptions, and never to call directly the `Free` method or `Destroy` destructor.
 
-The _Castle Game Engine_ does it like that. It helps to keep a nice assertion that _all references are either nil, or point to valid instances_. But note that using `FreeAndNil(A)`  doesn't *guarantee* this assertion. For example, if you copy the instance reference, and call `FreeAndNil(A)` on one copy, the other copy will be a non-nil dangling pointer.
+The _Castle Game Engine_ does it like that. It helps to keep a nice assertion that _all references are either nil, or point to valid instances_. Though note that using `FreeAndNil(A)`  doesn't *guarantee* this assertion, it only helps with this. For example, if you copy the instance reference, and call `FreeAndNil(A)` on one copy, the other copy will be a non-nil dangling pointer.
 
 [source,pascal]
 ----
@@ -986,7 +994,7 @@ FreeAndNil(A);
 
 More about dealing with this in the later section about _"Free notification"_.
 
-Still, `FreeAndNil(A)` takes care of the most trivial cases, so it's a good habit to use it IMHO. You will appreciate it when debuggging some errors, it is nice to easily observe _"``X`` is already freed, because `X` is `nil` now"_.
+Still, `FreeAndNil(A)` takes care of the most trivial cases, so it's a good habit to use it IMHO. You will appreciate it when debugging some errors, it is nice to easily observe _"``X`` is already freed, because `X` is `nil` now"_.
 
 ### Manual and automatic freeing
 
@@ -1934,7 +1942,10 @@ Unfortunately, you need to write ugly `@TMyClass(nil).Add` instead of just `@TMy
 
 ### Anonymous functions
 
-Delphi and new FPC versions (>= 3.3.1) support anynomous functions.
+Delphi and new FPC versions (>= 3.3.1) support:
+
+- anonymous functions (define function implementation right when you assign it to a variable or pass as an argument),
+- and function references (a new type of "function callback" that can accept a wide range of function types, including global functions, methods and anonymous functions).
 
 Example:
 
@@ -2070,7 +2081,7 @@ Now you can include this file using `{$I myconfig.inc}` in all your sources.
 
 * The other common use is to split a large unit into many files, while still keeping it a single unit as far as the language rules are concerned. Do not overuse this technique -- your first instinct should be to split a single unit into multiple units, not to split a single unit into multiple include files. Never the less, this is a useful technique.
   . It allows to avoid "exploding" the number of units, while still keeping your source code files short. For example, it may be better to have a single unit with _"commonly used UI controls"_ than to create _one unit for each UI control class_, as the latter approach would make the typical "uses" clause long (since a typical UI code will depend on a couple of UI classes). But placing all these UI classes in a single `myunit.pas` file would make it a long file, unhandy to navigate, so splitting it into multiple include files may make sense.
-//For example, *Castle Game Engine* has a unit `CastleControls` with a couple of user-interface controls, like cgeref:TCastleButton[], cgeref:TCastleLabel[], cgeref:TCastleImageControl[] and more. We could split it into many units, even to _one unit per class_, as the classes are not really tightly connected. But that would often force you to have a long `uses` clause, since a lot of user-interface code will want to use a couple of control classes. So we made a practical decision to just put all _often used controls_ in a single unit.
+//For example, *Castle Game Engine* has a unit `CastleControls` with a couple of user-interface controls, like `TCastleButton`, `TCastleLabel`, `TCastleImageControl` and more. We could split it into many units, even to _one unit per class_, as the classes are not really tightly connected. But that would often force you to have a long `uses` clause, since a lot of user-interface code will want to use a couple of control classes. So we made a practical decision to just put all _often used controls_ in a single unit.
   . It allows to have a cross-platform unit interface with platform-dependent implementation easily. Basically you can do
 +
 [source,pascal]
@@ -2492,7 +2503,7 @@ And a _static class method_ is just like a global procedure / function, but with
 include::modern_pascal_code_samples/class_properties.lpr[]
 ----
 
-// NOTE: Why the _class properties_ have to be backed by _static class methods_, not _normal class methods_? Noone really knows (see http://lists.freepascal.org/pipermail/fpc-pascal/2017-February/050131.html , http://lists.freepascal.org/pipermail/fpc-pascal/2017-February/050135.html , https://www.mail-archive.com/fpc-devel@lists.freepascal.org/msg30511.html ), the initial implementation (Delphi) made it like that. Presumably for speed, or ease of implementation of the compiler.
+// NOTE: Why the _class properties_ have to be backed by _static class methods_, not _normal class methods_? No one really knows (see http://lists.freepascal.org/pipermail/fpc-pascal/2017-February/050131.html , http://lists.freepascal.org/pipermail/fpc-pascal/2017-February/050135.html , https://www.mail-archive.com/fpc-devel@lists.freepascal.org/msg30511.html ), the initial implementation (Delphi) made it like that. Presumably for speed, or ease of implementation of the compiler.
 
 ### Class helpers
 
@@ -2622,7 +2633,7 @@ UseThroughInterface(InterfacedVariable as IMyInterface);
 +
 If executed, it would make a run-time check and raise an exception if `InterfacedVariable` does not implement `IMyInterface`.
 +
-Using `as` operator works consistently regardless if `InterfacedVarialbe` is declared as a class instance (like `TSomeClass`) or interface (like `ISomeInterface`). However, casting an interface to another interface this way is not allowed under `{$interfaces corba}` - we will cover that topic later.
+Using `as` operator works consistently regardless if `InterfacedVariable` is declared as a class instance (like `TSomeClass`) or interface (like `ISomeInterface`). However, casting an interface to another interface this way is not allowed under `{$interfaces corba}` - we will cover that topic later.
 
 2. Explicit typecasting:
 +
@@ -2773,7 +2784,7 @@ include::modern_pascal_code_samples/interfaces_com_test.lpr[]
 
 Copyright Michalis Kamburelis.
 
-The source code of this document is in AsciiDoc on https://github.com/michaliskambi/modern-pascal-introduction. Suggestions for corrections and additions, and patches and pull requests, are always very welcome:) You can reach me through GitHub or email michalis@castle-engine.io. My homepage is https://michalis.xyz/. This document is linked under the _Documentation_ section of the _Castle Game Engine_ website https://castle-engine.io/.
+The source code of this document is in AsciiDoc on https://github.com/modern-pascal/modern-pascal-introduction. Suggestions for corrections and additions, and patches and pull requests, are always very welcome:) You can reach me through GitHub or email michalis@castle-engine.io. My homepage is https://michalis.xyz/. This document is linked under the _Documentation_ section of the _Castle Game Engine_ website https://castle-engine.io/.
 
 You can redistribute and even modify this document freely, under the same licenses as Wikipedia https://en.wikipedia.org/wiki/Wikipedia:Copyrights :
 

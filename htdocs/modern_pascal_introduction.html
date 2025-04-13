@@ -2382,10 +2382,38 @@ Eating an apple</pre>
 <div class="sect2">
 <h3 id="_remember_to_free_the_class_instances">5.1. Remember to free the class instances</h3>
 <div class="paragraph">
-<p>The class instances have to be manually freed, otherwise you get memory leaks. I advise using FPC <code>-gl -gh</code> options to detect memory leaks (see <a href="https://castle-engine.io/manual_optimization.php#section_memory" class="bare">https://castle-engine.io/manual_optimization.php#section_memory</a> ).</p>
+<p>The class instances have to be manually freed, otherwise you get memory leaks.</p>
 </div>
 <div class="paragraph">
-<p>Note that this doesn&#8217;t concern raised exceptions. Although you do create a class when raising an exception (and it&#8217;s a perfectly normal class, and you can create your own classes for this purpose too). But this class instance is freed automatically.</p>
+<p>We advise to automatically detect memory leaks using:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>FPC command-line options <code>-gl -gh</code></p>
+</li>
+<li>
+<p>Delphi <code>ReportMemoryLeaksOnShutdown := true</code></p>
+</li>
+<li>
+<p>Castle Game Engine <code>detect_memory_leaks="true"</code> in <code>CastleEngineManifest.xml</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>See <a href="https://castle-engine.io/memory_leaks" class="bare">https://castle-engine.io/memory_leaks</a> for more information.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+You don&#8217;t need to free the instances of raised exceptions. Although you do create an instance when raising an exception (and it&#8217;s a perfectly normal class instance). But this class instance is freed automatically.
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect2">
@@ -2434,7 +2462,7 @@ Eating an apple</pre>
 <p>This trick (officially allowing the method to be used with <code>Self</code> equal <code>nil</code>) is possible only in non-virtual methods.</p>
 </div>
 <div class="paragraph">
-<p>In the implementation of such method, as long as <code>Self = nil</code> is possible, the method cannot call any virtual methods or access any fields, as these would cause <em>Access Violation (Segmentation Fault)</em> error when called on a <code>nil</code> instance. See the sample code <a href="https://github.com/michaliskambi/modern-pascal-introduction/blob/master/code-samples/method_with_self_nil.lpr">method_with_self_nil.lpr</a>.</p>
+<p>In the implementation of such method, as long as <code>Self = nil</code> is possible, the method cannot call any virtual methods or access any fields, as these would cause <em>Access Violation (Segmentation Fault)</em> error when called on a <code>nil</code> instance. See the sample code <a href="https://github.com/modern-pascal/modern-pascal-introduction/blob/master/code-samples/method_with_self_nil.lpr">method_with_self_nil.lpr</a>.</p>
 </div>
 <div class="paragraph">
 <p>We discourage from using this trick in your own code (for virtual or non-virtual methods) as it is counter-intuitive to normal usage. In general all instance methods should be able to assume that they work on valid (non-nil) instance and can access fields and call any other methods (virtual or not).</p>
@@ -2447,7 +2475,7 @@ Eating an apple</pre>
 <p>We advise using <code>FreeAndNil(A)</code> always, without exceptions, and never to call directly the <code>Free</code> method or <code>Destroy</code> destructor.</p>
 </div>
 <div class="paragraph">
-<p>The <em>Castle Game Engine</em> does it like that. It helps to keep a nice assertion that <em>all references are either nil, or point to valid instances</em>. But note that using <code>FreeAndNil(A)</code>  doesn&#8217;t <strong>guarantee</strong> this assertion. For example, if you copy the instance reference, and call <code>FreeAndNil(A)</code> on one copy, the other copy will be a non-nil dangling pointer.</p>
+<p>The <em>Castle Game Engine</em> does it like that. It helps to keep a nice assertion that <em>all references are either nil, or point to valid instances</em>. Though note that using <code>FreeAndNil(A)</code>  doesn&#8217;t <strong>guarantee</strong> this assertion, it only helps with this. For example, if you copy the instance reference, and call <code>FreeAndNil(A)</code> on one copy, the other copy will be a non-nil dangling pointer.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2461,7 +2489,7 @@ FreeAndNil(A);
 <p>More about dealing with this in the later section about <em>"Free notification"</em>.</p>
 </div>
 <div class="paragraph">
-<p>Still, <code>FreeAndNil(A)</code> takes care of the most trivial cases, so it&#8217;s a good habit to use it IMHO. You will appreciate it when debuggging some errors, it is nice to easily observe <em>"<code>X</code> is already freed, because <code>X</code> is <code>nil</code> now"</em>.</p>
+<p>Still, <code>FreeAndNil(A)</code> takes care of the most trivial cases, so it&#8217;s a good habit to use it IMHO. You will appreciate it when debugging some errors, it is nice to easily observe <em>"<code>X</code> is already freed, because <code>X</code> is <code>nil</code> now"</em>.</p>
 </div>
 </div>
 <div class="sect2">
@@ -4033,7 +4061,17 @@ Remember that when descending from <code>TPersistent</code>, the default <em>vis
 <div class="sect2">
 <h3 id="_anonymous_functions">8.3. Anonymous functions</h3>
 <div class="paragraph">
-<p>Delphi and new FPC versions (&gt;= 3.3.1) support anynomous functions.</p>
+<p>Delphi and new FPC versions (&gt;= 3.3.1) support:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>anonymous functions (define function implementation right when you assign it to a variable or pass as an argument),</p>
+</li>
+<li>
+<p>and function references (a new type of "function callback" that can accept a wide range of function types, including global functions, methods and anonymous functions).</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>Example:</p>
@@ -4137,7 +4175,7 @@ Remember that when descending from <code>TPersistent</code>, the default <em>vis
     MyList.ForEach(<span class="keyword">procedure</span>(<span class="keyword">const</span> Index, Item: Integer)
       <span class="keyword">begin</span>
         WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">Index: </span><span class="delimiter">'</span></span>, Index, <span class="string"><span class="delimiter">'</span><span class="content">, Item: </span><span class="delimiter">'</span></span>, Item);
-        WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">  If we would proces it by F: </span><span class="delimiter">'</span></span>, F(Index, Item));
+        WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">  If we would process it by F: </span><span class="delimiter">'</span></span>, F(Index, Item));
       <span class="keyword">end</span>);
   <span class="keyword">finally</span> FreeAndNil(MyList) <span class="keyword">end</span>;
 <span class="keyword">end</span>.</code></pre>
@@ -5439,7 +5477,7 @@ The more general concept is <em>"type helper"</em>. Using them you can add metho
 <p>If executed, it would make a run-time check and raise an exception if <code>InterfacedVariable</code> does not implement <code>IMyInterface</code>.</p>
 </div>
 <div class="paragraph">
-<p>Using <code>as</code> operator works consistently regardless if <code>InterfacedVarialbe</code> is declared as a class instance (like <code>TSomeClass</code>) or interface (like <code>ISomeInterface</code>). However, casting an interface to another interface this way is not allowed under <code>{$interfaces corba}</code> - we will cover that topic later.</p>
+<p>Using <code>as</code> operator works consistently regardless if <code>InterfacedVariable</code> is declared as a class instance (like <code>TSomeClass</code>) or interface (like <code>ISomeInterface</code>). However, casting an interface to another interface this way is not allowed under <code>{$interfaces corba}</code> - we will cover that topic later.</p>
 </div>
 </li>
 <li>
@@ -5908,7 +5946,7 @@ you create <em>COM interfaces</em>. This can be stated explicitly by saying <cod
 <p>Copyright Michalis Kamburelis.</p>
 </div>
 <div class="paragraph">
-<p>The source code of this document is in AsciiDoc on <a href="https://github.com/michaliskambi/modern-pascal-introduction" class="bare">https://github.com/michaliskambi/modern-pascal-introduction</a>. Suggestions for corrections and additions, and patches and pull requests, are always very welcome:) You can reach me through GitHub or email <a href="mailto:michalis@castle-engine.io">michalis@castle-engine.io</a>. My homepage is <a href="https://michalis.xyz/" class="bare">https://michalis.xyz/</a>. This document is linked under the <em>Documentation</em> section of the <em>Castle Game Engine</em> website <a href="https://castle-engine.io/" class="bare">https://castle-engine.io/</a>.</p>
+<p>The source code of this document is in AsciiDoc on <a href="https://github.com/modern-pascal/modern-pascal-introduction" class="bare">https://github.com/modern-pascal/modern-pascal-introduction</a>. Suggestions for corrections and additions, and patches and pull requests, are always very welcome:) You can reach me through GitHub or email <a href="mailto:michalis@castle-engine.io">michalis@castle-engine.io</a>. My homepage is <a href="https://michalis.xyz/" class="bare">https://michalis.xyz/</a>. This document is linked under the <em>Documentation</em> section of the <em>Castle Game Engine</em> website <a href="https://castle-engine.io/" class="bare">https://castle-engine.io/</a>.</p>
 </div>
 <div class="paragraph">
 <p>You can redistribute and even modify this document freely, under the same licenses as Wikipedia <a href="https://en.wikipedia.org/wiki/Wikipedia:Copyrights" class="bare">https://en.wikipedia.org/wiki/Wikipedia:Copyrights</a> :</p>
@@ -5931,7 +5969,7 @@ you create <em>COM interfaces</em>. This can be stated explicitly by saying <cod
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-09-16 15:26:58 +0200
+Last updated 2025-04-13 02:58:49 +0200
 </div>
 </div>
 <!-- Google analytics -->
