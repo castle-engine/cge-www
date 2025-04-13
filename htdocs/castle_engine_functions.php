@@ -445,6 +445,7 @@ $castle_sitemap = array(
             )
           ),
 
+          'modern-pascal-course' => array('title' => 'Examples from modern Pascal course (taught by Michalis, organized by BSC)', 'url' => 'https://github.com/modern-pascal/modern-pascal-course'),
           'doc/learn_pascal' => array('title' => 'More Resources to Learn Pascal'),
         )
       ),
