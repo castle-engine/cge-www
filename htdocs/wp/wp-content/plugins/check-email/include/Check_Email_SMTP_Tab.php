@@ -412,6 +412,10 @@ class Check_Email_SMTP_Tab {
 				return;
 			}
 			if ( isset( $_POST['check-email-smtp-options']) ) {
+				$smtp_password = "";
+				if ( isset($_POST['check-email-smtp-options']['smtp_password']) && !empty( $_POST['check-email-smtp-options']['smtp_password'] ) ) {
+					$smtp_password = wp_unslash($_POST['check-email-smtp-options']['smtp_password']);
+				}
 				$smtp_opt = array_map('sanitize_text_field', wp_unslash($_POST['check-email-smtp-options']));
 				
 				if ( $smtp_opt['mailer'] == 'outlook' && isset( $_POST['check-email-outlook-options'] ) ) {				
@@ -429,7 +433,7 @@ class Check_Email_SMTP_Tab {
 						$smtp_opt['smtp_username'] = base64_encode($smtp_opt['smtp_username']);
 					}
 					if(isset($smtp_opt['smtp_password']) && !empty($smtp_opt['smtp_password'])){
-						$smtp_opt['smtp_password'] = base64_encode($smtp_opt['smtp_password']);
+						$smtp_opt['smtp_password'] = base64_encode($smtp_password);
 					}
 				}
 				update_option('check-email-smtp-options', $smtp_opt);

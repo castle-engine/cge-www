@@ -1,4 +1,11 @@
 == Changelog ==
+= v2.0.6 - 11/04/2025 =
+- Enhancement: Tested with WordPress 6.8 #137
+- Enhancement: Few changes in plugin's dashboard #133
+- Fixed: Critical error after update 2.0.5.1 (could already be present in 2.0.5) #132
+- Fixed: No Access to /wp-admin After Update to v2.0.5 #131
+- Fixed: Some special characters are getting ignored in the password field while configuring SMPT #127
+
 = v2.0.5.1 - 28/02/2025 =
 - Fixed: No Access to /wp-admin After Update to v2.0.5 #131
 

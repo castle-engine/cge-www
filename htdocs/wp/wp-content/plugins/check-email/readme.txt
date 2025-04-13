@@ -2,9 +2,9 @@
 Contributors: checkemail
 Tags: logging, email, email log, smtp, log
 Requires at least: 5.0
-Tested up to: 6.7
+Tested up to: 6.8
 Requires PHP: 5.6.20
-Stable tag: 2.0.5.1
+Stable tag: 2.0.6
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -114,6 +114,14 @@ Someone using one of my other plugins had trouble with emails not being sent. I 
 
 == Changelog ==
 
+= v2.0.6 - 11/04/2025 =
+- Enhancement: Tested with WordPress 6.8 #137
+- Enhancement: Few changes in plugin's dashboard #133
+- Fixed: Critical error after update 2.0.5.1 (could already be present in 2.0.5) #132
+- Fixed: No Access to /wp-admin After Update to v2.0.5 #131
+- Fixed: Some special characters are getting ignored in the password field while configuring SMPT #127
+
+
 = v2.0.5.1 - 28/02/2025 =
 - Fixed: No Access to /wp-admin After Update to v2.0.5 #131
 
@@ -184,8 +192,5 @@ Someone using one of my other plugins had trouble with emails not being sent. I 
 - Feature: Added Newsletter Form #64
 - Feature: Added Trigger Data (Premium) #65
 - Feature: Added SMTP feature to configure email #66
-
-= v1.0.11 - 16/05/2024 =
-- Fixed: Tested with new version of wordpress i.e. 6.5v
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/check-email/trunk/changelog.txt)
