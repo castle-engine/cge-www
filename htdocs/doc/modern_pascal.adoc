@@ -25,25 +25,47 @@ This introduction is mostly directed at programmers who already have experience 
 
 [source,pascal]
 ----
-include::modern_pascal_code_samples/hello_world.lpr[]
+include::modern_pascal_code_samples/hello_world.dpr[]
 ----
 
 This is a complete program that you can _compile_ and _run_.
 
-* If you use the command-line FPC, just create a new file `myprogram.lpr` and execute `fpc myprogram.lpr`.
-* If you use _Lazarus_, create a new project (menu _Project_ -> _New Project_ -> _Simple Program_). Save it as `myprogram` and paste this source code as the main file. Compile using the menu item _Run -> Compile_.
-* This is a command-line program, so in either case -- just run the compiled executable from the command-line.
+* If you use the command-line FPC, just create a new file `myprogram.dpr` and execute `fpc myprogram.dpr`.
 
-The rest of this article talks about the Object Pascal language, so don't expect to see anything more fancy than the command-line stuff. If you want to see something cool, just create a new GUI project in _Lazarus_ (_Project_ -> _New Project_ -> _Application_).
+* If you use _Lazarus_, create a new project (menu _"Project -> New Project -> Simple Program"_). Paste this as the program source code. Compile using the menu item _"Run -> Compile"_ (or use shortcut _Ctrl + F9_).
+
+* If you use _Delphi_, also create a new project (menu _"File -> New -> Console Application - Delphi"_). Paste this as the program source code. Compile using the menu item _"Project -> Compile"_ (or use shortcut _Ctrl + F9_).
+
+This is a command-line program, so just run the compiled executable from the command-line.
+
+NOTE: You can also run it from _Lazarus_ or _Delphi_ IDE using the _"Run"_ menu item (shortcut F9 in both IDEs). In this case, note that the console will appear and disappear quickly. The simplest way to avoid it is to add `Readln` (wait for _Enter_) at the end of the application.
+
+The rest of this article talks about the Object Pascal language, so don't expect to see anything more fancy than the command-line stuff. If you want to see something cool, just create a new GUI project in _Lazarus_ (_"Project -> New Project -> Application"_) or _Delphi_ (_"File ->  New -> Multi-Device Application"_).
 //Play around, drop some buttons on the form, handle their events (like `OnClick`).
-Voila -- a working GUI application, cross-platform, with native look everywhere, using a comfortable visual component library. The _Lazarus_ and _Free Pascal Compiler_ come with lots of ready units for networking, GUI, database, file formats (XML, json, images...), threading and everything else you may need. I already mentioned my cool _Castle Game Engine_ earlier:)
+Voila -- a working GUI application, cross-platform, with native look everywhere, using a comfortable visual component library. The Pascal compilers come with lots of standard units for networking, GUI, database, file formats (XML, json, images...), threading and everything else you may need. I already mentioned my cool _Castle Game Engine_ earlier:)
 // The libraries created in other languages (dll, so, dylib) can be easily used from FPC too (and for most of them, you'll find ready "header" units, and even units that wrap them in more modern object-oriented API).
+
+### Compilers and FPC "syntax modes"
+
+This book, all the text and Pascal examples, has been written to support two modern Pascal compilers:
+
+1. _Free Pascal Compiler (FPC)_, open-source Pascal compiler, used also by the _Lazarus_ IDE.
+
+2. _Delphi_, a proprietary Pascal compiler from Embarcadero.
+
+In this book, we chose to support both compilers, fully. Just like in _Castle Game Engine_, we support them both, and it's your choice which one do you prefer. Our _continuous integration_ (see https://castle-engine.io/github_actions) makes sure all samples really compile with both compilers.
+
+To complicate matters a bit, FPC compiler has multiple "syntax modes". In this book, we decided to show the _ObjFpc_ syntax mode, which is recommended by the FPC developers and is the default for new Pascal projects created using _Lazarus_ or _Castle Game Engine_. It's a bit different from the _Delphi_ syntax mode, which is most compatible with Pascal language as implemented by _Delphi_. We https://github.com/modern-pascal/modern-pascal-introduction/wiki/Some-differences-betwen-FPC-ObjFpc-mode-and-Delphi-(and-FPC-Delphi-mode)[wrote a detailed comparison here].
+
+But you don't want to read about these differences now, if you're just starting to learn Pascal!
+
+The differences are minor, both between compilers and between FPC _ObjFpc_ mode and _Delphi_ mode. Just be aware you may see some `{$ifdef FPC} ... {$endif}` clauses in the examples, that make the code valid for both _FPC ObjFpc mode_ and _Delphi_. Using `{$ifdef FPC_OBJFPC} ... {$endif}` in some of these cases could be more precise, but look even more complicated. If your project targets only one of these compilers, you can simplify your code, just pick the variant for your compiler and remove the `{$ifdef ...}`, `{$endif}` stuff.
 
 ### Functions, procedures, primitive types
 
 [source,pascal]
 ----
-include::modern_pascal_code_samples/functions_primitives.lpr[]
+include::modern_pascal_code_samples/functions_primitives.dpr[]
 ----
 
 To return a value from a function, assign something to the magic `Result` variable. You can read and set the `Result` freely, just like a local variable.
@@ -297,7 +319,7 @@ end;
 
 [source,pascal]
 ----
-include::modern_pascal_code_samples/loops.lpr[]
+include::modern_pascal_code_samples/loops.dpr[]
 ----
 
 *About the `repeat` and `while` loops*:
@@ -344,7 +366,7 @@ begin
 +
 [source,pascal]
 ----
-include::modern_pascal_code_samples/for_in_list.lpr[]
+include::modern_pascal_code_samples/for_in_list.dpr[]
 ----
 +
 We didn't yet explain the concept of classes, so the last example may not be obvious to you yet -- just carry on, it will make sense later:)
@@ -426,7 +448,7 @@ A program can use a unit by a `uses` keyword:
 
 [source,pascal]
 ----
-include::modern_pascal_code_samples/myunit_test.lpr[]
+include::modern_pascal_code_samples/myunit_test.dpr[]
 ----
 
 ### Extensions used for units and programs
@@ -490,8 +512,10 @@ You can always explicitly define a unit of a given identifier, by using it like 
 
 [source,pascal]
 ----
-{$mode objfpc}{$H+}{$J-}
 program showcolor;
+
+{$ifdef FPC} {$mode objfpc}{$H+}{$J-} {$endif}
+{$ifdef MSWINDOWS} {$apptype CONSOLE} {$endif}
 
 // Both Graphics and GoogleMapsEngine units define TColor type.
 uses Graphics, GoogleMapsEngine;
@@ -512,8 +536,9 @@ In case of units, remember that they have two `uses` clauses: one in the interfa
 
 [source,pascal]
 ----
-{$mode objfpc}{$H+}{$J-}
 unit UnitUsingColors;
+
+{$ifdef FPC} {$mode objfpc}{$H+}{$J-} {$endif}
 
 // INCORRECT example
 
@@ -539,8 +564,9 @@ The unit `Graphics` (from Lazarus LCL) defines the `TColor` type. But the compil
 
 [source,pascal]
 ----
-{$mode objfpc}{$H+}{$J-}
 unit UnitUsingColors;
+
+{$ifdef FPC} {$mode objfpc}{$H+}{$J-} {$endif}
 
 // INCORRECT example.
 // This is what the compiler "sees" when trying to compile previous example
@@ -567,8 +593,9 @@ The solution is trivial in this case, just change the implementation to explicit
 
 [source,pascal]
 ----
-{$mode objfpc}{$H+}{$J-}
 unit UnitUsingColors;
+
+{$ifdef FPC} {$mode objfpc}{$H+}{$J-} {$endif}
 
 interface
 
@@ -598,8 +625,9 @@ This can be done by redefining the identifier in your new unit.
 
 [source,pascal]
 ----
-{$mode objfpc}{$H+}{$J-}
 unit MyUnit;
+
+{$ifdef FPC} {$mode objfpc}{$H+}{$J-} {$endif}
 
 interface
 
@@ -662,7 +690,7 @@ We have inheritance and virtual methods.
 
 [source,pascal]
 ----
-include::modern_pascal_code_samples/inheritance.lpr[]
+include::modern_pascal_code_samples/inheritance.dpr[]
 ----
 
 By default methods are not virtual, declare them with `virtual` to make them. Overrides must be marked with `override`, otherwise you will get a warning. To hide a method without overriding (usually you don't want to do this, unless you now what you're doing) use `reintroduce`.
@@ -671,7 +699,7 @@ To test the class of an instance at runtime, use the `is` operator. To typecast 
 
 [source,pascal]
 ----
-include::modern_pascal_code_samples/is_as.lpr[]
+include::modern_pascal_code_samples/is_as.dpr[]
 ----
 
 Instead of casting using `X as TMyClass`, you can also use the _unchecked_ typecast `TMyClass(X)`. This is faster, but results in an undefined behavior if the `X` is not, in fact, a `TMyClass` descendant. So don't use the `TMyClass(X)` typecast, or use it only in a code where it's blindingly obvious that it's correct, for example right after testing with `is`:
@@ -786,7 +814,7 @@ We have exceptions. They can be caught with `try ... except ... end` clauses, an
 
 [source,pascal]
 ----
-include::modern_pascal_code_samples/exception_finally.lpr[]
+include::modern_pascal_code_samples/exception_finally.dpr[]
 ----
 
 Note that the `finally` clause is executed even if you exit the block using the `Exit` (from function / procedure / method) or `Break` or `Continue` (from loop body).
@@ -823,7 +851,7 @@ Within a method implementation, if you call another method, then by default you 
 
 [source,pascal]
 ----
-include::modern_pascal_code_samples/method_calls_inheritance_1.lpr[]
+include::modern_pascal_code_samples/method_calls_inheritance_1.dpr[]
 ----
 
 If the method is not defined in a given class, then it calls the method of an ancestor class. In effect, when you call `MyMethod` on an instance of `TMyClass2`, then
@@ -850,7 +878,7 @@ The `inherited` call is often used to call the ancestor method of the same name.
 
 [source,pascal]
 ----
-include::modern_pascal_code_samples/method_calls_inherited.lpr[]
+include::modern_pascal_code_samples/method_calls_inherited.dpr[]
 ----
 
 Since using `inherited` to call a method with the same name, with the same arguments, is a very often case, there is a special shortcut for it: you can just write `inherited;` (`inherited` keyword followed immediately by a semicolon, instead of a method name). This means "_call an inherited method with the same name, passing it the same arguments as the current method_".
@@ -885,7 +913,7 @@ The idea of the object-oriented programming is that _the descendant class is alw
 
 [source,pascal]
 ----
-include::modern_pascal_code_samples/without_virtual_methods.lpr[]
+include::modern_pascal_code_samples/without_virtual_methods.dpr[]
 ----
 
 This example will print
@@ -911,7 +939,7 @@ In Object Pascal, to define a method as _virtual_, you need to
 
 [source,pascal]
 ----
-include::modern_pascal_code_samples/with_virtual_methods.lpr[]
+include::modern_pascal_code_samples/with_virtual_methods.dpr[]
 ----
 
 This example will print
@@ -975,7 +1003,7 @@ Note that in normal circumstances, you should never call a method on an instance
 ====
 This trick (officially allowing the method to be used with `Self` equal `nil`) is possible only in non-virtual methods.
 
-In the implementation of such method, as long as `Self = nil` is possible, the method cannot call any virtual methods or access any fields, as these would cause _Access Violation (Segmentation Fault)_ error when called on a `nil` instance. See the sample code https://github.com/modern-pascal/modern-pascal-introduction/blob/master/code-samples/method_with_self_nil.lpr[method_with_self_nil.lpr].
+In the implementation of such method, as long as `Self = nil` is possible, the method cannot call any virtual methods or access any fields, as these would cause _Access Violation (Segmentation Fault)_ error when called on a `nil` instance. See the sample code https://github.com/modern-pascal/modern-pascal-introduction/blob/master/code-samples/method_with_self_nil.dpr[method_with_self_nil.dpr].
 
 We discourage from using this trick in your own code (for virtual or non-virtual methods) as it is counter-intuitive to normal usage. In general all instance methods should be able to assume that they work on valid (non-nil) instance and can access fields and call any other methods (virtual or not).
 ====
@@ -1068,7 +1096,7 @@ type
   TGun = class
   end;
 
-  TGunList = specialize TFPGObjectList<TGun>;
+  TGunList = {$ifdef FPC}specialize{$endif} TFPGObjectList<TGun>;
 
   TPlayer = class
     Guns: TGunList;
@@ -1635,7 +1663,7 @@ Modern programs should use `TStream` class and its many descendants to do input 
 
 [source,pascal]
 ----
-include::modern_pascal_code_samples/file_stream.lpr[]
+include::modern_pascal_code_samples/file_stream.dpr[]
 ----
 
 *In the Castle Game Engine*: You should use the `Download` function to create a stream that obtains data from any URL. Regular files, HTTP and HTTPS resources, Android assets and more are supported this way. Moreover, to open the resource inside your game data (in the `data` subdirectory) use the special `castle-data:/xxx` URL. Examples:
@@ -1708,7 +1736,7 @@ Here's how to you use a simple generic `TObjectList`:
 
 [source,pascal]
 ----
-include::modern_pascal_code_samples/generics_lists.lpr[]
+include::modern_pascal_code_samples/generics_lists.dpr[]
 ----
 
 Note that some operations require comparing two items, like sorting and searching (e.g. by `Sort` and `IndexOf` methods). The `Generics.Collections` containers use for this a _comparer_. The _default comparer_ is reasonable for all types, even for records (in which case it compares memory contents, which is a reasonable default at least for searching using `IndexOf`).
@@ -1718,7 +1746,7 @@ When sorting the list you can provide a _custom comparer_ as a parameter. The _c
 
 [source,pascal]
 ----
-include::modern_pascal_code_samples/generics_sorting.lpr[]
+include::modern_pascal_code_samples/generics_sorting.dpr[]
 ----
 
 The `TDictionary` class implements a *dictionary*, also known as a *map (key -> value)*, also known as an *associative array*. Its API is a bit similar to the C# `TDictionary` class. It has useful iterators for keys, values, and pairs of key->value.
@@ -1727,16 +1755,16 @@ An example code using a dictionary:
 
 [source,pascal]
 ----
-include::modern_pascal_code_samples/generics_dictionary.lpr[]
+include::modern_pascal_code_samples/generics_dictionary.dpr[]
 ----
 
 The `TObjectDictionary` can additionally _own_ the dictionary keys and/or values, which means that they will be automatically freed. Be careful to _only own keys and/or values if they are object instances_. If you set to _"owned"_ some other type, like an `Integer` (for example, if your keys are `Integer`, and you include `doOwnsKeys`), you will get a nasty crash when the code executes.
 
-An example code using the `TObjectDictionary` is below. Compile this example with _memory leak detection_, like `fpc -gl -gh generics_object_dictionary.lpr`, to see that everything is freed when program exits.
+An example code using the `TObjectDictionary` is below. Compile this example with _memory leak detection_, like `fpc -gl -gh generics_object_dictionary.dpr`, to see that everything is freed when program exits.
 
 [source,pascal]
 ----
-include::modern_pascal_code_samples/generics_object_dictionary.lpr[]
+include::modern_pascal_code_samples/generics_object_dictionary.dpr[]
 ----
 
 If you prefer using the `FGL` unit instead of `Generics.Collections`, the most important classes from the `FGL` unit are:
@@ -1790,7 +1818,7 @@ To make it work, you need to implement the `Assign` method to actually copy the 
 
 [source,pascal]
 ----
-include::modern_pascal_code_samples/persistent.lpr[]
+include::modern_pascal_code_samples/persistent.dpr[]
 ----
 
 Sometimes it's more comfortable to alternatively override the `AssignTo` method in the source class, instead of overriding the `Assign` method in the destination class.
@@ -1907,13 +1935,13 @@ The callback can be:
 +
 [source,pascal]
 ----
-include::modern_pascal_code_samples/callbacks.lpr[]
+include::modern_pascal_code_samples/callbacks.dpr[]
 ----
 * A method: declare with `of object` at the end.
 +
 [source,pascal]
 ----
-include::modern_pascal_code_samples/callbacks_of_object.lpr[]
+include::modern_pascal_code_samples/callbacks_of_object.dpr[]
 ----
 +
 Note that you _cannot_ pass global procedures / functions as methods. They are incompatible. If you have to provide an `of object` callback, but don't want to create a dummy class instance, you can pass <<Class methods>> as methods.
@@ -1974,14 +2002,14 @@ The generics in Pascal work much like generics in C++. Which means that they are
 
 [source,pascal]
 ----
-include::modern_pascal_code_samples/generics.lpr[]
+include::modern_pascal_code_samples/generics.dpr[]
 ----
 
 Generics are not limited to classes, you can have generic functions and procedures as well:
 
 [source,pascal]
 ----
-include::modern_pascal_code_samples/generic_functions.lpr[]
+include::modern_pascal_code_samples/generic_functions.dpr[]
 ----
 
 See also the <<generic-containers-section>> about important standard classes using generics.
@@ -2004,8 +2032,10 @@ Note that macros with parameters are not allowed. In general, you should avoid u
 
 [source,pascal]
 ----
-{$mode objfpc}{$H+}{$J-}
 unit PreprocessorStuff;
+
+{$ifdef FPC} {$mode objfpc}{$H+}{$J-} {$endif}
+
 interface
 
 {$ifdef FPC}
@@ -2068,13 +2098,7 @@ Include files have commonly the `.inc` extension, and are used for two purposes:
 +
 [source,pascal]
 ----
-{$mode objfpc}
-{$H+}
-{$J-}
-{$modeswitch advancedrecords}
-{$ifndef VER3}
-  {$error This code can only be compiled using FPC version at least 3.x.}
-{$endif}
+include::modern_pascal_code_samples/myconfig.inc[]
 ----
 +
 Now you can include this file using `{$I myconfig.inc}` in all your sources.
@@ -2100,7 +2124,7 @@ If you use the `{$modeswitch advancedrecords}` directive, records *can* have met
 
 [source,pascal]
 ----
-include::modern_pascal_code_samples/records.lpr[]
+include::modern_pascal_code_samples/records.dpr[]
 ----
 
 In modern Object Pascal, your first instinct should be to design a `class`, not a `record` -- because classes are packed with useful features, like constructors and inheritance.
@@ -2214,28 +2238,28 @@ You can override the meaning of many language operators, for example to allow ad
 
 [source,pascal]
 ----
-include::modern_pascal_code_samples/operator_overloading.lpr[]
+include::modern_pascal_code_samples/operator_overloading.dpr[]
 ----
 
 You can override operators on classes too. Since you usually create new instances of your classes inside the operator function, the caller must remember to free the result.
 
 [source,pascal]
 ----
-include::modern_pascal_code_samples/operator_overloading_classes.lpr[]
+include::modern_pascal_code_samples/operator_overloading_classes.dpr[]
 ----
 
 You can override operators on records too. This is usually easier than overloading them for classes, as the caller doesn't have to deal then with memory management.
 
 [source,pascal]
 ----
-include::modern_pascal_code_samples/operator_overloading_records.lpr[]
+include::modern_pascal_code_samples/operator_overloading_records.dpr[]
 ----
 
 For records, it's advised to use `{$modeswitch advancedrecords}` and override operators as `class operator` inside the record. This allows to use generic classes that depend on some operator existence (like `TFPGList`, that depends on equality operator being available) with such records. Otherwise the "global" definition of an operator (not inside the record) would not be found (because it's not available at the code that implements the `TFPGList`), and you could not specialize a list like `specialize TFPGList<TMyRecord>`.
 
 [source,pascal]
 ----
-include::modern_pascal_code_samples/operator_overloading_records_lists.lpr[]
+include::modern_pascal_code_samples/operator_overloading_records_lists.dpr[]
 ----
 
 ## Advanced classes features
@@ -2447,7 +2471,8 @@ While this is nice, it makes the _normal class methods_ incompatible when assign
 
 [source,pascal]
 ----
-{$mode objfpc}{$H+}{$J-}
+{$ifdef FPC} {$mode objfpc}{$H+}{$J-} {$endif}
+
 type
   TMyCallback = procedure (A: Integer);
 
@@ -2463,7 +2488,7 @@ var
   Callback: TMyCallback;
 begin
   // Error: TMyClass.Foo not compatible with TMyCallback
-  Callback := @TMyClass(nil).Foo;
+  Callback := {$ifdef FPC} @TMyClass(nil).Foo {$else} TMyClass.Foo {$endif};
 end.
 ----
 
@@ -2482,7 +2507,7 @@ Here comes the `static` class method. It is, in essence, just a global procedure
 
 [source,pascal]
 ----
-include::modern_pascal_code_samples/static_class_method.lpr[]
+include::modern_pascal_code_samples/static_class_method.dpr[]
 ----
 
 ### Class properties and variables
@@ -2500,7 +2525,7 @@ And a _static class method_ is just like a global procedure / function, but with
 
 [source,pascal]
 ----
-include::modern_pascal_code_samples/class_properties.lpr[]
+include::modern_pascal_code_samples/class_properties.dpr[]
 ----
 
 // NOTE: Why the _class properties_ have to be backed by _static class methods_, not _normal class methods_? No one really knows (see http://lists.freepascal.org/pipermail/fpc-pascal/2017-February/050131.html , http://lists.freepascal.org/pipermail/fpc-pascal/2017-February/050135.html , https://www.mail-archive.com/fpc-devel@lists.freepascal.org/msg30511.html ), the initial implementation (Delphi) made it like that. Presumably for speed, or ease of implementation of the compiler.
@@ -2579,7 +2604,7 @@ So below works without any memory leaks:
 
 [source,pascal]
 ----
-include::modern_pascal_code_samples/exception_in_constructor_test.lpr[]
+include::modern_pascal_code_samples/exception_in_constructor_test.dpr[]
 ----
 
 ## Interfaces
@@ -2592,7 +2617,7 @@ You can cast a class to any interface it implements, and then _call the methods 
 
 [source,pascal]
 ----
-include::modern_pascal_code_samples/interfaces_corba_test.lpr[]
+include::modern_pascal_code_samples/interfaces_corba_test.dpr[]
 ----
 
 ### Interfaces GUIDs
@@ -2610,7 +2635,7 @@ To make inserting GUIDs easier, you can use _Lazarus_ GUID generator (`Ctrl + Sh
 
 [source,pascal]
 ----
-include::modern_pascal_code_samples/gen_guid.lpr[]
+include::modern_pascal_code_samples/gen_guid.dpr[]
 ----
 
 ### Typecasting interfaces
@@ -2661,10 +2686,12 @@ To test it all, play around with this example code:
 
 [source,pascal]
 ----
-include::modern_pascal_code_samples/interface_casting.lpr[]
+include::modern_pascal_code_samples/interface_casting.dpr[]
 ----
 
 ### CORBA and COM types of interfaces
+
+NOTE: This section is only relevant for FPC. Delphi has only _COM_ interfaces.
 
 Why are the interfaces (presented above) called "CORBA"?::
 
@@ -2764,7 +2791,7 @@ This is an example of such interface use:
 
 [source,pascal]
 ----
-include::modern_pascal_code_samples/interfaces_com_with_ref_counting.lpr[]
+include::modern_pascal_code_samples/interfaces_com_with_ref_counting.dpr[]
 ----
 
 ### Using COM interfaces with reference-counting disabled
@@ -2777,7 +2804,7 @@ To avoid this mess, it's usually better to use CORBA interfaces, if you don't wa
 
 [source,pascal]
 ----
-include::modern_pascal_code_samples/interfaces_com_test.lpr[]
+include::modern_pascal_code_samples/interfaces_com_test.dpr[]
 ----
 
 ## About this document

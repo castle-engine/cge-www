@@ -709,9 +709,13 @@ body { font-family: "Open Sans", "DejaVu Sans", sans-serif; }
 <h3 id="_програма_hello_world">2.1. Програма "Hello world"</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span> <span class="comment">// Използвайте този ред във всички нови програми</span>
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="comment">// Използвайте този ред във всички нови програми</span>
+<span class="preprocessor">{$ifdef FPC}</span> <span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span> <span class="preprocessor">{$endif}</span>
+<span class="comment">// Needed for console programs on Windows,</span>
+<span class="comment">// otherwise (with Delphi) the default is GUI program without console.</span>
+<span class="preprocessor">{$ifdef MSWINDOWS}</span> <span class="preprocessor">{$apptype CONSOLE}</span> <span class="preprocessor">{$endif}</span>
 
-<span class="keyword">program</span> MyProgram; <span class="comment">// Запишете файла като myprogram.lpr</span>
+<span class="keyword">program</span> MyProgram; <span class="comment">// Запишете файла като myprogram.dpr</span>
 <span class="keyword">begin</span>
   WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">Hello world!</span><span class="delimiter">'</span></span>);
 <span class="keyword">end</span>.</code></pre>
@@ -723,7 +727,7 @@ body { font-family: "Open Sans", "DejaVu Sans", sans-serif; }
 <div class="ulist">
 <ul>
 <li>
-<p>Ако използвате FPC на командния ред, просто създайте нов файл <code>myprogram.lpr</code> и изпълнете <code>fpc myprogram.lpr</code>.</p>
+<p>Ако използвате FPC на командния ред, просто създайте нов файл <code>myprogram.dpr</code> и изпълнете <code>fpc myprogram.dpr</code>.</p>
 </li>
 <li>
 <p>Ако използвате <em>Lazarus</em>, създайте нов проект (меню <em>Project</em> &#8594; <em>New Project</em> &#8594; <em>Simple Program</em>). Запазете го като <code>myProgram</code> и поставете по-горния код като основен файл. Компилирайте го с помощта на командата от менюто <em>Run &#8594; Compile</em>.</p>
@@ -742,9 +746,10 @@ body { font-family: "Open Sans", "DejaVu Sans", sans-serif; }
 <h3 id="_функции_процедури_примитивни_типове">2.2. Функции, процедури, примитивни типове</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="keyword">program</span> MyProgram;
 
-<span class="keyword">program</span> MyProgram;
+<span class="preprocessor">{$ifdef FPC}</span> <span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span> <span class="preprocessor">{$endif}</span>
+<span class="preprocessor">{$ifdef MSWINDOWS}</span> <span class="preprocessor">{$apptype CONSOLE}</span> <span class="preprocessor">{$endif}</span>
 
 <span class="keyword">procedure</span> MyProcedure(<span class="keyword">const</span> A: Integer);
 <span class="keyword">begin</span>
@@ -762,7 +767,7 @@ body { font-family: "Open Sans", "DejaVu Sans", sans-serif; }
   WriteLn(MyFunction(<span class="string"><span class="delimiter">'</span><span class="content">Забележка: </span><span class="delimiter">'</span></span>));
   MyProcedure(<span class="integer">5</span>);
 
-  <span class="comment">// Делението с &quot;/&quot; винаги дава резултат float, </span>
+  <span class="comment">// Делението с &quot;/&quot; винаги дава резултат float,</span>
   <span class="comment">// използвайте &quot;div&quot; за целочислено делене</span>
   X := <span class="integer">15</span> / <span class="integer">5</span>;
   WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">X сега е: </span><span class="delimiter">'</span></span>, X); <span class="comment">// научна нотация</span>
@@ -1077,8 +1082,10 @@ body { font-family: "Open Sans", "DejaVu Sans", sans-serif; }
 <h3 id="_цикли_for_while_repeat_for_in">2.7. Цикли (for, while, repeat, for .. in)</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$ifdef FPC}</span> <span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span> <span class="preprocessor">{$endif}</span>
+<span class="preprocessor">{$ifdef MSWINDOWS}</span> <span class="preprocessor">{$apptype CONSOLE}</span> <span class="preprocessor">{$endif}</span>
 <span class="preprocessor">{$R+}</span> <span class="comment">// включена проверка на диапазона - подходящо за дебъг</span>
+
 <span class="keyword">var</span>
   MyArray: <span class="keyword">array</span> [<span class="integer">0</span>..<span class="integer">9</span>] <span class="keyword">of</span> Integer;
   I: Integer;
@@ -1184,7 +1191,9 @@ body { font-family: "Open Sans", "DejaVu Sans", sans-serif; }
 <p>И работи с потребителски типове списъци, включително генерици, като <code>TObjectList</code> or <code>TFPGObjectList</code>.</p>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$ifdef FPC}</span> <span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span> <span class="preprocessor">{$endif}</span>
+<span class="preprocessor">{$ifdef MSWINDOWS}</span> <span class="preprocessor">{$apptype CONSOLE}</span> <span class="preprocessor">{$endif}</span>
+
 <span class="keyword">uses</span>
   SysUtils, FGL;
 
@@ -1192,7 +1201,7 @@ body { font-family: "Open Sans", "DejaVu Sans", sans-serif; }
   TMyClass = <span class="keyword">class</span>
     I, Square: Integer;
   <span class="keyword">end</span>;
-  TMyClassList = specialize TFPGObjectList&lt;TMyClass&gt;;
+  TMyClassList = <span class="preprocessor">{$ifdef FPC}</span>specialize<span class="preprocessor">{$endif}</span> TFPGObjectList&lt;TMyClass&gt;;
 
 <span class="keyword">var</span>
   List: TMyClassList;
@@ -1337,8 +1346,10 @@ WriteLn(<span class="string"><span class="delimiter">'</span><span class="conten
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
-<span class="keyword">unit</span> MyUnit;
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="keyword">unit</span> MyUnit;
+
+<span class="preprocessor">{$ifdef FPC}</span> <span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span> <span class="preprocessor">{$endif}</span>
+
 <span class="keyword">interface</span>
 
 <span class="keyword">procedure</span> MyProcedure(<span class="keyword">const</span> A: Integer);
@@ -1367,12 +1378,12 @@ WriteLn(<span class="string"><span class="delimiter">'</span><span class="conten
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="keyword">program</span> MyProgram;
 
-<span class="keyword">program</span> MyProgram;
+<span class="preprocessor">{$ifdef FPC}</span> <span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span> <span class="preprocessor">{$endif}</span>
+<span class="preprocessor">{$ifdef MSWINDOWS}</span> <span class="preprocessor">{$apptype CONSOLE}</span> <span class="preprocessor">{$endif}</span>
 
-<span class="keyword">uses</span>
-  MyUnit;
+<span class="keyword">uses</span> MyUnit;
 
 <span class="keyword">begin</span>
   WriteLn(MyFunction(<span class="string"><span class="delimiter">'</span><span class="content">Забележка: </span><span class="delimiter">'</span></span>));
@@ -1385,8 +1396,10 @@ WriteLn(<span class="string"><span class="delimiter">'</span><span class="conten
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
-<span class="keyword">unit</span> initialization_finalization;
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="keyword">unit</span> initialization_finalization;
+
+<span class="preprocessor">{$ifdef FPC}</span> <span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span> <span class="preprocessor">{$endif}</span>
+
 <span class="keyword">interface</span>
 
 <span class="keyword">implementation</span>
@@ -1405,8 +1418,10 @@ WriteLn(<span class="string"><span class="delimiter">'</span><span class="conten
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
-<span class="keyword">unit</span> AnotherUnit;
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="keyword">unit</span> AnotherUnit;
+
+<span class="preprocessor">{$ifdef FPC}</span> <span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span> <span class="preprocessor">{$endif}</span>
+
 <span class="keyword">interface</span>
 
 <span class="keyword">uses</span> Classes;
@@ -1422,7 +1437,7 @@ WriteLn(<span class="string"><span class="delimiter">'</span><span class="conten
 <span class="keyword">procedure</span> DoSomethingWithComponent(<span class="keyword">var</span> C: TComponent);
 <span class="keyword">begin</span>
   <span class="comment">{ Процедурата FreeAndNil е дефинирана в unit SysUtils.
-    Тъй като го използваме само в реализацията а не в интерфейсната част, 
+    Тъй като го използваме само в реализацията а не в интерфейсната част,
     достатъчно е да използваме uses SysUtils; в секция &quot;implementation&quot;. }</span>
   FreeAndNil(C);
 <span class="keyword">end</span>;
@@ -1450,8 +1465,10 @@ WriteLn(<span class="string"><span class="delimiter">'</span><span class="conten
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
-<span class="keyword">program</span> showcolor;
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="keyword">program</span> showcolor;
+
+<span class="preprocessor">{$ifdef FPC}</span> <span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span> <span class="preprocessor">{$endif}</span>
+<span class="preprocessor">{$ifdef MSWINDOWS}</span> <span class="preprocessor">{$apptype CONSOLE}</span> <span class="preprocessor">{$endif}</span>
 
 <span class="comment">// И двата unit-а Graphics и GoogleMapsEngine дефинират тип TColor.</span>
 <span class="keyword">uses</span> Graphics, GoogleMapsEngine;
@@ -1473,8 +1490,9 @@ WriteLn(<span class="string"><span class="delimiter">'</span><span class="conten
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
-<span class="keyword">unit</span> UnitUsingColors;
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="keyword">unit</span> UnitUsingColors;
+
+<span class="preprocessor">{$ifdef FPC}</span> <span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span> <span class="preprocessor">{$endif}</span>
 
 <span class="comment">// НЕКОРЕКТЕН пример</span>
 
@@ -1501,8 +1519,9 @@ WriteLn(<span class="string"><span class="delimiter">'</span><span class="conten
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
-<span class="keyword">unit</span> UnitUsingColors;
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="keyword">unit</span> UnitUsingColors;
+
+<span class="preprocessor">{$ifdef FPC}</span> <span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span> <span class="preprocessor">{$endif}</span>
 
 <span class="comment">// НЕКОРЕКТЕН пример</span>
 <span class="comment">// Ето какво &quot;вижда&quot; компилатора когато се опитва да компилира предишното</span>
@@ -1530,8 +1549,9 @@ WriteLn(<span class="string"><span class="delimiter">'</span><span class="conten
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
-<span class="keyword">unit</span> UnitUsingColors;
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="keyword">unit</span> UnitUsingColors;
+
+<span class="preprocessor">{$ifdef FPC}</span> <span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span> <span class="preprocessor">{$endif}</span>
 
 <span class="keyword">interface</span>
 
@@ -1565,8 +1585,9 @@ WriteLn(<span class="string"><span class="delimiter">'</span><span class="conten
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
-<span class="keyword">unit</span> MyUnit;
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="keyword">unit</span> MyUnit;
+
+<span class="preprocessor">{$ifdef FPC}</span> <span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span> <span class="preprocessor">{$endif}</span>
 
 <span class="keyword">interface</span>
 
@@ -1650,8 +1671,10 @@ WriteLn(<span class="string"><span class="delimiter">'</span><span class="conten
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
-<span class="keyword">program</span> MyProgram;
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="keyword">program</span> MyProgram;
+
+<span class="preprocessor">{$ifdef FPC}</span> <span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span> <span class="preprocessor">{$endif}</span>
+<span class="preprocessor">{$ifdef MSWINDOWS}</span> <span class="preprocessor">{$apptype CONSOLE}</span> <span class="preprocessor">{$endif}</span>
 
 <span class="keyword">uses</span>
   SysUtils;
@@ -1703,11 +1726,12 @@ WriteLn(<span class="string"><span class="delimiter">'</span><span class="conten
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
-<span class="keyword">program</span> is_as;
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="keyword">program</span> is_as;
 
-<span class="keyword">uses</span>
-  SysUtils;
+<span class="preprocessor">{$ifdef FPC}</span> <span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span> <span class="preprocessor">{$endif}</span>
+<span class="preprocessor">{$ifdef MSWINDOWS}</span> <span class="preprocessor">{$apptype CONSOLE}</span> <span class="preprocessor">{$endif}</span>
+
+<span class="keyword">uses</span> SysUtils;
 
 <span class="keyword">type</span>
   TMyClass = <span class="keyword">class</span>
@@ -1908,7 +1932,8 @@ WriteLn(<span class="string"><span class="delimiter">'</span><span class="conten
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$ifdef FPC}</span> <span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span> <span class="preprocessor">{$endif}</span>
+<span class="preprocessor">{$ifdef MSWINDOWS}</span> <span class="preprocessor">{$apptype CONSOLE}</span> <span class="preprocessor">{$endif}</span>
 
 <span class="keyword">program</span> MyProgram;
 
@@ -1999,7 +2024,9 @@ WriteLn(<span class="string"><span class="delimiter">'</span><span class="conten
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$ifdef FPC}</span> <span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span> <span class="preprocessor">{$endif}</span>
+<span class="preprocessor">{$ifdef MSWINDOWS}</span> <span class="preprocessor">{$apptype CONSOLE}</span> <span class="preprocessor">{$endif}</span>
+
 <span class="keyword">uses</span> SysUtils;
 
 <span class="keyword">type</span>
@@ -2087,7 +2114,9 @@ WriteLn(<span class="string"><span class="delimiter">'</span><span class="conten
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$ifdef FPC}</span> <span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span> <span class="preprocessor">{$endif}</span>
+<span class="preprocessor">{$ifdef MSWINDOWS}</span> <span class="preprocessor">{$apptype CONSOLE}</span> <span class="preprocessor">{$endif}</span>
+
 <span class="keyword">uses</span> SysUtils;
 
 <span class="keyword">type</span>
@@ -2182,7 +2211,9 @@ WriteLn(<span class="string"><span class="delimiter">'</span><span class="conten
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$ifdef FPC}</span> <span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span> <span class="preprocessor">{$endif}</span>
+<span class="preprocessor">{$ifdef MSWINDOWS}</span> <span class="preprocessor">{$apptype CONSOLE}</span> <span class="preprocessor">{$endif}</span>
+
 <span class="keyword">uses</span> SysUtils;
 
 <span class="keyword">type</span>
@@ -2258,7 +2289,9 @@ WriteLn(<span class="string"><span class="delimiter">'</span><span class="conten
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$ifdef FPC}</span> <span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span> <span class="preprocessor">{$endif}</span>
+<span class="preprocessor">{$ifdef MSWINDOWS}</span> <span class="preprocessor">{$apptype CONSOLE}</span> <span class="preprocessor">{$endif}</span>
+
 <span class="keyword">uses</span> SysUtils;
 
 <span class="keyword">type</span>
@@ -2445,7 +2478,7 @@ WriteLn(<span class="string"><span class="delimiter">'</span><span class="conten
   TGun = <span class="keyword">class</span>
   <span class="keyword">end</span>;
 
-  TGunList = specialize TFPGObjectList&lt;TGun&gt;;
+  TGunList = <span class="preprocessor">{$ifdef FPC}</span>specialize<span class="preprocessor">{$endif}</span> TFPGObjectList&lt;TGun&gt;;
 
   TPlayer = <span class="keyword">class</span>
     Guns: TGunList;
@@ -3100,7 +3133,9 @@ except
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$ifdef FPC}</span> <span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span> <span class="preprocessor">{$endif}</span>
+<span class="preprocessor">{$ifdef MSWINDOWS}</span> <span class="preprocessor">{$apptype CONSOLE}</span> <span class="preprocessor">{$endif}</span>
+
 <span class="keyword">uses</span>
   SysUtils, Classes;
 
@@ -3236,7 +3271,9 @@ S := Download(<span class="string"><span class="delimiter">'</span><span class="
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$ifdef FPC}</span> <span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span> <span class="preprocessor">{$endif}</span>
+<span class="preprocessor">{$ifdef MSWINDOWS}</span> <span class="preprocessor">{$apptype CONSOLE}</span> <span class="preprocessor">{$endif}</span>
+
 <span class="keyword">uses</span> SysUtils, Generics.Collections;
 
 <span class="keyword">type</span>
@@ -3244,7 +3281,7 @@ S := Download(<span class="string"><span class="delimiter">'</span><span class="
     Name: <span class="keyword">string</span>;
   <span class="keyword">end</span>;
 
-  TAppleList = specialize TObjectList&lt;TApple&gt;;
+  TAppleList = <span class="preprocessor">{$ifdef FPC}</span>specialize<span class="preprocessor">{$endif}</span> TObjectList&lt;TApple&gt;;
 
 <span class="keyword">var</span>
   A: TApple;
@@ -3275,7 +3312,8 @@ S := Download(<span class="string"><span class="delimiter">'</span><span class="
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$ifdef FPC}</span> <span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span> <span class="preprocessor">{$endif}</span>
+<span class="preprocessor">{$ifdef MSWINDOWS}</span> <span class="preprocessor">{$apptype CONSOLE}</span> <span class="preprocessor">{$endif}</span>
 
 <span class="comment">{ If GENERICS_CONSTREF is defined, then various routines used with Generics.Collections
   (like callbacks we pass to TComparer, or OnNotify callback or Notify virtual method)
@@ -3294,7 +3332,7 @@ S := Download(<span class="string"><span class="delimiter">'</span><span class="
     Name: <span class="keyword">string</span>;
   <span class="keyword">end</span>;
 
-  TAppleList = specialize TObjectList&lt;TApple&gt;;
+  TAppleList = <span class="preprocessor">{$ifdef FPC}</span>specialize<span class="preprocessor">{$endif}</span> TObjectList&lt;TApple&gt;;
 
 <span class="keyword">function</span> CompareApples(
   <span class="preprocessor">{$ifdef GENERICS_CONSTREF}</span>constref<span class="preprocessor">{$else}</span><span class="keyword">const</span><span class="preprocessor">{$endif}</span>
@@ -3304,7 +3342,7 @@ S := Download(<span class="string"><span class="delimiter">'</span><span class="
 <span class="keyword">end</span>;
 
 <span class="keyword">type</span>
-  TAppleComparer = specialize TComparer&lt;TApple&gt;;
+  TAppleComparer = <span class="preprocessor">{$ifdef FPC}</span>specialize<span class="preprocessor">{$endif}</span> TComparer&lt;TApple&gt;;
 <span class="keyword">var</span>
   A: TApple;
   L: TAppleList;
@@ -3323,7 +3361,7 @@ S := Download(<span class="string"><span class="delimiter">'</span><span class="
     A.Name := <span class="string"><span class="delimiter">'</span><span class="content">22</span><span class="delimiter">'</span></span>;
     L.Add(A);
 
-    L.Sort(TAppleComparer.Construct(@CompareApples));
+    L.Sort(TAppleComparer.Construct(<span class="preprocessor">{$ifdef FPC}</span>@<span class="preprocessor">{$endif}</span> CompareApples));
 
     Writeln(<span class="string"><span class="delimiter">'</span><span class="content">Count: </span><span class="delimiter">'</span></span>, L.Count);
     Writeln(L[<span class="integer">0</span>].Name);
@@ -3349,12 +3387,12 @@ S := Download(<span class="string"><span class="delimiter">'</span><span class="
     Name: <span class="keyword">string</span>;
   <span class="keyword">end</span>;
 
-  TAppleDictionary = specialize TDictionary&lt;<span class="keyword">string</span>, TApple&gt;;
+  TAppleDictionary = <span class="preprocessor">{$ifdef FPC}</span>specialize<span class="preprocessor">{$endif}</span> TDictionary&lt;<span class="keyword">String</span>, TApple&gt;;
 
 <span class="keyword">var</span>
   Apples: TAppleDictionary;
   A, FoundA: TApple;
-  ApplePair: TAppleDictionary.TDictionaryPair;
+  ApplePair: <span class="preprocessor">{$ifdef FPC}</span> TAppleDictionary.TDictionaryPair <span class="preprocessor">{$else}</span> TPair&lt;<span class="keyword">String</span>, TApple&gt; <span class="preprocessor">{$endif}</span>;
   AppleKey: <span class="keyword">string</span>;
 <span class="keyword">begin</span>
   Apples := TAppleDictionary.Create;
@@ -3375,7 +3413,7 @@ S := Download(<span class="string"><span class="delimiter">'</span><span class="
       Writeln(<span class="string"><span class="delimiter">'</span><span class="content">Намерен ключ за ябълка-&gt;име на ябълка: </span><span class="delimiter">'</span></span> +
         ApplePair.Key + <span class="string"><span class="delimiter">'</span><span class="content">-&gt;</span><span class="delimiter">'</span></span> + ApplePair.Value.Name);
 
-    <span class="comment">{ Долният ред също работи, но може да се използва само да 
+    <span class="comment">{ Долният ред също работи, но може да се използва само да
       зададе стойност на *съществуващ* ключ в речника.
       Вместо това обикновено се използва AddOrSetValue
       за да се зададе или добави нов ключ ако е необходимо. }</span>
@@ -3396,11 +3434,13 @@ S := Download(<span class="string"><span class="delimiter">'</span><span class="
 <p><code>TObjectDictionary</code> може да <em>притежава</em> ключовете и/или стойностите, което означава че ще ги унищожава автоматично. Внимавайте <em>това притежание да бъде само когато ключовете/стойностите са екземпляри на обекти</em>. Ако укажете, че ще се притежават елементи от друг тип, например <code>Integer</code> (т.е. ако ключовете са <code>Integer</code>, и включите <code>doOwnsKeys</code>), ще получите много неприятен срив при изпълнение на програмата.</p>
 </div>
 <div class="paragraph">
-<p>Пример за това как се използва <code>TObjectDictionary</code> е даден по-долу. Компилирайте примера с <em>memory leak detection</em>, напр. така <code>fpc -gl -gh generics_object_dictionary.lpr</code>, за да видите, че няма изтичане на памет при приключване на програмата.</p>
+<p>Пример за това как се използва <code>TObjectDictionary</code> е даден по-долу. Компилирайте примера с <em>memory leak detection</em>, напр. така <code>fpc -gl -gh generics_object_dictionary.dpr</code>, за да видите, че няма изтичане на памет при приключване на програмата.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$ifdef FPC}</span> <span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span> <span class="preprocessor">{$endif}</span>
+<span class="preprocessor">{$ifdef MSWINDOWS}</span> <span class="preprocessor">{$apptype CONSOLE}</span> <span class="preprocessor">{$endif}</span>
+
 <span class="keyword">uses</span> SysUtils, Generics.Collections;
 
 <span class="keyword">type</span>
@@ -3408,12 +3448,12 @@ S := Download(<span class="string"><span class="delimiter">'</span><span class="
     Name: <span class="keyword">string</span>;
   <span class="keyword">end</span>;
 
-  TAppleDictionary = specialize TObjectDictionary&lt;<span class="keyword">string</span>, TApple&gt;;
+  TAppleDictionary = <span class="preprocessor">{$ifdef FPC}</span>specialize<span class="preprocessor">{$endif}</span> TObjectDictionary&lt;<span class="keyword">String</span>, TApple&gt;;
 
 <span class="keyword">var</span>
   Apples: TAppleDictionary;
   A: TApple;
-  ApplePair: TAppleDictionary.TDictionaryPair;
+  ApplePair: <span class="preprocessor">{$ifdef FPC}</span> TAppleDictionary.TDictionaryPair <span class="preprocessor">{$else}</span> TPair&lt;<span class="keyword">String</span>, TApple&gt; <span class="preprocessor">{$endif}</span>;
 <span class="keyword">begin</span>
   Apples := TAppleDictionary.Create([doOwnsValues]);
   <span class="keyword">try</span>
@@ -3499,7 +3539,9 @@ S := Download(<span class="string"><span class="delimiter">'</span><span class="
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$ifdef FPC}</span> <span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span> <span class="preprocessor">{$endif}</span>
+<span class="preprocessor">{$ifdef MSWINDOWS}</span> <span class="preprocessor">{$apptype CONSOLE}</span> <span class="preprocessor">{$endif}</span>
+
 <span class="keyword">uses</span>
   SysUtils, Classes;
 
@@ -3543,7 +3585,7 @@ S := Download(<span class="string"><span class="delimiter">'</span><span class="
     <span class="comment">// Xxx := SourceMyClassDescendant.Xxx; // копирайте още полета ако е необходимо ...</span>
   <span class="keyword">end</span>;
 
-  <span class="comment">{ Поради това, че TMyClassDescendant има предшественик, който вече е 
+  <span class="comment">{ Поради това, че TMyClassDescendant има предшественик, който вече е
     заменил Assign (in TMyClass.Assign), той извиква inherited ВИНАГИ,
     за да позволи TMyClass.Assign да копира останалите полета.
     Виж кометарите по-долу за детайлно обяснение. }</span>
@@ -3748,7 +3790,8 @@ end;</code></pre>
 <p>Нормален, което означава, че може да сочи към всяка обикновена подпрограма (без методи и вложени подпрограми).</p>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$ifdef FPC}</span> <span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span> <span class="preprocessor">{$endif}</span>
+<span class="preprocessor">{$ifdef MSWINDOWS}</span> <span class="preprocessor">{$apptype CONSOLE}</span> <span class="preprocessor">{$endif}</span>
 
 <span class="keyword">function</span> Add(<span class="keyword">const</span> A, B: Integer): Integer;
 <span class="keyword">begin</span>
@@ -3788,7 +3831,9 @@ end;</code></pre>
 <p>Метод: декларира се с <code>of object</code> накрая.</p>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$ifdef FPC}</span> <span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span> <span class="preprocessor">{$endif}</span>
+<span class="preprocessor">{$ifdef MSWINDOWS}</span> <span class="preprocessor">{$apptype CONSOLE}</span> <span class="preprocessor">{$endif}</span>
+
 <span class="keyword">uses</span>
   SysUtils;
 
@@ -3826,10 +3871,10 @@ end;</code></pre>
 <span class="keyword">begin</span>
   C := TMyClass.Create;
   <span class="keyword">try</span>
-    C.ProcessTheList(@C.Add);
+    C.ProcessTheList(<span class="preprocessor">{$ifdef FPC}</span>@<span class="preprocessor">{$endif}</span> C.Add);
     WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">1 + 2 + 3 ... + 10 = </span><span class="delimiter">'</span></span>, C.CurrentValue);
 
-    C.ProcessTheList(@C.Multiply);
+    C.ProcessTheList(<span class="preprocessor">{$ifdef FPC}</span>@<span class="preprocessor">{$endif}</span> C.Multiply);
     WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">1 * 2 * 3 ... * 10 = </span><span class="delimiter">'</span></span>, C.CurrentValue);
   <span class="keyword">finally</span>
     FreeAndNil(C);
@@ -3878,9 +3923,15 @@ end;</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
-<span class="keyword">uses</span>
-  SysUtils;
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$ifdef FPC}</span> <span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span> <span class="preprocessor">{$endif}</span>
+<span class="preprocessor">{$ifdef MSWINDOWS}</span> <span class="preprocessor">{$apptype CONSOLE}</span> <span class="preprocessor">{$endif}</span>
+
+<span class="preprocessor">{$ifndef FPC}</span>
+  <span class="preprocessor">{$message warn 'Delphi does not allow addition on types that are generic parameters'}</span>
+  <span class="keyword">begin</span> <span class="keyword">end</span>.
+<span class="preprocessor">{$endif}</span>
+
+<span class="keyword">uses</span> SysUtils;
 
 <span class="keyword">type</span>
   generic TMyCalculator&lt;T&gt; = <span class="keyword">class</span>
@@ -3894,8 +3945,8 @@ end;</code></pre>
 <span class="keyword">end</span>;
 
 <span class="keyword">type</span>
-  TMyFloatCalculator = specialize TMyCalculator&lt;Single&gt;;
-  TMyStringCalculator = specialize TMyCalculator&lt;<span class="keyword">string</span>&gt;;
+  TMyFloatCalculator = <span class="preprocessor">{$ifdef FPC}</span>specialize<span class="preprocessor">{$endif}</span> TMyCalculator&lt;Single&gt;;
+  TMyStringCalculator = <span class="preprocessor">{$ifdef FPC}</span>specialize<span class="preprocessor">{$endif}</span> TMyCalculator&lt;<span class="keyword">string</span>&gt;;
 
 <span class="keyword">var</span>
   FloatCalc: TMyFloatCalculator;
@@ -3926,9 +3977,15 @@ end;</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
-<span class="keyword">uses</span>
-  SysUtils;
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$ifdef FPC}</span> <span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span> <span class="preprocessor">{$endif}</span>
+<span class="preprocessor">{$ifdef MSWINDOWS}</span> <span class="preprocessor">{$apptype CONSOLE}</span> <span class="preprocessor">{$endif}</span>
+
+<span class="preprocessor">{$ifndef FPC}</span>
+  <span class="preprocessor">{$message warn 'Delphi does not support global generic functions'}</span>
+  <span class="keyword">begin</span> <span class="keyword">end</span>.
+<span class="preprocessor">{$endif}</span>
+
+<span class="keyword">uses</span> SysUtils;
 
 <span class="comment">{ Note: this example requires FPC 3.1.1 (will not compile with FPC 3.0.0 or older). }</span>
 
@@ -3982,8 +4039,10 @@ generic <span class="keyword">function</span> Min&lt;T&gt;(<span class="keyword"
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
-<span class="keyword">unit</span> PreprocessorStuff;
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="keyword">unit</span> PreprocessorStuff;
+
+<span class="preprocessor">{$ifdef FPC}</span> <span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span> <span class="preprocessor">{$endif}</span>
+
 <span class="keyword">interface</span>
 
 <span class="preprocessor">{$ifdef FPC}</span>
@@ -4048,12 +4107,14 @@ generic <span class="keyword">function</span> Min&lt;T&gt;(<span class="keyword"
 <p>Включеният файл може да съдържа само други директиви на компилатора, които "конфигурират" вашия изходен код. Например можете да създадете файл <code>myconfig.inc</code> със следното съдържание:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$mode objfpc}</span>
-<span class="preprocessor">{$H+}</span>
-<span class="preprocessor">{$J-}</span>
-<span class="preprocessor">{$modeswitch advancedrecords}</span>
-<span class="preprocessor">{$ifndef VER3}</span>
-  <span class="preprocessor">{$error Този код може да се компилира само с FPC версия 3.x. или по-висока}</span>
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$ifdef FPC}</span>
+  <span class="preprocessor">{$mode objfpc}</span>
+  <span class="preprocessor">{$H+}</span>
+  <span class="preprocessor">{$J-}</span>
+  <span class="preprocessor">{$modeswitch advancedrecords}</span>
+  <span class="preprocessor">{$ifdef VER2}</span>
+    <span class="preprocessor">{$message fatal 'This code can only be compiled using FPC version &gt;= 3.0.'}</span>
+  <span class="preprocessor">{$endif}</span>
 <span class="preprocessor">{$endif}</span></code></pre>
 </div>
 </div>
@@ -4093,8 +4154,12 @@ generic <span class="keyword">function</span> Min&lt;T&gt;(<span class="keyword"
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
-<span class="preprocessor">{$modeswitch advancedrecords}</span>
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$ifdef FPC}</span>
+  <span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
+  <span class="preprocessor">{$modeswitch advancedrecords}</span>
+<span class="preprocessor">{$endif}</span>
+<span class="preprocessor">{$ifdef MSWINDOWS}</span> <span class="preprocessor">{$apptype CONSOLE}</span> <span class="preprocessor">{$endif}</span>
+
 <span class="keyword">type</span>
   TMyRecord = <span class="keyword">record</span>
   <span class="directive">public</span>
@@ -4226,7 +4291,14 @@ generic <span class="keyword">function</span> Min&lt;T&gt;(<span class="keyword"
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$ifdef FPC}</span> <span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span> <span class="preprocessor">{$endif}</span>
+<span class="preprocessor">{$ifdef MSWINDOWS}</span> <span class="preprocessor">{$apptype CONSOLE}</span> <span class="preprocessor">{$endif}</span>
+
+<span class="preprocessor">{$ifndef FPC}</span>
+  <span class="preprocessor">{$message warn 'Delphi does not support global operator overloading'}</span>
+  <span class="keyword">begin</span> <span class="keyword">end</span>.
+<span class="preprocessor">{$endif}</span>
+
 <span class="keyword">uses</span>
   StrUtils;
 
@@ -4245,7 +4317,14 @@ operator* (<span class="keyword">const</span> S: <span class="keyword">string</s
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$ifdef FPC}</span> <span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span> <span class="preprocessor">{$endif}</span>
+<span class="preprocessor">{$ifdef MSWINDOWS}</span> <span class="preprocessor">{$apptype CONSOLE}</span> <span class="preprocessor">{$endif}</span>
+
+<span class="preprocessor">{$ifndef FPC}</span>
+  <span class="preprocessor">{$message warn 'Delphi does not support global operator overloading'}</span>
+  <span class="keyword">begin</span> <span class="keyword">end</span>.
+<span class="preprocessor">{$endif}</span>
+
 <span class="keyword">uses</span>
   SysUtils;
 
@@ -4283,9 +4362,15 @@ operator* (<span class="keyword">const</span> C1, C2: TMyClass): TMyClass;
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
-<span class="keyword">uses</span>
-  SysUtils;
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$ifdef FPC}</span> <span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span> <span class="preprocessor">{$endif}</span>
+<span class="preprocessor">{$ifdef MSWINDOWS}</span> <span class="preprocessor">{$apptype CONSOLE}</span> <span class="preprocessor">{$endif}</span>
+
+<span class="preprocessor">{$ifndef FPC}</span>
+  <span class="preprocessor">{$message warn 'Delphi does not support global operator overloading'}</span>
+  <span class="keyword">begin</span> <span class="keyword">end</span>.
+<span class="preprocessor">{$endif}</span>
+
+<span class="keyword">uses</span> SysUtils;
 
 <span class="keyword">type</span>
   TMyRecord = <span class="keyword">record</span>
@@ -4311,8 +4396,17 @@ operator* (<span class="keyword">const</span> C1, C2: TMyRecord): TMyRecord;
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
-<span class="preprocessor">{$modeswitch advancedrecords}</span>
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$ifdef FPC}</span>
+  <span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
+  <span class="preprocessor">{$modeswitch advancedrecords}</span>
+<span class="preprocessor">{$endif}</span>
+<span class="preprocessor">{$ifdef MSWINDOWS}</span> <span class="preprocessor">{$apptype CONSOLE}</span> <span class="preprocessor">{$endif}</span>
+
+<span class="preprocessor">{$ifndef FPC}</span>
+  <span class="preprocessor">{$message warn 'Delphi does not have FGL unit'}</span>
+  <span class="keyword">begin</span> <span class="keyword">end</span>.
+<span class="preprocessor">{$endif}</span>
+
 <span class="keyword">uses</span>
   SysUtils, FGL;
 
@@ -4334,7 +4428,7 @@ operator* (<span class="keyword">const</span> C1, C2: TMyRecord): TMyRecord;
 <span class="keyword">end</span>;
 
 <span class="keyword">type</span>
-  TMyRecordList = specialize TFPGList&lt;TMyRecord&gt;;
+  TMyRecordList = <span class="preprocessor">{$ifdef FPC}</span>specialize<span class="preprocessor">{$endif}</span> TFPGList&lt;TMyRecord&gt;;
 
 <span class="keyword">var</span>
   R, ListItem: TMyRecord;
@@ -4577,7 +4671,8 @@ operator* (<span class="keyword">const</span> C1, C2: TMyRecord): TMyRecord;
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$ifdef FPC}</span> <span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span> <span class="preprocessor">{$endif}</span>
+
 <span class="keyword">type</span>
   TMyCallback = <span class="keyword">procedure</span> (A: Integer);
 
@@ -4593,7 +4688,7 @@ operator* (<span class="keyword">const</span> C1, C2: TMyRecord): TMyRecord;
   Callback: TMyCallback;
 <span class="keyword">begin</span>
   <span class="comment">// Грешка: TMyClass.Foo не е съвместим с TMyCallback</span>
-  Callback := @TMyClass(<span class="keyword">nil</span>).Foo;
+  Callback := <span class="preprocessor">{$ifdef FPC}</span> @TMyClass(<span class="keyword">nil</span>).Foo <span class="preprocessor">{$else}</span> TMyClass.Foo <span class="preprocessor">{$endif}</span>;
 <span class="keyword">end</span>.</code></pre>
 </div>
 </div>
@@ -4625,7 +4720,9 @@ operator* (<span class="keyword">const</span> C1, C2: TMyRecord): TMyRecord;
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$ifdef FPC}</span> <span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span> <span class="preprocessor">{$endif}</span>
+<span class="preprocessor">{$ifdef MSWINDOWS}</span> <span class="preprocessor">{$apptype CONSOLE}</span> <span class="preprocessor">{$endif}</span>
+
 <span class="keyword">type</span>
   TMyCallback = <span class="keyword">procedure</span> (A: Integer);
 
@@ -4658,7 +4755,9 @@ operator* (<span class="keyword">const</span> C1, C2: TMyRecord): TMyRecord;
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$ifdef FPC}</span> <span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span> <span class="preprocessor">{$endif}</span>
+<span class="preprocessor">{$ifdef MSWINDOWS}</span> <span class="preprocessor">{$apptype CONSOLE}</span> <span class="preprocessor">{$endif}</span>
+
 <span class="keyword">type</span>
   TMyClass = <span class="keyword">class</span>
   strict <span class="directive">private</span>
@@ -4785,7 +4884,9 @@ operator* (<span class="keyword">const</span> C1, C2: TMyRecord): TMyRecord;
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$ifdef FPC}</span> <span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span> <span class="preprocessor">{$endif}</span>
+<span class="preprocessor">{$ifdef MSWINDOWS}</span> <span class="preprocessor">{$apptype CONSOLE}</span> <span class="preprocessor">{$endif}</span>
+
 <span class="keyword">uses</span>
   SysUtils;
 
@@ -4848,8 +4949,14 @@ operator* (<span class="keyword">const</span> C1, C2: TMyRecord): TMyRecord;
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
-<span class="preprocessor">{$interfaces corba}</span> <span class="comment">// See below why we recommend CORBA interfaces</span>
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$ifdef FPC}</span>
+  <span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
+  <span class="preprocessor">{$interfaces corba}</span> <span class="comment">// See below why we recommend CORBA interfaces</span>
+<span class="preprocessor">{$else}</span>
+  <span class="preprocessor">{$message warn 'Delphi does not support CORBA interfaces, only COM, that change how memory is managed. This example is not valid in Delphi.'}</span>
+  <span class="keyword">begin</span> <span class="keyword">end</span>.
+<span class="preprocessor">{$endif}</span>
+<span class="preprocessor">{$ifdef MSWINDOWS}</span> <span class="preprocessor">{$apptype CONSOLE}</span> <span class="preprocessor">{$endif}</span>
 
 <span class="keyword">uses</span>
   SysUtils, Classes;
@@ -5031,7 +5138,9 @@ operator* (<span class="keyword">const</span> C1, C2: TMyRecord): TMyRecord;
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$ifdef FPC}</span> <span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span> <span class="preprocessor">{$endif}</span>
+<span class="preprocessor">{$ifdef MSWINDOWS}</span> <span class="preprocessor">{$apptype CONSOLE}</span> <span class="preprocessor">{$endif}</span>
+
 <span class="keyword">uses</span>
   SysUtils;
 <span class="keyword">var</span>
@@ -5110,8 +5219,11 @@ operator* (<span class="keyword">const</span> C1, C2: TMyRecord): TMyRecord;
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
-<span class="preprocessor">{$interfaces com}</span>
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$ifdef FPC}</span>
+  <span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
+  <span class="preprocessor">{$interfaces com}</span>
+<span class="preprocessor">{$endif}</span>
+<span class="preprocessor">{$ifdef MSWINDOWS}</span> <span class="preprocessor">{$apptype CONSOLE}</span> <span class="preprocessor">{$endif}</span>
 
 <span class="keyword">uses</span>
   SysUtils, Classes;
@@ -5169,7 +5281,7 @@ operator* (<span class="keyword">const</span> C1, C2: TMyRecord): TMyRecord;
     <span class="keyword">if</span> C3 <span class="keyword">is</span> IMyInterface <span class="keyword">then</span>
       UseThroughInterface(C3 <span class="keyword">as</span> IMyInterface); <span class="comment">// това няма да се изпълни</span>
   <span class="keyword">finally</span>
-    <span class="comment">{ Променливи C1 и C2 излизат от обхват и тук би трябвало да се 
+    <span class="comment">{ Променливи C1 и C2 излизат от обхват и тук би трябвало да се
       унищожат автоматично.
 
       За разлика от тях, C3 е инстанция, която не се управлява от интерфейс
@@ -5193,8 +5305,11 @@ operator* (<span class="keyword">const</span> C1, C2: TMyRecord): TMyRecord;
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
-<span class="preprocessor">{$interfaces com}</span>
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$ifdef FPC}</span>
+  <span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
+  <span class="preprocessor">{$interfaces com}</span>
+<span class="preprocessor">{$endif}</span>
+<span class="preprocessor">{$ifdef MSWINDOWS}</span> <span class="preprocessor">{$apptype CONSOLE}</span> <span class="preprocessor">{$endif}</span>
 
 <span class="keyword">uses</span>
   SysUtils, Classes;
@@ -5245,12 +5360,14 @@ operator* (<span class="keyword">const</span> C1, C2: TMyRecord): TMyRecord;
 
 <span class="keyword">procedure</span> UseInterfaces;
 <span class="keyword">begin</span>
-  <span class="keyword">if</span> C1 <span class="keyword">is</span> IMyInterface <span class="keyword">then</span>
-  <span class="comment">//if Supports(C1, IMyInterface) then // equivalent to &quot;is&quot; check above</span>
+  <span class="comment">// In FPC, you could also check using &quot;is&quot;, like:</span>
+  <span class="comment">//if C1 is IMyInterface then ...</span>
+
+  <span class="keyword">if</span> Supports(C1, IMyInterface) <span class="keyword">then</span>
     UseThroughInterface(C1 <span class="keyword">as</span> IMyInterface);
-  <span class="keyword">if</span> C2 <span class="keyword">is</span> IMyInterface <span class="keyword">then</span>
+  <span class="keyword">if</span> Supports(C2, IMyInterface) <span class="keyword">then</span>
     UseThroughInterface(C2 <span class="keyword">as</span> IMyInterface);
-  <span class="keyword">if</span> C3 <span class="keyword">is</span> IMyInterface <span class="keyword">then</span>
+  <span class="keyword">if</span> Supports(C3, IMyInterface) <span class="keyword">then</span>
     UseThroughInterface(C3 <span class="keyword">as</span> IMyInterface);
 <span class="keyword">end</span>;
 
@@ -5328,7 +5445,8 @@ operator* (<span class="keyword">const</span> C1, C2: TMyRecord): TMyRecord;
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$ifdef FPC}</span> <span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span> <span class="preprocessor">{$endif}</span>
+<span class="preprocessor">{$ifdef MSWINDOWS}</span> <span class="preprocessor">{$apptype CONSOLE}</span> <span class="preprocessor">{$endif}</span>
 
 <span class="comment">// {$interfaces corba} // забележете, че &quot;as&quot; конверсии за CORBA няма да се компилират</span>
 
@@ -5483,7 +5601,7 @@ operator* (<span class="keyword">const</span> C1, C2: TMyRecord): TMyRecord;
 </div>
 <div id="footer">
 <div id="footer-text">
-Последно обновен 2025-04-13 02:31:06 +0200
+Последно обновен 2025-04-13 22:27:58 +0200
 </div>
 </div>
 <!-- Google analytics -->
