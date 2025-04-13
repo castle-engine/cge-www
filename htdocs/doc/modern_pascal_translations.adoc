@@ -14,6 +14,6 @@ Thanks to many kind people, this book has been translated to several languages:
 
 . https://castle-engine.io/modern_pascal_introduction_ukrainian.html[Ukrainian] (WIP) - thanks to https://github.com/iso4free[Vadim Vitomsky (iso4free)]
 
-Most of the translations linked above are hosted within the https://github.com/michaliskambi/modern-pascal-introduction/[GitHub repository of the book]. If you'd like to improve them, or propose a translation to a new language, go ahead -- it is simplest to just fork the repository and send a pull request. If anything is unclear, just ask on https://castle-engine.io/talk.php[Castle Game Engine Forum, Discord or any other channel].
+Most of the translations linked above are hosted within the https://github.com/modern-pascal/modern-pascal-introduction/[GitHub repository of the book]. If you'd like to improve them, or propose a translation to a new language, go ahead -- it is simplest to just fork the repository and send a pull request. If anything is unclear, just ask on https://castle-engine.io/talk.php[Castle Game Engine Forum, Discord or any other channel].
 
 **Big thank you to everyone who contributed to this book and translations!** Let's continue to show the world how Pascal https://castle-engine.io/why_pascal[is a productive and modern programming language].

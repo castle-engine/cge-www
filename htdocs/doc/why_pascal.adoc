@@ -38,7 +38,7 @@ cgeimg::block[vscode_ext_1.png|VS Code completion]
 +
 When compiling using CGE editor, we have debug / release modes automatically set up, they activate / deactivate reasonable options automatically. Just switch the mode between debug / release using CGE editor _"Run"_ menu.
 
-- https://github.com/michaliskambi/modern-pascal-introduction/wiki/What-are-range-and-overflow-checks-(and-errors)-in-Pascal[What are range and overflow checks (and errors) in Pascal].
+- https://github.com/modern-pascal/modern-pascal-introduction/wiki/What-are-range-and-overflow-checks-(and-errors)-in-Pascal[What are range and overflow checks (and errors) in Pascal].
 
 - https://castle-engine.io/memory_leaks[Detecting Memory Leaks].
 --

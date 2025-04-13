@@ -391,7 +391,7 @@ We detect _Delphi_ by just lack of `FPC`, e.g. `property Foo: Integer ...; {$ifd
 
 See https://github.com/castle-engine/castle-engine/blob/master/src/common_includes/castleconf.inc[castleconf.inc] (included in every CGE unit).
 
-We also use `DEBUG` symbol. The build tool, when compiling in debug mode (`--mode=debug`), defines the `DEBUG` symbol, and adds some runtime checks, like https://github.com/michaliskambi/modern-pascal-introduction/wiki/What-are-range-and-overflow-checks-%28and-errors%29-in-Pascal[range checking and overflow checking]. You can use `{$ifdef DEBUG}` in your own code to add additional things. There's also the `RELEASE` symbol, but usually we don't check for it's existence -- if DEBUG then we're in debug mode, else we're in release mode.
+We also use `DEBUG` symbol. The build tool, when compiling in debug mode (`--mode=debug`), defines the `DEBUG` symbol, and adds some runtime checks, like https://github.com/modern-pascal/modern-pascal-introduction/wiki/What-are-range-and-overflow-checks-%28and-errors%29-in-Pascal[range checking and overflow checking]. You can use `{$ifdef DEBUG}` in your own code to add additional things. There's also the `RELEASE` symbol, but usually we don't check for it's existence -- if DEBUG then we're in debug mode, else we're in release mode.
 
 === Exceptions' messages
 
