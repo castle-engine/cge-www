@@ -368,6 +368,14 @@ If they are really unused, avoid packaging these files, to keep the application 
 
 WARNING: Right now, this analysis is using some quick assumptions and heuristics. The data files are just _"grepped"_ (not intelligently analyzed) for the filenames they use. Do not trust this detection 100% -- sometimes files may be detected as used when they are not, or the other way around.
 
+An additional `--remove-mask=MASK` option allows to actually delete the unused files matching a given mask. Heed the above warnings (*the analysis is not perfect*) and *be sure to use a version control (or have a backup)* before doing this!
+
+Sample usage:
+
+- `castle-engine unused-data --remove-mask='data/my_level/textures/*'` - remove textures from `data/my_level/textures/` that were detected as unused.
+- `castle-engine unused-data --remove-mask='*.png'` - remove all PNG files detected as unused.
+- `castle-engine unused-data --remove-mask='*'` - remove _all files detected as unused_.
+
 === (Deprecated) create-manifest
 
 Create link:project_manifest[CastleEngineManifest.xml] file if it does not exist yet, guessing the project name based on directory name. You can use this `CastleEngineManifest.xml` as a starting point.
