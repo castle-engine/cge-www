@@ -4849,7 +4849,92 @@ A linked list using classes is certainly possible, it would simply be this:</p>
 <div class="sect2">
 <h3 id="_operator_overloading">8.11. Operator overloading</h3>
 <div class="paragraph">
-<p>You can override the meaning of many language operators, for example to allow addition and multiplication of your custom types. Like this:</p>
+<p>You can override the meaning of many language operators, for example to allow addition and multiplication of your custom types.</p>
+</div>
+<div class="paragraph">
+<p>Both FPC and Delphi support overloading operators by defining <code>class operator</code> methods inside advanced records. Like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$ifdef FPC}</span>
+  <span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
+  <span class="preprocessor">{$modeswitch advancedrecords}</span>
+<span class="preprocessor">{$endif}</span>
+<span class="preprocessor">{$ifdef MSWINDOWS}</span> <span class="preprocessor">{$apptype CONSOLE}</span> <span class="preprocessor">{$endif}</span>
+
+<span class="keyword">uses</span> SysUtils;
+
+<span class="keyword">type</span>
+  TVector3 = <span class="keyword">record</span>
+  <span class="directive">public</span>
+    X, Y, Z: Single;
+    <span class="keyword">class</span> operator <span class="preprocessor">{$ifdef FPC}</span>+<span class="preprocessor">{$else}</span>Add<span class="preprocessor">{$endif}</span>
+      (<span class="keyword">const</span> A, B: TVector3): TVector3;
+    <span class="keyword">class</span> operator <span class="preprocessor">{$ifdef FPC}</span>*<span class="preprocessor">{$else}</span>Multiply<span class="preprocessor">{$endif}</span>
+      (<span class="keyword">const</span> V: TVector3; <span class="keyword">const</span> Scalar: Single): TVector3;
+    <span class="keyword">function</span> ToString: <span class="keyword">String</span>;
+  <span class="keyword">end</span>;
+
+<span class="keyword">class</span> operator TVector3.<span class="preprocessor">{$ifdef FPC}</span>+<span class="preprocessor">{$else}</span>Add<span class="preprocessor">{$endif}</span>
+  (<span class="keyword">const</span> A, B: TVector3): TVector3;
+<span class="keyword">begin</span>
+  Result.X := A.X + B.X;
+  Result.Y := A.Y + B.Y;
+  Result.Z := A.Z + B.Z;
+<span class="keyword">end</span>;
+
+<span class="keyword">class</span> operator TVector3.<span class="preprocessor">{$ifdef FPC}</span>*<span class="preprocessor">{$else}</span>Multiply<span class="preprocessor">{$endif}</span>
+  (<span class="keyword">const</span> V: TVector3; <span class="keyword">const</span> Scalar: Single): TVector3;
+<span class="keyword">begin</span>
+  Result.X := V.X * Scalar;
+  Result.Y := V.Y * Scalar;
+  Result.Z := V.Z * Scalar;
+<span class="keyword">end</span>;
+
+<span class="keyword">function</span> TVector3.ToString: <span class="keyword">String</span>;
+<span class="keyword">begin</span>
+  Result := Format(<span class="string"><span class="delimiter">'</span><span class="content">(%f, %f, %f)</span><span class="delimiter">'</span></span>, [X, Y, Z]);
+<span class="keyword">end</span>;
+
+<span class="keyword">var</span>
+  V1, V2: TVector3;
+<span class="keyword">begin</span>
+  V1.X := <span class="float">1.0</span>; V1.Y := <span class="float">2.0</span>;  V1.Z := <span class="float">3.0</span>;
+  V2.X := <span class="float">4.0</span>; V2.Y := <span class="float">5.0</span>;  V2.Z := <span class="float">6.0</span>;
+  WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">V1: </span><span class="delimiter">'</span></span>, V1.ToString);
+  WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">V2: </span><span class="delimiter">'</span></span>, V2.ToString);
+  WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">V1 + V2: </span><span class="delimiter">'</span></span>, (V1 + V2).ToString);
+  WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">V1 * 10: </span><span class="delimiter">'</span></span>, (V1 * <span class="integer">10</span>).ToString);
+<span class="keyword">end</span>.</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+In case of FPC, make sure to tell the compiler you use "advanced" records' features by <code>{$modeswitch advancedrecords}</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Take a look at the documentation to learn all possible operators that can be overloaded:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://wiki.freepascal.org/Operator_overloading">FPC operator overloading</a></p>
+</li>
+<li>
+<p><a href="https://docwiki.embarcadero.com/RADStudio/Sydney/en/Operator_Overloading_%28Delphi%29">Delphi operator overloading</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>FPC supports also an alternative syntax to overload operators, by defining a global function like <code>operator*</code>. For example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4875,7 +4960,7 @@ operator* (<span class="keyword">const</span> S: <span class="keyword">string</s
 </div>
 </div>
 <div class="paragraph">
-<p>You can override operators on classes too. Since you usually create new instances of your classes inside the operator function, the caller must remember to free the result.</p>
+<p>This approach (global <code>operator</code> functions) can be used to define operators on classes too. Since you usually create new instances of your classes inside the operator function, the caller must remember to free the result.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4920,7 +5005,7 @@ operator* (<span class="keyword">const</span> C1, C2: TMyClass): TMyClass;
 </div>
 </div>
 <div class="paragraph">
-<p>You can override operators on records too. This is usually easier than overloading them for classes, as the caller doesn&#8217;t have to deal then with memory management.</p>
+<p>You can override operators on records too using the global <code>operator</code> functions. This is usually easier than overloading them for classes, as the caller doesn&#8217;t have to deal then with memory management.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4954,7 +5039,17 @@ operator* (<span class="keyword">const</span> C1, C2: TMyRecord): TMyRecord;
 </div>
 </div>
 <div class="paragraph">
-<p>For records, it&#8217;s advised to use <code>{$modeswitch advancedrecords}</code> and override operators as <code>class operator</code> inside the record. This allows to use generic classes that depend on some operator existence (like <code>TFPGList</code>, that depends on equality operator being available) with such records. Otherwise the "global" definition of an operator (not inside the record) would not be found (because it&#8217;s not available at the code that implements the <code>TFPGList</code>), and you could not specialize a list like <code>specialize TFPGList&lt;TMyRecord&gt;</code>.</p>
+<p>However, for records, we don&#8217;t advise to use the global <code>operator</code> functions. Instead, use <code>{$modeswitch advancedrecords}</code> and override operators as <code>class operator</code> inside the record. Reasons:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>This is compatible with Delphi.</p>
+</li>
+<li>
+<p>This allows to use generic classes that depend on some operator existence (like <code>TFPGList</code>, that depends on equality operator being available) with such records. Otherwise the "global" definition of an operator (not inside the record) would not be found (because it&#8217;s not available at the code that implements the <code>TFPGList</code>), and you could not specialize a list like <code>specialize TFPGList&lt;TMyRecord&gt;</code>.</p>
+</li>
+</ul>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -6153,7 +6248,7 @@ you create <em>COM interfaces</em>. This can be stated explicitly by saying <cod
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-04-13 22:27:58 +0200
+Last updated 2025-04-14 13:05:15 +0200
 </div>
 </div>
 <!-- Google analytics -->
