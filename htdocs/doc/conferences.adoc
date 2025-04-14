@@ -9,6 +9,23 @@ Not always, but sometimes there's a paper trace or video recording of what I tal
 This pages collects _some_ materials from them.
 ////
 
+* _9-10 April 2025_: modern Pascal course.
++
+--
+- online, organized by https://www.bsc.com.pl/szkolenie-nowoczesny-obiektowy-pascal/[BSC, Embarcadero branch in Poland].
+- Repository with all the examples: https://github.com/modern-pascal/modern-pascal-course . Can be build with both FPC and Delphi, https://castle-engine.io/github_actions[GitHub Actions] check it.
+- Slides (in Polish): https://castle-engine.io/bsc_pascal_1[Day 1], https://castle-engine.io/bsc_pascal_2[Day 2].
+- https://castle-engine.io/wp/2025/04/14/modern-pascal-course-examples-and-slides-updates-to-modern-pascal-book-to-fully-support-both-delphi-and-fpc/[News with details].
+--
+
+* _29 March 2025_: Presentation at _Pascal Cafe 2025_, organized by https://www.blaisepascalmagazine.eu/[Blaise Pascal Magazine].
++
+--
+- https://castle-engine.io/pascalcafe2025[Slides]
+- https://github.com/castle-engine/conference-pascal-cafe-2025[Sample application using 3D scanned object]
+- https://michalis.xyz/unholy/[Something big presented during the conference, as a gift for the community :)]
+--
+
 * _9th December 2024_: Presentation at https://evenea.pl/pl/wydarzenie/meetupdelphi[Meetup Delphi in Bielsko-Biała (Poland)]. This was a bigger presentation about engine features, physics, Blender, Sketchfab, Steam integration.
 +
 --
