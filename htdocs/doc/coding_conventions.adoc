@@ -876,6 +876,8 @@ end;
 
 There are advantages of this analysis, though it's also another complication when writing code -- esp. because we have to account also for compilers that don't do this analysis (like older FPC and Delphi). Our `castleconf.inc` defines  `COMPILER_CASE_ANALYSIS` for new FPC.
 
+NOTE: We've been trying to adjust to the new FPC 3.3.1 "case analysis" warnings for a long time. We saw a benefit in them (as said above, they could detect some issues at compile-time). But they also cause a lot of new headaches, as this section demonstrates -- you need to adjust your code in various ways, and sometimes there's just a good way, esp. when you need to account also for compilers that don't do "case analysis" (older FPC, Delphi). So eventually we disable them in https://github.com/castle-engine/castle-engine/blob/master/src/common_includes/castleconf.inc#L593[castleconf.inc]. We still advise to follow the section below for your own code.
+
 So how to write your `case`?
 
 ==== If your case should exhaust all the options
