@@ -196,10 +196,18 @@ make generate-code
 ## Test: Interactive test in Delphi (compilation using DPROJ)
 
 * Remove all paths in Delphi settings that are added by our packages ("Tools -> Options" menu item, then "Language -> Delphi -> Library" panel, edit "Library path").
-* Compile and install all packages in Delphi
+* [Compile and install all packages in Delphi](https://castle-engine.io/delphi_packages)
 * Compile examples/delphi/vcl in Delphi (interactively, so using DPROJ)
+    * Win32
+    * Win64
 * Compile examples/delphi/fmx in Delphi (interactively, so using DPROJ)
+    * Win32
+    * Win64
+    * [Linux64](https://castle-engine.io/delphi_linux)
 * Compile examples/fps_game in Delphi (interactively, so using DPROJ)
+    * Win32
+    * Win64
+    * [Linux64](https://castle-engine.io/delphi_linux)
 * Create a new FMX project with `TCastleControl`.
     * Compiling it should initially fail.
     * Follow https://castle-engine.io/delphi_packages to enable CGE paths for all projects, in Delphi settings.
