@@ -71,7 +71,7 @@ glxinfo -B
 glxgears # make sure OpenGL works
 ```
 +
-Note to Nvidia users: You may need to use `export MESA_D3D12_DEFAULT_ADAPTER_NAME=nvidia` . You can add it to `~/.bashrc` to make it permanent.
+WARNING: Nvidia users: To have correct rendering, you may need to use `export MESA_D3D12_DEFAULT_ADAPTER_NAME=nvidia` in the bash shell. You can add this line to `~/.bashrc` to make it permanent. It will fix both the applications you run from command-line, and applications debugged using the _PA Server_ (if only you run `./paserver` in a shell with this defined).
 
 === Libraries required (for both development and runtime)
 
@@ -101,7 +101,9 @@ All these libraries are common and should be available out-of-the-box on any mod
 
 Follow the https://docwiki.embarcadero.com/RADStudio/Alexandria/en/Installing_the_Platform_Assistant_on_Linux[PA Server] docs how to install and run it on Linux.
 
-Note that it may report issues with `libpython3.so` version. Fix it by commands like this:
+In short, download and unpack the proper _PA Server_ version, then run `./paserver` inside.
+
+Note that `./paserver` execution may report issues with `libpython3.so` version. Fix it like this:
 
 ```bash
 # The directory below may be different for you, depending on where you unpacked the PA Server
