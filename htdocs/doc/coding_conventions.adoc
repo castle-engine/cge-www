@@ -1060,6 +1060,29 @@ But sometimes the split into multiple units is not comfortable or not possible. 
 +
 So, in such cases, splitting into include files is a good compromise. It allows you to keep the code in one unit, but still have it split into logical blocks.
 
+[#clean_diffs]
+=== Cleanup diffs before committing files with often-unwanted changes caused by Delphi or Lazarus IDEs: DPROJ, LFM
+
+- The DPROJ files inside the repository should be treated with caution.
++
+Any supported Delphi version can open them (that's good!). But also most Delphi versions will want to modify them (bad!). It seems that every Delphi version has a bit different project settings idea, and it will want to modify DPROJ, even if you did no modification in _"Project -> Options"_ explicitly. Moreover, the set of platforms you have installed (e.g. do you have Linux or Android installed) determines some project settings, for all your projects.
++
+*We must avoid unnecessary DPROJ changes*. If you save a DPROJ in Delphi version e.g. without Linux, people who later open the project will not see Linux on the list of supported platforms.
++
+*When possible, auto-generate DPROJ files using `castle-engine generate-program`.* Let our build tool generate DPROJ, don't modify it manually.
++
+*When not possible, be sure to only commit a relevant subset of your DPROJ modifications.* Like when we https://github.com/castle-engine/castle-engine/commit/8a3770f9ebcbc71a0870f93e65d161f318433daf#diff-92ef58c34fa42c80dde292f25d5bfb24b95c41c89208582b7cc148463512a484[only committed new warnings options to the packages .dproj files]. Learn how to use your version control (GIT) tools: learn how to _"stage chunks"_ instead of _"staging whole files"_ (in link:vsode[VS Code]: right-click and "Stage Selected Ranges"; in Emacs: https://magit.vc/[Magit] rocks and it allows to stage each chunk separately). Learn how to revert almost all changes to the file except the one you want to keep. You can always just do it manually in a text editor, hack it until `git diff` shows only the changes you really consciously wanted to make.
+
+- The LFM files inside the repository should be treated with caution.
++
+If you have a different system-wide font size (this can be changed e.g. in Windows "scaling" preferences, or on Linux with GNOME using _"GNOME Tweak Tool"_), then unfortunately open+save any LFM file will modify nearly all position and sizes. Worse, the modification will not be precise (because positions and sizes are integers in LCL), so they would not recalculate back to the original values, if you open+save back in original DPI.
++
+Also, different LCL versions cause various other unnecessary changes. While they are generally "harmless", avoid committing them, as they would cause a lot of "noise" in the version control diffs, esp. when multiple developers would work on the same LFM file with different Lazarus versions.
++
+So: *be sure to only commit a relevant subset of your LFM modifications.*. See above for similar hint about DPROJ.
++
+Also: when contributing to link:editor[], follow https://github.com/castle-engine/castle-engine/blob/master/tools/castle-editor/README.md[editor's conventions], in short: _scaling settings must be 125%_.
+
 == Other languages
 
 * Indent by 4 spaces in Java and Objective-C.
