@@ -1,13 +1,20 @@
 # Conferences
 include::common.adoc[]
 
-_Michalis Kamburelis_ enjoys speaking at various conferences about _Castle Game Engine_.
+https://michalis.xyz/[Michalis Kamburelis] enjoys speaking at various conferences about _Castle Game Engine_.
 
 ////
 Not always, but sometimes there's a paper trace or video recording of what I talked about -- I'll
 
 This pages collects _some_ materials from them.
 ////
+
+* *Upcoming*:
++
+--
+- I will attend (and give a talk) a soon-to-be-announced conference in Germany on _17-21 September 2025_.
+- I will attend https://delphisummit.com/[Delphi Summit] in Amsterdam on _5-6  June 2025_.
+--
 
 * _9-10 April 2025_: modern Pascal course.
 +
