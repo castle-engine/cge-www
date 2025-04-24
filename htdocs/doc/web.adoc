@@ -107,9 +107,9 @@ video::MJcMqfx6u98[youtube,width=800,height=450]
 ====
 Things below look complicated? We have plans to make them easier:
 
-- We plan to provide *ready (precompiled and tested) versions of FPC cross-compiler for Wasm and Pas2js (from popular OSes: Windows, Linux, macOS)*. 
+- We plan to provide *ready (precompiled and tested) versions of FPC cross-compiler for Wasm and Pas2js (from popular OSes: Windows, Linux, macOS)*.
 +
-They will be build by CI actions in https://github.com/castle-engine/cge-fpc[cge-fpc] repository. GUI link:editor[editor] and command-line link:build_tool[build tool] will enable to easily download them. 
+They will be build by CI actions in https://github.com/castle-engine/cge-fpc[cge-fpc] repository. GUI link:editor[editor] and command-line link:build_tool[build tool] will enable to easily download them.
 +
 This way you will be able to get all these prerequisites in a trivial way, in latest versions that are tested and recommended by CGE developers.
 // This way we do not have to depend on FPC and Pas2js teams to prepare official releases with WebAssembly support. Or wait for FpcUpDeluxe to apply our PR to fix Wasmp1.
@@ -176,11 +176,13 @@ Why is this useful? Most dynamic webpages should be tested through a webserver r
 +
 In our opinion, it's easiest to get this using link:fpcupdeluxe[]: install FPC _"trunk"_ version, then install FPC cross-compiler for OS=`WasiP1` and CPU=`Wasm32`. You can also just get it from GIT and compile manually, following link:https://wiki.freepascal.org/WebAssembly[FPC wiki about WebAssembly].
 +
+The last FPC GIT revision we tested is https://gitlab.com/freepascal.org/fpc/source/-/commit/b0003f71dda8388ad74292edb82ba401296fc106[b0003f71dda8388ad74292edb82ba401296fc106], so in case of trouble, try using this exact revision.
++
 [WARNING]
 ====
-Since 2025-02-27, the fpcupdeluxe will fail to build FPC+WebAssembly because the OS name changed in FPC: `wasi` -> `wasip1`. We submitted an https://github.com/LongDirtyAnimAlf/fpcupdeluxe/issues/747[issue about it] and https://github.com/LongDirtyAnimAlf/fpcupdeluxe/pull/748[PR that fixes it], they wait to be applied. For now, get fpcupdeluxe from the fork indicated in this PR, that is: https://github.com/michaliskambi/fpcupdeluxe .
+Stable versions of fpcupdeluxe will fail to build FPC+WebAssembly because the OS name changed in FPC on 2025-02-27 (`wasi` -> `wasip1`).
 
-So, practically speaking, first you need to get and compile https://github.com/michaliskambi/fpcupdeluxe[this version of FpcUpDeluxe] and then use it to build and install latest ("trunk") FPC with WebAssembly support.
+We submitted a https://github.com/LongDirtyAnimAlf/fpcupdeluxe/pull/748[PR fixing it] and it has been merged already, but the fix is not yet in the released fpcupdeluxe version. So, get fpcupdeluxe from https://github.com/LongDirtyAnimAlf/fpcupdeluxe/ and build it yourself first. It's a straightforward Lazarus project, build it from Lazarus IDE or using `lazbuild`.
 ====
 +
 _Test that it works._ Create the following simple program, saved as `hello_wasm.lpr`:
@@ -264,7 +266,7 @@ This actually works very well in our experience. But if you still run into cache
 
 === Logging and browser console
 
-In your applications, as a basic debugging feature, use our cross-platform link:log[]. Just call cgeref:WritelnLog[] or cgeref:WritelnWarning[], like `WritelnLog('Hello!')`. 
+In your applications, as a basic debugging feature, use our cross-platform link:log[]. Just call cgeref:WritelnLog[] or cgeref:WritelnWarning[], like `WritelnLog('Hello!')`.
 
 The messages written this way can be inspected using the _"Developer Tools"_ of your browser (press F12) and looking at the _"Console"_ tab there. This browser console can even be activated when in the _fullscreen_ mode.
 
