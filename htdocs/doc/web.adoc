@@ -56,9 +56,15 @@ cgeimg::block[
 
 - link:web-demos/examples/creature_behaviors[Creature behaviors (our simple creature AI, fight with skeletons)] (https://github.com/castle-engine/castle-engine/tree/master/examples/creature_behaviors[Source code])
 
-- link:web-demos/examples/third_person_navigation[Third-person navigation] (https://github.com/castle-engine/castle-engine/tree/master/examples/third_person_navigation[Source code])
+- link:web-demos/examples/third_person_navigation[Third-person navigation] (https://github.com/castle-engine/castle-engine/tree/master/examples/third_person_navigation[Source code]).
++
+WARNING: TODO: Note that "mouse look" is not correct yet, the mouse cursor is visible and it can be offscreen.
 
 - link:web-demos/castle-dice-throwing[Dice Throwing] (https://github.com/castle-engine/castle-dice-throwing/[Source code]). A fun experiment, showing how to run physics simulation invisibly. You can throw a 6-sided dice, it looks nice (following physics)... and yet the result is predetermined (set the outcome using a button before throwing). Underneath, we run invisible physics simulation and rotate the dice to match the desired outcome.
+
+- link:web-demos/examples/physics/physics_3d_shooter[3D shooting with physics] (https://github.com/castle-engine/castle-engine/tree/master/examples/physics/physics_3d_shooter[Source code])
++
+WARNING: TODO: Note that "mouse look" is not correct yet, the mouse cursor is visible and it can be offscreen.
 
 ////
 TODO: These demos run, but no sound yet.
