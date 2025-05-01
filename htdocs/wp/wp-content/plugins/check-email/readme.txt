@@ -4,7 +4,7 @@ Tags: logging, email, email log, smtp, log
 Requires at least: 5.0
 Tested up to: 6.8
 Requires PHP: 5.6.20
-Stable tag: 2.0.6
+Stable tag: 2.0.7
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -113,6 +113,9 @@ Someone using one of my other plugins had trouble with emails not being sent. I 
 
 
 == Changelog ==
+
+= v2.0.7 - 25/04/2025 =
+- Fixed: PHP Notice: _load_textdomain_just_in_time called too early with check-email domain on WP 6.8 #139
 
 = v2.0.6 - 11/04/2025 =
 - Enhancement: Tested with WordPress 6.8 #137

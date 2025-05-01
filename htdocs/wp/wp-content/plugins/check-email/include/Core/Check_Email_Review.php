@@ -2,6 +2,7 @@
 
 defined( 'ABSPATH' ) || exit; // Exit if accessed directly
 
+
 /**
  * Class Check Email Review.
  */
@@ -13,18 +14,6 @@ class Check_Email_Review {
 	private $slug = 'check-email';
 
 	function __construct() {
-
-		$this->messages = array(
-			'notice'  => esc_html__( "Hi there! Stoked to see you're using Check & Log Email for a few days now - hope you like it! And if you do, please consider rating it. It would mean the world to us.  Keep on rocking!", 'check-email' ),
-			'rate'    => esc_html__( 'Rate the plugin', 'check-email' ),
-			'rated'   => esc_html__( 'Remind me later', 'check-email' ),
-			'no_rate' => esc_html__( 'Don\'t show again', 'check-email' ),
-		);
-
-		if ( isset( $args['messages'] ) ) {
-			$this->messages = wp_parse_args( $args['messages'], $this->messages );
-		}
-
 		add_action( 'init', array( $this, 'init' ) );
 
 	}
@@ -72,6 +61,17 @@ class Check_Email_Review {
 
 	public function five_star_wp_rate_notice() {
 		$url = sprintf( $this->link, $this->slug );
+
+		$this->messages = array(
+			'notice'  => esc_html__( "Hi there! Stoked to see you're using Check & Log Email for a few days now - hope you like it! And if you do, please consider rating it. It would mean the world to us.  Keep on rocking!", 'check-email' ),
+			'rate'    => esc_html__( 'Rate the plugin', 'check-email' ),
+			'rated'   => esc_html__( 'Remind me later', 'check-email' ),
+			'no_rate' => esc_html__( 'Don\'t show again', 'check-email' ),
+		);
+
+		if ( isset( $args['messages'] ) ) {
+			$this->messages = wp_parse_args( $args['messages'], $this->messages );
+		}
 
 		?>
 		<div id="<?php echo esc_attr($this->slug) ?>-epsilon-review-notice" class="notice notice-success is-dismissible" style="margin-top:30px;">
