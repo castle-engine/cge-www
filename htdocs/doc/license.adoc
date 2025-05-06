@@ -54,7 +54,7 @@ ____
 As a special exception, the copyright holders of this library give you permission to link this library with independent modules to produce an executable, regardless of the license terms of these independent modules, and to copy and distribute the resulting executable under terms of your choice, provided that you also meet, for each linked independent module, the terms and conditions of the license of that module. An independent module is a module which is not derived from or based on this library. If you modify this library, you may extend this exception to your version of the library, but you are not obligated to do so. If you do not wish to do so, delete this exception statement from your version.
 ____
 
-By "engine core" we mean everything that can be found in the GitHub repository https://github.com/castle-engine/castle-engine/ *except* the exceptions mentioned in the section below (`tools/castle-editor`, `examples`).
+By "engine core" we mean everything that can be found in the GitHub repository https://github.com/castle-engine/castle-engine/ *except* the exceptions mentioned in the section below (`tools/castle-editor`, `tools/castle-editor-portable`, `examples`).
 
 == Engine examples: very permissive (do what you want) BSD
 
@@ -64,7 +64,7 @@ The example code, and most example data (unless specified otherwise using the `A
 
 In short, you only need to retain our copyright (just keep somewhere line like _"This code is based on Castle Game Engine example"_) in sources or docs. You don't need to share anything you do (you don't need to share the sources/docs). Whatever modifications you do to the example code are yours.
 
-== Visual editor (castle-editor), some example data, some website data: GPL
+== Visual editor (castle-editor, castle-editor-portable), some example data, some website data: GPL
 
 The items listed below are covered by a more strict GNU General Public License (version 2 or above, whichever you like). See the file https://github.com/castle-engine/castle-engine/blob/master/doc/licenses/COPYING.GPL2.txt[doc/licenses/COPYING.GPL2.txt] for the exact license text. See http://www.gnu.org/copyleft/gpl.html for more information about this license (including translations of it to various languages) and philosophy of the free software.
 
@@ -72,7 +72,7 @@ In short, it means that: If you use the items listed below (modified or not) to 
 
 The items covered by the GPL license are:
 
-- castle-editor in `tools/castle-editor/` directory.
+- Editor in `tools/castle-editor/` and `tools/castle-editor-portable/` directories.
 
 - The data files of some examples (the examples are in `examples/` subdirectory, and their "data files" are in `data/` subdirectories beneath). They are clearly marked by the existence of `COPYING.GPL2.txt` and `AUTHORS.txt` files in their respective directories.
 
