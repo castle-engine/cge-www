@@ -259,11 +259,13 @@ or get a notification when animation stops.
 
     <!--p>(Note: "H-Anim" also adds alternative nodes to animate using rigid skeletons. So, instead of animating a hierarchy of <code>Transform</code>, you can animate a hierarchy of <code>Joint</code> nodes. In practice, it's exactly the same thing for our engine.-->
 
-  <li><p>Right now, our engine also implements another animation method as part of <a href="castle_animation_frames.php">animating castle-anim-frames files</a>. In this case, we use a special <i>node interpolator</i> that performs a linear interpolation between whole graphs of X3D nodes. So it's not using <code>PositionInterpolator</code> or <code>CoordinateInterpolator</code> or H-Anim skinned mesh animation, <i>for now</i>.
+  <li><p><i>Future:</i> We also plan to add a <a href="roadmap#gltf_skinning_gpu">SkinnedAnimation</a> node that allows to perform skinned animation in a bit more straightforward way than H-Anim and matching closer the glTF skinned animation design, in particular providing <i>"Inverse Bind Matrices"</i>. Follow the <a href="roadmap#gltf_skinning_gpu">roadmap item about SkinnedAnimation</a> to learn more.
+
+  <li><p><i>Deprecated:</i> Our engine also implements another animation method as part of <a href="castle_animation_frames.php">animating castle-anim-frames files</a>. In this case, we use a special <i>node interpolator</i> that performs a linear interpolation between whole graphs of X3D nodes. So it's not using <code>PositionInterpolator</code> or <code>CoordinateInterpolator</code> or H-Anim skinned mesh animation.
 
     <p>The approach of <i>node interpolator</i> is extremely flexible (able to animate anything that you can create in Blender, whether it's "structurally equal" or not). It is also extremely fast (as the frames are precalculated in memory, so you're actually just rendering static models). However, it may also be slow to load, and it can eat a significant amount of memory.
 
-    <p>We expect to improve it at some point, and then loading <code>castle-anim-frames</code> will just result in an X3D graph using interpolators like <code>PositionInterpolator</code> and <code>CoordinateInterpolator</code> inside. It will be optional, though (the current method has some advantages, so it will remain available too).
+    <p>For the above reasons, we consider this technique deprecated. It is admittedly powerful, but also inherently memory consuming. We advise to not use this approach, better use standard <a href="gltf">glTF</a> or <A href="x3d">X3D</a> ways to animate.
 </ol>
 
 <p>Note that these animations techniques are not mutually exclusive. You can, to some extent, use them within a single scene:
