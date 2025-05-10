@@ -81,6 +81,6 @@ function x3d_node_link2($node_name, $component_name_for_url, $spec_version = NUL
 {
   $x3d_component_url = x3d_spec_latest_url($component_name_for_url, $node_name, $spec_version);
   return '<code><a href="' . $x3d_component_url . '">' .
-    $node_name . '</a></code>' . x3d_node_cgeRef($node_name);
+    $node_name . '</a></code> ' . x3d_node_cgeRef($node_name);
 }
 ?>
