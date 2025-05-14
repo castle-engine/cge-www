@@ -172,6 +172,7 @@ This section documents the complete manifest file, with every possible attribute
   build_using_lazbuild="false"
   compiler="autodetect"
   mac_app_bundle="true"
+  proposed_unit_prefix="Game"
 >
 ...
 ----
@@ -204,6 +205,11 @@ The `<project>` attributes:
  ** `fpc`
  ** `delphi`
 * `mac_app_bundle`: On macOS, should we run and package the project using the Apple _App Bundle_. By default this is `true` and it should stay `true` for GUI applications. For command-line applications, that don't need an App Bundle, you can turn this `false`.
+* `proposed_unit_prefix`: Proposed prefix of a unit name.
++
+By default it is `Game`, so our editor proposes to create unit like `GameViewPlay` and save it in file `code/gameviewplay.pas` and save associated design in `data/gameviewplay.castle-user-interface`. This is merely a _proposition_, you can name units in your project however you prefer, and they don't need to have the same prefix.
++
+Our standard convention for a link:views[view] is to have a singleton representing a view called like `ViewPlay`, so it's useful to have _some_ unit prefix to avoid name clashes.
 
 === Data directory
 
