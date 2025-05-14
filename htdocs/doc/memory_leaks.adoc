@@ -104,7 +104,18 @@ Or use the advise below to redirect the output to file.
 
 By default, `HeapTrc` output is dumped into standard output (on Unix systems and on console Windows applications). However, for Windows GUI applications, the `HeapTrc` output is shown as a series of modal popup windows and can be very tedious to work with in case the output is extensive.
 
-This behavior can be changed by explicitly requesting to dump `HeapTrc` output to a file by using https://www.freepascal.org/docs-html/rtl/heaptrc/setheaptraceoutput.html[SetHeapTraceOutput] procedure. E.g. add `SetHeapTraceOutput(URLToFilenameSafe(ApplicationConfig('heaptrc.log')));` in main project source file.
+This behavior can be changed by explicitly requesting to dump `HeapTrc` output to a file by using https://www.freepascal.org/docs-html/rtl/heaptrc/setheaptraceoutput.html[SetHeapTraceOutput] procedure. E.g. do this in main project source file:
+
+```delphi
+var
+  FileNameForHeapTrc: String;
+begin
+  FileNameForHeapTrc := UrlToFilenameSafe('castle-config:/heaptrc.log');
+  if FileNameForHeapTrc <> '' then
+    SetHeapTraceOutput(FileNameForHeapTrc);
+  // otherwise castle-config:/ is not a regular file system, and HeapTrc cannot write there
+end;
+```
 
 Note, that as this way the `HeapTrc` would not be shown explicitly after the program exits, the developer has to remember to analyze this file manually to check if there are any memory leaks.
 

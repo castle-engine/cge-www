@@ -6,6 +6,7 @@ $toc = new TableOfContents(
   array(
     new TocItem('Storing user preferences locally (UserConfig)', 'user_config'),
     new TocItem('Storing user preferences in the cloud', 'cloud'),
+    new TocItem('Storing more data using <code>castle-config:/</code> URLs', 'castle_config'),
   )
 );
 ?>
@@ -16,7 +17,7 @@ $toc = new TableOfContents(
 <p>To manage persistent data, like user preferences
 or a simple <i>save game</i> values,
 use <?php echo cgeRef('CastleConfig'); ?> unit
-with a <code>UserConfig</code> singleton inside. A simple example:</p>
+with a <?php echo cgeRef('UserConfig'); ?> singleton inside. A simple example:</p>
 
 <?php echo pascal_highlight_file('code-samples/user_prefs_demo.lpr'); ?>
 
@@ -91,6 +92,12 @@ feature. To use this feature:
     or from which to load the game, you can use a ready dialog by calling
     <?php echo cgeRef('TGameService.ShowSaveGames'); ?>.
 </ol>
+
+<?php echo $toc->html_section(); ?>
+
+<p>You're not limited to storing the data using <?php echo cgeRef('UserConfig'); ?>.
+
+<p>You can create any files and organize them in any subdirectory hierarchy by saving and loading using <a href="url#castle-config">castle-config:/</a> URLs. Follow the <a href="url">URLs, loading (downloading) and saving resources</a> documentation for more information.
 
 <?php
 castle_footer();

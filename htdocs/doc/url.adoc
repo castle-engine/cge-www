@@ -184,6 +184,79 @@ The castle-data:/ URL designates files inside the application data directory. Wh
 When setting the URLs of various components from Lazarus, by clicking on "..." in the Lazarus Object Inspector, we automatically detect when you chose a file inside the "data/" subdirectory, and change the URL into appropriate castle-data:/ (instead of a file:/ URL).
 ////
 
+[#castle-config]
+=== Writing data (specific to given user): `castle-config`
+
+If you need to _write_ some data, use the `castle-config:/` protocol to access space for writing resources (config files, savegames, user projects...). For example
+
+[source,pascal]
+----
+var
+  MyUrl: String;
+  MyStream: TStream;
+begin
+  MyUrl := 'castle-config:/my_data.txt';
+  MyStream := UrlSaveStream(MyUrl);
+  try
+    // TODO: write to MyStream whatever you need
+  finally
+    FreeAndNil(MyStream);
+  end;
+end;
+----
+
+Notes:
+
+- The URLs `castle-config:/xxx` point to writeable resources.
++
+If case of regular desktops, these are just files and opening them with cgeref:UrlSaveStream[] does underneath just `TFileStream.Create(FileName, fmCreate)`.
+
+- We follow OS-specific conventions and APIs to determine a space for writing user-specific data. For example `castle-config:/my_file.txt` maps to:
++
+--
+- On Linux and FreeBSD: `/home/<username>/.config/<application-name>/my_file.txt`
+- On Windows: `C:/Users/<username>/AppData/Local/<application-name>/my_file.txt`
+--
++
+To be more precise, on most systems we use logic from http://www.freepascal.org/docs-html/rtl/sysutils/ongetapplicationname.html[FPC GetAppConfigDir function]. (When using Delphi, we have a compatibility implementation with similar logic.) This in turn looks at cgeref:TCastleApplicationProperties.ApplicationName[ApplicationProperties.ApplicationName] and follows the OS-specific conventions and APIs to determine the best config directory. On UNIX this follows http://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html[XDG Base Directory Specification].
+
+- The contents saved to `castle-config:/xxx` are _persistent_ across program runs. Use it for savegames, databases (e.g. using https://wiki.freepascal.org/SQLite[SQLite]), user preferences, etc.
+
+- Our link:manual_user_prefs.php[UserConfig] is also saved there. It's just in file `castle-config:/<application-name>.conf`.
++
+NOTE: Using the `<application-name>` for link:manual_user_prefs.php[UserConfig] location is somewhat superfluous, as it is already stored in the `castle-config:/` directory that is application-specific. But it does seem consistent with what some other applications are doing and makes it easy to find the file in weird situations, in case it gets mixed up with other files.
+
+- Using the `castle-config:/` URL literally (without anything more) indicates the top-level directory of the user configuration. It is initially (when user first runs the application) empty. But you can create as many files there as you want.
+//There is no special way to initialize it with some files before your first application run.
+
+- If you want to initialize something in your _config_ based on your _data_, do it explicitly -- e.g. like this:
++
+```delphi
+uses SysUtils, CastleClassUtils;
+
+procedure MakeSureMyStuffExistsInConfig;
+var
+  OutputStream, InputStream: TStream;
+begin
+  if not UriExists('castle-config:/my_stuff.data') then
+  begin
+    OutputStream := UrlSaveStream('castle-config:/my_stuff.data');
+    try
+      InputStream := Download('castle-data:/my_stuff_initial.data');
+      try
+        ReadGrowingStream(InputStream, OutputStream, true);
+      finally FreeAndNil(InputStream) end;
+    finally FreeAndNil(OutputStream) end;
+  end;
+end;
+```
+
+- The subdirectories inside `castle-config:/` are automatically created as you save files using cgeref:UrlSaveStream[]. So e.g. the code below "just works" and will create `my_subdirectory` automatically:
++
+```delphi
+MyStream := UrlSaveStream('castle-config:/my_subdirectory/my_data.txt');
+```
+
 === Downloading from the network: `http` and `https`
 
 `http` and `https` work.
