@@ -66,6 +66,10 @@ WARNING: TODO: Note that "mouse look" is not correct yet, the mouse cursor is vi
 +
 WARNING: TODO: Note that "mouse look" is not correct yet, the mouse cursor is visible and it can be offscreen.
 
+- link:web-demos/tools/castle-editor-portable[Castle Game Engine - "Portable" Editor] (https://github.com/castle-engine/castle-engine/tree/master/tools/castle-editor-portable[Source code])
++
+WARNING: Early preview, just to show that "we can" :) Not suitable for any real work, lots of features are still missing, use link:editor[real editor (only available on desktops)] instead for real work now.
+
 ////
 TODO: These demos run, but no sound yet.
 
