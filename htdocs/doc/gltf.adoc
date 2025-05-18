@@ -100,7 +100,7 @@ Like this:
    Model: TX3DRootNode;
  begin
    Model := LoadNode('castle-data:/example.gltf');
-   Model.EnumarateNodes(TShapeNode, @HandleNode, false);
+   Model.EnumerateNodes(TShapeNode, @HandleNode, false);
    Scene.Load(Model, true);
  end;
 
