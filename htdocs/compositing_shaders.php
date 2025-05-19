@@ -57,6 +57,9 @@ rendering features, hence why we call this feature <i>compositing shaders</i>.</
 
   <li>
     <p>See also <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/shader_effects_on_texture">Shader Effects On Texture (examples/viewport_and_scenes/shader_effects_on_texture)</a>. This focuses on applying the effects on textures. As always, follow the <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/shader_effects_on_texture#readme">README of the example</a> to know all the details.
+
+  <li>
+    <p>See also <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/shader_effects_on_background">Shader Effects On Background (examples/viewport_and_scenes/shader_effects_on_background)</a>. Shows effects on <?php echo cgeRef('TCastleBackground'); ?>, see <a href="background">background docs</a>.
 </ul>
 
 <?php echo $toc->html_section(); ?>
