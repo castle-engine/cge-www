@@ -31,7 +31,7 @@ We advise using it in CGE as much as you can. It is supported by a lot of tools.
 Now we support skinning, which means below problem can be workarounded using skin.
 In any case, this is Blender problem.
 
-Note that (unfortunatately) it seems not possible to export a single animation like "walk" that animates transformations of multiple Blender objects. That's a consequence of how the "actions" in Blender work ("action" is a set of animation curves, and using the same action for multiple objects forces them to share the animation curves &mdash; which may not be what you want). You can workaround it by https://github.com/castle-engine/castle-engine/tree/master/examples/animations/simultaneous_animations_one_scene[running muliple animations simultaneously from CGE], but this is less comfortable than calling `Scene.PlayAnimation('walk')`.
+Note that (unfortunately) it seems not possible to export a single animation like "walk" that animates transformations of multiple Blender objects. That's a consequence of how the "actions" in Blender work ("action" is a set of animation curves, and using the same action for multiple objects forces them to share the animation curves &mdash; which may not be what you want). You can workaround it by https://github.com/castle-engine/castle-engine/tree/master/examples/animations/simultaneous_animations_one_scene[running multiple animations simultaneously from CGE], but this is less comfortable than calling `Scene.PlayAnimation('walk')`.
 ////
 
 ## Supported Features
@@ -48,14 +48,14 @@ Note that (unfortunatately) it seems not possible to export a single animation l
 - Collisions automatically work (as with all other scene formats), you only have to initialize cgeref:TCastleSceneCore.PreciseCollisions[Scene.PreciseCollisions] (see the link:viewport_3d#_more_precise_collisions[manual]). By default, static meshes have precise collisions (treating them like a set of triangles), while skinned-animated meshes collide as simple bounding boxes (so they don't cause a slowdown when animating). This can be even customized per-shape by adjusting cgeref:TAbstractShapeNode.Collision[Shape.collision] property.
 - We use link:color_space[linear color space (gamma correction)] automatically on PBR materials. You can request to apply it on all materials (including unlit) to follow glTF spec in 100% easily.
 - We read glTF "extras" data that can be defined by your authoring tool, for example in Blender this is defined by _"Custom properties"_. This allows to pass any custom information from Blender to the engine, for use in your own applications, or to influence the import &mdash; see link:blender#section_custom_properties[Custom properties in Blender].
-- We use https://github.com/BeRo1985/pasgltf/[PasGLTF], a great open-source library for reading glTF by https://www.patreon.com/bero[Benjamin "Bero" Rosseaux].
+- We use https://github.com/BeRo1985/pasgltf/[PasGLTF], a great open-source library for reading glTF by https://www.patreon.com/bero[Benjamin "BeRo" Rosseaux].
 - We support common glTF extensions:
 +
 --
 - https://github.com/KhronosGroup/glTF/tree/main/extensions/2.0/Khronos/KHR_materials_unlit[KHR_materials_unlit] - unlit materials.
 - https://github.com/KhronosGroup/glTF/tree/main/extensions/2.0/Khronos/KHR_lights_punctual[KHR_lights_punctual] - define lights (point, spot, directional) within glTF file.
 - https://github.com/KhronosGroup/glTF/tree/main/extensions/2.0/Khronos/KHR_texture_transform[KHR_texture_transform] - transform (scale, offset, rotate) texture coordinates.
-- https://github.com/KhronosGroup/glTF/tree/main/extensions/2.0/Archived/KHR_materials_pbrSpecularGlossiness[KHR_materials_pbrSpecularGlossiness] - support for alernative specification of material parameters using specular-glossiness. Only partial support -- without textures. Extension considerd deprecated by Khronos in favor of https://github.com/KhronosGroup/glTF/tree/main/extensions/2.0/Khronos/KHR_materials_specular[KHR_materials_specular].
+- https://github.com/KhronosGroup/glTF/tree/main/extensions/2.0/Archived/KHR_materials_pbrSpecularGlossiness[KHR_materials_pbrSpecularGlossiness] - support for alternative specification of material parameters using specular-glossiness. Only partial support -- without textures. Extension considered deprecated by Khronos in favor of https://github.com/KhronosGroup/glTF/tree/main/extensions/2.0/Khronos/KHR_materials_specular[KHR_materials_specular].
 --
 
 
