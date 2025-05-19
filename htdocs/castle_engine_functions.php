@@ -1246,7 +1246,12 @@ function castle_slideshow()
   $style = ''; // first image is not hidden
   foreach ($banner_images as $banner_image) {
     $image_src = 'images/not_resized/' . $banner_image['src'] . '.webp';
-    $rendered .= '<img src="' . $image_src . '" alt="' .
+    /* fetchpriority="high" is a hint to browser to load this image
+       as soon as possible.
+       Advised on https://web.dev/articles/optimize-lcp?hl=pl .
+       See also https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/fetchPriority
+        */
+    $rendered .= '<img fetchpriority="high" src="' . $image_src . '" alt="' .
       $banner_image['alt'] . '" ' .
       _castle_image_sizes($image_src) . ' ' .
       $style . '>' . "\n";
