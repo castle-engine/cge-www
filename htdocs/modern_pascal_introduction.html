@@ -1240,19 +1240,14 @@ You can avoid placing enum names in the global namespace by compiler directive <
 <pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$ifdef FPC}</span> <span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span> <span class="preprocessor">{$endif}</span>
 <span class="preprocessor">{$ifdef MSWINDOWS}</span> <span class="preprocessor">{$apptype CONSOLE}</span> <span class="preprocessor">{$endif}</span>
 
-<span class="preprocessor">{$ifndef FPC}</span>
-  <span class="preprocessor">{$message warn 'Delphi does not have FGL unit'}</span>
-  <span class="keyword">begin</span> <span class="keyword">end</span>.
-<span class="preprocessor">{$endif}</span>
-
 <span class="keyword">uses</span>
-  SysUtils, FGL;
+  SysUtils, Generics.Collections;
 
 <span class="keyword">type</span>
   TMyClass = <span class="keyword">class</span>
     I, Square: Integer;
   <span class="keyword">end</span>;
-  TMyClassList = <span class="preprocessor">{$ifdef FPC}</span>specialize<span class="preprocessor">{$endif}</span> TFPGObjectList&lt;TMyClass&gt;;
+  TMyClassList = <span class="preprocessor">{$ifdef FPC}</span>specialize<span class="preprocessor">{$endif}</span> TObjectList&lt;TMyClass&gt;;
 
 <span class="keyword">var</span>
   List: TMyClassList;
@@ -5840,8 +5835,8 @@ The more general concept is <em>"type helper"</em>. Using them you can add metho
   MyInterface := TMyClass2.Create(<span class="keyword">nil</span>);
   MyClass := TMyClass2.Create(<span class="keyword">nil</span>);
 
-  <span class="comment">// This doesn't compile, since at compile-time it's unknown if My is IMyInterface2.</span>
-  <span class="comment">// UseInterface2(My);</span>
+  <span class="comment">// This doesn't compile, since at compile-time it's unknown if MyInterface is IMyInterface2.</span>
+  <span class="comment">// UseInterface2(MyInterface);</span>
   <span class="comment">// UseInterface2(MyClass);</span>
 
   <span class="comment">// This compiles and works OK.</span>
@@ -5855,12 +5850,12 @@ The more general concept is <em>"type helper"</em>. Using them you can add metho
   UseInterface2(MyClass <span class="keyword">as</span> IMyInterface2);
 
   <span class="comment">// This compiles, but will fail at runtime, with ugly &quot;Access violation&quot;.</span>
-  <span class="comment">// UseInterface3(IMyInterface3(My));</span>
+  <span class="comment">// UseInterface3(IMyInterface3(MyInterface));</span>
   <span class="comment">// This does not compile. Casting InterfaceType(ClassType) is checked at compile-time.</span>
   <span class="comment">// UseInterface3(IMyInterface3(MyClass));</span>
 
   <span class="comment">// This compiles, but will fail at runtime, with nice &quot;EInvalidCast: Invalid type cast&quot;.</span>
-  <span class="comment">// UseInterface3(My as IMyInterface3);</span>
+  <span class="comment">// UseInterface3(MyInterface as IMyInterface3);</span>
   <span class="comment">// This compiles, but will fail at runtime, with nice &quot;EInvalidCast: Invalid type cast&quot;.</span>
   <span class="comment">// UseInterface3(MyClass as IMyInterface3);</span>
 
