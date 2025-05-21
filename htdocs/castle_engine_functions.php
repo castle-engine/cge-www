@@ -847,9 +847,24 @@ function _castle_breadcrumbs($path)
 
     $result = '<div class="header_breadcrumbs"><a href="/">Home</a>';
 
+    // Create breadcrumb schema for SEO
+    $breadcrumb_schema = array(
+      "@context" => "https://schema.org",
+      "@type" => "BreadcrumbList",
+      "itemListElement" => array(
+        array(
+          "@type" => "ListItem",
+          "position" => 1,
+          "name" => "Home",
+          "item" => CASTLE_PROD_URL
+        )
+      )
+    );
+
     $path_item_num = 0;
     $path_item = '';
     $path_itemsub = $castle_sitemap;
+    $position = 2; // Start at 2 because Home is position 1
 
     while ($path_item_num < count($path) - 1)
     {
@@ -857,7 +872,7 @@ function _castle_breadcrumbs($path)
 
       if (!isset($path_itemsub[$path_item])) {
         //throw new ErrorException('No page named ' . $path_item . ' at current level of castle_sitemap');
-        // return no breadcrumbs for pages outsite of castle_sitemap
+        // return no breadcrumbs for pages outside of castle_sitemap
         return '';
       }
 
@@ -868,10 +883,35 @@ function _castle_breadcrumbs($path)
 
       $result .= ' &#187; ' . a_href_page($path_itemtitle, $path_item);
 
+      // Add to breadcrumb schema
+      $breadcrumb_schema["itemListElement"][] = array(
+        "@type" => "ListItem",
+        "position" => $position,
+        "name" => strip_tags($path_itemtitle),
+        "item" => page_url($path_item)
+      );
+      $position++;
+
       $path_item_num ++;
     }
 
-    $result .= '</div>';
+    // Add current page to breadcrumb schema if we have it
+    if ($path_item_num < count($path)) {
+      $current_page = $path[$path_item_num];
+      if (isset($path_itemsub[$current_page])) {
+        $current_title = $path_itemsub[$current_page]['title'];
+        $breadcrumb_schema["itemListElement"][] = array(
+          "@type" => "ListItem",
+          "position" => $position,
+          "name" => strip_tags($current_title),
+          "item" => page_url($current_page)
+        );
+      }
+    }
+
+    // Add breadcrumb schema to output
+    $result .= '</div>' . "\n";
+    $result .= '<script type="application/ld+json">' . json_encode($breadcrumb_schema) . '</script>' . "\n";
   }
 
   return $result;
@@ -887,7 +927,7 @@ function _castle_find_in_sitemap($path)
   foreach ($path as $path_item) {
     if (!isset($path_itemsub[$path_item])) {
       //throw new ErrorException('No page named ' . $path_item . ' at current level of castle_sitemap');
-      // behave as if the page is at top-level, for pages outsite of castle_sitemap
+      // behave as if the page is at top-level, for pages outside of castle_sitemap
       return NULL;
     }
     $result = $path_itemsub[$path_item];
@@ -1337,7 +1377,7 @@ function echo_shared_body_begin($path, $enable_sidebar = true)
         $sidebarroot_page = $path[$sidebarroot_num];
 
         if (!isset($sidebarroot_sub[$sidebarroot_page])) {
-          // return no sidebar for pages outsite of castle_sitemap
+          // return no sidebar for pages outside of castle_sitemap
           $sidebarroot_page = NULL;
           $sidebarroot_info = NULL;
           break;
