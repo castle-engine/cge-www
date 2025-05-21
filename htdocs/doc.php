@@ -5,7 +5,7 @@
   "Doc" stands for "Castle Game Engine Documents using AsciiDoctor".
   "Doc" may be shortcut for "document" or "AsciiDoctor" :)
 
-  During development, we assume you have asciidoctor and coderay installed,
+  During development, we assume you have AsciiDoctor and CodeRay installed,
   we will regenerate HTMLs automatically when previewing.
   On production, we assume HTMLs are already there (use "cd doc/ && make" to make them).
 */
@@ -20,7 +20,7 @@ if (empty($_GET['page'])) {
 }
 $page_name = $_GET['page'];
 
-/* Originally, we validated this, and rejetected $page_name with slash (or dot, earlier):
+/* Originally, we validated this, and rejected $page_name with slash (or dot, earlier):
 
     if (strpos($page_name, '/') !== FALSE) {
       die('Title contains invalid characters: ' . htmlspecialchars($page_name));
@@ -98,6 +98,9 @@ function castle_read_adoc_header($adoc_file)
     if (is_prefix(':cge-social-share-image: ', $adoc_header_line)) {
       $result['social_share_image'] = trim(remove_prefix(':cge-social-share-image: ', $adoc_header_line));
     }
+    if (is_prefix(':head-title: ', $adoc_header_line)) {
+      $result['head-title'] = trim(remove_prefix(':head-title: ', $adoc_header_line));
+    }
   }
 
   fclose($adoc_file_handle);
@@ -112,6 +115,13 @@ if (empty($adoc_header['title'])) {
   $title = $page_name; // use internal page name as a fallback title
 } else {
   $title = $adoc_header['title'];
+}
+
+// calculate $head_title,
+// which is used for <title> in HTML <head> but *not* shown as part of content
+$head_title = $title;
+if (array_key_exists('head-title', $adoc_header)) {
+  $head_title = $adoc_header['head-title'];
 }
 
 // calculate $header_params and call castle_header
@@ -132,7 +142,7 @@ if (!empty($adoc_header['social_share_image'])) {
     }
   }
 }
-castle_header($title, $header_params);
+castle_header($head_title, $header_params);
 
 global $castle_current_book;
 if ($castle_current_book == NULL) { // in case of book, pretty_heading is already done by castle_header

@@ -431,7 +431,8 @@ if ($castle_wordpress) {
 
   if (!$castle_wordpress) {
     $full_title = $page_title;
-    if (!empty($site_title)) {
+    // Don't repeat $site_title if already a natural part of $page_title, like for download.adoc
+    if (!empty($site_title) && strpos($full_title, $site_title) === false) {
       $full_title .= ' | ' . htmlspecialchars($site_title);
     }
 
