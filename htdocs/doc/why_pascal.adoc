@@ -3,6 +3,58 @@ include::common.adoc[]
 :description: Object Pascal is a modern, readable, fast, type-safe, cross-platform OOP programming language. It is also easy to pick up.
 :cge-social-share-image: vscode_ext_1.png
 
+++++
+<!-- FAQ Schema for SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is Pascal a modern programming language?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, Object Pascal is a modern programming language. It supports classes, units, properties, generics, interfaces, reflection, closures, and everything you expect from a modern OOP language."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Pascal fast?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, Pascal is compiled to native code and is fast out of the box. There's seldom any need to do low-level optimizations. Compilation is also very fast - Castle Game Engine projects compile in seconds."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What platforms does Pascal support?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pascal compilers like FPC and Delphi support multiple target platforms. For example, Castle Game Engine (game using using Pascal), supports desktop (Windows, Linux, macOS, FreeBSD), mobile (Android, iOS), consoles (Nintendo Switch), and web (WebAssembly and JS using pas2js)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Pascal type-safe?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, Pascal is type-safe with special types for booleans, strings, chars, sets, enums, and ranges. Type conversions are either safe (e.g., integer can be assigned to float) or must be done explicitly, preventing many common programming errors."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What tools are available for Pascal development?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pascal has a rich ecosystem of tools including Free Pascal Compiler (FPC), Lazarus IDE, Delphi (commercial), and VS Code support through extensions. Castle Game Engine provides additional tools for game development."
+      }
+    }
+  ]
+}
+</script>
+++++
+
 ## Short answer
 
 Object Pascal is a
