@@ -1,5 +1,9 @@
-# Disallow from indexing /doc/output/, as they duplicate the content available at root.
+# Castle Game Engine robots.txt
 User-agent: *
+Allow: /
+
+# Disallow indexing /doc/output/, as they duplicate the content available at root.
 Disallow: /doc/output/
 
-Sitemap: https://castle-engine.io/sitemap.xml
+# Sitemap location (also on https://castle-engine.io/sitemap.xml, but we can avoid redirect)
+Sitemap: https://castle-engine.io/sitemap.php
