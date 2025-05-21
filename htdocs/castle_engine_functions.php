@@ -989,16 +989,29 @@ function echo_header_bonus ()
       <?php
   }
 
-  /* Add icon, following Google structured data recommendation.
-     https://developers.google.com/search/docs/advanced/structured-data/logo
+  /* Add structured data following Google structured data recommendations.
+     https://developers.google.com/search/docs/advanced/structured-data/
   */
   ?>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": "SoftwareApplication",
+    "name": "Castle Game Engine",
+    "applicationCategory": "GameEngine",
+    "operatingSystem": "Windows, Linux, macOS, Android, iOS, Nintendo Switch, Web",
+    "author": {
+      "@type": "Organization",
+      "name": "Castle Game Engine Developers",
+      "url": "<?php echo CASTLE_PROD_URL; ?>",
+      "logo": "<?php echo CASTLE_PROD_URL; ?>images/castle_game_engine_icon.png"
+    },
+    "description": "Free open-source 3D and 2D game engine. Cross-platform, for desktops, mobile, console, web. Comfortable visual editor. Powerful modern Object Pascal API.",
     "url": "<?php echo CASTLE_PROD_URL; ?>",
-    "logo": "<?php echo CASTLE_PROD_URL; ?>images/castle_game_engine_icon.png"
+    "image": "<?php echo CASTLE_PROD_URL; ?>images/combined_cge_logo_game.png",
+    "sameAs": [
+      "https://github.com/castle-engine/castle-engine"
+    ]
   }
   </script>
   <?php
