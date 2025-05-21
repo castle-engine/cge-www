@@ -313,6 +313,7 @@ function kambi_bootstrap()
    that already have basic <head> stuff, like <title>, so we should not add it). */
 function echo_shared_head()
 {
+  global $main_page;
 ?>
 
 <!-- Bootstrap -->
@@ -327,6 +328,11 @@ function echo_shared_head()
 <!-- slick carousel https://github.com/kenwheeler/slick/ -->
 <link rel="stylesheet" type="text/css" href="<?php echo page_requisite('castle-engine-website-base/node_modules/slick-carousel/slick/slick.css'); ?>">
 <link rel="stylesheet" type="text/css" href="<?php echo page_requisite('castle-engine-website-base/node_modules/slick-carousel/slick/slick-theme.css'); ?>">
+
+<!-- Preload main slideshow image for better LCP on main page -->
+<?php if ($main_page): ?>
+<link rel="preload" href="<?php echo page_requisite('images/not_resized/combined_cge_logo_game.webp'); ?>" as="image">
+<?php endif; ?>
 
 <?php
   echo_header_bonus();
@@ -517,7 +523,7 @@ jQuery.event.special.mousewheel = {
 <script src="<?php echo page_requisite('castle-engine-website-base/node_modules/jquery-colorbox/jquery.colorbox-min.js'); ?>"></script>
 <script>
   jQuery('a.screenshot').colorbox({opacity: 0.9, rel:'screenshot', maxWidth:'90%', maxHeight:'90%'});
-  // For AsciiDoctor images with role=screnshot
+  // For AsciiDoctor images with role=screenshot
   jQuery('.screenshot a').colorbox({opacity: 0.9, rel:'screenshot', maxWidth:'90%', maxHeight:'90%'});
 </script>
 
@@ -525,7 +531,7 @@ jQuery.event.special.mousewheel = {
 <script src="<?php echo page_requisite('castle-engine-website-base/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js'); ?>"></script>
 
 <!-- slick carousel https://github.com/kenwheeler/slick/ -->
-<script src="<?php echo page_requisite('castle-engine-website-base/node_modules/slick-carousel/slick/slick.min.js'); ?>"></script>
+<script src="<?php echo page_requisite('castle-engine-website-base/node_modules/slick-carousel/slick/slick.min.js'); ?>" fetchpriority="high"></script>
 <script>
 $('.banner-container').on('init', function(event, slick){
   /* Make images visible after slick initialization.

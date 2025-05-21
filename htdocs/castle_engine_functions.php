@@ -1243,26 +1243,34 @@ function castle_slideshow()
     array('src' => 'combined_cge_logo_game_2', 'alt' => 'Castle Game Engine logo and Escape from the Universe game'),
   );
   $rendered = '<div class="banner-container">' . "\n";
-  $style = ''; // first image is not hidden
-  foreach ($banner_images as $banner_image) {
+  $first_image = true;
+  foreach ($banner_images as $banner_image)
+  {
+    /* Special treatment for first vs subsequent images, to have good LCP and CLS. */
+    if ($first_image) {
+      /* fetchpriority="high" is a hint to browser to load this image
+        as soon as possible.
+        Advised on https://web.dev/articles/optimize-lcp?hl=pl .
+        See also https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/fetchPriority
+      */
+      $extra_attribs = 'fetchpriority="high" loading="eager"';
+      $first_image = false;
+    } else {
+      /* Subsequent images are hidden initially, this makes better look when
+        loading.
+        Failing to do so results in bad (large) CLS (Cumulative Layout Shift),
+        which is
+        - bad for users (content shifts at loading)
+        - bad for SEO (Google core web vitals
+          based on actual user experience measure this, also LightHouse). */
+      $extra_attribs = 'style="display: none"';
+    }
+
     $image_src = 'images/not_resized/' . $banner_image['src'] . '.webp';
-    /* fetchpriority="high" is a hint to browser to load this image
-       as soon as possible.
-       Advised on https://web.dev/articles/optimize-lcp?hl=pl .
-       See also https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/fetchPriority
-        */
-    $rendered .= '<img fetchpriority="high" src="' . $image_src . '" alt="' .
+    $rendered .= '<img src="' . $image_src . '" alt="' .
       $banner_image['alt'] . '" ' .
       _castle_image_sizes($image_src) . ' ' .
-      $style . '>' . "\n";
-    /* Subsequent images are hidden initially, this makes better look when
-       loading.
-       Failing to do so results in bad (large) CLS (Cumulative Layout Shift),
-       which is
-       - bad for users (content shifts at loading)
-       - bad for SEO (Google core web vitals
-         based on actual user experience measure this, also LightHouse). */
-    $style = 'style="display: none"';
+      $extra_attribs  . '>' . "\n";
   }
   $rendered .= '</div>' . "\n";
   return $rendered;
