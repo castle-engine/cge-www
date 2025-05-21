@@ -1,6 +1,6 @@
 # Download
 include::common.adoc[]
-:description: Download Castle Game Engine, a cross-platform 3D and 2D game engine, for free for all the supported platforms, including: Windows, Linux, macOS, Raspberry Pi, PineTab2, FreeBSD.
+:description: Download Castle Game Engine for free. Cross-platform game development tool for Windows, Linux, macOS, FreeBSD, Raspberry Pi, Android, iOS, and web. Get started with game development today!
 :cge-social-share-image: fps_game_editor.png
 
 == Download the engine for your system

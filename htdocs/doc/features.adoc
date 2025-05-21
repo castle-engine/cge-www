@@ -1,6 +1,6 @@
 # Features
 include::common.adoc[]
-:description: Castle Game Engine features, with screenshots and links.
+:description: Discover Castle Game Engine features: cross-platform support, visual editor, powerful API, 3D and 2D rendering, physics, sound, and more. Build games for all platforms!
 :cge-social-share-image: terrain_component_1.png
 
 ////
