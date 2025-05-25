@@ -655,7 +655,12 @@ a.patreon-link:focus {
 <li><a href="#_static_class_methods">9.5. Static class methods</a></li>
 <li><a href="#_class_properties_and_variables">9.6. Class properties and variables</a></li>
 <li><a href="#_class_helpers">9.7. Class helpers</a></li>
-<li><a href="#_virtual_constructors_destructors">9.8. Virtual constructors, destructors</a></li>
+<li><a href="#_should_constructors_and_destructors_be_virtual">9.8. Should constructors and destructors be virtual?</a>
+<ul class="sectlevel3">
+<li><a href="#_destructors">9.8.1. Destructors</a></li>
+<li><a href="#_constructors">9.8.2. Constructors</a></li>
+</ul>
+</li>
 <li><a href="#_an_exception_in_constructor">9.9. An exception in constructor</a></li>
 </ul>
 </li>
@@ -3432,6 +3437,9 @@ S := Download(<span class="string"><span class="delimiter">'</span><span class="
 <span class="keyword">end</span>;</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Documentation of all the <em>Castle Game Engine</em> features to load and save streams, including the <code>Download</code> function and the <code>TTextReader</code> class, is on <a href="https://castle-engine.io/url" class="bare">https://castle-engine.io/url</a> .</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="generic-containers-section">7.2. Containers (lists, dictionaries) using generics</h3>
@@ -5499,21 +5507,123 @@ The more general concept is <em>"type helper"</em>. Using them you can add metho
 </div>
 </div>
 <div class="sect2">
-<h3 id="_virtual_constructors_destructors">9.8. Virtual constructors, destructors</h3>
+<h3 id="_should_constructors_and_destructors_be_virtual">9.8. Should constructors and destructors be virtual?</h3>
 <div class="paragraph">
-<p>Destructor name is always <code>Destroy</code>, it is virtual (since you can call it without knowing the exact class at compile-time) and parameter-less.</p>
+<p>The answer is actually different for constructors and destructors, and it also depends on whether you are using <code>TObject</code> or <code>TComponent</code> as the ancestor class.</p>
 </div>
+<div class="sect3">
+<h4 id="_destructors">9.8.1. Destructors</h4>
+<div class="paragraph">
+<p>There is only one <em>destructor</em> in a class. It&#8217;s name is always <code>Destroy</code>, it is virtual (since you can call it without knowing the exact class at compile-time) and parameter-less. Define it like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="keyword">type</span>
+  TMyClass = <span class="keyword">class</span>(TObject)
+  <span class="directive">public</span>
+    <span class="keyword">destructor</span> Destroy; <span class="directive">override</span>;
+  <span class="keyword">end</span>;
+
+<span class="keyword">destructor</span> TMyClass.Destroy;
+<span class="keyword">begin</span>
+  <span class="comment">// Cleanup code here</span>
+  <span class="keyword">inherited</span>; <span class="comment">// Call the ancestor destructor</span>
+<span class="keyword">end</span>;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>While in theory it is possible to deviate from this approach, and define additional destructors with different names, we don&#8217;t recommend it. A single destructor should be capable of cleaning up the instance (regardless of how it was created), this is obvious to developers  and this way <code>Free</code> and <code>FreeAndNil</code> can be used reliably (they will both indirectly call the <code>Destroy</code> method).</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_constructors">9.8.2. Constructors</h4>
 <div class="paragraph">
 <p>Constructor name is by convention <code>Create</code>.</p>
 </div>
 <div class="paragraph">
-<p>You can change this name, although be careful with this&#8201;&#8212;&#8201;if you define <code>CreateMy</code>, always redefine also the name <code>Create</code>, otherwise the user can still access the constructor <code>Create</code> of the ancestor, bypassing your <code>CreateMy</code> constructor.</p>
+<p>In the base <code>TObject</code> class there is one simple constructor, without any parameters, called <code>Create</code>. It is not virtual. When creating descendants you&#8217;re free to define your own constructor(s) with any parameters you want. The new constructor will hide the constructor in the ancestor (though see below for some warnings about this "hiding"). If you don&#8217;t have a good reason to make the constructor virtual in descendants, don&#8217;t do it, it is not necessary.</p>
 </div>
 <div class="paragraph">
-<p>In the base <code>TObject</code> it is not virtual, and when creating descendants you&#8217;re free to change the parameters. The new constructor will hide the constructor in ancestor (note: don&#8217;t put here <code>overload</code>, unless you want to break it).</p>
+<p>For example, you can define a constructor like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="keyword">type</span>
+  TMyClass = <span class="keyword">class</span>(TObject)
+  <span class="directive">public</span>
+    <span class="keyword">constructor</span> Create(AValue: Integer; <span class="keyword">const</span> AName: <span class="keyword">String</span>);
+  <span class="keyword">end</span>;
+
+<span class="keyword">constructor</span> TMyClass.Create(AValue: Integer; <span class="keyword">const</span> AName: <span class="keyword">String</span>);
+<span class="keyword">begin</span>
+  <span class="keyword">inherited</span> Create; <span class="comment">// Call the ancestor constructor</span>
+  <span class="comment">// Initialization code here</span>
+<span class="keyword">end</span>;</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>In the <code>TComponent</code> descendants, you should override its <code>constructor Create(AOwner: TComponent);</code>. For streaming functionality, to create a class without knowing its type at compile time, having virtual constructors is very useful (see <a href="#_class_references">Class references</a> above).</p>
+<p>Multiple constructors can be defined, using overloading (multiple constructors with the same name but with different parameters) and/or just inventing a new name for the constructor, like <code>TMyClass.CreateFromJson(const JsonFileName: String)</code>. It&#8217;s a useful convention to start all constructor names with <code>Create</code>.</p>
+</div>
+<div class="paragraph">
+<p>When creating a class, the correct constructor is called, since you explicitly indicate the constructor name and parameters when creating an instance, like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="pascal">X1 := TMyClass.CreateFromJson(<span class="string"><span class="delimiter">'</span><span class="content">myfile.json</span><span class="delimiter">'</span></span>);
+X2 := TMyClass.Create(<span class="integer">10</span>, <span class="string"><span class="delimiter">'</span><span class="content">hello</span><span class="delimiter">'</span></span>);</code></pre>
+</div>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+If you define a constructor with a different name, like <code>CreateFromJson</code>, you usually <em>also</em> want to define a constructor with the standard name <code>Create</code> in the same class. Otherwise, the user can still access the ancestor constructor <code>Create</code>, thus creating an instance of your class without using your custom constructor at all. This is usually not what the developer intended.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+For a similar reason, be careful when using <code>overload</code> (Delphi way of overloading, that doesn&#8217;t completely hide the ancestor constructor). If you didn&#8217;t redefine all ancestor constructors, then the user can still use the ancestor constructor (thus, create an instance of your new class without calling any of your constructors).
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The <code>TComponent</code> standard class has a virtual constructor declared like this: <code>constructor Create(AOwner: TComponent); virtual;</code>. Using virtual constructor is necessary for the streaming functionality of <code>TComponent</code>, to create a class without knowing its type at compile time (see <a href="#_class_references">Class references</a> for explanation). In the <code>TComponent</code> descendants, you should override it.</p>
+</div>
+<div class="paragraph">
+<p>For example, this is how you can define a constructor in a <code>TComponent</code> descendant. Note that we cannot take additional parameters in this case (e.g. to take initial value for property <code>MyInt</code>), because we need to keep the same signature as in the ancestor class. Any customization will have to be done by developer by setting properties or calling other methods after the instance is created.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="keyword">type</span>
+  TMyComponent = <span class="keyword">class</span>(TComponent)
+  <span class="directive">private</span>
+    FMyInt: Integer;
+  <span class="directive">public</span>
+    <span class="keyword">constructor</span> Create(AOwner: TComponent); <span class="directive">override</span>;
+    <span class="keyword">property</span> MyInt: Integer <span class="directive">read</span> FMyInt <span class="directive">write</span> FMyInt;
+  <span class="keyword">end</span>;
+
+<span class="keyword">constructor</span> TMyComponent.Create(AOwner: TComponent);
+<span class="keyword">begin</span>
+  <span class="keyword">inherited</span> Create(AOwner); <span class="comment">// Call the ancestor constructor</span>
+  FMyInt := <span class="integer">0</span>; <span class="comment">// Default value</span>
+<span class="keyword">end</span>;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Some other classes, also in your own code, may have virtual constructors (to enable streaming them or just creating them using class references). In such cases, the constructor in descendants should generally use the same parameters and be declared with <code>override</code> (unless you really know what&#8217;s going on, i.e. you understand why ancestor constructor was virtual and this reason doesn&#8217;t apply to your descendant class).</p>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -5527,7 +5637,7 @@ The more general concept is <em>"type helper"</em>. Using them you can add metho
 </div>
 </div>
 <div class="paragraph">
-<p>does not execute to the end in this case, <code>X</code> cannot be assigned, so who will clean up after a partially-constructed class?</p>
+<p>does not finish execution in this case, variable <code>X</code> is not assigned, so who will clean up after a partially-constructed class?</p>
 </div>
 <div class="paragraph">
 <p>The solution of Object Pascal is that, if an exception occurs within a constructor, then the destructor is called. This is a reason why <em>your destructor must be robust</em>, which means it should work in any circumstances, even on a half-created class instance. Usually this is easy if you release everything safely, like by <code>FreeAndNil</code>.</p>
@@ -6243,7 +6353,7 @@ you create <em>COM interfaces</em>. This can be stated explicitly by saying <cod
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-05-25 02:43:14 +0200
+Last updated 2025-05-25 03:27:09 +0200
 </div>
 </div>
 <!-- Google analytics -->
