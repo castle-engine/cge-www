@@ -614,7 +614,7 @@ a.patreon-link:focus {
 <li><a href="#_overview_2">6.1. Overview</a></li>
 <li><a href="#_raising">6.2. Raising</a></li>
 <li><a href="#_catching">6.3. Catching</a></li>
-<li><a href="#_finally_doing_things_regardless_if_an_exception_occurred">6.4. Finally (doing things regardless if an exception occurred)</a></li>
+<li><a href="#_finally_doing_things_regardless_of_whether_an_exception_occurred">6.4. Finally (doing things regardless of whether an exception occurred)</a></li>
 <li><a href="#_how_the_exceptions_are_displayed_by_various_libraries">6.5. How the exceptions are displayed by various libraries</a></li>
 </ul>
 </li>
@@ -1721,7 +1721,7 @@ In such cases, the last unit on the <code>uses</code> clause "wins", which means
 <p>Note that this trick cannot be done as easily with global procedures, functions and variables. With procedures and functions, you could expose a constant pointer to a procedure in another unit (see <a href="#Callbacks">Callbacks (aka events, aka pointers to functions, aka procedural variables)</a>), but that looks quite dirty.</p>
 </div>
 <div class="paragraph">
-<p>The usual solution is then to create a trivial "wrapper" functions that underneath simply call the functions from the internal unit, passing the parameters and return values around.</p>
+<p>The usual solution is to create trivial "wrapper" functions that simply call the functions from the internal unit, passing the parameters and return values as needed.</p>
 </div>
 <div class="paragraph">
 <p>To make this work with global variables, one can use global (unit-level) properties, see <a href="#_properties">Properties</a>.</p>
@@ -1824,7 +1824,7 @@ In such cases, the last unit on the <code>uses</code> clause "wins", which means
 </div>
 </div>
 <div class="paragraph">
-<p>By default methods are not virtual, declare them with <code>virtual</code> to make them. Overrides must be marked with <code>override</code>, otherwise you will get a warning. To hide a method without overriding (usually you don&#8217;t want to do this, unless you now what you&#8217;re doing) use <code>reintroduce</code>.</p>
+<p>By default methods are not virtual, declare them with <code>virtual</code> to make them so. Overrides must be marked with <code>override</code>, otherwise you will get a warning. To hide a method without overriding (usually you don&#8217;t want to do this, unless you know what you&#8217;re doing) use <code>reintroduce</code>.</p>
 </div>
 <div class="paragraph">
 <p>To test the class of an instance at runtime, use the <code>is</code> operator. To typecast the instance to a specific class, use the <code>as</code> operator.</p>
@@ -1899,7 +1899,7 @@ In such cases, the last unit on the <code>uses</code> clause "wins", which means
 <div class="sect2">
 <h3 id="_properties">4.3. Properties</h3>
 <div class="paragraph">
-<p>Properties are a very nice <em>"syntax sugar"</em> to</p>
+<p>Properties are a very nice <em>"syntactic sugar"</em> to</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -2034,7 +2034,7 @@ Properties can also be defined outside of class, at a unit level. They serve an 
 <div class="sect2">
 <h3 id="_exceptions_quick_example">4.4. Exceptions - Quick Example</h3>
 <div class="paragraph">
-<p>We have exceptions. They can be caught with <code>try &#8230;&#8203; except &#8230;&#8203; end</code> clauses, and we have finally sections like <code>try &#8230;&#8203; finally &#8230;&#8203; end</code>.</p>
+<p>We have exceptions. They can be caught with <code>try &#8230;&#8203; except &#8230;&#8203; end</code> clauses, and we have <code>finally</code> sections like <code>try &#8230;&#8203; finally &#8230;&#8203; end</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2270,7 +2270,7 @@ Go ahead, change the implementation of <code>TMyClass2.MyOtherMethod</code> abov
 </div>
 </div>
 <div class="paragraph">
-<p>Since using <code>inherited</code> to call a method with the same name, with the same arguments, is a very often case, there is a special shortcut for it: you can just write <code>inherited;</code> (<code>inherited</code> keyword followed immediately by a semicolon, instead of a method name). This means "<em>call an inherited method with the same name, passing it the same arguments as the current method</em>".</p>
+<p>Since using <code>inherited</code> to call a method with the same name, with the same arguments, is a very common case, there is a special shortcut for it: you can just write <code>inherited;</code> (<code>inherited</code> keyword followed immediately by a semicolon, instead of a method name). This means "<em>call an inherited method with the same name, passing it the same arguments as the current method</em>".</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -2301,7 +2301,7 @@ In the above example, all the <code>inherited &#8230;&#8203;;</code> calls could
 </div>
 </div>
 <div class="paragraph">
-<p>Note 2: You usually want to make the <code>MyMethod</code> <em>virtual</em> when many classes (along the "<em>inheritance chain</em>") define it. More about the virtual methods in the section below. But the <code>inherited</code> keyword works regardless if the method is virtual or not. The <code>inherited</code> always means that the compiler starts searching for the method in an ancestor, and it makes sense for both <em>virtual</em> and <em>not virtual</em> methods.</p>
+<p>Note 2: You usually want to make the <code>MyMethod</code> <em>virtual</em> when many classes (along the "<em>inheritance chain</em>") define it. More about the virtual methods in the section below. But the <code>inherited</code> keyword works regardless of whether the method is virtual or not. The <code>inherited</code> always means that the compiler starts searching for the method in an ancestor, and it makes sense for both <em>virtual</em> and <em>non-virtual</em> methods.</p>
 </div>
 </div>
 <div class="sect2">
@@ -2349,7 +2349,7 @@ In the above example, all the <code>inherited &#8230;&#8203;;</code> calls could
 <span class="keyword">end</span>;
 
 <span class="keyword">var</span>
-  Apple: TApple; <span class="comment">// Note: you could as well declare &quot;Apple: TFruit&quot; here</span>
+  Apple: TApple; <span class="comment">// Note: you could also declare &quot;Apple: TFruit&quot; here</span>
 <span class="keyword">begin</span>
   Apple := TApple.Create;
   <span class="keyword">try</span>
@@ -2427,7 +2427,7 @@ Eating a fruit</pre>
 <span class="keyword">end</span>;
 
 <span class="keyword">var</span>
-  Apple: TApple; <span class="comment">// Note: you could as well declare &quot;Apple: TFruit&quot; here</span>
+  Apple: TApple; <span class="comment">// Note: you could also declare &quot;Apple: TFruit&quot; here</span>
 <span class="keyword">begin</span>
   Apple := TApple.Create;
   <span class="keyword">try</span>
@@ -2793,7 +2793,7 @@ results in an unpredictable behavior&#8201;&#8212;&#8201;maybe an access violati
 <li>
 <p>The most future-proof solution is to use <code>TComponent</code> class "free notification" mechanism. One component can be notified when another component is freed, and thus set its reference to <code>nil</code>.</p>
 <div class="paragraph">
-<p>Thus you get something like a <em>weak reference</em>. It can cope with various usage scenarios, for example you can let the code from outside of the class to set your reference, and the outside code can also free the instance at anytime.</p>
+<p>Thus you get something like a <em>weak reference</em>. It can cope with various usage scenarios, for example you can allow the code from outside of the class to set your reference, and the outside code can also free the instance at any time.</p>
 </div>
 <div class="paragraph">
 <p>This requires both classes to descend from <code>TComponent</code>. Using it in general boils down to calling <code>FreeNotification</code> , <code>RemoveFreeNotification</code>, and overriding <code>Notification</code>.</p>
@@ -3149,9 +3149,9 @@ except
 </div>
 </div>
 <div class="sect2">
-<h3 id="_finally_doing_things_regardless_if_an_exception_occurred">6.4. Finally (doing things regardless if an exception occurred)</h3>
+<h3 id="_finally_doing_things_regardless_of_whether_an_exception_occurred">6.4. Finally (doing things regardless of whether an exception occurred)</h3>
 <div class="paragraph">
-<p>Often you use <code>try .. finally .. end</code> construction to free an instance of some object, regardless if an exception occurred when using this object. The way to write it looks like this:</p>
+<p>Often you use <code>try .. finally .. end</code> construction to free an instance of some object, regardless of whether an exception occurred when using this object. The way to write it looks like this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3170,7 +3170,7 @@ except
 </div>
 </div>
 <div class="paragraph">
-<p>This works reliably always, and does not cause memory leaks, even if <code>MyInstance.DoSomething</code> or <code>MyInstance.DoSomethingElse</code> raise an exception.</p>
+<p>This always works, and does not cause memory leaks, even if <code>MyInstance.DoSomething</code> or <code>MyInstance.DoSomethingElse</code> raise an exception.</p>
 </div>
 <div class="paragraph">
 <p>Note that this takes into account that local variables, like <code>MyInstance</code> above, have undefined values (may contain random "memory garbage") before the first assignment. That is, writing something like this would <em>not</em> be valid:</p>
@@ -3302,7 +3302,7 @@ In this simple example, you could also make a valid argument that the code shoul
 </ul>
 </div>
 <div class="paragraph">
-<p>The only way to really avoid the <code>B</code> being executed is to unconditionally interrupt the application process using <code>Halt</code> or some platform-specific APIs (like <a href="https://www.man7.org/linux/man-pages/man3/exit.3.html">libc exit on Unix</a>) inside <code>A</code>. Which generally shall not be done&#8201;&#8212;&#8201;it&#8217;s more flexible to use exceptions to interrupt the application, because it allows some other code to have a chance to clean up.</p>
+<p>The only way to really avoid the <code>B</code> being executed is to unconditionally interrupt the application process using <code>Halt</code> or some platform-specific APIs (like <a href="https://www.man7.org/linux/man-pages/man3/exit.3.html">libc exit on Unix</a>) inside <code>A</code>. Which generally should not be done&#8201;&#8212;&#8201;it&#8217;s more flexible to use exceptions to interrupt the application, because it allows some other code to have a chance to clean up.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -3328,7 +3328,7 @@ The <code>try .. finally .. end</code> doesn&#8217;t catch the exception. The ex
     Exit;
     WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">This will not happen</span><span class="delimiter">'</span></span>);
   <span class="keyword">finally</span>
-    WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">This will happen regardless if we have left the block through Exception, Exit, Continue, Break, etc.</span><span class="delimiter">'</span></span>);
+    WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">This will happen regardless of whether we have left the block through Exception, Exit, Continue, Break, etc.</span><span class="delimiter">'</span></span>);
   <span class="keyword">end</span>;
   WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">This will not happen</span><span class="delimiter">'</span></span>);
 <span class="keyword">end</span>;</code></pre>
@@ -3503,7 +3503,7 @@ S := Download(<span class="string"><span class="delimiter">'</span><span class="
 </dl>
 </div>
 <div class="paragraph">
-<p>Here&#8217;s how to you use a simple generic <code>TObjectList</code>:</p>
+<p>Here&#8217;s how to use a simple generic <code>TObjectList</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3541,7 +3541,7 @@ S := Download(<span class="string"><span class="delimiter">'</span><span class="
 </div>
 </div>
 <div class="paragraph">
-<p>Note that some operations require comparing two items, like sorting and searching (e.g. by <code>Sort</code> and <code>IndexOf</code> methods). The <code>Generics.Collections</code> containers use for this a <em>comparer</em>. The <em>default comparer</em> is reasonable for all types, even for records (in which case it compares memory contents, which is a reasonable default at least for searching using <code>IndexOf</code>).</p>
+<p>Note that some operations require comparing two items, like sorting and searching (e.g. by <code>Sort</code> and <code>IndexOf</code> methods). The <code>Generics.Collections</code> containers use a <em>comparer</em> for this. The <em>default comparer</em> is reasonable for all types, even for records (in which case it compares memory contents, which is a reasonable default at least for searching using <code>IndexOf</code>).</p>
 </div>
 <div class="paragraph">
 <p>When sorting the list you can provide a <em>custom comparer</em> as a parameter. The <em>comparer</em> is a class implementing the <code>IComparer</code> interface. In practice, you usually define the appropriate callback, and use <code>TComparer&lt;T&gt;.Construct</code> method to wrap this callback into an <code>IComparer</code> instance. An example of doing this is below:</p>
@@ -3611,7 +3611,7 @@ S := Download(<span class="string"><span class="delimiter">'</span><span class="
 <p>The <code>TDictionary</code> class implements a <strong>dictionary</strong>, also known as a <strong>map (key &#8594; value)</strong>, also known as an <strong>associative array</strong>. Its API is a bit similar to the C# <code>TDictionary</code> class. It has useful iterators for keys, values, and pairs of key&#8594;value.</p>
 </div>
 <div class="paragraph">
-<p>An example code using a dictionary:</p>
+<p>An example using a dictionary:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4300,7 +4300,7 @@ Remember that when descending from <code>TPersistent</code>, the default <em>vis
 <p>A powerful feature of any modern language. The definition of something (typically, of a class) can be parameterized with another type. The most typical example is when you need to create a container (a list, dictionary, tree, graph&#8230;&#8203;): you can define <em>a list of type T</em>, and then <em>specialize</em> it to instantly get <em>a list of integers</em>, <em>a list of strings</em>, <em>a list of TMyRecord</em>, and so on.</p>
 </div>
 <div class="paragraph">
-<p>The generics in Pascal work much like generics in C++. Which means that they are <em>"expanded"</em> at the specialization time, a <em>little</em> like macros (but much safer than macros; for example, the identifiers are resolved at the time of generic definition, not at specialization, so you cannot "inject" any unexpected behavior when specializing the generic). In effect this means that they are very fast (can be optimized for each particular type) and work with types of any size. You can use a primitive type (integer, float) as well as a record, as well as a class when specializing a generic.</p>
+<p>The generics in Pascal work much like generics in C++. Which means that they are <em>"expanded"</em> at specialization time, a <em>little</em> like macros (but much safer than macros; for example, the identifiers are resolved at the time of generic definition, not at specialization, so you cannot "inject" any unexpected behavior when specializing the generic). In effect this means that they are very fast (can be optimized for each particular type) and work with types of any size. You can use a primitive type (integer, float) as well as a record, as well as a class when specializing a generic.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4505,7 +4505,7 @@ generic <span class="keyword">function</span> Min&lt;T&gt;(<span class="keyword"
 </div>
 </li>
 <li>
-<p>The other common use is to split a large unit into many files, while still keeping it a single unit as far as the language rules are concerned. Do not overuse this technique&#8201;&#8212;&#8201;your first instinct should be to split a single unit into multiple units, not to split a single unit into multiple include files. Never the less, this is a useful technique.</p>
+<p>The other common use is to split a large unit into many files, while still keeping it a single unit as far as the language rules are concerned. Do not overuse this technique&#8201;&#8212;&#8201;your first instinct should be to split a single unit into multiple units, not to split a single unit into multiple include files. Nevertheless, this is a useful technique.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -4520,7 +4520,7 @@ generic <span class="keyword">function</span> Min&lt;T&gt;(<span class="keyword"
 </div>
 </div>
 <div class="paragraph">
-<p>Sometimes this is better than writing a long code with many <code>{$ifdef UNIX}</code>, <code>{$ifdef MSWINDOWS}</code> intermixed with normal code (variable declarations, routine implementation). The code is more readable this way. You can even use this technique more aggressively, by using the <code>-Fi</code> command-line option of FPC to include some subdirectories only for specific platforms. Then you can have many version of include file <code>{$I my platform_specific_implementation.inc}</code> and you simply include them, letting the compiler find the correct version.</p>
+<p>Sometimes this is better than writing a long code with many <code>{$ifdef UNIX}</code>, <code>{$ifdef MSWINDOWS}</code> intermixed with normal code (variable declarations, routine implementation). The code is more readable this way. You can even use this technique more aggressively, by using the <code>-Fi</code> command-line option of FPC to include some subdirectories only for specific platforms. Then you can have many version of include file <code>{$I my_platform_specific_implementation.inc}</code> and you simply include them, letting the compiler find the correct version.</p>
 </div>
 </li>
 </ol>
@@ -4532,7 +4532,7 @@ generic <span class="keyword">function</span> Min&lt;T&gt;(<span class="keyword"
 <div class="sect2">
 <h3 id="_records">8.7. Records</h3>
 <div class="paragraph">
-<p><em>Record</em> is just a container for other variables. It&#8217;s like a much, much simplified <em>class</em>: there is no inheritance or virtual methods. It is like a <em>structure</em> in C-like languages.</p>
+<p>A <em>record</em> is just a container for other variables. It&#8217;s like a much, much simplified <em>class</em>: there is no inheritance or virtual methods. It is like a <em>structure</em> in C-like languages.</p>
 </div>
 <div class="paragraph">
 <p>If you use the <code>{$modeswitch advancedrecords}</code> directive, records <strong>can</strong> have methods and visibility specifiers. In general, language features that are available for classes, and <em>do not break the simple predictable memory layout of a record</em>, are then possible.</p>
@@ -4598,7 +4598,7 @@ generic <span class="keyword">function</span> Min&lt;T&gt;(<span class="keyword"
 <p>to read and write binary files,</p>
 </li>
 <li>
-<p>to make dirty low-level tricks (like unsafe typecasting one type to another, being aware of their memory representation).</p>
+<p>to implement dirty low-level tricks (like unsafe typecasting one type to another, being aware of their memory representation).</p>
 </li>
 </ul>
 </div>
@@ -4910,7 +4910,7 @@ A linked list using classes is certainly possible, it would simply be this:</p>
 <div class="title">Note</div>
 </td>
 <td class="content">
-In case of FPC, make sure to tell the compiler you use "advanced" records' features by <code>{$modeswitch advancedrecords}</code>.
+With FPC, make sure to tell the compiler you use the "advanced records" feature by <code>{$modeswitch advancedrecords}</code>.
 </td>
 </tr>
 </table>
@@ -5042,7 +5042,7 @@ operator* (<span class="keyword">const</span> C1, C2: TMyRecord): TMyRecord;
 <p>This is compatible with Delphi.</p>
 </li>
 <li>
-<p>This allows to use generic classes that depend on some operator existence (like <code>TFPGList</code>, that depends on equality operator being available) with such records. Otherwise the "global" definition of an operator (not inside the record) would not be found (because it&#8217;s not available at the code that implements the <code>TFPGList</code>), and you could not specialize a list like <code>specialize TFPGList&lt;TMyRecord&gt;</code>.</p>
+<p>This allows to use generic classes that depend on some operator&#8217;s existence (like <code>TFPGList</code>, that depends on the equality operator being available) with such records. Otherwise the "global" definition of an operator (not inside the record) would not be found (because it&#8217;s not available at the code that implements the <code>TFPGList</code>), and you could not specialize a list like <code>specialize TFPGList&lt;TMyRecord&gt;</code>.</p>
 </li>
 </ul>
 </div>
@@ -5400,7 +5400,7 @@ operator* (<span class="keyword">const</span> C1, C2: TMyRecord): TMyRecord;
 <p>A <em>class property</em> is a property that can be accessed through a class reference (it does not need a class instance).</p>
 </div>
 <div class="paragraph">
-<p>It is quite straightforward analogy of a regular property (see <a href="#_properties">Properties</a>). For a <em>class property</em>, you define a <em>getter</em> and / or a <em>setter</em>. They may refer to a <em>class variable</em> or a <em>static class method</em>.</p>
+<p>It is similar to a regular property (see <a href="#_properties">Properties</a>), but all classes access (read and write) the same value. For a <em>class property</em>, you can define a <em>getter</em> and / or a <em>setter</em>. They may refer to a <em>class variable</em> or a <em>static class method</em>.</p>
 </div>
 <div class="paragraph">
 <p>A <em>class variable</em> is, you guessed it, like a regular field but you don&#8217;t need a class instance to access it. In effect, it&#8217;s just like a global variable, but with the namespace limited to the containing class. It can be declared within the <code>class var</code> section of the class. Alternatively
@@ -5527,16 +5527,16 @@ The more general concept is <em>"type helper"</em>. Using them you can add metho
 </div>
 </div>
 <div class="paragraph">
-<p>does not execute to the end in this case, <code>X</code> cannot be assigned, so who will cleanup after a partially-constructed class?</p>
+<p>does not execute to the end in this case, <code>X</code> cannot be assigned, so who will clean up after a partially-constructed class?</p>
 </div>
 <div class="paragraph">
-<p>The solution of Object Pascal is that, in case an exception occurs within a constructor, then the destructor is called. This is a reason why <em>your destructor must be robust</em>, which means it should work in any circumstances, even on a half-created class instance. Usually this is easy if you release everything safely, like by <code>FreeAndNil</code>.</p>
+<p>The solution of Object Pascal is that, if an exception occurs within a constructor, then the destructor is called. This is a reason why <em>your destructor must be robust</em>, which means it should work in any circumstances, even on a half-created class instance. Usually this is easy if you release everything safely, like by <code>FreeAndNil</code>.</p>
 </div>
 <div class="paragraph">
-<p>We also have to depend in such cases that <em>the memory of the class is guaranteed to be zeroed right before the constructor code is executed</em>. So we know that at the beginning, all class references are <code>nil</code>, all integers are <code>0</code> and so on.</p>
+<p>A helpful property we can use to write robust destructors (that can handle half-created instances) is that <em>the memory of the class is guaranteed to be zeroed right before the constructor code is executed</em>. So we know that at the beginning, all class references are <code>nil</code>, all integers are <code>0</code> and so on. The strategy for writing a robust destructor is thus: <em>"be prepared that any field may still be zero, and handle it without errors"</em>.</p>
 </div>
 <div class="paragraph">
-<p>So below works without any memory leaks:</p>
+<p>In effect, code below works without any memory leaks, even though constructor execution is interrupted, leaving only <code>Gun1</code> but not <code>Gun2</code> created:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -5730,7 +5730,7 @@ The more general concept is <em>"type helper"</em>. Using them you can add metho
 <p>If executed, it would make a run-time check and raise an exception if <code>InterfacedVariable</code> does not implement <code>IMyInterface</code>.</p>
 </div>
 <div class="paragraph">
-<p>Using <code>as</code> operator works consistently regardless if <code>InterfacedVariable</code> is declared as a class instance (like <code>TSomeClass</code>) or interface (like <code>ISomeInterface</code>). However, casting an interface to another interface this way is not allowed under <code>{$interfaces corba}</code> - we will cover that topic later.</p>
+<p>Using <code>as</code> operator works consistently regardless of whether <code>InterfacedVariable</code> is declared as a class instance (like <code>TSomeClass</code>) or interface (like <code>ISomeInterface</code>). However, casting an interface to another interface this way is not allowed under <code>{$interfaces corba}</code> - we will cover that topic later.</p>
 </div>
 </li>
 <li>
@@ -5758,7 +5758,7 @@ The more general concept is <em>"type helper"</em>. Using them you can add metho
 <p>In this case, the typecast must be valid at compile-time. This will compile only if the type of <code>InterfacedVariable</code> (either class or an interface) is implementing <code>IMyInterface</code>.</p>
 </div>
 <div class="paragraph">
-<p>In essence, this typecast looks and works just like for regular classes. Wherever an instance of a class <code>TSomeClass</code> is required, you can always use there a variable that is declared with a class of <code>TSomeClass</code>, <strong>or <code>TSomeClass</code> descendant</strong>. The same rule applies to interfaces. No need for any explicit typecast in such situations.</p>
+<p>In essence, this typecast looks and works just like for regular classes. Wherever an instance of a class <code>TSomeClass</code> is required, you can always use a variable there that is declared with a class of <code>TSomeClass</code>, <strong>or <code>TSomeClass</code> descendant</strong>. The same rule applies to interfaces. No need for any explicit typecast in such situations.</p>
 </div>
 </li>
 </ol>
@@ -5887,14 +5887,14 @@ This section is only relevant for FPC. Delphi has only <em>COM</em> interfaces.
 <p>But they are <em>not really</em> tied to the CORBA technology.</p>
 </div>
 <div class="paragraph">
-<p>The name <strong>CORBA</strong> is perhaps unfortunate. A better name would be <strong>bare interfaces</strong>. The point of these interfaces is that they are a <em>"pure language feature"</em>. Use them when you want to cast various classes as the same interface, because they share a common API, and you don&#8217;t want other features (life reference-counting or COM integration).</p>
+<p>The name <strong>CORBA</strong> is perhaps unfortunate. A better name would be <strong>bare interfaces</strong>. The point of these interfaces is that they are a <em>"pure language feature"</em>. Use them when you want to cast various classes as the same interface, because they share a common API, and you don&#8217;t want other features (like reference-counting or COM integration).</p>
 </div>
 </dd>
 <dt class="hdlist1">How do these compare with other programming languages?</dt>
 <dd>
 <p>The <em>CORBA interfaces</em> in Object Pascal work pretty much like interfaces in Java (<a href="https://docs.oracle.com/javase/tutorial/java/concepts/interface.html" class="bare">https://docs.oracle.com/javase/tutorial/java/concepts/interface.html</a>) or C# (<a href="https://msdn.microsoft.com/en-us/library/ms173156.aspx" class="bare">https://msdn.microsoft.com/en-us/library/ms173156.aspx</a>).</p>
 <div class="paragraph">
-<p>Although Java and C# languages have <em>garbage collection</em>, so comparison is somewhat flawed, regardless if you compare with CORBA or COM interfaces. In our experience, the CORBA interfaces in Pascal are similar to Java and C# interfaces <em>in the way they are used</em>. That is, you use CORBA interfaces when you <em>want unrelated (not descending from each other) classes to share a common API</em> and you don&#8217;t want anything else to change.</p>
+<p>Although the Java and C# languages have <em>garbage collection</em>, so comparison is somewhat flawed, regardless of whether you compare with CORBA or COM interfaces. In our experience, the CORBA interfaces in Pascal are similar to Java and C# interfaces <em>in the way they are used</em>. That is, you use CORBA interfaces when you <em>want unrelated (not descending from each other) classes to share a common API</em> and you don&#8217;t want anything else to change.</p>
 </div>
 </dd>
 <dt class="hdlist1">Is the <code>{$interfaces corba}</code> declaration needed?</dt>
@@ -5956,7 +5956,7 @@ you create <em>COM interfaces</em>. This can be stated explicitly by saying <cod
 <div class="ulist">
 <ul>
 <li>
-<p>If I want the feature of <em>casting classes to a common interface API</em>, but I don&#8217;t want the reference-counting mechanism (I want to manually free objects), then the COM interfaces are problematic. Even when reference-counting is disabled by a special <code>_AddRef</code> and <code>_ReleaseRef</code> implementation, you still need to be careful to never have a temporary interface reference hanging, after you have freed the class instance. More details about it in the next section.</p>
+<p>If I want the feature of <em>casting classes to a common interface API</em>, but I don&#8217;t want the reference-counting mechanism (I want to manually free objects), then the COM interfaces are problematic. Even when reference-counting is disabled by a special <code>_AddRef</code> and <code>_ReleaseRef</code> implementation, you still need to be careful to never have a temporary interface reference hanging, after you have freed the class instance. More about this in the next section.</p>
 </li>
 <li>
 <p>If I want the feature of <em>reference counting</em>, but I have no need for an interface hierarchy to represent something different than the class hierarchy, then I have to duplicate my classes API in interfaces. Thus creating a single interface for each class. This is counter-productive. I would much rather have <em>smart pointers</em> as a separate language feature, not entangled with interfaces (and luckily, it&#8217;s coming:).</p>
@@ -6243,7 +6243,7 @@ you create <em>COM interfaces</em>. This can be stated explicitly by saying <cod
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-04-14 13:05:15 +0200
+Last updated 2025-05-25 02:43:14 +0200
 </div>
 </div>
 <!-- Google analytics -->
