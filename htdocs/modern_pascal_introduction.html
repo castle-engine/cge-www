@@ -5646,7 +5646,7 @@ For a similar reason, be careful when using <code>overload</code> (Delphi way of
 <p>A helpful property we can use to write robust destructors (that can handle half-created instances) is that <em>the memory of the class is guaranteed to be zeroed right before the constructor code is executed</em>. So we know that at the beginning, all class references are <code>nil</code>, all integers are <code>0</code> and so on. The strategy for writing a robust destructor is thus: <em>"be prepared that any field may still be zero, and handle it without errors"</em>.</p>
 </div>
 <div class="paragraph">
-<p>In effect, code below works without any memory leaks, even though constructor execution is interrupted, leaving only <code>Gun1</code> but not <code>Gun2</code> created:</p>
+<p>In effect, the code below works without any memory leaks, even though constructor execution is interrupted, leaving only <code>Gun1</code> but not <code>Gun2</code> created:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -6353,7 +6353,7 @@ you create <em>COM interfaces</em>. This can be stated explicitly by saying <cod
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-05-25 03:27:09 +0200
+Last updated 2025-05-26 00:06:06 +0200
 </div>
 </div>
 <!-- Google analytics -->
