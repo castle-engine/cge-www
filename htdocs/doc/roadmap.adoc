@@ -504,7 +504,7 @@ With a designer. Example usage: blood, snow, rain, fire, smoke... 2D, 3D.
 _This is already in-progress by Trung Le (Kagamma). Use link:https://github.com/Kagamma/cge-3d-particle-emitter[cge-3d-particle-emitter] or link:https://github.com/Kagamma/cge-effekseer[Effekseer Integration]. See link:additional_components.php[CGE components]._
 
 [#terrain]
-### Terrain features (in particular, editing terrain in CGE editor)
+### (IN PROGRESS) Terrain features (in particular, editing terrain in CGE editor)
 
 _What we have now:_ The engine includes cgeref:TCastleTerrain[] component and https://github.com/castle-engine/castle-engine/tree/master/examples/terrain[examples/terrain] that shows how to generate terrains in various ways (from smoothed random noise, from a ready image) and render it. We also have the link:https://github.com/castle-engine/wyrd-forest["Wyrd Forest"] game that also uses `CastleTerrain`, and also includes a simple editor of terrain settings. See also https://castle-engine.io/wp/2022/08/21/new-components-to-generate-terrains-along-with-a-demo-including-water-and-planting-trees/[news about terrains].
 
@@ -546,6 +546,8 @@ Optional LODs could be nice (but maybe this is outside of scope of terrains; LOD
 - Improve shaders for terrain to show it, like link:https://www.getlazarus.org/videos/bareterrain/#learning_resources[this BareGame example].
 
 - More than 4 layers. Each new set of 4 layers mean a new _splatmap_.
+
+This is started: see PR https://github.com/castle-engine/castle-engine/pull/612 .
 
 [#vulkan]
 ### Vulkan renderer
@@ -1024,6 +1026,19 @@ All above will have to be synchronized with on-screen keyboard behavior on Andro
 
 Moreover we want to support on-screen keyboard behavior on iOS as well, see https://github.com/castle-engine/castle-engine/issues/554 .
 
+[#portable_editor]
+### (IN PROGRESS) Editor on the web
+
+This is started:
+
+- Run it here: https://castle-engine.io/web-demos/tools/castle-editor-portable
+
+- See source code: https://github.com/castle-engine/castle-engine/tree/master/tools/castle-editor-portable
+
+- See announcement here: https://castle-engine.io/wp/2025/05/24/web-target-progress-editor-on-web-proof-of-concept-openurl-right-mouse-button-many-new-demos-creature-ai-3d-model-viewer-physics-shooting-auto-tests-kraft-and-vampyre-imaging-on-web-wa/
+
+The goal is simple: turn above into a fully-functional editor, matching our link:editor[real editor] capabilities.
+
 [#dark_mode]
 ### Editor Dark mode
 
@@ -1050,12 +1065,14 @@ We have a https://github.com/castle-engine/castle-engine/pull/555/[PR with this]
 3. _Big Plan_: The ultimate solution, that will allow to switch dark mode on/off on all platforms with exactly the same results, will come from reimplementing CGE editor using CGE link:user_interface[user interface components]. We made a decision some time ago, and it will definitely happen -- but it's still a big task, and it will take some time. The major benefits of it will be:
 +
 --
-- We will be able to use the editor on all platforms there are CGE targets. In particular, on the upcoming https://castle-engine.io/wp/2023/04/08/web-target-progress-and-plans/[web target], which means you will be able to create and edit your games in your browser! Or even on mobile (but don't hold your breath for making games on mobile -- the form factors of mobile devices will likely make UX of CGE editor on mobile not very good).
+- We will be able to use the editor on all platforms there are CGE targets. In particular, our link:web[web target] means you will be able to create and edit your games in your browser! Or even on mobile (but don't hold your breath for making games on mobile -- the form factors of mobile devices will likely make UX of CGE editor on mobile not very good).
 - It will necessitate CGE UI improvements, from which all CGE applications will benefit. For example, ready tree view, object inspector and list components.
 - It will allow to turn our link:https://www.youtube.com/watch?v=5jBdPdj75yk["inspector at run-time"] into full-featured "editor at run-time".
 - It will allow to avoid some LCL limitations, sometimes widgetset-specific. E.g. LCL GTK 2 widgetset uses deprecated GTK 2 and has https://github.com/castle-engine/castle-engine/issues/543[known crashing issues], Qt5 widgetset needs libqt5pas library that most people don't have (or don't have in relevant version for latest LCL), macOS widgetset https://github.com/castle-engine/castle-engine/issues/404[does not have a functional frames list and thus sprite sheet editor sucks]... We will be able to ignore all of this, as they will be replaced by a cross-platform implementation.
 - And, last but not least: the dark mode, on all platforms, will be trivial to implement :)
 --
++
+*This is started already*, see link:#portable_editor[Editor on the web].
 
 ### Environment Lighting
 

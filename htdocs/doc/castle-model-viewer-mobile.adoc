@@ -49,6 +49,9 @@ cge::download-application[
     //darwin-x86_64
 ]
 
+// Confusing for new users? Let's wait until it's full-featured on web.
+// You can also test a preview version https://castle-engine.io/web-demos/castle-model-viewer-mobile/[on the web], but note: this is early preview. It cannot open yet arbitrary models, only the models packed into its data.
+
 NOTE: You can even https://github.com/castle-engine/castle-model-viewer-mobile/releases/tag/snapshot[download this exact application for desktop (Linux, Windows, macOS)]. But it doesn't make sense for normal usage. If you want  a desktop version, we recommend you just use full link:castle-model-viewer[Castle Model Viewer].
 
 == Usage
