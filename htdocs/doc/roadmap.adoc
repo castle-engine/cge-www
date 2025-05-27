@@ -197,21 +197,6 @@ The new class will also be our recommendation to use instead of https://wiki.fre
 We could achieve some of these advantages with `TGenericCollection<T>` as shown on https://wiki.freepascal.org/TCollection[TCollection wiki page], but still we would not avoid the `TCollectionItem` necessity.
 ====
 
-[#materials]
-### New material components (allowing also material editing in the editor)
-
-We want to allow you to edit materials in the CGE editor,
-
-- e.g. to modify (or completely override) materials from TCastleScene (like glTF),
-
-- to have full control over primitives (like `TCastleSphere` or `TCastleImageTransform` look),
-
-- to enable you to use cool CGE features like link:x3d_extensions_mirror_plane.php[mirrors], link:compositing_shaders.php[shader effects] easier.
-
-This also means exposing new set of Pascal components to manage materials easier.
-
-See https://github.com/castle-engine/castle-engine/files/10324944/new-material-components.txt for rough plans.
-
 [#shadow_maps]
 ### (IN PROGRESS) Make shadow maps available by a trivial property on light sources
 
@@ -1249,3 +1234,20 @@ To be clear, this doesn't preclude integration with other scripting languages. O
 - https://en.wikipedia.org/wiki/Pascal_Script[Pascal Script] is a natural choice for us. And it would bring us the benefits of "it can run at design-time" while staying within the same (well, similar) programming language.
 
 - JS using QuickJS is an option too, and it's already being worked on. See `#quickjs` channel on our link:talk.php[Discord] and https://github.com/castle-engine/quickjs-demo[quickjs-demo repo].
+
+[#materials]
+### New material components (allowing also material editing in the editor)
+
+We want to allow you to edit materials in the CGE editor,
+
+- e.g. to modify (or completely override) materials from TCastleScene (like glTF),
+
+- to have full control over primitives (like `TCastleSphere` or `TCastleImageTransform` look),
+
+- to enable you to use cool CGE features like link:x3d_extensions_mirror_plane.php[mirrors], link:shaders[shader effects] easier.
+
+This also means exposing new set of Pascal components to manage materials easier.
+
+See https://github.com/castle-engine/castle-engine/files/10324944/new-material-components.txt for rough plans.
+
+NOTE: This feature has been demoted from "must have for 7.0" to "we can do it after 7.0". Because engine makes sense without it and we have to limit our scope for release at some point :)
