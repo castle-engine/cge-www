@@ -67,7 +67,7 @@
     <p>Moreover, these uniforms are not portable between X3D implementations. E.g. in <i>Castle Game Engine</i> they are named <code>castle_xxx</code>.
 </ul>
 
-<p>We <b>strongly recommend</b> using the <a href="compositing_shaders.php">shader effects (compositing shaders)</a> instead, which mean using the <code>Effect</code> and <code>EffectPart</code> nodes. They overcome the above problems:
+<p>We <b>strongly recommend</b> using the <a href="shaders">shader effects</a> instead, which mean using the <code>Effect</code> and <code>EffectPart</code> nodes. They overcome the above problems:
 
 <ul>
   <li>

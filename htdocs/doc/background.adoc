@@ -36,7 +36,7 @@ NOTE: If you only want to define a background as a simple color, then leave cger
 
 Customize the background look with shaders. Use cgeref:TCastleBackground.SetEffects[] to set a shader effects (implemented using GLSL) on a background.
 
-See https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/shader_effects_on_background[Shader Effects On Background example (examples/viewport_and_scenes/shader_effects_on_background)]. And see the link:compositing_shaders.php[shader effects (compositing shaders)] documentation for more information about the shader effects.
+See https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/shader_effects_on_background[Shader Effects On Background example (examples/viewport_and_scenes/shader_effects_on_background)]. And see the link:shaders[shader effects] documentation for more information about the shader effects.
 
 ## Presentation
 

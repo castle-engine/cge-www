@@ -47,7 +47,7 @@ To do this in Pascal (setup the nodes in Pascal), see demo on https://github.com
 +
 To do this in X3D (editing X3D file), see https://github.com/castle-engine/demo-models[our demo models], in particular https://github.com/castle-engine/demo-models/tree/master/shaders[shaders] subdirectory.
 
-- You can _add shader effects_ (to extend existing rendering) using `Effect` and `EffectPart` nodes. See https://castle-engine.io/compositing_shaders.php for documentation of these nodes.
+- You can _add shader effects_ (to extend existing rendering) using `Effect` and `EffectPart` nodes. See link:shaders[] for documentation of these nodes.
 +
 To do this in Pascal (setup the nodes in Pascal), see demo on https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/shader_effects[examples/viewport_and_scenes/shader_effects] .
 +
