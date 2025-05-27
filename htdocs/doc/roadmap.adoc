@@ -1250,4 +1250,4 @@ This also means exposing new set of Pascal components to manage materials easier
 
 See https://github.com/castle-engine/castle-engine/files/10324944/new-material-components.txt for rough plans.
 
-NOTE: This feature has been demoted from "must have for 7.0" to "we can do it after 7.0". Because engine makes sense without it and we have to limit our scope for release at some point :)
+NOTE: This feature has been demoted from "must have for 7.0" to "we can do it after 7.0". Because engine makes sense without it, we have to limit our scope for release at some point :), and our link:shaders[shader effects] got some updates (to API and docs) making them easier to use (which satisfied some of reason for new material components).
