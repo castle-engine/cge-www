@@ -207,7 +207,7 @@ You can of course replace or enhance the shaders used by our engine.
 
 We have link:shaders[shader effects] which are like Unity3d "surface shaders" but on steroids :)  I'm quite proud of this, it really allows to easily write a piece of shader code and add it to some shapes, and (compared to Unity3d "surface shaders") it has some cool new features, like the ability to combine many effects (so you can write one shader effect, maybe add another shader effect), or changing shading of lights or textures or making procedurally generated (on GPU) textures.
 
-See https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/shader_effects[examples/viewport_and_scenes/shader_effects] for simple demo in Pascal that attaches an effect, coded in GLSL, to a scene loaded from glTF. The shader uniform variable can be set at runtime from Pascal of course, and thus you can configure the shader at runtime with zero cost.
+See https://github.com/castle-engine/castle-engine/tree/master/examples/shaders/shader_effects_on_shape[examples/shaders/shader_effects_on_shape] for simple demo in Pascal that attaches an effect, coded in GLSL, to a scene loaded from glTF. The shader uniform variable can be set at runtime from Pascal of course, and thus you can configure the shader at runtime with zero cost.
 
 See https://github.com/castle-engine/demo-models, subdirectory https://github.com/castle-engine/demo-models/tree/master/compositing_shaders[compositing_shaders] for demos of `Effect` nodes in pure X3D (you can load them all from CGE; it's just that these demos create `Effect` node by X3D code, not by Pascal code).
 

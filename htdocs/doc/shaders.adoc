@@ -247,9 +247,9 @@ uniform sampler2D testTexture;
 fragment_color.rgb = texture2D(testTexture, tex_coord).rgb;
 ----
 
-See the example code https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/shader_effects[examples/viewport_and_scenes/shader_effects] for a ready implementation of this approach.
+See the example code https://github.com/castle-engine/castle-engine/tree/master/examples/shaders/shader_effects_on_shape[examples/shaders/shader_effects_on_shape] for a ready implementation of this approach.
 
-For more involved example, see the https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/shader_effects_on_background[examples/viewport_and_scenes/shader_effects_on_background] that passes around a _cubemap texture_ (using cgeref:TImageCubeMapTextureNode[] on the Pascal side, and `uniform samplerCube test_cube_map;` on the GLSL side).
+For more involved example, see the https://github.com/castle-engine/castle-engine/tree/master/examples/shaders/shader_effects_on_background[examples/shaders/shader_effects_on_background] that passes around a _cubemap texture_ (using cgeref:TImageCubeMapTextureNode[] on the Pascal side, and `uniform samplerCube test_cube_map;` on the GLSL side).
 
 == Converting Between World and Eye Coordinate Space
 
@@ -343,7 +343,7 @@ Effect.KeepExistingEnd;
 FreeIfUnusedAndNil(Effect);
 ----
 
-For an example using this approach to manually manage memory of shader effects, see https://github.com/castle-engine/castle-engine/blob/master/examples/viewport_and_scenes/shader_effects_on_background/code/gameviewmain.pas[GameViewMain unit in examples/viewport_and_scenes/shader_effects_on_background].
+For an example using this approach to manually manage memory of shader effects, see https://github.com/castle-engine/castle-engine/blob/master/examples/shaders/shader_effects_on_background/code/gameviewmain.pas[GameViewMain unit in examples/shaders/shader_effects_on_background].
 
 == Reference of Available PLUG_ Functions
 
@@ -351,11 +351,11 @@ To learn all the available `PLUG_` functions that you can use in your shader cod
 
 == More Examples
 
-- The most important example is https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/shader_effects[Using Shader Effects to implement rendering effects that enhance the standard rendering (examples/viewport_and_scenes/shader_effects)]. It shows applying shader effects on shapes.
+- The most important example is https://github.com/castle-engine/castle-engine/tree/master/examples/shaders/shader_effects_on_shape[Using Shader Effects to implement rendering effects that enhance the standard rendering (examples/shaders/shader_effects_on_shape)]. It shows applying shader effects on shapes.
 
-- https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/shader_effects_on_texture[Shader Effects On Texture (examples/viewport_and_scenes/shader_effects_on_texture)]. This focuses on applying the effects on textures. As always, follow the https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/shader_effects_on_texture#readme[README of the example] to know all the details.
+- https://github.com/castle-engine/castle-engine/tree/master/examples/shaders/shader_effects_on_texture[Shader Effects On Texture (examples/shaders/shader_effects_on_texture)]. This focuses on applying the effects on textures. As always, follow the https://github.com/castle-engine/castle-engine/tree/master/examples/shaders/shader_effects_on_texture#readme[README of the example] to know all the details.
 
-- https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/shader_effects_on_background[Shader Effects On Background (examples/viewport_and_scenes/shader_effects_on_background)] shows effects on cgeref:TCastleBackground[], see the link:background[background docs].
+- https://github.com/castle-engine/castle-engine/tree/master/examples/shaders/shader_effects_on_background[Shader Effects On Background (examples/shaders/shader_effects_on_background)] shows effects on cgeref:TCastleBackground[], see the link:background[background docs].
 
 == More Documentation
 
