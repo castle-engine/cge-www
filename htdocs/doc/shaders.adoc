@@ -1,0 +1,416 @@
+# Shaders
+include::common.adoc[]
+:description: Use shader effects to enhance Castle Game Engine rendering with programmable effects using OpenGL Shading Language (GLSL).
+:cge-social-share-image: volumetric_animated_fog_all.png
+
+== Introduction
+
+Shaders are programs executed by the graphic card that determine how everything looks. Everything in _Castle Game Engine_ is rendered using shaders (with shader code automatically generated and compiled by the engine), so you shaders already -- whether you know it or not. Moreover, and this is the focus of this document, you can write your own shader code to customize the rendering.
+
+cgeimg::block[
+  volumetric_animated_fog_all.png|Volumetric fog,
+  // volumetric_animated_fog_no_fog.png|Scene for the volumetric fog\, here visible with fog turned off,
+  // volumetric_animated_fog_no_light.png|Scene for the volumetric fog\, here visible with normal lighting turned off,
+  // fancy_light_spot_shape.png|Textured spot light with shadow,
+  // flowers.png|Flowers bending under the wind\, transformed on GPU in object space,
+  fresnel_and_toon.png|Toon and Fresnel effects combined,
+  noise.png|3D and 2D smooth noise on GPU\, wrapped in ShaderTexture
+]
+
+Some examples of what shaders can do:
+
+- Apply effects on objects, like custom color, texturing or fog.
+- Modify how lights interact with the object, e.g. define custom spot light shape.
+- Modify how textures work, e.g. define procedural textures defined only in shader code, or animated textures.
+- Create non-realistic effects, like cartoon rendering.
+- Animate anything.
++
+NOTE: Shaders can even animate transformations (move, rotate, scale objects). But (without some extra work like _transform feedback_), only the graphic card knows about the animation outcome. So collisions (link:physics[]) still work with original object transformations, not the animated ones.
+
+The power of shaders is that the above operations are extremely customizable. You define the logic and equations of everything mentioned above. And it all runs on a graphic card, so it is very efficient.
+
+== Overview of Using Shader Effects
+
+The most recommended way to use your own shader code with _Castle Game Engine_ is to use the cgeref:TEffectNode[] and cgeref:TEffectPartNode[] classes.
+
+- They allow you to specify your own shader code written in GLSL (https://www.khronos.org/opengl/wiki/OpenGL_Shading_Language[OpenGL Shading Language]), which is the language used by OpenGL (and OpenGLES, WebGL, Vulkan) to define shaders.
+
+- Shader code defined this way is combined with the existing rendering code of the engine. This means that when you define custom shader effects -- you still benefit from the built-in rendering of the engine, like lighting, shadows, and so on. You only enhance it. To do this, your shader code defines special functions whose name starts with `PLUG_` that will be called by the engine shaders at the right time.
+
+- The effects created this way also play nicely with each other. Multiple effects (cgeref:TEffectNode[] nodes) can be active at the same time on the same object. Each one can be enabled and disabled independently. They will be applied in the order you specify.
+
+- cgeref:TEffectNode[] and cgeref:TEffectPartNode[] are both link:x3d[X3D] nodes. We explain what it means on this page.
+
+- The cgeref:TEffectPartNode[] instance points to a shader code (in GLSL language), which can be written as a string in the Pascal source code, or loaded from a file. Usually it is loaded from a file in the application link:data[].
+
+- The cgeref:TEffectNode[] instance groups together several cgeref:TEffectPartNode[] instances and allows for additional control of the shader:
++
+--
+- Effect can receive additional data from the Pascal application. This is called _uniforms_ in shader languages. You can provide anything, e.g. time (to animate something), color, matrix, texture.
+
+- Effect can be easily enabled or disabled at any moment, by setting cgeref:TEffectNode.Enabled[] property.
+
+- You can use additional "shader libraries" in the effect, see cgeref:TEffectNode.SetShaderLibraries[].
+--
+
+- Once you have created cgeref:TEffectNode[], the simplest way to use it is to invoke a `SetEffects` method available on various engine components:
++
+--
+- cgeref:TCastleScene.SetEffects[],
+- cgeref:TCastleAbstractPrimitive.SetEffects[],
+- cgeref:TCastleImageTransform.SetEffects[],
+- cgeref:TCastleBackground.SetEffects[].
+--
+
+== Simple Example: Change Color of a Model
+
+cgeimg::block[
+  shader_effects_simple.png|Simple shader effect example
+]
+
+For this example, first create a simple _Castle Game Engine_ application with a link:viewport_and_scenes[TCastleScene inside a TCastleViewport] that shows some model (from any link:creating_data_model_formats.php[supported format], like link:gltf[glTF] or link:x3d[X3D]).
+
+Access the cgeref:TCastleScene[] instance in your code, by declaring in the `published` section of your link:views[view] a new field with name matching your scene, like `MyScene: TCastleScene;`.
+
+NOTE: If the above sounds uncertain to you, please first read the link:viewport_3d[Tutorial: Designing a 3D world] where we explain how to use basic engine components like cgeref:TCastleViewport[] and cgeref:TCastleScene[].
+
+Then, create a shader effect that will change the color of the model to "more red". This is done by creating a cgeref:TEffectNode[] and cgeref:TEffectPartNode[] and attaching them by calling `MyScene.SetEffects` method.
+
+[source,pascal]
+----
+procedure TMyView.Start;
+
+  procedure CreateSimpleEffect;
+  var
+    Effect: TEffectNode;
+    EffectPart: TEffectPartNode;
+  begin
+    Effect := TEffectNode.Create;
+    Effect.Language := slGLSL;
+
+    EffectPart := TEffectPartNode.Create;
+    EffectPart.ShaderType := stFragment;
+    EffectPart.SetUrl(['castle-data:/shader_color_effect.fs']);
+    Effect.SetParts([EffectPart]);
+
+    MyScene.SetEffects([Effect]);
+  end;
+
+begin
+  inherited;
+  CreateSimpleEffect;
+end;
+----
+
+NOTE: To compile this code, you need to put in the `uses` clauses all the necessary engine units. Make sure you use cgeref:X3DNodes[], cgeref:CastleScene[], cgeref:CastleRenderOptions[].
+
+Now we need to define the shader code. Create a file `shader_color_effect.fs` in the link:data[] subdirectory of your application, and put the following code inside:
+
+[source,c]
+----
+// Modify the fragment color.
+void PLUG_fragment_modify(inout vec4 fragment_color)
+{
+  // Make the color "more red" by setting
+  // - the red color channel to the overall intensity
+  // - the green and blue channels to zero.
+  float intensity = (fragment_color.r + fragment_color.g + fragment_color.b) / 3.0;
+  fragment_color = vec4(intensity, 0.0, 0.0, fragment_color.a);
+}
+----
+
+Run the application, and you should see that the model is now rendered with a "more red" color.
+
+See the ready example following this approach in the https://github.com/castle-engine/castle-engine/blob/master/examples/shaders/shader_effects_simple/[examples/shaders/shader_effects_simple] directory of the _Castle Game Engine_ repository. It adds one more feature: toggles the effect using the cgeref:TEffectNode.Enabled[] property, so you can see the effect in action and then disable it.
+
+== Pass Time To Shader Effect
+
+A powerful feature of shader effects is that you can pass any data to them, and this data can be used in the shader code.
+
+On the Pascal side, you create a new X3D field, like cgeref:TSFFloat[] to pass the data to the shader effect. To test it out, enhance the previous example:
+
+1. Declare `EffectRedIntensity: TSFFloat;` in the `private` section of your view class, so that you can access it later. Make sure that unit cgeref:X3DFields[] is in the `uses` clause of your view.
+
+2. Modify the `CreateSimpleEffect` procedure to create `EffectRedIntensity`, right after `Effect` was created:
++
+[source,pascal]
+----
+...
+    Effect := TEffectNode.Create;
+    Effect.Language := slGLSL;
+
+    // New code:
+    // Add custom field (maps to GLSL uniform "red_intensity"), initially 0.0
+    EffectRedIntensity := TSFFloat.Create(Effect, true, 'red_intensity', 0.0);
+    Effect.AddCustomField(EffectRedIntensity);
+....
+----
+
+3. Update the value of this field in the `Update` method of your view, so that it changes over time.
++
+Add the `WorldTime: TFloatTime;` field to your view class, and make sure you have cgeref:CastleTimeUtils[] unit in the `uses` clause.
++
+Then modify the `Update` method to increase it, and based on it set the `EffectRedIntensity` value:
++
+[source,pascal]
+----
+procedure TViewMain.Update(const SecondsPassed: Single; var HandleInput: Boolean);
+begin
+  inherited;
+  LabelFps.Caption := 'FPS: ' + Container.Fps.ToString;
+
+  // Update the time
+  WorldTime := WorldTime + SecondsPassed;
+  // Set the red intensity based on time
+  EffectRedIntensity.Send((Sin(10 * WorldTime) + 1) / 2);
+end;
+----
+
+The Pascal part of the job is done: we animate the `red_intensity` uniform variable value. It remains to actually use this variable in the shader code.
+
+1. Declare it in the shader code `shader_color_effect.fs` by `uniform float red_intensity;`.
+
+2. Modify the code that assigns the fragment color. Use the GLSL https://registry.khronos.org/OpenGL-Refpages/gl4/html/mix.xhtml[mix] function to interpolate between the original color and the new red color based on `red_intensity` value.
+
+- When `red_intensity` is 1.0, behave as in the previous version: reddish color.
+
+- When `red_intensity` is 0.0, behave as in the original version: no change to the color.
+
+- Values in between will smoothly interpolate between these two behaviors.
+
+In total, new `shader_color_effect.fs` code looks like this:
+
+[source,c]
+----
+// Declare the uniform variable that will receive data from Pascal.
+uniform float red_intensity;
+
+// Modify the fragment color.
+void PLUG_fragment_modify(inout vec4 fragment_color)
+{
+  // Make the color "more red" by setting
+  // - the red color channel to the overall intensity
+  // - the green and blue channels to zero.
+  float intensity = (fragment_color.r + fragment_color.g + fragment_color.b) / 3.0;
+  vec4 reddish_color = vec4(intensity, 0.0, 0.0, fragment_color.a);
+  fragment_color = mix(fragment_color, reddish_color, red_intensity);
+}
+----
+
+Run the application to observe the animation, a psychodelic effect of a _"pulsating red cat"_. Enjoy, just don't stare at it for too long :)
+
+If you got lost, see the example https://github.com/castle-engine/castle-engine/blob/master/examples/shaders/shader_effects_simple/[examples/shaders/shader_effects_simple] for a ready code implementing the above. Just
+
+- define the symbol `ANIMATE_RED_INTENSITY` in the `code/gameviewmain.pas` and
+
+- uncomment the proper shader version in `data/shader_color_effect.fs`.
+
+== Pass Texture to Shader Effect
+
+cgeimg::block[
+  shader_effects_knight.png|Shader effects applied to a knight model
+]
+
+Not only simple values can be passed to shader effects. You can also pass textures, which is useful for many effects. You can mix the texture with the existing rendering or just use the texture as a source of some data (1D, 2D or 3D) for the shader code.
+
+To pass a texture to the shader effect, you need to create a node holding the texture (like cgeref:TImageTextureNode[] for the simplest 2D texture) and then create a field of type cgeref:TSFNode[] to pass the texture to the shader effect. In the shader code, declare the uniform `uniform sampler2D testTexture;` and sample it using GLSL `texture2D` function.
+
+Here's the detailed breakdown of how to do this:
+
+1. In Pascal code, create cgeref:TImageTextureNode[] instance with some content:
++
+[source,pascal]
+----
+TestTexture := TImageTextureNode.Create;
+TestTexture.SetUrl(['castle-data:/my_texture.png']);
+----
+
+2. Create cgeref:TSFNode[] instance to pass the texture to the shader effect:
++
+[source,pascal]
+----
+EffectTextureField := TSFNode.Create(Effect, true, 'testTexture', [TImageTextureNode], TestTexture1);
+Effect.AddCustomField(EffectTextureField);
+----
+
+3. In the shader code, declare the uniform variable to receive the texture:
++
+[source,c]
+----
+uniform sampler2D testTexture;
+----
+
+4. Use the texture in the shader code, e.g. by sampling it:
++
+[source,c]
+----
+fragment_color.rgb = texture2D(testTexture, tex_coord).rgb;
+----
+
+See the example code https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/shader_effects[examples/viewport_and_scenes/shader_effects] for a ready implementation of this approach.
+
+For more involved example, see the https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/shader_effects_on_background[examples/viewport_and_scenes/shader_effects_on_background] that passes around a _cubemap texture_ (using cgeref:TImageCubeMapTextureNode[] on the Pascal side, and `uniform samplerCube test_cube_map;` on the GLSL side).
+
+== Converting Between World and Eye Coordinate Space
+
+cgeimg::block[
+  shaders_blueish_fog.png|Blueish fog effect on the cat,
+  shaders_fog_castle.png|Blueish fog effect on a castle model
+]
+
+An important concept to remember when writing shaders is that values may be expressed in different _coordinate spaces_. Some of the coordinate spaces commonly used in shaders are:
+
+- _"Eye coordinate space"_ (sometimes also called _"camera coordinate space"_). In this space, everything is moved and rotated such that the camera is at the origin (0, 0, 0) and looking down the negative Z axis.
+
+- _"World coordinate space"_. This is the coordinate space where everything is expressed in the global coordinates of the 3D viewport. Think of it as assigning unique coordinated to everything in the 3D universe.
+
+- _"Object coordinate space"_. This is the coordinate system in which the vertexes of a particular object are defined. This is used in the cgeref:TCoordinateNode[] values. Transformations of the object (like translation, rotation, scaling) are applied to convert from object coordinate space to world coordinate space.
+
+- _"Tangent coordinate space"_ (sometimes also called _"tangent space"_). This is the coordinate system specific to every face. Unless you implement your own _bump mapping_, you probably don't need to deal with it.
+
+For efficiency, many shader operations are performed in the _eye coordinate space_.
+
+It's a common task to convert back and forth between the _world coordinate space_ and the _eye coordinate space_, since some of the effects may make sense only in one the _world coordinate space_. For example, if you want to define a fog that makes the bottom of the 3D world blueish, you want to determine the amount of fog based on the rendered point `y` coordinate in the _world coordinate space_.
+
+To implement this, use the cgeref:TEffectNode.SetShaderLibraries[] method to get additional GLSL functions that can convert between the coordinate spaces.
+
+1. Add the library by calling
++
+[source,pascal]
+----
+Effect.SetShaderLibraries(['castle-shader:/EyeWorldSpace.glsl']);
+----
+
+2. In your cgeref:TEffectPartNode[] shader code, define the `position_eye_to_world_space` function signature, and use it. In `PLUG_fragment_eye_space` get the coordinates in eye space, convert them to world space using `position_eye_to_world_space`. In `PLUG_fragment_modify` the `vertex_world.y` to determine the amount of fog.
++
+[source,c]
+----
+vec4 position_eye_to_world_space(vec4 position_eye);
+
+// Save value obtained in PLUG_fragment_eye_space to use in PLUG_fragment_modify.
+vec4 vertex_world;
+
+// Get the vertex position in world space.
+void PLUG_fragment_eye_space(
+  const vec4 vertex_eye,
+  inout vec3 normal_eye)
+{
+  vertex_world = position_eye_to_world_space(vertex_eye);
+}
+
+// Make lower things enveloped in fog (turn into gray).
+void PLUG_fragment_modify(
+  inout vec4 fragment_color)
+{
+  const float fog_y_start = 0.5;
+  const float fog_y_max = 0.0;
+
+  if (vertex_world.y < fog_y_start) {
+    const vec4 bottom_fog_color = vec4(0.1, 0.1, 0.5, 1);
+    float factor = max(0.0,
+      (vertex_world.y - fog_y_max) /
+      (fog_y_start - fog_y_max));
+    fragment_color = mix(bottom_fog_color, fragment_color, factor);
+  }
+}
+----
+
+== Memory Management of nodes (TEffectNode, TEffectPartNode)
+
+In general, in Pascal, you should take care to freeing all the class instances you create. You can free them explicitly or use ownership mechanism of `TComponent` or lists like `TObjectList`. See the link:modern_pascal[modern Pascal introduction] for more information.
+
+However, link:x3d#_x3d_node_instance_lifetime_in_pascal[X3D nodes have a special memory management] mechanism. As soon as they are added as a child of something else, the __reference counting__ is in effect and the node instance will be automatically freed when it is no longer used by anything else.
+
+This usually works in a natural way. In the example above, we just didn't care at all about freeing `TEffectNode` and `TEffectPartNode` instances, and that's OK. We have added them to `MyScene` using `MyScene.SetEffects`, thus they became children of `MyScene`. They wil be automatically freed when `MyScene` is freed, because at this point nothing will refer to them.
+
+Sometimes this "automatic free when no longer used" mechanism gets in the way. In such case, just deactivate it.
+
+1. Right after creating a node, call cgeref:TX3DNode.KeepExistingBegin[]. For example:
++
+[source,pascal]
+----
+Effect := TEffectNode.Create;
+Effect.KeepExistingBegin;
+----
++
+Now you have to explicitly free `Effect` when you no longer need it.
+
+2. While you could just call `FreeAndNil(Effect);`, this is dangerous. What if something still refers to it? The recommended way is to call cgeref:TX3DNode.KeepExistingEnd[] to "return the control to the reference counting mechanism". And then do cgeref:FreeIfUnusedAndNil[] to free the node if it is no longer used by anything else _right now_. For example:
++
+[source,pascal]
+----
+Effect.KeepExistingEnd;
+FreeIfUnusedAndNil(Effect);
+----
+
+For an example using this approach to manually manage memory of shader effects, see https://github.com/castle-engine/castle-engine/blob/master/examples/viewport_and_scenes/shader_effects_on_background/code/gameviewmain.pas[GameViewMain unit in examples/viewport_and_scenes/shader_effects_on_background].
+
+== Reference of Available PLUG_ Functions
+
+To learn all the available `PLUG_` functions that you can use in your shader code, follow the https://castle-engine.io/compositing_shaders_doc/html/appendix.plugs.html[Reference of available plugs].
+
+== More Examples
+
+- The most important example is https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/shader_effects[Using Shader Effects to implement rendering effects that enhance the standard rendering (examples/viewport_and_scenes/shader_effects)]. It shows applying shader effects on shapes.
+
+- https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/shader_effects_on_texture[Shader Effects On Texture (examples/viewport_and_scenes/shader_effects_on_texture)]. This focuses on applying the effects on textures. As always, follow the https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/shader_effects_on_texture#readme[README of the example] to know all the details.
+
+- https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/shader_effects_on_background[Shader Effects On Background (examples/viewport_and_scenes/shader_effects_on_background)] shows effects on cgeref:TCastleBackground[], see the link:background[background docs].
+
+== More Documentation
+
+The original description of this idea was _Michalis Kamburelis'_ Ph.D. thesis. (Although never formally defended, in the end...) So we have a self-contained documentation about this idea, in several formats, as well as (a bit outdated -- some `PLUG` names changed since then) slides about it from the http://www.eguk.org.uk/TPCG11/[Theory and Practice of Computer Graphics 2011 conference].
+
+- https://castle-engine.io/compositing_shaders_doc/html/["Compositing Shaders in X3D" documentation, HTML version]
+
+- https://castle-engine.io/compositing_shaders_doc/compositing_shaders_doc.pdf["Compositing Shaders in X3D" documentation, PDF version].
+
+- https://castle-engine.io/compositing_shaders_slides.pdf[Slides from my presentation (TPCG11 conference) about compositing shaders]
+
+- https://castle-engine.io/miscella/compositing_shaders.pdf[Paper (TPCG11 conference) about compositing shaders]
+
+== Advanced: Other Ways to Use Shaders
+
+This page focuses on how to use shader effects (cgeref:TEffectPartNode[], cgeref:TEffectNode[]) with engine comfortable components like cgeref:TCastleScene[] and shows the recommended approach for Pascal developers.
+
+There are other options, some directed at different audiences, some just... not recommended anymore.
+
+=== Add Effects to specific X3D groups, appearances, textures, lights
+
+If you want to access the nodes of your scene directly, you can assign use cgeref:TEffectNode[] to:
+
+- Influence any subset of link:x3d[X3D] nodes, by adding cgeref:TEffectNode[] to grouping nodes like cgeref:TGroupNode[] or cgeref:TTransformNode[].
+
+- Influence a particular link:x3d[X3D] shape appearance, by using cgeref:TAppearanceNode.SetEffects[].
+
+- Write special shaders that influence texture rendering and use them by cgeref:TAbstractSingleTextureNode.SetEffects[].
+
+- Write special shaders that influence lighting application and use them by cgeref:TAbstractLightNode.SetEffects[].
+
+=== Write Effects in X3D Files
+
+If you are an link:x3d[X3D] author, you can simply write `Effect` and `EffectPart` nodes in your X3D files. See https://github.com/castle-engine/demo-models/tree/master/compositing_shaders[demo-models, subdirectory compositing_shaders] for examples. The https://github.com/castle-engine/demo-models/tree/master/water[subdirectory water] contains also water effects.
+
+Such X3D files can be loaded in the engine using cgeref:TCastleScene[].
+
+This allows to see the customized shader in games / applications, and in the link:editor[] and in link:castle-model-viewer[Castle Model Viewer].
+
+NOTE: http://freewrl.sourceforge.net/[FreeWRL], another excellent VRML / X3D browser, also implements the `Effect` and `EffectPart` nodes. Their implementation is independent of our engine, confirming that the approach to write shaders we propose makes sense also outside of our engine. Thank you _Doug Sanden_ for making this!
+
+=== Override Engine Shaders by ComposedShader and ShaderPart nodes
+
+You can also use X3D nodes `ComposedShader` and `ShaderPart`. Either in X3D files, or from Pascal through cgeref:TComposedShaderNode[] and cgeref:TShaderPartNode[].
+
+We don't recommend this approach, as it means that your shader code _overrides_ what the engine does. So you need to implement everything you need from scratch, like lighting, shadows, and so on. This is not recommended for most use-cases, as it requires more work, more knowledge of how rendering works in general, and how _Castle Game Engine_ does rendering in particular.
+
+For more information see:
+
+- link:x3d_implementation_shaders.php[Programmable shaders (X3D component)] documentation.
+
+- X3D examples in https://github.com/castle-engine/demo-models/tree/master/shaders[demo-models, subdirectory shaders].
+
+- Pascal example in https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/shader_override[examples/viewport_and_scenes/shader_override].
+
+== TODO
+
+The most important TODO is that we want to define more comfortable components to customize materials, and this includes assigning effects to materials. This will make the above operations more comfortable, and also available to be easily tested at design-time (in the link:editor[]).

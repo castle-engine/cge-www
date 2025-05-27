@@ -302,6 +302,7 @@ $castle_sitemap = array(
             )
           ),
           'doc/physics' => array('title' => 'Physics'),
+          'doc/shaders' => array('title' => 'Shaders'),
           'doc/sound' => array('title' => 'Sound',
             'sub' => array(
               'doc/openal' => array('title' => 'OpenAL'),
