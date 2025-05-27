@@ -39,7 +39,7 @@ In an Android application, you _can_ read files on a normal filesystem (if only 
 
 * Our build tool automatically packs files inside the `data/` subdirectory as Android "assets".
 
-* Our file-reading routines (the `Download` function, and https://castle-engine.io/manual_network.php[everything opening files/URLs built on top of it]) support a special protocol `castle-android-assets:/` to access Android assets. So you can open URL like `castle-android-assets:/my_texture.png`.
+* Our file-reading routines (the `Download` function, and https://castle-engine.io/url[everything opening files/URLs built on top of it]) support a special protocol `castle-android-assets:/` to access Android assets. So you can open URL like `castle-android-assets:/my_texture.png`.
 
 * Finally, the `castle-data:/xxx` URL is resolved into `castle-android-assets:/xxx` on Android by default (assuming you didn't set `ApplicationDataOverride`).
 

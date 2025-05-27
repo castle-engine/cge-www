@@ -286,11 +286,11 @@ Note that this rule applies only to the Pascal identifiers. The Pascal identifie
 
 Existing content (identifiers, documentation) in some places uses the term `URI`, in some `URL`.
 
-To make things simple, all future code should just talk about URLs (not URIs), and our https://castle-engine.io/manual_network.php[documentation about URLs] just clearly says _"most URLs actually accept a URI (a bit broader term than URL); in particular you can use https://en.wikipedia.org/wiki/Data_URI_scheme[data URI scheme]"_.
+To make things simple, all future code should just talk about URLs (not URIs), and our https://castle-engine.io/url[documentation about URLs] just clearly says _"most URLs actually accept a URI (a bit broader term than URL); in particular you can use https://en.wikipedia.org/wiki/Data_URI_scheme[data URI scheme]"_.
 
 Background:
 
-The difference between URL and URI is explained in https://castle-engine.io/manual_network.php#section_terminology[terminology section of the networking manual] (`URI` is a more general concept than `URL`) but admittedly the difference is small and we didn't pay strict attention to this difference when naming some things, like cgeref:TCastleSceneCore.Url[]. In effect, in some places we used the term `URL` where we should have used `URI` or vice-versa.
+The difference between URL and URI is explained in link:url#_notes_about_terminology_uri_vs_url[terminology section of the networking manual] (`URI` is a more general concept than `URL`) but admittedly the difference is small and we didn't pay strict attention to this difference when naming some things, like cgeref:TCastleSceneCore.Url[]. In effect, in some places we used the term `URL` where we should have used `URI` or vice-versa.
 
 X3D standard also mixes them a bit, in effect cgeref:TInlineNode.SetUrl[] actually accepts various URIs (including https://en.wikipedia.org/wiki/Data_URI_scheme[data URI scheme]).
 
