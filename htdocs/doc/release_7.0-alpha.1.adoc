@@ -126,7 +126,7 @@ https://castle-engine.io/wp/2018/04/22/engine-improvements-user-interface-horizo
  ** https://github.com/castle-engine/castle-engine/tree/master/examples/[platformer] - complete platformer game, also https://castle-engine.itch.io/platformer[released on itch.io]
  ** https://github.com/castle-engine/castle-engine/tree/master/examples/images_videos/image_display[image_display] - demo of image formats reading capabilities and speed
  ** https://github.com/castle-engine/castle-engine/tree/master/examples/curves/use_designed_curve[use_designed_curve] - demo of following along a curve
- ** https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/shader_override[shader_override] - overriding shaders with your own
+ ** https://github.com/castle-engine/castle-engine/tree/master/examples/shaders/shader_override[shader_override] - overriding shaders with your own
  ** tiled/strategy_game_demo/ - Complete working strategy game, with maps designed using Tiled, working equally well with hexagonal/orthogonal/isometric maps (thanks to new Tiled API), user interface designed using Castle Game Engine Editor and `TCastleView`. See also https://castle-engine.io/wp/2019/01/06/strategy-game-demo-using-cge-and-tiled/ , https://castle-engine.io/wp/2018/12/28/tiled-maps-improvements/ .
  ** tiled/map_viewer/ - Simple viewer for Tiled maps. You can pan and zoom maps, and load any Tiled map.
  ** headlight_test/ - Shows new `Viewport.Items.UseHeadlight` property.

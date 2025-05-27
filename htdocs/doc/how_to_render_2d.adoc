@@ -43,7 +43,7 @@ See the _"2D game"_ new project template for example.
 --
 - You can _override_ standard engine shaders using `ComposedShader` and `ShaderPart` nodes. See https://castle-engine.io/x3d_implementation_shaders.php about these X3D nodes.
 +
-To do this in Pascal (setup the nodes in Pascal), see demo on https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/shader_override[examples/viewport_and_scenes/shader_override] .
+To do this in Pascal (setup the nodes in Pascal), see demo on https://github.com/castle-engine/castle-engine/tree/master/examples/shaders/shader_override[examples/shaders/shader_override] .
 +
 To do this in X3D (editing X3D file), see https://github.com/castle-engine/demo-models[our demo models], in particular https://github.com/castle-engine/demo-models/tree/master/shaders[shaders] subdirectory.
 
