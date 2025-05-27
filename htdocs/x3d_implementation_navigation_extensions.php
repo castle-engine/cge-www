@@ -6,11 +6,11 @@
 
   $toc = new TableOfContents(
     array(
-      new TocItem('Output events to generate camera matrix (<code>Viewpoint.camera*Matrix</code> events)', 'ext_viewpoint_camera_matrix'),
+      new TocItem('DEPRECATED: Output events to generate camera matrix (<code>Viewpoint.camera*Matrix</code> events)', 'ext_viewpoint_camera_matrix'),
       new TocItem('Force vertical field of view (<code>Viewpoint.fieldOfViewForceVertical</code>)', 'ext_viewpoint_force_vertical_fov'),
       new TocItem('Control head bobbing (<code>NavigationInfo.headBobbing*</code> fields)', 'ext_head_bobbing'),
       new TocItem('Customize headlight (<code>NavigationInfo.headlightNode</code>)', 'ext_headlight'),
-      new TocItem('Specify blending sort (<code>NavigationInfo.blendingSort</code>)', 'ext_blending_sort'),
+      new TocItem('DEPRECATED: Specify blending sort (<code>NavigationInfo.blendingSort</code>)', 'ext_blending_sort'),
       new TocItem('DEPRECATED: Force VRML time origin to be 0.0 at load time (<code>NavigationInfo.timeOriginAtLoad</code>)', 'ext_time_origin_at_load'),
       new TocItem('DEPRECATED: Fields <code>direction</code> and <code>up</code> and <code>gravityUp</code> for <code>PerspectiveCamera</code>, <code>OrthographicCamera</code> and <code>Viewpoint</code> nodes', 'ext_cameras_alt_orient'),
     ));
@@ -20,6 +20,8 @@
 <?php echo $toc->html_toc(); ?>
 
 <?php echo $toc->html_section(); ?>
+
+<p><b>Deprecated:</b> To convert between eye and world space in shaders (which was practically the only use-case of this) use <a href="shaders">shader effect library that defines GLSL functions like <code>position_world_to_eye_space</code></a> instead.</p>
 
 <p>To every viewpoint node (this applies to all viewpoints usable
 in our engine, including all <code>X3DViewpointNode</code> descendants,
@@ -252,6 +254,8 @@ will be used for headlight.
 </ul>
 
 <?php echo $toc->html_section(); ?>
+
+<p><b>Deprecated:</b> Use <?php echo cgeRef('TCastleViewport.BlendingSort'); ?> to control this. See <a href="blending">blending</a> for more information about blending.</p>
 
 <?php
   echo node_begin('NavigationInfo') .
