@@ -1213,7 +1213,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <p>Dynamically changing the material color. Do this by accessing an instance of <code>TPhysicalMaterialNode</code> within the scene&#8217;s nodes (<code>TCastleScene.RootNode</code>) and changing the <code>TPhysicalMaterialNode.BaseColor</code>. See e.g. engine example <code>examples/viewport_and_scenes/collisions/</code> that uses this.</p>
 </li>
 <li>
-<p>Dynamically adding/removing a shader effect. This means adding <code>TEffectNode</code> and <code>TEffectPartNode</code> nodes to the scene and implementing the effect using GLSL (<em>OpenGL Shading Language</em>). See e.g. engine example <code>examples/viewport_and_scenes/shader_effects/</code> that demonstrates this.</p>
+<p>Dynamically enabling / disabling a shader effect. This means adding <code>TEffectNode</code> and <code>TEffectPartNode</code> nodes to the scene and implementing the effect using GLSL (<em>OpenGL Shading Language</em>). See <code><a href="https://castle-engine.io/shaders" class="bare">https://castle-engine.io/shaders</a></code> about this.</p>
 </li>
 <li>
 <p>Adding a additional box that surrounds chosen object. The CGE editor itself uses this technique to show highlighted / selected 3D objects. Use <code>TDebugTransformBox</code> class to implement this easily.</p>
@@ -1613,7 +1613,7 @@ ForceStrength: Single;</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-07-09 03:17:05 +0200
+Last updated 2025-05-27 04:42:12 +0200
 </div>
 </div>
 </body>
