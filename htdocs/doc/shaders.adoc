@@ -334,6 +334,7 @@ void PLUG_fragment_modify(
 }
 ----
 
+[#node_release]
 == Memory Management of nodes (TEffectNode, TEffectPartNode)
 
 In general, in Pascal, you should take care to freeing all the class instances you create. You can free them explicitly or use the ownership mechanism of `TComponent` or lists like `TObjectList`. See the link:modern_pascal[modern Pascal introduction] for more information.
@@ -342,25 +343,26 @@ However, link:x3d#_x3d_node_instance_lifetime_in_pascal[X3D nodes have a special
 
 This usually works in a natural way. In the example above, we just didn't care at all about freeing `TEffectNode` and `TEffectPartNode` instances, and that's OK. The `TEffectPartNode` is referenced by `TEffectNode`, and `TEffectNode` is referenced by `MyScene`. So they wil be automatically freed when `MyScene` is freed, because at this point nothing will refer to them anymore.
 
-Sometimes this "automatic free when no longer used" mechanism gets in the way. In such case, just deactivate it.
+Sometimes this "automatic free when no longer used" mechanism gets in the way. In such case, just deactivate it:
 
-1. Right after creating a node, call cgeref:TX3DNode.KeepExistingBegin[]. For example:
+1. Right after creating a node, call cgeref:TX3DNode.WaitForRelease[]. For example:
 +
 [source,pascal]
 ----
 Effect := TEffectNode.Create;
-Effect.KeepExistingBegin;
+Effect.WaitForRelease;
 ----
 +
 Now you have to explicitly free `Effect` when you no longer need it.
 
-2. To free the node, you could just call `FreeAndNil(Effect)`. But this is dangerous. What if something still refers to it, e.g. some scene? The recommended way is to call cgeref:TX3DNode.KeepExistingEnd[] to "return the control to the reference counting mechanism". And then do cgeref:FreeIfUnusedAndNil[] to free the node if it is no longer used by anything else _right now_. For example:
+2. To free the node, you could just call `FreeAndNil(Effect)`. But this is dangerous. What if something still refers to it, e.g. some scene? The recommended way is to call cgeref:NodeRelease[] that returns the control to the reference counting mechanism ("node will be freed if it becomes unused") and calls cgeref:FreeIfUnusedAndNil[] ("free the node now, if it is no longer used by anything else _right now_"). For example:
 +
 [source,pascal]
 ----
-Effect.KeepExistingEnd;
-FreeIfUnusedAndNil(Effect);
+NodeRelease(Effect);
 ----
++
+This also sets `Effect` to `nil`, as you should no longer use this instance. Just like `FreeAndNil`, it's better to have a pointer set to `nil` than have an undefined dangling pointer.
 
 For an example using this approach to manually manage memory of shader effects, see https://github.com/castle-engine/castle-engine/blob/master/examples/shaders/shader_effects_on_background/code/gameviewmain.pas[GameViewMain unit in examples/shaders/shader_effects_on_background].
 
@@ -438,4 +440,8 @@ For more information see:
 
 == TODO
 
-The most important TODO is that we want to define more comfortable components to customize materials, and this includes assigning effects to materials. This will make the above operations more comfortable, and also available to be easily tested at design-time (in the link:editor[]).
+The most important TODO is that we want to define more comfortable components to customize materials, and this includes assigning effects to materials.
+
+- This will make the above operations more comfortable,
+- and also available to be easily tested at design-time (in the link:editor[]).
+- And the new components are just `TComponent`, so they will share usual `TComponent` ownership, not ref-counting special for X3D nodes (and sometimes needing special treatment shown above).

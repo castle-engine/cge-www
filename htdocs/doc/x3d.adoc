@@ -136,4 +136,4 @@ Notes:
 
 - If a node is not referenced from anywhere, you are responsible for freeing it manually as usual. For example, if we would not load `Root` into `Scene` (if we remove the line `Scene.Load(Root, true)` from above example) then at some point you should call `FreeAndNil(Root);`.
 
-- If for some reason you do not want the node to be automatically freed, you can use cgeref:TX3DNode.KeepExistingBegin[] and cgeref:TX3DNode.KeepExistingEnd[].
+- If for some reason you do not want the node to be automatically freed when unused, you can use cgeref:TX3DNode.WaitForRelease[] and cgeref:NodeRelease[]. See the link:shaders#node_release[memory management of shader nodes] for an example of this.
