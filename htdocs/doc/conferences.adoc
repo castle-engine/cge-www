@@ -12,8 +12,9 @@ This pages collects _some_ materials from them.
 * *Upcoming*:
 +
 --
-- I will attend (and give a talk) a soon-to-be-announced conference in Germany on _17-21 September 2025_.
-- I will attend https://delphisummit.com/[Delphi Summit] in Amsterdam on _5-6  June 2025_.
+- I will attend (and give a talk) https://pascalconference.com/[Pascal Conference organized by Sorpetaler] in _Germany (Sundern)_ on _17-21 September (2025)_.
+- I will attend (and give a talk) https://www.delphiday.it/[Delphi Day] in _Italy (Piacenza)_ on _20th June (2025)_.
+- I will attend https://delphisummit.com/[Delphi Summit] in _Netherlands (Amsterdam)_, on _5-6 June (2025)_.
 --
 
 * _9-10 April 2025_: modern Pascal course.
