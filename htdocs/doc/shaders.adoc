@@ -41,8 +41,6 @@ The recommended way to provide your own shader code are the cgeref:TEffectNode[]
 
 - The effects created this way also play nicely with each other. Multiple effects (cgeref:TEffectNode[] instances) can be active at the same time on the same object. Each effect can be enabled and disabled independently. They will be applied in the order you specify.
 
-- cgeref:TEffectNode[] and cgeref:TEffectPartNode[] are both link:x3d[X3D] nodes. Don't worry, we explain everything it implies on this page.
-
 - The cgeref:TEffectPartNode[] instance points to a shader code (in GLSL language), which can be written as a string in the Pascal source code, or loaded from a file. Usually it is loaded from a file in the application link:data[].
 
 - The cgeref:TEffectNode[] instance groups together several cgeref:TEffectPartNode[] instances and allows for additional control of the shader:
@@ -62,6 +60,14 @@ The recommended way to provide your own shader code are the cgeref:TEffectNode[]
 - cgeref:TCastleAbstractPrimitive.SetEffects[],
 - cgeref:TCastleImageTransform.SetEffects[],
 - cgeref:TCastleBackground.SetEffects[].
+--
+
+- cgeref:TEffectNode[] and cgeref:TEffectPartNode[] are both link:x3d[X3D] nodes. Don't worry, we explain below what it means in practice. In short:
++
+--
+1. Effect nodes can be connected with other X3D nodes (like cgeref:TImageTextureNode[]) and fields (like cgeref:TSFFloat[], cgeref:TSFNode[]) to pass additional data to the shader effect. This is very useful.
+
+2. Memory of nodes is by default managed using reference-counting (counting only the references from the other X3D nodes). Sometimes this is desirable, sometimes not so much. In the latter case, you can just disable this using cgeref:TX3DNode.WaitForRelease[] and release the nodes explicitly, see link:#node_release[Memory Management of Nodes].
 --
 
 == Simple Example: Change Color of a Model
@@ -335,7 +341,7 @@ void PLUG_fragment_modify(
 ----
 
 [#node_release]
-== Memory Management of nodes (TEffectNode, TEffectPartNode)
+== Memory Management of Nodes (TEffectNode, TEffectPartNode)
 
 In general, in Pascal, you should take care to freeing all the class instances you create. You can free them explicitly or use the ownership mechanism of `TComponent` or lists like `TObjectList`. See the link:modern_pascal[modern Pascal introduction] for more information.
 
