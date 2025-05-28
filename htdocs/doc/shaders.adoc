@@ -444,4 +444,4 @@ The most important TODO is that we want to define more comfortable components to
 
 - This will make the above operations more comfortable,
 - and also available to be easily tested at design-time (in the link:editor[]).
-- And the new components are just `TComponent`, so they will share usual `TComponent` ownership, not ref-counting special for X3D nodes (and sometimes needing special treatment shown above).
+- And the new components wil be just `TComponent`, so they will use usual `TComponent` ownership to manage memory, not ref-counting special for X3D nodes (and sometimes needing special treatment to deactivate, as shown above).
