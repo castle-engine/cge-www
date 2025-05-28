@@ -9,13 +9,13 @@ Shaders are programs executed by the graphic card. Everything in _Castle Game En
 
 Some examples of what shaders can do:
 
-- Apply effects on objects, like custom color, texturing or fog.
-- Modify how lights interact with the object, e.g. define custom spot light shape.
-- Modify how textures work, e.g. define procedural textures defined only in shader code, or animated textures.
-- Create non-realistic effects, like cartoon rendering.
+- Apply effects on objects, e.g. color transformations, non-typical texture usage, custom fog equations, adding some noise to make things more varied.
+- Modify how lights work, e.g. define custom spot light shape.
+- Modify how textures work, e.g. create procedural textures determined only by the shader code, or animated textures.
+- Create non-realistic effects, e.g. cartoon rendering, chromatic aberration.
 - Animate anything.
 +
-NOTE: Shaders can even animate transformations (move, rotate, scale objects). But (without some extra work like _transform feedback_), only the graphic card knows about the animation outcome. So collisions (link:physics[]) still work with original object transformations, not the animated ones.
+NOTE: Shaders can even animate transformations (move, rotate, scale) of objects. But (without some non-trivial extra work like https://github.com/castle-engine/castle-engine/tree/master/examples/shaders/transform_feedback[transform feedback]), only the graphic card knows about the animation outcome. So collisions (link:physics[]) still work with original object transformations, not the animated ones.
 
 The power of shaders is that the above operations are extremely customizable. You define all the logic, equations and parameters of the effect. And it all runs on a graphic card, so it is very efficient.
 
@@ -36,6 +36,11 @@ cgeimg::block[
 The recommended way to provide your own shader code are the cgeref:TEffectNode[] and cgeref:TEffectPartNode[] classes.
 
 - They allow you to specify your own shader code written in GLSL (https://www.khronos.org/opengl/wiki/OpenGL_Shading_Language[OpenGL Shading Language]), which is the language used by OpenGL (and OpenGLES, WebGL, Vulkan) to define shaders.
++
+If you want to learn GLSL, check out the
+https://www.khronos.org/opengl/wiki/Core_Language_(GLSL)[Khronos wiki],
+https://registry.khronos.org/OpenGL/specs/gl/GLSLangSpec.4.50.pdf[GLSL specification]
+and (for some more newbie-friendly introduction) sites like https://learnopengl.com/getting-started/shaders[Learn OpenGL: Shaders].
 
 - Shader code defined this way is combined with the existing shaders of the engine. This means that when you define custom shader effects -- you still benefit from the built-in rendering of the engine, like lighting, shadows, and so on. You only enhance it. To make this possible, your shader code defines special functions whose name starts with `PLUG_` that will be called by the engine shaders at the right time.
 
