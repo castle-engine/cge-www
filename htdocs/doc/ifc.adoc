@@ -8,10 +8,13 @@ include::common.adoc[]
 _Castle Game Engine_ supports loading 3D models in the _IFC (Industry Foundation Classes)_ format.
 
 cgeimg::block[
+  ifc_house_castle.png|House modeled using BonsaiBIM and opened in Castle Game Engine,
+  ifc_house_blender.png|Same house loaded in Blender (with BonsaiBIM add-on),
   house_ifc.png|House modeled using BonsaiBIM and opened in Castle Game Engine,
-  ifc_cge.png|IFC example in Castle Game Engine,
-  ifc_blender.png|Same IFC example loaded in Blender (with BonsaiBIM add-on),
-  ifc_freecad.png|Same IFC example loaded in FreeCAD,
+  //ifc_beam.png|Beam in IFC,
+  //ifc_cge.png|IFC example in Castle Game Engine,
+  //ifc_blender.png|Same IFC example loaded in Blender (with BonsaiBIM add-on),
+  //ifc_freecad.png|Same IFC example loaded in FreeCAD,
   //ifc_3.png|IFC model loaded in Castle Game Engine,
   //ifc_4.png|IFC model loaded in Castle Game Engine
 ]
@@ -161,6 +164,16 @@ The IFC files saved by our engine can be opened back in other IFC tools like htt
 This allows to develop a specialized IFC tools in _Castle Game Engine_ that can be used in the IFC ecosystem. We can consume and produce IFC files that _"play well"_ with other software, and everything _"thinks"_ using IFC classes.
 
 To test this, IFC files produced by our example https://github.com/castle-engine/castle-engine/tree/master/examples/ifc[examples/ifc/] can be verified to look the same in _BonsaiBIM_ and _FreeCAD_:
+
+cgeimg::block[
+  ifc_bunny_castle.png|Bunny in glTF in Castle Game Engine,
+  ifc_bunny_freecad.png|Same Bunny converted to IFC and loaded in FreeCAD
+]
+
+cgeimg::block[
+  ifc_labyrinth_castle.png|Labyrinth designed in Castle Game Engine editor,
+  ifc_labyrinth_freecad.png|Same Labyrinth converted to IFC and loaded in FreeCAD
+]
 
 cgeimg::block[
   ifc_cge.png|IFC example in Castle Game Engine,
