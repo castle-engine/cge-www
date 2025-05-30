@@ -1,0 +1,111 @@
+# Window size and fullscreen
+include::common.adoc[]
+:description: Configure window size and fullscreen mode.
+// :cge-social-share-image: ..
+
+## Introduction
+
+By default, _Castle Game Engine_ applications using cgeref:TCastleWindow[] run in a window with reasonable size (initialized to take 4/5 of the screen size) centered on the screen.This default is nice to test your application. For example, you can easily resize the window and test that link:manual_castle_settings.php[UI scaling] works properly.
+// (size of everything changes properly and things are anchored to proper sides).
+
+You can change the window size and mode, e.g. if you want to run your application in a fullscreen mode by default.
+
+Do this by setting the window properties that control window size and mode:
+
+- cgeref:TCastleWindow.FullScreen[]
+- cgeref:TCastleWindow.Width[]
+- cgeref:TCastleWindow.Height[]
+- cgeref:TCastleWindow.Left[]
+- cgeref:TCastleWindow.Top[]
+
+You have to adjust these properties before the window is opened. In the standard case, this means that you should change them in the `initialization` section of some unit, like `code/gameinitialize.pas`. Our standard project templates put there a comment saying `Optionally, adjust window fullscreen mode and size at this point` to make it easy.
+
+// If you follow the standard cross-platform project template, then the window is opened on desktop from the auto-generated main program file (that does `Application.MainWindow.OpenAndRun`) and on other platforms, it is opened automatically by system and managed by the engine.
+
+## Make window fullscreen
+
+Just use this:
+
+```delphi
+Window.FullScreen := true;
+```
+
+This makes the window fullscreen, using the current screen resolution. We recommend to use this for production games, as it is the most common way to run games.
+
+## Set window size
+
+[WARNING]
+====
+When writing cross-platform applications, note that you don't have full control over the window size and mode.
+
+- On mobile, the application "window" will generally just match the device.
+
+- On link:web[], user has always the ability to resize the canvas by scaling the page.
+
+- On desktops, while it is possible to prevent _some_ user actions by setting cgeref:TCastleWindow.ResizeAllowed[] to cgeref:raNotAllowed[], some window systems allow users to resize anyway and/or toggle the fullscreen mode.
+
+- On consoles, only specific screen sizes may be available.
+
+The general conclusion is: we recommend to make sure your application works well in any window size, and not to rely on a specific window size or fullscreen mode.
+====
+
+Bearing in mind the above warning, if you want to _try_ setting the window size to something "hardcoded", use this:
+
+```delphi
+Window.FullScreen := false; // this is default, but still we can say it explicitly
+Window.Width := 600;
+Window.Height := 400;
+```
+
+However, "hardcoding" the window size (as shown above) is not recommended. Even disregarding the above warning ("you don't have full control over the window size"), it is not a good idea because you don't know how it will look on different users' screens. Users have monitors with very different resolutions, and a size that looks good for you may be too small (or too large) for them.
+
+It's better to calculate window size based on the screen size. For example, run in a window taking 2/3 of screen (width and height):
+
+```delphi
+Window.FullScreen := false; // default
+Window.Width := Application.ScreenWidth * 2 div 3;
+Window.Height := Application.ScreenHeight * 2 div 3;
+```
+
+It's sometimes nice to have a window with a specific aspect ratio, e.g. portrait with aspect ratio 900x1600. You can do this by setting one dimension (like `Window.Width`) based on the screen, and then adjust the other dimension (like `Window.Height`) to achieve the desired aspect ratio:
+
+```delphi
+Window.FullScreen := false; // default
+Window.Width := Application.ScreenWidth div 3; // 1 / 3 of screen width
+Window.Height := Window.Width * 1600 div 900; // 16:9 aspect ratio
+```
+
+[#video_change]
+## Changing the physical screen resolution (not recommended)
+
+We have API to change the physical screen resolution using cgeref:TCastleApplication.TryVideoChange[Application.TryVideoChange]. Test and follow the https://github.com/castle-engine/castle-engine/blob/master/examples/user_interface/screen_resolution_change/[examples/user_interface/screen_resolution_change] example.
+
+However, there's a big warning here.
+
+In short: **Avoid changing the physical screen resolution**.
+
+Reasons:
+
+1. It is not a nice user experience (despite many games offering this feature):
++
+--
+- _Alt+Tab_ between the game and other applications means that system either needs to change resolutions (delay and blinking when _Alt+Tab_), or shows other applications in non-standard resolution.
+
+- It is easy to leave system with non-default resolution upon application exit, by mistake. Or when the game crashes.
+
+// OSes don’t really give us a reliable API to say _"I want my application to work with different screen resolution, do it and handle the rest of applications / desktop reliably_. In case of Windows (using WinAPI) the capabilities are a bit better but not perfect (but at least the resolution we request is tied to our application and sometimes it reverts back OK), on Linux (XF86VMode of Xlib) it’s a bit worse (we have to manually restore the resolution, which requires us to track application change/close carefully). In neither case it’s really perfect.
+// We could confirm above also with games made with other engines. Switching resolution in games (that change the physical screen resolution) and alt+tabbing between applications is risky, you’re not sure when the resolution will change/revert.
+// https://forum.castle-engine.io/t/suggestion-fullscreen-resolution-trouble/1888/5
+
+- It is up to the monitor how it handles resolutions that are allowed, but do not match the optimal monitor resolution. The display may be stretched non-uniformly or show black borders.
+
+- We're not alone in this recommendation. E.g. https://docs.godotengine.org/en/stable/tutorials/rendering/multiple_resolutions.html[Godot Game Engine] has similar notes discouraging changing resolution.
+--
+
+2. It is not implemented everywhere in our engine (which is, in part, because we don't recommend it...).
++
+It is right now implemented only for WinAPI (default link:castlewindow_backends[backend of TCastleWindow on Windows]) and Xlib (non-default link:castlewindow_backends[backend of TCastleWindow on Unix]). For some platforms, like mobile or web, it is impossible.
++
+Moreover, we miss an API like `EnumerateScreenConfigurations` right now, to show to a user a list of available resolutions that matches user's possible resolution. Note that it would be monitor-specific for multi-monitor setups, so to implement it, we need to introduce an API to enumerate screens and choose the screen for the window too.
+
+If you want is to design a game that works on all possible resolutions then we recommend to just use our UI scaling. This is configurable in `CastleSettings.xml`. See link:manual_castle_settings.php[UI scaling and CastleSettings.xml docs]. It doesn't require changing the physical screen resolution, yet allows you to design your game for a particular resolution and it will look good everywhere.

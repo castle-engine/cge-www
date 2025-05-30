@@ -277,6 +277,7 @@ $castle_sitemap = array(
             'sub' => array(
               'doc/text' => array('title' => 'Text and fonts'),
               'doc/localization' => array('title' => 'Localization (translating your application)'),
+              'doc/window_size' => array('title' => 'Window size and fullscreen'),
               'doc/loading_image' => array('title' => 'Customize loading image'),
               'manual_2d_ui_custom_drawn' => array('title' => 'Advanced: custom drawn 2D controls'),
             )
