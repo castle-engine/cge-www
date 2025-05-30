@@ -29,9 +29,9 @@ $toc = new TableOfContents(
 
   <li>Create a page on <a href="http://en.wikipedia.org/">Wikipedia</a> about our
     < ?php echo a_href_page('Castle Game Engine', 'index'); ? > and / or
-    < ?php echo a_href_page('view3dscene', 'view3dscene'); ? >.
+    < ?php echo a_href_page('Castle Model Viewer', 'castle-model-viewer'); ? >.
     <!--
-    Or maybe only about the engine, and just redirect view3dscene there?
+    Or maybe only about the engine, and just redirect castle-model-viewer there?
     I don't want to create and add it myself, it would not be fair.
     So this task waits for willing user (you! :) to do it.
     Of course you will get help (you can ask, post your draft etc.

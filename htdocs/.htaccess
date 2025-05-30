@@ -212,6 +212,7 @@ Redirect "/web-demos/simplest_viewport" "/web-demos/examples/web/simplest_viewpo
 Redirect "/web-demos/simplest_invaders" "/web-demos/examples/web/simplest_invaders"
 Redirect "/web-demos/simplest" "/web-demos/examples/web/simplest"
 Redirect "/compositing_shaders.php" "/shaders"
+Redirect "/movies.php" "https://www.youtube.com/c/CastleGameEngine"
 
 # alias names for slides, docs hosted outside
 Redirect "/itdevcon2023/slides1" "https://docs.google.com/presentation/d/e/2PACX-1vQiwg5wboWVn8aCgxj7u617taha28IQDN1GPKtnEICi3aHRBhor9ZLLpyXmF_cHB4LdcMuH3AXwZ001/pub?start=false&loop=false&delayms=3000"

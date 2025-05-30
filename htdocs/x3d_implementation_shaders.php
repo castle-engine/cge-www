@@ -88,7 +88,7 @@
 see the <code>shaders</code> subdirectory inside <?php
 echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.
 You can open them with various <i>Castle Game Engine</i> X3D tools,
-in particular with <?php echo a_href_page('view3dscene', 'view3dscene') ?>.
+in particular with <?php echo a_href_page('Castle Model Viewer', 'doc/castle-model-viewer') ?>.
 
 </p>
 

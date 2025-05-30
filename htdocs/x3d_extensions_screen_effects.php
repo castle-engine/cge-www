@@ -36,7 +36,7 @@ echo pretty_heading($page_title);
 by processing the rendered image. Demos:</p>
 
 <ul>
-  <li><p>Try the <i>View -&gt; Screen Effects</i> menu in <?php echo a_href_page('view3dscene', 'view3dscene') ?>,
+  <li><p>Try the <i>View -&gt; Screen Effects</i> menu in <?php echo a_href_page('Castle Model Viewer', 'doc/castle-model-viewer') ?>,
     after loading any 3D scene.
     Note that you can activate many effects at the same time.</p></li>
 
@@ -294,7 +294,7 @@ shader:</p>
     pixel, you can also query the pixels around (for example,
     for <a href="https://en.wikipedia.org/wiki/Screen_Space_Ambient_Occlusion">Screen Space Ambient Occlusion</a>).
     The "Flashlight" effect in
-    <?php echo a_href_page('view3dscene', 'view3dscene') ?>
+    <?php echo a_href_page('Castle Model Viewer', 'doc/castle-model-viewer') ?>
     queries a couple of pixels in the middle of the screen to estimate
     the distance to an object in front of the camera, which in turn determines
     the flashlight circle size.</p></li>

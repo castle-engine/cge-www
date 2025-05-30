@@ -208,7 +208,7 @@ cgeimg::block[
 
 == Graphic effects
 
-* link:shaders[Shader effects] to define effects using GLSL that enhance existing engine rendering. See https://github.com/castle-engine/castle-engine/tree/master/examples/shaders/shader_effects_on_shape[examples/shaders/shader_effects_on_shape] example. You can write own effects easily using _OpenGL Shading Language_.
+* link:shaders[Shader effects] to define effects using GLSL that enhance existing engine rendering. See many examples in https://github.com/castle-engine/castle-engine/tree/master/examples/shaders/[examples/shaders/] subdirectory. You can write own effects easily using _OpenGL Shading Language_.
 +
 cgeimg::block[
   volumetric_animated_fog_all.png|Volumetric fog,
