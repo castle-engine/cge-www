@@ -3181,11 +3181,11 @@ S := Download(<span class="string"><span class="delimiter">'</span><span class="
 </div>
 </div>
 <div class="paragraph">
-<p>To read text files, we advise using the <code>TTextReader</code> class. It provides a line-oriented API, and wraps a <code>TStream</code> inside. The <code>TTextReader</code> constructor can take a ready URL, or you can pass there your custom <code>TStream</code> source.</p>
+<p>To read text files, we advise using the <code>TCastleTextReader</code> class. It provides a line-oriented API, and wraps a <code>TStream</code> inside. The <code>TCastleTextReader</code> constructor can take a ready URL, or you can pass there your custom <code>TStream</code> source.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal">Text := TTextReader.Create(<span class="string"><span class="delimiter">'</span><span class="content">castle-data:/my_data.txt</span><span class="delimiter">'</span></span>);
+<pre class="CodeRay highlight"><code data-lang="pascal">Text := TCastleTextReader.Create(<span class="string"><span class="delimiter">'</span><span class="content">castle-data:/my_data.txt</span><span class="delimiter">'</span></span>);
 <span class="keyword">try</span>
   <span class="keyword">while</span> <span class="keyword">not</span> Text.Eof <span class="keyword">do</span>
     WriteLnLog(<span class="string"><span class="delimiter">'</span><span class="content">NextLine</span><span class="delimiter">'</span></span>, Text.ReadLn);
@@ -5545,7 +5545,7 @@ you create <em>COM interfaces</em>. This can be stated explicitly by saying <cod
 </div>
 <div id="footer">
 <div id="footer-text">
-Востаннє оновлено 2025-04-13 22:27:58 +0200
+Востаннє оновлено 2025-05-30 17:33:56 +0200
 </div>
 </div>
 <!-- Google analytics -->

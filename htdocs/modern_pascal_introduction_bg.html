@@ -3183,11 +3183,11 @@ S := Download(<span class="string"><span class="delimiter">'</span><span class="
 </div>
 </div>
 <div class="paragraph">
-<p>За да четете текстови файлове, препоръчваме да използвате класа <code>TTextReader</code>. Той предоставя поредово API и съдържа в себе си <code>TStream</code>. Конструкторът <code>TTextReader</code> може да вземе готов URL адрес или вие можете да подадете там вашия персонализиран източник <code>TStream</code>.</p>
+<p>За да четете текстови файлове, препоръчваме да използвате класа <code>TCastleTextReader</code>. Той предоставя поредово API и съдържа в себе си <code>TStream</code>. Конструкторът <code>TCastleTextReader</code> може да вземе готов URL адрес или вие можете да подадете там вашия персонализиран източник <code>TStream</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal">Text := TTextReader.Create(<span class="string"><span class="delimiter">'</span><span class="content">castle-data:/my_data.txt</span><span class="delimiter">'</span></span>);
+<pre class="CodeRay highlight"><code data-lang="pascal">Text := TCastleTextReader.Create(<span class="string"><span class="delimiter">'</span><span class="content">castle-data:/my_data.txt</span><span class="delimiter">'</span></span>);
 <span class="keyword">try</span>
   <span class="keyword">while</span> <span class="keyword">not</span> Text.Eof <span class="keyword">do</span>
     WriteLnLog(<span class="string"><span class="delimiter">'</span><span class="content">NextLine</span><span class="delimiter">'</span></span>, Text.ReadLn);
@@ -5601,7 +5601,7 @@ operator* (<span class="keyword">const</span> C1, C2: TMyRecord): TMyRecord;
 </div>
 <div id="footer">
 <div id="footer-text">
-Последно обновен 2025-04-13 22:27:58 +0200
+Последно обновен 2025-05-30 17:33:56 +0200
 </div>
 </div>
 <!-- Google analytics -->

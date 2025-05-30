@@ -2334,11 +2334,11 @@ S := Download(<span class="string"><span class="delimiter">'</span><span class="
 </div>
 </div>
 <div class="paragraph">
-<p>Чтобы прочитать обычный текстовый файл лучше использовать класс <code>TTextReader</code> из <code>CastleClassUtils</code>. Он предоставляет построчный API, как надстройку над <code>TStream</code>. URL можно задать через конструктор класса <code>TTextReader</code>, либо можно передать ему готовый <code>TStream</code> вручную.</p>
+<p>Чтобы прочитать обычный текстовый файл лучше использовать класс <code>TCastleTextReader</code> из <code>CastleClassUtils</code>. Он предоставляет построчный API, как надстройку над <code>TStream</code>. URL можно задать через конструктор класса <code>TCastleTextReader</code>, либо можно передать ему готовый <code>TStream</code> вручную.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal">Text := TTextReader.Create(<span class="string"><span class="delimiter">'</span><span class="content">castle-data:/my_data.txt</span><span class="delimiter">'</span></span>);
+<pre class="CodeRay highlight"><code data-lang="pascal">Text := TCastleTextReader.Create(<span class="string"><span class="delimiter">'</span><span class="content">castle-data:/my_data.txt</span><span class="delimiter">'</span></span>);
 <span class="keyword">while</span> <span class="keyword">not</span> Text.Eof <span class="keyword">do</span>
   WriteLnLog(<span class="string"><span class="delimiter">'</span><span class="content">NextLine</span><span class="delimiter">'</span></span>, Text.ReadLine);</code></pre>
 </div>
@@ -4163,7 +4163,7 @@ vitaly_l и pupsik @ freepascal.ru</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Последнее обновление 2025-04-13 22:27:58 +0200
+Последнее обновление 2025-05-30 17:33:56 +0200
 </div>
 </div>
 <!-- Google analytics -->
