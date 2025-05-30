@@ -81,10 +81,10 @@ or
 +
 [source,pascal]
 ----
-MyTextReader := TTextReader.Create('castle-data:/my_text_file.txt');
+MyTextReader := TCastleTextReader.Create('castle-data:/my_text_file.txt');
 ----
 +
-See link:manual_network.php[loading from URLs].
+See link:url[loading from URLs].
 
 == Data should be considered read-only
 

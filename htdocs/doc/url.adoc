@@ -55,7 +55,7 @@ It can also write to a ZIP file if you associate a custom protocol with your ZIP
 
 More higher-level loading and saving routines are available. They are all implemented on top of the above functions dealing with `TStream`, so they all support all registered URLs.
 
-- To read / write text files from an URL, use cgeref:TTextReader[] and cgeref:TTextWriter[].
+- To read / write text files from an URL, use cgeref:TCastleTextReader[] and cgeref:TCastleTextWriter[].
 
 - To read / write text files as a simple `String` from an URL, use cgeref:FileToString[] and cgeref:StringToFile[].
 
