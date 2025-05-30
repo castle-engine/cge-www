@@ -1,7 +1,7 @@
 # Window size and fullscreen
 include::common.adoc[]
 :description: Configure window size and fullscreen mode.
-// :cge-social-share-image: ..
+:cge-social-share-image: window_size.png
 
 ## Introduction
 
@@ -21,6 +21,8 @@ Do this by setting the window properties that control window size and mode:
 You have to adjust these properties before the window is opened. In the standard case, this means that you should change them in the `initialization` section of some unit, like `code/gameinitialize.pas`. Our standard project templates put there a comment saying `Optionally, adjust window fullscreen mode and size at this point` to make it easy.
 
 // If you follow the standard cross-platform project template, then the window is opened on desktop from the auto-generated main program file (that does `Application.MainWindow.OpenAndRun`) and on other platforms, it is opened automatically by system and managed by the engine.
+
+cgeimg::block[window_size.png|Window size and fullscreen mode]
 
 ## Make window fullscreen
 
