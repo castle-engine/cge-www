@@ -12,7 +12,12 @@ name: Check Old SourceForge Servers Online
 
 on:
   schedule:
-    - cron: '33 * * * *'
+# Changed the frequency from hourly to daily,
+# see https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows .
+# Because redirects on SourceForge seems broken now, despite correct files in place.
+# To be investigated later, or maybe SF will fix it.
+#    - cron: '33 * * * *'
+    - cron: '33 5 * * *'
   workflow_dispatch:
 
 defaults:
