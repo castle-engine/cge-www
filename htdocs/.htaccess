@@ -231,6 +231,7 @@ Redirect "/bb2024" "https://docs.google.com/presentation/d/e/2PACX-1vQIAK7AacHDR
 Redirect "/pascalcafe2025" "https://docs.google.com/presentation/d/e/2PACX-1vRGeDksS5S-FmVfiZYXtMGzU1GE_8i1c9kZVEMBHxjmM94SLBdCqR-tkooWcIgC1WtlIGEiOeE-L31H/pub?start=false&loop=false&delayms=3000"
 Redirect "/bsc_pascal_1" "https://docs.google.com/presentation/d/e/2PACX-1vSmLJ7ZxqQSZ5HhkLU9jq0ilKcO7rijpy-3koqpsSuO8d_46eOzEIlwZrx_rOBkaBf7Wo24az9tVP5o/pub?start=false&loop=false&delayms=3000"
 Redirect "/bsc_pascal_2" "https://docs.google.com/presentation/d/e/2PACX-1vRwCjGxGJzghfO-kuqJE03wNmY0Qf99P8FRXM3NgL8BgwsXVEI4rJHOm2WHzpFYSk-v2ZNaW_KOCt5A/pub?start=false&loop=false&delayms=3000"
+Redirect "/dsummit2025" https://docs.google.com/presentation/d/e/2PACX-1vRdFwECd1dRJ90Nvc-lK7tiM3aj0-4C0wnQkXZveR6P-Zgaz7-bfEcQpP_4MWUX5GcZPJAn5yBJdOAZ/pub?start=true&loop=true&delayms=10000
 
 # This link is used at least by http://planetdev.freegamedev.net/ .
 #
