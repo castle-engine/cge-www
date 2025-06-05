@@ -17,6 +17,7 @@ Do this by setting the window properties that control window size and mode:
 - cgeref:TCastleWindow.Height[]
 - cgeref:TCastleWindow.Left[]
 - cgeref:TCastleWindow.Top[]
+- cgeref:TCastleWindow.AntiAliasing[] (this property is not directly related to window size, but it's a good idea to consider and adjust it at the same time)
 
 You have to adjust these properties before the window is opened. In the standard case, this means that you should change them in the `initialization` section of some unit, like `code/gameinitialize.pas`. Our standard project templates put there a comment saying `Optionally, adjust window fullscreen mode and size at this point` to make it easy.
 
@@ -76,6 +77,16 @@ Window.FullScreen := false; // default
 Window.Width := Application.ScreenWidth div 3; // 1 / 3 of screen width
 Window.Height := Window.Width * 1600 div 900; // 16:9 aspect ratio
 ```
+
+## Anti-aliasing
+
+While adjusting the window size or fullscreen mode, you may also want to enable _anti-aliasing_. Anti-aliasing makes graphics appear smoother, especially along the edges of 3D objects, reducing the "jagged" look. Enabling it is straightforward: set the cgeref:TCastleWindow.AntiAliasing[] property before the window is opened (typically at the same time you set the window size):
+
+```delphi
+Window.AntiAliasing := aa4SamplesNicer;
+```
+
+See https://github.com/castle-engine/conference-delphi-summit-2025/blob/6cd8fc0647be2199fa01d73a76b3ac869c59cfa3/walk_3d_game_controllers/code/gameinitialize.pas#L70[real-life example here], it's really that simple.
 
 [#video_change]
 ## Changing the physical screen resolution (not recommended)
