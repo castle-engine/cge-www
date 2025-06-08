@@ -843,36 +843,6 @@ DrawableImage.Color := FColor;
 DrawableImage.CustomShader := FCustomShader;
 ----
 
-### (IN PROGRESS) Better gamepads (joysticks) API
-
-Goal: Support modern gamepads (joysticks) with a nice API.
-
-Note: We *have* support for gamepads (joysticks) already, see `CastleJoysticks` and `examples/joysticks/` . But it is not easy to use -- I'd like to improve the API, and improve it to handle various gamepad types in a more "seamless" fashion.
-
-Features:
-
-- It should support at least the most popular controller, which _X-box compatible controller_, out-of-the-box.
-+
-It seems we can easily support much more, using joysticks database: https://trello.com/c/483EsTNX/12-use-database-of-joysticks-to-better-understand-their-buttons-axis . But I make it explicit: the critical feature is support for the most common _X-box compatible controller_. Support for, potentially, every gamepad that exists in the world is secondary :)
-
-- Should support at least Windows, Linux, and link:nintendo_switch[Nintendo Switch]. Switch support in this case is justified -- because we already support Switch gamepads, but we'll want to upgrade it to new API.
-+
-Of course support for more platforms is desired. macOS, and maybe even mobile (it does seem one can connect gamepad to Android through at least Bluetooth, it actually works). But these are secondary. The platforms mentioned above are primary for this feature.
-
-- Should support multiple gamepads.
-
-- API should be nice. Current `CastleJoysticks` is complicated. This means:
-+
---
-- `TInputPressRelease` structure, as send to `TCastleUserInterface.Press` (so in particular, `TCastleView.Press`) should have a type like `GamePadButton` (alternative to key on keyboard, or mouse button) that occurs when user presses / releases the button. It should say which gamepad was used to press it (to support multiple joysticks connected to system). And it should report a button.
-+
-Buttons should have agnostic names, like _North_, _East_ etc. Avoid using names like `A` `B` `X` `Y` that are in different places on different gamepad models (Xbox, PS, Nintendo...). Maybe we can also have names like _Accept_, _Cancel_ to follow conventions (e.g. on Xbox controller, A corresponds to "Accept" by convention, B corresponds to "Cancel").
-
-- `TCastleInputAxis` (that is also already in progress) should allow to observe chosen gamepad axis (based on gamepad index, and choice horizontal/vertical, also choice of gamepad axis -- typical gamepads now have 2 axis). This is already a nice API to observe input that we want to have.
---
-
-- `examples/joystick/` should look better. Show a sketch of a gamepad -- and highlight the current axis used, button pressed.
-
 ### Smart Tasks
 
 Allow to define tasks that should occur regularly, but do not have to be done every frame. The engine should then automatically execute the tasks based on their need and current workload.
