@@ -5,7 +5,7 @@ include::common.adoc[]
 
 == Introduction
 
-_Castle Game Engine_ features a cross-platform API to access game controllers (joysticks, gamepads). You can query available controllers, react to controller buttons being pressed/released, and read controller axes.
+_Castle Game Engine_ features a cross-platform API to access game controllers (joysticks, gamepads). You can initialize and query available cgeref:Controllers[], react to controller buttons being pressed/released and read controller axes (e.g. how much a gamepad _stick_ or _trigger_ is pressed). You can also activate support for the game controllers in cgeref:TCastleWalkNavigation[] or any other component using cgeref:TInputShortcut[].
 
 cgeimg::block[
   xbox_controller_cge_demo.png|XBox controller used with CGE demo,
@@ -19,7 +19,7 @@ We provide several examples that allow you to test this support:
 
 - The example https://github.com/castle-engine/castle-engine/tree/master/examples/game_controllers[examples/game_controllers] allows you to test all controller buttons and axes.
 
-- https://github.com/castle-engine/conference-delphi-summit-2025[3D Walking With Game Controllers (demo from the Delphi Summit 2025)] shows how to use game controllers in practice for a simple 3D walking demo game.
+- https://github.com/castle-engine/conference-delphi-summit-2025[3D Walking With Game Controllers (demo from the Delphi Summit 2025)] shows how to use game controllers in practice, in a simple 3D demo game where you walk and talk with NPCs.
 
 - Our example https://github.com/castle-engine/castle-engine/blob/master/examples/fps_game/[examples/fps_game] also supports gamepads, using the most standard arrangement for 3D FPS games, as explained link:#walk_navigation[later in this document].
 
@@ -29,11 +29,11 @@ We provide several examples that allow you to test this support:
 
 Call cgeref:TGameControllers.Initialize[Controllers.Initialize] to initialize controller handling. The cgeref:Controllers[] is a singleton (single instance of the cgeref:TGameControllers[] class) that is automatically created when accessed.
 
-You can call it from anywhere in your application. For example, in the `Application.OnInitialize` handler (which is located in the `GameInitialize` unit in the default new project), or in the `Start` method of your link:views[view].
+You can call cgeref:TGameControllers.Initialize[Controllers.Initialize] at any moment in your application. For example, in the `Application.OnInitialize` handler (which is located in the `GameInitialize` unit in the default new project), or in the `Start` method of your link:views[view].
 
 You can call cgeref:TGameControllers.Initialize[Controllers.Initialize] as often as you wish.
 
-- On most platforms (_Windows_, link:nintendo_switch[Nintendo Switch]), this is not necessary. Connecting and disconnecting controllers is automatically detected once the controllers are initialized at least once. So you only need to call cgeref:TGameControllers.Initialize[Controllers.Initialize] once in your application.
+- On most platforms (_Windows_, link:nintendo_switch[Nintendo Switch]), calling it once is actually enough. Later, connecting and disconnecting controllers is automatically detected. So you only need to call cgeref:TGameControllers.Initialize[Controllers.Initialize] once in your application.
 
 - However, on some platforms (_Linux_ currently), it is necessary to call cgeref:TGameControllers.Initialize[Controllers.Initialize] again to detect newly-connected controllers. To account for this, we recommend either giving the user an explicit button/menu item to do this (like a button _"Detect Connected Game Controllers"_) and/or calling cgeref:TGameControllers.Initialize[Controllers.Initialize] automatically at certain times (e.g., every 5 seconds, or every time the user opens a pause menu).
 
@@ -91,22 +91,22 @@ These methods get information about _what was pressed (or released)_ using the c
 cgeref:TGameControllerPressRelease.Button[Event.Controller.Button]::
 Button that was pressed or released.
 +
-This uses controller-agnostic enumeration names, in particular the 4 "face buttons" (which have rather inconsistent names and looks between some popular gamepads -- A B X Y or square triangle circle cross) are mapped to cgeref:gbNorth[], cgeref:gbEast[], cgeref:gbSouth[], cgeref:gbWest[]. See the cgeref:TGameControllerButton[] documentation for more information.
+This uses controller-agnostic enumeration names, in particular the 4 _"face buttons"_ (which have rather inconsistent names and looks between some popular gamepads -- _A B X Y_ or _square triangle circle cross_) are mapped to cgeref:gbNorth[], cgeref:gbEast[], cgeref:gbSouth[], cgeref:gbWest[]. See the cgeref:TGameControllerButton[] documentation for more information.
 
 cgeref:TGameControllerPressRelease.Meaning[Event.Controller.Meaning]::
-Additional possible "conventional meaning of the button". This can be gmConfirm[] or gmCancel[] for buttons that by convention act like this on a given controller type. For example, `A` on XBox controller is cgeref:gmConfirm[], `B` is cgeref:gmCancel[].
+Additional possible "conventional meaning of the button". This can be cgeref:gmConfirm[] or cgeref:gmCancel[] for buttons that by convention act like this on a given controller type. For example, `A` on XBox controller is cgeref:gmConfirm[], `B` is cgeref:gmCancel[].
 +
-For most buttons it is just gmNone[].
+For most buttons it is just cgeref:gmNone[].
 
 cgeref:TGameControllerPressRelease.Caption[Event.Controller.Caption]::
 Button caption that matches the controller type. For example, the four "face buttons" on XBox controller are `'A'`, `'B'`, `'X'`, `'Y'`.
 +
-The intended purpose is to use this to display messages to the user like `WritelnLog('You pressed %s.', [Event.Controller.Caption]);`. There is also a method cgeref:TGameController.ButtonCaption[] to get this caption before the press, to use it like `Button.Caption := Format('Press %s to jump', [Controllers[0].ButtonCaption(gbSouth)]);`.
+The intended purpose is to use this to display messages to the user like `WritelnLog('You pressed %s.', [Event.Controller.Caption]);`. There is also a method cgeref:TGameController.ButtonCaption[] to get button's caption independently of it being pressed, to use it like `Button.Caption := Format('Press %s to jump', [Controllers[0].ButtonCaption(gbSouth)]);`.
 
 cgeref:TGameControllerPressRelease.ControllerIndex[Event.Controller.ControllerIndex]::
-Index of the controller in cgeref:TGameControllers.Items[] array.
+Index of the controller in the cgeref:TGameControllers.Items[] array.
 +
-This is naturally useful if different controllers map to different players, e.g. controller 0 controls the left car, while controller 1 controls the right car in a split-screen car racing game.
+This is useful if different controllers map to different players, e.g. controller 0 controls the left car, while controller 1 controls the right car in a split-screen car racing game.
 
 There are shortcut methods to test if a given cgeref:TInputPressRelease[] matches a given controller button or meaning, see cgeref:TInputPressRelease.IsController[].
 
@@ -161,9 +161,11 @@ end;
 
 NOTE: The triggers are exposed as "axes", since this is most flexible and we have this information. They could be naturally used for things like speeding up/braking in a car racing game. But if you want, you can also add simple code to treat triggers as "digital" press or release. Simply watch when their value crosses some threshold, like `0.5`. See https://github.com/castle-engine/conference-delphi-summit-2025/blob/f0069ad4e92336237a1609511f9bb4712153c380/walk_3d_game_controllers/code/gameviewmain.pas#L184[sample code here].
 
+NOTE: As always when doing things in the `Update` method of the view, remember to multiply everything you're doing by the `SecondsPassed` (see link:view_events[view events]). This includes reacting to the controller axes. Value like `Controllers[0].AxisLeftTrigger` says _how mush pressure_ is the user putting on the trigger, but it doesn't account how much time has passed since last processing the `Update`. If you want to move the object, you still have to multiply this value by `SecondsPassed` to make the movement have equal speed on every computer. See the above example, where the `MovementSpeed` is effectively multiplied by the `SecondsPassed`.
+
 === Integration with TInputShortcut
 
-If you want to use game controllers with anything that exposes cgeref:TInputShortcut[] inputs, it's easy. The cgeref:TInputShortcut[] have a cgeref:TInputShortcut.Bindings[] list and can react to controller buttons or axes.
+If you want to use game controllers with anything that exposes inputs as cgeref:TInputShortcut[], it's easy. The cgeref:TInputShortcut[] have a cgeref:TInputShortcut.Bindings[] list and can react to controller buttons or axes.
 
 Navigation components, like cgeref:TCastleWalkNavigation[] and cgeref:TCastleExamineNavigation[] can read the inputs this way. They can even read the "pressure" of a given input, which corresponds to how much and which controller axis is pressed, using the cgeref:TInputShortcut.IsPressed[] overload with the `out HowMuch: Single` parameter. On the application side, you just configure the bindings, like this:
 
