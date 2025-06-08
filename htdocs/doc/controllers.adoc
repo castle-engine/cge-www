@@ -1,14 +1,14 @@
 # Game Controllers (Joysticks, Gamepads)
 include::common.adoc[]
-:description: Using game controllers, like gamepads (XBox Controllers), Nintendo Switch controllers, joysticks.
+:description: Using game controllers, like gamepads (Xbox Controllers), Nintendo Switch controllers, and joysticks.
 :cge-social-share-image: xbox_controller_cge_demo.png
 
 == Introduction
 
-_Castle Game Engine_ features a cross-platform API to access game controllers (joysticks, gamepads). You can initialize and query available cgeref:Controllers[], react to controller buttons being pressed/released and read controller axes (e.g. how much a gamepad _stick_ or _trigger_ is pressed). You can also activate support for the game controllers in cgeref:TCastleWalkNavigation[] or any other component using cgeref:TInputShortcut[].
+_Castle Game Engine_ features a cross-platform API to access game controllers (joysticks, gamepads). You can initialize and query available cgeref:Controllers[], react to controller buttons being pressed/released, and read controller axes (e.g., how much a gamepad _stick_ or _trigger_ is pressed). You can also activate support for game controllers in cgeref:TCastleWalkNavigation[] or any other component using cgeref:TInputShortcut[].
 
 cgeimg::block[
-  xbox_controller_cge_demo.png|XBox controller used with CGE demo,
+  xbox_controller_cge_demo.png|Xbox controller used with CGE demo,
   walk_3d_game_controllers.png|3D Walking With Game Controllers demo,
   game_controllers.png|Game Controllers example
 ]
@@ -59,7 +59,7 @@ end;
 ----
 ////
 
-You can also use `for .. in` Pascal loop to iterate over the controllers in cgeref:TGameControllers.Initialize[Controllers]. The convenience property cgeref:TGameController.Index[] is particularly useful in this case, if you want to get the index back from cgeref:TGameController[] to cgeref:TGameControllers.Items[].
+You can also use a `for .. in` Pascal loop to iterate over the controllers in cgeref:TGameControllers.Initialize[Controllers]. The convenience property cgeref:TGameController.Index[] is particularly useful in this case, if you want to get the index back from cgeref:TGameController[] to cgeref:TGameControllers.Items[].
 
 Like this:
 
@@ -80,7 +80,7 @@ end;
 
 NOTE: The cgeref:TGameController.Name[] is a device name obtained from the underlying API.
 //Sometimes it is even localized, i.e. in the system language.
-It is _not_ guaranteed to be unique among all the controllers, so when displaying any diagnostic message, it's worth always including also the controller index from cgeref:TGameController.Index[]. Also note that the controller index changes as the controllers get connected and disconnected.
+It is _not_ guaranteed to be unique among all controllers, so when displaying any diagnostic message, it's worth always including the controller index from cgeref:TGameController.Index[]. Also note that the controller index changes as controllers get connected and disconnected.
 
 === Detect pressed controller buttons
 
@@ -91,15 +91,15 @@ These methods get information about _what was pressed (or released)_ using the c
 cgeref:TGameControllerPressRelease.Button[Event.Controller.Button]::
 Button that was pressed or released.
 +
-This uses controller-agnostic enumeration names, in particular the 4 _"face buttons"_ (which have rather inconsistent names and looks between some popular gamepads -- _A B X Y_ or _square triangle circle cross_) are mapped to cgeref:gbNorth[], cgeref:gbEast[], cgeref:gbSouth[], cgeref:gbWest[]. See the cgeref:TGameControllerButton[] documentation for more information.
+This uses controller-agnostic enumeration names. In particular, the 4 _"face buttons"_ (which have rather inconsistent names and looks between some popular gamepads -- _A B X Y_ or _square triangle circle cross_) are mapped to cgeref:gbNorth[], cgeref:gbEast[], cgeref:gbSouth[], cgeref:gbWest[]. See the cgeref:TGameControllerButton[] documentation for more information.
 
 cgeref:TGameControllerPressRelease.Meaning[Event.Controller.Meaning]::
-Additional possible "conventional meaning of the button". This can be cgeref:gmConfirm[] or cgeref:gmCancel[] for buttons that by convention act like this on a given controller type. For example, `A` on XBox controller is cgeref:gmConfirm[], `B` is cgeref:gmCancel[].
+Additional possible "conventional meaning of the button". This can be cgeref:gmConfirm[] or cgeref:gmCancel[] for buttons that by convention act like this on a given controller type. For example, `A` on Xbox controller is cgeref:gmConfirm[], `B` is cgeref:gmCancel[].
 +
 For most buttons it is just cgeref:gmNone[].
 
 cgeref:TGameControllerPressRelease.Caption[Event.Controller.Caption]::
-Button caption that matches the controller type. For example, the four "face buttons" on XBox controller are `'A'`, `'B'`, `'X'`, `'Y'`.
+Button caption that matches the controller type. For example, the four "face buttons" on Xbox controller are `'A'`, `'B'`, `'X'`, `'Y'`.
 +
 The intended purpose is to use this to display messages to the user like `WritelnLog('You pressed %s.', [Event.Controller.Caption]);`. There is also a method cgeref:TGameController.ButtonCaption[] to get button's caption independently of it being pressed, to use it like `Button.Caption := Format('Press %s to jump', [Controllers[0].ButtonCaption(gbSouth)]);`.
 
@@ -139,7 +139,7 @@ Right now, these axes are available:
 - Left trigger, 1D, cgeref:TGameController.AxisLeftTrigger[]. In the range `[0, 1]`.
 - Right trigger, 1D, cgeref:TGameController.AxisRightTrigger[]. In the range `[0, 1]`.
 
-You can literally do anything you want with these axis values. E.g., set a speed of movement, or change the immediate position, based on them:
+You can do anything you want with these axis values. For example, set a speed of movement, or change the immediate position, based on them:
 
 [source,pascal]
 ----
@@ -151,9 +151,9 @@ begin
 
   if Controllers.Count > 0 then
   begin
-    MovementSpeed := Controllers[0].AxisLeftTrigger;
+    MovementSpeed := Controllers[0].AxisLeft;
     // Move the object in XZ plane
-    PlayerAvatar := PlayerAvatar +
+    PlayerAvatar.Translation := PlayerAvatar.Translation +
       Vector3(MovementSpeed.X, 0, MovementSpeed.Y) * SecondsPassed;
   end;
 end;
@@ -165,9 +165,9 @@ NOTE: As always when doing things in the `Update` method of the view, remember t
 
 === Integration with TInputShortcut
 
-If you want to use game controllers with anything that exposes inputs as cgeref:TInputShortcut[], it's easy. The cgeref:TInputShortcut[] have a cgeref:TInputShortcut.Bindings[] list and can react to controller buttons or axes.
+If you want to use game controllers with anything that exposes inputs as cgeref:TInputShortcut[], it's easy. The cgeref:TInputShortcut[] classes have a cgeref:TInputShortcut.Bindings[] list and can react to controller buttons or axes.
 
-Navigation components, like cgeref:TCastleWalkNavigation[] and cgeref:TCastleExamineNavigation[] can read the inputs this way. They can even read the "pressure" of a given input, which corresponds to how much and which controller axis is pressed, using the cgeref:TInputShortcut.IsPressed[] overload with the `out HowMuch: Single` parameter. On the application side, you just configure the bindings, like this:
+Navigation components, like cgeref:TCastleWalkNavigation[] and cgeref:TCastleExamineNavigation[], can read the inputs this way. They can even read the "pressure" of a given input, which corresponds to how much and which controller axis is pressed, using the cgeref:TInputShortcut.IsPressed[] overload with the `out HowMuch: Single` parameter. On the application side, you just configure the bindings, like this:
 
 [source,pascal]
 ----
@@ -249,7 +249,7 @@ This is really everything that the https://github.com/castle-engine/castle-engin
 
 The API is designed to account for all controllers on all platforms. For now it has been extensively tested and confirmed on:
 
-- _Windows_ and _Linux_ platforms with _XBox (or Compatible) Controllers_.
+- _Windows_ and _Linux_ platforms with _Xbox (or Compatible) Controllers_.
 - link:nintendo_switch[Nintendo Switch] platform, with all compatible controllers, including _Joy-Cons_ and the _Pro Controller_.
 
 More platforms and support is coming (see link:#todo[TODO section below]). The API is designed to be extensible, we can map internal button/axis numbers to controller-agnostic enums like cgeref:TGameControllerButton[]. We have a number of "backends" providing actual (potentially platform-specific) controller handling.
@@ -259,9 +259,9 @@ More platforms and support is coming (see link:#todo[TODO section below]). The A
 
 - `TCastleInputAxis`, a new way to use inputs as axis, which naturally maps to gamepad axes, but can also account for mouse look, key acceleration... is coming. See https://github.com/castle-engine/castle-engine/pull/533[PR 533 with new navigation components]. In a way, our current cgeref:TInputShortcutBindingControllerAxis[] is a first step towards it, but we can make `TCastleInputAxis` better (as it will be configurable "how" a `TCastleInputAxis` is caused; right now the "axis" in cgeref:TInputShortcutBindingControllerAxis[] is only for game controller handling).
 
-- Testing + adjusting (map the internal button numbers/axis correctly) the Linux/Windows backends on more gamepad types, in particular: PlayStation gamepad connected to PC.
+- Testing + adjusting (map the internal button numbers/axes correctly) the Linux/Windows backends on more gamepad types, in particular: PlayStation gamepad connected to PC.
 
-- Maybe use the https://github.com/godotengine/godot/blob/master/core/input/godotcontrollerdb.txt[Godot's game controller database], see https://docs.godotengine.org/en/stable/tutorials/inputs/controllers_gamepads_joysticks.html[Godot docs here]. This needs testing whether it helps, and on what platforms it helps -- it seems it's mostly for Android and web (which is still useful, see below, we may have backends for this).
+- Maybe use the https://github.com/godotengine/godot/blob/master/core/input/godotcontrollerdb.txt[Godot's game controller database], see https://docs.godotengine.org/en/stable/tutorials/inputs/controllers_gamepads_joysticks.html[Godot docs here]. This needs testing to determine whether it helps, and on what platforms it helps -- it seems it's mostly for Android and web (which is still useful, see below, we may have backends for this).
 +
 See also https://trello.com/c/483EsTNX/12-use-database-of-joysticks-to-better-understand-their-buttons-axis[previous attempt to use the database] from https://github.com/ThemsAllTook/libstem_gamepad/tree/master/source/gamepad[libstem_gamepad] which may be something to restore.
 
