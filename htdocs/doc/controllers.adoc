@@ -37,18 +37,48 @@ You can call cgeref:TGameControllers.Initialize[Controllers.Initialize] as often
 
 === Report connected controllers
 
-Read cgeref:TGameControllers.Initialize[Controllers.Count] and cgeref:TGameControllers.Initialize[Controllers.Items] (default array property) to access the list of connected controllers. Like this:
+Read cgeref:TGameControllers.Initialize[Controllers.Count] and cgeref:TGameControllers.Initialize[Controllers.Items] (default array property) to access the list of connected controllers.
+
+////
+[source,pascal]
+----
+var
+  Controller: TGameController;
+  ControllerIndex: Integer;
+begin
+  Controllers.Initialize;
+  WritelnLog('Number of game controllers found: %d', [Controllers.Count]);
+  for ControllerIndex := 0 to Controllers.Count - 1 do
+  begin
+    Controller := Controllers[ControllerIndex];
+    WritelnLog('Game controller %d: %s', [I, Controllers[I].Name]);
+  end;
+end;
+----
+////
+
+You can also use `for .. in` Pascal loop to iterate over the controllers in cgeref:TGameControllers.Initialize[Controllers]. The convenience property cgeref:TGameController.Index[] is particularly useful in this case, if you want to get the index back from cgeref:TGameController[] to cgeref:TGameControllers.Items[].
+
+Like this:
 
 [source,pascal]
 ----
-Controllers.Initialize;
-WritelnLog('Number of game controllers found: %d', [Controllers.Count]);
-for I := 0 to Controllers.Count - 1 do
+var
+  Controller: TGameController;
 begin
-  // Controllers[I] is a TGameController instance
-  WritelnLog('Game controller %d: %s', [I, Controllers[I].Name]);
+  Controllers.Initialize;
+  WritelnLog('Number of game controllers found: %d', [Controllers.Count]);
+  for Controller in Controllers do
+    WritelnLog('Game controller %d: %s', [
+      Controller.Index,
+      Controller.Name
+    ]);
 end;
 ----
+
+NOTE: The cgeref:TGameController.Name[] is a device name obtained from the underlying API.
+//Sometimes it is even localized, i.e. in the system language.
+It is _not_ guaranteed to be unique among all the controllers, so when displaying any diagnostic message, it's worth always including also the controller index from cgeref:TGameController.Index[]. Also note that the controller index changes as the controllers get connected and disconnected.
 
 === Detect pressed controller buttons
 
@@ -236,5 +266,7 @@ More platforms and support is coming (see link:#todo[TODO section below]). The A
 
 - Use game controllers through link:steam[] API. This is nice, as Steam provides an API that can already deal with _lots_ of controller types. https://partner.steamgames.com/doc/features/steam_controller[Steam Input, Steam Controller], https://partner.steamgames.com/doc/api/ISteamInput[Steam Input API].
 
-- Maybe: XInput backend on _Windows_. (What are the practical gains over the current _MMSystem_?)
+- Maybe: XInput backend on _Windows_. (But first research what are the practical gains over the current _MMSystem_?)
+
+- Maybe: `/dev/event*` backend on _Linux_. (But first research what are the practical gains over the current `/dev/input/js*`?)
 --
