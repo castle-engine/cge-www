@@ -1,25 +1,27 @@
 # Game Controllers (Joysticks, Gamepads)
 include::common.adoc[]
-:description: Using game controllers, like gamepads (XBox Controllers), Nintendo Switch controllers (Joy-Cons), joysticks.
-//:cge-social-share-image: todo_screen_with_gamepad.png
+:description: Using game controllers, like gamepads (XBox Controllers), Nintendo Switch controllers, joysticks.
+:cge-social-share-image: xbox_controller_cge_demo.png
 
 == Introduction
 
 _Castle Game Engine_ features a cross-platform API to access game controllers (joysticks, gamepads). You can query available controllers, react to controller buttons being pressed/released, and read controller axes.
 
-// TODO: screenshots / photos from examples below
+cgeimg::block[
+  xbox_controller_cge_demo.png|XBox controller used with CGE demo,
+  walk_3d_game_controllers.png|3D Walking With Game Controllers demo,
+  game_controllers.png|Game Controllers example
+]
 
 == Examples
 
 We provide several examples that allow you to test this support:
 
-// TODO: master branch, once merged
-// TODO: screenshot
-- The example https://github.com/castle-engine/castle-engine/tree/gamepads-improve-api/examples/game_controllers[examples/game_controllers] allows you to test all controller buttons and axes.
+- The example https://github.com/castle-engine/castle-engine/tree/master/examples/game_controllers[examples/game_controllers] allows you to test all controller buttons and axes.
 
 - https://github.com/castle-engine/conference-delphi-summit-2025[3D Walking With Game Controllers (demo from the Delphi Summit 2025)] shows how to use game controllers in practice for a simple 3D walking demo game.
 
-- Our example https://github.com/castle-engine/castle-engine/blob/gamepads-improve-api/examples/fps_game/[examples/fps_game] also supports gamepads, using the most standard arrangement for 3D FPS games, as explained link:#walk_navigation[later in this document].
+- Our example https://github.com/castle-engine/castle-engine/blob/master/examples/fps_game/[examples/fps_game] also supports gamepads, using the most standard arrangement for 3D FPS games, as explained link:#walk_navigation[later in this document].
 
 == Usage
 
@@ -238,7 +240,7 @@ begin
 end;
 ----
 
-This is really everything that the https://github.com/castle-engine/castle-engine/blob/gamepads-improve-api/examples/fps_game/[examples/fps_game] game is doing to support gamepads: https://github.com/castle-engine/castle-engine/blob/966bc9b04d00c69d5ad97d720e8be94c55bb652c/examples/fps_game/code/gameviewplay.pas#L90-L91[see here].
+This is really everything that the https://github.com/castle-engine/castle-engine/blob/master/examples/fps_game/[examples/fps_game] game is doing to support gamepads: https://github.com/castle-engine/castle-engine/blob/966bc9b04d00c69d5ad97d720e8be94c55bb652c/examples/fps_game/code/gameviewplay.pas#L90-L91[see here].
 
 [#current_support]
 == Current Controller and Platform Support
