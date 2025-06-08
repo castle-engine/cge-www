@@ -5,6 +5,70 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.2.22] - 2025-06-05
+### Changed
+- Internal updates.
+
+## [4.2.21] - 2025-06-03
+### Changed
+- Update dependencies.
+
+## [4.2.20] - 2025-06-02
+### Changed
+- Update dependencies. [#42554]
+
+## [4.2.19] - 2025-05-26
+### Changed
+- Update package dependencies. [#43578]
+
+## [4.2.18] - 2025-05-22
+### Changed
+- Update dependencies. [#42554]
+
+## [4.2.17] - 2025-05-15
+### Changed
+- Update package dependencies. [#43398]
+
+## [4.2.16] - 2025-05-12
+### Changed
+- Update package dependencies. [#43400]
+
+## [4.2.15] - 2025-05-05
+### Changed
+- Update package dependencies. [#43326]
+
+### Fixed
+- Linting: Address final rules in WordPress Stylelint config. [#43296]
+- Linting: Do additional stylesheet cleanup. [#43247]
+
+## [4.2.14] - 2025-04-28
+### Fixed
+- Linting: Fix more Stylelint violations. [#43213]
+
+## [4.2.13] - 2025-04-14
+### Fixed
+- Linting: Update stylesheets to use WordPress rules for colors. [#42920]
+
+## [4.2.12] - 2025-04-07
+### Changed
+- Linting: First pass of style coding standards. [#42734]
+
+## [4.2.11] - 2025-04-02
+### Changed
+- Update package dependencies. [#42809]
+
+## [4.2.10] - 2025-04-01
+### Changed
+- Update dependencies. [#42554]
+
+## [4.2.9] - 2025-03-31
+### Changed
+- Internal updates.
+
+## [4.2.8] - 2025-03-26
+### Changed
+- Adjust unit tests for the new Offline Mode DB option. [#42630]
+
 ## [4.2.7] - 2025-03-24
 ### Changed
 - Allow JITM functionality to be enabled on Simple sites. [#41252]
@@ -869,6 +933,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Update Jetpack to use new JITM package
 
+[4.2.22]: https://github.com/Automattic/jetpack-jitm/compare/v4.2.21...v4.2.22
+[4.2.21]: https://github.com/Automattic/jetpack-jitm/compare/v4.2.20...v4.2.21
+[4.2.20]: https://github.com/Automattic/jetpack-jitm/compare/v4.2.19...v4.2.20
+[4.2.19]: https://github.com/Automattic/jetpack-jitm/compare/v4.2.18...v4.2.19
+[4.2.18]: https://github.com/Automattic/jetpack-jitm/compare/v4.2.17...v4.2.18
+[4.2.17]: https://github.com/Automattic/jetpack-jitm/compare/v4.2.16...v4.2.17
+[4.2.16]: https://github.com/Automattic/jetpack-jitm/compare/v4.2.15...v4.2.16
+[4.2.15]: https://github.com/Automattic/jetpack-jitm/compare/v4.2.14...v4.2.15
+[4.2.14]: https://github.com/Automattic/jetpack-jitm/compare/v4.2.13...v4.2.14
+[4.2.13]: https://github.com/Automattic/jetpack-jitm/compare/v4.2.12...v4.2.13
+[4.2.12]: https://github.com/Automattic/jetpack-jitm/compare/v4.2.11...v4.2.12
+[4.2.11]: https://github.com/Automattic/jetpack-jitm/compare/v4.2.10...v4.2.11
+[4.2.10]: https://github.com/Automattic/jetpack-jitm/compare/v4.2.9...v4.2.10
+[4.2.9]: https://github.com/Automattic/jetpack-jitm/compare/v4.2.8...v4.2.9
+[4.2.8]: https://github.com/Automattic/jetpack-jitm/compare/v4.2.7...v4.2.8
 [4.2.7]: https://github.com/Automattic/jetpack-jitm/compare/v4.2.6...v4.2.7
 [4.2.6]: https://github.com/Automattic/jetpack-jitm/compare/v4.2.5...v4.2.6
 [4.2.5]: https://github.com/Automattic/jetpack-jitm/compare/v4.2.4...v4.2.5

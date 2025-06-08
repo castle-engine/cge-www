@@ -278,6 +278,8 @@ class Brute_Force_Protection_Blocked_Login_Page {
 			return false;
 		}
 
+		set_transient( 'jetpack_protect_recovery_key_validated_' . $user_id, true, 600 );
+
 		return true;
 	}
 
@@ -588,7 +590,7 @@ class Brute_Force_Protection_Blocked_Login_Page {
 					cursor: pointer;
 					display: inline-block;
 					margin: 0;
-					margin-right: 0px;
+					margin-right: 0;
 					outline: 0;
 					overflow: hidden;
 					font-weight: 500;
