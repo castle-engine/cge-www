@@ -319,6 +319,7 @@ $castle_sitemap = array(
               'manual_castle_settings' => array('title' => 'Customize UI scaling, font, warmup cache by CastleSettings.xml'),
               'doc/build_tool' => array('title' => 'Build Tool'),
               'doc/touch_input' => array('title' => 'Touch Input'),
+              'doc/controllers' => array('title' => 'Game Controllers (Joysticks, Gamepads)'),
             ),
           ),
           'manual_platforms' => array('title' => 'Platforms details',

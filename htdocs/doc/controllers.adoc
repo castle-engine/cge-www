@@ -1,0 +1,240 @@
+# Game Controllers (Joysticks, Gamepads)
+include::common.adoc[]
+:description: Using game controllers, like gamepads (XBox Controllers), Nintendo Switch controllers (Joy-Cons), joysticks.
+//:cge-social-share-image: todo_screen_with_gamepad.png
+
+== Introduction
+
+_Castle Game Engine_ features a cross-platform API to access game controllers (joysticks, gamepads). You can query available controllers, react to controller buttons being pressed/released, and read controller axes.
+
+// TODO: screenshots / photos from examples below
+
+== Examples
+
+We provide several examples that allow you to test this support:
+
+// TODO: master branch, once merged
+// TODO: screenshot
+- The example https://github.com/castle-engine/castle-engine/tree/gamepads-improve-api/examples/game_controllers[examples/game_controllers] allows you to test all controller buttons and axes.
+
+- https://github.com/castle-engine/conference-delphi-summit-2025[3D Walking With Game Controllers (demo from the Delphi Summit 2025)] shows how to use game controllers in practice for a simple 3D walking demo game.
+
+- Our example https://github.com/castle-engine/castle-engine/blob/gamepads-improve-api/examples/fps_game/[examples/fps_game] also supports gamepads, using the most standard arrangement for 3D FPS games, as explained link:#walk_navigation[later in this document].
+
+== Usage
+
+=== Initialization
+
+Call cgeref:TGameControllers.Initialize[Controllers.Initialize] to initialize controller handling. The cgeref:Controllers[] is a singleton (single instance of the cgeref:TGameControllers[] class) that is automatically created when accessed.
+
+You can call it from anywhere in your application. For example, in the `Application.OnInitialize` handler (which is located in the `GameInitialize` unit in the default new project), or in the `Start` method of your link:views[view].
+
+You can call cgeref:TGameControllers.Initialize[Controllers.Initialize] as often as you wish.
+
+- On most platforms (_Windows_, link:nintendo_switch[Nintendo Switch]), this is not necessary. Connecting and disconnecting controllers is automatically detected once the controllers are initialized at least once. So you only need to call cgeref:TGameControllers.Initialize[Controllers.Initialize] once in your application.
+
+- However, on some platforms (_Linux_ currently), it is necessary to call cgeref:TGameControllers.Initialize[Controllers.Initialize] again to detect newly-connected controllers. To account for this, we recommend either giving the user an explicit button/menu item to do this (like a button _"Detect Connected Game Controllers"_) and/or calling cgeref:TGameControllers.Initialize[Controllers.Initialize] automatically at certain times (e.g., every 5 seconds, or every time the user opens a pause menu).
+
+=== Report connected controllers
+
+Read cgeref:TGameControllers.Initialize[Controllers.Count] and cgeref:TGameControllers.Initialize[Controllers.Items] (default array property) to access the list of connected controllers. Like this:
+
+[source,pascal]
+----
+Controllers.Initialize;
+WritelnLog('Number of game controllers found: %d', [Controllers.Count]);
+for I := 0 to Controllers.Count - 1 do
+begin
+  // Controllers[I] is a TGameController instance
+  WritelnLog('Game controller %d: %s', [I, Controllers[I].Name]);
+end;
+----
+
+=== Detect pressed controller buttons
+
+Pressing and releasing controller buttons is reported just like keys and mouse buttons: using cgeref:TCastleUserInterface.Press[] and cgeref:TCastleUserInterface.Release[] methods. You typically handle them by overriding these methods in your view (as cgeref:TCastleView[] is a descendant of cgeref:TCastleUserInterface[]).
+
+These methods get information about _what was pressed (or released)_ using the cgeref:TInputPressRelease[] structure. When a game controller button press (or release) happens, the cgeref:TInputPressRelease.EventType[] is cgeref:itGameController[] and the cgeref:TInputPressRelease.Controller[] contains the details, like
+
+cgeref:TGameControllerPressRelease.Button[Event.Controller.Button]::
+Button that was pressed or released.
++
+This uses controller-agnostic enumeration names, in particular the 4 "face buttons" (which have rather inconsistent names and looks between some popular gamepads -- A B X Y or square triangle circle cross) are mapped to cgeref:gbNorth[], cgeref:gbEast[], cgeref:gbSouth[], cgeref:gbWest[]. See the cgeref:TGameControllerButton[] documentation for more information.
+
+cgeref:TGameControllerPressRelease.Meaning[Event.Controller.Meaning]::
+Additional possible "conventional meaning of the button". This can be gmConfirm[] or gmCancel[] for buttons that by convention act like this on a given controller type. For example, `A` on XBox controller is cgeref:gmConfirm[], `B` is cgeref:gmCancel[].
++
+For most buttons it is just gmNone[].
+
+cgeref:TGameControllerPressRelease.Caption[Event.Controller.Caption]::
+Button caption that matches the controller type. For example, the four "face buttons" on XBox controller are `'A'`, `'B'`, `'X'`, `'Y'`.
++
+The intended purpose is to use this to display messages to the user like `WritelnLog('You pressed %s.', [Event.Controller.Caption]);`. There is also a method cgeref:TGameController.ButtonCaption[] to get this caption before the press, to use it like `Button.Caption := Format('Press %s to jump', [Controllers[0].ButtonCaption(gbSouth)]);`.
+
+cgeref:TGameControllerPressRelease.ControllerIndex[Event.Controller.ControllerIndex]::
+Index of the controller in cgeref:TGameControllers.Items[] array.
++
+This is naturally useful if different controllers map to different players, e.g. controller 0 controls the left car, while controller 1 controls the right car in a split-screen car racing game.
+
+There are shortcut methods to test if a given cgeref:TInputPressRelease[] matches a given controller button or meaning, see cgeref:TInputPressRelease.IsController[].
+
+For example, to react to user pressing _Escape key_ or _cancel_ button on any controller, you can use this code:
+
+[source,pascal]
+----
+function TMyView.Press(const Event: TInputPressRelease): Boolean;
+begin
+  Result := inherited;
+  if Result then Exit; // allow the ancestor to handle keys
+
+  if Event.IsKey(keyEscape) or
+     Event.IsController(gmCancel) then
+  begin
+    // ... do something
+    Exit(true); // handled
+  end;
+end;
+----
+
+=== Read controller axes
+
+Controllers expose a number of analog _axes_ that can be read at any moment. The typical moment to react to axes is in the link:view_events[view Update event].
+
+Right now, these axes are available:
+
+- Left stick, 2D, cgeref:TGameController.AxisLeft[]. Both X and Y coordinates are in range `[-1, 1]`.
+- Right stick, 2D, cgeref:TGameController.AxisRight[]. Both X and Y coordinates are in range `[-1, 1]`.
+- Left trigger, 1D, cgeref:TGameController.AxisLeftTrigger[]. In the range `[0, 1]`.
+- Right trigger, 1D, cgeref:TGameController.AxisRightTrigger[]. In the range `[0, 1]`.
+
+You can literally do anything you want with these axis values. E.g., set a speed of movement, or change the immediate position, based on them:
+
+[source,pascal]
+----
+procedure TViewMain.Update(const SecondsPassed: Single; var HandleInput: Boolean);
+var
+  MovementSpeed: TVector2;
+begin
+  inherited;
+
+  if Controllers.Count > 0 then
+  begin
+    MovementSpeed := Controllers[0].AxisLeftTrigger;
+    // Move the object in XZ plane
+    PlayerAvatar := PlayerAvatar +
+      Vector3(MovementSpeed.X, 0, MovementSpeed.Y) * SecondsPassed;
+  end;
+end;
+----
+
+NOTE: The triggers are exposed as "axes", since this is most flexible and we have this information. They could be naturally used for things like speeding up/braking in a car racing game. But if you want, you can also add simple code to treat triggers as "digital" press or release. Simply watch when their value crosses some threshold, like `0.5`. See https://github.com/castle-engine/conference-delphi-summit-2025/blob/f0069ad4e92336237a1609511f9bb4712153c380/walk_3d_game_controllers/code/gameviewmain.pas#L184[sample code here].
+
+=== Integration with TInputShortcut
+
+If you want to use game controllers with anything that exposes cgeref:TInputShortcut[] inputs, it's easy. The cgeref:TInputShortcut[] have a cgeref:TInputShortcut.Bindings[] list and can react to controller buttons or axes.
+
+Navigation components, like cgeref:TCastleWalkNavigation[] and cgeref:TCastleExamineNavigation[] can read the inputs this way. They can even read the "pressure" of a given input, which corresponds to how much and which controller axis is pressed, using the cgeref:TInputShortcut.IsPressed[] overload with the `out HowMuch: Single` parameter. On the application side, you just configure the bindings, like this:
+
+[source,pascal]
+----
+procedure SetupController;
+var
+  BindingAxis: TInputShortcutBindingControllerAxis;
+  BindingButton: TInputShortcutBindingControllerButton;
+begin
+  // left stick to move
+
+  BindingAxis := TInputShortcutBindingControllerAxis.Create(Self);
+  BindingAxis.Axis := gaLeftStick;
+  BindingAxis.Positive := true;
+  BindingAxis.Coord := 1;
+  BindingAxis.ControllerIndex := ControllerIndex;
+  MyWalkNavigation.Input_Forward.Bindings.Add(BindingAxis);
+
+  BindingAxis := TInputShortcutBindingControllerAxis.Create(Self);
+  BindingAxis.Axis := gaLeftStick;
+  BindingAxis.Positive := false;
+  BindingAxis.Coord := 1;
+  BindingAxis.ControllerIndex := ControllerIndex;
+  MyWalkNavigation.Input_Backward.Bindings.Add(BindingAxis);
+
+  BindingAxis := TInputShortcutBindingControllerAxis.Create(Self);
+  BindingAxis.Axis := gaLeftStick;
+  BindingAxis.Positive := true;
+  BindingAxis.Coord := 0;
+  BindingAxis.ControllerIndex := ControllerIndex;
+  MyWalkNavigation.Input_RightStrafe.Bindings.Add(BindingAxis);
+
+  BindingAxis := TInputShortcutBindingControllerAxis.Create(Self);
+  BindingAxis.Axis := gaLeftStick;
+  BindingAxis.Positive := false;
+  BindingAxis.Coord := 0;
+  BindingAxis.ControllerIndex := ControllerIndex;
+  MyWalkNavigation.Input_LeftStrafe.Bindings.Add(BindingAxis);
+
+  // other buttons
+
+  BindingButton := TInputShortcutBindingControllerButton.Create(Self);
+  BindingButton.Button := gbSouth;
+  BindingButton.ControllerIndex := ControllerIndex;
+  MyWalkNavigation.Input_Jump.Bindings.Add(BindingButton);
+
+  BindingButton := TInputShortcutBindingControllerButton.Create(Self);
+  BindingButton.Button := gbEast;
+  BindingButton.ControllerIndex := ControllerIndex;
+  MyWalkNavigation.Input_Crouch.Bindings.Add(BindingButton);
+
+  BindingButton := TInputShortcutBindingControllerButton.Create(Self);
+  BindingButton.Button := gbLeftStickClick;
+  BindingButton.ControllerIndex := ControllerIndex;
+  MyWalkNavigation.Input_Run.Bindings.Add(BindingButton);
+end;
+----
+
+[#walk_navigation]
+=== Integration with TCastleWalkNavigation
+
+If all you want is to use game controller with cgeref:TCastleWalkNavigation[] in the simplest and standard way, then we actually have a ready utility to configure the inputs to handle the controller: just call cgeref:TCastleWalkNavigation.UseGameController[].
+
+So to make a typical 3D FPS game with a game controller, you typically need to just execute 2 new lines from your view `Start` method, like this:
+
+[source,pascal]
+----
+procedure TViewMain.Start;
+begin
+  inherited;
+  Controllers.Initialize;
+  MyWalkNavigation.UseGameController;
+end;
+----
+
+This is really everything that the https://github.com/castle-engine/castle-engine/blob/gamepads-improve-api/examples/fps_game/[examples/fps_game] game is doing to support gamepads: https://github.com/castle-engine/castle-engine/blob/966bc9b04d00c69d5ad97d720e8be94c55bb652c/examples/fps_game/code/gameviewplay.pas#L90-L91[see here].
+
+[#current_support]
+== Current Controller and Platform Support
+
+The API is designed to account for all controllers on all platforms. For now it has been extensively tested and confirmed on:
+
+- _Windows_ and _Linux_ platforms with _XBox (or Compatible) Controllers_.
+- link:nintendo_switch[Nintendo Switch] platform, with all compatible controllers, including _Joy-Cons_ and the _Pro Controller_.
+
+More platforms and support is coming (see link:#todo[TODO section below]). The API is designed to be extensible, we can map internal button/axis numbers to controller-agnostic enums like cgeref:TGameControllerButton[]. We have a number of "backends" providing actual (potentially platform-specific) controller handling.
+
+[#todo]
+== TODO
+
+- Testing + adjusting (map the internal button numbers/axis correctly) the Linux/Windows backends on more gamepad types, in particular: PlayStation gamepad connected to PC.
+
+- Maybe use the https://github.com/godotengine/godot/blob/master/core/input/godotcontrollerdb.txt[Godot's game controller database], see https://docs.godotengine.org/en/stable/tutorials/inputs/controllers_gamepads_joysticks.html[Godot docs here]. This needs testing whether it helps, and on what platforms it helps -- it seems it's mostly for Android and web (which is still useful, see below, we may have backends for this).
+
+- More backends:
++
+--
+- Use game controllers on link:android[Android]: https://developer.android.com/games/sdk/game-controller[Game Controller Library], https://developer.android.com/develop/ui/views/touch-and-input/game-controllers/controller-input[Handle controller actions].
+
+- Use game controllers on the link:web[]: https://developer.mozilla.org/en-US/docs/Web/API/Gamepad_API/Using_the_Gamepad_API[Using the Gamepad API (MDN)], https://w3c.github.io/gamepad/#gamepadbutton-interface[W3C spec].
+
+- Use game controllers through link:steam[] API. This is nice, as Steam provides an API that can already deal with _lots_ of controller types. https://partner.steamgames.com/doc/features/steam_controller[Steam Input, Steam Controller], https://partner.steamgames.com/doc/api/ISteamInput[Steam Input API].
+
+- Maybe: XInput backend on _Windows_. (What are the practical gains over the current _MMSystem_?)
+--
