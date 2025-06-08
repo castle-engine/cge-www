@@ -268,9 +268,9 @@ class Urvanov_Syntax_Highlighter_Plugin {
         UrvanovSyntaxHighlighterLog::debug('capture for id ' . $wp_id . ' len ' . strlen($wp_content));
 
 //         $blocks = parse_blocks($wp_content);
-        
+
         //UrvanovSyntaxHighlighterLog::debug($blocks, 'Gutenberg blocks');
-        
+
 //         foreach ( $blocks as $block ) {
             // Urvanov Syntax Highlighter block
             // UrvanovSyntaxHighlighterLog::debug($block, 'Parsed post block');
@@ -463,8 +463,8 @@ class Urvanov_Syntax_Highlighter_Plugin {
         $capture['content'] = $wp_content;
         return $capture;
     }
-    
-    
+
+
     // *****************************************************************************
 
     public static function replace_backquotes($wp_content) {
@@ -702,7 +702,7 @@ class Urvanov_Syntax_Highlighter_Plugin {
         }
 
         global $post;
-        
+
         // Go through queued posts and find crayons
         $post_id = strval($post->ID);
 
@@ -840,7 +840,7 @@ class Urvanov_Syntax_Highlighter_Plugin {
         UrvanovSyntaxHighlighterLog::debug($post_class, 'class_tag_post_class');
         UrvanovSyntaxHighlighterLog::debug($atts, 'class_tag_atts');
         UrvanovSyntaxHighlighterLog::debug($content, 'class_tag_content=');
-        
+
         // If we find a crayon=false in the attributes, or a crayon[:_]false in the class, then we should not capture
         $ignore_regex_atts = '#crayon\s*=\s*(["\'])\s*(false|no|0)\s*\1#msi';
         $ignore_regex_class = '#crayon\s*[:_]\s*(false|no|0)#msi';
@@ -868,6 +868,8 @@ class Urvanov_Syntax_Highlighter_Plugin {
         if (!empty($pre_class)) {
             $pre_class = preg_replace('#\bdata-url\s*=#mi', 'url=', $pre_class);
         }
+
+        require 'michalis_hack_strip_ending_code.php';
 
         if (!empty($class)) {
             return "[crayon $pre_class $class $post_class]{$content}[/crayon]";
@@ -1191,7 +1193,7 @@ class Urvanov_Syntax_Highlighter_Plugin {
             $touched = FALSE;
 
             // Upgrade database and settings
-            
+
             UrvanovSyntaxHighlighterLog::log($version, 'Upgrading database and settings');
             if (version_compare($version, '1.7.21') < 0) {
                 $settings[Urvanov_Syntax_Highlighter_Settings::SCROLL] = $defaults[Urvanov_Syntax_Highlighter_Settings::SCROLL];
@@ -1409,7 +1411,7 @@ function register_urvanov_syntax_highlighter_gutenberg_block() {
     wp_register_style('urvanov-syntax-highlighter-editor',
         plugins_url(URVANOV_SYNTAX_HIGHLIGHTER_EDITOR_CSS, __FILE__),
         array( 'wp-edit-blocks' ), $URVANOV_SYNTAX_HIGHLIGHTER_VERSION);
-    
+
     register_block_type( 'urvanov-syntax-highlighter/code-block', array(
         'editor_style' => 'urvanov-syntax-highlighter-editor'//,
         //'editor_script' => 'crayon_te_js',
