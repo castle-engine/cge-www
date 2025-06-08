@@ -1,0 +1,285 @@
+#urvanov-syntax-highlighter-log-wrapper {
+	/*width: 100%;*/
+}
+
+#urvanov-syntax-highlighter-main-wrap .form-table th {
+	width: 100px;
+}
+
+#urvanov-syntax-highlighter-log {
+	display: none;
+	max-height: 200px;
+	/*width: 100%;
+    /*resize: vertical;*/
+	border-color: #DFDFDF;
+	background-color: white;
+	border-width: 1px;
+	border-style: solid;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	margin: 1px;
+	padding: 3px;
+	overflow: auto;
+	white-space: pre;
+	margin-bottom: 5px;
+}
+
+.urvanov-syntax-highlighter-span,.urvanov-syntax-highlighter-span-5,.urvanov-syntax-highlighter-span-10,.urvanov-syntax-highlighter-span-50,.urvanov-syntax-highlighter-span-100,.urvanov-syntax-highlighter-span-110 {
+	line-height: 24px;
+	display: inline-block;
+}
+
+.urvanov-syntax-highlighter-span-5 {
+	min-width: 5px;
+}
+
+.urvanov-syntax-highlighter-span-10 {
+	min-width: 10px;
+}
+
+.urvanov-syntax-highlighter-span-50 {
+	min-width: 50px;
+}
+
+.urvanov-syntax-highlighter-span-100 {
+	min-width: 100px;
+}
+
+.urvanov-syntax-highlighter-span-110 {
+	min-width: 117px;
+}
+
+.urvanov-syntax-highlighter-span-margin {
+	margin-left: 5px;
+}
+
+#height_mode, #width_mode {
+	min-width: 65px;
+}
+
+.urvanov-syntax-highlighter-error {
+	color: #F00;
+}
+
+.urvanov-syntax-highlighter-success {
+	color: #00F;
+}
+
+.urvanov-syntax-highlighter-warning {
+	color: #FF8000;
+}
+
+.urvanov-syntax-highlighter-help {
+	min-height: 30px;
+	padding: 5px 10px;
+}
+
+.urvanov-syntax-highlighter-help .urvanov-syntax-highlighter-help-close,
+.urvanov-syntax-highlighter-help .urvanov-syntax-highlighter-help-close:active,
+.urvanov-syntax-highlighter-help .urvanov-syntax-highlighter-help-close:hover {
+	text-decoration: none;
+	float: right;
+	color: #000;
+}
+
+.urvanov-syntax-highlighter-help span,
+.urvanov-syntax-highlighter-help a {
+	margin: 0;
+	padding: 0;
+	font-size: 12px;
+}
+
+#urvanov-syntax-highlighter-log-text {
+	font: 11px/13px Monaco, 'MonacoRegular', 'Courier New', monospace;
+}
+
+#urvanov-syntax-highlighter-log-controls {
+	float: left;
+	margin-right: 5px;
+	/*margin: 5px 0px;*/
+}
+
+.urvanov-syntax-highlighter-table {
+	font-size: 12px;
+	border: 1px solid #999;
+	padding: 0;
+	margin: 0;
+	margin-top: 12px;
+}
+
+.urvanov-syntax-highlighter-table td {
+	vertical-align: top;
+	border-bottom: 1px solid #AAA;
+	padding: 0px 6px;
+	margin: 0;
+	background: #EEE;
+}
+
+.urvanov-syntax-highlighter-table-light td {
+	background: #F8F8F8;
+}
+
+.urvanov-syntax-highlighter-table-header td {
+	font-weight: bold;
+	background: #CCC;
+}
+
+.urvanov-syntax-highlighter-table-last td,
+.urvanov-syntax-highlighter-table tr:last-child td {
+	border: 0;
+}
+
+/*#lang-info {
+	display: none;
+}*/
+
+#lang-info div {
+	padding: 5px 0px;
+}
+
+.urvanov-syntax-highlighter-table .not-parsed {
+	color: #F00;
+}
+
+.urvanov-syntax-highlighter-table .parsed-with-errors {
+	color: #FF9900;
+}
+
+.urvanov-syntax-highlighter-table .successfully-parsed {
+	color: #77A000;
+}
+
+#urvanov-syntax-highlighter-live-preview,
+#urvanov-syntax-highlighter-log-wrapper {
+	padding: 0px;
+	width: 100%;
+	float: left;
+	clear: both;
+}
+
+#urvanov-syntax-highlighter-live-preview {
+	float: none;
+	padding: 0;
+}
+
+#urvanov-syntax-highlighter-logo {
+	text-align: center;
+}
+
+#urvanov-syntax-highlighter-info,
+#urvanov-syntax-highlighter-info td {
+	border: none;
+	padding: 0 5px;
+	margin: 0px;
+}
+
+.urvanov-syntax-highlighter-admin-button {
+	display: inline-block;
+	text-align: center;
+}
+
+#urvanov-syntax-highlighter-subsection-langs-info {
+	margin-top: 5px;
+}
+
+#urvanov-syntax-highlighter-theme-editor-admin-buttons {
+	display: inline;
+}
+
+#urvanov-syntax-highlighter-theme-editor-admin-buttons .urvanov-syntax-highlighter-admin-button {
+	margin-left: 5px;
+}
+
+#urvanov-syntax-highlighter-theme-info {
+    display: table;
+    padding: 0;
+    margin: 0;
+    margin-top: 5px;
+}
+#urvanov-syntax-highlighter-theme-info > div {
+    display: table-cell;
+    vertical-align: middle;
+}
+#urvanov-syntax-highlighter-theme-info .content * {
+    float: left;
+}
+#urvanov-syntax-highlighter-theme-info .field {
+	font-weight: bold;
+}
+#urvanov-syntax-highlighter-theme-info .field,
+#urvanov-syntax-highlighter-theme-info .value {
+	margin-left: 5px;
+}
+#urvanov-syntax-highlighter-theme-info .description.value {
+    font-style: italic;
+    color: #999;
+}
+#urvanov-syntax-highlighter-theme-info .type {
+    text-align: center;
+    min-width: 120px;
+    font-weight: bold;
+    border-right: 1px solid #ccc;
+    padding-right: 5px;
+}
+#urvanov-syntax-highlighter-theme-info .type.stock {
+    color: #666;
+}
+#urvanov-syntax-highlighter-theme-info .type.user {
+    color: #5b9a00;
+}
+
+#urvanov-syntax-highlighter-editor-table td {
+	vertical-align: top;
+}
+
+.small-icon {
+	width: 24px;
+	height: 24px;
+	display: inline-block;
+	margin: 5px 5px 0 0;
+}
+
+#twitter-icon {
+	background: url(../images/twitter.png);
+}
+#gmail-icon {
+	background: url(../images/google.png);
+}
+#docs-icon {
+	background: url(../images/docs.png);
+}
+#git-icon {
+	background: url(../images/github.png);
+}
+#wp-icon {
+	background: url(../images/wordpress-blue.png);
+}
+
+#donate-icon {
+	background: url(../images/donate.png);
+	width: 75px;
+}
+
+#urvanov-syntax-highlighter-donate,
+#urvanov-syntax-highlighter-donate input {
+	margin: 0;
+	display: inline;
+	padding: 0;
+}
+
+#urvanov-syntax-highlighter-theme-editor-info a {
+    text-decoration: none !important;
+    font-style: italic !important;
+    color: #666 !important;
+}
+
+#urvanov-syntax-highlighter-main-wrap .form-table .note {
+    font-style: italic;
+    color: #999;
+}
+
+#urvanov-syntax-highlighter-change-code-text {
+    width: 400px;
+    height: 300px;
+}

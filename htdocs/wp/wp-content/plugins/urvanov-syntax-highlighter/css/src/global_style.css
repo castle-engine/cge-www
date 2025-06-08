@@ -1,0 +1,302 @@
+/* TinyMCE */
+.urvanov-syntax-highlighter-te *, #urvanov-syntax-highlighter-te-bar-content {
+    font-family: "Lucida Grande", Arial, sans-serif !important;
+    font-size: 12px;
+}
+
+.urvanov-syntax-highlighter-te input[type="text"], .urvanov-syntax-highlighter-te textarea {
+    background: #F9F9F9;
+    border: 1px solid #CCC;
+    box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.1);
+    padding: 2px 4px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    border-width: 1px;
+    border-style: solid;
+}
+
+.urvanov-syntax-highlighter-te #urvanov-syntax-highlighter-code {
+    font-family: monospace !important;
+}
+
+#urvanov-syntax-highlighter-te-content, #urvanov-syntax-highlighter-te-table {
+    width: 100%;
+    height: auto !important;
+}
+
+#urvanov-syntax-highlighter-range, #urvanov-syntax-highlighter-mark {
+    width: 100px;
+}
+
+#urvanov-syntax-highlighter-te-table th, #urvanov-syntax-highlighter-te-table td {
+    vertical-align: top;
+    text-align: left;
+}
+
+.rtl #urvanov-syntax-highlighter-te-table th, .rtl #urvanov-syntax-highlighter-te-table td {
+    text-align: right;
+}
+
+#urvanov-syntax-highlighter-te-table .urvanov-syntax-highlighter-tr-center td, #urvanov-syntax-highlighter-te-table .urvanov-syntax-highlighter-tr-center th {
+    vertical-align: middle;
+}
+
+#urvanov-syntax-highlighter-te-table .urvanov-syntax-highlighter-nowrap {
+    white-space: nowrap;
+}
+
+#urvanov-syntax-highlighter-te-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+#urvanov-syntax-highlighter-te-bar-content {
+    border: 1px solid #666;
+    border-bottom: none;
+    height: 26px;
+    line-height: 25px;
+    padding: 0px 8px;
+    padding-right: 0;
+    background-color: #222;
+    color: #CFCFCF;
+}
+
+#urvanov-syntax-highlighter-te-bar-content a {
+    line-height: 25px;
+    padding: 5px 10px;
+    color: #DDD;
+    font-weight: bold;
+    text-decoration: none !important;
+}
+
+#urvanov-syntax-highlighter-te-bar-content a:hover {
+    color: #FFF;
+}
+
+.urvanov-syntax-highlighter-te-seperator {
+    color: #666;
+    margin: 0;
+    padding: 0;
+}
+
+#urvanov-syntax-highlighter-te-bar-block {
+    height: 34px;
+    width: 100%;
+}
+
+#urvanov-syntax-highlighter-te-title {
+    float: left;
+}
+
+#urvanov-syntax-highlighter-te-controls {
+    float: right;
+}
+
+#urvanov-syntax-highlighter-url-th {
+    vertical-align: top !important;
+    padding-top: 5px;
+}
+
+.urvanov-syntax-highlighter-te-heading {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#urvanov-syntax-highlighter-te-settings-info {
+    text-align: center;
+}
+
+.urvanov-syntax-highlighter-te-section {
+    font-weight: bold;
+    padding: 0 10px;
+}
+
+#urvanov-syntax-highlighter-te-sub-section {
+    margin-left: 10px;
+}
+
+#urvanov-syntax-highlighter-te-sub-section .urvanov-syntax-highlighter-te-section {
+    font-weight: normal;
+    padding: 0;
+}
+
+#urvanov-syntax-highlighter-code {
+    height: 200px;
+    white-space: pre;
+    /*white-space: nowrap;
+    overflow: auto;*/
+}
+
+#urvanov-syntax-highlighter-code, #urvanov-syntax-highlighter-url {
+    width: 555px !important;
+}
+
+.urvanov-syntax-highlighter-disabled {
+    background: #EEE !important;
+}
+
+.qt_urvanov_syntax_highlighter_highlight {
+    background-image: -ms-linear-gradient(bottom, #daf2ff, white) !important;
+    background-image: -moz-linear-gradient(bottom, #daf2ff, white) !important;
+    background-image: -o-linear-gradient(bottom, #daf2ff, white) !important;
+    background-image: -webkit-linear-gradient(bottom, #daf2ff, white) !important;
+    background-image: linear-gradient(bottom, #daf2ff, white) !important;
+}
+
+.qt_urvanov_syntax_highlighter_highlight:hover {
+    background: #ddebf2 !important;
+}
+
+.urvanov-syntax-highlighter-tag-editor-button-wrapper {
+    display: inline-block;
+}
+
+/* TinyMCE v4 */
+.mce_urvanov_syntax_highlighter_tinymce {
+    padding: 0 !important;
+    margin: 2px 3px !important;
+}
+.mce-i-urvanov_syntax_highlighter_tinymce,
+.mce_urvanov_syntax_highlighter_tinymce {
+    background: url(../images/urvanov_syntax_highlighter_tinymce.png) 0 0 !important;
+}
+
+/* TinyMCE v3 - deprecated */
+a.mce_urvanov_syntax_highlighter_tinymce {
+  background-position: 2px 0 !important;
+}
+.wp_themeSkin .mceButtonEnabled:hover span.mce_urvanov_syntax_highlighter_tinymce,
+.wp_themeSkin .mceButtonActive span.mce_urvanov_syntax_highlighter_tinymce {
+  background-position: -20px 0;
+}
+.wp_themeSkin span.mce_urvanov_syntax_highlighter_tinymce {
+  background: none !important;
+}
+
+#urvanov-syntax-highlighter-te-table {
+    margin-top: 26px;
+    padding: 10px;
+    border-collapse: separate !important;
+    border-spacing: 2px !important;
+}
+
+#urvanov-syntax-highlighter-te-table th {
+    width: 100px;
+}
+
+#urvanov-syntax-highlighter-te-clear {
+    margin-left: 10px;
+    color: #666;
+    background-color: #f4f4f4;
+    border: 1px solid #CCC;
+    border-radius: 3px;
+    margin-left: 8px;
+}
+
+#urvanov-syntax-highlighter-title {
+    width: 360px;
+}
+
+#TB_window.urvanov-syntax-highlighter-te-ajax {
+    overflow: auto !important;
+}
+
+#TB_window.urvanov-syntax-highlighter-te-ajax, #TB_window.urvanov-syntax-highlighter-te-ajax #TB_ajaxContent, #TB_window.urvanov-syntax-highlighter-te-ajax #TB_title {
+    width: 680px !important;
+}
+
+#TB_window.urvanov-syntax-highlighter-te-ajax #TB_ajaxContent {
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    margin-top: 28px !important;
+}
+
+#TB_window.urvanov-syntax-highlighter-te-ajax #TB_title {
+    position: fixed !important;
+}
+
+#TB_window.urvanov-syntax-highlighter-te-ajax #TB_title .urvanov-syntax-highlighter-te-submit {
+    margin-top: 3px !important;
+    float: right !important;
+}
+
+#TB_window.urvanov-syntax-highlighter-te-ajax a {
+    color: #2587e2;
+    text-decoration: none;
+}
+
+#TB_window.urvanov-syntax-highlighter-te-ajax a:hover {
+    color: #499ce9;
+}
+
+.urvanov-syntax-highlighter-te-quote {
+    background: #DDD;
+    padding: 0 2px;
+}
+
+#urvanov-syntax-highlighter-te-submit-wrapper {
+    display: none;
+}
+
+#urvanov-syntax-highlighter-te-clear {
+    display: none;
+    margin: 0;
+    margin-top: 10px;
+}
+
+.urvanov-syntax-highlighter-syntax-pre {
+    background: red;
+    white-space: pre;
+    overflow: auto;
+    display: block;
+    word-wrap: break-word;
+}
+
+.urvanov-syntax-highlighter-question {
+    padding: 1px 4px !important;
+    text-decoration: none !important;
+    color: #83b3cb !important;
+    border-radius: 10px !important;
+    height: 15px !important;
+    width: 15px !important;
+}
+
+.urvanov-syntax-highlighter-question:hover {
+    background: #83b3cb !important;
+    color: white !important;
+    height: 15px !important;
+    width: 15px !important;
+}
+
+.urvanov-syntax-highlighter-setting {
+
+}
+
+.urvanov-syntax-highlighter-setting-changed, .urvanov-syntax-highlighter-setting-selected {
+    background: #fffaad !important;
+}
+
+.urvanov-syntax-highlighter-question:hover {
+    color: white;
+    background: #a6d6ef;
+}
+
+#urvanov-syntax-highlighter-te-warning {
+    display: none;
+}
+
+.urvanov-syntax-highlighter-te-info {
+    padding: 5px !important;
+    margin: 2px 0 !important;
+}
+
+#urvanov-syntax-highlighter-te-submit {
+    margin-bottom: 5px;
+}
+
