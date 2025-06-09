@@ -75,7 +75,7 @@ We support additional macros within AsciiDoctor:
 
     - GNU `make`,
 
-    - and make sure PHP has permissions to write within proper images/ subdirs: `chmod -R a+rwX htdocs/images/*_size/`.
+    - and make sure PHP has permissions to write within proper images/ subdirectories: `chmod -R a+rwX htdocs/images/*_size/`.
 
     - Once, right after cloning this repo from GIT, it is useful to execute `make do-not-regenerate-existing-images` to avoid regenerating all thumbnails because their timestamps are older than the source images.
 
@@ -129,7 +129,7 @@ Example page: https://castle-engine.io/wp/ .
 
 To edit: contact Michalis Kamburelis (michalis@castle-engine.io) to get a Wordpress account. Page contents are in Wordpress database.
 
-Most important Wordppress shortcodes are:
+Most important Wordpress shortcodes are:
 
 - `[gallery...]` - modified Wordpress gallery to use castle_thumbs (quite like cgeImg) to display Wordpress images
 
@@ -141,6 +141,10 @@ Most important Wordppress shortcodes are:
     [cgeref id=TCastleScene]
     [cgeref id=TCastleScene title="link text for TCastleScene"]
     ```
+
+- We write most Wordpress posts using Markdown (easier than writing HTML, and good enough for our purposes), processed by _Jetpack_, see [Markdown in Jetpack classic editor](https://jetpack.com/support/markdown-classic-editor/) and [Quick Reference](https://wordpress.com/support/markdown-quick-reference/).
+
+- We use [Urvanov Syntax Highlighter](https://wordpress.org/plugins/urvanov-syntax-highlighter/) to highlight code blocks in the posts. Mark the Pascal code blocks in Markdown using 3 backticks with language `pascal` (TODO: though the language selection is lost during Jetpack processing now, but still write it for the future; for now, we just configured the plugin to use Pascal by default).
 
 ## Layout of files
 
@@ -186,7 +190,7 @@ Most important Wordppress shortcodes are:
 
     Note that the main page, http://localhost:8777/ , depends on a working Wordpress installation (including the database) -- see below, it will require additional work to see it.
 
-    Note: It is also possible to set this up in non-root, you could even use Apache "userdir" to place it e.g in `http://localhost/~michalis/castle-engine/` . We used to even advise this here, but we don't advise it anymore, as it's a bit more work (need to make sure PHP works in userdir) and needs adjusting `.htaccess` to make rewrites/redirects work and `/` to link to main page (which we use now from both PHP and AsciiDoctor) work OK.
+    Note: It is also possible to set this up in non-root, you could even use Apache [mod_userdir](https://httpd.apache.org/docs/2.4/mod/mod_userdir.html) to place it e.g in `http://localhost/~michalis/castle-engine/` . We used to even advise this here, but we don't advise it anymore, as it's a bit more work (need to make sure PHP works in user directories too) and needs adjusting `.htaccess` to make rewrites/redirects work and `/` to link to main page (which we use now from both PHP and AsciiDoctor) work OK.
 
 * To enable testing of AsciiDoctor pages, like http://localhost:8777/build_tool :
 
