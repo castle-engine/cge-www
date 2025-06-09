@@ -434,6 +434,20 @@ Since FreeType is not available on the web, we generate an embedded font, just l
 +
 This approach is not final, as it has a number of problems: We have hardcoded "optimal size" at which font is generated (50), hardcoded character set (ASCII plus https://github.com/castle-engine/castle-engine/blob/master/src/fonts/common_unicode_chars.txt[common Unicode characters]). Also it cannot work on Windows (because build tool right now doesn't use dynamic libraries, to avoid conflicting with removal/updating of DLLs of the project). See TODO list below for plans how to improve.
 
+- By default, www browsers display their _"context menu"_ when you right-click anywhere on the page. This makes using the right mouse button impossible in applications.
++
+For this reason, we disable the “context menu” of browser over the HTML `<canvas>`. This means that using the right mouse button in web applications is possible. Users (the ones that have mouse) can reliably right-click over your application.
++
+We still discourage from relying on the right mouse button in web applications, as it is not available on mobile.
++
+NOTE: On Firefox, users can still use _Shift+Right click_ to open the context menu. So the context menu is still accessible, just doesn't block the right mouse button.
+
+- cgeref:OpenUrl[] works on the web. It just opens the page using JS https://developer.mozilla.org/en-US/docs/Web/API/Window/open[window.open].
+
+- We support link:url#castle-config[castle-config:/] URL protocol for reading and writing user data.
++
+WARNING: TODO: However, right now `castle-config:/` on web just accesses a temporary memory using cgeref:TCastleMemoryFileSystem[]. So it completely disappears when user reloads the page.
+
 == Plans (TODOs)
 
 - Some shader code (bump mapping, fog, terrains) makes weird errors at compilation on WebGL. For now, we disabled these shaders, so the relevant examples will run smoothly.
@@ -465,11 +479,9 @@ Overall, the TODO here: Test using Gzip or Brotli compression. Test configuring 
 
 - Is it good we capture keys by listening to `keydown` and `keyup` events on the whole `window`? Could conflict with other things on the same page trying to handle keys (like 2nd CGE web application). Should we rather rely on canvas being focused, or maybe some canvas div wrapper? (but will need code to make it focused, because out-of-the-box canvas doesn't get any keydown / keyup).
 
-- Save the user settings / save games (link:manual_user_prefs.php[CastleConfig]) to webpage persistent storage.
+- Save the user settings / save games (things stored in link:url#castle-config[castle-config:/], e.g. link:manual_user_prefs.php[UserConfig]) to webpage persistent storage.
 
 - Open / save files by browser dialog (cgeref:TCastleWindow.FileDialog[]).
-
-- Block context menu (maybe make it optional) to allow using right mouse button comfortably?
 
 - Handle scrollbar.
 
