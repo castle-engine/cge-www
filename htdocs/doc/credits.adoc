@@ -46,7 +46,7 @@ See also https://github.com/castle-engine/castle-engine/graphs/contributors[cont
 Everyone who subscribes to support CGE with at least 10 USD / month (anywhere -- on https://www.patreon.com/castleengine[Patreon], https://github.com/sponsors/castle-engine[GitHub Sponsors] or https://opencollective.com/castle-engine[Open Collective]).
 
 [role="compact"]
-* UND DREAM Lab (Aaron Bergstrom)
+* Aaron Bergstrom (UND DREAM Lab)
 * Antitu
 * Adrian Marius Popa
 * Alar Orion
@@ -79,8 +79,16 @@ Everyone who subscribes to support CGE with at least 10 USD / month (anywhere --
 * Szczepan Ratajczyk
 * Vedran Rodić
 
-Companies:
-
-* https://www.sorpetaler.de/[Sorpetaler Fensterbau GmbH]
-
 *Thank you!*
+
+## Companies
+
+We also would like to thank numerous companies that sponsored us:
+
+* https://www.bsc.com.pl/[BSC Polska] (see https://castle-engine.io/wp/2025/04/14/modern-pascal-course-examples-and-slides-updates-to-modern-pascal-book-to-fully-support-both-delphi-and-fpc/[our modern Pascal course])
+* https://www.kohs.at/[KOHS]
+* https://www.hydrobios.de/[Hydro-Bios]
+* https://dream.crc.und.edu/[UND DREAM Lab]
+* https://www.sorpetaler.de/[Sorpetaler Fensterbau GmbH] (see link:ifc[IFC support])
+
+We link:donate[are interested in a business cooperation], contact us (`michalis@castle-engine.io`).
