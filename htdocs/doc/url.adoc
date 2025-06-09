@@ -73,6 +73,50 @@ Or (advised for most cases) use even higher-level classes for displaying images:
 
 - To read / write serialized components in JSON files, use routines in cgeref:CastleComponentSerialize[] unit.
 
+== Searching the filesystem
+
+Use cgeref:UriExists[] to detect if given URL exists. It returns _instantly_ (without making any network request):
+
+cgeref:ueFile[]::
+URL is as a file.
+cgeref:ueDirectory[]::
+URL is as a directory.
+cgeref:ueNotExists[]::
+URL doesn't exist.
+cgeref:ueUnknown[]::
+We don't know.
+
+The above values account for various filesystems and URL protocols:
+
+- On a regular filesystem we can naturally just query whether files / directories exist.
++
+This happens when using `file:/` protocol, or URL protocol that resolves to a cgeref:TCastleZip[] or to cgeref:TCastleMemoryFileSystem[].
++
+We also have special handling for file existence and searching in the link:data[castle-data:/] URLs.
+
+- On the other hand, for network URLs like `http://example.org/my_file.txt` we generally don't know the answer so we return cgeref:ueUnknown[].
++
+If you really need to know whether the resource exists, just try opening it using cgeref:Download[] or cgeref:TCastleDownload[].
+
+Use cgeref:FindFiles[] to find all files matching a given mask (with wildcards `*` and `?`) in a directory. This is handled by all URL protocols where it is possible, so you can search normal filesystem, ZIP files, cgeref:TCastleMemoryFileSystem[], link:data[castle-data:/] subdirectories and more. Example:
+
+[source,pascal]
+----
+procedure TMyView.SearchTextures;
+begin
+  { Find all *.png in textures/ subdirectory of data. }
+  FindFiles('castle-data:/textures/', '*.png', false,
+    {$ifdef FPC}@{$endif} FindFileEvent, [ffRecursive]);
+end;
+
+procedure TMyView.FindFileEvent(const FileInfo: TFileInfo; var StopSearch: boolean);
+begin
+  WritelnLog('Found texture: %s', [
+    FileInfo.Url
+  ]);
+end;
+----
+
 == Case-sensitive filesystems and URLs
 
 Often, URLs just refer to files on the filesystem. Like `file://` URLs, or `castle-data:/` URLs (on platforms where the link:data[application data] is just a set of regular files). In this case, the underlying filesystem determines whether the names are *case-sensitive* (so e.g. `foobar` vs `FooBar` mean something else) or not.
@@ -352,6 +396,10 @@ Demos of using data URI are inside link:demo_models[our demo models], see in par
 You can open and register an arbitrary ZIP file to read / write resources from it using a custom URL. See the cgeref:TCastleZip.RegisterUrlProtocol[] docs.
 
 See the https://github.com/castle-engine/castle-engine/tree/master/examples/network/custom_url_handler[examples/network/custom_url_handler], when `USE_ZIP_URL_HANDLER` is defined.
+
+=== Memory (temporary) filesystem
+
+Use cgeref:TCastleMemoryFileSystem[] to create a temporary filesystem in memory. You can register it as a URL protocol and use for any purpose.
 
 [#register]
 === Registering your own protocol
