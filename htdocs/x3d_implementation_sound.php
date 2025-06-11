@@ -137,7 +137,7 @@ or at the AudioClip node?</i>
 <p>More precisely, which node has <code>X3DTimeDependentNode</code> as an ancestor (<code>X3DTimeDependentNode</code> contains <code>startTime</code>, <code>stopTime</code> and a lot of other playing-related fields and events).
 
 <ol>
-  <li><p>The decision of X3D specificaion was to put them at AudioClip.
+  <li><p>The decision of X3D specification was to put them at AudioClip.
 
     <p>The downside: <code>DEF</code>/<code>USE</code> for AudioClip doesn't make
     much sense, usually. You can write this:
