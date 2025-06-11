@@ -3,6 +3,8 @@ include::common.adoc[]
 :description: Design the skinned animation skeleton and joints in Castle Game Engine.
 // TODO: :cge-social-share-image: blender_castle_1.png
 
+WARNING: This feature is in development now, with work on https://github.com/castle-engine/castle-engine/tree/skinned-animation-gpu[skinned-animation-gpu] branch. Some information from this document is not yet implemented, some API links do not yet work (as they refer to API present only on the branch).
+
 == Introduction
 
 A 3D model in _Castle Game Engine_ is displayed and processed using the cgeref:TCastleScene[] component, documented in link:viewport_and_scenes[Viewport with scenes, camera, navigation]. Each cgeref:TCastleScene[] is actually a graph of link:x3d[X3D nodes] (rooted in cgeref:TCastleSceneCore.RootNode[]). The nodes control everything -- display, animation of the model.
@@ -11,16 +13,21 @@ The node we describe on this page is cgeref:TSkinNode[], which allows to design 
 
 The documentation below accounts for two ways how you can build X3D nodes:
 
-- You can just write X3D content in a text file, with extension `.x3dv` ("classic" syntax) or `.x3d` (XML syntax). The node definition then looks like `Skin { ... }`. See TODO[section below] for an example.
+- You can just write X3D content in a text file, with extension `.x3dv` ("classic" syntax) or `.x3d` (XML syntax). The node definition then looks like `Skin { ... }`. See link:#example[example below] for an example.
 
-- You can build the X3D nodes graph in Pascal code. In this case, you create an instance of the cgeref:TSkinNode[] class. The properties of this class map 1-1 to the `Skin` node fields.
+- You can build the X3D nodes graph in Pascal code. In this case, you create an instance of the cgeref:TSkinNode[] class. The properties of this class map one-to-one to the `Skin` node fields.
 
 == Overview
 
 // TODO: Link to Pascal docs for each property
+
+https://github.com/castle-engine/castle-engine/blob/3e37f3b4e1ca796cb662fa4473e75ee0e822814e/tools/internal/x3d-nodes-to-pascal/nodes-specification/CastleEngineExtensions.txt#L257[Skin spec in CastleEngineExtensions.txt]
+
+```
 Skin {
-  ... // TODO: copy from CastleEngineExtensions.txt
+  // TODO: Copy here details from Skin spec in CastleEngineExtensions.txt linked above.
 }
+```
 
 Defines how a set of joints influence a mesh, thus enabling skinned animation in a way that is simple, efficient and perfectly aligned with link:gltf[glTF]. This node directly corresponds to a single https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#skins[glTF skin] in a glTF file.
 
@@ -40,6 +47,7 @@ NOTE: The `Skin` node itself is not an "animation" that you can play. The actual
 
 NOTE: There are some differences, but there are also some similarities between `Skin` node and `HAnimHumanoid` node. They both can be used for skinned animation. If you're familiar with H-Anim and `HAnimHumanoid` node, we outline the differences (and similarities) in the section below.
 
+[#example]
 == Example
 
 Example `Skin` definition is as follows:
