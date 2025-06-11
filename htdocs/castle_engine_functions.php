@@ -499,6 +499,7 @@ $castle_sitemap = array(
               'x3d_implementation_interpolation'        => array('title' => 'Interpolation ("how to animate things")',
                 'sub' => array(
                   'x3d_implementation_interpolation_extensions' => array('title' => 'Extensions'),
+                  'doc/skin' => array('title' => 'Skinned animation using the Skin node'),
                 ),
               ),
               'x3d_implementation_pointingdevicesensor' => array('title' => 'Pointing device sensor'          ),
