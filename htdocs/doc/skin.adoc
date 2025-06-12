@@ -84,6 +84,7 @@ Skin {
             }
         }
     ]
+
     # Joints hierarchy, starting from root node.
     #
     # Note: The hierarchy below is *just a trivial example*,
@@ -127,15 +128,21 @@ Skin {
             }
         ]
     }
+
     # List of joints.
     # This is a list of all the joints that control the shapes
     # in the "shapes" list.
     #
-    # You will typically use X3D USE mechanism to refer to existing
-    # joint nodes here. It is technically possible (because it has to be in X3D)
-    # to just list here full joint nodes' contents with DEF, and then use USE
-    # for the skeleton, but this can results in a hard-to-read (for humans;
-    # computers don't care) content.
+    # If a human writes the X3D content,
+    # we suggest placing all the joints in "skeleton" hierarchy,
+    # with names (DEF). Then in the "joints" just list them with "USE".
+    # This is easier to read and write for humans.
+    #
+    # That said, following X3D, it is possible to write using any order,
+    # as long as each USE is after a DEF. So you can also start by writing
+    # joints in "joints" list, only interlinking to previous joints by USE,
+    # and then define the "skeleton" hierarchy by a USE to the root joint.
+    # For software, this is equally easy to write and later read, so not a problem.
     #
     # The order of joints here matters:
     # joint indexes specified in the skinJoints0 array
@@ -171,13 +178,21 @@ We also enhance geometry nodes with the necessary per-vertex information for eac
 
 This information is a per-vertex data useful for animation systems, whether implemented by CPU or GPU.
 
+== More testcases
+
+Simply open any glTF file with a skinned animation in link:castle-model-viewer[Castle Model Viewer], save it back to X3D, and have lots of testcases of the `Skin` nodes. Links to many resources with animated glTF models are in link:assets.php[our assets page], e.g. look at https://quaternius.com/[Quaternius] and https://sketchfab.com/features/gltf[Sketchfab glTF models].
+
+See some ready glTF and X3D models in (TODO link, commit x3d versions) demo-models/animation/gltf_skinned_animation/ .
+
+// TODO screenshots
+
 == Why?
 
 Our approach is deliberately closely aligned with glTF.
 
-- Transforming glTF skinned animation information into X3D SkinnedAnimation is straightforward.
+- Transforming glTF skinned animation information into X3D `Skin` is straightforward.
 
-- Implementing SkinnedAnimation, including implementing it on GPU (skin is applied in shaders) is as straightforward as in glTF. You can follow the glTF cheat sheet on https://www.khronos.org/files/gltf20-reference-guide.pdf that describes the GPU implementation on skinning in 1.5 pages.
+- Implementing `Skin`, including implementing it on GPU (skin is applied in shaders) is as straightforward as in glTF. You can follow the glTF cheat sheet on https://www.khronos.org/files/gltf20-reference-guide.pdf that describes the GPU implementation on skinning in 1.5 pages.
 
 === Difference from H-Anim
 
@@ -205,7 +220,7 @@ H-Anim is a big specification, that is linked from another big specification (X3
 
 - One reason for this simplicity is that our approach doesn't invent any new concept for "joints". Our joints are just `Transform` nodes. We don't need `HAnimJoint`.
 
-- Our SkinnedAnimation, just like glTF approach, has an obvious, simple and efficient GPU implementation.
+- Our `Skin`, just like glTF approach, has an obvious, simple and efficient GPU implementation.
 
 - Our design also makes some assumptions, that map to practical usage in our experience, and enable efficient GPU implementation.
 +
@@ -219,6 +234,16 @@ We realize that this design "uncovers" an implementation detail (it's efficient 
 +
 H-Anim naming implies it's for humanoids, parts of H-Anim spec talk about joints for humanoids -- this makes using HAnimHumanoid for animating arbitrary meshes confusing for the developers. For this reason, we also wanted to have joints/bones simply defined as Transform nodes. This again echoes our desire to keep it simple (any X3D mesh is OK, standard X3D Transform is a joint), and also we don't want to connect this to "humanoids", even by terminology. Skinned animation is a standard 2D and 3D animation technique, not specific to humanoids at all.
 
-- Note that there are also some similarities. E.g. `HAnimHumanoid` and `Skin` have `joints` and `skeleton` fields with mostly the same purpose and meaning.
+- We add extra flexibility: you are not limited to one `skinCoord` in one `HAnimHumanoid`. One `Skin` node can influence multiple geometries with completely different `Coordinate` nodes, thanks to having `skinWeights0` and `skinJoints0` on each geometry node.
 
-For people that want to use H-Anim nodes in CGE, nothing changes, we continue to support them. Moreover, we can consider in the future transforming H-Anim nodes under the hood to SkinnedAnimation, to make them as efficient to render as SkinnedAnimation, using GPU.
+==== Similarities to H-Anim (HAnimHumanoid)
+
+There are numerous deliberate similarities between `Skin` and `HAnimHumanoid`.
+
+- They both have `joints` list and `skeleton` fields, with practically the same purpose and meaning.
+
+- In both of them, you can use `HAnimJoint` nodes for joints. In `Skin`, you can also use simple `Transform` nodes for joints, but if you want to support both systems in a piece of code generating X3D, you can just use `HAnimJoint` nodes and later decide do you put them in `Skin` or `HAnimHumanoid`.
+
+- The placement of `Skin` and `HAnimHumanoid` in the transformation matters. This is actually something where we follow X3D and _not_ glTF. It makes sense, for humans and for software, that `Skin` is part of the transformation hierarchy.
+
+For people that want to use H-Anim nodes in CGE, nothing changes, we continue to support them. Moreover, we can consider in the future transforming H-Anim nodes under the hood to `Skin`, to make them as efficient to render as `Skin`, using GPU.

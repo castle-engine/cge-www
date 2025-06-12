@@ -17,14 +17,14 @@ echo pretty_heading($page_title);
   ?>
 
   <?php gallery_link('OpenGameArt.org',
-    'Game art (3D, 2D, sounds) uploaded by various artsts on clear open-source licenses.
+    'Game art (3D, 2D, sounds) uploaded by various artists on clear open-source licenses.
     <p><i>Hint:</i> Do you want to share an asset you made and tested specifically for CGE game? Upload it to <a href="https://opengameart.org/art-search-advanced?keys=&title=%5Bcge%5D">OpenGameArt.org with <code>[CGE]</code> in the name</a>.',
     'assets_opengameart.png',
     'https://opengameart.org/');
   ?>
 
   <?php gallery_link('Sketchfab',
-    '3D models, in glTF format, uploaded by various arists. Some free (on clear licenses, like <i>Creative Commons</i>), some paid. <p>Note: you can also <a href="https://castle-engine.io/sketchfab">import from Sketchfab directly in CGE editor</a>!',
+    '3D models, in glTF format, uploaded by various artists. Some free (on clear licenses, like <i>Creative Commons</i>), some paid. <p>Note: you can also <a href="https://castle-engine.io/sketchfab">import from Sketchfab directly in CGE editor</a>!',
     'assets_sketchfab.png',
     'https://sketchfab.com/features/gltf');
   ?>
