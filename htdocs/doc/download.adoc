@@ -168,13 +168,15 @@ NOTE: In order to run some examples on Windows, you will need to place DLL files
 
 === Linux (including Raspberry Pi)
 
-Linux binaries for _desktops (x86_64 CPU) and 64-bit Raspberry Pi (Aarch64 CPU)_ require GLIBC >= 2.34. This should be OK on any modern Linux distribution. If you have https://www.debian.org/releases/oldstable/[Debian 11 (oldstable, bullseye)] you have to upgrade to at least https://www.debian.org/releases/stable/[Debian 12 (stable, bookworm)].
+Linux binaries require GLIBC >= 2.34. This should be OK on any modern Linux distribution. If you have https://www.debian.org/releases/oldstable/[Debian 11 (oldstable, bullseye)] you have to upgrade to at least https://www.debian.org/releases/stable/[Debian 12 (stable, bookworm)].
 
 If you have to use an older system, you can still use CGE by link:compiling_from_source.php[compiling it from sources] to link to your current GLIBC. We plan to distribute the engine also as https://snapcraft.io/[snap package] in the future, which will sidestep this limitation.
 
 NOTE: This limitation applies to the provided engine binaries only. For your own applications, they will require the same GLIBC as the system on which they have been built, as this is the standard behavior of Unix linker. Consider using CI/CD (like link:github_actions[GitHub Actions] or link:gitlab_ci[GitLab CI/CD] or link:jenkins[Jenkins]) to build your applications on a system version independent of your dev machine.
 
-_Linux binaries for 32-bit Raspberry Pi (Arm CPU)_ work fine with older GLIBC, including the one in Debian's `bullseye`. This is done deliberately to support older Raspberry Pi 4 32-bit installations.
+This requirement applies to all architectures now, including regular desktops (for which we provide _x64_64_ builds) and both _Raspberry Pi_ versions (32-bit Arm and 64-bit Aarch64). They all require >= Bookworm.
+
+NOTE: Before 2025-06-13, we provided binaries for _32-bit Raspberry Pi (Arm CPU)_ in a version compatible with older GLIBC, including the one in Debian's `bullseye` (to support older Raspberry Pi 4 32-bit installations). However, this gets hard, as https://dietpi.com/[DietPi] removed some old images which https://github.com/pguyot/arm-runner-action/blob/main/download_image.sh#L50[we relied on, by this GHA action]. We migrated to use official image from https://downloads.raspberrypi.org/raspios_lite_armhf_latest (https://github.com/pguyot/arm-runner-action/blob/main/download_image.sh#L8[referenced here]).
 
 === General
 
