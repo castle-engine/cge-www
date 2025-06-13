@@ -7,37 +7,95 @@ WARNING: This feature is in development now, with work on https://github.com/cas
 
 == Introduction
 
-A 3D model in _Castle Game Engine_ is displayed and processed using the cgeref:TCastleScene[] component, documented in link:viewport_and_scenes[Viewport with scenes, camera, navigation]. Each cgeref:TCastleScene[] is actually a graph of link:x3d[X3D nodes] (rooted in cgeref:TCastleSceneCore.RootNode[]). The nodes control everything -- display, animation of the model.
+You can use _skinned animation_ when designing models in _Castle Game Engine_. This means that your 3D model defines a number of _joints_ (aka "bones") that can be transformed (e.g. to make a _"walk"_ animation) and cause a _mesh_ (aka "skin") to animate accordingly, following the joints.
 
-The node we describe on this page is cgeref:TSkinNode[], which allows to design a skinned animation (using skeleton with joints, and shapes with skin weights).
+In most cases, you don't need to do anything special on the engine side to use it. Simply design models using link:blender[Blender] with Blender's _armature_ and _bones_, export it to link:gltf[glTF], and load it in _Castle Game Engine_ as usual. A 3D model in _Castle Game Engine_ is displayed and processed using the cgeref:TCastleScene[] component, documented in link:viewport_and_scenes[Viewport with scenes, camera, navigation].
+
+The engine will automatically load the skinned animation from glTF, and display it correctly. We can perform the animation on the GPU, which means it's efficient. We also have a fallback (for ancient GPUs) non-GPU implementation.
+
+== Skin node under the hood
+
+Each cgeref:TCastleScene[] is actually a graph of link:x3d[X3D nodes] (rooted in cgeref:TCastleSceneCore.RootNode[]). The nodes control everything -- display, animation of the model.
+
+The skinned animation is realized using the cgeref:TSkinNode[], described on this page. It's connected to the `skinWeights0` and `skinJoints0` fields of most geometry nodes.
+
+Understanding how it works allows you to design or control the animation of characters yourself, from Pascal code. For example, you can load your skinned animated characters from your custom 3D model formats, you can implement inverse kinematics or do any other direct manipulation of joints from code.
 
 The documentation below accounts for two ways how you can build X3D nodes:
 
-- You can just write X3D content in a text file, with extension `.x3dv` ("classic" syntax) or `.x3d` (XML syntax). The node definition then looks like `Skin { ... }`. See link:#example[example below] for an example.
+- You can just write X3D content in a text file, with extension `.x3dv` ("classic" syntax) or `.x3d` (XML syntax). The node definition then looks like `Skin { ... }`. See link:#example[example below] for more.
 
-- You can build the X3D nodes graph in Pascal code. In this case, you create an instance of the cgeref:TSkinNode[] class. The properties of this class map one-to-one to the `Skin` node fields.
+- You can build the X3D nodes graph in Pascal code. In this case, you create an instance of the cgeref:TSkinNode[] class. The properties of this class map one-to-one to the `Skin` node from X3D.
 
 == Overview
 
-// TODO: Link to Pascal docs for each property
+We define a new node called `Skin` (Pascal: cgeref:TSkinNode[]). It allows to design a skinned animation (using skeleton with joints, and shapes with skin weights).
 
-https://github.com/castle-engine/castle-engine/blob/3e37f3b4e1ca796cb662fa4473e75ee0e822814e/tools/internal/x3d-nodes-to-pascal/nodes-specification/CastleEngineExtensions.txt#L257[Skin spec in CastleEngineExtensions.txt]
+It has the following properties (click on each property for more detailed API docs):
 
-```
-Skin {
-  // TODO: Copy here details from Skin spec in CastleEngineExtensions.txt linked above.
-}
-```
+////
+|===
+|Property type|X3D access type|Property name (link to Pascal API docs)|Default value|Allowed values
 
-Defines how a set of joints influence a mesh, thus enabling skinned animation in a way that is simple, efficient and perfectly aligned with link:gltf[glTF]. This node directly corresponds to a single https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#skins[glTF skin] in a glTF file.
+|cgeref:TMFNode[MFNode]
+|[in,out]
+|cgeref:TSkinNode.SetJoints[joints]
+|[] (empty list)
+|list of cgeref:TTransformNode[Transform] or cgeref:THAnimJointNode[HAnimJoint] nodes
+
+|cgeref:TMFMatrix4f[MFMatrix4f]
+|[in,out]
+|cgeref:TSkinNode.SetInverseBindMatrices[inverseBindMatrices]
+|[] (empty list)
+|
+
+|cgeref:TMFNode[MFNode]
+|[in,out]
+|cgeref:TSkinNode.SetShapes[shapes]
+|[] (empty list)
+|list of cgeref:TAbstractShapeNode[] nodes
+
+|cgeref:TSFNode[SFNode]
+|[in,out]
+|cgeref:TSkinNode.Skeleton[skeleton]
+|`NULL` (Pascal `nil`)
+|cgeref:TAbstractGroupingNode[X3DGroupingNode]
+|===
+////
+
+* cgeref:TSkinNode.SetJoints[joints]
++
+When the joints are transformed (moved, rotated, scaled),  the skin (meshes listed in `Skin.shapes`) is updated accordingly.
++
+_Allowed values:_ list of cgeref:TTransformNode[Transform] or cgeref:THAnimJointNode[HAnimJoint] nodes.
+
+* cgeref:TSkinNode.SetInverseBindMatrices[inverseBindMatrices]
++
+For each joint, an "inverse bind matrix" may be specified, which transforms the mesh into the local space of the joint.
++
+_Allowed values:_ list of 4x4 matrices.
+
+* cgeref:TSkinNode.SetShapes[shapes]
++
+Shapes whose geometries are affected by the skinned animation, that is: their vertexes move to follow the joints that are associated with them.
++
+_Allowed values:_ list of cgeref:TAbstractShapeNode[] nodes.
+
+* cgeref:TSkinNode.Skeleton[skeleton]
++
+Common root of the joints hierarchy.
++
+_Allowed values:_ one cgeref:TAbstractGroupingNode[X3DGroupingNode] node.
+
+This node defines how a set of joints influence a mesh, thus enabling skinned animation in a way that is simple, efficient and perfectly aligned with link:gltf[glTF]. This node directly corresponds to a single https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#skins[glTF skin] in a glTF file.
 
 The idea is that you have:
 
-- A _skeleton_, which is a hierarchy of _joints (aka "bones")_, expressed in X3D as a hierarchy of cgeref:TTransformNode[].
+- A _skeleton_, which is a hierarchy of _joints (aka "bones")_, expressed in X3D as a hierarchy of cgeref:TTransformNode[] (or any other X3D node that defines transformation, like cgeref:THAnimJointNode[]).
 
-- A number of meshes, which are a number of X3D geometry nodes using cgeref:TAbstractCoordinateNode[] with per-vertex data in `SkinWeights` and `SkinJoints`.
+- A number of meshes, which are a number of X3D geometry nodes using cgeref:TAbstractCoordinateNode[] with per-vertex data in `SkinWeights0` and `SkinJoints0`.
 
-Each vertex of a mesh is affected by a small subset of _joints_, with a particular _weight_ how much each joint affects this vertex. You can change joints (change their transformations, e.g. by regular X3D animation using `TimeSensor` and interpolators) and in effect the mesh should change.
+Each vertex of a mesh is affected by a small subset of _joints_. For each joint on each vertex,  a _weight_ determines how much each joint affects this vertex. You can change joints (change their transformations, e.g. by regular X3D animation using cgeref:TTimeSensorNode[] and interpolators, or just directly access the joint node from Pascal and change its translation / rotation / scale) and in effect the mesh should change.
 
 The `Skin` node defines the connection between the joints and the skin.
 
@@ -46,6 +104,15 @@ Placement of the `Skin` node within the X3D nodes graph matters. `Skin` is a des
 NOTE: The `Skin` node itself is not an "animation" that you can play. The actual animations are defined by using `TimeSensor` nodes that cause interpolators to transform (move, rotate, scale) the joint nodes. Animating joints will in turn transform the meshes as indicated by this `Skin` node.
 
 NOTE: There are some differences, but there are also some similarities between `Skin` node and `HAnimHumanoid` node. They both can be used for skinned animation. If you're familiar with H-Anim and `HAnimHumanoid` node, we outline the differences (and similarities) in the section below.
+
+== Additional per-vertex information at geometry nodes
+
+We also enhance geometry nodes with the necessary per-vertex information for each vertex (which joints affect it, how much):
+
+- `skinJoints0` (from Pascal: cgeref:TAbstractComposedGeometryNode.SetSkinJoints0[]): for each vertex, 4 most important joints that affect it.
+- `skinWeights0` (from Pascal: cgeref:TAbstractComposedGeometryNode.SetSkinWeights0[]): for each vertex, how much is it affected by the 4 most important joints.
+
+This information is a per-vertex data useful for animation systems, whether implemented by CPU or GPU.
 
 [#example]
 == Example
@@ -135,14 +202,16 @@ Skin {
     #
     # If a human writes the X3D content,
     # we suggest placing all the joints in "skeleton" hierarchy,
-    # with names (DEF). Then in the "joints" just list them with "USE".
+    # with names (DEF). Then in the "joints" field just list them with "USE".
     # This is easier to read and write for humans.
     #
     # That said, following X3D, it is possible to write using any order,
-    # as long as each USE is after a DEF. So you can also start by writing
+    # as long as each USE is after a corresponding DEF.
+    # So you can also start by writing
     # joints in "joints" list, only interlinking to previous joints by USE,
     # and then define the "skeleton" hierarchy by a USE to the root joint.
     # For software, this is equally easy to write and later read, so not a problem.
+    # For humans, it will likely look more complicated.
     #
     # The order of joints here matters:
     # joint indexes specified in the skinJoints0 array
@@ -169,20 +238,13 @@ Skin {
 }
 ----
 
-== Additional per-vertex information at geometry nodes
-
-We also enhance geometry nodes with the necessary per-vertex information for each vertex (which joints affect it, how much):
-
-- `skinJoints0` (from Pascal: cgeref:TAbstractComposedGeometryNode.SetSkinJoints0[]): for each vertex, 4 most important joints that affect it.
-- `skinWeights0` (from Pascal: cgeref:TAbstractComposedGeometryNode.SetSkinWeights0[]): for each vertex, how much is it affected by the 4 most important joints.
-
-This information is a per-vertex data useful for animation systems, whether implemented by CPU or GPU.
-
 == More testcases
 
-Simply open any glTF file with a skinned animation in link:castle-model-viewer[Castle Model Viewer], save it back to X3D, and have lots of testcases of the `Skin` nodes. Links to many resources with animated glTF models are in link:assets.php[our assets page], e.g. look at https://quaternius.com/[Quaternius] and https://sketchfab.com/features/gltf[Sketchfab glTF models].
+Simply open any glTF file with a skinned animation in link:castle-model-viewer[Castle Model Viewer] and save it back to X3D. This is a way to have lots of testcases of the `Skin` node.
 
-See some ready glTF and X3D models in (TODO link, commit x3d versions) demo-models/animation/gltf_skinned_animation/ .
+Links to many resources with animated glTF models are in link:assets.php[our assets page], e.g. look at https://quaternius.com/[Quaternius] and https://sketchfab.com/features/gltf[Sketchfab glTF models].
+
+// See some ready glTF and X3D models in (TODO link, commit x3d versions) demo-models/animation/gltf_skinned_animation/ .
 
 // TODO screenshots
 
@@ -192,7 +254,7 @@ Our approach is deliberately closely aligned with glTF.
 
 - Transforming glTF skinned animation information into X3D `Skin` is straightforward.
 
-- Implementing `Skin`, including implementing it on GPU (skin is applied in shaders) is as straightforward as in glTF. You can follow the glTF cheat sheet on https://www.khronos.org/files/gltf20-reference-guide.pdf that describes the GPU implementation on skinning in 1.5 pages.
+- Implementing `Skin`, including implementing it on GPU (skin is applied in shaders) is as straightforward as in glTF. You can follow the https://www.khronos.org/files/gltf20-reference-guide.pdf[glTF cheat sheet] that describes the GPU implementation on skinning in 1.5 pages.
 
 === Difference from H-Anim
 
@@ -206,9 +268,9 @@ First of all, the scope of this node is different (and deliberately much smaller
 
 In this node, we're keeping it agnostic from whether you apply it to humanoids or non-humanoids, like non-humanoid animals or imaginary alien creatures, plants, rubbery machines etc.
 
-If you wonder how to define joints for a humanoid, just follow H-Anim loa conventions for joints naming and organization. In fact you can use HAnimJoint nodes with our Skin node, we deliberately made it possible (though you can also just use Transform nodes instead of HAnimJoint nodes).
+If you wonder how to define joints for a humanoid, just follow _H-Anim_ LOA conventions for joints naming and organization. In fact you can use `HAnimJoint` nodes within our `Skin` node, we deliberately made it possible (though you can also just use `Transform` nodes instead of `HAnimJoint` nodes).
 
-This node simply provides an alternative way to specify skinned animation. We don't try to fill other use-cases of H-Anim.
+The `Skin` node simply provides an alternative way to specify skinned animation. We don't try to fill other use-cases of H-Anim.
 
 ==== Different way to specify skinned animation
 
@@ -216,11 +278,13 @@ X3D standard is integrated with the H-Anim standard, and thus already has a way 
 
 - Because we think that skinned animation can be expressed a bit simpler than the H-Anim does. We think glTF approach is a good way to do it.
 +
-H-Anim is a big specification, that is linked from another big specification (X3D). We rather like the simplicity and efficiency of how skinned animation is defined in glTF. The way skinned animation is expressed in https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html[glTF spec] and in https://www.khronos.org/files/gltf20-reference-guide.pdf[glTF cheatsheet] is simpler.
+H-Anim is a big specification, that is linked from another big specification (X3D). We rather like the simplicity and efficiency of how skinned animation is defined in glTF. The way skinned animation is expressed in https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html[glTF spec] and in https://www.khronos.org/files/gltf20-reference-guide.pdf[glTF cheatsheet] seems simpler to us.
 
 - One reason for this simplicity is that our approach doesn't invent any new concept for "joints". Our joints are just `Transform` nodes. We don't need `HAnimJoint`.
 
-- Our `Skin`, just like glTF approach, has an obvious, simple and efficient GPU implementation.
+- We add extra flexibility, just like glTF has: you are not limited to one `skinCoord` in one `HAnimHumanoid`. One `Skin` node can influence multiple geometries with completely different `Coordinate` nodes, thanks to having `skinWeights0` and `skinJoints0` on each geometry node.
+
+- Our `Skin`, just like glTF approach, has an obvious, simple and efficient GPU implementation. The https://www.khronos.org/files/gltf20-reference-guide.pdf[glTF cheat sheet] describes it in 1.5 pages and it's really easy to implement.
 
 - Our design also makes some assumptions, that map to practical usage in our experience, and enable efficient GPU implementation.
 +
@@ -232,9 +296,7 @@ We realize that this design "uncovers" an implementation detail (it's efficient 
 
 - We want naming that clearly says it's an animation technique that works with any mesh, humanoid or not.
 +
-H-Anim naming implies it's for humanoids, parts of H-Anim spec talk about joints for humanoids -- this makes using HAnimHumanoid for animating arbitrary meshes confusing for the developers. For this reason, we also wanted to have joints/bones simply defined as Transform nodes. This again echoes our desire to keep it simple (any X3D mesh is OK, standard X3D Transform is a joint), and also we don't want to connect this to "humanoids", even by terminology. Skinned animation is a standard 2D and 3D animation technique, not specific to humanoids at all.
-
-- We add extra flexibility: you are not limited to one `skinCoord` in one `HAnimHumanoid`. One `Skin` node can influence multiple geometries with completely different `Coordinate` nodes, thanks to having `skinWeights0` and `skinJoints0` on each geometry node.
+_H-Anim_ naming implies it's for humanoids, parts of H-Anim spec talk about joints for humanoids -- this makes using `HAnimHumanoid` for animating arbitrary meshes confusing for the developers. For this reason, we also wanted to have joints/bones simply defined as `Transform` nodes. This again echoes our desire to keep it simple (standard X3D `Transform` is a joint), and also we don't want to connect this to "humanoids", even by terminology. Skinned animation is a standard 2D and 3D animation technique, not specific to humanoids at all.
 
 ==== Similarities to H-Anim (HAnimHumanoid)
 
@@ -246,8 +308,6 @@ There are numerous deliberate similarities between `Skin` and `HAnimHumanoid`.
 
 - The placement of `Skin` and `HAnimHumanoid` in the transformation matters. This is actually something where we follow X3D and _not_ glTF. It makes sense, for humans and for software, that `Skin` is part of the transformation hierarchy.
 
-For people that want to use H-Anim nodes in CGE, nothing changes, we continue to support them. Moreover, we can consider in the future transforming H-Anim nodes under the hood to `Skin`, to make them as efficient to render as `Skin`, using GPU.
-
 == How do collisions work when skin is calculated on GPU
 
 === You need to assign proper bounding box explicitly
@@ -258,9 +318,11 @@ NOTE: Side note: There are ways to transfer data calculated on GPU back to CPU. 
 
 The solution is to manually define the bounding box for the shapes affected by skin. This is done by setting `bboxCenter` and `bboxSize` fields of the shapes. From Pascal code, get/set cgeref:TAbstractShapeNode.BBox[]. Manually set them to include all possible skin arrangements in all possible animation frames.
 
-If you don't do this, the bounding box auto-calculated by the engine will be based on the initial (non-animated) object pose, and it may result in errors: frustum culling and ray picking will consider this box, and e.g. _frustum culling_ may decide to _cull_ (not render) the object when it should actually be visible. As an alternative to setting proper bounding box using cgeref:TAbstractShapeNode.BBox[] (which we recommend) you could also turn off frustum culling by changing both cgeref:TCastleScene.SceneFrustumCulling[] and cgeref:TCastleScene.ShapeFrustumCulling[] to `false` (we don't recommend this, unless you only have a few such scenes in your world).
+If you don't do this, the bounding box auto-calculated by the engine will be based on the initial (non-animated) object pose, and it may result in errors: frustum culling and ray picking will consider this box, and e.g. _frustum culling_ may decide to _cull_ (not render) the object when it should actually be visible.
 
-NOTE: This limitation is not specific to our engine. E.g. https://threejs.org/[three.js] also has this, see https://discourse.threejs.org/t/how-to-get-accurate-bounding-boxes-for-animated-gltf/14669[here] and https://discourse.threejs.org/t/object-bounds-not-updated-with-animation/3749[here].
+NOTE: As an alternative to setting proper bounding box using cgeref:TAbstractShapeNode.BBox[] (which we recommend) you could also turn off frustum culling by changing both cgeref:TCastleScene.SceneFrustumCulling[] and cgeref:TCastleScene.ShapeFrustumCulling[] to `false` (but we really don't recommend this; it may cost significant performance, unless you only have a few such scenes in your world).
+
+NOTE: This limitation is not specific to our engine. E.g. https://threejs.org/[three.js] also has this, see https://discourse.threejs.org/t/how-to-get-accurate-bounding-boxes-for-animated-gltf/14669[here] and https://discourse.threejs.org/t/object-bounds-not-updated-with-animation/3749[here]. In general, calculating a bounding box for skinned-animated objects (whether it is done on CPU or GPU), or updating any mesh collider, is a cost that you usually want to avoid.
 
 === Collisions that detect which body part is hit, using physics
 
