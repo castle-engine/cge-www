@@ -1,7 +1,7 @@
 # Skinned animation using the Skin node
 include::common.adoc[]
 :description: Design the skinned animation skeleton and joints in Castle Game Engine.
-// TODO: :cge-social-share-image: blender_castle_1.png
+:cge-social-share-image: skin_example_screenshot.png
 
 WARNING: This feature is in development now, with work on https://github.com/castle-engine/castle-engine/tree/skinned-animation-gpu[skinned-animation-gpu] branch. Some information from this document is not yet implemented, some API links do not yet work (as they refer to API present only on the branch).
 
@@ -12,6 +12,13 @@ You can use _skinned animation_ when designing models in _Castle Game Engine_. T
 In most cases, you don't need to do anything special on the engine side to use it. Simply design models using link:blender[Blender] with Blender's _armature_ and _bones_, export it to link:gltf[glTF], and load it in _Castle Game Engine_ as usual. A 3D model in _Castle Game Engine_ is displayed and processed using the cgeref:TCastleScene[] component, documented in link:viewport_and_scenes[Viewport with scenes, camera, navigation].
 
 The engine will automatically load the skinned animation from glTF, and display it correctly. We can perform the animation on the GPU, which means it's efficient. We also have a fallback (for ancient GPUs) non-GPU implementation.
+
+cgeimg::block[
+  skin_example_screenshot.png|Skinned animation example - change joints by Pascal code,
+  skin_fox.png|Animated fox,
+  skin_bunny.png|Animated bunny,
+  skin_alien.png|Animated alien
+]
 
 == Skin node under the hood
 
@@ -115,7 +122,7 @@ We also enhance geometry nodes with the necessary per-vertex information for eac
 This information is a per-vertex data useful for animation systems, whether implemented by CPU or GPU.
 
 [#example]
-== Example
+== X3D Example
 
 Example `Skin` definition is as follows:
 
@@ -238,6 +245,10 @@ Skin {
 }
 ----
 
+== Pascal example (modify joints by code)
+
+Build and run example https://github.com/castle-engine/castle-engine/tree/skinned-animation-gpu/examples/animations/animate_bones_by_code[examples/animations/animate_bones_by_code] to see how to modify joints by Pascal code.
+
 == More testcases
 
 Simply open any glTF file with a skinned animation in link:castle-model-viewer[Castle Model Viewer] and save it back to X3D. This is a way to have lots of testcases of the `Skin` node.
@@ -245,8 +256,6 @@ Simply open any glTF file with a skinned animation in link:castle-model-viewer[C
 Links to many resources with animated glTF models are in link:assets.php[our assets page], e.g. look at https://quaternius.com/[Quaternius] and https://sketchfab.com/features/gltf[Sketchfab glTF models].
 
 // See some ready glTF and X3D models in (TODO link, commit x3d versions) demo-models/animation/gltf_skinned_animation/ .
-
-// TODO screenshots
 
 == Why?
 
