@@ -33,7 +33,7 @@ Defines how a set of joints influence a mesh, thus enabling skinned animation in
 
 The idea is that you have:
 
-- A _skeleton_, which is a hierarchy of _joints (aka "bones")_, expressed in X3D as a hierarchy of cgeref:TransformNode[].
+- A _skeleton_, which is a hierarchy of _joints (aka "bones")_, expressed in X3D as a hierarchy of cgeref:TTransformNode[].
 
 - A number of meshes, which are a number of X3D geometry nodes using cgeref:TAbstractCoordinateNode[] with per-vertex data in `SkinWeights` and `SkinJoints`.
 
@@ -173,8 +173,8 @@ Skin {
 
 We also enhance geometry nodes with the necessary per-vertex information for each vertex (which joints affect it, how much):
 
-- cgeref:TAbstractComposedGeometryNode.SkinJoints0[] : for each vertex, 4 most important joints that affect it.
-- cgeref:TAbstractComposedGeometryNode.SkinWeights0[] : for each vertex, how much is it affected by the 4 most important joints.
+- `skinJoints0` (from Pascal: cgeref:TAbstractComposedGeometryNode.SetSkinJoints0[]): for each vertex, 4 most important joints that affect it.
+- `skinWeights0` (from Pascal: cgeref:TAbstractComposedGeometryNode.SetSkinWeights0[]): for each vertex, how much is it affected by the 4 most important joints.
 
 This information is a per-vertex data useful for animation systems, whether implemented by CPU or GPU.
 
@@ -216,7 +216,7 @@ X3D standard is integrated with the H-Anim standard, and thus already has a way 
 
 - Because we think that skinned animation can be expressed a bit simpler than the H-Anim does. We think glTF approach is a good way to do it.
 +
-H-Anim is a big specification, that is linked from another big specification (X3D). We rather like the simplicity and efficiency of how skinned animation is defined in glTF. The way skinned animation is expressed in [glTF spec](https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html) and in [glTF cheatsheet](https://www.khronos.org/files/gltf20-reference-guide.pdf) is simpler.
+H-Anim is a big specification, that is linked from another big specification (X3D). We rather like the simplicity and efficiency of how skinned animation is defined in glTF. The way skinned animation is expressed in https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html[glTF spec] and in https://www.khronos.org/files/gltf20-reference-guide.pdf[glTF cheatsheet] is simpler.
 
 - One reason for this simplicity is that our approach doesn't invent any new concept for "joints". Our joints are just `Transform` nodes. We don't need `HAnimJoint`.
 
@@ -226,9 +226,9 @@ H-Anim is a big specification, that is linked from another big specification (X3
 +
 Namely, per-vertex weights and joints are stored as 4D vectors, so each vertex has a list of "4 most important joints". See cgeref:TAbstractComposedGeometryNode.SetSkinWeights0[] and cgeref:TAbstractComposedGeometryNode.SetSkinJoints0[] for details. This is enough in practice, in our experience, for even quite complicated gamedev models.
 +
-In the future we will likely allow more than 4 joints per vertex, by introducing cgeref:TAbstractComposedGeometryNode.SetSkinWeights1[] and cgeref:TAbstractComposedGeometryNode.SetSkinJoints1[] and so on.
+In the future we will likely allow more than 4 joints per vertex, by introducing `skinWeights1` and `skinJoints1` (and maybe more). Some limit on the number of joints-influencing-a-vertex will in practice always be present, to enable efficient GPU skinning of meshes. That's also the reason why current fields `skinWeights0` and `skinJoints0` have `0` at the end.
 +
-We realize that this design "uncovers" an implementation detail (it's efficient to process things, on GPU and CPU, as 4D vectors). But at the same time, experience shows that it's not troublesome, and even with a (temporary) limit of 4 joints per vertex, it's enough in practice.
+We realize that this design "uncovers" an implementation detail (it's efficient to process things, on GPU and CPU, as 4D vectors). But at the same time, experience shows that it's not troublesome, and even with a limit of "4 joints per vertex", it's enough in practice for lots of 3D animations to look good.
 
 - We want naming that clearly says it's an animation technique that works with any mesh, humanoid or not.
 +
@@ -247,3 +247,40 @@ There are numerous deliberate similarities between `Skin` and `HAnimHumanoid`.
 - The placement of `Skin` and `HAnimHumanoid` in the transformation matters. This is actually something where we follow X3D and _not_ glTF. It makes sense, for humans and for software, that `Skin` is part of the transformation hierarchy.
 
 For people that want to use H-Anim nodes in CGE, nothing changes, we continue to support them. Moreover, we can consider in the future transforming H-Anim nodes under the hood to `Skin`, to make them as efficient to render as `Skin`, using GPU.
+
+== How do collisions work when skin is calculated on GPU
+
+=== You need to assign proper bounding box explicitly
+
+Since the mesh (skin) is only updated on GPU, the algorithms on CPU don't know about the updated skin vertexes.
+
+NOTE: Side note: There are ways to transfer data calculated on GPU back to CPU. Like transform feedback, https://github.com/castle-engine/castle-engine/tree/master/examples/shaders/transform_feedback[we have a demo using it in our engine]. But we don't want to apply them here -- not only it would complicate things, but also would cost some efficiency.
+
+The solution is to manually define the bounding box for the shapes affected by skin. This is done by setting `bboxCenter` and `bboxSize` fields of the shape. From Pascal code, get/set cgeref:TSkinNode:BBox[]. Manually set them to include all possible skin arrangements in all possible animation frames.
+
+If you don't do this, the bounding box auto-calculated by the engine will be based on the initial (non-animated) object pose, and it may result in errors: frustum culling and ray picking will consider this box, and e.g. _frustum culling_ may decide to _cull_ (not render) the object when it should actually be visible. As an alternative to setting proper bounding box using cgeref:TSkinNode:BBox[] (which we recommend) you could also turn off frustum culling by changing both cgeref:TCastleScene.SceneFrustumCulling[] and cgeref:TCastleScene.ShapeFrustumCulling[] to `false` (we don't recommend this, unless you only have a few such scenes in your world).
+
+NOTE: This limitation is not specific to our engine. E.g. https://threejs.org/[three.js] also has this, see https://discourse.threejs.org/t/how-to-get-accurate-bounding-boxes-for-animated-gltf/14669[here] and https://discourse.threejs.org/t/object-bounds-not-updated-with-animation/3749[here].
+
+=== Collisions that detect which body part is hit, using physics
+
+To detect collisions using link:physics[], and detect e.g. whether a ray hits the head or leg of a skinned humanoid, you should attach physical colliders to joints. To do this:
+
+- Expose a subset of joints using cgeref:TCastleSceneCore.ExposeTransforms[]. See link:expose[Expose scene elements] documentation. This will give you a hierarchy of cgeref:TCastleTransform[] that you can attach colliders to.
+
+- Attach colliders, like simple cgeref:TCastleBoxCollider[] to the exposed transformations.
+
+- Make sure to mark that the collider is going to move because of animation (and should not move because of physics forces like gravity):
++
+--
+- Set cgeref:TCastleRigidBody.Dynamic[] to `false`
+- Set cgeref:TCastleRigidBody.Animated[] to `true`
+--
+
+== TODO
+
+- Prepare a demo showing the _"Collisions that detect which body part is hit, using physics"_ to detect headshots on an animated model.
++
+Also, switch to https://en.wikipedia.org/wiki/Ragdoll_physics[ragdoll physics] (by adding constraints, and toggling cgeref:TCastleRigidBody.Dynamic[]) when character is killed.
+
+- Fix how it works with link:shadow_volumes[shadow volumes]. Currently, shadow quads are not animated, resulting in wrong shadows look.
