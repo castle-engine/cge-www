@@ -3,7 +3,7 @@ include::common.adoc[]
 :description: Design the skinned animation skeleton and joints in Castle Game Engine.
 :cge-social-share-image: skin_example_screenshot.png
 
-WARNING: This feature is in development now, with work on https://github.com/castle-engine/castle-engine/tree/skinned-animation-gpu[skinned-animation-gpu] branch. Some information from this document is not yet implemented, some API links do not yet work (as they refer to API present only on the branch).
+WARNING: This feature is not yet merged to `master`. It's on https://github.com/castle-engine/castle-engine/tree/skinned-animation-gpu[skinned-animation-gpu] branch.
 
 == Introduction
 
