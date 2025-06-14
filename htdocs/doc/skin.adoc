@@ -354,4 +354,12 @@ To detect collisions using link:physics[], and detect e.g. whether a ray hits th
 +
 Also, switch to https://en.wikipedia.org/wiki/Ragdoll_physics[ragdoll physics] (by adding constraints, and toggling cgeref:TCastleRigidBody.Dynamic[]) when character is killed.
 
-- Fix how it works with link:shadow_volumes[shadow volumes]. Currently, shadow quads are not animated, resulting in wrong shadows look.
+- Right now, https://castle-engine.io/shadow_volumes[shadow volumes] disable calculating skinned animation on GPU.
++
+--
+- This is necessary. To calculate efficient shadow quads, we need to calculate "silhouette edges", which in turn means we need to know all vertexes final coordinates (after skin) on CPU. And we need to have proper shadow quads in every frame (corresponding to the shadow caster rendering in this frame, not some old version), as shadow volumes assume that real mesh provides a "cap" to the geometry rendered into the stencil.
+- So for now, when a shape is a shadow caster for shadow volumes, it doesn't use skinned animation on GPU. Skinned animation is done on CPU.
+- Yes, in effect this makes https://castle-engine.io/shadow_volumes[shadow volumes] affect performance in a negative way -- not only the shadow volumes itself cost (rendering shadow quads, 2 passes), but also it disables skinned animation on GPU.
+- To overcome this we'd need to use geometry shaders to render shadow quads, which is quite some additional work.
+- Practical solution will likely be to recommend https://castle-engine.io/x3d_extensions_shadow_maps.php[shadow maps] once we https://castle-engine.io/roadmap#shadow_maps[improve them].
+--
