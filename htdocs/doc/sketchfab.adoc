@@ -56,9 +56,14 @@ TODO: https://castle-engine.io/roadmap#materials[New material components] will a
 
 . Sometimes the exported glTF says to use _blending_ when it actually should not. For example this link:https://sketchfab.com/3d-models/chunky-knight-f1722ab650ad4d8dbe6fc4bf44e33d38[chunky knight] has rendering issues, in _Castle Game Engine_ and link:https://gltf-viewer.donmccurdy.com/[other glTF viewers], due to using blending when it should not.
 +
-This likely follows link:https://help.sketchfab.com/hc/en-us/articles/360046421631-glTF-GLB-and-USDZ[Sketchfab docs] saying that they don't export _Refraction, Dithered, and Additive transparency (will be converted to Blending)_.
+This likely follows link:https://support.fab.com/s/article/glTF-GLB-and-USDZ[Sketchfab docs (glTF, GLB, and USDZ)] saying that they don't export _Refraction, Dithered, and Additive transparency (will be converted to Blending)_.
+// See also:
+// https://support.fab.com/s/article/Transparency-Opacity
+// https://support.fab.com/s/article/Materials-PBR
 +
 The solution is just to disable blending in CGE for these models, setting `MyScene.RenderOptions.Blending` to `false`.
++
+Unfortunately, we cannot do it automatically, as there's no information in the glTF file to indicate this faulty situation. And disabling `MyScene.RenderOptions.Blending` for _all_ models imported from Sketchfab would also disable some totally correct blending usage.
 --
 
 . A minority of Sketchfab models use a _"specular glossiness"_ PBR workflow through a deprecated (by Khronos) link:https://github.com/KhronosGroup/glTF/tree/main/extensions/2.0/Archived/KHR_materials_pbrSpecularGlossiness[KHR_materials_pbrSpecularGlossiness]. We support it in CGE only partially -- some models may look dark or too contrasting, like link:https://sketchfab.com/3d-models/knight-multi-anim-bind-5ac12d133e5a4ef3a8eaf1c533306c87[this knight].
