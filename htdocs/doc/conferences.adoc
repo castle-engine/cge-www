@@ -12,9 +12,22 @@ This pages collects _some_ materials from them.
 * *Upcoming*:
 +
 --
-- I will attend (and give a talk) https://pascalconference.com/[Pascal Conference organized by Sorpetaler] in _Germany (Sundern)_ on _17-21 September (2025)_.
-- I will attend (and give a talk) https://www.delphiday.it/[Delphi Day] in _Italy (Piacenza)_ on _20th June (2025)_.
-- I will attend https://delphisummit.com/[Delphi Summit] in _Netherlands (Amsterdam)_, on _5-6 June (2025)_.
+- I will attend (and give a talk) https://pascalconference.com/[Pascal Conference organized by Sorpetaler] in _Germany (Sundern)_ on _17-21 September 2025_.
+--
+
+* _20th June 2025_: https://www.delphiday.it/[Delphi Day] in _Italy (Piacenza)_.
++
+--
+- https://castle-engine.io/delphiday2025[Slides]
+- New example shown during presentation is now part of the engine examples: TODO. I also shown a few of existing examples (https://github.com/castle-engine/castle-engine/tree/master/examples/platformer[platformer], https://github.com/castle-engine/castle-engine/tree/master/examples/fps_game[fps_game], https://github.com/castle-engine/conference-zlot-delphi-2024[complete FPS game using Blender, Sketchfab, Quaternius models, TCastleMoveAttack]).
+--
+
+* _5-6 June 2025_: https://delphisummit.com/[Delphi Summit] in _Netherlands (Amsterdam)_.
++
+--
+- https://castle-engine.io/wp/2025/06/08/game-controllers-gamepads-joysticks-new-comfortable-api-and-example-of-walking-and-talking-using-gamepad-from-delphi-summit-2025/[News about gamepad support, which we shown at the conference]
+- https://github.com/castle-engine/conference-delphi-summit-2025[Example shown at the conference - simple walking (with game controllers or keyboard/mouse) around the farm, talking with weird NPCs and a small story]
+- https://castle-engine.io/dsummit2025[Slides shown]
 --
 
 * _9-10 April 2025_: modern Pascal course.
