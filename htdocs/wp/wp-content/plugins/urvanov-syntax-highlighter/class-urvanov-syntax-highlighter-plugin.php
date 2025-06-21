@@ -3,7 +3,7 @@
 Plugin Name: Urvanov Syntax Highlighter
 Plugin URI: https://github.com/urvanov-ru/crayon-syntax-highlighter
 Description: Supports multiple languages, themes, highlighting from a URL, local file or post text.
-Version: 2.8.38
+Version: 2.8.40
 Author: Fedor Urvanov, Aram Kocharyan
 Author URI: https://urvanov.ru
 Text Domain: urvanov-syntax-highlighter
@@ -34,8 +34,8 @@ if (URVANOV_SYNTAX_HIGHLIGHTER_THEME_EDITOR) {
 require_once('class-urvanov-syntax-highlighter-wp.php');
 
 Urvanov_Syntax_Highlighter_Global::set_info(array(
-	'Version' => '2.8.38',
-	'Date' => '8th December 2024',
+	'Version' => '2.8.40',
+	'Date' => '12th June 2025',
 	'AuthorName' => 'Fedor Urvanov & Aram Kocharyan',
 	'PluginURI' => 'https://github.com/urvanov-ru/crayon-syntax-highlighter',
 ));
@@ -268,9 +268,9 @@ class Urvanov_Syntax_Highlighter_Plugin {
         UrvanovSyntaxHighlighterLog::debug('capture for id ' . $wp_id . ' len ' . strlen($wp_content));
 
 //         $blocks = parse_blocks($wp_content);
-
+        
         //UrvanovSyntaxHighlighterLog::debug($blocks, 'Gutenberg blocks');
-
+        
 //         foreach ( $blocks as $block ) {
             // Urvanov Syntax Highlighter block
             // UrvanovSyntaxHighlighterLog::debug($block, 'Parsed post block');
@@ -463,8 +463,8 @@ class Urvanov_Syntax_Highlighter_Plugin {
         $capture['content'] = $wp_content;
         return $capture;
     }
-
-
+    
+    
     // *****************************************************************************
 
     public static function replace_backquotes($wp_content) {
@@ -702,7 +702,7 @@ class Urvanov_Syntax_Highlighter_Plugin {
         }
 
         global $post;
-
+        
         // Go through queued posts and find crayons
         $post_id = strval($post->ID);
 
@@ -840,7 +840,7 @@ class Urvanov_Syntax_Highlighter_Plugin {
         UrvanovSyntaxHighlighterLog::debug($post_class, 'class_tag_post_class');
         UrvanovSyntaxHighlighterLog::debug($atts, 'class_tag_atts');
         UrvanovSyntaxHighlighterLog::debug($content, 'class_tag_content=');
-
+        
         // If we find a crayon=false in the attributes, or a crayon[:_]false in the class, then we should not capture
         $ignore_regex_atts = '#crayon\s*=\s*(["\'])\s*(false|no|0)\s*\1#msi';
         $ignore_regex_class = '#crayon\s*[:_]\s*(false|no|0)#msi';
@@ -868,8 +868,6 @@ class Urvanov_Syntax_Highlighter_Plugin {
         if (!empty($pre_class)) {
             $pre_class = preg_replace('#\bdata-url\s*=#mi', 'url=', $pre_class);
         }
-
-        require 'michalis_hack_strip_ending_code.php';
 
         if (!empty($class)) {
             return "[crayon $pre_class $class $post_class]{$content}[/crayon]";
@@ -1040,11 +1038,6 @@ class Urvanov_Syntax_Highlighter_Plugin {
         }
     }
 
-    public static function init($request) {
-        UrvanovSyntaxHighlighterLog::debug('init');
-        Urvanov_Syntax_Highlighter_Global::load_plugin_textdomain();
-    }
-
     public static function init_ajax() {
         add_action('wp_ajax_urvanov-syntax-highlighter-tag-editor', 'UrvanovSyntaxHighlighterTagEditorWP::content');
         add_action('wp_ajax_nopriv_urvanov-syntax-highlighter-tag-editor', 'UrvanovSyntaxHighlighterTagEditorWP::content');
@@ -1193,7 +1186,7 @@ class Urvanov_Syntax_Highlighter_Plugin {
             $touched = FALSE;
 
             // Upgrade database and settings
-
+            
             UrvanovSyntaxHighlighterLog::log($version, 'Upgrading database and settings');
             if (version_compare($version, '1.7.21') < 0) {
                 $settings[Urvanov_Syntax_Highlighter_Settings::SCROLL] = $defaults[Urvanov_Syntax_Highlighter_Settings::SCROLL];
@@ -1349,7 +1342,7 @@ if (defined('ABSPATH')) {
 
 	// XXX add_filter('init', 'Urvanov_Syntax_Highlighter_Plugin::init');
 	// XXX moved load_textdomain to after_setup_theme, so that it loads after init as it is required in WP 6.7
-	add_filter('after_setup_theme', 'Urvanov_Syntax_Highlighter_Plugin::init');
+	add_filter('init', 'Urvanov_Syntax_Highlighter_Global::load_plugin_textdomain');
 
         Urvanov_Syntax_Highlighter_Settings_WP::load_settings(TRUE);
         if (Urvanov_Syntax_Highlighter_Global_Settings::val(Urvanov_Syntax_Highlighter_Settings::MAIN_QUERY)) {
@@ -1411,7 +1404,7 @@ function register_urvanov_syntax_highlighter_gutenberg_block() {
     wp_register_style('urvanov-syntax-highlighter-editor',
         plugins_url(URVANOV_SYNTAX_HIGHLIGHTER_EDITOR_CSS, __FILE__),
         array( 'wp-edit-blocks' ), $URVANOV_SYNTAX_HIGHLIGHTER_VERSION);
-
+    
     register_block_type( 'urvanov-syntax-highlighter/code-block', array(
         'editor_style' => 'urvanov-syntax-highlighter-editor'//,
         //'editor_script' => 'crayon_te_js',

@@ -2,14 +2,14 @@
 # This file is distributed under the GPL v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: W3 Total Cache 2.8.9\n"
+"Project-Id-Version: W3 Total Cache 2.8.10\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/w3-total-cache\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-05-15T20:07:07+00:00\n"
+"POT-Creation-Date: 2025-06-18T14:16:42+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: w3-total-cache\n"
@@ -2836,67 +2836,67 @@ msgid "Purge %1$sCDN%2$s completely"
 msgstr ""
 
 #. translators: 1 queue interval value.
-#: Cdn_Plugin.php:284
+#: Cdn_Plugin.php:302
 #, php-format
 msgid "[W3TC] CDN queue process (every %1$d seconds)"
 msgstr ""
 
 #. translators: 1 queue interval value.
-#: Cdn_Plugin.php:302
+#: Cdn_Plugin.php:320
 #, php-format
 msgid "[W3TC] CDN auto upload (every %1$d seconds)"
 msgstr ""
 
-#: Cdn_Plugin.php:557
+#: Cdn_Plugin.php:575
 #: DbCache_WpdbInjection_QueryCaching.php:869
 msgid "wp-admin"
 msgstr ""
 
-#: Cdn_Plugin.php:564
+#: Cdn_Plugin.php:582
 #: DbCache_WpdbInjection_QueryCaching.php:871
 msgid "Short init"
 msgstr ""
 
-#: Cdn_Plugin.php:571
+#: Cdn_Plugin.php:589
 msgid "user agent is rejected"
 msgstr ""
 
-#: Cdn_Plugin.php:578
+#: Cdn_Plugin.php:596
 msgid "request URI is rejected"
 msgstr ""
 
-#: Cdn_Plugin.php:585
+#: Cdn_Plugin.php:603
 msgid "SSL is rejected"
 msgstr ""
 
-#: Cdn_Plugin.php:605
+#: Cdn_Plugin.php:623
 msgid "DONOTCDN constant is defined"
 msgstr ""
 
-#: Cdn_Plugin.php:612
+#: Cdn_Plugin.php:630
 #: Extension_NewRelic_Plugin.php:199
 msgid "logged in role is rejected"
 msgstr ""
 
-#: Cdn_Plugin.php:840
+#: Cdn_Plugin.php:858
 msgid "CDN Cache"
 msgstr ""
 
-#: Cdn_Plugin.php:849
+#: Cdn_Plugin.php:867
 msgid "CDN: Manual Purge"
 msgstr ""
 
 #. translators: 1 CDN engine name, 2 rejection reason.
-#: Cdn_Plugin.php:874
+#: Cdn_Plugin.php:892
 #, php-format
 msgid "Content Delivery Network via %1$s%2$s"
 msgstr ""
 
-#: Cdn_Plugin.php:903
+#: Cdn_Plugin.php:921
 msgid "Replaced URLs for CDN:"
 msgstr ""
 
-#: Cdn_Plugin.php:1118
+#: Cdn_Plugin.php:1136
 msgid "Cant find minification base url, make sure minification folder sits inside WP_CONTENT_DIR and DOCUMENT_ROOT is set correctly"
 msgstr ""
 
@@ -12928,12 +12928,12 @@ msgid "Please %1$snetwork activate%2$s W3 Total Cache when using WordPress Multi
 msgstr ""
 
 #. translators: 8 closing HTML p tag followed by closing HTML div tag.
-#: Root_AdminActivation.php:126
+#: Root_AdminActivation.php:172
 #, php-format
 msgid "%1$s%2$sW3 Total Cache Error:%3$s Files and directories could not be automatically removed to complete the deactivation. %4$sPlease execute commands manually:%5$s%6$s%7$s%8$s"
 msgstr ""
 
-#: Root_AdminActivation.php:130
+#: Root_AdminActivation.php:176
 msgid "error"
 msgstr ""
 
