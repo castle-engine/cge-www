@@ -5,7 +5,7 @@ Tags: performance, speed, web vitals, critical css, cache
 Requires at least: 6.7
 Tested up to: 6.8
 Requires PHP: 7.2
-Stable tag: 4.1.0
+Stable tag: 4.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -183,25 +183,13 @@ If you run into compatibility issues, please do let us know. You can drop us a l
 2. Jetpack Boost Speed Improvement
 
 == Changelog ==
-### 4.1.0 - 2025-06-18
-#### Added
-- LCP Optimization: New Largest Contentful Paint (LCP) optimization feature to improve loading performance of Cornerstone pages.
-
+### 4.1.1 - 2025-06-23
 #### Changed
-- Auto-Resize Lazy Images: Remove beta tag.
-- E2E Tests: Update config file encryption algorithm.
-- My Jetpack: Hide backup failure notice when backups are deactivated.
-- My Jetpack: Optimize the images for onboarding slider for faster page load.
 - Update package dependencies.
 
-#### Removed
-- Cornerstone Pages: Remove "Experimental" tag from UI.
-
 #### Fixed
-- General: Fix storage data persisting after clear.
-- My Jetpack: Fix Onboarding UI responsiveness at 600px.
-- My Jetpack: Fix readability of license activation button on hover.
-- Speed Scores: Fix not waiting for Cloud CSS to finish generating before refreshing the scores.
+- Defer JS: Fix duplicating deferred scripts on the page when "Optimize LCP Images" is enabled.
+- Image Guide: Fix reporting images in WordPress' admin bar.
 
 --------
 
