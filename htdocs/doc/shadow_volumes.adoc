@@ -78,20 +78,62 @@ Note that *shadow casters may use partial transparency (by alpha testing or alph
 [#manifold]
 == Shadow casters 3D geometry must be 2-manifold (closed volume)
 
-By default, for shadow volumes, *all shapes that cast shadows must be 2-manifold*. This means that every edge has exactly 2 (not more, not less) neighbor faces, so the whole shape is a closed volume. Also, faces must be oriented consistently (e.g. CCW outside). This requirement is often quite naturally satisfied for natural objects.
+A 3D model is said to be *2-manifold* if *every edge has exactly 2 (not more, not less) neighbor faces*, so the whole shape is a closed volume. Also, faces must be oriented consistently (e.g. CCW outside). This requirement is often quite naturally satisfied for natural objects. There are other, equivalent terms this is sometimes called: 3D mesh can be said to be *watertight* or *closed*.
 
-Note that satisfying the above requirements (2-manifold, consistent ordering) means that you can also use _backface culling_ which improves rendering performance. You typically turn on _backface culling_ in your 3D authoring software (e.g. check it in link:blender[Blender] material settings) which will export it to the glTF or X3D file. Our engine will automatically follow this information.
+NOTE: See https://en.wikipedia.org/wiki/Manifold[Wikipedia about n-manifold] for more general mathematical definition.
 
-You can inspect whether your shapes are detected as a 2-manifold by link:castle-model-viewer[Castle Model Viewer]:  see menu item _"Help -> Manifold Edges Information"_. To check which edges are actually detected as "border edges" use _"View -> Fill mode -> Silhouette and Border Edges"_, manifold silhouette edges are displayed yellow and border edges (you want to get rid of them!) are blue.
+For shadow volumes, *the shadow caster must be 2-manifold*. There are 3 ways how you can make it happen:
 
-You can also check manifold edges in link:blender[Blender]: you can easily detect why the mesh is not manifold by _"Select -> Select All By Trait -> Non Manifold"_ command (press F3 to find this command in edit mode). Also, remember that faces must be ordered consistently CCW -- in some cases _"Recalculate normals outside"_ (this actually changes vertex order in Blender) may be needed to reorder them properly.
+1. Make every _shape_ of your scene a 2-manifold.
++
+The term _shape_ in Castle Game Engine means link:x3d[X3D] `Shape` node, which is equal to link:gltf[glTF] _primitive_, which is generally equal to a subset of link:blender[Blender object] that has a single material.
++
+This is the most efficient approach, it means that every _shape_ is a potential shadow caster.
++
+The engine detects this case automatically.
 
+2. Or, forget about shapes, but at least make _your whole scene_ a 2-manifold.
++
+This is a common situation when you have a 2-manifold mesh in Blender, but it uses multiple materials. In such case, exporting it to glTF or X3D splits each mesh into multiple shapes. Each shape is _not_ 2-manifold but whole scene is.
++
+Again, the engine detects this case automatically.
+
+3. Finally, if your scene is not detected as 2-manifold, but you want to _force_ using it as a shadow caster for shadow volumes, accepting eventual rendering artifacts, then you can set cgeref:TCastleRenderOptions.WholeSceneManifold[] to `true`. See the _Bull_ model from link:https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/shadow_volumes_whole_scene_manifold[examples/viewport_and_scenes/shadow_volumes_whole_scene_manifold] for an example using it.
++
+cgeimg::block[manifold_force.png|WholeSceneManifold example in editor]
+
+NOTE: Satisfying the above requirements (2-manifold, consistent ordering) means that you can also use _backface culling_ which improves rendering performance. You typically turn on _backface culling_ in your 3D authoring software (e.g. check it in link:blender[Blender] material settings) which will export it to the glTF or X3D file. Our engine will automatically follow this information. So, there's an extra _"gain"_ you can have from making your mesh 2-manifold.
+
+You can inspect whether your shapes are detected as a 2-manifold by link:castle-model-viewer[Castle Model Viewer]. From the link:editor[], just double-click on a model to open it in _Castle Model Viewer_.
+
+- Use the menu item _"Help -> 2-Manifold Information (Shadow Volumes Casting)"_ to get a concise report like this:
++
+cgeimg::block[manifold_dialog.png|2-Manifold Information (Shadow Volumes Casting) dialog]
+
+- To check how edges are detected use _"View -> Fill mode -> Silhouette and Border Edges"_.
++
+cgeimg::block[
+  manifold_colors.png|Colors of edges in "Silhouette and Border Edges" fill mode,
+  manifold_colors_2.png|"Silhouette and Border Edges" fill mode
+]
++
+The meaning of colors:
++
+--
+- Manifold silhouette edges (that have 2 neighboring faces in the same shape) are displayed as yellow. Only a subset of them are displayed, forming a silhouette of the shape, from the point of view of current camera.
+
+- Edges that have 2 neighboring faces but in different shapes are displayed as white.
+
+- Finally, the _"bad"_ border edges, that don't have 2 neighboring faces, are displayed as blue. You want to get rid of them!
++
+NOTE: Some edges that should be _white_ can be shown as _blue_, if only you have _some_ edges that are _blue_. That's because our auto-detection stops as soon as it is evident that scene is not 2-manifold. So if you see some _blue_ edges, fix them to be 2-manifold, just be aware that _some_ of them don't require fixing if they already should have a match in different shape.
+--
+
+- You can also check manifold edges in link:blender[Blender]: you can easily detect why the mesh is not manifold by _"Select -> Select All By Trait -> Non Manifold"_ command (press F3 to find this command in edit mode). Also, remember that faces must be ordered consistently CCW -- in some cases _"Recalculate normals outside"_ (this actually changes vertex order in Blender) may be needed to reorder them properly.
++
 cgeimg::block[blender_non_manifold.png|Select Non Manifold in Blender]
 
-Note that *each shape must be 2-manifold* (by default, when cgeref:TCastleRenderOptions.WholeSceneManifold[] is `false`). It's not enough (it's also not necessary) for the _whole scene (cgeref:TCastleScene[])_ to be 2-manifold.
-
-The _shape_ is a smallest unbreakable unit that we pass to GPU when rendering. It corresponds exactly to glTF _primitive_ and X3D cgeref:TShapeNode[]. When working with link:blender[Blender], each _Blender object_ corresponds to as many shapes as you use materials in that Blender object (so, usually just one).
-
+////
 Putting the requirement to be 2-manifold on _shape_, not on _scene_, has advantages and disadvantages:
 
 - _Advantage:_ We prepare and render shadow volumes per-shape, so we work efficiently with dynamic models. Transforming a shape (move, rotate...), or changing the active shapes has zero cost, no data needs to be recalculated.
@@ -101,22 +143,11 @@ Putting the requirement to be 2-manifold on _shape_, not on _scene_, has advanta
 - _Advantage:_ Not the whole scene needs to be 2-manifold. If a shape is 2-manifold, it casts shadow. If your scene has both 2-manifold and non-2-manifold shapes, it will work OK, just only a subset of shapes (the 2-manifold ones) will cast shadows.
 
 - _Disadvantage:_ The whole shape must be 2-manifold. You cannot create 2-manifold scenes by summing multiple non-2-manifold shapes.
-
-=== Optional: Treat whole scene as 2-manifold
-
-If you set cgeref:TCastleRenderOptions.WholeSceneManifold[MyScene.RenderOptions.WholeSceneManifold] to `true` then the *whole cgeref:TCastleScene[] must be 2-manifold*. In turn, we don't require in this case that each _shape_ is 2-manifold separately.
-
-This is useful when your model is composed from multiple shapes that _together_ are 2-manifold. For example, if your mesh in link:blender[Blender] is 2-manifold but it uses multiple materials. In such case, exporting it to glTF or X3D splits each mesh into multiple shapes. Each shape is _not_ 2-manifold but whole scene is.
-
-Use cgeref:TCastleRenderOptions.WholeSceneManifold[] to cast shadows from such models. See the _Alpaca_ model from link:https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/shadow_volumes_whole_scene_manifold[examples/viewport_and_scenes/shadow_volumes_whole_scene_manifold] for an example.
-
-cgeimg::block[whole_scene_manifold_editor.png|WholeSceneManifold example in editor]
-
-Note that when cgeref:TCastleRenderOptions.WholeSceneManifold[MyScene.RenderOptions.WholeSceneManifold] is `true`, right now we _assume_ that your whole scene is 2-manifold. We do not check it! You have to make sure it is true (e.g. check in link:blender[Blender] using _"Select -> Select All By Trait -> Non Manifold"_ mentioned above). If the scene is not actually 2-manifold, rendering artifacts will appear.
+////
 
 == Adjust what casts shadows
 
-By default, every shape that is 2-manifold casts shadows, and every scene with cgeref:TCastleRenderOptions.WholeSceneManifold[] = `true` casts shadows.
+By default, all shadow casters detected as 2-manifold (see above) cast shadows.
 
 To stop some objects from casting shadows, set cgeref:TCastleTransform.CastShadows[] to `false`.
 
