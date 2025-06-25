@@ -537,7 +537,7 @@ Optional LODs could be nice (but maybe this is outside of scope of terrains; LOD
 This is started: see PR https://github.com/castle-engine/castle-engine/pull/612 .
 
 [#vulkan]
-### Vulkan renderer
+### Vulkan renderer (maybe; alternative: use BGFX to get Vulkan)
 
 Add a https://www.vulkan.org/[Vulkan] renderer.
 
@@ -590,6 +590,18 @@ Look great:
 - very good platform and renderer support.
 
 This *may* be even better than direct Vulkan port. We shall see. On one hand, this provides more possibilities than just Vulkan (e.g. direct Metal renderer). And it may be easier to use than Vulkan. OTOH, it will not allow to squeeze "every last bit of performance from Vulkan" (though we really don't need that in CGE in the first place; there are lots of optimizations on the table in CGE before it's worth even thinking about low-level Vulkan optimizations).
+
+Approach:
+
+- We will introduce a concept of "renderer backend", where a specific renderer can be switched at runtime. Each renderer implements a set of abstract classes, and all calls to rendering will happen through this API.
++
+It's similar to how we already have "sound backends" (OpenAL, FMOD, Nintendo Switch-specific, SOX for testing), and "game controllers backend" (WinAPI version, Linux version, Nintendo Switch version). We also have link:castlewindow_backends[TCastleWindow backends] though these are internally realized in a different way, which I no longer like and some day will have to change :)
+
+- This "renderer backend" concept will require some work to split the code. The existing rendering (using OpenGL/OpenGLES/WebGL) will have to be reworked into "OpenGL/OpenGLES/WebGL backend", with new alternative renderer being "BGFX backend".
+
+- To make it easy to experiment with new renderers *before* this "renderer backend" architecture is ready, we have an example where one can experiment with rendering using a different approach without the need for new renderer: https://github.com/castle-engine/castle-engine/tree/master/examples/research_special_rendering_methods/new_renderer_skeleton
++
+So in practice, I will likely start doing BGFX by playing with `new_renderer_skeleton` example, to get quick results, and learn BGFX API. Once I'll confirm this is useful route for us, and I have a demo "CGE rendering using BGFX", then I can introduce the "renderer backend" and make BGFX rendering an alternative backend. This way I can first confirm that BGFX rocks :), and learn BGFX, before committing to larger rework to integrate it with CGE properly.
 
 [#opengles_wirefame]
 ### Mobile: Support TCastleRenderOptions.WireframeEffect on OpenGLES
