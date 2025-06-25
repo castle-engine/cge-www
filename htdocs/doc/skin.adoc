@@ -100,13 +100,17 @@ The idea is that you have:
 
 - A _skeleton_, which is a hierarchy of _joints (aka "bones")_, expressed in X3D as a hierarchy of cgeref:TTransformNode[] (or any other X3D node that defines transformation, like cgeref:THAnimJointNode[]).
 
-- A number of meshes, which are a number of X3D geometry nodes using cgeref:TAbstractCoordinateNode[] with per-vertex data in `SkinWeights0` and `SkinJoints0`.
+- A number of meshes, which are a number of X3D geometry nodes using cgeref:TAbstractCoordinateNode[] with per-vertex data in `skinWeights0` and `skinJoints0`.
 
 Each vertex of a mesh is affected by a small subset of _joints_. For each joint on each vertex,  a _weight_ determines how much each joint affects this vertex. You can change joints (change their transformations, e.g. by regular X3D animation using cgeref:TTimeSensorNode[] and interpolators, or just directly access the joint node from Pascal and change its translation / rotation / scale) and in effect the mesh should change.
 
 The `Skin` node defines the connection between the joints and the skin.
 
 Placement of the `Skin` node within the X3D nodes graph matters. `Skin` is a descendant of the `X3DChildNode` (cgeref:TAbstractChildNode[]) in Pascal) node. Placing it under a specific parent transformation makes the resulting joints (`Skin.joints`) and skin (`Skin.shapes`) be part of the X3D transformation hierarchy, so they are rendered with the designated transformation.
+
+// TODO: update to link to master
+
+NOTE: If you're familiar with the X3D specification syntax for node definitions, you can find link:https://github.com/castle-engine/castle-engine/blob/14632f88b87d7b9b5152d61e366e5140c56236aa/tools/internal/x3d-nodes-to-pascal/nodes-specification/CastleEngineExtensions.txt#L257[`Skin` node spec expressed in this way here].
 
 NOTE: The `Skin` node itself is not an "animation" that you can play. The actual animations are defined by using `TimeSensor` nodes that cause interpolators to transform (move, rotate, scale) the joint nodes. Animating joints will in turn transform the meshes as indicated by this `Skin` node.
 
@@ -120,6 +124,8 @@ We also enhance geometry nodes with the necessary per-vertex information for eac
 - `skinWeights0` (from Pascal: cgeref:TAbstractComposedGeometryNode.SetSkinWeights0[]): for each vertex, how much is it affected by the 4 most important joints.
 
 This information is a per-vertex data useful for animation systems, whether implemented by CPU or GPU.
+
+NOTE: In the future we may introduce fields like `skinJoints1`, `skinWeights1` etc. to support more than 4 joints per vertex. This is consistent with glTF data `JOINTS_0`, `WEIGHTS_0`, `JOINTS_1`, `WEIGHTS_1` etc.
 
 [#example]
 == X3D Example
