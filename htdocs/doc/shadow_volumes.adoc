@@ -20,17 +20,22 @@ Important limitations:
 
 - The models that cast shadows must be link:#manifold[2-manifold]. This means that every edge has exactly 2 (not more, not less) neighbor faces, so the whole shape is a closed volume.
 
-- Right now _only one light source_ can cast shadows using shadow volumes. Do not set cgeref:TCastlePunctualLight.Shadows[Shadows] to `true` on multiple lights.
+- Right now _only one light source_ can cast shadows using shadow volumes. Do not set cgeref:TCastlePunctualLight.Shadows[Shadows] to `true` on multiple lights, as only one of them (and it's not defined which one) will cause shadows.
 
 == Examples
 
 Check out these CGE examples:
 
+- _"3D FPS game"_ template for new projects (select it when creating new project in our link:editor[]) has a light casting shadows by default.
+
 - link:https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/shadows[examples/viewport_and_scenes/shadows] - simple example showing shadow volumes from different light source types.
 
-- _"3D FPS game"_ template for new projects in CGE editor also has a light casting shadows by default.
+- link:https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/shadow_volumes_whole_scene_manifold[examples/viewport_and_scenes/shadow_volumes_whole_scene_manifold] - demonstrates auto-detection of 2-manifold scenes and the
+cgeref:TCastleRenderOptions.WholeSceneManifold[] feature.
 
-- link:https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/shadow_volumes_whole_scene_manifold[examples/viewport_and_scenes/shadow_volumes_whole_scene_manifold] - demonstrates cgeref:TCastleRenderOptions.WholeSceneManifold[] feature.
+- https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/shadows_distance_culling[examples/viewport_and_scenes/shadows_distance_culling] - tests that shadow volumes cooperate with cgeref:TCastleScene.DistanceCulling[] correctly.
+
+- Numerous other examples enable shadows, since it's so easy and it improves the look of the 3D world. E.g. https://github.com/castle-engine/castle-engine/tree/master/examples/physics/physics_throw_chickens[examples/physics/physics_throw_chickens], https://github.com/castle-engine/castle-engine/tree/master/examples/animations/animate_bones_by_code[examples/animations/animate_bones_by_code].
 
 == Features
 
@@ -46,14 +51,15 @@ Features of _shadows by shadow volumes_ (in particular, how does this technique 
 
 - *It's difficult to compare the speed of "shadow volumes" vs "shadow maps". Both techniques are expensive in different ways.* On one hand, shadow volumes require extra rendering passes (additional rendering of "shadow quads" to the stencil buffer, and then additional render to color buffer, for each shadow-casting light). On the other hand, shadow maps require updating the shadow textures (one for each light source).
 
-- Our current shadow volumes implementation allows for only *one light casting shadow volumes*. (This may be improved some day. Give us a shout at the forum if needed and link:donate[support the engine development] to make this happen sooner.)
+- Our current shadow volumes implementation allows for only *one light casting shadow volumes*. And it is unsure if we will ever remove this limitation.
 +
-Note that shadow volumes will require more and more rendering passes when multiple light sources may cast shadows.
+Reason: _shadow volumes_ algorithm requires more and more rendering passes as more light sources cast shadows. This is the practical reason why we didn't yet implement shadow volumes from multiple light sources: it could quickly become too expensive to be useful. Each light requires yet another rendering pass (if we add the light contribution) or even each _lights' combination_ requires yet another rendering pass (in the naive approach when we replace the pixels).
 +
 In contrast, link:x3d_extensions_shadow_maps.php[shadow maps] support as many lights as you want already, and each light only requires to keep yet another shadow texture up-to-date.
 
 - Note that *it's perfectly fine to use both shadow volumes and shadow maps in a single scene*.
 //So you can use shadow volumes to cast a hard shadow from some particularly bright and distant light (like a sun during the summer day), and add shadow maps for some soft shadows.
+It may make perfect sense in some situations, if you want one light source to cast precise hard shadows using _shadow volumes_ and the rest to cast soft shadows using _shadow maps_.
 
 - *Applying a texture with transparency (alpha testing) on the object has no effect on the shadows cast.*
 +
@@ -114,14 +120,16 @@ By default, every shape that is 2-manifold casts shadows, and every scene with c
 
 To stop some objects from casting shadows, set cgeref:TCastleTransform.CastShadows[] to `false`.
 
-== Advanced: Control from X3D
+== Deprecated: Control from X3D
 
 cgeimg::block[
   fountain_shadows_0.png|Fountain level model\, with shadow volumes,
   fountain_shadows_1.png|The same fountain level model\, with shadow volumes. After some interactive fun with moving/rotating stuff around :)
 ]
 
-NOTE: This section is relevant only for X3D authors that directly edit X3D nodes. Most _Castle Game Engine_ users can ignore it. Just control the shadows by toggling cgeref:TCastlePunctualLight.Shadows[Shadows]  property.
+WARNING: Do not use directly the X3D fields documented below. We will likely remove them at some point, in favor of using simpler `shadows` boolean at X3D light sources along with a choice for algorithm: `SFString shadowsMethod ["VOLUMES", "MAPS"]`. See also link:roadmap#shadow_maps[roadmap item about shadow maps that will connect shadow volumes and shadow maps].
+
+NOTE: This section is relevant only for X3D authors that directly edit X3D nodes. Most _Castle Game Engine_ developers can ignore it. Just control the shadows by toggling cgeref:TCastlePunctualLight.Shadows[] property at the light source, and cgeref:TCastleTransform.CastShadows[] property at the potential shadow casters.
 
 You can use link:x3d[X3D] nodes to design your lights and shadow volumes on them. In the simplest case, just activate shadow volumes on a light source by setting fields `shadowVolumes` and `shadowVolumesMain` both to `TRUE`.
 
