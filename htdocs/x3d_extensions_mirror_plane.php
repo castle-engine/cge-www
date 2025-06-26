@@ -22,8 +22,7 @@ echo pretty_heading($page_title);
 <?php echo $toc->html_section(); ?>
 
 <p>This technique allows to create nicely looking mirrors on flat
-objects. Right now it is limited to quads (any polygon with 4 corners that
-is more-or-less flat), but in the future it should be useful on any flat geometry.
+objects. It is useful on any flat geometry.
 
 <p>Note that to display a mirror on a curved object (like a sphere, or a teapot)
 it is better to use <a href="x3d_implementation_cubemaptexturing.php">cubemap reflections (<code>GeneratedCubeMapTexture</code>)</a>.
