@@ -114,7 +114,7 @@ cgeimg::block[manifold_dialog.png|2-Manifold Information (Shadow Volumes Casting
 +
 cgeimg::block[
   manifold_colors.png|Colors of edges in "Silhouette and Border Edges" fill mode,
-  manifold_colors_2.png|"Silhouette and Border Edges" fill mode
+  manifold_colors_3.png|"Silhouette and Border Edges" fill mode (blue edges are bad)
 ]
 +
 The meaning of colors:
@@ -125,8 +125,6 @@ The meaning of colors:
 - Edges that have 2 neighboring faces but in different shapes are displayed as white.
 
 - Finally, the _"bad"_ border edges, that don't have 2 neighboring faces, are displayed as blue. You want to get rid of them!
-+
-NOTE: Some edges that should be _white_ can be shown as _blue_, if only you have _some_ edges that are _blue_. That's because our auto-detection stops as soon as it is evident that scene is not 2-manifold. So if you see some _blue_ edges, fix them to be 2-manifold, just be aware that _some_ of them don't require fixing if they already should have a match in different shape.
 --
 
 - You can also check manifold edges in link:blender[Blender]: you can easily detect why the mesh is not manifold by _"Select -> Select All By Trait -> Non Manifold"_ command (press F3 to find this command in edit mode). Also, remember that faces must be ordered consistently CCW -- in some cases _"Recalculate normals outside"_ (this actually changes vertex order in Blender) may be needed to reorder them properly.
