@@ -101,8 +101,6 @@ Get that repository, and open these models:
     <p>Don't use the same RenderedTexture node multiple times (through X3D DEF/USE mechanism) on various shapes.
 
     <p>We assume that the current shape is more-or-less flat. That is, all the shape's coordinates should lie on the same plane in 3D. We will automatically calculate the plane equation internally.
-
-    <p>The shape must be an <code>IndexedFaceSet</code> with 4 points now. We will extend this in the future to account for any shape.
 </ul>
 
 <p>Together with <code>RenderedTexture</code> node, this allows to easily achieve a mirror effect. You can use the <code>ViewpointMirror</code> node <i>only</i> in <code>RenderedTexture.viewpoint</code>.<!--, so actually this is it's only purpose.-->
