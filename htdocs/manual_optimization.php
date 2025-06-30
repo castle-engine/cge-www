@@ -11,20 +11,24 @@ $toc = new TableOfContents(
     new TocItem('Making your games run fast', 'models'),
       new TocItem('Basic rule: use small and static geometry, as much as possible', 'basic', 1),
       new TocItem('Compile in "release" mode for speed', 'release_mode', 1),
-      new TocItem('Backface culling', 'culling', 1),
+      new TocItem('Avoid rendering things that are not going to be visible', 'culling', 1),
+        new TocItem('Frustum culling (done by default)', 'frustum_culling', 2),
+        new TocItem('Backface culling', 'culling', 2),
+        new TocItem('Distance culling', 'distance_culling', 2),
+        new TocItem('Occlusion culling', 'occlusion_culling', 2),
+        new TocItem('LODs', 'LODs', 2),
       new TocItem('Textures', 'textures', 1),
       new TocItem('Animations', 'animations', 1),
       new TocItem('Shading and Lighting', 'shading', 1),
       new TocItem('Create complex shapes, not trivial ones', 'shapes', 1),
         new TocItem('Try dynamic batching', 'dynamic_batching', 2),
       new TocItem('Share TCastleScenes instances if possible', 'scenes', 1),
-        new TocItem('Reuse the same TCastleScene instance many times', 'reuse_scene', 2),
+        new TocItem('Reuse the same TCastleScene instance many times (e.g. by TCastleTransformReference)', 'reuse_scene', 2),
         new TocItem('Maybe combine many small models into one TCastleScene instance', 'combine_scene', 2),
       new TocItem('Collisions', 'collisions', 1),
       new TocItem('Avoid loading (especially from disk!) during the game', 'loading', 1),
         new TocItem('Prepare resources', 'prepare_resources', 2),
         new TocItem('Log loading', 'log_loading', 2),
-      new TocItem('Consider using occlusion query', 'occlusion_query', 1),
       new TocItem('Blending', 'blending', 1),
       new TocItem('Loading PNG using libpng', 'libpng', 1),
       new TocItem('User interface and 2D drawing', 'ui', 1),
@@ -307,11 +311,43 @@ support the concept of "build modes".
 
 <?php echo $toc->html_section(); ?>
 
-<p>If the player can see the geometry faces only from one side,
-then <i>backface culling</i> should be <b>on</b>.
+A common theme in many optimizations is <i>culling</i>, in which we avoid passing certain geometry to GPU, because we can quickly determine that it's not going to be visible.
+
+<?php echo $toc->html_section(); ?>
+
+<p>The engine by default performs frustum culling, using per-shape and per-scene bounding boxes and spheres. <?php echo cgeRef('TCastleScene.ShapeFrustumCulling'); ?> and <?php echo cgeRef('TCastleScene.SceneFrustumCulling'); ?> control this.
+
+<p>The simplest advise to <i>keep them enabled</i>, let the engine do its job :) It's almost never useful to disable these checks, unless you have a very specific case where you just know user is going to see something in all frames, <i>and the test really consumes time</i> (which in practice is never true, the test is trivial).
+
+<p>Moreover, enable <?php echo cgeRef('TCastleSceneCore.PreciseCollisions'); ?> to have per-shape frustum culling be done using shapes octree. This makes it faster.
+
+<?php echo $toc->html_section(); ?>
+
+<p>Often the viewer can see the geometry faces only from one side, when the mesh is watertight (see also <a href="https://castle-engine.io/shadow_volumes">shadow volumes</a> that require 2-manifold objects).
+
+<p>In such case, <i>backface culling</i> should be <b>on</b>.
 This is the default case (X3D nodes like <code>IndexedFaceSet</code>
 have their <code>solid</code> field equal <code>TRUE</code> by default).
 It avoids useless drawing of the other side of the faces.
+
+<p>When exporting 3D models from <a href="https://castle-engine.io/blender">authoring software like Blender</a>, make sure that the appropriate checkbox saying <i>"Backface Culling"</i> is enabled.
+
+<?php echo $toc->html_section(); ?>
+
+<p>Sometimes you can avoid rendering objects too far from the camera using <?php echo cgeRef('TCastleScene.DistanceCulling'); ?>. See the <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/fog_and_distance_culling">examples/viewport_and_scenes/fog_and_distance_culling</a> for a simplest example. This is a natural optimization when you have a fog and/or a large outdoor world.
+
+<?php echo $toc->html_section(); ?>
+
+<p>Using the <a href="https://castle-engine.io/occlusion_culling">occlusion culling</a> is often a good idea
+in large city or indoor levels,
+where walls or large buildings can obscure a significant part of your geometry.
+Activate it by
+<?php echo cgeRef('TCastleViewport.OcclusionCulling'); ?>,
+see <a href="https://castle-engine.io/occlusion_culling">occlusion culling</a> docs for details.
+
+<?php echo $toc->html_section(); ?>
+
+<p>Use <i>LOD (level of detail)</i>. This is not strictly about <i>eliminating</i> objects that are invisible from rendering, but we mention it here, as it's related: it allows to replace complex objects with simpler objects, depending on the camera distance. See <a href="https://github.com/castle-engine/castle-engine/blob/master/examples/viewport_and_scenes/level_of_detail_demo/">examples/viewport_and_scenes/level_of_detail_demo</a> demo for a simplest example how setup LODs (and optionally combine them with <?php echo cgeRef('TCastleTransformReference'); ?>).
 
 <?php echo $toc->html_section(); ?>
 
@@ -348,9 +384,8 @@ It avoids useless drawing of the other side of the faces.
 but in some special cases may be avoided:
 
 <ul>
-  <li>Do not enable <code>ProcessEvents</code> if the scene should remain static.
-  <li>Do not add <code>ssDynamicCollisions</code> to <code>Scene.Spatial</code> if you don't need better collisions than versus scene bounding box.
-  <li>Do not add <code>ssRendering</code> to <code>Scene.Spatial</code> if the scene is always small on the screen, and so it's usually either completely visible or invisible. <code>ssRendering</code> adds frustum culling per-shape.
+  <li>Do not enable <?php echo cgeRef('TCastleSceneCore.ProcessEvents'); ?> if the scene remains static.
+  <li>Do not enable <?php echo cgeRef('TCastleSceneCore.PreciseCollisions'); ?> if you don't need precise collisions (treating scene as a mesh, except when skinned animation is used) and simpler colliosions (treating scene as bounding box) are enough.
 </ul>
 
 <p>We have an example <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/animations/optimize_animations_test">examples/animations/optimize_animations_test</a> demonstrating a few possible animations optimizations discussed below. Read the README there.
@@ -427,12 +462,16 @@ also more GPU friendly)).</p>
     shapes with only a few vertexes &mdash; each shape will be provided
     in a separate VBO to OpenGL, which isn't very efficient.
 
-  <li><p>Do not make too few shapes. Each shape is passed as a whole
+  <li><p>Do not make too few shapes.
+
+    <p>Each shape is passed as a whole
     to GPU (splitting shape on the fly would cause unacceptable
-    slowdown), and shapes may be culled using <i>frustum culling</i>
-    (active by default) or
-    <a href="https://castle-engine.io/occlusion_culling">occlusion culling</a>. By using only a few very large shapes, you make
-    this culling worthless.
+    slowdown), and shapes may be culled on CPU using various <i>culling</i>
+    techniques listed on this page (frustum culling,
+    <a href="https://castle-engine.io/occlusion_culling">occlusion culling</a>
+    and more).
+    By using only a few very large shapes, you make
+    these culling algorithms worthless.
 </ol>
 
 <p>A rule of thumb is to keep your number of shapes in a scene between
@@ -501,20 +540,22 @@ draw calls in this case.
 
 <?php echo $toc->html_section(); ?>
 
-<p>If you include <code>ssStaticCollisions</code> or <code>ssDynamicCollisions</code>
-inside <code>TCastleScene.Spatial</code>, then we build a spatial structure (octree)
+<p>If you enable <?php echo cgeRef('TCastleSceneCore.PreciseCollisions'); ?>, then we build a spatial structure (octree)
 that performs collisions with the actual triangles of your 3D model.
 This results in very precise collisions, but it can eat an unnecessary
 amount of memory (and, sometimes, take unnecessary amount of time)
 if you have a high-poly mesh.
 Often, many shapes don't need to have such precise collisions
-(e.g. a complicate 3D tree may be approximated using a simple cylinder
+(e.g. a complicated 3D tree may be approximated using a simple cylinder
 representing tree trunk).
 
-<p>Use X3D <code>Collision</code> node to mark some shapes as
+<p>Note that collisions with <a href="skin">skinned animated objects</a> automatically use their bounding box, to avoid rebuilding octrees every frame.
+
+<p>If you want to keep using <?php echo cgeRef('TCastleSceneCore.PreciseCollisions'); ?> but eliminate particular scene <i>subset</i> from colliding, you can use <?php echo cgeRef('TCollisionNode'); ?>
+which is an <a href="x3d">X3D node</a>. This allows to mark some shapes as
 non-collidable or to provide a simpler "proxy" shape to use for
-collisions. Right now, using the <code>Collision</code> requires
-writing X3D code manually, but it's really trivial. You can
+collisions. Using the <code>Collision</code> requires
+writing X3D code manually, but it's really simple. You can
 still export your scenes from 3D software, like Blender &mdash;
 you only need to manually write a "wrapper" X3D file around them.
 
@@ -537,10 +578,13 @@ files around the demo models.
 <p>You can also build a <code>Collision</code> node by code.
 We have a helper method for this: <?php echo cgeRef('TCollisionNode.CollideAsBox'); ?>.
 
+<!--
+Not available anymore, was never useful:
 <p>Another possible octree optimization is to adjust the parameters how
 the octree is created. You can
 <a href="x3d_implementation_navigation_extensions.php#section_ext_octree_properties">set octree parameters in VRML/X3D file</a> or by ObjectPascal code.
 Although in practice I usually find that the default values are really good.
+-->
 <!--found that the default values are optimal
 for a wide range of scenes.
 -->
@@ -572,25 +616,7 @@ for a wide range of scenes.
 
 <?php echo $toc->html_section(); ?>
 
-<p>The engine by default performs frustum culling, using per-shape
-and per-scene bounding boxes and spheres. If you add <code>ssRendering</code>
-flag to the <code>Scene.Spatial</code>, this will be even faster thanks
-to using shapes octree.
-
-<p>Using the <a href="https://castle-engine.io/occlusion_culling">occlusion culling</a> is often a good idea
-in large city or indoor levels,
-where walls or large buildings can obscure a significant part of your geometry.
-Activate it by simply turnnig on the flag
-<?php echo cgeRef('TCastleRenderOptions.OcclusionQuery'); ?>,
-like <code>Scene.RenderOptions.OcclusionQuery := true</code>.
-
-<p>You can also cull objects based on their distance from the camera,
-see the <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/fog_and_distance_culling">examples/viewport_and_scenes/fog_and_distance_culling</a> for example.
-This is a natural optimization when you have a heavy fog.
-
-<?php echo $toc->html_section(); ?>
-
-<p>We use <i>alpha blending</i> to render partially transparent
+<p>We use <a href="blending">alpha blending</a> to render partially transparent
 shapes. Blending is used automatically if you have a texture with
 a smooth alpha channel, or if your <code>Material.transparency</code>
 is less than 1.
@@ -603,6 +629,8 @@ values are either "0" or "1"), or maybe it's opaque (all alpha values equal "1")
 <a href="x3d_implementation_texturing_extensions.php#section_ext_alpha_channel_detection">You
 can always explicitly specify the texture alpha channel treatment using the
 <code>alphaChannel</code> field in X3D</a>.
+You can also explicitly specify the alpha mode for a given shape,
+see <a href="blending">alpha blending</a> for details.
 
 <p>Rendering blending is a little costly, in a general case.
 The transparent shapes have to be sorted every frame.
@@ -612,9 +640,11 @@ Hints to make it faster:
   <li><p>If possible, do not use many transparent shapes.
     This will keep the cost of sorting minimal.
 
-  <li><p>If possible, turn off the sorting, using <code>Scene.Attributes.BlendingSort := bsNone</code>. See <?php echo cgeRef('TBlendingSort'); ?> for the explanation of possible <code>BlendingSort</code> values. Sorting is only necessary if you may see multiple partially-transparent shapes on the same screen pixel, otherwise sorting is a waste of time.
+  <li><p>If possible, turn off the sorting, setting <?php echo cgeRef('TCastleViewport.BlendingSort'); ?> to <?php echo cgeRef('sortNone'); ?>.
 
-  <li><p>Sorting is also not necessary if you use some <i>blending modes</i> that make the order of rendering partially-transparent shapes irrelevant. For example, blending mode with <code>srcFactor = "src_alpha"</code> and <code>destFactor = "one"</code>. <a href="x3d_extensions.php#section_ext_blending">You can use a <code>blendMode</code> field in X3D to set a specific blending mode</a>. Of course, it will look differently, but maybe acceptably?
+    <p>Sorting is only necessary if you may see multiple partially-transparent shapes on the same screen pixel.
+
+  <li><p>You can make sorting unnecessary by using <i>blending modes</i> that make the order of rendering partially-transparent shapes irrelevant. For example, blending mode with <code>srcFactor = "src_alpha"</code> and <code>destFactor = "one"</code>. <a href="x3d_extensions.php#section_ext_blending">You can use a <code>blendMode</code> field in X3D to set a specific blending mode</a>. Of course, it will look differently, but maybe acceptably?
 
     <p>So, consider changing the blending mode <i>and</i> then turning off sorting.
 
