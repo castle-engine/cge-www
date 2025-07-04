@@ -164,7 +164,7 @@ Use this sample as:
 --
 * your personal (user-specific, apply to all projects) tasks. Use command _"Tasks: Open User Tasks"_ from the palette (_Ctrl + Shift + P_) to edit this file.
 
-* or place these tasks inside the `.vscode` folder of your project. Use menu item _"Terminal -> Configure Tasks"_ to edit this file.
+* or place these tasks inside the `.vscode` folder of your project. Use menu item _"Tasks -> Configure Task"_ to edit this file.
 --
 +
 The above sample `tasks.json` assumes that the CGE link:build_tool[build tool] called `castle-engine` can be found on environment variable `PATH`.
