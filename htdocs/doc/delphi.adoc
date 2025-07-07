@@ -138,4 +138,4 @@ cgeimg::block[
   cpp_builder_no_bpl_required.png|No BPL files required
 ]
 
-WARNING: Unfortunately https://github.com/castle-engine/castle-engine/tree/master/examples/delphi/cpp_builder/window[examples/delphi/cpp_builder/window] with these settings (no run-time packages) makes _{Cpp} Builder_ compiler crash with _Access Violation_. We haven't tested whether this problem affects all _{Cpp} Builder_ applications using cgeref:TCastleWindow[], the reason behind it also unknown -- cgeref:TCastleWindow[] isn't anything special, it just uses WinAPI (on Windows) under the hood to create a window with OpenGL context.
+WARNING: Unfortunately https://github.com/castle-engine/castle-engine/tree/master/examples/delphi/cpp_builder/window[examples/delphi/cpp_builder/window] with these settings (no run-time packages) makes _{Cpp} Builder_ compiler crash with _Access Violation_. We haven't tested whether this problem affects all _{Cpp} Builder_ applications using cgeref:TCastleWindow[], the reason behind it is also unknown -- cgeref:TCastleWindow[] isn't anything special, it just uses WinAPI (on Windows) under the hood to create a window with OpenGL context.
