@@ -131,6 +131,7 @@
         "heightmaps",
         "Holger",
         "htdocs",
+        "Idera",
         "ifcjson",
         "ifdef",
         "ifndef",
@@ -319,6 +320,7 @@
         "xcodeproj",
         "XLIB",
         "Zander's",
+        "ZEROBASEDSTRINGS",
         "Zlot"
     ],
     "cSpell.enabled": true,

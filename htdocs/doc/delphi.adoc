@@ -57,7 +57,7 @@ To register the cgeref:TCastleControl[] component in Delphi IDE, follow link:del
 
 * The engine is tested and supported on all Delphi versions >= 10.2.1. It was actively tested on 10.2, 10.3, 10.4 (including CE), and all Delphi 11 editions (including 11.3 CE).
 
-* The exact Delphi version support from _Castle Game Engine_ depends on the target platform, since the support for non-Windows platforms isn't always perfect in older Delphis:
+* The exact Delphi version support from _Castle Game Engine_ depends on the target platform, since the support for non-Windows platforms isn't perfect in older Delphi versions:
 +
 --
 Windows (32-bit and 64-bit):: Delphi >= 10.2.1
