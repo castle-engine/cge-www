@@ -61,6 +61,14 @@ $toc = new TableOfContents(
 
 <pre>git clone --depth 1 --single-branch --branch master https://github.com/castle-engine/castle-engine/</pre>
 
+<p>Note: If you're on Windows and get errors from GIT like <code>fatal: cannot create directory at ...: Filename too long</code> then try doing this:
+
+<pre>
+git config --global core.longpaths true
+</pre>
+
+<p>See <a href="https://stackoverflow.com/questions/52699177/how-to-fix-filename-too-long-error-during-git-clone">this post</a> for more possibilities (you could also do this at repo level or (but this requires admin permissions) at system level). Note that it's an independent task from <a href="https://www.supportyourtech.com/articles/how-to-enable-long-paths-in-windows-11-step-by-step-guide/">enabling Long Paths in Windows itself</a>, and activating long paths in Windows itself is not enough (<a href="https://technofossy.com/how-to-fix-filename-too-long-errors-in-git-on-windows/">confirmed also here</a>).
+
 <?php echo $toc->html_section(); ?>
 
 <p>Compile the command-line <a href="https://castle-engine.io/build_tool">build tool</a>.
