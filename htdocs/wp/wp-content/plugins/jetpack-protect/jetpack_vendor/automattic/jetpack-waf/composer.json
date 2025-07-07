@@ -5,10 +5,10 @@
 	"license": "GPL-2.0-or-later",
 	"require": {
 		"php": ">=7.2",
-		"automattic/jetpack-connection": "^6.11.1",
+		"automattic/jetpack-connection": "^6.13.13",
 		"automattic/jetpack-constants": "^3.0.8",
 		"automattic/jetpack-ip": "^0.4.9",
-		"automattic/jetpack-status": "^5.1.4",
+		"automattic/jetpack-status": "^5.3.1",
 		"wikimedia/aho-corasick": "^1.0"
 	},
 	"require-dev": {
@@ -39,7 +39,14 @@
 			"php -dpcov.directory=. ./vendor/bin/phpunit-select-config tests/php/unit/phpunit.#.xml.dist --coverage-html ./coverage"
 		],
 		"test-php": [
-			"@composer phpunit"
+			"@test-php-integration",
+			"@test-php-unit"
+		],
+		"test-php-unit": [
+			"phpunit-select-config tests/php/unit/phpunit.#.xml.dist --colors=always"
+		],
+		"test-php-integration": [
+			"phpunit-select-config tests/php/integration/phpunit.#.xml.dist --colors=always"
 		]
 	},
 	"minimum-stability": "dev",
@@ -52,7 +59,7 @@
 			"link-template": "https://github.com/Automattic/jetpack-waf/compare/v${old}...v${new}"
 		},
 		"branch-alias": {
-			"dev-trunk": "0.24.x-dev"
+			"dev-trunk": "0.26.x-dev"
 		}
 	},
 	"config": {

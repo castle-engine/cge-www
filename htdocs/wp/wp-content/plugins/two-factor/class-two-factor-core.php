@@ -769,14 +769,27 @@ class Two_Factor_Core {
 	}
 
 	/**
-	 * If the current user can login via API requests such as XML-RPC and REST.
+	 * If the user can login via API requests such as XML-RPC and REST.
+	 *
+	 * Only logins with application passwords are permitted by default.
 	 *
 	 * @param integer $user_id User ID.
 	 *
 	 * @return boolean
 	 */
 	public static function is_user_api_login_enabled( $user_id ) {
-		return (bool) apply_filters( 'two_factor_user_api_login_enable', false, $user_id );
+		/**
+		 * Allow or prevent logins without two-factor during
+		 * API requests such as XML-RPC and REST.
+		 *
+		 * @param boolean $enabled Whether the user can login via API requests.
+		 * @param integer $user_id User ID.
+		 */
+		return (bool) apply_filters(
+			'two_factor_user_api_login_enable',
+			(bool) did_action( 'application_password_did_authenticate' ),
+			$user_id
+		);
 	}
 
 	/**
@@ -1837,7 +1850,7 @@ class Two_Factor_Core {
 	 * @param WP_User $user WP_User object of the logged-in user.
 	 */
 	public static function user_two_factor_options( $user ) {
-		$notices = [];
+		$notices = array();
 
 		$providers = self::get_supported_providers_for_user( $user );
 
@@ -1901,14 +1914,53 @@ class Two_Factor_Core {
 		do_action( 'show_user_security_settings', $user, $providers );
 	}
 
+	/**
+	 * Get the recommended providers for a user.
+	 *
+	 * @param WP_User $user User instance.
+	 *
+	 * @return array List of provider keys.
+	 */
+	private static function get_recommended_providers( $user ) {
+		$providers = array(
+			'Two_Factor_Totp',
+			'Two_Factor_Backup_Codes',
+		);
+
+		/**
+		 * Set the keys of the recommended (secure) methods.
+		 *
+		 * @param array   $recommended_providers The recommended providers.
+		 * @param WP_User $user The user.
+		 */
+		return (array) apply_filters( 'two_factor_recommended_providers', $providers, $user );
+	}
+
+	/**
+	 * Render the user settings.
+	 *
+	 * @param WP_User $user User instance.
+	 * @param array   $providers List of available providers.
+	 */
 	private static function render_user_providers_form( $user, $providers ) {
-		$primary_provider_key = self::get_primary_provider_key_selected_for_user( $user );
-		$enabled_providers = self::get_enabled_providers_for_user( $user );
+		$primary_provider_key      = self::get_primary_provider_key_selected_for_user( $user );
+		$enabled_providers         = self::get_enabled_providers_for_user( $user );
+		$recommended_provider_keys = self::get_recommended_providers( $user );
+
+		// Move the recommended providers first.
+		$recommended_providers = array_intersect_key( $providers, array_flip( $recommended_provider_keys ) );
+		$providers             = array_merge( $recommended_providers, $providers );
 
 		?>
 		<p>
-			<?php esc_html_e( 'Configure a primary two-factor method along with a backup method, such as Recovery Codes, to avoid being locked out if you lose access to your primary method.', 'two-factor' ); ?>
+			<?php esc_html_e( 'Configure a primary two-factor method along with a backup method, such as Recovery Codes, to avoid being locked out if you lose access to your primary method. Methods marked as recommended are more secure and easier to use.', 'two-factor' ); ?>
 		</p>
+
+		<?php if ( function_exists( 'wp_is_application_passwords_available_for_user' ) && wp_is_application_passwords_available_for_user( $user ) ) : ?>
+		<p>
+			<?php esc_html_e( 'Authentication for REST API and XML-RPC must use application passwords (defined above) instead of your regular password.', 'two-factor' ); ?>
+		</p>
+		<?php endif; // Application passwords are supported. ?>
 
 		<?php wp_nonce_field( 'user_two_factor_options', '_nonce_user_two_factor_options', false ); ?>
 		<input type="hidden" name="<?php echo esc_attr( self::ENABLED_PROVIDERS_USER_META_KEY ); ?>[]" value="<?php /* Dummy input so $_POST value is passed when no providers are enabled. */ ?>" />
@@ -1921,7 +1973,10 @@ class Two_Factor_Core {
 					<td>
 						<label class="two-factor-method-label">
 							<input id="enabled-<?php echo esc_attr( $provider_key ); ?>" type="checkbox" name="<?php echo esc_attr( self::ENABLED_PROVIDERS_USER_META_KEY ); ?>[]" value="<?php echo esc_attr( $provider_key ); ?>" <?php checked( in_array( $provider_key, $enabled_providers, true ) ); ?> />
-							<?php echo esc_html( sprintf( __( 'Enable %s', 'two-factor' ), $object->get_label() ) ); ?>
+							<strong><?php echo esc_html( sprintf( __( 'Enable %s', 'two-factor' ), $object->get_label() ) ); ?></strong>
+							<?php if ( in_array( $provider_key, $recommended_provider_keys, true ) ) : ?>
+								<abbr title="<?php esc_attr_e( 'This method is more secure and easy to use', 'two-factor' ); ?>" class="two-factor-method-recommended"><?php esc_html_e( 'Recommended', 'two-factor' ); ?></abbr>
+							<?php endif; ?>
 						</label>
 						<?php
 						/**

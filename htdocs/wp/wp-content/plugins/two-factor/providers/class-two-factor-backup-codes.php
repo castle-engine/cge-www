@@ -175,6 +175,8 @@ class Two_Factor_Backup_Codes extends Two_Factor_Provider {
 				<button type="button" class="button button-two-factor-backup-codes-generate button-secondary hide-if-no-js">
 					<?php esc_html_e( 'Generate new recovery codes', 'two-factor' ); ?>
 				</button>
+
+				<em><?php esc_html_e( 'This invalidates all currently stored codes.' ); ?></em>
 			</p>
 		</p>
 		<div class="two-factor-backup-codes-wrapper" style="display:none;">
@@ -358,7 +360,7 @@ class Two_Factor_Backup_Codes extends Two_Factor_Provider {
 			<input type="text" inputmode="numeric" name="two-factor-backup-code" id="authcode" class="input authcode" value="" size="20" pattern="[0-9 ]*" placeholder="<?php echo esc_attr( $code_placeholder ); ?>" data-digits="<?php echo esc_attr( $code_length ); ?>" />
 		</p>
 		<?php
-		submit_button( __( 'Submit', 'two-factor' ) );
+		submit_button( __( 'Verify', 'two-factor' ) );
 	}
 
 	/**
