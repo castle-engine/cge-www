@@ -20,7 +20,7 @@ $toc = new TableOfContents(
 
 <?php
   echo node_begin('Tangent : X3DGeometricPropertyNode') .
-  node_field('MFVec3f', '[in,out]', 'vector', '[]') .
+  node_field('MFVec4f', '[in,out]', 'vector', '[]') .
   node_end();
 ?>
 
@@ -33,11 +33,9 @@ $toc = new TableOfContents(
   node_end();
 ?>
 
-<p>If specified, this node holds tangent vectors information, necessary for bump mapping.
-The <i>vector</i> field should contain normalized tangent vectors, in the right-handed coordinate system.
+<p><b>This node is not an extension anymore, it was <a href="https://www.web3d.org/specifications/X3Dv4Draft/ISO-IEC19775-1v4.1-CD//Part01/components/rendering.html#Tangent">adopted in the X3D 4.1 specification</a> and is now part of the X3D standard.</b> We have <a href="https://github.com/michaliskambi/x3d-tests/wiki/Tangent-node-in-X3D">recommended it and helped with the prose</a> and we're happy with the end result!
 
-<p>The ordering of the tangent vectors is exactly the same as ordering of normal vectors would be,
-so e.g. <i>X3DComposedGeometryNode.NormalPerVertex</i> affects the interpretation of tangent vectors as well.
+<p><i>( To be precise, X3D 4.1 is only a draft spec version now. X3D 4.0 is the last officially approved X3D version, as of this writing, 2025-07. But, just like all previous X3D versions, sooner or later X3D 4.1 will be approved as well. )</i>
 
 <p>When reading data from <a href="https://castle-engine.io/creating_data_model_formats.php#section_gltf">glTF</a>,
 we automatically import glTF information about tangent vectors into this node.
@@ -50,7 +48,9 @@ This, in turn, allows 1. perfectly correct rendering, 2. faster loading and anim
 &mdash; as the tangent vectors don't have to be calculated.
 
 <p>When the <code>Tangent</code> node is missing, but the relevant information is required
-(e.g. for bump mapping) X3D browsers should automatically calculate the tangent vectors.
+(e.g. for bump mapping) X3D browsers automatically calculate the tangent vectors.
+
+<p><i>Backward compatibility break at 2025-07-08:</i> Our definition and implementation changed a bit on 2025-07-08: <code>vector</code> field changed from <code>MFVec3f</code> to <code>MFVec4f</code>. We did recommend this change ourselves (we proposed to add <code>MFVec4f</code> to X3D 4.1 spec, knowing it will imply a change in our extension), to be better aligned with glTF and X_ITE. The new 4th component is a sign value (-1 or +1) indicating handedness of the tangent basis. See the X3D 4.1 and glTF specifications for details.
 
 <?php echo $toc->html_section(); ?>
 
