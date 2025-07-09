@@ -18,7 +18,7 @@ class Check_Email_Notify_Tab
 	{
 		add_action('init', array($this, 'init'));
 		add_action('admin_enqueue_scripts', array($this, 'checkemail_assets_notify'));
-		add_action('wp_mail_failed', array($this, 'handle_failed_email', 10, 1));
+		add_action('wp_mail_failed', array($this, 'handle_failed_email'), 10, 1);
 	}
 
 	public function handle_failed_email($wp_error) {

@@ -704,9 +704,6 @@ class Check_Email_Table_Manager implements Loadie {
 
 	public function delete_log_older_than($timeInterval = null)
     {
-		if ( ! current_user_can( 'manage_check_email' ) ) {
-			return;
-		}
 		global $wpdb;
 		$table_name = $this->get_log_table_name();
 		$option = get_option( 'check-email-log-core' );

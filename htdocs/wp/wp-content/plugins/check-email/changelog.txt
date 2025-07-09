@@ -1,4 +1,10 @@
 == Changelog ==
+= v2.0.8 - 07/07/2025 =
+- Fixed: PHP Fatal error: Uncaught TypeError in wp_mail_failed hook due to malformed add_action in Check_Email_Notify_Tab.php #145
+- Fixed: Tracking feature not working properly in WordPress Dashboard #134
+- Enhancement: Log retention not working #141
+- Enhancement: Other notification banner visible in Check Mail dashboard. #135
+
 = v2.0.7 - 25/04/2025 =
 - Fixed: PHP Notice: _load_textdomain_just_in_time called too early with check-email domain on WP 6.8 #139
 

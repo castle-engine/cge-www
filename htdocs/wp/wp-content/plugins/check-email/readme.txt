@@ -4,7 +4,7 @@ Tags: logging, email, email log, smtp, log
 Requires at least: 5.0
 Tested up to: 6.8
 Requires PHP: 5.6.20
-Stable tag: 2.0.7
+Stable tag: 2.0.8
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -114,11 +114,16 @@ Someone using one of my other plugins had trouble with emails not being sent. I 
 
 == Changelog ==
 
+= v2.0.8 - 07/07/2025 =
+- Fixed: PHP Fatal error: Uncaught TypeError in wp_mail_failed hook due to malformed add_action in Check_Email_Notify_Tab.php #145
+- Fixed: Tracking feature not working properly in WordPress Dashboard #134
+- Enhancement: Log retention not working #141
+- Enhancement: Other notification banner visible in Check Mail dashboard. #135
+
 = v2.0.7 - 25/04/2025 =
 - Fixed: PHP Notice: _load_textdomain_just_in_time called too early with check-email domain on WP 6.8 #139
 
 = v2.0.6 - 11/04/2025 =
-- Enhancement: Tested with WordPress 6.8 #137
 - Enhancement: Few changes in plugin's dashboard #133
 - Fixed: Critical error after update 2.0.5.1 (could already be present in 2.0.5) #132
 - Fixed: No Access to /wp-admin After Update to v2.0.5 #131
@@ -187,13 +192,5 @@ Someone using one of my other plugins had trouble with emails not being sent. I 
 - Feature: Added Easy migration from other email log plugins #80
 - Enhancement: Search should be searched from whole email, including the email content #82
 - Feature: Added Forward Email #83
-
-= v1.0.12 - 29/05/2024 =
-- Feature: Feature to export logs #49
-- Feature: Added feedback form on plugin deactivation #61
-- Enhancement: Added settings link on plugin dashboard #62
-- Feature: Added Newsletter Form #64
-- Feature: Added Trigger Data (Premium) #65
-- Feature: Added SMTP feature to configure email #66
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/check-email/trunk/changelog.txt)

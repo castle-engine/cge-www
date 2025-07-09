@@ -24,7 +24,16 @@ class Check_Email_Analyzer extends Check_Email_BasePage {
         parent::load();
         add_action('admin_enqueue_scripts', array($this, 'checkemail_assets'));
         add_action('init', array($this, 'checkmail_load_table'));
+        add_action('admin_head', array($this,'ck_hide_annoying_notices_with_css'));
     }
+
+    function ck_hide_annoying_notices_with_css() {
+        $screen = get_current_screen();
+        if (isset($screen->id) && $screen->id === 'check-log-email_page_spam-analyzer') {
+            echo '<style>.notice { display: none !important; }</style>';
+        }
+    }
+
     public function register_page() {
         $this->page = add_submenu_page(
             Check_Email_Status_Page::PAGE_SLUG,
