@@ -13,7 +13,7 @@ $toc = new TableOfContents(
       new TocItem('Compile in "release" mode for speed', 'release_mode', 1),
       new TocItem('Avoid rendering things that are not going to be visible', 'culling', 1),
         new TocItem('Frustum culling (done by default)', 'frustum_culling', 2),
-        new TocItem('Backface culling', 'culling', 2),
+        new TocItem('Backface culling (just make sure your models enable it)', 'culling', 2),
         new TocItem('Distance culling', 'distance_culling', 2),
         new TocItem('Occlusion culling', 'occlusion_culling', 2),
         new TocItem('LODs', 'LODs', 2),
