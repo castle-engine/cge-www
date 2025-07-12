@@ -39,6 +39,8 @@ cgeimg::block[
 
 ## Lazarus installation
 
+WARNING: We're in the middle of rename now. The `castle_components.lpk` will soon be renamed to `castle_engine_lcl.lpk`.
+
 . Install in Lazarus the package `castle_components.lpk`. In the package dialog, use the option to _"Install"_ (under the _"Use"_ button).
 +
 Note: Installing the `castle_components` package will also automatically install the package `castle_base`, as a dependency. That's good.
