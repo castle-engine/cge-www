@@ -41,7 +41,7 @@ end.'); ?>
     <p>You can also compile such application using Lazarus.
     Create in Lazarus new application using <i>"Project-&gt;Simple Program"</i> menu item,
     and inside <i>"Project->Project Inspector"</i> window add 2 new requirements:
-    <code>castle_base</code> and <code>castle_window</code>.
+    <code>castle_engine_base</code> and <code>castle_window</code>.
 
     <p>You can develop such programs using Lazarus, or any other text
     editor. The only real requirement is having a

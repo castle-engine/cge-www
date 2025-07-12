@@ -5,7 +5,7 @@ Using Cocoa means that your application will look pretty and native.
 To do this:
 
 - open your project in Lazarus
-- change in Project Inspector `castle_window.lpk` to `alternative_castle_window_based_on_lcl.lpk`
+- change in Project Inspector `castle_engine_window.lpk` to `alternative_castle_engine_window_based_on_lcl.lpk`
 - compile from Lazarus (in this approach, you cannot compile using CGE build tool or editor).
 
 Internally, this means that cgeref:TCastleWindow[] is using LCL backend, and LCL in turn is using Cocoa.

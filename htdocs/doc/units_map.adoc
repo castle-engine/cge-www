@@ -17,7 +17,7 @@ NOTE: Temporarily, some units are allowed exception to break from this rule. Rig
 
 == Unit groups
 
-=== castle_base package
+=== castle_engine_base package
 
 ==== base
 
@@ -96,7 +96,7 @@ scene/x3d:: 2 big units that define all X3D base concepts: cgeref:X3DFields[], c
 
 scene/load:: cgeref:X3DLoad[] and friends to load particular scene formats. Some formats have their own subdirectory, like `scene/load/spine/`.
 
-=== castle_window package
+=== castle_engine_window package
 
 ==== window
 
@@ -106,7 +106,7 @@ _Depends on_: `castlescript`.
 
 NOTE: In the past it depended on more (even `scene`) but there should not be a need for this now. The container (cgeref:TCastleContainer[], inside cgeref:TCastleWindow[]) allows to add cgeref:TCastleUserInterface[] and cgeref:TCastleView[] inside, and that's enough, there's no need for window to deal with viewports/scenes specifics directly.
 
-=== castle_components package
+=== castle_engine_lcl package
 
 ==== lcl
 

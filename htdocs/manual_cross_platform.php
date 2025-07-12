@@ -195,7 +195,7 @@ Just open the created LPI file.
     Simply create in Lazarus a new project using the <i>New -&gt; Project -&gt; Simple Program</i>
     option. Or (if you already have the <code>xxx.dpr</code> file) create
     the project using <i>Project -&gt; New Project From File...</i>.
-  <li>Add to the project requirements packages <code>castle_base</code> and <code>castle_window</code>
+  <li>Add to the project requirements packages <code>castle_engine_base</code> and <code>castle_engine_window</code>
     (from <i>Project -&gt; Project Inspector</i>, you want to <i>Add</i> a <i>New Requirement</i>).
   <li>Save the project as <code>my_fantastic_game_standalone.lpi</code>.
   <li>...and develop and run as usual.

@@ -407,7 +407,7 @@ implementation
 
 uses SysUtils,
   CastleComponentSerialize,
-  { Use CastlePropEdits, and thus LCL and castle_components, only when part of the editor. }
+  { Use CastlePropEdits, and thus LCL and castle_engine_lcl, only when part of the editor. }
   {$ifdef CASTLE_DESIGN_MODE} , PropEdits, CastlePropEdits {$endif};
 
 ...

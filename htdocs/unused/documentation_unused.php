@@ -122,16 +122,16 @@ some engine <i>packages</i>.
 
 <ol>
 
-  <li><p>Open and <b>compile the package <code>castle_base.lpk</code></b>
+  <li><p>Open and <b>compile the package <code>castle_engine_base.lpk</code></b>
     You will find it in the <code>castle_game_engine/packages/</code> subdirectory.
     Use the Lazarus menu item <i>"Package -&gt; Open Package File (.lpk)"</i>
     to open the package file, press <i>"Compile"</i> in a dialog that appears.
 
     <?php
     echo castle_thumbs(array(
-      array('filename' => 'lazarus-install-01.png', 'titlealt' => 'castle_base: Open Package File'),
-      array('filename' => 'lazarus-install-02.png', 'titlealt' => 'castle_base: Choose the file'),
-      array('filename' => 'lazarus-install-03.png', 'titlealt' => 'castle_base: Compile'),
+      array('filename' => 'lazarus-install-01.png', 'titlealt' => 'castle_engine_base: Open Package File'),
+      array('filename' => 'lazarus-install-02.png', 'titlealt' => 'castle_engine_base: Choose the file'),
+      array('filename' => 'lazarus-install-03.png', 'titlealt' => 'castle_engine_base: Compile'),
     ), 'auto', 'left');
     ?>
 
@@ -146,23 +146,23 @@ some engine <i>packages</i>.
     ), 'auto', 'left');
     ?>
 
-  <li><p>Finally, open and <b>install the package <code>castle_components.lpk</code></b>.
+  <li><p>Finally, open and <b>install the package <code>castle_engine_lcl.lpk</code></b>.
     In the package dialog, the option to <i>"Install"</i> package is under the <i>"Use"</i> button.
 
-    <!--p>Note: Installing the <code>castle_components</code> package
-    will also automatically install the package <code>castle_base</code>,
+    <!--p>Note: Installing the <code>castle_engine_lcl</code> package
+    will also automatically install the package <code>castle_engine_base</code>,
     as a dependency. That's cool, let it happen.-->
 
     <?php
     echo castle_thumbs(array(
-      array('filename' => 'lazarus-install-31.png', 'titlealt' => 'castle_components: Choose the file'),
-      array('filename' => 'lazarus-install-32.png', 'titlealt' => 'castle_components: Install'),
-      array('filename' => 'lazarus-install-33.png', 'titlealt' => 'castle_components: Confirm Lazarus rebuild'),
+      array('filename' => 'lazarus-install-31.png', 'titlealt' => 'castle_engine_lcl: Choose the file'),
+      array('filename' => 'lazarus-install-32.png', 'titlealt' => 'castle_engine_lcl: Install'),
+      array('filename' => 'lazarus-install-33.png', 'titlealt' => 'castle_engine_lcl: Confirm Lazarus rebuild'),
     ), 'auto', 'left');
     ?>
 </ol>
 
-<p>Once <code>castle_components.lpk</code> is successfully installed,
+<p>Once <code>castle_engine_lcl.lpk</code> is successfully installed,
 Lazarus restarts, and you should see the <i>"Castle"</i> tab
 with our components.
 <!--

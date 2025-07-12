@@ -196,7 +196,7 @@ The `<project>` attributes:
  ** If this is `false` (default) then we use plain FPC to compile, passing command-line parameters to find the CGE unis and other options listed in `compiler_options`.
  ** If `true` then we will compile using https://wiki.lazarus.freepascal.org/lazbuild[lazbuild] through the LPI file defined by `lazarus_project`. This is useful if your project uses Lazarus LCL, or other package distributed as Lazarus LPK file. Thanks to `lazbuild` and LPI file, these packages will be automatically correctly used. On the other hand, some other features of the build tool do not work (instead we rely that you configured the project in Lazarus correctly):
   *** We do not construct the FPC command-line anymore, so we ignore custom `compiler_options`.
-  *** We don't pass location of CGE units to lazbuild (Lazarus projects should use `castle_base` and `castle_window` / `castle_components` packages).
+  *** We don't pass location of CGE units to lazbuild (Lazarus projects should use `castle_engine_base` and `castle_engine_window` / `castle_engine_lcl` packages).
   *** We don't pass any compilation syntax options, but this usually doesn't matter (because our `castle_xxx` packages are compiled with proper options, and for your own projects -- the Lazarus defaults are largely similar to CGE defaults, e.g. using ObjFpc mode with AnsiStrings).
   *** We do not pass `--mode` (Lazarus supports build modes, but not all projects define Debug/Release modes).
 * `delphi_project` points to the `xxx.dproj` file of the project. By default this is calculated as `standalone_source` with extension changed to `.dproj`.

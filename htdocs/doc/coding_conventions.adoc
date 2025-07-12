@@ -1501,7 +1501,7 @@ List of tasks when adding new unit or path to CGE is admittedly not trivial, as 
 ** `examples/delphi/{fmx,fmx_play_animation,vcl}`. Beware: in `vcl`, revert all changes except `<DCC_UnitSearchPath>`, the DPROJ is different because it needs to refer to VCL.
 ** `tests/`. Beware: revert DPR changes (we maintain it by hand). Beware: to DPROJ, apply only changes to `<DCC_UnitSearchPath>` and deploy files list, rest if managed by hand.
 ** `tests/delphi_tests/`
-** `tools/build_tool/`. Beware: revert LPI changes (this cannot use `castle_window.lpk`).
+** `tools/build_tool/`. Beware: revert LPI changes (this cannot use `castle_engine_window.lpk`).
 ** Beware for all above: remove unversioned, we don't want to add some files. (e.g. LPI for Delphi-specific examples would make no sense).
 --
 

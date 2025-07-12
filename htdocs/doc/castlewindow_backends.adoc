@@ -86,11 +86,11 @@ It is automatically used right now when you compile with Delphi for non-Windows 
 
 Moreover, to use this from Lazarus (LCL):
 
-* Add `castle_components` package to the requirements of the `castle_window` Lazarus package.
+* Add `castle_engine_lcl` package to the requirements of the `castle_engine_window` Lazarus package.
 +
-It will also automatically add `LazOpenGLContext` package as dependency, which is good. We need `castle_components` package for LCL helpers (like converting mouse/keys between LCL and CastleKeysMouse), and we need `LazOpenGLContext` package for TOpenGLControl.
+It will also automatically add `LazOpenGLContext` package as dependency, which is good. We need `castle_engine_lcl` package for LCL helpers (like converting mouse/keys between LCL and CastleKeysMouse), and we need `LazOpenGLContext` package for TOpenGLControl.
 
-* Or you can use `alternative_castle_window_based_on_lcl.lpk` instead of `castle_window.lpk` in the project. This should take care of above 2 things.
+* Or you can use `alternative_castle_engine_window_based_on_lcl.lpk` instead of `castle_engine_window.lpk` in the project. This should take care of above 2 things.
 
 * Usually you should compile programs using Lazarus then (IDE or `lazbuild`), to automatically have correct LCL paths used. If you use our link:build_tool[build tool] or link:editor[CGE editor], set `build_using_lazbuild="true"` in https://castle-engine.io/project_manifest[CastleEngineManifest.xml].
 
