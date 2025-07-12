@@ -157,7 +157,7 @@ $ make clean
 $ find -iname *.jar
 ./tools/build-tool/data/android/integrated/gradle/wrapper/gradle-wrapper.jar
 $ find -iname *.so
-./tools/build-tool/data/android/integrated-services/.../app/src/main/jniLibs/.../lib*.so
+./tools/build-tool/data/android/services/.../app/src/main/jniLibs/.../lib*.so
 # should show 4x libs for services that rely on them, like freetype, png, ogg_vorbis.
 ```
 

@@ -13,7 +13,7 @@ The final Android project has it's own activity class (`MainActivity`, descendan
 
 * https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated[tools/build-tool/data/android/integrated]
 
-* Subdirectories of https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services[tools/build-tool/data/android/integrated-services] for all requested services.
+* Subdirectories of https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/services[tools/build-tool/data/android/services] for all requested services.
 
 ////
 The `base` project type (you can request it by `CastleEngineManifest.xml`) is _not_ suitable to implement additional services.
@@ -25,7 +25,7 @@ The `base` project type (you can request it by `CastleEngineManifest.xml`) is _n
 
 == Adding new service
 
-It's easy to add your own Android services, if you need to integrate with some Android library not covered by existing link:android_services[Android services]. Create your service by adding new directory under https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services[tools/build-tool/data/android/integrated-services]. The files there are copied to the final Android project, expanding macros inside. Most of the files are simply copied (but avoiding overwriting), but some files are merged in a special way:
+It's easy to add your own Android services, if you need to integrate with some Android library not covered by existing link:android_services[Android services]. Create your service by adding new directory under https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/services[tools/build-tool/data/android/services]. The files there are copied to the final Android project, expanding macros inside. Most of the files are simply copied (but avoiding overwriting), but some files are merged in a special way:
 
 * `AndroidManifest.xml` of each service is merged with the main `AndroidManifest.xml` in a smart way, only adding the new permissions and new elements/attributes inside the +++<application>+++.+++</application>+++
 * `build.gradle` files inside the services have a special XML syntax. See the example services like `helpshift`. They are merged into the final (non-XML) `build.gradle` file in a smart way.
@@ -55,18 +55,18 @@ The cgeref:CastleMessaging[] is a simple asynchronous communication mechanism be
 
 +
 Typically, you wrap sending and receiving messages in a nice Pascal API. Examples of it are in the CGE `src/services/` directory.
-* On the Java side, you create a class descending from `ServiceAbstract`. Such class can override `messageReceived` method to receive messages, and use `messageSend` to send messages. Examples of it are CGE services inside `tools/build-tool/data/android/integrated-services/XXX/src/io/castleengine/ServiceXXX.java` files.
+* On the Java side, you create a class descending from `ServiceAbstract`. Such class can override `messageReceived` method to receive messages, and use `messageSend` to send messages. Examples of it are CGE services inside `tools/build-tool/data/android/services/XXX/src/io/castleengine/ServiceXXX.java` files.
 
 See e.g. Google Play Games handling:
 
 * the Pascal part is in `src/services/castlegameservices.pas` ,
-* the Java part is in `tools/build-tool/data/android/integrated-services/google_play_games/src/io/castleengine/ServiceGooglePlayGames.java` .
+* the Java part is in `tools/build-tool/data/android/services/google_play_games/src/io/castleengine/ServiceGooglePlayGames.java` .
 
 The Java code of this particular service is no longer straightforward (it has a lot of functionality by now...), but it shows how to pass messages back and forth.
 
 For something simpler, see the "vibrate" service:
 
-* the Java side is in `build-tool/data/android/integrated-services/vibrate/` .
+* the Java side is in `build-tool/data/android/services/vibrate/` .
 * and the Pascal side is a trivial function cgeref:Vibrate[].
 
 Note that `CastleMessaging` is not supposed to be an "API for all communication", but in practice it works very well in all existing services -- since it's natural for asynchronous processing (where many things are done in some thread, and/or wait for network or user input before returning any result).
@@ -101,8 +101,8 @@ We strongly advise that you provide all SO versions, and compile your Android ap
 
 Example services that includes SO files see:
 
-* https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/ogg_vorbis[ogg_vorbis]
-* https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/freetype[freetype]
+* https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/services/ogg_vorbis[ogg_vorbis]
+* https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/services/freetype[freetype]
 
 They contain just a few trivial files, and the SO files for all architectures.
 
@@ -116,5 +116,5 @@ For services using plain C, it may be that this is also the easiest approach.
 
 Examples of using this approach:
 
-* https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/sound[sound] (using https://github.com/kcat/openal-soft/[OpenAL Soft])
-* https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/integrated-services/internal_test_cpp_lib[internal_test_cpp_lib] (test dummy {cpp} library)
+* https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/services/sound[sound] (using https://github.com/kcat/openal-soft/[OpenAL Soft])
+* https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/services/internal_test_cpp_lib[internal_test_cpp_lib] (test dummy {cpp} library)

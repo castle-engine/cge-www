@@ -74,7 +74,7 @@ The details are in the Nintendo Switch README inside CGE version for Nintendo Sw
 Both iOS and Android include a service called `fmod` to easily link with FMOD:
 
 * https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/ios/services/fmod/README.adoc[iOS FMOD service]
-* https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/android/integrated-services/fmod/README.adoc[Android FMOD service]
+* https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/android/services/fmod/README.adoc[Android FMOD service]
 
 == TODO
 
