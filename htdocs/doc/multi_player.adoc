@@ -33,7 +33,7 @@ Features of cgeref:TCastleDownload[]:
 
 - Exposes HTTP response headers and code.
 
-- It is really cross-platform and cross-compiler, covering all platforms supported by _Castle Game Engine_. E.g. it uses https://wiki.freepascal.org/fphttpclient[FpHttpClient] with FPC on most desktops, uses special https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/android/integrated-services/download_urls/README.adoc[Android service on Android], on Delphi uses _Indy_ or `TNetHTTPClient` (depending on what works better on given platform).
+- It is really cross-platform and cross-compiler, covering all platforms supported by _Castle Game Engine_. E.g. it uses https://wiki.freepascal.org/fphttpclient[FpHttpClient] with FPC on most desktops, uses special https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/android/services/download_urls/README.adoc[Android service on Android], on Delphi uses _Indy_ or `TNetHTTPClient` (depending on what works better on given platform).
 
 - Supports encrypted HTTPS out-of-the-box as much as possible, since HTTPS is standard nowadays. To this end, we adjust some _Indy_ and _FpHttpClient_ to make HTTPS just work.
 +

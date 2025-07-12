@@ -196,7 +196,7 @@ Both _Castle Game Engine_ and _Lazarus_ configure FPC RTL to use UTF-8 for all s
 (by default FPC RTL uses system-dependent encoding).
 ////
 
-_On Android_, you should use the https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/android/integrated-services/read_external_storage/README.md[read_external_storage service] to be able to read storage files (e.g. from SD card) through the `file` protocol.
+_On Android_, you should use the https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/android/services/read_external_storage/README.md[read_external_storage service] to be able to read storage files (e.g. from SD card) through the `file` protocol.
 
 === Loading data files: `castle-data`
 
@@ -365,7 +365,7 @@ you can refer to textures and sounds and scripts and everything else
 from the network. Relative URLs are always resolved
 with respect to the containing document.
 
-_On Android_, you should use the https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/android/integrated-services/download_urls/README.md[download_urls service] to support `http` and `https` protocols.
+_On Android_, you should use the https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/android/services/download_urls/README.md[download_urls service] to support `http` and `https` protocols.
 
 === Embedded data: `data`
 
