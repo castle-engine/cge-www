@@ -5,7 +5,7 @@
 	"license": "GPL-2.0-or-later",
 	"require": {
 		"php": ">=7.2",
-		"automattic/jetpack-connection": "^6.13.7"
+		"automattic/jetpack-connection": "^6.14.1"
 	},
 	"require-dev": {
 		"yoast/phpunit-polyfills": "^4.0.0",
@@ -48,7 +48,7 @@
 	"extra": {
 		"autotagger": true,
 		"branch-alias": {
-			"dev-trunk": "0.2.x-dev"
+			"dev-trunk": "0.3.x-dev"
 		},
 		"changelogger": {
 			"link-template": "https://github.com/Automattic/jetpack-explat/compare/v${old}...v${new}"
