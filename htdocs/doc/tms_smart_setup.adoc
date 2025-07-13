@@ -16,7 +16,9 @@ However, it you just want to bring CGE components to be recognized by the Delphi
 
 === First, be sure to remove packages installed manually
 
-When switching between manual Delphi package installation (following https://castle-engine.io/delphi_packages ) and using _TMS Smart Setup_ documented here, be sure to uninstall previous CGE packages from IDE. Best to even remove the `*castle.bpl` files from your packages (`c:/Users/Public/Documents/Embarcadero/Studio/<Delphi-version>/Bpl/`). That's because _TMS Smart Setup_ adds libsuffix, but our manual packages do not (as it would require to maintain 4 package versions -- see https://github.com/castle-engine/castle-engine/pull/680 for details).
+When switching from https://castle-engine.io/delphi_packages[manual Delphi package installation] and using _TMS Smart Setup_ documented here, be sure to first uninstall previous engine packages from the Delphi IDE. We recommend to just remove all the `*castle.bpl` files from your packages (`c:/Users/Public/Documents/Embarcadero/Studio/<Delphi-version>/Bpl/`).
+
+Reason: Using _TMS Smart Setup_ adds _libsuffix_ (to support installation in multiple Delphi versions), but our manual packages do not (as it would require to maintain multiple package versions). In the future we may drop older Delphis support, or auto-generate packages (see the https://github.com/castle-engine/castle-engine/pull/680[#680] for details), thus avoiding this inconsistency.
 
 === Installing using TMS Smart Setup
 
