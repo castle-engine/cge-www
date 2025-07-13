@@ -1,0 +1,60 @@
+== TMS Smart Setup
+
+Our engine can be also installed using https://github.com/tmssoftware/smartsetup[TMS Smart Setup] for Delphi.
+
+This installs our packages in Delphi(s), with benefits being:
+
+* more automatic (command-line to get and install),
+* support for installing in multiple Delphi versions at the same time (as it automatically adds the suitable `libsuffix`, which our own packages don't do yet -- see below for details why).
+* For more details see https://www.tmssoftware.com/site/blog.asp?post=1146[TMS blog post] and https://github.com/castle-engine/castle-engine/issues/678#issuecomment-3000913493[GH issue where we talk about it].
+
+The drawback is that this doesn't install our tools (like https://castle-engine.io/editor[editor] or https://castle-engine.io/build_tool[build tool]). As such, it's not the advised way to install our engine right now for most users (better follow our https://castle-engine.io/delphi_packages[installation instructions for Delphi]).
+
+However, it you just want to bring CGE components to be recognized by the Delphi IDE (and you don't need our tools), this is a great (and automated) solution. A _continuous integration/delivery_, like using https://castle-engine.io/github_actions[GitHub Actions], that tests compilation of our packages (or packages on top of them) is also thus possible.
+
+== Usage Instructions
+
+=== First, be sure to remove packages installed manually
+
+When switching between manual Delphi package installation (following https://castle-engine.io/delphi_packages ) and using _TMS Smart Setup_ documented here, be sure to uninstall previous CGE packages from IDE. Best to even remove the `*castle.bpl` files from your packages (`c:/Users/Public/Documents/Embarcadero/Studio/<Delphi-version>/Bpl/`). That's because _TMS Smart Setup_ adds libsuffix, but our manual packages do not (as it would require to maintain 4 package versions -- see https://github.com/castle-engine/castle-engine/pull/680 for details).
+
+=== Installing using TMS Smart Setup
+
+. Get https://github.com/tmssoftware/smartsetup , with submodules, in branch `git-registry`. Command-line:
++
+----
+git clone https://github.com/tmssoftware/smartsetup
+cd smartsetup
+git checkout git-registry
+git submodule update --init --recursive # get submodules in externals/
+----
+
+. Build and move the `.../bin/Win64/Debug/tms.exe` binary anywhere to `$PATH` on your system.
+. Create and enter and directory to host the configuration, like `c:/smartsetup-test`. Enter it from the command-line and execute following commands inside it:
+. `tms config` (it will open YAML file in your code editor; in principle you don't need to tweak it, the default config should work out-of-the-box)
+. `tms server-enable community`
+. `tms install castle.engine`
++
+NOTE: Trouble? Try `tms install castle.engine -verbose`.
++
+NOTE: If you're on Windows and you get `fatal: cannot create directory at ...: Filename too long` error then try doing `git config --global core.longpaths true`. See link:compiling_from_source.php[Compiling from source] for more info.
+
+== TODO: Finish testing these instructions, add below:
+
+From https://github.com/castle-engine/castle-engine/issues/678#issuecomment-3000913493
+
+That's it, it should clone the castleengine git repo, build all the packages, and register them in the delphi ide.
+
+Once you have it installed, to play, you can:
+
+1. Edit the tmsbuild.yam file that is placed at the root of the folder. You might try uncommenting linux for example (I couldn't make it work here, so I kept it commented).
+2. tms build and tms build -full -> This calls the builder, so you can make changes and test them. -full will force building everything even if it didn't change.
+3. tms log-view -> If there are errors, this will open a browser window with the logs of what happened.
+4. tms build -unregister -> this will unregister from the IDE, but keep the files
+5. tms uninstall castle.engine -> THIS WILL DELETE THE FOLDER, WITH ANY CHANGES YOU MADE TOO.
+
+See at https://github.com/tmssoftware/smartsetup/blob/git-registry/tms/example-config/tmsbuild.yaml
+
+TODO: take a look at https://github.com/tmssoftware/smartsetup-registry/blob/main/castle.engine/tmsbuild.yaml
+- castle engine -> Castle Game Engine?
+- linux to fmx
