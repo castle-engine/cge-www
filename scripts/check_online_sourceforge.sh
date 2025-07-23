@@ -18,11 +18,13 @@ check_url_success https://castle-engine.sourceforge.io/
 check_url_success http://castle-engine.sf.net/
 check_url_success http://castle-engine.sourceforge.net/
 check_url_success https://castle-engine.sourceforge.io/index.php
-check_url_success https://castle-engine.sourceforge.io/features.php
 check_url_success https://castle-engine.sourceforge.io/wp/
-check_url_success https://castle-engine.sourceforge.io/wp/wp-admin/
-check_url_success https://castle-engine.sourceforge.io/wp/feed/
-check_url_success https://castle-engine.sourceforge.io/wp/2017/02/18/castle-game-engine-6-0-release/
-check_url_success https://castle-engine.sourceforge.io/wp/2017/02/
-check_url_success https://castle-engine.sourceforge.io/wp/?s=release
-check_url_success https://castle-engine.sourceforge.io/latest.zip
+
+# Cannot be supported, as SourceForge disabled .htaccess and PHP support in 2025.
+# check_url_success https://castle-engine.sourceforge.io/features.php
+# check_url_success https://castle-engine.sourceforge.io/wp/wp-admin/
+# check_url_success https://castle-engine.sourceforge.io/wp/feed/
+# check_url_success https://castle-engine.sourceforge.io/wp/2017/02/18/castle-game-engine-6-0-release/
+# check_url_success https://castle-engine.sourceforge.io/wp/2017/02/
+# check_url_success https://castle-engine.sourceforge.io/wp/?s=release
+# check_url_success https://castle-engine.sourceforge.io/latest.zip
