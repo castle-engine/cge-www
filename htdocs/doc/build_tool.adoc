@@ -7,7 +7,7 @@ Together with the engine we include a tool to help with building and packaging y
 
 Just https://castle-engine.io/[download Castle Game Engine] and the build tool is included inside.
 
-In most cases, you will use link:editor[Castle Game Engine Editor] (`bin/castle-editor` executable) that automatically uses build tool described here, under the hood. Alternatively, you can execute the build tool directly, on the command-line, using `bin/castle-engin` executable.
+In most cases, you will use link:editor[Castle Game Engine Editor] (`bin/castle-editor` executable) that automatically uses build tool described here, under the hood. Alternatively, you can execute the build tool directly, on the command-line, using `bin/castle-engine` executable.
 
 == Command-line Usage
 
