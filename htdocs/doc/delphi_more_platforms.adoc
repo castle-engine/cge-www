@@ -5,7 +5,7 @@ include::common.adoc[]
 
 == Introduction
 
-WARNING: This feature is not ready yet, we are _working on it_. See the https://castle-engine.io/wp/[news post] for details. Right now, if you use Delphi, you can use the engine *but without rendering* on Android, iOS, macOS. If you need support for these platforms right now, follow the existing documentation and use our engine with FPC.
+WARNING: This feature is not ready yet, we are _working on it_. See the https://castle-engine.io/wp/2025/07/25/delphi-advancements-groundwork-for-more-platforms-android-macos-ios-castle-model-viewer-delphi-cli-delphi-tools-on-macos-fixes-for-c-builder-delphi-64-bit-ide/[news post] for details. Right now, if you use Delphi, you can use the engine *but without rendering* on Android, iOS, macOS. If you need support for these platforms right now, follow the existing documentation and use our engine with FPC.
 
 You can create applications using link:delphi[Delphi] and _Castle Game Engine_ for a number of platforms. We already support _Windows_ and link:delphi_linux[Linux]. We work on support for more platforms with the Delphi compiler.
 
