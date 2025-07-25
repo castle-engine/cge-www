@@ -1,0 +1,64 @@
+# Developing macOS, Android, iOS applications using Delphi
+include::common.adoc[]
+:description: Using Castle Game Engine with Delphi build Android, iOS, macOS applications.
+:cge-social-share-image: delphi_code.png
+
+== Introduction
+
+WARNING: This feature is not ready yet, we are _working on it_. See the https://castle-engine.io/wp/[news post] for details. Right now, if you use Delphi, you can use the engine *but without rendering* on Android, iOS, macOS. If you need support for these platforms right now, follow the existing documentation and use our engine with FPC.
+
+You can create applications using link:delphi[Delphi] and _Castle Game Engine_ for a number of platforms. We already support _Windows_ and link:delphi_linux[Linux]. We work on support for more platforms with the Delphi compiler.
+
+== Overview
+
+_Delphi IDE_ and compilers run always on _Windows_. From _Windows_ they access other systems, like a remote _macOS_ machine, or a connected _Android_ device, and run there applications.
+
+Below we give a quick overview how to build for _macOS_, _Android_ and _iOS_ from _Delphi_.
+
+If you have already used _Delphi_ (e.g. through _FireMonkey_) with these platforms, then this page will likely not teach you anything new. There's nothing really specific to _Castle Game Engine_ below. Just setup connection to _PAServer_ (on macOS), setup SDKs, and you're good to go.
+
+== macOS
+
+Connecting to your macOS machine and building for it:
+
+. Similar to using link:delphi_linux[Delphi to build Linux applications], you need to https://docwiki.embarcadero.com/RADStudio/Sydney/en/PAServer,_the_Platform_Assistant_Server_Application[install PAServer on macOS].
+
+. Then in Delphi (from _Windows_), go to _"Options -> Deployment -> Connection Profile Manager"_ and add a new connection. Make sure everything works by _"Test Connection"_ button.
+
+. Then in Delphi initialize SDK for macOS, in the _"Options -> Deployment -> SDK Manager"_. This should _import_ all libraries from macOS to your Windows.
++
+NOTE: If the process asks for confirmation when overwriting, you want to say _"Yes"_ to have latest state from macOS copied into your Windows.
++
+NOTE: You will have to rerun the _import_ process each time the libraries on macOS possibly changed, like after a system upgrade.
+
+That's it. Now switch the project's platform to _"macOS 64-bit"_ or _"macOS ARM 64-bit"_ and it should just build and run. We tested both Intel-based and Arm-based (Aarch64 actually) versions of the macOS platform, and they only need one connection, to any macOS machine, it seems.
+
+Before we get rendering working (TODO), you can test it with a command-line https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/scene_information_cli_tool[scene_information_cli_tool] from our examples. It can be built by Delphi, and works as a command-line tool on macOS.
+
+NOTE: When in doubt, we recommend first to test deploying a trivial "Blank" new application using FMX from Delphi to macOS. This should be a test independent of _"Castle Game Engine"_.
+
+== iOS
+
+Connecting to iOS:
+
+. You need a working connection to a _macOS_ machine to build for _iOS_. We recommend to first go through the macOS deployment, documented above, before doing iOS.
+
+. Setup iOS SDK in the _"Options -> Deployment -> SDK Manager"_. It will also happen automatically if you just try to build for _"iOS Device 64-bit_.
++
+NOTE: You don't install anything like a _PAServer_ on iOS device. The Delphi (from Windows) will talk to your macOS to do building and deployment on iOS.
+
+== Android
+
+Connecting to Android:
+
+. Setup Android SDK in the _"Options -> Deployment -> SDK Manager"_. You actually need 2 Android SDKs there: one for 32-bit (Arm 32-bit) and one for 64-bit (that's Aarch 64-bit).
++
+NOTE: Make sure that paths configured there to Java JDK are valid. If needed, https://www.oracle.com/java/technologies/downloads/[install Java JDK] and point the Delphi's configuration (inside Android SDKs in _"Options -> Deployment -> SDK Manager"_) to the proper Java JDK paths.
+
+. To deploy your application to a real Android device, it's simplest to just have it connected through USB to your machine.
+//+
+// TODO: uncomment once tested
+//NOTE: There are also options to connect wirelessly using _Android Studio_, see link:android[Android with FPC docs]. To make it reliable, you should point your _Android Studio_ to the Delphi's Android SDK version.
+
+//NOTE: You don't install anything like a _PAServer_ on Android device.
+
