@@ -25,7 +25,7 @@
 <p>Contents:
 <?php echo $toc->html_toc(); ?>
 
-<p>See also <?php echo a_href_page('Castle Game Engine (and view3dscene) extensions related to navigation','x3d_implementation_navigation_extensions'); ?>.
+<p>See also <?php echo a_href_page('Castle Game Engine (and Castle Model Viewer) extensions related to navigation','x3d_implementation_navigation_extensions'); ?>.
 
 <?php echo $toc->html_section(); ?>
 
@@ -53,13 +53,13 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
     Still, this X3D node is useful to set initial camera through e.g. <a href="blender">Blender</a>
     (you can export to glTF or X3D and importing them will set initial camera properly).
 
-    <p><?php echo a_href_page("view3dscene", "view3dscene") ?>
+    <p><a href="castle-model-viewer">Castle Model Viewer</a>
     displays a nice menu allowing you to jump
     to any defined viewpoint, showing viewpoints' descriptions.
     Animating viewpoint's position and orientation
     (directly or by animating it's parent transformation) also works perfectly.</p>
 
-    <p>Note that merely adding a <code>Viewpoint</code> (or <code>OrthoViewpoint</code>) node to the X3D model, with everything at default, changes how view3dscene and CGE interpret the model.
+    <p>Note that even merely adding a <code>Viewpoint</code> (or <code>OrthoViewpoint</code>) node to the X3D model, with everything at default, still changes how <a href="castle-model-viewer">Castle Model Viewer</a> and CGE interpret the model.
 
     <ul>
       <li>
@@ -105,7 +105,7 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
       <li><p><code>avatarSize</code> is honoured fully:
         <ol>
           <li><p>First <code>avatarSize</code> item is the camera radius.
-            If you use <a href="castle-model-viewer">Castle Model View</a>,
+            If you use <a href="castle-model-viewer">Castle Model Viewer</a>,
             note that <code>--camera-radius</code> command-line option overrides
             this value.
 
@@ -131,14 +131,55 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
         honored (user will not be able to move in Walk/Fly modes,
         only to rotate).
 
-      <li><code>type</code> field is supported.
-        Navigation types fully supported are: <code>EXAMINE</code>, <code>WALK</code>,
-        <code>FLY</code>, <code>NONE</code>.
+      <li><p><code>type</code> field is supported.
 
-        Inside the engine, the navigation paradigm is actually a little
+        <p>Navigation types supported are:
+
+        <ul>
+          <li><p><code>EXAMINE</code></li>
+
+          <li><p><code>WALK</code></li>
+
+          <li><p><code>FLY</code></li>
+
+          <li><p><code>NONE</code>. This navigation method means that user <i>cannot</i> change
+            the camera using navigation controls (keys, mouse, game controller, 3D mouse...).
+            You can still change the camera from code (like Pascal or CastleScript)
+            or by animating transformations (that are camera parents)
+            or camera parameters.
+          </li>
+
+          <li><p><code>2D</code>. A navigation constrained to 2D (you cannot make free 3D rotation).
+
+            <p>This is an extension in <i>Castle Game Engine</i>,
+
+            <p> This is also activated by X_ITE-compatible names <code>PLANE</code>, <code>PLANE_create3000.github.io</code>, <code>PLANE_create3000.de</code>.</li>
+
+          <li><p><code>TURNTABLE</code>. Similar to the Examine mode, with controls comfortable
+            for viewing models that have a sense of floor/ground in the XZ plane,
+            and vertical axis in +Y.
+
+            <p>This is an extension in <i>Castle Game Engine</i>.
+            Implementation is not finished yet.
+
+          <li><p><code>ANY</code>. Supported by the engine, but simply ignored by the <a href="castle-model-viewer">Castle Model Viewer</a>. Why?
+
+            <p>The specification says that users should be able to choose
+            any navigation type they want only if the <code>ANY</code> name is present in the navigation types list.
+            For <a href="castle-model-viewer">Castle Model Viewer</a>,
+            we decided to allow users to <i>always</i> change the navigation
+            method, regardless of whether <code>ANY</code> name is used.
+            This makes more sense for us as a general 3D model viewer
+            that enables users to freely inspect 3D models.
+
+            <p>You can develop your own model viewers using <i>Castle Game Engine</i> that honor this more strictly, i.e. hide the UI to change navigation when <code>ANY</code> is not used.
+          </li>
+        </ul>
+
+        <p>Inside the engine, the navigation paradigm is actually a little
         more flexible. You can fine-tune the rotations and gravity
-        behavior by view3dscene <i>Navigation -> Walk and Fly Settings</i>
-        menu.
+        behavior by <a href="castle-model-viewer">Castle Model Viewer</a>
+        menu "<i>Navigation -> Walk and Fly Settings</i>".
         <!--
         For example, the difference between <code>Walk</code> and <code>Fly</code>
         is not only that the gravity if off when flying.
@@ -146,20 +187,8 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
         not around the <i>gravity</i> up vector,
         -->
 
-        <p>As an extension, we also support new navigation mode <code>TURNTABLE</code>.
-        This is similar to the Examine mode, with controls comfortable
-        for viewing models that have a sense of floor/ground in the XZ plane,
-        and vertical axis in +Y. Implementation is not finished yet.
-
-        <p>The presence of navigation type
-        <code>ANY</code> is ignored by
-        <a href="castle-model-viewer">Castle Model View</a>.
-        We always show controls to change navigation settings, hiding them
-        feels harmful to user.
-
       <li><p>Nice transitions between viewpoints are supported,
-        honouring <code>transitionType</code> and <code>transitionTime</code> fields,
-        and (since view3dscene 3.13.0) making <code>transitionComplete</code> event.
+        honouring <code>transitionType</code>, <code>transitionTime</code> fields and <code>transitionComplete</code> event.
         See <a href="https://github.com/castle-engine/demo-models/blob/master/navigation/transition_multiple_viewpoints.x3dv">demo model navigation/transition_multiple_viewpoints.x3dv showing how to use it to make an animated transition between a couple of viewpoints</a>.
         </p>
     </ul>
@@ -232,13 +261,13 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
   <li><p><?php echo x3d_node_link('ViewpointGroup'); ?></p>
 
     <p>You can use this to create submenus in <i>"Navigation -> Jump To Viewpoint"</i> menu in
-    <a href="castle-model-viewer">Castle Model View</a>.
+    <a href="castle-model-viewer">Castle Model Viewer</a>.
     Fields <code>description</code> and <code>children</code> are taken into account.
     Also, you can use this node to hide some viewpoints from the menu:
     the <code>displayed</code> field also works.</p>
 
     <p>TODO: size/center is not honored yet. Group is displayed
-    regardless of camera position. A possible workarond could be
+    regardless of camera position. A possible workaround could be
     to use a <code>ProximitySensor</code> node,
     routing <code>ProximitySensor.isActive</code> to the <code>displayed</code> field...
     Except this workaround will not work too, because changing
