@@ -327,17 +327,27 @@ There are numerous deliberate similarities between `Skin` and `HAnimHumanoid`.
 
 === You need to assign proper bounding box explicitly
 
-Since the mesh (skin) is only updated on GPU, the algorithms on CPU don't know about the updated skin vertexes.
+You *absolutely must* explicitly specify the shape's bounding box if that shape is to be animated using the skinned animation.
 
-NOTE: Side note: There are ways to transfer data calculated on GPU back to CPU. Like transform feedback, https://github.com/castle-engine/castle-engine/tree/master/examples/shaders/transform_feedback[we have a demo using it in our engine]. But we don't want to apply them here -- not only it would complicate things, but also would cost some efficiency.
+- In X3D files, set the `bboxCenter` and `bboxSize` fields of the `Shape` node.
 
-The solution is to manually define the bounding box for the shapes affected by skin. This is done by setting `bboxCenter` and `bboxSize` fields of the shapes. From Pascal code, get/set cgeref:TAbstractShapeNode.BBox[]. Manually set them to include all possible skin arrangements in all possible animation frames.
+- In Pascal code, the equivalent is to set cgeref:TAbstractShapeNode.BBox[].
 
-If you don't do this, the bounding box auto-calculated by the engine will be based on the initial (non-animated) object pose, and it may result in errors: frustum culling and ray picking will consider this box, and e.g. _frustum culling_ may decide to _cull_ (not render) the object when it should actually be visible.
+The bounding box must account for all possible skin arrangements in all possible animation frames.
 
-NOTE: As an alternative to setting proper bounding box using cgeref:TAbstractShapeNode.BBox[] (which we recommend) you could also turn off frustum culling by changing both cgeref:TCastleScene.SceneFrustumCulling[] and cgeref:TCastleScene.ShapeFrustumCulling[] to `false` (but we really don't recommend this; it may cost significant performance, unless you only have a few such scenes in your world).
+Reasoning:
 
-NOTE: This limitation is not specific to our engine. E.g. https://threejs.org/[three.js] also has this, see https://discourse.threejs.org/t/how-to-get-accurate-bounding-boxes-for-animated-gltf/14669[here] and https://discourse.threejs.org/t/object-bounds-not-updated-with-animation/3749[here]. In general, calculating a bounding box for skinned-animated objects (whether it is done on CPU or GPU), or updating any mesh collider, is a cost that you usually want to avoid.
+Since the mesh (skin) is only updated on GPU, the algorithms on CPU don't know about the updated skin vertexes. For example, imagine a 3D model of a very thin and very tall https://en.wikipedia.org/wiki/Giraffe[giraffe] that https://en.wikipedia.org/wiki/File:Flickr_-\_Rainbirder_-_Reticulated_Giraffe_drinking.jpg[lays down its long neck in one animation]. The effective bounding box of the giraffe in that animation is very different from the initial bounding box when the giraffe was standing. But since the animation is performed on GPU using shaders, the CPU doesn't know about the modified skin position and bounding box!
+
+And it is bad if our algorithms on CPU think that the object is in one place, but it's actually in another place. For example, _frustum culling_ and _ray picking_ would consider a wrong box, and e.g. _frustum culling_ may decide to _cull_ (not render) the object when it should actually be visible.
+
+The solution is to manually define the bounding box for the shapes affected by skin. You *have to* specify this bounding box.
+
+NOTE: There are ways to transfer data calculated on GPU back to CPU. Like transform feedback, https://github.com/castle-engine/castle-engine/tree/master/examples/shaders/transform_feedback[we have a demo using it in our engine]. But we don't want to use it here -- it would complicate the implementation, and also would cost some efficiency.
+
+NOTE: As an alternative to setting proper bounding box using cgeref:TAbstractShapeNode.BBox[] (which we recommend) you could also turn off frustum culling by changing both cgeref:TCastleScene.SceneFrustumCulling[] and cgeref:TCastleScene.ShapeFrustumCulling[] to `false`. But we really don't recommend this: it may cost significant performance, unless you only have a few such scenes in your world.
+
+NOTE: This requirement is not specific to our engine. E.g. https://threejs.org/[three.js] also has this, see https://discourse.threejs.org/t/how-to-get-accurate-bounding-boxes-for-animated-gltf/14669[here] and https://discourse.threejs.org/t/object-bounds-not-updated-with-animation/3749[here]. In general, calculating a bounding box for skinned-animated objects (whether it is done on CPU or GPU), or updating any mesh collider, is a cost that you usually want to avoid.
 
 === Collisions that detect which body part is hit, using physics
 
