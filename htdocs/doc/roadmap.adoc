@@ -784,6 +784,8 @@ GitHub issue: https://github.com/castle-engine/castle-engine/issues/595 .
 
 ### Allow animating selected node graph properties, without changing the graph, to be able to reuse graphs
 
+NOTE: We've made a start toward this, specifically for link:skin[skinned animation], in internal `TCastleSceneInstance` (right now doesn't render, but maintains customized state and can calculate bbox).
+
 Right now our X3D graph usage is similar to HTML DOM usage from typical web applications: we modify the graph at runtime, everything that changes stuff (like animations) just changes the graph. This is simple to use, it nicely allows to animate _everything_ in X3D and gives developers an easy way to modify everything at runtime.
 
 The downside is that we waste significant memory, and loading time, in some cases. If you want to play different animations on each cgeref:TCastleScene[], then they need to have a different graph even though they are loaded from the same `URL`. Hence using e.g. cgeref:TCastleScene.Clone[] or cgeref:TCastleSceneCore.Cache[] really internally makes multiple copies of the graph. This could be more optimal in the future. E.g. assuming your model only uses glTF skinned animation or animates simple transformation position/rotation/scale, we could make the graph read-only, and only maintain small "diff" information at each instance.
