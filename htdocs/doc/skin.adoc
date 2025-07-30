@@ -347,7 +347,14 @@ NOTE: There are ways to transfer data calculated on GPU back to CPU. Like transf
 
 NOTE: As an alternative to setting proper bounding box using cgeref:TAbstractShapeNode.BBox[] (which we recommend) you could also turn off frustum culling by changing both cgeref:TCastleScene.SceneFrustumCulling[] and cgeref:TCastleScene.ShapeFrustumCulling[] to `false`. But we really don't recommend this: it may cost significant performance, unless you only have a few such scenes in your world.
 
-NOTE: This requirement is not specific to our engine. E.g. https://threejs.org/[three.js] also has this, see https://discourse.threejs.org/t/how-to-get-accurate-bounding-boxes-for-animated-gltf/14669[here] and https://discourse.threejs.org/t/object-bounds-not-updated-with-animation/3749[here]. In general, calculating a bounding box for skinned-animated objects (whether it is done on CPU or GPU), or updating any mesh collider, is a cost that you usually want to avoid.
+[NOTE]
+====
+This requirement is not specific to our engine. See e.g.
+
+- https://threejs.org/[Three.js] also has this issue, see https://discourse.threejs.org/t/how-to-get-accurate-bounding-boxes-for-animated-gltf/14669[here] and https://discourse.threejs.org/t/object-bounds-not-updated-with-animation/3749[here]. Calculating a bounding box for skinned-animated objects (whether it is done on CPU or GPU), or updating any mesh collider, is a cost that you usually want to avoid. _Three.js_ advises just like us: specify a bounding box manually.
+
+- https://github.com/bevyengine/bevy/issues/4971[Bevy issue], still open because there's no perfect solution -- calculating boxes (during loading or at run-time) always has a cost and we just don't have this information in glTF file.
+====
 
 === Collisions that detect which body part is hit, using physics
 
