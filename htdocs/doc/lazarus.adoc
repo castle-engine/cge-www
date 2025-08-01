@@ -46,9 +46,9 @@ cgeimg::block[cge_editor_prefs.png|Castle Game Engine Editor Preferences]
 
 == Register Lazarus Packages
 
-In _Castle Game Engine_ editor _Preferences_, go to tab _FPC and Lazarus_ and click on the button _"Register Lazarus Packages"_. This will allow to compile and debug CGE applications inside Lazarus.
+In _Castle Game Engine_ editor _"Preferences"_, go to the tab _"FPC and Lazarus"_ and click the button _"Register Lazarus Packages"_. This will register the packages, which allows to compile and debug CGE applications inside Lazarus.
 
-cgeimg::block[cge_lazarus_registered_ok.png|Lazarus packages registration confirmation]
+cgeimg::block[cge_lazarus_registered_ok_2.png|Lazarus packages registration confirmation]
 
 ////
 . CGE editor is now integrated with FPC and Lazarus.
