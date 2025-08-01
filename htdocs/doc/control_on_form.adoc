@@ -39,21 +39,19 @@ cgeimg::block[
 
 ## Lazarus installation
 
-WARNING: We're in the middle of rename now. The `castle_components.lpk` will soon be renamed to `castle_engine_lcl.lpk`.
-
-. Install in Lazarus the package `castle_components.lpk`. In the package dialog, use the option to _"Install"_ (under the _"Use"_ button).
+. Install in Lazarus the package `castle_engine_lcl.lpk`. In the package dialog, use the option to _"Install"_ (under the _"Use"_ button).
 +
-Note: Installing the `castle_components` package will also automatically install the package `castle_base`, as a dependency. That's good.
+Note: Installing the `castle_engine_lcl` package will also automatically install the package `castle_engine_base`, as a dependency. That's good.
 +
 --
 cgeimg::block[
-  lazarus-install-31.png|castle_components: Choose the file,
-  lazarus-install-32.png|castle_components: Install,
-  lazarus-install-33.png|castle_components: Confirm Lazarus rebuild
+  lazarus-install-31.png|castle_engine_lcl: Choose the file,
+  lazarus-install-32.png|castle_engine_lcl: Install,
+  lazarus-install-33.png|castle_engine_lcl: Confirm Lazarus rebuild
 ]
 --
 +
-Once `castle_components.lpk` is successfully installed, Lazarus restarts, and you should see the _"Castle"_ tab with our components.
+Once `castle_engine_lcl.lpk` is successfully installed, Lazarus restarts, and you should see the _"Castle"_ tab with our components.
 
 . To test, open in Lazarus examples in link:https://github.com/castle-engine/castle-engine/tree/master/examples/lazarus[examples/lazarus/]. Like `examples/lazarus/model_3d_viewer`.
 
@@ -223,14 +221,12 @@ You have to make a choice:
 
 You cannot mix these approaches, as neither VCL / FMX / LCL (in which our cgeref:TCastleControl[] works) nor cgeref:TCastleWindow[] are prepared to handle the situation that they only handle *some* application forms, and other library handles the other forms.
 
-That is also why for Lazarus we have separate packages
+That is also why we have separate packages (both for _Delphi_ and _Lazarus_, so statement below applies both to `.dpk` and `.lpk`):
 
--  `castle_window.lpk` (with cgeref:TCastleWindow[]) and
+- With cgeref:TCastleWindow : `castle_engine_window` package.
 
-- `castle_components.lpk` (with cgeref:TCastleControl[]; a better name would be `castle_lcl.lpk`).
+- With cgeref:TCastleControl[] : `castle_engine_lcl` (Lazarus), `castle_engine_vcl` (Delphi VCL), `castle_engine_fmx` (Delphi FMX) packages.
 
-You should not use both of these packages at the same time.
-
-In case of Delphi, we have only one package, because there's no reason to put cgeref:TCastleWindow[] in a package.
+Only one of the above packages should be used in a particular application.
 
 Note that, if you use cgeref:TCastleControl[], it is OK to have multiple cgeref:TCastleControl[] instances visible at the same time. Similarly, if you use cgeref:TCastleWindow[], you can have several cgeref:TCastleWindow[] instances visible at the same time (but only on desktop platforms), see https://github.com/castle-engine/castle-engine/tree/master/examples/window/multi_window[examples/window/multi_window].

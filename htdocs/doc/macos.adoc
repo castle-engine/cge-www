@@ -58,7 +58,7 @@ Using cgeref:TCastleWindow[] on macOS is completely standard. Just run the appli
 
 When creating new project in CGE editor, it will use cgeref:TCastleWindow[] by default to display a window where the engine will render.
 
-By default, cgeref:TCastleWindow[] on macOS uses https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaFundamentals/WhatIsCocoa/WhatIsCocoa.html[Cocoa] with https://developer.apple.com/documentation/appkit?language=objc[AppKit] library, coded using https://www.freepascal.org/docs-html/current/ref/refse71.html#x132-15600011.1[Objective-Pascal]. This makes it a completely native application on macOS. See link:castlewindow_backends#_cocoa_backend_castle_window_cocoa[Cocoa backend (CASTLE_WINDOW_COCOA)] overview for the features we support on macOS.
+By default, cgeref:TCastleWindow[] on macOS uses https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaFundamentals/WhatIsCocoa/WhatIsCocoa.html[Cocoa] with https://developer.apple.com/documentation/appkit?language=objc[AppKit] library, coded using https://www.freepascal.org/docs-html/current/ref/refse71.html#x132-15600011.1[Objective-Pascal]. This makes it a completely native application on macOS. See link:castlewindow_backends#_cocoa_castle_window_cocoa[Cocoa backend (CASTLE_WINDOW_COCOA)] overview for the features we support on macOS.
 
 ## Using TCastleControl
 
