@@ -4,7 +4,7 @@ Tags: jetpack, protect, security, malware, scan
 Requires at least: 6.7
 Requires PHP: 7.2
 Tested up to: 6.8
-Stable tag: 4.2.0
+Stable tag: 4.3.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -178,19 +178,20 @@ The new Jetpack Protect plugin is different from the Jetpack feature formerly kn
 4. The Jetpack Firewall is a web application firewall (known as WAF) designed to protect your WordPress site from malicious requests.
 
 == Changelog ==
-### 4.2.0 - 2025-07-03
+### 4.3.0 - 2025-07-30
 #### Added
-- WAF: Add account recovery flow for blocklisted IP addresses.
+- Add UI confirmation via text box when deleting an extension via delete-fixer so that the user is fully aware that it may break their site.
+- My Jetpack: Add analytics for empty product search results.
 
 #### Changed
-- My Jetpack: Update Stats card to include a chart for better analytics.
+- E2E tests: remove redundant logic in test fixture and converted the fixture to Typscript
+- Improve performance of wpcom comments liking by caching and minimizing API requests.
+- My Jetpack: Enabled access to My Jetpack on WP Multisite.
+- Sync: Ignore the ActivityPub Outbox CPT.
 - Update package dependencies.
 
-#### Removed
-- Remove the need to add FTP/SSH credentials to run auto threat fixers.
-
 #### Fixed
-- JITM: Fix ineffective caching due to expired plugin sync transient.
-- My Jetpack: Use compact number notation in the Protect card.
-- WAF: Fix PHP warnings for Brute_Force_Protection->get_local_host().
+- My Jetpack: Fix footer alignment for diconnected accounts.
+- My Jetpack: Restore plan purchase link.
+- Update JITMs to remove jQuery dependency.
 
