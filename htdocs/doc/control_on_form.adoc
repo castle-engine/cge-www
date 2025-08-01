@@ -45,9 +45,9 @@ Note: Installing the `castle_engine_lcl` package will also automatically install
 +
 --
 cgeimg::block[
-  lazarus-install-31.png|castle_engine_lcl: Choose the file,
-  lazarus-install-32.png|castle_engine_lcl: Install,
-  lazarus-install-33.png|castle_engine_lcl: Confirm Lazarus rebuild
+  lazarus-installnew-31.png|castle_engine_lcl: Choose the file,
+  lazarus-installnew-32.png|castle_engine_lcl: Install,
+  lazarus-installnew-33.png|castle_engine_lcl: Confirm Lazarus rebuild
 ]
 --
 +
