@@ -44,15 +44,27 @@ But behaviors remain our recommended approach, because it nicely _scales_ when y
 
 == Built-in behaviors
 
-The engine provides a number of ready behavior classes, e.g.
+The engine comes with a number of ready behavior classes available:
 
 - cgeref:TCastleSoundSource[] (see link:sound[sound]),
 
 - cgeref:TCastleBillboard[],
 
-- cgeref:TCastleRigidBody[], all colliders derived from cgeref:TCastleCollider[], physics joints (see link:physics[]).
+- A few behaviors related to link:physics[]:
++
+--
+- cgeref:TCastleRigidBody[],
+- colliders (derived from cgeref:TCastleCollider[]),
+- physics joints.
+--
 
-== Example: behavior of a car
+- cgeref:TCastleStickToSurface[] (useful with our cgeref:TCastleTerrain[]).
+
+- _Experimental_: cgeref:TCastleLiving[], cgeref:TCastleMoveAttack[] and friends. See the cgeref:CastleLivingBehaviors[] unit and demos of it in https://github.com/castle-engine/castle-engine/tree/master/examples/creature_behaviors[examples/creature_behaviors] and https://github.com/castle-engine/conference-zlot-delphi-2024[conference-zlot-delphi-2024].
+
+== Examples of implementing your own behaviors
+
+=== Example: keep moving forward
 
 Let's modify our cars demo from link:viewport_and_scenes_from_code[Writing code to modify scenes and transformations] example to use behaviors to move each car.
 
@@ -112,7 +124,7 @@ end;
 
 Test and run. Play around with adding behaviors to only some of the cars (i.e. only cars with `I < 10`) to feel the flexibility of this.
 
-== Example: controlling the footsteps sound
+=== Example: controlling the footsteps sound
 
 A behavior can be used to connect some other components with a custom functionality. For example this simple `TFootstepsBehavior` can be attached to the camera, and
 
@@ -169,6 +181,58 @@ end;
 ----
 
 This simple implementation works, but you will notice an important problem: the footsteps sound may stop and start too often, if you walk on an uneven terrain. You can take a look at the https://github.com/castle-engine/lynch/blob/master/code/gamebehaviors.pas[example of TFootstepsBehavior from the "Lynch" demo] that avoids this problem, by not stopping the footsteps playback immediately. Thanks to the power of behaviors, this complicated mechanism is nicely encapsulated inside a `TFootstepsBehavior` class.
+
+=== Example: observer that keeps looking at / pointing at target
+
+Sometimes you want one object (like a spotlight, or a camera, or some auto-aiming weapon) to "look at" (or "point at") another object.
+
+To do this you can set the observer's cgeref:TCastleTransform.Direction[] every frame. Like this:
+
+[source,pascal]
+----
+type
+  TLookAtBehavior = class(TCastleBehavior)
+  public
+    Target: TCastleTransform;
+    procedure Update(const SecondsPassed: Single; var RemoveMe: TRemoveType); override;
+  end;
+
+procedure TLookAtBehavior.Update(const SecondsPassed: Single; var RemoveMe: TRemoveType);
+begin
+  inherited;
+  // Note: "Parent" here refers to the observer, the object that should look at Target.
+  Parent.WorldDirection := Target.WorldTranslation - Parent.WorldTranslation;
+end;
+----
+
+Add a new instance of this class to the cgeref:TCastleTransform[] that should act as an _"observer"_ . Like this:
+
+[source,pascal]
+----
+procedure TMyView.Start;
+var
+  LookAtBehavior: TLookAtBehavior;
+begin
+  inherited;
+  LookAtBehavior := TLookAtBehavior.Create(FreeAtStop);
+  LookAtBehavior.Target := SomeTarget;
+  Observer.AddBehavior(LookAtBehavior);
+end;
+----
+
+Notes:
+
+- The _observer_ above can be any instance of cgeref:TCastleTransform[], including a camera or light source (since cgeref:TCastleCamera[] and lights like cgeref:TCastleSpotLight[] are also descendants of cgeref:TCastleTransform[]).
+
+- Example above calculates and sets things in the _"world coordinate space"_. This should work with any setup, even if `Target` and `Observer` are in very different places in the transformation hierarchy.
++
+If they are in same same coordinate space, e.g. under the same parent, then you could even simplify it, dropping the `World` prefixes, just doing `Parent.Direction := Target.Translation - Parent.Translation;`.
+
+- Note that setting the cgeref:TCastleTransform.Direction[] is really just a shortcut for setting the cgeref:TCastleTransform.Rotation[] property. The `Direction` and `Up` vectors together determine the `Rotation`. (And in turn, setting cgeref:TCastleTransform.WorldDirection[] is just a shortcut for setting cgeref:TCastleTransform.Direction[] but converting the vector to the proper coordinate space first.)
++
+There are other ways to set the rotation, like using cgeref:TCastleTransform.Rotation[] or cgeref:TCastleTransform.SetView[] or cgeref:TCastleTransform.SetWorldView[]. In different cases, different methods may be more convenient / useful.
+
+- The `Target.WorldTranslation - Parent.WorldTranslation` calculates a vector whose length doesn't matter. We only care about the direction of it. When we assign it to `Parent.WorldDirection`, the property setter will ignore the vector's length, internally "normalizing" the provided vector. You don't need to know / care about this, in short.
 
 == Registering behaviors to use at design-time (in CGE editor)
 
