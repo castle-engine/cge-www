@@ -1,6 +1,6 @@
 # Multi-player
 include::common.adoc[]
-:description: TODO
+:description: Networking and multi-player solutions that can be used with Castle Game Engine. TCastleDownload for HTTP(S) and REST communication. CastleClientServer using Indy for classic client/server over TCP/IP. mORMot 2 (for ORM, REST communication, WebSockets and more). RNL for real-time multi-player. Plans for Nakama integration.
 :cge-social-share-image: not_quake_1.png
 
 == Introduction
