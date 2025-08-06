@@ -2,14 +2,14 @@
 # This file is distributed under the GPL v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: W3 Total Cache 2.8.10\n"
+"Project-Id-Version: W3 Total Cache 2.8.11\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/w3-total-cache\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-06-18T14:16:42+00:00\n"
+"POT-Creation-Date: 2025-07-31T23:05:45+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: w3-total-cache\n"
@@ -4328,7 +4328,7 @@ msgstr ""
 
 #: Extension_AlwaysCached_Plugin_Admin.php:124
 #: Extension_AlwaysCached_Plugin_Admin.php:125
-#: Generic_Plugin.php:403
+#: Generic_Plugin.php:407
 msgid "Page Cache Queue"
 msgstr ""
 
@@ -4977,7 +4977,7 @@ msgid "%1$sTLS%2$s Client authentication requires Cloudflare to connect to your 
 msgstr ""
 
 #: Extension_CloudFlare_Plugin.php:235
-#: Extension_CloudFlare_Plugin_Admin.php:209
+#: Extension_CloudFlare_Plugin_Admin.php:215
 msgid "Cloudflare"
 msgstr ""
 
@@ -5006,15 +5006,15 @@ msgstr ""
 msgid "%1$sCloudflare plugin detected. We recommend removing the plugin as it offers no additional capabilities when W3 Total Cache is installed. This message will disappear when Cloudflare is removed. %2$s%3$s"
 msgstr ""
 
-#: Extension_CloudFlare_Plugin_Admin.php:366
+#: Extension_CloudFlare_Plugin_Admin.php:373
 msgid "Empty All Caches Except Cloudflare"
 msgstr ""
 
-#: Extension_CloudFlare_Plugin_Admin.php:455
+#: Extension_CloudFlare_Plugin_Admin.php:462
 msgid "Cloudflare settings are successfully updated."
 msgstr ""
 
-#: Extension_CloudFlare_Plugin_Admin.php:463
+#: Extension_CloudFlare_Plugin_Admin.php:470
 msgid "Failed to update Cloudflare settings:"
 msgstr ""
 
@@ -6981,19 +6981,19 @@ msgstr ""
 msgid "Purge All Caches Except Bunny CDN"
 msgstr ""
 
-#: Generic_Plugin.php:352
+#: Generic_Plugin.php:356
 msgid "Purge All Caches Except Cloudflare"
 msgstr ""
 
-#: Generic_Plugin.php:364
+#: Generic_Plugin.php:368
 msgid "Purge Current Page"
 msgstr ""
 
-#: Generic_Plugin.php:375
+#: Generic_Plugin.php:379
 msgid "Purge Modules"
 msgstr ""
 
-#: Generic_Plugin.php:382
+#: Generic_Plugin.php:386
 #: inc/options/common/top_nav_bar.php:86
 #: Root_AdminMenu.php:51
 #: Root_AdminMenu.php:52
@@ -7001,7 +7001,7 @@ msgstr ""
 msgid "Feature Showcase"
 msgstr ""
 
-#: Generic_Plugin.php:392
+#: Generic_Plugin.php:396
 #: Generic_WidgetSettings.php:38
 #: Generic_WidgetSettings_View.php:96
 #: inc/options/common/top_nav_bar.php:20
@@ -7021,11 +7021,11 @@ msgstr ""
 msgid "General Settings"
 msgstr ""
 
-#: Generic_Plugin.php:414
+#: Generic_Plugin.php:418
 msgid "Manage Extensions"
 msgstr ""
 
-#: Generic_Plugin.php:424
+#: Generic_Plugin.php:428
 #: PageSpeed_Instructions.php:81
 #: PageSpeed_Instructions.php:98
 #: PageSpeed_Instructions.php:355
@@ -7034,7 +7034,7 @@ msgstr ""
 msgid "FAQ"
 msgstr ""
 
-#: Generic_Plugin.php:434
+#: Generic_Plugin.php:438
 #: inc/options/common/footer.php:62
 #: inc/options/common/top_nav_bar.php:212
 #: inc/options/common/top_nav_bar.php:213
@@ -7044,7 +7044,7 @@ msgstr ""
 msgid "Support"
 msgstr ""
 
-#: Generic_Plugin.php:445
+#: Generic_Plugin.php:449
 msgid "Debug: Overlays"
 msgstr ""
 
@@ -12910,7 +12910,7 @@ msgid "Page Cache: Current Page"
 msgstr ""
 
 #. Translators: 1 memcached servers.
-#: PgCache_Plugin_Admin.php:386
+#: PgCache_Plugin_Admin.php:367
 #, php-format
 msgid "Page Cache: %1$s."
 msgstr ""
