@@ -30,13 +30,13 @@ This is a mobile version of link:castle-model-viewer[Castle Model Viewer], shari
 
 == Download
 
-=== Latest version (2.6.0)
+=== Latest version (2.8)
 
 // image:images/not_resized/google_play.webp[Get it on Google Play (Android),link=https://play.google.com/store/apps/details?id=io.castleengine.castle.model.viewer.mobile]
 // image:images/not_resized/app_store.webp[Download on the App Store (iOS),link=https://apps.apple.com/app/id1562725324]
 
 cge::download-application[
-  2.6.0,
+  2.8,
   snapshot,
   castle-engine,
   castle-model-viewer-mobile,
