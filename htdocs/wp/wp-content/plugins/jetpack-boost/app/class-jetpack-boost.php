@@ -273,6 +273,26 @@ class Jetpack_Boost {
 		Regenerate_Admin_Notice::dismiss();
 		Analytics::record_user_event( 'deactivate_plugin' );
 		Page_Cache_Setup::deactivate();
+
+		// Clean up Image Size Analysis data.
+		$this->cleanup_image_size_analysis_data();
+	}
+
+	/**
+	 * Clean up Image Size Analysis data from the database.
+	 *
+	 * @since 4.3.0
+	 */
+	private function cleanup_image_size_analysis_data() {
+		global $wpdb;
+
+		// Delete all post meta entries for Image Size Analysis fixes.
+		//phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
+		$wpdb->delete(
+			$wpdb->postmeta,
+			array( 'meta_key' => '_jb_image_fixes' ),
+			array( '%s' )
+		);
 	}
 
 	/**
@@ -382,7 +402,7 @@ class Jetpack_Boost {
 		( new Critical_CSS_Storage() )->clear();
 
 		// Delete all transients created by boost.
-		Transient::delete_by_prefix( '' );
+		Transient::delete_bulk();
 
 		// Clear getting started value
 		( new Getting_Started_Entry() )->set( false );
