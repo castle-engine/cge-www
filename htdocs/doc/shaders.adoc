@@ -248,7 +248,7 @@ TestTexture.SetUrl(['castle-data:/my_texture.png']);
 +
 [source,pascal]
 ----
-EffectTextureField := TSFNode.Create(Effect, true, 'testTexture', [TImageTextureNode], TestTexture1);
+EffectTextureField := TSFNode.Create(Effect, true, 'testTexture', [TImageTextureNode], TestTexture);
 Effect.AddCustomField(EffectTextureField);
 ----
 
