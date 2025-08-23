@@ -18,7 +18,9 @@ echo pretty_heading($page_title);
 
   <?php gallery_link('OpenGameArt.org',
     'Game art (3D, 2D, sounds) uploaded by various artists on clear open-source licenses.
-    <p><i>Hint:</i> Do you want to share an asset you made and tested specifically for CGE game? Upload it to <a href="https://opengameart.org/art-search-advanced?keys=&title=%5Bcge%5D">OpenGameArt.org with <code>[CGE]</code> in the name</a>.',
+    <!-- Commented out, this did not catch on.
+    <p><i>Hint:</i> Do you want to share an asset you made and tested specifically for CGE game? Upload it to <a href="https://opengameart.org/art-search-advanced?keys=&title=%5Bcge%5D">OpenGameArt.org with <code>[CGE]</code> in the name</a>.
+    -->',
     'assets_opengameart.png',
     'https://opengameart.org/');
   ?>
@@ -36,7 +38,7 @@ echo pretty_heading($page_title);
   ?>
 
   <?php gallery_link('Blend Swap',
-    '3D models in <a href="https://www.blender.org/">Blender</a> (which you can <a href="blender">export to glTF easily</a>). Uploaded by various artists. All on <i>Creative Commons</i> licenses.',
+    'Models made using <a href="blender">Blender</a> (can be easily exported e.g. to <a href="gltf">glTF</a> to use in our engine). On various <i>Creative Commons</i> licenses.',
     'assets_blendswap.png',
     'https://blendswap.com/');
   ?>

@@ -11,7 +11,13 @@ cgeimg::float[
 
 glTF is an efficient, modern format for animated 3D and 2D models. Developed by Khronos.
 
-We advise using it in CGE as much as you can. It is supported by a lot of tools. We focus on supporting this format perfectly in _Castle Game Engine_, with all the features and efficiency.
+We absolutely recommend using it. We focus on supporting this format perfectly in _Castle Game Engine_, with all the features and efficiency. It is supported by a lot of tools, e.g. you can export to it from link:blender[Blender] easily.
+
+== Loading glTF
+
+Simply use cgeref:TCastleScene[] to load a glTF model. See link:viewport_and_scenes[Viewport with scenes, camera, navigation] for all details.
+
+The rest of this page describes details about glTF support in _Castle Game Engine_.
 
 == Resources
 
