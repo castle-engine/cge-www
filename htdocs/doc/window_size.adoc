@@ -86,7 +86,7 @@ While adjusting the window size or fullscreen mode, you may also want to enable 
 Window.AntiAliasing := aa4SamplesNicer;
 ```
 
-See https://github.com/castle-engine/conference-delphi-summit-2025/blob/6cd8fc0647be2199fa01d73a76b3ac869c59cfa3/walk_3d_game_controllers/code/gameinitialize.pas#L70[real-life example here], it's really that simple.
+See https://github.com/castle-engine/castle-engine/blob/master/examples/3d_games/walking_adventure/code/gameinitialize.pas#L71[real-life example here], it's really that simple.
 
 [#video_change]
 ## Changing the physical screen resolution (not recommended)

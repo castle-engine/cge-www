@@ -26,7 +26,7 @@ This pages collects _some_ materials from them.
 +
 --
 - https://castle-engine.io/wp/2025/06/08/game-controllers-gamepads-joysticks-new-comfortable-api-and-example-of-walking-and-talking-using-gamepad-from-delphi-summit-2025/[News about gamepad support, which we shown at the conference]
-- https://github.com/castle-engine/conference-delphi-summit-2025[Example shown at the conference - simple walking (with game controllers or keyboard/mouse) around the farm, talking with weird NPCs and a small story]
+- https://github.com/castle-engine/castle-engine/tree/master/examples/3d_games/walking_adventure/[Example shown at the conference - simple walking (with game controllers or keyboard/mouse) around the farm, talking with weird NPCs and a small story]
 - https://castle-engine.io/dsummit2025[Slides shown]
 --
 

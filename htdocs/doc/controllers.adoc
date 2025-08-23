@@ -19,7 +19,7 @@ We provide several examples that allow you to test this support:
 
 - The example https://github.com/castle-engine/castle-engine/tree/master/examples/game_controllers[examples/game_controllers] allows you to test all controller buttons and axes.
 
-- https://github.com/castle-engine/conference-delphi-summit-2025[3D Walking With Game Controllers (demo from the Delphi Summit 2025)] shows how to use game controllers in practice, in a simple 3D demo game where you walk and talk with NPCs.
+- https://github.com/castle-engine/castle-engine/tree/master/examples/3d_games/walking_adventure/[Walking Talking Adventure demo (examples/3d_games/walking_adventure)] shows how to use game controllers in practice, in a simple 3D demo game where you walk and talk with NPCs.
 
 - Our example https://github.com/castle-engine/castle-engine/blob/master/examples/fps_game/[examples/fps_game] also supports gamepads, using the most standard arrangement for 3D FPS games, as explained link:#walk_navigation[later in this document].
 
@@ -159,7 +159,7 @@ begin
 end;
 ----
 
-NOTE: The triggers are exposed as "axes", since this is most flexible and we have this information. They could be naturally used for things like speeding up/braking in a car racing game. But if you want, you can also add simple code to treat triggers as "digital" press or release. Simply watch when their value crosses some threshold, like `0.5`. See https://github.com/castle-engine/conference-delphi-summit-2025/blob/f0069ad4e92336237a1609511f9bb4712153c380/walk_3d_game_controllers/code/gameviewmain.pas#L184[sample code here].
+NOTE: The triggers are exposed as "axes", since this is most flexible and we have this information. They could be naturally used for things like speeding up/braking in a car racing game. But if you want, you can also add simple code to treat triggers as "digital" press or release. Simply watch when their value crosses some threshold, like `0.5`. See https://github.com/castle-engine/castle-engine/blob/10fe20035328929f992b6a994336354e49fe76bb/examples/3d_games/walking_adventure/code/gameviewmain.pas#L184[sample code here].
 
 NOTE: As always when doing things in the `Update` method of the view, remember to multiply everything you're doing by the `SecondsPassed` (see link:view_events[view events]). This includes reacting to the controller axes. Value like `Controllers[0].AxisLeftTrigger` says _how mush pressure_ is the user putting on the trigger, but it doesn't account how much time has passed since last processing the `Update`. If you want to move the object, you still have to multiply this value by `SecondsPassed` to make the movement have equal speed on every computer. See the above example, where the `MovementSpeed` is effectively multiplied by the `SecondsPassed`.
 
