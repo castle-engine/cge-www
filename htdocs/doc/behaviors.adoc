@@ -60,7 +60,7 @@ The engine comes with a number of ready behavior classes available:
 
 - cgeref:TCastleStickToSurface[] (useful with our cgeref:TCastleTerrain[]).
 
-- _Experimental_: cgeref:TCastleLiving[], cgeref:TCastleMoveAttack[] and friends. See the cgeref:CastleLivingBehaviors[] unit and demos of it in https://github.com/castle-engine/castle-engine/tree/master/examples/creature_behaviors[examples/creature_behaviors] and https://github.com/castle-engine/conference-zlot-delphi-2024[conference-zlot-delphi-2024].
+- _Experimental_: cgeref:TCastleLiving[], cgeref:TCastleMoveAttack[] and friends. See the cgeref:CastleLivingBehaviors[] unit and demos of it in https://github.com/castle-engine/castle-engine/tree/master/examples/creature_behaviors[examples/creature_behaviors] and https://github.com/castle-engine/castle-engine/tree/master/examples/3d_games/dungeons_and_skeletons_fight[examples/3d_games/dungeons_and_skeletons_fight].
 
 == Examples of implementing your own behaviors
 

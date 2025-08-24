@@ -19,7 +19,11 @@ This pages collects _some_ materials from them.
 +
 --
 - https://castle-engine.io/delphiday2025[Slides]
-- New example shown during presentation is now part of the engine examples: TODO. I also shown a few of existing examples (https://github.com/castle-engine/castle-engine/tree/master/examples/platformer[platformer], https://github.com/castle-engine/castle-engine/tree/master/examples/fps_game[fps_game], https://github.com/castle-engine/conference-zlot-delphi-2024[complete FPS game using Blender, Sketchfab, Quaternius models, TCastleMoveAttack]).
+- New example shown during presentation is now part of the engine examples: https://github.com/castle-engine/castle-engine/tree/master/examples/physics/physics_throw_chickens[examples/physics/physics_throw_chickens].
+- I also shown a few of existing examples:
+** https://github.com/castle-engine/castle-engine/tree/master/examples/platformer[platformer],
+** https://github.com/castle-engine/castle-engine/tree/master/examples/fps_game[fps_game],
+** https://github.com/castle-engine/castle-engine/tree/master/examples/3d_games/dungeons_and_skeletons_fight[dungeons_and_skeletons_fight (complete FPS game using Blender, Sketchfab, Quaternius models, TCastleMoveAttack)].
 --
 
 * _5-6 June 2025_: https://delphisummit.com/[Delphi Summit] in _Netherlands (Amsterdam)_.
@@ -57,7 +61,7 @@ This pages collects _some_ materials from them.
 * _15-16 October 2024_: Presentation at https://www.bsc.com.pl/zlot-programistow-delphi-2024/[Zlot Programistów Delphi 2024 ("Delphi Programmer's Meeting 2024", in Polish)].
 +
 --
-- https://github.com/castle-engine/conference-zlot-delphi-2024[Demo application: complete FPS game using Blender, Sketchfab, Quaternius models, TCastleMoveAttack].
+- https://github.com/castle-engine/castle-engine/tree/master/examples/3d_games/dungeons_and_skeletons_fight[examples/3d_games/dungeons_and_skeletons_fight: Demo application: complete FPS game using Blender, Sketchfab, Quaternius models, TCastleMoveAttack].
 - https://castle-engine.io/zlot2024[Slides (in Polish)]
 --
 

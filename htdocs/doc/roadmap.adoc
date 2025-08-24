@@ -60,7 +60,7 @@ In progress.
 --
 - examples/creature_behaviors
 - examples/fps_game
-- Demo at "Delphi Programmers Meeting 2024 (Zlot Programistów Delphi 2024)", see https://github.com/castle-engine/conference-zlot-delphi-2024[demo application]. See https://castle-engine.io/zlot2024[demo slides (in Polish)].
+- https://github.com/castle-engine/castle-engine/tree/master/examples/3d_games/dungeons_and_skeletons_fight[examples/3d_games/dungeons_and_skeletons_fight]
 --
 - Has simple logic of movement, getting close to player (or any other enemy), short-range attack.
 - We also have simple enemy logic implemented in _"3D FPS Game"_ template and to show our link:behaviors[].
