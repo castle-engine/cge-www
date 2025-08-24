@@ -24,7 +24,7 @@ Sources:
 
   <li>Extensible system for game objects, with <b>physics, creatures with AI and navmesh</b>, and more.
 
-  TODO: to make it rock, we need fps_game upgrade to express creatures AI using behaviors
+  TODO: to make it rock, we need TCastleMoveAttack finish, see roadmap
 
 * TODO readd feature?
 

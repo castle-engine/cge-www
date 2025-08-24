@@ -4,8 +4,8 @@ include::common.adoc[]
 :cge-social-share-image: fps_editor.png
 
 cgeimg::block[
-  fps_editor.png|Castle Game Engine editor designing fps_game,
-  fps_game_2.png|fps_game run from editor
+  fps_editor.png|Castle Game Engine editor designing examples/3d_games/explore_impressive_castle,
+  fps_game_2.png|examples/3d_games/explore_impressive_castle run from editor
 ]
 
 ## Introduction
