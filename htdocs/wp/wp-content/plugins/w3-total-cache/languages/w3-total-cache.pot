@@ -2,14 +2,14 @@
 # This file is distributed under the GPL v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: W3 Total Cache 2.8.11\n"
+"Project-Id-Version: W3 Total Cache 2.8.12\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/w3-total-cache\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-07-31T23:05:45+00:00\n"
+"POT-Creation-Date: 2025-08-15T13:58:17+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: w3-total-cache\n"
@@ -5310,16 +5310,16 @@ msgid "Settings"
 msgstr ""
 
 #. translators: 1 cache hits, 2 cache total, 3 engine name, 4 reject reason.
-#: Extension_FragmentCache_WpObjectCache.php:604
+#: Extension_FragmentCache_WpObjectCache.php:603
 #, php-format
 msgid "Fragment Caching %1$d/%2$d fragments using %3$s%4$s"
 msgstr ""
 
-#: Extension_FragmentCache_WpObjectCache.php:613
+#: Extension_FragmentCache_WpObjectCache.php:612
 msgid "Fragment Cache debug info:"
 msgstr ""
 
-#: Extension_FragmentCache_WpObjectCache.php:619
+#: Extension_FragmentCache_WpObjectCache.php:618
 msgid "W3TC Fragment Cache info:"
 msgstr ""
 
@@ -6667,9 +6667,9 @@ msgstr ""
 #: inc/options/general.php:384
 #: ObjectCache_ConfigLabels.php:27
 #: ObjectCache_Plugin.php:147
-#: ObjectCache_Plugin.php:213
-#: ObjectCache_Plugin.php:221
-#: ObjectCache_Plugin.php:230
+#: ObjectCache_Plugin.php:212
+#: ObjectCache_Plugin.php:220
+#: ObjectCache_Plugin.php:229
 #: Root_AdminMenu.php:81
 #: Root_AdminMenu.php:82
 #: SetupGuide_Plugin_Admin.php:1165
