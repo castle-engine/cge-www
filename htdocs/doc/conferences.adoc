@@ -22,7 +22,7 @@ This pages collects _some_ materials from them.
 - New example shown during presentation is now part of the engine examples: https://github.com/castle-engine/castle-engine/tree/master/examples/physics/physics_throw_chickens[examples/physics/physics_throw_chickens].
 - I also shown a few of existing examples:
 ** https://github.com/castle-engine/castle-engine/tree/master/examples/platformer[platformer],
-** https://github.com/castle-engine/castle-engine/tree/master/examples/fps_game[fps_game],
+** https://github.com/castle-engine/castle-engine/tree/master/examples/3d_games/explore_impressive_castle[explore_impressive_castle],
 ** https://github.com/castle-engine/castle-engine/tree/master/examples/3d_games/dungeons_and_skeletons_fight[dungeons_and_skeletons_fight (complete FPS game using Blender, Sketchfab, Quaternius models, TCastleMoveAttack)].
 --
 

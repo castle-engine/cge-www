@@ -13,9 +13,6 @@ files, and call
 'Resources.LoadFromFiles;'); ?>
 
 <p>(from unit <code>CastleResources</code>) at initialization.
-That's i! <b>See <code>castle_game_engine/examples/fps_game/data/</code>
-for sample creatures/items</b>. You can copy their <code>resource.xml</code> files
-(and accompanying 3D models) to your project, as a starting point.
 
 <p>See <?php echo a_href_page('creating resources guide', 'creating_data_resources'); ?>
  for the detailed documentation what can be used in <code>resource.xml</code> file.

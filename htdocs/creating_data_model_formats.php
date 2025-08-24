@@ -115,7 +115,7 @@ within another X3D file, and you can simply write some X3D content by hand.
 That's good for adding scripts to 3D data, and generally adding
 stuff that is uncomfortable (or impossible) to design in your 3D modeller.
 See e.g. the
-<a href="https://github.com/castle-engine/castle-engine/blob/master/examples/fps_game/data/level/terrain_multi_texture.x3dv">terrain_multi_texture.x3dv example (X3D file from fps_game example)</a>.
+<a href="https://github.com/castle-engine/castle-engine/blob/master/examples/3d_games/explore_impressive_castle/data/level/terrain_multi_texture.x3dv">terrain_multi_texture.x3dv example (X3D file from examples/3d_games/explore_impressive_castle)</a>.
 
 <!-- <p><i>If your authoring software -->
 <!-- can export to X3D, this is the format you should probably use.</i> -->

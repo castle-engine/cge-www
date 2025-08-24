@@ -48,8 +48,8 @@ To do this, make sure cgeref:TCastleViewport.UpdateSoundListener[] is set to `tr
 
 ## Examples
 
-* link:https://github.com/castle-engine/castle-engine/tree/master/examples/user_interface/zombie_fighter[zombie_fighter] example. The viewport setup there is described in the link:user_interface[chapter about user interface].
+* https://github.com/castle-engine/castle-engine/tree/master/examples/user_interface/zombie_fighter[zombie_fighter] example.
 
-* link:https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/multiple_viewports[multiple_viewports] example. Shows a window split into 4 viewports, all showing the same scene, but with a bit different effects.
+* https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/multiple_viewports[multiple_viewports] example. Shows a window split into 4 viewports, all showing the same scene, but with a bit different effects.
 
-* link:https://github.com/castle-engine/castle-engine/tree/master/examples/fps_game[fps_game] example. Shows using additional viewport for an _"overview"_ camera looking at map from the top.
+* https://github.com/castle-engine/castle-engine/tree/master/examples/3d_games/explore_impressive_castle[explore_impressive_castle] example. Shows using additional viewport for an _"overview"_ camera looking at map from the top.

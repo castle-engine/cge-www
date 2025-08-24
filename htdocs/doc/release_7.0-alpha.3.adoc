@@ -206,7 +206,7 @@ Have fun everyone and thank you for using the engine.
 - https://github.com/castle-engine/castle-engine/tree/master/examples/animations/optimize_animations_test[optimize_animations_test]
 - https://github.com/castle-engine/castle-engine/tree/master/examples/shaders/shader_effects_on_texture[shader_effects_on_texture]
 - https://github.com/castle-engine/castle-openai[Example talking with OpenAI (ChatGPT) assistant]
-- Big graphical update to our https://github.com/castle-engine/castle-engine/tree/master/examples/fps_game[fps_game] thanks to _Alya Vaneskehyan_ and _Adrianna Matejek_. See https://castle-engine.io/wp/2022/10/21/concept-art-teaser-huge-graphical-and-functional-upgrade-to-our-fps-game-is-coming/[news]. This will be followed in next releases by functional improvements to make it easy to design FPS games.
+- Big graphical update to our https://github.com/castle-engine/castle-engine/tree/master/examples/3d_games/explore_impressive_castle[explore_impressive_castle] thanks to _Alya Vaneskehyan_ and _Adrianna Matejek_. See https://castle-engine.io/wp/2022/10/21/concept-art-teaser-huge-graphical-and-functional-upgrade-to-our-fps-game-is-coming/[news]. This will be followed in next releases by functional improvements to make it easy to design FPS games.
 --
 
 == New Tutorial and Learning Materials From Conferences

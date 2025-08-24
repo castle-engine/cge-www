@@ -4,7 +4,8 @@ castle_header('Sound');
 
 $toc = new TableOfContents(
   array(
-    new TocItem('Define common sounds in design file', 'sound_design_file'),
+    //new TocItem('Define common sounds in design file', 'sound_design_file'),
+    // moved to sound.adoc
     new TocItem('Advises about creating sound files', 'advises'),
     new TocItem('Deprecated: Sample sounds XML file', 'sample'),
     new TocItem('Deprecated: Sound groups and aliases', 'groups_aliases'),
@@ -13,17 +14,6 @@ $toc = new TableOfContents(
 ?>
 
 <?php echo $toc->html_toc(); ?>
-
-<?php echo $toc->html_section(); ?>
-
-<p>It is often useful to define a common "repository" for all the sounds.
-
-<p>To do this, create a design file in CGE editor starting from non-visual <?php echo cgeRef('TCastleComponent'); ?>
- component. As children, add <?php echo cgeRef('TCastleSound'); ?> components.
- Configure the sounds as needed, and load the design from code to play the sounds.
-
-<p>See the <code>examples/fps_game/data/sounds.castle-component</code> design file
-in <code>examples/fps_game/</code> demo.
 
 <?php echo $toc->html_section(); ?>
 

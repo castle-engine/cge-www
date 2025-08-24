@@ -158,7 +158,7 @@ cgeimg::block[delphinus_3_cge.png|Delphinus CGE package]
 
 The end! Please test it now: Create a new VCL or FMX project, drop cgeref:TCastleControl[] on a form, build and run.
 
-We also encourage to build and run some CGE examples, like `examples/fps_game` and `examples/delphi/fmx`. Though the examples would build fine even without using Delphinus to install (as their DPROJ files already contain all necessary paths).
+We also encourage to build and run some CGE examples, like `examples/3d_games/explore_impressive_castle` and `examples/delphi/fmx`. Though the examples would build fine even without using Delphinus to install (as their DPROJ files already contain all necessary paths).
 
 NOTE: In order to run some examples on Windows, you will need to place DLL files alongside the EXE file. Copy the DLL files from engine locations mentioned link:compiling_from_source.php#section_Windows[here]. Or compile the example at least once from link:editor[CGE editor], it will copy the DLL files automatically.
 

@@ -51,15 +51,15 @@ Integration with Steam done and rocks, https://castle-engine.io/steam .
 TODO: Put engine on Steam as an app. We already have registered the application with Steam, and we have the app ID. We need to add achievements to CGE editor and submit it to Steam.
 
 [#behavior_move_attack]
-### (IN PROGRESS - ALMOST DONE) Implement TCastleMoveAttack behavior, use for enemies in examples/fps_game and examples/creatures_behaviors
+### (IN PROGRESS - ALMOST DONE) Finish TCastleMoveAttack behavior
 
 In progress.
 
 - Initial `TCastleMoveAttack` done, used in
 +
 --
-- examples/creature_behaviors
-- examples/fps_game
+- https://github.com/castle-engine/castle-engine/tree/master/examples/creature_behaviors[examples/creature_behaviors]
+- https://github.com/castle-engine/castle-engine/tree/master/examples/3d_games/explore_impressive_castle[examples/3d_games/explore_impressive_castle]
 - https://github.com/castle-engine/castle-engine/tree/master/examples/3d_games/dungeons_and_skeletons_fight[examples/3d_games/dungeons_and_skeletons_fight]
 --
 - Has simple logic of movement, getting close to player (or any other enemy), short-range attack.

@@ -79,8 +79,6 @@ collision sphere (aka camera radius) larger. If you want to make the
 collision sphere larger, you can do it by placing a <code>NavigationInfo</code>
 node in a level 3D file, and adjusting the 1st item of <code>avatarSize</code>
 field &mdash; it determines the camera radius.
-See <code>examples/fps_game/data/example_level/example_level_final.x3dv</code>
-for an example VRML/X3D configuring the player.
 
 <p style="margin-left: 1em"><b>Alternative method:</b>
 There is an alternative way to place things relative to player view:

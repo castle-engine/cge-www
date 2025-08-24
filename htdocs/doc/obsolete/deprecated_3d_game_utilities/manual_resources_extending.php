@@ -9,9 +9,7 @@ to customize the behavior of creatures and items. There are a lot of methods
 to override and behaviors to customize. For example,
 you can make something interesting happen when you use an item
 (like heal the player), or when creature creature state changes
-(e.g. creatures  explodes into other creatures when dying). See
-<code>examples/fps_game/fps_game.lpr</code> for an example that customizes what happens when using a
-medkit item.
+(e.g. creatures  explodes into other creatures when dying).
 
 <p>You can start your customizations from full-features classes, like
  <?php echo removedCgeRef('TWalkAttackCreatureResource'); ?> and

@@ -125,7 +125,7 @@ make test-fpmake
 ./fpmake --globalunitdir="${FPCDIR}" install
 # The CGE installed units should now be known to FPC, no need for any -Fu or @castle-fpc.cfg
 ls -Flah $FPCDIR/units/x86_64-linux/castle-game-engine
-fpc -Mobjfpc -Fuexamples/fps_game/code/ examples/fps_game/fps_game.dpr
+fpc -Mobjfpc -Fu3d_games/explore_impressive_castle/code/ examples/3d_games/explore_impressive_castle/fps_game.dpr
 fpc -Mobjfpc -Sh -Sa -gh -gl -Futests/code/testcases/ -Futests/code/tester-castle/ tests/castle_tester_standalone.dpr
 ```
 
@@ -204,7 +204,7 @@ make generate-code
     * Win32
     * Win64
     * [Linux64](https://castle-engine.io/delphi_linux)
-* Compile examples/fps_game in Delphi (interactively, so using DPROJ)
+* Compile `examples/3d_games/explore_impressive_castle` in Delphi (interactively, so using DPROJ)
     * Win32
     * Win64
     * [Linux64](https://castle-engine.io/delphi_linux)
@@ -212,7 +212,7 @@ make generate-code
     * Compiling it should initially fail.
     * Follow https://castle-engine.io/delphi_packages to enable CGE paths for all projects, in Delphi settings.
     * Now compiling new project using `TCastleControl` should work.
-* Retest compiling examples/delphi/vcl, examples/fps_game once CGE paths are present in Delphi, to be sure it's all OK.
+* Retest compiling `examples/delphi/vcl`, `examples/3d_games/explore_impressive_castle` once CGE paths are present in Delphi, to be sure it's all OK.
 
 ## Test: Lazarus Project Group
 

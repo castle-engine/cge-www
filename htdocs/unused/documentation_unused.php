@@ -33,25 +33,12 @@ sudo mv tools/build-tool/castle-engine /usr/local/bin
 <span class="xml_highlight_comment"># Line below is just an example for Unix, the goal is to define $CASTLE_ENGINE_PATH</span>
 export CASTLE_ENGINE_PATH=`pwd`
 <span class="xml_highlight_comment"># Test that it works!</span>
-cd examples/fps_game/
+cd examples/3d_games/explore_impressive_castle/
 castle-engine compile
-</pre>
-
-  <li><p>Or you can use a simple shell script that calls FPC with proper
-    command-line options. Make sure to pass to FPC file <code>castle-fpc.cfg</code>
-    that contains engine paths and compilation options.
-    Just try compiling any example program this way, for example to compile
-    <code>examples/fps_game/fps_game.lpr</code> do this:
-
-<pre>
-cd examples/fps_game/
-./fps_game_compile.sh
 </pre>
 
     <p>And run the resulting executable (run <code>./fps_game</code>
     on Unix, or <code>fps_game.exe</code> on Windows).
-    You can use a similar approach as the <code>fps_game_compile.sh</code>
-    script for your own programs.
 
     <!-- you can also do <code>make examples</code> at top-level -->
 
@@ -174,7 +161,7 @@ boring. Mouse over the icons to see component names.--></p>
 Now compile and run from Lazarus any engine example.
 Open the project file (<code>xxx.lpi</code>) using Lazarus, and compile and run from Lazarus (F9).
 A good examples to try at the beginning are
-<code>examples/fps_game/fps_game.lpi</code> and
+<code>examples/3d_games/explore_impressive_castle/</code> and
 <code>examples/lazarus/model_3d_viewer/</code>.</p>
 
 <?php

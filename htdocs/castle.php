@@ -142,7 +142,7 @@ own models.
 
 <p>So forgive 3D graphics that look quite dated now :)
 
-<p>You want to see something pretty? Check out <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/fps_game">examples/fps_game</a> in CGE sources! This was done by real artists, and in 2022, and it looks amazing :)
+<p>You want to see something pretty? Check out <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/3d_games/explore_impressive_castle">examples/3d_games/explore_impressive_castle</a> in CGE sources! This was done by real artists, and in 2022, and it looks amazing :)
 
 <?php echo $toc->html_section(); ?>
 

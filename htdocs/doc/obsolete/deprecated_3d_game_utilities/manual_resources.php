@@ -31,8 +31,7 @@ in the game data. Their contents looks like this:</p>
 
 <p>The <code>url</code> properties refer to actual 3D models
 defining creature animations.
-See <code>examples/fps_game/</code> data for a real example how such file looks
-like. And see <?php echo a_href_page('creating resources', 'creating_data_resources'); ?>
+See <?php echo a_href_page('creating resources', 'creating_data_resources'); ?>
  for a complete
 documentation of <code>resource.xml</code> files, and how to create and export
 creature/item animations.</p>
