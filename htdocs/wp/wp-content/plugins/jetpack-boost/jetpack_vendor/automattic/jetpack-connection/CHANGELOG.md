@@ -5,9 +5,29 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [6.18.2] - 2025-08-21
+### Changed
+- Internal updates.
+
+## [6.18.1] - 2025-08-18
+### Changed
+- Internal updates.
+
+## [6.18.0] - 2025-08-14
+### Added
+- Create External_Storage class. [#44631]
+
+## [6.17.2] - 2025-08-13
+### Changed
+- Update package dependencies. [#44701]
+
+## [6.17.1] - 2025-08-11
+### Changed
+- Update package dependencies. [#44677]
+
 ## [6.17.0] - 2025-08-04
 ### Added
-- Extend get_option so it can work with external storage. [#44554]
+- Extend `get_option` so it can work with external storage. [#44554]
 
 ### Changed
 - Update connection webhooks to pass skip_pricing to authorization URL. [#44603]
@@ -1546,6 +1566,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Separate the connection library into its own package.
 
+[6.18.2]: https://github.com/Automattic/jetpack-connection/compare/v6.18.1...v6.18.2
+[6.18.1]: https://github.com/Automattic/jetpack-connection/compare/v6.18.0...v6.18.1
+[6.18.0]: https://github.com/Automattic/jetpack-connection/compare/v6.17.2...v6.18.0
+[6.17.2]: https://github.com/Automattic/jetpack-connection/compare/v6.17.1...v6.17.2
+[6.17.1]: https://github.com/Automattic/jetpack-connection/compare/v6.17.0...v6.17.1
 [6.17.0]: https://github.com/Automattic/jetpack-connection/compare/v6.16.2...v6.17.0
 [6.16.2]: https://github.com/Automattic/jetpack-connection/compare/v6.16.1...v6.16.2
 [6.16.1]: https://github.com/Automattic/jetpack-connection/compare/v6.16.0...v6.16.1

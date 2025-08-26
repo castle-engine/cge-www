@@ -13,6 +13,10 @@ use Automattic\Jetpack\Sync\Defaults;
 use Automattic\Jetpack\Sync\Functions;
 use Automattic\Jetpack\Sync\Settings;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit( 0 );
+}
+
 /**
  * Class to handle sync for callables.
  */
@@ -316,7 +320,7 @@ class Callables extends Module {
 	 * @access public
 	 *
 	 * @param array $config Full sync configuration for this sync module.
-	 * @return array Number of items yet to be enqueued.
+	 * @return int Number of items yet to be enqueued.
 	 */
 	public function estimate_full_sync_actions( $config ) { // phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable
 		return 1;
