@@ -57,6 +57,7 @@ Everyone who subscribes to support CGE with at least 10 USD / month (anywhere --
 * Carlos Rafael Fernandes Picanço
 * Chris Haley
 * Christian Williams
+* Diggi Doggi
 * Erik Johnson
 * Filip Demuynck
 * Friedrich Westermann
@@ -67,6 +68,7 @@ Everyone who subscribes to support CGE with at least 10 USD / month (anywhere --
 * Jack Taylor
 * Jan Adamec
 * Jeff Davis
+* Josh Isaak
 * Martin Heggestad
 * Matthew
 * MaxSignal
