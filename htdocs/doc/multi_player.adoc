@@ -56,6 +56,8 @@ We maintain a number of examples of using cgeref:TCastleDownload[], both in main
 
 - https://github.com/castle-engine/castle-engine/tree/master/examples/network/put_data[examples/network/put_data/] (send HTTP PUT),
 
+- https://github.com/castle-engine/castle-engine/tree/master/examples/network/random_image_from_unsplash[examples/network/random_image_from_unsplash/] (download random image from Unsplash),
+
 - https://github.com/castle-engine/castle-engine/blob/master/tools/castle-editor/code/castlesketchfab.pas[CastleSketchfab] is used by the link:editor[] to communicate with link:sketchfab[Sketchfab] API, to easily search and download Sketchfab models,
 
 - https://github.com/castle-engine/castle-engine/tree/master/examples/network/ask_openai_assistant[ask_openai_assistant (in examples/network) shows talking with an OpenAI assistant (essentially your own, customized ChatGPT)] (sends a series of HTTP POST and GET messages to talk with OpenAI server).

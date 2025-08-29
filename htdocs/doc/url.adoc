@@ -36,11 +36,15 @@ It can be used to communicate with a REST server.
 Examples:
 +
 --
-- https://github.com/castle-engine/castle-engine/blob/master/examples/network/asynchronous_download/[examples/network/asynchronous_download/] demonstrates multiple simultaneous downloads, along with a 3D animation, running smoothly.
+- https://github.com/castle-engine/castle-engine/blob/master/examples/network/asynchronous_download[examples/network/asynchronous_download] demonstrates multiple simultaneous downloads, along with a 3D animation, running smoothly.
 
-- https://github.com/castle-engine/castle-engine/blob/master/examples/network/castle_download/[examples/network/castle_download/] implements a simple command-line downloading tool (like `wget` or `curl` using our engine).
+- https://github.com/castle-engine/castle-engine/blob/master/examples/network/castle_download[examples/network/castle_download] implements a simple command-line downloading tool (like `wget` or `curl` using our engine).
 
-- https://github.com/castle-engine/castle-engine/blob/master/examples/network/remote_logging/[examples/network/remote_logging/] sends asynchronous HTTP POST message.
+- https://github.com/castle-engine/castle-engine/blob/master/examples/network/remote_logging[examples/network/remote_logging] sends asynchronous HTTP POST message.
+
+- https://github.com/castle-engine/castle-engine/tree/master/examples/network/put_data[examples/network/put_data] sends HTTP PUT request.
+
+- https://github.com/castle-engine/castle-engine/tree/master/examples/network/random_image_from_unsplash[examples/network/random_image_from_unsplash] downloads random image from Unsplash.
 
 - https://github.com/castle-engine/castle-engine/tree/master/examples/network/ask_openai_assistant[examples/network/ask_openai_assistant: Talking with OpenAI assistant (essentially your own, customized ChatGPT)] is an example of using `CastleDownload` to communicate with a REST server.
 --
