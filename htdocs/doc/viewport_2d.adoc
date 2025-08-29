@@ -20,7 +20,13 @@ For now, we advise to follow link:viewport_3d[Tutorial: Designing a 3D world], a
 
 ## Examples
 
-Consult the engine examples, like https://github.com/castle-engine/castle-engine/tree/master/examples/platformer[examples/platformer], for a fully-working game following this approach.
+Consult the engine examples, like:
+
+- https://github.com/castle-engine/castle-engine/tree/master/examples/2d_games/platformer[examples/2d_games/platformer]
+
+- https://github.com/castle-engine/castle-engine/tree/master/examples/2d_games/space_shooter[examples/2d_games/space_shooter]
+
+...for game demos following this approach.
 
 ## Create a viewport for 2D
 

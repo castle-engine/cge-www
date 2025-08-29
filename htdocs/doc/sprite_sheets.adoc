@@ -22,7 +22,7 @@ video::Eol0qzKP1Zw[youtube,width=800,height=450]
 
 == Example projects
 
-* Platformer demo in link:https://github.com/castle-engine/castle-engine/tree/master/examples/platformer[examples/platformer/] is a complete platformer demo using this technique.
+* Platformer demo in link:https://github.com/castle-engine/castle-engine/tree/master/examples/2d_games/platformer[examples/2d_games/platformer/] is a complete platformer demo using this technique.
 * The template _"2D Game"_ that you can use to create a new project using the CGE editor contains some sprite sheet animations.
 * Simple demo is also in https://github.com/castle-engine/castle-engine/tree/master/examples/sprite_sheets/sprite_sheets_demo/[examples/sprite_sheets/sprite_sheets_demo].
 

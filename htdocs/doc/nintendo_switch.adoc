@@ -15,7 +15,7 @@ It is a full integration, really 100% of the engine works on Nintendo Switch. Yo
 
 - or from the command-line: using the link:build_tool[build tool] with the `--target=nintendo-switch` parameter.
 
-All the existing CGE examples, like https://github.com/castle-engine/castle-engine/tree/master/examples/eye_of_beholder[eye_of_beholder] or https://github.com/castle-engine/castle-engine/tree/master/examples/platformer[platformer] just work on _Nintendo Switch_.
+All the existing CGE examples, like https://github.com/castle-engine/castle-engine/tree/master/examples/3d_games/eye_of_beholder[eye_of_beholder] or https://github.com/castle-engine/castle-engine/tree/master/examples/2d_games/platformer[platformer] just work on _Nintendo Switch_.
 
 == Example games
 

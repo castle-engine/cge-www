@@ -42,7 +42,7 @@ Examples:
 
 - https://github.com/castle-engine/castle-engine/blob/master/examples/network/remote_logging/[examples/network/remote_logging/] sends asynchronous HTTP POST message.
 
-- https://github.com/castle-engine/castle-openai[castle-openai: Talking with OpenAI assistant (essentially your own, customized ChatGPT)] is an example of using `CastleDownload` to communicate with a REST server.
+- https://github.com/castle-engine/castle-engine/tree/master/examples/network/ask_openai_assistant[examples/network/ask_openai_assistant: Talking with OpenAI assistant (essentially your own, customized ChatGPT)] is an example of using `CastleDownload` to communicate with a REST server.
 --
 
 - *To save*, use cgeref:UrlSaveStream[] function.

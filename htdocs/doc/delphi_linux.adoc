@@ -192,7 +192,7 @@ Simply open in Delphi any example, switch the platform on top to _Linux 64-bit_,
 
 All our examples are compatible with Delphi on Linux. This includes
 
-- Examples using cgeref:TCastleWindow[], our recommended approach to develop games with _Castle Game Engine_, where the engine controls the entire application window. Most CGE examples use it, test e.g. https://github.com/castle-engine/castle-engine/tree/master/examples/eye_of_beholder[examples/eye_of_beholder], https://github.com/castle-engine/castle-engine/tree/master/examples/platformer[examples/platformer].
+- Examples using cgeref:TCastleWindow[], our recommended approach to develop games with _Castle Game Engine_, where the engine controls the entire application window. Most CGE examples use it, test e.g. https://github.com/castle-engine/castle-engine/tree/master/examples/3d_games/eye_of_beholder[examples/3d_games/eye_of_beholder], https://github.com/castle-engine/castle-engine/tree/master/examples/2d_games/platformer[examples/2d_games/platformer].
 
 - Examples using cgeref:TCastleControl[] based on FMX. Test e.g. https://github.com/castle-engine/castle-engine/tree/master/examples/delphi/fmx[examples/delphi/fmx] and https://github.com/castle-engine/castle-engine/tree/master/examples/delphi/fmx_play_animation[examples/delphi/fmx_play_animation].
 

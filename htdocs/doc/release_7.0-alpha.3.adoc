@@ -201,11 +201,11 @@ Have fun everyone and thank you for using the engine.
 --
 - https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/mesh_update[mesh_update]
 - https://github.com/castle-engine/castle-engine/tree/master/examples/animations/split_long_animation[split_long_animation]
-- https://github.com/castle-engine/castle-engine/tree/master/examples/eye_of_beholder[eye_of_beholder]
-- https://github.com/castle-engine/castle-engine/tree/master/examples/space_shooter[space_shooter]
+- https://github.com/castle-engine/castle-engine/tree/master/examples/3d_games/eye_of_beholder[eye_of_beholder]
+- https://github.com/castle-engine/castle-engine/tree/master/examples/2d_games/space_shooter[space_shooter]
 - https://github.com/castle-engine/castle-engine/tree/master/examples/animations/optimize_animations_test[optimize_animations_test]
 - https://github.com/castle-engine/castle-engine/tree/master/examples/shaders/shader_effects_on_texture[shader_effects_on_texture]
-- https://github.com/castle-engine/castle-openai[Example talking with OpenAI (ChatGPT) assistant]
+- https://github.com/castle-engine/castle-engine/tree/master/examples/network/ask_openai_assistant[Example talking with OpenAI (ChatGPT) assistant]
 - Big graphical update to our https://github.com/castle-engine/castle-engine/tree/master/examples/3d_games/explore_impressive_castle[explore_impressive_castle] thanks to _Alya Vaneskehyan_ and _Adrianna Matejek_. See https://castle-engine.io/wp/2022/10/21/concept-art-teaser-huge-graphical-and-functional-upgrade-to-our-fps-game-is-coming/[news]. This will be followed in next releases by functional improvements to make it easy to design FPS games.
 --
 

@@ -219,7 +219,7 @@ cgeimg::block[physics_platformer_layer.png|Physics layer combo box in platformer
 cgeimg::block[physics_platformer_collisions.png|Physics collisions in platformer game]
 
 The simple usage example is in https://github.com/castle-engine/castle-engine/tree/master/examples/physics/physics_3d_collisions_layers[examples/physics/physics_3d_collisions_layers/].
-More involved example is in https://github.com/castle-engine/castle-engine/tree/master/examples/platformer[examples/platformer].
+More involved example is in https://github.com/castle-engine/castle-engine/tree/master/examples/2d_games/platformer[examples/2d_games/platformer].
 
 == Examples of physics
 

@@ -52,7 +52,7 @@ We love to see how you use CGE.</i>
   ?>
 
   <?php gallery_link('Platformer',
-    'Platformer game demo. A completely playable game, sources available in CGE as <code>examples/platformer/</code>.
+    'Platformer game demo. A completely playable game, sources available in CGE as <code>examples/2d_games/platformer/</code>.
 
     <p>By Andrzej Kilijański.',
     'platformer.png',

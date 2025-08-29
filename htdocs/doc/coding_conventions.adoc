@@ -1452,7 +1452,7 @@ If you create a new example using editor _"New Project"_ template, you should ed
 - Add a screenshot of the running application.
 +
 --
-- See how pretty it looks in https://github.com/castle-engine/castle-engine/tree/master/examples/eye_of_beholder[eye_of_beholder] or https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/occlusion_culling[occlusion_culling].
+- See how pretty it looks in https://github.com/castle-engine/castle-engine/tree/master/examples/3d_games/eye_of_beholder[eye_of_beholder] or https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/occlusion_culling[occlusion_culling].
 
 - For now, we don't have strict rule about whether to include window border and some decorations. I try to make all screenshots using GNOME 3 built-in screenshot tool, that adds a nice drop-shadow around the window border. This looks pretty on a white background when browsing GitHub. But I know that in other contexts, the shadow and window border will be a hindrance for UI, and we will remove them then. For now, don't worry about it much, any pretty screenshot is OK.
 

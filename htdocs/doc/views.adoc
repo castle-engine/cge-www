@@ -171,7 +171,7 @@ Explore the _"3D FPS game"_ and _"2D game"_ templates, by creating 2 new project
 
 Many examples in the engine show even more complicates views setup:
 
-- Platformer demo in link:https://github.com/castle-engine/castle-engine/tree/master/examples/platformer[examples/platformer/] has views for:
+- Platformer demo in link:https://github.com/castle-engine/castle-engine/tree/master/examples/2d_games/platformer[examples/2d_games/platformer/] has views for:
 +
 --
 [role="compact"]

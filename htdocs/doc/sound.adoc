@@ -57,7 +57,7 @@ cgeimg::float[
 
 - In particular open the https://github.com/castle-engine/castle-engine/tree/master/examples/audio/game_3d_sound[examples/audio/game_3d_sound] demo. It's a simple example of how cgeref:TCastleSoundSource[] and cgeref:TCastleSound[] can be set up in the CGE editor.
 
-- See also https://github.com/castle-engine/castle-engine/tree/master/examples/platformer[examples/platformer] as a demo how to design a _collection of sounds_ (see below for details).
+- See also https://github.com/castle-engine/castle-engine/tree/master/examples/2d_games/platformer[examples/2d_games/platformer] as a demo how to design a _collection of sounds_ (see below for details).
 
 == Editor sound features
 
@@ -106,11 +106,11 @@ It is often comfortable to define a _collection_ of sounds, which means that eac
 
 Do it by using a cgeref:TCastleComponent[] as a design root and adding cgeref:TCastleSound[] children. Save the resulting design to a file like `sounds.castle-component`.
 
-See also https://github.com/castle-engine/castle-engine/tree/master/examples/platformer[examples/platformer] for an example of this approach. In particular, important files in this example are:
+See also https://github.com/castle-engine/castle-engine/tree/master/examples/2d_games/platformer[examples/2d_games/platformer] for an example of this approach. In particular, important files in this example are:
 
-- https://github.com/castle-engine/castle-engine/blob/master/examples/platformer/data/sounds.castle-component[examples/platformer/data/sounds.castle-component] describes all sounds. Edit this JSON file visually in CGE editor, just double-click on it in the CGE editor _"Files"_ panel.
+- https://github.com/castle-engine/castle-engine/blob/master/examples/2d_games/platformer/data/sounds.castle-component[examples/2d_games/platformer/data/sounds.castle-component] describes all sounds. Edit this JSON file visually in CGE editor, just double-click on it in the CGE editor _"Files"_ panel.
 
-- https://github.com/castle-engine/castle-engine/blob/master/examples/platformer/code/gamesound.pas[examples/platformer/code/gamesound.pas] loads them. It defines a simple `NamedSound` routine used by the rest of code to play sounds like `SoundEngine.Play(NamedSound('something'))`.
+- https://github.com/castle-engine/castle-engine/blob/master/examples/2d_games/platformer/code/gamesound.pas[examples/2d_games/platformer/code/gamesound.pas] loads them. It defines a simple `NamedSound` routine used by the rest of code to play sounds like `SoundEngine.Play(NamedSound('something'))`.
 
 == Sound backends
 
