@@ -223,18 +223,18 @@ It means doing 2 things:
   <li>
     <p><b>Implementing a cross-platform sound backend exposing <i>Web Audio</i> API.</b>
     Likely using <a href="https://github.com/LabSound/LabSound">LabSound</a>
-    under the hood on non-web platforms (on web, we can just use browser support).
+    under the hood on non-web platforms (on <a href="web">web</a>, we can just use browser support and WebAudio).
 
     <p>To explain, we have a number of sound "backends" in Castle Game Engine:
 
     <ul>
-      <li><a href="openal">OpenAL</a> (default, as open-source and fully-featured)
-      <li><a href="fmod">FMOD</a>
-      <li><a href="nintendo_switch">Nintendo Switch-specific backend</a>
-      <li>(purely for testing) "sox backend".
+      <li><p><a href="openal">OpenAL</a> (default on most platforms, as open-source and fully-featured)
+      <li><p><a href="fmod">FMOD</a>
+      <li><p><a href="nintendo_switch">Nintendo Switch-specific backend</a>
+      <li><p><a href="web">(TODO: upcoming) WebAudio backend on the web (naturally, the default on web)</a>
+      <li><p>(purely for testing) "sox backend".
+      <li><p><a href="roadmap#wwise">(TODO) Wwise backend, another popular solution in gamedev domain.</a>
     </ul>
-
-    <p>We will likely have another: <a href="roadmap#wwise">AudioKinetic's Wwise</a>, another popular solution in gamedev domain.
 
     <!--p>In our domain (game engines), the above libraries (OpenAL, FMOD, Wwise) seem commonly used.-->
 
