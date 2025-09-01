@@ -375,3 +375,5 @@
 - LinkedIn: https://www.linkedin.com/groups/1290947/
 
 - Gaming On Linux: https://www.gamingonlinux.com/2022/09/castle-game-engine-building-up-towards-a-huge-new-release/
+
+- update our 2 entries on https://ecosystem.khronos.org/ if updated features
