@@ -127,7 +127,7 @@ float screenf_y(); // Same as screenf_position().y
 vec4 screenf_get_color(vec2 position);
 
 /* Depth buffer value at the indicated position,
-   with position being vec2 in [0..screen_width, 0..screen_height] range. */
+   with position being vec2 in [0..screen_width, 0..screen_height] range.
 
    Only available when needsDepth = TRUE at ScreenEffect node.
    The version "_fast" is faster, but less precise,
@@ -143,7 +143,7 @@ vec4 screenf_get_original_color();
 /* Get original depth at this screen position.
    Equivalent to screenf_get_depth(screenf_position()),
    but a bit faster and more precise, as it avoids doing division and then multiplication. */
-vec4 screenf_get_original_depth();
+float screenf_get_original_depth();
 
 // Float-based API with positions in 0..1 range  ------------------------------
 
