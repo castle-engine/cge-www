@@ -30,11 +30,11 @@ cgeimg::block[
 
 - link:web-demos/examples/component_gallery[User interface Components Gallery] (https://github.com/castle-engine/castle-engine/tree/master/examples/component_gallery[Source code])
 
-- link:web-demos/examples/platformer[Platformer game] (https://github.com/castle-engine/castle-engine/tree/master/examples/2d_games/platformer[Source code])
+- link:web-demos/examples/2d_games/platformer[Platformer game] (https://github.com/castle-engine/castle-engine/tree/master/examples/2d_games/platformer[Source code])
 
 - link:web-demos/examples/animations/play_animation[Test playing animations (with cross-fading) from Spine, glTF, sprite sheets] (https://github.com/castle-engine/castle-engine/tree/master/examples/animations/play_animation[Source code])
 
-- link:web-demos/examples/space_shooter[Space shooter] (https://github.com/castle-engine/castle-engine/tree/master/examples/2d_games/space_shooter[Source code])
+- link:web-demos/examples/2d_games/space_shooter[Space shooter] (https://github.com/castle-engine/castle-engine/tree/master/examples/2d_games/space_shooter[Source code])
 
 - link:web-demos/examples/tiled/map_viewer[Tiled Map Viewer] (https://github.com/castle-engine/castle-engine/tree/master/examples/tiled/map_viewer[Source code])
 
@@ -52,7 +52,7 @@ cgeimg::block[
 
 - link:web-demos/castle-model-viewer-mobile[Castle Model Viewer (Mobile)] (https://github.com/castle-engine/castle-model-viewer-mobile/[Source code]). While you cannot (yet) open arbitrary files with it, but you can explore predefined files (glTF, X3D, Spine), switching animations, walk / examine modes, and finally you can view your WebGL properties.
 
-- link:web-demos/examples/eye_of_beholder[Eye of Beholder] (https://github.com/castle-engine/castle-engine/tree/master/examples/3d_games/eye_of_beholder[Source code])
+- link:web-demos/examples/3d_games/eye_of_beholder[Eye of Beholder] (https://github.com/castle-engine/castle-engine/tree/master/examples/3d_games/eye_of_beholder[Source code])
 
 - link:web-demos/examples/creature_behaviors[Creature behaviors (our simple creature AI, fight with skeletons)] (https://github.com/castle-engine/castle-engine/tree/master/examples/creature_behaviors[Source code])
 
@@ -69,6 +69,10 @@ WARNING: TODO: Note that "mouse look" is not correct yet, the mouse cursor is vi
 - link:web-demos/tools/castle-editor-portable[Castle Game Engine - "Portable" Editor] (https://github.com/castle-engine/castle-engine/tree/master/tools/castle-editor-portable[Source code])
 +
 WARNING: Early preview, just to show that "we can" :) Not suitable for any real work, lots of features are still missing, use link:editor[real editor (only available on desktops)] instead for real work now.
+
+- link:web-demos/examples/3d_games/dungeons_and_skeletons_fight[Dungeons and Skeletons Fight] (https://github.com/castle-engine/castle-engine/tree/master/examples/3d_games/dungeons_and_skeletons_fight[Source code])
+
+- link:web-demos/examples/3d_games/walking_adventure[Walking Adventure] (https://github.com/castle-engine/castle-engine/tree/master/examples/3d_games/walking_adventure[Source code])
 
 ////
 TODO: These demos run, but no sound yet.
