@@ -362,6 +362,7 @@ Defaults:
   <ios
      team="..."
      override_qualified_name="org.example.ios.qualified.name"
+     override_icon="ios_icon.png"
      uses_non_exempt_encryption="true|false"
   >
     <override_version value="1.0" code="1" />
@@ -378,6 +379,7 @@ The `<ios>` element provides various extra iOS-specific information.
 * `team` is the identifier of your Apple team, used to sign the application. See https://stackoverflow.com/questions/18727894/how-can-i-find-my-apple-developer-team-id-and-team-agent-apple-id[how to find my Apple Developer Id]. You can also set the _Development Team_ using the XCode GUI before compiling the project.
 // (And you can see what was written as `DEVELOPMENT_TEAM = ...` to the `xxx.xcodeproj` file, to know what is your team id.)
 * `override_qualified_name` overrides the qualified name (by default taken from `qualified_name`) for iOS. This allows you to use different qualified names for Android and iOS applications, in case you need it.
+* `override_icon` overrides the icon (by default taken from `<icons>`) for iOS. This allows you to use different icon for iOS than the other platforms (Android, desktop etc.), in case you need it.
 * `<override_version>`, if specified, overrides the main `<version>` only for iOS. This allows you to use different version name for iOS release than the other platforms (Android, desktop etc.), in case you need it. On iOS,
  ** the version display value (`value` within `<version>` or `<override_version>`) must match the version set in _iTunes Connect_ website (where you release iOS applications).
  ** the numeric version code (`code` within `<version>` or `<override_version>`) isn't used for now.
