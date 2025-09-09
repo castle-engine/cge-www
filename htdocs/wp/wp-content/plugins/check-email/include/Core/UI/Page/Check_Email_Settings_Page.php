@@ -251,8 +251,17 @@ class Check_Email_Settings_Page extends Check_Email_BasePage {
 			
 		?>
 		<div class="wrap">
+			<div style="display:flex; align-items:center; justify-content:space-between;">
+                <h1 style="margin-left:5px;"><?php esc_html_e('Check & Log Email', 'check-email'); ?></h1>
+                <div>
+                    <?php echo apply_filters('pro_upgrade_banner', '', []); ?>
+                </div>
+            </div>
 
 			<nav class="nav-tab-wrapper">
+				<?php if(!defined('CK_MAIL_PRO_VERSION')){ ?>
+					<a href="https://check-email.tech/pricing/#pricings" class="nav-tab check-email-bg-color check-email-pro-btn <?php if( 'pro' == $tab ):?>nav-tab-active<?php endif; ?>" target="_blank"><?php esc_html_e( 'Upgrade to Pro', 'check-email' ); ?></a>
+				<?php } ?>
 				<a href="?page=check-email-settings" class="nav-tab <?php if( 'general' == $tab ):?>nav-tab-active<?php endif; ?>"><?php esc_html_e( 'General', 'check-email' ); ?></a>
 				<a href="?page=check-email-settings&tab=logging" class="nav-tab <?php if( 'logging' == $tab ):?>nav-tab-active<?php endif; ?>"><?php esc_html_e( 'Logging', 'check-email' ); ?></a>
 				<a href="?page=check-email-settings&tab=smtp" class="nav-tab <?php if( 'smtp' == $tab ):?>nav-tab-active<?php endif; ?>"><?php esc_html_e( 'SMTP', 'check-email' ); ?></a>
@@ -261,10 +270,7 @@ class Check_Email_Settings_Page extends Check_Email_BasePage {
 				<a href="?page=check-email-settings&tab=notify" class="nav-tab <?php if( 'notify' == $tab ):?>nav-tab-active<?php endif; ?>"><?php esc_html_e( 'Notify', 'check-email' ); ?></a>
 				<?php do_action('ck_mail_add_license_tab'); ?>
 				<a href="?page=check-email-settings&tab=support" class="nav-tab <?php if( 'support' == $tab ):?>nav-tab-active<?php endif; ?>"><?php esc_html_e( 'Help & Support', 'check-email' ); ?></a>
-				<a href="https://check-email.tech/contact/" target="_blank" class="nav-tab"><span class="dashicons dashicons-external"></span><?php esc_html_e( 'Suggest a feature', 'check-email' ); ?></a>
-				<?php if(!defined('CK_MAIL_PRO_VERSION')){ ?>
-					<a href="https://check-email.tech/pricing/#pricings" class="nav-tab check-email-bg-color check-email-pro-btn <?php if( 'pro' == $tab ):?>nav-tab-active<?php endif; ?>" target="_blank"><?php esc_html_e( 'Upgrade to Pro', 'check-email' ); ?></a>
-				<?php } ?>
+				<a href="https://check-email.tech/contact/" target="_blank" class="nav-tab"><span class="dashicons dashicons-external"></span><?php esc_html_e( 'Suggest a feature', 'check-email' ); ?></a>				
 			</nav>
 			
 			<div class="tab-content ce_tab_<?php echo esc_attr( $tab ); ?>">

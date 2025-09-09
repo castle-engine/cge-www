@@ -498,9 +498,9 @@ function ck_mail_create_spam_analyzer_table() {
             `block_listed` TEXT DEFAULT NULL,
             `broken_links` TEXT DEFAULT NULL,
             `final_score` TEXT DEFAULT NULL,
-            `test_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-            `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-            PRIMARY KEY (id)
+            `test_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+            `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            PRIMARY KEY (`id`)
         )
         ENGINE='InnoDB'
         {$charset_collate};";
@@ -673,12 +673,11 @@ function ck_mail_check_email_analyze() {
         // $api_url = 'http://127.0.0.1:8000/custom-api/email-analyze';
         $api_url = 'https://enchain.tech/custom-api/email-analyze';
         $current_user = wp_get_current_user();
-        $email = $current_user ->user_email;
+        $email = $current_user->user_email;
         if ( !empty( $email ) ) {
             $to = 'plugintest@check-email.tech';
             $title = esc_html__("Test email to analyze check email", "check-email");
             $body  = esc_html__('This test email will analyze score', "check-email");
-            $body = $body;
             $site_name = get_bloginfo('name');
             $headers = [
                 'Content-Type: text/html; charset=UTF-8',
@@ -765,7 +764,7 @@ function ck_mail_check_email_analyze() {
                     }
                 }
                 $final_score = ($link_final_score + $auth_final_score + $block_final_score + $spam_final_score);
-                $spam_score_get = get_option('check_email_spam_score_' . $current_user ->user_email,[]);
+                $spam_score_get = get_option('check_email_spam_score_' . $current_user->user_email,[]);
                 $current_date_time = current_time('Y-m-d H:i:s');
                 $spam_score_get[$current_date_time] = array('score' => $final_score, 'datetime' => $current_date_time);
                 $spam_score = array_reverse($spam_score_get);
@@ -776,7 +775,7 @@ function ck_mail_check_email_analyze() {
                     }
                     $n++;
                 }
-                update_option('check_email_spam_score_' . $current_user ->user_email, $spam_score);
+                update_option('check_email_spam_score_' . $current_user->user_email, $spam_score);
                 $result['previous_spam_score'] = $spam_score;
                 $result['previous_email_result'] = ck_email_verify($email);
                 $data_to_insert = array(
@@ -1230,16 +1229,19 @@ if ( is_admin() ) {
 
     function custom_dashboard_scripts($hook) {
         if ($hook !== 'index.php') return;
-            $suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-            wp_enqueue_script('chartjs', CK_MAIL_URL . 'assets/js/admin/chart.js', [], CK_MAIL_VERSION, true);
-            wp_register_script('custom-dashboard-chart', CK_MAIL_URL . 'assets/js/admin/checkmail-dashboard-chart'. $suffix .'.js', ['jquery','chartjs'], CK_MAIL_VERSION, true);
-            $data = array(
-                'ajax_url'                     => admin_url( 'admin-ajax.php' ),
-                'ck_mail_security_nonce'         => wp_create_nonce('ck_mail_ajax_check_nonce'),
-            );
+            $option = get_option( 'check-email-log-core' );
+            if(!isset( $option['enable_dashboard_widget']) || (isset( $option['enable_dashboard_widget']) && $option['enable_dashboard_widget'] ) ){
+                $suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+                wp_enqueue_script('chartjs', CK_MAIL_URL . 'assets/js/admin/chart.js', [], CK_MAIL_VERSION, true);
+                wp_register_script('checkmail-dashboard-chart', CK_MAIL_URL . 'assets/js/admin/checkmail-dashboard-chart'. $suffix .'.js', ['jquery','chartjs'], CK_MAIL_VERSION, true);
+                $data = array(
+                    'ajax_url'                     => admin_url( 'admin-ajax.php' ),
+                    'ck_mail_security_nonce'         => wp_create_nonce('ck_mail_ajax_check_nonce'),
+                );
 
-            wp_localize_script( 'custom-dashboard-chart', 'checkmail_chart', $data );
-            wp_enqueue_script( 'custom-dashboard-chart' );
+                wp_localize_script( 'checkmail-dashboard-chart', 'checkmail_chart', $data );
+                wp_enqueue_script( 'checkmail-dashboard-chart' );
+            }
 
         
     

@@ -4,7 +4,7 @@ Tags: logging, email, email log, smtp, log
 Requires at least: 5.0
 Tested up to: 6.8
 Requires PHP: 5.6.20
-Stable tag: 2.0.8
+Stable tag: 2.0.9
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -19,7 +19,7 @@ This WordPress plugin helps you store sent emails for auditing purposes, as well
 
 == New Features of the plugin Check & Log Email 2.0 ==
 
-- <strong>Export Logs</strong> - It allows to export email logs in multiple file format with date range and status. 
+- <strong>Export Logs</strong> - It allows to export email logs in multiple file format with date range and status <a href="https://check-email.tech/docs/knowledge-base/how-to-export-email-logs-in-check-log-email-plugin/">Learn More</a>. 
 - <strong>More Fields</strong> - Such as Cc, Bcc, Host IP, Reply To etc. 
 - <strong>Log Retention Period</strong> - It allows to deletes old emails when a certain amount of logs and time has passed. 
 - <strong>Print or save as PDF</strong> - You can print the email log, or save it as a PDF. 
@@ -32,8 +32,9 @@ This WordPress plugin helps you store sent emails for auditing purposes, as well
 - <strong>SMTP</strong> - Its allow you to setup your own smtp through Check & Email Log SMTP form. 
 - <strong>Multisite Configure</strong> - Its allow to configure global setting for all your sites. 
 - <strong>Encoding</strong> - Its allow to encode emails and phone in page content. 
-- <strong>Outlook / MS 360</strong> - Its allow to send email using 360 / outlook configuration. 
-- <strong>Email Spam Testing</strong> - Its allow to testing of your mail for accurate delivery.
+- <strong>Outlook / MS 360</strong> - Its allow to send email using 360 / outlook configuration <a href="https://check-email.tech/docs/knowledge-base/microsoft-365-outlook-smtp-support-in-check-log-email/">Learn More</a>.
+- <strong>Gmail SMTP</strong> - Its allow to send email gmail configuration <a href="https://check-email.tech/docs/knowledge-base/gmail-smtp-support-in-check-log-email/">Learn More</a>. 
+- <strong>Email Spam Testing</strong> - Its allow to testing of your mail for accurate delivery <a href="https://check-email.tech/docs/knowledge-base/how-to-use-the-email-spam-analyzer-an-essential-tool-for-every-e-commerce-store/">Learn More</a>.
 
 == Features of the plugin Check & Log Email ==
 
@@ -44,7 +45,7 @@ This WordPress plugin helps you store sent emails for auditing purposes, as well
 
 == Premium Features of the plugin Check & Log Email ==
 
-- <strong>Triggered Data</strong> - Triggered data helps you in debugging by showing the exact code that is sending that email
+- <strong>Triggered Data</strong> - Triggered data helps you in debugging by showing the exact code that is sending that email <a href="https://check-email.tech/docs/knowledge-base/how-to-use-the-trigger-option-to-debug-emails-by-identifying-the-exact-code/">Learn More</a>
 
 == Filters ==
 
@@ -114,6 +115,11 @@ Someone using one of my other plugins had trouble with emails not being sent. I 
 
 == Changelog ==
 
+= v2.0.9 - 09/09/2025 =
+- Fixed: PHP Errors #143
+- Fixed: Uncaught TypeError: Cannot read properties of null in checkmail-dashboard-chart.min.js when Dashboard Widget is disabled #147
+- Enhancement: improved the ux to increase the positioning of premium features #142
+
 = v2.0.8 - 07/07/2025 =
 - Fixed: PHP Fatal error: Uncaught TypeError in wp_mail_failed hook due to malformed add_action in Check_Email_Notify_Tab.php #145
 - Fixed: Tracking feature not working properly in WordPress Dashboard #134
@@ -178,19 +184,5 @@ Someone using one of my other plugins had trouble with emails not being sent. I 
 - Fixed: Images folder missing for jquery-ui.min.css #93
 - Enhancement: Few improvement required #94
 - Feature: Email error tracker #96
-
-= v1.0.13 - 25/06/2024 =
-- Feature: Added Log Retention Period #69
-- Feature: Added Print the email log, or save it as a PDF #70
-- Feature: Log Attachments Sent From WordPress #71
-- Feature: Added Display Host IP option #72
-- Feature: Trigger Data UI/UX Changes #74
-- Enhancement: View loggging should be on enabled by default #76
-- Feature: More Fields #77
-- Feature: Apply status filter in log list #78
-- Feature: Added Resend email feature #81
-- Feature: Added Easy migration from other email log plugins #80
-- Enhancement: Search should be searched from whole email, including the email content #82
-- Feature: Added Forward Email #83
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/check-email/trunk/changelog.txt)

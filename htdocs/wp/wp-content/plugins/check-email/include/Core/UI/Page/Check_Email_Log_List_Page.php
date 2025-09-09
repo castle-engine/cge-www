@@ -51,6 +51,12 @@ class Check_Email_Log_List_Page extends Check_Email_BasePage {
                     $this->log_list_table->prepare_items();
                     ?>
                     <div class="wrap">
+						<div style="display:flex; align-items:center; justify-content:space-between;">
+							<h1 style="margin-left:5px;"><?php esc_html_e('Check & Log Email', 'check-email'); ?></h1>
+							<div>
+								<?php echo apply_filters('pro_upgrade_banner', '', []); ?>
+							</div>
+						</div>
                             <h2><?php esc_html_e( 'Email Logs', 'check-email' ); ?></h2>
                             <?php settings_errors(); ?>
 

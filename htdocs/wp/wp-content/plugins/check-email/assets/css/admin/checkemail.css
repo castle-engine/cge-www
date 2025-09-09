@@ -557,21 +557,21 @@
 
 /* Dashboard */
 .ck_dashboard-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap:20px 0px;
-    float: left;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 20px; /* spacing between boxes */
+    margin-top: 20px;
 }
 
 .ck_dashboard-box {
-    width: 25%;
     border: 1px solid #DDD;
     background-color: #fff;
-    max-width: 30%;
     padding: 30px;
-    float: left;
+    box-sizing: border-box;
     position: relative;
+    border-radius: 6px;
 }
+
 .ck_dashboard-box button:hover {
     background-color: #1a5b8a;
 }
@@ -592,4 +592,43 @@
     background: #4CAF50;
     border-radius: 50px;
     padding: 2px 11px;
+}
+
+.celog-banner {
+    margin: 0 0 0 20px;
+    padding: 10px 16px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    line-height: 1.4;
+}
+.celog-banner--yellow { background:#fff6db; border:1px solid #ffe8a1; }
+.celog-banner--blue   { background:#f0f7ff; border:1px solid #cfe4ff; }
+.celog-banner--gray   { background:#f7f7f9; border:1px solid #e6e6ef; }
+.celog-banner--green  { background:#eefbf1; border:1px solid #c8efd3; }
+.celog-banner__body { display: flex; align-items: center; gap: 12px; }
+.celog-banner__title { margin: 0; font-size: 15px; font-weight: 600; }
+.celog-banner__msg { margin: 0; }
+.celog-banner a.button { margin: 0; }
+.celog-banner__close {
+    margin-left: 8px;
+    background: transparent;
+    border: none;
+    font-size: 16px;
+    line-height: 1;
+    cursor: pointer;
+}
+.celog-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 22px;
+}
+.celog-header h1 {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }

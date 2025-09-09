@@ -58,12 +58,20 @@ class Check_Email_Error_Tracker_list extends Check_Email_BasePage {
 		wp_enqueue_style( 'check-email-view-logs-css', $plugin_dir_url . 'assets/css/admin/view-logs'. $suffix .'.css', array( 'jquery-ui-css' ), $check_email->get_version() );
 		wp_enqueue_style( 'check-email-export-logs-css', $plugin_dir_url . 'assets/css/admin/export-logs'. $suffix .'.css', array( 'jquery-ui-css' ), $check_email->get_version() );
                 $option = get_option( 'check-email-log-core' );
-                if ( is_array( $option ) && array_key_exists( 'email_error_tracking', $option ) && 'true' === strtolower( $option['email_error_tracking'] ) ) { 
+				// echo"<pre>";
+				// print_r($option);die;
+                if ( is_array( $option ) && array_key_exists( 'email_error_tracking', $option ) && $option['email_error_tracking'] ) { 
                     add_thickbox();
 
                     $this->log_list_table->prepare_items();
                     ?>
                     <div class="wrap">
+							<div style="display:flex; align-items:center; justify-content:space-between;">
+								<h1 style="margin-left:5px;"><?php esc_html_e('Check & Log Email', 'check-email'); ?></h1>
+								<div>
+									<?php echo apply_filters('pro_upgrade_banner', '', []); ?>
+								</div>
+							</div>
                             <h2><?php esc_html_e( 'Error Tracker', 'check-email' ); ?></h2>
                             <?php settings_errors(); ?>
 
@@ -79,7 +87,18 @@ class Check_Email_Error_Tracker_list extends Check_Email_BasePage {
                             </form>
                     </div>
 		<?php
-                }
+                }else{
+					?>
+					<div class="wrap">
+						<div style="display:flex; align-items:center; justify-content:space-between;">
+							<h1 style="margin-left:5px;"><?php esc_html_e('Check & Log Email', 'check-email'); ?></h1>
+							<div>
+								<?php echo apply_filters('pro_upgrade_banner', '', []); ?>
+							</div>
+						</div>
+					</div>
+						<?php
+				}
 	}
 
 	public function load_page() {

@@ -57,7 +57,12 @@ class Check_Email_Status_Page extends Check_Email_BasePage {
 	public function render_page() {
 		?>
 		<div class="wrap">
-			<h1><?php esc_html_e( 'Check & Log Email', 'check-email' ); ?></h1>
+			<div style="display:flex; align-items:center; justify-content:space-between;">
+                <h1 style="margin-left:5px;"><?php esc_html_e('Check & Log Email', 'check-email'); ?></h1>
+                <div>
+                    <?php echo apply_filters('pro_upgrade_banner', '', []); ?>
+                </div>
+            </div>
             <?php
             global $current_user;
             global $phpmailer;

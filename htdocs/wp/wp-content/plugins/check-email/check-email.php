@@ -3,7 +3,7 @@
 * Plugin Name: 				Check & Log Email - Easy Email Testing & Mail logging
 * Description: 				Check & Log email allows you to test if your WordPress installation is sending emails correctly and logs every email.
 * Author: 					checkemail
-* Version: 					2.0.8
+* Version: 					2.0.9
 * Author URI: 				https://check-email.tech/
 * Plugin URI: 				https://check-email.tech/
 * License: 					GPLv3 or later
@@ -41,7 +41,7 @@ define( 'CK_MAIL_TOC_DIR_NAME', plugin_basename( dirname( __FILE__ ) ) );
 define( 'CK_MAIL_TOC_BASE_NAME', plugin_basename( __FILE__ ) );
 define( 'CK_MAIL_PATH', dirname( __FILE__ ) );
 define( 'CK_MAIL_URL', plugin_dir_url( __FILE__ ) );
-define( 'CK_MAIL_VERSION', '2.0.8' );
+define( 'CK_MAIL_VERSION', '2.0.9' );
 
 require_once(CK_MAIL_PATH. "/include/helper-function.php" );
 if ( is_admin() ) {
@@ -65,6 +65,7 @@ if ( version_compare( PHP_VERSION, '5.6.0', '<' ) ) {
 
 	add_action( 'admin_notices', 'check_email_compatibility_notice' );
 
+	
 	/**
 	 * Deactivate Email Log.
 	 */
@@ -76,6 +77,62 @@ if ( version_compare( PHP_VERSION, '5.6.0', '<' ) ) {
 
 	return;
 }
+
+if(!defined('CK_MAIL_PRO_VERSION')){
+	// Register a reusable filter to render the Upgrade banner.
+	add_filter('pro_upgrade_banner', function ($html, $args = []) {
+
+		$args = wp_parse_args($args, [
+			'title'       => __('Solve email delivery issues faster with PRO version (50% discount)', 'check-email'),
+			'message'     => __('Unlock advanced features like real-time monitoring and detailed analytics.', 'check-email'),
+			'cta_text'    => __('Upgrade Now', 'check-email'),
+			'cta_url'     => 'https://check-email.tech/pricing/#pricings',
+			'icon'        => '🎉',
+			'style'       => 'yellow',
+			'class'       => '',
+			'dismissible' => false,           // true/false
+        	'dismiss_key' => 'my_ck',              // unique key if dismissible (stored in localStorage)
+		]);
+		ob_start();
+
+		$classes = 'celog-banner celog-banner--' . esc_attr($args['style']) . ' ' . esc_attr($args['class']);
+
+		echo '<div class="celog-header">
+				<div class="' . $classes . '">
+					<div class="celog-banner__icon">' . esc_html($args['icon']) . '</div>
+					<div class="celog-banner__body">
+						<div class="celog-banner__title">' . esc_html($args['title']) . '</div>
+						<a href="' . esc_url($args['cta_url']) . '" target="_blank" class="check-mail-premium-btn" style="background:#f57429; border-color:#f57429">' . esc_html($args['cta_text']) . '</a>
+					</div>';
+		echo '</div>';
+		if ($args['dismissible']) {
+			echo '<button type="button" class="celog-banner__close" aria-label="' . esc_attr__('Dismiss', 'check-email') . '">×</button>';
+		}
+		echo '</div>';
+		if ($args['dismissible'] && $args['dismiss_key']) {
+			echo '<script>
+			(function(){
+				try {
+					var key = "celog_dismiss_" + ' . json_encode($args['dismiss_key']) . ';
+					var box = document.querySelector("[data-dismiss-key=\'' . esc_attr($args['dismiss_key']) . '\']");
+					if (localStorage.getItem(key)) { box.style.display="none"; return; }
+					var btn = box.querySelector(".celog-banner__close");
+					if (btn) btn.addEventListener("click", function(){
+						box.remove();
+						localStorage.setItem(key, "1");
+					});
+				} catch(e){}
+			})();
+			</script>';
+		}
+		return ob_get_clean();
+	}, 10, 2);
+
+}
+
+
+
+
 
 /**
  * Load Check Email Log.

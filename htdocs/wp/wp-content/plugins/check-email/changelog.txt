@@ -1,4 +1,9 @@
 == Changelog ==
+= v2.0.9 - 09/09/2025 =
+- Fixed: PHP Errors #143
+- Fixed: Uncaught TypeError: Cannot read properties of null in checkmail-dashboard-chart.min.js when Dashboard Widget is disabled #147
+- Enhancement: improved the ux to increase the positioning of premium features #142
+
 = v2.0.8 - 07/07/2025 =
 - Fixed: PHP Fatal error: Uncaught TypeError in wp_mail_failed hook due to malformed add_action in Check_Email_Notify_Tab.php #145
 - Fixed: Tracking feature not working properly in WordPress Dashboard #134
