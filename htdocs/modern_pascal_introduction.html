@@ -585,18 +585,20 @@ a.patreon-link:focus {
 <li><a href="#_classes">4. Classes</a>
 <ul class="sectlevel2">
 <li><a href="#_basics_2">4.1. Basics</a></li>
-<li><a href="#_inheritance_is_as">4.2. Inheritance, is, as</a></li>
-<li><a href="#_properties">4.3. Properties</a>
+<li><a href="#_inheritance_virtual_methods_override_reintroduce">4.2. Inheritance, virtual methods, override, reintroduce</a></li>
+<li><a href="#_classes_and_class_instances_constructors_destructors">4.3. Classes and class instances, constructors, destructors</a></li>
+<li><a href="#_testing_class_is_typecasting_as_tmyclassx">4.4. Testing class (is), typecasting (as, TMyClass(X))</a></li>
+<li><a href="#_properties">4.5. Properties</a>
 <ul class="sectlevel3">
-<li><a href="#_serialization_of_properties">4.3.1. Serialization of properties</a></li>
+<li><a href="#_serialization_of_properties">4.5.1. Serialization of properties</a></li>
 </ul>
 </li>
-<li><a href="#_exceptions_quick_example">4.4. Exceptions - Quick Example</a></li>
-<li><a href="#_visibility_specifiers">4.5. Visibility specifiers</a></li>
-<li><a href="#_default_ancestor">4.6. Default ancestor</a></li>
-<li><a href="#_self">4.7. Self</a></li>
-<li><a href="#_calling_inherited_method">4.8. Calling inherited method</a></li>
-<li><a href="#virtual-methods-section">4.9. Virtual methods, override and reintroduce</a></li>
+<li><a href="#_exceptions_quick_example">4.6. Exceptions - Quick Example</a></li>
+<li><a href="#_visibility_specifiers">4.7. Visibility specifiers</a></li>
+<li><a href="#_default_ancestor">4.8. Default ancestor</a></li>
+<li><a href="#_self">4.9. Self</a></li>
+<li><a href="#_calling_inherited_method">4.10. Calling inherited method</a></li>
+<li><a href="#virtual-methods-section">4.11. Virtual methods, override and reintroduce</a></li>
 </ul>
 </li>
 <li><a href="#_freeing_classes">5. Freeing classes</a>
@@ -1775,9 +1777,12 @@ In such cases, the last unit on the <code>uses</code> clause "wins", which means
 </div>
 </div>
 <div class="sect2">
-<h3 id="_inheritance_is_as">4.2. Inheritance, is, as</h3>
+<h3 id="_inheritance_virtual_methods_override_reintroduce">4.2. Inheritance, virtual methods, override, reintroduce</h3>
 <div class="paragraph">
 <p>We have inheritance and virtual methods.</p>
+</div>
+<div class="paragraph">
+<p>In the example below, class <code>TMyClassDescendant</code> <strong>inherits</strong> from class <code>TMyClass</code>. The <code>TMyClassDescendant</code> is a <strong>descendant</strong> of <code>TMyClass</code>, and <code>TMyClass</code> is an <strong>ancestor</strong> of <code>TMyClassDescendant</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1829,8 +1834,178 @@ In such cases, the last unit on the <code>uses</code> clause "wins", which means
 </div>
 </div>
 <div class="paragraph">
-<p>By default methods are not virtual, declare them with <code>virtual</code> to make them so. Overrides must be marked with <code>override</code>, otherwise you will get a warning. To hide a method without overriding (usually you don&#8217;t want to do this, unless you know what you&#8217;re doing) use <code>reintroduce</code>.</p>
+<p>When a method is <strong>virtual</strong> it means that the compiler searches for the method implementation at runtime, based on the actual class of the instance. What does this mean in practice?</p>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>Run the above example unmodified. Note that the method <code>MyVirtualMethod</code> is virtual. The call <code>C.MyVirtualMethod</code> selects the appropriate implementation based on the actual class of the instance <code>C</code>. When <code>C</code> is of class <code>TMyClassDescendant</code>, the <code>TMyClassDescendant.MyVirtualMethod</code> implementation is called. Thus the output should be:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>TMyClass shows MyInt + 10: 10
+TMyClassDescendant shows MyInt + 20: 20</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Now modify the above example removing the <code>virtual;</code> and <code>override;</code> pieces. Both calls <code>C.MyVirtualMethod</code> will now call the implementation from <code>TMyClass</code>, because <code>C</code> is declared as <code>TMyClass</code>, so at <em>compile-time</em> all the compiler knows is that <code>C</code> is a <code>TMyClass</code>. The output will be:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>TMyClass shows MyInt + 10: 10
+TMyClass shows MyInt + 10: 20</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In short, this is usually not what you want. You want virtual methods.</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>By default methods are not virtual, declare them with <code>virtual</code> to make them so. Overrides must be marked with <code>override</code>, otherwise you will get a warning. To hide a method (declared in ancestor as <code>virtual</code>) without overriding it (usually you don&#8217;t want to do this, unless you know what you&#8217;re doing) use <code>reintroduce</code>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_classes_and_class_instances_constructors_destructors">4.3. Classes and class instances, constructors, destructors</h3>
+<div class="paragraph">
+<p>Example in the section above shows a <strong>class</strong> called <code>TMyClass</code> (and another class called <code>TMyClassDescendant</code>). The <strong>class</strong> is a <em>type</em>, you can also think of it as a <em>template</em>. The class itself doesn&#8217;t hold any values&#8201;&#8212;&#8201;there is no memory reserved for the field <code>MyInt: Integer</code> declared in the example above.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+It is actually possible for a class to <em>"hold values"</em> by using <em>class variables</em>, but for now let&#8217;s forget about this possibility. Focus on simple classes that have only regular fields.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To reserve memory for the fields, we need to create a <strong>class instance</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Creating the class instance is done by invoking a <strong>constructor</strong>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Constructor is a special kind of a method, using the keyword <code>constructor</code>.</p>
+</li>
+<li>
+<p>Before invoking a constructor, a memory for the class instance is allocated, and then the constructor code is called.</p>
+</li>
+<li>
+<p>You don&#8217;t need to define a constructor in all your classes. All classes implicitly descend from the <code>TObject</code> which has a parameter-less constructor called <code>Create</code>. So you always have a constructor, even if you didn&#8217;t define one.</p>
+</li>
+<li>
+<p>But you <strong>can</strong> define a constructor in your class. It&#8217;s the best way to initialize a class instance. If you want to later depend that e.g. "initial value of field X is Y", then make it so (<code>X := Y;</code>) in the constructor.</p>
+</li>
+<li>
+<p>Your own constructors are usually also called just <code>Create</code>. More details about naming constructors and destructors are in <a href="#_the_virtual_destructor_called_destroy">The virtual destructor called Destroy</a>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>You invoke the constructor, allocating a class instance, like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="pascal">X := TMyClass.Create;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You define your own constructor like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="keyword">type</span>
+  TMyClass = <span class="keyword">class</span>
+  <span class="directive">public</span>
+    X: Integer;
+    <span class="keyword">constructor</span> Create;
+  <span class="keyword">end</span>;
+
+<span class="keyword">constructor</span> TMyClass.Create;
+<span class="keyword">begin</span>
+  <span class="keyword">inherited</span> Create; <span class="comment">// Call the ancestor constructor</span>
+  <span class="comment">// Initialization code here</span>
+  X := <span class="integer">123</span>;
+<span class="keyword">end</span>;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Conversely, when a class is <em>destroyed</em>, a <code>destructor</code> is called.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>It is again a special kind of a method, using the keyword <code>destructor</code>.</p>
+</li>
+<li>
+<p>After invoking the destructor, a memory for the class instance is released. Accessing the fields of the destroyed instance is no longer allowed.</p>
+</li>
+<li>
+<p>Again, you don&#8217;t need to define a destructor in all your classes. All classes implicitly descend from the <code>TObject</code> which has a parameter-less destructor called <code>Destroy</code>.</p>
+</li>
+<li>
+<p>But you <strong>can</strong> define a destructor in your class. This is your last chance to do any "cleanup". E.g. maybe your class instance created some other class instances, internal, and now they need to be freed.</p>
+</li>
+<li>
+<p>If you define one, there should be only one destructor, called <code>Destroy</code>, always with <code>override;</code>. More details why it should be so are in <a href="#_the_virtual_destructor_called_destroy">The virtual destructor called Destroy</a>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s an example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$ifdef FPC}</span> <span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span> <span class="preprocessor">{$endif}</span>
+<span class="preprocessor">{$ifdef MSWINDOWS}</span> <span class="preprocessor">{$apptype CONSOLE}</span> <span class="preprocessor">{$endif}</span>
+
+<span class="keyword">uses</span>
+  SysUtils;
+
+<span class="keyword">type</span>
+  TMyClass = <span class="keyword">class</span>
+  <span class="directive">private</span>
+    InternalStuff: TObject;
+  <span class="directive">public</span>
+    <span class="keyword">constructor</span> Create;
+    <span class="keyword">destructor</span> Destroy; <span class="directive">override</span>;
+  <span class="keyword">end</span>;
+
+<span class="keyword">constructor</span> TMyClass.Create;
+<span class="keyword">begin</span>
+  <span class="keyword">inherited</span> Create; <span class="comment">// Call the ancestor constructor at the beginning</span>
+  InternalStuff := TObject.Create;
+  Writeln(<span class="string"><span class="delimiter">'</span><span class="content">TMyClass.Create</span><span class="delimiter">'</span></span>);
+<span class="keyword">end</span>;
+
+<span class="keyword">destructor</span> TMyClass.Destroy;
+<span class="keyword">begin</span>
+  Writeln(<span class="string"><span class="delimiter">'</span><span class="content">TMyClass.Destroy</span><span class="delimiter">'</span></span>);
+  FreeAndNil(InternalStuff); <span class="comment">// will call InternalStuff.Destroy</span>
+  <span class="keyword">inherited</span> Destroy; <span class="comment">// Call the ancestor destructor at the end</span>
+<span class="keyword">end</span>;
+
+<span class="keyword">var</span>
+  C: TMyClass;
+<span class="keyword">begin</span>
+  C := TMyClass.Create;
+  <span class="keyword">try</span>
+    <span class="comment">// use C</span>
+  <span class="keyword">finally</span>
+    FreeAndNil(C); <span class="comment">// will call C.Destroy</span>
+  <span class="keyword">end</span>;
+<span class="keyword">end</span>.</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_testing_class_is_typecasting_as_tmyclassx">4.4. Testing class (is), typecasting (as, TMyClass(X))</h3>
 <div class="paragraph">
 <p>To test the class of an instance at runtime, use the <code>is</code> operator. To typecast the instance to a specific class, use the <code>as</code> operator.</p>
 </div>
@@ -1902,7 +2077,7 @@ In such cases, the last unit on the <code>uses</code> clause "wins", which means
 </div>
 </div>
 <div class="sect2">
-<h3 id="_properties">4.3. Properties</h3>
+<h3 id="_properties">4.5. Properties</h3>
 <div class="paragraph">
 <p>Properties are a very nice <em>"syntactic sugar"</em> to</p>
 </div>
@@ -2011,7 +2186,7 @@ Properties can also be defined outside of class, at a unit level. They serve an 
 </table>
 </div>
 <div class="sect3">
-<h4 id="_serialization_of_properties">4.3.1. Serialization of properties</h4>
+<h4 id="_serialization_of_properties">4.5.1. Serialization of properties</h4>
 <div class="paragraph">
 <p><em>Published properties</em> are the basis of a <em>serialization</em> (also known as <em>streaming components</em>) in Pascal. <em>Serialization</em> means that the instance data is recorded into a stream (like a file), from which it can be later restored.</p>
 </div>
@@ -2037,7 +2212,7 @@ Properties can also be defined outside of class, at a unit level. They serve an 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_exceptions_quick_example">4.4. Exceptions - Quick Example</h3>
+<h3 id="_exceptions_quick_example">4.6. Exceptions - Quick Example</h3>
 <div class="paragraph">
 <p>We have exceptions. They can be caught with <code>try &#8230;&#8203; except &#8230;&#8203; end</code> clauses, and we have <code>finally</code> sections like <code>try &#8230;&#8203; finally &#8230;&#8203; end</code>.</p>
 </div>
@@ -2083,7 +2258,7 @@ Properties can also be defined outside of class, at a unit level. They serve an 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_visibility_specifiers">4.5. Visibility specifiers</h3>
+<h3 id="_visibility_specifiers">4.7. Visibility specifiers</h3>
 <div class="paragraph">
 <p>As in most object-oriented languages, we have visibility specifiers to hide fields / methods / properties.</p>
 </div>
@@ -2117,19 +2292,19 @@ Properties can also be defined outside of class, at a unit level. They serve an 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_default_ancestor">4.6. Default ancestor</h3>
+<h3 id="_default_ancestor">4.8. Default ancestor</h3>
 <div class="paragraph">
 <p>If you don&#8217;t declare the ancestor type, every <code>class</code> inherits from <code>TObject</code>.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_self">4.7. Self</h3>
+<h3 id="_self">4.9. Self</h3>
 <div class="paragraph">
 <p>The special keyword <code>Self</code> can be used within the class implementation to explicitly refer to your own instance. It is equivalent to <code>this</code> from C++, Java and similar languages.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_calling_inherited_method">4.8. Calling inherited method</h3>
+<h3 id="_calling_inherited_method">4.10. Calling inherited method</h3>
 <div class="paragraph">
 <p>Within a method implementation, if you call another method, then by default you call the method of your own class. In the example code below, <code>TMyClass2.MyOtherMethod</code> calls <code>MyMethod</code>, which ends up calling <code>TMyClass2.MyMethod</code>.</p>
 </div>
@@ -2310,7 +2485,7 @@ In the above example, all the <code>inherited &#8230;&#8203;;</code> calls could
 </div>
 </div>
 <div class="sect2">
-<h3 id="virtual-methods-section">4.9. Virtual methods, override and reintroduce</h3>
+<h3 id="virtual-methods-section">4.11. Virtual methods, override and reintroduce</h3>
 <div class="paragraph">
 <p>By default, the methods are <em>not virtual</em>. This is similar to C++, and unlike Java.</p>
 </div>
@@ -3564,7 +3739,7 @@ S := Download(<span class="string"><span class="delimiter">'</span><span class="
   should have &quot;constref&quot; parameter, not &quot;const&quot;.
   This was the case of FPC&lt;= 3.2.0, FPC changed it in
   https://gitlab.com/freepascal.org/fpc/source/-/commit/693491048bf2c6f9122a0d8b044ad0e55382354d .
-  It is also applied to FPC fixes branch 3.2.3. }</span>
+  It is also applied to FPC fixes branch 3.2.3 and later 3.2.4(rc1). }</span>
 <span class="preprocessor">{$ifdef VER3_0}</span> <span class="preprocessor">{$define GENERICS_CONSTREF}</span> <span class="preprocessor">{$endif}</span>
 <span class="preprocessor">{$ifdef VER3_2_0}</span> <span class="preprocessor">{$define GENERICS_CONSTREF}</span> <span class="preprocessor">{$endif}</span>
 <span class="preprocessor">{$ifdef VER3_2_2}</span> <span class="preprocessor">{$define GENERICS_CONSTREF}</span> <span class="preprocessor">{$endif}</span>
@@ -4182,6 +4357,7 @@ Remember that when descending from <code>TPersistent</code>, the default <em>vis
 <pre class="CodeRay highlight"><code data-lang="pascal"><span class="comment">{ Example of Map, ForEach methods and processing list with anonymous functions. }</span>
 
 <span class="preprocessor">{$ifdef FPC}</span>
+  <span class="preprocessor">{$ifdef VER3_2}</span> <span class="preprocessor">{$message warn 'This code needs FPC &gt;= 3.3.x'}</span> <span class="keyword">begin</span> <span class="keyword">end</span>. <span class="preprocessor">{$endif}</span>
   <span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span>
   <span class="preprocessor">{$modeswitch functionreferences}</span>
   <span class="preprocessor">{$modeswitch anonymousfunctions}</span>
@@ -6353,7 +6529,7 @@ you create <em>COM interfaces</em>. This can be stated explicitly by saying <cod
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-05-30 17:33:56 +0200
+Last updated 2025-09-10 09:23:10 +0200
 </div>
 </div>
 <!-- Google analytics -->
