@@ -24,9 +24,9 @@ You can change navigation type (walk, fly, examine, 2D), jump between viewpoints
 
 This is a mobile version of link:castle-model-viewer[Castle Model Viewer], sharing the capabilities with the desktop version but with UI streamlined for mobile devices.
 
-- It is available now for Android.
+It is available for Android and (coming soon!) iOS.
 
-- We will make it available for iOS too. Please link:donate[] to help cover Apple membership cost (100 USD / year) to make this happen (one person already sponsored our Apple membership for 1 year, thank you!) and our development cost.
+NOTE: Please link:donate[] to support development of this app and (specifically to keep us available on iOS) to cover Apple membership cost (100 USD / year).
 
 == Download
 
@@ -58,9 +58,15 @@ NOTE: You can even https://github.com/castle-engine/castle-model-viewer-mobile/r
 
 === Opening your own models
 
-All supported 3D and 2D models are automatically associated with our application. Just open them from any application, for example from a web browser downloads, or a file browser like _"My Files"_, _"My Downloads"_ or https://play.google.com/store/apps/details?id=com.ghisler.android.TotalCommander["Total Commander" for Android].
+All supported 3D and 2D models are automatically associated with our application. Just open them from any application, for example from a web browser downloads, or a file browser like _"My Files"_, _"My Downloads"_.
 
 You can try it on models in https://github.com/castle-engine/castle-model-viewer-mobile/tree/master/example_models[example_models] subdirectory: visit any of the models there, click the _"Download"_ icon and choose to open with _"Castle Model Viewer"_.
+
+Android notes::
+You can also open files from https://play.google.com/store/apps/details?id=com.ghisler.android.TotalCommander["Total Commander" for Android].
+
+iOS notes::
+Web browsers on iOS, like https://apps.apple.com/pl/app/safari/id1146562112[Safari] and https://apps.apple.com/pl/app/firefox-fast-private-browser/id989804926[Firefox], have a dedicated (inside the www browser) _"Downloads"_ panel. The files you download (like 3D models from https://github.com/castle-engine/castle-model-viewer-mobile/tree/master/example_models[our example_models]) are visible there. So click on a 3D model file in the _"Downloads"_ panel to open it with _"Castle Model Viewer"_.
 
 === Models must be self-contained
 
