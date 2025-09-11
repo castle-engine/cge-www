@@ -67,6 +67,17 @@ You can also open files from https://play.google.com/store/apps/details?id=com.g
 
 iOS notes::
 Web browsers on iOS, like https://apps.apple.com/pl/app/safari/id1146562112[Safari] and https://apps.apple.com/pl/app/firefox-fast-private-browser/id989804926[Firefox], have a dedicated (inside the www browser) _"Downloads"_ panel. The files you download (like 3D models from https://github.com/castle-engine/castle-model-viewer-mobile/tree/master/example_models[our example_models]) are visible there. So click on a 3D model file in the _"Downloads"_ panel to open it with _"Castle Model Viewer"_.
++
+Screenshots below show how to download file from GitHub repository with https://github.com/castle-engine/castle-model-viewer-mobile/tree/master/example_models[our example_models] and where to click to open it:
++
+cgeimg::block[
+  ios_download_model_1.png|Castle Model Viewer Mobile iOS Download Model 1,
+  ios_download_model_2.png|Castle Model Viewer Mobile iOS Download Model 2,
+  ios_download_model_3.png|Castle Model Viewer Mobile iOS Download Model 3,
+  ios_download_model_4.png|Castle Model Viewer Mobile iOS Download Model 4,
+  ios_download_model_5.png|Castle Model Viewer Mobile iOS Download Model 5,
+  ios_download_model_6.png|Castle Model Viewer Mobile iOS Download Model 6
+]
 
 === Models must be self-contained
 
