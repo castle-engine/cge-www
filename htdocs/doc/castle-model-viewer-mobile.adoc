@@ -1,6 +1,6 @@
-# Castle Model Viewer on Android
+# Castle Model Viewer on Android and iOS
 include::common.adoc[]
-:description: Mobile viewer for 3D and 2D model formats supported by Castle Game Engine: glTF, X3D, VRML, MD3, OBJ, STL, Collada, Spine JSON, sprite sheets (and more). Supports viewing the scene in the "Examine" mode and walking in the virtual world with collision detection and gravity. Many 3D graphic effects are available like mirrors, shadows, shaders. Free and open-source software. For Android, iOS upcoming.
+:description: Mobile viewer for 3D and 2D model formats supported by Castle Game Engine: glTF, X3D, VRML, MD3, OBJ, STL, Collada, Spine JSON, sprite sheets (and more). Supports viewing the scene in the "Examine" mode and walking in the virtual world with collision detection and gravity. Many 3D graphic effects are available like mirrors, shadows, shaders. Free and open-source software. For Android and iOS.
 :cge-social-share-image: castle-model-viewer-mobile-cat.png
 
 == Introduction
@@ -24,7 +24,7 @@ You can change navigation type (walk, fly, examine, 2D), jump between viewpoints
 
 This is a mobile version of link:castle-model-viewer[Castle Model Viewer], sharing the capabilities with the desktop version but with UI streamlined for mobile devices.
 
-It is available for Android and (coming soon!) iOS.
+It is available for https://play.google.com/store/apps/details?id=io.castleengine.castle.model.viewer.mobile[Android (Google Play)] and https://apps.apple.com/app/id6752208775[iOS (App Store)].
 
 NOTE: Please link:donate[] to support development of this app and (specifically to keep us available on iOS) to cover Apple membership cost (100 USD / year).
 
@@ -42,7 +42,7 @@ cge::download-application[
   castle-model-viewer-mobile,
   castle-model-viewer-mobile,
     google-play=io.castleengine.castle.model.viewer.mobile;
-    //app-store=1562725324;
+    app-store=6752208775;
     android;
     //win64-x86_64;
     //linux-x86_64;

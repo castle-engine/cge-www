@@ -13,11 +13,16 @@ We love to see how you use CGE.</i>
 
 <div class="row">
   <?php gallery_link('Castle Model Viewer (formerly view3dscene)',
-    'Viewer for 3D and 2D models like glTF, X3D, VRML, Collada, 3DS, MD3, Wavefront OBJ, Spine and <a href="creating_data_model_formats.php">many others supported by Castle Game Engine</a>.
+    'Viewer for 3D and 2D models like glTF, X3D, VRML, IFC, Collada, 3DS, MD3, Wavefront OBJ, Spine and <a href="creating_data_model_formats.php">many others supported by Castle Game Engine</a>.
     Explore the virtual world, with collision-checking, gravity, interactive animations, shadows, mirrors, shaders and more.
     Can also convert various models to X3D.',
     'view3dscene_outlines.png',
     'doc/castle-model-viewer'); ?>
+
+  <?php gallery_link('Castle Model Viewer Mobile',
+    'A mobile version (for <a href="https://play.google.com/store/apps/details?id=io.castleengine.castle.model.viewer.mobile">Android</a> and <a href="https://apps.apple.com/app/id6752208775">iOS</a>) of our viewer for 3D and 2D models like glTF, X3D, VRML, IFC, and more.',
+    'castle-model-viewer-mobile-feature.png',
+    'doc/castle-model-viewer-mobile'); ?>
 
 <?php gallery_link('Castle Model Converter (formerly tovrmlx3d)',
     'Command-line converter from <a href="creating_data_model_formats.php">all model formats supported by Castle Game Engine (like glTF)</a> to X3D. Can also act as validator.',
