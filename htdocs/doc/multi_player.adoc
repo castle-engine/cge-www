@@ -37,14 +37,10 @@ Features of cgeref:TCastleDownload[]:
 
 - Supports encrypted HTTPS out-of-the-box as much as possible, since HTTPS is standard nowadays. To this end, we adjust some _Indy_ and _FpHttpClient_ to make HTTPS just work.
 +
-FPC applications only have to use `OpenSSLSockets` unit, e.g. add
-+
-[source, pascal]
-----
-{$ifdef FPC} OpenSSLSockets, {$endif}
-----
-+
-to the uses clause of one of your units (like `GameInitialize`).
+[NOTE]
+====
+Applications should use cgeref:CastleHttps[] unit to enable HTTPS support. Just add it to the uses clause of one of your units (like `GameInitialize`). With some platforms and compilers, this unit actually does nothing (but it's harmless to still use it), while on others it is necessary to enable HTTPS support (it enables OpenSSL usage).
+====
 
 === Examples: asynchronous downloading, remote logging (HTTP POST), HTTP PUT, talking with OpenAI API, more
 

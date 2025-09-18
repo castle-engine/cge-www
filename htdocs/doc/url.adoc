@@ -336,12 +336,7 @@ We advise always using cgeref:TCastleDownload[]
 
 For the `https` (encrypted version of `http`) protocol to work:
 
-- For FPC: Use the `OpenSSLSockets` unit. Simply add this to the uses clause of one of your units (like `GameInitialize`):
-+
-[source,pascal]
-----
-{$ifdef FPC} OpenSSLSockets, {$endif} // support HTTPS
-----
+- To enable `https` support with all platforms and compilers, add the unit cgeref:CastleHttps[] to the `uses` clause (in any unit in your application, for example to `code/gameinitialize.pas`).
 
 - Make sure users have the OpenSSL library installed.
 +
