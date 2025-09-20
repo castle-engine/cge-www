@@ -22,7 +22,7 @@ rm -Rf "${TEMP_DIR}"
 mkdir -p "${TEMP_DIR}"
 
 # Execute and log "$@"
-do_loggging ()
+do_logging ()
 {
   echo "$@"
   "$@"
@@ -40,11 +40,11 @@ upload_sf ()
   shift 4
 
   cd "${TEMP_DIR}"
-  do_loggging download_github_release "$DOWNLOAD_GIT_ORG_REPO" "$DOWNLOAD_GIT_TAG" "$DOWNLOAD_FILE_NAME"
+  do_logging download_github_release "$DOWNLOAD_GIT_ORG_REPO" "$DOWNLOAD_GIT_TAG" "$DOWNLOAD_FILE_NAME"
 
   echo '-------------------------------------------------------------'
   echo "Uploading $DOWNLOAD_FILE_NAME to SourceForge $DIRNAME"
-  do_loggging scp "$DOWNLOAD_FILE_NAME" "${TARGET_DIR}"/"${DIRNAME}"/
+  do_logging scp "$DOWNLOAD_FILE_NAME" "${TARGET_DIR}"/"${DIRNAME}"/
 }
 
 do_castle_model_viewer ()
@@ -63,6 +63,22 @@ do_castle_game_engine ()
   upload_sf castle_game_engine castle-engine/castle-engine v"${VER}" castle-engine-"${VER}"-darwin-x86_64.zip
 }
 
-do_castle_model_viewer
+# Upload files from
+# https://github.com/castle-engine/castle-engine/releases/tag/snapshot
+do_castle_game_engine_snapshot ()
+{
+  VER="${GENERATED_VERSION_CASTLE_GAME_ENGINE}"
+  # test of $VER contains snapshot
+  if [[ "${VER}" != *"snapshot"* ]]; then
+    echo "Error: Version \"${VER}\" does not contain 'snapshot', will not upload to SourceForge."
+    exit 1
+  fi
+  upload_sf castle_game_engine castle-engine/castle-engine snapshot castle-engine-"${VER}"-win64-x86_64-bundle.zip
+  upload_sf castle_game_engine castle-engine/castle-engine snapshot castle-engine-"${VER}"-linux-x86_64-bundle.zip
+  upload_sf castle_game_engine castle-engine/castle-engine snapshot castle-engine-"${VER}"-darwin-x86_64.zip
+}
+
+#do_castle_model_viewer
 #do_castle_game_engine
+do_castle_game_engine_snapshot
 rm -Rf "${TEMP_DIR}" # reclaim disk space
