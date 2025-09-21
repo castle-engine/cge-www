@@ -54,7 +54,7 @@ makepkg -sri
 
 NOTE: This installs the latest engine version from the https://github.com/castle-engine/castle-engine/[GitHub repository (master branch)]. Bleeding edge! (But in practice, often stable to be used even for production work.)
 
-== Mirror at SourceForge
+=== Mirror at SourceForge
 
 If for some reason https://github.com/castle-engine/castle-engine/releases[downloading releases from GitHub] doesn't work for you, we mirror them on https://sourceforge.net/projects/castle-engine/files/castle_game_engine/[SourceForge (files of castle-engine project)].
 
