@@ -115,7 +115,7 @@ echo castle_thumbs(array(
 <?php
 echo castle_thumbs(array(
   array('filename' => 'export-maya-hextraction1.png', 'titlealt' => 'Maya Sample Model By Hextraction | Base Player Pod by ComboMash Entertainment Inc -- http://www.hextraction.com/ | From http://opengameart.org/content/hextraction-base-player-pod'),
-  array('filename' => 'export-maya-hextraction2-view3dscene.png', 'titlealt' => 'View in view3dscene Hextraction model exported from Maya'),
+  array('filename' => 'export-maya-hextraction2-view3dscene.png', 'titlealt' => 'View in castle-model-viewer Hextraction model exported from Maya'),
 ), 'auto', 'left');
 ?>
 

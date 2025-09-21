@@ -399,8 +399,7 @@ Shape {
   <code>scale</code> and <code>bias</code> values.
 
   <p><b>You can adjust the <code>bias</code>, <code>scale</code>
-  and <code>size</code> interactively in
-  <?php echo a_href_page("view3dscene", "view3dscene") ?>.</b>
+  and <code>size</code> interactively in <a href="castle-model-viewer">Castle Model Viewer</a>.</b>
   Using the <i>Edit->Lights Editor</i> feature, you can configure
   the <code>defaultShadowMap</code> parameters for a given light,
   and immediately see the results.

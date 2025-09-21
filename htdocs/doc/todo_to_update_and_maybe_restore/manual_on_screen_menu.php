@@ -6,7 +6,7 @@ echo castle_thumbs(array(
   array('filename' => 'on_screen_menu_castle_screen_0.png', 'titlealt' => 'On-screen menu in "The Castle" - main menu'),
   array('filename' => 'on_screen_menu_castle_screen_1.png', 'titlealt' => 'On-screen menu in "The Castle" - configure controls'),
   array('filename' => 'on_screen_menu_castle_screen_2.png', 'titlealt' => 'On-screen menu in "The Castle" - pause menu'),
-  array('filename' => 'lights_editor_shadow_maps.png', 'titlealt' => 'Lights editor in view3dscene - also an on-screen menu'),
+  array('filename' => 'lights_editor_shadow_maps.png', 'titlealt' => 'Lights editor in Castle Model Viewer - also an on-screen menu'),
   array('filename' => 'terrain1.png', 'titlealt' => 'Terrain parameters (from engine "terrain" demo) are also an on-screen menu'),
 ));
 ?>

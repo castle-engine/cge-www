@@ -3,7 +3,7 @@ include::common.adoc[]
 
 cgeimg::float[
   multiple_viewports.png|Multiple Viewports example,
-  view3dscene_viewports.png|view3dscene with 4 viewports
+  view3dscene_viewports.png|Castle Model Viewer with 4 viewports
 ]
 
 ## Introduction

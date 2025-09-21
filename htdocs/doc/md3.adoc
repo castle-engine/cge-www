@@ -11,7 +11,7 @@ See https://github.com/castle-engine/castle-engine/tree/master/examples/animatio
 
 cgeimg::block[
   tremulous_editor.png|Tremulous creature animated MD3 in Castle Game Engine editor,
-  tremulous_view3dscene.png|Tremulous animated MD3 in view3dscene,
+  tremulous_view3dscene.png|Tremulous animated MD3 in Castle Model Viewer,
   tremulous_humans_editor_1.png|Tremulous humans animated and using MD3 tags,
   tremulous_humans_editor_2.png|Tremulous humans and creatures
 ]

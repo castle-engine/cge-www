@@ -78,10 +78,6 @@ In this case, it is easiest to have
  It is <code>true</code> by default, so you're already set.
  -->
 
- <!-- (But note that <a href="view3dscene.php">view3dscene</a>
- has <code>AutoRedisplay</code> set to <code>false</code> by default.
- -->
-
 <ul>
   <li><p>If you use <code>TCastleWindow</code>, you can trivially turn on <code>TCastleWindow.FpsShowOnCaption</code>.
 
@@ -120,7 +116,7 @@ number of frames per second that we managed to display.</b>
 <ul>
   <li><p>Make sure to have an animation that constantly updates your
     screen, or use <code>AutoRedisplay</code> = <code>true</code>
-    (it is the default since CGE 6.0, so you're probably already set).
+    (it is the default, so you're probably already set).
 
     <p>Otherwise, we may not refresh the screen continuously (no point to
     redraw, if both the scene and camera are completely static; this way we let
@@ -131,7 +127,7 @@ number of frames per second that we managed to display.</b>
     or <i>"no need to render all frames"</i>.
 
 <!--
-    <p>(However, <a href="view3dscene.php">view3dscene</a> has it set to <code>false</code>,
+    <p>(However, <a href="castle-model-viewer">Castle Model Viewer</a> has it set to <code>false</code>,
     since version 3.18.0.)
 
     <p>If you don't use <code>AutoRedisplay</code>,

@@ -6,10 +6,10 @@ This is Michalis presentation plan for https://www.web3d.org/webinar-x3d-browser
 Links:
 
 * https://castle-engine.io/[Castle Game Engine]
-* https://castle-engine.io/view3dscene.php[view3dscene]
+* https://castle-engine.io/castle-model-viewer[Castle Model Viewer]
 * https://github.com/castle-engine/demo-models[demo models]
 
-== view3dscene
+== Castle Model Viewer (formerly view3dscene)
 
 * standalone
 +
@@ -134,7 +134,7 @@ in editor
 
 * convert and screenshot in batch mode
 +
-./view3dscene ../demo-models/vrml_2/castle_with_lights_and_camera.wrl --screenshot 0 a.png
+./castle-model-viewer ../demo-models/vrml_2/castle_with_lights_and_camera.wrl --screenshot 0 a.png
 
 == many ways to roll your own browser
 

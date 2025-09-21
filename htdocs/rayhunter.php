@@ -13,7 +13,7 @@ $toc = new TableOfContents(
     new TocItem('Required command-line options', 'required_options'),
     new TocItem('Optional command-line options', 'optional_options'),
     new TocItem('Some notes about 3d models handling by this ray-tracer', 'vrml_interpretation'),
-    new TocItem('Advantages over using ray-tracer built in view3dscene', 'adv_over_view3dscene')
+    new TocItem('Advantages over using ray-tracer built in castle-model-viewer', 'advantages'),
   )
 );
 
@@ -188,13 +188,8 @@ echo cge_download_application(
 
   <li><p><code>&lt;input-filename&gt;</code>
 
-    <p>3d model filename.
-
-    <p>Anything that my code can read (see
-    <?php echo a_href_page("view3dscene docs", "view3dscene"); ?>)
-    is accepted here. X3D and VRML are the best formats,
-    we also read Collada and 3DS lights, for all other formats: only
-    the headlight will shine over the scene.
+    <p>3d model filename. Any format
+    <a href="creating_data_model_formats.php">supported by our engine is OK</a>.
 
     <p><code>-</code> (single dash) as a filename means stdin.
 
@@ -309,7 +304,7 @@ echo cge_download_application(
     <p>Note that you can use <a href="castle-model-viewer">castle-model-viewer</a>
     to comfortably determine good values for these options &mdash;
     see <i>Console -> Print rayhunter command-line to render this view</i>
-    menu item in view3dscene.</dd>
+    menu item in castle-model-viewer.</dd>
 
   <dt><span class="command_line_option">--view-angle-x &lt;float&gt;</span></dt>
 
@@ -607,7 +602,7 @@ some advantages:
   <li><p>Options <code>--r-roul-continue</code>,
     <code>--direct-illum-samples-count</code>,
     <code>--primary-samples-count</code> that allow you to better control
-    path tracing are not available in <code>view3dscene</code>.
+    path tracing are not available in <code>castle-model-viewer</code>.
 
   <li><code>rayhunter</code> may work a little faster since it doesn't
     display the image while rendering. Although using
