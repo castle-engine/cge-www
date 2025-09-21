@@ -54,6 +54,10 @@ makepkg -sri
 
 NOTE: This installs the latest engine version from the https://github.com/castle-engine/castle-engine/[GitHub repository (master branch)]. Bleeding edge! (But in practice, often stable to be used even for production work.)
 
+== Mirror at SourceForge
+
+If for some reason https://github.com/castle-engine/castle-engine/releases[downloading releases from GitHub] doesn't work for you, we mirror them on https://sourceforge.net/projects/castle-engine/files/castle_game_engine/[SourceForge (files of castle-engine project)].
+
 ////
 == Debian / Ubuntu packages
 
@@ -116,7 +120,7 @@ Then, use _"Install from Folder"_ button in _Delphinus_ GUI (3rd button on the t
 Notes:
 +
 --
-- Be sure to check _"Show Log"_ at the end, to make sure installation was successfull. At the end the log should say _"Installation finished"_, not _"Error: Installation failed"_. If you encounter a problem, please consult the messages above.
+- Be sure to check _"Show Log"_ at the end, to make sure installation was successful. At the end the log should say _"Installation finished"_, not _"Error: Installation failed"_. If you encounter a problem, please consult the messages above.
 
 - If you installed CGE from zip, or link:compiling_from_source.php[from sources], the same instructions apply. Just point Delphinus to the `Delphinus.Install.json` file in the top-level CGE directory.
 

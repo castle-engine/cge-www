@@ -265,6 +265,14 @@
     cd ~/sources/castle-engine/cge-documentation/compositing_shaders_doc
     make upload
 
+## SF update
+
+We maintain a mirror on SourceForge, even though we recommend first downloading from GitHub releases. At each new release:
+
+- In `sftp://kambi,castle-engine@frs.sourceforge.net/home/frs/project/c/ca/castle-engine/castle_game_engine/`, move previous release to `old_versions` subdirectory.
+
+- Once at least one upload of new version done, and `pack/generated_versions.sh` is good, execute `scripts/sourceforge_update_defaults.sh` to update SF defaults proposed to users.
+
 ## Announcing release
 
 - Regular announcements sites:
