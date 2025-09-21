@@ -726,7 +726,7 @@ class Actions {
 				if ( $delay > 15 ) {
 					break;
 				} elseif ( $delay > 0 ) {
-					sleep( $delay );
+					sleep( (int) $delay );
 				}
 			}
 
@@ -857,6 +857,8 @@ class Actions {
 
 	/**
 	 * Adds Woo's Products sync module to existing modules for sending.
+	 *
+	 * Note: This module is currently used for WooCommerce Analytics only.
 	 *
 	 * @param array $sync_modules The list of sync modules declared prior to this filter.
 	 *
