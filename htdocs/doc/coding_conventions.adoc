@@ -724,6 +724,23 @@ begin
 end;
 ----
 
+=== Use `Assigned(Xxx)` for events/callbacks, use `Xxx <> nil` for pointers (including class instances)
+
+Like this:
+
+[source,pascal]
+----
+if Assigned(OnSomething) then
+  OnSomething(Self);
+
+if FSomeObject <> nil then
+  FSomeObject.DoSomething;
+----
+
+While `Assigned(Xxx)` and `Xxx <> nil` are interchangeable in many cases, we follow the rule above.
+
+This in particular avoids doing `Xxx <> nil` checks for events (`procedure/function...of object`). In their case, `Xxx <> nil` is really a shortcut for 2 pointer-sized comparisons, `(TMethod(Xxx).Code <> nil) and (TMethod(Xxx).Data <> nil)`. We think that using `Assigned(Xxx)` is better in this case, as it doesn't look like _one pointer comparison_, which is good -- because it is not _one pointer comparison_.
+
 [#document_everything]
 === Document at least every protected / public / published identifier, use a language that looks good in English and uses PasDoc tags
 
