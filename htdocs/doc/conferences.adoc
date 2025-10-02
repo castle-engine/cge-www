@@ -12,7 +12,16 @@ This pages collects _some_ materials from them.
 * *Upcoming*:
 +
 --
-- I will attend (and give a talk) https://pascalconference.com/[Pascal Conference organized by Sorpetaler] in _Germany (Sundern)_ on _17-21 September 2025_.
+- I will attend (and give a talk) https://www.bsc.com.pl/zlot-programistow-delphi-2025/[Zlot Programistów Delphi 2025], Polish conference near _Warsaw_ on _8-9 October 2025_.
+--
+
+* _17-21 September 2025_: https://pascalconference.com/[Pascal Conference organized by Sorpetaler] in _Germany (Sundern)_.
++
+--
+* See also my https://castle-engine.io/wp/2025/07/26/register-for-the-upcoming-pascal-conference-in-germany-early-bird-price-until-31-07/[announcement close to conference].
+* I gave a short talk about using https://castle-engine.io/ifc[IFC] and the use-case of it at https://www.sorpetaler.de/[Sorpetaler Fensterbau GmbH].
+* We also showed the engine during a lecture for students teaching Pascal.
+* I was also proud to help presenting a cool new thing made by https://github.com/BeRo1985/[Benjamin Rosseaux (BeRo)]. It's not open-source (yet), watch his GitHub for updates :)
 --
 
 * _20th June 2025_: https://www.delphiday.it/[Delphi Day] in _Italy (Piacenza)_.
