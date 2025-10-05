@@ -30,6 +30,8 @@ Once you finish this chapter, you will be able to use use the link:editor[editor
 The Java installation path can be located by going to _"File -> Settings"_ and there to _"Build, Execution, Deployment -> Build Tools -> Gradle -> Gradle JDK"_. See the screenshot below.
 +
 cgeimg::block[android_studio_java_location.png|Java location in Android Studio]
++
+NOTE: The panel _"Build, Execution, Deployment -> Build Tools -> Gradle"_ may be empty in some _Android Studio_ versions. You can still find your Java in `C:/Program Files/Android/Android Studio/jbr`, if you installed _Android Studio_ to the default location.
 
 2. _Alternatively_: Install Java separately. You want to install Java _JDK (Java Development Kit)_.
 
