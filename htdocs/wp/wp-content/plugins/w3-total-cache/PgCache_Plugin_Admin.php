@@ -116,7 +116,7 @@ class PgCache_Plugin_Admin {
 
 				$w3_cache_file_cleaner_generic = new Cache_File_Cleaner_Generic(
 					array(
-						'exclude'         => array(
+						'exclude'         => array( // phpcs:ignore WordPressVIPMinimum
 							'.htaccess',
 						),
 						'cache_dir'       => $flush_dir,
@@ -209,8 +209,16 @@ class PgCache_Plugin_Admin {
 			$url_matches     = null;
 			$sitemap_matches = null;
 
-			$xml = simplexml_load_string( $response['body'] );
+			// Disable libxml errors to prevent warnings from breaking the XML parsing.
+			$previous = \libxml_use_internal_errors( true );
+			// Load the XML response.
+			$xml = \simplexml_load_string( $response['body'] );
+			// Clear any errors that may have occurred during parsing.
+			\libxml_clear_errors();
+			// Restore the previous libxml error handling.
+			\libxml_use_internal_errors( $previous );
 
+			// Check if the XML load failed; return the URLs found so far (sitemap URL).
 			if ( false === $xml ) {
 				return $urls;
 			}

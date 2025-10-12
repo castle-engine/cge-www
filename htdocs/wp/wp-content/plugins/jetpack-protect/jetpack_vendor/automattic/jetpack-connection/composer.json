@@ -6,18 +6,18 @@
 	"require": {
 		"php": ">=7.2",
 		"automattic/jetpack-a8c-mc-stats": "^3.0.5",
-		"automattic/jetpack-admin-ui": "^0.5.10",
-		"automattic/jetpack-assets": "^4.3.1",
+		"automattic/jetpack-admin-ui": "^0.5.11",
+		"automattic/jetpack-assets": "^4.3.10",
 		"automattic/jetpack-constants": "^3.0.8",
 		"automattic/jetpack-roles": "^3.0.8",
-		"automattic/jetpack-status": "^6.0.0",
-		"automattic/jetpack-redirect": "^3.0.8"
+		"automattic/jetpack-status": "^6.0.4",
+		"automattic/jetpack-redirect": "^3.0.9"
 	},
 	"require-dev": {
 		"automattic/jetpack-test-environment": "@dev",
 		"yoast/phpunit-polyfills": "^4.0.0",
 		"brain/monkey": "^2.6.2",
-		"automattic/jetpack-changelogger": "^6.0.5",
+		"automattic/jetpack-changelogger": "^6.0.7",
 		"automattic/phpunit-select-config": "^1.0.3"
 	},
 	"suggest": {
@@ -64,7 +64,7 @@
 			"link-template": "https://github.com/Automattic/jetpack-connection/compare/v${old}...v${new}"
 		},
 		"branch-alias": {
-			"dev-trunk": "6.16.x-dev"
+			"dev-trunk": "6.18.x-dev"
 		},
 		"dependencies": {
 			"test-only": [

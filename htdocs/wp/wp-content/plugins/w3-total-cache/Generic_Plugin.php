@@ -63,6 +63,14 @@ class Generic_Plugin {
 		add_action( 'admin_bar_menu', array( $this, 'admin_bar_menu' ), 150 );
 		add_action( 'admin_bar_init', array( $this, 'admin_bar_init' ) );
 
+		if ( defined( 'W3TC_DYNAMIC_SECURITY' ) && '' !== W3TC_DYNAMIC_SECURITY ) {
+			add_filter( 'rest_post_dispatch', array( $this, 'sanitize_rest_response_dynamic_tags' ), 10, 3 );
+			add_filter( 'the_content_feed', array( $this, 'strip_dynamic_fragment_tags_filter' ) );
+			add_filter( 'the_excerpt_rss', array( $this, 'strip_dynamic_fragment_tags_filter' ) );
+			add_filter( 'comment_text_rss', array( $this, 'strip_dynamic_fragment_tags_filter' ) );
+			add_filter( 'preprocess_comment', array( $this, 'strip_dynamic_fragment_tags_from_comment' ) );
+		}
+
 		$http_user_agent = isset( $_SERVER['HTTP_USER_AGENT'] ) ? sanitize_text_field( wp_unslash( $_SERVER['HTTP_USER_AGENT'] ) ) : '';
 		if ( ! empty( Util_Request::get_string( 'w3tc_theme' ) ) && stristr( $http_user_agent, W3TC_POWERED_BY ) !== false ) {
 			add_filter( 'template', array( $this, 'template_preview' ) );
@@ -87,8 +95,128 @@ class Generic_Plugin {
 			ob_start( array( $this, 'ob_callback' ) );
 		}
 
+		$this->register_plugin_check_filters();
+
 		// Run tasks after updating this plugin.
 		$this->post_update_tasks();
+	}
+
+	/**
+	 * Removes dynamic fragment tags from comment content before storage.
+	 *
+	 * @since 2.8.13
+	 *
+	 * @param array $comment_data Comment data being processed.
+	 *
+	 * @return array
+	 */
+	public function strip_dynamic_fragment_tags_from_comment( $comment_data ) {
+		if ( isset( $comment_data['comment_content'] ) ) {
+			$comment_data['comment_content'] = $this->strip_dynamic_fragment_tags_from_string( $comment_data['comment_content'] );
+		}
+
+		return $comment_data;
+	}
+
+	/**
+	 * Removes dynamic fragment tags from RSS/feed content.
+	 *
+	 * @since 2.8.13
+	 *
+	 * @param string $content Content to sanitize.
+	 *
+	 * @return string
+	 */
+	public function strip_dynamic_fragment_tags_filter( $content ) {
+		return $this->strip_dynamic_fragment_tags_from_string( $content );
+	}
+
+	/**
+	 * Sanitizes REST API responses to prevent dynamic fragment leakage.
+	 *
+	 * @since 2.8.13
+	 *
+	 * @param \WP_REST_Response|mixed $result  Response data.
+	 * @param \WP_REST_Server         $server  REST server instance.
+	 * @param \WP_REST_Request        $request Current request.
+	 *
+	 * @return \WP_REST_Response|mixed
+	 */
+	public function sanitize_rest_response_dynamic_tags( $result, $server, $request ) {
+		unset( $server );
+
+		if ( $request instanceof \WP_REST_Request && 'edit' === $request->get_param( 'context' ) ) {
+			return $result;
+		}
+
+		$response = ( $result instanceof \WP_REST_Response ) ? $result : rest_ensure_response( $result );
+		$data     = $response->get_data();
+		$data     = $this->sanitize_dynamic_fragment_data( $data );
+		$response->set_data( $data );
+
+		return $response;
+	}
+
+	/**
+	 * Recursively removes dynamic fragment tags from REST data structures.
+	 *
+	 * @since 2.8.13
+	 *
+	 * @param mixed $data Response data.
+	 *
+	 * @return mixed
+	 */
+	private function sanitize_dynamic_fragment_data( $data ) {
+		if ( is_string( $data ) ) {
+			return $this->strip_dynamic_fragment_tags_from_string( $data );
+		}
+
+		if ( is_array( $data ) ) {
+			foreach ( $data as $key => $value ) {
+				$data[ $key ] = $this->sanitize_dynamic_fragment_data( $value );
+			}
+
+			return $data;
+		}
+
+		if ( is_object( $data ) ) {
+			foreach ( $data as $key => $value ) {
+				$data->{$key} = $this->sanitize_dynamic_fragment_data( $value );
+			}
+
+			return $data;
+		}
+
+		return $data;
+	}
+
+	/**
+	 * Removes dynamic fragment tags from a text string.
+	 *
+	 * @since 2.8.13
+	 *
+	 * @param string $value Raw content to sanitize.
+	 *
+	 * @return string
+	 */
+	private function strip_dynamic_fragment_tags_from_string( $value ) {
+		if ( ! is_string( $value ) || ! defined( 'W3TC_DYNAMIC_SECURITY' ) || '' === W3TC_DYNAMIC_SECURITY ) {
+			return $value;
+		}
+
+		$original = $value;
+		$token    = preg_quote( W3TC_DYNAMIC_SECURITY, '~' );
+		$pattern  = array(
+			'~<!--\s*mfunc\s*' . $token . '(.*)-->(.*)<!--\s*/mfunc\s*' . $token . '\s*-->~Uis',
+			'~<!--\s*mclude\s*' . $token . '(.*)-->(.*)<!--\s*/mclude\s*' . $token . '\s*-->~Uis',
+		);
+		$value    = preg_replace( $pattern, '', $value );
+
+		if ( null === $value ) {
+			$value = $original;
+		}
+
+		return str_replace( W3TC_DYNAMIC_SECURITY, '', $value );
 	}
 
 	/**
@@ -178,7 +306,6 @@ class Generic_Plugin {
 	public function init() {
 		// Load W3TC textdomain for translations.
 		$this->reset_l10n();
-		load_plugin_textdomain( W3TC_TEXT_DOMAIN, false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 
 		if ( is_multisite() && ! is_network_admin() ) {
 			global $w3_current_blog_id, $current_blog;
@@ -598,7 +725,7 @@ class Generic_Plugin {
 					$strings[] = '';
 				}
 
-				$strings = apply_filters( 'w3tc_footer_comment', $strings );
+				$strings = (array) apply_filters( 'w3tc_footer_comment', $strings );
 
 				if ( count( $strings ) ) {
 					$strings[] = '';
@@ -871,5 +998,69 @@ class Generic_Plugin {
 			$state->set( 'tasks.generic.last_run_version', W3TC_VERSION );
 			$state->save();
 		}
+	}
+
+	/**
+	 * Registers Plugin Check filters so they run in all contexts.
+	 *
+	 * @since 2.8.13
+	 *
+	 * @link https://github.com/WordPress/plugin-check/blob/1.6.0/includes/Utilities/Plugin_Request_Utility.php#L160
+	 * @link https://github.com/WordPress/plugin-check/blob/1.6.0/includes/Utilities/Plugin_Request_Utility.php#L180
+	 * @link https://github.com/WordPress/plugin-check/blob/1.6.0/includes/Checker/Checks/Plugin_Repo/Plugin_Readme_Check.php#L928
+	 *
+	 * @return void
+	 */
+	private function register_plugin_check_filters(): void {
+		// Ignore vendor packages and external library directories when running the plugin check plugin.
+		add_filter(
+			'wp_plugin_check_ignore_directories',
+			static function ( array $dirs_to_ignore ) {
+				return array_merge(
+					$dirs_to_ignore,
+					array(
+						'.github',
+						'bin',
+						'extension-example',
+						'lib',
+						'node_modules',
+						'tests',
+						'qa',
+						'vendor',
+					)
+				);
+			}
+		);
+
+		// Ignore specific files when running the plugin check plugin.
+		add_filter(
+			'wp_plugin_check_ignore_files',
+			static function ( array $files_to_ignore ) {
+				return array_merge(
+					$files_to_ignore,
+					array(
+						'.editorconfig',
+						'.gitattributes',
+						'.gitignore',
+						'.jshintrc',
+						'.phpunit.result.cache',
+						'.travis.yml',
+					)
+				);
+			}
+		);
+
+		// Ignore specific warnings when running the plugin check plugin.
+		add_filter(
+			'wp_plugin_check_ignored_readme_warnings',
+			static function ( array $ignored ) {
+				return array_merge(
+					$ignored,
+					array(
+						'trimmed_section_changelog',
+					)
+				);
+			}
+		);
 	}
 }

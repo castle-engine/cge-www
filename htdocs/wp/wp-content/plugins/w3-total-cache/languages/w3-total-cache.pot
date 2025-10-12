@@ -2,14 +2,14 @@
 # This file is distributed under the GPL v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: W3 Total Cache 2.8.12\n"
+"Project-Id-Version: W3 Total Cache 2.8.13\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/w3-total-cache\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-08-15T13:58:17+00:00\n"
+"POT-Creation-Date: 2025-10-09T15:29:28+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: w3-total-cache\n"
@@ -330,7 +330,7 @@ msgid "Security Headers: Quick Reference"
 msgstr ""
 
 #: BrowserCache_Page_View_QuickReference.php:18
-#: inc/lightbox/self_test.php:11
+#: inc/lightbox/self_test.php:19
 #: PageSpeed_Page_View_FromAPI.php:68
 msgid "Legend"
 msgstr ""
@@ -568,8 +568,8 @@ msgstr ""
 #: inc/options/cdn/azure.php:72
 #: inc/options/cdn/azuremi.php:87
 #: inc/options/cdn/azuremi.php:117
-#: inc/options/cdn/cf.php:90
-#: inc/options/cdn/cf.php:120
+#: inc/options/cdn/cf.php:98
+#: inc/options/cdn/cf.php:128
 #: inc/options/cdn/cf2.php:81
 #: inc/options/cdn/cf2.php:111
 #: inc/options/cdn/cotendo.php:70
@@ -1281,9 +1281,9 @@ msgstr ""
 #: CdnEngine_Mirror_Akamai.php:160
 #: CdnEngine_Mirror_Cotendo.php:147
 #: CdnEngine_Mirror_Edgecast.php:79
-#: inc/lightbox/self_test.php:440
-#: inc/lightbox/self_test.php:460
-#: inc/lightbox/self_test.php:474
+#: inc/lightbox/self_test.php:471
+#: inc/lightbox/self_test.php:491
+#: inc/lightbox/self_test.php:505
 msgid "OK"
 msgstr ""
 
@@ -1534,6 +1534,7 @@ msgstr ""
 #: Cdnfsd_BunnyCdn_Popup_View_Deauthorize.php:58
 #: Cdn_BunnyCdn_Page_View.php:31
 #: Cdn_BunnyCdn_Popup_View_Deauthorize.php:58
+#: inc/options/general.php:1275
 msgid "Deauthorize"
 msgstr ""
 
@@ -1545,6 +1546,7 @@ msgstr ""
 #: Cdn_RackSpaceCdn_Page_View.php:23
 #: Cdn_RackSpaceCloudFiles_Page_View.php:19
 #: Extension_CloudFlare_Page_View.php:67
+#: inc/options/general.php:1286
 msgid "Authorize"
 msgstr ""
 
@@ -1623,9 +1625,9 @@ msgstr ""
 #: Cdn_RackSpaceCloudFiles_Page_View.php:116
 #: Cdn_RackSpaceCloudFiles_Page_View.php:148
 #: Generic_Plugin_Admin.php:1139
-#: inc/lightbox/self_test.php:122
-#: inc/lightbox/self_test.php:247
-#: inc/lightbox/self_test.php:318
+#: inc/lightbox/self_test.php:153
+#: inc/lightbox/self_test.php:278
+#: inc/lightbox/self_test.php:349
 #: inc/options/about.php:21
 #: inc/options/about.php:99
 #: inc/options/about.php:119
@@ -1658,7 +1660,7 @@ msgstr ""
 #: inc/options/cdn/att.php:93
 #: inc/options/cdn/azure.php:70
 #: inc/options/cdn/azuremi.php:115
-#: inc/options/cdn/cf.php:118
+#: inc/options/cdn/cf.php:126
 #: inc/options/cdn/cf2.php:109
 #: inc/options/cdn/cotendo.php:68
 #: inc/options/cdn/cotendo.php:100
@@ -1696,7 +1698,7 @@ msgstr ""
 #: Cdn_RackSpaceCloudFiles_Page_View.php:60
 #: inc/options/cdn/azure.php:103
 #: inc/options/cdn/azuremi.php:149
-#: inc/options/cdn/cf.php:154
+#: inc/options/cdn/cf.php:162
 #: inc/options/cdn/cf2.php:145
 #: inc/options/cdn/ftp.php:327
 msgid "Canonical Name"
@@ -1903,7 +1905,8 @@ msgstr ""
 #: Cdn_RackSpaceCloudFiles_Popup_View_Containers.php:61
 #: Extension_NewRelic_Popup_View_Intro.php:57
 #: Extension_NewRelic_Popup_View_ListApplications.php:69
-#: inc/options/extensions/list.php:240
+#: inc/options/extensions/list.php:35
+#: inc/options/extensions/list.php:241
 msgid "Apply"
 msgstr ""
 
@@ -1960,7 +1963,7 @@ msgstr ""
 
 #: Cdnfsd_CloudFront_Popup_View_Distribution.php:44
 #: inc/options/about.php:52
-#: inc/options/cdn/cf.php:157
+#: inc/options/cdn/cf.php:165
 #: inc/options/cdn/cf2.php:148
 #: inc/options/cdn/s3.php:166
 #: inc/options/cdn/s3_compatible.php:133
@@ -1995,8 +1998,8 @@ msgid "Your %1$sAWS%2$s CloudFront Account Credentials"
 msgstr ""
 
 #: Cdnfsd_CloudFront_Popup_View_Intro.php:30
-#: inc/options/cdn/cf.php:26
-#: inc/options/cdn/cf.php:29
+#: inc/options/cdn/cf.php:34
+#: inc/options/cdn/cf.php:37
 #: inc/options/cdn/s3.php:32
 #: inc/options/cdn/s3.php:35
 msgid "Amazon Web Services"
@@ -2538,7 +2541,9 @@ msgstr ""
 #: Cdn_BunnyCdn_Widget_View_Unauthorized.php:104
 #: Extension_ImageService_Api.php:335
 #: Generic_WidgetAccount_View.php:46
-#: inc/options/cdn/cf.php:76
+#: inc/email/support_request.php:54
+#: inc/email/support_request.php:57
+#: inc/options/cdn/cf.php:84
 msgid "Unknown"
 msgstr ""
 
@@ -2997,7 +3002,7 @@ msgstr ""
 #: inc/options/cdn/att.php:77
 #: inc/options/cdn/azure.php:86
 #: inc/options/cdn/azuremi.php:131
-#: inc/options/cdn/cf.php:134
+#: inc/options/cdn/cf.php:142
 #: inc/options/cdn/cf2.php:125
 #: inc/options/cdn/cotendo.php:84
 #: inc/options/cdn/edgecast.php:77
@@ -3171,7 +3176,7 @@ msgstr ""
 #: inc/options/cdn/att.php:29
 #: inc/options/cdn/azure.php:38
 #: inc/options/cdn/azuremi.php:83
-#: inc/options/cdn/cf.php:86
+#: inc/options/cdn/cf.php:94
 #: inc/options/cdn/cf2.php:77
 #: inc/options/cdn/cotendo.php:36
 #: inc/options/cdn/edgecast.php:29
@@ -3189,7 +3194,7 @@ msgstr ""
 #: inc/options/cdn/att.php:47
 #: inc/options/cdn/azure.php:56
 #: inc/options/cdn/azuremi.php:101
-#: inc/options/cdn/cf.php:104
+#: inc/options/cdn/cf.php:112
 #: inc/options/cdn/cf2.php:95
 #: inc/options/cdn/cotendo.php:54
 #: inc/options/cdn/edgecast.php:47
@@ -3206,7 +3211,7 @@ msgstr ""
 #: inc/options/cdn/att.php:48
 #: inc/options/cdn/azure.php:57
 #: inc/options/cdn/azuremi.php:102
-#: inc/options/cdn/cf.php:105
+#: inc/options/cdn/cf.php:113
 #: inc/options/cdn/cf2.php:96
 #: inc/options/cdn/cotendo.php:55
 #: inc/options/cdn/edgecast.php:48
@@ -3223,7 +3228,7 @@ msgstr ""
 #: inc/options/cdn/att.php:49
 #: inc/options/cdn/azure.php:58
 #: inc/options/cdn/azuremi.php:103
-#: inc/options/cdn/cf.php:106
+#: inc/options/cdn/cf.php:114
 #: inc/options/cdn/cf2.php:97
 #: inc/options/cdn/cotendo.php:56
 #: inc/options/cdn/edgecast.php:49
@@ -3241,7 +3246,7 @@ msgstr ""
 #: inc/options/cdn/att.php:57
 #: inc/options/cdn/azure.php:66
 #: inc/options/cdn/azuremi.php:111
-#: inc/options/cdn/cf.php:114
+#: inc/options/cdn/cf.php:122
 #: inc/options/cdn/cf2.php:105
 #: inc/options/cdn/cotendo.php:64
 #: inc/options/cdn/edgecast.php:57
@@ -3892,6 +3897,12 @@ msgstr ""
 msgid "Called incorrectly, use instance()."
 msgstr ""
 
+#. Translators: 1 WordPress version.
+#: Enterprise_Dbcache_WpdbInjection_Cluster.php:801
+#, php-format
+msgid "<strong>ERROR</strong>: WordPress %1$s requires MySQL 4.1.2 or higher"
+msgstr ""
+
 #: Enterprise_SnsBase.php:58
 #: Extension_NewRelic_Service.php:203
 msgid "API Key is not configured."
@@ -3911,6 +3922,10 @@ msgstr ""
 #: Enterprise_SnsServer.php:169
 #, php-format
 msgid "Unknown action %1$s."
+msgstr ""
+
+#: extension-example/Extension_Example_Admin.php:20
+msgid "Example extension"
 msgstr ""
 
 #: extension-example/Extension_Example_Page_View.php:9
@@ -4328,7 +4343,7 @@ msgstr ""
 
 #: Extension_AlwaysCached_Plugin_Admin.php:124
 #: Extension_AlwaysCached_Plugin_Admin.php:125
-#: Generic_Plugin.php:407
+#: Generic_Plugin.php:534
 msgid "Page Cache Queue"
 msgstr ""
 
@@ -4668,10 +4683,10 @@ msgstr ""
 #: Extension_CloudFlare_Page_View.php:493
 #: Extension_CloudFlare_Page_View.php:512
 #: Extension_CloudFlare_Page_View.php:719
-#: inc/lightbox/self_test.php:276
-#: inc/lightbox/self_test.php:285
-#: inc/lightbox/self_test.php:483
-#: inc/lightbox/self_test.php:512
+#: inc/lightbox/self_test.php:307
+#: inc/lightbox/self_test.php:316
+#: inc/lightbox/self_test.php:514
+#: inc/lightbox/self_test.php:543
 msgid "Off"
 msgstr ""
 
@@ -5277,8 +5292,9 @@ msgstr ""
 
 #: Extension_FragmentCache_Plugin_Admin.php:120
 #: Extension_ImageService_Plugin_Admin.php:156
-#: Extension_ImageService_Plugin_Admin.php:599
-#: Extension_ImageService_Plugin_Admin.php:775
+#: Extension_ImageService_Plugin_Admin.php:609
+#: Extension_ImageService_Plugin_Admin.php:785
+#: Extension_NewRelic_Plugin_Admin.php:138
 #: FeatureShowcase_Plugin_Admin.php:213
 #: FeatureShowcase_Plugin_Admin.php:252
 #: FeatureShowcase_Plugin_Admin.php:268
@@ -5305,7 +5321,7 @@ msgstr ""
 #: Generic_Plugin_Admin.php:917
 #: inc/options/common/top_nav_bar.php:147
 #: inc/options/common/top_nav_bar.php:148
-#: inc/options/extensions/list.php:102
+#: inc/options/extensions/list.php:103
 msgid "Settings"
 msgstr ""
 
@@ -5481,6 +5497,10 @@ msgstr ""
 msgid "Disable fragment cache:"
 msgstr ""
 
+#: Extension_Genesis_Page_View.php:201
+msgid "Don't use fragment cache with the following hooks and for the specified user roles."
+msgstr ""
+
 #: Extension_Genesis_Page_View.php:212
 msgid "Select hooks"
 msgstr ""
@@ -5555,7 +5575,7 @@ msgstr ""
 #: Extension_ImageService_Api.php:172
 #: Extension_ImageService_Api.php:376
 #: Extension_ImageService_Api.php:394
-#: Extension_ImageService_Plugin_Admin.php:504
+#: Extension_ImageService_Plugin_Admin.php:514
 msgid "Unlimited"
 msgstr ""
 
@@ -5745,7 +5765,7 @@ msgstr ""
 
 #: Extension_ImageService_Page_View.php:224
 #: Extension_ImageService_Page_View.php:251
-#: Extension_ImageService_Plugin_Admin.php:597
+#: Extension_ImageService_Plugin_Admin.php:607
 #: UsageStatistics_Page_View.php:21
 msgid "Refresh"
 msgstr ""
@@ -5791,87 +5811,87 @@ msgstr ""
 msgid "Media Library"
 msgstr ""
 
-#: Extension_ImageService_Plugin_Admin.php:495
+#: Extension_ImageService_Plugin_Admin.php:505
 msgid "Settings saved."
 msgstr ""
 
-#: Extension_ImageService_Plugin_Admin.php:529
-#: Extension_ImageService_Plugin_Admin.php:530
+#: Extension_ImageService_Plugin_Admin.php:539
+#: Extension_ImageService_Plugin_Admin.php:540
 msgid "Total Cache WebP Converter"
 msgstr ""
 
-#: Extension_ImageService_Plugin_Admin.php:585
-#: Extension_ImageService_Plugin_Admin.php:777
-#: Extension_ImageService_Plugin_Admin.php:781
+#: Extension_ImageService_Plugin_Admin.php:595
+#: Extension_ImageService_Plugin_Admin.php:787
+#: Extension_ImageService_Plugin_Admin.php:791
 msgid "Convert"
 msgstr ""
 
-#: Extension_ImageService_Plugin_Admin.php:586
-#: Extension_ImageService_Plugin_Admin.php:765
+#: Extension_ImageService_Plugin_Admin.php:596
+#: Extension_ImageService_Plugin_Admin.php:775
 msgid "Sending..."
 msgstr ""
 
-#: Extension_ImageService_Plugin_Admin.php:587
+#: Extension_ImageService_Plugin_Admin.php:597
 msgid "Submitted"
 msgstr ""
 
-#: Extension_ImageService_Plugin_Admin.php:588
-#: Extension_ImageService_Plugin_Admin.php:768
+#: Extension_ImageService_Plugin_Admin.php:598
+#: Extension_ImageService_Plugin_Admin.php:778
 msgid "Processing..."
 msgstr ""
 
-#: Extension_ImageService_Plugin_Admin.php:589
-#: Extension_ImageService_Plugin_Admin.php:771
+#: Extension_ImageService_Plugin_Admin.php:599
+#: Extension_ImageService_Plugin_Admin.php:781
 msgid "Converted"
 msgstr ""
 
-#: Extension_ImageService_Plugin_Admin.php:590
+#: Extension_ImageService_Plugin_Admin.php:600
 msgid "Not converted"
 msgstr ""
 
-#: Extension_ImageService_Plugin_Admin.php:591
+#: Extension_ImageService_Plugin_Admin.php:601
 msgid "Reverting..."
 msgstr ""
 
-#: Extension_ImageService_Plugin_Admin.php:592
+#: Extension_ImageService_Plugin_Admin.php:602
 msgid "Reverted"
 msgstr ""
 
-#: Extension_ImageService_Plugin_Admin.php:593
-#: Extension_ImageService_Plugin_Admin.php:793
+#: Extension_ImageService_Plugin_Admin.php:603
+#: Extension_ImageService_Plugin_Admin.php:803
 msgid "Revert"
 msgstr ""
 
-#: Extension_ImageService_Plugin_Admin.php:594
+#: Extension_ImageService_Plugin_Admin.php:604
 msgid "Error"
 msgstr ""
 
-#: Extension_ImageService_Plugin_Admin.php:595
+#: Extension_ImageService_Plugin_Admin.php:605
 msgid "Failed to retrieve a response.  Please reload the page to try again."
 msgstr ""
 
-#: Extension_ImageService_Plugin_Admin.php:596
+#: Extension_ImageService_Plugin_Admin.php:606
 msgid "API error.  Please reload the page to try again,"
 msgstr ""
 
-#: Extension_ImageService_Plugin_Admin.php:598
+#: Extension_ImageService_Plugin_Admin.php:608
 msgid "Refreshing..."
 msgstr ""
 
 #. translators: 1: HTML anchor open tag, 2: HTML anchor close tag.
-#: Extension_ImageService_Plugin_Admin.php:602
+#: Extension_ImageService_Plugin_Admin.php:612
 #, php-format
 msgid "Images queued for conversion.  Progress can be seen in the %1$sMedia Library%2$s."
 msgstr ""
 
 #. translators: 1: HTML anchor open tag, 2: HTML anchor close tag.
-#: Extension_ImageService_Plugin_Admin.php:608
-#: Extension_ImageService_Plugin_Admin.php:726
+#: Extension_ImageService_Plugin_Admin.php:618
+#: Extension_ImageService_Plugin_Admin.php:736
 #, php-format
 msgid "The converted image would be larger than the original; conversion canceled.  %1$sLearn more%2$s."
 msgstr ""
 
-#: Extension_ImageService_Plugin_Admin.php:650
+#: Extension_ImageService_Plugin_Admin.php:660
 #: FeatureShowcase_Plugin_Admin.php:418
 #: inc/options/common/top_nav_bar.php:68
 #: inc/options/general.php:1095
@@ -5881,12 +5901,12 @@ msgstr ""
 msgid "WebP Converter"
 msgstr ""
 
-#: Extension_ImageService_Plugin_Admin.php:798
+#: Extension_ImageService_Plugin_Admin.php:808
 msgid "Attachment id: "
 msgstr ""
 
 #. translators: 1: Submissions.
-#: Extension_ImageService_Plugin_Admin.php:912
+#: Extension_ImageService_Plugin_Admin.php:922
 #, php-format
 msgid "Submitted %1$u image for processing."
 msgid_plural "Submitted %1$u images for processing."
@@ -5894,50 +5914,50 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. translators: 1: Successes, 2: Skipped, 3: Errored, 4: Invalid.
-#: Extension_ImageService_Plugin_Admin.php:930
+#: Extension_ImageService_Plugin_Admin.php:940
 #, php-format
 msgid "Successful: %1$u | Skipped: %2$u | Errored: %3$u | Invalid: %4$u"
 msgstr ""
 
-#: Extension_ImageService_Plugin_Admin.php:951
+#: Extension_ImageService_Plugin_Admin.php:961
 msgid "All selected optimizations have been reverted."
 msgstr ""
 
 #. translators: 1: HTML anchor open tag, 2: HTML anchor close tag.
-#: Extension_ImageService_Plugin_Admin.php:966
+#: Extension_ImageService_Plugin_Admin.php:976
 #, php-format
 msgid "Switch to %1$slist mode%2$s for WebP conversions."
 msgstr ""
 
 #. translators: 1: HTML achor open tag, 2: HTML anchor close tag.
-#: Extension_ImageService_Plugin_Admin.php:999
-#: Extension_ImageService_Plugin_Admin.php:1205
+#: Extension_ImageService_Plugin_Admin.php:1009
+#: Extension_ImageService_Plugin_Admin.php:1215
 #, php-format
 msgid "%1$sLearn more%2$s."
 msgstr ""
 
-#: Extension_ImageService_Plugin_Admin.php:1220
-#: Extension_ImageService_Plugin_Admin.php:1306
-#: Extension_ImageService_Plugin_Admin.php:1342
+#: Extension_ImageService_Plugin_Admin.php:1230
+#: Extension_ImageService_Plugin_Admin.php:1316
+#: Extension_ImageService_Plugin_Admin.php:1352
 msgid "Missing input post id."
 msgstr ""
 
 #. translators: 1: Image filepath.
-#: Extension_ImageService_Plugin_Admin.php:1236
+#: Extension_ImageService_Plugin_Admin.php:1246
 #, php-format
 msgid "File \"%1$s\" does not exist."
 msgstr ""
 
-#: Extension_ImageService_Plugin_Admin.php:1267
+#: Extension_ImageService_Plugin_Admin.php:1277
 msgid "Invalid API response."
 msgstr ""
 
-#: Extension_ImageService_Plugin_Admin.php:1334
+#: Extension_ImageService_Plugin_Admin.php:1344
 msgid "Missing converted attachment id."
 msgstr ""
 
 #. translators: 1: HTML anchor open tag, 2: HTML anchor close tag.
-#: Extension_ImageService_Plugin_Admin.php:1449
+#: Extension_ImageService_Plugin_Admin.php:1459
 #, php-format
 msgid "WP Cron is not working as expected, which is required for %1$s WebP conversions.  %2$sLearn more%3$s."
 msgstr ""
@@ -6442,7 +6462,8 @@ msgstr ""
 
 #: FeatureShowcase_Plugin_Admin.php:214
 #: inc/options/extensions/list.php:32
-#: inc/options/extensions/list.php:237
+#: inc/options/extensions/list.php:142
+#: inc/options/extensions/list.php:238
 msgid "Activate"
 msgstr ""
 
@@ -6959,7 +6980,7 @@ msgstr ""
 msgid "Clear Log"
 msgstr ""
 
-#: Generic_Plugin.php:298
+#: Generic_Plugin.php:425
 #: Generic_Plugin_Admin.php:273
 #: Generic_Plugin_Admin.php:279
 #: Generic_Plugin_Admin.php:285
@@ -6973,27 +6994,27 @@ msgstr ""
 msgid "Performance"
 msgstr ""
 
-#: Generic_Plugin.php:310
+#: Generic_Plugin.php:437
 msgid "Purge All Caches"
 msgstr ""
 
-#: Generic_Plugin.php:330
+#: Generic_Plugin.php:457
 msgid "Purge All Caches Except Bunny CDN"
 msgstr ""
 
-#: Generic_Plugin.php:356
+#: Generic_Plugin.php:483
 msgid "Purge All Caches Except Cloudflare"
 msgstr ""
 
-#: Generic_Plugin.php:368
+#: Generic_Plugin.php:495
 msgid "Purge Current Page"
 msgstr ""
 
-#: Generic_Plugin.php:379
+#: Generic_Plugin.php:506
 msgid "Purge Modules"
 msgstr ""
 
-#: Generic_Plugin.php:386
+#: Generic_Plugin.php:513
 #: inc/options/common/top_nav_bar.php:86
 #: Root_AdminMenu.php:51
 #: Root_AdminMenu.php:52
@@ -7001,7 +7022,7 @@ msgstr ""
 msgid "Feature Showcase"
 msgstr ""
 
-#: Generic_Plugin.php:396
+#: Generic_Plugin.php:523
 #: Generic_WidgetSettings.php:38
 #: Generic_WidgetSettings_View.php:96
 #: inc/options/common/top_nav_bar.php:20
@@ -7021,11 +7042,11 @@ msgstr ""
 msgid "General Settings"
 msgstr ""
 
-#: Generic_Plugin.php:418
+#: Generic_Plugin.php:545
 msgid "Manage Extensions"
 msgstr ""
 
-#: Generic_Plugin.php:428
+#: Generic_Plugin.php:555
 #: PageSpeed_Instructions.php:81
 #: PageSpeed_Instructions.php:98
 #: PageSpeed_Instructions.php:355
@@ -7034,7 +7055,7 @@ msgstr ""
 msgid "FAQ"
 msgstr ""
 
-#: Generic_Plugin.php:438
+#: Generic_Plugin.php:565
 #: inc/options/common/footer.php:62
 #: inc/options/common/top_nav_bar.php:212
 #: inc/options/common/top_nav_bar.php:213
@@ -7044,7 +7065,7 @@ msgstr ""
 msgid "Support"
 msgstr ""
 
-#: Generic_Plugin.php:449
+#: Generic_Plugin.php:576
 msgid "Debug: Overlays"
 msgstr ""
 
@@ -7246,8 +7267,8 @@ msgstr ""
 #: Generic_Plugin_Admin.php:1062
 #: Generic_Plugin_Admin.php:1071
 #: Generic_Plugin_Admin.php:1080
-#: inc/lightbox/self_test.php:120
-#: inc/lightbox/self_test.php:316
+#: inc/lightbox/self_test.php:151
+#: inc/lightbox/self_test.php:347
 #: inc/options/cdn/ftp.php:19
 #: inc/options/cdn/ftp.php:42
 #: inc/options/cdn/ftp.php:70
@@ -7469,12 +7490,18 @@ msgid "The following plugins are not compatible with W3 Total Cache and will cau
 msgstr ""
 
 #: Generic_Plugin_AdminCompatibility.php:131
+#: Generic_Plugin_AdminCompatibility.php:133
 msgid "Deactivate this plugin"
+msgstr ""
+
+#: Generic_Plugin_AdminCompatibility.php:131
+msgid "Network Deactivate"
 msgstr ""
 
 #: Generic_Plugin_AdminCompatibility.php:133
 #: inc/options/extensions/list.php:33
-#: inc/options/extensions/list.php:238
+#: inc/options/extensions/list.php:133
+#: inc/options/extensions/list.php:239
 msgid "Deactivate"
 msgstr ""
 
@@ -7686,51 +7713,51 @@ msgstr ""
 msgid "Enable Statistics"
 msgstr ""
 
-#: inc/email/support_request.php:11
+#: inc/email/support_request.php:18
 msgid "Date:"
 msgstr ""
 
-#: inc/email/support_request.php:12
+#: inc/email/support_request.php:19
 msgid "Version: "
 msgstr ""
 
-#: inc/email/support_request.php:13
+#: inc/email/support_request.php:20
 msgid "URL: "
 msgstr ""
 
-#: inc/email/support_request.php:14
+#: inc/email/support_request.php:21
 msgid "Name: "
 msgstr ""
 
-#: inc/email/support_request.php:15
+#: inc/email/support_request.php:22
 msgid "E-Mail: "
 msgstr ""
 
-#: inc/email/support_request.php:18
+#: inc/email/support_request.php:25
 msgid "Twitter: "
 msgstr ""
 
-#: inc/email/support_request.php:22
+#: inc/email/support_request.php:29
 msgid "Phone: "
 msgstr ""
 
-#: inc/email/support_request.php:26
+#: inc/email/support_request.php:33
 msgid "Forum Topic URL: "
 msgstr ""
 
-#: inc/email/support_request.php:30
+#: inc/email/support_request.php:37
 msgid "Request data: "
 msgstr ""
 
-#: inc/email/support_request.php:33
+#: inc/email/support_request.php:40
 msgid "Subject: "
 msgstr ""
 
-#: inc/email/support_request.php:45
+#: inc/email/support_request.php:52
 msgid "E-mail sent from IP: "
 msgstr ""
 
-#: inc/email/support_request.php:46
+#: inc/email/support_request.php:55
 msgid "User Agent: "
 msgstr ""
 
@@ -7885,284 +7912,284 @@ msgstr ""
 msgid "Scripts that were not already detected above may require %1$sprofessional consultation%2$s to implement."
 msgstr ""
 
-#: inc/lightbox/self_test.php:8
+#: inc/lightbox/self_test.php:16
 msgid "Compatibility Check"
 msgstr ""
 
 #. translators: 1 opening HTML span with background, 2 closing HTML span tag, 3 HTML line break tag.
-#: inc/lightbox/self_test.php:18
+#: inc/lightbox/self_test.php:26
 #, php-format
 msgid "%1$sInstalled/Ok/Yes/True/On%2$s: Functionality will work properly.%3$s"
 msgstr ""
 
 #. translators: 1 opening HTML span with background, 2 closing HTML span tag, 3 HTML line break tag.
-#: inc/lightbox/self_test.php:36
+#: inc/lightbox/self_test.php:44
 #, php-format
 msgid "%1$sNot detected/Not available/Off%2$s: May be installed, but cannot be automatically confirmed. Functionality may be limited.%3$s"
 msgstr ""
 
 #. translators: 1 opening HTML span with background, 2 closing HTML span tag, 3 HTML line break tag.
-#: inc/lightbox/self_test.php:54
+#: inc/lightbox/self_test.php:62
 #, php-format
 msgid "%1$sNot installed/Error/No/False%2$s: Plugin or some functions may not work.%3$s"
 msgstr ""
 
-#: inc/lightbox/self_test.php:74
+#: inc/lightbox/self_test.php:82
 msgid "Server Modules &amp; Resources:"
 msgstr ""
 
-#: inc/lightbox/self_test.php:78
+#: inc/lightbox/self_test.php:86
 msgid "Plugin Version:"
 msgstr ""
 
-#: inc/lightbox/self_test.php:82
+#: inc/lightbox/self_test.php:90
 msgid "PHP Version:"
 msgstr ""
 
 #. translators: 3 opening HTML acronym tag, 4 closing HTML acronym tag.
-#: inc/lightbox/self_test.php:116
+#: inc/lightbox/self_test.php:147
 #, php-format
 msgid "(required for Self-hosted (%1$sFTP%2$s) %3$sCDN%4$s support)"
 msgstr ""
 
-#: inc/lightbox/self_test.php:136
+#: inc/lightbox/self_test.php:167
 msgid "Multibyte String support:"
 msgstr ""
 
-#: inc/lightbox/self_test.php:138
-#: inc/lightbox/self_test.php:148
-#: inc/lightbox/self_test.php:158
-#: inc/lightbox/self_test.php:168
-#: inc/lightbox/self_test.php:195
-#: inc/lightbox/self_test.php:204
-#: inc/lightbox/self_test.php:213
-#: inc/lightbox/self_test.php:222
-#: inc/lightbox/self_test.php:301
-#: inc/lightbox/self_test.php:393
+#: inc/lightbox/self_test.php:169
+#: inc/lightbox/self_test.php:179
+#: inc/lightbox/self_test.php:189
+#: inc/lightbox/self_test.php:199
+#: inc/lightbox/self_test.php:226
+#: inc/lightbox/self_test.php:235
+#: inc/lightbox/self_test.php:244
+#: inc/lightbox/self_test.php:253
+#: inc/lightbox/self_test.php:332
+#: inc/lightbox/self_test.php:424
 msgid "Installed"
 msgstr ""
 
-#: inc/lightbox/self_test.php:140
-#: inc/lightbox/self_test.php:150
-#: inc/lightbox/self_test.php:160
-#: inc/lightbox/self_test.php:188
-#: inc/lightbox/self_test.php:224
-#: inc/lightbox/self_test.php:236
+#: inc/lightbox/self_test.php:171
+#: inc/lightbox/self_test.php:181
+#: inc/lightbox/self_test.php:191
+#: inc/lightbox/self_test.php:219
+#: inc/lightbox/self_test.php:255
 #: inc/lightbox/self_test.php:267
-#: inc/lightbox/self_test.php:395
+#: inc/lightbox/self_test.php:298
+#: inc/lightbox/self_test.php:426
 msgid "Not installed"
 msgstr ""
 
-#: inc/lightbox/self_test.php:142
+#: inc/lightbox/self_test.php:173
 msgid "(required for Rackspace Cloud Files support)"
 msgstr ""
 
-#: inc/lightbox/self_test.php:146
+#: inc/lightbox/self_test.php:177
 msgid "cURL extension:"
 msgstr ""
 
-#: inc/lightbox/self_test.php:152
+#: inc/lightbox/self_test.php:183
 msgid "(required for Amazon S3, Amazon CloudFront, Rackspace CloudFiles support)"
 msgstr ""
 
-#: inc/lightbox/self_test.php:162
+#: inc/lightbox/self_test.php:193
 msgid "(required for gzip compression support)"
 msgstr ""
 
-#: inc/lightbox/self_test.php:170
-#: inc/lightbox/self_test.php:303
-#: inc/lightbox/self_test.php:398
+#: inc/lightbox/self_test.php:201
+#: inc/lightbox/self_test.php:334
+#: inc/lightbox/self_test.php:429
 msgid "Not detected"
 msgstr ""
 
-#: inc/lightbox/self_test.php:172
+#: inc/lightbox/self_test.php:203
 msgid "(required for brotli compression support)"
 msgstr ""
 
-#: inc/lightbox/self_test.php:178
+#: inc/lightbox/self_test.php:209
 msgid "Installed (OPCache)"
 msgstr ""
 
-#: inc/lightbox/self_test.php:180
+#: inc/lightbox/self_test.php:211
 msgid "Installed (APC)"
 msgstr ""
 
-#: inc/lightbox/self_test.php:182
+#: inc/lightbox/self_test.php:213
 msgid "Installed (eAccelerator)"
 msgstr ""
 
-#: inc/lightbox/self_test.php:184
+#: inc/lightbox/self_test.php:215
 msgid "Installed (XCache)"
 msgstr ""
 
-#: inc/lightbox/self_test.php:186
+#: inc/lightbox/self_test.php:217
 msgid "PHP6"
 msgstr ""
 
-#: inc/lightbox/self_test.php:193
+#: inc/lightbox/self_test.php:224
 msgid "Memcached extension:"
 msgstr ""
 
-#: inc/lightbox/self_test.php:197
-#: inc/lightbox/self_test.php:206
-#: inc/lightbox/self_test.php:215
-#: inc/lightbox/self_test.php:294
+#: inc/lightbox/self_test.php:228
+#: inc/lightbox/self_test.php:237
+#: inc/lightbox/self_test.php:246
+#: inc/lightbox/self_test.php:325
 msgid "Not available"
 msgstr ""
 
-#: inc/lightbox/self_test.php:202
+#: inc/lightbox/self_test.php:233
 msgid "Memcache extension:"
 msgstr ""
 
-#: inc/lightbox/self_test.php:211
+#: inc/lightbox/self_test.php:242
 msgid "Redis extension:"
 msgstr ""
 
-#: inc/lightbox/self_test.php:220
+#: inc/lightbox/self_test.php:251
 msgid "HTML Tidy extension:"
 msgstr ""
 
-#: inc/lightbox/self_test.php:226
+#: inc/lightbox/self_test.php:257
 msgid "(required for HTML Tidy minifier support)"
 msgstr ""
 
-#: inc/lightbox/self_test.php:230
+#: inc/lightbox/self_test.php:261
 msgid "Mime type detection:"
 msgstr ""
 
-#: inc/lightbox/self_test.php:232
+#: inc/lightbox/self_test.php:263
 msgid "Installed (Fileinfo)"
 msgstr ""
 
-#: inc/lightbox/self_test.php:234
+#: inc/lightbox/self_test.php:265
 msgid "Installed (mime_content_type)"
 msgstr ""
 
 #. translators: 1 opening HTML acornym tag, 2 closing HTML acronym tag.
-#: inc/lightbox/self_test.php:243
+#: inc/lightbox/self_test.php:274
 #, php-format
 msgid "(required for %1$sCDN%2$s support)"
 msgstr ""
 
-#: inc/lightbox/self_test.php:261
+#: inc/lightbox/self_test.php:292
 msgid "Hash function:"
 msgstr ""
 
-#: inc/lightbox/self_test.php:263
+#: inc/lightbox/self_test.php:294
 msgid "Installed (hash)"
 msgstr ""
 
-#: inc/lightbox/self_test.php:265
+#: inc/lightbox/self_test.php:296
 msgid "Installed (mhash)"
 msgstr ""
 
-#: inc/lightbox/self_test.php:272
+#: inc/lightbox/self_test.php:303
 msgid "Open basedir:"
 msgstr ""
 
-#: inc/lightbox/self_test.php:274
+#: inc/lightbox/self_test.php:305
 msgid "On:"
 msgstr ""
 
-#: inc/lightbox/self_test.php:281
+#: inc/lightbox/self_test.php:312
 msgid "zlib output compression:"
 msgstr ""
 
-#: inc/lightbox/self_test.php:283
-#: inc/lightbox/self_test.php:510
+#: inc/lightbox/self_test.php:314
+#: inc/lightbox/self_test.php:541
 msgid "On"
 msgstr ""
 
-#: inc/lightbox/self_test.php:290
+#: inc/lightbox/self_test.php:321
 msgid "set_time_limit:"
 msgstr ""
 
-#: inc/lightbox/self_test.php:292
+#: inc/lightbox/self_test.php:323
 msgid "Available"
 msgstr ""
 
 #. translators: 5 opening HTML acronym tag, 6 closing HTML acronym tag.
-#: inc/lightbox/self_test.php:312
+#: inc/lightbox/self_test.php:343
 #, php-format
 msgid "(required for Self-hosted (%1$sFTP%2$s) %3$sCDN%4$s %5$sSFTP%6$s support)"
 msgstr ""
 
-#: inc/lightbox/self_test.php:320
+#: inc/lightbox/self_test.php:351
 #: inc/options/cdn/ftp.php:264
 #: inc/options/cdn/ftp.php:292
 msgid "Secure File Transfer Protocol"
 msgstr ""
 
-#: inc/lightbox/self_test.php:387
+#: inc/lightbox/self_test.php:418
 msgid "Detection of the below modules may not be possible on all environments. As such \"Not detected\" means that the environment disallowed detection for the given module which may still be installed/enabled whereas \"Not installed\" means the given module was detected but is not installed/detected."
 msgstr ""
 
-#: inc/lightbox/self_test.php:400
+#: inc/lightbox/self_test.php:431
 msgid "(required for disk enhanced Page Cache and Browser Cache)"
 msgstr ""
 
-#: inc/lightbox/self_test.php:409
+#: inc/lightbox/self_test.php:440
 msgid "Additional Server Modules"
 msgstr ""
 
-#: inc/lightbox/self_test.php:421
+#: inc/lightbox/self_test.php:452
 msgid "WordPress Resources"
 msgstr ""
 
-#: inc/lightbox/self_test.php:442
-#: inc/lightbox/self_test.php:448
-#: inc/lightbox/self_test.php:462
-#: inc/lightbox/self_test.php:472
+#: inc/lightbox/self_test.php:473
+#: inc/lightbox/self_test.php:479
+#: inc/lightbox/self_test.php:493
+#: inc/lightbox/self_test.php:503
 msgid "Not write-able"
 msgstr ""
 
-#: inc/lightbox/self_test.php:446
+#: inc/lightbox/self_test.php:477
 msgid "Write-able"
 msgstr ""
 
-#: inc/lightbox/self_test.php:470
+#: inc/lightbox/self_test.php:501
 msgid "Error:"
 msgstr ""
 
-#: inc/lightbox/self_test.php:479
+#: inc/lightbox/self_test.php:510
 msgid "Fancy permalinks:"
 msgstr ""
 
-#: inc/lightbox/self_test.php:488
+#: inc/lightbox/self_test.php:519
 msgid "WP_CACHE define:"
 msgstr ""
 
-#: inc/lightbox/self_test.php:490
+#: inc/lightbox/self_test.php:521
 msgid "Defined (true)"
 msgstr ""
 
-#: inc/lightbox/self_test.php:492
+#: inc/lightbox/self_test.php:523
 msgid "Defined (false)"
 msgstr ""
 
-#: inc/lightbox/self_test.php:494
+#: inc/lightbox/self_test.php:525
 msgid "Not defined"
 msgstr ""
 
-#: inc/lightbox/self_test.php:499
+#: inc/lightbox/self_test.php:530
 msgid "URL rewrite:"
 msgstr ""
 
-#: inc/lightbox/self_test.php:501
+#: inc/lightbox/self_test.php:532
 #: SetupGuide_Plugin_Admin.php:1002
 msgid "Enabled"
 msgstr ""
 
-#: inc/lightbox/self_test.php:503
+#: inc/lightbox/self_test.php:534
 #: inc/options/minify.php:124
 msgid "Disabled"
 msgstr ""
 
-#: inc/lightbox/self_test.php:508
+#: inc/lightbox/self_test.php:539
 msgid "Network mode:"
 msgstr ""
 
-#: inc/lightbox/self_test.php:519
+#: inc/lightbox/self_test.php:550
 msgid "Close"
 msgstr ""
 
@@ -8535,6 +8562,10 @@ msgstr ""
 msgid "Media &amp; Other Files"
 msgstr ""
 
+#: inc/options/browsercache.php:721
+msgid "cache (\"public\")"
+msgstr ""
+
 #. translators: 4 HTML input for Bunny CDN sign up, 5 HTML div tag for Bunny CDN logo svg.
 #: inc/options/cdn.php:27
 #, php-format
@@ -8569,14 +8600,19 @@ msgstr ""
 msgid "Maximize %1$sCDN%2$s usage by %3$s or %4$s."
 msgstr ""
 
+#: inc/options/cdn.php:126
+msgid "modify attachment URLs"
+msgstr ""
+
+#: inc/options/cdn.php:128
+#: inc/options/cdn.php:194
+msgid "importing attachments into the Media Library"
+msgstr ""
+
 #. translators: 1 opening HTML acronym tag, 2 closing HTML acronym tag.
 #: inc/options/cdn.php:180
 #, php-format
 msgid "Prepare the %1$sCDN%2$s by:"
-msgstr ""
-
-#: inc/options/cdn.php:194
-msgid "importing attachments into the Media Library"
 msgstr ""
 
 #: inc/options/cdn.php:195
@@ -8895,74 +8931,74 @@ msgstr ""
 
 #. translators: 9 closing HTML acronym tag, 10 closing HTML a tag.
 #. translators: 8 opening HTML acronym tag, 9 closing HTML acronym tag, 10 closing HTML a tag.
-#: inc/options/cdn/cf.php:18
+#: inc/options/cdn/cf.php:26
 #: inc/options/cdn/cf2.php:18
 #: inc/options/cdn/s3.php:24
 #, php-format
 msgid "We recommend that you use %1$s%2$sIAM%3$s%4$s to create a new policy for %5$sAWS%6$s services that have limited permissions. A helpful tool: %7$s%8$sAWS%9$s Policy Generator%10$s"
 msgstr ""
 
-#: inc/options/cdn/cf.php:23
+#: inc/options/cdn/cf.php:31
 #: inc/options/cdn/s3.php:29
 msgid "AWS Identity and Access Management"
 msgstr ""
 
-#: inc/options/cdn/cf.php:48
+#: inc/options/cdn/cf.php:56
 #: inc/options/cdn/cf2.php:48
 #: inc/options/cdn/s3.php:54
 #: inc/options/cdn/s3_compatible.php:20
 msgid "Access key ID:"
 msgstr ""
 
-#: inc/options/cdn/cf.php:55
+#: inc/options/cdn/cf.php:63
 #: inc/options/cdn/cf2.php:55
 #: inc/options/cdn/s3.php:61
 #: inc/options/cdn/s3_compatible.php:47
 msgid "Secret key:"
 msgstr ""
 
-#: inc/options/cdn/cf.php:62
+#: inc/options/cdn/cf.php:70
 #: inc/options/cdn/s3.php:68
 #: inc/options/cdn/s3_compatible.php:54
 msgid "Bucket:"
 msgstr ""
 
-#: inc/options/cdn/cf.php:75
+#: inc/options/cdn/cf.php:83
 msgid "Create as new bucket with distribution"
 msgstr ""
 
-#: inc/options/cdn/cf.php:76
+#: inc/options/cdn/cf.php:84
 msgid "Bucket hostname"
 msgstr ""
 
 #. translators: 6 closing HTML acronym tag.
 #. translators: 5 opening HTML acronym tag, 6 closing HTML acronym tag.
-#: inc/options/cdn/cf.php:149
+#: inc/options/cdn/cf.php:157
 #: inc/options/cdn/cf2.php:140
 #, php-format
 msgid "If you have already added a %1$s%2$sCNAME%3$s%4$s to your %5$sDNS%6$s Zone, enter it here."
 msgstr ""
 
-#: inc/options/cdn/cf.php:175
+#: inc/options/cdn/cf.php:183
 #: inc/options/cdn/s3.php:184
 msgid "Set objects to publicly accessible on upload:"
 msgstr ""
 
-#: inc/options/cdn/cf.php:178
+#: inc/options/cdn/cf.php:186
 #: inc/options/cdn/s3.php:187
 msgid "Enabled (apply the 'public-read' ACL)"
 msgstr ""
 
-#: inc/options/cdn/cf.php:179
+#: inc/options/cdn/cf.php:187
 #: inc/options/cdn/s3.php:188
 msgid "Disabled (don't apply an ACL)"
 msgstr ""
 
-#: inc/options/cdn/cf.php:181
+#: inc/options/cdn/cf.php:189
 msgid "Objects in an S3 bucket served from CloudFront do not need to be publicly accessible. Set this value to disabled to ensure that objects are not publicly accessible and can only be accessed via CloudFront or with a suitable IAM role."
 msgstr ""
 
-#: inc/options/cdn/cf.php:186
+#: inc/options/cdn/cf.php:194
 msgid "Test S3 upload &amp; CloudFront distribution"
 msgstr ""
 
@@ -9313,6 +9349,10 @@ msgstr ""
 msgid "Do not cache queries that contain these words or regular expressions."
 msgstr ""
 
+#: inc/options/dbcache.php:123
+msgid "Reject constants:"
+msgstr ""
+
 #: inc/options/dbcache.php:127
 msgid "Disable caching once specified constants defined."
 msgstr ""
@@ -9389,67 +9429,76 @@ msgid "Save configuration file"
 msgstr ""
 
 #: inc/options/extensions/list.php:31
-#: inc/options/extensions/list.php:236
+#: inc/options/extensions/list.php:237
 msgid "Bulk Actions"
 msgstr ""
 
-#: inc/options/extensions/list.php:64
-#: inc/options/extensions/list.php:69
+#. translators: 1 count of extensions.
+#: inc/options/extensions/list.php:46
+#: inc/options/extensions/list.php:252
+#, php-format
+msgid "%s extension"
+msgid_plural "%s extensions"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/options/extensions/list.php:65
+#: inc/options/extensions/list.php:70
 msgid "Select All"
 msgstr ""
 
-#: inc/options/extensions/list.php:64
-#: inc/options/extensions/list.php:69
+#: inc/options/extensions/list.php:65
+#: inc/options/extensions/list.php:70
 msgid "Extension"
 msgstr ""
 
-#: inc/options/extensions/list.php:64
-#: inc/options/extensions/list.php:69
+#: inc/options/extensions/list.php:65
+#: inc/options/extensions/list.php:70
 msgid "Description"
 msgstr ""
 
 #. translators: 1 label for Extension select/deselect checkobox
-#: inc/options/extensions/list.php:89
+#: inc/options/extensions/list.php:90
 #, php-format
 msgid "Select %1$s"
 msgstr ""
 
-#: inc/options/extensions/list.php:131
+#: inc/options/extensions/list.php:132
 msgid "Deactivate this extension"
 msgstr ""
 
-#: inc/options/extensions/list.php:140
+#: inc/options/extensions/list.php:141
 msgid "Activate this extension"
 msgstr ""
 
-#: inc/options/extensions/list.php:148
+#: inc/options/extensions/list.php:149
 msgid "Disabled: see Requirements"
 msgstr ""
 
 #. translators: 1 plugin requirements.
-#: inc/options/extensions/list.php:172
+#: inc/options/extensions/list.php:173
 #, php-format
 msgid "Requirements: %s"
 msgstr ""
 
 #. translators: 1 extension version number.
-#: inc/options/extensions/list.php:191
+#: inc/options/extensions/list.php:192
 #, php-format
 msgid "Version %s"
 msgstr ""
 
 #. translators: 1 HTML a tag to extension author page.
-#: inc/options/extensions/list.php:204
+#: inc/options/extensions/list.php:205
 #, php-format
 msgid "By %s"
 msgstr ""
 
-#: inc/options/extensions/list.php:209
+#: inc/options/extensions/list.php:210
 msgid "Visit author homepage"
 msgstr ""
 
-#: inc/options/extensions/list.php:221
 #: inc/options/extensions/list.php:222
+#: inc/options/extensions/list.php:223
 msgid "Visit extension site"
 msgstr ""
 
@@ -10425,22 +10474,22 @@ msgstr ""
 msgid "Time to Live"
 msgstr ""
 
-#: inc/options/minify/ccjs2.php:9
+#: inc/options/minify/ccjs2.php:17
 #: inc/options/minify/googleccjs2.php:9
 msgid "Whitespace only"
 msgstr ""
 
-#: inc/options/minify/ccjs2.php:10
+#: inc/options/minify/ccjs2.php:18
 #: inc/options/minify/googleccjs2.php:10
 msgid "Simple optimizations"
 msgstr ""
 
-#: inc/options/minify/ccjs2.php:11
+#: inc/options/minify/ccjs2.php:19
 #: inc/options/minify/googleccjs2.php:11
 msgid "Advanced optimizations"
 msgstr ""
 
-#: inc/options/minify/ccjs2.php:51
+#: inc/options/minify/ccjs2.php:59
 #: inc/options/minify/googleccjs2.php:20
 msgid "Test Closure Compiler"
 msgstr ""
@@ -10752,7 +10801,7 @@ msgstr ""
 msgid "To enable the extension click"
 msgstr ""
 
-#. translators: 1 HTML span tag for feature status, 2 manage queue label, 3 HTML a tag to enable feature or manage settings.
+#. translators: 1 HTML span tag containing Always Cached extension enabled/disabled, 2 manage queue label, 3 HTML a tag to enable feature or manage settings.
 #: inc/options/pgcache.php:42
 #, php-format
 msgid "Always Cached extension is currently %1$s. %2$s %3$s."
@@ -12910,7 +12959,7 @@ msgid "Page Cache: Current Page"
 msgstr ""
 
 #. Translators: 1 memcached servers.
-#: PgCache_Plugin_Admin.php:367
+#: PgCache_Plugin_Admin.php:375
 #, php-format
 msgid "Page Cache: %1$s."
 msgstr ""
@@ -14585,6 +14634,15 @@ msgstr ""
 
 #: Util_Widget.php:54
 msgid "View all"
+msgstr ""
+
+#: Util_Widget.php:157
+#: Util_Widget.php:182
+msgid "Configure"
+msgstr ""
+
+#: Util_Widget.php:206
+msgid "Submit"
 msgstr ""
 
 #. translators: 1: Filesystem access method: "direct", "ssh2", "ftpext" or "ftpsockets".
