@@ -1,0 +1,80 @@
+# Castle Game Engine image file format (.castle-image)
+include::common.adoc[]
+:description: Binary simple file format to store images in Castle Game Engine.
+
+## Introduction
+
+Our engine features a simple binary file format to store images. We call it just _Castle Game Engine image file format_, and the files have `.castle-image` extension.
+
+NOTE: While this image format can be useful in some cases (see below), don't feel compelled to convert all your images in all projects to this format now. In most practical cases, using regular image formats like PNG is absolutely fine and more comfortable.
+
+## Features and reasons for this format
+
+- It's a very simple image file format that reflects the layout of image data in memory in our engine.
++
+After a short binary header (that specifies the image class, size and more) the image data follows, with a layout that matches the memory layout of cgeref:TEncodedImage.RawPixels[]. Everything is in little-endian order. See https://github.com/castle-engine/castle-engine/blob/master/src/images/castleimages_castle_format.inc[src/images/castleimages_castle_format.inc] for complete trivial read/write code.
+
+- What is in the file -> will be exactly the same in the memory, and uploaded straight to GPU. As such, there's no data compression, aside from possible GPU-compression.
+
+- As a consequence of the above, this image format can be loaded and saved extremely efficiently by our engine. Reading image data is literally just a call to `Stream.ReadBuffer(Result.RawPixels^, DataSize)`.
++
+*So this is great image format if you want to have maximum load/save speed, and don't care about large file size on disk.*
+
+- It can represent any cgeref:TEncodedImage[] descendant, so both cgeref:TGPUCompressedImage[] and cgeref:TCastleImage[].
+
+- It can represent 3D images (with cgeref:TEncodedImage.Depth[] > 1).
+
+Limitations and inherent issues:
+
+- For now, it cannot represent:
++
+--
+- mipmaps of the image
+- cubemaps
+--
++
+For that, use link:dds[DDS] or link:ktx[KTX].
+
+- Naturally this image format is only supported by our engine. So it's not as comfortable as e.g. PNG for sharing with other software.
+
+- The file size is large -- it's just equal to the size of cgeref:TEncodedImage.RawPixels[] data.
++
+Which is just uncompressed image data (in case of cgeref:TCastleImage[]) or
+GPU-compressed data (in case of cgeref:TGPUCompressedImage[]), but GPU-compression algorithms are not very size-efficient (that's not their point, their point is to enable decompression on GPU of only the necessary texels).
++
+So, this is *not* the format to use if you care about file size.
+
+- For now, use it only for images for which you also keep the "source" version and you're ready to regenerate them in the future. Reason: we do not guarantee we will support all old format revisions forever -- we still have to evaluate how useful this idea is in practice.
+
+## Example usage: regenerate all your images to .castle-image format
+
+Read https://castle-engine.io/creating_data_auto_generated_textures.php[auto-generated textures documentation] to understand the idea of auto-generating textures to a different format/size/compression.
+
+In short, you will need to execute `castle-engine auto-generate-textures` from the command-line, or use the _"Run -> Auto-Generate Textures"_ menu item in CGE editor.
+
+Place this in `data/material_properties.xml`:
+
+```xml
+<?xml version="1.0"?>
+
+<!--
+Rules for automatic processing
+(converting, compressing, downscaling, mipmap creation...) of images.
+See https://castle-engine.io/creating_data_auto_generated_textures.php
+-->
+
+<properties>
+  <!--
+  Make not-compressed and not-downscaled version in castle-image format
+  of images in textures/ .
+  The castle-image format will load faster than anything else in CGE.
+  -->
+  <auto_generated_textures>
+    <preferred_output_format extension=".castle-image" />
+    <trivial_uncompressed_convert />
+    <include path="textures/*" recursive="True" />
+  </auto_generated_textures>
+</properties>
+```
+
+See https://github.com/castle-engine/castle-engine/blob/quick-optimizations-walking-adventure/examples/3d_games/walking_adventure/data/material_properties.xml[usage in 3d_games/walking_adventure].
