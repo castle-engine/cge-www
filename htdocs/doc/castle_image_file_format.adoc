@@ -78,3 +78,11 @@ See https://castle-engine.io/creating_data_auto_generated_textures.php
 ```
 
 See https://github.com/castle-engine/castle-engine/blob/quick-optimizations-walking-adventure/examples/3d_games/walking_adventure/data/material_properties.xml[usage in 3d_games/walking_adventure].
+
+## Future: KTX (saving, for now we can only load them)
+
+link:ktx[KTX] and link:dds[DDS] also offer some features similar to the `.castle-image` file format (fast load/save, at the expense of large file size).
+
+And they are standardized (supported by other software) and link:ktx[KTX] ecosystem is growing and active.
+
+As such, we plan to focus on perfect link:ktx[KTX] support and it may make some of the `.castle-image` advantages obsolete.
