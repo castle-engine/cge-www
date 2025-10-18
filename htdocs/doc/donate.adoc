@@ -13,7 +13,7 @@ cgeimg::block[
 
 *The primary goal of your donations* is to give us time to spend on the engine development. More time translates to link:roadmap[more features], faster. By 2024, _Michalis Kamburelis_, the lead engine developer, spent most of his life on the engine and doesn't plan to stop :) Moreover, since May 2024, Michalis works on the engine full-time counting only on your support. So anything you can give is really appreciated!
 
-_The secondary goal of donations_ is to cover "service" costs. This includes cost of domains, own servers (link:https://www.vultr.com/?ref=7133327[Vultr]), mail (and other link:https://proton.me/[Proton] services) for `xxx@castle-engine.io` accounts, https://play.google.com/store/apps/dev?id=7891434499544220905[Google Play], Steam app, Apple membership (look for link:castle-model-viewer-mobile[Castle Model Viewer Mobile] on iOS soon!)...
+_The secondary goal of donations_ is to cover "service" costs. This includes cost of domains, own servers (link:https://www.vultr.com/?ref=7133327[Vultr]), mail (and other link:https://proton.me/[Proton] services) for `xxx@castle-engine.io` accounts, https://play.google.com/store/apps/dev?id=7891434499544220905[Google Play], Steam app, Apple membership (link:castle-model-viewer-mobile[Castle Model Viewer Mobile] on iOS), accounting and other costs.
 //If we get enough donations, we hope to also cover _Apple membership_ to release link:castle-model-viewer-mobile[Castle Model Viewer Mobile] for link:ios[iOS] and sign our link:macos[macOS] releases.
 //, Windows exe signing certificate...
 // (bought, not yet used -- don't mention yet, to not cause confusion)...
@@ -26,17 +26,15 @@ The suggested method of donating is to https://www.patreon.com/castleengine[supp
 
 We offer a few perks, including https://castle-engine.io/wp/2023/01/28/support-us-on-patreon-and-get-stickers-ethereum-open-collective-and-other-options/[these cool stickers]!
 
+=== Company cooperation
+
+Since _October 2025_, _Castle Game Engine_ is a formal Polish (EU) company. We're open for cooperation.
+
+Contact Michalis (`michalis@castle-engine.io`) and tell me what do you need. Support, priority fixes, consulting about engine usage? Specific engine features to meet your use-cases? We can discuss it all.
+
 === Open Collective
 
-Another option is to https://opencollective.com/castle-engine[support us on Open Collective].
-
-- For regular people, this is similar to _Patreon_. You can easily donate monthly or one-time.
-
-- For companies, this is how you can cooperate with _Castle Game Engine_ as a company.
-+
-First of all, contact Michalis (`michalis@castle-engine.io`) and tell me what do you need. Support, priority fixes, consulting about engine usage? Specific engine features to meet your use-cases? We can discuss it all.
-+
-Then you can pay for this work, and get a formal invoice for your company, through https://opencollective.com/opensource[Open Source Collective]. The gist of it is that _Castle Game Engine_ can formally act as a (US-based) company, in particular we can issue invoices for your accounting and tax needs.
+Another option is to https://opencollective.com/castle-engine[support us on Open Collective]. This is similar to _Patreon_. You can easily donate monthly or one-time.
 
 === GitHub Sponsors
 
@@ -44,7 +42,7 @@ Another option is to https://github.com/sponsors/castle-engine[support us by bec
 
 === PayPal
 
-You can donate directly using https://paypal.me/castleengine[PayPal]. You can pay directly using your credit card, or use a PayPal account.
+You can donate using https://paypal.me/castleengine[PayPal]. You can pay using your credit card, or use your own PayPal account.
 
 === Crypto
 
