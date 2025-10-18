@@ -42,6 +42,8 @@ KTX is an excellent image format with a number of graphic features useful when i
 - cgeref:TRGBAlphaFloatImage[].
 --
 
+- 16-bit image formats are also supported, upon reading we will convert them to 32-bit float-based formats (so we waste memory, but we keep the precision).
+
 - Textures can have explicit mipmaps (allows texture have better quality when viewer from far away).
 
 - Volume (3D) textures.
@@ -50,7 +52,48 @@ KTX is an excellent image format with a number of graphic features useful when i
 
 - Cube map can be stored -- this means that we effectively have 6 images (for skyboxes, reflections, etc.). TODO: We don't support cubemap yet, but we plan to add it. Submit a link:https://github.com/castle-engine/castle-engine/issues[bugreport] with a sample KTX file to make it happen sooner!
 
+- Both loading and saving of KTX files is implemented in _Castle Game Engine_.
+
+- Reading certain KTX configurations is ultra-optimized, as their format matches precisely the format of image data in memory of the engine, which in turn matches the format expected by GPU.
++
+When saving, we always use the optimized format, if only the padding matches. Almost always this results in ultra-optimized saving too.
++
+To debug when the optimized writing / reading takes place, define the `CASTLE_KTX_LOG_SPEED` symbol when compiling your program.
+
 We support KTX 1 right now. We plan to support KTX 2 (with https://github.com/KhronosGroup/glTF/tree/main/extensions/2.0/Khronos/KHR_texture_basisu[KHR_texture_basisu]) in the future too.
+
+== Example usage to speedup loading time: regenerate all your images to .ktx format
+
+Read https://castle-engine.io/creating_data_auto_generated_textures.php[auto-generated textures documentation] to understand the idea of auto-generating textures to a different format/size/compression.
+
+In short, you will need to execute `castle-engine auto-generate-textures` from the command-line, or use the _"Run -> Auto-Generate Textures"_ menu item in CGE editor.
+
+Place this in `data/material_properties.xml`:
+
+```xml
+<?xml version="1.0"?>
+
+<!--
+Rules for automatic processing
+(converting, compressing, downscaling, mipmap creation...) of images.
+See https://castle-engine.io/creating_data_auto_generated_textures.php
+-->
+
+<properties>
+  <!--
+  Make not-compressed and not-downscaled version in castle-image format
+  of images in textures/ .
+  The castle-image format will load faster than anything else in CGE.
+  -->
+  <auto_generated_textures>
+    <preferred_output_format extension=".ktx" />
+    <trivial_uncompressed_convert />
+    <include path="textures/*" recursive="True" />
+  </auto_generated_textures>
+</properties>
+```
+
+See https://github.com/castle-engine/castle-engine/blob/quick-optimizations-walking-adventure/examples/3d_games/walking_adventure/data/material_properties.xml[usage in 3d_games/walking_adventure].
 
 == Enumerating KTX subimages using Pascal
 
