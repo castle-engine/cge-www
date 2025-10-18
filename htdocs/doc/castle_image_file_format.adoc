@@ -4,6 +4,8 @@ include::common.adoc[]
 
 ## Introduction
 
+WARNING: This format is to be removed soon. link:ktx[KTX] is now better in every practical regard, it also (almost) always results in super-optimal loading and saving using just 1 call to `Stream.ReadBuffer`. And KTX is standardized (supported by other software).
+
 Our engine features a simple binary file format to store images. We call it just _Castle Game Engine image file format_, and the files have `.castle-image` extension.
 
 NOTE: While this image format can be useful in some cases (see below), don't feel compelled to convert all your images in all projects to this format now. In most practical cases, using regular image formats like PNG is absolutely fine and more comfortable.
@@ -76,13 +78,3 @@ See https://castle-engine.io/creating_data_auto_generated_textures.php
   </auto_generated_textures>
 </properties>
 ```
-
-See https://github.com/castle-engine/castle-engine/blob/quick-optimizations-walking-adventure/examples/3d_games/walking_adventure/data/material_properties.xml[usage in 3d_games/walking_adventure].
-
-## Future: KTX (saving, for now we can only load them)
-
-link:ktx[KTX] and link:dds[DDS] also offer some features similar to the `.castle-image` file format (fast load/save, at the expense of large file size).
-
-And they are standardized (supported by other software) and link:ktx[KTX] ecosystem is growing and active.
-
-As such, we plan to focus on perfect link:ktx[KTX] support and it may make some of the `.castle-image` advantages obsolete.
