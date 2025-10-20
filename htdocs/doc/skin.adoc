@@ -172,10 +172,19 @@ Skin {
     # look like. Follow H-Anim conventions for joints to define
     # typical humanoid joints hierarchy.
     #
-    # Any X3D node graph is allowed here, in particular you can
-    # also specify Shape nodes within the transformations here.
-    # Such Shape nodes will be just rigid 3D shapes attached to
-    # the joints (like a sword may be attached to the avatar's hand).
+    # Any X3D node graph is allowed here, in particular:
+    #
+    # - You can also specify Shape nodes within the transformations here.
+    #   Such Shape nodes will be just rigid 3D shapes attached to
+    #   the joints (like a sword may be attached to the avatar's hand).
+    #   Contrast this with shapes that are affected by the skin mechanism,
+    #   which are listed in the "shapes" field.
+    #
+    # - The root node (skeleton) doesn't have to be a Transform,
+    #   it can be any X3DGroupingNode (TAbstractGroupingNode for Pascal) node,
+    #   so a simple Group is also OK.
+    #   Though remember that if it's not Transform, you cannot list it later in
+    #   "joints" field, so it cannot be a joint that affects the skin.
     #
     # The Shape(s) that should be affected by the skin mechanism
     # (modified by joints) should *not* be listed here, they should
