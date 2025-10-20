@@ -153,7 +153,7 @@ xxx003.obj
 ...
 </pre>
 
-<p>You can load such animation from a sequence of files using the URL <code>xxx@counter(3).obj</code>. It's exactly how you can load <a href="x3d_implementation_texturing_extensions.php#section_ext_movie_from_image_sequence">a movie from a sequence of images</a>. See <a href="https://github.com/castle-engine/demo-models/tree/master/blender/skinned_animation/wavefront_obj_animation">demo-models/.../wavefront_obj_animation</a> for an example, you would load them by <code>skinned_anim_@counter(6).obj</code>.
+<p>You can load such animation from a sequence of files using the URL <code>xxx@counter(3).obj</code>. It's exactly how you can load <a href="x3d_implementation_texturing_extensions.php#section_ext_movie_from_image_sequence">a movie from a sequence of images</a>. See <a href="https://github.com/castle-engine/demo-models/tree/master/animation/blender_skinned_animation/not_recommended_formats/wavefront_obj_animation">demo-models/.../wavefront_obj_animation</a> for an example, you would load them by <code>skinned_anim_@counter(6).obj</code>.
 
 <p>It's not an efficient way to store the animation in a file (or to load it). It is much better to export to X3D or glTF animation, if you can. But it may be useful when you have no other option to export.
 

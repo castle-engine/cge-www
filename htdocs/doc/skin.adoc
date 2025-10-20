@@ -132,7 +132,7 @@ NOTE: In the future we may introduce fields like `skinJoints1`, `skinWeights1` e
 
 Example `Skin` definition is as follows:
 
-NOTE: Fully working version of this example is https://github.com/castle-engine/demo-models/blob/master/animation/skinned_animation.x3dv[in demo-models, animation/skinned_animation.x3dv]. You can open it using any engine tool, e.g. link:castle-model-viewer[Castle Model Viewer].
+NOTE: Fully working version of this example is https://github.com/castle-engine/demo-models/blob/master/animation/manual_ugly_skin_node_test.x3dv[in demo-models, animation/manual_ugly_skin_node_test.x3dv]. You can open it using any engine tool, e.g. link:castle-model-viewer[Castle Model Viewer].
 
 ////
 Note: Using PHP highlighter for X3D classic content.

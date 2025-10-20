@@ -182,7 +182,7 @@ Moreover, you can use use X3D `IMPORT` mechanism to access particular parts (lik
 
 === Use `Inline` and `IMPORT` to access glTF animations in an X3D file
 
-For example of this technique see https://github.com/castle-engine/demo-models/tree/master/blender/skinned_animation , in particular file https://github.com/castle-engine/demo-models/blob/master/blender/skinned_animation/skinned_anim_run_animations_from_x3d.x3dv[skinned_anim_run_animations_from_x3d.x3dv] there. The X3D file has this code:
+For example of this technique see https://github.com/castle-engine/demo-models/tree/master/animation/blender_skinned_animation , in particular file https://github.com/castle-engine/demo-models/blob/master/animation/blender_skinned_animation/skinned_anim_run_animations_from_x3d.x3dv[skinned_anim_run_animations_from_x3d.x3dv] there. The X3D file has this code:
 
 ```
 DEF InlinedAnimations Inline {
