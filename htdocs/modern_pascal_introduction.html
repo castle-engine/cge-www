@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.23">
+<meta name="generator" content="Asciidoctor 2.0.25">
 <meta name="author" content="Michalis Kamburelis">
 <title>Modern Object Pascal Introduction for Programmers</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
@@ -117,7 +117,6 @@ h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title str
 :not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
 pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
 pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
-pre>code{display:block}
 pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
 em em{font-style:normal}
 strong strong{font-weight:400}
@@ -220,6 +219,7 @@ table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
 .literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class=highlight],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
 .literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
 .listingblock>.content{position:relative}
+.listingblock pre>code{display:block}
 .listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
 .listingblock:hover code[data-lang]::before{display:block}
 .listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
@@ -557,7 +557,7 @@ a.patreon-link:focus {
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_why">1. Why</a></li>
+<li><a href="#_why_this_book">1. Why this book</a></li>
 <li><a href="#_basics">2. Basics</a>
 <ul class="sectlevel2">
 <li><a href="#_hello_world_program">2.1. "Hello world" program</a></li>
@@ -681,13 +681,17 @@ a.patreon-link:focus {
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_why">1. Why</h2>
+<h2 id="_why_this_book">1. Why this book</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>There are many books and resources about Pascal out there, but too many of them talk about the old Pascal, without classes, units or generics.</p>
+<p>I wanted to describe the <strong>modern Object Pascal</strong>: programming language with classes, units, generics, interfaces and other modern features you expect. I wanted to show how all the language features, basic and advanced, connect together into a consistent whole.</p>
 </div>
 <div class="paragraph">
-<p>So I wrote this quick introduction to what I call <strong>modern Object Pascal</strong>. Most of the programmers using it don&#8217;t really call it <em>"modern Object Pascal"</em>, we just call it <em>"our Pascal"</em>. But when introducing the language, I feel it&#8217;s important to emphasize that it&#8217;s a modern, object-oriented language. It evolved a <strong>lot</strong> since the old (Turbo) Pascal that many people learned in schools long time ago. Feature-wise, it&#8217;s quite similar to C++ or Java or C#.</p>
+<p>I also wanted this book to be practical and concise to fellow developers. As such, I assume you already have some programming experience, and we can talk about things like <em>"how to declare a variable"</em> and avoid a lengthy explanation <em>"what even is a variable and what is its purpose"</em>. When covering the basics, I will give a brief description, and then move on, like this: a <em>variable</em> is a container for some value; the container has a name; the value it holds may change over time.</p>
+</div>
+<div class="paragraph">
+<p>I emphasize the word <em>modern</em> in <em>modern Object Pascal</em>.
+That&#8217;s because <em>Pascal</em> has evolved a <strong>lot</strong>, and it&#8217;s quite different from e.g. <em>Turbo Pascal</em> that many people learned in schools long time ago. Feature-wise, <em>modern Pascal</em> is quite similar to C++ or Java or C#.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -706,10 +710,32 @@ a.patreon-link:focus {
 </ul>
 </div>
 <div class="paragraph">
-<p>It also has excellent, portable and open-source compiler called the <em>Free Pascal Compiler</em>, <a href="http://freepascal.org/" class="bare">http://freepascal.org/</a> . And an accompanying IDE (editor, debugger, a library of visual components, form designer) called <em>Lazarus</em> <a href="http://lazarus.freepascal.org/" class="bare">http://lazarus.freepascal.org/</a> . There&#8217;s also a proprietary and commercial compiler and IDE <em>Delphi</em> <a href="https://www.embarcadero.com/products/Delphi" class="bare">https://www.embarcadero.com/products/Delphi</a> . There&#8217;s a lot of libraries (for both FPC and Delphi) available, see <a href="https://github.com/Fr0sT-Brutal/awesome-pascal" class="bare">https://github.com/Fr0sT-Brutal/awesome-pascal</a> . We also support existing editors like <em>VS Code</em>, see <a href="https://castle-engine.io/vscode" class="bare">https://castle-engine.io/vscode</a> . Myself, I&#8217;m the creator of <em>Castle Game Engine</em>, <a href="https://castle-engine.io/" class="bare">https://castle-engine.io/</a> , which is an open-source 3D and 2D game engine using modern Pascal to create games on many platforms (Windows, Linux, macOS, Android, iOS, Nintendo Switch; also WebGL is coming).</p>
+<p>For more reasoning about <a href="https://castle-engine.io/why_pascal">why use Pascal, see here</a>.</p>
 </div>
 <div class="paragraph">
-<p>This introduction is mostly directed at programmers who already have experience in other languages. We will not cover here the meanings of some universal concepts, like <em>"what is a class"</em>, we&#8217;ll only show how to do them in Pascal.</p>
+<p>We also have an active ecosystem of tools and libraries. To name just a few:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Pascal has an excellent, portable and open-source compiler called the <em>Free Pascal Compiler</em>, <a href="http://freepascal.org/" class="bare">http://freepascal.org/</a> .</p>
+</li>
+<li>
+<p>And an accompanying IDE (editor, debugger, a library of visual components, form designer) called <em>Lazarus</em> <a href="http://lazarus.freepascal.org/" class="bare">http://lazarus.freepascal.org/</a> .</p>
+</li>
+<li>
+<p>There&#8217;s also a proprietary and commercial compiler and IDE <em>Delphi</em> <a href="https://www.embarcadero.com/products/Delphi" class="bare">https://www.embarcadero.com/products/Delphi</a> .</p>
+</li>
+<li>
+<p>There&#8217;s a lot of libraries (for both FPC and Delphi) available, see <a href="https://github.com/Fr0sT-Brutal/awesome-pascal" class="bare">https://github.com/Fr0sT-Brutal/awesome-pascal</a> .</p>
+</li>
+<li>
+<p>We also support existing editors like <em>VS Code</em>, see <a href="https://castle-engine.io/vscode" class="bare">https://castle-engine.io/vscode</a> .</p>
+</li>
+<li>
+<p>Myself, I&#8217;m the creator of <em>Castle Game Engine</em>, <a href="https://castle-engine.io/" class="bare">https://castle-engine.io/</a> , which is an open-source 3D and 2D game engine using modern Pascal to create games on many platforms (Windows, Linux, FreeBSD, macOS, Android, iOS, Nintendo Switch, WebGL).</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -722,11 +748,12 @@ a.patreon-link:focus {
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="pascal"><span class="comment">// Just use this line in all modern FPC sources.</span>
 <span class="preprocessor">{$ifdef FPC}</span> <span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span> <span class="preprocessor">{$endif}</span>
-<span class="comment">// Needed for console programs on Windows,</span>
+
+<span class="comment">// Below is needed for console programs on Windows,</span>
 <span class="comment">// otherwise (with Delphi) the default is GUI program without console.</span>
 <span class="preprocessor">{$ifdef MSWINDOWS}</span> <span class="preprocessor">{$apptype CONSOLE}</span> <span class="preprocessor">{$endif}</span>
 
-<span class="keyword">program</span> MyProgram; <span class="comment">// Save this file as myprogram.dpr</span>
+<span class="keyword">program</span> MyProgram;
 <span class="keyword">begin</span>
   WriteLn(<span class="string"><span class="delimiter">'</span><span class="content">Hello world!</span><span class="delimiter">'</span></span>);
 <span class="keyword">end</span>.</code></pre>
@@ -765,7 +792,10 @@ You can also run it from <em>Lazarus</em> or <em>Delphi</em> IDE using the <em>"
 </div>
 <div class="paragraph">
 <p>The rest of this article talks about the Object Pascal language, so don&#8217;t expect to see anything more fancy than the command-line stuff. If you want to see something cool, just create a new GUI project in <em>Lazarus</em> (<em>"Project &#8594; New Project &#8594; Application"</em>) or <em>Delphi</em> (<em>"File &#8594;  New &#8594; Multi-Device Application"</em>).
-Voila&#8201;&#8212;&#8201;a working GUI application, cross-platform, with native look everywhere, using a comfortable visual component library. The Pascal compilers come with lots of standard units for networking, GUI, database, file formats (XML, json, images&#8230;&#8203;), threading and everything else you may need. I already mentioned my cool <em>Castle Game Engine</em> earlier:)</p>
+Voila&#8201;&#8212;&#8201;a working GUI application, cross-platform, with native look everywhere, using a comfortable visual component library.</p>
+</div>
+<div class="paragraph">
+<p>The Pascal compilers come with lots of standard units for networking, GUI, database, file formats (XML, json, images&#8230;&#8203;), threading and everything else you may need. I already mentioned my cool <em>Castle Game Engine</em> earlier:)</p>
 </div>
 </div>
 <div class="sect2">
@@ -784,7 +814,7 @@ Voila&#8201;&#8212;&#8201;a working GUI application, cross-platform, with native
 </ol>
 </div>
 <div class="paragraph">
-<p>In this book, we chose to support both compilers, fully. Just like in <em>Castle Game Engine</em>, we support them both, and it&#8217;s your choice which one do you prefer. Our <em>continuous integration</em> (see <a href="https://castle-engine.io/github_actions" class="bare">https://castle-engine.io/github_actions</a>) makes sure all samples really compile with both compilers.</p>
+<p>In this book, we support fully both compilers.</p>
 </div>
 <div class="paragraph">
 <p>To complicate matters a bit, FPC compiler has multiple "syntax modes". In this book, we decided to show the <em>ObjFpc</em> syntax mode, which is recommended by the FPC developers and is the default for new Pascal projects created using <em>Lazarus</em> or <em>Castle Game Engine</em>. It&#8217;s a bit different from the <em>Delphi</em> syntax mode, which is most compatible with Pascal language as implemented by <em>Delphi</em>. We <a href="https://github.com/modern-pascal/modern-pascal-introduction/wiki/Some-differences-betwen-FPC-ObjFpc-mode-and-Delphi-(and-FPC-Delphi-mode)">wrote a detailed comparison here</a>.</p>
@@ -793,7 +823,7 @@ Voila&#8201;&#8212;&#8201;a working GUI application, cross-platform, with native
 <p>But you don&#8217;t want to read about these differences now, if you&#8217;re just starting to learn Pascal!</p>
 </div>
 <div class="paragraph">
-<p>The differences are minor, both between compilers and between FPC <em>ObjFpc</em> mode and <em>Delphi</em> mode. Just be aware you may see some <code>{$ifdef FPC} &#8230;&#8203; {$endif}</code> clauses in the examples, that make the code valid for both <em>FPC ObjFpc mode</em> and <em>Delphi</em>. Using <code>{$ifdef FPC_OBJFPC} &#8230;&#8203; {$endif}</code> in some of these cases could be more precise, but look even more complicated. If your project targets only one of these compilers, you can simplify your code, just pick the variant for your compiler and remove the <code>{$ifdef &#8230;&#8203;}</code>, <code>{$endif}</code> stuff.</p>
+<p>The differences are minor, both between compilers and between FPC <em>ObjFpc</em> mode and <em>Delphi</em> mode. Just be aware you may see some <code>{$ifdef FPC} &#8230;&#8203; {$endif}</code> clauses in the examples, that make the code valid for both <em>FPC ObjFpc mode</em> and <em>Delphi</em>. Using <code>{$ifdef FPC_OBJFPC} &#8230;&#8203; {$endif}</code> in some of these cases would be more precise, but look even more complicated. If your project targets only one of these compilers, you can simplify your code, just pick the variant for your compiler and remove the <code>{$ifdef &#8230;&#8203;}</code>, <code>{$endif}</code> stuff.</p>
 </div>
 </div>
 <div class="sect2">
@@ -6529,7 +6559,7 @@ you create <em>COM interfaces</em>. This can be stated explicitly by saying <cod
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-09-10 09:23:10 +0200
+Last updated 2025-10-22 03:39:40 +0200
 </div>
 </div>
 <!-- Google analytics -->
