@@ -395,3 +395,5 @@ Also, switch to https://en.wikipedia.org/wiki/Ragdoll_physics[ragdoll physics] (
 - To overcome this we'd need to use geometry shaders to render shadow quads, which is quite some additional work.
 - Practical solution will likely be to recommend https://castle-engine.io/x3d_extensions_shadow_maps.php[shadow maps] once we https://castle-engine.io/roadmap#shadow_maps[improve them].
 --
+
+- Enable importing https://docs.blender.org/manual/en/latest/addons/import_export/anim_bvh.html[BVH] files. As we already support skinning and we have proved we can read motion capture data, this is a logical next step.
