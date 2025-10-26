@@ -53,7 +53,7 @@ cge::download-application[
 
 == Features
 
-- *Load and save many image formats*, including some "exotic" ones: *KTX, DDS, RGBE*. Detailed list below.
+- *Load and save many image formats*, including some "exotic" ones: *link:ktx[KTX], DDS, RGBE*. Detailed list below.
 - Easily *scale and move* the image (use keys, mouse dragging, mouse wheel).
 - *Browse* all the images within a single directory (use keys _Page Up_, _Page Down_).
 - Test how image looks *tiled (repeatable)* (to test is it good for a repeatable texture).
@@ -65,28 +65,41 @@ cge::download-application[
 == Image formats supported
 
 PNG::
-Excellent open format for images, offering good lossless image compression, full alpha channel (i.e. partial transparency using blending), supported by almost every image software in the world.
+Excellent open format for images, offering good lossless image compression, full alpha channel (i.e. partial transparency using blending), high-precision (16-bit) data if necessary, supported by almost every image software in the world.
 +
-Loaded using http://www.libpng.org/[LibPNG] for maximum efficiency. Has a fallback(in case LibPNG is missing) on Pascal loader from https://github.com/galfar/imaginglib[Vampyre Imaging Library].
+Loaded using http://www.libpng.org/[LibPNG] for maximum efficiency. The code has a fallback (in case LibPNG is missing) on Pascal loader from https://github.com/galfar/imaginglib[Vampyre Imaging Library].
 
 JPEG, GIF, TGA, XPM, PSD, PCX, PNM, PBM, PGM, PPM, BPM::
 Common image formats, supported by many tools.
 +
-Loaded using https://github.com/galfar/imaginglib[Vampyre Imaging Library], eventually native support or https://wiki.freepascal.org/fcl-image[fcl-image].
+These formats are loaded using https://github.com/galfar/imaginglib[Vampyre Imaging Library], eventually native support or https://wiki.freepascal.org/fcl-image[fcl-image].
 +
-NOTE: We do not recommend to rely on _Castle Game Engine_ reading PSD files directly. While we support some common PSD features, ultimately the only software that can read PSD files perfectly is _Adobe PhotoShop_. So it's better to use PSD as a development format, and export to PNG for final usage.
-+
-NOTE: For most of the above formats, PNG is a better alternative. E.g. PNG will result in smaller file size (without losing any features) compared to PNM, PBM, PGM, PPM, XPM. PNG will be loaded much much faster than XPM (text-only format that is very slow to load). PNG is more widely supported and has proper specification, unlike PCX. And while using JPG is common (due to its lossy but often high-quality compression), this compression is somewhat wasted when loading images to GPU.
+[NOTE]
+====
+For most of the above image formats, PNG is a better alternative, and we recommend it over the "common image formats" listed above. Some reasons:
+
+- PNM, PBM, PGM, PPM, XPM offer no compression, while PNG offers lossless compression.
+///Thus they are larger on disk, without any real benefit, at least in common cases (maybe in your use-case, there's a benefit if you interchange with some software).
+
+- XPM is a text-only format that is very slow to load.
+
+- PCX does not have a precise specification and is not widely supported (anymore).
+
+- JPG has lossy but often high-quality compression, thus it makes sense for e.g. photos. But for games, the disk size is often not critical (large disk size of game data is often acceptable) and when loading image to GPU, the JPG compression doesn't matter anyway.
+
+- PDS is supported only partially. Ultimately the only software that can read PSD files perfectly is _Adobe PhotoShop_. So it's better to use PSD as a development format, and export to PNG for final usage.
+====
 
 KTX::
-_Khronos Texture Format_. Excellent image format to utilize various graphic features, like GPU compression (images stay compressed in GPU memory), explicit mipmaps, cube maps, volume (3D) textures. Bright future: there's support for excellent KTX 2 coming.
+_Khronos Texture Format_. Excellent image format to utilize various graphic features, like GPU compression (images stay compressed in GPU memory), explicit mipmaps, cube maps, volume (3D) textures, various data precision (8-bit int, 16-bit int, 32-bit float), super-fast loading and saving in many cases.
+//Already mentioned above:Saving to KTX is also supported.
 +
 See link:ktx[details about KTX features and our support].
 +
 With _Castle Image Viewer_ you can view all subimages within one DDS file, see menu items _"Images -> Next/Previous Subimage in composite (DDS, KTX)"_.
 
 DDS::
-https://en.wikipedia.org/wiki/DirectDraw_Surface[Direct Draw Surface]. Similar to KTX, but older. Saving to DDS is also supported.
+https://en.wikipedia.org/wiki/DirectDraw_Surface[Direct Draw Surface]. Similar to KTX, but older. Saving to DDS is also supported. If you can, we recommend to use link:ktx[KTX] instead of DDS for new applications, as KTX offers even more features that map to GPU usage in a straightforward way.
 +
 See link:dds[details about DDS features and our support].
 
@@ -161,15 +174,19 @@ are handled as well.
 
 == Image Saving Notes
 
-Resulting image format is determined by filename extension, unknown
-extension will result in error.
+Resulting image format is determined by the filename extension. Unknown extension will result in an error.
+
+////
+This is no longer true, you can save RGBE to e.g. TRGBFloatImage in KTX.
 
 Image loaded and displayed by castle-image-viewer is internally always stored
 in format comfortable for OpenGL. This includes many formats, but not RGBE.
 It means that if you will load RGBE image to castle-image-viewer and then
 you will save it (even to the RGBE format again)
 then you loose RGBE precision (and clamp color values above 1.0).
+////
 
-Also, S3TC compressed images (from KTX, DDS files) will be always decompressed,
-and saving them back will always make uncompressed files.
+GPU-compressed images (like with S3TC compression) will be decompressed at load by this application, and saving them back will make images without GPU compression.
+
+NOTE: The above is just a quirk of this application _Castle Image Viewer_, as we need to decompress GPU-compressed data to enable some editing operations on CPU. In general, using [Castle Game Engine](https://castle-engine.io/) API you can load and save GPU-compressed images, keeping them compressed, if you wish.
 
