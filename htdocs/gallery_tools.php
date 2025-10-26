@@ -12,6 +12,11 @@ echo pretty_heading($page_title);
 We love to see how you use CGE.</i>
 
 <div class="row">
+  <?php gallery_link('Room Arranger',
+    'Design your room, office, house and preview them in 3D. Using our engine through the <a href=""https://github.com/castle-engine/castle-engine/tree/master/src/deprecated_library">library API</a>.',
+    'room_arranger_scan.png',
+    'https://www.roomarranger.com/'); ?>
+
   <?php gallery_link('Castle Model Viewer (formerly view3dscene)',
     'Viewer for 3D and 2D models like glTF, X3D, VRML, IFC, Collada, 3DS, MD3, Wavefront OBJ, Spine and <a href="creating_data_model_formats.php">many others supported by Castle Game Engine</a>.
     Explore the virtual world, with collision-checking, gravity, interactive animations, shadows, mirrors, shaders and more.
