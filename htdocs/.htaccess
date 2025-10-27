@@ -214,6 +214,8 @@ Redirect "/web-demos/simplest" "/web-demos/examples/web/simplest"
 Redirect "/compositing_shaders.php" "/shaders"
 Redirect "/movies.php" "https://www.youtube.com/c/CastleGameEngine"
 Redirect "/castle_image_file_format" "/ktx"
+# linked from https://lists.freepascal.org/fpc-pascal/2017-October/052409.html
+Redirect "/modern_pascal_introduction." "/modern_pascal"
 
 # alias names for slides, docs hosted outside
 Redirect "/itdevcon2023/slides1" "https://docs.google.com/presentation/d/e/2PACX-1vQiwg5wboWVn8aCgxj7u617taha28IQDN1GPKtnEICi3aHRBhor9ZLLpyXmF_cHB4LdcMuH3AXwZ001/pub?start=false&loop=false&delayms=3000"
