@@ -542,11 +542,8 @@ end;
     exponential fog are actually different and incompatible,
     so results will be a little different than they should be.
 
-    <p><?php echo a_href_page('Our VRML/X3D demo models',
-    'demo_models'); ?> have test models for this
-    (see <code>fog/fog_volumetric/</code> subdirectory there).
-    Also our games <?php echo a_href_page('malfunction', 'malfunction'); ?>
-    and <?php echo a_href_page('The Castle', 'castle'); ?> use it.
+    <p><?php echo a_href_page('Our demo models', 'demo_models'); ?> have test models
+    for this (see <code>fog/fog_volumetric/</code> subdirectory there).
 
 <?php echo $toc->html_section(); ?>
 

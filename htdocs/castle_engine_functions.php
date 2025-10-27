@@ -608,7 +608,6 @@ $castle_sitemap = array(
               'castle-credits'     => array('title' => 'Credits'),
             ),
           ),
-          'malfunction' => array('title' => 'malfunction'),
           'kambi_lines' => array('title' => 'kambi_lines'),
         ),
       ),

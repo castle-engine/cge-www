@@ -150,10 +150,13 @@ We love to see how you use CGE.</i>
     'lets_take_a_walk_screen_demo.png',
     'https://github.com/castle-engine/castle-engine/tree/master/examples/audio/game_3d_sound'); ?>
 
-  <?php gallery_link('malfunction',
+  <?php
+  /* Repo and page not maintained anymore.
+  gallery_link('malfunction',
     'Small 3D space-shooter. One of the first games made using (an ancient version of) Castle Game Engine, with VRML models.',
     'malfunction_screen_demo.png',
-    'malfunction'); ?>
+    'malfunction');
+  */ ?>
 
    <?php gallery_link('kambi_lines',
      'Arrange colored balls in lines. Quickly.',

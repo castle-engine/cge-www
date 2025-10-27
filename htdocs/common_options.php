@@ -31,10 +31,7 @@ known and used by most good programs in the world) :
     message box or something that; this allows to use calls like
     <code>program_name --version</code> in batch scripts, makefiles etc.
 
-    <p><i>Note for Windows users of my programs that don't create a console</i>
-    (e.g. <?php echo a_href_page('malfunction', 'malfunction'); ?>,
-    <?php echo a_href_page('kambi_lines', 'kambi_lines'); ?> or
-    <a href="castle-image-viewer">Castle Image Viewer</a>):
+    <p><i>Note for Windows users of our GUI programs</i>:
     when Windows program does not explicitly create a console,
     it usually has no standard output available.
     You must explicitly redirect it's stdout when using option <code>--version</code>.
