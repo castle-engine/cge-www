@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.25">
+<meta name="generator" content="Asciidoctor 2.0.26">
 <meta name="author" content="Michalis Kamburelis">
 <title>Modern Object Pascal Introduction for Programmers</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
@@ -4338,24 +4338,40 @@ Remember that when descending from <code>TPersistent</code>, the default <em>vis
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="pascal"><span class="keyword">type</span>
+<pre class="CodeRay highlight"><code data-lang="pascal"><span class="preprocessor">{$ifdef FPC}</span> <span class="preprocessor">{$mode objfpc}</span><span class="preprocessor">{$H+}</span><span class="preprocessor">{$J-}</span> <span class="preprocessor">{$endif}</span>
+<span class="preprocessor">{$ifdef MSWINDOWS}</span> <span class="preprocessor">{$apptype CONSOLE}</span> <span class="preprocessor">{$endif}</span>
+
+<span class="keyword">type</span>
   TMyMethod = <span class="keyword">function</span> (<span class="keyword">const</span> A, B: Integer): Integer <span class="keyword">of</span> <span class="keyword">object</span>;
 
   TMyClass = <span class="keyword">class</span>
-    <span class="keyword">class</span> <span class="keyword">function</span> Add(<span class="keyword">const</span> A, B: Integer): Integer
-    <span class="keyword">class</span> <span class="keyword">function</span> Multiply(<span class="keyword">const</span> A, B: Integer): Integer
+    <span class="keyword">class</span> <span class="keyword">function</span> Add(<span class="keyword">const</span> A, B: Integer): Integer;
+    <span class="keyword">class</span> <span class="keyword">function</span> Multiply(<span class="keyword">const</span> A, B: Integer): Integer;
   <span class="keyword">end</span>;
+
+<span class="keyword">class</span> <span class="keyword">function</span> TMyClass.Add(<span class="keyword">const</span> A, B: Integer): Integer;
+<span class="keyword">begin</span>
+  Result := A + B;
+<span class="keyword">end</span>;
+
+<span class="keyword">class</span> <span class="keyword">function</span> TMyClass.Multiply(<span class="keyword">const</span> A, B: Integer): Integer;
+<span class="keyword">begin</span>
+  Result := A * B;
+<span class="keyword">end</span>;
 
 <span class="keyword">var</span>
   M: TMyMethod;
 <span class="keyword">begin</span>
+  <span class="preprocessor">{$ifdef FPC}</span>
+  <span class="comment">// Unfortunately, this requires a bit of hack to work in FPC ObjFpc mode.</span>
   M := @TMyClass(<span class="keyword">nil</span>).Add;
   M := @TMyClass(<span class="keyword">nil</span>).Multiply;
-<span class="keyword">end</span>;</code></pre>
+  <span class="preprocessor">{$else}</span>
+  M := TMyClass.Add;
+  M := TMyClass.Multiply;
+  <span class="preprocessor">{$endif}</span>
+<span class="keyword">end</span>.</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>Unfortunately, you need to write ugly <code>@TMyClass(nil).Add</code> instead of just <code>@TMyClass.Add</code>.</p>
 </div>
 </li>
 <li>
@@ -6559,7 +6575,7 @@ you create <em>COM interfaces</em>. This can be stated explicitly by saying <cod
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-10-22 03:39:40 +0200
+Last updated 2025-10-27 17:09:40 +0100
 </div>
 </div>
 <!-- Google analytics -->
