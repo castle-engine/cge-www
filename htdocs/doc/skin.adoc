@@ -118,12 +118,48 @@ NOTE: There are some differences, but there are also some similarities between `
 
 == Additional per-vertex information at geometry nodes
 
-We also enhance geometry nodes with the necessary per-vertex information for each vertex (which joints affect it, how much):
+We enhance geometry nodes with the necessary per-vertex information for each vertex: *which joints* affect it and *how much*. This information is a per-vertex data useful for animation systems, whether implemented by CPU or GPU:
 
-- `skinJoints0` (from Pascal: cgeref:TAbstractComposedGeometryNode.SetSkinJoints0[]): for each vertex, 4 most important joints that affect it.
+- `skinJoints0` (from Pascal: cgeref:TAbstractComposedGeometryNode.SetSkinJoints0[]): for each vertex, 4 most important joints that affect it, given as 4 integer indexes to the `Skin.joints` array.
+//The weights for these joints are specified by `skinWeights0`.
+
 - `skinWeights0` (from Pascal: cgeref:TAbstractComposedGeometryNode.SetSkinWeights0[]): for each vertex, how much is it affected by the 4 most important joints.
++
+For each vertex, this specifies 4 floats, which are weights for the 4 most important joints that affect this vertex. Each weight is a float in the _0.0 .. 1.0_ range.
++
+If some weight is `0.0`, the joint doesn't influence the vertex, and it's index on `skinJoints0` is ignored (but you should still specify a valid index there, e.g. 0).
 
-This information is a per-vertex data useful for animation systems, whether implemented by CPU or GPU.
+Example (in X3D classic encoding):
+
+[source,php]
+----
+IndexedFaceSet {
+  coord Coordinate {
+    point [
+      0 0 0 # 1st vertex
+      1 0 0 # 2nd vertex
+      1 1 0 # 3rd vertex
+    ]
+  }
+  coordIndex [ 0 1 2 ] # make a triangle
+  skinJoints0  [
+    0 1 0 0 # 1st vertex is affected by joints 0, 1 (rest has 0 weights in skinWeights0)
+    1 2 3 4 # 2nd vertex is affected by joints 1 2 3 4
+    5 0 0 0 # 3rd vertex is affected by joint 5 (rest has 0 weights in skinWeights0)
+  ]
+  skinWeights0 [
+    0.5 0.5 0 0 # 1st vertex is affected 50% by joint 0, 50% by joint 1
+    0.2 0.3 0.4 0.1 # 2nd vertex is affected 20% by joint 1, 30% by joint 2, 40% by joint 3, 10% by joint 4
+    1 0 0 0 # 3rd vertex is affected 100% by joint 5
+  ]
+}
+----
+
+=== Limit of 4 joints per vertex
+
+As you see, the system limits the number of joints that can affect a single vertex to 4. This is a deliberate design decision. In practice, 4 joints per vertex seems well enough for 3D skinned animation needs in our experience, and glTF designers made a similar decision.
+
+In the exporter from 3D software, if a vertex is affected by more than 4 joints, you can determine the 4 joints that influence it most and export this info (possibly with renormalization of weights). If a 5th joint really influences the vertex with non-epsilon weight, an exporter can emit a warning, asking the artist to adjust the model.
 
 NOTE: In the future we may introduce fields like `skinJoints1`, `skinWeights1` etc. to support more than 4 joints per vertex. This is consistent with glTF data `JOINTS_0`, `WEIGHTS_0`, `JOINTS_1`, `WEIGHTS_1` etc.
 
