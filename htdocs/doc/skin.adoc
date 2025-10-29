@@ -368,6 +368,16 @@ There are numerous deliberate similarities between `Skin` and `HAnimHumanoid`.
 
 - The placement of `Skin` and `HAnimHumanoid` in the transformation matters. This is actually something where we follow X3D and _not_ glTF. It makes sense, for humans and for software, that `Skin` is part of the transformation hierarchy.
 
+- Both of them allow to customize how the mesh maps into the local space of the joint.
++
+--
+- The `Skin` node, just like glTF, expresses this using `Skin.inverseBindMatrices` field with a list of 4x4 matrices, one per joint.
+
+- H-Anim expresses this as separate position/rotation/scale fields, using `HAnimHumanoid.jointBindingPositions`, `HAnimHumanoid.jointBindingRotations` and `HAnimHumanoid.jointBindingScales`. From what we can tell, these values have the same use-case.
+--
++
+Various glTF materials can be helpful to understand how the `inverseBindMatrices` are used, see e.g.  https://www.khronos.org/files/gltf20-reference-guide.pdf[glTF 2.0 reference guide], page 6.
+
 == How do collisions work when skin is calculated on GPU
 
 === You need to assign proper bounding box explicitly
