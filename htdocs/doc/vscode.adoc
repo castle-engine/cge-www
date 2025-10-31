@@ -1,18 +1,24 @@
 # Visual Studio Code
 include::common.adoc[]
-:description: Castle Game Engine extension for Visual Studio Code, that provides code completion and highlighting for Pascal and management of Castle Game Engine projects.
+:description: Castle Game Engine extension for Visual Studio Code (VS Code) and VS Codium, that provides code completion and highlighting for Pascal and management of Castle Game Engine projects.
 :cge-social-share-image: vscode_ext_1.png
 
 == Introduction
 
 https://code.visualstudio.com/[Visual Studio Code] is a powerful, free and open-source, cross-platform text editor for programmers.
 
-We provide a https://marketplace.visualstudio.com/items?itemName=castle-engine-team.castle-engine[VS Code extension for Castle Game Engine] that makes it easy to use VS Code with CGE:
+We provide an extension that makes it easy to use _VS Code_ with _Castle Game Engine_ and Pascal:
 
-* Allows to build, run, debug (and more) CGE projects from VS Code.
-* Provides Pascal syntax highlighting and code completion.
+* *Build, run, debug* (and more) _Castle Game Engine_ projects from VS Code.
 
-Moreover, installing CGE will give you our _LSP server_ useful with _VS Code_ or various other text editors (like _Emacs_ or _Vim_) to make _intelligent code completion_ that works great with Pascal and automatically completes all _Castle Game Engine_ API.
+* Code in Pascal with *syntax highlighting* and *code completion*.
+
+It's easiest to install our extension by just searching for _"Castle Game Engine"_ in the _VS Code_ extensions panel.
+
+- Or visit https://marketplace.visualstudio.com/items?itemName=castle-engine-team.castle-engine[extension page in the VS Code marketplace].
+- The extension is also available for https://vscodium.com/[VS Codium] through the https://open-vsx.org/extension/castle-engine-team/castle-engine[Open VSX marketplace].
+
+For the _code completion_, the extension relies that you have _Castle Game Engine_ installed. It will use the `pasls` tool (LSP server) that is part of the engine. The code completion works in any Pascal code -- not necessarily _Castle Game Engine_ projects. The Pascal LSP is also useful from other text editors (like _Emacs_ or _Vim_) to make _intelligent code completion for any Pascal code_.
 
 cgeimg::block[
   vscode_ext_1.png|Visual Studio Code completing CGE code,
@@ -52,9 +58,11 @@ Install https://marketplace.visualstudio.com/items?itemName=castle-engine-team.c
 
 You can follow the above link. Or just search for _"Castle Game Engine"_ in the _VS Code_ extensions sidebar.
 
+https://vscodium.com/[VS Codium] users can find our extension in the https://open-vsx.org/extension/castle-engine-team/castle-engine[Open VSX marketplace].
+
 == Extension Settings and Pascal code completion
 
-After installing https://marketplace.visualstudio.com/items?itemName=castle-engine-team.castle-engine[Castle Game Engine in VS Code] extension, go to the extension settings and configure it:
+Go to the extension settings and configure it:
 
 cgeimg::block[vscode_extension_config.png|VS Code Extension configuration]
 
@@ -317,17 +325,21 @@ The LSP server can be used with http://neovim.io/[NeoVim]. See the `client/nvim`
 
 == Plans, TODOs
 
-- Upload our extension also to https://github.com/VSCodium/vscodium[VS Codium] marketplace. Note that fpDebug is not in VS Codium as of now, we'll likely fallback on different debuggger.
-
 - Make the status bar shorter, following https://code.visualstudio.com/api/ux-guidelines/status-bar[VS Code status bar guidelines]. We know that current buttons may be "too much", esp. if you have already a number of other extensions filling the status bar. Ideally, we move (and add more) CGE functionality to a https://code.visualstudio.com/api/extension-guides/tree-view[view (sidebar)] of VS Code, and in exchange make the status bar shorter.
++
+The workaround for now is just to hide our buttons on the status bar, if they take too much space for you (right click on the status bar to customize what is shown there).
 
 - Show our API docs using VS Code popup, and available offline. This will replace the current approach to use a separate Webview (with pre-filled search).
 
+////
 - Bundle CGE with _VS Code_?
 +
-If you just install (unpack) CGE you should have a ready setup with CGE + VS Code. This is practically just _VS Code_ with automatically enabled (or suggested?) _"Castle Game Engine"_ extension mentioned above.
+If you just install (unpack) CGE you could have a ready setup with CGE + VS Code. This is practically just _VS Code_ with automatically enabled (or suggested?) _"Castle Game Engine"_ extension mentioned above.
 +
 Of course we will still make everything such that you don't have to use this "bundled" VS Code and instead can use your existing VS Code installation, or really any other text editor / IDE, like Lazarus, Emacs, NeoVim etc.
+
+Plan resigned now -- people should also have a choice, given VS Codium, and given other forks.
+////
 
 - Can we have "Code Completion" (that happens in Lazarus when you Ctrl + Shift + C) that can automatically insert e.g. method declarations or complete property declarations?
 
