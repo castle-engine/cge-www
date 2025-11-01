@@ -1,6 +1,12 @@
 # Privacy Policy
 include::common.adoc[]
 
+== The game engine tools (like Castle Game Engine editor)
+
+...do not collect any data from you.
+
+We don't have any telemetry, even opt-in. We hope that you will just https://castle-engine.io/talk.php[tell us], like a human talking to another human, how do you use our engine (what system do you use as a developer, what systems does your application target, what type of project you make...), what do you like and dislike in our engine and more. We're very grateful for your feedback!
+
 == Mobile applications
 
 Our mobile applications do not feature any analytics or ads. They do not collect any data from you.
