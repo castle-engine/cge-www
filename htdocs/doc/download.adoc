@@ -200,3 +200,16 @@ You're still welcome to report a bug, even if you encounter it on an unsupported
 +
 Note that we're not alone in this approach. _Google Chrome_, _Firefox_, _Steam_, _GPU drivers_.... a lot of the software is not supported on older systems. Which means that if you use an old system, you're not only missing out on system updates, you also miss on updates to web browsers, drivers and other software. This implies eve more security risks.
 //And the risk that engine will fail to work for reasons unrelated to the engine itself.
+
+== Code Signing Policy
+
+WARNING: As of 2025-11-01, we apply for SignPath code signing, per the https://signpath.org/terms[terms]. The binaries available on this page are not _yet_ signed, but they will be, provided our application will be approved.
+
+Free code signing provided by https://about.signpath.io/[SignPath.io], certificate by https://signpath.org/[SignPath Foundation].
+
+Team:
+
+* link:credits[Contributors]
+* Project Lead: https://github.com/michaliskambi/[Michalis Kamburelis]
+
+Our link:privacy_policy[Privacy Policy].
