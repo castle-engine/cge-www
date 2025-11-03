@@ -399,8 +399,6 @@ but in some special cases may be avoided:
 
   <li><p>For some games, turning globally <code>OptimizeExtensiveTransformations := true</code> improves the speed. This works best when you animate multiple <code>Transform</code> nodes within every X3D scene, and some of these animated <code>Transform</code> nodes are children of other animated <code>Transform</code> nodes. A typical example is a skeleton animation, for example from <a href="https://castle-engine.io/spine">Spine</a>, with non-trivial bone hierarchy, and with multiple bones changing position and rotation every frame.
 
-    <p>In a similar scenario, activating <?php echo cgeRef('InternalFastTransformUpdate'); ?> may be also beneficial. We plan to make this optimization automatic in the future.
-
   <!--
   <li><p>Consider using <code>TCastlePrecalculatedAnimation</code> to "bake" animation from events as a series of static scenes. This makes sense if your animation is from Spine or X3D exported from some software that understands X3D interpolation nodes.
 
