@@ -79,6 +79,7 @@ Everyone who subscribes to support CGE with at least 10 USD / month (anywhere --
 * Nicholas Polys
 * Przemyslaw Hass
 * Ramazan Geven
+* Serkan Holat
 * Szczepan Ratajczyk
 * Vedran Rodić
 
