@@ -48,7 +48,7 @@ It has the following properties (click on each property for more detailed API do
 |[in,out]
 |cgeref:TSkinNode.SetJoints[joints]
 |[] (empty list)
-|list of cgeref:TTransformNode[Transform] or cgeref:THAnimJointNode[HAnimJoint] nodes
+|list of cgeref:TTransformNode[Transform] nodes
 
 |cgeref:TMFMatrix4f[MFMatrix4f]
 |[in,out]
@@ -72,9 +72,9 @@ It has the following properties (click on each property for more detailed API do
 
 * cgeref:TSkinNode.SetJoints[joints]
 +
-When the joints are transformed (moved, rotated, scaled),  the skin (meshes listed in `Skin.shapes`) is updated accordingly.
+When the joints are transformed (moved, rotated, scaled), the skin (meshes listed in `Skin.shapes`) is updated accordingly.
 +
-_Allowed values:_ list of cgeref:TTransformNode[Transform] or cgeref:THAnimJointNode[HAnimJoint] nodes.
+_Allowed values:_ list of cgeref:TTransformNode[Transform] nodes.
 
 * cgeref:TSkinNode.SetInverseBindMatrices[inverseBindMatrices]
 +
@@ -98,7 +98,7 @@ This node defines how a set of joints influence a mesh, thus enabling skinned an
 
 The idea is that you have:
 
-- A _skeleton_, which is a hierarchy of _joints (aka "bones")_, expressed in X3D as a hierarchy of cgeref:TTransformNode[] (or any other X3D node that defines transformation, like cgeref:THAnimJointNode[]).
+- A _skeleton_, which is a hierarchy of _joints (aka "bones")_, expressed in X3D as a hierarchy of cgeref:TTransformNode[].
 
 - A number of meshes, which are a number of X3D geometry nodes using cgeref:TAbstractCoordinateNode[] with per-vertex data in `skinWeights0` and `skinJoints0`.
 
@@ -110,7 +110,7 @@ Placement of the `Skin` node within the X3D nodes graph matters. `Skin` is a des
 
 // TODO: update to link to master
 
-NOTE: If you're familiar with the X3D specification syntax for node definitions, you can find link:https://github.com/castle-engine/castle-engine/blob/14632f88b87d7b9b5152d61e366e5140c56236aa/tools/internal/x3d-nodes-to-pascal/nodes-specification/CastleEngineExtensions.txt#L257[`Skin` node spec expressed in this way here].
+NOTE: If you're familiar with the X3D specification syntax for node definitions, you can find https://github.com/castle-engine/castle-engine/blob/a54d85208b42015bc3875870d62b3f49106291b4/tools/internal/x3d-nodes-to-pascal/nodes-specification/CastleEngineExtensions.txt#L257[`Skin` node spec expressed in this way here].
 
 NOTE: The `Skin` node itself is not an "animation" that you can play. The actual animations are defined by using `TimeSensor` nodes that cause interpolators to transform (move, rotate, scale) the joint nodes. Animating joints will in turn transform the meshes as indicated by this `Skin` node.
 
@@ -328,7 +328,7 @@ First of all, the scope of this node is different (and deliberately much smaller
 
 In this node, we're keeping it agnostic from whether you apply it to humanoids or non-humanoids, like non-humanoid animals or imaginary alien creatures, plants, rubbery machines etc.
 
-If you wonder how to define joints for a humanoid, just follow _H-Anim_ LOA conventions for joints naming and organization. In fact you can use `HAnimJoint` nodes within our `Skin` node, we deliberately made it possible (though you can also just use `Transform` nodes instead of `HAnimJoint` nodes).
+If you wonder how to define joints for a humanoid, just follow _H-Anim_ LOA conventions for joints naming and organization.
 
 The `Skin` node simply provides an alternative way to specify skinned animation. We don't try to fill other use-cases of H-Anim.
 
@@ -358,13 +358,36 @@ We realize that this design "uncovers" an implementation detail (it's efficient 
 +
 _H-Anim_ naming implies it's for humanoids, parts of H-Anim spec talk about joints for humanoids -- this makes using `HAnimHumanoid` for animating arbitrary meshes confusing for the developers. For this reason, we also wanted to have joints/bones simply defined as `Transform` nodes. This again echoes our desire to keep it simple (standard X3D `Transform` is a joint), and also we don't want to connect this to "humanoids", even by terminology. Skinned animation is a standard 2D and 3D animation technique, not specific to humanoids at all.
 
+- To express joints in cgeref:TSkinNode[Skin], use cgeref:TTransformNode[Transform] nodes.
++
+To express joints in cgeref:THAnimHumanoidNode[HAnimHumanoid], use cgeref:THAnimJointNode[HAnimJoint] nodes.
++
+[NOTE]
+====
+For some time, we considered allowing to specify _joints_ inside `Skin` as either cgeref:TTransformNode[Transform] or cgeref:THAnimJointNode[HAnimJoint] nodes.
+
+However, this led to a more complicated design. The `HAnimJoint.center` requires a special treatment: it is relative to the root `HAnimHumanoid`, no matter how deep in the hierarchy is the joint. This is in contrast to `Transform.center` which is relative to the local coordinate system of this `Transform` (and thus can be handled with less information).
+
+Implementing `HAnimJoint` transformation requires a code that connects `HAnimJoint` to the enclosing `HAnimHumanoid`. Extending this to allow also `HAnimJoint` in `Skin` would make things more complicated, so for now we decided to not support this combination (`Skin` + `HAnimJoint`).
+
+We may revisit this decision in the future. But note that the current simple design of `Skin` + `Transform` seems to satisfy all our practical needs:
+
+- We can programmatically build or update (animate) the joints hierarchy at run-time.
+
+- We can efficiently express skinned animation imported from glTF files. Which includes animated 3D models created by professional artists available on various sites (like link:sketchfab[Sketchfab]). And it includes skinned animation exported from link:blender[Blender].
+
+- We also made a (proprietary) implementation importing motion capture data into `Skin` + `Transform`. We plan to add open-source BVH importer soon to the engine.
+
+//So we are relatively confident that our simple design is enough for a wide range of practical use-cases.
+====
+
 ==== Similarities to H-Anim (HAnimHumanoid)
 
 There are numerous deliberate similarities between `Skin` and `HAnimHumanoid`.
 
 - They both have `joints` list and `skeleton` fields, with practically the same purpose and meaning.
-
-- In both of them, you can use `HAnimJoint` nodes for joints. In `Skin`, you can also use simple `Transform` nodes for joints, but if you want to support both systems in a piece of code generating X3D, you can just use `HAnimJoint` nodes and later decide do you put them in `Skin` or `HAnimHumanoid`.
++
+Note that latest H-Anim/X3D spec made `HAnimHumanoid.joints` optional in certain cases, when the joints order (their indexes) can be undefined. (It is still non-optional when you need defined joint order, e.g. when associating with `HAnimHumanoid.jointBindingPositions`.) In case of `Skin`, the `joints` field is always mandatory.
 
 - The placement of `Skin` and `HAnimHumanoid` in the transformation matters. This is actually something where we follow X3D and _not_ glTF. It makes sense, for humans and for software, that `Skin` is part of the transformation hierarchy.
 
