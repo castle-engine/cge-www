@@ -19,7 +19,8 @@ $toc = new TableOfContents(
         new TocItem('LODs', 'LODs', 2),
       new TocItem('Textures', 'textures', 1),
       new TocItem('Animations', 'animations', 1),
-      new TocItem('Shading and Lighting', 'shading', 1),
+      new TocItem('Shading, Lighting Model', 'shading', 1),
+      new TocItem('Light Sources Radius', 'light_sources', 1),
       new TocItem('Create complex shapes, not trivial ones', 'shapes', 1),
         new TocItem('Try dynamic batching', 'dynamic_batching', 2),
       new TocItem('Share TCastleScenes instances if possible', 'scenes', 1),
@@ -281,8 +282,8 @@ support the concept of "build modes".
 
     <p>Our vectors are also like arrays, so doing stuff like <code>MyVector[2] := 123.0;</code>
     is also checked (it's valid if <code>MyVector</code> is a 3D or 4D vector, invalid if it's a 2D vector).
-    Actually, this simple case is checked at compile-time with the new vector API
-    in Castle Game Engine 6.3,
+    Actually, this simple case is checked at compile-time with the vector API
+    since Castle Game Engine 6.3,
     <!-- (since the index "2" is a constant and
     compiler knows that the range of indexes for each vector type).-->
     but more convoluted cases are still checked at run-time.
@@ -292,13 +293,29 @@ support the concept of "build modes".
     always use the <code>release</code> mode.
 
     <p>The code runs <b>much faster</b> in release mode.
-    The speed difference may be really noticeable. For example, as of Castle Game Engine 6.3,
-    our "toy" software ray-tracer (CastleRayTracer unit) is <i>1.9 times slower in development mode vs release mode</i>.
-    The speed differences of a typical game are usually not that drastic
-    (since a normal game doesn't spend 100% of time calculating math expressions on CPU,
-    unlike a software ray-tracer), but significant differences are still expected,
-    especially if you measure the performance of a particular calculation
-    (not just looking at game FPS).
+    The speed difference may be really noticeable &mdash; though it depends
+    on the exact application.
+
+    <ul>
+      <li><p>For example, our "toy" software ray-tracer (<code>CastleRayTracer</code> unit) is
+        <i>1.9 times slower in development mode vs release mode</i>.
+
+      <li><p>Animating skin on CPU using
+        <a href="x3d_implementation_hanim.php">H-Anim X3D nodes</a>
+        for one test model (<i>Lucy</i> from Seamless3D) was ~52 FPS in release mode,
+        ~20 FPS in debug mode. This is a big visual difference: <i>release mode</i>
+        feels completely smooth while <i>debug mode</i> is noticeably choppy.
+    </ul>
+
+    <p>The speed differences of a typical game is usually not that drastic.
+    Since a normal game doesn't spend 100% of time calculating math expressions on CPU,
+    unlike a software ray-tracer or skinned animation on CPU.
+    And we usually <a href="skin">calculate skinned animation on GPU</a>
+    when it uses <code>Skin</code> node or comes from glTF.
+
+    <p>But significant differences are still expected.
+    Especially if you measure the performance of a particular calculation
+    (not just looking at overall game FPS).
 
     <p>So in most cases it's really important that you measure the speed only of the
     <b>release</b> build of your game, and this is the version that you want to provide
@@ -313,9 +330,9 @@ A common theme in many optimizations is <i>culling</i>, in which we avoid passin
 
 <p>The engine by default performs frustum culling, using per-shape and per-scene bounding boxes and spheres. <?php echo cgeRef('TCastleScene.ShapeFrustumCulling'); ?> and <?php echo cgeRef('TCastleScene.SceneFrustumCulling'); ?> control this.
 
-<p>The simplest advise to <i>keep them enabled</i>, let the engine do its job :) It's almost never useful to disable these checks, unless you have a very specific case where you just know user is going to see something in all frames, <i>and the test really consumes time</i> (which in practice is never true, the test is trivial).
+<p>The simplest advise is to <i>keep them enabled</i>, let the engine do its job :) It's almost never useful to disable these checks, unless you have a very specific case where you just know user is going to see something in all frames, <i>and the test really consumes time</i> (which in practice is never true, the test is trivial).
 
-<p>Moreover, enable <?php echo cgeRef('TCastleSceneCore.PreciseCollisions'); ?> to have per-shape frustum culling be done using shapes octree. This makes it faster.
+<p>Moreover, enable <?php echo cgeRef('TCastleSceneCore.PreciseCollisions'); ?> to have per-shape frustum culling be done using shapes octree. This makes it faster. Although it consumes additional time to build and update the octree. It's usually a good idea for large 3D models like a game level.
 
 <?php echo $toc->html_section(); ?>
 
@@ -420,17 +437,29 @@ but in some special cases may be avoided:
 
 <?php echo $toc->html_section(); ?>
 
-<p>Using <i>Physically Based Rendering</i> (through X3D <code>PhysicalMaterial</code> node;
-default when loading glTF) has a cost.
-If you can, use instead
+<p><i>PBR (Physically Based Rendering, Lighting Model)</i> and <i>Phong Shading</i> look great and modern, but they have a cost.
+
+<p>PBR is default when using <a href="gltf">glTF</a>, available also in <a href="x3d">X3D</a>
+if you use <?php echo cgeRef('TPhysicalMaterialNode'); ?>. <i>Phong Shading</i> is default across the engine for all models.
+
+<p>NOTE: When reading this section, <a href="https://github.com/michaliskambi/x3d-tests/wiki/Do-not-confuse-Phong-shading-with-Phong-lighting-model">do not confuse Phong shading with Phong lighting model</a>.
+
+<p>If you're fine with a more "retro" lighting look, you can gain some speed by:
 
 <ul>
-  <li><p>Phong lighting model (through X3D <code>Material</code> node;
-    for glTF, set <?php echo cgeRef('GltfForcePhongMaterials', 'GltfForcePhongMaterials'); ?>).
+  <li><p>Using <i>Phong lighting model</i> instead of PBR.
 
-  <li><p>Moreover, use Gouraud shading, if you can. This is actually the default for Phong lighting,
-    unless you request bump mapping, shadow maps or other fancy stuff.
+    <p>To do this: If your models are in <a href="x3d">X3D</a>, <code>Material</code> node instead of <code>PhysicalMaterial</code> node.
+    If your models are in <a href="gltf">glTF</a>,
+    set global <?php echo cgeRef('GltfForcePhongMaterials', 'GltfForcePhongMaterials'); ?>
+    to <code>true</code>.
+
+  <li><p>Using <i>Gouraud shading</i> instead of <i>Phong shading</i>.
+
+    <p>To do this set <?php echo cgeRef('TCastleRenderOptions.PhongShading', 'MyScene.RenderOptions.PhongShading'); ?> to <code>false</code> for all your scenes.
 </ul>
+
+<?php echo $toc->html_section(); ?>
 
 <p>When designing lights, limit their scope or radius.
 When creating lights in new Blender, select <i>"Custom Distance"</i>
@@ -442,11 +471,11 @@ at light. This limits the shapes where the light has to be taken into account.
 as long as they are provided to them in a single "batch" or "draw call".</p>
 
 <p>In our engine, the "shape" is the unit of information we provide to
-GPU. It is simply a VRML/X3D shape. In most cases, it also corresponds to the
+GPU. It is simply a X3D shape. In most cases, it also corresponds to the
 3D object you design in your 3D modeler, e.g. Blender 3D object in
-simple cases is exported to a single VRML/X3D shape (although it may
+simple cases is exported to a single X3D shape (although it may
 be split into a couple of shapes if you use different
-materials/textures on it, as VRML/X3D is a little more limited (and
+materials/textures on it, as X3D is a little more limited (and
 also more GPU friendly)).</p>
 
 <p>The general advice is to compromise:</p>
@@ -555,7 +584,7 @@ you only need to manually write a "wrapper" X3D file around them.
 
 <ul>
   <li>An example X3D file showing this technique: <a href="https://github.com/castle-engine/wyrd-forest/blob/master/data/tree/oaktree_with_good_collisions.x3dv">tree from "Wyrd Forest" game</a>.
-  <li>More examples are in <code>vrml_2/collisions_final.wrl</code> demo inside <?php echo a_href_page('our demo VRML/X3D models', 'demo_models'); ?>.
+  <li>More examples are in <code>vrml_2/collisions_final.wrl</code> demo inside <?php echo a_href_page('our demo models', 'demo_models'); ?>.
 </ul>
 
 <!--
@@ -671,8 +700,6 @@ Hints to make it faster:
   <li>On Android and iOS, we will still use internal FpImage for now. (Modify <code>castleconf.inc</code> if you want to change it.)
   -->
 </ul>
-
-<p><i>In Castle Game Engine 6.4 and older</i>: To use external <i>libpng</i> library, define <code>-dCASTLE_PNG_DYNAMIC</code> when compiling the engine. E.g. define it inside <a href="https://castle-engine.io/project_manifest">CastleEngineManifest.xml as &lt;custom_options&gt;</a> and use our <a href="https://castle-engine.io/build_tool">build tool</a> to compile your game.
 
 <?php echo $toc->html_section(); ?>
 
