@@ -398,7 +398,7 @@ but in some special cases may be avoided:
 
 <ul>
   <li>Do not enable <?php echo cgeRef('TCastleSceneCore.ProcessEvents'); ?> if the scene remains static.
-  <li>Do not enable <?php echo cgeRef('TCastleSceneCore.PreciseCollisions'); ?> if you don't need precise collisions (treating scene as a mesh, except when skinned animation is used) and simpler colliosions (treating scene as bounding box) are enough.
+  <li>Do not enable <?php echo cgeRef('TCastleSceneCore.PreciseCollisions'); ?> if you don't need precise collisions (treating scene as a mesh, except when skinned animation is used) and simpler collisions (treating scene as bounding box) are enough.
 </ul>
 
 <p>We have an example <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/animations/optimize_animations_test">examples/animations/optimize_animations_test</a> demonstrating a few possible animations optimizations discussed below. Read the README there.
@@ -510,7 +510,7 @@ to have hundreds or thousands of triangles in a single shape.
 <?php echo $toc->html_section(); ?>
 
 <p>If you have a large number of small shapes using the same shader,
-consider turning on <?php echo cgeRef('DynamicBatching'); ?>. This will internallly detect and merge multiple shapes into
+consider turning on <?php echo cgeRef('DynamicBatching'); ?>. This will internally detect and merge multiple shapes into
 one just before passing them to the GPU. In some cases, it is a very powerful optimization,
 reducing the number of <i>draw calls</i>.
 
@@ -556,7 +556,7 @@ draw calls in this case.
 <ul>
   <li><p>It makes code simpler. You trivially load each model by <code>TCastleScene.Load</code>. You don't need to deal or understand anything about X3D nodes.
   <li><p>It allows to <a href="https://castle-engine.io/manual_scene.php">run animations</a> in the most intuitive way: on each model, you can call <code>TCastleScene.PlayAnimation</code>.
-  <li><p>The <a href="physics">physics engine</a> right now treats an entrie TCastleTransform (like TCastleScene) as a single rigid body. You cannot combine two scenes, if you want them to be independent rigid bodies for the physics engine.
+  <li><p>The <a href="physics">physics engine</a> right now treats an entire TCastleTransform (like TCastleScene) as a single rigid body. You cannot combine two scenes, if you want them to be independent rigid bodies for the physics engine.
 </ul>
 
 <p>Various things discussed here are <a href="roadmap">planned to be improved in the engine</a>, to avoid leaving you with such difficult decision. On one side, we plan to merge the <code>TCastleTransform</code> and <code>TTransformNode</code> hierarchies, making the gain from merging scenes irrelevant. On the other hand, we plan to allow physics to treat specific shapes as rigid bodies, making it possible to apply physics on smaller units than "entire TCastleScene".
