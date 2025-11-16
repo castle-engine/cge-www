@@ -1,0 +1,118 @@
+# Using AI when contributing to Castle Game Engine
+include::common.adoc[]
+
+== Summary
+
+- **You are responsible** for everything you submit: code, documentation, commit messages, issue/PR descriptions.
+// mouthful :)
+//Make it reflect your professionalism and your comprehension of the problem.
+- **Understand everything** you submit. Know reasons behind it.
+- **Be critical** of AI suggestions. They may contain hallucinations or unoptimal approaches.
+- **Keep AI conversations private**. Don't clutter issues with your conversations with AI.
+//Don't clutter descriptions with AI-generated marketing statements.
+- **Use AI as an assistant**, not a replacement for your own thinking, research and design decisions.
+
+== Introduction
+
+[NOTE]
+====
+Unlike most of our engine documentation, parts of this text is written in my personal (https://michalis.xyz/[hi, I'm Michalis]) voice, sharing my personal experience. I hope this helps you understand the reasoning behind some of the statements.
+
+Also, I'm sorry it's a long text. Ironically, being too verbose is also a complaint we often have about AI-generated stuff. I can only hope that my human writing is more entertaining / informative :)
+====
+
+From my conversations with fellow developers, I know we've all tried using AI, and we all have our share of _success stories_ and _failure stories (cautionary tales)_.
+
+- One of my personal early successes was using AI to help me add https://castle-engine.io/wp/2023/06/09/import-models-from-sketchfab-using-castle-game-engine-editor/[Sketchfab Integration] to our link:editor[]. AI's knowledge of the Sketchfab API was very helpful, and it was capable of using our cgeref:TCastleDownload[] for the task, when instructed to use it.
+
+- One of my personal failures, quite recent actually (2025), was asking AI for a proof of https://en.wikipedia.org/wiki/Pythagorean_theorem[Pythagorean theorem]. AI incorrectly combined a few different ways to go about proving this theorem, and it made a nonsense step in the middle of the proof, temporarily changing the meaning of the symbols and claiming invalid things about the situation. To make matters worse, this incorrect answer from AI looked _plausible_ (if you just scan it quickly without really comprehending each step, you will nod your head and say _"yes, that sounds about right"_), and it was stated with _confidence_. Since AI is trained to produce output that sounds plausible and confident.
++
+The educational implications of such AI mistakes are worrying. Think about children who want to learn math and ask AI such a question, perhaps because they didn't understand the proof their teacher showed during a school lesson, so they come home and ask AI for help. If I were 10 years old and used AI to help me understand the Pythagorean theorem proof, I would conclude _"well, one step in this proof doesn't look right; I'm probably too stupid to understand it"_. It's only because I'm older (and more confident in my own math skills) that I can see the reality: _"one step in this proof is incorrect; AI is wrong because it's just a probabilistic machine guessing what to tell me to sound most plausible"_.
+
+With this introduction, let's jump into recommendations and rules about using AI to contribute to _Castle Game Engine_.
+
+WARNING: One last disclaimer: This page doesn't discuss the aspects of AI beyond _"using AI to write Pascal code in the context of our engine"_. We don't discuss here the fact that AI was trained on copyrighted data (sometimes non-public) and can regurgitate it when asked, without caring about attribution or licensing. Or various clear abuses of AI, like generating spam (such as on our https://forum.castle-engine.io/[forum]). Or the existential dread where does this progress lead, thinking years ahead. Or using AI to make good art (2D or 3D). The topic is broad. Let's focus for now on how to use what you have, right now, to help you write good code.
+
+== Rules
+
+- The core rule is that you are responsible for every line of code and every sentence in documentation (in code, in issue/PR descriptions) that you submit. If it's nonsense or unoptimal, you should make it better.
+
+- Do not submit code you don't understand. If AI has suggested a solution, we expect you to analyze every line of it and adjust if necessary before submitting.
+// (if it's wrong, suboptimal, overcomplicated, or unmaintainable).
++
+Consider:
++
+--
+- Is the proposed solution the right way to solve the problem? Is this how you would go about it, if you forget about AI for a second?
+- Whether it is maintainable (apply software design principles like https://en.wikipedia.org/wiki/Don%27t_repeat_yourself[DRY (Don't Repeat Yourself)] and https://en.wikipedia.org/wiki/KISS_principle[KISS (Keep It Simple, Stupid)]).
+- Whether it follows the engine link:coding_conventions[coding conventions] and uses the right engine API. And yes, you can help AI by pointing it to our docs. https://github.com/castle-engine/cge-www/tree/master/htdocs/doc[Our manual is in the AsciiDoctor format] which is just a text with trivial markup and AI can process it effortlessly.
+//We actually https://github.com/castle-engine/castle-engine/blob/master/CONTRIBUTING.md[already point to it from our repo] but you can reinforce it too.
+- Whether it supports all our compilers and platforms. AI is often mistaken about nuances here; our CI/CD helps detect issues.
+--
+
+- The same goes for documentation and issue/PR descriptions. Make sure it's a good documentation, simple, and to the point. Documentation must actually help human developers, not be just _"something you had to provide, so you asked AI to produce something that looks plausible, to pass the review"_.
++
+Especially watch out for overly long and marketing-style statements. We don't want long documents with emoticons claiming that _"this is the best solution in the world"_. And while being grammatically correct is nice, it's not the most important thing we look for in a good documentation.
++
+We look for documentation that is _precise_, _practically helpful_ (no marketing buzzwords, just explain the problem and solution), and _concise_ (shorter is better).
++
+See my https://github.com/castle-engine/castle-engine/pull/694[own test, using an AI agent to develop MCP] where AI did... a useful start, but it required a lot of fixes (to even make this start be correct, as AI tried to extend the test suite, failed, and happily assumed it's all good; it also implemented 2 solutions, both wrong in different ways, at the beginning). And it's still far from a useful solution, it cannot be used in a way we need, and it's only a mockup that isn't aware of the real project. Yet AI confidently claims in the PR that _"This implementation makes Castle Game Engine the first game engine with comprehensive MCP support"_. It's a hilariously invalid statement :)
+
+- Don't fill issues with your conversation with AI. This particularly applies to conversations with _GitHub Copilot_. Yes, GitHub encourages you to use _GitHub Copilot_ in various contexts throughout their website (and maintainers https://github.com/orgs/community/discussions/159749[cannot even block it]) --- but it's not a good practice. We don't want to read your conversation with AI (sometimes filled with hallucinations, sometimes overly verbose and off-topic). If you want to talk with AI or iterate on code with AI, do it in your own space, without distracting other developers . For example, use a text editor that has AI integration. Review AI-proposed changes before anything gets committed.
+
+- Don't respond with AI-generated answers to our questions. We value what _you_ think; we value the _real_ reasons behind the decisions you made. We don't value AI justifying the changes in an attempt to convince the human reviewer that _"it's good, merge it"_.
+
+== Guidelines to use AI successfully
+
+- You, as a human programmer, must be in charge.
+
+- Start by _asking AI to help you understand the code_.
++
+--
+- Ask AI questions about particular code pieces, small or large.
+
+- Ask AI to find bugs or memory leaks, to proofread your submission.
+
+- Let AI analyze a codebase and describe how things work.
+
+- Use AI to search for things (esp. things that are beyond "grep search"; e.g. you don't know how it is called, but you know that there's exists _"something that allows to add two 3D vectors"_; AI can find it and tell you to `var A, B, C: TVector3; A := B + C;`).
+--
++
+_Still, never trust the answer without double-checking it. Remember my cautionary tale about the Pythagorean theorem above. When the answer is not obvious, AI will hallucinate (tell you a lie) and be confident about it._
+
+- Use AI for _code completion_, i.e. suggestions in text editors. This allows AI to augment deterministic code completion (like from our https://castle-engine.io/vscode[VS Code extension, which uses Lazarus CodeTools for code completion]), and in simple cases, the suggestions may be correct and save you some typing.
++
+Accept suggestions if they make sense. If you look at the suggestion and you can immediately see _"yes, that's exactly what I wanted to type, thanks!"_.
++
+Reject suggestions if they don't make sense or you're not sure what they do or why. Don't hesitate to reject AI work, and don't over-analyze AI answers to find _"nuggets of truth"_ in an incorrect answer. AI is just guessing to please you, based on what it was trained on.
+
+- _AI agents_ should be used with caution and only with full understanding.
++
+Don't throw a hard task at AI, hoping it will _solve it for you in one shot_. Split the task into smaller pieces (make a "TODO list" for the agent). Specify the conditions for the task (do X using Y and Z, e.g. "communicate with X using it's REST API and engine TCastleDownload class", or "introduce a method to class X doing this"). Always consider how to refactor the solution to be simplest and most maintainable. AI output is supposed to be a starting point for you, not the final solution.
+
+- Look whether there's an existing solution to your problem outside of AI. For example, create a new project using our link:editor[editor's] _"New Project"_ feature (instead of asking AI to start a project). Or look into our https://github.com/castle-engine/castle-engine/tree/master/examples[examples] for something similar to what you're trying to do. Starting from something correct (and using an AI agent to customize the solution for your needs) is better than forcing AI to guess a big solution from scratch.
++
+And again, remember that you are responsible for the solution, both code and documentation. Don't submit it without reviewing it. Don't submit any code or documentation that you don't understand. Don't use any language constructs that you don't understand.
++
+Basically, ask AI to _"fill the gaps"_ for you, to help you. If you ask it to do design work (propose a solution for you), be very critical of the answer -- maybe it's a good start, or maybe it requires refactoring to be useful, or maybe it's best to reject it and try another approach.
+
+== Guidelines to successfully develop games using Castle Game Engine, with or without AI
+
+Whether you use AI or not, common recommendations apply:
+
+- Learn to use the engine by https://www.youtube.com/@CastleGameEngine[watching our tutorials], https://castle-engine.io/bad_chess[reading our tutorials], and https://castle-engine.io/manual_intro.php[following our manual].
+
+- Use the editor to create a new project and see what API the project is using. Think about how you want to extend it. Look in our https://castle-engine.io/apidoc/html/index.html[API documentation] to learn what things do.
+
+- Start small. Experiment by creating simple games, that seem like "typical use of the engine". Start with the engine's _"New Project"_ templates. Extend it, reading the necessary documentation along the way.
+
+- Use version control. https://git-scm.com/[Git] is currently the most popular version control system. Using version control allows you to review your own changes and/or changes proposed by AI.
+
+== See also
+
+Many other projects have nice guidelines about using AI that we agree with. For example:
+
+- https://github.com/zulip/zulip/blob/main/CONTRIBUTING.md#ai-use-policy-and-guidelines[Zulip contribution guidelines about AI]
+
+- https://devguide.python.org/getting-started/generative-ai/[Python rules about AI]
+

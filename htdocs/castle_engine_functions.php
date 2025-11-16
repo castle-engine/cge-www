@@ -400,6 +400,7 @@ $castle_sitemap = array(
               'doc/donate' => array('title' => 'Donate'),
               'doc/roadmap' => array('title' => 'Roadmap'),
               'doc/coding_conventions' => array('title' => 'Coding Conventions'),
+              'doc/ai' => array('title' => 'Using AI'),
             )
           ),
         ),
