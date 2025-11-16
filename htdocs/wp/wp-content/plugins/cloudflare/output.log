@@ -1,59 +1,66 @@
 Running php-build composer
-WARNING! Your password will be stored unencrypted in /home/runner/.docker/config.json.
+
+WARNING! Your credentials are stored unencrypted in '/home/runner/.docker/config.json'.
 Configure a credential helper to remove this warning. See
-https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+https://docs.docker.com/go/credential-store/
 
 Login Succeeded
-Pulling docker.pkg.github.com/cloudflare/cloudflare-wordpress/php-actions_composer_cloudflare-wordpress:php-7.4-build2
-php-7.4-build2: Pulling from cloudflare/cloudflare-wordpress/php-actions_composer_cloudflare-wordpress
-801bfaa63ef2: Pulling fs layer
-30e209609427: Pulling fs layer
-320f26ee9b1c: Pulling fs layer
-4612e05a72cf: Pulling fs layer
-9b2beae78beb: Pulling fs layer
-79c03e12047a: Pulling fs layer
-51393fef6543: Pulling fs layer
-5571c1cd7f43: Pulling fs layer
-65564f077fec: Pulling fs layer
-4d1e94121e00: Pulling fs layer
-51393fef6543: Waiting
-5571c1cd7f43: Waiting
-65564f077fec: Waiting
-4d1e94121e00: Waiting
-4612e05a72cf: Waiting
-9b2beae78beb: Waiting
-79c03e12047a: Waiting
-320f26ee9b1c: Verifying Checksum
-320f26ee9b1c: Download complete
-801bfaa63ef2: Verifying Checksum
-30e209609427: Verifying Checksum
-30e209609427: Download complete
-4612e05a72cf: Verifying Checksum
-4612e05a72cf: Download complete
-801bfaa63ef2: Pull complete
-79c03e12047a: Verifying Checksum
-79c03e12047a: Download complete
-30e209609427: Pull complete
-320f26ee9b1c: Pull complete
-4612e05a72cf: Pull complete
-9b2beae78beb: Verifying Checksum
-9b2beae78beb: Download complete
-5571c1cd7f43: Download complete
-51393fef6543: Verifying Checksum
-51393fef6543: Download complete
-9b2beae78beb: Pull complete
-79c03e12047a: Pull complete
-65564f077fec: Verifying Checksum
-65564f077fec: Download complete
-4d1e94121e00: Verifying Checksum
-4d1e94121e00: Download complete
-51393fef6543: Pull complete
-5571c1cd7f43: Pull complete
-65564f077fec: Pull complete
-4d1e94121e00: Pull complete
-Digest: sha256:534c5504188676052b8faad7d8a1d2039b5eb397baa3a7229ff90c6f9b630519
-Status: Downloaded newer image for docker.pkg.github.com/cloudflare/cloudflare-wordpress/php-actions_composer_cloudflare-wordpress:php-7.4-build2
-docker.pkg.github.com/cloudflare/cloudflare-wordpress/php-actions_composer_cloudflare-wordpress:php-7.4-build2
-Docker tag: docker.pkg.github.com/cloudflare/cloudflare-wordpress/php-actions_composer_cloudflare-wordpress:php-7.4-build2
+Pulling docker.pkg.github.com/cloudflare/cloudflare-wordpress/php-actions_composer_cloudflare-wordpress:php-7.4-build2.1.0
+php-7.4-build2.1.0: Pulling from cloudflare/cloudflare-wordpress/php-actions_composer_cloudflare-wordpress
+ca7dd9ec2225: Pulling fs layer
+1b78b4fe0ca1: Pulling fs layer
+9d6040f2a28f: Pulling fs layer
+0e2e66b89284: Pulling fs layer
+3b1be5f02bec: Pulling fs layer
+96243f515dda: Pulling fs layer
+4006f78ca99d: Pulling fs layer
+3c76b37a5dd7: Pulling fs layer
+6491a80416fc: Pulling fs layer
+1a253e388736: Pulling fs layer
+0e2e66b89284: Waiting
+3b1be5f02bec: Waiting
+4006f78ca99d: Waiting
+3c76b37a5dd7: Waiting
+96243f515dda: Waiting
+6491a80416fc: Waiting
+1a253e388736: Waiting
+9d6040f2a28f: Verifying Checksum
+9d6040f2a28f: Download complete
+1b78b4fe0ca1: Verifying Checksum
+1b78b4fe0ca1: Download complete
+ca7dd9ec2225: Verifying Checksum
+ca7dd9ec2225: Download complete
+0e2e66b89284: Verifying Checksum
+0e2e66b89284: Download complete
+96243f515dda: Verifying Checksum
+96243f515dda: Download complete
+ca7dd9ec2225: Pull complete
+3c76b37a5dd7: Verifying Checksum
+3c76b37a5dd7: Download complete
+3b1be5f02bec: Verifying Checksum
+3b1be5f02bec: Download complete
+6491a80416fc: Verifying Checksum
+6491a80416fc: Download complete
+1b78b4fe0ca1: Pull complete
+9d6040f2a28f: Pull complete
+4006f78ca99d: Verifying Checksum
+4006f78ca99d: Download complete
+0e2e66b89284: Pull complete
+1a253e388736: Verifying Checksum
+1a253e388736: Download complete
+3b1be5f02bec: Pull complete
+96243f515dda: Pull complete
+4006f78ca99d: Pull complete
+3c76b37a5dd7: Pull complete
+6491a80416fc: Pull complete
+1a253e388736: Pull complete
+Digest: sha256:bf481540f1892d9f62ef8a6b3d4a1b6760df47df2b75ea64949d1845289e528c
+Status: Downloaded newer image for docker.pkg.github.com/cloudflare/cloudflare-wordpress/php-actions_composer_cloudflare-wordpress:php-7.4-build2.1.0
+docker.pkg.github.com/cloudflare/cloudflare-wordpress/php-actions_composer_cloudflare-wordpress:php-7.4-build2.1.0
+Docker tag: docker.pkg.github.com/cloudflare/cloudflare-wordpress/php-actions_composer_cloudflare-wordpress:php-7.4-build2.1.0
 No private keys supplied
 Command: composer install --no-dev --no-progress --no-interaction
+Skipping env variable PWD
+Skipping env variable HOME
+Skipping env variable SHLVL
+Skipping env variable PATH
