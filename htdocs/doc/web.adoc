@@ -74,6 +74,8 @@ WARNING: Early preview, just to show that "we can" :) Not suitable for any real 
 
 - link:web-demos/examples/3d_games/walking_adventure[Walking Adventure] (https://github.com/castle-engine/castle-engine/tree/master/examples/3d_games/walking_adventure[Source code])
 
+- link:web-demos/examples/animations/animate_bones_by_code[Animate Bones by Code] (https://github.com/castle-engine/castle-engine/tree/master/examples/animations/animate_bones_by_code[Source code])
+
 ////
 TODO: These demos run, but no sound yet.
 
