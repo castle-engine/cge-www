@@ -401,11 +401,11 @@ Note that latest H-Anim/X3D spec made `HAnimHumanoid.joints` optional in certain
 +
 Various glTF materials can be helpful to understand how the `inverseBindMatrices` are used, see e.g.  https://www.khronos.org/files/gltf20-reference-guide.pdf[glTF 2.0 reference guide], page 6.
 
-== How do collisions work when skin is calculated on GPU
+== How do collisions and bounding volumes work when skin is calculated on GPU
 
-=== You need to assign proper bounding box explicitly
+=== We need to know the bounding box of the shapes affected by skin animation
 
-You *absolutely must* explicitly specify the shape's bounding box if that shape is to be animated using the skinned animation.
+Unless the animation is loaded from link:gltf[glTF], you *must assign the shape's bounding box* if that shape is to be animated using the skinned animation.
 
 - In X3D files, set the `bboxCenter` and `bboxSize` fields of the `Shape` node.
 
@@ -413,13 +413,23 @@ You *absolutely must* explicitly specify the shape's bounding box if that shape 
 
 The bounding box must account for all possible skin arrangements in all possible animation frames.
 
-Reasoning:
+*You don't need to worry about this when loading from link:gltf[glTF], as in this case the shapes' bounding box is calculated automatically.*
+
+- We sample specific frames of the link:gltf[glTF] animation, at loading, to determine a reasonable bounding box.
+
+- The cgeref:TAbstractShapeNode.BBox[] is automatically set (at the beginning of each animation) to the bounding box of this animation.
+
+- See the cgeref:TSkinNode.AnimationSamplingForBox[] variable for details. You can adjust it, e.g. `TSkinNode.AnimationSamplingForBox := 1` will make the sampling more accurate, at the cost of longer loading time.
+
+- TODO: We want to enable such automatic bounding box calculation always, not only when loading from glTF.
+
+*Why is this required?*
 
 Since the mesh (skin) is only updated on GPU, the algorithms on CPU don't know about the updated skin vertexes. For example, imagine a 3D model of a very thin and very tall https://en.wikipedia.org/wiki/Giraffe[giraffe] that https://en.wikipedia.org/wiki/File:Flickr_-\_Rainbirder_-_Reticulated_Giraffe_drinking.jpg[lays down its long neck in one animation]. The effective bounding box of the giraffe in that animation is very different from the initial bounding box when the giraffe was standing. But since the animation is performed on GPU using shaders, the CPU doesn't know about the modified skin position and bounding box!
 
 And it is bad if our algorithms on CPU think that the object is in one place, but it's actually in another place. For example, _frustum culling_ and _ray picking_ would consider a wrong box, and e.g. _frustum culling_ may decide to _cull_ (not render) the object when it should actually be visible.
 
-The solution is to manually define the bounding box for the shapes affected by skin. You *have to* specify this bounding box.
+//The solution is to manually define the bounding box for the shapes affected by skin. You *have to* specify this bounding box.
 
 NOTE: There are ways to transfer data calculated on GPU back to CPU. Like transform feedback, https://github.com/castle-engine/castle-engine/tree/master/examples/shaders/transform_feedback[we have a demo using it in our engine]. But we don't want to use it here -- it would complicate the implementation, and also would cost some efficiency.
 
@@ -479,3 +489,4 @@ So, while we will offer importing BVH in our engine, in the most usual workflow 
 +
 If you want to load BVH at run-time in our engine now, you can experiment with existing tools to convert BVH to glTF, like https://github.com/ux3d/bvh2gltf2 . Using our engine, you can find the animation in the created glTF file (interpolators that affect joints) and copy the respective nodes to the target model.
 
+- Enable cgeref:TAbstractShapeNode.BBox[] calculation for shapes affected by skin animation always, not only when loading from glTF.
