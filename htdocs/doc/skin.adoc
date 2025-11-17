@@ -316,6 +316,8 @@ Our approach is deliberately closely aligned with glTF.
 
 - Implementing `Skin`, including implementing it on GPU (skin is applied in shaders) is as straightforward as in glTF. You can follow the https://www.khronos.org/files/gltf20-reference-guide.pdf[glTF cheat sheet] that describes the GPU implementation on skinning in 1.5 pages.
 
+- To understand all the fields, how to handle them (both for rendering and for authoring) you can also refer to glTF resources, like https://github.com/KhronosGroup/glTF-Tutorials/blob/main/gltfTutorial/gltfTutorial_020_Skins.md[glTF Skins tutorial from Khronos].
+
 === Difference from H-Anim
 
 ==== Different scope
