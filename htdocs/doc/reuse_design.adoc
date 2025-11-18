@@ -49,3 +49,20 @@ See the context menu (right-click) of the cgeref:TCastleDesign[] or cgeref:TCast
 - _"Revert To Referenced Design"_ (use after _"Edit (Copy Here) Referenced Design"_; this removes all the children and reverts back to the original design file)
 
 - _"Open Referenced Design"_ (an easy way to open design in the `URL` of this cgeref:TCastleDesign[] or cgeref:TCastleTransformDesign[] component).
+
+== Factory (TCastleComponentFactory)
+
+A related engine feature is cgeref:TCastleComponentFactory[]. Use this to instantiate the same `.castle-user-interface` or `.castle-transform` multiple times. For example, you could use this to:
+
+- spawn creatures
+- spawn bullets
+
+See examples that use this:
+
+- https://github.com/castle-engine/castle-engine/tree/skinned-animation-gpu/examples/2d_games/space_shooter[examples/2d_games/space_shooter] (spawning bullets, rocks, explosions)
+
+- https://github.com/castle-engine/castle-engine/tree/master/examples/animations/animate_bones_by_code[examples/animations/animate_bones_by_code] (spawning characters for _"Add Crowd"_ test).
+
+From code, the primary method to use is cgeref:TCastleComponentFactory.ComponentLoad[]. It creates another instance of given design, that you can add to the hierarchy.
+
+NOTE: Hint: if you have scenes inside the designs, that are instantiated many times, usually setting cgeref:TCastleSceneCore.Cache[] to `true` is beneficial. It will avoid loading the scene from disk multiple times.
