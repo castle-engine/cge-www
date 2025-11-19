@@ -3,24 +3,44 @@ include::common.adoc[]
 :description: Design the skinned animation skeleton and joints in Castle Game Engine.
 :cge-social-share-image: skin_example_screenshot.png
 
-WARNING: This feature is not yet merged to `master`. It's on https://github.com/castle-engine/castle-engine/tree/skinned-animation-gpu[skinned-animation-gpu] branch.
-
 == Introduction
 
 You can use _skinned animation_ when designing models in _Castle Game Engine_. This means that your 3D model defines a number of _joints_ (aka "bones") that can be transformed (e.g. to make a _"walk"_ animation) and cause a _mesh_ (aka "skin") to animate accordingly, following the joints.
 
-In most cases, you don't need to do anything special on the engine side to use it. Simply design models using link:blender[Blender] with Blender's _armature_ and _bones_, export it to link:gltf[glTF], and load it in _Castle Game Engine_ as usual. A 3D model in _Castle Game Engine_ is displayed and processed using the cgeref:TCastleScene[] component, documented in link:viewport_and_scenes[Viewport with scenes, camera, navigation].
+In most cases, you don't need to do anything special on the engine side to use it. Simply design models using link:blender[Blender] with Blender's _armature_ and _bones_, export it to link:gltf[glTF], and load it in _Castle Game Engine_ as usual.
 
-The engine will automatically load the skinned animation from glTF, and display it correctly. We can perform the animation on the GPU, which means it's efficient. We also have a fallback (for ancient GPUs) non-GPU implementation.
+A 3D model in _Castle Game Engine_ is displayed and processed using the cgeref:TCastleScene[] component, documented in link:viewport_and_scenes[Viewport with scenes, camera, navigation]. The engine will automatically load the skinned animation and display it correctly.
+
+We try to perform the animation on the GPU, which means it's very fast. To demonstrate this, our https://github.com/castle-engine/castle-engine/tree/skinned-animation-gpu/examples/animations/animate_bones_by_code[examples/animations/animate_bones_by_code] demo has a button _"Add Crowd"_. We also have a fallback (for ancient GPUs) implementation that animates on the CPU.
+// -- this works everywhere, though it's noticeably slower, which matters if you try to display a lot of animated characters.
 
 cgeimg::block[
   skin_example_screenshot.png|Skinned animation example - change joints by Pascal code,
+  skin_crowd.png|Skinned animation example - crowd of characters,
   skin_fox.png|Animated fox,
   skin_bunny.png|Animated bunny,
   skin_alien.png|Animated alien
 ]
 
-== Skin node under the hood
+== Pascal example: modify joints by code, add crowd
+
+While you can play designed animations, you can also modify joints by code. This is useful for implementing inverse kinematics, or for any other direct manipulation of joints from code.
+
+Build and run example https://github.com/castle-engine/castle-engine/tree/skinned-animation-gpu/examples/animations/animate_bones_by_code[examples/animations/animate_bones_by_code] to see how to do this.
+
+The example also shows how to create a crowd of characters, each playing a different animation.
+
+== Test models (in glTF and X3D)
+
+Simply open any link:gltf[glTF] file with a skinned animation in link:castle-model-viewer[Castle Model Viewer].
+
+Links to many resources with animated glTF models are in link:assets.php[our assets page], e.g. look at https://quaternius.com/[Quaternius] and https://sketchfab.com/features/gltf[Sketchfab glTF models].
+
+All glTF models can be saved to the link:x3d[X3D] format using our link:castle-model-viewer[Castle Model Viewer] or link:castle-model-converter[Castle Model Converter]. The glTF skinned animation will be saved to X3D as the `Skin` node, described below. Note that other X3D browsers do not support `Skin` at this moment, so such models are only playable in our link:castle-model-viewer[Castle Model Viewer] and in games using _Castle Game Engine_.
+
+See some ready models, in both glTF and X3D formats, with skinned animation in https://github.com/castle-engine/demo-models/tree/master/animation[demo-models animation subdirectory].
+
+== Under the hood: X3D Skin node
 
 Each cgeref:TCastleScene[] is actually a graph of link:x3d[X3D nodes] (rooted in cgeref:TCastleSceneCore.RootNode[]). The nodes control everything -- display, animation of the model.
 
@@ -34,7 +54,7 @@ The documentation below accounts for two ways how you can build X3D nodes:
 
 - You can build the X3D nodes graph in Pascal code. In this case, you create an instance of the cgeref:TSkinNode[] class. The properties of this class map one-to-one to the `Skin` node from X3D.
 
-== Overview
+=== Overview of the Skin node
 
 We define a new node called `Skin` (Pascal: cgeref:TSkinNode[]). It allows to design a skinned animation (using skeleton with joints, and shapes with skin weights).
 
@@ -116,7 +136,7 @@ NOTE: The `Skin` node itself is not an "animation" that you can play. The actual
 
 NOTE: There are some differences, but there are also some similarities between `Skin` node and `HAnimHumanoid` node. They both can be used for skinned animation. If you're familiar with H-Anim and `HAnimHumanoid` node, we outline the differences (and similarities) in the section below.
 
-== Additional per-vertex information at geometry nodes
+=== Additional per-vertex information at geometry nodes
 
 We enhance geometry nodes with the necessary per-vertex information for each vertex: *which joints* affect it and *how much*. This information is a per-vertex data useful for animation systems, whether implemented by CPU or GPU:
 
@@ -155,7 +175,7 @@ IndexedFaceSet {
 }
 ----
 
-=== Limit of 4 joints per vertex
+=== Note: Limit of 4 joints per vertex
 
 As you see, the system limits the number of joints that can affect a single vertex to 4. This is a deliberate design decision. In practice, 4 joints per vertex seems well enough for 3D skinned animation needs in our experience, and glTF designers made a similar decision.
 
@@ -164,7 +184,7 @@ In the exporter from 3D software, if a vertex is affected by more than 4 joints,
 NOTE: In the future we may introduce fields like `skinJoints1`, `skinWeights1` etc. to support more than 4 joints per vertex. This is consistent with glTF data `JOINTS_0`, `WEIGHTS_0`, `JOINTS_1`, `WEIGHTS_1` etc.
 
 [#example]
-== X3D Example
+=== Example of Skin definition in X3D
 
 Example `Skin` definition is as follows:
 
@@ -296,19 +316,7 @@ Skin {
 }
 ----
 
-== Pascal example (modify joints by code)
-
-Build and run example https://github.com/castle-engine/castle-engine/tree/skinned-animation-gpu/examples/animations/animate_bones_by_code[examples/animations/animate_bones_by_code] to see how to modify joints by Pascal code.
-
-== More testcases
-
-Simply open any glTF file with a skinned animation in link:castle-model-viewer[Castle Model Viewer] and save it back to X3D. This is a way to have lots of testcases of the `Skin` node.
-
-Links to many resources with animated glTF models are in link:assets.php[our assets page], e.g. look at https://quaternius.com/[Quaternius] and https://sketchfab.com/features/gltf[Sketchfab glTF models].
-
-// See some ready glTF and X3D models in (TODO link, commit x3d versions) demo-models/animation/gltf_skinned_animation/ .
-
-== Why?
+=== Rationale behind the Skin node design
 
 Our approach is deliberately closely aligned with glTF.
 
