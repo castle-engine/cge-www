@@ -492,3 +492,5 @@ So, while we will offer importing BVH in our engine, in the most usual workflow 
 If you want to load BVH at run-time in our engine now, you can experiment with existing tools to convert BVH to glTF, like https://github.com/ux3d/bvh2gltf2 . Using our engine, you can find the animation in the created glTF file (interpolators that affect joints) and copy the respective nodes to the target model.
 
 - Enable cgeref:TAbstractShapeNode.BBox[] calculation for shapes affected by skin animation always, not only when loading from glTF.
+
+- Preprocessing by `castle-engine auto-generate` should store information to make loading faster and eliminate the need to recalculate animation bounding box at loading.
