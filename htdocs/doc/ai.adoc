@@ -1,5 +1,6 @@
 # Using AI when contributing to Castle Game Engine
 include::common.adoc[]
+:description: Using AI (like GitHub Copilot) when contributing to Castle Game Engine and when developing your own games and applications.
 
 == Summary
 
@@ -33,7 +34,7 @@ With this introduction, let's jump into recommendations and rules about using AI
 
 WARNING: One last disclaimer: This page doesn't discuss the aspects of AI beyond _"using AI to write Pascal code in the context of our engine"_. We don't discuss here the fact that AI was trained on copyrighted data (sometimes non-public) and can regurgitate it when asked, without caring about attribution or licensing. Or various clear abuses of AI, like generating spam (such as on our https://forum.castle-engine.io/[forum]). Or the existential dread where does this progress lead, thinking years ahead. Or using AI to make good art (2D or 3D). The topic is broad. Let's focus for now on how to use what you have, right now, to help you write good code.
 
-== Rules
+== Requirements
 
 - The core rule is that you are responsible for every line of code and every sentence in documentation (in code, in issue/PR descriptions) that you submit. If it's nonsense or unoptimal, you should make it better.
 
@@ -62,7 +63,7 @@ See my https://github.com/castle-engine/castle-engine/pull/694[own test, using a
 
 - Don't respond with AI-generated answers to our questions. We value what _you_ think; we value the _real_ reasons behind the decisions you made. We don't value AI justifying the changes in an attempt to convince the human reviewer that _"it's good, merge it"_.
 
-== Guidelines to use AI successfully
+== Guidelines to use AI successfully (when contributing, or using in your own projects)
 
 - You, as a human programmer, must be in charge.
 
@@ -96,7 +97,7 @@ And again, remember that you are responsible for the solution, both code and doc
 +
 Basically, ask AI to _"fill the gaps"_ for you, to help you. If you ask it to do design work (propose a solution for you), be very critical of the answer -- maybe it's a good start, or maybe it requires refactoring to be useful, or maybe it's best to reject it and try another approach.
 
-== Guidelines to successfully develop games using Castle Game Engine, with or without AI
+== Guidelines to successfully develop applications using Castle Game Engine, with or without AI
 
 Whether you use AI or not, common recommendations apply:
 
