@@ -286,6 +286,7 @@ $castle_sitemap = array(
             'sub' => array(
               'doc/custom_components' => array('title' => 'Custom Components in Editor'),
               'doc/reuse_design' => array('title' => 'Components to reuse a design in other designs'), // TCastleDesign and TCastleTransformDesign -- too long names would make horizontal scroll on mobile
+              'doc/sketchfab' => array('title' => 'Sketchfab'),
             )
           ),
           'doc/url' => array('title' => 'URLs, loading (downloading) and saving resources',
@@ -352,9 +353,10 @@ $castle_sitemap = array(
               'doc/blending' => array('title' => 'Blending'),
               'doc/color_space' => array('title' => 'Color Space (Gamma Correction)'),
               'manual_alpha_bleeding' => array('title' => 'Alpha Bleeding'),
-              'doc/sketchfab' => array('title' => 'Sketchfab'),
             )
           ),
+          'doc/skin' => array('title' => 'Skinned animation (Skin node)'),
+          'doc/steam' => array('title' => 'Steam'),
           'doc/control_on_form' => array('title' => 'Engine on a form (VCL, FMX, LCL) using TCastleControl'),
           'manual_automatic_builds' => array('title' => 'Automatic Builds (Continuous Integration and Delivery)',
             'sub' => array(
@@ -379,7 +381,6 @@ $castle_sitemap = array(
           ),
           'manual_miscellaneous' => array('title' => 'Miscellaneous',
             'sub' => array(
-              'doc/steam' => array('title' => 'Steam'),
               'manual_up' => array('title' => 'Which way is up?'),
               'manual_transformation_hierarchy' => array('title' => 'Transformation hierarchy'),
               'doc/castlewindow_backends' => array('title' => 'CastleWindow Backends'),
@@ -501,7 +502,6 @@ $castle_sitemap = array(
               'x3d_implementation_interpolation'        => array('title' => 'Interpolation ("how to animate things")',
                 'sub' => array(
                   'x3d_implementation_interpolation_extensions' => array('title' => 'Extensions'),
-                  'doc/skin' => array('title' => 'Skinned animation using the Skin node'),
                 ),
               ),
               'x3d_implementation_pointingdevicesensor' => array('title' => 'Pointing device sensor'          ),
