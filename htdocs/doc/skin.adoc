@@ -483,6 +483,7 @@ Also, switch to https://en.wikipedia.org/wiki/Ragdoll_physics[ragdoll physics] (
 - Yes, in effect this makes https://castle-engine.io/shadow_volumes[shadow volumes] affect performance in a negative way -- not only the shadow volumes itself cost (rendering shadow quads, 2 passes), but also it disables skinned animation on GPU.
 - To overcome this we'd need to use geometry shaders to render shadow quads, which is quite some additional work.
 - Practical solution will likely be to recommend https://castle-engine.io/x3d_extensions_shadow_maps.php[shadow maps] once we https://castle-engine.io/roadmap#shadow_maps[improve them].
+- To somewhat mitigate the problem, you can change far-away skinned animated objects to not be shadow casters for shadow volumes. Just toggle cgeref:TCastleTransform.CastShadows[] to `false`.
 --
 
 - Pass joints data using a texture, not uniforms. This will enable supporting more joints effortlessly.
