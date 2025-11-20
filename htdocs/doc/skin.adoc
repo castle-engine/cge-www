@@ -11,7 +11,7 @@ In most cases, you don't need to do anything special on the engine side to use i
 
 A 3D model in _Castle Game Engine_ is displayed and processed using the cgeref:TCastleScene[] component, documented in link:viewport_and_scenes[Viewport with scenes, camera, navigation]. The engine will automatically load the skinned animation and display it correctly.
 
-We try to perform the animation on the GPU, which means it's very fast. To demonstrate this, our https://github.com/castle-engine/castle-engine/tree/skinned-animation-gpu/examples/animations/animate_bones_by_code[examples/animations/animate_bones_by_code] demo has a button _"Add Crowd"_. We also have a fallback (for ancient GPUs) implementation that animates on the CPU.
+We try to perform the animation on the GPU, which means it's very fast. To demonstrate this, our https://github.com/castle-engine/castle-engine/tree/master/examples/animations/animate_bones_by_code[examples/animations/animate_bones_by_code] demo has a button _"Add Crowd"_. We also have a fallback (for ancient GPUs) implementation that animates on the CPU.
 // -- this works everywhere, though it's noticeably slower, which matters if you try to display a lot of animated characters.
 
 cgeimg::block[
@@ -26,7 +26,7 @@ cgeimg::block[
 
 While you can play designed animations, you can also modify joints by code. This is useful for implementing inverse kinematics, or for any other direct manipulation of joints from code.
 
-Build and run example https://github.com/castle-engine/castle-engine/tree/skinned-animation-gpu/examples/animations/animate_bones_by_code[examples/animations/animate_bones_by_code] to see how to do this.
+Build and run example https://github.com/castle-engine/castle-engine/tree/master/examples/animations/animate_bones_by_code[examples/animations/animate_bones_by_code] to see how to do this.
 
 The example also shows how to create a crowd of characters, each playing a different animation.
 
@@ -130,7 +130,7 @@ Placement of the `Skin` node within the X3D nodes graph matters. `Skin` is a des
 
 // TODO: update to link to master
 
-NOTE: If you're familiar with the X3D specification syntax for node definitions, you can find https://github.com/castle-engine/castle-engine/blob/a54d85208b42015bc3875870d62b3f49106291b4/tools/internal/x3d-nodes-to-pascal/nodes-specification/CastleEngineExtensions.txt#L257[`Skin` node spec expressed in this way here].
+NOTE: If you're familiar with the X3D specification syntax for node definitions, you can find https://github.com/castle-engine/castle-engine/blob/37fde3bc973bf8c0d62d72f4f8fc1f6577bb56a8/tools/internal/x3d-nodes-to-pascal/nodes-specification/CastleEngineExtensions.txt#L257[`Skin` node spec expressed in this way here].
 
 NOTE: The `Skin` node itself is not an "animation" that you can play. The actual animations are defined by using `TimeSensor` nodes that cause interpolators to transform (move, rotate, scale) the joint nodes. Animating joints will in turn transform the meshes as indicated by this `Skin` node.
 
