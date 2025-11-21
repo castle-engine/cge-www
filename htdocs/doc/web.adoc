@@ -89,9 +89,7 @@ TODO: These demos run, but no sound yet.
 
 === Automatic Engine Tests
 
-- link:web-demos/tests[Automatic Engine Tests] (https://github.com/castle-engine/castle-engine/tree/master/tests[Source code]). Our full, cross-platform test suite with over 470 tests, running on the web.
-+
-NOTE: Don't be alarmed if a test seems to hang in the middle. The test `TTestX3DNodes.TestGltfConversion` indeed takes time, around 30 seconds, it knowingly does something quite unoptimal (converting large binary data in glTF to a textual representation in X3D).
+- link:web-demos/tests[Automatic Engine Tests] (https://github.com/castle-engine/castle-engine/tree/master/tests[Source code]). Our full, cross-platform test suite with over 500 tests, running on the web.
 
 === Earliest (simplest) demos
 
