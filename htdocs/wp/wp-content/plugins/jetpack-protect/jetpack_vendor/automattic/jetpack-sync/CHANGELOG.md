@@ -5,6 +5,29 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.22.5] - 2025-11-20
+### Fixed
+- Improve compatibility with old WooCommerce versions. [#46003]
+- Phan: Address PhanPossiblyUndeclaredVariable violations. [#45911]
+
+## [4.22.4] - 2025-11-10
+### Changed
+- Sync: Ignore the `shop_order_placehold` post-type from Woo. [#45772]
+- Sync: Prevent unnecessary sync actions from running via Jetpack CRM's WooSync. [#45761]
+- Tests: Ensure PHP 8.5 compatibility. [#45769]
+
+## [4.22.3] - 2025-11-03
+### Added
+- Ensure order item meta is only synced if it is in the whitelist. [#45684]
+
+### Changed
+- Enable WPCOM REST API feature by default. [#45672]
+- Only enqueue a single HPOS order save event per request. [#45697]
+
+## [4.22.2] - 2025-10-27
+### Changed
+- Internal updates.
+
 ## [4.22.1] - 2025-10-10
 ### Changed
 - Handle lazy-loading of `WP_User` object properties. [#45450]
@@ -1563,6 +1586,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Packages: Move sync to a classmapped package
 
+[4.22.5]: https://github.com/Automattic/jetpack-sync/compare/v4.22.4...v4.22.5
+[4.22.4]: https://github.com/Automattic/jetpack-sync/compare/v4.22.3...v4.22.4
+[4.22.3]: https://github.com/Automattic/jetpack-sync/compare/v4.22.2...v4.22.3
+[4.22.2]: https://github.com/Automattic/jetpack-sync/compare/v4.22.1...v4.22.2
 [4.22.1]: https://github.com/Automattic/jetpack-sync/compare/v4.22.0...v4.22.1
 [4.22.0]: https://github.com/Automattic/jetpack-sync/compare/v4.21.3...v4.22.0
 [4.21.3]: https://github.com/Automattic/jetpack-sync/compare/v4.21.2...v4.21.3
