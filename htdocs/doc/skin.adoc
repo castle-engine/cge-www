@@ -7,7 +7,11 @@ include::common.adoc[]
 
 You can use _skinned animation_ when designing models in _Castle Game Engine_. This means that your 3D model defines a number of _joints_ (aka "bones") that can be transformed (e.g. to make a _"walk"_ animation) and cause a _mesh_ (aka "skin") to animate accordingly, following the joints.
 
-In most cases, you don't need to do anything special on the engine side to use it. Simply design models using link:blender[Blender] with Blender's _armature_ and _bones_, export it to link:gltf[glTF], and load it in _Castle Game Engine_ as usual.
+In most cases, you don't need to do anything special on the engine side to use it. Simply design your models in a 3D authoring tool with skinned animation, export them to link:gltf[glTF] or link:x3d[X3D] formats, and load them in _Castle Game Engine_ as usual. The following approaches work smoothly:
+
+* Design models using link:blender[Blender] with Blender's _armature_ and _bones_. Export it to link:gltf[glTF] (option available out-of-the-box in Blender) which will load in our engine.
+
+* Design models using _Maya_ and export using https://github.com/und-dream-lab/rawkee[Rawkee X3D export plugin]. Export to X3D with a `Skin` node.
 
 A 3D model in _Castle Game Engine_ is displayed and processed using the cgeref:TCastleScene[] component, documented in link:viewport_and_scenes[Viewport with scenes, camera, navigation]. The engine will automatically load the skinned animation and display it correctly.
 
