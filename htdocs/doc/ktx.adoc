@@ -58,7 +58,7 @@ KTX is an excellent image format with a number of graphic features useful when i
 +
 When saving, we always use the optimized format, if only the padding matches. Almost always this results in ultra-optimized saving too.
 +
-To debug when the optimized writing / reading takes place, define the `CASTLE_KTX_LOG_SPEED` symbol when compiling your program.
+To debug when the optimized writing / reading takes place, set the global variable `LogVerboseKtx` (from unit `CastleInternalCompositeImage`) to `true`.
 
 We support KTX 1 right now. We plan to support KTX 2 (with https://github.com/KhronosGroup/glTF/tree/main/extensions/2.0/Khronos/KHR_texture_basisu[KHR_texture_basisu]) in the future too.
 
