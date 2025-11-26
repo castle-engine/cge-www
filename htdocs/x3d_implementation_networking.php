@@ -53,8 +53,8 @@
         spec</a> errorneously talks about <code>exportedDEF</code>
         attribute of the <code>&lt;IMPORT&gt;</code> element.
         It should be called <code>importedDEF</code>,
-        this is what is used in the schemas (like <a href="http://www.web3d.org/specifications/x3d-3.2.xsd">x3d-3.2.xsd</a>),
-        looking at <a href="http://www.web3d.org/specifications/x3d-dtd-changelog.txt">changelog</a>
+        this is what is used in the schemas (like <a href="https://www.web3d.org/specifications/x3d-3.2.xsd">x3d-3.2.xsd</a>),
+        looking at <a href="https://www.web3d.org/specifications/x3d-dtd-changelog.txt">changelog</a>
         it's clear that the <code>exportedDEF</code> was deliberately renamed to
         <code>importedDEF</code>.
 

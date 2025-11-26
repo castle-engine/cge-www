@@ -310,8 +310,8 @@ We maintain a mirror on SourceForge, even though we recommend first downloading 
 - if new VRML/X3D nodes supported:
   - remember to post to Don Brutzman about them,
     to update "node inventory spreadsheet"
-      http://www.web3d.org/specifications/X3dNodeInventoryComparison.xlsx
-      http://www.web3d.org/specifications/X3dNodeInventoryComparison.pdf
+      https://www.web3d.org/specifications/x3dNodeInventoryComparison.xlsx
+      https://www.web3d.org/specifications/x3dNodeInventoryComparison.pdf
   - update http://www.web3d.org/wiki/index.php/Player_support_for_X3D_components
 
 - http://www.lazarus.freepascal.org/
