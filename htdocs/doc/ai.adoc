@@ -117,3 +117,4 @@ Many other projects have nice guidelines about using AI that we agree with. For 
 
 - https://devguide.python.org/getting-started/generative-ai/[Python rules about AI]
 
+- https://github.com/chaoss/wg-ai-alignment/tree/main/moderation#readme[Collection of various AI / LLM policies of projects]
