@@ -4,14 +4,22 @@ include::common.adoc[]
 
 == Summary
 
+This page documents _required rules_ when using AI to contribute to _Castle Game Engine_. It also collects our _recommended guidelines_ when using AI in your own projects.
+
 - **You are responsible** for everything you submit: code, documentation, commit messages, issue/PR descriptions.
 // mouthful :)
 //Make it reflect your professionalism and your comprehension of the problem.
-- **Understand everything** you submit. Know reasons behind it.
+- **Understand everything** you submit. Know reasons behind it. Do own research and decision-making.
 - **Be critical** of AI suggestions. They may contain hallucinations or unoptimal approaches.
 - **Keep AI conversations private**. Don't clutter issues with your conversations with AI.
 //Don't clutter descriptions with AI-generated marketing statements.
-- **Use AI as an assistant**, not a replacement for your own thinking, research and design decisions.
+//- **Use AI as an assistant**, not a replacement for your own thinking, research and design decisions.
+
+A good rule of thumb is to **generate smaller, not larger, pieces of code / documentation**.
+
+- **AI-generated larger pieces of code / documentation are often wrong.** They confuse you (suggesting further work in a wrong direction), they show hallucinated or deprecated APIs, they do not use recommended approaches (e.g. AI often puts everything in one big program file, which makes application non-link:manual_cross_platform.php[cross-platform] and ignores our link:views[] concept to organize applications), they do not understand the platform-specific and compiler-specific language nuances etc.
+
+- **Do start with small tasks for AI.** Use AI for code completion (and reject without hesitation wrong suggestions). Use agents for smaller tasks, that you have an idea how to solve yourself. Ask questions about the codebase "how is X done" (and check the answer).
 
 == Introduction
 
