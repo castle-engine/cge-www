@@ -2,8 +2,8 @@
 Contributors: boldgrid, fredericktownes, maxicusc, gidomanders, bwmarkle, harryjackson1221, joemoto, vmarko, jacobd91, avonville1, jamesros161, elanasparkle, abrender
 Tags: CDN, pagespeed, caching, performance, optimize
 Requires at least: 5.3
-Tested up to: 6.8
-Stable tag: 2.8.14
+Tested up to: 6.9
+Stable tag: 2.8.15
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -321,6 +321,9 @@ You will be able to see the results instantly on each page load, but for tangibl
 Yes! Please [reach out to us](https://www.w3-edge.com/contact/) and we'll get you acclimated so you can "set it and forget it."
 
 Install the plugin to read the full FAQ on the plugins FAQ tab.
+= Where do I report security bugs found in this plugin? =
+
+Please report security bugs found in the source code of the W3 Total Cache plugin through the [Patchstack Vulnerability Disclosure Program](https://patchstack.com/database/vdp/d5047161-3e39-4462-9250-1b04385021dd). The Patchstack team will assist you with verification, CVE assignment, and notify the developers of this plugin.
 
 == Installation ==
 
@@ -361,6 +364,20 @@ It's quite difficult to recall all of the innovators that have shared their thou
 Please reach out to all of these people and support their projects if you're so inclined.
 
 == Changelog ==
+
+= 2.8.15 =
+* Fix: Elementor: Carousel lazy load
+* Fix: Elementor: Cache clearing issues
+* Fix: Strip all mfunc/mclude tags from REST, feeds, and comments
+* Fix: Better validation for file directory cleanup
+* Fix: Bunny CDN: Settings page purge URL section
+* Fix: Minify: Auto JS: Handle async and defer attributes with values
+* Fix: Google PageSpeed: Lighthouse changes
+* Fix: Cloudflare: Undefined array warning
+* Fix: Rackspace API: Reponse code handling
+* Fix: License deactivation messages
+* Update: ChartJS updated to v4.4.1
+* Enhancement: Added support links
 
 = 2.8.14 =
 * Fix: Better logic for mfunc/mclude processing

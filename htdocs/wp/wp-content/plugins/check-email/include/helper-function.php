@@ -1306,3 +1306,55 @@ if ( is_admin() ) {
     add_action('wp_ajax_get_email_analytics', 'get_email_analytics_data');
 
 }
+
+/* * BFCM Banner Integration
+ * Loads assets from assets/css and assets/js
+ */
+add_action('admin_enqueue_scripts', 'check_mail_enqueue_bfcm_assets');
+
+function check_mail_enqueue_bfcm_assets($hook) { 
+ 
+    //var_dump($hook);
+    if ( $hook !== 'check-log-email_page_check-email-settings' 
+         && $hook !== 'check-log-email_page_check-email-logs'
+         && $hook !== 'check-log-email_page_spam-analyzer'
+         && $hook !== 'check-log-email_page_check-email-error-tracker' ) {
+        return;
+    }
+    
+    /*if ( ! isset($_GET['page']) || $_GET['page'] !== 'setting_page_check-email-dashboard' ) {
+        return;
+    }*/
+
+    // 2. define settings
+    $expiry_date_str = '2025-12-25 23:59:59'; 
+    $offer_link      = 'https://check-email.tech/bfcm-2025/';
+
+    // 3. Expiry Check (Server Side)
+    if ( current_time('timestamp') > strtotime($expiry_date_str) ) {
+        return; 
+    }
+
+    // 4. Register & Enqueue CSS    
+    wp_enqueue_style(
+        'ck-bfcm-style', 
+        CK_MAIL_URL. 'assets/css/bfcm-style.css', 
+        array(), 
+        CK_MAIL_VERSION
+    );
+
+    // 5. Register & Enqueue JS
+    wp_enqueue_script(
+        'ck-bfcm-script', 
+        CK_MAIL_URL. 'assets/js/bfcm-script.js', 
+        array('jquery'), // jQuery dependency
+        CK_MAIL_VERSION, 
+        true 
+    );
+
+    // 6. Data Pass (PHP to JS)
+    wp_localize_script('ck-bfcm-script', 'bfcmData', array(
+        'targetDate' => $expiry_date_str,
+        'offerLink'  => $offer_link
+    ));
+}

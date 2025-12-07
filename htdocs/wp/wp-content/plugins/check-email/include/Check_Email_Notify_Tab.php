@@ -16,36 +16,38 @@ class Check_Email_Notify_Tab
 
 	public function __construct()
 	{
+		$this->setup_vars();
 		add_action('init', array($this, 'init'));
 		add_action('admin_enqueue_scripts', array($this, 'checkemail_assets_notify'));
 		add_action('wp_mail_failed', array($this, 'handle_failed_email'), 10, 1);
-	}
+	}	
 
-	public function handle_failed_email($wp_error) {
+	public function handle_failed_email($wp_error) {		
 		// Define email categories to track
 		$email_types = [
 			'on_user_register' => 'New user registration',
 			'on_login'        => 'Login password reset',
-			'on_forget'       => 'Forget password reset',
-			'on_order'     => 'WooCommerce order email',
+			'on_forget'       => 'password reset',
+			'on_order'     => 'order',
 		];
 		$error_message = $wp_error->get_error_message();
 		$failed_recipients = $wp_error->get_error_data()['to'];
-		$email_subject = isset($wp_error->get_error_data()['subject']) ? strtolower($wp_error->get_error_data()['subject']) : '';
+		$email_subject = isset($wp_error->get_error_data()['subject']) ? strtolower($wp_error->get_error_data()['subject']) : '';		
 		foreach ($email_types as $key => $subject) {
 			if (strpos($email_subject, strtolower($subject)) !== false) {
 				$failed_count = get_option("failed_email_count_{$key}", 0);
-				update_option("failed_email_count_{$key}", $failed_count + 1);
-				$this->send_failed_email_notification($key, $error_message, $failed_count + 1);
+				update_option("failed_email_count_{$key}", $failed_count + 1);				
+				$this->send_failed_email_notification($key, $error_message, $failed_count + 1, $error_code);
 			}
 		}
 	}
 
-	public function send_failed_email_notification($email_type, $error_message, $failed_count) {
+	public function send_failed_email_notification($email_type, $error_message, $failed_count, $error_code = 'unknown') {
 
 		if (isset($this->notify_options['is_enable']) && !empty($this->notify_options['is_enable'])) {
 			if (isset($this->notify_options[$email_type]) && $this->notify_options[$email_type] && isset($this->notify_options[$email_type.'_count']) && $this->notify_options[$email_type.'_count']) {
 				$count_limit = $this->notify_options[$email_type.'_count'];
+
 				if ($failed_count > $count_limit) {
 					if (isset($this->notify_options['is_enable_by_sms']) && $this->notify_options['is_enable_by_sms']) {
 						$this->send_sms_twilio();
@@ -53,6 +55,10 @@ class Check_Email_Notify_Tab
 					if (isset($this->notify_options['is_enable_by_push']) && $this->notify_options['is_enable_by_push']) {
 						$this->push_notify_admin_on_email_failure();
 					}
+					if (isset($this->notify_options['notify_by_mail']) && $this->notify_options['notify_by_mail']) {
+                    $this->send_mail_notification_api($error_message, $error_code);
+                	}
+
 				}
 			}
 		}
@@ -61,13 +67,19 @@ class Check_Email_Notify_Tab
 
 	public function init()
 	{
-		if (! is_admin()) {
+		/*if (! is_admin()) {
 			return;
 		}
 		$this->setup_vars();
 		add_action('check_mail_email_notify', array($this, 'load_email_notify_settings'));
 		add_action('admin_init', array($this, 'check_mail_notify_submission_handler'));
-		add_action('init', array($this,'serve_firebase_sw'));
+		add_action('init', array($this,'serve_firebase_sw'));*/
+		if (is_admin()) {
+        add_action('check_mail_email_notify', array($this, 'load_email_notify_settings'));
+        add_action('admin_init', array($this, 'check_mail_notify_submission_handler'));
+    }
+
+    add_action('init', array($this,'serve_firebase_sw'));
 	}
 
 	function push_notify_admin_on_email_failure() {
@@ -137,6 +149,38 @@ class Check_Email_Notify_Tab
 		
 
 	}
+
+	//Nasir
+	private function send_mail_notification_api($error_message, $error_code = 'unknown') {		
+        
+        if ( empty( $this->notify_options['notify_by_mail'] ) || 1 != $this->notify_options['notify_by_mail'] ) {
+            return; 
+        }
+
+        $recipient_email = ! empty( $this->notify_options['notifier_mail'] ) ? $this->notify_options['notifier_mail'] : get_option('admin_email');
+        
+        $api_url = 'https://check-email.tech/api/send-notification.php'; 
+        $api_key = 'oG*c|>(~.JvW,pWLvYM7+#~reK9edHDGB!:[TVknFbY]Q(*Gg%EU.-f2:)%NYi-/'; 
+        
+        $site_url = get_site_url();        
+        
+        $body_data = array(
+            'api_key'         => $api_key,
+            'recipient_email' => $recipient_email,
+            'site_url'        => $site_url,
+            'error_code'      => $error_code,
+            'error_message'   => $error_message
+        );
+        
+        wp_remote_post( $api_url, array(
+            'method'    => 'POST',
+            'timeout'   => 15, 
+            'blocking'  => false, 
+            'body'      => $body_data,
+        ) );
+    }
+
+
 	public function load_email_notify_settings()
 	{
 		$is_enable = false;
@@ -268,6 +312,70 @@ class Check_Email_Notify_Tab
 
 					</tbody>
 				</table>
+				<!--Nasir-->
+				<?php 
+				$is_mail_enable = isset($this->notify_options['notify_by_mail']) && $this->notify_options['notify_by_mail'] ? true : false;
+				?>
+
+				<!-- Notify By Mail Option -->
+				<table class="form-table" role="presentation">
+					<tbody>
+						<tr>
+							<th style="width: 280px;" scope="row">
+								<label for="check-email-notify-options-notify_by_mail" class="check-email-opt-labels">
+									<?php esc_html_e('Notify By mail', 'check-email'); ?>
+								</label>
+							</th>
+							<td>
+								<input type="checkbox"
+									id="check-email-notify-options-notify_by_mail"
+									name="check-email-email-notify-options[notify_by_mail]"
+									value="1"
+									<?php echo $is_mail_enable ? 'checked' : ''; ?>>
+								<label for="check-email-notify-options-notify_by_mail_email" class="check-email-opt-labels">
+									<?php esc_html_e('Receive instant alerts directly to your mail when emails fail to send via email', 'check-email'); ?>
+								</label>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<!-- Dependent Email Field -->
+				<table class="form-table check-email-mail-table" role="presentation" style="<?php echo $is_mail_enable ? '' : 'display:none;'; ?>">
+					<tbody>
+						<tr>
+							<th style="width: 280px;" scope="row">
+								<label style="padding-left:10px;" for="check-email-notify-mail" class="check-email-opt-labels">
+									<?php esc_html_e('Email ID of notifier', 'check-email'); ?>
+								</label>
+							</th>
+							<td>
+								<?php 
+								$default_email = get_option('admin_email');
+								$notifier_mail = isset($this->notify_options['notifier_mail']) && !empty($this->notify_options['notifier_mail']) 
+									? esc_attr($this->notify_options['notifier_mail']) 
+									: esc_attr($default_email);
+								?>
+								<input class="regular-text" type="email" id="check-email-notify-mail"
+									name="check-email-email-notify-options[notifier_mail]"
+									value="<?php echo $notifier_mail; ?>">
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<script type="text/javascript">
+				document.addEventListener('DOMContentLoaded', function() {
+					const checkbox = document.getElementById('check-email-notify-options-notify_by_mail');
+					const mailTable = document.querySelector('.check-email-mail-table');
+					if(!checkbox || !mailTable) return;
+
+					checkbox.addEventListener('change', function() {
+						mailTable.style.display = checkbox.checked ? '' : 'none';
+					});
+				});
+				</script>
+
 			</div>
 			<?php wp_nonce_field('check_mail_email_notify_nonce', 'check_mail_email_notify_nonce'); ?>
 			<p class="submit"><input type="submit" name="check_mail_email_notify_submit" id="check_mail_email_notify_submit" class="button button-primary" value="<?php esc_attr_e('Save', 'check-email'); ?>"></p>
@@ -300,9 +408,20 @@ class Check_Email_Notify_Tab
 			if (isset($_POST['check-email-email-notify-options']['is_enable_by_sms'])) {
 				$email_encode_option['is_enable_by_sms'] = 1;
 			}
-			$email_encode_option['is_enable_by_push'] = 0;
+			$email_encode_option['is_enable_by_push'] = 0;			
 			if (isset($_POST['check-email-email-notify-options']['is_enable_by_push'])) {
 				$email_encode_option['is_enable_by_push'] = 1;
+			}
+			//Nasir
+			$email_encode_option['notify_by_mail'] = 0;
+			if ( isset( $_POST['check-email-email-notify-options']['notify_by_mail'] ) ) {
+				$email_encode_option['notify_by_mail'] = 1;
+			}
+
+			if ( isset( $_POST['check-email-email-notify-options']['notifier_mail'] ) ) {
+				$email_encode_option['notifier_mail'] = sanitize_email( wp_unslash( $_POST['check-email-email-notify-options']['notifier_mail'] ) );
+			} else {
+				$email_encode_option['notifier_mail'] = get_option('admin_email');
 			}
 
 			$email_encode_option['on_user_register'] = 0;
@@ -343,6 +462,7 @@ class Check_Email_Notify_Tab
 			update_option('check-email-email-notify-options', $email_encode_option);
 
 			wp_safe_redirect(admin_url('admin.php?page=check-email-settings&tab=notify'));
+									
 		}
 	}
 

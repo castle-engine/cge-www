@@ -114,10 +114,20 @@ class Check_Email_SMTP_Tab {
 
 		// (Re)create it, if it's gone missing.
 		if ( ! ( $phpmailer instanceof PHPMailer\PHPMailer\PHPMailer ) ) {
-			require_once ABSPATH . WPINC . '/PHPMailer/PHPMailer.php';
-			require_once ABSPATH . WPINC . '/PHPMailer/SMTP.php';
-			require_once ABSPATH . WPINC . '/PHPMailer/Exception.php';
-			$phpmailer = new PHPMailer\PHPMailer\PHPMailer( true );
+
+		    // For WP 6.0+ (PHPMailer as namespace)
+		    if ( file_exists( ABSPATH . WPINC . '/PHPMailer/PHPMailer.php' ) ) {
+		        require_once ABSPATH . WPINC . '/PHPMailer/PHPMailer.php';
+		        require_once ABSPATH . WPINC . '/PHPMailer/SMTP.php';
+		        require_once ABSPATH . WPINC . '/PHPMailer/Exception.php';
+		        $phpmailer = new PHPMailer\PHPMailer\PHPMailer( true );
+
+		    // For WP 5.x (older PHPMailer class files)
+		    } elseif ( file_exists( ABSPATH . WPINC . '/class-phpmailer.php' ) ) {
+		        require_once ABSPATH . WPINC . '/class-phpmailer.php';
+		        require_once ABSPATH . WPINC . '/class-smtp.php';
+		        $phpmailer = new PHPMailer( true );
+		    }
 		}
 
 		// Set the timeout to 15 seconds, so if it doesn't connect to not let the user in standby.

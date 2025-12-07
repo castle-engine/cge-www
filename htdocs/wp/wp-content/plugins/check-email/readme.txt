@@ -2,9 +2,9 @@
 Contributors: checkemail
 Tags: logging, email, email log, smtp, log
 Requires at least: 5.0
-Tested up to: 6.8
-Requires PHP: 5.6.20
-Stable tag: 2.0.9
+Tested up to: 6.9
+Requires PHP: 5.6
+Stable tag: 2.0.10
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -92,6 +92,14 @@ Someone using one of my other plugins had trouble with emails not being sent. I 
 1. Check & Log Email - Status
 2. Check & Log Email - View Logs
 3. Check & Log Email - Settings
+4. Check & Log Email - Spam Analyzer
+5. Check & Log Email - Error Tracker
+6. Check & Log Email - General settings setup page
+7. Check & Log Email - Email logging page
+8. Check & Log Email - SMTP Configuration
+9. Check & Log Email - Email encoding page
+10. Check & Log Email - Tools page
+11. Check & Log Email - Notify page
 
 == Installation ==
 
@@ -114,6 +122,12 @@ Someone using one of my other plugins had trouble with emails not being sent. I 
 
 
 == Changelog ==
+
+= v2.0.10 - 04/12/2025 =
+- Feature Added: Error Log notification #46
+- Improvement: Create backword compatibility #148
+- Added: Promotion Banner BFCM #153
+- Tested: WordPress version upto 6.9
 
 = v2.0.9 - 09/09/2025 =
 - Fixed: PHP Errors #143

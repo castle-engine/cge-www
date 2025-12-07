@@ -342,7 +342,7 @@ class Check_Email_Table_Manager implements Loadie {
 		return array( $items, $total_items );
 	}
 
-	public function create_table_if_needed() {
+	/*public function create_table_if_needed() {
 		global $wpdb;
 
 		$table_name = $this->get_log_table_name();
@@ -356,6 +356,31 @@ class Check_Email_Table_Manager implements Loadie {
 
 			add_option( self::DB_OPTION_NAME, self::DB_VERSION );
 		}
+	}*/
+
+	public function create_table_if_needed() {
+    global $wpdb;
+
+    $table_name = $this->get_log_table_name();  
+    $table_exists = $wpdb->get_var( $wpdb->prepare( "SHOW TABLES LIKE %s", $table_name ) );
+
+	    // If the table does NOT exist...
+	    if ( ! $table_exists ) {        
+	        $sql = $this->get_create_table_query();   
+	        
+	        if ( ! function_exists( 'dbDelta' ) ) {
+	            require_once ABSPATH . 'wp-admin/includes/upgrade.php';
+	        }
+	        
+	        $wpdb->query( $sql );
+	    }    
+    
+	    if ( ! function_exists( 'dbDelta' ) ) {
+	        require_once ABSPATH . 'wp-admin/includes/upgrade.php';
+	    }
+
+	    $sql = $this->get_create_table_query();
+	    dbDelta( $sql ); 
 	}
 
 	public function get_logs_count() {
