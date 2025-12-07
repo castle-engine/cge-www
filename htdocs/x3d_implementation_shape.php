@@ -114,6 +114,28 @@ $toc = new TableOfContents(
     simpler <code>Color</code> and <code>ColorRGBA</code> nodes,
     that are implemented fully.</p>
 
+  <li><p><?php echo x3d_node_link('PointProperties'); ?>.
+
+    <p>Supported fields:
+    <ul>
+      <li><p><?php echo cgeRef('TPointPropertiesNode.PointSizeScaleFactor'); ?>,
+      <li><p><?php echo cgeRef('TPointPropertiesNode.PointSizeMinValue'); ?>,
+      <li><p><?php echo cgeRef('TPointPropertiesNode.PointSizeMaxValue'); ?>.
+    </ul>
+
+    <p>The effective scaling is multiplied by
+    <?php echo cgeRef('TCastleRenderOptions.PointSize'); ?>
+    which is set for the entire
+    <?php echo cgeRef('TCastleScene'); ?>.
+
+    <p>TODO: Not supported yet: <code>attenuation</code>.
+
+    <p>Testcases:
+    <ul>
+      <li><p><a href="https://github.com/castle-engine/demo-models/blob/master/x3d/point_properties.x3dv">x3d/point_properties.x3dv in demo-models</a>
+        (<a href="https://github.com/castle-engine/demo-models/blob/master/x3d/point_properties_screenshot.png">reference screenshot</a>).
+      <li><p><a href="https://www.web3d.org/x3d/content/examples/Basic/Points/ArchimedesPointPropertiesIndex.html">X3D Example Archives: Basic, Points, Archimedes Point Properties</a>.
+    </ul>
 </ul>
 
 <?php echo $toc->html_section(); ?>
