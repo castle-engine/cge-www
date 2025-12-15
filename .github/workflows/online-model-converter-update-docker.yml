@@ -43,7 +43,7 @@ jobs:
     needs: [build-tools]
     steps:
     - uses: actions/checkout@v6
-    - uses: actions/download-artifact@v6
+    - uses: actions/download-artifact@v7
       with:
         name: online-model-converter-tools
         path: online-model-converter/docker-image/docker-context/bin/
