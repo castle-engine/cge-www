@@ -28,7 +28,7 @@ jobs:
         cd online-model-converter/docker-image/
         ./build_fpc.sh
     - name: Archive Tools
-      uses: actions/upload-artifact@v5
+      uses: actions/upload-artifact@v6
       with:
         name: online-model-converter-tools
         path: |
