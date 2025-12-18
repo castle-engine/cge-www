@@ -48,6 +48,7 @@ Everyone who subscribes to support CGE with at least 10 USD / month (anywhere --
 [role="compact"]
 * Aaron Bergstrom (UND DREAM Lab)
 * Antitu
+* Antranig Vartanian
 * Adrian Marius Popa
 * Alar Orion
 * Ancient Phoenix
@@ -73,6 +74,7 @@ Everyone who subscribes to support CGE with at least 10 USD / month (anywhere --
 * Matthew
 * MaxSignal
 * Michael B.
+* Michael Bruse
 * Milos Stanojevic
 * Márton Polgár
 * Märten Rodes
