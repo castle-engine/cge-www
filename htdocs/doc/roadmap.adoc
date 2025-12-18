@@ -209,6 +209,8 @@ Activating link:x3d_extensions_shadow_maps.php[shadow maps] has some disadvantag
 We should also account for X3D 4.0 shadows additions and report to the X3D working group our experience, ev. suggestions for X3D improvements.
 
 - The lights cast shadow maps only https://github.com/castle-engine/castle-engine/issues/284[within the same scene]. _(Work is under way to remove this limitation, https://github.com/castle-engine/castle-engine/commit/7031d20e73a38d66985e35f8e53cd298e252c519[this refactor] is the important step and it is already pushed to the master branch.)_
++
+See https://forum.castle-engine.io/t/not-all-objects-can-receive-shadow-map/2064/2[this forum thread] for example testcase.
 
 This is in contrast to https://castle-engine.io/shadow_volumes[shadow volumes] that are trivial to activate (you literally toggle one checkbox, `Shadows`, on our light components `TCastleXxxLight`) and work across scenes, thus are very natural to set up using CGE editor.
 
