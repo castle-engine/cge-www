@@ -1,10 +1,10 @@
 <?php
 
-namespace CF\Integration;
+namespace Cloudflare\APO\Integration;
 
-use Psr\Log\AbstractLogger;
-use Psr\Log\LogLevel;
-use Psr\Log\LoggerInterface;
+use Cloudflare\APO\Vendor\Psr\Log\AbstractLogger;
+use Cloudflare\APO\Vendor\Psr\Log\LogLevel;
+use Cloudflare\APO\Vendor\Psr\Log\LoggerInterface;
 
 class DefaultLogger extends AbstractLogger implements LoggerInterface
 {

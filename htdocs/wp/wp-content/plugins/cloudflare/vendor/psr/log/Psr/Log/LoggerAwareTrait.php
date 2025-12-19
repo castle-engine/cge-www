@@ -1,6 +1,6 @@
 <?php
 
-namespace Psr\Log;
+namespace Cloudflare\APO\Vendor\Psr\Log;
 
 /**
  * Basic Implementation of LoggerAwareInterface.
@@ -13,7 +13,6 @@ trait LoggerAwareTrait
      * @var LoggerInterface|null
      */
     protected $logger;
-
     /**
      * Sets a logger.
      *

@@ -2,8 +2,8 @@
 Contributors: cloudflare, barrykooij, defries
 Tags: cloudflare, seo, ssl, ddos, speed, security, cdn, performance, free
 Requires at least: 5.0
-Tested up to: 6.8.3
-Stable tag: 4.13.0
+Tested up to: 6.9.0
+Stable tag: 4.14.0
 Requires PHP: 7.4
 License: BSD-3-Clause
 
@@ -99,11 +99,27 @@ Yes, Cloudflare works with, and helps speed up your site even more, if you have 
 
 == Changelog ==
 
+= 4.14.0 - 2025-12-17 =
+
+* Added *
+
+* Add PHP-Scoper build system for vendor namespace prefixing.
+
+*Changed*
+
+* Tested with WordPress 6.9 release and bumped "Tested up to" up to 6.9.0.
+
+*Deprecated*
+
+* Namespace CF in favor of Cloudfare\APO, to resolve and prevent namespace conflicts with other plugins.
+
 = 4.13.0 - 2025-10-21 =
 
-* Fix: Bumping required PHP version to 7.4 and updating relevant code to support this change.
-* Fix: Upgraded symfony/yaml dependency to ^5.4
-* Fix: Update various meta information.
+*Changed*
+
+* Bumping required PHP version to 7.4 and updating relevant code to support this change.
+* Upgraded symfony/yaml dependency to ^5.4
+* Update various meta information.
 
 = 4.12.8 - 2024-08-08 =
 

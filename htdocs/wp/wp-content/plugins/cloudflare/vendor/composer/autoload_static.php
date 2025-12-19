@@ -4,70 +4,116 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit12395c9288ff2c1874fe6b6699364f86
+class ComposerStaticInit18ff1d39124bbc46ea73a7a92beecd04
 {
     public static $files = array (
-        'e69f7f6ee287b969198c3c9d6777bd38' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/bootstrap.php',
-        'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
+        'c2ea57f92dd459f0857d477589d07a94' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/bootstrap.php',
+        '9678d943e25c4fc0b73f7a16051ad4d7' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
     );
 
     public static $prefixLengthsPsr4 = array (
-        'S' => 
+        'C' =>
         array (
-            'Symfony\\Polyfill\\Intl\\Normalizer\\' => 33,
-            'Symfony\\Polyfill\\Intl\\Idn\\' => 26,
-        ),
-        'P' => 
-        array (
-            'Psr\\Log\\' => 8,
-        ),
-        'C' => 
-        array (
-            'CF\\' => 3,
+            'Cloudflare\\APO\\Vendor\\Symfony\\Polyfill\\Intl\\Normalizer\\' => 55,
+            'Cloudflare\\APO\\Vendor\\Symfony\\Polyfill\\Intl\\Idn\\' => 48,
+            'Cloudflare\\APO\\Vendor\\Psr\\Log\\' => 30,
+            'Cloudflare\\APO\\Vendor\\CloudFlare\\' => 33,
+            'Cloudflare\\APO\\' => 15,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'Symfony\\Polyfill\\Intl\\Normalizer\\' => 
+        'Cloudflare\\APO\\Vendor\\Symfony\\Polyfill\\Intl\\Normalizer\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer',
         ),
-        'Symfony\\Polyfill\\Intl\\Idn\\' => 
+        'Cloudflare\\APO\\Vendor\\Symfony\\Polyfill\\Intl\\Idn\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-intl-idn',
         ),
-        'Psr\\Log\\' => 
+        'Cloudflare\\APO\\Vendor\\Psr\\Log\\' =>
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
         ),
-        'CF\\' => 
+        'Cloudflare\\APO\\Vendor\\CloudFlare\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/cloudflare/cf-ip-rewrite/src/CloudFlare',
+        ),
+        'Cloudflare\\APO\\' =>
         array (
             0 => __DIR__ . '/../..' . '/src',
         ),
     );
 
-    public static $prefixesPsr0 = array (
-        'C' => 
-        array (
-            'CloudFlare\\' => 
-            array (
-                0 => __DIR__ . '/..' . '/cloudflare/cf-ip-rewrite/src',
-            ),
-        ),
-    );
-
     public static $classMap = array (
+        'Cloudflare\\APO\\API\\APIInterface' => __DIR__ . '/../..' . '/src/API/APIInterface.php',
+        'Cloudflare\\APO\\API\\AbstractAPIClient' => __DIR__ . '/../..' . '/src/API/AbstractAPIClient.php',
+        'Cloudflare\\APO\\API\\AbstractPluginActions' => __DIR__ . '/../..' . '/src/API/AbstractPluginActions.php',
+        'Cloudflare\\APO\\API\\Client' => __DIR__ . '/../..' . '/src/API/Client.php',
+        'Cloudflare\\APO\\API\\DefaultHttpClient' => __DIR__ . '/../..' . '/src/API/DefaultHttpClient.php',
+        'Cloudflare\\APO\\API\\Exception\\CloudFlareException' => __DIR__ . '/../..' . '/src/API/Exception/CloudFlareException.php',
+        'Cloudflare\\APO\\API\\Exception\\ZoneSettingFailException' => __DIR__ . '/../..' . '/src/API/Exception/ZoneSettingFailException.php',
+        'Cloudflare\\APO\\API\\Host' => __DIR__ . '/../..' . '/src/API/Host.php',
+        'Cloudflare\\APO\\API\\HttpClientInterface' => __DIR__ . '/../..' . '/src/API/HttpClientInterface.php',
+        'Cloudflare\\APO\\API\\Plugin' => __DIR__ . '/../..' . '/src/API/Plugin.php',
+        'Cloudflare\\APO\\API\\PluginRoutes' => __DIR__ . '/../..' . '/src/API/PluginRoutes.php',
+        'Cloudflare\\APO\\API\\Request' => __DIR__ . '/../..' . '/src/API/Request.php',
+        'Cloudflare\\APO\\DNSRecord' => __DIR__ . '/../..' . '/src/DNSRecord.php',
+        'Cloudflare\\APO\\Integration\\ConfigInterface' => __DIR__ . '/../..' . '/src/Integration/ConfigInterface.php',
+        'Cloudflare\\APO\\Integration\\DataStoreInterface' => __DIR__ . '/../..' . '/src/Integration/DataStoreInterface.php',
+        'Cloudflare\\APO\\Integration\\DefaultConfig' => __DIR__ . '/../..' . '/src/Integration/DefaultConfig.php',
+        'Cloudflare\\APO\\Integration\\DefaultIntegration' => __DIR__ . '/../..' . '/src/Integration/DefaultIntegration.php',
+        'Cloudflare\\APO\\Integration\\DefaultLogger' => __DIR__ . '/../..' . '/src/Integration/DefaultLogger.php',
+        'Cloudflare\\APO\\Integration\\IntegrationAPIInterface' => __DIR__ . '/../..' . '/src/Integration/IntegrationAPIInterface.php',
+        'Cloudflare\\APO\\Integration\\IntegrationInterface' => __DIR__ . '/../..' . '/src/Integration/IntegrationInterface.php',
+        'Cloudflare\\APO\\Router\\DefaultRestAPIRouter' => __DIR__ . '/../..' . '/src/Router/DefaultRestAPIRouter.php',
+        'Cloudflare\\APO\\Router\\RequestRouter' => __DIR__ . '/../..' . '/src/Router/RequestRouter.php',
+        'Cloudflare\\APO\\Router\\RouterInterface' => __DIR__ . '/../..' . '/src/Router/RouterInterface.php',
+        'Cloudflare\\APO\\SecurityUtil' => __DIR__ . '/../..' . '/src/SecurityUtil.php',
+        'Cloudflare\\APO\\Test\\API\\PluginTest' => __DIR__ . '/../..' . '/src/Test/API/PluginTest.php',
+        'Cloudflare\\APO\\Test\\WordPress\\DataStoreTest' => __DIR__ . '/../..' . '/src/Test/WordPress/DataStoreTest.php',
+        'Cloudflare\\APO\\Test\\WordPress\\HooksTest' => __DIR__ . '/../..' . '/src/Test/WordPress/HooksTest.php',
+        'Cloudflare\\APO\\Test\\WordPress\\PlansTest' => __DIR__ . '/../..' . '/src/Test/WordPress/PlansTest.php',
+        'Cloudflare\\APO\\Test\\WordPress\\ProxyTest' => __DIR__ . '/../..' . '/src/Test/WordPress/ProxyTest.php',
+        'Cloudflare\\APO\\Test\\WordPress\\UtilsTest' => __DIR__ . '/../..' . '/src/Test/WordPress/UtilsTest.php',
+        'Cloudflare\\APO\\Test\\WordPress\\WordPressAPITest' => __DIR__ . '/../..' . '/src/Test/WordPress/WordPressAPITest.php',
+        'Cloudflare\\APO\\Utils' => __DIR__ . '/../..' . '/src/Utils.php',
+        'Cloudflare\\APO\\Vendor\\CloudFlare\\IpRewrite' => __DIR__ . '/..' . '/cloudflare/cf-ip-rewrite/src/CloudFlare/IpRewrite.php',
+        'Cloudflare\\APO\\Vendor\\CloudFlare\\IpUtils' => __DIR__ . '/..' . '/cloudflare/cf-ip-rewrite/src/CloudFlare/IpUtils.php',
+        'Cloudflare\\APO\\Vendor\\Psr\\Log\\AbstractLogger' => __DIR__ . '/..' . '/psr/log/Psr/Log/AbstractLogger.php',
+        'Cloudflare\\APO\\Vendor\\Psr\\Log\\InvalidArgumentException' => __DIR__ . '/..' . '/psr/log/Psr/Log/InvalidArgumentException.php',
+        'Cloudflare\\APO\\Vendor\\Psr\\Log\\LogLevel' => __DIR__ . '/..' . '/psr/log/Psr/Log/LogLevel.php',
+        'Cloudflare\\APO\\Vendor\\Psr\\Log\\LoggerAwareInterface' => __DIR__ . '/..' . '/psr/log/Psr/Log/LoggerAwareInterface.php',
+        'Cloudflare\\APO\\Vendor\\Psr\\Log\\LoggerAwareTrait' => __DIR__ . '/..' . '/psr/log/Psr/Log/LoggerAwareTrait.php',
+        'Cloudflare\\APO\\Vendor\\Psr\\Log\\LoggerInterface' => __DIR__ . '/..' . '/psr/log/Psr/Log/LoggerInterface.php',
+        'Cloudflare\\APO\\Vendor\\Psr\\Log\\LoggerTrait' => __DIR__ . '/..' . '/psr/log/Psr/Log/LoggerTrait.php',
+        'Cloudflare\\APO\\Vendor\\Psr\\Log\\NullLogger' => __DIR__ . '/..' . '/psr/log/Psr/Log/NullLogger.php',
+        'Cloudflare\\APO\\Vendor\\Symfony\\Polyfill\\Intl\\Idn\\Idn' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/Idn.php',
+        'Cloudflare\\APO\\Vendor\\Symfony\\Polyfill\\Intl\\Idn\\Info' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/Info.php',
+        'Cloudflare\\APO\\Vendor\\Symfony\\Polyfill\\Intl\\Normalizer\\Normalizer' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/Normalizer.php',
+        'Cloudflare\\APO\\WordPress\\ClientActions' => __DIR__ . '/../..' . '/src/WordPress/ClientActions.php',
+        'Cloudflare\\APO\\WordPress\\ClientRoutes' => __DIR__ . '/../..' . '/src/WordPress/ClientRoutes.php',
+        'Cloudflare\\APO\\WordPress\\Constants\\Exceptions\\ZoneSettingFailException' => __DIR__ . '/../..' . '/src/WordPress/Constants/Exceptions/ZoneSettingFailException.php',
+        'Cloudflare\\APO\\WordPress\\Constants\\Plans' => __DIR__ . '/../..' . '/src/WordPress/Constants/Plans.php',
+        'Cloudflare\\APO\\WordPress\\DataStore' => __DIR__ . '/../..' . '/src/WordPress/DataStore.php',
+        'Cloudflare\\APO\\WordPress\\HTTP2ServerPush' => __DIR__ . '/../..' . '/src/WordPress/HTTP2ServerPush.php',
+        'Cloudflare\\APO\\WordPress\\Hooks' => __DIR__ . '/../..' . '/src/WordPress/Hooks.php',
+        'Cloudflare\\APO\\WordPress\\PluginActions' => __DIR__ . '/../..' . '/src/WordPress/PluginActions.php',
+        'Cloudflare\\APO\\WordPress\\PluginRoutes' => __DIR__ . '/../..' . '/src/WordPress/PluginRoutes.php',
+        'Cloudflare\\APO\\WordPress\\Proxy' => __DIR__ . '/../..' . '/src/WordPress/Proxy.php',
+        'Cloudflare\\APO\\WordPress\\Utils' => __DIR__ . '/../..' . '/src/WordPress/Utils.php',
+        'Cloudflare\\APO\\WordPress\\WordPressAPI' => __DIR__ . '/../..' . '/src/WordPress/WordPressAPI.php',
+        'Cloudflare\\APO\\WordPress\\WordPressClientAPI' => __DIR__ . '/../..' . '/src/WordPress/WordPressClientAPI.php',
+        'Cloudflare\\APO\\WordPress\\WordPressWrapper' => __DIR__ . '/../..' . '/src/WordPress/WordPressWrapper.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
-        'Normalizer' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/Resources/stubs/Normalizer.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit12395c9288ff2c1874fe6b6699364f86::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit12395c9288ff2c1874fe6b6699364f86::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit12395c9288ff2c1874fe6b6699364f86::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit12395c9288ff2c1874fe6b6699364f86::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit18ff1d39124bbc46ea73a7a92beecd04::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit18ff1d39124bbc46ea73a7a92beecd04::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit18ff1d39124bbc46ea73a7a92beecd04::$classMap;
 
         }, null, ClassLoader::class);
     }

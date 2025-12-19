@@ -1,6 +1,6 @@
 <?php
 
-namespace Psr\Log;
+namespace Cloudflare\APO\Vendor\Psr\Log;
 
 /**
  * Describes a logger-aware instance.

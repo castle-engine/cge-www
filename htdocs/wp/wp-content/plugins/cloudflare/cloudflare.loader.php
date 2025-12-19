@@ -1,8 +1,9 @@
 <?php
 
+// Autoload dependencies installed via Composer
 require_once __DIR__.'/vendor/autoload.php';
 
-use CloudFlare\IpRewrite;
+use Cloudflare\APO\Vendor\CloudFlare\IpRewrite;
 
 // Exit if accessed directly
 if (!defined('ABSPATH')) {
@@ -33,7 +34,7 @@ try {
 }
 
 // Initialize Hooks class which contains WordPress hook functions
-$cloudflareHooks = new \CF\WordPress\Hooks();
+$cloudflareHooks = new \Cloudflare\APO\WordPress\Hooks();
 
 add_action('plugins_loaded', array($cloudflareHooks, 'getCloudflareRequestJSON'));
 

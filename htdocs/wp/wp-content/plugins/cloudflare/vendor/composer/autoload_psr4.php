@@ -6,8 +6,9 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Symfony\\Polyfill\\Intl\\Normalizer\\' => array($vendorDir . '/symfony/polyfill-intl-normalizer'),
-    'Symfony\\Polyfill\\Intl\\Idn\\' => array($vendorDir . '/symfony/polyfill-intl-idn'),
-    'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
-    'CF\\' => array($baseDir . '/src'),
+    'Cloudflare\\APO\\Vendor\\Symfony\\Polyfill\\Intl\\Normalizer\\' => array($vendorDir . '/symfony/polyfill-intl-normalizer'),
+    'Cloudflare\\APO\\Vendor\\Symfony\\Polyfill\\Intl\\Idn\\' => array($vendorDir . '/symfony/polyfill-intl-idn'),
+    'Cloudflare\\APO\\Vendor\\Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
+    'Cloudflare\\APO\\Vendor\\CloudFlare\\' => array($vendorDir . '/cloudflare/cf-ip-rewrite/src/CloudFlare'),
+    'Cloudflare\\APO\\' => array($baseDir . '/src'),
 );

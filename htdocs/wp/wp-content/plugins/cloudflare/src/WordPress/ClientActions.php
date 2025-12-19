@@ -1,11 +1,11 @@
 <?php
 
-namespace CF\WordPress;
+namespace Cloudflare\APO\WordPress;
 
-use CF\API\APIInterface;
-use CF\API\Request;
-use CF\Integration\DefaultIntegration;
-use Symfony\Polyfill\Tests\Intl\Idn;
+use Cloudflare\APO\API\APIInterface;
+use Cloudflare\APO\API\Request;
+use Cloudflare\APO\Integration\DefaultIntegration;
+use Cloudflare\APO\Vendor\Symfony\Polyfill\Tests\Intl\Idn;
 
 class ClientActions
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace CF\WordPress;
+namespace Cloudflare\APO\WordPress;
 
-use Symfony\Polyfill\Tests\Intl\Idn;
+use Cloudflare\APO\Vendor\Symfony\Polyfill\Tests\Intl\Idn;
 
 class WordPressWrapper
 {
