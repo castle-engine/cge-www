@@ -517,7 +517,7 @@ $castle_sitemap = array(
                   'x3d_implementation_environmentaleffects_extensions' => array('title' => 'Extensions'),
                 ),
               ),
-              'x3d_implementation_hanim'                => array('title' => 'H-Anim'                          ),
+              'x3d_implementation_hanim'                => array('title' => 'HAnim'                          ),
               'x3d_implementation_nurbs'                => array('title' => 'NURBS',
                 'sub' => array(
                   'x3d_implementation_nurbs#section_homogeneous_coordinates' => array('title' => 'Control points are in homogeneous coordinates'),

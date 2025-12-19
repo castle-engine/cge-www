@@ -64,7 +64,7 @@ details about supported nodes. </p>
   <tr><td><?php echo a_href_page('Navigation'                      , 'x3d_implementation_navigation'          ); ?>  </td><td><b>3 (all)</b></td></tr>
   <tr><td><?php echo a_href_page('Environmental effects'           , 'x3d_implementation_environmentaleffects'); ?>  </td><td><b>4 (all)</b></td></tr>
   <tr><td>Geospatial   </td><td>(We only parse geospatial X3D nodes)</td></tr>
-  <tr><td><?php echo a_href_page('H-Anim'                          , 'x3d_implementation_hanim'               ); ?>  </td><td><b>1 (all)</b></td></tr>
+  <tr><td><?php echo a_href_page('HAnim'                           , 'x3d_implementation_hanim'               ); ?>  </td><td><b>1 (all)</b></td></tr>
   <tr><td><?php echo a_href_page('NURBS'                           , 'x3d_implementation_nurbs'               ); ?>  </td><td><b>1</b></td></tr>
   <tr><td>DIS          </td><td></td></tr>
   <tr><td><?php echo a_href_page('Scripting'                       , 'x3d_implementation_scripting'           ); ?>  </td><td><b>1 (all)</b> (although no ECMAScript / Java, only CastleScript / compiled protocols)</td></tr>

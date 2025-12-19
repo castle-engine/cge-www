@@ -234,7 +234,7 @@ or get a notification when animation stops.
 <p>Let us look at various popular animation methods, and how to do them in X3D:
 
 <ol>
-  <li><p>If you have <b>a skeleton with rigid parts attached to bones</b>,
+  <li><p>If you have <b>a skeleton with rigid parts attached to joints</b>,
     then you simply create a hierarchy of <code>Transform</code> nodes
     (<code>TTransformNode</code> in Pascal).
     Then you animate them as described above.
@@ -251,15 +251,21 @@ or get a notification when animation stops.
 
     <p>This is similar to how <i>"blend shapes"</i> in Blender work. We interpolate between some sets of coordinates. It's suitable e.g. for facial animations.
 
-  <li><p>Another animation method is the <b>skinned mesh animation, where we deform meshes by animating bones, and then calculating how these bones pull the mesh</b>. This is different from using <?php echo x3d_node_link('CoordinateInterpolator'); ?>: now the animation engine (<i>Castle Game Engine</i> code) must be aware of bones, of how do they map onto the vertexes: which bone affects which vertex and with what strength.
+  <li><p>Another animation method is the <b>skinned mesh animation, where we deform meshes by animating joints (bones), and then calculating how these joints pull the mesh</b>. This is different from using <?php echo x3d_node_link('CoordinateInterpolator'); ?>: now the animation engine (<i>Castle Game Engine</i> code) must be aware of joints, of how do they map onto the vertexes: which bone affects which vertex and with what strength.
 
-    <p>The skinned mesh animation is part of the <a href="x3d_implementation_hanim.php">"H-Anim" X3D component</a>. The name of the component ("H-Anim", short for <i>"humanoid animation"</i>) is a little misleading, as it actually alllows to animate any meshes, not only humanoids. It allows to animate using the <i>"skinned mesh animation"</i> approach. We describe the relevant fields in the <a href="x3d_implementation_hanim.php">"H-Anim" documentation</a>.
+    <p>We feature 2 ways to do skinned mesh animation:
 
-    <!--p>(Note: "H-Anim" also adds alternative nodes to animate using rigid skeletons. So, instead of animating a hierarchy of <code>Transform</code>, you can animate a hierarchy of <code>Joint</code> nodes. In practice, it's exactly the same thing for our engine.-->
+    <ol>
+      <li><p>Using the <a href="skin">Skin node</a>. This is the most efficient way to do skinned animation. It also matches <a href="gltf">glTF</a> skinned animation and is used when we import glTF models. The joints are expressed as a hierarchy of <code>Transform</code> nodes.
 
-  <li><p><i>Future:</i> We also plan to add a <a href="roadmap#gltf_skinning_gpu">SkinnedAnimation</a> node that allows to perform skinned animation in a bit more straightforward way than H-Anim and matching closer the glTF skinned animation design, in particular providing <i>"Inverse Bind Matrices"</i>. Follow the <a href="roadmap#gltf_skinning_gpu">roadmap item about SkinnedAnimation</a> to learn more.
+      <li><p>Using the <a href="x3d_implementation_hanim.php">nodes from HAnim X3D component, starting from <code>HAnimHumanoid</code></a>. The joints are expressed as a hierarchy of <code>HAnimJoint</code> nodes. We describe the relevant fields in the <a href="x3d_implementation_hanim.php">"HAnim" documentation</a>.
 
-  <li><p><i>Deprecated:</i> Our engine also implements another animation method as part of <a href="castle_animation_frames.php">animating castle-anim-frames files</a>. In this case, we use a special <i>node interpolator</i> that performs a linear interpolation between whole graphs of X3D nodes. So it's not using <code>PositionInterpolator</code> or <code>CoordinateInterpolator</code> or H-Anim skinned mesh animation.
+      <p>Note: The name of the component ("HAnim", short for <i>"humanoid animation"</i>) is a little misleading, as it actually allows to animate any meshes, not only humanoids.
+    </ol>
+
+    <!--p>(Note: "HAnim" also adds alternative nodes to animate using rigid skeletons. So, instead of animating a hierarchy of <code>Transform</code>, you can animate a hierarchy of <code>Joint</code> nodes. In practice, it's exactly the same thing for our engine.-->
+
+  <li><p><i>Deprecated:</i> Our engine also implements another animation method as part of <a href="castle_animation_frames.php">animating castle-anim-frames files</a>. In this case, we use a special <i>node interpolator</i> that performs a linear interpolation between whole graphs of X3D nodes. So it's not using <code>PositionInterpolator</code> or <code>CoordinateInterpolator</code> or <a href="skin">Skin</a> or HAnim skinned mesh animation.
 
     <p>The approach of <i>node interpolator</i> is extremely flexible (able to animate anything that you can create in Blender, whether it's "structurally equal" or not). It is also extremely fast (as the frames are precalculated in memory, so you're actually just rendering static models). However, it may also be slow to load, and it can eat a significant amount of memory.
 

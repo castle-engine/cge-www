@@ -301,7 +301,7 @@ support the concept of "build modes".
         <i>1.9 times slower in development mode vs release mode</i>.
 
       <li><p>Animating skin on CPU using
-        <a href="x3d_implementation_hanim.php">H-Anim X3D nodes</a>
+        <a href="x3d_implementation_hanim.php">HAnim X3D nodes</a>
         for one test model (<i>Lucy</i> from Seamless3D) was ~52 FPS in release mode,
         ~20 FPS in debug mode. This is a big visual difference: <i>release mode</i>
         feels completely smooth while <i>debug mode</i> is noticeably choppy.

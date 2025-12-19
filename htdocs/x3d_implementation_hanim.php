@@ -1,6 +1,6 @@
 <?php
   require_once 'x3d_implementation_common.php';
-  x3d_status_header('H-Anim', 'hanim',
+  x3d_status_header('HAnim', 'hanim',
     'This component defines nodes for humanoid animation.');
 
 echo castle_thumbs(array(
@@ -10,7 +10,7 @@ echo castle_thumbs(array(
 ));
 ?>
 
-<p>We support the H-Anim component, so you can
+<p>We support the <i>HAnim</i> component, so you can
 render your humanoid and animate it through interpolators.
 Both skeletal and skinned animation is supported.</p>
 
@@ -40,12 +40,12 @@ Both skeletal and skinned animation is supported.</p>
     </li>
 </ul>
 
-<p>The implementation takes some care to handle all existing H-Anim versions:
+<p>The implementation takes some care to handle all existing HAnim versions:
 <a href="http://h-anim.org/Specifications/H-Anim1.0/">HAnim 1.0</a>,
 <a href="http://h-anim.org/Specifications/H-Anim1.1/">HAnim 1.1</a>,
 <a href="http://h-anim.org/Specifications/H-Anim200x/ISO_IEC_FCD_19774/">HAnim 200x</a>.</p>
 
-<p>Both H-Anim animation types are supported (they can also be mixed
+<p>Both HAnim animation types are supported (they can also be mixed
 in one model):
 <ul>
   <li><p><i>skeletal</i> &mdash; you place your geometry inside
@@ -70,7 +70,7 @@ in one model):
 
     <p><a href="http://doc.instantreality.org/tutorial/humanoid-animation/">InstantReality
     has a nice overview of how the X3D nodes should be set up</a>,
-    see also the X3D and <a href="http://www.web3d.org/standards/h-anim">latest H-Anim</a>
+    see also the X3D and <a href="http://www.web3d.org/standards/h-anim">latest HAnim</a>
     specifications of course.</p>
 
     <p>One nice open-source modeller that can create such humanoids is

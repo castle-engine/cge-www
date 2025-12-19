@@ -138,7 +138,7 @@ NOTE: If you're familiar with the X3D specification syntax for node definitions,
 
 NOTE: The `Skin` node itself is not an "animation" that you can play. The actual animations are defined by using `TimeSensor` nodes that cause interpolators to transform (move, rotate, scale) the joint nodes. Animating joints will in turn transform the meshes as indicated by this `Skin` node.
 
-NOTE: There are some differences, but there are also some similarities between `Skin` node and `HAnimHumanoid` node. They both can be used for skinned animation. If you're familiar with H-Anim and `HAnimHumanoid` node, we outline the differences (and similarities) in the section below.
+NOTE: There are some differences, but there are also some similarities between `Skin` node and `HAnimHumanoid` node. They both can be used for skinned animation. If you're familiar with _HAnim_ and `HAnimHumanoid` node, we outline the differences (and similarities) in the section below.
 
 === Additional per-vertex information at geometry nodes
 
@@ -229,7 +229,7 @@ Skin {
     #
     # Note: The hierarchy below is *just a trivial example*,
     # not a proper example of how joints for a typical humanoid
-    # look like. Follow H-Anim conventions for joints to define
+    # look like. Follow HAnim conventions for joints to define
     # typical humanoid joints hierarchy.
     #
     # Any X3D node graph is allowed here, in particular:
@@ -330,29 +330,30 @@ Our approach is deliberately closely aligned with glTF.
 
 - To understand all the fields, how to handle them (both for rendering and for authoring) you can also refer to glTF resources, like https://github.com/KhronosGroup/glTF-Tutorials/blob/main/gltfTutorial/gltfTutorial_020_Skins.md[glTF Skins tutorial from Khronos].
 
-=== Difference from H-Anim
+[#hanim]
+=== Difference from HAnim
 
 ==== Different scope
 
-First of all, the scope of this node is different (and deliberately much smaller) than what H-Anim spec offers.
+First of all, the scope of this node is different (and deliberately much smaller) than what HAnim spec offers.
 
-- H-Anim defines various ways to animate humanoids and various conventions how to design humanoid joints (with different levels of articulation).
+- _HAnim_ defines various ways to animate humanoids and various conventions how to design humanoid joints (with different levels of articulation).
 
 - We consider, in this node, only a single animation technique: skinned animation.
 
 In this node, we're keeping it agnostic from whether you apply it to humanoids or non-humanoids, like non-humanoid animals or imaginary alien creatures, plants, rubbery machines etc.
 
-If you wonder how to define joints for a humanoid, just follow _H-Anim_ LOA conventions for joints naming and organization.
+If you wonder how to define joints for a humanoid, just follow _HAnim_ LOA conventions for joints naming and organization.
 
-The `Skin` node simply provides an alternative way to specify skinned animation. We don't try to fill other use-cases of H-Anim.
+The `Skin` node simply provides an alternative way to specify skinned animation. We don't try to fill other use-cases of _HAnim_.
 
 ==== Different way to specify skinned animation
 
-X3D standard is integrated with the H-Anim standard, and thus already has a way to perform skinned animation. So why do we invent an alternative way?
+X3D standard is integrated with the HAnim standard, and thus already has a way to perform skinned animation. So why do we invent an alternative way?
 
-- Because we think that skinned animation can be expressed a bit simpler than the H-Anim does. We think glTF approach is a good way to do it.
+- Because we think that skinned animation can be expressed a bit simpler than the _HAnim_ does. We think glTF approach is a good way to do it.
 +
-H-Anim is a big specification, that is linked from another big specification (X3D). We rather like the simplicity and efficiency of how skinned animation is defined in glTF. The way skinned animation is expressed in https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html[glTF spec] and in https://www.khronos.org/files/gltf20-reference-guide.pdf[glTF cheatsheet] seems simpler to us.
+_HAnim_ is a big specification, that is linked from another big specification (X3D). We rather like the simplicity and efficiency of how skinned animation is defined in glTF. The way skinned animation is expressed in https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html[glTF spec] and in https://www.khronos.org/files/gltf20-reference-guide.pdf[glTF cheatsheet] seems simpler to us.
 
 - One reason for this simplicity is that our approach doesn't invent any new concept for "joints". Our joints are just `Transform` nodes. We don't need `HAnimJoint`.
 
@@ -370,7 +371,7 @@ We realize that this design "uncovers" an implementation detail (it's efficient 
 
 - We want naming that clearly says it's an animation technique that works with any mesh, humanoid or not.
 +
-_H-Anim_ naming implies it's for humanoids, parts of H-Anim spec talk about joints for humanoids -- this makes using `HAnimHumanoid` for animating arbitrary meshes confusing for the developers. For this reason, we also wanted to have joints/bones simply defined as `Transform` nodes. This again echoes our desire to keep it simple (standard X3D `Transform` is a joint), and also we don't want to connect this to "humanoids", even by terminology. Skinned animation is a standard 2D and 3D animation technique, not specific to humanoids at all.
+_HAnim_ naming implies it's for humanoids, parts of _HAnim_ spec talk about joints for humanoids -- this makes using `HAnimHumanoid` for animating arbitrary meshes confusing for the developers. For this reason, we also wanted to have joints/bones simply defined as `Transform` nodes. This again echoes our desire to keep it simple (standard X3D `Transform` is a joint), and also we don't want to connect this to "humanoids", even by terminology. Skinned animation is a standard 2D and 3D animation technique, not specific to humanoids at all.
 
 - To express joints in cgeref:TSkinNode[Skin], use cgeref:TTransformNode[Transform] nodes.
 +
@@ -395,13 +396,13 @@ We may revisit this decision in the future. But note that the current simple des
 //So we are relatively confident that our simple design is enough for a wide range of practical use-cases.
 ====
 
-==== Similarities to H-Anim (HAnimHumanoid)
+==== Similarities to HAnim (HAnimHumanoid)
 
 There are numerous deliberate similarities between `Skin` and `HAnimHumanoid`.
 
 - They both have `joints` list and `skeleton` fields, with practically the same purpose and meaning.
 +
-Note that latest H-Anim/X3D spec made `HAnimHumanoid.joints` optional in certain cases, when the joints order (their indexes) can be undefined. (It is still non-optional when you need defined joint order, e.g. when associating with `HAnimHumanoid.jointBindingPositions`.) In case of `Skin`, the `joints` field is always mandatory.
+Note that latest HAnim/X3D spec made `HAnimHumanoid.joints` optional in certain cases, when the joints order (their indexes) can be undefined. (It is still non-optional when you need defined joint order, e.g. when associating with `HAnimHumanoid.jointBindingPositions`.) In case of `Skin`, the `joints` field is always mandatory.
 
 - The placement of `Skin` and `HAnimHumanoid` in the transformation matters. This is actually something where we follow X3D and _not_ glTF. It makes sense, for humans and for software, that `Skin` is part of the transformation hierarchy.
 
@@ -410,7 +411,7 @@ Note that latest H-Anim/X3D spec made `HAnimHumanoid.joints` optional in certain
 --
 - The `Skin` node, just like glTF, expresses this using `Skin.inverseBindMatrices` field with a list of 4x4 matrices, one per joint.
 
-- H-Anim expresses this as separate position/rotation/scale fields, using `HAnimHumanoid.jointBindingPositions`, `HAnimHumanoid.jointBindingRotations` and `HAnimHumanoid.jointBindingScales`. From what we can tell, these values have the same use-case.
+- HAnim expresses this as separate position/rotation/scale fields, using `HAnimHumanoid.jointBindingPositions`, `HAnimHumanoid.jointBindingRotations` and `HAnimHumanoid.jointBindingScales`. From what we can tell, these values have the same use-case.
 --
 +
 Various glTF materials can be helpful to understand how the `inverseBindMatrices` are used, see e.g.  https://www.khronos.org/files/gltf20-reference-guide.pdf[glTF 2.0 reference guide], page 6.
