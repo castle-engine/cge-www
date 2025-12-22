@@ -237,3 +237,15 @@ find "${CASTLE_ENGINE_PATH}/examples/" \
   '(' -execdir bash -c 'echo `pwd`' ';' ')' -and \
   '(' -execdir bash -c 'castle-engine unused-data' ';' ')' > unused-data.txt
 ```
+
+## Test: All TSkinNode algorithms work
+
+Test of Female, Conan (from Aaron), player from Seeds all 3 algorithms:
+
+1. Run `castle-model-viewer` and debug it detects `mcGpuTexture`.
+    - Same for `animate_bones_by_code`, with crowd too.
+2. Run `castle-model-viewer --capabilities=force-fixed-function` and debug it detects `mcCpu` but works correctly for all 3 models.
+    - Same for `animate_bones_by_code`, with crowd too.
+3. Hack to pretend `GLFeatures.TextureFloat=false`.
+    - Check Female falls back on `mcGpuUniforms` and works OK.
+    - Conan and Seeds player should fall back on `mcCpu` (too many joints) and work OK.
