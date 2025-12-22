@@ -491,8 +491,6 @@ Also, switch to https://en.wikipedia.org/wiki/Ragdoll_physics[ragdoll physics] (
 - To somewhat mitigate the problem, you can change far-away skinned animated objects to not be shadow casters for shadow volumes. Just toggle cgeref:TCastleTransform.CastShadows[] to `false`.
 --
 
-- Pass joints data using a texture, not uniforms. This will enable supporting more joints effortlessly.
-
 - Enable importing https://en.wikipedia.org/wiki/Biovision_Hierarchy[BioVision Hierarchy (BVH)] files. This is a common format for motion capture data. See https://research.cs.wisc.edu/graphics/Courses/cs-838-1999/Jeff/BVH.html[BVH format description].
 //+
 //NOTE: We call it explicitly _Biovision BVH_ to not confuse with the https://en.wikipedia.org/wiki/Bounding_volume_hierarchy[Bounding Volume Hierarchy]. That's an unrelated concept in 3D graphics, with unfortunate the same abbreviation.
