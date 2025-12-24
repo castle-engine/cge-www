@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit18ff1d39124bbc46ea73a7a92beecd04
+class ComposerStaticInit74ae2919342e5ccc294d5fb6fdc9a348
 {
     public static $files = array (
         'c2ea57f92dd459f0857d477589d07a94' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/bootstrap.php',
@@ -46,6 +46,45 @@ class ComposerStaticInit18ff1d39124bbc46ea73a7a92beecd04
     );
 
     public static $classMap = array (
+        'CF\\API\\APIInterface' => __DIR__ . '/../..' . '/deprecated/API/APIInterface.php',
+        'CF\\API\\AbstractAPIClient' => __DIR__ . '/../..' . '/deprecated/API/AbstractAPIClient.php',
+        'CF\\API\\AbstractPluginActions' => __DIR__ . '/../..' . '/deprecated/API/AbstractPluginActions.php',
+        'CF\\API\\Client' => __DIR__ . '/../..' . '/deprecated/API/Client.php',
+        'CF\\API\\DefaultHttpClient' => __DIR__ . '/../..' . '/deprecated/API/DefaultHttpClient.php',
+        'CF\\API\\Exception\\CloudFlareException' => __DIR__ . '/../..' . '/deprecated/API/Exception/CloudFlareException.php',
+        'CF\\API\\Exception\\ZoneSettingFailException' => __DIR__ . '/../..' . '/deprecated/API/Exception/ZoneSettingFailException.php',
+        'CF\\API\\Host' => __DIR__ . '/../..' . '/deprecated/API/Host.php',
+        'CF\\API\\HttpClientInterface' => __DIR__ . '/../..' . '/deprecated/API/HttpClientInterface.php',
+        'CF\\API\\Plugin' => __DIR__ . '/../..' . '/deprecated/API/Plugin.php',
+        'CF\\API\\PluginRoutes' => __DIR__ . '/../..' . '/deprecated/API/PluginRoutes.php',
+        'CF\\API\\Request' => __DIR__ . '/../..' . '/deprecated/API/Request.php',
+        'CF\\DNSRecord' => __DIR__ . '/../..' . '/deprecated/DNSRecord.php',
+        'CF\\Integration\\ConfigInterface' => __DIR__ . '/../..' . '/deprecated/Integration/ConfigInterface.php',
+        'CF\\Integration\\DataStoreInterface' => __DIR__ . '/../..' . '/deprecated/Integration/DataStoreInterface.php',
+        'CF\\Integration\\DefaultConfig' => __DIR__ . '/../..' . '/deprecated/Integration/DefaultConfig.php',
+        'CF\\Integration\\DefaultIntegration' => __DIR__ . '/../..' . '/deprecated/Integration/DefaultIntegration.php',
+        'CF\\Integration\\DefaultLogger' => __DIR__ . '/../..' . '/deprecated/Integration/DefaultLogger.php',
+        'CF\\Integration\\IntegrationAPIInterface' => __DIR__ . '/../..' . '/deprecated/Integration/IntegrationAPIInterface.php',
+        'CF\\Integration\\IntegrationInterface' => __DIR__ . '/../..' . '/deprecated/Integration/IntegrationInterface.php',
+        'CF\\Router\\DefaultRestAPIRouter' => __DIR__ . '/../..' . '/deprecated/Router/DefaultRestAPIRouter.php',
+        'CF\\Router\\RequestRouter' => __DIR__ . '/../..' . '/deprecated/Router/RequestRouter.php',
+        'CF\\Router\\RouterInterface' => __DIR__ . '/../..' . '/deprecated/Router/RouterInterface.php',
+        'CF\\SecurityUtil' => __DIR__ . '/../..' . '/deprecated/SecurityUtil.php',
+        'CF\\Utils' => __DIR__ . '/../..' . '/deprecated/Utils.php',
+        'CF\\WordPress\\ClientActions' => __DIR__ . '/../..' . '/deprecated/WordPress/ClientActions.php',
+        'CF\\WordPress\\ClientRoutes' => __DIR__ . '/../..' . '/deprecated/WordPress/ClientRoutes.php',
+        'CF\\WordPress\\Constants\\Exceptions\\ZoneSettingFailException' => __DIR__ . '/../..' . '/deprecated/WordPress/Constants/Exceptions/ZoneSettingFailException.php',
+        'CF\\WordPress\\Constants\\Plans' => __DIR__ . '/../..' . '/deprecated/WordPress/Constants/Plans.php',
+        'CF\\WordPress\\DataStore' => __DIR__ . '/../..' . '/deprecated/WordPress/DataStore.php',
+        'CF\\WordPress\\HTTP2ServerPush' => __DIR__ . '/../..' . '/deprecated/WordPress/HTTP2ServerPush.php',
+        'CF\\WordPress\\Hooks' => __DIR__ . '/../..' . '/deprecated/WordPress/Hooks.php',
+        'CF\\WordPress\\PluginActions' => __DIR__ . '/../..' . '/deprecated/WordPress/PluginActions.php',
+        'CF\\WordPress\\PluginRoutes' => __DIR__ . '/../..' . '/deprecated/WordPress/PluginRoutes.php',
+        'CF\\WordPress\\Proxy' => __DIR__ . '/../..' . '/deprecated/WordPress/Proxy.php',
+        'CF\\WordPress\\Utils' => __DIR__ . '/../..' . '/deprecated/WordPress/Utils.php',
+        'CF\\WordPress\\WordPressAPI' => __DIR__ . '/../..' . '/deprecated/WordPress/WordPressAPI.php',
+        'CF\\WordPress\\WordPressClientAPI' => __DIR__ . '/../..' . '/deprecated/WordPress/WordPressClientAPI.php',
+        'CF\\WordPress\\WordPressWrapper' => __DIR__ . '/../..' . '/deprecated/WordPress/WordPressWrapper.php',
         'Cloudflare\\APO\\API\\APIInterface' => __DIR__ . '/../..' . '/src/API/APIInterface.php',
         'Cloudflare\\APO\\API\\AbstractAPIClient' => __DIR__ . '/../..' . '/src/API/AbstractAPIClient.php',
         'Cloudflare\\APO\\API\\AbstractPluginActions' => __DIR__ . '/../..' . '/src/API/AbstractPluginActions.php',
@@ -66,6 +105,7 @@ class ComposerStaticInit18ff1d39124bbc46ea73a7a92beecd04
         'Cloudflare\\APO\\Integration\\DefaultLogger' => __DIR__ . '/../..' . '/src/Integration/DefaultLogger.php',
         'Cloudflare\\APO\\Integration\\IntegrationAPIInterface' => __DIR__ . '/../..' . '/src/Integration/IntegrationAPIInterface.php',
         'Cloudflare\\APO\\Integration\\IntegrationInterface' => __DIR__ . '/../..' . '/src/Integration/IntegrationInterface.php',
+        'Cloudflare\\APO\\IntlUtil' => __DIR__ . '/../..' . '/src/IntlUtil.php',
         'Cloudflare\\APO\\Router\\DefaultRestAPIRouter' => __DIR__ . '/../..' . '/src/Router/DefaultRestAPIRouter.php',
         'Cloudflare\\APO\\Router\\RequestRouter' => __DIR__ . '/../..' . '/src/Router/RequestRouter.php',
         'Cloudflare\\APO\\Router\\RouterInterface' => __DIR__ . '/../..' . '/src/Router/RouterInterface.php',
@@ -90,6 +130,8 @@ class ComposerStaticInit18ff1d39124bbc46ea73a7a92beecd04
         'Cloudflare\\APO\\Vendor\\Psr\\Log\\NullLogger' => __DIR__ . '/..' . '/psr/log/Psr/Log/NullLogger.php',
         'Cloudflare\\APO\\Vendor\\Symfony\\Polyfill\\Intl\\Idn\\Idn' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/Idn.php',
         'Cloudflare\\APO\\Vendor\\Symfony\\Polyfill\\Intl\\Idn\\Info' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/Info.php',
+        'Cloudflare\\APO\\Vendor\\Symfony\\Polyfill\\Intl\\Idn\\Resources\\unidata\\DisallowedRanges' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/Resources/unidata/DisallowedRanges.php',
+        'Cloudflare\\APO\\Vendor\\Symfony\\Polyfill\\Intl\\Idn\\Resources\\unidata\\Regex' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/Resources/unidata/Regex.php',
         'Cloudflare\\APO\\Vendor\\Symfony\\Polyfill\\Intl\\Normalizer\\Normalizer' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/Normalizer.php',
         'Cloudflare\\APO\\WordPress\\ClientActions' => __DIR__ . '/../..' . '/src/WordPress/ClientActions.php',
         'Cloudflare\\APO\\WordPress\\ClientRoutes' => __DIR__ . '/../..' . '/src/WordPress/ClientRoutes.php',
@@ -111,9 +153,9 @@ class ComposerStaticInit18ff1d39124bbc46ea73a7a92beecd04
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit18ff1d39124bbc46ea73a7a92beecd04::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit18ff1d39124bbc46ea73a7a92beecd04::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit18ff1d39124bbc46ea73a7a92beecd04::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit74ae2919342e5ccc294d5fb6fdc9a348::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit74ae2919342e5ccc294d5fb6fdc9a348::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit74ae2919342e5ccc294d5fb6fdc9a348::$classMap;
 
         }, null, ClassLoader::class);
     }

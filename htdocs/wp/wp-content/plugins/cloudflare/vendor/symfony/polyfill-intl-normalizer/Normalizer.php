@@ -22,14 +22,14 @@ namespace Cloudflare\APO\Vendor\Symfony\Polyfill\Intl\Normalizer;
  */
 class Normalizer
 {
-    public const FORM_D = \Normalizer::FORM_D;
-    public const FORM_KD = \Normalizer::FORM_KD;
-    public const FORM_C = \Normalizer::FORM_C;
-    public const FORM_KC = \Normalizer::FORM_KC;
-    public const NFD = \Normalizer::NFD;
-    public const NFKD = \Normalizer::NFKD;
-    public const NFC = \Normalizer::NFC;
-    public const NFKC = \Normalizer::NFKC;
+    public const FORM_D = 4;
+    public const FORM_KD = 8;
+    public const FORM_C = 16;
+    public const FORM_KC = 32;
+    public const NFD = 4;
+    public const NFKD = 8;
+    public const NFC = 16;
+    public const NFKC = 32;
     private static $C;
     private static $D;
     private static $KD;

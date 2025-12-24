@@ -241,8 +241,8 @@ final class Idn
         // Step 1. Map each code point in the domain name string
         $domain = self::mapCodePoints($domain, $options, $info);
         // Step 2. Normalize the domain name string to Unicode Normalization Form C.
-        if (!\Normalizer::isNormalized($domain, \Normalizer::FORM_C)) {
-            $domain = \Normalizer::normalize($domain, \Normalizer::FORM_C);
+        if (!\Cloudflare\APO\Vendor\Symfony\Polyfill\Intl\Normalizer\Normalizer::isNormalized($domain, \Cloudflare\APO\Vendor\Symfony\Polyfill\Intl\Normalizer\Normalizer::FORM_C)) {
+            $domain = \Cloudflare\APO\Vendor\Symfony\Polyfill\Intl\Normalizer\Normalizer::normalize($domain, \Cloudflare\APO\Vendor\Symfony\Polyfill\Intl\Normalizer\Normalizer::FORM_C);
         }
         // Step 3. Break the string into labels at U+002E (.) FULL STOP.
         $labels = explode('.', $domain);
@@ -379,7 +379,7 @@ final class Idn
             return;
         }
         // Step 1. The label must be in Unicode Normalization Form C.
-        if (!\Normalizer::isNormalized($label, \Normalizer::FORM_C)) {
+        if (!\Cloudflare\APO\Vendor\Symfony\Polyfill\Intl\Normalizer\Normalizer::isNormalized($label, \Cloudflare\APO\Vendor\Symfony\Polyfill\Intl\Normalizer\Normalizer::FORM_C)) {
             $info->errors |= self::ERROR_INVALID_ACE_LABEL;
         }
         $codePoints = self::utf8Decode($label);

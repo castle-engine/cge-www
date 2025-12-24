@@ -3,7 +3,7 @@ Contributors: cloudflare, barrykooij, defries
 Tags: cloudflare, seo, ssl, ddos, speed, security, cdn, performance, free
 Requires at least: 5.0
 Tested up to: 6.9.0
-Stable tag: 4.14.0
+Stable tag: 4.14.2
 Requires PHP: 7.4
 License: BSD-3-Clause
 
@@ -13,7 +13,7 @@ All of Cloudflare’s performance and security benefits in a simple one-click in
 
 = What this plugin can do for you =
 
-https://www.youtube.com/watch?v=DWANhxoDxFI?feature=youtu.be
+[https://www.youtube.com/watch?v=DWANhxoDxFI]
 
 **Automatic Platform Optimization (APO)**
 
@@ -99,9 +99,27 @@ Yes, Cloudflare works with, and helps speed up your site even more, if you have 
 
 == Changelog ==
 
-= 4.14.0 - 2025-12-17 =
+= 4.14.2 - 2025-12-22 =
 
-* Added *
+*Fixed*
+
+* Set correct type for $logger parameter in deprecated CF\WordPress\Datastore constructor.
+
+*Changed*
+
+* Removed contructor parameter types from deprecated CF\Integration\DefaultIntegration to prevent outdated integration errors.
+* Instead of directly loading the polyfil Normalizer in global namespace, patched polyfill-intl-idn to use vendor prefixed Normalizer.
+
+= 4.14.1 - 2025-12-19 =
+
+*Fixed*
+
+* Fixed classmap autoloading for deprecated classes in release builds issue. Solving conflicts with plugins that directly use deprecated namespace.
+* Add IntlUtil helper class to fix symfony polyfill-intl loading; include Resources/unidata, load Normalizer stub via files autoload, and patch circular constant references.
+
+= 4.14.0 - 2025-12-18 =
+
+*Added*
 
 * Add PHP-Scoper build system for vendor namespace prefixing.
 
