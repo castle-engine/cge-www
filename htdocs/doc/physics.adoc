@@ -162,11 +162,20 @@ We allow you to change the object, e.g. by explicitly changing cgeref:TCastleTra
 +
 Physics engine may optimize static objects. You make this optimization counter-productive (the physics engine will have to reposition your object in various internal structures) if you change the transformation of static object often.
 
-== Ray-casting (Querying For Collision)
+[#query_collisions]
+== Querying For Collision (ray-casting, sphere-casting)
 
-Use the cgeref:TCastleAbstractRootTransform.PhysicsRayCast[] to cast a ray and see whether it hits something. It takes and returns values (ray origin, direction, returned distance, point) in the world coordinate system.
+Use the cgeref:TCastleAbstractRootTransform.PhysicsRayCast[] to _"cast a ray"_ and see whether it hits something. This means we calculate the first 3D object that would collide with a 3D ray, which starts in a given 3D point and goes in the given 3D direction.
 
-Alternatively use the cgeref:TCastleRigidBody.PhysicsRayCast[] which is similar, but takes parameters in the coordinate system of the parent cgeref:TCastleTransform[].
+- The cgeref:TCastleAbstractRootTransform.PhysicsRayCast[] takes and returns values (ray origin, direction, returned distance, point) in the _world coordinate system_.
+
+- Alternatively use the cgeref:TCastleRigidBody.PhysicsRayCast[] which is similar, but takes parameters in the coordinate system of the parent cgeref:TCastleTransform[].
+
+You can also use _sphere casting_ using the cgeref:TCastleAbstractRootTransform.PhysicsSphereCast[] or cgeref:TCastleRigidBody.PhysicsSphereCast[].
+
+- These methods are similar to casting a ray, but now we move a _sphere_ (with given radius, from given position, along given direction) and see what will be hit by this sphere.
+
+- You can think that _casting a ray_ is like a special case of _casting a sphere_, but a ray is like an infinitely small sphere (with radius = zero).
 
 == Detecting Collisions
 
