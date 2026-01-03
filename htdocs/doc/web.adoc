@@ -123,7 +123,7 @@ Things below look complicated? We have plans to make them easier:
 
 - We plan to provide *ready (precompiled and tested) versions of FPC cross-compiler for Wasm and Pas2js (from popular OSes: Windows, Linux, macOS)*.
 +
-They will be build by CI actions in https://github.com/castle-engine/cge-fpc[cge-fpc] repository. GUI link:editor[editor] and command-line link:build_tool[build tool] will enable to easily download them.
+They will be build by CI actions in https://github.com/castle-engine/castle-fpc[castle-fpc] repository. GUI link:editor[editor] and command-line link:build_tool[build tool] will enable to easily download them.
 +
 This way you will be able to get all these prerequisites in a trivial way, in latest versions that are tested and recommended by CGE developers.
 // This way we do not have to depend on FPC and Pas2js teams to prepare official releases with WebAssembly support. Or wait for FpcUpDeluxe to apply our PR to fix Wasmp1.

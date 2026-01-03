@@ -53,7 +53,7 @@ steps:
     GH_TOKEN: ${{ github.token }}
 ----
 
-See step https://github.com/castle-engine/cge-fpc/blob/master/.github/workflows/build.yml[at the end of this workflow] for a working example.
+See step https://github.com/castle-engine/castle-fpc/blob/master/.github/workflows/build.yml[at the end of this workflow] for a working example.
 
 NOTE: Above example step overwrites the `snapshot` release files every time it is done, while the release tag stays the same. It works and is useful for `snapshot` releases. But it is not a normal release setup: "normal" release should be done once, building binaries from the proper tag, and the released files should not change later. Tweak above example as you wish, e.g. to build on specific tag and/or to create a new release every time by `gh release create ...`.
 
