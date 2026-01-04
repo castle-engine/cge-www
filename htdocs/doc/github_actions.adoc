@@ -19,20 +19,38 @@ See the sample project link:https://github.com/castle-engine/castle-game/[castle
 * Windows (x86_64)
 * Linux (x86_64)
 * Android (APK contains both 32-bit and 64-bit ARM code)
-* macOS (x86_64)
+* macOS (2 versions: for Aarch64 and x86_64)
 --
-+
-Ready files are available in the _"Artifacts"_ section. Download them, unpack -- this is a ready binary release of your game, for 4 systems above. You don't need to build yourself, you can just upload these files as _"release"_ on GitHub or anywhere else.
+
+Once such action executes, you have a _build_ of your application for all the above platforms. Download it from:
+
+- The _"Artifacts"_ section of the particular _GitHub Actions_ run. As a developer, you can download them.
+
+- And in the https://github.com/castle-engine/castle-game/releases/tag/snapshot[release tagged `snapshot`]. Regular users can download them from there.
+
+Download them, unpack -- this is a ready binary release of your game, for all systems above. You don't need to build the application yourself.
 
 == Under the hood
 
-The actions execute on GitHub-hosted servers, completely free for open-source projects. They rely on link:docker[Castle Game Engine Docker image] and use the latest CGE "snapshot" revision and latest stable FPC (3.2.2) now. The build is done by executing CGE link:build_tool[build tool] with proper options. You don't really need to understand it all -- our `build.yml` just does it for you.
+The actions execute on GitHub-hosted servers, completely free for open-source projects.
 
-You can customize the way it works in a myriad of ways. See https://docs.github.com/en/actions[GitHub Actions] docs.
+They get FPC and _Castle Game Engine_ in 2 ways:
 
-== Taking it further: Make a release
+- link:docker[Castle Game Engine Docker image] (great for all platforms except _macOS_)
 
-The builds described above (actions' artifacts) will disappear after some time (link:https://docs.github.com/en/actions/using-workflows/storing-workflow-data-as-artifacts[90 days by default]). Also, users need to be signed-in to GitHub to be able to download them. So this is not a complete final solution, yet.
+- https://github.com/castle-engine/castle-build-ci/[castle-build-ci scripts] (for _macOS_)
+
+In either case:
+
+- We have the latest stable FPC and the latest CGE "snapshot" version available during the build.
+
+- The build is done by executing CGE link:build_tool[build tool] with proper options.
+
+Consider the `build.yml` we link above as a starting point. You can do anything in that script that you can do from the command-line. You can customize what it's doing (what platforms to build, from what subdirectory), extend it (add auto-tests, docs generation) etc. See https://docs.github.com/en/actions[GitHub Actions] docs.
+
+== More information about making a release from GitHub Actions
+
+Uploading builds using https://github.com/actions/upload-artifact[upload-artifact] is only a first step. Such _uploaded artifact_ will disappear after some time (link:https://docs.github.com/en/actions/using-workflows/storing-workflow-data-as-artifacts[90 days by default]) and you need to have access to the workflow (e.g. be the author of this project) to be able to download it. So this is not a complete final solution, yet.
 
 If you want to distribute the builds to users, you should upload them e.g. as _"release"_ on GitHub or anywhere else.
 
@@ -53,7 +71,7 @@ steps:
     GH_TOKEN: ${{ github.token }}
 ----
 
-See step https://github.com/castle-engine/castle-fpc/blob/master/.github/workflows/build.yml[at the end of this workflow] for a working example.
+The _Release Artifacts_ step in https://raw.githubusercontent.com/castle-engine/castle-game/master/.github/workflows/build.yml[build.yml] shows a working example of this.
 
 NOTE: Above example step overwrites the `snapshot` release files every time it is done, while the release tag stays the same. It works and is useful for `snapshot` releases. But it is not a normal release setup: "normal" release should be done once, building binaries from the proper tag, and the released files should not change later. Tweak above example as you wish, e.g. to build on specific tag and/or to create a new release every time by `gh release create ...`.
 
