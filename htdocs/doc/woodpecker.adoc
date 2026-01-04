@@ -1,0 +1,38 @@
+# Woodpecker CI (also in Codeberg CI)
+include::common.adoc[]
+
+== Introduction
+
+https://woodpecker-ci.org/[Woodpecker] is an open-source CI/CD platform. You can host it yourself and connect to your repositories.
+
+https://codeberg.org/[Codeberg] is an open-source code hosting platform (using https://forgejo.org/[Forgejo]).
+
+- It is integrated with Woodpecker, giving us ready _Woodpecker_ CI installation.
+
+- https://codeberg.org/castle-engine/[Castle Game Engine repositories are available on Codeberg], and we plan https://castle-engine.io/wp/2025/12/30/december-news-unlimited-skin-joints-on-shaders-pointproperties-and-plans-for-2026-next-release-signpath-better-macos-silicon-shadow-maps/[more Codeberg usage in the future].
+
+- You can also use Codeberg and their CI for your projects, as long as they are aligned with their requirements (in short: open-source).
+
+So this documentation should be helpful whether you use _Woodpecker_ CI on your own, or _Codeberg CI_ (integrated with Codeberg).
+
+== Documentation
+
+- https://docs.codeberg.org/ci/[Codeberg CI]
+- https://codeberg.org/Codeberg-CI/examples[Codeberg CI usage examples (YAML files)]
+- https://woodpecker-ci.org/docs/usage/intro[Woodpecker CI documentation] with workflows syntax
+
+== Examples
+
+Our Woodpecker pipelines:
+
+- Building a game for Linux and Windows:
++
+https://codeberg.org/castle-engine/castle-game/src/branch/master/.woodpecker/build.yml
+
+- Building link:castle-model-viewer[Castle Model Viewer], with command-line converter as "companion" application:
++
+https://codeberg.org/castle-engine/castle-model-viewer/src/branch/master/.woodpecker/build.yml
+
+- Build engine tools (like our https://castle-engine.io/build_tool[build tool]), run automatic tests:
++
+https://codeberg.org/castle-engine/castle-engine/src/branch/master/.woodpecker/test.yml

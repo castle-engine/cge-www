@@ -362,6 +362,7 @@ $castle_sitemap = array(
             'sub' => array(
               'doc/github_actions' => array('title' => 'GitHub Actions (automatic builds for GitHub projects)'),
               'doc/gitlab_ci' => array('title' => 'GitLab CI/CD (automatic builds for GitLab projects)'),
+              'doc/woodpecker' => array('title' => 'Woodpecker CI (automatic builds for Codeberg projects)'),
               'doc/docker' => array('title' => 'Docker (easily get CGE, compilers, texture compression tools)'),
               'doc/jenkins' => array('title' => 'Jenkins (automatic builds by your Jenkins server)'),
             )
