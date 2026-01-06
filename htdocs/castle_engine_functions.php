@@ -365,6 +365,7 @@ $castle_sitemap = array(
               'doc/woodpecker' => array('title' => 'Woodpecker CI (automatic builds for Codeberg projects)'),
               'doc/docker' => array('title' => 'Docker (easily get CGE, compilers, texture compression tools)'),
               'doc/jenkins' => array('title' => 'Jenkins (automatic builds by your Jenkins server)'),
+              'doc/ci' => array('title' => 'Using Castle Game Engine with any CI'),
             )
           ),
           'manual_ide' => array('title' => 'Pascal IDEs',

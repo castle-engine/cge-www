@@ -1,0 +1,49 @@
+# Using Castle Game Engine with any CI
+
+In general, using any CI system to build your _Castle Game Engine_ application means that you get inside your CI environment:
+
+1. Your application (usually, the latest version from code repository like GIT).
+
+2. And _Castle Game Engine_ (usually, a https://github.com/castle-engine/castle-engine/tags[tag] like `snapshot` or `v7.0-alpha.3`).
+
+3. And a compiler, like _FPC_.
+
+Then you use our link:build_tool[build tool] to build and test your application. Execute the same commands you would execute from the command-line. Usually start with the command `castle-engine package` (builds and packages your application for current system). Once you have this working, extend it -- build for all platforms you care about, release the build to users, run tests, and so on.
+
+== How to get FPC and CGE inside the CI job
+
+- You can use link:docker[Castle Game Engine Docker image]. Most CI systems have integrated support for Docker.
++
+_Advantages:_ Our Docker image provides ready FPC with a few cross-compilers. You can build applications for _Linux_, _Windows_ and _Android_ out-of-the-box. Detailed https://hub.docker.com/r/kambi/castle-engine-cloud-builds-tools/[list of supported targets (OS/CPU) is on the Docker image page].
++
+_Disadvantages:_
++
+--
+- You cannot build for certain systems, like _macOS_, from our Docker image.
+
+- Our Docker images require a considerable disk space.
+
+- If you need to execute Windows-specific or macOS-specific tools, it's hard or impossible. Inside the Docker, you have the full power of a Linux environment. To execute Windows tools (like https://jrsoftware.org/isinfo.php[Inno Setup]), it's best to just execute within a normal Windows machine instead.
+--
+
+- https://github.com/castle-engine/castle-build-ci/[castle-build-ci scripts].
++
+This gets our https://github.com/castle-engine/castle-fpc/[recommended FPC version] and then downloads CGE. Optionally it can also install _Lazarus_.
++
+_Advantages:_ You can build for all the systems where the engine can be used, including _macOS_. You setup FPC and CGE on your target system, you can run all the auto-tests on that system, and execute any system-specific tools to package your application.
++
+_Disadvantage:_ You need to actually have a machine with the target OS to build for it. E.g. to build for _macOS_, you need a macOS machine. You can also use a GitHub-hosted or GitLab-hosted runners (smaller versions of them are available for free).
+
+- Other approaches are also possible.
++
+--
+- You could install FPC using `apt-get install fpc` on Linux (and equivalent on other platforms, e.g. `brew install fpc` on macOS, `choco install lazarus` on Windows to get https://community.chocolatey.org/packages/lazarus[Lazarus from Chocolatey]).
++
+Make sure that the runner packages have recent enough FPC version, see https://castle-engine.io/supported_compilers.php[supported FPC versions].
+
+- Specifically with link:github_actions[GitHub Actions], you can use https://github.com/gcarreno/setup-lazarus[setup-lazarus] action to install FPC and Lazarus.
+
+- You can download https://github.com/castle-engine/castle-fpc/[our FPC builds] directly.
+
+- You can get CGE by just `git clone` of our repository and compiling our link:build_tool[build tool] from source using `./castle-engine_compile.sh`. You can essentially follow a super-minimal version of https://castle-engine.io/compiling_from_source.php[compiling from source] docs to do that, you only need to compile the build tool, which can then build your project. Our https://github.com/castle-engine/castle-build-ci[scripts in castle-build-ci] can be used as a reference, they do exactly that -- but it's not that hard to do it yourself from scratch :)
+--

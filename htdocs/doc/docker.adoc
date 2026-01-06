@@ -17,7 +17,7 @@ Using the Docker image gives you a stable environment where we have:
 * https://castle-engine.io/creating_data_auto_generated_textures.php[Texture compression tools useful with CGE] from NVidia and PowerVR
 * https://github.com/pasdoc/pasdoc/wiki[PasDoc]
 
-This Docker image can be used by continuous integration systems like link:jenkins[Jenkins] and link:github_actions[GitHub Actions]. It can also be used on your local computer. Instead of downloading FPC, CGE, Android SDK and NDK etc., you only have to get the Docker image.
+This Docker image can be used by continuous integration systems like link:woodpecker[Woodpecker CI] and link:github_actions[GitHub Actions]. It can also be used on your local computer. Instead of downloading FPC, CGE, Android SDK and NDK etc., you only have to get the Docker image.
 
 == Getting the Docker, basic Docker concepts and links
 
@@ -129,7 +129,7 @@ You can also use https://testfairy.com/[TestFairy integration] to distribute the
 
 == Updating the Docker image
 
-Our https://hub.docker.com/r/kambi/castle-engine-cloud-builds-tools/[Docker image `kambi/castle-engine-cloud-builds-tools:cge-unstable`] contains the very latest "unstable" engine version. It is updated automatically after every CGE commit. Our Jenkins runs many automated engine tests (making sure everything compiles, with various FPC versions and on various platforms), then rebuilds the https://github.com/castle-engine/castle-engine/releases/tag/snapshot[engine binary release] and then updates the `+...:cge-unstable+` Docker image.
+Our https://hub.docker.com/r/kambi/castle-engine-cloud-builds-tools/[Docker image `kambi/castle-engine-cloud-builds-tools:cge-unstable`] contains the very latest "unstable" engine version. It is updated automatically after every CGE commit. Our CI runs many automated engine tests (making sure everything compiles, with various FPC versions and on various platforms), then rebuilds the https://github.com/castle-engine/castle-engine/releases/tag/snapshot[engine binary release] and then updates the `+...:cge-unstable+` Docker image.
 
 However, note that the Docker image on your local disk, and the containers you created based on it, are not automatically updated in any way. If you want to update your image to have the latest CGE, simply do it explicitly:
 
@@ -170,7 +170,7 @@ You can use 1 of 3 possible Docker images we provide:
 
 == Sources
 
-The bash script, Dockerfiles, Jenkinksfiles etc. to generate these Docker images are open-source on https://github.com/castle-engine/castle-engine-docker .
+The bash script, Dockerfiles, CI workflows etc. to generate these Docker images are open-source on https://github.com/castle-engine/castle-engine-docker .
 
 == Alternative FPC versions
 

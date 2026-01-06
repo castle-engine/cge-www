@@ -23,30 +23,10 @@ NOTE: The `.gitlab-ci.yml` filename starts with a dot, this means it is a hidden
 +
 By default, these are builds for Linux and Windows.
 
-== How to get FPC and CGE inside the CI job
+== Using Docker image with GitLab CI
 
-- You can use link:docker[Castle Game Engine Docker image].
-+
-The Docker image provides ready FPC with some cross-compilers e.g. to Android.
-+
-On the other hand, it cannot build for _macOS_.
-+
-It also requires a considerable disk space. The disk space on free https://docs.gitlab.com/ee/ci/runners/[GitLab-hosted runners] seems too small to unpack it.
-+
-But if you use your own runners, disk space may not be a problem. If you want you can change the YAML file to use Docker images (to have more power and build easily e.g. also for Android). Simply uncomment the section in that file marked as `# Commented out version using Docker image`.
+The `.gitlab-ci.yml` file linked above does *not* use our link:docker[Docker images] by default. That's because our Docker images require a considerable disk space and free https://docs.gitlab.com/ee/ci/runners/[GitLab-hosted runners] are too small to unpack it.
 
-- https://github.com/castle-engine/castle-build-ci/[castle-build-ci scripts].
-+
-This gets our https://github.com/castle-engine/castle-fpc/[recommended FPC version] and then downloads CGE.
+But if you use your own runners, disk space may not be a problem. You can change the YAML file to use Docker images (to have more power and build easily e.g. also for Android). Simply uncomment the section in that file marked as `# Commented out version using Docker image`.
 
-- Other approaches are also possible.
-+
---
-- You could install FPC using `apt-get install fpc` on Linux (and equivalent on other platforms, e.g. `brew install fpc` on macOS, `choco install lazarus` on Windows to get https://community.chocolatey.org/packages/lazarus[Lazarus from Chocolatey]).
-+
-Make sure that the runner packages have recent enough FPC version, see https://castle-engine.io/supported_compilers.php[supported FPC versions].
-
-- You could download https://github.com/castle-engine/castle-fpc/[our FPC builds] directly.
-
-- You can get CGE by just `git clone` of our repository and compiling our link:build_tool[build tool] from source using `./castle-engine_compile.sh`. You can essentially follow a super-minimal version of https://castle-engine.io/compiling_from_source.php[compiling from source] docs to do that, you only need to compile the build tool, which can then build your project. Our https://github.com/castle-engine/castle-build-ci[scripts in castle-build-ci] can be used as a reference, they do exactly that -- but it's not that hard to do it yourself from scratch :)
---
+See link:ci[Using Castle Game Engine with any CI] for more notes how to setup FPC and _Castle Game Engine_ inside the CI job.
