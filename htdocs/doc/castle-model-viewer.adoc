@@ -99,6 +99,7 @@ cge::download-application[
     linux-x86_64;
     linux-arm;
     linux-aarch64;
+    darwin-aarch64;
     darwin-x86_64
 ]
 

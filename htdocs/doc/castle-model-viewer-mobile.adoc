@@ -46,7 +46,8 @@ cge::download-application[
     android;
     //win64-x86_64;
     //linux-x86_64;
-    //darwin-x86_64
+    //darwin-x86_64;
+    //darwin-aarch64
 ]
 
 // Confusing for new users? Let's wait until it's full-featured on web.

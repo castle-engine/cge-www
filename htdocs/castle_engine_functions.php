@@ -2391,13 +2391,22 @@ function cge_download_application($version, $tag, $organization_name, $repo_name
         $platform_details = '(Linux, Arm64 aka Aarch64)';
         $extension = '.tar.gz';
         break;
+      case 'darwin-aarch64':
+        $icon_name = 'macos.png';
+        $icon_width = '64';
+        $icon_height = '64';
+        $icon_alt = 'macOS';
+        $platform_name = 'macOS';
+        $platform_details = '(Aarch64, Apple Silicon)';
+        $extension = '.zip';
+        break;
       case 'darwin-x86_64':
         $icon_name = 'macos.png';
         $icon_width = '64';
         $icon_height = '64';
         $icon_alt = 'macOS';
         $platform_name = 'macOS';
-        $platform_details = '(x86_64)';
+        $platform_details = '(x86_64, Intel)';
         $extension = '.zip';
         break;
       case 'android':
