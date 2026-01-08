@@ -4,7 +4,7 @@ Tags: logging, email, email log, smtp, log
 Requires at least: 5.0
 Tested up to: 6.9
 Requires PHP: 5.6
-Stable tag: 2.0.10
+Stable tag: 2.0.11
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -122,6 +122,9 @@ Someone using one of my other plugins had trouble with emails not being sent. I 
 
 
 == Changelog ==
+
+= v2.0.11 - 05/01/2026 =
+- Remove: Removed BFCM Banner #156
 
 = v2.0.10 - 04/12/2025 =
 - Feature Added: Error Log notification #46

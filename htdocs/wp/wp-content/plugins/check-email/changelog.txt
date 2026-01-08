@@ -1,4 +1,7 @@
 == Changelog ==
+= v2.0.11 - 05/01/2026 =
+- Remove: Removed BFCM Banner #156
+
 = v2.0.10 - 04/12/2025 =
 - Feature Added: Error Log notification #46
 - Improvement: Create backword compatibility #148
