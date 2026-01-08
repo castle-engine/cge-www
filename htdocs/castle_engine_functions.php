@@ -2186,8 +2186,8 @@ function cge_features_summary($feature_heading_level = 3)
       'link' => 'features#_visual_editor',
       'title' => 'Visual editor',
       'description' => 'Design 3D and 2D games and user interfaces (with automatic scaling, anchors). Build and deploy the same project for multiple platforms. Integrate with various IDEs (<a href="vscode">Visual Studio Code</a>, <a href="lazarus">Lazarus</a>, <a href="delphi">Delphi</a>...).',
-      'image' => '2d_demo_editor.png',
-      'image_titlealt' => '2D game in editor',
+      'image' => 'impressive_castle_editor.png',
+      'image_titlealt' => '3D game in editor',
     ),
     array(
       'link' => 'features#_viewport_with_scenes_camera_navigation_and_other_components',
@@ -2229,9 +2229,9 @@ function cge_features_summary($feature_heading_level = 3)
     array(
       'link' => 'features#_build_tool_and_continuous_integration',
       'title' => 'Open source and friendly to continuous integration',
-      'description' => 'Tooling friendly to continuous integration. <a href="build_tool">Command-line build tool</a> and <a href="docker">Docker</a> image. Ready files and documentation how to use with <a href="github_actions">GitHub Actions</a>, <a href="gitlab_ci">GitLab CI</a>, <a href="jenkins">Jenkins</a>. Engine is completely open-source and <a href="license">can be used to make any (including proprietary) applications</a>.',
-      'image' => 'combined_osi_ci_logos.png',
-      'image_titlealt' => 'Open-source, integrated with GitHub, GitLab, Jenkins',
+      'description' => 'Tooling friendly to continuous integration. <a href="build_tool">Command-line build tool</a> and <a href="docker">Docker</a> image. Ready files and documentation how to use with <a href="github_actions">GitHub Actions</a>, <a href="gitlab_ci">GitLab CI</a>, <a href="jenkins">Jenkins</a>, <a href="woodpecker">Woodpecker CI</a> or any <a href="ci">other CI</a>. Engine is completely open-source and <a href="license">can be used to make any (including proprietary) applications</a>.',
+      'image' => 'combined_osi_ci_logos_2.png',
+      'image_titlealt' => 'Open-source, Jenkins, Docker, Codeberg, Woodpecker CI, GitHub Actions, GitLab CI',
     ),
   );
 
