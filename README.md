@@ -184,7 +184,11 @@ Most important Wordpress shortcodes are:
 
         - On Arch Linux, follow https://wiki.archlinux.org/title/Apache_HTTP_Server .
 
-    - Make sure the Apache web user has access to at least read the files in `htdocs/` and subdirectories. You can make them owned by `www-data` user, like `sudo chown -R www-data:www-data ~/sources/castle-engine/cge-www/htdocs/`. Make sure the parent directories are also accessible to `www-data`, e.g. `chmod a+rX ~`. Check it all works by `sudo -u www-data ls ~/sources/castle-engine/cge-www/htdocs/`.
+    - Make sure the Apache web user has access to at least read the files in `htdocs/` and subdirectories.
+        - You can make them owned by `www-data` user, like `sudo chown -R www-data:www-data ~/sources/castle-engine/cge-www/htdocs/`.
+        - Make sure the parent directories are also accessible to `www-data`, e.g. `chmod a+rX ~`.
+        - Check it all works by `sudo -u www-data ls ~/sources/castle-engine/cge-www/htdocs/`.
+        - To enable comfortable editing with above setup, your own user should be in `www-data` group as well. `sudo adduser $USER www-data` (followed by logout + login to refresh group membership) on Debian-based systems will do the trick. And make them group-writeable, like `sudo chmod -R g+w htdocs/`.
 
     Now pages that use only our PHP framework, like http://localhost:8777/manual_intro.php should work.
 
