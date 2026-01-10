@@ -6,9 +6,54 @@ cgeimg::block[
   mac_view3dscene_2.png|view3dscene on macOS
 ]
 
-## Installation of FPC and Lazarus
+## Installation on macOS
 
-To build applications using the engine, you must install _Free Pascal Compiler (FPC)_. Most likely you also want to install _Lazarus_, a Pascal IDE.
+### Xcode with command-line tools
+
+We need https://developer.apple.com/xcode/[Xcode] with the _Xcode command-line developer tools_ installed.
+
+- Install _Xcode_ from the macOS _App Store_.
+
+- Open terminal (_/Applications/Utilities/Terminal_) and execute `xcode-select --install`.
+
+### Castle Game Engine itself
+
+Download the official binary release from link:/[Castle Game Engine main page]. The editor and various tools are inside the `bin/` subdirectory.
+
+Just double-click the `castle-editor` application to run our editor... but first please follow the following section to deal with unsigned applications:
+
+[WARNING]
+====
+Our editor (`castle-editor`), other tools (`castle-engine`, `castle-model-viewer`, `castle-image-viewer`), and the bundled FPC compiler are _unsigned_ applications for macOS right now. Running them for the first time will result in an error along the lines _"developer cannot be verified"_.
+
+Solution: Before using the engine, you have to right-click on each of the binaries from _"Finder"_, choose _"Open"_ from the context menu, and then you will be able to confirm that you want to open an unsigned application.
+
+So before using the engine please run all the binaries in `bin` subdirectory once, by right-clicking on them, and accept the warning that they are unsigned applications. Do this at least for:
+
+--
+- `bin/castle-editor`
+- `bin/castle-engine`
+- `bin/castle-image-viewer`
+- `tools/contrib/fpc/bin/fpc`
+- `tools/contrib/fpc/bin/ppcx64` (on Intel macs)
+- `tools/contrib/fpc/bin/ppca64` (on Apple Silicon macs)
+--
+
+Note that some of the above (`castle-engine`, FPC compiler binaries) are command-line programs, and running them like this will just print the help message. Tat's fine, you can close the terminal window they open. You just run them to make macOS remember that you trust this application.
+====
+
+After installation visit the editor _Preferences_ and make sure that FPC, Lazarus and _Castle Game Engine_ locations are detected, or set them manually.
+
+Due to Apple _"translocation"_ mechanism (that internally executes the application from a random place on disk, if it was part of a zip downloaded from the Internet) you will also have to set _Castle Game Engine_ path in _"Preferences" -> "General"_. There will be a warning, guiding you to do it, on the initial editor form.
+//Unfortunately, CGE editor cannot detect CGE own location, even though from user's perspective you run the editor right inside CGE directory.
+
+Make sure in _"Preferences -> FPC and Lazarus"_ that FPC version has also been detected correctly. This also implies that FPC binaries are properly trusted, as described above. You can ignore missing _Lazarus_, using _Lazarus_ for CGE development is optional -- you can use any text editor like link:vscode[VS Code].
+
+### Optional: Add an alternative FPC version and Lazarus
+
+Doing this step is not necessary, as our macOS downloads (for both _x86_64_ and _Aarch64_) already contain the latest stable version of https://www.freepascal.org/[Free Pascal Compiler (FPC)]. So you don't need to install anything more, building and running projects will "just work" out-of-the-box.
+
+However, you can install your own FPC version, if you want, e.g. to add _cross-compilers_ that you need. You can also install _Lazarus_, a Pascal IDE.
 
 * Follow download links from link:http://www.lazarus.freepascal.org/[the official Lazarus webpage] to download Lazarus and FPC for macOS. You should download and install all 3 dmg files (Lazarus, FPC, FPC sources).
 
@@ -17,13 +62,22 @@ To build applications using the engine, you must install _Free Pascal Compiler (
 [role="compact"]
 --
 * link:https://brew.sh/[Homebrew] - see https://formulae.brew.sh/formula/fpc[FPC in Homebrew], https://formulae.brew.sh/cask/lazarus[Lazarus in Homebrew],
++
+NOTE: While `brew install fpc` works great, the Lazarus IDE formulae is deprecated and indeed may fail on latest macOS/Aarch64.
+
 * link:https://www.macports.org/[MacPorts],
+
 * link:http://www.finkproject.org/[Fink].
 --
 
-* *Alternatively (advanced)*: You can also install FPC and Lazarus using https://castle-engine.io/fpcupdeluxe[fpcupdeluxe]. While the UI may be a bit overwhelming, in the end you just hit big button _"Install FPC + Lazarus"_ and it reliably installs the specified FPC + Lazarus version. And it allows to easily add cross-compilers.
+* *Alternatively (FpcUpDeluxe)*: You can also install FPC and Lazarus using https://castle-engine.io/fpcupdeluxe[fpcupdeluxe]. While the UI may be a bit overwhelming, in the end you just hit the big button _"Install FPC + Lazarus"_ and it reliably installs the specified FPC + Lazarus version. And it allows to easily add cross-compilers.
 
-NOTE: The FPC compiler needs the _XCode command-line developer tools_ installed. To do this, open terminal (_/Applications/Utilities/Terminal_) and execute `xcode-select --install`.
+* *Alternatively (our castle-fpc)*: You can also install FPC and Lazarus from our builds, that are used also for link:ci[CI] jobs:
++
+--
+- https://github.com/castle-engine/castle-fpc[our recommended FPC version].
+- https://github.com/castle-engine/castle-lazarus[our recommended Lazarus version].
+--
 
 ////
 The latest macOS doesn't include gdb (a debugger, user underneath by Lazarus) by default. Lazarus will warn you about this on the 1st run. You can install GDB e.g. using link:https://brew.sh/[HomeBrew], just execute `brew install gdb`.
@@ -36,22 +90,6 @@ More information:
 - link:https://wiki.freepascal.org/Mac_Installation_FAQ[FPC Mac Installation FAQ]
 - link:https://wiki.freepascal.org/Installing_Lazarus_on_MacOS_X[Installing Lazarus on MacOS X]
 
-## Installation of Castle Game Engine
-
-Just download the official binary release from link:/[Castle Game Engine main page]. The editor and various tools are inside the `bin/` subdirectory. Just double-click the `castle-editor` application to run it.
-
-[WARNING]
-====
-Editor (`castle-editor`) and other tools (`castle-engine`, `castle-model-viewer`, `castle-image-viewer`) are _unsigned_ applications for macOS right now. Double-clicking them for the first time will result in an error along the lines _"developer cannot be verified"_. You have to right-click on them, choose _"Open"_ from the context menu, and then you will be able to confirm that you want to open an unsigned application.
-
-So before using the engine please run all the binaries in `bin` subdirectory once, by right-clicking on them, and accept the warning that they are unsigned applications. Do this at least for `castle-editor`, `castle-engine` and `castle-model-viewer` to use the engine comfortably. Note that `castle-engine` is command-line, and running it like this will just print the help message -- that's fine, it's just to make macOS remember that you trust this application.
-====
-
-After installation visit the editor _Preferences_ and make sure that FPC, Lazarus and _Castle Game Engine_ locations are detected, or set them manually.
-
-Due to Apple _"translocation"_ mechanism (that internally executes the application from a random place on disk, if it was part of a zip downloaded from the Internet) you will also have to set _Castle Game Engine_ path in _"Preferences" -> "General"_. There will be a warning, guiding you to do it, on the initial editor form.
-//Unfortunately, CGE editor cannot detect CGE own location, even though from user's perspective you run the editor right inside CGE directory.
-
 ## Using TCastleWindow
 
 Using cgeref:TCastleWindow[] on macOS is completely standard. Just run the application as usual, using _"Compile And Run"_ menu item (key shortcut is `F9`) from the editor. Alternatively, you can use `castle-engine run` on the command-line.
@@ -62,7 +100,7 @@ By default, cgeref:TCastleWindow[] on macOS uses https://developer.apple.com/lib
 
 ## Using TCastleControl
 
-Using link:control_on_form[TCastleControl] on macOS is completely standard. Just drop cgeref:TCastleControl[] on LCL form.
+Using link:control_on_form[TCastleControl] on macOS is also completely standard. Just drop cgeref:TCastleControl[] on LCL form.
 
 Note that cgeref:TCastleWindow[] is more advised, as a standard way to create a window where _Castle Game Engine_ can work.
 
