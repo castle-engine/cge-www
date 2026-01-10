@@ -15,16 +15,16 @@ If you installed the engine using Windows installer, use your Windows menu to ru
 
 Optionally, you can install:
 
-* Additional Pascal compiler.
+* Additional _Pascal compiler_.
 +
-On Linux and Windows, the engine is bundled with a ready version of https://www.freepascal.org/[FPC], so you don't need to do anything. Compilation of CGE applications will "just work".
+Note that all our link:download[downloads] already contain the latest stable version of https://www.freepascal.org/[Free Pascal Compiler (FPC)]. So you don't need to install anything more, building and running projects will "just work" out-of-the-box.
 +
 But you can also install link:delphi[Delphi] or other FPC version (e.g. using link:fpcupdeluxe[]). Configure in the the editor _"Preferences"_ which compiler to use.
 
 * A Pascal IDE, like:
 +
 --
-- link:vscode[Visual Studio Code] with our https://marketplace.visualstudio.com/items?itemName=castle-engine-team.castle-engine[Castle Game Engine extension]
+- link:vscode[Visual Studio Code or VS Codium] with our https://marketplace.visualstudio.com/items?itemName=castle-engine-team.castle-engine[Castle Game Engine extension]
 - link:lazarus[Lazarus]
 - link:delphi[Delphi]
 --
