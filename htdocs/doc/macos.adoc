@@ -35,6 +35,7 @@ So before using the engine please run all the binaries in `bin` subdirectory onc
 - `bin/castle-engine`
 - `bin/castle-image-viewer`
 - `tools/contrib/fpc/bin/fpc`
+- `tools/contrib/fpc/bin/fpc-cge`
 - `tools/contrib/fpc/bin/ppcx64` (on Intel macs)
 - `tools/contrib/fpc/bin/ppca64` (on Apple Silicon macs)
 --
