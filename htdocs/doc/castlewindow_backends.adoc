@@ -29,7 +29,7 @@ Advantages:
 * Dialog windows like `TCastleWindow.FileDialog` are implemented using standard Windows dialog boxes, so again they look nice and native.
 * Supports both OpenGL (by `wgl`) and OpenGLES (by `EGL`) contexts.
 
-=== GTK (CASTLE_WINDOW_GTK_2)
+=== GTK 2 (CASTLE_WINDOW_GTK_2)
 
 The default backend on most Unix systems, like Linux. Looks native and supports everything (except changing screen resolution, see below). Uses _GTK 2_. Initializes OpenGL(ES) context using Xlib + glX (for OpenGL) or EGL (for OpenGLES).
 
@@ -54,6 +54,12 @@ History: at some point this was using GtkGlExt, and was portable to any system u
 
 * This way our dependencies are simpler (not every system has GtkGlExt),
 * there was not practical usage of this backend outside of GTK+Xlib anyway.
+
+=== GTK 3 (CASTLE_WINDOW_GTK_3)
+
+Upgrade of the GTK 2 backend to use GTK 3.
+
+Soon to be the new-default backend on Unix, as GTK 2 is getting deprecated.
 
 === Xlib (X11) (CASTLE_WINDOW_XLIB)
 

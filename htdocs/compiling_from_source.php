@@ -163,13 +163,14 @@ Set-ExecutionPolicy Bypass -Scope Process
 <p>We use the following libraries:
 
 <ol>
-  <li>OpenGL (<i>essential for the engine to work</i>; used to render)
-  <li>GTK 2 (we plan to switch to GTK 3, and editor may switch to Qt5)
-  <li>LibPng (to open png files more efficiently)
-  <li>ZLib (to unpack gzip files; also used by LibPng)
-  <li>OpenAL (to play sound)
-  <li>FreeType (to load font files)
-  <li>VorbisFile (to load OggVorbis files)
+  <li>OpenGL
+  <li>GTK (version 2 and 3, as we are switching from GTK 2 to 3)
+  <li>LibPng (<i>optional</i>; to open png files more efficiently)
+  <li>ZLib (<i>optional</i>; to unpack gzip files; also used by LibPng)
+  <li>OpenAL (<i>optional</i>; to play sound)
+  <li>FreeType (<i>optional</i>; to load font files)
+  <li>VorbisFile (<i>optional</i>; to load OggVorbis sound files)
+  <li>Qt and libQtPas (<i>very optional</i>; only if you want to compile our editor with alternative Qt widgetset)
 </ol>
 
 <p>Most of them are already present on all Unix desktop installations.
@@ -180,14 +181,14 @@ Set-ExecutionPolicy Bypass -Scope Process
   <li>
     <p>On <i>Debian</i> and derivatives (like <i>Ubuntu</i> or <i>Raspberry Pi OS</i>), this command should install everything you need:
 
-    <pre>sudo apt install libgtk2.0-dev libglx-dev libgl-dev libqt5pas-dev libpng-dev libz1 libopenal1 libfreetype6 libvorbisfile3</pre>
+    <pre>sudo apt install libgtk2.0-dev libgtk-3-dev libglx-dev libgl-dev libqt5pas-dev libpng-dev libz1 libopenal1 libfreetype6 libvorbisfile3</pre>
 
     <p>(Anything missing? <a href="https://www.debian.org/distrib/packages">Search</a>)
 
   <li>
     <p>On Fedora, this command should install everything you need (and more, some of these are FPC requirements actually, not CGE):
 
-    <pre>sudo dnf install gtk2 gtk2-devel libX11-devel make binutils glibc-devel mesa-libGL-devel qt5pas</pre>
+    <pre>sudo dnf install gtk2 gtk2-devel gtk3 gtk3-devel libX11-devel make binutils glibc-devel mesa-libGL-devel qt5pas</pre>
     <!-- TODO: add on Fedora: libpng-dev libz1 libopenal1 libfreetype6 libvorbisfile3 -->
 
     <p>(Anything missing? <a href="https://packages.fedoraproject.org/">Search</a>)
@@ -195,7 +196,7 @@ Set-ExecutionPolicy Bypass -Scope Process
   <li>
     <p>On <i>Arch Linux</i> and derivatives, try this:
 
-    <pre>sudo pacman -S gtk2</pre>
+    <pre>sudo pacman -S gtk2 gtk3</pre>
 </ul>
 
 <p>Note that we link to most libraries dynamically using <i>"dlopen"</i> Unix mechanism. So it is not necessary to install e.g. <code>libfreetype6-dev</code>. And instead of <code>libpng-dev</code> you can install any recent <code>libpngXY</code> with <code>XY</code> indicating version 1.2-1.6 (various distros have a bit different naming here).
