@@ -192,12 +192,15 @@ In our opinion, it's easiest to get this using link:fpcupdeluxe[]: install FPC _
 +
 The last FPC GIT revision we tested is https://gitlab.com/freepascal.org/fpc/source/-/commit/b0003f71dda8388ad74292edb82ba401296fc106[b0003f71dda8388ad74292edb82ba401296fc106], so in case of trouble, try using this exact revision.
 +
+////
+No longer relevant: fpcupdeluxe releases are now good.
 [WARNING]
 ====
 Stable versions of fpcupdeluxe will fail to build FPC+WebAssembly because the OS name changed in FPC on 2025-02-27 (`wasi` -> `wasip1`).
 
 We submitted a https://github.com/LongDirtyAnimAlf/fpcupdeluxe/pull/748[PR fixing it] and it has been merged already, but the fix is not yet in the released fpcupdeluxe version. So, get fpcupdeluxe from https://github.com/LongDirtyAnimAlf/fpcupdeluxe/ and build it yourself first. It's a straightforward Lazarus project, build it from Lazarus IDE or using `lazbuild`.
 ====
+////
 +
 _Test that it works._ Create the following simple program, saved as `hello_wasm.lpr`:
 +
