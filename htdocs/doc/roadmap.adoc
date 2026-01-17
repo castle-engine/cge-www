@@ -412,11 +412,6 @@ We should read meshes from glTF to GPU in a way that keeps binary layout of data
 
 Some modifications to CGE may be required here (CastleGeometryArrays will have to be made more flexible for this). New X3D nodes should be introduced, like `BufferGeometry` (same as X3DOM?). See https://github.com/michaliskambi/x3d-tests/wiki/Binary-meshes[Binary meshes in X3D - my plan and reasons to add binary meshes to X3D spec].
 
-[#gltf_skinning_gpu]
-### (IN PROGRESS) Efficient skinned animation on GPU (from glTF and more) using new SkinnedAnimation node
-
-NOTE: This is almost ready now, on https://github.com/castle-engine/castle-engine/tree/skinned-animation-gpu[skinned-animation-gpu] branch, see link:skin[new Skin support].
-
 [#gltf_material_features]
 ### Support new glTF material extensions
 

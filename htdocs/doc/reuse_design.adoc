@@ -59,7 +59,7 @@ A related engine feature is cgeref:TCastleComponentFactory[]. Use this to instan
 
 See examples that use this:
 
-- https://github.com/castle-engine/castle-engine/tree/skinned-animation-gpu/examples/2d_games/space_shooter[examples/2d_games/space_shooter] (spawning bullets, rocks, explosions)
+- https://github.com/castle-engine/castle-engine/tree/master/examples/2d_games/space_shooter[examples/2d_games/space_shooter] (spawning bullets, rocks, explosions)
 
 - https://github.com/castle-engine/castle-engine/tree/master/examples/animations/animate_bones_by_code[examples/animations/animate_bones_by_code] (spawning characters for _"Add Crowd"_ test).
 
