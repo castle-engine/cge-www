@@ -38,7 +38,7 @@ class Generic_Plugin {
 	/**
 	 * Frontend notice payload when redirecting back from admin actions.
 	 *
-	 * @since 2.8.15
+	 * @since 2.9.1
 	 *
 	 * @var ?array
 	 */
@@ -114,7 +114,7 @@ class Generic_Plugin {
 	/**
 	 * Removes dynamic fragment tags from comment content before storage.
 	 *
-	 * @since 2.8.15
+	 * @since 2.9.1
 	 *
 	 * @param array $comment_data Comment data being processed.
 	 *
@@ -131,7 +131,7 @@ class Generic_Plugin {
 	/**
 	 * Removes dynamic fragment tags from RSS/feed content.
 	 *
-	 * @since 2.8.15
+	 * @since 2.9.1
 	 *
 	 * @param string $content Content to sanitize.
 	 *
@@ -144,7 +144,7 @@ class Generic_Plugin {
 	/**
 	 * Sanitizes REST API responses to prevent dynamic fragment leakage.
 	 *
-	 * @since 2.8.15
+	 * @since 2.9.1
 	 *
 	 * @param \WP_REST_Response|mixed $result  Response data.
 	 * @param \WP_REST_Server         $server  REST server instance.
@@ -170,7 +170,7 @@ class Generic_Plugin {
 	/**
 	 * Recursively removes dynamic fragment tags from REST data structures.
 	 *
-	 * @since 2.8.15
+	 * @since 2.9.1
 	 *
 	 * @param mixed $data Response data.
 	 *
@@ -203,7 +203,7 @@ class Generic_Plugin {
 	/**
 	 * Removes dynamic fragment tags from a text string.
 	 *
-	 * @since 2.8.15
+	 * @since 2.9.1
 	 *
 	 * @param string $value Raw content to sanitize.
 	 *
@@ -709,7 +709,7 @@ class Generic_Plugin {
 	/**
 	 * Loads a pending frontend message triggered during an admin redirect.
 	 *
-	 * @since 2.8.15
+	 * @since 2.9.1
 	 *
 	 * @return void
 	 */
@@ -1193,7 +1193,7 @@ class Generic_Plugin {
 	/**
 	 * Registers Plugin Check filters so they run in all contexts.
 	 *
-	 * @since 2.8.15
+	 * @since 2.9.1
 	 *
 	 * @link https://github.com/WordPress/plugin-check/blob/1.6.0/includes/Utilities/Plugin_Request_Utility.php#L160
 	 * @link https://github.com/WordPress/plugin-check/blob/1.6.0/includes/Utilities/Plugin_Request_Utility.php#L180

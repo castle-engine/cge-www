@@ -670,7 +670,7 @@ class Util_PageSpeed {
 	/**
 	 * Render the specialized Network Dependency Tree insight.
 	 *
-	 * @since 2.8.15
+	 * @since 2.9.1
 	 *
 	 * @param array  $insight       Insight payload.
 	 * @param string $notice_class  Notice classes.
@@ -736,7 +736,7 @@ class Util_PageSpeed {
 	/**
 	 * Render the network chain list recursively.
 	 *
-	 * @since 2.8.15
+	 * @since 2.9.1
 	 *
 	 * @param array $chains Chain list.
 	 *
@@ -759,7 +759,7 @@ class Util_PageSpeed {
 	/**
 	 * Render a single network chain node.
 	 *
-	 * @since 2.8.15
+	 * @since 2.9.1
 	 *
 	 * @param array $node Node payload.
 	 *
@@ -818,7 +818,7 @@ class Util_PageSpeed {
 	/**
 	 * Render preconnect sections.
 	 *
-	 * @since 2.8.15
+	 * @since 2.9.1
 	 *
 	 * @param array  $section      Section payload.
 	 * @param string $default_name Fallback title.
@@ -856,7 +856,7 @@ class Util_PageSpeed {
 	/**
 	 * Render a nested table cell from headings + sub-items.
 	 *
-	 * @since 2.8.15
+	 * @since 2.9.1
 	 *
 	 * @param array $headings Table headings.
 	 * @param array $rows     Table rows.
@@ -899,7 +899,7 @@ class Util_PageSpeed {
 	/**
 	 * Format a subitem value according to the heading definition.
 	 *
-	 * @since 2.8.15
+	 * @since 2.9.1
 	 *
 	 * @param array $heading Heading definition.
 	 * @param array $row     Row data.
@@ -949,7 +949,7 @@ class Util_PageSpeed {
 	/**
 	 * Format a source-location value into HTML.
 	 *
-	 * @since 2.8.15
+	 * @since 2.9.1
 	 *
 	 * @param array $source Source location payload.
 	 *
@@ -979,7 +979,7 @@ class Util_PageSpeed {
 	/**
 	 * Append the document latency status icon for qualifying rows.
 	 *
-	 * @since 2.8.15
+	 * @since 2.9.1
 	 *
 	 * @param string $audit_id Audit identifier.
 	 * @param array  $item     Detail item.
@@ -1016,7 +1016,7 @@ class Util_PageSpeed {
 	/**
 	 * Format bytes into readable strings.
 	 *
-	 * @since 2.8.15
+	 * @since 2.9.1
 	 *
 	 * @param int $bytes Byte value.
 	 *

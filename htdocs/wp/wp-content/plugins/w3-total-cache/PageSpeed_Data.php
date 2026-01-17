@@ -65,7 +65,7 @@ class PageSpeed_Data {
 	/**
 	 * Collect core web vital metrics in a consistent format.
 	 *
-	 * @since 2.8.15
+	 * @since 2.9.1
 	 *
 	 * @param array  $data   PageSpeed data payload.
 	 * @param string $metric Lighthouse audit identifier.
@@ -83,7 +83,7 @@ class PageSpeed_Data {
 	/**
 	 * Log the raw metric keys and configured instruction keys when debugging is enabled.
 	 *
-	 * @since 2.8.15
+	 * @since 2.9.1
 	 *
 	 * @param array $pagespeed_data Prepared PageSpeed data.
 	 *
@@ -121,7 +121,7 @@ class PageSpeed_Data {
 	/**
 	 * Collect audits belonging to the given Lighthouse category group.
 	 *
-	 * @since 2.8.15
+	 * @since 2.9.1
 	 *
 	 * @param array  $data  Raw Lighthouse API payload.
 	 * @param string $group Lighthouse category group identifier.
@@ -157,7 +157,7 @@ class PageSpeed_Data {
 	/**
 	 * Format a single Lighthouse audit into the structure expected by the UI.
 	 *
-	 * @since 2.8.15
+	 * @since 2.9.1
 	 *
 	 * @param string $audit_id Lighthouse audit identifier.
 	 * @param array  $audit    Lighthouse audit payload.
@@ -191,7 +191,7 @@ class PageSpeed_Data {
 	/**
 	 * Normalize Lighthouse audit details to a list structure.
 	 *
-	 * @since 2.8.15
+	 * @since 2.9.1
 	 *
 	 * @param mixed $details Lighthouse audit details.
 	 *
@@ -219,7 +219,7 @@ class PageSpeed_Data {
 	/**
 	 * Determine which Core Web Vitals an audit influences.
 	 *
-	 * @since 2.8.15
+	 * @since 2.9.1
 	 *
 	 * @param string $audit_id Lighthouse audit identifier.
 	 * @param array  $audit    Lighthouse audit payload.
@@ -248,7 +248,7 @@ class PageSpeed_Data {
 	/**
 	 * Normalize the network dependency tree insight payload.
 	 *
-	 * @since 2.8.15
+	 * @since 2.9.1
 	 *
 	 * @param array $details Lighthouse network dependency tree details payload.
 	 *
@@ -283,7 +283,7 @@ class PageSpeed_Data {
 	/**
 	 * Normalize a network dependency chain node recursively.
 	 *
-	 * @since 2.8.15
+	 * @since 2.9.1
 	 *
 	 * @param array $node Node payload.
 	 *
@@ -310,7 +310,7 @@ class PageSpeed_Data {
 	/**
 	 * Normalize preconnect insight sections.
 	 *
-	 * @since 2.8.15
+	 * @since 2.9.1
 	 *
 	 * @param array $section Section payload from Lighthouse.
 	 *
@@ -360,7 +360,7 @@ class PageSpeed_Data {
 	/**
 	 * Provide a mapping of audit identifiers to Core Web Vital type tags.
 	 *
-	 * @since 2.8.15
+	 * @since 2.9.1
 	 *
 	 * @return array
 	 */
@@ -409,7 +409,7 @@ class PageSpeed_Data {
 	/**
 	 * Normalize score values to 0-100 scale while avoiding PHP warnings when score is missing.
 	 *
-	 * @since 2.8.15
+	 * @since 2.9.1
 	 *
 	 * @param mixed $score Score from the Lighthouse payload.
 	 *
@@ -426,7 +426,7 @@ class PageSpeed_Data {
 	/**
 	 * Drop metrics that Google didn't include in the latest payload.
 	 *
-	 * @since 2.8.15
+	 * @since 2.9.1
 	 *
 	 * @param array $metrics Raw metrics bucket.
 	 *
@@ -448,7 +448,7 @@ class PageSpeed_Data {
 	/**
 	 * Attach instructions for metrics that survived the filtering step.
 	 *
-	 * @since 2.8.15
+	 * @since 2.9.1
 	 *
 	 * @param array $pagespeed_data Prepared PageSpeed data.
 	 *
