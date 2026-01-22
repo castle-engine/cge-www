@@ -203,7 +203,7 @@ Alternative approach is to make cgeref:TCastleControl[] the only control on the 
 
 Most of this manual describes the process of using the engine with the cgeref:TCastleWindow[] instead of cgeref:TCastleControl[].  All new projects created from editor templates use cgeref:TCastleWindow[]. We generally advise cgeref:TCastleWindow[], as:
 
-- cgeref:TCastleWindow[] works on all CGE platforms (desktop, mobile - link:android[Android], link:ios[iOS], consoles - link:nintendo_switch[Nintendo Switch], upcoming _web target_). It allows us to have true cross-platform projects, that can be recompiled to any supported platform out-of-the-box.
+- cgeref:TCastleWindow[] works on all CGE platforms (desktop, mobile - link:android[Android], link:ios[iOS], consoles - link:nintendo_switch[Nintendo Switch], link:web[web]). It allows us to have true cross-platform projects, that can be recompiled to any supported platform out-of-the-box.
 
 - cgeref:TCastleWindow[] allows us to handle events and message loop on the CGE side, and make it efficient. For example, it makes _mouse look_ work perfectly smooth.
 
@@ -223,7 +223,7 @@ You cannot mix these approaches, as neither VCL / FMX / LCL (in which our cgeref
 
 That is also why we have separate packages (both for _Delphi_ and _Lazarus_, so statement below applies both to `.dpk` and `.lpk`):
 
-- With cgeref:TCastleWindow : `castle_engine_window` package.
+- With cgeref:TCastleWindow[] : `castle_engine_window` package.
 
 - With cgeref:TCastleControl[] : `castle_engine_lcl` (Lazarus), `castle_engine_vcl` (Delphi VCL), `castle_engine_fmx` (Delphi FMX) packages.
 
