@@ -32,7 +32,7 @@ NOTE: This platform selection is _independent_ from the platforms actually suppo
 
 4. Use the menu item _"Tools -> Castle Game Engine -> Configure Delphi to Use Engine"_.
 +
-Restart Delphi IDE, as adviced by the message that will appear.
+Restart Delphi IDE, as advised by the message that will appear.
 +
 NOTE: Restart is really necessary, as changing _"Library Path"_ in Delphi has to be done using the registry and Delphi will load new values only on restart.
 +
