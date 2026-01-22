@@ -24,7 +24,9 @@ cgeimg::block[
 
 2. Right-click on all packages (except `castle_engine_window.bpl`) in succession and click _"Install"_.
 +
-NOTE: The platform of all our packages is set by default to _"Windows 32-bit"_ and this is good, this is what you want to use for installation, since Delphi IDE is a Win32 application. The packages installed this way make CGE components available for all supported target platforms (including _Win32_, _Win64_, and _Linux64_).
+The platform of all our packages is set by default to _"Windows 32-bit"_ and this is good for the Delphi 32-bit IDE. If you use the new Delphi 64-bit IDE, switch to _"Windows 64-bit"_ and install then.
++
+NOTE: This platform selection is _independent_ from the platforms actually supported by the engine.  No matter how you install the packages, engine components will be available for all supported target platforms (including _Win32_, _Win64_, and link:delphi_linux[Linux64]; link:delphi_more_platforms[more platforms are coming]).
 
 3. Use the new menu item _"Tools -> Castle Game Engine -> Set Engine Path..."_ to tell Delphi where is the CGE _root directory_.  It should contain subdirectories like `src`, `examples`. Don't worry, we validate what you select, we will not let you select an invalid directory.
 
