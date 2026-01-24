@@ -14,16 +14,52 @@ We need https://developer.apple.com/xcode/[Xcode] with the _Xcode command-line d
 
 - Install _Xcode_ from the macOS _App Store_.
 
-- Open terminal (_/Applications/Utilities/Terminal_) and execute `xcode-select --install`.
+- Install _Xcode command-line tools_ and accept their license.
+//We need them, FPC also needs them.
+To install them, open the terminal (in Finder, run _/Applications/Utilities/Terminal_) and execute:
++
+```
+xcode-select --install
+```
++
+Confirm the installation in the dialog that appears and wait for it to finish. Then make sure the tools work, which also means the license is accepted. First run may require you to accept a license, and be done using `sudo`:
++
+```
+# First run: this will ask to type "agree" to accept license
+sudo xcrun --show-sdk-path
+
+# Test: now it should work without sudo
+xcrun --show-sdk-path
+```
 
 ### Castle Game Engine itself
 
 Download the official binary release from link:/[Castle Game Engine main page]. The editor and various tools are inside the `bin/` subdirectory.
 
-Just double-click the `castle-editor` application to run our editor... but first please follow the following section to deal with unsigned applications:
+#### Allow running unsigned applications on newer macOS versions (remove quarantine bit)
 
-[WARNING]
-====
+When trying to run an unsigned application downloaded from the Internet, like our engine link:editor[editor] or link:castle-model-viewer[Castle Model Viewer], latest macOS versions give very misleading error message: _""xxx.app" is damaged and can't be opened. You should move it to the Bin"_. Nothing is actually damaged, just the application is placed in a _"quarantine"_. You can confirm it by executing in _Terminal_ commands like this:
+
+```
+# for Castle Model Viewer
+xattr -l ~/Downloads/castle-model-viewer.app
+# for Castle Game Engine editor
+xattr -l ~/Downloads/castle_game_engine/bin/castle-editor.app
+```
+
+You will see a line with `com.apple.quarantine` in the output.
+
+To fix it, use `xattr -cr ...`, like this:
+
+```
+# for Castle Model Viewer
+xattr -cr ~/Downloads/castle-model-viewer.app
+# for Castle Game Engine Editor
+xattr -cr ~/Downloads/castle_game_engine/
+```
+
+#### Allow running unsigned applications on older macOS versions (avoid "developer cannot be verified" error)
+
 Our editor (`castle-editor`), other tools (`castle-engine`, `castle-model-viewer`, `castle-image-viewer`), and the bundled FPC compiler are _unsigned_ applications for macOS right now. Running them for the first time will result in an error along the lines _"developer cannot be verified"_.
 
 Solution: Before using the engine, you have to right-click on each of the binaries from _"Finder"_, choose _"Open"_ from the context menu, and then you will be able to confirm that you want to open an unsigned application.
@@ -41,14 +77,24 @@ So before using the engine please run all the binaries in `bin` subdirectory onc
 --
 
 Note that some of the above (`castle-engine`, FPC compiler binaries) are command-line programs, and running them like this will just print the help message. Tat's fine, you can close the terminal window they open. You just run them to make macOS remember that you trust this application.
-====
 
-After installation visit the editor _Preferences_ and make sure that FPC, Lazarus and _Castle Game Engine_ locations are detected, or set them manually.
+#### Run the editor and check paths are correct
 
-Due to Apple _"translocation"_ mechanism (that internally executes the application from a random place on disk, if it was part of a zip downloaded from the Internet) you will also have to set _Castle Game Engine_ path in _"Preferences" -> "General"_. There will be a warning, guiding you to do it, on the initial editor form.
+Once you have performed the above steps, you can run the editor. Just double-click the `castle-editor` application inside the `bin` subdirectory of the unpacked engine.
+
+Before using the editor further, we recommend to check that the engine and compiler (FPC) have been properly detected. Open the editor _"Preferences"_ and make sure that:
+
+- _Castle Game Engine_ path is set correctly (in the _"General"_ tab).
++
+Due to Apple _"translocation"_ mechanism
+//(that internally executes the application from a random place on disk, if it was part of a zip downloaded from the Internet)
+you may have to set engine path manually there.
+Whether this is actually necessary depends on macOS version and whether you removed the quarantine bit (see above).
 //Unfortunately, CGE editor cannot detect CGE own location, even though from user's perspective you run the editor right inside CGE directory.
 
-Make sure in _"Preferences -> FPC and Lazarus"_ that FPC version has also been detected correctly. This also implies that FPC binaries are properly trusted, as described above. You can ignore missing _Lazarus_, using _Lazarus_ for CGE development is optional -- you can use any text editor like link:vscode[VS Code].
+- FPC path and version has been detected correctly (in the _"FPC and Lazarus"_ tab). If FPC version is detected, it also implies that FPC binaries are properly trusted.
++
+NOTE: You can ignore missing _Lazarus_, using _Lazarus_ for CGE development is optional -- you can use any text editor like link:vscode[VS Code].
 
 ### Optional: Add an alternative FPC version and Lazarus
 
