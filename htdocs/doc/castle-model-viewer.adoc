@@ -70,11 +70,11 @@ No installation is necessary. Just download and unpack these archives wherever y
 
 Platform-specific notes:
 
+macOS::
+Our application is not signed and it will be placed in a "quarantine" by default. Execute command like `xattr -cr ~/Downloads/castle-model-viewer.app` to remove the quarantine. See link:macos[macOS support] for more information.
+
 Linux, FreeBSD::
 To hear 3D sound in X3D worlds, install also link:openal[OpenAL] and http://xiph.org/vorbis/[VorbisFile] libraries using your package manager.
-
-macOS::
-Since our application is not signed (for now), for the first run you have to run it by clicking with _right mouse button_, choosing _"Open"_ from the context menu, and then accepting to run an unsigned application. link:macos[More information about macOS support.]
 
 ////
 Too much info:

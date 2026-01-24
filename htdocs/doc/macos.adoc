@@ -18,13 +18,13 @@ We need https://developer.apple.com/xcode/[Xcode] with the _Xcode command-line d
 //We need them, FPC also needs them.
 To install them, open the terminal (in Finder, run _/Applications/Utilities/Terminal_) and execute:
 +
-```
+```shell
 xcode-select --install
 ```
 +
 Confirm the installation in the dialog that appears and wait for it to finish. Then make sure the tools work, which also means the license is accepted. First run may require you to accept a license, and be done using `sudo`:
 +
-```
+```shell
 # First run: this will ask to type "agree" to accept license
 sudo xcrun --show-sdk-path
 
@@ -40,7 +40,7 @@ Download the official binary release from link:/[Castle Game Engine main page]. 
 
 When trying to run an unsigned application downloaded from the Internet, like our engine link:editor[editor] or link:castle-model-viewer[Castle Model Viewer], latest macOS versions give very misleading error message: _""xxx.app" is damaged and can't be opened. You should move it to the Bin"_. Nothing is actually damaged, just the application is placed in a _"quarantine"_. You can confirm it by executing in _Terminal_ commands like this:
 
-```
+```shell
 # for Castle Model Viewer
 xattr -l ~/Downloads/castle-model-viewer.app
 # for Castle Game Engine editor
@@ -51,7 +51,7 @@ You will see a line with `com.apple.quarantine` in the output.
 
 To fix it, use `xattr -cr ...`, like this:
 
-```
+```shell
 # for Castle Model Viewer
 xattr -cr ~/Downloads/castle-model-viewer.app
 # for Castle Game Engine Editor
