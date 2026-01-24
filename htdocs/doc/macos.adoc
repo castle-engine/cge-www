@@ -54,9 +54,11 @@ To fix it, use `xattr -cr ...`, like this:
 ```shell
 # for Castle Model Viewer
 xattr -cr ~/Downloads/castle-model-viewer.app
-# for Castle Game Engine Editor
+# for Castle Game Engine (all applications inside)
 xattr -cr ~/Downloads/castle_game_engine/
 ```
+
+NOTE: In the example commands above we pass the whole `castle_game_engine` directory to `xattr -cr`, this will recursively remove the quarantine bit from all applications inside, including the editor and other engine tools in `bin/` and the bundled FPC compiler in `tools/contrib/fpc/`.
 
 #### Allow running unsigned applications on older macOS versions (avoid "developer cannot be verified" error)
 
