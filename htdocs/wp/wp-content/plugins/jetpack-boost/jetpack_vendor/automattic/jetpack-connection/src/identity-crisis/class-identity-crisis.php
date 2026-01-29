@@ -333,16 +333,111 @@ class Identity_Crisis {
 			);
 
 			if ( in_array( $error_code, $allowed_idc_error_codes, true ) ) {
-				Jetpack_Options::update_option(
-					'sync_error_idc',
-					self::get_sync_error_idc_option( $response )
-				);
+				// This is a defensive fallback.
+				$new_idc_data = self::get_idc_option_with_preserved_timing( $response );
+				Jetpack_Options::update_option( 'sync_error_idc', $new_idc_data );
 			}
 
 			return true;
 		}
 
 		return false;
+	}
+
+	/**
+	 * Gets IDC option data with timing preserved from existing option if appropriate.
+	 *
+	 * This is a defensive fallback for edge cases where IDC errors are repeatedly detected
+	 * even though the site should be in IDC mode. However, edge cases can cause the option
+	 * to be deleted, triggering new IDC detections.
+	 *
+	 * @param array $response The IDC error response from WordPress.com.
+	 *
+	 * @return array The IDC option data, with timing preserved if the wpcom URLs match.
+	 */
+	private static function get_idc_option_with_preserved_timing( $response ) {
+		// Get existing IDC option to check if this is the same error.
+		$existing_idc = Jetpack_Options::get_option( 'sync_error_idc' );
+
+		// Get the new error data with fresh timing values.
+		$new_idc_data = self::get_sync_error_idc_option( $response );
+
+		// If an existing IDC exists and the wpcom URLs match, preserve the backoff delay.
+		if ( is_array( $existing_idc ) && self::has_same_wpcom_urls( $existing_idc, $new_idc_data ) ) {
+			// Same wpcom URLs - preserve the backoff delay.
+			// Note: last_checked is already set to time() by get_sync_error_idc_option(),
+			// which is correct - we want to record that we just saw this error again.
+			$preserved_delay = self::get_valid_delay_from_existing_idc( $existing_idc );
+			if ( $preserved_delay !== null ) {
+				$new_idc_data['next_check_delay'] = $preserved_delay;
+			}
+		}
+		// else: Different wpcom URLs or first time - use fresh timing from get_sync_error_idc_option().
+
+		return $new_idc_data;
+	}
+
+	/**
+	 * Extracts and validates the next_check_delay from an existing IDC option.
+	 *
+	 * @param array $existing_idc The existing IDC option data.
+	 *
+	 * @return int|null The validated delay in seconds, or null if invalid.
+	 */
+	private static function get_valid_delay_from_existing_idc( $existing_idc ) {
+		if ( ! isset( $existing_idc['next_check_delay'] ) ) {
+			return null;
+		}
+
+		$delay = $existing_idc['next_check_delay'];
+
+		// Validate the delay is numeric and within acceptable bounds.
+		if (
+			! is_numeric( $delay ) ||
+			$delay < self::IDC_VALIDATION_INITIAL_DELAY ||
+			$delay > self::IDC_VALIDATION_MAX_DELAY
+		) {
+			return null;
+		}
+
+		return (int) $delay;
+	}
+
+	/**
+	 * Determines if two IDC error arrays have the same wpcom URLs.
+	 *
+	 * The wpcom URLs are stored in reversed form in the database, but the jetpack_options
+	 * filter un-reverses them when retrieved. This method normalizes both sets of URLs
+	 * to reversed form before comparing.
+	 *
+	 * @param array $idc1 First IDC error data (from get_option, may be un-reversed).
+	 * @param array $idc2 Second IDC error data (from get_sync_error_idc_option, reversed).
+	 *
+	 * @return bool True if they have the same wpcom URLs.
+	 */
+	private static function has_same_wpcom_urls( $idc1, $idc2 ) {
+		// Both must have wpcom_home and wpcom_siteurl to be comparable.
+		if (
+			! isset( $idc1['wpcom_home'] ) ||
+			! isset( $idc1['wpcom_siteurl'] ) ||
+			! isset( $idc2['wpcom_home'] ) ||
+			! isset( $idc2['wpcom_siteurl'] ) ||
+			! isset( $idc1['reversed_url'] ) ||
+			! isset( $idc2['reversed_url'] )
+		) {
+			return false;
+		}
+
+		// The existing IDC data has been un-reversed by the jetpack_options filter when
+		// retrieved via Jetpack_Options::get_option(), so the wpcom URLs are in normal format.
+		// The new data from get_sync_error_idc_option() has reversed URLs.
+		// Reverse the existing URLs to match the format of the new data for comparison.
+		$existing_wpcom_home    = strrev( $idc1['wpcom_home'] );
+		$existing_wpcom_siteurl = strrev( $idc1['wpcom_siteurl'] );
+
+		// Compare the reversed URLs.
+		return $existing_wpcom_home === $idc2['wpcom_home']
+			&& $existing_wpcom_siteurl === $idc2['wpcom_siteurl'];
 	}
 
 	/**
@@ -473,6 +568,17 @@ class Identity_Crisis {
 	 * @return bool True if validation should be performed, false otherwise.
 	 */
 	public static function should_remote_validate_idc( $sync_error ) {
+		// Respect the user's decision to stay in safe mode.
+		// If safe mode is confirmed, don't attempt validation.
+		if ( self::safe_mode_is_confirmed() ) {
+			return false;
+		}
+
+		// If a validation is already in progress or recently completed, don't trigger another.
+		if ( get_transient( 'jetpack_idc_validation_lock' ) ) {
+			return false;
+		}
+
 		// If delay is not set or invalid, validate immediately to bring into new system.
 		if ( empty( $sync_error['next_check_delay'] ) ) {
 			return true;
@@ -518,13 +624,42 @@ class Identity_Crisis {
 		}
 
 		// Use a transient lock to prevent concurrent validations across multiple requests.
-		$lock_key = 'jetpack_idc_validation_lock';
+		// Lock for the full backoff duration to prevent retries during the delay window.
+		$lock_key      = 'jetpack_idc_validation_lock';
+		$lock_duration = $sync_error['next_check_delay'] ?? self::IDC_VALIDATION_INITIAL_DELAY;
+
 		if ( get_transient( $lock_key ) ) {
 			return false;
 		}
-		set_transient( $lock_key, true, 60 ); // 60 second lock.
+
+		// Set the lock and verify it was set successfully.
+		// If the write fails, bail immediately to prevent request floods.
+		if ( ! set_transient( $lock_key, true, $lock_duration ) ) {
+			return false; // Bail - can't prevent concurrent requests.
+		}
 
 		$is_validating = true;
+
+		// Update last_checked before making the API call.
+		// This prevents retries even if the API call hangs, times out, or response handling fails.
+		$sync_error['last_checked'] = time();
+		// Note: update_option may return false if value unchanged, which is OK.
+		// We only bail if we can't verify the option exists with correct timestamp.
+		Jetpack_Options::update_option( 'sync_error_idc', $sync_error );
+
+		// Verify the critical timing field was persisted.
+		// This protects against caching/DB issues that would cause request floods.
+		$verified_option = Jetpack_Options::get_option( 'sync_error_idc' );
+		if (
+			! is_array( $verified_option ) ||
+			empty( $verified_option['last_checked'] ) ||
+			(int) $verified_option['last_checked'] !== (int) $sync_error['last_checked']
+		) {
+			// Option is missing, corrupted, or has incorrect timestamp - BAIL to prevent retries.
+			delete_transient( $lock_key );
+			$is_validating = false;
+			return false;
+		}
 
 		// Build API path with current URLs as query params.
 		// We must explicitly include URLs because add_idc_query_args_to_url() skips
@@ -533,7 +668,7 @@ class Identity_Crisis {
 		// We use the jetpack-token-health/blog endpoint which performs IDC detection
 		// and returns idc_detected in the response when URLs don't match.
 		$api_path = sprintf(
-			'sites/%d/jetpack-token-health/blog?home=%s&siteurl=%s&idc=1',
+			'sites/%d/jetpack-token-health/blog?home=%s&siteurl=%s&idc=1&idc_validation=1',
 			$blog_id,
 			rawurlencode( Urls::home_url() ),
 			rawurlencode( Urls::site_url() )
@@ -576,15 +711,33 @@ class Identity_Crisis {
 				self::IDC_VALIDATION_MAX_DELAY
 			);
 			Jetpack_Options::update_option( 'sync_error_idc', $fresh_idc_data );
+			self::invalidate_idc_option_cache();
 		} else {
 			// Network error, invalid JSON, or non-200 - just update last_checked without backoff.
 			$sync_error['last_checked'] = time();
 			Jetpack_Options::update_option( 'sync_error_idc', $sync_error );
+			self::invalidate_idc_option_cache();
 		}
 
 		delete_transient( $lock_key );
 		$is_validating = false;
 		return false;
+	}
+
+	/**
+	 * Invalidate the cache for the sync_error_idc option.
+	 *
+	 * This ensures that subsequent requests read fresh data from the database
+	 * rather than stale cached values, which is critical for preventing request floods.
+	 *
+	 * Note: This directly calls wp_cache_delete with the 'jetpack_options' cache group,
+	 * which couples this code to the internal caching implementation of Jetpack_Options.
+	 * If Jetpack_Options changes its caching strategy, this method will need to be updated.
+	 *
+	 * @return void
+	 */
+	private static function invalidate_idc_option_cache() {
+		wp_cache_delete( 'sync_error_idc', 'jetpack_options' );
 	}
 
 	/**
