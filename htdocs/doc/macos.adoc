@@ -240,3 +240,38 @@ At that point, using https://moltengl.com/moltenvk/[MoltenVK] will become an opt
 We know we will have extensible architecture in CGE for multiple renderers. I have been playing with idea to implement a Vulkan renderer (see https://github.com/castle-engine/castle-engine/tree/master/examples/research_special_rendering_methods/new_renderer_skeleton[new_renderer_skeleton]) and, beyond some initial fun, of course it will imply the need for a pluggable architecture to implement many possible renderers. OpenGL(ES) will remain one, Vulkan will most likely become another, and it is possible that Metal will become yet another one.
 +
 However, please note -- this (Metal renderer in CGE) is not an option that will happen fast. Making a new renderer _"production-ready"_ (that is, making it more feature-packed / efficient than just using abstraction layer like Angle + existing OpenGLES renderer) is a _lot_ of work. Moreover, CGE is a cross-platform game engine, and it's hard to prioritize big work on something that only benefits Apple platforms. That being said, I would be very happy to see a dedicated contributor interested in adding Metal support. Or if you want to find and sponsor such contributor, that can be arranged (https://castle-engine.io/talk.php[talk with us]).
+
+## Known Issues
+
+### Linking for macOS/Silicon (Aarch64) produces warnings
+
+Building any application for macOS/Silicon (Aarch64) produces a number of warnings like this:
+
+```
+ld: warning: object file (xxx.o) was built for newer 'macOS' version (11.0) than being linked (10.15)
+```
+
+For now, we don't have a solution that avoids these warning. You can simply ignore them.
+
+Some details:
+
+- Both FPC 3.2.3 built with link:fpcupdeluxe[] and built with https://github.com/castle-engine/castle-fpc[our castle-fpc script] produce this warning.
+
+- This is likely related to `-macos_version_min XXX` options to the linker and `-WMxxx` options to the compiler.
++
+FPC seems to pass to `ld` already a necessary version (which can be inferred from the warning `-macosx_version_min has been renamed to -macos_version_min` :) ).
++
+We right now pass `-WM10.15` to the compiler which is indeed not good for _Aarch64_. Since _Aarch64_ is supported only since https://en.wikipedia.org/wiki/MacOS_Big_Sur[macOS 11.0 (Big Sur)], it should be at least `-WM11.0`.
++
+However, trying to build with `-WM11.0` results in linker errors: `ld: malformed method list atom 'l_OBJC_CLASS_RO_$_TCocoaMenuItem' (.../aarch64-darwin/castlewindow.o), fixups found beyond the number of method entries` .
+
+- We didn't find a combination of flags that makes linking work without any errors and warnings. Perhaps future FPC version will have this fixed.
+
+### Mouse look doesn't work
+
+Mouse look requires 2 features which are not yet implemented with the _Cocoa_ backend:
+
+- `TCastleWindow.SystemSetMousePosition`
+- Cursor hiding in `TCastleWindow.UpdateCursor`
+
+You can take a look at the comments in https://github.com/castle-engine/castle-engine/blob/master/src/window/castlewindow_cocoa.inc[castlewindow_cocoa.inc] for more details. We did try to make them work -- alas, with no success yet. Any help is welcome!
