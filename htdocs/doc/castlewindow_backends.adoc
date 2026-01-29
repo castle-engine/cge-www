@@ -29,37 +29,46 @@ Advantages:
 * Dialog windows like `TCastleWindow.FileDialog` are implemented using standard Windows dialog boxes, so again they look nice and native.
 * Supports both OpenGL (by `wgl`) and OpenGLES (by `EGL`) contexts.
 
-=== GTK 2 (CASTLE_WINDOW_GTK_2)
+=== GTK 3 (CASTLE_WINDOW_GTK_3)
 
-The default backend on most Unix systems, like Linux. Looks native and supports everything (except changing screen resolution, see below). Uses _GTK 2_. Initializes OpenGL(ES) context using Xlib + glX (for OpenGL) or EGL (for OpenGLES).
+cgeimg::block[window_gtk3.png|TCastleWindow with GTK 3 backend]
 
-At some point, this will be also available under `CASTLE_WINDOW_GTK` symbol. At some further point, we will add backend `CASTLE_WINDOW_GTK_3` and when it's stable, `CASTLE_WINDOW_GTK` will be equivalent to `CASTLE_WINDOW_GTK_3`.
+The default backend on most Unix systems, like _Linux_ and _FreeBSD_. Looks native and supports everything. Uses https://docs.gtk.org/gtk3/[GTK 3]. Initializes context using
+
+- Xlib + glX (_OpenGL_ context)
+- EGL (_OpenGLES_ or _OpenGL_ context, depending on the `OpenGLES` symbol being defined).
 
 Supported platforms:
 
-* Works on any OS where GTK + glX / EGL works. Currently tested under Linux, FreeBSD, macOS.
+* Works on any OS where GTK + glX / EGL works. Currently tested under _Linux_, _FreeBSD_.
 
-Advantages:
+Almost all features of cgeref:TCastleWindow[] API are supported and look good (native):
 
-* `TCastleWindow.MainMenu` is implemented using GTK menu bar.
-* Dialog windows like `TCastleWindow.FileDialog` are implemented using GTK dialogs. So they look good and native.
-* Supports both OpenGL (by `glX`) and OpenGLES (by `EGL`) contexts.
+* Menu bar (cgeref:TCastleWindow.MainMenu[]) is implemented using GTK menu bar.
+
+* Dialog windows (cgeref:TCastleWindow.FileDialog[], cgeref:TCastleWindow.ColorDialog[], cgeref:TCastleWindow.MessageOK[], cgeref:TCastleWindow.MessageYesNo[]) are implemented using GTK dialogs.
+
+* Fullscreen toggling (cgeref:TCastleWindow.FullScreen[]) is implemented using GTK features.
+
+* Cursor hiding and mouse position setting works as expected. So _mouse look_ works OK.
 
 Known problems:
 
 * `Tab` key cannot work as menu item shortcut (it's always only for switching focus). This is an issue with GTK 2.
+
 * `Application.TryVideoChange` (to change screen resolution at runtime) is not finished, i.e. always returns false. See TODOs near `CASTLE_WINDOW_USE_XF86VMODE` definition.
 
-History: at some point this was using GtkGlExt, and was portable to any system using GTK (even to Windows). This has changed because:
+History: at some point this was using _GtkGlExt_. This has changed, to use glX / EGL directly, because:
 
-* This way our dependencies are simpler (not every system has GtkGlExt),
-* there was not practical usage of this backend outside of GTK+Xlib anyway.
+* This way our runtime dependencies are simpler (not every system has _GtkGlExt_),
 
-=== GTK 3 (CASTLE_WINDOW_GTK_3)
+* We needed code dealing with glX and EGL directly anyway (for other backends, like `CASTLE_WINDOW_XLIB` and `CASTLE_WINDOW_ANDROID`), so it makes sense to reuse their logic.
 
-Upgrade of the GTK 2 backend to use GTK 3.
+=== GTK 2 (CASTLE_WINDOW_GTK_2)
 
-Soon to be the new-default backend on Unix, as GTK 2 is getting deprecated.
+_Deprecated._ Older version of the GTK backend, using GTK 2.
+
+Use only if absolutely necessary. link:talk.php[Tell us if you need this], otherwise at some point we will remove it.
 
 === Xlib (X11) (CASTLE_WINDOW_XLIB)
 
