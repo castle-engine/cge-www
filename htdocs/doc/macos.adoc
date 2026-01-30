@@ -243,6 +243,15 @@ However, please note -- this (Metal renderer in CGE) is not an option that will 
 
 ## Known Issues
 
+### Mouse look doesn't work
+
+Mouse look requires 2 features which are not yet implemented with the _Cocoa_ backend:
+
+- `TCastleWindow.SystemSetMousePosition`
+- Cursor hiding in `TCastleWindow.UpdateCursor`
+
+You can take a look at the comments in https://github.com/castle-engine/castle-engine/blob/master/src/window/castlewindow_cocoa.inc[castlewindow_cocoa.inc] for more details. We did try to make them work -- alas, with no success yet. Any help is welcome!
+
 ### Linking for macOS/Silicon (Aarch64) produces warnings
 
 Building any application for macOS/Silicon (Aarch64) produces a number of warnings like this:
@@ -251,7 +260,9 @@ Building any application for macOS/Silicon (Aarch64) produces a number of warnin
 ld: warning: object file (xxx.o) was built for newer 'macOS' version (11.0) than being linked (10.15)
 ```
 
-For now, we don't have a solution that avoids these warning. You can simply ignore them.
+We hide these warnings in most cases (our link:build_tool[build tool] filters them out). But sometimes you may still see them, e.g. during the link:compiling_from_source.php[compilation of the build tool itself (if you do this)] or if you compile using link:lazarus[Lazarus IDE].
+
+For now, we don't have a solution that really solves these warnings. You can simply ignore them.
 
 Some details:
 
@@ -266,12 +277,3 @@ We right now pass `-WM10.15` to the compiler which is indeed not good for _Aarch
 However, trying to build with `-WM11.0` results in linker errors: `ld: malformed method list atom 'l_OBJC_CLASS_RO_$_TCocoaMenuItem' (.../aarch64-darwin/castlewindow.o), fixups found beyond the number of method entries` .
 
 - We didn't find a combination of flags that makes linking work without any errors and warnings. Perhaps future FPC version will have this fixed.
-
-### Mouse look doesn't work
-
-Mouse look requires 2 features which are not yet implemented with the _Cocoa_ backend:
-
-- `TCastleWindow.SystemSetMousePosition`
-- Cursor hiding in `TCastleWindow.UpdateCursor`
-
-You can take a look at the comments in https://github.com/castle-engine/castle-engine/blob/master/src/window/castlewindow_cocoa.inc[castlewindow_cocoa.inc] for more details. We did try to make them work -- alas, with no success yet. Any help is welcome!
