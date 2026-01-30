@@ -243,14 +243,14 @@ However, please note -- this (Metal renderer in CGE) is not an option that will 
 
 ## Known Issues
 
-### Mouse look doesn't work
+### Mouse look is untested
 
-Mouse look requires 2 features which are not yet implemented with the _Cocoa_ backend:
+Mouse look requires 2 features which are... implemented, but not completely tested at this moment, as they cannot be completely tested over remote connection (like _Team Viewer_ or _VNC_, and this is how we have access to our macOS machine):
 
 - `TCastleWindow.SystemSetMousePosition`
 - Cursor hiding in `TCastleWindow.UpdateCursor`
 
-You can take a look at the comments in https://github.com/castle-engine/castle-engine/blob/master/src/window/castlewindow_cocoa.inc[castlewindow_cocoa.inc] for more details. We did try to make them work -- alas, with no success yet. Any help is welcome!
+You can take a look at the comments in https://github.com/castle-engine/castle-engine/blob/master/src/window/castlewindow_cocoa.inc[castlewindow_cocoa.inc] for more details. Any help with testing is welcome!
 
 ### Linking for macOS/Silicon (Aarch64) produces warnings
 
