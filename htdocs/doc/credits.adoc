@@ -55,6 +55,7 @@ Everyone who subscribes to support CGE with at least 10 USD / month (anywhere --
 * Azzub
 * Bartosz Jarzyna
 * Basti Schindla
+* BodgerBen
 * Carlos Rafael Fernandes Picanço
 * Chris Haley
 * Christian Williams
