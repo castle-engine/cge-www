@@ -862,7 +862,7 @@ FPC 3.3.1 performs _"case analysis"_: whether all possible input values are acco
 
 - It will emit a warning if not all possible values are handled. For example for this code:
 +
-```delphi
+```pascal
 type
   TOptions = (Option1, Option2, Option3, Option4);
 begin
@@ -879,7 +879,7 @@ For older FPC versions (and Delphi), we used `raise EInternalError.Create` to ca
 
 - It will emit a warning if `else` code is unreachable (because all possible values are handled). For example for this code:
 +
-```delphi
+```pascal
 type
   TOptions = (Option1, Option2);
 begin
@@ -899,7 +899,7 @@ So how to write your `case`?
 
 ==== If your case should exhaust all the options
 
-```delphi
+```pascal
 type
   TOptions = (Option1, Option2);
 begin
@@ -921,7 +921,7 @@ This way
 
 ==== If your case knowingly *does not* exhausts all options
 
-```delphi
+```pascal
 type
   TOptions = (Option1, Option2, Option3, Option4);
 begin
@@ -937,7 +937,7 @@ end;
 
 ==== If you know you exhausts all options at run-time, but compiler doesn't know it at compile-time
 
-```delphi
+```pascal
 type
   TOptions = (Option1, Option2, Option3, Option4);
 begin
@@ -960,7 +960,7 @@ This way
 
 For this case, there's no solution that works for compiler with `COMPILER_CASE_ANALYSIS` that avoids warnings regardless of whether `TOptions` has or doesn't have additional values beyond `Option1` and `Option2`.
 
-```delphi
+```pascal
 type
   TOptions = (Option1, Option2 {, ... you don't want to worry if this type will be extended in future, you know you only need to handle Option1 and Option2 });
 begin
@@ -976,7 +976,7 @@ end;
 
 Practical example of this: https://github.com/castle-engine/castle-engine/blob/master/src/ui/castleuicontrols_view.inc#L547 ,
 
-```delphi
+```pascal
 procedure TCastleView.TDesignOwner.Notification(AComponent: TComponent; Operation: TOperation);
 begin
   case Operation of
@@ -993,7 +993,7 @@ end;
 
 For some large units, it is reasonable to split them into multiple include files. The structure to do it looks like this:
 
-```delphi
+```pascal
 unit CastleXxx;
 
 interface
@@ -1025,7 +1025,7 @@ end.
 and then in each include we do this
 
 
-```delphi
+```pascal
 {%MainUnit castlexxx.pas}
 
 {$ifdef read_interface}

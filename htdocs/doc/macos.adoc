@@ -1,5 +1,6 @@
 # macOS
 include::common.adoc[]
+:source-highlighter: rouge
 
 cgeimg::block[
   mac_editor_1.png|CGE editor on macOS,

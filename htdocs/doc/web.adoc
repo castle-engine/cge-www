@@ -2,6 +2,7 @@
 include::common.adoc[]
 :description: Building web applications using Castle Game Engine. Thanks to FPC and WebAssembly, we can recompile applications for the web. Applications are rendered on a canvas using WebGL.
 :cge-social-share-image: web_0_play_animation.png
+:source-highlighter: rouge
 
 == Introduction
 
@@ -159,7 +160,7 @@ end.
 +
 If everything is installed and configured OK, then you should be able to compile it using this from the command-line:
 +
-```
+```shell
 pas2js -Jc -Jirtl.js -Tbrowser hello_pas2js.lpr
 ```
 +
@@ -176,7 +177,7 @@ It also seems that `fpcupdeluxe`, although it provides `pas2js` and `compileserv
 +
 This is a very useful tool distributed along with link:https://getpas2js.freepascal.org/[Pas2js]. Make sure you got it, test it by executing on the  command-line this:
 +
-```
+```shell
 compileserver
 ```
 +
@@ -204,7 +205,7 @@ We submitted a https://github.com/LongDirtyAnimAlf/fpcupdeluxe/pull/748[PR fixin
 +
 _Test that it works._ Create the following simple program, saved as `hello_wasm.lpr`:
 +
-```delphi
+```pascal
 begin
   Writeln('Hello from WebAssembly!');
 end.
@@ -212,7 +213,7 @@ end.
 +
 If everything is installed and configured OK, then you should be able to compile it using this command:
 +
-```
+```shell
 fpc -Twasip1 -Pwasm32 hello_wasm.lpr
 ```
 +
@@ -230,7 +231,7 @@ The https://github.com/WebAssembly/binaryen[Binaryen] project includes a tool ca
 +
 Observe the output where we log how much time it took, and how smaller is the resulting WASM. It will look like this:
 +
-```
+```shell
 wasm-opt found, using it to optimize the release build.
 ...
 Optimized .wasm file in 84.64sec, size decrease 34% (from 43.04 MB to 14.61 MB).
@@ -572,7 +573,7 @@ Trying to render anything in https://wasmtime.dev/[Wasmtime] will fail, as we do
 
 Moreover, right now, even using any unit that deals with rendering (and thus, uses JS APIs like WebGL) will fail inside https://wasmtime.dev/[Wasmtime] with an error like this:
 
-```
+```shell
 Error: failed to run main module `xxx.wasm`
 Caused by:
     0: failed to instantiate "xxx.wasm"
@@ -593,13 +594,13 @@ In the light of the above, your possibilities are limited to using the subset of
 
 Build your application like this (on the command-line):
 
-```
+```shell
 castle-engine compile --os=wasip1 --cpu=wasm32 --mode=debug
 ```
 
 Run it like this:
 
-```
+```shell
 export WASMTIME_BACKTRACE_DETAILS=1 # get a more detailed backtrace
 wasmtime <project-name>.wasm
 ```

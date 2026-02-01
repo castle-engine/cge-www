@@ -1,5 +1,6 @@
 # Build Tool
 include::common.adoc[]
+:source-highlighter: rouge
 
 == Introduction
 
@@ -203,7 +204,7 @@ Install the application created by the previous `package` command.
 
 Right now this is useful only on Android. So typically you use the `install` command together with `--target=android`, like this:
 
-```
+```shell
 castle-engine --target=android install
 ```
 
@@ -375,6 +376,63 @@ Sample usage:
 - `castle-engine unused-data --remove-mask='data/my_level/textures/*'` - remove textures from `data/my_level/textures/` that were detected as unused.
 - `castle-engine unused-data --remove-mask='*.png'` - remove all PNG files detected as unused.
 - `castle-engine unused-data --remove-mask='*'` - remove _all files detected as unused_.
+
+=== output
+
+Output a given project information, like a project name if you call `castle-engine output name`.
+
+This information is determined, more or less directly, from the link:project_manifest[CastleEngineManifest.xml] contents. For some scripts / CI jobs it is beneficial to have access to this information.
+
+The next parameter, after `output`, determines what information to output. Available values are:
+
+- `author`
+- `caption`
+- `executable-name`
+- `name`
+
+- `package-name`
++
+Outputs the package name (like a .zip file) that _would_ be created by running `castle-engine package`.
++
+This option (and only this) honors all the options of `castle-engine package` that influence the resulting package, like `--target`, `--os`, `--cpu`, `--package-format` and `--package-name-no-version`.
+
+- `pascal-name`
+- `qualified-name`
+- `search-paths`
+- `version-code`
+- `version`
+
+Here's a sample session using this:
+
+```shell
+$ cd /path/to/castle-model-viewer
+
+$ castle-engine output name
+castle-model-viewer
+
+$ castle-engine output version
+5.3.0
+
+# This was tested on Linux/x86_64, so the default package name reflects this.
+$ castle-engine output package-name
+castle-model-viewer-5.3.0-linux-x86_64.tar.gz
+
+# We can also ask what package name would be created for other platforms.
+$ castle-engine output package-name --os=win64 --cpu=x86_64
+castle-model-viewer-5.3.0-win64-x86_64.zip
+
+$ castle-engine output package-name --os=darwin --cpu=aarch64
+castle-model-viewer-5.3.0-darwin-aarch64.zip
+```
+
+=== output-environment
+
+Output some environment information (independent of any project).
+
+Next parameter determines the information:
+
+- `fpc-exe`
+- `fpc-standard-units-path`
 
 === (Deprecated) create-manifest
 

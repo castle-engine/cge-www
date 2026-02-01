@@ -198,9 +198,11 @@ Most important Wordpress shortcodes are:
 
 * To enable testing of AsciiDoctor pages, like http://localhost:8777/build_tool :
 
-    - Install AsciiDoctor and CodeRay.
+    - Install [AsciiDoctor](https://asciidoctor.org/), [CodeRay](https://docs.asciidoctor.org/asciidoctor/latest/syntax-highlighting/coderay/) and [Rouge](https://docs.asciidoctor.org/asciidoctor/latest/syntax-highlighting/rouge/).
 
-        On Debian-like systems, just do `apt install asciidoctor coderay`.
+        On Debian-like systems, just do `apt install asciidoctor coderay ruby-rouge`.
+
+        Note: We are in the middle of experimenting with 2 syntax highlighters. On one hard, CodeRay syntax highlighting for Pascal looks better, as it can differentiate between keywords and compiler directives. On the other hand, Rouge supports `shell` language which is also useful for us. For now, both are installed and `doc/common.adoc` selects CodeRay, while some pages with many shell blocks (like `doc/build_tool.adoc`) choose Rouge.
 
 * To enable viewing the main page and other pages depending on Wordpress (http://localhost:8777/, http://localhost:8777/wp/):
 

@@ -279,7 +279,7 @@ NOTE: Using the `<application-name>` for link:manual_user_prefs.php[UserConfig] 
 
 - If you want to initialize something in your _config_ based on your _data_, do it explicitly -- e.g. like this:
 +
-```delphi
+```pascal
 uses SysUtils, CastleClassUtils;
 
 procedure MakeSureMyStuffExistsInConfig;
@@ -301,7 +301,7 @@ end;
 
 - The subdirectories inside `castle-config:/` are automatically created as you save files using cgeref:UrlSaveStream[]. So e.g. the code below "just works" and will create `my_subdirectory` automatically:
 +
-```delphi
+```pascal
 MyStream := UrlSaveStream('castle-config:/my_subdirectory/my_data.txt');
 ```
 

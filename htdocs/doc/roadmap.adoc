@@ -333,7 +333,7 @@ For each installed package:
 +
 We define `TCastlePackage` component, with
 +
-```delphi
+```pascal
 CodeSearchPaths: TCastleStringList
 // Auto added to compiler paths for this project
 // Also auto added to LSP paths for this project
@@ -1088,7 +1088,7 @@ NOTE: This will require link:supported_compilers.php[bumping required FPC versio
 
 While records (like `TVector3`) cannot be `published` in FPC, the information about `public` records is available using RTTI. We should add
 
-```delphi
+```pascal
 {$RTTI EXPLICIT
   PROPERTIES([vcPublic])
   FIELDS([vcPublic])
@@ -1099,7 +1099,7 @@ While records (like `TVector3`) cannot be `published` in FPC, the information ab
 
 Then for `public` records, like this:
 
-```delphi
+```pascal
 TCastleTransform = class
 public
   property Translation: TVector3 read ... write ...;

@@ -242,7 +242,7 @@ This necessarily "drops" some information (otherwise we'd need to replicate all 
 
 To follow this approach, load IFC files using cgeref:IfcJsonLoad[]:
 
-```delphi
+```pascal
 var
   IfcFile: TIfcFile;
 begin
@@ -258,13 +258,13 @@ Inspect and modify the properties of IFC classes as you wish. At one point, you 
 
 1. Save to result back to file using cgeref:IfcJsonSave[]. Like this:
 +
-```delphi
+```pascal
 IfcJsonSave(IfcFile, 'output.ifcjson');
 ```
 
 2. Convert the IFC to a set of X3D nodes (to display them using cgeref:TCastleScene[]) using cgeref:IfcToX3D[]. If you only want to do it once, do it like this (but if you want to do it multiple times, read next point):
 +
-```delphi
+```pascal
 var
   MyRoot: TX3DRootNode;
 begin
@@ -278,7 +278,7 @@ end;
 
 This is done by using cgeref:TCastleIfcMapping[] class. Like this:
 +
-```delphi
+```pascal
 var
   IfcFile: TIfcFile;
   IfcMapping: TCastleIfcMapping;

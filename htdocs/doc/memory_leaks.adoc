@@ -106,7 +106,7 @@ By default, `HeapTrc` output is dumped into standard output (on Unix systems and
 
 This behavior can be changed by explicitly requesting to dump `HeapTrc` output to a file by using https://www.freepascal.org/docs-html/rtl/heaptrc/setheaptraceoutput.html[SetHeapTraceOutput] procedure. E.g. do this in main project source file:
 
-```delphi
+```pascal
 var
   FileNameForHeapTrc: String;
 begin

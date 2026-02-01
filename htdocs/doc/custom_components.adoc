@@ -913,7 +913,7 @@ The code you use in custom components is executed, by default, in all situations
 
 Use the global variable cgeref:CastleApplicationMode[] to make some of your logic run only in some situations. For example, at the beginning of your cgeref:TCastleBehavior.Update[] implementation check it like this:
 
-```delphi
+```pascal
 procedure TMyBehavior.Update(const SecondsPassed: Single; var RemoveMe: TRemoveType);
 begin
   inherited;
@@ -933,7 +933,7 @@ Consider enabling your logic to run in both cgeref:appRunning[] (regular applica
 Enabling the logic to run also when cgeref:appSimulation[] allows to test it also during simulation in the editor, which is useful to quickly test some behaviors without recompiling the game. Just like you can test link:physics[] at design-time.
 Our https://castle-engine.io/wp/2024/10/21/demo-game-using-blender-sketchfab-quaternius-models-tcastlemoveattack-early-preview-of-tcastlemoveattack-merged-slides-from-conference-last-week/[TCastleMoveAttack behavior] is using this approach, so that you can test creature logic in the editor. At the end of _"simulation"_, editor resets the state of the design, so all the changes done during simulation (like moving some objects) are reliably reverted. To do this, implement your behavior like this:
 
-```delphi
+```pascal
 procedure TMyBehavior.Update(const SecondsPassed: Single; var RemoveMe: TRemoveType);
 begin
   inherited;
