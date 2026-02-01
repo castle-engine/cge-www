@@ -2,6 +2,14 @@
 include::common.adoc[]
 :description: Using AI (like GitHub Copilot) when contributing to Castle Game Engine and when developing your own games and applications.
 
+== Summary of the summary
+
+**When working to solve the problem, we should be gaining understanding (of the problem, our available tools, solutions...), not losing it.**
+
+- Don't use AI in a way that makes you dumber. Don't make solutions that are unmaintainable, not understood, badly designed, mixed with hallucinated docs or assumptions.
+
+- Do use AI in a way that makes you smarter. Reach the right solution by extra information and reviews (that you understand and agree with), reach it faster by suggestions (that you understand, and can confirm they point you in the right direction).
+
 == Summary
 
 This page documents _required rules_ when using AI to contribute to _Castle Game Engine_. It also collects our _recommended guidelines_ when using AI in your own projects.
@@ -33,6 +41,8 @@ Also, I'm sorry it's a long text. Ironically, being too verbose is also a compla
 From my conversations with fellow developers, I know we've all tried using AI, and we all have our share of _success stories_ and _failure stories (cautionary tales)_.
 
 - One of my personal early successes was using AI to help me add https://castle-engine.io/wp/2023/06/09/import-models-from-sketchfab-using-castle-game-engine-editor/[Sketchfab Integration] to our link:editor[]. AI's knowledge of the Sketchfab API was very helpful, and it was capable of using our cgeref:TCastleDownload[] for the task, when instructed to use it.
++
+Since then, I've been using AI for many tasks -- code completion, code exploration, self reviews... I recognize it's just a probabilistic machine that repeats, with only a certain probability of being right, the "Internet wisdom" -- nothing more, nothing less.
 
 - One of my personal failures, quite recent actually (2025), was asking AI for a proof of https://en.wikipedia.org/wiki/Pythagorean_theorem[Pythagorean theorem]. AI incorrectly combined a few different ways to go about proving this theorem, and it made a nonsense step in the middle of the proof, temporarily changing the meaning of the symbols and claiming invalid things about the situation. To make matters worse, this incorrect answer from AI looked _plausible_ (if you just scan it quickly without really comprehending each step, you will nod your head and say _"yes, that sounds about right"_), and it was stated with _confidence_. Since AI is trained to produce output that sounds plausible and confident.
 +
@@ -95,6 +105,12 @@ Accept suggestions if they make sense. If you look at the suggestion and you can
 +
 Reject suggestions if they don't make sense or you're not sure what they do or why. Don't hesitate to reject AI work, and don't over-analyze AI answers to find _"nuggets of truth"_ in an incorrect answer. AI is just guessing to please you, based on what it was trained on.
 
+- Use AI for _code reviews_. It's useful to have another set of eyes look at your code changes. Before committing, you can e.g. ask _"review uncommitted changes"_.
++
+Don't trust blindly the review. If AI recommends this or that change, understand why, check are recommendations suitable in this case, check is it not hallucinating or misunderstanding how to change the code, IOW judge for yourself.
++
+That said, such "extra pair of eyes" is often useful in my experience. Some of the things AI can point out during the review are valid. By addressing (some of) the review notes, I make much better commits.
+
 - _AI agents_ should be used with caution and only with full understanding.
 +
 Don't throw a hard task at AI, hoping it will _solve it for you in one shot_. Split the task into smaller pieces (make a "TODO list" for the agent). Specify the conditions for the task (do X using Y and Z, e.g. "communicate with X using it's REST API and engine TCastleDownload class", or "introduce a method to class X doing this"). Always consider how to refactor the solution to be simplest and most maintainable. AI output is supposed to be a starting point for you, not the final solution.
@@ -118,6 +134,8 @@ Whether you use AI or not, common recommendations apply:
 - Use version control. https://git-scm.com/[Git] is currently the most popular version control system. Using version control allows you to review your own changes and/or changes proposed by AI.
 
 == See also
+
+See also https://github.com/chaoss/wg-ai-alignment/issues/16[example situations in the context of Castle Game Engine how AI hallucinations make bad code/docs].
 
 Many other projects have nice guidelines about using AI that we agree with. For example:
 
