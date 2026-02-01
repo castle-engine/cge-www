@@ -41,7 +41,7 @@ The package is available on link:https://aur.archlinux.org/packages/castle-engin
 
 * Do it manually following link:https://wiki.archlinux.org/title/Arch_User_Repository[AUR] docs, like
 +
-```
+```shell
 wget https://aur.archlinux.org/cgit/aur.git/snapshot/castle-engine-git.tar.gz
 tar xzvf castle-engine-git.tar.gz
 cd castle-engine-git/

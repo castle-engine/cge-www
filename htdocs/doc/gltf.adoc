@@ -170,7 +170,7 @@ See https://github.com/michaliskambi/x3d-tests/wiki/Converting-glTF-to-X3D for d
 
 You can use `Inline` X3D node to include glTF model (or part of it) inside a larger X3D model, as many times as you want. This is as simple as just writing
 
-```
+```c
 Inline {
   url "some_model.gltf"
 }
@@ -184,7 +184,7 @@ Moreover, you can use use X3D `IMPORT` mechanism to access particular parts (lik
 
 For example of this technique see https://github.com/castle-engine/demo-models/tree/master/animation/blender_skinned_animation , in particular file https://github.com/castle-engine/demo-models/blob/master/animation/blender_skinned_animation/skinned_anim_run_animations_from_x3d.x3dv[skinned_anim_run_animations_from_x3d.x3dv] there. The X3D file has this code:
 
-```
+```c
 DEF InlinedAnimations Inline {
   url "skinned_anim.glb"
 }
@@ -200,7 +200,7 @@ Demo of this technique is in https://github.com/michaliskambi/x3d-tests/tree/mas
 
 It looks like this:
 
-```
+```c
 InlinedAvocado Inline {
   url "glTF/Avocado.gltf"
 }
@@ -214,7 +214,7 @@ Shape {
 
 You can also hide the inlined glTF model (if you *only* want to extract subset of it). To do this, place `Inline` in X3D inside `Switch` (`Switch` by default hides the model; you could make it visible by switching `Switch.whichChoice`). Like this:
 
-```
+```c
 Switch {
   children DEF InlinedAvocado Inline {
     url "glTF/Avocado.gltf"

@@ -184,7 +184,7 @@ In the past, we used to have bigger images, with all FPC versions switchable at 
 
 Note that the "alternative FPC versions" images come without CGE included (only all CGE prerequisites). Follow https://castle-engine.io/compiling_from_source.php[compiling from source] docs to set up CGE inside the container. Here are simple commands that should work within the container created from `cge-none`, `cge-none-fpc331` or other `cge-none*` images to set up CGE and compile a sample project for Linux and Android:
 
-```bash
+```shell
 # 1. Get CGE from GitHub
 git clone --depth 1 --single-branch --branch master https://github.com/castle-engine/castle-engine/
 

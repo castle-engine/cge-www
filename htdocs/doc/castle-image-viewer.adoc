@@ -162,7 +162,7 @@ Read image filenames from file `<filename>`, each line is one filename.
 +
 `<filename>` equals `-` means _"standard input"_, as usual, so you can pipe output of e.g. `find` program to `castle-image-viewer` like this:
 +
-```bash
+```shell
 find . -name '*.jpg' -print | castle-image-viewer.exe @-
 ```
 

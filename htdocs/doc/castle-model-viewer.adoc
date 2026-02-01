@@ -114,7 +114,7 @@ you can optionally install also a desktop file to have application
 available in your menu / dashboard, with a nice icon,
 and associate it with all handled model types.
 
-```bash
+```shell
 # Place castle-model-viewer on $PATH, for example like this:
 sudo ln -s /usr/local/bin/castle-model-viewer castle-model-viewer
 
@@ -134,7 +134,7 @@ castle-model-viewer to *generate on-the-fly thumbnails of 3D models*
 in the viewed directory. Assuming that castle-model-viewer is on the $PATH
 and you already did previous `./install.sh`, you can run:
 
-```bash
+```shell
 ./install_thumbnailer.sh
 ```
 
@@ -275,7 +275,7 @@ Together with one of these 2 options, you definitely want to pass also a model f
 
 Take a simple screenshot of a scene, at it's default camera:
 
-```bash
+```shell
 castle-model-viewer my_model.gltf --screenshot 0 output.png
 ```
 
@@ -283,13 +283,13 @@ You can also take multiple screenshots or even multiple movies in a single run. 
 
 Make a movie of 2 seconds of animation, with 25 frames per second:
 
-```bash
+```shell
 castle-model-viewer my_model.castle-anim-frames --screenshot-range 0 0.04 50 output_@counter(4).png
 ```
 
 Capture 2 movies from the same animation:
 
-```bash
+```shell
 castle-model-viewer my_model.castle-anim-frames \
   --screenshot-range 0 0.04 50 output_@counter(4).avi \
   --screenshot-range 10 0.04 50 output_@counter(4).avi
@@ -337,7 +337,7 @@ You need to install a graphic environment
         Unpack them, such that `castle_game_engine/` and `castle-model-viewer/`
         directories are siblings.
 - In the terminal, do
-```bash
+```shell
 export CASTLE_FPC_OPTIONS=-dCASTLE_WINDOW_XLIB
 cd castle-model-viewer/
 make

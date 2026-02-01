@@ -123,7 +123,7 @@ If you use the `texture-font-to-pascal` utility to embed fonts in
 Pascal sources (see above) then use it's parameter `--sample-text`
 to provide the additional (beyond simple ASCII) chars. Like this:
 
-```
+```shell
 texture-font-to-pascal --size 20 MyFontFile.ttf --sample-text '你好世界ΓειασουκόσμεЗдравствуймир'
 ```
 

@@ -1,5 +1,6 @@
 # Developing Linux applications using Delphi
 include::common.adoc[]
+:source-highlighter: rouge
 :description: Using Castle Game Engine with Delphi IDE and compiler to build Linux applications.
 :cge-social-share-image: delphi_code.png
 
@@ -62,7 +63,7 @@ Later, use just `wsl` command to enter the virtual Linux environment. If the mac
 +
 Within the machine, you have full Linux system. Inspect it, upgrade it and install additional software as usual, e.g.:
 +
-```bash
+```shell
 lsb_release -a
 sudo apt update
 sudo apt dist-upgrade
@@ -87,7 +88,7 @@ WARNING: Nvidia users: To have correct rendering, you may need to use `export ME
 
 On _Debian_ and derivatives (like _Ubuntu_ or _Raspberry Pi OS_), this command should install them all:
 
-```bash
+```shell
 sudo apt install mesa-utils libgtk-3-dev libegl1 libcurl4 libpng-dev libz1 libopenal1 libfreetype6 libvorbisfile3
 ```
 
@@ -105,7 +106,7 @@ In short, download and unpack the proper _PA Server_ version, then run `./paserv
 
 Note that `./paserver` execution may report issues with `libpython3.so` version. Fix it like this:
 
-```bash
+```shell
 # The directory below may be different for you, depending on where you unpacked the PA Server
 cd ~/PAServer/lldb/lib
 
@@ -123,7 +124,7 @@ ln -s /usr/lib/x86_64-linux-gnu/libpython3.11.so.1 libpython3.so
 
 Remember the directory where you unpacked the _PA Server_. Delphi will automatically _deploy_ Linux applications there, which means that it will copy the binaries and data into the directory like `~/PAServer/scratch-dir/<connection-name>/<project-name>/`. If need be, you *can* later run the applications directly, on that Linux machine, without using Delphi, just from command-line entering the directory and running the binary, like
 
-```bash
+```shell
 cd ~/PAServer/scratch-dir/<connection-name>/my_project/
 ./my_project
 ```
@@ -295,6 +296,8 @@ You can find these paths in Delphi IDE:
 They may use environment variables, also defined locally in Delphi IDE, you'll have to expand them. You can also just take a look at the `dcclinux64...` command-line used by Delphi IDE when you compile a project for Linux from Delphi: it will contain also the correct `--syslibroot` etc.
 
 - Add one additional library location inside Delphi installation, `C:\Program Files (x86)\Embarcadero\Studio\22.0\lib\linux64\release` above.
+
+NOTE: This can possibly be made easier, if we switch to building using `msbuild` from our link:build_tool[build tool], instead of calling Delphi `dccXXX` compiler executable directly.
 
 == Known Limitations
 
