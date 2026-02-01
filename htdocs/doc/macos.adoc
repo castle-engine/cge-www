@@ -244,14 +244,11 @@ However, please note -- this (Metal renderer in CGE) is not an option that will 
 
 ## Known Issues
 
-### Mouse look is untested
+### Mouse hiding is untested
 
-Mouse look requires 2 features which are... implemented, but not completely tested at this moment, as they cannot be completely tested over remote connection (like _Team Viewer_ or _VNC_, and this is how we have access to our macOS machine):
+We have code in place doing mouse hiding (used e.g. during _"mouse look"_ navigation), but we cannot guarantee it works. It was tested so far only over remote connection to macOS (using _Team Viewer_ and _VNC_), which override mouse cursor appearance, so we cannot really see the hiding / showing of the real mouse cursor.
 
-- `TCastleWindow.SystemSetMousePosition`
-- Cursor hiding in `TCastleWindow.UpdateCursor`
-
-You can take a look at the comments in https://github.com/castle-engine/castle-engine/blob/master/src/window/castlewindow_cocoa.inc[castlewindow_cocoa.inc] for more details. Any help with testing is welcome!
+Any help with testing is welcome!
 
 ### Linking for macOS/Silicon (Aarch64) produces warnings
 
