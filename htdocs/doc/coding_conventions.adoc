@@ -1148,6 +1148,10 @@ set -eu
 
 Usually this is just a historical thing and will be upgraded in time. We should follow http://redsymbol.net/articles/unofficial-bash-strict-mode/[Use Bash Strict Mode] fully going forward (except shebang, which we want more portable).
 
+=== bash scripts: Check correctness using ShellCheck
+
+We use https://www.shellcheck.net/[ShellCheck] to check for common mistakes in shell scripts.
+
 [#power-shell]
 === Use PowerShell (not BAT files) for Windows scripting; or, in many cases, use bash (from Cygwin or MSYS2)
 
