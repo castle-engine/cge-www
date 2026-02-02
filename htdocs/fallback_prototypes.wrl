@@ -1,5 +1,6 @@
 #VRML V2.0 utf8
 
+# -----------------------------------------------------------------------------
 # This VRML file specifies "fallback" prototypes for extensions
 # of Castle Game Engine,
 # [https://castle-engine.io/x3d_extensions.php].
@@ -10,7 +11,11 @@
 # This file may be used by other VRML browsers so that they are able
 # to partially understand these extension nodes, or at least omit them
 # gracefully.
+# -----------------------------------------------------------------------------
 
+# Text with depth (thickness) so it looks nice in 3D.
+# Deprecated Castle Game Engine extension, rendered as just flat text now.
+# See https://castle-engine.io/x3d_implementation_text_extensions.php#section_ext_text3d .
 PROTO Text3D [
   exposedField MFString string []
   exposedField SFNode fontStyle NULL
@@ -27,20 +32,21 @@ PROTO Text3D [
   }
 }
 
+# Appearance with Castle Game Engine extensions.
+# Deprecated, usually you can use just Appearance node (with CGE extension
+# fields) which is simpler.
 PROTO KambiAppearance [
   exposedField SFNode material          NULL
   exposedField SFNode texture           NULL
   exposedField SFNode textureTransform  NULL
 
-  # This is from X3D.
-  # Castle Game Engine treats it as part of normal Appearance
-  # node, but actually this is an extension for pure VRML 2.0.
+  # X3D fields
   exposedField SFNode fillProperties    NULL
   exposedField SFNode lineProperties    NULL
   exposedField SFNode metadata          NULL
   exposedField MFNode shaders           []
 
-  # Kambi extensions
+  # Castle Game Engine extensions
   exposedField SFNode normalMap         NULL
   exposedField SFNode heightMap         NULL
   exposedField SFFloat heightMapScale   0.01
@@ -54,6 +60,9 @@ PROTO KambiAppearance [
   }
 }
 
+# How blending should be applied.
+# Castle Game Engine extension, compatible with InstantReality.
+# See https://castle-engine.io/x3d_extensions.php#section_ext_blending .
 PROTO BlendMode [
   exposedField SFString srcFactor "src_alpha"
   exposedField SFString destFactor "one_minus_src_alpha"
@@ -63,6 +72,11 @@ PROTO BlendMode [
   Group { } # expand to nothing, just ignore this node if you can't handle it natively
 }
 
+# Specify how some shapes (like spheres, cylinders) are triangulated.
+# Deprecated Castle Game Engine extension,
+# instead use simple fields like Sphere.slices, Sphere.stacks.
+# See about the recommended way to achieve this:
+# https://castle-engine.io/x3d_implementation_geometry3d_extensions.php#section_triangulation .
 PROTO KambiTriangulation [
   exposedField SFInt32    quadricSlices    -1     # {-1} + [3, infinity)
   exposedField SFInt32    quadricStacks    -1     # {-1} + [2, infinity)
@@ -71,6 +85,9 @@ PROTO KambiTriangulation [
   Group { } # expand to nothing, just ignore this node if you can't handle it natively
 }
 
+# Inline with optional node replacements.
+# Deprecated Castle Game Engine extension.
+# See https://castle-engine.io/x3d_extensions.php#section_ext_kambi_inline .
 PROTO KambiInline [
   exposedField MFString url        []
   field        SFVec3f  bboxCenter 0 0 0
@@ -85,7 +102,11 @@ PROTO KambiInline [
   }
 }
 
-# See http://instant-reality.com/documentation/nodetype/MatrixTransform/
+# Specify transformation as explicit 4x4 matrix.
+# This is a Castle Game Engine extension,
+# compatible with various other X3D browsers.
+# Deprecated: instead of this, use standard Transform as much as possible.
+# See https://castle-engine.io/x3d_extensions.php#section_ext_matrix_transform .
 PROTO MatrixTransform [
   exposedField     MFNode     children     []
   field            SFVec3f    bboxCenter   0 0 0
@@ -102,7 +123,9 @@ PROTO MatrixTransform [
   }
 }
 
-# See http://instant-reality.com/documentation/nodetype/Teapot/
+# Show a teapot.
+# Deprecated Castle Game Engine extension, compatible with InstantReality.
+# See https://castle-engine.io/x3d_extensions.php#section_ext_teapot .
 PROTO Teapot [
   field SFVec3f size      3 3 3
   field SFBool  solid     TRUE
@@ -124,6 +147,10 @@ PROTO Teapot [
   Group { }
 }
 
+# NavigationInfo with Castle Game Engine extensions.
+# Deprecated, usually you can use just NavigationInfo node (with CGE extension
+# fields) which is simpler.
+# See https://castle-engine.io/x3d_implementation_navigation_extensions.php .
 PROTO KambiNavigationInfo [
 
   # Standard VRML 97 NavigationInfo fields/events
@@ -135,7 +162,7 @@ PROTO KambiNavigationInfo [
   exposedField SFFloat  visibilityLimit 0.0
   eventOut     SFBool   isBound
 
-  # Kambi extensions, will be ignored
+  # Castle Game Engine extensions
   field SFBool  timeOriginAtLoad       FALSE
   field SFNode  octreeRendering            NULL
   field SFNode  octreeDynamicCollisions    NULL
@@ -155,6 +182,9 @@ PROTO KambiNavigationInfo [
   }
 }
 
+# Shadow map parameters, like size and frequency of updates.
+# This is a Castle Game Engine extension.
+# See https://castle-engine.io/x3d_extensions_shadow_maps.php .
 PROTO GeneratedShadowMap [
   exposedField SFNode    metadata         NULL
   exposedField SFString  update           "NONE"
@@ -167,6 +197,10 @@ PROTO GeneratedShadowMap [
   ImageTexture { }
 }
 
+# Texture with contents created by rendering the scene from a specific
+# viewpoint.
+# This is a Castle Game Engine extension compatible with other X3D browsers.
+# See https://castle-engine.io/x3d_implementation_texturing_extensions.php#section_ext_rendered_texture .
 PROTO RenderedTexture [
   exposedField    SFNode    metadata              NULL
   exposedField    MFInt32   dimensions            [128 128 4 1 1]
