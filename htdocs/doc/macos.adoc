@@ -37,49 +37,43 @@ xcrun --show-sdk-path
 
 Download the official binary release from link:/[Castle Game Engine main page]. The editor and various tools are inside the `bin/` subdirectory.
 
-#### Allow running unsigned applications on newer macOS versions (remove quarantine bit)
+#### Allow running non-notarized Unix applications (remove quarantine bit)
 
-When trying to run an unsigned application downloaded from the Internet, like our engine link:editor[editor] or link:castle-model-viewer[Castle Model Viewer], latest macOS versions give very misleading error message: _""xxx.app" is damaged and can't be opened. You should move it to the Bin"_. Nothing is actually damaged, just the application is placed in a _"quarantine"_. You can confirm it by executing in _Terminal_ commands like this:
+Although our macOS applications are now https://github.com/castle-engine/castle-build-ci/tree/master/apple[codesigned and notarized], this is not enough for modern macOS versions. Unix applications outside of an "app bundle" are not trusted, and we ship with some (like `fpc` and our build tool `castle-engine`).
+
+To fix it, use `xattr` to remove the quarantine bit from the Unix applications in our distribution.
 
 ```shell
-# for Castle Model Viewer
-xattr -l ~/Downloads/castle-model-viewer.app
-# for Castle Game Engine editor
-xattr -l ~/Downloads/castle_game_engine/bin/castle-editor.app
+cd ~/Downloads/castle_game_engine/
+xattr -cr tools/ \
+          bin/castle-curves \
+          bin/castle-engine \
+          bin/image-to-pascal \
+          bin/pasls \
+          bin/texture-font-to-pascal \
+          bin/to-data-uri
 ```
 
-You will see a line with `com.apple.quarantine` in the output.
+[NOTE]
+====
+If you are in an ssh session, you can use a simpler command:
 
-To fix it, use `xattr -cr ...`, like this:
-
-```shell
-# for Castle Model Viewer
-xattr -cr ~/Downloads/castle-model-viewer.app
-# for Castle Game Engine (all applications inside)
+```
 xattr -cr ~/Downloads/castle_game_engine/
 ```
 
+However, this will fail if executed inside macOS _Terminal_. For some reason, _Terminal_ is not allowed to change files in application bundles, so the above attempt will fail with errors like this:
+
+```
+xattr: [Errno 1] Operation not permitted: '/Users/administrator/Downloads/castle_game_engine/bin/castle-editor.app`
+```
+
+Better use the longer version command, that works everywhere, both through ssh and when pasted in the _Terminal_.
+====
+
+////
 NOTE: In the example commands above we pass the whole `castle_game_engine` directory to `xattr -cr`, this will recursively remove the quarantine bit from all applications inside, including the editor and other engine tools in `bin/` and the bundled FPC compiler in `tools/contrib/fpc/`.
-
-#### Allow running unsigned applications on older macOS versions (avoid "developer cannot be verified" error)
-
-Our editor (`castle-editor`), other tools (`castle-engine`, `castle-model-viewer`, `castle-image-viewer`), and the bundled FPC compiler are _unsigned_ applications for macOS right now. Running them for the first time will result in an error along the lines _"developer cannot be verified"_.
-
-Solution: Before using the engine, you have to right-click on each of the binaries from _"Finder"_, choose _"Open"_ from the context menu, and then you will be able to confirm that you want to open an unsigned application.
-
-So before using the engine please run all the binaries in `bin` subdirectory once, by right-clicking on them, and accept the warning that they are unsigned applications. Do this at least for:
-
---
-- `bin/castle-editor`
-- `bin/castle-engine`
-- `bin/castle-image-viewer`
-- `tools/contrib/fpc/bin/fpc`
-- `tools/contrib/fpc/bin/fpc-cge`
-- `tools/contrib/fpc/bin/ppcx64` (on Intel macs)
-- `tools/contrib/fpc/bin/ppca64` (on Apple Silicon macs)
---
-
-Note that some of the above (`castle-engine`, FPC compiler binaries) are command-line programs, and running them like this will just print the help message. Tat's fine, you can close the terminal window they open. You just run them to make macOS remember that you trust this application.
+////
 
 #### Run the editor and check paths are correct
 
@@ -89,15 +83,20 @@ Before using the editor further, we recommend to check that the engine and compi
 
 - _Castle Game Engine_ path is set correctly (in the _"General"_ tab).
 +
-Due to Apple _"translocation"_ mechanism
+This should be correct now out-of-the-box, since our editor is https://github.com/castle-engine/castle-build-ci/tree/master/apple[codesigned and notarized] so Apple _"translocation"_ mechanism
 //(that internally executes the application from a random place on disk, if it was part of a zip downloaded from the Internet)
-you may have to set engine path manually there.
-Whether this is actually necessary depends on macOS version and whether you removed the quarantine bit (see above).
+doesn't apply.
 //Unfortunately, CGE editor cannot detect CGE own location, even though from user's perspective you run the editor right inside CGE directory.
 
 - FPC path and version has been detected correctly (in the _"FPC and Lazarus"_ tab). If FPC version is detected, it also implies that FPC binaries are properly trusted.
 +
-NOTE: You can ignore missing _Lazarus_, using _Lazarus_ for CGE development is optional -- you can use any text editor like link:vscode[VS Code].
+FPC path and version should be correct out-of-the-box.
+
+- Note: link:lazarus[Lazarus] path in (in the _"FPC and Lazarus"_ tab) may be not detected.
++
+Ignore it if you don't plan to use _Lazarus_ as an IDE. Our games can be build without having _Lazarus_.
++
+Or if you want to use _Lazarus_ as an IDE, you need to link:https://www.lazarus-ide.org/[install it] yourself and point (in the _"FPC and Lazarus"_ tab) to its location. This will make engine features like _"Open Project In Code Editor"_ work with _Lazarus_.
 
 ### Optional: Add an alternative FPC version and Lazarus
 
