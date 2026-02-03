@@ -1,0 +1,92 @@
+# Exporting from Maya
+include::common.adoc[]
+:description: Export from Maya to glTF to use your models with Castle Game Engine.
+:cge-social-share-image: export-maya-hextraction1.png
+
+Exporting _Maya_ models to _Castle Game Engine_ can be done in various ways.
+
+== Export to FBX (if necessary) and convert FBX to glTF using FBX2glTF
+
+If you received assets from a graphic designer in both the `.ma` and `.fbx` formats, it is easiest to convert files from the FBX format using the https://github.com/facebookincubator/FBX2glTF[FBX2glTF] tool to link:gltf[glTF]. In this case, there is a high probability that you will get a good conversion result without any additional work, as the graphic designer adjusted the model when (s)he created FBX file.
+
+You can also use built-in export from _Maya_ to FBX, and then convert with https://github.com/facebookincubator/FBX2glTF[FBX2glTF].
+
+The export itself is very simple. Just call FBX2glTF tool in the console with one parameter - FBX model file name:
+
+[source]
+----
+FBX2glTF model.fbx
+----
+
+After the export, the `modelname_out` subfolder will appear with the exported model.
+
+The conversion result can be easily compared using link:castle-model-viewer[Castle Model Viewer] and https://www.autodesk.com/products/fbx/fbx-review[FBX Review].
+
+== Export to glTF with Babylon
+
+If the FBX2glTF conversion effect is unsatisfactory or you are a graphic designer and want a direct solution (without intermediate FBX file) at the cost of some additional setup, a good solution is to use the https://github.com/BabylonJS/Exporters/[Babylon glTF] plugin. In this case, the model will often need to be adjusted before performing the conversion.
+
+=== Plugin installation
+
+Babylon glTF plugin comes with a handy installer, which you can download from https://github.com/BabylonJS/Exporters/releases[Babylon Exporter Github Releases] page. The installation itself consists in clicking the install button.
+
+cgeimg::block[
+  export-maya_babylon_installer.png|Babylon glTF Installer,
+  export-maya_babylon_installer_plugin_installed.png|Babylon glTF plugin installed,
+  export-maya_babylon_01_open_plugin_manager.png|Open Plug-in Manager,
+  export-maya_babylon_02_plugin_manager_check_load_on_maya2babylon.nll.dll.png|Check Load on Maya2Babylon.nkk.dll
+]
+
+=== Export overview with screenshots
+
+The steps to be followed depend largely on the model. Screenshots below can be used as an overview.
+
+cgeimg::block[
+  export-maya_babylon_03_open_material_editor.png|Open material editor,
+  export-maya_babylon_04_show_input_output_connections.png|Select material and show input output connections,
+  export-maya_babylon_05_change_material_to_aiStandardSurface_and_connect_textures.png|Add aiStandardSurface material (Arnold Renderer) and connect textures. Other materials have glitches in my model case.,
+  export-maya_babylon_06_run_exporter.png|Run exporter,
+  export-maya_babylon_07_configure_and_export_file.png|Change format to gltf/glb\, select output file and click Export.,
+  export-maya_file_adjusted_and_exported_by_babylon.png|Result in castle-model-viewer
+]
+
+=== Plugin updating
+
+The Babylon glTF exporter is being actively developed. It is worth checking the possibility of updating the plugin from time to time by running the installer. When new plugin version is available the _Update_ button will be showed.
+
+=== More info
+
+See https://doc.babylonjs.com/resources/maya_to_gltf[Maya to glTF] and https://doc.babylonjs.com/resources/maya[Babylon Maya resources] pages for more info.
+
+== Export to glTF with Maya2glTF
+
+If you have problems with Babylon glTF, you can try https://github.com/iimachines/Maya2glTF[Maya2glTF] script. To install run `maya2gltfDeploy.bat`. After loading the model, just type `maya2glTF_UI` in the script window to display the export UI.
+
+For more info see https://github.com/iimachines/Maya2glTF/[Maya2glTF Github page].
+
+== Old approach: OBJ
+
+To export static meshes to our engine from the latest Maya version you can export as an _OBJ_ format.
+
+* You may need to enable it first, by going to the _Windows -> Settings/Preferences -> Plug-in Manager_. Find the `objExport.mll` on the list, and check _Loaded_ (check _Auto load_ too, to have it active always).
+* Then you can export using the _File -> Export All..._ menu item, and choosing _OBJExport_ as the file type.
+* See the screenshots below for help.
+
+cgeimg::block[
+  export-maya1.png|Maya Plug-in Manager menu,
+  export-maya2.png|Maya Plug-in Manager window,
+  export-maya3.png|Maya Export All menu,
+  export-maya4.png|Maya Export All dialog,
+  export-maya5-view3dscene.png|View in castle-model-viewer city model exported from Maya. Model by Keenan Crane from http://opengameart.org/content/abstract-city
+]
+
+If the exported things seem completely black, fix the material to have non-black diffuse color. (I don't know why Maya sets diffuse color to black on my test models...) You can edit the material in link:castle-model-viewer[Castle Model Viewer]: open the OBJ file, select the object with _Ctrl + right mouse click_, and use _Edit -> Edit Material -> Diffuse Color_ menu item. You can save the resulting file as X3D using castle-model-viewer _File -> Save As VRML/X3D_ menu item.
+
+Bonus points: OBJ format supports normalmaps, so we will read the normalmaps you set in Maya correctly.
+
+To export animations, you can export each keyframe as a still OBJ file, and then create a link:castle_animation_frames.php[simple XML file with the .castle-anim-frames extension to define an animation].
+
+cgeimg::block[
+  export-maya-hextraction1.png|Maya Sample Model by Hextraction (Base Player Pod by ComboMash Entertainment Inc) from http://www.hextraction.com/ and http://opengameart.org/content/hextraction-base-player-pod,
+  export-maya-hextraction2-view3dscene.png|View in castle-model-viewer Hextraction model exported from Maya
+]
