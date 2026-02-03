@@ -68,7 +68,7 @@ However, this will fail if executed inside macOS _Terminal_. For some reason, _T
 xattr: [Errno 1] Operation not permitted: '/Users/administrator/Downloads/castle_game_engine/bin/castle-editor.app`
 ```
 
-Better use the longer version command, that works everywhere, both through ssh and when pasted in the _Terminal_.
+So better use the longer version of the `xattr ...` command, showed earlier. It works everywhere, both through ssh and when pasted in the _Terminal_.
 ====
 
 ////
