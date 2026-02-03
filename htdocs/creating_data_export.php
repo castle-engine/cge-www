@@ -37,7 +37,7 @@ constantly improving. We want to use these tools, not reinvent them.
 
 <ul>
   <li><a href="blender">Blender</a></li>
-  <li><a href="creating_data_3dsmax.php">3ds Max</a></li>
+  <li><a href="3dsmax">3ds Max</a></li>
   <li><a href="creating_data_maya.php">Maya</a></li>
   <li><a href="spine">Spine</a></li>
 </ul>

@@ -422,7 +422,7 @@ $castle_sitemap = array(
                 ),
               ),
               'doc/blender' => array('title' => 'Blender'),
-              'creating_data_3dsmax' => array('title' => '3ds Max'),
+              'doc/3dsmax' => array('title' => '3ds Max'),
               'creating_data_maya' => array('title' => 'Maya'),
               'doc/spine' => array('title' => 'Spine')
             )

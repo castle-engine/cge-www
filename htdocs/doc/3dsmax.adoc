@@ -1,0 +1,104 @@
+# Exporting from 3ds Max
+include::common.adoc[]
+:description: Export from 3ds Max to glTF to use your models with Castle Game Engine.
+:cge-social-share-image: export-3dsmax2.png
+
+Exporting _3ds Max_ models to _Castle Game Engine_ can be done in various ways.
+
+== Export to FBX (if necessary) and convert FBX to glTF using FBX2glTF
+
+If you received assets from a graphic designer in both the `.max` and `.fbx` formats, it is easiest to convert files from the FBX format using the https://github.com/facebookincubator/FBX2glTF[FBX2glTF] tool to link:gltf[glTF]. In this case, there is a high probability that you will get a good conversion result without any additional work, as the graphic designer adjusted the model when (s)he created FBX file.
+
+You can also use built-in export from _3ds Max_ to FBX, and then convert with https://github.com/facebookincubator/FBX2glTF[FBX2glTF].
+
+The export itself is very simple. Just call FBX2glTF tool in the console with one parameter - FBX model file name:
+
+[source]
+----
+FBX2glTF model.fbx
+----
+
+After the export, the `modelname_out` subfolder will appear with the exported model.
+
+The conversion result can be easily compared using link:castle-model-viewer[Castle Model Viewer] and https://www.autodesk.com/products/fbx/fbx-review[FBX Review].
+
+== Export to glTF with Babylon
+
+If the FBX2glTF conversion effect is unsatisfactory or you are a graphic designer and want a direct solution (without intermediate FBX file) at the cost of some additional setup, a good solution is to use the https://github.com/BabylonJS/Exporters/[Babylon glTF] plugin. In this case, the model will often need to be adjusted before performing the conversion.
+
+The most important changes are:
+
+* reduction of _Bone Affect Limit_ to 4
+* preparation of textures in Bitmap format
+
+=== Plugin installation
+
+Babylon glTF plugin comes with a handy installer, which you can download from https://github.com/BabylonJS/Exporters/releases[Babylon Exporter Github Releases] page. The installation itself consists in clicking the install button.
+
+cgeimg::block[
+  export-3ds_babylon_installer.png|Babylon glTF Installer,
+  export-3ds_babylon_installer_plugin_installed.png|Babylon glTF plugin installed
+]
+
+=== Export overview with screenshots
+
+The steps to be followed depend largely on the model. Screenshots below can be used as an overview.
+
+cgeimg::block[
+  export-3ds_babylon_01_select_mesh.png|Select Mesh,
+  export-3ds_babylon_02_click_modify_tab.png|Open Modifier list,
+  export-3ds_babylon_03_open_modifier_list_and_click_skin.png|Click skin,
+  export-3ds_babylon_04_open_advanced_parameters.png|Open advanced parameters,
+  export-3ds_babylon_05_change_bone_affect_limit_to_4.png|Change bone affect limit to 4,
+  export-3ds_babylon_06_check_material_settings.png|Open material editor,
+  export-3ds_babylon_07_textures_must_be_bitmap_type.png|Textures need be Bitmap type,
+  export-3ds_babylon_08_textures_must_be_bitmap_type_changed.png|Textures need be Bitmap type,
+  export-3ds_babylon_081_textures_must_be_bitmap_type_changed.png|The same in second material editor\, Glossines adjusted to 3,
+  export-3ds_babylon_09_run_exporter.png|Run exporter,
+  export-3ds_babylon_10_choose_format_gltf_or_glb.png|Choose gltf or glb,
+  export-3ds_file_loaded_in_3dsmax_and_adjusted_to_export_by_babylon_gltf.png|Result in castle-model-viewer
+]
+
+=== Export differences
+
+Using different exporters gives slightly different results, it's always worth experimenting. You can also try to load the FBX file into 3ds MAX and save it with the Babylon glTF plugin.
+
+cgeimg::block[
+  export-fbx_exported_by_fbx2gltf.png|fbx file exported to glTF by FBX2glTF,
+  export-3ds_file_loaded_in_3dsmax_and_adjusted_to_export_by_babylon_gltf.png|MAX file adjusted in 3ds Max and exported by Babylon glTF,
+  export-3ds_fbx_loaded_in_3dsmax_and_saved_by_babylon_gltf.png|FBX file loaded in 3ds Max and exported by Babylon glTF,
+  export-3ds_max_file_adjusted_and_saved_as_fbx_then_exported_by_fbx2gltf.png|MAX file adjusted in 3ds Max and saved as FBX\, then exported to glTF by FBX2glTF
+]
+
+=== Plugin updating
+
+The Babylon glTF exporter is being actively developed. It is worth checking the possibility of updating the plugin from time to time by running the installer. When new plugin version is available the _Update_ button will be showed.
+
+=== More info
+
+See https://doc.babylonjs.com/resources/3dsmax_to_gltf[3DSMax to glTF] and https://doc.babylonjs.com/resources/3dsmax[Babylon 3DSMax resources] pages for more info.
+
+== Old approach: VRML
+
+To export from older _3ds Max_, it's easiest to export to the _VRML 97_ format (extension `.wrl`). _VRML_ is an older version of _X3D_, it's basically a subset of X3D, and we support it 100% in the engine.
+
+Choose the _Export_ option from the main menu, then change the file type to _VRML97_, as seen on the screenshots on this page. A window with _VRML97 Exporter_ settings will appear, at the beginning you can just accept the defaults -- they are sensible.
+
+cgeimg::block[
+  export-3dsmax2.png|3ds Max Export menu,
+  export-3dsmax3.png|3ds Max Export file dialog - choose VRML97,
+  export-3dsmax4.png|3ds Max VRML97 Exporter options,
+  export-3dsmax5-view3dscene.png|View in castle-model-viewer model exported from 3ds Max. Model by raptorus from http://opengameart.org/content/golemmarine
+]
+
+Notes:
+
+* To have the textures correctly picked up, you have to set the "_Bitmap URL Prefix -> Use Prefix_". It should be the directory, relative to the `.wrl` file location, where the textures lie.
+
+* The exporter by default does not export normals, and it also does not set the `creaseAngle` field in VRML, leaving it at zero. This means that everything will have _flat shading_. The fix this, it's easiest to check "_Normals_" at exporting.
++
+You could also edit the VRML file afterwards, or edit the VRML/X3D node graph when loading, to set `creaseAngle` field at `IndexedFaceSet` to something non-zero, to have auto-generated smooth normals. `creaseAngle` is in radians, e.g. value 4 (greater than Pi) will make a completely smooth model. But that's usually more involved.
+
+== Other formats
+
+Note that we also support some other file formats that you could export from 3ds Max, like _OBJ_ and _3DS_. They work fine to export simple mesh with textures, but these format don't support animations, and many other advanced features. So it's better to use glTF.

@@ -244,7 +244,7 @@ memory-hungry.
 
 <?php echo $toc->html_section(); ?>
 
-<p>FBX is a <a href="https://en.wikipedia.org/wiki/FBX">proprietary format from Autodesk</a>. As such it has good support in Autodesk software like <a href="creating_data_3dsmax.php">3ds Max</a> and <a href="creating_data_maya.php">Maya</a>.
+<p>FBX is a <a href="https://en.wikipedia.org/wiki/FBX">proprietary format from Autodesk</a>. As such it has good support in Autodesk software like <a href="3dsmax">3ds Max</a> and <a href="creating_data_maya.php">Maya</a>.
 
 <p>If you have FBX models, we recommend converting them to glTF using <a href="https://github.com/facebookincubator/FBX2glTF">FBX2glTF</a>. It's a simple command-line tool, just call it with the FBX model file name:</p>
 
