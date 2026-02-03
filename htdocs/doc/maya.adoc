@@ -64,6 +64,10 @@ If you have problems with Babylon glTF, you can try https://github.com/iimachine
 
 For more info see https://github.com/iimachines/Maya2glTF/[Maya2glTF Github page].
 
+== Export to X3D with RawKee
+
+https://github.com/und-dream-lab/rawkee[RawKee] project is an actively developed full-featured X3D exporter for _Maya_. It exports many features including meshes, PBR materials and skinned animation (using either H-Anim or our link:skin[`Skin` node]).
+
 == Old approach: OBJ
 
 To export static meshes to our engine from the latest Maya version you can export as an _OBJ_ format.
