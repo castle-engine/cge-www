@@ -1,0 +1,96 @@
+# The Castle
+include::common.adoc[]
+:description: The Castle - a first-person shooter style game in a dark fantasy setting.
+:cge-social-share-image: castle_screen_demo_1.png
+:cge-github-name: castle-game
+
+cgeimg::block[
+  castle_screen_demo_1.png|Image from "The Castle",
+  castle_screen_demo_4.png|Image from "The Castle",
+  castle_screen_demo_5.png|Image from "The Castle"
+]
+
+== Overview
+
+_"The Castle"_ is a first-person shooter style game in a dark fantasy setting. Your main weapon is a sword, so the fight is mostly short-range. 3 main levels included, packed with creatures, items and sounds.
+
+Also a couple of bonus levels are available, for fun and to show off some engine features. In particular, there's the classic DOOM E1M1 level -- I know you always wanted to have a sword and a bow in DOOM :) Enjoy!
+
+////
+Requirements to run: At least 512 MB RAM is recommended.
+Fast and stable OpenGL is also needed (read: good graphic card with up-to-date drivers).
+The game was tested with various graphic cards and OpenGL implementations:
+NVidia, Radeon with closed drivers from ATI and open-source ones,
+Mesa OpenGL also works (although pure software Mesa will usually be too slow).
+////
+
+////
+For a good graphic cards, you may decide to turn
+Conserve memory to No. The game will eat much more
+memory then (both in RAM and on graphic card), but you will have to
+wait only once for "Loading creatures").
+////
+
+////
+History and plans: This game is a little old now,
+and it doesn't really use the capabilities of latest
+Castle Game Engine versions.
+This game was initially developed for PascalGameDevelopment
+competition. It was at the beginning of 2006, at a time when
+our engine didn't even have a version number yet :)
+A new game, that actually uses the current capabilities
+of our engine (we developed a lot of new features since 2006...), is planned.
+////
+
+== Download (version 1.1.0)
+
+cge::download-application[
+  1.1.0,
+  snapshot,
+  castle-engine,
+  castle-game,
+  castle,
+    win64-x86_64;
+    linux-x86_64;
+    darwin-aarch64;
+    darwin-x86_64;
+    android
+]
+
+== Installing
+
+* *Windows:*
++
+Extract the downloaded archive anywhere. Run the game by running `castle.exe`.
++
+Note that from the game you will be able to choose various audio devices (see menu _Sound options_). I advice to check both devices. Under Windows _Generic Software_ device often sounds better than the default one. On the other hand, as far as I know, only _Generic Hardware_ can produce sound better than stereo, if you have more than 2 speakers.
+
+* *Linux, FreeBSD:*
++
+Installing actual game: extract the downloaded archive anywhere. Run the game by running the binary, like `./castle`.
++
+To hear game sounds you should install link:openal#_installing_openal[OpenAL] and http://xiph.org/vorbis/[VorbisFile] libraries using your Linux distribution package manager.
+
+* *macOS:*
++
+Extract the archive, drag-and-drop the application wherever you like.
++
+See link:macos[macOS dependencies] for more macOS information.
+
+== WARNING: This is a game from 2006 and has some programmer art :)
+
+Note that this game was done quite long time ago: it was done for http://pascalgamedevelopment.com/[PascalGameDevelopment] competition in 2006. I was tinkering with the code since then (the https://github.com/castle-engine/castle-game/[source code from GitHub] compiles with https://castle-engine.io/download[latest Castle Game Engine]). But I never had time to actually rework the 3D levels and creatures to something prettier.
+
+This is combined with the fact that the game graphics was composed by me (Michalis), a programmer, not an artist. I used various free 3D models, doing various adjustments and adding some simple own models.
+
+So forgive 3D graphics that look quite dated now :)
+
+You want to see something pretty? Check out https://github.com/castle-engine/castle-engine/tree/master/examples/3d_games/explore_impressive_castle[examples/3d_games/explore_impressive_castle] in CGE sources! This was done by real artists, and in 2022, and it looks amazing :)
+
+== Movie
+
+Short gameplay sequence and playing around with shadow volumes. Note that this was done with quite old engine version, in new version more things cast shadows.
+
+*Spoiler alert*: the first half of the movie shows levels you will see later in the game.
+
+video::2XgQHo4DrGk[youtube,width=425,height=349]

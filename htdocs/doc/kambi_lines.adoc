@@ -18,8 +18,8 @@ cge::download-application[
   kambi_lines,
     win64-x86_64;
     linux-x86_64;
-    darwin-x86_64;
-    darwin-aarch64
+    darwin-aarch64;
+    darwin-x86_64
 ]
 
 _Installation_: just extract the downloaded archive anywhere. Run the game binary (`./kambi_lines` on Unix, `kambi_lines.exe` on Windows).
