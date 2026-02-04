@@ -1,0 +1,69 @@
+# Demo models
+include::common.adoc[]
+:description: Castle Game Engine demo models collection - X3D and VRML test files.
+:cge-github-name: demo-models
+
+cgeimg::float[
+  rhan_shrine_5_everything.png|Shinto shrine model with multiple shadow maps enabled,
+  metallic_shiny.png|Shiny dark metallic material under multiple lights with per-pixel lighting,
+  volumetric_animated_fog_all.png|Volumetric fog,
+  fancy_light_spot_shape.png|Textured spot light with shadow,
+  castle_overburn.png|Castle "overburn" simple effect,
+  shadows_chopper_and_house.png|Shadow volumes from chopper over a house scenery,
+  fountain_shadows_0.png|Fountain level model with shadow volumes,
+  fountain_shadows_1.png|Fountain level model with shadow volumes after moving and rotating stuff
+]
+
+== Download
+
+https://github.com/castle-engine/demo-models/archive/master.zip[Download demo models from here.]
+
+== About
+
+This is _Castle Game Engine_ collection of demo models. While some of them are more impressive, most of the models are simple and demonstrate some particular _Castle Game Engine_ feature.
+
+Most of the models are in link:x3d[X3D, VRML] or link:gltf[glTF] formats. But in general various formats handled by link:castle-model-viewer[Castle Model Viewer] and link:index.php[Castle Game Engine] are used. At the beginning of most files (remember that you can open X3D files in normal text editor too) you can find comments explaining what this file demonstrates.
+
+These models were created to test link:index.php[our Castle Game Engine], but many of them should also be handled by other conforming X3D and VRML browsers.
+
+Note: Files inside `warnings/` subdirectories are deliberately invalid in some ways. Good X3D browser should display a sensible warning message and (when possible) continue (omitting only the problematic part).
+
+== Development
+
+Comments and contributions to these demos are most welcome. There are link:talk.php[many ways to contact us].
+
+// If you have a cool 3D model, something interesting,
+// or maybe just something difficult for our engine, please share it with us!
+// Posting a screenshot or a video of your model is most welcome.
+// We love to see how you use our tools :)
+// To include your model in these demos, or to report a bug, you will of course
+// have to actually send your 3D model source.
+
+// Feel free to expand, modify, redistribute these test files
+// — they are covered by GNU GPL >= 2 license.
+
+You can https://github.com/castle-engine/demo-models[clone the demo-models repository from GitHub]. If you know your way around GIT and GitHub, you're most welcome to send contributions as https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests[pull requests].
+
+== Authors
+
+Most of the 3D models here were created by _Michalis Kamburelis_. Simple test models were simply manually crafted in a text editor. The more complicated meshes were created in http://www.blender3d.org/[Blender] (see our link:blender[Blender exporting documentation]), you will find the .blend source files inside. For 2D art I usually use http://www.gimp.org/[GIMP]. Skies generated with http://www.planetside.co.uk/[Terragen].
+
+Large/important contributions:
+
+* _Victor Amat_ provided a lot of interesting demos. To mention some: flat mirrors by `RenderedTexture` (see `x3d/rendered_texture/`), Screen Space Ambient Occlusion (see `shadow_maps/ssao*`), shadow maps tests (including demo to visualize bias/scale, `shadow_maps/shadow_bias.x3dv`), `vrml_2/camera_{orient,rot}.wrl`, `orientation_interpolator_alum_box.wrl`, test textures for spherical mapping testing (`textures/spheremap-*.jpg`). Thousand thanks!
+
+* _Stephen H. France_ provided various tests for `TimeSensor`, `Extrusion` and others. Thanks!
+
+* Various models were based on http://opengameart.org/[OpenGameArt.org] models, also some textures were taken from there. This is a great site where you can find models and textures on clear open-source licenses (GPL or CC), thousand thanks go to it's many contributors.
++
+Examples include http://opengameart.org/content/shrine-shinto-japan[Shinto Shrine] (used for compositing shaders demo inside `compositing_shaders/shinto_shrine/`). Also a lot of textures, see `compositing_shaders/textures/AUTHORS.txt`.
+
+* _Orin Palmer_ created plane model in 3DS, see `3ds/p47d.3ds` and `3ds/p47d.txt`.
+
+* Many textures inside `textures/castle/` are from http://www.wolfiesden.com/golgotha/golgotha.asp[public domain textures from unfinished game "Golgotha"].
+
+* Lion bump mapping textures from http://www-static.cc.gatech.edu/grads/d/davidp/parallax_mapping/[Philippe David steep parallax mapping code], based on https://www.casual-effects.com/research/McGuire2005Parallax/index.html[paper about steep mapping].
+
+* See also `AUTHORS.txt` files inside the archive for detailed and complete listing of authors and sources.
+
+Thanks to everyone!

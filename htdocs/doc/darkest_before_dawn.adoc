@@ -1,0 +1,35 @@
+# Darkest Before the Dawn
+include::common.adoc[]
+:description: A scary 3D game where you're only safe within the light.
+:cge-social-share-image: darkest_before_dawn_1.png
+
+cgeimg::float[
+  darkest_before_dawn_1.png|Darkest Before the Dawn - game screen 1,
+  darkest_before_dawn_2.png|Darkest Before the Dawn - game screen 2,
+  darkest_before_dawn_ui.png|Darkest Before the Dawn - title screen
+]
+
+A scary 3D game. *You're only safe within the light.*
+
+_Darkest Before the Dawn_ is a tiny game developed by Michalis Kamburelis during the http://tensquaregames.com/[TenSquareGames] gamejam on 23-24th of November 2013. It is the first game made using link:index.php[Castle Game Engine] specifically for Android (although it can be compiled as a normal, standalone game for Linux, Windows etc. too).
+
+////
+The game is available as an .apk file for Android.
+On your Android device, make sure to enable installation of applications
+from _Unknown sources_ (in _Settings -> Security_,
+http://developer.android.com/distribute/open.html#unknown-sources[like shown here]).
+Then just download the apk file, and Android should
+automatically propose to install it.
+////
+
+cge::download-application[
+  2.0.0,
+  snapshot,
+  castle-engine,
+  darkest-before-dawn,
+  darkest_before_dawn,
+    google-play=net.sourceforge.castleengine.darkestbeforedawn;
+    android;
+    win64-x86_64;
+    linux-x86_64
+]
