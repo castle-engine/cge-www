@@ -19,6 +19,7 @@ Looking for a one-liner that does everything? You can execute https://github.com
 == Install FPC and Lazarus
 
 * It is easiest to install https://www.lazarus-ide.org/[Lazarus bundled with FPC].
+// Too confusing, and cannot build editor this way
 // Alternatively, you can also use only FPC (omit then the variants below that use Lazarus). On many Linux distributions this is as simple as `apt install fpc`.
 * You can also https://castle-engine.io/fpcupdeluxe[get both Lazarus and FPC from fpcupdeluxe].
 

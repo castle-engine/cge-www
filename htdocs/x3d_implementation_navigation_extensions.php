@@ -274,7 +274,7 @@ See <?php echo cgeRef('TBlendingSort'); ?>.
 <p>By default, VRML/X3D time origin is at <i>00:00:00 GMT January 1, 1970</i>
 and <code>SFTime</code> reflects real-world time (taken from your OS).
 <?php echo a_href_page('This is uncomfortable for single-user games (albeit I admit it is great for multi-user worlds)',
-'x3d_time_origin_considered_uncomfortable'); ?>.
+'doc/x3d_time_origin_considered_uncomfortable'); ?>.
 You can change this by using <code>NavigationInfo</code> node:
 
 <?php

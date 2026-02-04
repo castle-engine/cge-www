@@ -17,7 +17,7 @@ Our link:castle-image-viewer[Castle Image Viewer] supports DDS and allows to vie
 
 We also have example utility https://github.com/castle-engine/castle-engine/tree/master/examples/images_videos/image_decompose[image_decompose] that allows to extract all subimages from a DDS file.
 
-You may find example DDS images inside our link:demo_models.php[demo models].
+You may find example DDS images inside our link:demo_models[demo models].
 
 == Features
 

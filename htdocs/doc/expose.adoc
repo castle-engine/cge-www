@@ -36,7 +36,7 @@ cgeimg::block[
 
 - (TODO) You can expose a light from the model. This allows to design the light sources in link:blender[Blender], and later tweak them in the application.
 +
-It is more powerful and more obvious than alternative link:TCastleScene.CastGlobalLights[] (which also allows scene lights to shine on other objects, but in that case lights stay hidden inside the scene, they are only accessible as X3D nodes).
+It is more powerful and more obvious than alternative cgeref:TCastleScene.CastGlobalLights[] (which also allows scene lights to shine on other objects, but in that case lights stay hidden inside the scene, they are only accessible as X3D nodes).
 
 - (TODO) You can expose a camera from the model. This allows to design the camera in link:blender[Blender], and later use it in the application, e.g. as a starting point for player movement.
 
@@ -46,7 +46,7 @@ The _exposed_ elements synchronize in a bi-directional way.
 
 - Their initial state (transformation, light information like color, intensity etc.) is dictated by the state in the model. Moreover, if the model animates given state (e.g. transformation is animated by some animation designed in link:blender[Blender] and started using cgeref:TCastleSceneCore.PlayAnimation[]), it will affect the exposed transformation.
 
-- (TODO) But the synchronization also goes in the other direction, from exposed link:TCastleTransform[] children -> back to the original model. If you change a given state from code (and it is not animated in the model), it will affect the model in the scene. This allows to manipulate the transformation from code, e.g. to perform animations (including skinned mesh) using code. This also allows to attach link:physics[] rigid bodies to the exposed transformations, and thus make parts of the model affected by physics.
+- (TODO) But the synchronization also goes in the other direction, from exposed cgeref:TCastleTransform[] children -> back to the original model. If you change a given state from code (and it is not animated in the model), it will affect the model in the scene. This allows to manipulate the transformation from code, e.g. to perform animations (including skinned mesh) using code. This also allows to attach link:physics[] rigid bodies to the exposed transformations, and thus make parts of the model affected by physics.
 
 == Why make features this way
 

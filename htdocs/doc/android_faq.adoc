@@ -27,7 +27,7 @@ Reasons:
 +
 For example, set `TCastleScene.URL := 'castle-data:/my_model.gltf'` to load a 3D model.
 +
-When you design using link:manual_editor.php[CGE editor], it will automatically use `castle-data:/xxx` URLs.
+When you design using link:editor[CGE editor], it will automatically use `castle-data:/xxx` URLs.
 
 More information about link:data[data directory, and castle-data protocol, is here] .
 
@@ -63,7 +63,7 @@ Traditionally, Android applications are distributed as _APK (Android Package)_ f
 
 However, _Google Play_ requires the new applications to be uploaded using a new _AAB (Android App Bundle)_ format, not an APK. To generate the AAB file:
 
-* In link:manual_editor.php[CGE editor], change _"Run -> Package Format"_ to _"Android App Bundle (AAB)"_.
+* In link:editor[CGE editor], change _"Run -> Package Format"_ to _"Android App Bundle (AAB)"_.
 
 * Or, if using link:build_tool[build tool] from the command-line, add the `--package-format=android-app-bundle` option, resulting in call like this:
 +

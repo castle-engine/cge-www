@@ -3,7 +3,7 @@ include::common.adoc[]
 
 cgeimg::float[view3dscene_outlines.png|glTF model from Sketchfab]
 
-This page is the opposite of the manual page link:manual_optimization.php[How to optimize your games] :)
+This page is the opposite of the manual page link:optimization[How to optimize your games] :)
 
 * Use *Physical-Based Rendering (PBR)*.
 +

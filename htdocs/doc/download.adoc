@@ -122,7 +122,7 @@ Notes:
 --
 - Be sure to check _"Show Log"_ at the end, to make sure installation was successful. At the end the log should say _"Installation finished"_, not _"Error: Installation failed"_. If you encounter a problem, please consult the messages above.
 
-- If you installed CGE from zip, or link:compiling_from_source.php[from sources], the same instructions apply. Just point Delphinus to the `Delphinus.Install.json` file in the top-level CGE directory.
+- If you installed CGE from zip, or link:compiling_from_source[from sources], the same instructions apply. Just point Delphinus to the `Delphinus.Install.json` file in the top-level CGE directory.
 
 - Installation will fail if you have previously installed Delphi packages manually. Remove all CGE packages (`castle_*`) first using Delphi _"Component -> Install Packages..."_ dialog (despite the name, this dialog allows also to remove packages).
 
@@ -164,7 +164,7 @@ The end! Please test it now: Create a new VCL or FMX project, drop cgeref:TCastl
 
 We also encourage to build and run some CGE examples, like `examples/3d_games/explore_impressive_castle` and `examples/delphi/fmx`. Though the examples would build fine even without using Delphinus to install (as their DPROJ files already contain all necessary paths).
 
-NOTE: In order to run some examples on Windows, you will need to place DLL files alongside the EXE file. Copy the DLL files from engine locations mentioned link:compiling_from_source.php#section_Windows[here]. Or compile the example at least once from link:editor[CGE editor], it will copy the DLL files automatically.
+NOTE: In order to run some examples on Windows, you will need to place DLL files alongside the EXE file. Copy the DLL files from engine locations mentioned link:compiling_from_source#section_Windows[here]. Or compile the example at least once from link:editor[CGE editor], it will copy the DLL files automatically.
 
 ////
 
@@ -174,7 +174,7 @@ NOTE: In order to run some examples on Windows, you will need to place DLL files
 
 Linux binaries require GLIBC >= 2.34. This should be OK on any modern Linux distribution. If you have https://www.debian.org/releases/oldstable/[Debian 11 (oldstable, bullseye)] you have to upgrade to at least https://www.debian.org/releases/stable/[Debian 12 (stable, bookworm)].
 
-If you have to use an older system, you can still use CGE by link:compiling_from_source.php[compiling it from sources] to link to your current GLIBC. We plan to distribute the engine also as https://snapcraft.io/[snap package] in the future, which will sidestep this limitation.
+If you have to use an older system, you can still use CGE by link:compiling_from_source[compiling it from sources] to link to your current GLIBC. We plan to distribute the engine also as https://snapcraft.io/[snap package] in the future, which will sidestep this limitation.
 
 NOTE: This limitation applies to the provided engine binaries only. For your own applications, they will require the same GLIBC as the system on which they have been built, as this is the standard behavior of Unix linker. Consider using CI/CD (like link:github_actions[GitHub Actions] or link:gitlab_ci[GitLab CI/CD] or link:jenkins[Jenkins]) to build your applications on a system version independent of your dev machine.
 

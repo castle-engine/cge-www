@@ -50,7 +50,7 @@ constantly improving. We want to use these tools, not reinvent them.
     The exporters generally automatically adjust to it,
     e.g. when exporting from Blender (where the Z axis is by convention "up"),
     the exporter rotates your model.
-    See <?php echo a_href_page('"Which way is up?" manual chapter', 'manual_up'); ?>
+    See <?php echo a_href_page('"Which way is up?" manual chapter', 'doc/up'); ?>
     for more information about this, and how you can customize it.</p>
 
     <!--In

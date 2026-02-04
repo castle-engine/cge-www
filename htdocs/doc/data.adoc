@@ -28,7 +28,7 @@ cgeimg::block[castle_model_viewer_flying_cthulhu.png|Here's an unrelated Cthulhu
 
 - The detection can be customized using the cgeref:ApplicationDataOverride[] global variable. Though we recommend to not touch it -- the default algorithm was designed to account for a lot of normal use-cases and has been adjusted to account for specifics of every platform.
 
-NOTE: You are not limited at runtime to reading only files from this `data` directory, of course. You can read any file on disk (using regular filenames or `file:/...` URLs) at runtime. See link:manual_network.php[network docs].
+NOTE: You are not limited at runtime to reading only files from this `data` directory, of course. You can read any file on disk (using regular filenames or `file:/...` URLs) at runtime. See link:url[URLs docs].
 
 == Example things to put in the `data` subdirectory
 

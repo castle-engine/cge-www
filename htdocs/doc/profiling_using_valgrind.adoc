@@ -88,7 +88,7 @@ Browse it, and the main "memory eater" should be visible.
 
 * Note that a memory may be allocated in some other library, e.g. inside OpenGL.
 +
-This often happens because you use a lot of texture memory. Use cgeref:TextureMemoryProfiler[] to analyze your texture memory usage. Use https://castle-engine.io/manual_optimization.php#section_textures[various optimization hints related to textures] to decrease texture memory usage.
+This often happens because you use a lot of texture memory. Use cgeref:TextureMemoryProfiler[] to analyze your texture memory usage. Use https://castle-engine.io/optimization#section_textures[various optimization hints related to textures] to decrease texture memory usage.
 
 == Alternative profiling methods, without Valgrind
 
@@ -102,6 +102,6 @@ For example:
 * On Windows: There is a http://www.codersnotes.com/sleepy/[Very Sleepy] profiler (can also save profiles in the same format as Valgrind).
 * On link:nintendo_switch[Nintendo Switch]: There is a special profiler (see Nintendo Switch closed docs for details).
 * On Linux: Aside from Valgrind, there's also http://www.gnu.org/software/binutils/manual/gprof-2.9.1/html_mono/gprof.html[gprof]. But its text output is much harder to follow than Valgrind output with kcachegrind visualization.
-* See the https://castle-engine.io/manual_optimization.php[manual about optimization] for more ideas.
+* See the https://castle-engine.io/optimization[manual about optimization] for more ideas.
 
 As a general rule, avoid judging the speed "by a hunch". Our intuitions about "what is fast / what is slow" are often wrong, it's always better to actually measure the thing you want to optimize. And optimized code is usually harder to read/maintain, so you will do wisely by optimizing only what is really necessary.

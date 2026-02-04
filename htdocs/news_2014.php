@@ -277,7 +277,7 @@ available in our SVN repository.
       <li>Of course, all TWalkCamera inputs remain configurable. So, if you really liked previous key shortcuts, you can restore them for your application.
     </ul>
   <li><b><a href="http://www.web3d.org/files/specifications/19775-1/V3.2/Part01/components/enveffects.html#TextureBackground">TextureBackground</a> support, making it possible to use <code>MovieTexture</code> as skybox sides</b>. The rendering of <code>Background</code> and <code>TextureBackground</code> uses new simplified code, that can utilize our texture cache and works on OpenGLES too.
-  <li>Notes about <b><a href="' . CURRENT_URL . 'manual_transformation_hierarchy.php">transformation hierarchy</a></b> added to the documentation.
+  <li>Notes about <b><a href="' . CURRENT_URL . 'transformation_hierarchy">transformation hierarchy</a></b> added to the documentation.
   <li>Context resource sharing (so that <b>many windows/controls work OK, sharing textures and fonts and such</b>) implemented for CastleWindow Xlib+GLX and GTK backends.
   <li>Support for <i>png</i> and <i>gz</i> formats without any external libraries (using FpRead/WritePng and PasZlib underneath). This is particularly useful for Android and iOS, where linking with external libraries is not so easy.
   <li>CastleEnumerateFiles API much changed and renamed to <a href="https://castle-engine.io/apidoc/html/CastleFindFiles.html">CastleFindFiles</a>. It supports searching for files inside Android assets too (although, unfortunately, not recursive &mdash; because of NDK API limitations).

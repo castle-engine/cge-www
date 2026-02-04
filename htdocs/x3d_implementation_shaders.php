@@ -218,7 +218,7 @@ time start ticking from zero when you open VRML/X3D, which makes the float
 values in <code>MyTimer.elapsedTime</code> increase from zero.
 Which is usually useful, and avoids having precision problems
 with huge values of <code>MyTimer.time</code>. See <?php echo a_href_page('notes
-about VRML / X3D time origin', 'x3d_time_origin_considered_uncomfortable'); ?>
+about VRML / X3D time origin', 'doc/x3d_time_origin_considered_uncomfortable'); ?>
  for more details.
 
 <p>Most field types may be passed to appropriate GLSL uniform

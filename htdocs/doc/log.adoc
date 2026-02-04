@@ -33,7 +33,7 @@ See https://github.com/castle-engine/castle-engine/tree/master/examples/network/
 
 ## Where is the log stored?
 
-- When running from link:manual_editor.php[CGE editor], the log is displayed in the bottom editor panel.
+- When running from link:editor[CGE editor], the log is displayed in the bottom editor panel.
 
 - When running using link:build_tool[CGE build tool `castle-engine run` command], the log is displayed as the standard output.
 

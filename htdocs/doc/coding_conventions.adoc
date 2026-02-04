@@ -1088,7 +1088,7 @@ Any supported Delphi version can open them (that's good!). But also most Delphi 
 +
 *When possible, auto-generate DPROJ files using `castle-engine generate-program`.* Let our build tool generate DPROJ, don't modify it manually.
 +
-*When not possible, be sure to only commit a relevant subset of your DPROJ modifications.* Like when we https://github.com/castle-engine/castle-engine/commit/8a3770f9ebcbc71a0870f93e65d161f318433daf#diff-92ef58c34fa42c80dde292f25d5bfb24b95c41c89208582b7cc148463512a484[only committed new warnings options to the packages .dproj files]. Learn how to use your version control (GIT) tools: learn how to _"stage chunks"_ instead of _"staging whole files"_ (in link:vsode[VS Code]: right-click and "Stage Selected Ranges"; in Emacs: https://magit.vc/[Magit] rocks and it allows to stage each chunk separately). Learn how to revert almost all changes to the file except the one you want to keep. You can always just do it manually in a text editor, hack it until `git diff` shows only the changes you really consciously wanted to make.
+*When not possible, be sure to only commit a relevant subset of your DPROJ modifications.* Like when we https://github.com/castle-engine/castle-engine/commit/8a3770f9ebcbc71a0870f93e65d161f318433daf#diff-92ef58c34fa42c80dde292f25d5bfb24b95c41c89208582b7cc148463512a484[only committed new warnings options to the packages .dproj files]. Learn how to use your version control (GIT) tools: learn how to _"stage chunks"_ instead of _"staging whole files"_ (in link:vscode[VS Code]: right-click and "Stage Selected Ranges"; in Emacs: https://magit.vc/[Magit] rocks and it allows to stage each chunk separately). Learn how to revert almost all changes to the file except the one you want to keep. You can always just do it manually in a text editor, hack it until `git diff` shows only the changes you really consciously wanted to make.
 
 - The LFM files inside the repository should be treated with caution.
 +
@@ -1157,7 +1157,7 @@ We use https://www.shellcheck.net/[ShellCheck] to check for common mistakes in s
 
 For many non-critical tasks, we use `bash` scripts for Windows too. Both http://www.cygwin.com/[Cygwin] and https://www.msys2.org/[MSYS2] provide `bash` and many other Unix tools for Windows.
 
-For some critical tasks though, really used by many people (like link:compiling_from_source.php[building CGE build tool]), we don't want to assume that user has Cygwin / MSYS2. In this case, we use https://learn.microsoft.com/en-us/powershell/scripting/overview[PowerShell] on Windows.
+For some critical tasks though, really used by many people (like link:compiling_from_source[building CGE build tool]), we don't want to assume that user has Cygwin / MSYS2. In this case, we use https://learn.microsoft.com/en-us/powershell/scripting/overview[PowerShell] on Windows.
 
 Note: https://castle-engine.io/gitlab_ci[GitLab CI] also uses PowerShell on Windows machines.
 

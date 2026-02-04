@@ -113,7 +113,7 @@ You can use _baking_ to store the result of a Blender computation (rendering) in
 
 Once done, you can export a model with unlit materials to link:gltf[glTF].
 
-This is a powerful optimization technique *when the lights and objects are static*. Once the lighting effects have been _baked_ into the texture, the engine can just render the object _unlit_, applying the texture without any additional lighting calculations at run-time. E.g. we used this trick in link:darkest_before_dawn.php["Darkest Before the Dawn"], an old game targeting old Android devices. Since 100% of the lighting was just baked into textures in Blender, the game worked smoothly everywhere, and yet we used lots of "dramatic" local lights.
+This is a powerful optimization technique *when the lights and objects are static*. Once the lighting effects have been _baked_ into the texture, the engine can just render the object _unlit_, applying the texture without any additional lighting calculations at run-time. E.g. we used this trick in link:darkest_before_dawn["Darkest Before the Dawn"], an old game targeting old Android devices. Since 100% of the lighting was just baked into textures in Blender, the game worked smoothly everywhere, and yet we used lots of "dramatic" local lights.
 
 cgeimg::block[darkest_before_dawn_1.png|Darkest Before the Dawn\, a game where all lighting was baked in Blender]
 

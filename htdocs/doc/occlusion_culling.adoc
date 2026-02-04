@@ -13,7 +13,7 @@ It is really trivial to use it: just set cgeref:TCastleViewport.OcclusionCulling
 
 Be sure to measure how effective this is:
 
-* Display FPS (see https://castle-engine.io/manual_optimization.php[manual about FPS])
+* Display FPS (see https://castle-engine.io/optimization[manual about FPS])
 
 * Display `MyViewport.Statistics.ToString` to observe how many shapes and scenes were effectively rendered.
 

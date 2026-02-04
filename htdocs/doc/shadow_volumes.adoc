@@ -164,7 +164,7 @@ You can use link:x3d[X3D] nodes to design your lights and shadow volumes on them
 
 === Example models
 
-Demo 3D models that use dynamic shadow volumes are inside our link:demo_models.php[demo_models], see subdirectory `shadow_volumes/`. Open them with link:castle-model-viewer[Castle Model Viewer] and play around.
+Demo 3D models that use dynamic shadow volumes are inside our link:demo_models[demo_models], see subdirectory `shadow_volumes/`. Open them with link:castle-model-viewer[Castle Model Viewer] and play around.
 
 === X3D fields `shadowVolumes` and `shadowVolumesMain`
 

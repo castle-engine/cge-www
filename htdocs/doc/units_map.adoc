@@ -27,7 +27,7 @@ _Depends on_: nothing else.
 
 ==== files
 
-Files, URLs, XML utilities, downloading files from the network. See link:manual_network.php[manual about network and downloading].
+Files, URLs, XML utilities, downloading files from the network. See link:url[manual about URL and downloading].
 
 _Depends on_: everything above (that is, units in "base" group).
 
@@ -77,7 +77,7 @@ _Depends on_: everything above.
 
 ==== castlescript
 
-Parsing and executing expressions and programs in the  link:castle_script.php[CastleScript language].
+Parsing and executing expressions and programs in the  link:castle_script[CastleScript language].
 
 _Depends on_: everything above.
 

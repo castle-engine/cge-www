@@ -18,7 +18,7 @@ Use cgeref:TCastleLabel[] to display text as part of the user interface (always 
 
 Many UI controls (see for example unit cgeref:CastleControls[]) descend from cgeref:TCastleUserInterfaceFont[], and thus can render text and have their font customized, for example cgeref:TCastleButton[].
 
-You can add and configure UI controls (like cgeref:TCastleLabel[], cgeref:TCastleButton[] and many more) by code, or using link:manual_editor.php[the CGE editor].
+You can add and configure UI controls (like cgeref:TCastleLabel[], cgeref:TCastleButton[] and many more) by code, or using link:editor[the CGE editor].
 
 == Show (potentially 3D) text in a viewport: TCastleText
 
@@ -36,7 +36,7 @@ You can add and configure fonts. We support all the font formats handled by the 
 - OpenType Fonts (`otf` extension)
 - Web Open Font Format (`woff` and `woff2` extensions). For more information see https://en.wikipedia.org/wiki/Web_Open_Font_Format[Wikipedia about WOFF], and the W3C specifications: https://www.w3.org/TR/WOFF/[WOFF] and https://www.w3.org/TR/WOFF2/[WOFF2].
 
-To customize font in the link:link:editor[CGE editor]:
+To customize font in the link:editor[CGE editor]:
 
 
 - Use the _"Design -> Add Non-Visual Component"_ menu item, or the context menu (when you right-click in the hierarchy on the left). Font is added as _"Non-Visual Component"_ to whatever parent you selected.

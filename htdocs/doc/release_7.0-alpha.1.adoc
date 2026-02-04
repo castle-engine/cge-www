@@ -15,10 +15,10 @@ See the https://castle-engine.io/wp/2021/02/06/castle-game-engine-7-0-alpha-1-re
 
 == Summary
 
-- link:manual_editor.php[CGE editor]
+- link:editor[CGE editor]
 - link:creating_data_model_formats.php#section_gltf[glTF 2.0 full support and realistic rendering upgrades]
 - link:https://github.com/castle-engine/castle-engine/wiki/Nintendo-Switch[Nintendo Switch]
-- link:manual_load_3d.php#section_camera[Better API for viewports and cameras in `TCastleViewport`]
+- link:viewport_and_scenes#section_camera[Better API for viewports and cameras in `TCastleViewport`]
 - link:wp/2020/06/29/third-person-navigation-with-avatar-component-in-castle-game-engine/[Third-person navigation (with avatar)]
 - link:wp/2020/07/19/asynchronous-non-blocking-downloading-using-tcastledownload-class-and-other-http-communication-features/[TCastleDownload class, to make asynchronous (non-blocking) downloading]
 - link:https://github.com/castle-engine/castle-engine/wiki/Sprite-sheets[Load sprite sheets and images to TCastleScene]
@@ -27,7 +27,7 @@ See the https://castle-engine.io/wp/2021/02/06/castle-game-engine-7-0-alpha-1-re
 - link:manual_castle_settings.php[CastleSettings.xml file support]
 - link:data[`castle-data:/` protocol]
 - link:https://github.com/castle-engine/castle-engine/wiki/Castle-Game-Engine-for-Unity-developers[`TCastleBehavior` to enhance `TCastleTransform` functionality like `TCastleBillboard` or `TCastleSoundSource`]
-- link:manual_optimization.php[Many optimizations and profiling features]
+- link:optimization[Many optimizations and profiling features]
 - link:wp/2018/07/29/new-screen-effects-api-and-demo-text-node-optimizations-multi-texture-modes-fixes/[New screen effects API]
 - link:x3d_extensions_mirror_plane.php[Easy mirrors on flat surfaces]
 - link:text#section_localization_gettext[Localization]
@@ -103,7 +103,7 @@ https://castle-engine.io/wp/2018/04/22/engine-improvements-user-interface-horizo
  ** Large speedups, see news: https://castle-engine.io/wp/2019/10/13/numerous-optimizations-and-dynamic-batching/ .
  ** Dynamic batching now available.
  ** Loading optimizations (see https://castle-engine.io/wp/2019/12/15/engine-improvements-gtkglext-no-longer-used-new-tcastleinspectorcontrol-loading-optimizations-twosidedmaterial-node/[here]).
- ** Everything described in the updated optimization docs on https://castle-engine.io/manual_optimization.php
+ ** Everything described in the updated optimization docs on https://castle-engine.io/optimization
 * Rendering:
  ** New screen effects API, you can now make screen effects over any UI control (just place it as child of cgeref:TCastleScreenEffects[]), and they are much friendlier to use. See https://castle-engine.io/wp/2018/07/29/new-screen-effects-api-and-demo-text-node-optimizations-multi-texture-modes-fixes/ . Also https://castle-engine.io/x3d_extensions_screen_effects.php[new GLSL screen-effects functions]. See also https://castle-engine.io/wp/2020/11/07/screen-space-reflections-effect-enhancements-to-glsl-api-for-effects/[news about screen-space reflections].
  ** Easy mirrors on flat surfaces (see https://castle-engine.io/wp/2018/10/08/simple-water-using-castle-game-engine/ )

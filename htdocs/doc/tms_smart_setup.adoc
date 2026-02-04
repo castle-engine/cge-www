@@ -39,7 +39,7 @@ git submodule update --init --recursive # get submodules in externals/
 +
 NOTE: Trouble? Try `tms install castle.engine -verbose`.
 +
-NOTE: If you're on Windows and you get `fatal: cannot create directory at ...: Filename too long` error then try doing `git config --global core.longpaths true`. See link:compiling_from_source.php[Compiling from source] for more info.
+NOTE: If you're on Windows and you get `fatal: cannot create directory at ...: Filename too long` error then try doing `git config --global core.longpaths true`. See link:compiling_from_source[Compiling from source] for more info.
 
 == TODO: Finish testing these instructions, add below:
 

@@ -35,7 +35,7 @@ We love to see how you use CGE.</i>
     'doc/castle-model-converter'); ?>
 
   <?php gallery_link('Online Model Converter',
-    'Convert 3D and 2D models. Can convert glTF, OBJ, STL, Collada, 3DS (and other model formats handled by Castle Game Engine) to X3D. This is an online version of our <a href="model-converter">Castle Model Converter</a>.',
+    'Convert 3D and 2D models. Can convert glTF, OBJ, STL, Collada, 3DS (and other model formats handled by Castle Game Engine) to X3D. This is an online version of our <a href="castle-model-converter">Castle Model Converter</a>.',
     'online-model-converter.png',
     'convert'); ?>
 
@@ -51,13 +51,13 @@ We love to see how you use CGE.</i>
 
   <?php gallery_link('glplotter',
     'Plotting graphs of mathematical functions.',
-    "glplotter_screen_demo_1.png", 'glplotter'); ?>
+    "glplotter_screen_demo_1.png", 'doc/glplotter'); ?>
 
   <?php gallery_link("rayhunter",
     "Command-line simple ray-tracer (classic deterministic ray-tracer and basic Monte Carlo path tracer).<br/>Handles VRML/X3D and other 3D model formats.<br/>" .
-    a_href_page("See also it's gallery.","raytr_gallery"),
+    a_href_page("See also it's gallery.","doc/raytr_gallery"),
     'rayhunter_graz_demo.png',
-    "rayhunter"); ?>
+    "doc/rayhunter"); ?>
 </div>
 
 <p>More:

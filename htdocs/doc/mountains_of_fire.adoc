@@ -2,13 +2,7 @@
 include::common.adoc[]
 :description: Mountains Of Fire - a split-screen cooperative game made with Castle Game Engine.
 
-cgeimg::block[
-  mountains_of_fire_screen_0.png|Mountains Of Fire - game screen 1,
-  mountains_of_fire_screen_1.png|Mountains Of Fire - game screen 2,
-  //mountains_of_fire_screen_2.png|Mountains Of Fire - game screen 3,
-  mountains_of_fire_screen_3.png|Mountains Of Fire - game screen 4,
-  mountains_of_fire_screen_4.png|Mountains Of Fire - game screen 5
-]
+== Introduction
 
 // mountains_of_fire_screen_5.png - unused
 
@@ -21,6 +15,14 @@ This split-screen game shows the 3D world from two different perspectives:
 Together, they cooperate to reach a safe place within the mountains flooded with lava. The game can be played by two players, or by a single player controlling both human and sandworm simultaneously. The controls were designed to be reachable by a single player.
 
 The game is open-source, completely free to download and play. Try it now!
+
+cgeimg::block[
+  mountains_of_fire_screen_0.png|Mountains Of Fire - game screen 1,
+  mountains_of_fire_screen_1.png|Mountains Of Fire - game screen 2,
+  //mountains_of_fire_screen_2.png|Mountains Of Fire - game screen 3,
+  mountains_of_fire_screen_3.png|Mountains Of Fire - game screen 4,
+  mountains_of_fire_screen_4.png|Mountains Of Fire - game screen 5
+]
 
 == Download
 
@@ -69,7 +71,7 @@ Run the game swapping the split screen order. This is useful if the mouse is on 
 
 * link:opengl_options.php[Usual window size and fullscreen options]. By default we start in fullscreen.
 
-* link:openal#_command_line_options_that_control_the_sound_outupt[Usual sound options]. For example `--no-sound`.
+* link:openal#_command_line_options_that_control_the_sound_output[Usual sound options]. For example `--no-sound`.
 
 * `--debug-log`, `--debug-speed`
 

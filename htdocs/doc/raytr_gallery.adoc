@@ -6,7 +6,7 @@ include::common.adoc[]
 
 On this page whenever I write that I used 3d models in `mgf` format, this means that I actually converted them to VRML using https://github.com/michaliskambi/kambi_mgf2inv[kambi_mgf2inv]. Whenever I used 3d models in `3DS` format, this means that I actually converted them to VRML using link:castle-model-viewer[castle-model-viewer].
 
-== Images rendered using classic raytracer
+== Images rendered using classic ray-tracer
 
 link:rayhunter[rayhunter] with parameter `classic` was used to render images in this section.
 

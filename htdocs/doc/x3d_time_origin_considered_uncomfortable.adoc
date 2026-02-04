@@ -1,4 +1,4 @@
-# X3D time origin is problematic for single-player experiences
+# X3D time origin is uncomfortable for single-player experiences
 include::common.adoc[]
 :description: Discussion of X3D time origin and Castle Game Engine extensions.
 
@@ -12,7 +12,7 @@ This text was written a long time ago. After ~15-20 years since writing this, it
 
 So I still think, in 2026, that using `SFTime` for some things in X3D is an issue. Current state not only means we have huge time values where we don't have to, e.g. when advancing `TimeSensor` time (though this is somewhat solved by double precision, though you don't want to do this in shaders). But also this time definition doesn't allow time pausing / slowing-down, which is possible in non-multi-player experiences, it's even an obvious feature in single-player games. The fact that to do this "obvious feature" we need to actually break from X3D standard (our time is _not_ real time) is weird.
 
-That being said, we have shown in our engine that this issue can be mostly hidden inside. The X3D time processing is hidden in `TCastleScene` animation processing, and most external code doesn't care, it doesn't make engine API really worse. Your game code doesn't access any weird time value that is _"like real-life since 1970 but with game pauses"_.
+That being said, we have shown in our engine that this issue can be mostly hidden inside. The X3D time processing is hidden in cgeref:TCastleScene[] animation processing, and most external code doesn't care, it doesn't make engine API really worse. Your game code doesn't access any weird time value that is _"like real-life since 1970 but with game pauses"_.
 
 So -> this is a problem, but not a critical one.
 ====

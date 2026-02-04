@@ -17,7 +17,7 @@ Our link:castle-image-viewer[Castle Image Viewer] supports KTX and allows to vie
 
 We also have example utility https://github.com/castle-engine/castle-engine/tree/master/examples/images_videos/image_decompose[image_decompose] that allows to extract all subimages from a KTX file.
 
-You may find example KTX images inside our link:demo_models.php[demo models]. Also https://github.com/KhronosGroup/KTX-Software[KTX-Software] has some samples (look in `tests` subdirectory).
+You may find example KTX images inside our link:demo_models[demo models]. Also https://github.com/KhronosGroup/KTX-Software[KTX-Software] has some samples (look in `tests` subdirectory).
 
 == Features
 

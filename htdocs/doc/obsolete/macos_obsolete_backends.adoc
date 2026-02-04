@@ -46,7 +46,7 @@ sudo chmod a+rX /usr/X11/ /usr/X11R6/
 
 ### TCastleWindow with GTK backend
 
-You can switch the backend to GTK 2. Do this by adding this line to your `fpc.cfg` file (<?php echo FPC_CFG_DOCS; ?>):
+You can switch the backend to GTK 2. Do this by adding this line to your `fpc.cfg` file (see <a href="http://www.freepascal.org/docs-html/user/usersu10.html">FPC documentation <i>"Configuration file"</i> to know where you can find your <code>fpc.cfg</code> file</a>):
 
 ```-dCASTLE_WINDOW_GTK_2```
 

@@ -156,14 +156,6 @@ define('CASTLE_GENERATE_OFFLINE',
   isset($_GET['CASTLE_GENERATE_OFFLINE']) &&
   $_GET['CASTLE_GENERATE_OFFLINE'] == 'true');
 
-define('S_INSTALLATION_INSTRUCTIONS_SHORT',
-  'No installation is required. Just download and unpack these archives wherever
-  you want, and run the program inside. The documentation
-  (this web page) is also included inside
-  (look in the <code>documentation/</code> subdirectory) for offline viewing.');
-
-define('FPC_CFG_DOCS', 'see <a href="http://www.freepascal.org/docs-html/user/usersu10.html">FPC documentation <i>"Configuration file"</i> to know where you can find your <code>fpc.cfg</code> file</a>');
-
 global $castle_apidoc_url;
 if (CASTLE_ENVIRONMENT == 'development') {
   $castle_apidoc_url = CASTLE_PROD_URL . 'apidoc/html/';
@@ -339,7 +331,7 @@ $castle_sitemap = array(
               'doc/web' => array('title' => 'Web'),
             ),
           ),
-          'manual_optimization' => array('title' => 'Optimization',
+          'doc/optimization' => array('title' => 'Optimization',
             'sub' => array(
               'doc/occlusion_culling' => array('title' => 'Occlusion Culling'),
               'doc/profiling_using_valgrind' => array('title' => 'Profiling Using Valgrind'),
@@ -385,12 +377,12 @@ $castle_sitemap = array(
           ),
           'manual_miscellaneous' => array('title' => 'Miscellaneous',
             'sub' => array(
-              'manual_up' => array('title' => 'Which way is up?'),
-              'manual_transformation_hierarchy' => array('title' => 'Transformation hierarchy'),
+              'doc/up' => array('title' => 'Which way is up?'),
+              'doc/transformation_hierarchy' => array('title' => 'Transformation hierarchy'),
               'doc/castlewindow_backends' => array('title' => 'CastleWindow Backends'),
               'doc/threads' => array('title' => 'Threads'),
-              'compiling_from_source' => array('title' => 'Compiling from source'),
-              'supported_compilers' => array('title' => 'Supported compilers and IDEs'),
+              'doc/compiling_from_source' => array('title' => 'Compiling from source'),
+              'doc/supported_compilers' => array('title' => 'Supported compilers and IDEs'),
               'doc/coding_traps' => array('title' => 'Coding Traps'),
               'doc/units_map' => array('title' => 'Units Map'),
               // 'engine_doc' => array('title' => 'Internals documentation'), // too outdated
@@ -400,7 +392,7 @@ $castle_sitemap = array(
               'doc/license' => array('title' => 'License'),
             )
           ),
-          'helping' => array('title' => 'Helping in engine development',
+          'doc/helping' => array('title' => 'Helping in engine development',
             'sub' => array(
               'doc/donate' => array('title' => 'Donate'),
               'doc/roadmap' => array('title' => 'Roadmap'),
@@ -463,7 +455,7 @@ $castle_sitemap = array(
 
       'doc/x3d' => array('title' => 'Scene Graph: X3D nodes',
         'sub' => array(
-          'demo_models' => array('title' => 'Demo models'),
+          'doc/demo_models' => array('title' => 'Demo models'),
           'x3d_implementation_status' => array('title' => 'Standard Nodes',
             'sub' => array(
               'x3d_implementation_core'                 => array('title' => 'Core'                            ),
@@ -550,9 +542,9 @@ $castle_sitemap = array(
             ),
           ),
           'x3d_extensions' => array('title' => 'Complete list of X3D Extensions'),
-          'castle_script' => array('title' => 'CastleScript language reference'),
+          'doc/castle_script' => array('title' => 'CastleScript language reference'),
           'castle_animation_frames' => array('title' => 'Castle Animation Frames (castle-anim-frames) file format'),
-          'x3d_time_origin_considered_uncomfortable' => array('title' => 'VRML / X3D time origin considered uncomfortable'),
+          'doc/x3d_time_origin_considered_uncomfortable' => array('title' => 'X3D time origin is uncomfortable for single-player experiences'),
           'nist_vrml_test_suite' => array('title' => 'NIST conformance test suite'),
         ),
       ),
@@ -604,27 +596,26 @@ $castle_sitemap = array(
     'sub' => array(
       'gallery_games' => array('title' => 'Games',
         'sub' => array(
-          'mountains_of_fire' => array('title' => 'Mountains Of Fire'),
-          'darkest_before_dawn' => array('title' => 'Darkest Before the Dawn'),
-          'castle'                 => array('hint' => 'First-person perspective game, in a dark fantasy setting'   , 'title' => 'The Castle',
+          'doc/mountains_of_fire' => array('title' => 'Mountains Of Fire'),
+          'doc/darkest_before_dawn' => array('title' => 'Darkest Before the Dawn'),
+          'doc/castle_game'                 => array('hint' => 'First-person perspective game, in a dark fantasy setting'   , 'title' => 'The Castle',
             'sidebar' => true,
             'sub' => array(
-              'castle-advanced'    => array('title' => 'Additional notes (troubleshooting)'),
-              'castle-credits'     => array('title' => 'Credits'),
+              'doc/castle_game_advanced'    => array('title' => 'Additional notes (troubleshooting)'),
+              'doc/castle_game_credits'     => array('title' => 'Credits'),
             ),
           ),
-          'kambi_lines' => array('title' => 'kambi_lines'),
+          'doc/kambi_lines' => array('title' => 'kambi_lines'),
         ),
       ),
       'gallery_tools' => array('title' => 'Tools',
         'sub' => array(
-          'glplotter' => array('title' => 'glplotter'),
-          'rayhunter' => array('title' => 'rayhunter',
+          'doc/glplotter' => array('title' => 'glplotter'),
+          'doc/rayhunter' => array('title' => 'rayhunter',
             'sub' => array(
-              'raytr_gallery' => array('title' => 'Small gallery of images rendered using rayhunter'),
+              'doc/raytr_gallery' => array('title' => 'Small gallery of images rendered using rayhunter'),
             ),
-          ),
-          'kambi_mgf2inv' => array('title' => 'kambi_mgf2inv')
+          )
         ),
       ),
       'additional_components' => array(
@@ -640,7 +631,7 @@ $castle_sitemap = array(
          but honestly they are old and we don't know where to link them from. */
       'common_options' => array('title' => 'Standard command-line options', 'hidden_in_toc' => true),
       'opengl_options' => array('title' => 'Standard command-line options for OpenGL programs', 'hidden_in_toc' => true),
-      'versioning' => array('title' => 'Versioning scheme of programs', 'hidden_in_toc' => true),
+      'doc/versioning' => array('title' => 'Versioning scheme of programs', 'hidden_in_toc' => true),
     ),
   ),
   'doc/credits' => array(
@@ -701,7 +692,7 @@ function _castle_sidebar_link($page, $pageinfo)
 function _castle_sidebar_menu($sub, $nested = FALSE)
 {
   /* Only nested lists use list-no-margin.
-     Testcase: ttps://castle-engine.io/creating_data_intro.php. */
+     Testcase: https://castle-engine.io/creating_data_intro.php. */
   $classes = $nested ? 'list-no-margin' : '';
 
   $result = '<ol class="' . $classes . '">';
@@ -1749,79 +1740,6 @@ function default_program_thumbnail($prog_name)
   return castle_thumbs(array(
     array('filename' => $prog_name . '_screen_demo.png', 'titlealt' => 'Image from "' . $prog_name . '"'),
   ));
-}
-
-/* DEPENDS_ consts and funcs */
-
-define('DEPENDS', 'Requirements');
-define('DEPENDS_OPENGL',
-  '<a href="http://www.opengl.org/documentation/implementations/">OpenGL</a>
-  <!--
-  (on all modern OSes, OpenGL is probably already installed and working on
-  your system) -->');
-define('DEPENDS_LIBPNG_AND_ZLIB',
-  '<a href="http://www.libpng.org/">Libpng</a>,
-   <a href="http://www.gzip.org/zlib/">Zlib</a>
-   (under Windows appropriate DLL files are already included
-   in program\'s archive, so you don\'t have to do anything)');
-define('SUGGESTS_OPENAL',
-  '<a href="' . CASTLE_PROD_URL . 'openal#_installing_openal">OpenAL</a> is used to play sound
-  (under Windows appropriate DLL files are already included
-  in program\'s archive, so you don\'t have to do anything)');
-define('SUGGESTS_OPENAL_VORBISFILE',
-  '<a href="' . CASTLE_PROD_URL . 'openal#_installing_openal">OpenAL</a> and <a href="http://xiph.org/vorbis/">VorbisFile</a> libraries are used to play sound and load OggVorbis sounds
-  (under Windows appropriate DLL files are already included
-  in program\'s archive, so you don\'t have to do anything)');
-define('DEPENDS_UNIX_CASTLE_WINDOW_GTK_2',
-  'Under Linux and FreeBSD: <a href="http://www.gtk.org/">GTK+</a> 2');
-
-function depends_par($depends_array)
-{
-  $result = '';
-  foreach($depends_array as $item)
-  {
-    if ($result != '') $result .= ', ';
-    $result .= $item;
-  }
-
-  $result = "<p><b>" . DEPENDS . ":</b> $result.";
-  return $result;
-}
-
-function depends_ul($depends_array)
-{
-  return array_to_ul($depends_array);
-}
-
-/* Highlight XML code, detecting [[xxx|yyy]] as links to API doc.
-
-   We do not use geshi for this now, since as far as I know we cannot do this
-   with geshi (geshi's "keyword URLs" are too weak for what we want,
-   we want various XML attributes (sometimes named the same, but under different
-   elements) to lead to different URL). */
-function xml_highlight($source)
-{
-  $source = str_replace('&', '&amp;', $source);
-  $source = str_replace('<', '&lt;', $source);
-  $source = str_replace('>', '&gt;', $source);
-  $source = str_replace('&lt;!--', '<span class="xml_highlight_comment">&lt;!--', $source);
-  $source = str_replace('--&gt;', '--&gt;</span>', $source);
-  $source = '<pre class="xml">' . $source . '</pre>';
-
-  // replace [[http:xxx|yyy] with <a href="http:xxx">yyy</a>
-  $source = preg_replace('/\\[\\[(https?:.+)\\|(.+)\\]\\]/',
-    '<a href="\\1">\\2</a>', $source);
-
-  // replace [[http:xxx] with <a href="http:xxx">xxx</a>
-  $source = preg_replace('/\\[\\[(https?:.+)\\]\\]/',
-    '<a href="\\1">\\1</a>', $source);
-
-  // replace [[xxx|yyy] with <a href="$castle_apidoc_url/xxx">yyy</a>
-  global $castle_apidoc_url;
-  $source = preg_replace('/\\[\\[(.+)\\|(.+)\\]\\]/',
-    '<a href="' . $castle_apidoc_url . '\\1">\\2</a>', $source);
-
-  return $source;
 }
 
 /* Highlight XML code.

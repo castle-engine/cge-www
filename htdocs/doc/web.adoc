@@ -253,7 +253,7 @@ If you don't have `wasm-opt` installed, no problem, this is *completely optional
 
 1. link:download[Download the latest Castle Game Engine] as usual.
 +
-Since we have merged the web target into the https://github.com/castle-engine/castle-engine/tree/master[master] branch, you don't need to do any special things to get it. But of course, if you want to "build from scratch", you can https://github.com/castle-engine/castle-engine/tree/master[checkout the master branch using GIT] and then follow link:compiling_from_source.php[compiling from sources docs].
+Since we have merged the web target into the https://github.com/castle-engine/castle-engine/tree/master[master] branch, you don't need to do any special things to get it. But of course, if you want to "build from scratch", you can https://github.com/castle-engine/castle-engine/tree/master[checkout the master branch using GIT] and then follow link:compiling_from_source[compiling from sources docs].
 
 2. Enter any CGE project https://github.com/castle-engine/castle-engine/blob/deae9e6ac3f8c1dc07fc5735bae1f2cc63ad39d4/tools/internal/build_web_demos#L85[that was tested for web] and compile and run it for web.
 // TODO: not until we fix PBR shader fails

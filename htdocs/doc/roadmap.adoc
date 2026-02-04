@@ -1001,7 +1001,7 @@ Unfortunately, on Windows, there's no setting to change the WinAPI controls to u
 We have a https://github.com/castle-engine/castle-engine/pull/555/[PR with this], not merged yet. You can easily do this yourself:
 +
 --
-- Get link:compiling_from_source.php[Castle Game Engine sources and learn how to build editor yourself].
+- Get link:compiling_from_source[Castle Game Engine sources and learn how to build editor yourself].
 - Get https://github.com/zamtmn/metadarkstyle[MetaDarkStyle] package.
 - Add it to the CGE editor application, and apply the trivial code changes to editor source from https://github.com/castle-engine/castle-engine/pull/555/[this PR].
 --
@@ -1084,7 +1084,7 @@ However, we cannot *save* them now.
 
 See the https://lists.freepascal.org/pipermail/fpc-devel/2024-August/045761.html["Published record" thread on fpc-devel].
 
-NOTE: This will require link:supported_compilers.php[bumping required FPC version], but it's worth it, as it will simplify a lot of code in CGE (and for users that define custom components). And before we get to this in CGE, possibly new FPC release(s) will happen, and most users will have the required FPC version anyway :)
+NOTE: This will require link:supported_compilers[bumping required FPC version], but it's worth it, as it will simplify a lot of code in CGE (and for users that define custom components). And before we get to this in CGE, possibly new FPC release(s) will happen, and most users will have the required FPC version anyway :)
 
 While records (like `TVector3`) cannot be `published` in FPC, the information about `public` records is available using RTTI. We should add
 

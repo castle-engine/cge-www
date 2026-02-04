@@ -257,7 +257,7 @@ Building any application for macOS/Silicon (Aarch64) produces a number of warnin
 ld: warning: object file (xxx.o) was built for newer 'macOS' version (11.0) than being linked (10.15)
 ```
 
-We hide these warnings in most cases (our link:build_tool[build tool] filters them out). But sometimes you may still see them, e.g. during the link:compiling_from_source.php[compilation of the build tool itself (if you do this)] or if you compile using link:lazarus[Lazarus IDE].
+We hide these warnings in most cases (our link:build_tool[build tool] filters them out). But sometimes you may still see them, e.g. during the link:compiling_from_source[compilation of the build tool itself (if you do this)] or if you compile using link:lazarus[Lazarus IDE].
 
 For now, we don't have a solution that really solves these warnings. You can simply ignore them.
 

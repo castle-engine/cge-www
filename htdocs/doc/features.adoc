@@ -91,7 +91,7 @@ cgeimg::block[raspberry_pi_1.webp|Raspberry Pi,unholy_raspberry_1.webp|"The Unho
 
 == Visual editor
 
-link:manual_editor.php[Editor] to visually design your game 3D and 2D world and user interface around it.
+link:editor[Editor] to visually design your game 3D and 2D world and user interface around it.
 
 * With templates for new projects -- empty, 3D, 2D. They showcase nicely engine possibilities and were designed as a good starting point for your applications.
 +
@@ -320,7 +320,7 @@ cgeimg::block[
 
 == Optimization and profiling
 
-We have extensive link:manual_optimization.php[optimization documentation] and a number of features to help you make your game faster.
+We have extensive link:optimization[optimization documentation] and a number of features to help you make your game faster.
 
 * Inspector available under F8 in any debug game shows FPS profile and much more. It allows to inspect the current properties of all components, to tweak them at run-time, and even to https://castle-engine.io/wp/2024/07/11/auto-reloading-hot-reloading-when-the-game-runs-and-more-things-auto-reloaded-at-design-time/[hot-reload] assets at run-time.
 * Built-in simple profiler cgeref:TCastleProfiler[].
@@ -420,7 +420,7 @@ The engine, as well as your games, are written using link:why_pascal[modern Obje
 cgeimg::block[combined_fpc_delphi.png|FPC\, Delphi\, Visual Studio Code]
 
 * We maintain a link:modern_pascal[modern Object Pascal introduction] book to learn the language and link:learn_pascal[link to many more learning resources].
-* We support https://www.freepascal.org/[FPC] and https://www.embarcadero.com/products/delphi/[Delphi] compilers, see link:supported_compilers.php[Supported compilers and IDEs].
+* We support https://www.freepascal.org/[FPC] and https://www.embarcadero.com/products/delphi/[Delphi] compilers, see link:supported_compilers[Supported compilers and IDEs].
 * Pascal as a programming language is
 +
 --

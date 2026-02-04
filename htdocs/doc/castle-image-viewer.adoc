@@ -169,8 +169,8 @@ find . -name '*.jpg' -print | castle-image-viewer.exe @-
 Running `castle-image-viewer` with no parameters opens all images in the current directory.
 If none found, the default welcome image will be displayed.
 
-All link:opengl_options[standard options understood by our GUI programs]
-and all link:common_options[standard options understood by all our programs]
+All link:opengl_options.php[standard options understood by our GUI programs]
+and all link:common_options.php[standard options understood by all our programs]
 are handled as well.
 
 == Image Saving Notes

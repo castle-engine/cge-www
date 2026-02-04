@@ -634,7 +634,7 @@ WWWInline { name "my_compressed_vrml_file.wrl.gz" }
 
     <p>Currently this is respected only by classic ray-tracer
     in <a href="castle-model-viewer">castle-model-viewer</a>
-    and <?php echo a_href_page("rayhunter", "rayhunter"); ?>.
+    and <?php echo a_href_page("rayhunter", "doc/rayhunter"); ?>.
     Well, it's also respected by path-tracer, although
     it's much better to use <a href="#section_ext_material_phong_brdf_fields">
     fields describing physical properties (Phong's BRDF) for <code>Material</code>
@@ -683,7 +683,7 @@ WWWInline { name "my_compressed_vrml_file.wrl.gz" }
 
 <?php echo $toc->html_section(); ?>
 
-    In <?php echo a_href_page("rayhunter's","rayhunter") ?>
+    In <?php echo a_href_page("rayhunter's","doc/rayhunter") ?>
     <i>path-tracer</i> I implemented Phong's BRDF.
     To flexibly operate on material's properties understood
     by Phong's BRDF you can use the following <code>Material</code> node's
@@ -767,13 +767,13 @@ WWWInline { name "my_compressed_vrml_file.wrl.gz" }
     will be ignored by path tracer then; only <code>emissiveColor</code>
     will be used, to indicate light sources).
 
-    <p>You can use <?php echo a_href_page("kambi_mgf2inv", "kambi_mgf2inv"); ?>
+    <p>You can use <a href="https://github.com/michaliskambi/kambi_mgf2inv"><code>kambi_mgf2inv</code></a>
     program to convert MGF files to VRML 1.0 with these six additional
     <code>Material</code> fields. So you can easily test my ray-tracer
     using your MGF files.
 
     <p>These fields are used only by <i>path tracer</i> in
-    <?php echo a_href_page("rayhunter", "rayhunter") ?> and
+    <?php echo a_href_page("rayhunter", "doc/rayhunter") ?> and
     <?php echo a_href_page("view3dscene", "view3dscene") ?>.
 
 <?php echo $toc->html_section(); ?>
