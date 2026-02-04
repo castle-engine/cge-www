@@ -1,0 +1,113 @@
+# Small gallery of images rendered using rayhunter
+include::common.adoc[]
+:description: Gallery of images rendered using rayhunter ray-tracer.
+
+== General notes
+
+On this page whenever I write that I used 3d models in `mgf` format, this means that I actually converted them to VRML using https://github.com/michaliskambi/kambi_mgf2inv[kambi_mgf2inv]. Whenever I used 3d models in `3DS` format, this means that I actually converted them to VRML using link:castle-model-viewer[castle-model-viewer].
+
+== Images rendered using classic raytracer
+
+link:rayhunter[rayhunter] with parameter `classic` was used to render images in this section.
+
+All images below were made by link:rayhunter[rayhunter] with 2x larger width and height, and then they were scaled down using `pfilt` program from http://floyd.lbl.gov/radiance/[Radiance programs]. This way I did trivial anti-aliasing by _oversampling_.
+
+For classic ray-tracer I added some point/directional/spot lights to the models. Sometimes I added link:x3d_extensions.php#section_ext_material_mirror[`mirror` property] to turn some materials into mirrors.
+
+*Office*. I used `office.mgf` model from collection of models of the http://graphics.cs.kuleuven.be/renderpark/[RenderPark project]. You can download this collection from http://graphics.cs.kuleuven.be/renderpark/download.html[here] (go to _HTTP download area_ there in case ftp doesn't work). The model is also part of http://radsite.lbl.gov/mgf/scenes.html[MGF Example Scenes].
+
+One faint light is under the desk light, the other light shines from the outside (and that's how louvers cast shadows on the whole room).
+
+cgeimg::block[
+  office-wlight-1-classic-filt.png|,
+  office-wlight-2-classic-filt.png|,
+  office-wlight-3-classic-filt.png|,
+  office-wlight-4-classic-filt.png|
+]
+
+*Graz*. I used model `graz.mgf`, also from http://graphics.cs.kuleuven.be/renderpark/[RenderPark] scenes collection. Four bright lights are placed right under the ceiling, note also two blueish mirrors hanging on the walls.
+
+cgeimg::block[
+  graz-wlight-1-classic-filt.png|,
+  graz-wlight-2-classic-filt.png|,
+  graz-wlight-3-classic-filt.png|,
+  graz-wlight-4-classic-filt.png|
+]
+
+*Sibenik*. I used `sibenik.3ds` model from http://hdri.cgtechniques.com/~sibenik2/[]. Unfortunately link:rayhunter[rayhunter] doesn't use textures while rendering _yet_. Some artifacts are visible near the stairs (at the lower side of the 1st image and the left side of the 2nd image) because two model's walls share the same place on the same plane (uh, I didn't manage to correct this in the model).
+
+cgeimg::block[
+  sibenik-wlight-1-classic-filt.png|,
+  sibenik-wlight-2-classic-filt.png|,
+  sibenik-wlight-3-classic-filt.png|
+]
+
+*Spoon in a watery soup*. A simple 3d model that I made using http://www.blender3d.org[Blender]. On the image below you can see that link:rayhunter[rayhunter] correctly "breaks" rays as they enter the water surface, because the spoon appears to be broken. In the upper part you can see some rays are transmitted completely inside underwater.
+
+cgeimg::block[
+  zupa-wlight-classic-filt.png|
+]
+
+*Forest*. Model that I made using http://www.blender3d.org[Blender], using also `tree.3ds` from http://www.3dcafe.com[www.3dcafe.com]. Lights and fog added by hand. You can https://github.com/castle-engine/demo-models/tree/master/lights_materials/vrml_1/forest-fog[download this model from our demo-models (subdirectory lights_materials/vrml_1/forest-fog)]. Main feature of this rendering is to demonstrate that link:rayhunter[rayhunter] handles X3D `Fog` node.
+
+cgeimg::block[
+  forest.png|
+]
+
+*Mirror fun*. Using Blender I placed an alien (link:castle_game[you may have seen this guy elsewhere]) between two walls. Initially one wall was a mirror (0.5), and alien was looking at himself. First image below is the Blender rendering. Second image is the rendering of my link:rayhunter[rayhunter] (I exported Blender model to VRML 2.0 and added mirror properties to material by hand). Third image is another rendering from link:rayhunter[rayhunter], but this time both walls act as mirrors (stronger mirrors, 0.9) and so the reflection is "recursive" (raytracer with depth 10 was used).
+
+cgeimg::block[
+  alien_mirror_blender_rendering.png|,
+  alien_one_mirror_2.png|,
+  alien_two_mirrors_2.png|
+]
+
+You can download corresponding blender and VRML data files from link:demo_models[our VRML/X3D demo models] (look for `lights_materials/raytracer/alien_mirror.wrl`, there's also `.blend`). By the way, this is one of the first rayhunter renderings of VRML 2.0 models!
+
+== Images rendered using path tracer
+
+link:rayhunter[rayhunter] with parameter `path` was used to render images in this section.
+
+If you will compare images below with the images above (rendered using classic ray-tracer), bear in mind that path tracer has a completely different (much more realistic) idea of _what is light_. For path tracer light is emitted by some objects (with a surface). For classic ray-tracer, light is emitted by some invisible infinitely small point in space. Also, the concept of materials, and how the lights affect them, is different, uses different properties etc. You can say that path tracer actually always works with a different scene than classic ray-tracer. And no, I usually didn't try to arrange the lights and materials properties so that classic and path tracer results are similar.
+
+*Spoon in a watery soup* this time by path tracer. Rayhunter parameters: minimal depth 2, non primary samples count: 4, `--r-roul-continue 0.5`, `--primary-samples-count 10`.
+
+cgeimg::block[
+  zupa-wlight-path.png|
+]
+
+*Office and graz*. Same models and camera settings as the renderings in the _classic_ section before. The lower images were processed using `pcond -h` to improve the look.
+
+For _graz_: Rayhunter parameters: minimal depth 1, non primary samples count: 2000, `--r-roul-continue 0.5`, `--primary-samples-count 1`. It took a dozen or so hours for each image (2000 paths for each pixel!), even though the generated images are small, only 400 x 300... And still the images don't look particularly pretty, the noise is very high.
+
+For _office_: settings like above, but rendered to 800 x 600, and scaled to 400 x 300.
+
+cgeimg::block[
+  office-wlight-1-path.png|,
+  graz-wlight-1-path.png|,
+  office-wlight-1-path-filt.png|,
+  graz-wlight-1-path-filt.png|
+]
+
+*Cornell Box*. Here you can find http://www.graphics.cornell.edu/online/box/[detailed description of original model].
+
+*Controlling the depth of paths using minimal path depth setting and Russian-roulette parameter*: In three renderings below I was changing minimal path depth and Russian-roulette parameter. All other parameters were the same. Samples count = 1 primary x 10 non-primary. Parameters for minimal path depth and Russian-roulette parameter were each time set so that the rendering time was approx the same. I wanted to see which image will look best, i.e. how you should balance between minimal path depth and Russian-roulette parameter. Well, at least I managed to demonstrate that (surprise, surprise) Russian-roulette is a good idea and minimal path depth setting is also a good idea :)
+
+* _(left image)_ Minimal depth = 3, `--r-roul-continue 0` (so the paths were always cut at depth 3, so our calculations are inherently incorrect (the method is _biased_), and you can clearly see that left image is darker than the right one.
+* _(middle image)_ Minimal depth = 0, `--r-roul-continue 0.8` (so path depth depends only on Russian-roulette). You can see a lot of noise on the image, that's the noise produced by the roulette.
+* _(right image)_ Minimal depth = 2, `--r-roul-continue 0.5`. This looks best, small noise and not biased.
+
+cgeimg::block[
+  box-path-samp1x10-depth3.png|,
+  box-path-samp1x10-rroul0.8.png|,
+  box-path-samp1x10-depth2-rroul0.5.png|
+]
+
+*Various number of samples per pixel:* From left to right images below were rendered with 1, 10 (= 10 primary x 1 non-primary), 50 (= 10 primary x 5 non-primary) and 100 (= 10 primary x 10 non-primary) samples per pixel. For 2nd and following images I used 10 primary samples per pixel to have anti-aliasing. See link:rayhunter[rayhunter docs] for the explanation what are the "primary" and "non-primary" samples.
+
+cgeimg::block[
+  box-path-samp1x1-depth2-rroul0.5.png|,
+  box-path-samp10x1-depth2-rroul0.5.png|,
+  box-path-samp10x5-depth2-rroul0.5.png|,
+  box-path-samp10x10-depth2-rroul0.5.png|
+]
