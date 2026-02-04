@@ -1,0 +1,70 @@
+# Helping in the engine development
+include::common.adoc[]
+:description: How you can help Castle Game Engine development.
+
+== Everyone
+
+* https://www.patreon.com/castleengine[Support us on Patreon].
+
+* link:donate[All the ways how you can donate - Patreon, Open Collective, PayPal, crypto...]
+
+////
+Delayed for now,
+we had a page on Wikipedia but it was deleted due to low notability,
+https://en.wikipedia.org/wiki/Wikipedia:Articles_for_deletion/Castle_Game_Engine .
+I accept this -- we need to be a more popular engine before retrying it.
+
+* Create a page on http://en.wikipedia.org/[Wikipedia] about our
+  link:index.php[Castle Game Engine] and / or
+  link:castle-model-viewer[Castle Model Viewer].
+  <!--
+  Or maybe only about the engine, and just redirect castle-model-viewer there?
+  I don't want to create and add it myself, it would not be fair.
+  So this task waits for willing user (you! :) to do it.
+  Of course you will get help (you can ask, post your draft etc.
+  on our forum and such).
+  -->
+////
+
+* Spread the word! Mention the engine in your company, in your online community, talk about our engine on blogs, social platforms.
+
+* Give us good rating (if we deserve it -- if we don't, link:talk.php[tell us why]) on:
+** https://play.google.com/store/apps/details?id=io.castleengine.castle.model.viewer.mobile[Castle Model Viewer on Google Play],
+** https://castle-engine.itch.io/castle-game-engine[Castle Game Engine on itch.io],
+** https://marketplace.visualstudio.com/items?itemName=castle-engine-team.castle-engine[Castle Game Engine Visual Studio Code extension],
+** and https://github.com/castle-engine/castle-engine/["star" Castle Game Engine on GitHub].
++
+////
+* https://play.google.com/store/apps/dev?id=7891434499544220905[our other applications on Google Play],
+* https://castle-engine.itch.io/[our other applications on itch.io].
+////
+
+== If you create games
+
+* First of all, just *use our engine to make your next fantastic game!* And publish it everywhere you can (your website, Steam, Itch.io, Google Play, App Store, Nintendo Switch store...).
+
+* Show your game on our https://forum.castle-engine.io/[forum] or link:talk.php[Discord]. Share a screenshot, movie recording, a build, code -- anything you can/want to share.
+
+* Give us feedback about the engine: what works good, what could be improved, what do you miss. Let's talk on https://forum.castle-engine.io/[forum] or link:talk.php[Discord].
+
+* Report any bug to https://github.com/castle-engine/castle-engine/issues[our issues tracker].
+
+* Improve our documentation. It's easiest to improve the pages maintained in AsciiDoctor format, just edit the `.adoc` files in the https://github.com/castle-engine/cge-www/tree/master/htdocs/doc[htdocs/doc subdirectory of the cge-www repository].
+
+* Contribute code, send pull requests.
++
+If you're looking for a feature / fix to implement, it's usually best to just start with _"what is your itch"_, that is: address a problem (bug or missing feature) that you have in your game. If you're open to help with anything we need, link:roadmap[take a look at our roadmap] or just link:talk.php[ask us] for what's currently needed.
++
+See link:coding_conventions[coding conventions] on how to contribute code.
+
+== If you are a package maintainer
+
+Package link:index.php[Castle Game Engine] and link:castle-model-viewer[Castle Model Viewer] for your favorite Linux distribution.
+
+* link:castle-model-viewer[Castle Model Viewer] is a versatile viewer for link:creating_data_model_formats.php[many model formats].
+
+* Castle Game Engine is an open-source 3D and 2D cross-platform game engine, with a comfortable editor and a powerful API using modern Object Pascal. link:features[All features are listed here].
+
+* Desktop integration files (SVG icons, .desktop files etc.) are already included in our archives.
+
+* Build-dependencies include http://www.freepascal.org/[Free Pascal Compiler], but this should not be a problem -- all major Linux distros already have FPC packaged.
