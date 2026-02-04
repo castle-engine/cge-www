@@ -1,0 +1,54 @@
+# Versioning scheme
+include::common.adoc[]
+:description: Versioning scheme used by Castle Game Engine and related software.
+
+== Introduction
+
+We use this versioning scheme in all software on these pages.
+
+Nothing really unconventional here. This versioning scheme is inspired by versioning schemes of many other programs and libraries, and is compatible with https://semver.org/ .
+
+== Major.minor.release number meaning
+
+Major number::
+Incremented on:
++
+--
+- some major achievement
+- or any incompatible change (to input, to command-line options, to library API).
+--
++
+Usually these 2 are connected, since a "major achievement" may necessitate some bigger change which may introduce some incompatibility.
+
+Minor number::
+Incremented when some improvements that are really noticeable to all users are done. Incrementing this means "all users should really upgrade, because it's really significantly better than last version".
++
+For new application, the odd / even numbers have designated meaning:
++
+--
+- Odd minor number: unstable, compiled from latest version control state, changes frequently.
+- Even minor number: stable, released at a particular time.
+--
+
+Release number::
+Incremented each time I release new version, no exception. Sometimes new release fixes only some minor problems (that are significant only for a very small amount of users), or implement some minor functionality that isn't so significant to increment minor number.
+
+== Rules to follow for a good versioning scheme
+
+What IMHO good versioning scheme should look like?
+
+* There *must* be some release number that can be incremented on every, even most minor, change to uploaded binaries. This way version number specifies the _exact_ version of a program.
+
+* There *must* be a number to indicate incompatible changes.
+
+* There *should* be a number to indicate "significant changes" to user.
+
+* If program maintains stable/unstable branches (whether it's a good idea to do so depends on the program -- it's size, number of developers involved etc.) then there *must* be some easy way to distinguish releases of stable and unstable branches.
+
+* If program maintains public code repository, then there *should* be some easy way to distinguish versions compiled from the code in the middle of development and actual, "fixed" versions.
+
+Things to avoid in a good versioning scheme:
+
+* Don't use numbers like "9" or "99" in minor/release number to indicate "we're really close to releasing next version". This is a nice indication for users, but usually one cannot keep the schedule. Bad examples (as of 2004-01-16): xine: version `v0.99.3`, xcdroast: version `0.98alpha15`. Such version numbers tell only that "author thinks that it's close to next major release", but they really don't tell users _how_ close it is (since no-one believes that next xine or xcdroast will have 1.0 version. I bet these will be 0.99.4 and 0.98alpha16). And they make confusion, because no-one is able to tell any more how many minor releases program had (without looking at some HISTORY file, that is). E.g. I don't suppose that xine had exactly 99 releases (from 0.1 to 0.99) and then 3 more.
+
+* For the same reason, don't make assumption like "minor number is always 2 decimal digits". This is the same problem as discussed above, as it implies that after 0.99 you will have to switch to 1.0. What's so special about the number 99? Nothing. You can be sure that you will need a lot less or a lot more releases than 99 before you will be able to proudly present 1.0 release of your software.
