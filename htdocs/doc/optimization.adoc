@@ -1,0 +1,494 @@
+# Optimization and profiling
+include::common.adoc[]
+:description: Optimization and profiling guide for Castle Game Engine games.
+
+== Introduction
+
+Once you have a large application, with many large 3D / 2D models, you will probably start to wonder about the speed and memory usage.
+
+== Watch _FPS (Frames Per Second)_
+
+The main tool to measure your game speed is the _Frames Per Second (FPS)_ value. Use the cgeref:TCastleControl.Fps[] or cgeref:TCastleWindow.Fps[] to get an instance of cgeref:TFramesPerSecond[]. It contains two useful numbers (and some extra information): cgeref:TFramesPerSecond.RealFps[] and cgeref:TFramesPerSecond.OnlyRenderFps[].
+
+=== How to display the FPS value
+
+You can display the `Window.Fps.ToString` value in any way you like.
+
+// It intelligently combines some information, to show you how fast is your application.
+
+// Eventually, display directly the Window.Fps.RealFps value.
+// In this case, it is easiest to have TCastleControl.AutoRedisplay or
+// TCastleWindow.AutoRedisplay set to true, otherwise the meaning of RealFps
+// may not actually indicate the potential speed of your application.
+// It is true by default, so you're already set.
+
+* If you use `TCastleWindow`, you can trivially turn on `TCastleWindow.FpsShowOnCaption`.
+
+* You can display FPS using `TCastleLabel`. See the link:user_interface[manual page about using our user-interface classes]. Just update the `TCastleLabel.Caption` in every `OnUpdate` event to show the current FPS value. An an example, create a new project using link:editor[CGE editor] -- all new project templates include an FPS counter.
++
+Or you can display FPS using `TCastleFont.Print` in every `Render` event. See the link:manual_2d_ui_custom_drawn.php[manual about custom drawing]. As an example, https://github.com/castle-engine/castle-engine/blob/master/examples/physics/physics_3d_demo/gameinitialize.pas[see how examples/physics/physics_3d_demo/gameinitialize.pas shows the FPS] (search for `Container.Fps.ToString` there).
+
+* You can show the FPS value on some LCL label or form caption (if you use LCL forms).
++
+Warning: do not change the Lazarus control too often (like every frame). _Updating normal Lazarus controls all the time may slow your OpenGL context drastically_. Also, do not write to the console (e.g. using `Writeln`) every frame -- the very fact of doing this will slow down your application a lot.
++
+If you need to change some Lazarus control, or write the FPS to some log, use a timer (like cgeref:TCastleTimer[] or Lazarus `TTimer`) to write it e.g. only once per second. The `RealFps` and `OnlyRenderFps` are actually just an average from the last second, so there's really no need to show them more often.
+
+=== How to interpret the FPS value
+
+There are two FPS numbers measured: "_real FPS_" and "_only render FPS_". "_Only render FPS_" is usually slightly larger. Larger is better, of course: it means that you have smoother animation.
+
+*Use "_real FPS_" to measure your overall game speed. This is the actual number of frames per second that we managed to display.*
+
+Caveats:
+
+* Make sure to have an animation that constantly updates your screen, or use `AutoRedisplay` = `true` (it is the default, so you're probably already set).
++
+Otherwise, we may not refresh the screen continuously (no point to redraw, if both the scene and camera are completely static; this way we let other applications to work more smoothly, and we save your laptop battery). Then "_real FPS_" will drop to almost zero. This can be detected by looking at `Window.Fps.WasSleeping`. The output of `Window.Fps.ToString` also accounts for it, showing _"no frames rendered"_ or _"no need to render all frames"_.
+
+* If you hope to see higher values than 120 (the default `LimitFPS` value) then turn off "_limit FPS_" feature.
++
+** In games using `TCastleWindow` (if you use a standard program template, or manually call `Window.ParseParameters`) you can do it just by passing `--no-limit-fps` command-line option.
+** Or use link:castle-model-viewer[Castle Model Viewer] _"Preferences -> Frames Per Second"_ menu item to set them to zero.
+** Or change cgeref:TCastleApplicationProperties.LimitFPS[ApplicationProperties.LimitFPS] to zero. Changing it to zero disables the "limit fps" feature.
++
+You will also need to turn off "_vertical synchronization_" of the GPU to achieve arbitrarily high FPS.
+
+* Note that the monitor will actually drop some frames above it's frequency, like 60. (This is relevant only if "_vertical synchronization_" is off.)
++
+This _may_ cause you to observe that above some threshold, FPS are "easier to gain" by optimizations, which may lead you to a false judgement about which optimizations are more useful than others. _To make a good judgement about what is faster / slower, compare two versions of your program when only one thing changes._
+
+*"_Only render FPS_" measures how much frames we would get, if we ignore the time spent outside `Render` events.* It's useful to compare it with _"real FPS"_, large difference _may_ indicate that you can make some optimizations in CPU code (e.g. collision detection or animations) to gain overall speed. Caveats:
+
+* Modern GPUs work in parallel to the CPU. So _"how much time CPU spent in Render"_ doesn't necessarily relate to _"how much time GPU spent on performing your drawing commands"_.
++
+For example: if you set `LimitFPS` to a small value (like 10), you may observe that _"only render FPS"_ grows very high. Why? Because when the CPU is idle (which is often if `LimitFPS` is small), then GPU has a free time to finish rendering previous frame. So the GPU does the work for free, outside of `Render` time, when your CPU is busy waiting. OTOH when CPU works on producing new frames all the time, then you have to wait inside `Render` until previous frame finishes.
++
+In other words, improvements to _"only render FPS"_ must be taken with a grain of salt. We spend less or more time in `Render` event: this does not always mean that we render more efficiently.
++
+Still, _"only render FPS"_ is often a useful indicator.
+
+If you see a large _"only render FPS"_ value, much larger than _"real FPS"_...::
+It means that `Render` is quick. So we probably don't need to wait for the whole previous frame to finish when starting rendering a new frame. To some extent, that's good -- you're probably doing useful work in the meantime on CPU, while GPU is working. Often it means that there is something to gain optimizing the CPU side, like collisions or animations.
++
+_No guarantees: It does not mean that you can actually achieve this number of FPS as "real FPS"._ At some point, decreasing CPU work will just uncover that we have to wait for GPU to finish anyway. In which case, you will observe _"only render FPS"_ to drop (which is nothing alarming, it doesn't necessarily mean that rendering is less efficient; it just means that GPU speed becomes a factor too).
+
+When _"only render FPS"_ is almost equal to _"real FPS"_...::
+Then we spend most time in `Render`. This is normal if neither rendering nor collisions are a bottleneck -- then we probably just spend time in the `Render` waiting for vertical synchronization to happen, and you can't really achieve more than 60 real FPS in the typical case with "_vertical synchronization_" turned on.
++
+However, if your _"real FPS"_ is much lower than your refresh rate, and your _"only render FPS"_ is equal to _"real FPS"_, then you probably can optimize the rendering. (Make smaller models, use less demanding shader effects etc.)
+
+=== Watch also viewport statistics
+
+Another useful statistics to display is cgeref:TRenderStatistics.ToString[Viewport.Statistics.ToString]. This shows how many scenes, and how many shapes, have been rendered in the last frame. It can be a useful guideline when to activate some specific optimizations discussed below. E.g. large value of displayed shapes may indicate that _dynamic batching_ may be useful.
+
+== Making your games run fast
+
+=== Basic rule: use small and static geometry, as much as possible
+
+First of all, watch the number of vertexes and faces of the models you load. Use link:castle-model-viewer[Castle Model Viewer] menu item _Help -> Scene Information_ for this.
+
+Graphic effects dealing with _dynamic and detailed lighting_, like _shadows_ or _bump mapping_, have a cost. So use them only if necessary. In case of static scenes, try to "bake" such lighting effects to regular textures (use e.g. Blender _Bake_ functionality), instead of activating a costly runtime effect.
+
+=== Compile in "release" mode for speed
+
+Our link:editor[editor], https://castle-engine.io/build_tool[build tool] as well as https://www.lazarus-ide.org/[Lazarus] support the concept of "build modes".
+
+* When you're in the middle of the development and you're testing the game for bugs, use the `debug` mode, that adds a lot of run-time checks to your code. This allows to get a clear and nice error when you e.g. access an invalid array index. If you use our https://castle-engine.io/build_tool[build tool], just pass the `--mode=debug` command-line parameter to it.
++
+Our vectors are also like arrays, so doing stuff like `MyVector[2] := 123.0;` is also checked (it's valid if `MyVector` is a 3D or 4D vector, invalid if it's a 2D vector). Actually, this simple case is checked at compile-time with the vector API since Castle Game Engine 6.3, but more convoluted cases are still checked at run-time.
+
+* When you need the maximum speed (when you want to build a _"final"_ version for the player, or when you check / compare / profile the speed), always use the `release` mode.
++
+The code runs *much faster* in release mode. The speed difference may be really noticeable -- though it depends on the exact application.
++
+--
+** For example, our "toy" software ray-tracer (`CastleRayTracer` unit) is _1.9 times slower in development mode vs release mode_.
+** Animating skin on CPU using link:x3d_implementation_hanim.php[HAnim X3D nodes] for one test model (_Lucy_ from Seamless3D) was ~52 FPS in release mode, ~20 FPS in debug mode. This is a big visual difference: _release mode_ feels completely smooth while _debug mode_ is noticeably choppy.
+--
++
+The speed differences of a typical game is usually not that drastic. Since a normal game doesn't spend 100% of time calculating math expressions on CPU, unlike a software ray-tracer or skinned animation on CPU. And we usually link:skin[calculate skinned animation on GPU] when it uses `Skin` node or comes from glTF.
++
+But significant differences are still expected. Especially if you measure the performance of a particular calculation (not just looking at overall game FPS).
++
+So in most cases it's really important that you measure the speed only of the *release* build of your game, and this is the version that you want to provide to your players.
+
+=== Avoid rendering things that are not going to be visible
+
+A common theme in many optimizations is _culling_, in which we avoid passing certain geometry to GPU, because we can quickly determine that it's not going to be visible.
+
+==== Frustum culling (done by default)
+
+The engine by default performs frustum culling, using per-shape and per-scene bounding boxes and spheres. cgeref:TCastleScene.ShapeFrustumCulling[] and cgeref:TCastleScene.SceneFrustumCulling[] control this.
+
+The simplest advise is to _keep them enabled_, let the engine do its job :) It's almost never useful to disable these checks, unless you have a very specific case where you just know user is going to see something in all frames, _and the test really consumes time_ (which in practice is never true, the test is trivial).
+
+Moreover, enable cgeref:TCastleSceneCore.PreciseCollisions[] to have per-shape frustum culling be done using shapes octree. This makes it faster. Although it consumes additional time to build and update the octree. It's usually a good idea for large 3D models like a game level.
+
+==== Backface culling (just make sure your models enable it)
+
+Often the viewer can see the geometry faces only from one side, when the mesh is watertight (see also link:shadow_volumes[shadow volumes] that require 2-manifold objects).
+
+In such case, _backface culling_ should be *on*. This is the default case (X3D nodes like `IndexedFaceSet` have their `solid` field equal `TRUE` by default). It avoids useless drawing of the other side of the faces.
+
+When exporting 3D models from https://castle-engine.io/blender[authoring software like Blender], make sure that the appropriate checkbox saying _"Backface Culling"_ is enabled.
+
+==== Distance culling
+
+Sometimes you can avoid rendering objects too far from the camera using cgeref:TCastleScene.DistanceCulling[]. See the https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/fog_and_distance_culling[examples/viewport_and_scenes/fog_and_distance_culling] for a simplest example. This is a natural optimization when you have a fog and/or a large outdoor world.
+
+==== Occlusion culling
+
+Using the https://castle-engine.io/occlusion_culling[occlusion culling] is often a good idea in large city or indoor levels, where walls or large buildings can obscure a significant part of your geometry. Activate it by cgeref:TCastleViewport.OcclusionCulling[], see https://castle-engine.io/occlusion_culling[occlusion culling] docs for details.
+
+==== LODs
+
+Use _LOD (level of detail)_. This is not strictly about _eliminating_ objects that are invisible from rendering, but we mention it here, as it's related: it allows to replace complex objects with simpler objects, depending on the camera distance. See https://github.com/castle-engine/castle-engine/blob/master/examples/viewport_and_scenes/level_of_detail_demo/[examples/viewport_and_scenes/level_of_detail_demo] demo for a simplest example how setup LODs (and optionally combine them with cgeref:TCastleTransformReference[]).
+
+=== Textures
+
+Optimize textures to increase the speed and lower GPU memory usage:
+
+* Use texture compression (makes GPU memory usage more efficient). You can do it link:creating_data_auto_generated_textures.php[using _material properties_ and auto-compressing the textures using our build tool].
+* Scale down textures on low-end devices (desktops and mobiles). You can do it at loading link:creating_data_auto_generated_textures.php[using _material properties_ and auto-downscaling the textures using our build tool], see cgeref:TextureLoadingScale[]. Or you can do it at runtime, by cgeref:GLTextureScale[]. Both of these approaches have their strengths, and can be combined.
+* Use texture atlases (try to reuse the whole X3D `Appearance` across many X3D shapes, if possible). This avoids texture switching when rendering, so the scene renders faster. When exporting from https://castle-engine.io/spine[Spine], be sure to use atlases.
+* Use link:sprite_sheets[sprite sheets] instead of separate images (like `TGLVideo2D` class). This again avoids texture switching when rendering, making the scene render faster. It also allows to easily use any texture size (not necessarily a power of two) for the frame size, and still compress the whole sprite, so it cooperates well with texture compression.
+* Don't set too high `TextureProperties.anisotropicDegree` if not needed. `anisotropicDegree` should only be set to values > 1 when it makes a visual difference in your case.
+
+=== Animations
+
+There are some cgeref:TCastleScene[] features that are usually turned on, but in some special cases may be avoided:
+
+* Do not enable cgeref:TCastleSceneCore.ProcessEvents[] if the scene remains static.
+* Do not enable cgeref:TCastleSceneCore.PreciseCollisions[] if you don't need precise collisions (treating scene as a mesh, except when skinned animation is used) and simpler collisions (treating scene as bounding box) are enough.
+
+We have an example https://github.com/castle-engine/castle-engine/tree/master/examples/animations/optimize_animations_test[examples/animations/optimize_animations_test] demonstrating a few possible animations optimizations discussed below. Read the README there.
+
+Various techniques to optimize animations include:
+
+* If your model has animations but is often not visible (outside of view frustum), then consider using `Scene.AnimateOnlyWhenVisible := true` (see cgeref:TCastleSceneCore.AnimateOnlyWhenVisible[]).
+
+* If the model is small, and not updating it's animations every frame will not be noticeable, then consider setting `Scene.AnimateSkipTicks` to something larger than 0 (try 1 or 2). (see cgeref:TCastleSceneCore.AnimateSkipTicks[]).
+
+// Consider using TCastlePrecalculatedAnimation to "bake" animation from events as a series of static scenes.
+
+* Watch out what you're changing in the X3D nodes. Most changes, in particular the ones that can be achieved by sending X3D events (these changes are kind of "suggested by the X3D standard" to be optimized) are fast. But some changes are very slow, cause rebuilding of scene structures, e.g. reorganizing X3D node hierarchy. So avoid doing them during game. How to detect if long _"ChangedAll"_ occurs:
++
+** Set `LogChanges := true` and watch link:log[log] for lines saying _ChangedAll_.
+** Set `Profiler.Enabled := true` and watch link:log[log] for profiler of long _ChangedAll_ calls.
+
+=== Shading, Lighting Model
+
+_PBR (Physically Based Rendering, Lighting Model)_ and _Phong Shading_ look great and modern, but they have a cost.
+
+PBR is default when using link:gltf[glTF], available also in link:x3d[X3D] if you use cgeref:TPhysicalMaterialNode[]. _Phong Shading_ is default across the engine for all models.
+
+NOTE: When reading this section, https://github.com/michaliskambi/x3d-tests/wiki/Do-not-confuse-Phong-shading-with-Phong-lighting-model[do not confuse Phong shading with Phong lighting model].
+
+If you're fine with a more "retro" lighting look, you can gain some speed by:
+
+* Using _Phong lighting model_ instead of PBR.
++
+To do this: If your models are in link:x3d[X3D], `Material` node instead of `PhysicalMaterial` node. If your models are in link:gltf[glTF], set global cgeref:GltfForcePhongMaterials[] to `true`.
+
+* Using _Gouraud shading_ instead of _Phong shading_.
++
+To do this set cgeref:TCastleRenderOptions.PhongShading[MyScene.RenderOptions.PhongShading] to `false` for all your scenes.
+
+=== Light Sources Radius
+
+When designing lights, limit their scope or radius. When creating lights in new Blender, select _"Custom Distance"_ at light. This limits the shapes where the light has to be taken into account.
+
+=== Create complex shapes, not trivial ones
+
+Modern GPUs can "consume" a huge number of vertexes very fast, as long as they are provided to them in a single "batch" or "draw call".
+
+In our engine, the "shape" is the unit of information we provide to GPU. It is simply a X3D shape. In most cases, it also corresponds to the 3D object you design in your 3D modeler, e.g. Blender 3D object in simple cases is exported to a single X3D shape (although it may be split into a couple of shapes if you use different materials/textures on it, as X3D is a little more limited (and also more GPU friendly)).
+
+The general advice is to compromise:
+
+. Do not make too many too trivial shapes. Do not make millions of shapes with only a few vertexes -- each shape will be provided in a separate VBO to OpenGL, which isn't very efficient.
+
+. Do not make too few shapes.
++
+Each shape is passed as a whole to GPU (splitting shape on the fly would cause unacceptable slowdown), and shapes may be culled on CPU using various _culling_ techniques listed on this page (frustum culling, https://castle-engine.io/occlusion_culling[occlusion culling] and more). By using only a few very large shapes, you make these culling algorithms worthless.
+
+A rule of thumb is to keep your number of shapes in a scene between 100 and 1000. But that's really just a rule of thumb, different level designs will definitely have different considerations.
+
+You can also look at the number of triangles in your shape. Only a few triangles for a shape is not optimal -- we will waste resources by creating a lot of VBOs, each with only a few triangles (the engine cannot yet combine the shapes automatically). Instead, merge your shapes -- to have hundreds or thousands of triangles in a single shape.
+
+==== Try dynamic batching
+
+If you have a large number of small shapes using the same shader, consider turning on cgeref:DynamicBatching[]. This will internally detect and merge multiple shapes into one just before passing them to the GPU. In some cases, it is a very powerful optimization, reducing the number of _draw calls_.
+
+Watch the `Viewport.Statistics.ToString` to see whether it reduces the number of rendered shapes.
+
+It is particularly useful e.g. to optimize https://castle-engine.io/spine[Spine] rendering, as 2D animated models are often composed from a number of trivial textured quads that are transformed each frame. Dynamic batching can drastically reduce the number of draw calls in this case.
+
+=== Share TCastleScenes instances if possible
+
+==== Reuse the same TCastleScene instance many times (e.g. by TCastleTransformReference)
+
+To reduce memory usage, you can use the same cgeref:TCastleScene[] instance many times within `Viewport.Items`.
+
+* One way to do this is just to add, from Pascal code, the same cgeref:TCastleScene[] instance many times to `Viewport.Items`.
++
+See the https://castle-engine.io/viewport_and_scenes_from_code#_multiple_instances_of_the_same_scene["Multiple instances of the same scene" section of the manual "Writing code to modify scenes and transformations"] for an example.
+
+* Another way to ensure such sharing (that results in the same sharing underneath) is to use cgeref:TCastleTransformReference[]. This approach can also be used at design-time, i.e. you set set-up such sharing in CGE editor.
++
+Examples that use it include https://github.com/castle-engine/castle-engine/tree/master/examples/terrain[examples/terrain] (for trees) and https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/shadows_distance_culling[examples/viewport_and_scenes/shadows_distance_culling].
+
+However, this optimization is suitable only if the scene should always be in the same animation frame (or not animated at all). If you want to play different animations, you have to create separate TCastleScene instances (you can create them efficiently using the cgeref:TCastleScene.Clone[] method).
+
+==== Maybe combine many small models into one TCastleScene instance
+
+In some cases, combining many cgeref:TCastleScene[] instances into one helps. To do this, load your 3D models to cgeref:TX3DRootNode[] using `LoadNode`, and then create a new single cgeref:TX3DRootNode[] instance that will have many other nodes as children. That is, create one new cgeref:TX3DRootNode[] to keep them all, and for each scene add it's cgeref:TX3DRootNode[] (wrapped in `TTransformNode`) to that single cgeref:TX3DRootNode[].
+
+This allows you to load multiple 3D files into a single cgeref:TCastleScene[], which may make stuff faster -- there will be only one octree (used for collision routines and frustum culling) for the whole scene. Right now, we have an octree inside each TCastleScene, so it's not optimal to have thousands of TCastleScene instances with collision detection.
+
+See the manual page link:transformation_hierarchy[Transformation hierarchy] for a detailed discussion of this, and when it may be a good idea to merge scenes.
+
+Note that _we do not advise using this optimization too hastily_. It sometimes makes sense, but _usually having one TCastleScene for each one model (that is, not combining them) is better_:
+
+* It makes code simpler. You trivially load each model by `TCastleScene.Load`. You don't need to deal or understand anything about X3D nodes.
+* It allows to <<_animations,run animations>> in the most intuitive way: on each model, you can call `TCastleScene.PlayAnimation`.
+* The link:physics[physics engine] right now treats an entire TCastleTransform (like TCastleScene) as a single rigid body. You cannot combine two scenes, if you want them to be independent rigid bodies for the physics engine.
+
+Various things discussed here are link:roadmap[planned to be improved in the engine], to avoid leaving you with such difficult decision. On one side, we plan to merge the `TCastleTransform` and `TTransformNode` hierarchies, making the gain from merging scenes irrelevant. On the other hand, we plan to allow physics to treat specific shapes as rigid bodies, making it possible to apply physics on smaller units than "entire TCastleScene".
+
+=== Collisions
+
+If you enable cgeref:TCastleSceneCore.PreciseCollisions[], then we build a spatial structure (octree) that performs collisions with the actual triangles of your 3D model. This results in very precise collisions, but it can eat an unnecessary amount of memory (and, sometimes, take unnecessary amount of time) if you have a high-poly mesh. Often, many shapes don't need to have such precise collisions (e.g. a complicated 3D tree may be approximated using a simple cylinder representing tree trunk).
+
+Note that collisions with link:skin[skinned animated objects] automatically use their bounding box, to avoid rebuilding octrees every frame.
+
+If you want to keep using cgeref:TCastleSceneCore.PreciseCollisions[] but eliminate particular scene _subset_ from colliding, you can use cgeref:TCollisionNode[] which is an link:x3d[X3D node]. This allows to mark some shapes as non-collidable or to provide a simpler "proxy" shape to use for collisions. Using the `Collision` requires writing X3D code manually, but it's really simple. You can still export your scenes from 3D software, like Blender -- you only need to manually write a "wrapper" X3D file around them.
+
+* An example X3D file showing this technique: https://github.com/castle-engine/wyrd-forest/blob/master/data/tree/oaktree_with_good_collisions.x3dv[tree from "Wyrd Forest" game].
+* More examples are in `vrml_2/collisions_final.wrl` demo inside link:demo_models[our demo models].
+
+// It's really trivial in X3D, and we support it 100%...
+
+You can also build a `Collision` node by code. We have a helper method for this: cgeref:TCollisionNode.CollideAsBox[].
+
+// Not available anymore, was never useful:
+// Another possible octree optimization is to adjust the parameters how the octree is created.
+
+=== Avoid loading (especially from disk!) during the game
+
+Avoid any loading (from disk to normal memory, or from normal memory to GPU memory) once the game is running. Doing this during the game will inevitably cause a small stutter, which breaks the smoothness of the gameplay. Everything necessary should be loaded at the beginning, possibly while showing some "loading..." screen to the user.
+
+==== Prepare resources
+
+Use `TCastleViewport.PrepareResources` to load everything referenced by your scenes to GPU. Be sure to pass all the cgeref:TCastleScene[] instances to `TCastleViewport.PrepareResources` in the "loading" stage.
+
+==== Log loading
+
+Enable some (or all) of these flags to get extensive information in the log about all the loading that is happening:
+
+* cgeref:LogTextureLoading[]
+* cgeref:LogAllLoading[]
+* cgeref:TTextureMemoryProfiler.Enabled[TextureMemoryProfiler.Enabled]
+* cgeref:TSoundEngine.LogSoundLoading[]
+* cgeref:TCastleView.Log[]
+* Also enabling cgeref:TCastleProfiler.Enabled[Profiler.Enabled] and doing `WritelnLog(Profiler.Summary)` is a great way to be informed about most loading.
+
+Beware: Some of these flags (in particular cgeref:LogAllLoading[]) can produce _a lot_ of information, and you probably don't want to see it always. Dumping this information to the log may even cause a *noticeable slowdown* during loading stage, so do not bother to measure your loading speed when any of these flags are turned on and you see they produce a lot of output.
+
+You can also use cgeref:TCastleProfiler[] to easily get information about what was loaded, and what took most time to load.
+
+=== Blending
+
+We use link:blending[alpha blending] to render partially transparent shapes. Blending is used automatically if you have a texture with a smooth alpha channel, or if your `Material.transparency` is less than 1.
+
+Note: Just because your texture has _some_ alpha channel, it doesn't mean that we use blending. By default, the engine analyses the alpha channel contents, to determine whether it indicates alpha blending (_smooth_ alpha channel), alpha testing (all alpha values are either "0" or "1"), or maybe it's opaque (all alpha values equal "1"). link:x3d_implementation_texturing_extensions.php#section_ext_alpha_channel_detection[You can always explicitly specify the texture alpha channel treatment using the `alphaChannel` field in X3D]. You can also explicitly specify the alpha mode for a given shape, see link:blending[alpha blending] for details.
+
+Rendering blending is a little costly, in a general case. The transparent shapes have to be sorted every frame. Hints to make it faster:
+
+* If possible, do not use many transparent shapes. This will keep the cost of sorting minimal.
+
+* If possible, turn off the sorting, setting cgeref:TCastleViewport.BlendingSort[] to cgeref:sortNone[].
++
+Sorting is only necessary if you may see multiple partially-transparent shapes on the same screen pixel.
+
+* You can make sorting unnecessary by using _blending modes_ that make the order of rendering partially-transparent shapes irrelevant. For example, blending mode with `srcFactor = "src_alpha"` and `destFactor = "one"`. link:x3d_extensions.php#section_ext_blending[You can use a `blendMode` field in X3D to set a specific blending mode]. Of course, it will look differently, but maybe acceptably?
++
+So, consider changing the blending mode _and_ then turning off sorting.
+
+* Finally, consider do you really need transparency by _blending_. Maybe you can work with a transparency by _alpha testing_? _Alpha testing_ means that every pixel is either opaque, or completely transparent, depending on the alpha value. It's much more efficient to use, as alpha tested shapes can be rendered along with the normal, completely opaque shapes, and only the GPU cares about the actual "testing". There's no need for sorting. Also, _alpha testing_ cooperates nicely with link:x3d_extensions_shadow_maps.php[shadow maps].
++
+Whether the _alpha testing_ looks good depends on your use-case, on your textures.
++
+To use alpha-testing, you can:
++
+. Either make the alpha channel of your texture non-smooth, that is: every pixel should have alpha value equal to 0 or 1, never something in between. For example, in GIMP, increase the contrast (to maximum) of the alpha channel mask.
+. Or you can force using alpha testing by link:x3d_implementation_texturing_extensions.php#section_ext_alpha_channel_detection[using `alphaChannel "TEST"` in X3D].
+
+=== Loading PNG using libpng
+
+_Castle Game Engine_ can use Libpng (faster, but requires external library) or FpImage (always possible, on all platforms) to load PNG.
+
+FPImage does not require any external libraries, and thus it instantly works (and in the same way) on all platforms. However, external _Libpng_ is often much (even 4x) faster. That is because _Libpng_ allows to make various transformations during file reading (instead of processing the pixels later), and it doesn't force us to read using 16-bit-per-channel API (like FpImage does).
+
+We will automatically use Libpng if detected (and fallback on FPImage otherwise).
+
+* On Linux, FreeBSD, macOS and other desktop Unix systems it's usually installed system-wide, so you don't need to worry.
+* On Windows, make sure to distribute Libpng alongside your exe. Our https://castle-engine.io/build_tool[build tool] takes care of this for you: it will copy appropriate DLL files when you do `castle-engine compile ...` or `castle-engine package ...`.
+
+=== User interface and 2D drawing
+
+Turn on cgeref:TCastleUserInterface.Culling[] to optimize the case when a resource-intensive control is often off-screen (and thus doesn't need to be rendered or process other events). This also matters if the control is outside of the parent scrollable view (cgeref:TCastleScrollView[]) or other parent with cgeref:TCastleUserInterface.ClipChildren[]. This is very useful when creating a large number of children inside cgeref:TCastleScrollView[].
+
+When rendering 2D stuff yourself using cgeref:TDrawableImage[], you can often make a dramatic speedup by using the overload that draws multiple images (maybe different, maybe the same image parts) by a single `procedure TDrawableImage.Draw(ScreenRects, ImageRects: PFloatRectangleArray; const Count: Integer);` call.
+
+Try turning on cgeref:TCastleContainer.UserInterfaceBatching[]. It reduces the number of draw calls needed in some cases to draw UI, which may provide a speedup. See https://github.com/castle-engine/castle-engine/tree/master/examples/user_interface/ui_batching[examples/user_interface/ui_batching] for example how to use it and measure it.
+
+=== Last resort: consider switching to old rendering pipeline for really old machines
+
+Our cgeref:TGLFeatures.RequestCapabilities[] allow to force rendering using an ancient fixed-function pipeline. This is a rather "nuclear" way to resign from many benefits of modern rendering (PBR, Phong shading) and instead have something that is faster on many old GPUs, that have been optimized for fixed-function pipeline.
+
+Note that many applications will look different (and worse) because of the unavoidable difference. If you use glTF with PBR, then switching to fixed-function will disable PBR and force older Phong lighting model with Gouraud shading.
+
+To try this, set
+
+[source,pascal]
+----
+TGLFeatures.RequestCapabilities := rcForceFixedFunction;
+----
+
+before creating the window (e.g. in the `initialization` section of `GameInitialize` unit in your application).
+
+Users can also run any application with command-line option `--capabilities=force-fixed-function`.
+
+== Profile (measure speed and memory usage)
+
+=== Use TCastleProfiler to measure time of tasks and their sub-tasks
+
+Use cgeref:TCastleProfiler[] (through the singleton cgeref:Profiler[], in cgeref:CastleTimeUtils[] unit) to easily profile the speed of various tasks. You can measure the speed of your own code, or just enable the profiler to measure the speed of various engine loading operations. The profiler automatically builds and sorts a tree of _"which sub-tasks contribute to the time of each task"_, so you can investigate _"what took most time in something else"_, e.g. loading which 3D model took the most time when loading a game level.
+
+Usage:
+
+. Enable it by calling
++
+[source,pascal]
+----
+Profiler.Enabled := true;
+----
++
+Usually you want to do this as early as possible, e.g. from the `initialization` section of your main unit like `GameInitialize`.
+
+. Surround the code you want to measure with cgeref:TCastleProfiler.Start[Profiler.Start] and cgeref:TCastleProfiler.Stop[Profiler.Stop] calls. Like this:
++
+[source,pascal]
+----
+procedure TMyClass.LoadSomething;
+var
+  TimeStart: TCastleProfilerTime;
+begin
+  TimeStart := Profiler.Start('Loading something (in TMyClass)');
+  try
+    // do the time-consuming loading now...
+  finally
+    Profiler.Stop(TimeStart);
+  end;
+end;
+----
++
+The engine automatically measures the speed of various loading operations, like loading images, sounds, 3D models. So you don't actually need to add any cgeref:TCastleProfiler.Start[Profiler.Start] / cgeref:TCastleProfiler.Stop[Profiler.Stop] calls if you just want to measure the speed of loading assets.
+
+. You want to output the profiling information at some point.
++
+--
+* For a simple output of everything captured so far, just use cgeref:TCastleProfiler.Summary[Profiler.Summary] anytime you want. For example write it to the link:log[log] file when some button is pressed:
++
+[source,pascal]
+----
+WritelnLog(Profiler.Summary);
+----
+
+* If you measure some specific task, you can output only this task (including sub-tasks that happened within) by passing additional argument to the cgeref:TCastleProfiler.Stop[Profiler.Stop]. Like this:
++
+[source,pascal]
+----
+Profiler.Stop(TimeStart, true);
+----
+
+* If you want to measure the time of link:views[view] starting, just set cgeref:TCastleView.Log[] to `true` early (e.g. in `initialization` of `GameInitialize` unit) like this:
++
+[source,pascal]
+----
+TCastleView.Log := true;
+----
+--
+
+Expect an output like this:
+
+----
+-------------------- TCastleApplication Initialization begin
+2.87 [2.87] TCastleApplication Initialization
+> 2.87 [2.87] - TCastleApplication.OnInitialize
+> > 1.91 [1.91] - Loading "castle-data:/level/level.gltf" (TCastleSceneCore)
+> > > 1.44 [1.44] - ChangedAll for Scene1 from castle-data:/level/level.gltf
+> > > > 0.35 [0.35] - Creating octree for shape Circle.001/Circle.001_2/Circle.001_Primitive0/IndexedTriangleSet
+> > > > 0.21 [0.21] - Creating octree for shape Plane.003/Plane.003_2/Plane.003_Primitive0/IndexedTriangleSet
+> > > > 0.12 [0.12] - Creating octree for shape Stairs_2/Circle/Circle_Primitive0/IndexedTriangleSet
+> > > > 0.04 [0.04] - Creating octree for shape Cube.052/Cube.069/Cube.069_Primitive0/IndexedTriangleSet
+....
+-------------------- TCastleApplication Initialization end
+----
+
+=== Use TCastleFrameProfiler (just press F8!) to measure what consumes your time
+
+You can activate inspector by F8 to view the "frame profiler" easily:
+
+video::5jBdPdj75yk[youtube,width=560,height=315]
+
+We have cgeref:TCastleFrameProfiler[] to profile the time spend in a particular frame (from one `OnUpdate` start to another). Use this to track short tasks that occur within a frame. The engine automatically tracks there some operations (just enable `FrameProfiler.Enabled := true` and look in the link:log[log] for results), you can also track other operations (specific to your game). An example output looks like this:
+
+----
+-------------------- FrameProfiler begin
+Frame time: 0.02 secs (we should have 51.22 FPS based on this):
+- BeforeRender: 0%
+- Render: 88% (0.02 secs, we should have 58.34 "only render FPS" based on this)
+  - TCastleTransform.Render transformation: 0%
+  - TCastleScene.Render: 47%
+    - ShapesFilterBlending: 1%
+- Update: 12%
+  - TCastleSceneCore.Update: 3%
+- Other:
+-------------------- FrameProfiler end
+----
+
+This example output shows that:
+
+* The majority of the work (88%) is spent doing rendering.
+* One conclusion is that optimizing animations (in TCastleSceneCore.Update) will not gain you much, as they only take 3% of time.
+* If you would like to optimize, in this particular example you should think:
++
+. can I optimize rendering (TCastleScene.Render),
+. what else eats time in Render (there's a large difference between Render and TCastleScene.Render, so what is consuming the 41%?).
+
+=== Use Valgrind, incredibly powerful profiler on Linux
+
+You can compile your application with the https://castle-engine.io/build_tool[build tool] using `--mode=valgrind` to get an executable ready to be tested with the magnificent http://valgrind.org/[Valgrind] tool. https://castle-engine.io/profiling_using_valgrind[Read instructions how to use Valgrind with Castle Game Engine applications].
+
+=== Use profiler on Nintendo Switch
+
+On https://castle-engine.io/nintendo_switch[Nintendo Switch], another profiler is available. More information is available in the Nintendo Switch-specific documentation of CGE (only for registered developers on Nintendo).
+
+=== Use any other profiler for FPC
+
+In general, you can use any FPC tool to profile your code, for memory and speed. See also http://wiki.lazarus.freepascal.org/Profiling[FPC wiki about profiling].
+
+== Measure memory use and watch out for memory leaks
+
+=== Detect memory leaks with HeapTrc (-gh)
+
+link:memory_leaks[We strongly advise to detect memory leaks automatically using HeapTrc (FPC) or ReportMemoryLeaksOnShutdown (Delphi). The details how to do it are here.]
+
+=== Other tools
+
+We do not have any engine-specific tool to measure memory usage or detect memory problems, as there are plenty of them available with FPC+Lazarus already. To simply see the memory usage, just use process monitor that comes with your OS. See also Lazarus units like `LeakInfo`.
+
+You can use full-blown memory profilers like valgrind's massif with FPC code (see section _"Profiling"_ above on this page about valgrind).

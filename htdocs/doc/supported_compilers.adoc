@@ -1,0 +1,143 @@
+# Supported compilers and IDEs
+include::common.adoc[]
+:description: Supported compilers (FPC, Delphi) and IDEs (Lazarus) for Castle Game Engine.
+
+== FPC and Lazarus
+
+=== FPC version
+
+_FPC (Free Pascal Compiler)_ is a Pascal compiler. You need a compiler, either FPC or link:delphi[Delphi], to build _Castle Game Engine_ applications.
+
+Our link:download[official downloads] already include the most recommended (latest stable) FPC version, so you don't need to install FPC yourself, our engine can build applications _"out of the box"_. Our FPC version is built using https://github.com/castle-engine/castle-fpc[scripts and CI in castle-fpc repository].
+
+Still, you can also install FPC yourself, and point CGE to use it. Some of the options to install FPC are:
+
+* Download and install from the http://www.freepascal.org/[FPC website].
+* Or download and install https://www.lazarus-ide.org/[Lazarus along with FPC].
+* Or download and install both Lazarus and FPC using link:fpcupdeluxe[FpcUpDeluxe].
+* Some systems have package repositories from which you can install FPC, like `apt install fpc` on Debian / Ubuntu, `brew install fpc` on macOS.
+
+We always *support and advice the latest stable release of FPC: right now this means 3.2.2*.
+
+Usually, we also support a couple of older FPC releases. Right now we support any FPC version >= 3.2.0.
+
+*Explanation and history*: We use some modern Pascal features (like generics) in CGE, so we occasionally bump the required FPC version. We check what is commonly available, e.g. https://packages.debian.org/stable/fpc[what is in the latest Debian stable (which is a baseline for many other Linux distros)].
+
+// TMI:
+// Last time, on 2021-12-12, we bumped required version for _Castle Game Engine 7.0-alpha.snapshot_ from _FPC >= 3.0.2_ to _FPC >= 3.2.0_.
+
+NOTE: *If you want to build for Aarch64 (64-bit Arm), as found on many systems (Linux,Android, iOS, macOS)*: While we support any FPC >= 3.2.0, we strongly advise FPC >= 3.2.2. That is because certain optimizations have been broken in older FPC versions. Our build tool disables optimizations in released builds when it detects Aarch64 and older FPC.
+
+NOTE: *FPC 3.2.2 has known issues linking on latest macOS and Linux/Arm and Linux/Aarch64 (like Raspberry Pi), so you need to use FPC 3.2.3 on these platforms*. If you just get our link:download[official downloads] they already have working FPC version.
+
+=== Lazarus version
+
+https://www.lazarus-ide.org/[Lazarus] is an IDE (editor, debugger etc.) built around FPC. It also features a visual classes library (LCL) and an associated form designer.
+
+Strictly speaking, you don't need Lazarus to use _Castle Game Engine_. You can use any editor to write Pascal code (e.g. link:vscode[VS Code]) and compile your games using the engine link:editor[editor] and link:build_tool[build tool] which under the hood just call FPC (or Delphi) command-line compilers.
+
+That said, of course you can use Lazarus with CGE, it's a feature-packed cross-platform comfortable IDE made for Pascal. Moreover, you need Lazarus if you want to
+
+. link:control_on_form[Put TCastleControl on a Lazarus form (LCL)],
+. link:compiling_from_source[Compile CGE editor from sources] or
+. link:custom_components[Create custom components available at design-time, in an editor version special to the given project.]
+
+As for Lazarus version:
+
+* *On all platforms, we always recommend the latest stable Lazarus release*. Right now (as of 2026-02-04) this is *Lazarus 4.4*.
++
+This is what we use to build CGE with, using https://github.com/castle-engine/castle-lazarus/[scripts and CI in castle-lazarus repository].
++
+This is also the version in our link:docker[Docker images].
+
+* *On Windows: We require at least Lazarus >= 3.2*.
++
+Older Lazarus versions have known issues:
++
+--
+** Versions before 2.2 don't have https://gitlab.com/freepascal.org/lazarus/lazarus/-/issues/39338[this fix] which allows more intuitive behavior when you double-click on a Pascal file in CGE editor to open Lazarus.
+
+** Versions before 3.0 will not compile https://github.com/castle-engine/pascal-language-server[pasls] (miss `IdentComplIncludeKeywords`).
+--
+
+* *On macOS, Linux, FreeBSD: We require at least Lazarus >= 3.6*.
++
+--
+** This fix (present in Lazarus >= 3.6) is critical on macOS: https://gitlab.com/freepascal.org/lazarus/lazarus/-/merge_requests/291[Tolerate AValue = nil in TCocoaWSCustomListView.SetImageList]. Before this fix, trying to open any project (new or existing) in our editor will fail with SEGFAULT.
+
+** This fix (present in Lazarus >= 3.6) is critical on platforms using GTK2, like Linux and FreeBSD: https://gitlab.com/freepascal.org/lazarus/lazarus/-/issues/28840[Crash due to postponed focus loss (issue)]. Before this fix, editor occasionally crashes when renaming components in the tree (hierarchy) view.
+--
+
+=== We recommend FpcUpDeluxe
+
+To install multiple versions of FPC / Lazarus, with cross-compilers (e.g. for link:android[Android] or link:ios[iOS]), use https://castle-engine.io/fpcupdeluxe[FpcUpDeluxe]! We absolutely recommend and support it.
+
+=== If you use sparta_Docked package
+
+Some Pascal libraries, like `sparta_Docked` or `sparta_Generics`, may contain their own copy of `Generics.Collections` unit and friends.
+
+FPC >= 3.2.0 doesn't need them (it contains the `Generics.Collections` and friends, with the same implementation from _Maciej Izak_). In case of CGE, we didn't need them even for FPC 3.0.x, as CGE included our own copy of `Generics.Collections`.
+
+Solution: Remove `Generics.Collections` and related units from any `sparta_xxx` or other packages. FPC includes them already. Report to authors of these packages that these units create conflicts with FPC >= 3.2.0 standard units.
+
+////
+The policy for choosing FPC releases:
+1. Advice and support latest FPC release from freepascal.org.
+2. Try to support a couple of older FPC releases, as much as is reasonable.
+The definition what is "reasonable" depends on:
+1. What FPC version is included in distros (in particular, what is in
+   last Debian stable and last Ubuntu LTS).
+   Also because our engine/castle-model-viewer is included in distros like Debian,
+   we don't want to make it harder for them to adopt
+   new engine/castle-model-viewer versions.
+2. Do we need some new language features available in new FPC versions.
+   For example, we heavily use FPC generics since some time, they make
+   a lot of code very nice and clean, but they also bumped our FPC requirements
+   at some point.
+   We also use "nested of" construct of FPC 2.6.0, this again allows for
+   much cleaner code, and also more optimized in one important case.
+////
+
+////
+=== If you use proprietary NVidia OpenGL on Linux
+
+For Linux/x86_64 with NVidia proprietary OpenGL drivers, it is best to use FPC >= 3.1.1, revision >= 38400. We advise just current FPC stable 3.2.0.
+
+Older versions of FPC (including previous stable, 3.0.4) on Linux contain a bug that may cause a SIGSEGV when the application exits. This is in particular reproducible with NVidia proprietary OpenGL implementation on Linux/x86_64. The details are in https://bugs.freepascal.org/view.php?id=33311[the FPC bugreport #0033311 (SIGSEGV during game shutdown with hedgewars 0.9.23 (hwengine))] and reports linked from it.
+
+The crash isn't very critical from the point of view of a typical application end-user, since it happens at the very end of the application, after everything else closed. But it is quite bothersome during development, as the exception is visible, application exit status is non-zero, debugger activates etc.
+
+There isn't a simple workaround for it in CGE. So if this bug affects you -- simply use newer FPC version. At least revision 38400 (FPC 3.1.1), when this bug was fixed.
+////
+
+=== If you use FPC development version (from GitLab)
+
+We generally try to support using the latest (unstable) FPC development version to compile CGE.
+
+You can get such FPC:
+
+* Directly from https://gitlab.com/freepascal.org/fpc/source[GitLab (use `main` branch to get really latest and unstable version)]
+* or using https://castle-engine.io/fpcupdeluxe[FpcUpDeluxe]
+* or using our link:docker[Docker image].
++
+Although by default we use latest stable FPC inside our Docker image, but you can get FPC unstable using the tag `cge-none-fpc331` when requesting the image. So the full image name https://hub.docker.com/r/kambi/castle-engine-cloud-builds-tools/[to get it from Docker Hub] would be `kambi/castle-engine-cloud-builds-tools:cge-unstable`.
++
+The exact FPC revision included is the one listed in https://github.com/castle-engine/castle-engine-docker/blob/master/Dockerfile.no-cge#L252[the Docker build script]. This is updated manually from time to time (do you think we should bump it now? link:talk.php[let us know]).
+
+Of course please remember that this FPC version is unstable, and it changes with every commit to FPC. We cannot test or guarantee that CGE works with an arbitrary FPC development revision. But we welcome testing such FPC. PRs to make CGE work with latest FPC trunk are also welcome (unless there's a temporary bug in FPC which should be rather reported to FPC devs).
+
+// Not necessary, we already mention it above:
+//
+// On Aarch64 (important on mobile platforms): Note that optimizations are disabled on Aarch64 when used with FPC 3.2.0, due to FPC bugs. These are fixed in FPC SVN revision 48104 (fixes available in 3.2.2, 3.3.1 and all newer). See https://trello.com/c/5ydB4MuA/113-enable-again-aarch64-optimizations[CGE Trello ticket about Aarch64 optimizations].
+
+== Delphi
+
+We moved our Delphi documentation to link:delphi[a separate page].
+
+== Code Typhon
+
+We do not support using _Code Typhon_ (a fork of FPC/Lazarus).
+
+We advise that you rather use original http://www.freepascal.org/[FPC] and http://www.lazarus-ide.org/[Lazarus]. We have more trust in FPC and Lazarus developers doing great quality job, respecting copyrights of other projects (CodeTyphon did some murky things), and working in a transparent fashion (version control, cooperating with other projects).
+
+Note that Lazarus comes now with http://wiki.freepascal.org/Online_Package_Manager[Online Package Manager]. And you can use https://castle-engine.io/fpcupdeluxe[FpcUpDeluxe] to easily install cross-compilers. These cover the most often cited reasons for using _Code Typhon_ in the past.
