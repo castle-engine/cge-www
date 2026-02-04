@@ -1,0 +1,572 @@
+# CastleScript language
+include::common.adoc[]
+:description: CastleScript - a simple scripting language for Castle Game Engine.
+
+== Introduction
+
+_CastleScript_ is a language to calculate expressions and (simple) scripts, available in _Castle Game Engine_.
+
+It's an integral part of our engine, without the need for any external libraries.
+
+The language can process various types:
+
+* numbers,
+* booleans,
+* strings,
+* vectors,
+* matrices,
+* images.
+* Also arrays of all these things are supported.
+
+There are many built-in functions and operators, heavily overloaded for all types where they apply. For example, you can simply add numbers, vectors, matrices or strings like `X + Y`.
+
+Language implementation is flexible, you can extend it easily (from Pascal) to add new data-types and functions.
+
+// The language is completely safe (that is, there's no possibility for
+// malicious script author to do something harmful)
+// simply because the language is a closed data-processing language
+// (the only I/O routines are image_load(url) and writeln(string), and they
+// expose functionality that is possible anyway with pure non-scripted X3D).
+
+=== Using for expressions
+
+The language can be used to *evaluate mathematical expressions* in your game at runtime. This has many uses, in particular game designers can get greater control over specifying various parameters of your game. Instead of hardcoding things like this:
+
+[source,xml]
+----
+<?xml version="1.0" encoding="UTF-8"?>
+<game_configuration>
+  <player_life value="100" />
+  <spawn dragons_per_minute="3" />
+</game_configuration>
+----
+
+you can use _CastleScript_ and allow to write expressions like this:
+
+[source,xml]
+----
+<?xml version="1.0" encoding="UTF-8"?>
+<game_configuration>
+  <!-- calculate expression -->
+  <player_life value="10 * 10" />
+  <!-- calculate expression using "current_difficulty" variable defined by Pascal -->
+  <spawn dragons_per_minute="2 * current_difficulty" />
+</game_configuration>
+----
+
+The Pascal API is quite simple, see the cgeref:CastleScriptParser[] unit. Use trivial cgeref:ParseConstantFloatExpression[] as a replacement for `StrToFloat` to calculate expressions using constants and all our functions and operators. Use cgeref:ParseFloatExpression[] to calculate an expresion with possible CastleScript variables. You can calculate other types, e.g. strings by cgeref:ParseStringExpression[]. To read float expression from XML you can helpers from cgeref:CastleScriptXML[] unit, so you can write `MyDomElement.GetFloatExpression('value')`.
+
+The syntax to calculate mathematical expressions is used throughout our engine, for example link:glplotter[glplotter] uses this syntax to define function expressions.
+
+=== Using for X3D scripts
+
+You can use _CastleScript_ in X3D `Script` nodes.
+
+The examples are in https://github.com/castle-engine/demo-models[our demo models], see there in https://github.com/castle-engine/demo-models/tree/master/castle_script[castle_script subdirectory].
+
+URLs in `Script` node starting with `castlescript:` are understood to contain program in CastleScript language. URLs to external files with extension `.castlescript` point to whole files in CastleScript language. (Deprecated: also `kambiscript:` as a protocol and `.kambiscript` as an extension are recognized.) Like this:
+
+[source,x3d]
+----
+Script {
+  inputOnly SFFloat foo
+  outputOnly SFFloat foo_plus_one
+
+  url "castlescript:
+       function foo(value, timestamp)
+         foo_plus_one := value + 1
+      "
+}
+
+Script {
+  url "my_script.castlescript"
+}
+----
+
+Note that _CastleScript_ is a very simple scripting language, with some features inspired by many other languages, and some decisions just dictated by the desire to keep implemetation simple. For example `if`, `while` and such have somewhat ugly syntax, as they are done using built-in functions like <<function_if,`if(condition, then_code, else_code)`>>. _This language doesn't try to compete with larger scripting languages_ (like _ECMAScript_, commonly used in X3D scripting). It's not suitable for larger programs (for starters, you cannot define your own types). Also it's specific to our engine, and probably always will be.
+
+We do not plan to extend the _CastleScript_ in the direction of _"general scripting language"_ for now. We feel there are already a lot of other scripting languaes, available also from Pascal applications, that serve a purpose _"scripting language for larger, non-trivial applications"_ better.
+
+== Examples
+
+Some examples of simple mathematical expressions for glplotter:
+
+----
+  sin(x) ^ 10
+  2 * (cos(ln(x)) - 1)
+  sin(x) > cos(x)
+  or( sin(x) > cos(x), sin(x) > 0 )
+----
+
+Some example of simple program for X3D script node:
+
+[source,x3d]
+----
+Script {
+  # Let's assume some TouchSensor.touchTime is routed here.
+  # When user clicks on this touch sensor, you want to close the door
+  # if they are open, or open them if they are closed.
+  inputOnly SFTime touch_time
+
+  initializeOnly SFBool open FALSE
+
+  # Let's assume this is routed to some TimeSensor.set_startTime
+  # that starts closing animation.
+  outputOnly SFTime close_time
+
+  # Let's assume this is routed to some TimeSensor.set_startTime
+  # that starts opening animation.
+  outputOnly SFTime open_time
+
+  url "castlescript:
+       function touch_time(value, timestamp)
+         if (open,
+             close_time := timestamp,
+             open_time := timestamp);
+         open := not(open)
+      "
+}
+----
+
+Example script behavior above could also be done by combining `BooleanToggle`, `BooleanFilter`, `TimeTrigger` X3D nodes. But script is already simpler and shorter, and allows you to trivially add other interesting things.
+
+[source,x3d]
+----
+# Simple converter from SFString to MFString using built-in array function.
+Script {
+  inputOnly SFString input
+  outputOnly MFString output
+    url "castlescript:
+         function input(value, timestamp)
+           output := array(value)
+        "
+}
+----
+
+Some larger examples:
+
+* https://github.com/castle-engine/demo-models/blob/master/castle_script/ball_game.x3dv[ball_game.x3dv] -- a small X3D game, with whole game logic implemented in CastleScript (key handling by KeySensor node). Can be played in any X3D browser supporting CastleScript, like link:castle-model-viewer[Castle Model Viewer] or any of the example X3D browser components in engine sources.
+
+* https://github.com/castle-engine/demo-models/blob/master/castle_script/edit_texture.x3dv[edit_texture.x3dv] -- a toy image editor. Again, it's a pure X3D file (you can open it and use with any X3D browser supporting CastleScript). Uses CastleScript to implement various simple image editing functions. It's a toy, not to be treated as a serious image editor of course (there is no possibility to save created image for starter, since CastleScript doesn't allow to save files from X3D for safety reasons.) But it shows that even image processing is quite easy with CastleScript.
+
+* https://github.com/castle-engine/demo-models/blob/master/castle_script/particles.x3dv[particles.x3dv] -- a simple particle engine. Whole particles animation, logic (randomization, speed, gravity) is implemented in CastleScript. "Particles" are rendered as points and lines (`PointSet`, `IndexedLineSet`).
+
+== Syntax
+
+_Syntax is free-form_, the only use of whitespace (including newlines, or any indentation) is to separate tokens when needed (for example, between two identifiers).
+
+_Comments_ are within curly braces: `{ this is a comment }` (Pascal-like).
+
+=== Types and constants
+
+_Types_ are never explicitly declared, and are checked at runtime. Four core types are available:
+
+. _Integers._ Syntax of integer constants is obvious, like `123`. Built-in function <<function_int,`int(...)`>> allows you to convert other core types into integer.
++
+We use 64-bit signed integers (although for X3D long/int32 fields, they will have to fit within 32-bit.)
++
+Specifically for comfortable processing of http://www.web3d.org/documents/specifications/19775-1/V3.3/Part01/components/keyboard.html#KeySensor[X3D KeySensor node] events `actionKeyPress/Release` you have 20 key constants available: `ACTION_KEY_F1`, ... `ACTION_KEY_F12`, `ACTION_KEY_HOME`, etc. (see KeySensor specification for full list).
+
+. _Floats._ Syntax of float constants is also obvious, like `3.1415`. You have constants `pi` and `enat` (Euler's number). Built-in function <<function_float,`float(...)`>> allows you to convert other core types into float.
++
+Precision: uses the best floating-point type precision on given platform, which means at least Double, and on many platforms Extended.
+
+. _Booleans._ Two obvious constants are available, `false` and `true` (case is ignored, as usual in CastleScript, so you can also write uppercase `FALSE` or `TRUE` like in classic encoding). Built-in function <<function_bool,`bool(...)`>> allows you to convert other core types into boolean.
+
+. _Strings._ Syntax of constants is Pascalish (in apostrophes, and two consecutive apostrophes inside mean that you want a single literal apostrophe character). For example `'He said "It''s mine."'`. Apostrophe was chosen not only because, y'know, it's Pascalish :), but also because it makes embedding CastleScript code within X3D string easier (no need to escape quotes by backslashes). You can make actual newlines within the string, like in X3D. For example:
++
+[source,x3d]
+----
+Script {
+  # Let's assume some TouchSensor.touchTime is routed here.
+  inputOnly SFTime touch_time
+  outputOnly MFString text
+
+  url "castlescript:
+       function touch_time(value, timestamp)
+         text := array(
+           'First string of text clicked on ' + string(value),
+           'Second string of text.
+Still second string of text.
+Simply make a newline in the string literal to get a newline inside the string.'
+         )
+      "
+}
+----
++
+Built-in function <<function_string,`string(...)`>> allows you to convert other core types into string.
+
+The one and only implicit type conversion (promotion) of types is from integer to float (for example, `my_float := 44` works, you don't have to write `my_float := 44.0`). In particular, note that _boolean type is not interchangeable with integer_ like in C. If you want to convert between boolean and integer, you have to convert explicitly by `bool(my_int)` or `int(my_bool)`, like in Pascal. The only exception is when using CastleScript solely for mathematical expressions (like in link:glplotter[glplotter], internally using `ParseFloatExpression` function): in this case, result is always implicitly converted to float, like it would be embedded within `float(...)` call.
+
+When using CastleScript inside X3D scripts, internally you have all the X3D field types available (which means that vec2f, vec3f, vec4f, matrix, image and others are included). There is no special syntax for reading/writing other types, instead you have many functions to construct and set them. For example for vec3f type you have "constructor" <<function_vector,`vector(x, y, z)`>>, reader for particular component <<function_vector_get,`vector_get(vector, index)`>>, and setter for particular component <<function_vector_set,`vector_set(vector, index, component_value)`>>. Even images have functions to create and modify them, which means that you can use CastleScript to perform basic image creation and processing.
+
+Also array types are internally available, for X3D multiple-value (MFXxx) types. Again no special syntax is available (sorry, no bracket parenthesis), but there are functions to construct array <<function_array,`array(item1, item2, ...)`>>, read component <<function_array_get,`array_get(array, index)`>> and set component <<function_array_set,`array_set(array, index, component_value)`>>.
+
+=== Programs and expressions
+
+_Program_ is just a set of functions. The engine will take care to call function `xxx` when input event of the same name will arrive.
+
+_Expressions and instructions_ are the same thing within the language. For example, "assignment" is an instruction, since it causes calculation of the right operand and assigning it to the left operand, but it's also an "expression", since it returns the value (the assigned value). So "chained" assignment, like in C, is possible (although usually discouraged, to not obfuscate the code): `a := b := x + y` works. In the rest of this description, terms "instruction" and "expression" mean exactly the same thing.
+
+_Function_ starts from the `function` keyword, then function name (identifier), then list of 0 or more parameters (identifiers separated by commas), always within parenthesis. For functions within X3D Script nodes: `initialize` and `shutdown` must take exactly one parameter (timestamp of the event: SFTime), functions called by incoming events must take exactly two parameters (value send to the event, and timestamp: SFTime).
+
+Function body is just a sequence of expressions separated by semicolon. Formally, function body is actually a single expression, but we have a semicolon operator: `A;B` means "calculate A, ignore result, then calculate and return result of B". For now, result of functions body is ignored (so all our functions are in fact _procedures_). Semicolon works like a delimiter (not a terminator, so it's used only between instructions).
+
+Note that the way semicolon and expressions are defined means that we don't need any special syntax for compound instruction (like `begin end` in Pascal or `{ }` in C). Instead, normal parenthesis may be used if necessary to group instructions.
+
+An _assignment instruction_ is an operand, followed by the assignment operator `:=` (Pascal-like), followed by an expression to calculate value to assign.
+
+For X3D scripts, you are allowed to assign to output events and to fields (exposed or not). Events sending behavior follows ECMAScript standard:
+
+* Assigning value to initializeOnly (not exposed) field is simple, it just assigns value to this field. You can use initializeOnly fields as "variables" available for your scripts (since CastleScript doesn't allow you to declare or use new variables within the program, for now).
+
+* Assigning value to output event results in sending this event, assigning to exposed field results in sending this to input event of this field.
++
+Following ECMAScript standard, events are not send immediately (right at the assignment), instead they are stacked and send when script function finished execution. When you assigned multiple values for the same field/event, only the last one is send. In case of multiple-value fields, the combined end value is send. For example, assuming `output` is an `outputOnly` event of MFFloat type:
++
+----
+function foo(value, timestamp)
+  output := array(0.0, 1.0, 2.0, 3.0);
+  array_set(output, 1, 666.0);
+  array_set(output, 2, 44.0)
+----
++
+The example above will send one `output` event with value `(0.0, 666.0, 44.0, 3.0)`.
+
+Right side of the assignment instruction is the value to calculate and assign. In short, a normal mathematical expression is allowed there, just like you seen in all programming languages. We have multiplicative operators (`/, *, ^, %`), we have additive operators (`+, -`) with lower priority, we have comparison operators (`<, >, \<=, >=, = or <>`) with even lower priority. We have all standard math functions. Built-in functions and operators are overloaded for all suitable types. Section below gives a full list of operators and functions.
+
+== Built-in functions
+
+=== Type conversion
+
+* [[function_int]]`int(...)` converts a "core" type to an integer.
++
+Float is converted to int by discarding it's fractional part (like in C; for positive numbers, this is like `floor`, for negative this is like `ceil`). There are also functions [[function_floor]]`floor`, [[function_ceil]]`ceil` and [[function_round]]`round` that convert float to an integer with other rounding modes.
++
+Bool is converted to 0 (false) or 1 (true). Yes, unlike most languages that usually don't guarantee "true" value (saying "true" is anything <> 0), CastleScript actually guarantees that "true" will result in 1. This is sometimes useful in smart mathematical expressions (like `my_int := 1 - int(my_bool)`).
++
+String is converted to int by, well, converting string to integer using standard decimal notation (`int('123') = 123`).
+
+* [[function_float]]`float(...)` converts a "core" type to a float.
++
+Integer is converted obviously. Actually it's never needed to explicitly cast integer to float, this conversion happens automatically, like in most programming languages.
++
+Bool is converted to 0.0 (false) or 1.0 (true).
++
+String is converted to float by parsing number from string, like `float('3.14') = 3.14`.
+
+* [[function_bool]]`bool(...)` converts a "core" type to a boolean.
++
+Integers and floats are converted to "false" if equal zero, "true" otherwise.
++
+Strings are converted to booleans recognizing 'false' and 'true' strings (and making errors in other cases).
+
+* [[function_string]]`string(...)` converts a "core" type to a string.
++
+Not much to write here, numbers (integers and floats) are converted to normal notation and boolean is converted to 'false' or 'true'.
+
+All four basic conversion functions accept also variables that already have the necessary type. For example, converting float to float is a valid (and harmless) operation.
+
+=== Control flow
+
+[[function_if]]`if(condition, then_code, else_code)` is our conditional instruction. `condition` is first calculated, must be a boolean value. If it's true, then `then_code` is executed and returned as "if" value. Otherwise, `else_code` is executed and returned as "if" value. You may note that (because of CastleScript unification of "instruction" and "expression" terms) this can be used in both functional and imperative form. That is, all below are valid:
+
+----
+  { imperative form }
+  if(x > 3, y := 'yes', y := 'no');
+
+  { functional form, equivalent to above, looks more elegant in this case }
+  y := if(x > 3, 'yes', 'no');
+
+  { actually, even this is possible if you need it: }
+  y_copy := if(x > 3, y := 'yes', y:= 'no');
+----
+
+[[function_when]]`when(condition, then_code)` is a conditional instruction without the "else" clause. It's equivalent to `if(condition, then_code, false)`, so it simply returns `false` when condition is not satisfied. (This is considered a good thing that the normal `if` _requires_ the else clause; this way we avoid trivial errors when programmer forgets to write `else` clause; similar `when` expression may be found e.g. in Lisp and http://nemerle.org/[Nemerle].)
+
+[[function_while]]`while(condition, loop_code)` performs a while loop. Calculate `condition` (must yield a boolean value), if true then execute `loop_code` and again calculate `condition`, if it's still true then execute `loop_code` again, ... you get the idea.
+
+[[function_for]]`for(counter, begin_value, end_value, loop_code)` performs a for loop. `counter` must be an assignable integer variable (note that for now you cannot declare new variables for CastleScript; you usually need to overuse `initializeOnly` field of X3D script node for this). `begin_value`, `end_value` must also be integer values, will be calculated once at the beginning of the loop. We will assign to `counter` variable integer values from `begin_value` to `end_value`, and for each counter value we will execute `loop_code`. It's undefined what happens when `loop_code` changes directly the `counter` value.
+
+`for` and `while` loops return the value of last executed `loop_code`, or `false` if `loop_code` did not get executed even once.
+
+=== Number (integer and float) functions
+
+Self-explanatory math functions are listed below. They all take a float type, and return a float type unless otherwise noted:
+
+* [[function_sin]]`sin`, [[function_cos]]`cos`, [[function_tan]]`tan`, [[function_cotan]]`cotan`
+* [[function_arcsin]]`arcsin`, [[function_arccos]]`arccos`, [[function_arctan]]`arctan`, [[function_arccotan]]`arccotan`
+* [[function_sinh]]`sinh`, [[function_cosh]]`cosh`, [[function_tanh]]`tanh`, [[function_cotanh]]`cotanh`
+* [[function_log2]]`log2` (same as `log(2, x)`), [[function_ln]]`ln`, [[function_log]]`log`, [[function_power2]]`power2` (same as `power(2, x) = 2^x`), [[function_exp]]`exp` (same as `power(enat, x) = enat^x`), [[function_power]]`power`, [[function_sqr]]`sqr`, [[function_sqrt]]`sqrt`
+* [[function_sgn]]`sgn` (returns integer), [[function_abs]]`abs`
+* [[function_max]]`max`, [[function_min]]`min` (any number of arguments >= 1 allowed; works on either floats or ints)
+* [[function_lerp]]`lerp(fraction, a, b)`
+
+==== Random numbers functions
+
+[[function_random]]`random()` returns a random float number within 0...1 range (0 included, 1 excluded).
+
+`random(int)` returns a random integer number strictly less than `int` and >= 0. (`int` argument must be > 0).
+
+=== Boolean functions
+
+Basic boolean operations: [[function_or]]`or(bool1, bool2...)`, [[function_and]]`and(bool1, bool2...)` (any number of arguments >= 1), [[function_not]]`not(bool1)`.
+
+=== String functions
+
+You can add (concatenate) and compare (case-sensitive) strings by normal operators. Converting other core types (numbers, booleans) to string may be done by the <<function_string,`string(...)`>> function.
+
+[[function_writeln]]`writeln(my_string)` outputs a string. How exactly it is displayed depends on the application: normal 3D browsers (like link:castle-model-viewer[Castle Model Viewer]) display it on the console (standard error output, if `--debug-log` is used), games (like link:castle_game[The Castle]) display it as in-game notification. As a developer, you can configure how this is handled, see `OnScriptMessage` in `CastleScript` unit. By default, it results in `CastleLog.WritelnLog`, see the link:log[manual about logging].
+
+Most array functions can also treat the string as an array of characters. We do not have a special type for a "character" -- we just use a string with length 1. You can get / set the length of the string with <<function_array_get_count,`array_get_count(string)`>> / <<function_array_set_count,`array_set_count(string, count)`>>. And you can get / set a specific character of the string with <<function_array_get,`array_get(string, index)`>> / <<function_array_set,`array_set(string, index, character)`>>. Indexes for characters inside string are zero-based, like for all arrays in CastleScript.
+
+[[function_character_from_code]]`character_from_code(int)` converts integer character code to a 1-letter string with this character. _Only the ASCII character codes are guaranteed to work for now._ Although we support Unicode character set (encoded as UTF-8 in Pascal AnsiString) throughout the engine, but some CastleScript functions were not adjusted to it yet (report if you need it).
+
+[[function_shortcut]]`shortcut(name)` returns a nice string describing the named key/mouse shortcut in the game. It's useful if you want to show a message describing some shortcut, for example `writeln('Hint: you can open this door using the ' + shortcut('interact'))`. Depending on user current key definitions, we will show something like _Hint: you can open this door using the key "e"_ or _Hint: you can open this door using the mouse "left"_. See `CastleInputs` for available shortcut names, additionally games may define their own key shortcuts by creating new `TInputConfiguration` instances.
+
+[[function_coalesce]]`coalesce(expression, ...)` returns the first string that is not empty.
+
+* It takes from 1 to any number of arguments. The arguments are evaluated in order, until one of them returns a string that is not empty (the remaining arguments are not evaluated at all), or we reach the last argument.
+* That is, the only case when this function can return an empty string, is if the last argument is an empty string.
+* This function is handy to provide a "fallback" or "default" value for some variables. E.g. you can write `coalesce(my_variable, 'default value')`.
+
+A lot of string functions are trivial to add -- report if you need some particular function.
+
+=== Array functions
+
+[[function_array]]`array(item1, item2, ...)` constructs an array. At least one argument is required. All arguments must have the same type (X3D multiple-value fields can't have mixed types).
+
+Note that parameter-less `array()` call is not allowed, because we wouldn't know then the resulting type (is it an empty array of floats? empty array of integers? etc.) Don't worry, you can use `array_set_count(my_array, 0)` for making array empty.
+
+Note that floating-point values in arrays are stored only with single- or double- precision. This contrasts with singleton values, which are always stored in the best precision possible. Having explicit single- or double- precision arrays is better for storage and allows faster copying between X3D fields. Normal `array` with float parameters will create an array of single-precision values (that is, X3D `MFFloat`). You have to call [[function_array_d]]`array_d` to request double-precision storage (suitable for X3D `MFDouble` or `MFTime`).
+
+[[function_array_get_count]]`array_get_count(my_array)` and [[function_array_set_count]]`array_set_count(my_array, new_count)` get and set array count. When you grow array, newly added items have undefined values. When you shrink array, excessive values are discarded.
+
+[[function_array_get]]`array_get(my_array, index)` gets an item from array on given index. In "normal" programming languages, implemented by less lazy programmers, this is written as `my_array[index]` :) Analogous [[function_array_set]]`array_set(my_array, index, component_value)` sets a value of item in an array. In "normal" programming languages you would write `my_array[index] := component_value`.
+
+`array_set` and `array_set_count` also return the new array (that is, they return the new value of their 1st argument), this may be comfortable sometimes.
+
+You can glue (concatenate) two or more arrays by the "+" operator.
+
+==== Curves
+
+cgeimg::block[
+  glplotter_screen_hermite_tense.png|hermine_tense_spline example,
+  glplotter_screen_hermite_tense_scaled.png|hermine_tense_spline example scaled by x
+]
+
+An array can be used to define a curve which can then be evaluated. This is cool for designing curves, for example for movement or some game balance! Since the curve is a function, you can easily combine it with other functions.
+
+For example this is a simple "three increasing bumps" function:
+
+----
+hermite_tense_spline(x, true,
+  array(0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0),
+  array(0.0, 1.0, 0.0, 2.0, 0.0, 4.0, 0.0))
+----
+
+You can easily scale it up, as the x increases:
+
+----
+(1 + x * 0.1) *
+hermite_tense_spline(x, true,
+  array(0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0),
+  array(0.0, 1.0, 0.0, 2.0, 0.0, 4.0, 0.0))
+----
+
+The available curves functions are:
+
+* [[function_catmull_rom_spline]]`catmull_rom_spline(x: float, loop: boolean, arguments: array of float, values: array of float): returns float`
+* [[function_hermite_spline]]`hermite_spline(x: float, loop: boolean, arguments: array of float, values: array of float, tangents: array of float): returns float`
+* [[function_hermite_tense_spline]]`hermite_tense_spline(x: float, loop: boolean, arguments: array of float, values: array of float): returns float`
+
+Try these functions with latest link:glplotter[glplotter] to see the curves shapes when rendered. For the detailed documentation, see the corresponding Pascal API documentation cgeref:CatmullRomSpline[], cgeref:HermiteSpline[], cgeref:HermiteTenseSpline[] and the https://en.wikipedia.org/wiki/Cubic_Hermite_spline[wikipedia about Hermite and Catmull-Rom splines].
+
+=== Vector functions
+
+[[function_vector]]`vector(x, y), vector(x, y, z), vector(x, y, z, w)` create a single-precision vectors (called `SFVec2f`, `SFVec3f`, `SFVec4f` in X3D). Suffix `_d` means that you want double-precision vectors: [[function_vector_d]]`vector_d(x, y), vector_d(x, y, z), vector_d(x, y, z, w)`.
+
+[[function_vector_get]]`vector_get(my_vec, index)` gets vector component. Allowed index values obviously depend on vector size, for example on `SFVec3f` you can use index 0, 1, 2. [[function_vector_set]]`vector_set(my_vec, index, component_value)` sets given vector component (and returns new vector, for comfort).
+
+[[function_vector_get_count]]`vector_get_count(my_vec)` is available, for analogy with `array_get_count`. Vector has a fixed number of components, so there is no `vector_set_count`.
+
+Standard vector math utilities are available: [[function_vector_length]]`vector_length(v)`, [[function_vector_sqr_length]]`vector_sqr_length(v)`, [[function_vector_dot]]`vector_dot(v1, v2)` (see https://en.wikipedia.org/wiki/Dot_product[vector dot product in wikipedia]), [[function_vector_cross]]`vector_cross(v1, v2)` (see https://en.wikipedia.org/wiki/Cross_product[vector cross product in wikipedia], only on 3-component vectors). `max(vector1, vector2)`, `min(vector1, vector2)` also work (make max/min on corresponding vector components).
+
+You can also add, subtract, multiply by scalar, divide by scalar, compare vectors by normal operators. Linear interpolation by `lerp(fraction, vector1, vector2)` on vectors also works.
+
+Color functions: [[function_grayscale]]`grayscale(v)` takes a vec3f, treats it as RGB color, and converts it to a single float -- color intensity (calculated much like an average of vector components, but taking into account human eye sensitivity).
+
+==== Rotation functions
+
+Rotations (X3D `SFRotation`, or an element of `MFRotation` array) are, in CastleScript, just 4-value single-precision vectors. First three scalars are rotation axis (should be always normalized, X3D require this), 4th item is the rotation angle (in radians). So you can operate on rotations from CastleScript using all normal functions on vectors.
+
+Some functions specially suitable for rotations are also available:
+
+* [[function_orientation_from_direction_up]]`orientation_from_direction_up(dir, up)` converts a direction and up 3D vectors into an orientation. This is a rotation that transforms default direction (0, 0, -1) and default up (0, 1, 0) into your desired `direction` and `up` vectors. This is suitable for example for calculating X3D `Viewpoint.orientation`.
++
+Given here direction and up vectors do not have to be normalized (they only must not be zero). They also do not have to be orthogonal (we will internally fix the up vector, if needed, to be orthogonal to direction).
+
+* [[function_rotate]]`rotate(rotation, point)` rotates given 3D `point`. `rotation` parameter contains an axis (first three components) and an angle in radians (last component), so it's compatible with X3D `SFRotation`.
+
+* [[function_orientation_to_direction]]`orientation_to_direction(rotation)` determines direction vector back from an orientation, inverting what <<function_orientation_from_direction_up,`orientation_from_direction_up`>> did. Similarly [[function_orientation_to_up]]`orientation_to_up(rotation)`. Resulting direction and up vectors are always normalized.
++
+These functions are equivalent to using `rotate(rotation, (0, 0, -1))` (for `orientation_to_direction`) and `rotate(rotation, (0, 1, 0))` (for `orientation_to_up`).
+
+* [[function_slerp]]`slerp(value, rotation1, rotation2)` calculates a https://en.wikipedia.org/wiki/Slerp[spherical linear interpolation] between two rotations. For `value` = 0 the result is `rotation1`, for `value` = 1 the result is `rotation2`, and between (and outside) the result is a nicely interpolated rotation on a unit sphere.
+
+Example: see https://github.com/castle-engine/demo-models/blob/master/castle_script/rotations.x3dv[rotations.x3dv] for a simple X3D Script using above rotation functions.
+
+=== Matrix functions
+
+3x3 and 4x4 matrices are supported. Single- and double- precision. X3D calls these matrix types `SFMatrix3f`, `SFMatrix4f`, `SFMatrix3d`, `SFMatrix4d`. Matrix is treated similar to an array of vectors (array of columns).
+
+[[function_matrix]]`matrix(column1, column2, column3), matrix(column1, column2, column3, column4)` create a matrix. Each `column` argument is a vector. Number or arguments determines if it's 3x3 or 4x4 matrix. Type of arguments (single- or double- precision vectors) determines if matrix is single or double precision.
+
+[[function_matrix_get]]`matrix_get(my_matrix, column_index)` gets matrix column. Allowed index values obviously depend on matrix size, for example on `SFMatrix4f` you can use index 0, 1, 2, 3. [[function_matrix_set]]`matrix_set(my_matrix, column_index, column_value)` sets given matrix column (and returns new matrix, for comfort).
+
+[[function_matrix_get_count]]`matrix_get_count(my_vec)` is available, for analogy with `array_get_count` and `vector_get_count`. Returns number of columns, 3 or 4. For now, non-uniform matrices are not supported, so this is also the number of rows.
+
+You can add, subtract, negate, multiply (by another matrix, or by scalar, or by vector on the right side), divide (by scalar), compare matrix using normal operators. Linear interpolation by `lerp(fraction, matrix1, matrix2)` on matrices also works.
+
+=== Image functions
+
+[[function_image]]`image(width, height, components)` creates a new image. `components` is the number of image components, like in X3D `SFImage` field:
+
+* 1 component is grayscale image,
+* 2 components is grayscale image with alpha channel,
+* 3 components is RGB image,
+* 4 components is RGB image with alpha channel.
+
+Note that image contents are _not initialized_ (meaning: they are filled with random garbage in memory) by `image` function. This is for the sake of speed.
+
+[[function_image_load]]`image_load(url)` loads an image from file. This is quite powerful utility, allowing you to load textures at any time from a script. (It's not a security problem, since you can do the same from normal X3D nodes like `ImageTexture`.) URL may be relative to X3D file containing the Script node.
+
+[[function_image_width]]`image_width(my_image)`, [[function_image_height]]`image_height(my_image)`, [[function_image_components]]`image_components(my_image)` return width, height and number of image components.
+
+For functions that get/set image contents, there are 3 variants of each of them:
+
+* Functions with `_color` suffix operate only on non-alpha channels of the image. For 1 and 2 component images, they take/return a single floating point value describing color intensity (in 0..1 range). For 3 and 4 component images, they take/return a 3-element vector with single precision, describing RGB color value.
+
+* Functions with `_alpha` operate only on alpha channel of the image. They take/return a single floating point value describing alpha (opacity), in 0..1 range.
+
+* Finally functions without alpha/color suffix operate on all image channels at once. For 1 component images, they take/return a single floating point value. For 2,3,4 component images, they take/return a vector (with single precision) describing color with alpha value. For images without alpha value (1 or 3 components), these functions are exactly equivalent to `_color` functions.
+
+Functions to get/set image contents:
+
+* [[function_image_get]]`image_get(my_image, x, y)`,
++
+[[function_image_get_color]]`image_get_color(my_image, x, y)`,
++
+[[function_image_get_alpha]]`image_get_alpha(my_image, x, y)`
++
+Get single pixel's color/alpha.
+
+* [[function_image_set]]`image_set(my_image, x, y, color_with_alpha)`,
++
+[[function_image_set_color]]`image_set_color(my_image, x, y, color)`,
++
+[[function_image_set_alpha]]`image_set_alpha(my_image, x, y, alpha)`
++
+Set single pixel to given color/alpha.
+
+* More "set" functions were planned, like `image_set_rectangle`, `image_apply_decal`, but finally I didn't have the nerve to implement everything possible :) Report if you would like any function to be added to CastleScript for images.
+
+For comfort, `set` functions return back the image (that is, the new value of 1st argument).
+
+For example CastleScript programs that generate and process images, see e.g. https://github.com/castle-engine/castle-engine/blob/master/examples/castlescript/mkimage_gradient.castlescript[mkimage_gradient.castlescript (generate simple gradient image)] and https://github.com/castle-engine/castle-engine/blob/master/examples/castlescript/mkimage_sobel_edge.castlescript[mkimage_sobel_edge.castlescript (process any image with Sobel operator (edge detection))].
+
+=== X3D node functions
+
+None for now. Currently, you cannot process X3D nodes directly by CastleScript. Whether it will ever be allowed in CastleScript, depends on the "success" of CastleScript -- if you write your own scripts in CastleScript and feel that you need this, please report. Michalis will be more than happy to add them :)
+
+== Precise grammar
+
+----
+  Operand (aka "something that can be assigned") = Identifier
+
+  Factor = Operand |
+           Constant |
+           "-" Factor |
+           "(" Expression ")" |
+           FunctionName [ "(" Expression [{"," Expression}] ")" ]
+  FactorOperator = "^" | "*" | "/" | "%" | "div"
+
+  # In other words, all multiplicative operators have the same priority
+  # and are left-associative.
+  # "^" operator is for power.
+  #     X ^ Y = Power(X, Y)
+  #     This works for non-integer Y, but in this case Y has to be >= 0.
+  # "%" operator is for modulo (remainder of division).
+  #     X % Y = X - Floor(X/Y) * Y
+  # "/" does float division. Like in Pascal (and unlike C),
+  #     result is always float, even when both operands are integers
+  #     (they will be just converted to floats).
+  #     E.g. "1 / 2" and "1.0 / 2.0" are equivalent and both yield "0.5".
+  # "div" does integer division, returns integer,
+  #     and requires both operants to be integer (cannot be floats).
+  #     E.g. "1 div 2" is "0".
+  #     This is like in Pascal.
+
+  Term = Factor [{FactorOperator Factor}]
+  TermOperator = "+" | "-"
+
+  ComparisonArgument = Term [{TermOperator Term}]
+  ComparisonOperator = "<" | ">" | "<=" | ">=" | "=" | "<>"
+
+  # Note that comparisons on float types (this also includes vectors, matrices
+  # and arrays based on float types) perform exact comparison
+  # (like in all programming languages).
+  # This means that adding 1.0 one hundred times will not necessarily yield result
+  # equal to literal 100.0. You can compare with some epsilon, like
+  # "abs(a-b) < 0.001", if needed.
+
+  NonAssignmentExpression = ComparisonArgument [{ComparisonOperator ComparisonArgument}] |
+
+  # Programmers using our engine: note that CastleScriptParser.ParseFloatExpression
+  # parses exactly "NonAssignmentExpression" token, as defined above,
+  # with the Factor definition hacked to also allow only NonAssignmentExpression
+  # inside parenthesis. In other words, ParseFloatExpression takes care to only
+  # parse a calculated expression, without any assignments or sequence.
+
+  PossiblyAssignmentExpression = NonAssignmentExpression |
+                                 Operand ":=" PossiblyAssignmentExpression
+
+  Expression = PossiblyAssignmentExpression [{";" PossiblyAssignmentExpression}]
+
+  Function = "function" "(" [Identifier [{"," Identifier}] ")" Expression
+  Program = [{Function}]
+
+  # Programmers using our engine: note that CastleScriptParser.ParseProgram
+  # parses exactly "Program" token defined above.
+
+  # ------------------------------------------------
+  # Programmers using our engine: note that above part of the grammar
+  # was handled inside CastleScriptParser. Grammar below is handled
+  # inside CastleScriptLexer.
+  # A "token" returned by CastleScriptLexer corresponds to a non-terminal
+  # symbol in the part of the grammar below, resolved by lexer.
+
+  # Identifier is just a sequence of letters, underscores, digits,
+  # not starting with a digit.
+  Identifier = Letter [{Letter | Digit}]
+  Letter = 'a' .. 'z' | 'A' .. 'Z' | "_"
+  Digit = '0' .. '9'
+
+  Constant = "pi" | "enat" |
+             Digit [{Digit}] ["." Digit [{Digit}] ] |
+             "true" | "false" |
+             string constant in apostrophes
+
+  FunctionName = (see list of built-in functions above)
+----
+
+Generally, at least one whitespace is required between two tokens. But there are many exceptions, when situation is unambiguous, for example no whitespace is needed between identifiers and parenthesis. In case of uncertainty lexer is greedy, that is lexer tries to eat as much characters as it can for a single token.
+
+Case sensitivity: language is not case-sensitive. That said, in the future in may be partially case-sensitive, in places where you specify field/event names of X3D since _whole X3D is case-sensitive_. So always specify X3D field/event names with matching case.
+
+////
+(wszystko jest na wartosciach rzeczywistych;
+pamietaj tez ze operator potegowania ma taki sam priorytet jak
+np. mnozenie a operatory o rownym priorytecie sa obliczane od
+lewej do prawej wiec np. 2*4^2 = 8^2, nie 2*16))
+////
