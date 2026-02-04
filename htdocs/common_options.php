@@ -26,7 +26,7 @@ known and used by most good programs in the world) :
     to print version number. Sometimes (for <code>help2man</code> and consistency
     with other Unix utilities) it's preceded by the program name.
     Here's a description of <?php echo a_href_page(
-    'versioning scheme used in all my programs', 'versioning'); ?>.
+    'versioning scheme used in all my programs', 'doc/versioning'); ?>.
     Version number is always printed on standard output, never in a
     message box or something that; this allows to use calls like
     <code>program_name --version</code> in batch scripts, makefiles etc.

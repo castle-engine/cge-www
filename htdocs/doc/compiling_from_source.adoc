@@ -1,0 +1,260 @@
+# Compiling from source
+include::common.adoc[]
+:description: How to compile Castle Game Engine (build tool, editor, castle-model-viewer etc.) from sources
+
+== Overview
+
+The very latest _Castle Game Engine_ version is always available as a source code from https://github.com/castle-engine/castle-engine/[our Github repository].
+
+Before compiling it yourself, make sure you really need to do this. After all, you can https://castle-engine.io/[download the binary release of the engine] that _also contains the complete source code_ (it just also contains ready binaries for a particular platform). And the current binary releases (`7.0-alpha.snapshot`) contain the very latest features and fixes, quite like source code -- as they are automatically rebuild after every commit. Oh, and if you're looking for win32 version, it is https://github.com/castle-engine/castle-engine/releases/tag/snapshot[available on GitHub snapshot download page] (we don't link it on the main CGE page because we advise win64).
+
+That being said, there are of course valid reasons to compile engine yourself. E.g. if you want to contribute (create _pull requests_). Or if you want to test on desktop systems for which we don't regularly provide binaries (like https://castle-engine.io/wp/2022/04/08/freebsd-build/[FreeBSD] or https://castle-engine.io/macos[macOS]). Also, updating from source code is faster, as you'll only update from GIT what has changed.
+
+So, read on :)
+
+https://www.youtube.com/watch?v=_qjLWrHDwqE[We also have a video version showing the process of CGE compilation (a subset of this guide) on Linux].
+
+Looking for a one-liner that does everything? You can execute https://github.com/castle-engine/castle-engine/blob/master/tools/internal/pack_release/pack_release.sh[pack_release.sh] script (this is used to create actual releases on all platforms). But beware that it requires a few preexisting tools on PATH. Most people that want to compile our engine "just to peek a bit under the hood" will have easier time following the steps below than by trying to just execute https://github.com/castle-engine/castle-engine/blob/master/tools/internal/pack_release/pack_release.sh[pack_release.sh] and debugging all its requirements.
+
+== Install FPC and Lazarus
+
+* It is easiest to install https://www.lazarus-ide.org/[Lazarus bundled with FPC].
+// Alternatively, you can also use only FPC (omit then the variants below that use Lazarus). On many Linux distributions this is as simple as `apt install fpc`.
+* You can also https://castle-engine.io/fpcupdeluxe[get both Lazarus and FPC from fpcupdeluxe].
+
+We list the link:supported_compilers[supported FPC and Lazarus versions here]. We always support the latest stable release as well as a few older versions.
+
+== Get the CGE source code from GitHub
+
+Get the source code of CGE from GitHub. In the terminal, do this:
+
+[source,bash]
+----
+git clone https://github.com/castle-engine/castle-engine/
+----
+
+You can make it a bit faster (if you don't care about getting historic revision and other branches than `master`) using this instead:
+
+[source,bash]
+----
+git clone --depth 1 --single-branch --branch master https://github.com/castle-engine/castle-engine/
+----
+
+Note: If you're on Windows and get errors from GIT like `fatal: cannot create directory at ...: Filename too long` then try doing this:
+
+[source,bash]
+----
+git config --global core.longpaths true
+----
+
+See https://stackoverflow.com/questions/52699177/how-to-fix-filename-too-long-error-during-git-clone[this post] for more possibilities (you could also do this at repo level or (but this requires admin permissions) at system level). Note that it's an independent task from https://www.supportyourtech.com/articles/how-to-enable-long-paths-in-windows-11-step-by-step-guide/[enabling Long Paths in Windows itself], and activating long paths in Windows itself is not enough (https://technofossy.com/how-to-fix-filename-too-long-errors-in-git-on-windows/[confirmed also here]).
+
+== Compile the build tool
+
+Compile the command-line link:build_tool[build tool].
+
+* If you're on Unix (like Linux) and familiar with command-line, then it is simplest to do this in the terminal:
++
+[source,bash]
+----
+cd castle-engine/tools/build-tool/ # first enter the build tool directory
+./castle-engine_compile.sh
+----
+
+* _Alternatively:_ If you're on Windows and familiar with PowerShell command-line, then it is simplest to do this in PowerShell:
++
+[source,powershell]
+----
+cd castle-engine/tools/build-tool/ # first enter the build tool directory
+Set-ExecutionPolicy Bypass -Scope Process
+./castle-engine_compile.ps1
+----
++
+Note: The `Set-ExecutionPolicy...` is to avoid errors because our PowerShell script is not signed. Without it, you will likely get an error like `The file ....\castle-engine_compile.ps1 is not digitally signed. You cannot run this script on the current system`. We follow advise to solve it e.g. from https://chocolatey.org/install[Chocolatey].
+
+* _Alternatively:_ If you're not friendly with command-line, compile by Lazarus:
++
+. Open in Lazarus this package from CGE repository: `packages/lazarus/castle_engine_base.lpk`.
++
+Press _"Compile"_ button in the package window.
+. Then open in Lazarus the project `castle-engine/tools/build-tool/castle_engine.lpi` and use _"Compile"_ command (in the _"Run"_ menu).
+
+Next, place build tool exe in proper directory, so that it can be found by other CGE tools, and so that it will detect CGE:
+
+* _Advised:_ Create the subdirectory `bin` under the main CGE directory (so you'll have `castle-engine/bin/`) and move there the resulting binary `castle-engine` (`castle-engine.exe` on Windows).
+
+* _Alternatively:_ You can add the `castle-engine` binary location to the environment variable `PATH`. On Unix, you can add something like `export PATH="$PATH:$HOME/castle-engine/tools/build-tool/"` to `~/.profile`. On Windows, you can https://www.computerhope.com/issues/ch000549.htm[follow instructions here]. If this step sounds complicated and unnecessary, just don't do it -- putting the build tool into the `castle-engine/bin/` is also good.
+
+* _Alternatively:_ You can move the `castle-engine` binary to any place that is already on `$PATH`, e.g. on Unix to system-wide `/usr/local/bin/`. You should then also define environment variable `CASTLE_ENGINE_PATH` pointing to the CGE sources. On Unix, instead of using `$CASTLE_ENGINE_PATH`, you can also put the engine in system-wide `/usr/src/castle-engine` or `/usr/local/src/castle-engine` (or make it a symlink, like `sudo ln -s $HOME/my/castle-engine /usr/local/src/castle-engine`).
+
+== Compile the editor
+
+. Install in Lazarus `castle_engine_lcl.lpk` package following link:control_on_form[the documentation how to get TCastleControl working]. As editor uses `TCastleControl`, this is a necessary step when building editor yourself.
+
+. Open and compile (no need to install) in Lazarus `castle_engine_editor_components.lpk` package.
++
+This package contains some units and registers some components that are only useful for CGE editor development. In particular, `mbColorLib` (LCL components to display nice color dialogs) and some forms for CGE property editors (in `tools/castle-editor/components`).
++
+_Only install this package if you want to contribute to CGE development_ and edit all property editor forms.
++
+_General users should not need to install this package_. If you just want to build CGE editor, it is enough that Lazarus "knows" about this package, so just _"Compile"_ this package and it will be linked with CGE editor. If unsure, and you later want to contribute (thank you!), you can install it later :) Remember that you should not use `castle_engine_editor_components.lpk` in your own applications -- the units and components in this package are internal for CGE development, we may change their API disregarding backward compatibility.
+
+. Open in Lazarus `castle-engine/tools/castle-editor/castle-editor.lpi` and use _"Compile"_ command (in the _"Run"_ menu).
+
+. Just like with the build tool: move the resulting binary (`castle-editor` on Unix, `castle-editor.exe` on Windows) to the `castle-engine/bin/`.
+
+== Make sure you have the necessary libraries
+
+=== Windows
+
+On Windows, it is important to make sure that the dynamic libraries (`xxx.dll` files) are in the correct place, alongside the editor `castle-editor.exe` file.
+
+The DLL files are in:
+
+* (32-bit) https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/external_libraries/i386-win32[castle-engine/tools/build-tool/data/external_libraries/i386-win32/] or
+* (64-bit) https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/external_libraries/x86_64-win64[castle-engine/tools/build-tool/data/external_libraries/x86_64-win64/].
+
+You need to copy all these DLL files to the `castle-engine/bin/` directory, alongside the `castle-editor.exe`.
+
+Alternatively you can modify your `PATH` environment variable to include the directory where the DLL files are. Remember to restart the appropriate programs, to make them use the new value of `PATH`.
+
+Be sure to use the DLL files corresponding to your target platform. For example, if you use FPC/Lazarus for 32-bits, then you make executable for 32-bits (by default), and you should use DLLs for 32-bits. _Even if you work on a 64-bit Windows._
+
+=== Linux, FreeBSD
+
+We use the following libraries:
+
+. OpenGL
+. GTK (version 2 and 3, as we are switching from GTK 2 to 3)
+. LibPng (_optional_; to open png files more efficiently)
+. ZLib (_optional_; to unpack gzip files; also used by LibPng)
+. OpenAL (_optional_; to play sound)
+. FreeType (_optional_; to load font files)
+. VorbisFile (_optional_; to load OggVorbis sound files)
+. Qt and libQtPas (_very optional_; only if you want to compile our editor with alternative Qt widgetset)
+
+Most of them are already present on all Unix desktop installations.
+
+On your (developer) system, you will need the development versions of some of these libraries. This allows to build programs that link to these libraries.
+
+* On _Debian_ and derivatives (like _Ubuntu_ or _Raspberry Pi OS_), this command should install everything you need:
++
+[source,bash]
+----
+sudo apt install libgtk2.0-dev libgtk-3-dev libglx-dev libgl-dev libqt5pas-dev libpng-dev libz1 libopenal1 libfreetype6 libvorbisfile3
+----
++
+(Anything missing? https://www.debian.org/distrib/packages[Search])
+
+* On Fedora, this command should install everything you need (and more, some of these are FPC requirements actually, not CGE):
++
+[source,bash]
+----
+sudo dnf install gtk2 gtk2-devel gtk3 gtk3-devel libX11-devel make binutils glibc-devel mesa-libGL-devel qt5pas
+----
++
+// TODO: add on Fedora: libpng-dev libz1 libopenal1 libfreetype6 libvorbisfile3
++
+(Anything missing? https://packages.fedoraproject.org/[Search])
+
+* On _Arch Linux_ and derivatives, try this:
++
+[source,bash]
+----
+sudo pacman -S gtk2 gtk3
+----
+
+Note that we link to most libraries dynamically using _"dlopen"_ Unix mechanism. So it is not necessary to install e.g. `libfreetype6-dev`. And instead of `libpng-dev` you can install any recent `libpngXY` with `XY` indicating version 1.2-1.6 (various distros have a bit different naming here).
+
+=== macOS
+
+link:macos[macOS requirements are listed here].
+
+== (Optional) Compile castle-model-viewer
+
+To have fully-working installation, build also link:castle-model-viewer[castle-model-viewer]. Editor executes it on double-click to view link:creating_data_model_formats.php[all our scene formats, 3D and 2D: glTF, X3D, Spine JSON, sprite sheets etc.].
+
+Get the code from GitHub:
+
+[source,bash]
+----
+git clone https://github.com/castle-engine/castle-model-viewer/
+----
+
+You now have a number of equivalent options to compile:
+
+* Use Lazarus.
++
+. First, Lazarus must be aware of the `castle_engine_window` package. It is best to use _Register Lazarus Packages_ button from the CGE editor, as described in the link:install[Installation manual]. Or you could just open the `packages/lazarus/castle_engine_window.lpk` package in CGE sources, and _"Compile"_ it from Lazarus.
+. Then open in Lazarus `castle_model_viewer.lpi`, and use _"Run -> Compile"_ menu item in Lazarus.
+
+* Or run `castle-editor`. Open the project in `castle-model-viewer/CastleEngineManifest.xml`, and use _"Compile"_ from CGE editor.
+
+* Or use this in terminal (if you put the build tool on `$PATH`):
++
+[source,bash]
+----
+cd castle-model-viewer/
+castle-engine compile
+----
+
+Similarly to the previous tools, we advise to put the binary `castle-model-viewer` (`castle-model-viewer.exe` on Windows) inside the `castle-engine/bin/` directory, alongside other tools.
+
+== (Optional) Compile castle-image-viewer
+
+You can build also link:castle-image-viewer[castle-image-viewer]. Editor executes in on double-click to view 2D images.
+
+Get the code from GitHub:
+
+[source,bash]
+----
+git clone https://github.com/castle-engine/castle-image-viewer/
+----
+
+Similar to `castle-model-viewer` step above, you now have a number of equivalent options to compile:
+
+* Use Lazarus.
++
+. First, Lazarus must be aware of the `castle_engine_window` package. It is best to use _Register Lazarus Packages_ button from the CGE editor, as described in the link:install[Installation manual]. Or you could just open the `packages/lazarus/castle_engine_window.lpk` package in CGE sources, and _"Compile"_ it from Lazarus.
+. Then open in Lazarus `castle_image_viewer.lpi`, and use _"Run -> Compile"_ menu item in Lazarus.
+
+* Run `castle-editor`, open project in `castle-image-viewer/CastleEngineManifest.xml`, and use _"Compile"_ from CGE editor.
+
+* Use in terminal (if you put the build tool on `$PATH`):
++
+[source,bash]
+----
+cd castle-image-viewer/
+castle-engine compile
+----
+
+Similarly to the previous tools, we advise to put the binary `castle-image-viewer` (`castle-image-viewer.exe` on Windows) inside the `castle-engine/bin/` directory, alongside other tools.
+
+== (Optional) Compile pasls (Pascal LSP)
+
+If you use `pasls` (Pascal LSP), for example with our link:vscode[Visual Studio Code extension], then download and build it too. Like this:
+
+[source,bash]
+----
+git clone https://github.com/castle-engine/pascal-language-server.git
+cd pascal-language-server/
+git submodule update --init --recursive
+cd server/
+lazbuild pasls.lpi
+----
+
+Then put the `pasls` binary in the `castle-engine/bin/` directory. This is where it's expected e.g. by https://marketplace.visualstudio.com/items?itemName=castle-engine-team.castle-engine[our Visual Studio Code extension].
+
+== Test!
+
+You now have a complete working CGE installation, with the command-line build tool and GUI editor. Follow the link:install[manual] to set it up and use as a normal user :)
+
+== Updating
+
+To pull the latest changes:
+
+. Update from GIT as usual (`git pull --rebase`).
+
+. Follow the above steps to recompile at least the _build tool_ and _editor_.
++
+If you're on Unix (like Linux), or use Cygwin under Windows, then you can just execute `make`. It recompiles all the tools, all Lazarus packages, and the editor, and places the binaries in `bin/`.

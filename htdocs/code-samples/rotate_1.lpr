@@ -1,5 +1,5 @@
 uses CastleWindow, CastleSceneCore, CastleScene, CastleVectors, CastleFilesUtils,
-  CastleViewport, CastleCameras;
+  CastleViewport, CastleCameras, CastleUtils;
 var
   Window: TCastleWindow;
   Viewport: TCastleViewport;
@@ -19,7 +19,7 @@ begin
   Scene.Load('castle-data:/monkey_z_up.x3d');
   Scene.PreciseCollisions := true;
   // rotate by -90 degrees around X axis
-  Scene.Rotation := Vector4(1, 0, 0, -Pi/2);
+  Scene.Rotation := Vector4(1, 0, 0, -Deg(90));
 
   Viewport.Items.Add(Scene);
 
