@@ -1,0 +1,69 @@
+# Transformation hierarchy
+include::common.adoc[]
+:description: Transformation hierarchies in Castle Game Engine: TCastleTransform, TTransformNode, TShape.
+
+== Introduction
+
+When organizing your world, you often want to arrange your 3D objects in a hierarchy. This means that you can move / rotate / scale a group of objects.
+
+== Primary transformation hierarchy: TCastleTransform hierarchy (with TCastleScene in leaves)
+
+cgeref:TCastleViewport.Items[] is a tree containing scenes. A scene is an instance of cgeref:TCastleScene[] class, which is probably *the* most important class in our engine. It represents a 3D or 2D model.
+
+You can group and transform the scenes using cgeref:TCastleTransform[]. The cgeref:TCastleScene[] is also a descendant of cgeref:TCastleTransform[], so you can just transform a scene directly.
+
+////
+The visible leaves of this tree are
+cgeref:TCastleScene[]
+instances (although you can also implement your own visible 3D objects).
+////
+
+This is a very simple tree, that allows you to simply transform and group 3D objects.
+
+* _Changing this tree dynamically has absolutely zero cost_. This includes changing transformations of items (moving, rotating, scaling them), or completely rearranging the tree (adding, removing items), or hiding / showing the items (use the cgeref:TCastleTransform.Exists[] property). It is ultimately fast and can be done as often as you need.
+
+* Downside: do not make this tree too deep and complicated. This tree needs to be traversed each time you render or check collisions with the 3D world. Although we successfully use it with hundreds of transformations, but be careful -- at some point the processing time will become noticeable.
+
+////
+3D collisions, and the "frustum culling" rendering optimization,
+consider every 3D object in turn. It you have a lot of 3D objects,
+this is not efficient.
+////
+
+* Summary: absolutely dynamic tree.
+
+== Secondary transformation hierarchy: X3D nodes tree, using TTransformNode to transform, with geometry nodes (and others) in leaves
+
+Inside cgeref:TCastleScene[] there is a transformation hierarchy of X3D nodes, starting in cgeref:TCastleSceneCore.RootNode[]. Loading the scene by cgeref:TCastleSceneCore.Load[] automatically builds a tree of X3D nodes based on 3D model contents. You can also build (or process) the X3D nodes tree by code. There are various grouping and transforming nodes, most notably cgeref:TTransformNode[] (see link:x3d_implementation_grouping.php[X3D grouping component]). Everything you see is expressed as a combination of X3D nodes -- meshes, materials, textures, shaders, lighting, animations, collisions...
+
+Each single cgeref:TCastleScene[] has a tree of X3D nodes.
+
+In the simplest cases (if you load scenes using cgeref:TCastleSceneCore.Load[]) you will create one cgeref:TCastleScene[] instance for each 3D model file you have. But you're not limited to this approach, as you can split and merge X3D graphs freely. See an example code https://github.com/castle-engine/castle-engine/blob/master/examples/viewport_and_scenes/combine_multiple_x3d_into_one_scene[examples/viewport_and_scenes/combine_multiple_x3d_into_one_scene] for how to load multiple 3D model files into a single X3D graph (single `TX3DRootNode`).
+
+Properties of the X3D transformation hierarchy:
+
+* Changing the transformations in this tree is very fast and optimized, but may have a tiny cost at some point. Rebuilding this tree right now is poorly optimized (it may be improved in the future, but there's a limit to how much it can be done).
+
+* Upside: you can go wild with the transformation level here (the actual rendering and many other read operations look only at flattened `TCastleScene.Shapes` mentioned below).
+
+* 3D collisions, and the "_frustum culling_" rendering optimization, use a tree (like an octree) to minimize the number of calculations. This is very efficient if you have a lot of 3D shapes.
+
+* Summary: this tree is somewhat less dynamic. It is _very optimized for some changes_, like changing transformations of existing objects, but _poorly optimized for an arbitrary rearranging_ at runtime. Rendering and processing is always lighting fast, regardless of the tree depth or complication.
+
+=== Should you combine multiple loaded models into one TCastleScene?
+
+Sometimes, you have 2 models but you'd like to place them in 1 cgeref:TCastleScene[] instance.
+
+See https://github.com/castle-engine/castle-engine/blob/master/examples/viewport_and_scenes/combine_multiple_x3d_into_one_scene[examples/viewport_and_scenes/combine_multiple_x3d_into_one_scene] for an example of this.
+
+Should you do this technique in your own applications?
+
+* At the beginning, don't merge the scenes. It's more natural, and in 90% cases perfectly fast, to use one `TCastleScene` for each one model file you load. This allows to trivially load the model using `Scene.Load` and is really advised for most cases. link:optimization#section_combine_scene[See also the relevant section in the manual about optimization].
+
+* 100, or even 1000, or `TCastleScene` instances visible should not be a problem. You should consider merging them if you have 10 000 or more. It depends on your use-case (how complicated are the scenes, how heavy is their rendering and which optimizations matter most).
+
+== Mostly internal: Hierarchy of TShapeTree (with TShape and others in leaves)
+
+The X3D nodes hierarchy is automatically reflected as (a little flattened and simplified) tree of shapes in the cgeref:TCastleSceneCore.Shapes[] property. The visible nodes of this tree are X3D `Shape` nodes (cgeref:TShapeNode[]) linked with geometry nodes inside (cgeref:TAbstractGeometryNode[]).
+
+This tree can be completely ignored by your code. It is automatically created and managed inside the cgeref:TCastleScene[]. Sometimes you can use this tree to speedup some operations -- instead of traversing the tree in cgeref:TCastleSceneCore.RootNode[], it's sometimes enough to traverse simpler tree cgeref:TCastleSceneCore.Shapes[].

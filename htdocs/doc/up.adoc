@@ -1,6 +1,6 @@
 # Which way is up?
 include::common.adoc[]
-:description: Understanding and configuring the "up" direction in Castle Game Engine.
+:description: "Up" direction in Castle Game Engine is by default +Y, though you can configure it to be +Z or anything else. Details about "up" and "forward" vectors, how they play with 3D models exported from Blender, how to configure them.
 
 There are various conventions for
 
