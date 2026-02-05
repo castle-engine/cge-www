@@ -203,8 +203,7 @@ will be used for headlight.
     <p>Note that instead of setting headlight to spot, you may also
     consider cheating: you can create a screen effect that simulates
     the headlight. See Castle Model Viewer <i>"Screen Effects -&gt; Headlight"</i>
-    for demo, and <?php echo a_href_page('screen effects documentation',
-    'x3d_extensions_screen_effects'); ?> for ways to create
+    for demo, and <a href="x3d_extensions_screen_effects.php">screen effects documentation</a> for ways to create
     this yourself. This is an entirely different beast, more cheating
     but also potentially more efficient (for starters, you don't have
     to use per-pixel lighting on everything to make it nicely round).
@@ -273,8 +272,7 @@ See <?php echo cgeRef('TBlendingSort'); ?>.
 
 <p>By default, VRML/X3D time origin is at <i>00:00:00 GMT January 1, 1970</i>
 and <code>SFTime</code> reflects real-world time (taken from your OS).
-<?php echo a_href_page('This is uncomfortable for single-user games (albeit I admit it is great for multi-user worlds)',
-'doc/x3d_time_origin_considered_uncomfortable'); ?>.
+<a href="x3d_time_origin_considered_uncomfortable">This is uncomfortable for single-user games (albeit I admit it is great for multi-user worlds)</a>.
 You can change this by using <code>NavigationInfo</code> node:
 
 <?php

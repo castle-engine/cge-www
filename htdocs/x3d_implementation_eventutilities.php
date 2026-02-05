@@ -16,13 +16,12 @@
 <p>Contents:
 <?php echo $toc->html_toc(); ?>
 
-<p>See also <?php echo a_href_page('Castle Game Engine (and Castle Model Viewer) extensions related to event utilities','x3d_implementation_eventutilities_extensions'); ?>.
+<p>See also <a href="x3d_implementation_eventutilities_extensions.php">Castle Game Engine (and Castle Model Viewer) extensions related to event utilities</a>.
 
 <?php echo $toc->html_section(); ?>
 
 <p>For demos and tests of these nodes,
-see the <code>event_utilities</code> subdirectory inside <?php
-echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
+see the <code>event_utilities</code> subdirectory inside <a href="demo_models">our VRML/X3D demo models</a>.</p>
 
 <p>A nice <a href="http://x3dgraphics.com/examples/X3dForWebAuthors/Chapter09-EventUtilitiesScripting/X3dEventUtilityNodeEventDiagrams.pdf">reference
 sheet for the X3D event utility nodes is available here</a>, thanks to

@@ -294,7 +294,7 @@ described on this page.
 <?php echo $toc->html_section(); ?>
 
 <p>The supported X3D nodes from the "Interpolation" component are listed below.
-Moreover, see also <?php echo a_href_page('Castle Game Engine (and Castle Model Viewer) extensions related to the interpolation','x3d_implementation_interpolation_extensions'); ?>.
+Moreover, see also <a href="x3d_implementation_interpolation_extensions.php">Castle Game Engine (and Castle Model Viewer) extensions related to the interpolation</a>.
 
 <ul>
   <li><p><?php echo x3d_node_link('ColorInterpolator'); ?> - Animate color change.

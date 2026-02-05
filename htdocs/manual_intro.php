@@ -4,7 +4,7 @@ castle_header('Manual');
 ?>
 
 <!-- <p>This manual shows all the major parts of the -->
-<!-- < ?php echo a_href_page('Castle Game Engine', 'index'); ? >. -->
+<!-- < ?php echo '<a href="index.php">Castle Game Engine</a>'; ? >. -->
 <!-- engine,
 demonstrating how to make simple games and applications using -->
 <!-- shows how to make a simple 3D first-person game using -->
@@ -22,7 +22,7 @@ code &mdash; the reference is automatically generated from the
 comments in the units interface, so if you're brave enough, you can
 just dive straight into the source.</p>
 
-<p>The <?php echo a_href_page('overview of engine classes', 'manual_classes_overview'); ?>
+<p>The <a href="manual_classes_overview.php">overview of engine classes</a>
  may also be useful as a quick cheatsheet &mdash; summary of the most important
 classes and concepts of our engine.</p>
 

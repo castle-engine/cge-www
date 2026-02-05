@@ -60,7 +60,7 @@ $toc = new TableOfContents(
     <ul>
       <li><p>If you're looking for quads,
         use instead <code>IndexedQuadSet</code>, <code>QuadSet</code>
-        from <?php echo a_href_page('CAD geometry component', 'x3d_implementation_cadgeometry'); ?>.
+        from <a href="x3d_implementation_cadgeometry.php">CAD geometry component</a>.
 
       <li><p>If you're looking for polygons (with arbitrary number of vertexes for each face),
         use instead <code>IndexedFaceSet</code> from

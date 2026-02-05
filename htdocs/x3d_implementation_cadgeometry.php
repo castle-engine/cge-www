@@ -14,7 +14,7 @@
   <li><p><?php echo x3d_node_link('IndexedQuadSet'); ?>,<br>
     <?php echo x3d_node_link('QuadSet'); ?></p>
 
-    <p>See <?php echo a_href_page('Rendering component', 'x3d_implementation_rendering'); ?>.</p></li>
+    <p>See <a href="x3d_implementation_rendering.php">Rendering component</a>.</p></li>
 
   <li><p><?php echo x3d_node_link('CADAssembly'); ?>,<br>
     <?php echo x3d_node_link('CADFace'); ?>,<br>

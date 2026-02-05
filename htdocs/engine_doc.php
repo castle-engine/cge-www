@@ -49,7 +49,7 @@ everything you need to remake the HTML / PDF outputs above.
 See the README for information how to regenerate it.</p>
 
 <p>The example VRML 1.0/2.0 models, used for screenshots
-in this work, are available inside <?php echo a_href_page('our demo models', 'demo_models'); ?>
+in this work, are available inside <a href="demo_models">our demo models</a>
  (see in <code>vrml_engine_doc_simple_examples</code> subdirectory).
 So you can view them comfortably in
 <a href="castle-model-viewer">Castle Model Viewer</a> etc.

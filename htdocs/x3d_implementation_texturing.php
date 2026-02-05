@@ -21,14 +21,13 @@
 <p>Contents:
 <?php echo $toc->html_toc(); ?>
 
-<p>See also <?php echo a_href_page('Castle Game Engine (and Castle Model Viewer) extensions related to texturing','x3d_implementation_texturing_extensions'); ?>.
+<p>See also <a href="x3d_implementation_texturing_extensions.php">Castle Game Engine (and Castle Model Viewer) extensions related to texturing</a>.
 
 <?php echo $toc->html_section(); ?>
 
 <p>For demos and tests of these features,
 see the <code>texturing_advanced</code> and <code>movie_texture</code>
-and <code>multi_texturing</code> subdirectories inside <?php
-echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
+and <code>multi_texturing</code> subdirectories inside <a href="demo_models">our VRML/X3D demo models</a>.</p>
 
 <?php echo $toc->html_section(); ?>
 
@@ -279,9 +278,8 @@ the full list of image formats we can handle.
 
 <?php echo $toc->html_section(); ?>
 
-<p><?php echo a_href_page('Comments about X3D MultiTexturing problems
-and solutions (used in our engine, and proposed for future X3D spec) are here.',
-'x3d_multi_texturing'); ?>
+<p><a href="x3d_multi_texturing.php">Comments about X3D MultiTexturing problems
+and solutions (used in our engine, and proposed for future X3D spec) are here.</a>
 
 <?php
   castle_footer();

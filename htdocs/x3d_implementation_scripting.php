@@ -18,9 +18,8 @@
 
 <?php echo $toc->html_section(); ?>
 
-<p>For demos and tests of <?php echo a_href_page('CastleScript', 'castle_script'); ?>,
-see the <code>castle_script</code> subdirectory inside <?php
-echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
+<p>For demos and tests of <a href="castle_script">CastleScript</a>,
+see the <code>castle_script</code> subdirectory inside <a href="demo_models">our VRML/X3D demo models</a>.</p>
 
 <?php echo $toc->html_section(); ?>
 
@@ -31,9 +30,8 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
     (to link scripts with handlers written in compiled language (ObjectPascal))',
     'x3d_extensions',
     'section_ext_script_compiled'); ?> and
-    <?php echo a_href_page('castlescript:
-    (simple scripting language specific to our engine)',
-    'castle_script'); ?>.
+    <a href="castle_script">castlescript:
+    (simple scripting language specific to our engine)</a>.
 
     <p><i>TODO</i>: no standard scripting language, like ECMAScript,
     is implemented now. <code>directOutput</code> field of script node

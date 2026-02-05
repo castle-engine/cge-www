@@ -55,7 +55,7 @@ We love to see how you use CGE.</i>
 
   <?php gallery_link("rayhunter",
     "Command-line simple ray-tracer (classic deterministic ray-tracer and basic Monte Carlo path tracer).<br/>Handles VRML/X3D and other 3D model formats.<br/>" .
-    a_href_page("See also it's gallery.","doc/raytr_gallery"),
+    '<a href="raytr_gallery">See also it\'s gallery.</a>',
     'rayhunter_graz_demo.png',
     "doc/rayhunter"); ?>
 </div>

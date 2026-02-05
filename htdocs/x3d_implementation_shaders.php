@@ -85,8 +85,7 @@
 <?php echo $toc->html_section(); ?>
 
 <p>For complete demos of features discussed here,
-see the <code>shaders</code> subdirectory inside <?php
-echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.
+see the <code>shaders</code> subdirectory inside <a href="demo_models">our VRML/X3D demo models</a>.
 You can open them with various <i>Castle Game Engine</i> X3D tools,
 in particular with <a href="castle-model-viewer">Castle Model Viewer</a>.
 
@@ -217,8 +216,8 @@ ROUTE MyTimer.elapsedTime TO MyShader.time'); ?>
 time start ticking from zero when you open VRML/X3D, which makes the float
 values in <code>MyTimer.elapsedTime</code> increase from zero.
 Which is usually useful, and avoids having precision problems
-with huge values of <code>MyTimer.time</code>. See <?php echo a_href_page('notes
-about VRML / X3D time origin', 'doc/x3d_time_origin_considered_uncomfortable'); ?>
+with huge values of <code>MyTimer.time</code>. See <a href="x3d_time_origin_considered_uncomfortable">notes
+about VRML / X3D time origin</a>
  for more details.
 
 <p>Most field types may be passed to appropriate GLSL uniform
@@ -251,7 +250,7 @@ texture node to a GLSL <code>sampler2D</code>, <code>sampler3D</code>,
 <p>The simplest demo of using this too combine 2 textures in a shader is
 inside <a href="https://github.com/castle-engine/demo-models/blob/master/shaders/two_textures.x3dv">demo-models/shaders/two_textures.x3dv</a>.
 This demo, along with many more, are inside our
- <?php echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>
+ <a href="demo_models">our VRML/X3D demo models</a>
  (look inside the <code>shaders/</code> subdirectory).
 </p>
 
@@ -331,14 +330,14 @@ The type of the primitive may be changed by the geometry shader
 </ul>
 
 <p>We have also a more flexible approach to geometry shaders
-as part of our <?php echo a_href_page('compositing shaders', 'compositing_shaders'); ?>
+as part of our <a href="shaders">compositing shaders</a>
  extensions. The most important advantage is that you can implement
 only the geometry shader, and use the default vertex and fragment shader code
 (that will do the boring stuff like texturing, lighting etc.).
 Inside the geometry shader you have functions <code>geometryVertexXxx</code>
 to pass-through or blend input vertexes in any way you like.
 Everything is described in detail in our
-<?php echo a_href_page('compositing shaders documentation', 'compositing_shaders'); ?>,
+<a href="shaders">compositing shaders documentation</a>,
  in particular see the <a href="https://castle-engine.io/compositing_shaders_doc/html/chapter.geometry_shaders.html">the chapter "Extensions for geometry shaders"</a>.</p>
 
 <p>Examples of geometry shaders with <code>Effect</code>:</p>

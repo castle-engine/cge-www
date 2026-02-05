@@ -153,7 +153,7 @@ the angles defined in <code>keyValue</code> field (as radians).
 This way <code>CubicBezier2DOrientationInterpolator</code> is very efficient for 2D
 rotations.
 
-<p>Note that you could also use <code>NurbsPositionInterpolator</code> and <code>NurbsOrientationInterpolator</code> to interpolate using Bezier curves (<?php echo a_href_page('see NURBS nodes','x3d_implementation_nurbs'); ?>), since NURBS equations already allow to specify Bezier curves. However, this would be less efficient to calculate, as we don't know then that the NURBS "knot" represents a Bezier curve. We can calculate resuls faster knowing that it's a Bezier cubic curve, not anything more generic. Additionally, <code>CubicBezier2DOrientationInterpolator</code> makes extra optimization, knowing that rotation is in 2D.
+<p>Note that you could also use <code>NurbsPositionInterpolator</code> and <code>NurbsOrientationInterpolator</code> to interpolate using Bezier curves (<a href="x3d_implementation_nurbs.php">see NURBS nodes</a>), since NURBS equations already allow to specify Bezier curves. However, this would be less efficient to calculate, as we don't know then that the NURBS "knot" represents a Bezier curve. We can calculate resuls faster knowing that it's a Bezier cubic curve, not anything more generic. Additionally, <code>CubicBezier2DOrientationInterpolator</code> makes extra optimization, knowing that rotation is in 2D.
 
 <?php echo $toc->html_section(); ?>
 

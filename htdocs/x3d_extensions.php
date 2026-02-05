@@ -74,7 +74,7 @@ $toc = new TableOfContents(array(
     <p>TODO: eventual goal is to make all extensions this way, so that they can be nicely omitted. Also, it would be nice to use VRML 1.0 similar feature, <code>isA</code> and <code>fields</code>, for the same purpose, but it's not implemented (and probably never will be, since VRML 1.0 is basically dead and VRML 2.0 / X3D externproto is so much better).</p>
     */ ?>
 
-    <p><?php echo a_href_page('Our VRML/X3D demo models', 'demo_models'); ?> uses the <code>EXTERNPROTO</code> mechanism whenever possible, so that even demos of our extensions (mostly inside <code>castle_extensions/</code> subdirectories) should be partially handled by other VRML / X3D browsers.</p>
+    <p><a href="demo_models">Our VRML/X3D demo models</a> uses the <code>EXTERNPROTO</code> mechanism whenever possible, so that even demos of our extensions (mostly inside <code>castle_extensions/</code> subdirectories) should be partially handled by other VRML / X3D browsers.</p>
 
     <p>Our extensions are identified by URN like "<code>urn:castle-engine.io:node:ShaderTexture</code>". For compatibility, also deprecated "<code>urn:vrmlengine.sourceforge.net:node:ShaderTexture</code>" is recognized.</p>
   </li>
@@ -126,8 +126,7 @@ Some other extensions may be able supported for other reasons:
 <p>To understand these extensions you will need some basic knowledge of VRML/X3D, <a href="http://www.web3d.org/standards">you can find the official VRML / X3D specifications here</a>.</p>
 
 <p><b>Examples</b>: VRML/X3D models that use these extensions may be found
-in <?php echo a_href_page("our VRML/X3D demo models",
-"demo_models"); ?>. Look there at directory names,
+in <a href="demo_models">our VRML/X3D demo models</a>. Look there at directory names,
 in particular <code>castle_extensions</code> subdirectories (but also some
 others) are full of demos of our extensions.</p>
 
@@ -135,59 +134,59 @@ others) are full of demos of our extensions.</p>
 
 <?php echo $toc->html_section(); ?>
 
-  <p><?php echo a_href_page('Shape extensions are documented on the "Shape component - extensions" page', 'x3d_implementation_shape_extensions'); ?>.</p>
+  <p><a href="x3d_implementation_shape_extensions.php">Shape extensions are documented on the "Shape component - extensions" page</a>.</p>
 
 <?php echo $toc->html_section(); ?>
 
-  <p><?php echo a_href_page('Screen Effect extensions are described here', 'x3d_extensions_screen_effects'); ?>.</p>
+  <p><a href="x3d_extensions_screen_effects.php">Screen Effect extensions are described here</a>.</p>
 
 <?php echo $toc->html_section(); ?>
 
-  <p><?php echo a_href_page('Bump mapping docs are at the
-    "Texturing component - extensions" page', 'x3d_implementation_texturing_extensions'); ?>.</p>
+  <p><a href="x3d_implementation_texturing_extensions.php">Bump mapping docs are at the
+    "Texturing component - extensions" page</a>.</p>
 
 <?php echo $toc->html_section(); ?>
 
-  <p><?php echo a_href_page('Shadow Maps extensions are described here', 'x3d_extensions_shadow_maps'); ?>.</p>
+  <p><a href="x3d_extensions_shadow_maps.php">Shadow Maps extensions are described here</a>.</p>
 
 <?php echo $toc->html_section(); ?>
 
-  <p><?php echo a_href_page('Shadow Volumes extensions are described here', 'x3d_extensions_shadow_volumes'); ?>.</p>
+  <p><a href="shadow_volumes">Shadow Volumes extensions are described here</a>.</p>
 
 <?php echo $toc->html_section(); ?>
 
-<p><?php echo a_href_page('<code>texCoord</code> for primitives docs are at the
-"Texturing component - extensions" page', 'x3d_implementation_texturing_extensions'); ?>.</p>
+<p><a href="x3d_implementation_texturing_extensions.php"><code>texCoord</code> for primitives docs are at the
+"Texturing component - extensions" page</a>.</p>
 
 <?php echo $toc->html_section(); ?>
 
-<p><?php echo a_href_page('<code>camera*Matrix</code> fields docs are at the
-"Navigation component - extensions" page', 'x3d_implementation_navigation_extensions'); ?>.</p>
+<p><a href="x3d_implementation_navigation_extensions.php"><code>camera*Matrix</code> fields docs are at the
+"Navigation component - extensions" page</a>.</p>
 
 <?php echo $toc->html_section(); ?>
 
-  <p><?php echo a_href_page('<code>TextureCoordinateGenerator.mode</code> in worldspace docs are at the
-  "Texturing component - extensions" page', 'x3d_implementation_texturing_extensions'); ?>.</p>
+  <p><a href="x3d_implementation_texturing_extensions.php"><code>TextureCoordinateGenerator.mode</code> in worldspace docs are at the
+  "Texturing component - extensions" page</a>.</p>
 
 <?php echo $toc->html_section(); ?>
 
-  <p><?php echo a_href_page('<code>TextureCoordinateGenerator.mode</code> BOUNDS* docs are at the
-  "Texturing component - extensions" page', 'x3d_implementation_texturing_extensions'); ?>.</p>
+  <p><a href="x3d_implementation_texturing_extensions.php"><code>TextureCoordinateGenerator.mode</code> BOUNDS* docs are at the
+  "Texturing component - extensions" page</a>.</p>
 
 <?php echo $toc->html_section(); ?>
 
-  <p><?php echo a_href_page('<code>Text3D</code> docs are at the
-  "Text component - extensions" page', 'x3d_implementation_text_extensions'); ?>.</p>
+  <p><a href="x3d_implementation_text_extensions.php"><code>Text3D</code> docs are at the
+  "Text component - extensions" page</a>.</p>
 
 <?php echo $toc->html_section(); ?>
 
-  <p><?php echo a_href_page('<code>alphaChannel</code> docs are at the
-  "Texturing component - extensions" page', 'x3d_implementation_texturing_extensions'); ?>.</p>
+  <p><a href="x3d_implementation_texturing_extensions.php"><code>alphaChannel</code> docs are at the
+  "Texturing component - extensions" page</a>.</p>
 
 <?php echo $toc->html_section(); ?>
 
-  <p><?php echo a_href_page('<code>MovieTexture</code> with image sequence docs are at the
-  "Texturing component - extensions" page', 'x3d_implementation_texturing_extensions'); ?>.</p>
+  <p><a href="x3d_implementation_texturing_extensions.php"><code>MovieTexture</code> with image sequence docs are at the
+  "Texturing component - extensions" page</a>.</p>
 
 <?php echo $toc->html_section(); ?>
 
@@ -291,13 +290,13 @@ Shape {
 
 <?php echo $toc->html_section(); ?>
 
-<p><?php echo a_href_page('<code>timeOriginAtLoad</code> docs are at the
-"Navigation component - extensions" page', 'x3d_implementation_navigation_extensions'); ?>.</p>
+<p><a href="x3d_implementation_navigation_extensions.php"><code>timeOriginAtLoad</code> docs are at the
+"Navigation component - extensions" page</a>.</p>
 
 <?php echo $toc->html_section(); ?>
 
-<p><?php echo a_href_page('<code>headBobbing</code> docs are at the
-"Navigation component - extensions" page', 'x3d_implementation_navigation_extensions'); ?>.</p>
+<p><a href="x3d_implementation_navigation_extensions.php"><code>headBobbing</code> docs are at the
+"Navigation component - extensions" page</a>.</p>
 
 <?php echo $toc->html_section(); ?>
 
@@ -392,8 +391,7 @@ end;
 <?php echo $toc->html_section(); ?>
 
     <p>We have a simple scripting language that can be used inside <code>Script</code>
-    nodes. See <?php echo a_href_page('CastleScript documentation (with examples)',
-    'castle_script'); ?>.
+    nodes. See <a href="castle_script">CastleScript documentation (with examples)</a>.
 
 <?php echo $toc->html_section(); ?>
 
@@ -469,8 +467,7 @@ end;
     you ca use X3D <code>OrthoViewpoint</code>.</p>
 
     <p>If you're missing GLSL shaders in VRML 2.0,
-    you can use <?php echo a_href_page('X3D programmable shaders',
-    'x3d_implementation_shaders'); ?> inside VRML 2.0.</p>
+    you can use <a href="x3d_implementation_shaders.php">X3D programmable shaders</a> inside VRML 2.0.</p>
 
     <p>You can also <a href="#section_ext_inline_for_all">freely include
     VRML 1.0 files inside VRML 2.0, or X3D, or the other way around</a>.
@@ -542,7 +539,7 @@ end;
     exponential fog are actually different and incompatible,
     so results will be a little different than they should be.
 
-    <p><?php echo a_href_page('Our demo models', 'demo_models'); ?> have test models
+    <p><a href="demo_models">Our demo models</a> have test models
     for this (see <code>fog/fog_volumetric/</code> subdirectory there).
 
 <?php echo $toc->html_section(); ?>
@@ -617,8 +614,8 @@ WWWInline { name "my_compressed_vrml_file.wrl.gz" }
 
 <?php echo $toc->html_section(); ?>
 
-<p><?php echo a_href_page('<code>*Camera.direction/up</code> docs are at the
-"Navigation component - extensions" page', 'x3d_implementation_navigation_extensions'); ?>.</p>
+<p><a href="x3d_implementation_navigation_extensions.php"><code>*Camera.direction/up</code> docs are at the
+"Navigation component - extensions" page</a>.</p>
 
 <?php echo $toc->html_section(); ?>
 
@@ -633,7 +630,7 @@ WWWInline { name "my_compressed_vrml_file.wrl.gz" }
 
     <p>Currently this is respected only by classic ray-tracer
     in <a href="castle-model-viewer">castle-model-viewer</a>
-    and <?php echo a_href_page("rayhunter", "doc/rayhunter"); ?>.
+    and <a href="rayhunter">rayhunter</a>.
     Well, it's also respected by path-tracer, although
     it's much better to use <a href="#section_ext_material_phong_brdf_fields">
     fields describing physical properties (Phong's BRDF) for <code>Material</code>
@@ -677,12 +674,12 @@ WWWInline { name "my_compressed_vrml_file.wrl.gz" }
 
 <?php echo $toc->html_section(); ?>
 
-<p><?php echo a_href_page('<code>headlightNode</code> docs are at the
-"Navigation component - extensions" page', 'x3d_implementation_navigation_extensions'); ?>.</p>
+<p><a href="x3d_implementation_navigation_extensions.php"><code>headlightNode</code> docs are at the
+"Navigation component - extensions" page</a>.</p>
 
 <?php echo $toc->html_section(); ?>
 
-    In <?php echo a_href_page("rayhunter's","doc/rayhunter") ?>
+    In <a href="rayhunter">rayhunter\'s</a>
     <i>path-tracer</i> I implemented Phong's BRDF.
     To flexibly operate on material's properties understood
     by Phong's BRDF you can use the following <code>Material</code> node's
@@ -772,13 +769,13 @@ WWWInline { name "my_compressed_vrml_file.wrl.gz" }
     using your MGF files.
 
     <p>These fields are used only by <i>path tracer</i> in
-    <?php echo a_href_page("rayhunter", "doc/rayhunter") ?> and
+    <a href="rayhunter">rayhunter</a> and
     <a href="castle-model-viewer">Castle Model Viewer</a>.
 
 <?php echo $toc->html_section(); ?>
 
-    <p><?php echo a_href_page('<code>ColorSetInterpolator</code> docs are at the
-    "Interpolation component - extensions" page', 'x3d_implementation_interpolation_extensions'); ?>.</p>
+    <p><a href="x3d_implementation_interpolation_extensions.php"><code>ColorSetInterpolator</code> docs are at the
+    "Interpolation component - extensions" page</a>.</p>
 
 <?php echo $toc->html_section(); ?>
 
@@ -1022,8 +1019,8 @@ new_screen_color :=
 
 <?php echo $toc->html_section(); ?>
 
-    <p><?php echo a_href_page('<code>RenderedTexture</code> docs are at the
-    "Texturing component - extensions" page', 'x3d_implementation_texturing_extensions'); ?>.</p>
+    <p><a href="x3d_implementation_texturing_extensions.php"><code>RenderedTexture</code> docs are at the
+    "Texturing component - extensions" page</a>.</p>
 
 <?php echo $toc->html_section(); ?>
 
@@ -1039,18 +1036,18 @@ new_screen_color :=
 
 <?php echo $toc->html_section(); ?>
 
-    <p><?php echo a_href_page('<code>Toggler</code> docs are at the
-    "Event utilities component - extensions" page', 'x3d_implementation_eventutilities_extensions'); ?>.</p>
+    <p><a href="x3d_implementation_eventutilities_extensions.php"><code>Toggler</code> docs are at the
+    "Event utilities component - extensions" page</a>.</p>
 
 <?php echo $toc->html_section(); ?>
 
-    <p><?php echo a_href_page('<code>VectorInterpolator</code> docs are at the
-    "Interpolation component - extensions" page', 'x3d_implementation_interpolation_extensions'); ?>.</p>
+    <p><a href="x3d_implementation_interpolation_extensions.php"><code>VectorInterpolator</code> docs are at the
+    "Interpolation component - extensions" page</a>.</p>
 
 <?php echo $toc->html_section(); ?>
 
-    <p><?php echo a_href_page('<code>CommonSurfaceShaders</code> docs are at the
-    "Texturing component - extensions" page', 'x3d_implementation_texturing_extensions'); ?>.</p>
+    <p><a href="x3d_implementation_texturing_extensions.php"><code>CommonSurfaceShaders</code> docs are at the
+    "Texturing component - extensions" page</a>.</p>
 
 <?php echo $toc->html_section(); ?>
 
@@ -1064,7 +1061,7 @@ new_screen_color :=
 
 <?php echo $toc->html_section(); ?>
 
-  <p><?php echo a_href_page('VRML 1.0-specific extensions are described here', 'x3d_extensions_vrml1'); ?>.</p>
+  <p><a href="x3d_extensions_vrml1.php">VRML 1.0-specific extensions are described here</a>.</p>
 
 <?php
   castle_footer();

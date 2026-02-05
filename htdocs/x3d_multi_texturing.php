@@ -256,7 +256,7 @@ Many, many thanks to Cecile Muller for testing!
 
 <p>X3D specification about multi-texturing has a couple of problems.
 Below is a list of spotted problems, and an explanation how we handle it in our
-engine (<?php echo a_href_page("Castle Game Engine", "engine"); ?>
+engine (<a href="index.php">Castle Game Engine</a>
  and <a href="castle-model-viewer">Castle Model Viewer</a>)
  and how we propose to fix X3D specification.
 You probably want to read this along with

@@ -90,7 +90,7 @@ echo castle_thumbs(array(
 <p>You can easily test the effects of these fields
 by investigating your models in <a href="castle-model-viewer">Castle Model Viewer</a>.
 You can view in <i>Wireframe</i> mode to see the triangulation.
-You can try it on our <?php echo a_href_page('demo models', 'demo_models'); ?>,
+You can try it on our <a href="demo_models">demo models</a>,
 for example
 
 <ul>

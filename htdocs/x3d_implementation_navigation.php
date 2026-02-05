@@ -25,13 +25,12 @@
 <p>Contents:
 <?php echo $toc->html_toc(); ?>
 
-<p>See also <?php echo a_href_page('Castle Game Engine (and Castle Model Viewer) extensions related to navigation','x3d_implementation_navigation_extensions'); ?>.
+<p>See also <a href="x3d_implementation_navigation_extensions.php">Castle Game Engine (and Castle Model Viewer) extensions related to navigation</a>.
 
 <?php echo $toc->html_section(); ?>
 
 <p>For demos and tests of these features,
-see the <code>navigation</code> subdirectory inside <?php
-echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
+see the <code>navigation</code> subdirectory inside <a href="demo_models">our VRML/X3D demo models</a>.</p>
 
 <?php echo $toc->html_section(); ?>
 

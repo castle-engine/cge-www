@@ -25,8 +25,7 @@
 <?php echo $toc->html_section(); ?>
 
 <p>For demos and tests of these features,
-see the <code>sound</code> subdirectory inside <?php
-echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
+see the <code>sound</code> subdirectory inside <a href="demo_models">our VRML/X3D demo models</a>.</p>
 
 <?php echo $toc->html_section(); ?>
 

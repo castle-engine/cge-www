@@ -30,8 +30,7 @@ $toc = new TableOfContents(
 <?php echo $toc->html_section(); ?>
 
 <p>For demos and tests of these features,
-see the <code>cube_environment_mapping</code> subdirectory inside <?php
-echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
+see the <code>cube_environment_mapping</code> subdirectory inside <a href="demo_models">our VRML/X3D demo models</a>.</p>
 
 <?php echo $toc->html_section(); ?>
 
@@ -62,8 +61,7 @@ to simulate mirror-like surfaces. It should be coupled with
     you will have to convert it's textures into <code>MultiTexture</code>
     node, with the 1st item containing the old texture,
     and the 2nd item containing the new <code>GeneratedCubeMapTexture</code>.
-    See <?php echo a_href_page('"Texturing" component',
-    'x3d_implementation_texturing'); ?> for multi-texture documentation.</p></li>
+    See <a href="x3d_implementation_texturing.php">"Texturing" component</a> for multi-texture documentation.</p></li>
 
   <li><p>As the texture coordinates set <code>TextureCoordinateGenerator</code>
     node with <code>mode</code> field set to <code>WORLDSPACEREFLECTIONVECTOR</code>.</p>
@@ -173,8 +171,7 @@ to the surrounding enviroment (as there are are no self-reflections).</p>
     use existing values of their textures. This means that recursive mirrors,
     i.e. mirror that can be seen in another mirror, works to any level
     (each frame rendered uses textures generated in the previous frame).
-    You can see recursive mirrors in our <?php
-    echo a_href_page('VRML/X3D demo models', 'demo_models'); ?>
+    You can see recursive mirrors in our <a href="demo_models">VRML/X3D demo models</a>
     (see <code>cube_environment_mapping/cubemap_generated_recursive.x3dv</code>
     <code>cube_environment_mapping/cubemap_generated_in_dynamic_world.x3dv</code>).</p>
 

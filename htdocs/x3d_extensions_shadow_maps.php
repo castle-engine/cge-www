@@ -95,8 +95,7 @@ $toc = new TableOfContents(array(
 
 <?php echo $toc->html_section(); ?>
 
-  <p><?php echo a_href_page('Our demo models',
-  'demo_models'); ?> contain many demos using shadow maps in the
+  <p><a href="demo_models">Our demo models</a> contain many demos using shadow maps in the
   <a href="https://github.com/castle-engine/demo-models/tree/master/shadow_maps/castle_with_trees">shadow_maps</a> subdirectory.
 
   <p>Download them and open with <a href="castle-model-viewer">Castle Model Viewer</a>.
@@ -133,13 +132,11 @@ $toc = new TableOfContents(array(
   and maybe ray-tracer too. <code>shadowCaster</code> (see below) already works
   for all our shadows implementations.</p>
 
-  <p>If you use <?php echo a_href_page('X3D shader nodes, like <code>ComposedShader</code>',
-  'x3d_implementation_shaders') ?>, be aware that your custom shaders
-  are then responsible for performing shadow mapps tests
+  <p>If you use <a href="x3d_implementation_shaders.php">X3D shader nodes, like <code>ComposedShader</code></a>, be aware that your custom shaders
+  are then responsible for performing shadow maps tests
   (as your shaders override engine shaders).
   Use instead
-  <?php echo a_href_page('our compositing shaders extensions for X3D, like <code>Effect</code>',
-  'compositing_shaders') ?>, to write shader code that can cooperate
+  <a href="shaders">our compositing shaders extensions for X3D, like <code>Effect</code></a>, to write shader code that can cooperate
   with our shadow maps (and other engine effects).</p>
 
 <?php echo $toc->html_section(); ?>

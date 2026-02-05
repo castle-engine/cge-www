@@ -19,7 +19,7 @@ developed for the <i>Castle Game Engine</i>.
 
 <p>Try them!
 Simply download <a href="castle-model-viewer">Castle Model Viewer</a> and
-explore the <?php echo a_href_page('demo models', 'demo_models'); ?> collection.
+explore the <a href="demo_models">demo models</a> collection.
 All these extensions and graphic effects are easy to use,
 and available in <i>Castle Game Engine</i> without the need to code at all.
 It's just X3D, so you simply declare them in your X3D files, and engine

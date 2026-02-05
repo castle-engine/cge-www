@@ -45,7 +45,7 @@ by processing the rendered image. Demos:</p>
     <a href="https://github.com/castle-engine/demo-models/blob/master/screen_effects/screen_effect_film_grain.x3dv">screen_effect_film_grain.x3dv</a>,
     <a href="https://github.com/castle-engine/demo-models/blob/master/screen_effects/screen_effect_movie_texture.x3dv">screen_effect_movie_texture.x3dv</a>.
     You should download
-    <?php echo a_href_page('our complete X3D demo models', 'demo_models'); ?>
+    <a href="demo_models">our complete X3D demo models</a>
     and open files in <code>screen_effects</code> subdirectory there, to see the complete
     working demos with an example castle model underneath.</p></li>
 
@@ -89,7 +89,7 @@ Right now our engine supports only GLSL (OpenGL shading language) shaders
 inside <code>ComposedShader</code> nodes. To learn more about GLSL and X3D, see
 
 <ul>
-  <li><?php echo a_href_page('The overview of shaders support in our engine', 'x3d_implementation_shaders'); ?>.
+  <li><a href="x3d_implementation_shaders.php">The overview of shaders support in our engine</a>.
   <li><a href="https://www.khronos.org/opengles/sdk/docs/manglsl/docbook4/">The GLSL function reference</a>.
   <!--
     Be careful: the reference linked here describes both GLSL and OpenGL API.

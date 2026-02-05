@@ -172,8 +172,7 @@ Group {
     is a little dangerous (because you have to be careful what
     you include), but it also allows you to do various tricks.
 
-    <p>Test VRML file: see our <?php echo a_href_page('VRML/X3D demo models',
-    'demo_models'); ?>, file
+    <p>Test VRML file: see our <a href="demo_models">VRML/X3D demo models</a>, file
     <code>vrml_1/castle_extensions/inline_not_separate.wrl</code>.
 
 <?php echo $toc->html_section(); ?>

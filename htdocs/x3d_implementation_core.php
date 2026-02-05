@@ -17,7 +17,7 @@
 
   <li><p><code>UNIT</code> statement (see <a href="<?php echo x3d_spec_latest_url('core', 'UNITStatement'); ?>">X3D specification about UNIT</a>) is handled. In both classic and XML encoding. Angle and length conversion is actually done.</p>
 
-    <p>Working examples of using it are inside <code>demo_models/x3d/units*</code> in <?php echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>. In short, you can declare them like this in X3D XML encoding:</p>
+    <p>Working examples of using it are inside <code>demo_models/x3d/units*</code> in <a href="demo_models">our VRML/X3D demo models</a>. In short, you can declare them like this in X3D XML encoding:</p>
 
 <pre class="vrml_code">
 &lt;X3D version="3.3" profile="..."  ... &gt;

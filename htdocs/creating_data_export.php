@@ -4,7 +4,7 @@ castle_header('Exporting 3D and 2D models');
 ?>
 
 <p>Our engine supports a number of standardized formats for 3D and 2D assets, most notably
-<?php echo a_href_page('X3D', 'doc/x3d'); ?> and
+<a href="x3d">X3D</a> and
 <a href="gltf">glTF</a>.
 As such, you can use almost any 3D or 2D authoring tool to
 make models for your games.
@@ -50,7 +50,7 @@ constantly improving. We want to use these tools, not reinvent them.
     The exporters generally automatically adjust to it,
     e.g. when exporting from Blender (where the Z axis is by convention "up"),
     the exporter rotates your model.
-    See <?php echo a_href_page('"Which way is up?" manual chapter', 'doc/up'); ?>
+    See <a href="up">"Which way is up?" manual chapter</a>
     for more information about this, and how you can customize it.</p>
 
     <!--In

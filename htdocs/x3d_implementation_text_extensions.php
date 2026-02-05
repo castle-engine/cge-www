@@ -88,8 +88,7 @@ However, backface culling may still be applied (if <code>solid</code> is true)
 &mdash; so this node also allows you to make 2D text that's supposed to be
 visible from only front side.</p>
 
-<p>See our <?php echo a_href_page('VRML/X3D demo models',
-'demo_models'); ?>, file <code>text/text_depth.wrl</code> for example use of this.</p>
+<p>See our <a href="demo_models">VRML/X3D demo models</a>, file <code>text/text_depth.wrl</code> for example use of this.</p>
 
 <p>Compatibility:
 

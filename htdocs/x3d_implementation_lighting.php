@@ -137,7 +137,7 @@ It is a significant boost to quality:</p>
     for much more dramatic lighting effects.
     For example, compare the two screenshots from
     light_street_lights_radius demo on the right (from
-    <?php echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>).
+    <a href="demo_models">our VRML/X3D demo models</a>).
     </p></li>
 </ul>
 

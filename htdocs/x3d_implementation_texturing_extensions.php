@@ -318,12 +318,11 @@ same texture transform) as the first texture (in case of multi-texturing).</p>
 <ul>
   <li><p>Open with
     <a href="castle-model-viewer">Castle Model Viewer</a>
-    sample models from <?php echo a_href_page('our VRML/X3D demo models',
-    'demo_models'); ?> (see subdirectory
+    sample models from <a href="demo_models">our VRML/X3D demo models</a> (see subdirectory
     <code>bump_mapping/)</code>.</p></li>
 
   <li><p>You can see this used in
-    <?php echo a_href_page("The Castle", "castle") ?> "The Fountain" level.
+    <a href="castle_game">The Castle</a> "The Fountain" level.
     Authors of new levels are encouraged to use bump mapping&nbsp;!</p></li>
 </ul>
 
@@ -331,8 +330,7 @@ same texture transform) as the first texture (in case of multi-texturing).</p>
 instead of <code>Appearance</code>. This allows you to declare <code>KambiAppearance</code>
 by EXTERNPROTO, that fallbacks on standard <code>Appearance</code>,
 and thus bump mapping extensions will be gracefully omitted by other
-browsers. See <?php echo a_href_page('VRML/X3D demo models',
-'demo_models'); ?> for examples.</p>
+browsers. See <a href="demo_models">VRML/X3D demo models</a> for examples.</p>
 
 <?php echo $toc->html_section(); ?>
 
@@ -483,10 +481,8 @@ generation modes:
 </ol>
 
 <p>These nodes are extremely useful for making mirrors.
-See <?php echo a_href_page('Cube map environmental texturing component',
-'x3d_implementation_cubemaptexturing'); ?> and
-<?php echo a_href_page('our VRML/X3D demo models',
-'demo_models'); ?> for examples.</p>
+See <a href="x3d_implementation_cubemaptexturing.php">Cube map environmental texturing component</a> and
+<a href="demo_models">our VRML/X3D demo models</a> for examples.</p>
 
 <?php echo $toc->html_section(); ?>
 
@@ -542,8 +538,7 @@ automatically. There are three possible situations:
 <p>The difference between these cases is detected by analyzing alpha channel values.
 Developers: see
 <?php echo cgeRef('TEncodedImage.AlphaChannel'); ?>.
-There is also a special program in <?php echo a_href_page('engine sources',
-'index'); ?> (see <code>examples/images_videos/image_identify.lpr</code>
+There is also a special program in <a href="index.php">engine sources</a> (see <code>examples/images_videos/image_identify.lpr</code>
 demo) if you want to test this algorithm yourself.
 You can also see the results for your textures if you run
 <a href="castle-model-viewer">Castle Model Viewer</a>
@@ -556,7 +551,7 @@ but you still want to use simpler rendering by alpha testing
 
 <p>If you modify the texture contents at runtime (for example by scripts,
 like <code>demo_models/castle_script/edit_texture.x3dv</code>
-in <?php echo a_href_page('demo models','demo_models'); ?>)
+in <a href="demo_models">demo models</a>)
 you should also be aware that alpha channel detection happens only once.
 It is not repeated later, as this would be 1. slow 2. could cause
 weird rendering changes. In this case you may also want to force
@@ -627,8 +622,7 @@ a video of smoke or flame in your game, since such textures usually
 require an alpha channel.
 
 <p>Samples of <code>MovieTexture</code> usage
-are inside <?php echo a_href_page('our VRML/X3D demo models',
-'demo_models'); ?>, in subdirectory <code>movie_texture/</code>.
+are inside <a href="demo_models">our VRML/X3D demo models</a>, in subdirectory <code>movie_texture/</code>.
 
 <?php echo $toc->html_section(); ?>
 

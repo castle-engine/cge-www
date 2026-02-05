@@ -4,7 +4,7 @@ castle_header('Creating Game Data');
 ?>
 
 <p>This guide discusses various aspects of preparing game data for use
-in <?php echo a_href_page('Castle Game Engine', 'index'); ?>.
+in <a href="index.php">Castle Game Engine</a>.
 
 <p>Contents:
 

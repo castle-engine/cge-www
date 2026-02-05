@@ -26,7 +26,7 @@
 <a href="castle-model-viewer">Castle Model Viewer</a>.
 
 <p>To test it all,
- <?php echo a_href_page("download our demo models", "demo_models"); ?>
+ <a href="demo_models">download our demo models</a>
  and open them with <a href="castle-model-viewer">our free Castle Model Viewer</a>.
 
 <?php echo $toc->html_section(); ?>
@@ -45,34 +45,34 @@ details about supported nodes. </p>
 <table class="thin_borders">
   <tr><th>Component<br/>(click for details)</th>
       <th>Supported level</th></tr>
-  <tr><td><?php echo a_href_page('Core'                            , 'x3d_implementation_core'                ); ?>  </td><td><b>2 (all)</b></td></tr>
-  <tr><td><?php echo a_href_page('Time'                            , 'x3d_implementation_time'                ); ?>  </td><td><b>2 (all)</b></td></tr>
-  <tr><td><?php echo a_href_page('Networking'                      , 'x3d_implementation_networking'          ); ?>  </td><td><b>4 (all)</b> (except <code>LoadSensor</code>)</td></tr>
-  <tr><td><?php echo a_href_page('Grouping'                        , 'x3d_implementation_grouping'            ); ?>  </td><td><b>3 (all)</b></td></tr>
-  <tr><td><?php echo a_href_page('Rendering'                       , 'x3d_implementation_rendering'           ); ?>  </td><td><b>5 (all)</b></td></tr>
-  <tr><td><?php echo a_href_page('Shape'                           , 'x3d_implementation_shape'               ); ?>  </td><td><b>2</b></td></tr>
-  <tr><td><?php echo a_href_page('Geometry3D'                      , 'x3d_implementation_geometry3d'          ); ?>  </td><td><b>4 (all)</b></td></tr>
-  <tr><td><?php echo a_href_page('Geometry2D'                      , 'x3d_implementation_geometry2d'          ); ?>  </td><td><b>1</b></td></tr>
-  <tr><td><?php echo a_href_page('Text'                            , 'x3d_implementation_text'                ); ?>  </td><td><b>1 (all)</b></td></tr>
-  <tr><td><?php echo a_href_page('Sound'                           , 'x3d_implementation_sound'               ); ?>  </td><td><b>1 (all)</b></td></tr>
-  <tr><td><?php echo a_href_page('Lighting'                        , 'x3d_implementation_lighting'            ); ?>  </td><td><b>3 (all)</b></td></tr>
-  <tr><td><?php echo a_href_page('Texturing'                       , 'x3d_implementation_texturing'           ); ?>  </td><td><b>4 (all)</b></td></tr>
-  <tr><td><?php echo a_href_page('Interpolation'                   , 'x3d_implementation_interpolation'       ); ?>  </td><td><b>3</b></td></tr>
-  <tr><td><?php echo a_href_page('Pointing device sensor'          , 'x3d_implementation_pointingdevicesensor'); ?>  </td><td><b>1 (all)</b></td></tr>
-  <tr><td><?php echo a_href_page('Key device sensor'               , 'x3d_implementation_keydevicesensor'     ); ?>  </td><td><b>2 (all)</b></td></tr>
-  <tr><td><?php echo a_href_page('Environmental sensor'            , 'x3d_implementation_environmentalsensor' ); ?>  </td><td><b>2</b></td></tr>
-  <tr><td><?php echo a_href_page('Navigation'                      , 'x3d_implementation_navigation'          ); ?>  </td><td><b>3 (all)</b></td></tr>
-  <tr><td><?php echo a_href_page('Environmental effects'           , 'x3d_implementation_environmentaleffects'); ?>  </td><td><b>4 (all)</b></td></tr>
+  <tr><td><a href="x3d_implementation_core.php">Core</a>  </td><td><b>2 (all)</b></td></tr>
+  <tr><td><a href="x3d_implementation_time.php">Time</a>  </td><td><b>2 (all)</b></td></tr>
+  <tr><td><a href="x3d_implementation_networking.php">Networking</a>  </td><td><b>4 (all)</b> (except <code>LoadSensor</code>)</td></tr>
+  <tr><td><a href="x3d_implementation_grouping.php">Grouping</a>  </td><td><b>3 (all)</b></td></tr>
+  <tr><td><a href="x3d_implementation_rendering.php">Rendering</a>  </td><td><b>5 (all)</b></td></tr>
+  <tr><td><a href="x3d_implementation_shape.php">Shape</a>  </td><td><b>2</b></td></tr>
+  <tr><td><a href="x3d_implementation_geometry3d.php">Geometry3D</a>  </td><td><b>4 (all)</b></td></tr>
+  <tr><td><a href="x3d_implementation_geometry2d.php">Geometry2D</a>  </td><td><b>1</b></td></tr>
+  <tr><td><a href="x3d_implementation_text.php">Text</a>  </td><td><b>1 (all)</b></td></tr>
+  <tr><td><a href="x3d_implementation_sound.php">Sound</a>  </td><td><b>1 (all)</b></td></tr>
+  <tr><td><a href="x3d_implementation_lighting.php">Lighting</a>  </td><td><b>3 (all)</b></td></tr>
+  <tr><td><a href="x3d_implementation_texturing.php">Texturing</a>  </td><td><b>4 (all)</b></td></tr>
+  <tr><td><a href="x3d_implementation_interpolation.php">Interpolation</a>  </td><td><b>3</b></td></tr>
+  <tr><td><a href="x3d_implementation_pointingdevicesensor.php">Pointing device sensor</a>  </td><td><b>1 (all)</b></td></tr>
+  <tr><td><a href="x3d_implementation_keydevicesensor.php">Key device sensor</a>  </td><td><b>2 (all)</b></td></tr>
+  <tr><td><a href="x3d_implementation_environmentalsensor.php">Environmental sensor</a>  </td><td><b>2</b></td></tr>
+  <tr><td><a href="x3d_implementation_navigation.php">Navigation</a>  </td><td><b>3 (all)</b></td></tr>
+  <tr><td><a href="x3d_implementation_environmentaleffects.php">Environmental effects</a>  </td><td><b>4 (all)</b></td></tr>
   <tr><td>Geospatial   </td><td>(We only parse geospatial X3D nodes)</td></tr>
-  <tr><td><?php echo a_href_page('HAnim'                           , 'x3d_implementation_hanim'               ); ?>  </td><td><b>1 (all)</b></td></tr>
-  <tr><td><?php echo a_href_page('NURBS'                           , 'x3d_implementation_nurbs'               ); ?>  </td><td><b>1</b></td></tr>
+  <tr><td><a href="x3d_implementation_hanim.php">HAnim</a>  </td><td><b>1 (all)</b></td></tr>
+  <tr><td><a href="x3d_implementation_nurbs.php">NURBS</a>  </td><td><b>1</b></td></tr>
   <tr><td>DIS          </td><td></td></tr>
-  <tr><td><?php echo a_href_page('Scripting'                       , 'x3d_implementation_scripting'           ); ?>  </td><td><b>1 (all)</b> (although no ECMAScript / Java, only CastleScript / compiled protocols)</td></tr>
-  <tr><td><?php echo a_href_page('Event utilities'                 , 'x3d_implementation_eventutilities'      ); ?>  </td><td><b>1 (all)</b></td></tr>
-  <tr><td><?php echo a_href_page('Programmable shaders'            , 'x3d_implementation_shaders'             ); ?>  </td><td><b>1 (all)</b> (GLSL language)</td></tr>
-  <tr><td><?php echo a_href_page('CAD geometry'                    , 'x3d_implementation_cadgeometry'         ); ?>  </td><td><b>2 (all)</b></td></tr>
-  <tr><td><?php echo a_href_page('Texturing3D'                     , 'x3d_implementation_texturing3d'         ); ?>  </td><td><b>2 (all)</b></td></tr>
-  <tr><td><?php echo a_href_page('Cube map environmental texturing', 'x3d_implementation_cubemaptexturing'    ); ?>  </td><td><b>3 (all)</b></td></tr>
+  <tr><td><a href="x3d_implementation_scripting.php">Scripting</a>  </td><td><b>1 (all)</b> (although no ECMAScript / Java, only CastleScript / compiled protocols)</td></tr>
+  <tr><td><a href="x3d_implementation_eventutilities.php">Event utilities</a>  </td><td><b>1 (all)</b></td></tr>
+  <tr><td><a href="x3d_implementation_shaders.php">Programmable shaders</a>  </td><td><b>1 (all)</b> (GLSL language)</td></tr>
+  <tr><td><a href="x3d_implementation_cadgeometry.php">CAD geometry</a>  </td><td><b>2 (all)</b></td></tr>
+  <tr><td><a href="x3d_implementation_texturing3d.php">Texturing3D</a>  </td><td><b>2 (all)</b></td></tr>
+  <tr><td><a href="x3d_implementation_cubemaptexturing.php">Cube map environmental texturing</a>  </td><td><b>3 (all)</b></td></tr>
   <tr><td>Layering                 </td><td></td></tr>
   <tr><td>Layout                   </td><td></td></tr>
   <tr><td>Rigid body physics       </td><td></td></tr>
@@ -114,7 +114,7 @@ specification nodes actually use this.</p>
 External prototypes recognize URN of standard VRML 97 nodes, i.e.
 <code>urn:web3d:vrml97:node:Xxx</code> and standard X3D nodes
 (<code>urn:web3d:x3d:node:Xxx</code>), see also our extensions URN
-on <?php echo a_href_page('VRML/X3D extensions', 'x3d_extensions'); ?>.
+on <a href="x3d_extensions.php">VRML/X3D extensions</a>.
 
 <p>Events, routes mechanism is implemented since 2008-08-11 :)</p>
 

@@ -22,8 +22,7 @@
 <?php echo $toc->html_section(); ?>
 
 <p>For demos and tests of these features,
-see the <code>sensors_pointing_device</code> subdirectory inside <?php
-echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
+see the <code>sensors_pointing_device</code> subdirectory inside <a href="demo_models">our VRML/X3D demo models</a>.</p>
 
 <?php echo $toc->html_section(); ?>
 
