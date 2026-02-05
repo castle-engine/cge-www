@@ -215,7 +215,7 @@ Basing the sound design around an open standard, that is already implemented in 
 makes total sense from the X3D point of view, esp. if you consider <i>web</i> to be the major platform
 for X3D.
 
-<p>That said, implementing these nodes/capabilites in CGE/Castle Model Viewer is a non-trivial work
+<p>That said, implementing these nodes/capabilities in CGE/Castle Model Viewer is a non-trivial work
 and it's admittedly not our priority, at least now.
 It means doing 2 things:
 
