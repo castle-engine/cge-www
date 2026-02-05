@@ -104,12 +104,16 @@ Use the official installer from
 
 - Michalis-specific setup:
   ```
+  # One-time:
   # Install to /home/michalis/installed/fpclazarus/fpc322-official/fpc
   # (makes it a bit consistent with fpcupdeluxe installs).
-  michalis-fpclazarus-config # should say that adjusts my environment to FPC official
-  fpc
 
-  # Remember to define `FPCDIR` first
+  # Switch to this FPC version for fpmake testing:
+  set_fpclazarus_current fpc322-official
+  michalis-fpclazarus-config # should say that adjusts my environment to FPC official
+  fpc # should say 3.2.2
+
+  # Remember to define `FPCDIR` for fpmake testing:
   export FPCDIR=/home/michalis/installed/fpclazarus/fpc322-official/fpc/lib/fpc/3.2.2/
 
   # Generate fpc.cfg to point to proper units
@@ -125,7 +129,7 @@ make test-fpmake
 ./fpmake --globalunitdir="${FPCDIR}" install
 # The CGE installed units should now be known to FPC, no need for any -Fu or @castle-fpc.cfg
 ls -Flah $FPCDIR/units/x86_64-linux/castle-game-engine
-fpc -Mobjfpc -Fu3d_games/explore_impressive_castle/code/ examples/3d_games/explore_impressive_castle/fps_game.dpr
+fpc -Mobjfpc -Fuexamples/3d_games/explore_impressive_castle/code/ examples/3d_games/explore_impressive_castle/fps_game.dpr
 fpc -Mobjfpc -Sh -Sa -gh -gl -Futests/code/testcases/ -Futests/code/tester-castle/ tests/castle_tester_standalone.dpr
 ```
 
@@ -143,9 +147,9 @@ Cleanup (this is specific to Michalis setup, adjust as you see fit):
 ```
 rm -Rf $FPCDIR/units/x86_64-linux/castle-game-engine
 mv ~/.fpc.cfg /home/michalis/installed/fpclazarus/fpc322-official/moved.fpc.cfg
-set_fpclazarus_current ...
+set_fpclazarus_current fpc322-laz34
 michalis-fpclazarus-config # should say that adjusts my environment to FPC from fpcupdeluxe
-fpc
+fpc # should say 3.2.2-<hash> (fpcupdeluxe FPC version)
 ```
 
 ## Test: Released zip/tar.gz should not contain any unwanted binary files
