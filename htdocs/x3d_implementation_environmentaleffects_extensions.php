@@ -30,7 +30,7 @@ $toc = new TableOfContents(
 <a href="https://github.com/castle-engine/demo-models/blob/master/background/background_image.x3dv">background/background_image.x3dv</a>,
 <a href="https://github.com/castle-engine/demo-models/blob/master/background/background_image_partial.x3dv">background/background_image_partial.x3dv</a>,
 <a href="https://github.com/castle-engine/demo-models/blob/master/background/background_image_animated.x3d">background/background_image_animated.x3d</a> .
-Open them with <a href="view3dscene.php">view3dscene</a>.
+Open them with <a href="castle-model-viewer">Castle Model Viewer</a>.
 
 <p>Fields:
 
@@ -55,7 +55,7 @@ Open them with <a href="view3dscene.php">view3dscene</a>.
     (just like the alpha channel of the texture in <code>texture</code>).
     If the resulting image is partially-transparent,
     it will be mixed with the default background color (configurable
-    in <a href="view3dscene.php">view3dscene</a>,
+    in <a href="castle-model-viewer">Castle Model Viewer</a>,
     in general in <i>Castle Game Engine</i>
     looking at <code>TCastleViewport.BackgroundColor</code>
     and <code>TCastleViewport.Transparent</code> settings;

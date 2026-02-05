@@ -147,7 +147,7 @@ Shape {
     <ul>
       <li><p>There is a limit on the number of clipping planes that may be enabled
         at the same time on a single shape. This limit is <i>at least six</i>
-        (see view3dscene <i>"Help -&gt; OpenGL Information"</i>, look
+        (see Castle Model Viewer <i>"Help -&gt; OpenGL Information"</i>, look
         at <i>"Max clip planes"</i> line, to know the limit of your GPU).
         Following X3D spec, we treat the "more global" clipping planes
         as more important.</p>

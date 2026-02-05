@@ -19,7 +19,7 @@
 <p>This component defines only one node called <code>TimeSensor</code>.
 It is supported, see the details below.
 
-<p>Moreover, see also <?php echo a_href_page('Castle Game Engine (and view3dscene) extensions related to time', 'x3d_implementation_time_extensions'); ?>.
+<p>Moreover, see also <?php echo a_href_page('Castle Game Engine (and Castle Model Viewer) extensions related to time', 'x3d_implementation_time_extensions'); ?>.
 
 <h2>Supported nodes</h2>
 

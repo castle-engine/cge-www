@@ -23,7 +23,7 @@
 
     <p>All these nodes are specialized grouping nodes.
     Additionally, various parts and groups may be assigned names (not displayed
-    by view3dscene anywhere right now).
+    by Castle Model Viewer anywhere right now).
     <code>CADPart</code> additionally transforms the children (just like <code>Transform</code>
     node).
     <code>CADLayer</code> may additionally hide a subset of it's

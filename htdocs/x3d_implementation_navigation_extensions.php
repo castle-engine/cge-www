@@ -202,7 +202,7 @@ will be used for headlight.
 
     <p>Note that instead of setting headlight to spot, you may also
     consider cheating: you can create a screen effect that simulates
-    the headlight. See view3dscene <i>"Screen Effects -&gt; Headlight"</i>
+    the headlight. See Castle Model Viewer <i>"Screen Effects -&gt; Headlight"</i>
     for demo, and <?php echo a_href_page('screen effects documentation',
     'x3d_extensions_screen_effects'); ?> for ways to create
     this yourself. This is an entirely different beast, more cheating
@@ -321,7 +321,7 @@ I think that this is very uncomfortable for humans.
     camera node and I see your <code>orientation</code> field
     &mdash; well, I still have no idea how your camera is oriented.
     I have to fire up some calculating program, or one
-    of programs that view VRML (like view3dscene).
+    of programs that view VRML (like Castle Model Viewer).
     This is not some terrible disadvantage, but still it matters
     for me.
 
@@ -393,7 +393,7 @@ and transform it by whatever transformation was applied to
 <code>gravityUp</code> vector is just +Y, so things work 100% conforming
 to VRML spec if you don't specify <code>gravityUp</code> field.
 
-<p>In <?php echo a_href_page("view3dscene", "view3dscene") ?>
+<p>In <a href="castle-model-viewer">Castle Model Viewer</a>
  "<i>Print current camera node</i>" command (key shortcut Ctrl+C)
 writes camera node in both versions &mdash; one that uses
 <code>orientation</code> field and transformations to get gravity upward vector,

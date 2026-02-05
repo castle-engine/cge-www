@@ -15,7 +15,7 @@ $toc = new TableOfContents(
 <?php echo $toc->html_toc(); ?>
 
 <p>These feature are available since <i>Castle Game Engine</i> 6.5 and
-<i>view3dscene</i> 3.19.0.
+<i>Castle Model Viewer</i> 3.19.0.
 
 <?php echo $toc->html_section(); ?>
 

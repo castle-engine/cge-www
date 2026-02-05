@@ -440,7 +440,7 @@ end;
     <a href="https://github.com/castle-engine/castle-radiance-transfer">Precomputed Radiance Transfer in Castle Game Engine</a>.</p>
 
     <p>TODO: currently <code>radianceTransfer</code> is read but ignored
-    by <i>view3dscene</i> and simple VRML browser components.
+    by <i>Castle Model Viewer</i> and simple VRML browser components.
     This means that you have to write and compile some ObjectPascal code
     (see above <code>radiance_transfer/</code> example) to actually use this
     in your games.</p>
@@ -558,7 +558,7 @@ end;
     displaying anyway. If you want to precisely know how the conversion
     to X3D goes, you can always try the explicit conversion
     by "<i>File -&gt; Save as X3D</i>" menu option in
-    <?php echo a_href_page("view3dscene", "view3dscene") ?>.
+    <a href="castle-model-viewer">Castle Model Viewer</a>.
 
     <p>Also, you can freely mix VRML/X3D versions when including.
     You're free to include VRML 1.0 file inside VRML 2.0 file, or X3D,
@@ -572,10 +572,9 @@ end;
 
     All our programs can handle VRML files compressed with gzip.
 
-    <p>E.g. you can call <?php echo a_href_page('view3dscene',
-    'view3dscene'); ?> like
+    <p>E.g. you can call <a href="castle-model-viewer">Castle Model Viewer</a> like
 <pre>
-view3dscene my_compressed_vrml_file.wrl.gz
+castle-model-viewer my_compressed_vrml_file.wrl.gz
 </pre>
     and you can use WWWInline nodes that refer to gzip-compressed VRML
     files, like
@@ -588,7 +587,7 @@ WWWInline { name "my_compressed_vrml_file.wrl.gz" }
 
     <p>Files with normal extension <code>.wrl</code> but actually compressed by gzip
     are also handled OK.
-    Currently, there's a small exception to this: when you give view3dscene
+    Currently, there's a small exception to this: when you give Castle Model Viewer
     VRML file on stdin, this file must be already uncompressed
     (so you may need to pipe your files through <code>gunzip -c</code>).
     TODO: this is intended to be fixed, although honestly it has rather low
@@ -774,7 +773,7 @@ WWWInline { name "my_compressed_vrml_file.wrl.gz" }
 
     <p>These fields are used only by <i>path tracer</i> in
     <?php echo a_href_page("rayhunter", "doc/rayhunter") ?> and
-    <?php echo a_href_page("view3dscene", "view3dscene") ?>.
+    <a href="castle-model-viewer">Castle Model Viewer</a>.
 
 <?php echo $toc->html_section(); ?>
 
@@ -951,7 +950,7 @@ new_screen_color :=
     of X3D file to overwrite arbitrary files without asking user),
     in my implementation only the basename of the <code>logFile</code> matters,
     the file is always saved into current directory. Moreover, filename
-    is like <code>view3dscene_logger_XXX_%d.log</code>, where "view3dscene"
+    is like <code>castle-model-viewer_logger_XXX_%d.log</code>, where "castle-model-viewer"
     is the name of the program, "XXX" is the name specified in <code>logFile</code>,
     and "%d" is just next free number. This way logger output file
     is predictable, and should never overwrite your data.

@@ -13,7 +13,7 @@
   <li><p><?php echo x3d_node_link('WorldInfo'); ?></p>
 
     <p><code>WorldInfo.title</code>, if set, is displayed by
-    view3dscene on window's caption.</p></li>
+    Castle Model Viewer on window's caption.</p></li>
 
   <li><p><code>UNIT</code> statement (see <a href="<?php echo x3d_spec_latest_url('core', 'UNITStatement'); ?>">X3D specification about UNIT</a>) is handled. In both classic and XML encoding. Angle and length conversion is actually done.</p>
 

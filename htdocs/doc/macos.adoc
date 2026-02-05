@@ -4,7 +4,7 @@ include::common.adoc[]
 
 cgeimg::block[
   mac_editor_1.png|CGE editor on macOS,
-  mac_view3dscene_2.png|view3dscene on macOS
+  mac_view3dscene_2.png|Castle Model Viewer on macOS
 ]
 
 ## Installation on macOS

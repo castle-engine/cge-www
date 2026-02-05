@@ -10,7 +10,7 @@
 <p>This component defines nodes that change the environment ("how all the scene content looks").
 In particular it deals with <i>fog</i> and <i>background</i> features.
 
-<p>Moreover, see also <?php echo a_href_page('Castle Game Engine (and view3dscene) extensions related to environment effects', 'x3d_implementation_environmentaleffects_extensions'); ?>.
+<p>Moreover, see also <?php echo a_href_page('Castle Game Engine (and Castle Model Viewer) extensions related to environment effects', 'x3d_implementation_environmentaleffects_extensions'); ?>.
 
 <p>Supported nodes:</p>
 

@@ -30,7 +30,7 @@ function x3d_extensions_header($x3d_component_name, $base_component_page,
   $base_component_page = 'x3d_implementation_' . $base_component_page;
 
   $header_parameters = array(
-    'meta_description' => 'Castle Game Engine (and view3dscene) extensions to the ' . $x3d_component_name .' X3D component'
+    'meta_description' => 'Castle Game Engine (and Castle Model Viewer) extensions to the ' . $x3d_component_name .' X3D component'
   );
   if ($social_share_image != '') {
     $header_parameters['social_share_image'] = $social_share_image;

@@ -54,8 +54,8 @@ X3D browsers, and with the proposed solutions.
 
 <p>All tests are also listed below, roughly in the order basic -&gt; advanced.
 Click on the image to view reference rendering
-(matches <?php echo a_href_page("view3dscene", "view3dscene") ?>
- from snapshots result, as our view3dscene implements all proposed specification
+(matches <a href="castle-model-viewer">Castle Model Viewer</a>
+ from snapshots result, as our Castle Model Viewer implements all proposed specification
 fixes). Download X3D in classic or XML version and open with X3D browser of your
 choice. Files in <i>X3D classic (VRML) encoding</i> contain many comments,
 read them to know what the test is about!
@@ -110,7 +110,7 @@ tests_row('modes_and_sources',
   'Test various values for <code>MultiTexture.mode</code> and <code>MultiTexture.source</code>.',
   array(
     'freewrl' => 'Incorrect. MultiTexture.source seems ignored by FreeWRL. MultiTexture.mode = SUBTRACT is weird (not sure what is does). MultiTexture.mode = SELECTARG2 seems equal to MultiTexture.mode = SELECTARG1. Other MultiTexture.mode values seem Ok.',
-    'bscontact' => 'Incorrect MultiTexture.mode = SUBTRACT column (all the other columns are correct, so BS Contact is closest to reference/view3dscene). Looks like BS Contact subtracts only RGB channel, does not touch alpha. This contradicts our proposed clarifications. The X3D spec is ambigous about this, see problem 4.',
+    'bscontact' => 'Incorrect MultiTexture.mode = SUBTRACT column (all the other columns are correct, so BS Contact is closest to reference/Castle Model Viewer). Looks like BS Contact subtracts only RGB channel, does not touch alpha. This contradicts our proposed clarifications. The X3D spec is ambigous about this, see problem 4.',
     'instantplayer' => 'Incorrect, many problems. MultiTexture.source does something weird (not sure why it changes the result like that). Various MultiTexture.mode values incorrectly handled. Note MultiTexture.mode = SUBTRACT is correct (subtract alpha 1-1 makes invisible surface).',
     'octaga' => 'Incorrect, many problems.',
   ));
@@ -184,7 +184,7 @@ tests_row('material_color_mixed_with_texture_color',
    See <a href="#section_default_texture_mode">lower on this page for details
    why this is tested</a>.
 
-   <p>The reference of this test (and view3dscene result) follows X3D 4.0
+   <p>The reference of this test (and Castle Model Viewer result) follows X3D 4.0
    and our idea to <i>always</i> modulate by default.
    This was different in X3D 3 specification.
    See <a href="https://github.com/michaliskambi/x3d-tests/wiki/Make-RGB-and-grayscale-textures-treatment-consistent">Make RGB and grayscale textures treatment consistent</a>.</p>
@@ -198,7 +198,7 @@ tests_row('material_color_mixed_with_texture_color',
 <p>Version: 2.8.0: Equal to BS Contact 8.300 result for this test (so almost correct, only RGB texture incorrectly multiplies Color node).',
     'octaga' => '<p>Version: 4.0.3: RGB texture overrides Material.diffuseColor (correct). Grayscale texture is overridden by Material.diffuseColor (incorrect and weird, seems to match BS Contact 8.101). RGB texture overrides Color node (correct). Grayscale texture modules with Color node (correct).
 <p>Version: 5.0.0: All correct! Congrats, <b>this is the only browser that handles all 4 cases following the specification</b>: RGB texture overrides Material.diffuseColor (correct), grayscale texture is multiplied with Material.diffuseColor (correct), RGB texture overrides Color node (correct) and grayscale texture multiplies Color node (correct).',
-    'x_ite' => '<p>Version 4.1.4-200: In all cases, texture color is multiplied by Material.diffuseColor or Color. This contradicts the X3D specification, but matches view3dscene, and is exactly as we propose to require in future X3D versions.',
+    'x_ite' => '<p>Version 4.1.4-200: In all cases, texture color is multiplied by Material.diffuseColor or Color. This contradicts the X3D specification, but matches Castle Model Viewer, and is exactly as we propose to require in future X3D versions.',
     'x3dom' => '<p>Version 1.7.2: In all cases, texture color <i>overrides</i> Material.diffuseColor or Color, even when the texture is grayscale. This is incorrect.',
   ));
 tests_row('subtract_and_force_alpha',
@@ -206,7 +206,7 @@ tests_row('subtract_and_force_alpha',
    see below for our proposal to allow separate RGB/alpha specification
    for modes and sources (problem 1.), and <a href="#section_proposed_mode">proposed extended MultiTexture.mode table</a>.',
   array(
-    'special' => 'Testing this is not fair. All VRML/X3D browsers except view3dscene fail on this, because this tests a proposed (not yet part of X3D spec) extension to specify separate modes and sources for RGB/Alpha (and clear some of the confusion around modes spec along the way). See <a href="#section_proposed_mode">lower on this page about proposed separate MultiTexture.mode</a> and <a href="#section_proposed_source">lower on this page about proposed separate MultiTexture.source</a>',
+    'special' => 'Testing this is not fair. All VRML/X3D browsers except Castle Model Viewer fail on this, because this tests a proposed (not yet part of X3D spec) extension to specify separate modes and sources for RGB/Alpha (and clear some of the confusion around modes spec along the way). See <a href="#section_proposed_mode">lower on this page about proposed separate MultiTexture.mode</a> and <a href="#section_proposed_source">lower on this page about proposed separate MultiTexture.source</a>',
   ));
 tests_row('subtract_rgb_various_sources',
   'One more test of <code>MultiTexture</code> with separate modes and sources for RGB/alpha.
@@ -244,7 +244,7 @@ The reference images were generated by
   <li>BS Contact 8.101
   <li>Instant Player 2.1.0
   <li>Octaga Player 4.0.3
-  <li>view3dscene (version right before 3.13.0) (on Debian testing 32-bit, NVidia GeForce GPU). view3dscene is Michalis' own browser, so the implementation 100% matches the reference images and all proposed clarifications/solutions mentioned on this page.
+  <li>Castle Model Viewer (version right before 3.13.0) (on Debian testing 32-bit, NVidia GeForce GPU). Castle Model Viewer is Michalis' own browser, so the implementation 100% matches the reference images and all proposed clarifications/solutions mentioned on this page.
 </ul>
 
 <p>Screenshots obtained from BS Contact, Instant Player, Octaga Player
@@ -257,7 +257,7 @@ Many, many thanks to Cecile Muller for testing!
 <p>X3D specification about multi-texturing has a couple of problems.
 Below is a list of spotted problems, and an explanation how we handle it in our
 engine (<?php echo a_href_page("Castle Game Engine", "engine"); ?>
- and <?php echo a_href_page("view3dscene", "view3dscene") ?>)
+ and <a href="castle-model-viewer">Castle Model Viewer</a>)
  and how we propose to fix X3D specification.
 You probably want to read this along with
 <a href="http://www.web3d.org/files/specifications/19775-1/V3.2/Part01/components/texturing.html#MultiTexture">MultiTexture
@@ -437,7 +437,7 @@ without any answer so far.)
     the <code>function="COMPLEMENT"</code> value. Well, obviously RGB are inverted,
     but is alpha channel inverted too?
 
-    <p>Tests show that view3dscene, Instant Player, BS Contact do it on RGB
+    <p>Tests show that Castle Model Viewer, Instant Player, BS Contact do it on RGB
     (not alpha).
     Octaga does it on RGBA (it negates alpha channel too).
     Other tested browsers do not support this operation.
@@ -847,7 +847,7 @@ That's understandable, because the spec behavior is a little useless.
 simply always <code>MODULATE</code> (component-wise multiply on RGBA channels).
 In other words, treat a grayscale texture exactly like an RGB texture
 with all color components (red, green, blue) equal.
-Our engine and view3dscene already implement this behavior.
+Our engine and Castle Model Viewer already implement this behavior.
 
 <?php /*
 
@@ -860,7 +860,7 @@ behavior. If many people think that specification is right and I'm dumb,
 and the default behavior should follow the spec and be <code>REPLACE</code>,
 I'll obey :)
 
-<p>You have menu item in view3dscene <i>RGB Textures Color Mode -&gt;
+<p>You have menu item in Castle Model Viewer <i>RGB Textures Color Mode -&gt;
 GL_REPLACE</i> to change this (from code, use
 <code>Scene.Attributes.TextureModeRGB := GL_REPLACE;</code>).
 But note that this doesn't give you spec-complaint behavior,

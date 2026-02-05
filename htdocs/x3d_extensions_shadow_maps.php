@@ -424,7 +424,7 @@ Shape {
   <p><i>Usage notes:</i> You should place <code>GeneratedShadowMap</code> node inside light's <code>defaultShadowMap</code> field.
 
   <p><i>Variance Shadow Maps</i> notes:
-  If you turn on <i>Variance Shadow Maps</i> (e.g. by <?php echo a_href_page("view3dscene", "view3dscene") ?>
+  If you turn on <i>Variance Shadow Maps</i> (e.g. by <a href="castle-model-viewer">Castle Model Viewer</a>
   menu <i>View -&gt; Shadow Maps -&gt; Variance Shadow Maps</i>), then
   the generated textures are a little different.
   If you used the simple <code>"receiveShadows"</code> field, everything is taken
@@ -603,7 +603,7 @@ Shape {
 }
 </pre>
 
-  <p>Note that view3dscene's menu items <i>View -&gt; Shadow Maps -&gt; ...</i>
+  <p>Note that Castle Model Viewer's menu items <i>View -&gt; Shadow Maps -&gt; ...</i>
   does not affect the shadow map in this case.
 
   <p>This approach is deprecated now. Reasons:

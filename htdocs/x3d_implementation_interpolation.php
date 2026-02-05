@@ -56,7 +56,7 @@ or activate it through various other means. But using
 we will mention later.
 
 <p>Consider this X3D file (in classic encoding -- you can save it as
-<code>test.x3dv</code> file and open with <a href="view3dscene.php">view3dscene</a>
+<code>test.x3dv</code> file and open with <a href="castle-model-viewer">Castle Model Viewer</a>
 or any engine tool):
 
 <?php echo vrmlx3d_highlight(
@@ -73,7 +73,7 @@ using <code>Scene.PlayAnimation('MyAnimationName', true)</code>
 in the engine. The <code>Scene.AnimationDuration('MyAnimationName')</code>
 will return 5.0.
 
-<p>You can also play it in <a href="view3dscene.php">view3dscene</a>:
+<p>You can also play it in <a href="castle-model-viewer">Castle Model Viewer</a>:
 Open the created <code>test.x3dv</code> file an choose menu item
 <i>Animation -&gt; Named Animations -&gt; MyAnimationName</i>.
 
@@ -245,7 +245,7 @@ or get a notification when animation stops.
     And you can animate <code>Transform.rotation</code> with
     <?php echo x3d_node_link('OrientationInterpolator'); ?>.
 
-    <p>This is also how we animate <a href="https://castle-engine.io/spine">Spine models (2D skeletons)</a>. You can check this by loading a Spine model, e.g. <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/2d_dragon_spine_game/data/dragon">dragon.json from here</a>, into view3dscene, and saving it as X3D.
+    <p>This is also how we animate <a href="https://castle-engine.io/spine">Spine models (2D skeletons)</a>. You can check this by loading a Spine model, e.g. <a href="https://github.com/castle-engine/castle-engine/tree/master/examples/2d_dragon_spine_game/data/dragon">dragon.json from here</a>, into Castle Model Viewer, and saving it as X3D.
 
   <li><p>Another animation method is to <b>deform meshes by interpolating between a couple of mesh versions</b>. To do this, you use <?php echo x3d_node_link('CoordinateInterpolator'); ?> node in X3D. It works consistently with other interpolators. It generates a <i>set of 3D vectors</i> (<code>MFVec3f</code> field in X3D terms) that can be connected e.g. to <code>Coordinate.point</code> field. The <code>Coordinate</code> node may be in turn be placed inside the <code>IndexedFaceSet.coord</code>. See the <a href="<?php echo x3d_spec_latest_url('rendering', 'Coordinate'); ?>">Coordinate</a> and <a href="<?php echo x3d_spec_latest_url('geometry3D', 'IndexedFaceSet'); ?>">IndexedFaceSet</a> nodes specifications.
 
@@ -294,7 +294,7 @@ described on this page.
 <?php echo $toc->html_section(); ?>
 
 <p>The supported X3D nodes from the "Interpolation" component are listed below.
-Moreover, see also <?php echo a_href_page('Castle Game Engine (and view3dscene) extensions related to the interpolation','x3d_implementation_interpolation_extensions'); ?>.
+Moreover, see also <?php echo a_href_page('Castle Game Engine (and Castle Model Viewer) extensions related to the interpolation','x3d_implementation_interpolation_extensions'); ?>.
 
 <ul>
   <li><p><?php echo x3d_node_link('ColorInterpolator'); ?> - Animate color change.

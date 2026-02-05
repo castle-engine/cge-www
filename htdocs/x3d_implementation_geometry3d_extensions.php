@@ -88,7 +88,7 @@ echo castle_thumbs(array(
 <p><i>Stacks</i> divide the objects like <i>"stacks of a tower"</i>.
 
 <p>You can easily test the effects of these fields
-by investigating your models in <?php echo a_href_page("view3dscene", "view3dscene") ?>.
+by investigating your models in <a href="castle-model-viewer">Castle Model Viewer</a>.
 You can view in <i>Wireframe</i> mode to see the triangulation.
 You can try it on our <?php echo a_href_page('demo models', 'demo_models'); ?>,
 for example

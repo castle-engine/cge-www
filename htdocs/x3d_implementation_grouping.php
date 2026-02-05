@@ -199,7 +199,7 @@ on the screen.
 
 <p>Note that this node hierarchy could be encoded in X3D (in XML or classic encoding)
 as well, and only loaded from Pascal. This has some benefits (e.g. an X3D file can be tested
-by <a href="view3dscene.php">view3dscene</a>).
+by <a href="castle-model-viewer">Castle Model Viewer</a>).
 Below we construct everything in Pascal just as a demo, to show that it is possible.
 
 <p>Press the <code>s</code> key to toggle what is displayed in the <code>Switch</code> node:

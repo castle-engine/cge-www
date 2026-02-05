@@ -233,9 +233,9 @@ CommonSurfaceShader {
         using the <i>parallax bump mapping</i> effect.
     </ol>
 
-    <p>You can control the exact effect type in view3dscene using
+    <p>You can control the exact effect type in Castle Model Viewer using
     the <i>View -&gt; Bump Mapping -&gt; ... Parallax</i>
-    menu options in <?php echo a_href_page("view3dscene", "view3dscene") ?>.
+    menu options in <a href="castle-model-viewer">Castle Model Viewer</a>.
     You can try it on the
     <a href="https://github.com/castle-engine/demo-models/blob/master/common_surface_shader/steep_parallax.x3dv">common_surface_shader/steep_parallax.x3dv</a> example.
     Play around with different <code>normalTextureParallaxHeight</code> values
@@ -286,7 +286,7 @@ results, you can place some dynamic light source in the scene
 &mdash; the bump mapping effect is then obvious.</p>
 
 <p>You can additionally specify a height map.
-Since version 3.10.0 of <?php echo a_href_page("view3dscene", "view3dscene") ?>
+Since version 3.10.0 of <a href="castle-model-viewer">Castle Model Viewer</a>
  (2.5.0 of engine), this height map
 is specified within the alpha channel of the <code>normalMap</code> texture.
 This leads to easy and efficient implementation, and also it is easy
@@ -302,7 +302,7 @@ exists, then we also look at the <code>heightMapScale</code> field.
 This allows you to tweak the perceived height of bumps
 for parallax mapping.</p>
 
-<p>Since version 3.10.0 of <?php echo a_href_page("view3dscene", "view3dscene") ?> (2.5.0 of engine),
+<p>Since version 3.10.0 of <a href="castle-model-viewer">Castle Model Viewer</a> (2.5.0 of engine),
 new shader pipeline allows the bump mapping to cooperate with
 all normal VRML/X3D lighting and multi-texturing settings.
 So the same lights and textures are used for bump mapping lighting
@@ -317,7 +317,7 @@ same texture transform) as the first texture (in case of multi-texturing).</p>
 
 <ul>
   <li><p>Open with
-    <?php echo a_href_page("view3dscene", "view3dscene") ?>
+    <a href="castle-model-viewer">Castle Model Viewer</a>
     sample models from <?php echo a_href_page('our VRML/X3D demo models',
     'demo_models'); ?> (see subdirectory
     <code>bump_mapping/)</code>.</p></li>
@@ -546,7 +546,7 @@ There is also a special program in <?php echo a_href_page('engine sources',
 'index'); ?> (see <code>examples/images_videos/image_identify.lpr</code>
 demo) if you want to test this algorithm yourself.
 You can also see the results for your textures if you run
-<?php echo a_href_page("view3dscene", "view3dscene") ?>
+<a href="castle-model-viewer">Castle Model Viewer</a>
  with <code>--debug-log</code> option.
 
 <p>Sometimes you want to override results of this automatic detection.

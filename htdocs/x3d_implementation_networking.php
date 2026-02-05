@@ -16,7 +16,7 @@
     languages. Absolute as well as relative URLs are handled, of course.
 
     <p>For network support (<code>http</code>, <code>https</code>) in
-    <?php echo a_href_page("view3dscene", "view3dscene") ?>
+    <a href="castle-model-viewer">Castle Model Viewer</a>
     remember to enable first
     <i>Preferences -&gt; Download Resources From Network</i> option.
     In your own programs using <i>Castle Game Engine</i>:

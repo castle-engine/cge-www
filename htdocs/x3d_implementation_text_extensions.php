@@ -46,7 +46,7 @@ Each one has it's benefits and drawbacks:
 <?php echo $toc->html_section(); ?>
 
 <p><i>Since version 5.1.0 of Castle Game Engine (corresponding
-to version 3.15.0 of view3dscene), this node is deprecated,
+to version 3.15.0 of Castle Model Viewer), this node is deprecated,
 and it is rendered only as a flat <code>Text</code> node.
 <!--
 Our new text rendering method (using texture) offered new features

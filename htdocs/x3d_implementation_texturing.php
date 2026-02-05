@@ -21,7 +21,7 @@
 <p>Contents:
 <?php echo $toc->html_toc(); ?>
 
-<p>See also <?php echo a_href_page('Castle Game Engine (and view3dscene) extensions related to texturing','x3d_implementation_texturing_extensions'); ?>.
+<p>See also <?php echo a_href_page('Castle Game Engine (and Castle Model Viewer) extensions related to texturing','x3d_implementation_texturing_extensions'); ?>.
 
 <?php echo $toc->html_section(); ?>
 
@@ -88,7 +88,7 @@ echo a_href_page('our VRML/X3D demo models', 'demo_models'); ?>.</p>
       <li><p><a href="http://ffmpeg.mplayerhq.hu/">ffmpeg</a> must be
         installed and available on $PATH to actually open any movie format.
         See <?php echo a_href_page_hashlink('instructions for
-        installing ffmpeg in view3dscene docs', 'view3dscene', 'section_depends'); ?>.
+        installing ffmpeg in Castle Model Viewer docs', 'castle-model-viewer', 'section_depends'); ?>.
         Thanks to ffmpeg, we can handle probably any movie format you will
         ever need to open.
 

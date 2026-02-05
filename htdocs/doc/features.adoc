@@ -141,7 +141,7 @@ cgeimg::block[
 +
 cgeimg::block[
   mountains_of_fire_screen_1.png|Mountains Of Fire - split-screen coop game,
-  view3dscene_viewports.png|Multiple viewports with a DOOM level in castle-model-viewer
+  view3dscene_viewports.png|Multiple viewports with a DOOM level in Castle Model Viewer
 ]
 
 == Data formats

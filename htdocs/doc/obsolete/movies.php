@@ -36,7 +36,7 @@ For newer videos, just switch YouTube to "HD quality".
     editing (glued, fading between parts) thanks to
     <a href="http://lives.sourceforge.net/">Lives (Linux Video Editing System)</a>.</p>
 
-  <li><p>fireplace_demo recorded using <?php echo a_href_page('Castle Model Viewer', 'doc/castle-model-viewer'); ?> "Screenshot to video" option.</p></li>
+  <li><p>fireplace_demo recorded using <a href="castle-model-viewer">Castle Model Viewer</a> "Screenshot to video" option.</p></li>
 
   <li><p>Most newer videos recorded by <a href="https://github.com/nullkey/glc/wiki">GLC</a>
     and eventually edited using <a href="http://www.blender.org/">Video Sequencer in Blender</a>.</p></li>

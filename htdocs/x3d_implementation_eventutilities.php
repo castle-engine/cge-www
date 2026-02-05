@@ -16,7 +16,7 @@
 <p>Contents:
 <?php echo $toc->html_toc(); ?>
 
-<p>See also <?php echo a_href_page('Castle Game Engine (and view3dscene) extensions related to event utilities','x3d_implementation_eventutilities_extensions'); ?>.
+<p>See also <?php echo a_href_page('Castle Game Engine (and Castle Model Viewer) extensions related to event utilities','x3d_implementation_eventutilities_extensions'); ?>.
 
 <?php echo $toc->html_section(); ?>
 

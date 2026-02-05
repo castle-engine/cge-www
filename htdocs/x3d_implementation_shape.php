@@ -79,7 +79,7 @@ $toc = new TableOfContents(
     and it affects a shape that uses a line geometry,
     like <code>IndexedLineSet</code> and <code>LineSet</code>.
     It also affects normal (filled) geometry (like <code>IndexedFaceSet</code>)
-    when viewed in wireframe mode (see view3dscene "View -&gt; Fill Mode" menu).</p>
+    when viewed in wireframe mode (see Castle Model Viewer "View -&gt; Fill Mode" menu).</p>
 
     <p>We only support values 1..5 (<i>Solid</i> .. <i>Dash-dot-dot</i>) for <code>linetype</code> field.
 
