@@ -51,7 +51,7 @@ There is not much to configure within the project initially. Just point Jenkins 
 
 === Basic Jenkinsfile
 
-`Jenkinsfile` is a file that you should commit to your repository and it will configrue the build job.
+`Jenkinsfile` is a file that you should commit to your repository and it will configure the build job.
 
 Below is a basic `Jenkinsfile` that
 
@@ -169,10 +169,12 @@ For more information about `Jenkinsfile`, and Jenkins with Pipeline plugin (whic
 * https://jenkins.io/doc/book/pipeline/syntax/[Jenkinsfile syntax]. We advise using the "declarative" syntax of `Jenkinsfile`, as it's just simpler. All the examples on this page use it.
 * https://jenkins.io/doc/pipeline/steps/[All possible "steps" (think: "commands you can use") in the Jenkinsfile].
 
+////
 == Castle Game Engine Jenkins server
 
-We maintain a https://jenkins.castle-engine.io/[Jenkins for Castle Game Engine] server. It is used for _Castle Game Engine_ development, running a lot of CGE tests and builds on various slaves (Linux, Windows, macOS, Raspberry Pi). Michalis grants access to it. If you are a regular CGE contributor and you would like such access, link:mailto:michalis@castle-engine.io[send an email to Michalis Kamburelis].
+We maintain a https://jenkins.castle-engine.io/[Jenkins for Castle Game Engine] server. It is used for _Castle Game Engine_ development, running a lot of CGE tests and builds on various slaves (Linux, Windows, macOS, Raspberry Pi). Michalis grants access to it. If you are a regular CGE contributor and you would like such access, mailto:michalis@castle-engine.io[send an email to Michalis Kamburelis].
 
 In the past we considered even making this server public. That is, make it available to anyone who makes open-source applications using CGE (for free) or even closed-source (if you are on a specific Patreon tier). But this idea was abandoned -- as 100% securely isolating multiple projects managed by a single Jenkins master is not easy, and maintaining multiple isolated Jenkins master machines is just too costly for us to provide such service.
 
 However, both link:github_actions[GitHub Actions] and link:gitlab_ci[GitLab CI] are available and we document how to use them with CGE applications. Their usage is generally free for open-source projects.
+////
