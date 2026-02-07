@@ -780,9 +780,7 @@ WWWInline { name "my_compressed_vrml_file.wrl.gz" }
 <?php echo $toc->html_section(); ?>
 
     <p>We handle some InstantReality extensions.
-    See <a href="http://instant-reality.com/">InstantReality webpage</a>
-    and in particular <a href="http://instant-reality.com/documentation/nodetype/">the
-    specifications of InstantReality extensions</a>.
+    See <a href="https://www.instantreality.org/">InstantReality webpage</a>.
 
     <p>Please note that I implemented this all looking at InstantReality
     specifications, which are quite terse. Please report
@@ -874,14 +872,12 @@ new_screen_color :=
   }
 </pre>
 
-    <p>BlendMode is compatible with InstantReality:
-    <a href="http://www.instantreality.org/documentation/nodetype/BlendMode/">see
-    BlendMode specification of InstantReality</a>. We support a subset
-    of InstantReality fields.
+    <p>BlendMode is compatible with <a href="https://www.instantreality.org/">InstantReality</a>.
+    We support a subset of InstantReality fields.
 
 <?php echo $toc->html_section(); ?>
 
-    <p><a href="http://instant-reality.com/documentation/nodetype/MatrixTransform/"><code>MatrixTransform</code></a>:
+    <p><code>MatrixTransform</code>:
     supported <code>matrix</code> field, and the standard <code>X3DGroupingNode</code> fields.
 
     <p>This is analogous to <code>Transform</code> node, but specifies explicit
@@ -906,7 +902,7 @@ new_screen_color :=
     <p>Logger, extremely useful debugger when playing with
     VRML / X3D routes and events. This is based on,
     and should be quite compatible,
-    with <a href="http://instant-reality.com/documentation/nodetype/Logger/">InstantReality <code>Logger</code> node</a>.
+    with <a href="https://www.instantreality.org/">InstantReality</a> <code>Logger</code> node.
     (Except our interpretation of <code>logFile</code>, which is probably
     quite different, see below.)</p>
 
@@ -970,7 +966,7 @@ new_screen_color :=
     shaders and such.
 
     <p><i>Compatibility with
-    <a href="http://instant-reality.com/documentation/nodetype/Teapot/">InstantReality Teapot</a></i>:
+    <a href="https://www.instantreality.org/">InstantReality</a> Teapot</i>:
     we support <code>size</code> and <code>solid</code> fields from InstantReality.
     The geometry orientation and dimensions is the same (although our actual mesh
     tries to be a little better :) ).
@@ -1024,7 +1020,7 @@ new_screen_color :=
 
 <?php echo $toc->html_section(); ?>
 
-    <p><a href="http://www.instantreality.org/documentation/nodetype/Plane/">InstantReality Plane node</a>.
+    <p><a href="https://www.instantreality.org/">InstantReality</a> Plane node.
     You should instead use <code>Rectangle2D</code> node from X3D 3.2 when possible,
     this is implemented only for compatibility.</p>
 

@@ -424,7 +424,7 @@ by default no background / fog means that we don't use them,
 currently we just use the current background / fog.
 
 <p>This is mostly compatible with
-<a href="http://instant-reality.com/documentation/nodetype/RenderedTexture/">InstantReality RenderedTexture</a>
+<a href="https://www.instantreality.org/">InstantReality</a> RenderedTexture
 and <a href="http://xj3d.org/extensions/render_texture.html">Xj3D</a>,
 We do not support all InstantReality fields,
 but the basic fields and usage remain the same.</p>

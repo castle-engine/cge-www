@@ -177,7 +177,7 @@ and then write your shader code.</p>
 shader source code inside the CDATA.</p>
 
 <p>As an extension (but compatible at least with
-<a href="http://instant-reality.com/">InstantPlayer</a>)
+<a href="https://www.instantreality.org/">InstantPlayer</a>)
 we also recognize URL as containing direct shader source if it
 has any newlines and doesn't start with any URL protocol.
 But it's better to use "<code>data:text/plain,</code>" mentioned above.

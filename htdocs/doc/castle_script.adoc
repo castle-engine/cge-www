@@ -473,7 +473,7 @@ Set single pixel to given color/alpha.
 
 For comfort, `set` functions return back the image (that is, the new value of 1st argument).
 
-For example CastleScript programs that generate and process images, see e.g. https://github.com/castle-engine/castle-engine/blob/master/examples/castlescript/mkimage_gradient.castlescript[mkimage_gradient.castlescript (generate simple gradient image)] and https://github.com/castle-engine/castle-engine/blob/master/examples/castlescript/mkimage_sobel_edge.castlescript[mkimage_sobel_edge.castlescript (process any image with Sobel operator (edge detection))].
+For example CastleScript programs that generate and process images, see e.g. https://github.com/castle-engine/castle-engine/blob/master/examples/castlescript/image_make_by_script/data/mkimage_gradient.castlescript[mkimage_gradient.castlescript (generate simple gradient image)] and https://github.com/castle-engine/castle-engine/blob/master/examples/castlescript/image_make_by_script/data/mkimage_sobel_edge.castlescript[mkimage_sobel_edge.castlescript (process any image with Sobel operator (edge detection))].
 
 === X3D node functions
 

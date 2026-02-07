@@ -62,7 +62,7 @@ Examples include http://opengameart.org/content/shrine-shinto-japan[Shinto Shrin
 
 * Many textures inside `textures/castle/` are from http://www.wolfiesden.com/golgotha/golgotha.asp[public domain textures from unfinished game "Golgotha"].
 
-* Lion bump mapping textures from http://www-static.cc.gatech.edu/grads/d/davidp/parallax_mapping/[Philippe David steep parallax mapping code], based on https://www.casual-effects.com/research/McGuire2005Parallax/index.html[paper about steep mapping].
+* Lion bump mapping textures from https://github.com/Dayuppy/SteepParallaxDemo[Philippe David steep parallax mapping code], based on https://www.casual-effects.com/research/McGuire2005Parallax/index.html[paper about steep mapping].
 
 * See also `AUTHORS.txt` files inside the archive for detailed and complete listing of authors and sources.
 

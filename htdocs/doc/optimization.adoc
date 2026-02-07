@@ -26,7 +26,7 @@ You can display the `Window.Fps.ToString` value in any way you like.
 
 * You can display FPS using `TCastleLabel`. See the link:user_interface[manual page about using our user-interface classes]. Just update the `TCastleLabel.Caption` in every `OnUpdate` event to show the current FPS value. An an example, create a new project using link:editor[CGE editor] -- all new project templates include an FPS counter.
 +
-Or you can display FPS using `TCastleFont.Print` in every `Render` event. See the link:manual_2d_ui_custom_drawn.php[manual about custom drawing]. As an example, https://github.com/castle-engine/castle-engine/blob/master/examples/physics/physics_3d_demo/gameinitialize.pas[see how examples/physics/physics_3d_demo/gameinitialize.pas shows the FPS] (search for `Container.Fps.ToString` there).
+Or you can display FPS using `TCastleFont.Print` in every `Render` event. See the link:manual_2d_ui_custom_drawn.php[manual about custom drawing].
 
 * You can show the FPS value on some LCL label or form caption (if you use LCL forms).
 +

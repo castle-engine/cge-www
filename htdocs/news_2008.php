@@ -345,8 +345,8 @@ within single VRML / X3D file, like envisioned in the specifications.</p>
 
 <p>We have 2 sensor nodes working already (<code>TimeSensor</code>
 and <code>KeySensor</code>), 7 linear interpolator nodes, and 5 event utilities
-nodes (including <a href=\"http://instant-reality.com/documentation/nodetype/Logger/\">Avalon
-<code>Logger</code> node</a>, a useful debugger for events).
+nodes (including <a href=\"https://www.instantreality.org/\">Avalon</a>
+<code>Logger</code> node, a useful debugger for events).
 All exposed fields of other nodes also work, obviously.
 This is all available only in SVN for now. When I get back from vacation
 (at the end of August) this work will be continued (many other sensors

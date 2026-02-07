@@ -180,7 +180,7 @@ from Collada to glTF</a>.
 
 <?php echo $toc->html_section(); ?>
 
-<p><a href="http://oss.sgi.com/projects/inventor/"><b>OpenInventor</b></a>
+<p><a href="https://en.wikipedia.org/wiki/Open_Inventor"><b>OpenInventor</b></a>
 1.0 ASCII files (<code>.iv</code> extension) are handled.
 Inventor 1.0 and VRML 1.0 are very similar
 formats, we also handle some additional Inventor-specific nodes.
@@ -252,7 +252,7 @@ memory-hungry.
 FBX2glTF model.fbx
 </pre>
 
-<p>After the export, the <code>modelname_out</code> subfolder will appear with the exported model. The conversion result can be easily compared using e.g. <a href="https://castle-engine.io/castle-model-viewer">view3dcene</a> and <a href="https://www.autodesk.com/products/fbx/fbx-review">FBX Review</a>.
+<p>After the export, the <code>modelname_out</code> subfolder will appear with the exported model. The conversion result can be easily compared using e.g. <a href="castle-model-viewer">Castle Model Viewer</a>.
 
 <p><i>Note: We do not recommend using FBX in your workflow.</i>
 <!--
