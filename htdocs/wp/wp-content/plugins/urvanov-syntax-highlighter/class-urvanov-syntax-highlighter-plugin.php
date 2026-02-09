@@ -909,6 +909,8 @@ class Urvanov_Syntax_Highlighter_Plugin {
             $pre_class = preg_replace('#\bdata-url\s*=#mi', 'url=', $pre_class);
         }
 
+        require ABSPATH . '../wp_syntax_highlighter_fix.php';
+
         if (!empty($class)) {
             return "[crayon $pre_class $class $post_class]{$content}[/crayon]";
         } else {
