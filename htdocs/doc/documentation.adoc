@@ -1,0 +1,8 @@
+# Documentation
+include::common.adoc[]
+:description: Castle Game Engine documentation: manual, tutorials, creating game data, X3D reference.
+
+Contents:
+cge::toc-from-sitemap[]
+
+_Questions?_ Ask on our https://forum.castle-engine.io/[forum], link:talk.php[Discord or other channels].

@@ -1,0 +1,6 @@
+# 2D games
+include::common.adoc[]
+:description: Castle Game Engine features for 2D game development.
+
+Contents:
+cge::toc-from-sitemap[]

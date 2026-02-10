@@ -1,0 +1,6 @@
+# Platforms details
+include::common.adoc[]
+:description: Castle Game Engine on various platforms: Android, iOS, Nintendo Switch, macOS, web.
+
+Contents:
+cge::toc-from-sitemap[]

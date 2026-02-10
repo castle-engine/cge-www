@@ -1,0 +1,6 @@
+# Miscellaneous knowledge
+include::common.adoc[]
+:description: Various Castle Game Engine topics: threading, compiling from source, coding conventions, and more.
+
+Contents:
+cge::toc-from-sitemap[]

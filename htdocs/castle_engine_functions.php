@@ -227,7 +227,7 @@ $castle_sitemap = array(
     */
   ),
 
-  'documentation' => array('title' => 'Documentation',
+  'doc/documentation' => array('title' => 'Documentation',
     /* Dropdown contents are determined by "sub" below.
        In the past we allowed to specify "dropdown" contents explicitly,
        but it was weird for users, e.g.https://castle-engine.io/documentation.php
@@ -289,7 +289,7 @@ $castle_sitemap = array(
               'doc/multi_player' => array('title' => 'Multi-player'),
             )
           ),
-          'manual_2d_games' => array('title' => '2D games',
+          'doc/2d_games' => array('title' => '2D games',
             'sub' => array(
               'doc/sprite_sheets' => array('title' => 'Sprite sheets'),
               'doc/using_images' => array('title' => 'Images'),
@@ -317,7 +317,7 @@ $castle_sitemap = array(
               'doc/controllers' => array('title' => 'Game Controllers (Joysticks, Gamepads)'),
             ),
           ),
-          'manual_platforms' => array('title' => 'Platforms details',
+          'doc/platforms' => array('title' => 'Platforms details',
             'sub' => array(
               'doc/android' => array('title' => 'Android'),
               'doc/android_faq' => array('title' => 'Android FAQ'),
@@ -352,7 +352,7 @@ $castle_sitemap = array(
           'doc/skin' => array('title' => 'Skinned animation (Skin node)'),
           'doc/steam' => array('title' => 'Steam'),
           'doc/control_on_form' => array('title' => 'Engine on a form (VCL, FMX, LCL) using TCastleControl'),
-          'manual_automatic_builds' => array('title' => 'Automatic Builds (Continuous Integration and Delivery)',
+          'doc/automatic_builds' => array('title' => 'Automatic Builds (Continuous Integration and Delivery)',
             'sub' => array(
               'doc/github_actions' => array('title' => 'GitHub Actions (automatic builds for GitHub projects)'),
               'doc/gitlab_ci' => array('title' => 'GitLab CI/CD (automatic builds for GitLab projects)'),
@@ -362,7 +362,7 @@ $castle_sitemap = array(
               'doc/ci' => array('title' => 'Using Castle Game Engine with any CI'),
             )
           ),
-          'manual_ide' => array('title' => 'Pascal IDEs',
+          'doc/ide' => array('title' => 'Pascal IDEs',
             'sub' => array(
               'doc/lazarus' => array('title' => 'Lazarus'),
               'doc/delphi' => array('title' => 'Delphi',
@@ -375,7 +375,7 @@ $castle_sitemap = array(
               'doc/vscode' => array('title' => 'Visual Studio Code'),
             ),
           ),
-          'manual_miscellaneous' => array('title' => 'Miscellaneous',
+          'doc/miscellaneous' => array('title' => 'Miscellaneous',
             'sub' => array(
               'doc/up' => array('title' => 'Which way is up?'),
               'doc/transformation_hierarchy' => array('title' => 'Transformation hierarchy'),
@@ -531,7 +531,7 @@ $castle_sitemap = array(
               'x3d_implementation_cubemaptexturing'     => array('title' => 'Cube map environmental texturing'),
             )
           ),
-          'x3d_larger_extensions' => array('title' => 'Larger X3D Extensions',
+          'doc/x3d_larger_extensions' => array('title' => 'Larger X3D Extensions',
             'sub' => array(
               'compositing_shaders' => array('title' => 'Shader Effects (Compositing Shaders)'),
               'x3d_extensions_mirror_plane' => array('title' => 'Mirrors on flat objects'),
@@ -591,7 +591,7 @@ $castle_sitemap = array(
   // Do not show, for now we focus on Patreon funding.
   // 'donate' => array('title' => 'Donate'),
 
-  'gallery' => array('title' => 'Gallery',
+  'doc/gallery' => array('title' => 'Gallery',
     'dropdown' => true,
     'sub' => array(
       'gallery_games' => array('title' => 'Games',
@@ -1972,15 +1972,22 @@ function cge_highlights_slides()
 /* Replace AsciiDoctor macros like cgeref, cgeimg, documented in ../README.md. */
 function castle_replace_asciidoctor_macros($contents)
 {
-  /* This optionally removes also surrounding HTML <p> and </p> to fix HTML validity
-     in case of most common usage: when cge::features-summary[] is used as a separate
-     paragraph.
+  /* These regexps optionally remove also surrounding HTML <p> and </p>
+     around most common macros.
+     This fixes HTML validity in case of most common usage: when macro
+     (like cge::features-summary[]) is used as a separate paragraph.
 
      Note: We use "?:" to make them non-capturing groups, see
      https://www.php.net/manual/en/regexp.reference.subpatterns.php .
      This matters for similar "cgeimg::..." trick, we didn't want to change numbering
      of matching groups.
   */
+
+  $contents = preg_replace_callback('/(?:<p>)?cge::toc-from-sitemap\[\](?:<\/p>)?/',
+    function ($matches) {
+      return castle_toc_from_sitemap();
+    },
+    $contents);
 
   $contents = preg_replace_callback('/(?:<p>)?cge::features-summary\[\](?:<\/p>)?/',
     function ($matches) {

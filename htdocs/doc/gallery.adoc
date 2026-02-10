@@ -1,0 +1,5 @@
+# Gallery
+include::common.adoc[]
+:description: Games and tools made using Castle Game Engine.
+
+cge::toc-from-sitemap[]

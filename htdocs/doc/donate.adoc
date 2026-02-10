@@ -9,7 +9,7 @@ cgeimg::block[
   michalis_itdevcon2023.jpg|Michalis Kamburelis at ITDevCon 2023\, Pascal / Delphi conference\, presenting the Castle Game Engine
 ]
 
-*We are making* an link:features[open-source game engine, 3D and 2D, with comfortable visual editor and a powerful API]. We proudly cooperate with open standards (link:x3d[X3D], link:gltf[glTF], link:ifc[IFC]). We like link:why_pascal[modern Pascal], https://castle-engine.io/manual_automatic_builds.php[continuous integration], being cross-platform (desktop, mobile, consoles, link:web[web]). We're passionate about _open-source and free software_ and tools to design _engaging stories_ in the form of computer games.
+*We are making* an link:features[open-source game engine, 3D and 2D, with comfortable visual editor and a powerful API]. We proudly cooperate with open standards (link:x3d[X3D], link:gltf[glTF], link:ifc[IFC]). We like link:why_pascal[modern Pascal], link:automatic_builds[continuous integration], being cross-platform (desktop, mobile, consoles, link:web[web]). We're passionate about _open-source and free software_ and tools to design _engaging stories_ in the form of computer games.
 
 *The primary goal of your donations* is to give us time to spend on the engine development. More time translates to link:roadmap[more features], faster. By 2024, _Michalis Kamburelis_, the lead engine developer, spent most of his life on the engine and doesn't plan to stop :) Moreover, since May 2024, Michalis works on the engine full-time counting only on your support. So anything you can give is really appreciated!
 

@@ -1,0 +1,33 @@
+# Larger X3D Extensions
+include::common.adoc[]
+:description: Larger X3D extensions developed for the Castle Game Engine: shader effects, mirrors, screen effects, shadow maps, and more.
+
+cgeimg::float[
+  sunny_street_tree_hard.png|Close up shadows on the tree. Notice that leaves (modeled by alpha-test texture) also cast correct shadows.,
+  castle_headlight_1.png|Castle level with sharp spot headlight,
+  volumetric_animated_fog_all.png|Volumetric fog,
+  water_reflections.png|Water reflections by optimized GeneratedCubeMapTexture
+]
+
+////
+Commented out image from PHP source:
+  array('filename' => 'screen_effect_headlight_and_gamma.png', 'titlealt' => 'Screen effect: headlight, gamma brightness (on DOOM E1M1 level remade for our Castle)'),
+////
+
+This section documents the larger X3D extensions
+developed for the _Castle Game Engine_.
+
+Try them!
+Simply download link:castle-model-viewer[Castle Model Viewer] and
+explore the link:demo_models[demo models] collection.
+All these extensions and graphic effects are easy to use,
+and available in _Castle Game Engine_ without the need to code at all.
+It's just X3D, so you simply declare them in your X3D files, and engine
+takes care of all the rendering and processing.
+
+Contents:
+cge::toc-from-sitemap[]
+
+Not that the _smaller extensions_ are documented earlier,
+alongside the respective X3D components.
+Look at the _"Extensions"_ subpages of the _"Standard X3D Components"_.

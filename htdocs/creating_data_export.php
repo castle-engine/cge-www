@@ -4,8 +4,7 @@ castle_header('Exporting 3D and 2D models');
 ?>
 
 <p>Our engine supports a number of standardized formats for 3D and 2D assets, most notably
-<a href="x3d">X3D</a> and
-<a href="gltf">glTF</a>.
+<a href="gltf">glTF</a> and <a href="x3d">X3D</a>.
 As such, you can use almost any 3D or 2D authoring tool to
 make models for your games.
 
@@ -14,7 +13,7 @@ trivial: export your models to the X3D, or eventually to other supported format.
 When exporting your models, we <i>highly advice</i> checking your models in
 <a href="castle-model-viewer">Castle Model Viewer</a>
  to see if everything is exported correctly.
- Opening models in castle-model-viewer is usually easier than running your whole game
+ This is usually easier than running your whole game
  to test that a particular asset was exported OK.
  And <a href="castle-model-viewer">Castle Model Viewer</a> was implemented
  using our engine, so it can render exactly the same thing as your game.
@@ -31,7 +30,7 @@ constantly improving. We want to use these tools, not reinvent them.
   <li><a href="creating_data_model_formats.php">Supported model formats</a></li>
 </ul>
 
-<p>These pages describe the adviced approach for a particular authoring software:
+<p>These pages describe the advised approach for a particular authoring software:
 
 <?php /* echo castle_toc_from_sitemap(); */ ?>
 

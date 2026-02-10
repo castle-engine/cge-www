@@ -1,0 +1,6 @@
+# Pascal IDEs
+include::common.adoc[]
+:description: Using Castle Game Engine with various Pascal IDEs.
+
+Contents:
+cge::toc-from-sitemap[]

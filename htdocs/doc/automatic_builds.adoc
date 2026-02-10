@@ -1,0 +1,6 @@
+# Automatic Builds (Continuous Integration and Delivery)
+include::common.adoc[]
+:description: Setting up automatic builds (CI/CD) for Castle Game Engine projects.
+
+Contents:
+cge::toc-from-sitemap[]
