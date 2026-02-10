@@ -190,7 +190,7 @@ Most important Wordpress shortcodes are:
         - Check it all works by `sudo -u www-data ls ~/sources/castle-engine/cge-www/htdocs/`.
         - To enable comfortable editing with above setup, your own user should be in `www-data` group as well. `sudo adduser $USER www-data` (followed by logout + login to refresh group membership) on Debian-based systems will do the trick. And make them group-writeable, like `sudo chmod -R g+w htdocs/`.
 
-    Now pages that use only our PHP framework, like http://localhost:8777/manual_intro.php should work.
+    Now pages that use only our PHP framework, like http://localhost:8777/index.php should work.
 
     Note that the main page, http://localhost:8777/ , depends on a working Wordpress installation (including the database) -- see below, it will require additional work to see it.
 

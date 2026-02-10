@@ -130,7 +130,7 @@ OnUpdate: TNotifyEvent
 
     <p>Some previously published stuff on <code>TCastleControl</code> is deprecated now and will be removed in next release (sorry, we have to break compatibility &mdash; this old stuff really doesn\'t make much sense, all new code should use new events). Also, the deprecated <code>OnPaint</code> was fixed &mdash; just in case you\'re using it (but please switch to using <code>OnRender</code> soon!).
 
-  <li><p>The beginning of the <a href="https://castle-engine.io/manual_intro.php">tutorial</a> was much streamlined. We fixed some wording, removed a lot of useless info, and made the beginning of the tutorial really smooth. Now, you really quickly get to the <i>"I made a 3D game!"</i> stage :)
+  <li><p>The beginning of the <a href="https://castle-engine.io/manual">tutorial</a> was much streamlined. We fixed some wording, removed a lot of useless info, and made the beginning of the tutorial really smooth. Now, you really quickly get to the <i>"I made a 3D game!"</i> stage :)
 
     <p>Also, the tutorial chapter <a href="https://castle-engine.io/viewport_and_scenes">"Adding a simple moving object" was added</a>.
 

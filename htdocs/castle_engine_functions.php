@@ -245,7 +245,7 @@ $castle_sitemap = array(
           'bad_chess_2_spanish' => array('title' => 'Part 2 (Spanish translation)', 'url' => 'https://jorgeturiel.es/?p=760'),
         ),
       ),
-      'manual_intro' => array('title' => 'Manual',
+      'doc/manual' => array('title' => 'Manual',
         'sub' => array(
           'doc/install' => array('title' => 'Install'),
           'doc/build_first' => array('title' => 'Build your first application'),
@@ -942,7 +942,13 @@ function _castle_find_in_sitemap($path)
   return $result;
 }
 
-function castle_toc_from_sitemap()
+/* Returns HTML list of pages from sitemap under given page
+   ($castle_page_path).
+
+   $deep - boolean, if true we show all subitems recursively.
+   If false we only show immediate subitems.
+*/
+function castle_toc_from_sitemap($deep)
 {
   global $castle_page_path;
   $page_map = _castle_find_in_sitemap($castle_page_path);
@@ -950,23 +956,27 @@ function castle_toc_from_sitemap()
     throw new ErrorException('Requested castle_toc_from_sitemap for page that does not have "subitems" according to castle_sitemap');
   }
 
-  $result = '<ol>';
-  foreach ($page_map['sub'] as $menu_item_page => $menu_item)
-  {
-    if (isset($menu_item['hidden_in_toc']) && $menu_item['hidden_in_toc']) {
-      continue;
-    }
+  if ($deep) {
+    $result = _castle_sidebar_menu($page_map['sub']);
+  } else {
+    $result = '<ol>';
+    foreach ($page_map['sub'] as $menu_item_page => $menu_item)
+    {
+      if (isset($menu_item['hidden_in_toc']) && $menu_item['hidden_in_toc']) {
+        continue;
+      }
 
-    if (isset($menu_item['url'])) {
-      $menu_item_url = $menu_item['url'];
-    } else {
-      $menu_item_url = page_url($menu_item_page);
-    }
+      if (isset($menu_item['url'])) {
+        $menu_item_url = $menu_item['url'];
+      } else {
+        $menu_item_url = page_url($menu_item_page);
+      }
 
-    $result .=  '<li><a href="' . $menu_item_url . '">' .
-      $menu_item['title'] . '</a></li>';
+      $result .=  '<li><a href="' . $menu_item_url . '">' .
+        $menu_item['title'] . '</a></li>';
+    }
+    $result .= '</ol>';
   }
-  $result .= '</ol>';
   return $result;
 }
 
@@ -1985,7 +1995,13 @@ function castle_replace_asciidoctor_macros($contents)
 
   $contents = preg_replace_callback('/(?:<p>)?cge::toc-from-sitemap\[\](?:<\/p>)?/',
     function ($matches) {
-      return castle_toc_from_sitemap();
+      return castle_toc_from_sitemap(false);
+    },
+    $contents);
+
+  $contents = preg_replace_callback('/(?:<p>)?cge::toc-from-sitemap\[deep\](?:<\/p>)?/',
+    function ($matches) {
+      return castle_toc_from_sitemap(true);
     },
     $contents);
 

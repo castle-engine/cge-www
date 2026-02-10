@@ -6,7 +6,7 @@ global $castle_books;
 $castle_books = array(
   'manual' => array(
     'title' => 'Manual',
-    'path' => array('doc/documentation', 'manual_intro'),
+    'path' => array('doc/documentation', 'doc/manual'),
   ),
   'creating_data' => array(
     'title' => 'Creating Game Data',

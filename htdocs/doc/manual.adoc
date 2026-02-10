@@ -1,18 +1,18 @@
-<?php
-require_once 'castle_engine_functions.php';
-castle_header('Manual');
-?>
+# Manual
+include::common.adoc[]
+:description: Castle Game Engine manual: how to create games and applications, using the engine for desktop, mobile, consoles and web.
 
+////
+TMI:
 <!-- <p>This manual shows all the major parts of the -->
-<!-- < ?php echo '<a href="index.php">Castle Game Engine</a>'; ? >. -->
-<!-- engine,
+<!-- Castle Game Engine -->
 demonstrating how to make simple games and applications using -->
 <!-- shows how to make a simple 3D first-person game using -->
 <!-- We'll
 explain the basics of our engine, show you some examples and
 mention the most important classes.</p -->
 
-<?php /*
+TMI:
 
 <p>Throughout this manual you will see a links to our
 <a href="<?php echo reference_link(); ?>">reference</a>, and you will
@@ -25,13 +25,7 @@ just dive straight into the source.</p>
 <p>The <a href="manual_classes_overview.php">overview of engine classes</a>
  may also be useful as a quick cheatsheet &mdash; summary of the most important
 classes and concepts of our engine.</p>
+////
 
-*/ ?>
-
-<p>Contents:
-
-<?php echo _castle_sidebar_menu($castle_sitemap['documentation']['sub']['manual_intro']['sub']); ?>
-
-<?php
-  castle_footer();
-?>
+Contents:
+cge::toc-from-sitemap[deep]

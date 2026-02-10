@@ -125,7 +125,7 @@ Basically, ask AI to _"fill the gaps"_ for you, to help you. If you ask it to do
 
 Whether you use AI or not, common recommendations apply:
 
-- Learn to use the engine by https://www.youtube.com/@CastleGameEngine[watching our tutorials], https://castle-engine.io/bad_chess[reading our tutorials], and https://castle-engine.io/manual_intro.php[following our manual].
+- Learn to use the engine by https://www.youtube.com/@CastleGameEngine[watching our tutorials], https://castle-engine.io/bad_chess[reading our tutorials], and link:manual[following our manual].
 
 - Use the editor to create a new project and see what API the project is using. Think about how you want to extend it. Look in our https://castle-engine.io/apidoc/html/index.html[API documentation] to learn what things do.
 

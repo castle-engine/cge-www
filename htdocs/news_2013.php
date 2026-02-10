@@ -319,7 +319,7 @@ castle_thumbs(array(
 
     ' . (!HTML_VALIDATION ? '<iframe width="640" height="480" src="http://www.youtube.com/embed/S0bA3mJ8lZc" frameborder="0" allowfullscreen></iframe>' : '') . '
 
-    <p>The engine is very flexible, you can derive new classes and override a lot of methods to customize behavior of everything in ObjectPascal. You can define new level logic, new creatures, new items, and finally you can also use basic 3D classes to easily create any 3D entities suitable for your game. You can also easily create your own viewports, scene managers, 2D controls, use 3D sound and much more. Everything is explained in the <a href="' . CURRENT_URL . 'manual_intro.php">new tutorial</a>.</p>
+    <p>The engine is very flexible, you can derive new classes and override a lot of methods to customize behavior of everything in ObjectPascal. You can define new level logic, new creatures, new items, and finally you can also use basic 3D classes to easily create any 3D entities suitable for your game. You can also easily create your own viewports, scene managers, 2D controls, use 3D sound and much more. Everything is explained in the <a href="' . CURRENT_URL . 'manual">new tutorial</a>.</p>
     <!--  Of course, you can also define animations and even use scripting inside VRML/X3D files, but for a non-trivial game -->
 
     <!--
@@ -330,7 +330,7 @@ castle_thumbs(array(
   <li><p>We have <b>a lot of new documentation</b> to show you how to use the engine:</p>
 
     <ul>
-      <li><a href="' . CURRENT_URL . 'manual_intro.php">Tutorial</a> - introduces most concepts of the engine, with example code snippets.</li>
+      <li><a href="' . CURRENT_URL . 'manual">Tutorial</a> - introduces most concepts of the engine, with example code snippets.</li>
       <li><a href="' . CURRENT_URL . 'tutorial_classes_overview.php">Classes overview (cheatsheet)</a> - a quick ride through most important engine classes and ideas.</li>
       <li><a href="' . CURRENT_URL . 'creating_data_intro.php">Guide to creating game data</a> - how to create your 3D models using any 3D modeling software (like open-source <a href="http://www.blender.org/">Blender</a>), and how to write various configuration files like <code>resource.xml</code> and <code>level.xml</code>.</li>
       <li><a href="' . CURRENT_URL . 'apidoc/html/index.html">As always, there is also a complete API reference.</a></li>

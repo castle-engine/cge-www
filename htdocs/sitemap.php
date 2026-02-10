@@ -53,7 +53,7 @@ $sitemap_count = 1;
 // Define page priorities and change frequencies based on content type
 function get_page_priority($entry_name) {
   // Main sections get higher priority
-  if (in_array($entry_name, ['doc/download', 'doc/features', 'manual_intro.php', 'doc/why_pascal', 'doc/modern_pascal'])) {
+  if (in_array($entry_name, ['doc/download', 'doc/features', 'doc/manual', 'doc/why_pascal', 'doc/modern_pascal'])) {
     return 0.9;
   }
 
