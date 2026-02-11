@@ -9,7 +9,11 @@ clean:
 #	rm -f $(ALL_HTML)
 	rm -Rf output/
 
-output/%.html: %.adoc
+
+# Note that when castle_engine_functions.php changes, we want to regenerate
+# all adoc, since possibly ToC changed, so cge:toc-from-sitemap[] results change.
+
+output/%.html: %.adoc ../castle_engine_functions.php
 	asciidoctor --no-header-footer -o "$@" "$<"
 	cd .. && php -r 'require_once "castle_engine_functions.php"; $$castle_page_path = _detect_page_path("doc/" . pathinfo("$<", PATHINFO_FILENAME)); castle_replace_asciidoctor_macros_file("doc/$@");'
 
