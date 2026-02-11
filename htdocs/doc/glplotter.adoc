@@ -62,7 +62,7 @@ Option `--custom-size SIZE` (or `-c SIZE`) specifies size for
 * numbers scale shown when `--num-scale-custom` was used (or Ctrl + S pressed)
 * numbers shown when `--numbers-custom` was used (or Ctrl + N pressed)
 
-See also link:opengl_options.php[standard parameters of OpenGL programs] and link:common_options.php[standard parameters of all programs].
+See also link:cli_options_window[standard parameters of OpenGL programs] and link:cli_options_common[standard parameters of all programs].
 
 == Graph file format
 

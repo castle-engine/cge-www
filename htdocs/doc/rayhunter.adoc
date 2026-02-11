@@ -96,7 +96,7 @@ Width and height of resulting image.
 
 * `<input-filename>`
 +
-3D model filename. Any format link:creating_data_model_formats.php[supported by our engine is OK].
+3D model filename. Any format link:model_formats[supported by our engine is OK].
 +
 `-` (single dash) as a filename means stdin.
 
@@ -230,7 +230,7 @@ These parameters control octree generation.
 By default --octree-max-depth=... and --octree-leaf-capacity=...
 ////
 
-See also link:common_options.php[notes about command-line options for all my programs].
+See also link:cli_options_common[notes about command-line options for all my programs].
 
 == Some notes about 3d models handling by this ray-tracer
 

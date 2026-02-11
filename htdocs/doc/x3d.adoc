@@ -15,7 +15,7 @@ X3D is an open standard that defines:
 +
 These nodes are the important building block of our _Castle Game Engine_. You can load and display them using cgeref:TCastleScene[].
 +
-In our engine, in addition to the standard X3D nodes, we also define a few _extension nodes_. E.g. we add nodes to make link:shaders[shader effects], link:x3d_extensions_screen_effects.php[screen (post-processing) effects], shadows and more.
+In our engine, in addition to the standard X3D nodes, we also define a few _extension nodes_. E.g. we add nodes to make link:shaders[shader effects], link:screen_effects[screen (post-processing) effects], shadows and more.
 
 2. A *file format* to load and save these nodes in files.
 +
@@ -25,7 +25,7 @@ Various 3D modeling applications can export to it. Unfortunately, current link:b
 +
 As a file format, we recommend using link:gltf[glTF] instead.
 
-In our engine, the first point is the most important: *X3D nodes are the core building block of everything*. That is, everything you see loaded into cgeref:TCastleScene[] is a graph of X3D nodes. All link:creating_data_model_formats.php[3D and 2D model formats] are loaded into a graph of X3D nodes. You have Pascal API available to manipulate these nodes, to create and modify them at runtime.
+In our engine, the first point is the most important: *X3D nodes are the core building block of everything*. That is, everything you see loaded into cgeref:TCastleScene[] is a graph of X3D nodes. All link:model_formats[3D and 2D model formats] are loaded into a graph of X3D nodes. You have Pascal API available to manipulate these nodes, to create and modify them at runtime.
 
 == Examples
 

@@ -1,0 +1,647 @@
+# X3D extensions
+include::common.adoc[]
+:description: Extensions to the X3D and VRML standards in Castle Game Engine: new fields, new nodes.
+
+## Introduction
+
+This page documents our extensions to the X3D and VRML standards: new fields, new nodes, allowing you to do something not otherwise possible in VRML / X3D.
+
+*Compatibility* notes:
+
+* Some of our extensions can be declared using VRML / X3D external prototypes (`EXTERNPROTO`) concept. This allows other VRML / X3D browsers to at least effectively parse them. Moreover, an `EXTERNPROTO` may specify a fallback URL (https://castle-engine.io/fallback_prototypes.wrl for VRML 2.0 and https://castle-engine.io/fallback_prototypes.x3dv for X3D). Such fallback URL may point to an alternative implementation, and will allow other VRML / X3D browsers to even partially handle our extensions.
++
+////
+TODO: eventual goal is to make all extensions this way, so that they can be nicely omitted. Also, it would be nice to use VRML 1.0 similar feature, `isA` and `fields`, for the same purpose, but it's not implemented (and probably never will be, since VRML 1.0 is basically dead and VRML 2.0 / X3D externproto is so much better).
+////
++
+link:demo_models[Our VRML/X3D demo models] uses the `EXTERNPROTO` mechanism whenever possible, so that even demos of our extensions (mostly inside `castle_extensions/` subdirectories) should be partially handled by other VRML / X3D browsers.
++
+Our extensions are identified by URN like "`urn:castle-engine.io:node:ShaderTexture`". For compatibility, also deprecated "`urn:vrmlengine.sourceforge.net:node:ShaderTexture`" is recognized.
+
+* http://wdune.ourproject.org/[White dune] parses and allows to visually design nodes with our extensions.
+
+* Some extensions are <<ext_avalon,compatible with InstantPlayer and InstantReality>>.
+
+////
+Commented out, too much useless info:
+
+Some other extensions may be able supported for other reasons:
+
+- Some of VRML 1.0 extensions are borrowed from VRML 97 specification
+    (e.g. attenuation field for lights),
+    I just allow them also in VRML 1.0.
+
+- Some other extensions like
+    compressing VRML files by gzip
+    or multiple root nodes in VRML 1.0
+    are often implemented in other VRML viewers.
+////
+
+*Conventions*: fields and nodes are specified on this page in the convention somewhat similar to X3D specification:
+
+[source,vrml]
+----
+NodeName : X3DDescendantNode {
+  SF/MF-FieldType  [in,out]  fieldName  default_value  # short comment
+  ...
+}
+----
+
+The `[in,out]` can have 4 possible forms:
+
+- `[]` means `initializeOnly` in X3D terminology and `field` in VRML 2.0 terminology. It means: just a field value, no events.
+- `[in]` means `inputOnly` in X3D terminology and `eventIn` in VRML 2.0 terminology. It means: an input event, no field value.
+- `[out]` means `outputOnly` in X3D terminology and `eventOut` in VRML 2.0 terminology. It means: an output event, no field value.
+- `[in,out]` means `inputOutput` in X3D terminology and `exposedField` in VRML 2.0 terminology. It means: a field value with input and output events.
+
+To understand these extensions you will need some basic knowledge of VRML/X3D, http://www.web3d.org/standards[you can find the official VRML / X3D specifications here].
+
+*Examples*: VRML/X3D models that use these extensions may be found in link:demo_models[our VRML/X3D demo models]. Look there at directory names, in particular `castle_extensions` subdirectories (but also some others) are full of demos of our extensions.
+
+## Extensions
+
+### Specify shading, to force Phong shading or wireframe for a shape (`Shape.shading` field)
+
+link:x3d_implementation_shape_extensions.php[Shape extensions are documented on the "Shape component - extensions" page].
+
+### Screen effects (`ScreenEffect` node)
+
+link:screen_effects[Screen Effect extensions are described here].
+
+### Bump mapping (`normalMap`, `heightMap`, `heightMapScale` fields of `Appearance`)
+
+link:x3d_implementation_texturing_extensions.php[Bump mapping docs are at the "Texturing component - extensions" page].
+
+### Shadow maps extensions
+
+link:shadow_maps[Shadow Maps extensions are described here].
+
+### Shadow volumes extensions
+
+link:shadow_volumes[Shadow Volumes extensions are described here].
+
+### Generate texture coordinates on primitives (`Box/Cone/Cylinder/Sphere/Extrusion.texCoord`)
+
+link:x3d_implementation_texturing_extensions.php[`texCoord` for primitives docs are at the "Texturing component - extensions" page].
+
+### Output events to generate camera matrix (`Viewpoint.camera*Matrix` events)
+
+link:x3d_implementation_navigation_extensions.php[`camera*Matrix` fields docs are at the "Navigation component - extensions" page].
+
+### Generating 3D tex coords in world space (easy mirrors by additional `TextureCoordinateGenerator.mode` values)
+
+link:x3d_implementation_texturing_extensions.php[`TextureCoordinateGenerator.mode` in worldspace docs are at the "Texturing component - extensions" page].
+
+### Tex coord generation dependent on bounding box (`TextureCoordinateGenerator.mode` = BOUNDS*)
+
+link:x3d_implementation_texturing_extensions.php[`TextureCoordinateGenerator.mode` BOUNDS* docs are at the "Texturing component - extensions" page].
+
+### DEPRECATED: 3D text (node `Text3D`)
+
+link:x3d_implementation_text_extensions.php[`Text3D` docs are at the "Text component - extensions" page].
+
+### Override alpha channel detection (field `alphaChannel` for `ImageTexture`, `MovieTexture` and other textures)
+
+link:x3d_implementation_texturing_extensions.php[`alphaChannel` docs are at the "Texturing component - extensions" page].
+
+### Movies for `MovieTexture` can be loaded from images sequence
+
+link:x3d_implementation_texturing_extensions.php[`MovieTexture` with image sequence docs are at the "Texturing component - extensions" page].
+
+### Automatic processing of inlined content (node `KambiInline`)
+
+New `KambiInline` node extends standard `Inline` node, allowing you to do something like search-and-replace automatically on inlined content.
+
+[source,vrml]
+----
+KambiInline : Inline {
+  ... all normal Inline fields ...
+  MFString [in,out]  replaceNames  []
+  MFNode   [in,out]  replaceNodes  []  # any node is valid on this list
+}
+----
+
+`replaceNames` specifies the node names in inlined content to search. `replaceNodes` are the new nodes to replace with. `replaceNames` and `replaceNodes` fields should have the same length. By default, the lists are empty and so `KambiInline` works exactly like standard `Inline` node.
+
+An example when this is extremely useful: imagine you have a VRML file generated by exporting from some 3D authoring tool. Imagine that this tool is not capable of producing some VRML content, so you write a couple of VRML nodes by hand, and inline the generated file. For example this is your generated file, `generated.wrl`:
+
+[source,vrml]
+----
+#VRML V2.0 utf8
+
+Shape {
+  geometry Box { size 1 2 3 }
+  appearance Appearance {
+    texture DEF Tex ImageTexture { url "test.png" }
+  }
+}
+----
+
+and this is your file created by hand, `final.wrl`:
+
+[source,vrml]
+----
+#VRML V2.0 utf8
+
+# File written by hand, because your 3D authoring tool cannot generate
+# NavigationInfo node.
+
+NavigationInfo { headlight "FALSE" }
+Inline { url "generated.wrl" }
+----
+
+The advantage of this system is that you can get back to working with your 3D authoring tool, export as many times as you want overriding `generated.wrl`, and your hand-crafted content stays nicely in `final.wrl`.
+
+The problem of the above example: what happens if you want to always automatically replace some part inside `generated.wrl`? For example, assume that your 3D authoring tool cannot export with `MovieTexture` node, but you would like to use it instead of `ImageTexture`. Of course, you could just change `generated.wrl` in any text editor, but this gets very tiresome and dangerous if you plan to later regenerate `generated.wrl` from 3D authoring tool: you would have to remember to always replace `ImageTexture` to `MovieTexture` after exporting. Needless to say, it's easy to forget about such thing, and it gets very annoying when there are more replaces needed. Here's when `KambiInline` comes to help. Imagine that you use the same `generated.wrl` file, and as `final.wrl` you will use
+
+[source,vrml]
+----
+#VRML V2.0 utf8
+
+# File written by hand, because your 3D authoring tool cannot generate
+# MovieTexture node.
+
+KambiInline {
+  url "generated.wrl"
+  replaceNames "Tex"
+  replaceNodes MovieTexture { url "test.avi" }
+}
+----
+
+Each time when loading `final.wrl`, our engine will automatically replace in the VRML graph node `Tex` with specified `MovieTexture`. Of course the "replacing" happens only in the memory, it's not written back to any file, your files are untouched. Effectively, the effect is like you would load a file
+
+[source,vrml]
+----
+#VRML V2.0 utf8
+
+Shape {
+  geometry Box { size 1 2 3 }
+  appearance Appearance {
+    texture MovieTexture { url "test.avi" }
+  }
+}
+----
+
+### DEPRECATED: Force VRML time origin to be 0.0 at load time (`NavigationInfo.timeOriginAtLoad`)
+
+link:x3d_implementation_navigation_extensions.php[`timeOriginAtLoad` docs are at the "Navigation component - extensions" page].
+
+### Control head bobbing (`NavigationInfo.headBobbing*` fields)
+
+link:x3d_implementation_navigation_extensions.php[`headBobbing` docs are at the "Navigation component - extensions" page].
+
+### Executing compiled-in code on Script events (`compiled:` Script protocol)
+
+A special Script protocol "`compiled:`" allows programmers to execute compiled-in code on normal Script events. "Compiled-in code" means simply that you write a piece of code in ObjectPascal and register it after creating the scene. This piece of code will be executed whenever appropriate script will receive an event (when eventIn of the Script is received, or when exposedField is changed by event, or when the script receives `initialize` or `shutdown` notifications).
+
+This should be very handy for programmers that integrate our VRML engine in their own programs, and would like to have some programmed response to some VRML events. Using Script node allows you to easily connect programmed code to the VRML graph: you write the code in Pascal, and in VRML you route anything you want to your script.
+
+For example consider this Script:
+
+[source,vrml]
+----
+DEF S Script {
+  inputOnly SFTime touch_event
+  inputOnly SFBool some_other_event
+  inputOnly SFInt32 yet_another_event
+  url "compiled:
+initialize=script_initialization
+touch_event=touch_handler
+some_other_event=some_other_handler
+" }
+
+DEF T TouchSensor { }
+ROUTE T.touchTime TO S.touch_event');
+----
+
+This means that handler named `touch_handler` will be executed when user will activate TouchSensor. As additional examples, I added handler named `script_initialization` to be executed on script initialization, and `some_other_handler` to execute when `some_other_event` is received. Note that nothing will happen when `yet_another_event` is received.
+
+As you see, `compiled:` Script content simply maps VRML/X3D event names to Pascal compiled handler names. Each line maps `event_name=handler_name`. Lines without `=` character are understood to map handler of the same name, that is simple line `event_name` is equivalent to `event_name=event_name`.
+
+To make this actually work, you have to define and register appropriate handlers in your Pascal code. Like this:
+
+[source,pascal]
+----
+type
+  TMyObject = class
+    procedure ScriptInitialization(Value: TX3DField; const Time: TX3DTime);
+    procedure TouchHandler(Value: TX3DField; const Time: TX3DTime);
+  end;
+
+procedure TMyObject.ScriptInitialization(Value: TX3DField; const Time: TX3DTime);
+begin
+  { ... do here whatever you want ...
+
+    Value parameter is nil for script initialize/shutdown handler.
+  }
+end;
+
+procedure TMyObject.TouchHandler(Value: TX3DField; const Time: TX3DTime);
+begin
+  { ... do here whatever you want ...
+
+    Value parameter here contains a value passed to Script.touch_event.
+    You can cast it to appropriate field type and get it's value,
+    like "(Value as TSFTime).Value".
+
+    (Although in case of this example, Value here will always come from
+    TouchSensor.touchTime, so it will contain the same thing
+    as our Time.Seconds parameter. But in general case, Value can be very useful to you.)
+  }
+end;
+
+  { ... and somewhere after creating TCastleSceneCore (or TCastleScene) do this: }
+
+  Scene.RegisterCompiledScript('script_initialization', @MyObject.ScriptInitialization);
+  Scene.RegisterCompiledScript('touch_handler', @MyObject.TouchHandler);
+----
+
+For working example code in Pascal and VRML/X3D of this, see https://github.com/castle-engine/castle-engine/blob/master/examples/viewport_and_scenes/deprecated_x3d_call_pascal_code/[examples/viewport_and_scenes/deprecated_x3d_call_pascal_code] in CGE sources.
+
+### CastleScript (`castlescript:` Script protocol)
+
+We have a simple scripting language that can be used inside `Script` nodes. See link:castle_script[CastleScript documentation (with examples)].
+
+### DEPRECATED: Precalculated radiance transfer (`radianceTransfer` in all `X3DComposedGeometryNode` nodes)
+
+cgeimg::block[
+  chinchilla_normal.png|Normal OpenGL lighting,
+  chinchilla_simple_occlusion.png|Rendering with simple ambient occlusion,
+  chinchilla_diffuse_prt.png|Precomputed Radiance Transfer
+]
+
+[source,vrml]
+----
+X3DComposedGeometryNode : X3DGeometryNode {
+  ... all normal X3DComposedGeometryNode fields ...
+  MFVec3f [in,out]  radianceTransfer  []
+}
+----
+
+The field `radianceTransfer` specifies per-vertex values for https://en.wikipedia.org/wiki/Precomputed_Radiance_Transfer[Precomputed Radiance Transfer]. For each vertex, a vector of N triples is specified (this describes the radiance transfer of this vertex). We use Vec3f, since our transfer is for RGB (so we need 3 values instead of one). The number of items in `radianceTransfer` must be a multiple of the number of `coord` points.
+
+Since this field is available in `X3DComposedGeometryNode`, PRT can be used with most of the VRML/X3D geometry, like `IndexedFaceSet`. Note that when using PRT, the color values (`color`, `colorPerVertex` fields) are ignored (TODO: in the future I may implement mixing). We also add this field to VRML 1.0 `IndexedFaceSet`, so with VRML 1.0 this works too.
+
+For PRT to work, the object with `radianceTransfer` computed must keep this `radianceTransfer` always corresponding to current coords. This means that you either don't animate coordinates, or you animate coords together with `radianceTransfer` fields. TODO: make precompute_xxx work with animations, and make an example of this.
+
+For more information, see https://github.com/castle-engine/castle-radiance-transfer[Precomputed Radiance Transfer in Castle Game Engine].
+
+TODO: currently `radianceTransfer` is read but ignored by _Castle Model Viewer_ and simple VRML browser components. This means that you have to write and compile some ObjectPascal code (see above `radiance_transfer/` example) to actually use this in your games.
+
+### Mixing VRML 1.0, 2.0, X3D nodes and features
+
+Because of the way how I implemented VRML 1.0, 2.0 and X3D handling, you have effectively the _sum of all VRML features_ available. Which means that actually you can mix VRML 1.0 and 2.0 and X3D nodes to some extent. If given node name exists in two VRML/X3D versions, then VRML/X3D file header defines how the node behaves. Otherwise, node behaves according to it's VRML/X3D specification.
+
+For example, this means that a couple of VRML 2.0/X3D nodes are available (and behave exactly like they should) also for VRML 1.0 authors:
+
+* https://www.web3d.org/documents/specifications/19775-1/V4.0/Part01/components/environmentalEffects.html#Background[Background]
+* https://www.web3d.org/documents/specifications/19775-1/V4.0/Part01/components/environmentalEffects.html#Fog[Fog]
+* https://www.web3d.org/documents/specifications/19775-1/V4.0/Part01/components/core.html#WorldInfo[WorldInfo]
+* https://www.web3d.org/documents/specifications/19775-1/V4.0/Part01/components/navigation.html#NavigationInfo[NavigationInfo]
+
+If you're missing an orthographic viewpoint in VRML 2.0, you can use VRML 1.0 `OrthographicCamera` or you can use X3D `OrthoViewpoint`.
+
+If you're missing GLSL shaders in VRML 2.0, you can use link:x3d_implementation_shaders.php[X3D programmable shaders] inside VRML 2.0.
+
+You can also <<ext_inline_for_all,freely include VRML 1.0 files inside VRML 2.0, or X3D, or the other way around>>.
+
+### Volumetric fog (additional fields for `Fog` and `LocalFog` nodes)
+
+We add to all `X3DFogObject` nodes (`Fog` and `LocalFog`) additional fields to allow easy definition of volumetric fog:
+
+[source,vrml]
+----
+X3DFogObject {
+  ... all normal X3DFogObject fields ...
+  SFBool  [in,out]  volumetric                  FALSE
+  SFVec3f [in,out]  volumetricDirection          0 -1 0  # any non-zero vector
+  SFFloat [in,out]  volumetricVisibilityStart    0
+}
+----
+
+When "`volumetric`" is `FALSE` (the default), every other "`volumetricXxx`" field is ignored and you have normal (not volumetric) fog following the VRML/X3D specification. When "`volumetric`" is `TRUE`, then the volumetric fog described below is used.
+
+"`volumetricDirection`" determines in which direction density of the fog increases (that is, fog color is more visible). It must not be a zero vector. It's length doesn't matter. Every vertex of the 3D scene is projected on the "`volumetricDirection`" vector, attached to the origin of fog node coordinate system (TODO: for now, origin of global coordinate system). From the resulting signed distance along this vector we subtract "`volumetricVisibilityStart`", and then use the result to determine fog amount, just like it would be a distance to the camera for normal fog.
+
+For example in the default case when "`volumetricDirection`" is `(0, -1, 0)`, then the _negated_ Y coordinate of every vertex determines the amount of fog (that is, fog density increases when Y decreases).
+
+The effect of "`volumetricVisibilityStart`" is to shift where fog starts. Effectively, fog density changes between the distances "`volumetricVisibilityStart`" (no fog) and "`volumetricVisibilityStart + visibilityRange`" (full fog). Remember that "`visibilityRange`" must be >= 0, as required by VRML/X3D specification. Note that `fogType` still determines how values between are interpolated, so the fog may be linear or exponential, following normal VRML/X3D equations.
+
+For example if your world is oriented such that the +Y is the "up", and ground is on Y = 0, and you want your fog to start from height Y = 20, you should set "`volumetricDirection`" to `(0, -1, 0)` (actually, that's the default) and set "`volumetricVisibilityStart`" to `-20` (note `-20` instead of `20`; flipping "`volumetricDirection`" flips also the meaning of "`volumetricVisibilityStart`").
+
+The "`volumetricVisibilityStart`" is transformed by the fog node transformation scaling, just like "`visibilityRange`" in VRML/X3D spec.
+
+Oh, and note that in our programs for now `EXPONENTIAL` fog (both volumetric and not) is actually approximated by OpenGL exponential fog. Equations for OpenGL exponential fog and VRML exponential fog are actually different and incompatible, so results will be a little different than they should be.
+
+link:demo_models[Our demo models] have test models for this (see `fog/fog_volumetric/` subdirectory there).
+
+### Inline nodes allow to include 3D models in other handled formats (Collada, 3DS, MD3, Wavefront OBJ, others) and any VRML/X3D version
+
+You can use inline nodes (`Inline` in X3D, `Inline` and `InlineLoadControl` in VRML >= 2.0 and `WWWInline` in VRML 1.0) to include any 3D model format understood by our engine.
+
+So you can inline not only X3D and VRML, you can also inline link:model_formats[glTF, Collada, 3DS, MD3, Wavefront OBJ, Spine JSON, castle-anim-frames...]. Internally, all those formats are converted to X3D graph before displaying anyway. If you want to precisely know how the conversion to X3D goes, you can always try the explicit conversion by "_File -> Save as X3D_" menu option in link:castle-model-viewer[Castle Model Viewer].
+
+Also, you can freely mix VRML/X3D versions when including. You're free to include VRML 1.0 file inside VRML 2.0 file, or X3D, or the other way around. Everything works.
+
+This also works for jumping to scenes by clicking on an `Anchor` node -- you can make an `Anchor` to any VRML/X3D version, or a glTF, Collada, etc. file.
+
+### VRML files may be compressed by gzip
+
+All our programs can handle VRML files compressed with gzip.
+
+E.g. you can call link:castle-model-viewer[Castle Model Viewer] like
+
+----
+castle-model-viewer my_compressed_vrml_file.wrl.gz
+----
+
+and you can use WWWInline nodes that refer to gzip-compressed VRML files, like
+
+----
+WWWInline { name "my_compressed_vrml_file.wrl.gz" }
+----
+
+Filenames ending with `.wrl.gz` or `.wrz` are assumed to be always compressed by gzip.
+
+Files with normal extension `.wrl` but actually compressed by gzip are also handled OK. Currently, there's a small exception to this: when you give Castle Model Viewer VRML file on stdin, this file must be already uncompressed (so you may need to pipe your files through `gunzip -c`). TODO: this is intended to be fixed, although honestly it has rather low priority now.
+
+_A personal feeling about this feature from the author (Kambi):_ I honestly dislike the tendency to compress the files with gzip and then change the extension back to normal `.wrl`. It's handled by our engine, but only because so many people do it. I agree that it's often sensible to compress VRML files by gzip (especially since before X3D, there was no binary encoding for VRML files). But when you do it, it's also sensible to leave the extension as `.wrl.gz`, instead of forcing it back into `.wrl`, hiding the fact that contents are compressed by gzip. Reason: while many VRML browsers detect the fact that file is compressed by gzip, many other programs, that look only at file extension, like text editors, do not recognize that it's gzip data. So they treat `.wrl` file as a stream of unknown binary data. Programs that analyze only file contents, like Unix `file`, see that it's a gzip data, but then they don't report that it's VRML file (since this would require decompressing).
+
+Also note that WWW servers, like Apache, when queried by modern WWW browser, can compress your VRML files on the fly. So, assuming that VRML browsers (that automatically fetch URLs) will be also intelligent, the compression is done magically over HTTP protocol, and you don't have to actually compress VRML files to save bandwidth.
+
+### DEPRECATED: Fields `direction` and `up` and `gravityUp` for `PerspectiveCamera`, `OrthographicCamera` and `Viewpoint` nodes
+
+link:x3d_implementation_navigation_extensions.php[`*Camera.direction/up` docs are at the "Navigation component - extensions" page].
+
+### Mirror material (field `mirror` for `Material` node)
+
+You can mark surfaces as being mirrors by using this field.
+
+[source,vrml]
+----
+Material {
+  ... all normal Material fields ...
+  MFFloat/SFFloat [in,out]  mirror  0.0  # [0.0; 1.0]
+}
+----
+
+Currently this is respected only by classic ray-tracer in link:castle-model-viewer[castle-model-viewer] and link:rayhunter[rayhunter]. Well, it's also respected by path-tracer, although it's much better to use <<ext_material_phong_brdf_fields,fields describing physical properties (Phong's BRDF) for `Material` node>> when using path-tracer. In the future `mirror` field may be somehow respected with normal OpenGL rendering in link:castle-model-viewer[castle-model-viewer] and others.
+
+For VRML 1.0::
+This field is of `multi-` type (`MFFloat`), just like other `Material` fields in VRML 1.0; this way you can specify many material kinds for one shape node (like `IndexedFaceSet`).
+
+For VRML 2.0::
+This field is of simple `SFFloat` type, just like other `Material` fields in VRML 2.0.
+
+0.0 means no mirror (i.e. normal surface), 1.0 means the perfect mirror (i.e. only reflected color matters). Values between 0.0 and 1.0 mean that surface's color is partially taken from reflected color, partially from surface's own material color.
+
+Note that this field can be (ab)used to specify completely unrealistic materials. That's because it's not correlated in any way with `shininess` and `specularColor` fields. In the Real World the shininess of material is obviously closely correlated with the ability to reflect environment (after all, almost all shiny materials are also mirrors, unless they have some weird curvature; both shininess and mirroring work by reflecting light rays). However, in classic ray-tracer these things are calculated in different places and differently affect the resulting look (`shininess` and `specularColor` calculate local effect of the lights, and `mirror` calculates how to mix with the reflected color). So the actual "shiny" or "matte" property of material is affected by `shininess` and `specularColor` fields as well as by `mirror` field.
+
+### Customize headlight (`NavigationInfo.headlightNode`)
+
+link:x3d_implementation_navigation_extensions.php[`headlightNode` docs are at the "Navigation component - extensions" page].
+
+### Fields describing physical properties (Phong's BRDF) for `Material` node
+
+In link:rayhunter[rayhunter's] _path-tracer_ I implemented Phong's BRDF. To flexibly operate on material's properties understood by Phong's BRDF you can use the following `Material` node's fields:
+
+[source,vrml]
+----
+Material {
+  ... all normal Material fields ...
+  MFColor                    [in,out]  reflSpecular      []          # specular reflectance
+  MFColor                    [in,out]  reflDiffuse       []          # diffuse reflectance
+  MFColor                    [in,out]  transSpecular     []          # specular transmittance
+  MFColor                    [in,out]  transDiffuse      []          # diffuse transmittance
+  SFFloat (MFFloat in VRML 1.0) [in,out]  reflSpecularExp   1000000     # specular reflectance exponent
+  SFFloat (MFFloat in VRML 1.0) [in,out]  transSpecularExp  1000000     # specular transmittance exponent
+}
+----
+
+Short informal description how these properties work (for precise description see Phong's BRDF equations or source code of my programs):
+
+reflectance::
+tells how the light rays reflect from the surface.
+
+transmittance::
+tells how the light rays transmit into the surface (e.g. inside the water or thick glass).
+
+diffuse::
+describe the property independent of light rays incoming direction.
+
+specular::
+describe the property with respect to the light rays incoming direction (actually, it's the angle between incoming direction and the vector of perfectly reflected/transmitted ray that matters).
+
+specular exponent::
+describe the exponent for cosinus function used in equation, they say how much the specular color should be focused around perfectly reflected/transmitted ray.
+
+For VRML 1.0, all these fields have `multi-` type (like other fields of `Material` node) to allow you to specify many material kinds at once. For VRML >= 2.0 (includes X3D) only the four non-exponent fields are of `multi-` type, this is only to allow you to specify zero values there and trigger auto-calculation (see below). Otherwise, you shouldn't place more than one value there for VRML >= 2.0.
+
+Two `*SpecularExp` fields have default values equal to 1 000 000 = 1 million = practically infinity (bear in mind that they are exponents for cosinus). Other four fields have very special default values. Formally, they are equal to zero-length arrays. If they are left as being zero-length arrays, they will be calculated as follows:
+
+* *reflSpecular* := vector <mirror, mirror, mirror>
+* *reflDiffuse* := diffuseColor
+* *transSpecular* := vector <transparency, transparency, transparency>
+* *transDiffuse* := diffuseColor * transparency
+
+This way you don't have to use any of described here 6 fields. You can use only standard VRML fields (and maybe `mirror` field) and _path tracer_ will use sensible values derived from other `Material` fields. If you will specify all 6 fields described here, then _path tracer_ will completely ignore most other `Material` colors (normal `diffuseColor`, `specularColor` etc. fields will be ignored by path tracer then; only `emissiveColor` will be used, to indicate light sources).
+
+You can use https://github.com/michaliskambi/kambi_mgf2inv[`kambi_mgf2inv`] program to convert MGF files to VRML 1.0 with these six additional `Material` fields. So you can easily test my ray-tracer using your MGF files.
+
+These fields are used only by _path tracer_ in link:rayhunter[rayhunter] and link:castle-model-viewer[Castle Model Viewer].
+
+### Interpolate sets of colors (node `ColorSetInterpolator`)
+
+link:x3d_implementation_interpolation_extensions.php[`ColorSetInterpolator` docs are at the "Interpolation component - extensions" page].
+
+### Extensions compatible with _InstantPlayer_ from _InstantReality_
+
+We handle some InstantReality extensions. See https://www.instantreality.org/[InstantReality webpage].
+
+Please note that I implemented this all looking at InstantReality specifications, which are quite terse. Please report any incompatibilities.
+
+#### Blending factors (node `BlendMode` and field `Appearance.blendMode`)
+
+cgeimg::block[
+  blend_mode_demo.png|Various blend modes with transparent teapots
+]
+
+Use the `BlendMode` to specify how partially-transparent objects are displayed on top of other geometry.
+
+_Explanation what is a "blend mode" in 3D rendering:_
+
+* The real-time 3D rendering APIs (like OpenGL) allow to render partially transparent objects (like _"blueish glass"_) using link:blending[blending].
+
+* The software first renders opaque objects, and then it renders partially transparent objects "on top" of the opaque objects. When rendering the partially transparent objects, "blending" mode is active, which means that incoming color (like _"blue"_ from the _"blueish glass"_ example) is mixed with the screen color (like color of the thing that was behind the glass).
++
+( Forget for a second about the problem "what should be the rendering order". We document in link:blending[blending] page how does _Castle Game Engine_ handle this. Here, assume you have good order for each screen pixel. )
++
+Now, when rendering a partially-transparent object over something underneath, the color of the partially-transparent thing is mixed with the existing screen color. How is it mixed?
+
+* The standard operation is to do
++
+----
+new_screen_color :=
+  old_screen_color * (1 - object_opacity)
+  object_rgb_color * object_opacity
+----
++
+This is effectively a cgeref:Lerp[] (linear interpolation) between screen color and incoming color, using new object's opacity (aka "alpha", aka "1 - transparency") as a factor.
++
+_Is this correct (with respect to reality)?_ Not fully, but there is no "fully correct" equation. What we do is a poor approximation of how "partially transparent" objects work in reality. There's no equation that will be "fully correct".
++
+_Is this "good enough"?_ Often, yes. Consider a thin (very transparent) glass, it can have transparency=0.9, so opacity=alpha=0.1. So the equation implies that color behind the glass mostly stays visible (it is only multiplied by 0.9) and the color of the glass mostly doesn't disappears (it is multiplied by 0.1). This makes sense.
++
+In contrast, a "thick" glass could have transparency=0.1, so opacity=alpha=0.1. Follow the equation to see what happens -- just like in reality, color of the thick glass will now be prominent, and the thing behind will almost become invisible.
++
+_Is this problematic?_ Sometimes. The equation requires the partially-transparent objects to be sorted. (because imagine what happens when the object is seen through multiple layers of differently-colored glass.)
++
+_Is this standard?_ Yes.
+
+* BlendMode is X3D allows to configure this equation. All the BlendMode modes directly correspond to the https://registry.khronos.org/OpenGL-Refpages/gl4/html/glBlendFunc.xhtml[glBlendFunc parameters of OpenGL].
+
+Place this node as the `Appearance.blendMode` value. The exact specification of `BlendMode` possibilities:
+
+[source,vrml]
+----
+Appearance {
+  ... all normal Appearance fields ...
+  SFNode [in,out]  blendMode  NULL  # [BlendMode]
+}
+----
+
+[source,vrml]
+----
+BlendMode {
+  SFString [in,out]  srcFactor          "src_alpha"                # [ZERO, ONE, DST_COLOR, SRC_COLOR, ONE_MINUS_DST_COLOR, ONE_MINUS_SRC_COLOR, SRC_ALPHA, ONE_MINUS_SRC_ALPHA, DST_ALPHA, ONE_MINUS_DST_ALPHA, SRC_ALPHA_SATURATE, CONSTANT_COLOR, ONE_MINUS_CONSTANT_COLOR, CONSTANT_ALPHA, ONE_MINUS_CONSTANT_ALPHA]
+  SFString [in,out]  destFactor         "one_minus_src_alpha"      # [ZERO, ONE, DST_COLOR, SRC_COLOR, ONE_MINUS_DST_COLOR, ONE_MINUS_SRC_COLOR, SRC_ALPHA, ONE_MINUS_SRC_ALPHA, DST_ALPHA, ONE_MINUS_DST_ALPHA, SRC_ALPHA_SATURATE, CONSTANT_COLOR, ONE_MINUS_CONSTANT_COLOR, CONSTANT_ALPHA, ONE_MINUS_CONSTANT_ALPHA]
+  SFColor  [in,out]  color              1 1 1
+  SFFloat  [in,out]  colorTransparency  0
+}
+----
+
+An example in classic VRML/X3D encoding of using this to achieve non-standard destFactor="ONE" (this sometimes makes scene too bright, but it does not require sorting of transparent objects):
+
+[source,vrml]
+----
+  appearance Appearance {
+    material Material {
+      transparency 0.5
+    }
+    blendMode BlendMode {
+      srcFactor "SRC_ALPHA" # this srcFactor is the default actually
+      destFactor "ONE"
+    }
+  }
+----
+
+BlendMode is compatible with https://www.instantreality.org/[InstantReality]. We support a subset of InstantReality fields.
+
+#### Transform by explicit 4x4 matrix (`MatrixTransform` node)
+
+`MatrixTransform`: supported `matrix` field, and the standard `X3DGroupingNode` fields.
+
+This is analogous to `Transform` node, but specifies explicit 4x4 matrix. Note that VRML 1.0 also had `MatrixTransform` node (we also handle it), although specified a little differently. Later VRML 97 and X3D removed the `MatrixTransform` node from official specification -- this extension fills the gap.
+
+Note that this node was removed from specifications for a good reason. Using `MatrixTransform` node means that engine must calculate matrix inverse, and sometimes even matrix decomposition (to know the proper scaling factors, and see if the scaling is uniform). This is inefficient, and sometimes also cannot be fully accurate (in case your matrix contains something more than translation/rotation/scale).
+
+So _avoid using this node, unless you have no choice -- because your own input is already in the form of 4x4 matrix_. Prefer using standard `Transform` node.
+
+#### Events logger (`Logger` node)
+
+Logger, extremely useful debugger when playing with VRML / X3D routes and events. This is based on, and should be quite compatible, with https://www.instantreality.org/[InstantReality] `Logger` node. (Except our interpretation of `logFile`, which is probably quite different, see below.)
+
+[source,vrml]
+----
+Logger : X3DChildNode {
+  SFNode   [in,out]  metadata  NULL  # [X3DMetadataObject]
+  SFInt32  [in,out]  level     1
+  SFString []        logFile   ""
+  SFBool   [in,out]  enabled   TRUE
+  XFAny    [in]      write
+}
+----
+
+cgeimg::block[
+  logger.png|Logger node demo
+]
+
+The idea is simple: whatever is sent to `write` input event is logged on the console. `write` event has special type, called `XFAny` (also following InstantReality) that allows to receive _any_ VRML field type.
+
+Other properties allow to control logging better. When `enabled` is false, nothing is logged. `level` controls the amount of logged info:
+
+. nothing,
+. log sending field name, type, timestamp,
+. additionally log received value,
+. additionally log sending node name, type.
+
+`logFile`, when non-empty, specifies the filename to write log information to. As a security measure (we do not want to allow an author of X3D file to overwrite arbitrary files without asking user), in my implementation only the basename of the `logFile` matters, the file is always saved into current directory. Moreover, filename is like `castle-model-viewer_logger_XXX_%d.log`, where "castle-model-viewer" is the name of the program, "XXX" is the name specified in `logFile`, and "%d" is just next free number. This way logger output file is predictable, and should never overwrite your data.
+
+If the `logFile` is empty, the output goes to the link:log[default Castle Game Engine log file for this application].
+
+These security measures were added by my implementation -- InstantReality spec simply says that `logFile` is the name of the file, I don't know how they handled security problems with logFile.
+
+#### Teapot primitive (`Teapot` node)
+
+cgeimg::block[
+  teapot_demo.png|Teapot node demo
+]
+
+A teapot. Useful non-trivial shape for testing various display modes, shaders and such.
+
+_Compatibility with https://www.instantreality.org/[InstantReality] Teapot_: we support `size` and `solid` fields from InstantReality. The geometry orientation and dimensions is the same (although our actual mesh tries to be a little better :) ). Fields `texCoord` and `manifold` are our own (Kambi engine) extensions.
+
+[source,vrml]
+----
+Teapot : X3DGeometryNode {
+  SFNode  [in,out]  metadata  NULL   # [X3DMetadataObject]
+  SFVec3f []        size      3 3 3
+  SFBool  []        solid     TRUE
+  SFBool  []        manifold  FALSE
+  SFNode  [in,out]  texCoord  NULL   # [TextureCoordinateGenerator, ProjectedTextureCoordinate, MultiGeneratedTextureCoordinate]
+}
+----
+
+The `"size"` field allows you to scale the teapot, much like the standard `Box` node. The default size (3, 3, 3) means that the longest size of teapot bounding box is 3.0 (all other sizes are actually slightly smaller). Changing size scales the teapot (assuming that size = 3 means "default size").
+
+The `"texCoord"` field may contain a texture-generating node. Very useful to quickly test various texture coordinate generators (e.g. for cube environment mapping) on teapot. When `texCoord` is not present but texture coordinates are required (because appearance specifies a texture), we will generate default texture coords (using the same algorithm as for `IndexedFaceSet`).
+
+The `"solid"` field has standard meaning: if true (default), it's assumed that teapot will never be seen from the inside (and backface culling is used to speed up rendering).
+
+The `"manifold"` field allows you to force teapot geometry to be correctly closed (2-manifold, where each edge has exactly 2 neighboring faces). This is useful if you want to use shadow volumes to cast shadow of this teapot.
+
+For the sake of VRML / X3D standards, I do not really advice using this node... VRML developers should spend their time better than to implement such nodes of little practical use :), and it's possible to make the same thing with a PROTO. But it's useful for testing purposes.
+
+#### Texture automatically rendered from a viewpoint (`RenderedTexture` node)
+
+link:x3d_implementation_texturing_extensions.php[`RenderedTexture` docs are at the "Texturing component - extensions" page].
+
+#### Plane (`Plane` node)
+
+https://www.instantreality.org/[InstantReality] Plane node. You should instead use `Rectangle2D` node from X3D 3.2 when possible, this is implemented only for compatibility.
+
+Our current implementation doesn't support anything more than `size` and `solid` fields. So it's really equivalent to `Rectangle2D` inside our engine, the only difference being that `Plane.solid` is `TRUE` by default (for `Rectangle2D` spec says it's `FALSE` by default).
+
+#### Boolean value toggler (`Toggler` node)
+
+link:x3d_implementation_eventutilities_extensions.php[`Toggler` docs are at the "Event utilities component - extensions" page].
+
+#### Interpolate sets of floats (node `VectorInterpolator`)
+
+link:x3d_implementation_interpolation_extensions.php[`VectorInterpolator` docs are at the "Interpolation component - extensions" page].
+
+#### Advanced shading with textures (`CommonSurfaceShader`)
+
+link:x3d_implementation_texturing_extensions.php[`CommonSurfaceShaders` docs are at the "Texturing component - extensions" page].
+
+### Extensions compatible with BitManagement / BS Contact
+
+We have a (very crude) implementation of some BitManagement specific extensions:
+
+* `Circle` (treat as standard `Circle2D`)
+* `Layer2D`, `Layer3D`, `OrderedGroup` (treat as standard `Group`)
+* `MouseSensor` (does nothing, we merely parse it Ok)
+
+### VRML 1.0-specific extensions
+
+link:vrml1_extensions[VRML 1.0-specific extensions are described here].

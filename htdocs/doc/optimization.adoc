@@ -26,7 +26,7 @@ You can display the `Window.Fps.ToString` value in any way you like.
 
 * You can display FPS using `TCastleLabel`. See the link:user_interface[manual page about using our user-interface classes]. Just update the `TCastleLabel.Caption` in every `OnUpdate` event to show the current FPS value. An an example, create a new project using link:editor[CGE editor] -- all new project templates include an FPS counter.
 +
-Or you can display FPS using `TCastleFont.Print` in every `Render` event. See the link:manual_2d_ui_custom_drawn.php[manual about custom drawing].
+Or you can display FPS using `TCastleFont.Print` in every `Render` event. See the link:ui_custom_drawn[manual about custom drawing].
 
 * You can show the FPS value on some LCL label or form caption (if you use LCL forms).
 +
@@ -149,8 +149,8 @@ Use _LOD (level of detail)_. This is not strictly about _eliminating_ objects th
 
 Optimize textures to increase the speed and lower GPU memory usage:
 
-* Use texture compression (makes GPU memory usage more efficient). You can do it link:creating_data_auto_generated_textures.php[using _material properties_ and auto-compressing the textures using our build tool].
-* Scale down textures on low-end devices (desktops and mobiles). You can do it at loading link:creating_data_auto_generated_textures.php[using _material properties_ and auto-downscaling the textures using our build tool], see cgeref:TextureLoadingScale[]. Or you can do it at runtime, by cgeref:GLTextureScale[]. Both of these approaches have their strengths, and can be combined.
+* Use texture compression (makes GPU memory usage more efficient). You can do it link:auto_generated_textures[using _material properties_ and auto-compressing the textures using our build tool].
+* Scale down textures on low-end devices (desktops and mobiles). You can do it at loading link:auto_generated_textures[using _material properties_ and auto-downscaling the textures using our build tool], see cgeref:TextureLoadingScale[]. Or you can do it at runtime, by cgeref:GLTextureScale[]. Both of these approaches have their strengths, and can be combined.
 * Use texture atlases (try to reuse the whole X3D `Appearance` across many X3D shapes, if possible). This avoids texture switching when rendering, so the scene renders faster. When exporting from https://castle-engine.io/spine[Spine], be sure to use atlases.
 * Use link:sprite_sheets[sprite sheets] instead of separate images (like `TGLVideo2D` class). This again avoids texture switching when rendering, making the scene render faster. It also allows to easily use any texture size (not necessarily a power of two) for the frame size, and still compress the whole sprite, so it cooperates well with texture compression.
 * Don't set too high `TextureProperties.anisotropicDegree` if not needed. `anisotropicDegree` should only be set to values > 1 when it makes a visual difference in your case.
@@ -316,7 +316,7 @@ Sorting is only necessary if you may see multiple partially-transparent shapes o
 +
 So, consider changing the blending mode _and_ then turning off sorting.
 
-* Finally, consider do you really need transparency by _blending_. Maybe you can work with a transparency by _alpha testing_? _Alpha testing_ means that every pixel is either opaque, or completely transparent, depending on the alpha value. It's much more efficient to use, as alpha tested shapes can be rendered along with the normal, completely opaque shapes, and only the GPU cares about the actual "testing". There's no need for sorting. Also, _alpha testing_ cooperates nicely with link:x3d_extensions_shadow_maps.php[shadow maps].
+* Finally, consider do you really need transparency by _blending_. Maybe you can work with a transparency by _alpha testing_? _Alpha testing_ means that every pixel is either opaque, or completely transparent, depending on the alpha value. It's much more efficient to use, as alpha tested shapes can be rendered along with the normal, completely opaque shapes, and only the GPU cares about the actual "testing". There's no need for sorting. Also, _alpha testing_ cooperates nicely with link:shadow_maps[shadow maps].
 +
 Whether the _alpha testing_ looks good depends on your use-case, on your textures.
 +

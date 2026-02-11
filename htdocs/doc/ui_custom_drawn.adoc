@@ -1,0 +1,405 @@
+# Advanced: custom drawn 2D controls
+include::common.adoc[]
+:description: Creating custom drawn 2D user interface controls in Castle Game Engine, including text, shapes, images and screen effects.
+
+== Introduction
+
+While you can link:user_interface[compose
+user interface from existing UI controls],
+sometimes it's more flexible to create a control that renders what you want
+using lower-level utilities for 2D drawing.
+
+cgeimg::block[
+  //ui_custom_drawn.png|Player HUD we are going to create,
+  //fps_game_screen_15.png|fps_game demo player HUD showing inventory,
+  castle_items_tower_screen_0.png|"The Castle" inventory
+]
+
+*Warning: Drawing 2D things manually, as documented on this page, is possible but not advised.* In our experience, manual drawing often results in more work while at the same time the resulting solution is less efficient and has less features (compared to composing your UI from components). The page below lists various ways to draw things manually but also points to higher-level components that achieve the same, and often are easier to use and more powerful. So, instead of this page, better read about link:user_interface[higher-level UI controls] and use them.
+
+An example that we will consider in this chapter is designing
+a HUD (_heads-up display_) that displays some player information,
+like current life.
+
+Place your own drawing code in an overridden `Render` method of cgeref:TCastleUserInterface[] descendants. It is simplest to use your link:views[view class] (which is also a cgeref:TCastleUserInterface[] descendant) for this, just add a `Render` method to your view. But you can also create your own cgeref:TCastleUserInterface[] descendants.
+
+== Initial code
+
+Here's a simple start of a 2D control class definition and usage.
+It shows the player health by simply writing it out as text.
+
+[source,pascal]
+----
+uses SysUtils, Classes,
+  CastleColors, CastleVectors, CastleWindow, CastleUIControls,
+  CastleControls, CastleRectangles;
+
+type
+  TPlayerInformation = class(TComponent)
+  public
+    Life, MaxLife: Single;
+  end;
+
+var
+  Window: TCastleWindow;
+  PlayerInformation: TPlayerInformation;
+
+type
+  TPlayerHud = class(TCastleUserInterface)
+  public
+    procedure Render; override;
+  end;
+
+procedure TPlayerHud.Render;
+begin
+  inherited;
+  UIFont.Print(20, 20, Yellow, Format('Player life: %f / %f', [
+    PlayerInformation.Life,
+    PlayerInformation.MaxLife
+  ]));
+end;
+
+var
+  PlayerHud: TPlayerHud;
+begin
+  Window := TCastleWindow.Create(Application);
+  Window.Open;
+
+  PlayerInformation := TPlayerInformation.Create(Application);
+  PlayerInformation.Life := 75;
+  PlayerInformation.MaxLife := 100;
+
+  PlayerHud := TPlayerHud.Create(Application);
+  Window.Controls.InsertFront(PlayerHud);
+
+  Application.Run;
+end.
+----
+
+== Drawing stuff
+
+Inside `TPlayerHud.Render` you can draw using our
+2D drawing API.
+
+=== Text
+
+To draw a text, you can use ready global font
+cgeref:UIFont[]
+ (in cgeref:CastleControls[] unit).
+This is an instance of cgeref:TCastleFont[].
+For example, you can show player's health like this:
+
+[source,pascal]
+----
+UIFont.Print(10, 10, Yellow, Format('Player life: %f / %f', [
+  PlayerInformation.Life,
+  PlayerInformation.MaxLife
+]));
+----
+
+You can also create your own instances
+of cgeref:TCastleFont[]
+ to have more fonts. See link:text[the manual chapter about "Text and fonts" for more].
+
+*Note: It is more advised (easier, more flexible) to use
+cgeref:TCastleLabel[]
+ control than to draw text like above.*
+
+=== Rectangles, circles, other shapes
+
+To *draw a rectangle* use the
+cgeref:DrawRectangle[]
+ method. Blending is automatically used if you pass color with alpha < 1.
+
+For example, we can show a nice health bar showing the player's life:
+
+[source,pascal]
+----
+procedure TPlayerHud.Render;
+var
+  R: TFloatRectangle;
+begin
+  inherited;
+
+  R := FloatRectangle(10, 10, 400, 50);
+  { draw background of health bar with a transparent red }
+  DrawRectangle(R, Vector4(1, 0, 0, 0.5));
+  { calculate smaller R, to only include current life }
+  R := R.Grow(-3);
+  R.Width := R.Width * PlayerInformation.Life / PlayerInformation.MaxLife;
+  { draw the inside of health bar with an opaque red }
+  DrawRectangle(R, Vector4(1, 0, 0, 1));
+
+  UIFont.Print(20, 20, Yellow, Format('Player life: %f / %f', [
+    PlayerInformation.Life,
+    PlayerInformation.MaxLife
+  ]));
+end;
+----
+
+*Note: It is more advised (easier, more flexible) to use
+cgeref:TCastleRectangleControl[]
+ control than to draw rectangle like above.*
+
+To *draw a circle* use the
+cgeref:DrawCircle[].
+ There are also procedures to draw only an outline:
+ cgeref:DrawRectangleOutline[]
+ cgeref:DrawCircleOutline[].
+
+*Note: It is more advised (easier, more flexible) to use
+cgeref:TCastleShape[]
+ control than to draw shapes like above.*
+
+To *draw an arbitrary 2D primitive* use the
+cgeref:DrawPrimitive2D[]
+ method. Blending is automatically used if you pass color with alpha < 1.
+
+=== Images
+
+To draw an image, use the
+cgeref:TDrawableImage[] class.
+ It has methods
+ cgeref:TDrawableImage.Draw[] and
+ cgeref:TDrawableImage.Draw3x3[]
+ to draw the image, intelligently stretching it,
+ optionally preserving unstretched corners.
+
+Here's a simple example of
+cgeref:TDrawableImage[] usage
+to display a hero's face. You can use an image below,
+if you're old enough to recognize it:)
+(http://doom.wikia.com/wiki/File:Doomfaces.png[Source].)
+
+image::images/doom_face.png[DOOM hero face]
+
+[source,pascal]
+----
+uses ..., Classes, CastleFilesUtils, CastleGLImages;
+
+type
+  TPlayerHud = class(TCastleUserInterface)
+  private
+    FMyImage: TDrawableImage;
+  public
+    constructor Create(AOwner: TComponent); override;
+    destructor Destroy; override;
+    procedure Render; override;
+  end;
+
+constructor TPlayerHud.Create(AOwner: TComponent);
+begin
+  inherited;
+  FMyImage := TDrawableImage.Create('castle-data:/face.png');
+end;
+
+destructor TPlayerHud.Destroy;
+begin
+  FreeAndNil(FMyImage);
+  inherited;
+end;
+
+procedure TPlayerHud.Render;
+begin
+  inherited;
+
+  // ... previous TPlayerHud.Render contents ...
+
+  FMyImage.Draw(420, 10);
+end;
+----
+
+*Note: It is more advised (easier, more flexible) to use
+cgeref:TCastleImageControl[]
+ control than to draw image like above.*
+
+=== Complete example code showing above features
+
+Here's a complete source code that shows the above features.
+You can download and compile it right now!
+
+[source,pascal]
+----
+uses SysUtils, Classes,
+  CastleColors, CastleVectors, CastleWindow, CastleUIControls,
+  CastleControls, CastleRectangles, CastleGLUtils, CastleFilesUtils, CastleGLImages;
+
+type
+  TPlayerInformation = class(TComponent)
+  public
+    Life, MaxLife: Single;
+  end;
+
+var
+  Window: TCastleWindow;
+  PlayerInformation: TPlayerInformation;
+
+type
+  TPlayerHud = class(TCastleUserInterface)
+  private
+    FMyImage: TDrawableImage;
+  public
+    constructor Create(AOwner: TComponent); override;
+    destructor Destroy; override;
+    procedure Render; override;
+  end;
+
+constructor TPlayerHud.Create(AOwner: TComponent);
+begin
+  inherited;
+  FMyImage := TDrawableImage.Create('castle-data:/face.png');
+end;
+
+destructor TPlayerHud.Destroy;
+begin
+  FreeAndNil(FMyImage);
+  inherited;
+end;
+
+procedure TPlayerHud.Render;
+var
+  R: TFloatRectangle;
+begin
+  inherited;
+
+  R := FloatRectangle(10, 10, 400, 50);
+  { draw background of health bar with a transparent red }
+  DrawRectangle(R, Vector4(1, 0, 0, 0.5));
+  { calculate smaller R, to only include current life }
+  R := R.Grow(-3);
+  R.Width := R.Width * PlayerInformation.Life / PlayerInformation.MaxLife;
+  { draw the inside of health bar with an opaque red }
+  DrawRectangle(R, Vector4(1, 0, 0, 1));
+
+  UIFont.Print(20, 20, Yellow, Format('Player life: %f / %f', [
+    PlayerInformation.Life,
+    PlayerInformation.MaxLife
+  ]));
+
+  FMyImage.Draw(420, 10);
+end;
+
+var
+  PlayerHud: TPlayerHud;
+begin
+  Window := TCastleWindow.Create(Application);
+  Window.Open;
+
+  PlayerInformation := TPlayerInformation.Create(Application);
+  PlayerInformation.Life := 75;
+  PlayerInformation.MaxLife := 100;
+
+  PlayerHud := TPlayerHud.Create(Application);
+  Window.Controls.InsertFront(PlayerHud);
+
+  Application.Run;
+end.
+----
+
+=== Animations from images (movies, sprite sheets)
+
+If you would like to display a series of images, not a static image, you can use cgeref:TGLVideo2D[] (show image sequence from many separate images or a video).
+
+See e.g. https://gitlab.com/michaliskambi/muuu[our game "Muuu"] for a demo of using sprite animations.
+
+*Note: We advise to use instead link:sprite_sheets[sprite sheets] for animations, as they are more efficient and easier to use.*
+
+=== Screen fade effects
+
+For simple screen fade effects, you have procedures inside the
+ cgeref:CastleGLUtils[] unit
+ called cgeref:GLFadeRectangleDark[]
+ and cgeref:GLFadeRectangleLight[].
+ These allow you to draw
+ a rectangle representing fade out (when player is in pain).
+
+For example you can visualize pain and dead states like this:
+
+[source,pascal]
+----
+if Player.Dead then
+  GLFadeRectangleDark(ContainerRect, Red, 1.0)
+else
+  GLFadeRectangleDark(ContainerRect, Player.FadeOutColor, Player.FadeOutIntensity);
+----
+
+Note that `Player.FadeOutIntensity` will be 0 when there is no pain, which cooperates
+ nicely with cgeref:GLFadeRectangleDark[] definition that will do nothing when 4th parameter is 0.
+ That is why we carelessly always call cgeref:GLFadeRectangleDark[] -- when player is not dead,
+ and is not in pain (`Player.FadeOutIntensity` = 0) then nothing will actually happen.
+
+*Note: There is also a full-featured UI control that draws an effect with
+ blending (possibly modulated by an image), and we advise to use it instead:
+ cgeref:TCastleFlashEffect[].*
+
+== Coordinates and window (container) sizes
+
+To adjust your code to window size, note that
+ our projection has (0,0) in lower-left corner (as is standard
+ for 2D OpenGL). You can look at the size, in pixels, of the current
+ ////
+ 2D control in
+ cgeref:TCastleUserInterface.Width[] x
+ cgeref:TCastleUserInterface.Height[],
+ and the size of the current
+ ////
+ OpenGL container (window, control) in
+ cgeref:TCastleUserInterface.ContainerWidth[] x
+ cgeref:TCastleUserInterface.ContainerHeight[]
+ or (as a rectangle) as
+ cgeref:TCastleUserInterface.ContainerRect[].
+ The container size is also available as container properties, like
+ cgeref:TCastleWindow.Width[] x
+ cgeref:TCastleWindow.Height[]
+ or (as a rectangle)
+ cgeref:TCastleWindow.Rect[].
+
+== Take into account UI scaling and anchors
+
+So far, we have simply carelessly drawn our contents over the window.
+
+* We used absolute pixel positions to draw.
+* We did not use the control position (cgeref:TCastleUserInterface.Translation[]).
+  Nor did we take into account parent control position.
+* We did not use the control size.
+  We should use position and size defined by
+  cgeref:TCastleUserInterface[].
+* We do not honor the anchors set by
+  cgeref:TCastleUserInterface.Anchor[].
+* We do not honor UI scaling set by the
+  cgeref:TCastleContainer.UIScaling[].
+
+Note that it is OK to ignore (some) of these issues, if you design a UI control
+specifically for your game, and you know that it's only going to be used
+in a specific way.
+
+To have more full-featured UI control, we could solve these issues "one by one", but as you can see
+there are quite a few features that are missing.
+The easiest way to handle all the features listed above is to
+get inside the `Render` method the values of
+`RenderRect` and `UIScale`.
+Just scale your drawn contents to always fit within the `RenderRect`
+rectangle. And scale all user size properties by `UIScale`
+before applying to pixels.
+
+Like this:
+
+[source,pascal]
+----
+procedure TMyImageControl.Render;
+begin
+  inherited;
+  FMyImage.Draw(RenderRect);
+end;
+
+var
+  MyControl: TMyImageControl;
+begin
+  MyControl := TMyImageControl.Create(Application);
+  MyControl.Left := 100;
+  MyControl.Bottom := 200;
+  MyControl.Width := 300;
+  MyControl.Height := 400;
+  Window.Controls.InsertFront(MyControl);
+end;
+----

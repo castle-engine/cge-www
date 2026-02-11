@@ -5,7 +5,7 @@ include::common.adoc[]
 
 == Introduction
 
-Mobile-friendly viewer for link:creating_data_model_formats.php[3D and 2D model formats supported by the Castle Game Engine]: link:gltf[glTF], link:x3d[X3D], link:x3d[VRML], link:ifc[IFC], link:spine[Spine JSON], link:sprite_sheets[sprite sheets (in Castle Game Engine, Cocos2D and Starling XML formats)], link:md3[MD3], Wavefront OBJ, 3DS, STL, Collada, link:creating_data_model_formats.php[and more].
+Mobile-friendly viewer for link:model_formats[3D and 2D model formats supported by the Castle Game Engine]: link:gltf[glTF], link:x3d[X3D], link:x3d[VRML], link:ifc[IFC], link:spine[Spine JSON], link:sprite_sheets[sprite sheets (in Castle Game Engine, Cocos2D and Starling XML formats)], link:md3[MD3], Wavefront OBJ, 3DS, STL, Collada, link:model_formats[and more].
 
 In addition to the above formats, it also allows to open a ZIP file that contains a single model and associated media (like textures, sounds etc.).
 

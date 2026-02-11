@@ -1,0 +1,98 @@
+# Standard command-line options
+include::common.adoc[]
+:description: Standard command-line options accepted by Castle Game Engine tools.
+
+All _Castle Game Engine_ tools follow the same command-line options conventions.
+
+== Pascal API to handle command-line options
+
+Logic documented below as link:#rules[Rules for parsing command-line options] is implemented in our cgeref:CastleParameters[] unit. It is usually used by invoking cgeref:TParameters.Parse[Parameters.Parse]. This routine doesn't define any particular command-line options, it only provides a way to parse the options.
+
+At a higher-level, if you use cgeref:CastleWindow[], then you can use cgeref:TCastleApplication.ParseStandardParameters[Application.ParseStandardParameters] which _does_ define a few standard command-line options:
+
+- `--help` and `--version` are documented below in link:#standard[Standard command-line options: --help and --version],
+
+- more are documented in link:cli_options_window[CLI options for windowed applications].
+
+[#rules]
+== Rules for parsing command-line options
+
+* Long options start with `--` (two dashes), like `--long-option`. Short options start with `-` (one dash) and consist of one letter, like `-p`. The advantage of the long form is that you can easily remember it, the advantage of the short form is that you have less typing. Many options have both forms, long and short and you can use whichever you want.
+
+* If option requires one argument, you can give it as
++
+--
+- `--long-option=argument` (with '=') or
+- `--long-option argument` (passing argument as separate parameter) or
+- `-p=argument` (same as the first one, but using short form) or
+- `-p argument` (same as the second one, but using short form).
+--
++
+E.g. following methods of running link:castle-model-viewer[castle-model-viewer] are equivalent:
++
+----
+castle-model-viewer --viewpoint=CameraStartPosition scene.gltf
+castle-model-viewer --viewpoint=CameraStartPosition scene.gltf
+----
++
+If option _allows_ but _does not require_ an argument, you have to use `--long-option=argument` or `-p=argument` if you want to provide an argument.
+
+* Short options can be _combined_. This means that you can put more than one short option in a one parameter, e.g.
++
+----
+program -abc
+----
++
+means the same as
++
+----
+program -a -b -c
+----
++
+Note that only the last option in such "combined parameter" may take an argument, e.g.
++
+----
+program -de=50
+----
++
+means the same as
++
+----
+program -d -e=50
+----
++
+but if you want to give an argument for `-d` and `-e`, you can't combine them : you must use something like
++
+----
+program -d=40 -e=50
+----
+
+* Special option `--` means "do not interpret following parameters". You can use it if you have files with names beginning with a `'-'`.
++
+E.g. suppose you have a file named `--file.png` and you want to view it using link:castle-image-viewer[Castle Image Viewer]. If you call
++
+----
+castle-image-viewer --file.png
+----
++
+then castle-image-viewer will exit with an error _'invalid long option "--file.png"'_. Even worse, if you have a file named `--geometry` (`--geometry` not only begins with a dash but it even IS a valid option for castle-image-viewer) and you call
++
+----
+castle-image-viewer --geometry
+----
++
+then castle-image-viewer will try to interpret the `--geometry` option and will give an error _'missing argument for "--geometry"'_. So you can force castle-image-viewer to treat `--file.png` or `--geometry` as file names using :
++
+----
+castle-image-viewer -- --file.png
+castle-image-viewer -- --geometry
+----
+
+[#standard]
+== Standard command-line options: --help and --version
+
+* All programs should accept option `--help` (short form `-h`). Using this option instructs the program to print some short usage instructions and a description of available options.
+
+* All programs should accept option `--version` (short form `-v`). Using this option instructs the program to print version number. Sometimes (for `help2man` and consistency with other Unix utilities) it's preceded by the program name. Here's a description of link:versioning[versioning scheme used in our programs]. Version number is always printed on standard output, never in a message box or something that; this allows to use calls like `program_name --version` in batch scripts, makefiles etc.
++
+_Note for Windows users of our GUI programs_: when Windows program does not explicitly create a console, it usually has no standard output available. You must explicitly redirect it's stdout when using option `--version`.

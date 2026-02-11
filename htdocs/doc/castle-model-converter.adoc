@@ -12,7 +12,7 @@ cgeimg::block[
   castle-model-converter.png|Castle Model Converter
 ]
 
-As *input*, supports link:creating_data_model_formats.php[all 3D and 2D model formats supported by Castle Game Engine]: link:gltf[glTF], link:x3d[X3D, VRML], link:ifc[IFC], link:spine[Spine JSON], link:sprite_sheets[sprite sheets (in Castle Game Engine, Cocos2D and Starling XML formats)], link:md3[MD3], Wavefront OBJ, 3DS, STL, Collada, link:creating_data_model_formats.php[and more].
+As *input*, supports link:model_formats[all 3D and 2D model formats supported by Castle Game Engine]: link:gltf[glTF], link:x3d[X3D, VRML], link:ifc[IFC], link:spine[Spine JSON], link:sprite_sheets[sprite sheets (in Castle Game Engine, Cocos2D and Starling XML formats)], link:md3[MD3], Wavefront OBJ, 3DS, STL, Collada, link:model_formats[and more].
 
 As *output*, we support link:x3d[X3D], link:ifc[IFC] and STL. You can convert any input to these formats.
 

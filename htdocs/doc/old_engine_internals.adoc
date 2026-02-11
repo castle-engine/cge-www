@@ -1,0 +1,27 @@
+# Engine internals documentation
+include::common.adoc[]
+:description: Castle Game Engine internals documentation (outdated, originally a master's thesis from 2006).
+
+== Castle Game Engine internals
+
+Most of this documentation was originally written as my master's thesis, passed in September 2006. Although I was occasionally updating and adding content to this document later.
+
+*This is an outdated overview of the Castle Game Engine and VRML 1.0.*
+
+*Warning: This document isn't a good introduction to the Castle Game Engine (anymore)!*
+
+* It talks too much about engine internals.
+* It shows too little of the engine API (and features) used during normal game creation by a developer. It doesn't even mention many of the key engine features added in engine >= 3.
+* It discusses many features of VRML 1.0, which is a very ancient 3D format nowadays. The document doesn't show (in depth) features of VRML 2.0, modern X3D, and many enhancements of X3D in Castle Game Engine. Or glTF.
+
+View in various formats:
+
+* link:vrml_engine_doc/output/xsl/html/[HTML (split in many pages)]
+* link:vrml_engine_doc/output/xsl/html-nochunks/vrml_engine.html[HTML (one big file)]
+* link:vrml_engine_doc/output/xsl/vrml_engine.pdf[PDF]
+
+== Sources
+
+See https://github.com/castle-engine/cge-documentation[cge-documentation] repository, subdirectory https://github.com/castle-engine/cge-documentation/tree/master/vrml_engine_internals[vrml_engine_internals]. This contains full DocBook sources, Makefile, XSL, images -- everything you need to remake the HTML / PDF outputs above. See the README for information how to regenerate it.
+
+The example VRML 1.0/2.0 models, used for screenshots in this work, are available inside link:demo_models[our demo models] (see in `vrml_engine_doc_simple_examples` subdirectory). So you can view them comfortably in link:castle-model-viewer[Castle Model Viewer] etc.

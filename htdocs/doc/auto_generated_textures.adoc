@@ -1,0 +1,388 @@
+# Auto-generated compressed and scaled textures
+include::common.adoc[]
+:description: Auto-generated compressed and scaled textures for Castle Game Engine.
+
+== Introduction
+
+You can create a `material_properties.xml` file
+and use it to automatically generate different versions of your textures.
+At runtime, the same `material_properties.xml` file will cause the engine
+to load compressed (or downscaled) textures instead of the original ones.
+
+The generated texture versions may be:
+
+* compressed for the GPU using algorithms like
+  https://en.wikipedia.org/wiki/Adaptive_scalable_texture_compression[ASTC]
+  or https://en.wikipedia.org/wiki/S3_Texture_Compression[S3TC (DXTn)],
+* scaled down,
+* have mipmaps auto-generated.
+
+This is a great way to make your game use less texture memory,
+which often has a significant impact on the performance.
+
+. Prepare the `material_properties.xml` file as <<example,shown below>>. Place it in the `data` subdirectory of your project.
+
+. In code, load it, using:
++
+[source,pascal]
+----
+uses ..., CastleMaterialProperties;
+
+...
+MaterialProperties.URL := 'castle-data:/material_properties.xml';
+----
++
+You should do this early, to affect all texture loading.
+For example at the beginning of `Application.OnInitialize` (if you
+use `CastleWindow`) or `TForm.OnCreate`
+(if you use `CastleControl` in Lazarus).
+
+. After changing your game data,
+always use the _Run -> Auto-Generate Textures_
+menu item in CGE editor,
+or invoke the build tool on the command-line like this: `castle-engine auto-generate-textures`.
+It automatically rebuilds only the necessary textures,
+so it's usually simplest to just call it always before running your game,
+during development.
++
+To make the GPU texture compression work,
+you may need to also install some <<texture_compression,required external programs>>.
+
+. That's it. Auto-generated GPU compressed textures will be automatically
+used by the engine, instead of the original ones.
++
+If you want to also use _downscaled_ textures,
+change the cgeref:TextureLoadingScale[]
+global variable. By default it is 1. Setting it to 2 makes your textures
+use 1/2 size (their area will be 1/4, for 2D textures).
+
+[[example]]
+== Example material_properties.xml file using texture compression
+
+Below is a sample `material_properties.xml` file
+requesting to compress and downscale some images.
+Texture compression format names are the same as TTextureCompression enum names but without leading "tc",
+see cgeref:TTextureCompression[], e.g. `Dxt1_RGB`, `Pvrtc1_4bpp_RGBA` and so on.
+
+[source,xml]
+----
+<?xml version="1.0"?>
+
+<properties>
+  <!-- Automatically compressed and downscaled texture rules are defined below. -->
+  <auto_generated_textures>
+    <compress>
+      <!--
+        Automatically compressed texture formats.
+        You don't need to specify any compressed formats,
+        if you only want to downscale images
+        or generate mipmaps for them, without using GPU compression.
+      -->
+      <format name="DXT5"/>
+      <format name="ASTC_8x8_RGBA"/>
+    </compress>
+
+    <!--
+      Automatically downscaled texture versions.
+      - Scale value="1" means that no downscaling is done.
+      - Scale value="2" says to generate downscaled
+        versions (of uncompressed, and all compressed formats)
+        of size 1/2.
+      - Scale value="3" says to generate downscaled
+        versions (of uncompressed, and all compressed formats)
+        of size 1/4.
+    -->
+    <scales>
+      <scale value="2" />
+      <scale value="3" />
+    </scales>
+
+    <!--
+      Whether to make mipmaps, and if yes -- how many.
+
+      level = 0 (default) or 1:
+
+      Indicates that we should not make mipmaps,
+      which means there is only 1 image, the base image.
+
+      level > 1:
+
+      We will create mipmaps, as many as specified.
+      Notes:
+
+      - It's OK to specify larger value than necessary,
+        so e.g. if you just want to create all possible mipmaps,
+        you can specify a large level like level="20".
+        This is enough to produce all mipmaps for images
+        when both width and height are <= 2^20 (= 1024 * 1024 = 1048576).
+        So probably all practical images.
+
+      - Note that you can specify arbitrarily large value,
+        but some tools have limitations.
+        When using AMD Compressonator, the max value is capped at 20.
+        Some tools (nvcompress) do not provide a precise control over
+        mipmap level (we will display a warning about it).
+
+      - Additional mipmaps will be stored in the same KTX or DDS file
+        and used automatically.
+    -->
+    <mipmaps level="20" />
+
+    <!--
+      Include / exclude paths for which the textures are automatically
+      generated.
+    -->
+    <include path="spells/*" recursive="True" />
+    <include path="castles/*" recursive="True" />
+    <exclude path="*.jpg" />
+    <exclude path="spells/gui/*" />
+  </auto_generated_textures>
+
+  <!--
+    You can use as many <auto_generated_textures> elements as you like,
+    to specify different properties (compression, downscaling) for different
+    texture groups.
+
+    Just make sure that no image falls into more than one <auto_generated_textures>
+    group (use include/exclude to make the groups disjoint).
+    You will get a warning in case it happens.
+  -->
+
+  <!--
+    Example: Textures below will be downscaled (to be 2x smaller).
+    You can use TextureLoadingScale in CGE to load downscaled textures.
+  -->
+  <auto_generated_textures>
+    <scales>
+      <scale value="2" />
+    </scales>
+    <include path="endings/*" recursive="True" />
+  </auto_generated_textures>
+
+  <!--
+    Example: convert all textures within "gui/"
+    subdirectory to the DDS format (which may load faster than other
+    formats on some platforms).
+    They will not be GPU-compressed, they will not be downscaled.
+  -->
+  <auto_generated_textures>
+    <!--
+      If specified, it sets the preferred output image format.
+
+      If not specified, by default this is .png.
+      It can be any image format that CGE can write.
+
+      - This does affect the uncompressed (only downscaled,
+        or not even downscaled when trivial_uncompressed_convert) format.
+
+      - This does not affect the GPU-compressed (e.g. to DXT5) textures now.
+        For the GPU-compressed textures,
+        their format depends on what the underlying tool can make,
+        and it is hardcoded in CGE code (see the TextureCompressionInfo array)
+        as .dds or .ktx, depending on the compression.
+    -->
+    <preferred_output_format extension=".dds" />
+
+    <!--
+      If this element is specified, we will also make
+      not-compressed and not-downscaled texture version.
+      It will have a format specified in preferred_output_format.
+      This is useful if (in distributed game) you just prefer
+      given format (e.g. because it's faster to read).
+    -->
+    <trivial_uncompressed_convert />
+
+    <include path="gui/*" recursive="True" />
+  </auto_generated_textures>
+</properties>
+----
+
+[[platforms]]
+== Using specific compression formats (or scales) only for specific platforms
+
+The `<format>` element can optionally specify that the textures compressed to this format are only suitable for a particular platform. In effect, the textures will not be distributed on other platforms, i.e. `castle-engine package --target=xxx` (see https://castle-engine.io/build_tool[the build tool documentation]) will automatically exclude the unused textures on target platform. The code will also know that these compression formats are never packaged (so it will not try to use them, even if at runtime GPU happens to support them).
+
+This is useful as some combinations of compression + target are seldom possible. E.g. most mobile devices do not support the DXTx compression.
+
+To do this, place `<platforms>` element within `<format>`, like this:
+
+[source,xml]
+----
+<?xml version="1.0"?>
+<properties>
+  <auto_generated_textures>
+    <compress>
+      <format name="DXT5">
+        <platforms>
+          <platform>Desktop</platform>
+          <platform>Nintendo Switch</platform>
+        </platforms>
+      </format>
+      <format name="Pvrtc1_4bpp_RGBA">
+        <platforms>
+          <platform>iOS</platform>
+        </platforms>
+      </format>
+    </compress>
+    <include path="*" recursive="True" />
+  </auto_generated_textures>
+</properties>
+----
+
+Possible values inside `<platform>` (following the cgeref:TCastlePlatform[] enum values):
+
+* Nintendo Switch
+* Android
+* iOS
+* Desktop
+* Web
+
+Note: Not specifying `<platforms>` at all means that the format should be distributed on _all_ platforms (current and future). On the other hand, specifying empty `<platforms></platforms>` means that the format is not distributed on _any_ platform (this makes commenting out a particular `<platform>xxx</platform>` line behave naturally).
+
+In a similar fashion, the `<scale>` element can optionally limit the platforms where given texture scale will be packaged. E.g.
+
+[source,xml]
+----
+<?xml version="1.0"?>
+<properties>
+  <auto_generated_textures>
+    <scales>
+      <!-- No platforms specified, so this will be packaged for all platforms. -->
+      <scale value="2" />
+
+      <!-- Only for Android: generate very downscaled textures. -->
+      <scale value="3">
+        <platforms>
+          <platform>Android</platform>
+        </platforms>
+      </scale>
+    </scales>
+    <include path="*" recursive="True" />
+  </auto_generated_textures>
+</properties>
+----
+
+The possible platforms for compression format and for scale are both taken into account.
+A texture is packaged only if _both_ the compression format and the scale make it available
+for given platform.
+
+[[texture_compression]]
+== How does the automatic texture compression work
+
+Textures inside folders mentioned in `<auto_generated_textures>`
+will have GPU-compressed alternative versions automatically generated.
+This allows to easily reduce the GPU texture memory usage,
+which is especially crucial on mobile devices. The compressed
+textures should be distributed as part of your application,
+and at runtime we will automatically load a suitable GPU-compressed alternative version
+(that can be used on the current device).
+
+. Running `castle-engine auto-generate-textures` will generate
+the GPU-compressed (and optionally scaled down) counterparts.
+See https://castle-engine.io/build_tool[the castle-engine build tool documentation].
+They will be generated inside the `auto_generated` subdirectories
+of your data files, and additionally a file
+`castle_engine_auto_generated.xml` will appear,
+describing the generated textures for internal purposes (e.g. to smartly
+update them later).
++
+This process underneath may call various external tools:
++
+--
+* https://developer.nvidia.com/gpu-accelerated-texture-compression[`nvcompress` from NVidia Texture Tools]. Cross-platform (Windows, Linux...), free and open source. On Debian and derivatives (like Ubuntu) install them simply by `sudo apt-get install libnvtt-bin`.
+
+* https://www.imaginationtech.com/developers/powervr-sdk-tools/pvrtextool/[`PVRTexToolCLI` from PowerVR Texture Tools]. Cross-platform (Windows, Linux...), free to download. Include both command-line and GUI tools to convert and view image files.
+
+* https://developer.arm.com/tools-and-software/graphics-and-gaming/graphics-development-tools/mali-texture-compression-tool[`astcenc`, part of Mali Texture Compression Tool]. It is called by `PVRTexToolCLI` to encode textures to ASTC. https://github.com/ARM-software/astc-encoder[See also it's source code].
+
+* https://gpuopen.com/compressonator/[`compressonatorcli` from AMD Compressonator]. Cross-platform (Windows, Linux...), free and open source. https://github.com/GPUOpen-Tools/Compressonator[Source code is on GitHub], https://github.com/GPUOpen-Tools/Compressonator/releases[binary releases can be downloaded from here].
+--
++
+The location of these tools is searched using your `PATH`
+environment variable. If you don't know what it means or how to set
+your `PATH` environment variable,
+please search the Internet, there are step-by-step
+instructions for all operating systems.
+Some of these tools have also a standardized install location,
+we look there too.
++
+The _build tool_ automatically calls an appropriate
+compression tool with the appropriate options.
+Some formats require specific tools (e.g. ATI compression formats
+require `compressonatorcli`),
+other formats can be produced using various tools
+(e.g. DXT* compression formats can be done either using `nvcompress`
+or `compressonatorcli`).
++
+For macOS, getting some of these tools is not easy.
+https://github.com/floooh/oryol/tree/master/tools[Here you can find precompiled versions
+for various systems, including macOS].
+
+. In game, trying to load an uncompressed texture URL will automatically
+load the GPU-compressed version instead, if the GPU compression
+is supported. Just load the `material_properties.xml`
+(setting `MaterialProperties.URL`)
+early in your code.
+
+This workflow allows to easily enable GPU texture compression in your games,
+and work even when the GPU texture compression algorithm is not supported
+by the given device. Very useful on Android, with the price: you should
+distribute all compression variants.
+
+Note that some GPU compression algorithms have particular limitations.
+They often require your texture to have a "power of two" size, some even require
+it to be square (PVRTC1 on Apple devices -- blame Apple here).
+We do not forcefully resize your texture, as it could break your texture coordinates.
+// (depending on the input format, your texture may be addressed using various
+// coordinates -- e.g. most 3D formats use texture coords in 0..1 range,
+// but Spine atlases address using original coords from the top).
+Instead, we require your textures to already have the necessary size.
+Usually, the compression is OK for 3D textures and texture atlases
+(as they are usually created already with power-of-2 sizes),
+but not OK for GUI images.
+Use the <include> / <exclude> elements to select only the sensible
+subset of your data textures.
+Include / exclude work just like
+https://castle-engine.io/project_manifest[including / excluding data to package inside the `CastleEngineManifest.xml`].
+We first include matching files, then exclude matching.
+
+[[texture_scale]]
+== How does the automatic downscaling work
+
+If you use the `<scale>` element in the `<auto_generated_textures>` group,
+we will generate alternative downscaled versions of the textures.
+The `castle-engine auto-generate-textures` call with generate
+them, using a high-quality scaling algorithm.
+// (for now: using the external
+// http://www.imagemagick.org/[ImageMagick] tools).
+
+These textures will be automatically used if you set the global
+cgeref:TextureLoadingScale[] variable in your code.
+
+The attribute `value` of the `<scale>` element
+is interpreted analogous to cgeref:TextureLoadingScale[] variable, so
+
+* `<scale value="1" />` (default) means that no downscaling actually occurs,
+* `<scale value="2" />` means that textures are scaled to 1/2 of their size,
+// (for 2D textures, their area shrinks to 1/4),
+* `<scale value="3" />` means that each size is scaled to 1/4 and so on.
+
+The advantages of downscaling this way:
+
+* For uncompressed textures, this downscaling is high-quality.
++
+Unlike the fast
+scaling at run-time which is done by cgeref:GLTextureScale[].
+Note that the runtime scaling can still be performed by
+cgeref:GLTextureScale[],
+if you set it.
+The effects of
+cgeref:TextureLoadingScale[]
+and
+cgeref:GLTextureScale[]
+cumulate.
+
+* For compressed textures, this is the only way to get downscaled texture
+versions that can be chosen at runtime. We cannot downscale compressed textures
+at runtime, so cgeref:GLTextureScale[]
+has no effect on compressed textures.

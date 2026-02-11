@@ -61,7 +61,7 @@ You can control texture filtering by cgeref:TCastleTiledMap.SmoothScaling[].
 
 * `true` means to use smooth (bilinear) filtering for the tile images.
 +
-If you see weird seams between tiles when using cgeref:TCastleTiledMap.SmoothScaling[] = `true`, this is likely a lack of spacing and link:manual_alpha_bleeding.php[alpha bleeding] between tiles. You have to process your tileset image by adding some spacing between tiles and perform link:manual_alpha_bleeding.php[alpha bleeding] in your image-editing software (you can use our link:castle-image-viewer[Castle Image Viewer]). Alternatively, you can activate cgeref:TCastleTiledMap.SmoothScalingSafeBorder[] or cgeref:TCastleTiledMap.ForceTilesetSpacing[] to workaround it.
+If you see weird seams between tiles when using cgeref:TCastleTiledMap.SmoothScaling[] = `true`, this is likely a lack of spacing and link:alpha_bleeding[alpha bleeding] between tiles. You have to process your tileset image by adding some spacing between tiles and perform link:alpha_bleeding[alpha bleeding] in your image-editing software (you can use our link:castle-image-viewer[Castle Image Viewer]). Alternatively, you can activate cgeref:TCastleTiledMap.SmoothScalingSafeBorder[] or cgeref:TCastleTiledMap.ForceTilesetSpacing[] to workaround it.
 
 To show/hide specific layers use cgeref:TCastleTiledMap.Layers[].
 

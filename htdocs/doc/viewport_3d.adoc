@@ -75,7 +75,7 @@ cgeimg::block[viewport_3d_select_data.png|Files to copy]
 +
 Copy these files into your new project, into the `data` subdirectory. It is easiest to open it by right-clicking on `data` in CGE editor, and choosing _"Open In File Manager"_ from the context menu that appears.
 +
-If you already have some 3D assets (see link:creating_data_model_formats.php[3D assets formats we support]) you can of course use at this point already.
+If you already have some 3D assets (see link:model_formats[3D assets formats we support]) you can of course use at this point already.
 
 . Try the _preview_ feature of the editor at this point. Just select (click once) the `car.gltf` file. If you copied everything correctly (including `car.bin` and `textures/`), it will display the 3D car model in a preview window that appears in the bottom-right corner.
 +

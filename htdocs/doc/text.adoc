@@ -80,7 +80,7 @@ See examples, e.g. https://github.com/castle-engine/castle-engine/tree/master/ex
 
 == Change the default font
 
-You can define a `default_font` inside the link:manual_castle_settings.php[CastleSettings.xml] file to change the default font. This way CGE editor will also use the new font as default.
+You can define a `default_font` inside the link:data_settings[CastleSettings.xml] file to change the default font. This way CGE editor will also use the new font as default.
 
 == International characters
 
@@ -144,7 +144,7 @@ Instead of using cgeref:TCastleLabel[], you can explicitly draw the text. For th
 UIFont.Print(10, 10, Yellow, 'Some text to print');
 ----
 
-You should place such drawing code inside a render method, for example inside the  overridden cgeref:TCastleUserInterface.Render[] implementation. See link:manual_2d_ui_custom_drawn.php[the manual about 2D drawing] for a general info about 2D rendering.
+You should place such drawing code inside a render method, for example inside the  overridden cgeref:TCastleUserInterface.Render[] implementation. See link:ui_custom_drawn[the manual about 2D drawing] for a general info about 2D rendering.
 
 cgeref:TCastleAbstractFont[] class has a lot of methods and properties.
 

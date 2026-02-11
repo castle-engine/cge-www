@@ -61,7 +61,7 @@ See link:coding_conventions[coding conventions] on how to contribute code.
 
 Package link:index.php[Castle Game Engine] and link:castle-model-viewer[Castle Model Viewer] for your favorite Linux distribution.
 
-* link:castle-model-viewer[Castle Model Viewer] is a versatile viewer for link:creating_data_model_formats.php[many model formats].
+* link:castle-model-viewer[Castle Model Viewer] is a versatile viewer for link:model_formats[many model formats].
 
 * Castle Game Engine is an open-source 3D and 2D cross-platform game engine, with a comfortable editor and a powerful API using modern Object Pascal. link:features[All features are listed here].
 

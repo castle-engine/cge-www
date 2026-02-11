@@ -1,0 +1,168 @@
+# VRML 1.0 (old) extensions
+include::common.adoc[]
+:description: Castle Game Engine extensions to the old VRML 1.0 format.
+
+== Lights can be global
+
+All light source nodes have `global` field. The default value
+of it is `FALSE`, and it means to use standard VRML 1.0 light scope
+rules (light affects everything following, and is delimited by `Separator`).
+
+You can change it to `global` = TRUE, and then the standard
+X3D global light behavior will be used: light will affect everything,
+regardless of light node placement in node graph. For developers:
+this also indicates that light shines on other 3D objects,
+outside of this scene, if you use `TCastleViewport.GlobalLights := true;`.
+Very useful to make your creatures, items and such lit by the level lights.
+
+== Lights have `attenuation`
+
+Lights that have a position, i.e. `PointLight` and `SpotLight`
+nodes, have the field `attenuation`. The meaning of this
+field is http://www.web3d.org/documents/specifications/19775-1/V3.3/Part01/components/lighting.html#PointLight[exactly the same as in VRML 2.0 / X3D].
+I allow this for VRML 1.0 because this is really useful,
+and because the default value of this field (1,0,0)
+assures that standard VRML 1.0 files are interpreted correctly.
+
+== Lights have `ambientIntensity`
+
+All lights have `ambientIntensity` field, defined exactly like in X3D.
+
+_Historic notes:_ Before 2022-09-02 we had complicated handling of
+`ambientIntensity` in VRML 1.0,
+to allow `ambientIntensity` equal -1 in VRML 1.0 (meaning it is equal to `intensity`).
+This is simplified now. `ambientIntensity` in VRML 1.0 behaves just like in X3D.
+
+== Parts of Inventor in VRML
+
+Some Inventor-specific things are allowed:
+
+* `ShapeHints` node has `hints` field of type
+  SFBitMask, allowed values are combinations of `NONE`,
+  `SOLID`, `ORDERED` and `CONVEX`.
+  This is allowed only if the file started with Inventor 1.0 signature
+  (`#Inventor V1.0 ascii`).
+* `IndexedTriangleMesh`, `RotationXYZ` nodes
+  are allowed and understood
+* Some other fields from Inventor are allowed, but are actually ignored
+
+These things allow me to handle many Inventor 1.0 files.
+They also allow me to handle many broken VRML 1.0
+files that sometimes falsely claim that they are VRML 1.0 while in
+fact they use some Inventor-specific features.
+
+For completely unrecognized nodes, our engine can always omit them
+(even without any VRML >= 2.0 (protos) or VRML 1.0 ("fields", "isA")
+extensibility features), so most Inventor files can be at least
+partially handled and displayed.
+
+== Multi root node
+
+VRML 1.0 file may have any number of root nodes
+(VRML 1.0 spec requires that there is exactly one root node).
+I implemented this because
+
+. There are many invalid VRML 1.0 files on the Internet
+  that use this extension (partially because it's
+  normal VRML 97 feature, and many VRML viewers allow this)
+. This is allowed in VRML 97.
+. This was very easy to implement :)
+
+== Field `separate` for `WWWInline` node
+
+I'm adding new field:
+
+[source,vrml]
+----
+WWWInline {
+  ...
+  SFBool       [in,out]      separate  TRUE
+}
+----
+
+To explain this field, let's create an example.
+Assume you have file `1.wrl` with following contents:
+
+[source,vrml]
+----
+#VRML V1.0 ascii
+Material { diffuseColor 1 0 0 }
+----
+
+And a file `2.wrl` with following contents:
+
+[source,vrml]
+----
+#VRML V1.0 ascii
+Group {
+  WWWInline { name "1.wrl" }
+  Cube { }
+}
+----
+
+Question: what material is used by the cube ? The red material
+(defined in `1.wrl`) or the default material ?
+In other words, do the state changes inside `1.wrl`
+"leak outside" of WWWInline node ?
+
+The answer (stated by VRML specification, and followed by our
+programs when `separate` is TRUE (the default)) is that
+the cube uses the default material. _Not_ the red material.
+In other words, state changes do not "leak" outside.
+This is definitely a sensible behavior. This is safer
+for the author of VRML files (you're not so "vulnerable" to changes
+done in included files). And it allows to delay
+loading of inlined file until it's really
+needed (e.g. is potentially visible). Effectively, this means
+that `WWWInline` behaves a little like a `Separator`
+node. File `2.wrl` is equivalent to
+
+[source,vrml]
+----
+#VRML V1.0 ascii
+Group {
+  Separator {
+    Material { diffuseColor 1 0 0 }
+  }
+  Cube { }
+}
+----
+
+On the other hand, when you set field `separate` to FALSE,
+the cube will be red. Every state change done inside inlined file
+will affect the things defined after `WWWInline` node.
+Effectively, this means that `WWWInline` behaves a little like a
+`Group` node. Two files below are equivalent:
+
+[source,vrml]
+----
+#VRML V1.0 ascii
+Group {
+  WWWInline { name "1.wrl" separare FALSE }
+  Cube { }
+}
+----
+
+[source,vrml]
+----
+#VRML V1.0 ascii
+Group {
+  Group {
+    Material { diffuseColor 1 0 0 }
+  }
+  Cube { }
+}
+----
+
+Generally, setting field `separate` to FALSE
+is a little dangerous (because you have to be careful what
+you include), but it also allows you to do various tricks.
+
+Test VRML file: see our link:demo_models[VRML/X3D demo models], file
+`vrml_1/castle_extensions/inline_not_separate.wrl`.
+
+== Field `parts` in `Cone` and `Cylinder` nodes may have value `NONE`
+
+This way every possible value is allowed for `parts`
+field. This is comfortable for operating on these nodes,
+especially from programs -- there is no special "forbidden" value.

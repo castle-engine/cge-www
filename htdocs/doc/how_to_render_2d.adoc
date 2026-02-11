@@ -70,7 +70,7 @@ A similar approach is to draw your game using multiple cgeref:TCastleImageContro
 * Manual:
  ** link:view_events[Designing user interface and handling events (press, update) within the view] documents basic image display using cgeref:TCastleImageControl[].
  ** link:user_interface[User Interface].
- ** link:manual_2d_ui_custom_drawn.php[Custom drawn 2D controls] shows the "core" of this approach: new cgeref:TCastleUserInterface[] descendant with your own `Render` implementation, in which we call `TDrawableImage.Draw`.
+ ** link:ui_custom_drawn[Custom drawn 2D controls] shows the "core" of this approach: new cgeref:TCastleUserInterface[] descendant with your own `Render` implementation, in which we call `TDrawableImage.Draw`.
 * API reference: cgeref:TDrawableImage[].
 * You can render sprites using the appropriate `TDrawableImage.Draw` overload (where you specify which part of the source image to render). There's also a class `TSprite` (it uses `TDrawableImage` underneath), but it is _deprecated_ now, please don't use it.
 * To render pixel-art, set `TDrawableImage.SmoothScaling` to `false`.

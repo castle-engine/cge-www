@@ -26,8 +26,8 @@ If you still use (older, simpler, faster) Phong lighting model, then at least se
 Note that Phong shading is activated automatically (for a particular shape) when you use PBR, bump mapping or shadow maps or some other engine effect. So you may not need to actually request it explicitly.
 ////
 
-* Use link:x3d_extensions_screen_effects.php[screen effects (post-processing)].
-* Use effects like link:x3d_extensions_mirror_plane.php[mirrors] and link:x3d_extensions_shadow_maps.php[shadows].
+* Use link:screen_effects[screen effects (post-processing)].
+* Use effects like link:mirror_plane[mirrors] and link:shadow_maps[shadows].
 * Use animation blending when appropriate. To do this, set `TCastleScene.DefaultAnimationTransition` to non-zero on your scene, or use `PlayAnimation` with `TPlayAnimationParameters.TransitionDuration` set as non-zero.
 * Use link:color_space[linear color space]. It is automatically used with  `PhysicalMaterial`, so it is automatically used with glTF models using PBR. You can set `ColorSpace := csLinear` to just use it always (also with Phong lighting or unlit materials).
 +

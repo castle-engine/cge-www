@@ -1,0 +1,301 @@
+# Customize look by CastleSettings.xml
+include::common.adoc[]
+:description: Configuring UI scaling, default fonts, and warmup cache using CastleSettings.xml in Castle Game Engine.
+
+== Description
+
+Place a file `CastleSettings.xml` in your
+link:data[data directory]
+to influence the look of your application.
+From the Pascal code (usually, early in the
+`Application.OnInitialize` callback) load it by calling `Window.Container.LoadSettings('castle-data:/CastleSettings.xml');`. The new projects created using the _"New Project"_ templates provided by the editor already do this.
+
+The link:manual_editor.php[Castle Game Engine Editor] will also
+automatically load this file. This way the editor can show (at design-time)
+your application in the same way as it will appear to the user.
+
+In the future, the `CastleSettings.xml` file will be editable by
+the CGE editor GUI. For now just edit it directly, in any text editor.
+
+== Simple example
+
+[source,xml]
+----
+<?xml version="1.0" encoding="utf-8"?>
+<castle_settings>
+  <ui_scaling
+    mode="EncloseReferenceSize"
+    reference_width="1600"
+    reference_height="900"
+  />
+  <default_font
+    url="castle-data:/MyFontFile.ttf"
+  />
+</castle_settings>
+----
+
+== UI scaling
+
+=== How does UI scaling work
+
+All the user interface coordinates and sizes (like cgeref:TCastleUserInterface.Translation[], cgeref:TCastleUserInterface.Width[], cgeref:TCastleUserInterface.Height[]) are floating-point numbers (`Single` in Pascal) and are expressed in what we call _"unscaled coordinates"_.
+
+If you follow the default _"New Project"_ setup with the default `CastleSettings.xml`, then the "unscaled coordinates" pretend that your application works on a screen with size 1600 x 900, but adjusted (larger in one dimension) to keep the actual aspect ratio.
+
+cgeimg::block[ui_scaling.png|UI Scaling Coordinates]
+
+As a result, the sizes and positions you specify will be later adjusted (scaled) to the actual device screen size (we call this _"pixel size"_ or _"real, scaled, final size"_). So designing your UI, and even explicitly assigning hardcoded values for positions and sizes, will work on all the screens.
+
+Remember to use anchors to keep things aligned to the proper border/center.
+
+This is very useful for mobile devices (that may have drastically different pixel sizes) but also desktops (that may have different resolutions).
+
+Here's an example how https://github.com/castle-engine/castle-engine/tree/master/examples/component_gallery[examples/component_gallery] looks like in various window sizes. As you can see, it adjusts sensibly even to wild horizontal / vertical aspect ratios:
+
+cgeimg::block[ui_scaling_component_gallery.png|UI Scaling in component_gallery example]
+
+=== Specify UI scaling in CastleSettings.xml
+
+Loading the `CastleSettings.xml` sets properties
+related to user interface scaling:
+cgeref:TCastleContainer.UIScaling[Container.UIScaling],
+cgeref:TCastleContainer.UIReferenceWidth[Container.UIReferenceWidth],
+cgeref:TCastleContainer.UIReferenceHeight[Container.UIReferenceHeight].
+
+[source,xml]
+----
+<ui_scaling
+  mode="EncloseReferenceSize"
+  reference_width="1600"
+  reference_height="900"
+/>
+----
+
+These settings control _user interface scaling_.
+See the cgeref:TCastleContainer.UIScaling[].
+UI scaling means that you can often _assume_ that an application
+is designed for a specified window size (like 1600x900).
+You set the positions and sizes (in code, in editor) relative to this desired window size.
+When the application runs, the UI controls are scaled to adjust to the actual window size.
+The scaling is _smart_, which means that a different aspect ratio is not a problem
+(as long as you set proper anchors).
+The scaling only transforms the UI coordinates -- the controls are actually rendered
+at the final size. So the scaling doesn't reduce quality in any way.
+
+The default value of `UIScaling` is `usNone`,
+so no scaling is done.
+If you don't specify `<ui_scaling>` element in `CastleSettings.xml`,
+we keep using this default.
+
+*We advise all new cross-platform projects to activate UI scaling by `mode="EncloseReferenceSize"`
+in `CastleSettings.xml`*.
+This is the best practical way to achieve a consistent look
+on various screen sizes and devices.
+It is useful even for desktop-only applications (since people have
+various monitor resolutions), and it is crucial for mobile and console applications
+(where devices have wildly different resolutions).
+
+The _"New Project"_ templates provided by the CGE editor
+all set up by default UI scaling to the reference sizes of 1600x900
+(the most popular aspect ratio in 2018).
+
+The allowed values for `mode` are
+
+* None
+* EncloseReferenceSize
+* FitReferenceSize
+* ExplicitScale
+* DpiScale
+
+See the cgeref:TUIScaling[]
+ documentation for their description.
+
+== Default font
+
+Loading the `CastleSettings.xml` also sets the
+cgeref:TCastleContainer.DefaultFont[].
+
+This controls the default font look (font file, font size)
+for all user-interface controls.
+Note that this is only a default, each control can still customize it
+(using cgeref:TCastleUserInterfaceFont.CustomFont[],
+cgeref:TCastleUserInterfaceFont.FontSize[]).
+
+An example code (only the `url` attribute is required):
+
+[source,xml]
+----
+<default_font
+  url="castle-data:/MyFontFile.ttf"
+  size="20"
+  sizes_at_load="10 20 30"
+  anti_aliased="true"
+/>
+----
+
+In effect,
+cgeref:TCastleContainer.DefaultFont[]
+ will be set to a proper
+cgeref:TCastleFont[] instance.
+
+You can also provide separate font variants for `regular`,
+`bold`, `italic` and `bold_italic` variants.
+In this case, the `<default_font>` element is only a container
+for the specification of font variants (do not use any attributes at `<default_font>` in this case).
+Like this:
+
+[source,xml]
+----
+<default_font>
+  <regular
+    url="castle-data:/fonts/DejaVuSans.ttf"
+    size="25"
+  />
+  <bold
+    url="castle-data:/fonts/DejaVuSans-Bold.ttf"
+    size="25"
+  />
+  <italic
+    url="castle-data:/fonts/DejaVuSans-Italic.ttf"
+    size="25"
+  />
+  <bold_italic
+    url="castle-data:/fonts/DejaVuSans-BoldItalic.ttf"
+    size="25"
+  />
+</default_font>
+----
+
+In effect,
+cgeref:TCastleContainer.DefaultFont[]
+ will be set to a proper
+cgeref:TCastleFontFamily[] instance.
+This is useful if you plan to use
+cgeref:TCastleLabel[]
+ with cgeref:TCastleLabel.Html[],
+this way bold and italic tags in HTML will work. You have to define at least the `regular`
+font variant (others are optional).
+
+Specification of attributes available at the font element (either
+`<default_font>`, or
+`<regular>`,
+`<bold>` etc.):
+
+`url` (required)::
+  URL pointing to a font file.
+  Any format supported by the https://www.freetype.org/[FreeType library]
+  is allowed, in particular OTF and TTF.
+  This file will be loaded at runtime by the compiled application,
+  so it should almost always be a URL leading link:data[to the application data],
+  or a relative URL (since the `CastleSettings.xml` should already be inside data).
+
+`size` (default: 20)::
+  Determines the font size (cgeref:TCastleAbstractFont.Size[]),
+  which determines how large the font is on the screen.
+
+`size_at_load` (default: use `size` value)::
+  The font size used to create an internal texture
+  with letters. By default it is equal to `size`,
+  but it can be set to something larger to improve the quality of the font.
+  This is useful if in your game you will often use this font
+  with other sizes.
+  (E.g. your controls leave cgeref:TCastleUserInterfaceFont.CustomFont[] = nil,
+  but often use large cgeref:TCastleUserInterfaceFont.FontSize[] or
+  cgeref:TCastleUserInterfaceFont.FontScale[]).
++
+This attribute is used only when the list `sizes_at_load` is not defined
+  (see below).
++
+Internally, one cgeref:TCastleFont[] instance will be created,
+  for given size.
+  During rendering it will be scaled to the requested size on screen.
+  If you try to render font much smaller or much larger than
+  the loaded size, results may look aliased or blurry.
+
+`sizes_at_load` (default: not used)::
+  If this attribute is defined, it should be a list of font sizes
+  (integers separated by whitespace).
+  The font sizes should represent a spectrum of sizes you plan
+  to use in your application, e.g. `"10 15 20 25"`.
++
+Internally, the font is loaded into a number of textures,
+  one for each size, using cgeref:TCustomizedFont.Load[] that creates
+  a number of cgeref:TCastleFont[] instances.
+  When rendering using this font, the closest size will be used,
+  and scaled to the requested size, to be rendered exactly at
+  requested size.
++
+This gives greatest font quality.
+
+`anti_aliased` (default: true)::
+  This boolean attribute controls whether the font texture will be rendered
+  with smooth scaling (bilinear filtering).
+  Practically, you want to always leave it as `true`,
+  especially if you use UI scaling or change font size at various UI controls.
+
+`sample_text` (default: empty)::
+  By default, the font texture has only ASCII characters loaded.
+  Use this attribute to specify additional characters to load.
+
+`only_sample_text` (default: false)::
+  By default, the font texture includes the ASCII characters
+  (regardless if they are listed, or not, in `sample_text`).
+  Set this to `true` to _not_ add the ASCII characters
+  automatically.
+  This way the font texture will only contain characters mentioned
+  in `sample_text`, `sample_code`, `sample_get_text_mo`.
++
+A typical use-case is when the font is used only to render
+  specific characters, e.g. only digits, and you want to conserve font
+  texture size.
+
+`sample_code` (default: empty)::
+  A list (separated by whitespace or commas) of Unicode character numbers
+  to include in the font texture.
++
+By default, the font texture has only ASCII characters loaded.
+  Use this (or some other `sample_xxx`) to extend the available character set.
+
+`sample_get_text_mo` (default: empty)::
+  A list (separated by whitespace or commas) of GetText MO files.
+  All the characters from the translated strings will be included in the font texture.
+  This is useful to load all characters used by your translators.
+  link:text[See the manual chapter about fonts and localization (translation).]
++
+By default, the font texture has only ASCII characters loaded.
+  Use this (or some other `sample_xxx`) to extend the available character set.
+
+== Warmup cache
+
+When loading settings (at cgeref:TCastleContainer.LoadSettings[]),
+we can load and keep in cache some resources.
+
+It may be useful to cache large images (used in UI or referenced
+from TCastleScene) or audio files (referenced from TCastleScene).
+Thanks to keeping them in the cache, any loading of them later in the game
+will be instant.
+
+[source,xml]
+----
+<warmup_cache>
+  <!-- Put in cache an image.
+       Loading this image in UI (like TCastleImageControl, TCastleButton
+       or anything else that uses TCastleImagePersistent cache)
+       will be instant. -->
+  <image_ui url="castle-data:/gui/image.png" />
+
+  <!-- Put in cache a scene, along with all resources it references
+       (textures, sounds).
+       Loading this scene in TCastleScene will be much faster,
+       since all resources will be already in cache. -->
+  <scene url="castle-data:/gui/space_map/map_big_1.json" />
+  <scene url="castle-data:/gui/space_map/map_big_2.json" />
+</warmup_cache>
+----
+
+Note that if you load designed UI using
+ cgeref:TCastleView.DesignUrl[]
+ then you have a more straightforward way: set
+ cgeref:TCastleView.DesignPreload[] to `true`.
+ This will effectively cache all state resources, without the need to list them among
+ `<warmup_cache>`.

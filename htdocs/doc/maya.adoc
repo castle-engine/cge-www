@@ -88,7 +88,7 @@ If the exported things seem completely black, fix the material to have non-black
 
 Bonus points: OBJ format supports normalmaps, so we will read the normalmaps you set in Maya correctly.
 
-To export animations, you can export each keyframe as a still OBJ file, and then create a link:castle_animation_frames.php[simple XML file with the .castle-anim-frames extension to define an animation].
+To export animations, you can export each keyframe as a still OBJ file, and then create a link:castle_animation_frames[simple XML file with the .castle-anim-frames extension to define an animation].
 
 cgeimg::block[
   export-maya-hextraction1.png|Maya Sample Model by Hextraction (Base Player Pod by ComboMash Entertainment Inc) from http://www.hextraction.com/ and http://opengameart.org/content/hextraction-base-player-pod,

@@ -487,7 +487,7 @@ Overall, the TODO here: Test using Gzip or Brotli compression. Test configuring 
 
 - Is it good we capture keys by listening to `keydown` and `keyup` events on the whole `window`? Could conflict with other things on the same page trying to handle keys (like 2nd CGE web application). Should we rather rely on canvas being focused, or maybe some canvas div wrapper? (but will need code to make it focused, because out-of-the-box canvas doesn't get any keydown / keyup).
 
-- Save the user settings / save games (things stored in link:url#castle-config[castle-config:/], e.g. link:manual_user_prefs.php[UserConfig]) to webpage persistent storage.
+- Save the user settings / save games (things stored in link:url#castle-config[castle-config:/], e.g. link:user_preferences_savegames[UserConfig]) to webpage persistent storage.
 
 - Open / save files by browser dialog (cgeref:TCastleWindow.FileDialog[]).
 

@@ -118,7 +118,7 @@ link:viewport_and_scenes[Viewport with scenes, camera, navigation] allows to def
 +
 cgeimg::block[viewport_3d_nice_view.png|Viewport with 3D design]
 
-* Powerful cgeref:TCastleScene[] to load and render link:creating_data_model_formats.php[a lot of model formats, like glTF, X3D, sprite sheets].
+* Powerful cgeref:TCastleScene[] to load and render link:model_formats[a lot of model formats, like glTF, X3D, sprite sheets].
 * Other visible objects like cgeref:TCastleBox[], cgeref:TCastleSphere[], cgeref:TCastleText[], cgeref:TCastleImageTransform[]. Great also for quick prototyping 3D and 2D worlds.
 * Flexible link:camera[camera] support, with multiple camera possible, attaching children to camera and placing camera as child of other objects, like bones.
 * Easy link:navigation[navigation] components if you want to allow user to navigate in 3D or 2D worlds in a standard fashion. These include typical 2D and 3D navigation methods (like cgeref:TCastleWalkNavigation[], cgeref:TCastleExamineNavigation[], cgeref:TCastle2DNavigation[]) as well as 3rd-person navigation with avatar (cgeref:TCastleThirdPersonNavigation[]).
@@ -146,7 +146,7 @@ cgeimg::block[
 
 == Data formats
 
-You can link:creating_data_model_formats.php[use various formats to define 3D and 2D data].
+You can link:model_formats[use various formats to define 3D and 2D data].
 
 === glTF
 
@@ -227,7 +227,7 @@ cgeimg::block[
 ]
 
 * Animation blending/cross-fading (cgeref:TCastleSceneCore.DefaultAnimationTransition[], cgeref:TPlayAnimationParameters.TransitionDuration[]).
-* link:x3d_extensions_mirror_plane.php[Easy mirrors on flat surfaces].
+* link:mirror_plane[Easy mirrors on flat surfaces].
 +
 cgeimg::block[
   terrain_component_water.png|Water reflecting terrain,
@@ -237,7 +237,7 @@ cgeimg::block[
 * _Physically-Based Rendering_ used by default for glTF and X3D 4.0 models using cgeref:TPhysicalMaterialNode[].
 * Alternative _unlit_ shading also available, with glTF and X3D 4.0 models using cgeref:TUnlitMaterialNode[].
 * Alternative "classic" Phong shading is also available using cgeref:TMaterialNode[] or cgeref:GltfForcePhongMaterials[].
-* link:x3d_extensions_shadow_maps.php[Shadow maps] (with auto-detection of limits, correct shadows from multiple light sources).
+* link:shadow_maps[Shadow maps] (with auto-detection of limits, correct shadows from multiple light sources).
 +
 cgeimg::block[
   rhan_shrine_5_everything.png|Bump mapping and shadow maps from multiple light sources,
@@ -249,7 +249,7 @@ cgeimg::block[
 +
 cgeimg::block[rift_2.png|Fixed-camera game]
 
-* Screen effects (post-processing) API to define post-processing effects using shaders. See link:x3d_extensions_screen_effects.php[screen effects specification], you can add screen effects over any UI control: just place it as child of cgeref:TCastleScreenEffects[]. See https://github.com/castle-engine/castle-engine/tree/master/examples/screen_effects_demo/[examples/screen_effects_demo/].
+* Screen effects (post-processing) API to define post-processing effects using shaders. See link:screen_effects[screen effects specification], you can add screen effects over any UI control: just place it as child of cgeref:TCastleScreenEffects[]. See https://github.com/castle-engine/castle-engine/tree/master/examples/screen_effects_demo/[examples/screen_effects_demo/].
 +
 cgeimg::block[little_things_screen_7.png|"Little Things" game with screen effects]
 
@@ -279,7 +279,7 @@ Easily display link:using_images[display images] as user interface or in a viewp
 
 * Numerous image formats (like PNG, JPG, RGBE) supported thanks to the integration with https://imaginglib.sourceforge.io/[Vampyre Imaging Library].
 * Full support for KTX and DDS that enable GPU texture compression, cubemaps and more.
-* link:creating_data_auto_generated_textures.php[Automatic texture compression and downscaling].
+* link:auto_generated_textures[Automatic texture compression and downscaling].
 
 == User interface components
 
@@ -457,7 +457,7 @@ cgeimg::block[combined_osi_ci_logos_2.png|Open source\, Jenkins\, Docker\, Codeb
 
 link:build_tool[Build tool] to manage your project from the command-line or in batch mode (good for continuous integration). The build tool, just like editor, reads project information from link:project_manifest[CastleEngineManifest.xml] file.
 
-* Build tool can build, package, run your application and link:creating_data_auto_generated_textures.php[autogenerate compressed textures] (and more).
+* Build tool can build, package, run your application and link:auto_generated_textures[autogenerate compressed textures] (and more).
 * You can build for any supported target platform. You may need to install cross-compiler (e.g. using link:fpcupdeluxe[]), some platforms may also require additional tools (see their docs like link:android[Android]).
 * We can build ready applications, like APK / AAB for Android, IPA for iOS.
 * link:docker[Docker image] with CGE and prerequisites (FPC, Android build tools, texture processing tools) to easily build CGE applications.

@@ -100,7 +100,7 @@ cgeimg::block[
 
 . Switch to the _Layout_ tab and set image `Width` to `1600` and `Height` to `900`. This will make the image fit perfectly inside the game window.
 +
-_Explanation:_ The project uses _UI (user interface) scaling_ to 1600x900 by default, so it is completely valid to just set sizes and positions to any hardcoded values. They will be adjusted to follow the actual window size correctly. You can take a look at link:manual_castle_settings.php[data/CastleSettings.xml] file -- it allows to adjust how UI scaling works.
+_Explanation:_ The project uses _UI (user interface) scaling_ to 1600x900 by default, so it is completely valid to just set sizes and positions to any hardcoded values. They will be adjusted to follow the actual window size correctly. You can take a look at link:data_settings[data/CastleSettings.xml] file -- it allows to adjust how UI scaling works.
 +
 _Alternative:_ We can get _exactly_ the same behavior by setting `WidthFraction` to `1.0`, `HeightFraction` to `1.0`, and `ProportionalScale` to `psFit`. This will also make the image keep nicely within the window, and automatically follows whatever reference window size is used by the UI scaling.
 +

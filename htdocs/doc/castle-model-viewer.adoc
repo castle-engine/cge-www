@@ -5,7 +5,7 @@ include::common.adoc[]
 
 == Introduction
 
-// Viewer for link:creating_data_model_formats.php[all 3D and 2D model formats supported by the Castle Game Engine]:
+// Viewer for link:model_formats[all 3D and 2D model formats supported by the Castle Game Engine]:
 
 // [role="compact"]
 // - link:gltf[glTF]
@@ -19,9 +19,9 @@ include::common.adoc[]
 // - 3DS
 // - STL
 // - Collada
-// - link:creating_data_model_formats.php[and more].
+// - link:model_formats[and more].
 
-Viewer for link:creating_data_model_formats.php[3D and 2D model formats supported by the Castle Game Engine]: link:gltf[glTF], link:x3d[X3D], link:x3d[VRML], link:ifc[IFC], link:spine[Spine JSON], link:sprite_sheets[sprite sheets (in Castle Game Engine, Cocos2D and Starling XML formats)], link:md3[MD3], Wavefront OBJ, 3DS, STL, Collada, link:creating_data_model_formats.php[and more].
+Viewer for link:model_formats[3D and 2D model formats supported by the Castle Game Engine]: link:gltf[glTF], link:x3d[X3D], link:x3d[VRML], link:ifc[IFC], link:spine[Spine JSON], link:sprite_sheets[sprite sheets (in Castle Game Engine, Cocos2D and Starling XML formats)], link:md3[MD3], Wavefront OBJ, 3DS, STL, Collada, link:model_formats[and more].
 
 Examine or walk in the virtual world with collisions, gravity, animations, X3D sensors, shadows, mirrors, shaders and more. View it from multiple cameras at once. Take screenshots with various options (transparent background, cube maps).
 
@@ -243,9 +243,9 @@ But you can -- to automate some tasks, like capturing screenshots.
 Run with command-line option `--help` to see the full list of options.
 
 In addition to all the options documented below,
-also all link:opengl_options.php[standard options understood by our GUI programs],
+also all link:cli_options_window[standard options understood by our GUI programs],
 link:openal[standard options understood by our programs using audio]
-and link:common_options.php[standard options understood by all our programs]
+and link:cli_options_common[standard options understood by all our programs]
 are handled. The options may be given in any order.
 
 You can specify a model filename, or URL to load at the command-line. You can combine this with some other options documented below, e.g. to make a screenshot of given model.
@@ -307,7 +307,7 @@ You can generate wanted `Viewpoint` node also by using `castle-model-viewer`, ju
 
 - X3D has also the `Background` node to control the color or textures of the skybox.
 
-- To control the size of resulting screenshot, use `--geometry` command-line parameter (documented in link:opengl_options.php[standard options understood by our GUI programs]).
+- To control the size of resulting screenshot, use `--geometry` command-line parameter (documented in link:cli_options_window[standard options understood by our GUI programs]).
 
 - To make your screenshot look best, you may want to use anti-aliasing, see `--anti-alias` option below.
 

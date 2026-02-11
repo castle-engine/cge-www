@@ -107,6 +107,10 @@ a.image object{pointer-events:none}
     }
 }
 
+/* Make AsciiDoctor tables with frame="all" and grid="all" look better. */
+table.frame-all{ border-width:1px; }
+table.grid-all>*>tr>*{ border-width:1px; padding: 0.5em; }
+
 /* All non-Coderay style commented out now,
    we don't need it in the end.
    This way we have clean CSS, and we don't spend time essentially countering AsciiDoctor default CSS.

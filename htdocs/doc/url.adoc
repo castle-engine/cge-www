@@ -270,9 +270,9 @@ To be more precise, on most systems we use logic from http://www.freepascal.org/
 
 - The contents saved to `castle-config:/xxx` are _persistent_ across program runs. Use it for savegames, databases (e.g. using https://wiki.freepascal.org/SQLite[SQLite]), user preferences, etc.
 
-- Our link:manual_user_prefs.php[UserConfig] is also saved there. It's just in file `castle-config:/<application-name>.conf`.
+- Our link:user_preferences_savegames[UserConfig] is also saved there. It's just in file `castle-config:/<application-name>.conf`.
 +
-NOTE: Using the `<application-name>` for link:manual_user_prefs.php[UserConfig] location is somewhat superfluous, as it is already stored in the `castle-config:/` directory that is application-specific. But it does seem consistent with what some other applications are doing and makes it easy to find the file in weird situations, in case it gets mixed up with other files.
+NOTE: Using the `<application-name>` for link:user_preferences_savegames[UserConfig] location is somewhat superfluous, as it is already stored in the `castle-config:/` directory that is application-specific. But it does seem consistent with what some other applications are doing and makes it easy to find the file in weird situations, in case it gets mixed up with other files.
 
 - Using the `castle-config:/` URL literally (without anything more) indicates the top-level directory of the user configuration. It is initially (when user first runs the application) empty. But you can create as many files there as you want.
 //There is no special way to initialize it with some files before your first application run.

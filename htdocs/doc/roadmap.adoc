@@ -200,7 +200,7 @@ We could achieve some of these advantages with `TGenericCollection<T>` as shown 
 [#shadow_maps]
 ### (IN PROGRESS) Make shadow maps available by a trivial property on light sources
 
-Activating link:x3d_extensions_shadow_maps.php[shadow maps] has some disadvantages now:
+Activating link:shadow_maps[shadow maps] has some disadvantages now:
 
 - You need to setup special X3D nodes and fields. At least put `shadows TRUE` on some light source in X3D, most likely you also want to specify `defaultShadowMap` on this light source.
 
@@ -724,7 +724,7 @@ See also:
 [#screen_effects]
 ### Screen effects - expose as nicer components
 
-Address a few shortcomings of our  (see `examples/screen_effects_demo/`, link:x3d_extensions_screen_effects.php[screen effects]):
+Address a few shortcomings of our  (see `examples/screen_effects_demo/`, link:screen_effects[screen effects]):
 
 - Change terminology. "Screen effect" is non-standard, "post-processing effects" are better.
 
@@ -1192,7 +1192,7 @@ We want to allow you to edit materials in the CGE editor,
 
 - to have full control over primitives (like `TCastleSphere` or `TCastleImageTransform` look),
 
-- to enable you to use cool CGE features like link:x3d_extensions_mirror_plane.php[mirrors], link:shaders[shader effects] easier.
+- to enable you to use cool CGE features like link:mirror_plane[mirrors], link:shaders[shader effects] easier.
 
 This also means exposing new set of Pascal components to manage materials easier.
 

@@ -1,0 +1,182 @@
+# Castle Animation Frames (castle-anim-frames) file format
+include::common.adoc[]
+:description: Castle Animation Frames (castle-anim-frames) file format, a Castle Game Engine specific format to specify an animation as a set of static 3D / 2D models.
+:cge-social-share-image: blender_castle_anim_frames_export.png
+
+cgeimg::block[
+  blender_castle_anim_frames_install.png|Installation of castle-anim-frames Export Script in Blender,
+  blender_castle_anim_frames_export.png|Options of Exporting to castle-anim-frames,
+  lizardman_animations.png|Lizardman Animations Exported from Blender
+]
+
+[WARNING]
+====
+Using `*.castle-anim-frames` is deprecated right now.
+Instead use link:gltf[glTF] for all your animations needs,
+it has already excellent support in 3D modeling software like link:blender[Blender].
+====
+
+== Introduction
+
+Files with extension `*.castle-anim-frames`
+(older version: `*.kanim`)
+represent _"Castle Game Engine's Animation Frames"_.
+
+http://wdune.ourproject.org/[White Dune]
+also can generate `*.kanim` files
+from an VRML animation by interpolators.
+
+== Advantages and Disadvantages
+
+The format is a series of static 3D frames. They can be inlined in a large XML file (as X3D or glTF), or they can be external files (in which case they can be any 3D format supported by the _Castle Game Engine_). Animation shows the transition from the first frame to the last. Where models are _structurally equal_, intermediate frames are created by a linear interpolation to show smooth changes.
+
+All the advantages and disadvantages of this format come from this simplicity. On one hand, it can be used to transfer _any_ Blender animation to Castle Game Engine. On the other hand, it can be quite heavy: _loading large animations takes some time_, and they eat a significant amount of memory.
+
+Some of these disadvantages may be mitigated in the future (as we will internally convert it to better X3D interpolator nodes). But it will always remain somewhat "heavy solution".
+
+At the same time, it will always remain something that _can handle any Blender animation, right now_. As opposed to the X3D exporter (that currently cannot export Blender animation at all, and in the future will support a limited subset of Blender possibilities).
+
+A disadvantage: we do not interpolate at runtime using nice X3D interpolators. Instead, we generate a series of frames at loading, merge the tree when nodes are equal, and move through them using X3D `Switch` and `IntegerSequencer`. We planned to improve this (to improve memory usage and make animation always perfectly smooth at runtime and the collision detection account for dynamic changes)... but *the format is deprecated now, no new work is planned. Use link:gltf[glTF] for animations instead*.
+
+////
+If you work with 3D modeler that can export proper VRML animation
+with interpolators, then you don't need to use Castle-Anim-Frames format.
+Our engine handles events and interpolators perfectly.
+Internally, they may even be converted (after loading) to precalculated
+animations.
+////
+
+////
+There's also a crude converter from castle-anim-frames format to VRML/X3D
+interpolators in our engine examples (see examples/vrml/tools/castle_anim_frames_to_interpolators).
+It's a little crude (works only when you animate only a single mesh),
+but may be enough for simple uses. So this is one way to generate an animated
+VRML/X3D file from Blender: export from Blender to castle-anim-frames, then convert
+castle-anim-frames to VRML/X3D.
+////
+
+////
+For more technical insight, see
+description of animation handling in our VRML engine documentation.
+////
+
+== Exact Specification
+
+Any 3D file format is allowed as a frame URL, including link:model_formats[all formats supported by Castle Game Engine].
+
+[source,xml]
+----
+<?xml version="1.0"?>
+<animations             // Root node should be "animations".
+                        // It should contain any number (at least one)
+                        // "animation" nodes inside.
+                        // For backward compatibility,
+                        // old (single-animation) files may also
+                        // use "animation" as the root node.
+
+  <animation              // A single animation.
+                          // All it's attributes are optional
+                          // (default values are shown below).
+                          // Some of it's attributes should be treated like a
+                          // "hint for the renderer". General programs like
+                          // Castle Model Viewer may honor them,
+                          // but more specialized programs (like "The Castle"
+                          // game) may ignore them, since "they know better".
+
+    name="animation"      // Animation name.
+                          // To be used e.g. with TCastleScene.PlayAnimation.
+
+    scenes_per_time="30"  // If the animation will be "baked":
+                          //
+                          // Suggested number of scenes per time to be generated.
+                          // This is a hint for the renderer -- by default it's
+                          // 30, but it may be ignored. Larger values make
+                          // animation smoother, but also much more memory consuming.
+                          // Special value 0 is allowed here, and means
+                          // that animation will simply show each <frame>,
+                          // suddenly changing into the next <frame>,
+                          // without any smoothing of transitions with
+                          // intermediate scenes.
+
+    equality_epsilon="0.001"
+                          // If the animation will be "baked":
+                          //
+                          // Epsilon to use when comparing animation frames
+                          // and deciding which parts didn't move at all between
+                          // two adjacent frames. You can set this even to literal
+                          // "0.0", but this may cause a lot of memory to be wasted
+                          // when loading large animation. It's better to set
+                          // this to some very small value -- so small that you're
+                          // sure that user will not notice such small move
+                          // anyway.
+
+    loop="false"          // Should the animation loop? This is a hint for
+                          // the renderer, and may be ignored. Allowed values
+                          // are "false" and "true", not case-sensitive.
+                          // When this animation is used for creature/item in game,
+                          // this is ignored.
+
+    backwards="false"     // Should the animation go backwards after going
+                          // forward? Allowed values
+                          // are "false" and "true", not case-sensitive.
+                          // When this animation is used for creature/item in game,
+                          // this is not ignored.
+  >
+
+    // A number of <frame> nodes should follow. At least one is required.
+    // Note that exactly one <frame> node will actually define a still scene,
+    // you need at least 2 frames if you want a real animation.
+
+    <frame
+
+      url="file_1.x3d" // This specifies the URL from which to load this
+                       // animation frame. Any 3D file format is allowed here.
+                       // There is also a deprecated attribute "file_name"
+                       // that means the same as "url".
+                       //
+                       // This attribute may be omitted, in which case
+                       // we expect the <frame> element to contain the model
+                       // inlined, in format indicated by mime_type.
+
+      mime_type="model/x3d+xml"
+                       // In case the frame content is inlined
+                       // (url is not set), this indicates the inlined model format.
+                       // For now we only allow "model/x3d+xml" (X3D XML)
+                       // or "model/gltf+json" (glTF JSON).
+
+      time="0.0"       // This is a required attribute specifying a
+                       // time of this frame. For now, all frames
+                       // must be specified in the strictly increasing order
+                       // of their "time".
+                       // This is understood to be in seconds.
+
+      bounding_box_center="0 0 0"
+      bounding_box_size="-1 -1 -1"
+                       // Bounding box of this animation frame.
+                       // Used for collision detection.
+                       // Empty if not specified, or if any size
+                       // component is negative.
+                       //
+                       // This is consistent with X3D bboxSize/Center
+                       // fields definition e.g. at X3D Group node.
+    />
+
+    // For example, assume that the second <frame> node follows.
+    // So this defines an animation that changes from
+    // file_1.x3d and file_2.x3d in exactly 1 second.
+
+    <frame url="file_2.x3d" time="1.0" />
+  </animation>
+
+  // More animations follow, if you want:
+  <animation name="another_animation">
+    <frame url="another_animation_frame_0.x3d" time="0.0" />
+    <frame url="another_animation_frame_1.x3d" time="1.0" />
+  </animation>
+
+  <animation name="yet_another_animation">
+    <frame url="yet_another_animation_frame_0.x3d" time="0.0" />
+    <frame url="yet_another_animation_frame_1.x3d" time="1.0" />
+  </animation>
+</animations>
+----

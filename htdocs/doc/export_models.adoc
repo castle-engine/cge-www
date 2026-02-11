@@ -1,0 +1,43 @@
+# Exporting 3D and 2D models
+include::common.adoc[]
+:description: How to export 3D and 2D models from various authoring tools for use with Castle Game Engine.
+
+Our engine supports a number of standardized formats for 3D and 2D assets, most notably link:gltf[glTF] and link:x3d[X3D]. As such, you can use almost any 3D or 2D authoring tool to make models for your games.
+
+////
+So the basic guide to create 3D data for our engine is actually
+trivial: export your models to the X3D, or eventually to other supported format.
+////
+When exporting your models, we _highly advice_ checking your models in link:castle-model-viewer[Castle Model Viewer] to see if everything is exported correctly. This is usually easier than running your whole game to test that a particular asset was exported OK. And link:castle-model-viewer[Castle Model Viewer] was implemented using our engine, so it can render exactly the same thing as your game.
+
+////
+We consciously do not try to
+implement any 3D editor for our engine -- it's a wasted effort,
+just look how magnificent e.g. Blender is, and how it's
+constantly improving. We want to use these tools, not reinvent them.
+////
+
+The advised 3D and 2D formats to use are described on this page:
+
+* link:model_formats[Supported model formats]
+
+These pages describe the advised approach for a particular authoring software:
+
+* link:blender[Blender]
+* link:3dsmax[3ds Max]
+* link:maya[Maya]
+* link:spine[Spine]
+
+Other hints:
+
+* The engine by default follows the convention that the _Y axis is "up"_. This is also the recommended convention of both glTF and X3D. The exporters generally automatically adjust to it, e.g. when exporting from Blender (where the Z axis is by convention "up"), the exporter rotates your model. See link:up["Which way is up?" manual chapter] for more information about this, and how you can customize it.
+////
++
+In short, use standard orientation of your 3D modeller, and the developer
+can make the engine adjust to it. If you use Blender, just use
+standard Blender orientation (+Z is up, follow the names like "top",
+"front" etc. in Blender viewports), and then export to X3D with
+standard settings (this will transform models to have +Y up, which is
+standard convention in VRML/X3D), and our engine will automatically
+pick it up correctly.
+////

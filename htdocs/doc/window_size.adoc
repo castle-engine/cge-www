@@ -5,7 +5,7 @@ include::common.adoc[]
 
 ## Introduction
 
-By default, _Castle Game Engine_ applications using cgeref:TCastleWindow[] run in a window with reasonable size (initialized to take 4/5 of the screen size) centered on the screen.This default is nice to test your application. For example, you can easily resize the window and test that link:manual_castle_settings.php[UI scaling] works properly.
+By default, _Castle Game Engine_ applications using cgeref:TCastleWindow[] run in a window with reasonable size (initialized to take 4/5 of the screen size) centered on the screen.This default is nice to test your application. For example, you can easily resize the window and test that link:data_settings[UI scaling] works properly.
 // (size of everything changes properly and things are anchored to proper sides).
 
 You can change the window size and mode, e.g. if you want to run your application in a fullscreen mode by default.
@@ -121,4 +121,4 @@ It is right now implemented only for WinAPI (default link:castlewindow_backends[
 +
 Moreover, we miss an API like `EnumerateScreenConfigurations` right now, to show to a user a list of available resolutions that matches user's possible resolution. Note that it would be monitor-specific for multi-monitor setups, so to implement it, we need to introduce an API to enumerate screens and choose the screen for the window too.
 
-If you want is to design a game that works on all possible resolutions then we recommend to just use our UI scaling. This is configurable in `CastleSettings.xml`. See link:manual_castle_settings.php[UI scaling and CastleSettings.xml docs]. It doesn't require changing the physical screen resolution, yet allows you to design your game for a particular resolution and it will look good everywhere.
+If you want is to design a game that works on all possible resolutions then we recommend to just use our UI scaling. This is configurable in `CastleSettings.xml`. See link:data_settings[UI scaling and CastleSettings.xml docs]. It doesn't require changing the physical screen resolution, yet allows you to design your game for a particular resolution and it will look good everywhere.

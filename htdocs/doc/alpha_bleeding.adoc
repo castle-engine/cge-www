@@ -1,0 +1,99 @@
+# Alpha Bleeding
+include::common.adoc[]
+:description: Alpha bleeding operation to fix blending artifacts in Castle Game Engine images.
+
+*"Alpha Bleeding"* is an operation you sometimes need to perform on your images to make *blending* work as you expect.
+
+*"Blending"* means that you use partial transparency when rendering your image. It means that the alpha channel of your image contains any values within the range 0..1 (not just only 0 or 1). Alpha equal 0 means _"completely transparent"_, alpha equal 1 means _"complately opaque"_, values in-between mean _"partially transparent"_. For example alpha value 0.25 means that when rendering, we should take 1/4 from the image color, and mix it with 3/4 of the current screen color at this place.
+
+_Blending_ makes sense both for user-interface (like images you place in cgeref:TCastleImageControl[]), 2D games and 3D games (e.g. textures on your 3D models, that you load to cgeref:TCastleScene[]). More info about https://castle-engine.io/blending[blending in CGE is here].
+
+To avoid rendering artifacts, sometimes you need to proces your images with *"alpha bleeding"*. Why?
+
+* When the image is scaled, we typically apply a _filtering_ operation on the image pixels, that essentially averages a few image pixels (all the channels, so both RGB and alpha).
+
+* Such filtering is done e.g. when
++
+--
+** cgeref:TCastleImageControl.SmoothScaling[] is `true` (in this case we do bilinear filtering),
+** or cgeref:TDrawableImage.SmoothScaling[] is `true` (again, in this case we do bilinear filtering),
+** or you use textures in cgeref:TCastleScene[] with default texture properties (see link:x3d_implementation_texturing.php[`TextureProperties` node] to customize how texture filtering is done), in which case we use bilinear or trilinear (bilinear with mipmaps) filtering.
+--
+
+* It means that RGB values from the pixels that you see (in e.g. GIMP) as completely transparent, are, counter-intuitively, affecting the rendering output.
+
+* Essentially, it means that you need to fix RGB values in your image, for transparent pixels.
+
+Here's an example of a rendering bug caused by this:
+//, from https://trello.com/c/iMBQjtBu/194-tdrawableimage-blending-bug[this Trello ticket]:
+
+cgeimg::block[
+  alpha_bleeding_1_bug_in_editor.png|Bug caused by lack of Alpha Bleeding visible in CGE editor
+]
+
+In the above example, one image is rendered in front of another. The front image has, however, _black transparent pixels_ (RGBA = (0, 0, 0, 0)) very near the _opaque light yellow pixels_ (RGB = light yellow, A = 1). And in effect they get averaged into _dark yellow_ (_black_ is averaged with _light yellow_). Which results in a dark smudge on the forehead of the character. Here are the actual images, the back and (incorrect) front:
+
+cgeimg::block[
+  alpha_bleeding_back.png|Alpha Bleeding example - back image,
+  alpha_bleeding_front.png|Alpha Bleeding example - front image (incorrect)
+]
+
+Here's an analysis (investigating colors in GIMP) of the colors:
+
+cgeimg::block[
+  alpha_bleeding_2_gimp.png|Investigating Alpha Bleeding in GIMP 1,
+  alpha_bleeding_3_gimp.png|Investigating Alpha Bleeding in GIMP 2,
+  alpha_bleeding_4_gimp.png|Investigating Alpha Bleeding in GIMP 3,
+  alpha_bleeding_5_gimp.png|Investigating Alpha Bleeding in GIMP 4
+]
+
+Where the _opaque light yellow_ changes into _transparent_, you have
+
+. opaque (alpha = 1) pixels, with RGB color (in hexadecimal notation) `fecb5d`
+. partially transparent (alpha = `73,3%`) row, with RGB color again `fecb5d`
+. transparent (alpha = 0) rows, with RGB color being just `black` (`000000` in hex).
+
+AD 1, AD 2 are OK.
+
+AD 3 is bad -- these black RGB values get mixed into the final output.
+
+The solution is called _alpa bleeding_. It means that you fill the RGB values of transparent pixels with sensible values, taken from neighboring non-transparent pixels.
+
+In general, you can do this in various ways, various software for 2D image creation/processing can perform this.
+
+. E.g. if you use https://castle-engine.io/spine[Spine] to export texture atlases, it has a ready _"Alpha Bleed"_ option at export.
+
+. Or use our link:castle-image-viewer[Castle Image Viewer]:
++
+--
+.. Open the image in link:castle-image-viewer[Castle Image Viewer]
+.. Uncheck _"View -> Use Image Alpha Channel"_ (optional, it will allow you to see effect of "alpha bleeding" in the next step)
+.. Use _"Edit -> Alpha Bleeding (Slow but Correct Algorithm)"_. As the menu caption says, our "alpha bleeding" implementation is rather slow, but OTOH it is really correct, trying hard to fill all RGB colors on transparent pixels.
+.. Save resulting image (replace the old image, or create a new image -> whatever is more comfortable for you; take into account you will need to repeat this process in the future in case the source of this image changes), and use it.
+--
++
+cgeimg::block[
+  alpha_bleeding_8_cge_viewer.png|Fixing Alpha Bleeding in castle-image-viewer: before,
+  alpha_bleeding_6_cge_viewer.png|Fixing Alpha Bleeding in castle-image-viewer,
+  alpha_bleeding_7_cge_viewer.png|Fixing Alpha Bleeding in castle-image-viewer: after
+]
+
+. Or you can write your own code to perform this operation. Just call cgeref:TCastleImage.AlphaBleed[] to do the same thing that link:castle-image-viewer[Castle Image Viewer] does.
++
+Note: We heavily advise to _not_ do cgeref:TCastleImage.AlphaBleed[] during actual loading of your game (even though, technically, you can). As the process is really slow and needs to be performed only once for a given image. It should be done as a pre-processing step that you run once over your data, before packaging it.
+
+Here's the resulting, fixed front image. You cannot really see a difference from the previous, incorrect image, by a human eye -- you'd need to investigate the transparent pixels in GIMP to see the change.
+
+cgeimg::block[
+  alpha_bleeding_front_fixed.png|Alpha Bleeding example - front image (fixed)
+]
+
+Here's the result of mixing the 2 images, now correct, in the CGE editor.
+
+cgeimg::block[
+  alpha_bleeding_9_editor_fixed.png|Fixed problem\, visible in CGE editor
+]
+
+There's an alternative to this: you can also use filtering that _doesn't_ average pixel colors. Just set cgeref:TCastleImageControl.SmoothScaling[] to `false`, or set cgeref:TDrawableImage.SmoothScaling[] to `false`, or use _nearest_ filtering for textures in cgeref:TCastleScene[]. This is good for pixel-art games usually (where you actually want to see "big pixels"), but not in general (you usually want smooth scaling, in most cases).
+
+//See https://trello.com/c/iMBQjtBu/194-tdrawableimage-blending-bug[this Trello ticket] for a similar description, that also contains sample application with invalid image to play with.

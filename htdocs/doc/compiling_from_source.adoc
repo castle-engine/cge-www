@@ -173,7 +173,7 @@ link:macos[macOS requirements are listed here].
 
 == (Optional) Compile castle-model-viewer
 
-To have fully-working installation, build also link:castle-model-viewer[castle-model-viewer]. Editor executes it on double-click to view link:creating_data_model_formats.php[all our scene formats, 3D and 2D: glTF, X3D, Spine JSON, sprite sheets etc.].
+To have fully-working installation, build also link:castle-model-viewer[castle-model-viewer]. Editor executes it on double-click to view link:model_formats[all our scene formats, 3D and 2D: glTF, X3D, Spine JSON, sprite sheets etc.].
 
 Get the code from GitHub:
 

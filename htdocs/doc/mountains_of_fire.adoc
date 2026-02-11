@@ -69,7 +69,7 @@ Miscellaneous keys:
 +
 Run the game swapping the split screen order. This is useful if the mouse is on the left of the keyboard, then you want the left screen part to show human view (as human is controlled by mouse).
 
-* link:opengl_options.php[Usual window size and fullscreen options]. By default we start in fullscreen.
+* link:cli_options_window[Usual window size and fullscreen options]. By default we start in fullscreen.
 
 * link:openal#_command_line_options_that_control_the_sound_output[Usual sound options]. For example `--no-sound`.
 

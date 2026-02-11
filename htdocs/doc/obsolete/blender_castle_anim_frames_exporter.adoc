@@ -1,6 +1,6 @@
 == Export to Castle Animation Frames (castle-anim-frames)
 
-To export _any_ kind of animation from Blender, use the exporter to our link:castle_animation_frames.php[Castle Animation Frames format]. The `.castle-anim-frames` files can be read by our engine and will play animations.
+To export _any_ kind of animation from Blender, use the exporter to our link:castle_animation_frames[Castle Animation Frames format]. The `.castle-anim-frames` files can be read by our engine and will play animations.
 
 Internally they are a set of X3D or glTF files.
 

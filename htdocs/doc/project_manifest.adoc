@@ -62,7 +62,7 @@ Then you can run it by simply executing the file `my-application.exe` on Windows
 castle-engine run
 ----
 
-You can also package the project by `castle-engine package`, package source by `castle-engine package-source` and do everything else mentioned in the link:build_tool[Build Tool] documentation! To learn how to write games, follow our https://castle-engine.io/manual_intro.php[Castle Game Engine manual].
+You can also package the project by `castle-engine package`, package source by `castle-engine package-source` and do everything else mentioned in the link:build_tool[Build Tool] documentation! To learn how to write games, follow our link:manual[Castle Game Engine manual].
 
 == Example of a larger manifest file (portable to Android and iOS too)
 

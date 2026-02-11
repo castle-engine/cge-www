@@ -99,7 +99,7 @@ define('PATREON_URL',         'https://patreon.com/castleengine');
 define('CGE_LATEST_DOWNLOAD', 'https://github.com/castle-engine/castle-engine/archive/snapshot.zip');
 
 // bump this each time you change castle-engine.css, to work with CloudFlare caching (or you can purge CloudFlare cache manually)
-define('CASTLE_ENGINE_CSS_VERSION', 54);
+define('CASTLE_ENGINE_CSS_VERSION', 56);
 // assign random number, to always refresh, useful at development of CSS
 //define('CASTLE_ENGINE_CSS_VERSION', rand(1000, 9999));
 
@@ -273,7 +273,7 @@ $castle_sitemap = array(
               'doc/localization' => array('title' => 'Localization (translating your application)'),
               'doc/window_size' => array('title' => 'Window size and fullscreen'),
               'doc/loading_image' => array('title' => 'Customize loading image'),
-              'manual_2d_ui_custom_drawn' => array('title' => 'Advanced: custom drawn 2D controls'),
+              'doc/ui_custom_drawn' => array('title' => 'Advanced: custom drawn 2D controls'),
             )
           ),
           'doc/editor' => array('title' => 'Editor',
@@ -305,13 +305,13 @@ $castle_sitemap = array(
               'doc/fmod' => array('title' => 'FMOD'),
             ),
           ),
-          'manual_user_prefs' => array('title' => 'Persistent data (user preferences, savegames)'),
+          'doc/user_preferences_savegames' => array('title' => 'Persistent data (user preferences, savegames)'),
           'doc/save_screen' => array('title' => 'Save screen (screenshot)'),
           'doc/log' => array('title' => 'Logging'),
-          'manual_cross_platform' => array('title' => 'Cross-platform (desktop, mobile, consoles...) projects',
+          'doc/cross_platform' => array('title' => 'Cross-platform (desktop, mobile, consoles...) projects',
             'sub' => array(
               'doc/project_manifest' => array('title' => 'CastleEngineManifest&ZeroWidthSpace;.xml'), // using zero-width space to avoid making mobile version with horizontal scroll
-              'manual_castle_settings' => array('title' => 'Customize UI scaling, font, warmup cache by CastleSettings.xml'),
+              'doc/data_settings' => array('title' => 'Customize UI scaling, font, warmup cache by CastleSettings.xml'),
               'doc/build_tool' => array('title' => 'Build Tool'),
               'doc/touch_input' => array('title' => 'Touch Input'),
               'doc/controllers' => array('title' => 'Game Controllers (Joysticks, Gamepads)'),
@@ -346,7 +346,7 @@ $castle_sitemap = array(
               'doc/fog' => array('title' => 'Fog'),
               'doc/blending' => array('title' => 'Blending'),
               'doc/color_space' => array('title' => 'Color Space (Gamma Correction)'),
-              'manual_alpha_bleeding' => array('title' => 'Alpha Bleeding'),
+              'doc/alpha_bleeding' => array('title' => 'Alpha Bleeding'),
             )
           ),
           'doc/skin' => array('title' => 'Skinned animation (Skin node)'),
@@ -385,7 +385,7 @@ $castle_sitemap = array(
               'doc/supported_compilers' => array('title' => 'Supported compilers and IDEs'),
               'doc/coding_traps' => array('title' => 'Coding Traps'),
               'doc/units_map' => array('title' => 'Units Map'),
-              // 'engine_doc' => array('title' => 'Internals documentation'), // too outdated
+              // 'doc/old_engine_internals' => array('title' => 'Internals documentation'), // too outdated
               'doc/dedicated_gpu' => array('title' => 'Dedicated GPU'),
               'doc/fpcupdeluxe' => array('title' => 'fpcupdeluxe'),
               'doc/fpmake' => array('title' => 'FpMake and FpPkg'),
@@ -404,9 +404,9 @@ $castle_sitemap = array(
       ),
       'creating_data_intro' => array('title' => 'Creating Game Data',
         'sub' => array(
-          'creating_data_export' => array('title' => 'Exporting 3D and 2D models',
+          'doc/export_models' => array('title' => 'Exporting 3D and 2D models',
             'sub' => array(
-              'creating_data_model_formats' => array('title' => 'Supported model formats',
+              'doc/model_formats' => array('title' => 'Supported model formats',
                 'sub' => array(
                   'doc/gltf' => array('title' => 'glTF'),
                   'doc/md3' => array('title' => 'MD3'),
@@ -419,7 +419,7 @@ $castle_sitemap = array(
               'doc/spine' => array('title' => 'Spine')
             )
           ),
-          'creating_data_auto_generated_textures' => array('title' => 'Auto-generated compressed and scaled textures'),
+          'doc/auto_generated_textures' => array('title' => 'Auto-generated compressed and scaled textures'),
         )
       ),
       'reference' => array('title' => 'API Reference', 'url' => reference_link()),
@@ -492,7 +492,7 @@ $castle_sitemap = array(
               'x3d_implementation_texturing'            => array('title' => 'Texturing',
                 'sub' => array(
                   'x3d_implementation_texturing_extensions' => array('title' => 'Extensions'),
-                  'x3d_multi_texturing' => array('title' => 'X3D MultiTexturing problems and proposed solutions'),
+                  'doc/x3d_multi_texturing' => array('title' => 'X3D MultiTexturing problems and proposed solutions'),
                 ),
               ),
               'x3d_implementation_interpolation'        => array('title' => 'Interpolation ("how to animate things")',
@@ -534,16 +534,16 @@ $castle_sitemap = array(
           'doc/x3d_larger_extensions' => array('title' => 'Larger X3D Extensions',
             'sub' => array(
               'compositing_shaders' => array('title' => 'Shader Effects (Compositing Shaders)'),
-              'x3d_extensions_mirror_plane' => array('title' => 'Mirrors on flat objects'),
-              'x3d_extensions_screen_effects' => array('title' => 'Screen (Post-Processing) Effects'),
-              'x3d_extensions_shadow_maps' => array('title' => 'Shadow Maps'),
+              'doc/mirror_plane' => array('title' => 'Mirrors on flat objects'),
+              'doc/screen_effects' => array('title' => 'Screen (Post-Processing) Effects'),
+              'doc/shadow_maps' => array('title' => 'Shadow Maps'),
               'x3d_extensions_shadow_volumes' => array('title' => 'Shadow Volumes'),
-              'x3d_extensions_vrml1' => array('title' => '(Old) VRML 1.0'),
+              'doc/vrml1_extensions' => array('title' => '(Old) VRML 1.0'),
             ),
           ),
-          'x3d_extensions' => array('title' => 'Complete list of X3D Extensions'),
+          'doc/x3d_extensions' => array('title' => 'Complete list of X3D Extensions'),
           'doc/castle_script' => array('title' => 'CastleScript language reference'),
-          'castle_animation_frames' => array('title' => 'Castle Animation Frames (castle-anim-frames) file format'),
+          'doc/castle_animation_frames' => array('title' => 'Castle Animation Frames (castle-anim-frames) file format'),
           'doc/x3d_time_origin_considered_uncomfortable' => array('title' => 'X3D time origin is uncomfortable for single-player experiences'),
           'nist_vrml_test_suite' => array('title' => 'NIST conformance test suite'),
         ),
@@ -629,8 +629,8 @@ $castle_sitemap = array(
 
       /* We keep these pages here, to keep them working,
          but honestly they are old and we don't know where to link them from. */
-      'common_options' => array('title' => 'Standard command-line options', 'hidden_in_toc' => true),
-      'opengl_options' => array('title' => 'Standard command-line options for OpenGL programs', 'hidden_in_toc' => true),
+      'doc/cli_options_common' => array('title' => 'Standard command-line options', 'hidden_in_toc' => true),
+      'doc/cli_options_window' => array('title' => 'Standard command-line options for OpenGL programs', 'hidden_in_toc' => true),
       'doc/versioning' => array('title' => 'Versioning scheme of programs', 'hidden_in_toc' => true),
     ),
   ),

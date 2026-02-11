@@ -92,7 +92,7 @@ You can change cgeref:TCastleOrthographic.Origin[Viewport.Camera.Orthographic.Or
 
 Simply add cgeref:TCastleScene[] instances to your 2D world, just like you would in 3D.
 
-You can use any link:creating_data_model_formats.php[supported model format].
+You can use any link:model_formats[supported model format].
 
 * You can use link:sprite_sheets[sprite sheets].
 * You can use link:using_images[images].
@@ -106,7 +106,7 @@ Blending (partial transparency) should work in 2D games automatically.
 
 Shapes using blending will be sorted following cgeref:TCastleViewport.BlendingSort[] rules. This is by default cgeref:sortAuto[], which means it detects typical 2D camera setup and then behaves like cgeref:sort2D[].
 
-See link:blending[blending] for more details about blending, and see link:manual_alpha_bleeding.php[alpha bleeding] for details about how to prepare your images to behave correctly with blending.
+See link:blending[blending] for more details about blending, and see link:alpha_bleeding[alpha bleeding] for details about how to prepare your images to behave correctly with blending.
 
 ## Advanced: Turning any viewport (like 3D) into 2D
 

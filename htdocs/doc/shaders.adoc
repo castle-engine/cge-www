@@ -83,7 +83,7 @@ cgeimg::block[
 
 Follow this example to learn how to use shader effects in _Castle Game Engine_.
 
-First, create a simple _Castle Game Engine_ application with a link:viewport_and_scenes[TCastleScene inside a TCastleViewport] that shows some model (from any link:creating_data_model_formats.php[supported format], like link:gltf[glTF] or link:x3d[X3D]).
+First, create a simple _Castle Game Engine_ application with a link:viewport_and_scenes[TCastleScene inside a TCastleViewport] that shows some model (from any link:model_formats[supported format], like link:gltf[glTF] or link:x3d[X3D]).
 
 Access the cgeref:TCastleScene[] instance in your code, by declaring in the `published` section of your link:views[view] a new field with name matching your scene, like `MyScene: TCastleScene;`.
 

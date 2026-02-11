@@ -1,0 +1,98 @@
+# Mirrors on flat objects
+include::common.adoc[]
+:description: Creating mirrors on flat objects using ViewpointMirror and RenderedTexture in Castle Game Engine.
+
+== Intro
+
+This technique allows to create nicely looking mirrors on flat objects. It is useful on any flat geometry.
+
+Note that to display a mirror on a curved object (like a sphere, or a teapot) it is better to use link:x3d_implementation_cubemaptexturing.php[cubemap reflections (`GeneratedCubeMapTexture`)].
+
+This feature was implemented thanks to https://www.patreon.com/castleengine[your support on Patreon]!
+
+== Demo models
+
+Example models using this technique can be seen in our https://github.com/castle-engine/demo-models[demo models]. Get that repository, and open these models:
+
+* https://github.com/castle-engine/demo-models/blob/master/rendered_texture/viewpoint_mirror.x3dv[rendered_texture/viewpoint_mirror.x3dv]
+* https://github.com/castle-engine/demo-models/blob/master/water/simple/water_final_using_noise_from_shaders.x3dv[water/simple/water_final_using_noise_from_shaders.x3dv]
+
+You can open them using link:castle-model-viewer[castle-model-viewer].
+
+== Demo movies
+
+video::z2eVGdSnWJ0[youtube, width=560, height=315]
+
+video::pq0qZxiK_mM[youtube, width=560, height=315]
+
+== Defining it in X3D
+
+=== Summary
+
+In short:
+
+* Use link:x3d_implementation_texturing_extensions.php#section_ext_rendered_texture[RenderedTexture] as a texture.
+* As the `RenderedTexture.viewpoint` use a special new node `ViewpointMirror`. This makes the mirror texture generated with a suitable camera settings (we reflect the current camera by the mirror plane).
+* Generate the texture coordinates using the `TextureCoordinateGenerator` node, with `TextureCoordinateGenerator.mode` equal to `"MIRROR-PLANE"`. This will match the texture obtained using the `ViewpointMirror`, and will make it look perfectly to the observer.
+
+Here is a simple example in X3D classic encoding:
+
+[source,vrml]
+----
+Shape {
+  appearance Appearance {
+    texture RenderedTexture {
+      dimensions [ 1024 1024 3 ]
+      viewpoint ViewpointMirror { }
+      repeatS FALSE
+      repeatT FALSE
+      update "ALWAYS"
+    }
+  }
+  geometry IndexedFaceSet {
+    coord Coordinate { point [ 0 0 0, 100 0 0, 100 100 0, 0 100 0, ] }
+    coordIndex [ 0 1 2 3 ]
+    texCoord TextureCoordinateGenerator { mode "MIRROR-PLANE" }
+  }
+}
+----
+
+=== Mirror texture: `ViewpointMirror` inside `RenderedTexture`
+
+[source,vrml]
+----
+ViewpointMirror {
+  SFFloat      [in,out]      distanceFromShape  0.01
+  # In XML encoding, the default containerField of this node is "viewpoint"
+}
+----
+
+`ViewpointMirror` is a viewpoint that defines a mirrored version of the current viewpoint. The mirror viewpoint is calculated by reflecting the _current viewpoint_ by the _current shape_'s plane.
+
+* The _"current viewpoint"_ is just the current camera used to render this scene.
++
+In case the scene is rendered in multiple viewports (using TCastleViewport), it is for now undefined which camera is used for mirror -- so it's safest to use this feature only when rendering the scene from a single viewport. Warning: do not confuse the terms _"viewpoint"_ (camera vectors) and _"viewport"_ (2D window through which you observe 3D world on a computer screen), they mean very different things.
+
+* The _"current shape"_ is the shape using this RenderedTexture.
++
+Don't use the same RenderedTexture node multiple times (through X3D DEF/USE mechanism) on various shapes.
++
+We assume that the current shape is more-or-less flat. That is, all the shape's coordinates should lie on the same plane in 3D. We will automatically calculate the plane equation internally.
+
+Together with `RenderedTexture` node, this allows to easily achieve a mirror effect. You can use the `ViewpointMirror` node _only_ in `RenderedTexture.viewpoint`.
+
+The field `distanceFromShape` specifies a shift from the current shape, to avoid rendering the mirror surface itself into the mirror. In case of shapes that are not actually perfectly flat (e.g. using this to render a mirror for a hemisphere), increasing this makes sense.
+
+Mirror contents are kept in a texture instead of being generated each time on screen. This has advantages and disadvantages:
+
+* It's never perfect, as it's squeezed into a square/rectangle texture that is then stretched over a quad. You have to set the texture size sufficiently large, to make it look good enough.
+
+* Since the texture size is configurable, you can easily make this technique faster by sacrificing quality: just decrease `RenderedTexture` size. You can of course make it configurable for the user (like a _lower quality graphics / higher quality graphics_ toggle).
+
+* Since the mirror contents are in the texture, you don't need to regenerate them every frame. If the world (reflected in a texture) isn't dynamic (nothing animates) and camera doesn't move (noticeably), you don't have to update the texture. You can set `RenderedTexture.update=NEXT_FRAME_ONLY` to force regeneration at next frame only, without automatically updating in the later frames.
+
+* The texture is generated assuming a planar surface, but you can apply it on slightly non-planar surfaces too, like a surface with some vertexes slightly perturbed (e.g. to simulate water waves). You can also play with tweaking texture coordinates to achieve more interesting water look.
+
+=== Texture coordinates for the mirror texture: `TextureCoordinateGenerator.mode = MIRROR-PLANE`
+
+To map the generated mirror texture on a geometry, use a special texture coordinate generation mode `"MIRROR-PLANE"`. It matches the `ViewpointMirror` behavior.

@@ -1,0 +1,128 @@
+# Persistent data (user preferences, savegames)
+include::common.adoc[]
+:description: Managing persistent data like user preferences and savegames in Castle Game Engine.
+
+== Storing user preferences locally (UserConfig)
+
+To manage persistent data, like user preferences
+or a simple _save game_ values,
+use cgeref:CastleConfig[] unit
+with a cgeref:UserConfig[] singleton inside. A simple example:
+
+[source,pascal]
+----
+uses CastleWindow, CastleConfig, CastleApplicationProperties, CastleControls,
+  CastleColors;
+var
+  Window: TCastleWindow;
+  LabelForParameter: TCastleLabel;
+  MyParameter: string;
+begin
+  { set ApplicationName,
+    this is used by UserConfig.Load to determine config file location. }
+  ApplicationProperties.ApplicationName := 'my_game_name';
+
+  { open Window }
+  Window := TCastleWindow.Create(Application);
+  Window.Container.BackgroundColor := White;
+  Window.Open;
+
+  { load UserConfig }
+  UserConfig.Load;
+
+  { load parameter from UserConfig }
+  MyParameter := UserConfig.GetValue('my_parameter', 'default_value');
+
+  { create UI and show show parameter from UserConfig }
+  LabelForParameter := TCastleLabel.Create(Application);
+  LabelForParameter.Caption := 'My parameter is now equal: ' + MyParameter;
+  Window.Controls.InsertFront(LabelForParameter);
+
+  { do the main part of your program }
+  // MyParameter := 'some other value'; // test
+  Application.Run;
+
+  { save parameter }
+  UserConfig.SetValue('my_parameter', MyParameter);
+  // or like this:
+  UserConfig.SetDeleteValue('my_parameter', MyParameter, 'default_value');
+
+  { save UserConfig }
+  UserConfig.Save;
+end.
+----
+
+To load and save config values, you should use `GetValue`
+and `SetValue` (or `SetDeleteValue`) methods.
+See the http://wiki.freepascal.org/xmlconf[`TXMLConfig`
+class documentation]. These provide basic means to load/save
+integers, booleans and strings in a simple XML format.
+
+We extend the standard `TXMLConfig` with more
+methods:
+
+* to load/save more types (floats, vectors, colors, URLs),
+* to load/save from an URL (not just a filename),
+* to encrypt/decrypt contents, which may be useful as a simple protection
+  against cheaters (if you want this, just set the simple `BlowFishKeyPhrase` property).
+* to add "loader" functions (`GetValue`, `GetVector3` etc.)
+  that require the presence of given attribute in the XML file.
+  They raise an exception when the attribute is missing or invalid.
+  This is useful if you want to somewhat validate the XML file
+  by the way (for example when it's a game model file that must contain given
+  variables).
+
+See the cgeref:TCastleConfig[]
+ for a documentation of our extensions.
+
+While you can load and save the config data at any time,
+you can also register your own load and save listeners using
+the
+cgeref:TCastleConfig.AddLoadListener[],
+cgeref:TCastleConfig.AddSaveListener[]
+ mechanism. This sometimes allows to decentralize your code better.
+
+== Storing user preferences in the cloud
+
+On Android, our engine allows to easily upload and download
+the savegames using the https://developers.google.com/games/services/common/concepts/savedgames[Google Play Games "Saved Games"]
+feature. To use this feature:
+
+. Turn on the https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/android/services/google_play_games/README.adoc[Google Play Games integration]
+  for your project.
+
+. Create and initialize the
+  cgeref:TGameService[]
+  instance in your code. Be sure to pass parameter `SaveGames`
+  as `true` to the `TGameService.Initialize`
+  call.
+
+. Connect player to the Google Play Games at runtime,
+  using cgeref:TGameService.RequestSignedIn[] method,
+  and / or passing `AutoStartSignInFlow` as `true`
+  to the `TGameService.Initialize` call.
++
+You can wait for the sign-in to happen by the
+  cgeref:TGameService.OnSignedInChanged[]
+  event, or just observe the
+  cgeref:TGameService.SignedIn[]
+  property.
+
+. Then load and save games using the
+  cgeref:TGameService.SaveGameLoad[] and
+  cgeref:TGameService.SaveGameSave[]
+  methods. They represent the "savegame contents" as a simple string,
+  and you can use the `UserConfig.SaveToString`
+  and `UserConfig.LoadFromString` methods
+  to trivially upload / download the `UserConfig`
+  contents to the cloud!
+
+. If you want to allow user to choose a "slot" where to save the game,
+  or from which to load the game, you can use a ready dialog by calling
+  cgeref:TGameService.ShowSaveGames[].
+
+== Storing more data using `castle-config:/` URLs
+
+You're not limited to storing the data using cgeref:UserConfig[].
+
+You can create any files and organize them in any subdirectory hierarchy by saving and loading using link:url#castle-config[castle-config:/] URLs. Follow the link:url[URLs, loading (downloading) and saving resources] documentation for more information.

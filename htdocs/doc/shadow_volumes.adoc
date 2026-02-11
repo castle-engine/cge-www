@@ -39,13 +39,13 @@ cgeref:TCastleRenderOptions.WholeSceneManifold[] feature.
 
 == Features
 
-Features of _shadows by shadow volumes_ (in particular, how does this technique compare to link:x3d_extensions_shadow_maps.php[shadow maps]):
+Features of _shadows by shadow volumes_ (in particular, how does this technique compare to link:shadow_maps[shadow maps]):
 
 - Shadow volumes produce *hard shadows*. That's both an advantage (they are as sharp as your geometry, no problems with texture resolution like in shadow maps) and disadvantage (when simulating large area lights, hard shadows may look unrealistic).
 
 - *Shadow volumes are easier to activate.* To see the shadows, just choose one light in the scene (probably the brightest one) and set cgeref:TCastlePunctualLight.Shadows[Shadows] to `true`.
 +
-*That's it.* Compared to link:x3d_extensions_shadow_maps.php[shadow maps], you don't need to tweak anything to deal with shadow maps resolution, bias etc.
+*That's it.* Compared to link:shadow_maps[shadow maps], you don't need to tweak anything to deal with shadow maps resolution, bias etc.
 
 - *Shadow volumes require the shadow casters to be 2-manifold.* So you need to be more careful when modeling. Shadow volumes usually don't work if you try to activate them on a random 3D scene. More about this below.
 
@@ -55,7 +55,7 @@ Features of _shadows by shadow volumes_ (in particular, how does this technique 
 +
 Reason: _shadow volumes_ algorithm requires more and more rendering passes as more light sources cast shadows. This is the practical reason why we didn't yet implement shadow volumes from multiple light sources: it could quickly become too expensive to be useful. Each light requires yet another rendering pass (if we add the light contribution) or even each _lights' combination_ requires yet another rendering pass (in the naive approach when we replace the pixels).
 +
-In contrast, link:x3d_extensions_shadow_maps.php[shadow maps] support as many lights as you want already, and each light only requires to keep yet another shadow texture up-to-date.
+In contrast, link:shadow_maps[shadow maps] support as many lights as you want already, and each light only requires to keep yet another shadow texture up-to-date.
 
 - Note that *it's perfectly fine to use both shadow volumes and shadow maps in a single scene*.
 //So you can use shadow volumes to cast a hard shadow from some particularly bright and distant light (like a sun during the summer day), and add shadow maps for some soft shadows.
@@ -69,7 +69,7 @@ E.g. if you have a leaf designed as a simple quad, with a leaf texture that has 
 +
 In general, shadow volumes cannot account for the object visual appearance like a texture. They only account for the object topology (polygons, edges, vertices).
 +
-In contrast, link:x3d_extensions_shadow_maps.php[shadow maps] interact with objects using texture with alpha-testing nicely (fully transparent places will not cast shadows).
+In contrast, link:shadow_maps[shadow maps] interact with objects using texture with alpha-testing nicely (fully transparent places will not cast shadows).
 +
 Note that *shadow casters may use partial transparency (by alpha testing or alpha blending)*. They can use material with non-zero `transparency`, they can use textures with alpha channel. These shapes render OK, they just cast shadows just as if they were completely opaque.
 
@@ -232,6 +232,6 @@ In practice, in most reasonable cases, using 8 bits (256 possible objects) is en
 'Window.StencilBits := 8;'); ?>
 
 You need to set this before the `Window.Open` call.
-In a link:manual_cross_platform.php[typical cross-platform CGE application]
+In a link:cross_platform[typical cross-platform CGE application]
 you would do this in your `gameinitialize.pas` `initialization` section.
 ////
