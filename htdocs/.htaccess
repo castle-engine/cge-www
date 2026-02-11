@@ -130,7 +130,7 @@ Redirect "/planned_features.php" "/roadmap"
 Redirect "/privacy_policy.php" "/privacy_policy"
 Redirect "/sources.php" "/engine.php"
 Redirect "/sources_docs.php" "/reference.php"
-Redirect "/support.php" "/forum.php"
+Redirect "/support.php" "https://forum.castle-engine.io/"
 Redirect "/states" "/views"
 Redirect "/tutorial_2d_ui_custom_drawn.php" "/ui_custom_drawn"
 Redirect "/tutorial_2d_user_interface.php" "/manual_2d_user_interface.php"
@@ -286,8 +286,13 @@ Redirect "/dsummit2025" "https://docs.google.com/presentation/d/e/2PACX-1vRdFwEC
 Redirect "/delphiday2025" "https://docs.google.com/presentation/d/e/2PACX-1vTX62I3yRoYc844EJkzLh9nnje18IlceDrG5Ub44u2_eHj1HCnXYRzxCHC5-RDrDW0r0oeRwvycFkSm/pub?start=false&loop=false&delayms=3000"
 Redirect "/pascaliso" "https://docs.google.com/presentation/d/e/2PACX-1vSmPQ6Dvzqv6EaSOIFwy_EIkShDBCR-DCEueGjIMWhrDmPHeFIHIAQ4XRms40ffHHRXNJZI9G1LJK0H/pub?start=false&loop=false&delayms=3000"
 Redirect "/zlot2025" "https://docs.google.com/presentation/d/e/2PACX-1vTLD9MI3niserGcafelLlxM3qOWqUf130eu0aRG2w-QYTanWjx6OZWcBYspnS2pU2mRujtbfjQz8TvP/pub?start=false&loop=false&delayms=3000"
+Redirect "/all_programs.php" "/gallery_games.php"
+Redirect "/forum.php" "https://forum.castle-engine.io/"
+Redirect "/latest.zip.php" "https://github.com/castle-engine/castle-engine/archive/snapshot.zip"
+Redirect "/latest.zip" "https://github.com/castle-engine/castle-engine/archive/snapshot.zip"
+Redirect "/manual_compiling_from_source.php" "/compiling_from_source"
 
-# This link is used at least by http://planetdev.freegamedev.net/ .
+# The /news_feed.php link is used at least by http://planetdev.freegamedev.net/ .
 #
 # Though we could notify them to change link to Wordpress, see
 # http://forum.freegamedev.net/viewtopic.php?f=24&t=7209
@@ -297,10 +302,7 @@ Redirect "/zlot2025" "https://docs.google.com/presentation/d/e/2PACX-1vTLD9MI3ni
 # https://github.com/FreeGameDev/planet-config/blob/master/fgdplanet-dev-feeds.ini
 Redirect "/news_feed.php" "/wp/feed/"
 
-# Redirect latest.zip to latest.zip.php (interpreted by PHP to redirect
-# further, to a known latest version).
-# See https://httpd.apache.org/docs/current/mod/mod_alias.html#redirect
-Redirect "/latest.zip" "/latest.zip.php"
+Redirect "/news.php" "/wp/"
 
 # Redirect kambi-php-lib, to keep PasDoc-generated docs accessing this working
 # (in CGE release too, before we fixed https://github.com/castle-engine/castle-engine/issues/59 )
