@@ -505,6 +505,8 @@ Optional LODs could be nice (but maybe this is outside of scope of terrains; LOD
 
 This is started: see PR https://github.com/castle-engine/castle-engine/pull/612 .
 
+TODO: Also read: https://github.com/TokisanGames/Terrain3D
+
 [#vulkan]
 ### Vulkan renderer (maybe; alternative: use BGFX to get Vulkan)
 
