@@ -139,18 +139,9 @@ end;
 
 2. Moreover, we perform link:skin[skinning using GPU shaders by default]. This means that the above step (switching cgeref:TAbstractShapeNode.Collision[] to cgeref:scDefault[]) will make us use precise collisions, but they will be resolved using the _"rest pose"_ of the model, not the current animated pose.
 +
-To fix this, perform one more step: disable GPU skinning by setting
-+
-[source,pascal]
-----
-TSkinNode.InternalFeatures.Shaders := false;
-----
-+
-early in your program. Use the cgeref:X3DNodes[] unit to have cgeref:TSkinNode[] identifier available.
-+
-For example, you can do this from your `Application.OnInitialize` callback. Typically this is a procedure `ApplicationInitialize` in your `gameinitialize.pas` unit. More generally: do this anytime after `ApplicationProperties.OnGLContextEarlyOpen` has run but before your model actually starts animating.
+To fix this, perform one more step: disable GPU skinning by setting cgeref:TCastleRenderOptions.SkinnedAnimationShaders[] to `false` on the given scene. You can do this by Pascal code or by just tweaking the `MyScene.RenderOptions.SkinnedAnimationShaders` in the editor.
 
-3. To make this work, you have to use ray-casts that don't depend on physics engine, and set cgeref:TCastleSceneCore.PreciseCollisions[] to `true` on the given scene. Otherwise, the entire scene will behave as a single box for collisions.
+3. To make this work, you also have to use ray-casts that don't depend on physics engine, and set cgeref:TCastleSceneCore.PreciseCollisions[] to `true` on the given scene. Otherwise, the entire scene will behave as a single box for collisions.
 
 == Switching to Phong lighting model (for performance or just different look)
 
