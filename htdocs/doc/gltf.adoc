@@ -73,16 +73,30 @@ This is available using cgeref:TCastleSceneCore.ExposeTransforms[TCastleScene.Ex
 
 == Collisions when your glTF mesh uses skinned animation
 
-For speed, the shapes animated using _skinned animation_ in glTF uses bounding box for collisions. That's because the triangles would change every frame and updating the octree would have a significant cost for FPS.
+For speed, the shapes animated using _skinned animation_ in glTF use bounding box for collisions. That's because the triangles would change every frame and updating the octree would have a significant cost for FPS.
 
-If you need to have better collision detection:
+If you need to have more precise collision detection:
 
-. You can use X3D file that uses `Inline` to include 2 glTF files. One of them would be your animated model, but not collidable. The other would be a static model, invisible, used only for collisions.
-+
+=== Recommended: Attach physical colliders to exposes joints transformations
+
+We recommend to use the cgeref:TCastleSceneCore.ExposeTransforms[] mechanism documented in link:expose[expose scene elements] manual chapter.
+
+. _Expose_ the joints you're interested in by adding them to cgeref:TCastleSceneCore.ExposeTransforms[]. E.g. expose a head, if you want to detect headshots. This will result in having a cgeref:TCastleTransform[] representing this joint.
+
+. Attach link:physics[physical colliders] to these joints. For example, attach cgeref:TCastleSphereCollider[] to the head joint. Remember to also attach cgeref:TCastleRigidBody[] to the joint and set cgeref:TCastleRigidBody.Dynamic[] to `false` and cgeref:TCastleRigidBody.Animated[] to `true`. This means your joint transformation is determined by the animation.
+
+. Then use physics-based collision resolution, e.g. calling cgeref:TCastleAbstractRootTransform.PhysicsRayCast[MyViewport.Items.PhysicsRayCast].
+
+This is recommended as everything remains fast, and we delegate collision detection to the link:physics[physics engine], which is well optimized for this.
+
+=== Alternative solution: Use an alternative model for collisions
+
+You can use X3D file that uses `Inline` to include 2 glTF files. One of them would be your animated model, but not collidable. The other would be a static model, invisible, used only for collisions.
+
 This means that your model keeps working fast (as opposed to solution 2 below). And the collisions are resolved with respect to precise triangles. However, the triangles remain static, unaffected by animation.
-+
+
 To do this you would create a file like `mycreature.x3dv` with content:
-+
+
 ----
  #X3D V3.2 utf8
  PROFILE Interchange
@@ -92,29 +106,51 @@ To do this you would create a file like `mycreature.x3dv` with content:
    children Inline { url "mycreature-animated-visible-notcollidable.gltf" }
  }
 ----
-+
+
 And then in game, you open `castle-data:/mycreature.x3dv` instead of opening any glTF file directly. Playing all animations on `mycreature.x3dv` should work exactly as in `mycreature-animated-visible-notcollidable.gltf`, it exposes the same animations.
 
-. If you desperately need precise collisions, and the collision structure has to be updated at runtime, and you can tolerate some performance loss (it may be acceptable for smaller models) then you can find TShapeNode occurrences in the model, and change the TShapeNode.Collision from `scBox` to `scDefault`.
+NOTE: If you use ray-casts that don't depend on physics engine, remember to also set cgeref:TCastleSceneCore.PreciseCollisions[] to `true` on the `mycreature.x3dv` scene.
+
+=== Alternative solution: Force recalculating precise octree every frame
+
+If you desperately need precise collisions, per-triangle, with animated models (so the collision structure has to be updated at runtime), and you can tolerate some performance loss (it may be acceptable for smaller models) then follow this solution.
+
+1. You can find all cgeref:TAbstractShapeNode[] occurrences in the model, and change the cgeref:TAbstractShapeNode.Collision[] from cgeref:scBox[] to cgeref:scDefault[].
 +
 Like this:
 +
 [source,pascal]
 ----
- procedure TMyView.Load;
- var
-   Model: TX3DRootNode;
- begin
-   Model := LoadNode('castle-data:/example.gltf');
-   Model.EnumerateNodes(TShapeNode, @HandleNode, false);
-   Scene.Load(Model, true);
- end;
+procedure TMyView.Load;
+var
+  Model: TX3DRootNode;
+begin
+  Model := LoadNode('castle-data:/example.gltf');
+  Model.EnumerateNodes(TAbstractShapeNode,
+    {$ifdef FPC}@{$endif} ForceShapePrecise, false);
+  Scene.Load(Model, true);
+end;
 
- procedure TMyView.HandleNode(Node: TX3DNode);
- begin
-   (Node as TShapeNode).Collision := scDefault;
- end;
+procedure TMyView.ForceShapePrecise(Node: TX3DNode);
+begin
+  (Node as TAbstractShapeNode).Collision := scDefault;
+end;
 ----
+
+2. Moreover, we perform link:skin[skinning using GPU shaders by default]. This means that the above step (switching cgeref:TAbstractShapeNode.Collision[] to cgeref:scDefault[]) will make us use precise collisions, but they will be resolved using the _"rest pose"_ of the model, not the current animated pose.
++
+To fix this, perform one more step: disable GPU skinning by setting
++
+[source,pascal]
+----
+TSkinNode.InternalFeatures.Shaders := false;
+----
++
+early in your program. Use the cgeref:X3DNodes[] unit to have cgeref:TSkinNode[] identifier available.
++
+For example, you can do this from your `Application.OnInitialize` callback. Typically this is a procedure `ApplicationInitialize` in your `gameinitialize.pas` unit. More generally: do this anytime after `ApplicationProperties.OnGLContextEarlyOpen` has run but before your model actually starts animating.
+
+3. To make this work, you have to use ray-casts that don't depend on physics engine, and set cgeref:TCastleSceneCore.PreciseCollisions[] to `true` on the given scene. Otherwise, the entire scene will behave as a single box for collisions.
 
 == Switching to Phong lighting model (for performance or just different look)
 
@@ -122,7 +158,7 @@ glTF models use `PhysicalMaterial` or `UnlitMaterial` for their materials.
 
 The `PhysicalMaterial` node performs _physically-based rendering_ which is very pretty but also comes with some performance cost. It also requires Phong shading (not faster Gouraud shading) to make sense.
 
-If you need maximum speed, you can set global cgeref:GltfForcePhongMaterials[] to `true`. This automatically converts (during load) all `PhysicalMaterial` nodes into `Material` nodes (using Phong lighting model, and Gouraud shading by default). Note that it will change the look of your models significantly. So if you want to go this way, you should probably prepare your models from the start testing it.
+If you need maximum speed, you can load models with cgeref:TCastleSceneLoadOptions.GltfPhongMaterials[] set to `true`. This automatically converts (during load) all `PhysicalMaterial` nodes into `Material` nodes (using Phong lighting model, and Gouraud shading by default). Note that it will change the look of your models significantly. So if you want to go this way, you should probably prepare your models from the start testing it.
 
 Of course, remember that you can also use unlit materials in glTF. These always have the best performance :) link:blender[Blender] can export glTF unlit materials.
 
