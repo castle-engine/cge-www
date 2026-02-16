@@ -43,7 +43,7 @@ $toc = new TableOfContents(
     Consistent with glTF and latest Blender material specifications.
     Importing a glTF model automatically makes it use this material
     type (unless
-    <?php echo cgeRef('GltfForcePhongMaterials', 'GltfForcePhongMaterials'); ?>
+    <?php echo cgeRef('TCastleSceneLoadOptions.GltfPhongMaterials'); ?>
     has been used).
 
     <p>Place this node inside <code>Appearance.material</code> field.

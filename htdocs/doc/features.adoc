@@ -236,7 +236,7 @@ cgeimg::block[
 * link:x3d_implementation_cubemaptexturing.php[Easy mirrors on curved surfaces (using generated cubemaps)].
 * _Physically-Based Rendering_ used by default for glTF and X3D 4.0 models using cgeref:TPhysicalMaterialNode[].
 * Alternative _unlit_ shading also available, with glTF and X3D 4.0 models using cgeref:TUnlitMaterialNode[].
-* Alternative "classic" Phong shading is also available using cgeref:TMaterialNode[] or cgeref:GltfForcePhongMaterials[].
+* Alternative "classic" Phong shading is also available using cgeref:TMaterialNode[] or cgeref:TCastleSceneLoadOptions.GltfPhongMaterials[].
 * link:shadow_maps[Shadow maps] (with auto-detection of limits, correct shadows from multiple light sources).
 +
 cgeimg::block[

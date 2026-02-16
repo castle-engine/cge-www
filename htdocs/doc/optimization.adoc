@@ -189,7 +189,12 @@ If you're fine with a more "retro" lighting look, you can gain some speed by:
 
 * Using _Phong lighting model_ instead of PBR.
 +
-To do this: If your models are in link:x3d[X3D], `Material` node instead of `PhysicalMaterial` node. If your models are in link:gltf[glTF], set global cgeref:GltfForcePhongMaterials[] to `true`.
+To do this:
++
+--
+- If your models are in link:gltf[glTF] format, load with cgeref:TCastleSceneLoadOptions.GltfPhongMaterials[] set to `true`.
+- If your models are in link:x3d[X3D] format, use `Material` node (cgeref:TMaterialNode[]) instead of `PhysicalMaterial` node (cgeref:TPhysicalMaterialNode[]).
+--
 
 * Using _Gouraud shading_ instead of _Phong shading_.
 +
