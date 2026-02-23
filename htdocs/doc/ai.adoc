@@ -135,7 +135,11 @@ Whether you use AI or not, common recommendations apply:
 
 == See also
 
-See also https://github.com/chaoss/wg-ai-alignment/issues/16[example situations in the context of Castle Game Engine how AI hallucinations make bad code/docs].
+In our engine:
+
+- We have experimented even with _vibe coding_ for fun, see https://github.com/michaliskambi/castle-vibes/ for the complete code and data, screenshots, and a https://github.com/michaliskambi/castle-vibes/blob/master/README.md[long README with observations]. We've made a https://castle-engine.io/wp/2026/02/23/ai-usage-guidelines-and-thoughts-updated-and-test-of-vibe-coding-with-castle-game-engine/[news post summarizing the conclusions].
+
+- See also https://github.com/chaoss/wg-ai-alignment/issues/16[example situations in the context of Castle Game Engine how AI hallucinations make bad code/docs].
 
 Many other projects have nice guidelines about using AI that we agree with. For example:
 
@@ -144,3 +148,14 @@ Many other projects have nice guidelines about using AI that we agree with. For 
 - https://devguide.python.org/getting-started/generative-ai/[Python rules about AI]
 
 - https://github.com/chaoss/wg-ai-alignment/tree/main/moderation#readme[Collection of various AI / LLM policies of projects]
+
+More opinions I agree with:
+
+- https://www.youtube.com/watch?v=_zfN9wnPvU0[Kurzgesagt video warning about AI slop]. There is a real problem of welcoming hallucinations into our knowledge base (Internet).
+
+- I do think that one answer is we need search engines trying to "filter out" AI slop (not amplify it). I'm a happy user of https://kagi.com/[Kagi] and https://blog.kagi.com/llms[agree with their POV about LLMs].
+
+- https://substack.com/home/post/p-185933546[Article from Addy Osmani "The 80% Problem in Agentic Coding"] is a balanced viewpoint I agree with -- highlighting both the hope and the dangers of AI agents in coding.
+
+- https://www.youtube.com/watch?v=AEmHcFH1UgQ[Interview with Pi devs] has lots of valid observations about AI and coding.
+
