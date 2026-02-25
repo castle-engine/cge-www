@@ -645,8 +645,14 @@ _Providing uniforms and attributes to shaders generated for MaterialX:_ This imp
 --
 - The light source data is expressed using `u_lightData[]` with per-light structure build dynamically depending on the light type. Typical light sources are defined in https://github.com/AcademySoftwareFoundation/MaterialX/blob/main/libraries/lights/lights_defs.mtlx .
 
-NOTE: We could change names of these uniforms / attributes, when generating shaders for MaterialX. But there's no point -- we need to adjust to _types_ of these uniforms / attributes anyway, _and_ using default MaterialX names means we have names that are compatible with all X3D browsers (no more `castle_ModelViewMatrix`, `freewrl_ModelViewMatrix` etc.). So our best course of action is to just follow exactly the default MaterialX uniform / attribute names. We could even invent a boolean like `SFBool materialXVariableNaming` to enable using such naming for all custom shaders, whether MaterialX or not -- as this would standardize shader variables across X3D browsers.
+We would initially use the MaterialX naming convention when:
 
+- We have `PackagedShader` with MaterialX file
+- Or `ComposedShader` with GLSL with `SFBool materialXVariableNaming` set to `TRUE`.
+
+The latter means that if exporter already generates MaterialX->GLSL during the export phase, we will be able to consume the resulting GLSL.
+
+NOTE: Maybe even the `SFBool materialXVariableNaming` should be by default `TRUE`. So we follow MaterialX naming by default for custom shaders. This is nice -- as it means we have cross-browser compatibility for these things, every X3D browser would be expected to provide data to shaders using the same names/types of uniforms/attributes. No more dealing with `castle_ModelViewMatrix` vs `freewrl_ModelViewMatrix` etc. for browser authors.
 
 ### MDL integration?
 
