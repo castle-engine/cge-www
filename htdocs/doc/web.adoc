@@ -547,6 +547,45 @@ Use JS https://developer.mozilla.org/en-US/docs/Web/API/ScreenOrientation/lock[S
 
 Aside from above TODOs (which should be eventually addressed), there are some known limitations which we cannot (or don't plan to) "overcome" in our engine:
 
+- cgeref:TCastleApplication.ProcessMessage[Application.ProcessMessage] cannot work on the web, as the browser must control the main loop. This is similar to the link:ios#_known_problems[iOS known issue].
++
+So: do not use cgeref:TCastleApplication.ProcessMessage[Application.ProcessMessage] in a code you want to run on the web.
++
+Moreover: do not use cgeref:CastleMessages[] unit, with routines like cgeref:MessageYesNo[] or cgeref:MessageOK[], since it relies on cgeref:TCastleApplication.ProcessMessage[Application.ProcessMessage].
++
+To use our ready dialog designs, you can use unit cgeref:CastleDialogViews[]. It defines link:views[] to show the dialog boxes and you can use them like this:
++
+```pascal
+var
+  Dlg: TViewDialogOK;
+begin
+  // open new view with dialog
+  Dlg := TViewDialogOK.Create(Self);
+  Dlg.Caption := 'Some content to display';
+  Container.PushView(Dlg);
+end;
+```
++
+NOTE: Not recommended: You can set cgeref:MessageOKPushesView[] to `true` to make cgeref:MessageOK[] effectively push an instance of cgeref:TViewDialogOK[], just like code sample above. But it cannot work for other routines in cgeref:CastleMessages[] unit like cgeref:MessageYesNo[], so ultimately we advise to just not use cgeref:CastleMessages[] unit at all on the web.
+
+- Avoid using certain key combinations that are already handled by typical web browsers. This includes:
++
+--
+- Space, PageUp, PageDown, arrow keys (scroll the page)
+- Tab (switches focus)
+- Escape (exits fullscreen)
+--
++
+While our application still receives these key events, the browser also performs its default actions, which can interfere with the gameplay.
+
+- Calling `Application.Quit` on the web does not work, as there's no reliable way we can close our own window. On the web, it is expected that users will just close the browser tab or window whenever they want.
++
+To account for this, check cgeref:TCastleApplicationProperties.ShowUserInterfaceToQuit[]. When it's `false`  (like on the web), do not show any user interface to quit (hide the relevant buttons, ignore the relevant key shortcut etc.). It can be as as simple as doing:
++
+```pascal
+ButtonQuit.Exists := ApplicationProperties.ShowUserInterfaceToQuit;
+```
+
 - FPC on WebAssembly does not support _catching_ exceptions. So anytime you `raise` an exception in Pascal, you just break the application, unconditionally.
 //+
 //This is mostly OK for our engine. We didn't rely on exception catching and valid applications should not cause the engine to raise+catch an exception.
