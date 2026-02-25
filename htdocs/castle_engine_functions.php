@@ -99,7 +99,7 @@ define('PATREON_URL',         'https://patreon.com/castleengine');
 define('CGE_LATEST_DOWNLOAD', 'https://github.com/castle-engine/castle-engine/archive/snapshot.zip');
 
 // bump this each time you change castle-engine.css, to work with CloudFlare caching (or you can purge CloudFlare cache manually)
-define('CASTLE_ENGINE_CSS_VERSION', 56);
+define('CASTLE_ENGINE_CSS_VERSION', 57);
 // assign random number, to always refresh, useful at development of CSS
 //define('CASTLE_ENGINE_CSS_VERSION', rand(1000, 9999));
 
