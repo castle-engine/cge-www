@@ -539,6 +539,10 @@ Also, `package` really makes more sense (from editor or build tool) with "releas
 
 - Enable turning off "fighting with cache" for reproducible-builds that should not have random suffixes in the generated files.
 
+- We can honor the `screen_orientation="any|landscape|portrait"` option from link:project_manifest[CastleEngineManifest.xml] on the web, by locking the screen orientation when game runs in a mobile web browser.
++
+Use JS https://developer.mozilla.org/en-US/docs/Web/API/ScreenOrientation/lock[ScreenOrientation.lock] to do this. Mentioned also in https://developer.mozilla.org/en-US/docs/Web/API/CSS_Object_Model/Managing_screen_orientation[MDN docs about "Managing screen orientation"].
+
 == Known Limitations
 
 Aside from above TODOs (which should be eventually addressed), there are some known limitations which we cannot (or don't plan to) "overcome" in our engine:
