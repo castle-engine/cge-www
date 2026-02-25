@@ -619,13 +619,40 @@ We should also enable developers to easily sign their own applications packaged 
 
 link:how_to_render_2d[See also here.]
 
-### MDL and/or MaterialX integration
+[#material_x]
+### MaterialX integration
 
-- MDL, https://developer.nvidia.com/rendering-technologies/mdl-sdk
+MaterialX is a standard way to express shaders: https://materialx.org/
 
-- MaterialX, https://materialx.org/
+NOTE: Thanks go to _Aaron Bergstrom_, author of https://github.com/und-dream-lab/rawkee[RawKee (modern exporter from Maya to X3D)] for research on this!
 
-We can make 3D modeling of realistically-looking stuff much easier by reusing libraries of realistic materials.
+Use-case:
+
+- We can design complex shaders in authoring tools like link:maya[Maya] (possible with latest Maya), maybe link:blender[Blender] too?, that already have visual shader node editors.
+
+- Possibly we can make 3D modeling of realistically-looking stuff easier by reusing libraries of realistic materials?
+
+_Providing uniforms and attributes to shaders generated for MaterialX:_ This implies a few trivial changes to our shader usage code, we would provide uniforms and attributes with standard names like this:
+
+- Attribute `i_position`, `vec3` -> Object-space vertex position
+- Uniform `u_worldMatrix`, `mat4` -> Object-to-world transform
+- Uniform `u_viewPosition`, `vec3` -> Camera position in world space
+- and much more, following
++
+--
+- https://github.com/AcademySoftwareFoundation/MaterialX/blob/main/documents/DeveloperGuide/ShaderGeneration.md#162-variable-naming-convention
+- https://materialx.org/docs/api/_hw_shader_generator_8h_source.html
+--
+- The light source data is expressed using `u_lightData[]` with per-light structure build dynamically depending on the light type. Typical light sources are defined in https://github.com/AcademySoftwareFoundation/MaterialX/blob/main/libraries/lights/lights_defs.mtlx .
+
+NOTE: We could change names of these uniforms / attributes, when generating shaders for MaterialX. But there's no point -- we need to adjust to _types_ of these uniforms / attributes anyway, _and_ using default MaterialX names means we have names that are compatible with all X3D browsers (no more `castle_ModelViewMatrix`, `freewrl_ModelViewMatrix` etc.). So our best course of action is to just follow exactly the default MaterialX uniform / attribute names. We could even invent a boolean like `SFBool materialXVariableNaming` to enable using such naming for all custom shaders, whether MaterialX or not -- as this would standardize shader variables across X3D browsers.
+
+
+### MDL integration?
+
+See https://developer.nvidia.com/rendering-technologies/mdl-sdk .
+
+Unsure if it makes sense -- MaterialX integration seems filling the same space, and it is open standard, and close to OpenUSD too.
 
 ### USD – Universal Scene Description support
 
