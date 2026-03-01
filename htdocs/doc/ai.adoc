@@ -114,6 +114,20 @@ That said, such "extra pair of eyes" is often useful in my experience. Some of t
 - _AI agents_ should be used with caution and only with full understanding.
 +
 Don't throw a hard task at AI, hoping it will _solve it for you in one shot_. Split the task into smaller pieces (make a "TODO list" for the agent). Specify the conditions for the task (do X using Y and Z, e.g. "communicate with X using it's REST API and engine TCastleDownload class", or "introduce a method to class X doing this"). Always consider how to refactor the solution to be simplest and most maintainable. AI output is supposed to be a starting point for you, not the final solution.
++
+[NOTE]
+====
+Special recommendation applies to _starting a new project with AI_. *Do not* tell AI to "just create a new game using Castle Game Engine" -- as then it can make a bad starting point, ignoring our link:views[], going against our recommended setup for cross-platform projects, making visual designing impossible etc.
+
+Instead, *tell AI to create a new project using `castle-engine create empty` command-line* (see our link:build_tool[build tool] commands) and then turn this into your desired game.
+====
++
+[NOTE]
+====
+Don't worry, _visual designing_ in our editor doesn't conflict with editing the project with AI agents. Our designs are just JSON files, and agents are capable of modifying these JSONs. So the agents can cooperate with visual designing effectively.
+
+In fact, _do not_ let agents do all the work by writing Pascal code, when instead they should modify design JSON files. The AI agents tend to solve too much tasks by writing Pascal code, because the AI is happy to write long spaghetti boilerplate code. But this is not good for further modification -- the effect of setting up components using Pascal code can only be observed at run-time, you cannot edit the design in the editor. Guide the AI to add/modify components by editing our designs (`.castle-user-interface`, `.castle-transform` JSON files) when possible.
+====
 
 - Look whether there's an existing solution to your problem outside of AI. For example, create a new project using our link:editor[editor's] _"New Project"_ feature (instead of asking AI to start a project). Or look into our https://github.com/castle-engine/castle-engine/tree/master/examples[examples] for something similar to what you're trying to do. Starting from something correct (and using an AI agent to customize the solution for your needs) is better than forcing AI to guess a big solution from scratch.
 +
