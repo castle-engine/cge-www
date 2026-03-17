@@ -134,7 +134,9 @@ This way you will be able to get all these prerequisites in a trivial way, in la
 - We also will provide recipes how to use link:github_actions[Github Actions] and link:gitlab_ci[GitLab CI] to build applications for the web. So if you host your repository on _GitHub_ or _GitLab_, you can let the build be done for you.
 ====
 
-Installing the tools:
+=== Installing the tools:
+
+- Latest stable releases of *link:https://github.com/LongDirtyAnimAlf/fpcupdeluxe/releases[fpcupdeluxe]* like 2.4+ have a dedicated button with WA title to install all the needed components (Crosscompiler to WebAssembly, Pas2JS, tools). If you have issues with that, follow next manual steps:
 
 - *link:https://getpas2js.freepascal.org/[Pas2js]*.
 +
@@ -142,11 +144,7 @@ You can get it along with https://www.freepascal.org/[FPC] or install it separat
 +
 [WARNING]
 ====
-You need to use the https://wiki.freepascal.org/pas2js#GIT[Pas2js version from GIT] right now. The exact GIT revision we recommend is https://gitlab.com/freepascal.org/fpc/pas2js/-/commit/e9a258cc8e00f3da94f7e45fbdf01cc7f9995b27[e9a258cc8e00f3da94f7e45fbdf01cc7f9995b27] (this is what we tested now), though in principle any newer version should be OK as well.
-
-Older versions of Pas2js are not going to work well, and in particular the stable release 3.0.1 from https://getpas2js.freepascal.org/ is _not supported_. We need later versions (due to incompatibilities around `Job.Js` and friends usage, which are all solved in latest Pas2js + FPC; we also need https://gitlab.com/freepascal.org/fpc/pas2js/-/merge_requests/89[this fix for loading progress]).
-
-With time, a new release of _Pas2js_ will hopefully appear and make things easier :)
+You need to use the stable release 3.2.0 (or higher) right now. Older versions of Pas2js are not going to work well, and in particular the stable release 3.0.1 from https://getpas2js.freepascal.org/ is _not supported_. We need later versions (due to incompatibilities around `Job.Js` and friends usage, which are all solved in latest Pas2js + FPC; we also need https://gitlab.com/freepascal.org/fpc/pas2js/-/merge_requests/89[this fix for loading progress]).
 ====
 +
 _Test that it works._ Create the following simple program, save it as `hello_pas2js.lpr`:
@@ -168,11 +166,9 @@ If everything went well, you should get a file `hello_pas2js.js` in the same dir
 +
 [WARNING]
 ====
-If `pas2js` reports an error like `Error: can't find unit "System"`, it most likely means that the https://wiki.freepascal.org/pas2js.cfg[pas2js.cfg] configuration file is missing or wrong. You can either generate it using `createconfig` tool or take and adjust the sample from https://wiki.freepascal.org/pas2js.cfg[pas2js.cfg wiki page], then place the resulting file in a system-specific location indicated on that wiki page.
-
-It also seems that `fpcupdeluxe`, although it provides `pas2js` and `compileserver` binaries (good!), but it doesn't provide the `createconfig` tool nor does it contain the relevant pas2js package structure (you need files like `packages/rtl/system.js`). For now, we recommend to not rely on `fpcupdeluxe` to get Pas2js. TODO: Submit issue to fpcupdeluxe about it.
+If `pas2js` reports an error like `Error: can't find unit "System"`, it most likely means that the https://wiki.freepascal.org/pas2js.cfg[pas2js.cfg] configuration file is missing or wrong. You can either generate it using `createconfig` tool (from tools directory in Pas2JS installation, regardless if it is manual or from `fpcupdeluxe`) or take and adjust the sample from https://wiki.freepascal.org/pas2js.cfg[pas2js.cfg wiki page], then place the resulting file in a system-specific location indicated on that wiki page.
 ====
-
++
 - *compileserver* from *link:https://getpas2js.freepascal.org/[Pas2js]*.
 +
 This is a very useful tool distributed along with link:https://getpas2js.freepascal.org/[Pas2js]. Make sure you got it, test it by executing on the  command-line this:
@@ -192,16 +188,6 @@ Why is this useful? Most dynamic webpages should be tested through a webserver r
 In our opinion, it's easiest to get this using link:fpcupdeluxe[]: install FPC _"trunk"_ version, then install FPC cross-compiler for OS=`WasiP1` and CPU=`Wasm32`. You can also just get it from GIT and compile manually, following link:https://wiki.freepascal.org/WebAssembly[FPC wiki about WebAssembly].
 +
 The last FPC GIT revision we tested is https://gitlab.com/freepascal.org/fpc/source/-/commit/b0003f71dda8388ad74292edb82ba401296fc106[b0003f71dda8388ad74292edb82ba401296fc106], so in case of trouble, try using this exact revision.
-+
-////
-No longer relevant: fpcupdeluxe releases are now good.
-[WARNING]
-====
-Stable versions of fpcupdeluxe will fail to build FPC+WebAssembly because the OS name changed in FPC on 2025-02-27 (`wasi` -> `wasip1`).
-
-We submitted a https://github.com/LongDirtyAnimAlf/fpcupdeluxe/pull/748[PR fixing it] and it has been merged already, but the fix is not yet in the released fpcupdeluxe version. So, get fpcupdeluxe from https://github.com/LongDirtyAnimAlf/fpcupdeluxe/ and build it yourself first. It's a straightforward Lazarus project, build it from Lazarus IDE or using `lazbuild`.
-====
-////
 +
 _Test that it works._ Create the following simple program, saved as `hello_wasm.lpr`:
 +
