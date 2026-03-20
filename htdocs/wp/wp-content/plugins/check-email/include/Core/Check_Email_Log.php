@@ -57,7 +57,7 @@ class Check_Email_Log {
 		}
 
 		$this->loaded = true;
-
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 		do_action( 'check_email_loaded' );
 	}
 

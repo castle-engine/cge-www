@@ -199,6 +199,7 @@ class Check_Email_Export_Log {
 
 							if (isset($headers->fromaddress) && !empty($headers->fromaddress)) {
 								$from = $headers->fromaddress;
+								// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 								$from = apply_filters( 'check_email_log_list_column_from_email', esc_html( $from ) );
 							}
 						}else {

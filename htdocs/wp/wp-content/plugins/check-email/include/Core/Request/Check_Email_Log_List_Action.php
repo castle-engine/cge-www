@@ -130,8 +130,10 @@ class Check_Email_Log_List_Action implements Loadie {
 					<td style="padding: 5px;"><?php echo ($log_item['open_count']) ?  esc_html( $log_item['open_count'] ) : 0; ?></td>
 				</tr>
 				<?php } ?>
-
-				<?php do_action( 'check_email_view_log_after_headers', $log_item ); ?>
+				<?php 
+				// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
+				do_action( 'check_email_view_log_after_headers', $log_item ); ?>
+				?>
 
 			</table>
 
@@ -205,6 +207,7 @@ class Check_Email_Log_List_Action implements Loadie {
 						<p id="check-email-trigger-data-free-note"> <?php esc_html_e( 'This Feature requires the Premium Version', 'check-email' ); ?> <a href="https://check-email.tech/pricing/#pricings" target="_blank" class="check-mail-premium-btn"><span><?php esc_html_e('Upgrade Now', 'check-email'); ?><span></a> </p>
 					<?php
 					}else{
+						// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 						do_action('check_email_pro_log_tabs_content', $id);
 					}
 					?>
@@ -271,8 +274,10 @@ class Check_Email_Log_List_Action implements Loadie {
 					<td style="padding: 5px;"><b><?php esc_html_e( 'Error', 'check-email' ); ?></b>:</td>
 					<td style="padding: 5px;"><?php echo esc_html( $main_logs['error_message'] ); ?></td>
 				</tr>
-
-				<?php do_action( 'check_email_view_log_after_headers', $log_item ); ?>
+				<?php 
+				// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
+				do_action( 'check_email_view_log_after_headers', $log_item ); 
+				?>
 
 			</table>
 
@@ -334,10 +339,10 @@ class Check_Email_Log_List_Action implements Loadie {
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
 		if( isset( $_REQUEST['_wp_http_referer'] ) ){
 			// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
-			wp_redirect( wp_unslash( $_REQUEST['_wp_http_referer'] ) . '&deleted_logs=' . $logs_deleted ); exit;
+			wp_safe_redirect( wp_unslash( $_REQUEST['_wp_http_referer'] ) . '&deleted_logs=' . $logs_deleted ); exit;
 		}else{
 			// phpcs:ignore
-			wp_redirect( wp_unslash( $_SERVER['HTTP_REFERER'] ) . '&deleted_logs=' . $logs_deleted ); exit;
+			wp_safe_redirect( wp_unslash( $_SERVER['HTTP_REFERER'] ) . '&deleted_logs=' . $logs_deleted ); exit;
 		}
 	}
 
@@ -346,7 +351,7 @@ class Check_Email_Log_List_Action implements Loadie {
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
 		if( isset($_REQUEST['_wp_http_referer'] ) ){
 			// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
-			wp_redirect( wp_unslash( $_REQUEST['_wp_http_referer'] ) . '&deleted_logs=' . $logs_deleted ); exit;
+			wp_safe_redirect( wp_unslash( $_REQUEST['_wp_http_referer'] ) . '&deleted_logs=' . $logs_deleted ); exit;
 		}
 	}
 

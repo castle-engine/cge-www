@@ -50,7 +50,14 @@ class Check_Email_Dashboard extends Check_Email_BasePage
             <div style="display:flex; align-items:center; justify-content:space-between;">
                 <h1 style="margin-left:5px;"><?php esc_html_e('Check & Log Email', 'check-email'); ?></h1>
                 <div>
-                    <?php echo apply_filters('pro_upgrade_banner', '', []); ?>
+                    <?php 
+                    // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
+                    $banner = apply_filters('check_mail_pro_upgrade_banner', '', []);
+
+                    if ( ! empty( $banner ) ) {
+                        echo wp_kses_post( $banner );
+                    }
+                    ?>
                 </div>
             </div>
             <div class="ck_dashboard-container">

@@ -30,6 +30,7 @@ class Check_Email_Dashboard_Widget implements Loadie {
 		</p>
 
 		<?php
+			// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 			do_action( 'el_inside_dashboard_widget' );
 		?>
 

@@ -2,14 +2,14 @@
 # This file is distributed under the GPL v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: W3 Total Cache 2.9.1\n"
+"Project-Id-Version: W3 Total Cache 2.9.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/w3-total-cache\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-01-15T23:27:24+00:00\n"
+"POT-Creation-Date: 2026-03-05T20:53:07+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: w3-total-cache\n"
@@ -4446,7 +4446,7 @@ msgstr ""
 
 #: Extension_AlwaysCached_Plugin_Admin.php:124
 #: Extension_AlwaysCached_Plugin_Admin.php:125
-#: Generic_Plugin.php:625
+#: Generic_Plugin.php:673
 msgid "Page Cache Queue"
 msgstr ""
 
@@ -5360,7 +5360,7 @@ msgstr ""
 #: Extension_FragmentCache_Plugin_Admin.php:125
 #: Extension_ImageService_Plugin_Admin.php:156
 #: Extension_ImageService_Plugin_Admin.php:622
-#: Extension_ImageService_Plugin_Admin.php:1087
+#: Extension_ImageService_Plugin_Admin.php:1096
 #: Extension_NewRelic_Plugin_Admin.php:138
 #: FeatureShowcase_Plugin_Admin.php:213
 #: FeatureShowcase_Plugin_Admin.php:252
@@ -5927,23 +5927,23 @@ msgid "Total Cache Image Converter"
 msgstr ""
 
 #: Extension_ImageService_Plugin_Admin.php:606
-#: Extension_ImageService_Plugin_Admin.php:1089
-#: Extension_ImageService_Plugin_Admin.php:1093
+#: Extension_ImageService_Plugin_Admin.php:1098
+#: Extension_ImageService_Plugin_Admin.php:1102
 msgid "Convert"
 msgstr ""
 
 #: Extension_ImageService_Plugin_Admin.php:607
-#: Extension_ImageService_Plugin_Admin.php:1146
+#: Extension_ImageService_Plugin_Admin.php:1161
 msgid "Convert to WebP"
 msgstr ""
 
 #: Extension_ImageService_Plugin_Admin.php:608
-#: Extension_ImageService_Plugin_Admin.php:1139
+#: Extension_ImageService_Plugin_Admin.php:1152
 msgid "Convert to AVIF"
 msgstr ""
 
 #: Extension_ImageService_Plugin_Admin.php:609
-#: Extension_ImageService_Plugin_Admin.php:1038
+#: Extension_ImageService_Plugin_Admin.php:1047
 msgid "Sending..."
 msgstr ""
 
@@ -5952,14 +5952,14 @@ msgid "Submitted"
 msgstr ""
 
 #: Extension_ImageService_Plugin_Admin.php:611
-#: Extension_ImageService_Plugin_Admin.php:1041
+#: Extension_ImageService_Plugin_Admin.php:1050
 msgid "Processing..."
 msgstr ""
 
 #: Extension_ImageService_Plugin_Admin.php:612
 #: Extension_ImageService_Plugin_Admin.php:985
-#: Extension_ImageService_Plugin_Admin.php:1079
-#: Extension_ImageService_Plugin_Admin.php:1081
+#: Extension_ImageService_Plugin_Admin.php:1088
+#: Extension_ImageService_Plugin_Admin.php:1090
 msgid "Converted"
 msgstr ""
 
@@ -5977,7 +5977,7 @@ msgid "Reverted"
 msgstr ""
 
 #: Extension_ImageService_Plugin_Admin.php:616
-#: Extension_ImageService_Plugin_Admin.php:1105
+#: Extension_ImageService_Plugin_Admin.php:1116
 msgid "Revert"
 msgstr ""
 
@@ -6026,12 +6026,12 @@ msgstr ""
 msgid "WEBP"
 msgstr ""
 
-#: Extension_ImageService_Plugin_Admin.php:1152
+#: Extension_ImageService_Plugin_Admin.php:1167
 msgid "Attachment id: "
 msgstr ""
 
 #. translators: 1: Submissions.
-#: Extension_ImageService_Plugin_Admin.php:1266
+#: Extension_ImageService_Plugin_Admin.php:1289
 #, php-format
 msgid "Submitted %1$u image for processing."
 msgid_plural "Submitted %1$u images for processing."
@@ -6039,51 +6039,79 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. translators: 1: Successes, 2: Skipped, 3: Errored, 4: Invalid.
-#: Extension_ImageService_Plugin_Admin.php:1284
+#: Extension_ImageService_Plugin_Admin.php:1307
 #, php-format
 msgid "Successful: %1$u | Skipped: %2$u | Errored: %3$u | Invalid: %4$u"
 msgstr ""
 
-#: Extension_ImageService_Plugin_Admin.php:1305
+#: Extension_ImageService_Plugin_Admin.php:1328
 msgid "All selected optimizations have been reverted."
 msgstr ""
 
 #. translators: 1: HTML anchor open tag, 2: HTML anchor close tag.
-#: Extension_ImageService_Plugin_Admin.php:1320
+#: Extension_ImageService_Plugin_Admin.php:1343
 #, php-format
 msgid "Switch to %1$slist mode%2$s for image format conversions."
 msgstr ""
 
-#. translators: 1: HTML achor open tag, 2: HTML anchor close tag.
-#: Extension_ImageService_Plugin_Admin.php:1443
-#: Extension_ImageService_Plugin_Admin.php:1773
+#. translators: 1: HTML anchor open tag, 2: HTML anchor close tag.
+#: Extension_ImageService_Plugin_Admin.php:1466
+#: Extension_ImageService_Plugin_Admin.php:1818
 #, php-format
 msgid "%1$sLearn more%2$s."
 msgstr ""
 
-#: Extension_ImageService_Plugin_Admin.php:1788
-#: Extension_ImageService_Plugin_Admin.php:1988
-#: Extension_ImageService_Plugin_Admin.php:2036
+#: Extension_ImageService_Plugin_Admin.php:1799
+#: Extension_ImageService_Plugin_Admin.php:2030
+#: Extension_ImageService_Plugin_Admin.php:2088
 msgid "Missing input post id."
 msgstr ""
 
+#: Extension_ImageService_Plugin_Admin.php:1808
+msgid "You do not have permission to convert this image."
+msgstr ""
+
 #. translators: 1: Image filepath.
-#: Extension_ImageService_Plugin_Admin.php:1804
+#: Extension_ImageService_Plugin_Admin.php:1836
 #, php-format
 msgid "File \"%1$s\" does not exist."
 msgstr ""
 
-#: Extension_ImageService_Plugin_Admin.php:1853
-#: Extension_ImageService_Plugin_Admin.php:1874
+#: Extension_ImageService_Plugin_Admin.php:1885
+#: Extension_ImageService_Plugin_Admin.php:1906
 msgid "Invalid API response."
 msgstr ""
 
-#: Extension_ImageService_Plugin_Admin.php:2022
+#: Extension_ImageService_Plugin_Admin.php:2019
+msgid "You do not have permission to access this image."
+msgstr ""
+
+#: Extension_ImageService_Plugin_Admin.php:2054
+msgid "You do not have permission to revert this image."
+msgstr ""
+
+#: Extension_ImageService_Plugin_Admin.php:2074
 msgid "No converted images found to revert."
 msgstr ""
 
+#: Extension_ImageService_Plugin_Admin.php:2109
+msgid "You do not have permission to perform bulk conversions."
+msgstr ""
+
+#: Extension_ImageService_Plugin_Admin.php:2146
+msgid "You do not have permission to perform bulk reverts."
+msgstr ""
+
+#: Extension_ImageService_Plugin_Admin.php:2182
+msgid "You do not have permission to view image counts."
+msgstr ""
+
+#: Extension_ImageService_Plugin_Admin.php:2205
+msgid "You do not have permission to view API usage."
+msgstr ""
+
 #. translators: 1: HTML anchor open tag, 2: HTML anchor close tag.
-#: Extension_ImageService_Plugin_Admin.php:2143
+#: Extension_ImageService_Plugin_Admin.php:2231
 #, php-format
 msgid "WP Cron is not working as expected, which is required for image format conversions.  %2$sLearn more%3$s."
 msgstr ""
@@ -7212,7 +7240,7 @@ msgstr ""
 msgid "Clear Log"
 msgstr ""
 
-#: Generic_Plugin.php:514
+#: Generic_Plugin.php:562
 #: Generic_Plugin_Admin.php:273
 #: Generic_Plugin_Admin.php:279
 #: Generic_Plugin_Admin.php:285
@@ -7226,27 +7254,27 @@ msgstr ""
 msgid "Performance"
 msgstr ""
 
-#: Generic_Plugin.php:528
+#: Generic_Plugin.php:576
 msgid "Purge All Caches"
 msgstr ""
 
-#: Generic_Plugin.php:548
+#: Generic_Plugin.php:596
 msgid "Purge All Caches Except Bunny CDN"
 msgstr ""
 
-#: Generic_Plugin.php:574
+#: Generic_Plugin.php:622
 msgid "Purge All Caches Except Cloudflare"
 msgstr ""
 
-#: Generic_Plugin.php:586
+#: Generic_Plugin.php:634
 msgid "Purge Current Page"
 msgstr ""
 
-#: Generic_Plugin.php:597
+#: Generic_Plugin.php:645
 msgid "Purge Modules"
 msgstr ""
 
-#: Generic_Plugin.php:604
+#: Generic_Plugin.php:652
 #: inc/options/common/top_nav_bar.php:86
 #: Root_AdminMenu.php:51
 #: Root_AdminMenu.php:52
@@ -7254,7 +7282,7 @@ msgstr ""
 msgid "Feature Showcase"
 msgstr ""
 
-#: Generic_Plugin.php:614
+#: Generic_Plugin.php:662
 #: Generic_WidgetSettings.php:38
 #: Generic_WidgetSettings_View.php:96
 #: inc/options/common/top_nav_bar.php:20
@@ -7274,11 +7302,11 @@ msgstr ""
 msgid "General Settings"
 msgstr ""
 
-#: Generic_Plugin.php:636
+#: Generic_Plugin.php:684
 msgid "Manage Extensions"
 msgstr ""
 
-#: Generic_Plugin.php:646
+#: Generic_Plugin.php:694
 #: PageSpeed_Instructions.php:381
 #: PageSpeed_Instructions.php:548
 #: PageSpeed_Instructions.php:565
@@ -7287,7 +7315,7 @@ msgstr ""
 msgid "FAQ"
 msgstr ""
 
-#: Generic_Plugin.php:656
+#: Generic_Plugin.php:704
 #: inc/options/common/footer.php:62
 #: inc/options/common/top_nav_bar.php:212
 #: inc/options/common/top_nav_bar.php:213
@@ -7297,78 +7325,78 @@ msgstr ""
 msgid "Support"
 msgstr ""
 
-#: Generic_Plugin.php:667
+#: Generic_Plugin.php:715
 msgid "Debug: Overlays"
 msgstr ""
 
-#: Generic_Plugin.php:696
+#: Generic_Plugin.php:744
 msgid "Dismiss notice"
 msgstr ""
 
-#: Generic_Plugin.php:764
+#: Generic_Plugin.php:812
 #: Generic_Plugin_Admin.php:1152
 msgid "All caches successfully emptied."
 msgstr ""
 
-#: Generic_Plugin.php:765
+#: Generic_Plugin.php:813
 msgid "All caches successfully emptied except CDN."
 msgstr ""
 
-#: Generic_Plugin.php:766
+#: Generic_Plugin.php:814
 #: Generic_Plugin_Admin.php:1153
 msgid "Memcached cache(s) successfully emptied."
 msgstr ""
 
-#: Generic_Plugin.php:767
+#: Generic_Plugin.php:815
 #: Generic_Plugin_Admin.php:1154
 msgid "Opcode cache(s) successfully emptied."
 msgstr ""
 
-#: Generic_Plugin.php:768
+#: Generic_Plugin.php:816
 #: Generic_Plugin_Admin.php:1155
 msgid "Disk cache(s) successfully emptied."
 msgstr ""
 
-#: Generic_Plugin.php:769
+#: Generic_Plugin.php:817
 #: Generic_Plugin_Admin.php:1156
 msgid "Page cache successfully emptied."
 msgstr ""
 
-#: Generic_Plugin.php:770
+#: Generic_Plugin.php:818
 #: Generic_Plugin_Admin.php:1157
 msgid "Database cache successfully emptied."
 msgstr ""
 
-#: Generic_Plugin.php:771
+#: Generic_Plugin.php:819
 #: Generic_Plugin_Admin.php:1158
 msgid "Object cache successfully emptied."
 msgstr ""
 
-#: Generic_Plugin.php:772
+#: Generic_Plugin.php:820
 #: Generic_Plugin_Admin.php:1159
 msgid "Fragment cache successfully emptied."
 msgstr ""
 
-#: Generic_Plugin.php:773
+#: Generic_Plugin.php:821
 #: Generic_Plugin_Admin.php:1160
 msgid "Minify cache successfully emptied."
 msgstr ""
 
-#: Generic_Plugin.php:774
+#: Generic_Plugin.php:822
 #: Generic_Plugin_Admin.php:1161
 msgid "Media Query string has been successfully updated."
 msgstr ""
 
-#: Generic_Plugin.php:775
+#: Generic_Plugin.php:823
 #: Generic_Plugin_Admin.php:1162
 msgid "Varnish servers successfully purged."
 msgstr ""
 
-#: Generic_Plugin.php:776
+#: Generic_Plugin.php:824
 msgid "CDN was successfully purged."
 msgstr ""
 
-#: Generic_Plugin.php:777
+#: Generic_Plugin.php:825
 #: Generic_Plugin_Admin.php:1178
 msgid "Post successfully purged."
 msgstr ""
@@ -13347,7 +13375,7 @@ msgid "Additional home URLs:"
 msgstr ""
 
 #. translators: 1: Engine name, 2: Reject reason placeholder, 3: Page key extension.
-#: PgCache_ContentGrabber.php:1793
+#: PgCache_ContentGrabber.php:1765
 #, php-format
 msgid "Page Caching using %1$s%2$s%3$s"
 msgstr ""

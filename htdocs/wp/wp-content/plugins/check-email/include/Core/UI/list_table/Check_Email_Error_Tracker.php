@@ -1,7 +1,9 @@
 <?php namespace CheckEmail\Core\UI\list_table;
 
 use CheckEmail\Util;
-
+// Exit if accessed directly
+if( !defined( 'ABSPATH' ) )
+    exit;
 if ( ! class_exists( 'WP_List_Table' ) ) {
 	require_once ABSPATH . WPINC . '/class-wp-list-table.php';
 }
@@ -35,7 +37,7 @@ class Check_Email_Error_Tracker extends \WP_List_Table {
 		foreach ($other_columns  as $column ) {
 			$columns[ $column ] = Util\wp_chill_check_email_get_column_label( $column );
 		}
-
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 		return apply_filters( 'check_email_manage_log_columns', $columns );
 	}
 
@@ -47,7 +49,7 @@ class Check_Email_Error_Tracker extends \WP_List_Table {
 	}
 
 	protected function column_default( $item, $column_name ) {
-
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 		do_action( 'check_email_display_log_columns', $column_name, $item );
 	}
 
@@ -96,7 +98,7 @@ class Check_Email_Error_Tracker extends \WP_List_Table {
 			esc_url( $delete_url ),
 			esc_html__( 'Delete', 'check-email' )
 		);
-
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 		$actions = apply_filters( 'check_email_row_actions', $actions, $item );
 
 		return sprintf( '%1$s <span style="color:silver">(id:%2$s)</span>%3$s',
@@ -145,6 +147,7 @@ class Check_Email_Error_Tracker extends \WP_List_Table {
 			esc_html__( 'Email Error Content', 'check-email' ),
 			esc_html__( 'View Error', 'check-email' )
 		);
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 		$actions = apply_filters( 'check_email_row_actions', $actions, $item );
 
 		return $actions['view-content'];
@@ -165,6 +168,7 @@ class Check_Email_Error_Tracker extends \WP_List_Table {
 			'check-email-error-tracker-delete'     => esc_html__( 'Delete', 'check-email' ),
 			'check-email-error-tracker-delete-all' => esc_html__( 'Delete All Logs', 'check-email' ),
 		);
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 		$actions = apply_filters( 'el_bulk_actions', $actions );
 
 		return $actions;

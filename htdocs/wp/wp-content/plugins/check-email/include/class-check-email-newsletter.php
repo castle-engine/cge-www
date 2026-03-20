@@ -36,6 +36,7 @@ class Check_Email_Newsletter {
                         'ajax_url'              => admin_url( 'admin-ajax.php' )
                 );
 
+                // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
                 $script_data = apply_filters('ck_mail_localize_filter',$script_data,'ck_mail_localize_data');
 
                 $check_email      = wpchill_check_email();

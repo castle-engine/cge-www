@@ -36,7 +36,7 @@ class Licensing_Plugin_Admin {
 	/**
 	 * Usermeta key for storing dismissed license notices.
 	 *
-	 * @since 2.9.1
+	 * @since 2.9.2
 	 *
 	 * @var string
 	 */
@@ -46,7 +46,7 @@ class Licensing_Plugin_Admin {
 	 * Time in seconds after which a dismissed notice can reappear if conditions persist.
 	 * Set to 6 days (automatic license check interval is 5 days).
 	 *
-	 * @since 2.9.1
+	 * @since 2.9.2
 	 *
 	 * @var int
 	 */
@@ -58,7 +58,7 @@ class Licensing_Plugin_Admin {
 	 * The HLT (Hosted Login Token) in the billing URL is only valid for 19 minutes,
 	 * so we cache for 19 minutes to ensure users always get a valid token with some buffer.
 	 *
-	 * @since 2.9.1
+	 * @since 2.9.2
 	 *
 	 * @var int
 	 */
@@ -392,7 +392,7 @@ class Licensing_Plugin_Admin {
 	 * This is called on non-W3TC admin pages where the lightbox isn't already loaded.
 	 * Only enqueues if there's a license status that would display a notice.
 	 *
-	 * @since 2.9.1
+	 * @since 2.9.2
 	 *
 	 * @return void
 	 */
@@ -417,7 +417,7 @@ class Licensing_Plugin_Admin {
 	/**
 	 * Enqueues lightbox JavaScript and CSS assets.
 	 *
-	 * @since 2.9.1
+	 * @since 2.9.2
 	 *
 	 * @return void
 	 */
@@ -459,7 +459,7 @@ class Licensing_Plugin_Admin {
 	 * (lowercase letters, numbers, hyphens, underscores) and replaces
 	 * dots with hyphens for readability.
 	 *
-	 * @since 2.9.1
+	 * @since 2.9.2
 	 *
 	 * @param string $status The license status to sanitize.
 	 *
@@ -559,7 +559,7 @@ class Licensing_Plugin_Admin {
 	 * Called on admin_enqueue_scripts to register the script early,
 	 * which can then be enqueued later when notices are displayed.
 	 *
-	 * @since 2.9.1
+	 * @since 2.9.2
 	 *
 	 * @return void
 	 */
@@ -616,7 +616,7 @@ class Licensing_Plugin_Admin {
 	/**
 	 * Generates a license notice based on the provided license status and key.
 	 *
-	 * @since 2.9.1
+	 * @since 2.9.2
 	 *
 	 * @param string $status The current status of the license (e.g., 'active', 'expired').
 	 * @param string $license_key The license key associated with the plugin.
@@ -746,7 +746,7 @@ class Licensing_Plugin_Admin {
 	 * Uses transient caching to avoid making HTTP requests on every page load.
 	 * The URL is cached for 1 hour to balance freshness with performance.
 	 *
-	 * @since 2.9.1
+	 * @since 2.9.2
 	 *
 	 * @param string $license_key The license key used to generate the billing URL.
 	 *
@@ -779,7 +779,7 @@ class Licensing_Plugin_Admin {
 	/**
 	 * Fetches the billing URL from the API.
 	 *
-	 * @since 2.9.1
+	 * @since 2.9.2
 	 *
 	 * @param string $license_key The license key used to generate the billing URL.
 	 *
@@ -998,7 +998,7 @@ class Licensing_Plugin_Admin {
 	 *
 	 * Saves the dismissal timestamp in usermeta for persistent per-user dismissal.
 	 *
-	 * @since 2.9.1
+	 * @since 2.9.2
 	 *
 	 * @return void
 	 */
@@ -1034,7 +1034,7 @@ class Licensing_Plugin_Admin {
 	 *
 	 * Forces an immediate license check and clears cached billing URL.
 	 *
-	 * @since 2.9.1
+	 * @since 2.9.2
 	 *
 	 * @return void
 	 */
@@ -1068,7 +1068,7 @@ class Licensing_Plugin_Admin {
 	 * If the reset time has elapsed and the condition still persists, the dismissal
 	 * is cleared and the notice will show again.
 	 *
-	 * @since 2.9.1
+	 * @since 2.9.2
 	 *
 	 * @param string $notice_id The unique identifier for the notice.
 	 *
@@ -1102,7 +1102,7 @@ class Licensing_Plugin_Admin {
 	 * Uses a targeted query to only retrieve users who have the specific notice dismissed,
 	 * rather than all users with any dismissed notices.
 	 *
-	 * @since 2.9.1
+	 * @since 2.9.2
 	 *
 	 * @param string $notice_id The unique identifier for the notice to clear.
 	 *

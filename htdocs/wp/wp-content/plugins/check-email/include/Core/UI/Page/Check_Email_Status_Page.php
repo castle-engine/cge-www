@@ -60,7 +60,14 @@ class Check_Email_Status_Page extends Check_Email_BasePage {
 			<div style="display:flex; align-items:center; justify-content:space-between;">
                 <h1 style="margin-left:5px;"><?php esc_html_e('Check & Log Email', 'check-email'); ?></h1>
                 <div>
-                    <?php echo apply_filters('pro_upgrade_banner', '', []); ?>
+                    <?php 
+                    // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
+                    $banner = apply_filters('check_mail_pro_upgrade_banner', '', []);
+
+                    if ( ! empty( $banner ) ) {
+                        echo wp_kses_post( $banner );
+                    }
+                    ?>
                 </div>
             </div>
             <?php
@@ -68,7 +75,9 @@ class Check_Email_Status_Page extends Check_Email_BasePage {
             global $phpmailer;
 
             $from_name = '';
+            // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
             $from_email = apply_filters( 'wp_mail_from', $current_user->user_email );
+            // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
             $from_name = apply_filters( 'wp_mail_from_name', $from_name );
 
             $headers = '';
@@ -88,7 +97,9 @@ class Check_Email_Status_Page extends Check_Email_BasePage {
             global $current_user;
             $timestamp = current_time('timestamp');
             $from_name = '';
+            // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
             $from_email = apply_filters( 'wp_mail_from', $current_user->user_email );
+            // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
             $from_name = apply_filters( 'wp_mail_from_name', $from_name );
 
             if ( $headers == "auto" ) {

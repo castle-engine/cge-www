@@ -1,7 +1,9 @@
 <?php
 // we have a nonce but we don't process the form here
 // phpcs:ignoreFile
-
+// Exit if accessed directly
+if( !defined( 'ABSPATH' ) )
+    exit;
 $email_headers   = isset( $_POST["checkemail_headers"] ) ? sanitize_text_field( wp_unslash($_POST["checkemail_headers"]) ) : 'auto';
 $checkemail_to   = isset( $_POST["checkemail_to"] ) ? sanitize_email( wp_unslash( $_POST["checkemail_to"] ) ) : '';
 $checkemail_mime = isset( $_POST['checkemail_mime'] ) ? sanitize_text_field( wp_unslash($_POST['checkemail_mime']) ) : '1.0';

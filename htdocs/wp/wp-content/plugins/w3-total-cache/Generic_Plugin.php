@@ -38,11 +38,36 @@ class Generic_Plugin {
 	/**
 	 * Frontend notice payload when redirecting back from admin actions.
 	 *
-	 * @since 2.9.1
+	 * @since 2.9.2
 	 *
 	 * @var ?array
 	 */
 	private $frontend_notice;
+
+	/**
+	 * Output buffer nesting level recorded at ob_start() time.
+	 *
+	 * Used by ob_shutdown() to identify which buffer level belongs to W3TC.
+	 *
+	 * @since 2.9.2
+	 *
+	 * @var int
+	 */
+	private $_ob_level = 0;
+
+	/**
+	 * Guards against ob_shutdown() being invoked twice.
+	 *
+	 * Function `ob_shutdown()` is registered both as a WordPress 'shutdown' action
+	 * (priority 0, so it runs before wp_ob_end_flush_all at priority 1) and as
+	 * a PHP shutdown function (fallback for abnormal termination). This flag
+	 * ensures the second invocation is a no-op.
+	 *
+	 * @since 2.9.2
+	 *
+	 * @var bool
+	 */
+	private $_ob_shutdown_done = false;
 
 	/**
 	 * Constructor
@@ -102,7 +127,26 @@ class Generic_Plugin {
 			add_filter( 'wp_die_xml_handler', array( $this, 'wp_die_handler' ) );
 			add_filter( 'wp_die_handler', array( $this, 'wp_die_handler' ) );
 
-			ob_start( array( $this, 'ob_callback' ) );
+			/*
+			 * Register with no callback so no display-handler restriction applies.
+			 * ob_callback() is invoked explicitly in ob_shutdown() instead.
+			 * PHP's display-handler restriction (ob_start() forbidden inside a
+			 * callback) made every ob flush mechanism unsafe for mfunc processing.
+			 */
+			ob_start();
+			$this->_ob_level = ob_get_level();
+
+			/*
+			 * Hook into WordPress 'shutdown' at priority 0 so ob_shutdown runs
+			 * before wp_ob_end_flush_all (priority 1). wp_ob_end_flush_all calls
+			 * ob_end_flush(), which would send the raw unprocessed buffer.
+			 * By processing and echoing the buffer here first we ensure the
+			 * processed output reaches the client.
+			 * The PHP shutdown function below is a fallback for abnormal
+			 * termination paths where the WordPress 'shutdown' action may not fire.
+			 */
+			add_action( 'shutdown', array( $this, 'ob_shutdown' ), 0 );
+			register_shutdown_function( array( $this, 'ob_shutdown' ) );
 		}
 
 		$this->register_plugin_check_filters();
@@ -114,7 +158,7 @@ class Generic_Plugin {
 	/**
 	 * Removes dynamic fragment tags from comment content before storage.
 	 *
-	 * @since 2.9.1
+	 * @since 2.9.2
 	 *
 	 * @param array $comment_data Comment data being processed.
 	 *
@@ -131,7 +175,7 @@ class Generic_Plugin {
 	/**
 	 * Removes dynamic fragment tags from RSS/feed content.
 	 *
-	 * @since 2.9.1
+	 * @since 2.9.2
 	 *
 	 * @param string $content Content to sanitize.
 	 *
@@ -144,7 +188,7 @@ class Generic_Plugin {
 	/**
 	 * Sanitizes REST API responses to prevent dynamic fragment leakage.
 	 *
-	 * @since 2.9.1
+	 * @since 2.9.2
 	 *
 	 * @param \WP_REST_Response|mixed $result  Response data.
 	 * @param \WP_REST_Server         $server  REST server instance.
@@ -170,7 +214,7 @@ class Generic_Plugin {
 	/**
 	 * Recursively removes dynamic fragment tags from REST data structures.
 	 *
-	 * @since 2.9.1
+	 * @since 2.9.2
 	 *
 	 * @param mixed $data Response data.
 	 *
@@ -203,7 +247,7 @@ class Generic_Plugin {
 	/**
 	 * Removes dynamic fragment tags from a text string.
 	 *
-	 * @since 2.9.1
+	 * @since 2.9.2
 	 *
 	 * @param string $value Raw content to sanitize.
 	 *
@@ -218,9 +262,13 @@ class Generic_Plugin {
 		$original_value = $value;
 
 		// Remove dynamic fragment tags from the value.
+		// Use \s*\S+ (zero-or-more whitespace, then one-or-more non-whitespace) so that
+		// tags with no space between the keyword and token (e.g. <!-- mfuncTOKEN -->) are
+		// also caught and not passed through to the str_replace step below where a crafted
+		// token-containing name could otherwise be morphed into a valid mfunc tag.
 		$pattern = array(
-			'~<!--\s*mfunc\s+[^\s]+.*?-->(.*?)<!--\s*/mfunc\s+[^\s]+.*?\s*-->~Uis',
-			'~<!--\s*mclude\s+[^\s]+.*?-->(.*?)<!--\s*/mclude\s+[^\s]+.*?\s*-->~Uis',
+			'~<!--\s*mfunc\s*\S+.*?-->(.*?)<!--\s*/mfunc\s*\S+.*?\s*-->~Uis',
+			'~<!--\s*mclude\s*\S+.*?-->(.*?)<!--\s*/mclude\s*\S+.*?\s*-->~Uis',
 		);
 
 		$value   = preg_replace_callback(
@@ -709,7 +757,7 @@ class Generic_Plugin {
 	/**
 	 * Loads a pending frontend message triggered during an admin redirect.
 	 *
-	 * @since 2.9.1
+	 * @since 2.9.2
 	 *
 	 * @return void
 	 */
@@ -1015,6 +1063,58 @@ class Generic_Plugin {
 	}
 
 	/**
+	 * Processes and outputs the W3TC output buffer at shutdown time.
+	 *
+	 * Registered both as a WordPress 'shutdown' action (priority 0, before
+	 * wp_ob_end_flush_all at priority 1) and as a PHP shutdown function
+	 * (fallback). The flag $_ob_shutdown_done prevents double-invocation.
+	 *
+	 * ob_callback() is invoked explicitly here rather than as a PHP display
+	 * handler, because display handlers (callbacks invoked during ob_end_clean,
+	 * ob_end_flush, or PHP's own buffer cleanup) set PHP's internal ob_lock
+	 * flag, which forbids any nested ob_start() call. _parse_dynamic_mfunc()
+	 * requires ob_start() to capture eval() output, so it must not run inside
+	 * a display handler. The ob_start() in run() is registered with no callback
+	 * to ensure no display handler is ever registered for our buffer.
+	 *
+	 * @since 2.9.2
+	 *
+	 * @return void
+	 */
+	public function ob_shutdown() {
+		if ( $this->_ob_shutdown_done ) {
+			return;
+		}
+
+		$this->_ob_shutdown_done = true;
+
+		/*
+		 * Flush any nested output buffers (added by WordPress or other plugins)
+		 * down into ours so their content is included.
+		 */
+		while ( ob_get_level() > $this->_ob_level ) {
+			ob_end_flush();
+		}
+
+		if ( ob_get_level() < $this->_ob_level ) {
+			// Our buffer was already closed (e.g. by a redirect or wp_die).
+			return;
+		}
+
+		/*
+		 * Read the buffer and close it. Because ob_start() was registered with
+		 * no callback, ob_get_clean() never triggers a display handler, so
+		 * ob_start() calls inside ob_callback() (e.g. _parse_dynamic_mfunc)
+		 * are permitted.
+		 */
+		$buffer = (string) ob_get_clean();
+
+		$buffer = $this->ob_callback( $buffer );
+
+		echo $buffer; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	}
+
+	/**
 	 * User login hook. Check if current user is not listed in pgcache.reject.* rules
 	 * If so, set a role cookie so the requests wont be cached
 	 *
@@ -1193,7 +1293,7 @@ class Generic_Plugin {
 	/**
 	 * Registers Plugin Check filters so they run in all contexts.
 	 *
-	 * @since 2.9.1
+	 * @since 2.9.2
 	 *
 	 * @link https://github.com/WordPress/plugin-check/blob/1.6.0/includes/Utilities/Plugin_Request_Utility.php#L160
 	 * @link https://github.com/WordPress/plugin-check/blob/1.6.0/includes/Utilities/Plugin_Request_Utility.php#L180

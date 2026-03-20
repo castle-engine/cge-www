@@ -823,7 +823,7 @@ class DbCache_WpdbInjection_QueryCaching extends DbCache_WpdbInjection {
 	/**
 	 * Clears request-wide dbcache reject state so subsequent queries can be reconsidered.
 	 *
-	 * @since 2.9.1
+	 * @since 2.9.2
 	 *
 	 * @return void
 	 */

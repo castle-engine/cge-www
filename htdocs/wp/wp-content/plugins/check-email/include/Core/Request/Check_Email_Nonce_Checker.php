@@ -74,8 +74,9 @@ class Check_Email_Nonce_Checker implements Loadie {
 				return;
 			}
 		}
-
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 		do_action( 'check_email_action', $action, $_REQUEST );
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.DynamicHooknameFound
 		do_action( $action, $_REQUEST );
 	}
 }

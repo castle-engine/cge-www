@@ -353,12 +353,12 @@ class Check_Email_Notify_Tab
 								<?php 
 								$default_email = get_option('admin_email');
 								$notifier_mail = isset($this->notify_options['notifier_mail']) && !empty($this->notify_options['notifier_mail']) 
-									? esc_attr($this->notify_options['notifier_mail']) 
-									: esc_attr($default_email);
+									? $this->notify_options['notifier_mail']
+									: $default_email;
 								?>
 								<input class="regular-text" type="email" id="check-email-notify-mail"
 									name="check-email-email-notify-options[notifier_mail]"
-									value="<?php echo $notifier_mail; ?>">
+									value="<?php echo esc_attr( $notifier_mail ); ?>">
 							</td>
 						</tr>
 					</tbody>
@@ -550,6 +550,7 @@ class Check_Email_Notify_Tab
 		if ( isset( $_SERVER['DOCUMENT_ROOT'] ) ) {
 			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized , WordPress.Security.ValidatedSanitizedInput.MissingUnslash
 			$wppath                 = $_SERVER['DOCUMENT_ROOT']."/";
+			// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 			$wppath                 = apply_filters("checkmail_file_creation_path", $wppath);
 	
 			$pn_sw_js       = $wppath . "firebase-messaging-sw.js";

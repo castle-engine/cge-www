@@ -5,11 +5,14 @@
  */
 defined( 'ABSPATH' ) || exit; // Exit if accessed directly.
 $current_user = wp_get_current_user();
-$email = '';
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+$check_mail_email = '';
 if( $current_user instanceof WP_User ) {
-	$email = trim( $current_user->user_email );	
+	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+	$check_mail_email = trim( $current_user->user_email );	
 }
 
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 $reasons = array(
     		1 => '<li><label><input type="radio" name="ck_mail_disable_reason" required value="temporary"/>' . esc_html__('It is only temporary', 'check-email') . '</label></li>',
 		2 => '<li><label><input type="radio" name="ck_mail_disable_reason" required value="stopped showing Using"/>' . esc_html__('I stopped using check & log mail on my site', 'check-email') . '</label></li>',
@@ -32,14 +35,15 @@ shuffle($reasons);
 	    <h3><strong><?php esc_html_e('If you have a moment, please let us know why you are deactivating:', 'check-email'); ?></strong></h3>
 	    <ul>
                 <?php 
+                // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
                 foreach ($reasons as $reason_escaped){
 					//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped	-- all html inside this variable already escaped above in $reasons variable
                     echo $reason_escaped;
                 }
                 ?>
 	    </ul>
-	    <?php if( null !== $email && !empty( $email ) ) : ?>
-    	    <input type="hidden" name="ck_mail_disable_from" value="<?php echo esc_attr($email); ?>" />
+	    <?php if( null !== $check_mail_email && !empty( $check_mail_email ) ) : ?>
+    	    <input type="hidden" name="ck_mail_disable_from" value="<?php echo esc_attr($check_mail_email); ?>" />
 	    <?php endif; ?>
 	    <input id="ck-mail-reloaded-feedback-submit" class="button button-primary" type="submit" name="ck_mail_disable_submit" value="<?php esc_html_e('Submit & Deactivate', 'check-email'); ?>"/>
 	    <a class="button ck-mail-feedback-only-deactivate"><?php esc_html_e('Only Deactivate', 'check-email'); ?></a>

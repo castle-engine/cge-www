@@ -1,7 +1,9 @@
 <?php namespace CheckEmail\Core\UI\Page;
 
 use CheckEmail\Core\UI\list_table\Check_Email_Error_Tracker;
-
+// Exit if accessed directly
+if( !defined( 'ABSPATH' ) )
+    exit;
 /**
  * Log List Page.
  */
@@ -46,6 +48,7 @@ class Check_Email_Error_Tracker_list extends Check_Email_BasePage {
                     2
             );
             add_action( "load-{$this->page}", array( $this, 'load_page' ) );
+            // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
             do_action( 'check_email_load_log_list_page', $this->page );
         }
 
@@ -69,7 +72,14 @@ class Check_Email_Error_Tracker_list extends Check_Email_BasePage {
 							<div style="display:flex; align-items:center; justify-content:space-between;">
 								<h1 style="margin-left:5px;"><?php esc_html_e('Check & Log Email', 'check-email'); ?></h1>
 								<div>
-									<?php echo apply_filters('pro_upgrade_banner', '', []); ?>
+									<?php 
+									// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
+				                    $banner = apply_filters('check_mail_pro_upgrade_banner', '', []);
+
+				                    if ( ! empty( $banner ) ) {
+				                        echo wp_kses_post( $banner );
+				                    }
+				                    ?>
 								</div>
 							</div>
                             <h2><?php esc_html_e( 'Error Tracker', 'check-email' ); ?></h2>
@@ -93,7 +103,14 @@ class Check_Email_Error_Tracker_list extends Check_Email_BasePage {
 						<div style="display:flex; align-items:center; justify-content:space-between;">
 							<h1 style="margin-left:5px;"><?php esc_html_e('Check & Log Email', 'check-email'); ?></h1>
 							<div>
-								<?php echo apply_filters('pro_upgrade_banner', '', []); ?>
+								<?php 
+								// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
+			                    $banner = apply_filters('check_mail_pro_upgrade_banner', '', []);
+
+			                    if ( ! empty( $banner ) ) {
+			                        echo wp_kses_post( $banner );
+			                    }
+			                    ?>
 							</div>
 						</div>
 					</div>

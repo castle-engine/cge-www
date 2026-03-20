@@ -62,7 +62,7 @@ abstract class Check_Email_Setting {
 				$sanitized_values[ $field_id ] = $values[ $field_id ];
 			}
 		}
-
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 		return apply_filters('check_email_settings_sanitize', $values, $sanitized_values);
 	}
 

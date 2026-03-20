@@ -3,7 +3,7 @@
 * Plugin Name: 				Check & Log Email - Easy Email Testing & Mail logging
 * Description: 				Check & Log email allows you to test if your WordPress installation is sending emails correctly and logs every email.
 * Author: 					checkemail
-* Version: 					2.0.11
+* Version: 					2.0.12
 * Author URI: 				https://check-email.tech/
 * Plugin URI: 				https://check-email.tech/
 * License: 					GPLv3 or later
@@ -41,16 +41,17 @@ define( 'CK_MAIL_TOC_DIR_NAME', plugin_basename( dirname( __FILE__ ) ) );
 define( 'CK_MAIL_TOC_BASE_NAME', plugin_basename( __FILE__ ) );
 define( 'CK_MAIL_PATH', dirname( __FILE__ ) );
 define( 'CK_MAIL_URL', plugin_dir_url( __FILE__ ) );
-define( 'CK_MAIL_VERSION', '2.0.11' );
+define( 'CK_MAIL_VERSION', '2.0.12' );
 
 require_once(CK_MAIL_PATH. "/include/helper-function.php" );
 if ( is_admin() ) {
 	require_once(CK_MAIL_PATH. "/include/class-check-email-newsletter.php" );
-	require_once(CK_MAIL_PATH. "/include/Check_Email_SMTP_Tab.php" );
 }
+require_once(CK_MAIL_PATH. "/include/Check_Email_SMTP_Tab.php" );
 
 
 if ( version_compare( PHP_VERSION, '5.6.0', '<' ) ) {
+	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 	function check_email_compatibility_notice() {
 		?>
 		<div class="error">
@@ -69,6 +70,7 @@ if ( version_compare( PHP_VERSION, '5.6.0', '<' ) ) {
 	/**
 	 * Deactivate Email Log.
 	 */
+	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 	function check_email_deactivate() {
 		deactivate_plugins( plugin_basename( __FILE__ ) );
 	}
@@ -80,7 +82,7 @@ if ( version_compare( PHP_VERSION, '5.6.0', '<' ) ) {
 
 if(!defined('CK_MAIL_PRO_VERSION')){
 	// Register a reusable filter to render the Upgrade banner.
-	add_filter('pro_upgrade_banner', function ($html, $args = []) {
+	add_filter('check_mail_pro_upgrade_banner', function ($html, $args = []) {
 
 		$args = wp_parse_args($args, [
 			'title'       => __('Solve email delivery issues faster with PRO version (50% discount)', 'check-email'),
@@ -95,20 +97,23 @@ if(!defined('CK_MAIL_PRO_VERSION')){
 		]);
 		ob_start();
 
-		$classes = 'celog-banner celog-banner--' . esc_attr($args['style']) . ' ' . esc_attr($args['class']);
-
-		echo '<div class="celog-header">
-				<div class="' . $classes . '">
-					<div class="celog-banner__icon">' . esc_html($args['icon']) . '</div>
-					<div class="celog-banner__body">
-						<div class="celog-banner__title">' . esc_html($args['title']) . '</div>
-						<a href="' . esc_url($args['cta_url']) . '" target="_blank" class="check-mail-premium-btn" style="background:#f57429; border-color:#f57429">' . esc_html($args['cta_text']) . '</a>
-					</div>';
-		echo '</div>';
-		if ($args['dismissible']) {
-			echo '<button type="button" class="celog-banner__close" aria-label="' . esc_attr__('Dismiss', 'check-email') . '">×</button>';
-		}
-		echo '</div>';
+		$classes = 'celog-banner celog-banner--' . $args['style'] . ' ' . $args['class'];
+		?>
+		<div class="celog-header">
+			<div class="<?php echo esc_attr( $classes );?>">
+				<div class="celog-banner__icon"><?php echo esc_html( $args['icon'] );?></div>
+				<div class="celog-banner__body">
+					<div class="celog-banner__title"><?php echo esc_html( $args['title'] );?></div>
+					<a href="<?php echo esc_url( $args['cta_url'] );?>" target="_blank" class="check-mail-premium-btn" style="background:#f57429; border-color:#f57429"><?php echo esc_html( $args['cta_text'] );?></a>
+				</div>
+			</div>
+			<?php
+			if ($args['dismissible']) {
+				?><button type="button" class="celog-banner__close" aria-label="<?php echo esc_attr__('Dismiss', 'check-email');?>">×</button> <?php
+			}
+			?>
+		</div>
+		<?php
 		if ($args['dismissible'] && $args['dismiss_key']) {
 			echo '<script>
 			(function(){
@@ -137,6 +142,7 @@ if(!defined('CK_MAIL_PRO_VERSION')){
 /**
  * Load Check Email Log.
  */
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 function check_email_log( $plugin_file ) {
 	global $check_email;
 
@@ -157,6 +163,7 @@ function check_email_log( $plugin_file ) {
 
 	$loader->register();
 
+	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 	$check_email = new \CheckEmail\Core\Check_Email_Log( $plugin_file, $loader, new \CheckEmail\Core\DB\Check_Email_Table_Manager() );
 
 	$check_email->add_loadie( new \CheckEmail\Core\Check_Email_Multisite() );
@@ -185,6 +192,7 @@ function check_email_log( $plugin_file ) {
 	add_action( 'plugins_loaded', array( $check_email, 'load' ), 101 );
 }
 
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 function wpchill_check_email() {
 	global $check_email;
 	return $check_email;
@@ -201,6 +209,7 @@ check_email_log( __FILE__ );
  * @since  1.0.11
  * @return array
  */
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 function check_email_add_plugin_link( $links ) {
 
    $url = add_query_arg( 'page', 'check-email-settings', self_admin_url( 'admin.php' ) );
@@ -211,6 +220,7 @@ function check_email_add_plugin_link( $links ) {
 }
 add_filter( 'plugin_action_links_'.plugin_basename(__FILE__), 'check_email_add_plugin_link', 10, 2 );
 
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 function checkMail_is_plugins_page() {
 
     if(function_exists('get_current_screen')){

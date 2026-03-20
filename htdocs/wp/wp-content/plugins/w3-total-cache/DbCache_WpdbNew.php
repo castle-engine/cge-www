@@ -242,7 +242,7 @@ class DbCache_WpdbNew extends DbCache_WpdbBase {
 	/**
 	 * Returns the array of dbcache processors attached to this wpdb wrapper.
 	 *
-	 * @since 2.9.1
+	 * @since 2.9.2
 	 *
 	 * @return array
 	 */

@@ -924,7 +924,7 @@ class SetupGuide_Plugin_Admin {
 	/**
 	 * Build the SQL statements used for database cache benchmarking.
 	 *
-	 * @since 2.9.1
+	 * @since 2.9.2
 	 *
 	 * @param \wpdb $wpdb WordPress database object.
 	 *
@@ -944,7 +944,7 @@ class SetupGuide_Plugin_Admin {
 	/**
 	 * Execute a repeatable set of read-heavy queries to measure cache performance.
 	 *
-	 * @since 2.9.1
+	 * @since 2.9.2
 	 *
 	 * @param \wpdb $wpdb       WordPress database object.
 	 * @param array $queries    List of SQL queries to execute.
@@ -967,7 +967,7 @@ class SetupGuide_Plugin_Admin {
 	/**
 	 * Clear runtime caches to reduce contamination between timed runs.
 	 *
-	 * @since 2.9.1
+	 * @since 2.9.2
 	 *
 	 * @return void
 	 */
@@ -982,7 +982,7 @@ class SetupGuide_Plugin_Admin {
 	/**
 	 * Clear dbcache reject state for the current request so tests can evaluate with fresh context.
 	 *
-	 * @since 2.9.1
+	 * @since 2.9.2
 	 *
 	 * @return void
 	 */
@@ -1015,7 +1015,7 @@ class SetupGuide_Plugin_Admin {
 	/**
 	 * Collect a set of post IDs to be used when benchmarking the object cache.
 	 *
-	 * @since 2.9.1
+	 * @since 2.9.2
 	 *
 	 * @return array
 	 */
@@ -1047,7 +1047,7 @@ class SetupGuide_Plugin_Admin {
 	/**
 	 * Run a representative workload that should benefit from a persistent object cache.
 	 *
-	 * @since 2.9.1
+	 * @since 2.9.2
 	 *
 	 * @param array  $post_ids    IDs to request in the query.
 	 * @param string $payload_key Cache key used to check persistence.
@@ -1095,7 +1095,7 @@ class SetupGuide_Plugin_Admin {
 	/**
 	 * Clear runtime object cache data while preserving persistent stores when possible.
 	 *
-	 * @since 2.9.1
+	 * @since 2.9.2
 	 *
 	 * @return string Which flush method was used.
 	 */

@@ -152,6 +152,6 @@ function wp_chill_check_email_get_column_label_map() {
 		'check_email_log_id'      => esc_html__( 'Log ID', 'check-email' ),
 		'action'      => esc_html__( 'Action', 'check-email' ),
 	);
-
+	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 	return apply_filters( 'check_email_db_column_labels', $labels );
 }

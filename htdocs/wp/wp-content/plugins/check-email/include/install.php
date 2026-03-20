@@ -4,7 +4,7 @@
  */
 
 defined( 'ABSPATH' ) || exit; // Exit if accessed directly
-
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedClassFound
 class Check_Email_Log_Init {
 
 	public static function on_activate( $network_wide ) {

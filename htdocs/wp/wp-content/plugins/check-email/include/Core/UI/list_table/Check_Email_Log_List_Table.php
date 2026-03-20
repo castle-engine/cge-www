@@ -1,7 +1,9 @@
 <?php namespace CheckEmail\Core\UI\list_table;
 
 use CheckEmail\Util;
-
+// Exit if accessed directly
+if( !defined( 'ABSPATH' ) )
+    exit;
 if ( ! class_exists( 'WP_List_Table' ) ) {
 	require_once ABSPATH . WPINC . '/class-wp-list-table.php';
 }
@@ -35,7 +37,7 @@ class Check_Email_Log_List_Table extends \WP_List_Table {
 		foreach ($other_columns  as $column ) {
 			$columns[ $column ] = Util\wp_chill_check_email_get_column_label( $column );
 		}
-
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 		return apply_filters( 'check_email_manage_log_columns', $columns );
 	}
 
@@ -51,7 +53,7 @@ class Check_Email_Log_List_Table extends \WP_List_Table {
 	}
 
 	protected function column_default( $item, $column_name ) {
-
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 		do_action( 'check_email_display_log_columns', $column_name, $item );
 	}
 
@@ -114,7 +116,7 @@ class Check_Email_Log_List_Table extends \WP_List_Table {
 			esc_js( __( 'Are you sure you want to delete this log?', 'check-email' ) ),
 			esc_html__( 'Delete', 'check-email' )
 		);
-
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 		$actions = apply_filters( 'check_email_row_actions', $actions, $item );
 
 		return sprintf( '%1$s <span style="color:silver">(id:%2$s)</span>%3$s',
@@ -125,7 +127,7 @@ class Check_Email_Log_List_Table extends \WP_List_Table {
 	}
 
 	protected function column_to_email( $item ) {
-
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 		$email = apply_filters( 'check_email_log_list_column_to_email', esc_html( $item->to_email ) );
 
 		return $email;
@@ -148,6 +150,7 @@ class Check_Email_Log_List_Table extends \WP_List_Table {
 
 			}
 		}
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 		$email = apply_filters( 'check_email_log_list_column_from_email', esc_html( $from ) );
 		return $email;
 	}
@@ -195,6 +198,7 @@ class Check_Email_Log_List_Table extends \WP_List_Table {
 			'check-email-log-list-delete-all' => esc_html__( 'Delete All Logs', 'check-email' ),
 			'check-email-log-list-resend'     => esc_html__( 'Resend Email', 'check-email' )			
 		);
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 		$actions = apply_filters( 'el_bulk_actions', $actions );
 
 		return $actions;
@@ -281,6 +285,7 @@ class Check_Email_Log_List_Table extends \WP_List_Table {
 
 	public function views() {
         $views = $this->get_views(); 
+        // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
         $views = apply_filters( "views_{$this->screen->id}", $views );
 
         if ( empty( $views ) )
@@ -354,7 +359,7 @@ class Check_Email_Log_List_Table extends \WP_List_Table {
 					$this->resend_email_log($log_id);
 				}
 				$redirect_url = add_query_arg('bulk_resend_success', count($log_ids), $this->get_page_base_url());
-				wp_redirect($redirect_url);
+				wp_safe_redirect($redirect_url);
 				exit;
 			}
 		}

@@ -26,6 +26,7 @@ class Check_Email_Logger implements Loadie {
             return;
         }
         $option = get_option( 'check-email-log-core' );
+            // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
             $original_mail_info = apply_filters( 'check_email_wp_mail_log', $original_mail_info );
 
             $mail_info = wp_parse_args(
@@ -116,12 +117,13 @@ class Check_Email_Logger implements Loadie {
                     $log['result'] = 0;
                     $log['error_message'] = esc_html__('Your microsoft 365 account not configured properly','check-email');
                 }
-
+                // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
                 $log = apply_filters( 'check_email_email_log_before_insert', $log, $original_mail_info );
 
                 $check_email = wpchill_check_email();
 
                 $check_email->table_manager->insert_log( $log );
+                // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
                 do_action( 'check_email_log_inserted' );
                 return false;
 
@@ -155,11 +157,11 @@ class Check_Email_Logger implements Loadie {
                     }
                 }
             }
-
+            // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
             $log = apply_filters( 'check_email_email_log_before_insert', $log, $original_mail_info );
             $check_email = wpchill_check_email();
             $check_email->table_manager->insert_log( $log );
-
+            // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
             do_action( 'check_email_log_inserted' );
         
         return $original_mail_info;
@@ -193,6 +195,7 @@ class Check_Email_Logger implements Loadie {
 
 		$mail_error_data = $wp_error->get_error_data( 'wp_mail_failed' );
 		$mail_error_message = $wp_error->get_error_message( 'wp_mail_failed' );
+        // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
         apply_filters('wp_check_email_failed', $mail_error_data, $mail_error_message);
 		$this->mark_email_log_as_failed($mail_error_data, $mail_error_message );
 	}

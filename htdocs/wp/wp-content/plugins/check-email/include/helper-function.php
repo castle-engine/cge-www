@@ -27,6 +27,7 @@ if( !defined( 'ABSPATH' ) )
  * 
  * @since 1.4.0
  */
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 function ck_mail_is_plugins_page() {
 
     if(function_exists('get_current_screen')){
@@ -41,7 +42,7 @@ function ck_mail_is_plugins_page() {
 }
 
 add_filter('admin_footer', 'ck_mail_add_deactivation_feedback_modal');
-
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 function ck_mail_add_deactivation_feedback_modal() {
 
     if( is_admin() && ck_mail_is_plugins_page() ) {
@@ -56,6 +57,7 @@ function ck_mail_add_deactivation_feedback_modal() {
  * 
  * @since 1.4.0
  */
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 function ck_mail_send_feedback() {
     // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Reason: in form variable.
     if( isset( $_POST['data'] ) ) {
@@ -113,7 +115,7 @@ function ck_mail_send_feedback() {
 }
 add_action( 'wp_ajax_ck_mail_send_feedback', 'ck_mail_send_feedback' );
 
-
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 function ck_mail_enqueue_makebetter_email_js() {
 
     if ( is_admin() && ck_mail_is_plugins_page() ) {
@@ -125,7 +127,7 @@ function ck_mail_enqueue_makebetter_email_js() {
             'ajax_url'                     => admin_url( 'admin-ajax.php' ),
             'ck_mail_security_nonce'         => wp_create_nonce('ck_mail_ajax_check_nonce'),
         );
-
+        // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
         $data = apply_filters( 'ck_mail_localize_filter', $data, 'eztoc_admin_data' );
 
         wp_localize_script( 'ck_mail_make_better_js', 'cn_ck_mail_admin_data', $data );
@@ -139,7 +141,7 @@ add_action( 'admin_enqueue_scripts', 'ck_mail_enqueue_makebetter_email_js' );
 
 
 add_action('wp_ajax_ck_mail_subscribe_newsletter','ck_mail_subscribe_for_newsletter');
-
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 function ck_mail_subscribe_for_newsletter() {
     if ( ! isset( $_POST['ck_mail_security_nonce'] ) ){
         echo esc_html__('security_nonce_not_verified', 'check-email');
@@ -165,7 +167,7 @@ function ck_mail_subscribe_for_newsletter() {
     }
     wp_die();
 }
-
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 function ck_mail_forward_mail($atts) {
     if ( isset( $atts['to'] ) ) {
 		$to = $atts['to'];
@@ -386,7 +388,7 @@ function ck_mail_forward_mail($atts) {
         $content_type = 'text/html';
     }
 
-    
+    // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
     $content_type = apply_filters( 'wp_mail_content_type', $content_type );
 
     $phpmailer->ContentType = $content_type;
@@ -401,7 +403,7 @@ function ck_mail_forward_mail($atts) {
         $charset = get_bloginfo( 'charset' );
     }
 
-    
+    // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
     $phpmailer->CharSet = apply_filters( 'wp_mail_charset', $charset );
 
     // Set custom headers.
@@ -441,6 +443,7 @@ function ck_mail_forward_mail($atts) {
      *
      * @param PHPMailer $phpmailer The PHPMailer instance (passed by reference).
      */
+    // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
     do_action_ref_array( 'phpmailer_init', array( &$phpmailer ) );
 
     $mail_data = compact( 'to', 'subject', 'message', 'headers', 'attachments' );
@@ -454,7 +457,7 @@ function ck_mail_forward_mail($atts) {
         return false;
     }
 }
-
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 function ck_mail_create_error_logs() {
 
     global $wpdb;
@@ -480,7 +483,7 @@ function ck_mail_create_error_logs() {
     }
     // phpcs:enable.
 }
-
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 function ck_mail_create_spam_analyzer_table() {
 
     global $wpdb;
@@ -509,7 +512,7 @@ function ck_mail_create_spam_analyzer_table() {
     }
     // phpcs:enable.
 }
-
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 function ck_mail_insert_spam_analyzer($data_to_insert) {
 
     global $wpdb;
@@ -517,6 +520,7 @@ function ck_mail_insert_spam_analyzer($data_to_insert) {
     $table_name           = $wpdb->prefix . 'check_email_spam_analyzer';
     $wpdb->insert( $table_name, $data_to_insert ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared
 }
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 function ck_mail_insert_error_logs($data_to_insert) {
 
     global $wpdb;
@@ -524,7 +528,7 @@ function ck_mail_insert_error_logs($data_to_insert) {
     $table_name           = $wpdb->prefix . 'check_email_error_logs';
     $wpdb->insert( $table_name, $data_to_insert ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared
 }
-
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 function ck_mail_local_file_get_contents($file_path){
 
     // Include WordPress Filesystem API
@@ -547,7 +551,7 @@ function ck_mail_local_file_get_contents($file_path){
     }
 
 }
-
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 function ck_mail_update_network_settings() {
     // Check nonce
     check_ajax_referer( 'ck_mail_ajax_check_nonce', 'nonce' );
@@ -597,7 +601,7 @@ function ck_mail_update_network_settings() {
 }
 
 add_action( 'wp_ajax_update_network_settings', 'ck_mail_update_network_settings' );
-
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 function ck_mail_check_dns() {
     // Check nonce
     if ( isset( $_POST['ck_mail_security_nonce'] ) ) {
@@ -639,7 +643,7 @@ function ck_mail_check_dns() {
     }
     wp_die();
 }
-
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 function ck_email_verify($email) {
     $spoof_valid = 1;
     $dns_valid = 1;
@@ -659,7 +663,7 @@ function ck_email_verify($email) {
 }
 
 add_action( 'wp_ajax_check_dns', 'ck_mail_check_dns' );
-
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 function ck_mail_check_email_analyze() {
     // Check nonce
     if (isset($_POST['ck_mail_security_nonce'])) {
@@ -705,7 +709,7 @@ function ck_mail_check_email_analyze() {
                 $result['data'] = $response;
                 // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated , WordPress.Security.ValidatedSanitizedInput.MissingUnslash , WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
                 $ip_address = $_SERVER['SERVER_ADDR']; // Replace with your target IP
-                $blocklist = is_ip_blocked($ip_address);
+                $blocklist = check_email_is_ip_blocked($ip_address);
                 $result['blocklist'] = $blocklist;
                 $result['ip_address'] = $ip_address;
                 $spam_final_score = 0;
@@ -803,7 +807,7 @@ function ck_mail_check_email_analyze() {
 add_action( 'wp_ajax_check_email_analyze', 'ck_mail_check_email_analyze' );
 
 add_action('wp_ajax_checkmail_save_admin_fcm_token', 'checkmail_save_admin_fcm_token');
-
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 function checkmail_save_admin_fcm_token() {
     $result['status'] = false;
     if (!isset($_POST['ck_mail_security_nonce'])) {
@@ -838,8 +842,8 @@ function checkmail_save_admin_fcm_token() {
 
 
 
-
-function is_ip_blocked($ip) {
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
+function check_email_is_ip_blocked($ip) {
     $dnsbl_list = [
         "zen.spamhaus.org",
         "bl.spamcop.net",
@@ -914,12 +918,16 @@ if ( ! defined( 'CHECK_EMAIL_E_REGEXP' ) ) {
     );
 }
 
-
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 $encode_options = get_option('check-email-email-encode-options', true);
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 $is_enable = ( isset( $encode_options['is_enable'] ) ) ? $encode_options['is_enable'] : 0;
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 $email_using = ( isset( $encode_options['email_using'] ) ) ? $encode_options['email_using'] : "";
 if ( $is_enable && $email_using == 'filters' ) {
+    // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 	foreach ( array( 'the_content', 'the_excerpt', 'widget_text', 'comment_text', 'comment_excerpt' ) as $filter ) {
+        // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 		add_filter( $filter, 'check_email_e_encode_emails', CHECK_EMAIL_E_FILTER_PRIORITY );
 	}
 }
@@ -928,13 +936,13 @@ if ( $is_enable && $email_using == 'full_page' ) {
 }
 
 add_action( 'init', 'check_email_e_register_shortcode', 2000 );
-	
+	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 	function check_email_e_register_shortcode() {
 		if ( ! shortcode_exists( 'checkmail-encode' ) ) {
 			add_shortcode( 'checkmail-encode', 'check_email_e_shortcode' );
 		}
 	}
-
+    // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 	function check_email_rot47($str) {
 		$rotated = '';
 		foreach (str_split($str) as $char) {
@@ -947,7 +955,7 @@ add_action( 'init', 'check_email_e_register_shortcode', 2000 );
 		}
 		return $rotated;
 	}
-
+    // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 	function check_email_encode_str( $string, $hex = false ) {
 		$encode_options = get_option('check-email-email-encode-options', true);
 		$email_technique = ( isset( $encode_options['email_technique'] ) ) ? $encode_options['email_technique'] : "";
@@ -1015,14 +1023,14 @@ add_action( 'init', 'check_email_e_register_shortcode', 2000 );
 
 		return implode( '', $chars );
 	}
-
+    // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 	function check_email_e_shortcode( $attributes, $content = '' ) {
 		$atts = shortcode_atts( array(
 			'link' => null,
 			'class' => null,
 		), $attributes, 'checkmail-encode' );
 
-		
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 		$method = apply_filters( 'check_email_e_method', 'check_email_encode_str' );
 
 		if ( ! empty( $atts[ 'link' ] ) ) {
@@ -1050,18 +1058,20 @@ add_action( 'init', 'check_email_e_register_shortcode', 2000 );
 
 		return $method( $content );
 	}
-
+    // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 	function check_email_e_encode_emails( $string ) {
 		if ( ! is_string( $string ) ) {
 			return $string;
 		}
 		// abort if `check_email_e_at_sign_check` is true and `$string` doesn't contain a @-sign
+        // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 		if ( apply_filters( 'check_email_e_at_sign_check', true ) && strpos( $string, '@' ) === false ) {
 			return $string;
 		}
 		// override encoding function with the 'check_email_e_method' filter
+        // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 		$method = apply_filters( 'check_email_e_method', 'check_email_encode_str' );
-		
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 		$regexp = apply_filters( 'check_email_e_regexp', CHECK_EMAIL_E_REGEXP );
 		
 		$callback = function ( $matches ) use ( $method ) {
@@ -1069,25 +1079,27 @@ add_action( 'init', 'check_email_e_register_shortcode', 2000 );
 		};
         
 		if ( has_filter( 'check_email_e_callback' ) ) {
+            // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 			$callback = apply_filters( 'check_email_e_callback', $callback, $method );
 			return preg_replace_callback( $regexp, $callback, $string );
 		}
 
 		return preg_replace_callback( $regexp, $callback, $string );
 	}
-
+    // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 	function check_email_full_page_scanner() {
 		if(!is_admin() ) {
 			ob_start('check_email_full_page_callback');
 		}
 	}
+    // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 	function check_email_full_page_callback($string) {
 		return check_email_e_encode_emails($string);
 	}
 
 	
 	add_action( 'wp_enqueue_scripts', 'ck_mail_enqueue_encoder_js' );
-
+    // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 	function ck_mail_enqueue_encoder_js() {
         $encode_options = get_option('check-email-email-encode-options', true);
 		$is_enable = ( isset( $encode_options['is_enable'] ) ) ? $encode_options['is_enable'] : 0;
@@ -1108,7 +1120,7 @@ add_action( 'init', 'check_email_e_register_shortcode', 2000 );
             wp_enqueue_script( 'checkemail_encoder' );
         }
 	}
-
+    // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
     function check_email_rot13( $string ) {
 
         $from = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -1118,7 +1130,7 @@ add_action( 'init', 'check_email_e_register_shortcode', 2000 );
     }
     
 // email and phone encoding end
-
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 function check_email_track_email_open() {
     // phpcs:ignore WordPress.Security.NonceVerification.Recommended
     if (isset($_GET['action']) && $_GET['action'] === 'check_email_track_email_open' && isset($_GET['open_tracking_id']) && isset($_GET['_wpnonce'])) {
@@ -1158,12 +1170,12 @@ function check_email_track_email_open() {
     
 }
 add_action('init', 'check_email_track_email_open');
-
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 function check_email_generate_extended_nonce($action = -1, $lifetime = WEEK_IN_SECONDS) {
     $i = wp_nonce_tick() - (floor(time() / $lifetime) - floor(time() / (DAY_IN_SECONDS * 2)));
     return wp_create_nonce($action . $i);
 }
-
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 function check_email_verify_extended_nonce($nonce, $action = -1, $lifetime = WEEK_IN_SECONDS) {
     $i = wp_nonce_tick() - (floor(time() / $lifetime) - floor(time() / (DAY_IN_SECONDS * 2)));
 
@@ -1175,7 +1187,7 @@ function check_email_verify_extended_nonce($nonce, $action = -1, $lifetime = WEE
     }
     return false;
 }
-
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 function check_email_content_with_tracking($open_tracking_id) {
     $nonce = check_email_generate_extended_nonce();
     $tracking_url = add_query_arg(
@@ -1193,7 +1205,7 @@ function check_email_content_with_tracking($open_tracking_id) {
 }
 
 if ( is_admin() ) {
-
+    // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
     function checmail_dashboard_widget() {
         echo '<canvas id="checkmail-dashboard-chart" style="width: 100%; height: 250px;"></canvas>';
         echo '
@@ -1213,8 +1225,8 @@ if ( is_admin() ) {
             </div>
         ';
     }
-
-    function add_checmail_dashboard_widget() {
+    // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
+    function check_email_add_checmail_dashboard_widget() {
         $option = get_option( 'check-email-log-core' );
        
         if(!isset( $option['enable_dashboard_widget']) || (isset( $option['enable_dashboard_widget']) && $option['enable_dashboard_widget'] ) ){
@@ -1225,9 +1237,9 @@ if ( is_admin() ) {
             );
         }
     }
-    add_action('wp_dashboard_setup', 'add_checmail_dashboard_widget');
-
-    function custom_dashboard_scripts($hook) {
+    add_action('wp_dashboard_setup', 'check_email_add_checmail_dashboard_widget');
+    // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
+    function check_email_custom_dashboard_scripts($hook) {
         if ($hook !== 'index.php') return;
             $option = get_option( 'check-email-log-core' );
             if(!isset( $option['enable_dashboard_widget']) || (isset( $option['enable_dashboard_widget']) && $option['enable_dashboard_widget'] ) ){
@@ -1246,9 +1258,9 @@ if ( is_admin() ) {
         
     
     }
-    add_action('admin_enqueue_scripts', 'custom_dashboard_scripts');
-
-    function get_email_analytics_data() {
+    add_action('admin_enqueue_scripts', 'check_email_custom_dashboard_scripts');
+    // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
+    function check_email_get_email_analytics_data() {
         if( !isset( $_GET['ck_mail_security_nonce'] ) || isset( $_GET['ck_mail_security_nonce'] ) && !wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['ck_mail_security_nonce'] ) ), 'ck_mail_ajax_check_nonce' ) ) {
             echo esc_html__('security_nonce_not_verified', 'check-email');
             die();
@@ -1303,6 +1315,6 @@ if ( is_admin() ) {
 
         wp_send_json($data);
     }
-    add_action('wp_ajax_get_email_analytics', 'get_email_analytics_data');
+    add_action('wp_ajax_get_email_analytics', 'check_email_get_email_analytics_data');
 
 }

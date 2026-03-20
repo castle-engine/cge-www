@@ -424,6 +424,7 @@ class Check_Email_SMTP_Tab {
 			if ( isset( $_POST['check-email-smtp-options']) ) {
 				$smtp_password = "";
 				if ( isset($_POST['check-email-smtp-options']['smtp_password']) && !empty( $_POST['check-email-smtp-options']['smtp_password'] ) ) {
+					// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Reason this is the password, sanitization is not needed here
 					$smtp_password = wp_unslash($_POST['check-email-smtp-options']['smtp_password']);
 				}
 				$smtp_opt = array_map('sanitize_text_field', wp_unslash($_POST['check-email-smtp-options']));
@@ -448,6 +449,7 @@ class Check_Email_SMTP_Tab {
 				}
 				update_option('check-email-smtp-options', $smtp_opt);
 				delete_option( 'check_email_smtp_status' );
+				// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 				do_action( 'check_mail_smtp_admin_update' );
 	
 				wp_safe_redirect(admin_url('admin.php?page=check-email-settings&tab=smtp'));

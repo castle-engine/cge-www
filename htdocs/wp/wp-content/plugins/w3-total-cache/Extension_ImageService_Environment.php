@@ -150,7 +150,7 @@ class Extension_ImageService_Environment {
 	/**
 	 * Generate AVIF rewrite rules (higher priority).
 	 *
-	 * @since 2.9.1
+	 * @since 2.9.2
 	 *
 	 * @see Dispatcher::nginx_rules_for_browsercache_section()
 	 *
@@ -266,7 +266,7 @@ location ~* \.(avif|avifs)$ {
 	/**
 	 * Generate WebP rewrite rules (lower priority than AVIF).
 	 *
-	 * @since 2.9.1
+	 * @since 2.9.2
 	 *
 	 * @see Dispatcher::nginx_rules_for_browsercache_section()
 	 *

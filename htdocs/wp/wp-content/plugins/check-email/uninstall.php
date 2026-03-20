@@ -6,17 +6,18 @@ if ( ! defined( 'ABSPATH' ) && ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 }
 
 if ( is_multisite() ) {
-	$sites = get_sites();
-
-	foreach ( $sites as $site ) {
-		switch_to_blog( $site->blog_id );
+	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+	$check_email_sites = get_sites();
+	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+	foreach ( $check_email_sites as $check_email_site ) {
+		switch_to_blog( $check_email_site->blog_id );
 		check_email_delete_db_data();
 		restore_current_blog();
 	}
 } else {
 	check_email_delete_db_data();
 }
-
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 function check_email_delete_db_data() {
 	global $wpdb;
 
