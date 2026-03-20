@@ -134,9 +134,19 @@ This way you will be able to get all these prerequisites in a trivial way, in la
 - We also will provide recipes how to use link:github_actions[Github Actions] and link:gitlab_ci[GitLab CI] to build applications for the web. So if you host your repository on _GitHub_ or _GitLab_, you can let the build be done for you.
 ====
 
-=== Installing the tools:
+==== Prerequisites using fpcupdeluxe "WA" (WebAssembly) button
 
-- Latest stable releases of *link:https://github.com/LongDirtyAnimAlf/fpcupdeluxe/releases[fpcupdeluxe]* like 2.4+ have a dedicated button with WA title to install all the needed components (Crosscompiler to WebAssembly, Pas2JS, tools). If you have issues with that, follow next manual steps:
+First, try the latest link:fpcupdeluxe[] which has a dedicated button _"WA"_ that installs most of the requirements listed below with a single click:
+
+--
+- FPC, with a cross-compiler for WebAssembly,
+- Pas2js,
+- compileserver.
+--
+
+If this works, you don't need to get these things manually.
+
+==== Prerequisites using manual installation
 
 - *link:https://getpas2js.freepascal.org/[Pas2js]*.
 +
@@ -144,7 +154,12 @@ You can get it along with https://www.freepascal.org/[FPC] or install it separat
 +
 [WARNING]
 ====
-You need to use the stable release 3.2.0 (or higher) right now. Older versions of Pas2js are not going to work well, and in particular the stable release 3.0.1 from https://getpas2js.freepascal.org/ is _not supported_. We need later versions (due to incompatibilities around `Job.Js` and friends usage, which are all solved in latest Pas2js + FPC; we also need https://gitlab.com/freepascal.org/fpc/pas2js/-/merge_requests/89[this fix for loading progress]).
+You need to use _Pas2js_ version >= 3.2.0.
+
+Older versions of Pas2js are not going to work due to:
+
+- Incompatibilities around `Job.Js` and friends usage, which are all solved in latest Pas2js + FPC.
+- We also need https://gitlab.com/freepascal.org/fpc/pas2js/-/merge_requests/89[this fix for loading progress].
 ====
 +
 _Test that it works._ Create the following simple program, save it as `hello_pas2js.lpr`:
@@ -166,7 +181,7 @@ If everything went well, you should get a file `hello_pas2js.js` in the same dir
 +
 [WARNING]
 ====
-If `pas2js` reports an error like `Error: can't find unit "System"`, it most likely means that the https://wiki.freepascal.org/pas2js.cfg[pas2js.cfg] configuration file is missing or wrong. You can either generate it using `createconfig` tool (from tools directory in Pas2JS installation, regardless if it is manual or from `fpcupdeluxe`) or take and adjust the sample from https://wiki.freepascal.org/pas2js.cfg[pas2js.cfg wiki page], then place the resulting file in a system-specific location indicated on that wiki page.
+If `pas2js` reports an error like `Error: can't find unit "System"`, it most likely means that the https://wiki.freepascal.org/pas2js.cfg[pas2js.cfg] configuration file is missing or wrong. You can either generate it using `createconfig` tool (it's in the `tools` subdirectory of Pas2js installation; if you used `fpcupdeluxe`, it's inside `<chosen_installation_path>/ccr/pas2js-rtl/tools/`) or take and adjust the sample from https://wiki.freepascal.org/pas2js.cfg[pas2js.cfg wiki page], then place the resulting file in a system-specific location indicated on that wiki page.
 ====
 +
 - *compileserver* from *link:https://getpas2js.freepascal.org/[Pas2js]*.
@@ -205,7 +220,9 @@ fpc -Twasip1 -Pwasm32 hello_wasm.lpr
 +
 If everything went well, you should get `hello_wasm.wasm` in the same directory.
 
-- *Optional, for extra size/speed optimization: https://github.com/WebAssembly/binaryen/[Binaryen (for `wasm-opt` tool)]*
+==== Prerequisites for extra optimization (optional)
+
+- For extra size/speed optimization: https://github.com/WebAssembly/binaryen/[Binaryen (for `wasm-opt` tool)]
 +
 The https://github.com/WebAssembly/binaryen[Binaryen] project includes a tool called `wasm-opt`. If you have this tool installed (available on `$PATH`) then we will use it to optimize our WASM binaries when building a _release_ version. This results in binaries that are
 +
