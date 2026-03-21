@@ -62,7 +62,7 @@ In some cases, you don't need to do this and things will work automatically (wit
 
 Download and install _Android SDK_.
 
-1. We recommend that you just install the whole https://developer.android.com/studio[Android Studio].
+1. We recommend that you just install the whole https://developer.android.com/studio[Android Studio]. Run it and it will automatically install the Android SDK for you.
 +
 This is the easiest way, in our experience. Reasons: Some configuration can be then done using GUI. You accept licenses using GUI. _Android Studio_ comes with useful additional GUI tools to manage virtual Android devices or mirror real (physical) Android devices. And it comes with the best Java version suitable for Android development, as we mentioned in previous section.
 +
