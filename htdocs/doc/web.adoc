@@ -136,15 +136,33 @@ This way you will be able to get all these prerequisites in a trivial way, in la
 
 ==== Prerequisites using fpcupdeluxe "WA" (WebAssembly) button
 
-First, try the latest link:fpcupdeluxe[] which has a dedicated button _"WA"_ that installs most of the requirements listed below with a single click:
+The latest link:fpcupdeluxe[] has a dedicated button _"WA"_ (WebAssembly) that installs most of the requirements listed below with a single click:
 
 --
-- FPC, with a cross-compiler for WebAssembly,
+- FPC, with a cross-compiler to WebAssembly,
 - Pas2js,
 - compileserver.
 --
 
-If this works, you don't need to get these things manually.
+After installing FPC (and Pas2js) using the _WA_ button:
+
+1. Point the _Castle Game Engine_ link:[editor] to use your new compiler using the editor's _"Preferences -> FPC and Lazarus"_ window. Set the _"FPC Path"_ there to `<chosen_installation_path>/fpc/bin/<target>`. If all goes well, you should see FPC version detected correctly in the same window.
+
+2. Moreover, you have to solve the problem that `fpcupdeluxe` created 2 executables of `pas2js`:
++
+--
+1. `<chosen_installation_path>/fpc/bin/<target>/pas2js`: Do not use this. It is not accompanied by the `pas2js.cfg`, and trying to use it will fail with message `Error: can't find unit "System"`.
+
+2. `<chosen_installation_path>/ccr/pas2js-rtl/tools/pas2js`: Use this.
+--
++
+To make it work, we recommend to:
++
+--
+1. Simply remove the `<chosen_installation_path>/fpc/bin/<target>/pas2js` executable (it has `.exe` extension on Windows).
+
+2. Place the `<chosen_installation_path>/ccr/pas2js-rtl/tools/` directory on your `$PATH`. This way our editor will find the correct `pas2js` and it will also be available from the command-line.
+--
 
 ==== Prerequisites using manual installation
 
