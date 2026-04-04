@@ -50,7 +50,7 @@
         <code>exportedDEF</code> (obsolete) are supported.</b></p>
 
         <p>For the XML encoding, note that the <a href="http://www.web3d.org/documents/specifications/19776-1/V3.3/Part01/concepts.html#IMPORT_EXPORTStatementSyntax">X3D XML encoding
-        spec</a> errorneously talks about <code>exportedDEF</code>
+        spec</a> erroneously talks about <code>exportedDEF</code>
         attribute of the <code>&lt;IMPORT&gt;</code> element.
         It should be called <code>importedDEF</code>,
         this is what is used in the schemas (like <a href="https://www.web3d.org/specifications/x3d-3.2.xsd">x3d-3.2.xsd</a>),
@@ -77,6 +77,10 @@
         <p>See <a href="http://web3d.org/pipermail/x3d-public_web3d.org/2010-April/000744.html">my mail on x3d-public</a>,
         submitted as X3D spec feedback.</p>
     </ul>
+
+  <li><p><?php echo x3d_node_link('InlineGeometry'); ?></p>
+
+    <p>Demo model in <a href="https://github.com/castle-engine/demo-models/tree/master/x3d/inline_geometry">demo-models/x3d/inline_geometry</a>.
 </ul>
 
 
