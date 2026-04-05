@@ -172,7 +172,12 @@ We support both ASCII and binary formats.
 
 === PLY
 
-*PLY (Polygon File Format)* is a simple format used in 3D scanning and 3D printing. We support reading models in this format.
+*PLY (Polygon File Format)* is a simple format used in 3D scanning and 3D printing.
+
+We support reading models in this format.
+
+- ASCII and binary (with any endianness) versions supported.
+- Point clouds (no faces) or regular meshes (with faces) supported.
 
 For overview of this format see:
 
