@@ -49,6 +49,12 @@ $convert_output_formats = array(
     'mime' => 'application/x-stl',
     'description' => 'STL, binary',
   ),
+  // PLY output not supported now
+  // 'ply' => array(
+  //   'extension' => '.ply',
+  //   'mime' => 'application/x-ply',
+  //   'description' => 'PLY',
+  // ),
   'ifc' => array(
     'extension' => '.ifcjson',
     'mime' => 'application/x-ifc-json',
