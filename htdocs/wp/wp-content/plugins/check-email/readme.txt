@@ -4,7 +4,7 @@ Tags: logging, email, email log, smtp, log
 Requires at least: 5.0
 Tested up to: 6.9
 Requires PHP: 5.6
-Stable tag: 2.0.12
+Stable tag: 2.0.13
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -122,6 +122,11 @@ Someone using one of my other plugins had trouble with emails not being sent. I 
 
 
 == Changelog ==
+
+= v2.0.13 - 04/04/2026 =
+- Fixed: Spam Analyzer Undefined error and fixed Go to Email log button #162
+- Enhancement: PCP Check & Code Improvement #164
+- Fixed: Vulnerability reported by WPScan Security
 
 = v2.0.12 - 03/03/2026 =
 - Fixed: LifterLMS mail logged by check-email, but not passed to configured SMTP server #152

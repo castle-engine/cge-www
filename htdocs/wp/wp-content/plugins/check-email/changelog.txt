@@ -1,4 +1,9 @@
 == Changelog ==
+= v2.0.13 - 04/04/2026 =
+- Fixed: Spam Analyzer Undefined error and fixed Go to Email log button #162
+- Enhancement: PCP Check & Code Improvement #164
+- Fixed: Vulnerability reported by WPScan Security
+
 = v2.0.12 - 03/03/2026 =
 - Fixed: LifterLMS mail logged by check-email, but not passed to configured SMTP server #152
 - Enhancement: PCP check #161

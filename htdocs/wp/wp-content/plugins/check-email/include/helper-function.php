@@ -905,8 +905,6 @@ if ( ! defined( 'CHECK_EMAIL_E_REGEXP' ) ) {
             (?:mailto:)?      # Optional mailto:
             (?:
                 [-!#$%&*+/=?^_`.{|}~\w\x80-\xFF]+  # Local part before @
-            |
-                ".*?"                               # Quoted local part
             )
             \@               # At sign (@)
             (?:
@@ -1149,7 +1147,7 @@ function check_email_track_email_open() {
                 "SELECT * FROM {$table_name} WHERE open_tracking_id = %s",
                 $open_tracking_id
             );
-            // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+            // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching,PluginCheck.Security.DirectDB.UnescapedDBParameter
             $record = $wpdb->get_row($query);
 
             if ($record) {
@@ -1278,7 +1276,7 @@ if ( is_admin() ) {
             $ck_days
         );
         // phpcs:ignore InterpolatedNotPrepared
-        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared,PluginCheck.Security.DirectDB.UnescapedDBParameter
         $results = $wpdb->get_results($query);
 
         $data = [

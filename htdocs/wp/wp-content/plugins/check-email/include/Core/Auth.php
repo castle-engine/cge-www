@@ -97,6 +97,7 @@ class Auth
 				'urlAccessToken'          => $access_token_url,
 				'urlResourceOwnerDetails' => $resource_owner_details_url,
 				'scopes'                  => 'openid profile User.Read Mail.Read Mail.Send',
+				'scopeSeparator' 		  => ' ',
 			]
 		);
 

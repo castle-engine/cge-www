@@ -601,7 +601,12 @@
           $("#ck_score_text").text(final_score_text);
           $(".ck_score").html(final_total+' / 10');
         }else{
-          html_content ='<p style="color:red;">'+response.error+'</p>';
+          html_content = '';
+          if ( response.error ) {
+            html_content ='<p style="color:red;">'+response.error+'</p>';
+          }else if ( response.response ) { 
+            html_content ='<p style="color:red;">'+response.response+'</p>';
+          }
           $("#ck_email_analyze_result").html(html_content);
           t.show();
         }

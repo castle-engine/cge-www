@@ -84,7 +84,7 @@ class Check_Email_Dashboard extends Check_Email_BasePage
                     <span class="ck_dashboard-free"><?php echo esc_html__('Free', 'check-email'); ?></span>
                     <hr/>
                     <p style="overflow:hidden;"><?php echo esc_html__('In need of a tool that allows you to easily log and view all emails sent from WordPress? Logs helps you store sent emails for auditing purposes, as well as debug email related problems in your site.', 'check-email'); ?></p>
-                    <a class="button button-primary" href="<?php echo esc_url('https://check-email.tech/docs/'); ?>"><?php echo esc_html__( "Go to Email Logs Module", 'check-email' ); ?></a>
+                    <a class="button button-primary" href="<?php echo esc_url(admin_url('admin.php?page=check-email-logs')); ?>"><?php echo esc_html__( "Go to Email Logs Module", 'check-email' ); ?></a>
                     <a class="ck_dashboard-learn-more" target="_blank" href="<?php echo esc_url('https://check-email.tech/docs/'); ?>"><?php echo esc_html__( "Learn More", 'check-email' ); ?></a>
                 </div>
                 

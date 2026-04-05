@@ -110,7 +110,7 @@ class Cdn_Plugin {
 	 *
 	 * @return void
 	 *
-	 * @since 2.9.2
+	 * @since 2.9.4
 	 */
 	public function send_headers() {
 		$cdn_engine     = $this->_config->get_string( 'cdn.engine' );

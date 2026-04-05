@@ -2,14 +2,14 @@
 # This file is distributed under the GPL v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: W3 Total Cache 2.9.2\n"
+"Project-Id-Version: W3 Total Cache 2.9.4\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/w3-total-cache\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-03-05T20:53:07+00:00\n"
+"POT-Creation-Date: 2026-03-31T20:27:19+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: w3-total-cache\n"
@@ -884,7 +884,7 @@ msgstr ""
 msgid "One of:"
 msgstr ""
 
-#: BrowserCache_Plugin.php:458
+#: BrowserCache_Plugin.php:452
 #: FeatureShowcase_Plugin_Admin.php:527
 #: Generic_WidgetSettings_View.php:43
 #: inc/options/common/top_nav_bar.php:40
@@ -902,12 +902,12 @@ msgid "Browser Cache"
 msgstr ""
 
 #. translators: 1 opening HTML a tag to Browser Cache CSP-Report-Only settings, 2 closing HTML a tag.
-#: BrowserCache_Plugin.php:602
+#: BrowserCache_Plugin.php:596
 #, php-format
 msgid "The Content Security Policy - Report Only requires the \"report-uri\" and/or \"report-to\" directives. Please define one or both of these directives %1$shere%2$s."
 msgstr ""
 
-#: BrowserCache_Plugin.php:606
+#: BrowserCache_Plugin.php:600
 msgid "Browser Cache Content-Security-Policy-Report-Only Settings"
 msgstr ""
 
@@ -3335,9 +3335,9 @@ msgstr ""
 #: Cdn_RackSpace_Api_CloudFilesCdn.php:242
 #: Cdn_RackSpace_Api_CloudFilesCdn.php:290
 #: Cdn_RackSpace_Api_Tokens.php:212
-#: Extension_CloudFlare_Api.php:293
-#: Extension_CloudFlare_Api.php:363
-#: Extension_CloudFlare_Api.php:435
+#: Extension_CloudFlare_Api.php:337
+#: Extension_CloudFlare_Api.php:407
+#: Extension_CloudFlare_Api.php:479
 #, php-format
 msgid "Failed to reach API endpoint, got unexpected response: %1$s"
 msgstr ""
@@ -4446,7 +4446,7 @@ msgstr ""
 
 #: Extension_AlwaysCached_Plugin_Admin.php:124
 #: Extension_AlwaysCached_Plugin_Admin.php:125
-#: Generic_Plugin.php:673
+#: Generic_Plugin.php:631
 msgid "Page Cache Queue"
 msgstr ""
 
@@ -4530,24 +4530,20 @@ msgstr ""
 msgid "Cloudflare cache successfully emptied."
 msgstr ""
 
-#: Extension_CloudFlare_Api.php:268
-#: Extension_CloudFlare_Api.php:338
-#: Extension_CloudFlare_Api.php:408
+#: Extension_CloudFlare_Api.php:312
+#: Extension_CloudFlare_Api.php:382
+#: Extension_CloudFlare_Api.php:452
 msgid "Not authenticated."
 msgstr ""
 
-#: Extension_CloudFlare_Api.php:284
-#: Extension_CloudFlare_Api.php:354
-#: Extension_CloudFlare_Api.php:426
+#: Extension_CloudFlare_Api.php:328
+#: Extension_CloudFlare_Api.php:398
+#: Extension_CloudFlare_Api.php:470
 msgid "Failed to reach API endpoint."
 msgstr ""
 
-#: Extension_CloudFlare_Api.php:474
-msgid "Missing authentication email and/or API token / global key."
-msgstr ""
-
-#: Extension_CloudFlare_Api.php:491
-msgid "Improper API token / global key length."
+#: Extension_CloudFlare_Api.php:546
+msgid "Missing API token, or Global API key with account email."
 msgstr ""
 
 #: Extension_CloudFlare_Cdn_Page_View.php:19
@@ -5095,7 +5091,7 @@ msgid "%1$sTLS%2$s Client authentication requires Cloudflare to connect to your 
 msgstr ""
 
 #: Extension_CloudFlare_Plugin.php:235
-#: Extension_CloudFlare_Plugin_Admin.php:217
+#: Extension_CloudFlare_Plugin_Admin.php:219
 msgid "Cloudflare"
 msgstr ""
 
@@ -5124,15 +5120,15 @@ msgstr ""
 msgid "%1$sCloudflare plugin detected. We recommend removing the plugin as it offers no additional capabilities when W3 Total Cache is installed. This message will disappear when Cloudflare is removed. %2$s%3$s"
 msgstr ""
 
-#: Extension_CloudFlare_Plugin_Admin.php:380
+#: Extension_CloudFlare_Plugin_Admin.php:393
 msgid "Empty All Caches Except Cloudflare"
 msgstr ""
 
-#: Extension_CloudFlare_Plugin_Admin.php:469
+#: Extension_CloudFlare_Plugin_Admin.php:482
 msgid "Cloudflare settings are successfully updated."
 msgstr ""
 
-#: Extension_CloudFlare_Plugin_Admin.php:477
+#: Extension_CloudFlare_Plugin_Admin.php:490
 msgid "Failed to update Cloudflare settings:"
 msgstr ""
 
@@ -7240,7 +7236,7 @@ msgstr ""
 msgid "Clear Log"
 msgstr ""
 
-#: Generic_Plugin.php:562
+#: Generic_Plugin.php:518
 #: Generic_Plugin_Admin.php:273
 #: Generic_Plugin_Admin.php:279
 #: Generic_Plugin_Admin.php:285
@@ -7254,27 +7250,27 @@ msgstr ""
 msgid "Performance"
 msgstr ""
 
-#: Generic_Plugin.php:576
+#: Generic_Plugin.php:532
 msgid "Purge All Caches"
 msgstr ""
 
-#: Generic_Plugin.php:596
+#: Generic_Plugin.php:552
 msgid "Purge All Caches Except Bunny CDN"
 msgstr ""
 
-#: Generic_Plugin.php:622
+#: Generic_Plugin.php:580
 msgid "Purge All Caches Except Cloudflare"
 msgstr ""
 
-#: Generic_Plugin.php:634
+#: Generic_Plugin.php:592
 msgid "Purge Current Page"
 msgstr ""
 
-#: Generic_Plugin.php:645
+#: Generic_Plugin.php:603
 msgid "Purge Modules"
 msgstr ""
 
-#: Generic_Plugin.php:652
+#: Generic_Plugin.php:610
 #: inc/options/common/top_nav_bar.php:86
 #: Root_AdminMenu.php:51
 #: Root_AdminMenu.php:52
@@ -7282,7 +7278,7 @@ msgstr ""
 msgid "Feature Showcase"
 msgstr ""
 
-#: Generic_Plugin.php:662
+#: Generic_Plugin.php:620
 #: Generic_WidgetSettings.php:38
 #: Generic_WidgetSettings_View.php:96
 #: inc/options/common/top_nav_bar.php:20
@@ -7302,11 +7298,11 @@ msgstr ""
 msgid "General Settings"
 msgstr ""
 
-#: Generic_Plugin.php:684
+#: Generic_Plugin.php:642
 msgid "Manage Extensions"
 msgstr ""
 
-#: Generic_Plugin.php:694
+#: Generic_Plugin.php:652
 #: PageSpeed_Instructions.php:381
 #: PageSpeed_Instructions.php:548
 #: PageSpeed_Instructions.php:565
@@ -7315,7 +7311,7 @@ msgstr ""
 msgid "FAQ"
 msgstr ""
 
-#: Generic_Plugin.php:704
+#: Generic_Plugin.php:662
 #: inc/options/common/footer.php:62
 #: inc/options/common/top_nav_bar.php:212
 #: inc/options/common/top_nav_bar.php:213
@@ -7325,78 +7321,78 @@ msgstr ""
 msgid "Support"
 msgstr ""
 
-#: Generic_Plugin.php:715
+#: Generic_Plugin.php:673
 msgid "Debug: Overlays"
 msgstr ""
 
-#: Generic_Plugin.php:744
+#: Generic_Plugin.php:702
 msgid "Dismiss notice"
 msgstr ""
 
-#: Generic_Plugin.php:812
+#: Generic_Plugin.php:770
 #: Generic_Plugin_Admin.php:1152
 msgid "All caches successfully emptied."
 msgstr ""
 
-#: Generic_Plugin.php:813
+#: Generic_Plugin.php:771
 msgid "All caches successfully emptied except CDN."
 msgstr ""
 
-#: Generic_Plugin.php:814
+#: Generic_Plugin.php:772
 #: Generic_Plugin_Admin.php:1153
 msgid "Memcached cache(s) successfully emptied."
 msgstr ""
 
-#: Generic_Plugin.php:815
+#: Generic_Plugin.php:773
 #: Generic_Plugin_Admin.php:1154
 msgid "Opcode cache(s) successfully emptied."
 msgstr ""
 
-#: Generic_Plugin.php:816
+#: Generic_Plugin.php:774
 #: Generic_Plugin_Admin.php:1155
 msgid "Disk cache(s) successfully emptied."
 msgstr ""
 
-#: Generic_Plugin.php:817
+#: Generic_Plugin.php:775
 #: Generic_Plugin_Admin.php:1156
 msgid "Page cache successfully emptied."
 msgstr ""
 
-#: Generic_Plugin.php:818
+#: Generic_Plugin.php:776
 #: Generic_Plugin_Admin.php:1157
 msgid "Database cache successfully emptied."
 msgstr ""
 
-#: Generic_Plugin.php:819
+#: Generic_Plugin.php:777
 #: Generic_Plugin_Admin.php:1158
 msgid "Object cache successfully emptied."
 msgstr ""
 
-#: Generic_Plugin.php:820
+#: Generic_Plugin.php:778
 #: Generic_Plugin_Admin.php:1159
 msgid "Fragment cache successfully emptied."
 msgstr ""
 
-#: Generic_Plugin.php:821
+#: Generic_Plugin.php:779
 #: Generic_Plugin_Admin.php:1160
 msgid "Minify cache successfully emptied."
 msgstr ""
 
-#: Generic_Plugin.php:822
+#: Generic_Plugin.php:780
 #: Generic_Plugin_Admin.php:1161
 msgid "Media Query string has been successfully updated."
 msgstr ""
 
-#: Generic_Plugin.php:823
+#: Generic_Plugin.php:781
 #: Generic_Plugin_Admin.php:1162
 msgid "Varnish servers successfully purged."
 msgstr ""
 
-#: Generic_Plugin.php:824
+#: Generic_Plugin.php:782
 msgid "CDN was successfully purged."
 msgstr ""
 
-#: Generic_Plugin.php:825
+#: Generic_Plugin.php:783
 #: Generic_Plugin_Admin.php:1178
 msgid "Post successfully purged."
 msgstr ""
@@ -13375,7 +13371,7 @@ msgid "Additional home URLs:"
 msgstr ""
 
 #. translators: 1: Engine name, 2: Reject reason placeholder, 3: Page key extension.
-#: PgCache_ContentGrabber.php:1765
+#: PgCache_ContentGrabber.php:1793
 #, php-format
 msgid "Page Caching using %1$s%2$s%3$s"
 msgstr ""

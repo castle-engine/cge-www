@@ -1194,7 +1194,7 @@ class ObjectCache_WpObjectCache_Regular {
 	/**
 	 * Persist multiple cache entries using the most efficient method available.
 	 *
-	 * @since 2.9.2
+	 * @since 2.9.4
 	 *
 	 * @param object $cache           Cache engine instance.
 	 * @param array  $payload         Map of cache_key => structured payload.

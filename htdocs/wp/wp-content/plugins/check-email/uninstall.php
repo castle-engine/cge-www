@@ -38,12 +38,13 @@ function check_email_delete_db_data() {
 		if ( $wpdb->get_var( $wpdb->prepare( "SHOW TABLES LIKE  %s",$wpdb->esc_like( $table_name )) ) == $table_name ) {
 			
 			$wpdb->query( 
-				//phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.SchemaChange -- Reason Custom table drop on uninstall
+				//phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.SchemaChange,PluginCheck.Security.DirectDB.UnescapedDBParameter -- Reason Custom table drop on uninstall
 				"DROP TABLE $table_name" );
 		}
 		$table_name_email_tracker = $wpdb->prefix . 'check_email_error_logs';
 		//phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching	-- just to check if table exists
 		if ( $wpdb->get_var( $wpdb->prepare( "SHOW TABLES LIKE  %s",$wpdb->esc_like( $table_name_email_tracker )) ) == $table_name_email_tracker ) {
+			// phpcs:ignore PluginCheck.Security.DirectDB.UnescapedDBParameter
 			$wpdb->query( 
 				//phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.SchemaChange -- Reason Custom table drop on uninstall
 				"DROP TABLE $table_name_email_tracker" );
