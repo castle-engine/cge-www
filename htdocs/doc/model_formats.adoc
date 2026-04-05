@@ -170,6 +170,22 @@ https://en.wikipedia.org/wiki/STL_%28file_format%29[STL] is a simple
 popular 3D format used in 3D printing.
 We support both ASCII and binary formats.
 
+=== PLY
+
+*PLY (Polygon File Format)* is a simple format used in 3D scanning and 3D printing. We support reading models in this format.
+
+For overview of this format see:
+
+- https://people.sc.fsu.edu/~jburkardt/data/ply/ply.html[PLY Files - by John Burkardt]
+- https://paulbourke.net/dataformats/ply/[PLY Polygon File Format - by Paul Bourke]
+- https://en.wikipedia.org/wiki/PLY_(file_format)[Wikipedia: PLY file format]
+
+Testcases:
+
+- https://sketchfab.com/3d-models/kaktus-ply-7b7cc7188f17468595506500e186a9c0[kaktus PLY model from Sketchfab (can be downloaded as PLY source)]
+- https://github.com/castle-engine/demo-models/tree/master/ply[Our demo-models, ply subdirectory]
+- Above overviews also link to various test PLY files.
+
 === Videoscape GEO
 
 *http://paulbourke.net/dataformats/geo/[Videoscape GEO]*
