@@ -46,7 +46,7 @@ $convert_output_formats = array(
   ),
   'stl' => array(
     'extension' => '.stl',
-    'mime' => 'application/x-stl',
+    'mime' => 'model/stl',
     'description' => 'STL, binary',
   ),
   // PLY output not supported now
