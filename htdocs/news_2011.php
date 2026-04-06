@@ -63,7 +63,7 @@ castle_thumbs(array(
 
   <li><i>"Edit -&gt; H-Anim Joints Visualization"</i> now asks for visualization size. Some H-Anim with VRML 97 fixes.</li>
 
-  <li><a href="https://castle-engine.io/demo_models.php">VRML/X3D demo models 3.1.0</a> are also released, with many improvements and additions to demos in <code>shaders</code> and <code>compositing_shaders</code> subdirectories.
+  <li><a href="https://castle-engine.io/demo_models">VRML/X3D demo models 3.1.0</a> are also released, with many improvements and additions to demos in <code>shaders</code> and <code>compositing_shaders</code> subdirectories.
 </ul>
 
 <p>For engine 3.0.0, I have to admit that we didn\'t implement all planned features. Most importantly: easy AI, and engine tutorials, are postponed to next engine 3.1.0 release. However, we still have many <b>new features in <a href="https://castle-engine.io/engine.php">Castle Game Engine 3.0.0</a> for developers</b>:</p>
@@ -104,7 +104,7 @@ castle_thumbs(array(
   <li>Main page reworked into three elegant panels directing users to our three main attractions (game, tool, engine). Previously, this was communicated using two paragraphs of text. Also, news moved to a separate tab <a href="https://castle-engine.io/news.php">"News"</a>. See before/after images on the side of this news post.</li>
   <li>Nice OS icons for download links.</li>
   <li>Google +1 button on the main page.</li>
-  <li><a href="https://castle-engine.io/engine.php">Engine sources</a> and <a href="https://castle-engine.io/demo_models.php">demo_models</a> are now offered as zip archives too (in addition to tar.gz), to make it easier to unpack them on Windows.</li>
+  <li><a href="https://castle-engine.io/engine.php">Engine sources</a> and <a href="https://castle-engine.io/demo_models">demo_models</a> are now offered as zip archives too (in addition to tar.gz), to make it easier to unpack them on Windows.</li>
 </ul>
 
 <p>Other programs are released too, to give them small improvements and update their sources to be compatible with latest engine 3 API. In particular, <a href="https://castle-engine.io/glviewimage.php">glViewImage 1.4.0</a> is improved with new image formats support.
@@ -151,14 +151,14 @@ castle_thumbs(array(
           <li>Unfortunately, on some older GPUs, they may exhibit really weird behavior and uncover wild OpenGL bugs.
           <li>In some cases, there are accuracy problems. These are known VSM problems (see papers around VSM describing possible improvements of the base idea).
         </ul>
-        <p>You\'re most welcome to test <i>Variance Shadow Maps</i> yourself. For starters, just get <a href="https://castle-engine.io/demo_models.php">demo models</a>, and open models inside shadow_maps subdirectory there with <a href="https://castle-engine.io/view3dscene.php">view3dscene</a>. <code>shadow_maps/sunny_street/sunny_street.x3dv</code> is one test worth trying, <code>projected_spotlight_*</code> is the other. Turn on Variance Shadow Maps by menu item <i>"View -&gt; Shadow Maps -&gt; Variance Shadow Maps"</i>. Please report on <a href="https://forum.castle-engine.io/">forum</a> the GPUs where they work / where they don\'t, this will help me get some idea where they can/should be enabled by default.</p>
+        <p>You\'re most welcome to test <i>Variance Shadow Maps</i> yourself. For starters, just get <a href="https://castle-engine.io/demo_models">demo models</a>, and open models inside shadow_maps subdirectory there with <a href="https://castle-engine.io/view3dscene.php">view3dscene</a>. <code>shadow_maps/sunny_street/sunny_street.x3dv</code> is one test worth trying, <code>projected_spotlight_*</code> is the other. Turn on Variance Shadow Maps by menu item <i>"View -&gt; Shadow Maps -&gt; Variance Shadow Maps"</i>. Please report on <a href="https://forum.castle-engine.io/">forum</a> the GPUs where they work / where they don\'t, this will help me get some idea where they can/should be enabled by default.</p>
       </li>
     </ul>
   </li>
   <li>Fill Mode <i>"Solid Wireframe"</i> and <i>"Normal with Silhouette"</i> improved: wireframe is now always white. (Previously it was textured &mdash; which was hardly visible in many cases.)</li>
   <li>Saving viewpoint in some specific configurations (when look direction was close to +Z) fixed.</li>
   <li><a href="https://castle-engine.io/x3d_implementation_shaders.php#section_geometry">Geometry shaders</a> fixed on ATI graphic cards fixed (see <a href="https://sourceforge.net/p/castle-engine/tickets/2/">ticket #2</a> and <a href="https://castle-engine.io/x3d_implementation_shaders.php#section_geometry_input_size">macro CASTLE_GEOMETRY_INPUT_SIZE</a> docs.)</li>
-  <li>Fixes to <a href="https://castle-engine.io/demo_models.php">demo models</a> GLSL shaders to work with <a href="http://freedesktop.org/wiki/Software/gallium">Gallium3D</a> on ATI graphic cards. Finally, we have an open-source OpenGL drivers with real support for GLSL! Not everything works with Gallium 3D perfectly, but a lot of stuff does work, and works even quite fast  &mdash; which is really great, compared to state of GLSL in Mesa3D a couple of years ago.</li>
+  <li>Fixes to <a href="https://castle-engine.io/demo_models">demo models</a> GLSL shaders to work with <a href="http://freedesktop.org/wiki/Software/gallium">Gallium3D</a> on ATI graphic cards. Finally, we have an open-source OpenGL drivers with real support for GLSL! Not everything works with Gallium 3D perfectly, but a lot of stuff does work, and works even quite fast  &mdash; which is really great, compared to state of GLSL in Mesa3D a couple of years ago.</li>
   <li><a href="https://castle-engine.io/x3d_implementation_interpolation.php">ColorInterpolator and ColorSetInterpolator</a> interpolate colors in HSV space now. Our engine contains simple HSV&lt;-&gt;RGB conversion routines for general use in <code>base/castlecolors.pas</code> unit.</li>
 </ol>
 '),
@@ -183,7 +183,7 @@ castle_thumbs(array(
 
     <p>Geometry shaders are executed between the vertex and fragment shader. They can change the primitive type (like triangles to points), explode a single primitive into many (maybe adding some intermediate vertexes), remove some primitives and more. We support geometry shaders following modern GLSL version &gt;= 1.50 (since OpenGL 3.2). See the <a href="https://castle-engine.io/x3d_implementation_shaders.php#section_geometry">documentation</a> for more details and links to example X3D files.</p>
 
-    <p>Interesting demos using geometry shaders are most welcome! You can post them on our <a href="https://forum.castle-engine.io/">forum</a>. Nice demos may be included in our <a href="https://castle-engine.io/demo_models.php">demo models</a>.</p>
+    <p>Interesting demos using geometry shaders are most welcome! You can post them on our <a href="https://forum.castle-engine.io/">forum</a>. Nice demos may be included in our <a href="https://castle-engine.io/demo_models">demo models</a>.</p>
   </li>
 
   <li><p><a href="https://castle-engine.io/compositing_shaders.php">Michalis Ph.D. thesis, describing the "compositing shaders" idea, is published here :)</a>. There are HTML and PDF versions (45 pages for A4) with the same content.</p>
@@ -193,13 +193,13 @@ castle_thumbs(array(
     <p>As always, comments and tests of our <i>compositing shaders</i> idea are most welcome!</p>
   </li>
 
-  <li><p>Various new demos added to <a href="https://castle-engine.io/demo_models.php">demo models</a> (only in SVN now), like simple demos of <i>cellular texturing</i>, see <code>demo_models/compositing_shaders/cellular_texturing*.x3dv</code>.</p>
+  <li><p>Various new demos added to <a href="https://castle-engine.io/demo_models">demo models</a> (only in SVN now), like simple demos of <i>cellular texturing</i>, see <code>demo_models/compositing_shaders/cellular_texturing*.x3dv</code>.</p>
   </li>
 
   <li><p>Various small fixes and enhancements to <a href="https://castle-engine.io/compositing_shaders.php">compositing shaders</a> implementation for texture and light effects. Due to bugs/omissions, previously you could only use there texture/light-specific plugs, like <code>PLUG_light_scale</code> (for light source) and <code>PLUG_texture_color</code> (for texture). Now you can also use there:</p>
     <ul>
-      <li>plugs using other user-defined plugs. See new <code>texture_effect.x3dv</code> example (in SVN of <a href="https://castle-engine.io/demo_models.php">demo models</a>).</li>
-      <li>plugs using shape plugs (like <code>PLUG_vertex_object_space</code>). See new <code>texture_coord_generate.x3dv</code> (in SVN of <a href="https://castle-engine.io/demo_models.php">demo models</a>).</li>
+      <li>plugs using other user-defined plugs. See new <code>texture_effect.x3dv</code> example (in SVN of <a href="https://castle-engine.io/demo_models">demo models</a>).</li>
+      <li>plugs using shape plugs (like <code>PLUG_vertex_object_space</code>). See new <code>texture_coord_generate.x3dv</code> (in SVN of <a href="https://castle-engine.io/demo_models">demo models</a>).</li>
     </ul>
   </li>
 </ol>'),
@@ -440,7 +440,7 @@ castle_thumbs(array(
 
 <p>Note that Blender currently writes incorrect normals (disregarding <i>"Auto Smooth Angle"</i>), this makes some models exported from Blender (Collada as well as X3D) have incorrect shading.<!-- (Todo: link to #bugreport).--></p>
 
-<p>Also, <a href="https://castle-engine.io/demo_models.php">VRML/X3D demo models 3.0.1</a> have been released, with minor fixes and updates, including better webpage text.</p>'),
+<p>Also, <a href="https://castle-engine.io/demo_models">VRML/X3D demo models 3.0.1</a> have been released, with minor fixes and updates, including better webpage text.</p>'),
 
     array('title' => 'view3dscene 3.10.1, engine 2.5.1 released: XML output',
           'year' => 2011,
@@ -545,7 +545,7 @@ castle_thumbs(array(
     </ul>
   </li>
 
-  <li><p>We also release <b>grand new version of our <a href="https://castle-engine.io/demo_models.php">VRML/X3D demo models 3.0.0</a></b> (previously called <i>Kambi VRML test suite</i>). A ton of new models were added, and many were improved &mdash; the whole archive is 65 megabytes now (compared to previous 41 megabytes).
+  <li><p>We also release <b>grand new version of our <a href="https://castle-engine.io/demo_models">VRML/X3D demo models 3.0.0</a></b> (previously called <i>Kambi VRML test suite</i>). A ton of new models were added, and many were improved &mdash; the whole archive is 65 megabytes now (compared to previous 41 megabytes).
 
     <p>Most of the stuff is reorganized into directories named after features (like <code>shadow_maps</code>, <code>shaders</code> etc.) as opposed to versions (like <code>vrml_2</code>, <code>x3d</code>). Brand new models are mainly in the <code>compositing_shaders</code> and <code>shadow_volumes</code> directories, but also explore other directories &mdash; the new layout should allow you to discover some old-but-hard-to-find gems inside :) The idea is that new directory names indicate features, so you can immediately see the features of engine and view3dscene.</p>
 
@@ -615,7 +615,7 @@ castle_thumbs(array(
 
   <li><p><code>SpotLight.beamWidth</code> is handled perfectly and precisely with shader pipeline. <a href="https://castle-engine.io/x3d_implementation_lighting.php#section_per_pixel_lighting">See per-pixel lighting notes</a></p></li>
 
-  <li><p>Shadow volumes demos are moved to <code>demo_models/shadow_volumes/</code> (will be part of next release of <a href="https://castle-engine.io/demo_models.php">demo models</a>). Dragging with mouse moves/scales/rotates stuff (try dragging with Shift or Ctrl pressed), this uses standard VRML/X3D <code>PlaneSensor</code> and <code>SphereSensor</code> features. So you can actually see that shadow volumes work perfectly on dynamic scenes.</p>
+  <li><p>Shadow volumes demos are moved to <code>demo_models/shadow_volumes/</code> (will be part of next release of <a href="https://castle-engine.io/demo_models">demo models</a>). Dragging with mouse moves/scales/rotates stuff (try dragging with Shift or Ctrl pressed), this uses standard VRML/X3D <code>PlaneSensor</code> and <code>SphereSensor</code> features. So you can actually see that shadow volumes work perfectly on dynamic scenes.</p>
 
     <p>Old and mostly useless demo <code>examples/shadow_volume_test/</code> is removed, all the fun can now be performed by opening the files from <a href="https://castle-engine.io/view3dscene.php">view3dscene</a> (or any other 3D browser from engine examples).</p></li>
 
@@ -658,7 +658,7 @@ castle_thumbs(array(
     <ul>
       <li>Lights attenuation is correctly rendered in shader pipeline.</li>
       <li>X3D light source "global" field is correctly supported now. (Previously, we were following VRML 97 spec, where directional lights are never global and point/spot lights are always global.)</li>
-      <li>Light radius is correctly and precisely (per-pixel) checked in shader pipeline. This allows to use light "radius" for much more dramatic effects, compare 2 screenshots from light_street_lights_radius demo (source model in <a href="https://castle-engine.io/demo_models.php">demo models</a> SVN).</li>
+      <li>Light radius is correctly and precisely (per-pixel) checked in shader pipeline. This allows to use light "radius" for much more dramatic effects, compare 2 screenshots from light_street_lights_radius demo (source model in <a href="https://castle-engine.io/demo_models">demo models</a> SVN).</li>
     </ul></li>
 
   <li><p>Other shader pipeline improvements:</p>
@@ -815,7 +815,7 @@ castle_thumbs(array(
 
     <p>I wrote a paper about this that will be submitted for the <a href="http://www.web3d2011.org/">Web3D 2011 conference</a>, and will be available here publicly later (I don\'t think I should make it public before being accepted). Drop me a mail if you\'d like to get a peek at my paper PDF earlier.</p></li>
 
-  <li><p><a href="https://castle-engine.io/demo_models.php">"Kambi VRML test suite" will be renamed to "VRML / X3D demo models"</a> upon the next release. The SVN already has many improvements:</p>
+  <li><p><a href="https://castle-engine.io/demo_models">"Kambi VRML test suite" will be renamed to "VRML / X3D demo models"</a> upon the next release. The SVN already has many improvements:</p>
 
     <ul>
       <li>New directory layout, to emphasize foremost what features are tested (shadow_maps, shaders etc.)</li>

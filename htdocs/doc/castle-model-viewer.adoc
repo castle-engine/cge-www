@@ -1,6 +1,6 @@
 # Castle Model Viewer (formerly view3dscene)
 include::common.adoc[]
-:description: Viewer for 3D and 2D model formats supported by Castle Game Engine: glTF, X3D, VRML, MD3, OBJ, STL, Collada, Spine JSON, sprite sheets (and more). Supports viewing the scene in the "Examine" mode and walking in the virtual world with collision detection and gravity. Many 3D graphic effects are available like mirrors, shadows, shaders. We can also convert between some model formats. Free and open-source software. For Linux, Windows, macOS, Raspberry Pi and more.
+:description: Viewer for 3D and 2D model formats supported by Castle Game Engine: glTF, X3D, VRML, MD3, OBJ, STL, PLY, Collada, Spine JSON, sprite sheets (and more). Supports viewing the scene in the "Examine" mode and walking in the virtual world with collision detection and gravity. Many 3D graphic effects are available like mirrors, shadows, shaders. We can also convert between some model formats. Free and open-source software. For Linux, Windows, macOS, Raspberry Pi and more.
 :cge-social-share-image: view3dscene_outlines.png
 
 == Introduction
@@ -18,10 +18,11 @@ include::common.adoc[]
 // - Wavefront OBJ
 // - 3DS
 // - STL
+// - PLY
 // - Collada
 // - link:model_formats[and more].
 
-Viewer for link:model_formats[3D and 2D model formats supported by the Castle Game Engine]: link:gltf[glTF], link:x3d[X3D], link:x3d[VRML], link:ifc[IFC], link:spine[Spine JSON], link:sprite_sheets[sprite sheets (in Castle Game Engine, Cocos2D and Starling XML formats)], link:md3[MD3], Wavefront OBJ, 3DS, STL, Collada, link:model_formats[and more].
+Viewer for link:model_formats[3D and 2D model formats supported by the Castle Game Engine]: link:gltf[glTF], link:x3d[X3D], link:x3d[VRML], link:ifc[IFC], link:spine[Spine JSON], link:sprite_sheets[sprite sheets (in Castle Game Engine, Cocos2D and Starling XML formats)], link:md3[MD3], Wavefront OBJ, 3DS, STL, PLY, Collada, link:model_formats[and more].
 
 Examine or walk in the virtual world with collisions, gravity, animations, X3D sensors, shadows, mirrors, shaders and more. View it from multiple cameras at once. Take screenshots with various options (transparent background, cube maps).
 
@@ -166,7 +167,7 @@ flawlessly :) So give it a try!
 === Inspection (in all navigation modes)
 
 Left Mouse Button Click::
-Interact with the X3D world, using https://castle-engine.io/x3d_implementation_pointingdevicesensor.php[X3D pointing-device sensors]. Open models in https://castle-engine.io/demo_models.php[demo models] (subdirectory https://github.com/castle-engine/demo-models/tree/master/sensors_pointing_device[sensors_pointing_device]) to experience what this means.
+Interact with the X3D world, using https://castle-engine.io/x3d_implementation_pointingdevicesensor.php[X3D pointing-device sensors]. Open models in link:demo_models[demo models] (subdirectory https://github.com/castle-engine/demo-models/tree/master/sensors_pointing_device[sensors_pointing_device]) to experience what this means.
 
 Ctrl + Right Mouse Button Click::
 Pick a point, selecting a triangle and it's containing shape. Some operations can then act on the selected point / triangle / shape, e.g. _"Help -> Selected Object Information"_ or _"Edit -> Hide Shape"_.
