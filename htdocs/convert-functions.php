@@ -52,7 +52,7 @@ $convert_output_formats = array(
   // PLY output not supported now
   // 'ply' => array(
   //   'extension' => '.ply',
-  //   'mime' => 'application/x-ply',
+  //   'mime' => 'model/ply',
   //   'description' => 'PLY',
   // ),
   'ifc' => array(
