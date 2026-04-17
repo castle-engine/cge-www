@@ -6,7 +6,7 @@ include::common.adoc[]
 
 **When working to solve the problem, we should be gaining understanding (of the problem, our available tools, solutions...), not losing it.**
 
-- Don't use AI in a way that makes you dumber. Don't make solutions that are unmaintainable, not understood, badly designed, mixed with hallucinated docs or assumptions.
+- Don't use AI in a way that makes you dumber. Don't make solutions that are unmaintainable, poorly understood, badly designed, mixed with hallucinated docs or assumptions.
 
 - Do use AI in a way that makes you smarter. Reach the right solution by extra information and reviews (that you understand and agree with), reach it faster by suggestions (that you understand, and can confirm they point you in the right direction).
 
@@ -17,7 +17,7 @@ This page documents _required rules_ when using AI to contribute to _Castle Game
 - **You are responsible** for everything you submit: code, documentation, commit messages, issue/PR descriptions.
 // mouthful :)
 //Make it reflect your professionalism and your comprehension of the problem.
-- **Understand everything** you submit. Know reasons behind it. Do own research and decision-making.
+- **Understand everything** you submit. Know the reasons behind it. Do your own research and decision-making.
 - **Be critical** of AI suggestions. They may contain hallucinations or unoptimal approaches.
 - **Keep AI conversations private**. Don't clutter issues with your conversations with AI.
 //Don't clutter descriptions with AI-generated marketing statements.
@@ -25,15 +25,15 @@ This page documents _required rules_ when using AI to contribute to _Castle Game
 
 A good rule of thumb is to **generate smaller, not larger, pieces of code / documentation**.
 
-- **AI-generated larger pieces of code / documentation are often wrong.** They confuse you (suggesting further work in a wrong direction), they show hallucinated or deprecated APIs, they do not use recommended approaches (e.g. AI often puts everything in one big program file, which makes application non-link:cross_platform[cross-platform] and ignores our link:views[] concept to organize applications), they do not understand the platform-specific and compiler-specific language nuances etc.
+- **AI-generated larger pieces of code / documentation are often wrong.** They confuse you (suggesting further work in the wrong direction), they show hallucinated or deprecated APIs, they do not use recommended approaches (e.g. AI often puts everything in one big program file, which makes the application non-link:cross_platform[cross-platform] and ignores our link:views[] concept to organize applications), they do not understand the platform-specific and compiler-specific language nuances etc.
 
-- **Do start with small tasks for AI.** Use AI for code completion (and reject without hesitation wrong suggestions). Use agents for smaller tasks, that you have an idea how to solve yourself. Ask questions about the codebase "how is X done" (and check the answer).
+- **Do start with small tasks for AI.** Use AI for code completion (and reject without hesitation wrong suggestions). Use agents for smaller tasks that you have an idea how to solve yourself. Ask questions about the codebase "how is X done" (and check the answer).
 
 == Introduction
 
 [NOTE]
 ====
-Unlike most of our engine documentation, parts of this text is written in my personal (https://michalis.xyz/[hi, I'm Michalis]) voice, sharing my personal experience. I hope this helps you understand the reasoning behind some of the statements.
+Unlike most of our engine documentation, parts of this text are written in my personal (https://michalis.xyz/[hi, I'm Michalis]) voice, sharing my personal experience. I hope this helps you understand the reasoning behind some of the statements.
 
 Also, I'm sorry it's a long text. Ironically, being too verbose is also a complaint we often have about AI-generated stuff. I can only hope that my human writing is more entertaining / informative :)
 ====
@@ -44,7 +44,7 @@ From my conversations with fellow developers, I know we've all tried using AI, a
 +
 Since then, I've been using AI for many tasks -- code completion, code exploration, self reviews... I recognize it's just a probabilistic machine that repeats, with only a certain probability of being right, the "Internet wisdom" -- nothing more, nothing less.
 
-- One of my personal failures, quite recent actually (2025), was asking AI for a proof of https://en.wikipedia.org/wiki/Pythagorean_theorem[Pythagorean theorem]. AI incorrectly combined a few different ways to go about proving this theorem, and it made a nonsense step in the middle of the proof, temporarily changing the meaning of the symbols and claiming invalid things about the situation. To make matters worse, this incorrect answer from AI looked _plausible_ (if you just scan it quickly without really comprehending each step, you will nod your head and say _"yes, that sounds about right"_), and it was stated with _confidence_. Since AI is trained to produce output that sounds plausible and confident.
+- One of my personal failures, quite recent actually (2025), was asking AI for a proof of https://en.wikipedia.org/wiki/Pythagorean_theorem[Pythagorean theorem]. AI incorrectly combined a few different ways to go about proving this theorem, and it made a nonsensical step in the middle of the proof, temporarily changing the meaning of the symbols and claiming invalid things about the situation. To make matters worse, this incorrect answer from AI looked _plausible_ (if you just scan it quickly without really comprehending each step, you will nod your head and say _"yes, that sounds about right"_), and it was stated with _confidence_. Since AI is trained to produce output that sounds plausible and confident.
 +
 The educational implications of such AI mistakes are worrying. Think about children who want to learn math and ask AI such a question, perhaps because they didn't understand the proof their teacher showed during a school lesson, so they come home and ask AI for help. If I were 10 years old and used AI to help me understand the Pythagorean theorem proof, I would conclude _"well, one step in this proof doesn't look right; I'm probably too stupid to understand it"_. It's only because I'm older (and more confident in my own math skills) that I can see the reality: _"one step in this proof is incorrect; AI is wrong because it's just a probabilistic machine guessing what to tell me to sound most plausible"_.
 
@@ -69,15 +69,15 @@ Consider:
 - Whether it supports all our compilers and platforms. AI is often mistaken about nuances here; our CI/CD helps detect issues.
 --
 
-- The same goes for documentation and issue/PR descriptions. Make sure it's a good documentation, simple, and to the point. Documentation must actually help human developers, not be just _"something you had to provide, so you asked AI to produce something that looks plausible, to pass the review"_.
+- The same goes for documentation and issue/PR descriptions. Make sure it's good documentation, simple, and to the point. Documentation must actually help human developers, not be just _"something you had to provide, so you asked AI to produce something that looks plausible, to pass the review"_.
 +
-Especially watch out for overly long and marketing-style statements. We don't want long documents with emoticons claiming that _"this is the best solution in the world"_. And while being grammatically correct is nice, it's not the most important thing we look for in a good documentation.
+Especially watch out for overly long and marketing-style statements. We don't want long documents with emoticons claiming that _"this is the best solution in the world"_. And while being grammatically correct is nice, it's not the most important thing we look for in good documentation.
 +
 We look for documentation that is _precise_, _practically helpful_ (no marketing buzzwords, just explain the problem and solution), and _concise_ (shorter is better).
 +
-See my https://github.com/castle-engine/castle-engine/pull/694[own test, using an AI agent to develop MCP] where AI did... a useful start, but it required a lot of fixes (to even make this start be correct, as AI tried to extend the test suite, failed, and happily assumed it's all good; it also implemented 2 solutions, both wrong in different ways, at the beginning). And it's still far from a useful solution, it cannot be used in a way we need, and it's only a mockup that isn't aware of the real project. Yet AI confidently claims in the PR that _"This implementation makes Castle Game Engine the first game engine with comprehensive MCP support"_. It's a hilariously invalid statement :)
+See my https://github.com/castle-engine/castle-engine/pull/694[own test, using an AI agent to develop MCP] where AI produced... a useful start, but it required a lot of fixes (to even make this start be correct, as AI tried to extend the test suite, failed, and happily assumed it's all good; it also implemented 2 solutions, both wrong in different ways, at the beginning). And it's still far from a useful solution, it cannot be used in a way we need, and it's only a mockup that isn't aware of the real project. Yet AI confidently claims in the PR that _"This implementation makes Castle Game Engine the first game engine with comprehensive MCP support"_. It's a hilariously invalid statement :)
 
-- Don't fill issues with your conversation with AI. This particularly applies to conversations with _GitHub Copilot_. Yes, GitHub encourages you to use _GitHub Copilot_ in various contexts throughout their website (and maintainers https://github.com/orgs/community/discussions/159749[cannot even block it]) --- but it's not a good practice. We don't want to read your conversation with AI (sometimes filled with hallucinations, sometimes overly verbose and off-topic). If you want to talk with AI or iterate on code with AI, do it in your own space, without distracting other developers . For example, use a text editor that has AI integration. Review AI-proposed changes before anything gets committed.
+- Don't fill issues with your conversation with AI. This particularly applies to conversations with _GitHub Copilot_. Yes, GitHub encourages you to use _GitHub Copilot_ in various contexts throughout their website (and maintainers https://github.com/orgs/community/discussions/159749[cannot even block it]) --- but it's not a good practice. We don't want to read your conversation with AI (sometimes filled with hallucinations, sometimes overly verbose and off-topic). If you want to talk with AI or iterate on code with AI, do it in your own space, without distracting other developers. For example, use a text editor that has AI integration. Review AI-proposed changes before anything gets committed.
 
 - Don't respond with AI-generated answers to our questions. We value what _you_ think; we value the _real_ reasons behind the decisions you made. We don't value AI justifying the changes in an attempt to convince the human reviewer that _"it's good, merge it"_.
 
@@ -94,7 +94,7 @@ See my https://github.com/castle-engine/castle-engine/pull/694[own test, using a
 
 - Let AI analyze a codebase and describe how things work.
 
-- Use AI to search for things (esp. things that are beyond "grep search"; e.g. you don't know how it is called, but you know that there's exists _"something that allows to add two 3D vectors"_; AI can find it and tell you to `var A, B, C: TVector3; A := B + C;`).
+- Use AI to search for things (esp. things that are beyond "grep search"; e.g. you don't know how it is called, but you know that there exists _"something that allows you to add two 3D vectors"_; AI can find it and tell you to `var A, B, C: TVector3; A := B + C;`).
 --
 +
 _Still, never trust the answer without double-checking it. Remember my cautionary tale about the Pythagorean theorem above. When the answer is not obvious, AI will hallucinate (tell you a lie) and be confident about it._
@@ -107,13 +107,13 @@ Reject suggestions if they don't make sense or you're not sure what they do or w
 
 - Use AI for _code reviews_. It's useful to have another set of eyes look at your code changes. Before committing, you can e.g. ask _"review uncommitted changes"_.
 +
-Don't trust blindly the review. If AI recommends this or that change, understand why, check are recommendations suitable in this case, check is it not hallucinating or misunderstanding how to change the code, IOW judge for yourself.
+Don't blindly trust the review. If AI recommends this or that change, understand why, check whether the recommendations are suitable in this case, check that it's not hallucinating or misunderstanding how to change the code, in other words judge for yourself.
 +
 That said, such "extra pair of eyes" is often useful in my experience. Some of the things AI can point out during the review are valid. By addressing (some of) the review notes, I make much better commits.
 
 - _AI agents_ should be used with caution and only with full understanding.
 +
-Don't throw a hard task at AI, hoping it will _solve it for you in one shot_. Split the task into smaller pieces (make a "TODO list" for the agent). Specify the conditions for the task (do X using Y and Z, e.g. "communicate with X using it's REST API and engine TCastleDownload class", or "introduce a method to class X doing this"). Always consider how to refactor the solution to be simplest and most maintainable. AI output is supposed to be a starting point for you, not the final solution.
+Don't throw a hard task at AI, hoping it will _solve it for you in one shot_. Split the task into smaller pieces (make a "TODO list" for the agent). Specify the conditions for the task (do X using Y and Z, e.g. "communicate with X using its REST API and engine TCastleDownload class", or "introduce a method to class X doing this"). Always consider how to refactor the solution to be simplest and most maintainable. AI output is supposed to be a starting point for you, not the final solution.
 +
 [NOTE]
 ====
@@ -126,7 +126,7 @@ Instead, *tell AI to create a new project using `castle-engine create empty` com
 ====
 Don't worry, _visual designing_ in our editor doesn't conflict with editing the project with AI agents. Our designs are just JSON files, and agents are capable of modifying these JSONs. So the agents can cooperate with visual designing effectively.
 
-In fact, _do not_ let agents do all the work by writing Pascal code, when instead they should modify design JSON files. The AI agents tend to solve too much tasks by writing Pascal code, because the AI is happy to write long spaghetti boilerplate code. But this is not good for further modification -- the effect of setting up components using Pascal code can only be observed at run-time, you cannot edit the design in the editor. Guide the AI to add/modify components by editing our designs (`.castle-user-interface`, `.castle-transform` JSON files) when possible.
+In fact, _do not_ let agents do all the work by writing Pascal code, when instead they should modify design JSON files. The AI agents tend to solve too many tasks by writing Pascal code, because the AI is happy to write long spaghetti boilerplate code. But this is not good for further modification -- the effect of setting up components using Pascal code can only be observed at run-time, you cannot edit the design in the editor. Guide the AI to add/modify components by editing our designs (`.castle-user-interface`, `.castle-transform` JSON files) when possible.
 ====
 
 - Look whether there's an existing solution to your problem outside of AI. For example, create a new project using our link:editor[editor's] _"New Project"_ feature (instead of asking AI to start a project). Or look into our https://github.com/castle-engine/castle-engine/tree/master/examples[examples] for something similar to what you're trying to do. Starting from something correct (and using an AI agent to customize the solution for your needs) is better than forcing AI to guess a big solution from scratch.
