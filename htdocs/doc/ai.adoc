@@ -147,6 +147,37 @@ Whether you use AI or not, common recommendations apply:
 
 - Use version control. https://git-scm.com/[Git] is currently the most popular version control system. Using version control allows you to review your own changes and/or changes proposed by AI.
 
+== Don't violate copyrights / licenses when using AI
+
+=== Context: why this is a problem
+
+//Sadly, in the process of training AI models, something very bad was done to the work of many open-source developers (including us).
+
+The AI models have been trained on publicly available data, in many cases on open-source projects, ignoring copyrights and licenses of these projects. AI output doesn't attribute proper copyrights and so using it may violate licenses (in particular copyleft licenses like GPL).
+
+Strictly speaking, the output of any tool should be covered by the same copyrights / licenses as the input it was processing, that was the rule that was obeyed before AI got popular. Yet AI companies have ignored this, the AI output is a mixture of various sources, without proper attribution or licensing for any of them. And indeed AI output can easily produce code that is identical or very similar to the code it was trained on. Sadly, copyright / licensing has been ignored by AI training and there is no one challenging this in court (successfully).
+
+Watch the talk https://www.youtube.com/watch?v=xvuiSgXfqc4[AI generated violations of FOSS Licenses] for funny + sad examples.
+
+[NOTE]
+====
+A special note addressing notions I've heard that _"copyright is outdated, we live in a post-copyright world etc."_. No: copyright is essential, in future as in the past.
+
+Without the copyright and licenses, everything (including all open-source code, like our engine, and all proprietary code, like proprietary AI tools and training software) would be in the _public domain_. This means everything you may ever do (code, art) would not be automatically owned by you, thus you cannot e.g. gain from selling it (like selling proprietary software, or selling books!) or protect it (like making sure people are obligated to share improvements to your open-source code, like copyleft licenses do).
+
+Copyright and licenses are still the basis of all work ownership (software and beyond).
+====
+
+=== Guideline: Do diligence to avoid copyright/license violations
+
+Do **reasonable due diligence to make sure your AI-generated code doesn't infringe any copyrights or licenses**. This means that if you generate a significant portion of new code -> search for similar code, using normal web search, and using AI review, before committing it.
+
+Again, see the https://www.youtube.com/watch?v=xvuiSgXfqc4[talk linked above] for examples how AI can easily produce code that is identical or similar to the code it was trained on, and omit (or even falsify) the original author and license. The problem is real.
+
+Submitting code that is covered by a specific copyright/license, and not including that copyright/license, and ignoring the license requirements -> is a violation of the given license. We require that the code you submit be covered by _your_ copyright, and it's your responsibility to make sure that whatever AI generated can indeed be treated as such.
+
+This is yet another reason to **generate _smaller_, not _larger_, pieces of code**. Code-completing a line of code with AI is probably not infringing any copyright/license, it probably mostly follows your own code a few lines above. On the other hand, generating a complete e.g. "_inverse square root implementation"_ is almost certainly a violation that will not be attributed to the actual, well-known author.
+
 == See also
 
 In our engine:
@@ -162,6 +193,8 @@ Many other projects have nice guidelines about using AI that we agree with. For 
 - https://devguide.python.org/getting-started/generative-ai/[Python rules about AI]
 
 - https://github.com/chaoss/wg-ai-alignment/tree/main/moderation#readme[Collection of various AI / LLM policies of projects]
+
+- https://docs.kernel.org/process/coding-assistants.html[Linux kernel guidelines about AI] (in particular with explicit mention of copyright issues)
 
 More opinions I agree with:
 
