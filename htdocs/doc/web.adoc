@@ -477,6 +477,24 @@ NOTE: On Firefox, users can still use _Shift+Right click_ to open the context me
 +
 WARNING: TODO: However, right now `castle-config:/` on web just accesses a temporary memory using cgeref:TCastleMemoryFileSystem[]. So it completely disappears when user reloads the page.
 
+[#http_requests]
+=== HTTP requests, downloading (TCastleDownload) on the web, CORS
+
+cgeref:TCastleDownload[] class works on the _web_. It allows to make HTTP requests, e.g. download files or communicate with REST APIs. See link:url[URLs, loading resources] and link:multi_player[Multi-player (network communication)] for general usage description.
+
+Underneath, it uses https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest[XMLHttpRequest] which is the standard way to make HTTP requests on the web. It supports all HTTP methods, custom headers, progress monitoring and generally all features of our cgeref:TCastleDownload[].
+
+[NOTE]
+====
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS[CORS (Cross-Origin Resource Sharing)] security will prevent our application on the web from downloading things from other domains.
+
+This is a standard security feature of web browsers. It is unavoidable from our side (application living inside a web page). All web application (using JS or WebAssembly) have to deal with it.
+
+- For development, you can disable CORS in your browser. E.g. on _Firefox_ with https://addons.mozilla.org/pl/firefox/addon/cors-everywhere/[CORS Everywhere extension does the job]. _Chrome_ supports `--disable-web-security` command-line option. Search the web for details specific to your browser.
+
+- For real usage, the server has to be configured to allow downloading from it. It generally involves configuring the server to return appropriate header, like `Access-Control-Allow-Origin: *`.  See https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS[CORS documentation at MDN] and https://enable-cors.org/server_apache.html[example configuration for Apache].
+====
+
 == Plans (TODOs)
 
 - Some shader code (bump mapping, fog, terrains) makes weird errors at compilation on WebGL. For now, we disabled these shaders, so the relevant examples will run smoothly.
@@ -503,8 +521,6 @@ The gzipped size matters more (for the download speed) &mdash; both web browsers
 We could also use https://en.wikipedia.org/wiki/Brotli[Brotli], a newer compression method also commonly supported by web browsers and servers.
 +
 Overall, the TODO here: Test using Gzip or Brotli compression. Test configuring web browsers, like Apache, to serve our WASM and data using Gzip / Brotli. Test using Gzip / Brotli compression in our build tool, to have smaller size even on disk.
-
-- Implement cgeref:TCastleDownload[] for web.
 
 - Is it good we capture keys by listening to `keydown` and `keyup` events on the whole `window`? Could conflict with other things on the same page trying to handle keys (like 2nd CGE web application). Should we rather rely on canvas being focused, or maybe some canvas div wrapper? (but will need code to make it focused, because out-of-the-box canvas doesn't get any keydown / keyup).
 

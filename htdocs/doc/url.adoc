@@ -366,6 +366,8 @@ with respect to the containing document.
 
 _On Android_, you should use the https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/android/services/download_urls/README.md[download_urls service] to support `http` and `https` protocols.
 
+_On the link:web[]_, beware of the _CORS (Cross-Origin Resource Sharing)_ policy that may prevent your application from downloading data from other domains. See link:web#http_requests[HTTP requests on the web and CORS] for more information.
+
 === Embedded data: `data`
 
 `data` is a special protocol that doesn't refer to
