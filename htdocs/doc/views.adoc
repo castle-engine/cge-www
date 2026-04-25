@@ -202,9 +202,9 @@ Many examples in the engine show even more complicates views setup:
 - modal dialog box.
 --
 
-## Beware: View changes are executed with delay
+## Beware: View changes are executed with a delay
 
-Information in this section applies to all the ways how you can _"change the view"_:
+This section applies to all the ways to _"change the view"_:
 
 - by setting the cgeref:TCastleContainer.View[] property,
 - by calling the cgeref:TCastleContainer.PushView[] method,
@@ -212,7 +212,7 @@ Information in this section applies to all the ways how you can _"change the vie
 
 *These operations may not _immediately_ change the view.* Instead, they may add an item to the _"pending changes"_ list, and the actual view change will be executed at the end of current event processing.
 
-For example, let's assume you have a button and you change a view in the button's `OnClick` event handler:
+For example, suppose you have a button and you change the view in its `OnClick` handler:
 
 [source,pascal]
 ----
@@ -236,13 +236,13 @@ begin
 end;
 ----
 
-As the above comment indicates, the `TViewMainMenu.Stop` and `TViewPlayGame.Start` methods are _not_ immediately called when you set `Container.View := ViewPlayGame`. Once the event (in this case: mouse or touch _release_, which triggered the button click) finishes, then the engine will execute all pending view changes, which will call `TViewMainMenu.Stop` and `TViewPlayGame.Start`.
+As the comment above indicates, `TViewMainMenu.Stop` and `TViewPlayGame.Start` are _not_ called immediately when you set `Container.View := ViewPlayGame`. Only after the event (here: the mouse or touch _release_ that triggered the click) finishes does the engine execute all pending view changes, calling `TViewMainMenu.Stop` and then `TViewPlayGame.Start`.
 
-*Reason for this design:* When the view stops, it automatically destroys some things: the instance of design configured by cgeref:TCastleView.DesignUrl[], anything owned by cgeref:TCastleView.FreeAtStop[] and anything more freed explicitly in overridden cgeref:TCastleView.Stop[]. But it is not allowed to destroy an instance of a component (like a cgeref:TCastleButton[]) while still processing its event handler (like cgeref:TCastleButton.OnClick[]), as the component code may in general be not prepared for this, and the event loop iterating over the components may also not be prepared for this.
+*Reason for this design:* When the view stops, we destroy some things: the instance of design configured by cgeref:TCastleView.DesignUrl[], anything owned by cgeref:TCastleView.FreeAtStop[] and anything more freed explicitly in overridden cgeref:TCastleView.Stop[]. But it is not allowed to destroy an instance of a component (like a cgeref:TCastleButton[]) while still processing its event handler (like cgeref:TCastleButton.OnClick[]), as the component code may in general be not prepared for this, and the event loop iterating over the components may also not be prepared for this.
 
-The solution is to delay the view change until the event processing finishes, so that the component destruction happens at a safe moment.
+Delaying the view change until event processing finishes ensures that component destruction happens at a safe point.
 
-The delay also happens when you change view in reaction to a press (from the view's cgeref:TCastleView.Press[]) method, or any other view event. This avoids hard-to-spot bugs when processing key presses:
+The same delay applies when you change the view from the cgeref:TCastleView.Press[] method or any other view event handler. This prevents hard-to-spot bugs when processing key presses:
 
 [source,pascal]
 ----
@@ -274,9 +274,9 @@ end;
 
 There are two exceptions when view changes are still done immediately, without delay:
 
-1. View changes done outside of event processing. This allows to e.g. do `Container.View := nil` in a `finalization` of some unit, to stop all views explicitly. (But note that we will stop the views anyway when freeing the container, so this is not usually needed.)
+1. View changes done outside of event processing. This allows, for example, setting `Container.View := nil` in a unit's `finalization` section to stop all views explicitly. (The engine stops all views anyway when the container is freed, so this is rarely needed.)
 
-2. When setting the view `Container.View := ViewXxx` when the stack is empty. This is useful to write initialization code like
+2. Setting `Container.View := ViewXxx` when the view stack is empty. This is useful for initialization code like
 +
 [source,pascal]
 ----
@@ -285,12 +285,12 @@ MyComponent := ViewInitial.DesignedComponent('MyComponent');
 MyComponent.Something := ...;
 ----
 +
-This is safe, since no view is stopped in this case, so nothing is freed -- so the reasons for delaying view changes do not apply.
+Performing this view change can be safely done immediately, because no view is stopped, nothing is freed, and therefore the reasons for delaying do not apply. We just start the new view immediately.
 
 To help you inspect what's going on, our API exposes both _"pending"_ and _current_ view stack state:
 
 Current view stack::
-These describe the _current_ started / stopped views:
+These reflect the views whose lifecycle methods have already been called:
 +
 --
 - cgeref:TCastleContainer.CurrentFrontView[],
@@ -298,21 +298,21 @@ These describe the _current_ started / stopped views:
 - cgeref:TCastleContainer.CurrentViewStack[]
 --
 +
-This state is _current_ in the sense that the views' _lifecycle virtual methods_ have been executed. For example, you know that `CurrentFrontView` has performed it's `Start` + `Resume` methods.
+For example, `CurrentFrontView` has already had its `Start` + `Resume` methods called.
 +
-As explained above, the current views "lag behind" the calls to `View:=...`, `PushView`, `PopView`. Only with some delay, they become equal to the _pending_ view stack state.
+As explained above, the current stack lags behind calls to `View:=...`, `PushView`, `PopView`. It catches up to the _pending_ state only after the delay.
 
 Pending view stack::
-These describe the _pending_ view stack state:
+These reflect the view stack as it will be after pending changes are applied:
 +
 --
 - cgeref:TCastleContainer.PendingFrontView[],
 - cgeref:TCastleContainer.PendingViewStackCount[],
 - cgeref:TCastleContainer.PendingViewStack[],
-- cgeref:TCastleContainer.View[] (the bottom of pending view stack).
+- cgeref:TCastleContainer.View[] (the bottom of the pending view stack).
 --
 +
-These values change immediately when you do `Container.View:=...`, `Container.PushView(...)`, `Container.PopView(...)` operations. However, you cannot assume that the _lifecycle methods_ (like `Start` + `Resume`) of the views have been already executed. E.g. you don't know if the `Start` + `Resume` methods of `PendingFrontView` were already executed --  it may still be in the waiting queue.
+These values update immediately when you call `Container.View:=...`, `Container.PushView(...)`, or `Container.PopView(...)`. However, you cannot assume the _lifecycle methods_ (such as `Start` + `Resume`) have already been called. For example, `PendingFrontView` may still be waiting in the queue -- its `Start` + `Resume` may not have run yet.
 
 NOTE: If you're looking to delay freeing components in other situations, use cgeref:TCastleApplicationProperties.FreeDelayed[ApplicationProperties.FreeDelayed].
 
