@@ -202,6 +202,7 @@ Many examples in the engine show even more complicates views setup:
 - modal dialog box.
 --
 
+[#views-delayed]
 ## Beware: View changes are executed with a delay
 
 This section applies to all the ways to _"change the view"_:
