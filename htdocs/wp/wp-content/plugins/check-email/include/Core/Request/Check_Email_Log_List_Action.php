@@ -27,6 +27,8 @@ class Check_Email_Log_List_Action implements Loadie {
 		if ( ! current_user_can( 'manage_check_email' ) ) {
 			wp_die();
 		}
+
+		check_ajax_referer( 'check_email_log_nonce', 'security' );
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information but only loading it inside the admin_init hook.
 		$id = isset( $_GET['log_id'] ) ? absint( $_GET['log_id'] ) : 0 ;
 
@@ -133,7 +135,6 @@ class Check_Email_Log_List_Action implements Loadie {
 				<?php 
 				// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 				do_action( 'check_email_view_log_after_headers', $log_item ); ?>
-				?>
 
 			</table>
 
@@ -291,26 +292,28 @@ class Check_Email_Log_List_Action implements Loadie {
 	}
 
 	public function delete_logs( $data ) {
+
 		if ( ! is_array( $data ) || ! array_key_exists( 'check-email-log', $data ) ) {
 			return;
 		}
 
 		$ids = $data['check-email-log'];
+
 		if ( ! is_array( $ids ) ) {
 			$ids = array( $ids );
 		}
+		$ids = array_filter( array_map( 'absint', $ids ) );
 
-		$ids     = array_map( 'absint', $ids );
-		$id_list = implode( ',', $ids );
-
-		$logs_deleted = $this->get_table_manager()->delete_logs( $id_list );
-		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
-		if( isset( $_REQUEST['_wp_http_referer'] ) ){
-			// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
-			wp_safe_redirect( wp_unslash( $_REQUEST['_wp_http_referer'] ) . '&deleted_logs=' . $logs_deleted ); exit;
-		}else{
-			// phpcs:ignore
-			wp_safe_redirect( wp_unslash( $_SERVER['HTTP_REFERER'] ) . '&deleted_logs=' . $logs_deleted ); exit;
+		if ( empty( $ids ) ) {
+			return;
+		}
+		$logs_deleted = $this->get_table_manager()->delete_logs( $ids );
+		if ( isset( $_REQUEST['_wp_http_referer'] ) ) {
+			wp_safe_redirect( wp_unslash( $_REQUEST['_wp_http_referer'] ) . '&deleted_logs=' . $logs_deleted );
+			exit;
+		} else {
+			wp_safe_redirect( wp_unslash( $_SERVER['HTTP_REFERER'] ) . '&deleted_logs=' . $logs_deleted );
+			exit;
 		}
 	}
 
@@ -323,26 +326,38 @@ class Check_Email_Log_List_Action implements Loadie {
 		}
 	}
 	public function delete_error_tracker( $data ) {
+
+		// ✅ Validate input
 		if ( ! is_array( $data ) || ! array_key_exists( 'check-email-error-tracker', $data ) ) {
 			return;
 		}
 
 		$ids = $data['check-email-error-tracker'];
+		
 		if ( ! is_array( $ids ) ) {
 			$ids = array( $ids );
 		}
 
-		$ids     = array_map( 'absint', $ids );
-		$id_list = implode( ',', $ids );
+		
+		$ids = array_filter( array_map( 'absint', $ids ) );
 
-		$logs_deleted = $this->get_table_manager()->delete_error_tracker( $id_list );
-		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
-		if( isset( $_REQUEST['_wp_http_referer'] ) ){
-			// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form information.
-			wp_safe_redirect( wp_unslash( $_REQUEST['_wp_http_referer'] ) . '&deleted_logs=' . $logs_deleted ); exit;
-		}else{
-			// phpcs:ignore
-			wp_safe_redirect( wp_unslash( $_SERVER['HTTP_REFERER'] ) . '&deleted_logs=' . $logs_deleted ); exit;
+		if ( empty( $ids ) ) {
+			return;
+		}
+
+		
+		$logs_deleted = $this->get_table_manager()->delete_error_tracker( $ids );
+
+		
+		if ( isset( $_REQUEST['_wp_http_referer'] ) ) {
+			$redirect_url = wp_unslash( $_REQUEST['_wp_http_referer'] );
+		} else {
+			$redirect_url = isset( $_SERVER['HTTP_REFERER'] ) ? wp_unslash( $_SERVER['HTTP_REFERER'] ) : '';
+		}
+
+		if ( ! empty( $redirect_url ) ) {
+			wp_safe_redirect( $redirect_url . '&deleted_logs=' . absint( $logs_deleted ) );
+			exit;
 		}
 	}
 

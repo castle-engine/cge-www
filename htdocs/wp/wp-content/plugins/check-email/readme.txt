@@ -4,7 +4,7 @@ Tags: logging, email, email log, smtp, log
 Requires at least: 5.0
 Tested up to: 6.9
 Requires PHP: 5.6
-Stable tag: 2.0.13
+Stable tag: 2.0.13.2
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -122,6 +122,13 @@ Someone using one of my other plugins had trouble with emails not being sent. I 
 
 
 == Changelog ==
+
+= v2.0.13.2 - 13/04/2026 =
+- Fixed: Vulnerability reported by Kishan Vyas
+- Fixed: Vulnerability reported by @poloss
+
+= v2.0.13.1 - 07/04/2026 =
+- Fixed: Spam Analyzer Tool Response Issue #162
 
 = v2.0.13 - 04/04/2026 =
 - Fixed: Spam Analyzer Undefined error and fixed Go to Email log button #162

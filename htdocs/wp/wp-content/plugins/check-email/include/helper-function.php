@@ -675,7 +675,7 @@ function ck_mail_check_email_analyze() {
             return;
         }
         // $api_url = 'http://127.0.0.1:8000/custom-api/email-analyze';
-        $api_url = 'https://enchain.tech/custom-api/email-analyze';
+        $api_url = 'https://spamanalyser.check-email.tech/custom-api/email-analyze';
         $current_user = wp_get_current_user();
         $email = $current_user->user_email;
         if ( !empty( $email ) ) {

@@ -118,16 +118,36 @@ class Check_Email_Table_Manager implements Loadie {
 		global $wpdb;
 
 		$table_name = $this->get_log_table_name();
-                
-		$ids = esc_sql( $ids );
-		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared,WordPress.DB.DirectDatabaseQuery.DirectQuery,	PluginCheck.Security.DirectDB.UnescapedDBParameter -- Reason: $table_name
-		$result = $wpdb->query( "DELETE FROM {$table_name} where id IN ( {$ids} )" );
-		$ids_array = array_map('intval', explode(',', $ids));
-		if ($result !== false) {
-			foreach ($ids_array as $id) {
-				wp_cache_delete($id, 'check_mail_log');
+
+		// ✅ Convert to safe integer array
+		if ( is_string( $ids ) ) {
+			$ids_array = explode(',', $ids);
+		} elseif ( is_array( $ids ) ) {
+			$ids_array = $ids;
+		} else {
+			return false;
+		}
+
+		$ids_array = array_map( 'absint', $ids_array );
+		$ids_array = array_filter( $ids_array ); // remove 0 / invalid
+
+		if ( empty( $ids_array ) ) {
+			return false;
+		}
+		$placeholders = implode( ',', array_fill( 0, count( $ids_array ), '%d' ) );
+
+		$query = $wpdb->prepare(
+			"DELETE FROM {$table_name} WHERE id IN ($placeholders)",
+			...$ids_array
+		);
+
+		$result = $wpdb->query( $query );
+		if ( $result !== false ) {
+			foreach ( $ids_array as $id ) {
+				wp_cache_delete( $id, 'check_mail_log' );
 			}
 		}
+
 		return $result;
 	}
 
@@ -149,16 +169,32 @@ class Check_Email_Table_Manager implements Loadie {
 		global $wpdb;
 
 		$table_name = $this->get_error_tracker_table_name();
-                
-		$ids = esc_sql( $ids );
-		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared,WordPress.DB.DirectDatabaseQuery.DirectQuery,PluginCheck.Security.DirectDB.UnescapedDBParameter -- Reason: $table_name
-		$result = $wpdb->query( "DELETE FROM {$table_name} where id IN ( {$ids} )" );
-		$ids_array = array_map('intval', explode(',', $ids));
-		if ($result !== false) {
-			foreach ($ids_array as $id) {
-				wp_cache_delete($id, 'check_mail_log');
+		if ( is_string( $ids ) ) {
+			$ids_array = explode( ',', $ids );
+		} elseif ( is_array( $ids ) ) {
+			$ids_array = $ids;
+		} else {
+			return false;
+		}
+		$ids_array = array_map( 'absint', $ids_array );
+		$ids_array = array_filter( $ids_array );
+
+		if ( empty( $ids_array ) ) {
+			return false;
+		}
+		$placeholders = implode( ',', array_fill( 0, count( $ids_array ), '%d' ) );
+		$query = $wpdb->prepare(
+			"DELETE FROM {$table_name} WHERE id IN ($placeholders)",
+			...$ids_array
+		);
+
+		$result = $wpdb->query( $query );
+		if ( $result !== false ) {
+			foreach ( $ids_array as $id ) {
+				wp_cache_delete( $id, 'check_mail_log' );
 			}
 		}
+
 		return $result;
 	}
 
@@ -219,7 +255,10 @@ class Check_Email_Table_Manager implements Loadie {
 		$query_cond  = '';
 		
 		if ( isset( $request['s'] ) && is_string( $request['s'] ) && $request['s'] !== '' ) {
-			$search_term = trim( esc_sql( $request['s'] ) );
+			$search_term = isset($request['s'])
+				? sanitize_text_field( wp_unslash( $request['s'] ) )
+				: '';
+			$search_term = trim($search_term);
 			
 			if ( Util\wp_chill_check_email_advanced_search_term( $search_term ) ) {
 				$predicates = Util\wp_chill_check_email_get_advanced_search_term_predicates( $search_term );
@@ -283,13 +322,21 @@ class Check_Email_Table_Manager implements Loadie {
 							break;
 					}
 				}
-			} else {				
-				$query_cond .= " WHERE ( to_email LIKE '%$search_term%' OR subject LIKE '%$search_term%'  OR message LIKE '%$search_term%' ) ";
+			} else {
+				$like = '%' . $wpdb->esc_like( $search_term ) . '%';
+
+				$query_cond .= $wpdb->prepare(
+					" WHERE ( to_email LIKE %s OR subject LIKE %s OR message LIKE %s ) ",
+					$like,
+					$like,
+					$like
+				);
 			}
 		}
 
 		if ( isset( $request['d'] ) && $request['d'] !== '' ) {
-			$search_date = trim( esc_sql( $request['d'] ) );
+			$search_date = sanitize_text_field( wp_unslash( $request['d'] ) );
+			$search_date = trim($search_date);
 			if ( '' === $query_cond ) {
 				$query_cond .= " WHERE sent_date BETWEEN '$search_date 00:00:00' AND '$search_date 23:59:59' ";
 			} else {

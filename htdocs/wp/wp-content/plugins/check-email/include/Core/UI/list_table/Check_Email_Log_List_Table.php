@@ -70,12 +70,13 @@ class Check_Email_Log_List_Table extends \WP_List_Table {
 
 		$content_ajax_url = add_query_arg(
 			array(
-				'action' => 'check-email-log-list-view-message',
-				'log_id' => $item->id,
-				'width'  => '800',
-				'height' => '550',
+				'action'   => 'check-email-log-list-view-message',
+				'log_id'   => $item->id,
+				'width'    => '800',
+				'height'   => '550',
+				'security' => wp_create_nonce('check_email_log_nonce')
 			),
-			'admin-ajax.php'
+			admin_url('admin-ajax.php')
 		);
 
 		$actions['view-content'] = sprintf( '<a href="%1$s" class="thickbox" title="%2$s">%3$s</a>',

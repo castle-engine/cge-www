@@ -9,6 +9,7 @@ namespace Automattic\Jetpack\Forms\ContactForm;
 
 use Automattic\Jetpack\Connection\Client;
 use Automattic\Jetpack\Device_Detection\User_Agent_Info;
+use Automattic\Jetpack\Forms\Dashboard\Dashboard as Forms_Dashboard;
 use WP_Post;
 /**
  * Handles the response for a contact form submission.
@@ -33,6 +34,127 @@ class Feedback {
 	 * @var string
 	 */
 	public const STATUS_READ = 'closed';
+
+	/**
+	 * Meta key used to store the source post ID on feedback posts.
+	 *
+	 * @var string
+	 */
+	public const SOURCE_META_KEY = '_feedback_source_post_id';
+
+	/**
+	 * Cache key for the source post IDs list.
+	 *
+	 * @var string
+	 */
+	private const SOURCE_IDS_CACHE_KEY = 'jetpack_forms_source_post_ids';
+
+	/**
+	 * Cache group for forms data.
+	 *
+	 * @var string
+	 */
+	private const CACHE_GROUP = 'jetpack_forms';
+
+	/**
+	 * Returns all distinct source post IDs for feedback entries.
+	 *
+	 * Uses the _feedback_source_post_id meta for new feedback, with a fallback
+	 * to post_parent for old feedback that doesn't have the meta yet (excluding
+	 * jetpack_form parents).
+	 *
+	 * @return array Array of unique source post IDs.
+	 */
+	public static function get_all_source_post_ids() {
+		$source_ids = wp_cache_get( self::SOURCE_IDS_CACHE_KEY, self::CACHE_GROUP );
+
+		if ( false !== $source_ids ) {
+			return $source_ids;
+		}
+
+		global $wpdb;
+
+		$meta_key     = self::SOURCE_META_KEY;
+		$statuses     = array( 'draft', 'publish', 'spam', 'trash' );
+		$placeholders = implode( ',', array_fill( 0, count( $statuses ), '%s' ) );
+
+		$post_type = self::POST_TYPE;
+
+		// phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.InterpolatedNotPrepared,WordPress.DB.PreparedSQLPlaceholders.ReplacementsWrongNumber
+		$source_ids = $wpdb->get_col(
+			$wpdb->prepare(
+				"SELECT DISTINCT source_id FROM (
+					SELECT CAST(pm.meta_value AS UNSIGNED) AS source_id
+					FROM {$wpdb->postmeta} pm
+					INNER JOIN {$wpdb->posts} p ON p.ID = pm.post_id
+					WHERE pm.meta_key = %s
+					AND p.post_type = %s
+					AND p.post_status IN ({$placeholders})
+					AND pm.meta_value != '0' AND pm.meta_value != ''
+				UNION
+					SELECT p.post_parent AS source_id
+					FROM {$wpdb->posts} p
+					LEFT JOIN {$wpdb->postmeta} pm ON pm.post_id = p.ID AND pm.meta_key = %s
+					LEFT JOIN {$wpdb->posts} parent_post ON parent_post.ID = p.post_parent
+					WHERE p.post_type = %s
+					AND p.post_status IN ({$placeholders})
+					AND p.post_parent > 0
+					AND pm.meta_id IS NULL
+					AND (parent_post.post_type IS NULL OR parent_post.post_type != %s)
+				) AS combined_sources",
+				array_merge(
+					array( $meta_key, $post_type ),
+					$statuses,
+					array( $meta_key, $post_type ),
+					$statuses,
+					array( Contact_Form::POST_TYPE )
+				)
+			)
+		);
+		// phpcs:enable
+
+		$source_ids = array_map( 'intval', $source_ids );
+		wp_cache_set( self::SOURCE_IDS_CACHE_KEY, $source_ids, self::CACHE_GROUP, HOUR_IN_SECONDS );
+
+		return $source_ids;
+	}
+
+	/**
+	 * Invalidates the source post IDs cache when a feedback post is deleted.
+	 *
+	 * @param int      $post_id The deleted post ID.
+	 * @param \WP_Post $post    The deleted post object.
+	 */
+	public static function invalidate_source_ids_cache_on_delete( $post_id, $post ) {
+		if ( $post->post_type === self::POST_TYPE ) {
+			wp_cache_delete( self::SOURCE_IDS_CACHE_KEY, self::CACHE_GROUP );
+		}
+	}
+
+	/**
+	 * Backfills the source post ID meta from the feedback object's resolved source.
+	 *
+	 * For old feedback parented to a jetpack_form that doesn't have
+	 * _feedback_source_post_id set yet, this writes the meta so future
+	 * queries can filter by source without the post_parent fallback.
+	 *
+	 * @param int      $post_id  The feedback post ID.
+	 * @param Feedback $feedback The feedback object (already has source resolved from parsed content).
+	 */
+	public static function maybe_backfill_source_meta( $post_id, $feedback ) {
+		$existing = get_post_meta( $post_id, self::SOURCE_META_KEY, true );
+		if ( $existing ) {
+			return;
+		}
+
+		$source_id = $feedback->get_entry_id();
+		if ( is_numeric( $source_id ) && (int) $source_id > 0 ) {
+			$meta_added = add_post_meta( $post_id, self::SOURCE_META_KEY, (int) $source_id, true );
+			if ( $meta_added ) {
+				wp_cache_delete( self::SOURCE_IDS_CACHE_KEY, self::CACHE_GROUP );
+			}
+		}
+	}
 
 	/**
 	 * The form field values.
@@ -184,6 +306,13 @@ class Feedback {
 	protected $form_id = null;
 
 	/**
+	 * The logged-in user who submitted the feedback, if any.
+	 *
+	 * @var array|null Array with 'display_name' and 'id' keys, or null if not logged in.
+	 */
+	protected $logged_in_user = null;
+
+	/**
 	 * Create a response object from a feedback post ID.
 	 *
 	 * @param int $feedback_post_id The ID of the feedback post.
@@ -268,6 +397,7 @@ class Feedback {
 		$this->subject      = $parsed_content['subject'] ?? $this->get_first_field_of_type( 'subject' );
 
 		$this->notification_recipients = $parsed_content['notification_recipients'] ?? array();
+		$this->logged_in_user          = $parsed_content['logged_in_user'] ?? null;
 
 		$this->author_data = new Feedback_Author(
 			$this->get_first_field_of_type( 'name', 'pre_comment_author_name' ),
@@ -320,9 +450,9 @@ class Feedback {
 
 		$this->source = Feedback_Source::from_submission( $current_post, $current_page_number );
 
-		// Extract and validate form ID from POST data or ref attribute
-		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce verification happens in process_form_submission()
-		$form_id_attribute = $post_data['contact-form-ref'] ?? $form->get_attribute( 'ref' );
+		// Use the form's ref attribute as the authoritative form ID.
+		// The ref is set server-side (from the JWT or shortcode attributes) and cannot be tampered with.
+		$form_id_attribute = $form->get_attribute( 'ref' );
 		$form_id_attribute = is_numeric( $form_id_attribute ) ? absint( $form_id_attribute ) : 0;
 		$this->form_id     = $form_id_attribute > 0 ? $form_id_attribute : null;
 
@@ -341,6 +471,16 @@ class Feedback {
 		$this->feedback_time         = current_time( 'mysql' );
 		$this->legacy_feedback_title = "{$this->get_author()} - {$this->feedback_time}";
 		$this->legacy_feedback_id    = md5( $this->legacy_feedback_title );
+
+		// Capture logged-in user info at submission time.
+		if ( is_user_logged_in() ) {
+			$current_user         = wp_get_current_user();
+			$this->logged_in_user = array(
+				'display_name' => $current_user->display_name,
+				'username'     => $current_user->user_login,
+				'id'           => $current_user->ID,
+			);
+		}
 	}
 
 	/**
@@ -630,10 +770,16 @@ class Feedback {
 		$special_fields   = array();
 		$non_extra_fields = array( 'email', 'name', 'url', 'subject', 'textarea', 'ip' );
 
-		// Create a map of special fields to check agains their values.
+		// Create a map of special fields to check against their values.
 		foreach ( $this->fields as $field ) {
-			if ( in_array( $field->get_type(), $non_extra_fields, true ) && $field->get_render_value( $context ) ) {
-				$special_fields[ $field->get_render_value( $context ) ] = true;
+			if ( in_array( $field->get_type(), $non_extra_fields, true ) ) {
+				$value = $field->get_render_value( $context );
+				if ( is_array( $value ) ) {
+					$value = reset( $value );
+				}
+				if ( $value ) {
+					$special_fields[ $value ] = true;
+				}
 			}
 		}
 
@@ -641,7 +787,11 @@ class Feedback {
 			if ( $field->compile_field( 'default' ) ) {
 				continue;
 			}
-			if ( $field->get_type() === 'basic' && isset( $special_fields[ $field->get_render_value() ] ) ) {
+			$render_value = $field->get_render_value();
+			if ( is_array( $render_value ) ) {
+				$render_value = reset( $render_value );
+			}
+			if ( $field->get_type() === 'basic' && $render_value && isset( $special_fields[ $render_value ] ) ) {
 				++$count;
 				continue; // Skip fields that are already present in the non-extra fields.
 			}
@@ -802,6 +952,7 @@ class Feedback {
 			'contact_form_subject' => $this->get_subject(),
 			'comment_author_ip'    => $this->get_ip_address(),
 			'comment_content'      => empty( $this->get_comment_content() ) ? null : $this->get_comment_content(),
+			'permalink'            => $this->get_entry_permalink(),
 		);
 
 		foreach ( $this->fields as $field ) {
@@ -1077,6 +1228,15 @@ class Feedback {
 	}
 
 	/**
+	 * Get the logged-in user information who submitted the feedback.
+	 *
+	 * @return array|null Array with 'display_name' and 'id' keys, or null if not logged in.
+	 */
+	public function get_logged_in_user() {
+		return $this->logged_in_user;
+	}
+
+	/**
 	 * Get the email subject.
 	 *
 	 * @return string
@@ -1316,6 +1476,19 @@ class Feedback {
 			)
 		);
 
+		// Store source post ID as meta for queryable source filtering.
+		$source_id = $this->source->get_id();
+		if ( is_numeric( $post_id ) && (int) $post_id > 0 && is_numeric( $source_id ) && (int) $source_id > 0 ) {
+			add_post_meta( $post_id, self::SOURCE_META_KEY, (int) $source_id, true );
+			wp_cache_delete( self::SOURCE_IDS_CACHE_KEY, self::CACHE_GROUP );
+		}
+
+		// If this feedback does not have a jetpack_form parent,
+		// it's a classic form — mark the state accordingly.
+		if ( empty( $this->form_id ) ) {
+			Forms_Dashboard::mark_classic_form_detected();
+		}
+
 		$feedback_post = get_post( $post_id );
 		return $feedback_post ?? 0;
 	}
@@ -1334,6 +1507,7 @@ class Feedback {
 				'country_code'            => $this->country_code,
 				'user_agent'              => $this->user_agent,
 				'notification_recipients' => $this->notification_recipients,
+				'logged_in_user'          => $this->logged_in_user,
 			),
 			$this->source->serialize()
 		);

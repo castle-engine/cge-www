@@ -11,7 +11,6 @@ use Automattic\Jetpack\Admin_UI\Admin_Menu;
 use Automattic\Jetpack\Assets;
 use Automattic\Jetpack\Connection\Manager as Connection_Manager;
 use Automattic\Jetpack\Modules;
-use Automattic\Jetpack\Paths;
 use Automattic\Jetpack\Redirect;
 use Automattic\Jetpack\Status;
 use Automattic\Jetpack\Status\Host;
@@ -22,7 +21,7 @@ use Jetpack_Tracks_Client;
  */
 class Settings {
 
-	const PACKAGE_VERSION = '0.5.2';
+	const PACKAGE_VERSION = '0.8.3';
 	/**
 	 * Whether the class has been initialized
 	 *
@@ -51,9 +50,9 @@ class Settings {
 		 *
 		 * @since 15.3.0
 		 *
-		 * @param bool $enabled Whether to enable the new newsletter settings UI. Default false.
+		 * @param bool $enabled Whether to enable the new newsletter settings UI. Default true.
 		 */
-		return apply_filters( 'jetpack_wp_admin_newsletter_settings_enabled', false );
+		return apply_filters( 'jetpack_wp_admin_newsletter_settings_enabled', true );
 	}
 
 	/**
@@ -66,6 +65,26 @@ class Settings {
 	}
 
 	/**
+	 * Determine whether to show the Newsletter menu item.
+	 * When true, shown regardless of subscriptions module state.
+	 *
+	 * @return bool
+	 */
+	private function should_show_menu_item() {
+		/**
+		 * Filter to control Newsletter menu item visibility.
+		 * Defaults to true.
+		 *
+		 * @since 0.6.0
+		 * @param bool $show Whether to show the menu item.
+		 */
+		return apply_filters(
+			'jetpack_show_newsletter_menu_item',
+			true
+		);
+	}
+
+	/**
 	 * Subscribe to necessary hooks.
 	 */
 	public function init_hooks() {
@@ -75,9 +94,20 @@ class Settings {
 			add_action( 'admin_init', array( $this, 'add_reading_page_notice' ) );
 		}
 
-		if ( ! $this->expose_to_users() ) {
-			return;
-		}
+		// Hijack the config URLs to point to our settings page.
+		// Priority 20 to override the default URL set in subscriptions.php.
+		// Check expose_to_users() lazily in the callback so filters registered
+		// after init() (e.g. by jetpack-mu-wpcom) are available.
+		add_filter(
+			'jetpack_module_configuration_url_subscriptions',
+			function ( $url ) {
+				if ( ! $this->expose_to_users() ) {
+					return $url;
+				}
+				return Urls::get_newsletter_settings_url( ( new Status() )->get_site_suffix() );
+			},
+			20
+		);
 
 		$host = new Host();
 
@@ -89,18 +119,11 @@ class Settings {
 		}
 
 		// Add admin menu item.
+		// The expose_to_users() and is_connected() checks are deferred to add_wp_admin_menu()
+		// so that filters registered after init() are available when admin_menu fires.
 		// Use priority 999 to ensure menu items are queued BEFORE Admin_Menu::admin_menu_hook_callback
 		// runs at priority 1000 to process all queued items.
 		add_action( 'admin_menu', array( $this, 'add_wp_admin_menu' ), 999 );
-
-		// Hijack the config URLs to point to our settings page.
-		// Customize the configuration URL to lead to the Subscriptions settings.
-		add_filter(
-			'jetpack_module_configuration_url_subscriptions',
-			function () {
-				return ( new Paths() )->admin_url( array( 'page' => 'jetpack-newsletter' ) );
-			}
-		);
 	}
 
 	/**
@@ -109,23 +132,27 @@ class Settings {
 	 * Note: This method is NOT called on wpcom Simple sites. Simple sites use
 	 * add_wp_admin_submenu() called from wpcom-admin-menu.php instead.
 	 *
-	 * Menu visibility rules:
-	 * - wpcom Atomic: Show under 'jetpack' if module active, hidden if inactive.
-	 * - Standalone Jetpack: Show under 'jetpack' if module active, hidden if inactive.
+	 * Menu visibility is controlled by the jetpack_show_newsletter_menu_item filter
+	 * (defaults to true). Set to false to hide the menu while keeping page accessible.
 	 */
 	public function add_wp_admin_menu() {
 		if ( ! $this->expose_to_users() ) {
 			return;
 		}
 
-		$host             = new Host();
-		$is_module_active = $this->is_subscriptions_active();
+		// On sites using Jetpack, only show the menu if the site is connected.
+		if ( ! ( new Connection_Manager() )->is_connected() ) {
+			return;
+		}
 
-		// Show in Jetpack menu if module active, hidden page if inactive.
-		$parent_slug = $is_module_active ? 'jetpack' : '';
+		$host = new Host();
 
-		// On Atomic, use add_submenu_page. On standalone Jetpack, use Admin_Menu when active.
-		$use_jetpack_menu = ! $host->is_woa_site() && $is_module_active;
+		// When new settings are enabled, should_show_menu_item() controls visibility.
+		$show_menu   = $this->should_show_menu_item();
+		$parent_slug = $show_menu ? 'jetpack' : '';
+
+		// On Atomic, use add_submenu_page. On standalone Jetpack, use Admin_Menu when showing in menu.
+		$use_jetpack_menu = ! $host->is_woa_site() && $show_menu;
 
 		// Register menu item.
 		if ( $use_jetpack_menu ) {
@@ -168,8 +195,9 @@ class Settings {
 			return;
 		}
 
+		$parent_slug = $this->should_show_menu_item() ? 'jetpack' : '';
 		$page_suffix = add_submenu_page(
-			'jetpack',
+			$parent_slug,
 			/** "Newsletter" is a product name, do not translate. */
 			'Newsletter',
 			'Newsletter',
@@ -207,9 +235,9 @@ class Settings {
 		$host                   = new Host();
 		$status                 = new Status();
 		$blog_id                = (int) $host->get_wpcom_site_id();
-		$is_wpcom_simple        = $host->is_wpcom_simple();
+		$is_wpcom               = $host->is_wpcom_platform();
 		$is_block_theme         = wp_is_block_theme();
-		$setup_payment_plan_url = ( $is_wpcom_simple ? 'https://wordpress.com/earn/payments/' : 'https://cloud.jetpack.com/monetize/payments/' ) . rawurlencode( $site_raw_url );
+		$setup_payment_plan_url = ( $is_wpcom ? 'https://wordpress.com/earn/payments/' : 'https://cloud.jetpack.com/monetize/payments/' ) . rawurlencode( $site_raw_url );
 
 		$wp_admin_subscriber_management_enabled = apply_filters( 'jetpack_wp_admin_subscriber_management_enabled', false );
 
@@ -225,7 +253,7 @@ class Settings {
 			'email'                           => $current_user->user_email,
 			'gravatar'                        => get_avatar_url( $current_user->ID ),
 			'dateExample'                     => gmdate( get_option( 'date_format' ), time() ),
-			'subscriberManagementUrl'         => $this->get_subscriber_management_url( $wp_admin_subscriber_management_enabled, $is_wpcom_simple, $site_raw_url, $blog_id ),
+			'subscriberManagementUrl'         => $this->get_subscriber_management_url( $wp_admin_subscriber_management_enabled, $is_wpcom, $site_raw_url, $blog_id ),
 			'isSubscriptionSiteEditSupported' => $is_block_theme,
 			'setupPaymentPlansUrl'            => $setup_payment_plan_url,
 			'isSitePublic'                    => ! $status->is_private_site() && ! $status->is_coming_soon(),
@@ -259,31 +287,35 @@ class Settings {
 	 * Get the subscriber management URL based on site type and filter settings.
 	 *
 	 * - If jetpack_wp_admin_subscriber_management_enabled filter is true: wp-admin subscribers page
-	 * - If filter is false AND wpcom simple site: wordpress.com/subscribers/$domain
+	 * - If filter is false AND wpcom site: wordpress.com/subscribers/$domain
 	 * - If filter is false AND Jetpack site: jetpack.com redirect URL
 	 *
 	 * @param bool   $wp_admin_enabled Whether wp-admin subscriber management is enabled.
-	 * @param bool   $is_wpcom_simple  Whether this is a wpcom simple site.
+	 * @param bool   $is_wpcom         Whether this is a WordPress.com site.
 	 * @param string $site_raw_url     The site URL without protocol.
 	 * @param int    $blog_id          The blog ID.
 	 * @return string The subscriber management URL.
 	 */
-	private function get_subscriber_management_url( $wp_admin_enabled, $is_wpcom_simple, $site_raw_url, $blog_id ) {
+	private function get_subscriber_management_url( $wp_admin_enabled, $is_wpcom, $site_raw_url, $blog_id ) {
 		// If wp-admin subscriber management is enabled, use the wp-admin page.
 		if ( $wp_admin_enabled ) {
 			return admin_url( 'admin.php?page=subscribers' );
 		}
 
-		// For wpcom simple sites, use the wordpress.com URL.
-		if ( $is_wpcom_simple ) {
+		// For wpcom sites, use the wordpress.com URL.
+		if ( $is_wpcom ) {
 			return 'https://wordpress.com/subscribers/' . $site_raw_url;
 		}
 
 		// For Jetpack sites, use the jetpack.com redirect URL.
-		$site_id = $blog_id ? $blog_id : Connection_Manager::get_site_id();
+		$site_id = $blog_id ? (int) $blog_id : Connection_Manager::get_site_id( true );
+		$args    = ( ! empty( $site_id ) )
+			? array( 'site' => $site_id )
+			: array();
+
 		return Redirect::get_url(
 			'jetpack-settings-jetpack-manage-subscribers',
-			array( 'site' => $site_id )
+			$args
 		);
 	}
 
@@ -321,15 +353,7 @@ class Settings {
 	 * @since 0.5.1
 	 */
 	public function render_reading_page_notice() {
-		/*
-		 * Filter the settings page URL so it points to the correct settings page
-		 * regardless of whether the new newsletter UI is enabled.
-		 */
-		/* This filter is already documented in projects/plugins/jetpack/class.jetpack.php */
-		$newsletter_url = apply_filters(
-			'jetpack_module_configuration_url_subscriptions',
-			admin_url( 'admin.php?page=jetpack#/newsletter' )
-		);
+		$newsletter_url = Urls::get_newsletter_settings_url( ( new Status() )->get_site_suffix() );
 
 		printf(
 			'<p class="description" id="jetpack-newsletter-reading-notice">%s</p>',
