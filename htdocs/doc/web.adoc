@@ -477,6 +477,17 @@ NOTE: On Firefox, users can still use _Shift+Right click_ to open the context me
 +
 WARNING: TODO: However, right now `castle-config:/` on web just accesses a temporary memory using cgeref:TCastleMemoryFileSystem[]. So it completely disappears when user reloads the page.
 
+- You can read URL through which your page was accessed, and get query parameters of this URL. The use-case is to enable creating webpages that react to URL parameters, e.g. expose a model viewer on URL like `https://viewer.castle-engine.io/?url=http://example.org/model.gltf` . Use this:
++
+--
+- cgeref:TCastleApplication.PageUrl[Application.PageUrl] - get entire URL as a string,
+- cgeref:TCastleApplication.PageUrlQuery[Application.PageUrlQuery] - get query part of the URL (the part from `?`), as a string,
+- cgeref:TCastleApplication.PageUrlParameter[Application.PageUrlParameter] - get value of a specific query parameter,
+- cgeref:TCastleApplication.PageUrlParameters[Application.PageUrlParameters] - get all query parameters as a dictionary
+--
++
+This API exists on all platforms, just returns nothing on non-web platforms. So you don't need to use any `$ifdef WASI` when accessing this.
+
 [#http_requests]
 === HTTP requests, downloading (TCastleDownload) on the web, CORS
 
