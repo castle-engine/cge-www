@@ -153,7 +153,7 @@ After installing FPC (and Pas2js) using the _WA_ button:
 --
 1. `<chosen_installation_path>/fpc/bin/<target>/pas2js`: Do not use this. It is not accompanied by the `pas2js.cfg`, and trying to use it will fail with message `Error: can't find unit "System"`.
 
-2. `<chosen_installation_path>/ccr/pas2js-rtl/tools/pas2js`: Use this.
+2. `<chosen_installation_path>/ccr/pas2js-rtl/bin/(target)/pas2js`: Use this.
 --
 +
 To make it work, we recommend to:
@@ -161,7 +161,8 @@ To make it work, we recommend to:
 --
 1. Simply remove the `<chosen_installation_path>/fpc/bin/<target>/pas2js` executable (it has `.exe` extension on Windows).
 
-2. Place the `<chosen_installation_path>/ccr/pas2js-rtl/tools/` directory on your `$PATH`. This way our editor will find the correct `pas2js` and it will also be available from the command-line.
+2. Place the `<chosen_installation_path>/ccr/pas2js-rtl/bin/(target)` directory on your `$PATH`. This way our editor will find the correct `pas2js` and it will also be available from the command-line.
+3. Restart the editor for `$PATH` changes to take effect.
 --
 
 ==== Prerequisites using manual installation
