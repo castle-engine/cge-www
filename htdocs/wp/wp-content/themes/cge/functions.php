@@ -362,6 +362,9 @@ function cge_strip_trailing_newline_in_pre($content) {
         },
         $content
     );
+
+    // for debugging:
+    //return $content . '<pre>what does the_content 99 hook see?' . htmlspecialchars($content) . '</pre>';
 }
 add_filter('the_posts', function ($posts) {
     if (!is_array($posts)) {
