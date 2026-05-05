@@ -344,9 +344,14 @@ https://castle-engine.io/wp/wp-admin/options-general.php?page=urvanov_syntax_hig
 
 We only strip ending newline + </code> better.
 
-This processing runs before Urvanov plugin (which uses priority 100).
+We must hook 'the_posts' (not 'the_content') because Urvanov captures <pre>
+blocks during its 'the_posts' filter at priority 100: each <pre>...</pre> is
+replaced with a [crayon-UID/] placeholder and the inner code is stashed in
+the plugin's queue. By the time 'the_content' fires, there is no <pre> left
+to clean. Running on 'the_posts' at priority 99 lets us pre-clean each
+post's content before Urvanov's phase-1 capture sees it.
 */
-add_filter('the_content', function ($content) {
+function cge_strip_trailing_newline_in_pre($content) {
     if (strpos($content, '</code>') === false) {
         return $content;
     }
@@ -357,4 +362,15 @@ add_filter('the_content', function ($content) {
         },
         $content
     );
+}
+add_filter('the_posts', function ($posts) {
+    if (!is_array($posts)) {
+        return $posts;
+    }
+    foreach ($posts as $post) {
+        if (!empty($post->post_content)) {
+            $post->post_content = cge_strip_trailing_newline_in_pre($post->post_content);
+        }
+    }
+    return $posts;
 }, 99);
