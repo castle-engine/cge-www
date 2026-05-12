@@ -191,7 +191,7 @@ or at the AudioClip node?</i>
 and we implement spec-complaint decision 1.) I don't think that playing
 audio tracks from movie files is a useful or common use case.
 It's wasteful, anyway, to reference a movie just to play an audio track,
-so authors are well adviced to avoid this. If you want to play
+so authors are well advised to avoid this. If you want to play
 an audio track from a movie, consider just extracting the audio track
 to a separate .wav/.ogg file and playing it using AudioClip node.
 This way we will not have to download the whole movie just to play its audio.

@@ -77,16 +77,13 @@ WARNING: Early preview, just to show that "we can" :) Not suitable for any real 
 
 - link:web-demos/examples/animations/animate_bones_by_code[Animate Bones by Code] (https://github.com/castle-engine/castle-engine/tree/master/examples/animations/animate_bones_by_code[Source code])
 
-////
-TODO: These demos run, but no sound yet.
-
 === Audio
-
-- link:web-demos/examples/audio/game_3d_sound/[3D Sound Demo] (https://github.com/castle-engine/castle-engine/tree/master/examples/audio/game_3d_sound[Source code]).
 
 - link:web-demos/examples/audio/play_sounds/[Play Sounds] (https://github.com/castle-engine/castle-engine/tree/master/examples/audio/play_sounds[Source code]).
 
-////
+- link:web-demos/examples/audio/game_3d_sound/[3D Sound Demo] (https://github.com/castle-engine/castle-engine/tree/master/examples/audio/game_3d_sound[Source code]).
++
+WARNING: TODO: Note that "mouse look" is not correct yet, the mouse cursor is visible and it can be offscreen.
 
 === Automatic Engine Tests
 
@@ -127,7 +124,7 @@ Things below look complicated? We have plans to make them easier:
 They will be build by CI actions in https://github.com/castle-engine/castle-fpc[castle-fpc] repository. GUI link:editor[editor] and command-line link:build_tool[build tool] will enable to easily download them.
 +
 This way you will be able to get all these prerequisites in a trivial way, in latest versions that are tested and recommended by CGE developers.
-// This way we do not have to depend on FPC and Pas2js teams to prepare official releases with WebAssembly support. Or wait for FpcUpDeluxe to apply our PR to fix Wasmp1.
+// This way we do not have to depend on FPC and Pas2js teams to prepare official releases with WebAssembly support.
 
 - We plan to extend our link:docker[Docker images] to provide Pas2js and FPC with WebAssembly support out-of-the-box. Don't know yet what https://www.docker.com/[Docker] is? Then we advise to play and learn, Docker images and containers are nice way to share "development environments".
 
