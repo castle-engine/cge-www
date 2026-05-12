@@ -495,6 +495,30 @@ WARNING: TODO: However, right now `castle-config:/` on web just accesses a tempo
 +
 This API exists on all platforms, just returns nothing on non-web platforms. So you don't need to use any `$ifdef WASI` when accessing this.
 
+[#audio]
+=== Audio (sound, music) playback
+
+For audio, we have a new sound backend using https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API[WebAudio]. This is the default sound backend on the web.
+
+In general, everything works as expected, just use our link:sound[] components and API as usual, and they will work on the web as well. You can load and play sounds, adjust their volume and pitch, use 3D sound features, etc.
+
+Try engine examples like:
+
+- https://github.com/castle-engine/castle-engine/tree/master/examples/2d_games/platformer[examples/2d_games/platformer]
+- https://github.com/castle-engine/castle-engine/tree/master/examples/audio/play_sounds[examples/audio/play_sounds]
+
+Notes and limitations:
+
+- Audio playback will be in a _suspended_ state when loading the page in modern web browsers. This is a feature, https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Best_practices#autoplay_policy[the idea is that user should manually enable audio because it would be annoying if newly opened page could automatically play some sound]. So we can only start audio in response to _user interaction_ with a page, which in practice means: after a press (touch, mouse press, key press on focused canvas). Our engine handles the activation automatically, but you need to design your UX to encourage player to click on anything to start the playback. A button like "Start the game" will do the trick.
+
+- _OggVorbis_ support depends on the browser (we rely that the browser can decompress OggVorbis on the web), but it's commonly supported. See about supported media (including audio) formats: https://developer.mozilla.org/en-US/docs/Web/Media/Guides/Formats , https://developer.mozilla.org/en-US/docs/Web/Media/Guides/Formats/Audio_codecs .
+
+- _Doppler effect_ is not supported by WebAudio. Underneath, the simple API to implement it has been deprecated + removed from the WebAudio specification. And implementing it on our side is not yet done.
+
+- TODO: Our link:fmod[FMOD] sound backend could also be ported to web, as https://www.fmod.com/docs/2.02/api/platforms-html5.html[FMOD supports HTML5]. This would make FMOD a truly cross-platform sound backend, working on every platform we support in CGE.
+
+- About link:x3d_implementation_sound.php#section_x3d4[WebAudio in the context of X3D 4.0]: Supporting advanced X3D 4.0 audio nodes is not our priority... but the possibility is open, since we now have WebAudio backend. There is also https://github.com/LabSound/LabSound[LabSound] that provides WebAudio-like API on non-web platforms, and in principle it could one day replace OpenAL, making web and non-web audio handling closer.
+
 [#http_requests]
 === HTTP requests, downloading (TCastleDownload) on the web, CORS
 
@@ -520,12 +544,6 @@ This is a standard security feature of web browsers. It is unavoidable from our 
 - Reproduce with clean sample and submit to FPC:
 +
 Running on mobile requires now hacking pas2js, in `pas2js/packages/job/src/job_browser.pp`, find and comment out `RegisterGlobalObject(caches,'caches');`. Otherwise both Firefox and Chrome on Android fail with `ReferenceError: caches is not defined`.
-
-- For audio, we will add a new sound backend using https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API[WebAudio]. This will be the default sound backend on the web (like the link:openal[OpenAL] is now the default backend on non-web platforms).
-+
-It is also possible our link:fmod[FMOD] sound backend will also be ported to web, as https://www.fmod.com/docs/2.02/api/platforms-html5.html[FMOD supports HTML5]. This would make FMOD a truly cross-platform sound backend, working on every platform we support in CGE.
-+
-NOTE: About link:x3d_implementation_sound.php#section_x3d4[WebAudio in the context of X3D 4.0]. Supporting advanced X3D 4.0 audio nodes is not our priority, but since WebAudio will happen anyway, on the web... they will open this possibility. There is also https://github.com/LabSound/LabSound[LabSound] that provides WebAudio-like API on non-web platforms, and in principle it could one day replace OpenAL, making web and non-web audio handling closer.
 
 - Possibly throw in additional compression of data and/or wasm executable?
 +
