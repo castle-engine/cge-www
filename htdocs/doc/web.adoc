@@ -521,6 +521,10 @@ See:
 - https://developer.mozilla.org/en-US/docs/Web/Media/Guides/Formats/Audio_codecs[common audio codecs and formats they support].
 --
 
+- Beyond WAV and OggVorbis formats (which we guarantee support on all platforms, as link:sound[documented]), WebAudio also supports a number of other audio formats, depending on the browser. In particular, `.mp3` and `.flac` are supported and tested on both FireFox and Chrome-based browsers.
++
+Use these additional formats at your own responsibility. Make sure all the platforms for which you plan to release the game support all your audio formats. For `.mp3` and `.flac` support on non-web, consider link:fmod[FMOD] sound backend.
+
 - _Doppler effect_ is not supported by WebAudio. Underneath, the simple API to implement it has been deprecated + removed from the WebAudio specification. And implementing it on our side is not yet done.
 
 - TODO: Our link:fmod[FMOD] sound backend could also be ported to web, as https://www.fmod.com/docs/2.02/api/platforms-html5.html[FMOD supports HTML5]. This would make FMOD a truly cross-platform sound backend, working on every platform we support in CGE.

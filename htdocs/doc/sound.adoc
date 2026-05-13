@@ -118,15 +118,30 @@ cgeimg::float[
   sound_fmod.png|FMOD
 ]
 
-By default we use _OpenAL_ to play sounds. It's a great full-featured open-source audio library, perfect match for our open-source game engine.
+- By default, on platforms other than web, we use _OpenAL_ to play sounds. It's a great full-featured open-source audio library, perfect match for our open-source game engine.
 
-You can alternatively switch to use the https://castle-engine.io/fmod[FMOD sound backend]. This is just an option. FMOD is proprietary (not open-source) and https://www.fmod.com/licensing[commercial (though free in some cases, for indie developers)].
-
+- You can alternatively switch to use the https://castle-engine.io/fmod[FMOD sound backend]. This is just an option. FMOD is proprietary (not open-source) and https://www.fmod.com/licensing[commercial (though free in some cases, for indie developers)].
++
+--
 - Main advantage of FMOD in CGE for now is link:nintendo_switch[Nintendo Switch compatibility].
 
 - Big future advantage will be integration with the https://www.fmod.com/studio[FMOD Studio]. The goal of _FMOD Studio_ is to make the work of _sound designer_ easier. The sfx person can create sound effects in _FMOD Studio_, in a way that is agnostic to the game engine, and the code (like your game) simply sends _"events"_ that may cause some sound effect (playing something, stopping something, fading in/out something...).
 
 - See also plans about https://castle-engine.io/roadmap#fmod_studio[FMOD Studio] and https://castle-engine.io/roadmap#wwise[Wwise].
+--
+
+- On the link:web[], we use _WebAudio_ backend, utilizing audio support in all modern web browsers.
+
+== Sound file formats
+
+We guarantee support for these formats on all platforms:
+
+- _WAV (uncompressed, PCM)_ and
+- _OggVorbis_
+
+The engine ships with necessary libraries (like DLLs for Windows) to make these formats really work everywhere out-of-the-box.
+
+Some backends support additional audio formats. This applies now to the link:fmod[FMOD] and link:web[] audio backends, that support additional formats like MP3 and FLAC. Refer to their documentation for details.
 
 == Various Advices
 
