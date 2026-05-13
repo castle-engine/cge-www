@@ -506,9 +506,20 @@ Try engine examples like:
 
 Notes and limitations:
 
-- Audio playback will be in a _suspended_ state when loading the page in modern web browsers. This is a feature, https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Best_practices#autoplay_policy[the idea is that user should manually enable audio because it would be annoying if newly opened page could automatically play some sound]. So we can only start audio in response to _user interaction_ with a page, which in practice means: after a press (touch, mouse press, key press on focused canvas). Our engine handles the activation automatically, but you need to design your UX to encourage player to click on anything to start the playback. A button like "Start the game" will do the trick.
+- Audio playback may be in a _suspended_ state when loading the page in modern web browsers. https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Best_practices#autoplay_policy[Browsers do this, following the notion that user should manually enable audio (because it would be annoying if newly opened page would automatically play sound)].
++
+On the engine level, we solve this by starting audio in response to _user interaction_ with a page, which in practice means: after a _press or release_ (touch, mouse, key press/release on focused canvas). Our engine handles the activation automatically, but you need to design your UX to encourage player to click on anything to start the playback. A button like _"Start the game"_ will do the trick.
++
+It's also possible to solve it by placing the game within an `<iframe>` and using `allow="autoplay"` attribute on the `<iframe>`. Standard wrapper generated for https://itch.io/[HTML games on itch.io] does this, and it works well. See https://phomm.itch.io/tower-fight?secret=Evr2iLjpvTifjI2YWDWKvVReA["Tower Fight" HTML game on itch.io by phomm (Vlad)] for an example of this in practice (see also https://forum.castle-engine.io/t/excerpts-from-web-build-and-itch-io-deploy-of-cge-project-journey/2125/20?u=michalis[related forum thread]).
 
-- _OggVorbis_ support depends on the browser (we rely that the browser can decompress OggVorbis on the web), but it's commonly supported. See about supported media (including audio) formats: https://developer.mozilla.org/en-US/docs/Web/Media/Guides/Formats , https://developer.mozilla.org/en-US/docs/Web/Media/Guides/Formats/Audio_codecs .
+- _OggVorbis_ support depends on the browser (we rely that the browser can decompress OggVorbis on the web), but it's commonly supported.
++
+See:
++
+--
+- https://developer.mozilla.org/en-US/docs/Web/Media/Guides/Formats[Media types and formats for image, audio, and video content]
+- https://developer.mozilla.org/en-US/docs/Web/Media/Guides/Formats/Audio_codecs[common audio codecs and formats they support].
+--
 
 - _Doppler effect_ is not supported by WebAudio. Underneath, the simple API to implement it has been deprecated + removed from the WebAudio specification. And implementing it on our side is not yet done.
 
