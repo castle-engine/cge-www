@@ -5,7 +5,7 @@ include::common.adoc[]
 
 _Castle Game Engine_ can use various _backends_ for our link:sound[sound (CastleSoundEngine unit)]. By default we use link:openal[OpenAL] which works nicely, is open-source and cross-platform (works on desktop and mobile). However, you may choose to use another backend.
 
-One of the alternative backends is https://www.fmod.com/[FMOD], using a commercial (closed-source) FMOD library. FMOD works nicely, and is even more cross-platform (in particular it supports also link:nintendo_switch[Nintendo Switch]). It also supports more sound file formats out-of-the-box.
+One of the alternative backends is https://www.fmod.com/[FMOD], using a commercial (closed-source) FMOD library. FMOD works nicely, and is even more cross-platform (in particular it supports also link:nintendo_switch[Nintendo Switch]). It also supports more link:sound#formats[sound file formats] out-of-the-box, like _MP3_ and _FLAC_ (in addition to our guaranteed formats _WAV_ and _OggVorbis_).
 
 NOTE: FMOD is not free, in general. But they have a _"Free Indie License"_ if your revenue and budget are below certain thresholds. See https://www.fmod.com/licensing[FMOD licensing and pricing] for the details.
 

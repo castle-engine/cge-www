@@ -132,6 +132,7 @@ cgeimg::float[
 
 - On the link:web[], we use _WebAudio_ backend, utilizing audio support in all modern web browsers.
 
+[#formats]
 == Sound file formats
 
 We guarantee support for these formats on all platforms:
