@@ -4,6 +4,7 @@ namespace Cloudflare\APO\API;
 
 use Cloudflare\APO\Integration\DataStoreInterface;
 use Cloudflare\APO\Integration\DefaultIntegration;
+use Cloudflare\APO\Vendor\Psr\Log\LoggerInterface;
 
 abstract class AbstractPluginActions
 {
@@ -64,7 +65,7 @@ abstract class AbstractPluginActions
         $this->dataStore = $dataStore;
     }
 
-    public function setLogger(\Psr\Log\LoggerInterface $logger)
+    public function setLogger(LoggerInterface $logger)
     {
         $this->logger = $logger;
     }
@@ -84,7 +85,13 @@ abstract class AbstractPluginActions
             return $this->api->createAPIError("Missing required parameter: 'email'.");
         }
 
-        $isCreated = $this->dataStore->createUserDataStore($requestBody['apiKey'], $requestBody['email'], null, null);
+        // Trim whitespace pasted in from the dashboard so credential-format
+        // detection in Client::isGlobalApiKey() and the stored option both
+        // see the canonical value.
+        $apiKey = is_string($requestBody['apiKey']) ? trim($requestBody['apiKey']) : $requestBody['apiKey'];
+        $email = is_string($requestBody['email']) ? trim($requestBody['email']) : $requestBody['email'];
+
+        $isCreated = $this->dataStore->createUserDataStore($apiKey, $email, null, null);
         if (!$isCreated) {
             return $this->api->createAPIError('Unable to save user credentials');
         }
@@ -106,7 +113,7 @@ abstract class AbstractPluginActions
             return $this->api->createAPIError('Email address or API key invalid.');
         }
 
-        $response = $this->api->createAPISuccessResponse(array('email' => $requestBody['email']));
+        $response = $this->api->createAPISuccessResponse(array('email' => $email));
 
         return $response;
     }

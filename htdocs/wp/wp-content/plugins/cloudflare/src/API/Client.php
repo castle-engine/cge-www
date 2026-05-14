@@ -12,8 +12,48 @@ class Client extends AbstractAPIClient
     const X_AUTH_KEY = 'X-Auth-Key';
     const X_AUTH_EMAIL = 'X-Auth-Email';
     const AUTHORIZATION = 'Authorization';
-    const AUTH_KEY_LEN = 37;
     const USER_AGENT = 'User-Agent';
+
+    /**
+     * Returns true when the supplied credential is a Cloudflare Global API
+     * Key (which uses the X-Auth-Email + X-Auth-Key header pair) and false
+     * for everything else (treated as an API Token sent via Authorization:
+     * Bearer).
+     *
+     * Cloudflare credential formats (see
+     * https://developers.cloudflare.com/fundamentals/api/get-started/token-formats/):
+     *   - Global API Key  (new):      "cfk_"  + 40 chars + checksum
+     *   - User API Token  (new):      "cfut_" + 40 chars + checksum
+     *   - Account API Token (new):    "cfat_" + 40 chars + checksum
+     *   - Global API Key  (pre-2026): 37-45 character lowercase hex string
+     *   - API Token       (pre-2026): 40-character alphanumeric string
+     *
+     * @param string $key
+     *
+     * @return bool
+     */
+    public static function isGlobalApiKey($key)
+    {
+        if (!is_string($key) || $key === '') {
+            return false;
+        }
+
+        // New scannable format: explicitly prefixed.
+        if (strncmp($key, 'cfk_', 4) === 0) {
+            return true;
+        }
+        if (strncmp($key, 'cfut_', 5) === 0 || strncmp($key, 'cfat_', 5) === 0) {
+            return false;
+        }
+
+        // Pre-2026 Global API Key: 37-45 lowercase hex characters.
+        $len = strlen($key);
+        if ($len >= 37 && $len <= 45 && preg_match('/^[0-9a-f]+$/', $key)) {
+            return true;
+        }
+
+        return false;
+    }
 
     /**
      * @param Request $request
@@ -32,10 +72,10 @@ class Client extends AbstractAPIClient
         $wp_version = $GLOBALS['wp_version'] ?? 'unknown';
         $headers[self::USER_AGENT] =  'wordpress/' . $wp_version . '; cloudflare-wordpress-plugin/' . $version;
 
-        // Determine authentication method from key format. Global API keys are
-        // always returned in hexadecimal format, while API Tokens are encoded
-        // using a wider range of characters.
-        if (strlen($key) === self::AUTH_KEY_LEN && preg_match('/^[0-9a-f]+$/', $key)) {
+        // Cloudflare distinguishes Global API Keys (sent via X-Auth-Email +
+        // X-Auth-Key) from API Tokens (sent via Authorization: Bearer) by the
+        // credential format. See self::isGlobalApiKey().
+        if (self::isGlobalApiKey($key)) {
             $headers[self::X_AUTH_EMAIL] = $this->data_store->getCloudFlareEmail();
             $headers[self::X_AUTH_KEY] = $key;
         } else {

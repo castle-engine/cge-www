@@ -72,99 +72,66 @@ class PluginActions extends AbstractPluginActions
      * PATCH /plugin/:id/settings/default_settings
      *
      * Requests are synchronized
+     *
+     * @throws ZoneSettingFailException When zone details cannot be fetched, or
+     *         when one or more individual zone settings fail to update. In the
+     *         latter case the exception message lists the failed setting names
+     *         and confirms the remaining settings were applied successfully.
      */
     public function applyDefaultSettings()
     {
         $path_array = explode('/', $this->request->getUrl());
         $zoneId = $path_array[1];
 
-        $result = true;
         $details = $this->clientAPI->zoneGetDetails($zoneId);
 
         if (!$this->clientAPI->responseOk($details)) {
-            // Technically zoneGetDetails does not try to set Zone Settings
-            // Can create a new exception but make things simple right?
             throw new ZoneSettingFailException();
         }
 
-        $currentPlan = $details['result']['plan']['legacy_id'] ?? 'free';
+        $currentPlan = $details['result']['plan']['legacy_id'] ?? Plans::FREE_PLAN;
 
-        $result &= $this->clientAPI->changeZoneSettings($zoneId, 'security_level', array('value' => 'medium'));
-        if (!$result) {
-            throw new ZoneSettingFailException();
-        }
-
-        $result &= $this->clientAPI->changeZoneSettings($zoneId, 'cache_level', array('value' => 'aggressive'));
-        if (!$result) {
-            throw new ZoneSettingFailException();
-        }
-
-        $result &= $this->clientAPI->changeZoneSettings($zoneId, 'browser_cache_ttl', array('value' => 14400));
-        if (!$result) {
-            throw new ZoneSettingFailException();
-        }
-
-        $result &= $this->clientAPI->changeZoneSettings($zoneId, 'always_online', array('value' => 'on'));
-        if (!$result) {
-            throw new ZoneSettingFailException();
-        }
-
-        $result &= $this->clientAPI->changeZoneSettings($zoneId, 'development_mode', array('value' => 'off'));
-        if (!$result) {
-            throw new ZoneSettingFailException();
-        }
-
-        $result &= $this->clientAPI->changeZoneSettings($zoneId, 'ipv6', array('value' => 'on'));
-        if (!$result) {
-            throw new ZoneSettingFailException();
-        }
-
-        $result &= $this->clientAPI->changeZoneSettings($zoneId, 'websockets', array('value' => 'on'));
-        if (!$result) {
-            throw new ZoneSettingFailException();
-        }
-
-        $result &= $this->clientAPI->changeZoneSettings($zoneId, 'ip_geolocation', array('value' => 'on'));
-        if (!$result) {
-            throw new ZoneSettingFailException();
-        }
-
-        $result &= $this->clientAPI->changeZoneSettings($zoneId, 'email_obfuscation', array('value' => 'on'));
-        if (!$result) {
-            throw new ZoneSettingFailException();
-        }
-
-        $result &= $this->clientAPI->changeZoneSettings($zoneId, 'server_side_exclude', array('value' => 'on'));
-        if (!$result) {
-            throw new ZoneSettingFailException();
-        }
-
-        $result &= $this->clientAPI->changeZoneSettings($zoneId, 'hotlink_protection', array('value' => 'off'));
-        if (!$result) {
-            throw new ZoneSettingFailException();
-        }
-
-        $result &= $this->clientAPI->changeZoneSettings($zoneId, 'rocket_loader', array('value' => 'off'));
-        if (!$result) {
-            throw new ZoneSettingFailException();
-        }
-
-        $result &= $this->clientAPI->changeZoneSettings($zoneId, 'automatic_https_rewrites', array('value' => 'on'));
-        if (!$result) {
-            throw new ZoneSettingFailException();
-        }
+        // Define the recommended settings to apply
+        $settings = array(
+            array('name' => 'security_level', 'params' => array('value' => 'medium')),
+            array('name' => 'cache_level', 'params' => array('value' => 'aggressive')),
+            array('name' => 'browser_cache_ttl', 'params' => array('value' => 14400)),
+            array('name' => 'always_online', 'params' => array('value' => 'on')),
+            array('name' => 'development_mode', 'params' => array('value' => 'off')),
+            array('name' => 'ipv6', 'params' => array('value' => 'on')),
+            array('name' => 'websockets', 'params' => array('value' => 'on')),
+            array('name' => 'ip_geolocation', 'params' => array('value' => 'on')),
+            array('name' => 'email_obfuscation', 'params' => array('value' => 'on')),
+            array('name' => 'server_side_exclude', 'params' => array('value' => 'on')),
+            array('name' => 'hotlink_protection', 'params' => array('value' => 'off')),
+            array('name' => 'rocket_loader', 'params' => array('value' => 'off')),
+            array('name' => 'automatic_https_rewrites', 'params' => array('value' => 'on')),
+        );
 
         // If the plan supports Mirage and Polish try to set them on
         if (!Plans::planNeedsUpgrade($currentPlan, Plans::BIZ_PLAN)) {
-            $result &= $this->clientAPI->changeZoneSettings($zoneId, 'mirage', array('value' => 'on'));
-            if (!$result) {
-                throw new ZoneSettingFailException();
-            }
+            $settings[] = array('name' => 'mirage', 'params' => array('value' => 'on'));
+            $settings[] = array('name' => 'polish', 'params' => array('value' => 'lossless'));
+        }
 
-            $result &= $this->clientAPI->changeZoneSettings($zoneId, 'polish', array('value' => 'lossless'));
+        // Apply all settings, collecting failures rather than failing fast.
+        // Some API endpoints may return errors for certain token types (e.g.
+        // Account Owned Tokens) even when the token has the correct permissions.
+        // Skipping individual failures ensures remaining settings still apply.
+        $failedSettings = array();
+        foreach ($settings as $setting) {
+            $result = $this->clientAPI->changeZoneSettings($zoneId, $setting['name'], $setting['params']);
             if (!$result) {
-                throw new ZoneSettingFailException();
+                $failedSettings[] = $setting['name'];
             }
+        }
+
+        if (!empty($failedSettings)) {
+            $message = 'Failed to update the following settings: ' . implode(', ', $failedSettings)
+                . '. The remaining settings were applied successfully.'
+                . ' If you are using an Account Owned Token, some zone settings'
+                . ' endpoints may not yet support this token type.';
+            throw new ZoneSettingFailException($message);
         }
     }
 

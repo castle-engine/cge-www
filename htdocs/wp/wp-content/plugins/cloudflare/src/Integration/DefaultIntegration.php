@@ -15,7 +15,7 @@ class DefaultIntegration implements IntegrationInterface
      * @param ConfigInterface                          $config
      * @param IntegrationAPIInterface                  $integrationAPI
      * @param DataStoreInterface                       $dataStore
-     * @param LoggerInterface|\Psr\Log\LoggerInterface $logger
+     * @param LoggerInterface                          $logger
      */
     public function __construct(ConfigInterface $config, IntegrationAPIInterface $integrationAPI, DataStoreInterface $dataStore, LoggerInterface $logger)
     {

@@ -3,7 +3,7 @@ Contributors: cloudflare, barrykooij, defries
 Tags: cloudflare, seo, ssl, ddos, speed, security, cdn, performance, free
 Requires at least: 5.0
 Tested up to: 6.9.0
-Stable tag: 4.14.2
+Stable tag: 4.14.3
 Requires PHP: 7.4
 License: BSD-3-Clause
 
@@ -98,6 +98,21 @@ Yes, Cloudflare works with, and helps speed up your site even more, if you have 
 == Screenshots ==
 
 == Changelog ==
+
+= 4.14.3 - 2026-05-12 =
+
+*Fixed*
+* FQCN references are now correctly rewritten by update-namespaces.php during build.
+* Fixed double pipes typo after ttf in htaccess.
+* Recognize new cfk_/cfut_/cfat_ credential formats
+* Apply settings fail-fast when using Account Owned Tokens
+* Partial-failure test silently overwriting message regex assertion
+* PHP 8.4 deprecation by marking $previous parameter explicitly nullable
+* Now trimming apiKey and email to prevent whitespace issues on authentication.
+
+*Changed*
+
+* Replace FQCN type hints with imported aliases for LoggerInterface.
 
 = 4.14.2 - 2025-12-22 =
 
