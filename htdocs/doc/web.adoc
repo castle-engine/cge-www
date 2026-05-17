@@ -77,6 +77,15 @@ WARNING: Early preview, just to show that "we can" :) Not suitable for any real 
 
 - link:web-demos/examples/animations/animate_bones_by_code[Animate Bones by Code] (https://github.com/castle-engine/castle-engine/tree/master/examples/animations/animate_bones_by_code[Source code])
 
+- link:web-demos/examples/viewport_and_scenes/bump_mapping[Bump Mapping] (https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/bump_mapping[Source code])
+
+////
+TODO: Firefox bad rendering, Vivaldi blinking
+- link:web-demos/examples/viewport_and_scenes/occlusion_culling[Occlusion Culling] (https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/occlusion_culling[Source code])
+////
+
+- link:web-demos/examples/terrain[Terrain with water] (https://github.com/castle-engine/castle-engine/tree/master/examples/terrain[Source code])
+
 === Audio
 
 - link:web-demos/examples/audio/play_sounds/[Play Sounds] (https://github.com/castle-engine/castle-engine/tree/master/examples/audio/play_sounds[Source code]).
@@ -550,8 +559,6 @@ This is a standard security feature of web browsers. It is unavoidable from our 
 ====
 
 == Plans (TODOs)
-
-- Some shader code (bump mapping, fog, terrains) makes weird errors at compilation on WebGL. For now, we disabled these shaders, so the relevant examples will run smoothly.
 
 - Reproduce with clean sample and submit to FPC:
 +
