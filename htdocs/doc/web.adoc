@@ -79,12 +79,11 @@ WARNING: Early preview, just to show that "we can" :) Not suitable for any real 
 
 - link:web-demos/examples/viewport_and_scenes/bump_mapping[Bump Mapping] (https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/bump_mapping[Source code])
 
-////
-TODO: Firefox bad rendering, Vivaldi blinking
 - link:web-demos/examples/viewport_and_scenes/occlusion_culling[Occlusion Culling] (https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/occlusion_culling[Source code])
-////
 
 - link:web-demos/examples/terrain[Terrain with water] (https://github.com/castle-engine/castle-engine/tree/master/examples/terrain[Source code])
+
+- link:web-demos/examples/3d_games/explore_impressive_castle[Explore Impressive 3D Castle] (https://github.com/castle-engine/castle-engine/tree/master/examples/3d_games/explore_impressive_castle[Source code])
 
 === Audio
 
