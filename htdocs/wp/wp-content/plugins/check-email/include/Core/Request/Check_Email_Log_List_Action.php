@@ -308,10 +308,13 @@ class Check_Email_Log_List_Action implements Loadie {
 			return;
 		}
 		$logs_deleted = $this->get_table_manager()->delete_logs( $ids );
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form
 		if ( isset( $_REQUEST['_wp_http_referer'] ) ) {
+			// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: We are not processing form
 			wp_safe_redirect( wp_unslash( $_REQUEST['_wp_http_referer'] ) . '&deleted_logs=' . $logs_deleted );
 			exit;
 		} else {
+			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated
 			wp_safe_redirect( wp_unslash( $_SERVER['HTTP_REFERER'] ) . '&deleted_logs=' . $logs_deleted );
 			exit;
 		}
@@ -348,10 +351,12 @@ class Check_Email_Log_List_Action implements Loadie {
 		
 		$logs_deleted = $this->get_table_manager()->delete_error_tracker( $ids );
 
-		
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		if ( isset( $_REQUEST['_wp_http_referer'] ) ) {
-			$redirect_url = wp_unslash( $_REQUEST['_wp_http_referer'] );
-		} else {
+			// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$redirect_url = sanitize_text_field( wp_unslash( $_REQUEST['_wp_http_referer'] ) );
+			} else {
+			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 			$redirect_url = isset( $_SERVER['HTTP_REFERER'] ) ? wp_unslash( $_SERVER['HTTP_REFERER'] ) : '';
 		}
 

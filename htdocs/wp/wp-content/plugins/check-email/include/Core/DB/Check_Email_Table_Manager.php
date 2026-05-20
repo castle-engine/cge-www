@@ -135,12 +135,11 @@ class Check_Email_Table_Manager implements Loadie {
 			return false;
 		}
 		$placeholders = implode( ',', array_fill( 0, count( $ids_array ), '%d' ) );
-
-		$query = $wpdb->prepare(
-			"DELETE FROM {$table_name} WHERE id IN ($placeholders)",
+		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared,WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare
+		$query = $wpdb->prepare("DELETE FROM {$table_name} WHERE id IN ($placeholders)",
 			...$ids_array
 		);
-
+		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared,WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.PreparedSQL.NotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
 		$result = $wpdb->query( $query );
 		if ( $result !== false ) {
 			foreach ( $ids_array as $id ) {
@@ -183,11 +182,11 @@ class Check_Email_Table_Manager implements Loadie {
 			return false;
 		}
 		$placeholders = implode( ',', array_fill( 0, count( $ids_array ), '%d' ) );
-		$query = $wpdb->prepare(
-			"DELETE FROM {$table_name} WHERE id IN ($placeholders)",
+		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared,WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare
+		$query = $wpdb->prepare("DELETE FROM {$table_name} WHERE id IN ($placeholders)",
 			...$ids_array
 		);
-
+		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared,WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.PreparedSQL.NotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
 		$result = $wpdb->query( $query );
 		if ( $result !== false ) {
 			foreach ( $ids_array as $id ) {
@@ -419,7 +418,7 @@ class Check_Email_Table_Manager implements Loadie {
 	        if ( ! function_exists( 'dbDelta' ) ) {
 	            require_once ABSPATH . 'wp-admin/includes/upgrade.php';
 	        }
-	        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching,PluginCheck.Security.DirectDB.UnescapedDBParameter
+	        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching,PluginCheck.Security.DirectDB.UnescapedDBParameter, WordPress.DB.PreparedSQL.NotPrepared
 	        $wpdb->query( $sql );
 	    }    
     

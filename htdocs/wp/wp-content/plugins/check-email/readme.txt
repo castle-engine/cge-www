@@ -2,9 +2,9 @@
 Contributors: checkemail
 Tags: logging, email, email log, smtp, log
 Requires at least: 5.0
-Tested up to: 6.9
+Tested up to: 7.0
 Requires PHP: 5.6
-Stable tag: 2.0.13.2
+Stable tag: 2.0.14
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -123,6 +123,11 @@ Someone using one of my other plugins had trouble with emails not being sent. I 
 
 == Changelog ==
 
+= v2.0.14 - 18/05/2026 =
+- Fixed: Spam Analyzer option gives Undefined error And Need to fix Go to Email log button. #162
+- Fixed: Setting SMTP settings for multisite is broken #166
+- Tested: WordPress version upto 7.0
+
 = v2.0.13.2 - 13/04/2026 =
 - Fixed: Vulnerability reported by Kishan Vyas
 - Fixed: Vulnerability reported by @poloss
@@ -201,21 +206,5 @@ Someone using one of my other plugins had trouble with emails not being sent. I 
 - Feature: Added encoding of email and phone #55
 - Feature: Added integration with Microsoft SMTP that requires oAuth authentication. #100
 - Fixed: Some warnings appear while viewing the email log #104
-
-= v2 - 02/09/2024 =
-- Enhancement: Added confirmation box on deletion of log email #84
-- Fixed: Conflict issue with Override Emails feature. #98
-- Fixed: PHP Fatal error #101
-
-= v2.0 - 09/08/2024 =
-- Compatibility: Test with WordPress version 6.6 #95
-- Feature: Default Format for Message #86
-- Feature: Added small setup wizard #87
-- Feature: Log email content option #89
-- Enhancement: Hooks and actions #90
-- Enhancement: Fixed I18N Issues based on 1.0.13 helped by @alexclassroom #91
-- Fixed: Images folder missing for jquery-ui.min.css #93
-- Enhancement: Few improvement required #94
-- Feature: Email error tracker #96
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/check-email/trunk/changelog.txt)
