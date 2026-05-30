@@ -579,6 +579,7 @@ $castle_sitemap = array(
       'convert' => array('title' => 'Online Model Converter'),
       //'convert-output' => array('title' => 'Conversion output'),
       'doc/castle-image-viewer' => array('title' => 'Image Viewer'),
+      'bugs' => array('title' => 'Submit Issues', 'url' => 'https://github.com/castle-engine/castle-model-viewer/issues'),
     ),
   ),
 
