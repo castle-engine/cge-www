@@ -104,6 +104,8 @@ cge::download-application[
     darwin-x86_64
 ]
 
+NOTE: If you find a bug, https://github.com/castle-engine/castle-model-viewer/issues[please report it here]. Thank you!
+
 ////
 Below is no longer actively tested, and was complicated to use, for now don't expose docs of it:
 
