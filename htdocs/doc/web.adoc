@@ -87,6 +87,8 @@ WARNING: Early preview, just to show that "we can" :) Not suitable for any real 
 
 === Audio
 
+- link:web-demos/examples/audio/music_collection_player[Music Player] (https://github.com/castle-engine/castle-engine/tree/master/examples/audio/music_collection_player[Source Code]).
+
 - link:web-demos/examples/audio/play_sounds/[Play Sounds] (https://github.com/castle-engine/castle-engine/tree/master/examples/audio/play_sounds[Source code]).
 
 - link:web-demos/examples/audio/game_3d_sound/[3D Sound Demo] (https://github.com/castle-engine/castle-engine/tree/master/examples/audio/game_3d_sound[Source code]).
