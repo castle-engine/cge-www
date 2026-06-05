@@ -41,6 +41,8 @@ cgeimg::block[
 
 - link:web-demos/examples/tiled/strategy_game_demo[Strategy game (using Tiled maps)] (https://github.com/castle-engine/castle-engine/tree/master/examples/tiled/strategy_game_demo[Source code])
 
+- link:web-demos/examples/screen_effects_demo[Screen effects demo] (https://github.com/castle-engine/castle-engine/tree/master/examples/screen_effects_demo[Source code])
+
 === 3D demos
 
 - link:web-demos/examples/ifc[Manipulating IFC] (https://github.com/castle-engine/castle-engine/tree/master/examples/ifc[Source code])
@@ -84,6 +86,8 @@ WARNING: Early preview, just to show that "we can" :) Not suitable for any real 
 - link:web-demos/examples/terrain[Terrain with water] (https://github.com/castle-engine/castle-engine/tree/master/examples/terrain[Source code])
 
 - link:web-demos/examples/3d_games/explore_impressive_castle[Explore Impressive 3D Castle] (https://github.com/castle-engine/castle-engine/tree/master/examples/3d_games/explore_impressive_castle[Source code])
+
+- link:web-demos/examples/research_special_rendering_methods/test_rendering_opengl_capabilities[Test Rendering Capabilities] (https://github.com/castle-engine/castle-engine/tree/master/examples/research_special_rendering_methods/test_rendering_opengl_capabilities[Source code])
 
 === Audio
 
