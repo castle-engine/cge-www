@@ -644,6 +644,46 @@ Use JS https://developer.mozilla.org/en-US/docs/Web/API/ScreenOrientation/lock[S
 
 Aside from above TODOs (which should be eventually addressed), there are some known limitations which we cannot (or don't plan to) "overcome" in our engine:
 
+- Avoid using certain key combinations that are already handled by typical web browsers. This includes:
++
+--
+- Space, PageUp, PageDown, arrow keys (scroll the page)
+- Tab (switches focus)
+- Escape (exits fullscreen)
+--
++
+While our application still receives these key events, the browser also performs its default actions, which can interfere with the gameplay.
+
+- Requesting https://developer.mozilla.org/en-US/docs/Web/API/Pointer_Lock_API[pointer lock], which happens when you activate cgeref:TCastleWalkNavigation.MouseLook[] or cgeref:TCastleAbstractPointerLock[Container.PointerLock], can only be done in the https://developer.mozilla.org/en-US/docs/Glossary/Transient_activation[transient activation] state, which means it must be triggered by a user interaction (like a mouse click or key press) or right after it.
++
+It's safest to request it from `TMyView.Press` when user clicks on the canvas:
++
+```pascal
+function TMyView.Press(const Event: TInputPressRelease): Boolean;
+begin
+  Result := inherited;
+  if Result then Exit;
+
+  if Event.IsMouseButton(buttonLeft) then
+  begin
+    Container.PointerLock.Active := true;
+    Exit(true);
+  end;
+end;
+```
++
+It's also OK to request it from e.g. `TMyView.Update` when you do it _right after user interaction_, e.g.
++
+```pascal
+procedure TMyView.Update(const SecondsPassed: Single; var HandleInput: Boolean);
+begin
+  inherited;
+  WalkNavigation.MouseLook := buttonRight in Container.MousePressed;
+end;
+```
++
+We experimented with approaches to hide this complication from you (by scheduling the request) but in the end these were not useful, https://github.com/castle-engine/castle-engine/blob/35f77483b810bd3c248f40cbddd5191841eda17a/src/window/castlewindow_webassembly.inc#L551[see this comment].
+
 - cgeref:TCastleApplication.ProcessMessage[Application.ProcessMessage] cannot work on the web, as the browser must control the main loop. This is similar to the link:ios#_known_problems[iOS known issue].
 +
 So: do not use cgeref:TCastleApplication.ProcessMessage[Application.ProcessMessage] in a code you want to run on the web.
@@ -664,16 +704,6 @@ end;
 ```
 +
 NOTE: Not recommended: You can set cgeref:MessageOKPushesView[] to `true` to make cgeref:MessageOK[] effectively push an instance of cgeref:TViewDialogOK[], just like code sample above. But it cannot work for other routines in cgeref:CastleMessages[] unit like cgeref:MessageYesNo[], so ultimately we advise to just not use cgeref:CastleMessages[] unit at all on the web.
-
-- Avoid using certain key combinations that are already handled by typical web browsers. This includes:
-+
---
-- Space, PageUp, PageDown, arrow keys (scroll the page)
-- Tab (switches focus)
-- Escape (exits fullscreen)
---
-+
-While our application still receives these key events, the browser also performs its default actions, which can interfere with the gameplay.
 
 - Calling `Application.Quit` on the web does not work, as there's no reliable way we can close our own window. On the web, it is expected that users will just close the browser tab or window whenever they want.
 +
