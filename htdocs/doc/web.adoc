@@ -649,10 +649,54 @@ Aside from above TODOs (which should be eventually addressed), there are some kn
 --
 - Space, PageUp, PageDown, arrow keys (scroll the page)
 - Tab (switches focus)
-- Escape (exits fullscreen)
+- Escape (exits fullscreen, cancels pointer lock)
 --
 +
-While our application still receives these key events, the browser also performs its default actions, which can interfere with the gameplay.
+Our application still receives these key events (in _most_ cases above), but the browser also performs its default actions, which can interfere with the gameplay.
+
+- Special advise for handling _Escape_ key in FPS games:
++
+If you use _pointer lock_ (by cgeref:TCastleWalkNavigation.MouseLook[] or cgeref:TCastleAbstractPointerLock[Container.PointerLock]), be aware that pressing _Escape_ will cause the browser to cancel the pointer lock mode. You cannot avoid this on your application side, user has always the possibility to cancel pointer lock by pressing _Escape_. You can only react to it -- by handling cgeref:TCastleAbstractPointerLock.OnUserCancelled[Container.PointerLock.OnUserCancelled] and/or by watching the cgeref:TCastleWalkNavigation.MouseLook[] and cgeref:TCastleAbstractPointerLock.Active[Container.PointerLock.Active], which automatically turn to `false`.
++
++
+For example, a reasonable thing to do in an FPS game is to pause the game and show options menu when user cancels pointer lock. User should click on something like _"Resume Game"_ to resume game, reentering the pointer lock mode.
++
+WARNING: You can request pointer lock / mouse look from many places, like `Press` or `Start` or `Update` view methods (as long as you satisfy the _transient activation_ requirement, see below). But you should not try to set `WalkNavigation.MouseLook:=true` unconditionally in `Update` without reacting to cgeref:TCastleAbstractPointerLock.OnUserCancelled[Container.PointerLock.OnUserCancelled]. This would be bad for user experience: if user wants to cancel pointer lock (possibly to use mouse for something else, like clicking on the browser UI), let them, instead of reactivating the pointer lock immediately.
++
+Basically, if your game relies on the _mouse look (or more generic pointer lock)_, make sure to 1. honor when user cancels it (don't try to force reactivating pointer lock immediately), and 2. give user a way to reenter pointer lock mode by some explicit action (like _"Resume Game"_).
++
+Example:
++
+```pascal
+procedure TGameView.Start;
+begin
+  inherited;
+  Container.PointerLock.OnUserCancelled := {$ifdef FPC}@{$endif} PointerLockUserCancelled;
+end;
+
+procedure TGameView.Stop;
+begin
+  Container.PointerLock.OnUserCancelled := nil;
+  inherited;
+end;
+
+procedure TGameView.Resume;
+begin
+  inherited;
+  { Called when user resumed the game, e.g. by clicking on "Resume Game"
+    button in options menu.
+    This was *possibly* called after we entered options from
+    PointerLockUserCancelled, after WalkNavigation.MouseLook was set to false
+    by user cancelling. }
+  WalkNavigation.MouseLook := true;
+end;
+
+procedure TGameView.PointerLockUserCancelled(Sender: TObject);
+begin
+  if Container.PendingFrontView = Self then
+    Container.PushView(ViewOptions);
+end;
+```
 
 - Requesting https://developer.mozilla.org/en-US/docs/Web/API/Pointer_Lock_API[pointer lock], which happens when you activate cgeref:TCastleWalkNavigation.MouseLook[] or cgeref:TCastleAbstractPointerLock[Container.PointerLock], can only be done in the https://developer.mozilla.org/en-US/docs/Glossary/Transient_activation[transient activation] state, which means it must be triggered by a user interaction (like a mouse click or key press) or right after it.
 +
