@@ -580,13 +580,13 @@ In general, both mechanisms above work splendidly on the web, and you can use th
 
 But there are some special considerations to be aware of:
 
-- **User can always cancel pointer lock** by pressing _Escape_. You cannot avoid this cancelling (it happens at the browser level, not in our engine). You can only react to it -- by handling cgeref:TCastleAbstractPointerLock.OnUserCancelled[Container.PointerLock.OnUserCancelled] and/or by watching the cgeref:TCastleWalkNavigation.MouseLook[] and cgeref:TCastleAbstractPointerLock.Active[Container.PointerLock.Active], which automatically turn from `true` to `false`.
+- **User can always cancel pointer lock** by pressing _Escape_. You cannot avoid this cancelling (it happens at the browser level, not in our engine). You can only react to it -- by registering cgeref:TCastleAbstractPointerLock.AddUserCancelledListener[Container.PointerLock.AddUserCancelledListener] and/or by watching the cgeref:TCastleWalkNavigation.MouseLook[] and cgeref:TCastleAbstractPointerLock.Active[Container.PointerLock.Active], which automatically turn from `true` to `false`.
 +
 For example, a reasonable thing to do in an FPS game is to pause the game and show options menu when user cancels pointer lock. User should click on something, like _"Resume Game"_ button, to resume the game (and reenter the pointer lock mode).
 +
 [WARNING]
 ====
-While you can request pointer lock (mouse look) from many places, like `Press` or `Start` or `Update` view methods (as long as you satisfy the _transient activation_ requirement, see below)... But you should not try to set `WalkNavigation.MouseLook:=true` unconditionally in `Update` without reacting to cgeref:TCastleAbstractPointerLock.OnUserCancelled[Container.PointerLock.OnUserCancelled]. This would be bad for user experience.
+While you can request pointer lock (mouse look) from many places, like `Press` or `Start` or `Update` view methods (as long as you satisfy the _transient activation_ requirement, see below)... But you should not try to set `WalkNavigation.MouseLook:=true` unconditionally in `Update` without reacting to cgeref:TCastleAbstractPointerLock.AddUserCancelledListener[Container.PointerLock.AddUserCancelledListener]. This would be bad for user experience.
 
 In short: if user wants to cancel pointer lock (possibly to use mouse for something else, like clicking on the browser UI), let them, instead of trying to reactivate the pointer lock immediately.
 
@@ -601,13 +601,13 @@ Example:
 procedure TGameView.Start;
 begin
   inherited;
-  Container.PointerLock.OnUserCancelled.Add(
+  Container.PointerLock.AddUserCancelledListener(
     {$ifdef FPC}@{$endif} PointerLockUserCancelled);
 end;
 
 procedure TGameView.Stop;
 begin
-  Container.PointerLock.OnUserCancelled.Remove(
+  Container.PointerLock.RemoveUserCancelledListener(
     {$ifdef FPC}@{$endif} PointerLockUserCancelled);
   inherited;
 end;
