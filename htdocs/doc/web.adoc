@@ -563,6 +563,107 @@ This is a standard security feature of web browsers. It is unavoidable from our 
 - For real usage, the server has to be configured to allow downloading from it. It generally involves configuring the server to return appropriate header, like `Access-Control-Allow-Origin: *`.  See https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS[CORS documentation at MDN] and https://enable-cors.org/server_apache.html[example configuration for Apache].
 ====
 
+[#pointer_lock]
+=== Pointer lock (mouse look) and handling _Escape_ key in FPS games
+
+We use https://developer.mozilla.org/en-US/docs/Web/API/Pointer_Lock_API[pointer lock API (available in modern web browsers)] to implement _pointer lock_ and _mouse look_.
+
+- _Pointer lock_ allows the user to drag the mouse on a seemingly-unbounded area. The mouse cursor is hidden during this mode. It is activated by setting cgeref:TCastleAbstractPointerLock[Container.PointerLock.Active] to `true`.
++
+See the https://github.com/castle-engine/castle-engine/tree/master/examples/user_interface/dragging_test[dragging_test example] for a demonstration of _pointer lock_ in action.
+
+- _Mouse look_ is a special case of _pointer lock_ used by 3D games to rotate the camera by moving the mouse. It is activated by setting cgeref:TCastleWalkNavigation.MouseLook[] to `true`. This automatically activates and manages _pointer lock_ under the hood.
+
+In general, both mechanisms above work splendidly on the web, and you can use them in your games. But there are some special considerations to be aware of:
+
+- If you use _pointer lock_ (by cgeref:TCastleWalkNavigation.MouseLook[] or cgeref:TCastleAbstractPointerLock[Container.PointerLock]), user can always cancel it by pressing _Escape_. You cannot avoid this cancelling (it happens at the browser level, not in our engine). You can only react to it -- by handling cgeref:TCastleAbstractPointerLock.OnUserCancelled[Container.PointerLock.OnUserCancelled] and/or by watching the cgeref:TCastleWalkNavigation.MouseLook[] and cgeref:TCastleAbstractPointerLock.Active[Container.PointerLock.Active], which automatically turn from `true` to `false`.
++
+For example, a reasonable thing to do in an FPS game is to pause the game and show options menu when user cancels pointer lock. User should click on something, like _"Resume Game"_ button, to resume the game (and reenter the pointer lock mode).
++
+[WARNING]
+====
+While you can request pointer lock (mouse look) from many places, like `Press` or `Start` or `Update` view methods (as long as you satisfy the _transient activation_ requirement, see below)... But you should not try to set `WalkNavigation.MouseLook:=true` unconditionally in `Update` without reacting to cgeref:TCastleAbstractPointerLock.OnUserCancelled[Container.PointerLock.OnUserCancelled]. This would be bad for user experience.
+
+In short: if user wants to cancel pointer lock (possibly to use mouse for something else, like clicking on the browser UI), let them, instead of trying to reactivate the pointer lock immediately.
+
+That is also why, in the engine, we set cgeref:TCastleWalkNavigation.MouseLook[] and cgeref:TCastleAbstractPointerLock.Active[Container.PointerLock.Active] to `false`, and do not try to automatically reactivate them.
+====
++
+So if your game relies on the _pointer lock (mouse look)_, make sure to 1. honor when user cancels it (don't try to force reactivating pointer lock immediately), and 2. give user a way to reenter pointer lock mode by some explicit action (like _"Resume Game"_ button).
++
+Example:
++
+```pascal
+procedure TGameView.Start;
+begin
+  inherited;
+  Container.PointerLock.OnUserCancelled := {$ifdef FPC}@{$endif} PointerLockUserCancelled;
+end;
+
+procedure TGameView.Stop;
+begin
+  Container.PointerLock.OnUserCancelled := nil;
+  inherited;
+end;
+
+procedure TGameView.Resume;
+begin
+  inherited;
+
+  { This is called when user resumed the game.
+
+    Two ways how we can reach this code path:
+
+    1. User starts playing the game, so engine calls Start, and then Resume.
+
+    2. User presses Escape on the web, which
+       - sets WalkNavigation.MouseLook and Container.PointerLock.Active to false
+       - calls PointerLockUserCancelled
+       - ... which calls Container.PushView(ViewOptions)
+       - user clicks "Resume Game" button in options menu
+       - ... which calls Container.PopView(ViewOptions)
+       - which calls this method, Resume.
+  }
+  WalkNavigation.MouseLook := true;
+end;
+
+procedure TGameView.PointerLockUserCancelled(Sender: TObject);
+begin
+  if Container.PendingFrontView = Self then
+    Container.PushView(ViewOptions);
+end;
+```
+
+- Requesting _pointer lock_, which happens when you activate cgeref:TCastleWalkNavigation.MouseLook[] or cgeref:TCastleAbstractPointerLock[Container.PointerLock], can only be done in the https://developer.mozilla.org/en-US/docs/Glossary/Transient_activation[transient activation] state, which means it must be triggered by a user interaction (like a mouse click or key press) or right after it.
++
+It's safest to request it from `TMyView.Press` when user clicks on the canvas:
++
+```pascal
+function TMyView.Press(const Event: TInputPressRelease): Boolean;
+begin
+  Result := inherited;
+  if Result then Exit;
+
+  if Event.IsMouseButton(buttonLeft) then
+  begin
+    Container.PointerLock.Active := true;
+    Exit(true);
+  end;
+end;
+```
++
+It's also OK to request it from e.g. `TMyView.Update` when you do it _right after user interaction_, e.g.
++
+```pascal
+procedure TMyView.Update(const SecondsPassed: Single; var HandleInput: Boolean);
+begin
+  inherited;
+  WalkNavigation.MouseLook := buttonRight in Container.MousePressed;
+end;
+```
++
+We experimented with approaches to hide this complication from you (by scheduling the request) but in the end these were not useful, https://github.com/castle-engine/castle-engine/blob/35f77483b810bd3c248f40cbddd5191841eda17a/src/window/castlewindow_webassembly.inc#L551[see this comment].
+
 == Plans (TODOs)
 
 - Reproduce with clean sample and submit to FPC:
@@ -649,100 +750,10 @@ Aside from above TODOs (which should be eventually addressed), there are some kn
 --
 - Space, PageUp, PageDown, arrow keys (scroll the page)
 - Tab (switches focus)
-- Escape (exits fullscreen, cancels pointer lock)
+- Escape (exits fullscreen, cancels link:#pointer_lock[pointer lock])
 --
 +
 Our application still receives these key events (in _most_ cases above), but the browser also performs its default actions, which can interfere with the gameplay.
-
-- Special advise for handling _Escape_ key in FPS games:
-+
-If you use _pointer lock_ (by cgeref:TCastleWalkNavigation.MouseLook[] or cgeref:TCastleAbstractPointerLock[Container.PointerLock]), user can always cancel it by pressing _Escape_. You cannot avoid this cancelling (it happens at the browser level, not in our engine). You can only react to it -- by handling cgeref:TCastleAbstractPointerLock.OnUserCancelled[Container.PointerLock.OnUserCancelled] and/or by watching the cgeref:TCastleWalkNavigation.MouseLook[] and cgeref:TCastleAbstractPointerLock.Active[Container.PointerLock.Active], which automatically turn from `true` to `false`.
-+
-For example, a reasonable thing to do in an FPS game is to pause the game and show options menu when user cancels pointer lock. User should click on something, like _"Resume Game"_ button, to resume the game (and reenter the pointer lock mode).
-+
-[WARNING]
-====
-While you can request pointer lock (mouse look) from many places, like `Press` or `Start` or `Update` view methods (as long as you satisfy the _transient activation_ requirement, see below)... But you should not try to set `WalkNavigation.MouseLook:=true` unconditionally in `Update` without reacting to cgeref:TCastleAbstractPointerLock.OnUserCancelled[Container.PointerLock.OnUserCancelled]. This would be bad for user experience.
-
-In short: if user wants to cancel pointer lock (possibly to use mouse for something else, like clicking on the browser UI), let them, instead of trying to reactivate the pointer lock immediately.
-
-That is also why, in the engine, we set cgeref:TCastleWalkNavigation.MouseLook[] and cgeref:TCastleAbstractPointerLock.Active[Container.PointerLock.Active] to `false`, and do not try to automatically reactivate them.
-====
-+
-So if your game relies on the _pointer lock (mouse look)_, make sure to 1. honor when user cancels it (don't try to force reactivating pointer lock immediately), and 2. give user a way to reenter pointer lock mode by some explicit action (like _"Resume Game"_ button).
-+
-Example:
-+
-```pascal
-procedure TGameView.Start;
-begin
-  inherited;
-  Container.PointerLock.OnUserCancelled := {$ifdef FPC}@{$endif} PointerLockUserCancelled;
-end;
-
-procedure TGameView.Stop;
-begin
-  Container.PointerLock.OnUserCancelled := nil;
-  inherited;
-end;
-
-procedure TGameView.Resume;
-begin
-  inherited;
-
-  { This is called when user resumed the game.
-
-    Two ways how we can reach this code path:
-
-    1. User starts playing the game, so engine calls Start, and then Resume.
-
-    2. User presses Escape on the web, which
-       - sets WalkNavigation.MouseLook and Container.PointerLock.Active to false
-       - calls PointerLockUserCancelled
-       - ... which calls Container.PushView(ViewOptions)
-       - user clicks "Resume Game" button in options menu
-       - ... which calls Container.PopView(ViewOptions)
-       - which calls this method, Resume.
-  }
-  WalkNavigation.MouseLook := true;
-end;
-
-procedure TGameView.PointerLockUserCancelled(Sender: TObject);
-begin
-  if Container.PendingFrontView = Self then
-    Container.PushView(ViewOptions);
-end;
-```
-
-- Requesting https://developer.mozilla.org/en-US/docs/Web/API/Pointer_Lock_API[pointer lock], which happens when you activate cgeref:TCastleWalkNavigation.MouseLook[] or cgeref:TCastleAbstractPointerLock[Container.PointerLock], can only be done in the https://developer.mozilla.org/en-US/docs/Glossary/Transient_activation[transient activation] state, which means it must be triggered by a user interaction (like a mouse click or key press) or right after it.
-+
-It's safest to request it from `TMyView.Press` when user clicks on the canvas:
-+
-```pascal
-function TMyView.Press(const Event: TInputPressRelease): Boolean;
-begin
-  Result := inherited;
-  if Result then Exit;
-
-  if Event.IsMouseButton(buttonLeft) then
-  begin
-    Container.PointerLock.Active := true;
-    Exit(true);
-  end;
-end;
-```
-+
-It's also OK to request it from e.g. `TMyView.Update` when you do it _right after user interaction_, e.g.
-+
-```pascal
-procedure TMyView.Update(const SecondsPassed: Single; var HandleInput: Boolean);
-begin
-  inherited;
-  WalkNavigation.MouseLook := buttonRight in Container.MousePressed;
-end;
-```
-+
-We experimented with approaches to hide this complication from you (by scheduling the request) but in the end these were not useful, https://github.com/castle-engine/castle-engine/blob/35f77483b810bd3c248f40cbddd5191841eda17a/src/window/castlewindow_webassembly.inc#L551[see this comment].
 
 - cgeref:TCastleApplication.ProcessMessage[Application.ProcessMessage] cannot work on the web, as the browser must control the main loop. This is similar to the link:ios#_known_problems[iOS known issue].
 +
@@ -792,6 +803,8 @@ This limitation is similar to Android, iOS, and link:nintendo_switch[Nintendo Sw
 It is in theory possible to lift this limitation some day, but it would be rather convoluted, and the use-case is uncertain. Typical games are just one canvas, most other game engines don't allow to open many windows on _any_ platform (even on desktop, when it's technically easy). And _"many ``<canvas>``es in the HTML page"_ is only an approximation of _"many windows on the desktop"_, so the behavior would likely be not useful for cross-platform applications anyway, which are our focus.
 +
 That's our way of thinking _for now_, you're of course welcome to link:talk.php[talk to us] and present a case why we should rethink it :)
+
+- See also sections above for special limitations of link:#audio[audio (cannot autoplay)], link:#http_requests[HTTP requests (require CORS on server)], and link:#pointer_lock[pointer lock (user can cancel it anytime)] on the web.
 
 == Running WASM code outside of the browser
 
