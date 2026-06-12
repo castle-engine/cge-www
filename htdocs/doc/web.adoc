@@ -566,6 +566,8 @@ This is a standard security feature of web browsers. It is unavoidable from our 
 [#pointer_lock]
 === Pointer lock (mouse look) and handling _Escape_ key in FPS games
 
+WARNING: This feature is in development now, only available in the https://github.com/castle-engine/castle-engine/tree/new-pointer-lock[new-pointer-lock] branch.
+
 We use https://developer.mozilla.org/en-US/docs/Web/API/Pointer_Lock_API[pointer lock API (available in modern web browsers)] to implement _pointer lock_ and _mouse look_.
 
 - _Pointer lock_ allows the user to drag the mouse on a seemingly-unbounded area. The mouse cursor is hidden during this mode. It is activated by setting cgeref:TCastleAbstractPointerLock[Container.PointerLock.Active] to `true`.
@@ -574,9 +576,11 @@ See the https://github.com/castle-engine/castle-engine/tree/master/examples/user
 
 - _Mouse look_ is a special case of _pointer lock_ used by 3D games to rotate the camera by moving the mouse. It is activated by setting cgeref:TCastleWalkNavigation.MouseLook[] to `true`. This automatically activates and manages _pointer lock_ under the hood.
 
-In general, both mechanisms above work splendidly on the web, and you can use them in your games. But there are some special considerations to be aware of:
+In general, both mechanisms above work splendidly on the web, and you can use them in your games.
 
-- If you use _pointer lock_ (by cgeref:TCastleWalkNavigation.MouseLook[] or cgeref:TCastleAbstractPointerLock[Container.PointerLock]), user can always cancel it by pressing _Escape_. You cannot avoid this cancelling (it happens at the browser level, not in our engine). You can only react to it -- by handling cgeref:TCastleAbstractPointerLock.OnUserCancelled[Container.PointerLock.OnUserCancelled] and/or by watching the cgeref:TCastleWalkNavigation.MouseLook[] and cgeref:TCastleAbstractPointerLock.Active[Container.PointerLock.Active], which automatically turn from `true` to `false`.
+But there are some special considerations to be aware of:
+
+- **User can always cancel pointer lock** by pressing _Escape_. You cannot avoid this cancelling (it happens at the browser level, not in our engine). You can only react to it -- by handling cgeref:TCastleAbstractPointerLock.OnUserCancelled[Container.PointerLock.OnUserCancelled] and/or by watching the cgeref:TCastleWalkNavigation.MouseLook[] and cgeref:TCastleAbstractPointerLock.Active[Container.PointerLock.Active], which automatically turn from `true` to `false`.
 +
 For example, a reasonable thing to do in an FPS game is to pause the game and show options menu when user cancels pointer lock. User should click on something, like _"Resume Game"_ button, to resume the game (and reenter the pointer lock mode).
 +
@@ -597,12 +601,14 @@ Example:
 procedure TGameView.Start;
 begin
   inherited;
-  Container.PointerLock.OnUserCancelled := {$ifdef FPC}@{$endif} PointerLockUserCancelled;
+  Container.PointerLock.OnUserCancelled.Add(
+    {$ifdef FPC}@{$endif} PointerLockUserCancelled);
 end;
 
 procedure TGameView.Stop;
 begin
-  Container.PointerLock.OnUserCancelled := nil;
+  Container.PointerLock.OnUserCancelled.Remove(
+    {$ifdef FPC}@{$endif} PointerLockUserCancelled);
   inherited;
 end;
 
@@ -634,9 +640,15 @@ begin
 end;
 ```
 
-- Requesting _pointer lock_, which happens when you activate cgeref:TCastleWalkNavigation.MouseLook[] or cgeref:TCastleAbstractPointerLock[Container.PointerLock], can only be done in the https://developer.mozilla.org/en-US/docs/Glossary/Transient_activation[transient activation] state, which means it must be triggered by a user interaction (like a mouse click or key press) or right after it.
+- **Starting _pointer lock_ can only be done in the https://developer.mozilla.org/en-US/docs/Glossary/Transient_activation[transient activation] state**. In simple terms, it means it must **be triggered by a user interaction (like a mouse click or key press) or right after it**.
 +
-It's safest to request it from `TMyView.Press` when user clicks on the canvas:
+This strengthens our advise from the previous section: in the usual case, give user buttons to start or resume the game. When they are used, activate pointer lock.
++
+Or you can use a particular key or mouse button to start pointer lock. Many of our examples use _right mouse button_ to start mouse look.
++
+WARNING: There's a caveat when relying on a key press for this: canvas must be focused.
++
+For example, request it from `TMyView.Press` when user clicks on the canvas with right mouse button:
 +
 ```pascal
 function TMyView.Press(const Event: TInputPressRelease): Boolean;
@@ -644,21 +656,11 @@ begin
   Result := inherited;
   if Result then Exit;
 
-  if Event.IsMouseButton(buttonLeft) then
+  if Event.IsMouseButton(buttonRight) then
   begin
     Container.PointerLock.Active := true;
     Exit(true);
   end;
-end;
-```
-+
-It's also OK to request it from e.g. `TMyView.Update` when you do it _right after user interaction_, e.g.
-+
-```pascal
-procedure TMyView.Update(const SecondsPassed: Single; var HandleInput: Boolean);
-begin
-  inherited;
-  WalkNavigation.MouseLook := buttonRight in Container.MousePressed;
 end;
 ```
 +
