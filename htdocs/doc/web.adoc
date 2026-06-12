@@ -566,7 +566,7 @@ This is a standard security feature of web browsers. It is unavoidable from our 
 [#pointer_lock]
 === Pointer lock (mouse look) and handling _Escape_ key in FPS games
 
-WARNING: This feature is in development now, only available in the https://github.com/castle-engine/castle-engine/tree/new-pointer-lock[new-pointer-lock] branch.
+WARNING: This feature is in development now, only available in the https://github.com/castle-engine/castle-engine/tree/new-pointer-lock[new-pointer-lock] branch. It is also a _bit_ buggy in Firefox (spike on activation, but otherwise works) and _very_ buggy in Vivaldi. More testing and work on this will follow.
 
 We use https://developer.mozilla.org/en-US/docs/Web/API/Pointer_Lock_API[pointer lock API (available in modern web browsers)] to implement _pointer lock_ and _mouse look_.
 
