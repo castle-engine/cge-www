@@ -43,6 +43,8 @@ cgeimg::block[
 
 - link:web-demos/examples/screen_effects_demo[Screen effects demo] (https://github.com/castle-engine/castle-engine/tree/master/examples/screen_effects_demo[Source code])
 
+- link:web-demos/examples/user_interface/dragging_test[Dragging (with Pointer Lock) Test] (https://github.com/castle-engine/castle-engine/tree/master/examples/user_interface/dragging_test[Source code])
+
 === 3D demos
 
 - link:web-demos/examples/ifc[Manipulating IFC] (https://github.com/castle-engine/castle-engine/tree/master/examples/ifc[Source code])
@@ -60,18 +62,8 @@ cgeimg::block[
 - link:web-demos/examples/creature_behaviors[Creature behaviors (our simple creature AI, fight with skeletons)] (https://github.com/castle-engine/castle-engine/tree/master/examples/creature_behaviors[Source code])
 
 - link:web-demos/examples/third_person_navigation[Third-person navigation] (https://github.com/castle-engine/castle-engine/tree/master/examples/third_person_navigation[Source code]).
-+
-WARNING: TODO: Note that "mouse look" is not correct yet, the mouse cursor is visible and it can be offscreen.
 
-- link:web-demos/castle-dice-throwing[Dice Throwing] (https://github.com/castle-engine/castle-dice-throwing/[Source code]). A fun experiment, showing how to run physics simulation invisibly. You can throw a 6-sided dice, it looks nice (following physics)... and yet the result is predetermined (set the outcome using a button before throwing). Underneath, we run invisible physics simulation and rotate the dice to match the desired outcome.
-
-- link:web-demos/examples/physics/physics_3d_shooter[3D shooting with physics] (https://github.com/castle-engine/castle-engine/tree/master/examples/physics/physics_3d_shooter[Source code])
-+
-WARNING: TODO: Note that "mouse look" is not correct yet, the mouse cursor is visible and it can be offscreen.
-
-- link:web-demos/tools/castle-editor-portable[Castle Game Engine - "Portable" Editor] (https://github.com/castle-engine/castle-engine/tree/master/tools/castle-editor-portable[Source code])
-+
-WARNING: Early preview, just to show that "we can" :) Not suitable for any real work, lots of features are still missing, use link:editor[real editor (only available on desktops)] instead for real work now.
+- link:web-demos/tools/castle-editor-portable[Castle Game Engine - "Portable" Editor] (https://github.com/castle-engine/castle-engine/tree/master/tools/castle-editor-portable[Source code]). This is an _"early preview"_, just to show that we can have editor on web. Not suitable for real work, lots of features are still missing, use instead link:editor[the real editor (only available on desktops)] now.
 
 - link:web-demos/examples/3d_games/dungeons_and_skeletons_fight[Dungeons and Skeletons Fight] (https://github.com/castle-engine/castle-engine/tree/master/examples/3d_games/dungeons_and_skeletons_fight[Source code])
 
@@ -89,6 +81,18 @@ WARNING: Early preview, just to show that "we can" :) Not suitable for any real 
 
 - link:web-demos/examples/research_special_rendering_methods/test_rendering_opengl_capabilities[Test Rendering Capabilities] (https://github.com/castle-engine/castle-engine/tree/master/examples/research_special_rendering_methods/test_rendering_opengl_capabilities[Source code])
 
+=== Physics
+
+- link:web-demos/examples/physics/physics_3d_shooter[3D shooting with physics] (https://github.com/castle-engine/castle-engine/tree/master/examples/physics/physics_3d_shooter[Source code])
+
+- link:web-demos/examples/physics/physics_3d_demo[3D physics demo] (https://github.com/castle-engine/castle-engine/tree/master/examples/physics/physics_3d_demo[Source code])
+
+- link:web-demos/examples/physics/physics_explosion[Explosion with physics] (https://github.com/castle-engine/castle-engine/tree/master/examples/physics/physics_explosion[Source code])
+
+- link:web-demos/examples/physics/physics_throw_chickens[Funny Demo Throwing Chickens Using Physics] (https://github.com/castle-engine/castle-engine/tree/master/examples/physics/physics_throw_chickens[Source code])
+
+- link:web-demos/castle-dice-throwing[Dice Throwing] (https://github.com/castle-engine/castle-dice-throwing/[Source code]). A fun experiment, showing how to run physics simulation invisibly. You can throw a 6-sided dice, it looks nice (following physics)... and yet the result is predetermined (set the outcome using a button before throwing). Underneath, we run invisible physics simulation and rotate the dice to match the desired outcome.
+
 === Audio
 
 - link:web-demos/examples/audio/music_collection_player[Music Player] (https://github.com/castle-engine/castle-engine/tree/master/examples/audio/music_collection_player[Source Code]).
@@ -96,8 +100,6 @@ WARNING: Early preview, just to show that "we can" :) Not suitable for any real 
 - link:web-demos/examples/audio/play_sounds/[Play Sounds] (https://github.com/castle-engine/castle-engine/tree/master/examples/audio/play_sounds[Source code]).
 
 - link:web-demos/examples/audio/game_3d_sound/[3D Sound Demo] (https://github.com/castle-engine/castle-engine/tree/master/examples/audio/game_3d_sound[Source code]).
-+
-WARNING: TODO: Note that "mouse look" is not correct yet, the mouse cursor is visible and it can be offscreen.
 
 === Automatic Engine Tests
 
