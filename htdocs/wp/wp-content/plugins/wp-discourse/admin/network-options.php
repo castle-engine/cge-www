@@ -110,17 +110,6 @@ class NetworkOptions {
 		);
 
 		add_settings_field(
-			'discourse_webhook_match_old_topics',
-			__( 'Match Topics by Title', 'wp-discourse' ),
-			array(
-				$this,
-				'webhook_match_old_topics_checkbox',
-			),
-			'discourse_network_options',
-			'discourse_network_settings_section'
-		);
-
-		add_settings_field(
 			'discourse_network_use_discourse_user_webhook',
 			__( 'Update Userdata', 'wp-discourse' ),
 			array(

@@ -4,7 +4,7 @@ Tags: discourse, forum, comments, sso
 Requires at least: 5.1
 Tested up to: 7.0.0
 Requires PHP: 5.6
-Stable tag: 2.6.2
+Stable tag: 2.6.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -123,7 +123,11 @@ To create a coherent top menu, see our tutorial on how to make a [Custom nav hea
 
 == Changelog ==
 
-#### 2.6.2 29/01/2026
+#### 2.6.3 12/06/2026
+
+- Remove unused field from multisite network settings
+
+#### 2.6.2 22/05/2026
 
 - Support for Wordpress 7.0.0
 - Bump dev dependencies
