@@ -118,6 +118,7 @@ mv libpython3.so libpython3.so.old
 
 # Setup proper symlink.
 # Check the actual libpython3.XXX version below on your system first!
+# Also, beware if you have Python > 3.12 see below.
 ls /usr/lib/x86_64-linux-gnu/libpython3*
 ln -s /usr/lib/x86_64-linux-gnu/libpython3.11.so.1 libpython3.so
 ```
@@ -128,6 +129,23 @@ Remember the directory where you unpacked the _PA Server_. Delphi will automatic
 cd ~/PAServer/scratch-dir/<connection-name>/my_project/
 ./my_project
 ```
+
+[NOTE]
+====
+If you get error from PAServer about `_Py_IsFinalizing` missing when trying to debug the Linux application, it means that your Linux distribution has newer Python (> 3.12, while Embarcadero PAServer requires \<= 3.12).
+
+This happens in particular on _Ubuntu 26.04_ with Delphi 13.1.
+
+You have to install older Python, which can be done side-by-side using https://launchpad.net/~deadsnakes/+archive/ubuntu/ppa[Python packages in PPA by "deadsnakes"] like this:
+
+```
+sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt update
+sudo apt install python3.11-dev
+ls /usr/lib/x86_64-linux-gnu/libpython3* # should show new Python versions
+ln -s /usr/lib/x86_64-linux-gnu/libpython3.11.so.1 libpython3.so
+```
+====
 
 === Connect from Delphi to Linux
 
