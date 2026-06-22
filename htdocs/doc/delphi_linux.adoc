@@ -292,7 +292,7 @@ For Linux, this is now equally simple:
 castle-engine compile --compiler=delphi --verbose --os=linux --cpu=x86_64
 ```
 
-NOTE: In the past, this was more complicated, because https://github.com/castle-engine/castle-engine/blob/new-process/tools/build-tool/delphi_dcc_vs_msbuild.md[Delphi DCC required a bunch of extra parameters] to be able to compile for Linux. We now use `msbuild` for command-line building with Delphi, and things are simple.
+NOTE: In the past, this was more complicated, because https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/delphi_dcc_vs_msbuild.md[Delphi DCC required a bunch of extra parameters] to be able to compile for Linux. We now use `msbuild` for command-line building with Delphi, and things are simple.
 
 == Known Limitations
 
