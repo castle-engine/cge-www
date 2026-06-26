@@ -123,49 +123,7 @@ Be sure to use the DLL files corresponding to your target platform. For example,
 
 === Linux, FreeBSD
 
-We use the following libraries:
-
-. OpenGL
-. GTK (version 2 and 3, as we are switching from GTK 2 to 3)
-. LibPng (_optional_; to open png files more efficiently)
-. ZLib (_optional_; to unpack gzip files; also used by LibPng)
-. OpenAL (_optional_; to play sound)
-. FreeType (_optional_; to load font files)
-. VorbisFile (_optional_; to load OggVorbis sound files)
-. Qt and libQtPas (_very optional_; only if you want to compile our editor with alternative Qt widgetset)
-
-Most of them are already present on all Unix desktop installations.
-
-On your (developer) system, you will need the development versions of some of these libraries. This allows to build programs that link to these libraries.
-
-* On _Debian_ and derivatives (like _Ubuntu_ or _Raspberry Pi OS_), this command should install everything you need:
-+
-[source,bash]
-----
-sudo apt install libgtk2.0-dev libgtk-3-dev libglx-dev libgl-dev libqt5pas-dev libpng-dev libz1 libopenal1 libfreetype6 libvorbisfile3
-----
-+
-(Anything missing? https://www.debian.org/distrib/packages[Search])
-
-* On Fedora, this command should install everything you need (and more, some of these are FPC requirements actually, not CGE):
-+
-[source,bash]
-----
-sudo dnf install gtk2 gtk2-devel gtk3 gtk3-devel libX11-devel make binutils glibc-devel mesa-libGL-devel qt5pas
-----
-+
-// TODO: add on Fedora: libpng-dev libz1 libopenal1 libfreetype6 libvorbisfile3
-+
-(Anything missing? https://packages.fedoraproject.org/[Search])
-
-* On _Arch Linux_ and derivatives, try this:
-+
-[source,bash]
-----
-sudo pacman -S gtk2 gtk3
-----
-
-Note that we link to most libraries dynamically using _"dlopen"_ Unix mechanism. So it is not necessary to install e.g. `libfreetype6-dev`. And instead of `libpng-dev` you can install any recent `libpngXY` with `XY` indicating version 1.2-1.6 (various distros have a bit different naming here).
+You have to install link:download#packages[the necessary libraries] for your system.
 
 === macOS
 

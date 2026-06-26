@@ -8,7 +8,6 @@ include::common.adoc[]
 
 cge::download-engine[7.0-alpha.3.snapshot,snapshot]
 // cge ::download-engine[7.0-alpha.3,v7.0-alpha.3]
-
 == Alternative download and installation options
 
 === GitHub releases with more variants (like downloads not bundled with FPC)
@@ -181,6 +180,67 @@ NOTE: This limitation applies to the provided engine binaries only. For your own
 This requirement applies to all architectures now, including regular desktops (for which we provide _x64_64_ builds) and both _Raspberry Pi_ versions (32-bit Arm and 64-bit Aarch64). They all require >= Bookworm.
 
 NOTE: Before 2025-06-13, we provided binaries for _32-bit Raspberry Pi (Arm CPU)_ in a version compatible with older GLIBC, including the one in Debian's `bullseye` (to support older Raspberry Pi 4 32-bit installations). However, this gets hard, as https://dietpi.com/[DietPi] removed some old images which https://github.com/pguyot/arm-runner-action/blob/main/download_image.sh#L50[we relied on, by this GHA action]. We migrated to use official image from https://downloads.raspberrypi.org/raspios_lite_armhf_latest (https://github.com/pguyot/arm-runner-action/blob/main/download_image.sh#L8[referenced here]).
+
+[#packages]
+=== Linux and FreeBSD packages
+
+We use the following libraries:
+
+[role="compact"]
+. _OpenGL_
+. _GTK 2_ and _GTK 3_ (install both versions now; our editor uses GTK 2 for now, but other tools and your games use GTK 3)
+. _LibPng_ (_optional_; to open png files more efficiently)
+. _ZLib_ (_optional_; to unpack gzip files; also used by LibPng)
+. _OpenAL_ (_optional_; to play sound)
+. _FreeType_ (_optional_; to load font files)
+. _VorbisFile_ (_optional_; to load OggVorbis sound files)
+. _Qt_ and _libQtPas_ (_very optional_; only if you want to compile our editor with alternative Qt widgetset)
+
+Most of them are already present on all Unix desktop installations.
+
+On your (developer) system, you will also need the _development_ versions of some of these libraries. This allows to build programs that link to these libraries.
+
+* On _Debian_ and derivatives (like _Ubuntu_ or _Raspberry Pi OS_), this command should install everything you need:
++
+[source,bash]
+----
+sudo apt install libgtk2.0-dev libgtk-3-dev libglx-dev libgl-dev libqt5pas-dev libpng-dev libz1 libopenal1 libfreetype6 libvorbisfile3
+----
++
+(Anything missing? https://www.debian.org/distrib/packages[Search])
+
+* On Fedora, this command should install everything you need (and more, some of these are FPC requirements actually, not CGE):
++
+[source,bash]
+----
+sudo dnf install gtk2 gtk2-devel gtk3 gtk3-devel libX11-devel make binutils glibc-devel mesa-libGL-devel qt5pas
+----
++
+// TODO: add on Fedora: libpng-dev libz1 libopenal1 libfreetype6 libvorbisfile3
++
+(Anything missing? https://packages.fedoraproject.org/[Search])
+
+* On _Arch Linux_ and derivatives, try this:
++
+[source,bash]
+----
+sudo pacman -S gtk2 gtk3
+----
+
+* On _Void Linux_, try this:
++
+[source,bash]
+----
+sudo xbps-install -Su gtk+3-devel
+----
++
+(Anything missing? https://voidlinux.org/packages/[Search])
+
+Note that we link to most libraries dynamically using _"dlopen"_ Unix mechanism. So it is not necessary to install e.g. `libfreetype6-dev`. And instead of `libpng-dev` you can install any recent `libpngXY` with `XY` indicating version 1.2-1.6 (various distros have a bit different naming here).
+
+=== macOS
+
+link:macos[macOS requirements are listed here].
 
 === General
 
