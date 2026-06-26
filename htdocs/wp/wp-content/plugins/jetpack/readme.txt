@@ -1,7 +1,7 @@
 === Jetpack - WP Security, Backup, Speed, & Growth ===
 Contributors: automattic, adamkheckler, adrianmoldovanwp, aduth, akirk, allendav, alternatekev, andy, annamcphee, annezazu, apeatling, arcangelini, arsihasi, azaozz, barry, batmoo, beaulebens, bindlegirl, biskobe, bjorsch, blobaugh, brbrr, brileyhooper, cainm, cena, cfinke, cgastrell, chaselivingston, chellycat, clickysteve, csonnek, danielbachhuber, daniloercoli, davoraltman, delawski, designsimply, dkmyta, dllh, dlocc, drawmyface, dsmart, dun2mis, dzver, ebinnion, egregor, eliorivero, enej, eoigal, erania-pinnera, ethitter, fgiannar, gcorne, georgestephanis, gibrown, goldsounds, hew, hugobaeta, hypertextranch, iammattthomas, iandunn, joen, jblz, jeffgolenski, jeherve, jennywp, jenia, jessefriedman, jgs, jkudish, jmdodd, joanrho, johnjamesjacoby, jshreve, kbrownkd, keoshi, koke, kraftbj, lancewillett, leogermani, lhkowalski, lschuyler, macmanx, martinremy, matt, mattwiebe, matveb, maverick3x6, mcsf, mdawaffe, mdbitz, MichaelArestad, migueluy, miguelxavierpenha, mikeyarce, mkaz, nancythanki, nickmomrik, njweller, nunyvega, obenland, oskosk, pento, professor44, rachelsquirrel, rdcoll, renatoagds, retrofox, richardmtl, richardmuscat, robertbpugh, roccotripaldi, ryanc413, samhotchkiss, samiff, scarstocea, scottsweb, sdixon194, sdquirk, sermitr, simison, stephdau, thehenridev, tmoorewp, tyxla, Viper007Bond, westi, williamvianas, wpkaren, yoavf, zinigor
 Tags: Security, backup, malware, scan, performance
-Stable tag: 15.9
+Stable tag: 15.9.1
 Requires at least: 6.9
 Requires PHP: 7.2
 Tested up to: 7.0
@@ -326,7 +326,14 @@ Jetpack Backup can do a full website migration to a new host, migrate theme file
 
 
 == Changelog ==
+### 15.9.1 - 2026-06-24
+#### Bug fixes
+- Fix the Social admin page rendering blank, and restore the editor sharing panel, on WordPress 6.9.
+
 ### 15.9 - 2026-06-09
+#### Major Enhancements
+- General: Update minimum WordPress version to 6.9.
+
 #### Enhancements
 - Abilities API: Register Shortlinks support for the WP.me Shortlinks module on WordPress 6.9+.
 - Admin Menu: Add sidebar redesign fields, group metadata, and saved layout data to the `/wpcom/v2/admin-menu` endpoint when the public `wp-admin-sidebar` plugin is loaded.
@@ -358,10 +365,9 @@ Jetpack Backup can do a full website migration to a new host, migrate theme file
 
 #### Improved compatibility
 - ActivityPub: Allow Jetpack-signed admin requests to reach the inbox, proxy, and outbox client-to-server endpoints used by the connected site's WordPress.com Reader, without an OAuth bearer.
-- General: Update minimum WordPress version to 6.9.
 - Migrate Status indicator to @wordpress/ui Text.
 - Resolve WPDS design tokens in the legacy settings dashboard CSS.
-- Settings and AI Pages: Replace the `.admin-ui-page` selector hook with the stable `.jp-admin-page__page` className passed through by AdminPage, restoring page-specific layout overrides.
+- Settings And AI Pages: Replace the `.admin-ui-page` selector hook with the stable `.jp-admin-page__page` className passed through by AdminPage, restoring page-specific layout overrides.
 
 #### Bug fixes
 - AI: Fix broken external links (Claude settings and agent documentation) in the MCP quick setup.
