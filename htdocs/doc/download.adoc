@@ -226,6 +226,8 @@ sudo dnf install gtk2 gtk2-devel gtk3 gtk3-devel libX11-devel make binutils glib
 ----
 sudo pacman -S gtk2 gtk3
 ----
++
+(Anything missing? https://archlinux.org/packages/[Search])
 
 * On _Void Linux_, try this:
 +
