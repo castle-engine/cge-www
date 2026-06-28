@@ -772,7 +772,7 @@ Address a few shortcomings of our  (see `examples/screen_effects_demo/`, link:sc
 [#gltf_save]
 ### Export (save) nodes graph to glTF
 
-Currently we can export (save) nodes graph (from one cgeref:TCastleScene[] or, using cgeref:TCastleTransform.InternalBuildNode[], from whole cgeref:TCastleViewport[] contents) to X3D or STL.
+Currently we can export (save) nodes graph (from one cgeref:TCastleScene[] or, using `TCastleTransform.InternalBuildNode`, from whole cgeref:TCastleViewport[] contents) to X3D or STL.
 
 We want to enable also saving to glTF. This means that _everywhere_ where we allow saving, glTF will also be an output option:
 
