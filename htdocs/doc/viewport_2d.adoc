@@ -1,70 +1,137 @@
-# Designing a 2D world
+# Creating 2D games
 include::common.adoc[]
-
-cgeimg::float[platformer.png|Platformer game]
+:description: Learn how to create 2D games in Castle Game Engine using 2D viewport and scenes.
+:cge-social-share-image: viewport_2d_space_shooter.png
 
 ## Introduction
 
-In this chapter we show how you can design 2D world using _Castle Game Engine_ editor. We assume you have already read the link:viewport_and_scenes[overview of the viewport and scenes].
+Let's learn how to design 2D games using _Castle Game Engine_ editor.
 
-[WARNING]
-====
-This page is a work in progress.
+We assume you have already read the link:viewport_and_scenes[overview of the viewport and scenes]. We advise to also read the link:viewport_3d[3D tutorial] first, as it explains many concepts that are also relevant for 2D world design.
 
-We plan to write here a detailed tutorial, similar to link:viewport_3d[Tutorial: Designing a 3D world], but designed specifically for 2D games (using static images for a background, using sprite sheets for hero and some enemies).
-
-But it is not ready yet.
-
-For now, we advise to follow link:viewport_3d[Tutorial: Designing a 3D world], and then read this page about important things that are different for 2D games.
-====
+cgeimg::block[
+  platformer.png|Platformer game,
+  viewport_2d_space_shooter.png|Space shooter game with 2D viewport
+]
 
 ## Examples
 
-Consult the engine examples, like:
+To see our 2D features in action, consult the examples, like:
 
-- https://github.com/castle-engine/castle-engine/tree/master/examples/2d_games/platformer[examples/2d_games/platformer]
+- The _"2D Game"_ project template proposed when you run the link:editor[editor] and select _"New Project"_. This was designed specifically to be a starting point for 2D games!
 
-- https://github.com/castle-engine/castle-engine/tree/master/examples/2d_games/space_shooter[examples/2d_games/space_shooter]
+- https://github.com/castle-engine/castle-engine/tree/master/examples/2d_games/space_shooter[space shooter game (examples/2d_games/space_shooter)]
 
-...for game demos following this approach.
+- https://github.com/castle-engine/castle-engine/tree/master/examples/2d_games/platformer[platformer game (examples/2d_games/platformer)], this is a bigger example showing how to use 2D physics, sprite sheets, audio and more.
 
-## Create a viewport for 2D
+- https://github.com/castle-engine/castle-engine/tree/master/examples/physics/physics_2d_game_sopwith[simple example showing physics working in a 2D setting (examples/physics/physics_2d_game_sopwith)]
 
-Create a viewport in the editor by right-clicking in the hierarchy and using _"Add User Interface -> Viewport (2D)"_ menu item.
+## Steps to create a 2D game
 
-This creates a viewport with 2D navigation, 2D orthographic camera, and adds a default white plane in the middle. By default in 2D:
+### Create a viewport (TCastleViewport)
+
+In a new project, create a viewport in the editor by right-clicking in the hierarchy and using _"Add User Interface -> Viewport (2D)"_ menu item.
+
+cgeimg::block[viewport_2d_empty.png|Add viewport]
+
+This creates a viewport with 2D navigation, 2D orthographic camera, and adds a default white plane in the middle.
+
+### Add assets (TCastleTransform descendants)
+
+Right-click on the `Items` in the hierarchy and add components you need:
+
+- cgeref:TCastleScene[] lets you load a 2D model, like a link:sprite_sheet[sprite sheet] or a link:gltf[glTF] model or a link:spine[Spine] animation. See link:model_formats[supported model formats] for all possibilities.
+
+- To display a simple image, you can use cgeref:TCastleImageTransform[]. See link:using_images[Using images] for details.
+
+- To display a map designed in Tiled, you can use cgeref:TCastleTiledMap[]. See link:tiled[Tiled] for details.
+
+- cgeref:TCastlePlane[] lets you create a trivial single-color rectangle. Set cgeref:TCastlePlane.Axis[Axis] to `2` to make it a flat rectangle in the XY plane.
+
+- Other components descending from cgeref:TCastleTransform[] can also be used in 2D, like cgeref:TCastleText[] to show text.
+
+### Go wild!
+
+Frankly, that's everything :)
+
+Follow the other manual chapters to learn how to access the above components using code, and what features they offer. For example,
+
+- You can play animations using the cgeref:TCastleSceneCore.PlayAnimation[] as documented on link:viewport_and_scenes_from_code[using scenes from Pascal].
+
+- You can move the assets and cameras by changing their cgeref:TCastleTransform.Translation[] property.
+
+## How 2D works
+
+### 2D coordinate system
+
+By default in 2D:
 
 - X axis goes to the right,
 
 - Y goes up,
 
-- Z axis is "depth". Camera looks in the -Z direction. Larger Z means that object is closer to the camera (_in front_ of other objects), smaller Z means that it is further from the camera (_behind_ other objects). Is it OK to use negative Z values.
+- Z axis is "depth". Camera looks in the -Z direction. Larger Z means that object is closer to the camera (_in front_ of other objects), smaller Z means that it is further from the camera (_behind_ other objects). It is OK to use negative Z values.
 
-Blending should automatically work for 2D viewports, see link:blending[blending] for details. In short, you can use partial transparency in your images, and it will work correctly in 2D viewports.
+### Adjust size of components to make sense in 2D
 
-## Navigation in 2D
+Some components, like cgeref:TCastlePlane[] or cgeref:TCastleText[], start by having a very small size for 2D. That's because they start with a typical size useful for 3D, where 1 unit is 1 meter. In 2D, you typically want to see things much larger, as the default viewport sees 1000 units in height. So make the things larger:
 
-In a viewport created using the _"Add User Interface -> Viewport (2D)"_ menu item we use, by default, a special _2D_ navigation method.
+- Set cgeref:TCastlePlane.Size[] to something large, like `100 100`.
 
-- Drag with right mouse button to pan the view,
+- Set cgeref:TCastleText.Size[] to something large, like `100`.
++
+To make the font look crisp, define a cgeref:TCastleFont[] resource with a large cgeref:TCastleFont.OptimalSize[]. See the link:text[Text and Fonts] for details.
 
-- Use mouse scroll wheel to zoom in / out.
+- For other components, that don't have a dedicated way to enlarge them, scale them using cgeref:TCastleTransform.Scale[] property. For example, set `Scale` to `100 100 1`.
++
+NOTE: Why `100 100 1` and not `100 100 100`? Because usually, you don't need to scale in the Z direction. And it could change the visibility from the perspective of looking along the Z axis. That's why we propose to set Z scale to `1`. But if you know what you are doing, you can scale in Z too.
 
-This makes it easy to move a 2D scene, without accidentally making a rotation that would reveal it is 3D.
+### Navigation in 2D
 
-NOTE: If you want to allow user to easily pan/zoom the view, add the cgeref:TCastle2DNavigation[] component as a child of the cgeref:TCastleViewport[].
+Let's distinguish two concepts:
 
-NOTE: You *can* still use a different navigation, like 3D _Fly_ navigation. Use the _"Viewport"_ menu item commands to toggle between different navigation methods.
+- _Camera_ is a component that determines what is visible in the viewport.
 
-## Orthographic projection
+- _Navigation_ lets you _transform (move, zoom) the camera in the viewport_.
 
-A viewport created using the _"Add User Interface -> Viewport (2D)"_ menu item will use an _orthographic_ projection by default.
+To navigate in 2D viewport when you design your game (in the link:editor[editor]):
+
+- simply drag with _right mouse button_ to pan the view,
+
+- and use _mouse scroll wheel_ to zoom in / out.
+
+This is how you _navigate_ at _design-time_.
+
+If you want to allow user to easily pan/zoom the view (in other words, make this navigation also possible at _run-time_), then add the cgeref:TCastle2DNavigation[] component as a child of the cgeref:TCastleViewport[].
+
+NOTE: You _can_ use any navigation, like 3D _Fly_ navigation. Use the _"Viewport"_ menu item commands to toggle between different navigation methods. But it's not always intuitive to use 3D navigation in a 2D world.
+
+### Camera position
+
+You can set the initial camera position, so that when you run the game, the camera is in a good place. To do this, move the camera to a good position, and use _"Viewport -> Align Camera To View"_ menu item.
+
+You can also just directly set properties of the camera, like cgeref:TCastleTransform.Translation[Camera.Translation]. As usual, everything is possible both
+
+- at _design-time_. Find the `Translation` property in the _Object Inspector_, which is the right sidebar of the editor.
+
+- and at run-time. Modify the cgeref:TCastleTransform.Translation[Camera.Translation] from Pascal code whenever you want. Typically you will link:views[override the view methods] to change camera position when the user presses some keys to move.
+
+### Camera and the orthographic projection
+
+A viewport created using the _"Add User Interface -> Viewport (2D)"_ menu item will have a camera component with an _orthographic_ projection by default.
 
 In such projection, the distance to the object doesn't change its perceived size. Contrast this with the _perspective_ projection, default in 3D, in which the objects further away are perceived as smaller.
 
-You can always change the camera projection manually using the cgeref:TCastleCamera.ProjectionType[] property. This sets the projection used at runtime (when you run the game). You can also change the projection used at design-time (in the editor) using the _"Viewport -> Toggle Perspective / Orthogonal"_ menu item.
+[NOTE]
+====
+For special games, that bend the strict distinction between 2D and 3D, you can use a _perspective_ projection to see a 2D world.
 
-## Field of view in orthographic projection
+At _design-time_, you can also change the projection in the editor using the _"Viewport -> Toggle Perspective / Orthogonal"_ menu item.
+
+To change it at _run-time_, you can change the camera projection using the cgeref:TCastleCamera.ProjectionType[] property. This sets the projection used at runtime (when you run the game).
+====
+
+#### Field of view (in orthographic projection)
 
 _"Field of view"_ is a term meaning _"how much of the world do you see at a given moment"_. The concept makes sense for both orthographic and perspective projections, but it is set using different properties in each case. For orthographic projection, this is determined by cgeref:TCastleOrthographic.Width[Viewport.Camera.Orthographic.Width] and cgeref:TCastleOrthographic.Height[Viewport.Camera.Orthographic.Height].
 
@@ -80,7 +147,7 @@ There are other ways to control the field of view, see the cgeref:TCastleOrthogr
 
 For example: You can set cgeref:TCastleOrthographic.Width[Viewport.Camera.Orthographic.Width] and cgeref:TCastleOrthographic.Height[Viewport.Camera.Orthographic.Height] to both be zero. In this case, the viewport control size (after UI scaling) determines this field of view. With the default UI scaling to 1600 x 900, this likely means that you will see an area 1600 x 900 in your viewport (it may be a bit taller or wider, if user resizes the window).
 
-## Origin in orthographic projection
+#### Origin (in orthographic projection)
 
 A viewport created using the _"Add User Interface -> Viewport (2D)"_ menu item has, by default, cgeref:TCastleOrthographic.Origin[Viewport.Camera.Orthographic.Origin] set as `(0.5,0.5)`. This means that the camera position determines what is visible in the _middle_ of the viewport. In effect, when `Camera.Translation` is `(0, 0, 0)`, the _middle_ of the viewport will show the things at position `(0, 0, 0)` in your world. This is most comfortable if you place your assets around the `(0, 0, 0)` point.
 
@@ -88,27 +155,27 @@ As an example, you can add a cgeref:TCastleScene[] with an image or a sprite she
 
 You can change cgeref:TCastleOrthographic.Origin[Viewport.Camera.Orthographic.Origin] to whatever makes sense for your game. For example, cgeref:TCastleOrthographic.Origin[Viewport.Camera.Orthographic.Origin] equal to `(0, 0)` means that the camera position determines what is visible at the _left-bottom viewport corner_. So when camera position is `(0, 0, 0)` the left-bottom viewport corner will show the things at position `(0, 0, 0)` in your world.
 
-## 2D assets
+### Physics in 2D
 
-Simply add cgeref:TCastleScene[] instances to your 2D world, just like you would in 3D.
+Our link:physics[physics] works in 2D games.
 
-You can use any link:model_formats[supported model format].
+Be sure to use 2D colliders and 2D rigid bodies, following the link:physics#2d[physics: 2D] section. In the editor, just add the _"Physics -> Collider 2D -> ..."_ components. This will make the physics engine work in 2D in a most natural way, ignoring the Z coordinates of your objects and not making them rotate in the third dimension.
 
-* You can use link:sprite_sheets[sprite sheets].
-* You can use link:using_images[images].
-* You can use link:spine[Spine] with smooth skeletal 2D animations.
-* It is perfectly reasonable to use link:gltf[glTF] (e.g. exported from link:blender[Blender]) to do 2D art as well.
-* Primitives like cgeref:TCastleText[] and cgeref:TCastlePlane[] (make sure to set axis to 2, meaning _"Z"_)  are also useful in 2D.
+Remember to also adjust the cgeref:TPhysicsProperties.GravityStrength[Viewport.Items.PhysicsProperties.GravityStrength] to a larger value to make objects fall down in a reasonable time.
 
-## Blending
+### Blending and alpha bleeding
 
-Blending (partial transparency) should work in 2D games automatically.
+Blending (partial transparency) should automatically work in 2D viewports, see link:blending[blending] for details. In short, you can use partial transparency in your images, and it will work correctly in 2D viewports.
+
+////
+TMI here, moved to blending.adoc:
 
 Shapes using blending will be sorted following cgeref:TCastleViewport.BlendingSort[] rules. This is by default cgeref:sortAuto[], which means it detects typical 2D camera setup and then behaves like cgeref:sort2D[].
+////
 
-See link:blending[blending] for more details about blending, and see link:alpha_bleeding[alpha bleeding] for details about how to prepare your images to behave correctly with blending.
+See also link:alpha_bleeding[alpha bleeding] for details about how to prepare your images to behave correctly with blending.
 
-## Advanced: Turning any viewport (like 3D) into 2D
+### Advanced: Turning any viewport (like 3D) into 2D
 
 There is really no strict distinction between 3D and 2D viewports in _Castle Game Engine_. In both cases you have cgeref:TCastleViewport[], just some sensible defaults are different. In _"Viewport (2D)"_ the camera projection is _orthographic_ and design-time navigation method is 2D.
 
@@ -128,12 +195,3 @@ You can also just place 2D (flat) items in a 3D viewport. It is really your choi
 - what design-time navigation you use (2D, Fly...) etc.
 
 And all these choices are in fact independent of each other. You can mix 2D and 3D stuff freely in CGE.
-
-////
-TODO: tutorial
-  Add scene.
-  We could use Camera -> View All...
-    but instead we will move things.
-  Add some navigation, position camera, save navigation by "Initial := Current".
-  Run.
-////

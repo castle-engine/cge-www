@@ -105,6 +105,7 @@ During the simulation you *can* click around and modify the design even while th
 
 NOTE: In the editor we only run the physics simulation, not your final game code. That said, various components may adapt to the "simulation" to behave in editor just as they do at run-time. Your link:custom_components[custom components] can adapt to simulation too, just honor the current cgeref:CastleApplicationMode[] value.
 
+[#2d]
 == 2D Games
 
 cgeimg::block[
@@ -120,7 +121,15 @@ In CGE editor, just add _"Physics -> Rigid Body (2D)"_ component. Actually it wi
 
 - Set cgeref:TCastleCollider.Mode2D[] to `true` (to auto-size and to account for scale in a way better for 2D). In CGE editor, just add the _"Physics -> Collider 2D -> ..."_ components.
 
+- Potentially increase the gravity strength by editing cgeref:TPhysicsProperties.GravityStrength[Viewport.Items.PhysicsProperties.GravityStrength].
++
+The default `GravityStrength` is `9.81`, which makes sense for 3D games when 1 unit is 1 meter.
++
+But 2D games often use different measurements. By default, the link:viewport_2d[viewport we advise to create for 2D games] spans 1000 units in height. So a larger gravity strength is necessary to make the objects fall down in a reasonable time.
+
 We feature a number of 2D physics demos in our examples on https://github.com/castle-engine/castle-engine/tree/master/examples/physics/[examples/physics], check them out.
+
+See link:viewport_2d[overview of how 2D works in our engine].
 
 == Forces (Pushing, Rotating Bodies)
 
