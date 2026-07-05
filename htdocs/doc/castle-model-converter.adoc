@@ -88,6 +88,18 @@ NOTE: Our _"validation"_ isn't 100% complete, that is: passing the validation do
 --no-x3d-extensions::
 Do not use Castle Game Engine extensions. This will output file valid in all X3D browsers (but maybe with some _Castle Game Engine_-specific features missing).
 
+-i / --identify::
+Print information about the input model, like its X3D version and used extensions. This is useful to check if the model will work in all X3D browsers or only in Castle Game Engine. This is usually used together with `--validate` to get information about the model, looking like this:
++
+```
+$ castle-model-converter --identify --validate AlphaBlendModeTest.x3d
+AlphaBlendModeTest.x3d:
+  Mime Type: model/x3d+xml
+  Loaded as X3D 4.0
+  Model does not use any X3D extensions.
+    This model should work in any X3D browser.
+```
+
 --enable-downloads::
 Enable (blocking) downloads from the net, e.g. to download a texture or inlined (using X3D `Inline` node) models referenced by htt(s) protocol.
 
