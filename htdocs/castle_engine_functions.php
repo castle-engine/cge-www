@@ -257,7 +257,7 @@ $castle_sitemap = array(
           'doc/viewport_and_scenes' => array('title' => 'Viewport with scenes, camera, navigation',
             'sub' => array(
               'doc/viewport_3d' => array('title' => 'Tutorial: Designing a 3D world'),
-              'doc/viewport_2d' => array('title' => 'Tutorial: Designing a 2D world'),
+              'doc/viewport_2d' => array('title' => 'Creating 2D games'),
               'doc/camera' => array('title' => 'Camera'),
               'doc/navigation' => array('title' => 'Navigation'),
               'doc/viewport_and_scenes_from_code' => array('title' => 'Writing code to modify scenes and transformations'),
