@@ -131,6 +131,18 @@ In all cases, your programs will be compiled with the same options as engine uni
 
 By default we auto-detect the compiler: using the compiler indicated in link:project_manifest[CastleEngineManifest.xml] by `compiler="xxx"` option, otherwise using FPC or Delphi (whichever first is found). You can use `--compiler` command-line option to override the compiler choice, like `--compiler=fpc` or `--compiler=delphi`.
 
+You can customize how we call Delphi:
+
+- `--delphi-version` instructs to use given Delphi version, like `23.0` for Delphi 12, `37.0` for Delphi 13. The numbers we expect correspond to the https://docwiki.embarcadero.com/RADStudio/Florence/en/Compiler_Versions["Product Version" of Delphi] and the names of subdirectories in `C:\Program Files (x86)\Embarcadero\Studio`.
++
+For example, to compile with Delphi 13, call:
++
+```
+castle-engine compile --delphi-version=37.0 --compiler=delphi
+```
+
+- `--delphi-use-dcc` instructs to use `dcc` command-line compiler instead of `msbuild`. See the https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/delphi_dcc_vs_msbuild.md[dcc or msbuild] discussion for details.
+
 You can customize what options we pass to the compiler by:
 
 . Adding options to the `<custom_options>` in link:project_manifest[CastleEngineManifest.xml]. This is the good place to define options specific to your project (that should be used by all developers working with this project).
