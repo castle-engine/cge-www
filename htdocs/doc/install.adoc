@@ -5,33 +5,36 @@ include::common.adoc[]
 
 ## Castle Game Engine Installation
 
-. Download the latest link:/[Castle Game Engine].
+. link:download[Download the latest Castle Game Engine].
 
 . Run the _Castle Game Engine_ link:editor[].
 
-If you installed the engine using Windows installer, use your Windows menu to run the _Castle Game Engine_ editor. On other systems, just unpack the engine ZIP wherever you like, and run the `castle-editor` executable (it is inside the `bin` subdirectory).
+If you installed the engine using Windows installer, use your Windows menu to run the _Castle Game Engine_ editor. On other systems, just unpack the engine archive wherever you like, and run the `castle-editor` executable (it is inside the `bin` subdirectory).
 
-## Optional: Install additional compiler and IDE
+## Install editor for Pascal code (IDE)
 
-Optionally, you can install:
+You need an application to edit Pascal code.
 
-* Additional _Pascal compiler_.
-+
-Note that all our link:download[downloads] already contain the latest stable version of https://www.freepascal.org/[Free Pascal Compiler (FPC)]. So you don't need to install anything more, building and running projects will "just work" out-of-the-box.
-+
-But you can also install link:delphi[Delphi] or other FPC version (e.g. using link:fpcupdeluxe[]). Configure in the the editor _"Preferences"_ which compiler to use.
+* In principle, you can edit the Pascal code in any text editor you have. It's just text. Even _Notepad_ will do the job:) Although we really recommend something better (for syntax highlighting, code completion, integration with tools to build and debug etc.)
 
-* A Pascal IDE, like:
+* We recommend link:vscode[Visual Studio Code or VS Codium] with our https://marketplace.visualstudio.com/items?itemName=castle-engine-team.castle-engine[Castle Game Engine extension].
+
+* Or check out an IDE specialized for Pascal:
 +
 --
-- link:vscode[Visual Studio Code or VS Codium] with our https://marketplace.visualstudio.com/items?itemName=castle-engine-team.castle-engine[Castle Game Engine extension]
-- link:lazarus[Lazarus]
-- link:delphi[Delphi]
+- link:lazarus[Lazarus] (open-source Pascal IDE, on top of FPC compiler)
+- link:delphi[Delphi] (proprietary Pascal IDE _and_ compiler)
 --
-+
-In principle, you can edit the Pascal code in any text editor you have.
 
-////
-For a fully open-source cross-platform environment _we recommend FPC and Lazarus_.
-////
+And if you want to learn Pascal, link:modern_pascal[we got you covered].
 
+## Optional: Install additional compiler
+
+All our link:download[downloads] already contain the latest stable version of https://www.freepascal.org/[Free Pascal Compiler (FPC)]. So you don't need to install anything more, building and running projects will "just work" out-of-the-box.
+
+That being said, you can install more:
+
+- link:delphi[Delphi] comes with both Delphi compiler and IDE.
+- Other FPC versions, in particular useful for cross-compiling, may be installed using link:fpcupdeluxe[].
+
+Configure in the the editor _"Preferences"_ which compiler to use.
