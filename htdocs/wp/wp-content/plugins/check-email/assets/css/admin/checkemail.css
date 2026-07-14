@@ -632,3 +632,19 @@
     align-items: center;
     gap: 12px;
 }
+
+.celog-header-row{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.celog-header-row > .notice,
+.celog-header-row > .updated,
+.celog-header-row > .error,
+.celog-header-row > div[id$="_notice"] {
+    order: -999;          /* push to the very front instead of the end */
+    flex: 1 1 100%;        /* full row width */
+    margin: 0 0 10px !important;  /* space below it now, instead of above */
+}

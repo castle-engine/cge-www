@@ -252,109 +252,101 @@ class Check_Email_Table_Manager implements Loadie {
 		$query       = 'SELECT * FROM ' . $table_name;
 		$count_query = 'SELECT count(*) FROM ' . $table_name;
 		$query_cond  = '';
+	    $where_sql   = '';
+	    $where_args  = array();
 		
 		if ( isset( $request['s'] ) && is_string( $request['s'] ) && $request['s'] !== '' ) {
-			$search_term = isset($request['s'])
-				? sanitize_text_field( wp_unslash( $request['s'] ) )
-				: '';
-			$search_term = trim($search_term);
-			
-			if ( Util\wp_chill_check_email_advanced_search_term( $search_term ) ) {
-				$predicates = Util\wp_chill_check_email_get_advanced_search_term_predicates( $search_term );
-				
-				foreach ( $predicates as $column => $email ) {
-					switch ( $column ) {
-						case 'id':
-							$query_cond .= empty( $query_cond ) ? ' WHERE ' : ' AND ';
-							$query_cond .= "id = '$email'";
-							break;
-						case 'to':
-							$query_cond .= empty( $query_cond ) ? ' WHERE ' : ' AND ';
-							$query_cond .= "to_email LIKE '%$email%'";
-							break;
-						case 'email':
-							$query_cond .= empty( $query_cond ) ? ' WHERE ' : ' AND ';
-							$query_cond .= ' ( '; /* Begin 1st */
-							$query_cond .= " ( to_email LIKE '%$email%' OR subject LIKE '%$email%' ) "; /* Begin 2nd & End 2nd */
-							$query_cond .= ' OR ';
-							$query_cond .= ' ( '; /* Begin 3rd */
-							$query_cond .= "headers <> ''";
-							$query_cond .= ' AND ';
-							$query_cond .= ' ( '; /* Begin 4th */
-							$query_cond .= "headers REGEXP '[F|f]rom:.*$email' OR ";
-							$query_cond .= "headers REGEXP '[CC|Cc|cc]:.*$email' OR ";
-							$query_cond .= "headers REGEXP '[BCC|Bcc|bcc]:.*$email' OR ";
-							$query_cond .= "headers REGEXP '[R|r]eply-[T|t]o:.*$email'";
-							$query_cond .= ' ) '; /* End 4th */
-							$query_cond .= ' ) '; /* End 3rd */
-							$query_cond .= ' ) '; /* End 1st */
-							break;
-						case 'cc':
-							$query_cond .= empty( $query_cond ) ? ' WHERE ' : ' AND ';
-							$query_cond .= ' ( '; /* Begin 1st */
-							$query_cond .= "headers <> ''";
-							$query_cond .= ' AND ';
-							$query_cond .= ' ( '; /* Begin 2nd */
-							$query_cond .= "headers REGEXP '[CC|Cc|cc]:.*$email' ";
-							$query_cond .= ' ) '; /* End 2nd */
-							$query_cond .= ' ) '; /* End 1st */
-							break;
-						case 'bcc':
-							$query_cond .= empty( $query_cond ) ? ' WHERE ' : ' AND ';
-							$query_cond .= ' ( '; /* Begin 1st */
-							$query_cond .= "headers <> ''";
-							$query_cond .= ' AND ';
-							$query_cond .= ' ( '; /* Begin 2nd */
-							$query_cond .= "headers REGEXP '[BCC|Bcc|bcc]:.*$email' ";
-							$query_cond .= ' ) '; /* End 2nd */
-							$query_cond .= ' ) '; /* End 1st */
-							break;
-						case 'reply-to':
-							$query_cond .= empty( $query_cond ) ? ' WHERE ' : ' AND ';
-							$query_cond .= ' ( '; /* Begin 1st */
-							$query_cond .= "headers <> ''";
-							$query_cond .= ' AND ';
-							$query_cond .= ' ( '; /* Begin 2nd */
-							$query_cond .= "headers REGEXP '[R|r]eply-to:.*$email' ";
-							$query_cond .= ' ) '; /* End 2nd */
-							$query_cond .= ' ) '; /* End 1st */
-							break;
-					}
-				}
-			} else {
-				$like = '%' . $wpdb->esc_like( $search_term ) . '%';
+	        $search_term = sanitize_text_field( wp_unslash( $request['s'] ) );
+	        $search_term = trim( $search_term );
 
-				$query_cond .= $wpdb->prepare(
-					" WHERE ( to_email LIKE %s OR subject LIKE %s OR message LIKE %s ) ",
-					$like,
-					$like,
-					$like
-				);
-			}
-		}
+	        if ( Util\wp_chill_check_email_advanced_search_term( $search_term ) ) {
+	            $predicates = Util\wp_chill_check_email_get_advanced_search_term_predicates( $search_term );
+
+	            foreach ( $predicates as $column => $email ) {
+	                switch ( $column ) {
+	                    case 'id':
+	                        $where_sql   .= empty( $where_sql ) ? ' WHERE ' : ' AND ';
+	                        $where_sql   .= 'id = %d';
+	                        $where_args[] = (int) $email;
+	                        break;
+
+	                    case 'to':
+	                        $where_sql   .= empty( $where_sql ) ? ' WHERE ' : ' AND ';
+	                        $where_sql   .= 'to_email LIKE %s';
+	                        $where_args[] = '%' . $wpdb->esc_like( $email ) . '%';
+	                        break;
+
+	                    case 'email':
+	                        $like = '%' . $wpdb->esc_like( $email ) . '%';
+	                        $where_sql .= empty( $where_sql ) ? ' WHERE ' : ' AND ';
+	                        $where_sql .= ' ( ( to_email LIKE %s OR subject LIKE %s ) OR ( headers <> \'\' AND ( headers REGEXP %s OR headers REGEXP %s OR headers REGEXP %s OR headers REGEXP %s ) ) ) ';
+	                        $where_args[] = $like;
+	                        $where_args[] = $like;
+	                        $where_args[] = '[F|f]rom:.*' . $email;
+	                        $where_args[] = '[CC|Cc|cc]:.*' . $email;
+	                        $where_args[] = '[BCC|Bcc|bcc]:.*' . $email;
+	                        $where_args[] = '[R|r]eply-[T|t]o:.*' . $email;
+	                        break;
+
+	                    case 'cc':
+	                        $where_sql .= empty( $where_sql ) ? ' WHERE ' : ' AND ';
+	                        $where_sql .= ' ( headers <> \'\' AND ( headers REGEXP %s ) ) ';
+	                        $where_args[] = '[CC|Cc|cc]:.*' . $email;
+	                        break;
+
+	                    case 'bcc':
+	                        $where_sql .= empty( $where_sql ) ? ' WHERE ' : ' AND ';
+	                        $where_sql .= ' ( headers <> \'\' AND ( headers REGEXP %s ) ) ';
+	                        $where_args[] = '[BCC|Bcc|bcc]:.*' . $email;
+	                        break;
+
+	                    case 'reply-to':
+	                        $where_sql .= empty( $where_sql ) ? ' WHERE ' : ' AND ';
+	                        $where_sql .= ' ( headers <> \'\' AND ( headers REGEXP %s ) ) ';
+	                        $where_args[] = '[R|r]eply-to:.*' . $email;
+	                        break;
+	                }
+	            }
+	        } else {
+	            $like = '%' . $wpdb->esc_like( $search_term ) . '%';
+	            $where_sql .= ' WHERE ( to_email LIKE %s OR subject LIKE %s OR message LIKE %s ) ';
+	            $where_args[] = $like;
+	            $where_args[] = $like;
+	            $where_args[] = $like;
+	        }
+	    }
 
 		if ( isset( $request['d'] ) && $request['d'] !== '' ) {
-			$search_date = sanitize_text_field( wp_unslash( $request['d'] ) );
-			$search_date = trim($search_date);
-			if ( '' === $query_cond ) {
-				$query_cond .= " WHERE sent_date BETWEEN '$search_date 00:00:00' AND '$search_date 23:59:59' ";
-			} else {
-				$query_cond .= " AND sent_date BETWEEN '$search_date 00:00:00' AND '$search_date 23:59:59' ";
-			}
-		}
-		if ( isset( $request['status'] ) && $request['status'] !== '' ) {
-			$status = trim( esc_sql( $request['status'] ) );
-			switch( $status ) {
-				case 'failed':
-					$query_cond .= " WHERE `result` IS NULL OR `result` = ''";
-					break;
-				case 'complete':
-					$query_cond .= " WHERE `result` IS NOT NULL AND `result` != ''";
-					break;
-				default:
-					break;
-			}
-		}
+	        $search_date = sanitize_text_field( wp_unslash( $request['d'] ) );
+	        $search_date = trim( $search_date );
+
+	        // Only accept a real date shape; anything else is dropped rather than trusted.
+	        if ( preg_match( '/^\d{4}-\d{2}-\d{2}$/', $search_date ) ) {
+	            $where_sql .= empty( $where_sql ) ? ' WHERE ' : ' AND ';
+	            $where_sql .= 'sent_date BETWEEN %s AND %s';
+	            $where_args[] = $search_date . ' 00:00:00';
+	            $where_args[] = $search_date . ' 23:59:59';
+	        }
+	    }
+
+	    if ( ! empty( $where_args ) ) {
+	        // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- placeholders are bound below
+	        $query_cond .= $wpdb->prepare( $where_sql, $where_args );
+	    }
+
+	    if ( isset( $request['status'] ) && $request['status'] !== '' ) {
+	        $status = trim( esc_sql( $request['status'] ) );
+	        switch( $status ) {
+	            case 'failed':
+	                $query_cond .= empty( $query_cond ) ? " WHERE `result` IS NULL OR `result` = ''" : " AND ( `result` IS NULL OR `result` = '' )";
+	                break;
+	            case 'complete':
+	                $query_cond .= empty( $query_cond ) ? " WHERE `result` IS NOT NULL AND `result` != ''" : " AND ( `result` IS NOT NULL AND `result` != '' )";
+	                break;
+	            default:
+	                break;
+	        }
+	    }
 
 		// Ordering parameters.
 		$orderby = ! empty( $request['orderby'] ) ? sanitize_sql_orderby( $request['orderby'] ) : 'sent_date';
@@ -646,132 +638,127 @@ class Check_Email_Table_Manager implements Loadie {
 	}
 
 	public function fetch_log_count_by_status( $request, $per_page, $current_page_no,$status='all' ) {
-		global $wpdb;
-		$table_name = $this->get_log_table_name();
+	    global $wpdb;
+	    $table_name = $this->get_log_table_name();
 
-		
-		$count_query = 'SELECT count(*) FROM ' . $table_name;
-		$query_cond  = '';
+	    $count_query = 'SELECT count(*) FROM ' . $table_name;
+	    $query_cond  = '';
+	    $where_sql   = '';
+	    $where_args  = array();
 
-		if ( isset( $request['s'] ) && is_string( $request['s'] ) && $request['s'] !== '' ) {
-			$search_term = trim( esc_sql( $request['s'] ) );
+	    if ( isset( $request['s'] ) && is_string( $request['s'] ) && $request['s'] !== '' ) {
+	        $search_term = sanitize_text_field( wp_unslash( $request['s'] ) );
+	        $search_term = trim( $search_term );
 
-			if ( Util\wp_chill_check_email_advanced_search_term( $search_term ) ) {
-				$predicates = Util\wp_chill_check_email_get_advanced_search_term_predicates( $search_term );
+	        if ( Util\wp_chill_check_email_advanced_search_term( $search_term ) ) {
+	            $predicates = Util\wp_chill_check_email_get_advanced_search_term_predicates( $search_term );
 
-				foreach ( $predicates as $column => $email ) {
-					switch ( $column ) {
-						case 'id':
-							$query_cond .= empty( $query_cond ) ? ' WHERE ' : ' AND ';
-							$query_cond .= "id = '$email'";
-							break;
-						case 'to':
-							$query_cond .= empty( $query_cond ) ? ' WHERE ' : ' AND ';
-							$query_cond .= "to_email LIKE '%$email%'";
-							break;
-						case 'email':
-							$query_cond .= empty( $query_cond ) ? ' WHERE ' : ' AND ';
-							$query_cond .= ' ( '; /* Begin 1st */
-							$query_cond .= " ( to_email LIKE '%$email%' OR subject LIKE '%$email%' ) "; /* Begin 2nd & End 2nd */
-							$query_cond .= ' OR ';
-							$query_cond .= ' ( '; /* Begin 3rd */
-							$query_cond .= "headers <> ''";
-							$query_cond .= ' AND ';
-							$query_cond .= ' ( '; /* Begin 4th */
-							$query_cond .= "headers REGEXP '[F|f]rom:.*$email' OR ";
-							$query_cond .= "headers REGEXP '[CC|Cc|cc]:.*$email' OR ";
-							$query_cond .= "headers REGEXP '[BCC|Bcc|bcc]:.*$email' OR ";
-							$query_cond .= "headers REGEXP '[R|r]eply-[T|t]o:.*$email'";
-							$query_cond .= ' ) '; /* End 4th */
-							$query_cond .= ' ) '; /* End 3rd */
-							$query_cond .= ' ) '; /* End 1st */
-							break;
-						case 'cc':
-							$query_cond .= empty( $query_cond ) ? ' WHERE ' : ' AND ';
-							$query_cond .= ' ( '; /* Begin 1st */
-							$query_cond .= "headers <> ''";
-							$query_cond .= ' AND ';
-							$query_cond .= ' ( '; /* Begin 2nd */
-							$query_cond .= "headers REGEXP '[CC|Cc|cc]:.*$email' ";
-							$query_cond .= ' ) '; /* End 2nd */
-							$query_cond .= ' ) '; /* End 1st */
-							break;
-						case 'bcc':
-							$query_cond .= empty( $query_cond ) ? ' WHERE ' : ' AND ';
-							$query_cond .= ' ( '; /* Begin 1st */
-							$query_cond .= "headers <> ''";
-							$query_cond .= ' AND ';
-							$query_cond .= ' ( '; /* Begin 2nd */
-							$query_cond .= "headers REGEXP '[BCC|Bcc|bcc]:.*$email' ";
-							$query_cond .= ' ) '; /* End 2nd */
-							$query_cond .= ' ) '; /* End 1st */
-							break;
-						case 'reply-to':
-							$query_cond .= empty( $query_cond ) ? ' WHERE ' : ' AND ';
-							$query_cond .= ' ( '; /* Begin 1st */
-							$query_cond .= "headers <> ''";
-							$query_cond .= ' AND ';
-							$query_cond .= ' ( '; /* Begin 2nd */
-							$query_cond .= "headers REGEXP '[R|r]eply-to:.*$email' ";
-							$query_cond .= ' ) '; /* End 2nd */
-							$query_cond .= ' ) '; /* End 1st */
-							break;
-					}
-				}
-			} else {
-				$query_cond .= " WHERE ( to_email LIKE '%$search_term%' OR subject LIKE '%$search_term%' ) ";
-			}
-		}
+	            foreach ( $predicates as $column => $email ) {
+	                switch ( $column ) {
+	                    case 'id':
+	                        $where_sql   .= empty( $where_sql ) ? ' WHERE ' : ' AND ';
+	                        $where_sql   .= 'id = %d';
+	                        $where_args[] = (int) $email;
+	                        break;
 
-		if ( isset( $request['d'] ) && $request['d'] !== '' ) {
-			$search_date = trim( esc_sql( $request['d'] ) );
-			if ( '' === $query_cond ) {
-				$query_cond .= " WHERE sent_date BETWEEN '$search_date 00:00:00' AND '$search_date 23:59:59' ";
-			} else {
-				$query_cond .= " AND sent_date BETWEEN '$search_date 00:00:00' AND '$search_date 23:59:59' ";
-			}
-		}
-		if ( !empty($status) ) {
-			$status = trim( esc_sql( $status ) );
-			if ($status != 'all') {
-				if ( empty($request['d'])  && empty($request['s']) ) {
-					$query_cond .= " WHERE ";
-				}else{
-					$query_cond .= " AND ";
-				}
-			}
+	                    case 'to':
+	                        $where_sql   .= empty( $where_sql ) ? ' WHERE ' : ' AND ';
+	                        $where_sql   .= 'to_email LIKE %s';
+	                        $where_args[] = '%' . $wpdb->esc_like( $email ) . '%';
+	                        break;
 
-			// print_r($query_cond);die;
-			
-			switch( $status ) {
-				case 'failed':
-					$query_cond .= " `result` = 0";
-					break;
-				case 'complete':
-					$query_cond .= " `result` != 0";
-					break;
-				default:
-					break;
-			}
-		}
+	                    case 'email':
+	                        $like = '%' . $wpdb->esc_like( $email ) . '%';
+	                        $where_sql .= empty( $where_sql ) ? ' WHERE ' : ' AND ';
+	                        $where_sql .= ' ( ( to_email LIKE %s OR subject LIKE %s ) OR ( headers <> \'\' AND ( headers REGEXP %s OR headers REGEXP %s OR headers REGEXP %s OR headers REGEXP %s ) ) ) ';
+	                        $where_args[] = $like;
+	                        $where_args[] = $like;
+	                        $where_args[] = '[F|f]rom:.*' . $email;
+	                        $where_args[] = '[CC|Cc|cc]:.*' . $email;
+	                        $where_args[] = '[BCC|Bcc|bcc]:.*' . $email;
+	                        $where_args[] = '[R|r]eply-[T|t]o:.*' . $email;
+	                        break;
 
-		// Ordering parameters.
-		$orderby = ! empty( $request['orderby'] ) ? sanitize_sql_orderby( $request['orderby'] ) : 'sent_date';
-		if ( isset( $request['order'] ) ) {
-			$order = in_array( strtoupper($request['order']), array( 'DESC', 'ASC' ) ) ? esc_sql( $request['order'] ) : 'DESC';
-		}else{
-			$order = 'DESC';
-		}
+	                    case 'cc':
+	                        $where_sql .= empty( $where_sql ) ? ' WHERE ' : ' AND ';
+	                        $where_sql .= ' ( headers <> \'\' AND ( headers REGEXP %s ) ) ';
+	                        $where_args[] = '[CC|Cc|cc]:.*' . $email;
+	                        break;
 
-		if ( ! empty( $orderby ) & ! empty( $order ) ) {
-			$query_cond .= ' ORDER BY ' . $orderby . ' ' . $order;
-		}
+	                    case 'bcc':
+	                        $where_sql .= empty( $where_sql ) ? ' WHERE ' : ' AND ';
+	                        $where_sql .= ' ( headers <> \'\' AND ( headers REGEXP %s ) ) ';
+	                        $where_args[] = '[BCC|Bcc|bcc]:.*' . $email;
+	                        break;
 
-		// Find total number of items.
-		$count_query = $count_query . $query_cond;
-		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared,WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,PluginCheck.Security.DirectDB.UnescapedDBParameter -- Reason using critical conditions in query
-		$total_items = $wpdb->get_var( $count_query );
-		return $total_items;
+	                    case 'reply-to':
+	                        $where_sql .= empty( $where_sql ) ? ' WHERE ' : ' AND ';
+	                        $where_sql .= ' ( headers <> \'\' AND ( headers REGEXP %s ) ) ';
+	                        $where_args[] = '[R|r]eply-to:.*' . $email;
+	                        break;
+	                }
+	            }
+	        } else {
+	            $like = '%' . $wpdb->esc_like( $search_term ) . '%';
+	            $where_sql .= ' WHERE ( to_email LIKE %s OR subject LIKE %s ) ';
+	            $where_args[] = $like;
+	            $where_args[] = $like;
+	        }
+	    }
+
+	    if ( isset( $request['d'] ) && $request['d'] !== '' ) {
+	        $search_date = sanitize_text_field( wp_unslash( $request['d'] ) );
+	        $search_date = trim( $search_date );
+
+	        // TODO: confirm this matches the actual format your datepicker submits.
+	        if ( preg_match( '/^\d{4}-\d{2}-\d{2}$/', $search_date ) ) {
+	            $where_sql .= empty( $where_sql ) ? ' WHERE ' : ' AND ';
+	            $where_sql .= 'sent_date BETWEEN %s AND %s';
+	            $where_args[] = $search_date . ' 00:00:00';
+	            $where_args[] = $search_date . ' 23:59:59';
+	        }
+	    }
+
+	    if ( ! empty( $where_args ) ) {
+	        // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- placeholders are bound below
+	        $query_cond .= $wpdb->prepare( $where_sql, $where_args );
+	    }
+
+	    if ( ! empty( $status ) ) {
+	        $status = trim( esc_sql( $status ) );
+	        if ( $status !== 'all' ) {
+	            $query_cond .= empty( $query_cond ) ? ' WHERE ' : ' AND ';
+
+	            switch ( $status ) {
+	                case 'failed':
+	                    $query_cond .= ' `result` = 0';
+	                    break;
+	                case 'complete':
+	                    $query_cond .= ' `result` != 0';
+	                    break;
+	                default:
+	                    break;
+	            }
+	        }
+	    }
+
+	    // Ordering parameters (matches original — harmless on a COUNT query, kept for parity).
+	    $orderby = ! empty( $request['orderby'] ) ? sanitize_sql_orderby( $request['orderby'] ) : 'sent_date';
+	    if ( isset( $request['order'] ) ) {
+	        $order = in_array( strtoupper( $request['order'] ), array( 'DESC', 'ASC' ), true ) ? esc_sql( $request['order'] ) : 'DESC';
+	    } else {
+	        $order = 'DESC';
+	    }
+
+	    if ( ! empty( $orderby ) & ! empty( $order ) ) {
+	        $query_cond .= ' ORDER BY ' . $orderby . ' ' . $order;
+	    }
+
+	    $count_query = $count_query . $query_cond;
+	    // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared,WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,PluginCheck.Security.DirectDB.UnescapedDBParameter -- $query_cond built via $wpdb->prepare() above
+	    $total_items = $wpdb->get_var( $count_query );
+
+	    return $total_items;
 	}
 
 	public function delete_log_older_than($timeInterval = null)

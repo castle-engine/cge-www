@@ -57,7 +57,7 @@ class Check_Email_Status_Page extends Check_Email_BasePage {
 	public function render_page() {
 		?>
 		<div class="wrap">
-			<div style="display:flex; align-items:center; justify-content:space-between;">
+			<div class="celog-header-row">
                 <h1 style="margin-left:5px;"><?php esc_html_e('Check & Log Email', 'check-email'); ?></h1>
                 <div>
                     <?php 

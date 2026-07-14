@@ -366,7 +366,7 @@ class PgCache_Environment {
 			$error .= '<br />Unfortunately disk enhanced page caching will ' .
 				'not function without custom rewrite rules. ' .
 				'Please ask your server administrator for assistance. Also refer to <a href="' .
-				admin_url( 'admin.php?page=w3tc_install' ) .
+				Util_Ui::admin_url( 'admin.php?page=w3tc_install' ) .
 				'">the install page</a>  for the rules for your server.';
 
 			throw new Util_Environment_Exception(
@@ -744,7 +744,6 @@ class PgCache_Environment {
 
 		$rules  = '';
 		$rules .= W3TC_MARKER_BEGIN_PGCACHE_CORE . "\n";
-		$rules .= "Options -MultiViews\n";
 		$rules .= "<IfModule mod_rewrite.c>\n";
 		$rules .= "    RewriteEngine On\n";
 		$rules .= '    RewriteBase ' . $rewrite_base . "\n";
@@ -1265,6 +1264,26 @@ class PgCache_Environment {
 			) . ")\") {\n";
 			$rules .= "    set \$w3tc_rewrite 0;\n";
 			$rules .= "}\n";
+		}
+
+		/**
+		 * Filter: Allow extensions to append nginx rewrite-suppression conditions.
+		 *
+		 * Mirrors the Apache "w3tc_pagecache_rules_apache_rewrite_cond" filter. The
+		 * returned string is emitted alongside the built-in reject conditions (POST,
+		 * non-empty query string, rejected cookies / user agents); hooked code should
+		 * append `if (...) { set $w3tc_rewrite 0; }` blocks so matching requests skip
+		 * the static page-cache rewrite and fall through to PHP. The returned string
+		 * is normalized to end with a single newline before it is appended.
+		 *
+		 * @since 2.10.1
+		 *
+		 * @param string $rewrite_conditions Nginx rewrite-suppression conditions buffer (starts empty).
+		 */
+		$rewrite_cond = (string) \apply_filters( 'w3tc_pagecache_rules_nginx_rewrite_cond', '' );
+		if ( '' !== $rewrite_cond ) {
+			// Normalize to exactly one trailing newline so a callback that omits it cannot glue the next rule on.
+			$rules .= rtrim( $rewrite_cond, "\n" ) . "\n";
 		}
 
 		// Check mobile groups.

@@ -209,6 +209,14 @@ class Check_Email_Log_List_Table extends \WP_List_Table {
 		$this->process_bulk_action();
 		$this->_column_headers = $this->get_column_info();
 
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- verified explicitly below
+	    if ( ( ! empty( $_REQUEST['s'] ) || ! empty( $_REQUEST['d'] ) )
+	        && ( ! isset( $_REQUEST['check_email_log_search_nonce'] )
+	            || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST['check_email_log_search_nonce'] ) ), 'check_email_log_search' ) )
+	    ) {
+	        wp_die( esc_html__( 'Security check failed. Please refresh the page and try your search again.', 'check-email' ) );
+	    }
+
 		// Get current page number.
 		$current_page_no = $this->get_pagenum();
 		$per_page        = $this->page->get_per_page();
@@ -253,6 +261,7 @@ class Check_Email_Log_List_Table extends \WP_List_Table {
 			echo '<input type="hidden" name="detached" value="' . esc_attr( sanitize_text_field( wp_unslash($_REQUEST['detached']) ) ) . '" />';
 		?>
 		<p class="search-box">
+			<?php wp_nonce_field( 'check_email_log_search', 'check_email_log_search_nonce' ); ?>
 			<label class="screen-reader-text" for="<?php echo esc_attr( $input_id ); ?>"><?php echo esc_html( $text ); ?>:</label>
 			<input type="search" id="<?php echo esc_attr( $input_date_id ); ?>" name="d" value="<?php echo esc_attr( $input_date_val ); ?>" placeholder="<?php esc_attr_e( 'Search by date', 'check-email' ); ?>" />
 			<input type="search" id="<?php echo esc_attr( $input_text_id ); ?>" name="s" value="<?php _admin_search_query(); ?>" placeholder="<?php esc_attr_e( 'Search by term or email', 'check-email' ); ?>" />

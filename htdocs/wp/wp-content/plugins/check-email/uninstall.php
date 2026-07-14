@@ -30,13 +30,13 @@ function check_email_delete_db_data() {
 		$remove_data_on_uninstall = true;
 	}
 
-	// This is hardcoded on purpose, since the entire plugin is not loaded during uninstall.
+	// phpcs:ignore PluginCheck.Security.DirectDB.UnescapedDBParameter
 	$table_name = $wpdb->prefix . 'check_email_log';
 
 	if ( $remove_data_on_uninstall ) {
 		//phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching	-- just to check if table exists
 		if ( $wpdb->get_var( $wpdb->prepare( "SHOW TABLES LIKE  %s",$wpdb->esc_like( $table_name )) ) == $table_name ) {
-			
+			// phpcs:ignore PluginCheck.Security.DirectDB.UnescapedDBParameter
 			$wpdb->query( 
 				//phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.SchemaChange,PluginCheck.Security.DirectDB.UnescapedDBParameter -- Reason Custom table drop on uninstall
 				"DROP TABLE $table_name" );

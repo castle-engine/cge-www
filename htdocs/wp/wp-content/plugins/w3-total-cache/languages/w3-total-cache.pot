@@ -2,14 +2,14 @@
 # This file is distributed under the GPL v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: W3 Total Cache 2.10.0\n"
+"Project-Id-Version: W3 Total Cache 2.10.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/w3-total-cache\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-06-24T17:57:06+00:00\n"
+"POT-Creation-Date: 2026-07-06T17:49:44+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: w3-total-cache\n"
@@ -2203,7 +2203,7 @@ msgstr ""
 
 #. Translators: 1 error message.
 #: Cdn_AdminActions.php:530
-#: Cdn_AdminActions.php:768
+#: Cdn_AdminActions.php:781
 #, php-format
 msgid "Error: %1$s"
 msgstr ""
@@ -2214,11 +2214,11 @@ msgstr ""
 msgid "Error: %s"
 msgstr ""
 
-#: Cdn_AdminActions.php:764
+#: Cdn_AdminActions.php:777
 msgid "Created successfully."
 msgstr ""
 
-#: Cdn_AdminActions.php:780
+#: Cdn_AdminActions.php:793
 msgid "Incorrect type."
 msgstr ""
 
@@ -4338,7 +4338,7 @@ msgstr ""
 msgid "URLs defined here will be excluded from the Always Cached process and will behave normally in that updates will invalidate relevent cache entries rather than be added to the queue. Specify one URL per line. These can be absolute or releative, and can include wildcards."
 msgstr ""
 
-#: Extension_AlwaysCached_Plugin.php:125
+#: Extension_AlwaysCached_Plugin.php:126
 msgid "Regenerate Current Page"
 msgstr ""
 
@@ -6955,29 +6955,29 @@ msgstr ""
 msgid "purge cache"
 msgstr ""
 
-#: Generic_AdminActions_Test.php:153
+#: Generic_AdminActions_Test.php:190
 msgid "Test passed."
 msgstr ""
 
-#: Generic_AdminActions_Test.php:158
+#: Generic_AdminActions_Test.php:195
 msgid "Test failed."
 msgstr ""
 
-#: Generic_AdminActions_Test.php:181
+#: Generic_AdminActions_Test.php:218
 msgid "Empty JAVA executable path."
 msgstr ""
 
-#: Generic_AdminActions_Test.php:183
+#: Generic_AdminActions_Test.php:220
 msgid "Empty JAR file path."
 msgstr ""
 
 #. translators: 1: comma-separated list of allowed directories, 2: wp-config.php constant name.
-#: Generic_AdminActions_Test.php:203
+#: Generic_AdminActions_Test.php:240
 #, php-format
 msgid "JAVA executable path is not allowed. The path must be an existing, executable file under one of: %1$s. Operators may extend the allowlist via the %2$s constant in wp-config.php."
 msgstr ""
 
-#: Generic_AdminActions_Test.php:241
+#: Generic_AdminActions_Test.php:278
 msgid "Invalid engine."
 msgstr ""
 

@@ -8,18 +8,17 @@ include::common.adoc[]
 
 cge::download-engine[7.0-alpha.3.snapshot,snapshot]
 // cge ::download-engine[7.0-alpha.3,v7.0-alpha.3]
+
 == Alternative download and installation options
 
-=== GitHub releases with more variants (like downloads not bundled with FPC)
+=== GitHub releases with more variants
 
 More downloads are available on
 //https://github.com/castle-engine/castle-engine/releases/latest
 https://github.com/castle-engine/castle-engine/releases/snapshot
 . They contain:
 
-- Alternative "non-bundled" versions for some platforms (without the `-bundle` in zip name). Use them if you want to install the Pascal compiler (like https://www.freepascal.org/[FPC] or https://www.embarcadero.com/products/Delphi[Delphi]) yourself. Remember to point CGE to your compiler using the _"Preferences"_ editor window.
-
-- For Windows, alternative zip versions instead of self-installing exe.
+- Alternative zip, 7z, tar.xz versions.
 
 - Win32 platform, which we still support but discourage. The world has largely moved to 64-bit (for Windows and other OSes) so we recommend using Win64.
 

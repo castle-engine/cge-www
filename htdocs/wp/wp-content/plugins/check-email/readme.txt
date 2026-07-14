@@ -4,7 +4,7 @@ Tags: logging, email, email log, smtp, log
 Requires at least: 5.0
 Tested up to: 7.0
 Requires PHP: 5.6
-Stable tag: 2.0.14
+Stable tag: 2.0.15
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -122,6 +122,10 @@ Someone using one of my other plugins had trouble with emails not being sent. I 
 
 
 == Changelog ==
+
+= v2.0.15 - 09/07/2026 =
+- Fixed: Vulnerability reported by WPScan Security and researched by Meher Sudhakar Abbireddi #170
+- Enhancement: Fixed Upgrade to Pro banner breaks WordPress default notices #171
 
 = v2.0.14 - 18/05/2026 =
 - Fixed: Spam Analyzer option gives Undefined error And Need to fix Go to Email log button. #162

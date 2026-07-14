@@ -230,6 +230,7 @@ function ck_mail_forward_mail($atts) {
         if ( ! empty( $tempheaders ) ) {
             // Iterate through the raw headers.
             foreach ( (array) $tempheaders as $header ) {
+                // phpcs:ignore wp_function_not_compatible_with_requires_wp
                 if ( ! str_contains( $header, ':' ) ) {
                     if ( false !== stripos( $header, 'boundary=' ) ) {
                         $parts    = preg_split( '/boundary=/i', trim( $header ) );
@@ -266,6 +267,7 @@ function ck_mail_forward_mail($atts) {
                         }
                         break;
                     case 'content-type':
+                        // phpcs:ignore wp_function_not_compatible_with_requires_wp
                         if ( str_contains( $content, ';' ) ) {
                             list( $type, $charset_content ) = explode( ';', $content );
                             $content_type                   = trim( $type );
@@ -319,6 +321,7 @@ function ck_mail_forward_mail($atts) {
         $from_email = 'wordpress@';
 
         if ( null !== $sitename ) {
+            // phpcs:ignore wp_function_not_compatible_with_requires_wp
             if ( str_starts_with( $sitename, 'www.' ) ) {
                 $sitename = substr( $sitename, 4 );
             }

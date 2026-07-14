@@ -1,4 +1,8 @@
 == Changelog ==
+= v2.0.15 - 09/07/2026 =
+- Fixed: Vulnerability reported by WPScan Security and researched by Meher Sudhakar Abbireddi #170
+- Enhancement: Fixed Upgrade to Pro banner breaks WordPress default notices #171
+
 = v2.0.14 - 18/05/2026 =
 - Fixed: Spam Analyzer option gives Undefined error And Need to fix Go to Email log button. #162
 - Fixed: Setting SMTP settings for multisite is broken #166
