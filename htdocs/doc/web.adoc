@@ -47,13 +47,17 @@ cgeimg::block[
 
 === 3D demos
 
-- link:web-demos/examples/ifc[Manipulating IFC] (https://github.com/castle-engine/castle-engine/tree/master/examples/ifc[Source code])
+- link:web-demos/examples/3d_games/walking_adventure[Walking Adventure] (https://github.com/castle-engine/castle-engine/tree/master/examples/3d_games/walking_adventure[Source code])
 
-- link:web-demos/examples/user_interface/zombie_fighter[Zombie Fighter - 3D demo] (https://github.com/castle-engine/castle-engine/tree/master/examples/user_interface/zombie_fighter[Source code])
+- link:web-demos/examples/3d_games/dungeons_and_skeletons_fight[Dungeons and Skeletons Fight] (https://github.com/castle-engine/castle-engine/tree/master/examples/3d_games/dungeons_and_skeletons_fight[Source code])
 
-- link:web-demos/examples/viewport_and_scenes/cars_demo[Cars demo] (https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/cars_demo[Source code])
+- link:web-demos/examples/animations/animate_bones_by_code[Animate Bones by Code] (https://github.com/castle-engine/castle-engine/tree/master/examples/animations/animate_bones_by_code[Source code])
 
-- link:web-demos/examples/viewport_and_scenes/collisions[Collisions in 3D test] (https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/collisions[Source code])
+- link:web-demos/examples/viewport_and_scenes/bump_mapping[Bump Mapping] (https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/bump_mapping[Source code])
+
+- link:web-demos/examples/viewport_and_scenes/occlusion_culling[Occlusion Culling] (https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/occlusion_culling[Source code])
+
+- link:web-demos/examples/terrain[Terrain with water] (https://github.com/castle-engine/castle-engine/tree/master/examples/terrain[Source code])
 
 - link:web-demos/castle-model-viewer-mobile[Castle Model Viewer (Mobile)] (https://github.com/castle-engine/castle-model-viewer-mobile/[Source code]). While you cannot (yet) open arbitrary files with it, but you can explore predefined files (glTF, X3D, Spine), switching animations, walk / examine modes, and finally you can view your WebGL properties.
 
@@ -65,21 +69,17 @@ cgeimg::block[
 
 - link:web-demos/tools/castle-editor-portable[Castle Game Engine - "Portable" Editor] (https://github.com/castle-engine/castle-engine/tree/master/tools/castle-editor-portable[Source code]). This is an _"early preview"_, just to show that we can have editor on web. Not suitable for real work, lots of features are still missing, use instead link:editor[the real editor (only available on desktops)] now.
 
-- link:web-demos/examples/3d_games/dungeons_and_skeletons_fight[Dungeons and Skeletons Fight] (https://github.com/castle-engine/castle-engine/tree/master/examples/3d_games/dungeons_and_skeletons_fight[Source code])
-
-- link:web-demos/examples/3d_games/walking_adventure[Walking Adventure] (https://github.com/castle-engine/castle-engine/tree/master/examples/3d_games/walking_adventure[Source code])
-
-- link:web-demos/examples/animations/animate_bones_by_code[Animate Bones by Code] (https://github.com/castle-engine/castle-engine/tree/master/examples/animations/animate_bones_by_code[Source code])
-
-- link:web-demos/examples/viewport_and_scenes/bump_mapping[Bump Mapping] (https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/bump_mapping[Source code])
-
-- link:web-demos/examples/viewport_and_scenes/occlusion_culling[Occlusion Culling] (https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/occlusion_culling[Source code])
-
-- link:web-demos/examples/terrain[Terrain with water] (https://github.com/castle-engine/castle-engine/tree/master/examples/terrain[Source code])
-
 - link:web-demos/examples/3d_games/explore_impressive_castle[Explore Impressive 3D Castle] (https://github.com/castle-engine/castle-engine/tree/master/examples/3d_games/explore_impressive_castle[Source code])
 
 - link:web-demos/examples/research_special_rendering_methods/test_rendering_opengl_capabilities[Test Rendering Capabilities] (https://github.com/castle-engine/castle-engine/tree/master/examples/research_special_rendering_methods/test_rendering_opengl_capabilities[Source code])
+
+- link:web-demos/examples/ifc[Manipulating IFC] (https://github.com/castle-engine/castle-engine/tree/master/examples/ifc[Source code])
+
+- link:web-demos/examples/user_interface/zombie_fighter[Zombie Fighter - 3D demo] (https://github.com/castle-engine/castle-engine/tree/master/examples/user_interface/zombie_fighter[Source code])
+
+- link:web-demos/examples/viewport_and_scenes/cars_demo[Cars demo] (https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/cars_demo[Source code])
+
+- link:web-demos/examples/viewport_and_scenes/collisions[Collisions in 3D test] (https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/collisions[Source code])
 
 === Physics
 
@@ -105,6 +105,9 @@ cgeimg::block[
 
 - link:web-demos/tests[Automatic Engine Tests] (https://github.com/castle-engine/castle-engine/tree/master/tests[Source code]). Our full, cross-platform test suite with over 500 tests, running on the web.
 
+////
+// We no longer show these demos, they could confuse people about our capabilities. They were good at initial stage, when we could not load data.
+
 === Earliest (simplest) demos
 
 - link:web-demos/examples/web/simplest_viewport[3D viewport, with animated light, dropping boxes with physics] (Source code in https://github.com/castle-engine/castle-engine/tree/master/examples/web/simplest_viewport[examples/web/simplest_viewport])
@@ -118,8 +121,8 @@ cgeimg::block[
 These are _early demos_, so don't judge the final quality by these demos (yet) :) We have some known TODOs, including:
 
 - The _"3 earliest demos"_ use only 3D / 2D things set up from code (they don't load any data files, not even designs) so they don't look impressive. Reason: When we made these demos, reading data was not implemented yet (it is implemented now).
-- No shadow volumes on web yet (we need to initialize with stencil to have them).
 ====
+////
 
 == Video Introduction
 
@@ -673,6 +676,10 @@ We experimented with approaches to hide this complication from you (by schedulin
 - Reproduce with clean sample and submit to FPC:
 +
 Running on mobile requires now hacking pas2js, in `pas2js/packages/job/src/job_browser.pp`, find and comment out `RegisterGlobalObject(caches,'caches');`. Otherwise both Firefox and Chrome on Android fail with `ReferenceError: caches is not defined`.
+
+- Shadow volumes (we need to initialize with stencil to have them).
++
+NOTE: _Shadow maps_ already work on web.
 
 - Possibly throw in additional compression of data and/or wasm executable?
 +
