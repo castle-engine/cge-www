@@ -383,7 +383,14 @@ Absolute :)
 
 - Mobile web browsers are supported as well. We support touches in a way consistent with mouse events, link:touch_input[just like on non-web mobile targets]. We tested with both _Firefox_ and _Google Chrome_ on _Android_.
 +
-WARNING: To make the resulting web application working also in mobile (like Android) web browsers, one needs to apply a 1-line hack to `pas2js` sources, see below for details.
+[WARNING]
+====
+To make the resulting application work also on mobile (like Android) web browsers, you need to apply a 1-line hack to `pas2js` sources:
+
+In `pas2js/packages/job/src/job_browser.pp`, find and comment out `RegisterGlobalObject(caches,'caches');`. Otherwise both Firefox and Chrome on Android fail with `ReferenceError: caches is not defined`.
+
+TODO: Submit this fix to FPC.
+====
 
 == How it works
 
