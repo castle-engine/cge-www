@@ -29,3 +29,6 @@ require_once $sourceAutoloader;
 
 // Scoped plugin code — classmap overrides source PSR-4 for Cloudflare\APO\* classes.
 require_once $buildAutoloader;
+
+// Stubs for WordPress core classes referenced by the plugin (e.g. WP_Post).
+require_once __DIR__ . '/src/Test/Fixtures/wp-class-stubs.php';

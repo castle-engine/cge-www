@@ -2,8 +2,8 @@
 Contributors: cloudflare, barrykooij, defries
 Tags: cloudflare, seo, ssl, ddos, speed, security, cdn, performance, free
 Requires at least: 5.0
-Tested up to: 6.9.0
-Stable tag: 4.14.3
+Tested up to: 7.0.1
+Stable tag: 4.14.4
 Requires PHP: 7.4
 License: BSD-3-Clause
 
@@ -98,6 +98,26 @@ Yes, Cloudflare works with, and helps speed up your site even more, if you have 
 == Screenshots ==
 
 == Changelog ==
+
+= 4.14.4 - 2026-07-13 =
+
+*Fixed*
+
+* Guard against non-string parse_url result in pathIsNotForFeeds.
+
+*Added*
+
+* Unit tests for Hooks.php covering private helpers, purgeCacheByRelevantURLs, isEnabled methods, getPostRelatedLinks, and cache purge event handlers.
+* Extract WP core class stubs into a shared test fixture and bootstrap.
+
+*Changed*
+
+* Bumped symfony/yaml from 5.4.45 to 5.4.52.
+* Bumped symfony/polyfill-intl-idn from 1.37.0 to 1.38.1.
+
+*Security*
+
+* Declare least-privilege permissions on php-build, php, and stale CI workflows.
 
 = 4.14.3 - 2026-05-12 =
 

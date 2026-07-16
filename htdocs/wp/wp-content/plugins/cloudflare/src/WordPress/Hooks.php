@@ -555,6 +555,9 @@ class Hooks
     private function pathIsNotForFeeds($value)
     {
         $parsed_url = parse_url($value, PHP_URL_PATH);
+        if (!is_string($parsed_url) || $parsed_url === '') {
+            return true;
+        }
         return (bool) !preg_match('/\/feed(?:\/(?:atom\/?|r(?:df|ss)\/?)?)?$/', $parsed_url);
     }
 
