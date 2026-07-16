@@ -45,6 +45,8 @@ cgeimg::block[
 
 - link:web-demos/examples/user_interface/dragging_test[Dragging (with Pointer Lock) Test] (https://github.com/castle-engine/castle-engine/tree/master/examples/user_interface/dragging_test[Source code])
 
+- link:web-demos/examples/user_interface/test_all_view_events[Test all view events] (https://github.com/castle-engine/castle-engine/tree/master/examples/user_interface/test_all_view_events[Source code])
+
 === 3D demos
 
 - link:web-demos/examples/3d_games/walking_adventure[Walking Adventure] (https://github.com/castle-engine/castle-engine/tree/master/examples/3d_games/walking_adventure[Source code])
