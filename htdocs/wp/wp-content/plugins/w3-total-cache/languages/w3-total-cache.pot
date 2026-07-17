@@ -2,14 +2,14 @@
 # This file is distributed under the GPL v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: W3 Total Cache 2.10.1\n"
+"Project-Id-Version: W3 Total Cache 2.10.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/w3-total-cache\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-07-06T17:49:44+00:00\n"
+"POT-Creation-Date: 2026-07-16T16:40:33+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: w3-total-cache\n"
@@ -3755,7 +3755,7 @@ msgstr ""
 #: SetupGuide_Plugin_Admin.php:1520
 #: SetupGuide_Plugin_Admin.php:1636
 #: SetupGuide_Plugin_Admin.php:1652
-#: UsageStatistics_Page_View.php:323
+#: UsageStatistics_Page_View.php:331
 #: Util_PageUrls.php:1013
 #: Util_Ui.php:2272
 msgid "Database Cache"
@@ -3846,7 +3846,7 @@ msgid "[W3TC] Database Cache file GC (every %d seconds)"
 msgstr ""
 
 #: DbCache_Plugin.php:273
-#: UsageStatistics_Page_View.php:318
+#: UsageStatistics_Page_View.php:326
 msgid "Database"
 msgstr ""
 
@@ -6055,10 +6055,10 @@ msgstr ""
 #: PageSpeed_Instructions.php:199
 #: PageSpeed_Instructions.php:263
 #: PgCache_ConfigLabels.php:27
-#: PgCache_Plugin.php:352
-#: PgCache_Plugin.php:360
-#: PgCache_Plugin.php:368
-#: PgCache_Plugin.php:388
+#: PgCache_Plugin.php:353
+#: PgCache_Plugin.php:361
+#: PgCache_Plugin.php:369
+#: PgCache_Plugin.php:389
 #: Root_AdminMenu.php:63
 #: Root_AdminMenu.php:64
 #: SetupGuide_Plugin_Admin.php:1516
@@ -6087,7 +6087,7 @@ msgstr ""
 #: PageSpeed_Instructions.php:562
 #: Root_AdminMenu.php:69
 #: Root_AdminMenu.php:70
-#: UsageStatistics_Page_View.php:221
+#: UsageStatistics_Page_View.php:229
 #: Util_PageUrls.php:1008
 #: Util_Ui.php:2264
 msgid "Minify"
@@ -6769,8 +6769,8 @@ msgstr ""
 #: SetupGuide_Plugin_Admin.php:1524
 #: SetupGuide_Plugin_Admin.php:1681
 #: SetupGuide_Plugin_Admin.php:1700
-#: UsageStatistics_Page_View.php:257
-#: UsageStatistics_Page_View.php:262
+#: UsageStatistics_Page_View.php:265
+#: UsageStatistics_Page_View.php:270
 #: Util_PageUrls.php:1018
 #: Util_Ui.php:2276
 msgid "Object Cache"
@@ -9819,7 +9819,7 @@ msgid "Opcode: WinCache"
 msgstr ""
 
 #: inc/options/general.php:182
-#: UsageStatistics_Page_View.php:412
+#: UsageStatistics_Page_View.php:420
 #: Util_Ui.php:1884
 msgid "Memcached"
 msgstr ""
@@ -9833,7 +9833,7 @@ msgid " (available after upgrade)"
 msgstr ""
 
 #: inc/options/general.php:192
-#: UsageStatistics_Page_View.php:441
+#: UsageStatistics_Page_View.php:449
 #: Util_Ui.php:1889
 msgid "Redis"
 msgstr ""
@@ -11743,7 +11743,7 @@ msgid "Minify Cache Method:"
 msgstr ""
 
 #: Minify_ConfigLabels.php:29
-#: UsageStatistics_Page_View.php:225
+#: UsageStatistics_Page_View.php:233
 msgid "Minify:"
 msgstr ""
 
@@ -13290,7 +13290,7 @@ msgid "Additional home URLs:"
 msgstr ""
 
 #. translators: 1: Engine name, 2: Reject reason placeholder, 3: Page key extension.
-#: PgCache_ContentGrabber.php:1822
+#: PgCache_ContentGrabber.php:1813
 #, php-format
 msgid "Page Caching using %1$s%2$s%3$s"
 msgstr ""
@@ -13311,7 +13311,7 @@ msgstr ""
 msgid "[W3TC] Page Cache prime (every %d seconds)"
 msgstr ""
 
-#: PgCache_Plugin.php:401
+#: PgCache_Plugin.php:402
 msgid "Page Cache: Current Page"
 msgstr ""
 
@@ -13860,7 +13860,7 @@ msgstr ""
 
 #: UsageStatistics_Page_View.php:50
 #: UsageStatistics_Page_View.php:76
-#: UsageStatistics_Page_View.php:242
+#: UsageStatistics_Page_View.php:250
 msgid "Requests/sec: "
 msgstr ""
 
@@ -13877,8 +13877,8 @@ msgid "Avg processing time: "
 msgstr ""
 
 #: UsageStatistics_Page_View.php:60
-#: UsageStatistics_Page_View.php:281
-#: UsageStatistics_Page_View.php:340
+#: UsageStatistics_Page_View.php:289
+#: UsageStatistics_Page_View.php:348
 msgid " ms"
 msgstr ""
 
@@ -13923,228 +13923,232 @@ msgid "Query String"
 msgstr ""
 
 #: UsageStatistics_Page_View.php:164
+msgid "Redirect"
+msgstr ""
+
+#: UsageStatistics_Page_View.php:172
 msgid "Third Party"
 msgstr ""
 
-#: UsageStatistics_Page_View.php:182
+#: UsageStatistics_Page_View.php:190
 msgid "Requests handled by PHP"
 msgstr ""
 
-#: UsageStatistics_Page_View.php:189
+#: UsageStatistics_Page_View.php:197
 msgid "Access Log:"
 msgstr ""
 
-#: UsageStatistics_Page_View.php:191
+#: UsageStatistics_Page_View.php:199
 msgid "Dynamic Requests/period: "
 msgstr ""
 
-#: UsageStatistics_Page_View.php:194
+#: UsageStatistics_Page_View.php:202
 msgid "Dynamic Requests/second: "
 msgstr ""
 
-#: UsageStatistics_Page_View.php:197
+#: UsageStatistics_Page_View.php:205
 msgid "Dynamic time to process (ms): "
 msgstr ""
 
-#: UsageStatistics_Page_View.php:200
+#: UsageStatistics_Page_View.php:208
 msgid "Static Requests/period: "
 msgstr ""
 
-#: UsageStatistics_Page_View.php:203
+#: UsageStatistics_Page_View.php:211
 msgid "Static Requests/second: "
 msgstr ""
 
-#: UsageStatistics_Page_View.php:206
+#: UsageStatistics_Page_View.php:214
 msgid "Static time to process (ms): "
 msgstr ""
 
-#: UsageStatistics_Page_View.php:210
-#: UsageStatistics_Page_View.php:348
-#: UsageStatistics_Page_View.php:364
+#: UsageStatistics_Page_View.php:218
+#: UsageStatistics_Page_View.php:356
+#: UsageStatistics_Page_View.php:372
 #: Util_PageSpeed.php:347
 #: Util_PageSpeed.php:541
 msgid "Requests"
 msgstr ""
 
-#: UsageStatistics_Page_View.php:212
+#: UsageStatistics_Page_View.php:220
 msgid "Time per request (ms)"
 msgstr ""
 
-#: UsageStatistics_Page_View.php:227
-#: UsageStatistics_Page_View.php:421
-#: UsageStatistics_Page_View.php:450
-#: UsageStatistics_Page_View.php:476
+#: UsageStatistics_Page_View.php:235
+#: UsageStatistics_Page_View.php:429
+#: UsageStatistics_Page_View.php:458
+#: UsageStatistics_Page_View.php:484
 msgid "Used: "
 msgstr ""
 
-#: UsageStatistics_Page_View.php:230
+#: UsageStatistics_Page_View.php:238
 msgid "Files: "
 msgstr ""
 
-#: UsageStatistics_Page_View.php:233
+#: UsageStatistics_Page_View.php:241
 msgid "CSS compression in cache: "
 msgstr ""
 
-#: UsageStatistics_Page_View.php:236
+#: UsageStatistics_Page_View.php:244
 msgid "JS compression in cache: "
 msgstr ""
 
-#: UsageStatistics_Page_View.php:239
+#: UsageStatistics_Page_View.php:247
 msgid "Requests/period: "
 msgstr ""
 
-#: UsageStatistics_Page_View.php:245
+#: UsageStatistics_Page_View.php:253
 msgid "Responded CSS compression: "
 msgstr ""
 
-#: UsageStatistics_Page_View.php:248
+#: UsageStatistics_Page_View.php:256
 msgid "Responded JS compression: "
 msgstr ""
 
-#: UsageStatistics_Page_View.php:266
+#: UsageStatistics_Page_View.php:274
 msgid "Gets/period: "
 msgstr ""
 
-#: UsageStatistics_Page_View.php:269
+#: UsageStatistics_Page_View.php:277
 msgid "Hits/period: "
 msgstr ""
 
-#: UsageStatistics_Page_View.php:272
-#: UsageStatistics_Page_View.php:308
-#: UsageStatistics_Page_View.php:334
-#: UsageStatistics_Page_View.php:427
-#: UsageStatistics_Page_View.php:453
-#: UsageStatistics_Page_View.php:482
+#: UsageStatistics_Page_View.php:280
+#: UsageStatistics_Page_View.php:316
+#: UsageStatistics_Page_View.php:342
+#: UsageStatistics_Page_View.php:435
+#: UsageStatistics_Page_View.php:461
+#: UsageStatistics_Page_View.php:490
 msgid "Hit rate: "
 msgstr ""
 
-#: UsageStatistics_Page_View.php:275
+#: UsageStatistics_Page_View.php:283
 msgid "Sets/period: "
 msgstr ""
 
-#: UsageStatistics_Page_View.php:278
+#: UsageStatistics_Page_View.php:286
 msgid "Flushes/period: "
 msgstr ""
 
-#: UsageStatistics_Page_View.php:281
-#: UsageStatistics_Page_View.php:340
+#: UsageStatistics_Page_View.php:289
+#: UsageStatistics_Page_View.php:348
 msgid "Time taken: "
 msgstr ""
 
-#: UsageStatistics_Page_View.php:285
-#: UsageStatistics_Page_View.php:305
-#: UsageStatistics_Page_View.php:331
-#: UsageStatistics_Page_View.php:360
+#: UsageStatistics_Page_View.php:293
+#: UsageStatistics_Page_View.php:313
+#: UsageStatistics_Page_View.php:339
+#: UsageStatistics_Page_View.php:368
 msgid "Calls/sec: "
 msgstr ""
 
-#: UsageStatistics_Page_View.php:288
+#: UsageStatistics_Page_View.php:296
 msgid "Detailed view (in debug mode only)"
 msgstr ""
 
-#: UsageStatistics_Page_View.php:291
+#: UsageStatistics_Page_View.php:299
 msgid "Time taken for ObjectCache activity"
 msgstr ""
 
-#: UsageStatistics_Page_View.php:293
+#: UsageStatistics_Page_View.php:301
 msgid "Calls"
 msgstr ""
 
-#: UsageStatistics_Page_View.php:300
+#: UsageStatistics_Page_View.php:308
 msgid "Fragment Cache:"
 msgstr ""
 
-#: UsageStatistics_Page_View.php:302
-#: UsageStatistics_Page_View.php:328
-#: UsageStatistics_Page_View.php:357
+#: UsageStatistics_Page_View.php:310
+#: UsageStatistics_Page_View.php:336
+#: UsageStatistics_Page_View.php:365
 msgid "Calls/period: "
 msgstr ""
 
-#: UsageStatistics_Page_View.php:337
+#: UsageStatistics_Page_View.php:345
 msgid "Cache flushes: "
 msgstr ""
 
-#: UsageStatistics_Page_View.php:343
+#: UsageStatistics_Page_View.php:351
 msgid "Slowest requests (in debug mode only)"
 msgstr ""
 
-#: UsageStatistics_Page_View.php:346
+#: UsageStatistics_Page_View.php:354
 msgid "Time taken for database activity"
 msgstr ""
 
-#: UsageStatistics_Page_View.php:355
+#: UsageStatistics_Page_View.php:363
 msgid "Database:"
 msgstr ""
 
-#: UsageStatistics_Page_View.php:374
+#: UsageStatistics_Page_View.php:382
 msgid "System Info"
 msgstr ""
 
-#: UsageStatistics_Page_View.php:378
+#: UsageStatistics_Page_View.php:386
 msgid "PHP Memory:"
 msgstr ""
 
-#: UsageStatistics_Page_View.php:380
+#: UsageStatistics_Page_View.php:388
 msgid "Memory used: "
 msgstr ""
 
-#: UsageStatistics_Page_View.php:384
+#: UsageStatistics_Page_View.php:392
 msgid "Memory per request (MB)"
 msgstr ""
 
-#: UsageStatistics_Page_View.php:391
+#: UsageStatistics_Page_View.php:399
 msgid "CPU load:"
 msgstr ""
 
-#: UsageStatistics_Page_View.php:393
+#: UsageStatistics_Page_View.php:401
 msgid "CPU load: "
 msgstr ""
 
-#: UsageStatistics_Page_View.php:397
+#: UsageStatistics_Page_View.php:405
 msgid "CPU load"
 msgstr ""
 
-#: UsageStatistics_Page_View.php:407
+#: UsageStatistics_Page_View.php:415
 msgid "Cache Storage"
 msgstr ""
 
-#: UsageStatistics_Page_View.php:415
-#: UsageStatistics_Page_View.php:444
-#: UsageStatistics_Page_View.php:470
+#: UsageStatistics_Page_View.php:423
+#: UsageStatistics_Page_View.php:452
+#: UsageStatistics_Page_View.php:478
 msgid "Used by "
 msgstr ""
 
-#: UsageStatistics_Page_View.php:418
-#: UsageStatistics_Page_View.php:447
+#: UsageStatistics_Page_View.php:426
+#: UsageStatistics_Page_View.php:455
 msgid "Evictions/sec: "
 msgstr ""
 
-#: UsageStatistics_Page_View.php:424
-#: UsageStatistics_Page_View.php:479
+#: UsageStatistics_Page_View.php:432
+#: UsageStatistics_Page_View.php:487
 msgid "Used (%): "
 msgstr ""
 
-#: UsageStatistics_Page_View.php:431
-#: UsageStatistics_Page_View.php:457
-#: UsageStatistics_Page_View.php:489
+#: UsageStatistics_Page_View.php:439
+#: UsageStatistics_Page_View.php:465
+#: UsageStatistics_Page_View.php:497
 msgid "Size used (MB)"
 msgstr ""
 
-#: UsageStatistics_Page_View.php:433
-#: UsageStatistics_Page_View.php:459
-#: UsageStatistics_Page_View.php:491
+#: UsageStatistics_Page_View.php:441
+#: UsageStatistics_Page_View.php:467
+#: UsageStatistics_Page_View.php:499
 msgid "Hit rate"
 msgstr ""
 
-#: UsageStatistics_Page_View.php:467
+#: UsageStatistics_Page_View.php:475
 msgid "APC"
 msgstr ""
 
-#: UsageStatistics_Page_View.php:473
+#: UsageStatistics_Page_View.php:481
 msgid "Evictions: "
 msgstr ""
 
-#: UsageStatistics_Page_View.php:485
+#: UsageStatistics_Page_View.php:493
 msgid "Items: "
 msgstr ""
 

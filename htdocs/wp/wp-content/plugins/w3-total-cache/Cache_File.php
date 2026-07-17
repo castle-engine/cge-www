@@ -161,11 +161,13 @@ class Cache_File extends Cache_Base {
 		@fputs( $fp, pack( 'L', $expires_at ) );
 		@fputs( $fp, '<?php exit; ?>' );
 		@fputs( $fp, @serialize( $content ) );
-		@fclose( $fp );
 
 		if ( $this->_locking ) {
+			@\fflush( $fp );
 			@flock( $fp, LOCK_UN );
 		}
+
+		@fclose( $fp );
 
 		return true;
 	}
@@ -313,11 +315,13 @@ class Cache_File extends Cache_Base {
 				}
 
 				@fputs( $fp, pack( 'L', 0 ) ); // make it expired.
-				@fclose( $fp );
 
 				if ( $this->_locking ) {
+					@\fflush( $fp );
 					@flock( $fp, LOCK_UN );
 				}
+
+				@fclose( $fp );
 
 				return true;
 			}
