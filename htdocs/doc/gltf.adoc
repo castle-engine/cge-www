@@ -62,10 +62,18 @@ Note that (unfortunately) it seems not possible to export a single animation lik
 - https://github.com/KhronosGroup/glTF/tree/main/extensions/2.0/Khronos/KHR_lights_punctual[KHR_lights_punctual] - define lights (point, spot, directional) within glTF file.
 - https://github.com/KhronosGroup/glTF/tree/main/extensions/2.0/Khronos/KHR_texture_transform[KHR_texture_transform] - transform (scale, offset, rotate) texture coordinates.
 - https://github.com/KhronosGroup/glTF/tree/main/extensions/2.0/Archived/KHR_materials_pbrSpecularGlossiness[KHR_materials_pbrSpecularGlossiness] - support for alternative specification of material parameters using specular-glossiness. Only partial support -- without textures. Extension considered deprecated by Khronos in favor of https://github.com/KhronosGroup/glTF/tree/main/extensions/2.0/Khronos/KHR_materials_specular[KHR_materials_specular].
+- https://github.com/KhronosGroup/glTF/tree/main/extensions/2.0/Khronos/KHR_node_visibility[KHR_node_visibility] - toggle visibility of nodes (transformations, groups).
 --
 
+=== TODO
 
-TODO: Main missing glTF feature is morph targets. It is coming!
+- The most important missing glTF feature: morph targets. It is coming!
+
+- https://github.com/KhronosGroup/glTF/tree/main/extensions/2.0/Khronos/KHR_animation_pointer[KHR_animation_pointer]. Just like with X3D "routes", this allows to animate almost every part of the model.
+
+- link:roadmap#gltf_meshes_gpu[More efficient glTF loading, straight to GPU buffers].
+
+- link:roadmap#gltf_material_features[glTF material extensions].
 
 == Attaching objects to bones
 
@@ -223,7 +231,7 @@ and then it can start  animations `jump`, `walk`. They are just `TimeSensor` nod
 
 === Use `Inline` and `IMPORT` to access glTF materials, meshes, transforms in an X3D file
 
-Demo of this technique is in https://github.com/michaliskambi/x3d-tests/tree/master/gltf/avocado_and_exports . Open the models there with https://castle-engine.io/castle-model-viewer[Castle Model Viewer] or just load them into cgeref:TCastleScene[] instance in CGE editor.
+Demo of this technique is in https://github.com/michaliskambi/x3d-tests/tree/master/gltf/avocado_and_exports . Open the models there with link:castle-model-viewer[Castle Model Viewer] or just load them into cgeref:TCastleScene[] instance in CGE editor.
 
 It looks like this:
 
