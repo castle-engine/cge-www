@@ -421,8 +421,8 @@ function cge_jetpack_social_metadata_hashtags($post_id, $post)
 			$post_tags
 		);
 
-		// Build a string of the tags.
-		$hash_tags = implode( ', ', $post_tags_array );
+		// Build a string of the tags. Separate by just space, as common on Mastodon.
+		$hash_tags = implode( ' ', $post_tags_array );
 
 		/*
 		 * Get the existing custom message if it exists.
