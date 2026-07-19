@@ -377,3 +377,63 @@ add_filter('the_posts', function ($posts) {
     }
     return $posts;
 }, 99);
+
+/**
+ * Automatically add any tags you may have added to your post
+ * to the end of each message shared by Jetpack Social
+ * on your connected Social Networks.
+ *
+ * @see https://herve.bzh/jetpack-hashtags-posts-shared-mastodon/
+ */
+
+/**
+ * Append a post's tags to saved Jetpack Social Meta data.
+ *
+ * @param int     $post_id Post ID.
+ * @param WP_Post $post    Post object.
+ *
+ * @return void
+ */
+function cge_jetpack_social_metadata_hashtags($post_id, $post)
+{
+	// Grab the tags of the post.
+	$post_tags = get_the_tags( $post_id );
+
+	// Append tags to custom message.
+	if ( ! empty( $post_tags ) ) {
+		/*
+		 * Let's build an array of tags.
+		 * We'll massage the output a bit to add hashtags in front of each tag.
+		 * We'll capitalize the first letter of each word, for better accessibility.
+		 */
+		$post_tags_array = array_map(
+			function ( $tag ) {
+				// Camel case the tag name and remove spaces as well as apostrophes.
+				$tag = preg_replace( '/\s+|\'|-/', '', ucwords( $tag->name ) );
+
+				// Return with a '#' prepended.
+				return '#' . $tag;
+			},
+			$post_tags
+		);
+
+		// Build a string of the tags.
+		$hash_tags = implode( ', ', $post_tags_array );
+
+		/*
+		 * Get the existing custom message if it exists.
+		 * If not, our custom message will be the post title.
+		 */
+		$custom_message = get_post_meta( $post_id, '_wpas_mess', true );
+		if ( empty( $custom_message ) ) {
+			$custom_message = get_the_title( $post );
+		}
+
+		// Append our generated hashtags to the custom message.
+		$custom_message .= ' ' . sanitize_text_field( $hash_tags );
+
+		// Update post meta with the new message.
+		update_post_meta( $post_id, '_wpas_mess', $custom_message );
+	}
+}
+add_action('publish_post', 'cge_jetpack_social_metadata_hashtags', 10, 2);
