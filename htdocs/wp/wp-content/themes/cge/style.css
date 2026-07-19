@@ -1155,7 +1155,8 @@ body:not(.twentyseventeen-front-page) .entry-header {
         letter-spacing: 0.1818em;
         padding-left: 2.5em;
         position: relative;
-        text-transform: uppercase;
+        /* CGE: no uppercase, we like CamelCase tags like GameDev WebGL */
+        /* text-transform: uppercase; */
 }
 
 .entry-footer .cat-links + .tags-links {
