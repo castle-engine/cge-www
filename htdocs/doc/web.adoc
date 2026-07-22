@@ -810,7 +810,9 @@ To account for this, check cgeref:TCastleApplicationProperties.ShowUserInterface
 ButtonQuit.Exists := ApplicationProperties.ShowUserInterfaceToQuit;
 ```
 
-- FPC on WebAssembly does not support _catching_ exceptions. So anytime you `raise` an exception in Pascal, you just break the application, unconditionally.
+- **This limitation was removed in later FPC versions!**
++
+Initial FPC on WebAssembly versions did not support _catching_ exceptions. So anytime you `raise` an exception in Pascal, you just break the application, unconditionally.
 //+
 //This is mostly OK for our engine. We didn't rely on exception catching and valid applications should not cause the engine to raise+catch an exception.
 //+
@@ -819,6 +821,8 @@ ButtonQuit.Exists := ApplicationProperties.ShowUserInterfaceToQuit;
 So do not depend on `try .. except` for the logic that could catch the exception. Use exceptions only to report errors from which you cannot recover and the only option is to crash the application.
 +
 You can query cgeref:TCastleApplicationProperties.CanCatchExceptions[ApplicationProperties.CanCatchExceptions] at run-time to write a cross-platform code that adjusts to this.
++
+This has been fixed on the FPC side, see https://wiki.freepascal.org/WebAssembly/Exceptions[FPC + WebAssembly exceptions support] for details. Our `CanCatchExceptions` for now remains `false` just to be conservative, but we plan to change it to `true` when `FPC_WASM_BRANCHFUL_EXCEPTIONS` / `FPC_WASM_EXNREF_EXCEPTIONS` / `FPC_WASM_LEGACY_EXCEPTIONS` are defined (one of modes when exceptions are catchable), once we test it. In the meantime, we encourage you to use latest FPC and test exception catching on the web.
 
 - You cannot open multiple windows (multiple cgeref:TCastleWindow[] instances) on the web. Our initialization matches the cgeref:TCastleWindow[] to the single `<canvas>` in the HTML document with id `castle-canvas`, and right now we handle only one such canvas at a time.
 +
