@@ -657,6 +657,8 @@ begin
     Container.PushView(ViewOptions);
 end;
 ```
++
+NOTE: You can also read https://github.com/castle-engine/castle-engine/blob/new-pointer-lock/examples/3d_games/explore_impressive_castle/resuming_mouse_look.md[longer explanation why `Resume` method should do `WalkNavigation.MouseLook := true`].
 
 - **Starting _pointer lock_ can only be done in the https://developer.mozilla.org/en-US/docs/Glossary/Transient_activation[transient activation] state**. In simple terms, it means it must **be triggered by a user interaction (like a mouse click or key press) or right after it**.
 +
