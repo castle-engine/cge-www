@@ -1,4 +1,12 @@
-# Don't index this directory, to avoid crawlers indexing the documentation twice
-# (once in the main site, once as AsciiDoctor sources in the doc/ subdir).
+# Don't index this directory, to avoid crawlers indexing the documentation
+# multiple times:
+#
+# - once in the main site like https://castle-engine.io/doc/output/lazarus,
+# - once as AsciiDoctor sources in the doc/ subdir, like
+#   https://castle-engine.io/doc/lazarus.adoc
+# - and also as generated HTML, https://castle-engine.io/doc/output/lazarus.html
+#   (though robots.txt already disallows indexing /doc/output/).
+#
 # Sources are anyway public on https://github.com/castle-engine/cge-www/tree/master/htdocs/doc .
+
 Options -Indexes
