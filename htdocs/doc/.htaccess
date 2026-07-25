@@ -1,0 +1,4 @@
+# Don't index this directory, to avoid crawlers indexing the documentation twice
+# (once in the main site, once as AsciiDoctor sources in the doc/ subdir).
+# Sources are anyway public on https://github.com/castle-engine/cge-www/tree/master/htdocs/doc .
+Options -Indexes
