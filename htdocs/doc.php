@@ -14,26 +14,59 @@ require_once 'castle_engine_functions.php';
 
 /* main code ---------------------------------------------------------------------- */
 
+/* Display nice 404 page, and die.
+   Note that we already sanitize $message, so pass here raw text. */
+function die_nice($message)
+{
+  // Note that castle_fail_404 will already sanitize $message.
+  castle_fail_404('Invalid doc.php usage: ' .
+    $message .
+    '. Report a bug if you reached this URL from a link on the Castle Game Engine website.');
+}
+
 // interpret GET 'page' parameter
 if (empty($_GET['page'])) {
-  die('No page set');
+  die_nice('No page set');
 }
 $page_name = $_GET['page'];
 
-/* Originally, we validated this, and rejected $page_name with slash (or dot, earlier):
+/*Originally, we validated this, and rejected any
+  $page_name with slash (or dot, earlier):
 
     if (strpos($page_name, '/') !== FALSE) {
       die('Title contains invalid characters: ' . htmlspecialchars($page_name));
     }
 
-  But now we allow
+  For backward compatibility we allow some prefixes, to keep old links like this
+  working:
     page=/jenkins
   or even
     page=/~michalis/castle-engine/jenkins
   and it is equivalent to page=jenkins.
-  This makes our rewrite rule in .htaccess OK. */
+
+  We still reject most prefixes, to avoid infinite loops in case
+  e.g. something has a nonsense link like
+  https://castle-engine.io/vrml_engine_doc/output/xsl/html/web-demos/examples/web-demos/lazarus
+  which would lead to other nonsense links due to relative links in lazarus.adoc .
+
+  Test:
+  - WORKS:
+    http://localhost:8777/doc.php?page=jenkins
+    http://localhost:8777/doc.php?page=/jenkins
+    http://localhost:8777/doc.php?page=/~michalis/castle-engine/jenkins
+  - DOES NOT WORK:
+    http://localhost:8777/doc.php?page=/vrml_engine_doc/output/xsl/html/web-demos/examples/web-demos/lazarus
+    http://localhost:8777/doc.php?page=whatever/jenkins
+    http://localhost:8777/doc.php?page=/whatever/jenkins
+*/
 $slash_pos = strrpos($page_name, '/');
 if ($slash_pos !== FALSE) {
+  $prefix = substr($page_name, 0, $slash_pos);
+  if ($prefix != '' &&
+      $prefix != '/' &&
+      $prefix != '/~michalis/castle-engine') {
+    die_nice('Invalid prefix: ' . $page_name);
+  }
   $page_name = substr($page_name, $slash_pos + 1);
 }
 
@@ -138,7 +171,7 @@ if (!empty($adoc_header['social_share_image'])) {
   if (CASTLE_ENVIRONMENT == 'development') {
     $check_filename = __DIR__ . '/images/original_size/' . $header_params['social_share_image'];
     if (!file_exists($check_filename)) {
-      die('Social share image not found: ' . $header_params['social_share_image']);
+      die_nice('Social share image not found: ' . $header_params['social_share_image']);
     }
   }
 }
@@ -172,10 +205,10 @@ if ($regenerate_ascii_doctor) {
   echo '<div class="castle-document">';
   //passthru($command, $exec_status);
   if (exec($command, $adoc_contents_lines, $exec_status) === FALSE) {
-    die('Failed (exec error) executing ' . htmlspecialchars($command));
+    die_nice('Failed (exec error) executing ' . $command);
   }
   if ($exec_status != 0) {
-    die('Failed (non-zero status) executing ' . htmlspecialchars($command));
+    die_nice('Failed (non-zero status) executing ' . $command);
   }
   $adoc_contents = implode("\n", $adoc_contents_lines);
   echo castle_replace_asciidoctor_macros($adoc_contents);
