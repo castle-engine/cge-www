@@ -1211,6 +1211,11 @@ function _castle_patreon_box()
          https://castle-engine.io/apidoc/html/index.html
          and link should not lead to
          https://castle-engine.io/apidoc/html/donate
+
+         Or inside generated DocBook page like
+         - https://castle-engine.io/compositing_shaders_doc/html/
+         - https://castle-engine.io/vrml_engine_doc/output/xsl/html/
+         - https://castle-engine.io/vrml_engine_doc/output/xsl/html-nochunks/vrml_engine.html
       */
       //page_url('doc/donate') .
       '" class="btn btn-primary btn-success">Donate</a>
