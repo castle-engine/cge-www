@@ -290,11 +290,13 @@ When you use cgeref:TCastleTouchNavigation[], we recommend to _disable movement 
 
 [WARNING]
 ====
-If you have both cgeref:TCastleWalkNavigation[] and cgeref:TCastleTouchNavigation[] as children of the same cgeref:TCastleViewport[], make sure to **put cgeref:TCastleTouchNavigation[] in front of cgeref:TCastleWalkNavigation[]**. Otherwise, cgeref:TCastleWalkNavigation[] will capture all touches and cgeref:TCastleTouchNavigation[] will not work.
+If you have both cgeref:TCastleWalkNavigation[] and cgeref:TCastleTouchNavigation[] as children of the same cgeref:TCastleViewport[], _place cgeref:TCastleTouchNavigation[] in front of cgeref:TCastleWalkNavigation[]_. This way cgeref:TCastleTouchNavigation[] handles input first, and lets cgeref:TCastleWalkNavigation[] handle input only if user didn't hit the "gizmos" of cgeref:TCastleTouchNavigation[].
 
 You can do this in the editor by dragging cgeref:TCastleTouchNavigation[] down, to be lower than cgeref:TCastleWalkNavigation[] in the _Hierarchy_ view.
 
 Or at runtime by calling `MyViewport.InsertFront(TouchNavigation)` (as shown in the example above) to put cgeref:TCastleTouchNavigation[] in front.
+
+_In the current engine version, we do a small hack for backward compatibility to allow cgeref:TCastleTouchNavigation[] to work even if it is behind cgeref:TCastleWalkNavigation[]. But don't depend on this for future games._
 ====
 
 == On-screen keyboard
