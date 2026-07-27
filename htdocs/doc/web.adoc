@@ -777,9 +777,13 @@ Aside from above TODOs (which should be eventually addressed), there are some kn
 - Space, PageUp, PageDown, arrow keys (scroll the page)
 - Tab (switches focus)
 - Escape (exits fullscreen, cancels link:#pointer_lock[pointer lock])
+- Many function keys are already used by browser shortcuts. E.g. F3 is "find", F5 is "reload page", F10 is "open menu", F11 is "fullscreen", F12 is "open dev tools". Some of the taken shortcuts are browser-specific, e.g. F2 and F4 are free in Firefox, but in Vivaldi F2 is "execute command by name" and F4 is "toggle sidebar". So it's best to avoid all function keys...
+- Many Ctrl+... combinations are also taken by typical browser shortcuts: Ctrl+O, Ctrl+T, Ctrl+S, Ctrl+W...
 --
 +
 Our application still receives these key events (in _most_ cases above), but the browser also performs its default actions, which can interfere with the gameplay.
++
+You can test what works by running https://castle-engine.io/web-demos/examples/user_interface/test_all_view_events/[examples/user_interface/test_all_view_events (web build)] and pressing various keys.
 
 - cgeref:TCastleApplication.ProcessMessage[Application.ProcessMessage] cannot work on the web, as the browser must control the main loop. This is similar to the link:ios#_known_problems[iOS known issue].
 +
