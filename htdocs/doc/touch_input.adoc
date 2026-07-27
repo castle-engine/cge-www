@@ -141,7 +141,7 @@ Our built-in navigation components cgeref:TCastleExamineNavigation[] and cgeref:
 
 However, the experience of _walking_ using only cgeref:TCastleWalkNavigation[] is not optimal for many games. While you can move and rotate by dragging (see cgeref:TCastleWalkNavigation.MouseDragMode[]) it is hard to do it precisely, which may be a problem in e.g. shooting games.
 
-For this reason, we recommend to add cgeref:TCastleTouchNavigation[] to your viewport to allow for easy 3D navigation on mobile. The add cgeref:TCastleTouchNavigation[] displays visual UI in the viewport corners where user can touch to move around and rotate the camera. It cooperates with cgeref:TCastleWalkNavigation[] and cgeref:TCastleExamineNavigation[] to provide a seamless experience on all platforms.
+For this reason, we recommend to add cgeref:TCastleTouchNavigation[] to your viewport to allow for easy 3D navigation on mobile. The added cgeref:TCastleTouchNavigation[] displays visual UI in the viewport corners where user can touch to move around and rotate the camera. It cooperates with cgeref:TCastleWalkNavigation[] and cgeref:TCastleExamineNavigation[] to provide a seamless experience on all platforms.
 
 cgeimg::block[
   touch_navigation.png|Touch Navigation
@@ -286,6 +286,15 @@ cgeref:TCastleWalkNavigation[] also allows to move / rotate, by dragging anywher
 These two components nicely work in tandem if they both exist: cgeref:TCastleWalkNavigation[] allows to move / rotate by dragging anywhere on the screen, while cgeref:TCastleTouchNavigation[] allows to move / rotate by dragging the special gizmos in screen corners.
 
 When you use cgeref:TCastleTouchNavigation[], we recommend to _disable movement using cgeref:TCastleWalkNavigation[]_ because movement using cgeref:TCastleTouchNavigation[] is more precise and then user can use the screen only for rotating (like aiming, in shooting games), without moving by accident. To achieve this, set cgeref:TCastleWalkNavigation.MouseDragMode[] to cgeref:mdRotate[].
+====
+
+[WARNING]
+====
+If you have both cgeref:TCastleWalkNavigation[] and cgeref:TCastleTouchNavigation[] as children of the same cgeref:TCastleViewport[], make sure to **put cgeref:TCastleTouchNavigation[] in front of cgeref:TCastleWalkNavigation[]**. Otherwise, cgeref:TCastleWalkNavigation[] will capture all touches and cgeref:TCastleTouchNavigation[] will not work.
+
+You can do this in the editor by dragging cgeref:TCastleTouchNavigation[] down, to be lower than cgeref:TCastleWalkNavigation[] in the _Hierarchy_ view.
+
+Or at runtime by calling `MyViewport.InsertFront(TouchNavigation)` (as shown in the example above) to put cgeref:TCastleTouchNavigation[] in front.
 ====
 
 == On-screen keyboard
