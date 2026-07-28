@@ -223,3 +223,27 @@ Most important Wordpress shortcodes are:
     * Visit http://localhost:8777/wp/wp-admin/themes.php and change theme to _"Castle Game Engine Theme"_.
 
     * If you need to import the real content of our Wordpress, contact Michalis.
+
+## Linking to API docs
+
+You can use URLs like this to link to our API docs:
+
+```
+https://castle-engine.io/api?id=PASCAL-IDENTIFIER
+```
+
+This will automatically redirect to the proper API docs of a given identifier. For example use
+
+https://castle-engine.io/api?id=TCastleWindow
+
+and it will redirect to
+
+https://castle-engine.io/apidoc/html/CastleWindow.TCastleWindow.html
+
+This is nice when writing URLs from "outside of our website" to our API docs, e.g. from Markdown files in our source code. Of course, you can also just "spell out" the full URL like https://castle-engine.io/apidoc/html/CastleWindow.TCastleWindow.html there, but using shorter https://castle-engine.io/api?id=TCastleWindow has advantages:
+
+- A bit easier. You don't need to think in which unit is `TCastleWindow`. This is resolved when we resolve the redirect.
+
+- More future-proof. If we ever move the identifier `TCastleWindow` from one unit to another, the simple URL https://castle-engine.io/api?id=TCastleWindow will continue to work.
+
+Remember that if you edit our website, this is not necessary! In AsciiDoctor files, just use `cgeref:TCastleWindow[]` and it will display a proper link to `TCastleWindow`.

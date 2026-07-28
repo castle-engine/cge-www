@@ -107,6 +107,7 @@ define('TWITTER_HANDLE', 'castleengine'); // https://twitter.com/castleengine/
 
 // unused: define('CGE_LATEST_UNSTABLE_DOWNLOAD', 'https://github.com/castle-engine/castle-engine/releases/tag/snapshot');
 
+/* URL to top-level of API docs. */
 function reference_link()
 {
   global $castle_apidoc_url;
@@ -1901,17 +1902,53 @@ function castle_fail_404($message)
   die();
 }
 
-/* Return HTML link to given Pascal identifier.
-   $title equal to NULL or '' means to use identifier as the title.
-   This is documented (as AsciiDoctor macro) in ../README.md.
-*/
-function cgeRef($identifier, $title = NULL)
+/* Return absolute URL to API docs of given Pascal identifier,
+   or NULL if not found. */
+function cgeRefLink($identifier)
 {
   global $castle_apidoc_url, $pasdoc;
 
   // require large apidoc_map_latest.php only when necessary
   require_once 'apidoc_map_latest.php';
 
+  if (array_key_exists($identifier, $pasdoc)) {
+    $html_filename = $pasdoc[$identifier]['html_filename'];
+  } else {
+    /* Try case-insensitive search.
+       Not recommended to rely on this:
+       - This is a bit slower.
+       - And, while PasDoc is case-insensitive, we want to use consistent case
+         (in both our source code and documentation) for identifiers,
+         to make them look nicer.
+         So preferably the earlier case-sensitive match should work.
+    */
+    $identifier_lower = strtolower($identifier);
+    $pasdoc_lower = array_change_key_case($pasdoc, CASE_LOWER);
+    if (!array_key_exists($identifier_lower, $pasdoc_lower)) {
+      return NULL;
+    }
+    /* Warn, but only in development environment.
+       Note that this is not nice, it will echo stuff (which api.php doesn't
+       expect, it will go before header).
+       But we use it only for development, and it's the simplest way to display
+       prominent warning there.
+       TODO: Regular way to make warnings, like castle_warning(), would
+       be cleaner but also overkill just for this.
+    */
+    if (CASTLE_ENVIRONMENT == 'development') {
+      echo '<b>Development Warning</b>: Pascal identifier <code>' . htmlspecialchars($identifier) . '</code> found, but with different case, in docs<br>';
+    }
+    $html_filename = $pasdoc_lower[$identifier_lower]['html_filename'];
+  }
+  return $castle_apidoc_url . $html_filename;
+}
+
+/* Return HTML link to given Pascal identifier.
+   $title equal to NULL or '' means to use identifier as the title.
+   This is documented (as AsciiDoctor macro) in ../README.md.
+*/
+function cgeRef($identifier, $title = NULL)
+{
   if (empty($title)) {
     $title = $identifier;
   } else {
@@ -1921,27 +1958,16 @@ function cgeRef($identifier, $title = NULL)
              str_replace('}}}', ']',
              $title));
   }
-  if (array_key_exists($identifier, $pasdoc)) {
-    $html_filename = $pasdoc[$identifier]['html_filename'];
-  } else {
-    /* Try case-insensitive search.
-       This is slower, and also we try to be consistent (case-sensitive,
-       even though we could ignore it in Pascal)
-       in the way to specify identifiers in CGE code and docs.
-       So we warn about it. */
-    $identifier_lower = strtolower($identifier);
-    $pasdoc_lower = array_change_key_case($pasdoc, CASE_LOWER);
-    $html_filename = $pasdoc_lower[$identifier_lower]['html_filename'];
+  $url = cgeRefLink($identifier);
+
+  if ($url === NULL) {
     if (CASTLE_ENVIRONMENT == 'development') {
-      if (isset($html_filename)) {
-        echo '<b>Development Warning</b>: Pascal identifier <code>' . htmlspecialchars($identifier) . '</code> found, but with different case, in docs<br>';
-      } else {
-        echo '<b>Development Warning</b>: Pascal identifier <code>' . htmlspecialchars($identifier) . '</code> not found in docs<br>';
-      }
+      echo '<b>Development Warning</b>: Pascal identifier <code>' . htmlspecialchars($identifier) . '</code> not found in docs<br>';
     }
+    $url = reference_link(); // link to root of docs
   }
-  return '<code><a href="' . $castle_apidoc_url . $html_filename . '">' .
-    htmlspecialchars($title) . '</a></code>';
+
+  return '<code><a href="' . $url . '">' . htmlspecialchars($title) . '</a></code>';
 }
 
 /* Return HTML that looks similar to cgeRef for the same arguments,

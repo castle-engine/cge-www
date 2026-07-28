@@ -9,6 +9,9 @@ RewriteBase /
 RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
 RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
 
+# Change /api?id=xxx to /api.php?id=xxx
+RewriteRule ^api/?$ api.php [L]
+
 # Rewrite to use doc.php=xxx for names not referring to any existing file (in particular, not referring to PHP files).
 # Based on Wordpress rewrite rule, see also https://httpd.apache.org/docs/current/mod/mod_rewrite.html
 #
