@@ -104,6 +104,8 @@
         "Flah",
         "FMOD",
         "fmxlinux",
+        "FPC_WASM_BRANCHFUL_EXCEPTIONS",
+        "FPC_WASM_EXNREF_EXCEPTIONS",
         "FPCDIR",
         "FPCTARGET",
         "FPCTARGETCPU",
