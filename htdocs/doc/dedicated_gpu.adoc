@@ -3,7 +3,7 @@ include::common.adoc[]
 
 == Introduction
 
-Many laptops come with 2 graphic cards (GPUs):
+Many laptops come with 2 graphics cards (GPUs):
 
 1. a slower one, that consumes less battery,
 
@@ -11,7 +11,7 @@ Many laptops come with 2 graphic cards (GPUs):
 
 Our editor and your applications automatically use the "dedicated" GPU.
 
-NOTE: There's generally no need to do anything for new projects to activate this. Project DPR / LPR file will contain appropriate code automatically. Unless you have created your project with CGE before 2023-03-07, then run in CGE editor menu item _"Code -> Regenerate Project"_.
+NOTE: There's generally no need to do anything for new projects to activate this. Project DPR / LPR file will contain appropriate code automatically. To make sure this is active, and follows our template, use the engine editor menu item _"Code -> Regenerate Project"_.
 
 == Disable using dedicated GPU
 
