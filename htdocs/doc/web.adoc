@@ -785,11 +785,11 @@ Our application still receives these key events (in _most_ cases above), but the
 +
 You can test what works by running https://castle-engine.io/web-demos/examples/user_interface/test_all_view_events/[examples/user_interface/test_all_view_events (web build)] and pressing various keys.
 
-- cgeref:TCastleApplication.ProcessMessage[Application.ProcessMessage] cannot work on the web, as the browser must control the main loop. This is similar to the link:ios#_known_problems[iOS known issue].
+- cgeref:TCastleApplication.ProcessMessage[Application.ProcessMessage] cannot perform the full _"render, update, process inputs, move to the next frame"_ work on the web, as the browser must control the main loop. This is similar to the link:ios#_known_problems[iOS known issue].
 +
-So: do not use cgeref:TCastleApplication.ProcessMessage[Application.ProcessMessage] in a code you want to run on the web.
+So: do not use cgeref:TCastleApplication.ProcessMessage[Application.ProcessMessage] in a code you want to run on the web, at least not in a loop when you wait for some event or condition. Such loop will just hang on the web. Calling cgeref:TCastleApplication.ProcessMessage[Application.ProcessMessage] once still works, but it will not advance anything, user has no chance to interact with the application.
 +
-Moreover: do not use cgeref:CastleMessages[] unit, with routines like cgeref:MessageYesNo[] or cgeref:MessageOK[], since it relies on cgeref:TCastleApplication.ProcessMessage[Application.ProcessMessage].
+Moreover: do not use cgeref:CastleMessages[] unit, with routines like cgeref:MessageYesNo[] or cgeref:MessageOK[], since it relies on using cgeref:TCastleApplication.ProcessMessage[Application.ProcessMessage] in a loop.
 +
 To use our ready dialog designs, you can use unit cgeref:CastleDialogViews[]. It defines link:views[] to show the dialog boxes and you can use them like this:
 +
