@@ -394,6 +394,10 @@ authors would have to provide two separate versions of their geometry shaders).<
 syntax.
 On older GPUs, you will not be able to use geometry shaders at all.</p>
 
+<p>Note that the engine automatically adds <code>#version XXX</code> line to
+the top of your geometry shader code, don't add it yourself.
+See <a href="https://castle-engine.io/api?id=CastleGLShaders">CastleGLShaders docs</a>.
+
 <?php echo $toc->html_section(); ?>
 
 <p>Unfortunately, ATI graphic cards have problems with geometry shader inputs.
