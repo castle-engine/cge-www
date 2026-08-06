@@ -8,7 +8,7 @@ in <a href="index.php">Castle Game Engine</a>.
 
 <p>Contents:
 
-<?php echo _castle_sidebar_menu($castle_sitemap['documentation']['sub']['creating_data_intro']['sub']); ?>
+<?php echo castle_toc_from_sitemap(true); ?>
 
 <?php
 castle_footer();

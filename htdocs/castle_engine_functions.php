@@ -697,6 +697,12 @@ function _castle_sidebar_menu($sub, $nested = FALSE)
      Testcase: https://castle-engine.io/creating_data_intro.php. */
   $classes = $nested ? 'list-no-margin' : '';
 
+  if (empty($sub)) {
+    if (CASTLE_ENVIRONMENT == 'development') {
+      echo '<b>Development Warning</b>: _castle_sidebar_menu received empty sub to display. This is probably a bug, invalid argument was provided to _castle_sidebar_menu.';
+    }
+  }
+
   $result = '<ol class="' . $classes . '">';
   foreach($sub as $page => $pageinfo)
   {
