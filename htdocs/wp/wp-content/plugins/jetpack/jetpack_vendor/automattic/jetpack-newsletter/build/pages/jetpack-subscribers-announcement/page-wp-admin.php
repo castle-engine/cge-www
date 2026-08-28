@@ -155,6 +155,8 @@ function jetpack_newsletter_jetpack_subscribers_announcement_wp_admin_enqueue_sc
 		// 2. It initializes the boot module as an inline script.
 		wp_register_script( 'jetpack-subscribers-announcement-wp-admin-prerequisites', '', $asset['dependencies'], $asset['version'], true );
 
+		$init_modules = ["@jetpack-newsletter/init"];
+
 		/*
 		 * Add inline script to initialize the app using initSinglePage (no menuItems).
 		 * The dynamic import is deferred until DOMContentLoaded so that all classic
@@ -166,9 +168,28 @@ function jetpack_newsletter_jetpack_subscribers_announcement_wp_admin_enqueue_sc
 		 * "Cannot unlock an undefined object". See <https://core.trac.wordpress.org/ticket/65103>.
 		 */
 		$init_js_function = <<<'JS'
-		( mountId, routes ) => {
+		( mountId, routes, initModules ) => {
 			const run = async () => {
 				const mod = await import( "@wordpress/boot" );
+				/*
+				 * Run the init modules here instead of delegating to
+				 * initSinglePage(): WordPress cores that bundle an older
+				 * @wordpress/boot (initModules support postdates WP 7.0's copy,
+				 * and the import map resolves @wordpress/boot to core's bundle
+				 * when core provides one) silently ignore the option, so init
+				 * modules would never execute. Running them before
+				 * initSinglePage() gives identical behavior on every core.
+				 */
+				for ( const id of initModules ?? [] ) {
+					try {
+						const initModule = await import( id );
+						if ( typeof initModule.init === "function" ) {
+							await initModule.init();
+						}
+					} catch ( error ) {
+						console.warn( "Failed to run boot init module:", id, error );
+					}
+				}
 				mod.initSinglePage( { mountId, routes } );
 			};
 			if ( document.readyState === "loading" ) {
@@ -181,10 +202,11 @@ function jetpack_newsletter_jetpack_subscribers_announcement_wp_admin_enqueue_sc
 		wp_add_inline_script(
 			'jetpack-subscribers-announcement-wp-admin-prerequisites',
 			sprintf(
-				'( %s )( %s, %s );',
+				'( %s )( %s, %s, %s );',
 				$init_js_function,
 				wp_json_encode( 'jetpack-subscribers-announcement-wp-admin-app', JSON_HEX_TAG | JSON_UNESCAPED_SLASHES ),
-				wp_json_encode( $routes, JSON_HEX_TAG | JSON_UNESCAPED_SLASHES )
+				wp_json_encode( $routes, JSON_HEX_TAG | JSON_UNESCAPED_SLASHES ),
+				wp_json_encode( $init_modules, JSON_HEX_TAG | JSON_UNESCAPED_SLASHES )
 			)
 		);
 
@@ -204,6 +226,9 @@ function jetpack_newsletter_jetpack_subscribers_announcement_wp_admin_enqueue_sc
 				'id'     => '@wordpress/boot',
 			),
 		);
+
+		// Add init modules as static dependencies
+			$boot_dependencies[] = array( 'import' => 'static', 'id' => '@jetpack-newsletter/init' );
 
 		// Add all registered routes as dependencies
 		foreach ( $routes as $route ) {
