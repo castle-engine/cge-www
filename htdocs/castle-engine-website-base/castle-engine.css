@@ -472,6 +472,10 @@ span.news_title.only_anchor {
   }
 }
 
+.castle-donate-button-form a {
+  white-space: nowrap;
+}
+
 /* books (manual and such) ------------------------------------------------- */
 
 .book-header {

@@ -99,11 +99,13 @@ define('PATREON_URL',         'https://patreon.com/castleengine');
 define('CGE_LATEST_DOWNLOAD', 'https://github.com/castle-engine/castle-engine/archive/snapshot.zip');
 
 // bump this each time you change castle-engine.css, to work with CloudFlare caching (or you can purge CloudFlare cache manually)
-define('CASTLE_ENGINE_CSS_VERSION', 57);
+define('CASTLE_ENGINE_CSS_VERSION', 58);
 // assign random number, to always refresh, useful at development of CSS
 //define('CASTLE_ENGINE_CSS_VERSION', rand(1000, 9999));
 
 define('TWITTER_HANDLE', 'castleengine'); // https://twitter.com/castleengine/
+
+define('BOOK_MEETING', 'https://calendar.proton.me/bookings#IFp0_KuiKOQDieI7o4imzSQaYVPbmjaG2eL3ihaGop0=');
 
 // unused: define('CGE_LATEST_UNSTABLE_DOWNLOAD', 'https://github.com/castle-engine/castle-engine/releases/tag/snapshot');
 
@@ -1226,6 +1228,12 @@ function _castle_patreon_box()
       */
       //page_url('doc/donate') .
       '" class="btn btn-primary btn-success">Donate</a>
+
+      <a href="' .
+      // Note: This must be absolute URL, not relative.
+      // Reason: See _castle_patreon_box comments above.
+      BOOK_MEETING .
+      '" class="btn btn-secondary" style="margin-left: 0.5em;">Book Meeting</a>
     </form>';
   return $result;
 
