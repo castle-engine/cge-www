@@ -1233,7 +1233,7 @@ function _castle_patreon_box()
       // Note: This must be absolute URL, not relative.
       // Reason: See _castle_patreon_box comments above.
       BOOK_MEETING .
-      '" class="btn btn-secondary" style="margin-left: 0.5em;">Book Meeting</a>
+      '" class="btn btn-secondary" style="margin-left: 0.5em;">Book a Meeting</a>
     </form>';
   return $result;
 
