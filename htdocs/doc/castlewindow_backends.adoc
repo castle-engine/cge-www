@@ -72,19 +72,24 @@ Use only if absolutely necessary. link:talk.php[Tell us if you need this], other
 
 === Xlib (X11) (CASTLE_WINDOW_XLIB)
 
-A backend useful on most Unix systems, like Linux, that use X11.
+A backend useful on most Unix systems, like _Linux_ or _FreeBSD_, that use X11. Tested also on X inside Wayland.
 
 Advantages compared to `CASTLE_WINDOW_GTK` (which supports similar platforms):
 
 * Doesn't depend on GTK (one less dependency of your application).
 * `Application.TryVideoChange` works.
 * Supports both OpenGL (by `glX`) and OpenGLES (by `EGL`) contexts. By default it uses `glX` to initialize OpenGL context. But when symbol `OpenGLES` is defined, it uses EGL to initialize OpenGLES context. This way, you can test OpenGLES renderer on desktop Unix systems.
+* Full-screen (cgeref:TCastleWindow.FullScreen[]) is realized using modern window manager features. This means we use `_NET_WM_STATE_FULLSCREEN` from https://specifications.freedesktop.org/wm/latest/[Extended Window Manager Hints].
++
+[NOTE]
+====
+If the window manager doesn't support the modern hints, we fall back to an obsolete method using  `override_redirect`. This obsolete approach doesn't allow to switch applications with Alt+Tab from  fullscreen window, and will not handle keys under Wayland. This really should not happen on modern desktops, X or Wayland.
+====
 
 Known problems:
 
 * Doesn't provide nicely-looking menu bar (`TCastleWindow.MainMenu`). Menu bar is not visible.
 * Doesn't provide nicely-looking dialog boxes (`TCastleWindow.FileDialog`). The dialog boxes are implemented using simple modal boxes in `CastleMessages` instead, which works OK but doesn't look pretty.
-* Full-screen (`TCastleWindow.FullScreen`) is realized using an obsolete method ("override_redirect") that doesn't allow to switch applications with Alt+Tab from a fullscreen window.
 
 === Form (LCL or FMX) (CASTLE_WINDOW_FORM)
 
