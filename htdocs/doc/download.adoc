@@ -247,7 +247,7 @@ link:macos[macOS requirements are listed here].
 
 In general our engine is supported _only on systems that have security support from their vendors_.
 
-This in particular applies to Windows (as of 2024, https://en.wikipedia.org/wiki/List_of_Microsoft_Windows_versions[this implies we support only Windows >= 10]). No matter how much you like your _Windows XP_, it's time to move on :), either to a newer Windows or to a different system, like Linux.
+This in particular applies to Windows. No matter how much you like your _Windows XP_, it's time to move on :), either to a newer Windows or to a different system, like Linux. As of 2026, https://en.wikipedia.org/wiki/List_of_Microsoft_Windows_versions[Windows 11 is the only Windows version with security support], though we temporarily support also _Windows 10_ as its widely used. But please be safe and upgrade!
 
 Notes and explanation:
 
