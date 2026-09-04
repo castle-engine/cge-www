@@ -28,9 +28,9 @@
   We maintain our own PHP codebase for our website to keep things *simple*.
 
   You can execute it by
-  - visiting http://localhost:8777/castle_engine_autotest.php
+  - visiting http://localhost:8777/castle_engine_auto_test.php
     (disabled on production host)
-  - running PHP from the command line: `php castle_engine_autotest.php`
+  - running PHP from the command line: `php castle_engine_auto_test.php`
 */
 
 define('CASTLE_ENVIRONMENT', 'development'); // prevent CASTLE_ENVIRONMENT detection
@@ -42,8 +42,8 @@ require 'castle_engine_functions.php';
   ini settings (https://www.php.net/manual/en/function.assert-options.php
   was deprecated and is no longer functional), which makes using them
   inconvenient, we want to be able to easily visit
-  http://localhost:8777/castle_engine_autotest.php on any dev machine
-  and see errors and experiment with autotests during development.
+  http://localhost:8777/castle_engine_auto_test.php on any dev machine
+  and see errors and experiment with tests during development.
 */
 function my_assert($condition, $message = 'Assertion failed')
 {
@@ -53,7 +53,7 @@ function my_assert($condition, $message = 'Assertion failed')
 }
 
 // -----------------------------------------------------------------------------
-// Autotest _castle_breadcrumbs
+// Test _castle_breadcrumbs
 
 $breadcrumbs = _castle_breadcrumbs(
   array(
@@ -72,7 +72,7 @@ my_assert(strpos($breadcrumbs, '/model_formats">Supported model formats</a>') !=
 my_assert(strpos($breadcrumbs, '/ifc">IFC</a>') === false);
 
 // -----------------------------------------------------------------------------
-// Autotest _castle_clone_sitemap_and_trim
+// Test _castle_clone_sitemap_and_trim
 
 $trimmed = _castle_clone_sitemap_and_trim($castle_sitemap, array());
 //print_r($trimmed);

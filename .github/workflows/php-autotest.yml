@@ -1,0 +1,24 @@
+# ----------------------------------------------------------------------------
+# GitHub Actions workflow to execute htdocs/castle_engine_auto_test.php
+# ----------------------------------------------------------------------------
+
+name: Automatic tests using castle_engine_auto_test.php
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  auto_test:
+    name: Automatic tests using castle_engine_auto_test.php
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v6
+    - name: Install PHP
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y php php-cli
+    - name: Run castle_engine_auto_test.php
+      run: |
+        cd htdocs/
+        php castle_engine_auto_test.php
