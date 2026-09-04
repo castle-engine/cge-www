@@ -1,7 +1,7 @@
 <?php /* -*- mode: kambi-php -*- */
 
 /*
-   Copyright 2001-2025 Michalis Kamburelis.
+   Copyright 2001-2026 Michalis Kamburelis.
 
    This file is part of "Castle Game Engine Website".
 
@@ -702,6 +702,9 @@ function _castle_sidebar_menu($sub, $nested = FALSE)
   if (empty($sub)) {
     if (CASTLE_ENVIRONMENT == 'development') {
       echo '<b>Development Warning</b>: _castle_sidebar_menu received empty sub to display. This is probably a bug, invalid argument was provided to _castle_sidebar_menu.';
+      // echo '<pre>';
+      // debug_print_backtrace();
+      // echo '</pre>';
     }
   }
 
@@ -713,8 +716,12 @@ function _castle_sidebar_menu($sub, $nested = FALSE)
     }
 
     $result .= '<li>' . _castle_sidebar_link($page, $pageinfo);
-    if (isset($pageinfo['sub']))
+    // Check !empty, to eliminate pages without 'sub',
+    // but also pages with sub being empty array because it was cutoff
+    // by _castle_clone_sitemap_and_trim.
+    if (!empty($pageinfo['sub'])) {
       $result .= _castle_sidebar_menu($pageinfo['sub'], TRUE);
+    }
     $result .= '</li>';
   }
   $result .= '</ol>';
@@ -1282,8 +1289,17 @@ function _castle_patreon_box()
   return $result;
 }
 
-/* Create a deep copy of given $map, but trimmed to not show all the depth,
-   except we do show all depth in $show_full_contents.
+/* Create a deep copy of sitemap (or subtree of sitemap) in $map, trimmed.
+   The format of $map is just like global $castle_sitemap,
+   or any array in 'sub' there.
+
+   It is trimmed by cutting off subpages of all top-level pages, *except*
+   the tree of page in $show_full_contents[1] is preserved in full.
+
+   So $show_full_contents[1] (2nd item) is assumed to be the parent of current
+   page that indicates what to preserve in full. We ignore the rest of
+   $show_full_contents.
+
    The parts that we don't modify from $map are copied directly, not a deep copy.
 
    Array deep copy adapted from https://craftytechie.com/how-to-copy-array-in-php/ . */
@@ -1298,7 +1314,7 @@ function _castle_clone_sitemap_and_trim($map, $show_full_contents, $level = 0)
         ($level % 2 != 0))
     {
       /* make a copy (recursive, without any further consideration)
-       if it matches $show_full_contents path. */
+         if it matches $show_full_contents path. */
       $clone[$k] = $v;
     } else
     if (is_array($v)) {
@@ -1311,7 +1327,7 @@ function _castle_clone_sitemap_and_trim($map, $show_full_contents, $level = 0)
       // If an object
       $clone[$k] = clone $v;
     } else {
-      //Other primitive types.
+      // Other primitive types.
       $clone[$k] = $v;
     }
   }
@@ -1387,7 +1403,8 @@ function echo_shared_body_begin($path, $enable_sidebar = true)
   $castle_page_path = $path;
 
   /* traverse $castle_sitemap, along the $path.
-     Find which items should be used for a sidebar, if any. */
+     Find which items should be used for a sidebar, if any.
+     Calculates $sidebarroot_page , $sidebarroot_info used by code lower. */
   $sidebarroot_num = -1;
   $sidebarroot_page = NULL;
   $sidebarroot_info = NULL;
