@@ -106,4 +106,4 @@ $trimmed = _castle_clone_sitemap_and_trim($sitemap_docs, array(
 my_assert(isset($trimmed['doc/modern_pascal_translations']));
 my_assert(isset($trimmed['doc/modern_pascal_translations']['sub']));
 
-echo 'All OK.';
+echo 'All OK.' . "\n";

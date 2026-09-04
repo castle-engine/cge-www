@@ -1712,7 +1712,7 @@ function castle_thumbs($images, $columns=1, $align='right', $thumb_size = NULL)
         /* Regenerate thumbnails.
            Output report at any place within current doc -- this is only at development,
            doesn't have to look good, just be informative. */
-        echo "<pre>\nThumbnail for <b>${image['filename']}</b> does not exist, regenerating thumbnails:\n";
+        echo "<pre>\nThumbnail for <b>{$image['filename']}</b> does not exist, regenerating thumbnails:\n";
         $command = 'cd images/ && make';
         if (exec($command, $output_lines, $exec_status) === FALSE) {
           die('Failed (exec error) executing ' . htmlspecialchars($command));
