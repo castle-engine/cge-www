@@ -124,6 +124,7 @@ We convert a lot of "presentational" IFC entities to X3D nodes and display them.
 - circle: cgeref:TIfcCircle[] in IFC, cgeref:TCircle2DNode[] in X3D
 - ellipse: cgeref:TIfcEllipse[] in IFC, cgeref:TCircle2DNode[] in X3D (with cgeref:TCircle2DNode.RadiusY[] customized)
 - grid: cgeref:TIfcGrid[] in IFC, just lines (colored red/green/blue, until, partially transparent) in X3D
+- text: cgeref:TIfcTextLiteral[] (and its descendant cgeref:TIfcTextLiteralWithExtent[]) in IFC, cgeref:TTextNode[] in X3D.
 - others: cgeref:TIfcTrimmedCurve[], cgeref:TIfcMappedItem[], cgeref:TIfcManifoldSolidBrep[], cgeref:TIfcGeometricCurveSet[], cgeref:TIfcGrid[], cgeref:TIfcConnectedFaceSet[], cgeref:TIfcBooleanResult[] (no CSG implemented yet, we just display one or both arguments), cgeref:TIfcCompositeCurve[].
 --
 
