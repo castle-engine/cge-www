@@ -74,7 +74,8 @@ class PgCache_Environment {
 				if ( $pgcache_enabled && 'file_generic' === $w3tc_engine ) {
 					$this->verify_file_generic_compatibility();
 
-					if ( $w3tc_config->get_boolean( 'pgcache.debug' ) ) {
+					// The rewrite test only makes sense while W3TC owns the rules.
+					if ( $w3tc_config->get_boolean( 'pgcache.debug' ) && $this->is_rules_required( $w3tc_config ) ) {
 						$this->verify_file_generic_rewrite_working();
 					}
 				}
@@ -242,7 +243,26 @@ class PgCache_Environment {
 	private function is_rules_required( $w3tc_c ) {
 		$e = $w3tc_c->get_string( 'pgcache.engine' );
 
-		return $w3tc_c->get_boolean( 'pgcache.enabled' ) && ( 'file_generic' === $e || 'nginx_memcached' === $e );
+		$required = $w3tc_c->get_boolean( 'pgcache.enabled' ) && ( 'file_generic' === $e || 'nginx_memcached' === $e );
+
+		/**
+		 * Filter: Allow external code to suppress the page-cache rewrite rules.
+		 *
+		 * Returning false stops W3TC from writing its page-cache rewrite rules and removes the
+		 * core rules it wrote earlier, on both the Apache and the nginx path. Cache generation
+		 * is untouched, so pages keep being cached and delivery can be handled elsewhere - by a
+		 * server module, for example.
+		 *
+		 * The filter can only suppress: it is not consulted for configurations that do not use
+		 * rewrite rules in the first place, so it cannot emit rules for them.
+		 *
+		 * @since 2.10.6
+		 *
+		 * @param bool   $required Whether page-cache rewrite rules are required. Always true here,
+		 *                         since the filter runs only when W3TC would write the rules.
+		 * @param Config $w3tc_c   W3TC Config containing relevant settings.
+		 */
+		return $required && (bool) \apply_filters( 'w3tc_pgcache_rules_required', $required, $w3tc_c );
 	}
 
 	/**
@@ -710,15 +730,7 @@ class PgCache_Environment {
 		} elseif ( $w3tc_config->get_boolean( 'pgcache.reject.logged_roles' ) ) {
 			$new_cookies = array();
 			foreach ( $w3tc_config->get_array( 'pgcache.reject.roles' ) as $role ) {
-				/**
-				 * New HMAC-SHA256 cookie name AND the legacy MD5 name
-				 * during the one-release back-compat window. Browsers
-				 * that still carry the pre-upgrade cookie continue to
-				 * bypass cache; the legacy entry is dropped in the next
-				 * release.
-				 */
-				$new_cookies[] = 'w3tc_logged_' . Util_Cookie::role_cookie_name( $role );
-				$new_cookies[] = 'w3tc_logged_' . Util_Cookie::role_cookie_name_legacy( $role );
+				$new_cookies = array_merge( $new_cookies, Util_Cookie::role_cookie_reject_names( $role ) );
 			}
 
 			$reject_cookies = array_merge( $reject_cookies, $new_cookies );
@@ -1092,12 +1104,7 @@ class PgCache_Environment {
 		} elseif ( $w3tc_config->get_boolean( 'pgcache.reject.logged_roles' ) ) {
 			$new_cookies = array();
 			foreach ( $w3tc_config->get_array( 'pgcache.reject.roles' ) as $role ) {
-				/**
-				 * HMAC cookie name + legacy MD5 form; see the parallel
-				 * reject-cookie block above for the back-compat rationale.
-				 */
-				$new_cookies[] = 'w3tc_logged_' . Util_Cookie::role_cookie_name( $role );
-				$new_cookies[] = 'w3tc_logged_' . Util_Cookie::role_cookie_name_legacy( $role );
+				$new_cookies = array_merge( $new_cookies, Util_Cookie::role_cookie_reject_names( $role ) );
 			}
 			$reject_cookies = array_merge( $reject_cookies, $new_cookies );
 		}

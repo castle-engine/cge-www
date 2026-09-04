@@ -2,9 +2,9 @@
 Contributors: checkemail
 Tags: logging, email, email log, smtp, log
 Requires at least: 5.0
-Tested up to: 7.0
+Tested up to: 7.1
 Requires PHP: 5.6
-Stable tag: 2.0.15
+Stable tag: 2.0.16
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -122,6 +122,9 @@ Someone using one of my other plugins had trouble with emails not being sent. I 
 
 
 == Changelog ==
+
+= v2.0.16 - 02/09/2026 =
+- Tested: WordPress version upto 7.1
 
 = v2.0.15 - 09/07/2026 =
 - Fixed: Vulnerability reported by WPScan Security and researched by Meher Sudhakar Abbireddi #170

@@ -759,6 +759,21 @@ class PgCache_ContentGrabber {
 			return false;
 		}
 
+		/**
+		 * Rewrite rules always list leftover MD5 names so a later
+		 * grace-constant toggle reaches PHP. That request must not
+		 * write a rejected-role page into the shared store when the
+		 * reader is still fail-closed.
+		 */
+		if ( $this->_config->get_boolean( 'pgcache.reject.logged_roles' ) ) {
+			$roles = $this->_config->get_array( 'pgcache.reject.roles' );
+			if ( ! empty( $roles ) && Util_Cookie::request_has_legacy_role_cookie( $roles ) ) {
+				$this->cache_reject_reason = 'Rejected user role leftover cookie';
+				$this->process_status      = 'miss_logged_in';
+				return false;
+			}
+		}
+
 		// Check for DONOTCACHEPAGE constant.
 		if ( defined( 'DONOTCACHEPAGE' ) && DONOTCACHEPAGE ) {
 			$this->cache_reject_reason = 'DONOTCACHEPAGE constant is defined';
@@ -1274,28 +1289,12 @@ class PgCache_ContentGrabber {
 			return true;
 		}
 
-		foreach ( array_keys( $_COOKIE ) as $cookie_name ) {
-			if ( strpos( $cookie_name, 'w3tc_logged_' ) === 0 ) {
-				foreach ( $roles as $role ) {
-					/**
-					 * Accept BOTH the new HMAC-SHA256 cookie name and the
-					 * legacy MD5(NONCE_KEY . $role) form for one release
-					 * window so an upgrade doesn't immediately serve the
-					 * logged-out-cache to users whose browsers still hold
-					 * the old-named cookie. The legacy lookup is dropped
-					 * in the release AFTER this one.
-					 */
-					if ( strstr( $cookie_name, Util_Cookie::role_cookie_name( $role ) ) ) {
-						return false;
-					}
-					if ( strstr( $cookie_name, Util_Cookie::role_cookie_name_legacy( $role ) ) ) {
-						return false;
-					}
-				}
-			}
-		}
-
-		return true;
+		/**
+		 * HMAC names always reject cache. Legacy MD5 names reject
+		 * cache only when `W3TC_COOKIE_LEGACY_NAMES_ACCEPTED` is
+		 * defined true in wp-config.php (default false as of 2.10.6).
+		 */
+		return ! Util_Cookie::request_has_rejected_role_cookie( $roles );
 	}
 
 	/**
@@ -1313,8 +1312,15 @@ class PgCache_ContentGrabber {
 			return;
 		}
 
-		// we call it as little times as possible its expensive, but have to restore lost .htaccess file.
 		$e = Dispatcher::component( 'PgCache_Environment' );
+
+		// When the "w3tc_pgcache_rules_required" filter suppresses the rules this file is never
+		// written, so without the exit the restore below would repeat on every cache miss.
+		if ( null === $e->get_required_rules( $this->_config ) ) {
+			return;
+		}
+
+		// we call it as little times as possible its expensive, but have to restore lost .htaccess file.
 		try {
 			$e->fix_on_wpadmin_request( $this->_config, true );
 		} catch ( \Exception $ex ) { // phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedCatch
@@ -3092,8 +3098,10 @@ class PgCache_ContentGrabber {
 		 * so the redacted form was never written and the log file kept
 		 * the raw `_wpnonce=` value. Keep the variable name on `$w3tc_data`
 		 * so the file_put_contents below writes the redacted form.
+		 * Full `redact()` covers nonces plus remaining assignment forms
+		 * (query secrets, JSON, cookies) that appear on REQUEST_URI.
 		 */
-		$w3tc_data = Util_Debug::redact_wpnonce( $w3tc_data );
+		$w3tc_data = Util_Debug::redact( $w3tc_data );
 
 		$filename = Util_Debug::log_filename( 'pagecache' );
 

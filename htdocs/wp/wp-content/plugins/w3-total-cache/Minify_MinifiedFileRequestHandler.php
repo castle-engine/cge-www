@@ -784,7 +784,33 @@ class Minify_MinifiedFileRequestHandler {
 	public function finish_with_error( $error, $quiet = false, $report_about_error = true ) {
 		$this->_error_occurred = true;
 
+		if ( ! $report_about_error ) {
+			$ip = Util_Environment::get_client_ip();
+			if ( '' === $ip ) {
+				$ip = 'unknown';
+			}
+			if ( ! Util_RateLimit::allow( 'minify_bad_request', 30, 60, $ip ) ) {
+				$w3tc_limited = __( 'Too many minify requests.', 'w3-total-cache' );
+				if ( $quiet ) {
+					return array(
+						'content' => \esc_html( $w3tc_limited ),
+					);
+				}
+				status_header( 429 );
+				echo \esc_html( $w3tc_limited );
+				die();
+			}
+		}
+
 		Minify_Core::debug_error( $error );
+
+		Util_Debug::audit_log(
+			'minify.request_error',
+			array(
+				'message'  => \is_string( $error ) ? $error : '',
+				'reported' => (bool) $report_about_error,
+			)
+		);
 
 		if ( $report_about_error ) {
 			$this->_handle_error( $error );
@@ -831,6 +857,11 @@ class Minify_MinifiedFileRequestHandler {
 	 * @return mixed The minified source or false if caching fails.
 	 */
 	public function _precache_file( $w3tc_url, $type ) {
+		$w3tc_url = Util_Url::normalize_protocol_relative_url( $w3tc_url );
+		if ( '' === $w3tc_url || ! Util_Url::is_allowed_outbound_url( $w3tc_url ) ) {
+			return false;
+		}
+
 		$lifetime   = $this->_config->get_integer( 'minify.lifetime' );
 		$cache_path = sprintf( '%s/minify_%s.%s', Util_Environment::cache_blog_dir( 'minify' ), md5( $w3tc_url ), $type );
 
@@ -1134,18 +1165,24 @@ class Minify_MinifiedFileRequestHandler {
 					return false;
 				}
 			} else {
-				$headers = @get_headers( $source->minifyOptions['prependRelativePath'] );
-				if ( strpos( $headers[0], '200' ) !== false ) {
-					$segments  = explode( '.', $source->minifyOptions['prependRelativePath'] );
-					$w3tc_ext  = strtolower( array_pop( $segments ) );
-					$pc_source = $this->_precache_file( $source->minifyOptions['prependRelativePath'], $w3tc_ext );
-					$w3tc_data = @file_get_contents( $pc_source->filepath );
+				$remote_url = isset( $source->minifyOptions['prependRelativePath'] )
+					? $source->minifyOptions['prependRelativePath']
+					: '';
+				$remote_url = Util_Url::normalize_protocol_relative_url( $remote_url );
+				if ( '' === $remote_url || ! Util_Url::is_allowed_outbound_url( $remote_url ) ) {
+					return false;
+				}
 
-					if ( false !== $w3tc_data ) {
-						$values[] = md5( $w3tc_data );
-					} else {
-						return false;
-					}
+				$segments  = explode( '.', $remote_url );
+				$w3tc_ext  = strtolower( array_pop( $segments ) );
+				$pc_source = $this->_precache_file( $remote_url, $w3tc_ext );
+				if ( ! $pc_source || empty( $pc_source->filepath ) ) {
+					return false;
+				}
+
+				$w3tc_data = @file_get_contents( $pc_source->filepath );
+				if ( false !== $w3tc_data ) {
+					$values[] = md5( $w3tc_data );
 				} else {
 					return false;
 				}

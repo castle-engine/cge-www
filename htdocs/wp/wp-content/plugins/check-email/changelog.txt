@@ -1,4 +1,7 @@
 == Changelog ==
+= v2.0.16 - 02/09/2026 =
+- Tested: WordPress version upto 7.1
+
 = v2.0.15 - 09/07/2026 =
 - Fixed: Vulnerability reported by WPScan Security and researched by Meher Sudhakar Abbireddi #170
 - Enhancement: Fixed Upgrade to Pro banner breaks WordPress default notices #171
