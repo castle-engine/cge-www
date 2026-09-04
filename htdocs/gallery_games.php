@@ -10,6 +10,31 @@ echo pretty_heading($page_title);
 We love to see how you use CGE.</i>
 
 <div class="row">
+  <?php gallery_link('Training Timer',
+    'Application to track training time in various sports and activities. Professional mode allows you to set any custom time periods with any sounds and signal colors. You can create your own chains of periods: progressive, regressive, with an extended rest period in the middle, and much more.
+
+    <p>Builds for Windows and Android are available, as well as the <a href="https://github.com/SerufuYua/training_timer_2">source code</a>.',
+    'training_timer.png',
+    'https://serufuyua.itch.io/training-timer-2-zero-time');
+  ?>
+
+  <?php gallery_link('Tower Fight',
+    'Fight as a samurai using your math skills. Defeat enemies by solving formulas and get level-ups after fight. Follow the in-game information and tutorial to understand the novel math mechanics.
+
+    <p>Game builds for Windows, Linux and Android are available. Game is also published as a <a href="https://phomm.itch.io/tower-fight?secret=Evr2iLjpvTifjI2YWDWKvVReA">web game on itch.io</a>, showing that our <a href="https://castle-engine.io/web">web</a> is fully functional. See also forum thread where <a href="https://forum.castle-engine.io/t/excerpts-from-web-build-and-itch-io-deploy-of-cge-project-journey/2125">Phomm, the game author, provides hints how to deploy web games to itch.io</a>.
+
+    <p><a href="https://github.com/phomm/Towerfight">Source code is available on GitHub</a>.',
+    'tower_fight.png',
+    'https://forum.castle-engine.io/t/tower-fight-samurai-arcade-for-testing-math-skills/2124');
+  ?>
+
+  <?php gallery_link('DSRally',
+    'Rally car racing game. Choose between 7 different racetracks and compete against opponents or time. In the pits you can change the tires, refuel or repair your car. Different views are possible. Customize your car in the garage.
+
+    <p>Linux, Windows builds and source code are available on the <a href="https://didisoft.itch.io/dsrally">game page</a>.',
+    'dsrally.png',
+    'https://didisoft.itch.io/dsrally');
+  ?>
 
   <?php gallery_link('Gem Islands',
     'Medieval knight adventure game in a third-person view. 5 islands to explore, different weapons, items, minimap... Source code available. By DidiSoft.
@@ -26,7 +51,9 @@ We love to see how you use CGE.</i>
   ?>
 
   <?php gallery_link('DSDrive',
-    'A racing game. Two game modes, three different racetracks, car customization, weather effects, different views. Source code available at the game page. By DidiSoft.',
+    'Cat racing game with two game modes, three different racetracks, car customization, weather effects, different views. Source code available at the game page. By DidiSoft.
+
+    <p>Version 2.0 is in the works: see <a href="https://www.youtube.com/watch?v=gN3TvlKFrtg">movie</a>, <a href="https://forum.castle-engine.io/t/dsdrive-2-0-car-race-game/2182">forum thread</a>.',
     'dsdrive.png',
     'https://didisoft.itch.io/dsdrive');
   ?>
@@ -166,6 +193,11 @@ We love to see how you use CGE.</i>
 <p>More:
 
 <ul>
+  <?php gallery_link_noimage("DidiSoft games on itch.io",
+    'Games by DidiSoft (Dieter Seidler), using Castle Game Engine',
+    'https://didisoft.itch.io/');
+  ?>
+
   <?php gallery_link_noimage("Castle Game Engine collection on itch.io",
     'Various applications and games released by the Castle Game Engine developers.
     <a href="https://github.com/castle-engine/">Sources in Castle Game Engine organization on GitHub</a>.',
