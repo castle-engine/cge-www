@@ -436,6 +436,14 @@ Thanks to _Holger Seelig_ and https://create3000.github.io/x_ite/[X_ITE] project
 
 - See https://web3d.org/pipermail/x3d-public_web3d.org/2024-June/020587.html["X_ITE implementation of glTF material extensions" thread on x3d-public mailing list for more details].
 
+- Moreover: `KHR_materials_retroreflection`:
++
+--
+- Example: https://create3000.github.io/x_ite/laboratory/gltf-sample-viewer/?url=TrafficCone
+- `RetroreflectionMaterialExtension` node of X_ITE: https://create3000.github.io/x_ite/components/x-ite/retroreflectionmaterialextension/
+- Draft of glTF extension: https://github.com/mklefrancois/glTF/tree/c33751d337d98e2d2b9f48e51cff9efa4d487b8b/extensions/2.0/Khronos/KHR_materials_retroreflection
+--
+
 ### More physics
 
 - Older physics based on octrees should be phased out.
