@@ -13,7 +13,7 @@ jobs:
     name: Automatic tests using castle_engine_auto_test.php
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v6
+    - uses: actions/checkout@v7
     - name: Install PHP
       run: |
         sudo apt-get update
