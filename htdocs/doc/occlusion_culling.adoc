@@ -102,7 +102,7 @@ Minor problems:
 +
 If the issue becomes more important, we could add in the future `OcclusionQueryAlwaysCheckBox: Boolean` (to always check bbox visibility, not actual shape, even when shape is visible). Above-mentioned `OcclusionQueryFramesToHide` would also help with this.
 
-* The algorithm is incompatible with doing cgeref:DynamicBatching[], so we just disable _dynamic batching_ optimization on scenes where the occlusion query is active. Why?
+* The algorithm is incompatible with doing cgeref:TCastleViewport.DynamicBatching[], so we just disable _dynamic batching_ optimization on scenes where the occlusion query is active. Why?
  ** Dynamic batching merges many shapes into one. This means that, at the very least, it would make the occlusion query less effective -- only the "large" (merged) shapes are tested.
  ** The implementation would need to be extended, to propagate visibility test results from the merged shape \-> into original shapes. This makes complicated code, for a small gain.
 

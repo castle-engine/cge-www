@@ -224,9 +224,9 @@ You can also look at the number of triangles in your shape. Only a few triangles
 
 ==== Try dynamic batching
 
-If you have a large number of small shapes using the same shader, consider turning on cgeref:DynamicBatching[]. This will internally detect and merge multiple shapes into one just before passing them to the GPU. In some cases, it is a very powerful optimization, reducing the number of _draw calls_.
+If you have a large number of small shapes using the same shader, consider turning on cgeref:TCastleViewport.DynamicBatching[]. This will internally detect and merge multiple shapes into one just before passing them to the GPU. In some cases, it is a very powerful optimization, reducing the number of _draw calls_.
 
-Watch the `Viewport.Statistics.ToString` to see whether it reduces the number of rendered shapes.
+Watch the cgeref:TRenderStatistics[MyViewport.Statistics.ToString] to see whether it reduces the number of rendered shapes.
 
 It is particularly useful e.g. to optimize https://castle-engine.io/spine[Spine] rendering, as 2D animated models are often composed from a number of trivial textured quads that are transformed each frame. Dynamic batching can drastically reduce the number of draw calls in this case.
 

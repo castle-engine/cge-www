@@ -326,7 +326,7 @@ We have extensive link:optimization[optimization documentation] and a number of 
 * Built-in simple profiler cgeref:TCastleProfiler[].
 * Built-in frame profiler cgeref:TCastleFrameProfiler[].
 * Built-in texture memory profiler cgeref:TextureMemoryProfiler[].
-* cgeref:DynamicBatching[] is available to batch multiple shapes, to conserve draw calls.
+* cgeref:TCastleViewport.DynamicBatching[] is available to batch multiple shapes, to conserve draw calls.
 
 == Sound
 
