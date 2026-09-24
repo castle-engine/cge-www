@@ -2,10 +2,10 @@
 Contributors: automattic, xwp, adnan007, bjorsch, danwalmsley, davidlonjon, dilirity, donncha, ebinnion, exelero, jeherve, jpolakovic, karthikbhatb, kraftbj, lsarsfield, luchad0res, pyronaur, rheinardkorf, scruffian, thingalon, dlocc
 Donate link: https://automattic.com
 Tags: performance, speed, web vitals, critical css, cache
-Requires at least: 6.9
-Tested up to: 7.0
-Requires PHP: 7.2
-Stable tag: 4.7.0
+Requires at least: 7.0
+Tested up to: 7.1
+Requires PHP: 7.4
+Stable tag: 4.7.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -26,7 +26,7 @@ Increase your website performance and speed up your website with one-click optim
 Improving Core Web Vitals helps you rank higher on Google. A faster website also improves your SEO, helps you reduce your bounce rate and increase your ecommerce conversion rate.
 
 - Largest Contentful Paint (LCP): Measures loading performance. Improve your LCP and improve your website loading speed.
-- First Input Delay (FID): Measures interactivity. To improve user experience pages should have a low FID.
+- Interaction to Next Paint (INP): Measures responsiveness. To improve user experience pages should have a low INP.
 - Cumulative Layout Shift (CLS): Measures visual stability. Lowering your CLS helps improve your user experience.
 
 ### Performance Modules
@@ -35,7 +35,7 @@ Optimize your website with the same techniques used on the world's most successf
 
 Each technique that is used to increase website performance is packaged up as a module that you can activate and try out.
 
-Currently, the plugin has 6 performance modules available:
+Currently, the plugin has 8 performance modules available:
 
 1. *Optimize CSS Loading* generates Critical CSS for your homepage, posts and pages. This can allow your content to show up on the screen much faster, particularly for viewers using mobile devices.
 
@@ -56,6 +56,10 @@ Currently, the plugin has 6 performance modules available:
 6. *Concatenate and Minify CSS and JS* combines and shrinks your JavaScript and CSS resources to reduce the number and size of requests to your server, ensuring your content loads faster.
 
    Read more about minifying files at [web.dev](https://web.dev/minify-css/)
+
+7. *Optimize LCP Images* improves the Largest Contentful Paint (LCP) of your Cornerstone Pages by optimizing their key image, so your most important content shows up sooner.
+
+8. *Prerender Cornerstone Pages* loads your Cornerstone Pages in the background before visitors click a link to them, so your most important pages appear almost instantly.
 
 Don’t want to have to manually generate your critical CSS each time you update your site? Let us do the heavy lifting for you with automated critical CSS – each time you update your site we will automatically regenerate your critical CSS and update your performance scores. Upgrading also gives you dedicated email support access.
 
@@ -185,28 +189,43 @@ If you run into compatibility issues, please do let us know. You can drop us a l
 4. Historical performance tracking with the upgraded plan.
 
 == Changelog ==
-### 4.7.0 - 2026-08-17
-#### Security
-- Critical CSS/LCP: Close REST API access to the cache storage, and refuse to load a stored cache entry that contains a PHP object.
-
+### 4.7.1 - 2026-09-16
 #### Added
-- Add the Activity Log page to wp-admin, so it is available without the Jetpack plugin installed.
-- Concatenate JS/CSS: Add a `jetpack_boost_minify_use_static_cache_urls` filter to override whether bundles are linked from the static cache.
+- My Jetpack: Allow the Automattic for Agencies banner to be dismissed.
 
 #### Changed
-- Boost now reports its problem count to the central menu-badges registry instead of writing admin-menu markup directly.
-- Image CDN: update the image quality slider to use the WordPress RangeControl component.
-- Performance: reduce the number of database reads performed on every page load by preparing Sync data only when it is actually sent to WordPress.com.
-- Update @react-spring/web to v10 and remove the unused @react-spring/core dependency for React 19 compatibility.
+- Connection: Show every connection error in one notice, each with the account it affects, and link to Site Health when a firewall is blocking WordPress.com.
+- General: Update minimum WordPress version to 7.0.
+- My Jetpack: Show what Paid Stats actually adds — UTM tracking, device stats, and region & city locations — instead of commercial use.
+- Remove the Upgraded pill from module titles on the settings page.
+- Sidebar: sort Jetpack menu items alphabetically, pinning My Jetpack to the top and external links and Settings to the bottom.
+- Speed Score: Wait up to four minutes for a slow speed test instead of two.
+- Tested up to WordPress 7.1.
 - Update package dependencies.
+- Upgrade modal: refresh the copy to match the plan comparison on Jetpack.com.
+
+#### Removed
+- Updated PHP version requirements to PHP 7.4 or newer.
 
 #### Fixed
-- Concatenate JS/CSS: Fix broken CSS and JS delivery on pages rendered after a site is migrated onto WP Cloud or WordPress.com. Pages already served from a cache keep the old URLs until the cache is purged or expires.
-- Connection: Stop showing a duplicate account notice when your WordPress.com email differs from your site email only in letter case.
-- Defer JS: Fix a regression where a literal closing body tag inside a script, textarea, comment, or attribute value could corrupt the page when deferred scripts were re-inserted. Previously corrupted copies of a page may persist in Boost's page cache (up to an hour by default) and in any host or CDN cache after updating; purge those caches to clear them immediately.
-- Fix a blank Boost admin page on WordPress 6.9 installs without the Gutenberg plugin active, where the wp-theme script handle the embedded My Jetpack app depends on was otherwise unregistered.
-- LCP: Preserve analysis results when a page reports an error or when the homepage is also configured as a cornerstone page.
-- Modules: Batch the per-module status option reads into a single query to avoid redundant per-request database queries on sites without a persistent object cache.
+- Activity Log: Continue the wp-admin menu color behind the page frame on WordPress.com and third-party admin color schemes.
+- Activity Log: Fix the page overlapping the admin menu in right-to-left languages.
+- Admin dashboards: Keep the page header and content in view when the wp-admin menu is taller than the window.
+- Concatenate JS: Preserve deferred and asynchronous script loading.
+- Connection: Hide connection error notices from users who cannot fix the connection.
+- Connection: Update wording for some connection error notices.
+- Defer JS: Stop moving the Jetpack Likes script out of place, so Like blocks and comment likes no longer stick on "Loading…".
+- JITM: Fix missing messages and a console error on sites without the Jetpack plugin active.
+- My Jetpack: always label the license activation link 'Activate a license'. It previously read 'Activate a new license' on sites with a plan, even when no licenses had been activated.
+- My Jetpack: Keep the Automattic for Agencies banner hidden after dismissing it and switching tabs.
+- My Jetpack: keep the stats chart tooltip under sticky and fixed page elements.
+- My Jetpack: Show the right product status as soon as fresher plan data is available, instead of reusing an earlier lookup.
+- My Jetpack: Stop repeating the partner lookup request on every page load.
+- My Jetpack: Stop the Stats dashboard from asking which plan you want again after Start for Free was already chosen.
+- Page Cache: keep cache invalidation best-effort when a cache subdirectory disappears mid-walk, instead of throwing an uncaught exception that could break saving templates or posts.
+- Speed Score: Restore the with and without Boost comparison and the score change notice on sites whose score has not moved.
+- Speed Score: Stop the My Jetpack card re-testing the site on every page load.
+- Status: Detect a site served on any 127.0.0.0/8 loopback address, or on 0.0.0.0, as a local site.
 
 --------
 
