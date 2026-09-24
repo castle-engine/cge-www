@@ -9,11 +9,9 @@ Not always, but sometimes there's a paper trace or video recording of what I tal
 This pages collects _some_ materials from them.
 ////
 
-* *Upcoming*:
-+
---
-- I will attend (and give a talk) https://www.bsc.com.pl/zlot-programistow-delphi-2025/[Zlot Programistów Delphi 2025], Polish conference near _Warsaw_ on _8-9 October 2025_.
---
+* *Upcoming*: _7-8 October 2026_: I will attend (and give a talk at) https://www.bsc.com.pl/zlot-programistow-delphi-2026/[Zlot Programistów Delphi 2026]. I will talk about our new feature to develop _Android_ and _iOS_ applications with _Delphi_ (previously, this was only possible with our engine with FPC) and bonus benefits of FMX integration (to get camera, location, accelerometer access through FMX).
+
+* _8-9 October 2025_: I made a talk at https://www.bsc.com.pl/zlot-programistow-delphi-2025/[Zlot Programistów Delphi 2025], Polish conference near _Warsaw_, showcasing https://castle-engine.io/ifc[IFC integration], https://github.com/castle-engine/castle-dice-throwing[physics recording], https://github.com/castle-engine/castle-and-mormot-collaborative-editing[mORMot integration].
 
 * _17-21 September 2025_: https://pascalconference.com/[Pascal Conference organized by Sorpetaler] in _Germany (Sundern)_.
 +
