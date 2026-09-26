@@ -415,7 +415,7 @@ uses SysUtils,
 initialization
   RegisterSerializableComponent(TMyComponent, 'My Component');
   {$ifdef CASTLE_DESIGN_MODE}
-  RegisterPropertyEditor(TypeInfo(AnsiString), TMyComponent, 'URL', TImageURLPropertyEditor);
+  RegisterPropertyEditor(TypeInfo(String), TMyComponent, 'URL', TImageURLPropertyEditor);
   {$endif}
 end.
 ----

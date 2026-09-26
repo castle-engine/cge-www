@@ -530,13 +530,13 @@ We follow the standard approach of modern Delphi: `String` is an alias to `Unico
 +
 See Delphi docs: https://docwiki.embarcadero.com/Libraries/Sydney/en/System.UnicodeString[UnicodeString], https://docwiki.embarcadero.com/RADStudio/Sydney/en/Unicode_in_RAD_Studio[Unicode in RAD Studio], https://docwiki.embarcadero.com/RADStudio/Sydney/en/String_Types_(Delphi)[String Types].
 
-WARNING: We don't yet support https://wiki.freepascal.org/FPC_Unicode_RTL[FPC with Unicode RTL]. But it will be, and the behavior will be then equal to Delphi behavior.
+WARNING: We don't yet support https://wiki.freepascal.org/FPC_Unicode_RTL[FPC with Unicode RTL]. But we plan to, and then the behavior will be the same as with Delphi.
 
 Correspondingly, `Char` is 8-bit with FPC, and 16-bit with Delphi. And `PChar` points to 8-bit characters on FPC, 16-bit on Delphi.
 
 **Simple guideline: In most engine code, just use `String` and `Char` and most of the time it just does what you want. You can often ignore the fact that FPC will do this using 8-bit chars and Delphi will do this using 16-bit chars.**
 
-Our unit cgeref:CastleUnicode[] provides simple _Unicode-safe_  API to deal with strings that works with both FPC and Delphi painlessly. In particular, use:
+Our unit cgeref:CastleUnicode[] provides a simple _Unicode-safe_ API to deal with strings that works with both FPC and Delphi painlessly. In particular, use:
 
 cgeref:TCastleStringIterator[]::
 Iterate over strings, to get all Unicode character codes in sequence.
@@ -548,7 +548,7 @@ cgeref:StringLength[]::
 Count of Unicode characters in a string, accounting for multi-byte characters.
 
 [#strings8]
-==== When to, exceptionally, use other string types explicitly (`Utf8String`, `AnsiString`,`RawByteString`, `UnicodeString`, `WideString`) (e.g `Utf8String` for text streams in UTF-8)
+==== When to, exceptionally, use other string types explicitly (`Utf8String`, `AnsiString`, `RawByteString`, `UnicodeString`, `WideString`) (e.g. `Utf8String` for text streams in UTF-8)
 
 With both FPC and Delphi, you can explicitly write
 
@@ -556,19 +556,19 @@ With both FPC and Delphi, you can explicitly write
 - `Utf8String`,
 - `RawByteString`
 
-to use 8-bit string. And use `AnsiChar` for 8-bit character, and `PAnsiChar` to have a pointer to them.
+to use 8-bit string. And use `AnsiChar` for an 8-bit character, and `PAnsiChar` to have a pointer to them.
 
-And you can use `UnicodeString` for UTF-16 encoded strings. (And `WideString` for weird non-ref-counted version.) With `WideChar` and `PWideChar` to have a pointer to them.
+And you can use `UnicodeString` for UTF-16 encoded strings. (And `WideString` for weird, non-ref-counted but only on Windows, version.) With `WideChar` as a character type. And `PWideChar` to have a pointer to them.
 
 When to use them:
 
 - Use `Utf8String` to explicitly mean _"8-bit string, with UTF-8 encoding"_.
 +
-One example when we use it is for API to read / write to streams (see cgeref:CastleClassUtils[] routines). Reason: UTF-8 is the file format that most software expects, and it is a superset of ASCII (that is: simplest text files).
+One example when we use it is for the API to read / write to streams (see cgeref:CastleClassUtils[] routines). Reason: UTF-8 is the file format that most software expects, and it is a superset of ASCII (that is: simplest text files).
 +
-( The exceptional routines that _read / write to streams in different format depending on compiler (they read/write 8-bit on FPC and 16-bit on Delphi)_ are marked with `DefaultString` in the name. Right now, the only such routine is cgeref:MemoryStreamLoadFromDefaultString[]. As said above, we prefer to have most routines use UTF-8 for text files. )
+NOTE: The exceptional routines that _read / write to streams in different format depending on compiler (they read/write 8-bit on FPC and 16-bit on Delphi)_ are marked with `DefaultString` in the name. Example of it is cgeref:MemoryStreamLoadFromDefaultString[]. But these are really exceptional. We prefer stream reading / writing routines to just use UTF-8 consistently.
 +
-Another example when explicit `Utf8String` type makes sense is when dealing with external libraries that specifically require 8-bit strings with UTF-8 encoding. Like link:steam[Steam].
+Another example when explicit `Utf8String` type makes sense is when dealing with external libraries that specifically require 8-bit strings with UTF-8 encoding. Like link:steam[Steam]. Remember that pointer to `Utf8String` characters is `PAnsiChar` (not `PChar`).
 
 - *Seldom needed*: Use `AnsiString` to mean "8-bit string, possibly with non-UTF-8 encoding (when `CASTLE_ANSISTRING_UNCHANGED`, default on Delphi now)".
 +
@@ -576,9 +576,9 @@ Almost nothing in Castle Game Engine is using this string. We prefer to work wit
 
 - *Seldom needed*: Use https://docwiki.embarcadero.com/Libraries/Florence/en/System.RawByteString[RawByteString] to mean "8-bit string, do not make any conversions on assignments".
 
-- *Seldom needed*: Use `UnicodeString` or `WideString` when dealing with native APIs that use UTF-16 encoded strings, like WinAPI. Prefer `UnicodeString` as it is ref-counted and consistent with `AnsiString`.
+- *Seldom needed*: Use `UnicodeString` or `WideString` when dealing with native APIs that use UTF-16 encoded strings, like WinAPI. Prefer `UnicodeString` as it is ref-counted and consistent with `AnsiString`. Use cgeref:StringToUtf16[] / cgeref:Utf16ToString[] to convert between `String` and `UnicodeString`.
 
-See https://github.com/castle-engine/castle-engine/blob/ansistring-encoding-configurable/doc/miscellaneous_notes/ansistring_encoding.md[CASTLE_ANSISTRING_xxx symbols, AnsiString vs Utf8String in Castle Game Engine] for more information on the usage of different string types in _Castle Game Engine_.
+See https://github.com/castle-engine/castle-engine/blob/master/doc/miscellaneous_notes/ansistring_encoding.md[CASTLE_ANSISTRING_xxx symbols, AnsiString vs Utf8String in Castle Game Engine] for more information on the usage of different string types in _Castle Game Engine_.
 
 [#beforedestruction]
 === Use `BeforeDestruction` for finalization tasks that keep the object state consistent
