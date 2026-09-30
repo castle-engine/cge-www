@@ -10,8 +10,18 @@ echo pretty_heading($page_title);
 <p>Completely subjective list of places with good quality assets (graphics, sounds) in formats useful with <i>Castle Game Engine</i>. See and post on the <code>#assets</code> channel of <a href="talk.php">our Discord</a> for more.
 
 <div class="row">
+  <?php gallery_link('Kay Lousberg',
+    'Low-poly 3D game assets, mostly free and public domain. See also on <a href="https://kaylousberg.itch.io/">KayKit page on Itch.io</a>.
+
+    <p><a href="https://www.patreon.com/cw/kaylousberg">Support the creator on Patreon</a>.</p>',
+    'assets_kaylousberg.png',
+    'https://kaylousberg.com/');
+  ?>
+
   <?php gallery_link('Quaternius',
-    'Many 3D model packs, on a public domain license.', // https://www.patreon.com/quaternius
+    'Many 3D model packs, free to use for both personal and commercial projects.
+
+    <p><a href="https://www.patreon.com/quaternius">Support the creator on Patreon</a>.</p>',
     'assets_quaternius.png',
     'https://quaternius.com/');
   ?>
