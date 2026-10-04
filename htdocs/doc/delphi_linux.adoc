@@ -76,6 +76,7 @@ WARNING: Nvidia users: To have correct rendering, you may need to use `export ME
 
 === Libraries required (for both development and runtime)
 
+- Base libraries (`build-essential` for `/usr/lib/gcc/x86_64-linux-gnu/*/libgcc_s.so` and friends)
 - OpenGL (_essential_, to be able to render)
 - GTK 3 (_essential_, to open a window using FMX or cgeref:TCastleWindow[])
 - EGL (_essential_, to be able to initialize rendering context, either by cgeref:TCastleWindow[] or cgeref:TCastleControl[])
@@ -89,7 +90,7 @@ WARNING: Nvidia users: To have correct rendering, you may need to use `export ME
 On _Debian_ and derivatives (like _Ubuntu_ or _Raspberry Pi OS_), this command should install them all:
 
 ```shell
-sudo apt install mesa-utils libgtk-3-dev libegl1 libcurl4 libpng-dev libz1 libopenal1 libfreetype6 libvorbisfile3
+sudo apt install build-essential mesa-utils libgtk-3-dev libegl1 libcurl4 libpng-dev libz1 libopenal1 libfreetype6 libvorbisfile3
 ```
 
 Note that users do not need the `-dev` versions of these libraries.
