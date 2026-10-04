@@ -1542,6 +1542,8 @@ List of tasks when adding new unit or path to CGE is admittedly not trivial, as 
 ** `tests/`. Beware: revert DPR changes (we maintain it by hand). Beware: to DPROJ, apply only changes to `<DCC_UnitSearchPath>` and deploy files list, rest if managed by hand.
 ** `tests/delphi_tests/`
 ** `tools/build_tool/`. Beware: revert LPI changes (this cannot use `castle_engine_window.lpk`).
+** `tools/castle-editor-portable/castle_editor_portable_standalone.dproj`
+** `tools/internal/check_packages/check_packages.dproj`
 ** Beware for all above: remove unversioned, we don't want to add some files. (e.g. LPI for Delphi-specific examples would make no sense).
 --
 
