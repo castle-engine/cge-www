@@ -549,7 +549,7 @@ So _avoid using this node, unless you have no choice -- because your own input i
 
 #### Events logger (`Logger` node)
 
-Logger, extremely useful debugger when playing with VRML / X3D routes and events. This is based on, and should be quite compatible, with https://www.instantreality.org/[InstantReality] `Logger` node. (Except our interpretation of `logFile`, which is probably quite different, see below.)
+Logger, extremely useful debugger when playing with VRML / X3D routes and events. This is based on, and should be quite compatible, with https://www.instantreality.org/[InstantReality] `Logger` node.
 
 [source,vrml]
 ----
@@ -575,11 +575,9 @@ Other properties allow to control logging better. When `enabled` is false, nothi
 . additionally log received value,
 . additionally log sending node name, type.
 
-`logFile`, when non-empty, specifies the filename to write log information to. As a security measure (we do not want to allow an author of X3D file to overwrite arbitrary files without asking user), in my implementation only the basename of the `logFile` matters, the file is always saved into current directory. Moreover, filename is like `castle-model-viewer_logger_XXX_%d.log`, where "castle-model-viewer" is the name of the program, "XXX" is the name specified in `logFile`, and "%d" is just next free number. This way logger output file is predictable, and should never overwrite your data.
+The logging output always goes to the link:log[default Castle Game Engine log file for this application].
 
-If the `logFile` is empty, the output goes to the link:log[default Castle Game Engine log file for this application].
-
-These security measures were added by my implementation -- InstantReality spec simply says that `logFile` is the name of the file, I don't know how they handled security problems with logFile.
+`logFile` is ignored now. This avoids hard questions _"in which directory to create a log file, how to sanitize the filename, and how to communicate this to users"_. Creation of new log file on disk just by opening an X3D file could be surprising to users, so in new engine versions (since 2026-10-08) we just don't do this. Previous versions had complicated logic trying to sanitize the `logFile` value and always invent new filename by cgeref:FileNameAutoInc[].
 
 #### Teapot primitive (`Teapot` node)
 
