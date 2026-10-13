@@ -65,6 +65,7 @@ and (for some more newbie-friendly introduction) sites like https://learnopengl.
 - cgeref:TCastleAbstractPrimitive.SetEffects[],
 - cgeref:TCastleImageTransform.SetEffects[],
 - cgeref:TCastleBackground.SetEffects[].
+- cgeref:TCastleAbstractLight.SetEffects[].
 --
 
 - cgeref:TEffectNode[] and cgeref:TEffectPartNode[] are both link:x3d[X3D] nodes. Don't worry, we explain below what it means in practice. In short:
@@ -394,6 +395,8 @@ Directory https://github.com/castle-engine/castle-engine/tree/master/examples/sh
 To use this approach effectively, you need to search the loaded model for existing textures (or add new texture nodes to the model). The example shows how to enumerate loaded texture nodes.
 
 - https://github.com/castle-engine/castle-engine/tree/master/examples/shaders/shader_effects_on_background[shader_effects_on_background] uses `Effect` nodes on cgeref:TCastleBackground[]. See link:background[more information about backgrounds].
+
+- https://github.com/castle-engine/castle-engine/tree/master/examples/shaders/shader_effects_on_lights[shader_effects_on_lights] uses `Effect` nodes on light nodes. This allows to modify shaders that process lighting.
 
 == More Documentation
 
