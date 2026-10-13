@@ -36,6 +36,7 @@ Services useful to add to the project explicitly (by adding them to the link:pro
 * https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/services/google_play_services/README.adoc[google_play_services]
 * https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/services/helpshift/README.adoc[helpshift]
 * https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/services/keyboard/README.adoc[keyboard]
+* https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/services/local_notifications/README.adoc[local_notifications]
 * https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/services/open_associated_urls/README.adoc[open_associated_urls]
 * https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/android/services/photo_service/README.adoc[photo_service]
 * https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/data/android/services/read_external_storage/README.adoc[read_external_storage]
