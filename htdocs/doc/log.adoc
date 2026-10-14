@@ -48,7 +48,7 @@ If you don't want to produce log to the standard output (and prefer to always lo
 
 - _For Windows GUI applications_, or if you set `LogEnableStandardOutput := false`, we log to the file in the user config directory.
 ** On Windows the file name looks like `C:\Users\<user-name>\AppData\Local\<application-name>\<application-name>.log`.
-** On Unix the file name looks like `$HOME/.config/<application-name>\<application-name>.log`.
+** On Unix the file name looks like `$HOME/.config/<application-name>/<application-name>.log`.
 
 +
 The exact logic to determine the _user config directory_ follows FPC https://www.freepascal.org/docs-html/rtl/sysutils/getappconfigdir.html:[GetAppConfigDir]. This uses the appropriate OS-specific mechanism (e.g. asks the Windows API function, or follows link:https://freedesktop.org/wiki/Software/xdg-user-dirs/[xdg-user-dirs] conventions). You can display the `LogOutput` value to show user on screen where is the log file.
