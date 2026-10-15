@@ -23,9 +23,11 @@ We love to see how you use CGE.</i>
 <div class="row">
   <?php
   foreach ($additional_components['components'] as $component) {
-    $description = str_replace(
-      '{{cgeRef:TCastleImage.AlphaBleed}}',
-      cgeRef('TCastleImage.AlphaBleed'),
+    $description = preg_replace_callback(
+      '/\{\{cgeRef:([^{}]+)\}\}/',
+      function ($matches) {
+        return cgeRef($matches[1]);
+      },
       $component['description']
     );
     gallery_link(
