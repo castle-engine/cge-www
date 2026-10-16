@@ -164,24 +164,6 @@ Most important Wordpress shortcodes are:
 
 ## Testing Locally
 
-### Using Docker Desktop
-
-For PHP pages that do not depend on WordPress, run the development web server
-from the repository root:
-
-```sh
-docker compose up --build
-```
-
-Open <http://localhost:8777/additional_components.php>. The `htdocs/` directory
-is mounted into the container, so PHP and content changes are available after
-refreshing the page. Stop the server with `Ctrl+C`.
-
-This container includes PHP and Apache with `mod_rewrite`, but not a WordPress
-database or the extra tools needed to regenerate thumbnails or AsciiDoctor
-pages. The main page and WordPress-dependent pages therefore need additional
-services and setup.
-
 * Install Apache (or any other web server that can handle PHP)
 
     - Enable `mod_rewrite`. On Debian-based systems, do `sudo a2enmod rewrite && sudo service apache2 restart`.
