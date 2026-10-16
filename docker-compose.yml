@@ -1,8 +1,0 @@
-services:
-  website:
-    build:
-      context: ./docker
-    ports:
-      - "8777:80"
-    volumes:
-      - ./htdocs:/var/www/html
