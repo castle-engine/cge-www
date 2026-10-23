@@ -39,14 +39,17 @@ class Check_Email_Header_Parser {
 
 	private function parse( $headers ) {
 		$data        = array();
-		$arr_headers = explode( "\n", $headers );
+		$arr_headers = explode( "\n", str_replace( "\r\n", "\n", $headers ) );
 
 		foreach ( $arr_headers as $header ) {
-			$split_header = explode( ':', $header );
+			if ( false === strpos( $header, ':' ) ) {
+				continue;
+			}
+			$split_header = explode( ':', $header, 2 );
 			$value        = $this->parse_header_line( $split_header );
 
 			if ( trim( $value ) != '' ) {
-				switch ( strtolower( $split_header[0] ) ) {
+				switch ( strtolower( trim( $split_header[0] ) ) ) {
 					case 'from':
 						$data['from'] = $value;
 						break;

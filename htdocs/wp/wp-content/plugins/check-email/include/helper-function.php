@@ -230,8 +230,7 @@ function ck_mail_forward_mail($atts) {
         if ( ! empty( $tempheaders ) ) {
             // Iterate through the raw headers.
             foreach ( (array) $tempheaders as $header ) {
-                // phpcs:ignore wp_function_not_compatible_with_requires_wp
-                if ( ! str_contains( $header, ':' ) ) {
+                if ( false === strpos( $header, ':' ) ) {
                     if ( false !== stripos( $header, 'boundary=' ) ) {
                         $parts    = preg_split( '/boundary=/i', trim( $header ) );
                         $boundary = trim( str_replace( array( "'", '"' ), '', $parts[1] ) );
@@ -267,8 +266,7 @@ function ck_mail_forward_mail($atts) {
                         }
                         break;
                     case 'content-type':
-                        // phpcs:ignore wp_function_not_compatible_with_requires_wp
-                        if ( str_contains( $content, ';' ) ) {
+                        if ( false !== strpos( $content, ';' ) ) {
                             list( $type, $charset_content ) = explode( ';', $content );
                             $content_type                   = trim( $type );
                             if ( false !== stripos( $charset_content, 'charset=' ) ) {
@@ -321,8 +319,7 @@ function ck_mail_forward_mail($atts) {
         $from_email = 'wordpress@';
 
         if ( null !== $sitename ) {
-            // phpcs:ignore wp_function_not_compatible_with_requires_wp
-            if ( str_starts_with( $sitename, 'www.' ) ) {
+            if ( 0 === strpos( $sitename, 'www.' ) ) {
                 $sitename = substr( $sitename, 4 );
             }
 
@@ -904,7 +901,7 @@ function check_email_is_ip_blocked($ip) {
 if ( ! defined( 'CHECK_EMAIL_E_FILTER_PRIORITY' ) ) {
 	define(
 		'CHECK_EMAIL_E_FILTER_PRIORITY',
-		(integer) get_option( 'check_email_e_filter_priority', 2000 )
+		(int) get_option( 'check_email_e_filter_priority', 2000 )
 	);
 }
 

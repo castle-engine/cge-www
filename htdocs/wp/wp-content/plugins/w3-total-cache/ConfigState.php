@@ -25,6 +25,7 @@ namespace W3TC;
  *   common.show_note.nginx_restart_required
  *   common.hide_note_php_version_56
  *   license.status
+ *   license.jwt - license JWT for /v2/ service calls; not the license key
  *   license.next_check - time of next check
  *   license.terms - accepted/declined/''
  *   license.community_terms - accepted/declined/'' (master)
@@ -37,6 +38,8 @@ namespace W3TC;
  *   extension.cloudflare.next_ips_check
  *   extension.cloudflare.ips.ip4
  *   extension.cloudflare.ips.ip6
+ *   extension.maxcache.hide_note_delivering
+ *   extension.maxcache.hide_note_available
  *
  * blog-level keys:
  *   newrelic.hide_note_pageload_slow

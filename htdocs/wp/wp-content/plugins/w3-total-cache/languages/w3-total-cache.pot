@@ -2,14 +2,14 @@
 # This file is distributed under the GPL v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: W3 Total Cache 2.10.7\n"
+"Project-Id-Version: W3 Total Cache 2.11.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/w3-total-cache\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-01T16:35:43+00:00\n"
+"POT-Creation-Date: 2026-10-20T20:45:08+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: w3-total-cache\n"
@@ -2526,7 +2526,7 @@ msgid "CDN FSD"
 msgstr ""
 
 #: Cdn_BunnyCdn_Widget_View_Unauthorized.php:105
-#: Extension_ImageService_Api.php:418
+#: Extension_ImageService_Api.php:421
 #: Generic_WidgetAccount_View.php:47
 #: inc/email/support_request.php:56
 #: inc/email/support_request.php:59
@@ -3992,8 +3992,8 @@ msgid "Main Menu"
 msgstr ""
 
 #: extension-example/Extension_Example_Page_View.php:16
-#: Extensions_Plugin_Admin.php:106
-#: Extensions_Plugin_Admin.php:111
+#: Extensions_Plugin_Admin.php:108
+#: Extensions_Plugin_Admin.php:113
 #: FeatureShowcase_Plugin_Admin.php:520
 #: inc/options/common/top_nav_bar.php:59
 #: Util_PageUrls.php:1060
@@ -4045,36 +4045,36 @@ msgstr ""
 msgid "Extension %s has been successfully activated."
 msgstr ""
 
-#: Extensions_Plugin_Admin.php:91
+#: Extensions_Plugin_Admin.php:93
 msgid "Always Cached Extension Settings"
 msgstr ""
 
-#: Extensions_Plugin_Admin.php:94
+#: Extensions_Plugin_Admin.php:96
 msgid "AMP Extension Settings"
 msgstr ""
 
-#: Extensions_Plugin_Admin.php:97
+#: Extensions_Plugin_Admin.php:99
 msgid "Cloudflare Extension Settings"
 msgstr ""
 
-#: Extensions_Plugin_Admin.php:100
+#: Extensions_Plugin_Admin.php:102
 msgid "Swarmify Extension Settings"
 msgstr ""
 
-#: Extensions_Plugin_Admin.php:103
+#: Extensions_Plugin_Admin.php:105
 msgid "Genesis Extension Settings"
 msgstr ""
 
-#: Extensions_Plugin_Admin.php:232
+#: Extensions_Plugin_Admin.php:234
 msgid "Nonce verification failed for bulk extension action."
 msgstr ""
 
-#: Extensions_Plugin_Admin.php:240
-#: Extensions_Plugin_Admin.php:301
+#: Extensions_Plugin_Admin.php:242
+#: Extensions_Plugin_Admin.php:303
 msgid "You do not have sufficient permissions to manage extensions."
 msgstr ""
 
-#: Extensions_Plugin_Admin.php:293
+#: Extensions_Plugin_Admin.php:295
 msgid "Nonce verification failed for extension action."
 msgstr ""
 
@@ -4386,7 +4386,7 @@ msgstr ""
 
 #: Extension_AlwaysCached_Plugin_Admin.php:124
 #: Extension_AlwaysCached_Plugin_Admin.php:125
-#: Generic_Plugin.php:684
+#: Generic_Plugin.php:691
 msgid "Page Cache Queue"
 msgstr ""
 
@@ -5569,76 +5569,76 @@ msgstr ""
 msgid "Hide this message"
 msgstr ""
 
-#: Extension_ImageService_Api.php:201
-#: Extension_ImageService_Api.php:298
-#: Extension_ImageService_Api.php:363
+#: Extension_ImageService_Api.php:204
+#: Extension_ImageService_Api.php:301
+#: Extension_ImageService_Api.php:366
 msgid "WP Error: "
 msgstr ""
 
-#: Extension_ImageService_Api.php:211
-#: Extension_ImageService_Api.php:458
-#: Extension_ImageService_Api.php:476
+#: Extension_ImageService_Api.php:214
+#: Extension_ImageService_Api.php:464
+#: Extension_ImageService_Api.php:482
 #: Extension_ImageService_Plugin_Admin.php:510
 #: SetupGuide_Plugin_Admin.php:1294
 msgid "Unlimited"
 msgstr ""
 
-#: Extension_ImageService_Api.php:221
+#: Extension_ImageService_Api.php:224
 msgid "Error: Received a non-200 response code: "
 msgstr ""
 
 #. translators: 1: Hourly request limit.
-#: Extension_ImageService_Api.php:229
+#: Extension_ImageService_Api.php:232
 #, php-format
 msgid "You reached your hourly limit of %1$d; try again later%2$s."
 msgstr ""
 
 #. translators: 1: Hourly request limit, 2: HTML anchor open tag, 3: HTML anchor close tag.
-#: Extension_ImageService_Api.php:234
+#: Extension_ImageService_Api.php:237
 #, php-format
 msgid " or %1$supgrade to Pro%2$s for higher limits"
 msgstr ""
 
 #. translators: 1: Monthly request limit, 2: HTML anchor open tag, 3: HTML anchor close tag.
-#: Extension_ImageService_Api.php:243
+#: Extension_ImageService_Api.php:246
 #, php-format
 msgid "You reached your monthly limit of %1$d; try again later or %2$supgrade to Pro%3$s for unlimited."
 msgstr ""
 
-#: Extension_ImageService_Api.php:250
+#: Extension_ImageService_Api.php:253
 msgid "Invalid output image MIME type."
 msgstr ""
 
-#: Extension_ImageService_Api.php:252
+#: Extension_ImageService_Api.php:255
 msgid "An image file is required."
 msgstr ""
 
-#: Extension_ImageService_Api.php:254
+#: Extension_ImageService_Api.php:257
 msgid "Valid image data is required."
 msgstr ""
 
-#: Extension_ImageService_Api.php:256
+#: Extension_ImageService_Api.php:259
 msgid "Invalid input image MIME type."
 msgstr ""
 
 #. translators: 1: HTML anchor open tag, 2: HTML anchor close tag.
-#: Extension_ImageService_Api.php:260
+#: Extension_ImageService_Api.php:263
 #, php-format
 msgid "Please verify your license key in %1$sGeneral Settings%2$s."
 msgstr ""
 
-#: Extension_ImageService_Api.php:309
+#: Extension_ImageService_Api.php:312
 msgid "Error: Job not found (404)."
 msgstr ""
 
 #. translators: 1: HTTP status code.
-#: Extension_ImageService_Api.php:319
+#: Extension_ImageService_Api.php:322
 #, php-format
 msgid "Error: Received a non-200 response code: %1$d"
 msgstr ""
 
 #. translators: 1: HTTP status code.
-#: Extension_ImageService_Api.php:376
+#: Extension_ImageService_Api.php:379
 #, php-format
 msgid "HTTP Error: Received status code %1$d"
 msgstr ""
@@ -6075,6 +6075,189 @@ msgstr ""
 #: Extension_ImageService_Widget_View.php:40
 #: SetupGuide_Plugin_Admin.php:1728
 msgid "Enable Image Converter"
+msgstr ""
+
+#: Extension_MaxCache_Core.php:249
+msgid "This web server is neither Apache nor an NGINX host with the MAx Cache module, so .htaccess directives would not reach it."
+msgstr ""
+
+#. translators: %s: path of the rules file.
+#: Extension_MaxCache_Core.php:430
+#, php-format
+msgid "The rules file %s cannot be read. Give the web-server user permission to read it, or delivery stays where it is."
+msgstr ""
+
+#: Extension_MaxCache_Core.php:440
+msgid "An unfinished MAx Cache block is left in .htaccess: it has a beginning marker but no end marker, so this plugin can neither read nor remove it. Delete the lines from \"# BEGIN W3TC Page Cache MAx Cache\" onwards and save the file."
+msgstr ""
+
+#: Extension_MaxCache_Core.php:469
+msgid "The server configuration file cannot be written by the web server, so the directives would never reach the module."
+msgstr ""
+
+#: Extension_MaxCache_Core.php:575
+msgid "Another MAx Cache block is already present in .htaccess. Two of them would serve different cache files depending on which web server answers, so this one is left alone until the other is removed."
+msgstr ""
+
+#: Extension_MaxCache_Core.php:589
+msgid "The .htaccess file could not be searched for an existing MAx Cache block, and delivery is not handed over on an unchecked file."
+msgstr ""
+
+#: Extension_MaxCache_Core.php:607
+msgid "Whether MAx Cache can serve this site could not be determined."
+msgstr ""
+
+#: Extension_MaxCache_Core.php:741
+msgid "Another plugin changes where W3TC keeps its cache files, and the server module can only be given the layout W3TC describes by itself."
+msgstr ""
+
+#: Extension_MaxCache_Core.php:748
+msgid "Another plugin decides when a visitor may be served from the page cache, and the server module cannot be given that condition."
+msgstr ""
+
+#: Extension_MaxCache_Core.php:755
+msgid "Another plugin changes when an accepted query string is ignored, and the server module can only be given the names, not the condition."
+msgstr ""
+
+#: Extension_MaxCache_Core.php:831
+msgid "The MAx Cache module is not installed on this server."
+msgstr ""
+
+#. translators: %s is a version number, e.g. 1.2.6.
+#: Extension_MaxCache_Core.php:838
+#, php-format
+msgid "The installed MAx Cache module is older than %s, the version this integration needs to reproduce the cache file names W3TC writes. Ask your hosting provider to update it."
+msgstr ""
+
+#: Extension_MaxCache_Core.php:844
+msgid "Multisite installations are not supported."
+msgstr ""
+
+#: Extension_MaxCache_Core.php:864
+msgid "Page Cache is not set to \"Disk: Enhanced\", so there are no cache files a web server module could serve."
+msgstr ""
+
+#: Extension_MaxCache_Core.php:869
+msgid "Another component is handling page cache delivery on this site, so there are no W3TC rules to hand over."
+msgstr ""
+
+#: Extension_MaxCache_Core.php:887
+msgid "Page Cache is set to use NFS-safe methods, which W3TC applies to its cache files through EnableSendfile, and that cannot be attached to what the module serves."
+msgstr ""
+
+#: Extension_MaxCache_Core.php:894
+msgid "Browser Cache is set to send an expiry header for HTML, which W3TC applies to its cache files through mod_expires, and that cannot be attached to what the module serves."
+msgstr ""
+
+#: Extension_MaxCache_Core.php:907
+msgid "Browser Cache is set to withhold the entity tag for HTML, which W3TC applies to its cache files by file name, and that cannot reach what the module serves."
+msgstr ""
+
+#: Extension_MaxCache_Core.php:910
+msgid "Page Cache compatibility mode withholds the entity tag for HTML with Browser Cache off, which W3TC applies to its cache files by file name, and that cannot reach what the module serves."
+msgstr ""
+
+#: Extension_MaxCache_Core.php:917
+msgid "Browser Cache is set to ignore the last-modified date for HTML, which W3TC applies to its cache files by file name, and that cannot reach what the module serves."
+msgstr ""
+
+#: Extension_MaxCache_Core.php:922
+msgid "Browser Cache is set to send a Cache-Control policy for HTML, which W3TC applies to its cache files by file name, and that cannot reach what the module serves."
+msgstr ""
+
+#: Extension_MaxCache_Core.php:927
+msgid "Browser Cache is set to send the W3TC header for HTML, which W3TC applies to its cache files by file name, and that cannot reach what the module serves."
+msgstr ""
+
+#: Extension_MaxCache_Core.php:969
+msgid "The page cache directory is outside the part of the filesystem the web server addresses by URL."
+msgstr ""
+
+#: Extension_MaxCache_Core.php:981
+msgid "The page cache directory is at a path that cannot be written into the server configuration as a single directive argument."
+msgstr ""
+
+#: Extension_MaxCache_Core.php:1025
+msgid "mobile user agent"
+msgstr ""
+
+#: Extension_MaxCache_Core.php:1026
+msgid "referrer"
+msgstr ""
+
+#: Extension_MaxCache_Core.php:1027
+msgid "cookie"
+msgstr ""
+
+#. translators: %s: the kind of group, e.g. "mobile user agent".
+#: Extension_MaxCache_Core.php:1034
+#, php-format
+msgid "Separate caches for %s groups put a group name into the cache file name, which the server module cannot reproduce."
+msgstr ""
+
+#: Extension_MaxCache_Core.php:1127
+msgid "The site character set contains a character that cannot be written into a server directive, so the module-served pages would go out without the charset W3TC sets."
+msgstr ""
+
+#: Extension_MaxCache_Core.php:1141
+msgid "URLs"
+msgstr ""
+
+#: Extension_MaxCache_Core.php:1142
+msgid "user agents"
+msgstr ""
+
+#: Extension_MaxCache_Core.php:1143
+msgid "cookies"
+msgstr ""
+
+#. translators: %s: URLs, user agents, or cookies.
+#: Extension_MaxCache_Core.php:1148
+#, php-format
+msgid "The %s this site never caches are listed in a form that cannot be written into the server configuration, and the module would serve visitors W3TC keeps out."
+msgstr ""
+
+#. translators: 1: directive name, e.g. MaxCacheExcludeCookie. 2: line length in bytes. 3: the Apache line-length limit in bytes.
+#: Extension_MaxCache_Core.php:1244
+#, php-format
+msgid "The %1$s directive this configuration would write is %2$d bytes long, at or over the %3$d-byte line limit Apache's own config parser enforces. Past it Apache fails to read .htaccess at all, taking the whole site down rather than just this acceleration."
+msgstr ""
+
+#. translators: %s: one entry of the "Never cache the following pages" list.
+#: Extension_MaxCache_Core.php:1535
+#, php-format
+msgid "The page exclusion \"%s\" cannot be written as a server directive, so the module would go on serving pages that W3TC itself excludes."
+msgstr ""
+
+#: Extension_MaxCache_Environment.php:313
+msgid "The MAx Cache block could not be removed."
+msgstr ""
+
+#. translators: 1 path, 2 starting marker, 3 ending marker.
+#: Extension_MaxCache_Environment.php:318
+#, php-format
+msgid "Edit file %1$s and remove all lines between and including %2$s and %3$s markers."
+msgstr ""
+
+#: Extension_MaxCache_Plugin_Admin.php:64
+msgid "Serves the Disk: Enhanced page cache from the web server itself, before PHP starts, where the CloudLinux MAx Cache module is installed."
+msgstr ""
+
+#. translators: 1 activate button, 2 hide-this-message button.
+#: Extension_MaxCache_Plugin_Admin.php:119
+#, php-format
+msgid "The CloudLinux MAx Cache module on this server can serve your Disk: Enhanced page cache before PHP starts. %1$s %2$s"
+msgstr ""
+
+#. translators: 1 activate button, 2 hide-this-message button.
+#: Extension_MaxCache_Plugin_Admin.php:120
+msgid "Activate MAx Cache"
+msgstr ""
+
+#. translators: 1 opening link tag to the Extensions page, 2 closing link tag, 3 hide-this-message button.
+#: Extension_MaxCache_Plugin_Admin.php:153
+#, php-format
+msgid "Page cache is being served by the CloudLinux MAx Cache module, before PHP starts. %1$sManage it on the Extensions page%2$s. %3$s"
 msgstr ""
 
 #: Extension_NewRelic_AdminNotes.php:31
@@ -7247,7 +7430,7 @@ msgstr ""
 msgid "Clear Log"
 msgstr ""
 
-#: Generic_Plugin.php:590
+#: Generic_Plugin.php:597
 #: Generic_Plugin_Admin.php:471
 #: Generic_Plugin_Admin.php:477
 #: Generic_Plugin_Admin.php:483
@@ -7261,23 +7444,23 @@ msgstr ""
 msgid "Performance"
 msgstr ""
 
-#: Generic_Plugin.php:602
+#: Generic_Plugin.php:609
 msgid "Purge All Caches"
 msgstr ""
 
-#: Generic_Plugin.php:628
+#: Generic_Plugin.php:635
 msgid "Purge All Caches Except Cloudflare"
 msgstr ""
 
-#: Generic_Plugin.php:644
+#: Generic_Plugin.php:651
 msgid "Purge Current Page"
 msgstr ""
 
-#: Generic_Plugin.php:660
+#: Generic_Plugin.php:667
 msgid "Purge Modules"
 msgstr ""
 
-#: Generic_Plugin.php:669
+#: Generic_Plugin.php:676
 #: inc/options/common/top_nav_bar.php:87
 #: Root_AdminMenu.php:51
 #: Root_AdminMenu.php:52
@@ -7285,7 +7468,7 @@ msgstr ""
 msgid "Feature Showcase"
 msgstr ""
 
-#: Generic_Plugin.php:676
+#: Generic_Plugin.php:683
 #: Generic_WidgetSettings.php:38
 #: Generic_WidgetSettings_View.php:97
 #: inc/options/common/top_nav_bar.php:21
@@ -7305,11 +7488,11 @@ msgstr ""
 msgid "General Settings"
 msgstr ""
 
-#: Generic_Plugin.php:692
+#: Generic_Plugin.php:699
 msgid "Manage Extensions"
 msgstr ""
 
-#: Generic_Plugin.php:699
+#: Generic_Plugin.php:706
 #: PageSpeed_Instructions.php:381
 #: PageSpeed_Instructions.php:548
 #: PageSpeed_Instructions.php:565
@@ -7318,7 +7501,7 @@ msgstr ""
 msgid "FAQ"
 msgstr ""
 
-#: Generic_Plugin.php:706
+#: Generic_Plugin.php:713
 #: inc/options/common/footer.php:63
 #: inc/options/common/top_nav_bar.php:213
 #: inc/options/common/top_nav_bar.php:214
@@ -7328,78 +7511,78 @@ msgstr ""
 msgid "Support"
 msgstr ""
 
-#: Generic_Plugin.php:714
+#: Generic_Plugin.php:721
 msgid "Debug: Overlays"
 msgstr ""
 
-#: Generic_Plugin.php:773
+#: Generic_Plugin.php:780
 msgid "Dismiss notice"
 msgstr ""
 
-#: Generic_Plugin.php:856
+#: Generic_Plugin.php:863
 #: Generic_Plugin_Admin.php:1439
 msgid "All caches successfully emptied."
 msgstr ""
 
-#: Generic_Plugin.php:857
+#: Generic_Plugin.php:864
 msgid "All caches successfully emptied except CDN."
 msgstr ""
 
-#: Generic_Plugin.php:858
+#: Generic_Plugin.php:865
 #: Generic_Plugin_Admin.php:1440
 msgid "Memcached cache(s) successfully emptied."
 msgstr ""
 
-#: Generic_Plugin.php:859
+#: Generic_Plugin.php:866
 #: Generic_Plugin_Admin.php:1441
 msgid "Opcode cache(s) successfully emptied."
 msgstr ""
 
-#: Generic_Plugin.php:860
+#: Generic_Plugin.php:867
 #: Generic_Plugin_Admin.php:1442
 msgid "Disk cache(s) successfully emptied."
 msgstr ""
 
-#: Generic_Plugin.php:861
+#: Generic_Plugin.php:868
 #: Generic_Plugin_Admin.php:1443
 msgid "Page cache successfully emptied."
 msgstr ""
 
-#: Generic_Plugin.php:862
+#: Generic_Plugin.php:869
 #: Generic_Plugin_Admin.php:1444
 msgid "Database cache successfully emptied."
 msgstr ""
 
-#: Generic_Plugin.php:863
+#: Generic_Plugin.php:870
 #: Generic_Plugin_Admin.php:1445
 msgid "Object cache successfully emptied."
 msgstr ""
 
-#: Generic_Plugin.php:864
+#: Generic_Plugin.php:871
 #: Generic_Plugin_Admin.php:1446
 msgid "Fragment cache successfully emptied."
 msgstr ""
 
-#: Generic_Plugin.php:865
+#: Generic_Plugin.php:872
 #: Generic_Plugin_Admin.php:1447
 msgid "Minify cache successfully emptied."
 msgstr ""
 
-#: Generic_Plugin.php:866
+#: Generic_Plugin.php:873
 #: Generic_Plugin_Admin.php:1448
 msgid "Media Query string has been successfully updated."
 msgstr ""
 
-#: Generic_Plugin.php:867
+#: Generic_Plugin.php:874
 #: Generic_Plugin_Admin.php:1449
 msgid "Varnish servers successfully purged."
 msgstr ""
 
-#: Generic_Plugin.php:868
+#: Generic_Plugin.php:875
 msgid "CDN was successfully purged."
 msgstr ""
 
-#: Generic_Plugin.php:869
+#: Generic_Plugin.php:876
 #: Generic_Plugin_Admin.php:1465
 msgid "Post successfully purged."
 msgstr ""
@@ -11642,121 +11825,121 @@ msgid "%1$sUpgrade Performance%2$s"
 msgstr ""
 
 #. Translators: 1 Product name.
-#: Licensing_Plugin_Admin.php:268
+#: Licensing_Plugin_Admin.php:274
 #, php-format
 msgid "Your previous %1$s Pro license key is expired and will remain registered to this domain."
 msgstr ""
 
 #. Translators: 1 Product name.
-#: Licensing_Plugin_Admin.php:282
+#: Licensing_Plugin_Admin.php:288
 #, php-format
 msgid "Your previous %1$s Pro license key was not found and cannot be deactivated."
 msgstr ""
 
 #. Translators: 1 Product name.
-#: Licensing_Plugin_Admin.php:296
+#: Licensing_Plugin_Admin.php:302
 #, php-format
 msgid "Your previous %1$s Pro license key has been deactivated."
 msgstr ""
 
 #. translators: 1 Product name, 2 HTML anchor open tag, 3 HTML anchor close tag.
-#: Licensing_Plugin_Admin.php:310
+#: Licensing_Plugin_Admin.php:316
 #, php-format
 msgid "Your previous %1$s Pro license key is invalid and cannot be deactivated. Please %2$scontact support%3$s for assistance."
 msgstr ""
 
 #. Translators: 1 Product name.
-#: Licensing_Plugin_Admin.php:333
+#: Licensing_Plugin_Admin.php:339
 #, php-format
 msgid "The %1$s Pro license key you provided is valid and has been applied."
 msgstr ""
 
 #. Translators: 1 Product name, 2 opening HTML a tag to billing portal, 3 closing HTML a tag, 4 opening HTML a tag for recheck, 5 closing HTML a tag.
-#: Licensing_Plugin_Admin.php:512
+#: Licensing_Plugin_Admin.php:518
 #, php-format
 msgid "Your %1$s Pro subscription requires a PayPal billing agreement update. Please %2$sUpdate your billing agreement%3$s to ensure uninterrupted service. Already updated? %4$sRecheck your license status%5$s or dismiss this notice."
 msgstr ""
 
 #. Translators: 1 Product name, 2 opening HTML a tag for recheck, 3 closing HTML a tag.
-#: Licensing_Plugin_Admin.php:525
+#: Licensing_Plugin_Admin.php:531
 #, php-format
 msgid "Your %1$s Pro subscription requires a PayPal billing agreement update. Please contact support to ensure uninterrupted service. Already updated? %2$sRecheck your license status%3$s or dismiss this notice."
 msgstr ""
 
-#: Licensing_Plugin_Admin.php:597
+#: Licensing_Plugin_Admin.php:603
 msgid "Rechecking..."
 msgstr ""
 
 #. Translators: 1 Product name, 2 opening HTML a tag to billing portal, 3 closing HTML a tag, 4 opening HTML a tag for recheck, 5 closing HTML a tag.
-#: Licensing_Plugin_Admin.php:653
+#: Licensing_Plugin_Admin.php:659
 #, php-format
 msgid "Your %1$s Pro subscription payment is past due. Please update your %2$sBilling Information%3$s to prevent service interruption. Already updated? %4$sRecheck your license status%5$s."
 msgstr ""
 
 #. Translators: 1 Product name, 2 opening HTML a tag for recheck, 3 closing HTML a tag.
-#: Licensing_Plugin_Admin.php:667
+#: Licensing_Plugin_Admin.php:673
 #, php-format
 msgid "Your %1$s Pro subscription payment is past due. Please update your billing information or contact us to prevent service interruption. Already updated? %2$sRecheck your license status%3$s."
 msgstr ""
 
 #. Translators: 1 Product name, 2 HTML input to renew subscription.
-#: Licensing_Plugin_Admin.php:679
+#: Licensing_Plugin_Admin.php:685
 #, php-format
 msgid "Your %1$s Pro license key has expired. %2$s to continue using the Pro features"
 msgstr ""
 
-#: Licensing_Plugin_Admin.php:686
+#: Licensing_Plugin_Admin.php:692
 msgid "Renew Now"
 msgstr ""
 
 #. Translators: 1 Product name.
-#: Licensing_Plugin_Admin.php:697
+#: Licensing_Plugin_Admin.php:703
 #, php-format
 msgid "Your %1$s license key is not active and cannot be activated due to the license activation limit being reached."
 msgstr ""
 
 #. Translators: 1 Product name, 2 opening HTML a tag to reset license URIs, 3 closing HTML a tag.
-#: Licensing_Plugin_Admin.php:717
+#: Licensing_Plugin_Admin.php:723
 #, php-format
 msgid "Your %1$s license key is not active for this site. You can switch your license to this website following %2$sthis link%3$s"
 msgstr ""
 
 #. Translators: 1 Product name.
-#: Licensing_Plugin_Admin.php:729
+#: Licensing_Plugin_Admin.php:735
 #, php-format
 msgid "The %1$s license key is not active."
 msgstr ""
 
 #. Translators: 1 Product name, 2 opening HTML a tag to license setting, 3 closing HTML a tag.
-#: Licensing_Plugin_Admin.php:742
+#: Licensing_Plugin_Admin.php:748
 #, php-format
 msgid "Your current %1$s Pro license key is not valid. %2$sPlease confirm it%3$s."
 msgstr ""
 
 #. translators: 1: Product name, 2: HTML anchor open tag, 3: HTML anchor close tag.
-#: Licensing_Plugin_Admin.php:757
+#: Licensing_Plugin_Admin.php:763
 #, php-format
 msgid "The %1$s license key cannot be verified. Please %2$scontact support%3$s for assistance."
 msgstr ""
 
-#: Licensing_Plugin_Admin.php:866
+#: Licensing_Plugin_Admin.php:872
 #: SetupGuide_Plugin_Admin.php:1574
 msgid "Accept"
 msgstr ""
 
-#: Licensing_Plugin_Admin.php:870
+#: Licensing_Plugin_Admin.php:876
 #: SetupGuide_Plugin_Admin.php:1575
 msgid "Decline"
 msgstr ""
 
 #. translators: 1 opening HTML a tag to W3TC Terms page, 2 closing HTML a tag.
-#: Licensing_Plugin_Admin.php:895
+#: Licensing_Plugin_Admin.php:901
 #, php-format
 msgid "Our terms of use and privacy policies have been updated. Please %1$sreview%2$s and accept them."
 msgstr ""
 
 #. translators: 1: Product name, 2: HTML break tag, 3: Anchor/link open tag, 4: Anchor/link close tag.
-#: Licensing_Plugin_Admin.php:905
+#: Licensing_Plugin_Admin.php:911
 #, php-format
 msgid "By allowing us to collect data about how %1$s is used, we can improve our features and experience for everyone. This data will not include any personally identifiable information.%2$sFeel free to review our %3$sterms of use and privacy policy%4$s."
 msgstr ""
@@ -12085,7 +12268,7 @@ msgstr ""
 msgid "I Understand the Risks"
 msgstr ""
 
-#: Minify_MinifiedFileRequestHandler.php:808
+#: Minify_MinifiedFileRequestHandler.php:839
 msgid "Too many minify requests."
 msgstr ""
 
@@ -13414,7 +13597,7 @@ msgid "Additional home URLs:"
 msgstr ""
 
 #. translators: 1: Engine name, 2: Reject reason placeholder, 3: Page key extension.
-#: PgCache_ContentGrabber.php:1828
+#: PgCache_ContentGrabber.php:1861
 #, php-format
 msgid "Page Caching using %1$s%2$s%3$s"
 msgstr ""
@@ -15201,15 +15384,15 @@ msgstr ""
 msgid "Unable to connect to the filesystem (using %1$s). Please confirm your credentials.  %2$s"
 msgstr ""
 
-#: Util_WpFile.php:305
+#: Util_WpFile.php:307
 msgid "FTP credentials don't allow to delete folder "
 msgstr ""
 
-#: Util_WpFile.php:348
+#: Util_WpFile.php:350
 msgid "FTP credentials don't allow to chmod "
 msgstr ""
 
-#: Util_WpFile.php:394
+#: Util_WpFile.php:396
 msgid "FTP credentials don't allow to delete "
 msgstr ""
 

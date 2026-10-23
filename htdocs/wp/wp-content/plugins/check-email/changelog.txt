@@ -1,4 +1,8 @@
 == Changelog ==
+= v2.0.17 - 22/10/2026 =
+- Fixed: Need to Fix deprecated non-canonical integer cast in helper-function.php for PHP 8.5 #173
+- Fixed: CC recipient not receiving emails when using custom headers with SMTP #175
+
 = v2.0.16 - 02/09/2026 =
 - Tested: WordPress version upto 7.1
 

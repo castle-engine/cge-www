@@ -181,6 +181,12 @@ class Licensing_Plugin_Admin {
 			delete_transient( $old_transient_key );
 		}
 
+		if ( $old_key !== $new_key ) {
+			Licensing_Core::clear_license_jwt();
+			delete_transient( 'w3tc_imageservice_usage' );
+			delete_transient( 'w3tc_imageservice_limited' );
+		}
+
 		switch ( true ) {
 			// No new key or old key. Do nothing.
 			case ( ! $new_key_set && ! $old_key_set ):
@@ -954,6 +960,7 @@ class Licensing_Plugin_Admin {
 		);
 
 		if ( ! $is_stuck_no_key && time() < $state->get_integer( 'license.next_check' ) ) {
+			$this->release_pro_rest_cache_if_unlicensed();
 			return;
 		}
 
@@ -1033,7 +1040,52 @@ class Licensing_Plugin_Admin {
 				// missing exception handle?
 			}
 		}
+
+		$this->release_pro_rest_cache_if_unlicensed();
+
 		return $status;
+	}
+
+	/**
+	 * Drops a retained Pro REST cache mode when Pro is not active.
+	 *
+	 * Disk Enhanced stores an ungrouped response as a static HTML file.
+	 * REST caching belongs in the rest group, and only while Pro is active.
+	 * Clear the retained mode and flush page cache so those files are removed.
+	 *
+	 * @since 2.11.0
+	 *
+	 * @return void
+	 */
+	public function release_pro_rest_cache_if_unlicensed() {
+		if ( 'cache' !== $this->_config->get_string( 'pgcache.rest' ) ) {
+			return;
+		}
+
+		if ( Util_Environment::is_w3tc_pro( $this->_config ) ) {
+			return;
+		}
+
+		$this->_config->set( 'pgcache.rest', '' );
+
+		try {
+			$this->_config->save();
+		} catch ( \Exception $ex ) { // phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedCatch
+			return;
+		}
+
+		try {
+			$flush = Dispatcher::component( 'PgCache_Flush' );
+			$flush->flush_group( 'rest' );
+			$flush->flush_group( '' );
+			$flush->flush_post_cleanup();
+
+			if ( function_exists( '\w3tc_flush_posts' ) ) {
+				\w3tc_flush_posts();
+			}
+		} catch ( \Throwable $ex ) { // phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedCatch
+			return;
+		}
 	}
 
 	/**

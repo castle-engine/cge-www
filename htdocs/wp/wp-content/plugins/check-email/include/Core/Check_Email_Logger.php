@@ -99,7 +99,7 @@ class Check_Email_Logger implements Loadie {
             if (isset($smtp_options['mailer']) && $smtp_options['mailer'] == 'outlook') {
                 $auth = new Auth('outlook');
                 if ( $auth->is_clients_saved() && ! $auth->is_auth_required() ) {
-                    $response = $auth->sendEmailByMailer(null ,$to_email, $subject, $log['message']);
+                    $response = $auth->sendEmailByMailer(null ,$to_email, $subject, $log['message'], $log['headers']);
 
                    
                     if (isset($response['error']) && $response['error'] == 1) {

@@ -350,7 +350,7 @@ class Auth
 		}
 	}
 
-	function sendEmailByMailer($from_email, $to_email, $subject, $body) {
+	function sendEmailByMailer($from_email, $to_email, $subject, $body, $headers = '') {
 
 		// Get the access token from options
 		$access_token_array = $this->options['access_token'];
@@ -358,23 +358,72 @@ class Auth
 	
 		// Graph API URL for sending mail
 		$url = "https://graph.microsoft.com/v1.0/me/sendMail";
+
+		$to_recipients = [];
+		$to_emails = is_array( $to_email ) ? $to_email : explode( ',', $to_email );
+		foreach ( $to_emails as $email ) {
+			$email = trim( $email );
+			if ( ! empty( $email ) ) {
+				$to_recipients[] = [
+					"emailAddress" => [
+						"address" => $email,
+					],
+				];
+			}
+		}
+
+		$cc_recipients = [];
+		$bcc_recipients = [];
+		if ( ! empty( $headers ) ) {
+			$parser = new \CheckEmail\Util\Check_Email_Header_Parser();
+			$parsed_headers = $parser->parse_headers( is_array( $headers ) ? implode( "\n", $headers ) : $headers );
+			if ( ! empty( $parsed_headers['cc'] ) ) {
+				$cc_emails = explode( ',', $parsed_headers['cc'] );
+				foreach ( $cc_emails as $email ) {
+					$email = trim( $email );
+					if ( ! empty( $email ) ) {
+						$cc_recipients[] = [
+							"emailAddress" => [
+								"address" => $email,
+							],
+						];
+					}
+				}
+			}
+			if ( ! empty( $parsed_headers['bcc'] ) ) {
+				$bcc_emails = explode( ',', $parsed_headers['bcc'] );
+				foreach ( $bcc_emails as $email ) {
+					$email = trim( $email );
+					if ( ! empty( $email ) ) {
+						$bcc_recipients[] = [
+							"emailAddress" => [
+								"address" => $email,
+							],
+						];
+					}
+				}
+			}
+		}
 	
 		// Email message structure
-		$message = [
-			"message" => [
-				"subject" => $subject,
-				"body" => [
-					"contentType" => "HTML",
-					"content" => $body,
-				],
-				"toRecipients" => [
-					[
-						"emailAddress" => [
-							"address" => $to_email,
-						],
-					],
-				],
+		$message_payload = [
+			"subject" => $subject,
+			"body" => [
+				"contentType" => "HTML",
+				"content" => $body,
 			],
+			"toRecipients" => $to_recipients,
+		];
+
+		if ( ! empty( $cc_recipients ) ) {
+			$message_payload["ccRecipients"] = $cc_recipients;
+		}
+		if ( ! empty( $bcc_recipients ) ) {
+			$message_payload["bccRecipients"] = $bcc_recipients;
+		}
+
+		$message = [
+			"message" => $message_payload,
 			"saveToSentItems" => "true", // Save a copy to Sent Items folder
 		];
 	

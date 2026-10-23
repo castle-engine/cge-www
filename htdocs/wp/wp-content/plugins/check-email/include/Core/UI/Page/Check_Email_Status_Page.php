@@ -117,7 +117,6 @@ class Check_Email_Status_Page extends Check_Email_BasePage {
                 $defaults = array(
                     'MIME-Version'  => '1.0',
                     'From'	        => esc_html( $from_email ),
-                    'Cc'            => '',
                     'Content-Type'  => 'text/html; charset='.get_option('blog_charset')
                 );
 
@@ -125,19 +124,29 @@ class Check_Email_Status_Page extends Check_Email_BasePage {
 
                 // nonce is validated in line 65.
                 // phpcs:disable
-                if ( isset( $_POST['checkemail_mime'] ) ) {
+                if ( isset( $_POST['checkemail_mime'] ) && ! empty( $_POST['checkemail_mime'] ) ) {
                     $args['MIME-Version'] = sanitize_text_field( wp_unslash($_POST['checkemail_mime']) );
                 }
 
-                if ( isset( $_POST['checkemail_from'] ) ) {
+                if ( isset( $_POST['checkemail_from'] ) && ! empty( $_POST['checkemail_from'] ) ) {
                     $args['From'] = sanitize_email( wp_unslash($_POST['checkemail_from']) );
                 }
 
-                if ( isset( $_POST['checkemail_cc'] ) ) {
-                    $args['Cc'] = sanitize_email( wp_unslash($_POST['checkemail_cc']) );
+                if ( isset( $_POST['checkemail_cc'] ) && ! empty( $_POST['checkemail_cc'] ) ) {
+                    $cc_emails = preg_split( '/[\r\n,]+/', wp_unslash( $_POST['checkemail_cc'] ) );
+                    $valid_cc  = array();
+                    foreach ( $cc_emails as $cc_email ) {
+                        $clean_email = sanitize_email( trim( $cc_email ) );
+                        if ( is_email( $clean_email ) ) {
+                            $valid_cc[] = $clean_email;
+                        }
+                    }
+                    if ( ! empty( $valid_cc ) ) {
+                        $args['Cc'] = implode( ', ', $valid_cc );
+                    }
                 }
 
-                if ( isset( $_POST['checkemail_type'] ) ) {
+                if ( isset( $_POST['checkemail_type'] ) && ! empty( $_POST['checkemail_type'] ) ) {
                     $args['Content-Type'] = sanitize_text_field( wp_unslash($_POST['checkemail_type']) );
                 }
                 // phpcs:enable
@@ -145,7 +154,9 @@ class Check_Email_Status_Page extends Check_Email_BasePage {
                 $args = wp_parse_args( $args, $defaults );
                 $headers = '';
                 foreach ( $args as $key => $value ) {
-                    $headers .= $key . ': ' . $value . $break;
+                    if ( '' !== trim( $value ) ) {
+                        $headers .= $key . ': ' . $value . $break;
+                    }
                 }
                
             }

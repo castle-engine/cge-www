@@ -5,7 +5,7 @@ License: GPLv3 or later
 Tags: syntax highlighter, highlighter, highlighting, code, code highlighter
 Requires at least: 6.9
 Tested up to: 6.9.4
-Stable tag: 2.9.0
+Stable tag: 2.9.1
 
 Reincarnation of Crayon Syntax Highlighter. Syntax Highlighter supporting multiple languages, themes, fonts, highlighting from a URL, or post text.
 
@@ -332,6 +332,12 @@ Contact me at http://twitter.com/crayonsyntax or crayon.syntax@gmail.com.
 5. Theme Editor.
 
 == Changelog ==
+
+= 2.9.2 =
+* FIXED
+    * Removed Consolas, Monaco, and Adobe Source Sans fonts during to license problems. (https://github.com/urvanov-ru/crayon-syntax-highlighter/issues/60)
+    * Default font changed from Monaco to Ubuntu Mono.
+    * Fixed warning preg_replace_callback() Passing null to parameter #3.
 
 = 2.9.1 =
 * FIXED

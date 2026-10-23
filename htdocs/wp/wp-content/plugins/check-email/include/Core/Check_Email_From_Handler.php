@@ -79,23 +79,44 @@ class Check_Email_From_Handler {
     * @since 1.0.5
     */    
     public function override_values( $headers ) {
-        if( $this->override_enabled() && isset( $this->options['email_from_email'] ) && '' != $this->options['email_from_email']){
-           
-            $headers['headers'] = "MIME-Version: 1.0\r\n";
-
+        if ( $this->override_enabled() && isset( $this->options['email_from_email'] ) && '' != $this->options['email_from_email'] ) {
             $email = $this->options['email_from_email'];
- 
-            if( $this->override_enabled() && isset( $this->options['email_from_name'] ) && '' != $this->options['email_from_name'] ){
-                
-                $headers['headers'] .= "From: " . $this->options['email_from_name'] . " <". $email .">\r\n" ;
-            }else{
-               
-                $headers['headers'] .= "From: <". $email .">\r\n" ;
+
+            if ( isset( $this->options['email_from_name'] ) && '' != $this->options['email_from_name'] ) {
+                $from_line = 'From: ' . $this->options['email_from_name'] . ' <' . $email . '>';
+            } else {
+                $from_line = 'From: <' . $email . '>';
             }
 
-            $headers['headers'] .= "Content-Type: text/html; charset=\"UTF-8\"\r\n";
+            if ( empty( $headers['headers'] ) ) {
+                $headers['headers'] = "MIME-Version: 1.0\r\n" . $from_line . "\r\n";
+            } elseif ( is_array( $headers['headers'] ) ) {
+                $has_from = false;
+                foreach ( $headers['headers'] as $key => $header ) {
+                    if ( 0 === stripos( trim( $header ), 'from:' ) ) {
+                        $headers['headers'][ $key ] = $from_line;
+                        $has_from = true;
+                    }
+                }
+                if ( ! $has_from ) {
+                    $headers['headers'][] = $from_line;
+                }
+            } else {
+                $headers_str  = str_replace( "\r\n", "\n", $headers['headers'] );
+                $header_lines = explode( "\n", $headers_str );
+                $has_from     = false;
+                foreach ( $header_lines as $key => $header ) {
+                    if ( 0 === stripos( trim( $header ), 'from:' ) ) {
+                        $header_lines[ $key ] = $from_line;
+                        $has_from = true;
+                    }
+                }
+                if ( ! $has_from ) {
+                    $header_lines[] = $from_line;
+                }
+                $headers['headers'] = implode( "\r\n", array_filter( array_map( 'trim', $header_lines ) ) ) . "\r\n";
+            }
         }
-
 
         return $headers;
     }
