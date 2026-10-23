@@ -233,6 +233,11 @@ If everything went well, you should get a file `hello_pas2js.js` in the same dir
 If `pas2js` reports an error like `Error: can't find unit "System"`, it most likely means that the https://wiki.freepascal.org/pas2js.cfg[pas2js.cfg] configuration file is missing or wrong. You can either generate it using `createconfig` tool (it's in the `tools` subdirectory of Pas2js installation; if you used `fpcupdeluxe`, it's inside `<chosen_installation_path>/ccr/pas2js-rtl/tools/`) or take and adjust the sample from https://wiki.freepascal.org/pas2js.cfg[pas2js.cfg wiki page], then place the resulting file in a system-specific location indicated on that wiki page.
 ====
 +
+[WARNING]
+====
+If `pas2js` reports compilation errors like `Error: not yet implemented: :TPrimitiveExpr [20171003112020]` in `webwidget.pas` and `htmlwidgets.pp`: It is a temporary issue in Pa2js. Until it is fixed, you need to edit 2 sources https://forum.castle-engine.io/t/unable-to-install-the-web-platform-or-update-fpc-using-fpcupdeluxe/2208/2?u=michalis[as described in this forum post]. Basically, comment out lines `Result:=Add as ...;`.
+====
++
 - *compileserver* from *link:https://getpas2js.freepascal.org/[Pas2js]*.
 +
 This is a very useful tool distributed along with link:https://getpas2js.freepascal.org/[Pas2js]. Make sure you got it, test it by executing on the  command-line this:
