@@ -5,6 +5,12 @@ castle_header('Additional Components', array(
 ));
 
 echo pretty_heading($page_title);
+
+$additional_components_json = file_get_contents(__DIR__ . '/additional_components.json');
+if ($additional_components_json === false) {
+  throw new RuntimeException('Could not read additional_components.json');
+}
+$additional_components = json_decode($additional_components_json, true, 512, JSON_THROW_ON_ERROR);
 ?>
 
 <p>Additional components listed here are built on top of <i>Castle Game Engine</i>.
@@ -15,109 +21,36 @@ You can use them in your own projects, to enhance what you can do with CGE.
 We love to see how you use CGE.</i>
 
 <div class="row">
-  <?php gallery_link('Icosphere',
-    'Create icosphere (alternative way to triangulate a sphere, that doesn\'t have poles).
-    <p>See also <a href="https://forum.castle-engine.io/t/building-icospheres-in-x3d/1153/">related forum thread</a> and <a href="https://github.com/xistext/edjlib">GitHub repository with more goodies, like behavior trees</a>.
-    <p>By <i>Erik Johnson</i>.
-      ',
-    'ico_sphere.png',
-    'https://github.com/xistext/edjlib/blob/main/icosphere.pas');
-  ?>
-
-  <?php gallery_link('Castle Bars',
-    'Several basic bars (horizontal, vertical and circular progressbars) and sliders (horizontal, vertical and continuous, discrete).
-     <p>By <i>Eugene Loza</i>.',
-    'castle_bars.gif',
-    'https://gitlab.com/EugeneLoza/castle-bars');
-  ?>
-
-  <?php gallery_link('Castle Lines 2D',
-    'Draw 2D geometry inside CGE editor.
-     <p>See also <a href="https://castle-engine.io/wp/2023/01/13/draw-2d-geometry-inside-cge-editor-using-castle-lines-2d-components/">news</a>.
-     <p>By <i>Korchazhkin Sergey (KumurTash on GitHub)</i>.',
-    'component_castlelines2d.png',
-    'https://github.com/KumurTash/CastleLines2D/');
-  ?>
-
-  <?php gallery_link('Spine Runtime for Castle Game Engine',
-    'Render Spine models using official Spine runtime, that supports more Spine features than built-in CGE support.
-     <p>By <i>Trung Le (Kagamma)</i>.',
-    'component_spine_runtime.png',
-    'https://github.com/Kagamma/spine-runtimes');
-  ?>
-
-  <?php gallery_link("Particle Emitter",
-    'Particle system for 3D and 2D that supports editing right inside CGE editor. Particles are calculated with GPU acceleration (transform feedback).
-     <p>See forum threads: <a href="https://forum.castle-engine.io/t/3d-particle-system/">1</a>, <a href="https://forum.castle-engine.io/t/3d-particle-system-now-with-full-support-for-2d-and-castle-editor/">2</a>. See <a href="https://castle-engine.io/wp/2021/08/20/particle-system-updates-with-editing-integrated-inside-cge-editor-and-improvements-to-building-editor-with-custom-components/">news</a>.
-     <p>By <i>Trung Le (Kagamma)</i>.',
-    //'cge_3d_particles_edit_fire.png',
-    'cge_3d_particles_editor.png',
-    'https://github.com/Kagamma/cge-3d-particle-emitter');
-  ?>
-
-  <?php gallery_link("Effekseer Integration",
-    'Integration with <a href="https://effekseer.github.io/en/">Effekseer</a>, a full-featured open-source particle effect creation tool.
-     <p>See <a href="https://castle-engine.io/wp/2021/08/22/effekseer-particle-effect-creation-and-runtime-integration/">news</a>.
-     <p>By <i>Trung Le (Kagamma)</i>.',
-    'cge_effekseer.png',
-    'https://github.com/Kagamma/cge-effekseer');
-  ?>
-
-  <?php gallery_link("2D water effect",
-    'A beautiful water for 2D games. The water is represented as a volume that you can easily move and scale around. It supports reflection and refraction.
-     <p>See <a href="https://castle-engine.io/wp/2021/08/21/water-effect-ready-to-use-in-2d-games-like-a-platformer-demo/">news</a>.
-     <p>By <i>Trung Le (Kagamma)</i>.',
-    'cge_2d_water.png',
-    'https://github.com/Kagamma/cge-2d-water-effect');
-  ?>
-
-  <?php gallery_link("cge-2d-particle-emitter",
-    '2D particle system using "71 Squared" format (.pex files). Particles are calculated on CPU or with GPU acceleration (transform feedback). See also <a href="https://forum.castle-engine.io/t/cge-2d-particle-emitter-now-supports-gpu-based-particle/">forum thread</a>.
-     <p>This is <i>deprecated</i> now in favor of <a href="https://github.com/Kagamma/cge-3d-particle-emitter">cge-3d-particle-emitter</a>.
-     <p>By <i>Trung Le (Kagamma)</i>.',
-    'cge_2d_particles.png',
-    'https://github.com/Kagamma/cge-2d-particle-emitter');
-  ?>
-
-  <?php gallery_link('UI Shaker',
-    'A child of <code>TCastleUserInterface</code> that shakes all its children when asked to.
-     <p>By <i>Eugene Loza</i>.',
-    'ui-shaker.gif',
-    'https://gitlab.com/EugeneLoza/ui-shaker');
-  ?>
-
-  <?php gallery_link('Typing Label',
-    'A label (child of <code>TCastleLabel</code>) that supports <i>"typing effect"</i> on the text (text apppears gradually, one letter at a time). Allows skipping and restarting typing. Supports HTML rich text.
-     <p>By <i>Eugene Loza</i>.',
-    'typing-label.gif',
-    'https://gitlab.com/EugeneLoza/typing-label');
-  ?>
-
-  <?php gallery_link('Shifted Image Control',
-    '<code>TCastleShiftedImageControl</code> that can render cropped images with a shift. Also comes with two utilities:
-<ol>
-  <li>ShiftedConvert - crops transparent parts of the image and converts it into a shifted image, that is rendered by <code>TCastleShiftedImageControl</code>.
-  <li>AlphaBleeder - slower but more "beautiful" version of ' . cgeRef('TCastleImage.AlphaBleed') . '
-</ol>
-<p>This may come in handy when rendering multiple images that should be aligned properly to each other but have large unused transparent areas (e.g. different exported layers from InkScape). Should boost RAM/VRAM usage and performance a bit.
-     <p>By <i>Eugene Loza</i>.',
-    'shifted_image.png',
-    'https://gitlab.com/EugeneLoza/shifted-image-control');
-  ?>
-
-  <?php gallery_link("Database aware CGE UI",
-    'Implementation of database-aware TCastleDBEdit component. See the <a href="https://github.com/castle-engine/castle-db-aware-controls/">GitHub code</a> and <a href="https://castle-engine.io/wp/2018/12/24/database-aware-demo-using-castle-game-engine-ui/">this news post</a> for documentation.',
-    'database_aware.png',
-    'https://github.com/castle-engine/castle-db-aware-controls');
+  <?php
+  foreach ($additional_components['components'] as $component) {
+    $description = preg_replace_callback(
+      '/\{\{cgeRef:([^{}]+)\}\}/',
+      function ($matches) {
+        return cgeRef($matches[1]);
+      },
+      $component['description']
+    );
+    gallery_link(
+      $component['title'],
+      $description,
+      $component['image'],
+      $component['page']
+    );
+  }
   ?>
 </div>
 
 <p>More:
 
 <ul>
-  <?php gallery_link_noimage("wrltodxf",
-    'Convert a VRML, X3D or other 3D model to DXF file.',
-    'https://github.com/rweinzierl10/wrltodxf');
+  <?php
+  foreach ($additional_components['more'] as $component) {
+    gallery_link_noimage(
+      $component['title'],
+      $component['description'],
+      $component['page']
+    );
+  }
   ?>
 </ul>
 
