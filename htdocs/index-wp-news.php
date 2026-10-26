@@ -6,13 +6,15 @@
    an independent (not part of Wordpress) PHP page.
 */
 
-if (!HTML_VALIDATION && (
-  CASTLE_ENVIRONMENT == 'production'
-  /* Comment our the condition below,
-     to not try to use Wordpress and Wordpress database during development.
-     This makes testing easy, as most of our content are just static pages. */
-   || CASTLE_ENVIRONMENT == 'development'
-  ))
+// By default, CASTLE_USE_WORDPRESS is true
+if (!defined('CASTLE_USE_WORDPRESS')) {
+    define('CASTLE_USE_WORDPRESS', true);
+}
+
+if (!HTML_VALIDATION &&
+  CASTLE_USE_WORDPRESS &&
+  // In CASTLE_ENVIRONMENT=offline, do not embed Wordpress
+  (CASTLE_ENVIRONMENT == 'production' || CASTLE_ENVIRONMENT == 'development'))
 {
     /* Wordpress knowingly uses some PHP deprecated stuff.
        And our castle_engine_functions.php by default warns about E_ALL in development. */

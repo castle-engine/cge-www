@@ -1,0 +1,20 @@
+<?php
+
+/* Copy this to castle_config.php and adjust, as you wish. */
+
+/*
+  Should index.php include Wordpress news.
+  This requires working Wordpress installation, which means working MySQL
+  database connection.
+*/
+//define("CASTLE_USE_WORDPRESS", false);
+
+/*
+  If Geshi makes errors like this:
+  """
+  Warning: preg_match(): Allocation of JIT memory failed, PCRE JIT will be disabled.
+  This is likely caused by security restrictions.
+  Either grant PHP permission to allocate executable memory, or set pcre.jit=0 in /home/michalis/sources/castle-engine/cge-www/htdocs/geshi/geshi.php on line 706
+  """
+*/
+//ini_set("pcre.jit", "0");

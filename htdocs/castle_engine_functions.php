@@ -24,31 +24,21 @@
 
 /* PHP functions common for castle-engine WWW pages. */
 
+// Include, if exists, machine-specific unversioned configuration.
+if (file_exists('castle_config.php')) {
+  include 'castle_config.php';
+}
+
 /* The production (not development, offline) website URL. */
 define('CASTLE_PROD_URL', 'https://castle-engine.io/');
 
-/* Calculate CASTLE_ENVIRONMENT constant. */
+/*
+  Calculate CASTLE_ENVIRONMENT constant.
+  See below for possible values.
+*/
 function castle_detect_environment()
 {
-  /* CASTLE_ENVIRONMENT equal "offline"
-     means that we will set CURRENT_URL to '' and do not connect
-     to the outside world for resources (scripts, images, including analytics).
-     All the links lead to remote (to CASTLE_PROD_URL/xxx.php),
-     this is realized by kambi_common.php .
-
-     Useful to generate documentation working offline
-     (for PasDoc docs in CGE release).
-
-     Note that some things cannot work correctly in this mode:
-     - Stuff that can be included by WordPress will be included
-       incorrectly, as WordPress base path is in any subdirectory,
-       like "2017/02/12/hello-world/".
-     - RSS feed generated will have relative URLs,
-       which means it would not work when embedded on other servers.
-     - og:image contents should be an absolute URL (Facebook warns
-       about it otherwise).
-  */
-  // For now, the environment "offline" is never auto-detected here.
+  // Note: the environment "offline" is never auto-detected here.
 
   /* CASTLE_ENVIRONMENT equal "development"
      means that we are testing the page on development server,
@@ -66,6 +56,44 @@ function castle_detect_environment()
   define('CASTLE_ENVIRONMENT', 'production');
 }
 
+/*
+  Define CASTLE_ENVIRONMENT, if not already set. Can be equal:
+
+  - "production"
+
+    Full version, deployed online on https://castle-engine.io/ .
+
+  - "development"
+
+    Useful for testing, e.g. on localhost. See ../README.md .
+
+  - "offline"
+
+    We will set CURRENT_URL to '' and do not connect
+    to the outside world for resources (scripts, images, including analytics).
+    All the links are absolute URLs with CASTLE_PROD_URL
+    (this is realized by castle-engine-website-base/kambi_common.php ).
+
+    The is useful to generate documentation working offline
+    (for PasDoc docs in CGE release).
+
+    Note that some things cannot work correctly in this mode:
+    - Stuff that can be included by WordPress will be included
+      incorrectly, as WordPress base path is in any subdirectory,
+      like "2017/02/12/hello-world/".
+    - RSS feed generated will have relative URLs,
+      which means it would not work when embedded on other servers.
+    - og:image contents should be an absolute URL (Facebook warns
+      about it otherwise).
+
+  CASTLE_ENVIRONMENT can also be set:
+
+  - before including this file
+    (e.g. /castle-engine/doc/pasdoc/html-parts/cge-www-configure.php
+    does this)
+
+  - or in castle_config.php, included earlier.
+*/
 if (!defined('CASTLE_ENVIRONMENT')) {
   castle_detect_environment();
 }

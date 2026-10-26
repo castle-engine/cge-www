@@ -27,3 +27,5 @@
 # auto-generated, and large and often changing, so copy it by rsync without GIT
 /htdocs/web-demos/
 
+# deliberately non-versioned
+/htdocs/castle_config.php
