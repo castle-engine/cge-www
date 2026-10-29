@@ -45,7 +45,7 @@ see the <code>navigation</code> subdirectory inside <a href="demo_models">our VR
     <p>You can even animate their transformation and properties, to animate the camera.
 
     <p>Note: In <i>Castle Game Engine</i> you can also control the camera by Pascal code,
-    using the <code>Viewport.Camera</code> property that keeps a
+    using the <?php echo cgeRef('TCastleViewport.Camera'); ?> property that keeps a
     <?php echo cgeRef('TCastleCamera'); ?>
     instance.
     See <a href="camera">manual about controlling the camera</a>.
@@ -66,7 +66,7 @@ see the <code>navigation</code> subdirectory inside <a href="demo_models">our VR
       <li>
         <p>With <code>Viewpoint</code> (or <code>OrthoViewpoint</code>), we assume you have set proper <code>centerOfRotation</code>. The default <code>centerOfRotation</code> is just (0,0,0). This follows X3D standard.
 
-        <p>You can set <code>Viewport.autoCenterOfRotation</code> (or <code>OrthoViewport.autoCenterOfRotation</code>) to <code>true</code> to explicitly request to automatically determine (based on bounding box middle) this center of rotation.
+        <p>You can set <code>Viewpoint.autoCenterOfRotation</code> (or <code>OrthoViewpoint.autoCenterOfRotation</code>) to <code>true</code> to explicitly request to automatically determine (based on bounding box middle) this center of rotation.
         This field is a CGE extension.
     </ul>
 
