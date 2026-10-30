@@ -5,9 +5,19 @@ include::common.adoc[]
 
 == Introduction
 
-TODO
+You can use Delphi to build and run applications made with _Castle Game Engine_ for Android and iOS.
 
-== Movies
+Just try it by opening one of the engine https://github.com/castle-engine/castle-engine/tree/master/examples/[examples] (like
+https://github.com/castle-engine/castle-engine/tree/master/examples/2d_games/platformer[examples/2d_games/platformer] or
+https://github.com/castle-engine/castle-engine/tree/master/examples/3d_games/walking_adventure[examples/3d_games/walking_adventure]). Examples ship with Delphi project files (`.dproj`), so you can just open them with Delphi. Add to the project targets like _"Android 64-bit"_ or _"iOS Device 64-bit"_, generate the necessary artwork, and build and run it with Delphi.
+
+NOTE: While you can https://github.com/castle-engine/castle-engine/tree/master/examples/[browse the engine examples on GitHub], it's easiest to open them by just link:download[downloading and installing the Castle Game Engine on your disk], it will include all example code and data.
+
+== Movie
+
+Here's a movie presentation how it all works.
+
+First part of the movie shows the basic usage of _Castle Game Engine_ and deploying sample applications for _Android_. Second half focuses on integrating with _FireMonkey_ components for some cool additional features (like camera, location, accelerometer, gyroscope services) -- you can try them yourself, these examples are in https://github.com/castle-engine/castle-engine/tree/master/examples/delphi[examples/delphi subdirectory].
 
 video::s2NgaJQa1TM[youtube,width=800,height=450]
 
