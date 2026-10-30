@@ -41,63 +41,68 @@ video::oA87iclrDZA[youtube,width=800,height=450]
 
 video::6JfFxnZO4Jc[youtube,width=800,height=450]
 
+video::s2NgaJQa1TM[youtube,width=800,height=450]
+
 ## Platforms supported with Delphi
 
-* We support now Windows (both 32-bit and 64-bit) and link:delphi_linux[Linux]. This means that you can compile and run your CGE applications on these platforms using Delphi. See link:delphi_linux[Linux] for Linux-specific setup notes.
+* We support Windows (both 32-bit and 64-bit), link:delphi_linux[Linux], link:delphi_mobile[Android and iOS]. You can compile and run applications using all _Castle Game Engine_ features on these platforms using Delphi.
 
-* Other platforms will come, next one is most likely Android.
+* On all supported platforms, you can use either cgeref:TCastleWindow[] or cgeref:TCastleControl[] for rendering.
++
+--
+- cgeref:TCastleWindow[] is our standard way to create a window, in which our engine takes care of the whole input and rendering. Our _"New Project"_ templates, and most examples, use it.
 
-* You can use cgeref:TCastleWindow[], which is our standard way to create CGE window. Our _"New Project"_ templates as well as most examples use it.
-
-* You can alternatively use cgeref:TCastleControl[] that allows to put CGE rendering on FMX (FireMonkey) or VCL form. link:control_on_form[See here for details].
+- You can alternatively use cgeref:TCastleControl[] that allows to put CGE rendering on FMX (FireMonkey) or VCL form. VCL is only for Windows, of course. link:control_on_form[See here for details].
 +
 To register the cgeref:TCastleControl[] component in Delphi IDE, follow link:delphi_packages[Delphi packages installation instructions].
+--
 
+* The only platform not fully supported with _Delphi_ is _macOS_. It is still supported _partially_:
++
+Rendering on _macOS_ doesn't work, but basic units compile and 3D loading/processing works. You can test it with a command-line https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/scene_information_cli_tool[scene_information_cli_tool] from our examples. It can be built and works as a command-line tool on macOS.
+
+[#delphi_version]
 ## Delphi versions supported
 
-* The engine is tested and supported on all Delphi versions >= 10.2.1. It was actively tested on 10.2, 10.3, 10.4 (including CE), and all Delphi 11 editions (including 11.3 CE).
+The engine is tested and supported on Delphi versions listed below.
 
-* The exact Delphi version support from _Castle Game Engine_ depends on the target platform, since the support for non-Windows platforms isn't perfect in older Delphi versions:
-+
---
+* The all include the free _Community Editions_ versions.
+
+* We always recommend the latest Delphi version, and we support all platforms with it.
+
+* We test both manually and automatically using continuous integration (link:CI[ci]). If we missed anything, if some example does not work as expected, please https://github.com/castle-engine/castle-engine/issues[report it].
+
+Delphi versions supported:
+
 Windows (32-bit and 64-bit):: Delphi >= 10.2.1
+
 link:delphi_linux[Linux] (64-bit only):: Delphi >= 11.3
-// (see https://github.com/castle-engine/castle-engine/issues/577[#577 for reasons])
-Android, iOS, macOS (Upcoming):: Delphi >= 10.4 (see below for reasons; these requirements may change once we finalize these platforms)
---
 
-////
-|===
-|Platform|Supported Delphi version
+link:delphi_mobile[Android]:: Delphi >= 10.4.2 (link:delphi_mobile#delphi_version_why[read here why, and how you can bend this rule to go as far back as "10.4.0 with patch 1"]).
 
-|Windows (32-bit and 64-bit)
-|>= 10.2.1
+link:delphi_mobile[Android, iOS]:: Delphi >= 13.1 (link:delphi_mobile#delphi_version_why[read here why, and how you can bend this rule to go as far back as "10.4.2"]).
 
-|Linux
-|>= 11.3
+macOS (Upcoming):: Most likely the requirements will be like for _iOS_. Details will come when we finalize this platform.
 
-|Android, iOS (Upcoming)
-|>= 10.4 (It may change once we finalize these platforms)
-|===
-////
+[NOTE]
+====
+Older Delphi versions didn't support _"project welcome page in a Markdown format"_. And most of our examples use this feature, to show a nice `README.md` of the project when you open it in a newer Delphi version.
 
-////
-* In the future, we could support Delphi versions >= XE 7.
-+
-Adjusting to Delphi XE 7 seems to require only a few local changes (see link:https://github.com/castle-engine/castle-engine/issues/482[XE7 test], link:https://github.com/castle-engine/castle-engine/issues/486[10.0.1 test], link:https://github.com/castle-engine/castle-engine/issues/488[10.1.2 test]).
-+
-We do not plan to support older Delphi versions. They are really old (link:https://en.wikipedia.org/wiki/History_of_Delphi_(software)[Delphi XE6 is from 2014]) and would require more work (see link:https://github.com/castle-engine/castle-engine/issues/481[XE4 test]). It doesn't seem wise to spend resources on maintaining (making and testing) compatibility with these ancient Delphi versions.
-////
+This causes harmless warnings when opening our examples in older Delphi versions, like 10.x -- upon opening the DPROJ, it will propose to open `README.md` in a default associated Windows application, like a text editor. Just ignore the dialog about `README.md` and Markdown, the project will still work correctly.
+====
 
-* We will not support Delphi versions older than 10.4 _for mobile (Android and iOS)_.
-+
-Reason: The older Delphi versions have crazy compatibility-breaking change to `String` handling on mobile: strings are 0-based (but only on mobile!, on desktop they remained 1-based) and _Embarcadero/Idera_ recommended way forward was to use `TStringHelper`, with all operations 0-based, and maybe treat strings as immutable.
-+
-This is documented now in link:https://docwiki.embarcadero.com/RADStudio/Alexandria/en/Zero-based_strings_(Delphi)[Zero-based strings (Delphi)]. In the past page link:https://docwiki.embarcadero.com/RADStudio/XE7/en/Migrating_Delphi_Code_to_Mobile_from_Desktop#Use_0-Based_Strings[Migrating Delphi Code to Mobile from Desktop (for Delphi XE7)] had a longer section _"Use 0-Based Strings"_.
-+
-Adjusting to this would mean rewriting all `String` handling code in the engine to use new `TStringHelper`. And it would be quite risky task &mdash; as the global `String` routines remained available for mobile, but they were nearly useless for cross-platform code, as they would use 1-based on desktop and 0-based on mobile. Thus causing hard-to-find bugs, as the same code would _compile_ everywhere, but would work _differently_ between desktop and mobile.
-+
-We're happy that Embarcadero backed off from this weird decision in later Delphi versions. See link:https://docwiki.embarcadero.com/RADStudio/Sydney/en/Zero-based_strings_(Delphi)[Delphi 10.4 (Sydney): Zero-based strings (Delphi)]. In particular it says _"In general terms, string indexing is now uniform across platforms and uses 1-based index model."_ and _"Default"_ is _"`{$ZEROBASEDSTRINGS OFF}` for Delphi desktop and mobile compilers"_.
+[#delphi_version_why]
+### Why these Delphi versions? Can we support older Delphi version for some platforms?
+
+In general: the answer is always _"maybe, let's talk"_, and it never hurts to https://castle-engine.io/talk.php[ask us] :) If you have a strong use-case, e.g. an existing cool project and it is really impossible to upgrade the Delphi version -- contact us, tell us about it.
+
+That said, we did research for each of the requirements above, so it's not easy.
+
+* link:delphi_mobile#delphi_version_why[Reasons behind our minimal Android and iOS Delphi versions].
+
+* https://github.com/castle-engine/castle-engine/issues/577#issuecomment-2027060068[This GitHub issue documents reasons behind our minimal support for Linux].
+
+* For Windows, it could be posssible to push the minimal supported Delphi version further down, although it gets more and more painful to maintain:) See link:https://github.com/castle-engine/castle-engine/issues/482[XE7 test], link:https://github.com/castle-engine/castle-engine/issues/486[10.0.1 test], link:https://github.com/castle-engine/castle-engine/issues/488[10.1.2 test].
 
 [#cpp_builder]
 ## {Cpp} Builder
@@ -110,7 +115,14 @@ There are 2 examples in CGE specifically for _{Cpp} Builder_, using engine API f
 
 - https://github.com/castle-engine/castle-engine/tree/master/examples/delphi/cpp_builder/window[examples/delphi/cpp_builder/window] shows using cgeref:TCastleWindow[], with link:views[], loading a design, operating on cgeref:TCastleScene[] and more. It faithfully recreates in {Cpp} the CGE Pascal example from the link:https://github.com/castle-engine/conference-itdevcon-2023/[ITDevCon 2023 conference].
 
-NOTE: For _{Cpp} Builder_ you need to _Build_ the link:delphi_packages[packages] **for all your target platforms**, which means: both Win32 and Win64. This is in contrast to usage from Pascal, where it is enough to only _Install_ them for Win32 (Delphi IDE architecture).
+[NOTE]
+====
+For _{Cpp} Builder_ you need to _Build_ the link:delphi_packages[packages] **for all your target platforms**. This means right now: Win32 and Win64 (for now, since _{Cpp} Builder_ doesn't support other platforms as target).
+
+This is in contrast to usage from Pascal, where it is enough to _Install_ the packages for your Delphi IDE architecture (Win32 or Win64, or both, depending on which IDE you use -- new Delphi versions come with 64-bit IDE).
+
+By accident, the above advises come down to the same 2 platforms (Win32 and Win64) but for different reasons: for {Cpp} the supported target platforms dictate this, while for Pascal the IDE platforms dictate this.
+====
 
 The _{Cpp} Builder_ compatibility is available for _{Cpp} Builder_ versions 11.3 and up.
 

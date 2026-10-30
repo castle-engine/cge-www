@@ -56,9 +56,3 @@ Connecting to Android:
 NOTE: Make sure that paths configured there to Java JDK are valid. If needed, https://www.oracle.com/java/technologies/downloads/[install Java JDK] and point the Delphi's configuration (inside Android SDKs in _"Options -> Deployment -> SDK Manager"_) to the proper Java JDK paths.
 
 . To deploy your application to a real Android device, it's simplest to just have it connected through USB to your machine.
-//+
-// TODO: uncomment once tested
-//NOTE: There are also options to connect wirelessly using _Android Studio_, see link:android[Android with FPC docs]. To make it reliable, you should point your _Android Studio_ to the Delphi's Android SDK version.
-
-//NOTE: You don't install anything like a _PAServer_ on Android device.
-

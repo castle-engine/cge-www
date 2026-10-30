@@ -1,0 +1,54 @@
+# Android and iOS development with Delphi
+include::common.adoc[]
+:description: Using Castle Game Engine with Delphi to build Android and iOS applications.
+:cge-social-share-image: delphi_android_platformer.png
+
+== Introduction
+
+TODO
+
+== Movies
+
+video::s2NgaJQa1TM[youtube,width=800,height=450]
+
+[#delphi_version_why]
+=== What are minimal Delphi versions supported, and why?
+
+For Android::
+We support **at least Delphi 10.4.0 with Patch 1**, but heavily recommend **at least Delphi 10.4.2**.
+
+For iOS::
+We support **Delphi versions >= 13.1**.
+
+Details behind these decisions, if you're curious:
+
+Delphi versions earlier than 10.4.0::
+It would be very hard to support Delphi versions before 10.4.0 with Android and iOS, as these Delphi versions had crazy compatibility-breaking change to `String` handling on mobile: strings were 0-based (but only on mobile!, on desktop they remained 1-based) and _Embarcadero/Idera_ recommended way forward was to use `TStringHelper`, with all operations 0-based, and maybe treat strings as immutable.
++
+This is documented now in link:https://docwiki.embarcadero.com/RADStudio/Alexandria/en/Zero-based_strings_(Delphi)[Zero-based strings (Delphi)]. In the past page link:https://docwiki.embarcadero.com/RADStudio/XE7/en/Migrating_Delphi_Code_to_Mobile_from_Desktop#Use_0-Based_Strings[Migrating Delphi Code to Mobile from Desktop (for Delphi XE7)] had a longer section _"Use 0-Based Strings"_.
++
+Adjusting to this would mean rewriting all `String` handling code in the engine to use new `TStringHelper`. And it would be quite risky task -- as the global `String` routines remained available for mobile, but they were nearly useless for cross-platform code, as they would use 1-based on desktop and 0-based on mobile. Thus causing hard-to-find bugs, as the same code would _compile_ everywhere, but would work _differently_ between desktop and mobile.
++
+We're happy that Embarcadero backed off from this weird decision in later Delphi versions. See link:https://docwiki.embarcadero.com/RADStudio/Sydney/en/Zero-based_strings_(Delphi)[Delphi 10.4 (Sydney): Zero-based strings (Delphi)]. In particular it says _"In general terms, string indexing is now uniform across platforms and uses 1-based index model."_ and _"Default"_ is _"``{$ZEROBASEDSTRINGS OFF}`` for Delphi desktop and mobile compilers"_.
+
+Delphi 10.4.0 without Patch 1 is buggy for Android::
+Delphi 10.4.0, without any patches, comes without RTL units compiled for Android. It will make compilation errors about missing `System.Contnrs` unit. The _Patch 1_ fixed that, so we strictly require it.
+
+Some Delphi versions earlier than 10.4.2 for Android kind of work...::
+While they work (at long as you have at least _patch 1_ installed on 10.4.0), they are really not recommended.
++
+--
+- Expect random crashes at compilation and linking. You have to retry, and it will eventually build.
+
+- Resulting application causes warnings on modern Android devices, due to using API versions no longer recommended by Google. You need to click on scary dialogs and accept the risk -- not friendly to end-users.
+
+- Running any application on Android device with Delphi debugger -> crashes (application hangs, occasionally doing segfaults; interrupting the debugger then hangs Delphi IDE and may left a temporary file locked until you kill debugger process `lldb-mi.exe`). Only running without the debugger works.
+
+- Only Delphi 10.4.2 shipped with significant Android improvements (bumps Android API levels, enables App Bundles, fixes above). So we recommend it as _practical minimum_.
+--
+
+Earlier Delphi versions for iOS?::
+Earlier Delphi versions, even down to 10.4.2, may work to build for iOS. But they will only work with deprecated _macOS_ / _Xcode_ versions. So in practice we cannot support them, we don't have resources to maintain multiple older _macOS_ / _Xcode_ installations.
++
+This requirement is a result of what _Apple_ is doing. The only way to develop for iOS is to use _Xcode_ (Delphi also uses it underneath), and older _Xcode_ versions (which may be required by older Delphis) are not compatible with the latest _macOS_.
+
