@@ -1,0 +1,59 @@
+# C++ Builder
+include::common.adoc[]
+:description: Using Castle Game Engine with C++ Builder.
+:cge-social-share-image: cpp_builder2.png
+
+## Introduction
+
+The engine is fully compatible with https://www.embarcadero.com/products/cbuilder/[{Cpp} Builder]. The complete engine class API is available from {Cpp} in a natural way. You can use cgeref:TCastleWindow[] or cgeref:TCastleControl[] from {Cpp}, just like from Pascal. See https://castle-engine.io/wp/2023/12/01/full-compatibility-with-c-builder/[the details in this article].
+
+cgeimg::block[
+  cpp_builder1.png|C++ Builder with Castle Game Engine,
+  cpp_builder2.png|C++ Builder with Castle Game Engine
+]
+
+## Examples
+
+There are 2 examples in CGE specifically for _{Cpp} Builder_, using engine API from {Cpp}:
+
+- https://github.com/castle-engine/castle-engine/tree/master/examples/delphi/cpp_builder/fmx[examples/delphi/cpp_builder/fmx] shows using cgeref:TCastleControl[] inside FMX form.
+
+- https://github.com/castle-engine/castle-engine/tree/master/examples/delphi/cpp_builder/window[examples/delphi/cpp_builder/window] shows using cgeref:TCastleWindow[], with link:views[], loading a design, operating on cgeref:TCastleScene[] and more. It faithfully recreates in {Cpp} the CGE Pascal example from the link:https://github.com/castle-engine/conference-itdevcon-2023/[ITDevCon 2023 conference].
+
+## Building packages
+
+For _{Cpp} Builder_ you need to _Build_ the link:delphi_packages[packages] **for all your target platforms**. This means right now: Win32 and Win64 (for now, since _{Cpp} Builder_ doesn't support other platforms as target).
+
+This is in contrast to usage from Pascal, where it is enough to _Install_ the packages for your Delphi IDE architecture (Win32 or Win64, or both, depending on which IDE you use -- new Delphi versions come with 64-bit IDE).
+
+By accident, the above advises come down to the same 2 platforms (Win32 and Win64) but for different reasons: for {Cpp} the supported target platforms dictate this, while for Pascal the IDE platforms dictate this.
+
+## Versions supported
+
+The _{Cpp} Builder_ compatibility is available for _{Cpp} Builder_ versions 11.3 and up.
+
+### Redistributing C++ Builder applications by default requires redistribution of Delphi run-time BPLs too
+
+_{Cpp} Builder_ applications by default require redistribution of Delphi run-time libraries (BPL files) too. This is unrelated to CGE. So you cannot just give your users the resulting EXE file, you need to also provide all the BPL (run-time packages) it uses. If you use CGE, then in addition to RTL and FMX, you will also need to redistribute CGE run-time packages (BPL files).
+
+If you forget to distribute the BPL files along with your EXE, users will see an error message like this:
+
+cgeimg::block[
+  cpp_builder_bpl_missing.png|Error message when BPL files are missing
+]
+
+If you want to avoid it, and have everything contained in one big EXE file, follow this answer; https://blogs.embarcadero.com/how-do-i-create-a-stand-alone-application-in-c-builder/[How do I create a stand-alone application in C++Builder] for a solution. In short (as of RAD Studio 12.0) uncheck in project options
+
+1. "_Building -> {Cpp} Linker -> Link with Dynamic RTL_" and
+
+2. "_Packages > Runtime Packages -> Link with runtime packages_".
+
+Applications are then compiled into a larger EXE, that is "stand-alone" and does not require BPL files to be distributed.
+
+We have tested the above solution, it works for simple FMX applications and CGE applications using cgeref:TCastleControl[] like https://github.com/castle-engine/castle-engine/tree/master/examples/delphi/cpp_builder/fmx[examples/delphi/cpp_builder/fmx]. Below is a screenshot, as you can see in the background we only transferred the EXE file to another computer and the `data` subdirectory.
+
+cgeimg::block[
+  cpp_builder_no_bpl_required.png|No BPL files required
+]
+
+WARNING: Unfortunately https://github.com/castle-engine/castle-engine/tree/master/examples/delphi/cpp_builder/window[examples/delphi/cpp_builder/window] with these settings (no run-time packages) makes _{Cpp} Builder_ compiler crash with _Access Violation_. We haven't tested whether this problem affects all _{Cpp} Builder_ applications using cgeref:TCastleWindow[], the reason behind it is also unknown -- cgeref:TCastleWindow[] isn't anything special, it just uses WinAPI (on Windows) under the hood to create a window with OpenGL context.

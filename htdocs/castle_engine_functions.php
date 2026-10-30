@@ -402,6 +402,7 @@ $castle_sitemap = array(
                   'doc/delphi_mobile' => array('title' => 'Delphi for Android and iOS'),
                   'doc/delphi_linux' => array('title' => 'Delphi for Linux'),
                   'doc/delphi_more_platforms' => array('title' => 'Delphi for macOS, Android, iOS'),
+                  'doc/cpp_builder' => array('title' => 'C++ Builder'),
                 )
               ),
               'doc/vscode' => array('title' => 'Visual Studio Code'),
