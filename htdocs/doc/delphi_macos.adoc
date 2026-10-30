@@ -9,10 +9,10 @@ include::common.adoc[]
 ====
 _macOS_ with _Delphi_ is right now supported only _partially_. If you want to change this, link:talk.php[just ask :)]. We also appreciate link:donate[donating explicitly to this goal].
 
-Note that with FPC, macOS is already fully supported.
+Note that link:macos[with FPC, macOS is already fully supported, both as target and as source platform (you can use Castle Game Engine editor and build applications without leaving your mac)].
 ====
 
-Rendering on _macOS_ doesn't work for now.
+Rendering on _macOS_ doesn't work for now, when compiled with _Delphi_.
 
 But basic units compile and 3D loading/processing works. You can test it with a command-line https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/scene_information_cli_tool[scene_information_cli_tool] from our examples. It can be built and works as a command-line tool on macOS.
 

@@ -29,7 +29,7 @@ NOTE: Make sure that paths configured there to Java JDK are valid. If needed, ht
 
 Connecting to iOS:
 
-. You need a working connection to a _macOS_ machine to build for _iOS_. Follow the link:macos[macOS] deployment guide.
+. You need a working connection to a _macOS_ machine to build for _iOS_. Follow the link:delphi_macos[Delphi for macOS] deployment guide.
 
 . Setup iOS SDK in the _"Options -> Deployment -> SDK Manager"_. It will also happen automatically if you just try to build for _"iOS Device 64-bit"_.
 
@@ -37,7 +37,7 @@ Connecting to iOS:
 //NOTE: You don't install anything like a _PAServer_ on iOS device. The Delphi (from Windows) will talk to your macOS to do building and deployment on iOS.
 
 [#delphi_version_why]
-=== What are minimal Delphi versions supported, and why?
+== What are minimal Delphi versions supported, and why?
 
 For Android::
 We support **at least Delphi 10.4.0 with Patch 1**, but heavily recommend **at least Delphi 10.4.2**.

@@ -57,7 +57,7 @@ video::s2NgaJQa1TM[youtube,width=800,height=450]
 To register the cgeref:TCastleControl[] component in Delphi IDE, follow link:delphi_packages[Delphi packages installation instructions].
 --
 
-* The only platform not fully supported with _Delphi_ is _macOS_. It is still supported _partially_:
+* The only platform not fully supported with _Delphi_ is link:delphi_macos[macOS]. It is still supported _partially_:
 +
 Rendering on _macOS_ doesn't work, but basic units compile and 3D loading/processing works. You can test it with a command-line https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/scene_information_cli_tool[scene_information_cli_tool] from our examples. It can be built and works as a command-line tool on macOS.
 
@@ -80,9 +80,9 @@ link:delphi_linux[Linux]:: Delphi >= 11.3.
 
 link:delphi_mobile[Android]:: Delphi >= 10.4.2 (link:delphi_mobile#delphi_version_why[read here why, and how you can bend this rule to go as far back as "10.4.0 with patch 1"]).
 
-link:delphi_mobile[Android, iOS]:: Delphi >= 13.1 (link:delphi_mobile#delphi_version_why[read here why, and how you can bend this rule to go as far back as "10.4.2"]).
+link:delphi_mobile[iOS]:: Delphi >= 13.1 (link:delphi_mobile#delphi_version_why[read here why, and how you can bend this rule to go as far back as "10.4.2"]).
 
-macOS (Upcoming):: Most likely the requirements will be like for _iOS_. Details will come when we finalize this platform.
+link:delphi_macos[macOS]:: Delphi >= 13.1 (same reasons as iOS).
 
 [NOTE]
 ====
