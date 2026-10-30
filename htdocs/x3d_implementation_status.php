@@ -73,7 +73,7 @@ details about supported nodes. </p>
   <tr><td><a href="x3d_implementation_cadgeometry.php">CAD geometry</a>  </td><td><b>2 (all)</b></td></tr>
   <tr><td><a href="x3d_implementation_texturing3d.php">Texturing3D</a>  </td><td><b>2 (all)</b></td></tr>
   <tr><td><a href="x3d_implementation_cubemaptexturing.php">Cube map environmental texturing</a>  </td><td><b>3 (all)</b></td></tr>
-  <tr><td>Layering                 </td><td></td></tr>
+  <tr><td><a href="x3d_implementation_layering.php">Layering</a>                 </td><td><b>0 (very basic handling)</b></td></tr>
   <tr><td>Layout                   </td><td></td></tr>
   <tr><td>Rigid body physics       </td><td></td></tr>
   <tr><td>Picking sensor           </td><td></td></tr>

@@ -560,6 +560,7 @@ $castle_sitemap = array(
               'x3d_implementation_cadgeometry'          => array('title' => 'CAD geometry'                    ),
               'x3d_implementation_texturing3d'          => array('title' => 'Texturing3D'                     ),
               'x3d_implementation_cubemaptexturing'     => array('title' => 'Cube map environmental texturing'),
+              'x3d_implementation_layering'             => array('title' => 'Layering'                        ),
             )
           ),
           'doc/x3d_larger_extensions' => array('title' => 'Larger X3D Extensions',
