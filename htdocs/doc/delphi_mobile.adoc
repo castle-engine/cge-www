@@ -11,6 +11,31 @@ TODO
 
 video::s2NgaJQa1TM[youtube,width=800,height=450]
 
+== Connecting Delphi to Android or iOS device
+
+NOTE: If you have already used _Delphi_ (and _FireMonkey_) with mobile platforms, then this section will likely not teach you anything new. There's nothing specific to _Castle Game Engine_ below. Just setup connection to _PAServer_ (on macOS, for iOS), setup SDKs, and you're good to go.
+
+=== Android
+
+Connecting to Android:
+
+. Setup Android SDK in the _"Options -> Deployment -> SDK Manager"_. You actually need 2 Android SDKs there: one for 32-bit (Arm 32-bit) and one for 64-bit (that's Aarch 64-bit), if you want to cover all options.
++
+NOTE: Make sure that paths configured there to Java JDK are valid. If needed, https://www.oracle.com/java/technologies/downloads/[install Java JDK] and point the Delphi's configuration (inside Android SDKs in _"Options -> Deployment -> SDK Manager"_) to the proper Java JDK paths. But Delphi can also ship with recommended Java version.
+
+. To deploy your application to a real Android device, it's simplest to just have it connected through USB to your machine.
+
+=== iOS
+
+Connecting to iOS:
+
+. You need a working connection to a _macOS_ machine to build for _iOS_. Follow the link:macos[macOS] deployment guide.
+
+. Setup iOS SDK in the _"Options -> Deployment -> SDK Manager"_. It will also happen automatically if you just try to build for _"iOS Device 64-bit"_.
+
+//more confusing than helpful note?
+//NOTE: You don't install anything like a _PAServer_ on iOS device. The Delphi (from Windows) will talk to your macOS to do building and deployment on iOS.
+
 [#delphi_version_why]
 === What are minimal Delphi versions supported, and why?
 

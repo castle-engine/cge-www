@@ -70,6 +70,7 @@ Redirect "/changes_log_feed.php" "http://gplusrss.com/rss/feed/c3dd3cd5ec6725d92
 Redirect "/creating_data_3d.php" "/export_models"
 Redirect "/creating_data_blender.php" "/blender"
 Redirect "/creating_data_material_properties.php" "/auto_generated_textures"
+Redirect "/delphi_more_platforms" "/delphi_mobile"
 Redirect "/documentation_more.php" "/"
 Redirect "/donate.php" "/donate"
 Redirect "/donate_other.php" "/donate"
