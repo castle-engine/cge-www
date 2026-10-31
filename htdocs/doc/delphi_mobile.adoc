@@ -7,47 +7,224 @@ include::common.adoc[]
 
 You can use Delphi to build and run applications made with _Castle Game Engine_ for Android and iOS.
 
-Just try it by opening one of the engine https://github.com/castle-engine/castle-engine/tree/master/examples/[examples] (like
+Just try it!
+
+- Open one of the engine https://github.com/castle-engine/castle-engine/tree/master/examples/[examples] (like
 https://github.com/castle-engine/castle-engine/tree/master/examples/2d_games/platformer[examples/2d_games/platformer] or
-https://github.com/castle-engine/castle-engine/tree/master/examples/3d_games/walking_adventure[examples/3d_games/walking_adventure]). Examples ship with Delphi project files (`.dproj`), so you can just open them with Delphi. Add to the project targets like _"Android 64-bit"_ or _"iOS Device 64-bit"_, generate the necessary artwork, and build and run it with Delphi.
+https://github.com/castle-engine/castle-engine/tree/master/examples/3d_games/walking_adventure[examples/3d_games/walking_adventure]). Examples ship with Delphi project files (`.dproj`), they are regular Delphi projects that you can open in any link:#delphi_version_why[supported Delphi version].
+
+- Add to the project targets like _"Android 64-bit"_ or _"iOS Device 64-bit"_.
+
+- Build and run it with Delphi for Android or iOS, just like any other FireMonkey application.
+
+In case of trouble, consult this page for help -- we gathered a lot of information about how everything works, and how to solve problems. But in a typical case, things should _just work_.
 
 NOTE: While you can https://github.com/castle-engine/castle-engine/tree/master/examples/[browse the engine examples on GitHub], it's easiest to open them by just link:download[downloading and installing the Castle Game Engine on your disk], it will include all example code and data.
 
 == Movie
 
-Here's a movie presentation how it all works.
+Here's a movie presentation of how it all works.
 
-First part of the movie shows the basic usage of _Castle Game Engine_ and deploying sample applications for _Android_. Second half focuses on integrating with _FireMonkey_ components for some cool additional features (like camera, location, accelerometer, gyroscope services) -- you can try them yourself, these examples are in https://github.com/castle-engine/castle-engine/tree/master/examples/delphi[examples/delphi subdirectory].
+The first part of the movie shows the basic usage of _Castle Game Engine_ and deploying sample applications for _Android_. The second half focuses on integrating with _FireMonkey_ components for some cool additional features (like camera, location, accelerometer, gyroscope services) -- you can try them yourself, these examples are in https://github.com/castle-engine/castle-engine/tree/master/examples/delphi[examples/delphi subdirectory].
 
 video::s2NgaJQa1TM[youtube,width=800,height=450]
 
-== Connecting Delphi to Android or iOS device
+== Features
 
-NOTE: If you have already used _Delphi_ (and _FireMonkey_) with mobile platforms, then this section will likely not teach you anything new. There's nothing specific to _Castle Game Engine_ below. Just setup connection to _PAServer_ (on macOS, for iOS), setup SDKs, and you're good to go.
+You can use _Delphi_ to run _Castle Game Engine_ applications on _Android_ and _iOS_.
 
-=== Android
+- Underneath, we rely on Delphi's support for Android and iOS applications using _FireMonkey_.
++
+You need to have appropriate platform support included in your Delphi version.
++
+And you install and configure your Delphi as usual for developing for _Android_ and _iOS_ with FireMonkey. Use the Delphi _"SDK Manager"_ to add the proper platforms (like _"Android 64-bit"_ or _"iOS Device 64-bit"_). For iOS, configure the connection to macOS in the _"Connection Profiles"_. More on this below.
+
+- To display using Castle Game Engine, you can use either:
++
+--
+- cgeref:TCastleWindow[]. Our recommended solution if you want to "just make a game". The game rendering is your whole application.
+// already implied above, let's keep it simpler:
+//Internally, we instantiate an FMX control that fills the entire FMX form, and it is completely rendered using OpenGLES, but you don't (have to) use any FMX component.
+
+- cgeref:TCastleControl[]. In this case, Castle Game Engine is just a rectangle on a regular FMX form you create and design. This is nice to add engine rendering to an existing application, e.g. to visualize something your application manages.
+--
++
+In both cases, for Delphi, your application is just a regular FireMonkey (FMX) application.
+
+- Rendering obviously works. Underneath, our OpenGLES rendering shares the context with FMX. We reset/save/restore the state to make sure FMX and CGE rendering do not interfere with each other.
+
+- Your application has regular data (deployed from your game's data, and link:#startup_copy_not_recommended[without the need for Delphi's `StartUpCopy`]) and config (writeable space), using the engine's URLs like `castle-data:/my_png.png`, `castle-config:/user_settings.conf`. All our link:url[URLs] work as expected.
+
+- Asynchronous network downloads using cgeref:TCastleDownload[] work.
+
+- link:sound[Audio works].
++
+WARNING: TODO: For now, audio on mobile is using a simple audio backend based on `TMediaPlayer` underneath. It practically works well enough for 2D games, but is likely too poor for 3D games. We plan to enable link:openal[OpenAL] and link:fmod[FMOD], full-featured sound backends with 3D sound, for Delphi mobile soon. link:talk.php[Talk to us] to push us to make it faster:)
+
+- Multi-touch works. Under the hood, we convert FMX `OnTouch` event information into what our engine expects (which is quite similar, we also have persistent finger ids, see our `Press` / `Release` / `Motion` events).
++
+NOTE: In case of cgeref:TCastleControl[], you need to explicitly call cgeref:TCastleControl.MultiTouchOnForm[] to enable multi-touch. It's just one trivial method to call when your form is created or shown.
+//This takes over the form's `OnTouch` event. FMX design doesn't allow to do this in a nicer way, it seems -- a control itself doesn't receive multi-touch information.
+
+- cgeref:TCastleContainer.SafeBorder[] is valid, we get the value from FMX. This is useful to render content avoiding system UI elements or the "notch" on mobile devices.
+
+- We can integrate with all FMX services and it works as expected.
++
+--
+- Camera from FMX (`TCameraComponent`) is useful, you can use camera image as a texture, in both "regular" FMX form with `TCastleControl`, and in `TCastleWindow`. See https://github.com/castle-engine/castle-engine/tree/master/examples/delphi/fmx_camera[examples/delphi/fmx_camera] (`TCastleControl` on FMX form), https://github.com/castle-engine/castle-engine/tree/master/examples/delphi/window_camera[examples/delphi/window_camera] (`TCastleWindow`).
+- Location services (https://github.com/castle-engine/castle-engine/tree/master/examples/delphi/fmx_location[examples/delphi/fmx_location])
+- Accelerometer (get 3D acceleration vector from device) (https://github.com/castle-engine/castle-engine/tree/master/examples/delphi/window_accelerometer[examples/delphi/window_accelerometer])
+- Gyroscope (get rotation/tilt from device) (https://github.com/castle-engine/castle-engine/tree/master/examples/delphi/window_gyroscope[examples/delphi/window_gyroscope])
+--
+
+== Usage
+
+=== Connecting Delphi to a mobile device
+
+NOTE: If you have already used _Delphi_ (and _FireMonkey_) with mobile platforms, then this section will likely not teach you anything new. There's nothing specific to _Castle Game Engine_ below. Just set up a connection to _PAServer_ (on macOS, for iOS), set up SDKs, and you're good to go.
+
+==== Android
 
 Connecting to Android:
 
-. Setup Android SDK in the _"Options -> Deployment -> SDK Manager"_. You actually need 2 Android SDKs there: one for 32-bit (Arm 32-bit) and one for 64-bit (that's Aarch 64-bit), if you want to cover all options.
+. Set up the Android SDK in the _"Options -> Deployment -> SDK Manager"_. You actually need 2 Android SDKs there: one for 32-bit (Arm 32-bit) and one for 64-bit (that's Aarch 64-bit), if you want to cover all options.
 +
-NOTE: Make sure that paths configured there to Java JDK are valid. If needed, https://www.oracle.com/java/technologies/downloads/[install Java JDK] and point the Delphi's configuration (inside Android SDKs in _"Options -> Deployment -> SDK Manager"_) to the proper Java JDK paths. But Delphi can also ship with recommended Java version.
+NOTE: Make sure that paths configured there to Java JDK are valid. If needed, https://www.oracle.com/java/technologies/downloads/[install Java JDK] and point Delphi's configuration (inside Android SDKs in _"Options -> Deployment -> SDK Manager"_) to the proper Java JDK paths. But Delphi can also ship with recommended Java version.
 
 . To deploy your application to a real Android device, it's simplest to just have it connected through USB to your machine.
 
-=== iOS
+==== iOS
 
 Connecting to iOS:
 
 . You need a working connection to a _macOS_ machine to build for _iOS_. Follow the link:delphi_macos[Delphi for macOS] deployment guide.
 
-. Setup iOS SDK in the _"Options -> Deployment -> SDK Manager"_. It will also happen automatically if you just try to build for _"iOS Device 64-bit"_.
+. Set up the iOS SDK in the _"Options -> Deployment -> SDK Manager"_. It will also happen automatically if you just try to build for _"iOS Device 64-bit"_.
 
 //more confusing than helpful note?
 //NOTE: You don't install anything like a _PAServer_ on iOS device. The Delphi (from Windows) will talk to your macOS to do building and deployment on iOS.
 
+=== Add "Android 64-bit", "iOS Device 64-bit" platforms to the project
+
+If you open in Delphi a project generated by the _Castle Game Engine_ tools, you need to add the appropriate mobile platform(s). In Delphi IDE, right-click on _"Target Platforms"_ and choose _"Add Platform..."_.
+
+- For Android, you want at least _"Android 64-bit"_ that includes almost all modern Android devices. Optionally, also add _"Android 32-bit"_.
+- For iOS, you want at least _"iOS Device 64-bit"_. Optionally, also add _"iOS Simulator ..."_ if you plan to use the simulator.
+
+**Reason why this is required:** Delphi project files (DPROJ) created by _Castle Game Engine_ tools (like _"New Project"_ in our editor), and examples distributed with our engine, *do not* include the Delphi mobile platforms by default. Maintaining DPROJ files that work with link:delphi#delphi_version[all supported Delphi versions] on mobile does not seem possible, as there are a number of details (like Java libraries used, and version info) that need to be present in DPROJ and are Delphi-version-specific.
+
+NOTE: For the same reason, we recommend sticking with 1 Delphi version for a given project. When you upgrade your Delphi, make sure everyone in your team upgrades to the same version at the same time. Otherwise, each time you edit a project in a different Delphi version, you may commit by accident some automatic DPROJ changes. Also, if you experience issues after changing the Delphi version, it may be necessary to remove + re-add the mobile platform, to let Delphi regenerate the proper settings.
+
+// tmi, we mention iOS bundle id already elsewhere
+////
+After adding the platform, remember to:
+- On iOS: set proper bundle id and choose provisioning profile
+////
+
+=== Application data (e.g. game models, textures)
+
+Like with every platform and every compiler we support, just place your data files inside the `data` subdirectory of your project. Access it using the link:data[special castle-data:/ URLs].
+
+Moreover, in case of all Delphi non-Windows platforms, it's important to keep your project files auto-generated and up to date. That's because the DPROJ of your project lists what files to deploy (i.e. put in APK or IPA file).
+
+**When you add / remove data files, you need to regenerate the DPROJ file by**:
+
+- _"Code -> Regenerate Project"_ menu item in the link:editor[].
+
+- Or from the command-line, using our link:build_tool[build tool], execute `castle-engine generate-program`.
+
+WARNING: TODO: Unfortunately, regenerating the project (after adding or removing data files) means that you will need to re-add the mobile platforms again (per section above). We know this is a problem. We plan to switch to packing data into a single zip for mobile platforms; then you will practically not need to regenerate DPROJ very often.
+
+[#startup_copy_not_recommended]
+=== We don't recommend using `System.StartUpCopy`
+
+Using `System.StartUpCopy` makes a copy of the assets on the device. In case of Android, assets are copied from a special location (not accessible as regular files, only accessible using special Android API for assets) to a filesystem on Android. In case of iOS, this is a simple copy (filesystem->filesystem).
+
+Doing this copy is:
+
+1. **Unnecessary**. Castle Game Engine reads data straight from the assets of the installed application (including using Android assets API), and this follows the recommendations for Android apps. As a developer, you use link:data[special URLs to refer to the application data].
+
+2. It is also **wasting initialization time and disk space**. This is important since game data can be large.
+
+3. And it has a serious issue: it **doesn't update a copy if it already exists**. So if a new version of your application ships a modified data file -> it will _not_ be updated. We guess this was done for performance reasons (otherwise every application launch is slow), but it can result in obvious bugs. See `System.StartUpCopy` sources to confirm this.
+
+////
+On Android, Delphi does it to make "asset files" behave more like regular files, so you can use things like
+- https://docwiki.embarcadero.com/Libraries/Florence/en/System.IOUtils.TPath.GetDocumentsPath[TPath.GetDocumentsPath]
+- https://docwiki.embarcadero.com/Libraries/Florence/en/System.SysUtils.GetHomePath[GetHomePath]
+- On Android `GetHomePath` leads to `GetFilesDir` which calls the `java.io.File.getFilesDir` (see https://developer.android.com/training/data-storage )
+
+It is uncertain why Delphi does this on iOS at all.
+////
+
+//Delphi does this copy whenever you use unit `System.StartUpCopy`.
+
+//Again, we don't need this (we read files from APK assets, or iOS application data) and we don't want this (you would duplicate data your game takes on device) and it has a bug (not updating if exists).
+
+We recommend you simply **do not** use `System.StartUpCopy` unit in your Delphi applications.
+
+////
+See also
+- https://www.experts-exchange.com/questions/29002734/Delphi-Deploying-and-accessing-local-files-on-Android.html
+- https://stackoverflow.com/questions/61942454/what-the-purpose-of-the-system-startupcopy-included-in-all-firemonkey-project
+////
+
+=== Capturing logs on Android
+
+Delphi applications on Android send logs using the standard Android facility. Our cgeref:WritelnLog[] and various other ways to send logs from Delphi all result in this. This is also equal to applications built using FPC, our cgeref:WritelnLog[] also sends logs to "standard Android facility".
+
+However, the Delphi IDE doesn't display these logs.
+
+To see them, you have several options:
+
+1. Run the Android application from our _Castle Game Engine_ editor.
++
+To do this, open your project in our link:editor[], switch platform to _Android_ using the menu _"Run -> Platform -> Android"_, and then run using the _"Run -> Run (Without Compiling)"_ menu item.
++
+Make sure that the mode (debug / release) corresponds to how you build your application.
++
+Make sure that our link:editor[] can find the Android `adb` tool. To use the same `adb` version as Delphi, consult the Delphi Android settings: enter _"Tools -> Options -> Deployment -> SDK Manager -> Android 64-bit"_ and look at the _"adb.exe location"_. To make this known to our editor, set the environment variable `ANDROID_HOME` to the directory containing the `platform-tools/adb.exe`, like
++
+```
+C:\Users\Public\Documents\Embarcadero\Studio\37.0\CatalogRepository\AndroidSDK-37.0.59082.6021\
+```
++
+If you don't know how to modify environment variables on Windows, you can https://www.computerhope.com/issues/ch000549.htm[follow instructions here].
+
+2. Run the Android application using our _Castle Game Engine_ command-line link:build_tool[build tool].
++
+To do this, open a terminal, navigate to your project directory, and run
++
+```
+castle-engine run --target=android --compiler=delphi --mode=debug
+```
++
+As above: make sure that `--mode` corresponds to how you build your application. And make sure that our build tool can find the Android `adb` tool, by setting the `ANDROID_HOME` environment variable as described above.
+
+3. You can install https://developer.android.com/studio[Android Studio] and use https://developer.android.com/studio/debug/logcat[logcat window].
++
+NOTE: Installing _Android Studio_ just to see the logs can be seen as overkill :) But we found it has enough nice features (even if you're not coding in Java!) that it's worth installing it anyway (e.g. connecting and mirroring devices over wi-fi).
+
+4. You can run command-line `adb` manually, like:
++
+--
+- `./adb logcat | grep 'com.embarcadero.Project1\|FMX: Project1'`
+- `./adb logcat --pid=$(./adb shell pidof -s com.embarcadero.Project1)`
+--
++
+If you want to automate this for your shell script, you can use `castle-engine output qualified-name` to get the qualified name of your Android application from our `CastleEngineManifest.xml`. But for now, you need to manually make sure that it corresponds to the Delphi id set in project options _"Version Info"_.
+
+5. There are various lightweight GUI tools wrapping adb, e.g.:
++
+--
+- https://components4developers.blog/2017/03/22/android-logcat-tool/[Android Logcat Tool from Components4Developers]
+- https://github.com/ivanovsergeyminsk/LogcatD[LogcatD]
+--
+
+See also the https://www.youtube.com/watch?v=U3rHwL_Q7W8[presentation about logging in FireMonkey].
+
 [#delphi_version_why]
-== What are minimal Delphi versions supported, and why?
+== What are the minimal Delphi versions supported, and why?
 
 For Android::
 We support **at least Delphi 10.4.0 with Patch 1**, but heavily recommend **at least Delphi 10.4.2**.
@@ -58,26 +235,26 @@ We support **Delphi versions >= 13.1**.
 Details behind these decisions, if you're curious:
 
 Delphi versions earlier than 10.4.0::
-It would be very hard to support Delphi versions before 10.4.0 with Android and iOS, as these Delphi versions had crazy compatibility-breaking change to `String` handling on mobile: strings were 0-based (but only on mobile!, on desktop they remained 1-based) and _Embarcadero/Idera_ recommended way forward was to use `TStringHelper`, with all operations 0-based, and maybe treat strings as immutable.
+It would be very hard to support Delphi versions before 10.4.0 with Android and iOS, as these Delphi versions had a crazy compatibility-breaking change to `String` handling on mobile: strings were 0-based (but only on mobile!, on desktop they remained 1-based) and the _Embarcadero/Idera_ recommended way forward was to use `TStringHelper`, with all operations 0-based, and maybe treat strings as immutable.
 +
-This is documented now in link:https://docwiki.embarcadero.com/RADStudio/Alexandria/en/Zero-based_strings_(Delphi)[Zero-based strings (Delphi)]. In the past page link:https://docwiki.embarcadero.com/RADStudio/XE7/en/Migrating_Delphi_Code_to_Mobile_from_Desktop#Use_0-Based_Strings[Migrating Delphi Code to Mobile from Desktop (for Delphi XE7)] had a longer section _"Use 0-Based Strings"_.
+This is documented now in link:https://docwiki.embarcadero.com/RADStudio/Alexandria/en/Zero-based_strings_(Delphi)[Zero-based strings (Delphi)]. In the past, the page link:https://docwiki.embarcadero.com/RADStudio/XE7/en/Migrating_Delphi_Code_to_Mobile_from_Desktop#Use_0-Based_Strings[Migrating Delphi Code to Mobile from Desktop (for Delphi XE7)] had a longer section _"Use 0-Based Strings"_.
 +
-Adjusting to this would mean rewriting all `String` handling code in the engine to use new `TStringHelper`. And it would be quite risky task -- as the global `String` routines remained available for mobile, but they were nearly useless for cross-platform code, as they would use 1-based on desktop and 0-based on mobile. Thus causing hard-to-find bugs, as the same code would _compile_ everywhere, but would work _differently_ between desktop and mobile.
+Adjusting to this would mean rewriting all `String` handling code in the engine to use the new `TStringHelper`. And it would be quite a risky task -- as the global `String` routines remained available for mobile, but they were nearly useless for cross-platform code, as they would use 1-based on desktop and 0-based on mobile. Thus causing hard-to-find bugs, as the same code would _compile_ everywhere, but would work _differently_ between desktop and mobile.
 +
 We're happy that Embarcadero backed off from this weird decision in later Delphi versions. See link:https://docwiki.embarcadero.com/RADStudio/Sydney/en/Zero-based_strings_(Delphi)[Delphi 10.4 (Sydney): Zero-based strings (Delphi)]. In particular it says _"In general terms, string indexing is now uniform across platforms and uses 1-based index model."_ and _"Default"_ is _"``{$ZEROBASEDSTRINGS OFF}`` for Delphi desktop and mobile compilers"_.
 
 Delphi 10.4.0 without Patch 1 is buggy for Android::
-Delphi 10.4.0, without any patches, comes without RTL units compiled for Android. It will make compilation errors about missing `System.Contnrs` unit. The _Patch 1_ fixed that, so we strictly require it.
+Delphi 10.4.0, without any patches, comes without RTL units compiled for Android. It will cause compilation errors about missing `System.Contnrs` unit. The _Patch 1_ fixed that, so we strictly require it.
 
 Some Delphi versions earlier than 10.4.2 for Android kind of work...::
-While they work (at long as you have at least _patch 1_ installed on 10.4.0), they are really not recommended.
+While they work (as long as you have at least _patch 1_ installed on 10.4.0), they are really not recommended.
 +
 --
 - Expect random crashes at compilation and linking. You have to retry, and it will eventually build.
 
 - Resulting application causes warnings on modern Android devices, due to using API versions no longer recommended by Google. You need to click on scary dialogs and accept the risk -- not friendly to end-users.
 
-- Running any application on Android device with Delphi debugger -> crashes (application hangs, occasionally doing segfaults; interrupting the debugger then hangs Delphi IDE and may left a temporary file locked until you kill debugger process `lldb-mi.exe`). Only running without the debugger works.
+- Running any application on Android device with Delphi debugger -> crashes (application hangs, occasionally doing segfaults; interrupting the debugger then hangs Delphi IDE and may leave a temporary file locked until you kill debugger process `lldb-mi.exe`). Only running without the debugger works.
 
 - Only Delphi 10.4.2 shipped with significant Android improvements (bumps Android API levels, enables App Bundles, fixes above). So we recommend it as _practical minimum_.
 --
@@ -86,4 +263,180 @@ Earlier Delphi versions for iOS?::
 Earlier Delphi versions, even down to 10.4.2, may work to build for iOS. But they will only work with deprecated _macOS_ / _Xcode_ versions. So in practice we cannot support them, we don't have resources to maintain multiple older _macOS_ / _Xcode_ installations.
 +
 This requirement is a result of what _Apple_ is doing. The only way to develop for iOS is to use _Xcode_ (Delphi also uses it underneath), and older _Xcode_ versions (which may be required by older Delphis) are not compatible with the latest _macOS_.
+
+== Deploying iOS applications
+
+=== You need a Mac
+
+Deploying iOS applications can be more complicated than Android, due to technical annoyances forced by Apple:
+
+- You _must_ connect to macOS to develop for iOS.
+** It may feel weird if you're used to cross-platform development environments. Yes, you can deploy to Android from any OS in the world (Windows, Linux...). No such luck with iOS, Apple deliberately forces you to use macOS. Delphi, Castle Game Engine, or anyone else -> we cannot avoid it. The only way to "deploy" your application, either to a physical device, or to create an IPA file (a bit like APK), is to use a macOS system, of course running on Apple hardware (since it cannot run anywhere else).
+
+- The IPA file that you get by building your application to a single file (using methods called "Release Testing" or, an older name for the same thing, "Ad Hoc") cannot just be distributed like an APK.
+** First, it contains specific UUIDs for test devices where it can run. Be sure to register the UUID of your device on Apple website. Yes, even the process of discovering your UUID is painfully annoying (need to wait for 1h to install profile from some 3rd-party website). It's seriously hard to write this manual with a neutral tone -- it should be painfully obvious by now that Apple sucks.
+** Second, putting an IPA in some place (like a web server) must be accompanied by a "manifest file", like https://github.com/SignTools/ota-me/blob/master/manifest.xml, to enable iOS devices to actually realize "this is something that can be installed". There are whole ecosystems to make these Apple limitations less painful, including TestFairy; Michalis also has some in-house scripts (see https://github.com/castle-engine/cge-scripts/blob/master/ios_upload[ios_upload] for hints).
+
+So the approaches available are:
+
+- Have a physical Mac, with macOS. Connect your iOS device (iPhone, iPad) to it. Then you can deploy applications to it, run and debug them -- from Delphi connected to the Mac, just like from Xcode on the Mac. Do this by just connecting Delphi to the Mac, creating iOS SDK in Delphi, and running your application (with debugging) from Delphi.
+
+- Or: Have a Mac to which you have physical or remote access. (For the latter case, see MacStadium, they also provide Mac machines for CGE development TODO link to news). Create an iOS application that can be run on any device. You can deploy it to IPA (which can be debugged on specific devices for which you registered UUID in your Apple account). Or you can deploy it to the App Store, to do TestFlight testing, or just distribute to everyone.
+
+See Embarcadero docs:
+
+- https://docwiki.embarcadero.com/RADStudio/Sydney/en/IOS_Mobile_Application_Development
+- https://docwiki.embarcadero.com/RADStudio/Sydney/en/Creating_an_iOS_App
+- https://docwiki.embarcadero.com/RADStudio/Sydney/en/Deploying_Your_iOS_Application_for_Ad_hoc_Distribution
+
+=== Deploying "Ad Hoc" (aka "Release Testing"), to IPA file
+
+You need to create an App ID on the Apple website, it seems you cannot let Xcode create it (or Delphi will complain that it cannot use a profile managed by Xcode). To do this:
+
+- Create an App ID on https://developer.apple.com/account/resources/identifiers/list
+- Create a "Provisioning Profile" for it
+** Note: You usually don't need "Offline Support" (which limits the profile validity to 7 days). As long as your device is online during the installation, it will work. Don't worry about the Apple warning "Apps signed with development and adhoc provisioning profiles must connect to ppq.apple.com during app installation or first launch." -- this connection doesn't require any changes in your application at all, it happens automatically. You only need to worry about this if your iOS device will be truly offline (or blocking `ppq.apple.com`) at the time of install or (first) launch.
+- In Xcode settings -> accounts, "Download Manual Profiles"
+- Make sure the file with the new profile appeared on macOS in `~/Library/Developer/Xcode/UserData/Provisioning Profiles`. You can just look at `*.mobileprovision` file contents, part of them is XML; if the file still looks too scary in your text editor, run `security cms -D -i <file>.mobileprovision` to extract the XML part from it.
+- Then select this in Delphi "Project Options" following the screenshots below.
+** Choose **Release** (not debug! although debug would make sense and is enabled in FPC for iOS, it doesn't work with Delphi/iOS in our tests. You must use release)
+** Choose **Ad hoc** configuration
+** In "Version Info", fill `CFBundleIdentifier`
+** In "Provisioning", for the proper "Target", choose Build Type "iOS Device 64-bit - Ad hoc" and select the matching profile in the combo boxes below. The profile must contain the `CFBundleIdentifier` chosen above.
+
+cgeimg::block[
+  ios_adhoc1.png|iOS Ad Hoc configuration in Delphi,
+  ios_adhoc2.png|iOS Ad Hoc configuration in Delphi,
+  ios_adhoc3.png|iOS Ad Hoc configuration in Delphi
+]
+
+Afterwards, doing "Project -> Build" followed by "Project -> Deploy Project" from Delphi should work. You will have an IPA file in `iOSDevice64\Release` subdirectory (for blank FMX projects) or in top-level project directory (for CGE projects). You can deploy it by
+
+- placing it on your HTTPS server,
+- creating manifest file like https://github.com/SignTools/ota-me/blob/master/manifest.xml,
+- and pointing to this from a webpage like `<a href="itms-services://?action=download-manifest&amp;url=https%3A%2F%2Fexample.org%2Fmanifest.plist">My App</a>`
+- Open it in Safari (other www browsers on iOS will not work for this, only Safari is blessed by Apple to be capable of this) on iOS device (the one whose UUID you registered earlier with Apple, to be useful as a test device) to install the IPA on your device.
+
+== Android and iOS services, managed by our build tool, are *not* available in Delphi
+
+link:android_services[Android services] and link:ios_services[iOS services], using native Java or Objective-C code, are _not_ available when using Delphi. They are only available when using FPC.
+
+The differences between our FPC and Delphi support for mobile platforms come down to this:
+
+- With Delphi, you can use all the FireMonkey goodies (like camera, location, accelerometer, gyroscope that I show in the movie; they have more, at least in-app purchases). But our services on https://castle-engine.io/android_services and https://castle-engine.io/ios_services are not available.
+
+- With FPC, on the contrary: no FireMonkey, but in exchange the services on https://castle-engine.io/android_services and https://castle-engine.io/ios_services rock, and allow accessing 100% of native possibilities. (It's only a TODO that we don't expose there camera, location etc.; OTOH, we already expose ads, notifications thanks to you, in-app purchases, various analytics, Google Play Games / Apple Game Center integrations etc.)
+
+== Troubleshooting
+
+=== Android project, saved on one system, fails to be deployed when building with different Delphi / on different system
+
+**Recommended solution**: remove and re-add the Android platform in Delphi IDE. Right-click on _"Target Platforms"_ and choose _"Add Platform..."_. Do this for all Android versions you care about (usually _"Android 64-bit"_ and optionally _"Android 32-bit"_ too).
+
+An _alternative, less drastic solution (but it only helps in some cases)_ is to revert the Android libraries to their default state. In Delphi IDE, click on:
+
+- "Project Manager"
+- "Android 64-bit target" (expand it)
+- "Libraries node" (right-click on it)
+- "Revert to Default"
+
+This advice follows https://docwiki.embarcadero.com/RADStudio/Athens/en/Release_Notes#Android_30_API_support[release notes for Delphi 12 Athens].
+
+// tmi
+////
+__Android 30 API support__
+
+__The new releases include a different set of Java libraries, which makes old projects incompatible. When you open an Android project built with an older version of RAD Studio, you need to:__
+
+. __Navigate to the Projects dockable window.__
+. __Select Android 32-bit or Android 64-bit as the active target platform.__
+. __Right-click on the Libraries node.__
+. __Click on the Revert System Files to Default menu item.__
+
+We have also found that in various other "weird errors from Android toolchain" it makes sense to remove + add again the "Android" platform to the project.
+////
+
+=== Project fails to be deployed with errors about missing splash screen
+
+You need to generate or provide artwork (splash images, launcher etc.). Go to Delphi _"Project Options"_ and then _"Application -> Icons"_.
+
+- You can use _"Artwork Generator"_ (not available in older Delphis like 10.4)
+- Or provide your own artwork.
+- The default Delphi artwork is on paths like `C:\Program Files (x86)\Embarcadero\Studio\21.0\bin\Artwork\Android\` + `(FM_SplashImage_*.png, FM_LauncherIcon_*.png)`
+
+The project we generate should already reference the default Delphi artwork for splash images and launcher icons, so this should not be a problem in practice.
+
+=== Getting "Project ... raised exception class 10" dialogs when running in Delphi debugger
+
+Delphi project running on Android in Debug mode occasionally reports _"Project ... raised exception class 10"_. Doing "Continue" and ignoring this exception seems to be OK.
+
+////
+We didn't find the underlying reason / explanation of this. (Yes, it's 2026, so we asked AI -> it gave 2 contradictory hallucinations :) ).
+////
+
+We observed this with both Delphi 12 and 13. The problem seems to have disappeared with Delphi 13.1, so a Delphi upgrade is possibly a viable solution too.
+
+=== Problems building from Delphi 13 for _macOS/Aarch64 (Silicon)_
+
+Remember to install the Delphi patch, and install PAServer from that patch.
+
+From https://castle-engine.io/wp/2026/07/05/delphi-improvements-build-tool-uses-msbuild-allows-to-pick-delphi-version-better-generated-dproj-hints-to-fix-paserver-on-linux-and-linking-on-macos/[our news about it]:
+
+- Install the patch from Embarcadero with the fix.
+
+- Find the new PAServer version for macOS inside the folder like `C:\Users\<username>\Documents\Embarcadero\Studio\37.0\CatalogRepository\13.1Patch-May\1.0\PAServer` . It is **not** applied to your Delphi installation, `C:\Program Files (x86)\Embarcadero\Studio\37.0\PAServer` will still contain the broken version! It's not obvious as the https://blogs.embarcadero.com/rad-studio-13-1-may-patch-available/[patch docs merely say "This is copied to the patch download folder."].
+
+- Install the PAServer from `C:\Users\<username>\Documents\Embarcadero\Studio\37.0\CatalogRepository\13.1Patch-May\1.0\` on your macOS machine, and reimport macOS libraries (_"Options -> Deployment -> SDK Manager"_).
+
+
+=== iOS deploy errors "E0264 Unable to execute '"/usr/bin/plutil" -convert binary1 "..../Info.plist"' (Error 1)`"
+
+Solution: Remove + re-add "iOS Device" platform to the project. Right-click on _"Target Platforms"_ and choose _"Add Platform..."_, then _"iOS Device"_.
+//Then fill the iOS options correctly.
+
+////
+Details:
+
+```
+[PAClient Error] Error: E0264 Unable to execute '"/usr/bin/plutil" -convert binary1 "/Users/administrator/PAServer/scratch-dir/michalis-macos-silicon/platformer_standalone.app/Info.plist"' (Error 1)
+[PAClient Error] Error: E0264 /Users/administrator/PAServer/scratch-dir/michalis-macos-silicon/platformer_standalone.app/Info.plist: Property List error: Found non-key inside <dict> at line 1 / JSON error: JSON text did not start with array or object and option to allow fragments not set. around line 1, column 3.
+```
+
+Inspect the file indicated in the error message, like `/Users/administrator/PAServer/scratch-dir/michalis-macos-silicon/platformer_standalone.app/Info.plist` above. It's on macOS (not Windows), as evident from Unix-style path without a drive letter like `c:\`. You should also find an equivalent local version on Windows, in your project, in file like `platformer_standalone.info.plist`.
+
+If your problem has the same cause as mine, then in that file you will see a few keys not followed by values. E.g. `<key>CompanyName</key>` is not followed by a value (like `<string>My Company</string>`) but by the next key name (like `<key>FileDescription</key>`).
+
+**Wrong Solution**, presented here only so that you don't follow it:
+
+- In Delphi, enter Project -> Options -> Application -> Version Info. Select the specific target platform/config you're building (like iOS/Release) or a parent of it. Fill in every field, or at minimum make sure none are blank (a single space is enough).
+- Make sure new settings are used for new project.
+
+**Correct Solution**:
+
+- If you even see the "Company Name" and other options in "Version Info", then Delphi got confused and this is wrong.
+** Remove + re-add "iOS Device" platform to the project.
+** Select again proper target ("Release") and configuration ("Development", "Ad hoc").
+** And you should see in "Version Info" a lot of Apple-specific stuff, like `CFBundleName`, `CFBundleDevelopmentRegion` etc. And no "Company Name".
+** Make sure they are all filled. If the error reappears, you may have something empty, like "NSLocationAlwaysUsageDescription" was not filled in my case. Use XML pretty printing, even using AI for this task ("detect what's wrong in this XML/plist file:...") will tell you which value is missing.
+- And make sure to remove old stuff, otherwise Delphi / PAServer seem eager to pick them up.
+** deleting on Windows `platformer_standalone.info.plist`
+** deleting on macOS `/Users/administrator/PAServer/scratch-dir/michalis-macos-silicon/platformer_standalone.app/Info.plist` (`rm -f ...`).
+////
+
+=== Android building error "Could not create the Java Virtual Machine" (older Delphi versions)
+
+Older Delphi versions, notably 10.4.0, may fail to build for Android with an error
+
+```
+[Exec Error] EXEC(1): Could not create the Java Virtual Machine.
+```
+
+This confusing error indicates the Java installation that Delphi picked is _too new_. Older Delphi versions use older Android build tools, which in turn pass option `-Djava.ext.dirs` which new Java doesn't support.
+
+The solution is to force using older JDK 8 (which Delphi 10.4 installer actually installs on the system):
+
+- System-wide: set environment variable `JAVA_HOME` to something like `C:\Program Files\AdoptOpenJDK\jdk-8.0.242.08-hotspot`
+- Only in Delphi: _"Tools -> Options -> IDE -> Environment Variables"_. Under User overrides, click New and add:
+** Variable: `JAVA_HOME`
+** Value: `C:\Program Files\AdoptOpenJDK\jdk-8.0.242.08-hotspot`
 
