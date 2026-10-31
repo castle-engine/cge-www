@@ -3,11 +3,23 @@ include::common.adoc[]
 :description: Installation of Android tools to build Android games with Castle Game Engine.
 :cge-social-share-image: android12glued.png
 
-cgeimg::float[android12glued.png|Android applications using Castle Game Engine]
-
 == Introduction
 
-To create applications for Android you need to install some additional software.
+_Castle Game Engine_ supports creating _Android_ applications, with optimized rendering (using OpenGLES 2 or 3), user interface (scaled to adjust to different screen sizes), spatialized 3D audio, input (with multi-touch), physics, and all other features you expect from a modern game engine. Often your application code and data can stay completely the same for different platforms, including Android. You can use link:android_services[Android services] to access platform-specific features and integrations (like ad providers, in-app purchases, analytics, vibrations, notifications).
+
+To create applications for Android you need to install some additional software, most notably _Android SDK_ and _FPC cross-compilers for Android_. Read on for details.
+
+Once you have the necessary prerequisites installed, just switch the platform to _Android_ in the _Castle Game Engine_ link:editor[] and build and run as usual. It will create a complete Android application (APK or AAB) from your Pascal source code, it can install it on your connected Android device and run there, showing you logs.
+
+You can also do this using our command-line link:build_tool[build tool].
+
+cgeimg::block[
+  android12glued.png|Android applications using Castle Game Engine,
+  //android_cubemap_1.png|Android cubemap example
+]
+
+NOTE: This page describes developing for _Android_ using _Castle Game Engine_ with **FPC (open-source Pascal compiler)**. In you use **Delphi**, link:delphi_mobile[read instead the Delphi mobile documentation].
+// -- they are a bit different, Android SDK is generally installed alongside Delphi then.
 
 ## Examples and build tool
 

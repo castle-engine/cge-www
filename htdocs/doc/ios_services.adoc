@@ -17,6 +17,8 @@ Inside the link:project_manifest[CastleEngineManifest.xml] you can declare which
 </project>
 ----
 
+NOTE: This page describes services available for _iOS_ when using _Castle Game Engine_ with **FPC (open-source Pascal compiler)**. They are not available if you use **Delphi**, link:delphi_mobile[in Delphi instead you can use various FireMonkey (FMX) services].
+
 == List of Services
 
 * https://github.com/castle-engine/castle-engine/tree/master/tools/build-tool/data/ios/services/activity_recognition/README.adoc[activity_recognition]

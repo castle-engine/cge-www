@@ -19,6 +19,8 @@ The Android services are declared in link:project_manifest[CastleEngineManifest.
 </android>
 ----
 
+NOTE: This page describes services available for _Android_ when using _Castle Game Engine_ with **FPC (open-source Pascal compiler)**. They are not available if you use **Delphi**, link:delphi_mobile[in Delphi instead you can use various FireMonkey (FMX) services].
+
 == List of Services
 
 Services useful to add to the project explicitly (by adding them to the link:project_manifest[CastleEngineManifest.xml] file):
