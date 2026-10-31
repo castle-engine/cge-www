@@ -2,6 +2,7 @@
 include::common.adoc[]
 :description: Using Castle Game Engine with Delphi to build Android and iOS applications.
 :cge-social-share-image: delphi_android_platformer.png
+:source-highlighter: rouge
 
 == Introduction
 
@@ -317,6 +318,81 @@ Afterwards, doing "Project -> Build" followed by "Project -> Deploy Project" fro
 - and pointing to this from a webpage like `<a href="itms-services://?action=download-manifest&amp;url=https%3A%2F%2Fexample.org%2Fmanifest.plist">My App</a>`
 - Open it in Safari (other www browsers on iOS will not work for this, only Safari is blessed by Apple to be capable of this) on iOS device (the one whose UUID you registered earlier with Apple, to be useful as a test device) to install the IPA on your device.
 
+== Build and deploy from command-line (Android only for now)
+
+You can use our command-line link:build_tool[build tool] to perform various operations on the project from the command-line. Underneath, when used with Delphi, it calls `msbuild`
+//(or `dcc`, but for Android and iOS the `msbuild` is more useful)
+and other tools.
+
+NOTE: You will likely need to avoid the https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/delphi_dcc_vs_msbuild.md[MSBuild command-line length limit] by configuring Delphi to know engine paths (see https://castle-engine.io/delphi_packages[installing engine in Delphi]) and then adding `--dont-pass-engine-paths` to build tool calls.
+
+To build for Android (compile Pascal code into library `.so`), run:
+
+```shell
+castle-engine compile --target=android --compiler=delphi --mode=debug --dont-pass-engine-paths
+```
+
+////
+[WARNING]
+====
+TODO: Compilation for Delphi/iOS fails with linking errors:
+
+```
+error E2597: ld: file too small (length=0) for architecture arm64
+error F2588: Linker error code: 1 ($00000001)
+```
+====
+////
+
+To further package this into APK for Android, you need to run `castle-engine package ...`. Underneath, it is executing https://docwiki.embarcadero.com/RADStudio/Sydney/en/Building_a_Project_Using_an_MSBuild_Command[msbuild with ``/target:Deploy`, as documented by Embarcadero].
+
+[NOTE]
+====
+At least once, you still need to open the project in Delphi IDE:
+
+- Open and save the project after adding Android platform. It will set Android version information, like minimal SDK version.
+- Project needs to be deployed at least once in Delphi IDE, as only Delphi IDE can generate `.deployproj` file.
+====
+
+If above is ready, you can package for Android (create APK), by running this after compilation:
+
+```shell
+castle-engine package --target=android --compiler=delphi --mode=debug --dont-pass-engine-paths --assume-compiled
+```
+
+Alternatively, you can just run this, to compile and package:
+
+```shell
+castle-engine package --target=android --compiler=delphi --mode=debug --dont-pass-engine-paths
+```
+
+You can also use our command-line link:build_tool[build tool] to _install_, _run_, and _uninstall_ Android applications made with Delphi.
+
+To make them work, our build tool must be able to find Android `adb`. To use the same version as your Delphi IDE, consult the Delphi Android settings: enter _"Tools -> Options -> Deployment -> SDK Manager -> Android 64-bit"_ and look at the _"adb.exe location"_. To make this known to our build tool, set environment variable `ANDROID_HOME` to the directory containing the `platform-tools\Adb.exe`, like
+
+```
+C:\Users\Public\Documents\Embarcadero\Studio\37.0\CatalogRepository\AndroidSDK-37.0.59082.6021\
+```
+
+Then the following commands will work and use your connected Android device.
+// obvious
+//Make sure to create APK (e.g. by executing "castle-engine package ...", see above) before using "castle-engine install ...".
+Make sure to pass the same options each time for `--compiler`, `--mode`, `--target`.
+
+```shell
+# list connected Android devices (unrelated to current project)
+castle-engine devices --target=android
+
+# install the APK (make it earlier by "castle-engine package ...")
+castle-engine install --target=android --compiler=delphi --mode=debug
+
+# run it, and see logs. Break log viewer by Ctrl+C.
+castle-engine run --target=android --compiler=delphi --mode=debug
+
+# uninstall the APK from the device, if needed.
+castle-engine uninstall --target=android --compiler=delphi --mode=debug
+```
+
 == Android and iOS services, managed by our build tool, are *not* available in Delphi
 
 link:android_services[Android services] and link:ios_services[iOS services], using native Java or Objective-C code, are _not_ available when using Delphi. They are only available when using FPC.
@@ -329,19 +405,20 @@ The differences between our FPC and Delphi support for mobile platforms come dow
 
 == Troubleshooting
 
-=== Android project, saved on one system, fails to be deployed when building with different Delphi / on different system
+=== Android project fails to be deployed when building with different Delphi version
 
-**Recommended solution**: remove and re-add the Android platform in Delphi IDE. Right-click on _"Target Platforms"_ and choose _"Add Platform..."_. Do this for all Android versions you care about (usually _"Android 64-bit"_ and optionally _"Android 32-bit"_ too).
+- When switching Delphi versions on the same machine, be sure to **remove all the artifacts from the previous Delphi version**, like `AndroidManifest.template.xml`. Auto-generated files made by different Delphi version may confuse newer/older Delphi.
 
-An _alternative, less drastic solution (but it only helps in some cases)_ is to revert the Android libraries to their default state. In Delphi IDE, click on:
-
+- **Revert the Android libraries to their default state**. In Delphi IDE, click on:
++
+--
 - "Project Manager"
 - "Android 64-bit target" (expand it)
 - "Libraries node" (right-click on it)
 - "Revert to Default"
-
+--
++
 This advice follows https://docwiki.embarcadero.com/RADStudio/Athens/en/Release_Notes#Android_30_API_support[release notes for Delphi 12 Athens].
-
 // tmi
 ////
 __Android 30 API support__
@@ -355,6 +432,8 @@ __The new releases include a different set of Java libraries, which makes old pr
 
 We have also found that in various other "weird errors from Android toolchain" it makes sense to remove + add again the "Android" platform to the project.
 ////
+
+* Finally, **remove and re-add the Android platform in Delphi IDE**. Right-click on _"Target Platforms"_ and choose _"Add Platform..."_. Do this for all Android versions you care about (usually _"Android 64-bit"_ and optionally _"Android 32-bit"_ too).
 
 === Project fails to be deployed with errors about missing splash screen
 
