@@ -5,7 +5,7 @@ include::common.adoc[]
 
 == Introduction
 
-_Castle Game Engine_ supports creating _iOS_ applications, for _iPhone_ and _iPad_. They feature optimized rendering (using OpenGLES 2 or 3), user interface (scaled to adjust to different screen sizes), spatialized 3D audio, input (with multi-touch), physics, and all other features you expect from a modern game engine. Often your application code and data can stay completely the same for different platforms, including iOS. You can use link:ios_services[iOS services] to access platform-specific features and integrations (like ad providers, in-app purchases, analytics, vibrations, notifications).
+_Castle Game Engine_ supports creating _iOS_ applications, for _iPhone_ and _iPad_. They feature optimized rendering (using OpenGLES 2 or 3), user interface (scaled to adjust to different screen sizes), spatialized 3D audio, input (with multi-touch), physics, and all other features you expect from a modern game engine. Often your application code and data can stay completely the same for different platforms, including iOS. You can use link:ios_services[iOS services] to access platform-specific features and integrations (like in-app purchases, analytics, Game Center, vibrations).
 
 // this is obvious now, and default for all projects:
 //To build for iOS your application should reside in a directory with link:project_manifest[CastleEngineManifest.xml] file. Moreover, this link:project_manifest[CastleEngineManifest.xml] should have `game_units` attribute set, e.g. like this: `game_units="GameInitialize"`.
@@ -24,7 +24,7 @@ Both these ways give you a ready project that you can open, run and publish from
 
 cgeimg::block[ios_combined_editor_and_phone.png|Application running on iPhone\, alongside the same application opened in the editor]
 
-NOTE: This page describes developing for _iOS_ using _Castle Game Engine_ with **FPC (open-source Pascal compiler)**. In you use **Delphi**, link:delphi_mobile[read instead the Delphi mobile documentation].
+NOTE: This page describes developing for _iOS_ using _Castle Game Engine_ with **FPC (open-source Pascal compiler)**. If you use **Delphi**, link:delphi_mobile[read instead the Delphi mobile documentation].
 
 == Supported iOS Devices
 

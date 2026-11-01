@@ -18,7 +18,7 @@ cgeimg::block[
   //android_cubemap_1.png|Android cubemap example
 ]
 
-NOTE: This page describes developing for _Android_ using _Castle Game Engine_ with **FPC (open-source Pascal compiler)**. In you use **Delphi**, link:delphi_mobile[read instead the Delphi mobile documentation].
+NOTE: This page describes developing for _Android_ using _Castle Game Engine_ with **FPC (open-source Pascal compiler)**. If you use **Delphi**, link:delphi_mobile[read instead the Delphi mobile documentation].
 // -- they are a bit different, Android SDK is generally installed alongside Delphi then.
 
 ## Examples and build tool
