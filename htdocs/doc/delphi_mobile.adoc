@@ -88,7 +88,7 @@ NOTE: If you have already used _Delphi_ (and _FireMonkey_) with mobile platforms
 
 Connecting to Android:
 
-. Set up the Android SDK in the _"Options -> Deployment -> SDK Manager"_. You actually need 2 Android SDKs there: one for 32-bit (Arm 32-bit) and one for 64-bit (that's Aarch 64-bit), if you want to cover all options.
+. Set up the Android SDK in the _"Options -> Deployment -> SDK Manager"_. You actually need 2 Android SDKs there: one for 32-bit (Arm 32-bit) and one for 64-bit (that's Aarch64), if you want to cover all options.
 +
 NOTE: Make sure that paths configured there to Java JDK are valid. If needed, https://www.oracle.com/java/technologies/downloads/[install Java JDK] and point Delphi's configuration (inside Android SDKs in _"Options -> Deployment -> SDK Manager"_) to the proper Java JDK paths. But Delphi can also ship with recommended Java version.
 
@@ -180,11 +180,11 @@ To see them, you have several options:
 
 1. Run the Android application from our _Castle Game Engine_ editor.
 +
-To do this, open your project in our link:editor[], switch platform to _Android_ using the menu _"Run -> Platform -> Android"_, and then run using the _"Run -> Run (Without Compiling)"_ menu item.
+To do this, open your project in our link:editor[], switch platform to _Android_ using the menu _"Run -> Platform (To Compile and Run) -> Android"_, and then run using the _"Run -> Run (Without Compiling)"_ menu item.
 +
 Make sure that the mode (debug / release) corresponds to how you build your application.
 +
-Make sure that our link:editor[] can find the Android `adb` tool. To use the same `adb` version as Delphi, consult the Delphi Android settings: enter _"Tools -> Options -> Deployment -> SDK Manager -> Android 64-bit"_ and look at the _"adb.exe location"_. To make this known to our editor, set the environment variable `ANDROID_HOME` to the directory containing the `platform-tools/adb.exe`, like
+Make sure that our link:editor[] can find the Android `adb` tool. To use the same `adb` version as Delphi, consult the Delphi Android settings: enter _"Tools -> Options -> Deployment -> SDK Manager -> Android 64-bit"_ and look at the _"adb.exe location"_. To make this known to our editor, set the environment variable `ANDROID_HOME` to the directory containing the `platform-tools\adb.exe`, like
 +
 ```
 C:\Users\Public\Documents\Embarcadero\Studio\37.0\CatalogRepository\AndroidSDK-37.0.59082.6021\
@@ -275,14 +275,14 @@ Deploying iOS applications can be more complicated than Android, due to technica
 ** It may feel weird if you're used to cross-platform development environments. Yes, you can deploy to Android from any OS in the world (Windows, Linux...). No such luck with iOS, Apple deliberately forces you to use macOS. Delphi, Castle Game Engine, or anyone else -> we cannot avoid it. The only way to "deploy" your application, either to a physical device, or to create an IPA file (a bit like APK), is to use a macOS system, of course running on Apple hardware (since it cannot run anywhere else).
 
 - The IPA file that you get by building your application to a single file (using methods called "Release Testing" or, an older name for the same thing, "Ad Hoc") cannot just be distributed like an APK.
-** First, it contains specific UUIDs for test devices where it can run. Be sure to register the UUID of your device on Apple website. Yes, even the process of discovering your UUID is painfully annoying (need to wait for 1h to install profile from some 3rd-party website). It's seriously hard to write this manual with a neutral tone -- it should be painfully obvious by now that Apple sucks.
+** First, it contains specific UDIDs for test devices where it can run. Be sure to register the UDID of your device on Apple website. Yes, even the process of discovering your UDID is painfully annoying (need to wait for 1h to install profile from some 3rd-party website). It's seriously hard to write this manual with a neutral tone -- it should be painfully obvious by now that Apple sucks.
 ** Second, putting an IPA in some place (like a web server) must be accompanied by a "manifest file", like https://github.com/SignTools/ota-me/blob/master/manifest.xml, to enable iOS devices to actually realize "this is something that can be installed". There are whole ecosystems to make these Apple limitations less painful, including TestFairy; Michalis also has some in-house scripts (see https://github.com/castle-engine/cge-scripts/blob/master/ios_upload[ios_upload] for hints).
 
 So the approaches available are:
 
 - Have a physical Mac, with macOS. Connect your iOS device (iPhone, iPad) to it. Then you can deploy applications to it, run and debug them -- from Delphi connected to the Mac, just like from Xcode on the Mac. Do this by just connecting Delphi to the Mac, creating iOS SDK in Delphi, and running your application (with debugging) from Delphi.
 
-- Or: Have a Mac to which you have physical or remote access. (For the latter case, see MacStadium, they also provide Mac machines for CGE development TODO link to news). Create an iOS application that can be run on any device. You can deploy it to IPA (which can be debugged on specific devices for which you registered UUID in your Apple account). Or you can deploy it to the App Store, to do TestFlight testing, or just distribute to everyone.
+- Or: Have a Mac to which you have physical or remote access. (For the latter case, see https://www.macstadium.com/[MacStadium], they also provide https://www.macstadium.com/company/opensource[Mac machines for CGE development]). Create an iOS application that can be run on any device. You can deploy it to IPA (which can be debugged on specific devices for which you registered UDID in your Apple account). Or you can deploy it to the App Store, to do TestFlight testing, or just distribute to everyone.
 
 See Embarcadero docs:
 
@@ -316,7 +316,7 @@ Afterwards, doing "Project -> Build" followed by "Project -> Deploy Project" fro
 - placing it on your HTTPS server,
 - creating manifest file like https://github.com/SignTools/ota-me/blob/master/manifest.xml,
 - and pointing to this from a webpage like `<a href="itms-services://?action=download-manifest&amp;url=https%3A%2F%2Fexample.org%2Fmanifest.plist">My App</a>`
-- Open it in Safari (other www browsers on iOS will not work for this, only Safari is blessed by Apple to be capable of this) on iOS device (the one whose UUID you registered earlier with Apple, to be useful as a test device) to install the IPA on your device.
+- Open it in Safari (other www browsers on iOS will not work for this, only Safari is blessed by Apple to be capable of this) on iOS device (the one whose UDID you registered earlier with Apple, to be useful as a test device) to install the IPA on your device.
 
 == Build and deploy from command-line (Android only for now)
 
@@ -344,7 +344,7 @@ error F2588: Linker error code: 1 ($00000001)
 ====
 ////
 
-To further package this into APK for Android, you need to run `castle-engine package ...`. Underneath, it is executing https://docwiki.embarcadero.com/RADStudio/Sydney/en/Building_a_Project_Using_an_MSBuild_Command[msbuild with ``/target:Deploy`, as documented by Embarcadero].
+To further package this into APK for Android, you need to run `castle-engine package ...`. Underneath, it is executing https://docwiki.embarcadero.com/RADStudio/Sydney/en/Building_a_Project_Using_an_MSBuild_Command[msbuild with `/target:Deploy`, as documented by Embarcadero].
 
 [NOTE]
 ====
@@ -368,7 +368,7 @@ castle-engine package --target=android --compiler=delphi --mode=debug --dont-pas
 
 You can also use our command-line link:build_tool[build tool] to _install_, _run_, and _uninstall_ Android applications made with Delphi.
 
-To make them work, our build tool must be able to find Android `adb`. To use the same version as your Delphi IDE, consult the Delphi Android settings: enter _"Tools -> Options -> Deployment -> SDK Manager -> Android 64-bit"_ and look at the _"adb.exe location"_. To make this known to our build tool, set environment variable `ANDROID_HOME` to the directory containing the `platform-tools\Adb.exe`, like
+To make them work, our build tool must be able to find Android `adb`. To use the same version as your Delphi IDE, consult the Delphi Android settings: enter _"Tools -> Options -> Deployment -> SDK Manager -> Android 64-bit"_ and look at the _"adb.exe location"_. To make this known to our build tool, set environment variable `ANDROID_HOME` to the directory containing the `platform-tools\adb.exe`, like
 
 ```
 C:\Users\Public\Documents\Embarcadero\Studio\37.0\CatalogRepository\AndroidSDK-37.0.59082.6021\
@@ -399,9 +399,9 @@ link:android_services[Android services] and link:ios_services[iOS services], usi
 
 The differences between our FPC and Delphi support for mobile platforms come down to this:
 
-- With Delphi, you can use all the FireMonkey goodies (like camera, location, accelerometer, gyroscope that I show in the movie; they have more, at least in-app purchases). But our services on https://castle-engine.io/android_services and https://castle-engine.io/ios_services are not available.
+- With Delphi, you can use all the FireMonkey goodies (like camera, location, accelerometer, gyroscope shown in the movie above; they have more, at least in-app purchases). But our link:android_services[Android services] and link:ios_services[iOS services] are not available.
 
-- With FPC, on the contrary: no FireMonkey, but in exchange the services on https://castle-engine.io/android_services and https://castle-engine.io/ios_services rock, and allow accessing 100% of native possibilities. (It's only a TODO that we don't expose there camera, location etc.; OTOH, we already expose ads, notifications thanks to you, in-app purchases, various analytics, Google Play Games / Apple Game Center integrations etc.)
+- With FPC, on the contrary: no FireMonkey, but in exchange our link:android_services[Android services] and link:ios_services[iOS services] rock, and allow accessing 100% of native possibilities. (It's only a TODO that we don't expose there camera, location etc.; OTOH, we already expose ads, notifications, in-app purchases, various analytics, Google Play Games / Apple Game Center integrations etc.)
 
 == Troubleshooting
 
@@ -433,7 +433,7 @@ __The new releases include a different set of Java libraries, which makes old pr
 We have also found that in various other "weird errors from Android toolchain" it makes sense to remove + add again the "Android" platform to the project.
 ////
 
-* Finally, **remove and re-add the Android platform in Delphi IDE**. Right-click on _"Target Platforms"_ and choose _"Add Platform..."_. Do this for all Android versions you care about (usually _"Android 64-bit"_ and optionally _"Android 32-bit"_ too).
+- Finally, **remove and re-add the Android platform in Delphi IDE**. Right-click on _"Target Platforms"_ and choose _"Add Platform..."_. Do this for all Android versions you care about (usually _"Android 64-bit"_ and optionally _"Android 32-bit"_ too).
 
 === Project fails to be deployed with errors about missing splash screen
 
@@ -468,7 +468,7 @@ From https://castle-engine.io/wp/2026/07/05/delphi-improvements-build-tool-uses-
 - Install the PAServer from `C:\Users\<username>\Documents\Embarcadero\Studio\37.0\CatalogRepository\13.1Patch-May\1.0\` on your macOS machine, and reimport macOS libraries (_"Options -> Deployment -> SDK Manager"_).
 
 
-=== iOS deploy errors "E0264 Unable to execute '"/usr/bin/plutil" -convert binary1 "..../Info.plist"' (Error 1)`"
+=== iOS deploy errors "E0264 Unable to execute '"/usr/bin/plutil" -convert binary1 "..../Info.plist"' (Error 1)"
 
 Solution: Remove + re-add "iOS Device" platform to the project. Right-click on _"Target Platforms"_ and choose _"Add Platform..."_, then _"iOS Device"_.
 //Then fill the iOS options correctly.

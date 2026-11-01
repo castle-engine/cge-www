@@ -18,7 +18,7 @@ But basic units compile and 3D loading/processing works. You can test it with a 
 
 == Connecting to macOS using PAServer
 
-_Delphi IDE_ and compilers run always on _Windows_. From _Windows_ they access other systems, like a remote _macOS_ machine, and run there applications.
+_Delphi IDE_ and compilers always run on _Windows_. From _Windows_ they access other systems, like a remote _macOS_ machine, and run applications there.
 
 Connecting to your macOS machine and building for it:
 
