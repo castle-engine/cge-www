@@ -22,17 +22,17 @@ There are 2 examples in CGE specifically for _{Cpp} Builder_, using engine API f
 
 ## Building packages
 
-For _{Cpp} Builder_ you need to _Build_ the link:delphi_packages[packages] **for all your target platforms**. This means right now: Win32 and Win64 (for now, since _{Cpp} Builder_ doesn't support other platforms as target).
+For _{Cpp} Builder_ you need to _Build_ the link:delphi_packages[packages] **for all your target platforms**. This means right now: Win32 and Win64 (since _{Cpp} Builder_ doesn't support other platforms as target).
 
 This is in contrast to usage from Pascal, where it is enough to _Install_ the packages for your Delphi IDE architecture (Win32 or Win64, or both, depending on which IDE you use -- new Delphi versions come with 64-bit IDE).
 
-By accident, the above advises come down to the same 2 platforms (Win32 and Win64) but for different reasons: for {Cpp} the supported target platforms dictate this, while for Pascal the IDE platforms dictate this.
+By accident, the above advice comes down to the same 2 platforms (Win32 and Win64) but for different reasons: for {Cpp} the supported target platforms dictate this, while for Pascal the IDE platforms dictate this.
 
 ## Versions supported
 
 The _{Cpp} Builder_ compatibility is available for _{Cpp} Builder_ versions 11.3 and up.
 
-### Redistributing C++ Builder applications by default requires redistribution of Delphi run-time BPLs too
+## Redistributing C++ Builder applications by default requires redistribution of Delphi run-time BPLs too
 
 _{Cpp} Builder_ applications by default require redistribution of Delphi run-time libraries (BPL files) too. This is unrelated to CGE. So you cannot just give your users the resulting EXE file, you need to also provide all the BPL (run-time packages) it uses. If you use CGE, then in addition to RTL and FMX, you will also need to redistribute CGE run-time packages (BPL files).
 
@@ -42,7 +42,7 @@ cgeimg::block[
   cpp_builder_bpl_missing.png|Error message when BPL files are missing
 ]
 
-If you want to avoid it, and have everything contained in one big EXE file, follow this answer; https://blogs.embarcadero.com/how-do-i-create-a-stand-alone-application-in-c-builder/[How do I create a stand-alone application in C++Builder] for a solution. In short (as of RAD Studio 12.0) uncheck in project options
+If you want to avoid it, and have everything contained in one big EXE file, follow this answer: https://blogs.embarcadero.com/how-do-i-create-a-stand-alone-application-in-c-builder/[How do I create a stand-alone application in C++Builder]. In short (as of RAD Studio 12.0) uncheck in project options
 
 1. "_Building -> {Cpp} Linker -> Link with Dynamic RTL_" and
 
