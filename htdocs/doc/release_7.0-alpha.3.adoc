@@ -117,7 +117,7 @@ Have fun everyone and thank you for using the engine.
 * https://castle-engine.io/control_on_form[TCastleControl available now for Delphi VCL and FMX applications, in addition to existing Lazarus LCL].
 //* https://castle-engine.io/download#delphinus[Delphinus support] (unfortunately not recommended anymore, due to https://github.com/Memnarch/Delphinus/issues/93 and https://github.com/castle-engine/castle-engine/issues/84 )
 * Full support tested for Delphi >= 10.2.1, up to the latest 12.0 (see https://castle-engine.io/delphi[Delphi versions supported]).
-* https://castle-engine.io/delphi#cpp_builder[{cpp} Builder compatibility], so you can use 100% of CGE API from {cpp}.
+* https://castle-engine.io/cpp_builder[{cpp} Builder compatibility], so you can use 100% of CGE API from {cpp}.
 * https://castle-engine.io/wp/2023/11/05/asynchronous-downloading-using-tcastledownload-for-delphi/[TCastleDownload for Delphi supports http(s)]
 * Using Delphi _"welcome page"_ feature to show your `README.md`
 * _"Tools -> Castle Game Engine"_ menu in Delphi IDE, with easy access to main engine tools. See https://castle-engine.io/wp/2024/02/23/new-delphi-packages-organization-and-tools-castle-game-engine-menu-in-delphi-ide/[news].
