@@ -10,7 +10,8 @@ _Castle Game Engine_ allows to build applications for many platforms:
 
 * desktop (Windows, Linux, link:macos[macOS], FreeBSD, Raspberry Pi...),
 * mobile (link:android[Android], link:ios[iOS]),
-* link:nintendo_switch[Nintendo Switch].
+* link:nintendo_switch[Nintendo Switch],
+* link:web[Web (WebAssembly + WebGL)].
 
 The engine hides as much as possible differences between these platforms,
 exposing a nice cross-platform API.
@@ -21,35 +22,41 @@ By default, the engine compiles and runs the project for the current platform. T
 
 To build for a different platform:
 
-* Choose the target platform in link:manual_editor.php[the CGE editor] using the submenu _"Run -> Platform (To Build And Run) -> ..."_.
+* Choose the target platform in link:manual_editor.php[the CGE editor] using the submenu _"Run -> Platform (To Compile and Run) -> ..."_.
 
 * Then build the project using _"Run -> Compile"_, package to a redistributable format using _"Run -> Package"_ and so on.
 
 Make sure that your compiler installation supports the necessary targets. For FPC, it is easy to install cross-compilers using e.g. link:fpcupdeluxe[fpcupdeluxe].
 
-NOTE: For _Delphi_, right now we support only _Windows (32 and 64)_ and link:delphi_linux[Linux] targets. And link:delphi_more_platforms[more Delphi platforms are coming].
-
 For some platforms, we have a dedicated manual page with instructions about what you need to install and how to use it. See:
 
-* https://castle-engine.io/android[Developing for Android].
+* link:android[Android]
+////
 +
-You will have to install https://castle-engine.io/android[Android SDK and FPC cross-compiler for Android].
+You will have to install link:android[Android SDK and FPC cross-compiler for Android].
 +
 Then you can build and run for Android.
 +
 You can create a package in standard Android APK or AAB formats.
 +
 You can run the application, and observe logs, on Android device connected through USB.
+////
 
-* https://castle-engine.io/ios[Developing for iOS (iPhone, iPad)].
-+
-Note that you need a macOS system to do this. And https://castle-engine.io/ios[FPC cross-compiler for iOS].
-+
-Doing _"Run -> Package"_ for iOS by default just creates an _Xcode project_. You should open it in Xcode to run on a connected device, or in simulator, or release on the AppStore. We can also build IPA file for iOS.
+* link:ios[iOS (iPhone, iPad)]
+//+
+//Note that you need a macOS system to do this. And link:ios[FPC cross-compiler for iOS].
+//+
+//Doing _"Run -> Package"_ for iOS by default just creates an _Xcode project_. You should open it in Xcode to run on a connected device, or in simulator, or release on the AppStore. We can also build IPA file for iOS.
 
-* https://castle-engine.io/nintendo_switch[Nintendo Switch].
-+
-For this, first you need to be a https://developer.nintendo.com/[registered and confirmed Nintendo developer]. Then we will provide you with a version of CGE that works on Nintendo Switch.
+* link:nintendo_switch[Nintendo Switch]
+//+
+//For this, first you need to be a https://developer.nintendo.com/[registered and confirmed Nintendo developer]. Then we will provide you with a version of CGE that works on Nintendo Switch.
+
+* link:macos[macOS]
+
+* link:web[Web]
+
+NOTE: _Delphi_ supports a bit less platforms, compared to FPC. For _Delphi_, we support _Windows (32 and 64)_, link:delphi_linux[Linux] and link:delphi_mobile[Android and iOS] targets. link:delphi_macos[macOS] is supported partially for now.
 
 == Differences in input handling between mobile (touch) and desktop (mouse) platforms
 
@@ -174,7 +181,7 @@ instance (it may be a descendant of this class, of course).
 
 This `GameInitialize` unit can be included by the main program / library file.
 But usually you should not maintain yourself this main program / library file.
-The https://castle-engine.io/build_tool[build tool]
+The link:build_tool[build tool]
 will automatically generate the main program / library using the `GameInitialize` unit,
 as necessary for compilation on a particular platform.
 
