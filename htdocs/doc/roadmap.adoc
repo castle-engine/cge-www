@@ -401,9 +401,9 @@ cgeimg::block[oculus.png|Oculus Quest 2: Developer Mode for Castle Game Engine e
 AR: most likely using Android / iOS built-in frameworks, as these make AR widely available on modern phones.
 
 [#delphi_platforms]
-### More Delphi platforms
+### More Delphi platforms: full macOS support
 
-See link:delphi[about existing Delphi compatibility] - we support _Windows_ and _Linux_ now. We plan to support more platforms with Delphi: Android, iOS...
+See link:delphi[about existing Delphi compatibility] - we support _Windows_, _Linux_, _Android_ and _iOS_ now. We plan to fully support link:delphi_macos[macOS] with Delphi too.
 
 [#gltf_meshes_gpu]
 ### Loading glTF meshes directly to GPU
