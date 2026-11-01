@@ -8,15 +8,18 @@ include::common.adoc[]
 
 You can use Delphi to build and run applications made with _Castle Game Engine_ for Android and iOS.
 
+cgeimg::block[delphi_android_platformer.png|platformer example compiled with Delphi running on Android]
+
 Just try it!
 
 - Open one of the engine https://github.com/castle-engine/castle-engine/tree/master/examples/[examples] (like
 https://github.com/castle-engine/castle-engine/tree/master/examples/2d_games/platformer[examples/2d_games/platformer] or
-https://github.com/castle-engine/castle-engine/tree/master/examples/3d_games/walking_adventure[examples/3d_games/walking_adventure]). Examples ship with Delphi project files (`.dproj`), they are regular Delphi projects that you can open in any link:#delphi_version_why[supported Delphi version].
+https://github.com/castle-engine/castle-engine/tree/master/examples/3d_games/walking_adventure[examples/3d_games/walking_adventure]). Our examples are regular Delphi projects that you can open in any link:#delphi_version_why[supported Delphi version].
+//, since they ship with Delphi project files (`.dproj`).
 
-- Add to the project targets like _"Android 64-bit"_ or _"iOS Device 64-bit"_.
+- Add to the project a mobile target like _"Android 64-bit"_ or _"iOS Device 64-bit"_ (right click on the _"Target Platform"_ and do _"Add Platform"_).
 
-- Build and run it with Delphi for Android or iOS, just like any other FireMonkey application.
+- Build and run it from Delphi for Android or iOS, just like any other FireMonkey application.
 
 In case of trouble, consult this page for help -- we gathered a lot of information about how everything works, and how to solve problems. But in a typical case, things should _just work_.
 
@@ -28,6 +31,8 @@ Here's a movie presentation of how it all works.
 
 The first part of the movie shows the basic usage of _Castle Game Engine_ and deploying sample applications for _Android_. The second half focuses on integrating with _FireMonkey_ components for some cool additional features (like camera, location, accelerometer, gyroscope services) -- you can try them yourself, these examples are in https://github.com/castle-engine/castle-engine/tree/master/examples/delphi[examples/delphi subdirectory].
 
+NOTE: In the movie below, I click _"Generate Artwork"_ to generate dummy splash screen and other artwork for sample projects. This is not necessary anymore.
+
 video::s2NgaJQa1TM[youtube,width=800,height=450]
 
 == Features
@@ -38,7 +43,7 @@ You can use _Delphi_ to run _Castle Game Engine_ applications on _Android_ and _
 +
 You need to have appropriate platform support included in your Delphi version.
 +
-And you install and configure your Delphi as usual for developing for _Android_ and _iOS_ with FireMonkey. Use the Delphi _"SDK Manager"_ to add the proper platforms (like _"Android 64-bit"_ or _"iOS Device 64-bit"_). For iOS, configure the connection to macOS in the _"Connection Profiles"_. More on this below.
+You configure your Delphi as usual for developing for _Android_ and _iOS_ with FireMonkey. Use the Delphi _"SDK Manager"_ to add the proper platforms (like _"Android 64-bit"_ or _"iOS Device 64-bit"_). For iOS, configure the connection to macOS in the _"Connection Profiles"_. More on this below.
 
 - To display using Castle Game Engine, you can use either:
 +
@@ -52,15 +57,17 @@ And you install and configure your Delphi as usual for developing for _Android_ 
 +
 In both cases, for Delphi, your application is just a regular FireMonkey (FMX) application.
 
-- Rendering obviously works. Underneath, our OpenGLES rendering shares the context with FMX. We reset/save/restore the state to make sure FMX and CGE rendering do not interfere with each other.
+- Rendering obviously works. Underneath, our OpenGLES rendering shares the context with FMX.
+// tmi
+//We reset/save/restore the state to make sure FMX and CGE rendering do not interfere with each other.
 
-- Your application has regular data (deployed from your game's data, and link:#startup_copy_not_recommended[without the need for Delphi's `StartUpCopy`]) and config (writeable space), using the engine's URLs like `castle-data:/my_png.png`, `castle-config:/user_settings.conf`. All our link:url[URLs] work as expected.
+- Your application can use regular data (read-only game's data, link:#startup_copy_not_recommended[without the need for Delphi's `StartUpCopy`]) and config (writeable files), using the engine's URLs like `castle-data:/my_png.png`, `castle-config:/user_settings.conf`. All our link:url[URLs] work as expected.
 
 - Asynchronous network downloads using cgeref:TCastleDownload[] work.
 
 - link:sound[Audio works].
 +
-WARNING: TODO: For now, audio on mobile is using a simple audio backend based on `TMediaPlayer` underneath. It practically works well enough for 2D games, but is likely too poor for 3D games. We plan to enable link:openal[OpenAL] and link:fmod[FMOD], full-featured sound backends with 3D sound, for Delphi mobile soon. link:talk.php[Talk to us] to push us to make it faster:)
+WARNING: TODO: For now, audio on mobile is using a simple audio backend based on `TMediaPlayer` underneath. It practically works well enough for 2D games, but is poor for 3D games. We plan to enable link:openal[OpenAL] and link:fmod[FMOD], full-featured sound backends with 3D sound, for Delphi mobile soon. link:talk.php[Talk to us] to push us to make it faster:)
 
 - Multi-touch works. Under the hood, we convert FMX `OnTouch` event information into what our engine expects (which is quite similar, we also have persistent finger ids, see our `Press` / `Release` / `Motion` events).
 +
@@ -88,11 +95,11 @@ NOTE: If you have already used _Delphi_ (and _FireMonkey_) with mobile platforms
 
 Connecting to Android:
 
-. Set up the Android SDK in the _"Options -> Deployment -> SDK Manager"_. You actually need 2 Android SDKs there: one for 32-bit (Arm 32-bit) and one for 64-bit (that's Aarch64), if you want to cover all options.
+. Set up the Android SDK in the _"Options -> Deployment -> SDK Manager"_. You may want both Android SDKs: one for 32-bit (Arm 32-bit) and one for 64-bit (that's Aarch64), if you want to cover all options.
 +
 NOTE: Make sure that paths configured there to Java JDK are valid. If needed, https://www.oracle.com/java/technologies/downloads/[install Java JDK] and point Delphi's configuration (inside Android SDKs in _"Options -> Deployment -> SDK Manager"_) to the proper Java JDK paths. But Delphi can also ship with recommended Java version.
 
-. To deploy your application to a real Android device, it's simplest to just have it connected through USB to your machine.
+. To deploy your application to a real Android device, you can connect your phone through USB to the same machine where Delphi is running. Using https://developer.android.com/studio[Android Studio] you can also set up wireless connection.
 
 ==== iOS
 
@@ -114,7 +121,8 @@ If you open in Delphi a project generated by the _Castle Game Engine_ tools, you
 
 **Reason why this is required:** Delphi project files (DPROJ) created by _Castle Game Engine_ tools (like _"New Project"_ in our editor), and examples distributed with our engine, *do not* include the Delphi mobile platforms by default. Maintaining DPROJ files that work with link:delphi#delphi_version[all supported Delphi versions] on mobile does not seem possible, as there are a number of details (like Java libraries used, and version info) that need to be present in DPROJ and are Delphi-version-specific.
 
-NOTE: For the same reason, we recommend sticking with 1 Delphi version for a given project. When you upgrade your Delphi, make sure everyone in your team upgrades to the same version at the same time. Otherwise, each time you edit a project in a different Delphi version, you may commit by accident some automatic DPROJ changes. Also, if you experience issues after changing the Delphi version, it may be necessary to remove + re-add the mobile platform, to let Delphi regenerate the proper settings.
+// tmi
+//NOTE: For the same reason, we recommend sticking with 1 Delphi version for a given project. When you upgrade your Delphi, make sure everyone in your team upgrades to the same version at the same time. Otherwise, each time you edit a project in a different Delphi version, you may commit by accident some automatic DPROJ changes. Also, if you experience issues after changing the Delphi version, it may be necessary to remove + re-add the mobile platform, to let Delphi regenerate the proper settings.
 
 // tmi, we mention iOS bundle id already elsewhere
 ////
@@ -134,7 +142,7 @@ Moreover, in case of all Delphi non-Windows platforms, it's important to keep yo
 
 - Or from the command-line, using our link:build_tool[build tool], execute `castle-engine generate-program`.
 
-WARNING: TODO: Unfortunately, regenerating the project (after adding or removing data files) means that you will need to re-add the mobile platforms again (per section above). We know this is a problem. We plan to switch to packing data into a single zip for mobile platforms; then you will practically not need to regenerate DPROJ very often.
+WARNING: TODO: Unfortunately, regenerating the project (after adding or removing data files) means that you will need to re-add the mobile platforms again (per section above). We know this is a problem. We plan to switch to packing data into a single zip for mobile platforms; then you will practically not need to regenerate DPROJ very often. As usual, we encourage to link:talk.php[talk to us] to push us to implement this faster:)
 
 [#startup_copy_not_recommended]
 === We don't recommend using `System.StartUpCopy`
@@ -143,9 +151,9 @@ Using `System.StartUpCopy` makes a copy of the assets on the device. In case of 
 
 Doing this copy is:
 
-1. **Unnecessary**. Castle Game Engine reads data straight from the assets of the installed application (including using Android assets API), and this follows the recommendations for Android apps. As a developer, you use link:data[special URLs to refer to the application data].
+1. **Unnecessary**. Castle Game Engine reads data straight from the assets of the installed application (using Android assets API, for Android), and this follows the recommendations for Android apps. As a developer, you use link:data[special URLs to refer to the application data].
 
-2. It is also **wasting initialization time and disk space**. This is important since game data can be large.
+2. Doing such copy is also **wasting initialization time and disk space**. This is important since game data can be large.
 
 3. And it has a serious issue: it **doesn't update a copy if it already exists**. So if a new version of your application ships a modified data file -> it will _not_ be updated. We guess this was done for performance reasons (otherwise every application launch is slow), but it can result in obvious bugs. See `System.StartUpCopy` sources to confirm this.
 
@@ -172,9 +180,10 @@ See also
 
 === Capturing logs on Android
 
-Delphi applications on Android send logs using the standard Android facility. Our cgeref:WritelnLog[] and various other ways to send logs from Delphi all result in this. This is also equal to applications built using FPC, our cgeref:WritelnLog[] also sends logs to "standard Android facility".
+Delphi applications on Android send logs using the standard Android facility. Our cgeref:WritelnLog[] and various other ways to send logs from Delphi all result in this.
+//This is also equal to applications built using FPC, our cgeref:WritelnLog[] also sends logs to "standard Android facility".
 
-However, the Delphi IDE doesn't display these logs.
+However, the Delphi IDE doesn't display these logs automatically anywhere.
 
 To see them, you have several options:
 
