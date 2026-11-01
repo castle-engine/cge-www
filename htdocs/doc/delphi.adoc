@@ -66,11 +66,11 @@ Rendering on _macOS_ doesn't work, but basic units compile and 3D loading/proces
 
 The engine is tested and supported on Delphi versions listed below.
 
-* The all include the free _Community Editions_ versions.
+* They all include the free _Community Editions_ versions.
 
 * We always recommend the latest Delphi version, and we support all platforms with it.
 
-* We test both manually and automatically using continuous integration (link:CI[ci]). If we missed anything, if some example does not work as expected, please https://github.com/castle-engine/castle-engine/issues[report it].
+* We test both manually and automatically using continuous integration (link:ci[CI]). If we missed anything, if some example does not work as expected, please https://github.com/castle-engine/castle-engine/issues[report it].
 
 Delphi versions supported:
 
@@ -102,4 +102,4 @@ That said, we did research for each of the requirements above, so it's not easy.
 
 * https://github.com/castle-engine/castle-engine/issues/577#issuecomment-2027060068[This GitHub issue documents reasons behind our minimal support for Linux].
 
-* For Windows, it could be posssible to push the minimal supported Delphi version further down, although it gets more and more painful to maintain:) See link:https://github.com/castle-engine/castle-engine/issues/482[XE7 test], link:https://github.com/castle-engine/castle-engine/issues/486[10.0.1 test], link:https://github.com/castle-engine/castle-engine/issues/488[10.1.2 test].
+* For Windows, it could be possible to push the minimal supported Delphi version further down, although it gets more and more painful to maintain:) See link:https://github.com/castle-engine/castle-engine/issues/482[XE7 test], link:https://github.com/castle-engine/castle-engine/issues/486[10.0.1 test], link:https://github.com/castle-engine/castle-engine/issues/488[10.1.2 test].
