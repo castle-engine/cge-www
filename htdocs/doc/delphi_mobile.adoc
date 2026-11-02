@@ -178,6 +178,7 @@ See also
 - https://stackoverflow.com/questions/61942454/what-the-purpose-of-the-system-startupcopy-included-in-all-firemonkey-project
 ////
 
+[#logs]
 === Capturing logs on Android
 
 Delphi applications on Android send logs using the standard Android facility. Our cgeref:WritelnLog[] and various other ways to send logs from Delphi all result in this.
@@ -193,13 +194,19 @@ To do this, open your project in our link:editor[], switch platform to _Android_
 +
 Make sure that the mode (debug / release) corresponds to how you build your application.
 +
-Make sure that our link:editor[] can find the Android `adb` tool. To use the same `adb` version as Delphi, consult the Delphi Android settings: enter _"Tools -> Options -> Deployment -> SDK Manager -> Android 64-bit"_ and look at the _"adb.exe location"_. To make this known to our editor, set the environment variable `ANDROID_HOME` to the directory containing the `platform-tools\adb.exe`, like
+Make sure that our link:editor[] can find the Android `adb` tool. To use the same `adb` version as Delphi, consult the Delphi Android settings: enter _"Tools -> Options -> Deployment -> SDK Manager -> Android 64-bit"_ and look at the _"adb.exe location"_. You want to know the directory containing the `platform-tools\adb.exe`, which will look like
 +
 ```
 C:\Users\Public\Documents\Embarcadero\Studio\37.0\CatalogRepository\AndroidSDK-37.0.59082.6021\
 ```
 +
-If you don't know how to modify environment variables on Windows, you can https://www.computerhope.com/issues/ch000549.htm[follow instructions here].
+To make this known to our editor, configure in _Castle Game Engine_ the _"Preferences -> Android -> Android SDK Location"_ setting. Alternatively, set the environment variable `ANDROID_HOME` to point to it.
++
+cgeimg::block[
+  delphi_android_sdk_location.png|Android SDK location in Delphi preferences,
+  delphi_android_sdk_location_2.png|Android SDK location in Castle Game Engine preferences,
+  delphi_android_run.png|Running Android application from Castle Game Engine editor
+]
 
 2. Run the Android application using our _Castle Game Engine_ command-line link:build_tool[build tool].
 +
@@ -209,7 +216,9 @@ To do this, open a terminal, navigate to your project directory, and run
 castle-engine run --target=android --compiler=delphi --mode=debug
 ```
 +
-As above: make sure that `--mode` corresponds to how you build your application. And make sure that our build tool can find the Android `adb` tool, by setting the `ANDROID_HOME` environment variable as described above.
+As above: make sure that `--mode` corresponds to how you build your application.
++
+And make sure that our build tool can find the Android `adb` tool, by setting the `ANDROID_HOME` environment variable to the Android SDK location. If you're not sure how to modify environment variables on Windows, you can https://www.computerhope.com/issues/ch000549.htm[follow instructions here].
 
 3. You can install https://developer.android.com/studio[Android Studio] and use https://developer.android.com/studio/debug/logcat[logcat window].
 +
@@ -278,40 +287,53 @@ This requirement is a result of what _Apple_ is doing. The only way to develop f
 
 === You need a Mac
 
-Deploying iOS applications can be more complicated than Android, due to technical annoyances forced by Apple:
+Deploying _iOS_ applications is more complicated, due to technical annoyances forced by Apple:
 
-- You _must_ connect to macOS to develop for iOS.
-** It may feel weird if you're used to cross-platform development environments. Yes, you can deploy to Android from any OS in the world (Windows, Linux...). No such luck with iOS, Apple deliberately forces you to use macOS. Delphi, Castle Game Engine, or anyone else -> we cannot avoid it. The only way to "deploy" your application, either to a physical device, or to create an IPA file (a bit like APK), is to use a macOS system, of course running on Apple hardware (since it cannot run anywhere else).
+- You _must_ connect to macOS to develop for iOS. There's no way to develop for iOS without having access to a Mac computer.
+//** It may feel weird if you're used to cross-platform development environments. Yes, you can deploy to Android from any OS in the world (Windows, Linux...). No such luck with iOS, Apple deliberately forces you to use macOS. Delphi, Castle Game Engine, or anyone else -> we cannot avoid it. The only way to "deploy" your application, either to a physical device, or to create an IPA file (a bit like APK), is to use a macOS system, of course running on Apple hardware (since it cannot run anywhere else).
 
 - The IPA file that you get by building your application to a single file (using methods called "Release Testing" or, an older name for the same thing, "Ad Hoc") cannot just be distributed like an APK.
-** First, it contains specific UDIDs for test devices where it can run. Be sure to register the UDID of your device on Apple website. Yes, even the process of discovering your UDID is painfully annoying (need to wait for 1h to install profile from some 3rd-party website). It's seriously hard to write this manual with a neutral tone -- it should be painfully obvious by now that Apple sucks.
-** Second, putting an IPA in some place (like a web server) must be accompanied by a "manifest file", like https://github.com/SignTools/ota-me/blob/master/manifest.xml, to enable iOS devices to actually realize "this is something that can be installed". There are whole ecosystems to make these Apple limitations less painful, including TestFairy; Michalis also has some in-house scripts (see https://github.com/castle-engine/cge-scripts/blob/master/ios_upload[ios_upload] for hints).
+** First, it contains specific UDIDs for test devices where it can run. See below.
+** Second, putting an IPA in some place (like a web server) must be accompanied by a "manifest file", like https://github.com/SignTools/ota-me/blob/master/manifest.xml, to enable iOS devices to actually realize "this is something that can be installed".
+//There are whole ecosystems to make these Apple limitations less painful, including TestFairy; Michalis also has some in-house scripts (see https://github.com/castle-engine/cge-scripts/blob/master/ios_upload[ios_upload] for hints).
 
-So the approaches available are:
+The available approaches are:
 
-- Have a physical Mac, with macOS. Connect your iOS device (iPhone, iPad) to it. Then you can deploy applications to it, run and debug them -- from Delphi connected to the Mac, just like from Xcode on the Mac. Do this by just connecting Delphi to the Mac, creating iOS SDK in Delphi, and running your application (with debugging) from Delphi.
+- It's easiest to have a _physical access to a Mac computer_. Connect your iOS device (iPhone, iPad) to it. Delphi must be connected to this (as documented in link:delphi_macos[Delphi + macOS docs]) and you must create an iOS SDK in Delphi. Then you can deploy iOS applications, run and debug them, seamlessly from Delphi (that will communicate under the hood with _macOS_ and _Xcode_).
 
-- Or: Have a Mac to which you have physical or remote access. (For the latter case, see https://www.macstadium.com/[MacStadium], they also provide https://www.macstadium.com/company/opensource[Mac machines for CGE development]). Create an iOS application that can be run on any device. You can deploy it to IPA (which can be debugged on specific devices for which you registered UDID in your Apple account). Or you can deploy it to the App Store, to do TestFlight testing, or just distribute to everyone.
+- _Harder_: Have a Mac to which you have physical _or only remote access_.
++
+For the latter case, see e.g. https://www.macstadium.com/[MacStadium], they also provide https://www.macstadium.com/company/opensource[Mac machines for Castle Game Engine development].
++
+Create an iOS application that can be run on any device. You can deploy it to IPA (which can be debugged on specific devices for which you registered UDID in your Apple account). Or you can deploy it to the App Store, to do TestFlight testing, or just distribute to everyone.
 
-See Embarcadero docs:
+See related Embarcadero docs:
 
-- https://docwiki.embarcadero.com/RADStudio/Sydney/en/IOS_Mobile_Application_Development
-- https://docwiki.embarcadero.com/RADStudio/Sydney/en/Creating_an_iOS_App
-- https://docwiki.embarcadero.com/RADStudio/Sydney/en/Deploying_Your_iOS_Application_for_Ad_hoc_Distribution
+- https://docwiki.embarcadero.com/RADStudio/Sydney/en/IOS_Mobile_Application_Development[iOS Mobile Application Development]
+- https://docwiki.embarcadero.com/RADStudio/Sydney/en/Creating_an_iOS_App[Creating an iOS App]
+- https://docwiki.embarcadero.com/RADStudio/Sydney/en/Deploying_Your_iOS_Application_for_Ad_hoc_Distribution[Deploying Your iOS Application for Ad hoc Distribution]
 
 === Deploying "Ad Hoc" (aka "Release Testing"), to IPA file
 
-You need to create an App ID on the Apple website, it seems you cannot let Xcode create it (or Delphi will complain that it cannot use a profile managed by Xcode). To do this:
+First, register the UDID of your test iOS devices https://developer.apple.com/account/resources/identifiers/list[on Apple website]. If you need to learn UDID without connecting the device to a Mac, you can use a 3rd-party website like https://udid.tech/ to discover it (yes, it sucks that Apple makes this so complicated).
+//IMHO, even this process of discovering your UDID is painfully annoying because of Apple artificial limitations (need to wait for 1h to install profile from a https://udid.tech/[3rd-party website] because your own device cannot just show it to you).
+//It's seriously hard to write this manual with a neutral tone -- it should be painfully obvious by now that Apple sucks.
+
+Then you need to create a "Provisioning Profile" on the Apple website.
+// (It seems you cannot let Xcode create it or Delphi will complain that it cannot use a profile managed by Xcode).
+To do this:
 
 - Create an App ID on https://developer.apple.com/account/resources/identifiers/list
-- Create a "Provisioning Profile" for it
-** Note: You usually don't need "Offline Support" (which limits the profile validity to 7 days). As long as your device is online during the installation, it will work. Don't worry about the Apple warning "Apps signed with development and adhoc provisioning profiles must connect to ppq.apple.com during app installation or first launch." -- this connection doesn't require any changes in your application at all, it happens automatically. You only need to worry about this if your iOS device will be truly offline (or blocking `ppq.apple.com`) at the time of install or (first) launch.
-- In Xcode settings -> accounts, "Download Manual Profiles"
+- Create a "Provisioning Profile" for your application.
++
+NOTE: You usually don't need _"Offline Support"_ (which limits the profile validity to 7 days). As long as your device is online during the installation, it will work. Don't worry about the Apple warning _"Apps signed with development and adhoc provisioning profiles must connect to ppq.apple.com during app installation or first launch."_ -- this connection doesn't require any changes in your application at all, it happens automatically. You only need to worry about this if your iOS device will be truly offline (or blocking `ppq.apple.com`) at the time of install or (first) launch.
+- In Xcode settings -> accounts, _"Download Manual Profiles"_
 - Make sure the file with the new profile appeared on macOS in `~/Library/Developer/Xcode/UserData/Provisioning Profiles`. You can just look at `*.mobileprovision` file contents, part of them is XML; if the file still looks too scary in your text editor, run `security cms -D -i <file>.mobileprovision` to extract the XML part from it.
 - Then select this in Delphi "Project Options" following the screenshots below.
-** Choose **Release** (not debug! although debug would make sense and is enabled in FPC for iOS, it doesn't work with Delphi/iOS in our tests. You must use release)
-** Choose **Ad hoc** configuration
-** In "Version Info", fill `CFBundleIdentifier`
+** Choose **Release**.
+// (not debug! although debug would make sense and is enabled in FPC for iOS, it doesn't work with Delphi/iOS in our tests. You must use release)
+** Choose **Ad hoc** configuration.
+** In "Version Info", fill `CFBundleIdentifier`.
 ** In "Provisioning", for the proper "Target", choose Build Type "iOS Device 64-bit - Ad hoc" and select the matching profile in the combo boxes below. The profile must contain the `CFBundleIdentifier` chosen above.
 
 cgeimg::block[
@@ -320,25 +342,30 @@ cgeimg::block[
   ios_adhoc3.png|iOS Ad Hoc configuration in Delphi
 ]
 
-Afterwards, doing "Project -> Build" followed by "Project -> Deploy Project" from Delphi should work. You will have an IPA file in `iOSDevice64\Release` subdirectory (for blank FMX projects) or in top-level project directory (for CGE projects). You can deploy it by
+Afterwards, doing _"Project -> Build"_ followed by _"Project -> Deploy Project"_ from Delphi should work. You will have an IPA file in `iOSDevice64\Release` subdirectory (for blank FMX projects) or in top-level project directory (for CGE projects). You can deploy it by
 
 - placing it on your HTTPS server,
 - creating manifest file like https://github.com/SignTools/ota-me/blob/master/manifest.xml,
 - and pointing to this from a webpage like `<a href="itms-services://?action=download-manifest&amp;url=https%3A%2F%2Fexample.org%2Fmanifest.plist">My App</a>`
 - Open it in Safari (other www browsers on iOS will not work for this, only Safari is blessed by Apple to be capable of this) on iOS device (the one whose UDID you registered earlier with Apple, to be useful as a test device) to install the IPA on your device.
 
-== Build and deploy from command-line (Android only for now)
+== Build and deploy from command-line or Castle Game Engine editor (Android only for now)
 
 You can use our command-line link:build_tool[build tool] to perform various operations on the project from the command-line. Underneath, when used with Delphi, it calls `msbuild`
 //(or `dcc`, but for Android and iOS the `msbuild` is more useful)
-and other tools.
+and other tools. You can also use _Castle Game Engine editor_ to perform these operations through a graphical interface -- all operations below have corresponding entries in the menu _"Run"_.
 
-NOTE: You will likely need to avoid the https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/delphi_dcc_vs_msbuild.md[MSBuild command-line length limit] by configuring Delphi to know engine paths (see https://castle-engine.io/delphi_packages[installing engine in Delphi]) and then adding `--dont-pass-engine-paths` to build tool calls.
+[NOTE]
+====
+You will possibly need to avoid the https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/delphi_dcc_vs_msbuild.md[MSBuild command-line length limit] by configuring Delphi to know engine paths (see https://castle-engine.io/delphi_packages[installing engine in Delphi]) and then adding `--msbuild-dont-pass-engine-paths` to build tool calls. In the editor, you can tick the checkbox in _"Preferences -> Compilation"_, see this screenshot:
 
-To build for Android (compile Pascal code into library `.so`), run:
+cgeimg::block[editor_msbuild_checkbox.png|Editor preference with MSBuild checkbox]
+====
+
+To build for Android (compile Pascal code into library `.so`), use the `compile` command. From command-line, run:
 
 ```shell
-castle-engine compile --target=android --compiler=delphi --mode=debug --dont-pass-engine-paths
+castle-engine compile --target=android --compiler=delphi --mode=debug --msbuild-dont-pass-engine-paths
 ```
 
 ////
@@ -366,22 +393,18 @@ At least once, you still need to open the project in Delphi IDE:
 If above is ready, you can package for Android (create APK), by running this after compilation:
 
 ```shell
-castle-engine package --target=android --compiler=delphi --mode=debug --dont-pass-engine-paths --assume-compiled
+castle-engine package --target=android --compiler=delphi --mode=debug --msbuild-dont-pass-engine-paths --assume-compiled
 ```
 
 Alternatively, you can just run this, to compile and package:
 
 ```shell
-castle-engine package --target=android --compiler=delphi --mode=debug --dont-pass-engine-paths
+castle-engine package --target=android --compiler=delphi --mode=debug --msbuild-dont-pass-engine-paths
 ```
 
 You can also use our command-line link:build_tool[build tool] to _install_, _run_, and _uninstall_ Android applications made with Delphi.
 
-To make them work, our build tool must be able to find Android `adb`. To use the same version as your Delphi IDE, consult the Delphi Android settings: enter _"Tools -> Options -> Deployment -> SDK Manager -> Android 64-bit"_ and look at the _"adb.exe location"_. To make this known to our build tool, set environment variable `ANDROID_HOME` to the directory containing the `platform-tools\adb.exe`, like
-
-```
-C:\Users\Public\Documents\Embarcadero\Studio\37.0\CatalogRepository\AndroidSDK-37.0.59082.6021\
-```
+To make them work, our build tool must be able to find Android `adb`. To use the same version as your Delphi IDE, consult the Delphi Android settings: enter _"Tools -> Options -> Deployment -> SDK Manager -> Android 64-bit"_ and look at the _"adb.exe location"_. To make this known to our build tool or editor, follow link:#logs[advises from the "Logging" section] about editor preferences or environment variable `ANDROID_HOME`.
 
 Then the following commands will work and use your connected Android device.
 // obvious
@@ -404,7 +427,7 @@ castle-engine uninstall --target=android --compiler=delphi --mode=debug
 
 == Android and iOS services, managed by our build tool, are *not* available in Delphi
 
-link:android_services[Android services] and link:ios_services[iOS services], using native Java or Objective-C code, are _not_ available when using Delphi. They are only available when using FPC.
+Note that link:android_services[Android services] and link:ios_services[iOS services], using native Java or Objective-C code, are _not_ available when using Delphi. They are only available when using FPC.
 
 The differences between our FPC and Delphi support for mobile platforms come down to this:
 
