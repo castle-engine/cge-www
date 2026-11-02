@@ -216,6 +216,11 @@ make generate-code
     * Compiling it should initially fail.
     * Follow https://castle-engine.io/delphi_packages to enable CGE paths for all projects, in Delphi settings.
     * Now compiling new project using `TCastleControl` should work.
+* Build for Android and iOS with Delphi:
+    * 2D example like [platformer](https://github.com/castle-engine/castle-engine/tree/master/examples/2d_games/platformer)
+    * 3D example like [walking_adventure](https://github.com/castle-engine/castle-engine/tree/master/examples/3d_games/walking_adventure)
+    * New project
+    * Some FMX projects from [examples/delphi](https://github.com/castle-engine/castle-engine/tree/master/examples/delphi)
 * Retest compiling `examples/delphi/vcl`, `examples/3d_games/explore_impressive_castle` once CGE paths are present in Delphi, to be sure it's all OK.
 
 ## Test: Lazarus Project Group
