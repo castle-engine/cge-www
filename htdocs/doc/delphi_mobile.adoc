@@ -130,6 +130,7 @@ After adding the platform, remember to:
 - On iOS: set proper bundle id and choose provisioning profile
 ////
 
+[#data]
 === Application data (e.g. game models, textures)
 
 Like with every platform and every compiler we support, just place your data files inside the `data` subdirectory of your project. Access it using the link:data[special castle-data:/ URLs].
