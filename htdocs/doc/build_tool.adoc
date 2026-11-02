@@ -143,10 +143,10 @@ castle-engine compile --delphi-version=37.0 --compiler=delphi
 
 - We automatically use _MSBuild_ as the compilation method when building with Delphi for any platform other than Windows.
 +
-Unfortunately, _MSBuild_ may fail due to a command-line limit length. To avoid this problem, use `--msbuild-dont-pass-engine-paths` to avoid passing engine paths via command line. But to make it work, make sure https://castle-engine.io/delphi_packages[Delphi knows engine paths, by using "Configure Delphi to Use Engine"]. The https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/delphi_dcc_vs_msbuild.md[dcc vs msbuild] discussion has more details.
+Unfortunately, _MSBuild_ may fail due to a command-line length limit. To avoid this problem, use `--msbuild-dont-pass-engine-paths` to avoid passing engine paths via command line. But to make it work, make sure https://castle-engine.io/delphi_packages[Delphi knows engine paths, by using "Configure Delphi to Use Engine"]. The https://github.com/castle-engine/castle-engine/blob/master/tools/build-tool/delphi_dcc_vs_msbuild.md[dcc vs msbuild] discussion has more details.
 //We wish this would not be necessary, as _MSBuild_ would just accept longer paths, without any special tricks.
 
-- `--delphi-use-dcc` forces to use `dcc` command-line compiler instead of `msbuild`.
+- `--use-delphi-dcc` forces to use `dcc` command-line compiler instead of `msbuild`.
 
 You can customize what options we pass to the compiler by:
 

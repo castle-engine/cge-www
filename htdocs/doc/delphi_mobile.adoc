@@ -258,7 +258,7 @@ Deploying _iOS_ applications is more complicated, due to technical annoyances fo
 
 The available approaches are:
 
-- It's easiest to have a _physical access to a Mac computer_. Connect your iOS device (iPhone, iPad) to it. Delphi must be connected to this (as documented in link:delphi_macos[Delphi + macOS docs]) and you must create an iOS SDK in Delphi. Then you can deploy iOS applications, run and debug them, seamlessly from Delphi (that will communicate under the hood with _macOS_ and _Xcode_).
+- It's easiest to have _physical access to a Mac computer_. Connect your iOS device (iPhone, iPad) to it. Delphi must be connected to this (as documented in link:delphi_macos[Delphi + macOS docs]) and you must create an iOS SDK in Delphi. Then you can deploy iOS applications, run and debug them, seamlessly from Delphi (that will communicate under the hood with _macOS_ and _Xcode_).
 
 - _Harder_: Have a Mac to which you have physical _or only remote access_.
 +
@@ -274,13 +274,11 @@ See related Embarcadero docs:
 
 === Deploying "Ad Hoc" (aka "Release Testing"), to IPA file
 
-First, register the UDID of your test iOS devices https://developer.apple.com/account/resources/identifiers/list[on Apple website]. If you need to learn UDID without connecting the device to a Mac, you can use a 3rd-party website like https://udid.tech/ to discover it (yes, it sucks that Apple makes this so complicated).
+First, register the UDID of your test iOS devices https://developer.apple.com/account/resources/devices/list[on Apple website]. If you need to learn UDID without connecting the device to a Mac, you can use a 3rd-party website like https://udid.tech/ to discover it (yes, it sucks that Apple makes this so complicated).
 //IMHO, even this process of discovering your UDID is painfully annoying because of Apple artificial limitations (need to wait for 1h to install profile from a https://udid.tech/[3rd-party website] because your own device cannot just show it to you).
 //It's seriously hard to write this manual with a neutral tone -- it should be painfully obvious by now that Apple sucks.
 
-Then you need to create a "Provisioning Profile" on the Apple website.
-// (It seems you cannot let Xcode create it or Delphi will complain that it cannot use a profile managed by Xcode).
-To do this:
+Then you need to create a "Provisioning Profile" on the Apple website. It seems you cannot let Xcode create it, or Delphi will complain that it cannot use a profile managed by Xcode. To do this:
 
 - Create an App ID on https://developer.apple.com/account/resources/identifiers/list
 - Create a "Provisioning Profile" for your application.
@@ -289,8 +287,7 @@ NOTE: You usually don't need _"Offline Support"_ (which limits the profile valid
 - In Xcode settings -> accounts, _"Download Manual Profiles"_
 - Make sure the file with the new profile appeared on macOS in `~/Library/Developer/Xcode/UserData/Provisioning Profiles`. You can just look at `*.mobileprovision` file contents, part of them is XML; if the file still looks too scary in your text editor, run `security cms -D -i <file>.mobileprovision` to extract the XML part from it.
 - Then select this in Delphi "Project Options" following the screenshots below.
-** Choose **Release**.
-// (not debug! although debug would make sense and is enabled in FPC for iOS, it doesn't work with Delphi/iOS in our tests. You must use release)
+** Choose **Release** (_"Debug"_ doesn't work with Delphi "Ad Hoc" / "Release Testing" for iOS, in our tests).
 ** Choose **Ad hoc** configuration.
 ** In "Version Info", fill `CFBundleIdentifier`.
 ** In "Provisioning", for the proper "Target", choose Build Type "iOS Device 64-bit - Ad hoc" and select the matching profile in the combo boxes below. The profile must contain the `CFBundleIdentifier` chosen above.
@@ -301,7 +298,7 @@ cgeimg::block[
   ios_adhoc3.png|iOS Ad Hoc configuration in Delphi
 ]
 
-Afterwards, doing _"Project -> Build"_ followed by _"Project -> Deploy Project"_ from Delphi should work. You will have an IPA file in `iOSDevice64\Release` subdirectory (for blank FMX projects) or in top-level project directory (for CGE projects). You can deploy it by
+Afterwards, doing _"Project -> Build"_ followed by _"Project -> Deploy Project"_ from Delphi should work. You will have an IPA file in `iOSDevice64\Release` subdirectory (for blank FMX projects) or in `castle-engine-output\delphi\iOSDevice64\Release` subdirectory (for CGE projects). You can deploy it by
 
 - placing it on your HTTPS server,
 - creating manifest file like https://github.com/SignTools/ota-me/blob/master/manifest.xml,
@@ -363,7 +360,7 @@ castle-engine package --target=android --compiler=delphi --mode=debug --msbuild-
 
 You can also use our command-line link:build_tool[build tool] to _install_, _run_, and _uninstall_ Android applications made with Delphi.
 
-To make them work, our build tool must be able to find Android `adb`. To use the same version as your Delphi IDE, consult the Delphi Android settings: enter _"Tools -> Options -> Deployment -> SDK Manager -> Android 64-bit"_ and look at the _"adb.exe location"_. To make this known to our build tool or editor, follow link:#logs[advises from the "Logging" section] about editor preferences or environment variable `ANDROID_HOME`.
+To make them work, our build tool must be able to find Android `adb`. To use the same version as your Delphi IDE, consult the Delphi Android settings: enter _"Tools -> Options -> Deployment -> SDK Manager -> Android 64-bit"_ and look at the _"adb.exe location"_. To make this known to our build tool or editor, follow link:#logs[advice from the "Capturing logs on Android" section] about editor preferences or environment variable `ANDROID_HOME`.
 
 Then the following commands will work and use your connected Android device.
 // obvious
