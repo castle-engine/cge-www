@@ -305,6 +305,7 @@ Afterwards, doing _"Project -> Build"_ followed by _"Project -> Deploy Project"_
 - and pointing to this from a webpage like `<a href="itms-services://?action=download-manifest&amp;url=https%3A%2F%2Fexample.org%2Fmanifest.plist">My App</a>`
 - Open it in Safari (other www browsers on iOS will not work for this, only Safari is blessed by Apple to be capable of this) on iOS device (the one whose UDID you registered earlier with Apple, to be useful as a test device) to install the IPA on your device.
 
+[#from_cli_or_editor]
 == Build and deploy from command-line or Castle Game Engine editor (Android only for now)
 
 You can use our command-line link:build_tool[build tool] to perform various operations on the project from the command-line. Underneath, when used with Delphi, it calls `msbuild`
