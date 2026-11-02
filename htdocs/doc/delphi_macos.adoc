@@ -16,6 +16,8 @@ Rendering on _macOS_ doesn't work for now, when compiled with _Delphi_.
 
 But basic units compile and 3D loading/processing works. You can test it with a command-line https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/scene_information_cli_tool[scene_information_cli_tool] from our examples. It can be built and works as a command-line tool on macOS.
 
+It is also useful to connect Delphi to your Mac to link:delphi_mobile[build iOS applications].
+
 == Connecting to macOS using PAServer
 
 _Delphi IDE_ and compilers always run on _Windows_. From _Windows_ they access other systems, like a remote _macOS_ machine, and run applications there.
@@ -34,6 +36,4 @@ NOTE: You will have to rerun the _import_ process each time the libraries on mac
 
 That's it. Now switch the project's platform to _"macOS 64-bit"_ or _"macOS ARM 64-bit"_ and it should just build and run. We tested both Intel-based and Arm-based (Aarch64 actually) versions of the macOS platform, and they only need one connection, to any macOS machine, it seems.
 
-Before we get rendering working, you can test it with a command-line https://github.com/castle-engine/castle-engine/tree/master/examples/viewport_and_scenes/scene_information_cli_tool[scene_information_cli_tool] from our examples. It can be built by Delphi, and works as a command-line tool on macOS.
-
-NOTE: When in doubt, we recommend first to test deploying a trivial "Blank" new application using FMX from Delphi to macOS. This should be a test independent of _"Castle Game Engine"_.
+//NOTE: When in doubt, we recommend first to test deploying a trivial "Blank" new application using FMX from Delphi to macOS. This should be a test independent of _"Castle Game Engine"_.
