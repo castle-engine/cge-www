@@ -8,7 +8,10 @@ include::common.adoc[]
 
 You can use Delphi to build and run applications made with _Castle Game Engine_ for Android and iOS.
 
-cgeimg::block[delphi_android_platformer.png|platformer example compiled with Delphi running on Android]
+cgeimg::block[
+  delphi_android_platformer.png|platformer example compiled with Delphi running on Android,
+  delphi_mobile_collage_gyroscope_accelerometer_camera.png|Mobile examples using gyroscope\, accelerometer\, and camera running with Delphi and Castle Game Engine
+]
 
 Just try it!
 
