@@ -1,6 +1,6 @@
 <?php
 
-/* Copyright 2001-2024 Michalis Kamburelis.
+/* Copyright 2001-2026 Michalis Kamburelis.
 
    This file is part of "Kambi PHP library".
 
@@ -20,15 +20,17 @@
 
    ============================================================
 
-   A common functions library, shared by both
+   In the past, this was a common functions library, shared by both
    https://castle-engine.io/ and
    https://michalis.xyz/
    websites.
+   It's practically only used by Castle Game Engine website.
 
    Before including this file, you should define:
 
    - CURRENT_URL (URL to main directory of these very web pages,
      must end with "/")
+   - CASTLE_ENGINE_ASSETS_VERSION
 
    Some rules to follow when editing these pages:
 
@@ -551,7 +553,7 @@ jQuery(".banner-container").slick({
 });
 </script>
 
-<script src="<?php echo page_requisite('castle-engine-website-base/castle-engine.js'); ?>"></script>
+<script src="<?php echo page_requisite('castle-engine-website-base/castle-engine.js?version=' . CASTLE_ENGINE_ASSETS_VERSION); ?>"></script>
 <?php
 }
 
