@@ -3316,9 +3316,10 @@ S := Download(<span class="string"><span class="delimiter">'</span><span class="
 <span class="comment">{ If GENERICS_CONSTREF is defined, then various routines used with Generics.Collections
   (like callbacks we pass to TComparer, or OnNotify callback or Notify virtual method)
   should have &quot;constref&quot; parameter, not &quot;const&quot;.
-  This was the case of FPC&lt;= 3.2.0, FPC changed it in
-  https://gitlab.com/freepascal.org/fpc/source/-/commit/693491048bf2c6f9122a0d8b044ad0e55382354d .
-  It is also applied to FPC fixes branch 3.2.3. }</span>
+  This was the case in FPC &lt;= 3.2.0.
+  FPC changed constref-&gt;const in
+  https://gitlab.com/freepascal.org/fpc/source/-/commit/693491048bf2c6f9122a0d8b044ad0e55382354d
+  and the change is present in FPC fixes branch 3.2.3 and later 3.2.4(rc1). }</span>
 <span class="preprocessor">{$ifdef VER3_0}</span> <span class="preprocessor">{$define GENERICS_CONSTREF}</span> <span class="preprocessor">{$endif}</span>
 <span class="preprocessor">{$ifdef VER3_2_0}</span> <span class="preprocessor">{$define GENERICS_CONSTREF}</span> <span class="preprocessor">{$endif}</span>
 <span class="preprocessor">{$ifdef VER3_2_2}</span> <span class="preprocessor">{$define GENERICS_CONSTREF}</span> <span class="preprocessor">{$endif}</span>
@@ -3491,9 +3492,6 @@ S := Download(<span class="string"><span class="delimiter">'</span><span class="
 </div>
 <div class="paragraph">
 <p>In <code>FGL</code> unit, the <code>TFPGList</code> can be only used for types for which the equality operator (=) is defined. For <code>TFPGMap</code> the <em>"greater than"</em> (&gt;) and <em>"less than"</em> (&lt;) operators must be defined for the key type. If you want to use these lists with types that don&#8217;t have built-in comparison operators (e.g. with records), you have to overload their operators as shown in the <a href="#_operator_overloading">Operator overloading</a>.</p>
-</div>
-<div class="paragraph">
-<p><strong>In the Castle Game Engine</strong> we include a unit <code>CastleGenericLists</code> that adds <code>TGenericStructList</code> and <code>TGenericStructMap</code> classes. They are similar to <code>TFPGList</code> and <code>TFPGMap</code>, but they do not require a definition of the comparison operators for the appropriate type (instead, they compare memory contents, which is often appropriate for records or method pointers). But the <code>CastleGenericLists</code> unit is deprecated since the engine version 6.3, as we advise using <code>Generics.Collections</code> instead.</p>
 </div>
 <div class="paragraph">
 <p>If you want to know more about the generics, see <a href="#_generics">Generics</a>.</p>
@@ -5545,7 +5543,7 @@ you create <em>COM interfaces</em>. This can be stated explicitly by saying <cod
 </div>
 <div id="footer">
 <div id="footer-text">
-Востаннє оновлено 2025-05-30 17:33:56 +0200
+Востаннє оновлено 2026-11-03 00:06:55 +0100
 </div>
 </div>
 <!-- Google analytics -->

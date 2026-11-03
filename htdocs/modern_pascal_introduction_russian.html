@@ -2347,7 +2347,7 @@ S := Download(<span class="string"><span class="delimiter">'</span><span class="
 <div class="sect2">
 <h3 id="_списки">6.2. Списки</h3>
 <div class="paragraph">
-<p>Для создания различных списков переменной длинны, лично я советую использовать generic классы из unit-а <code>FGL</code>. Можно использовать <code>TFPGList</code> для простых типов данных (включая record-ы или устаревшие object-ы), и <code>TFPGObjectList</code> для списка экземпляров классов. В <strong>Castle Game Engine:</strong> можно также использовать <code>TGenericStructList</code> из <code>CastleGenericLists</code> для создания списков record-ов или устаревших object-ов. Это позволяет обойти проблему невозможности override их операторов в старых версиях FPC.</p>
+<p>Для создания различных списков переменной длинны, лично я советую использовать generic классы из unit-а <code>FGL</code>. Можно использовать <code>TFPGList</code> для простых типов данных (включая record-ы или устаревшие object-ы), и <code>TFPGObjectList</code> для списка экземпляров классов.</p>
 </div>
 <div class="paragraph">
 <p>Применение таких списков является хорошей идеей по нескольким причинам: они типо-безопасны и их API имеет много полезных функций, таких как поиск, сортировка, итерация и т.п. Вообще говоря, не стоит использовать <em>динамические массивы</em> (<code>array of X</code>, <code>SetLength(X, &#8230;&#8203;)</code>) поскольку их API очень неудобный - можно применить лишь <code>SetLength</code>. Также не желательно использовать <code>TList</code> или <code>TObjectList</code> поскольку это потребует преобразование типа из общего <code>TObject</code> в конкретный тип класса при каждом обращении.</p>
@@ -4163,7 +4163,7 @@ vitaly_l и pupsik @ freepascal.ru</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Последнее обновление 2025-05-30 17:33:56 +0200
+Последнее обновление 2026-11-03 00:06:55 +0100
 </div>
 </div>
 <!-- Google analytics -->
