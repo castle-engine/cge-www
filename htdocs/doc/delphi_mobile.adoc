@@ -310,7 +310,7 @@ Afterwards, doing _"Project -> Build"_ followed by _"Project -> Deploy Project"_
 - Open it in Safari (other www browsers on iOS will not work for this, only Safari is blessed by Apple to be capable of this) on iOS device (the one whose UDID you registered earlier with Apple, to be useful as a test device) to install the IPA on your device.
 
 [#from_cli_or_editor]
-== Build and deploy from command-line or Castle Game Engine editor (Android only for now)
+== Build and deploy from command-line or Castle Game Engine editor
 
 You can use our command-line link:build_tool[build tool] to perform various operations on the project from the command-line. Underneath, when used with Delphi, it calls `msbuild`
 //(or `dcc`, but for Android and iOS the `msbuild` is more useful)
@@ -323,45 +323,44 @@ You will possibly need to avoid the https://github.com/castle-engine/castle-engi
 cgeimg::block[editor_msbuild_checkbox.png|Editor preference with MSBuild checkbox]
 ====
 
-To build for Android (compile Pascal code into library `.so`), use the `compile` command. From command-line, run:
+To build for Android or iOS (compile Pascal code into a library), use the `compile` command. From command-line, run:
 
 ```shell
 castle-engine compile --target=android --compiler=delphi --mode=debug --msbuild-dont-pass-engine-paths
+
+castle-engine compile --target=ios --compiler=delphi --mode=debug --msbuild-dont-pass-engine-paths
 ```
 
-////
-[WARNING]
-====
-TODO: Compilation for Delphi/iOS fails with linking errors:
-
-```
-error E2597: ld: file too small (length=0) for architecture arm64
-error F2588: Linker error code: 1 ($00000001)
-```
-====
-////
-
-To further package this into APK for Android, you need to run `castle-engine package ...`. Underneath, it is executing https://docwiki.embarcadero.com/RADStudio/Sydney/en/Building_a_Project_Using_an_MSBuild_Command[msbuild with `/target:Deploy`, as documented by Embarcadero].
+To further package this (into APK for Android or IPA on iOS), you need to run `castle-engine package ...`. Underneath, it is executing https://docwiki.embarcadero.com/RADStudio/Sydney/en/Building_a_Project_Using_an_MSBuild_Command[msbuild with `/target:Deploy`, as documented by Embarcadero].
 
 [NOTE]
 ====
 At least once, you still need to open the project in Delphi IDE:
 
-- Open and save the project after adding Android platform. It will set Android version information, like minimal SDK version.
+- Open and save the project after adding Android or iOS platform. It will set version information, like Android minimal SDK version.
+- For iOS, make sure the iOS SDK is set up.
+- For iOS, make sure to set up the target to _"Ad hoc"_ if you need IPA.
+- For iOS, make sure the connection to macOS is also setup. You must pass it using option `--msbuild-profile=<macos-profile-name>`. We use `macos-silicon` below as just an example.
 - Project needs to be deployed at least once in Delphi IDE, as only Delphi IDE can generate `.deployproj` file.
 ====
 
-If above is ready, you can package for Android (create APK), by running this after compilation:
+If above is ready, you can package by running this after compilation:
 
 ```shell
 castle-engine package --target=android --compiler=delphi --mode=debug --msbuild-dont-pass-engine-paths --assume-compiled
+
+castle-engine package --target=android --compiler=delphi --mode=debug --msbuild-dont-pass-engine-paths --assume-compiled --msbuild-profile=macos-silicon
 ```
 
-Alternatively, you can just run this, to compile and package:
+Alternatively, you can just run `package` (without `--assume-compiled`), to clean + compile + package in one go:
 
 ```shell
 castle-engine package --target=android --compiler=delphi --mode=debug --msbuild-dont-pass-engine-paths
+
+castle-engine package --target=android --compiler=delphi --mode=debug --msbuild-dont-pass-engine-paths --msbuild-profile=macos-silicon
 ```
+
+=== Install, uninstall, run on Android from command-line
 
 You can also use our command-line link:build_tool[build tool] to _install_, _run_, and _uninstall_ Android applications made with Delphi.
 
@@ -421,6 +420,16 @@ While they work (as long as you have at least _patch 1_ installed on 10.4.0), th
 
 - Only Delphi 10.4.2 shipped with significant Android improvements (bumps Android API levels, enables App Bundles, fixes above). So we recommend it as _practical minimum_.
 --
+
+Multi-touch is supported only since Delphi 12::
+Earlier Delphi versions don't provide enough information in `TCustomForm.OnTouch` to make it useful. We of course still handle touches, but they are all reported as coming from the same finger.
+
+On-screen keyboard show/hide has an issue with older Delphi versions::
+Delphi 10.4.0 (and possibly other versions before Delphi 13.1) has a small issue on Android: it does not report when user has hidden the on-screen keyboard by the "system" back button under the keyboard. This means that our engine doesn't reliably know when the on-screen keyboard is really shown.
++
+This can lead to subtle bugs. Tapping cgeref:TCastleEdit[] will show the keyboard (OK), then using the system back button will hide it, then tapping on the same cgeref:TCastleEdit[] will _not_ show the keyboard again (bug). Tapping on another cgeref:TCastleEdit[] will solve it, but it only works if you have more than one edit in your view.
++
+This issue is solved in Delphi 13.1. We didn't yet find exact Delphi version when this was fixed.
 
 Earlier Delphi versions for iOS?::
 Earlier Delphi versions, even down to 10.4.2, may work to build for iOS. But they will only work with deprecated _macOS_ / _Xcode_ versions. So in practice we cannot support them, we don't have resources to maintain multiple older _macOS_ / _Xcode_ installations.
@@ -489,6 +498,7 @@ We didn't find the underlying reason / explanation of this. (Yes, it's 2026, so 
 
 We observed this with both Delphi 12 and 13. The problem seems to have disappeared with Delphi 13.1, so a Delphi upgrade is possibly a viable solution too.
 
+[#latest_paserver_macos]
 === Problems building from Delphi 13 for _macOS/Aarch64 (Silicon)_
 
 Remember to install the Delphi patch, and install PAServer from that patch.
@@ -500,7 +510,6 @@ From https://castle-engine.io/wp/2026/07/05/delphi-improvements-build-tool-uses-
 - Find the new PAServer version for macOS inside the folder like `C:\Users\<username>\Documents\Embarcadero\Studio\37.0\CatalogRepository\13.1Patch-May\1.0\PAServer` . It is **not** applied to your Delphi installation, `C:\Program Files (x86)\Embarcadero\Studio\37.0\PAServer` will still contain the broken version! It's not obvious as the https://blogs.embarcadero.com/rad-studio-13-1-may-patch-available/[patch docs merely say "This is copied to the patch download folder."].
 
 - Install the PAServer from `C:\Users\<username>\Documents\Embarcadero\Studio\37.0\CatalogRepository\13.1Patch-May\1.0\` on your macOS machine, and reimport macOS libraries (_"Options -> Deployment -> SDK Manager"_).
-
 
 === iOS deploy errors "E0264 Unable to execute '"/usr/bin/plutil" -convert binary1 "..../Info.plist"' (Error 1)"
 
@@ -535,6 +544,20 @@ If your problem has the same cause as mine, then in that file you will see a few
 ** deleting on Windows `platformer_standalone.info.plist`
 ** deleting on macOS `/Users/administrator/PAServer/scratch-dir/michalis-macos-silicon/platformer_standalone.app/Info.plist` (`rm -f ...`).
 ////
+
+=== iOS linking error "file too small (length=0)"
+
+- Install the latest Delphi patches. In particular, https://blogs.embarcadero.com/rad-studio-13-1-may-patch-available/[Delphi 13.1 May Patch] covers this issue, explicitly saying it fixes _"... ld: file too small (length=0) for architecture arm64” when compiling with iPhoneOS 26.4 SDK"_.
+
+- Make sure to install the latest PAServer from the patch, as link:#latest_paserver_macos[documented above]: you need to find the patched PAServer.
+
+- In Delphi _SDK Manager_, import the iOS SDK again.
++
+--
+- To be safe you can first delete the old one. It's by default in location like this: `c:\Users\<username>\Documents\Embarcadero\Studio\SDKs\iPhoneOS26.5.sdk`.
+- Delete also `iPhoneSimulator26.5.sdk`, sibling to above, if you use iOS simulator.
+- Then import iOS SDK again in Delphi _SDK Manager_. You can click _"Update Local File Cache"_.
+--
 
 === Android building error "Could not create the Java Virtual Machine" (older Delphi versions)
 
