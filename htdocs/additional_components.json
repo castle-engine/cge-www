@@ -1,0 +1,83 @@
+{
+  "components": [
+    {
+      "title": "Icosphere",
+      "description": "Create icosphere (alternative way to triangulate a sphere, that doesn't have poles).\n<p>See also <a href=\"https://forum.castle-engine.io/t/building-icospheres-in-x3d/1153/\">related forum thread</a> and <a href=\"https://github.com/xistext/edjlib\">GitHub repository with more goodies, like behavior trees</a>.\n<p>By <i>Erik Johnson</i>.",
+      "image": "ico_sphere.png",
+      "page": "https://github.com/xistext/edjlib/blob/main/icosphere.pas"
+    },
+    {
+      "title": "Castle Bars",
+      "description": "Several basic bars (horizontal, vertical and circular progressbars) and sliders (horizontal, vertical and continuous, discrete).\n<p>By <i>Eugene Loza</i>.",
+      "image": "castle_bars.gif",
+      "page": "https://gitlab.com/EugeneLoza/castle-bars"
+    },
+    {
+      "title": "Castle Lines 2D",
+      "description": "Draw 2D geometry inside CGE editor.\n<p>See also <a href=\"https://castle-engine.io/wp/2023/01/13/draw-2d-geometry-inside-cge-editor-using-castle-lines-2d-components/\">news</a>.\n<p>By <i>Korchazhkin Sergey (KumurTash on GitHub)</i>.",
+      "image": "component_castlelines2d.png",
+      "page": "https://github.com/KumurTash/CastleLines2D/"
+    },
+    {
+      "title": "Spine Runtime for Castle Game Engine",
+      "description": "Render Spine models using official Spine runtime, that supports more Spine features than built-in CGE support.\n<p>By <i>Trung Le (Kagamma)</i>.",
+      "image": "component_spine_runtime.png",
+      "page": "https://github.com/Kagamma/spine-runtimes"
+    },
+    {
+      "title": "Particle Emitter",
+      "description": "Particle system for 3D and 2D that supports editing right inside CGE editor. Particles are calculated with GPU acceleration (transform feedback).\n<p>See forum threads: <a href=\"https://forum.castle-engine.io/t/3d-particle-system/\">1</a>, <a href=\"https://forum.castle-engine.io/t/3d-particle-system-now-with-full-support-for-2d-and-castle-editor/\">2</a>. See <a href=\"https://castle-engine.io/wp/2021/08/20/particle-system-updates-with-editing-integrated-inside-cge-editor-and-improvements-to-building-editor-with-custom-components/\">news</a>.\n<p>By <i>Trung Le (Kagamma)</i>.",
+      "image": "cge_3d_particles_editor.png",
+      "page": "https://github.com/Kagamma/cge-3d-particle-emitter"
+    },
+    {
+      "title": "Effekseer Integration",
+      "description": "Integration with <a href=\"https://effekseer.github.io/en/\">Effekseer</a>, a full-featured open-source particle effect creation tool.\n<p>See <a href=\"https://castle-engine.io/wp/2021/08/22/effekseer-particle-effect-creation-and-runtime-integration/\">news</a>.\n<p>By <i>Trung Le (Kagamma)</i>.",
+      "image": "cge_effekseer.png",
+      "page": "https://github.com/Kagamma/cge-effekseer"
+    },
+    {
+      "title": "2D water effect",
+      "description": "A beautiful water for 2D games. The water is represented as a volume that you can easily move and scale around. It supports reflection and refraction.\n<p>See <a href=\"https://castle-engine.io/wp/2021/08/21/water-effect-ready-to-use-in-2d-games-like-a-platformer-demo/\">news</a>.\n<p>By <i>Trung Le (Kagamma)</i>.",
+      "image": "cge_2d_water.png",
+      "page": "https://github.com/Kagamma/cge-2d-water-effect"
+    },
+    {
+      "title": "cge-2d-particle-emitter",
+      "description": "2D particle system using \"71 Squared\" format (.pex files). Particles are calculated on CPU or with GPU acceleration (transform feedback). See also <a href=\"https://forum.castle-engine.io/t/cge-2d-particle-emitter-now-supports-gpu-based-particle/\">forum thread</a>.\n<p>This is <i>deprecated</i> now in favor of <a href=\"https://github.com/Kagamma/cge-3d-particle-emitter\">cge-3d-particle-emitter</a>.\n<p>By <i>Trung Le (Kagamma)</i>.",
+      "image": "cge_2d_particles.png",
+      "page": "https://github.com/Kagamma/cge-2d-particle-emitter"
+    },
+    {
+      "title": "UI Shaker",
+      "description": "A child of <code>TCastleUserInterface</code> that shakes all its children when asked to.\n<p>By <i>Eugene Loza</i>.",
+      "image": "ui-shaker.gif",
+      "page": "https://gitlab.com/EugeneLoza/ui-shaker"
+    },
+    {
+      "title": "Typing Label",
+      "description": "A label (child of <code>TCastleLabel</code>) that supports <i>\"typing effect\"</i> on the text (text apppears gradually, one letter at a time). Allows skipping and restarting typing. Supports HTML rich text.\n<p>By <i>Eugene Loza</i>.",
+      "image": "typing-label.gif",
+      "page": "https://gitlab.com/EugeneLoza/typing-label"
+    },
+    {
+      "title": "Shifted Image Control",
+      "description": "<code>TCastleShiftedImageControl</code> that can render cropped images with a shift. Also comes with two utilities:\n<ol>\n  <li>ShiftedConvert - crops transparent parts of the image and converts it into a shifted image, that is rendered by <code>TCastleShiftedImageControl</code>.\n  <li>AlphaBleeder - slower but more \"beautiful\" version of {{cgeRef:TCastleImage.AlphaBleed}}\n</ol>\n<p>This may come in handy when rendering multiple images that should be aligned properly to each other but have large unused transparent areas (e.g. different exported layers from InkScape). Should boost RAM/VRAM usage and performance a bit.\n<p>By <i>Eugene Loza</i>.",
+      "image": "shifted_image.png",
+      "page": "https://gitlab.com/EugeneLoza/shifted-image-control"
+    },
+    {
+      "title": "Database aware CGE UI",
+      "description": "Implementation of database-aware TCastleDBEdit component. See the <a href=\"https://github.com/castle-engine/castle-db-aware-controls/\">GitHub code</a> and <a href=\"https://castle-engine.io/wp/2018/12/24/database-aware-demo-using-castle-game-engine-ui/\">this news post</a> for documentation.",
+      "image": "database_aware.png",
+      "page": "https://github.com/castle-engine/castle-db-aware-controls"
+    }
+  ],
+  "more": [
+    {
+      "title": "wrltodxf",
+      "description": "Convert a VRML, X3D or other 3D model to DXF file.",
+      "page": "https://github.com/rweinzierl10/wrltodxf"
+    }
+  ]
+}
