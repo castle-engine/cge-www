@@ -79,6 +79,12 @@ NOTE: In case of cgeref:TCastleControl[], you need to explicitly call cgeref:TCa
 
 - cgeref:TCastleContainer.SafeBorder[] is valid, we get the value from FMX. This is useful to render content avoiding system UI elements or the "notch" on mobile devices.
 
+- On-screen keyboard is automatically shown when necessary.
++
+In the simplest case, just make sure cgeref:TCastleEdit.AutoOnScreenKeyboard[] is `true`, and we will show the keyboard when user taps on the cgeref:TCastleEdit[]. You can also force it by setting `MyEdit.Focused := true`. Example showing this is https://github.com/castle-engine/castle-engine/tree/master/examples/mobile/on_screen_keyboard[examples/mobile/on_screen_keyboard].
++
+You can also explicitly show and hide keyboard by cgeref:TCastleContainer.ShowOnScreenKeyboard[] and cgeref:TCastleContainer.HideOnScreenKeyboard[].
+
 - We can integrate with all FMX services and it works as expected.
 +
 --
