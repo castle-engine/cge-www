@@ -1274,50 +1274,6 @@ function _castle_patreon_box()
       '" class="btn btn-secondary" style="margin-left: 0.5em;">Book a Meeting</a>
     </form>';
   return $result;
-
-  // TODO: is the rest worth restoring?
-
-  $patreon_json = @file_get_contents(__DIR__ . '/../patreon/patreon.json');
-  /* Check _castle_disable_externals() to avoid adding Patreon data
-     to static HTML pieces in castle-engine/doc/pasdoc/html-parts/ .
-     These static HTML pieces then go to PasDoc output,
-     compositing_shaders_doc, vrml_engine_internals. */
-  if (_castle_disable_externals() || $patreon_json === false) {
-    $patreon_desc = NULL; // 'Data Not Available';
-    $patreon_percent = 0;
-  } else {
-    $patreon = json_decode($patreon_json);
-    $patreon_desc = $patreon->completed_percentage . '%&nbsp;of&nbsp;$' . $patreon->amount_cents/100;
-    $patreon_percent = $patreon->completed_percentage;
-  }
-
-  $result = '
-    <a href="' . PATREON_URL . '" class="navbar-link"
-      style="display: inline-block; background-color: #FF424D; border-radius: 0; text-align: center;">
-      <div style="color: #ffffff; padding-left: 1em; padding-right: 1em;">
-        <span style="vertical-align: middle;">Support&nbsp;us&nbsp;on</span>&nbsp;<img src="' .
-          page_requisite('images/patreon-brand/Digital-Patreon-Wordmark_White.webp') .
-          '" ' .
-          // _castle_image_sizes('images/patreon-brand/wordmark/small/Digital-Patreon-Wordmark_White.webp')
-          ' width="80" height="16" ' // hardcode here, to avoid even loading castle_image_sizes.php in some cases
-          . '
-          alt="Patreon Wordmark"
-          style="display: inline-block; vertical-align: middle;"
-        >
-      </div>';
-
-  if ($patreon_desc !== NULL) {
-    $result .= '
-      <div style="width: 100%; height: 2em; background-color: #141518; position: relative;">
-        <div style="position: absolute; width: ' . $patreon_percent . '%; height: 2em; background-color: #ffffff; border: 2px none;">&nbsp;</div>
-        <div style="position: absolute; color: #FF424D; width: 100%; height:100%; display: table; ">
-          <span style="display: table-cell; text-align: center; vertical-align: middle;">' . $patreon_desc . '</span>
-        </div>
-      </div>';
-  }
-
-  $result .= '</a>';
-  return $result;
 }
 
 /* Create a deep copy of sitemap (or subtree of sitemap) in $map, trimmed.
