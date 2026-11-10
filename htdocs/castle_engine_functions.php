@@ -466,17 +466,17 @@ $castle_sitemap = array(
             'title' => 'Translations',
             'sub' => array(
               'modern_pascal_bg_html' => array('title' => 'Bulgarian', 'url' => CASTLE_PROD_URL . 'modern_pascal_introduction_bg.html'),
-              //TODO:'modern_pascal_bg_pdf' => array('title' => 'Bulgarian (PDF)', 'url' => CASTLE_PROD_URL . 'modern_pascal_introduction_bg.pdf'),
+              'modern_pascal_bg_pdf' => array('title' => 'Bulgarian (PDF)', 'url' => CASTLE_PROD_URL . 'modern_pascal_introduction_bg.pdf'),
 
               'modern_pascal_chinese' => array('title' => 'Chinese (WIP)', 'url' => CASTLE_PROD_URL . 'modern_pascal_introduction_chinese.pdf'),
 
               'modern_pascal_russian_html' => array('title' => 'Russian', 'url' => CASTLE_PROD_URL . 'modern_pascal_introduction_russian.html'),
-              //TODO:'modern_pascal_russian_pdf' => array('title' => 'Russian (PDF)', 'url' => CASTLE_PROD_URL . 'modern_pascal_introduction_russian.pdf'),
+              'modern_pascal_russian_pdf' => array('title' => 'Russian (PDF)', 'url' => CASTLE_PROD_URL . 'modern_pascal_introduction_russian.pdf'),
 
               'doc/modern_pascal_spanish' => array('title' => 'Spanish', 'url' => 'https://jorgeturiel.es/?page_id=473'),
 
               'modern_pascal_ukrainian_html' => array('title' => 'Ukrainian (WIP)', 'url' => CASTLE_PROD_URL . 'modern_pascal_introduction_ukrainian.html'),
-              //TODO:'modern_pascal_ukrainian_pdf' => array('title' => 'Ukrainian (WIP) (PDF)', 'url' => CASTLE_PROD_URL . 'modern_pascal_introduction_ukrainian.pdf'),
+              'modern_pascal_ukrainian_pdf' => array('title' => 'Ukrainian (WIP) (PDF)', 'url' => CASTLE_PROD_URL . 'modern_pascal_introduction_ukrainian.pdf'),
             )
           ),
 
