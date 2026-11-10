@@ -147,6 +147,7 @@ Whether you use AI or not, common recommendations apply:
 
 - Use version control. https://git-scm.com/[Git] is currently the most popular version control system. Using version control allows you to review your own changes and/or changes proposed by AI.
 
+[#respect_copyright]
 == Don't violate copyrights / licenses when using AI
 
 === Context: why this is a problem
