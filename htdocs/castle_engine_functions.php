@@ -130,7 +130,7 @@ define('CGE_LATEST_DOWNLOAD', 'https://github.com/castle-engine/castle-engine/ar
   Bump this each time you change castle-engine.css or castle-engine.js,
   to defeat any caching (like by CloudFlare).
 */
-define('CASTLE_ENGINE_ASSETS_VERSION', 60);
+define('CASTLE_ENGINE_ASSETS_VERSION', 61);
 // assign random number, to always refresh, useful at development of CSS
 //define('CASTLE_ENGINE_ASSETS_VERSION', rand(1000, 9999));
 
@@ -1625,8 +1625,113 @@ function download_donate_footer()
 
       /* <small>If you like this software, <a href="' . CURRENT_URL . 'donate">please consider donating</a>.</small>'; */
 
-    '<a class="btn btn-success btn-lg btn-patreon" href="' . PATREON_URL .
+    '<a class="btn btn-success btn-lg btn-patreon download-patreon-static" href="' . PATREON_URL .
     '"><i class="bi bi-suit-heart-fill"></i> Support us on Patreon</a>';
+}
+
+/* Store badges (Google Play, App Store) of Castle Model Viewer Mobile. */
+function castle_model_viewer_mobile_badges()
+{
+  $stores = array(
+    array(
+      'url' => 'https://play.google.com/store/apps/details?id=io.castleengine.castle.model.viewer.mobile',
+      'image' => 'images/not_resized/google_play.webp',
+      'alt' => 'Get it on Google Play (Android)',
+    ),
+    array(
+      'url' => 'https://apps.apple.com/app/id6752208775',
+      'image' => 'images/not_resized/app_store.webp',
+      'alt' => 'Download on the App Store (iOS)',
+    ),
+  );
+  $result = '';
+  foreach ($stores as $store) {
+    $result .=
+      '<a class="btn-store-in-downloads" href="' . htmlspecialchars($store['url']) . '">' .
+      '<img src="' . CURRENT_URL . '/' . htmlspecialchars($store['image']) . '" alt="' . htmlspecialchars($store['alt']) . '" ' . _castle_image_sizes($store['image']) . '>' .
+      '</a>';
+  }
+  return $result;
+}
+
+/* Note for visitors on phones and tablets, shown above desktop downloads.
+   Hidden by default, castle-engine.js reveals it only on phones and tablets.
+
+   About 1 in 9 engine downloads (Matomo, May-Nov 2026) was clicked
+   from a phone or tablet, where the desktop installer is useless.
+
+   $product - 'engine', 'castle-model-viewer' or other application name. */
+function download_mobile_note($product)
+{
+  $viewer_link = '<a href="' . CURRENT_URL . 'castle-model-viewer-mobile">Castle Model Viewer Mobile</a>';
+  $share_button =
+    '<button type="button" class="btn btn-outline-secondary cge-share-link">' .
+    '<i class="bi bi-send"></i> Send this page to your computer</button>';
+  $badges = '<div class="cge-panel-badges">' . castle_model_viewer_mobile_badges() . '</div>';
+
+  if ($product == 'castle-model-viewer') {
+    $title = 'On a phone or tablet?';
+    $subtitle = 'Get ' . $viewer_link . '. The downloads below are for desktop computers.';
+    $footer = $badges . $share_button;
+  } elseif ($product == 'engine') {
+    $title = 'On a phone or tablet?';
+    $subtitle = 'These downloads are for desktop computers: Windows, Linux, macOS and Raspberry Pi. ' .
+      'With the engine, you can create games for Android and iOS too.';
+    $footer = $share_button .
+      '<p class="cge-panel-footer-text">To view 3D models on this device right now, get ' . $viewer_link . ':</p>' .
+      $badges;
+  } elseif ($product == 'convert') {
+    $title = 'View your models on this device';
+    $subtitle = $viewer_link . ' opens glTF, X3D, STL and more on Android and iOS.';
+    $footer = $badges;
+  } else {
+    $title = 'On a phone or tablet?';
+    $subtitle = 'These downloads are for desktop computers.';
+    $footer = $share_button;
+  }
+
+  return '
+    <div class="cge-panel download-mobile-note cge-mobile-only" data-product="' . htmlspecialchars($product) . '" hidden>
+      <div class="cge-panel-header">
+        <span class="cge-panel-icon"><i class="bi bi-phone"></i></span>
+        <div class="cge-panel-heading">
+          <p class="cge-panel-title">' . $title . '</p>
+          <p class="cge-panel-subtitle">' . $subtitle . '</p>
+        </div>
+      </div>
+      <div class="cge-panel-footer">' . $footer . '</div>
+    </div>';
+}
+
+/* "Thank you" panel with a Patreon link, inside a download box.
+   Hidden by default, castle-engine.js reveals it after a download link is clicked.
+
+   Like the "Do you like this tool?" button shown by convert-output.php
+   after a successful conversion: asking at the moment the visitor got
+   something from us gets ~10x the Patreon clicks of our other pages. */
+function download_thanks($product_name)
+{
+  $product_html = htmlspecialchars($product_name);
+  return '
+    <div class="cge-panel download-thanks" data-product="' . $product_html . '" role="status" hidden>
+      <div class="cge-panel-header">
+        <span class="cge-panel-icon"><i class="bi bi-check-lg"></i></span>
+        <div class="cge-panel-heading">
+          <p class="cge-panel-title">Thank you for downloading!</p>
+          <p class="cge-panel-subtitle">Your download of ' . $product_html . ' should start in a moment.</p>
+        </div>
+        <button type="button" class="btn-close download-thanks-close" aria-label="Close"></button>
+      </div>
+      <div class="cge-panel-footer download-thanks-support">
+        <div class="download-thanks-pitch">
+          <p class="download-thanks-question">Do you like ' . $product_html . '?</p>
+          <p>It is free and open-source, and it is developed thanks to supporters like you.</p>
+        </div>
+        <a class="btn btn-lg btn-patreon-brand" href="' . PATREON_URL . '">' .
+          '<img src="' . page_requisite('images/patreon-brand/Digital-Patreon-Logo_White.webp') . '" alt="" width="512" height="512">' .
+          'Support us on Patreon</a>
+      </div>
+    </div>';
 }
 
 /* Return html (<table> or <div>) with image links.
@@ -2349,8 +2454,19 @@ function cge_download_application($version, $tag, $organization_name, $repo_name
   $download_prefix =
     'https://github.com/' . $organization_name . '/' . $repo_name  . '/releases/download/' . $tag . '/' . $application_name;
 
+  // Desktop-only downloads get a note for phone/tablet visitors.
+  $has_mobile_platform = false;
+  foreach ($platforms as $platform) {
+    if (is_prefix('google-play=', $platform) ||
+        is_prefix('app-store=', $platform) ||
+        $platform == 'android') {
+      $has_mobile_platform = true;
+    }
+  }
+
   $result = '
-    <div class="download p-5 bg-body-secondary border rounded-3">
+    <div class="download p-5 bg-body-secondary border rounded-3">' .
+    ($has_mobile_platform ? '' : download_mobile_note($application_name)) . '
     <div class="download_platforms_list">';
 
   foreach ($platforms as $platform)
@@ -2477,6 +2593,7 @@ function cge_download_application($version, $tag, $organization_name, $repo_name
     '</div>' .
 
     '</div>' .
+    download_thanks(ucwords(str_replace('-', ' ', $application_name))) .
     download_donate_footer() .
     '</div>';
   return $result;
@@ -2506,7 +2623,8 @@ function cge_download_engine($version, $tag)
 
   return '
     <div class="centered-download-wrapper">
-        <div class="download main-cge-download">
+        <div class="download main-cge-download">' .
+            download_mobile_note('engine') . '
             <div class="download_platforms_list">
                 <div class="download_platform"><a class="btn btn-primary btn-lg" href="' . $download_prefix_general . 'castle-engine-setup-' . $version . '.exe">' .
                   '<img src="' . CURRENT_URL . '/images/os_icons/win.png" alt="Windows (64-bit, x86_64)" width="64" height="64">' .
@@ -2547,7 +2665,8 @@ function cge_download_engine($version, $tag)
                   '<img src="' . CURRENT_URL . '/images/os_icons/github.png" alt="Source Code on GitHub" width="64" height="64">' .
                   '<br>Source Code' .
                   '<br><span class="download_details">(GitHub)</span></a></div>
-            </div>
+            </div>' .
+            download_thanks('Castle Game Engine') . '
         </div>
     </div>';
 }

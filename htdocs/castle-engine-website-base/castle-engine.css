@@ -614,6 +614,196 @@ div.download span.download_details { font-size: smaller; }
   margin: 0.5em;
 }
 
+/* Panels shown by castle-engine.js after a download click (.download-thanks),
+   or on phones/tablets (.download-mobile-note).
+   See download_thanks, download_mobile_note in castle_engine_functions.php. */
+
+.cge-panel {
+  --cge-patreon: #ff424d;
+  --cge-patreon-hover: #e8323d;
+  max-width: 46rem;
+  margin: 2rem auto 0.5rem;
+  text-align: left;
+  color: var(--bs-body-color);
+  background: var(--bs-body-bg);
+  border: 1px solid var(--bs-border-color);
+  border-radius: 1rem;
+  box-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+  animation: cge-panel-in 0.4s ease-out;
+}
+
+@keyframes cge-panel-in {
+  from { opacity: 0; transform: translateY(0.75rem); }
+  to   { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cge-panel { animation: none; }
+}
+
+.cge-panel p {
+  margin: 0;
+}
+
+.cge-panel-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+}
+
+.cge-panel-icon {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  color: var(--bs-success);
+  background: var(--bs-success-bg-subtle);
+}
+
+.cge-panel-heading {
+  flex: 1;
+  min-width: 0;
+}
+
+.cge-panel-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.cge-panel-subtitle {
+  margin-top: 0.15rem !important;
+  color: var(--bs-secondary-color);
+}
+
+.cge-panel-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem 1.25rem;
+  padding: 1.25rem 1.5rem;
+  border-top: 1px solid var(--bs-border-color);
+  background: var(--bs-tertiary-bg);
+  text-align: center;
+}
+
+.cge-panel-footer-text {
+  flex-basis: 100%;
+}
+
+.cge-panel-badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.cge-panel-badges .btn-store-in-downloads {
+  margin: 0;
+}
+
+.cge-panel-badges img {
+  height: 48px;
+  width: auto;
+}
+
+/* Thank-you panel after download */
+
+.download-thanks-close {
+  flex: none;
+  align-self: flex-start;
+}
+
+.download-thanks-support {
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  text-align: left;
+  background: rgba(255, 66, 77, 0.06);
+}
+
+.download-thanks-question {
+  font-weight: 600;
+}
+
+.btn-patreon-brand {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  font-weight: 600;
+  color: #fff;
+  background: var(--cge-patreon);
+  border: none;
+  border-radius: 999px;
+  padding: 0.7rem 1.5rem;
+  white-space: nowrap;
+}
+
+.btn-patreon-brand:hover,
+.btn-patreon-brand:focus-visible {
+  color: #fff;
+  background: var(--cge-patreon-hover);
+}
+
+.btn-patreon-brand img {
+  width: 1.25em;
+  height: 1.25em;
+}
+
+/* Note on phones/tablets */
+
+.download-mobile-note {
+  margin: 0 auto 2rem;
+}
+
+.download-mobile-note .cge-panel-icon {
+  color: var(--bs-primary);
+  background: var(--bs-primary-bg-subtle);
+}
+
+/* Narrow screens: tighter padding, footer stacks, full-width buttons. */
+@media (max-width: 575.98px) {
+  .cge-panel-header,
+  .cge-panel-footer {
+    padding: 1rem;
+  }
+  .cge-panel-header {
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+  .cge-panel-icon {
+    width: 2.25rem;
+    height: 2.25rem;
+    font-size: 1.25rem;
+  }
+  .cge-panel-title {
+    font-size: 1.1rem;
+  }
+  .cge-panel-footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .download-thanks-support {
+    text-align: center;
+  }
+  .btn-patreon-brand {
+    white-space: normal;
+    padding: 0.7rem 1rem;
+    font-size: 1.1rem;
+  }
+  .cge-panel-badges img {
+    height: 40px;
+  }
+}
+
 /* convert stuff ------------------------------------------------------------- */
 
 .single-column-page {

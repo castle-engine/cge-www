@@ -113,6 +113,9 @@ function output_success($output_file_id, $output_file_suggested_name, $output_fi
   <div class="convert-patreon">
     <a class="btn btn-success btn-lg btn-patreon" href="<?php echo PATREON_URL; ?>">Do you like this tool?<br><i class="bi bi-suit-heart-fill"></i> Support us on Patreon.</a>
   </div>
+
+  <?php /* Revealed by castle-engine.js only on phones and tablets. */
+  echo download_mobile_note('convert'); ?>
   <?php
 }
 
