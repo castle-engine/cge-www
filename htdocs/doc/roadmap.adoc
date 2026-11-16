@@ -1238,3 +1238,50 @@ This also means exposing new set of Pascal components to manage materials easier
 See https://github.com/castle-engine/castle-engine/files/10324944/new-material-components.txt for rough plans.
 
 NOTE: This feature has been demoted from "must have for 7.0" to "we can do it after 7.0". Because engine makes sense without it, we have to limit our scope for release at some point :), and our link:shaders[shader effects] got some updates (to API and docs) making them easier to use (which fills _some_ use-cases for new material components).
+
+[#fonts]
+### Generated fonts
+
+If your project uses TTF / OTF / WOFF files (like https://github.com/castle-engine/castle-engine/tree/master/examples/2d_games/platformer[Platformer game (source code)], link:web-demos/examples/2d_games/platformer[web build]):
+
+Right now, we always load font files (TTF / OTF / WOFF) at runtime using the FreeType library. On systems where FreeType library is not available (link:delphi_mobile[Delphi/mobile] and link:web[]) we use Pascal-only minimal implementation of the FreeType API (see `CASTLE_FREETYPE_PASCAL`).
+
+This works, but is not efficient. Processing font at design time could eliminate the need for runtime FreeType processing, we could have font resources in format ready for the engine.
+
+////
+Old, not necessary anymore arguments against texture-font-to-pascal.
+- Embedding fonts must be improved.
++
+Current problems:
++
+--
+- High-level problem: We want to move away from "embedding things by compiling them into Pascal" like by `image-to-pascal`, `texture-font-to-pascal`.
++
+Because this is causing a maintenance burden (programs and units to convert things to specialized Pascal code). It does not "scale" (e.g. to distance field fonts) because each idea would need a new converter X -> Pascal. `texture-font-to-pascal` is deprecated for above reasons.
++
+And because this is unnecessary. For embedding things in EXE, FPC already has "cross-platform resources" with nice API and it just allows to embed a binary blob. And we don't even need embedding things: we have "data organized in subdirectories and files" on all platforms, including the web.
++
+In other words, thinking higher-level: We don't need to solve "how to embed" problem. We only need to solve "how to read the data format (efficiently, without FreeType)" problem. And in general "embedding" is a different task than "making format easier to read", we don't need "embedding things by compiling them into Pascal" to be a combined solution to both things.
+--
+////
+
+What we really want is to convert the font file (TTF / OTF / WOFF) to our own font format. And keep it in `data/`. Reading this format should:
+
+- not require anything external, like FreeType.
+
+- be efficient.
+
+- avoid as much run-time processing as possible. Do pre-processing earlier. E.g. we have to eliminate current processing of distance field fonts at run-time.
+
+- be useful on all platforms. It would be easier if we didn't need to care about FreeType distribution for e.g. mobile or console targets.
+
+So we need own font format.
+
+- One part of it should JSON serialized using our cgeref:CastleComponentSerialize[].
++
+Maybe just serialize cgeref:TCastleFont[]? It only has stuff for generation, not display (`OptimalSize`, not `Size`), which is good for this use-case. Through it lacks glyphs and font metadata like family name -- IOW things that are "output from FreeType". With `xxx.castle-font` (simple consistent extension is a big plus here.)
++
+Or existing `TTextureFontData`? Remake it to be `TCastleFontData`, a `TComponent` descendant, with consistent property names (`Size` -> `OptimalSize`). Save it as `xxx.castle-font-data`.
+- Make a dedicated editor for above component that, when saving, also saves font texture (distance field or not) alongside it and glyphs (as children components). A bit like sprite sheet editor saves atlas.
+- `TCastleFont.Load` should allow reading `xxx.castle-font[-data]`, and then read texture alongside too.
+
