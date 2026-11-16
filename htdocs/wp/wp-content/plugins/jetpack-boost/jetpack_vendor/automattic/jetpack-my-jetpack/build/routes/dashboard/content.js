@@ -6,52 +6,48 @@
 // translation files resolve. Never loaded at runtime: the generated PHP
 // loaders are pinned to the .min.js sibling.
 
-/* Translators: %s refers to a browser-supplied error message (hopefully already in the right language) */
+__( "Jetpack Logo", "jetpack-my-jetpack" );
+__( "An Automattic Airline", "jetpack-my-jetpack" );
+__( "Loading", "jetpack-my-jetpack" );
+__( "Keyboard shortcut: %s", "jetpack-my-jetpack" );
+__( "(opens in a new tab)", "jetpack-my-jetpack" );
+__( "Features", "jetpack-my-jetpack" );
+__( "Help", "jetpack-my-jetpack" );
+__( "Jetpack", "jetpack-my-jetpack" );
+__( "An error occurred. Please try again.", "jetpack-my-jetpack" );
+__( "By clicking <strong>%1$s</strong> or <strong>%2$s</strong>, you agree to our <tosLink>Terms of Service</tosLink> and to <shareDetailsLink>sync your site‘s data</shareDetailsLink> with us.", "jetpack-my-jetpack" );
+__( "By clicking the buttons above, you agree to our <tosLink>Terms of Service</tosLink> and to <shareDetailsLink>sync your site‘s data</shareDetailsLink> with us.", "jetpack-my-jetpack" );
+__( "By clicking <strong>%s</strong>, you agree to our <tosLink>Terms of Service</tosLink> and to <shareDetailsLink>sync your site‘s data</shareDetailsLink> with us.", "jetpack-my-jetpack" );
+__( "By continuing you agree to our <tosLink>Terms of Service</tosLink> and to <shareDetailsLink>sync your site’s data</shareDetailsLink> with us. We’ll check if that email is linked to an existing WordPress.com account or create a new one instantly.", "jetpack-my-jetpack" );
+__( "Sections", "jetpack-my-jetpack" );
+__( "There was an error testing Jetpack. Error: %s", "jetpack-my-jetpack" );
+__( "Included", "jetpack-my-jetpack" );
+__( "Not included", "jetpack-my-jetpack" );
+__( "Coming soon", "jetpack-my-jetpack" );
+__( "%s coming soon", "jetpack-my-jetpack" );
+__( "%s not included", "jetpack-my-jetpack" );
+__( "Reduced pricing is a limited offer for the first year and renews at regular price.", "jetpack-my-jetpack" );
 __( "Received invalid response while communicating with your WordPress site: %s", "jetpack-my-jetpack" );
-/* Translators: %d refers to numeric HTTP error code */
 __( "HTTP %d error received while communicating with the server.", "jetpack-my-jetpack" );
 __( "Your site's REST API does not seem to be accessible. Jetpack Boost requires access to your REST API in order to receive site performance scores. Please make sure that your site's REST API is active and accessible, and try again.", "jetpack-my-jetpack" );
-/* Translators: %s refers to a string representation of an error object containing useful debug information */
 __( "An error occurred while trying to communicate with the site REST API. Extra debug info: %s", "jetpack-my-jetpack" );
 __( "Timed out", "jetpack-my-jetpack" );
 __( "An unknown error occurred while requesting metrics", "jetpack-my-jetpack" );
 __( "Invalid response while requesting metrics", "jetpack-my-jetpack" );
 __( "Timed out while waiting for speed-score.", "jetpack-my-jetpack" );
-__( "Jetpack Logo", "jetpack-my-jetpack" );
-__( "An Automattic Airline", "jetpack-my-jetpack" );
-/* translators: accessibility text appended to link text */
-__( "(opens in a new tab)", "jetpack-my-jetpack" );
-__( "Products", "jetpack-my-jetpack" );
-__( "Help", "jetpack-my-jetpack" );
-__( "Jetpack", "jetpack-my-jetpack" );
-__( "An error occurred. Please try again.", "jetpack-my-jetpack" );
-/* translators: %1$s is button label 1 and %2$s is button label 2 */
-__( "By clicking <strong>%1$s</strong> or <strong>%2$s</strong>, you agree to our <tosLink>Terms of Service</tosLink> and to <shareDetailsLink>sync your site‘s data</shareDetailsLink> with us.", "jetpack-my-jetpack" );
-__( "By clicking the buttons above, you agree to our <tosLink>Terms of Service</tosLink> and to <shareDetailsLink>sync your site‘s data</shareDetailsLink> with us.", "jetpack-my-jetpack" );
-/* translators: %s is a button label */
-__( "By clicking <strong>%s</strong>, you agree to our <tosLink>Terms of Service</tosLink> and to <shareDetailsLink>sync your site‘s data</shareDetailsLink> with us.", "jetpack-my-jetpack" );
-__( "By continuing you agree to our <tosLink>Terms of Service</tosLink> and to <shareDetailsLink>sync your site’s data</shareDetailsLink> with us. We’ll check if that email is linked to an existing WordPress.com account or create a new one instantly.", "jetpack-my-jetpack" );
-__( "Sections", "jetpack-my-jetpack" );
-/* translators: %s: an error message. */
-__( "There was an error testing Jetpack. Error: %s", "jetpack-my-jetpack" );
-__( "Included", "jetpack-my-jetpack" );
-__( "Not included", "jetpack-my-jetpack" );
-__( "Coming soon", "jetpack-my-jetpack" );
-/* translators: %s: Name of the current feature */
-__( "%s coming soon", "jetpack-my-jetpack" );
-/* translators: %s: Name of the current feature */
-__( "%s not included", "jetpack-my-jetpack" );
-__( "Reduced pricing is a limited offer for the first year and renews at regular price.", "jetpack-my-jetpack" );
 __( "Desktop score", "jetpack-my-jetpack" );
 __( "Mobile score", "jetpack-my-jetpack" );
 __( "/month, paid yearly", "jetpack-my-jetpack" );
 __( "% off", "jetpack-my-jetpack" );
 __( "% off the first year", "jetpack-my-jetpack" );
 __( "Dismiss", "jetpack-my-jetpack" );
-/* translators: %s: keyboard shortcut. */
-__( "Keyboard shortcut: %s", "jetpack-my-jetpack" );
-__( "Loading", "jetpack-my-jetpack" );
+__( "Select period", "jetpack-my-jetpack" );
+__( "%1$s: %2$s", "jetpack-my-jetpack" );
+__( "Previous period", "jetpack-my-jetpack" );
+__( "Next period", "jetpack-my-jetpack" );
+__( "Close", "jetpack-my-jetpack" );
 __( "More details follow the field.", "jetpack-my-jetpack" );
+__( "More details follow.", "jetpack-my-jetpack" );
 __( "Select", "jetpack-my-jetpack" );
 __( "Need help? <a>Get in touch</a>.", "jetpack-my-jetpack" );
 __( "The account that purchased the plan and the account managing this site are different.", "jetpack-my-jetpack" );
@@ -69,12 +65,10 @@ __( "You can either use this license on a different site or cancel your current 
 __( "The subscription is no longer active or has expired. Please purchase a new license.", "jetpack-my-jetpack" );
 __( "Unable to validate this license key.", "jetpack-my-jetpack" );
 __( "Please take a moment to check the license key from your purchase confirmation email—it might have a small typo.", "jetpack-my-jetpack" );
-/* translators: %s is the Jetpack product name, i.e.- Jetpack Backup, Jetpack Boost, etc., which the product name should not be translated. */
 __( "We’re sorry, %s is not compatible with multisite WordPress installations at this time.", "jetpack-my-jetpack" );
 __( "This Jetpack plan doesn’t work with Multisite WordPress setups. Please use it on a single-site installation or consider canceling for a refund.", "jetpack-my-jetpack" );
 __( "License key", "jetpack-my-jetpack" );
 __( "Fetching available licenses…", "jetpack-my-jetpack" );
-/* translators: %1$s: the product name, %2$s: the license key */
 __( "%1$s - %2$s", "jetpack-my-jetpack" );
 __( "I want to add a license key manually", "jetpack-my-jetpack" );
 __( "Select a license key", "jetpack-my-jetpack" );
@@ -106,9 +100,9 @@ __( "Jetpack Social Basic is active!", "jetpack-my-jetpack" );
 __( "Enjoy unlimited shares with Jetpack Social Basic. Learn how to make the most out of Jetpack Social <a>here</a>.", "jetpack-my-jetpack" );
 __( "Your product is active!", "jetpack-my-jetpack" );
 __( "You're all set!", "jetpack-my-jetpack" );
+__( "Jetpack Pro is active!", "jetpack-my-jetpack" );
 __( "View latest backup", "jetpack-my-jetpack" );
 __( "Configure search", "jetpack-my-jetpack" );
-/* Translators: %s is the user's display name. */
 __( "Hey, %s", "jetpack-my-jetpack" );
 __( "You have been gifted a Jetpack Golden Token.", "jetpack-my-jetpack" );
 __( "This unlocked a lifetime of Jetpack powers for your website. Your exclusive Jetpack Experience is already active.", "jetpack-my-jetpack" );
@@ -124,33 +118,57 @@ __( "Automated scanning and one‑click fixes to keep your site ahead of securit
 __( "Explore your new powers", "jetpack-my-jetpack" );
 __( "An unknown error occurred during license activation. Please try again.", "jetpack-my-jetpack" );
 __( "This is not a valid license key. Please try again.", "jetpack-my-jetpack" );
-/* translators: %s is the name of the information being fetched, e.g. "site purchases". */
 __( "There was an error fetching your %s information. Check your site connectivity and try again.", "jetpack-my-jetpack" );
-__( "A connection check failed.", "jetpack-my-jetpack" );
-__( "Your site host is on a private network. Sites can connect to WordPress.com only on public sites.", "jetpack-my-jetpack" );
-__( "This site has been suspended.", "jetpack-my-jetpack" );
 __( "Unavailable in <a>Offline Mode</a>", "jetpack-my-jetpack" );
+__( "WordPress.com couldn’t make a secure (HTTPS) connection to your site at %s. Its SSL certificate or HTTPS setup may be invalid. Ask your hosting provider to check it.", "jetpack-my-jetpack" );
+__( "WordPress.com couldn’t make a secure (HTTPS) connection to your site. Its SSL certificate or HTTPS setup may be invalid. Ask your hosting provider to check it.", "jetpack-my-jetpack" );
+__( "WordPress.com couldn’t reach your site at %s to verify it. Make sure your site is publicly reachable and its domain and SSL certificate are set up correctly. If they are, ask your hosting provider whether they block connections from WordPress.com.", "jetpack-my-jetpack" );
+__( "WordPress.com couldn’t reach your site to verify it. Make sure your site is publicly reachable and its domain and SSL certificate are set up correctly. If they are, ask your hosting provider whether they block connections from WordPress.com.", "jetpack-my-jetpack" );
+__( "WordPress.com reached your site at %s, but the connection endpoint was not found. A security plugin or server rule may be blocking xmlrpc.php or the REST API.", "jetpack-my-jetpack" );
+__( "WordPress.com reached your site, but the connection endpoint was not found. A security plugin or server rule may be blocking xmlrpc.php or the REST API.", "jetpack-my-jetpack" );
+__( "WordPress.com got an error (HTTP %1$d) when it tried to verify your site at %2$s. Your site’s error log may show the cause.", "jetpack-my-jetpack" );
+__( "WordPress.com got an error (HTTP %d) when it tried to verify your site. Your site’s error log may show the cause.", "jetpack-my-jetpack" );
+__( "Something blocked WordPress.com from verifying your site at %1$s (HTTP %2$d). Try again in a minute. If it keeps happening, a firewall or security rule is usually the cause: ask your hosting provider to allow connections from WordPress.com.", "jetpack-my-jetpack" );
+__( "Something blocked WordPress.com from verifying your site (HTTP %d). Try again in a minute. If it keeps happening, a firewall or security rule is usually the cause: ask your hosting provider to allow connections from WordPress.com.", "jetpack-my-jetpack" );
+__( "Your site is on a private network, so WordPress.com can’t reach it. Jetpack can only connect sites that are publicly accessible.", "jetpack-my-jetpack" );
+__( "Your site’s address is on WordPress.com. Jetpack connects WordPress sites hosted elsewhere, so it can’t connect this one.", "jetpack-my-jetpack" );
+__( "This site has been suspended.", "jetpack-my-jetpack" );
+__( "There have been too many connection attempts from this site. Please wait an hour and try again.", "jetpack-my-jetpack" );
+__( "Your site asks visitors to log in (for example password protection or a maintenance mode plugin), so WordPress.com couldn’t verify it. Turn it off while you connect.", "jetpack-my-jetpack" );
+__( "WordPress.com couldn’t find your site’s domain. Check that the domain is set up correctly and points to your site.", "jetpack-my-jetpack" );
+__( "WordPress.com timed out waiting for your site to answer. Your site may be slow or overloaded, or a firewall may be silently dropping the connection. Try again in a minute. If it keeps happening, ask your hosting provider to check.", "jetpack-my-jetpack" );
+__( "Your site redirected WordPress.com to an address it couldn’t use. Check the WordPress Address and Site Address in Settings › General, and any redirect rules on your site or host.", "jetpack-my-jetpack" );
+__( "WordPress.com couldn’t connect to your site through xmlrpc.php. A security plugin or your hosting provider may be blocking it.", "jetpack-my-jetpack" );
+__( "PHP’s XML extension isn’t available on your site, and Jetpack needs it to connect. Ask your hosting provider to enable it.", "jetpack-my-jetpack" );
+__( "WordPress.com couldn’t read your site’s response. Another plugin may be adding extra output to xmlrpc.php. Try deactivating other plugins.", "jetpack-my-jetpack" );
+__( "The connection attempt expired or was interrupted, for example by another connection attempt at the same time. Please try again.", "jetpack-my-jetpack" );
+__( "WordPress.com couldn’t register your site right now. Please try again in a few minutes, and contact support if it keeps happening.", "jetpack-my-jetpack" );
+__( "The connection request got an unexpected response. Another plugin or a PHP error may be adding extra output; your site’s error log, or temporarily deactivating other plugins, can show which.", "jetpack-my-jetpack" );
+__( "Your site’s REST API couldn’t be reached. A security plugin or server rule may be blocking it.", "jetpack-my-jetpack" );
+__( "Your browser couldn’t complete the request to your site. A firewall, CDN or redirect may be interfering. Reload the page and try again.", "jetpack-my-jetpack" );
+__( "Your session expired. Reload the page and try again.", "jetpack-my-jetpack" );
+__( "A critical error stopped the connection. Your site’s error log has the details.", "jetpack-my-jetpack" );
+__( "Only site administrators can connect this site. Ask an administrator to connect it.", "jetpack-my-jetpack" );
+__( "Your site couldn’t reach WordPress.com. Ask your hosting provider to allow outgoing connections from your site to jetpack.wordpress.com.", "jetpack-my-jetpack" );
+__( "WordPress.com is temporarily unavailable. Please try again in a minute.", "jetpack-my-jetpack" );
+__( "Your site got an unexpected response from WordPress.com. If your hosting provider filters outgoing connections, ask them to allow jetpack.wordpress.com.", "jetpack-my-jetpack" );
+__( "WordPress.com returned an unexpected response when registering your site. Please try again in a minute.", "jetpack-my-jetpack" );
 __( "Over 5 million WordPress sites are faster and more secure", "jetpack-my-jetpack" );
 __( "Set up Jetpack", "jetpack-my-jetpack" );
 __( "Your account (connection owner)", "jetpack-my-jetpack" );
-/* translators: %s is the display name of the Jetpack connection owner. */
 __( "Connection owner's account (%s)", "jetpack-my-jetpack" );
 __( "Connection owner's account", "jetpack-my-jetpack" );
 __( "Your account", "jetpack-my-jetpack" );
 __( "Another user's account", "jetpack-my-jetpack" );
 __( "User connection", "jetpack-my-jetpack" );
 __( "Site connection", "jetpack-my-jetpack" );
-/* translators: %s is what the error applies to, e.g. "Site connection" or "Your account". */
 __( "Jetpack Connection error: %s", "jetpack-my-jetpack" );
-/* translators: %d is the number of connection errors found. */
 _n( "%d Jetpack Connection error", "%d Jetpack Connection errors", 1, "jetpack-my-jetpack" );
 __( "Jetpack Connection error", "jetpack-my-jetpack" );
 __( "Still having trouble? <link>Contact Jetpack Support</link>.", "jetpack-my-jetpack" );
-/* translators: %s: the error. */
 __( "There was an error reconnecting Jetpack. Error: %s", "jetpack-my-jetpack" );
-__( "Reconnecting Jetpack", "jetpack-my-jetpack" );
-__( "Restore Connection", "jetpack-my-jetpack" );
 __( "Take Action", "jetpack-my-jetpack" );
+__( "Restore Connection", "jetpack-my-jetpack" );
 __( "Reconnecting Jetpack…", "jetpack-my-jetpack" );
 __( "Jetpack is powering other plugins on your site. If you disconnect, these plugins will no longer work.", "jetpack-my-jetpack" );
 __( "<strong>Need help?</strong> Learn more about the <connectionInfoLink>Jetpack connection</connectionInfoLink> or <supportLink>contact Jetpack support</supportLink>", "jetpack-my-jetpack" );
@@ -187,24 +205,48 @@ __( "Thank you!", "jetpack-my-jetpack" );
 __( "Your answer has been submitted. <br/>Thanks for your input on how we can improve Jetpack.", "jetpack-my-jetpack" );
 __( "Are you sure you want to disconnect?", "jetpack-my-jetpack" );
 __( "There was a problem disconnecting your account. Please try again.", "jetpack-my-jetpack" );
-__( "Disconnect Owner Account", "jetpack-my-jetpack" );
-__( "Disconnecting the owner account will remove the Jetpack connection for all users on this site. The site will remain connected.", "jetpack-my-jetpack" );
+__( "Disconnect owner account", "jetpack-my-jetpack" );
+__( "Disconnecting the owner account without choosing a new owner will remove the Jetpack connection for all users on this site. The site will remain connected.", "jetpack-my-jetpack" );
 __( "Transfer ownership to another admin", "jetpack-my-jetpack" );
-__( "View other connected accounts", "jetpack-my-jetpack" );
-__( "Manage your Jetpack connection", "jetpack-my-jetpack" );
 __( "There was some trouble disconnecting your user account, your Jetpack plugin(s) may be outdated. Please visit your plugins page and make sure all Jetpack plugins are updated.", "jetpack-my-jetpack" );
 __( "There was some trouble disconnecting your user account, your Jetpack plugin(s) may be outdated. Please ask a site admin to update Jetpack", "jetpack-my-jetpack" );
+__( "Disconnect your user account", "jetpack-my-jetpack" );
+__( "Are you sure you want to disconnect your WordPress.com account?", "jetpack-my-jetpack" );
+__( "No other connected administrators", "jetpack-my-jetpack" );
+__( "Ownership can only go to an administrator who has connected their WordPress.com account.", "jetpack-my-jetpack" );
+__( "Ask another administrator to connect, then come back here to transfer ownership. <link>How users connect</link>", "jetpack-my-jetpack" );
+__( "Select an administrator", "jetpack-my-jetpack" );
+__( "Loading administrators…", "jetpack-my-jetpack" );
+__( "Choose a connected administrator to take over this site's connection to WordPress.com.", "jetpack-my-jetpack" );
+__( "New connection owner", "jetpack-my-jetpack" );
+__( "Don't see someone? They need to be an administrator and <link>connect their WordPress.com account</link> first.", "jetpack-my-jetpack" );
+__( "%1$s (%2$s)", "jetpack-my-jetpack" );
+__( "If you need to transfer a plan as well, <link>learn more about how Jetpack plans can be transferred here.</link>", "jetpack-my-jetpack" );
+__( "<name/> will become the connection owner.", "jetpack-my-jetpack" );
+__( "%s will own the data WordPress.com stores for this site.", "jetpack-my-jetpack" );
+__( "You'll stay connected as a regular user.", "jetpack-my-jetpack" );
+__( "%s needs to confirm protected ownership.", "jetpack-my-jetpack" );
+__( "You're the protected owner of this connection", "jetpack-my-jetpack" );
+__( "After the transfer, features that need a protected owner stop working until %s confirms they are the new protected owner.", "jetpack-my-jetpack" );
+__( "<name/> also becomes the main point of contact for support about that data. <link>Learn about the connection owner</link>", "jetpack-my-jetpack" );
+__( "%s is now the connection owner. You're still connected as a regular user.", "jetpack-my-jetpack" );
+__( "Ownership of this connection is locked and cannot be transferred.", "jetpack-my-jetpack" );
+__( "That user is no longer an administrator, so they cannot take over the connection.", "jetpack-my-jetpack" );
+__( "That user is no longer connected to WordPress.com. Ask them to reconnect, or choose someone else.", "jetpack-my-jetpack" );
+__( "That user already owns this connection.", "jetpack-my-jetpack" );
+__( "The connection owner could not be changed. Please try again.", "jetpack-my-jetpack" );
+__( "Could not load the administrators who can take over this connection.", "jetpack-my-jetpack" );
+__( "Transfer ownership", "jetpack-my-jetpack" );
+__( "Transfer anyway", "jetpack-my-jetpack" );
+__( "Back", "jetpack-my-jetpack" );
+__( "Transferring ownership…", "jetpack-my-jetpack" );
+__( "Continue", "jetpack-my-jetpack" );
+__( "Manage your Jetpack connection", "jetpack-my-jetpack" );
+__( "Transfer connection ownership", "jetpack-my-jetpack" );
 __( "At least one user must be connected for your Jetpack products to work properly.", "jetpack-my-jetpack" );
 __( "Disconnect my user account", "jetpack-my-jetpack" );
 __( "Disconnect Jetpack", "jetpack-my-jetpack" );
 __( "Go back", "jetpack-my-jetpack" );
-__( "Overview", "jetpack-my-jetpack" );
-__( "Active", "jetpack-my-jetpack" );
-__( "Inactive", "jetpack-my-jetpack" );
-/* translators: %s is the feature name. */
-__( "Deactivate %s", "jetpack-my-jetpack" );
-/* translators: %s is the feature name. */
-__( "Activate %s", "jetpack-my-jetpack" );
 __( "My Jetpack", "jetpack-my-jetpack" );
 __( "Connect your user account", "jetpack-my-jetpack" );
 __( "Connecting your account…", "jetpack-my-jetpack" );
@@ -219,7 +261,6 @@ __( "And more!", "jetpack-my-jetpack" );
 __( "See all Jetpack features", "jetpack-my-jetpack" );
 __( "On the next screen, you can connect with an existing account from any of these services or create a new one.", "jetpack-my-jetpack" );
 __( "Go back to previous screen", "jetpack-my-jetpack" );
-__( "Close", "jetpack-my-jetpack" );
 __( "Failed to evaluate site recommendations", "jetpack-my-jetpack" );
 __( "Failed to save evaluation results. Please try again", "jetpack-my-jetpack" );
 __( "Failed to hide evaluation results. Please try again", "jetpack-my-jetpack" );
@@ -254,53 +295,37 @@ __( "Backup is deactivated", "jetpack-my-jetpack" );
 __( "It appears that the backups have been manually deactivated for the site.", "jetpack-my-jetpack" );
 __( "Backup system error", "jetpack-my-jetpack" );
 __( "Backup has encountered a general system error and was unable to complete the last backup attempt.", "jetpack-my-jetpack" );
-/* translators: %s is the error code coming from the server (formatted, i.e.- first word capitalized, hypen's removed, etc. ) i.e.- 'Invalid credentials', 'File not found', etc. */
 __( "%s error", "jetpack-my-jetpack" );
-/* translators: %s is the error code coming from the server. i.e.- 'invalid-credentials', 'file-not-found', etc. */
 __( "Error code: %s", "jetpack-my-jetpack" );
 __( "Oops! We couldn’t back up your site", "jetpack-my-jetpack" );
-/* Translators: %1$s is the date the last backup took place, i.e.- "Dec 7, 2024" */
 __( "The last backup attempted on %1$s was unsuccessful.", "jetpack-my-jetpack" );
 __( "Check out our troubleshooting guide or contact your hosting provider to resolve the issue.", "jetpack-my-jetpack" );
 __( "Read troubleshooting guide", "jetpack-my-jetpack" );
 __( "Contact support", "jetpack-my-jetpack" );
-/* translators: %1$s: the name of the plugin that has a bad installation. */
 __( "Your installation of %1$s is incomplete. If you installed %1$s from GitHub, please refer to the developer documentation to set up your development environment.", "jetpack-my-jetpack" );
 __( "See documentation", "jetpack-my-jetpack" );
-/* translators: %1$s is the Jetpack product name (e.g. Jetpack Backup, Jetpack Security, etc.) */
 __( "Your %1$s plan has expired", "jetpack-my-jetpack" );
-/* translators: %1$s is the Jetpack product name, (e.g. Jetpack Backup, Jetpack Security, etc.) */
 __( "Heads up! Your %1$s plan is about to expire", "jetpack-my-jetpack" );
 __( "Your videos are no longer visible to your viewers, and you won’t be able to upload new content.", "jetpack-my-jetpack" );
 __( "Don’t worry—you can resume your plan anytime to restore your video library and continue uploading.", "jetpack-my-jetpack" );
 __( "Your videos will soon stop showing for your viewers, and you won’t be able to upload new content.", "jetpack-my-jetpack" );
-/* translators: %1$s is the product's expiration date, i.e.- "Nov 11, 2024" */
 __( "To keep everything running smoothly, renew your plan by %1$s!", "jetpack-my-jetpack" );
-/* translators: %1$s is the Jetpack product name, i.e.- Jetpack Backup, Jetpack Security, etc.. */
 __( "%1$s provides paid features for the following products:", "jetpack-my-jetpack" );
-/* translators: %1$s is the Jetpack product name, i.e.- Jetpack Backup, Jetpack Security, etc.. */
 __( "Since your %1$s plan is expired, the paid features for these products are no longer available for your site.", "jetpack-my-jetpack" );
 __( "But don’t worry—you can resume your plan to restore your access to your plan’s paid features.", "jetpack-my-jetpack" );
-/* translators: %1$s is the product's expiration date, i.e.- "Nov 11, 2024" */
 __( "Renew your plan by %1$s to continue to have access to the paid features of these products.", "jetpack-my-jetpack" );
-/* translators: %1$s is the Jetpack product name, i.e.- Jetpack Backup, Jetpack Security, etc.. */
 __( "Your %1$s subcription has expired. The paid features are no longer available.", "jetpack-my-jetpack" );
 __( "Don’t worry—you can resume your plan anytime to restore your access to the upgraded features.", "jetpack-my-jetpack" );
-/* translators: %1$s is the Jetpack product name, i.e.- Jetpack Backup, Jetpack Security, etc.., %2$s is the product's expiration date, i.e.- "Nov 11, 2024". */
 __( "Your %1$s subcription will be expiring soon on %2$s, and the paid features for this product will no longer be available.", "jetpack-my-jetpack" );
 __( "To keep everything running smoothly, renew your plan today!", "jetpack-my-jetpack" );
 __( "Resume my plan", "jetpack-my-jetpack" );
 __( "Renew my plan", "jetpack-my-jetpack" );
 __( "Learn more", "jetpack-my-jetpack" );
-/* translators: %s is either the product name, i.e.- "Jetpack Backup" or the word "Plugins". */
 __( "%s activated successfully!", "jetpack-my-jetpack" );
 __( "Plugins", "jetpack-my-jetpack" );
-/* translators: %s is the Jetpack product name or comma-separated list of multiple Jetpack product names. */
 __( "There was a problem activating %s.", "jetpack-my-jetpack" );
-/* translators: %s is the name of a Jetpack plugin, i.e.- "VaultPress Backup" or "Boost" or "Social" or "Search" or "VideoPress", etc. */
 __( "%s installed successfully!", "jetpack-my-jetpack" );
 __( "Plugins installed successfully!", "jetpack-my-jetpack" );
-/* translators: %s is the Jetpack plugin name or comma-separated list of multiple Jetpack plugin names. */
 __( "There was a problem installing and activating %s.", "jetpack-my-jetpack" );
 __( "Plugin installation and activation needed", "jetpack-my-jetpack" );
 __( "Plugin installation needed", "jetpack-my-jetpack" );
@@ -308,33 +333,29 @@ __( "Plugin activation needed", "jetpack-my-jetpack" );
 __( "Some plugins need to be installed and/or activated", "jetpack-my-jetpack" );
 __( "Some plugins need to be installed", "jetpack-my-jetpack" );
 __( "Some plugins need to be activated", "jetpack-my-jetpack" );
-/* translators: %1$s is the name of the Jetpack paid plan, i.e.- "Jetpack Security", and %2$s word "plugin" as singular, or plural ("plugins"). */
-__( "To get the most out of your <link>%1$s paid subscription</link> and have access to all it’s features, we recommend you install and/or activate the following %2$s:", "jetpack-my-jetpack" );
-_n( "plugin", "plugins", 1, "jetpack-my-jetpack" );
-/* translators: %1$s is the name of the Jetpack paid plan, i.e.- "Jetpack Security", and %2$s word "plugin" as singular, or plural ("plugins"). */
-__( "To get the most out of your <link>%1$s paid subscription</link> and have access to all it’s features, we recommend you install and activate the following %2$s:", "jetpack-my-jetpack" );
-/* translators: %1$s is the name of the Jetpack paid plan, i.e.- "Jetpack Security", and %2$s word "plugin" as singular, or plural ("plugins"). */
-__( "To get the most out of your <link>%1$s paid subscription</link> and have access to all it’s features, we recommend you activate the following %2$s:", "jetpack-my-jetpack" );
-/* translators: %1$s is "plugin" or "plugins" (singular/plural) */
-__( "Install and/or activate %1$s in one click", "jetpack-my-jetpack" );
-/* translators: %1$s is "plugin" or "plugins" (singular/plural) */
-__( "Install and activate %1$s in one click", "jetpack-my-jetpack" );
-/* translators: %1$s is "plugin" or "plugins" (singular/plural) */
-__( "Activate %1$s in one click", "jetpack-my-jetpack" );
+__( "To get the most out of your <link>%s paid subscription</link> and have access to all its features, we recommend you install and/or activate the following plugin:", "jetpack-my-jetpack" );
+__( "To get the most out of your <link>%s paid subscription</link> and have access to all its features, we recommend you install and activate the following plugin:", "jetpack-my-jetpack" );
+__( "To get the most out of your <link>%s paid subscription</link> and have access to all its features, we recommend you activate the following plugin:", "jetpack-my-jetpack" );
+_n( "To get the most out of your <link>%1$s paid subscription</link> and have access to all its features, we recommend you install and/or activate the following %2$d plugin:", "To get the most out of your <link>%1$s paid subscription</link> and have access to all its features, we recommend you install and/or activate the following %2$d plugins:", 1, "jetpack-my-jetpack" );
+_n( "To get the most out of your <link>%1$s paid subscription</link> and have access to all its features, we recommend you install and activate the following %2$d plugin:", "To get the most out of your <link>%1$s paid subscription</link> and have access to all its features, we recommend you install and activate the following %2$d plugins:", 1, "jetpack-my-jetpack" );
+_n( "To get the most out of your <link>%1$s paid subscription</link> and have access to all its features, we recommend you activate the following %2$d plugin:", "To get the most out of your <link>%1$s paid subscription</link> and have access to all its features, we recommend you activate the following %2$d plugins:", 1, "jetpack-my-jetpack" );
+__( "Install and/or activate plugin in one click", "jetpack-my-jetpack" );
+__( "Install and activate plugin in one click", "jetpack-my-jetpack" );
+__( "Activate plugin in one click", "jetpack-my-jetpack" );
+_n( "Install and/or activate %d plugin in one click", "Install and/or activate %d plugins in one click", 1, "jetpack-my-jetpack" );
+_n( "Install and activate %d plugin in one click", "Install and activate %d plugins in one click", 1, "jetpack-my-jetpack" );
+_n( "Activate %d plugin in one click", "Activate %d plugins in one click", 1, "jetpack-my-jetpack" );
+__( "Activating plugin…", "jetpack-my-jetpack" );
+__( "Installing and activating plugin…", "jetpack-my-jetpack" );
+_n( "Activating %d plugin…", "Activating %d plugins…", 1, "jetpack-my-jetpack" );
+_n( "Installing and activating %d plugin…", "Installing and activating %d plugins…", 1, "jetpack-my-jetpack" );
 __( "Needs installation and activation", "jetpack-my-jetpack" );
 __( "Needs activation", "jetpack-my-jetpack" );
-/* translators: %s is the singular or plural "plugin" or "plugins". */
-__( "Activating %s…", "jetpack-my-jetpack" );
-/* translators: %s is the singular or plural "plugin" or "plugins". */
-__( "Installing and activating %s…", "jetpack-my-jetpack" );
-/* translators: %s is the product name. Can be either "Scan" or "Protect". */
 __( "%s found threats on your site", "jetpack-my-jetpack" );
 __( "We’ve detected some security threats that need your attention.", "jetpack-my-jetpack" );
-/* translators: %s is the product name. Can be either "Scan" or "Protect". */
 __( "Visit the %s dashboard to view threat details, auto-fix threats, and keep your site safe.", "jetpack-my-jetpack" );
 __( "Fix threats", "jetpack-my-jetpack" );
 __( "Site connection failed. Please try again.", "jetpack-my-jetpack" );
-/* translators: %s: the product name. */
 __( "Jetpack %s needs a user connection to WordPress.com to be able to work.", "jetpack-my-jetpack" );
 __( "Some products need a user connection to WordPress.com to be able to work.", "jetpack-my-jetpack" );
 __( "Missing user connection", "jetpack-my-jetpack" );
@@ -342,19 +363,26 @@ __( "Some products need a connection to WordPress.com to be able to work.", "jet
 __( "Connect your site", "jetpack-my-jetpack" );
 __( "Missing site connection", "jetpack-my-jetpack" );
 __( "Connecting…", "jetpack-my-jetpack" );
+__( "Overview", "jetpack-my-jetpack" );
+__( "Active", "jetpack-my-jetpack" );
+__( "Inactive", "jetpack-my-jetpack" );
+__( "Deactivate %s", "jetpack-my-jetpack" );
+__( "Activate %s", "jetpack-my-jetpack" );
 __( "Enabled by your host or site administrator", "jetpack-my-jetpack" );
 __( "Disabled by your host or site administrator", "jetpack-my-jetpack" );
 __( "Not available on multisite", "jetpack-my-jetpack" );
+__( "Unavailable", "jetpack-my-jetpack" );
+__( "Requires a connected WordPress.com account", "jetpack-my-jetpack" );
 __( "Install Plugin", "jetpack-my-jetpack" );
 __( "Get plan", "jetpack-my-jetpack" );
 __( "Upgrade", "jetpack-my-jetpack" );
 __( "View", "jetpack-my-jetpack" );
 __( "Connect", "jetpack-my-jetpack" );
 __( "Troubleshoot", "jetpack-my-jetpack" );
+__( "Jetpack Search could not be activated.", "jetpack-my-jetpack" );
 __( "Install", "jetpack-my-jetpack" );
 __( "Manage", "jetpack-my-jetpack" );
 __( "Purchase", "jetpack-my-jetpack" );
-__( "Start for free", "jetpack-my-jetpack" );
 __( "Free", "jetpack-my-jetpack" );
 __( "/month, billed yearly", "jetpack-my-jetpack" );
 __( "Expires soon", "jetpack-my-jetpack" );
@@ -364,29 +392,23 @@ __( "Needs user account", "jetpack-my-jetpack" );
 __( "Needs connection", "jetpack-my-jetpack" );
 __( "Needs plan", "jetpack-my-jetpack" );
 __( "Needs attention", "jetpack-my-jetpack" );
-/* translators: %s is the number of days since the last backup */
 _n( "%s day ago", "%s days ago", 1, "jetpack-my-jetpack" );
-/* translators: %s is the number of hours since the last backup */
 _n( "%s hour ago", "%s hours ago", 1, "jetpack-my-jetpack" );
-/* translators: %s is the number of minutes since the last backup */
 _n( "%s minute ago", "%s minutes ago", 1, "jetpack-my-jetpack" );
-/* translators: %s is the number of seconds since the last backup */
 _n( "%s second ago", "%s seconds ago", 1, "jetpack-my-jetpack" );
 __( "Please reactivate Backup on my site", "jetpack-my-jetpack" );
 __( "Backup was manually turned off. Please <a>contact support</a> to reactivate it.", "jetpack-my-jetpack" );
+__( "Your backups are still running. Activate Backup to browse and restore them from your WordPress dashboard.", "jetpack-my-jetpack" );
 __( "The last backup attempt failed.", "jetpack-my-jetpack" );
 __( "Check out our troubleshooting guide.", "jetpack-my-jetpack" );
 __( "Undo", "jetpack-my-jetpack" );
 __( "Activity Detected", "jetpack-my-jetpack" );
-/* translators: %s: The name of the MCP client application. */
 __( "via %s (MCP)", "jetpack-my-jetpack" );
 __( "MCP client", "jetpack-my-jetpack" );
-/* translators: %d is the number (positive integer) of points the speed has increased */
 __( "Your speed has improved by %d points! Boost is working to enhance your performance with automated tools.", "jetpack-my-jetpack" );
 __( "Your site is fast! Boost is working to enhance your performance with automated tools.", "jetpack-my-jetpack" );
 __( "Visit the Boost dashboard to view your historical speed scores and manage your product settings.", "jetpack-my-jetpack" );
 __( "Visit the Boost dashboard to view your site’s speed scores and manage your product settings.", "jetpack-my-jetpack" );
-/* translators: %d is the number (integer) of points the speed has increased */
 __( "Your speed has improved by %d points! Upgrade Boost to unlock automated CSS and image optimization tools to maintain your high score.", "jetpack-my-jetpack" );
 __( "Your site is fast! But maintaining a high speed isn’t easy. Upgrade Boost to use automated CSS and image optimization tools to improve your performance on the go.", "jetpack-my-jetpack" );
 __( "You are one step away from making your site blazing fast. Upgrade Boost to use automated CSS and image optimization tools to improve your performance.", "jetpack-my-jetpack" );
@@ -394,76 +416,72 @@ __( "Improve your performance with automated CSS and image optimization tools by
 __( "Your site is fast! But maintaining a high speed isn’t easy. Use Boost’s automated acceleration tools to optimize your performance on the go.", "jetpack-my-jetpack" );
 __( "You are one step away from making your site blazing fast. Install Boost to enhance your site’s performance like top websites, no developer needed.", "jetpack-my-jetpack" );
 __( "Your site needs performance improvements. Make your site blazing fast with Boost’s simple dashboard and acceleration tools.", "jetpack-my-jetpack" );
-/* translators: %1$s: speed grade (e.g. 'A'), %2$s: numerical speed score (e.g. '95'). */
 __( "Your website’s overall speed score is %1$s, or %2$d out of 100.", "jetpack-my-jetpack" );
-/* translators: %d: score increase (e.g. '10') */
 __( "Your website’s overall speed score increased by %d.", "jetpack-my-jetpack" );
-/* translators: %d: score increase (e.g. '10') */
 __( "Your website’s overall speed score decreased by %d.", "jetpack-my-jetpack" );
 __( "Your website’s overall speed score:", "jetpack-my-jetpack" );
 __( "Site speed performance:", "jetpack-my-jetpack" );
 __( "Boost your site", "jetpack-my-jetpack" );
+__( "More about %s", "jetpack-my-jetpack" );
+__( "Protect settings", "jetpack-my-jetpack" );
 __( "Brute Force Protection: Active", "jetpack-my-jetpack" );
 __( "Brute Force Protection is actively blocking malicious login attempts. The number of blocked login attempts will display here soon!", "jetpack-my-jetpack" );
 __( "Brute Force Protection: Inactive", "jetpack-my-jetpack" );
-/* translators: %s is the location/page where the settings are located. Either "firewall settings" or "Jetpack settings". */
 __( "Brute Force Protection is disabled and not actively blocking malicious login attempts. Go to <a>%s</a> to activate it.", "jetpack-my-jetpack" );
 __( "Brute Force Protection is disabled and not actively blocking malicious login attempts.", "jetpack-my-jetpack" );
 __( "For Brute Force Protection, activate the Jetpack or Protect plugin and enable it in settings.", "jetpack-my-jetpack" );
+__( "Firewall: On", "jetpack-my-jetpack" );
+__( "Automatic rules are off, so only the IP addresses you list are blocked. Turn them on in your <a>firewall settings</a>.", "jetpack-my-jetpack" );
+__( "Automatic rules are off, so only the IP addresses you list are blocked.", "jetpack-my-jetpack" );
+__( "The firewall blocks the IP addresses you list. Upgrade for automatic rules that stop known attacks.", "jetpack-my-jetpack" );
+__( "Your hosting provider runs a firewall for your site, so you’re all set.", "jetpack-my-jetpack" );
+__( "Firewall: Inactive", "jetpack-my-jetpack" );
+__( "Jetpack’s firewall is off because your hosting provider already includes a built-in firewall with similar rules for your site.", "jetpack-my-jetpack" );
+__( "Firewall: Off", "jetpack-my-jetpack" );
+__( "The firewall isn’t blocking any requests. Turn it on in your <a>firewall settings</a>.", "jetpack-my-jetpack" );
+__( "The firewall isn’t blocking any requests.", "jetpack-my-jetpack" );
 __( "Improve site safety: secure plugins & themes", "jetpack-my-jetpack" );
-/* translators: %1$s the singular or plural of number of plugin(s), and %2$s is the singular or plural of the number of theme(s). */
 __( "Your site has %1$s and %2$s lacking security measures. Improve your site’s safety by adding protection at no cost.", "jetpack-my-jetpack" );
-/* translators: %d is the number of plugins installed on the site. */
 _n( "%d plugin", "%d plugins", 1, "jetpack-my-jetpack" );
-/* translators: %d is the number of themes installed on the site. */
 _n( "%d theme", "%d themes", 1, "jetpack-my-jetpack" );
 __( "Auto-fix threats", "jetpack-my-jetpack" );
-/* translators: %1$s is the number of threats, %2$s is the numner of critical threats on the site, and %3$s is either "Scan" or "Protect" (the type of dashboard). */
 __( "The last scan identified %1$s (%2$d critical). But don’t worry, Protect is usually able to “Auto-fix” threats, in most cases. Visit the <a>%3$s dashboard</a> to view more details.", "jetpack-my-jetpack" );
-/* translators: %d is the number of detected scan threats on the site. */
 _n( "%d threat", "%d threats", 1, "jetpack-my-jetpack" );
-/* translators: %1$s is the singular or plural of number of detected threats on the site, and %2$s is either "Scan" or "Protect" (the type of dashboard). */
 __( "The last scan identified %1$s. But don’t worry, Protect is usually able to “Auto-fix” threats, in most cases. Visit the <a>%2$s dashboard</a> to view more details.", "jetpack-my-jetpack" );
 __( "Elevate your malware protection", "jetpack-my-jetpack" );
 __( "We’ve checked items against our database, and all appears well. For a more detailed, line-by-line malware scan, consider upgrading your plan.", "jetpack-my-jetpack" );
-__( "Auto-Firewall: Inactive", "jetpack-my-jetpack" );
-__( "You have Auto-Firewall disabled, visit your Protect <a>firewall settings</a> to activate.", "jetpack-my-jetpack" );
-__( "Auto-Firewall is disabled as your hosting provider already includes a built-in firewall with similar rules for your site.", "jetpack-my-jetpack" );
-__( "Upgrade required for activation. Manual rules available.", "jetpack-my-jetpack" );
-__( "Auto-Firewall", "jetpack-my-jetpack" );
-__( "Shield icon - Auto-Firewall Status: On", "jetpack-my-jetpack" );
 __( "On", "jetpack-my-jetpack" );
-__( "Shield icon - Auto-Firewall Status: Inactive", "jetpack-my-jetpack" );
-__( "Shield icon - Auto-Firewall Status: Off", "jetpack-my-jetpack" );
+__( "Shield icon - Firewall Status: On", "jetpack-my-jetpack" );
+__( "Shield icon - Firewall Status: Inactive", "jetpack-my-jetpack" );
 __( "Off", "jetpack-my-jetpack" );
+__( "Shield icon - Firewall Status: Off", "jetpack-my-jetpack" );
+__( "Firewall", "jetpack-my-jetpack" );
 __( "Logins Blocked", "jetpack-my-jetpack" );
 __( "Shield icon - Brute Force Protection Status: Active", "jetpack-my-jetpack" );
 __( "Shield icon - Brute Force Protection Status: Inactive", "jetpack-my-jetpack" );
 __( "Shield icon - Brute Force Protection Status: Off", "jetpack-my-jetpack" );
 __( "Threats", "jetpack-my-jetpack" );
+_n( "%d critical threat. More about threats", "%d critical threats. More about threats", 1, "jetpack-my-jetpack" );
 __( "Scan", "jetpack-my-jetpack" );
 __( "Shield icon - Scan Status: Secure", "jetpack-my-jetpack" );
 __( "Secure", "jetpack-my-jetpack" );
+__( "Shield icon - Scan Status: Incomplete", "jetpack-my-jetpack" );
+__( "Incomplete", "jetpack-my-jetpack" );
+__( "Shield icon - Scan Status: Not scanned yet", "jetpack-my-jetpack" );
+__( "Not scanned yet", "jetpack-my-jetpack" );
 __( "Shield icon - Scan Status: Partial", "jetpack-my-jetpack" );
 __( "Partial", "jetpack-my-jetpack" );
 __( "Shield icon - Scan Status: Off", "jetpack-my-jetpack" );
-/* translators: %d: the number of years ago (e.g. "5 years ago"). */
 _n( "%d year ago", "%d years ago", 1, "jetpack-my-jetpack" );
-/* translators: %d: the number of months ago (e.g. "5 months ago"). */
 _n( "%d month ago", "%d months ago", 1, "jetpack-my-jetpack" );
-/* translators: %d: the number of days ago (e.g. "5 days ago"). */
 _n( "%d day ago", "%d days ago", 1, "jetpack-my-jetpack" );
-/* translators: %d: the number of hours ago (e.g. "5 hours ago"). */
 _n( "%d hour ago", "%d hours ago", 1, "jetpack-my-jetpack" );
-/* translators: %d: the number of minutes ago (e.g. "5 minutes ago"). */
 _n( "%d minute ago", "%d minutes ago", 1, "jetpack-my-jetpack" );
 __( "a few seconds ago", "jetpack-my-jetpack" );
-/* translators: %s is how long ago since the last scan took place, i.e.- "17 hours ago" */
+__( "Last scan didn’t complete", "jetpack-my-jetpack" );
 __( "Last scan: %s", "jetpack-my-jetpack" );
-/* translators: The ampersand symbol here (&) is meaning "and". */
 __( "&", "jetpack-my-jetpack" );
 __( "The finest video for WordPress", "jetpack-my-jetpack" );
-/* translators: %d is the number of videos in the Media Library that could benefit from VideoPress. */
 _n( "You have %d video in your Media Library that could benefit from VideoPress. Start <a>hosting</a> it today to unlock multiple benefits: enhanced quality add-free streaming, faster load times, customizable player controls.", "You have %d videos in your Media Library that could benefit from VideoPress. Start <a>hosting</a> them today to unlock multiple benefits: enhanced quality add-free streaming, faster load times, customizable player controls.", 1, "jetpack-my-jetpack" );
 __( "Give your videos a boost! 🚀 Try hosting with VideoPress for superior quality and performance.", "jetpack-my-jetpack" );
 __( "High-quality video, wherever your audience is", "jetpack-my-jetpack" );
@@ -484,43 +502,63 @@ __( "Here are the tools that we think will help you reach your website goals:", 
 __( "Recommendations menu", "jetpack-my-jetpack" );
 __( "Previous", "jetpack-my-jetpack" );
 __( "Next", "jetpack-my-jetpack" );
-/* translators: %d is how many features are selected. */
+__( "Connection status unavailable", "jetpack-my-jetpack" );
+__( "Offline Mode", "jetpack-my-jetpack" );
+__( "Your site is in Offline Mode, so features that need WordPress.com are paused.", "jetpack-my-jetpack" );
+__( "Safe Mode", "jetpack-my-jetpack" );
+__( "This site appears to be a copy of another Jetpack site, so Jetpack is in Safe Mode and some features are paused.", "jetpack-my-jetpack" );
+__( "Site not connected", "jetpack-my-jetpack" );
+__( "A site admin will need to connect this site to Jetpack.", "jetpack-my-jetpack" );
+__( "Connect your site with one click.", "jetpack-my-jetpack" );
+__( "Site and account connected", "jetpack-my-jetpack" );
+__( "Everything looks good.", "jetpack-my-jetpack" );
+__( "Site connected", "jetpack-my-jetpack" );
+__( "A site admin will need to connect their account before you can connect yours.", "jetpack-my-jetpack" );
+__( "Connect your account to unlock all the features.", "jetpack-my-jetpack" );
+__( "We noticed a possible issue with your account connection that might lead to connection issues.", "jetpack-my-jetpack" );
+__( "Connected as owner: %1$s (%2$s)", "jetpack-my-jetpack" );
+__( "User connected (Owner).", "jetpack-my-jetpack" );
+__( "Connected as %1$s (%2$s)", "jetpack-my-jetpack" );
+__( "User connected.", "jetpack-my-jetpack" );
+__( "Also connected: %s (Owner).", "jetpack-my-jetpack" );
+__( "%1$s was gifted on %2$s. It gives you access to a lifetime subscription of Jetpack VaultPress Backup and Jetpack Scan.", "jetpack-my-jetpack" );
+__( "Expiring soon on %1$s", "jetpack-my-jetpack" );
+__( "Expired on %1$s", "jetpack-my-jetpack" );
+__( "Managed by: %1$s", "jetpack-my-jetpack" );
+__( "Expires on %1$s", "jetpack-my-jetpack" );
+__( "Renew subscription", "jetpack-my-jetpack" );
+__( "Resume subscription", "jetpack-my-jetpack" );
+__( "Never Expires", "jetpack-my-jetpack" );
+_n( "Plan", "Plans", 1, "jetpack-my-jetpack" );
+_n( "Manage your plan", "Manage your plans", 1, "jetpack-my-jetpack" );
+__( "Purchase a plan", "jetpack-my-jetpack" );
+_x( "Activate a license", "Activate a license button text", "jetpack-my-jetpack" );
+_x( "Activate a license (requires a user connection)", "Activate a license button text", "jetpack-my-jetpack" );
+__( "View included features", "jetpack-my-jetpack" );
+__( "Jetpack Essentials", "jetpack-my-jetpack" );
+_n( "Your plan", "Your plans", 1, "jetpack-my-jetpack" );
+__( "Connect my account", "jetpack-my-jetpack" );
+__( "Connect site", "jetpack-my-jetpack" );
+__( "Connected", "jetpack-my-jetpack" );
+__( "Connection: %s", "jetpack-my-jetpack" );
+__( "Connection", "jetpack-my-jetpack" );
+__( "Manage connection", "jetpack-my-jetpack" );
 _n( "%d selected", "%d selected", 1, "jetpack-my-jetpack" );
 __( "Plugins can only be deactivated together while the Jetpack plugin is active.", "jetpack-my-jetpack" );
 __( "Select all features", "jetpack-my-jetpack" );
-__( "Select features to switch several at once", "jetpack-my-jetpack" );
-__( "All categories", "jetpack-my-jetpack" );
-__( "Recommended", "jetpack-my-jetpack" );
-__( "Included in plan", "jetpack-my-jetpack" );
-__( "Security", "jetpack-my-jetpack" );
-__( "Growth", "jetpack-my-jetpack" );
-__( "Performance", "jetpack-my-jetpack" );
-__( "Other", "jetpack-my-jetpack" );
-__( "Explore all", "jetpack-my-jetpack" );
-__( "We couldn’t load your features.", "jetpack-my-jetpack" );
-__( "Refresh the page, or try again in a moment.", "jetpack-my-jetpack" );
-__( "Reload", "jetpack-my-jetpack" );
-/* translators: %s is the term someone searched the features list for. */
-__( "No features match “%s”.", "jetpack-my-jetpack" );
-__( "It may go by another name here, or the answer may be on jetpack.com.", "jetpack-my-jetpack" );
-/* translators: %s is the term someone searched the features list for. */
-__( "Search jetpack.com for “%s”", "jetpack-my-jetpack" );
-__( "No features are active yet.", "jetpack-my-jetpack" );
-__( "Turn one on and it will appear here.", "jetpack-my-jetpack" );
-__( "Everything is turned on.", "jetpack-my-jetpack" );
-__( "There are no inactive features left on this site.", "jetpack-my-jetpack" );
-__( "No features found.", "jetpack-my-jetpack" );
+__( "Select features to activate or deactivate them together", "jetpack-my-jetpack" );
 __( "Legacy sharing buttons cannot be customized on block themes.", "jetpack-my-jetpack" );
-_x( "Add the Sharing Buttons block to your theme’s template.", "Sharing block migration instruction", "jetpack-my-jetpack" );
+_x( "Choose where the Sharing Buttons block goes on your posts and pages.", "Sharing block migration instruction", "jetpack-my-jetpack" );
 __( "Switch to Sharing Buttons block", "jetpack-my-jetpack" );
 __( "Deactivating legacy sharing…", "jetpack-my-jetpack" );
 __( "Legacy Like buttons cannot be customized on block themes.", "jetpack-my-jetpack" );
-_x( "Add the Like block to your theme’s template.", "Like block migration instruction", "jetpack-my-jetpack" );
+_x( "Choose where the Like block goes on your posts and pages.", "Like block migration instruction", "jetpack-my-jetpack" );
 __( "Switch to the Like block", "jetpack-my-jetpack" );
 __( "Deactivating legacy Like buttons…", "jetpack-my-jetpack" );
-__( "Your login page now has rate-limiting and secure authentication safeguards.", "jetpack-my-jetpack" );
+__( "Your site now checks logins for compromised passwords and flags weak new passwords.", "jetpack-my-jetpack" );
 __( "You can now review every event on your site and roll back when something goes wrong.", "jetpack-my-jetpack" );
 __( "You can now generate and edit content, images, and more with Jetpack AI in the editor.", "jetpack-my-jetpack" );
+__( "You can now browse your backups and restore your site from your dashboard.", "jetpack-my-jetpack" );
 __( "You can now promote your posts across millions of sites in the WordPress.com and Tumblr ad network.", "jetpack-my-jetpack" );
 __( "Your editor now has custom Jetpack blocks for rich content and layout options.", "jetpack-my-jetpack" );
 __( "Your archive pages now have canonical URLs to prevent duplicate content in search engines.", "jetpack-my-jetpack" );
@@ -543,7 +581,7 @@ __( "Your site now serves static files from Jetpack's global CDN for faster load
 __( "Your site now loads images faster with automatic resizing from our global CDN.", "jetpack-my-jetpack" );
 __( "You can now publish, manage, and grow your podcast right from your site.", "jetpack-my-jetpack" );
 __( "You can now publish blog posts by sending an email.", "jetpack-my-jetpack" );
-__( "You can now display a customizable list of your latest posts anywhere on your site.", "jetpack-my-jetpack" );
+__( "You can now see featured images and a copy link action in your WP Admin post and page lists.", "jetpack-my-jetpack" );
 __( "Your site now blocks malicious login attempts automatically.", "jetpack-my-jetpack" );
 __( "Your posts now auto-share to social networks and track engagement in one place.", "jetpack-my-jetpack" );
 __( "You can now reach the WordPress.com Reader from your site, and join a community of creators and bloggers.", "jetpack-my-jetpack" );
@@ -566,97 +604,108 @@ __( "You can now choose which widgets appear on specific pages with advanced con
 __( "Your site now has more widget options like social feeds and subscriptions.", "jetpack-my-jetpack" );
 __( "You now have actionable insights on your store's orders, revenue, and customers.", "jetpack-my-jetpack" );
 __( "Your site can now earn revenue by displaying high-quality ads.", "jetpack-my-jetpack" );
-/* translators: 1: Module name, 2: The benefit of the module */
 _x( "%1$s activated! %2$s", "Message shown when a module is activated. 1: Module name, 2: The benefit of the module", "jetpack-my-jetpack" );
-/* translators: %s: Jetpack module name */
 _x( "%s has been activated.", "%s: Jetpack module name", "jetpack-my-jetpack" );
-/* translators: %s is the module name */
+__( "Active Blaze campaigns are still running", "jetpack-my-jetpack" );
+__( "Disabling this setting only hides the Blaze interface. Your campaigns will continue to serve ads, and you will continue to be charged. To stop your campaigns, open campaign management.", "jetpack-my-jetpack" );
+__( "Disable anyway", "jetpack-my-jetpack" );
+__( "Manage campaigns", "jetpack-my-jetpack" );
+__( "Keep Blaze enabled", "jetpack-my-jetpack" );
 __( "%s has been deactivated.", "jetpack-my-jetpack" );
-/* translators: %s is the module name */
 __( "Failed to activate %s.", "jetpack-my-jetpack" );
-/* translators: %s is the module name */
 __( "Failed to deactivate %s.", "jetpack-my-jetpack" );
-__( "Open Site Editor", "jetpack-my-jetpack" );
-/* translators: %s is the module name */
+__( "Configure", "jetpack-my-jetpack" );
 __( "Toggle %s module", "jetpack-my-jetpack" );
-/* translators: %s is a plugin name, such as "Jetpack Boost". */
-__( "Plugin installs are turned off on this site. Ask your host or site administrator to install %s.", "jetpack-my-jetpack" );
-/* translators: %s is a plugin name, such as "Jetpack Boost". */
-__( "Your account can’t install plugins. Ask a site administrator to install %s.", "jetpack-my-jetpack" );
-/* translators: %s is a plugin or feature name. */
 __( "%s deactivated.", "jetpack-my-jetpack" );
-/* translators: %s is a plugin or feature name. */
 __( "%s is on.", "jetpack-my-jetpack" );
-/* translators: %s is a plugin or feature name. */
 __( "Could not change %s. Please try again.", "jetpack-my-jetpack" );
 __( "The plugin could not be installed. Please try again.", "jetpack-my-jetpack" );
-__( "Installing…", "jetpack-my-jetpack" );
-__( "Activating…", "jetpack-my-jetpack" );
-__( "Open", "jetpack-my-jetpack" );
-__( "Activate Jetpack", "jetpack-my-jetpack" );
-__( "Install Jetpack", "jetpack-my-jetpack" );
-__( "All", "jetpack-my-jetpack" );
-__( "Essential", "jetpack-my-jetpack" );
-__( "Complete", "jetpack-my-jetpack" );
-/* translators: %s is the feature name. */
-__( "Learn more about %s", "jetpack-my-jetpack" );
-/* translators: %s is the feature name. */
-__( "Configure %s", "jetpack-my-jetpack" );
-__( "Configure", "jetpack-my-jetpack" );
-/* translators: %d is how many features were switched on. */
+__( "Jetpack module: %s", "jetpack-my-jetpack" );
+__( "Included in your plan", "jetpack-my-jetpack" );
+__( "Your plan expired", "jetpack-my-jetpack" );
+__( "Included in your plan, but not running", "jetpack-my-jetpack" );
+__( "Plugin installs are turned off on this site. Ask your host or site administrator to install %s.", "jetpack-my-jetpack" );
+__( "Your account can’t install plugins. Ask a site administrator to install %s.", "jetpack-my-jetpack" );
 _n( "%d feature activated.", "%d features activated.", 1, "jetpack-my-jetpack" );
-/* translators: %d is how many features were switched off. */
 _n( "%d feature deactivated.", "%d features deactivated.", 1, "jetpack-my-jetpack" );
-/* translators: %1$s is a comma-separated list of feature names, %2$s is why they could not be changed. */
-__( "%1$s: %2$s", "jetpack-my-jetpack" );
 __( "Could not change the selected features. Please try again.", "jetpack-my-jetpack" );
-__( "Change this feature from its own control.", "jetpack-my-jetpack" );
-/* translators: %s is the feature name. */
-__( "Select %s", "jetpack-my-jetpack" );
-/* translators: %s is the feature name. */
-__( "%s in use", "jetpack-my-jetpack" );
-/* translators: %s is a plugin name. Keep the <plugin> tags around it. */
-__( "Installing adds the <plugin>%s</plugin> plugin and turns it on. It does not buy anything.", "jetpack-my-jetpack" );
-/* translators: %s is a plugin name. Keep the <plugin> tags around it. */
-__( "The <plugin>%s</plugin> plugin is already installed. Activating turns it on.", "jetpack-my-jetpack" );
-__( "Built into Jetpack. Activating turns it on, with nothing to install or buy.", "jetpack-my-jetpack" );
-/* translators: %s is a feature name, such as "Stats". */
-__( "%s is part of the Jetpack plugin. Installing Jetpack turns it on; it does not buy anything.", "jetpack-my-jetpack" );
-__( "Feature page", "jetpack-my-jetpack" );
-__( "Documentation", "jetpack-my-jetpack" );
-/* translators: %s is a plan name, such as "Jetpack Complete". */
-__( "Show everything in %s", "jetpack-my-jetpack" );
+__( "Explore all", "jetpack-my-jetpack" );
+__( "We couldn’t load your features.", "jetpack-my-jetpack" );
+__( "Refresh the page, or try again in a moment.", "jetpack-my-jetpack" );
+__( "Reload", "jetpack-my-jetpack" );
+__( "No features match “%s”.", "jetpack-my-jetpack" );
+__( "It may go by another name here, or the answer may be on jetpack.com.", "jetpack-my-jetpack" );
+__( "Search jetpack.com for “%s”", "jetpack-my-jetpack" );
+__( "No features are active yet.", "jetpack-my-jetpack" );
+__( "Turn one on and it will appear here.", "jetpack-my-jetpack" );
+__( "Everything is turned on.", "jetpack-my-jetpack" );
+__( "There are no inactive features left on this site.", "jetpack-my-jetpack" );
+__( "Your plan doesn’t include any of these yet.", "jetpack-my-jetpack" );
+__( "Features a paid plan covers will appear here once you have one.", "jetpack-my-jetpack" );
+__( "No features found.", "jetpack-my-jetpack" );
 __( "Included in <plan0 />", "jetpack-my-jetpack" );
 __( "Included in <plan0 /> and <plan1 />", "jetpack-my-jetpack" );
 __( "Included in <plan0 />, <plan1 /> and <plan2 />", "jetpack-my-jetpack" );
-__( "With a paid plan", "jetpack-my-jetpack" );
-/* translators: %s is a product name, such as "Jetpack Akismet Anti-spam". */
+__( "Renew the plan for %s", "jetpack-my-jetpack" );
 __( "Upgrade to %s", "jetpack-my-jetpack" );
-/* translators: %s is a feature name, such as "Stats". */
+__( "Renew", "jetpack-my-jetpack" );
+__( "With a paid plan", "jetpack-my-jetpack" );
+__( "Installing…", "jetpack-my-jetpack" );
+__( "Activating…", "jetpack-my-jetpack" );
+__( "Manage %s in Protect", "jetpack-my-jetpack" );
+__( "Manage in Protect", "jetpack-my-jetpack" );
+__( "Open", "jetpack-my-jetpack" );
+__( "Connect account for %s", "jetpack-my-jetpack" );
+__( "Activate Jetpack", "jetpack-my-jetpack" );
+__( "Install Jetpack", "jetpack-my-jetpack" );
+__( "All", "jetpack-my-jetpack" );
+__( "Available", "jetpack-my-jetpack" );
+__( "Included in plan", "jetpack-my-jetpack" );
+__( "Essential", "jetpack-my-jetpack" );
+__( "Security", "jetpack-my-jetpack" );
+__( "Growth", "jetpack-my-jetpack" );
+__( "Other", "jetpack-my-jetpack" );
+__( "Configure %s", "jetpack-my-jetpack" );
+__( "Learn more about %s", "jetpack-my-jetpack" );
+__( "Change this feature from its own control.", "jetpack-my-jetpack" );
+__( "Select %s", "jetpack-my-jetpack" );
+__( "%s in use", "jetpack-my-jetpack" );
+__( "Installing adds the free <plugin>%s</plugin> plugin and turns it on. You won’t be charged.", "jetpack-my-jetpack" );
+__( "Installing adds the free <plugin>%s</plugin> plugin and turns it on, then connects your WordPress.com account. You won’t be charged.", "jetpack-my-jetpack" );
+__( "The <plugin>%s</plugin> plugin is already installed. Activating turns it on.", "jetpack-my-jetpack" );
+__( "The <plugin>%1$s</plugin> plugin is already installed. After you connect your WordPress.com account, %2$s turns on when you’re back here.", "jetpack-my-jetpack" );
+__( "Built into Jetpack, so there is nothing to install. Activating turns it on.", "jetpack-my-jetpack" );
+__( "Built into Jetpack, so there is nothing to install. After you connect your WordPress.com account, %s turns on when you’re back here.", "jetpack-my-jetpack" );
+__( "%s is part of the Jetpack plugin. Installing Jetpack turns it on. You won’t be charged.", "jetpack-my-jetpack" );
+__( "%s is part of the Jetpack plugin. Once Jetpack is on you’ll connect your WordPress.com account, then you can turn it on here if it’s still off. You won’t be charged.", "jetpack-my-jetpack" );
+__( "Support docs", "jetpack-my-jetpack" );
 __( "Previous: %s", "jetpack-my-jetpack" );
-/* translators: %s is a feature name, such as "Stats". */
 __( "Next: %s", "jetpack-my-jetpack" );
 __( "Previous feature", "jetpack-my-jetpack" );
 __( "Next feature", "jetpack-my-jetpack" );
 __( "Left arrow", "jetpack-my-jetpack" );
 __( "Right arrow", "jetpack-my-jetpack" );
-/* translators: 1: a feature name, 2: its place in the list, 3: how many are listed. */
 __( "%1$s, %2$d of %3$d", "jetpack-my-jetpack" );
+__( "How you pay", "jetpack-my-jetpack" );
 __( "Every Jetpack feature, in one place.", "jetpack-my-jetpack" );
-__( "Switch a feature on or off right here. Open one first to see what it does, what it needs, and where to find it once it is on.", "jetpack-my-jetpack" );
+__( "Activate or deactivate a feature right here. Open one first to see what it does, what it needs, and where to find it once it is on.", "jetpack-my-jetpack" );
 __( "Dismiss banner", "jetpack-my-jetpack" );
-__( "Activate the Jetpack plugin to see and switch its other features.", "jetpack-my-jetpack" );
+__( "Activate the Jetpack plugin to see and manage its other features.", "jetpack-my-jetpack" );
 __( "More Features", "jetpack-my-jetpack" );
 __( "Grid view", "jetpack-my-jetpack" );
 __( "List view", "jetpack-my-jetpack" );
 __( "Filter features", "jetpack-my-jetpack" );
+__( "Searching all features", "jetpack-my-jetpack" );
 __( "Search features", "jetpack-my-jetpack" );
+__( "Search", "jetpack-my-jetpack" );
 __( "Layout", "jetpack-my-jetpack" );
-/* translators: %d is how many features were added to the wp-admin menu. */
 _n( "%d feature is now in your menu", "%d features are now in your menu", 1, "jetpack-my-jetpack" );
-/* translators: %s is a feature name, e.g. "Stats". */
 __( "%s is now in your menu", "jetpack-my-jetpack" );
-/* translators: %d is how many features the filter or search matched. */
+__( "Some features could not be loaded", "jetpack-my-jetpack" );
+__( "This list is incomplete. Reload the page to try again.", "jetpack-my-jetpack" );
+__( "Tag: %s", "jetpack-my-jetpack" );
+__( "Clear tag", "jetpack-my-jetpack" );
+__( "Classic Modules list", "jetpack-my-jetpack" );
 _n( "%d feature shown", "%d features shown", 1, "jetpack-my-jetpack" );
 __( "Ask us a question", "jetpack-my-jetpack" );
 __( "Have a question? Our AI Assistant can help, or connect you to our support team.", "jetpack-my-jetpack" );
@@ -673,14 +722,12 @@ __( "Learn more about us", "jetpack-my-jetpack" );
 __( "Useful links", "jetpack-my-jetpack" );
 __( "All Jetpack modules", "jetpack-my-jetpack" );
 __( "Debug information", "jetpack-my-jetpack" );
+__( "What’s new in Jetpack?", "jetpack-my-jetpack" );
+__( "Read more", "jetpack-my-jetpack" );
 __( "No change since the previous period.", "jetpack-my-jetpack" );
-/* translators: %s: stat difference (e.g. `5 views`) */
 __( "An increase of %s since the previous period.", "jetpack-my-jetpack" );
-/* translators: %s: stat difference (e.g. `5 views`) */
 __( "A decrease of %s since the previous period.", "jetpack-my-jetpack" );
-/* translators: %1$s: stat difference (e.g. `5 views`), %2$s: stat difference percentage (e.g. `10%`) */
 __( "An increase of %1$s or %2$s since the previous period.", "jetpack-my-jetpack" );
-/* translators: %1$s: stat difference (e.g. `5 views`), %2$s: stat difference percentage (e.g. `10%`) */
 __( "A decrease of %1$s or %2$s since the previous period.", "jetpack-my-jetpack" );
 _x( "%1$s, %2$s", "legend item label and value", "jetpack-my-jetpack" );
 _x( "%s: visible. Toggle visibility.", "visible interactive legend item", "jetpack-my-jetpack" );
@@ -699,16 +746,26 @@ __( "Invalid data", "jetpack-my-jetpack" );
 __( "Line chart", "jetpack-my-jetpack" );
 __( "Area chart", "jetpack-my-jetpack" );
 __( "Week of %s", "jetpack-my-jetpack" );
+__( "Total", "jetpack-my-jetpack" );
 __( "Bar chart", "jetpack-my-jetpack" );
+__( "Bar list chart", "jetpack-my-jetpack" );
+_n( "%s item", "%s items", 1, "jetpack-my-jetpack" );
+__( "Conversion rate", "jetpack-my-jetpack" );
+__( "Conversion funnel chart", "jetpack-my-jetpack" );
+__( "Funnel steps", "jetpack-my-jetpack" );
+__( "%1$s, %2$s", "jetpack-my-jetpack" );
 __( "Loading map", "jetpack-my-jetpack" );
+__( "Geo chart", "jetpack-my-jetpack" );
 __( "Less", "jetpack-my-jetpack" );
 __( "More", "jetpack-my-jetpack" );
 __( "Heatmap chart", "jetpack-my-jetpack" );
 __( "Current period", "jetpack-my-jetpack" );
-__( "Previous period", "jetpack-my-jetpack" );
 __( "Not enough space to display data", "jetpack-my-jetpack" );
+__( "Leaderboard chart", "jetpack-my-jetpack" );
 __( "Percentage change unavailable", "jetpack-my-jetpack" );
 __( "No comparison data", "jetpack-my-jetpack" );
+__( "Pie chart", "jetpack-my-jetpack" );
+__( "Semi-circle chart", "jetpack-my-jetpack" );
 __( "View detailed stats", "jetpack-my-jetpack" );
 __( "No data in this period", "jetpack-my-jetpack" );
 __( "There was no data recorded during this time period.", "jetpack-my-jetpack" );
@@ -720,276 +777,58 @@ __( "Views in the last 7 days", "jetpack-my-jetpack" );
 __( "Visitors in the last 7 days", "jetpack-my-jetpack" );
 __( "Likes in the last 7 days", "jetpack-my-jetpack" );
 __( "Comments in the last 7 days", "jetpack-my-jetpack" );
-/* translators: %s: number of views */
 _n( "%s view", "%s views", 1, "jetpack-my-jetpack" );
-/* translators: %s: number of visitors */
 _n( "%s visitor", "%s visitors", 1, "jetpack-my-jetpack" );
-/* translators: %s: number of likes */
 _n( "%s like", "%s likes", 1, "jetpack-my-jetpack" );
-/* translators: %s: number of comments */
 _n( "%s comment", "%s comments", 1, "jetpack-my-jetpack" );
 __( "Connect Jetpack to use Stats", "jetpack-my-jetpack" );
+__( "Connect %s", "jetpack-my-jetpack" );
+__( "Try again", "jetpack-my-jetpack" );
+__( "Generate backup", "jetpack-my-jetpack" );
+__( "Latest backup", "jetpack-my-jetpack" );
+__( "Failed to load latest backup", "jetpack-my-jetpack" );
+__( "Contact support to reactivate", "jetpack-my-jetpack" );
+__( "Activate to optimize", "jetpack-my-jetpack" );
+__( "Optimize speed", "jetpack-my-jetpack" );
+__( "Speed score", "jetpack-my-jetpack" );
+__( "Checking site speed…", "jetpack-my-jetpack" );
+__( "Failed to calculate score", "jetpack-my-jetpack" );
+__( "Activate Protect", "jetpack-my-jetpack" );
+__( "Threats found", "jetpack-my-jetpack" );
+__( "Manage Protect", "jetpack-my-jetpack" );
+__( "Failed to load threats", "jetpack-my-jetpack" );
+__( "Blocked login attempts", "jetpack-my-jetpack" );
+__( "Scan threats", "jetpack-my-jetpack" );
+__( "Failed to load blocked logins", "jetpack-my-jetpack" );
+__( "Activate Stats", "jetpack-my-jetpack" );
+__( "More stats", "jetpack-my-jetpack" );
+_n( "Views in the last %d day", "Views in the last %d days", 1, "jetpack-my-jetpack" );
+__( "Failed to load stats", "jetpack-my-jetpack" );
+__( "Last 7 days", "jetpack-my-jetpack" );
+__( "Last 30 days", "jetpack-my-jetpack" );
+__( "Date range", "jetpack-my-jetpack" );
+__( "Upload to VideoPress", "jetpack-my-jetpack" );
+__( "Failed to load videos", "jetpack-my-jetpack" );
+__( "More insights", "jetpack-my-jetpack" );
+__( "More about AI", "jetpack-my-jetpack" );
+__( "Increase usage", "jetpack-my-jetpack" );
+__( "More about Search", "jetpack-my-jetpack" );
+__( "Manage CRM", "jetpack-my-jetpack" );
+__( "Manage Social", "jetpack-my-jetpack" );
+__( "How is your site growing?", "jetpack-my-jetpack" );
+__( "How well is my site protected?", "jetpack-my-jetpack" );
+__( "What is my site status?", "jetpack-my-jetpack" );
 __( "There was a problem enabling the new SEO experience.", "jetpack-my-jetpack" );
 __( "Enabling…", "jetpack-my-jetpack" );
 __( "Try the new SEO experience", "jetpack-my-jetpack" );
 __( "A fresh way to manage your SEO", "jetpack-my-jetpack" );
-__( "Jetpack SEO now has a dedicated dashboard to manage sitemaps, search-engine visibility, social previews, and site verification — all in one place. Switch over whenever you like; your existing settings come with you.", "jetpack-my-jetpack" );
+__( "Jetpack SEO now has a dedicated dashboard to manage sitemaps, search-engine visibility, social previews, and site verification — all in one place. Switching also enables Jetpack SEO tools if they are off. Your existing settings are kept.", "jetpack-my-jetpack" );
 __( "There was a problem dismissing the Automattic for Agencies banner.", "jetpack-my-jetpack" );
 __( "Are you an agency or freelancer?", "jetpack-my-jetpack" );
 __( "Automattic for Agencies is the ultimate partnership to access agency pricing, referral earnings, partner badges, and powerful tooling for agencies using WordPress.com, Pressable, WooCommerce, Jetpack, and more. Joining is free.", "jetpack-my-jetpack" );
 __( "Sign up now", "jetpack-my-jetpack" );
 __( "Dismiss the Automattic for Agencies banner", "jetpack-my-jetpack" );
-__( "We noticed a possible issue with your account connection that might lead to connection issues.", "jetpack-my-jetpack" );
-/* translators: 1 is user name, 2 is email address */
-__( "Connected as owner: %1$s (%2$s)", "jetpack-my-jetpack" );
-__( "User connected (Owner).", "jetpack-my-jetpack" );
-/* translators: 1 is user name, 2 is email address */
-__( "Connected as %1$s (%2$s)", "jetpack-my-jetpack" );
-__( "User connected.", "jetpack-my-jetpack" );
-/* translators: %s: the username of the Jetpack connection owner */
-__( "Also connected: %s (Owner).", "jetpack-my-jetpack" );
-__( "Site not connected", "jetpack-my-jetpack" );
-__( "A site admin will need to connect this site to Jetpack.", "jetpack-my-jetpack" );
-__( "Connect your site with one click.", "jetpack-my-jetpack" );
-__( "Site and account connected", "jetpack-my-jetpack" );
-__( "Everything looks good.", "jetpack-my-jetpack" );
-__( "Site connected", "jetpack-my-jetpack" );
-__( "A site admin will need to connect their account before you can connect yours.", "jetpack-my-jetpack" );
-__( "Connect your account to unlock all the features.", "jetpack-my-jetpack" );
-__( "Connection", "jetpack-my-jetpack" );
-__( "Manage connection", "jetpack-my-jetpack" );
-__( "Connect my account", "jetpack-my-jetpack" );
-/* translators: %1$s is a product name, %2$s is the date the product was gifted. */
-__( "%1$s was gifted on %2$s. It gives you access to a lifetime subscription of Jetpack VaultPress Backup and Jetpack Scan.", "jetpack-my-jetpack" );
-/* translators: %1$s is the formatted date to display, i.e.- November 24th, 2024 */
-__( "Expiring soon on %1$s", "jetpack-my-jetpack" );
-/* translators: %1$s is the formatted date to display, i.e.- November 24th, 2024 */
-__( "Expired on %1$s", "jetpack-my-jetpack" );
-/* translators: %1$s is the name of the hosting partner. i.e.- Bluehost, InMotion, Pressable, Jurassic Ninja, etc.. */
-__( "Managed by: %1$s", "jetpack-my-jetpack" );
-/* translators: %1$s is the formatted date to display, i.e.- November 24th, 2024 */
-__( "Expires on %1$s", "jetpack-my-jetpack" );
-__( "Renew subscription", "jetpack-my-jetpack" );
-__( "Resume subscription", "jetpack-my-jetpack" );
-__( "Never Expires", "jetpack-my-jetpack" );
-_n( "Plan", "Plans", 1, "jetpack-my-jetpack" );
-_n( "Manage your plan", "Manage your plans", 1, "jetpack-my-jetpack" );
-__( "Purchase a plan", "jetpack-my-jetpack" );
-_x( "Activate a license", "Activate a license button text", "jetpack-my-jetpack" );
-_x( "Activate a license (requires a user connection)", "Activate a license button text", "jetpack-my-jetpack" );
-__( "View included features", "jetpack-my-jetpack" );
-__( "Jetpack Essentials", "jetpack-my-jetpack" );
-/* translators: 1: Calendar type. 2: Current month and year. */
-__( "%1$s, %2$s", "jetpack-my-jetpack" );
-__( "Date calendar", "jetpack-my-jetpack" );
-__( "Date range calendar", "jetpack-my-jetpack" );
-__( "Navigation bar", "jetpack-my-jetpack" );
-/* translators: %s is the full date (e.g. "Monday, April 29, 2025") */
-__( "Today, %s", "jetpack-my-jetpack" );
-__( "Next month", "jetpack-my-jetpack" );
-__( "Previous month", "jetpack-my-jetpack" );
-/* translators: %s is the full date (e.g. "Monday, April 29, 2025") */
-__( "Today, %s, selected", "jetpack-my-jetpack" );
-/* translators: %s is the full date (e.g. "Monday, April 29, 2025") */
-__( "%s, selected", "jetpack-my-jetpack" );
-__( "Required", "jetpack-my-jetpack" );
-__( "Optional", "jetpack-my-jetpack" );
-__( "Sort ascending", "jetpack-my-jetpack" );
-__( "Sort descending", "jetpack-my-jetpack" );
-__( "(no title)", "jetpack-my-jetpack" );
-__( "Actions", "jetpack-my-jetpack" );
-/* translators: %d: number of items. */
-_n( "%d Item selected", "%d Items selected", 1, "jetpack-my-jetpack" );
-/* translators: %d: number of items. */
-_n( "%d Item", "%d Items", 1, "jetpack-my-jetpack" );
-/* translators: %1$d: number of items. %2$d: total number of items. */
-_n( "%1$d of %2$d Item", "%1$d of %2$d Items", 1, "jetpack-my-jetpack" );
-__( "Deselect all", "jetpack-my-jetpack" );
-__( "Select all", "jetpack-my-jetpack" );
-__( "Add filter", "jetpack-my-jetpack" );
-__( "Move left", "jetpack-my-jetpack" );
-__( "Move right", "jetpack-my-jetpack" );
-__( "Insert left", "jetpack-my-jetpack" );
-__( "Insert right", "jetpack-my-jetpack" );
-__( "Hide column", "jetpack-my-jetpack" );
-__( "Properties", "jetpack-my-jetpack" );
-__( "Navigate to item", "jetpack-my-jetpack" );
-/* translators: %d: The row number in the grid */
-__( "Row %d", "jetpack-my-jetpack" );
-/* translators: %s: The label of the field e.g. "Status". */
-__( "%s: <groupName />", "jetpack-my-jetpack" );
-/* translators: 1: current page number. 2: total number of pages. */
-__( "Page %1$d of %2$d", "jetpack-my-jetpack" );
-/* translators: 1: Current page number, 2: Total number of pages. */
-_x( "<div>Page</div>%1$s<div>of %2$d</div>", "paging", "jetpack-my-jetpack" );
-__( "Current page", "jetpack-my-jetpack" );
-__( "Previous page", "jetpack-my-jetpack" );
-__( "Next page", "jetpack-my-jetpack" );
-__( "Density", "jetpack-my-jetpack" );
-_x( "Comfortable", "Density option for DataView layout", "jetpack-my-jetpack" );
-_x( "Balanced", "Density option for DataView layout", "jetpack-my-jetpack" );
-_x( "Compact", "Density option for DataView layout", "jetpack-my-jetpack" );
-__( "Original aspect ratio", "jetpack-my-jetpack" );
-__( "Preview size", "jetpack-my-jetpack" );
-__( "Table", "jetpack-my-jetpack" );
-__( "Grid", "jetpack-my-jetpack" );
-__( "List", "jetpack-my-jetpack" );
-__( "Activity", "jetpack-my-jetpack" );
-/* translators: List of items for a filter. 1: Filter name. e.g.: "List of: Author". */
-__( "List of: %1$s", "jetpack-my-jetpack" );
-__( "Search items", "jetpack-my-jetpack" );
-__( "Search", "jetpack-my-jetpack" );
-__( "No results found", "jetpack-my-jetpack" );
-__( "No elements found", "jetpack-my-jetpack" );
-/* translators: DataViews operator name */
-__( "Is none of", "jetpack-my-jetpack" );
-/* translators: 1: Filter name (e.g. "Author"). 2: Filter value (e.g. "Admin"): "Author is none of: Admin, Editor". */
-__( "<Name>%1$s is none of: </Name><Value>%2$s</Value>", "jetpack-my-jetpack" );
-/* translators: DataViews operator name */
-__( "Includes", "jetpack-my-jetpack" );
-/* translators: 1: Filter name (e.g. "Author"). 2: Filter value (e.g. "Admin"): "Author is any: Admin, Editor". */
-__( "<Name>%1$s includes: </Name><Value>%2$s</Value>", "jetpack-my-jetpack" );
-/* translators: DataViews operator name */
-__( "Includes all", "jetpack-my-jetpack" );
-/* translators: 1: Filter name (e.g. "Author"). 2: Filter value (e.g. "Admin"): "Author includes all: Admin, Editor". */
-__( "<Name>%1$s includes all: </Name><Value>%2$s</Value>", "jetpack-my-jetpack" );
-/* translators: DataViews operator name */
-__( "Between (inc)", "jetpack-my-jetpack" );
-/* translators: 1: Filter name (e.g. "Item count"). 2: Filter value min. 3: Filter value max. e.g.: "Item count between (inc): 10 and 180". */
-__( "<Name>%1$s between (inc): </Name><Value>%2$s and %3$s</Value>", "jetpack-my-jetpack" );
-/* translators: DataViews operator name */
-__( "In the past", "jetpack-my-jetpack" );
-/* translators: 1: Filter name (e.g. "Date"). 2: Filter value (e.g. "7 days"): "Date is in the past: 7 days". */
-__( "<Name>%1$s is in the past: </Name><Value>%2$s</Value>", "jetpack-my-jetpack" );
-/* translators: DataViews operator name */
-__( "Over", "jetpack-my-jetpack" );
-/* translators: 1: Filter name (e.g. "Date"). 2: Filter value (e.g. "7 days"): "Date is over: 7 days". */
-__( "<Name>%1$s is over: </Name><Value>%2$s</Value>", "jetpack-my-jetpack" );
-/* translators: DataViews operator name */
-__( "Is", "jetpack-my-jetpack" );
-/* translators: 1: Filter name (e.g. "Author"). 2: Filter value (e.g. "Admin"): "Author is: Admin". */
-__( "<Name>%1$s is: </Name><Value>%2$s</Value>", "jetpack-my-jetpack" );
-/* translators: DataViews operator name */
-__( "Is not", "jetpack-my-jetpack" );
-/* translators: 1: Filter name (e.g. "Author"). 2: Filter value (e.g. "Admin"): "Author is not: Admin". */
-__( "<Name>%1$s is not: </Name><Value>%2$s</Value>", "jetpack-my-jetpack" );
-/* translators: DataViews operator name */
-__( "Less than", "jetpack-my-jetpack" );
-/* translators: 1: Filter name (e.g. "Count"). 2: Filter value (e.g. "10"): "Count is less than: 10". */
-__( "<Name>%1$s is less than: </Name><Value>%2$s</Value>", "jetpack-my-jetpack" );
-/* translators: DataViews operator name */
-__( "Greater than", "jetpack-my-jetpack" );
-/* translators: 1: Filter name (e.g. "Count"). 2: Filter value (e.g. "10"): "Count is greater than: 10". */
-__( "<Name>%1$s is greater than: </Name><Value>%2$s</Value>", "jetpack-my-jetpack" );
-/* translators: DataViews operator name */
-__( "Less than or equal", "jetpack-my-jetpack" );
-/* translators: 1: Filter name (e.g. "Count"). 2: Filter value (e.g. "10"): "Count is less than or equal to: 10". */
-__( "<Name>%1$s is less than or equal to: </Name><Value>%2$s</Value>", "jetpack-my-jetpack" );
-/* translators: DataViews operator name */
-__( "Greater than or equal", "jetpack-my-jetpack" );
-/* translators: 1: Filter name (e.g. "Count"). 2: Filter value (e.g. "10"): "Count is greater than or equal to: 10". */
-__( "<Name>%1$s is greater than or equal to: </Name><Value>%2$s</Value>", "jetpack-my-jetpack" );
-/* translators: DataViews operator name */
-__( "Before", "jetpack-my-jetpack" );
-/* translators: 1: Filter name (e.g. "Date"). 2: Filter value (e.g. "2024-01-01"): "Date is before: 2024-01-01". */
-__( "<Name>%1$s is before: </Name><Value>%2$s</Value>", "jetpack-my-jetpack" );
-/* translators: DataViews operator name */
-__( "After", "jetpack-my-jetpack" );
-/* translators: 1: Filter name (e.g. "Date"). 2: Filter value (e.g. "2024-01-01"): "Date is after: 2024-01-01". */
-__( "<Name>%1$s is after: </Name><Value>%2$s</Value>", "jetpack-my-jetpack" );
-/* translators: DataViews operator name */
-__( "Before (inc)", "jetpack-my-jetpack" );
-/* translators: 1: Filter name (e.g. "Date"). 2: Filter value (e.g. "2024-01-01"): "Date is on or before: 2024-01-01". */
-__( "<Name>%1$s is on or before: </Name><Value>%2$s</Value>", "jetpack-my-jetpack" );
-/* translators: DataViews operator name */
-__( "After (inc)", "jetpack-my-jetpack" );
-/* translators: 1: Filter name (e.g. "Date"). 2: Filter value (e.g. "2024-01-01"): "Date is on or after: 2024-01-01". */
-__( "<Name>%1$s is on or after: </Name><Value>%2$s</Value>", "jetpack-my-jetpack" );
-/* translators: DataViews operator name */
-__( "Contains", "jetpack-my-jetpack" );
-/* translators: 1: Filter name (e.g. "Title"). 2: Filter value (e.g. "Hello"): "Title contains: Hello". */
-__( "<Name>%1$s contains: </Name><Value>%2$s</Value>", "jetpack-my-jetpack" );
-/* translators: DataViews operator name */
-__( "Doesn't contain", "jetpack-my-jetpack" );
-/* translators: 1: Filter name (e.g. "Title"). 2: Filter value (e.g. "Hello"): "Title doesn't contain: Hello". */
-__( "<Name>%1$s doesn't contain: </Name><Value>%2$s</Value>", "jetpack-my-jetpack" );
-/* translators: DataViews operator name */
-__( "Starts with", "jetpack-my-jetpack" );
-/* translators: 1: Filter name (e.g. "Title"). 2: Filter value (e.g. "Hello"): "Title starts with: Hello". */
-__( "<Name>%1$s starts with: </Name><Value>%2$s</Value>", "jetpack-my-jetpack" );
-/* translators: DataViews operator name */
-__( "Not on", "jetpack-my-jetpack" );
-/* translators: 1: Filter name e.g.: "Unknown status for Author". */
-__( "Unknown status for %1$s", "jetpack-my-jetpack" );
-__( "Conditions", "jetpack-my-jetpack" );
-__( "Reset", "jetpack-my-jetpack" );
-__( "Remove", "jetpack-my-jetpack" );
-/* translators: 1: Filter name. */
-__( "Filter by: %1$s", "jetpack-my-jetpack" );
-_x( "Filter", "verb", "jetpack-my-jetpack" );
-__( "No results", "jetpack-my-jetpack" );
-__( "Sort by", "jetpack-my-jetpack" );
-__( "Order", "jetpack-my-jetpack" );
-__( "Items per page", "jetpack-my-jetpack" );
-__( "Reset view", "jetpack-my-jetpack" );
-_x( "View options", "View is used as a noun", "jetpack-my-jetpack" );
-__( "Appearance", "jetpack-my-jetpack" );
-__( "Days", "jetpack-my-jetpack" );
-__( "Weeks", "jetpack-my-jetpack" );
-__( "Months", "jetpack-my-jetpack" );
-__( "Years", "jetpack-my-jetpack" );
-__( "Days ago", "jetpack-my-jetpack" );
-__( "Weeks ago", "jetpack-my-jetpack" );
-__( "Months ago", "jetpack-my-jetpack" );
-__( "Years ago", "jetpack-my-jetpack" );
-__( "Unit", "jetpack-my-jetpack" );
-__( "Coordinated Universal Time", "jetpack-my-jetpack" );
-/* translators: %s: timezone detail, e.g. "(CEST) Europe/Madrid" or "UTC+3". */
-__( "Timezone: %s", "jetpack-my-jetpack" );
-__( "Date time", "jetpack-my-jetpack" );
-__( "Today", "jetpack-my-jetpack" );
-__( "Yesterday", "jetpack-my-jetpack" );
-__( "Past week", "jetpack-my-jetpack" );
-__( "Past month", "jetpack-my-jetpack" );
-__( "Last 7 days", "jetpack-my-jetpack" );
-__( "Last 30 days", "jetpack-my-jetpack" );
-__( "Month to date", "jetpack-my-jetpack" );
-__( "Last year", "jetpack-my-jetpack" );
-__( "Year to date", "jetpack-my-jetpack" );
-__( "Custom", "jetpack-my-jetpack" );
-__( "Date", "jetpack-my-jetpack" );
-__( "From", "jetpack-my-jetpack" );
-__( "To", "jetpack-my-jetpack" );
-__( "The max. value must be greater than the min. value.", "jetpack-my-jetpack" );
-__( "Min.", "jetpack-my-jetpack" );
-__( "Max.", "jetpack-my-jetpack" );
-__( "The end time must be later than the start time.", "jetpack-my-jetpack" );
-__( "Open color picker", "jetpack-my-jetpack" );
-__( "Hide password", "jetpack-my-jetpack" );
-__( "Show password", "jetpack-my-jetpack" );
-__( "Value must be a valid email address.", "jetpack-my-jetpack" );
-__( "Value must be an integer.", "jetpack-my-jetpack" );
-__( "Value must be a number.", "jetpack-my-jetpack" );
-__( "True", "jetpack-my-jetpack" );
-__( "False", "jetpack-my-jetpack" );
-__( "Value must be true, false, or undefined", "jetpack-my-jetpack" );
-__( "Value must be an array.", "jetpack-my-jetpack" );
-__( "Every value must be a string.", "jetpack-my-jetpack" );
-__( "Value must be a valid color.", "jetpack-my-jetpack" );
-__( "Title", "jetpack-my-jetpack" );
-__( "Toggle", "jetpack-my-jetpack" );
-/* translators: %s is either the product name, i.e.- "Jetpack Backup" or the word "Plugins". */
-__( "%s deactivated successfully!", "jetpack-my-jetpack" );
-/* translators: %s is the Jetpack product name or comma-separated list of multiple Jetpack product names. */
-__( "There was a problem deactivating %s.", "jetpack-my-jetpack" );
-__( "Error getting plan information.", "jetpack-my-jetpack" );
-__( "No results found.", "jetpack-my-jetpack" );
-__( "Action", "jetpack-my-jetpack" );
-__( "Search results", "jetpack-my-jetpack" );
-__( "Search products", "jetpack-my-jetpack" );
-__( "Filter products", "jetpack-my-jetpack" );
-__( "Manage and explore Jetpack features that boost growth, performance, and security.", "jetpack-my-jetpack" );
-__( "Manage and explore Jetpack products that boost growth, performance, and security.", "jetpack-my-jetpack" );
+__( "Welcome to Jetpack, %s!", "jetpack-my-jetpack" );
 __( "Welcome to Jetpack", "jetpack-my-jetpack" );
 __( "Done", "jetpack-my-jetpack" );
 __( "Simple, yet powerful stats", "jetpack-my-jetpack" );
@@ -1000,24 +839,37 @@ __( "Your site goes wherever you go", "jetpack-my-jetpack" );
 __( "Install the <mobileLink>Jetpack app</mobileLink> for iOS or Android and stay connected to your site from anywhere!", "jetpack-my-jetpack" );
 _x( "Modules", "Navigation item. Noun. Links to a list of modules for Jetpack.", "jetpack-my-jetpack" );
 __( "Access the full list of Jetpack modules available on your site.", "jetpack-my-jetpack" );
-/* translators: %s: Name of Jetpack partner. */
+__( "You're working in Offline Mode", "jetpack-my-jetpack" );
+__( "Features that need a connection to WordPress.com are paused. You can manage local features here.", "jetpack-my-jetpack" );
 __( "Logo of %s who are offering a coupon in partnership with Jetpack", "jetpack-my-jetpack" );
 __( "One free year of Jetpack Backup", "jetpack-my-jetpack" );
-/* translators: %s: Name of a Jetpack product. */
 __( "Redeem your coupon and get started with %s for free the first year! Never worry about losing your data, ever.", "jetpack-my-jetpack" );
-/* translators: %s: Name of a Jetpack product. */
 __( "Redeem %s", "jetpack-my-jetpack" );
 __( "Remind me later", "jetpack-my-jetpack" );
-/* translators: %s: Jetpack partner name. */
 __( "Welcome to Jetpack %s traveler!", "jetpack-my-jetpack" );
-/* translators: %s: Name of a Jetpack product. */
 __( "Set up & redeem %s", "jetpack-my-jetpack" );
-/* translators: %s: Name of a Jetpack product. */
 __( "Redeem your coupon and get started with %s for free the first year!", "jetpack-my-jetpack" );
+__( "Yearly", "jetpack-my-jetpack" );
+__( "Every two years", "jetpack-my-jetpack" );
+__( "Monthly", "jetpack-my-jetpack" );
+__( "trial for the first month, then $%s /month, billed yearly", "jetpack-my-jetpack" );
+__( "/month, paid every two years", "jetpack-my-jetpack" );
+__( "/month", "jetpack-my-jetpack" );
+__( "Install %s", "jetpack-my-jetpack" );
+__( "Get %s", "jetpack-my-jetpack" );
+__( "Manage plan", "jetpack-my-jetpack" );
+__( "Popular upgrade", "jetpack-my-jetpack" );
+__( "Billing term", "jetpack-my-jetpack" );
+__( "This plan change requires assistance from our support team.", "jetpack-my-jetpack" );
+__( "This plan is currently unavailable for purchase.", "jetpack-my-jetpack" );
+__( "%s billed per term", "jetpack-my-jetpack" );
+__( "Due to your server settings, we can't automatically install the plugin for you. Please manually install the %s plugin.", "jetpack-my-jetpack" );
+__( "Get plugin", "jetpack-my-jetpack" );
+__( "%s or Start for free", "jetpack-my-jetpack" );
+__( "Start for free", "jetpack-my-jetpack" );
+__( "Active on your site", "jetpack-my-jetpack" );
 __( "Start for Free", "jetpack-my-jetpack" );
-/* translators: "Security" here shouldn't be translated as its the name of the bundle */
 __( "Get Security", "jetpack-my-jetpack" );
-/* translators: "Complete" here shouldn't be translated as its the name of the bundle */
 __( "Get Complete", "jetpack-my-jetpack" );
 __( "Priority support", "jetpack-my-jetpack" );
 __( "Real-time backups and restores", "jetpack-my-jetpack" );
@@ -1124,11 +976,9 @@ __( "Get Protect", "jetpack-my-jetpack" );
 __( "Jetpack Search Logo", "jetpack-my-jetpack" );
 __( "Help visitors find exactly what they need", "jetpack-my-jetpack" );
 __( "Number of Records", "jetpack-my-jetpack" );
-/* translators: %s: Number of records in compact form, e.g., "5k" */
 __( "%s Records", "jetpack-my-jetpack" );
 __( "All Search features", "jetpack-my-jetpack" );
 __( "Monthly Requests", "jetpack-my-jetpack" );
-/* translators: %s: Number of requests in compact form, e.g., "500" */
 __( "%s Requests", "jetpack-my-jetpack" );
 __( "Unbranded Search", "jetpack-my-jetpack" );
 __( "Not Included", "jetpack-my-jetpack" );
@@ -1159,13 +1009,11 @@ __( "All Stats features", "jetpack-my-jetpack" );
 __( "Traffic stats and trends for post and pages", "jetpack-my-jetpack" );
 __( "Detailed statistics about links leading to your site", "jetpack-my-jetpack" );
 __( "GDPR compliant", "jetpack-my-jetpack" );
-/* translators: UTM refers to the Urchin Tracking Module campaign parameters appended to a URL. */
 __( "UTM tracking", "jetpack-my-jetpack" );
 __( "Device stats", "jetpack-my-jetpack" );
 __( "Locations", "jetpack-my-jetpack" );
 __( "Country-level", "jetpack-my-jetpack" );
 __( "Region and city", "jetpack-my-jetpack" );
-/* translators: "Stats" here shouldn't be translated as it's the name of the product */
 __( "Get Paid Stats", "jetpack-my-jetpack" );
 __( "VideoPress Logo", "jetpack-my-jetpack" );
 __( "Stunning‑quality video for WordPress", "jetpack-my-jetpack" );
@@ -1177,20 +1025,6 @@ __( "Built into WordPress editor", "jetpack-my-jetpack" );
 __( "Ad-free and customizable player", "jetpack-my-jetpack" );
 __( "Unlimited users", "jetpack-my-jetpack" );
 __( "Get VideoPress", "jetpack-my-jetpack" );
-/* translators: %s is the monthly price for a product */
-__( "trial for the first month, then $%s /month, billed yearly", "jetpack-my-jetpack" );
-__( "/month", "jetpack-my-jetpack" );
-/* translators: %s: product name. */
-__( "Install %s", "jetpack-my-jetpack" );
-/* translators: %s: the product name. */
-__( "Get %s", "jetpack-my-jetpack" );
-__( "Popular upgrade", "jetpack-my-jetpack" );
-/* translators: %s is the plugin name. */
-__( "Due to your server settings, we can't automatically install the plugin for you. Please manually install the %s plugin.", "jetpack-my-jetpack" );
-__( "Get plugin", "jetpack-my-jetpack" );
-/* translators: %s: the call-to-action label. */
-__( "%s or Start for free", "jetpack-my-jetpack" );
-__( "Active on your site", "jetpack-my-jetpack" );
 __( "Use license key", "jetpack-my-jetpack" );
 _x( "/month", "Price description representing \"per month\" price", "jetpack-my-jetpack" );
 __( "* Limits apply for high request capacity. <link>Learn more about it here</link>.", "jetpack-my-jetpack" );
@@ -1205,12 +1039,9 @@ __( "Requests this month", "jetpack-my-jetpack" );
 __( "Requests for this month", "jetpack-my-jetpack" );
 __( "You've reached your request limit for this month", "jetpack-my-jetpack" );
 __( "You've used all your free requests", "jetpack-my-jetpack" );
-/* translators: %d is the number of days left in the month. */
 __( "Wait for %d days to reset your limit, or upgrade now to a higher tier for additional requests and keep your work moving forward.", "jetpack-my-jetpack" );
-/* translators: %d is the number of days left in the month. */
 __( "Wait for %d days to reset your limit, per our <link>fair usage</link> policy.", "jetpack-my-jetpack" );
 __( "Reach for More with Jetpack AI! Upgrade now for additional requests and keep your momentum going.", "jetpack-my-jetpack" );
-/* translators: %s is the next upgrade value */
 __( "Get %s requests", "jetpack-my-jetpack" );
 __( "Upgrade now", "jetpack-my-jetpack" );
 __( "Draft, transform, translate, and alter both new and existing content leveraging the capabilities of AI, inside the block editor.", "jetpack-my-jetpack" );
@@ -1251,7 +1082,51 @@ __( "Malware scanning (Paid)", "jetpack-my-jetpack" );
 __( "Deep, line-by-line scanning of your site files to detect malware, backdoors, and malicious code. Includes automatic fixes and real-time notifications.", "jetpack-my-jetpack" );
 __( "Learn more about the difference between Protect and Scan", "jetpack-my-jetpack" );
 __( "Want comprehensive protection?", "jetpack-my-jetpack" );
+__( "%s includes real-time backups, malware scanning, and spam protection.", "jetpack-my-jetpack" );
 __( "Jetpack Security provides easy-to-use, comprehensive WordPress site security, including real-time backups, a web application firewall, malware scanning, and spam protection.", "jetpack-my-jetpack" );
 __( "Secure your site", "jetpack-my-jetpack" );
 __( "Learn more about Jetpack Security", "jetpack-my-jetpack" );
 __( "Checking gold status…", "jetpack-my-jetpack" );
+__( "Activate this feature", "jetpack-my-jetpack" );
+__( "Manage in Settings", "jetpack-my-jetpack" );
+__( "Updated settings.", "jetpack-my-jetpack" );
+__( "Failed to save the setting.", "jetpack-my-jetpack" );
+__( "Create full-screen carousel slideshows for the images in your posts and pages. Carousel galleries are mobile-friendly and encourage site visitors to interact with your photos.", "jetpack-my-jetpack" );
+__( "Learn more about Carousel", "jetpack-my-jetpack" );
+__( "Display images in a full-screen carousel gallery", "jetpack-my-jetpack" );
+__( "Show photo Exif metadata in carousel (when available)", "jetpack-my-jetpack" );
+__( "Exif data shows viewers additional technical details of a photo, like its focal length, aperture, and ISO.", "jetpack-my-jetpack" );
+__( "Show comments area in carousel", "jetpack-my-jetpack" );
+__( "Carousel color scheme", "jetpack-my-jetpack" );
+__( "Theme support required", "jetpack-my-jetpack" );
+__( "Your current theme doesn't support Infinite Scroll.", "jetpack-my-jetpack" );
+__( "Learn how to add support", "jetpack-my-jetpack" );
+__( "Create a smooth, uninterrupted reading experience by loading more content as visitors scroll to the bottom of your archive pages.", "jetpack-my-jetpack" );
+__( "Learn more about Infinite Scroll", "jetpack-my-jetpack" );
+__( "Load more posts without leaving the page", "jetpack-my-jetpack" );
+__( "How more posts load", "jetpack-my-jetpack" );
+__( "Load more posts in page with a button", "jetpack-my-jetpack" );
+__( "Load more posts as the reader scrolls down", "jetpack-my-jetpack" );
+__( "Post by email is a quick way to publish new posts without visiting your site. We’ll generate a unique email address for you to send your content to, which will then appear on your site just like any other post.", "jetpack-my-jetpack" );
+__( "Learn more about Post by Email", "jetpack-my-jetpack" );
+__( "Connect your WordPress.com account to get your own Post by Email address.", "jetpack-my-jetpack" );
+__( "Send your new posts to this email address:", "jetpack-my-jetpack" );
+__( "Copied!", "jetpack-my-jetpack" );
+_x( "Copy", "verb", "jetpack-my-jetpack" );
+__( "Regenerate address", "jetpack-my-jetpack" );
+__( "Create address", "jetpack-my-jetpack" );
+__( "Big iPhone/iPad Update Now Available", "jetpack-my-jetpack" );
+_x( "In \"Mobile\"", "It refers to the category where a post was found. Used in an example preview.", "jetpack-my-jetpack" );
+__( "The WordPress for Android App Gets a Big Facelift", "jetpack-my-jetpack" );
+__( "Upgrade Focus: VideoPress For Weddings", "jetpack-my-jetpack" );
+_x( "In \"Upgrade\"", "It refers to the category where a post was found. Used in an example preview.", "jetpack-my-jetpack" );
+_x( "Preview", "A header for a preview area in the configuration screen.", "jetpack-my-jetpack" );
+__( "Related", "jetpack-my-jetpack" );
+__( "Add a Related Posts Block to your site’s template in the site editor", "jetpack-my-jetpack" );
+__( "Configure related posts in the Customizer", "jetpack-my-jetpack" );
+__( "Keep your visitors engaged with related content at the bottom of each post. These settings won’t apply to <a>related posts added using the block editor</a>.", "jetpack-my-jetpack" );
+__( "Show related content after posts", "jetpack-my-jetpack" );
+__( "Highlight related content with a heading", "jetpack-my-jetpack" );
+__( "Show a thumbnail image where available", "jetpack-my-jetpack" );
+__( "Failed to get feature settings", "jetpack-my-jetpack" );
+__( "Feature settings", "jetpack-my-jetpack" );

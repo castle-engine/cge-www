@@ -7,7 +7,9 @@ castle_header('Assets (3D and 2D Graphics, Sound)', array(
 echo pretty_heading($page_title);
 ?>
 
-<p>Completely subjective list of places with good quality assets (graphics, sounds) in formats useful with <i>Castle Game Engine</i>. See and post on the <code>#assets</code> channel of <a href="talk.php">our Discord</a> for more.
+<p>Completely subjective list of places with good quality assets (graphics, sounds) in formats useful with <i>Castle Game Engine</i>.
+
+<p>You're welcome to suggest sites to be added here, <a href="talk.php">using any way to contact us</a>. But please note: we are interested in linking to <i>high-quality human-made assets</i>. We are not against <i>some</i> AI usage (see our <a href="ai">guidelines</a> and <a href="https://castle-engine.io/wp/tag/ai/">thoughts about AI</a>) but 100% AI-generates resources are not welcome here.
 
 <div class="row">
   <?php gallery_link('Kay Lousberg',

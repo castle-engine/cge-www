@@ -6,32 +6,29 @@
 // translation files resolve. Never loaded at runtime: the generated PHP
 // loaders are pinned to the .min.js sibling.
 
-/* Translators: %s refers to a browser-supplied error message (hopefully already in the right language) */
+__( "Loading", "jetpack-boost" );
+__( "Keyboard shortcut: %s", "jetpack-boost" );
+__( "(opens in a new tab)", "jetpack-boost" );
+__( "Breadcrumbs", "jetpack-boost" );
+_n( "Show %d hidden breadcrumb item", "Show %d hidden breadcrumb items", 1, "jetpack-boost" );
+__( "Dismiss", "jetpack-boost" );
+__( "In progress", "jetpack-boost" );
+__( "Sections", "jetpack-boost" );
+__( "An Automattic Airline", "jetpack-boost" );
+__( "Jetpack Logo", "jetpack-boost" );
+__( "Features", "jetpack-boost" );
+__( "Help", "jetpack-boost" );
+__( "Jetpack", "jetpack-boost" );
+__( "There was an error testing Jetpack. Error: %s", "jetpack-boost" );
+__( "Improve your site speed and performance.", "jetpack-boost" );
 __( "Received invalid response while communicating with your WordPress site: %s", "jetpack-boost" );
-/* Translators: %d refers to numeric HTTP error code */
 __( "HTTP %d error received while communicating with the server.", "jetpack-boost" );
 __( "Your site's REST API does not seem to be accessible. Jetpack Boost requires access to your REST API in order to receive site performance scores. Please make sure that your site's REST API is active and accessible, and try again.", "jetpack-boost" );
-/* Translators: %s refers to a string representation of an error object containing useful debug information */
 __( "An error occurred while trying to communicate with the site REST API. Extra debug info: %s", "jetpack-boost" );
 __( "Timed out", "jetpack-boost" );
 __( "An unknown error occurred while requesting metrics", "jetpack-boost" );
 __( "Invalid response while requesting metrics", "jetpack-boost" );
 __( "Timed out while waiting for speed-score.", "jetpack-boost" );
-/* translators: accessibility text appended to link text */
-__( "(opens in a new tab)", "jetpack-boost" );
-/* translators: %s: keyboard shortcut. */
-__( "Keyboard shortcut: %s", "jetpack-boost" );
-__( "Loading", "jetpack-boost" );
-__( "Dismiss", "jetpack-boost" );
-__( "Sections", "jetpack-boost" );
-__( "Jetpack Logo", "jetpack-boost" );
-__( "An Automattic Airline", "jetpack-boost" );
-__( "Products", "jetpack-boost" );
-__( "Help", "jetpack-boost" );
-__( "Jetpack", "jetpack-boost" );
-/* translators: %s: an error message. */
-__( "There was an error testing Jetpack. Error: %s", "jetpack-boost" );
-__( "Improve your site speed and performance.", "jetpack-boost" );
 __( "Your site got faster", "jetpack-boost" );
 __( "That's great! If you’re happy, why not rate Boost?", "jetpack-boost" );
 __( "Rate the Plugin", "jetpack-boost" );
@@ -59,8 +56,16 @@ __( "Line chart", "jetpack-boost" );
 __( "Area chart", "jetpack-boost" );
 __( "Week of %s", "jetpack-boost" );
 __( "%1$s: %2$s", "jetpack-boost" );
+__( "Total", "jetpack-boost" );
 __( "Bar chart", "jetpack-boost" );
+__( "Bar list chart", "jetpack-boost" );
+_n( "%s item", "%s items", 1, "jetpack-boost" );
+__( "Conversion rate", "jetpack-boost" );
+__( "Conversion funnel chart", "jetpack-boost" );
+__( "Funnel steps", "jetpack-boost" );
+__( "%1$s, %2$s", "jetpack-boost" );
 __( "Loading map", "jetpack-boost" );
+__( "Geo chart", "jetpack-boost" );
 __( "Less", "jetpack-boost" );
 __( "More", "jetpack-boost" );
 __( "Heatmap chart", "jetpack-boost" );
@@ -68,22 +73,22 @@ __( "Current period", "jetpack-boost" );
 __( "Previous period", "jetpack-boost" );
 __( "Loading…", "jetpack-boost" );
 __( "Not enough space to display data", "jetpack-boost" );
+__( "Leaderboard chart", "jetpack-boost" );
 __( "Percentage change unavailable", "jetpack-boost" );
 __( "No comparison data", "jetpack-boost" );
+__( "Pie chart", "jetpack-boost" );
+__( "Semi-circle chart", "jetpack-boost" );
 __( "Good", "jetpack-boost" );
 __( "Could improve", "jetpack-boost" );
 __( "Poor", "jetpack-boost" );
-/* translators: %s is the change in a performance score, such as +10, 0, or -10. */
 _n( "%s point", "%s points", 1, "jetpack-boost" );
 __( "Desktop", "jetpack-boost" );
 __( "Mobile", "jetpack-boost" );
 __( "No scores recorded before the feature was unlocked.", "jetpack-boost" );
 __( "No scores recorded for this day.", "jetpack-boost" );
 __( "Overall score", "jetpack-boost" );
-/* translators: %d is the performance score. */
 __( "%d/100", "jetpack-boost" );
 __( "Largest Contentful Paint", "jetpack-boost" );
-/* translators: %s is a duration in seconds. */
 __( "%ss", "jetpack-boost" );
 __( "Total Blocking Time", "jetpack-boost" );
 __( "Cumulative Layout Shift", "jetpack-boost" );
@@ -92,13 +97,9 @@ __( "Try again", "jetpack-boost" );
 __( "Desktop score history", "jetpack-boost" );
 __( "Mobile score history", "jetpack-boost" );
 __( "Score history", "jetpack-boost" );
-/* translators: %d is the number of days in the visible history window. */
 __( "Last %d days", "jetpack-boost" );
-/* translators: %d is the number of days to page backward. */
 __( "Previous %d days", "jetpack-boost" );
-/* translators: 1: first date, 2: last date of the visible history window. */
 __( "%1$s – %2$s", "jetpack-boost" );
-/* translators: %d is the number of days to page forward. */
 __( "Next %d days", "jetpack-boost" );
 __( "Upgrade now", "jetpack-boost" );
 __( "Learn more about your site performance over time.", "jetpack-boost" );
@@ -108,12 +109,17 @@ __( "Score history chart with sample data", "jetpack-boost" );
 __( "Error requesting speed scores", "jetpack-boost" );
 __( "Failed to load speed scores", "jetpack-boost" );
 __( "Testing site speed", "jetpack-boost" );
-__( "Calculating score…", "jetpack-boost" );
+__( "Checking site speed…", "jetpack-boost" );
 __( "Your overall score is a summary of your first Cornerstone Page across both mobile and desktop devices. It gives a general idea of your site's overall performance.", "jetpack-boost" );
+__( "Over 90", "jetpack-boost" );
+__( "Over 75 to 90", "jetpack-boost" );
+__( "Over 50 to 75", "jetpack-boost" );
+__( "Over 35 to 50", "jetpack-boost" );
+__( "Over 25 to 35", "jetpack-boost" );
+__( "25 or below", "jetpack-boost" );
 __( "Points gained from optimizations", "jetpack-boost" );
 __( "No improvements in score", "jetpack-boost" );
 __( "About points", "jetpack-boost" );
-__( "Calculating…", "jetpack-boost" );
 _x( "Overall", "combined speed score grade", "jetpack-boost" );
 __( "How the overall grade is calculated", "jetpack-boost" );
 __( "Overall grade", "jetpack-boost" );
@@ -122,6 +128,6 @@ __( "Your site speed", "jetpack-boost" );
 __( "Unable to display performance scores", "jetpack-boost" );
 __( "Run speed test", "jetpack-boost" );
 __( "Website is not publicly available", "jetpack-boost" );
-__( "Performance score and some other Boost features cannot work because the Boost Cloud cannot reach your website. To fix this, you need to make your website publicly available.", "jetpack-boost" );
 __( "Failed to load module settings", "jetpack-boost" );
+__( "Performance score and some other Boost features cannot work because the Boost Cloud cannot reach your website. To fix this, you need to make your website publicly available.", "jetpack-boost" );
 __( "Optimize your speed", "jetpack-boost" );

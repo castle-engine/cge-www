@@ -14,10 +14,9 @@ $toc = new TableOfContents(
 <p>Contents:
 <?php echo $toc->html_toc(); ?>
 
-<p>These feature are available since <i>Castle Game Engine</i> 6.5 and
-<i>Castle Model Viewer</i> 3.19.0.
-
 <?php echo $toc->html_section(); ?>
+
+<p><b>This extension is deprecated. Instead of this, use <a href="https://www.web3d.org/specifications/X3Dv4Draft/ISO-IEC19775-1v4.1-CD/Part01/components/time.html#TimeSensor">TimeSensor.reverse from X3D 4.1</a>. Instead of setting <code>fractionIncreasing</code> to non-default (FALSE), set <code>reverse</code> to non-default (TRUE).</b>
 
 <p>As an extension, we add a <code>fractionIncreasing</code> field to
 the <code>TimeSensor</code> node:

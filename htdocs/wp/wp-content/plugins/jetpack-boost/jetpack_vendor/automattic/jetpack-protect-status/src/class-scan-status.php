@@ -90,6 +90,18 @@ class Scan_Status extends Status {
 	}
 
 	/**
+	 * Gets the last Scan status stored on the site, even if it has expired, without asking WordPress.com.
+	 *
+	 * @since 0.9.0
+	 *
+	 * @return Status_Model|null Null when no status has been stored yet.
+	 */
+	public static function get_cached_status() {
+		$scan_data = self::get_from_options();
+		return is_object( $scan_data ) ? self::normalize_api_data( $scan_data ) : null;
+	}
+
+	/**
 	 * Gets the Scan API endpoint
 	 *
 	 * @return WP_Error|string
@@ -180,6 +192,7 @@ class Scan_Status extends Status {
 				'num_plugins_threats' => 0,
 				'has_unchecked_items' => false,
 				'current_progress'    => $scan_data->current->progress ?? null,
+				'last_scan_failed'    => ! empty( $scan_data->most_recent->error ),
 			)
 		);
 
@@ -269,6 +282,12 @@ class Scan_Status extends Status {
 					// If the extension is no longer installed, skip this threat.
 					// todo: use version_compare()
 					if ( ! $installed_extension ) {
+						continue;
+					}
+
+					// Updated to the fixed version, the vulnerability is gone, though Scan's report shows it until the next scan.
+					if ( 'Vulnerable.WP.Extension' === $threat->signature && ! empty( $threat->fixed_in ) && version_compare( (string) $installed_extension->version, (string) $threat->fixed_in, '>=' ) ) {
+						$installed_extension->checked = false;
 						continue;
 					}
 

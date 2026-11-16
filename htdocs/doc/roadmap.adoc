@@ -1223,7 +1223,9 @@ To be clear, this doesn't preclude integration with other scripting languages. O
 - JS using QuickJS is an option too, and it's already being worked on. See `#quickjs` channel on our link:talk.php[Discord] and https://github.com/castle-engine/quickjs-demo[quickjs-demo repo].
 
 [#materials]
-### New material components (allowing also material editing in the editor)
+### (IN PROGRESS) New material components (allowing also material editing in the editor)
+
+NOTE: This is started now on https://github.com/castle-engine/castle-engine/tree/new-material-components[new-material-components branch].
 
 We want to allow you to edit materials in the CGE editor,
 
