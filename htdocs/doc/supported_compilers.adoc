@@ -28,7 +28,7 @@ Usually, we also support a couple of older FPC releases. Right now we support an
 
 NOTE: *If you want to build for Aarch64 (64-bit Arm), as found on many systems (Linux,Android, iOS, macOS)*: While we support any FPC >= 3.2.0, we strongly advise FPC >= 3.2.2. That is because certain optimizations have been broken in older FPC versions. Our build tool disables optimizations in released builds when it detects Aarch64 and older FPC.
 
-NOTE: *FPC 3.2.2 has known issues linking on latest macOS and Linux/Arm and Linux/Aarch64 (like Raspberry Pi), so you need to use FPC 3.2.3 on these platforms*. If you just get our link:download[official downloads] they already have working FPC version.
+NOTE: *FPC 3.2.2 has known issues linking on latest macOS and Linux/Arm and Linux/Aarch64 (like Raspberry Pi), so you need to use FPC 3.2.3 (or later: current `fixes_3_2` branch in 3.2.5) on these platforms*. If you just get our link:download[official downloads] they already have working FPC version.
 
 === Lazarus version
 

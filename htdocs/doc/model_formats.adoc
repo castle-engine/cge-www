@@ -87,7 +87,7 @@ https://github.com/castle-engine/castle-engine/blob/master/examples/3d_games/exp
 // If your authoring software
 // can export to X3D, this is the format you should probably use.
 
-== Other formats (supported but not recommended)
+== Other supported formats (for most of these, glTF is a more recommended alternative)
 
 === MD3
 
@@ -211,9 +211,53 @@ memory-hungry.
 
 We advise now using glTF for all your animation needs.
 
-== Other formats (not supported by engine core, but can be used with additional tools)
+== Supported (with important caveats)
 
+[#svg]
 === SVG
+
+Loading SVG files is supported in _Castle Game Engine_ if only you use a recent FPC (Free Pascal compiler) >= 3.3.1 version.
+
+Just load and display SVG files using cgeref:TCastleScene[], as usual for all model formats and link:viewport_and_scenes[documented in our manual]. SVG files can also be converted to the link:x3d[X3D] format.
+
+cgeimg::block[
+  svg_example.png|SVG example in Castle Game Engine,
+  svg_tiger.png|SVG tiger example in Castle Game Engine
+]
+
+To test this support, open and run the example from https://github.com/castle-engine/castle-engine/blob/master/examples/images_videos/svg[examples/images_videos/svg]. You can also build https://github.com/castle-engine/castle-model-viewer[castle-model-viewer] to test SVG loading there (official builds use FPC 3.2.2 now, so they don't include SVG support _yet_).
+
+The _caveats_ are that it doesn't work with all compilers and OSes:
+
+- SVG is only supported when the engine is built with a recent FPC >= 3.3.1 version, since October 2026. That's because we rely on FPC's https://gitlab.com/freepascal.org/fpc/source/-/tree/main/packages/fcl-svg[fcl-svg units].
++
+You can install such FPC using e.g. link:fpcupdeluxe[FpcUpDeluxe]. You can then build your applications (and even rebuild our editor and viewers, if needed) with this FPC version.
++
+WARNING: Our engine by default comes bundled with a _stable_ FPC version (3.2.2 or 3.2.5, documented as https://github.com/castle-engine/castle-fpc["best stable version" here]). This FPC does not provide the SVG support.
+
+- Moreover, SVG support is only available on certain operating systems. See the platforms https://gitlab.com/freepascal.org/fpc/source/-/blob/main/packages/fcl-svg/fpmake.pp#L30[mentioned in fcl-svg/fpmake.pp]. Notably, it is not supported on link:android[Android] or link:web[].
+
+Notes on loaded scene coordinates and sizes:
+
+- The SVG image _canvas_ is centered at (0,0).
++
+In most cases, this means that the _content_ is centered at (0,0) too, though this is not guaranteed. SVG content may go outside the canvas.
++
+This is consistent with how raster images are handled in the engine. E.g. cgeref:TCastleImageTransform[] by default also centers the image. See link:using_images[Using Images in Castle Game Engine].
++
+WARNING: But when dealing with raster images, things are a bit more obvious, as there's no difference between centering _canvas_ and centering _content_. In case of SVG images, this difference is meaningful. If you would rather center the _content_ then look at loaded scene `LocalBoundingBox` and translate it accordingly. See the https://github.com/castle-engine/castle-engine/blob/master/examples/images_videos/svg[examples/images_videos/svg] for an example of how to do this.
+
+- The Y axis is pointing up. For this, we transform the SVG coordinates. This is consistent with the link:up[engine default expectation, for both 2D and 3D]. It is unlike typical SVG (where Y goes down).
+
+- 1 unit is 1 pixel of SVG. If you will place this SVG content in a 3D scene, it will probably be huge -- just scale it down.
+
+- Drawing order of SVG is preserved by giving each shape a larger Z than the previous one. The first shape is at Z = 0, the next ones have Z increased by `SvgLayersZDistance` (global variable, for now in `X3DLoadInternalSvg` unit).
++
+So if you need to limit the thickness in Z of the resulting 3D object: adjust the `SvgLayersZDistance` variable accordingly. Or (if you must be prepared for arbitrary SVG content with many layers), scale the resulting 3D object in Z, based on its bounding box size in Z. But be prepared that using too small values in Z may cause visual artifacts, Z-fighting, when layers seem to overlap due to Z-buffer not being precise enough.
+
+See also the https://github.com/castle-engine/castle-engine/blob/master/src/scene/load/x3dloadinternalsvg.pas[comments at the beginning of x3dloadinternalsvg.pas unit] for some details how it works.
+
+==== Alternative: Convert SVG to X3D using X_ITE / x3d-tidy
 
 You can https://create3000.github.io/x_ite/laboratory/x3d-file-converter[use X_ITE converter to convert SVG to X3D] and then read X3D inside our engine, as a scalable geometry. There is also https://www.npmjs.com/package/x3d-tidy[a command-line converter x3d-tidy using the same X_ITE under the hood].
 
@@ -227,17 +271,23 @@ For more information see:
 
 Of course you can also convert SVG to a raster image (like PNG) using e.g. https://inkscape.org/[Inkscape export options].
 
+== Other formats (not supported by engine core, but can be used with additional tools)
+
 === FBX
 
-FBX is a https://en.wikipedia.org/wiki/FBX[proprietary format from Autodesk]. As such it has good support in Autodesk software like link:3dsmax[3ds Max] and link:maya[Maya].
+FBX is a https://en.wikipedia.org/wiki/FBX[proprietary format from Autodesk]. It has good support in Autodesk software like link:3dsmax[3ds Max] and link:maya[Maya].
 
-If you have FBX models, we recommend converting them to glTF using https://github.com/facebookincubator/FBX2glTF[FBX2glTF]. It's a simple command-line tool, just call it with the FBX model file name:
+If you have FBX models, we recommend converting them to glTF:
 
+- Using https://github.com/facebookincubator/FBX2glTF[FBX2glTF]. It's a simple command-line tool, just call it with the FBX model file name:
++
 ----
 FBX2glTF model.fbx
 ----
-
++
 After the export, the `modelname_out` subfolder will appear with the exported model. The conversion result can be easily compared using e.g. link:castle-model-viewer[Castle Model Viewer].
+
+- There is a newer fork of this tool at https://github.com/godotengine/FBX2glTF[godotengine/FBX2glTF].
 
 _Note: We do not recommend using FBX in your workflow._
 // Being a proprietary format, it means that even official specification of FBX is not available to us. All software that supports FBX either paid royalties to Autodesk for their documentaion and proprietary FBX SDK, or reverse-engineered the format. In terms of features, both glTF and X3D rival FBX.

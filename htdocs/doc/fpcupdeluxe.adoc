@@ -1,4 +1,4 @@
-# fpcupdeluxe
+# FpcUpDeluxe
 include::common.adoc[]
 
 == Introduction
