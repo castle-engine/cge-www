@@ -962,50 +962,61 @@ add_action( 'init', 'check_email_e_register_shortcode', 2000 );
 	}
     // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 	function check_email_encode_str( $string, $hex = false ) {
+		if ( empty( $string ) || ! is_string( $string ) ) {
+			return '';
+		}
+
 		$encode_options = get_option('check-email-email-encode-options', true);
 		$email_technique = ( isset( $encode_options['email_technique'] ) ) ? $encode_options['email_technique'] : "";
-        if (strpos($string, 'mailto:') !== false) {
-            $string = str_replace('mailto:', '', $string);
-            switch ($email_technique) {
-                case 'css_direction':
-                    $reversed_email = strrev($string);
-                    // Wrap it with the span and necessary CSS
-                    return 'mailto:'.esc_html($reversed_email);
-                    break;
-                case 'rot_13':
-                    $encoded_email = check_email_rot13($string);
-                    return 'mailto:'.esc_html($encoded_email);
-                    break;
-                case 'rot_47':
-                    $encoded_email = check_email_rot47($string);
-                    return 'mailto:'.esc_html($encoded_email);
-                    break;
-                
-                default:
-                    # code...
-                    break;
-            }
-        }else{
-            switch ($email_technique) {
-                case 'css_direction':
-                    $reversed_email = strrev($string);
-                    // Wrap it with the span and necessary CSS
-                    return ' <span style="direction: rtl; unicode-bidi: bidi-override;">' . esc_html($reversed_email) . '</span>';
-                    break;
-                case 'rot_13':
-                    $encoded_email = check_email_rot13($string);
-                    return ' <span class="check-email-encoded-email" >' . esc_html($encoded_email).' </span>';
-                    break;
-                case 'rot_47':
-                    $encoded_email = check_email_rot47($string);
-                    return ' <span class="check-email-rot47-email" >' . esc_html($encoded_email).' </span>';
-                    break;
-                
-                default:
-                    # code...
-                    break;
-            }
-        }
+		$is_mailto = ( 0 === stripos( $string, 'mailto:' ) );
+
+		if ( $is_mailto ) {
+			$mailto_val = substr( $string, 7 );
+
+			// Reject if remainder contains another colon (prevents URI scheme smuggling like mailto:javascript:...).
+			if ( false !== strpos( $mailto_val, ':' ) ) {
+				return esc_html( $string );
+			}
+
+			$string = $mailto_val;
+			switch ($email_technique) {
+				case 'css_direction':
+					$reversed_email = strrev($string);
+					// Wrap it with the span and necessary CSS
+					return 'mailto:' . esc_html($reversed_email);
+
+				case 'rot_13':
+					$encoded_email = check_email_rot13($string);
+					return 'mailto:' . esc_html($encoded_email);
+
+				case 'rot_47':
+					$encoded_email = check_email_rot47($string);
+					return 'mailto:' . esc_html($encoded_email);
+
+				default:
+					# code...
+					break;
+			}
+		} else {
+			switch ($email_technique) {
+				case 'css_direction':
+					$reversed_email = strrev($string);
+					// Wrap it with the span and necessary CSS
+					return ' <span style="direction: rtl; unicode-bidi: bidi-override;">' . esc_html($reversed_email) . '</span>';
+
+				case 'rot_13':
+					$encoded_email = check_email_rot13($string);
+					return ' <span class="check-email-encoded-email" >' . esc_html($encoded_email).' </span>';
+
+				case 'rot_47':
+					$encoded_email = check_email_rot47($string);
+					return ' <span class="check-email-rot47-email" >' . esc_html($encoded_email).' </span>';
+
+				default:
+					# code...
+					break;
+			}
+		}
     
 		
 		$chars = str_split( $string );
@@ -1026,7 +1037,12 @@ add_action( 'init', 'check_email_e_register_shortcode', 2000 );
 			}
 		}
 
-		return implode( '', $chars );
+		$encoded_result = implode( '', $chars );
+		if ( $is_mailto ) {
+			$encoded_result = 'mailto:' . $encoded_result;
+		}
+
+		return $encoded_result;
 	}
     // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 	function check_email_e_shortcode( $attributes, $content = '' ) {
@@ -1039,23 +1055,43 @@ add_action( 'init', 'check_email_e_register_shortcode', 2000 );
 		$method = apply_filters( 'check_email_e_method', 'check_email_encode_str' );
 
 		if ( ! empty( $atts[ 'link' ] ) ) {
+			$raw_link = trim( (string) $atts[ 'link' ] );
+
+			// If the link starts with mailto:, validate the mailto target.
+			if ( 0 === stripos( $raw_link, 'mailto:' ) ) {
+				$mailto_target = substr( $raw_link, 7 );
+
+				// Reject if remainder contains a colon (prevents URI scheme smuggling like mailto:javascript:...).
+				if ( false !== strpos( $mailto_target, ':' ) ) {
+					return $method( $content );
+				}
+
+				// Extract email before query parameters if any (e.g. mailto:user@domain.com?subject=...)
+				$email_part = explode( '?', $mailto_target )[0];
+				if ( ! is_email( $email_part ) ) {
+					return $method( $content );
+				}
+			}
+
 			$link = esc_url( $atts[ 'link' ], null, 'shortcode' );
 
 			if ( $link === '' ) {
 				return $method( $content );
 			}
 
+			$encoded_href = $method( $link );
+
 			if ( empty( $atts[ 'class' ] ) ) {
 				return sprintf(
 					'<a href="%s">%s</a>',
-					$method( $link ),
+					esc_attr( $encoded_href ),
 					$method( $content )
 				);
 			}
 
 			return sprintf(
 				'<a href="%s" class="%s">%s</a>',
-				$method( $link ),
+				esc_attr( $encoded_href ),
 				esc_attr( $atts[ 'class' ] ),
 				$method( $content )
 			);

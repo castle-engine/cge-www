@@ -34,7 +34,7 @@ class Check_Email_Wizard_Page extends Check_Email_BasePage {
 			Check_Email_Wizard_Page::PAGE_SLUG,
 			esc_html__( 'Wizard', 'check-email' ),
 			esc_html__( 'Wizard', 'check-email' ),
-			'manage_check_email',
+			'manage_options',
 			self::PAGE_SLUG,
 			array( $this, 'render_page' )
 		);
@@ -42,7 +42,7 @@ class Check_Email_Wizard_Page extends Check_Email_BasePage {
 			self::PAGE_SLUG_WIZARD,
 			esc_html__( 'Wizard Setup', 'check-email' ),
 			esc_html__( 'Wizard Setup', 'check-email' ),
-			'manage_check_email',
+			'manage_options',
 			self::PAGE_SLUG_WIZARD,
 			array( $this, 'render_wizard_steps' )
 		);
@@ -196,7 +196,7 @@ class Check_Email_Wizard_Page extends Check_Email_BasePage {
 	}
 
     public function ck_mail_save_wizard_data() {
-		if ( ! current_user_can( 'manage_check_email' ) ) {
+		if ( ! current_user_can( 'manage_options' ) ) {
 			echo wp_json_encode(array('status'=> 501, 'message'=> esc_html__( 'Unauthorized access, permission not allowed','check-email')));
 			wp_die();
 		}
@@ -210,26 +210,34 @@ class Check_Email_Wizard_Page extends Check_Email_BasePage {
 		}
 
 		$option = get_option( 'check-email-log-core' );
-		$from_data = $_POST;
-		unset($from_data['action']);
-		unset($from_data['ck_mail_security_nonce']);
-		if (isset($_POST['enable_dashboard_widget']) && !empty($_POST['enable_dashboard_widget'])) {
-			$from_data['enable_dashboard_widget'] = true;
+		if ( ! is_array( $option ) ) {
+			$option = array();
 		}
 
 		$step = 'last';
-		if (isset($_POST['default_format_for_message']) && !empty($_POST['default_format_for_message'])) {
-			$from_data['default_format_for_message']= sanitize_text_field( wp_unslash( $_POST['default_format_for_message'] ) );
+		if ( isset( $_POST['default_format_for_message'] ) && ! empty( $_POST['default_format_for_message'] ) ) {
 			$step = 'first';
+			$allowed_formats = array( 'html', 'raw', 'json' );
+			$format = sanitize_text_field( wp_unslash( $_POST['default_format_for_message'] ) );
+			$option['default_format_for_message'] = in_array( $format, $allowed_formats, true ) ? $format : 'html';
+			$option['enable_dashboard_widget']    = isset( $_POST['enable_dashboard_widget'] ) && ! empty( $_POST['enable_dashboard_widget'] );
+		} else {
+			$available_roles = array_keys( get_editable_roles() );
+			$sanitized_roles = array();
 
-			if (!isset($_POST['enable_dashboard_widget'])) {
-				$from_data['enable_dashboard_widget'] = false;
+			if ( isset( $_POST['allowed_user_roles'] ) && is_array( $_POST['allowed_user_roles'] ) ) {
+				// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitization is done below
+				foreach ( wp_unslash( $_POST['allowed_user_roles'] ) as $role_id ) {
+					$role_id = sanitize_key( $role_id );
+					if ( 'administrator' !== $role_id && in_array( $role_id, $available_roles, true ) ) {
+						$sanitized_roles[] = $role_id;
+					}
+				}
 			}
+			$option['allowed_user_roles'] = array_values( array_unique( $sanitized_roles ) );
 		}
-		
-        
-        $merge_options = array_merge((array)$option, (array)$from_data);
-        update_option('check-email-log-core',$merge_options);
+
+		update_option( 'check-email-log-core', $option );
 
 		echo wp_json_encode(array('status'=> 200, 'step'=> $step,'steps_data'=>$this->cm_wizard_steps(), 'message'=> esc_html__('Wizard setup succefully.','check-email')));
 		die;

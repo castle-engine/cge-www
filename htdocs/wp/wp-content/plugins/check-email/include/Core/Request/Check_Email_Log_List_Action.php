@@ -434,6 +434,12 @@ class Check_Email_Log_List_Action implements Loadie {
 			'media' => true,
 		);
 
+		// Prevent ThickBox title/name parsing on anchor tags.
+		if ( isset( $allowed_tags['a'] ) && is_array( $allowed_tags['a'] ) ) {
+			unset( $allowed_tags['a']['title'] );
+			unset( $allowed_tags['a']['name'] );
+		}
+
 		return $allowed_tags;
 	}
 

@@ -1,4 +1,8 @@
 == Changelog ==
+= v2.0.18 - 17/11/2026 =
+- Fixed: Vulnerability researched & reported by kta1kri #177
+- Fixed: Vulnerability reported by Wordfence and researched by Yuto Hyakumoto & Mohamed Amgad Khater (mamgad) #178
+
 = v2.0.17 - 22/10/2026 =
 - Fixed: Need to Fix deprecated non-canonical integer cast in helper-function.php for PHP 8.5 #173
 - Fixed: CC recipient not receiving emails when using custom headers with SMTP #175

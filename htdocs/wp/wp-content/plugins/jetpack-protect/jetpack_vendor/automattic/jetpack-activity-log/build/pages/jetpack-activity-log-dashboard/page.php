@@ -88,9 +88,11 @@ function jetpack_activity_log_get_jetpack_activity_log_dashboard_menu_items() {
  */
 function jetpack_activity_log_jetpack_activity_log_dashboard_preload_data() {
 	// Define paths to preload - same for all pages
-	// This must exactly match the _fields list in packages/core-data/src/entities.js,
+	// This must exactly match the _fields list in packages/core-data/src/entities.ts,
 	// same fields in the same order, or the preload is never consumed.
 	$preload_paths = array(
+		'/?_fields=description,generate_animated_image_subsizes,gmt_offset,home,image_max_bit_depth,image_sizes,image_size_threshold,image_strip_meta,name,site_icon,site_icon_url,site_logo,timezone_string,url,page_for_posts,page_on_front,show_on_front',
+		// WordPress 7.1's bundled core-data requests this list, without generate_animated_image_subsizes.
 		'/?_fields=description,gmt_offset,home,image_max_bit_depth,image_sizes,image_size_threshold,image_strip_meta,name,site_icon,site_icon_url,site_logo,timezone_string,url,page_for_posts,page_on_front,show_on_front',
 		array( '/wp/v2/settings', 'OPTIONS' ),
 	);
@@ -152,15 +154,19 @@ function jetpack_activity_log_jetpack_activity_log_dashboard_render_page() {
 	$menu_items = jetpack_activity_log_get_jetpack_activity_log_dashboard_menu_items();
 	$routes = jetpack_activity_log_get_jetpack_activity_log_dashboard_routes();
 
-	// Get boot module asset file for dependencies
+	// Get boot module asset file for dependencies. Plugins that build their own
+	// boot module use it; everyone else falls back to the copy bundled with Core.
 	$asset_file = __DIR__ . '/../../modules/boot/index.min.asset.php';
+	if ( ! file_exists( $asset_file ) ) {
+		$asset_file = ABSPATH . WPINC . '/js/dist/script-modules/boot/index.min.asset.php';
+	}
 	if ( file_exists( $asset_file ) ) {
 		$asset = require $asset_file;
 
 		// This script serves two purposes:
 		// 1. It ensures all the globals that are made available to the modules are loaded.
 		// 2. It initializes the boot module as an inline script.
-		wp_register_script( 'jetpack-activity-log-dashboard-prerequisites', '', $asset['dependencies'], $asset['version'], true );
+		wp_register_script( 'jetpack-activity-log-dashboard-prerequisites', false, $asset['dependencies'], $asset['version'], true );
 
 		// Add inline script to initialize the app
 		$init_modules = ["@jetpack-activity-log/init"];
@@ -278,7 +284,25 @@ function jetpack_activity_log_jetpack_activity_log_dashboard_render_page() {
 	// END see wp-admin/admin-header.php
 	?>
 	</head>
-	<body class="jetpack-activity-log-dashboard">
+	<body class="jetpack-activity-log-dashboard no-js">
+	<?php
+	// BEGIN see wp-admin/admin-header.php
+	?>
+	<script type="text/javascript">
+		document.body.className = document.body.className.replace( 'no-js', 'js' );
+	</script>
+	<?php
+	// END see wp-admin/admin-header.php
+	?>
+		<div class="wrap hide-if-js" style="margin: 20px;">
+			<h1 class="wp-heading-inline"><?php echo esc_html( get_admin_page_title() ); ?></h1>
+			<?php
+			wp_admin_notice(
+				__( 'This screen requires JavaScript. Enable JavaScript in your browser settings and reload the page.' ),
+				array( 'type' => 'error' )
+			);
+			?>
+		</div>
 		<div id="jetpack-activity-log-dashboard-app" style="height: 100vh; box-sizing: border-box;"></div>
 	<?php
 	// BEGIN see wp-admin/admin-footer.php
@@ -310,6 +334,22 @@ function jetpack_activity_log_jetpack_activity_log_dashboard_render_page() {
 function jetpack_activity_log_jetpack_activity_log_dashboard_intercept_render() {
 	// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 	if ( isset( $_GET['page'] ) && 'jetpack-activity-log-dashboard' === $_GET['page'] ) {
+		// The page renders outside the menu page callback flow, so it must
+		// enforce authentication and capability checks itself. Without this,
+		// any admin entry point firing `admin_init` (such as admin-post.php,
+		// which serves logged-out requests) would render the page for
+		// unauthenticated visitors.
+		if ( ! is_user_logged_in() ) {
+			auth_redirect();
+		}
+
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_die(
+				__( 'Sorry, you are not allowed to access this page.' ),
+				403
+			);
+		}
+
 		jetpack_activity_log_jetpack_activity_log_dashboard_render_page();
 		exit;
 	}
