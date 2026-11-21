@@ -44,7 +44,7 @@ That said, of course you can use Lazarus with CGE, it's a feature-packed cross-p
 
 As for Lazarus version:
 
-* *On all platforms, we always recommend the latest stable Lazarus release*. Right now (as of 2026-02-04) this is *Lazarus 4.4*.
+* *On all platforms, we always recommend the latest stable Lazarus release*. Right now (as of 2026-11-21) this is *Lazarus 4.8*.
 +
 This is what we use to build CGE with, using https://github.com/castle-engine/castle-lazarus/[scripts and CI in castle-lazarus repository].
 +
