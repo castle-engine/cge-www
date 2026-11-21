@@ -8,7 +8,7 @@ define( 'JETPACK_WAF_DIR', '/home/michalis/cge-www/htdocs/wp/wp-content/jetpack-
 define( 'JETPACK_WAF_WPCONFIG', '/home/michalis/cge-www/htdocs/wp/wp-content/../wp-config.php' );
 define( 'JETPACK_WAF_ENTRYPOINT', 'rules/rules.php' );
 ( static function () {
-	$classmap_file = '/home/michalis/cge-www/htdocs/wp/wp-content/plugins/jetpack/vendor/composer/autoload_classmap.php';
+	$classmap_file = '/home/michalis/cge-www/htdocs/wp/wp-content/plugins/jetpack-protect/vendor/composer/autoload_classmap.php';
 	if ( ! is_file( $classmap_file ) ) {
 		return;
 	}
