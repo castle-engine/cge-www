@@ -187,6 +187,8 @@ In our engine:
 
 - See also https://github.com/chaoss/wg-ai-alignment/issues/16[example situations in the context of Castle Game Engine how AI hallucinations make bad code/docs].
 
+- A negative example of PR: https://github.com/castle-engine/castle-engine/pull/761#issuecomment-7162304235[pushing 134k AI-made lines of code into the engine; here's the PR (1 of 8) and my comment explaining why this is not OK]. The submitter also ignored https://github.com/castle-engine/castle-engine/pull/749#issuecomment-6201318262[earlier rejection of the same work], and tried to submit a (huge) extension to it -- this is again not OK.
+
 Many other projects have nice guidelines about using AI that we agree with. For example:
 
 - https://github.com/zulip/zulip/blob/main/CONTRIBUTING.md#ai-use-policy-and-guidelines[Zulip contribution guidelines about AI]
