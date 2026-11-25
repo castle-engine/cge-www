@@ -4,7 +4,7 @@ Tags: logging, email, email log, smtp, log
 Requires at least: 5.0
 Tested up to: 7.1
 Requires PHP: 5.6
-Stable tag: 2.0.18
+Stable tag: 2.0.19
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -122,6 +122,9 @@ Someone using one of my other plugins had trouble with emails not being sent. I 
 
 
 == Changelog ==
+
+= v2.0.19 - 24/11/2026 =
+- Enhancement: Added Black Friday / Cyber Monday promotional banner #180
 
 = v2.0.18 - 17/11/2026 =
 - Fixed: Vulnerability researched & reported by kta1kri #177

@@ -1,4 +1,7 @@
 == Changelog ==
+= v2.0.19 - 24/11/2026 =
+- Enhancement: Added Black Friday / Cyber Monday promotional banner #180
+
 = v2.0.18 - 17/11/2026 =
 - Fixed: Vulnerability researched & reported by kta1kri #177
 - Fixed: Vulnerability reported by Wordfence and researched by Yuto Hyakumoto & Mohamed Amgad Khater (mamgad) #178

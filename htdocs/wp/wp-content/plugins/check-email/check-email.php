@@ -3,7 +3,7 @@
 * Plugin Name: 				Check & Log Email - Easy Email Testing & Mail logging
 * Description: 				Check & Log email allows you to test if your WordPress installation is sending emails correctly and logs every email.
 * Author: 					checkemail
-* Version: 					2.0.18
+* Version: 					2.0.19
 * Author URI: 				https://check-email.tech/
 * Plugin URI: 				https://check-email.tech/
 * License: 					GPLv3 or later
@@ -41,11 +41,12 @@ define( 'CK_MAIL_TOC_DIR_NAME', plugin_basename( dirname( __FILE__ ) ) );
 define( 'CK_MAIL_TOC_BASE_NAME', plugin_basename( __FILE__ ) );
 define( 'CK_MAIL_PATH', dirname( __FILE__ ) );
 define( 'CK_MAIL_URL', plugin_dir_url( __FILE__ ) );
-define( 'CK_MAIL_VERSION', '2.0.18' );
+define( 'CK_MAIL_VERSION', '2.0.19' );
 
 require_once(CK_MAIL_PATH. "/include/helper-function.php" );
 if ( is_admin() ) {
 	require_once(CK_MAIL_PATH. "/include/class-check-email-newsletter.php" );
+	require_once(CK_MAIL_PATH. "/include/class-check-email-black-friday-banner.php" );
 }
 require_once(CK_MAIL_PATH. "/include/Check_Email_SMTP_Tab.php" );
 
