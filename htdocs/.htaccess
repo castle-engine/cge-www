@@ -327,3 +327,35 @@ Redirect "/modern_pascal_introduction" "/modern_pascal"
 
 php_value upload_max_filesize 64M
 php_value post_max_size 64M
+
+# browser caching of static files ---------------------------------------------
+
+# Without this, static files are sent only with ETag / Last-Modified,
+# so browsers re-validate every CSS, JS, image and font on every page view
+# (an extra request per file, slowing down LCP for returning visitors).
+#
+# Max ages are moderate, because most of these URLs are not versioned
+# (only castle-engine.css / .js have ?version=CASTLE_ENGINE_ASSETS_VERSION):
+# after an update, browsers will see the new file within at most this time.
+# Bump CASTLE_ENGINE_ASSETS_VERSION when castle-engine.css / .js change.
+#
+# Applies also to subdirectories (like wp/), unless overridden there.
+# Wrapped in IfModule, so it is harmless if mod_headers is not enabled.
+<IfModule mod_headers.c>
+  # CSS, JS: 1 week
+  <FilesMatch "\.(css|js|mjs)$">
+    Header set Cache-Control "public, max-age=604800"
+  </FilesMatch>
+  # Images, fonts, video: 30 days
+  <FilesMatch "\.(webp|avif|png|jpe?g|gif|svg|ico|woff2?|ttf|otf|eot|mp4|webm)$">
+    Header set Cache-Control "public, max-age=2592000"
+  </FilesMatch>
+</IfModule>
+
+# favicon.ico content type ----------------------------------------------------
+
+# Our favicon.ico is a PNG file (copy of a 256x256 PNG, see images/Makefile),
+# so send it with the correct Content-Type instead of the .ico one.
+<Files "favicon.ico">
+  ForceType image/png
+</Files>

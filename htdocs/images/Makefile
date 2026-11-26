@@ -46,7 +46,9 @@ ALL_TARGETS :=\
   $(ALL_OS_ICONS) \
   $(ALL_FEATURE) \
   $(ALL_NOT_RESIZED) \
-  not_resized_original/castle_game_engine_icon.png
+  not_resized_original/castle_game_engine_icon.png \
+  ../favicon.ico \
+  ../apple-touch-icon.png
 
 # On Cygwin, change it to /usr/bin/convert
 CONVERT := convert
@@ -120,6 +122,24 @@ feature_size/%.webp: original_size/%.jpg
 
 not_resized_original/castle_game_engine_icon.png: ../../../castle-engine/doc/pasdoc/logo/castle_game_engine_icon.png
 	cp -f $< $@
+
+# /favicon.ico and /apple-touch-icon.png, at the website root.
+# Browsers request these by fixed name when they have no <link rel="icon">
+# to go by (e.g. when viewing PDFs, or when other sites show our icon),
+# and iOS looks for /apple-touch-icon.png.
+# Without them, each such request got a full 404 page (~100 times/day, Nov 2026).
+#
+# Made from the square icon, the same one our pages link as rel="icon".
+# It is opaque, which matters for iOS (it fills transparency with black).
+# favicon.ico is just a copy of the 256x256 PNG (7.8 KB), not a real ICO file.
+# All modern browsers detect the format by content, not by extension,
+# and this keeps full resolution for any client that uses favicon.ico.
+# (A real multi-size ICO from ImageMagick would store the 256 size uncompressed,
+# 285 KB, and dropping the 256 size would leave only 48 px for high-res uses.)
+../favicon.ico: not_resized_original/castle_game_engine_icon_fit_in_square.png
+	cp -f $< $@
+../apple-touch-icon.png: not_resized_original/castle_game_engine_icon_fit_in_square.png
+	$(CONVERT) $< -resize 180x180 $@
 
 # OS icons -------------------------------------------------------------------
 
