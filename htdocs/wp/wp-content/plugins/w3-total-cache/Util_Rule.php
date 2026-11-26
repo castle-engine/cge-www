@@ -138,6 +138,45 @@ class Util_Rule {
 	}
 
 	/**
+	 * Normalises one cookie-group entry and checks that it compiles as a regex.
+	 *
+	 * Shared by the Apache and Nginx rule builders (PgCache_Environment) and the PHP
+	 * matcher (PgCache_ContentGrabber::_fill_key_extension_cookie()), so every consumer
+	 * keeps or drops the same entries. An entry without `=` matches any value. An unescaped
+	 * `~`, the delimiter of the PHP matcher, is escaped so it matches a literal `~` everywhere.
+	 * An entry that does not compile is skipped, so one bad entry cannot disable its whole group.
+	 *
+	 * The matcher runs from advanced-cache.php, so this stays free of admin-only code.
+	 *
+	 * @since 2.11.1
+	 *
+	 * @param string $cookie Cookie entry with `+` already replaced by spaces.
+	 *
+	 * @return string|null Regex text for the entry, or null when it is empty or not a valid regex.
+	 */
+	public static function cookie_group_entry( $cookie ) {
+		$cookie = self::sanitize_directive_value( $cookie );
+		if ( '' === $cookie ) {
+			return null;
+		}
+
+		if ( false === \strpos( $cookie, '=' ) ) {
+			$cookie .= '=.*';
+		}
+
+		// A backslash pair is skipped so an already escaped `~` stays as it is.
+		$cookie = \preg_replace( '/\\\\.(*SKIP)(*FAIL)|~/s', '\\\\~', $cookie );
+
+		// An invalid entry makes preg_match() return false with a warning; the false result is the signal, so only the warning is silenced.
+		// phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
+		if ( false === @\preg_match( '~^(' . $cookie . ')$~i', '' ) ) {
+			return null;
+		}
+
+		return $cookie;
+	}
+
+	/**
 	 * Validates an admin-supplied custom server-rules file path
 	 * (`config.path`).
 	 *
@@ -152,11 +191,12 @@ class Util_Rule {
 	 * a php-fpm pool include, …).
 	 *
 	 * The rules file is, by definition, a server-config file, so we require
-	 * a `.conf` extension and reject null bytes and `..` traversal. That
-	 * preserves every legitimate use (the built-in defaults `nginx.conf` /
-	 * `litespeed.conf` and any real `*.conf` include path) while blocking
-	 * the documented write-to-RCE targets. Invalid values fall back to the
-	 * safe in-site-root default.
+	 * a `.conf` extension and reject null bytes and `..` traversal. The
+	 * resolved parent directory must also sit inside ABSPATH or the W3TC
+	 * cache directory, so the writer cannot target server-wide config
+	 * includes outside the site tree. Operators who keep the rules file
+	 * elsewhere include the in-site file from their server config instead.
+	 * Invalid values fall back to the safe in-site-root default.
 	 *
 	 * @since 2.10.0
 	 *
@@ -175,7 +215,55 @@ class Util_Rule {
 			return false;
 		}
 
-		return (bool) preg_match( '~\.conf$~i', $normalized );
+		if ( ! preg_match( '~\.conf$~i', $normalized ) ) {
+			return false;
+		}
+
+		return self::is_custom_rules_path_confined( $normalized );
+	}
+
+	/**
+	 * Checks that the parent directory of a rules path resolves inside
+	 * ABSPATH or the W3TC cache directory.
+	 *
+	 * The parent directory must already exist so `realpath()` can resolve
+	 * symlinks; a path whose parent cannot be resolved is rejected.
+	 *
+	 * @since 2.11.1
+	 *
+	 * @param string $normalized Normalized rules-file path.
+	 *
+	 * @return bool True when the resolved parent is inside an allowed root.
+	 */
+	private static function is_custom_rules_path_confined( $normalized ) {
+		$parent = @realpath( dirname( $normalized ) ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
+		if ( false === $parent ) {
+			return false;
+		}
+
+		$parent = Util_Environment::normalize_path( $parent ) . '/';
+
+		$roots = array();
+		if ( defined( 'ABSPATH' ) ) {
+			$roots[] = ABSPATH;
+		}
+		if ( defined( 'W3TC_CACHE_DIR' ) ) {
+			$roots[] = W3TC_CACHE_DIR;
+		}
+
+		foreach ( $roots as $root ) {
+			$resolved = @realpath( $root ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
+			if ( false === $resolved ) {
+				continue;
+			}
+
+			$resolved = Util_Environment::normalize_path( $resolved ) . '/';
+			if ( 0 === strpos( $parent, $resolved ) ) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	/**

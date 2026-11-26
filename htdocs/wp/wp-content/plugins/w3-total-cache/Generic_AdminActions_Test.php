@@ -113,6 +113,10 @@ class Generic_AdminActions_Test {
 			$password = $this->stored_cache_password( 'memcached' );
 		}
 
+		if ( ! self::are_test_servers_allowed( $servers, $this->saved_cache_servers( 'memcached' ) ) ) {
+			$this->respond_test_result( false, self::server_refused_message() );
+		}
+
 		$this->respond_test_result( $this->is_memcache_available( $servers, $binary_protocol, $username, $password ) );
 	}
 
@@ -139,12 +143,46 @@ class Generic_AdminActions_Test {
 			$password = $this->stored_cache_password( 'redis' );
 		}
 
+		if ( ! self::are_test_servers_allowed( $servers, $this->saved_cache_servers( 'redis' ) ) ) {
+			$this->respond_test_result( false, self::server_refused_message() );
+		}
+
+		$success = $this->redis_servers_pass_test(
+			$servers,
+			$password,
+			$dbid,
+			$verify_tls_certificates,
+			$this->redis_timeout_setting( 'timeout' ),
+			$this->redis_timeout_setting( 'read_timeout' )
+		);
+
+		$this->respond_test_result( $success );
+	}
+
+	/**
+	 * Write and read back a test value on each Redis server.
+	 *
+	 * Uses the same timeouts as the save probe, so Test and Save agree.
+	 *
+	 * @since 2.11.1
+	 *
+	 * @param array  $servers                 Server strings.
+	 * @param string $password                Password.
+	 * @param int    $dbid                    Database id.
+	 * @param bool   $verify_tls_certificates Whether to verify TLS certificates.
+	 * @param int    $timeout                 Connect timeout; 0 uses one second.
+	 * @param int    $read_timeout            Read timeout; 0 uses one second.
+	 * @return bool
+	 */
+	public function redis_servers_pass_test( $servers, $password, $dbid, $verify_tls_certificates, $timeout = 0, $read_timeout = 0 ) {
 		if ( empty( $servers ) ) {
 			$success = false;
 		} else {
 			$success = true;
 
 			foreach ( $servers as $server ) {
+				Cache_Redis::clear_server_bypass( $server, $dbid );
+
 				@$cache = Cache::instance( // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
 					'redis',
 					array(
@@ -153,6 +191,8 @@ class Generic_AdminActions_Test {
 						'persistent'              => false,
 						'password'                => $password,
 						'dbid'                    => $dbid,
+						'timeout'                 => $timeout,
+						'read_timeout'            => $read_timeout,
 					)
 				);
 
@@ -167,23 +207,179 @@ class Generic_AdminActions_Test {
 
 				$test_value = $cache->get( $test_string );
 
+				Cache_Redis::clear_server_bypass( $server, $dbid );
+
 				if ( empty( $test_value['content'] ) || $test_value['content'] !== $test_string ) {
 					$success = false;
 				}
 			}
 		}
 
-		$this->respond_test_result( $success );
+		return $success;
+	}
+
+	/**
+	 * Redis timeout posted by the settings form, else the module's saved value.
+	 *
+	 * @since 2.11.1
+	 *
+	 * @param string $name Either 'timeout' or 'read_timeout'.
+	 * @return int
+	 */
+	private function redis_timeout_setting( $name ) {
+		$posted = Util_Request::get_string( $name, '' );
+
+		if ( '' !== $posted ) {
+			return (int) $posted;
+		}
+
+		$module  = Util_Request::get_string( 'module', '' );
+		$allowed = array( 'pgcache', 'dbcache', 'objectcache', 'minify' );
+
+		if ( ! in_array( $module, $allowed, true ) ) {
+			return 0;
+		}
+
+		return $this->_config->get_integer( $module . '.redis.' . $name );
+	}
+
+	/**
+	 * Returns the saved memcached / redis servers across cache modules.
+	 *
+	 * @since 2.11.1
+	 *
+	 * @param string $engine Cache engine identifier: 'redis' or 'memcached'.
+	 *
+	 * @return string[]
+	 */
+	private function saved_cache_servers( $engine ) {
+		$saved = array();
+
+		foreach ( array( 'pgcache', 'dbcache', 'objectcache', 'minify' ) as $module ) {
+			foreach ( (array) $this->_config->get_array( $module . '.' . $engine . '.servers' ) as $server ) {
+				if ( \is_string( $server ) && '' !== \trim( $server ) ) {
+					$saved[] = $server;
+				}
+			}
+		}
+
+		foreach ( (array) $this->_config->get_array( array( 'fragmentcache', $engine . '.servers' ) ) as $server ) {
+			if ( \is_string( $server ) && '' !== \trim( $server ) ) {
+				$saved[] = $server;
+			}
+		}
+
+		return $saved;
+	}
+
+	/**
+	 * Returns true when every requested test server is an allowed
+	 * destination.
+	 *
+	 * A server matching a saved entry is always allowed, so saved
+	 * loopback or socket servers keep working. Any other server must be
+	 * a network host whose addresses all pass
+	 * {@see Util_Url::host_resolves_safe_internal()}, which allows
+	 * private ranges but refuses loopback, link-local (including
+	 * 169.254.169.254), and reserved addresses. Unix sockets that are not
+	 * saved are refused.
+	 *
+	 * @since 2.11.1
+	 *
+	 * @param array    $servers Requested servers.
+	 * @param string[] $saved   Saved servers.
+	 *
+	 * @return bool
+	 */
+	public static function are_test_servers_allowed( $servers, $saved ) {
+		if ( ! \is_array( $servers ) ) {
+			return false;
+		}
+
+		$saved_normalized = array();
+		foreach ( (array) $saved as $entry ) {
+			if ( \is_string( $entry ) ) {
+				$saved_normalized[] = \strtolower( \trim( $entry ) );
+			}
+		}
+
+		foreach ( $servers as $server ) {
+			if ( ! \is_string( $server ) ) {
+				return false;
+			}
+
+			$server = \trim( $server );
+			if ( '' === $server ) {
+				continue;
+			}
+
+			if ( \in_array( \strtolower( $server ), $saved_normalized, true ) ) {
+				continue;
+			}
+
+			$host = self::test_server_host( $server );
+			if ( '' === $host || ! Util_Url::host_resolves_safe_internal( $host ) ) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	/**
+	 * Extracts the network host from a cache server string such as
+	 * `host:port`, `[v6]:port`, or `tls://host:port`.
+	 *
+	 * @since 2.11.1
+	 *
+	 * @param string $server Server string.
+	 *
+	 * @return string Host, or an empty string for sockets and unparseable values.
+	 */
+	private static function test_server_host( $server ) {
+		if ( 0 === \stripos( $server, 'unix:' ) ) {
+			return '';
+		}
+
+		$server = (string) \preg_replace( '#^[a-z][a-z0-9+.-]*://#i', '', $server );
+		if ( '' === $server || false !== \strpos( $server, '/' ) ) {
+			return '';
+		}
+
+		if ( false !== \filter_var( $server, FILTER_VALIDATE_IP ) ) {
+			return $server;
+		}
+
+		if ( '[' === \substr( $server, 0, 1 ) ) {
+			$end = \strpos( $server, ']' );
+			return false === $end ? '' : \substr( $server, 1, $end - 1 );
+		}
+
+		list( $host ) = Util_Content::endpoint_to_host_port( $server );
+
+		return \is_string( $host ) ? $host : '';
+	}
+
+	/**
+	 * Returns the message shown when a test server is refused.
+	 *
+	 * @since 2.11.1
+	 *
+	 * @return string
+	 */
+	private static function server_refused_message() {
+		return \__( 'Test failed. Loopback, link-local, reserved, socket, and unresolvable server addresses can be tested only after they are saved.', 'w3-total-cache' );
 	}
 
 	/**
 	 * Return response results
 	 *
-	 * @param bool $success Success.
+	 * @param bool        $success Success.
+	 * @param string|null $message Optional message that replaces the default.
 	 *
 	 * @return void
 	 */
-	private function respond_test_result( $success ) {
+	private function respond_test_result( $success, $message = null ) {
 		if ( $success ) {
 			$response = array(
 				'result' => true,
@@ -192,7 +388,7 @@ class Generic_AdminActions_Test {
 		} else {
 			$response = array(
 				'result' => false,
-				'error'  => __( 'Test failed.', 'w3-total-cache' ),
+				'error'  => \is_string( $message ) ? \esc_html( $message ) : __( 'Test failed.', 'w3-total-cache' ),
 			);
 		}
 
@@ -291,18 +487,9 @@ class Generic_AdminActions_Test {
 			}
 		}
 
-		/*
-		 * The vendored exception strings interpolate the configured
-		 * path verbatim into a message the dashboard renders client-
-		 * side. Strip HTML at the response boundary so the rendered
-		 * text is plain text. The full fix on the dashboard renderer
-		 * is tracked in the user-experience group's own change.
-		 *
-		 * @since 2.10.0
-		 */
 		$response = array(
 			'result' => $w3tc_result,
-			'error'  => is_string( $error ) ? \esc_html( $error ) : '',
+			'error'  => is_string( $error ) ? $error : '',
 		);
 
 		echo wp_json_encode( $response );

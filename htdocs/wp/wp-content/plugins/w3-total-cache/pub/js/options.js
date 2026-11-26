@@ -1375,7 +1375,7 @@ jQuery(function () {
         },
         function (data) {
           status.addClass(data.result ? "w3tc-success" : "w3tc-error");
-          status.html(data.error);
+          status.text(data.error);
         },
         "json",
       )
@@ -1403,6 +1403,8 @@ jQuery(function () {
             "[id$=__redis__verify_tls_certificates]",
           ).is(":checked"),
           dbid: jQuery("#redis_dbid").val(),
+          timeout: jQuery("#redis_timeout").val(),
+          read_timeout: jQuery("#redis_read_timeout").val(),
           password: jQuery("#redis_password").val(),
           // Masked field submits empty once stored; send the owning module so the server can fall back to the saved value.
           module: (jQuery("#redis_password").attr("name") || "").split("__")[0],
@@ -1410,7 +1412,7 @@ jQuery(function () {
         },
         function (data) {
           status.addClass(data.result ? "w3tc-success" : "w3tc-error");
-          status.html(data.error);
+          status.text(data.error);
         },
         "json",
       )
@@ -1470,7 +1472,7 @@ jQuery(function () {
       params,
       function (data) {
         status.addClass(data.result ? "w3tc-success" : "w3tc-error");
-        status.html(data.error);
+        status.text(data.error);
       },
       "json",
     );

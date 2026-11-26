@@ -1,6 +1,33 @@
 # CHANGELOG
 
 
+## 2.6.2 - 2026-11-21
+
+### Fixed
+
+- Fixed `LogicException` when a callback settles its own promise
+
+
+## 2.6.1 - 2026-11-19
+
+### Fixed
+
+- Fixed `Promise` losing its handlers when a thenable's `then()` throws
+- Fixed `Create::promiseFor()` throwing when a thenable's `then()` throws
+- Fixed quadratic handler forwarding through chains of pending promises
+
+
+## 2.6.0 - 2026-10-18
+
+### Added
+
+- Added `State` promise state checks as a replacement for `Is`
+
+### Deprecated
+
+- Deprecated `Is` because PHP 8.6 deprecates `is` as a class name
+
+
 ## 2.5.3 - 2026-08-24
 
 ### Added

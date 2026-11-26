@@ -234,7 +234,8 @@ class Cache_File extends Cache_Base {
 		$w3tc_data  = null;
 
 		if ( false !== $expires_at ) {
-			list( , $expires_at ) = @unpack( 'L', $expires_at );
+			$unpacked   = @unpack( 'L', $expires_at );
+			$expires_at = \is_array( $unpacked ) ? $unpacked[1] : 0;
 
 			if ( time() > $expires_at ) {
 				if ( $this->_use_expired_data ) {
@@ -357,7 +358,7 @@ class Cache_File extends Cache_Base {
 	 * @return bool Always returns true.
 	 */
 	public function flush( $w3tc_group = '' ) {
-		@set_time_limit( $this->_flush_timelimit ); // phpcs:ignore Squiz.PHP.DiscouragedFunctions.Discouraged
+		Util_Environment::set_time_limit( $this->_flush_timelimit );
 
 		if ( 'sitemaps' === $w3tc_group ) {
 			$w3tc_config   = Dispatcher::config();

@@ -38,7 +38,21 @@ class Util_Admin {
 					$page = $page_url;
 				}
 
-				$params = array_merge( array( 'page' => $page ), $params );
+				if ( isset( $params['page'] ) ) {
+					$page = $params['page'];
+					unset( $params['page'] );
+				}
+
+				if ( '' === (string) $page ) {
+					$page = self::fallback_page();
+				}
+
+				// An empty page query makes admin.php return 403.
+				if ( '' === (string) $page ) {
+					$w3tc_url = 'index.php';
+				} else {
+					$params = array_merge( array( 'page' => $page ), $params );
+				}
 			}
 		}
 
@@ -115,13 +129,48 @@ class Util_Admin {
 			}
 		}
 
+		if ( '' === (string) $w3tc_data['query_string']['page'] ) {
+			$w3tc_data['query_string']['page'] = self::fallback_page();
+		}
+
 		$message_id = uniqid();
 
 		update_option( 'w3tc_message', array( $message_id => $w3tc_data ), 'yes' );
 
 		$w3tc_data['query_string']['w3tc_message'] = $message_id;
 
-		Util_Environment::redirect( 'admin.php', $w3tc_data['query_string'] );
+		if ( '' === (string) $w3tc_data['query_string']['page'] ) {
+			unset( $w3tc_data['query_string']['page'] );
+			Util_Environment::redirect( 'index.php', $w3tc_data['query_string'] );
+		} else {
+			Util_Environment::redirect( 'admin.php', $w3tc_data['query_string'] );
+		}
+	}
+
+	/**
+	 * Page slug for an admin.php redirect that has none.
+	 *
+	 * Mirrors the capability checks that register the W3TC Dashboard. Users who
+	 * cannot open it get an empty slug and are sent to the WordPress Dashboard.
+	 *
+	 * @since 2.11.1
+	 *
+	 * @return string
+	 */
+	private static function fallback_page() {
+		if ( ! \current_user_can( 'manage_options' ) ) {
+			return '';
+		}
+
+		$base_capability = \is_network_admin() ? 'manage_network_options' : 'manage_options';
+		$base_capability = \apply_filters( 'w3tc_capability_menu', $base_capability );
+		if ( ! \current_user_can( $base_capability ) ) {
+			return '';
+		}
+
+		$capability = \apply_filters( 'w3tc_capability_menu_w3tc_dashboard', $base_capability );
+
+		return \current_user_can( $capability ) ? 'w3tc_dashboard' : '';
 	}
 
 
@@ -801,11 +850,40 @@ class Util_Admin {
 	public static function get_current_page() {
 		$page = Util_Request::get_string( 'page' );
 
-		if ( substr( $page, 0, 5 ) === 'w3tc_' ) {
+		if ( self::is_registered_w3tc_page( $page ) ) {
 			return $page;
 		}
 
 		return 'w3tc_dashboard';
+	}
+
+	/**
+	 * Returns whether a page slug is registered in the W3TC admin menu.
+	 *
+	 * @since 2.11.1
+	 *
+	 * @param string $page Page slug.
+	 *
+	 * @return bool
+	 */
+	private static function is_registered_w3tc_page( $page ) {
+		if ( '' === $page ) {
+			return false;
+		}
+
+		// The Image Converter settings page is registered under Media, outside Root_AdminMenu.
+		if ( 'w3tc_extension_page_imageservice' === $page ) {
+			return true;
+		}
+
+		$menus = Dispatcher::component( 'Root_AdminMenu' );
+		if ( ! $menus instanceof Root_AdminMenu ) {
+			return false;
+		}
+
+		$pages = $menus->generate_menu_array();
+
+		return isset( $pages[ $page ] );
 	}
 
 	/**

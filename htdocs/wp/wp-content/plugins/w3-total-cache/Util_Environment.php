@@ -24,6 +24,67 @@ class Util_Environment {
 	private static $is_using_master_config = null;
 
 	/**
+	 * Extend the request time limit when the host allows it.
+	 *
+	 * PHP 8 raises an Error when set_time_limit() is listed in
+	 * disable_functions. function_exists() stays true in that case, and
+	 * the error suppressor does not catch the Error, so the call is
+	 * skipped and the request keeps its existing limit.
+	 *
+	 * @since 2.11.1
+	 *
+	 * @param int $seconds Time limit in seconds. 0 means unlimited.
+	 *
+	 * @return void
+	 */
+	public static function set_time_limit( $seconds ) {
+		if ( ! self::can_set_time_limit() ) {
+			return;
+		}
+
+		try {
+			@set_time_limit( $seconds ); // phpcs:ignore Squiz.PHP.DiscouragedFunctions.Discouraged
+		} catch ( \Throwable $e ) {
+			unset( $e );
+		}
+	}
+
+	/**
+	 * Whether set_time_limit() may be called on this host.
+	 *
+	 * function_exists() is true for a function listed in
+	 * disable_functions, so the ini list is checked as well. A name is
+	 * matched whole, after trimming, so a longer name does not count.
+	 *
+	 * @since 2.11.1
+	 *
+	 * @param string|null $disabled disable_functions list. Null reads the current ini value.
+	 *
+	 * @return bool True when the function exists and is not disabled.
+	 */
+	public static function can_set_time_limit( $disabled = null ) {
+		if ( ! function_exists( 'set_time_limit' ) ) {
+			return false;
+		}
+
+		if ( null === $disabled ) {
+			$disabled = ini_get( 'disable_functions' );
+		}
+
+		if ( ! is_string( $disabled ) || '' === $disabled ) {
+			return true;
+		}
+
+		foreach ( explode( ',', strtolower( $disabled ) ) as $name ) {
+			if ( 'set_time_limit' === trim( $name ) ) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	/**
 	 * Formats URL.
 	 *
 	 * @static
@@ -2387,5 +2448,250 @@ class Util_Environment {
 
 		$sanitized = \esc_url( $candidate, array( 'https' ), '' );
 		return ( \is_string( $sanitized ) && '' !== $sanitized ) ? $sanitized : $default;
+	}
+
+	/**
+	 * Headers for an Always Cached regeneration request.
+	 *
+	 * A configured worker secret is sent as a Bearer token. Otherwise the
+	 * worker stores a one-time proof in the shared options table, because the
+	 * callback may be handled by a different app server than the worker.
+	 *
+	 * @since 2.11.1
+	 *
+	 * @param string $item_key Queue item key carried in the regeneration header.
+	 *
+	 * @return array Empty when a proof could not be issued.
+	 */
+	public static function alwayscached_request_headers( $item_key ) {
+		$headers = array(
+			'w3tcalwayscached' => (string) $item_key,
+		);
+
+		if ( \defined( 'W3TC_WORKER_SECRET' ) && '' !== \W3TC_WORKER_SECRET ) {
+			$headers['Authorization'] = 'Bearer ' . \W3TC_WORKER_SECRET;
+			return $headers;
+		}
+
+		$token = self::alwayscached_issue_proof();
+		if ( '' === $token ) {
+			return array();
+		}
+
+		$headers['Authorization'] = 'Bearer ' . $token;
+		return $headers;
+	}
+
+	/**
+	 * Whether a Bearer token matches a fresh Always Cached worker proof.
+	 *
+	 * The mac is checked before any database query. A stale, unknown, or
+	 * forged token is rejected. A valid proof is single-use.
+	 *
+	 * @since 2.11.1
+	 *
+	 * @param string $token Presented bearer token.
+	 *
+	 * @return bool
+	 */
+	public static function alwayscached_consume_proof( $token ) {
+		$nonce = self::alwayscached_proof_nonce( $token );
+		if ( '' === $nonce ) {
+			return false;
+		}
+
+		$name = self::alwayscached_proof_name( $nonce );
+
+		return (bool) self::alwayscached_proof_call(
+			static function ( $db, $table ) use ( $name ) {
+				$row = $db->get_row(
+					$db->prepare(
+						"SELECT option_value FROM `$table` WHERE option_name = %s LIMIT 1",
+						$name
+					)
+				);
+
+				$db->query(
+					$db->prepare(
+						"DELETE FROM `$table` WHERE option_name = %s",
+						$name
+					)
+				);
+
+				if ( ! \is_object( $row ) || ! isset( $row->option_value ) ) {
+					return false;
+				}
+
+				$issued = (int) $row->option_value;
+
+				return $issued > 0 && ( \time() - $issued ) <= 120;
+			}
+		);
+	}
+
+	/**
+	 * Writes a short-lived unguessable proof for one worker callback.
+	 *
+	 * The row lives in the base options table so every app server can read it.
+	 *
+	 * @since 2.11.1
+	 *
+	 * @return string Token, or empty when the proof could not be stored.
+	 */
+	private static function alwayscached_issue_proof() {
+		$key = self::alwayscached_proof_key();
+		if ( '' === $key ) {
+			return '';
+		}
+
+		try {
+			$nonce = \bin2hex( \random_bytes( 16 ) );
+		} catch ( \Exception $e ) {
+			return '';
+		}
+
+		$token  = $nonce . '.' . \substr( \hash_hmac( 'sha256', $nonce, $key ), 0, 32 );
+		$name   = self::alwayscached_proof_name( $nonce );
+		$issued = (string) \time();
+		$stored = self::alwayscached_proof_call(
+			static function ( $db, $table ) use ( $name, $issued ) {
+				$db->query(
+					$db->prepare(
+						"DELETE FROM `$table` WHERE option_name LIKE %s AND option_value+0 < %d",
+						'w3tc-worker-proof-%',
+						\time() - 120
+					)
+				);
+
+				$inserted = $db->query(
+					$db->prepare(
+						"INSERT INTO `$table` (option_name, option_value, autoload) VALUES (%s, %s, 'no')",
+						$name,
+						$issued
+					)
+				);
+
+				return false !== $inserted;
+			}
+		);
+
+		return $stored ? $token : '';
+	}
+
+	/**
+	 * Option name for a proof nonce. The bearer token itself is not stored.
+	 *
+	 * @since 2.11.1
+	 *
+	 * @param string $nonce Proof nonce.
+	 *
+	 * @return string
+	 */
+	private static function alwayscached_proof_name( $nonce ) {
+		return 'w3tc-worker-proof-' . \hash( 'sha256', $nonce );
+	}
+
+	/**
+	 * Nonce from a bearer token whose mac matches this site's AUTH_KEY.
+	 *
+	 * @since 2.11.1
+	 *
+	 * @param string $token Presented bearer token.
+	 *
+	 * @return string Empty when the token is forged or unsigned.
+	 */
+	private static function alwayscached_proof_nonce( $token ) {
+		if ( ! \is_string( $token ) || ! \preg_match( '/^([a-f0-9]{32})\.([a-f0-9]{32})$/', $token, $matches ) ) {
+			return '';
+		}
+
+		$key = self::alwayscached_proof_key();
+		if ( '' === $key ) {
+			return '';
+		}
+
+		$expected = \substr( \hash_hmac( 'sha256', $matches[1], $key ), 0, 32 );
+		if ( ! \hash_equals( $expected, $matches[2] ) ) {
+			return '';
+		}
+
+		return $matches[1];
+	}
+
+	/**
+	 * Site key used to authenticate a worker proof before opening the database.
+	 *
+	 * @since 2.11.1
+	 *
+	 * @return string Empty when AUTH_KEY is unavailable.
+	 */
+	private static function alwayscached_proof_key() {
+		if ( ! \defined( 'AUTH_KEY' ) || ! \is_string( \AUTH_KEY ) || '' === \AUTH_KEY ) {
+			return '';
+		}
+
+		return \AUTH_KEY;
+	}
+
+	/**
+	 * Base options table shared by the worker and the early page cache.
+	 *
+	 * @since 2.11.1
+	 *
+	 * @return string Empty when the table name is not a safe identifier.
+	 */
+	private static function alwayscached_proof_table() {
+		global $wpdb, $table_prefix;
+
+		$prefix = ( isset( $wpdb->base_prefix ) && \is_string( $wpdb->base_prefix ) && '' !== $wpdb->base_prefix ) ? $wpdb->base_prefix : $table_prefix;
+		$table  = $prefix . 'options';
+
+		if ( ! \is_string( $table ) || ! \preg_match( '/^[A-Za-z0-9_]+$/', $table ) ) {
+			return '';
+		}
+
+		return $table;
+	}
+
+	/**
+	 * Runs a proof query with the loaded database, or an early connection.
+	 *
+	 * Page cache authentication runs before WordPress creates `$wpdb`.
+	 *
+	 * @since 2.11.1
+	 *
+	 * @param callable $callback Receives the database handle and options table.
+	 *
+	 * @return mixed False when no database is available.
+	 */
+	private static function alwayscached_proof_call( $callback ) {
+		$table = self::alwayscached_proof_table();
+		if ( '' === $table ) {
+			return false;
+		}
+
+		global $wpdb;
+		if ( isset( $wpdb ) && ! empty( $wpdb->ready ) ) {
+			return $callback( $wpdb, $table );
+		}
+
+		if ( ! \defined( 'DB_USER' ) || ! \defined( 'DB_PASSWORD' ) || ! \defined( 'DB_NAME' ) || ! \defined( 'DB_HOST' ) ) {
+			return false;
+		}
+
+		if ( ! \class_exists( __NAMESPACE__ . '\\_WpdbEssentials', false ) ) {
+			require_once __DIR__ . '/ConfigDbStorage.php';
+		}
+
+		$db = new _WpdbEssentials( \DB_USER, \DB_PASSWORD, \DB_NAME, \DB_HOST );
+		if ( empty( $db->ready ) ) {
+			return false;
+		}
+
+		try {
+			return $callback( $db, $table );
+		} finally {
+			$db->close();
+		}
 	}
 }

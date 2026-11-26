@@ -191,6 +191,8 @@ class ConfigCompiler {
 		}
 
 		if ( is_array( $w3tc_data ) ) {
+			// Resolve the transport before upgrade() rewrites `version`.
+			$w3tc_data = self::normalize_saved_ftp_type( $w3tc_data );
 			$w3tc_data = $this->upgrade( $w3tc_data );
 			foreach ( $w3tc_data as $w3tc_key => $w3tc_value ) {
 				$this->_data[ $w3tc_key ] = $w3tc_value;
@@ -215,6 +217,8 @@ class ConfigCompiler {
 		}
 
 		if ( is_array( $w3tc_data ) ) {
+			// Resolve the transport before upgrade() rewrites `version`.
+			$w3tc_data = self::normalize_saved_ftp_type( $w3tc_data, $this->_data );
 			$w3tc_data = $this->upgrade( $w3tc_data );
 			foreach ( $w3tc_data as $w3tc_key => $w3tc_value ) {
 				if ( ! self::child_key_sealed( $w3tc_key, $this->_data, $w3tc_data ) ) {
@@ -314,6 +318,54 @@ class ConfigCompiler {
 	}
 
 	/**
+	 * Resolve `cdn.ftp.type` for a saved config.
+	 *
+	 * Through 2.11.0 the default was an empty string (plain FTP), and the
+	 * master save() writes every key, so most older files store `''`
+	 * whether or not FTP was ever set up. For files older than 2.11.1:
+	 * - An omitted transport inherits the parent's transport when a parent
+	 *   is loaded, and is pinned to `''` (plain FTP) otherwise.
+	 * - An empty transport with no saved host was never configured, so it
+	 *   moves to `ftps`. An empty host cannot connect, so nothing breaks.
+	 * - An empty transport with a saved host stays plain FTP.
+	 *
+	 * Newer files that omit the key inherit the master transport when a
+	 * parent is loaded, so an overloaded child keeps the master's plain
+	 * FTP host on plain FTP. With no parent they get the `ftps` schema
+	 * default, which same-version loads would otherwise skip.
+	 *
+	 * Call this before {@see self::upgrade()}, which replaces `version`
+	 * with the running plugin version.
+	 *
+	 * @since 2.11.1
+	 *
+	 * @param array $file_data   Saved config data.
+	 * @param array $parent_data Master data a child file inherits `cdn.ftp.host` and `cdn.ftp.type` from when it omits the key.
+	 * @return array Saved config data, with `cdn.ftp.type` set.
+	 */
+	public static function normalize_saved_ftp_type( array $file_data, array $parent_data = array() ) {
+		$version = isset( $file_data['version'] ) ? (string) $file_data['version'] : '0.0.0';
+
+		if ( \version_compare( $version, '2.11.1', '<' ) ) {
+			if ( ! \array_key_exists( 'cdn.ftp.type', $file_data ) ) {
+				$file_data['cdn.ftp.type'] = $parent_data['cdn.ftp.type'] ?? '';
+			}
+
+			$host = \array_key_exists( 'cdn.ftp.host', $file_data )
+				? $file_data['cdn.ftp.host']
+				: ( $parent_data['cdn.ftp.host'] ?? '' );
+
+			if ( '' === (string) $file_data['cdn.ftp.type'] && empty( $host ) ) {
+				$file_data['cdn.ftp.type'] = 'ftps';
+			}
+		} elseif ( ! \array_key_exists( 'cdn.ftp.type', $file_data ) ) {
+			$file_data['cdn.ftp.type'] = $parent_data['cdn.ftp.type'] ?? 'ftps';
+		}
+
+		return $file_data;
+	}
+
+	/**
 	 * Upgrades the provided configuration data to the latest version.
 	 *
 	 * This method ensures that configuration data is updated and migrated
@@ -372,6 +424,23 @@ class ConfigCompiler {
 
 			if ( ! in_array( 'skip_lazy', $file_data['lazyload.exclude'], true ) ) {
 				$file_data['lazyload.exclude'][] = 'skip_lazy';
+			}
+		}
+
+		// changes in 2.11.1: keep fetchpriority="high" images out of lazy load.
+		// The compiled config stores every key, so the new default never reaches saved configs on its own.
+		// The stored version moves forward on the next save, so an entry removed afterwards stays removed.
+		if ( version_compare( $file_data['version'], '2.11.1', '<' ) && isset( $file_data['lazyload.exclude'] ) ) {
+			if ( is_string( $file_data['lazyload.exclude'] ) ) {
+				$file_data['lazyload.exclude'] = preg_split( '/\r\n|\r|\n/', $file_data['lazyload.exclude'], -1, PREG_SPLIT_NO_EMPTY );
+			} elseif ( ! is_array( $file_data['lazyload.exclude'] ) ) {
+				$file_data['lazyload.exclude'] = array();
+			}
+
+			foreach ( array( 'fetchpriority="high"', "fetchpriority='high'" ) as $w3tc_exclude ) {
+				if ( ! in_array( $w3tc_exclude, $file_data['lazyload.exclude'], true ) ) {
+					$file_data['lazyload.exclude'][] = $w3tc_exclude;
+				}
 			}
 		}
 
