@@ -308,6 +308,59 @@ function kambi_bootstrap()
   }
 }
 
+/* Carousel content for <head>. */
+function echo_carousel_header()
+{
+  global $main_page;
+  if (!$main_page) return; // used only on the main page now
+
+  ?>
+
+  <!--
+    slick carousel https://github.com/kenwheeler/slick/ .
+    Only the main page has the carousel (castle_slideshow), so don't make
+    every other page wait for these render-blocking CSS files.
+  -->
+  <link rel="stylesheet" type="text/css" href="<?php echo page_requisite('castle-engine-website-base/node_modules/slick-carousel/slick/slick.css'); ?>">
+  <link rel="stylesheet" type="text/css" href="<?php echo page_requisite('castle-engine-website-base/node_modules/slick-carousel/slick/slick-theme.css'); ?>">
+
+  <!-- Preload main slideshow image for better LCP on main page -->
+  <link rel="preload" href="<?php echo page_requisite('images/not_resized/combined_cge_logo_game.webp'); ?>" as="image">
+
+  <?php
+}
+
+/* Carousel content for footer before </body> . */
+function echo_carousel_footer()
+{
+  global $main_page;
+  if (!$main_page) return; // used only on the main page now
+
+  ?>
+
+  <!-- slick carousel https://github.com/kenwheeler/slick/ -->
+  <script src="<?php echo page_requisite('castle-engine-website-base/node_modules/slick-carousel/slick/slick.min.js'); ?>" fetchpriority="high"></script>
+  <script>
+  jQuery('.banner-container').on('init', function(event, slick){
+    /* Make images visible after slick initialization.
+      Don't make images visible immediately (before Slick initializes)
+      to avoid CLS. */
+    jQuery(".banner-container img").css("display", "block");
+  });
+  jQuery(".banner-container").slick({
+    arrows: false,
+    dots: true,
+    autoplay: true,
+    fade: true,
+    pauseOnFocus: false,
+    pauseOnHover: false
+  //  autoplaySpeed: 2000
+  });
+  </script>
+
+  <?php
+}
+
 /* header ============================================================ */
 
 /* Subset of common_header that goes inside <head> and makes sense for both
@@ -327,14 +380,7 @@ function echo_shared_head()
 <!-- Colorbox -->
 <link href="<?php echo page_requisite('castle-engine-website-base/node_modules/jquery-colorbox/example3/colorbox.css'); ?>" type="text/css" rel="stylesheet">
 
-<!-- slick carousel https://github.com/kenwheeler/slick/ -->
-<link rel="stylesheet" type="text/css" href="<?php echo page_requisite('castle-engine-website-base/node_modules/slick-carousel/slick/slick.css'); ?>">
-<link rel="stylesheet" type="text/css" href="<?php echo page_requisite('castle-engine-website-base/node_modules/slick-carousel/slick/slick-theme.css'); ?>">
-
-<!-- Preload main slideshow image for better LCP on main page -->
-<?php if ($main_page): ?>
-<link rel="preload" href="<?php echo page_requisite('images/not_resized/combined_cge_logo_game.webp'); ?>" as="image">
-<?php endif; ?>
+<?php echo_carousel_header(); ?>
 
 <?php
   echo_header_bonus();
@@ -488,8 +534,22 @@ function echo_shared_body_end()
   }
 ?>
 
-<!-- jQuery. Used also by colorbox. -->
-<script src="<?php echo page_requisite('castle-engine-website-base/node_modules/jquery/dist/jquery.min.js'); ?>"></script>
+<?php
+  /* jQuery. Used also by colorbox and slick.
+
+     Don't load it if WordPress already printed its own jQuery (in <head>,
+     needed there by plugins like the syntax highlighter).
+     A 2nd copy would be downloaded again and would replace the global jQuery,
+     losing the plugins attached to the first copy.
+     Note that WordPress jQuery is in noConflict mode (no "$"),
+     so use "jQuery", not "$", in the scripts below. */
+  if (!($castle_wordpress && wp_script_is('jquery', 'done'))) {
+?>
+    <!-- jQuery. Used also by colorbox. -->
+    <script src="<?php echo page_requisite('castle-engine-website-base/node_modules/jquery/dist/jquery.min.js'); ?>"></script>
+<?php
+  }
+?>
 
 <!-- Using passive event listeners can improve scrolling performance, according to
      https://web.dev/uses-passive-event-listeners/
@@ -533,25 +593,7 @@ jQuery.event.special.mousewheel = {
 <!-- Bootstrap JS (bundled, with Popper) -->
 <script src="<?php echo page_requisite('castle-engine-website-base/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js'); ?>"></script>
 
-<!-- slick carousel https://github.com/kenwheeler/slick/ -->
-<script src="<?php echo page_requisite('castle-engine-website-base/node_modules/slick-carousel/slick/slick.min.js'); ?>" fetchpriority="high"></script>
-<script>
-$('.banner-container').on('init', function(event, slick){
-  /* Make images visible after slick initialization.
-     Don't make images visible immediately (before Slick initializes)
-     to avoid CLS. */
-  $(".banner-container img").css("display", "block");
-});
-jQuery(".banner-container").slick({
-  arrows: false,
-  dots: true,
-  autoplay: true,
-  fade: true,
-  pauseOnFocus: false,
-  pauseOnHover: false
-//  autoplaySpeed: 2000
-});
-</script>
+<?php echo_carousel_footer(); ?>
 
 <script src="<?php echo page_requisite('castle-engine-website-base/castle-engine.js?version=' . CASTLE_ENGINE_ASSETS_VERSION); ?>"></script>
 <?php
