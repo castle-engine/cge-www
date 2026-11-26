@@ -1353,7 +1353,11 @@ function castle_slideshow()
         - bad for users (content shifts at loading)
         - bad for SEO (Google core web vitals
           based on actual user experience measure this, also LightHouse). */
-      $extra_attribs = 'style="display: none"';
+      $extra_attribs = 'style="display: none" loading="lazy"';
+      /* loading="lazy": don't download it at page load, competing for
+        bandwidth with the 1st image, which is the LCP element (on slow mobile
+        connections the 1st image took 4.6s to load, lab test 2026-11-26).
+        It loads when slick makes it visible. */
     }
 
     $image_src = 'images/not_resized/' . $banner_image['src'] . '.webp';
@@ -2027,7 +2031,7 @@ function cgeImg($placement, $images)
 
 function cge_highlights_slides()
 {
-  return '<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRuG3TaWgS7S-AAj7tPzHF1MYpgKueE1Z-L6df03WTuYU0Y0K0GLxxbC54gUBygI0gxp4r11pQtCal5/embed?start=false&loop=false&delayms=60000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>';
+  return '<iframe loading="lazy" src="https://docs.google.com/presentation/d/e/2PACX-1vRuG3TaWgS7S-AAj7tPzHF1MYpgKueE1Z-L6df03WTuYU0Y0K0GLxxbC54gUBygI0gxp4r11pQtCal5/embed?start=false&loop=false&delayms=60000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>';
   //<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRuG3TaWgS7S-AAj7tPzHF1MYpgKueE1Z-L6df03WTuYU0Y0K0GLxxbC54gUBygI0gxp4r11pQtCal5/embed?start=false&loop=false&delayms=60000" frameborder="0" width="1440" height="839" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>';
   //<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRuG3TaWgS7S-AAj7tPzHF1MYpgKueE1Z-L6df03WTuYU0Y0K0GLxxbC54gUBygI0gxp4r11pQtCal5/embed?start=true&loop=true&delayms=3000" frameborder="0" width="1440" height="839" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>';
 }
@@ -2045,6 +2049,11 @@ function castle_replace_asciidoctor_macros($contents)
      This matters for similar "cgeimg::..." trick, we didn't want to change numbering
      of matching groups.
   */
+
+  /* Lazy-load iframes (YouTube videos from AsciiDoctor video:: macro).
+     Without this, each YouTube embed downloads ~0.5-1 MB of player JS at page load,
+     e.g. /delphi with 4 videos had 4.5 MB and FCP 18s on mobile (lab test 2026-11-26). */
+  $contents = preg_replace('/<iframe (?![^>]*\bloading=)/', '<iframe loading="lazy" ', $contents);
 
   $contents = preg_replace_callback('/(?:<p>)?cge::toc-from-sitemap\[\](?:<\/p>)?/',
     function ($matches) {
